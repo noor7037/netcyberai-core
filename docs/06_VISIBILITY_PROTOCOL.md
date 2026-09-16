@@ -35,19 +35,29 @@ purchase intent.
 Confirmed present as of the Prompt 8/9 audit, 28 pages:
 
 - Dynamic `sitemap.ts`, 28/28 routes matching built output
-- `robots.ts` with AI bot allowlist
+- `robots.ts` with AI bot allowlist — re-verified live 2026-09-16,
+  matches §3/§4's crawler table exactly
 - `opengraph-image.tsx` per page type, 1200×630, absolute URLs, alt text
 - Exactly one canonical + one og:image per page
 - `en-IN` hreflang matching canonical, `og:locale=en_IN`
 - `Organization` JSON-LD on every page
-- `FAQPage` JSON-LD (4–6 Q&A) on every `/features/*` and `/blog/*`
+- `FAQPage` JSON-LD (4–6 Q&A) on every `/features/*`, every `/blog/*`
+  post, and (closed 2026-09-16, see §5.1) `/`, `/pricing`,
+  `/security/data-ownership`, `/demo`
 - `Article` JSON-LD on every blog page
-- `llms.txt` dynamic route, 25 links all resolving 200
+- `llms.txt` dynamic route, 25 links — **link-resolution re-check not
+  re-run this session; only the route's existence and the page counts
+  above were re-verified**
 - Single `buildMetadata()` builder — no per-page hand-rolled metadata
 
-Verified by `scratchpad/seo_audit.py` fetching all built pages. 39
-problems on first run → 0. This is the standard; keep the auditor in
-CI.
+Originally verified by `scratchpad/seo_audit.py` fetching all built
+pages, 39 problems on first run → 0. **Correction, 2026-09-16: that
+script is not present anywhere in this repository** — checked with
+`find . -iname "seo_audit.py"`, no result. "Keep the auditor in CI" was
+never actually done; `.github/workflows/checks.yml` has no such step.
+This is a real gap, not a documentation nuance: the 39→0 result is a
+one-time historical claim with no way to re-run it and no regression
+protection going forward. `[GAP]` — carried to `00_START_HERE.md`.
 
 ---
 
@@ -136,19 +146,28 @@ source, with a date, or it does not ship.
 
 ## §5. Schema coverage — gaps and additions
 
-### 5.1 The FAQ gap — now priority, not observation
+### 5.1 The FAQ gap — CLOSED, verified 2026-09-16
+
+*(Status corrected 2026-09-16 — this section previously read "now
+priority, not observation... Close it," describing an open gap. It is
+closed. `FaqBlock`, which self-emits `FAQPage` JSON-LD, is confirmed
+present — `grep -c "FaqBlock"` returns 2 on each of `/`, `/pricing`,
+`/security/data-ownership`, and `/demo` — verified against the code
+this session, not assumed from a prior report. See
+`10_DECISION_LOG.md`. The reasoning below is why this was worth
+closing, not a description of remaining work.)*
 
 Claude Code correctly flagged that `/`, `/pricing`, `/security/*`, and
-`/demo` have no `FaqBlock` despite the content plan requiring one
-everywhere, and correctly declined to fix it inside an audit prompt.
+`/demo` had no `FaqBlock` despite the content plan requiring one
+everywhere.
 
-Under plain SEO that gap is cosmetic. Under AEO it is not. `FAQPage`
+Under plain SEO that gap was cosmetic. Under AEO it was not. `FAQPage`
 JSON-LD on a **pricing** page is precisely what Google Overviews and
 Perplexity lift for "how much does school management software cost in
 India" — a high-intent query sitting on your highest-intent page with
 no structured answer attached.
 
-**Close it.** Target pages and the questions each must answer:
+**Closed.** Target pages and the questions each answers:
 
 | Page | FAQ questions (4–6 each) |
 |---|---|
@@ -160,20 +179,28 @@ no structured answer attached.
 Every answer self-contained and true when quoted in isolation — an
 answer engine will lift one Q&A with no surrounding context.
 
-### 5.2 Schema types — present vs missing
+### 5.2 Schema types — status verified 2026-09-16
 
-| Type | Status | Where it belongs |
+*(Corrected 2026-09-16 — every row below marked "✗ missing" in the
+prior version of this table is now implemented and wired in. A
+document saying "missing" about code that exists sends a future
+session to re-implement working code, which is a more expensive
+failure than the reverse — see `10_DECISION_LOG.md`. The "where it
+belongs" reasoning is unchanged; only status and the verified location
+changed.)*
+
+| Type | Status | Where it belongs / where it lives |
 |---|---|---|
 | `Organization` | ✓ present | Every page (layout) |
-| `FAQPage` | ✓ features, blog · ✗ home, pricing, trust, demo | Close per §5.1 |
+| `FAQPage` | ✓ present, all required pages — see §5.1 | `src/components/content/FaqBlock.tsx`, self-emitting |
 | `Article` / `BlogPosting` | ✓ present | Blog posts |
-| `WebSite` | ✗ missing | Layout — enables sitelinks search box |
-| `BreadcrumbList` | ✗ missing | Every nested page — improves SERP display and gives answer engines hierarchy |
-| `SoftwareApplication` | ✗ missing | `/pricing` + home — the correct type for a SaaS product; `Product` is for physical goods |
-| `Offer` (nested in `SoftwareApplication`) | ✗ missing | `/pricing` — one per tier |
-| `HowTo` | ✗ missing | Form 6 filing guide only — it is a genuine procedure, so this is honest use, not schema-stuffing |
+| `WebSite` | ✓ present | Sitewide via `src/app/layout.tsx` — `websiteJsonLd()` in `src/lib/seo.ts` |
+| `BreadcrumbList` | ✓ present on every non-home page (27 of 27) | `breadcrumbListJsonLd()` in `src/lib/seo.ts`, called from every route except `/` — home correctly has none, it's the root |
+| `SoftwareApplication` | ✓ present | `/` and `/pricing` — `softwareApplicationJsonLd()` in `src/lib/seo.ts` |
+| `Offer` (nested in `SoftwareApplication`) | ✓ present | Nested in the same builder, `/pricing` |
+| `HowTo` | ✓ present, exactly where it should be | 1 of 15 blog posts (`haryana-form-6-fee-hike-compliance-guide`) — matches this row's own "Form 6 only, not schema-stuffing" rule precisely |
 | `Person` | n/a | Skip. No named authors yet. Do not invent one. |
-| `Review` / `AggregateRating` | **banned** | No customers, no reviews. Inventing these is fraud, not SEO. |
+| `Review` / `AggregateRating` | **banned, confirmed absent** | `grep -rn "aggregateRating\|reviewCount\|ratingValue" src/` — empty, verified 2026-09-16 |
 | `speakable` | skip | Low adoption, no clear benefit here |
 
 `sameAs` on `Organization` stays **empty** until real social profiles
@@ -274,16 +301,24 @@ worth knowing immediately.
 ## §8. Operational items
 
 **Build-time:**
-- Keep `seo_audit.py` in CI. It caught 39 real problems; it will catch
-  regressions.
-- Add an answer-block length check (40–60 words) to the auditor.
-- Add a JSON-LD validity check per type once §5.2 additions land.
+- ~~Keep `seo_audit.py` in CI. It caught 39 real problems; it will
+  catch regressions.~~ *(Corrected 2026-09-16: the script does not
+  exist in this repo — see §2 — so there's nothing to "keep." Write
+  it, or stop citing it as if it runs. `[GAP]`, tracked in
+  `00_START_HERE.md`.)*
+- Add an answer-block length check (40–60 words) to the auditor —
+  same gap: the auditor to add this to doesn't exist yet.
+- Add a JSON-LD validity check per type — §5.2's additions have
+  landed (verified 2026-09-16), so this is buildable now, not blocked
+  on anything. Still needs the auditor above to exist first.
 
 **Deploy-time:**
-- `NEXT_PUBLIC_WHATSAPP_NUMBER` currently falls back silently. A
-  production build with it unset ships a placeholder number and the
-  only symptom is demo requests going nowhere. **Fail the production
-  build when it is unset.** Dev fallback is fine.
+- ~~`NEXT_PUBLIC_WHATSAPP_NUMBER` currently falls back silently...
+  Fail the production build when it is unset.~~ **Done — verified
+  2026-09-16.** `npm run build` with the var unset throws
+  `Error: NEXT_PUBLIC_WHATSAPP_NUMBER is required in production` and
+  fails; setting it succeeds. Dev fallback (`919817707037` in
+  `src/lib/site-config.ts`) still applies in `npm run dev`.
 - Submit `sitemap.xml` to Google Search Console and Bing Webmaster
   Tools. Bing matters more than its market share suggests — it grounds
   Copilot.

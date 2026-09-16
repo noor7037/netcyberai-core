@@ -90,6 +90,13 @@ lawyer, a real school, or real data.
   repo. `10_DECISION_LOG.md` is its practical replacement.
 - The standalone "CTO Recommendation" blueprint — confirmed absent,
   never committed to this repo.
+- `scratchpad/seo_audit.py` — referenced repeatedly in
+  `06_VISIBILITY_PROTOCOL.md` as the tool that verified 28 pages and
+  caught 39 problems, and as something to "keep in CI." Confirmed
+  absent from this repo (2026-09-16); no such check runs in
+  `.github/workflows/checks.yml`. The 39→0 result is a historical
+  claim with no way to re-run it. Needs writing, or the Protocol's
+  references to it need to stop implying it still exists.
 - Current-year CPI figure and its official source (Form 6 advisory,
   blocks `08_EXECUTION_BIBLE.md` Prompt G).
 - Current-year Form 6 filing deadline and the official field list
