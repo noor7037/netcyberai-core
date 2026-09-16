@@ -3,6 +3,7 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { AnswerFirst } from '@/components/content/AnswerFirst';
 import { FaqBlock } from '@/components/content/FaqBlock';
+import { SourceLink } from '@/components/content/SourceLink';
 import { whatsappLink } from '@/lib/site-config';
 import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd } from '@/lib/seo';
 
@@ -62,14 +63,9 @@ export default function HaryanaForm6AdvisoryPage() {
         </p>
         <p className="mt-3 text-xs text-slate/70">
           Source:{' '}
-          <a
-            className="underline"
-            href="https://exam.buddy4study.com/haryana-government-sets-mandatory-cap-on-school-fee-hike"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <SourceLink href="https://exam.buddy4study.com/haryana-government-sets-mandatory-cap-on-school-fee-hike">
             Haryana Government Sets Mandatory Cap on School Fee Hike
-          </a>
+          </SourceLink>
           , quoting the rule text directly. Verified 16 September 2026. We deliberately do not
           show a worked numeric example here — the current-year CPI figure is not yet published
           by an official source we can cite; see the advisory example below.
@@ -88,23 +84,13 @@ export default function HaryanaForm6AdvisoryPage() {
         </p>
         <p className="mt-3 text-xs text-slate/70">
           Sources:{' '}
-          <a
-            className="underline"
-            href="https://www.tribuneindia.com/news/haryana/private-schools-violating-form-6-rules-allege-parents-612662"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <SourceLink href="https://www.tribuneindia.com/news/haryana/private-schools-violating-form-6-rules-allege-parents-612662">
             The Tribune — Form 6 public-display and fee-restriction rules
-          </a>{' '}
+          </SourceLink>{' '}
           and{' '}
-          <a
-            className="underline"
-            href="https://www.tribuneindia.com/news/haryana/only-56-private-schools-in-haryana-apply-for-hiking-fee-383422"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <SourceLink href="https://www.tribuneindia.com/news/haryana/only-56-private-schools-in-haryana-apply-for-hiking-fee-383422">
             The Tribune — filing compliance rate
-          </a>
+          </SourceLink>
           . Verified 16 September 2026. The standard filing deadline in rule is 1 February each
           year; Haryana has extended this deadline in practice in multiple past years, so confirm
           the current year&rsquo;s actual cutoff with the Department rather than assuming a fixed

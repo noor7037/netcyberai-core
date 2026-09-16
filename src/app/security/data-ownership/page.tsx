@@ -2,6 +2,7 @@ import { Container } from '@/components/ui/Container';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { FaqBlock } from '@/components/content/FaqBlock';
+import { SourceLink } from '@/components/content/SourceLink';
 import { companyName, contactEmail, whatsappLink } from '@/lib/site-config';
 import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd } from '@/lib/seo';
 
@@ -106,14 +107,9 @@ export default function DataOwnershipPage() {
         </p>
         <p className="text-xs text-slate/70">
           Source:{' '}
-          <a
-            href="https://supabase.com/security"
-            className="underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <SourceLink href="https://supabase.com/security">
             Supabase&rsquo;s security page
-          </a>
+          </SourceLink>
           . Checked 16 September 2026.
         </p>
       </div>

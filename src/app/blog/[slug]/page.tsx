@@ -6,6 +6,7 @@ import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { AnswerFirst } from '@/components/content/AnswerFirst';
 import { FaqBlock } from '@/components/content/FaqBlock';
+import { SourceLink } from '@/components/content/SourceLink';
 import { blogPosts, getBlogPost } from '@/content/blog';
 import { whatsappLink } from '@/lib/site-config';
 import { articleJsonLd, breadcrumbListJsonLd, buildMetadata, howToJsonLd, serializeJsonLd } from '@/lib/seo';
@@ -120,9 +121,7 @@ export default function BlogPostPage({ params }: PageProps) {
           <ul className="list-disc space-y-1 pl-5 text-xs text-slate/70">
             {post.sources.map((source) => (
               <li key={source.url}>
-                <a href={source.url} className="underline" target="_blank" rel="noopener noreferrer">
-                  {source.label}
-                </a>
+                <SourceLink href={source.url}>{source.label}</SourceLink>
                 {' — checked '}
                 {new Date(source.checkedOn).toLocaleDateString('en-IN', {
                   day: 'numeric',
