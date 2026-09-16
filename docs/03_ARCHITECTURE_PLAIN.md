@@ -1,8 +1,34 @@
 # NetCyberAI — Architecture Decisions (plain language)
 
-Read this alongside `netcyberai_schema.sql` and
-`netcyberai_rls_policies.sql`. This file explains *why*, in language
-that doesn't assume you know web-framework names.
+**Governs:** nothing normatively — this is an explanatory companion.
+**Governed by:** [`01_CONSTITUTION.md`](01_CONSTITUTION.md) §4 (which
+this file explains), [`../db/schema.sql`](../db/schema.sql),
+[`../db/rls_policies.sql`](../db/rls_policies.sql).
+
+Read this alongside [`../db/schema.sql`](../db/schema.sql) and
+[`../db/rls_policies.sql`](../db/rls_policies.sql). This file explains
+*why*, in language that doesn't assume you know web-framework names.
+
+**Naming note (2026-09-16):** the RLS session variable is named
+`app.current_tenant_id` in the policy file. That is a Postgres session
+variable, not a table column — no column named `tenant_id` exists
+anywhere in the schema. The column it filters against is always
+`school_id`. If you see `tenant_id` in any document, it means
+`school_id`; the session-variable name was left as-is rather than
+renamed across a locked, working RLS file for no functional benefit.
+See `10_DECISION_LOG.md` C2.
+
+**Migrations, once Phase 1 build starts (2026-09-16):** `db/schema.sql`
+and `db/rls_policies.sql` are the **locked reference baseline** — what
+the system looked like when this was decided, kept byte-for-byte
+stable so it stays a verifiable point of comparison. Every actual
+schema change from that baseline forward is a numbered file under
+`supabase/migrations/`, Supabase's own convention, which is what
+`supabase db reset` replays. Nobody edits `db/schema.sql` directly once
+migrations exist — a change is a new migration file, never a diff to
+the baseline. See `10_DECISION_LOG.md` C-migrations and
+`08_EXECUTION_BIBLE.md` Prompt A for the first four migrations this
+produces.
 
 ## Database: Postgres, hosted on Supabase
 
@@ -67,12 +93,22 @@ surprise invoice.
 ## The Bridge Rule, in plain terms
 
 Building the Control Plane and School Portal is months of solo work.
-Before spending those months, we want proof that the core bet — parents
-actually reading a daily WhatsApp message about their child — is true.
-That proof is either 60-90 days of real data from one school, or 2-3
-schools asking for it unprompted. Until one of those happens, the
-public website is the only thing being built, because it's what
-actually gets you those 2-3 schools.
+The original plan wanted proof first that the core bet — parents
+actually reading a daily WhatsApp message about their child — is true,
+before spending those months: either 60-90 days of real data from one
+school, or 2-3 schools asking for it unprompted.
+
+**Updated 2026-09-16 (Amendment 1 to `01_CONSTITUTION.md` §6):** the
+founder overrode that gate. Infrastructure was already provisioned and
+the go-to-market plan changed from *prove-it-first* to *build-it-and-
+show-it* — a working system demonstrated to a principal converts
+better than a pilot described to one. Phase 1 is authorized now. What
+didn't change: the three numbers this rule was protecting (the Pulse
+response-rate target, the recognition thresholds, the message cost
+rates) still have to come from real schools, not a guess — so they're
+built as configuration from day one instead of hardcoded, which costs
+nothing now and would cost a migration later. See
+`01_CONSTITUTION.md` §6 Amendment 1 for the full reasoning.
 
 ## Recognition without demotivating anyone
 

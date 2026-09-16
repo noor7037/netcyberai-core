@@ -1,3 +1,19 @@
+> **ARCHIVED — 2026-09-16.** Superseded by
+> [`../08_EXECUTION_BIBLE.md`](../08_EXECUTION_BIBLE.md) (Amendment 1 —
+> the Bridge Rule override) for this document's "Bridge Rule not met,
+> Phase 1 unauthorized" conclusion, and by
+> [`../04_SYSTEM_DESIGN_PRD.md`](../04_SYSTEM_DESIGN_PRD.md) §0.1–0.2
+> for its "mobile-only" directive and its use of "the Palwal test" as a
+> market-scope framing (both corrected — see
+> [`../10_DECISION_LOG.md`](../10_DECISION_LOG.md) C3/C4). Its
+> technical corrections (Haryana Form 6 citations, WhatsApp button
+> character-limit fix, cost arithmetic, the anti-"Parent Engagement
+> Score" rule) were carried forward into
+> [`../05_BUSINESS_LOGIC.md`](../05_BUSINESS_LOGIC.md). Kept as
+> reasoning history — never was a spec on its own, and the discipline
+> of not re-litigating a decided point depends on being able to see
+> why it was decided.
+
 # 00 — NetCyberAI Revised Understanding (CTO Re-Evaluation)
 
 **Date of evaluation:** 15 September 2026

@@ -1,8 +1,14 @@
-# AI Builder System Prompt — NetCyberAI
+# AI Builder Instructions — NetCyberAI
 
-Paste this before any build request, in any tool (Firebase Studio, AI
-Studio, Cursor, Claude, Lovable, etc.), together with
-`PRODUCT_CONSTITUTION_v2.0.md` from this same pack.
+**Governs:** how any AI session (this one or a future one) behaves
+while working in this repository.
+**Governed by:** [`01_CONSTITUTION.md`](01_CONSTITUTION.md) — rule 1
+below is a restatement of that document's authority, not a competing
+one.
+**Supersedes:** none. Read alongside `01_CONSTITUTION.md`, always.
+
+Read this file and `01_CONSTITUTION.md` fully before responding to any
+build request in this repository.
 
 ---
 
@@ -23,7 +29,7 @@ a lecture, not silence either.
 
 ## Hard rules — non-negotiable, in priority order
 
-1. **`PRODUCT_CONSTITUTION_v2.0.md` is the source of truth.** If a
+1. **`01_CONSTITUTION.md` is the source of truth.** If a
    build request conflicts with it, say so explicitly and ask before
    proceeding. Do not silently follow the newer, more exciting-sounding
    instruction over the Constitution.
@@ -76,8 +82,11 @@ If a response skips this template, treat it as invalid and redo it.
    Brief).
 3. Reduces real risk — wrong data to a parent, cross-tenant leak,
    teacher politics, incorrect fee data.
-4. Fits the Palwal/NCR market constraint (WhatsApp-first, low
-   literacy, low ops burden, low cost).
+4. Fits the Floor Device Standard (WhatsApp-first, low literacy, low
+   ops burden, low cost — see `01_CONSTITUTION.md` Amendment 2).
+   *(Corrected 2026-09-16 from "Palwal/NCR market constraint" — that
+   was a geographic framing for what is actually an engineering floor,
+   applicable across the all-India market. See `10_DECISION_LOG.md` C3.)*
 5. Is specific and buildable now, not an essay about a future
    possibility.
 
@@ -90,7 +99,7 @@ where it's earned by an actual result, not a plan.
 
 ## What "done" looks like for any deliverable
 
-Cross-check against `ACCEPTANCE_CHECKLIST.md` in this pack before
-declaring anything complete. A self-reported "all tests passed"
+Cross-check against [`09_ACCEPTANCE_CHECKLIST.md`](09_ACCEPTANCE_CHECKLIST.md)
+before declaring anything complete. A self-reported "all tests passed"
 without a way to independently verify it is not the same as done —
 say what was actually verified and how, or say it wasn't verified.

@@ -1,3 +1,14 @@
+> **ARCHIVED — 2026-09-16 (historical build record).** The page and
+> nav plan below is superseded, as target state, by
+> [`../04_SYSTEM_DESIGN_PRD.md`](../04_SYSTEM_DESIGN_PRD.md) §7.1 —
+> which adds pages for features (Scan & autofill, QR student ID, Weekly
+> Confidence Brief page) that don't exist yet. Per Stage 2 decision
+> C26, those pages ship when their features ship; this file's 6-page
+> nav remains correct for what's actually built. The 15-post blog list
+> below is a completed record — every title matches a shipped post
+> under `src/content/blog/`, including both fabrication-fix
+> corrections (#5, #14).
+
 # NetCyberAI Public Site — Content Plan
 
 Scope: the ONLY surface not gated by the Bridge Rule. Goal: rank for

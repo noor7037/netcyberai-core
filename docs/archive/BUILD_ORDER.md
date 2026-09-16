@@ -1,3 +1,12 @@
+> **ARCHIVED — 2026-09-16.** Superseded by
+> [`../08_EXECUTION_BIBLE.md`](../08_EXECUTION_BIBLE.md), which
+> overrides this file's Phase 1 gating under Amendment 1 to
+> [`../01_CONSTITUTION.md`](../01_CONSTITUTION.md) §6. The Phase 0
+> list below (items 1–7) is a completed build record, superseded in
+> detail by [`../archive/NetCyberAI_Phase0_Build_Prompts.md`](NetCyberAI_Phase0_Build_Prompts.md).
+> Kept because it's the earliest record of the Phase 0/Phase 1/Phase 2+
+> split that the rest of this project's sequencing still follows.
+
 # NetCyberAI — Build Order
 
 ## Phase 0 (now, unblocked) — Public Web Platform only

@@ -1,3 +1,10 @@
+> **ARCHIVED — 2026-09-16 (historical build record, not superseded).**
+> Phase 0 shipped; this is the record of how. Design tokens (Prompt 1)
+> and the per-page skeleton (Prompt 3) were consolidated into
+> [`../07_DESIGN_SYSTEM.md`](../07_DESIGN_SYSTEM.md). Kept in full
+> because it's the source for those tokens and for the two blog-title
+> fabrication fixes (#5, #14) that the shipped blog still follows.
+
 # NetCyberAI — Phase 0 Build Prompts
 
 **Scope:** Public Web Platform only. The Bridge Rule

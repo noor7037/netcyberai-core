@@ -1,3 +1,12 @@
+> **ARCHIVED — 2026-09-16.** The "upload these files into an external
+> AI builder tool" workflow this document describes is obsolete: the
+> files now live in this repo, under version control, and a session
+> works from them directly. Its content — what to read, in what
+> order, and the one instruction to give a new AI session — was
+> carried forward into [`../00_START_HERE.md`](../00_START_HERE.md).
+> Kept for reference to the pack-based workflow this project used
+> before it had a repository.
+
 # NetCyberAI — Upload Pack Index
 
 Upload these to any AI web-builder tool (Firebase Studio, Google AI
