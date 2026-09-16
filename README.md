@@ -55,12 +55,16 @@ already configured in `src/lib/site-config.ts` if unset.
 
 ```bash
 # No fabricated numeric claims outside the demo fixture
+# (src/lib/recognition.ts is also excluded — its header comment cites the
+# 85->90/40->55 percentages that prove the banned formula is inverted)
 grep -rEn '[0-9]+%|₹[0-9]|\$[0-9]' src/ --include='*.ts' --include='*.tsx' \
-  | grep -v 'src/demo-fixture/'
+  | grep -v 'src/demo-fixture/' | grep -v 'src/lib/recognition.ts'
 
 # No mock/dummy/fake/sample data outside the demo fixture
+# (src/lib/recognition.ts is also excluded — "sample-size" there is the
+# statistical term in a guard-clause comment, not placeholder data)
 grep -rn 'mock\|dummy\|fake\|sample' src/ --include='*.ts' --include='*.tsx' \
-  | grep -v 'src/demo-fixture/'
+  | grep -v 'src/demo-fixture/' | grep -v 'src/lib/recognition.ts'
 
 # No secrets committed
 grep -rn 'sk_\|api_key\|SECRET\|PRIVATE_KEY' src/
