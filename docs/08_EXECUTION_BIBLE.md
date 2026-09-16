@@ -1,16 +1,34 @@
 # PHASE 1 EXECUTION BIBLE
 
 **Document ID:** NCA-EXEC-P1
-**Repo path:** `docs/PHASE_1_EXECUTION_BIBLE.md`
-**Status:** Active build manual. Supersedes `BUILD_ORDER.md` Phase 1 gating.
+**Repo path:** `docs/08_EXECUTION_BIBLE.md`
+**Governs:** the Phase 1 build sequence, prompt by prompt.
+**Governed by:** [`01_CONSTITUTION.md`](01_CONSTITUTION.md) (this
+document records Amendment 1) and
+[`04_SYSTEM_DESIGN_PRD.md`](04_SYSTEM_DESIGN_PRD.md) (every prompt
+cites it by section).
+**Status:** Active build manual. Supersedes
+`archive/BUILD_ORDER.md`'s Phase 1 gating.
+**Amendment awareness:** this document records Amendment 1 (the Bridge
+Rule override) below. Amendments 2 (market scope) and 3 (AI content
+governance + North Star metric) were recorded later, directly in
+`01_CONSTITUTION.md` §2 and §3 — read those before Prompt J (the
+recognition/Pulse prompt) and before setting any Pulse-response-rate
+target, since Amendment 3 changed what that target measures.
 
 ---
 
 ## CONSTITUTIONAL AMENDMENT — RECORDED
 
-**Amendment 1 to `PRODUCT_CONSTITUTION_v2.0.md` §6 (The Bridge Rule).**
+*(This amendment now also lives inline in
+[`01_CONSTITUTION.md`](01_CONSTITUTION.md) §6 itself, per §12's own
+rule that changes land in the Constitution, not only in a build
+document. Kept here too since this is where the mitigation table below
+is operationally referenced from every affected prompt.)*
 
-Per `PRODUCT_CONSTITUTION_v2.0.md` §12 (Amendment Process), which
+**Amendment 1 to `01_CONSTITUTION.md` §6 (The Bridge Rule).**
+
+Per `01_CONSTITUTION.md` §12 (Amendment Process), which
 requires that changes "land here, as a new version, with the reasoning
 recorded" rather than being silently applied:
 
@@ -26,11 +44,11 @@ principal converts better than a manual pilot described to one.
 
 **What the override does not change:**
 - Every other Constitution section remains in force, unamended.
-- `netcyberai_schema.sql` and `netcyberai_rls_policies.sql` remain the
+- `../db/schema.sql` and `../db/rls_policies.sql` remain the
   locked data layer. Postgres + RLS, not Firestore.
-- The `netcyberai_recognition.ts` formula remains locked. The v1.0
+- The `../src/lib/recognition.ts` formula remains locked. The v1.0
   headroom formula stays banned.
-- All bans in `11_BUSINESS_LOGIC_ADDENDUM.md` §6 remain permanent.
+- All bans in `05_BUSINESS_LOGIC.md` §6 remain permanent.
 
 **One risk this override creates, and how this document handles it.**
 §6's function was not only to conserve effort. It was to prevent
@@ -39,7 +57,7 @@ parents*. Three are affected:
 
 | Parameter | Constitution reference | Mitigation in this build |
 |---|---|---|
-| Pulse open-rate target (>65%) | §3 North Star | Stored in `schools`/config, not hardcoded. Instrumented from first send. |
+| Pulse comprehension response-rate target | §3 North Star (Amendment 3 changed this from open rate — see that amendment before assuming >65% or any other number) | Stored in `schools`/config, not hardcoded. Instrumented from first send. Target itself is `[GAP]` until real data exists. |
 | Recognition thresholds (5-point floor, band count) | §5 | Per-school config with a fairness audit surface. See Prompt J. |
 | Message cost model | §7 | Rate table configurable with verification date. Governor reads config, never a constant. |
 
@@ -176,8 +194,8 @@ Prefixing the service role key would ship a master credential to every
 visitor's browser. It would pass every test, look completely normal,
 and expose every school's student records to anyone who opened
 devtools. This maps directly to
-`PRODUCT_CONSTITUTION_v2.0.md` §4 ("never rely on application code
-alone to filter by tenant") and to `netcyberai_rls_policies.sql`'s
+`01_CONSTITUTION.md` §4 ("never rely on application code
+alone to filter by tenant") and to `../db/rls_policies.sql`'s
 three-role model: `nca_super` is `BYPASSRLS` and corresponds to the
 service role. Guard it accordingly.
 
@@ -192,15 +210,15 @@ Provision **two** Supabase projects:
 
 Rationale: migrations get iterated during a build. A destructive
 migration against a dev database costs a reset. Against production, it
-costs real student records — and per `PRODUCT_CONSTITUTION_v2.0.md`
+costs real student records — and per `01_CONSTITUTION.md`
 §9, financial records are never deleted, which means an accidental
 `DROP` is not just downtime, it's a compliance failure.
 
 ## 1.6 WhatsApp — the pilot gate applies to you first
 
 Before any credential is wired up, confirm the safety posture defined
-in `11_BUSINESS_LOGIC_ADDENDUM.md` §5 and
-`netcyberai_schema.sql` (`schools.is_pilot`,
+in `05_BUSINESS_LOGIC.md` §5 and
+`../db/schema.sql` (`schools.is_pilot`,
 `schools.pilot_allow_outbound`):
 
 - Every school row is created with `pilot_allow_outbound = false`.
@@ -208,7 +226,7 @@ in `11_BUSINESS_LOGIC_ADDENDUM.md` §5 and
 - During development, use Meta's **test number** with your own phone
   as the sole recipient.
 
-`PRODUCT_CONSTITUTION_v2.0.md` §9 bans silent failures. A message
+`01_CONSTITUTION.md` §9 bans silent failures. A message
 accidentally reaching a real parent during development is the mirror
 image of that, and worse — it's a silent *success* nobody authorized.
 
@@ -219,13 +237,13 @@ webhooks. Both directions are authenticated:
 
 - **n8n → Next.js:** HMAC signature on every request, verified before
   any processing. Same discipline as the Razorpay webhook pattern in
-  `docs/PHASE_1_SYSTEM_DESIGN_PRD.md` §3.3.
+  `04_SYSTEM_DESIGN_PRD.md` §3.3.
 - **Next.js → n8n:** shared secret in `N8N_WEBHOOK_SECRET`.
 
 n8n is an *orchestration* layer. It never holds the WhatsApp token and
 never writes to Postgres directly. Per
-`11_BUSINESS_LOGIC_ADDENDUM.md` §5 and
-`docs/PHASE_1_SYSTEM_DESIGN_PRD.md` §3.6, there is exactly one send
+`05_BUSINESS_LOGIC.md` §5 and
+`04_SYSTEM_DESIGN_PRD.md` §3.6, there is exactly one send
 gate, it lives in the Next.js app, and it is the only code path that
 reaches Meta. If n8n could send directly, the consent check, budget
 check, and pilot gate would all be bypassable.
@@ -260,30 +278,116 @@ before the next one. Do not batch.
 Apply the locked database schema to the dev Supabase project.
 
 SOURCE FILES — read fully before writing anything:
-- netcyberai_schema.sql (the locked core schema — authoritative)
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §5 (schema reconciliation),
+- ../db/schema.sql (the locked core schema — authoritative)
+- 04_SYSTEM_DESIGN_PRD.md §5 (schema reconciliation),
   §6.4 (capture subsystem tables)
-- 11_BUSINESS_LOGIC_ADDENDUM.md §2 (fee engine tables), §3
+- 05_BUSINESS_LOGIC.md §2 (fee engine tables), §3
   (compliance_config), §4 (at_risk_flags), §5 (pulse tables)
-- PRODUCT_CONSTITUTION_v2.0.md §4 (Postgres + RLS is locked)
+- 01_CONSTITUTION.md §4 (Postgres + RLS is locked)
 
 TASK
-Set up migrations and apply, in order:
-1. netcyberai_schema.sql as the baseline migration, unmodified.
-2. Additive migration: fee engine tables from Addendum §2 —
+Every migration below is a numbered file under supabase/migrations/,
+per 03_ARCHITECTURE_PLAIN.md's db/ vs supabase/migrations/ split.
+../db/schema.sql is the locked reference baseline and is never edited
+directly — it stays byte-identical so it remains a verifiable point of
+comparison. Apply, in order:
+
+1. ../db/schema.sql as the baseline migration, unmodified.
+2. Additive migration: fee engine tables from 05_BUSINESS_LOGIC.md §2 —
    fee_heads, fee_structures, fee_structure_items, fee_concessions,
    payments. Add 'partial' to the fee_status enum.
-3. Additive migration: compliance_config (Addendum §3),
-   at_risk_flags (Addendum §4), pulse_messages + pulse_response_log
-   (Addendum §5).
+3. Additive migration: compliance_config (05_BUSINESS_LOGIC.md §3,
+   now also carrying filing_deadline/filing_deadline_source alongside
+   cpi_percent/cpi_source — 04_SYSTEM_DESIGN_PRD.md §3.3),
+   at_risk_flags (05_BUSINESS_LOGIC.md §4), pulse_messages +
+   pulse_response_log (05_BUSINESS_LOGIC.md §5).
 4. Additive migration: capture subsystem from PRD §6.4 —
    student_qr_tokens, qr_scan_log, captured_documents,
    ocr_extractions, and the attendance.capture_method column.
-5. Additive migration: configurable parameters per the Amendment
-   recorded in docs/PHASE_1_EXECUTION_BIBLE.md — per-school config
-   for Pulse open-rate target, recognition thresholds, and message
-   rate table with a verification date column. These must NOT be
-   hardcoded constants anywhere.
+5. Additive migration: configurable parameters per Amendment 1
+   (01_CONSTITUTION.md §6) — per-school config for the Pulse
+   comprehension response-rate target (Amendment 3 changed this from
+   open rate; see that amendment before setting any number),
+   recognition thresholds, and message rate table with a verification
+   date column. These must NOT be hardcoded constants anywhere.
+6. Additive migration — the `not_taught` fix (Decision Log A1). The
+   baseline schema's `syllabus_progress.status` check constraint only
+   allows `('completed','delayed','partial')`, but every other
+   document specifies four states including `not_taught`, and the
+   Pulse's core honesty guarantee ("a `not_taught` topic generates no
+   Pulse") is unbuildable without it:
+   ```sql
+   alter table syllabus_progress drop constraint syllabus_progress_status_check;
+   alter table syllabus_progress
+     add constraint syllabus_progress_status_check
+     check (status in ('taught','delayed','partial','not_taught'));
+   update syllabus_progress set status = 'taught' where status = 'completed';
+   alter table syllabus_progress alter column status set default 'taught';
+   ```
+7. Additive migration — multi-school membership (Decision Log C14).
+   The baseline schema has `users.school_id NOT NULL` (one school per
+   user) and no `academic_coordinator` role; 04_SYSTEM_DESIGN_PRD.md
+   §2.2 specifies multi-school memberships and that role, and Prompt D
+   builds an Academic shell that needs it:
+   ```sql
+   alter type user_role add value 'academic_coordinator';
+
+   create table memberships (
+     membership_id uuid primary key default gen_random_uuid(),
+     user_id       uuid not null references users(user_id),
+     school_id     uuid not null references schools(school_id),
+     role          user_role not null,
+     is_active     boolean not null default true,
+     created_at    timestamptz not null default now(),
+     unique (user_id, school_id)
+   );
+   create index idx_memberships_user on memberships(user_id);
+   create index idx_memberships_school on memberships(school_id);
+
+   alter table users alter column school_id drop not null;
+   -- users.school_id becomes the user's primary/home school for
+   -- defaulting only. RLS session context resolves from the ACTIVE
+   -- MEMBERSHIP, not from users.school_id -- this is a real change to
+   -- the auth flow; call it out explicitly in Prompt B2.
+   ```
+   Write the actual RLS policy and index changes this table needs
+   against the real schema — the DDL above is the shape, not a
+   drop-in.
+8. Additive migration — budget default and the missing schema pieces
+   (Decision Log C15, C16):
+   ```sql
+   -- C15: 0 currently means "every non-transactional message blocked."
+   -- Silent and confusing. NULL = not configured is explicit; the
+   -- onboarding wizard (Prompt E) requires a real budget before
+   -- pilot_allow_outbound can be set true, so nothing sends during
+   -- pilot anyway and nothing is blocked that would have sent.
+   alter table schools alter column monthly_budget_paise drop not null;
+   alter table schools alter column monthly_budget_paise drop default;
+
+   -- C16.1: the cost governor's own spec (PRD Sec5.2) logs this status
+   -- on transactional sends past budget; the enum doesn't have it.
+   alter type comm_status add value 'budget_exceeded_transactional';
+
+   -- C16.2: webhook idempotency (PRD Sec3.3, Prompt I) needs somewhere
+   -- to record payload_hash. school_id is nullable because a webhook
+   -- can arrive before tenant resolution.
+   create table webhook_events (
+     event_id     uuid primary key default gen_random_uuid(),
+     school_id    uuid references schools(school_id),
+     provider     text not null check (provider in ('razorpay','whatsapp','n8n')),
+     payload_hash text not null unique,
+     payload      jsonb not null,
+     processed_at timestamptz,
+     created_at   timestamptz not null default now()
+   );
+
+   -- C16.3: blocked_quiet_hours is a specified comm_status, but no
+   -- config for quiet hours exists anywhere.
+   alter table schools add column quiet_hours_start time;
+   alter table schools add column quiet_hours_end time;
+   -- Set a sensible evening-to-morning default; leave configurable
+   -- per school.
+   ```
 
 HARD CONSTRAINTS
 - Column name is school_id everywhere. Any doc saying tenant_id
@@ -300,10 +404,19 @@ VERIFY — show actual output, do not summarise
 - Every table exists; count them against the source files.
 - Every operational table has school_id. Prove it with a query
   against information_schema, not by reading your own code.
-- Enums match the source files exactly.
+- Enums match the source files exactly, including the added
+  academic_coordinator role value and budget_exceeded_transactional
+  status value.
+- syllabus_progress.status accepts 'not_taught' and rejects
+  'completed'; no row is left in a state the new constraint forbids.
+- memberships table exists; users.school_id is nullable; a user with
+  two memberships in different schools can be represented.
+- schools.monthly_budget_paise accepts NULL and has no default.
+- webhook_events exists with a unique constraint on payload_hash.
+- schools has quiet_hours_start / quiet_hours_end.
 - Migration runs clean on an empty database, and down-migrates.
 
-REPORT per AI_BUILDER_SYSTEM_PROMPT.md: what you picked, what you
+REPORT per 02_AI_BUILDER_INSTRUCTIONS.md: what you picked, what you
 rejected, [GAP] flags, verification output, smallest next step.
 
 PREREQUISITE FROM ME: dev Supabase connection string is in
@@ -319,21 +432,21 @@ Apply tenant isolation. This is the single most important prompt in
 the entire Phase 1 build. Everything after it assumes it is correct.
 
 SOURCE FILES — read fully first:
-- netcyberai_rls_policies.sql (locked policies — authoritative)
-- PRODUCT_CONSTITUTION_v2.0.md §4 ("never rely on application code
+- ../db/rls_policies.sql (locked policies — authoritative)
+- 01_CONSTITUTION.md §4 ("never rely on application code
   alone to filter by tenant — one missed WHERE clause is a
   cross-school data leak")
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §2 (tenancy and identity), §11
+- 04_SYSTEM_DESIGN_PRD.md §2 (tenancy and identity), §11
   item 1 (the acceptance test)
-- 11_BUSINESS_LOGIC_ADDENDUM.md §5 (Teacher Impact Card visibility)
+- 05_BUSINESS_LOGIC.md §5 (Teacher Impact Card visibility)
 
 TASK
-1. Apply netcyberai_rls_policies.sql unmodified.
+1. Apply ../db/rls_policies.sql unmodified.
 2. Extend the same pattern to every table added in Prompt A:
    fee tables, pulse tables, capture tables, at_risk_flags,
    compliance_config. ENABLE + FORCE RLS on each.
 3. Implement per-request session context. Read the warning at the
-   end of netcyberai_rls_policies.sql: set_config MUST run at the
+   end of ../db/rls_policies.sql: set_config MUST run at the
    start of every TRANSACTION, not once per connection. Supabase
    pools connections. Getting this wrong means RLS silently sees a
    null tenant and hides every row — it looks like an empty
@@ -362,7 +475,7 @@ Write an automated two-school test suite:
 Show the actual test output. If any test fails, STOP and report.
 Do not proceed to Phase 3 with a failing isolation suite.
 
-REPORT per AI_BUILDER_SYSTEM_PROMPT.md.
+REPORT per 02_AI_BUILDER_INSTRUCTIONS.md.
 ```
 
 ---
@@ -373,32 +486,40 @@ REPORT per AI_BUILDER_SYSTEM_PROMPT.md.
 Build authentication and role resolution.
 
 SOURCE FILES:
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §2.2 (identity model), §2.3
+- 04_SYSTEM_DESIGN_PRD.md §2.2 (identity model), §2.3
   (session and security)
-- netcyberai_schema.sql (users, token_version column)
-- PRODUCT_CONSTITUTION_v2.0.md §11 (roles)
+- ../db/schema.sql (users, token_version column)
+- 01_CONSTITUTION.md §11 (roles)
 
 TASK
 - Supabase Auth: email/password for staff, phone OTP where needed.
-- Session claim carries role and school_id. Claims are DERIVED
-  from the database, never accepted from the client.
+- Session claim carries role and school_id, resolved from the ACTIVE
+  MEMBERSHIP row (memberships table, Prompt A migration 7 / Decision
+  Log C14) — NOT from users.school_id, which is now nullable and only
+  a home-school default. A user with memberships in two schools
+  switches active school without a new login; the claim is re-derived
+  from the database on switch, never accepted from the client.
 - Middleware resolves the session and sets the RLS session context
   (app.current_tenant_id, app.current_role, app.current_user_id)
   at the start of every transaction.
 - MFA mandatory for super_admin.
 - token_version: incrementing it invalidates every issued token for
   that user immediately.
-- Route protection: (admin) requires super_admin. (school) requires
-  a school membership. (public) stays open.
+- Route protection, matching the URL segments in
+  04_SYSTEM_DESIGN_PRD.md §1.1 (Decision Log C22): /control/* requires
+  super_admin. /app/* requires an active school membership. Everything
+  else (public marketing routes) stays open.
 
 VERIFY
-- A user with role=teacher cannot reach any (admin) route.
+- A user with role=teacher cannot reach any /control/* route.
 - A forged school_id in a request does not change what is returned —
   RLS is the backstop, prove it.
+- A user with two memberships can switch active school; the session
+  claim updates from the database, not from client input.
 - Incrementing token_version invalidates an active session.
 - Show actual output.
 
-REPORT per AI_BUILDER_SYSTEM_PROMPT.md.
+REPORT per 02_AI_BUILDER_INSTRUCTIONS.md.
 ```
 
 ---
@@ -417,9 +538,9 @@ anything can be built inside it in Platform 3.
 Build the shared design system for Platform 2 and Platform 3.
 
 SOURCE FILES:
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §0.1 (Floor Device Standard),
+- 04_SYSTEM_DESIGN_PRD.md §0.1 (Floor Device Standard),
   §0.2 (device matrix), §10.2 (client constraints)
-- 11_BUSINESS_LOGIC_ADDENDUM.md §1 (mobile-only design invariants)
+- 05_BUSINESS_LOGIC.md §1 (mobile-only design invariants)
 - The Phase 0 site's existing tokens — reuse, do not re-invent.
 
 TOKENS — unchanged from Phase 0
@@ -473,15 +594,22 @@ VERIFY
 Scaffold the route groups, layouts, and navigation shells.
 
 SOURCE FILES — the IA is fully specified, do not invent structure:
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §7.2 (Platform 2 nav, 19 school
+- 04_SYSTEM_DESIGN_PRD.md §7.2 (Platform 2 nav, 19 school
   sub-tabs), §7.3 (Platform 3 role shells and per-module sub-tabs)
-- 12_RECONCILED_PLATFORM_FEATURE_MAP.md (the reconciled map,
-  including the mismatch resolution log — read §0 first)
-- PRODUCT_CONSTITUTION_v2.0.md §11 (roles)
+- 12_RECONCILED_PLATFORM_FEATURE_MAP.md — CONFIRMED ABSENT from this
+  repo (10_DECISION_LOG.md). Its §0 mismatch-resolution log, explaining
+  why Pulse/Recognition/Teacher Impact/Capture were missing from an
+  earlier blueprint, could not be reconstructed from source.
+  04_SYSTEM_DESIGN_PRD.md §7.2 is written as if that log already
+  happened — treat the 19-sub-tab list there as the resolved output
+  and do not go looking for the missing file.
+- 01_CONSTITUTION.md §11 (roles)
 
-STRUCTURE
-src/app/(admin)/  — Platform 2, super_admin only
-src/app/(school)/ — Platform 3, role-scoped shells
+STRUCTURE — with explicit URL segments (Decision Log C22: a route
+group alone adds no URL segment and same-path pages in two groups
+would collide)
+src/app/(admin)/control/  — Platform 2, super_admin only    -> /control/...
+src/app/(school)/app/     — Platform 3, role-scoped shells   -> /app/...
 
 PLATFORM 2 NAV — PRD §7.2
 Dashboard · Schools · Users · Onboarding · Messaging & Cost ·
@@ -491,8 +619,7 @@ Integrations · Support · Audit Logs · System Settings
 School detail: 19 sub-tabs, exactly as listed in PRD §7.2. Do not
 drop Pulse & Engagement, Recognition, Teacher Impact, or Capture &
 Documents — those are the differentiators and were missing from the
-earlier blueprint. The mismatch log in 12_RECONCILED... §0 explains
-why.
+earlier blueprint (see the note above on the missing feature map).
 
 PLATFORM 3 ROLE SHELLS — PRD §7.3
 Four shells at one login: Office (principal, school_admin), Finance
@@ -513,7 +640,8 @@ Route protection is server-side. UI hiding is not a control —
 Constitution §4 and PRD §2.2.
 
 VERIFY
-- A teacher session reaching an (admin) route is rejected server-side.
+- A teacher session reaching any /control/* route is rejected
+  server-side.
 - Teacher shell shows exactly 6 items, usable one-handed at 360px.
 - Every route renders an honest empty state, never a crash or a
   fabricated placeholder row.
@@ -527,10 +655,10 @@ VERIFY
 Build Platform 2's school provisioning.
 
 SOURCE FILES:
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §7.2 (Onboarding workflow with
+- 04_SYSTEM_DESIGN_PRD.md §7.2 (Onboarding workflow with
   the consent gate), §9 Stage 2
-- 11_BUSINESS_LOGIC_ADDENDUM.md §1
-- netcyberai_schema.sql (schools, users, system_config)
+- 05_BUSINESS_LOGIC.md §1
+- ../db/schema.sql (schools, users, system_config)
 
 BUILD
 - School onboarding wizard: profile, board, tenant_type, plan.
@@ -540,6 +668,12 @@ BUILD
 - Pilot whitelist: is_pilot and pilot_allow_outbound. Every new
   school gets pilot_allow_outbound = false. No exceptions, no
   override in the wizard.
+- Budget gate (Decision Log C15): monthly_budget_paise is nullable
+  (NULL = not configured, never treated as "unlimited" — that would be
+  a real-money footgun). The wizard REQUIRES a non-null budget before
+  pilot_allow_outbound can be set true. This costs nothing during
+  pilot — outbound is already blocked — and guarantees a budget exists
+  by the time it matters.
 - User invitation and credential delivery. Credentials are never
   sent in plaintext through a channel that persists in a log —
   one-time link or forced reset on first login.
@@ -559,6 +693,8 @@ bulk-marking consent to clear it.
 
 VERIFY
 - New school defaults to pilot_allow_outbound = false.
+- Attempting to set pilot_allow_outbound = true with a NULL budget is
+  rejected by the wizard.
 - A disabled feature flag blocks the API, not just the nav item.
 - Impersonation writes both audit events and is school-visible.
 ```
@@ -571,10 +707,10 @@ VERIFY
 Build student records and the capture subsystem together.
 
 SOURCE FILES:
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §6 (capture: scanner, OCR, QR),
+- 04_SYSTEM_DESIGN_PRD.md §6 (capture: scanner, OCR, QR),
   §6.4 (schema), §9 Stage 3
-- netcyberai_schema.sql (students, parents, parent_student_map)
-- PRODUCT_CONSTITUTION_v2.0.md §8 (consent precedes processing)
+- ../db/schema.sql (students, parents, parent_student_map)
+- 01_CONSTITUTION.md §8 (consent precedes processing)
 
 WHY TOGETHER: capture is what makes student data entry tolerable.
 A pilot school typing 500 rows by hand forms its opinion of the
@@ -624,11 +760,11 @@ VERIFY
 Build the consent layer. This precedes all messaging.
 
 SOURCE FILES:
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §3.5 (consent state machine),
+- 04_SYSTEM_DESIGN_PRD.md §3.5 (consent state machine),
   §9 Stage 4
-- 11_BUSINESS_LOGIC_ADDENDUM.md §3 (Form 6 advisory)
-- PRODUCT_CONSTITUTION_v2.0.md §8 (DPDP)
-- netcyberai_schema.sql (consent_ledger)
+- 05_BUSINESS_LOGIC.md §3 (Form 6 advisory)
+- 01_CONSTITUTION.md §8 (DPDP)
+- ../db/schema.sql (consent_ledger)
 
 WHY BEFORE MESSAGING: building messaging first creates pressure to
 ship the consent gate as an afterthought (PRD §9 Stage 4).
@@ -636,25 +772,39 @@ ship the consent gate as an afterthought (PRD §9 Stage 4).
 BUILD
 - consent_ledger: append-only, purpose-scoped, versioned notice.
   Withdrawal is a NEW ROW, never a mutation.
-- Purposes, each independently withdrawable, each defaulting OFF:
-  core_records, daily_pulse, recognition, weekly_brief.
+- Purposes, restructured (Decision Log C20 — the original four,
+  core_records/daily_pulse/recognition/weekly_brief, covered nothing
+  for absence alerts, fee notices, class notices, or at-risk, which
+  every other prompt assumes pass through this gate):
+  core_records (required for service) · operational_communication
+  (fee notices, receipts, absence alerts, certificates, school/class
+  notices — required for service) · daily_pulse (opt-in, off) ·
+  recognition (opt-in, off) · weekly_brief (opt-in, off) · at_risk
+  (opt-in, off, PLUS schools.at_risk_parent_dispatch_enabled — both
+  required, see Prompt J). Each independently withdrawable.
 - Verification methods: dob_on_record, school_attested,
   digilocker_token, otp_plus_attestation.
 - Guardian verification flow.
 - Data access / correction / deletion request workflows.
 - Retention configuration.
-- Form 6 advisory per Addendum §3: CPI read from compliance_config
-  with source and date, NEVER a hardcoded constant. State is
-  'unknown' when CPI is unconfigured — say so, do not guess a
-  number. Advisory ONLY, never blocking. Mute is permitted AND
-  writes an audit row. Always acknowledge that a salary-linked
-  alternative formula exists.
+- Form 6 advisory per 05_BUSINESS_LOGIC.md §3: CPI read from
+  compliance_config with source and date, NEVER a hardcoded constant.
+  State is 'unknown' when CPI is unconfigured — say so, do not guess a
+  number. The filing deadline is configuration too (Decision Log C18)
+  — compliance_config.filing_deadline / .filing_deadline_source,
+  same treatment as CPI, never a literal date in code or copy.
+  Advisory ONLY, never blocking. Mute is permitted AND writes an audit
+  row. Always acknowledge that a salary-linked alternative formula
+  exists.
 
 VERIFY
 - A pending_consent student is invisible to every outbound path and
   to recognition scoring. Test it, do not assert it.
 - Withdrawal creates a row; the prior row is unchanged.
-- Form 6 with unconfigured CPI returns 'unknown', not a guess.
+- An absence alert with no operational_communication consent is
+  blocked and logged, same as any other purpose-gated message.
+- Form 6 with unconfigured CPI returns 'unknown', not a guess. Same for
+  an unconfigured filing_deadline.
 - Muting the advisory writes an audit_log row with actor and time.
 ```
 
@@ -666,11 +816,11 @@ VERIFY
 Build attendance capture and THE single send gate.
 
 SOURCE FILES:
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §3.2 (attendance), §3.6 (send
+- 04_SYSTEM_DESIGN_PRD.md §3.2 (attendance), §3.6 (send
   gate), §5 (WhatsApp surface), §6.3 (QR attendance scope decision),
   §9 Stage 5
-- 11_BUSINESS_LOGIC_ADDENDUM.md §5
-- PRODUCT_CONSTITUTION_v2.0.md §7 (cost governance), §9 (no silent
+- 05_BUSINESS_LOGIC.md §5
+- 01_CONSTITUTION.md §7 (cost governance), §9 (no silent
   failures)
 
 ATTENDANCE
@@ -695,14 +845,29 @@ Queue → Dispatch → Delivery webhook → Audit
   blocked_quiet_hours, blocked_no_template. Never a silent drop.
 - communication_log records billing_category, inside_service_window,
   billable, est_cost_paise, gst_paise on EVERY row.
-- Cost governor: transactional always sends; non-transactional
-  degrades at cap; principal alerted at 80%, BEFORE the cap.
+- Transactional class, final (Decision Log C19): receipt · OTP ·
+  certificate delivery · the FIRST absence alert per student PER DAY
+  only. Follow-up or repeated-pattern absence notifications are not
+  transactional and go through the governor like anything else — an
+  unbounded transactional class scaling with absence rate is a budget
+  hole.
+- Cost governor at cap (Decision Log C13 — there is no parent portal
+  to degrade to; parents have no login in Phase 1): transactional
+  always sends. daily_pulse queues into the weekly consolidated send
+  instead of the daily one. recognition and weekly_brief hold until
+  budget resets and are surfaced to staff in Platform 3. Principal
+  alerted at 80%, BEFORE the cap, regardless of which path triggers.
 - Rates read from config with a verification date. Not a constant.
 
 VERIFY
 - Every block reason produces a logged row — trigger each one.
 - pilot_allow_outbound=false blocks everything and logs it.
-- At cap: a receipt still sends, a Pulse does not.
+- A student's SECOND absence alert same day is non-transactional and
+  subject to the governor; the first is not.
+- At cap: a receipt and a first-absence-of-day alert still send; a
+  daily Pulse queues into the weekly batch instead of sending; a
+  Recognition message holds and appears in the staff-facing Platform 3
+  surface instead.
 - grep: no code path reaches Meta except through the gate.
 
 PREREQUISITE FROM ME: WhatsApp credentials in .env.local, test
@@ -719,10 +884,10 @@ need them.
 Build the fee engine.
 
 SOURCE FILES:
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §3.3 (fees, financial controls,
+- 04_SYSTEM_DESIGN_PRD.md §3.3 (fees, financial controls,
   webhook idempotency), §9 Stage 6
-- 11_BUSINESS_LOGIC_ADDENDUM.md §2 (schema and derivation rules)
-- PRODUCT_CONSTITUTION_v2.0.md §9
+- 05_BUSINESS_LOGIC.md §2 (schema and derivation rules)
+- 01_CONSTITUTION.md §9
 
 BUILD
 Fee heads · structures · assignments · invoices · payments (partial,
@@ -761,11 +926,11 @@ PREREQUISITE FROM ME: Razorpay test keys.
 Build syllabus capture, exams, then the differentiators.
 
 SOURCE FILES:
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §3.4 (exams), §4 (the
+- 04_SYSTEM_DESIGN_PRD.md §3.4 (exams), §4 (the
   differentiators, in full), §9 Stages 7-8
-- 11_BUSINESS_LOGIC_ADDENDUM.md §4 (at-risk), §5 (Pulse)
-- netcyberai_recognition.ts (THE LOCKED FORMULA)
-- PRODUCT_CONSTITUTION_v2.0.md §5
+- 05_BUSINESS_LOGIC.md §4 (at-risk), §5 (Pulse)
+- ../src/lib/recognition.ts (THE LOCKED FORMULA)
+- 01_CONSTITUTION.md §5
 
 ORDER MATTERS: syllabus state capture first — the Pulse depends on
 it entirely.
@@ -802,7 +967,7 @@ shared-phone households: exactly the families this product most
 needs to reach. Aggregate school-level response rate is the North
 Star metric. Per-parent attribution as a score is banned.
 
-RECOGNITION — use netcyberai_recognition.ts, do not reimplement
+RECOGNITION — use ../src/lib/recognition.ts, do not reimplement
 - Personal Best: threshold-based, non-competitive, every qualifying
   parent gets a message.
 - Most Improved: logit-delta within baseline quartile bands, one
@@ -811,8 +976,20 @@ RECOGNITION — use netcyberai_recognition.ts, do not reimplement
   BANNED — it is provably inverted and rewards the already-strongest
   student. Do not resurrect it.
 - Class Shine: OFF by default.
-- Thresholds are per-school CONFIG, not constants (see the
-  Amendment in this Bible).
+- Thresholds are per-school CONFIG, not constants (Amendment 1 in
+  01_CONSTITUTION.md §6). ../src/lib/recognition.ts's
+  PERSONAL_BEST_THRESHOLD (0.05), MIN_ASSESSMENTS (2), MIN_ATTENDANCE
+  (0.6), and the 4 baseline bands are DOCUMENTED DEFAULTS, not the
+  locked values — wire them to per-school config that falls back to
+  these (Decision Log C21).
+- The file has NO TESTS as of this consolidation, despite
+  04_SYSTEM_DESIGN_PRD.md §4.3 describing it as a "reference
+  implementation and tests." Write src/lib/recognition.test.ts here,
+  including the assertion that is the actual point of the file's
+  header comment: the banned headroom formula ranks 85->90 (33.3%)
+  above 40->55 (25.0%), which is backwards for "most improved." That
+  assertion failing loudly is what stops the formula being reverted
+  by a future session — much stronger than a comment.
 - Build the fairness audit surface: what share of students received
   at least one Personal Best this cycle?
 
@@ -828,7 +1005,10 @@ TEACHER IMPACT CARD — PRD §4.4
 AT-RISK — PRD §4.5
 Three tones: principal (risk, aggregate), teacher (actionable, per
 student), parent (supportive, never comparative, never ranked).
-at_risk_parent_dispatch_enabled defaults FALSE.
+Parent dispatch requires BOTH at_risk_parent_dispatch_enabled = true
+(school-level flag, defaults FALSE) AND the student's at_risk consent
+purpose granted (Prompt G, Decision Log C20) — either one being false
+blocks dispatch.
 
 VERIFY
 - not_taught produces no Pulse. Test it.
@@ -850,9 +1030,9 @@ VERIFY
 Wire n8n to the Next.js API routes.
 
 SOURCE FILES:
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §3.6, §5 (WhatsApp surface)
-- 11_BUSINESS_LOGIC_ADDENDUM.md §5
-- PRODUCT_CONSTITUTION_v2.0.md §7, §9
+- 04_SYSTEM_DESIGN_PRD.md §3.6, §5 (WhatsApp surface)
+- 05_BUSINESS_LOGIC.md §5
+- 01_CONSTITUTION.md §7, §9
 
 ARCHITECTURAL RULE — do not violate this for convenience
 n8n ORCHESTRATES. It does not send, and it does not write to
@@ -886,11 +1066,11 @@ VERIFY
 Wire the WhatsApp Cloud API into the send gate.
 
 SOURCE FILES:
-- docs/PHASE_1_SYSTEM_DESIGN_PRD.md §5 (economics, cost governor,
+- 04_SYSTEM_DESIGN_PRD.md §5 (economics, cost governor,
   template governance)
-- 11_BUSINESS_LOGIC_ADDENDUM.md §5 (Pulse delivery rules, button
+- 05_BUSINESS_LOGIC.md §5 (Pulse delivery rules, button
   labels, cost arithmetic)
-- PRODUCT_CONSTITUTION_v2.0.md §7
+- 01_CONSTITUTION.md §7
 
 PERMANENT RULES
 - 1-on-1 messages ONLY. WhatsApp Groups are architecturally banned.
@@ -932,6 +1112,65 @@ to Meta (allow 1-3 business days for review).
 
 ---
 
+## PROMPT M — Reporting, Billing, Support, Hardening
+
+*(New, Decision Log C27: 04_SYSTEM_DESIGN_PRD.md §9 Stage 9 specifies
+this work — reporting, billing, usage tracking, support, monitoring,
+disaster recovery — but no prompt in this Bible built it. Added here,
+after L, matching the PRD's own sequencing.)*
+
+```
+Build reporting, billing/invoicing, support tooling, monitoring
+dashboards, and — the item that actually matters here — a real,
+timed disaster-recovery drill.
+
+SOURCE FILES:
+- 04_SYSTEM_DESIGN_PRD.md §9 Stage 9, §10.3 (reliability targets:
+  RTO < 4h, RPO < 1h for Phase 1), §11 item 18 (DR acceptance line)
+- 01_CONSTITUTION.md §7 (billing/cost data), §9 (audit)
+
+BUILD
+- Report definitions with role-scoped export. No cross-tenant
+  leakage in any export — test this, not just RLS in the abstract.
+- Full data pack export (the "export anytime" trust promise in
+  01_CONSTITUTION.md §8 needs a real implementation, not a future
+  promise on /security/data-ownership).
+- Subscription and invoicing, usage tracking against plan quotas
+  (04_SYSTEM_DESIGN_PRD.md §8).
+- Support ticket tooling, tied to the impersonation audit trail from
+  Prompt E.
+- Monitoring dashboards: message volume/failure rate, sync failure
+  rate, consent completion, blocked-send counts by reason, QR scan
+  anomalies, OCR failure rate — all named in PRD §7.2's Platform 2
+  Monitoring tab, not previously wired to a data source.
+- Daily automated backups with point-in-time recovery (PITR).
+
+THE DR DRILL — this is the actual point of this prompt
+A restore drill that has never been PERFORMED is not a backup
+strategy, it is an assumption wearing a backup's name. Actually:
+1. Take a real backup of the dev database at a known point in time.
+2. Destroy or isolate the dev database.
+3. Restore from the PITR backup to that point in time.
+4. Time the whole operation, start to finish.
+5. Verify the restored data matches what existed at that point —
+   row counts, a spot-check of specific records, the audit hash
+   chain still verifies.
+Report the actual elapsed time against the RTO < 4h target. If it
+exceeds the target, say so — do not round down or omit the number.
+
+VERIFY
+- A report export for School A contains zero School B rows — prove
+  it with an actual export run, not a read of the query code.
+- The DR drill was PERFORMED, not scheduled or described. Show the
+  timed output from steps 1-5 above.
+- Every monitoring metric listed above has a real data source, none
+  are hardcoded placeholders.
+
+REPORT per 02_AI_BUILDER_INSTRUCTIONS.md.
+```
+
+---
+
 # EXECUTION SEQUENCE
 
 | # | Prompt | Gate before proceeding |
@@ -949,6 +1188,7 @@ to Meta (allow 1-3 business days for review).
 | 11 | J — Academics & Differentiators | `not_taught` sends nothing; no parent score |
 | 12 | K — n8n | Nothing bypasses the send gate |
 | 13 | L — WhatsApp | Test message to your number only |
+| 14 | M — Reporting, Billing, Support, Hardening | DR drill actually performed and timed, within RTO |
 
 **Prompt B is the gate that matters.** Everything after it assumes
 tenant isolation holds. A failing isolation suite is not a bug to fix
@@ -958,7 +1198,7 @@ later — it is a stop condition.
 
 # WHAT THE OVERRIDE DOES NOT SUSPEND
 
-`AI_BUILDER_SYSTEM_PROMPT.md` applies to every prompt above,
+`02_AI_BUILDER_INSTRUCTIONS.md` applies to every prompt above,
 unchanged:
 
 - No dummy data outside an allowlisted, labelled fixture directory.
@@ -980,10 +1220,11 @@ not the nature of the evidence.
 
 ---
 
-# OPEN `[GAP]`s — unchanged, still needed
+# OPEN `[GAP]`s
 
 - Current-year CPI figure and official source (Prompt G blocks on it)
-- Current Form 6 deadline and official field list
+- Current Form 6 deadline and official field list (also Prompt G —
+  `filing_deadline`/`filing_deadline_source`, per Decision Log C18)
 - WhatsApp button character limit and current India billing rules,
   verified at build time (Prompt L)
 - Real fee concession types from an actual school (Prompt I)
@@ -992,3 +1233,11 @@ not the nature of the evidence.
 - Final plan pricing in ₹
 - ID card print format and workflow
 - Legal review of `/privacy` and `/terms` — still blocking for launch
+- **New since the last version of this document:** the Pulse
+  comprehension response-rate target (Amendment 3 changed the metric
+  from open rate; the >65% figure does not carry over — instrument
+  from the first real school, set the target from 30 days of data)
+- The full, consolidated `[GAP]` list — including items this document
+  doesn't track, like the missing `12_RECONCILED_PLATFORM_FEATURE_MAP.md`
+  and the never-committed "CTO Recommendation" blueprint — lives in
+  [`00_START_HERE.md`](00_START_HERE.md).
