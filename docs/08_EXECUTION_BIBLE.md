@@ -540,7 +540,7 @@ Build the shared design system for Platform 2 and Platform 3.
 SOURCE FILES:
 - 04_SYSTEM_DESIGN_PRD.md §0.1 (Floor Device Standard),
   §0.2 (device matrix), §10.2 (client constraints)
-- 05_BUSINESS_LOGIC.md §1 (mobile-only design invariants)
+- 05_BUSINESS_LOGIC.md §1 (device-priority design invariants)
 - The Phase 0 site's existing tokens — reuse, do not re-invent.
 
 TOKENS — unchanged from Phase 0

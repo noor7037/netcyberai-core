@@ -355,9 +355,10 @@ create index idx_at_risk_school_student on at_risk_flags(school_id, student_id, 
 
 ## §5. The WhatsApp Accountability Loop
 
-**Build status: Phase 1. Logged here, NOT queued for Phase 0.**
-Per the Bridge Rule, core automations are deferred. This section
-specifies the logic so it is built correctly when authorized.
+**Build status: Phase 1, authorized under Amendment 1 — not part of
+the Phase 0 build, which has no messaging integration at all.** This
+section specifies the logic for `08_EXECUTION_BIBLE.md` Prompts H, K,
+and L to implement.
 
 ### Delivery rules — permanent
 1. **1-on-1 private messages only. WhatsApp Groups are permanently

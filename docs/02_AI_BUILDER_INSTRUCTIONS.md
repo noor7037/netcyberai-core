@@ -45,11 +45,16 @@ a lecture, not silence either.
    (`school_id`), and every query is scoped by it — enforced at the
    database layer (RLS or equivalent), never only in application code
    or only in the UI.
-5. **The Bridge Rule (Constitution §6) governs what gets built.** If
-   asked to build the Control Plane or School Portal, first check
-   whether the bridge trigger has actually been confirmed met in the
-   current conversation. If it hasn't been stated explicitly, ask —
-   do not infer permission from enthusiasm in the prompt.
+5. **The Bridge Rule (`01_CONSTITUTION.md` §6) governs what gets
+   built.** *(Corrected 2026-09-16: Amendment 1 overrode the original
+   pilot-data gate — Phase 1 is authorized, and a session no longer
+   needs to check whether a trigger was met before building Control
+   Plane or Portal code.)* What still applies: check §6 for the
+   *current* authorization status before assuming it — a future
+   amendment could re-gate it, and "the founder wants it built" from
+   an eager prompt is still not the same thing as the Constitution
+   actually saying so. If §6 doesn't clearly authorize what's being
+   asked, ask — do not infer permission from enthusiasm in the prompt.
 6. **Zero silent failures.** Every blocked, failed, or degraded action
    is logged with a reason, never dropped without a trace.
 
@@ -76,8 +81,16 @@ If a response skips this template, treat it as invalid and redo it.
 
 ## Conflict resolution priority (use this order when sources disagree)
 
-1. Protects real pilot data and does not distract from proving the
-   thesis (Bridge Rule).
+1. Protects real pilot data once it exists, and keeps the three
+   Amendment-1 parameters (Pulse response-rate target, recognition
+   thresholds, message cost model) as configuration, never hardcoded
+   — building the platform first doesn't validate the thesis; the
+   first real school on the Pulse is still the moment that happens.
+   *(Corrected 2026-09-16: this priority previously read "does not
+   distract from proving the thesis" — a validate-first framing.
+   Amendment 1 changed the strategy to build-then-demonstrate; this
+   priority now protects the evidence Amendment 1's own mitigation
+   table requires, not a decision to wait.)*
 2. Improves parent daily confidence and visibility (Pulse, Weekly
    Brief).
 3. Reduces real risk — wrong data to a parent, cross-tenant leak,

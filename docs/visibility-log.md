@@ -1,5 +1,9 @@
 # Visibility Log (AEO / GEO manual checks)
 
+**Governed by:** [`06_VISIBILITY_PROTOCOL.md`](06_VISIBILITY_PROTOCOL.md)
+§7 — this is the data file that protocol prescribes, not a spec
+itself.
+
 **Why this file exists:** SEO is measurable in Search Console. AEO
 (Google AI Overviews, featured snippets) and GEO (Perplexity, ChatGPT
 Search, Gemini) are not measurable in any analytics tool this project
