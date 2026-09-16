@@ -1,0 +1,45 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: No fabricated numeric claims outside the demo fixture
+        run: |
+          if grep -rEn '[0-9]+%|₹[0-9]|\$[0-9]' src/ --include='*.ts' --include='*.tsx' | grep -v 'src/demo-fixture/'; then
+            echo "::error::Unsourced numeric claim found outside src/demo-fixture/ — trace it to a cited source or remove it."
+            exit 1
+          fi
+
+      - name: No mock/dummy/fake/sample data outside the demo fixture
+        run: |
+          if grep -rn 'mock\|dummy\|fake\|sample' src/ --include='*.ts' --include='*.tsx' | grep -v 'src/demo-fixture/'; then
+            echo "::error::Found a mock/dummy/fake/sample reference outside src/demo-fixture/, the only allowlisted exception."
+            exit 1
+          fi
+
+      - name: No secrets committed
+        run: |
+          if grep -rn 'sk_\|api_key\|SECRET\|PRIVATE_KEY' src/; then
+            echo "::error::Possible secret found in src/."
+            exit 1
+          fi
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Build
+        run: npm run build
