@@ -1,9 +1,12 @@
-# 13 — Visibility Protocol (SEO / AEO / GEO / AIO)
+# 06 — Visibility Protocol (SEO / AEO / GEO / AIO)
 
-**Status:** Additive. Governs Platform 1 (public web) only.
-**Supersedes:** Addendum §9's `/demo` exclusion decision — see §3.
-**Governed by:** `PRODUCT_CONSTITUTION_v2.0.md`. The anti-fabrication
-rule (§9) is load-bearing here, not incidental — see §6.
+**Governs:** Platform 1 (public web) only. Authenticated surfaces
+(Platform 2, 3) are `noindex`, no exceptions — see §9.
+**Governed by:** [`01_CONSTITUTION.md`](01_CONSTITUTION.md). The
+anti-fabrication rule (§9) is load-bearing here, not incidental — see
+§6.
+**Supersedes:** [`05_BUSINESS_LOGIC.md`](05_BUSINESS_LOGIC.md) §9's
+original `/demo` exclusion decision — see §3.
 
 ---
 
@@ -207,8 +210,15 @@ basis of its existence.
 **What actually drives GEO citation**, in rough order of weight:
 
 1. **Specific, verifiable, dated facts.** "Haryana caps fee hikes at
-   CPI+5%, notified December 2021, Form 6 due 1 February" is citable.
-   "We help schools manage fees efficiently" is not.
+   CPI+5%, notified December 2021" is citable. "We help schools
+   manage fees efficiently" is not. *(Corrected 2026-09-16, Decision
+   Log C18: this example previously added "Form 6 due 1 February" as a
+   second citable fact in the same sentence. The CPI+5% cap is a
+   notified rule and stable enough to cite directly; the filing
+   deadline is not — Haryana has extended the standing 1 February date
+   in practice in multiple past years, so it's configuration, per
+   `05_BUSINESS_LOGIC.md` §3, not a fact to state as fixed in marketing
+   copy or in this example.)*
 2. **Named entities.** Form 6, UDISE+, DPDP Act, Razorpay, WhatsApp
    Cloud API, CBSE. Entity-dense content is retrievable content.
 3. **Clean extractable structure.** Headings that match questions,

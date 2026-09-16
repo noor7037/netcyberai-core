@@ -1,23 +1,34 @@
 # PHASE 1 — SYSTEM DESIGN & PRODUCT REQUIREMENTS DOCUMENT
 
 **Document ID:** NCA-PRD-P1
-**Target path in repo:** `docs/PHASE_1_SYSTEM_DESIGN_PRD.md`
-**Supersedes:** the standalone "CTO Recommendation" blueprint and the
-`00`–`12` fragments where they conflict. Those remain valid as
+**Repo path:** `docs/04_SYSTEM_DESIGN_PRD.md`
+**Governs:** the Phase 1 build. `08_EXECUTION_BIBLE.md`'s prompts cite
+this document by section for every requirement they implement.
+**Governed by:** [`01_CONSTITUTION.md`](01_CONSTITUTION.md).
+**Supersedes:** the standalone "CTO Recommendation" blueprint (never
+committed to this repo — confirmed absent, see `10_DECISION_LOG.md`)
+and the `00`–`11` fragments where they conflict. Those remain valid as
 reasoning history; this is the operative specification.
 
-**Carries forward, in full:** `PRODUCT_CONSTITUTION_v2.0.md`,
-`AI_BUILDER_SYSTEM_PROMPT.md`, `ARCHITECTURE_DECISIONS_PLAIN.md`,
-`BUILD_ORDER.md`, `ACCEPTANCE_CHECKLIST.md`, `netcyberai_schema.sql`,
-`netcyberai_rls_policies.sql`, `netcyberai_recognition.ts`,
-`00_NetCyberAI_Revised_Understanding.md`,
-`11_BUSINESS_LOGIC_ADDENDUM.md`,
-`12_RECONCILED_PLATFORM_FEATURE_MAP.md`.
+**Carries forward, in full:** [`01_CONSTITUTION.md`](01_CONSTITUTION.md),
+[`02_AI_BUILDER_INSTRUCTIONS.md`](02_AI_BUILDER_INSTRUCTIONS.md),
+[`03_ARCHITECTURE_PLAIN.md`](03_ARCHITECTURE_PLAIN.md),
+[`09_ACCEPTANCE_CHECKLIST.md`](09_ACCEPTANCE_CHECKLIST.md),
+[`../db/schema.sql`](../db/schema.sql),
+[`../db/rls_policies.sql`](../db/rls_policies.sql),
+[`../src/lib/recognition.ts`](../src/lib/recognition.ts),
+[`archive/00_NetCyberAI_Revised_Understanding.md`](archive/00_NetCyberAI_Revised_Understanding.md),
+[`05_BUSINESS_LOGIC.md`](05_BUSINESS_LOGIC.md).
+**`12_RECONCILED_PLATFORM_FEATURE_MAP.md`** — cited here as carried
+forward in the original version of this document — **is confirmed
+absent from this repo.** Its §0 mismatch-resolution log could not be
+reconstructed from source; `10_DECISION_LOG.md` is its practical
+replacement going forward, built from this consolidation's own
+conflict resolution rather than from the missing file.
 
-**Build authorization:** this document is a specification. Phase 1
-implementation remains gated by Constitution §6 (Bridge Rule). Writing
-this is permitted; writing application code from it is not, until the
-trigger is met or explicitly overridden in writing.
+**Build authorization:** Phase 1 implementation is authorized —
+`01_CONSTITUTION.md` §6, Amendment 1 (founder override, 2026-09-16).
+This document was written while still gated; the gate lifted after.
 
 ---
 
@@ -131,12 +142,20 @@ surfaces, one shared design system, one tenant-aware backend.
 ```
 apps/web/
   src/app/
-    (public)/        Platform 1 — marketing & acquisition
-    (admin)/         Platform 2 — multi-tenant control plane
-    (school)/        Platform 3 — school operational workspace
+    (public)/        Platform 1 — marketing & acquisition           ->  /
+    (admin)/control/ Platform 2 — multi-tenant control plane        ->  /control/...
+    (school)/app/    Platform 3 — school operational workspace      ->  /app/...
   src/modules/       domain modules, enforced boundaries
   src/lib/           shared: auth, db, design tokens, site config
 ```
+
+**Corrected 2026-09-16 (Decision Log C22):** a route group (`(x)`) adds
+no URL segment on its own — `(admin)/dashboard/page.tsx` and
+`(school)/dashboard/page.tsx` would both resolve to `/dashboard` and
+collide. Route groups organise code; the explicit `control/` and
+`app/` segments inside them are what actually produce
+`01_CONSTITUTION.md` §4's `/control` and `/app` URLs and make the
+collision structurally impossible.
 
 **Why modular monolith, not microservices:** the prior blueprint listed
 18 services. With a solo or small team, 18 deployables means 18
@@ -177,27 +196,44 @@ discloses every parent's phone number to every other parent, has no
 consent basis under DPDP, and makes per-child messaging impossible.
 All parent communication is 1-on-1.
 
-## 1.4 Permanent exclusions
+## 1.4 Exclusions — permanent bans and deferred items
 
-Codified. A future session proposing any of these should be pointed
-here.
+*(Corrected 2026-09-16, Decision Log C23: the original version of this
+section put a permanent ban and a commercial deferral in one table,
+and one row — Library — contradicted itself by saying "Defer until a
+paying school makes it a condition" under a "Permanent exclusions"
+heading. Split below into what it actually meant: two different kinds
+of "no," with different revisit conditions.)*
+
+### Permanent bans — architectural or ethical, never revisited
 
 | Excluded | Rationale |
 |---|---|
-| Native iOS/Android apps | Storage exhaustion on floor devices; install friction kills parent adoption; two more release pipelines. PWA covers the need. |
-| Transport / GPS tracking | Hardware, driver devices, telematics contracts, live-location liability. |
 | Cafeteria RFID wallets | Card stock, readers, POS terminals, possible prepaid-instrument regulatory exposure. |
-| Inventory | Not a trust-gap problem. No pull from target buyers. |
-| Library | Same. Defer until a paying school makes it a condition. |
-| Hostel | Same. |
-| Payroll | Salary data adjacent to teacher records; high blast radius, low differentiation. |
-| Full LMS | Different product, different buyer, different competitors. |
 | Facial recognition | Biometric processing of children. Regulatory exposure disproportionate to benefit. |
 | On-premise hardware / school-side desktop agents | Cannot be kept alive without IT staff. A dead local agent is a silent failure by construction. |
 | IoT campus metering | Requires physical meters and a maintained network. |
 | Blockchain credentials | A signed PDF with a QR verification endpoint solves this at a fraction of the complexity. |
 | Autonomous tool-calling AI agents | Deterministic rule engines and templates do this work correctly, cheaply, and auditably. |
-| Parent / student self-service portals | Parents are served over WhatsApp. Adding a portal adds a login nobody wants. |
+| WhatsApp Groups for parent communication | See §1.3 — no consent basis, discloses every parent's number to every other parent. |
+
+### Deferred — commercial, revisitable under conditions
+
+| Deferred | Rationale |
+|---|---|
+| Native iOS/Android apps | Storage exhaustion on floor devices; install friction kills parent adoption; two more release pipelines. PWA covers the need for now. |
+| Transport / GPS tracking | Hardware, driver devices, telematics contracts, live-location liability. |
+| Inventory | Not a trust-gap problem. No pull from target buyers yet. |
+| Library | Same. |
+| Hostel | Same. |
+| Payroll | Salary data adjacent to teacher records; high blast radius, low differentiation. |
+| Full LMS | Different product, different buyer, different competitors. |
+| Parent / student self-service portals | Parents are served over WhatsApp; a portal nobody logs into is dead weight with a live attack surface (Decision Log C13). Revisitable if adoption data ever demands it. |
+
+**Condition for un-deferring anything in the second table:** a paying
+school makes it a contractual condition, **and** it passes the Floor
+Device Standard, **and** it does not require hardware the school must
+maintain. All three, not any one.
 
 **Clarification on "no AI agents":** this excludes autonomous agents
 with tool access. It does **not** exclude deterministic template
@@ -257,9 +293,16 @@ A user may hold memberships in multiple schools (a teacher at two
 branches, an account manager across tenants). Role is per-membership,
 never global — except `super_admin`, which is platform-scoped.
 
-Roles: `super_admin` · `school_admin` · `principal` · `teacher` ·
-`accountant` · `academic_coordinator` · `parent` (no login in Phase 1)
-· `student` (optional, Class 6+, off by default).
+**Phase 1 roles:** `super_admin` · `school_admin` · `principal` ·
+`teacher` · `accountant` · `academic_coordinator` · `parent` (no
+login — served over WhatsApp, per §1.4).
+
+**Not in Phase 1 (Decision Log C24):** `student` stays in the
+`user_role` enum for Phase 2, but no student login and no
+student-facing surface ships in Phase 1. This corrects a
+self-contradiction in the original version of this section, which
+listed a student role here while §1.4 deferred student portals
+entirely — there was nothing for a Phase 1 student to log into.
 
 **Authorization is enforced server-side on every request.** UI
 visibility is a convenience, never a control. A hidden-but-reachable
@@ -322,7 +365,7 @@ is not replaced by QR — see Section 6.3.
 ## 3.3 Fees
 
 Double-entry discipline. Blueprint sub-tabs accepted in full, plus the
-Addendum §2 schema (`fee_heads`, `fee_structures`,
+`05_BUSINESS_LOGIC.md` §2 schema (`fee_heads`, `fee_structures`,
 `fee_structure_items`, `fee_concessions`, `payments`).
 
 **Financial controls:**
@@ -348,12 +391,22 @@ receive webhook
   → if conflict: return 200, do not re-process
 ```
 
-**Form 6 advisory (Addendum §3):** CPI + 5% cap, salary-linked
-alternative formula acknowledged, advisory only and never blocking,
-mute permitted and audited, CPI read from `compliance_config` and
-never hardcoded. Advisory state: `within_advisory` / `above_advisory`
-/ `unknown`. When CPI is unconfigured the state is `unknown` and the
-system says so rather than guessing a number.
+**Form 6 advisory (`05_BUSINESS_LOGIC.md` §3):** CPI + 5% cap,
+salary-linked alternative formula acknowledged, advisory only and
+never blocking, mute permitted and audited, CPI read from
+`compliance_config` and never hardcoded. Advisory state:
+`within_advisory` / `above_advisory` / `unknown`. When CPI is
+unconfigured the state is `unknown` and the system says so rather than
+guessing a number.
+
+**The filing deadline is configuration too, not just the CPI figure**
+(Decision Log C18). Haryana has extended the standing 1 February
+deadline in practice in multiple past years — treating any single date
+as a constant would be exactly the unverified-number failure this
+project's anti-fabrication rule exists to prevent.
+`compliance_config.filing_deadline` and `.filing_deadline_source` carry
+this the same way `.cpi_percent` and `.cpi_source` do. Deadline state:
+`before_deadline` / `past_deadline` / `unknown` when unconfigured.
 
 ## 3.4 Examinations
 
@@ -373,10 +426,25 @@ Not Required → Pending → Requested → Verified Guardian
   → Active → Withdrawn → Expired / Tombstoned
 ```
 
-Purpose-scoped and independently withdrawable: `core_records`,
-`daily_pulse`, `recognition`, `weekly_brief`. Each defaults to off
-until granted. Verification method recorded (`dob_on_record`,
-`school_attested`, `digilocker_token`, `otp_plus_attestation`).
+**Purpose set, restructured (Decision Log C20)** — the original set
+below covered `core_records`, `daily_pulse`, `recognition`, and
+`weekly_brief`, but nothing covered absence alerts, fee notices, class
+notices, or at-risk messages, which every other section of this
+document assumes pass through the consent gate. Restructured to a
+DPDP-defensible split:
+
+| Purpose | Covers | Default |
+|---|---|---|
+| `core_records` | Holding the student record itself | Required for service |
+| `operational_communication` | Fee notices, receipts, absence alerts, certificates, school/class notices | Required for service — necessary to deliver what the school contracted |
+| `daily_pulse` | Pulse + comprehension prompt | Opt-in, off |
+| `recognition` | Recognition messages | Opt-in, off |
+| `weekly_brief` | Weekly Confidence Brief | Opt-in, off |
+| `at_risk` | Parent-facing at-risk alerts | Opt-in, off, **plus** `schools.at_risk_parent_dispatch_enabled` (§4.5) — both required |
+
+Each purpose independently withdrawable. Verification method recorded
+(`dob_on_record`, `school_attested`, `digilocker_token`,
+`otp_plus_attestation`).
 
 `consent_ledger` is append-only. Withdrawal is a new row, never a
 mutation.
@@ -474,7 +542,7 @@ inverted** for its stated purpose: 85→90 scores 33.3%, 40→55 scores
 25.0%. It rewards the already-strongest student and degenerates toward
 infinity as the baseline approaches the ceiling. It is banned. Do not
 resurrect it. Reference implementation and tests:
-`netcyberai_recognition.ts`.
+[`../src/lib/recognition.ts`](../src/lib/recognition.ts) — values there are documented defaults, not constants (Amendment 1).
 
 **Class Shine (tertiary, opt-in, default OFF).** Top-3 per class,
 framed as "students who shone," never "Rank 1/2/3." The principal must
@@ -556,16 +624,42 @@ count. It must be priced into plans before the feature is sold.
 ```
 on send request:
   if projected_spend + cost > school.monthly_budget_paise:
-      if priority == 'transactional':      # receipt, OTP, TC, absence
+      if priority == 'transactional':      # receipt, OTP, TC,
+                                            # first-absence-alert-of-day
           send; log budget_exceeded_transactional
-      else:                                 # pulse, recognition, brief
-          hold or degrade to portal-only
+      elif message_type == 'daily_pulse':
+          queue for the weekly consolidated send (see below)
+          log blocked_budget
+      else:                                 # recognition, brief
+          hold until budget resets; surface to staff in Platform 3
           log blocked_budget
   if projected_spend > 0.8 * budget:
       alert principal (once per threshold crossing)
 ```
 
 Alert before the cap, not after.
+
+**Transactional class, final (Decision Log C19):** receipt · OTP ·
+certificate delivery · **the first absence alert per student per day**
+only. A parent not knowing their child failed to arrive at school is a
+child-safety matter and always sends. Follow-up or repeated-pattern
+absence notifications are not transactional and are subject to the
+governor like any other non-critical message — an unbounded
+transactional class scaling with absence rate would be a budget hole.
+
+**Budget-breach fallback, corrected (Decision Log C13) — there is no
+parent portal to degrade to** (§1.4, §2.2: parents have no login in
+Phase 1). The original "degrade to portal-only" fallback is redefined:
+- **Pulse** queues and batches — hold the day's messages, send one
+  consolidated weekly message instead of daily. One message instead of
+  five, not zero.
+- **Recognition** holds until the budget resets, and is surfaced to
+  **staff** in Platform 3 so the school can recognise the student in
+  person (assembly, notice board) instead of the signal disappearing.
+- **Consistency Badge** (`01_CONSTITUTION.md` §5) was already
+  portal-only with no parent dispatch; it becomes staff-visible in
+  Platform 3 and folded into the Weekly Confidence Brief text — no
+  separate message, no additional cost.
 
 `communication_log` records `billing_category`,
 `inside_service_window`, `billable`, `est_cost_paise`, `gst_paise` on
@@ -1136,18 +1230,21 @@ Sequenced by dependency, not by pitch order. Each stage produces
 something verifiable, and each is a genuine stopping point.
 
 ## Stage 0 — Public website (Phase 0)
-**Status:** `[GAP]` — reported complete, unverified against
-`ACCEPTANCE_CHECKLIST.md` with actual command output. Close this gap
-before proceeding.
+**Status:** shipped. See [`09_ACCEPTANCE_CHECKLIST.md`](09_ACCEPTANCE_CHECKLIST.md)
+for the pass record with actual command output.
 
-Marketing surface, blog, `/demo` sandbox, SEO/GEO, trust pages.
-Generates the demand that produces the Bridge Rule trigger.
+Marketing surface, blog, `/demo` sandbox, SEO/GEO, trust pages. This is
+what generated the demand Amendment 1 built on.
 
 ## Stage 1 — Foundation
-1. Supabase project, region India, `netcyberai_schema.sql` +
-   `netcyberai_rls_policies.sql` applied
+1. Supabase project, region India, [`../db/schema.sql`](../db/schema.sql) +
+   [`../db/rls_policies.sql`](../db/rls_policies.sql) applied, plus the
+   four migrations in `08_EXECUTION_BIBLE.md` Prompt A
+   (`not_taught` rename, `memberships` table, nullable budget, the
+   three added schema pieces)
 2. Capture subsystem migrations (Section 6.4)
-3. Addendum §2 fee tables, §3 compliance config, §4 at-risk, §5 pulse
+3. `05_BUSINESS_LOGIC.md` §2 fee tables, §3 compliance config, §4
+   at-risk, §5 pulse
 4. Auth: Supabase Auth, role + `school_id` in session claim, MFA for
    super_admin, token_version revocation
 5. **Two-school tenant isolation test suite** — this is the gate. No
@@ -1262,8 +1359,8 @@ Report definitions with role-scoped export · full data pack ·
 subscription and invoicing · usage tracking · support tickets ·
 monitoring dashboards · DR drill (PITR restore tested, not assumed).
 
-**Verification:** full `ACCEPTANCE_CHECKLIST.md` pass with command
-output; restore drill completed and timed.
+**Verification:** full [`09_ACCEPTANCE_CHECKLIST.md`](09_ACCEPTANCE_CHECKLIST.md)
+pass with command output; restore drill completed and timed.
 
 ## Sequencing principles
 
@@ -1367,10 +1464,15 @@ these work, verified with output, not asserted.
 
 Nothing below is invented or assumed. Each needs a human answer.
 
-- `[GAP]` Phase 0 acceptance confirmed against checklist with actual
-  command output.
-- `[GAP]` Bridge Rule status — no pilot data recorded. Phase 1 build
-  remains unauthorized until met or explicitly overridden in writing.
+- ~~`[GAP]` Phase 0 acceptance confirmed against checklist with actual
+  command output.~~ **Resolved 2026-09-16** — see
+  `09_ACCEPTANCE_CHECKLIST.md`.
+- ~~`[GAP]` Bridge Rule status — no pilot data recorded. Phase 1 build
+  remains unauthorized until met or explicitly overridden in
+  writing.~~ **Resolved 2026-09-16** — overridden in writing,
+  `01_CONSTITUTION.md` §6 Amendment 1. The North Star metric this gate
+  was measuring changed too (Amendment 3); its target is a new `[GAP]`,
+  listed in `00_START_HERE.md`.
 - `[GAP]` OCR provider selection (Devanagari accuracy, handwriting
   tolerance, per-page cost, India residency).
 - `[GAP]` Current-year CPI figure and official source.

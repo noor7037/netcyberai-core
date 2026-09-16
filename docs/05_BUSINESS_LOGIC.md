@@ -1,21 +1,41 @@
-# 11 — Business Logic Addendum
+# 05 — Business Logic
 
-**Status:** Additive. Does not overwrite any of the 10 locked files.
-**Governed by:** `PRODUCT_CONSTITUTION_v2.0.md`. Where this addendum
-and the Constitution conflict, the Constitution wins.
-**Build status of everything in this file:** Phase 1 or later. Nothing
-here is authorized for the Phase 0 build. The Bridge Rule has not been
-met.
+**Status:** Additive to [`01_CONSTITUTION.md`](01_CONSTITUTION.md).
+Does not overwrite it.
+**Governs:** fee engine, Form 6 advisory, at-risk detection, the
+WhatsApp Accountability Loop / Pulse response log, and the permanent
+architectural bans — all as Phase 1 build detail.
+**Governed by:** [`01_CONSTITUTION.md`](01_CONSTITUTION.md). Where
+this file and the Constitution conflict, the Constitution wins.
+**Build status:** Phase 1, authorized —
+[`01_CONSTITUTION.md`](01_CONSTITUTION.md) §6 Amendment 1
+(2026-09-16). *(Was gated behind the Bridge Rule when this file was
+first written; the override lifted that gate — see §7 below.)*
+**Supersedes:** `archive/00_NetCyberAI_Revised_Understanding.md`'s
+Directives 1–6, whose accepted corrections are carried forward here in
+full.
 
 ---
 
-## §1. Mobile-Only Operating Assumption
+## §1. Mobile is the floor, not the ceiling
+
+*(Retitled 2026-09-16 from "Mobile-Only Operating Assumption" — the
+device matrix in `04_SYSTEM_DESIGN_PRD.md` §0.2 corrected the
+mobile-only rule for roles other than teacher. The invariants below
+were never actually mobile-only in substance — "≤2 taps," "zero
+typing," "44×44px targets" — they hold regardless of device; only the
+"every role's primary device is a phone" framing was wrong. See
+`10_DECISION_LOG.md` C4.)*
 
 ### Rule
-The primary device for **every** role — principal, teacher, admin
-staff, accountant, parent — is a budget Android smartphone. Desktop is
-a fallback layout, not the design target. No feature may depend on a
-school-side desktop, local agent, or always-on office machine.
+**Teacher is phone-first, absolute** — assume no desktop access at
+all. Every other role is responsive across phone, tablet, and desktop
+per the per-role device matrix in `04_SYSTEM_DESIGN_PRD.md` §0.2:
+principal phone-primary for decisions, desktop for analytics depth;
+school admin and accountant desktop-primary; academic coordinator
+tablet-primary. No feature may depend on a school-side desktop, local
+agent, or always-on office machine — that constraint is about
+maintainability, not about which device a role prefers.
 
 ### Design invariants
 1. Every daily action reachable in ≤2 taps from the role's home screen.
@@ -23,8 +43,10 @@ school-side desktop, local agent, or always-on office machine.
    flagging, homework "assigned/not assigned", approval actions.
 3. Tap targets ≥44×44 px. High contrast — these phones get used in
    daylight, in corridors, with cracked screens.
-4. Every list is single-column. No horizontal scroll. No data table
-   that requires a wide viewport to be legible.
+4. Single-column and no horizontal scroll **at the 360px floor**
+   (`04_SYSTEM_DESIGN_PRD.md` §10.2). At 1024/1440, a data table is
+   fine for desktop-primary roles — the floor is a minimum, not a
+   ceiling on every screen at every width.
 5. Principal dashboard is **exception-first**: the top of the screen is
    "what needs your decision today", not a chart grid. Analytics live
    one level down.
@@ -52,7 +74,7 @@ one status. Indian school fee reality is not: fees decompose into
 heads, structures vary by class and year, concessions are negotiated
 per family, and payments arrive partially and through mixed channels.
 
-### New tables (Phase 1 migration, additive to `netcyberai_schema.sql`)
+### New tables (Phase 1 migration, additive to `../db/schema.sql`)
 
 ```sql
 -- Fee heads: the named components a fee decomposes into.
@@ -457,9 +479,18 @@ referenced in Constitution §7 (₹0.1150 + 18% GST ≈ ₹0.1357 —
 
 `schools.monthly_budget_paise` and the Constitution §7 cost governor
 are mandatory for this feature, not optional. On budget breach:
-transactional messages (receipts, OTP, certificate delivery) always
-send; Pulse degrades to portal-only; the principal is alerted before
-the cap, not after.
+transactional messages (receipts, OTP, certificate delivery, and the
+first absence alert of the day — Decision Log C19) always send.
+
+**On budget breach, corrected 2026-09-16 (Decision Log C13) — there is
+no parent portal to degrade to** (parents have no login in Phase 1;
+see `04_SYSTEM_DESIGN_PRD.md` §1.4, §2.2). Pulse queues and batches
+instead: hold the day's sends, deliver one consolidated weekly message
+rather than daily — one message instead of five, not zero. Recognition
+holds until the budget resets and is surfaced to **staff** in
+Platform 3, so the school can recognise the student in person
+(assembly, notice board) rather than the signal disappearing entirely.
+The principal is alerted before the cap, not after, either way.
 
 ---
 
@@ -488,13 +519,18 @@ to a client, never embedded in a PDF, never exposed to the browser.
 
 ---
 
-## §7. What this addendum does NOT change
+## §7. What this file does NOT change
 
 1. **Database:** PostgreSQL + RLS on Supabase. Unchanged.
-2. **Bridge Rule:** not met. Phase 0 only. Unchanged.
+2. **Bridge Rule:** overridden 2026-09-16 — `01_CONSTITUTION.md` §6
+   Amendment 1. Phase 1 platform engineering is authorized. *(This
+   point originally read "not met. Phase 0 only. Unchanged" — that was
+   true when written and is the reason §1's header above notes it was
+   gated at the time.)*
 3. **Recognition:** Personal Best threshold + logit-delta banded Most
    Improved. Unchanged.
-4. **The 10 locked files:** not overwritten.
+4. **The locked reference files:** `db/schema.sql`,
+   `db/rls_policies.sql`, `src/lib/recognition.ts` — not overwritten.
 
 ## §8. Open items requiring human input
 
@@ -549,7 +585,7 @@ plain-text summary for AI answer engines.
   it cannot drift from what the site actually says. It states plainly
   that no pilot, customer, or case-study data exists yet.
 
-**The `/demo` route — SUPERSEDED by `13_VISIBILITY_PROTOCOL.md` §3,
+**The `/demo` route — SUPERSEDED by `06_VISIBILITY_PROTOCOL.md` §3,
 2026-09-16.** The original decision here kept `/demo` in `sitemap.ts`
 and `robots.ts` for every crawler, on the reasoning that it is a real,
 public, bottom-funnel marketing page the content plan wants found, and
@@ -571,5 +607,5 @@ training and live-fetch crawlers (`GPTBot`, `OAI-SearchBot`,
 everywhere else on the site — this generalises to any future route
 holding illustrative or fictional data, not `/demo` alone. The
 `llms.txt` exclusion stays as an additional, narrower belt-and-braces
-measure. See `13_VISIBILITY_PROTOCOL.md` §3–§4 for the full reasoning
+measure. See `06_VISIBILITY_PROTOCOL.md` §3–§4 for the full reasoning
 and the per-crawler policy table.
