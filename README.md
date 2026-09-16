@@ -3,15 +3,19 @@
 WhatsApp-native Student Learning Monitoring & Parent Engagement Engine
 for Indian schools. This repository currently contains **only the
 Phase 0 public marketing site** — no database, no authentication, no
-messaging integration. See `PRODUCT_CONSTITUTION_v2.0.md` §6 (the
-Bridge Rule) for why: Control Plane and School Portal work is gated
-until real pilot data or unprompted school demand exists, and neither
-has happened yet.
+messaging integration. That's a statement about what's actually built
+here, not about what's authorized: Phase 1 (Control Plane, School
+Portal) was originally gated behind a pilot-data trigger in
+[`docs/01_CONSTITUTION.md`](docs/01_CONSTITUTION.md) §6, but that gate
+was overridden by founder decision — see Amendment 1 in that same
+section. Start at [`docs/00_START_HERE.md`](docs/00_START_HERE.md) for
+the full picture and the Phase 1 build sequence.
 
 ## Stack
 
 Next.js 14 (App Router, standard Vercel output — not static export),
-TypeScript strict, Tailwind. See `ARCHITECTURE_DECISIONS_PLAIN.md` for
+TypeScript strict, Tailwind. See
+[`docs/03_ARCHITECTURE_PLAIN.md`](docs/03_ARCHITECTURE_PLAIN.md) for
 the reasoning in plain language.
 
 ## Running locally
@@ -48,8 +52,12 @@ already configured in `src/lib/site-config.ts` if unset.
   `/demo` is the single allowlisted exception, and even there names and
   figures are fictional but plausible — never a real school.
 - **No dummy data outside the fixture.** Enforced by CI (see below).
-- **The Bridge Rule.** Do not start Control Plane or School Portal work
-  without checking `PRODUCT_CONSTITUTION_v2.0.md` §6 first.
+- **The Bridge Rule.** Overridden by Amendment 1 — Phase 1 is
+  authorized. Read [`docs/01_CONSTITUTION.md`](docs/01_CONSTITUTION.md)
+  §6 and [`docs/08_EXECUTION_BIBLE.md`](docs/08_EXECUTION_BIBLE.md)
+  before starting Control Plane or School Portal work, not because
+  it's blocked, but because the build sequence and its gates
+  (tenant isolation first, consent before messaging) matter.
 
 ## Verification
 
