@@ -34,6 +34,13 @@ npm run typecheck      # tsc --noEmit
 `NEXT_PUBLIC_WHATSAPP_NUMBER` is optional — it defaults to the number
 already configured in `src/lib/site-config.ts` if unset.
 
+`.claude/launch.json` is intentionally tracked (not gitignored) — it's
+shared dev-preview tooling (`npm run dev` on port 3000), not a personal
+config. Keep it that way: no absolute paths, no host names, no
+credentials, nothing that only works on one machine. Check its content
+before every commit that touches it, the same way you'd check any
+other tracked file.
+
 ## Where things live
 
 | Path | What it is |

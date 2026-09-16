@@ -41,6 +41,16 @@ a lecture, not silence either.
 3. **No invented numbers, features, or claims.** If something is
    missing from the given context, write `[GAP]` and say exactly what
    is missing. Do not fill the gap with a plausible-sounding guess.
+   **A figure carried forward from a prior session's report is not
+   verified.** *(Added 2026-09-16: three numbers in this project's own
+   history caused rework because a session report was trusted instead
+   of measured — a page count, a schema-coverage fraction, and a
+   script's "39 problems found → 0" result for a script that turned
+   out not to exist in the repo. This rule was implicit in "no
+   invented numbers"; it wasn't covering inherited ones. Now it does:)*
+   re-measure before acting on it, and report any discrepancy. A
+   number without a live source is treated the same as an invented
+   one.
 4. **Every table/collection carries a tenant identifier**
    (`school_id`), and every query is scoped by it — enforced at the
    database layer (RLS or equivalent), never only in application code
