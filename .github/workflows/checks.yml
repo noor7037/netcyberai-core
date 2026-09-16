@@ -52,4 +52,15 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Build
+        env:
+          NEXT_PUBLIC_WHATSAPP_NUMBER: "919817707037"
         run: npm run build
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: SEO/AEO audit
+        env:
+          NEXT_PUBLIC_WHATSAPP_NUMBER: "919817707037"
+        run: bash scripts/run_seo_audit.sh --skip-build

@@ -15,10 +15,13 @@ not the same as passed — say what was verified and how.
 **Verification method:** [`../README.md`](../README.md)'s fabrication/
 dummy-data/secrets greps plus `npm run build && npx tsc --noEmit`, run
 in this consolidation session with actual output (all clean); the
-schema-coverage audit recorded in `06_VISIBILITY_PROTOCOL.md` §2
-(`scratchpad/seo_audit.py`, 39 problems on first run → 0, 28/28 routes
-matching); and `05_BUSINESS_LOGIC.md` §9's build record for the SEO
-infrastructure itself.
+schema-coverage audit now actually run by `scripts/seo_audit.py`
+(`npm run audit:seo`) — 28 routes, 17 real problems found, see
+`06_VISIBILITY_PROTOCOL.md` §2 for the breakdown; and
+`05_BUSINESS_LOGIC.md` §9's build record for the SEO infrastructure
+itself. **The Prompt 8/9 audit's original "39 problems → 0" claim
+predates a script that exists in this repo and is not restated as
+verified fact anywhere in this document.**
 
 - [x] No mock/dummy/fake/sample array outside `/demo` — re-verified
       this session; the one hit found (`src/lib/recognition.ts`'s
@@ -28,14 +31,21 @@ infrastructure itself.
 - [x] `npm run build && npx tsc --noEmit` — re-verified this session,
       clean (with `NEXT_PUBLIC_WHATSAPP_NUMBER` set; production build
       correctly *fails* without it — see the env-guard item below).
-- [x] Every page has title, meta description, canonical, OG tags —
-      per the Prompt 8/9 audit, 28/28 routes.
-- [ ] Valid `FAQPage` JSON-LD on every page the content plan requires
-      it on. `06_VISIBILITY_PROTOCOL.md` §5.1 flagged `/`, `/pricing`,
-      `/security/data-ownership`, `/demo` as missing it. A grep this
-      session shows `FaqBlock` now used on all four — **component
-      presence confirmed, full JSON-LD emission and question-content
-      re-audit is a Stage 6 item, not yet re-verified here.**
+- [x] Every page has exactly one canonical and one og:image, correct
+      locale/hreflang — verified by `scripts/seo_audit.py`, 28/28
+      routes, 2026-09-16.
+- [ ] Every page's `<title>` is ≤60 chars and meta description is
+      150–160 chars. **Not passing.** `scripts/seo_audit.py` found 10
+      blog titles over 60 chars (64–82 chars) and 6 meta descriptions
+      short of the 150–160 window (142–149 chars). Real, unfixed —
+      see `06_VISIBILITY_PROTOCOL.md` §2 for the full list.
+- [x] Valid `FAQPage` JSON-LD on every page the content plan requires
+      it on — `/`, `/pricing`, `/security/data-ownership`, `/demo`,
+      every `/features/*`, every `/blog/*` post. Verified by
+      `scripts/seo_audit.py`: JSON-LD parses, `FAQPage` type present,
+      4–6 questions each, 2026-09-16 — this closes the "component
+      presence confirmed, JSON-LD not yet re-audited" gap noted here
+      previously.
 - [ ] No numeric outcome claim anywhere without a traceable source —
       **not re-verified this session.** The existing fabrication grep
       has false-positive gaps (cited figures like "CPI + 5%" and CSS
@@ -59,9 +69,12 @@ infrastructure itself.
       throws `Error: NEXT_PUBLIC_WHATSAPP_NUMBER is required in
       production` when unset, and succeeds when set).
 
-**Net status:** the checks an AI session can run are clean. The checks
-that need a human, a lawyer, or a physical device remain open and are
-not claimed as passed.
+**Net status, corrected 2026-09-16:** most checks an AI session can run
+are clean; one is not — `scripts/seo_audit.py` found 17 real,
+unfixed title/description-length problems (see above). The checks that
+need a human, a lawyer, or a physical device remain open and are not
+claimed as passed. "Clean" is not claimed anywhere in this document
+without a check behind it, including this one.
 
 ---
 

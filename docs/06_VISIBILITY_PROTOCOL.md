@@ -37,27 +37,52 @@ Confirmed present as of the Prompt 8/9 audit, 28 pages:
 - Dynamic `sitemap.ts`, 28/28 routes matching built output
 - `robots.ts` with AI bot allowlist — re-verified live 2026-09-16,
   matches §3/§4's crawler table exactly
-- `opengraph-image.tsx` per page type, 1200×630, absolute URLs, alt text
-- Exactly one canonical + one og:image per page
-- `en-IN` hreflang matching canonical, `og:locale=en_IN`
-- `Organization` JSON-LD on every page
+- `opengraph-image.tsx` per page type, 1200×630 (decoded from the
+  actual PNG bytes, not just the declared meta tag), absolute URLs,
+  alt text — verified 2026-09-16, all 28 pages
+- Exactly one canonical + one og:image per page — verified 2026-09-16,
+  all 28 pages, no exceptions
+- `en-IN` hreflang matching canonical, `og:locale=en_IN` — verified
+  2026-09-16, all 28 pages
+- `Organization` JSON-LD on every page — verified 2026-09-16
 - `FAQPage` JSON-LD (4–6 Q&A) on every `/features/*`, every `/blog/*`
   post, and (closed 2026-09-16, see §5.1) `/`, `/pricing`,
-  `/security/data-ownership`, `/demo`
-- `Article` JSON-LD on every blog page
-- `llms.txt` dynamic route, 25 links — **link-resolution re-check not
-  re-run this session; only the route's existence and the page counts
-  above were re-verified**
+  `/security/data-ownership`, `/demo` — verified 2026-09-16, question
+  counts checked, not just presence
+- `Article` JSON-LD on every blog page — verified 2026-09-16
+- `llms.txt` dynamic route, 25 links, **all 25 resolve HTTP 200** —
+  verified 2026-09-16 by actually fetching each one (the prior
+  correction in this section, "re-check not re-run," is itself now
+  resolved)
 - Single `buildMetadata()` builder — no per-page hand-rolled metadata
 
-Originally verified by `scratchpad/seo_audit.py` fetching all built
-pages, 39 problems on first run → 0. **Correction, 2026-09-16: that
-script is not present anywhere in this repository** — checked with
-`find . -iname "seo_audit.py"`, no result. "Keep the auditor in CI" was
-never actually done; `.github/workflows/checks.yml` has no such step.
-This is a real gap, not a documentation nuance: the 39→0 result is a
-one-time historical claim with no way to re-run it and no regression
-protection going forward. `[GAP]` — carried to `00_START_HERE.md`.
+**Verified 2026-09-16 by `scripts/seo_audit.py`** (was
+`scratchpad/seo_audit.py`, and before that, nonexistent — see
+`10_DECISION_LOG.md`), run against a real production build and server,
+28 pages, route list cross-checked against the Next.js build manifest
+(0 discrepancies). The historical "39 problems on first run → 0" claim
+from before this script existed in the repo remains unverifiable and
+is not restated as fact. What is verified now: **17 real problems**,
+all in one category the original claims never covered —
+
+- **10 blog post titles exceed the 60-character limit** (the shortest
+  overrun is 64 chars, the longest 82 — e.g. "Personal Best vs Top 3:
+  A Recognition System That Doesn't Demotivate Most Students").
+- **6 meta descriptions fall short of the 150–160 character window**
+  (142–149 chars each — close, not fabricated-short, but outside the
+  stated range).
+
+Zero problems in every other category this script checks: schema
+presence and shape, banned schema types, `Organization.sameAs`,
+canonical/OG uniqueness, locale, and route-sitemap consistency. Full
+list with page-by-page detail is the script's own output — re-run it
+with `npm run audit:seo` rather than trusting this summary going
+stale. **Not fixed in this session** — a documentation-tooling task
+does not also silently rewrite ten blog titles; see
+`10_DECISION_LOG.md` for why that's a separate prompt.
+
+CI now runs this on every push (`.github/workflows/checks.yml`), so
+"keep the auditor in CI" is true for the first time.
 
 ---
 
@@ -301,23 +326,32 @@ worth knowing immediately.
 ## §8. Operational items
 
 **Build-time:**
-- ~~Keep `seo_audit.py` in CI. It caught 39 real problems; it will
-  catch regressions.~~ *(Corrected 2026-09-16: the script does not
-  exist in this repo — see §2 — so there's nothing to "keep." Write
-  it, or stop citing it as if it runs. `[GAP]`, tracked in
-  `00_START_HERE.md`.)*
-- Add an answer-block length check (40–60 words) to the auditor —
-  same gap: the auditor to add this to doesn't exist yet.
-- Add a JSON-LD validity check per type — §5.2's additions have
-  landed (verified 2026-09-16), so this is buildable now, not blocked
-  on anything. Still needs the auditor above to exist first.
+- **Done — verified 2026-09-16.** `scripts/seo_audit.py` exists, runs
+  locally via `npm run audit:seo`, and runs in CI on every push
+  (`.github/workflows/checks.yml`). It found 17 real problems on first
+  run against the actual site (see §2) — not 39, not 0; that's a fresh
+  count against current content, not a re-run of the old unverifiable
+  claim.
+- **Done.** The answer-block length check exists (40–60 word count),
+  with an explicit caveat in its own output that it's a proxy and does
+  not verify self-containment — that still needs a human read per
+  §5.3.
+- **Done.** JSON-LD validity is checked per block (parses as JSON) and
+  per required type per route (§5.2's presence table), including a
+  distinct `[COMPLIANCE]` flag for banned types.
+- **New finding while wiring this in:** `.github/workflows/checks.yml`'s
+  own "Build" step had no `NEXT_PUBLIC_WHATSAPP_NUMBER` set, anywhere,
+  since the production-build guard below was added — meaning CI's
+  build step has likely been failing on every push. Fixed as part of
+  this change (the SEO audit step needs a successful build to run
+  against). Not something this task set out to find; found because the
+  audit couldn't be wired in without a build that actually succeeds.
 
 **Deploy-time:**
-- ~~`NEXT_PUBLIC_WHATSAPP_NUMBER` currently falls back silently...
-  Fail the production build when it is unset.~~ **Done — verified
-  2026-09-16.** `npm run build` with the var unset throws
-  `Error: NEXT_PUBLIC_WHATSAPP_NUMBER is required in production` and
-  fails; setting it succeeds. Dev fallback (`919817707037` in
+- **Done — verified 2026-09-16.** `npm run build` with the var unset
+  throws `Error: NEXT_PUBLIC_WHATSAPP_NUMBER is required in
+  production` and fails; setting it succeeds. Dev fallback
+  (`919817707037` in
   `src/lib/site-config.ts`) still applies in `npm run dev`.
 - Submit `sitemap.xml` to Google Search Console and Bing Webmaster
   Tools. Bing matters more than its market share suggests — it grounds

@@ -85,11 +85,18 @@ grep -rn 'mock\|dummy\|fake\|sample' src/ --include='*.ts' --include='*.tsx' \
 grep -rn 'sk_\|api_key\|SECRET\|PRIVATE_KEY' src/
 
 npm run build && npm run typecheck
+
+# SEO/AEO schema, metadata, and crawler-policy audit against a real
+# build and server (docs/06_VISIBILITY_PROTOCOL.md). Builds, starts
+# the production server, runs scripts/seo_audit.py, tears the server
+# down either way.
+npm run audit:seo
 ```
 
 Each of these must produce no output (the grep checks) or exit 0 (the
-build/typecheck) before a change is considered done. `.github/workflows/checks.yml`
-runs the same checks on every push and pull request.
+build/typecheck/audit) before a change is considered done.
+`.github/workflows/checks.yml` runs the same checks on every push and
+pull request.
 
 ## Not yet done (manual, before a real launch)
 
