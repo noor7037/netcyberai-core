@@ -5,7 +5,8 @@ export interface Step {
 
 // Base layout is a single column (grid with no column count set); sm:
 // breakpoint adds columns. Never a fixed multi-column grid that could
-// force horizontal scroll below the sm breakpoint (360px Palwal Test).
+// force horizontal scroll below the 360px floor (Floor Device Standard,
+// docs/07_DESIGN_SYSTEM.md).
 export function StepDiagram({ steps }: { steps: Step[] }) {
   return (
     <ol className="grid gap-6 sm:grid-cols-3">

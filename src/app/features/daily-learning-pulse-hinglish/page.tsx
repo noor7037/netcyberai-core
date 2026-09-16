@@ -50,7 +50,7 @@ const faqs = [
   {
     question: 'What language is the message sent in?',
     answer:
-      'Hinglish — Hindi written in Roman script, which reads naturally to most parents in Palwal/NCR semi-urban schools without needing a Devanagari keyboard or font.',
+      'Hinglish — Hindi written in Roman script, which reads naturally to most parents across Indian schools, in mixed English/Hindi households, without needing a Devanagari keyboard or font.',
   },
   {
     question: 'Is the message written by an AI, and can it be wrong?',
