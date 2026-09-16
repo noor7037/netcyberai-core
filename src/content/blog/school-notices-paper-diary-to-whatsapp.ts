@@ -4,7 +4,7 @@ export const schoolNoticesPaperDiaryToWhatsapp: BlogPost = {
   slug: 'school-notices-paper-diary-to-whatsapp',
   title: 'School Notices: From Paper Diary to WhatsApp in Two Clicks',
   description:
-    'Why a paper school diary fails as a notice system, and how sending the same notice on WhatsApp instead closes the gap between "sent" and "seen."',
+    'Why a paper school diary fails as a notice system, and how sending the exact same notice on WhatsApp instead closes the gap between "sent" and actually "seen."',
   publishedOn: '2026-09-16',
   answerFirst:
     'A paper diary notice depends on a child remembering to show it to a parent, and a parent remembering to check it — two separate points of failure for every single notice. Sending the same notice directly to a parent’s WhatsApp removes the first point of failure entirely, since it no longer depends on a child as the messenger.',

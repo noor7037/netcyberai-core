@@ -16,12 +16,13 @@ not the same as passed — say what was verified and how.
 dummy-data/secrets greps plus `npm run build && npx tsc --noEmit`, run
 in this consolidation session with actual output (all clean); the
 schema-coverage audit now actually run by `scripts/seo_audit.py`
-(`npm run audit:seo`) — 28 routes, 17 real problems found, see
-`06_VISIBILITY_PROTOCOL.md` §2 for the breakdown; and
-`05_BUSINESS_LOGIC.md` §9's build record for the SEO infrastructure
-itself. **The Prompt 8/9 audit's original "39 problems → 0" claim
-predates a script that exists in this repo and is not restated as
-verified fact anywhere in this document.**
+(`npm run audit:seo`) — 28 routes, 17 real problems found on first
+run, all fixed and re-verified clean same session (`RESULT: CLEAN --
+28 pages checked, 0 problems.`); see `06_VISIBILITY_PROTOCOL.md` §2
+for the breakdown; and `05_BUSINESS_LOGIC.md` §9's build record for
+the SEO infrastructure itself. **The Prompt 8/9 audit's original "39
+problems → 0" claim predates a script that exists in this repo and is
+not restated as verified fact anywhere in this document.**
 
 - [x] No mock/dummy/fake/sample array outside `/demo` — re-verified
       this session; the one hit found (`src/lib/recognition.ts`'s
@@ -34,11 +35,14 @@ verified fact anywhere in this document.**
 - [x] Every page has exactly one canonical and one og:image, correct
       locale/hreflang — verified by `scripts/seo_audit.py`, 28/28
       routes, 2026-09-16.
-- [ ] Every page's `<title>` is ≤60 chars and meta description is
-      150–160 chars. **Not passing.** `scripts/seo_audit.py` found 10
-      blog titles over 60 chars (64–82 chars) and 6 meta descriptions
-      short of the 150–160 window (142–149 chars). Real, unfixed —
-      see `06_VISIBILITY_PROTOCOL.md` §2 for the full list.
+- [x] Every page's `<title>` is ≤60 chars and meta description is
+      150–160 chars. `scripts/seo_audit.py` found 10 blog titles over
+      60 chars (64–82 chars) and **7** meta descriptions short of the
+      150–160 window (142–149 chars) — corrected 2026-09-16 from an
+      initially-reported "6," a miscount not re-verified against the
+      script's own grep count before being written down. All 17
+      shortened/expanded without adding a claim the site didn't
+      already make elsewhere, and re-verified clean the same session.
 - [x] Valid `FAQPage` JSON-LD on every page the content plan requires
       it on — `/`, `/pricing`, `/security/data-ownership`, `/demo`,
       every `/features/*`, every `/blog/*` post. Verified by
@@ -69,12 +73,14 @@ verified fact anywhere in this document.**
       throws `Error: NEXT_PUBLIC_WHATSAPP_NUMBER is required in
       production` when unset, and succeeds when set).
 
-**Net status, corrected 2026-09-16:** most checks an AI session can run
-are clean; one is not — `scripts/seo_audit.py` found 17 real,
-unfixed title/description-length problems (see above). The checks that
-need a human, a lawyer, or a physical device remain open and are not
-claimed as passed. "Clean" is not claimed anywhere in this document
-without a check behind it, including this one.
+**Net status, corrected 2026-09-16 (twice — first when the 17 problems
+were found, again once they were fixed):** every check an AI session
+can run is clean, including `scripts/seo_audit.py` as of the last run
+in this session. The checks that need a human, a lawyer, or a physical
+device remain open and are not claimed as passed. "Clean" is not
+claimed anywhere in this document without a check behind it, including
+this one — re-run `npm run audit:seo` before trusting this line stays
+true past today.
 
 ---
 

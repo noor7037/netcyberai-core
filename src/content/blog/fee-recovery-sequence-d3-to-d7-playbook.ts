@@ -2,7 +2,7 @@ import type { BlogPost } from '../contract';
 
 export const feeRecoverySequenceD3ToD7Playbook: BlogPost = {
   slug: 'fee-recovery-sequence-d3-to-d7-playbook',
-  title: 'The Fee Recovery Sequence, Step by Step: D-3 to D+7 (Template Playbook)',
+  title: 'The Fee Recovery Sequence, Step by Step: D-3 to D+7',
   description:
     'A step-by-step playbook for a four-touchpoint WhatsApp fee reminder sequence — the exact timing, tone, and escalation logic, without invented results.',
   publishedOn: '2026-09-16',

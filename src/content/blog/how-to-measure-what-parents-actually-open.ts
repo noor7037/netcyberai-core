@@ -2,7 +2,7 @@ import type { BlogPost } from '../contract';
 
 export const howToMeasureWhatParentsActuallyOpen: BlogPost = {
   slug: 'how-to-measure-what-parents-actually-open',
-  title: 'WhatsApp vs Mobile App: How to Measure What Parents Actually Open',
+  title: 'WhatsApp vs Mobile App: Measuring What Parents Open',
   description:
     'A school should measure its own parent engagement rather than assume WhatsApp beats an app. Here is what to actually track, and how to read it responsibly.',
   publishedOn: '2026-09-16',

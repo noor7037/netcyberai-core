@@ -2,7 +2,7 @@ import type { BlogPost } from '../contract';
 
 export const haryanaForm6FeeHikeComplianceGuide: BlogPost = {
   slug: 'haryana-form-6-fee-hike-compliance-guide',
-  title: 'Haryana Form 6: The Fee Hike Compliance Guide for Private Schools',
+  title: 'Haryana Form 6: The Fee Hike Compliance Guide',
   description:
     'What Haryana’s Form 6 actually requires, how the fee-hike cap is calculated, and what happens if a school misses the filing — with dated, cited sources.',
   publishedOn: '2026-09-16',

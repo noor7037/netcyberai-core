@@ -4,7 +4,7 @@ export const schoolAttendanceAlertsWithoutSpammingParents: BlogPost = {
   slug: 'school-attendance-alerts-without-spamming-parents',
   title: 'School Attendance Alerts Without Spamming Parents',
   description:
-    'How to flag falling attendance to staff and parents without daily nag messages, comparisons to other students, or language that implies blame.',
+    'How to flag falling attendance to staff and parents without daily nag messages, comparisons to other students, or language that quietly implies blame or fault.',
   publishedOn: '2026-09-16',
   answerFirst:
     'An attendance alert system should tell a principal an aggregate number, tell a teacher a specific student and a suggested next step, and tell a parent something supportive about their own child only — never a daily message, never a comparison to another student or a class average, and never language that implies fault.',

@@ -2,9 +2,9 @@ import type { BlogPost } from '../contract';
 
 export const whyParentsDontCheckSchoolApps: BlogPost = {
   slug: 'why-parents-dont-check-school-apps',
-  title: 'Why Parents Don’t Check School Apps — and How Daily Learning Pulse Fixes It',
+  title: 'Why Parents Don’t Check School Apps',
   description:
-    'Most dedicated school apps go unopened after the first week. Here is why, and how sending updates through WhatsApp instead changes the outcome.',
+    'Most dedicated school apps go unopened after the first week. Here is why that happens, and how sending updates through WhatsApp instead changes the outcome.',
   publishedOn: '2026-09-16',
   answerFirst:
     'Parents don’t check school apps mainly because installing and opening a separate app is friction most parents never repeat after the first week, especially on a shared phone. WhatsApp is already open every day, so the Daily Learning Pulse sends the update there instead of asking a parent to remember another app.',

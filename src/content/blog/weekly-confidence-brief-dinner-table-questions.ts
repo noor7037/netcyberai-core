@@ -2,7 +2,7 @@ import type { BlogPost } from '../contract';
 
 export const weeklyConfidenceBriefDinnerTableQuestions: BlogPost = {
   slug: 'weekly-confidence-brief-dinner-table-questions',
-  title: 'Weekly Confidence Brief: 3 Dinner-Table Questions Based on Today’s Learning',
+  title: 'Weekly Confidence Brief: 3 Dinner-Table Questions',
   description:
     'Why three simple weekly questions, sent on WhatsApp, do more for a parent-child conversation about school than a report card or a daily flood of updates.',
   publishedOn: '2026-09-16',

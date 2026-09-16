@@ -2,7 +2,7 @@ import type { BlogPost } from '../contract';
 
 export const personalBestVsTop3Recognition: BlogPost = {
   slug: 'personal-best-vs-top-3-recognition',
-  title: 'Personal Best vs Top 3: A Recognition System That Doesn’t Demotivate Most Students',
+  title: 'Personal Best vs Top 3: Recognition Without Demotivating',
   description:
     'Why ranking students top-3-per-class demotivates most of a class, and how a Personal Best plus banded Most Improved design gets most parents good news instead.',
   publishedOn: '2026-09-16',

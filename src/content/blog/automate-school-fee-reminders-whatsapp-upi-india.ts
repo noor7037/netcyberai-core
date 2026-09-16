@@ -2,7 +2,7 @@ import type { BlogPost } from '../contract';
 
 export const automateSchoolFeeRemindersWhatsappUpiIndia: BlogPost = {
   slug: 'automate-school-fee-reminders-whatsapp-upi-india',
-  title: 'How to Automate School Fee Reminders on WhatsApp with UPI (2026 Guide)',
+  title: 'Automate School Fee Reminders on WhatsApp with UPI',
   description:
     'A practical guide to automating school fee reminders on WhatsApp with a UPI payment link, using a fixed D-3 to D+7 sequence instead of manual phone calls.',
   publishedOn: '2026-09-16',

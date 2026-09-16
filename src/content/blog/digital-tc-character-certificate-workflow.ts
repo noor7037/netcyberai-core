@@ -2,9 +2,9 @@ import type { BlogPost } from '../contract';
 
 export const digitalTcCharacterCertificateWorkflow: BlogPost = {
   slug: 'digital-tc-character-certificate-workflow',
-  title: 'Digital TC & Character Certificate Workflow: Application to WhatsApp Delivery',
+  title: 'Digital TC & Character Certificate Workflow',
   description:
-    'How a transfer, character, or bonafide certificate request should move through a school — from application to a signed PDF delivered on WhatsApp.',
+    'How a transfer, character, or bonafide certificate request moves through a school — from application to a signed PDF delivered on WhatsApp, start to finish.',
   publishedOn: '2026-09-16',
   answerFirst:
     'A digital TC or character certificate workflow moves a request through five stages — applied, finance clearance, remarks, principal signed, delivered — instead of a paper file that can sit on a desk for weeks. The finished certificate is a signed PDF sent straight to WhatsApp, carrying a QR code a receiving college or employer can verify independently.',

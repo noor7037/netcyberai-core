@@ -62,24 +62,19 @@ Confirmed present as of the Prompt 8/9 audit, 28 pages:
 28 pages, route list cross-checked against the Next.js build manifest
 (0 discrepancies). The historical "39 problems on first run → 0" claim
 from before this script existed in the repo remains unverifiable and
-is not restated as fact. What is verified now: **17 real problems**,
-all in one category the original claims never covered —
+is not restated as fact. First real run found **17 problems**, all in
+one category the original claims never covered — 10 blog post titles
+over the 60-character limit (64–82 chars) and 7 meta descriptions
+short of the 150–160 character window (142–149 chars).
 
-- **10 blog post titles exceed the 60-character limit** (the shortest
-  overrun is 64 chars, the longest 82 — e.g. "Personal Best vs Top 3:
-  A Recognition System That Doesn't Demotivate Most Students").
-- **6 meta descriptions fall short of the 150–160 character window**
-  (142–149 chars each — close, not fabricated-short, but outside the
-  stated range).
-
-Zero problems in every other category this script checks: schema
-presence and shape, banned schema types, `Organization.sameAs`,
-canonical/OG uniqueness, locale, and route-sitemap consistency. Full
-list with page-by-page detail is the script's own output — re-run it
-with `npm run audit:seo` rather than trusting this summary going
-stale. **Not fixed in this session** — a documentation-tooling task
-does not also silently rewrite ten blog titles; see
-`10_DECISION_LOG.md` for why that's a separate prompt.
+**Fixed and re-verified clean, 2026-09-16, same session.** All 10
+titles shortened, all 7 descriptions expanded into range, without
+adding any claim the site didn't already make elsewhere — re-running
+`npm run audit:seo` after the edits: `RESULT: CLEAN -- 28 pages
+checked, 0 problems.` Zero problems in every category this script
+checks: schema presence and shape, banned schema types,
+`Organization.sameAs`, canonical/OG uniqueness, locale, route-sitemap
+consistency, and now title/description length.
 
 CI now runs this on every push (`.github/workflows/checks.yml`), so
 "keep the auditor in CI" is true for the first time.

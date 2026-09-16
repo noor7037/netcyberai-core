@@ -2,7 +2,7 @@ import type { BlogPost } from '../contract';
 
 export const teacherImpactCardMeasuringTeachingWithoutLeaderboards: BlogPost = {
   slug: 'teacher-impact-card-measuring-teaching-without-leaderboards',
-  title: 'Teacher Impact Card: Measuring Teaching Without Toxic Leaderboards',
+  title: 'Teacher Impact Card: Measuring Teaching Without Leaderboards',
   description:
     'A public teacher ranking rewards easy classes and punishes hard ones. Here is why a private, principal-and-self-only view measures teaching quality better.',
   publishedOn: '2026-09-16',

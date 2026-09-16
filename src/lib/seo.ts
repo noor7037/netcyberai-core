@@ -90,7 +90,7 @@ export const pageMeta = {
     path: '/privacy',
     title: 'Privacy Policy',
     description:
-      'NetCyberAI’s privacy policy: what data this website collects today, what a future school deployment will process, and your rights under the DPDP Act.',
+      'NetCyberAI’s privacy policy: what data this website collects today, what a future school deployment will process, and your rights under India’s DPDP Act.',
   },
   terms: {
     path: '/terms',
@@ -102,7 +102,7 @@ export const pageMeta = {
     path: '/pricing',
     title: 'Pricing',
     description:
-      'NetCyberAI pricing tiers and pilot mode, explained honestly: no invented numbers, and outbound messaging stays off until a school switches it on.',
+      'NetCyberAI pricing tiers and pilot mode, explained honestly: no invented numbers, and outbound messaging stays off until a school actually switches it on.',
   },
   blog: {
     path: '/blog',
@@ -114,7 +114,7 @@ export const pageMeta = {
     path: '/demo',
     title: 'Concept Demo',
     description:
-      'A clickable concept demo of NetCyberAI’s Principal, Teacher, and Parent views, using a fictional school. Nothing here is saved, sent, or paid.',
+      'A clickable concept demo of NetCyberAI’s Principal, Teacher, and Parent views, using a fictional school. Nothing shown here is saved, sent, or paid for real.',
   },
 } satisfies Record<string, PageMetaInput>;
 

@@ -2,7 +2,7 @@ import type { BlogPost } from '../contract';
 
 export const coachingCentreVsSchoolErpSameEngineDifferentDataModel: BlogPost = {
   slug: 'coaching-centre-vs-school-erp-same-engine-different-data-model',
-  title: 'Coaching Centre vs School ERP: Same Engine, Different Data Model',
+  title: 'Coaching vs School ERP: Same Engine, Different Data Model',
   description:
     'A coaching centre and a full-time school need different data — batches instead of classes, no attendance-linked recognition — but the same underlying engine.',
   publishedOn: '2026-09-16',

@@ -90,14 +90,6 @@ lawyer, a real school, or real data.
   repo. `10_DECISION_LOG.md` is its practical replacement.
 - The standalone "CTO Recommendation" blueprint — confirmed absent,
   never committed to this repo.
-- ~~`scratchpad/seo_audit.py`...~~ **Resolved 2026-09-16.** Written at
-  `scripts/seo_audit.py`, runs locally (`npm run audit:seo`) and in CI
-  on every push. It found a real, still-open issue in the process: 10
-  blog post titles exceed 60 characters and 6 meta descriptions fall
-  short of the 150–160 character window. Not fixed in this session
-  (tooling task, not a content-editing one) — see
-  `06_VISIBILITY_PROTOCOL.md` §2 for the full list. **New gap:** those
-  17 findings need a content-editing pass.
 - Current-year CPI figure and its official source (Form 6 advisory,
   blocks `08_EXECUTION_BIBLE.md` Prompt G).
 - Current-year Form 6 filing deadline and the official field list
@@ -143,11 +135,17 @@ pages — corrected from an initial "~20 pages" estimate that turned out
 to be wrong on re-measure). Retired "Palwal Test" framing removed from
 `src/` (2 occurrences; 2 legitimate address/location uses left alone).
 
-**2026-09-16 — SEO audit script written.** `scripts/seo_audit.py`
-built from nothing (it never existed despite four citations claiming
-otherwise) and wired into CI. First real run: 28 pages, 17 problems
-(10 title-length, 6 description-length overruns) — see
+**2026-09-16 — SEO audit script written, findings fixed.**
+`scripts/seo_audit.py` built from nothing (it never existed despite
+four citations claiming otherwise) and wired into CI. First real run:
+28 pages, 17 problems (10 title-length, 7 description-length overruns
+— the "6" first reported for descriptions was a miscount, corrected
+same day). All 17 fixed same session across `src/content/blog/*.ts`
+and `src/lib/seo.ts`'s `pageMeta`, without adding any claim the site
+didn't already make elsewhere; re-run clean afterward — see
 `06_VISIBILITY_PROTOCOL.md` §2. `02_AI_BUILDER_INSTRUCTIONS.md` rule 3
 extended to cover inherited (not just invented) numbers, after three
 separate figures in this project's history turned out to be wrong on
-re-measure.
+re-measure. Repo connected to its first GitHub remote and pushed
+(`github.com/noor7037/netcyberai-core`) — `checks.yml` runs for real
+now, not just in a local sandbox.
