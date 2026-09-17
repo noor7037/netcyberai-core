@@ -50,6 +50,19 @@ FETCH_TIMEOUT = 15
 NON_PAGE_ROUTE_SUFFIXES = ("/opengraph-image",)
 NON_PAGE_ROUTES = {"/robots.txt", "/sitemap.xml", "/llms.txt"}
 
+# Authenticated-only internal shells (src/app/sitemap.ts's own INTERNAL_ROOTS
+# exclusion: the /control admin panel, the /app tenant app, and /login) are
+# intentionally absent from the public sitemap -- so they must not be
+# flagged by the sitemap<->build cross-check below as "uncrawlable". Public
+# marketing metadata requirements (meta description, hreflang, breadcrumbs,
+# an answer-block paragraph) don't apply to an auth-gated app shell either.
+INTERNAL_ROUTE_PREFIXES = ("/control", "/app")
+INTERNAL_ROUTES = {"/login"}
+
+
+def is_internal_route(route: str) -> bool:
+    return route in INTERNAL_ROUTES or any(route.startswith(p) for p in INTERNAL_ROUTE_PREFIXES)
+
 # docs/06_VISIBILITY_PROTOCOL.md Sec4 crawler policy table.
 REQUIRED_CRAWLERS_UNRESTRICTED = ["Googlebot", "Bingbot"]
 REQUIRED_CRAWLERS_DEMO_DISALLOWED = [
@@ -260,6 +273,8 @@ def get_built_routes() -> list[str] | None:
         if route in NON_PAGE_ROUTES:
             continue
         if any(route.endswith(suf) for suf in NON_PAGE_ROUTE_SUFFIXES):
+            continue
+        if is_internal_route(route):
             continue
         routes.append(route)
     return sorted(set(routes))
