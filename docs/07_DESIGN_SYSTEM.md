@@ -118,19 +118,97 @@ queue with visible pending state for teacher writes.
 | `Container` | [`../src/components/ui/Container.tsx`](../src/components/ui/Container.tsx) | `max-w-5xl`, responsive horizontal padding |
 | `AnswerFirst`, `FaqBlock`, `StepDiagram` | `../src/components/content/` | Content primitives for the answer-first paragraph, FAQ blocks with JSON-LD, and step diagrams |
 
-### `[GAP]` — Phase 1, specified but not built
+### Shipped (design-system hardening — completes the Prompt C inventory)
 
-Source: `08_EXECUTION_BIBLE.md` Prompt C.
+Zero new dependencies for any of these — see each file's own comment
+for why the native platform (a real `<select>`, a real `<dialog>`,
+`accent-color`) or a well-specified hand-rolled pattern (WAI-ARIA Tabs,
+a manual focus-trap keydown handler) was the smallest correct option,
+in each case checked against the alternative rather than assumed.
 
-Input · Select · Checkbox · Table (server-side pagination, sort,
-filter; documented mobile strategy — cards or a horizontal-scroll
-container, **never** a squeezed grid) · Modal · Toast · Badge · Tabs ·
-EmptyState · LoadingState · ErrorState · form primitives with inline
-validation and explicit saved state (per
-`01_CONSTITUTION.md` §9's no-silent-failures rule — a teacher must
-never have to guess whether attendance saved).
+| Component | File | Notes |
+|---|---|---|
+| `Input` | [`../src/components/ui/Input.tsx`](../src/components/ui/Input.tsx) | Full spec: `error`/`success`/`pending` states, `helperText`, `required` marking (visible asterisk + sr-only "(required)" text, `aria-required`), `aria-invalid`/`aria-describedby` wiring. Error text is `red-800` (8.31:1, AAA) — this project's own Floor Device Standard asks for AAA on critical states. |
+| `Select` | [`../src/components/ui/Select.tsx`](../src/components/ui/Select.tsx) | A native `<select>` styled to the tokens, not a custom listbox — real keyboard nav (arrow keys, typeahead, Home/End) is what the browser already gets right for every platform this project targets, at zero implementation/maintenance cost. |
+| `Checkbox` | [`../src/components/ui/Checkbox.tsx`](../src/components/ui/Checkbox.tsx) | Native `<input type="checkbox">` recolored via CSS `accent-color` (Chrome 93+/Firefox 92+/Safari 15.4+), not a hidden-input-plus-custom-box. 44px tap target comes from the wrapping `<label>`, not from inflating the visual checkbox. |
+| `Table` | [`../src/components/ui/Table.tsx`](../src/components/ui/Table.tsx) | **Mobile strategy, decided:** a card-per-row transform below `768px`, the real `<table>` at `768px` and up — see "Table's mobile strategy" below for the reasoning and the alternative this rejected. `loading`/`error`/`empty`/`ready` states via `LoadingState`/`ErrorState`/`EmptyState`. |
+| `Modal` | [`../src/components/ui/Modal.tsx`](../src/components/ui/Modal.tsx) | The native `<dialog>` element (`showModal()`) for the top-layer/backdrop and Escape-to-close. **Its native Tab-cycling focus containment was tested, not assumed, and found to leak** (Chromium 141: tabbing past the last focusable element reached `document.body` for one step before self-correcting) — a manual `keydown` handler now traps Tab/Shift+Tab strictly within the dialog's own focusable elements, re-verified after the fix. |
+| `Toast` | [`../src/components/ui/Toast.tsx`](../src/components/ui/Toast.tsx) | `ToastProvider` + `useToast()`. `aria-live="polite"` region; each toast auto-dismisses after 5s or on manual dismiss. `info`/`success`/`warning`/`danger` variants. |
+| `Badge` | [`../src/components/ui/Badge.tsx`](../src/components/ui/Badge.tsx) | `neutral`/`success`/`warning`/`danger` variants. Variant classes are written inline in the component's own className template (not a separate lookup object) specifically so `scripts/check_contrast.py` can see and verify them — see "A checker blind spot" below. |
+| `Tabs` | [`../src/components/ui/Tabs.tsx`](../src/components/ui/Tabs.tsx) | Hand-rolled per the WAI-ARIA Authoring Practices Tabs pattern: `role=tablist/tab/tabpanel`, `aria-selected`, a roving `tabindex`, Left/Right/Home/End keyboard nav with automatic activation. Verified with real keyboard events, not just code review. |
+| `EmptyState`, `LoadingState`, `ErrorState` | `../src/components/ui/` | The three states Constitution §9's no-silent-failures rule requires of any async-capable view. `LoadingState` uses Tailwind's `animate-spin` (functional, not decorative). `ErrorState` is `role="alert"`, `red-800` text (AAA). |
 
-**Verification, once built (from Prompt C):** every primitive
-rendered at 360 and 1440, screenshotted; automated contrast check on
-every token pairing; automated tap-target check on every interactive
-primitive.
+### Table's mobile strategy
+
+The `[GAP]` note this replaces allowed either "cards or a
+horizontal-scroll container, never a squeezed grid." Cards, below
+`768px`, is now the actual, applied answer — chosen over horizontal
+scroll for a stated reason, not arbitrarily:
+
+The per-role device matrix (above) makes every role Table actually
+serves — school admin, office, accountant — primary-desktop for the
+bulk/reconciliation work Table exists for; phone is explicitly their
+secondary "lookups and approvals" use, not deep reconciliation. A card
+reads cleanly for a quick lookup on a touch screen with no sideways
+gesture required; a wide table's columns scrolled off to the right are
+exactly the kind of thing easy to miss with gloved or damp hands
+outdoors, per the Floor Device Standard's own input/ambient rows.
+Horizontal scroll (with a visible affordance) remains legitimate for a
+genuinely dense, equally-weighted-columns view — an audit log, say —
+but that would be a deliberate, separate decision made for that
+specific future screen, not a second default `Table` itself also
+offers: `Table` implements exactly one strategy, applied consistently,
+per this prompt's own instruction not to let each future screen invent
+its own answer.
+
+Verified for real (Playwright, Chromium 141, the allowlisted
+`demoStudents` fixture): at `360px` the card view is visible and the
+`<table>` element is not; at `1440px` the reverse. Both markups render
+from the same `rows`/`columns` props; a CSS breakpoint (`md:hidden` /
+`hidden md:block`) decides which shows, not a client-side viewport
+read, so there's no layout-shift risk from a JS breakpoint check
+running after first paint.
+
+### The contrast checker
+
+`scripts/check_contrast.py` (wired into `.github/workflows/checks.yml`)
+computes real WCAG contrast ratios for every `text-*` utility class
+used across `src/`, against an approximation of its actual background
+(same-element first, then the nearest enclosing JSX ancestor's
+background via a tag-nesting stack, then this codebase's off-white
+page background as the fallback). Fails below 4.5:1 for normal text or
+3:1 for large text; warns (does not fail) below 7:1 on a
+`role="alert"`/`red-*` critical-state pairing.
+
+**Why this exists:** the login page's own `text-slate/60` bug (4.04:1,
+found by hand, once) is exactly the failure mode this project's
+"measure, don't assume" pattern says to close by making the check
+automatic. Running it against the whole codebase for the first time
+found and fixed a real instance already shipped (`Input`'s placeholder
+text, `slate/40`, 2.36:1) and surfaced that the raw `emerald`
+(`#10B981`, 2.54:1) and `amber` (`#F59E0B`, 2.15:1) brand tokens both
+fail as text color on white — `accessibleTextColors` in
+`../src/lib/design-tokens.ts` (`emerald-text` `#047857` 5.48:1,
+`amber-text` `#92400E` 7.09:1) are the darkened, accessible variants
+for any success/warning TEXT or border; the two brand tokens
+themselves stay locked, unchanged, for icon/background use where text
+contrast doesn't apply.
+
+**A checker blind spot, found and worked around, not hidden:** a
+component that builds its className from a separate JS object (like
+`Button`'s `variantClasses` map) is invisible to this script — it reads
+literal className text, not evaluated JavaScript. `Button`'s three
+variants were checked by hand instead (`off-white` on `sapphire` 8.86:1,
+`slate` on `emerald` 5.77:1, `sapphire` on `off-white` 8.86:1 — all
+pass). Every new primitive in this pass writes its variant logic as an
+inline ternary directly inside the `className` template instead of a
+separate object, specifically so the checker can see it — `Badge` and
+`Toast` are both structured this way for exactly this reason.
+
+**Verification, from the original Prompt C note, now actually done:**
+every primitive rendered at 360 and 1440 (real Playwright screenshots
+and measured dimensions, not descriptions); the automated contrast
+check, run against the whole codebase; an automated tap-target
+measurement on every interactive primitive (all ≥44px — the native
+checkbox itself measures 20×20px, with its wrapping `<label>`
+measuring 328×44px as the actual tap target).
