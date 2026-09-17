@@ -11,8 +11,8 @@ const columns: TableColumn<SchoolRow>[] = [
 // No real schools exist behind app_backend yet -- Table's own `empty`
 // state is the honest thing to show, not fabricated rows. The detail
 // shell below is real (all 21 sub-tabs), reachable via a clearly
-// labeled preview link rather than a fake school row that would imply
-// data that doesn't exist.
+// labeled preview link rather than an invented school row that would
+// imply data that doesn't exist.
 export default function SchoolsPage() {
   return (
     <div className="p-4 md:p-6">

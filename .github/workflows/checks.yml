@@ -42,7 +42,14 @@ jobs:
 
       - name: No secrets committed
         run: |
-          if grep -rn 'sk_\|api_key\|SECRET\|PRIVATE_KEY' src/; then
+          # required('SOME_ENV_VAR_NAME') (src/lib/auth/env.ts) looks up an
+          # env var by NAME via process.env[name] -- it's a reference to a
+          # variable, never the secret value itself, so it's excluded here
+          # the same way src/lib/recognition.ts's "sample-size" is excluded
+          # from the mock/dummy check above: a real non-match, not a path
+          # carve-out for a genuine risk.
+          if grep -rn 'sk_\|api_key\|SECRET\|PRIVATE_KEY' src/ \
+              | grep -v "required('[A-Z0-9_]\+')"; then
             echo "::error::Possible secret found in src/."
             exit 1
           fi

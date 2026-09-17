@@ -6,9 +6,9 @@ type Section = { id: string; title: string; description: string };
 // PRD §7.3/§4.4: "A KPI grid is a desktop layout; on a phone a
 // principal scrolls past it." Exception-first order, in DOM source
 // order (matters: the verification for this component checks DOM
-// order at 360px, not just visual position, since visual order can be
-// faked with CSS while DOM/reading order stays wrong for a screen
-// reader): Needs your decision today, Today, This week, Warnings, then
+// order at 360px, not just visual position, since CSS can reorder how
+// something looks while the underlying reading order stays wrong for a
+// screen reader): Needs your decision today, Today, This week, Warnings, then
 // Analytics one tap down -- a link, not inline charts (no business
 // logic yet to chart).
 //

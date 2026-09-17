@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 // functional but does nothing on tap is exactly that. This renders as
 // visibly, honestly disabled: a real HTML disabled button (so a
 // screen reader announces it as unavailable, not just visually muted)
-// plus a "Coming soon" badge, not a fake camera UI.
+// plus a "Coming soon" badge, not a camera UI that only pretends to work.
 export function ScanStubButton() {
   return (
     <button
