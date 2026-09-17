@@ -31,6 +31,9 @@ jobs:
             exit 1
           fi
 
+      - name: Tenant-context choke point stays singular
+        run: python3 scripts/check_choke_point.py
+
       - name: No secrets committed
         run: |
           if grep -rn 'sk_\|api_key\|SECRET\|PRIVATE_KEY' src/; then
