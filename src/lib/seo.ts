@@ -76,6 +76,7 @@ export const pageMeta = {
   },
   form6: {
     path: '/features/haryana-form-6-fee-advisory',
+    // Source: https://exam.buddy4study.com/haryana-government-sets-mandatory-cap-on-school-fee-hike -- same figure cited inline on the page itself, src/app/features/haryana-form-6-fee-advisory/page.tsx.
     title: 'Haryana Form 6 Fee Advisory (CPI + 5% Cap)',
     description:
       'Haryana caps private school fee hikes near CPI plus 5% and requires an annual Form 6 filing. See the rule, the filing requirement, and an advisory-only check.',

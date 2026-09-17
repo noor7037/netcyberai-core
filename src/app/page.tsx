@@ -23,7 +23,7 @@ const faqs = [
   {
     question: `Which schools is ${companyName} for?`,
     answer:
-      'It is built for semi-urban and NCR-region Indian private schools, where staff and parents mostly use budget Android phones, WhatsApp is already the default communication channel, and English literacy among parents is uneven.',
+      'It is built for Indian K-12 private schools generally, with particular attention to schools where staff and parents mostly use budget Android phones, WhatsApp is already the default communication channel, and English literacy among parents is uneven — realities that show up across urban, semi-urban, and rural India alike, not in any one region.',
   },
   {
     question: 'Do parents need to install an app?',

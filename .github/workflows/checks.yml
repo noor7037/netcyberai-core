@@ -18,17 +18,7 @@ jobs:
       - run: npm ci
 
       - name: No fabricated numeric claims outside the demo fixture
-        run: |
-          # src/lib/recognition.ts is excluded alongside the demo fixture: its
-          # header comment cites 85->90=33.3%% and 40->55=25.0%% as the proof
-          # that the banned headroom formula is inverted. That's the point of
-          # the comment, not an unsourced claim — removing it would remove the
-          # only place the bug is demonstrated in code.
-          if grep -rEn '[0-9]+%|₹[0-9]|\$[0-9]' src/ --include='*.ts' --include='*.tsx' \
-              | grep -v 'src/demo-fixture/' | grep -v 'src/lib/recognition.ts'; then
-            echo "::error::Unsourced numeric claim found outside src/demo-fixture/ — trace it to a cited source or remove it."
-            exit 1
-          fi
+        run: python3 scripts/check_claims.py
 
       - name: No mock/dummy/fake/sample data outside the demo fixture
         run: |

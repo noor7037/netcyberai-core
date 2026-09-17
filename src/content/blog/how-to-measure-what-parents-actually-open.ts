@@ -70,7 +70,7 @@ export const howToMeasureWhatParentsActuallyOpen: BlogPost = {
     {
       question: 'Is WhatsApp always going to beat an app for parent engagement?',
       answer:
-        'Probably in most semi-urban Indian school contexts, based on general WhatsApp usage patterns, but "probably" is not the same as "measured for your school" — track your own numbers rather than assume.',
+        'Probably across most Indian school contexts, based on general WhatsApp usage patterns, but "probably" is not the same as "measured for your school" — track your own numbers rather than assume.',
     },
     {
       question: 'Should a principal be able to see which specific parents are not opening messages?',
