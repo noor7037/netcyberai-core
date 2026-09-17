@@ -148,6 +148,7 @@ class Finding:
     is_critical: bool
     resolved: bool = True
     unresolved_name: str | None = None
+    is_disabled: bool = False
 
     def floor(self) -> float:
         return 3.0 if self.is_large else 4.5
@@ -155,6 +156,15 @@ class Finding:
     def status(self) -> str:
         if not self.resolved:
             return "UNRESOLVED"
+        # WCAG 2.1 SC 1.4.3 explicitly excludes "text ... that is part
+        # of an inactive user interface component" from the contrast
+        # requirement -- a real exemption, not a way to dodge the
+        # checker. Caught a real instance of this during Prompt D
+        # (ScanStubButton's dimmed disabled-state text, 2.34:1): worth
+        # recognizing correctly rather than either failing a legitimate
+        # exemption or quietly weakening the check.
+        if self.is_disabled:
+            return "EXEMPT"
         if self.ratio < self.floor():
             return "FAIL"
         if self.is_critical and self.ratio < 7.0:
@@ -197,7 +207,7 @@ def scan_file(path: Path, project_root: Path) -> list[Finding]:
     rel = str(path.relative_to(project_root))
     text = path.read_text()
 
-    stack: list[tuple[str, tuple[str, int] | None]] = []  # (tag name, bg or None)
+    stack: list[tuple[str, tuple[str, int] | None, bool]] = []  # (tag name, bg or None, disabled)
     findings: list[Finding] = []
 
     for tag_match in TAG_TOKEN_RE.finditer(text):
@@ -214,6 +224,8 @@ def scan_file(path: Path, project_root: Path) -> list[Finding]:
         cls_match = CLASS_ATTR_RE.search(attrs)
         cls = cls_match.group(1) if cls_match else ""
         own_bg = extract_bg_color(cls)
+        own_disabled = bool(re.search(r'\bdisabled\b|aria-disabled="true"', attrs))
+        is_disabled = own_disabled or any(d for _, _, d in stack)
 
         for tok in COLOR_TOKEN_RE.finditer(cls):
             kind, name, opacity = tok.group(1), tok.group(2), tok.group(3)
@@ -222,7 +234,7 @@ def scan_file(path: Path, project_root: Path) -> list[Finding]:
             alpha = int(opacity) if opacity else 100
 
             bg_name, bg_alpha = own_bg or next(
-                (bg for _, bg in reversed(stack) if bg), None
+                (bg for _, bg, _ in reversed(stack) if bg), None
             ) or ("off-white", 100)
 
             if name not in COLOR_HEX or bg_name not in COLOR_HEX:
@@ -247,11 +259,14 @@ def scan_file(path: Path, project_root: Path) -> list[Finding]:
             is_critical = name.startswith("red") or bool(CRITICAL_HINT_RE.search(attrs))
 
             findings.append(
-                Finding(rel, line_no, f"{name}/{alpha}" if alpha < 100 else name, bg_name, ratio, is_large, is_critical)
+                Finding(
+                    rel, line_no, f"{name}/{alpha}" if alpha < 100 else name, bg_name, ratio,
+                    is_large, is_critical, is_disabled=is_disabled,
+                )
             )
 
         if not is_self_closing:
-            stack.append((tag_name, own_bg))
+            stack.append((tag_name, own_bg, is_disabled))
 
     return findings
 
@@ -272,9 +287,18 @@ def run(scan_root: Path, project_root: Path | None = None) -> int:
     warns = [f for f in all_findings if f.status() == "WARN"]
     unresolved = [f for f in all_findings if f.status() == "UNRESOLVED"]
     passes = [f for f in all_findings if f.status() == "PASS"]
+    exempt = [f for f in all_findings if f.status() == "EXEMPT"]
 
     print(f"Checked {len(all_findings)} text-color pairings across {scan_root}.")
-    print(f"  PASS: {len(passes)}   WARN (critical, <7:1): {len(warns)}   FAIL (<floor): {len(fails)}   UNRESOLVED: {len(unresolved)}")
+    print(
+        f"  PASS: {len(passes)}   EXEMPT (disabled): {len(exempt)}   "
+        f"WARN (critical, <7:1): {len(warns)}   FAIL (<floor): {len(fails)}   UNRESOLVED: {len(unresolved)}"
+    )
+
+    if exempt:
+        print("\nEXEMPT -- WCAG 1.4.3 excludes inactive UI component text from the contrast floor:")
+        for f in exempt:
+            print(f"  {f.file}:{f.line}: text-{f.text_color} on {f.bg_color} = {f.ratio:.2f}:1 (disabled)")
 
     if unresolved:
         print("\nUnresolved (color not in this script's known table -- add it rather than guessing):")

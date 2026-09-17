@@ -37,6 +37,9 @@ jobs:
       - name: Text-color contrast meets WCAG floors
         run: python3 scripts/check_contrast.py
 
+      - name: Every /control and /app route goes through its guard
+        run: python3 scripts/check_route_guards.py
+
       - name: No secrets committed
         run: |
           if grep -rn 'sk_\|api_key\|SECRET\|PRIVATE_KEY' src/; then
