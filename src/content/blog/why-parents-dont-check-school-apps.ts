@@ -81,7 +81,7 @@ export const whyParentsDontCheckSchoolApps: BlogPost = {
     {
       question: 'Why does the message need to be in Hinglish specifically?',
       answer:
-        'Hinglish — Hindi written in Roman script — reads naturally to many parents in semi-urban schools without requiring a Devanagari keyboard or font, and matches how they already read everyday WhatsApp messages.',
+        'Hinglish — Hindi written in Roman script — reads naturally to most parents across Indian schools, in mixed English/Hindi households, without requiring a Devanagari keyboard or font, and matches how they already read everyday WhatsApp messages.',
     },
   ],
   sources: [],
