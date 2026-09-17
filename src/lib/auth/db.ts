@@ -32,7 +32,7 @@ export function tenantContextStatements(schoolIdOrNull: string | null, role: str
     setRoleGuc: `select set_config('app.current_role', $1, true)`,
     setRoleArg: role,
     setUser: `select set_config('app.current_user_id', $1, true)`,
-    checkLive: `select token_version, is_active from users where user_id = $1`,
+    checkLive: `select token_version, is_active, role from users where user_id = $1`,
     resetRole: `reset role`,
   };
 }
@@ -71,6 +71,19 @@ export async function withTenantContext<T>(
     }
     if (live.is_active === false) {
       throw new SessionRevokedError('account deactivated');
+    }
+    // super_admin-specific tightening (Decision Log C35): every other
+    // role's authority is a membership row, individually revocable, and
+    // its is_active flip is deliberately only re-checked at refresh (see
+    // refresh.ts) -- a bounded, accepted 15-minute worst case. super_admin
+    // has no membership at all; its authority IS this one column, and it
+    // is platform-scoped, cross-tenant. A demoted or revoked super_admin
+    // must not keep nca_super (BYPASSRLS) reach for up to a full access
+    // token lifetime, so this is checked live on every request that
+    // reaches this function -- the same "immediate" guarantee
+    // token_version already gets, not the looser refresh-only one.
+    if (claims.role === 'super_admin' && live.role !== 'super_admin') {
+      throw new SessionRevokedError('super_admin authority revoked');
     }
 
     const result = await fn(client);
