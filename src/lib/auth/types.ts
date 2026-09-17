@@ -1,0 +1,36 @@
+// Phase 1 roles that can actually reach a login path. `student` and
+// `parent` stay in the DB's user_role enum but are never issued a
+// session by this module — see Decision Log C13 (no parent login) and
+// C24 (no student login). Enforced here, not just by convention: no
+// function in this module can produce a session claiming either role.
+export type StaffRole =
+  | 'super_admin'
+  | 'school_admin'
+  | 'principal'
+  | 'teacher'
+  | 'accountant'
+  | 'academic_coordinator';
+
+export interface SessionClaims {
+  sub: string; // users.user_id
+  role: StaffRole;
+  schoolId: string | null; // null only for super_admin (platform-scoped)
+  membershipId: string | null; // null only for super_admin
+  tokenVersion: number; // snapshot at issuance, checked live on every DB-touching request
+  aal: 'aal1' | 'aal2';
+  sessionId: string; // sessions.session_id, correlates to the refresh-token row
+}
+
+export interface MembershipRow {
+  membershipId: string;
+  schoolId: string;
+  schoolName: string;
+  role: StaffRole;
+  isActive: boolean;
+}
+
+export type LoginOutcome =
+  | { status: 'mfa_required'; pendingToken: string }
+  | { status: 'no_memberships' }
+  | { status: 'select_school'; pendingToken: string; memberships: MembershipRow[] }
+  | { status: 'ok'; accessToken: string; refreshToken: string; claims: SessionClaims };
