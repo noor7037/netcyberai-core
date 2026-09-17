@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { colors } from './src/lib/design-tokens';
+import { colors, accessibleTextColors } from './src/lib/design-tokens';
 
 const config: Config = {
   content: ['./src/**/*.{ts,tsx}'],
@@ -7,8 +7,8 @@ const config: Config = {
     extend: {
       colors: {
         sapphire: colors.sapphire,
-        emerald: colors.emerald,
-        amber: colors.amber,
+        emerald: { DEFAULT: colors.emerald, text: accessibleTextColors.emeraldText },
+        amber: { DEFAULT: colors.amber, text: accessibleTextColors.amberText },
         slate: colors.slate,
         'off-white': colors.offWhite,
       },
