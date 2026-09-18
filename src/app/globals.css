@@ -15,3 +15,10 @@ body {
 * {
   min-width: 0;
 }
+
+/* Modal.tsx uses the native <dialog> element for its spec-guaranteed
+   focus trap and Escape handling; Tailwind has no utility for the
+   ::backdrop pseudo-element, so this one rule lives here instead. */
+dialog.modal-dialog::backdrop {
+  background-color: rgb(30 41 59 / 0.5); /* slate/50 */
+}

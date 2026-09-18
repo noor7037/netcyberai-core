@@ -988,7 +988,8 @@ outstanding invoices · message volume & failure rate · sync failure
 rate · consent completion · open tickets · active incidents ·
 **messaging spend vs budget** · **schools over budget**.
 
-**School detail — 19 sub-tabs:**
+**School detail — 21 sub-tabs:** (corrected from "19" — see Decision
+Log C36; the list below always had 21 entries)
 Overview · Profile · Users · Students · Staff · Admissions ·
 Academics · Attendance · Exams · Fees · Communication ·
 **Pulse & Engagement** · **Recognition** · **Teacher Impact** ·

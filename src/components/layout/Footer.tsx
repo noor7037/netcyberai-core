@@ -1,8 +1,21 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Container } from '@/components/ui/Container';
 import { companyAddress, companyName, contactEmail } from '@/lib/site-config';
 
+// See Header.tsx's comment: the public marketing footer doesn't belong
+// on the internal /control or /app shells either -- same targeted fix,
+// same one place the pathname check lives (mirrored, not shared,
+// since Header and Footer have no common parent to hoist it into
+// without restructuring the root layout, which is the larger, out-of-
+// proportion fix this prompt didn't take).
 export function Footer() {
+  const pathname = usePathname();
+  if (pathname.startsWith('/control') || pathname.startsWith('/app')) {
+    return null;
+  }
   return (
     <footer className="border-t border-slate/10 bg-off-white">
       <Container className="flex flex-col gap-4 py-10 text-sm text-slate">

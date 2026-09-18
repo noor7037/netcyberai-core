@@ -15,7 +15,11 @@ distinguishes the *shape* of a match:
    there in the text, so nothing needs to be traced to an outside source.
    Any other number sharing the same enclosing comment block as such a
    derivation is treated as part of the same worked example.
-3. A number inside a string literal that is itself phrased as a question
+3. A Postgres positional parameter (`$1`, `$2`, ...) inside a string that
+   reads as a SQL statement (has a `select`/`insert`/`where`/... keyword),
+   or a percentage inside a CSS `calc()` expression (e.g. Tailwind's
+   `w-[calc(100%-2rem)]`), is query/style syntax, not a claim.
+4. A number inside a string literal that is itself phrased as a question
    (the string, trimmed, ends in `?`) is not an assertion -- "Is the fee
    cap simply \"5% every year\"?" raises the number to negate it, it
    doesn't claim it. A rhetorical question is not a claim.
@@ -61,6 +65,10 @@ CITATION_RE = re.compile(
     r"https?://|SourceLink|Sources?:|checkedOn:", re.IGNORECASE
 )
 DERIVATION_RE = re.compile(r"[0-9]+\s*/\s*[0-9]+\s*=\s*[0-9.]+%")
+SQL_KEYWORD_RE = re.compile(
+    r"\b(select|insert|update|delete|where|values|set_config|returning|from)\b",
+    re.IGNORECASE,
+)
 
 # String/comment spans, so brace matching and "is this inside a comment"
 # checks don't get confused by braces or citation-looking text that only
@@ -159,6 +167,39 @@ def _is_css_value_shape(text: str, start: int, end: int) -> bool:
     return j >= 0 and text[j] == ":"
 
 
+def _is_css_calc_shape(text: str, start: int, end: int, spans: list[tuple[int, int, str]]) -> bool:
+    """A percentage inside a CSS `calc()` expression -- e.g. Tailwind's
+    arbitrary-value `w-[calc(100%-2rem)]` -- is a CSS value, not a claim.
+    Distinguished the same shape-based way as `_is_css_value_shape`: an
+    unclosed `calc(` earlier in the same string literal.
+    """
+    if end == 0 or text[end - 1] != "%":
+        return False
+    string_span = _enclosing_string(start, spans)
+    if not string_span:
+        return False
+    prefix = text[string_span[0] + 1 : start]
+    calc_idx = prefix.lower().rfind("calc(")
+    if calc_idx == -1:
+        return False
+    return ")" not in prefix[calc_idx:]
+
+
+def _is_sql_placeholder_shape(text: str, start: int, spans: list[tuple[int, int, str]]) -> bool:
+    """A Postgres positional parameter ($1, $2, ...) inside a SQL string,
+    not a currency claim. Distinguished by the enclosing string literal
+    reading as a SQL statement (a `select`/`insert`/`where`/... keyword
+    present) -- the same shape-based approach as the CSS-value check.
+    """
+    if text[start] != "$":
+        return False
+    string_span = _enclosing_string(start, spans)
+    if not string_span:
+        return False
+    inner = text[string_span[0] + 1 : string_span[1] - 1]
+    return bool(SQL_KEYWORD_RE.search(inner))
+
+
 def find_unsourced_claims(text: str) -> list[tuple[int, str]]:
     """Return (line_number, matched_text) for every claim lacking a source."""
     spans = _spans(text)
@@ -167,6 +208,12 @@ def find_unsourced_claims(text: str) -> list[tuple[int, str]]:
         start, end = m.span()
 
         if _is_css_value_shape(text, start, end):
+            continue
+
+        if _is_css_calc_shape(text, start, end, spans):
+            continue
+
+        if _is_sql_placeholder_shape(text, start, spans):
             continue
 
         string_span = _enclosing_string(start, spans)
@@ -297,6 +344,30 @@ def run_self_test() -> int:
         (
             "fabricated stat dressed up as a question (still an assertion)",
             "export const claim = 'Did fee collection really increase by 38% this quarter? Yes, it did.';\n",
+            False,
+        ),
+        (
+            "SQL positional parameter inside a query string (not a claim)",
+            "export function stmt() {\n"
+            "  return `select token_version from users where user_id = $1`;\n"
+            "}\n",
+            True,
+        ),
+        (
+            "bare dollar-digit with no SQL context nearby -- must still FAIL",
+            "export const claim = 'Give the winner $1 million, no source needed.';\n",
+            False,
+        ),
+        (
+            "CSS calc() percentage in a Tailwind arbitrary-value class",
+            "export function Box() {\n"
+            "  return <div className=\"w-[calc(100%-2rem)] max-w-sm\" />;\n"
+            "}\n",
+            True,
+        ),
+        (
+            "bare percentage claim that merely follows the word calc in prose",
+            "export const claim = 'calc it yourself: fees rose 38% this quarter.';\n",
             False,
         ),
     ]

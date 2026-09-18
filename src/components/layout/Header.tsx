@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { companyName, whatsappLink } from '@/lib/site-config';
@@ -40,6 +41,7 @@ function CloseIcon() {
 }
 
 export function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const menuId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -82,6 +84,22 @@ export function Header() {
 
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [open]);
+
+  // Found by this prompt's own Playwright verification, not assumed:
+  // the root layout renders Header/Footer on every route, including
+  // /control/* and /app/*, which put the public marketing nav ("Book a
+  // demo," feature links) above every internal admin/school-workspace
+  // shell. Prompt D's own TopNav/BottomNav are that surface's real
+  // navigation; the marketing chrome doesn't belong there. Splitting
+  // into separate root layouts per top-level route group (Next.js's
+  // supported "multiple root layouts" pattern) would be the more
+  // structurally clean fix, but it means moving every existing
+  // marketing route's files -- out of proportion to what this bug
+  // needs. Suppressing here is the targeted fix; the pathname check
+  // stays in exactly one place (mirrored in Footer.tsx).
+  if (pathname.startsWith('/control') || pathname.startsWith('/app')) {
+    return null;
+  }
 
   return (
     <header className="relative border-b border-slate/10 bg-off-white">
