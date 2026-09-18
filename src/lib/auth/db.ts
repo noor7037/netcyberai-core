@@ -114,6 +114,34 @@ export async function withBackendConnection<T>(fn: (client: PoolClient) => Promi
   }
 }
 
+// Escape hatch for trusted INTERNAL callers only (test harnesses, the
+// Prompt E Task 0 diagnostic route) that need to create/tear down rows
+// across schools without a real session's claims to derive tenant
+// context from -- e.g. building throwaway cross-tenant fixtures before
+// withTenantContext itself can be exercised. Unlike every other
+// function in this file, this one takes NO claims and does NO live
+// user check: callers must never let external/request-controlled input
+// reach here, and must never use it to serve an actual user's request.
+// It exists in this file, not inline at each call site, so the
+// "every SET ROLE literal lives in db.ts" invariant check_choke_point.py
+// enforces stays true even for this narrow exception.
+export async function withSuperAdminBypass<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  const client = await getPool().connect();
+  try {
+    await client.query('begin');
+    await client.query('set role nca_super');
+    const result = await fn(client);
+    await client.query('commit');
+    return result;
+  } catch (err) {
+    await client.query('rollback').catch(() => {});
+    throw err;
+  } finally {
+    await client.query('reset role').catch(() => {});
+    client.release();
+  }
+}
+
 // Pre-tenant lookups only: resolving a just-authenticated user's own
 // users/memberships rows before app.current_tenant_id (or, for
 // super_admin, before any tenant will ever exist) can be known. Sets
