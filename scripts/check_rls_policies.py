@@ -76,7 +76,7 @@ _TENANT_ISOLATION_TABLES = [
     "fee_heads", "fee_structures", "fee_structure_items", "fee_concessions", "payments",
     "compliance_config", "at_risk_flags", "pulse_messages", "pulse_response_log",
     "student_qr_tokens", "qr_scan_log", "captured_documents", "ocr_extractions",
-    "webhook_events", "memberships",
+    "webhook_events", "memberships", "csv_imports",
 ]
 _ACCOUNTING_TABLES = ["fee_heads", "fee_structures", "fee_structure_items", "fee_concessions", "payments"]
 
