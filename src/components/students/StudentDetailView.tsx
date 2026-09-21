@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, type FormEvent } from 'react';
+import Link from 'next/link';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
@@ -108,7 +109,12 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
     <div className="p-4 md:p-6">
       <div className="mb-4 flex items-center justify-between gap-3">
         <h1 className="text-xl font-bold text-slate">{student.name}</h1>
-        <Badge variant={STATUS_VARIANT[student.status]}>{student.status.replace('_', ' ')}</Badge>
+        <div className="flex items-center gap-3">
+          <Badge variant={STATUS_VARIANT[student.status]}>{student.status.replace('_', ' ')}</Badge>
+          <Link href={`/app/students/${student.student_id}/id-card`} className="text-sm font-semibold text-sapphire">
+            ID card
+          </Link>
+        </div>
       </div>
 
       <section className="mb-6 rounded-lg border border-slate/10 p-4">

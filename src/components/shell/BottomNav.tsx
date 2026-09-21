@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { NavItem } from './TopNav';
-import { ScanStubButton } from './ScanStubButton';
+import { ScanButton } from './ScanButton';
 
 type Props = {
   items: NavItem[];
@@ -21,10 +21,11 @@ export function BottomNav({ items, ariaLabel }: Props) {
   return (
     <>
       {/* Persistent scan action in the app bar, available from
-          anywhere in the Teacher shell, per PRD §7.3. */}
+          anywhere in the Teacher shell, per PRD §7.3. Real feature as
+          of Prompt F Task 4 -- resolves via POST /api/app/scan. */}
       <header className="sticky top-0 z-10 flex min-h-[44px] items-center justify-between border-b border-slate/10 bg-white px-3">
         <span className="text-sm font-semibold text-slate">NetCyberAI</span>
-        <ScanStubButton />
+        <ScanButton />
       </header>
 
       <nav
