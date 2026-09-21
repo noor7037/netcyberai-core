@@ -26,8 +26,8 @@ export async function GET(req: NextRequest) {
 
   try {
     const { students, total } = await withTenantContext(guard.claims, async (client) => {
-      const conditions = ['s.school_id = $1'];
       const params: unknown[] = [guard.claims.schoolId];
+      const conditions = [`s.school_id = $${params.length}`];
       if (classId) {
         params.push(classId);
         conditions.push(`s.class_id = $${params.length}`);

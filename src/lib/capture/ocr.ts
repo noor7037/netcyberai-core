@@ -63,8 +63,8 @@ const AADHAAR_RE = /\b(\d{4})\s?(\d{4})\s?(\d{4})\b/;
 // Confidence for a field spanning multiple OCR words is the average of
 // those words' own real tesseract confidence scores -- never a fixed
 // or guessed number. If no words matched at all, no field is produced;
-// an absent field is honest, a fabricated 100% confidence on a guess
-// is not.
+// an absent field is honest, a fabricated full-confidence score on a
+// guess is not.
 function confidenceForMatch(words: OcrWord[], matchedText: string): number {
   const matchedWords = words.filter((w) => matchedText.includes(w.text) && w.text.trim().length > 0);
   if (matchedWords.length === 0) return 0;
