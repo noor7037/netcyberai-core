@@ -158,18 +158,48 @@ async function runOcrDocSection() {
   const ocrResult = await runOcr(docImage);
   const candidateFields = extractCandidateFields(ocrResult);
 
+  // Storage round trip is a SEPARATE try/catch: real infrastructure gap
+  // found live running this section -- SUPABASE_SERVICE_ROLE_KEY (which
+  // src/lib/auth/supabase.ts's newAuthAdminClient, and therefore
+  // src/lib/capture/storage.ts, requires) is not set in this Vercel
+  // project at all (confirmed via a full env-var listing), in Preview
+  // OR Production. This predates this task -- src/lib/onboarding/
+  // invite.ts has needed the same client since Prompt E and has the
+  // identical exposure, just never exercised against a real deployment
+  // that would have surfaced it. Not something code can fix: an
+  // operator must copy the real service_role key from the Supabase
+  // dashboard (Project Settings -> API) into Vercel's env vars, the
+  // same credential-handoff pattern already used for app_backend's own
+  // password and the WhatsApp/Razorpay credentials. OCR extraction
+  // itself does not depend on this client at all and is verified below
+  // regardless.
   const objectPath = buildObjectPath(SCHOOL_ALPHA, testStudentId, 'birth_certificate', 'png');
-  await uploadDocument(objectPath, docImage, 'image/png');
-  const signedUrl = await signedDocumentUrl(objectPath);
-  const fetchedBack = await fetch(signedUrl);
-  const fetchedBytes = Buffer.from(await fetchedBack.arrayBuffer());
+  let storageRoundTrip: Record<string, unknown>;
+  let storagePathForDb = `discarded:storage-unavailable-see-error`;
+  try {
+    await uploadDocument(objectPath, docImage, 'image/png');
+    const signedUrl = await signedDocumentUrl(objectPath);
+    const fetchedBack = await fetch(signedUrl);
+    const fetchedBytes = Buffer.from(await fetchedBack.arrayBuffer());
+    storageRoundTrip = { uploadedBytes: docImage.length, fetchedBytes: fetchedBytes.length, matches: fetchedBytes.length === docImage.length, pass: true };
+    storagePathForDb = objectPath;
+  } catch (err) {
+    storageRoundTrip = {
+      pass: false,
+      error: err instanceof Error ? err.message : String(err),
+      diagnosis:
+        err instanceof Error && err.message.includes('SUPABASE_SERVICE_ROLE_KEY')
+          ? 'SUPABASE_SERVICE_ROLE_KEY is not configured in this Vercel project (Preview or Production) -- operator action required, see this section\'s own code comment'
+          : 'unexpected storage error',
+    };
+  }
 
   const { documentId, extractionIds } = await withSuperAdminBypass(async (client) => {
     const doc = await client.query(
       `insert into captured_documents (school_id, student_id, staff_id, doc_type, storage_path, mime_type, size_bytes, ocr_status, uploaded_by)
        values ($1, $2, $3, 'birth_certificate', $4, 'image/png', $5, 'done', $3)
        returning document_id`,
-      [SCHOOL_ALPHA, testStudentId, ADMIN_ALPHA.sub, objectPath, docImage.length]
+      [SCHOOL_ALPHA, testStudentId, ADMIN_ALPHA.sub, storagePathForDb, docImage.length]
     );
     const documentId = doc.rows[0].document_id;
     const extractionIds: string[] = [];
@@ -199,19 +229,24 @@ async function runOcrDocSection() {
     await client.query(`delete from ocr_extractions where document_id = $1`, [documentId]);
     await client.query(`delete from captured_documents where document_id = $1`, [documentId]);
   });
-  const { newAuthAdminClient } = await import('@/lib/auth/supabase');
-  const removeResult = await newAuthAdminClient().storage.from('documents').remove([objectPath]);
+  let storageObjectRemoved: boolean | null = null;
+  if (storageRoundTrip.pass) {
+    const { newAuthAdminClient } = await import('@/lib/auth/supabase');
+    const removeResult = await newAuthAdminClient().storage.from('documents').remove([objectPath]);
+    storageObjectRemoved = !removeResult.error;
+  }
 
   return {
     documentScanOcr: {
       rawTextSample: ocrResult.rawText.slice(0, 200),
       wordCount: ocrResult.words.length,
       candidateFields,
-      storageRoundTrip: { uploadedBytes: docImage.length, fetchedBytes: fetchedBytes.length, matches: fetchedBytes.length === docImage.length },
+      storageRoundTrip,
       documentId,
       reviewRecordedBothOutcomes: extractionIds.length >= 2,
-      storageObjectRemoved: !removeResult.error,
-      pass: candidateFields.length > 0 && fetchedBytes.length === docImage.length,
+      storageObjectRemoved,
+      ocrPass: candidateFields.length > 0,
+      storagePass: storageRoundTrip.pass === true,
     },
   };
 }
