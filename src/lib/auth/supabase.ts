@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import { supabaseUrl, supabaseAnonKey } from './env';
+import { supabaseUrl, supabaseAnonKey, supabaseServiceRoleKey } from './env';
 
 // Supabase Auth (GoTrue) is used ONLY as the credential + MFA oracle:
 // verifying a password and a TOTP code, and reporting the resulting AAL.
@@ -12,6 +12,18 @@ import { supabaseUrl, supabaseAnonKey } from './env';
 // Custom-Access-Token-Hook alternative was rejected.
 export function newAuthClient(): SupabaseClient {
   return createClient(supabaseUrl(), supabaseAnonKey(), {
+    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+  });
+}
+
+// Service-role client -- bypasses RLS and GoTrue's normal checks. Used
+// ONLY by src/lib/onboarding/invite.ts, for auth.admin.inviteUserByEmail
+// (Prompt E Task 4: credential delivery is Supabase's own one-time email
+// link, so this app never sees, generates, or logs a plaintext
+// credential at all). Never use this client for login/session work --
+// that's newAuthClient's job, on purpose the less-privileged one.
+export function newAuthAdminClient(): SupabaseClient {
+  return createClient(supabaseUrl(), supabaseServiceRoleKey(), {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
   });
 }

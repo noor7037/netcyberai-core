@@ -86,6 +86,25 @@ export async function withTenantContext<T>(
       throw new SessionRevokedError('super_admin authority revoked');
     }
 
+    // Impersonation (Prompt E Task 5, PRD §2.3): claims.sub/role/schoolId
+    // above are already the TARGET user's real membership -- impersonation
+    // carries no elevated logic of its own, it just resolves to a real
+    // row and rides this same function. What's specific to it is this one
+    // extra live check: the impersonation_sessions row backing the token
+    // must still be active and unexpired, checked on every request, not
+    // only at mint time -- the same "immediate, not refresh-cycle-bound"
+    // guarantee token_version and the super_admin check above already get.
+    if (claims.impersonation) {
+      const { rows: impRows } = await client.query(
+        `select 1 from impersonation_sessions
+         where impersonation_id = $1 and ended_at is null and expires_at > now()`,
+        [claims.impersonation.impersonationId]
+      );
+      if (!impRows[0]) {
+        throw new SessionRevokedError('impersonation session expired or ended');
+      }
+    }
+
     const result = await fn(client);
     await client.query('commit');
     return result;

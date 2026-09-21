@@ -18,6 +18,7 @@ export async function signAccessToken(claims: SessionClaims, ttlSeconds = ACCESS
     tv: claims.tokenVersion,
     aal: claims.aal,
     sid: claims.sessionId,
+    imp: claims.impersonation ?? undefined,
   })
     .setProtectedHeader({ alg: 'HS256' })
     .setSubject(claims.sub)
@@ -30,6 +31,7 @@ export async function verifyAccessToken(token: string): Promise<SessionClaims | 
   try {
     const { payload } = await jwtVerify(token, secretKey());
     if (payload.typ !== 'access') return null;
+    const imp = payload.imp as { impersonationId: string; actorUserId: string } | undefined;
     return {
       sub: String(payload.sub),
       role: payload.role as StaffRole,
@@ -38,6 +40,7 @@ export async function verifyAccessToken(token: string): Promise<SessionClaims | 
       tokenVersion: Number(payload.tv),
       aal: payload.aal as 'aal1' | 'aal2',
       sessionId: String(payload.sid),
+      impersonation: imp ?? null,
     };
   } catch (err) {
     if (err instanceof joseErrors.JWTExpired) return null;
