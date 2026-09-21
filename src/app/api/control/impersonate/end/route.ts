@@ -3,6 +3,7 @@ import { requireSession } from '@/lib/auth/require-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
+import { assertRowsAffected } from '@/lib/db/rows';
 import { ACCESS_COOKIE, IMPERSONATION_RETURN_COOKIE, ACCESS_TTL_SECONDS, cookieOptions } from '@/lib/auth/cookies';
 
 // Ends the CURRENT session's own impersonation (there is no
@@ -23,9 +24,17 @@ export async function POST(req: NextRequest) {
 
   try {
     await withTenantContext(claims, async (client) => {
-      await client.query(`update impersonation_sessions set ended_at = now() where impersonation_id = $1`, [
-        claims.impersonation!.impersonationId,
-      ]);
+      // No "and ended_at is null" here: withTenantContext's own live
+      // check just above already verified (in this same transaction)
+      // that this row exists, is unended, and unexpired -- the only
+      // way this UPDATE can still affect zero rows is a missing or
+      // narrowed RLS policy, exactly Decision Log C40's bug class, not
+      // a legitimate "already ended" race this route should tolerate.
+      const result = await client.query(
+        `update impersonation_sessions set ended_at = now() where impersonation_id = $1`,
+        [claims.impersonation!.impersonationId]
+      );
+      assertRowsAffected(result, 'impersonation_sessions update affected 0 rows -- RLS policy missing or narrowed');
       await writeAuditLog(client, {
         schoolId: claims.schoolId,
         actorUserId: claims.impersonation!.actorUserId,
