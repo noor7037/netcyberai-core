@@ -13,8 +13,12 @@ import { DOC_TEST_IMAGE_BASE64, AADHAAR_TEST_IMAGE_BASE64 } from './fixtures';
 // routes call (runCsvImport, resolveQrScan, the capture/* helpers) --
 // never a re-implementation -- against real fixture data in the real
 // B2 Test School Alpha/Beta schools, so every result here is real
-// evidence, not a simulation. Removed, token included, before this
-// branch's PR opens; removal confirmed with a real fetch returning 404.
+// evidence, not a simulation. Split into sections (?section=...), run
+// one call at a time -- OCR's cold-start trained-data fetch plus a
+// 500-row import in one request exceeded the fetch tool's own 60s
+// ceiling when first tried as a single combined call. Removed, token
+// included, before this branch's PR opens; removal confirmed with a
+// real fetch returning 404.
 function hasValidToken(req: NextRequest): boolean {
   const expected = process.env.DIAG_TOKEN_F_VERIFY;
   if (!expected) return false;
@@ -73,228 +77,239 @@ function buildCsv(): { buffer: Buffer; validCount: number; invalidCount: number 
   return { buffer: Buffer.from(rows.join('\n'), 'utf-8'), validCount: 497, invalidCount: 3 };
 }
 
+async function ensureFixtures() {
+  return withSuperAdminBypass(async (client) => {
+    const existingClass = await client.query(`select class_id from classes where school_id = $1 and name = 'VerifyF-8A'`, [SCHOOL_ALPHA]);
+    const classId =
+      existingClass.rows[0]?.class_id ??
+      (await client.query(`insert into classes (school_id, name) values ($1, 'VerifyF-8A') returning class_id`, [SCHOOL_ALPHA])).rows[0].class_id;
+
+    const existingTeacher = await client.query(`select teacher_id from teachers where school_id = $1 and user_id = $2`, [SCHOOL_ALPHA, TEACHER_ALPHA.sub]);
+    const teacherId =
+      existingTeacher.rows[0]?.teacher_id ??
+      (
+        await client.query(`insert into teachers (school_id, user_id, name) values ($1, $2, 'Verify F Teacher Fixture') returning teacher_id`, [
+          SCHOOL_ALPHA,
+          TEACHER_ALPHA.sub,
+        ])
+      ).rows[0].teacher_id;
+
+    return { classId, teacherId };
+  });
+}
+
+async function getTestStudentId(): Promise<string | null> {
+  return withSuperAdminBypass(async (client) => {
+    const { rows } = await client.query(`select student_id from students where school_id = $1 and admission_no = 'VERIFYF-1'`, [SCHOOL_ALPHA]);
+    return rows[0]?.student_id ?? null;
+  });
+}
+
+async function runCsvSection() {
+  await ensureFixtures();
+  const { buffer, validCount, invalidCount } = buildCsv();
+  const import1 = await runCsvImport(ADMIN_ALPHA, buffer, 'verify-500.csv');
+  const import2 = await runCsvImport(ADMIN_ALPHA, buffer, 'verify-500.csv'); // byte-identical re-upload
+
+  const dbCount = await withSuperAdminBypass(async (client) => {
+    const { rows } = await client.query(`select count(*)::int as n from students where school_id = $1 and admission_no like 'VERIFYF-%'`, [SCHOOL_ALPHA]);
+    return rows[0].n as number;
+  });
+
+  return {
+    firstRun: { rowCount: import1.rowCount, importedCount: import1.importedCount, skippedCount: import1.skippedCount, errors: import1.errors },
+    secondRun_identicalFile: { alreadyImported: import2.alreadyImported, importedCount: import2.importedCount, skippedCount: import2.skippedCount },
+    expected: { rowCount: 500, importedCount: validCount, skippedCount: invalidCount },
+    realStudentCountInDb: dbCount,
+    pass:
+      import1.rowCount === 500 &&
+      import1.importedCount === validCount &&
+      import1.skippedCount === invalidCount &&
+      import2.alreadyImported === true &&
+      import2.importedCount === import1.importedCount &&
+      dbCount === validCount, // proves the second run did NOT duplicate
+  };
+}
+
+async function runFkSection() {
+  const testStudentId = await getTestStudentId();
+  if (!testStudentId) return { error: 'run ?section=csv first' };
+  try {
+    await withSuperAdminBypass(async (client) => {
+      await client.query(`insert into certificate_requests (school_id, student_id) values ($1, $2)`, [SCHOOL_BETA, testStudentId]);
+    });
+    return { pass: false, note: 'INSERT SUCCEEDED -- this should never happen; composite FK did not fire' };
+  } catch (err) {
+    const pgErr = err as { code?: string; message?: string };
+    return {
+      pass: pgErr.code === '23503',
+      sqlState: pgErr.code,
+      message: pgErr.message,
+      attempted: `insert into certificate_requests (school_id=<Beta>, student_id=<real Alpha student ${testStudentId}>)`,
+    };
+  }
+}
+
+async function runOcrSection() {
+  const testStudentId = await getTestStudentId();
+  if (!testStudentId) return { error: 'run ?section=csv first' };
+
+  const docImage = Buffer.from(DOC_TEST_IMAGE_BASE64, 'base64');
+  const ocrResult = await runOcr(docImage);
+  const candidateFields = extractCandidateFields(ocrResult);
+
+  const objectPath = buildObjectPath(SCHOOL_ALPHA, testStudentId, 'birth_certificate', 'png');
+  await uploadDocument(objectPath, docImage, 'image/png');
+  const signedUrl = await signedDocumentUrl(objectPath);
+  const fetchedBack = await fetch(signedUrl);
+  const fetchedBytes = Buffer.from(await fetchedBack.arrayBuffer());
+
+  const { documentId, extractionIds } = await withSuperAdminBypass(async (client) => {
+    const doc = await client.query(
+      `insert into captured_documents (school_id, student_id, staff_id, doc_type, storage_path, mime_type, size_bytes, ocr_status, uploaded_by)
+       values ($1, $2, $3, 'birth_certificate', $4, 'image/png', $5, 'done', $3)
+       returning document_id`,
+      [SCHOOL_ALPHA, testStudentId, ADMIN_ALPHA.sub, objectPath, docImage.length]
+    );
+    const documentId = doc.rows[0].document_id;
+    const extractionIds: string[] = [];
+    for (const f of candidateFields) {
+      const row = await client.query(
+        `insert into ocr_extractions (school_id, document_id, field_name, extracted_value, confidence) values ($1,$2,$3,$4,$5) returning extraction_id`,
+        [SCHOOL_ALPHA, documentId, f.fieldName, f.extractedValue, f.confidence]
+      );
+      extractionIds.push(row.rows[0].extraction_id);
+    }
+    if (extractionIds[0]) {
+      await client.query(`update ocr_extractions set accepted = true, reviewed_by = $1, reviewed_at = now() where extraction_id = $2`, [
+        ADMIN_ALPHA.sub,
+        extractionIds[0],
+      ]);
+    }
+    if (extractionIds[1]) {
+      await client.query(
+        `update ocr_extractions set accepted = false, corrected_value = 'HUMAN-CORRECTED-VALUE', reviewed_by = $1, reviewed_at = now() where extraction_id = $2`,
+        [ADMIN_ALPHA.sub, extractionIds[1]]
+      );
+    }
+    return { documentId, extractionIds };
+  });
+
+  await withSuperAdminBypass(async (client) => {
+    await client.query(`delete from ocr_extractions where document_id = $1`, [documentId]);
+    await client.query(`delete from captured_documents where document_id = $1`, [documentId]);
+  });
+  const { newAuthAdminClient } = await import('@/lib/auth/supabase');
+  const removeResult = await newAuthAdminClient().storage.from('documents').remove([objectPath]);
+
+  const documentScanOcr = {
+    rawTextSample: ocrResult.rawText.slice(0, 200),
+    wordCount: ocrResult.words.length,
+    candidateFields,
+    storageRoundTrip: { uploadedBytes: docImage.length, fetchedBytes: fetchedBytes.length, matches: fetchedBytes.length === docImage.length },
+    documentId,
+    reviewRecordedBothOutcomes: extractionIds.length >= 2,
+    storageObjectRemoved: !removeResult.error,
+    pass: candidateFields.length > 0 && fetchedBytes.length === docImage.length,
+  };
+
+  const aadhaarImage = Buffer.from(AADHAAR_TEST_IMAGE_BASE64, 'base64');
+  const aadhaarOcr = await runOcr(aadhaarImage);
+  const aadhaar = extractAadhaarLast4AndNameMatch(aadhaarOcr, 'Rahul Sharma');
+  const serialized = JSON.stringify(aadhaar);
+  const aadhaarConstraint = {
+    extraction: aadhaar,
+    fullNumberNeverLeaked: !serialized.includes('1234') && !serialized.includes('5678') && !serialized.includes('12345678'),
+    imageNeverUploaded: true, // structural: uploadDocument is never called for this path (grep-verified, see report)
+    pass: aadhaar !== null && aadhaar.last4 === '9012' && !serialized.includes('1234') && !serialized.includes('5678'),
+  };
+
+  return { documentScanOcr, aadhaarConstraint };
+}
+
+async function runQrSection() {
+  const testStudentId = await getTestStudentId();
+  if (!testStudentId) return { error: 'run ?section=csv first' };
+  const { classId } = await ensureFixtures();
+
+  const token = generateToken();
+  await withSuperAdminBypass(async (client) => {
+    await client.query(`insert into student_qr_tokens (school_id, student_id, token) values ($1, $2, $3)`, [SCHOOL_ALPHA, testStudentId, token]);
+  });
+  const payload = tokenToQrPayload(token);
+
+  const resolvedAsAdmin = await resolveQrScan(ADMIN_ALPHA, payload, 'lookup', 'diag-verify', qrPayloadToToken);
+  const unauthorizedAsTeacher = await resolveQrScan(TEACHER_ALPHA, payload, 'lookup', 'diag-verify', qrPayloadToToken);
+
+  await withSuperAdminBypass(async (client) => {
+    await client.query(`update classes set class_teacher_id = $1 where school_id = $2 and class_id = $3`, [TEACHER_ALPHA.sub, SCHOOL_ALPHA, classId]);
+  });
+  const resolvedAsTeacherAfterLink = await resolveQrScan(TEACHER_ALPHA, payload, 'lookup', 'diag-verify', qrPayloadToToken);
+
+  const crossTenant = await resolveQrScan(PRINCIPAL_BETA, payload, 'lookup', 'diag-verify', qrPayloadToToken);
+  const crossTenantLogRow = await withSuperAdminBypass(async (client) => {
+    const { rows } = await client.query(
+      `select school_id, token_id, student_id, result from qr_scan_log where school_id = $1 and scanned_by = $2 and result = 'cross_tenant_denied' order by scanned_at desc limit 1`,
+      [SCHOOL_BETA, PRINCIPAL_BETA.sub]
+    );
+    return rows[0] ?? null;
+  });
+
+  const malformed = await resolveQrScan(ADMIN_ALPHA, 'not-a-real-payload', 'lookup', 'diag-verify', qrPayloadToToken);
+
+  await withSuperAdminBypass(async (client) => {
+    await client.query(`update student_qr_tokens set revoked_at = now(), revoke_reason = 'diag-verify' where school_id = $1 and token = $2`, [
+      SCHOOL_ALPHA,
+      token,
+    ]);
+  });
+  const resolvedAfterRevoke = await resolveQrScan(ADMIN_ALPHA, payload, 'lookup', 'diag-verify', qrPayloadToToken);
+
+  return {
+    resolvedAsAdmin: resolvedAsAdmin.result,
+    unauthorizedAsTeacherBeforeLink: unauthorizedAsTeacher.result,
+    resolvedAsTeacherAfterLink: resolvedAsTeacherAfterLink.result,
+    crossTenantDenied: crossTenant.result,
+    crossTenantLogRow,
+    malformedPayload: malformed.result,
+    resolvedAfterRevoke: resolvedAfterRevoke.result,
+    pass:
+      resolvedAsAdmin.result === 'resolved' &&
+      unauthorizedAsTeacher.result === 'unauthorized' &&
+      resolvedAsTeacherAfterLink.result === 'resolved' &&
+      crossTenant.result === 'cross_tenant_denied' &&
+      crossTenantLogRow?.token_id === null &&
+      crossTenantLogRow?.student_id === null &&
+      crossTenantLogRow?.school_id === SCHOOL_BETA &&
+      malformed.result === 'unknown_token' &&
+      resolvedAfterRevoke.result === 'revoked_token',
+  };
+}
+
 export async function GET(req: NextRequest) {
   if (!hasValidToken(req)) {
     return NextResponse.json({ error: 'not found' }, { status: 404 });
   }
 
-  const report: Record<string, unknown> = {};
+  const section = req.nextUrl.searchParams.get('section') ?? 'csv';
 
   try {
-    // --- Setup: a real class + a real teachers row, fixture-scoped ---
-    const { classId, teacherId } = await withSuperAdminBypass(async (client) => {
-      const existingClass = await client.query(`select class_id from classes where school_id = $1 and name = 'VerifyF-8A'`, [SCHOOL_ALPHA]);
-      const classId =
-        existingClass.rows[0]?.class_id ??
-        (await client.query(`insert into classes (school_id, name) values ($1, 'VerifyF-8A') returning class_id`, [SCHOOL_ALPHA])).rows[0].class_id;
-
-      const existingTeacher = await client.query(`select teacher_id from teachers where school_id = $1 and user_id = $2`, [
-        SCHOOL_ALPHA,
-        TEACHER_ALPHA.sub,
-      ]);
-      const teacherId =
-        existingTeacher.rows[0]?.teacher_id ??
-        (
-          await client.query(`insert into teachers (school_id, user_id, name) values ($1, $2, 'Verify F Teacher Fixture') returning teacher_id`, [
-            SCHOOL_ALPHA,
-            TEACHER_ALPHA.sub,
-          ])
-        ).rows[0].teacher_id;
-
-      return { classId, teacherId };
-    });
-    report.setup = { classId, teacherId };
-
-    // --- 1. CSV import: two-phase commit, per-row errors, idempotency ---
-    const { buffer, validCount, invalidCount } = buildCsv();
-    const import1 = await runCsvImport(ADMIN_ALPHA, buffer, 'verify-500.csv');
-    const import2 = await runCsvImport(ADMIN_ALPHA, buffer, 'verify-500.csv'); // byte-identical re-upload
-
-    const dbCount = await withSuperAdminBypass(async (client) => {
-      const { rows } = await client.query(`select count(*)::int as n from students where school_id = $1 and admission_no like 'VERIFYF-%'`, [
-        SCHOOL_ALPHA,
-      ]);
-      return rows[0].n as number;
-    });
-
-    report.csvImport = {
-      firstRun: { rowCount: import1.rowCount, importedCount: import1.importedCount, skippedCount: import1.skippedCount, errors: import1.errors },
-      secondRun_identicalFile: { alreadyImported: import2.alreadyImported, importedCount: import2.importedCount, skippedCount: import2.skippedCount },
-      expected: { rowCount: 500, importedCount: validCount, skippedCount: invalidCount },
-      realStudentCountInDb: dbCount,
-      pass:
-        import1.rowCount === 500 &&
-        import1.importedCount === validCount &&
-        import1.skippedCount === invalidCount &&
-        import2.alreadyImported === true &&
-        import2.importedCount === import1.importedCount &&
-        dbCount === validCount, // proves the second run did NOT duplicate
-    };
-
-    const testStudentId = await withSuperAdminBypass(async (client) => {
-      const { rows } = await client.query(`select student_id from students where school_id = $1 and admission_no = 'VERIFYF-1'`, [SCHOOL_ALPHA]);
-      return rows[0].student_id as string;
-    });
-
-    // --- 2. Composite FK negative test, against real imported data ---
-    let fkNegativeTest: Record<string, unknown>;
-    try {
-      await withSuperAdminBypass(async (client) => {
-        await client.query(`insert into certificate_requests (school_id, student_id) values ($1, $2)`, [SCHOOL_BETA, testStudentId]);
-      });
-      fkNegativeTest = { pass: false, note: 'INSERT SUCCEEDED -- this should never happen; composite FK did not fire' };
-    } catch (err) {
-      const pgErr = err as { code?: string; message?: string };
-      fkNegativeTest = {
-        pass: pgErr.code === '23503',
-        sqlState: pgErr.code,
-        message: pgErr.message,
-        attempted: `insert into certificate_requests (school_id=<Beta>, student_id=<real Alpha student ${testStudentId}>)`,
-      };
+    switch (section) {
+      case 'csv':
+        return NextResponse.json({ section, csvImport: await runCsvSection() });
+      case 'fk':
+        return NextResponse.json({ section, compositeFkNegativeTest: await runFkSection() });
+      case 'ocr':
+        return NextResponse.json({ section, ...(await runOcrSection()) });
+      case 'qr':
+        return NextResponse.json({ section, qr: await runQrSection() });
+      default:
+        return NextResponse.json({ error: 'section must be one of csv, fk, ocr, qr' }, { status: 400 });
     }
-    report.compositeFkNegativeTest = fkNegativeTest;
-
-    // --- 3. Document scan + OCR ---
-    const docImage = Buffer.from(DOC_TEST_IMAGE_BASE64, 'base64');
-    const ocrResult = await runOcr(docImage);
-    const candidateFields = extractCandidateFields(ocrResult);
-
-    const objectPath = buildObjectPath(SCHOOL_ALPHA, testStudentId, 'birth_certificate', 'png');
-    await uploadDocument(objectPath, docImage, 'image/png');
-    const signedUrl = await signedDocumentUrl(objectPath);
-    const fetchedBack = await fetch(signedUrl);
-    const fetchedBytes = Buffer.from(await fetchedBack.arrayBuffer());
-
-    const { documentId, extractionIds } = await withSuperAdminBypass(async (client) => {
-      const doc = await client.query(
-        `insert into captured_documents (school_id, student_id, staff_id, doc_type, storage_path, mime_type, size_bytes, ocr_status, uploaded_by)
-         values ($1, $2, $3, 'birth_certificate', $4, 'image/png', $5, 'done', $3)
-         returning document_id`,
-        [SCHOOL_ALPHA, testStudentId, ADMIN_ALPHA.sub, objectPath, docImage.length]
-      );
-      const documentId = doc.rows[0].document_id;
-      const extractionIds: string[] = [];
-      for (const f of candidateFields) {
-        const row = await client.query(
-          `insert into ocr_extractions (school_id, document_id, field_name, extracted_value, confidence) values ($1,$2,$3,$4,$5) returning extraction_id`,
-          [SCHOOL_ALPHA, documentId, f.fieldName, f.extractedValue, f.confidence]
-        );
-        extractionIds.push(row.rows[0].extraction_id);
-      }
-      // Simulate the human review step: accept the first field as-is, correct the second (if present) -- proves ocr_extractions records BOTH outcomes.
-      if (extractionIds[0]) {
-        await client.query(`update ocr_extractions set accepted = true, reviewed_by = $1, reviewed_at = now() where extraction_id = $2`, [
-          ADMIN_ALPHA.sub,
-          extractionIds[0],
-        ]);
-      }
-      if (extractionIds[1]) {
-        await client.query(
-          `update ocr_extractions set accepted = false, corrected_value = 'HUMAN-CORRECTED-VALUE', reviewed_by = $1, reviewed_at = now() where extraction_id = $2`,
-          [ADMIN_ALPHA.sub, extractionIds[1]]
-        );
-      }
-      const reviewed = await client.query(`select field_name, extracted_value, accepted, corrected_value from ocr_extractions where document_id = $1`, [
-        documentId,
-      ]);
-      return { documentId, extractionIds, reviewedRows: reviewed.rows };
-    });
-
-    // Cleanup this test document (not append-only, safe to remove).
-    await withSuperAdminBypass(async (client) => {
-      await client.query(`delete from ocr_extractions where document_id = $1`, [documentId]);
-      await client.query(`delete from captured_documents where document_id = $1`, [documentId]);
-    });
-    const removeResult = await (await import('@/lib/auth/supabase')).newAuthAdminClient().storage.from('documents').remove([objectPath]);
-
-    report.documentScanOcr = {
-      rawTextSample: ocrResult.rawText.slice(0, 200),
-      wordCount: ocrResult.words.length,
-      candidateFields,
-      storageRoundTrip: { uploadedBytes: docImage.length, fetchedBytes: fetchedBytes.length, matches: fetchedBytes.length === docImage.length },
-      documentId,
-      reviewRecordedBothOutcomes: extractionIds.length >= 2,
-      storageObjectRemoved: !removeResult.error,
-      pass: candidateFields.length > 0 && fetchedBytes.length === docImage.length,
-    };
-
-    // --- 4. Aadhaar constraint ---
-    const aadhaarImage = Buffer.from(AADHAAR_TEST_IMAGE_BASE64, 'base64');
-    const aadhaarOcr = await runOcr(aadhaarImage);
-    const aadhaar = extractAadhaarLast4AndNameMatch(aadhaarOcr, 'Rahul Sharma');
-    const serialized = JSON.stringify(aadhaar);
-    report.aadhaarConstraint = {
-      extraction: aadhaar,
-      fullNumberNeverLeaked: !serialized.includes('1234') && !serialized.includes('5678') && !serialized.includes('12345678'),
-      imageNeverUploaded: true, // structural: uploadDocument is never called for this path (see route.ts's own comment + grep in the report)
-      pass: aadhaar !== null && aadhaar.last4 === '9012' && !serialized.includes('1234') && !serialized.includes('5678'),
-    };
-
-    // --- 5. QR: issue, resolve (authorized/unauthorized/cross-tenant/revoked) ---
-    const token = generateToken();
-    await withSuperAdminBypass(async (client) => {
-      await client.query(`insert into student_qr_tokens (school_id, student_id, token) values ($1, $2, $3)`, [SCHOOL_ALPHA, testStudentId, token]);
-    });
-    const payload = tokenToQrPayload(token);
-
-    const resolvedAsAdmin = await resolveQrScan(ADMIN_ALPHA, payload, 'lookup', 'diag-verify', qrPayloadToToken);
-    const unauthorizedAsTeacher = await resolveQrScan(TEACHER_ALPHA, payload, 'lookup', 'diag-verify', qrPayloadToToken);
-
-    // Link the teacher to the class, then re-resolve -- proves authorization isn't just "always deny for teachers."
-    await withSuperAdminBypass(async (client) => {
-      await client.query(`update classes set class_teacher_id = $1 where school_id = $2 and class_id = $3`, [TEACHER_ALPHA.sub, SCHOOL_ALPHA, classId]);
-    });
-    const resolvedAsTeacherAfterLink = await resolveQrScan(TEACHER_ALPHA, payload, 'lookup', 'diag-verify', qrPayloadToToken);
-
-    const crossTenant = await resolveQrScan(PRINCIPAL_BETA, payload, 'lookup', 'diag-verify', qrPayloadToToken);
-    const crossTenantLogRow = await withSuperAdminBypass(async (client) => {
-      const { rows } = await client.query(
-        `select school_id, token_id, student_id, result from qr_scan_log where school_id = $1 and scanned_by = $2 and result = 'cross_tenant_denied' order by scanned_at desc limit 1`,
-        [SCHOOL_BETA, PRINCIPAL_BETA.sub]
-      );
-      return rows[0] ?? null;
-    });
-
-    const malformed = await resolveQrScan(ADMIN_ALPHA, 'not-a-real-payload', 'lookup', 'diag-verify', qrPayloadToToken);
-
-    await withSuperAdminBypass(async (client) => {
-      await client.query(`update student_qr_tokens set revoked_at = now(), revoke_reason = 'diag-verify' where school_id = $1 and token = $2`, [
-        SCHOOL_ALPHA,
-        token,
-      ]);
-    });
-    const resolvedAfterRevoke = await resolveQrScan(ADMIN_ALPHA, payload, 'lookup', 'diag-verify', qrPayloadToToken);
-
-    report.qr = {
-      resolvedAsAdmin: resolvedAsAdmin.result,
-      unauthorizedAsTeacherBeforeLink: unauthorizedAsTeacher.result,
-      resolvedAsTeacherAfterLink: resolvedAsTeacherAfterLink.result,
-      crossTenantDenied: crossTenant.result,
-      crossTenantLogRow, // expect token_id/student_id null, school_id = Beta
-      malformedPayload: malformed.result,
-      resolvedAfterRevoke: resolvedAfterRevoke.result,
-      pass:
-        resolvedAsAdmin.result === 'resolved' &&
-        unauthorizedAsTeacher.result === 'unauthorized' &&
-        resolvedAsTeacherAfterLink.result === 'resolved' &&
-        crossTenant.result === 'cross_tenant_denied' &&
-        crossTenantLogRow?.token_id === null &&
-        crossTenantLogRow?.student_id === null &&
-        crossTenantLogRow?.school_id === SCHOOL_BETA &&
-        malformed.result === 'unknown_token' &&
-        resolvedAfterRevoke.result === 'revoked_token',
-    };
-
-    report.overallPass = Boolean(
-      (report.csvImport as { pass: boolean }).pass &&
-        (report.compositeFkNegativeTest as { pass: boolean }).pass &&
-        (report.documentScanOcr as { pass: boolean }).pass &&
-        (report.aadhaarConstraint as { pass: boolean }).pass &&
-        (report.qr as { pass: boolean }).pass
-    );
-
-    return NextResponse.json(report);
   } catch (err) {
-    return NextResponse.json({ error: err instanceof Error ? err.message : String(err), stack: err instanceof Error ? err.stack : undefined, partialReport: report }, { status: 500 });
+    return NextResponse.json(
+      { section, error: err instanceof Error ? err.message : String(err), stack: err instanceof Error ? err.stack : undefined },
+      { status: 500 }
+    );
   }
 }
