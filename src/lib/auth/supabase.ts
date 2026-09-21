@@ -16,12 +16,16 @@ export function newAuthClient(): SupabaseClient {
   });
 }
 
-// Service-role client -- bypasses RLS and GoTrue's normal checks. Used
-// ONLY by src/lib/onboarding/invite.ts, for auth.admin.inviteUserByEmail
-// (Prompt E Task 4: credential delivery is Supabase's own one-time email
+// Service-role client -- bypasses RLS and GoTrue's normal checks. Two
+// callers: src/lib/onboarding/invite.ts (auth.admin.inviteUserByEmail --
+// Prompt E Task 4: credential delivery is Supabase's own one-time email
 // link, so this app never sees, generates, or logs a plaintext
-// credential at all). Never use this client for login/session work --
-// that's newAuthClient's job, on purpose the less-privileged one.
+// credential at all), and src/lib/capture/storage.ts (Prompt F Task 3 --
+// the Storage bucket has no RLS policy expressible in terms of this
+// app's own session model, so the tenant boundary for it is enforced in
+// application code instead; see that file's own comment). Never use
+// this client for login/session work -- that's newAuthClient's job, on
+// purpose the less-privileged one.
 export function newAuthAdminClient(): SupabaseClient {
   return createClient(supabaseUrl(), supabaseServiceRoleKey(), {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },

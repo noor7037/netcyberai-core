@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
 import { useToast } from '@/components/ui/Toast';
+import { DocumentCapture } from './DocumentCapture';
 
 type Student = {
   student_id: string;
@@ -184,6 +185,10 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
           </ul>
         )}
       </section>
+
+      <div className="mt-6">
+        <DocumentCapture studentId={student.student_id} guardians={guardians ?? []} />
+      </div>
 
       <Modal open={addOpen} onClose={() => setAddOpen(false)} title="Add guardian">
         <form onSubmit={handleAddGuardian} className="flex flex-col gap-4">
