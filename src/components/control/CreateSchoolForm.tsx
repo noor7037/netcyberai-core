@@ -8,6 +8,13 @@ import { Button } from '@/components/ui/Button';
 
 const BOARDS = ['CBSE', 'ICSE', 'STATE', 'IB', 'OTHER'] as const;
 const TENANT_TYPES = ['school', 'coaching', 'college'] as const;
+// ISO-style country-subdivision codes. Not a hardcoded assumption that
+// every school is Haryana (that was the bug) -- an explicit, required
+// choice at onboarding. Extend this list as real schools in new
+// jurisdictions actually sign up; a plugin registry for one entry each
+// would be architecture for its own sake (Pre-F Architecture Hardening,
+// REJECTED list).
+const JURISDICTIONS = ['IN-HR', 'IN-DL', 'IN-UP', 'IN-MH', 'IN-KA'] as const;
 
 // "Tenant Created" -- the first step this prompt can act on (Lead and
 // Approved are pre-tenant, PRD §7.2). Every new row lands at
@@ -18,6 +25,7 @@ export function CreateSchoolForm() {
   const [name, setName] = useState('');
   const [board, setBoard] = useState<(typeof BOARDS)[number]>('STATE');
   const [tenantType, setTenantType] = useState<(typeof TENANT_TYPES)[number]>('school');
+  const [jurisdiction, setJurisdiction] = useState<(typeof JURISDICTIONS)[number]>('IN-HR');
   const [status, setStatus] = useState<{ kind: 'idle' | 'saving' | 'error' | 'ok'; message?: string }>({
     kind: 'idle',
   });
@@ -28,7 +36,7 @@ export function CreateSchoolForm() {
     const res = await fetch('/api/control/schools', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, board, tenantType }),
+      body: JSON.stringify({ name, board, tenantType, jurisdiction }),
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
@@ -61,6 +69,19 @@ export function CreateSchoolForm() {
         {TENANT_TYPES.map((t) => (
           <option key={t} value={t}>
             {t}
+          </option>
+        ))}
+      </Select>
+      <Select
+        id="school-jurisdiction"
+        label="Jurisdiction"
+        required
+        value={jurisdiction}
+        onChange={(e) => setJurisdiction(e.target.value as typeof jurisdiction)}
+      >
+        {JURISDICTIONS.map((j) => (
+          <option key={j} value={j}>
+            {j}
           </option>
         ))}
       </Select>

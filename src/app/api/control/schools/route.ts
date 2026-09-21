@@ -6,6 +6,12 @@ import { writeAuditLog } from '@/lib/audit/log';
 
 const BOARD_TYPES = ['CBSE', 'ICSE', 'STATE', 'IB', 'OTHER'] as const;
 const TENANT_TYPES = ['school', 'coaching', 'college'] as const;
+// ISO-style country-subdivision code (IN-HR, IN-MH, AE-DU) -- Pre-F
+// Architecture Hardening: schools.jurisdiction has no column default on
+// purpose (a default here would silently mislabel every school, exactly
+// the bug this replaces -- see the migration and Decision Log). Captured
+// explicitly at onboarding instead.
+const JURISDICTION_RE = /^[A-Z]{2}-[A-Z]{2,3}$/;
 
 // Task 1, "Tenant Created" -- the only step of PRD §7.2's workflow this
 // prompt can create a row for (Lead/Approved are pre-tenant). Every new
@@ -20,17 +26,21 @@ export async function POST(req: NextRequest) {
   const name = typeof body?.name === 'string' ? body.name.trim() : '';
   const board = BOARD_TYPES.includes(body?.board) ? body.board : null;
   const tenantType = TENANT_TYPES.includes(body?.tenantType) ? body.tenantType : null;
-  if (!name || !board || !tenantType) {
-    return NextResponse.json({ error: 'name, board, and tenantType are required' }, { status: 400 });
+  const jurisdiction = typeof body?.jurisdiction === 'string' ? body.jurisdiction.trim().toUpperCase() : '';
+  if (!name || !board || !tenantType || !JURISDICTION_RE.test(jurisdiction)) {
+    return NextResponse.json(
+      { error: 'name, board, tenantType, and jurisdiction (e.g. IN-HR) are required' },
+      { status: 400 }
+    );
   }
 
   try {
     const school = await withTenantContext(guard.claims, async (client) => {
       const { rows } = await client.query(
-        `insert into schools (name, board, tenant_type)
-         values ($1, $2, $3)
-         returning school_id, name, board, tenant_type, onboarding_stage, is_pilot, pilot_allow_outbound`,
-        [name, board, tenantType]
+        `insert into schools (name, board, tenant_type, jurisdiction)
+         values ($1, $2, $3, $4)
+         returning school_id, name, board, tenant_type, jurisdiction, onboarding_stage, is_pilot, pilot_allow_outbound`,
+        [name, board, tenantType, jurisdiction]
       );
       const row = rows[0];
       await writeAuditLog(client, {
