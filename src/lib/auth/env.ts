@@ -11,10 +11,11 @@ export const supabaseAnonKey = () => required('NEXT_PUBLIC_SUPABASE_ANON_KEY');
 export const appSessionSecret = () => required('APP_SESSION_SECRET');
 
 // Service-role key: bypasses RLS and GoTrue's normal auth checks entirely.
-// Used for exactly one thing (Prompt E Task 4: Supabase Auth's admin
-// invite-by-email API) -- never for login, never for anything a request
-// carrying ordinary user input can reach. See src/lib/auth/supabase.ts's
-// newAuthAdminClient, the only caller.
+// Never for login, never for anything a request carrying ordinary user
+// input can reach. src/lib/auth/supabase.ts's newAuthAdminClient is the
+// ONLY thing allowed to call this function -- see that file's own
+// comment for its two authorized callers -- enforced by
+// scripts/check_service_role.py.
 export const supabaseServiceRoleKey = () => required('SUPABASE_SERVICE_ROLE_KEY');
 
 // DATABASE_URL is intentionally allowed to be unset in this environment:
