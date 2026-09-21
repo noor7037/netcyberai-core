@@ -186,6 +186,43 @@ export async function withSuperAdminBypass<T>(fn: (client: PoolClient) => Promis
   }
 }
 
+// Diagnostic-only, narrower sibling of withSuperAdminBypass: Prompt F's
+// Task 0 C38-pattern route needs to prove a specific claim -- that
+// SET LOCAL ROLE does not leak from one pooled request onto the next
+// (Decision Log C40/C42) -- which means observing TWO DIFFERENT roles
+// on what may be the same reused physical backend, back to back. That
+// can't be done through withTenantContext (it demands a real, live
+// users row and throws otherwise) or withSuperAdminBypass (hardcoded
+// to nca_super). This is that same trusted-internal-caller exception,
+// generalized to a caller-chosen role from a fixed allowlist -- never
+// callable with anything but one of these two literal strings, so it
+// stays exactly as narrow as the thing it's proving, and, like
+// withSuperAdminBypass, lives here so check_choke_point.py's "every
+// SET ROLE literal lives in db.ts" invariant holds even for it.
+const ROLE_PROBE_ALLOWED = ['app_user', 'nca_super'] as const;
+export async function withRoleProbe<T>(
+  role: (typeof ROLE_PROBE_ALLOWED)[number],
+  fn: (client: PoolClient) => Promise<T>
+): Promise<T> {
+  if (!ROLE_PROBE_ALLOWED.includes(role)) {
+    throw new Error(`withRoleProbe: role must be one of ${ROLE_PROBE_ALLOWED.join(', ')}`);
+  }
+  const client = await getPool().connect();
+  try {
+    await client.query('begin');
+    await client.query(`set local role ${role}`); // see withTenantContext's comment on why LOCAL, not plain SET -- role is never request-controlled, checked against ROLE_PROBE_ALLOWED above
+    const result = await fn(client);
+    await client.query('commit');
+    return result;
+  } catch (err) {
+    await client.query('rollback').catch(() => {});
+    throw err;
+  } finally {
+    await client.query('reset role').catch(() => {});
+    client.release();
+  }
+}
+
 // Pre-tenant lookups only: resolving a just-authenticated user's own
 // users/memberships rows before app.current_tenant_id (or, for
 // super_admin, before any tenant will ever exist) can be known. Sets

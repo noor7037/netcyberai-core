@@ -34,6 +34,9 @@ jobs:
       - name: Tenant-context choke point stays singular
         run: python3 scripts/check_choke_point.py
 
+      - name: Service-role Supabase client stays a single allowlisted choke point
+        run: python3 scripts/check_service_role.py
+
       - name: No unallowlisted permissive RLS policy
         run: python3 scripts/check_rls_policies.py
 

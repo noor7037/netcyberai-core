@@ -3,6 +3,7 @@ import { getServerSession } from '@/lib/auth/server-session';
 import { canAccessApp, shellForRole } from '@/lib/auth/guards';
 import { TopNav } from '@/components/shell/TopNav';
 import { BottomNav } from '@/components/shell/BottomNav';
+import { ToastProvider } from '@/components/ui/Toast';
 import { officeNav, financeNav, academicNav, teacherNav } from '@/lib/nav/nav-items';
 
 // Every page under this route group renders through THIS layout by
@@ -22,10 +23,12 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   if (shell === 'teacher') {
     return (
-      <div className="min-h-screen bg-off-white pb-16">
-        <BottomNav items={teacherNav} ariaLabel="Teacher navigation" />
-        <main>{children}</main>
-      </div>
+      <ToastProvider>
+        <div className="min-h-screen bg-off-white pb-16">
+          <BottomNav items={teacherNav} ariaLabel="Teacher navigation" />
+          <main>{children}</main>
+        </div>
+      </ToastProvider>
     );
   }
 
@@ -33,9 +36,11 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   const label = shell === 'finance' ? 'Finance navigation' : shell === 'academic' ? 'Academic navigation' : 'Office navigation';
 
   return (
-    <div className="min-h-screen bg-off-white">
-      <TopNav items={items} ariaLabel={label} />
-      <main>{children}</main>
-    </div>
+    <ToastProvider>
+      <div className="min-h-screen bg-off-white">
+        <TopNav items={items} ariaLabel={label} />
+        <main>{children}</main>
+      </div>
+    </ToastProvider>
   );
 }

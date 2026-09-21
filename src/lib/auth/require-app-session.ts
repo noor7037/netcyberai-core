@@ -1,0 +1,37 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { requireSession } from './require-session';
+import { canAccessApp } from './guards';
+import type { SessionClaims, StaffRole } from './types';
+
+// Every /api/app/** route needs the identical guard: a real session,
+// with an actual selected school (super_admin has none -- canAccessApp
+// already excludes it). Mirrors requireSuperAdmin's shape for
+// /api/control/** -- PRD §2.2's "a hidden-but-reachable endpoint is an
+// open endpoint" rule applies here exactly as it does there: the (school)
+// shell's nav hides pages a role shouldn't see, but that is never a
+// substitute for checking at the route itself.
+export async function requireAppSession(
+  req: NextRequest
+): Promise<{ claims: SessionClaims & { schoolId: string } } | { error: NextResponse }> {
+  const claims = await requireSession(req);
+  if (!claims || !canAccessApp(claims)) {
+    return { error: NextResponse.json({ error: 'not authenticated' }, { status: 401 }) };
+  }
+  return { claims: claims as SessionClaims & { schoolId: string } };
+}
+
+// Student/guardian/class master-data writes: gated to the two roles
+// officeNav actually surfaces these pages to (school_admin, principal --
+// see src/lib/nav/nav-items.ts). Every other staff role (teacher,
+// accountant, academic_coordinator) can still READ this data -- the
+// existing students_tenant_isolation/classes_tenant_isolation RLS
+// policies are blanket, whole-school, all-command policies with no
+// role sub-filter -- but writing student master data from outside the
+// office shell is not a workflow this prompt asked for, and silently
+// allowing it from any role would be exactly the "hidden-but-reachable
+// is open" gap PRD §2.2 warns about.
+const MASTER_DATA_WRITE_ROLES: StaffRole[] = ['school_admin', 'principal'];
+
+export function canWriteMasterData(role: StaffRole): boolean {
+  return MASTER_DATA_WRITE_ROLES.includes(role);
+}
