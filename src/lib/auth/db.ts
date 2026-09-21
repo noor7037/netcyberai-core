@@ -26,7 +26,7 @@ export class SessionRevokedError extends Error {
 export function tenantContextStatements(schoolIdOrNull: string | null, role: string) {
   const pgRole = role === 'super_admin' ? 'nca_super' : 'app_user';
   return {
-    setRole: `set role ${pgRole}`,
+    setRole: `set local role ${pgRole}`,
     setTenant: `select set_config('app.current_tenant_id', $1, true)`,
     setTenantArg: schoolIdOrNull ?? '',
     setRoleGuc: `select set_config('app.current_role', $1, true)`,
@@ -48,6 +48,21 @@ export function tenantContextStatements(schoolIdOrNull: string | null, role: str
 // SET ROLE, THEN the three set_config calls, all inside the same
 // transaction, on the same connection -- never once per connection,
 // exactly the footgun the doc warns about under a pooler.
+//
+// SET ROLE must be SET LOCAL, never plain SET. Confirmed live: DATABASE_URL
+// runs through Supavisor in transaction mode (pooler.supabase.com:6543),
+// which can hand a request's statement to a different physical Postgres
+// backend than the one before it, EXCEPT while a transaction is open, when
+// the backend is pinned. A plain `SET ROLE` inside a transaction that
+// COMMITS persists at the session level, not just for that transaction
+// (this is standard Postgres behavior, not a bug in Postgres) -- so the
+// `reset role` below, run as its own statement AFTER commit, is a separate
+// autocommit unit Supavisor is free to route to a DIFFERENT backend,
+// leaving the ORIGINAL backend stuck as nca_super/app_user (nca_super is
+// BYPASSRLS) for whatever unrelated request the pool hands that backend to
+// next. `SET LOCAL ROLE` is guaranteed by Postgres itself to unwind at the
+// end of the transaction on the SAME backend that ran it, regardless of
+// any pooler's routing of later statements -- closing that leak entirely.
 export async function withTenantContext<T>(
   claims: SessionClaims,
   fn: (client: PoolClient) => Promise<T>
@@ -148,7 +163,7 @@ export async function withSuperAdminBypass<T>(fn: (client: PoolClient) => Promis
   const client = await getPool().connect();
   try {
     await client.query('begin');
-    await client.query('set role nca_super');
+    await client.query('set local role nca_super'); // see withTenantContext's comment on why LOCAL, not plain SET
     const result = await fn(client);
     await client.query('commit');
     return result;
@@ -171,7 +186,7 @@ export async function withSelfContext<T>(userId: string, fn: (client: PoolClient
   const client = await getPool().connect();
   try {
     await client.query('begin');
-    await client.query('set role app_user');
+    await client.query('set local role app_user'); // see withTenantContext's comment on why LOCAL, not plain SET
     await client.query(`select set_config('app.current_user_id', $1, true)`, [userId]);
     const result = await fn(client);
     await client.query('commit');
