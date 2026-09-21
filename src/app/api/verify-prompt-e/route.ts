@@ -40,6 +40,15 @@ export async function GET(req: NextRequest) {
   }
 
   const base = `https://${req.headers.get('host')}`;
+  // This route's own internal fetches below hit the same .vercel.app
+  // hostname a browser would -- Vercel's Deployment Protection applies
+  // there too, not only to the initial external request that reached
+  // this handler. Relay whatever bypass credential the caller already
+  // used to get past that wall, rather than embedding a second copy of
+  // it in source.
+  const bypassSecret =
+    req.headers.get('x-vercel-protection-bypass') ?? req.nextUrl.searchParams.get('x-vercel-protection-bypass');
+  const bypassHeaders: Record<string, string> = bypassSecret ? { 'x-vercel-protection-bypass': bypassSecret } : {};
   const checks: Record<string, CheckResult> = {};
   const suffix = randomUUID();
   let schoolId: string | undefined;
@@ -99,7 +108,7 @@ export async function GET(req: NextRequest) {
 
     // --- Task 2 VERIFY: flag off blocks the API directly ---------------
     const offResp = await fetch(`${base}/api/app/pulse/today`, {
-      headers: { cookie: `nca_access=${teacherToken}` },
+      headers: { cookie: `nca_access=${teacherToken}`, ...bypassHeaders },
       cache: 'no-store',
     });
     const offBody = await offResp.json();
@@ -107,7 +116,7 @@ export async function GET(req: NextRequest) {
 
     const flagResp = await fetch(`${base}/api/control/schools/${schoolId}/features`, {
       method: 'POST',
-      headers: { 'content-type': 'application/json', cookie: `nca_access=${superAdminToken}` },
+      headers: { 'content-type': 'application/json', cookie: `nca_access=${superAdminToken}`, ...bypassHeaders },
       body: JSON.stringify({ feature: 'daily_pulse', enabled: true }),
       cache: 'no-store',
     });
@@ -115,7 +124,7 @@ export async function GET(req: NextRequest) {
     checks.flagSetViaRealApi = { pass: flagResp.status === 200 && flagBody.enabledFeatures?.daily_pulse === true, status: flagResp.status, body: flagBody };
 
     const onResp = await fetch(`${base}/api/app/pulse/today`, {
-      headers: { cookie: `nca_access=${teacherToken}` },
+      headers: { cookie: `nca_access=${teacherToken}`, ...bypassHeaders },
       cache: 'no-store',
     });
     const onBody = await onResp.json();
@@ -126,7 +135,7 @@ export async function GET(req: NextRequest) {
     // rejected. -----------------------------------------------------
     const startResp = await fetch(`${base}/api/control/impersonate/start`, {
       method: 'POST',
-      headers: { 'content-type': 'application/json', cookie: `nca_access=${superAdminToken}` },
+      headers: { 'content-type': 'application/json', cookie: `nca_access=${superAdminToken}`, ...bypassHeaders },
       body: JSON.stringify({ targetUserId: teacherId, reason: '__verify_e automated check' }),
       cache: 'no-store',
     });
@@ -136,21 +145,27 @@ export async function GET(req: NextRequest) {
     checks.impersonationStarts = { pass: startResp.status === 200 && Boolean(impersonatedToken), status: startResp.status, body: startBody };
 
     const asImpersonated = impersonatedToken
-      ? await fetch(`${base}/api/app/pulse/today`, { headers: { cookie: `nca_access=${impersonatedToken}` }, cache: 'no-store' })
+      ? await fetch(`${base}/api/app/pulse/today`, {
+          headers: { cookie: `nca_access=${impersonatedToken}`, ...bypassHeaders },
+          cache: 'no-store',
+        })
       : null;
     checks.impersonatedSessionWorks = { pass: asImpersonated?.status === 200, status: asImpersonated?.status ?? null };
 
     const endResp = impersonatedToken
       ? await fetch(`${base}/api/control/impersonate/end`, {
           method: 'POST',
-          headers: { cookie: `nca_access=${impersonatedToken}` },
+          headers: { cookie: `nca_access=${impersonatedToken}`, ...bypassHeaders },
           cache: 'no-store',
         })
       : null;
     checks.impersonationEnds = { pass: endResp?.status === 200, status: endResp?.status ?? null };
 
     const afterEndResp = impersonatedToken
-      ? await fetch(`${base}/api/app/pulse/today`, { headers: { cookie: `nca_access=${impersonatedToken}` }, cache: 'no-store' })
+      ? await fetch(`${base}/api/app/pulse/today`, {
+          headers: { cookie: `nca_access=${impersonatedToken}`, ...bypassHeaders },
+          cache: 'no-store',
+        })
       : null;
     const afterEndBody = afterEndResp ? await afterEndResp.json().catch(() => null) : null;
     checks.endedImpersonationRejected = { pass: afterEndResp?.status === 401, status: afterEndResp?.status ?? null, body: afterEndBody };
@@ -195,7 +210,7 @@ export async function GET(req: NextRequest) {
       600 // JWT itself still valid for 10 more minutes -- only the DB-side expiry should reject this
     );
     const expiredResp = await fetch(`${base}/api/app/pulse/today`, {
-      headers: { cookie: `nca_access=${expiredToken}` },
+      headers: { cookie: `nca_access=${expiredToken}`, ...bypassHeaders },
       cache: 'no-store',
     });
     const expiredBody = await expiredResp.json().catch(() => null);
