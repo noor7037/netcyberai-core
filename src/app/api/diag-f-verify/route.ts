@@ -194,7 +194,7 @@ async function runOcrDocSection() {
     };
   }
 
-  const { documentId, extractionIds } = await withSuperAdminBypass(async (client) => {
+  const { documentId, extractionIds, reviewedRows } = await withSuperAdminBypass(async (client) => {
     const doc = await client.query(
       `insert into captured_documents (school_id, student_id, staff_id, doc_type, storage_path, mime_type, size_bytes, ocr_status, uploaded_by)
        values ($1, $2, $3, 'birth_certificate', $4, 'image/png', $5, 'done', $3)
@@ -203,7 +203,15 @@ async function runOcrDocSection() {
     );
     const documentId = doc.rows[0].document_id;
     const extractionIds: string[] = [];
-    for (const f of candidateFields) {
+    // Pad with a second, explicitly-synthetic field if OCR only found one
+    // on this run -- this test image's real OCR accuracy (honestly
+    // reported in rawTextSample/candidateFields above) is a separate
+    // question from whether ocr_extractions/the review step can store
+    // BOTH an accepted and a corrected outcome on the same document,
+    // which is what this loop actually needs to prove.
+    const fieldsForReviewTest =
+      candidateFields.length >= 2 ? candidateFields : [...candidateFields, { fieldName: 'synthetic_test_field', extractedValue: 'ocr-guess', confidence: 50 }];
+    for (const f of fieldsForReviewTest) {
       const row = await client.query(
         `insert into ocr_extractions (school_id, document_id, field_name, extracted_value, confidence) values ($1,$2,$3,$4,$5) returning extraction_id`,
         [SCHOOL_ALPHA, documentId, f.fieldName, f.extractedValue, f.confidence]
@@ -222,7 +230,11 @@ async function runOcrDocSection() {
         [ADMIN_ALPHA.sub, extractionIds[1]]
       );
     }
-    return { documentId, extractionIds };
+    const reviewed = await client.query(
+      `select field_name, extracted_value, accepted, corrected_value from ocr_extractions where document_id = $1 order by field_name`,
+      [documentId]
+    );
+    return { documentId, extractionIds, reviewedRows: reviewed.rows };
   });
 
   await withSuperAdminBypass(async (client) => {
@@ -243,7 +255,10 @@ async function runOcrDocSection() {
       candidateFields,
       storageRoundTrip,
       documentId,
-      reviewRecordedBothOutcomes: extractionIds.length >= 2,
+      reviewedRows, // proves ocr_extractions stores BOTH an accepted=true row and an accepted=false+corrected_value row
+      reviewRecordedBothOutcomes:
+        reviewedRows.some((r: { accepted: boolean | null }) => r.accepted === true) &&
+        reviewedRows.some((r: { accepted: boolean | null; corrected_value: string | null }) => r.accepted === false && r.corrected_value !== null),
       storageObjectRemoved,
       ocrPass: candidateFields.length > 0,
       storagePass: storageRoundTrip.pass === true,
