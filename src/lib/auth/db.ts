@@ -17,6 +17,16 @@ export class SessionRevokedError extends Error {
   }
 }
 
+// Reserved, never-generated (gen_random_uuid() cannot produce it) uuid
+// used as app.current_tenant_id's value whenever there's no real tenant
+// (super_admin's platform-scoped requests, and withSelfContext's pre-
+// tenant lookups) -- see withSelfContext's own comment for why this is a
+// real uuid sentinel and not an empty string or an attempt to unset the
+// GUC. Every tenant_isolation policy's `school_id = current_setting(...)::
+// uuid` cast stays valid, and the comparison correctly excludes every row,
+// exactly as intended.
+const NIL_UUID = '00000000-0000-0000-0000-000000000000';
+
 // The literal statement sequence every DB-touching request runs, on one
 // checked-out connection, inside one transaction -- exported as data so
 // the verification suite can run the SAME sql (not a paraphrase of it)
@@ -28,7 +38,7 @@ export function tenantContextStatements(schoolIdOrNull: string | null, role: str
   return {
     setRole: `set local role ${pgRole}`,
     setTenant: `select set_config('app.current_tenant_id', $1, true)`,
-    setTenantArg: schoolIdOrNull ?? '',
+    setTenantArg: schoolIdOrNull ?? NIL_UUID,
     setRoleGuc: `select set_config('app.current_role', $1, true)`,
     setRoleArg: role,
     setUser: `select set_config('app.current_user_id', $1, true)`,
@@ -183,24 +193,31 @@ export async function withSuperAdminBypass<T>(fn: (client: PoolClient) => Promis
 // users_self / memberships_self policies -- never nca_super, so this
 // path carries no more privilege than "see your own rows."
 //
-// Confirmed live: app.current_tenant_id is explicitly cleared here, not
-// just left untouched. Under this project's Supavisor pooler (transaction
-// mode, DATABASE_URL's pooler.supabase.com:6543), a set_config(..., true)
-// ("local", meant to unwind at end of transaction per ordinary Postgres
-// semantics) from an EARLIER, already-committed transaction was still
-// visible as '' at the start of a later, unrelated transaction on the
-// connection the pool handed back -- proven with a temporary diagnostic
-// query, not inferred. Rather than depend on exactly when the pooler does
-// or doesn't honor LOCAL scoping, every GUC this function's queries can be
-// affected by is set explicitly, every time, so no transaction ever
-// inherits a value it didn't itself set.
+// Confirmed live, twice: (1) app.current_tenant_id read back as '' at the
+// start of a transaction that never itself touched it -- some earlier,
+// unrelated, already-committed transaction's value was still visible here,
+// contrary to what set_config(..., true) ("local") is supposed to
+// guarantee. (2) neither set_config(name, NULL, true) NOR a plain RESET
+// actually restores it to NULL once contaminated this way -- both were
+// tried live and neither worked; set_config with a NULL new_value is a
+// documented no-op (it returns the current value unchanged, it does not
+// clear it), and RESET here reverted to the same stuck '', not to NULL.
+// "Unset" is therefore not a state this code can reliably get back to on
+// this connection, from this function, by any means -- so it doesn't try.
+// Instead, app.current_tenant_id is always pinned to the nil UUID: a
+// syntactically valid uuid (so the tenant_isolation policies' ::uuid cast
+// on it can never fail the way '' does) that gen_random_uuid() will not
+// produce and no real school_id can equal (so it excludes every row via
+// that policy exactly as an unset value was meant to) -- this function's
+// actual visibility guarantee comes entirely from the *_self policies
+// keyed on app.current_user_id below, never from tenant_isolation.
 export async function withSelfContext<T>(userId: string, fn: (client: PoolClient) => Promise<T>): Promise<T> {
   const client = await getPool().connect();
   try {
     await client.query('begin');
     await client.query('set local role app_user'); // see withTenantContext's comment on why LOCAL, not plain SET
-    await client.query(`select set_config('app.current_tenant_id', null, true)`);
-    await client.query(`select set_config('app.current_role', null, true)`);
+    await client.query(`select set_config('app.current_tenant_id', $1, true)`, [NIL_UUID]);
+    await client.query(`select set_config('app.current_role', '', true)`);
     await client.query(`select set_config('app.current_user_id', $1, true)`, [userId]);
     const result = await fn(client);
     await client.query('commit');
