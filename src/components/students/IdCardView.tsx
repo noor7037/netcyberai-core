@@ -78,7 +78,7 @@ export function IdCardView({ studentId, studentName, schoolName, className }: { 
           {className && <p className="text-sm text-slate/70">{className}</p>}
           {/* eslint-disable-next-line react/no-danger -- server-generated SVG (qrcode lib), never user input */}
           <div dangerouslySetInnerHTML={{ __html: token.qrSvg }} />
-          <p className="text-[10px] text-slate/50">Card is inert if reissued or reported lost.</p>
+          <p className="text-[10px] text-slate/70">Card is inert if reissued or reported lost.</p>
         </div>
       )}
     </div>
