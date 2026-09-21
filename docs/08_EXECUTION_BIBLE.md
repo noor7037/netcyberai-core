@@ -787,6 +787,13 @@ BUILD
 - Guardian verification flow.
 - Data access / correction / deletion request workflows.
 - Retention configuration.
+- Trigger-based audit on consent_ledger writes (Pre-F Architecture
+  Hardening, Deferred): app.current_user_id/app.current_role are
+  already transaction GUCs (src/lib/auth/db.ts), so a trigger can write
+  audit rows atomically with full actor attribution, not a second
+  application-level writeAuditLog call that could be skipped. Follow
+  Decision Log C41's PII rule: IDs and the changed purpose/state only,
+  never the consenting parent's name or phone number in the row.
 - Form 6 advisory per 05_BUSINESS_LOGIC.md §3: CPI read from
   compliance_config with source and date, NEVER a hardcoded constant.
   State is 'unknown' when CPI is unconfigured — say so, do not guess a
@@ -830,6 +837,13 @@ ATTENDANCE
   abandon slower tools, which poisons every downstream signal.
 - 10-minute undo; audit note required after.
 - Period lock: immutable after.
+- Trigger-based audit on attendance corrections (Pre-F Architecture
+  Hardening, Deferred): the undo window is exactly the kind of write
+  that needs atomic, un-skippable actor attribution -- a trigger using
+  the transaction's own app.current_user_id/app.current_role GUCs, not
+  a second application-level call that a future edit path could miss.
+  IDs and the before/after status only (Decision Log C41's PII rule),
+  never a student's name in the row.
 - capture_method column distinguishes manual from qr_gate/qr_exam.
   Gate attendance is NOT presented as equivalent to classroom
   attendance.
@@ -904,6 +918,12 @@ FINANCIAL CONTROLS — non-negotiable
   Never surname or address matching — a wrong discount is a money
   error, and money errors destroy trust faster than any other bug.
 - Every concession records kind, reason, and approver.
+- Trigger-based audit on fees_ledger/payments corrections (Pre-F
+  Architecture Hardening, Deferred): reversals and adjustments are
+  exactly the class of write that needs atomic, actor-attributed
+  logging via the transaction's own GUCs, not an application-level
+  call a future edit path could skip. IDs and amounts only (Decision
+  Log C41's PII rule) -- never a parent's name or phone in the row.
 
 WEBHOOK IDEMPOTENCY — PRD §3.3
 verify HMAC → compute payload_hash → INSERT ON CONFLICT DO NOTHING
@@ -944,6 +964,12 @@ EXAMS
 Draft → Marks Entry → Verification → Approval → Published.
 Published is READ-ONLY. A correction creates a new version with an
 audit trail and an explicit re-publication event. Never a silent edit.
+Trigger-based audit on marks approval/re-publication (Pre-F
+Architecture Hardening, Deferred): the transaction's own
+app.current_user_id/app.current_role GUCs give a trigger atomic actor
+attribution a second application-level call could miss. IDs and the
+score delta only (Decision Log C41's PII rule) -- never a student's
+name in the row.
 
 DAILY LEARNING PULSE — PRD §4.1
 - not_taught generates NO Pulse and NO comprehension prompt. Asking

@@ -123,3 +123,54 @@ like losers every fortnight), the system does two separate things:
   award, but only compared against other students who started at a
   similar level — so a student who was struggling isn't compared
   against the class topper on the same yardstick.
+
+## Scaling transition points (recorded, not built)
+
+Pre-F Architecture Hardening's own REJECTED list explicitly declined
+multi-region architecture and table partitioning at pilot scale — not
+because they're wrong ideas, but because building them now would be
+architecture for a load this platform doesn't have yet. Recording
+*where* the current design actually runs out of road, so a future
+session inherits a specific trigger instead of a vague "someday":
+
+- **National (roughly 50–500 schools):** a scheduled job that iterates
+  every school inside one serverless function invocation will start
+  hitting the platform's function-duration limits well before 500 —
+  fan the job out per-school (one invocation per school, or a small
+  batch per invocation) instead of one invocation looping over all of
+  them. `audit_log` and `communication_log` grow with every school's
+  every action and message; partition both by month before either
+  becomes the table where an unindexed scan silently gets slow.
+  WhatsApp dispatch moves from direct-call-per-message to a real queue
+  once concurrent schools start competing for the same per-number
+  throughput cap the send gate (Prompt H) already tracks.
+- **Global:** the forcing function is data residency law, not load —
+  a school's data needing to legally stay in-region is not something a
+  bigger single database solves. The answer is regional stacks (one
+  full deployment per data-residency region), not one global database
+  serving every region. `school_id` as the tenant boundary (Decision
+  Log C34, and every composite FK Pre-F Architecture Hardening added)
+  is exactly what keeps that split possible later without a rewrite:
+  a school's entire footprint is already reachable by one column,
+  which is what a regional-migration script needs to exist at all.
+
+## Per-tenant export (recorded requirement, not built)
+
+OPS-003 §7.1's tenant offboarding requirement, and DPDP's own data-
+access-request right, both reduce to the same tool: `select * from
+<table> where school_id = $1` run across every tenant table, in one
+place. Worth building once, deliberately, rather than growing ad hoc
+inside whichever prompt needs it first — it serves three purposes at
+once:
+- **Offboarding** a school that leaves — a clean export, then delete.
+- **DPDP access requests** — a parent or staff member asking "what do
+  you have on us" is answerable by the same query, scoped further to
+  their own rows.
+- **Single-tenant restore** — restoring a school's data into a
+  separate instance and extracting just that school, rather than a
+  full point-in-time restore of the shared database for one tenant's
+  sake (Decision Log, PRD §10.3's backup/restore section covers the
+  shared-database PITR path; this is the narrower, per-tenant
+  complement to it).
+
+Own prompt, later — not scoped here.
