@@ -19,6 +19,14 @@ export interface SessionClaims {
   tokenVersion: number; // snapshot at issuance, checked live on every DB-touching request
   aal: 'aal1' | 'aal2';
   sessionId: string; // sessions.session_id, correlates to the refresh-token row
+  // Present only while a super_admin is impersonating this claims' own
+  // subject (sub/role/schoolId are already the TARGET's real membership
+  // here -- impersonation never carries its own elevated logic, see
+  // Decision Log C38's sibling entry on this prompt). withTenantContext
+  // re-validates impersonationId against impersonation_sessions on every
+  // request, live -- not just at mint time -- so expiry is enforced the
+  // same way token_version already is.
+  impersonation?: { impersonationId: string; actorUserId: string } | null;
 }
 
 export interface MembershipRow {

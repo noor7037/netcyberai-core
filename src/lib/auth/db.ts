@@ -17,6 +17,16 @@ export class SessionRevokedError extends Error {
   }
 }
 
+// Reserved, never-generated (gen_random_uuid() cannot produce it) uuid
+// used as app.current_tenant_id's value whenever there's no real tenant
+// (super_admin's platform-scoped requests, and withSelfContext's pre-
+// tenant lookups) -- see withSelfContext's own comment for why this is a
+// real uuid sentinel and not an empty string or an attempt to unset the
+// GUC. Every tenant_isolation policy's `school_id = current_setting(...)::
+// uuid` cast stays valid, and the comparison correctly excludes every row,
+// exactly as intended.
+const NIL_UUID = '00000000-0000-0000-0000-000000000000';
+
 // The literal statement sequence every DB-touching request runs, on one
 // checked-out connection, inside one transaction -- exported as data so
 // the verification suite can run the SAME sql (not a paraphrase of it)
@@ -26,9 +36,9 @@ export class SessionRevokedError extends Error {
 export function tenantContextStatements(schoolIdOrNull: string | null, role: string) {
   const pgRole = role === 'super_admin' ? 'nca_super' : 'app_user';
   return {
-    setRole: `set role ${pgRole}`,
+    setRole: `set local role ${pgRole}`,
     setTenant: `select set_config('app.current_tenant_id', $1, true)`,
-    setTenantArg: schoolIdOrNull ?? '',
+    setTenantArg: schoolIdOrNull ?? NIL_UUID,
     setRoleGuc: `select set_config('app.current_role', $1, true)`,
     setRoleArg: role,
     setUser: `select set_config('app.current_user_id', $1, true)`,
@@ -48,6 +58,21 @@ export function tenantContextStatements(schoolIdOrNull: string | null, role: str
 // SET ROLE, THEN the three set_config calls, all inside the same
 // transaction, on the same connection -- never once per connection,
 // exactly the footgun the doc warns about under a pooler.
+//
+// SET ROLE must be SET LOCAL, never plain SET. Confirmed live: DATABASE_URL
+// runs through Supavisor in transaction mode (pooler.supabase.com:6543),
+// which can hand a request's statement to a different physical Postgres
+// backend than the one before it, EXCEPT while a transaction is open, when
+// the backend is pinned. A plain `SET ROLE` inside a transaction that
+// COMMITS persists at the session level, not just for that transaction
+// (this is standard Postgres behavior, not a bug in Postgres) -- so the
+// `reset role` below, run as its own statement AFTER commit, is a separate
+// autocommit unit Supavisor is free to route to a DIFFERENT backend,
+// leaving the ORIGINAL backend stuck as nca_super/app_user (nca_super is
+// BYPASSRLS) for whatever unrelated request the pool hands that backend to
+// next. `SET LOCAL ROLE` is guaranteed by Postgres itself to unwind at the
+// end of the transaction on the SAME backend that ran it, regardless of
+// any pooler's routing of later statements -- closing that leak entirely.
 export async function withTenantContext<T>(
   claims: SessionClaims,
   fn: (client: PoolClient) => Promise<T>
@@ -84,6 +109,25 @@ export async function withTenantContext<T>(
     // token_version already gets, not the looser refresh-only one.
     if (claims.role === 'super_admin' && live.role !== 'super_admin') {
       throw new SessionRevokedError('super_admin authority revoked');
+    }
+
+    // Impersonation (Prompt E Task 5, PRD §2.3): claims.sub/role/schoolId
+    // above are already the TARGET user's real membership -- impersonation
+    // carries no elevated logic of its own, it just resolves to a real
+    // row and rides this same function. What's specific to it is this one
+    // extra live check: the impersonation_sessions row backing the token
+    // must still be active and unexpired, checked on every request, not
+    // only at mint time -- the same "immediate, not refresh-cycle-bound"
+    // guarantee token_version and the super_admin check above already get.
+    if (claims.impersonation) {
+      const { rows: impRows } = await client.query(
+        `select 1 from impersonation_sessions
+         where impersonation_id = $1 and ended_at is null and expires_at > now()`,
+        [claims.impersonation.impersonationId]
+      );
+      if (!impRows[0]) {
+        throw new SessionRevokedError('impersonation session expired or ended');
+      }
     }
 
     const result = await fn(client);
@@ -129,7 +173,7 @@ export async function withSuperAdminBypass<T>(fn: (client: PoolClient) => Promis
   const client = await getPool().connect();
   try {
     await client.query('begin');
-    await client.query('set role nca_super');
+    await client.query('set local role nca_super'); // see withTenantContext's comment on why LOCAL, not plain SET
     const result = await fn(client);
     await client.query('commit');
     return result;
@@ -148,11 +192,32 @@ export async function withSuperAdminBypass<T>(fn: (client: PoolClient) => Promis
 // only app.current_user_id and runs as app_user, relying on the
 // users_self / memberships_self policies -- never nca_super, so this
 // path carries no more privilege than "see your own rows."
+//
+// Confirmed live, twice: (1) app.current_tenant_id read back as '' at the
+// start of a transaction that never itself touched it -- some earlier,
+// unrelated, already-committed transaction's value was still visible here,
+// contrary to what set_config(..., true) ("local") is supposed to
+// guarantee. (2) neither set_config(name, NULL, true) NOR a plain RESET
+// actually restores it to NULL once contaminated this way -- both were
+// tried live and neither worked; set_config with a NULL new_value is a
+// documented no-op (it returns the current value unchanged, it does not
+// clear it), and RESET here reverted to the same stuck '', not to NULL.
+// "Unset" is therefore not a state this code can reliably get back to on
+// this connection, from this function, by any means -- so it doesn't try.
+// Instead, app.current_tenant_id is always pinned to the nil UUID: a
+// syntactically valid uuid (so the tenant_isolation policies' ::uuid cast
+// on it can never fail the way '' does) that gen_random_uuid() will not
+// produce and no real school_id can equal (so it excludes every row via
+// that policy exactly as an unset value was meant to) -- this function's
+// actual visibility guarantee comes entirely from the *_self policies
+// keyed on app.current_user_id below, never from tenant_isolation.
 export async function withSelfContext<T>(userId: string, fn: (client: PoolClient) => Promise<T>): Promise<T> {
   const client = await getPool().connect();
   try {
     await client.query('begin');
-    await client.query('set role app_user');
+    await client.query('set local role app_user'); // see withTenantContext's comment on why LOCAL, not plain SET
+    await client.query(`select set_config('app.current_tenant_id', $1, true)`, [NIL_UUID]);
+    await client.query(`select set_config('app.current_role', '', true)`);
     await client.query(`select set_config('app.current_user_id', $1, true)`, [userId]);
     const result = await fn(client);
     await client.query('commit');

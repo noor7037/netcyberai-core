@@ -1,10 +1,17 @@
 export const ACCESS_COOKIE = 'nca_access';
 export const REFRESH_COOKIE = 'nca_refresh';
 export const PENDING_COOKIE = 'nca_pending';
+// Holds the actor's own pre-impersonation access token while they're
+// viewing as someone else, so /api/control/impersonate/end can restore
+// it without a fresh login. Never sent anywhere but read back by that
+// one route; same httpOnly/secure/sameSite handling as every other cookie
+// here.
+export const IMPERSONATION_RETURN_COOKIE = 'nca_impersonation_return';
 
 export const ACCESS_TTL_SECONDS = 15 * 60;
 export const REFRESH_TTL_SECONDS = 30 * 24 * 60 * 60;
 export const PENDING_TTL_SECONDS = 2 * 60;
+export const IMPERSONATION_TTL_SECONDS = 15 * 60; // PRD §2.3 "time-boxed" -- matches ACCESS_TTL_SECONDS, no PRD-specified number
 
 export function cookieOptions(maxAgeSeconds: number) {
   return {
