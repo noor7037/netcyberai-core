@@ -33,20 +33,29 @@ const ADMIN_ALPHA: SessionClaims & { schoolId: string } = {
   aal: 'aal1',
   sessionId: 'diag-verify',
 };
+// Dedicated fixture users, not the pre-existing forge@/multi@ B2
+// fixtures -- both of those have users.school_id = NULL (a nullable
+// "home school" default per Decision Log C14, independent of their
+// real membership scope), which fails the composite FKs this route
+// needs to satisfy (teachers_school_user_fkey, qr_scan_log's own
+// (school_id, scanned_by) -> users FK) -- confirmed live, the first
+// run of this route threw exactly that. Dedicated fixtures with a
+// real users.school_id avoid touching pre-existing fixtures other
+// tests may depend on.
 const TEACHER_ALPHA: SessionClaims & { schoolId: string } = {
-  sub: '36f144c9-2911-4eab-bdde-0d809dbbfd50',
+  sub: '069eab8e-6645-4312-8ba7-7d79c74bb8c7',
   role: 'teacher',
   schoolId: SCHOOL_ALPHA,
-  membershipId: 'dbdbe4d3-a28a-42b9-9897-7b14257923b1',
+  membershipId: '3edc42ff-16c2-4813-bbf2-4c42e7ee7b29',
   tokenVersion: 0,
   aal: 'aal1',
   sessionId: 'diag-verify',
 };
 const PRINCIPAL_BETA: SessionClaims & { schoolId: string } = {
-  sub: '5911225f-e985-432d-9d41-d03bf66cb6de',
+  sub: 'c8dfbfe1-3e5e-4ed0-8993-4b7dcbc9d3cc',
   role: 'principal',
   schoolId: SCHOOL_BETA,
-  membershipId: '8eddbf5f-bc76-4c06-82db-3c599b0e50c9',
+  membershipId: '45b4ecf8-6c1f-4c22-84cf-f12ceee2c29e',
   tokenVersion: 0,
   aal: 'aal1',
   sessionId: 'diag-verify',
