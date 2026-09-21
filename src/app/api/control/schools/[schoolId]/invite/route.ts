@@ -64,7 +64,14 @@ export async function POST(req: NextRequest, { params }: { params: { schoolId: s
         eventAction: 'membership.invite',
         targetType: 'memberships',
         targetId: rows[0].membership_id,
-        afterState: { email, role, displayName }, // no credential -- there is none to record
+        // IDs and the changed field name only -- never the raw email/
+        // displayName values themselves (Pre-F Architecture Hardening,
+        // docs/10_DECISION_LOG.md's audit-PII rule). The invited
+        // person's identity is already on their own users row, keyed
+        // by targetUserId; the hash-chained, append-only audit_log is
+        // the wrong place to duplicate it, since DPDP erasure of that
+        // person's data can never touch this table.
+        afterState: { role, targetUserId: authUserId },
       });
 
       return rows[0];

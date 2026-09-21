@@ -14,7 +14,7 @@ path. This script makes that discipline mechanically checked instead
 of merely asserted -- the same reasoning as check_claims.py replacing
 an assertion with a check, one level up the stack.
 
-Three checks, each intentionally narrow enough to be exact rather than
+Four checks, each intentionally narrow enough to be exact rather than
 a data-flow analysis this script cannot honestly claim to perform:
 
 1. `set_config(` for a Postgres session GUC appears ONLY in the one
@@ -34,6 +34,19 @@ a data-flow analysis this script cannot honestly claim to perform:
    script can actually verify, rather than a claim the report merely
    makes. It does not, and cannot, prove no *indirect* path exists;
    see the script's own report output for that caveat stated plainly.
+4. A bare `SET ROLE` (anything other than `SET LOCAL ROLE`) is banned
+   EVERYWHERE in src/, with no exemption for AUTHORIZED_MODULE itself.
+   Decision Log C40: a plain `SET ROLE` inside a transaction that
+   commits persists at the SESSION level, and this project's Supavisor
+   pooler (transaction mode) can route the `reset role` meant to undo
+   it to a different physical backend -- leaking `nca_super`
+   (BYPASSRLS) onto a connection some unrelated later request picks up.
+   "It's in the one authorized file" (check 2, above) caught a second
+   call site; it did not catch this, because the leak was in the
+   authorized file's own correct-looking code. Being in db.ts is
+   necessary but not sufficient -- every SET ROLE anywhere must also be
+   SET LOCAL ROLE, checked independently of check 2's file-location
+   rule.
 
 Usage:
     python3 scripts/check_choke_point.py [path ...]   # defaults to src/
@@ -55,6 +68,8 @@ AUTHORIZED_MODULE = "src/lib/auth/db.ts"
 
 SET_CONFIG_RE = re.compile(r"set_config\s*\(")
 SET_ROLE_RE = re.compile(r"['\"`]\s*(set|reset)\s+role\b", re.IGNORECASE)
+BARE_SET_ROLE_RE = re.compile(r"['\"`]\s*set\s+role\b", re.IGNORECASE)
+SET_LOCAL_ROLE_RE = re.compile(r"['\"`]\s*set\s+local\s+role\b", re.IGNORECASE)
 WRAPPER_DEF_RE = re.compile(
     r"export\s+async\s+function\s+(withTenantContext|withSelfContext|withBackendConnection)\b"
 )
@@ -104,6 +119,36 @@ def check_role_switch_and_wrappers(files: list[Path], rel) -> list[str]:
     return violations
 
 
+def check_set_role_is_always_local(files: list[Path], rel) -> list[str]:
+    """A plain SET ROLE (anything but SET LOCAL ROLE) is banned in every
+    file, including AUTHORIZED_MODULE -- Decision Log C40. This is a
+    stricter, file-independent version of the SET_ROLE_RE check above,
+    which only cares WHERE a SET ROLE literal lives, not whether that
+    literal is itself safe under this project's transaction-mode pooler.
+
+    Line comments are stripped before matching: this file's own prose
+    talks ABOUT `SET ROLE` in backtick-quoted code-style emphasis
+    (e.g. "a plain `SET ROLE` persists..."), which otherwise reads as a
+    quote-delimited SQL literal to the regex below. Naive stripping (cut
+    at the first `//`) can rarely eat a coincidental `//` inside an
+    unrelated same-line string; acceptable for the same reason the rest
+    of this script is regex-based rather than a full parser."""
+    violations = []
+    for f in files:
+        rp = rel(f)
+        text = f.read_text()
+        for i, raw_line in enumerate(text.splitlines(), start=1):
+            line = raw_line.split("//", 1)[0]
+            if BARE_SET_ROLE_RE.search(line) and not SET_LOCAL_ROLE_RE.search(line):
+                violations.append(
+                    f"{rp}:{i}: bare SET ROLE (not SET LOCAL ROLE) -- persists at the session "
+                    "level past this transaction's commit under this project's Supavisor pooler "
+                    "(Decision Log C40), leaking the role onto whatever unrelated request the "
+                    "pool hands that connection to next"
+                )
+    return violations
+
+
 def check_route_handlers_never_read_schoolid(files: list[Path], rel) -> list[str]:
     violations = []
     for f in files:
@@ -130,6 +175,7 @@ def run(scan_root: Path, project_root: Path | None = None) -> int:
     violations = (
         check_set_config(files, rel)
         + check_role_switch_and_wrappers(files, rel)
+        + check_set_role_is_always_local(files, rel)
         + check_route_handlers_never_read_schoolid(files, rel)
     )
     if violations:
@@ -161,7 +207,7 @@ def self_test() -> int:
         good_dir.mkdir(parents=True)
         (good_dir / "db.ts").write_text(
             "export async function withTenantContext() { "
-            "await client.query(\"set role app_user\"); "
+            "await client.query(\"set local role app_user\"); "
             "await client.query(`select set_config('app.current_tenant_id', $1, true)`); }\n"
         )
         route_dir = tmp / "good" / "src" / "app" / "api" / "auth" / "switch-school"
@@ -197,7 +243,22 @@ def self_test() -> int:
             print("SELF-TEST FAILED: a route reading body.schoolId directly was NOT caught")
             return 1
 
-        print("SELF-TEST PASSED: clean fixture passes, both planted violations are caught")
+        # Decision Log C40's own bug: a bare SET ROLE planted INSIDE the
+        # one authorized module itself must still fail -- being in the
+        # right file (checks 1/2) is not sufficient (check 4).
+        bad3_dir = tmp / "bad3" / "src" / "lib" / "auth"
+        bad3_dir.mkdir(parents=True)
+        (bad3_dir / "db.ts").write_text(
+            "export async function withTenantContext() { "
+            "await client.query(\"set role app_user\"); "
+            "await client.query(`select set_config('app.current_tenant_id', $1, true)`); }\n"
+        )
+        rc_bad3 = run(tmp / "bad3" / "src", project_root=tmp / "bad3")
+        if rc_bad3 == 0:
+            print("SELF-TEST FAILED: a bare SET ROLE planted inside the authorized module itself was NOT caught")
+            return 1
+
+        print("SELF-TEST PASSED: clean fixture passes, all three planted violations are caught")
         return 0
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
