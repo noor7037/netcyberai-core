@@ -150,7 +150,7 @@ async function runFkSection() {
   }
 }
 
-async function runOcrSection() {
+async function runOcrDocSection() {
   const testStudentId = await getTestStudentId();
   if (!testStudentId) return { error: 'run ?section=csv first' };
 
@@ -202,29 +202,33 @@ async function runOcrSection() {
   const { newAuthAdminClient } = await import('@/lib/auth/supabase');
   const removeResult = await newAuthAdminClient().storage.from('documents').remove([objectPath]);
 
-  const documentScanOcr = {
-    rawTextSample: ocrResult.rawText.slice(0, 200),
-    wordCount: ocrResult.words.length,
-    candidateFields,
-    storageRoundTrip: { uploadedBytes: docImage.length, fetchedBytes: fetchedBytes.length, matches: fetchedBytes.length === docImage.length },
-    documentId,
-    reviewRecordedBothOutcomes: extractionIds.length >= 2,
-    storageObjectRemoved: !removeResult.error,
-    pass: candidateFields.length > 0 && fetchedBytes.length === docImage.length,
+  return {
+    documentScanOcr: {
+      rawTextSample: ocrResult.rawText.slice(0, 200),
+      wordCount: ocrResult.words.length,
+      candidateFields,
+      storageRoundTrip: { uploadedBytes: docImage.length, fetchedBytes: fetchedBytes.length, matches: fetchedBytes.length === docImage.length },
+      documentId,
+      reviewRecordedBothOutcomes: extractionIds.length >= 2,
+      storageObjectRemoved: !removeResult.error,
+      pass: candidateFields.length > 0 && fetchedBytes.length === docImage.length,
+    },
   };
+}
 
+async function runOcrAadhaarSection() {
   const aadhaarImage = Buffer.from(AADHAAR_TEST_IMAGE_BASE64, 'base64');
   const aadhaarOcr = await runOcr(aadhaarImage);
   const aadhaar = extractAadhaarLast4AndNameMatch(aadhaarOcr, 'Rahul Sharma');
   const serialized = JSON.stringify(aadhaar);
-  const aadhaarConstraint = {
-    extraction: aadhaar,
-    fullNumberNeverLeaked: !serialized.includes('1234') && !serialized.includes('5678') && !serialized.includes('12345678'),
-    imageNeverUploaded: true, // structural: uploadDocument is never called for this path (grep-verified, see report)
-    pass: aadhaar !== null && aadhaar.last4 === '9012' && !serialized.includes('1234') && !serialized.includes('5678'),
+  return {
+    aadhaarConstraint: {
+      extraction: aadhaar,
+      fullNumberNeverLeaked: !serialized.includes('1234') && !serialized.includes('5678') && !serialized.includes('12345678'),
+      imageNeverUploaded: true, // structural: uploadDocument is never called for this path (grep-verified, see report)
+      pass: aadhaar !== null && aadhaar.last4 === '9012' && !serialized.includes('1234') && !serialized.includes('5678'),
+    },
   };
-
-  return { documentScanOcr, aadhaarConstraint };
 }
 
 async function runQrSection() {
@@ -299,12 +303,14 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ section, csvImport: await runCsvSection() });
       case 'fk':
         return NextResponse.json({ section, compositeFkNegativeTest: await runFkSection() });
-      case 'ocr':
-        return NextResponse.json({ section, ...(await runOcrSection()) });
+      case 'ocr-doc':
+        return NextResponse.json({ section, ...(await runOcrDocSection()) });
+      case 'ocr-aadhaar':
+        return NextResponse.json({ section, ...(await runOcrAadhaarSection()) });
       case 'qr':
         return NextResponse.json({ section, qr: await runQrSection() });
       default:
-        return NextResponse.json({ error: 'section must be one of csv, fk, ocr, qr' }, { status: 400 });
+        return NextResponse.json({ error: 'section must be one of csv, fk, ocr-doc, ocr-aadhaar, qr' }, { status: 400 });
     }
   } catch (err) {
     return NextResponse.json(
