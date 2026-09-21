@@ -1,0 +1,75 @@
+-- =====================================================================
+-- Found live while answering a pre-merge question about the two-school
+-- isolation script's table count (why 37 vs 39 against
+-- check_rls_policies.py). Chasing that discrepancy surfaced two real,
+-- previously undocumented bugs on `sessions`, unrelated to the count
+-- itself:
+--
+-- 1. `sessions` had row level security ENABLED live
+--    (pg_class.relrowsecurity = true) with ZERO `create policy`
+--    statements for it anywhere in supabase/migrations/*.sql -- this
+--    project's sole source of truth for schema (Decision Log Part 5).
+--    No migration ever ran `alter table sessions enable row level
+--    security`; this was live drift, applied outside the migration
+--    system, origin unknown (most plausible: an earlier broad
+--    verification query in this same engagement, not a real operator
+--    change -- no real users exist on this project yet).
+--
+--    RLS-enabled-with-zero-policies does NOT mean "open"; it means
+--    default-deny for every role except the table owner (only while
+--    force-rls is off) and BYPASSRLS roles. `app_backend` (the LOGIN
+--    role the app actually connects as, granted select/insert/update
+--    on `sessions` directly in migration 20260917090000) is neither
+--    the owner nor BYPASSRLS. Confirmed live: as `app_backend`, the
+--    exact `insert into sessions (...)` statement real login/session
+--    creation issues failed with
+--      `42501: new row violates row-level security policy for table "sessions"`
+--    Real login was broken in the live database. `src/lib/auth/db.ts`'s
+--    own withBackendConnection comment ("reachable only via app_backend's
+--    direct grants") describes the always-intended design; this
+--    migration restores it.
+--
+-- 2. Independently, `app_user` and `nca_super` held full
+--    select/insert/update/delete grants on `sessions`, confirmed live
+--    via information_schema.table_privileges. Root cause:
+--    role_grants.sql's `alter default privileges in schema public
+--    grant ... to app_user, nca_super` (that migration's own comment:
+--    "Any table created after this point ... gets the same grants
+--    automatically") -- `sessions` was created by a later migration
+--    (20260917090000) and silently inherited it. This directly
+--    contradicts db.ts's own comment ("neither app_user nor nca_super
+--    was ever granted access to it") and was a real latent exposure:
+--    with RLS correctly OFF (as below), any app_user-scoped request
+--    would have full CRUD on every user's session row, refresh-token
+--    hash included, across every tenant -- exactly the kind of gap
+--    role_grants.sql already anticipated and closed once for
+--    `audit_log` (see its own revoke immediately after the same
+--    blanket grant); `sessions` needed the identical treatment and
+--    never got it.
+--
+--    Same live check also found `anon` and `authenticated` -- the two
+--    roles Supabase's PostgREST layer exposes to a client holding the
+--    project's public anon key -- with the same default full-CRUD
+--    grant on `sessions` (Supabase's own standard per-project default
+--    privileges, not something this repo's migrations set up). Every
+--    other tenant table is safe from this by construction: RLS with a
+--    real tenant_isolation policy still applies to anon/authenticated
+--    (an unset app.current_tenant_id GUC makes the policy's
+--    `school_id = current_setting(...)::uuid` comparison false for
+--    every row). `sessions` has no such policy by design, so it was
+--    the one table where this defaulted grant was a genuine,
+--    reachable-via-the-public-anon-key exposure the moment RLS is
+--    (correctly) off.
+--
+-- Fix: restore the always-documented, always-intended access model --
+-- `sessions` reachable ONLY through `app_backend`'s own narrow grant
+-- (migration 20260917090000), nothing else, no RLS layer standing in
+-- for that (RLS enabled-with-no-policy is not a substitute for a
+-- correct grant and, as shown above, breaks the one role it was meant
+-- to let through).
+-- =====================================================================
+
+alter table sessions disable row level security;
+
+revoke select, insert, update, delete on sessions from app_user, nca_super;
+revoke select, insert, update, delete, truncate, references, trigger on sessions from anon, authenticated;
