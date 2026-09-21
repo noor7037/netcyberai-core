@@ -142,11 +142,17 @@ async function isAuthorizedToView(
   if (role !== 'teacher') return true;
   if (!studentClassId) return false;
 
+  // classes.class_teacher_id references users(user_id) directly (see
+  // db/schema.sql) -- NOT teachers(teacher_id). Found while writing
+  // this VERIFY pass: an earlier version of this query compared
+  // class_teacher_id against t.teacher_id, two different ID spaces
+  // that would only ever coincidentally match. Fixed to compare
+  // against t.user_id, the teachers row's own back-reference to users.
   const { rows } = await client.query(
     `select 1 from teachers t
      where t.school_id = $1 and t.user_id = $2
        and (
-         exists (select 1 from classes c where c.school_id = $1 and c.class_id = $3 and c.class_teacher_id = t.teacher_id)
+         exists (select 1 from classes c where c.school_id = $1 and c.class_id = $3 and c.class_teacher_id = t.user_id)
          or exists (select 1 from teacher_subjects ts where ts.school_id = $1 and ts.teacher_id = t.teacher_id and ts.class_id = $3)
        )`,
     [schoolId, scannerUserId, studentClassId]
