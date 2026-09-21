@@ -41,12 +41,6 @@ export async function POST(req: NextRequest) {
 
   let impersonationId: string;
   try {
-    // eslint-disable-next-line no-console -- TEMPORARY diag, removed with verify-prompt-e
-    console.error('DIAG impersonate/start bind values', {
-      sub: guard.claims.sub,
-      targetUserId,
-      membershipSchoolId: membership.schoolId,
-    });
     impersonationId = await withTenantContext(guard.claims, async (client) => {
       const { rows } = await client.query(
         `insert into impersonation_sessions (actor_user_id, target_user_id, target_school_id, reason, expires_at)

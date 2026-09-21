@@ -182,25 +182,30 @@ export async function withSuperAdminBypass<T>(fn: (client: PoolClient) => Promis
 // only app.current_user_id and runs as app_user, relying on the
 // users_self / memberships_self policies -- never nca_super, so this
 // path carries no more privilege than "see your own rows."
+//
+// Confirmed live: app.current_tenant_id is explicitly cleared here, not
+// just left untouched. Under this project's Supavisor pooler (transaction
+// mode, DATABASE_URL's pooler.supabase.com:6543), a set_config(..., true)
+// ("local", meant to unwind at end of transaction per ordinary Postgres
+// semantics) from an EARLIER, already-committed transaction was still
+// visible as '' at the start of a later, unrelated transaction on the
+// connection the pool handed back -- proven with a temporary diagnostic
+// query, not inferred. Rather than depend on exactly when the pooler does
+// or doesn't honor LOCAL scoping, every GUC this function's queries can be
+// affected by is set explicitly, every time, so no transaction ever
+// inherits a value it didn't itself set.
 export async function withSelfContext<T>(userId: string, fn: (client: PoolClient) => Promise<T>): Promise<T> {
   const client = await getPool().connect();
   try {
     await client.query('begin');
     await client.query('set local role app_user'); // see withTenantContext's comment on why LOCAL, not plain SET
+    await client.query(`select set_config('app.current_tenant_id', null, true)`);
+    await client.query(`select set_config('app.current_role', null, true)`);
     await client.query(`select set_config('app.current_user_id', $1, true)`, [userId]);
-    // eslint-disable-next-line no-console -- TEMPORARY diag, removed with verify-prompt-e
-    console.error('DIAG withSelfContext', {
-      userIdArg: userId,
-      currentUserIdSetting: (await client.query(`select current_setting('app.current_user_id', true) as v`)).rows[0].v,
-      currentTenantIdSetting: (await client.query(`select current_setting('app.current_tenant_id', true) as v`)).rows[0].v,
-      currentRole: (await client.query(`select current_user as v`)).rows[0].v,
-    });
     const result = await fn(client);
     await client.query('commit');
     return result;
   } catch (err) {
-    // eslint-disable-next-line no-console -- TEMPORARY diag, removed with verify-prompt-e
-    console.error('DIAG withSelfContext error', String(err));
     await client.query('rollback').catch(() => {});
     throw err;
   } finally {
