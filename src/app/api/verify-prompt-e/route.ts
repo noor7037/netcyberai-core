@@ -43,11 +43,17 @@ export async function GET(req: NextRequest) {
   // This route's own internal fetches below hit the same .vercel.app
   // hostname a browser would -- Vercel's Deployment Protection applies
   // there too, not only to the initial external request that reached
-  // this handler. Relay whatever bypass credential the caller already
-  // used to get past that wall, rather than embedding a second copy of
-  // it in source.
-  const bypassSecret =
-    req.headers.get('x-vercel-protection-bypass') ?? req.nextUrl.searchParams.get('x-vercel-protection-bypass');
+  // this handler. The bypass query param/header on the INCOMING request
+  // doesn't survive to here -- confirmed live: it's consumed at Vercel's
+  // edge, never forwarded to the function -- so this falls back to
+  // Vercel's own auto-injected VERCEL_AUTOMATION_BYPASS_SECRET (set when
+  // Protection Bypass for Automation is enabled with "add to env vars"),
+  // never a second hardcoded copy of the secret in source.
+  const fromHeader = req.headers.get('x-vercel-protection-bypass');
+  const fromQuery = req.nextUrl.searchParams.get('x-vercel-protection-bypass');
+  const fromEnv = process.env.VERCEL_AUTOMATION_BYPASS_SECRET ?? null;
+  const bypassSecret = fromHeader ?? fromQuery ?? fromEnv;
+  const bypassSecretSource = () => (fromHeader ? 'header' : fromQuery ? 'query' : fromEnv ? 'env' : 'none');
   const bypassHeaders: Record<string, string> = bypassSecret ? { 'x-vercel-protection-bypass': bypassSecret } : {};
   const checks: Record<string, CheckResult> = {};
   const suffix = randomUUID();
@@ -221,9 +227,12 @@ export async function GET(req: NextRequest) {
     };
 
     const pass = Object.values(checks).every((c) => c.pass === true);
-    return NextResponse.json({ pass, checks }, { status: 200 });
+    return NextResponse.json({ pass, checks, bypassSecretSource: bypassSecretSource() }, { status: 200 });
   } catch (err) {
-    return NextResponse.json({ pass: false, checks, fatalError: String(err) }, { status: 200 });
+    return NextResponse.json(
+      { pass: false, checks, fatalError: String(err), bypassSecretSource: bypassSecretSource() },
+      { status: 200 }
+    );
   } finally {
     try {
       await withSuperAdminBypass(async (client) => {
