@@ -96,9 +96,23 @@ async function createFixture(
   return { schoolId, userId, membershipId, studentId, parentId, parentPhone };
 }
 
-async function cleanupFixture(client: PoolClient, fixture: Fixture): Promise<void> {
+// consent_ledger is append-only even for nca_super (Prompt H Stage 0b's
+// own fix) -- a granted-consent fixture's row there can never be
+// deleted through this app, by design, and schools' FK from
+// consent_ledger has ON DELETE NO ACTION, so the throwaway school
+// itself becomes permanently undeletable too once consent was ever
+// granted. This is the CORRECT, intended consequence of an append-only
+// audit trail, not a bug to route around -- so this cleanup does
+// everything it structurally can (every other child row, every vault
+// secret) and reports what it could NOT remove, rather than deleting
+// the audit trail's own accountability out from under it. Residual
+// VERIFYH-% schools/consent_ledger rows are swept up afterward with a
+// privileged, one-time direct SQL pass (Supabase's own postgres role,
+// which owns the table and isn't subject to the same-session grants
+// this fix revoked), never by loosening what this migration correctly
+// locked down.
+async function cleanupFixture(client: PoolClient, fixture: Fixture): Promise<{ fullyCleanedUp: boolean }> {
   await client.query(`delete from communication_log where school_id = $1`, [fixture.schoolId]);
-  await client.query(`delete from consent_ledger where school_id = $1`, [fixture.schoolId]);
   await client.query(`delete from parent_student_map where school_id = $1`, [fixture.schoolId]);
   await client.query(`delete from parents where school_id = $1`, [fixture.schoolId]);
   await client.query(`delete from students where school_id = $1`, [fixture.schoolId]);
@@ -114,7 +128,12 @@ async function cleanupFixture(client: PoolClient, fixture: Fixture): Promise<voi
   }
   await client.query(`delete from memberships where school_id = $1`, [fixture.schoolId]);
   await client.query(`delete from users where school_id = $1`, [fixture.schoolId]);
-  await client.query(`delete from schools where school_id = $1`, [fixture.schoolId]);
+  try {
+    await client.query(`delete from schools where school_id = $1`, [fixture.schoolId]);
+    return { fullyCleanedUp: true };
+  } catch {
+    return { fullyCleanedUp: false };
+  }
 }
 
 function claimsFor(fixture: Fixture): SessionClaims {
@@ -132,23 +151,20 @@ function claimsFor(fixture: Fixture): SessionClaims {
 async function runConsentSection() {
   return withSuperAdminBypass(async (client) => {
     const fixture = await createFixture(client, { grantConsent: false });
-    try {
-      const result = await withTenantContext(claimsFor(fixture), (c) =>
-        sendWhatsAppMessage(c, {
-          schoolId: fixture.schoolId,
-          studentId: fixture.studentId,
-          purpose: 'operational_communication',
-          toPhone: fixture.parentPhone,
-          templateName: 'attendance_absence_notification',
-          templateParams: {},
-          dedupeKey: 'verifyh-consent-1',
-        })
-      );
-      const { rows: logRows } = await client.query(`select status, reason from communication_log where log_id = $1`, [result.logId]);
-      return { result, queryable: logRows[0], pass: result.status === 'blocked_consent' && logRows[0]?.status === 'blocked_consent' };
-    } finally {
-      await cleanupFixture(client, fixture);
-    }
+    const result = await withTenantContext(claimsFor(fixture), (c) =>
+      sendWhatsAppMessage(c, {
+        schoolId: fixture.schoolId,
+        studentId: fixture.studentId,
+        purpose: 'operational_communication',
+        toPhone: fixture.parentPhone,
+        templateName: 'attendance_absence_notification',
+        templateParams: {},
+        dedupeKey: 'verifyh-consent-1',
+      })
+    );
+    const { rows: logRows } = await client.query(`select status, reason from communication_log where log_id = $1`, [result.logId]);
+    const cleanup = await cleanupFixture(client, fixture);
+    return { result, queryable: logRows[0], cleanup, pass: result.status === 'blocked_consent' && logRows[0]?.status === 'blocked_consent' };
   });
 }
 
@@ -159,189 +175,177 @@ async function runQuietHoursSection() {
     const start = `${pad(nowIst.getHours())}:${pad(nowIst.getMinutes())}`;
     const end = `${pad((nowIst.getHours() + 1) % 24)}:${pad(nowIst.getMinutes())}`;
     const fixture = await createFixture(client, { grantConsent: true, quietHoursStart: start, quietHoursEnd: end });
-    try {
-      const result = await withTenantContext(claimsFor(fixture), (c) =>
-        sendWhatsAppMessage(c, {
-          schoolId: fixture.schoolId,
-          studentId: fixture.studentId,
-          purpose: 'operational_communication',
-          toPhone: fixture.parentPhone,
-          templateName: 'attendance_absence_notification',
-          templateParams: {},
-          dedupeKey: 'verifyh-quiet-1',
-        })
-      );
-      return { result, quietHoursWindow: { start, end }, pass: result.status === 'blocked_quiet_hours' };
-    } finally {
-      await cleanupFixture(client, fixture);
-    }
+    const result = await withTenantContext(claimsFor(fixture), (c) =>
+      sendWhatsAppMessage(c, {
+        schoolId: fixture.schoolId,
+        studentId: fixture.studentId,
+        purpose: 'operational_communication',
+        toPhone: fixture.parentPhone,
+        templateName: 'attendance_absence_notification',
+        templateParams: {},
+        dedupeKey: 'verifyh-quiet-1',
+      })
+    );
+    const cleanup = await cleanupFixture(client, fixture);
+    return { result, quietHoursWindow: { start, end }, cleanup, pass: result.status === 'blocked_quiet_hours' };
   });
 }
 
 async function runIdempotencySection() {
   return withSuperAdminBypass(async (client) => {
     const fixture = await createFixture(client, { grantConsent: true });
-    try {
-      const mock = new MockWhatsAppProvider();
-      const first = await withTenantContext(claimsFor(fixture), (c) =>
-        sendWhatsAppMessage(
-          c,
-          {
-            schoolId: fixture.schoolId,
-            studentId: fixture.studentId,
-            purpose: 'operational_communication',
-            toPhone: fixture.parentPhone,
-            templateName: 'attendance_absence_notification',
-            templateParams: {},
-            dedupeKey: 'verifyh-idempotent-1',
-          },
-          { platformDefaultProvider: mock }
-        )
-      );
-      const second = await withTenantContext(claimsFor(fixture), (c) =>
-        sendWhatsAppMessage(
-          c,
-          {
-            schoolId: fixture.schoolId,
-            studentId: fixture.studentId,
-            purpose: 'operational_communication',
-            toPhone: fixture.parentPhone,
-            templateName: 'attendance_absence_notification',
-            templateParams: {},
-            dedupeKey: 'verifyh-idempotent-1',
-          },
-          { platformDefaultProvider: mock }
-        )
-      );
-      const { rows: logRows } = await client.query(
-        `select count(*)::int as n from communication_log where school_id = $1 and dedupe_key = 'verifyh-idempotent-1'`,
-        [fixture.schoolId]
-      );
-      return {
-        first,
-        second,
-        realProviderCallCount: mock.calls.length,
-        logRowCount: logRows[0].n,
-        pass: first.status === 'sent' && second.idempotent === true && mock.calls.length === 1 && logRows[0].n === 1,
-      };
-    } finally {
-      await cleanupFixture(client, fixture);
-    }
+    const mock = new MockWhatsAppProvider();
+    const first = await withTenantContext(claimsFor(fixture), (c) =>
+      sendWhatsAppMessage(
+        c,
+        {
+          schoolId: fixture.schoolId,
+          studentId: fixture.studentId,
+          purpose: 'operational_communication',
+          toPhone: fixture.parentPhone,
+          templateName: 'attendance_absence_notification',
+          templateParams: {},
+          dedupeKey: 'verifyh-idempotent-1',
+        },
+        { platformDefaultProvider: mock }
+      )
+    );
+    const second = await withTenantContext(claimsFor(fixture), (c) =>
+      sendWhatsAppMessage(
+        c,
+        {
+          schoolId: fixture.schoolId,
+          studentId: fixture.studentId,
+          purpose: 'operational_communication',
+          toPhone: fixture.parentPhone,
+          templateName: 'attendance_absence_notification',
+          templateParams: {},
+          dedupeKey: 'verifyh-idempotent-1',
+        },
+        { platformDefaultProvider: mock }
+      )
+    );
+    const { rows: logRows } = await client.query(
+      `select count(*)::int as n from communication_log where school_id = $1 and dedupe_key = 'verifyh-idempotent-1'`,
+      [fixture.schoolId]
+    );
+    const cleanup = await cleanupFixture(client, fixture);
+    return {
+      first,
+      second,
+      realProviderCallCount: mock.calls.length,
+      logRowCount: logRows[0].n,
+      cleanup,
+      pass: first.status === 'sent' && second.idempotent === true && mock.calls.length === 1 && logRows[0].n === 1,
+    };
   });
 }
 
 async function runBudgetSection() {
   return withSuperAdminBypass(async (client) => {
     const fixture = await createFixture(client, { grantConsent: true, monthlyBudgetPaise: 0 });
-    try {
-      const result = await withTenantContext(claimsFor(fixture), (c) =>
-        sendWhatsAppMessage(c, {
-          schoolId: fixture.schoolId,
-          studentId: fixture.studentId,
-          purpose: 'operational_communication',
-          toPhone: fixture.parentPhone,
-          templateName: 'attendance_absence_notification',
-          templateParams: {},
-          dedupeKey: 'verifyh-budget-1',
-        })
-      );
-      return { result, pass: result.status === 'blocked_budget' };
-    } finally {
-      await cleanupFixture(client, fixture);
-    }
+    const result = await withTenantContext(claimsFor(fixture), (c) =>
+      sendWhatsAppMessage(c, {
+        schoolId: fixture.schoolId,
+        studentId: fixture.studentId,
+        purpose: 'operational_communication',
+        toPhone: fixture.parentPhone,
+        templateName: 'attendance_absence_notification',
+        templateParams: {},
+        dedupeKey: 'verifyh-budget-1',
+      })
+    );
+    const cleanup = await cleanupFixture(client, fixture);
+    return { result, cleanup, pass: result.status === 'blocked_budget' };
   });
 }
 
 async function runResolutionActiveSection() {
   return withSuperAdminBypass(async (client) => {
     const fixture = await createFixture(client, { grantConsent: true });
-    try {
-      await withTenantContext(claimsFor(fixture), (c) =>
-        c.query(`select whatsapp_config_set_credentials($1, $2, $3, $4, $5, $6, $7)`, [
-          fixture.schoolId,
-          'verifyh-waba',
-          'verifyh-phone-id',
-          '+910000000000',
-          'fake-access-token',
-          'fake-webhook-token',
-          fixture.userId,
-        ])
-      );
-      await client.query(`update school_whatsapp_configs set status = 'active' where school_id = $1`, [fixture.schoolId]);
+    await withTenantContext(claimsFor(fixture), (c) =>
+      c.query(`select whatsapp_config_set_credentials($1, $2, $3, $4, $5, $6, $7)`, [
+        fixture.schoolId,
+        'verifyh-waba',
+        'verifyh-phone-id',
+        '+910000000000',
+        'fake-access-token',
+        'fake-webhook-token',
+        fixture.userId,
+      ])
+    );
+    await client.query(`update school_whatsapp_configs set status = 'active' where school_id = $1`, [fixture.schoolId]);
 
-      const result = await withTenantContext(claimsFor(fixture), (c) =>
-        sendWhatsAppMessage(c, {
-          schoolId: fixture.schoolId,
-          studentId: fixture.studentId,
-          purpose: 'operational_communication',
-          toPhone: fixture.parentPhone,
-          templateName: 'attendance_absence_notification',
-          templateParams: {},
-          dedupeKey: 'verifyh-resolution-active-1',
-        })
-      );
-      const { rows: logRows } = await client.query(`select provider_used, fallback_reason, status from communication_log where log_id = $1`, [
-        result.logId,
-      ]);
-      return {
-        result,
-        loggedRow: logRows[0],
-        pass: result.providerUsed === 'school_specific' && logRows[0]?.provider_used === 'school_specific' && logRows[0]?.fallback_reason === null,
-      };
-    } finally {
-      await cleanupFixture(client, fixture);
-    }
+    const result = await withTenantContext(claimsFor(fixture), (c) =>
+      sendWhatsAppMessage(c, {
+        schoolId: fixture.schoolId,
+        studentId: fixture.studentId,
+        purpose: 'operational_communication',
+        toPhone: fixture.parentPhone,
+        templateName: 'attendance_absence_notification',
+        templateParams: {},
+        dedupeKey: 'verifyh-resolution-active-1',
+      })
+    );
+    const { rows: logRows } = await client.query(`select provider_used, fallback_reason, status from communication_log where log_id = $1`, [
+      result.logId,
+    ]);
+    const cleanup = await cleanupFixture(client, fixture);
+    return {
+      result,
+      loggedRow: logRows[0],
+      cleanup,
+      pass: result.providerUsed === 'school_specific' && logRows[0]?.provider_used === 'school_specific' && logRows[0]?.fallback_reason === null,
+    };
   });
 }
 
 async function runResolutionFallbackSection() {
   return withSuperAdminBypass(async (client) => {
     const fixture = await createFixture(client, { grantConsent: true });
-    try {
-      await withTenantContext(claimsFor(fixture), (c) =>
-        c.query(`select whatsapp_config_set_credentials($1, $2, $3, $4, $5, $6, $7)`, [
-          fixture.schoolId,
-          'verifyh-waba',
-          'verifyh-phone-id',
-          '+910000000000',
-          'fake-access-token',
-          'fake-webhook-token',
-          fixture.userId,
-        ])
-      );
-      await client.query(`update school_whatsapp_configs set status = 'suspended' where school_id = $1`, [fixture.schoolId]);
+    await withTenantContext(claimsFor(fixture), (c) =>
+      c.query(`select whatsapp_config_set_credentials($1, $2, $3, $4, $5, $6, $7)`, [
+        fixture.schoolId,
+        'verifyh-waba',
+        'verifyh-phone-id',
+        '+910000000000',
+        'fake-access-token',
+        'fake-webhook-token',
+        fixture.userId,
+      ])
+    );
+    await client.query(`update school_whatsapp_configs set status = 'suspended' where school_id = $1`, [fixture.schoolId]);
 
-      const mock = new MockWhatsAppProvider();
-      const result = await withTenantContext(claimsFor(fixture), (c) =>
-        sendWhatsAppMessage(
-          c,
-          {
-            schoolId: fixture.schoolId,
-            studentId: fixture.studentId,
-            purpose: 'operational_communication',
-            toPhone: fixture.parentPhone,
-            templateName: 'attendance_absence_notification',
-            templateParams: {},
-            dedupeKey: 'verifyh-resolution-fallback-1',
-          },
-          { platformDefaultProvider: mock }
-        )
-      );
-      const { rows: logRows } = await client.query(`select provider_used, fallback_reason, status from communication_log where log_id = $1`, [
-        result.logId,
-      ]);
-      return {
-        result,
-        loggedRow: logRows[0],
-        pass:
-          result.providerUsed === 'platform_default' &&
-          logRows[0]?.provider_used === 'platform_default' &&
-          typeof logRows[0]?.fallback_reason === 'string' &&
-          logRows[0].fallback_reason.includes('suspended'),
-      };
-    } finally {
-      await cleanupFixture(client, fixture);
-    }
+    const mock = new MockWhatsAppProvider();
+    const result = await withTenantContext(claimsFor(fixture), (c) =>
+      sendWhatsAppMessage(
+        c,
+        {
+          schoolId: fixture.schoolId,
+          studentId: fixture.studentId,
+          purpose: 'operational_communication',
+          toPhone: fixture.parentPhone,
+          templateName: 'attendance_absence_notification',
+          templateParams: {},
+          dedupeKey: 'verifyh-resolution-fallback-1',
+        },
+        { platformDefaultProvider: mock }
+      )
+    );
+    const { rows: logRows } = await client.query(`select provider_used, fallback_reason, status from communication_log where log_id = $1`, [
+      result.logId,
+    ]);
+    const cleanup = await cleanupFixture(client, fixture);
+    return {
+      result,
+      loggedRow: logRows[0],
+      cleanup,
+      pass:
+        result.providerUsed === 'platform_default' &&
+        logRows[0]?.provider_used === 'platform_default' &&
+        typeof logRows[0]?.fallback_reason === 'string' &&
+        logRows[0].fallback_reason.includes('suspended'),
+    };
   });
 }
 
