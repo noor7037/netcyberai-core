@@ -43,6 +43,9 @@ jobs:
       - name: No non-privileged role holds UPDATE/DELETE on an append-only table
         run: python3 scripts/check_append_only_grants.py
 
+      - name: WhatsApp send-gate stays a single allowlisted choke point
+        run: python3 scripts/check_whatsapp_send_gate.py
+
       - name: Text-color contrast meets WCAG floors
         run: python3 scripts/check_contrast.py
 
