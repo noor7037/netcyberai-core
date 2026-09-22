@@ -2,6 +2,7 @@ import type { PoolClient } from 'pg';
 import type { StaffRole } from '@/lib/auth/types';
 import { writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected } from '@/lib/db/rows';
+import { sendWhatsAppMessage } from '@/lib/whatsapp/gate';
 
 // 04_SYSTEM_DESIGN_PRD.md Sec3.2's own state machine:
 //   Capture -> same-day correction window (10 min, no note) ->
@@ -62,6 +63,43 @@ export interface MarkAttendanceResult {
   alreadyMarked: string[]; // student_ids that already had a row for this date -- use correctAttendance instead
 }
 
+// 04_SYSTEM_DESIGN_PRD.md Sec3.2's own flow: capture -> ... -> consent +
+// eligibility gate -> 1-on-1 WhatsApp dispatch. Task 2's own
+// consolidated text confirms operational_communication (not
+// daily_pulse) is the purpose that applies here -- checked live
+// against ConsentPanel.tsx's own purpose list, Prompt G:
+// "operational_communication: Fee notices, receipts, absence alerts,
+// notices." The dedupe key is scoped to the attendance row itself, not
+// the specific status-change event, so a student corrected away from
+// and back to absent on the same day still only ever notifies once.
+// One send per linked guardian -- consent eligibility in this schema
+// is a per-student, not per-guardian, property (Prompt G's
+// isPurposeGranted checks (school, student, purpose) only), so once a
+// student is eligible every linked guardian with a phone number on
+// file is notified.
+async function notifyGuardiansOfAbsence(
+  client: PoolClient,
+  params: { schoolId: string; attendanceId: string; studentId: string }
+): Promise<void> {
+  const { rows: guardians } = await client.query(
+    `select p.parent_id, p.phone from parent_student_map psm
+     join parents p on p.school_id = psm.school_id and p.parent_id = psm.parent_id
+     where psm.school_id = $1 and psm.student_id = $2`,
+    [params.schoolId, params.studentId]
+  );
+  for (const guardian of guardians) {
+    await sendWhatsAppMessage(client, {
+      schoolId: params.schoolId,
+      studentId: params.studentId,
+      purpose: 'operational_communication',
+      toPhone: guardian.phone,
+      templateName: 'attendance_absence_notification',
+      templateParams: { studentId: params.studentId },
+      dedupeKey: `attendance_absence:${params.attendanceId}:${guardian.parent_id}`,
+    });
+  }
+}
+
 // Daily marking only ever INSERTs -- a student already marked for this
 // date must go through correctAttendance, which is the one path that
 // carries the edit-window/audit-note rules. Marking is restricted to
@@ -97,11 +135,17 @@ export async function markAttendance(
       args.push(entry.studentId, entry.status);
       values.push(`($1, $2, $3, $${args.length - 1}, $${args.length}, $4)`);
     }
-    await client.query(
+    const { rows: insertedRows } = await client.query(
       `insert into attendance (school_id, class_id, date, student_id, status, marked_by)
-       values ${values.join(', ')}`,
+       values ${values.join(', ')}
+       returning attendance_id, student_id, status`,
       args
     );
+    for (const row of insertedRows) {
+      if (row.status === 'absent') {
+        await notifyGuardiansOfAbsence(client, { schoolId: params.schoolId, attendanceId: row.attendance_id, studentId: row.student_id });
+      }
+    }
   }
 
   return {
@@ -122,7 +166,7 @@ export async function correctAttendance(
   }
 ): Promise<{ attendance_id: string; status: AttendanceStatus }> {
   const { rows } = await client.query(
-    `select attendance_id, date, status, created_at from attendance where school_id = $1 and attendance_id = $2`,
+    `select attendance_id, student_id, date, status, created_at from attendance where school_id = $1 and attendance_id = $2`,
     [params.schoolId, params.attendanceId]
   );
   const before = rows[0];
@@ -150,6 +194,10 @@ export async function correctAttendance(
     [params.schoolId, params.attendanceId, params.newStatus]
   );
   assertRowsAffected(result, 'attendance correction affected 0 rows -- RLS likely denied it silently');
+
+  if (params.newStatus === 'absent') {
+    await notifyGuardiansOfAbsence(client, { schoolId: params.schoolId, attendanceId: params.attendanceId, studentId: before.student_id });
+  }
 
   await writeAuditLog(client, {
     schoolId: params.schoolId,
