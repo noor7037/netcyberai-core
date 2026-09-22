@@ -157,7 +157,7 @@ async function runForm6Section() {
 
 async function runMuteSection() {
   await withSuperAdminBypass(async (client) => {
-    await muteForm6Advisory(client, SCHOOL_ALPHA, ADMIN_ALPHA.sub);
+    await muteForm6Advisory(client, SCHOOL_ALPHA, 'IN-HR', ADMIN_ALPHA.sub);
     await writeAuditLog(client, {
       schoolId: SCHOOL_ALPHA,
       actorUserId: ADMIN_ALPHA.sub,
@@ -184,11 +184,11 @@ async function runMuteSection() {
     pass: row !== null && row.actor_user_id === ADMIN_ALPHA.sub && Boolean(row.occurred_at) && !serialized.includes('9990001111'),
   };
 
-  // Restore compliance_config to its pre-test state so this doesn't
-  // leave the fixture school muted afterward.
-  await withSuperAdminBypass((client) =>
-    client.query(`update compliance_config set advisory_muted = false, muted_by = null, muted_at = null where school_id = $1`, [SCHOOL_ALPHA])
-  );
+  // No compliance_config row existed for this school before this test
+  // (confirmed by the form6 section's own "unconfigured" result) --
+  // delete the row this test created, rather than leaving an empty
+  // muted=false row behind that didn't exist pre-test.
+  await withSuperAdminBypass((client) => client.query(`delete from compliance_config where school_id = $1`, [SCHOOL_ALPHA]));
   return result;
 }
 

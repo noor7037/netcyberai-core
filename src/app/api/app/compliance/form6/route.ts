@@ -48,10 +48,12 @@ export async function POST(req: NextRequest) {
 
   try {
     await withTenantContext(guard.claims, async (client) => {
+      const { rows } = await client.query(`select jurisdiction from schools where school_id = $1`, [guard.claims.schoolId]);
+      const jurisdiction = rows[0]?.jurisdiction ?? '';
       if (muted) {
-        await muteForm6Advisory(client, guard.claims.schoolId, guard.claims.sub);
+        await muteForm6Advisory(client, guard.claims.schoolId, jurisdiction, guard.claims.sub);
       } else {
-        await unmuteForm6Advisory(client, guard.claims.schoolId, guard.claims.sub);
+        await unmuteForm6Advisory(client, guard.claims.schoolId, jurisdiction, guard.claims.sub);
       }
       await writeAuditLog(client, {
         schoolId: guard.claims.schoolId,

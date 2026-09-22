@@ -125,20 +125,36 @@ export async function computeForm6Advisory(client: PoolClient, schoolId: string,
   };
 }
 
-export async function muteForm6Advisory(client: PoolClient, schoolId: string, mutedBy: string): Promise<void> {
+// compliance_config.state has no database default (Pre-F Architecture
+// Hardening deliberately dropped it: migration
+// 20260921085859_jurisdiction_timezone_currency_statutory_label.sql --
+// a fixed 'HR' default silently mislabeled every non-Haryana school.
+// That migration's own comment leaves a standing rule for this exact
+// prompt: any insert must derive `state` from schools.jurisdiction
+// (the state segment of 'IN-HR'), never rely on a default. Found live
+// while gathering VERIFY evidence: the first mute attempt against a
+// school with no existing compliance_config row failed with a
+// not-null violation on `state` because this function never supplied
+// it, exactly the gap that comment warned about.
+function stateFromJurisdiction(jurisdiction: string): string {
+  const parts = jurisdiction.split('-');
+  return parts[1] ?? jurisdiction;
+}
+
+export async function muteForm6Advisory(client: PoolClient, schoolId: string, jurisdiction: string, mutedBy: string): Promise<void> {
   await client.query(
-    `insert into compliance_config (school_id, advisory_muted, muted_by, muted_at)
-     values ($1, true, $2, now())
+    `insert into compliance_config (school_id, state, advisory_muted, muted_by, muted_at)
+     values ($1, $3, true, $2, now())
      on conflict (school_id) do update set advisory_muted = true, muted_by = $2, muted_at = now(), updated_at = now()`,
-    [schoolId, mutedBy]
+    [schoolId, mutedBy, stateFromJurisdiction(jurisdiction)]
   );
 }
 
-export async function unmuteForm6Advisory(client: PoolClient, schoolId: string, actorUserId: string): Promise<void> {
+export async function unmuteForm6Advisory(client: PoolClient, schoolId: string, jurisdiction: string, actorUserId: string): Promise<void> {
   await client.query(
-    `insert into compliance_config (school_id, advisory_muted, muted_by, muted_at)
-     values ($1, false, $2, now())
+    `insert into compliance_config (school_id, state, advisory_muted, muted_by, muted_at)
+     values ($1, $3, false, $2, now())
      on conflict (school_id) do update set advisory_muted = false, muted_by = $2, muted_at = now(), updated_at = now()`,
-    [schoolId, actorUserId]
+    [schoolId, actorUserId, stateFromJurisdiction(jurisdiction)]
   );
 }
