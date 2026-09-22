@@ -1,5 +1,18 @@
-import { StubPage } from '@/components/shell/StubPage';
+import { getServerSession } from '@/lib/auth/server-session';
+import { AttendanceView } from '@/components/attendance/AttendanceView';
 
-export default function AttendancePage() {
-  return <StubPage title="Attendance" description="Today, Student, Staff, Class-wise, Absence list, Late arrivals, Leave, Corrections, capture method breakdown, and the absence communication log." />;
+export default async function AttendancePage() {
+  const session = await getServerSession();
+  const canManage =
+    session?.role === 'school_admin' ||
+    session?.role === 'principal' ||
+    session?.role === 'teacher' ||
+    session?.role === 'academic_coordinator';
+
+  return (
+    <div className="flex flex-col gap-6 p-4 md:p-6">
+      <h1 className="text-xl font-bold text-slate">Attendance</h1>
+      <AttendanceView canManage={canManage} />
+    </div>
+  );
 }
