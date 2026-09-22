@@ -49,3 +49,17 @@ const ERASURE_AUTHORIZATION_ROLES: StaffRole[] = ['school_admin', 'principal'];
 export function canAuthorizeErasure(role: StaffRole): boolean {
   return ERASURE_AUTHORIZATION_ROLES.includes(role);
 }
+
+// Attendance is teacher-facing (04_SYSTEM_DESIGN_PRD.md Sec3.2), but
+// principal/school_admin/academic_coordinator also legitimately mark or
+// correct it (covering, overseeing, or fixing a class with no assigned
+// teacher) -- accountant has no attendance duty. This is a coarse route
+// gate only, same role as canWriteMasterData's: the fine-grained "a
+// teacher may only touch their OWN class" boundary is RLS's job
+// (attendance_tenant_isolation + the restrictive teacher_scope_attendance
+// overlay), not re-implemented here.
+const ATTENDANCE_WRITE_ROLES: StaffRole[] = ['school_admin', 'principal', 'teacher', 'academic_coordinator'];
+
+export function canWriteAttendance(role: StaffRole): boolean {
+  return ATTENDANCE_WRITE_ROLES.includes(role);
+}

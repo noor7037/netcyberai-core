@@ -105,6 +105,17 @@ ALLOWED_PERMISSIVE = (
         ("impersonation_sessions", "impersonation_self_end"),
         # Platform-level reference table, readable by every role.
         ("message_rate_table", "message_rate_table_read_all"),
+        # Prompt H Task 2: WhatsApp send-gate schema. Tenant-isolated
+        # SELECT (routing metadata only, never a credential); the
+        # actual write restriction to school_admin/principal is a
+        # RESTRICTIVE overlay (school_whatsapp_configs_admin_write/
+        # update/delete), out of this check's scope by design.
+        ("school_whatsapp_configs", "school_whatsapp_configs_tenant_isolation"),
+        # Platform-default (school_id null) rows readable by every
+        # school; a school's own override row readable only by that
+        # school. Write restriction is the RESTRICTIVE
+        # whatsapp_templates_admin_write overlay, same as above.
+        ("whatsapp_templates", "whatsapp_templates_read"),
     }
 )
 

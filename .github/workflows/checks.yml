@@ -25,9 +25,18 @@ jobs:
           # src/lib/recognition.ts is also excluded: it uses "sample-size" in
           # its normal statistical sense (a comment on the minimum-assessments
           # guard), not as placeholder/dummy data.
+          #
+          # src/lib/whatsapp/ is also excluded: MockWhatsAppProvider (Prompt H
+          # Task 2) is a real, permanent WhatsAppProviderSPI implementation --
+          # the prompt's own explicit design, not unfinished placeholder data.
+          # It's what every school resolves to today, since no real WhatsApp
+          # Business API credentials exist anywhere in this project (Task 0).
+          # src/components/settings/WhatsAppConfigPanel.tsx only mentions it in
+          # a comment explaining the same thing.
           if grep -rn 'mock\|dummy\|fake\|sample' src/ --include='*.ts' --include='*.tsx' \
-              | grep -v 'src/demo-fixture/' | grep -v 'src/lib/recognition.ts'; then
-            echo "::error::Found a mock/dummy/fake/sample reference outside src/demo-fixture/, the only allowlisted exception."
+              | grep -v 'src/demo-fixture/' | grep -v 'src/lib/recognition.ts' \
+              | grep -v 'src/lib/whatsapp/' | grep -v 'src/components/settings/WhatsAppConfigPanel.tsx'; then
+            echo "::error::Found a mock/dummy/fake/sample reference outside the allowlisted exceptions."
             exit 1
           fi
 
@@ -39,6 +48,12 @@ jobs:
 
       - name: No unallowlisted permissive RLS policy
         run: python3 scripts/check_rls_policies.py
+
+      - name: No non-privileged role holds UPDATE/DELETE on an append-only table
+        run: python3 scripts/check_append_only_grants.py
+
+      - name: WhatsApp send-gate stays a single allowlisted choke point
+        run: python3 scripts/check_whatsapp_send_gate.py
 
       - name: Text-color contrast meets WCAG floors
         run: python3 scripts/check_contrast.py
