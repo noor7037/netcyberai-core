@@ -66,8 +66,17 @@ export async function verifyDirect(
   params: { schoolId: string; parentId: string; studentId: string; method: DirectVerificationMethod; evidenceRef: string | null; actorUserId: string }
 ): Promise<void> {
   const link = await fetchLink(client, params.schoolId, params.parentId, params.studentId);
-  if (!['pending', 'requested'].includes(link.verification_status)) {
-    throw new InvalidTransitionError(`cannot verify from status "${link.verification_status}" -- start verification first`);
+  // Unlike otp_plus_attestation (where 'requested' represents a real
+  // in-flight step -- a code has actually been issued and is awaiting
+  // confirmation), the three synchronous methods have no meaningful
+  // intermediate state: staff either has the DOB match/personal
+  // knowledge/Digilocker token in hand right now, or doesn't. Requiring
+  // startVerification first would be a UI click that represents
+  // nothing real. Allowed from every non-terminal-for-this-student
+  // state except 'active' itself (already verified) and 'tombstoned'
+  // (student pseudonymized -- see dsr.ts).
+  if (!['not_required', 'pending', 'requested', 'withdrawn', 'expired'].includes(link.verification_status)) {
+    throw new InvalidTransitionError(`cannot verify from status "${link.verification_status}"`);
   }
   await client.query(
     `update parent_student_map
@@ -91,8 +100,8 @@ export async function requestVerificationCode(
   studentId: string
 ): Promise<{ code: string; expiresAt: Date }> {
   const link = await fetchLink(client, schoolId, parentId, studentId);
-  if (!['pending', 'requested'].includes(link.verification_status)) {
-    throw new InvalidTransitionError(`cannot request a code from status "${link.verification_status}" -- start verification first`);
+  if (!['not_required', 'pending', 'requested', 'withdrawn', 'expired'].includes(link.verification_status)) {
+    throw new InvalidTransitionError(`cannot request a code from status "${link.verification_status}"`);
   }
   const code = String(randomInt(0, 1_000_000)).padStart(6, '0');
   const expiresAt = new Date(Date.now() + OTP_CODE_TTL_MINUTES * 60_000);

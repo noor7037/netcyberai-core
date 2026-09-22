@@ -108,14 +108,6 @@ export function ConsentPanel({ studentId, guardians, canManage }: { studentId: s
     return result;
   }
 
-  async function handleStart(parentId: string) {
-    const r = await callVerification(parentId, { action: 'start' });
-    if (r) {
-      toast.show('Verification started', 'success');
-      loadLinks();
-    }
-  }
-
   async function handleDirectVerify(parentId: string, method: string) {
     const r = await callVerification(parentId, { action: 'verify_direct', method });
     if (r) {
@@ -164,12 +156,7 @@ export function ConsentPanel({ studentId, guardians, canManage }: { studentId: s
                   </div>
                   {canManage && (
                     <div className="flex gap-2">
-                      {['not_required', 'withdrawn', 'expired'].includes(status) && (
-                        <button type="button" className="text-sapphire" onClick={() => handleStart(g.parent_id)}>
-                          Start verification
-                        </button>
-                      )}
-                      {['pending', 'requested'].includes(status) && (
+                      {status !== 'active' && status !== 'tombstoned' && (
                         <button type="button" className="text-sapphire" onClick={() => setVerifyGuardian(g.parent_id)}>
                           Verify
                         </button>
