@@ -1,0 +1,15 @@
+-- Found live during Prompt G Stage 0: consent_ledger held full
+-- select/insert/update/delete grants for app_user (and nca_super,
+-- correctly, since nca_super is meant to bypass for admin ops), the
+-- same "any table created after role_grants.sql's blanket grant
+-- silently inherits full CRUD" pattern already found and fixed once
+-- for sessions (20260921120000) and originally anticipated for
+-- audit_log (20260917074332's own revoke). consent_ledger is meant to
+-- be append-only by design -- exactly like audit_log -- since its
+-- entire purpose is proving what consent existed and when; an app_user
+-- session able to UPDATE or DELETE a row defeats that guarantee
+-- structurally, not just by convention. No code currently exercises
+-- this (Prompt G hasn't built consent code yet), but the grant itself
+-- is the exposure -- fixed now per this project's standing rule, not
+-- deferred to Task 1's own UI work.
+revoke update, delete on consent_ledger from app_user;

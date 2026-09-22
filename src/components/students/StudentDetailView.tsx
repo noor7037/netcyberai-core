@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
 import { useToast } from '@/components/ui/Toast';
 import { DocumentCapture } from './DocumentCapture';
+import { ConsentPanel } from './ConsentPanel';
+import { DsrPanel } from './DsrPanel';
 
 type Student = {
   student_id: string;
@@ -192,8 +194,10 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
         )}
       </section>
 
-      <div className="mt-6">
+      <div className="mt-6 flex flex-col gap-6">
+        <ConsentPanel studentId={student.student_id} guardians={guardians ?? []} canManage={canEdit} />
         <DocumentCapture studentId={student.student_id} guardians={guardians ?? []} />
+        <DsrPanel studentId={student.student_id} canManage={canEdit} />
       </div>
 
       <Modal open={addOpen} onClose={() => setAddOpen(false)} title="Add guardian">

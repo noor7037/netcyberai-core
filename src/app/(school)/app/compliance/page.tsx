@@ -1,7 +1,7 @@
-import { StubPage } from '@/components/shell/StubPage';
 import { getServerSession } from '@/lib/auth/server-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { ComplianceView } from '@/components/compliance/ComplianceView';
 
 // Task 5, PRD §2.3: impersonation must be "visible to the impersonated
 // school" -- this is that visibility. audit_log's own
@@ -25,7 +25,8 @@ export default async function CompliancePage() {
 
   return (
     <div className="flex flex-col gap-6 p-4 md:p-6">
-      <StubPage title="Compliance" description="This school's DPDP consent posture and Form 6 advisory status." />
+      <h1 className="text-xl font-bold text-slate">Compliance</h1>
+      <ComplianceView canManage={session?.role === 'school_admin' || session?.role === 'principal'} />
       <section>
         <h2 className="mb-2 text-lg font-bold text-slate">Support access to this school</h2>
         <p className="mb-3 text-sm text-slate/70">

@@ -35,3 +35,17 @@ const MASTER_DATA_WRITE_ROLES: StaffRole[] = ['school_admin', 'principal'];
 export function canWriteMasterData(role: StaffRole): boolean {
   return MASTER_DATA_WRITE_ROLES.includes(role);
 }
+
+// Prompt G Task 3: authorizing a DSR deletion request (the explicit,
+// separately-confirmed step that must happen before pseudonymization
+// can ever run) is deliberately the same narrow set as master-data
+// writes, not opened to every role that can merely log a request.
+// Named separately from canWriteMasterData rather than reusing it
+// directly -- these two checks answer different questions and
+// happening to share a role set today is not a reason to couple them;
+// a future change to one must not silently change the other.
+const ERASURE_AUTHORIZATION_ROLES: StaffRole[] = ['school_admin', 'principal'];
+
+export function canAuthorizeErasure(role: StaffRole): boolean {
+  return ERASURE_AUTHORIZATION_ROLES.includes(role);
+}
