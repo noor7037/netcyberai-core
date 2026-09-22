@@ -1,0 +1,34 @@
+-- Prompt H Stage 0b: generalizing the append-only-grants check surfaced the
+-- same bug class a second and third time in the same live scan, on tables
+-- the checks this repo already had never covered.
+--
+-- audit_log and consent_ledger: `anon`, `authenticated` (Supabase's own
+-- default per-table PostgREST grants) and `nca_super` (this app's own
+-- super_admin bypass role) all held UPDATE/DELETE. `app_user` was already
+-- clean on both (audit_log always was; consent_ledger was fixed by C51 /
+-- migration 20260922015458 -- but that migration only revoked app_user,
+-- not the other three roles that reach a real Postgres session through
+-- other paths this app controls).
+--
+-- webhook_events: `app_user` ALSO held UPDATE/DELETE (never caught before
+-- now -- this table wasn't in scope for C51's consent_ledger-specific
+-- fix), on top of the same anon/authenticated/nca_super drift.
+--
+-- sessions: already fully clean (migration 20260921120000 / Decision Log
+-- C44 already revoked app_user/nca_super/anon/authenticated there). No
+-- change needed; included here only for completeness of scripts/
+-- check_append_only_grants.py's table list going forward.
+--
+-- Per this project's own established precedent (C44's sessions fix,
+-- which explicitly revoked nca_super alongside app_user/anon/authenticated),
+-- nca_super is NOT exempt: it's this app's own super-admin bypass role,
+-- reachable through a real login, and the entire point of an append-only
+-- audit trail / consent ledger is that nothing reachable through the app
+-- -- not even a super admin -- can retroactively edit history via SQL.
+-- Only the table owner (postgres) and Supabase's service_role (never
+-- client-exposed, used solely for infra/migrations) legitimately need
+-- UPDATE/DELETE, and neither is "app-facing" in the sense this rule cares
+-- about.
+revoke update, delete on audit_log from anon, authenticated, nca_super;
+revoke update, delete on consent_ledger from anon, authenticated, nca_super;
+revoke update, delete on webhook_events from app_user, anon, authenticated, nca_super;

@@ -40,6 +40,9 @@ jobs:
       - name: No unallowlisted permissive RLS policy
         run: python3 scripts/check_rls_policies.py
 
+      - name: No non-privileged role holds UPDATE/DELETE on an append-only table
+        run: python3 scripts/check_append_only_grants.py
+
       - name: Text-color contrast meets WCAG floors
         run: python3 scripts/check_contrast.py
 
