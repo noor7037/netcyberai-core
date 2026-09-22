@@ -15,8 +15,8 @@ export interface Form6Advisory {
   cpiSource: string | null;
   permissibleIncreasePercent: number | null;
   proposedIncreasePercent: number | null;
-  lastYearTotalPaise: number | null;
-  thisYearTotalPaise: number | null;
+  lastYearTotalMinor: number | null;
+  thisYearTotalMinor: number | null;
   deadlineState: DeadlineState;
   filingDeadline: string | null;
   filingDeadlineSource: string | null;
@@ -31,9 +31,11 @@ interface ComplianceConfigRow {
   advisory_muted: boolean;
 }
 
-// Normalizes every fee_structure_items row to an annual paise figure so
-// items billed at different frequencies (monthly/quarterly/half_yearly/
-// annual/one_time) can be summed meaningfully. one_time items (e.g. an
+// Normalizes every fee_structure_items row to an annual minor-unit
+// figure (amount_minor -- Pre-F Architecture Hardening's provider-
+// neutral currency rename, migration 20260921085859) so items billed
+// at different frequencies (monthly/quarterly/half_yearly/annual/
+// one_time) can be summed meaningfully. one_time items (e.g. an
 // admission fee) are excluded from a recurring year-over-year hike
 // comparison -- including them would make a school's non-recurring
 // one-off charge look like part of its annual fee increase.
@@ -46,7 +48,7 @@ const ANNUAL_MULTIPLIER: Record<string, number> = {
 
 async function annualTotalForYear(client: PoolClient, schoolId: string, academicYear: string): Promise<number | null> {
   const { rows } = await client.query(
-    `select fsi.frequency, sum(fsi.amount_paise)::bigint as total
+    `select fsi.frequency, sum(fsi.amount_minor)::bigint as total
      from fee_structures fs
      join fee_structure_items fsi on fsi.structure_id = fs.structure_id
      where fs.school_id = $1 and fs.academic_year = $2 and fsi.frequency <> 'one_time'
@@ -73,8 +75,8 @@ export async function computeForm6Advisory(client: PoolClient, schoolId: string,
   const cpiPercent = config?.cpi_percent != null ? Number(config.cpi_percent) : null;
   const advisoryMuted = config?.advisory_muted ?? false;
 
-  let lastYearTotalPaise: number | null = null;
-  let thisYearTotalPaise: number | null = null;
+  let lastYearTotalMinor: number | null = null;
+  let thisYearTotalMinor: number | null = null;
   let proposedIncreasePercent: number | null = null;
   if (jurisdictionApplies) {
     const { rows: yearRows } = await client.query(
@@ -82,10 +84,10 @@ export async function computeForm6Advisory(client: PoolClient, schoolId: string,
       [schoolId]
     );
     if (yearRows.length === 2) {
-      thisYearTotalPaise = await annualTotalForYear(client, schoolId, yearRows[0].academic_year);
-      lastYearTotalPaise = await annualTotalForYear(client, schoolId, yearRows[1].academic_year);
-      if (thisYearTotalPaise != null && lastYearTotalPaise != null && lastYearTotalPaise > 0) {
-        proposedIncreasePercent = ((thisYearTotalPaise - lastYearTotalPaise) / lastYearTotalPaise) * 100;
+      thisYearTotalMinor = await annualTotalForYear(client, schoolId, yearRows[0].academic_year);
+      lastYearTotalMinor = await annualTotalForYear(client, schoolId, yearRows[1].academic_year);
+      if (thisYearTotalMinor != null && lastYearTotalMinor != null && lastYearTotalMinor > 0) {
+        proposedIncreasePercent = ((thisYearTotalMinor - lastYearTotalMinor) / lastYearTotalMinor) * 100;
       }
     }
   }
@@ -116,8 +118,8 @@ export async function computeForm6Advisory(client: PoolClient, schoolId: string,
     cpiSource: config?.cpi_source ?? null,
     permissibleIncreasePercent,
     proposedIncreasePercent,
-    lastYearTotalPaise,
-    thisYearTotalPaise,
+    lastYearTotalMinor,
+    thisYearTotalMinor,
     deadlineState,
     filingDeadline: config?.filing_deadline ?? null,
     filingDeadlineSource: config?.filing_deadline_source ?? null,

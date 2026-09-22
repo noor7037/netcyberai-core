@@ -209,7 +209,7 @@ async function runPseudonymizeSection() {
     ]);
     // Real fee and attendance rows -- the whole point is that these
     // keep resolving via student_id after pseudonymization.
-    await client.query(`insert into fees_ledger (school_id, student_id, amount_paise, due_date, status) values ($1, $2, 500000, current_date, 'pending')`, [
+    await client.query(`insert into fees_ledger (school_id, student_id, amount_minor, due_date, status) values ($1, $2, 500000, current_date, 'pending')`, [
       SCHOOL_ALPHA,
       student.rows[0].student_id,
     ]);
@@ -246,7 +246,7 @@ async function runPseudonymizeSection() {
   const after = await withSuperAdminBypass(async (client) => {
     const student = await client.query(`select name, dob from students where school_id = $1 and student_id = $2`, [SCHOOL_ALPHA, studentId]);
     const feeJoin = await client.query(
-      `select f.amount_paise, s.name as student_name from fees_ledger f join students s on s.student_id = f.student_id where f.school_id = $1 and f.student_id = $2`,
+      `select f.amount_minor, s.name as student_name from fees_ledger f join students s on s.student_id = f.student_id where f.school_id = $1 and f.student_id = $2`,
       [SCHOOL_ALPHA, studentId]
     );
     const attendanceJoin = await client.query(
