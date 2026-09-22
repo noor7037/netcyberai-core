@@ -118,30 +118,49 @@ async function createFixture(overrides: {
 // which owns the table and isn't subject to the same-session grants
 // this fix revoked), never by loosening what this migration correctly
 // locked down.
+// Each statement runs in its OWN try/catch: withSuperAdminBypass rolls
+// back its entire transaction on any thrown error, so one FK failure
+// (a granted-consent fixture's student/school rows, blocked by
+// consent_ledger's own NO ACTION FKs -- found live) would otherwise
+// silently undo every OTHER delete that already succeeded, not just
+// the one that failed.
+async function tryDelete(client: PoolClient, sql: string, args: unknown[]): Promise<boolean> {
+  // A savepoint, not just a JS try/catch: once any statement in a
+  // Postgres transaction errors, the WHOLE transaction is aborted and
+  // every later statement fails with "current transaction is aborted"
+  // until a rollback -- a bare try/catch here would silently poison
+  // every delete after the first FK failure, not just skip that one.
+  await client.query('savepoint cleanup_step');
+  try {
+    await client.query(sql, args);
+    await client.query('release savepoint cleanup_step');
+    return true;
+  } catch {
+    await client.query('rollback to savepoint cleanup_step');
+    return false;
+  }
+}
+
 async function cleanupFixture(fixture: Fixture): Promise<{ fullyCleanedUp: boolean }> {
   return withSuperAdminBypass(async (client) => {
-    await client.query(`delete from communication_log where school_id = $1`, [fixture.schoolId]);
-    await client.query(`delete from parent_student_map where school_id = $1`, [fixture.schoolId]);
-    await client.query(`delete from parents where school_id = $1`, [fixture.schoolId]);
-    await client.query(`delete from students where school_id = $1`, [fixture.schoolId]);
+    await tryDelete(client, `delete from communication_log where school_id = $1`, [fixture.schoolId]);
+    await tryDelete(client, `delete from parent_student_map where school_id = $1`, [fixture.schoolId]);
+    await tryDelete(client, `delete from parents where school_id = $1`, [fixture.schoolId]);
     const { rows: configRows } = await client.query(
       `select access_token_secret_id, webhook_verify_token_secret_id from school_whatsapp_configs where school_id = $1`,
       [fixture.schoolId]
     );
-    await client.query(`delete from school_whatsapp_configs where school_id = $1`, [fixture.schoolId]);
+    await tryDelete(client, `delete from school_whatsapp_configs where school_id = $1`, [fixture.schoolId]);
     for (const row of configRows) {
-      if (row.access_token_secret_id) await client.query(`delete from vault.secrets where id = $1`, [row.access_token_secret_id]);
+      if (row.access_token_secret_id) await tryDelete(client, `delete from vault.secrets where id = $1`, [row.access_token_secret_id]);
       if (row.webhook_verify_token_secret_id)
-        await client.query(`delete from vault.secrets where id = $1`, [row.webhook_verify_token_secret_id]);
+        await tryDelete(client, `delete from vault.secrets where id = $1`, [row.webhook_verify_token_secret_id]);
     }
-    await client.query(`delete from memberships where school_id = $1`, [fixture.schoolId]);
-    await client.query(`delete from users where school_id = $1`, [fixture.schoolId]);
-    try {
-      await client.query(`delete from schools where school_id = $1`, [fixture.schoolId]);
-      return { fullyCleanedUp: true };
-    } catch {
-      return { fullyCleanedUp: false };
-    }
+    await tryDelete(client, `delete from memberships where school_id = $1`, [fixture.schoolId]);
+    await tryDelete(client, `delete from users where school_id = $1`, [fixture.schoolId]);
+    const studentsDeleted = await tryDelete(client, `delete from students where school_id = $1`, [fixture.schoolId]);
+    const schoolDeleted = studentsDeleted && (await tryDelete(client, `delete from schools where school_id = $1`, [fixture.schoolId]));
+    return { fullyCleanedUp: schoolDeleted };
   });
 }
 
