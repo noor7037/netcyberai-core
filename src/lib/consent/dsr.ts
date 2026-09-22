@@ -109,7 +109,7 @@ export interface PseudonymizationResult {
 
 // The mechanical answer Task 3 asks for: scrub the student's own PII
 // fields, keep student_id unchanged so fees_ledger/attendance/marks/
-// at_risk_flags/certificate_requests/qr_scan_log/recognition_events/
+// at-risk-flags/certificate_requests/qr_scan_log/recognition_events/
 // pulse_response_log/consent_ledger -- every table that references
 // student_id -- keep resolving via that same, never-deleted, id.
 //
