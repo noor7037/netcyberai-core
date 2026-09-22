@@ -129,17 +129,25 @@ export async function markAttendance(
   const toInsert = params.entries.filter((e) => !alreadyMarked.has(e.studentId));
 
   if (toInsert.length > 0) {
-    const values: string[] = [];
-    const args: unknown[] = [params.schoolId, params.classId, params.date, params.markedBy];
-    for (const entry of toInsert) {
-      args.push(entry.studentId, entry.status);
-      values.push(`($1, $2, $3, $${args.length - 1}, $${args.length}, $4)`);
-    }
+    // unnest() zips the two arrays element-wise into one row per
+    // student -- a single, static SQL string with real placeholders,
+    // rather than hand-building a multi-row VALUES-tuple fragment with
+    // its own arithmetic on args.length (fragile, and a separate
+    // string check_claims.py's SQL-keyword exemption doesn't reach,
+    // since that keyword lives in a different template literal).
     const { rows: insertedRows } = await client.query(
       `insert into attendance (school_id, class_id, date, student_id, status, marked_by)
-       values ${values.join(', ')}
+       select $1, $2, $3, s.student_id, s.status, $4
+       from unnest($5::uuid[], $6::text[]) as s(student_id, status)
        returning attendance_id, student_id, status`,
-      args
+      [
+        params.schoolId,
+        params.classId,
+        params.date,
+        params.markedBy,
+        toInsert.map((e) => e.studentId),
+        toInsert.map((e) => e.status),
+      ]
     );
     for (const row of insertedRows) {
       if (row.status === 'absent') {
