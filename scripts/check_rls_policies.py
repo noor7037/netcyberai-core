@@ -79,12 +79,23 @@ _TENANT_ISOLATION_TABLES = [
     "webhook_events", "memberships", "csv_imports",
     "retention_policy", "data_subject_requests",
 ]
-_ACCOUNTING_TABLES = ["fee_heads", "fee_structures", "fee_structure_items", "fee_concessions", "payments"]
 
 ALLOWED_PERMISSIVE = (
     {("schools", "schools_tenant_isolation")}  # bespoke: super_admin bypass baked into its own USING clause
     | {(t, f"{t}_tenant_isolation") for t in _TENANT_ISOLATION_TABLES}
-    | {(t, f"{t}_accounting_{suffix}") for t in _ACCOUNTING_TABLES for suffix in ("write", "update", "delete")}
+    # NOTE: fee_heads/fee_structures/fee_structure_items/fee_concessions/
+    # payments' own accounting_write/update/delete overlays used to be
+    # here, PERMISSIVE, on the theory that role-scoping was a separate
+    # concern from tenant isolation. It wasn't: PERMISSIVE policies OR
+    # together, and tenant_isolation's own unconditional ALL-command
+    # permissive check meant the accounting overlay never actually
+    # narrowed anything -- any role in the correct tenant could write
+    # fee data (pre-Prompt-I hardening PR, Decision Log C62). Converted
+    # to RESTRICTIVE (supabase/migrations/20260922070000_...), so they no
+    # longer belong on this PERMISSIVE allowlist at all -- this allowlist
+    # having accepted them here in the first place, rather than treating
+    # "permissive AND role-scoped-without-tenant-scoping" as itself
+    # suspicious, is exactly why this check never caught the bug.
     | {
         # Self-scoped exceptions -- resolving "which schools/memberships
         # can this user see" BEFORE app.current_tenant_id can be known
