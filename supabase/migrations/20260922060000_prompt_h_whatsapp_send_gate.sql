@@ -110,7 +110,15 @@ declare
   v_webhook_secret_id uuid;
   v_existing record;
 begin
-  if p_school_id <> current_setting('app.current_tenant_id', true)::uuid then
+  -- IS DISTINCT FROM, not <>: Postgres's three-valued logic means
+  -- `p_school_id <> NULL` evaluates to NULL, not TRUE, so `IF NULL THEN
+  -- raise exception` is treated as false and silently PASSES -- found
+  -- live while building this prompt's own VERIFY fixtures (calling this
+  -- function with app.current_tenant_id entirely unset let the write
+  -- through instead of rejecting it). IS DISTINCT FROM is NULL-safe: it
+  -- never itself returns NULL, so a missing tenant GUC now fails closed
+  -- instead of silently bypassing the check it exists to enforce.
+  if p_school_id is null or p_school_id is distinct from current_setting('app.current_tenant_id', true)::uuid then
     raise exception 'cannot configure WhatsApp credentials for a different school';
   end if;
 
@@ -168,7 +176,8 @@ begin
     into v_school_id, v_access_secret_id, v_webhook_secret_id
     from school_whatsapp_configs where id = p_config_id;
 
-  if v_school_id is null or v_school_id <> current_setting('app.current_tenant_id', true)::uuid then
+  -- Same IS DISTINCT FROM fix as whatsapp_config_set_credentials above.
+  if v_school_id is null or v_school_id is distinct from current_setting('app.current_tenant_id', true)::uuid then
     raise exception 'WhatsApp config not found for this school';
   end if;
 
