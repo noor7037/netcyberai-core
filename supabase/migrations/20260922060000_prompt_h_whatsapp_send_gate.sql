@@ -250,6 +250,12 @@ values (null, 'attendance_absence_notification', 'approved');
 alter table communication_log
   add column dedupe_key text,
   add column provider_used text,   -- 'school_specific' | 'platform_default'
-  add column fallback_reason text; -- non-null only when a school-specific config existed but wasn't used
+  add column fallback_reason text, -- non-null only when a school-specific config existed but wasn't used
+  add column reason text;          -- the specific, human-readable reason (Task 2c point 7) -- `status`
+                                    -- (comm_status) only ever carried the CATEGORY
+                                    -- (blocked_consent/blocked_budget/...), never the specific detail
+                                    -- (which purpose, which budget numbers); found live during VERIFY
+                                    -- when this column didn't exist yet and the gate's own `reason`
+                                    -- string was never actually being persisted anywhere.
 
 create unique index idx_commlog_dedupe_key on communication_log(school_id, dedupe_key) where dedupe_key is not null;

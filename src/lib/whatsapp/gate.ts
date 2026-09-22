@@ -71,8 +71,8 @@ async function logAttempt(
   const { rows } = await client.query(
     `insert into communication_log
        (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise,
-        status, provider_message_id, dedupe_key, provider_used, fallback_reason)
-     values ($1, $2, 'whatsapp', $3, 'utility', $4, $5, 0, $6, $7, $8, $9, $10)
+        status, provider_message_id, dedupe_key, provider_used, fallback_reason, reason)
+     values ($1, $2, 'whatsapp', $3, 'utility', $4, $5, 0, $6, $7, $8, $9, $10, $11)
      returning log_id`,
     [
       params.schoolId,
@@ -85,6 +85,7 @@ async function logAttempt(
       params.dedupeKey,
       extra.providerUsed ?? null,
       extra.fallbackReason ?? null,
+      reason,
     ]
   );
   return rows[0].log_id;
