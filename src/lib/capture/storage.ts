@@ -40,3 +40,17 @@ export async function signedDocumentUrl(path: string): Promise<string> {
   }
   return data.signedUrl;
 }
+
+// DSR erasure (Prompt G Task 3): removes the underlying object. Routed
+// through this module rather than DSR code importing newAuthAdminClient
+// itself -- scripts/check_service_role.py's whole point is that this
+// stays the only caller. A 'discarded:*' path (Aadhaar, or storage
+// already unavailable) is never a real object; callers skip this for
+// those rather than this function silently no-op-ing on them.
+export async function deleteDocument(path: string): Promise<void> {
+  const client = newAuthAdminClient();
+  const { error } = await client.storage.from(BUCKET).remove([path]);
+  if (error) {
+    throw new Error(`storage delete failed: ${error.message}`);
+  }
+}
