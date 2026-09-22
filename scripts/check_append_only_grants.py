@@ -56,10 +56,17 @@ MIGRATIONS_DIR = REPO_ROOT / "supabase" / "migrations"
 # Every table this project's own design treats as append-only history/
 # proof, as opposed to ordinary mutable operational state. Confirmed
 # against the live schema (Prompt H Stage 0b) rather than assumed --
-# these are the only four such tables that exist today. Add a table
-# here the moment a new append-only design is introduced; do not wait
-# for the next accidental live drift scan to notice it.
-APPEND_ONLY_TABLES = {"audit_log", "consent_ledger", "sessions", "webhook_events"}
+# add a table here the moment a new append-only design is introduced; do
+# not wait for the next accidental live drift scan to notice it.
+#
+# `payments` joined this set in the pre-Prompt-I hardening PR (Decision
+# Log C62): Prompt I's own first non-negotiable ("No physical deletion
+# of a successful payment. Ever.") was violated live -- anon,
+# authenticated, app_user, and nca_super all held UPDATE/DELETE on
+# payments since migration 2, never narrowed. Fixed in
+# supabase/migrations/20260922070000_fee_engine_restrictive_accounting_and_payments_append_only.sql,
+# the same shape as audit_log/consent_ledger/webhook_events.
+APPEND_ONLY_TABLES = {"audit_log", "consent_ledger", "payments", "sessions", "webhook_events"}
 
 # "Non-privileged, app-facing": any role a real request -- ordinary or
 # this app's own super_admin bypass -- can run as, or any role
@@ -183,7 +190,7 @@ def self_test() -> int:
         clean_dir = tmp / "clean"
         clean_dir.mkdir()
         (clean_dir / "0001_baseline.sql").write_text(
-            "revoke update, delete on audit_log, consent_ledger, sessions, webhook_events "
+            "revoke update, delete on audit_log, consent_ledger, payments, sessions, webhook_events "
             "from app_user, anon, authenticated, nca_super;\n"
         )
         if find_violations(clean_dir):
@@ -212,7 +219,7 @@ def self_test() -> int:
         dirty_dir = tmp / "dirty"
         dirty_dir.mkdir()
         (dirty_dir / "0001_baseline.sql").write_text(
-            "revoke update, delete on audit_log, consent_ledger, sessions, webhook_events "
+            "revoke update, delete on audit_log, consent_ledger, payments, sessions, webhook_events "
             "from app_user, anon, authenticated, nca_super;\n"
         )
         (dirty_dir / "0002_drift.sql").write_text("grant update on webhook_events to app_user;\n")
@@ -234,7 +241,7 @@ def self_test() -> int:
         blanket_dir = tmp / "blanket"
         blanket_dir.mkdir()
         (blanket_dir / "0001_baseline.sql").write_text(
-            "revoke update, delete on audit_log, consent_ledger, sessions, webhook_events "
+            "revoke update, delete on audit_log, consent_ledger, payments, sessions, webhook_events "
             "from app_user, anon, authenticated, nca_super;\n"
         )
         (blanket_dir / "0002_blanket.sql").write_text(

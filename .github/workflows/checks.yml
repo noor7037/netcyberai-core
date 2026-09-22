@@ -52,6 +52,9 @@ jobs:
       - name: No non-privileged role holds UPDATE/DELETE on an append-only table
         run: python3 scripts/check_append_only_grants.py
 
+      - name: No function/trigger body references a renamed or dropped column
+        run: python3 scripts/check_stale_column_refs.py
+
       - name: WhatsApp send-gate stays a single allowlisted choke point
         run: python3 scripts/check_whatsapp_send_gate.py
 
