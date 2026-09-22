@@ -193,7 +193,7 @@ async function runMuteSection() {
 }
 
 async function runPseudonymizeSection() {
-  const { studentId, parentId } = await withSuperAdminBypass(async (client) => {
+  const { studentId, parentId, classId } = await withSuperAdminBypass(async (client) => {
     const student = await client.query(
       `insert into students (school_id, admission_no, name, dob, status)
        values ($1, 'VERIFYG-DSR', 'Real Name To Scrub', '2013-04-15', 'active') returning student_id`,
@@ -213,14 +213,20 @@ async function runPseudonymizeSection() {
       SCHOOL_ALPHA,
       student.rows[0].student_id,
     ]);
-    const classRow = await client.query(`select class_id from classes where school_id = $1 limit 1`, [SCHOOL_ALPHA]);
-    if (classRow.rows[0]) {
-      await client.query(
-        `insert into attendance (school_id, student_id, class_id, date, status) values ($1, $2, $3, current_date, 'present')`,
-        [SCHOOL_ALPHA, student.rows[0].student_id, classRow.rows[0].class_id]
-      );
-    }
-    return { studentId: student.rows[0].student_id as string, parentId: parent.rows[0].parent_id as string };
+    // No class fixture currently persists at School Alpha (prior
+    // verification runs cleaned theirs up) -- create a throwaway one
+    // rather than silently skipping the attendance proof.
+    const classRow = await client.query(`insert into classes (school_id, name) values ($1, 'VerifyG-Class') returning class_id`, [SCHOOL_ALPHA]);
+    await client.query(`insert into attendance (school_id, student_id, class_id, date, status) values ($1, $2, $3, current_date, 'present')`, [
+      SCHOOL_ALPHA,
+      student.rows[0].student_id,
+      classRow.rows[0].class_id,
+    ]);
+    return {
+      studentId: student.rows[0].student_id as string,
+      parentId: parent.rows[0].parent_id as string,
+      classId: classRow.rows[0].class_id as string,
+    };
   });
 
   const before = await withSuperAdminBypass(async (client) => {
@@ -277,6 +283,7 @@ async function runPseudonymizeSection() {
     await client.query(`delete from parent_student_map where school_id = $1 and student_id = $2`, [SCHOOL_ALPHA, studentId]);
     await client.query(`delete from students where school_id = $1 and student_id = $2`, [SCHOOL_ALPHA, studentId]);
     await client.query(`delete from parents where school_id = $1 and parent_id = $2`, [SCHOOL_ALPHA, parentId]);
+    await client.query(`delete from classes where school_id = $1 and class_id = $2`, [SCHOOL_ALPHA, classId]);
   });
   return result;
 }
