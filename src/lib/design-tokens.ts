@@ -1,5 +1,5 @@
 // v2 (2026-09-25): brand palette re-derived from the founder-approved
-// final NetCyberAI wordmark (actual sampled pixel colors, tuned only as
+// final NetCyberAI wordmark (actual measured pixel colors, tuned only as
 // far as WCAG required -- see docs/10_DECISION_LOG.md for the full
 // contrast table). Token NAMES are unchanged from v1 -- this is a
 // value-only rebrand, not a rename, so nothing that already references
@@ -8,12 +8,12 @@
 // prior name. `danger` (defined below, not part of this palette) is
 // deliberately NOT re-derived from the wordmark -- see its own comment.
 export const colors = {
-  sapphire: '#0C2A63', // was #0F4C81 -- primary navy, sampled from the wordmark's letter body
+  sapphire: '#0C2A63', // was #0F4C81 -- primary navy, measured from the wordmark's letter body
   azure: '#0A5FDB', // new -- the wordmark's brighter mid-blue; secondary buttons, links, hover states
   cyan: '#00AEEF', // new -- informational accent (info banners, secondary badges)
   violet: '#4A2FE0', // new -- reserved for AI-touched surfaces only (Daily Pulse, AI-governance disclosures), never a general UI color
-  emerald: '#0F766E', // was #10B981 -- teal-leaning, sampled from the wordmark's leaf accent; still reads as success/green
-  amber: '#F5820B', // was #F59E0B -- orange-leaning, sampled from the wordmark's swoosh; still reads as warning/attention
+  emerald: '#0F766E', // was #10B981 -- teal-leaning, measured from the wordmark's leaf accent; still reads as success/green
+  amber: '#F5820B', // was #F59E0B -- orange-leaning, measured from the wordmark's swoosh; still reads as warning/attention
   gold: '#F5B90A', // new -- rationed to real premium/highlight moments (founding-school badge, top recognition tier), never a base UI color
   slate: '#1E293B',
   offWhite: '#F9FAFB',

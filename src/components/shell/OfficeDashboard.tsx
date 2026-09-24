@@ -23,7 +23,7 @@ function Kpi({ label, value, sub, tone = 'sapphire' }: { label: string; value: s
 // filtering needed) instead of static placeholder text, per the
 // founder's explicit "build the actual, with real fields" instruction.
 // KPI-grid-plus-chart visual layout matches the founder-supplied
-// reference mockup; TC-request/correction-request/marks-approval
+// reference design; TC-request/correction-request/marks-approval
 // workflows referenced in the original placeholder text are NOT
 // queried here because those workflows don't exist in the data model
 // yet -- shown honestly via what real signals exist (pending consent,
