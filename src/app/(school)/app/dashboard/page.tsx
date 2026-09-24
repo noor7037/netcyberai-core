@@ -11,8 +11,8 @@ export default async function DashboardPage() {
   const session = await getServerSession();
   const shell = session ? shellForRole(session.role) : null;
 
-  if (shell === 'office') {
-    return <OfficeDashboard />;
+  if (shell === 'office' && session) {
+    return <OfficeDashboard session={session} />;
   }
   return (
     <StubPage

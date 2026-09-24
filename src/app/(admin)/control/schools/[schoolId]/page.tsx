@@ -60,7 +60,7 @@ export default async function SchoolDetailPage({ params }: { params: { schoolId:
             ? `School id: ${params.schoolId}`
             : `No school found for id: ${params.schoolId}`}
       </p>
-      <Tabs items={items} />
+      <Tabs items={items} orientation="vertical" />
     </div>
   );
 }

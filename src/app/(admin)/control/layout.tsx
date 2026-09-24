@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getServerSession } from '@/lib/auth/server-session';
 import { canAccessControl } from '@/lib/auth/guards';
-import { TopNav } from '@/components/shell/TopNav';
+import { Sidebar } from '@/components/shell/Sidebar';
 import { controlNav } from '@/lib/nav/nav-items';
 
 // Redundant with middleware.ts's edge gate on purpose -- defense in
@@ -21,8 +21,8 @@ export default async function ControlLayout({ children }: { children: React.Reac
   }
   return (
     <div className="min-h-screen bg-off-white">
-      <TopNav items={controlNav} ariaLabel="Platform 2 navigation" />
-      <main>{children}</main>
+      <Sidebar items={controlNav} ariaLabel="Platform 2 navigation" />
+      <main className="md:pl-60">{children}</main>
     </div>
   );
 }
