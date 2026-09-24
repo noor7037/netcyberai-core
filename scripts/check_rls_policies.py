@@ -78,6 +78,10 @@ _TENANT_ISOLATION_TABLES = [
     "student_qr_tokens", "qr_scan_log", "captured_documents", "ocr_extractions",
     "webhook_events", "memberships", "csv_imports",
     "retention_policy", "data_subject_requests",
+    # Academic session/term modeling (Decision Log C68) -- plain
+    # tenant-isolation-only, same precedent as classes/subjects: no
+    # money or PII, no accounting-style overlay needed.
+    "academic_sessions",
 ]
 
 ALLOWED_PERMISSIVE = (
