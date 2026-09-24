@@ -11,6 +11,17 @@ export type TabItem = {
 type Props = {
   items: TabItem[];
   defaultActiveId?: string;
+  /**
+   * 'horizontal' (default) keeps every existing caller's behavior
+   * unchanged. 'vertical' renders a left-hand rail instead -- for a
+   * list long enough that a horizontal row would overflow/wrap and
+   * visually overlap (confirmed live on /control/schools/[id]'s 21-item
+   * school-detail tab list, screenshotted by the founder). Same
+   * roving-tabindex keyboard model either way; arrow keys still move
+   * next/previous in the list, which reads naturally in a vertical rail
+   * too.
+   */
+  orientation?: 'horizontal' | 'vertical';
 };
 
 // Hand-rolled per the WAI-ARIA Authoring Practices Tabs pattern
@@ -19,7 +30,7 @@ type Props = {
 // rather than a dependency -- this is a well-specified, well-tested
 // recipe, not the kind of thing (like a focus trap) that's genuinely
 // easy to get subtly wrong by hand.
-export function Tabs({ items, defaultActiveId }: Props) {
+export function Tabs({ items, defaultActiveId, orientation = 'horizontal' }: Props) {
   const [activeId, setActiveId] = useState(defaultActiveId ?? items[0]?.id);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
@@ -44,46 +55,73 @@ export function Tabs({ items, defaultActiveId }: Props) {
     }
   }
 
+  const isVertical = orientation === 'vertical';
+
+  const tabList = (
+    <div
+      role="tablist"
+      aria-label="Tabs"
+      aria-orientation={isVertical ? 'vertical' : undefined}
+      className={
+        isVertical
+          ? 'flex w-56 shrink-0 flex-col gap-1 border-r border-slate/10 pr-2'
+          : 'flex gap-1 overflow-x-auto border-b border-slate/10'
+      }
+    >
+      {items.map((item, index) => {
+        const selected = item.id === activeId;
+        return (
+          <button
+            key={item.id}
+            ref={(el) => {
+              tabRefs.current[item.id] = el;
+            }}
+            role="tab"
+            id={`tab-${item.id}`}
+            aria-selected={selected}
+            aria-controls={`tabpanel-${item.id}`}
+            tabIndex={selected ? 0 : -1}
+            onClick={() => activate(item.id)}
+            onKeyDown={(e) => onKeyDown(e, index)}
+            className={
+              isVertical
+                ? `min-h-[44px] whitespace-nowrap rounded-md px-4 text-left text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire ${
+                    selected ? 'bg-sapphire/10 text-sapphire' : 'text-slate/70 hover:bg-slate/5 hover:text-slate'
+                  }`
+                : `min-h-[44px] shrink-0 whitespace-nowrap border-b-2 px-4 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire ${
+                    selected ? 'border-sapphire text-sapphire' : 'border-transparent text-slate/70 hover:text-slate'
+                  }`
+            }
+          >
+            {item.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+
+  const panels = items.map((item) => (
+    <div
+      key={item.id}
+      role="tabpanel"
+      id={`tabpanel-${item.id}`}
+      aria-labelledby={`tab-${item.id}`}
+      hidden={item.id !== activeId}
+      tabIndex={0}
+      className={isVertical ? 'min-w-0 flex-1 pl-6' : 'py-4'}
+    >
+      {item.content}
+    </div>
+  ));
+
+  if (isVertical) {
+    return <div className="flex items-start gap-2">{tabList}{panels}</div>;
+  }
+
   return (
     <div>
-      <div role="tablist" aria-label="Tabs" className="flex gap-1 border-b border-slate/10">
-        {items.map((item, index) => {
-          const selected = item.id === activeId;
-          return (
-            <button
-              key={item.id}
-              ref={(el) => {
-                tabRefs.current[item.id] = el;
-              }}
-              role="tab"
-              id={`tab-${item.id}`}
-              aria-selected={selected}
-              aria-controls={`tabpanel-${item.id}`}
-              tabIndex={selected ? 0 : -1}
-              onClick={() => activate(item.id)}
-              onKeyDown={(e) => onKeyDown(e, index)}
-              className={`min-h-[44px] border-b-2 px-4 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire ${
-                selected ? 'border-sapphire text-sapphire' : 'border-transparent text-slate/70 hover:text-slate'
-              }`}
-            >
-              {item.label}
-            </button>
-          );
-        })}
-      </div>
-      {items.map((item) => (
-        <div
-          key={item.id}
-          role="tabpanel"
-          id={`tabpanel-${item.id}`}
-          aria-labelledby={`tab-${item.id}`}
-          hidden={item.id !== activeId}
-          tabIndex={0}
-          className="py-4"
-        >
-          {item.content}
-        </div>
-      ))}
+      {tabList}
+      {panels}
     </div>
   );
 }

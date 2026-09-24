@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getServerSession } from '@/lib/auth/server-session';
 import { canAccessApp, shellForRole } from '@/lib/auth/guards';
-import { TopNav } from '@/components/shell/TopNav';
+import { Sidebar } from '@/components/shell/Sidebar';
 import { BottomNav } from '@/components/shell/BottomNav';
 import { ToastProvider } from '@/components/ui/Toast';
 import { officeNav, financeNav, academicNav, teacherNav } from '@/lib/nav/nav-items';
@@ -38,8 +38,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   return (
     <ToastProvider>
       <div className="min-h-screen bg-off-white">
-        <TopNav items={items} ariaLabel={label} />
-        <main>{children}</main>
+        <Sidebar items={items} ariaLabel={label} />
+        <main className="md:pl-60">{children}</main>
       </div>
     </ToastProvider>
   );
