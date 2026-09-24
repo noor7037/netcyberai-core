@@ -3,12 +3,30 @@
 **Governs:** nothing — reference material only, per the founder's own instruction
 (§9 of the 2026-09-24 handoff): "These repositories are REFERENCE MATERIAL. They
 are NOT architecture authorities."
-**Status:** Partial. The founder's local `~/NetCyberAI-GitHub-References` folder
-is **not reachable from this cloud session** — confirmed by directly checking
-`$HOME` and searching the filesystem for it; it doesn't exist here. Four of the
-seven named repos were found and cloned directly from public GitHub instead
-(read-only, via this session's git proxy) once identified by name/owner search.
-Three were not found this way — see §3.
+**Status: fully resolved, 2026-09-24 update.** The founder's local
+`~/NetCyberAI-GitHub-References` folder was not reachable from this cloud
+session directly (confirmed by checking `$HOME` and searching the
+filesystem — it doesn't exist there). Four of the seven named repos were
+initially found and cloned from public GitHub by guessing owner/repo
+names from the handoff's phrasing (§1 below) rather than left unresearched.
+The founder then pushed the actual folder to
+`github.com/noor7037/NetCyberAI-GitHub-References` and it was cloned
+directly and cross-checked against the earlier guesses: **all seven named
+repos are present and match exactly** — `School-Management-Schema`
+(Nahyomee), `School-Management-System` (TemiKayode),
+`School_Management_System` (WangilaWakhongola), `core` (Gibbon, confirmed
+via its README banner), `education` (Frappe Education, confirmed via its
+README banner), `gegok12` (GegoK12), `openeducat_erp` (OpenEduCat,
+confirmed via its README/LICENSE badge). The three earlier `[GAP —
+NOT VERIFIABLE FROM THIS SESSION]` items in §3 are now closed: **no
+duplicate TemiKayode directory exists** in the real folder, and neither
+**Alisha1402** nor **RosarioSIS** are part of it — both were correctly
+flagged as "not confirmed" rather than guessed present, and are now
+confirmed genuinely absent, not merely unchecked. The per-repo findings in
+§1/§2 below (license, stack, domain coverage) were verified against real
+GitHub content before this folder existed and are unchanged by this
+update — this folder's arrival confirms the founder's real reference set
+matches what was already researched, it doesn't add new repos to mine.
 
 ---
 
@@ -55,11 +73,24 @@ Frappe Education (GPL-3.0), Gibbon (GPL-3.0), RosarioSIS (GPL-2.0), OpenEduCat (
 
 ---
 
-## 3. Named repos NOT found / NOT reachable — reported honestly, not invented
+## 3. Named repos originally reported as not found / not reachable — now resolved (§0)
 
-- **"WangilaWakhongola School Management System"** — the handoff's phrasing matched a real repo (§1 above), found via search on the GitHub username. If the founder's local folder actually contains a *different* repository under a similar name, this mining is against the wrong one — flag it back.
-- **The duplicate TemiKayode directory** (named `school-management-system`, lowercase, per the handoff) — this session found only one TemiKayode school repo on GitHub (`School-Management-System`, mixed case). It cannot confirm or deny whether the founder's local duplicate is a second clone of the same repo, a fork, or something else — `[GAP — NOT VERIFIABLE FROM THIS SESSION]`.
-- **Alisha1402** — the handoff said this one was "currently NOT confirmed in the reference folder" (i.e., the founder's own local folder may not have it yet). It **does exist** on GitHub, real and public (§1 above) — noted as available if the founder wants it added locally too.
-- **RosarioSIS** — the handoff also flagged this as "NOT confirmed" in the local folder. It exists on GitHub and was already mined directly in the prior investigation (§2) — same repo, already covered, nothing new to add here.
+At the time this section was first written, the founder's local folder was
+unreachable and these four items were open questions. The folder has since
+been pushed to GitHub and cloned directly (§0) — resolving all four:
 
-**What this session cannot do:** inspect files that exist only on the founder's own machine. Two options going forward: (a) push the local folder's repos to GitHub (even as private repos, if given push access this session can add them), or (b) run the actual mining from a local Claude Code session against that folder and hand the resulting notes back here to fold into this document.
+- **"WangilaWakhongola School Management System"** — confirmed: the real
+  folder's `School_Management_System` directory is exactly the repo found
+  by username search. Not a different repository.
+- **The duplicate TemiKayode directory** — confirmed **does not exist** in
+  the real folder. Only one TemiKayode directory (`School-Management-System`)
+  is present. The handoff's mention of a duplicate was either resolved by
+  the founder before pushing, or referred to something else not present
+  here — not a gap this session left unchecked, but not something to
+  invent an explanation for either.
+- **Alisha1402** — confirmed **absent** from the real folder, exactly as
+  the handoff itself flagged ("not confirmed in the reference folder").
+  It remains real and public on GitHub (§1) if ever wanted.
+- **RosarioSIS** — confirmed **absent** from the real folder too. Already
+  mined directly from GitHub in the prior investigation (§2) regardless —
+  its absence from this folder doesn't remove it from the research.
