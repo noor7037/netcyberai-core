@@ -2,6 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { MetadataRoute } from 'next';
 import { blogPosts } from '@/content/blog';
+import { products, solutions } from '@/content/catalog';
+import { resourceSections } from '@/content/resources';
 import { absoluteUrl } from '@/lib/seo';
 
 export const dynamic = 'force-static';
@@ -40,5 +42,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: post.publishedOn,
   }));
 
-  return [...pages, ...posts];
+  const catalog = [
+    ...products.map((p) => `/products/${p.slug}`),
+    ...solutions.map((s) => `/solutions/${s.slug}`),
+    ...resourceSections.map((r) => `/resources/${r.slug}`),
+  ].map((route) => ({ url: absoluteUrl(route) }));
+
+  return [...pages, ...catalog, ...posts];
 }

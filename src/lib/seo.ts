@@ -39,9 +39,9 @@ export interface PageMetaInput {
 export const pageMeta = {
   home: {
     path: '/',
-    title: 'NetCyberAI — WhatsApp Parent Engagement for Indian Schools',
+    title: 'NetCyberAI — The Connected School Platform for India',
     description:
-      'NetCyberAI helps Indian schools keep parents confident every day with honest Hinglish WhatsApp learning updates, UPI fee reminders, and private teacher insight.',
+      'NetCyberAI connects every role in an Indian school on one validated record: WhatsApp learning updates for parents, a Today screen for teachers, school health.',
     absoluteTitle: true,
   },
   feeRecovery: {
@@ -157,6 +157,30 @@ export const pageMeta = {
     title: 'Contact',
     description: `Reach the ${companyName} team directly for a demo, a pilot enquiry, or a question about how the WhatsApp parent-engagement platform actually works day to day.`,
   },
+  features: {
+    path: '/features',
+    title: 'Features',
+    description:
+      'NetCyberAI features for Indian schools: the Daily Learning Pulse, WhatsApp fee recovery, Personal Best, Teacher Impact Card, digital certificates and more.',
+  },
+  startPilot: {
+    path: '/start-pilot',
+    title: 'Start a Pilot',
+    description:
+      'Start a NetCyberAI pilot at your school: outbound WhatsApp stays off until you are ready, records are imported and checked, and a real person guides setup.',
+  },
+  brochure: {
+    path: '/brochure',
+    title: 'Brochure',
+    description:
+      'The NetCyberAI brochure: what the connected school platform does for principals, teachers, parents and finance, in one printable page you can save as a PDF.',
+  },
+  support: {
+    path: '/support',
+    title: 'Support',
+    description:
+      'NetCyberAI support: reach a real person by email or WhatsApp, see how onboarding works, and find answers for schools already on a pilot or on a full rollout.',
+  },
 } satisfies Record<string, PageMetaInput>;
 
 export function absoluteUrl(path: string): string {
@@ -241,6 +265,9 @@ export function breadcrumbListJsonLd(page: { path: string; title: string }): Jso
     features: 'Features',
     blog: 'Blog',
     security: 'Security',
+    products: 'Products',
+    solutions: 'Solutions',
+    resources: 'Resources',
   };
   const segments = page.path.split('/').filter(Boolean);
   const items = [{ name: 'Home', path: '/' }];

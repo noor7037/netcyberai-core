@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { colors, accessibleTextColors, onAccentColors } from './src/lib/design-tokens';
+import { colors, deepColors, accessibleTextColors, onAccentColors } from './src/lib/design-tokens';
 
 const config: Config = {
   content: ['./src/**/*.{ts,tsx}'],
@@ -7,13 +7,22 @@ const config: Config = {
     extend: {
       colors: {
         sapphire: colors.sapphire,
+        midnight: colors.midnight,
         azure: colors.azure,
+        royal: { DEFAULT: colors.royal, deep: deepColors.royalDeep },
+        electric: colors.electric,
         cyan: { DEFAULT: colors.cyan, text: onAccentColors.onCyan },
+        turquoise: colors.turquoise,
+        leaf: colors.leaf,
+        grape: { DEFAULT: colors.grape, deep: deepColors.grapeDeep },
         violet: colors.violet,
+        tangerine: { DEFAULT: colors.tangerine, deep: deepColors.tangerineDeep },
+        coral: { DEFAULT: colors.coral, deep: deepColors.coralDeep },
+        sunshine: colors.sunshine,
         peach: { DEFAULT: colors.peach, text: onAccentColors.onPeach },
         emerald: { DEFAULT: colors.emerald, text: accessibleTextColors.emeraldText },
         amber: { DEFAULT: colors.amber, text: accessibleTextColors.amberText },
-        gold: { DEFAULT: colors.gold, text: onAccentColors.onGold },
+        gold: { DEFAULT: colors.gold, text: onAccentColors.onGold, deep: deepColors.goldDeep },
         slate: colors.slate,
         'off-white': colors.offWhite,
       },
