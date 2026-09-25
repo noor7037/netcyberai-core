@@ -72,10 +72,10 @@ export const products: CatalogPage[] = [
     menuBlurb: 'Students, guardians, classes, admissions and certificates on one record.',
     title: 'School Management',
     description:
-      'School management on one validated record: students, guardians, classes, admissions and certificates, audited and fully exportable, built for Indian schools.',
+      'School management on one validated record: students, guardians, classes, admissions and certificates, audited from the first entry and built for Indian schools.',
     heroTitle: 'One validated record for the whole school',
     heroLead:
-      'NetCyberAI keeps students, guardians, classes, sections, admissions and certificates in one validated school record. Every other module reads from it, so attendance, fees and parent messages never disagree, and nothing has to be typed twice. Every change is audited, and the whole record can be exported whenever you want it.',
+      'NetCyberAI keeps students, guardians, classes, sections, admissions and certificates in one validated school record. Every other module reads from it, so attendance, fees and parent messages never disagree, and nothing has to be typed twice. Every change is audited, and self-serve full export is planned but not live yet.',
     problem: [
       'The same student is typed into three registers, two spreadsheets and a WhatsApp group.',
       'Guardian numbers go stale, so messages reach the wrong person or nobody.',
@@ -93,9 +93,9 @@ export const products: CatalogPage[] = [
       { title: 'Class assigned', detail: 'Section, subjects and session set' },
       { title: 'Certificates', detail: 'Issued with clearance and an audit trail' },
     ],
-    benefits: ['No duplicate data entry', 'Guardian contacts that actually work', 'A full audit trail of every change', 'Your data, fully exportable'],
+    benefits: ['No duplicate data entry', 'Guardian contacts that actually work', 'A full audit trail of every change', 'One record, no spreadsheet copies'],
     users: [
-      { role: 'School Admin', value: 'Enrols, updates and exports records' },
+      { role: 'School Admin', value: 'Enrols, updates and validates records' },
       { role: 'Principal', value: 'Approves certificates and sees the whole school' },
       { role: 'Admissions desk', value: 'Moves enquiries through clear stages' },
     ],
@@ -109,7 +109,7 @@ export const products: CatalogPage[] = [
       { question: 'Can we import our existing student list?', answer: 'Yes. A CSV import validates every row before anything is saved, and shows you exactly which rows need fixing.' },
       { question: 'Can one student have several guardians?', answer: 'Yes. Each guardian has their own verified WhatsApp number and their own consent record.' },
       { question: 'Who can issue a Transfer Certificate?', answer: 'Only an authorised person, and only after financial clearance or a formal waiver is recorded.' },
-      { question: 'Can we take all our data out?', answer: 'Yes. PostgreSQL is the single source of truth and the full record can be exported at any time.' },
+      { question: 'Can we take all our data out?', answer: 'That is our commitment. PostgreSQL is the single source of truth, and self-serve full export in standard formats is planned but not live yet. The data ownership page tracks what exists today.' },
     ],
   },
   {
@@ -404,13 +404,13 @@ export const products: CatalogPage[] = [
     name: 'Compliance & Security',
     tone: 'trust',
     icon: 'shield',
-    menuBlurb: 'Tenant isolation, consent ledger, append-only audit, full export.',
+    menuBlurb: 'Tenant isolation, consent ledger and an append-only audit trail.',
     title: 'Compliance & Security',
     description:
-      'Security built into the product: school-level data isolation, a per-purpose consent ledger, an append-only audit trail and full data export you control.',
+      'Security built into the product: school-level data isolation, a per-purpose consent ledger, an append-only audit trail and a clear plan for full data export.',
     heroTitle: 'Children’s data, protected by the product itself',
     heroLead:
-      'NetCyberAI isolates every school at the database layer, records consent per student and purpose, keeps an append-only audit trail of changes, and lets the school export its full record at any time. These rules are enforced in the product, not in a policy document, and they apply to every module and every person who signs in.',
+      'NetCyberAI isolates every school at the database layer, records consent per student and purpose, keeps an append-only audit trail of changes, and commits to full data export, which is planned but not live yet. These rules are enforced in the product, not in a policy document, and they apply to every module and every person who signs in.',
     problem: [
       'Student data sits in shared drives and personal phones.',
       'Nobody can say who changed a record, or when.',
@@ -426,7 +426,7 @@ export const products: CatalogPage[] = [
       { title: 'Isolation', detail: 'Every query scoped to one school' },
       { title: 'Consent', detail: 'Checked before any message' },
       { title: 'Audit', detail: 'Every change recorded' },
-      { title: 'Export', detail: 'The full record, on request' },
+      { title: 'Review', detail: 'Who changed what, and when' },
     ],
     benefits: ['School data never mixed', 'Consent on the record', 'Accountable changes', 'No lock-in'],
     users: [
@@ -443,7 +443,7 @@ export const products: CatalogPage[] = [
       { question: 'Can another school see our data?', answer: 'No. Row-level security scopes every query to one school at the database layer.' },
       { question: 'Is NetCyberAI certified for DPDP?', answer: 'We do not claim a certification. The product records consent per purpose and lets schools honour choices; your own legal review decides compliance.' },
       { question: 'Can staff edit the audit trail?', answer: 'No. School staff cannot update or delete audit entries.' },
-      { question: 'Can we leave and take our data?', answer: 'Yes. The full record can be exported at any time.' },
+      { question: 'Can we leave and take our data?', answer: 'That is the commitment: full export in standard formats is planned but not live yet. The data ownership page states exactly what exists today.' },
     ],
   },
   {
@@ -451,13 +451,13 @@ export const products: CatalogPage[] = [
     name: 'Reports & Analytics',
     tone: 'intelligence',
     icon: 'reports',
-    menuBlurb: 'School health, trends and exports from real records.',
+    menuBlurb: 'School health and trends from real, validated records.',
     title: 'Reports & Analytics',
     description:
-      'Reports and analytics from real school records: a live school health score, attendance, results, parent engagement and fee trends, all fully exportable.',
+      'Reports and analytics from real school records: a live school health score, attendance, results, parent engagement and fee trends, all from one record.',
     heroTitle: 'The whole school, visible without chasing',
     heroLead:
-      'NetCyberAI turns validated records into the views a principal actually uses: a school health score, attendance and results trends, Pulse coverage and parent replies, fee collection and open exceptions. Every chart comes from the same record the school works in every day, and the underlying data can be exported whenever it is needed.',
+      'NetCyberAI turns validated records into the views a principal actually uses: a school health score, attendance and results trends, Pulse coverage and parent replies, fee collection and open exceptions. Every chart comes from the same record the school works in every day, and full export of the underlying data is planned but not live yet.',
     problem: [
       'Status comes from asking five people for five spreadsheets.',
       'Reports are assembled once a term, already out of date.',
@@ -466,16 +466,15 @@ export const products: CatalogPage[] = [
     solution: [
       'Live views built from the one validated record.',
       'A school health score with the reasons behind it.',
-      'Exports of the underlying data, not just pictures.',
+      'Every number traces back to the records behind it.',
     ],
     workflow: [
       { title: 'Recorded', detail: 'In the portal, validated' },
       { title: 'Aggregated', detail: 'By class, subject and week' },
       { title: 'Visualised', detail: 'Health, trends and exceptions' },
       { title: 'Acted on', detail: 'Owners assigned from the view' },
-      { title: 'Exported', detail: 'Full data, on request' },
     ],
-    benefits: ['Answers without chasing', 'Numbers that agree', 'Trends, not just snapshots', 'Exportable data'],
+    benefits: ['Answers without chasing', 'Numbers that agree', 'Trends, not just snapshots', 'Traceable numbers'],
     users: [
       { role: 'Principal', value: 'Sees school health daily' },
       { role: 'Trust or group', value: 'Compares schools it owns' },
@@ -489,7 +488,7 @@ export const products: CatalogPage[] = [
     related: ['ai-insights', 'academics', 'attendance-safety'],
     faqs: [
       { question: 'Where do the numbers come from?', answer: 'Only from records entered and validated in the NetCyberAI portal for your school.' },
-      { question: 'Can we export the data behind a chart?', answer: 'Yes. The underlying records can be exported in full.' },
+      { question: 'Can we export the data behind a chart?', answer: 'Not yet. Full export of the underlying records is planned but not live; today the numbers are viewed inside NetCyberAI.' },
       { question: 'What is the school health score?', answer: 'A summary of attendance, Pulse coverage, homework, fee follow-ups and open exceptions, with each part shown.' },
       { question: 'Can a group of schools compare them?', answer: 'A group account can see each school it owns, while each school’s data stays isolated.' },
     ],
@@ -703,10 +702,10 @@ export const solutions: CatalogPage[] = [
     menuBlurb: 'Several schools, one account, each fully isolated.',
     title: 'For Multi-School Groups',
     description:
-      'For trusts and groups running several schools: one account to see each campus, while every school’s data stays isolated and fully exportable on its own.',
+      'For trusts and groups running several schools: one account to see each campus, while every school’s data stays isolated at the database layer on its own.',
     heroTitle: 'Several schools, one view, no mixed data',
     heroLead:
-      'Trusts and school groups need to see every campus without mixing their data. NetCyberAI lets authorised people move between the schools they belong to, while row-level security keeps each school’s records isolated at the database layer. Each campus keeps its own settings, consent records and audit trail, and each can be exported on its own.',
+      'Trusts and school groups need to see every campus without mixing their data. NetCyberAI lets authorised people move between the schools they belong to, while row-level security keeps each school’s records isolated at the database layer. Each campus keeps its own settings, consent records and audit trail, so nothing leaks from one school into another.',
     problem: ['One spreadsheet per campus, all different.', 'Group leaders depend on phone calls.', 'Fear of one school seeing another’s data.'],
     solution: ['Switch between schools you belong to.', 'Each school isolated at the database layer.', 'Consistent views across campuses.'],
     workflow: [
@@ -714,7 +713,7 @@ export const solutions: CatalogPage[] = [
       { title: 'Choose school', detail: 'From the ones you belong to' },
       { title: 'See health', detail: 'Per campus' },
       { title: 'Act', detail: 'Inside that school’s permissions' },
-      { title: 'Export', detail: 'Per school' },
+      { title: 'Audit', detail: 'Per school' },
     ],
     benefits: ['One login for group leaders', 'No mixed data', 'Comparable views', 'Per-school control'],
     users: [
@@ -772,7 +771,7 @@ export const solutions: CatalogPage[] = [
       { question: 'Is NetCyberAI approved by CBSE?', answer: 'No. We make no claim of board approval or certification.' },
       { question: 'Does it follow CBSE report-card formats?', answer: 'Results follow the exams and subjects your school sets up; confirm format needs with us during the demo.' },
       { question: 'Can we use it for classes 1 to 12?', answer: 'The academic structure supports the classes and sections your school runs.' },
-      { question: 'Is data shared with the board?', answer: 'No data is shared with anyone outside your school unless you export it yourself.' },
+      { question: 'Is data shared with the board?', answer: 'No. NetCyberAI does not send your school’s records to a board or any outside body.' },
     ],
   },
   {

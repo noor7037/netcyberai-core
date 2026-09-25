@@ -76,7 +76,7 @@ export const resourceSections: ResourceSection[] = [
     items: [],
     faqs: [
       { question: 'Do parents need to install an app?', answer: 'No. Everything reaches parents on WhatsApp. A web portal exists but is optional.' },
-      { question: 'Who owns the data?', answer: 'The school. PostgreSQL is the single source of truth and the full record can be exported at any time.' },
+      { question: 'Who owns the data?', answer: 'The school. PostgreSQL is the single source of truth, and self-serve full export is planned but not live yet.' },
       { question: 'How does a pilot work?', answer: 'Your school is set up with outbound messaging switched off until you are ready, so nothing reaches parents early.' },
       { question: 'Are teachers ranked?', answer: 'No. Each teacher has a private Impact Card, visible only to them and their principal.' },
       { question: 'What does it cost?', answer: 'Pricing is not fixed yet; request pricing and we will quote for your school.' },
@@ -142,9 +142,9 @@ export const resourceSections: ResourceSection[] = [
       'How NetCyberAI handles consent, school data isolation, audit trails and data export, with links to our privacy policy, terms and the data ownership page.',
     heroTitle: 'How your school’s data is handled',
     heroLead:
-      'This page gathers what schools ask about before sharing children’s data: how consent is recorded per purpose, how each school is isolated, how changes are audited, and how data can be exported. We do not claim any certification; these are the rules the product enforces, so your own legal review can assess them properly.',
+      'This page gathers what schools ask about before sharing children’s data: how consent is recorded per purpose, how each school is isolated, how changes are audited, and where data export stands. We do not claim any certification; these are the rules the product enforces, so your own legal review can assess them properly.',
     items: [
-      { title: 'Data ownership', body: 'Your data, your export, no lock-in.', href: '/security/data-ownership' },
+      { title: 'Data ownership', body: 'Who owns the data, and the export plan.', href: '/security/data-ownership' },
       { title: 'Privacy policy', body: 'What we collect and why.', href: '/privacy' },
       { title: 'Terms of use', body: 'The terms for this website and demo.', href: '/terms' },
       { title: 'Consent ledger', body: 'Recorded per student, guardian and purpose; checked before every message.' },
@@ -158,12 +158,12 @@ export const resourceSections: ResourceSection[] = [
     status: 'coming',
     title: 'API documentation',
     description:
-      'NetCyberAI does not offer a public API yet. Schools can export their full record at any time, and any integration needs are discussed during onboarding.',
-    heroTitle: 'No public API yet, and full export today',
+      'NetCyberAI does not offer a public API yet. Full data export is planned rather than live yet, and any integration needs are discussed during onboarding.',
+    heroTitle: 'No public API yet, said plainly',
     heroLead:
-      'There is no public API for NetCyberAI yet, and we would rather say so than publish documentation for something that does not exist. What you do have today is full data export: your school’s complete record can be exported at any time. If you need an integration, tell us during onboarding and we will discuss it.',
+      'There is no public API for NetCyberAI yet, and we would rather say so than publish documentation for something that does not exist. Full data export in standard formats is also planned rather than live, and we will say so here when it ships. If you need an integration, tell us during onboarding and we will discuss it.',
     items: [
-      { title: 'Full data export', body: 'Available now, on request.', href: '/security/data-ownership' },
+      { title: 'Full data export', body: 'Planned, not live yet.', href: '/security/data-ownership' },
       { title: 'Integration requests', body: 'Tell us what you need to connect.', href: '/contact' },
     ],
   },

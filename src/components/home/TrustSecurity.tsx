@@ -13,7 +13,7 @@ const ITEMS: { title: string; body: string; icon: IconName; tone: Tone }[] = [
   { title: 'Consent on the record', body: 'A consent ledger per student and purpose. Messages without consent are never sent.', icon: 'compliance', tone: 'success' },
   { title: 'Append-only audit trail', body: 'Who changed what, and when. Audit entries cannot be edited or deleted by school staff.', icon: 'shield', tone: 'intelligence' },
   { title: 'WhatsApp stays off until you say so', body: 'Pilot schools run with outbound messaging whitelisted, so nothing reaches parents before you are ready.', icon: 'chat', tone: 'communication' },
-  { title: 'Your data, fully exportable', body: 'PostgreSQL is the single source of truth, with full export. Spreadsheets are never the live database.', icon: 'download', tone: 'product' },
+  { title: 'One canonical record', body: 'PostgreSQL is the single source of truth. Spreadsheets are never the live database; full export is planned, not live yet.', icon: 'download', tone: 'product' },
   { title: 'AI proposes; people decide', body: 'Input is validated in the portal. AI drafts and flags; it is never an unrestricted writer to your records.', icon: 'sparkle', tone: 'action' },
 ];
 

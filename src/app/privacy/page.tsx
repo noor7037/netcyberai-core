@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/Card';
 import { companyAddress, companyName, contactEmail } from '@/lib/site-config';
 import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd } from '@/lib/seo';
 
-const LAST_UPDATED = '16 September 2026';
+const LAST_UPDATED = '25 September 2026';
 
 export const metadata = buildMetadata(pageMeta.privacy);
 
@@ -13,9 +13,9 @@ export default function PrivacyPage() {
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">Privacy Policy</h1>
         <p className="text-lg text-slate">
-          This policy explains what data {companyName} collects today (almost nothing — this
-          Phase 0 site has no login and sets no third-party tracking cookies), what a future live
-          school deployment will process, and a parent&rsquo;s rights over their child&rsquo;s
+          This policy explains what data {companyName} collects today through this website (only
+          the details you type into an enquiry form, with no third-party tracking cookies), what a
+          live school deployment processes, and a parent&rsquo;s rights over their child&rsquo;s
           data under India&rsquo;s DPDP Act.
         </p>
         <p className="text-sm text-slate/70">Last updated {LAST_UPDATED}.</p>
@@ -46,11 +46,15 @@ export default function PrivacyPage() {
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">2. What this website collects today</h2>
         <p className="text-sm text-slate">
-          As of this policy&rsquo;s last update, this public website is a static marketing site.
-          It does not use third-party analytics or advertising cookies, does not require an
-          account, and does not collect personal data through the pages themselves. If you message
-          us on WhatsApp using a link on this site, WhatsApp processes that conversation under its
-          own privacy terms, and we receive and respond to what you send us.
+          This website does not use third-party analytics or advertising cookies, and browsing it
+          does not require an account. When you submit an enquiry form (Get Started, Book a Demo,
+          Start a Pilot, Contact or Request a Callback), we store what you type: your name, phone
+          number, school or organisation, and any optional details such as email, city, school
+          size or message. We use it only to reply to your enquiry and to spot repeat requests
+          from the same number. It is stored in our own database in India and is not sold. To have
+          an enquiry deleted, email us at the address above. If you message us on WhatsApp using a
+          link on this site, WhatsApp processes that conversation under its own privacy terms, and
+          we receive and respond to what you send us.
         </p>
       </section>
 

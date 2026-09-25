@@ -5,8 +5,9 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Button } from '@/components/ui/Button';
+import { SubmitError } from '@/components/marketing/SubmitError';
 
-type Source = 'get_started' | 'book_demo';
+type Source = 'get_started' | 'book_demo' | 'start_pilot';
 
 const MODULES = [
   { value: 'attendance', label: 'Attendance' },
@@ -108,7 +109,9 @@ export function LeadForm({ source }: { source: Source }) {
             ? "We found an earlier request from this phone number — our team will follow up on that one shortly, so there's no need to submit again."
             : source === 'book_demo'
               ? "Thanks — our team will confirm your demo slot shortly, on the phone number you shared."
-              : "Thanks — our team will reach out shortly to take your school live on NetCyberAI."}
+              : source === 'start_pilot'
+                ? "Thanks — our team will call you to agree the pilot scope, the classes involved, and the WhatsApp numbers to whitelist before anything is sent."
+                : "Thanks — our team will reach out shortly to take your school live on NetCyberAI."}
         </p>
       </div>
     );
@@ -119,7 +122,7 @@ export function LeadForm({ source }: { source: Source }) {
       <div className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-6">
         <h3 className="text-lg font-bold text-slate">Please confirm your details</h3>
         <dl className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
-          {source === 'get_started' && <Field label="Organisation type" value={values.orgType || '—'} />}
+          {source !== 'book_demo' && <Field label="Organisation type" value={values.orgType || '—'} />}
           <Field label="School" value={values.schoolName} />
           <Field label="Contact" value={values.contactName} />
           <Field label="Phone" value={values.contactPhone} />
@@ -128,12 +131,13 @@ export function LeadForm({ source }: { source: Source }) {
           <Field label="Students" value={values.studentCountBand || '—'} />
           {source === 'book_demo' && <Field label="Preferred date" value={values.preferredDate || '—'} />}
           {source === 'book_demo' && <Field label="Preferred time" value={values.preferredTime || '—'} />}
+          {source !== 'get_started' && <Field label="Notes" value={values.requirements || '—'} />}
           <Field
             label="Modules"
             value={values.requiredModules.length ? values.requiredModules.join(', ') : '—'}
           />
         </dl>
-        {submitError && <p className="text-sm text-red-800">{submitError}</p>}
+        {submitError && <SubmitError message={submitError} />}
         <div className="flex flex-wrap gap-3">
           <Button type="button" variant="outline" onClick={() => setStep('form')} disabled={submitting}>
             Back and edit
@@ -148,7 +152,7 @@ export function LeadForm({ source }: { source: Source }) {
 
   return (
     <form onSubmit={handleReview} className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-6">
-      {source === 'get_started' && (
+      {source !== 'book_demo' && (
         <Select
           id="lead-org-type"
           label="Organisation type"
@@ -260,10 +264,12 @@ export function LeadForm({ source }: { source: Source }) {
         </div>
       </fieldset>
 
-      {source === 'book_demo' && (
+      {source !== 'get_started' && (
         <div className="flex flex-col gap-1.5">
           <label htmlFor="lead-requirements" className="text-sm font-medium text-slate">
-            Anything specific you'd like covered
+            {source === 'start_pilot'
+              ? 'What should the pilot prove for your school?'
+              : "Anything specific you'd like covered"}
           </label>
           <textarea
             id="lead-requirements"

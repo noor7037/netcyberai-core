@@ -59,14 +59,14 @@ export const udisePlusDataExportMadeSimple: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Practically, this means every student, staff, and class record living in one place with a single source of truth — not a spreadsheet copy that drifts out of sync with the register, and not a paper file that only gets updated when someone remembers to. That discipline is unglamorous compared to a one-click export button, but it is the actual reason the export becomes simple rather than the button itself. It is the same discipline behind [being able to export a school’s own data in a standard format on request](/security/data-ownership) rather than only for one statutory filing a year.',
+      text: 'Practically, this means every student, staff, and class record living in one place with a single source of truth — not a spreadsheet copy that drifts out of sync with the register, and not a paper file that only gets updated when someone remembers to. That discipline is unglamorous compared to a one-click export button, but it is the actual reason the export becomes simple rather than the button itself. It is the same discipline behind [our commitment to let a school export its own data in a standard format](/security/data-ownership) rather than only for one statutory filing a year.',
     },
   ],
   faqs: [
     {
       question: 'Does NetCyberAI currently generate a UDISE+ export?',
       answer:
-        'Not yet — this is Phase 0, a public marketing site with no live school database. This post explains the underlying problem and our intended approach, not a feature you can use today.',
+        'Not yet. NetCyberAI does not generate a UDISE+ export today. This post explains the underlying problem and our intended approach, not a feature you can use today.',
     },
     {
       question: 'Is UDISE+ the same as a state-specific filing like Haryana’s Form 6?',
