@@ -4,6 +4,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { isForeignKeyViolation } from '@/lib/db/pg-errors';
+import { deriveGradeSection } from '@/lib/classes/grade-section';
 
 export async function GET(req: NextRequest) {
   const guard = await requireAppSession(req);
@@ -47,15 +48,12 @@ export async function POST(req: NextRequest) {
   }
 
   // grade/section are optional, explicit fields (added alongside academic_sessions,
-  // Decision Log C68) -- callers that don't yet send them get a best-effort split
-  // of `name` on its last hyphen ("8-A" -> grade "8", section "A"); a name with no
-  // hyphen leaves section null rather than guessing. This keeps existing callers
+  // Decision Log C68) -- callers that don't yet send them get a best-effort derived
+  // split of `name` (deriveGradeSection, unit-tested). This keeps existing callers
   // working unchanged while letting new callers pass grade/section directly.
-  const lastHyphen = name.lastIndexOf('-');
-  const derivedGrade = lastHyphen > 0 ? name.slice(0, lastHyphen).trim() : name;
-  const derivedSection = lastHyphen > 0 ? name.slice(lastHyphen + 1).trim() : null;
-  const grade = typeof body?.grade === 'string' && body.grade.trim() ? body.grade.trim() : derivedGrade;
-  const section = typeof body?.section === 'string' && body.section.trim() ? body.section.trim() : derivedSection;
+  const derived = deriveGradeSection(name);
+  const grade = typeof body?.grade === 'string' && body.grade.trim() ? body.grade.trim() : derived.grade;
+  const section = typeof body?.section === 'string' && body.section.trim() ? body.section.trim() : derived.section;
 
   try {
     const created = await withTenantContext(guard.claims, async (client) => {

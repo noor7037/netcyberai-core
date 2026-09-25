@@ -81,6 +81,9 @@ jobs:
       - name: Typecheck
         run: npx tsc --noEmit
 
+      - name: Unit tests (kept regression suite, Decision Log C70)
+        run: npm test
+
       - name: Build
         env:
           NEXT_PUBLIC_WHATSAPP_NUMBER: "919817707037"

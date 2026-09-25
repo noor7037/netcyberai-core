@@ -47,6 +47,26 @@ is excluded explicitly) must have at least one PERMISSIVE policy
 covering that command. Decision Log C40's actual bug -- a missing
 UPDATE policy turning `impersonate/end`'s update into a silent 0-row
 no-op -- is exactly the shape this catches at CI time instead of live.
+
+A third, independent check (added after Decision Log C62 GAP 1): a
+table with a PERMISSIVE policy covering ALL commands (the shape every
+`_tenant_isolation` policy takes) may not also carry another PERMISSIVE
+policy for INSERT/UPDATE/DELETE. Postgres ORs permissive policies
+together, so a second one can never narrow access -- only widen it or
+sit there as a no-op. This is exactly the shape that made five
+accounting "restriction" policies on fee_heads/fee_structures/
+fee_structure_items/fee_concessions/payments silent no-ops for months:
+they were PERMISSIVE, riding alongside those same tables' own
+PERMISSIVE, unconditional ALL-command tenant_isolation policy. The
+allowlist above used to accept that shape by name -- which is exactly
+why it never caught the bug -- so this check makes the *shape* itself
+fail by default, with no allowlist escape hatch: the only fix is
+making the overlay RESTRICTIVE, never re-permitting it here. It does
+NOT fire on the self-scope exceptions (`memberships_self`, `users_self`,
+`schools_visible_via_own_membership`) because all three are SELECT-only
+-- they resolve identity before `app.current_tenant_id` is known, they
+don't restrict writes, and this rule only looks at INSERT/UPDATE/DELETE
+overlap with a blanket ALL-command policy.
 """
 import re
 import sys
@@ -219,6 +239,32 @@ def find_app_mutations(src_dir: Path) -> set[tuple[str, str]]:
     return {(t, c) for t, c in mutations if t not in TABLES_WITHOUT_RLS}
 
 
+DANGEROUS_WRITE_CMDS = {"INSERT", "UPDATE", "DELETE"}
+
+
+def find_double_permissive_writes(policies: dict) -> list[tuple[str, str, str]]:
+    """Return sorted (table, blanket_policy_name, overlay_policy_name)
+    triples where a table has a PERMISSIVE ALL-command policy AND
+    another PERMISSIVE policy covering INSERT/UPDATE/DELETE -- the
+    overlay is structurally incapable of narrowing anything (Decision
+    Log C62 GAP 1's exact bug shape). No allowlist for this one:
+    the only real fix is converting the overlay to RESTRICTIVE."""
+    by_table: dict[str, list[tuple[str, bool, str]]] = {}
+    for (table, name), (is_permissive, cmd) in policies.items():
+        by_table.setdefault(table, []).append((name, is_permissive, cmd))
+
+    findings = []
+    for table, entries in by_table.items():
+        blanket_names = [name for name, is_p, cmd in entries if is_p and cmd == "ALL"]
+        if not blanket_names:
+            continue
+        for name, is_p, cmd in entries:
+            if is_p and cmd in DANGEROUS_WRITE_CMDS and name not in blanket_names:
+                for blanket in blanket_names:
+                    findings.append((table, blanket, name))
+    return sorted(set(findings))
+
+
 def main() -> int:
     policies = parse_migrations(MIGRATIONS_DIR)
     permissive = {k for k, (is_permissive, _cmd) in policies.items() if is_permissive}
@@ -264,8 +310,118 @@ def main() -> int:
     else:
         print(f"PASS: {len(mutations)} app-level UPDATE/DELETE/upsert targets all have a covering permissive policy.")
 
+    double_permissive = find_double_permissive_writes(policies)
+    if double_permissive:
+        ok = False
+        print(
+            "FAIL: a PERMISSIVE ALL-command policy coexists with another PERMISSIVE "
+            "INSERT/UPDATE/DELETE policy on the same table -- the second one cannot "
+            "narrow access, only widen it or no-op (Decision Log C62 GAP 1's exact bug shape):"
+        )
+        for table, blanket, overlay in double_permissive:
+            print(f"  {table}: {blanket} (PERMISSIVE, ALL) + {overlay} (PERMISSIVE) -- make {overlay} RESTRICTIVE")
+    else:
+        print("PASS: no PERMISSIVE write-restricting overlay rides alongside a PERMISSIVE ALL-command policy on the same table.")
+
     return 0 if ok else 1
 
 
+def self_test() -> int:
+    import shutil
+    import tempfile
+
+    tmp = Path(tempfile.mkdtemp())
+    try:
+        # The exact C62 GAP 1 bug shape: a blanket ALL-permissive
+        # tenant_isolation policy (real repo shape: the templated
+        # do-block, not a static statement) plus a PERMISSIVE write
+        # overlay that can never actually narrow anything -- must be
+        # caught.
+        bug_dir = tmp / "bug"
+        bug_dir.mkdir()
+        (bug_dir / "0001_bug.sql").write_text(
+            "do $$\n"
+            "declare t text;\n"
+            "begin\n"
+            "  for t in select unnest(array['fee_heads']) loop\n"
+            "    execute format('create policy %I_tenant_isolation on %I using "
+            "(school_id = current_setting(''app.current_tenant_id'', true)::uuid)', t, t);\n"
+            "  end loop;\n"
+            "end $$;\n"
+            "create policy fee_heads_accounting_write on fee_heads\n"
+            "  for insert with check (current_setting('app.current_role', true) = 'accountant');\n"
+        )
+        bug_policies = parse_migrations(bug_dir)
+        bug_findings = find_double_permissive_writes(bug_policies)
+        if not any(f == ("fee_heads", "fee_heads_tenant_isolation", "fee_heads_accounting_write") for f in bug_findings):
+            print("SELF-TEST FAILED: the exact C62 GAP 1 shape (permissive overlay beside a permissive ALL policy) was not caught")
+            print(bug_findings)
+            return 1
+
+        # The real fix: making the overlay RESTRICTIVE must clear it.
+        fixed_dir = tmp / "fixed"
+        fixed_dir.mkdir()
+        (fixed_dir / "0001_fixed.sql").write_text(
+            "do $$\n"
+            "declare t text;\n"
+            "begin\n"
+            "  for t in select unnest(array['fee_heads']) loop\n"
+            "    execute format('create policy %I_tenant_isolation on %I using "
+            "(school_id = current_setting(''app.current_tenant_id'', true)::uuid)', t, t);\n"
+            "  end loop;\n"
+            "end $$;\n"
+            "create policy fee_heads_accounting_write on fee_heads\n"
+            "  as restrictive for insert with check (current_setting('app.current_role', true) = 'accountant');\n"
+        )
+        fixed_findings = find_double_permissive_writes(parse_migrations(fixed_dir))
+        if fixed_findings:
+            print("SELF-TEST FAILED: converting the overlay to RESTRICTIVE did not clear the finding")
+            print(fixed_findings)
+            return 1
+
+        # Must NOT false-positive on the real self-scope shape
+        # (SELECT-only permissive policy beside a blanket ALL policy) --
+        # this is the legitimate memberships_self/users_self/
+        # schools_visible_via_own_membership pattern, not the bug.
+        selfscope_dir = tmp / "selfscope"
+        selfscope_dir.mkdir()
+        (selfscope_dir / "0001_selfscope.sql").write_text(
+            "create policy memberships_self on memberships\n"
+            "  for select using (user_id = current_setting('app.current_user_id', true)::uuid);\n"
+            "do $$\n"
+            "declare t text;\n"
+            "begin\n"
+            "  for t in select unnest(array['memberships']) loop\n"
+            "    execute format('create policy %I_tenant_isolation on %I using "
+            "(school_id = current_setting(''app.current_tenant_id'', true)::uuid)', t, t);\n"
+            "  end loop;\n"
+            "end $$;\n"
+        )
+        selfscope_findings = find_double_permissive_writes(parse_migrations(selfscope_dir))
+        if selfscope_findings:
+            print("SELF-TEST FAILED: the legitimate SELECT-only self-scope shape was flagged as if it were the C62 bug")
+            print(selfscope_findings)
+            return 1
+
+        # A single ALL-permissive policy alone (no overlay at all) is
+        # the normal, common case and must never be flagged.
+        clean_dir = tmp / "clean"
+        clean_dir.mkdir()
+        (clean_dir / "0001_clean.sql").write_text(
+            "create policy classes_tenant_isolation on classes\n"
+            "  using (school_id = current_setting('app.current_tenant_id', true)::uuid);\n"
+        )
+        if find_double_permissive_writes(parse_migrations(clean_dir)):
+            print("SELF-TEST FAILED: a table with only a single ALL-permissive policy was wrongly flagged")
+            return 1
+
+        print("SELF-TEST PASSED")
+        return 0
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 if __name__ == "__main__":
+    if "--self-test" in sys.argv:
+        sys.exit(self_test())
     sys.exit(main())
