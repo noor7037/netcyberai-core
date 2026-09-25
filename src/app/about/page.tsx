@@ -1,6 +1,6 @@
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
-import { buildMetadata, pageMeta } from '@/lib/seo';
+import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd } from '@/lib/seo';
 import { companyName } from '@/lib/site-config';
 
 export const metadata = buildMetadata(pageMeta.about);
@@ -13,7 +13,9 @@ export default function AboutPage() {
           <h1 className="max-w-2xl text-3xl font-bold sm:text-4xl">Why {companyName} exists</h1>
           <p className="max-w-2xl text-lg text-off-white/90">
             Most Indian parents don&apos;t distrust their child&apos;s school — they simply don&apos;t hear
-            from it often enough to know what&apos;s actually happening in class.
+            from it often enough to know what&apos;s actually happening in class. {companyName} closes that
+            gap with a WhatsApp-native platform: an honest daily update for every parent, automated fee
+            reminders with a UPI payment link, and a private teaching-quality signal for principals.
           </p>
         </Container>
       </section>
@@ -42,6 +44,11 @@ export default function AboutPage() {
           </Button>
         </Container>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbListJsonLd(pageMeta.about)) }}
+      />
     </>
   );
 }

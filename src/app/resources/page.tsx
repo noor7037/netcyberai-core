@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
-import { buildMetadata, pageMeta } from '@/lib/seo';
+import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd } from '@/lib/seo';
 
 export const metadata = buildMetadata(pageMeta.resources);
 
@@ -24,8 +24,9 @@ export default function ResourcesPage() {
         <Container className="flex flex-col gap-4 py-16 text-off-white">
           <h1 className="max-w-2xl text-3xl font-bold sm:text-4xl">Resources</h1>
           <p className="max-w-2xl text-lg text-off-white/90">
-            Real guides and references for school leaders evaluating NetCyberAI — no fabricated case
-            studies or testimonials.
+            Real guides and references for Indian school leaders evaluating NetCyberAI — no fabricated case
+            studies or testimonials, and no invented statistics. What is published here reflects what the
+            platform actually does today, with plainly-marked gaps where a claim has not yet been verified.
           </p>
         </Container>
       </section>
@@ -56,6 +57,11 @@ export default function ResourcesPage() {
           </ul>
         </Container>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbListJsonLd(pageMeta.resources)) }}
+      />
     </>
   );
 }

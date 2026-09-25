@@ -121,40 +121,41 @@ export const pageMeta = {
     path: '/get-started',
     title: 'Get Started',
     description:
-      'Tell us about your school and we will reach out to take you live on NetCyberAI — no invented pricing, a real request that reaches our team, not just a form that goes nowhere.',
+      'Tell us about your school and we will reach out to take you live on NetCyberAI — no invented pricing, a real request reaching our team, not a dead-end form.',
   },
   bookDemo: {
     path: '/book-demo',
     title: 'Book a Demo',
     description:
-      'Pick a preferred date and time, tell us what to cover, and our team will confirm a real product walkthrough for your school.',
+      'Pick a preferred date and time, tell us what to cover, and our team will confirm a real product walkthrough of NetCyberAI for your school, no automated reply.',
   },
   products: {
     path: '/products',
     title: 'Products',
     description:
-      'Everything NetCyberAI covers for an Indian school: School Management, AI Insights, Parent Engagement, Fees & Billing, Attendance & Safety, Academics, Communication, Compliance & Security, and Reports & Analytics.',
+      'Everything NetCyberAI covers for an Indian school: School Management, AI Insights, Parent Engagement, Fees, Attendance, Academics, Communication, Reports.',
   },
   solutions: {
     path: '/solutions',
     title: 'Solutions',
     description:
-      'NetCyberAI by role and school type: Principal, School Admin, Teacher, Finance, Admissions, Multi-school groups, CBSE schools, and budget private schools.',
+      'NetCyberAI by role and school type: Principal, School Admin, Teacher, Finance, Admissions, Multi-school groups, CBSE schools, budget-conscious private schools.',
   },
   resources: {
     path: '/resources',
     title: 'Resources',
-    description: 'Guides, FAQs, case studies, and compliance resources for Indian school leaders evaluating NetCyberAI.',
+    description:
+      'Guides, FAQs, case studies, and compliance resources for Indian school leaders evaluating NetCyberAI and WhatsApp-native parent engagement for their school.',
   },
   about: {
     path: '/about',
     title: 'About',
-    description: `Why ${companyName} exists, and what it is not — a focused parent-engagement and fee-communication layer, not a full school ERP replacement.`,
+    description: `Why ${companyName} exists, and what it is not: a focused WhatsApp-native parent-engagement and fee-communication layer for Indian schools, not an ERP replacement.`,
   },
   contact: {
     path: '/contact',
     title: 'Contact',
-    description: `Reach the ${companyName} team directly — for a demo, a pilot, or a question about how it works.`,
+    description: `Reach the ${companyName} team directly for a demo, a pilot enquiry, or a question about how the WhatsApp parent-engagement platform actually works day to day.`,
   },
 } satisfies Record<string, PageMetaInput>;
 

@@ -1,6 +1,6 @@
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
-import { buildMetadata, pageMeta } from '@/lib/seo';
+import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd } from '@/lib/seo';
 
 export const metadata = buildMetadata(pageMeta.solutions);
 
@@ -29,8 +29,10 @@ export default function SolutionsPage() {
         <Container className="flex flex-col gap-4 py-16 text-off-white">
           <h1 className="max-w-2xl text-3xl font-bold sm:text-4xl">Built around who actually uses it</h1>
           <p className="max-w-2xl text-lg text-off-white/90">
-            The same platform, shaped around each real role's own daily reality — not one generic
-            dashboard for everyone.
+            The same platform, shaped around each real role&apos;s own daily reality — not one generic
+            dashboard for everyone. A principal, a school admin, a teacher, and a finance lead each open
+            NetCyberAI to a different first screen, built around what that person actually needs to do that
+            day.
           </p>
         </Container>
       </section>
@@ -56,6 +58,11 @@ export default function SolutionsPage() {
           </Button>
         </Container>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbListJsonLd(pageMeta.solutions)) }}
+      />
     </>
   );
 }
