@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Container } from '@/components/ui/Container';
@@ -59,7 +58,9 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
           <div className="col-span-2 flex flex-col gap-3 lg:col-span-1">
             <div className="flex items-center gap-2">
-              <Image src="/brand/logo-mark.svg" alt="" width={28} height={28} className="h-7 w-7" />
+              {/* eslint-disable-next-line @next/next/no-img-element -- see Header.tsx: next/image
+                  400s on SVG sources without dangerouslyAllowSVG. */}
+              <img src="/brand/logo-mark.svg" alt="" width={28} height={28} className="h-7 w-7" />
               <p className="font-semibold text-slate">{companyName}</p>
             </div>
             <p className="text-sm text-slate/70">{companyAddress}</p>

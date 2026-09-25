@@ -31,7 +31,7 @@ export function Hero() {
           <Button href="/get-started" variant="secondary">
             Get started
           </Button>
-          <Button href="/book-demo" variant="outline" className="border-off-white text-off-white hover:bg-off-white/10">
+          <Button href="/book-demo" variant="outlineLight">
             Book a demo
           </Button>
         </div>

@@ -17,6 +17,7 @@ const MODULES = [
 ];
 
 const STUDENT_COUNT_BANDS = ['Under 200', '200-500', '500-1,000', '1,000-2,500', '2,500+'];
+const ORG_TYPES = ['School', 'Group of schools', 'Coaching centre', 'Trust / Society', 'Other'];
 
 type FormState = {
   schoolName: string;
@@ -118,6 +119,7 @@ export function LeadForm({ source }: { source: Source }) {
       <div className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-6">
         <h3 className="text-lg font-bold text-slate">Please confirm your details</h3>
         <dl className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
+          {source === 'get_started' && <Field label="Organisation type" value={values.orgType || '—'} />}
           <Field label="School" value={values.schoolName} />
           <Field label="Contact" value={values.contactName} />
           <Field label="Phone" value={values.contactPhone} />
@@ -146,6 +148,22 @@ export function LeadForm({ source }: { source: Source }) {
 
   return (
     <form onSubmit={handleReview} className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-6">
+      {source === 'get_started' && (
+        <Select
+          id="lead-org-type"
+          label="Organisation type"
+          required
+          value={values.orgType}
+          onChange={(e) => update('orgType', e.target.value)}
+        >
+          <option value="">Select one</option>
+          {ORG_TYPES.map((t) => (
+            <option key={t} value={t}>
+              {t}
+            </option>
+          ))}
+        </Select>
+      )}
       <Input
         id="lead-school-name"
         label="School / organisation name"
