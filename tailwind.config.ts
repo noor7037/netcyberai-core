@@ -10,6 +10,7 @@ const config: Config = {
         azure: colors.azure,
         cyan: { DEFAULT: colors.cyan, text: onAccentColors.onCyan },
         violet: colors.violet,
+        peach: { DEFAULT: colors.peach, text: onAccentColors.onPeach },
         emerald: { DEFAULT: colors.emerald, text: accessibleTextColors.emeraldText },
         amber: { DEFAULT: colors.amber, text: accessibleTextColors.amberText },
         gold: { DEFAULT: colors.gold, text: onAccentColors.onGold },

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useId, useRef, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
@@ -104,11 +105,15 @@ export function Header() {
   return (
     <header className="relative border-b border-slate/10 bg-off-white">
       <Container className="flex h-16 items-center justify-between gap-2">
-        <Link
-          href="/"
-          className="min-h-[44px] shrink-0 items-center flex text-lg font-bold text-sapphire"
-        >
-          {companyName}
+        <Link href="/" className="flex min-h-[44px] shrink-0 items-center">
+          <Image
+            src="/brand/logo.svg"
+            alt={companyName}
+            width={180}
+            height={48}
+            priority
+            className="h-8 w-auto"
+          />
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">

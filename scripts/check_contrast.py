@@ -66,14 +66,16 @@ DEFAULT_BG = "#F9FAFB"  # off-white, this codebase's page background
 # used here that isn't in this table is reported as UNRESOLVED, not
 # silently skipped -- see main().
 COLOR_HEX = {
-    # v2 (2026-09-25): values re-derived from the founder-approved final
-    # NetCyberAI wordmark -- see src/lib/design-tokens.ts for the full
-    # rationale and docs/10_DECISION_LOG.md for the contrast table this
-    # was checked against before landing. Names unchanged from v1.
-    "sapphire": "#0C2A63",
-    "azure": "#0A5FDB",
-    "cyan": "#00AEEF",
-    "violet": "#4A2FE0",
+    # v3 (2026-09-25): navy/cyan/violet corrected to the founder's own
+    # directly-stated hex values; `peach` added as the fourth stated
+    # brand anchor -- see src/lib/design-tokens.ts for the full
+    # rationale. Names unchanged from v1/v2 except the new `peach`.
+    "sapphire": "#002357",
+    "azure": "#016898",
+    "cyan": "#02CFF9",
+    "violet": "#4400F0",
+    "peach": "#FFC590",
+    "peach-text": "#1E293B",
     "emerald": "#0F766E",
     "emerald-text": "#0F766E",
     "amber": "#F5820B",

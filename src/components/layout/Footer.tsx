@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Container } from '@/components/ui/Container';
@@ -19,7 +20,10 @@ export function Footer() {
   return (
     <footer className="border-t border-slate/10 bg-off-white">
       <Container className="flex flex-col gap-4 py-10 text-sm text-slate">
-        <p className="font-semibold">{companyName}</p>
+        <div className="flex items-center gap-2">
+          <Image src="/brand/logo-mark.svg" alt="" width={28} height={28} className="h-7 w-7" />
+          <p className="font-semibold">{companyName}</p>
+        </div>
         <p className="flex flex-wrap items-center gap-x-1">
           <span>{companyAddress} ·</span>
           <a
