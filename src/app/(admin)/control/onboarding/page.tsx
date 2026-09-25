@@ -3,6 +3,7 @@ import { getServerSession } from '@/lib/auth/server-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { CreateSchoolForm } from '@/components/control/CreateSchoolForm';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { Badge } from '@/components/ui/Badge';
 
 const STAGE_LABELS: Record<string, string> = {
   tenant_created: 'Tenant Created',
@@ -16,19 +17,34 @@ const STAGE_LABELS: Record<string, string> = {
   go_live: 'Go-Live',
 };
 
+const LEAD_STATUS_VARIANT: Record<string, 'neutral' | 'success' | 'warning' | 'danger'> = {
+  new: 'warning',
+  contacted: 'neutral',
+  qualified: 'neutral',
+  converted: 'success',
+  rejected: 'danger',
+  duplicate: 'neutral',
+};
+
 export default async function OnboardingPage() {
   const session = await getServerSession();
   // canAccessControl already gated this whole route group at the layout
   // (Prompt D) -- session is real and super_admin by construction here.
-  const inProgress = session
+  const { inProgress, leads } = session
     ? await withTenantContext(session, async (client) => {
-        const { rows } = await client.query(
-          `select school_id, name, onboarding_stage, onboarding_stage_updated_at
-           from schools where onboarding_stage <> 'go_live' order by onboarding_stage_updated_at desc`
-        );
-        return rows;
+        const [schoolsRes, leadsRes] = await Promise.all([
+          client.query(
+            `select school_id, name, onboarding_stage, onboarding_stage_updated_at
+             from schools where onboarding_stage <> 'go_live' order by onboarding_stage_updated_at desc`
+          ),
+          client.query(
+            `select lead_id, source, school_name, contact_name, contact_phone, status, created_at
+             from leads order by created_at desc limit 20`
+          ),
+        ]);
+        return { inProgress: schoolsRes.rows, leads: leadsRes.rows };
       })
-    : [];
+    : { inProgress: [], leads: [] };
 
   return (
     <div className="flex flex-col gap-6 p-4 md:p-6">
@@ -58,6 +74,33 @@ export default async function OnboardingPage() {
                 <Link href={`/control/schools/${s.school_id}`} className="text-sm font-medium text-sapphire underline">
                   Manage →
                 </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <div>
+        <h2 className="mb-3 text-lg font-bold text-slate">Recent leads</h2>
+        <p className="mb-3 text-sm text-slate/70">
+          Real submissions from the public Get Started and Book Demo forms.
+        </p>
+        {leads.length === 0 ? (
+          <EmptyState title="No leads yet" description="Submissions from Get Started / Book Demo will appear here." />
+        ) : (
+          <ul className="flex flex-col gap-2">
+            {leads.map((l) => (
+              <li key={l.lead_id} className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-slate/10 p-3">
+                <div>
+                  <p className="font-medium text-slate">
+                    {l.school_name} <span className="font-normal text-slate/70">— {l.contact_name}</span>
+                  </p>
+                  <p className="text-sm text-slate/70">
+                    {l.contact_phone} · {l.source === 'get_started' ? 'Get Started' : 'Book Demo'} ·{' '}
+                    {new Date(l.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+                  </p>
+                </div>
+                <Badge variant={LEAD_STATUS_VARIANT[l.status] ?? 'neutral'}>{l.status}</Badge>
               </li>
             ))}
           </ul>

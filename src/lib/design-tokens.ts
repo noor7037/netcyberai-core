@@ -1,20 +1,22 @@
-// v2 (2026-09-25): brand palette re-derived from the founder-approved
-// final NetCyberAI wordmark (actual measured pixel colors, tuned only as
-// far as WCAG required -- see docs/10_DECISION_LOG.md for the full
-// contrast table). Token NAMES are unchanged from v1 -- this is a
-// value-only rebrand, not a rename, so nothing that already references
-// `sapphire`/`emerald`/`amber` needed to change. `azure`, `cyan`,
-// `violet` and `gold` are new hues the wordmark carries that had no
-// prior name. `danger` (defined below, not part of this palette) is
-// deliberately NOT re-derived from the wordmark -- see its own comment.
+// v3 (2026-09-25): navy/cyan/violet corrected to the founder's own
+// directly-stated hex values for the real NetCyberAI logo, and `peach`
+// added as the fourth stated brand anchor. This session has no logo
+// image file anywhere in the repo, and none was attached to it -- the
+// v2 values above were this session's own earlier visual read of a
+// chat-attached image in a prior conversation, which the founder has
+// now corrected directly; these four values are taken as given, not
+// independently re-verified against pixels. Token NAMES are unchanged
+// from v1/v2 (still a value-only change, not a rename) except `peach`,
+// which is genuinely new -- no prior token represented this hue at all.
 export const colors = {
-  sapphire: '#0C2A63', // was #0F4C81 -- primary navy, measured from the wordmark's letter body
-  azure: '#0A5FDB', // new -- the wordmark's brighter mid-blue; secondary buttons, links, hover states
-  cyan: '#00AEEF', // new -- informational accent (info banners, secondary badges)
-  violet: '#4A2FE0', // new -- reserved for AI-touched surfaces only (Daily Pulse, AI-governance disclosures), never a general UI color
-  emerald: '#0F766E', // was #10B981 -- teal-leaning, measured from the wordmark's leaf accent; still reads as success/green
-  amber: '#F5820B', // was #F59E0B -- orange-leaning, measured from the wordmark's swoosh; still reads as warning/attention
-  gold: '#F5B90A', // new -- rationed to real premium/highlight moments (founding-school badge, top recognition tier), never a base UI color
+  sapphire: '#002357', // "Navy" in the founder's own naming; was #0C2A63
+  azure: '#016898', // computed midpoint between sapphire and cyan, biased toward sapphire, for gradients and secondary buttons/hover -- a derived in-between tone, not itself one of the four stated brand anchors
+  cyan: '#02CFF9', // was #00AEEF
+  violet: '#4400F0', // was #4A2FE0
+  peach: '#FFC590', // new -- the fourth stated brand anchor
+  emerald: '#0F766E', // unchanged -- an internal-app success semantic, not part of the four-color brand anchor set, out of scope for this pass
+  amber: '#F5820B', // unchanged -- an internal-app warning semantic, ditto
+  gold: '#F5B90A', // unchanged -- an internal-app premium-badge semantic, ditto
   slate: '#1E293B',
   offWhite: '#F9FAFB',
 } as const;
@@ -33,10 +35,11 @@ export const accessibleTextColors = {
   amberText: '#92400E', // unchanged darkened variant -- v2 amber (#F5820B) still fails with white (2.60:1); slate (5.63:1) or this darkened text variant both clear AA.
 } as const;
 
-// v3 additions alongside the v2 rebrand: cyan/gold need a SLATE-paired
-// text variant (not a darkened self-variant, since darkening either
-// enough to pass with white would no longer read as the intended hue).
+// cyan/gold/peach need a SLATE-paired text variant (not a darkened
+// self-variant, since darkening either enough to pass with white would
+// no longer read as the intended hue).
 export const onAccentColors = {
-  onCyan: colors.slate, // cyan (#00AEEF) vs slate: 5.78:1 (AA). vs white: 2.53:1 (fails) -- never pair cyan with white text.
+  onCyan: colors.slate, // v3 cyan (#02CFF9) vs slate: 7.87:1 (AAA). vs white: 1.86:1 (fails) -- never pair cyan with white text.
   onGold: colors.slate, // gold (#F5B90A) vs slate: 8.24:1 (AAA). vs white: 1.78:1 (fails badly) -- never pair gold with white text.
+  onPeach: colors.slate, // peach (#FFC590) vs slate: 9.50:1 (AAA). vs white: 1.54:1 (fails badly) -- never pair peach with white text.
 } as const;

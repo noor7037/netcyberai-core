@@ -151,6 +151,18 @@ ALLOWED_PERMISSIVE = (
         # school. Write restriction is the RESTRICTIVE
         # whatsapp_templates_admin_write overlay, same as above.
         ("whatsapp_templates", "whatsapp_templates_read"),
+        # `leads` is the one genuinely pre-tenant table (public Get
+        # Started/Book Demo intake, reached via withBackendConnection,
+        # never withTenantContext -- there is no school_id yet). Public
+        # insert; app_backend's own duplicate-check read (bounded by its
+        # narrow grant, not a row condition); super_admin read/write for
+        # the Control Plane pipeline. None of these is an ALL-command
+        # policy, so this table can never trigger find_double_permissive_
+        # writes below regardless.
+        ("leads", "leads_public_insert"),
+        ("leads", "leads_backend_duplicate_check"),
+        ("leads", "leads_super_admin_read"),
+        ("leads", "leads_super_admin_write"),
     }
 )
 

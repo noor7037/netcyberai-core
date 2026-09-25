@@ -1,5 +1,6 @@
 import { Card } from '@/components/ui/Card';
 import { Container } from '@/components/ui/Container';
+import { Reveal } from '@/components/ui/Reveal';
 
 const gaps = [
   {
@@ -28,16 +29,20 @@ export function TrustGaps() {
   return (
     <section className="bg-off-white">
       <Container className="py-16">
-        <h2 className="text-2xl font-bold text-slate">The three trust gaps we close</h2>
-        <div className="mt-8 grid gap-6 sm:grid-cols-3">
-          {gaps.map((gap) => (
-            <Card key={gap.title}>
-              <h3 className="text-lg font-semibold text-sapphire">{gap.title}</h3>
-              <p className="mt-3 text-sm text-slate">{gap.problem}</p>
-              <p className="mt-3 border-l-4 border-emerald pl-3 text-sm font-medium text-slate">{gap.solution}</p>
-            </Card>
-          ))}
-        </div>
+        <Reveal>
+          <h2 className="text-2xl font-bold text-slate">The three trust gaps we close</h2>
+        </Reveal>
+        <Reveal className="mt-8">
+          <div className="grid gap-6 sm:grid-cols-3">
+            {gaps.map((gap) => (
+              <Card key={gap.title} className="transition-transform hover:-translate-y-1 hover:shadow-md">
+                <h3 className="text-lg font-semibold text-sapphire">{gap.title}</h3>
+                <p className="mt-3 text-sm text-slate">{gap.problem}</p>
+                <p className="mt-3 border-l-4 border-emerald pl-3 text-sm font-medium text-slate">{gap.solution}</p>
+              </Card>
+            ))}
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

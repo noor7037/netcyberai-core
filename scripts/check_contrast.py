@@ -66,14 +66,16 @@ DEFAULT_BG = "#F9FAFB"  # off-white, this codebase's page background
 # used here that isn't in this table is reported as UNRESOLVED, not
 # silently skipped -- see main().
 COLOR_HEX = {
-    # v2 (2026-09-25): values re-derived from the founder-approved final
-    # NetCyberAI wordmark -- see src/lib/design-tokens.ts for the full
-    # rationale and docs/10_DECISION_LOG.md for the contrast table this
-    # was checked against before landing. Names unchanged from v1.
-    "sapphire": "#0C2A63",
-    "azure": "#0A5FDB",
-    "cyan": "#00AEEF",
-    "violet": "#4A2FE0",
+    # v3 (2026-09-25): navy/cyan/violet corrected to the founder's own
+    # directly-stated hex values; `peach` added as the fourth stated
+    # brand anchor -- see src/lib/design-tokens.ts for the full
+    # rationale. Names unchanged from v1/v2 except the new `peach`.
+    "sapphire": "#002357",
+    "azure": "#016898",
+    "cyan": "#02CFF9",
+    "violet": "#4400F0",
+    "peach": "#FFC590",
+    "peach-text": "#1E293B",
     "emerald": "#0F766E",
     "emerald-text": "#0F766E",
     "amber": "#F5820B",
@@ -200,6 +202,12 @@ def _is_variant_guarded(cls: str, match_start: int) -> bool:
     return match_start > 0 and cls[match_start - 1] == ":"
 
 
+GRADIENT_MARKER_RE = re.compile(r"\bbg-gradient-to-\w+\b")
+GRADIENT_STOP_RE = re.compile(
+    r"\b(from|via|to)-(" + "|".join(re.escape(n) for n in KNOWN_COLOR_NAMES) + r")(?:/(\d{1,3}))?\b"
+)
+
+
 def extract_bg_color(cls: str) -> tuple[str, int] | None:
     for m in COLOR_TOKEN_RE.finditer(cls):
         if _is_variant_guarded(cls, m.start()):
@@ -207,6 +215,30 @@ def extract_bg_color(cls: str) -> tuple[str, int] | None:
         kind, name, opacity = m.group(1), m.group(2), m.group(3)
         if kind == "bg" and name in COLOR_HEX:
             return name, int(opacity) if opacity else 100
+
+    # `bg-gradient-to-*` plus `from-`/`via-`/`to-<color>` stops (Tailwind's
+    # gradient utilities) declare no single `bg-<color>` at all -- the
+    # regex above finds nothing for a gradient section, which is exactly
+    # what silently misresolved every new gradient hero/section built for
+    # the v3 brand system to the page's own default background instead of
+    # evaluating it at all. Not a full gradient renderer: this repo's own
+    # gradients are always light text over a dark/saturated brand-color
+    # sweep, so the conservative, worst-case check is against whichever
+    # declared stop is LIGHTEST (highest luminance) -- the point on the
+    # gradient a light-text pairing would actually fail against first.
+    # This does not attempt to model the blend between stops, only the
+    # declared endpoints themselves -- the same "good-enough regex, not a
+    # CSS engine" tradeoff this file already makes elsewhere.
+    if GRADIENT_MARKER_RE.search(cls):
+        stops = [
+            (name, int(opacity) if opacity else 100)
+            for m in GRADIENT_STOP_RE.finditer(cls)
+            if not _is_variant_guarded(cls, m.start())
+            for name, opacity in [(m.group(2), m.group(3))]
+            if name in COLOR_HEX
+        ]
+        if stops:
+            return max(stops, key=lambda s: relative_luminance(hex_to_rgb(COLOR_HEX[s[0]])))
     return None
 
 
@@ -389,7 +421,42 @@ def self_test() -> int:
             print("SELF-TEST FAILED: hover:bg-white/10 was mistaken for a base white background")
             return 1
 
-        print("SELF-TEST PASSED: clean pairing passes, the known bug classes are caught, variant-guarded utilities are not mistaken for base style")
+        # The v3 gradient-hero bug shape: `bg-gradient-to-*` plus `from-`/
+        # `via-`/`to-<color>` stops declare no literal `bg-<color>` at
+        # all, so a naive resolver finds nothing and silently never
+        # checks the section (a false PASS via non-evaluation, not a
+        # caught failure) -- found live building the v3 brand rebuild's
+        # gradient hero sections, all of which went completely
+        # unevaluated until this fix. A dark-stops-only gradient with
+        # light text must resolve against its lightest declared stop and
+        # pass; a gradient that actually includes a light stop (cyan)
+        # must resolve against THAT stop and genuinely fail -- proving
+        # this isn't just "stop crashing," it's "evaluate the real risk."
+        gradient_ok = tmp / "gradient_ok"
+        gradient_ok.mkdir()
+        (gradient_ok / "Hero.tsx").write_text(
+            '<section className="bg-gradient-to-br from-sapphire via-sapphire to-azure">'
+            '<h1 className="text-off-white">fine, azure is still dark enough</h1>'
+            '</section>\n'
+        )
+        rc_gradient_ok = run(gradient_ok, project_root=tmp)
+        if rc_gradient_ok != 0:
+            print("SELF-TEST FAILED: a dark-stops-only gradient with light text was wrongly flagged")
+            return 1
+
+        gradient_bad = tmp / "gradient_bad"
+        gradient_bad.mkdir()
+        (gradient_bad / "Hero.tsx").write_text(
+            '<section className="bg-gradient-to-br from-sapphire via-azure to-cyan">'
+            '<h1 className="text-off-white">fails against the cyan stop</h1>'
+            '</section>\n'
+        )
+        rc_gradient_bad = run(gradient_bad, project_root=tmp)
+        if rc_gradient_bad == 0:
+            print("SELF-TEST FAILED: light text over a gradient that includes a light (cyan) stop was NOT caught")
+            return 1
+
+        print("SELF-TEST PASSED: clean pairing passes, the known bug classes are caught, variant-guarded utilities are not mistaken for base style, gradient stops are resolved and checked against their lightest declared stop")
         return 0
     finally:
         shutil.rmtree(tmp, ignore_errors=True)

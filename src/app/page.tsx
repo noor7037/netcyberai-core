@@ -1,8 +1,17 @@
 import { Hero } from '@/components/home/Hero';
+import { EcosystemDiagram } from '@/components/home/EcosystemDiagram';
+import { OutcomesGrid } from '@/components/home/OutcomesGrid';
 import { TrustGaps } from '@/components/home/TrustGaps';
+import { CapabilitiesGrid } from '@/components/home/CapabilitiesGrid';
+import { ProductPreview } from '@/components/home/ProductPreview';
 import { HowItWorks } from '@/components/home/HowItWorks';
+import { WorkflowDiagram } from '@/components/home/WorkflowDiagram';
+import { FeatureHighlights } from '@/components/home/FeatureHighlights';
+import { SocialProofPlaceholder } from '@/components/home/SocialProofPlaceholder';
+import { PricingPreview } from '@/components/home/PricingPreview';
 import { CTASection } from '@/components/home/CTASection';
 import { Container } from '@/components/ui/Container';
+import { Reveal } from '@/components/ui/Reveal';
 import { FaqBlock } from '@/components/content/FaqBlock';
 import { buildMetadata, pageMeta, serializeJsonLd, softwareApplicationJsonLd } from '@/lib/seo';
 import { companyName } from '@/lib/site-config';
@@ -41,15 +50,25 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <EcosystemDiagram />
+      <OutcomesGrid />
       <TrustGaps />
+      <CapabilitiesGrid />
+      <ProductPreview />
       <HowItWorks />
+      <WorkflowDiagram />
+      <FeatureHighlights />
+      <SocialProofPlaceholder />
+      <PricingPreview />
 
-      <section className="bg-off-white">
+      <section className="bg-white">
         <Container className="py-16">
-          <h2 className="text-2xl font-bold text-slate">Frequently asked questions</h2>
-          <div className="mt-8">
-            <FaqBlock items={faqs} />
-          </div>
+          <Reveal>
+            <h2 className="text-2xl font-bold text-slate">Frequently asked questions</h2>
+            <div className="mt-8">
+              <FaqBlock items={faqs} />
+            </div>
+          </Reveal>
         </Container>
       </section>
 

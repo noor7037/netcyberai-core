@@ -5,13 +5,15 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
-import { companyName, whatsappLink } from '@/lib/site-config';
+import { companyName } from '@/lib/site-config';
 
 const navLinks = [
-  { href: '/features/whatsapp-fee-recovery-upi', label: 'Fee Recovery' },
-  { href: '/features/daily-learning-pulse-hinglish', label: 'Daily Pulse' },
+  { href: '/products', label: 'Products' },
+  { href: '/solutions', label: 'Solutions' },
   { href: '/pricing', label: 'Pricing' },
-  { href: '/demo', label: 'Demo' },
+  { href: '/resources', label: 'Resources' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 function MenuIcon() {
@@ -104,11 +106,11 @@ export function Header() {
   return (
     <header className="relative border-b border-slate/10 bg-off-white">
       <Container className="flex h-16 items-center justify-between gap-2">
-        <Link
-          href="/"
-          className="min-h-[44px] shrink-0 items-center flex text-lg font-bold text-sapphire"
-        >
-          {companyName}
+        <Link href="/" className="flex min-h-[44px] shrink-0 items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element -- an SVG vector logo gains
+              nothing from next/image's resizing, and Next's image optimizer 400s on SVG
+              sources without dangerouslyAllowSVG, which broke this in every browser. */}
+          <img src="/brand/logo.svg" alt={companyName} width={180} height={48} className="h-8 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
@@ -124,8 +126,14 @@ export function Header() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
-          <Button href={whatsappLink(`Hi, I would like to book a demo of ${companyName}.`)}>
-            Book a demo
+          <Link
+            href="/login"
+            className="hidden min-h-[44px] items-center px-2 text-sm font-medium text-slate hover:text-sapphire md:flex"
+          >
+            Login
+          </Link>
+          <Button href="/get-started" className="hidden md:inline-flex">
+            Get started
           </Button>
 
           <button
@@ -159,6 +167,27 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/book-demo"
+              className="flex min-h-[44px] items-center border-t border-slate/10 px-4 text-base font-medium text-slate hover:bg-slate/5"
+              onClick={() => setOpen(false)}
+            >
+              Book a demo
+            </Link>
+            <Link
+              href="/login"
+              className="flex min-h-[44px] items-center border-t border-slate/10 px-4 text-base font-medium text-slate hover:bg-slate/5"
+              onClick={() => setOpen(false)}
+            >
+              Login
+            </Link>
+            <Link
+              href="/get-started"
+              className="flex min-h-[44px] items-center border-t border-slate/10 px-4 text-base font-semibold text-sapphire hover:bg-slate/5"
+              onClick={() => setOpen(false)}
+            >
+              Get started
+            </Link>
           </nav>
         </div>
       )}
