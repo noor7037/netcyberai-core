@@ -230,3 +230,10 @@ dialog.modal-dialog::backdrop {
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
 }
+
+/* Printable pages (the /brochure one-pager): a fixed A4 sheet with even
+   margins, so "Save as PDF" gives the same single page in every browser. */
+@page {
+  size: A4;
+  margin: 10mm;
+}

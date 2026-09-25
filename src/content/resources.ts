@@ -56,8 +56,8 @@ export const resourceSections: ResourceSection[] = [
       'Detailed step-by-step help articles are still being written. Until they are published, every school on a pilot or rollout gets direct help from our team by email or WhatsApp. This page explains how onboarding works, where the most common tasks live in the portal, and how to reach us when something is unclear.',
     items: [
       { title: 'How onboarding works', body: 'Your school is set up, staff are invited, records are imported and checked, and messaging stays off until you switch it on.' },
-      { title: 'Importing students', body: 'Upload a CSV; every row is validated and you see exactly which rows need fixing before anything is saved.' },
-      { title: 'Marking attendance', body: 'Teachers open the Today screen on their phone and mark each class in under a minute.' },
+      { title: 'Importing students', body: 'Upload a CSV; every row is validated first, only valid rows are saved, and you get a report of exactly which rows need fixing.' },
+      { title: 'Marking attendance', body: 'Teachers and admins mark attendance for a class from the Attendance page, on a phone or a computer.' },
       { title: 'Getting support', body: 'Email or WhatsApp our team; a real person replies.', href: '/support' },
     ],
   },

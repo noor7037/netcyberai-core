@@ -172,6 +172,11 @@ export function Header() {
   const openTimer = useRef<number | null>(null);
   const closeTimer = useRef<number | null>(null);
   const triggerRefs = useRef<Record<MenuKey, HTMLButtonElement | null>>({ products: null, solutions: null, features: null });
+  // Set when a menu is opened from the keyboard. The panels render after
+  // the whole nav in the DOM, so without moving focus a keyboard user
+  // would have to tab past every other header link to reach the menu
+  // they just opened.
+  const focusPanelOnOpen = useRef(false);
   const panelId = useId();
   const mobileId = useId();
 
@@ -179,6 +184,12 @@ export function Header() {
     setMenu(null);
     setMobileOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!menu || !focusPanelOnOpen.current) return;
+    focusPanelOnOpen.current = false;
+    document.getElementById(`${panelId}-${menu}`)?.querySelector<HTMLElement>('a[href], button')?.focus();
+  }, [menu, panelId]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -225,7 +236,7 @@ export function Header() {
   ];
 
   return (
-    <header className="relative z-50 border-b border-slate/10 bg-white" onMouseLeave={hoverClose}>
+    <header className="relative z-50 border-b border-slate/10 bg-white print:hidden" onMouseLeave={hoverClose}>
       <Container wide className="flex h-16 items-center justify-between gap-3">
         <Link href="/" className="flex min-h-[44px] shrink-0 items-center" aria-label={`${companyName} home`}>
           <Wordmark />
@@ -242,7 +253,21 @@ export function Header() {
               aria-expanded={menu === m.key}
               aria-controls={`${panelId}-${m.key}`}
               onMouseEnter={() => hoverOpen(m.key)}
-              onClick={() => setMenu((cur) => (cur === m.key ? null : m.key))}
+              onClick={(e) => {
+                // detail === 0: activated by Enter/Space rather than a pointer.
+                if (e.detail === 0 && menu !== m.key) focusPanelOnOpen.current = true;
+                setMenu((cur) => (cur === m.key ? null : m.key));
+              }}
+              onKeyDown={(e) => {
+                if (e.key !== 'ArrowDown') return;
+                e.preventDefault();
+                if (menu === m.key) {
+                  document.getElementById(`${panelId}-${m.key}`)?.querySelector<HTMLElement>('a[href], button')?.focus();
+                } else {
+                  focusPanelOnOpen.current = true;
+                  setMenu(m.key);
+                }
+              }}
               className="inline-flex min-h-[44px] items-center gap-1 rounded-md px-3 text-sm font-semibold text-slate hover:text-royal focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal"
             >
               {m.label}

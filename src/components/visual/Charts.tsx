@@ -48,8 +48,11 @@ function niceTicks(min: number, max: number, count = 4): number[] {
 }
 
 function DataTable({ caption, labels, series, fmt }: { caption: string; labels: string[]; series: Series[]; fmt: Fmt }) {
+  // sr-only goes on a wrapper: a <table> ignores the 1px width, and its
+  // cells overflowed a 360px viewport by 8px (horizontal page scroll).
   return (
-    <table className="sr-only">
+    <div className="sr-only">
+    <table>
       <caption>{caption}</caption>
       <thead>
         <tr>
@@ -72,6 +75,7 @@ function DataTable({ caption, labels, series, fmt }: { caption: string; labels: 
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
 

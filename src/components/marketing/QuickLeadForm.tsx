@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Button } from '@/components/ui/Button';
 import { SubmitError } from '@/components/marketing/SubmitError';
+import { submitLead } from '@/components/marketing/submitLead';
 
 // Short, single-step lead capture for Contact Sales and Request a
 // Callback. Posts to the same /api/public/leads intake as Get Started
@@ -71,14 +72,7 @@ export function QuickLeadForm({ source }: { source: Source }) {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      const res = await fetch('/api/public/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ source, ...values }),
-      });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(body?.error || 'Something went wrong. Please try again.');
-      setDone({ isDuplicate: Boolean(body.isDuplicate) });
+      setDone(await submitLead({ source, ...values }));
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {

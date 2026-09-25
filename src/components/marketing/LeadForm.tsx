@@ -6,6 +6,7 @@ import { Select } from '@/components/ui/Select';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Button } from '@/components/ui/Button';
 import { SubmitError } from '@/components/marketing/SubmitError';
+import { submitLead } from '@/components/marketing/submitLead';
 
 type Source = 'get_started' | 'book_demo' | 'start_pilot';
 
@@ -79,16 +80,7 @@ export function LeadForm({ source }: { source: Source }) {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      const res = await fetch('/api/public/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ source, ...values }),
-      });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body?.error || 'Something went wrong. Please try again.');
-      }
-      const body = await res.json();
+      const body = await submitLead({ source, ...values });
       setResult({ isDuplicate: body.isDuplicate });
       setStep('done');
     } catch (err) {
