@@ -39,9 +39,9 @@ export interface PageMetaInput {
 export const pageMeta = {
   home: {
     path: '/',
-    title: 'NetCyberAI — WhatsApp Parent Engagement for Indian Schools',
+    title: 'NetCyberAI — The Connected School Platform for India',
     description:
-      'NetCyberAI helps Indian schools keep parents confident every day with honest Hinglish WhatsApp learning updates, UPI fee reminders, and private teacher insight.',
+      'NetCyberAI connects every role in an Indian school on one validated record: WhatsApp learning updates for parents, a Today screen for teachers, school health.',
     absoluteTitle: true,
   },
   feeRecovery: {
@@ -121,40 +121,65 @@ export const pageMeta = {
     path: '/get-started',
     title: 'Get Started',
     description:
-      'Tell us about your school and we will reach out to take you live on NetCyberAI — no invented pricing, a real request that reaches our team, not just a form that goes nowhere.',
+      'Tell us about your school and we will reach out to take you live on NetCyberAI — no invented pricing, a real request reaching our team, not a dead-end form.',
   },
   bookDemo: {
     path: '/book-demo',
     title: 'Book a Demo',
     description:
-      'Pick a preferred date and time, tell us what to cover, and our team will confirm a real product walkthrough for your school.',
+      'Pick a preferred date and time, tell us what to cover, and our team will confirm a real product walkthrough of NetCyberAI for your school, no automated reply.',
   },
   products: {
     path: '/products',
     title: 'Products',
     description:
-      'Everything NetCyberAI covers for an Indian school: School Management, AI Insights, Parent Engagement, Fees & Billing, Attendance & Safety, Academics, Communication, Compliance & Security, and Reports & Analytics.',
+      'Everything NetCyberAI covers for an Indian school: School Management, AI Insights, Parent Engagement, Fees, Attendance, Academics, Communication, Reports.',
   },
   solutions: {
     path: '/solutions',
     title: 'Solutions',
     description:
-      'NetCyberAI by role and school type: Principal, School Admin, Teacher, Finance, Admissions, Multi-school groups, CBSE schools, and budget private schools.',
+      'NetCyberAI by role and school type: Principal, School Admin, Teacher, Finance, Admissions, Multi-school groups, CBSE schools, budget-conscious private schools.',
   },
   resources: {
     path: '/resources',
     title: 'Resources',
-    description: 'Guides, FAQs, case studies, and compliance resources for Indian school leaders evaluating NetCyberAI.',
+    description:
+      'Guides, FAQs, case studies, and compliance resources for Indian school leaders evaluating NetCyberAI and WhatsApp-native parent engagement for their school.',
   },
   about: {
     path: '/about',
     title: 'About',
-    description: `Why ${companyName} exists, and what it is not — a focused parent-engagement and fee-communication layer, not a full school ERP replacement.`,
+    description: `Why ${companyName} exists, and what it is not: a focused WhatsApp-native parent-engagement and fee-communication layer for Indian schools, not an ERP replacement.`,
   },
   contact: {
     path: '/contact',
     title: 'Contact',
-    description: `Reach the ${companyName} team directly — for a demo, a pilot, or a question about how it works.`,
+    description: `Reach the ${companyName} team directly for a demo, a pilot enquiry, or a question about how the WhatsApp parent-engagement platform actually works day to day.`,
+  },
+  features: {
+    path: '/features',
+    title: 'Features',
+    description:
+      'NetCyberAI features for Indian schools: the Daily Learning Pulse, WhatsApp fee recovery, Personal Best, Teacher Impact Card, digital certificates and more.',
+  },
+  startPilot: {
+    path: '/start-pilot',
+    title: 'Start a Pilot',
+    description:
+      'Start a NetCyberAI pilot at your school: outbound WhatsApp stays off until you are ready, records are imported and checked, and a real person guides setup.',
+  },
+  brochure: {
+    path: '/brochure',
+    title: 'Brochure',
+    description:
+      'The NetCyberAI brochure: what the connected school platform does for principals, teachers, parents and finance, in one printable page you can save as a PDF.',
+  },
+  support: {
+    path: '/support',
+    title: 'Support',
+    description:
+      'NetCyberAI support: reach a real person by email or WhatsApp, see how onboarding works, and find answers for schools already on a pilot or on a full rollout.',
   },
 } satisfies Record<string, PageMetaInput>;
 
@@ -240,6 +265,9 @@ export function breadcrumbListJsonLd(page: { path: string; title: string }): Jso
     features: 'Features',
     blog: 'Blog',
     security: 'Security',
+    products: 'Products',
+    solutions: 'Solutions',
+    resources: 'Resources',
   };
   const segments = page.path.split('/').filter(Boolean);
   const items = [{ name: 'Home', path: '/' }];

@@ -6,7 +6,11 @@ const baseClasses =
 
 const variantClasses = {
   primary: 'bg-sapphire text-off-white hover:bg-sapphire/90',
-  secondary: 'bg-emerald text-slate hover:bg-emerald/90',
+  // Action CTA (orange = action in the v4 semantic system). Slate on
+  // tangerine is 5.61:1. The previous `bg-emerald text-slate` was 2.67:1
+  // and failed WCAG -- invisible to check_contrast.py because this map is
+  // a lookup object, not a literal className.
+  secondary: 'bg-tangerine text-slate shadow-lg shadow-tangerine/25 hover:bg-tangerine/90',
   outline: 'border-2 border-sapphire text-sapphire hover:bg-sapphire/10',
   // For an outline button on a dark background (e.g. a gradient CTA section).
   // A separate variant, not `outline` plus an overriding className: Tailwind's

@@ -1,61 +1,57 @@
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
-import { buildMetadata, pageMeta } from '@/lib/seo';
+import { EyebrowOnDark, SectionHeading } from '@/components/visual/Primitives';
+import { CatalogGrid } from '@/components/catalog/CatalogGrid';
+import { RoleExplorer } from '@/components/home/RoleExplorer';
+import { CTASection } from '@/components/home/CTASection';
+import { solutions } from '@/content/catalog';
+import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd } from '@/lib/seo';
 
 export const metadata = buildMetadata(pageMeta.solutions);
 
-const SOLUTIONS = [
-  { title: 'Principal', description: 'A private, non-public signal on teaching quality and a daily operational summary — not a public leaderboard.' },
-  { title: 'School Admin', description: 'Student, guardian, class, and consent records in one place, with an audit trail on every change.' },
-  { title: 'Teacher', description: 'Fast daily entry — attendance, the Daily Pulse update, marks — built for a budget Android phone.' },
-  { title: 'Finance', description: 'Fee structures, dues, and an automated WhatsApp reminder sequence with a UPI link.' },
-  { title: 'Admissions', description: 'A real Get Started/Book Demo pipeline into the Control Plane onboarding stages.' },
-  { title: 'Multi-school', description: 'One platform account, several schools, each fully tenant-isolated at the database layer — not just at the UI.' },
-  {
-    title: 'CBSE',
-    description:
-      'Built for the realities of Indian K-12 schooling. [GAP: specific CBSE board-compliance claims are not yet verified — we will not state a compliance claim we have not confirmed.]',
-  },
-  {
-    title: 'Budget Private Schools',
-    description: 'Designed around budget Android phones and WhatsApp as the default channel — not a desktop-first assumption.',
-  },
-] as const;
+const ROLE_SLUGS = ['principal', 'school-admin', 'teacher', 'finance', 'admissions'];
 
 export default function SolutionsPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-sapphire via-sapphire to-azure">
-        <Container className="flex flex-col gap-4 py-16 text-off-white">
-          <h1 className="max-w-2xl text-3xl font-bold sm:text-4xl">Built around who actually uses it</h1>
-          <p className="max-w-2xl text-lg text-off-white/90">
-            The same platform, shaped around each real role's own daily reality — not one generic
-            dashboard for everyone.
+      <section aria-labelledby="solutions-title" className="relative overflow-hidden bg-midnight text-white">
+        <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
+        <div aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1" />
+        <Container wide className="relative flex flex-col gap-5 py-16">
+          <EyebrowOnDark tone="action">Solutions</EyebrowOnDark>
+          <h1 id="solutions-title" className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
+            Built around who actually uses it
+          </h1>
+          <p className="max-w-3xl text-lg opacity-90">
+            The same platform, shaped around each real role&apos;s own daily reality — not one generic dashboard for
+            everyone. A principal, a school admin, a teacher, and a finance lead each open NetCyberAI to a different
+            first screen, built around what that person actually needs to do that day.
           </p>
-        </Container>
-      </section>
-
-      <section className="bg-off-white">
-        <Container className="py-16">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {SOLUTIONS.map((s) => (
-              <div key={s.title} className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-6 shadow-sm">
-                <h2 className="text-lg font-bold text-slate">{s.title}</h2>
-                <p className="text-sm text-slate/70">{s.description}</p>
-              </div>
-            ))}
+          <div className="flex flex-wrap gap-3">
+            <Button href="/book-demo" variant="secondary">
+              Book a demo
+            </Button>
+            <Button href="/start-pilot" variant="outlineLight">
+              Start a pilot
+            </Button>
           </div>
         </Container>
       </section>
-
-      <section className="bg-sapphire">
-        <Container className="flex flex-col items-start gap-4 py-16 text-off-white">
-          <h2 className="text-2xl font-bold">Tell us which one is you</h2>
-          <Button href="/get-started" variant="secondary">
-            Get started
-          </Button>
+      <section className="bg-off-white">
+        <Container wide className="flex flex-col gap-12 py-16">
+          <div className="flex flex-col gap-6">
+            <SectionHeading eyebrow="By role" tone="product" title="For each person in the school" />
+            <CatalogGrid pages={solutions.filter((s) => ROLE_SLUGS.includes(s.slug))} base="/solutions" />
+          </div>
+          <div className="flex flex-col gap-6">
+            <SectionHeading eyebrow="By school type" tone="achievement" title="For the kind of school you run" />
+            <CatalogGrid pages={solutions.filter((s) => !ROLE_SLUGS.includes(s.slug))} base="/solutions" />
+          </div>
         </Container>
       </section>
+      <RoleExplorer />
+      <CTASection />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbListJsonLd(pageMeta.solutions)) }} />
     </>
   );
 }

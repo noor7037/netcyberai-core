@@ -12,12 +12,12 @@ const faqs = [
   {
     question: 'Can a school export all of its own data?',
     answer:
-      'This is planned for Phase 1, not live today. Once a school’s data exists, it is intended to be exportable in standard formats — CSV or SQL — rather than a proprietary format, so a school is never locked into the platform.',
+      'This is planned, not live today. It is intended to be exportable in standard formats — CSV or SQL — rather than a proprietary format, so a school is never locked into the platform.',
   },
   {
     question: 'Where is school data stored?',
     answer:
-      'The Phase 1 database is planned to be provisioned on Supabase in its Mumbai, India region (AWS ap-south-1), so operational school data would be stored in India by default. No live database exists yet in Phase 0.',
+      'The NetCyberAI database runs on Supabase in its Mumbai, India region (AWS ap-south-1), so operational school data is stored in India by default.',
   },
   {
     question: 'How is children’s data handled under the DPDP Act?',
@@ -27,12 +27,12 @@ const faqs = [
   {
     question: 'What happens to our data if we leave?',
     answer:
-      'This is planned for Phase 1: on offboarding, a school is intended to receive a full export of its data before deletion, with a specific retention and deletion timeline published once that operational process actually exists and has been tested.',
+      'This is planned, not live today: on offboarding, a school is intended to receive a full export of its data before deletion, with a specific retention and deletion timeline published once that operational process actually exists and has been tested.',
   },
   {
     question: 'Does NetCyberAI use third-party analytics?',
     answer:
-      'No third-party analytics script, advertising pixel, or session-replay tool runs on any authenticated page where school or student data would be visible. This Phase 0 public website itself also sets no third-party tracking cookies.',
+      'No third-party analytics script, advertising pixel, or session-replay tool runs on any authenticated page where school or student data would be visible. This public website itself also sets no third-party tracking cookies.',
   },
 ];
 
@@ -44,28 +44,27 @@ export default function DataOwnershipPage() {
           Data Ownership &amp; Security
         </h1>
         <p className="text-lg text-slate">
-          {companyName} is designed so each school&rsquo;s data stays isolated from every other
-          school, enforced at the database level, and a school can export a full copy of its own
-          records instead of being locked into the platform. As of Phase 0 no live database exists
-          yet, so these are locked design commitments for the first release, not features running
-          today.
+          {companyName} keeps each school&rsquo;s data isolated from every other school, and that
+          isolation is enforced today by row-level security in the database itself. Letting a school
+          export a full copy of its own records, so it is never locked in, is a locked design
+          commitment that is planned but not live yet. This page separates the two plainly.
         </p>
       </div>
 
       <Card className="border-amber/40 bg-amber/5">
-        <p className="text-sm font-semibold text-slate">Current status: Phase 0</p>
+        <p className="text-sm font-semibold text-slate">Current status: pilot build</p>
         <p className="mt-2 text-sm text-slate">
-          Today, {companyName} operates only this public website. No school, student, or parent
-          data is collected, stored, or processed by us yet — there is no live database, no login,
-          and no messaging integration. The commitments below describe how the platform is
-          designed to work once a school is actually onboarded, and each one is marked as such.
+          The {companyName} database, sign-in and school isolation are live. Enquiries sent through
+          this website are stored in that database. Outbound WhatsApp is switched off for every
+          school by default and is only enabled deliberately for a pilot. Each section below says
+          whether it describes something running today or something still planned.
         </p>
       </Card>
 
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">Consent, before anything else (DPDP)</h2>
         <p className="text-sm text-slate">
-          <strong>Planned, Phase 1 design already locked in the schema:</strong> every student
+          <strong>Enforced in the database schema today:</strong> every student
           record is created in a quarantined <code>pending_consent</code> state, including bulk
           CSV imports of hundreds of students at once. No outbound message and no recognition
           scoring reaches a student until consent is recorded. Daily Pulse, Weekly Brief, and
@@ -90,7 +89,7 @@ export default function DataOwnershipPage() {
         <p className="text-sm text-slate">
           No third-party analytics script, advertising pixel, or session-replay tool runs on any
           authenticated page where school or student data would be visible — this is a standing
-          rule, not a Phase 1 promise. It already applies to this Phase 0 site: this website itself
+          rule, not a future promise. It already applies to this site: this website itself
           sets no third-party tracking cookies and loads no ad or analytics pixels.
         </p>
       </div>
@@ -98,12 +97,11 @@ export default function DataOwnershipPage() {
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">Where your data lives</h2>
         <p className="text-sm text-slate">
-          <strong>Planned commitment for Phase 1:</strong> the school database will be provisioned
-          on Supabase in its Mumbai, India region (AWS <code>ap-south-1</code>), so operational
-          school data is stored in India by default. Supabase&rsquo;s own platform guarantees that
-          all customer data is encrypted at rest with AES-256 and encrypted in transit via TLS —
-          this is a default of the underlying infrastructure we would be provisioning, not a
-          feature we would build ourselves, and it applies automatically once that project exists.
+          <strong>Live today:</strong> the school database runs on Supabase in its Mumbai, India
+          region (AWS <code>ap-south-1</code>), so operational school data is stored in India by
+          default. Supabase&rsquo;s own platform states that customer data is encrypted at rest with
+          AES-256 and in transit via TLS. That is a default of the underlying infrastructure, not a
+          feature we built ourselves.
         </p>
         <p className="text-xs text-slate/70">
           Source:{' '}
@@ -117,19 +115,20 @@ export default function DataOwnershipPage() {
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">Every query scoped to your school</h2>
         <p className="text-sm text-slate">
-          <strong>Locked architectural decision, already reflected in the schema design:</strong>{' '}
+          <strong>Live today, and tested:</strong>{' '}
           every operational table carries a school identifier, and access is restricted using
           Postgres Row-Level Security — enforced by the database itself, not only by
-          application code that a future bug could bypass. No table is exempt from this rule.
+          application code that a future bug could bypass. No table is exempt from this rule, and a
+          two-school isolation test suite checks that one school cannot read another&rsquo;s rows.
         </p>
       </div>
 
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">Exporting your data</h2>
         <p className="text-sm text-slate">
-          <strong>Planned for Phase 1:</strong> a school will be able to request a full export of
+          <strong>Planned, not live yet:</strong> a school will be able to take a full export of
           its own records in standard formats (CSV / SQL), not a proprietary format that locks you
-          into the platform. This does not exist yet because there is no live database yet — we
+          into the platform. The database exists, but the export itself has not been built, so we
           are not claiming an export button exists today.
         </p>
       </div>
@@ -137,7 +136,7 @@ export default function DataOwnershipPage() {
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">If you leave</h2>
         <p className="text-sm text-slate">
-          <strong>Planned for Phase 1:</strong> on offboarding, a school receives a full export of
+          <strong>Planned, not live yet:</strong> on offboarding, a school receives a full export of
           its data before deletion, and we intend to publish a specific retention and deletion
           timeline once that operational process actually exists, rather than promise a number now
           that nothing has tested.

@@ -26,7 +26,7 @@ const faqs = [
   {
     question: 'Does anything I do here get saved or sent?',
     answer:
-      'No. This is a read-only concept walkthrough. No interaction here saves data anywhere, sends a real WhatsApp message, or processes a real payment — by construction, since Phase 0 has no messaging or payment integration at all.',
+      'No. This is a read-only concept walkthrough. No interaction here saves data anywhere, sends a real WhatsApp message, or processes a real payment — by construction, because this walkthrough is not connected to any messaging or payment system.',
   },
   {
     question: 'How is this different from a real school’s deployment?',

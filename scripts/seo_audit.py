@@ -48,7 +48,7 @@ FETCH_TIMEOUT = 15
 # Non-page routes that legitimately exist in the build but must NOT be
 # in sitemap.xml (infrastructure routes, not content pages).
 NON_PAGE_ROUTE_SUFFIXES = ("/opengraph-image",)
-NON_PAGE_ROUTES = {"/robots.txt", "/sitemap.xml", "/llms.txt"}
+NON_PAGE_ROUTES = {"/robots.txt", "/sitemap.xml", "/llms.txt", "/icon.svg"}
 
 # Authenticated-only internal shells (src/app/sitemap.ts's own INTERNAL_ROOTS
 # exclusion: the /control admin panel, the /app tenant app, and /login) are
@@ -407,6 +407,27 @@ def blog_slug_declares_howto(route: str) -> bool | None:
     return "howTo:" in text
 
 
+def find_banned_schema_strings(html: str) -> list[str]:
+    """Which of BANNED_SCHEMA_STRINGS actually appear in this page's HTML.
+
+    Extracted as its own function (see self_test()) because of a real bug
+    this shape once had: BANNED_SCHEMA_STRINGS's '"Review"' entry
+    deliberately embeds its own quote characters, unlike the other three
+    (aggregateRating/reviewCount/ratingValue, which are camelCase JSON
+    property names that can't occur in ordinary prose and don't need
+    quoting to be unambiguous) -- the quotes are what make it match only a
+    real serialized JSON-LD `"@type":"Review"` string, not the plain
+    English word "review" turning up in unrelated UI copy ("Review and
+    continue"). An earlier version searched `banned.strip('"')`, which
+    defeats that on-purpose quoting for every entry. Caught live: it
+    flagged LeadForm.tsx's "Review and continue" button label on
+    /get-started and /book-demo as a fabricated-review-schema compliance
+    violation, which it plainly isn't -- fixed by searching `banned`
+    itself, unstripped.
+    """
+    return [banned for banned in BANNED_SCHEMA_STRINGS if banned in html]
+
+
 def check_page(base_url: str, route: str) -> list[Problem]:
     url = urljoin(base_url, route)
     result = fetch(url)
@@ -540,9 +561,8 @@ def analyze_page(base_url: str, route: str, html: str) -> list[Problem]:
             problems.append(Problem(route, "HowTo has steps", "at least 1 HowToStep", "0 steps"))
 
     # 6. Banned schema types (compliance, flagged distinctly) -----------
-    for banned in BANNED_SCHEMA_STRINGS:
-        if banned.strip('"') in html:
-            problems.append(Problem(route, "banned schema string absent", "not present anywhere", banned, compliance=True))
+    for banned in find_banned_schema_strings(html):
+        problems.append(Problem(route, "banned schema string absent", "not present anywhere", banned, compliance=True))
 
     # 7. Organization.sameAs empty, not populated ------------------------
     org_blocks = [b for b in parsed_blocks if b.get("@type") == "Organization"]
@@ -666,5 +686,36 @@ def main() -> int:
     return 0
 
 
+def self_test() -> int:
+    # The bug shape itself: ordinary UI prose containing the bare word
+    # "Review" must NOT be treated as a fabricated review-schema violation.
+    prose_html = "<button>Review and continue</button>"
+    found = find_banned_schema_strings(prose_html)
+    if found:
+        print(f"SELF-TEST FAILED: prose containing the word 'Review' was wrongly flagged as banned schema: {found}")
+        return 1
+
+    # A real JSON-LD block declaring @type: Review must still be caught.
+    schema_html = '<script type="application/ld+json">{"@type": "Review", "reviewBody": "great"}</script>'
+    found = find_banned_schema_strings(schema_html)
+    if '"Review"' not in found:
+        print("SELF-TEST FAILED: a real JSON-LD \"@type\": \"Review\" block was NOT caught")
+        return 1
+
+    # The other three banned strings are unaffected by this fix -- still
+    # camelCase JSON property names, still caught wherever they appear.
+    rating_html = '<script type="application/ld+json">{"aggregateRating": {"ratingValue": "4.8", "reviewCount": "12"}}</script>'
+    found = find_banned_schema_strings(rating_html)
+    missing = {"aggregateRating", "reviewCount", "ratingValue"} - set(found)
+    if missing:
+        print(f"SELF-TEST FAILED: fabricated rating schema strings were not all caught, missing: {missing}")
+        return 1
+
+    print("SELF-TEST PASSED: prose containing 'Review' is not flagged; real Review/rating JSON-LD schema still is.")
+    return 0
+
+
 if __name__ == "__main__":
+    if "--self-test" in sys.argv:
+        sys.exit(self_test())
     sys.exit(main())

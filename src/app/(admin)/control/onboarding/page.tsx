@@ -26,6 +26,13 @@ const LEAD_STATUS_VARIANT: Record<string, 'neutral' | 'success' | 'warning' | 'd
   duplicate: 'neutral',
 };
 
+const SOURCE_LABELS: Record<string, string> = {
+  get_started: 'Get Started',
+  book_demo: 'Book Demo',
+  start_pilot: 'Start a Pilot',
+  contact: 'Contact',
+  callback: 'Callback request',
+};
 export default async function OnboardingPage() {
   const session = await getServerSession();
   // canAccessControl already gated this whole route group at the layout
@@ -96,7 +103,7 @@ export default async function OnboardingPage() {
                     {l.school_name} <span className="font-normal text-slate/70">— {l.contact_name}</span>
                   </p>
                   <p className="text-sm text-slate/70">
-                    {l.contact_phone} · {l.source === 'get_started' ? 'Get Started' : 'Book Demo'} ·{' '}
+                    {l.contact_phone} · {SOURCE_LABELS[l.source] ?? l.source} ·{' '}
                     {new Date(l.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
                   </p>
                 </div>

@@ -5,7 +5,11 @@ import type { SessionClaims } from './types';
 let pool: Pool | null = null;
 function getPool(): Pool {
   if (!pool) {
-    pool = new Pool({ connectionString: databaseUrl(), max: 10 });
+    // connectionTimeoutMillis: pg's default is no timeout, so an
+    // unreachable database left requests hanging for minutes (until the
+    // OS gave up on TCP) and a public form spinning with no answer.
+    // Ten seconds turns that into a prompt, visible error.
+    pool = new Pool({ connectionString: databaseUrl(), max: 10, connectionTimeoutMillis: 10_000 });
   }
   return pool;
 }

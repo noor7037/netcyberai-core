@@ -1,45 +1,77 @@
-// v3 (2026-09-25): navy/cyan/violet corrected to the founder's own
-// directly-stated hex values for the real NetCyberAI logo, and `peach`
-// added as the fourth stated brand anchor. This session has no logo
-// image file anywhere in the repo, and none was attached to it -- the
-// v2 values above were this session's own earlier visual read of a
-// chat-attached image in a prior conversation, which the founder has
-// now corrected directly; these four values are taken as given, not
-// independently re-verified against pixels. Token NAMES are unchanged
-// from v1/v2 (still a value-only change, not a rename) except `peach`,
-// which is genuinely new -- no prior token represented this hue at all.
+// v4 (2026-09-25): the full NetCyberAI spectrum, taken from the two logo
+// artworks the founder supplied (the gradient wordmark and the
+// illustrated school-ecosystem mark): navy, royal and electric blue,
+// cyan, turquoise/teal, green, purple, violet, orange, coral, yellow and
+// gold. v3's four stated anchors (sapphire/cyan/violet/peach) are kept
+// unchanged; v4 only ADDS hues, it does not re-derive the existing ones.
+//
+// Every hue below has a documented pairing rule. Contrast ratios were
+// computed with scripts/check_contrast.py's own contrast_ratio(), not
+// estimated:
+//   white text passes on: sapphire, midnight, royal, electric, azure,
+//     emerald, grape, violet, and every `*-deep` variant.
+//   slate text is REQUIRED on: cyan, turquoise, leaf, tangerine, coral,
+//     sunshine, gold, peach (white on these is 1.4-2.8:1 and fails).
 export const colors = {
-  sapphire: '#002357', // "Navy" in the founder's own naming; was #0C2A63
-  azure: '#016898', // computed midpoint between sapphire and cyan, biased toward sapphire, for gradients and secondary buttons/hover -- a derived in-between tone, not itself one of the four stated brand anchors
-  cyan: '#02CFF9', // was #00AEEF
-  violet: '#4400F0', // was #4A2FE0
-  peach: '#FFC590', // new -- the fourth stated brand anchor
-  emerald: '#0F766E', // unchanged -- an internal-app success semantic, not part of the four-color brand anchor set, out of scope for this pass
-  amber: '#F5820B', // unchanged -- an internal-app warning semantic, ditto
-  gold: '#F5B90A', // unchanged -- an internal-app premium-badge semantic, ditto
+  sapphire: '#002357', // navy -- trust, infrastructure, principal, administration
+  midnight: '#061233', // darkest surface for dramatic dark sections (white text 18.8:1)
+  azure: '#016898',
+  royal: '#1D4ED8', // blue -- core product, dashboards, platform (white 6.70:1)
+  electric: '#2563EB', // brighter product blue (white 5.17:1)
+  cyan: '#02CFF9', // communication, connectivity, live status (slate 7.87:1)
+  turquoise: '#14B8A6', // healthy state (slate 5.88:1)
+  emerald: '#0F766E', // success / completed workflow, text-safe teal (white 5.47:1)
+  leaf: '#22C55E', // green -- success fills (slate 6.42:1)
+  grape: '#8B3DFF', // purple -- AI, intelligence, learning (white 4.99:1)
+  violet: '#4400F0', // deep violet -- AI/analytics (white 8.39:1)
+  tangerine: '#FF7A1A', // orange -- action, admissions, fees (slate 5.61:1)
+  coral: '#FF6B57', // coral -- alerts, exceptions (slate 5.22:1)
+  sunshine: '#FFD23F', // yellow -- achievement, growth (slate 10.13:1)
+  gold: '#F5B90A', // gold -- recognition, Personal Best (slate 8.24:1)
+  peach: '#FFC590',
+  amber: '#F5820B',
   slate: '#1E293B',
   offWhite: '#F9FAFB',
 } as const;
 
-// The raw emerald/amber/cyan/amber/gold tokens above fail WCAG AA as
-// TEXT color on white/off-white, or as white text on the raw fill --
-// confirmed by scripts/check_contrast.py. Cyan and gold in particular
-// fail badly with white text (2.53:1 and 1.78:1). These are the same
-// hue families, darkened (or, for cyan/gold, always paired with slate
-// rather than darkened, since darkening enough to pass would drift the
-// hue past recognition) only as far as needed to clear 4.5:1. Never use
-// `emerald`/`amber`/`cyan`/`gold` directly as a text color or as a
-// background with white text without checking this table first.
-export const accessibleTextColors = {
-  emeraldText: '#0F766E', // v2: emerald's own v2 value now passes AA (5.47:1) with WHITE text directly -- unlike v1, no darkened variant needed. Kept as an alias for callers that still reference emeraldText.
-  amberText: '#92400E', // unchanged darkened variant -- v2 amber (#F5820B) still fails with white (2.60:1); slate (5.63:1) or this darkened text variant both clear AA.
+// Darkened, text-safe variants of the bright hues, for coloured TEXT on
+// white/off-white (>= 4.5:1 each).
+export const deepColors = {
+  tangerineDeep: '#C2410C', // 5.18:1 on white
+  coralDeep: '#B42318', // 6.57:1
+  grapeDeep: '#6D28D9', // 7.10:1
+  goldDeep: '#92400E', // 7.09:1
+  royalDeep: '#1E3A8A', // 10.36:1
 } as const;
 
-// cyan/gold/peach need a SLATE-paired text variant (not a darkened
-// self-variant, since darkening either enough to pass with white would
-// no longer read as the intended hue).
-export const onAccentColors = {
-  onCyan: colors.slate, // v3 cyan (#02CFF9) vs slate: 7.87:1 (AAA). vs white: 1.86:1 (fails) -- never pair cyan with white text.
-  onGold: colors.slate, // gold (#F5B90A) vs slate: 8.24:1 (AAA). vs white: 1.78:1 (fails badly) -- never pair gold with white text.
-  onPeach: colors.slate, // peach (#FFC590) vs slate: 9.50:1 (AAA). vs white: 1.54:1 (fails badly) -- never pair peach with white text.
+// Semantic roles. Components pick a ROLE, never a raw hue, so colour
+// always carries the same meaning across the site.
+export const semanticColors = {
+  trust: colors.sapphire, // principal, administration, infrastructure
+  product: colors.royal, // dashboards, platform
+  communication: colors.cyan, // parent messages, connectivity, live status
+  success: colors.turquoise, // healthy state, completed workflow
+  intelligence: colors.grape, // AI, analytics, learning
+  action: colors.tangerine, // admissions, fees, required action
+  alert: colors.coral, // exceptions
+  achievement: colors.gold, // recognition, Personal Best, growth
 } as const;
+
+// Kept for existing callers (v2/v3 API).
+export const accessibleTextColors = {
+  emeraldText: '#0F766E',
+  amberText: '#92400E',
+} as const;
+
+export const onAccentColors = {
+  onCyan: colors.slate,
+  onGold: colors.slate,
+  onPeach: colors.slate,
+} as const;
+
+// Chart categorical order, validated with the dataviz skill's
+// validate_palette.js (light surface): lightness band, chroma, CVD
+// separation and normal-vision floor all PASS; turquoise and tangerine
+// sit under 3:1 against the surface, so every chart that uses them
+// ships visible value labels and a table view.
+export const chartSeries = [colors.royal, colors.turquoise, colors.tangerine, colors.grape] as const;
