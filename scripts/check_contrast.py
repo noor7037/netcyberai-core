@@ -66,11 +66,19 @@ DEFAULT_BG = "#F9FAFB"  # off-white, this codebase's page background
 # used here that isn't in this table is reported as UNRESOLVED, not
 # silently skipped -- see main().
 COLOR_HEX = {
-    "sapphire": "#0F4C81",
-    "emerald": "#10B981",
-    "emerald-text": "#047857",
-    "amber": "#F59E0B",
+    # v2 (2026-09-25): values re-derived from the founder-approved final
+    # NetCyberAI wordmark -- see src/lib/design-tokens.ts for the full
+    # rationale and docs/10_DECISION_LOG.md for the contrast table this
+    # was checked against before landing. Names unchanged from v1.
+    "sapphire": "#0C2A63",
+    "azure": "#0A5FDB",
+    "cyan": "#00AEEF",
+    "violet": "#4A2FE0",
+    "emerald": "#0F766E",
+    "emerald-text": "#0F766E",
+    "amber": "#F5820B",
     "amber-text": "#92400E",
+    "gold": "#F5B90A",
     "slate": "#1E293B",
     "off-white": "#F9FAFB",
     "white": "#FFFFFF",
@@ -172,8 +180,30 @@ class Finding:
         return "PASS"
 
 
+# Tailwind's variant syntax is always `variant:utility` (hover:bg-white,
+# focus-visible:text-slate, dark:bg-slate, group-hover:bg-white/10, ...)
+# -- a `:` immediately before a color-token match is therefore never
+# part of that match's own name, it is a variant guard, and the utility
+# it guards only applies conditionally (on hover, on focus, ...), never
+# as the element's base rendered style. Found live: Sidebar.tsx's mobile
+# hamburger button pairs `text-white` with `hover:bg-white/10` in the
+# same className -- extract_bg_color's regex matched "bg-white" inside
+# "hover:bg-white/10" with no way to tell it apart from a real base
+# `bg-white`, misresolving the button's actual background (bg-sapphire,
+# from its ancestor) as white and flagging a false "text-white on
+# white" failure. Any variant prefix produces the identical false
+# positive, not just this one case, so the fix is general: a match
+# immediately preceded by `:` is variant-guarded and excluded from base
+# style resolution, wherever it's checked (background above, text color
+# in scan_file's own loop).
+def _is_variant_guarded(cls: str, match_start: int) -> bool:
+    return match_start > 0 and cls[match_start - 1] == ":"
+
+
 def extract_bg_color(cls: str) -> tuple[str, int] | None:
     for m in COLOR_TOKEN_RE.finditer(cls):
+        if _is_variant_guarded(cls, m.start()):
+            continue
         kind, name, opacity = m.group(1), m.group(2), m.group(3)
         if kind == "bg" and name in COLOR_HEX:
             return name, int(opacity) if opacity else 100
@@ -228,6 +258,8 @@ def scan_file(path: Path, project_root: Path) -> list[Finding]:
         is_disabled = own_disabled or any(d for _, _, d in stack)
 
         for tok in COLOR_TOKEN_RE.finditer(cls):
+            if _is_variant_guarded(cls, tok.start()):
+                continue
             kind, name, opacity = tok.group(1), tok.group(2), tok.group(3)
             if kind != "text":
                 continue
@@ -342,7 +374,22 @@ def self_test() -> int:
             print("SELF-TEST FAILED: the known slate/60-on-white bug class was NOT caught")
             return 1
 
-        print("SELF-TEST PASSED: clean pairing passes, the known bug class is caught")
+        # The Sidebar.tsx bug shape: a `hover:`-guarded bg utility in the
+        # SAME className as a base text color must not be mistaken for
+        # the element's actual (ancestor-inherited) background.
+        variant_guard = tmp / "variant_guard"
+        variant_guard.mkdir()
+        (variant_guard / "Guard.tsx").write_text(
+            '<div className="bg-sapphire">'
+            '<button className="text-white hover:bg-white/10">fine on sapphire</button>'
+            '</div>\n'
+        )
+        rc_guard = run(variant_guard, project_root=tmp)
+        if rc_guard != 0:
+            print("SELF-TEST FAILED: hover:bg-white/10 was mistaken for a base white background")
+            return 1
+
+        print("SELF-TEST PASSED: clean pairing passes, the known bug classes are caught, variant-guarded utilities are not mistaken for base style")
         return 0
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
