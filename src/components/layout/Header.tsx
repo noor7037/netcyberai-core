@@ -6,13 +6,15 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
-import { companyName, whatsappLink } from '@/lib/site-config';
+import { companyName } from '@/lib/site-config';
 
 const navLinks = [
-  { href: '/features/whatsapp-fee-recovery-upi', label: 'Fee Recovery' },
-  { href: '/features/daily-learning-pulse-hinglish', label: 'Daily Pulse' },
+  { href: '/products', label: 'Products' },
+  { href: '/solutions', label: 'Solutions' },
   { href: '/pricing', label: 'Pricing' },
-  { href: '/demo', label: 'Demo' },
+  { href: '/resources', label: 'Resources' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 function MenuIcon() {
@@ -129,8 +131,14 @@ export function Header() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
-          <Button href={whatsappLink(`Hi, I would like to book a demo of ${companyName}.`)}>
-            Book a demo
+          <Link
+            href="/login"
+            className="hidden min-h-[44px] items-center px-2 text-sm font-medium text-slate hover:text-sapphire md:flex"
+          >
+            Login
+          </Link>
+          <Button href="/get-started" className="hidden md:inline-flex">
+            Get started
           </Button>
 
           <button
@@ -164,6 +172,27 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/book-demo"
+              className="flex min-h-[44px] items-center border-t border-slate/10 px-4 text-base font-medium text-slate hover:bg-slate/5"
+              onClick={() => setOpen(false)}
+            >
+              Book a demo
+            </Link>
+            <Link
+              href="/login"
+              className="flex min-h-[44px] items-center border-t border-slate/10 px-4 text-base font-medium text-slate hover:bg-slate/5"
+              onClick={() => setOpen(false)}
+            >
+              Login
+            </Link>
+            <Link
+              href="/get-started"
+              className="flex min-h-[44px] items-center border-t border-slate/10 px-4 text-base font-semibold text-sapphire hover:bg-slate/5"
+              onClick={() => setOpen(false)}
+            >
+              Get started
+            </Link>
           </nav>
         </div>
       )}

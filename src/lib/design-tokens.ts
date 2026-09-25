@@ -10,7 +10,7 @@
 // which is genuinely new -- no prior token represented this hue at all.
 export const colors = {
   sapphire: '#002357', // "Navy" in the founder's own naming; was #0C2A63
-  azure: '#016898', // computed midpoint between sapphire and cyan (40% toward cyan), for gradients and secondary buttons/hover -- a derived in-between tone, not itself one of the four stated brand anchors
+  azure: '#016898', // computed midpoint between sapphire and cyan, biased toward sapphire, for gradients and secondary buttons/hover -- a derived in-between tone, not itself one of the four stated brand anchors
   cyan: '#02CFF9', // was #00AEEF
   violet: '#4400F0', // was #4A2FE0
   peach: '#FFC590', // new -- the fourth stated brand anchor

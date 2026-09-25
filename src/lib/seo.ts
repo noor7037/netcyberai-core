@@ -117,6 +117,45 @@ export const pageMeta = {
     description:
       'A clickable concept demo of NetCyberAI’s Principal, Teacher, and Parent views, using a fictional school. Nothing shown here is saved, sent, or paid for real.',
   },
+  getStarted: {
+    path: '/get-started',
+    title: 'Get Started',
+    description:
+      'Tell us about your school and we will reach out to take you live on NetCyberAI — no invented pricing, a real request that reaches our team, not just a form that goes nowhere.',
+  },
+  bookDemo: {
+    path: '/book-demo',
+    title: 'Book a Demo',
+    description:
+      'Pick a preferred date and time, tell us what to cover, and our team will confirm a real product walkthrough for your school.',
+  },
+  products: {
+    path: '/products',
+    title: 'Products',
+    description:
+      'Everything NetCyberAI covers for an Indian school: School Management, AI Insights, Parent Engagement, Fees & Billing, Attendance & Safety, Academics, Communication, Compliance & Security, and Reports & Analytics.',
+  },
+  solutions: {
+    path: '/solutions',
+    title: 'Solutions',
+    description:
+      'NetCyberAI by role and school type: Principal, School Admin, Teacher, Finance, Admissions, Multi-school groups, CBSE schools, and budget private schools.',
+  },
+  resources: {
+    path: '/resources',
+    title: 'Resources',
+    description: 'Guides, FAQs, case studies, and compliance resources for Indian school leaders evaluating NetCyberAI.',
+  },
+  about: {
+    path: '/about',
+    title: 'About',
+    description: `Why ${companyName} exists, and what it is not — a focused parent-engagement and fee-communication layer, not a full school ERP replacement.`,
+  },
+  contact: {
+    path: '/contact',
+    title: 'Contact',
+    description: `Reach the ${companyName} team directly — for a demo, a pilot, or a question about how it works.`,
+  },
 } satisfies Record<string, PageMetaInput>;
 
 export function absoluteUrl(path: string): string {
