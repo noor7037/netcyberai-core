@@ -6,7 +6,7 @@ import { MODULES, NAV_GROUPS, type ModuleId } from '@/demo-fixture/principal-das
 import { STATUS_LABEL, moduleStatus, type ModuleStatus } from '@/content/module-status';
 import { PrincipalDashboard } from './PrincipalDashboard';
 import { TeacherApp } from './TeacherApp';
-import { ParentWhatsApp } from './ParentWhatsApp';
+import { WhatsAppPhone } from './WhatsAppPhone';
 
 // The one demo system, shared by the homepage and /product-tour:
 // the principal's desktop dashboard, the teacher's staff app and the
@@ -54,18 +54,22 @@ export function PrincipalSection({ headingLevel = 'h2' }: { headingLevel?: 'h1' 
   );
 }
 
-export function AppsSection() {
+export function AppsSection({ withParent = true }: { withParent?: boolean }) {
   return (
     <section aria-labelledby="apps-title" className="bg-off-white">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 lg:py-12">
         <div className="flex max-w-3xl flex-col gap-2">
-          <Eyebrow tone="success">For teachers and parents · mobile</Eyebrow>
+          <Eyebrow tone="success">{withParent ? 'For teachers and parents · mobile' : 'For teachers · mobile'}</Eyebrow>
           <h2 id="apps-title" className="text-3xl font-extrabold tracking-tight text-slate sm:text-4xl">
-            Teachers get a staff app. Parents just use WhatsApp.
+            {withParent ? 'Teachers get a staff app. Parents just use WhatsApp.' : 'Teachers get a staff app built for one-minute days.'}
           </h2>
-          <p className="text-slate/70">Both work in the phones below. Tap the tabs, mark attendance, open the menu, book a PTM slot.</p>
+          <p className="text-slate/70">
+            {withParent
+              ? 'Both work in the phones below. Tap the tabs, mark attendance, open the chat menu, book a PTM slot.'
+              : 'Tap the tabs: mark attendance, post homework, enter marks, record what was taught and accept a cover request. The parent’s side is the WhatsApp at the top of this page.'}
+          </p>
         </div>
-        <div className="mx-auto grid w-full max-w-4xl grid-cols-1 gap-10 md:grid-cols-2">
+        <div className={`mx-auto grid w-full max-w-4xl grid-cols-1 gap-10 ${withParent ? 'md:grid-cols-2' : 'md:grid-cols-[auto_minmax(0,1fr)] md:items-center'}`}>
           {[
             {
               key: 'teacher',
@@ -79,9 +83,11 @@ export function AppsSection() {
               title: 'Parent on WhatsApp',
               tone: 'communication' as Tone,
               points: ['Daily Learning Pulse with one-tap replies', 'Menu: attendance, homework, marks, fees and receipts, PTM', 'Notices, message a teacher, concerns, documents and consent'],
-              phone: <ParentWhatsApp />,
+              phone: <WhatsAppPhone role="parents" />,
             },
-          ].map((a) => (
+          ]
+            .filter((a) => withParent || a.key === 'teacher')
+            .map((a) => (
             <div key={a.key} className="flex flex-col gap-4">
               {a.phone}
               <div className="mx-auto flex w-full max-w-[20rem] flex-col gap-2">

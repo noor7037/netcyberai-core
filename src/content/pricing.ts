@@ -100,6 +100,15 @@ export const commercialClaims: CommercialClaim[] = [
     evidence: 'Founder request 2026-09-27. No approved commercial term.',
   },
   {
+    id: 'cancel-anytime',
+    title: 'Cancel anytime',
+    body: 'Leave whenever you choose, with no lock-in period.',
+    icon: 'arrow',
+    tone: 'product',
+    status: 'proposed',
+    evidence: 'Founder homepage reference 2026-09-27. Needs approved exit terms (docs/13 row 7) and working full data export (row 8).',
+  },
+  {
     id: 'migration-24h',
     title: 'Migration in 24 hours',
     body: 'Your data moved in a day.',
@@ -138,6 +147,25 @@ export const commercialClaims: CommercialClaim[] = [
 ];
 
 export const publishedClaims = commercialClaims.filter((c) => c.status === 'confirmed');
+
+// The three promise chips under the homepage headline. The founder's
+// reference asks for the first three; each shows only once its claim is
+// confirmed above, and a confirmed fact fills its place until then.
+const HERO_PREFERRED: { claim: string; label: string }[] = [
+  { claim: 'no-setup-fees', label: 'No setup fees' },
+  { claim: 'first-month-free', label: 'Free 1st month' },
+  { claim: 'cancel-anytime', label: 'Cancel anytime' },
+];
+const HERO_FALLBACK: { claim: string; label: string }[] = [
+  { claim: 'pilot-first', label: 'Pilot mode first' },
+  { claim: 'data-in-india', label: 'Data stays in India' },
+  { claim: 'whatsapp-at-cost', label: 'WhatsApp costs shown openly' },
+];
+
+export function heroChips(): string[] {
+  const ok = (id: string) => commercialClaims.find((c) => c.id === id)?.status === 'confirmed';
+  return [...HERO_PREFERRED, ...HERO_FALLBACK].filter((c) => ok(c.claim)).slice(0, 3).map((c) => c.label);
+}
 
 export interface Plan {
   id: 'free' | 'starter' | 'growth' | 'compass';

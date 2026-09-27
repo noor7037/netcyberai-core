@@ -1,5 +1,6 @@
 import { Hero } from '@/components/home/Hero';
 import { PrincipalSection, AppsSection } from '@/components/showcase/Sections';
+import { WhyChoose } from '@/components/home/WhyChoose';
 import { TrustSecurity } from '@/components/home/TrustSecurity';
 import { CTASection } from '@/components/home/CTASection';
 import { Container } from '@/components/ui/Container';
@@ -41,8 +42,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <WhyChoose />
       <PrincipalSection />
-      <AppsSection />
+      <AppsSection withParent={false} />
       <TrustSecurity />
 
       <section aria-labelledby="faq-title" className="bg-off-white">

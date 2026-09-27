@@ -211,11 +211,23 @@ dialog.modal-dialog::backdrop {
   }
 }
 
-/* Warm, low-blue wash behind the homepage hero. */
-.nca-hero-wash {
+/* Homepage hero: soft sky, watercolour clouds, gradient headline. */
+.nca-hero-sky {
+  background: linear-gradient(180deg, #e8f4ff 0%, #f5f9ff 45%, #fff6ec 100%);
+}
+.nca-hero-clouds {
   background:
-    radial-gradient(60rem 30rem at 85% 0%, rgb(255 197 144 / 0.35), transparent 60%),
-    radial-gradient(40rem 24rem at 0% 100%, rgb(34 197 94 / 0.12), transparent 60%);
+    radial-gradient(38rem 16rem at 70% 8%, rgb(255 255 255 / 0.9), transparent 70%),
+    radial-gradient(30rem 14rem at 15% 20%, rgb(255 255 255 / 0.8), transparent 70%),
+    radial-gradient(34rem 18rem at 92% 40%, rgb(255 197 144 / 0.28), transparent 70%),
+    radial-gradient(28rem 16rem at 40% 55%, rgb(139 61 255 / 0.07), transparent 70%);
+}
+.nca-brighter {
+  background: linear-gradient(90deg, #1d4ed8 0%, #6d28d9 50%, #c2410c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: #1d4ed8;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Thin, quiet scrollbars inside the demo frames. */
