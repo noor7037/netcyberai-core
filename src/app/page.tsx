@@ -7,6 +7,7 @@ import { ProductShowcase } from '@/components/home/ProductShowcase';
 import { OperationsFlows } from '@/components/home/OperationsFlows';
 import { GapDetection } from '@/components/home/GapDetection';
 import { WhatsAppShowcase } from '@/components/home/WhatsAppShowcase';
+import { TourBand } from '@/components/home/TourBand';
 import { PersonalBestJourney } from '@/components/home/PersonalBestJourney';
 import { OutcomeDashboard } from '@/components/home/OutcomeDashboard';
 import { TrustSecurity } from '@/components/home/TrustSecurity';
@@ -51,6 +52,7 @@ export default function HomePage() {
     <>
       <Hero />
       <WhatsAppShowcase />
+      <TourBand />
       <LiveEcosystem />
       <ManualToConnected />
       <RoleExplorer />

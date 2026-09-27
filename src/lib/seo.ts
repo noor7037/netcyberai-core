@@ -169,6 +169,12 @@ export const pageMeta = {
     description:
       'Free tools for Indian schools: check a student list before import, calculate attendance targets, and write fee reminders and parent updates in Hinglish.',
   },
+  productTour: {
+    path: '/product-tour',
+    title: 'Product Tour',
+    description:
+      'Explore NetCyberAI hands-on: click through the principal, teacher and finance dashboards and scroll a parent’s WhatsApp updates, all in a fictional demo school.',
+  },
   startPilot: {
     path: '/start-pilot',
     title: 'Start a Pilot',

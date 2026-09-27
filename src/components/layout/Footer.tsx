@@ -17,6 +17,7 @@ const COMPANY = [
   { href: '/brochure', label: 'Download brochure' },
   { href: '/support', label: 'Support' },
   { href: '/security/data-ownership', label: 'Data ownership' },
+  { href: '/product-tour', label: 'Product tour' },
   { href: '/demo', label: 'Concept demo' },
 ];
 

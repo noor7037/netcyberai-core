@@ -67,9 +67,14 @@ function ProductsPanel({ onNavigate }: { onNavigate: () => void }) {
             </li>
           ))}
         </ul>
-        <Link href="/products" onClick={onNavigate} className="mt-3 inline-flex min-h-[40px] items-center gap-1.5 text-sm font-bold text-royal hover:underline">
-          All products <Icon name="arrow" className="h-4 w-4" />
-        </Link>
+        <div className="mt-3 flex flex-wrap gap-x-5">
+          <Link href="/products" onClick={onNavigate} className="inline-flex min-h-[40px] items-center gap-1.5 text-sm font-bold text-royal hover:underline">
+            All products <Icon name="arrow" className="h-4 w-4" />
+          </Link>
+          <Link href="/product-tour" onClick={onNavigate} className="inline-flex min-h-[40px] items-center gap-1.5 text-sm font-bold text-royal hover:underline">
+            <Icon name="play" className="h-4 w-4" /> Explore the product tour
+          </Link>
+        </div>
       </div>
       <div className="flex flex-col gap-3 rounded-2xl bg-off-white p-4" aria-hidden="true">
         <p className="text-xs font-bold uppercase tracking-wider text-slate/70">Preview</p>

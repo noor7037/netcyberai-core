@@ -341,11 +341,9 @@ export const heroDashboard = {
     { label: 'Fees collected', value: '78%', note: 'This term' },
     { label: 'Needs an owner', value: '3', note: 'Open exceptions' },
   ],
-  attendanceBands: [
-    { band: 'K–5', value: 95.8, note: 'Steady' },
-    { band: '6–8', value: 92.3, note: 'Class 6 needs review' },
-    { band: '9–12', value: 94.0, note: 'Class 9 early signal' },
-  ],
+  get attendanceBands() {
+    return attendanceBands();
+  },
   fees: {
     collected: 78,
     buckets: [
@@ -463,3 +461,70 @@ export const whatsappStory: { child: string; parent: string; className: string; 
     },
   ],
 };
+
+// ---- Product tour: full dashboard explorer --------------------------------
+// Class-wise attendance for the demo school. Present counts sum to 1,180 of
+// 1,240 (95.2%), matching the hero KPIs; every percentage on the site is
+// computed from these rows rather than typed separately.
+
+export const classAttendance = [
+  { name: 'Kindergarten', band: 'K–5', present: 59, total: 60, personalBests: 6 },
+  { name: 'Class 1', band: 'K–5', present: 80, total: 82, personalBests: 5 },
+  { name: 'Class 2', band: 'K–5', present: 82, total: 85, personalBests: 7 },
+  { name: 'Class 3', band: 'K–5', present: 87, total: 90, personalBests: 4 },
+  { name: 'Class 4', band: 'K–5', present: 88, total: 92, personalBests: 9 },
+  { name: 'Class 5', band: 'K–5', present: 90, total: 95, personalBests: 6 },
+  { name: 'Class 6', band: '6–8', present: 98, total: 110, personalBests: 3 },
+  { name: 'Class 7', band: '6–8', present: 102, total: 105, personalBests: 8 },
+  { name: 'Class 8', band: '6–8', present: 102, total: 108, personalBests: 5 },
+  { name: 'Class 9', band: '9–12', present: 106, total: 115, personalBests: 2 },
+  { name: 'Class 10', band: '9–12', present: 114, total: 118, personalBests: 7 },
+  { name: 'Class 11', band: '9–12', present: 87, total: 92, personalBests: 4 },
+  { name: 'Class 12', band: '9–12', present: 85, total: 88, personalBests: 5 },
+];
+
+export function pct(present: number, total: number): number {
+  return Math.round((present / total) * 1000) / 10;
+}
+
+const BAND_NOTES: Record<string, string> = { 'K–5': 'Steady', '6–8': 'Class 6 needs review', '9–12': 'Class 9 early signal' };
+
+export function attendanceBands() {
+  return ['K–5', '6–8', '9–12'].map((band) => {
+    const rows = classAttendance.filter((c) => c.band === band);
+    const present = rows.reduce((a, c) => a + c.present, 0);
+    const total = rows.reduce((a, c) => a + c.total, 0);
+    return { band, value: pct(present, total), note: BAND_NOTES[band] };
+  });
+}
+
+export const weekAttendance = [
+  { day: 'Mon', present: 1172, absent: 68 },
+  { day: 'Tue', present: 1185, absent: 55 },
+  { day: 'Wed', present: 1168, absent: 72 },
+  { day: 'Thu', present: 1180, absent: 60 },
+  { day: 'Fri', present: 1176, absent: 64 },
+  { day: 'Sat', present: 1151, absent: 89 },
+];
+
+export const timetableToday = [
+  { time: '09:00', subject: 'Mathematics', cls: 'Class 10-A', teacher: 'Priya Mehta', state: 'Now' },
+  { time: '10:00', subject: 'Science', cls: 'Class 9-B', teacher: 'Cover: Rakesh Arora (Mrs Gupta on leave)', state: 'Next' },
+  { time: '11:00', subject: 'English', cls: 'Class 8-A', teacher: 'Arjun Malik', state: 'Later' },
+  { time: '13:00', subject: 'Social Studies', cls: 'Class 7-C', teacher: 'Neha Verma', state: 'Later' },
+];
+
+export const upcomingEvents = [
+  { date: '3 Oct', title: 'Parent-Teacher Meeting', detail: '412 of 520 families booked a slot', icon: 'parent' as const },
+  { date: '5 Oct', title: 'Science Exhibition', detail: 'Classes 6 to 11', icon: 'sparkle' as const },
+  { date: '8 Oct', title: 'English essay (Term 1)', detail: 'Classes 4 to 8', icon: 'exams' as const },
+  { date: '12 Oct', title: 'Sports Day', detail: 'Whole school', icon: 'trophy' as const },
+];
+
+export const recentActivity = [
+  { when: '10 min ago', title: 'New admission application', detail: 'Aarav Sharma, Class 9 · documents received', icon: 'admissions' as const },
+  { when: '1 hr ago', title: 'Fee payment received', detail: '₹25,000 · Class 8 · receipt sent on WhatsApp', icon: 'fees' as const },
+  { when: '2 hr ago', title: 'Leave approved, cover assigned', detail: 'Mrs Gupta · Class 9-B Science covered', icon: 'teacher' as const },
+  { when: '3 hr ago', title: 'Homework posted', detail: 'Class 6 · Mathematics · Fractions worksheet', icon: 'homework' as const },
+  { when: '5 hr ago', title: 'Personal Best recorded', detail: 'Aarav, Class 7 · Maths 18/20, up from 14', icon: 'trophy' as const },
+];

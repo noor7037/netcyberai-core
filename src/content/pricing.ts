@@ -115,7 +115,7 @@ export const commercialClaims: CommercialClaim[] = [
     icon: 'shield',
     tone: 'trust',
     status: 'gap',
-    evidence: 'Supabase organisation is on the Free plan (checked 2026-09-27); daily backups need a paid plan. Upgrade before claiming.',
+    evidence: 'Launch prerequisite (docs/13_LAUNCH_CHECKLIST.md row 1): paid database tier with daily backups and a tested restore. Flip to confirmed when done.',
   },
   {
     id: 'enterprise-security',
@@ -133,7 +133,7 @@ export const commercialClaims: CommercialClaim[] = [
     icon: 'chart',
     tone: 'trust',
     status: 'gap',
-    evidence: 'No SLA defined, no monitoring in place to measure one (control/monitoring is a stub).',
+    evidence: 'Launch prerequisite (docs/13_LAUNCH_CHECKLIST.md row 2): monitoring must exist to measure an SLA, and a target must be chosen.',
   },
 ];
 

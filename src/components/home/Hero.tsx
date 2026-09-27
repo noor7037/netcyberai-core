@@ -49,10 +49,10 @@ export function Hero() {
               Get started
             </Button>
             <Link
-              href="/#product-tour"
+              href="/product-tour"
               className="inline-flex min-h-[44px] items-center gap-2 rounded-md px-3 font-semibold underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
             >
-              <Icon name="play" className="h-4 w-4" /> Watch the product tour
+              <Icon name="play" className="h-4 w-4" /> Explore the product tour
             </Link>
           </div>
           <ul className="flex flex-wrap gap-2" aria-label="Roles connected by NetCyberAI">

@@ -154,7 +154,7 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="compare-title" className="bg-off-white">
+      <section id="compare" aria-labelledby="compare-title" className="scroll-mt-24 bg-off-white">
         <Container wide className="flex flex-col gap-6 py-16">
           <SectionHeading id="compare-title" eyebrow="Compare" tone="intelligence" title="Module by module" />
           <div className="relative min-w-0 max-w-full overflow-x-auto rounded-3xl border border-slate/10 bg-white" tabIndex={0} role="region" aria-labelledby="compare-title">
