@@ -1,7 +1,7 @@
 'use client';
 
 import './wa-phone.css';
-import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
+import { Fragment, useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { usePrefersReducedMotion } from '@/lib/hooks';
 import {
   PARENT_ACTION_REPLIES,
@@ -89,8 +89,9 @@ function download(href: string, name: string) {
   a.click();
 }
 
-export function WhatsAppPhone({ className = '' }: { className?: string }) {
+export function WhatsAppPhone({ className = '', controls = true }: { className?: string; controls?: boolean }) {
   const reduced = usePrefersReducedMotion();
+  const noteId = `wa-note-${useId().replace(/:/g, '')}`;
   const chatRef = useRef<HTMLDivElement>(null);
   const noteRef = useRef<HTMLTextAreaElement>(null);
   const [playing, setPlaying] = useState(true);
@@ -300,10 +301,10 @@ export function WhatsAppPhone({ className = '' }: { className?: string }) {
               ))}
             </div>
             <div className="note-box">
-              <label className="prompt" htmlFor="wa-note">
+              <label className="prompt" htmlFor={noteId}>
                 Anything specific? / कुछ खास बताना है?
               </label>
-              <textarea id="wa-note" ref={noteRef} value={note} onChange={(e) => setNote(e.target.value)} onFocus={() => hold(15000)} placeholder="Teacher, subject, class or anything... / शिक्षक, विषय, कक्षा या कोई और बात..." />
+              <textarea id={noteId} ref={noteRef} value={note} onChange={(e) => setNote(e.target.value)} onFocus={() => hold(15000)} placeholder="Teacher, subject, class or anything... / शिक्षक, विषय, कक्षा या कोई और बात..." />
               <div className="note-actions">
                 <button type="button" className="send-note" onClick={sendNote}>
                   Send / भेजें
@@ -744,6 +745,7 @@ export function WhatsAppPhone({ className = '' }: { className?: string }) {
           </div>
         </div>
       </div>
+      {controls && (
       <div className="flex flex-nowrap items-center justify-center gap-1.5 text-xs font-bold text-slate">
         <button
           type="button"
@@ -771,6 +773,7 @@ export function WhatsAppPhone({ className = '' }: { className?: string }) {
           ↺ Restart
         </button>
       </div>
+      )}
     </div>
   );
 }
