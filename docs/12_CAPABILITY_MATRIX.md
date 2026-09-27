@@ -95,10 +95,10 @@ live feature.
 | Reference shows | Decision |
 |---|---|
 | "Next.js + Firebase + Firestore RLS + Cloud SQL" subtitle | Rejected: PostgreSQL on Supabase is canonical. |
-| Parent sees a ranked list of 10 named classmates ("#7 of 60", "Top 3") | Rejected: exposes other children; Personal Best is primary, Top-3 is opt-in and school-side. |
+| Parent sees a ranked list of 10 named classmates ("#7 of 60", "Top 3") | Shown on the website as the founder's product intent (C76). Product build blocked until the Constitution (§5, §9) is amended and consent for sharing a child's rank with other families is designed. |
 | Fee delay list mixing toppers, parent names and phone numbers | Rejected: fees are never paired with academic standing or shown with contact details on a dashboard tile. |
 | Four understanding states, Devanagari Hindi | Shown on the website as designed (C75). Schema decision pending: widen `pulse_response_log.tier` to 1..4 and add a Hindi body column when the Pulse is built (build step 3). |
-| "Open Parent App" as the next step | Rejected as primary: WhatsApp-first, no forced app. |
+| "Open Parent App" as the next step | Shown on the website (C76); the Parent App follows the platform launch. WhatsApp stays the primary channel. |
 | Learning Genome, Digital Twin, Career Graph, "9 agents", Payroll | Shown since C74 inside the labelled demo only, never as live product; status "Needs specification" until the founder's module spec exists. |
 | Numbers such as "Proxy auto 90 sec vs 45 min", "842 guidance sessions" | Unsourced; not used. |
 

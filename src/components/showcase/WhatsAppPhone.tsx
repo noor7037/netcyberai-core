@@ -223,7 +223,7 @@ export function WhatsAppPhone({ role = 'parents', className = '' }: { role?: Rol
         toast('PTM question prepared in the note box.');
         break;
       case 'share-achievement':
-        setShareTitle('Share Rahul’s Personal Best');
+        setShareTitle('Share Rahul’s Top 3 achievement');
         setOverlay('share');
         break;
       case 'share-certificate':
@@ -464,6 +464,26 @@ export function WhatsAppPhone({ role = 'parents', className = '' }: { role?: Rol
                   <span className="now" style={{ width: `${r.now}%` }} />
                 </span>
                 <span className="delta">{r.delta}</span>
+              </div>
+            ))}
+          </div>
+        );
+      case 'rank':
+        return (
+          <div key={key} aria-label={`Class position: #${b.me} of ${b.of}`}>
+            {[b.names.slice(0, 5), b.names.slice(5, 10)].map((row, r) => (
+              <div className="rank" key={r}>
+                {row.map((n, i) => {
+                  const pos = r * 5 + i + 1;
+                  const me = pos === b.me;
+                  return (
+                    <div className={`rank-card${me ? ' me' : ''}`} key={n}>
+                      <b>{pos}</b>
+                      <span>{me ? `${n}★` : n}</span>
+                      {me && <small>{`#${b.me} / ${b.of}`}</small>}
+                    </div>
+                  );
+                })}
               </div>
             ))}
           </div>

@@ -662,6 +662,49 @@
   font-size: 8.5px;
   color: #56635f;
 }
+.wa-phone .rank {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 3px;
+  margin: 6px 0;
+}
+.wa-phone .rank-card {
+  background: #fff;
+  border: 1px solid #e4ebee;
+  border-radius: 7px;
+  padding: 5px 0;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.15s;
+}
+.wa-phone .rank-card:hover {
+  transform: translateY(-1px);
+}
+.wa-phone .rank-card b {
+  display: block;
+  font-size: 10.5px;
+}
+.wa-phone .rank-card span {
+  display: block;
+  font-size: 7.5px;
+  letter-spacing: -0.02em;
+  color: #56635f;
+  white-space: nowrap;
+}
+.wa-phone .rank-card.me {
+  border: 2px solid #6b3cff;
+  background: #f6f2ff;
+}
+.wa-phone .rank-card.me span {
+  color: #4400f0;
+  font-weight: 900;
+}
+.wa-phone .rank-card small {
+  display: block;
+  color: #4400f0;
+  font-weight: 900;
+  font-size: 7px;
+}
 .wa-phone .kpis {
   display: grid;
   grid-template-columns: 1fr 1fr;

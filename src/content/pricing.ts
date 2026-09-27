@@ -74,12 +74,12 @@ export const commercialClaims: CommercialClaim[] = [
   },
   {
     id: 'first-month-free',
-    title: 'First month free',
-    body: 'Use NetCyberAI free for your first month.',
+    title: 'First month free after setup',
+    body: 'Your first month on NetCyberAI is free, counted from the day your school is set up.',
     icon: 'sparkle',
     tone: 'achievement',
-    status: 'proposed',
-    evidence: 'Founder request 2026-09-27. No approved offer terms.',
+    status: 'confirmed',
+    evidence: 'Founder approval (Noor), 2026-09-27, Decision Log C76: publish now as a standing commercial term.',
   },
   {
     id: 'free-plan-permanent',
@@ -92,21 +92,30 @@ export const commercialClaims: CommercialClaim[] = [
   },
   {
     id: 'no-setup-fees',
-    title: 'No setup or hosting fees',
-    body: 'No separate charge for setup or hosting.',
+    title: 'No setup fees',
+    body: 'Setting up your school costs nothing.',
     icon: 'check',
     tone: 'success',
-    status: 'proposed',
-    evidence: 'Founder request 2026-09-27. No approved commercial term.',
+    status: 'confirmed',
+    evidence: 'Founder approval (Noor), 2026-09-27, Decision Log C76: publish now as a standing commercial term.',
   },
   {
     id: 'cancel-anytime',
-    title: 'Cancel anytime',
-    body: 'Leave whenever you choose, with no lock-in period.',
+    title: 'Cancel anytime, no questions asked',
+    body: 'Leave whenever you choose. No lock-in period and no questions asked.',
     icon: 'arrow',
     tone: 'product',
-    status: 'proposed',
-    evidence: 'Founder homepage reference 2026-09-27. Needs approved exit terms (docs/13 row 7) and working full data export (row 8).',
+    status: 'confirmed',
+    evidence: 'Founder approval (Noor), 2026-09-27, Decision Log C76: publish now as a standing commercial term.',
+  },
+  {
+    id: 'free-training',
+    title: 'Free staff training',
+    body: 'We train your principal, office staff and teachers at no cost, so nobody is left to work it out alone.',
+    icon: 'teacher',
+    tone: 'success',
+    status: 'confirmed',
+    evidence: 'Founder approval (Noor), 2026-09-27, Decision Log C76: setup and staff training are free.',
   },
   {
     id: 'migration-24h',
@@ -148,13 +157,14 @@ export const commercialClaims: CommercialClaim[] = [
 
 export const publishedClaims = commercialClaims.filter((c) => c.status === 'confirmed');
 
-// The three promise chips under the homepage headline. The founder's
-// reference asks for the first three; each shows only once its claim is
-// confirmed above, and a confirmed fact fills its place until then.
+// The promise chips under the homepage headline (founder, C76). Each shows
+// only while its claim is confirmed above; a confirmed fact fills in if one
+// is ever withdrawn.
 const HERO_PREFERRED: { claim: string; label: string }[] = [
   { claim: 'no-setup-fees', label: 'No setup fees' },
-  { claim: 'first-month-free', label: 'Free 1st month' },
-  { claim: 'cancel-anytime', label: 'Cancel anytime' },
+  { claim: 'free-training', label: 'Free staff training' },
+  { claim: 'first-month-free', label: 'Free 1st month after setup' },
+  { claim: 'cancel-anytime', label: 'Cancel anytime, no questions' },
 ];
 const HERO_FALLBACK: { claim: string; label: string }[] = [
   { claim: 'pilot-first', label: 'Pilot mode first' },
@@ -164,7 +174,7 @@ const HERO_FALLBACK: { claim: string; label: string }[] = [
 
 export function heroChips(): string[] {
   const ok = (id: string) => commercialClaims.find((c) => c.id === id)?.status === 'confirmed';
-  return [...HERO_PREFERRED, ...HERO_FALLBACK].filter((c) => ok(c.claim)).slice(0, 3).map((c) => c.label);
+  return [...HERO_PREFERRED, ...HERO_FALLBACK].filter((c) => ok(c.claim)).slice(0, 4).map((c) => c.label);
 }
 
 export interface Plan {

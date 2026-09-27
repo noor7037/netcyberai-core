@@ -46,9 +46,12 @@ describe('principal dashboard fixture (founder reference, reconciled)', () => {
     }
   });
 
-  it('keeps the parent WhatsApp free of class ranks and a parent app (Constitution §5, §9, C13)', () => {
+  it('keeps the founder’s parent WhatsApp reference as designed (C76)', () => {
     const chats = JSON.stringify({ PARENT_CHAT, ROLE_CHATS });
-    for (const banned of ['#7', '#3', 'out of 60', 'Top 5', 'Parent App', 'portal', 'Aditya', 'Myra']) expect(chats, banned).not.toContain(banned);
-    expect(chats).toContain('Personal Best');
+    for (const kept of ['#7 out of 60', 'now #3 in Class 5', 'Top 5 and Top 3', 'Rahul, Siya and Dev', 'Open Parent App', 'FEE RECOVERY', 'Aditya']) expect(chats, kept).toContain(kept);
+  });
+
+  it('asks each family for its WhatsApp message language at admission', () => {
+    for (const role of ['student', 'parent'] as const) expect(ADD_FORMS[role].some((f) => f.label === 'WhatsApp Message Language'), role).toBe(true);
   });
 });

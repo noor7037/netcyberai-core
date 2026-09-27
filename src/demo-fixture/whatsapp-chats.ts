@@ -2,19 +2,12 @@
 // fictional (Sunrise International, Rahul Sharma, Class 5).
 //
 // PARENT_CHAT is the founder's NetCyberAI_Parent_WhatsApp_iPhone reference,
-// message for message, bilingual English + Hindi as designed, with four
-// understanding responses. Edits, each required by the Constitution
-// (Decision Log C75):
-//   - Weekly Growth Brief: the ranked list of ten named classmates
-//     ("#7 of 60") becomes Rahul measured against his own past
-//     (Personal Best is primary, never "Rank 1/2/3", §5; other children's
-//     positions are never shown to a parent).
-//   - PTM invite: Class Shine wording ("one of 3 students who shone"),
-//     without naming other children.
-//   - Celebration: "now #3 in Class 5" becomes a Personal Best.
-//   - "Open Parent App" becomes the chat's own menu (no parent app or
-//     login in Phase 1, C13; WhatsApp is the primary channel, §9).
-//   - "Fee recovery" becomes a fee reminder; receipts say "demo".
+// message for message: bilingual English + Hindi (in the real product a
+// family gets its chosen language, picked at admission), four
+// understanding responses, the class position brief with named
+// classmates, Top 3 recognition and the Parent App invitation. Kept as
+// designed on the founder's explicit instruction (Decision Log C76),
+// which supersedes the earlier Constitution-driven edits (C75).
 // The other roles' chats follow the same visual language.
 
 import type { ModuleId } from './principal-dashboard';
@@ -34,6 +27,7 @@ export type ChatBlock =
   | { t: 'photo'; src: string; alt: string }
   | { t: 'certificate'; src: string; alt: string }
   | { t: 'growth'; rows: { label: string; was: number; now: number; delta: string }[] }
+  | { t: 'rank'; names: string[]; me: number; of: number }
   | { t: 'kpis'; items: { value: string; label: string }[] }
   | { t: 'rows'; items: { left: string; right: string; tone: 'ok' | 'warn' | 'bad' }[] };
 
@@ -87,6 +81,7 @@ export const PARENT_CHAT: ChatMsg[] = [
         ],
       },
       { t: 'understanding' },
+      { t: 'system', text: 'Sent in the language the family chose at admission. Shown here in English + Hindi.' },
     ],
     meta: '10:08 AM',
   },
@@ -150,28 +145,19 @@ export const PARENT_CHAT: ChatMsg[] = [
     label: '🏆 WEEKLY GROWTH BRIEF',
     paras: [
       {
-        en: '**Rahul beat his own best in 4 of 5 subjects this fortnight.** His strongest movement is in Mathematics reasoning and map-based EVS work. Rahul is compared only with Rahul, never with classmates.',
-        hi: '**इस पखवाड़े राहुल ने 5 में से 4 विषयों में अपना ही पिछला रिकॉर्ड बेहतर किया।** गणितीय तर्क और मानचित्र-आधारित EVS कार्य में सबसे अच्छी प्रगति हुई है।',
+        en: '**Rahul is #7 out of 60 students in Class 5.** His strongest movement is in Mathematics reasoning and map-based EVS work.',
+        hi: '**राहुल 60 विद्यार्थियों में कक्षा 5 के #7 पर है।** गणितीय तर्क और मानचित्र-आधारित EVS कार्य में अच्छी प्रगति हुई है।',
       },
     ],
     blocks: [
-      {
-        t: 'growth',
-        rows: [
-          { label: 'Mathematics', was: 72, now: 88, delta: '72 → 88' },
-          { label: 'EVS', was: 70, now: 82, delta: '70 → 82' },
-          { label: 'English', was: 78, now: 84, delta: '78 → 84' },
-          { label: 'Hindi', was: 74, now: 79, delta: '74 → 79' },
-          { label: 'Computer', was: 86, now: 85, delta: 'steady' },
-        ],
-      },
+      { t: 'rank', names: ['Aditya', 'Myra', 'Aarav', 'Siya', 'Vihaan', 'Anaya', 'Rahul', 'Dev', 'Meera', 'Kabir'], me: 7, of: 60 },
     ],
     meta: 'Weekly summary',
   },
   {
     k: 'school',
     label: '💡 KEEP ENCOURAGING RAHUL',
-    paras: [{ en: '**Keep encouraging Rahul / राहुल को प्रोत्साहित करते रहें:** ask him to explain one fraction example and one river idea in his own words. A little daily conversation helps him beat his own best again.' }],
+    paras: [{ en: '**Keep encouraging Rahul / राहुल को प्रोत्साहित करते रहें:** ask him to explain one fraction example and one river idea in his own words. A little daily conversation can help him move toward the Top 5 and Top 3.' }],
     blocks: [
       {
         t: 'actions',
@@ -183,13 +169,13 @@ export const PARENT_CHAT: ChatMsg[] = [
     ],
     meta: 'Weekly summary',
   },
-  { k: 'parent', text: { en: '💬 **Sharma ji:** We’re proud of Rahul. We’ll keep encouraging him to beat his own best. / हमें राहुल पर गर्व है। हम उसे अपना ही रिकॉर्ड बेहतर करने के लिए प्रोत्साहित करेंगे।' }, meta: 'Sunday · 6:17 PM' },
+  { k: 'parent', text: { en: '💬 **Sharma ji:** We’re proud of Rahul. We’ll keep encouraging him toward the Top 5 and Top 3. / हमें राहुल पर गर्व है। हम उसे Top 5 और Top 3 के लिए प्रोत्साहित करेंगे।' }, meta: 'Sunday · 6:17 PM' },
   { k: 'sep', text: 'PTM' },
   {
     k: 'school',
     label: '🤝 PTM SMART INVITE',
     paras: [
-      { en: '**Rahul is one of the 3 students who shone in Class 5 this fortnight.** 🌟', hi: '**इस पखवाड़े कक्षा 5 में चमकने वाले 3 विद्यार्थियों में राहुल भी है।** 🌟' },
+      { en: '**We are celebrating the 3 students who improved most:** Rahul, Siya and Dev.', hi: '**इस चक्र में सबसे अधिक प्रगति करने वाले 3 विद्यार्थियों की सराहना की जा रही है:** राहुल, सिया और देव।' },
       {
         en: 'Rahul is among the students showing strong improvement. Please join us at PTM so you can feel proud of his progress and celebrate this moment with his teachers.',
         hi: 'राहुल ने इस अवधि में अच्छी प्रगति दिखाई है। कृपया PTM में शामिल होकर उसकी उपलब्धि पर गर्व करें और शिक्षकों के साथ इस खुशी के पल को मनाएँ।',
@@ -211,7 +197,7 @@ export const PARENT_CHAT: ChatMsg[] = [
   { k: 'sep', text: 'FEES' },
   {
     k: 'school',
-    label: '💳 FEE REMINDER',
+    label: '💳 FEE RECOVERY',
     paras: [
       { en: `**September fee due: ${FEE.amount}** for Rahul · Class 5. A secure online payment link is ready.`, hi: `**सितंबर शुल्क: ${FEE.amount}**। राहुल · कक्षा 5। सुरक्षित ऑनलाइन भुगतान लिंक तैयार है।` },
     ],
@@ -240,8 +226,8 @@ export const PARENT_CHAT: ChatMsg[] = [
     label: '🎉 PROGRESS CELEBRATION',
     paras: [
       {
-        en: '**🎉 Big News — Rahul reached a new Personal Best!** His Mathematics reasoning rose from 72% to 88% this month, the best he has ever done. We are celebrating this growth with his teachers and family. Sharma ji, this is a proud moment for your family.',
-        hi: '**🎉 बड़ी खबर — राहुल ने अपना अब तक का सबसे अच्छा प्रदर्शन किया!** इस महीने उसका गणितीय तर्क 72% से बढ़कर 88% हो गया। शर्मा जी, यह आपके परिवार के लिए गर्व का पल है।',
+        en: '**🎉 Big News — Rahul is now #3 in Class 5!** He moved up from #7 and is now part of the Top 3. We are celebrating this growth with his teachers and family. Sharma ji, this is a proud moment for your family.',
+        hi: '**🎉 बड़ी खबर — राहुल अब कक्षा 5 में #3 पर है!** वह #7 से ऊपर आकर टॉप 3 में पहुँच गया है। इस प्रगति का उत्सव शिक्षकों और परिवार के साथ मनाया जा रहा है। शर्मा जी, यह आपके परिवार के लिए गर्व का पल है।',
       },
     ],
     blocks: [
@@ -257,11 +243,11 @@ export const PARENT_CHAT: ChatMsg[] = [
     ],
     meta: '8:10 PM',
   },
-  { k: 'parent', text: { en: '🎉 **Sharma ji:** We’re very proud of Rahul. We’d like to share this achievement with our family.' }, meta: '8:11 PM' },
+  { k: 'parent', text: { en: '🎉 **Sharma ji:** We’re very proud of Rahul. We’d like to share this Top 3 achievement with our family.' }, meta: '8:11 PM' },
   {
     k: 'school',
     label: '🏅 PROGRESS CERTIFICATE',
-    paras: [{ en: '**Rahul’s Progress Certificate is ready / राहुल का प्रगति प्रमाणपत्र तैयार है.** It records his improvement journey and monthly growth. Issued after the September fee was cleared.' }],
+    paras: [{ en: '**Rahul’s Progress Certificate is ready / राहुल का प्रगति प्रमाणपत्र तैयार है.** This recognition records his Top 3 improvement journey and monthly growth.' }],
     blocks: [
       { t: 'certificate', src: '/demo/rahul-certificate.webp', alt: 'Progress Certificate awarded to Rahul Sharma (demo school)' },
       {
@@ -278,14 +264,14 @@ export const PARENT_CHAT: ChatMsg[] = [
   { k: 'parent', text: { en: '🎉 **Sharma ji:** Thank you. We’re proud of Rahul and will share his certificate with family.' }, meta: '8:13 PM' },
   {
     k: 'school',
-    label: '📋 EVERYTHING, RIGHT HERE',
+    label: '📲 PARENT APP',
     paras: [
       {
-        en: 'For the full picture — attendance, homework, marks, teacher notes, fees, receipts, PTM, documents and consent — tap Menu in this chat. No app to install, no password.',
-        hi: 'पूरी जानकारी के लिए—उपस्थिति, होमवर्क, अंक, शिक्षक नोट्स, शुल्क, रसीदें, PTM, दस्तावेज़ और सहमति—इसी चैट में Menu दबाइए। कोई ऐप या पासवर्ड नहीं।',
+        en: 'For the full picture — attendance, homework, marks, teacher notes, fees, documents and Rahul’s learning journey — open the NetCyberAI Parent App.',
+        hi: 'पूरी जानकारी के लिए—उपस्थिति, होमवर्क, अंक, शिक्षक नोट्स, शुल्क, दस्तावेज़ और राहुल की सीखने की यात्रा—NetCyberAI Parent App खोलें।',
       },
     ],
-    blocks: [{ t: 'actions', items: [{ id: 'open-menu', label: '☰ Open menu / मेनू खोलें', kind: 'open' }] }],
+    blocks: [{ t: 'actions', items: [{ id: 'open-app', label: 'Open Parent App / Parent App खोलें', kind: 'open' }] }],
     meta: '8:14 PM',
   },
 ];
@@ -296,9 +282,10 @@ export const PARENT_ACTION_REPLIES: Record<string, { parent?: string; school?: {
   'hw-complete': { parent: '📚 We’ll complete the Mathematics and Hindi homework tonight.', school: { label: '✓ HOMEWORK PLAN RECORDED', text: 'Thank you. The school dashboard will show this as a parent follow-through response.' }, toast: 'Homework completion plan recorded.' },
   'hw-help': { parent: '💬 We need help with the Mathematics Fractions homework.', school: { label: '🧑‍🏫 HELP REQUEST ROUTED', text: 'The Mathematics teacher has received a homework-help request for Rahul.' }, toast: 'Homework help request sent.' },
   'connect-rahul': { parent: 'We’ll talk with Rahul tonight and ask him to explain one fraction example and one river idea.' },
-  'view-growth': { toast: 'Rahul’s growth detail: 4 of 5 subjects above his own last fortnight.' },
+  'view-growth': { toast: 'Growth detail opened in Parent App preview.' },
+  'open-app': { toast: 'Parent App preview opened. The Parent App follows the platform launch.' },
   'ptm-yes': { parent: '✅ Please book Rahul’s PTM slot for us.', school: { label: '📅 PTM BOOKED', text: 'Your PTM request is recorded. The school will confirm the available slot and teacher panel.' }, toast: 'PTM request recorded.' },
-  'pay-fee': { parent: `**Payment authorisation submitted** for ${FEE.amount}.`, school: { label: '✅ PAYMENT RECEIVED', text: `Thank you. ${FEE.amount} received and matched to the school ledger. Your receipt is ready below.` }, toast: 'Payment verified and receipt generated (demo).' },
+  'pay-fee': { parent: `**Payment authorization submitted** for ${FEE.amount}. Please complete the secure checkout step in the payment screen.`, school: { label: '✅ PAYMENT RECEIVED', text: `Thank you. ${FEE.amount} received and matched to the school ledger. Your receipt is ready below.` }, toast: 'Payment verified and receipt generated (demo).' },
   'fee-breakup': { toast: FEE.breakup },
   celebrate: { parent: '🎉 We are proud of Rahul! We’ll celebrate this progress with him.' },
   'coach-home': { toast: '12-minute home activity opened: explain 3 fraction pairs aloud.' },

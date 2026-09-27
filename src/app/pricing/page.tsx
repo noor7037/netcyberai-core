@@ -26,7 +26,7 @@ const faqs = [
   {
     question: 'Is there a free plan?',
     answer:
-      'Yes, in the form available today: the free tools for checking a student list, calculating attendance targets and writing fee reminders and parent updates. They need no account and run in your browser. Terms for a free school account are still being finalised and will be published here when they are.',
+      'Yes, in the form available today: the free tools for checking a student list, calculating attendance targets and writing fee reminders and parent updates. They need no account and run in your browser. For the full platform, setup and staff training are free and your first month is free after setup.',
   },
   {
     question: 'What drives WhatsApp messaging cost?',

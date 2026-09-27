@@ -16,7 +16,7 @@ publishes confirmed claims automatically).
 | 4 | Razorpay live keys + webhook secret (test mode first, task 89) | Fee payments, receipts, reconciliation | Fees & receipts module |
 | 5 | WhatsApp Business provider approved, templates approved, per-school `pilot_allow_outbound` switched on deliberately | Outbound messages beyond the pilot gate | Daily Pulse, fee reminders, receipts on WhatsApp |
 | 6 | Lawyer review of `/privacy` and `/terms` (DPDP Act), incl. the enquiry-form retention and deletion wording | The policy is marked draft | Remove "draft" notice |
-| 7 | Approved commercial terms: per-student price, first-month offer, free plan scope, setup/hosting fees, exit terms | Pricing page shows only confirmed claims | `per-student-15`, `first-month-free`, `free-plan-permanent`, `no-setup-fees` |
+| 7 | Approved commercial terms: per-student price, free plan scope, hosting fees. **Done 2026-09-27 (C76):** no setup fees, free staff training, first month free after setup, cancel anytime | Pricing page shows only confirmed claims | still pending: `per-student-15`, `free-plan-permanent` |
 | 8 | Per-tenant full data export built and tested (docs/03 "recorded requirement, not built") | Constitution: full export must remain possible | "Export your data" claims (currently "planned") |
 | 9 | Migration playbook timed on a real school's data | A migration time can only be promised after measuring it | `migration-24h` (with the measured figure) |
 
