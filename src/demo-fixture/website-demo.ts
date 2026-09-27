@@ -3,8 +3,9 @@
 //
 // EVERYTHING in this file is fictional. It is NOT NetCyberAI performance
 // data, it is not from any real school, and no number here is a claim
-// about results. Every component that renders it shows a visible
-// "Illustrative demo data" label. It sits in src/demo-fixture/ -- the
+// about results. Every surface that renders it shows a visible
+// "Demo school · fictional numbers" label (DemoLabel), and the
+// dashboard previews sit on a demo.netcyberai.com address. It sits in src/demo-fixture/ -- the
 // single directory allowlisted by scripts/check_claims.py and CI's
 // no-invented-data grep -- precisely so that fictional figures can never
 // leak into ordinary marketing copy unlabelled.
@@ -325,3 +326,205 @@ export const pulseReplies = {
     { from: 'Parent of Riya', text: 'She was unwell; can you share the homework again?' },
   ],
 };
+
+// ---- Homepage hero dashboard ----------------------------------------------
+// One school morning for the fictional Sunrise Public School. Class-band
+// attendance, fee split and Pulse replies are internally consistent:
+// 1,180 of 1,240 present; fee buckets sum to 100; replies sum to the class.
+
+export const heroDashboard = {
+  greeting: 'Good morning, Principal',
+  date: 'Thursday, 24 September',
+  kpis: [
+    { label: 'Students', value: '1,240', note: '13 classes' },
+    { label: 'Present today', value: '95.2%', note: '1,180 of 1,240' },
+    { label: 'Fees collected', value: '78%', note: 'This term' },
+    { label: 'Needs an owner', value: '3', note: 'Open exceptions' },
+  ],
+  get attendanceBands() {
+    return attendanceBands();
+  },
+  fees: {
+    collected: 78,
+    buckets: [
+      { label: 'Paid on time', share: 65, amount: '₹12.4L' },
+      { label: 'Paid late', share: 22, amount: '₹3.6L' },
+      { label: 'Overdue', share: 13, amount: '₹1.9L' },
+    ],
+    reminder: '18 families reminded on WhatsApp today',
+  },
+  learning: {
+    title: 'Class 6A · Maths · Fractions',
+    replies: [
+      { label: 'Achhe se samjha', count: 21 },
+      { label: 'Thoda samjha', count: 9 },
+      { label: 'Samajh nahi aaya', count: 3 },
+    ],
+    followUp: 'Revision on Friday, assigned to Ms Priya Mehta',
+  },
+  exceptions: [
+    { title: 'Riya (6A) absent 3 days, no reason given', owner: 'Class teacher', status: 'open' as const },
+    { title: '12 fee reminders unanswered for 7+ days', owner: 'Accounts', status: 'in_progress' as const },
+    { title: 'Pulse not sent: 8A Hindi', owner: 'Subject teacher', status: 'open' as const },
+  ],
+  toasts: {
+    attendance: '6A attendance saved · 08:52',
+    fee: '₹8,400 received · receipt sent on WhatsApp',
+    personalBest: 'New Personal Best · Aarav, Maths',
+  },
+};
+
+// ---- Homepage WhatsApp showcase -------------------------------------------
+// One parent's week, in the order it happens. Reply tiers match the real
+// pulse_response_log.tier (1..3) and messages are English + Roman-script
+// Hinglish, matching pulse_messages.body_hinglish. Recognition is
+// Personal Best (a child against their own past), never a class rank.
+
+export type ChatItem =
+  | { id: string; kind: 'day'; text: string }
+  | { id: string; kind: 'pulse'; time: string; greeting: string; hinglish: string; subjects: { subject: string; teacher: string; ask: string; askHinglish: string }[]; prompt: string; tiers: string[] }
+  | { id: string; kind: 'in'; time: string; badge?: string; text: string; hinglish?: string; attachment?: string; actions?: string[] }
+  | { id: string; kind: 'out'; time: string; text: string };
+
+export const whatsappStory: { child: string; parent: string; className: string; items: ChatItem[] } = {
+  child: 'Rahul',
+  parent: 'Sharma ji',
+  className: 'Class 5',
+  items: [
+    { id: 'day-1', kind: 'day', text: 'Today' },
+    {
+      id: 'pulse',
+      kind: 'pulse',
+      time: '6:30 pm',
+      greeting: 'Namaste Sharma ji! Here is what Rahul learned in school today.',
+      hinglish: 'Aaj Rahul ne school mein yeh seekha. Dinner ke time 5 minute baat kijiye.',
+      subjects: [
+        { subject: 'Maths · Fractions', teacher: 'Priya Mehta', ask: 'Which is bigger, 3/4 or 5/8? Ask Rahul to explain why.', askHinglish: '3/4 aur 5/8 mein bada kaun? Wajah poochhiye.' },
+        { subject: 'English · The Rainbow', teacher: 'Arjun Malik', ask: 'What do we need to see a rainbow?', askHinglish: 'Rainbow dekhne ke liye kya chahiye?' },
+        { subject: 'EVS · Journey of a River', teacher: 'Ritu Gupta', ask: 'Name one way a river helps people.', askHinglish: 'Nadi logon ki madad kaise karti hai?' },
+      ],
+      prompt: 'Rahul ne aaj kitna samjha? Tap one:',
+      tiers: ['Achhe se samjha', 'Thoda samjha', 'Samajh nahi aaya'],
+    },
+    { id: 'reply', kind: 'out', time: '8:05 pm', text: 'Thoda samjha. Fractions mein thodi dikkat hai.' },
+    {
+      id: 'recorded',
+      kind: 'in',
+      time: '8:05 pm',
+      badge: 'Response recorded',
+      text: 'Thank you, Sharma ji. Fractions is marked for a short revision with Priya Ma’am on Friday.',
+      hinglish: 'Shukriya! Friday ko Fractions dobara karwaya jayega.',
+    },
+    { id: 'day-2', kind: 'day', text: 'Friday' },
+    {
+      id: 'followup',
+      kind: 'in',
+      time: '4:10 pm',
+      badge: 'Teacher follow-up',
+      text: 'Priya Ma’am: We revised Fractions in small groups today. Rahul solved 4 of 5 practice questions on his own.',
+    },
+    {
+      id: 'homework',
+      kind: 'in',
+      time: '6:00 pm',
+      badge: 'Homework reminder',
+      text: 'The Maths worksheet (8 questions) given on Thursday is still pending.',
+      hinglish: 'Maths worksheet abhi baaki hai. Aaj raat check kar lijiye.',
+      actions: ['Will complete tonight', 'Need help'],
+    },
+    { id: 'homework-reply', kind: 'out', time: '6:12 pm', text: 'Will complete tonight.' },
+    { id: 'day-3', kind: 'day', text: 'Monday' },
+    {
+      id: 'fee',
+      kind: 'in',
+      time: '10:00 am',
+      badge: 'Fee reminder',
+      text: 'The September fee of ₹8,400 for Rahul is due on 10 October. You can pay securely by UPI.',
+      actions: ['Pay by UPI', 'View details'],
+    },
+    {
+      id: 'receipt',
+      kind: 'in',
+      time: '10:14 am',
+      badge: 'Payment received',
+      text: 'Thank you, Sharma ji. We received ₹8,400. Your receipt is attached.',
+      attachment: 'Receipt_September_Rahul.pdf',
+    },
+    {
+      id: 'personal-best',
+      kind: 'in',
+      time: '5:30 pm',
+      badge: 'Personal Best',
+      text: 'Rahul reached a Personal Best in Maths: 18 out of 20 in the Fractions check, up from 14 last month. Please congratulate him at home!',
+      hinglish: 'Rahul ne apna best score banaya hai. Ghar par zaroor shabaashi dijiye!',
+      attachment: 'Personal_Best_Certificate.pdf',
+    },
+  ],
+};
+
+// ---- Product tour: full dashboard explorer --------------------------------
+// Class-wise attendance for the demo school. Present counts sum to 1,180 of
+// 1,240 (95.2%), matching the hero KPIs; every percentage on the site is
+// computed from these rows rather than typed separately.
+
+export const classAttendance = [
+  { name: 'Kindergarten', band: 'K–5', present: 59, total: 60, personalBests: 6 },
+  { name: 'Class 1', band: 'K–5', present: 80, total: 82, personalBests: 5 },
+  { name: 'Class 2', band: 'K–5', present: 82, total: 85, personalBests: 7 },
+  { name: 'Class 3', band: 'K–5', present: 87, total: 90, personalBests: 4 },
+  { name: 'Class 4', band: 'K–5', present: 88, total: 92, personalBests: 9 },
+  { name: 'Class 5', band: 'K–5', present: 90, total: 95, personalBests: 6 },
+  { name: 'Class 6', band: '6–8', present: 98, total: 110, personalBests: 3 },
+  { name: 'Class 7', band: '6–8', present: 102, total: 105, personalBests: 8 },
+  { name: 'Class 8', band: '6–8', present: 102, total: 108, personalBests: 5 },
+  { name: 'Class 9', band: '9–12', present: 106, total: 115, personalBests: 2 },
+  { name: 'Class 10', band: '9–12', present: 114, total: 118, personalBests: 7 },
+  { name: 'Class 11', band: '9–12', present: 87, total: 92, personalBests: 4 },
+  { name: 'Class 12', band: '9–12', present: 85, total: 88, personalBests: 5 },
+];
+
+export function pct(present: number, total: number): number {
+  return Math.round((present / total) * 1000) / 10;
+}
+
+const BAND_NOTES: Record<string, string> = { 'K–5': 'Steady', '6–8': 'Class 6 needs review', '9–12': 'Class 9 early signal' };
+
+export function attendanceBands() {
+  return ['K–5', '6–8', '9–12'].map((band) => {
+    const rows = classAttendance.filter((c) => c.band === band);
+    const present = rows.reduce((a, c) => a + c.present, 0);
+    const total = rows.reduce((a, c) => a + c.total, 0);
+    return { band, value: pct(present, total), note: BAND_NOTES[band] };
+  });
+}
+
+export const weekAttendance = [
+  { day: 'Mon', present: 1172, absent: 68 },
+  { day: 'Tue', present: 1185, absent: 55 },
+  { day: 'Wed', present: 1168, absent: 72 },
+  { day: 'Thu', present: 1180, absent: 60 },
+  { day: 'Fri', present: 1176, absent: 64 },
+  { day: 'Sat', present: 1151, absent: 89 },
+];
+
+export const timetableToday = [
+  { time: '09:00', subject: 'Mathematics', cls: 'Class 10-A', teacher: 'Priya Mehta', state: 'Now' },
+  { time: '10:00', subject: 'Science', cls: 'Class 9-B', teacher: 'Cover: Rakesh Arora (Mrs Gupta on leave)', state: 'Next' },
+  { time: '11:00', subject: 'English', cls: 'Class 8-A', teacher: 'Arjun Malik', state: 'Later' },
+  { time: '13:00', subject: 'Social Studies', cls: 'Class 7-C', teacher: 'Neha Verma', state: 'Later' },
+];
+
+export const upcomingEvents = [
+  { date: '3 Oct', title: 'Parent-Teacher Meeting', detail: '412 of 520 families booked a slot', icon: 'parent' as const },
+  { date: '5 Oct', title: 'Science Exhibition', detail: 'Classes 6 to 11', icon: 'sparkle' as const },
+  { date: '8 Oct', title: 'English essay (Term 1)', detail: 'Classes 4 to 8', icon: 'exams' as const },
+  { date: '12 Oct', title: 'Sports Day', detail: 'Whole school', icon: 'trophy' as const },
+];
+
+export const recentActivity = [
+  { when: '10 min ago', title: 'New admission application', detail: 'Aarav Sharma, Class 9 · documents received', icon: 'admissions' as const },
+  { when: '1 hr ago', title: 'Fee payment received', detail: '₹25,000 · Class 8 · receipt sent on WhatsApp', icon: 'fees' as const },
+  { when: '2 hr ago', title: 'Leave approved, cover assigned', detail: 'Mrs Gupta · Class 9-B Science covered', icon: 'teacher' as const },
+  { when: '3 hr ago', title: 'Homework posted', detail: 'Class 6 · Mathematics · Fractions worksheet', icon: 'homework' as const },
+  { when: '5 hr ago', title: 'Personal Best recorded', detail: 'Aarav, Class 7 · Maths 18/20, up from 14', icon: 'trophy' as const },
+];

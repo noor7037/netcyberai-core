@@ -6,6 +6,7 @@ import { Select } from '@/components/ui/Select';
 import { Button } from '@/components/ui/Button';
 import { SubmitError } from '@/components/marketing/SubmitError';
 import { submitLead } from '@/components/marketing/submitLead';
+import { Honeypot } from '@/components/marketing/Honeypot';
 
 // Short, single-step lead capture for Contact Sales and Request a
 // Callback. Posts to the same /api/public/leads intake as Get Started
@@ -53,6 +54,7 @@ export function QuickLeadForm({ source }: { source: Source }) {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [done, setDone] = useState<{ isDuplicate: boolean } | null>(null);
+  const [website, setWebsite] = useState('');
   const idp = `${source}-lead`;
 
   function update<K extends keyof Values>(key: K, value: Values[K]) {
@@ -72,7 +74,7 @@ export function QuickLeadForm({ source }: { source: Source }) {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      setDone(await submitLead({ source, ...values }));
+      setDone(await submitLead({ source, ...values, website }));
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
@@ -98,7 +100,8 @@ export function QuickLeadForm({ source }: { source: Source }) {
   }
 
   return (
-    <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-4 rounded-3xl border border-slate/10 bg-white p-6">
+    <form noValidate onSubmit={handleSubmit} className="relative flex flex-col gap-4 rounded-3xl border border-slate/10 bg-white p-6">
+      <Honeypot value={website} onChange={setWebsite} />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Input
           id={`${idp}-contactName`}

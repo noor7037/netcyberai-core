@@ -10,7 +10,13 @@ import { withBackendConnection } from '@/lib/auth/db';
 // here at all). RLS on `leads` scopes both the insert and the
 // duplicate-check read to the `app_backend` role specifically
 // (supabase/migrations/20260925061202_leads_table.sql).
-const SOURCES = ['get_started', 'book_demo', 'contact', 'callback', 'start_pilot'] as const;
+const SOURCES = ['get_started', 'book_demo', 'contact', 'callback', 'start_pilot', 'quote'] as const;
+const CONTACT_METHODS = ['phone', 'whatsapp', 'email'] as const;
+// Burst limit: more than this many submissions from one phone number in
+// the window is refused with 429. Keyed on the phone the form already
+// collects, so no IP address (extra PII) is stored.
+const BURST_LIMIT = 3;
+const BURST_WINDOW_MINUTES = 10;
 type Source = (typeof SOURCES)[number];
 
 const MAX_SHORT = 200;
@@ -34,6 +40,12 @@ function strArray(value: unknown, maxItems: number, maxItemLength: number): stri
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
+
+  // Honeypot: a field real visitors never see or fill. A filled one is an
+  // automated submission, refused visibly rather than stored.
+  if (typeof body?.website === 'string' && body.website.trim() !== '') {
+    return NextResponse.json({ error: 'Submission rejected.' }, { status: 400 });
+  }
 
   const source = typeof body?.source === 'string' && SOURCES.includes(body.source as Source) ? (body.source as Source) : null;
   const schoolName = str(body?.schoolName, MAX_SHORT);
@@ -64,10 +76,23 @@ export async function POST(req: NextRequest) {
   const requirements = str(body?.requirements, MAX_LONG);
   const preferredDate = str(body?.preferredDate, 10); // 'YYYY-MM-DD'
   const preferredTime = str(body?.preferredTime, 16);
+  const preferredContactRaw = str(body?.preferredContact, 16);
+  const preferredContact =
+    preferredContactRaw && (CONTACT_METHODS as readonly string[]).includes(preferredContactRaw) ? preferredContactRaw : null;
+  if (preferredContactRaw && !preferredContact) {
+    return NextResponse.json({ error: 'Please choose phone, WhatsApp or email as the contact method.' }, { status: 400 });
+  }
 
-  let result: { lead: { lead_id: string; status: string }; isDuplicate: boolean };
+  let result: { throttled: true } | { throttled: false; lead: { lead_id: string; status: string }; isDuplicate: boolean };
   try {
     result = await withBackendConnection(async (client) => {
+      const { rows: recent } = await client.query(
+        `select count(*)::int as n from leads
+         where contact_phone = $1 and created_at > now() - interval '${BURST_WINDOW_MINUTES} minutes'`,
+        [contactPhone]
+      );
+      if ((recent[0]?.n ?? 0) >= BURST_LIMIT) return { throttled: true as const };
+
       // Duplicate check: same phone number, any source, within the
       // lookback window -- flagged, not rejected, so a genuine repeat
       // inquiry still reaches the Control Plane pipeline (the founder's
@@ -85,9 +110,9 @@ export async function POST(req: NextRequest) {
         `insert into leads (
            source, org_type, school_name, contact_name, contact_phone, contact_email,
            city, student_count_band, current_erp, required_modules, requirements,
-           preferred_date, preferred_time, status, duplicate_of_lead_id
+           preferred_date, preferred_time, status, duplicate_of_lead_id, preferred_contact
          )
-         values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+         values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
          returning lead_id, status`,
         [
           source,
@@ -105,9 +130,10 @@ export async function POST(req: NextRequest) {
           preferredTime,
           duplicateOfLeadId ? 'duplicate' : 'new',
           duplicateOfLeadId,
+          preferredContact,
         ]
       );
-      return { lead: rows[0], isDuplicate: Boolean(duplicateOfLeadId) };
+      return { throttled: false as const, lead: rows[0], isDuplicate: Boolean(duplicateOfLeadId) };
     });
   } catch (err) {
     // Never let the browser guess: a failed insert is reported as a
@@ -117,6 +143,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       { error: 'We could not save your request right now. Please try again, or reach us on WhatsApp or email.' },
       { status: 503 }
+    );
+  }
+
+  if (result.throttled) {
+    return NextResponse.json(
+      { error: 'We already received several requests from this number in the last few minutes. Our team will be in touch.' },
+      { status: 429 }
     );
   }
 

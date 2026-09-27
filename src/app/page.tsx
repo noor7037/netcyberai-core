@@ -6,7 +6,8 @@ import { DayInside } from '@/components/home/DayInside';
 import { ProductShowcase } from '@/components/home/ProductShowcase';
 import { OperationsFlows } from '@/components/home/OperationsFlows';
 import { GapDetection } from '@/components/home/GapDetection';
-import { PulseTwoWay } from '@/components/home/PulseTwoWay';
+import { WhatsAppShowcase } from '@/components/home/WhatsAppShowcase';
+import { TourBand } from '@/components/home/TourBand';
 import { PersonalBestJourney } from '@/components/home/PersonalBestJourney';
 import { OutcomeDashboard } from '@/components/home/OutcomeDashboard';
 import { TrustSecurity } from '@/components/home/TrustSecurity';
@@ -27,12 +28,12 @@ const faqs = [
   {
     question: 'Do parents need to install an app?',
     answer:
-      'No. Every parent-facing update, including the Daily Learning Pulse, fee reminders and recognition messages, arrives on WhatsApp, which most parents already open daily. A web portal exists for anyone who prefers it, but it is never required.',
+      'No. NetCyberAI is built so every parent-facing update, from attendance alerts to the Daily Learning Pulse, fee reminders and recognition, arrives on WhatsApp, which parents already use. Parents never need an app or a login.',
   },
   {
     question: 'Which modules are live today?',
     answer:
-      'The screens on this site show the intended product experience using a fictional school. Module availability is confirmed with you during the demo, and nothing is sold to a school as live until it is.',
+      'Live today: student records and CSV import, guardians and consent, attendance with absence alerts on WhatsApp, document scanning, QR ID cards, and staff sign-in for one or several schools. In development: the Daily Learning Pulse, fees and receipts, exams and Personal Best, and certificates. The screens on this site use a fictional demo school, and nothing is sold to a school as live until it is.',
   },
   {
     question: 'Does it rank teachers or students publicly?',
@@ -50,6 +51,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <WhatsAppShowcase />
+      <TourBand />
       <LiveEcosystem />
       <ManualToConnected />
       <RoleExplorer />
@@ -57,7 +60,6 @@ export default function HomePage() {
       <ProductShowcase />
       <OperationsFlows />
       <GapDetection />
-      <PulseTwoWay />
       <PersonalBestJourney />
       <OutcomeDashboard />
       <TrustSecurity />

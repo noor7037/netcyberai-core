@@ -7,17 +7,20 @@ import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Icon } from '@/components/visual/Icons';
 import { featurePages, products, solutions } from '@/content/catalog';
+import { freeTools } from '@/content/free-tools';
 import { tones } from '@/lib/semantic';
 import { useFinePointer } from '@/lib/hooks';
 import { companyName } from '@/lib/site-config';
 
-type MenuKey = 'products' | 'solutions' | 'features';
+type MenuKey = 'products' | 'solutions' | 'features' | 'tools';
 
+// `xlOnly` links drop out of the desktop bar between 1024 and 1279px so
+// the bar never wraps; they stay in the mobile menu and the footer.
 const PLAIN_LINKS = [
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/resources', label: 'Resources' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/pricing', label: 'Pricing', xlOnly: false },
+  { href: '/resources', label: 'Resources', xlOnly: false },
+  { href: '/about', label: 'About', xlOnly: true },
+  { href: '/contact', label: 'Contact', xlOnly: true },
 ];
 
 const ROLE_SLUGS = ['principal', 'school-admin', 'teacher', 'finance', 'admissions'];
@@ -64,9 +67,14 @@ function ProductsPanel({ onNavigate }: { onNavigate: () => void }) {
             </li>
           ))}
         </ul>
-        <Link href="/products" onClick={onNavigate} className="mt-3 inline-flex min-h-[40px] items-center gap-1.5 text-sm font-bold text-royal hover:underline">
-          All products <Icon name="arrow" className="h-4 w-4" />
-        </Link>
+        <div className="mt-3 flex flex-wrap gap-x-5">
+          <Link href="/products" onClick={onNavigate} className="inline-flex min-h-[40px] items-center gap-1.5 text-sm font-bold text-royal hover:underline">
+            All products <Icon name="arrow" className="h-4 w-4" />
+          </Link>
+          <Link href="/product-tour" onClick={onNavigate} className="inline-flex min-h-[40px] items-center gap-1.5 text-sm font-bold text-royal hover:underline">
+            <Icon name="play" className="h-4 w-4" /> Explore the product tour
+          </Link>
+        </div>
       </div>
       <div className="flex flex-col gap-3 rounded-2xl bg-off-white p-4" aria-hidden="true">
         <p className="text-xs font-bold uppercase tracking-wider text-slate/70">Preview</p>
@@ -163,6 +171,36 @@ function FeaturesPanel({ onNavigate }: { onNavigate: () => void }) {
   );
 }
 
+function ToolsPanel({ onNavigate }: { onNavigate: () => void }) {
+  return (
+    <div>
+      <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate/70">Free tools · no sign-up, runs in your browser</p>
+      <ul className="grid grid-cols-2 gap-2">
+        {freeTools.map((t) => (
+          <li key={t.slug}>
+            <Link
+              href={`/free-tools/${t.slug}`}
+              onClick={onNavigate}
+              className="flex h-full gap-3 rounded-xl p-3 hover:bg-off-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal"
+            >
+              <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${tones[t.tone].solid}`}>
+                <Icon name={t.icon} className="h-4 w-4" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm font-bold text-slate">{t.name}</span>
+                <span className="block text-xs leading-snug text-slate/70">{t.menuBlurb}</span>
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <Link href="/free-tools" onClick={onNavigate} className="mt-3 inline-flex min-h-[40px] items-center gap-1.5 text-sm font-bold text-royal hover:underline">
+        All free tools <Icon name="arrow" className="h-4 w-4" />
+      </Link>
+    </div>
+  );
+}
+
 export function Header() {
   const pathname = usePathname();
   const [menu, setMenu] = useState<MenuKey | null>(null);
@@ -171,7 +209,7 @@ export function Header() {
   const fine = useFinePointer();
   const openTimer = useRef<number | null>(null);
   const closeTimer = useRef<number | null>(null);
-  const triggerRefs = useRef<Record<MenuKey, HTMLButtonElement | null>>({ products: null, solutions: null, features: null });
+  const triggerRefs = useRef<Record<MenuKey, HTMLButtonElement | null>>({ products: null, solutions: null, features: null, tools: null });
   // Set when a menu is opened from the keyboard. The panels render after
   // the whole nav in the DOM, so without moving focus a keyboard user
   // would have to tab past every other header link to reach the menu
@@ -233,10 +271,11 @@ export function Header() {
     { key: 'products', label: 'Products' },
     { key: 'solutions', label: 'Solutions' },
     { key: 'features', label: 'Features' },
+    { key: 'tools', label: 'Free Tools' },
   ];
 
   return (
-    <header className="relative z-50 border-b border-slate/10 bg-white print:hidden" onMouseLeave={hoverClose}>
+    <header className="sticky top-0 z-50 border-b border-slate/10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85 print:hidden" onMouseLeave={hoverClose}>
       <Container wide className="flex h-16 items-center justify-between gap-3">
         <Link href="/" className="flex min-h-[44px] shrink-0 items-center" aria-label={`${companyName} home`}>
           <Wordmark />
@@ -268,7 +307,7 @@ export function Header() {
                   setMenu(m.key);
                 }
               }}
-              className="inline-flex min-h-[44px] items-center gap-1 rounded-md px-3 text-sm font-semibold text-slate hover:text-royal focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal"
+              className="inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-md px-2 text-sm font-semibold text-slate hover:text-royal focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal xl:px-3"
             >
               {m.label}
               <Icon name="chevronDown" className={`h-3.5 w-3.5 transition-transform ${menu === m.key ? 'rotate-180' : ''}`} />
@@ -279,7 +318,7 @@ export function Header() {
               key={l.href}
               href={l.href}
               onMouseEnter={hoverClose}
-              className="inline-flex min-h-[44px] items-center rounded-md px-3 text-sm font-semibold text-slate hover:text-royal focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal"
+              className={`${l.xlOnly ? 'hidden xl:inline-flex' : 'inline-flex'} min-h-[44px] items-center whitespace-nowrap rounded-md px-2 text-sm font-semibold text-slate hover:text-royal focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal xl:px-3`}
             >
               {l.label}
             </Link>
@@ -334,6 +373,7 @@ export function Header() {
               {m.key === 'products' && <ProductsPanel onNavigate={close} />}
               {m.key === 'solutions' && <SolutionsPanel onNavigate={close} />}
               {m.key === 'features' && <FeaturesPanel onNavigate={close} />}
+              {m.key === 'tools' && <ToolsPanel onNavigate={close} />}
             </Container>
           </div>
         ) : null
@@ -350,7 +390,9 @@ export function Header() {
                   ? products.map((p) => ({ href: `/products/${p.slug}`, name: p.name, blurb: p.menuBlurb, tone: p.tone, icon: p.icon }))
                   : m.key === 'solutions'
                     ? solutions.map((s) => ({ href: `/solutions/${s.slug}`, name: s.name, blurb: s.menuBlurb, tone: s.tone, icon: s.icon }))
-                    : featurePages.map((f) => ({ href: f.href, name: f.name, blurb: f.blurb, tone: f.tone, icon: f.icon }));
+                    : m.key === 'features'
+                      ? featurePages.map((f) => ({ href: f.href, name: f.name, blurb: f.blurb, tone: f.tone, icon: f.icon }))
+                      : freeTools.map((t) => ({ href: `/free-tools/${t.slug}`, name: t.name, blurb: t.menuBlurb, tone: t.tone, icon: t.icon }));
               return (
                 <div key={m.key} className="border-b border-slate/10">
                   <button

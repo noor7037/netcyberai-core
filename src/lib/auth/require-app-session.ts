@@ -63,3 +63,13 @@ const ATTENDANCE_WRITE_ROLES: StaffRole[] = ['school_admin', 'principal', 'teach
 export function canWriteAttendance(role: StaffRole): boolean {
   return ATTENDANCE_WRITE_ROLES.includes(role);
 }
+
+// "Taught today" (syllabus_progress) is recorded by the teacher who took
+// the lesson, or by academic leadership covering for them. Coarse route
+// gate only: which class+subject a teacher may record is enforced by the
+// restrictive teacher_scope_syllabus_progress RLS policy.
+const SYLLABUS_WRITE_ROLES: StaffRole[] = ['school_admin', 'principal', 'teacher', 'academic_coordinator'];
+
+export function canWriteSyllabus(role: StaffRole): boolean {
+  return SYLLABUS_WRITE_ROLES.includes(role);
+}

@@ -19,14 +19,14 @@ import { tones, type Tone } from '@/lib/semantic';
 import { dayTimeline } from '@/demo-fixture/website-demo';
 
 const VISUALS: { tone: Tone; visual: ReactNode }[] = [
-  { tone: 'product', visual: <BrowserFrame url="app.netcyberai.com/today"><TeacherTodayScreen /></BrowserFrame> },
-  { tone: 'product', visual: <BrowserFrame url="app.netcyberai.com/homework"><HomeworkScreen /></BrowserFrame> },
-  { tone: 'intelligence', visual: <BrowserFrame url="app.netcyberai.com/pulse"><PulseComposerScreen /></BrowserFrame> },
+  { tone: 'product', visual: <BrowserFrame url="demo.netcyberai.com/today"><TeacherTodayScreen /></BrowserFrame> },
+  { tone: 'product', visual: <BrowserFrame url="demo.netcyberai.com/homework"><HomeworkScreen /></BrowserFrame> },
+  { tone: 'intelligence', visual: <BrowserFrame url="demo.netcyberai.com/pulse"><PulseComposerScreen /></BrowserFrame> },
   { tone: 'communication', visual: <ParentPulsePhone /> },
-  { tone: 'action', visual: <BrowserFrame url="app.netcyberai.com/fees"><FinanceScreen /></BrowserFrame> },
-  { tone: 'trust', visual: <BrowserFrame url="app.netcyberai.com/principal"><PrincipalScreen /></BrowserFrame> },
-  { tone: 'achievement', visual: <BrowserFrame url="app.netcyberai.com/progress"><StudentProgressScreen /></BrowserFrame> },
-  { tone: 'success', visual: <BrowserFrame url="app.netcyberai.com/health"><SchoolHealthScreen /></BrowserFrame> },
+  { tone: 'action', visual: <BrowserFrame url="demo.netcyberai.com/fees"><FinanceScreen /></BrowserFrame> },
+  { tone: 'trust', visual: <BrowserFrame url="demo.netcyberai.com/principal"><PrincipalScreen /></BrowserFrame> },
+  { tone: 'achievement', visual: <BrowserFrame url="demo.netcyberai.com/progress"><StudentProgressScreen /></BrowserFrame> },
+  { tone: 'success', visual: <BrowserFrame url="demo.netcyberai.com/health"><SchoolHealthScreen /></BrowserFrame> },
 ];
 
 export function DayInside() {

@@ -33,7 +33,7 @@ export default function FeaturesPage() {
             <Button href="/book-demo" variant="secondary">
               Book a demo
             </Button>
-            <Button href="/#product-tour" variant="outlineLight">
+            <Button href="/product-tour" variant="outlineLight">
               Watch the product tour
             </Button>
           </div>

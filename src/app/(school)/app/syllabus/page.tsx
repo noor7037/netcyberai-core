@@ -1,5 +1,18 @@
-import { StubPage } from '@/components/shell/StubPage';
+import { getServerSession } from '@/lib/auth/server-session';
+import { SyllabusView } from '@/components/academics/SyllabusView';
 
-export default function SyllabusPage() {
-  return <StubPage title="Syllabus" description="The planned topic, pre-filled, with four buttons: Taught / Delayed / Partial / Not taught -- the single tap that triggers the Pulse and prevents it from ever claiming a topic was taught when it wasn't." />;
+export default async function SyllabusPage() {
+  const session = await getServerSession();
+  return (
+    <div className="flex flex-col gap-6 p-4 md:p-6">
+      <div>
+        <h1 className="text-xl font-bold text-slate">Taught today</h1>
+        <p className="text-sm text-slate/70">
+          Record what each class learned. This is the only input the Daily Learning Pulse needs, and a lesson marked
+          “Not taught” is never described to parents as taught.
+        </p>
+      </div>
+      <SyllabusView isTeacher={session?.role === 'teacher'} />
+    </div>
+  );
 }

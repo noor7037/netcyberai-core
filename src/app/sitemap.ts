@@ -4,6 +4,7 @@ import type { MetadataRoute } from 'next';
 import { blogPosts } from '@/content/blog';
 import { products, solutions } from '@/content/catalog';
 import { resourceSections } from '@/content/resources';
+import { freeTools } from '@/content/free-tools';
 import { absoluteUrl } from '@/lib/seo';
 
 export const dynamic = 'force-static';
@@ -46,6 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...products.map((p) => `/products/${p.slug}`),
     ...solutions.map((s) => `/solutions/${s.slug}`),
     ...resourceSections.map((r) => `/resources/${r.slug}`),
+    ...freeTools.map((t) => `/free-tools/${t.slug}`),
   ].map((route) => ({ url: absoluteUrl(route) }));
 
   return [...pages, ...catalog, ...posts];

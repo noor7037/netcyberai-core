@@ -2,6 +2,7 @@ import { createHash } from 'crypto';
 import { withTenantContext } from '@/lib/auth/db';
 import type { SessionClaims } from '@/lib/auth/types';
 import { parseCsv, rowsToRecords } from './csv';
+import { basicRowErrors } from './rules';
 
 export interface RowError {
   row: number; // 1-indexed data row (header is row 0, first data row is 1)
@@ -28,8 +29,6 @@ export interface ImportResult {
   skippedCount: number;
   errors: RowError[];
 }
-
-const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
 // Two-phase commit, per Prompt F Task 2: Phase 1 validates every row
 // (including resolving class_name -> class_id via a same-school-scoped
@@ -102,9 +101,7 @@ export async function runCsvImport(
       const className = rec.class_name?.trim() || null;
       const rollNo = rec.roll_no?.trim() || null;
       const dob = rec.dob?.trim() || null;
-      const rowErrors: string[] = [];
-
-      if (!name) rowErrors.push('name is required');
+      const rowErrors: string[] = basicRowErrors(rec);
 
       let classId: string | null = null;
       if (className) {
@@ -114,10 +111,6 @@ export async function runCsvImport(
         } else {
           classId = found;
         }
-      }
-
-      if (dob && !DATE_RE.test(dob)) {
-        rowErrors.push('dob must be in YYYY-MM-DD format');
       }
 
       if (rowErrors.length > 0) {

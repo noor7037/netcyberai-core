@@ -75,7 +75,7 @@ export const resourceSections: ResourceSection[] = [
       'School leaders ask us the same important questions before they decide anything: do parents need an app, who owns the data, what does it cost, how does a pilot work, and are teachers or students ranked. Here are straight answers. If your question is not here, ask us directly and a real person will reply.',
     items: [],
     faqs: [
-      { question: 'Do parents need to install an app?', answer: 'No. Everything reaches parents on WhatsApp. A web portal exists but is optional.' },
+      { question: 'Do parents need to install an app?', answer: 'No. Everything is built to reach parents on WhatsApp. Parents never need an app or a login.' },
       { question: 'Who owns the data?', answer: 'The school. PostgreSQL is the single source of truth, and self-serve full export is planned but not live yet.' },
       { question: 'How does a pilot work?', answer: 'Your school is set up with outbound messaging switched off until you are ready, so nothing reaches parents early.' },
       { question: 'Are teachers ranked?', answer: 'No. Each teacher has a private Impact Card, visible only to them and their principal.' },

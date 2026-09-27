@@ -1,0 +1,219 @@
+import type { IconName } from '@/components/visual/Icons';
+import type { Tone } from '@/lib/semantic';
+
+// Pricing, as data. Every commercial statement carries a status:
+//
+//   confirmed  backed by the repository, the live system or an approved
+//              product document; the page states it as fact.
+//   proposed   requested by the founder but not yet an approved
+//              commercial term; the page does NOT publish it. Flip to
+//              'confirmed' only when it is an approved commitment.
+//   gap        no evidence, or evidence against it; never published.
+//
+// Plan contents come from docs/04_SYSTEM_DESIGN_PRD.md §8.1 (module map
+// per tier); plan names follow the founder's 2026-09-27 instruction
+// (Free / Starter / Growth / Compass, Compass replacing Campus).
+
+export type ClaimStatus = 'confirmed' | 'proposed' | 'gap';
+
+export interface CommercialClaim {
+  id: string;
+  title: string;
+  body: string;
+  icon: IconName;
+  tone: Tone;
+  status: ClaimStatus;
+  evidence: string;
+}
+
+export const commercialClaims: CommercialClaim[] = [
+  {
+    id: 'pilot-first',
+    title: 'Pilot before you commit',
+    body: 'Every school starts in pilot mode with outbound WhatsApp switched off, so nothing reaches a parent until you are ready.',
+    icon: 'lock',
+    tone: 'trust',
+    status: 'confirmed',
+    evidence: 'schools.pilot_allow_outbound defaults to false; the send-gate blocks and logs blocked_pilot.',
+  },
+  {
+    id: 'data-in-india',
+    title: 'Your data stays in India',
+    body: 'The school database runs in the Mumbai region, and every school’s records are isolated from every other school’s.',
+    icon: 'shield',
+    tone: 'success',
+    status: 'confirmed',
+    evidence: 'Supabase project region ap-south-1; row-level security with a two-school isolation test suite.',
+  },
+  {
+    id: 'whatsapp-at-cost',
+    title: 'WhatsApp costs, stated openly',
+    body: 'Meta bills WhatsApp messages separately from NetCyberAI. We show you the current rate card rather than hiding it inside a bundle.',
+    icon: 'chat',
+    tone: 'communication',
+    status: 'confirmed',
+    evidence: 'PRD §8.3 and Constitution: messaging cost disclosed with the rate and its verification date.',
+  },
+  {
+    id: 'change-plans',
+    title: 'Change plans as you grow',
+    body: 'Move between plans as your school’s needs change. A plan is not a one-time lock-in decision.',
+    icon: 'arrow',
+    tone: 'product',
+    status: 'confirmed',
+    evidence: 'Existing pricing FAQ; plans gate modules via plan_modules feature flags (PRD §8).',
+  },
+  {
+    id: 'per-student-15',
+    title: 'Per-student price of fifteen rupees a month',
+    body: 'Simple per-student pricing.',
+    icon: 'fees',
+    tone: 'action',
+    status: 'proposed',
+    evidence: 'Founder request 2026-09-27. PRD §9 lists final ₹ pricing as a GAP. Not an approved commercial term yet.',
+  },
+  {
+    id: 'first-month-free',
+    title: 'First month free',
+    body: 'Use NetCyberAI free for your first month.',
+    icon: 'sparkle',
+    tone: 'achievement',
+    status: 'proposed',
+    evidence: 'Founder request 2026-09-27. No approved offer terms.',
+  },
+  {
+    id: 'free-plan-permanent',
+    title: 'A permanent free plan',
+    body: 'A free plan for small schools, for as long as you need it.',
+    icon: 'school',
+    tone: 'success',
+    status: 'proposed',
+    evidence: 'Founder request 2026-09-27. PRD §8.1 has no free tier; its modules and limits are undefined.',
+  },
+  {
+    id: 'no-setup-fees',
+    title: 'No setup or hosting fees',
+    body: 'No separate charge for setup or hosting.',
+    icon: 'check',
+    tone: 'success',
+    status: 'proposed',
+    evidence: 'Founder request 2026-09-27. No approved commercial term.',
+  },
+  {
+    id: 'migration-24h',
+    title: 'Migration in 24 hours',
+    body: 'Your data moved in a day.',
+    icon: 'operations',
+    tone: 'product',
+    status: 'gap',
+    evidence: 'Migration time depends on each school’s data quality; the import reports problem rows rather than guessing. Not promisable.',
+  },
+  {
+    id: 'daily-backups',
+    title: 'Daily backups',
+    body: 'Your data backed up every day.',
+    icon: 'shield',
+    tone: 'trust',
+    status: 'gap',
+    evidence: 'Launch prerequisite (docs/13_LAUNCH_CHECKLIST.md row 1): paid database tier with daily backups and a tested restore. Flip to confirmed when done.',
+  },
+  {
+    id: 'enterprise-security',
+    title: 'Enterprise-grade security',
+    body: 'Enterprise-grade security.',
+    icon: 'lock',
+    tone: 'trust',
+    status: 'gap',
+    evidence: 'Unverifiable marketing phrase. Replaced by the specific, verified facts in "Your data stays in India".',
+  },
+  {
+    id: 'sla',
+    title: 'Uptime SLA',
+    body: 'A contractual uptime commitment.',
+    icon: 'chart',
+    tone: 'trust',
+    status: 'gap',
+    evidence: 'Launch prerequisite (docs/13_LAUNCH_CHECKLIST.md row 2): monitoring must exist to measure an SLA, and a target must be chosen.',
+  },
+];
+
+export const publishedClaims = commercialClaims.filter((c) => c.status === 'confirmed');
+
+export interface Plan {
+  id: 'free' | 'starter' | 'growth' | 'compass';
+  name: string;
+  forWhom: string;
+  highlights: string[];
+  support: string;
+  cta: { label: string; href: string };
+  recommended?: boolean;
+}
+
+export const plans: Plan[] = [
+  {
+    id: 'free',
+    name: 'Free',
+    forWhom: 'Any school, today, with no account',
+    highlights: ['Student Import Checker', 'Attendance Calculator', 'Fee reminder and parent update builders'],
+    support: 'Self-serve',
+    cta: { label: 'Open the free tools', href: '/free-tools' },
+  },
+  {
+    id: 'starter',
+    name: 'Starter',
+    forWhom: 'Smaller schools going digital for the first time',
+    highlights: ['Student records and CSV import', 'Attendance with parent alerts', 'Fees and receipts', 'DPDP consent and reports'],
+    support: 'Email',
+    cta: { label: 'Get a quote', href: '#quote' },
+  },
+  {
+    id: 'growth',
+    name: 'Growth',
+    forWhom: 'The core NetCyberAI experience',
+    highlights: ['Everything in Starter', 'Daily Learning Pulse on WhatsApp', 'Personal Best recognition', 'Admissions, exams and report cards', 'Document scan, QR ID cards'],
+    support: 'Email and WhatsApp',
+    cta: { label: 'Get a quote', href: '#quote' },
+    recommended: true,
+  },
+  {
+    id: 'compass',
+    name: 'Compass',
+    forWhom: 'Established schools that want the full picture',
+    highlights: ['Everything in Growth', 'Weekly Confidence Brief', 'Private Teacher Impact Card', 'At-risk signals', 'Staff, leave and academic planning'],
+    support: 'Priority',
+    cta: { label: 'Get a quote', href: '#quote' },
+  },
+];
+
+// Module comparison (PRD §8.1). `live` mirrors docs/12_CAPABILITY_MATRIX.md
+// so the table can say honestly which modules a school can use today.
+export interface ModuleRow {
+  module: string;
+  live: boolean;
+  in: Record<Plan['id'], boolean>;
+}
+
+const row = (module: string, live: boolean, free: boolean, starter: boolean, growth: boolean, compass: boolean): ModuleRow => ({
+  module,
+  live,
+  in: { free, starter, growth, compass },
+});
+
+export const moduleRows: ModuleRow[] = [
+  row('Free browser tools', true, true, true, true, true),
+  row('Student records and CSV import', true, false, true, true, true),
+  row('Attendance and absence alerts', true, false, true, true, true),
+  row('Guardians and DPDP consent', true, false, true, true, true),
+  row('Fees and receipts', false, false, true, true, true),
+  row('Reports', false, false, true, true, true),
+  row('Document scan with autofill', true, false, false, true, true),
+  row('QR ID cards', true, false, false, true, true),
+  row('Admissions pipeline', false, false, false, true, true),
+  row('Exams and report cards', false, false, false, true, true),
+  row('Daily Learning Pulse', false, false, false, true, true),
+  row('Personal Best recognition', false, false, false, true, true),
+  row('Weekly Confidence Brief', false, false, false, false, true),
+  row('Teacher Impact Card', false, false, false, false, true),
+  row('At-risk signals', false, false, false, false, true),
+  row('Staff and leave', false, false, false, false, true),
+];

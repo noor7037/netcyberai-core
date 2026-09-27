@@ -18,6 +18,7 @@ const BANNED: { pattern: RegExp; why: string }[] = [
   },
   { pattern: /Phase 0/, why: 'the platform is past Phase 0' },
   { pattern: /no live (?:school )?database/i, why: 'the database is live' },
+  { pattern: /(?:web|parent) portal exists/i, why: 'there is no parent portal (Decision Log C13)' },
 ];
 
 function files(dir: string): string[] {

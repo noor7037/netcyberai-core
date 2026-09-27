@@ -32,6 +32,7 @@ const SOURCE_LABELS: Record<string, string> = {
   start_pilot: 'Start a Pilot',
   contact: 'Contact',
   callback: 'Callback request',
+  quote: 'Quote request',
 };
 export default async function OnboardingPage() {
   const session = await getServerSession();
