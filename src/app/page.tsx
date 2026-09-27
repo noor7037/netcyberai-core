@@ -1,15 +1,5 @@
 import { Hero } from '@/components/home/Hero';
-import { LiveEcosystem } from '@/components/home/LiveEcosystem';
-import { ManualToConnected } from '@/components/home/ManualToConnected';
-import { RoleExplorer } from '@/components/home/RoleExplorer';
-import { DayInside } from '@/components/home/DayInside';
-import { ProductShowcase } from '@/components/home/ProductShowcase';
-import { OperationsFlows } from '@/components/home/OperationsFlows';
-import { GapDetection } from '@/components/home/GapDetection';
-import { WhatsAppShowcase } from '@/components/home/WhatsAppShowcase';
-import { TourBand } from '@/components/home/TourBand';
-import { PersonalBestJourney } from '@/components/home/PersonalBestJourney';
-import { OutcomeDashboard } from '@/components/home/OutcomeDashboard';
+import { PrincipalSection, AppsSection } from '@/components/showcase/Sections';
 import { TrustSecurity } from '@/components/home/TrustSecurity';
 import { CTASection } from '@/components/home/CTASection';
 import { Container } from '@/components/ui/Container';
@@ -43,7 +33,7 @@ const faqs = [
   {
     question: `What does ${companyName} cost?`,
     answer:
-      'Pricing is not fixed yet. There are three tiers, Starter, Growth and Campus, scoped to a school’s size and needs; request pricing and we will quote for your school specifically.',
+      'There are four plans: Free tools any school can use today, and Starter, Growth and Compass for the full platform. Each school gets a custom quote based on its size and the modules it needs, confirmed by a real person.',
   },
 ];
 
@@ -51,21 +41,12 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <WhatsAppShowcase />
-      <TourBand />
-      <LiveEcosystem />
-      <ManualToConnected />
-      <RoleExplorer />
-      <DayInside />
-      <ProductShowcase />
-      <OperationsFlows />
-      <GapDetection />
-      <PersonalBestJourney />
-      <OutcomeDashboard />
+      <PrincipalSection />
+      <AppsSection />
       <TrustSecurity />
 
       <section aria-labelledby="faq-title" className="bg-off-white">
-        <Container className="flex flex-col gap-8 py-20">
+        <Container className="flex flex-col gap-6 py-12">
           <SectionHeading id="faq-title" eyebrow="Questions" tone="product" title="Frequently asked questions" />
           <FaqBlock items={faqs} />
         </Container>

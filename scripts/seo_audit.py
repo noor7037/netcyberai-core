@@ -75,7 +75,7 @@ REQUIRED_CRAWLERS_DEMO_DISALLOWED = [
     "CCBot",
 ]
 
-FAQ_FIXED_ROUTES = {"/", "/pricing", "/security/data-ownership", "/demo"}
+FAQ_FIXED_ROUTES = {"/", "/pricing", "/security/data-ownership"}
 BANNED_SCHEMA_STRINGS = ["aggregateRating", "reviewCount", "ratingValue", '"Review"']
 
 

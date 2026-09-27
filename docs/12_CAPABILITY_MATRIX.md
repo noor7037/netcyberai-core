@@ -99,8 +99,25 @@ live feature.
 | Fee delay list mixing toppers, parent names and phone numbers | Rejected: fees are never paired with academic standing or shown with contact details on a dashboard tile. |
 | Four understanding states, Devanagari Hindi | Replaced by the three tiers the schema stores (`tier in (1,2,3)`) and Roman Hinglish (`body_hinglish`). |
 | "Open Parent App" as the next step | Rejected as primary: WhatsApp-first, no forced app. |
-| Learning Genome, Digital Twin, Career Graph, "9 agents", Payroll | Not built and not on the roadmap documents; not shown as product. |
+| Learning Genome, Digital Twin, Career Graph, "9 agents", Payroll | Shown since C74 inside the labelled demo only, never as live product; status "Needs specification" until the founder's module spec exists. |
 | Numbers such as "Proxy auto 90 sec vs 45 min", "842 guidance sessions" | Unsourced; not used. |
+
+## Founder dashboard: all 33 modules (C74)
+
+Per-module status for the principal dashboard reference is kept in code,
+in `src/content/module-status.ts`, and published on `/product-tour#modules`.
+Summary: Live 3 (Students, Parents & Guardians, Attendance) · Partly live 6
+(Setup, Academics, Communication, Documents, Compliance, Help Center) ·
+Foundation built 5 (Staff, Exams, Fees, Early Warning, Daily Pulse) ·
+Planned 8 (Admissions, Timetable, Homework, Events, Reports, PTM, Proxy,
+Raise Ticket) · Needs specification 11.
+
+**Module intake list (needs the founder's specification before build):**
+Payroll, Complaints & Feedback, Learning Genome, Teacher Copilot, School
+Health Auditor, Parent AI, Homework Recovery, Curriculum Gap Detector,
+Automation OS, Career Graph, Digital Twin. For each: who uses it, the
+inputs it reads, the decision or output it produces, who approves it, and
+what a parent or teacher must never see.
 
 ## Build order (dependency-first)
 

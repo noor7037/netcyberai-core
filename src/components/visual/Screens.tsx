@@ -27,7 +27,7 @@ import {
   teacherImpactSignals,
   teacherToday,
 } from '@/demo-fixture/website-demo';
-import { demoSchool } from '@/demo-fixture/sunrise-public-school';
+import { demoSchool } from '@/demo-fixture/website-demo';
 
 // NetCyberAI product UI previews, built from real components rather
 // than screenshots. All figures come from src/demo-fixture/ and every

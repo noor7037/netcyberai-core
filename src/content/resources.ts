@@ -122,13 +122,13 @@ export const resourceSections: ResourceSection[] = [
     status: 'coming',
     title: 'Videos',
     description:
-      'Recorded NetCyberAI product videos are in preparation. Meanwhile, take the interactive product tour on the homepage or try the clickable concept demo.',
+      'Recorded NetCyberAI product videos are in preparation. Meanwhile, try the interactive product tour or the working demo principal dashboard on our homepage.',
     heroTitle: 'Videos are coming; the tour is here now',
     heroLead:
-      'Recorded product videos are still being prepared. In the meantime there are two ways to see NetCyberAI working today: the interactive product tour on our homepage, which walks through a whole school day screen by screen, and the clickable concept demo, which uses a fictional school so you can explore each role freely.',
+      'Recorded product videos are still being prepared. In the meantime there are two ways to see NetCyberAI working today: the principal’s dashboard on our homepage, where every module opens with a click, and the product tour, which adds the teacher’s staff app, the parent’s WhatsApp and the honest status of every module.',
     items: [
-      { title: 'Interactive product tour', body: 'A school day in eight moments.', href: '/#product-tour' },
-      { title: 'Clickable concept demo', body: 'Principal, teacher and parent views with a fictional school.', href: '/demo' },
+      { title: 'Principal dashboard', body: 'Every module of the principal’s dashboard, in a fictional school.', href: '/#principal-dashboard' },
+      { title: 'Product tour', body: 'Principal, teacher and parent views, plus which modules are live.', href: '/product-tour' },
     ],
   },
   {

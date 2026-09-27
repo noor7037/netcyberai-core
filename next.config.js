@@ -28,6 +28,11 @@ const nextConfig = {
       ],
     },
   },
+  // The old /demo concept demo was folded into the one demo system on the
+  // homepage and /product-tour (Decision Log C74); keep inbound links alive.
+  async redirects() {
+    return [{ source: '/demo', destination: '/product-tour', permanent: true }];
+  },
 };
 
 module.exports = nextConfig;

@@ -18,7 +18,6 @@ const COMPANY = [
   { href: '/support', label: 'Support' },
   { href: '/security/data-ownership', label: 'Data ownership' },
   { href: '/product-tour', label: 'Product tour' },
-  { href: '/demo', label: 'Concept demo' },
 ];
 
 // Mirrors Header.tsx: the marketing chrome doesn't belong on the internal

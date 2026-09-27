@@ -14,7 +14,7 @@ export default function TermsPage() {
         <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">Terms of Use</h1>
         <p className="text-lg text-slate">
           These terms explain what a visitor may and may not do on {companyName}&rsquo;s public
-          website and its interactive concept demo, including that all demo content is fictional
+          website and its interactive demos, including that all demo content is fictional
           and comes with no warranty. This page is a draft pending legal review, not a finished
           document you should treat as final.
         </p>
@@ -24,8 +24,8 @@ export default function TermsPage() {
       <Card className="border-amber/40 bg-amber/5">
         <p className="text-sm font-semibold text-slate">Draft — pending legal review</p>
         <p className="mt-2 text-sm text-slate">
-          This is a structurally complete draft covering the current public website and concept
-          demo. It is not a substitute for review by a qualified lawyer, and it does not yet cover
+          This is a structurally complete draft covering the current public website and its
+          interactive demos. It is not a substitute for review by a qualified lawyer, and it does not yet cover
           a commercial school subscription — that will be governed by a separate signed
           agreement once pricing and terms are finalised with a school.
         </p>
@@ -34,18 +34,18 @@ export default function TermsPage() {
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">1. Scope</h2>
         <p className="text-sm text-slate">
-          These terms govern your use of the {companyName} public website, including the{' '}
-          <code>/demo</code> concept demo, operated by {companyName} ({companyAddress}). They do
+          These terms govern your use of the {companyName} public website, including the interactive
+          demos on the homepage and the product tour, operated by {companyName} ({companyAddress}). They do
           not govern a live school&rsquo;s use of the platform itself, which will be covered by a
           separate service agreement.
         </p>
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-bold text-slate">2. The concept demo</h2>
+        <h2 className="text-xl font-bold text-slate">2. The interactive demos</h2>
         <p className="text-sm text-slate">
-          The <code>/demo</code> section of this site shows a read-only, clearly-labelled concept
-          demonstration using a fictional school and fictional data. It cannot send real messages,
+          The demo dashboard, teacher app and parent WhatsApp on this site are clearly-labelled
+          demonstrations using a fictional school and fictional data. It cannot send real messages,
           process real payments, or store any information you enter. Nothing shown in the demo
           reflects real outcomes, real customers, or real data from any actual school.
         </p>

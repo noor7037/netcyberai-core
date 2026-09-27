@@ -10,8 +10,9 @@ const searchCrawlers = ['Googlebot', 'Bingbot'];
 // route holding illustrative or fictional data. General rule, not a
 // one-off — such a crawler flattens a page to plain text and loses the
 // non-dismissible "Concept demo — a fictional school" banner that is
-// what makes that data safe to show a human in context. Today that
-// route is /demo alone.
+// what makes that data safe to show a human in context. /demo now
+// redirects to /product-tour, whose demos carry an inline label beside
+// every device; the rule stays so the old path is never indexed.
 const aiCrawlers = [
   'GPTBot',
   'OAI-SearchBot',

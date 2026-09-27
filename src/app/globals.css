@@ -185,6 +185,45 @@ dialog.modal-dialog::backdrop {
   animation: nca-shimmer 8s linear infinite;
 }
 
+/* Shared hover language for every demo surface: cards lift, rows tint.
+   Only for a hover-capable pointer, so touch never gets a stuck state;
+   the reduced-motion block below removes the movement. */
+.nca-lift,
+.nca-row {
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .nca-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -12px rgb(30 41 59 / 0.35);
+  }
+  .nca-row:hover {
+    background-color: rgb(30 41 59 / 0.04);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nca-lift:hover {
+    transform: none;
+  }
+}
+
+/* Warm, low-blue wash behind the homepage hero. */
+.nca-hero-wash {
+  background:
+    radial-gradient(60rem 30rem at 85% 0%, rgb(255 197 144 / 0.35), transparent 60%),
+    radial-gradient(40rem 24rem at 0% 100%, rgb(34 197 94 / 0.12), transparent 60%);
+}
+
+/* Thin, quiet scrollbars inside the demo frames. */
+.nca-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(30 41 59 / 0.25) transparent;
+}
+
 /* Reduced motion: the site must remain complete and understandable with
    every animation off. Simulations also read the same media query in JS
    (usePrefersReducedMotion) and stop autoplaying. */
