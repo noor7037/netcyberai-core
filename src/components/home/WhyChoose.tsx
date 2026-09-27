@@ -6,12 +6,12 @@ import { growthCommitment as gc, saveHours } from '@/content/home';
 // commitment (src/content/home.ts, Decision Log C76).
 
 const BENEFITS: { title: string; body: string; icon: IconName; card: string; chip: string; head: string }[] = [
-  { title: saveHours.title, body: 'Automate routine admin tasks and focus on students.', icon: 'operations', card: 'from-royal/10 to-white', chip: 'bg-royal text-white', head: 'text-royal-deep' },
-  { title: 'Improve Student Results', body: 'Track learning, find gaps early and give the right support.', icon: 'chart', card: 'from-turquoise/15 to-white', chip: 'bg-emerald text-white', head: 'text-emerald' },
-  { title: 'Happier & More Engaged Parents', body: 'Real-time updates on WhatsApp with two-way communication.', icon: 'parent', card: 'from-tangerine/15 to-white', chip: 'bg-tangerine text-slate', head: 'text-tangerine-deep' },
-  { title: 'More Admissions and Growth', body: 'A modern, trusted system that parents value.', icon: 'school', card: 'from-grape/10 to-white', chip: 'bg-grape text-white', head: 'text-grape-deep' },
+  { title: saveHours.title, body: 'Automate routine admin work and give that time back to students.', icon: 'operations', card: 'from-royal/10 to-white', chip: 'bg-royal text-white', head: 'text-royal-deep' },
+  { title: 'Improve Student Results', body: 'Track learning, spot gaps early and give every child the right support.', icon: 'chart', card: 'from-turquoise/15 to-white', chip: 'bg-emerald text-white', head: 'text-emerald' },
+  { title: 'Happier & More Engaged Parents', body: 'Real-time updates on WhatsApp, and parents can reply in one tap.', icon: 'parent', card: 'from-tangerine/15 to-white', chip: 'bg-tangerine text-slate', head: 'text-tangerine-deep' },
+  { title: 'More Admissions and Growth', body: 'A modern school that parents can see working, from the first enquiry.', icon: 'school', card: 'from-grape/10 to-white', chip: 'bg-grape text-white', head: 'text-grape-deep' },
   { title: 'Data-Driven Decision Making', body: 'Clear reports and insights for smarter planning.', icon: 'reports', card: 'from-coral/15 to-white', chip: 'bg-coral text-slate', head: 'text-coral-deep' },
-  { title: 'Stronger Teacher Collaboration', body: 'Plan, share and track progress together.', icon: 'teacher', card: 'from-cyan/15 to-white', chip: 'bg-cyan text-slate', head: 'text-azure' },
+  { title: 'Stronger Teacher Collaboration', body: 'Plan, share and track progress together, in one place.', icon: 'teacher', card: 'from-cyan/15 to-white', chip: 'bg-cyan text-slate', head: 'text-azure' },
 ];
 
 export function WhyChoose() {
@@ -44,7 +44,7 @@ export function WhyChoose() {
             <Icon name="trophy" className="h-6 w-6" />
           </span>
           <h2 id="why-title" className="text-2xl font-extrabold text-slate sm:text-3xl">
-            Why Schools Choose NetCyberAI
+            Why Schools Should Choose NetCyberAI
           </h2>
         </div>
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">

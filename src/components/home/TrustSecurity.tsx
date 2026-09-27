@@ -9,12 +9,12 @@ import { tones, type Tone } from '@/lib/semantic';
 // docs/10_DECISION_LOG.md for each. No certification or regulatory
 // compliance claim is made here.
 const ITEMS: { title: string; body: string; icon: IconName; tone: Tone }[] = [
-  { title: 'Every school isolated', body: 'Row-level security scopes every query to one school at the database layer, not just in the interface.', icon: 'lock', tone: 'trust' },
-  { title: 'Consent on the record', body: 'A consent ledger per student and purpose. Messages without consent are never sent.', icon: 'compliance', tone: 'success' },
-  { title: 'Append-only audit trail', body: 'Who changed what, and when. Audit entries cannot be edited or deleted by school staff.', icon: 'shield', tone: 'intelligence' },
-  { title: 'WhatsApp stays off until you say so', body: 'Pilot schools run with outbound messaging whitelisted, so nothing reaches parents before you are ready.', icon: 'chat', tone: 'communication' },
-  { title: 'One canonical record', body: 'PostgreSQL is the single source of truth. Spreadsheets are never the live database; full export is planned, not live yet.', icon: 'download', tone: 'product' },
-  { title: 'AI proposes; people decide', body: 'Input is validated in the portal. AI drafts and flags; it is never an unrestricted writer to your records.', icon: 'sparkle', tone: 'action' },
+  { title: 'Your school, kept separate', body: 'Only your school can see your records. The database itself enforces this, not just the screen.', icon: 'lock', tone: 'trust' },
+  { title: 'Parent consent on record', body: 'We record each parent’s permission for each kind of message. No permission, no message.', icon: 'compliance', tone: 'success' },
+  { title: 'A history nobody can rewrite', body: 'Every change shows who made it and when. School staff cannot edit or delete that history.', icon: 'shield', tone: 'intelligence' },
+  { title: 'WhatsApp stays off until you say so', body: 'Every new school starts in pilot mode, so nothing reaches a parent before you are ready.', icon: 'chat', tone: 'communication' },
+  { title: 'One master record', body: 'One source of truth for your whole school. Spreadsheets are never the live copy, and a full data export is on the way.', icon: 'download', tone: 'product' },
+  { title: 'AI suggests, people decide', body: 'AI drafts messages and flags problems. A person always approves before anything changes.', icon: 'sparkle', tone: 'action' },
 ];
 
 export function TrustSecurity() {
