@@ -20,7 +20,7 @@ const ITEMS: { title: string; body: string; icon: IconName; tone: Tone }[] = [
 export function TrustSecurity() {
   return (
     <section aria-labelledby="trust-title" className="bg-white">
-      <Container wide className="flex flex-col gap-10 py-20">
+      <Container wide className="flex flex-col gap-8 py-12">
         <SectionHeading
           id="trust-title"
           eyebrow="Trust and security"

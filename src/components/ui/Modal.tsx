@@ -7,6 +7,8 @@ type Props = {
   onClose: () => void;
   title: string;
   children: ReactNode;
+  /** A wider sheet for long forms (the demo dashboard's Add dialog). */
+  wide?: boolean;
 };
 
 const FOCUSABLE_SELECTOR =
@@ -21,7 +23,7 @@ const FOCUSABLE_SELECTOR =
 // gap, not a hypothetical one. The manual keydown handler below closes
 // that gap outright: Tab/Shift+Tab cycle strictly within the dialog's
 // own focusable elements, every time, re-verified after adding it.
-export function Modal({ open, onClose, title, children }: Props) {
+export function Modal({ open, onClose, title, children, wide = false }: Props) {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -65,7 +67,7 @@ export function Modal({ open, onClose, title, children }: Props) {
   return (
     <dialog
       ref={ref}
-      className="modal-dialog w-[calc(100%-2rem)] max-w-md rounded-lg border border-slate/10 bg-white p-6 shadow-sm"
+      className={`modal-dialog w-[calc(100%-2rem)] ${wide ? 'max-w-3xl' : 'max-w-md'} rounded-lg border border-slate/10 bg-white p-6 shadow-sm`}
       aria-labelledby="modal-title"
       onKeyDown={trapTab}
     >

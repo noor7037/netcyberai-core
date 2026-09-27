@@ -97,7 +97,7 @@ export const pageMeta = {
     path: '/terms',
     title: 'Terms of Use',
     description:
-      'Terms of use for the NetCyberAI website and concept demo, covering acceptable use, intellectual property, limitation of liability, and governing law in India.',
+      'Terms of use for the NetCyberAI website and demos, covering acceptable use, intellectual property, limitation of liability, and governing law in India.',
   },
   pricing: {
     path: '/pricing',
@@ -110,12 +110,6 @@ export const pageMeta = {
     title: 'Blog',
     description:
       'Guides on WhatsApp fee automation, Haryana Form 6 compliance, certificate workflows, and non-demotivating student recognition, for Indian school principals.',
-  },
-  demo: {
-    path: '/demo',
-    title: 'Concept Demo',
-    description:
-      'A clickable concept demo of NetCyberAI’s Principal, Teacher, and Parent views, using a fictional school. Nothing shown here is saved, sent, or paid for real.',
   },
   getStarted: {
     path: '/get-started',
@@ -173,7 +167,7 @@ export const pageMeta = {
     path: '/product-tour',
     title: 'Product Tour',
     description:
-      'Explore NetCyberAI hands-on: click through the principal, teacher and finance dashboards and scroll a parent’s WhatsApp updates, all in a fictional demo school.',
+      'Explore NetCyberAI hands-on: every principal dashboard module, the teacher staff app and the parent WhatsApp menu, and see which modules are live today.',
   },
   startPilot: {
     path: '/start-pilot',

@@ -9,7 +9,7 @@ export function CTASection() {
   return (
     <section aria-labelledby="cta-title" className="relative overflow-hidden bg-gradient-to-br from-sapphire via-violet to-grape text-white">
       <div aria-hidden="true" className="nca-mesh-warm absolute inset-0" />
-      <Container wide className="relative grid grid-cols-1 items-center gap-10 py-20 lg:grid-cols-2">
+      <Container wide className="relative grid grid-cols-1 items-center gap-10 py-14 lg:grid-cols-2">
         <div className="flex flex-col gap-5">
           <h2 id="cta-title" className="text-3xl font-extrabold tracking-tight sm:text-4xl">
             See it running on your own school

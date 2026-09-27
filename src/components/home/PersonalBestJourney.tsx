@@ -6,7 +6,7 @@ import { ChatIn, PhoneFrame } from '@/components/visual/Frames';
 import { Icon, type IconName } from '@/components/visual/Icons';
 import { tones, type Tone } from '@/lib/semantic';
 import { colors } from '@/lib/design-tokens';
-import { personalBest } from '@/demo-fixture/website-demo';
+import { demoSchool, personalBest } from '@/demo-fixture/website-demo';
 
 const JOURNEY: { title: string; detail: string; icon: IconName; tone: Tone }[] = [
   { title: 'Baseline', detail: `Unit 1: ${personalBest.scores[0]}. The only comparison is with her own past.`, icon: 'chart', tone: 'product' },
@@ -90,7 +90,7 @@ export function PersonalBestJourney() {
             </ol>
             <div className="flex flex-col gap-4 sm:col-span-2 xl:col-span-1">
               <CertificateCard />
-              <PhoneFrame title="Sunrise Public School" subtitle="Recognition">
+              <PhoneFrame title={demoSchool.name} subtitle="Recognition">
                 <ChatIn time="5:20 pm">
                   <p className="font-bold">Personal Best! 🎉</p>
                   <p className="mt-1">{`${personalBest.studentName} scored ${personalBest.scores[5]} in ${personalBest.subject}, her best ever. Her certificate is attached.`}</p>

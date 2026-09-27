@@ -22,6 +22,10 @@ type Props = {
    * too.
    */
   orientation?: 'horizontal' | 'vertical';
+  /** Prefix for tab/panel ids, so two tab sets on one page never share an id. */
+  idPrefix?: string;
+  /** Accessible name for the tab list. */
+  label?: string;
 };
 
 // Hand-rolled per the WAI-ARIA Authoring Practices Tabs pattern
@@ -30,7 +34,7 @@ type Props = {
 // rather than a dependency -- this is a well-specified, well-tested
 // recipe, not the kind of thing (like a focus trap) that's genuinely
 // easy to get subtly wrong by hand.
-export function Tabs({ items, defaultActiveId, orientation = 'horizontal' }: Props) {
+export function Tabs({ items, defaultActiveId, orientation = 'horizontal', idPrefix = '', label = 'Tabs' }: Props) {
   const [activeId, setActiveId] = useState(defaultActiveId ?? items[0]?.id);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
@@ -60,7 +64,7 @@ export function Tabs({ items, defaultActiveId, orientation = 'horizontal' }: Pro
   const tabList = (
     <div
       role="tablist"
-      aria-label="Tabs"
+      aria-label={label}
       aria-orientation={isVertical ? 'vertical' : undefined}
       className={
         isVertical
@@ -77,9 +81,9 @@ export function Tabs({ items, defaultActiveId, orientation = 'horizontal' }: Pro
               tabRefs.current[item.id] = el;
             }}
             role="tab"
-            id={`tab-${item.id}`}
+            id={`${idPrefix}tab-${item.id}`}
             aria-selected={selected}
-            aria-controls={`tabpanel-${item.id}`}
+            aria-controls={`${idPrefix}tabpanel-${item.id}`}
             tabIndex={selected ? 0 : -1}
             onClick={() => activate(item.id)}
             onKeyDown={(e) => onKeyDown(e, index)}
@@ -104,8 +108,8 @@ export function Tabs({ items, defaultActiveId, orientation = 'horizontal' }: Pro
     <div
       key={item.id}
       role="tabpanel"
-      id={`tabpanel-${item.id}`}
-      aria-labelledby={`tab-${item.id}`}
+      id={`${idPrefix}tabpanel-${item.id}`}
+      aria-labelledby={`${idPrefix}tab-${item.id}`}
       hidden={item.id !== activeId}
       tabIndex={0}
       className={isVertical ? 'min-w-0 flex-1 pl-6' : 'py-4'}
