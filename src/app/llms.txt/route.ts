@@ -1,4 +1,5 @@
 import { blogPosts } from '@/content/blog';
+import { freeTools } from '@/content/free-tools';
 import { absoluteUrl, pageMeta } from '@/lib/seo';
 import { companyName, contactEmail, siteDescription } from '@/lib/site-config';
 
@@ -41,6 +42,10 @@ export function GET() {
     link('privacy'),
     link('terms'),
     link('pricing'),
+    '',
+    '## Free tools (run in the browser; nothing typed is sent to NetCyberAI)',
+    link('freeTools'),
+    ...freeTools.map((t) => `- [${t.name}](${absoluteUrl(`/free-tools/${t.slug}`)}): ${t.description}`),
     '',
     '## Guides',
     ...blogPosts.map((post) => `- [${post.title}](${absoluteUrl(`/blog/${post.slug}`)}): ${post.description}`),

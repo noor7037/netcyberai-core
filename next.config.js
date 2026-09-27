@@ -30,8 +30,16 @@ const nextConfig = {
   },
   // The old /demo concept demo was folded into the one demo system on the
   // homepage and /product-tour (Decision Log C74); keep inbound links alive.
+  // Free tools retired in the Decision Log C78 audit point to the tool
+  // that replaced them (kept in step with REMOVED_TOOL_REDIRECTS in
+  // src/content/free-tools.ts).
   async redirects() {
-    return [{ source: '/demo', destination: '/product-tour', permanent: true }];
+    return [
+      { source: '/demo', destination: '/product-tour', permanent: true },
+      { source: '/free-tools/attendance-calculator', destination: '/free-tools/attendance-recovery-planner', permanent: true },
+      { source: '/free-tools/fee-reminder-message', destination: '/free-tools/fee-leakage-calculator', permanent: true },
+      { source: '/free-tools/daily-pulse-message', destination: '/features/daily-learning-pulse-hinglish', permanent: true },
+    ];
   },
 };
 

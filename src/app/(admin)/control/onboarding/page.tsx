@@ -33,6 +33,7 @@ const SOURCE_LABELS: Record<string, string> = {
   contact: 'Contact',
   callback: 'Callback request',
   quote: 'Quote request',
+  free_tools: 'Free tools account',
 };
 export default async function OnboardingPage() {
   const session = await getServerSession();

@@ -297,6 +297,50 @@ dialog.modal-dialog::backdrop {
   margin: 10mm;
 }
 
+/* Free tools and certificates print only their own report or document:
+   PrintPortal renders it into #nca-print-root and sets body.nca-printing. */
+#nca-print-root {
+  display: none;
+}
+@media print {
+  body.nca-printing > *:not(#nca-print-root) {
+    display: none !important;
+  }
+  body.nca-printing #nca-print-root {
+    display: block;
+  }
+  body.nca-printing {
+    background: #ffffff;
+  }
+  .nca-report {
+    border: 0;
+    padding: 0;
+  }
+  .nca-report table {
+    min-width: 0;
+  }
+  .nca-report tr,
+  .nca-report dl > div {
+    break-inside: avoid;
+  }
+  .nca-cert-print {
+    width: 210mm;
+    height: 297mm;
+    break-after: page;
+  }
+  .nca-cert-print svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Checkerboard behind an image preview, so transparency is visible. */
+.nca-checker {
+  background-color: #ffffff;
+  background-image: conic-gradient(#e5e7eb 25%, #ffffff 0 50%, #e5e7eb 0 75%, #ffffff 0);
+  background-size: 12px 12px;
+}
+
 /* Sticky header: in-page anchors (#callback, #product-tour) land below it
    instead of underneath it. 5rem = 64px header + spectrum bar + breathing room. */
 html {

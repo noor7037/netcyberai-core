@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { calculateAttendance } from './attendance';
-import { dailyPulseMessage, feeReminderMessage } from './messages';
 import { checkImportCsv } from './import-check';
 
 describe('attendance calculator', () => {
@@ -20,27 +19,6 @@ describe('attendance calculator', () => {
     expect(calculateAttendance({ attended: 110, total: 100, targetPercent: 75 }).ok).toBe(false);
     expect(calculateAttendance({ attended: 5, total: 0, targetPercent: 75 }).ok).toBe(false);
     expect(calculateAttendance({ attended: 5, total: 10, targetPercent: 100 }).ok).toBe(false);
-  });
-});
-
-describe('message builders', () => {
-  const base = { parentName: 'Sharma ji', studentName: 'Rahul', className: '5A', feeLabel: 'September fee', amount: '8,400', dueDate: '10 October', schoolName: 'Sunrise School', paymentNote: '', stage: 'gentle' as const };
-  it('writes a one-family reminder with the amount once', () => {
-    const m = feeReminderMessage(base);
-    expect(m.english).toContain('Dear Sharma ji');
-    const rupee = '\u20B9';
-    expect(m.english).toContain(`${rupee}8,400`);
-    expect(m.english).not.toContain(rupee + rupee);
-    expect(m.hinglish).toContain('Namaste Sharma ji');
-  });
-  it('overdue wording thanks families who already paid', () => {
-    expect(feeReminderMessage({ ...base, stage: 'overdue' }).english).toContain('already paid');
-  });
-  it('pulse message lists subjects and the three reply tiers', () => {
-    const t = dailyPulseMessage({ studentName: 'Rahul', className: '5A', schoolName: 'Sunrise', subjects: [{ subject: 'Maths', topic: 'Fractions', question: 'Is 3/4 bigger than 5/8?' }] });
-    expect(t).toContain('1. Maths: Fractions');
-    expect(t).toContain('Ask at home: Is 3/4 bigger than 5/8?');
-    expect(t).toContain('3 = Samajh nahi aaya');
   });
 });
 
