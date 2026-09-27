@@ -3,8 +3,9 @@
 //
 // EVERYTHING in this file is fictional. It is NOT NetCyberAI performance
 // data, it is not from any real school, and no number here is a claim
-// about results. Every component that renders it shows a visible
-// "Illustrative demo data" label. It sits in src/demo-fixture/ -- the
+// about results. Every surface that renders it shows a visible
+// "Demo school · fictional numbers" label (DemoLabel), and the
+// dashboard previews sit on a demo.netcyberai.com address. It sits in src/demo-fixture/ -- the
 // single directory allowlisted by scripts/check_claims.py and CI's
 // no-invented-data grep -- precisely so that fictional figures can never
 // leak into ordinary marketing copy unlabelled.
@@ -323,5 +324,142 @@ export const pulseReplies = {
   messages: [
     { from: 'Parent of Aarav', text: 'He explained the leaf experiment at dinner.' },
     { from: 'Parent of Riya', text: 'She was unwell; can you share the homework again?' },
+  ],
+};
+
+// ---- Homepage hero dashboard ----------------------------------------------
+// One school morning for the fictional Sunrise Public School. Class-band
+// attendance, fee split and Pulse replies are internally consistent:
+// 1,180 of 1,240 present; fee buckets sum to 100; replies sum to the class.
+
+export const heroDashboard = {
+  greeting: 'Good morning, Principal',
+  date: 'Thursday, 24 September',
+  kpis: [
+    { label: 'Students', value: '1,240', note: '13 classes' },
+    { label: 'Present today', value: '95.2%', note: '1,180 of 1,240' },
+    { label: 'Fees collected', value: '78%', note: 'This term' },
+    { label: 'Needs an owner', value: '3', note: 'Open exceptions' },
+  ],
+  attendanceBands: [
+    { band: 'K–5', value: 95.8, note: 'Steady' },
+    { band: '6–8', value: 92.3, note: 'Class 6 needs review' },
+    { band: '9–12', value: 94.0, note: 'Class 9 early signal' },
+  ],
+  fees: {
+    collected: 78,
+    buckets: [
+      { label: 'Paid on time', share: 65, amount: '₹12.4L' },
+      { label: 'Paid late', share: 22, amount: '₹3.6L' },
+      { label: 'Overdue', share: 13, amount: '₹1.9L' },
+    ],
+    reminder: '18 families reminded on WhatsApp today',
+  },
+  learning: {
+    title: 'Class 6A · Maths · Fractions',
+    replies: [
+      { label: 'Achhe se samjha', count: 21 },
+      { label: 'Thoda samjha', count: 9 },
+      { label: 'Samajh nahi aaya', count: 3 },
+    ],
+    followUp: 'Revision on Friday, assigned to Ms Priya Mehta',
+  },
+  exceptions: [
+    { title: 'Riya (6A) absent 3 days, no reason given', owner: 'Class teacher', status: 'open' as const },
+    { title: '12 fee reminders unanswered for 7+ days', owner: 'Accounts', status: 'in_progress' as const },
+    { title: 'Pulse not sent: 8A Hindi', owner: 'Subject teacher', status: 'open' as const },
+  ],
+  toasts: {
+    attendance: '6A attendance saved · 08:52',
+    fee: '₹8,400 received · receipt sent on WhatsApp',
+    personalBest: 'New Personal Best · Aarav, Maths',
+  },
+};
+
+// ---- Homepage WhatsApp showcase -------------------------------------------
+// One parent's week, in the order it happens. Reply tiers match the real
+// pulse_response_log.tier (1..3) and messages are English + Roman-script
+// Hinglish, matching pulse_messages.body_hinglish. Recognition is
+// Personal Best (a child against their own past), never a class rank.
+
+export type ChatItem =
+  | { id: string; kind: 'day'; text: string }
+  | { id: string; kind: 'pulse'; time: string; greeting: string; hinglish: string; subjects: { subject: string; teacher: string; ask: string; askHinglish: string }[]; prompt: string; tiers: string[] }
+  | { id: string; kind: 'in'; time: string; badge?: string; text: string; hinglish?: string; attachment?: string; actions?: string[] }
+  | { id: string; kind: 'out'; time: string; text: string };
+
+export const whatsappStory: { child: string; parent: string; className: string; items: ChatItem[] } = {
+  child: 'Rahul',
+  parent: 'Sharma ji',
+  className: 'Class 5',
+  items: [
+    { id: 'day-1', kind: 'day', text: 'Today' },
+    {
+      id: 'pulse',
+      kind: 'pulse',
+      time: '6:30 pm',
+      greeting: 'Namaste Sharma ji! Here is what Rahul learned in school today.',
+      hinglish: 'Aaj Rahul ne school mein yeh seekha. Dinner ke time 5 minute baat kijiye.',
+      subjects: [
+        { subject: 'Maths · Fractions', teacher: 'Priya Mehta', ask: 'Which is bigger, 3/4 or 5/8? Ask Rahul to explain why.', askHinglish: '3/4 aur 5/8 mein bada kaun? Wajah poochhiye.' },
+        { subject: 'English · The Rainbow', teacher: 'Arjun Malik', ask: 'What do we need to see a rainbow?', askHinglish: 'Rainbow dekhne ke liye kya chahiye?' },
+        { subject: 'EVS · Journey of a River', teacher: 'Ritu Gupta', ask: 'Name one way a river helps people.', askHinglish: 'Nadi logon ki madad kaise karti hai?' },
+      ],
+      prompt: 'Rahul ne aaj kitna samjha? Tap one:',
+      tiers: ['Achhe se samjha', 'Thoda samjha', 'Samajh nahi aaya'],
+    },
+    { id: 'reply', kind: 'out', time: '8:05 pm', text: 'Thoda samjha. Fractions mein thodi dikkat hai.' },
+    {
+      id: 'recorded',
+      kind: 'in',
+      time: '8:05 pm',
+      badge: 'Response recorded',
+      text: 'Thank you, Sharma ji. Fractions is marked for a short revision with Priya Ma’am on Friday.',
+      hinglish: 'Shukriya! Friday ko Fractions dobara karwaya jayega.',
+    },
+    { id: 'day-2', kind: 'day', text: 'Friday' },
+    {
+      id: 'followup',
+      kind: 'in',
+      time: '4:10 pm',
+      badge: 'Teacher follow-up',
+      text: 'Priya Ma’am: We revised Fractions in small groups today. Rahul solved 4 of 5 practice questions on his own.',
+    },
+    {
+      id: 'homework',
+      kind: 'in',
+      time: '6:00 pm',
+      badge: 'Homework reminder',
+      text: 'The Maths worksheet (8 questions) given on Thursday is still pending.',
+      hinglish: 'Maths worksheet abhi baaki hai. Aaj raat check kar lijiye.',
+      actions: ['Will complete tonight', 'Need help'],
+    },
+    { id: 'homework-reply', kind: 'out', time: '6:12 pm', text: 'Will complete tonight.' },
+    { id: 'day-3', kind: 'day', text: 'Monday' },
+    {
+      id: 'fee',
+      kind: 'in',
+      time: '10:00 am',
+      badge: 'Fee reminder',
+      text: 'The September fee of ₹8,400 for Rahul is due on 10 October. You can pay securely by UPI.',
+      actions: ['Pay by UPI', 'View details'],
+    },
+    {
+      id: 'receipt',
+      kind: 'in',
+      time: '10:14 am',
+      badge: 'Payment received',
+      text: 'Thank you, Sharma ji. We received ₹8,400. Your receipt is attached.',
+      attachment: 'Receipt_September_Rahul.pdf',
+    },
+    {
+      id: 'personal-best',
+      kind: 'in',
+      time: '5:30 pm',
+      badge: 'Personal Best',
+      text: 'Rahul reached a Personal Best in Maths: 18 out of 20 in the Fractions check, up from 14 last month. Please congratulate him at home!',
+      hinglish: 'Rahul ne apna best score banaya hai. Ghar par zaroor shabaashi dijiye!',
+      attachment: 'Personal_Best_Certificate.pdf',
+    },
   ],
 };

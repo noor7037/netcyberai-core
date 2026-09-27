@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-export function BrowserFrame({ url = 'app.netcyberai.com', children, className = '' }: { url?: string; children: ReactNode; className?: string }) {
+export function BrowserFrame({ url = 'demo.netcyberai.com', children, className = '' }: { url?: string; children: ReactNode; className?: string }) {
   return (
     <div className={`overflow-hidden rounded-2xl border border-slate/10 bg-white shadow-2xl shadow-sapphire/10 ${className}`}>
       <div className="flex items-center gap-1.5 border-b border-slate/10 bg-off-white px-4 py-2.5">

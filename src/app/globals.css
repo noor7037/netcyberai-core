@@ -237,3 +237,9 @@ dialog.modal-dialog::backdrop {
   size: A4;
   margin: 10mm;
 }
+
+/* Sticky header: in-page anchors (#callback, #product-tour) land below it
+   instead of underneath it. 5rem = 64px header + spectrum bar + breathing room. */
+html {
+  scroll-padding-top: 5rem;
+}

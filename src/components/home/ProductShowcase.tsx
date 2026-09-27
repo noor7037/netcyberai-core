@@ -36,7 +36,7 @@ interface Module {
   screen: () => ReactNode;
 }
 
-const frame = (url: string, node: ReactNode) => <BrowserFrame url={`app.netcyberai.com/${url}`}>{node}</BrowserFrame>;
+const frame = (url: string, node: ReactNode) => <BrowserFrame url={`demo.netcyberai.com/${url}`}>{node}</BrowserFrame>;
 
 const MODULES: Module[] = [
   { name: 'Admissions', icon: 'admissions', tone: 'action', role: 'Admissions desk', flow: ['Enquiry', 'Follow-up', 'Application', 'Admission'], outcome: 'Every enquiry has a stage and a next step.', href: '/products/school-management', screen: () => frame('admissions', <AdmissionsScreen />) },

@@ -1,20 +1,24 @@
 import type { ReactNode } from 'react';
 import { tones, type Tone } from '@/lib/semantic';
 
-// Every surface that shows illustrative figures carries this label, per
-// the founder's rule that fictional numbers must never read as real
-// NetCyberAI results.
+// Every surface that shows fictional figures carries this label, per the
+// founder's rule that demo numbers must never read as real NetCyberAI
+// results. It is deliberately quiet (a caption, not a warning badge) but
+// always present. The dark variant sets no text colour of its own and
+// inherits the host section's verified text-white.
 export function DemoLabel({ onDark = false, className = '' }: { onDark?: boolean; className?: string }) {
   if (onDark) {
     return (
-      <span className={`inline-flex items-center gap-1 rounded-full bg-gold px-2.5 py-0.5 text-xs font-semibold text-slate ${className}`}>
-        Illustrative demo data
+      <span className={`inline-flex w-fit items-center gap-1.5 rounded-full border border-white/20 px-2.5 py-0.5 text-xs font-medium opacity-80 ${className}`}>
+        <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold" />
+        Demo school · fictional numbers
       </span>
     );
   }
   return (
-    <span className={`inline-flex items-center gap-1 rounded-full bg-gold/20 px-2.5 py-0.5 text-xs font-semibold text-gold-deep ${className}`}>
-      Illustrative demo data
+    <span className={`inline-flex w-fit items-center gap-1.5 rounded-full bg-slate/5 px-2.5 py-0.5 text-xs font-medium text-slate/70 ${className}`}>
+      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold" />
+      Demo school · fictional numbers
     </span>
   );
 }

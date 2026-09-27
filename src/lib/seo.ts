@@ -163,6 +163,12 @@ export const pageMeta = {
     description:
       'NetCyberAI features for Indian schools: the Daily Learning Pulse, WhatsApp fee recovery, Personal Best, Teacher Impact Card, digital certificates and more.',
   },
+  freeTools: {
+    path: '/free-tools',
+    title: 'Free Tools for Schools',
+    description:
+      'Free tools for Indian schools: check a student list before import, calculate attendance targets, and write fee reminders and parent updates in Hinglish.',
+  },
   startPilot: {
     path: '/start-pilot',
     title: 'Start a Pilot',
@@ -268,6 +274,7 @@ export function breadcrumbListJsonLd(page: { path: string; title: string }): Jso
     products: 'Products',
     solutions: 'Solutions',
     resources: 'Resources',
+    'free-tools': 'Free tools',
   };
   const segments = page.path.split('/').filter(Boolean);
   const items = [{ name: 'Home', path: '/' }];

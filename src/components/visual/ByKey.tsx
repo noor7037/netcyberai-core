@@ -60,7 +60,7 @@ const SCREENS: Record<ScreenKey, { url: string; node: () => ReactNode; phone?: b
 export function ScreenByKey({ k }: { k: ScreenKey }) {
   const s = SCREENS[k];
   if (s.phone) return <>{s.node()}</>;
-  return <BrowserFrame url={`app.netcyberai.com/${s.url}`}>{s.node()}</BrowserFrame>;
+  return <BrowserFrame url={`demo.netcyberai.com/${s.url}`}>{s.node()}</BrowserFrame>;
 }
 
 export const CHART_TITLES: Record<ChartKey, string> = {

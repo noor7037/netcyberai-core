@@ -6,7 +6,7 @@ import { DayInside } from '@/components/home/DayInside';
 import { ProductShowcase } from '@/components/home/ProductShowcase';
 import { OperationsFlows } from '@/components/home/OperationsFlows';
 import { GapDetection } from '@/components/home/GapDetection';
-import { PulseTwoWay } from '@/components/home/PulseTwoWay';
+import { WhatsAppShowcase } from '@/components/home/WhatsAppShowcase';
 import { PersonalBestJourney } from '@/components/home/PersonalBestJourney';
 import { OutcomeDashboard } from '@/components/home/OutcomeDashboard';
 import { TrustSecurity } from '@/components/home/TrustSecurity';
@@ -50,6 +50,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <WhatsAppShowcase />
       <LiveEcosystem />
       <ManualToConnected />
       <RoleExplorer />
@@ -57,7 +58,6 @@ export default function HomePage() {
       <ProductShowcase />
       <OperationsFlows />
       <GapDetection />
-      <PulseTwoWay />
       <PersonalBestJourney />
       <OutcomeDashboard />
       <TrustSecurity />

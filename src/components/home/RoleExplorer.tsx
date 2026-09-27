@@ -28,7 +28,7 @@ const ROLES: { key: RoleKey; label: string; icon: IconName; tone: Tone; tagline:
     tagline: 'School health, exceptions and teaching signals in one view, without asking around.',
     flow: ['Open dashboard', 'See school health', 'Review exceptions', 'Assign an owner'],
     screen: () => (
-      <BrowserFrame url="app.netcyberai.com/principal">
+      <BrowserFrame url="demo.netcyberai.com/principal">
         <PrincipalScreen />
       </BrowserFrame>
     ),
@@ -41,7 +41,7 @@ const ROLES: { key: RoleKey; label: string; icon: IconName; tone: Tone; tagline:
     tagline: 'Students, guardians, classes and consent kept in one validated record.',
     flow: ['Enrol student', 'Link guardians', 'Record consent', 'Records stay audited'],
     screen: () => (
-      <BrowserFrame url="app.netcyberai.com/students">
+      <BrowserFrame url="demo.netcyberai.com/students">
         <StudentProfileScreen />
       </BrowserFrame>
     ),
@@ -54,7 +54,7 @@ const ROLES: { key: RoleKey; label: string; icon: IconName; tone: Tone; tagline:
     tagline: 'A single Today screen: attendance, classes, homework and the Learning Pulse.',
     flow: ['Mark attendance', 'Log the lesson', 'Set homework', 'Approve the Pulse'],
     screen: () => (
-      <BrowserFrame url="app.netcyberai.com/today">
+      <BrowserFrame url="demo.netcyberai.com/today">
         <TeacherTodayScreen />
       </BrowserFrame>
     ),
@@ -67,7 +67,7 @@ const ROLES: { key: RoleKey; label: string; icon: IconName; tone: Tone; tagline:
     tagline: 'Progress measured against their own past. Personal Best comes first; rankings are optional.',
     flow: ['Baseline', 'Improvement', 'Personal Best', 'Certificate'],
     screen: () => (
-      <BrowserFrame url="app.netcyberai.com/progress">
+      <BrowserFrame url="demo.netcyberai.com/progress">
         <StudentProgressScreen />
       </BrowserFrame>
     ),
@@ -89,7 +89,7 @@ const ROLES: { key: RoleKey; label: string; icon: IconName; tone: Tone; tagline:
     tagline: 'Dues, reminders, UPI payments and receipts, reconciled into one dashboard.',
     flow: ['Fee falls due', 'Reminder sent', 'Paid via UPI', 'Receipt + dashboard'],
     screen: () => (
-      <BrowserFrame url="app.netcyberai.com/fees">
+      <BrowserFrame url="demo.netcyberai.com/fees">
         <FinanceScreen />
       </BrowserFrame>
     ),
