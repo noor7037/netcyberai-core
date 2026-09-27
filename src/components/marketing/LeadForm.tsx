@@ -7,6 +7,7 @@ import { Checkbox } from '@/components/ui/Checkbox';
 import { Button } from '@/components/ui/Button';
 import { SubmitError } from '@/components/marketing/SubmitError';
 import { submitLead } from '@/components/marketing/submitLead';
+import { Honeypot } from '@/components/marketing/Honeypot';
 
 type Source = 'get_started' | 'book_demo' | 'start_pilot';
 
@@ -57,6 +58,7 @@ export function LeadForm({ source }: { source: Source }) {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [result, setResult] = useState<{ isDuplicate: boolean } | null>(null);
+  const [website, setWebsite] = useState('');
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setValues((v) => ({ ...v, [key]: value }));
@@ -80,7 +82,7 @@ export function LeadForm({ source }: { source: Source }) {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      const body = await submitLead({ source, ...values });
+      const body = await submitLead({ source, ...values, website });
       setResult({ isDuplicate: body.isDuplicate });
       setStep('done');
     } catch (err) {
@@ -143,7 +145,8 @@ export function LeadForm({ source }: { source: Source }) {
   }
 
   return (
-    <form onSubmit={handleReview} className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-6">
+    <form onSubmit={handleReview} className="relative flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-6">
+      <Honeypot value={website} onChange={setWebsite} />
       {source !== 'book_demo' && (
         <Select
           id="lead-org-type"

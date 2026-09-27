@@ -202,7 +202,7 @@ export const products: CatalogPage[] = [
     outcomes: ['Parents who can talk about school at home', 'Fewer “what happened today?” calls', 'Teachers who know who to follow up with'],
     related: ['communication', 'academics', 'attendance-safety'],
     faqs: [
-      { question: 'Do parents need a smartphone app?', answer: 'No. Everything arrives on WhatsApp. A web portal exists for anyone who prefers it, but it is optional.' },
+      { question: 'Do parents need a smartphone app?', answer: 'No. Everything is built to arrive on WhatsApp, which parents already use. Parents never need an app or a login.' },
       { question: 'Can the Pulse contain something the teacher did not record?', answer: 'No. It is built only from verified class activity, and the teacher approves it before it is sent.' },
       { question: 'What language is it in?', answer: 'Simple Hinglish by default, written for parents with a range of English reading comfort.' },
       { question: 'What if a parent has not consented?', answer: 'Nothing is sent to them. The send gate checks consent and quiet hours for every message.' },

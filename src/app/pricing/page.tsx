@@ -1,126 +1,253 @@
+import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
-import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { FaqBlock } from '@/components/content/FaqBlock';
+import { EyebrowOnDark, SectionHeading } from '@/components/visual/Primitives';
+import { SpotlightCard } from '@/components/visual/SpotlightCard';
+import { Icon } from '@/components/visual/Icons';
+import { QuoteForm } from '@/components/marketing/QuoteForm';
+import { moduleRows, plans, publishedClaims } from '@/content/pricing';
+import { tones } from '@/lib/semantic';
 import { whatsappLink } from '@/lib/site-config';
-import {
-  breadcrumbListJsonLd,
-  buildMetadata,
-  pageMeta,
-  pricingTiers,
-  serializeJsonLd,
-  softwareApplicationJsonLd,
-} from '@/lib/seo';
+import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd, softwareApplicationJsonLd } from '@/lib/seo';
 
 export const metadata = buildMetadata(pageMeta.pricing);
+
+// Commercial claims come only from src/content/pricing.ts, where each one
+// carries a CONFIRMED / PROPOSED / GAP status; this page renders the
+// confirmed ones only. Do not hardcode offers or prices here.
 
 const faqs = [
   {
     question: 'How is NetCyberAI pricing structured?',
     answer:
-      'NetCyberAI offers three tiers per school — Starter, Growth, and Campus — each adding more of the product on top of the last. There is no published flat rate; a rupee figure is confirmed directly with each school based on its size, since a single number would not fit every school.',
+      'There are four plans. Free is a set of browser tools any school can use today without an account. Starter, Growth and Compass each add more of the product on top of the last, and each school receives a custom quote based on its size and the modules it needs, confirmed by a real person.',
+  },
+  {
+    question: 'Is there a free plan?',
+    answer:
+      'Yes, in the form available today: the free tools for checking a student list, calculating attendance targets and writing fee reminders and parent updates. They need no account and run in your browser. Terms for a free school account are still being finalised and will be published here when they are.',
   },
   {
     question: 'What drives WhatsApp messaging cost?',
     answer:
-      'WhatsApp Business messaging is billed by Meta per message sent, separately from NetCyberAI’s own pricing, and the rate depends on message category and changes on Meta’s own schedule — it was restructured in July 2025 and again with a new rate card effective July 2026. See Meta’s live WhatsApp Business Platform pricing page for the current rate card rather than relying on a fixed figure, which could already be out of date.',
+      'WhatsApp Business messaging is billed by Meta per message, separately from NetCyberAI’s own pricing. The rate depends on the message category and changes on Meta’s schedule, so we show you the current rate card when we quote rather than a fixed figure that could already be out of date.',
   },
   {
     question: 'Is there a pilot for new schools?',
     answer:
-      'Yes. Every new school starts in pilot mode with outbound WhatsApp messaging switched off by default, so nothing reaches a real parent until the school explicitly turns outbound messaging on.',
+      'Yes. Every new school starts in pilot mode with outbound WhatsApp messaging switched off, so nothing reaches a real parent until the school explicitly turns it on. That lets you, your staff and us confirm the data and messages look right first.',
   },
   {
-    question: 'What happens if a school exceeds its monthly messaging budget?',
+    question: 'Which modules can we use today?',
     answer:
-      'This is a Phase 1 design commitment, not a live feature today: a principal is meant to be alerted before a school’s monthly WhatsApp budget cap is reached, not after. Transactional messages such as receipts and certificate delivery are designed to keep sending even past the cap, while broadcast-style updates like the Daily Pulse are designed to degrade to portal-only until the next cycle.',
-  },
-  {
-    question: 'Can a school change tiers later?',
-    answer:
-      'Yes — a school can move between Starter, Growth, and Campus as its needs change. Tier choice is not treated as a one-time lock-in decision, and the exact terms for moving between tiers are worked out directly with each school rather than through self-serve billing, which does not exist yet.',
+      'The comparison table marks each module as available now or in development. Student records, imports, consent, attendance with absence alerts, document scanning and QR ID cards are available now; the Daily Learning Pulse, fees and receipts, exams and recognition are in development.',
   },
 ];
 
+function Mark({ on }: { on: boolean }) {
+  return on ? (
+    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-turquoise/15 text-emerald">
+      <Icon name="check" className="h-4 w-4" />
+      <span className="sr-only">Included</span>
+    </span>
+  ) : (
+    <span className="text-slate/70">
+      <span aria-hidden="true">–</span>
+      <span className="sr-only">Not included</span>
+    </span>
+  );
+}
+
 export default function PricingPage() {
   return (
-    <Container className="flex flex-col gap-12 py-12">
-      <div className="flex flex-col gap-4">
-        <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">Pricing</h1>
-        <p className="max-w-2xl text-lg text-slate">
-          NetCyberAI&rsquo;s pricing is not a single published number — it is structured as
-          three tiers, Starter, Growth, and Campus, each scoped to a school&rsquo;s actual size
-          and needs, with the exact rupee figure confirmed directly during a WhatsApp
-          conversation rather than published as one rate that would not fit every school.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-        {pricingTiers.map((tier) => (
-          <Card key={tier.name} className="flex flex-col gap-4">
-            <h2 className="text-lg font-semibold text-sapphire">{tier.name}</h2>
-            <p className="text-sm text-slate">{tier.description}</p>
-            <p className="self-start rounded bg-emerald/15 px-2 py-0.5 text-slate text-sm font-semibold">Contact for pricing</p>
-            <Button
-              href={whatsappLink(`Hi, I would like pricing for the ${tier.name} plan.`)}
-              variant="outline"
-            >
-              Ask about {tier.name}
+    <>
+      <section aria-labelledby="pricing-title" className="relative overflow-hidden bg-midnight text-white">
+        <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
+        <div aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1" />
+        <Container wide className="relative flex flex-col gap-5 py-16">
+          <EyebrowOnDark tone="action">Pricing</EyebrowOnDark>
+          <h1 id="pricing-title" className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
+            Pricing that grows with your school
+          </h1>
+          <p className="max-w-3xl text-lg opacity-90">
+            NetCyberAI has four plans: Free tools any school can use today, and Starter, Growth and Compass for schools
+            that want the full platform. Each school gets a custom quote based on its size and the modules it needs, and
+            every school starts in pilot mode, so nothing reaches a parent before you are ready.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Button href="#quote" variant="secondary">
+              Get a custom quote
             </Button>
-          </Card>
-        ))}
-      </div>
+            <Button href="/book-demo" variant="outlineLight">
+              Book a demo
+            </Button>
+          </div>
+        </Container>
+      </section>
 
-      <div className="flex flex-col gap-3">
-        <h2 className="text-xl font-bold text-slate">Multi-campus groups</h2>
-        <p className="text-sm text-slate">
-          For a group running several schools or campuses on one account, we scope a custom plan
-          rather than fit it into a single-school tier. Contact us to talk through your setup.
-        </p>
-      </div>
+      <section aria-labelledby="value-title" className="bg-off-white">
+        <Container wide className="flex flex-col gap-8 py-16">
+          <SectionHeading id="value-title" eyebrow="What every plan includes" tone="trust" title="Clear terms, stated plainly" />
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {publishedClaims.map((c) => (
+              <li key={c.id}>
+                <SpotlightCard className="flex h-full flex-col gap-3 rounded-3xl border border-slate/10 bg-white p-5">
+                  <span className={`flex h-11 w-11 items-center justify-center rounded-2xl ${tones[c.tone].solid}`}>
+                    <Icon name={c.icon} className="h-5 w-5" />
+                  </span>
+                  <p className="font-extrabold text-slate">{c.title}</p>
+                  <p className="text-sm text-slate/70">{c.body}</p>
+                </SpotlightCard>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
 
-      <div className="flex flex-col gap-3">
-        <h2 className="text-xl font-bold text-slate">How pilot mode works</h2>
-        <p className="text-sm text-slate">
-          Every new school starts in pilot mode with outbound WhatsApp messaging switched off by
-          default. Nothing is sent to a real parent until the school explicitly turns outbound
-          messaging on. This lets a school, its staff, and us confirm the data and the message
-          content look right before a single real message goes out — and it means a pilot never
-          accidentally messages a parent before anyone intended it to.
-        </p>
-      </div>
+      <section aria-labelledby="plans-title" className="bg-white">
+        <Container wide className="flex flex-col gap-8 py-16">
+          <SectionHeading
+            id="plans-title"
+            eyebrow="Plans"
+            tone="product"
+            title="Pick the plan that fits your school"
+            lead="Each plan lists what it includes. The table below shows which modules are available now and which are in development."
+          />
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {plans.map((p) => (
+              <li key={p.id} className="relative">
+                {p.recommended && (
+                  <span className="absolute -top-3 left-5 z-10 rounded-full bg-tangerine px-3 py-1 text-xs font-bold text-slate">Most schools start here</span>
+                )}
+                <div
+                  className={`flex h-full flex-col gap-4 rounded-3xl border bg-white p-6 ${p.recommended ? 'border-2 border-royal shadow-xl shadow-royal/10' : 'border-slate/10'}`}
+                >
+                  <div>
+                    <h3 className="text-2xl font-extrabold text-slate">{p.name}</h3>
+                    <p className="mt-1 text-sm text-slate/70">{p.forWhom}</p>
+                  </div>
+                  <p className="text-lg font-extrabold text-slate">{p.id === 'free' ? 'Free, no account needed' : 'Custom quote'}</p>
+                  <ul className="flex flex-col gap-2">
+                    {p.highlights.map((h) => (
+                      <li key={h} className="flex items-start gap-2 text-sm text-slate">
+                        <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-emerald" />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-auto text-sm text-slate/70">{`Support: ${p.support}`}</p>
+                  <Button href={p.cta.href} variant={p.recommended ? 'secondary' : 'outline'} className="w-full">
+                    {p.cta.label}
+                  </Button>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="text-sm text-slate/70">
+            Running several schools or campuses?{' '}
+            <Link href="/solutions/multi-school" className="font-semibold text-royal underline">
+              See multi-school groups
+            </Link>{' '}
+            for a plan scoped to your group.
+          </p>
+        </Container>
+      </section>
 
-      <div>
-        <h2 className="text-xl font-bold text-slate">Frequently asked questions</h2>
-        <div className="mt-6">
+      <section aria-labelledby="compare-title" className="bg-off-white">
+        <Container wide className="flex flex-col gap-6 py-16">
+          <SectionHeading id="compare-title" eyebrow="Compare" tone="intelligence" title="Module by module" />
+          <div className="relative min-w-0 max-w-full overflow-x-auto rounded-3xl border border-slate/10 bg-white" tabIndex={0} role="region" aria-labelledby="compare-title">
+            <table className="w-full min-w-[40rem] text-left text-sm">
+              <caption className="sr-only">Which modules each plan includes, and whether each module is available now</caption>
+              <thead>
+                <tr className="border-b border-slate/10">
+                  <th scope="col" className="sticky left-0 bg-white px-4 py-3 font-bold text-slate">
+                    Module
+                  </th>
+                  {plans.map((p) => (
+                    <th key={p.id} scope="col" className="px-4 py-3 text-center font-bold text-slate">
+                      {p.name}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {moduleRows.map((r) => (
+                  <tr key={r.module} className="border-b border-slate/10 last:border-0">
+                    <th scope="row" className="sticky left-0 bg-white px-4 py-3 font-semibold text-slate">
+                      {r.module}
+                      <span className={`ml-2 whitespace-nowrap rounded-full px-2 py-0.5 text-[11px] font-bold ${r.live ? tones.success.soft : tones.achievement.soft}`}>
+                        {r.live ? 'Available now' : 'In development'}
+                      </span>
+                    </th>
+                    {plans.map((p) => (
+                      <td key={p.id} className="px-4 py-3 text-center">
+                        <Mark on={r.in[p.id]} />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Container>
+      </section>
+
+      <section id="quote" aria-labelledby="quote-title" className="scroll-mt-24 bg-white">
+        <Container wide className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-5">
+          <div className="flex flex-col gap-4 lg:col-span-2">
+            <SectionHeading
+              id="quote-title"
+              eyebrow="Custom quote"
+              tone="action"
+              title="Get a quote for your school"
+              lead="Tell us your size and the modules you want. A real person prepares the quote and contacts you the way you choose."
+            />
+            <ul className="flex flex-col gap-2 text-sm text-slate">
+              {['Priced for your number of students', 'Only the modules you need', 'WhatsApp costs shown at Meta’s current rate'].map((t) => (
+                <li key={t} className="flex items-center gap-2">
+                  <Icon name="check" className="h-4 w-4 text-emerald" /> {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="lg:col-span-3">
+            <QuoteForm />
+          </div>
+        </Container>
+      </section>
+
+      <section aria-labelledby="pricing-faq-title" className="bg-off-white">
+        <Container wide className="flex flex-col gap-6 py-16">
+          <h2 id="pricing-faq-title" className="text-2xl font-extrabold text-slate">
+            Frequently asked questions
+          </h2>
           <FaqBlock items={faqs} />
-        </div>
-      </div>
+        </Container>
+      </section>
 
-      <div className="rounded-lg bg-sapphire p-8 text-off-white">
-        <h2 className="text-xl font-bold">Talk to us about your school</h2>
-        <p className="mt-2 text-off-white/90">
-          Message us on WhatsApp and we&rsquo;ll quote a plan based on your school&rsquo;s actual
-          size and needs.
-        </p>
-        <div className="mt-4">
-          <Button
-            href={whatsappLink('Hi, I would like to know more about NetCyberAI pricing.')}
-            variant="secondary"
-          >
-            Ask about pricing
-          </Button>
-        </div>
-      </div>
+      <section aria-labelledby="pricing-cta-title" className="bg-midnight text-white">
+        <Container wide className="flex flex-col items-start gap-4 py-14 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 id="pricing-cta-title" className="text-2xl font-extrabold">
+              Rather talk it through?
+            </h2>
+            <p className="opacity-90">Message us on WhatsApp or book a demo with your own school’s questions.</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Button href={whatsappLink('Hi, I would like to know more about NetCyberAI pricing.')} variant="secondary">
+              Ask on WhatsApp
+            </Button>
+            <Button href="/book-demo" variant="outlineLight">
+              Book a demo
+            </Button>
+          </div>
+        </Container>
+      </section>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbListJsonLd(pageMeta.pricing)) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(softwareApplicationJsonLd()) }}
-      />
-    </Container>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbListJsonLd(pageMeta.pricing)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(softwareApplicationJsonLd()) }} />
+    </>
   );
 }

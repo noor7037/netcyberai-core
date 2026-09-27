@@ -103,7 +103,7 @@ export const pageMeta = {
     path: '/pricing',
     title: 'Pricing',
     description:
-      'NetCyberAI pricing tiers and pilot mode, explained honestly: no invented numbers, and outbound messaging stays off until a school actually switches it on.',
+      'NetCyberAI pricing: Free, Starter, Growth and Compass plans compared module by module, with a custom quote for your school and pilot mode before you commit.',
   },
   blog: {
     path: '/blog',
@@ -302,16 +302,20 @@ export function breadcrumbListJsonLd(page: { path: string; title: string }): Jso
 // an Offer without a price is valid schema, not an error.
 export const pricingTiers = [
   {
+    name: 'Free',
+    description: 'Free browser tools for any school: student import checker, attendance calculator, and fee reminder and parent update builders.',
+  },
+  {
     name: 'Starter',
-    description: 'Daily Learning Pulse and WhatsApp fee reminders for a single school.',
+    description: 'Student records, attendance with parent alerts, fees and receipts, DPDP consent and reports for smaller schools.',
   },
   {
     name: 'Growth',
-    description: 'Starter, plus Recognition, the Weekly Confidence Brief, and certificate workflows.',
+    description: 'Starter, plus the Daily Learning Pulse on WhatsApp, Personal Best recognition, admissions, exams and report cards.',
   },
   {
-    name: 'Campus',
-    description: 'Growth, plus at-risk detection and compliance advisories, for larger or multi-section schools.',
+    name: 'Compass',
+    description: 'Growth, plus the Weekly Confidence Brief, private Teacher Impact Card, at-risk signals and staff planning.',
   },
 ] satisfies { name: string; description: string }[];
 
