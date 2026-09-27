@@ -17,6 +17,12 @@ export function isCheckViolation(err: unknown): boolean {
   return getSqlState(err) === '23514';
 }
 
+// 42501: an RLS policy (e.g. teacher_scope_syllabus_progress) refused the
+// row. Reported as 403, never as a crash or a silent no-op.
+export function isRlsViolation(err: unknown): boolean {
+  return getSqlState(err) === '42501';
+}
+
 function getSqlState(err: unknown): string | undefined {
   return typeof err === 'object' && err !== null ? (err as { code?: string }).code : undefined;
 }

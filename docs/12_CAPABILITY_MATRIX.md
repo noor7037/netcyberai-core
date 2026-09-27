@@ -21,7 +21,7 @@ live feature.
 |---|---|---|---|---|---|
 | Academic sessions | School app | settings | `academic_sessions` | Backend only | schools |
 | Classes / sections | School app | classes in students views | `classes`, `api/app/classes` | Live | sessions |
-| Subjects + teacher assignment | School app | none | `subjects`, `teacher_subjects` | Schema only | classes, teachers |
+| Subjects + teacher assignment | School app | none yet (API only) | `subjects`, `teacher_subjects`, `api/app/subjects`, `api/app/subjects/assignments` | Backend only (2026-09-27: create/list/assign/unassign, audited, unique subject names) | classes, teachers |
 | Students (CRUD, profile) | School app | `/app/students` | `students`, `api/app/students` | Live | classes |
 | CSV student import | School app | students page | `csv_imports`, `api/app/students/import` | Live | classes |
 | Guardians + verification | School app | student profile | `parents`, `parent_student_map`, `api/app/guardians` | Live | students |
@@ -34,7 +34,7 @@ live feature.
 | Admissions pipeline (enquiry → offer) | School app | enrolment queue only | none for early stages | Not built (only `pending_consent` queue) | students |
 | Timetable / calendar | School app | none | none | Not built | subjects, teachers |
 | Homework | School app | none | none | Not built | subjects |
-| Syllabus progress ("taught today") | School app | stub | `syllabus_progress` | Schema only | subjects |
+| Syllabus progress ("taught today") | School app | `/app/syllabus` | `syllabus_progress`, `api/app/syllabus` (GET, PUT upsert) | Live (2026-09-27; one record per class+subject+day; teacher limited by RLS to own assigned pairs, proven live) | subjects |
 | Exams, marks, report cards | School app | stubs | `exams`, `marks` | Schema only | subjects |
 | Reports | School app | stub | none | Not built | all of the above |
 
@@ -104,8 +104,8 @@ live feature.
 
 ## Build order (dependency-first)
 
-1. Subjects + teacher-subject assignment (unblocks everything learning-related).
-2. Syllabus progress: "taught today" per class and subject (the only teacher input the Pulse needs).
+1. ~~Subjects + teacher-subject assignment~~ (API done 2026-09-27; office screen still to build).
+2. ~~Syllabus progress: "taught today"~~ (done 2026-09-27: API + teacher screen).
 3. Pulse compose from syllabus progress → send through the existing gate → reply ingestion into `pulse_response_log` → class/topic signal.
 4. Fees: structures → ledger → reminders through the gate → payments → receipts.
 5. Exams and marks → Personal Best → at-risk signals.
