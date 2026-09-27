@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ADD_FORMS, ADD_ROLES, ATT_CLASS, ATT_WEEKS, MODULES, NAV_GROUPS, VISUALS, attendanceBands, type ModuleId } from './principal-dashboard';
-import { PARENT_MENU, PARENT_REPLIES, SEGMENTS } from './role-apps';
+import { PARENT_CHAT } from './whatsapp-chats';
 import { moduleStatus } from '@/content/module-status';
 
 const moduleIds = Object.keys(MODULES) as ModuleId[];
@@ -40,13 +40,18 @@ describe('principal dashboard fixture (founder reference, reconciled)', () => {
   });
 
   it('applies the recorded Constitution edits', () => {
-    const text = JSON.stringify({ MODULES, NAV_GROUPS, VISUALS, ADD_FORMS, PARENT_REPLIES, SEGMENTS });
+    const text = JSON.stringify({ MODULES, NAV_GROUPS, VISUALS, ADD_FORMS });
     for (const banned of ['Portal', 'portal', 'topper', 'Topper', 'CRDT', 'Firestore', 'Firebase', 'Cloud SQL', 'SLA', 'auth.school_id', 'S_4451', '98765 43']) {
       expect(text, banned).not.toContain(banned);
     }
   });
 
-  it('answers every parent menu item for every child', () => {
-    for (const child of Object.values(PARENT_REPLIES)) for (const m of PARENT_MENU) expect(child[m.id], m.id).toBeDefined();
+  it('keeps the founder’s parent WhatsApp reference as designed (C76)', () => {
+    const chats = JSON.stringify(PARENT_CHAT);
+    for (const kept of ['#7 out of 60', 'now #3 in Class 5', 'Top 5 and Top 3', 'Rahul, Siya and Dev', 'Open Parent App', 'FEE RECOVERY', 'Aditya']) expect(chats, kept).toContain(kept);
+  });
+
+  it('asks each family for its WhatsApp message language at admission', () => {
+    for (const role of ['student', 'parent'] as const) expect(ADD_FORMS[role].some((f) => f.label === 'WhatsApp Message Language'), role).toBe(true);
   });
 });
