@@ -1,25 +1,24 @@
 'use client';
 
 import { useState, type ReactNode } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Icon, type IconName } from '@/components/visual/Icons';
 import { tones, type Tone } from '@/lib/semantic';
 import { HERO_DASH } from '@/demo-fixture/hero-scene';
-import type { RoleChatId } from '@/demo-fixture/whatsapp-chats';
 import { WhatsAppPhone } from '@/components/showcase/WhatsAppPhone';
 
 // The interactive half of the homepage hero: the principal's dashboard
-// card with the school's WhatsApp phone over it, and the role strip that
-// switches whose WhatsApp the phone shows. Parents first, as the founder
-// asked. Fixture data only.
+// card with the parent's live WhatsApp phone over it, and the role strip
+// linking to each role's page. Fixture data only.
 
-const ROLES: { id: RoleChatId; label: string; line: string; icon: IconName; tone: Tone }[] = [
-  { id: 'principal', label: 'Principal', line: 'Complete control and insights', icon: 'principal', tone: 'product' },
-  { id: 'teachers', label: 'Teachers', line: 'Plan, teach, track and communicate', icon: 'teacher', tone: 'action' },
-  { id: 'students', label: 'Students', line: 'Learn, grow and track progress', icon: 'student', tone: 'alert' },
-  { id: 'parents', label: 'Parents', line: 'Real-time updates on WhatsApp', icon: 'parent', tone: 'success' },
-  { id: 'admin', label: 'School Admin', line: 'Manage operations efficiently', icon: 'admin', tone: 'intelligence' },
-  { id: 'finance', label: 'Finance', line: 'Fees, expenses and reports', icon: 'finance', tone: 'achievement' },
+const ROLES: { href: string; label: string; line: string; icon: IconName; tone: Tone }[] = [
+  { href: '/solutions/principal', label: 'Principal', line: 'Complete control and insights', icon: 'principal', tone: 'product' },
+  { href: '/solutions/teacher', label: 'Teachers', line: 'Plan, teach, track and communicate', icon: 'teacher', tone: 'action' },
+  { href: '/products/academics', label: 'Students', line: 'Learn, grow and track progress', icon: 'student', tone: 'alert' },
+  { href: '/products/parent-engagement', label: 'Parents', line: 'Real-time updates on WhatsApp', icon: 'parent', tone: 'success' },
+  { href: '/solutions/school-admin', label: 'School Admin', line: 'Manage operations efficiently', icon: 'admin', tone: 'intelligence' },
+  { href: '/solutions/finance', label: 'Finance', line: 'Fees, expenses and reports', icon: 'finance', tone: 'achievement' },
 ];
 
 const BADGES: { text: string; icon: IconName; cls: string; pos: string }[] = [
@@ -146,40 +145,33 @@ function DashboardCard() {
 }
 
 export function HeroStage({ copy }: { copy: ReactNode }) {
-  const [role, setRole] = useState<RoleChatId>('parents');
-
-  const roleButtons = (compact: boolean) =>
-    ROLES.map((r) => {
-      const on = r.id === role;
-      return (
-        <li key={r.id}>
-          <button
-            type="button"
-            aria-pressed={on}
-            onClick={() => setRole(r.id)}
-            className={
-              compact
-                ? `min-h-[40px] w-full rounded-full px-2 text-xs font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal ${on ? 'bg-emerald text-white' : 'bg-white text-slate shadow-sm hover:bg-off-white'}`
-                : `nca-lift flex w-full items-center gap-2.5 rounded-xl px-2 py-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal ${on ? 'bg-off-white ring-2 ring-emerald' : 'hover:bg-off-white'}`
-            }
-          >
-            {compact ? (
-              r.label
-            ) : (
-              <>
-                <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${tones[r.tone].solid}`}>
-                  <Icon name={r.icon} className="h-5 w-5" />
-                </span>
-                <span className="min-w-0 leading-tight">
-                  <b className="block text-sm text-slate">{r.label}</b>
-                  <span className="block text-[11px] text-slate/70">{r.line}</span>
-                </span>
-              </>
-            )}
-          </button>
-        </li>
-      );
-    });
+  const roleLinks = (compact: boolean) =>
+    ROLES.map((r) => (
+      <li key={r.href}>
+        <Link
+          href={r.href}
+          className={
+            compact
+              ? 'flex min-h-[40px] w-full items-center justify-center rounded-full bg-white px-2 text-xs font-bold text-slate shadow-sm hover:bg-off-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal'
+              : 'nca-lift flex w-full items-center gap-2.5 rounded-xl px-2 py-2 text-left hover:bg-off-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal'
+          }
+        >
+          {compact ? (
+            r.label
+          ) : (
+            <>
+              <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${tones[r.tone].solid}`}>
+                <Icon name={r.icon} className="h-5 w-5" />
+              </span>
+              <span className="min-w-0 leading-tight">
+                <b className="block text-sm text-slate">{r.label}</b>
+                <span className="block text-[11px] text-slate/70">{r.line}</span>
+              </span>
+            </>
+          )}
+        </Link>
+      </li>
+    ));
 
   return (
     <>
@@ -187,9 +179,9 @@ export function HeroStage({ copy }: { copy: ReactNode }) {
         {copy}
 
         <div className="relative">
-          {/* Phones and tablets: pick an audience, then the phone. */}
-          <ul className="mx-auto mb-4 grid max-w-sm grid-cols-3 gap-2 lg:hidden" aria-label="Whose WhatsApp to show">
-            {roleButtons(true)}
+          {/* Phones and tablets: the roles, then the parent's WhatsApp. */}
+          <ul className="mx-auto mb-4 grid max-w-sm grid-cols-3 gap-2 lg:hidden" aria-label="Who NetCyberAI serves">
+            {roleLinks(true)}
           </ul>
 
           <div className="relative lg:min-h-[38rem]">
@@ -219,21 +211,21 @@ export function HeroStage({ copy }: { copy: ReactNode }) {
               </span>
             ))}
             <div className="relative z-10 lg:absolute lg:right-0 lg:top-16 lg:w-[14.5rem] xl:w-[15rem]">
-              <WhatsAppPhone role={role} />
+              <WhatsAppPhone />
             </div>
           </div>
         </div>
       </div>
 
-      {/* The role strip from the reference; each role switches the phone. */}
+      {/* The role strip from the reference; each role opens its page. */}
       <div className="relative z-10 mx-auto hidden w-full max-w-[86rem] px-4 sm:px-6 lg:block">
         <div className="flex items-center gap-2 rounded-2xl border border-slate/10 bg-white/95 p-2 shadow-xl backdrop-blur">
           <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald/10 text-emerald">
             <Icon name="shield" className="h-8 w-8" />
           </span>
           <Icon name="arrow" className="h-4 w-4 shrink-0 text-slate/70" />
-          <ul className="grid flex-1 grid-cols-6 gap-1" aria-label="Whose WhatsApp to show">
-            {roleButtons(false)}
+          <ul className="grid flex-1 grid-cols-6 gap-1" aria-label="Who NetCyberAI serves">
+            {roleLinks(false)}
           </ul>
         </div>
       </div>

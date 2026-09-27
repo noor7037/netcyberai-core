@@ -83,7 +83,7 @@ export function AppsSection({ withParent = true }: { withParent?: boolean }) {
               title: 'Parent on WhatsApp',
               tone: 'communication' as Tone,
               points: ['Daily Learning Pulse with one-tap replies', 'Menu: attendance, homework, marks, fees and receipts, PTM', 'Notices, message a teacher, concerns, documents and consent'],
-              phone: <WhatsAppPhone role="parents" />,
+              phone: <WhatsAppPhone />,
             },
           ]
             .filter((a) => withParent || a.key === 'teacher')

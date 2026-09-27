@@ -8,7 +8,6 @@ import {
   PARENT_CHAT,
   PARENT_MENU,
   RECEIPT_LINES,
-  ROLE_CHATS,
   TEACHERS,
   TEACHER_FOCUS,
   TEACHER_QUESTION,
@@ -16,14 +15,12 @@ import {
   type Bi,
   type ChatBlock,
   type ChatMsg,
-  type RoleChatId,
 } from '@/demo-fixture/whatsapp-chats';
 
 // The founder's parent WhatsApp phone, ported whole: every message and
 // action of the reference works here (understanding replies, notes,
 // homework follow-up, teacher ratings, PTM, fee payment with a demo PDF
-// receipt, celebration, certificate, sharing). Other roles reuse the same
-// phone. The chat scrolls itself slowly; hovering, touching, scrolling or
+// receipt, celebration, certificate, sharing). The chat scrolls itself slowly; hovering, touching, scrolling or
 // tapping holds it, and a tap on the chat background toggles it. Fixture
 // data only: nothing is sent or saved.
 
@@ -92,7 +89,7 @@ function download(href: string, name: string) {
   a.click();
 }
 
-export function WhatsAppPhone({ role = 'parents', className = '' }: { role?: RoleChatId; className?: string }) {
+export function WhatsAppPhone({ className = '' }: { className?: string }) {
   const reduced = usePrefersReducedMotion();
   const chatRef = useRef<HTMLDivElement>(null);
   const noteRef = useRef<HTMLTextAreaElement>(null);
@@ -128,14 +125,6 @@ export function WhatsAppPhone({ role = 'parents', className = '' }: { role?: Rol
     holdUntil.current = performance.now() + ms;
   };
 
-  // Reset when the audience changes.
-  useEffect(() => {
-    setAppended([]);
-    setChoice(null);
-    setOverlay(null);
-    setOpenTeacher(null);
-    chatRef.current?.scrollTo({ top: 0 });
-  }, [role]);
 
   // Auto-scroll: slow, only while on screen, never under the pointer,
   // paused for a few seconds after any touch or manual scroll, looping
@@ -178,7 +167,7 @@ export function WhatsAppPhone({ role = 'parents', className = '' }: { role?: Rol
       cancelAnimationFrame(raf);
       io.disconnect();
     };
-  }, [reduced, playing, overlay, role]);
+  }, [reduced, playing, overlay]);
 
   useEffect(() => () => clearTimeout(toastTimer.current), []);
 
@@ -205,10 +194,6 @@ export function WhatsAppPhone({ role = 'parents', className = '' }: { role?: Rol
 
   const onAction = (id: string, label: string) => {
     hold(9000);
-    if (role !== 'parents') {
-      toast(`Demo: “${label.replace(/^[^A-Za-z]+/, '')}” · nothing is sent.`);
-      return;
-    }
     const scripted = PARENT_ACTION_REPLIES[id];
     if (scripted) {
       if (scripted.parent || scripted.school) exchange(scripted.parent, scripted.school);
@@ -351,7 +336,7 @@ export function WhatsAppPhone({ role = 'parents', className = '' }: { role?: Rol
                     <b>{r.b}</b>
                     <span>{r.s}</span>
                   </div>
-                  {role === 'parents' && <span className="pending">Pending</span>}
+                  <span className="pending">Pending</span>
                 </div>
               ))}
             </div>
@@ -546,8 +531,7 @@ export function WhatsAppPhone({ role = 'parents', className = '' }: { role?: Rol
     );
   };
 
-  const chat = role === 'parents' ? null : ROLE_CHATS[role];
-  const messages = role === 'parents' ? PARENT_CHAT : chat!.messages;
+  const messages = PARENT_CHAT;
   const pulseIndex = PARENT_CHAT.findIndex((m) => m.k === 'school' && m.blocks?.some((b) => b.t === 'understanding'));
 
   const onChatClick = (e: React.MouseEvent) => {
@@ -589,11 +573,11 @@ export function WhatsAppPhone({ role = 'parents', className = '' }: { role?: Rol
                   ‹
                 </span>
                 <div className="school-avatar" aria-hidden="true">
-                  {chat ? chat.avatar : 'SI'}
+                  SI
                 </div>
                 <div>
-                  <div className="wh-name">{chat ? chat.title : 'Sunrise International'}</div>
-                  <div className="wh-sub">{chat ? chat.sub : 'School Connect · Rahul · Class 5'}</div>
+                  <div className="wh-name">Sunrise International</div>
+                  <div className="wh-sub">School Connect · Rahul · Class 5</div>
                 </div>
                 <div className="wh-actions" aria-hidden="true">
                   <span>⌕</span>
@@ -604,7 +588,7 @@ export function WhatsAppPhone({ role = 'parents', className = '' }: { role?: Rol
                 ref={chatRef}
                 className="chat"
                 role="region"
-                aria-label={`Demo WhatsApp chat: ${chat ? chat.title : 'Sunrise International and Rahul’s parent'}`}
+                aria-label="Demo WhatsApp chat: Sunrise International and Rahul’s parent"
                 tabIndex={0}
                 onWheel={() => hold()}
                 onKeyDown={() => hold(15000)}
@@ -613,7 +597,7 @@ export function WhatsAppPhone({ role = 'parents', className = '' }: { role?: Rol
                 {messages.map((m, i) => (
                   <Fragment key={i}>
                     {renderMsg(m, i)}
-                    {role === 'parents' && i === pulseIndex && choice !== null && (
+                    {i === pulseIndex && choice !== null && (
                       <>
                         <div className="bubble bubble-parent">
                           <p>{`Parent response: ${UNDERSTANDING[choice].en}`}</p>
@@ -745,19 +729,12 @@ export function WhatsAppPhone({ role = 'parents', className = '' }: { role?: Rol
                 onSubmit={(e) => {
                   e.preventDefault();
                   hold(9000);
-                  if (role === 'parents') sendInput();
-                  else toast('Demo chat: nothing is sent.');
+                  sendInput();
                 }}
               >
-                {role === 'parents' ? (
-                  <button type="button" className="menu-btn" onClick={() => setOverlay('menu')}>
-                    ☰ Menu
-                  </button>
-                ) : (
-                  <button type="button" className="emoji" aria-label="Emoji" onClick={() => toast('Emoji picker (demo).')}>
-                    😊
-                  </button>
-                )}
+                <button type="button" className="menu-btn" onClick={() => setOverlay('menu')}>
+                  ☰ Menu
+                </button>
                 <input className="msg-input" aria-label="Message" value={input} onChange={(e) => setInput(e.target.value)} onFocus={() => hold(15000)} placeholder="Message / संदेश" />
                 <button type="submit" className="mic" aria-label="Send">
                   ➤

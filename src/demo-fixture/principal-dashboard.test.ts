@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ADD_FORMS, ADD_ROLES, ATT_CLASS, ATT_WEEKS, MODULES, NAV_GROUPS, VISUALS, attendanceBands, type ModuleId } from './principal-dashboard';
-import { PARENT_CHAT, ROLE_CHATS } from './whatsapp-chats';
+import { PARENT_CHAT } from './whatsapp-chats';
 import { moduleStatus } from '@/content/module-status';
 
 const moduleIds = Object.keys(MODULES) as ModuleId[];
@@ -47,7 +47,7 @@ describe('principal dashboard fixture (founder reference, reconciled)', () => {
   });
 
   it('keeps the founder’s parent WhatsApp reference as designed (C76)', () => {
-    const chats = JSON.stringify({ PARENT_CHAT, ROLE_CHATS });
+    const chats = JSON.stringify(PARENT_CHAT);
     for (const kept of ['#7 out of 60', 'now #3 in Class 5', 'Top 5 and Top 3', 'Rahul, Siya and Dev', 'Open Parent App', 'FEE RECOVERY', 'Aditya']) expect(chats, kept).toContain(kept);
   });
 
