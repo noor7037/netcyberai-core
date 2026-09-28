@@ -2,7 +2,7 @@
 
 import './wa-phone.css';
 import { Fragment, useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
-import { useWheelHandoff } from '@/lib/scroll-handoff';
+import { useScrollHandoff } from '@/lib/scroll-handoff';
 import { usePrefersReducedMotion } from '@/lib/hooks';
 import {
   PARENT_ACTION_REPLIES,
@@ -94,7 +94,7 @@ export function WhatsAppPhone({ className = '', controls = true }: { className?:
   const reduced = usePrefersReducedMotion();
   const noteId = `wa-note-${useId().replace(/:/g, '')}`;
   const chatRef = useRef<HTMLDivElement>(null);
-  useWheelHandoff(chatRef);
+  useScrollHandoff(chatRef);
   const noteRef = useRef<HTMLTextAreaElement>(null);
   const [playing, setPlaying] = useState(true);
   const [held, setHeld] = useState(false);
@@ -594,6 +594,7 @@ export function WhatsAppPhone({ className = '', controls = true }: { className?:
                 aria-label="Demo WhatsApp chat: Sunrise International and Rahul’s parent"
                 tabIndex={0}
                 onWheel={() => hold()}
+                onTouchStart={() => hold()}
                 onKeyDown={() => hold(15000)}
                 onClick={onChatClick}
               >

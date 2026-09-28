@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { splitScroll } from './scroll-handoff';
+import { GLIDE_TIME_CONSTANT, glideDistance, splitScroll } from './scroll-handoff';
 
-// The wheel hand-off from a preview's scroll area to the page (C85).
+// The hand-off from a preview's scroll area to the page (C85 wheel, C86 touch).
 describe('splitScroll', () => {
   it('keeps the whole movement inside while the area can still scroll', () => {
     expect(splitScroll(100, 500, 40)).toEqual({ inside: 40, rest: 0 });
@@ -19,5 +19,15 @@ describe('splitScroll', () => {
   });
   it('ignores sub-pixel leftovers', () => {
     expect(splitScroll(499.7, 500, 0.6).rest).toBe(0);
+  });
+});
+
+describe('glideDistance', () => {
+  it('carries a flick on for speed × time constant, in the flick’s direction', () => {
+    expect(glideDistance(2)).toBe(2 * GLIDE_TIME_CONSTANT);
+    expect(glideDistance(-1.5)).toBe(-1.5 * GLIDE_TIME_CONSTANT);
+  });
+  it('does not move the page for a finger that barely moved', () => {
+    expect(glideDistance(0.01)).toBe(0);
   });
 });

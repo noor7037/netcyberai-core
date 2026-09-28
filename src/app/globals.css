@@ -368,6 +368,15 @@ dialog.modal-dialog::backdrop {
   }
 }
 
+/* Preview scroll areas that hand scrolling on to the page
+   (src/lib/scroll-handoff.ts). On touch screens they do not bounce at
+   their edges, so the area and the page never move against each other. */
+@media (pointer: coarse) {
+  .nca-handoff {
+    overscroll-behavior-y: none;
+  }
+}
+
 /* Thin, quiet scrollbars inside the demo frames. */
 .nca-scroll {
   scrollbar-width: thin;
