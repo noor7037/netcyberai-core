@@ -26,7 +26,7 @@ const faqs = [
   {
     question: 'Which modules are live today?',
     answer:
-      'Live today: student records and CSV import, guardians and consent, attendance with absence alerts on WhatsApp, document scanning, QR ID cards, and staff sign-in for one or several schools. In development: the Daily Learning Pulse, fees and receipts, exams and Personal Best, and certificates. The screens on this site use a fictional demo school, and nothing is sold to a school as live until it is.',
+      'Live today: student records and CSV import, guardians and consent, attendance with absence alerts on WhatsApp, document scanning, QR ID cards, and staff sign-in for one or several schools. In development: the Daily Learning Pulse, fees and receipts, exams and Personal Best, and certificates. The screens on this site show example data, and nothing is sold to a school as live until it is.',
   },
   {
     question: 'Does it rank teachers or students publicly?',

@@ -74,8 +74,8 @@ export const commercialClaims: CommercialClaim[] = [
   },
   {
     id: 'first-month-free',
-    title: 'First month free after setup',
-    body: 'Your first month on NetCyberAI is free, counted from the day your school is set up.',
+    title: 'Free first month with full capabilities',
+    body: 'Your first month on NetCyberAI is free, with every feature and the latest modules, counted from the day your school is set up.',
     icon: 'sparkle',
     tone: 'achievement',
     status: 'confirmed',
@@ -110,8 +110,8 @@ export const commercialClaims: CommercialClaim[] = [
   },
   {
     id: 'free-training',
-    title: 'Free staff training',
-    body: 'We train your principal, office staff and teachers at no cost, so nobody is left to work it out alone.',
+    title: 'Complete SOP & free staff training',
+    body: 'A complete standard operating procedure for your school, and free training for your principal, office staff and teachers, so nobody is left to work it out alone.',
     icon: 'teacher',
     tone: 'success',
     status: 'confirmed',
@@ -134,6 +134,24 @@ export const commercialClaims: CommercialClaim[] = [
     tone: 'success',
     status: 'confirmed',
     evidence: 'Founder commitment (Noor), 2026-09-28, Decision Log C79: onboarding support for schools without spreadsheet data is free.',
+  },
+  {
+    id: 'digital-migration',
+    title: 'Seamless move from registers to digital',
+    body: 'We support a seamless migration from physical registers and ledgers to the digital era.',
+    icon: 'reports',
+    tone: 'product',
+    status: 'confirmed',
+    evidence: 'Founder commitment (Noor), 2026-09-28, Decision Log C80; delivered by free-data-upload (our team prepares and uploads register data at no cost).',
+  },
+  {
+    id: 'money-back-6m',
+    title: 'Six-month 100% money-back guarantee',
+    body: 'Six-month 100% money-back guarantee if you see no overall growth, including student learning growth and institutional development.',
+    icon: 'shield',
+    tone: 'success',
+    status: 'confirmed',
+    evidence: 'Source: founder commitment (Noor), 2026-09-28, Decision Log C80. Published as a commercial term; the measurement of "overall growth" must be written into the school agreement before the first paid term.',
   },
   {
     id: 'migration-24h',
@@ -180,15 +198,22 @@ export const publishedClaims = commercialClaims.filter((c) => c.status === 'conf
 // is ever withdrawn.
 const HERO_PREFERRED: { claim: string; label: string }[] = [
   { claim: 'no-setup-fees', label: 'No setup fees' },
-  { claim: 'free-training', label: 'Free staff training' },
-  { claim: 'first-month-free', label: 'Free 1st month after setup' },
-  { claim: 'cancel-anytime', label: 'Cancel anytime, no questions' },
+  { claim: 'free-training', label: 'Complete SOP & free staff training' },
+  { claim: 'first-month-free', label: 'Free first month with full capabilities' },
+  { claim: 'digital-migration', label: 'Seamless move from registers & ledgers to digital' },
 ];
 const HERO_FALLBACK: { claim: string; label: string }[] = [
   { claim: 'pilot-first', label: 'Pilot mode first' },
   { claim: 'data-in-india', label: 'Data stays in India' },
   { claim: 'whatsapp-at-cost', label: 'WhatsApp costs shown openly' },
 ];
+
+// The guarantee line shown under the hero chips (founder, C80), only while
+// the claim is confirmed.
+export function heroGuarantee(): string | null {
+  const c = commercialClaims.find((x) => x.id === 'money-back-6m');
+  return c && c.status === 'confirmed' ? c.body : null;
+}
 
 export function heroChips(): string[] {
   const ok = (id: string) => commercialClaims.find((c) => c.id === id)?.status === 'confirmed';

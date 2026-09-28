@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/Button';
-import { DemoLabel } from '@/components/visual/Primitives';
 import { Icon } from '@/components/visual/Icons';
-import { heroChips } from '@/content/pricing';
+import { heroChips, heroGuarantee } from '@/content/pricing';
 import { WhatsAppPhone } from '@/components/showcase/WhatsAppPhone';
 import { Ecosystem } from './Ecosystem';
 
@@ -11,14 +10,9 @@ import { Ecosystem } from './Ecosystem';
 // names the problem and the answer, and the calls to action. Below 1280px
 // the phone follows the text.
 
-const focusRing = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal';
-
-function PhoneCaption() {
-  return <span className="block text-center text-sm font-extrabold text-slate">A parent’s WhatsApp, live. Touch it to pause.</span>;
-}
-
 export function Hero() {
   const chips = heroChips();
+  const guarantee = heroGuarantee();
   return (
     <section aria-labelledby="hero-title" className="nca-hero-sky relative overflow-hidden pb-12">
       <div aria-hidden="true" className="nca-hero-clouds absolute inset-0" />
@@ -54,9 +48,9 @@ export function Hero() {
               <Button href="/get-started" variant="outline">
                 Get started
               </Button>
-              <a href="#principal-dashboard" className={`inline-flex min-h-[44px] items-center gap-2 rounded-md px-2 text-sm font-bold text-slate underline-offset-4 hover:underline ${focusRing}`}>
-                <Icon name="play" className="h-4 w-4" /> Try the principal dashboard
-              </a>
+              <Button href="#principal-dashboard" variant="accent">
+                <Icon name="play" className="mr-1.5 h-4 w-4" /> Try the principal dashboard
+              </Button>
             </div>
             <ul className="flex flex-wrap gap-x-5 gap-y-2" aria-label="What every school gets">
               {chips.map((c) => (
@@ -68,23 +62,23 @@ export function Hero() {
                 </li>
               ))}
             </ul>
+            {guarantee && (
+              <p className="flex items-start gap-3 rounded-2xl border-2 border-emerald bg-white px-4 py-3 text-sm font-bold text-slate shadow-sm">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald text-white">
+                  <Icon name="shield" className="h-4 w-4" />
+                </span>
+                <span>{guarantee}</span>
+              </p>
+            )}
           </div>
         </div>
 
         <div className="hidden flex-col gap-3 xl:col-start-2 xl:row-start-1 xl:flex">
           <WhatsAppPhone controls={false} />
-          <PhoneCaption />
-          <div className="flex justify-center">
-            <DemoLabel />
-          </div>
         </div>
 
         <div className="order-6 mx-auto flex w-full max-w-[22rem] flex-col gap-3 md:order-none xl:hidden">
-          <PhoneCaption />
           <WhatsAppPhone />
-          <div className="flex justify-center">
-            <DemoLabel />
-          </div>
         </div>
       </div>
     </section>

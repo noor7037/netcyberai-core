@@ -49,7 +49,7 @@ export const GET_STARTED_FAQS: FaqItem[] = [
   },
   {
     question: 'Are there setup fees or a contract lock-in?',
-    answer: 'No setup fees, and you can cancel anytime with no questions asked. Your first month is free after setup.',
+    answer: 'No setup fees, and you can cancel anytime with no questions asked. Your first month is free, with full capabilities.',
   },
   goLive,
   noExcel,
@@ -95,7 +95,7 @@ export const FREE_TOOLS_FAQS: FaqItem[] = [
 export const PRODUCT_TOUR_FAQS: FaqItem[] = [
   {
     question: 'Is the data in the product tour real?',
-    answer: 'No. The tour uses a fictional demo school, so no real child or family appears anywhere on this website.',
+    answer: 'No. The tour shows example data, so no real child or family appears anywhere on this website.',
   },
   {
     question: 'Which modules are live today?',

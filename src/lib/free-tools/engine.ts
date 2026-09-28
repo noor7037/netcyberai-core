@@ -210,8 +210,8 @@ export const UI = {
   language: bi('Language', 'Bhasha'),
   example: bi('Try with example values', 'Example values se try karein'),
   exampleBanner: bi(
-    'These are example values from a fictional school. Replace them with your own numbers.',
-    'Ye ek kaalpanik school ke example values hain. Inki jagah apne school ke numbers bhariye.'
+    'These are example values. Replace them with your own numbers.',
+    'Ye example values hain. Inki jagah apne school ke numbers bhariye.'
   ),
   reset: bi('Reset', 'Reset'),
   save: bi('Save on this device', 'Is device par save karein'),

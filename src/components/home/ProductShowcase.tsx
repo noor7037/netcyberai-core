@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRef, useState, type ReactNode } from 'react';
 import { Container } from '@/components/ui/Container';
-import { SectionHeading, DemoLabel } from '@/components/visual/Primitives';
+import { SectionHeading } from '@/components/visual/Primitives';
 import { Icon, type IconName } from '@/components/visual/Icons';
 import { BrowserFrame } from '@/components/visual/Frames';
 import {
@@ -74,7 +74,6 @@ export function ProductShowcase() {
             title="Every module, shown working"
             lead="Fourteen parts of the school, one connected product. Pick a module to see its screen, its workflow and who uses it."
           />
-          <DemoLabel />
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[17rem_1fr]">

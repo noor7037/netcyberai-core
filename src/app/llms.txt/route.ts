@@ -27,7 +27,7 @@ export function GET() {
     '- Student records stay in a pending state until a parent or guardian’s consent is recorded, per purpose.',
     '- The Haryana Form 6 fee check is advisory only: never blocking, never legal advice.',
     '- There is no public teacher leaderboard; the Teacher Impact Card is visible only to the teacher and their principal.',
-    `- The /demo route is an interactive walkthrough using a fictional school and fictional student names. It is not deliberately excluded from crawling, but nothing in it should be cited as real ${companyName} customer data.`,
+    `- The interactive dashboard, phone and product tour screens on this site use example data and example student names. Nothing in them should be cited as real ${companyName} customer data or results.`,
     '',
     '## Features',
     link('feeRecovery'),

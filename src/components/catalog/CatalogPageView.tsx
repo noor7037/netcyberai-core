@@ -3,7 +3,7 @@ import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { FaqBlock } from '@/components/content/FaqBlock';
 import { CTASection } from '@/components/home/CTASection';
-import { DemoLabel, EyebrowOnDark, SectionHeading } from '@/components/visual/Primitives';
+import { EyebrowOnDark, SectionHeading } from '@/components/visual/Primitives';
 import { FlowStepper } from '@/components/visual/FlowStepper';
 import { SpotlightCard } from '@/components/visual/SpotlightCard';
 import { Icon, type IconName } from '@/components/visual/Icons';
@@ -45,9 +45,6 @@ export function CatalogPageView({ page, kind, related }: { page: CatalogPage; ki
           </div>
           <div className="flex flex-col gap-3">
             <ScreenByKey k={page.screen} />
-            <div className="flex justify-end">
-              <DemoLabel onDark />
-            </div>
           </div>
         </Container>
       </section>
@@ -97,7 +94,6 @@ export function CatalogPageView({ page, kind, related }: { page: CatalogPage; ki
         <Container wide className="flex flex-col gap-8 py-16">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading id="ui-title" eyebrow="The product" tone="product" title="What it looks like in NetCyberAI" />
-            <DemoLabel />
           </div>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <div className="flex flex-col gap-3">

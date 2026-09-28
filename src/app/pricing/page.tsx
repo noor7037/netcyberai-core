@@ -29,7 +29,7 @@ const faqs = [
   {
     question: 'Is there a free plan?',
     answer:
-      'Yes. Every free tool is unlimited with no login: fee, attendance, capacity, timetable, marks, payroll and budget planners, and transfer, bonafide and character certificates, report cards and fee receipts. For the full platform, setup and staff training are free and your first month is free after setup.',
+      'Yes. Every free tool is unlimited with no login: fee, attendance, capacity, timetable, marks, payroll and budget planners, and transfer, bonafide and character certificates, report cards and fee receipts. For the full platform, you get a complete SOP and free staff training, and your first month is free with full capabilities.',
   },
   {
     question: 'What drives WhatsApp messaging cost?',

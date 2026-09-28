@@ -183,7 +183,7 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
     setRows(ex.rows ? JSON.parse(JSON.stringify(ex.rows)) : blankRows(def));
     setGeneratedKey(null);
     setProblems([]);
-    say('Example values from a fictional school are filled in.');
+    say('Example values are filled in.');
   }
 
   function clearAll() {

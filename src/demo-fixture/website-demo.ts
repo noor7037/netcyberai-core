@@ -3,8 +3,8 @@
 //
 // EVERYTHING in this file is fictional. It is NOT NetCyberAI performance
 // data, it is not from any real school, and no number here is a claim
-// about results. Every surface that renders it shows a visible
-// "Demo school · fictional numbers" label (DemoLabel), and the
+// about results. The founder removed the on-screen demo label (Decision
+// Log C80); the Terms page and llms.txt state that it is example data, and the
 // dashboard previews sit on a demo.netcyberai.com address. It sits in src/demo-fixture/ -- the
 // single directory allowlisted by scripts/check_claims.py and CI's
 // no-invented-data grep -- precisely so that fictional figures can never
