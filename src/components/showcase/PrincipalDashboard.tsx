@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Icon } from '@/components/visual/Icons';
+import { useWheelHandoff } from '@/lib/scroll-handoff';
 import { tones } from '@/lib/semantic';
 import { MODULES, NAV_GROUPS, SCHOOL, TOP_NOTICES, type AddRole, type BadgeTone, type ModuleId, type PageId } from '@/demo-fixture/principal-dashboard';
 import { PrincipalHome } from './principal/PrincipalHome';
@@ -31,6 +32,7 @@ export function PrincipalDashboard({ initialPage = 'dashboard' }: { initialPage?
   const [addRole, setAddRole] = useState<AddRole>('student');
   const [confirmLogout, setConfirmLogout] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+  useWheelHandoff(contentRef);
   const timer = useRef<ReturnType<typeof setTimeout>>();
 
   const toast = useCallback((msg: string) => {

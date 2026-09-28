@@ -2,6 +2,7 @@
 
 import './wa-phone.css';
 import { Fragment, useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { useWheelHandoff } from '@/lib/scroll-handoff';
 import { usePrefersReducedMotion } from '@/lib/hooks';
 import {
   PARENT_ACTION_REPLIES,
@@ -93,6 +94,7 @@ export function WhatsAppPhone({ className = '', controls = true }: { className?:
   const reduced = usePrefersReducedMotion();
   const noteId = `wa-note-${useId().replace(/:/g, '')}`;
   const chatRef = useRef<HTMLDivElement>(null);
+  useWheelHandoff(chatRef);
   const noteRef = useRef<HTMLTextAreaElement>(null);
   const [playing, setPlaying] = useState(true);
   const [held, setHeld] = useState(false);

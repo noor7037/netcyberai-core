@@ -1,9 +1,13 @@
-import type { ReactNode } from 'react';
+'use client';
+
+import { useRef, type ReactNode } from 'react';
+import { useWheelHandoff } from '@/lib/scroll-handoff';
 
 // One phone frame for every phone preview on the site (the teacher app,
 // the parent's WhatsApp and the homepage feed), so they read as one
 // product family. The screen scrolls inside the frame; the page never
-// scrolls sideways.
+// scrolls sideways, and at the screen's top or bottom the wheel carries
+// straight on to the page (useWheelHandoff).
 const BAR = { slate: 'bg-slate text-white', emerald: 'bg-emerald text-white', royal: 'bg-royal text-white' };
 
 export function PhoneShell({
@@ -25,6 +29,8 @@ export function PhoneShell({
   height?: string;
   className?: string;
 }) {
+  const screenRef = useRef<HTMLDivElement>(null);
+  useWheelHandoff(screenRef);
   return (
     <div className={`mx-auto w-full max-w-[20rem] rounded-[2.6rem] border-[9px] border-midnight bg-midnight shadow-2xl shadow-slate/30 ${className}`}>
       <div className={`flex flex-col overflow-hidden rounded-[2rem] bg-white ${height}`}>
@@ -34,7 +40,7 @@ export function PhoneShell({
           <span>5G</span>
         </div>
         {header}
-        <div role="region" aria-label={label} tabIndex={0} className={`nca-scroll relative min-h-0 flex-1 overflow-y-auto ${screen} focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-royal`}>
+        <div ref={screenRef} role="region" aria-label={label} tabIndex={0} className={`nca-scroll relative min-h-0 flex-1 overflow-y-auto ${screen} focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-royal`}>
           {children}
         </div>
         {footer}
