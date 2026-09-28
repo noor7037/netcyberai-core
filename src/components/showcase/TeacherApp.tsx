@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { Icon, type IconName } from '@/components/visual/Icons';
 import { tones } from '@/lib/semantic';
 import {
@@ -19,11 +19,14 @@ import {
   TEACHER_SIGNALS,
 } from '@/demo-fixture/role-apps';
 import { PhoneShell } from './PhoneShell';
+import { LINK_CHILD, LINK_HOMEWORK, LINK_LEAVE_NOTE, LINK_THANKS, type AppLink, type Channel, type TeacherAction } from './link';
 
 // The teacher's staff app as a phone preview: every teacher-side module of
 // the principal dashboard (timetable and proxy, attendance, homework,
 // marks, Daily Pulse, Copilot, Early Warning, PTM, leave, messages and
-// the private Impact Card). Taps work; nothing is saved.
+// the private Impact Card). Taps work; nothing is saved. With `link` (the
+// homepage's side-by-side parent app, C84) its actions reach the parent
+// app and the parent's replies show up here; without it nothing changes.
 
 type Tab = 'today' | 'attendance' | 'homework' | 'marks' | 'more';
 type More = (typeof TEACHER_MORE)[number]['id'];
@@ -50,7 +53,7 @@ function Section({ title, children, action }: { title: string; children: ReactNo
   );
 }
 
-export function TeacherApp() {
+export function TeacherApp({ link }: { link?: AppLink<TeacherAction> } = {}) {
   const [tab, setTab] = useState<Tab>('today');
   const [more, setMore] = useState<More | null>(null);
   const [note, setNote] = useState('');
@@ -70,6 +73,82 @@ export function TeacherApp() {
     setMore(null);
     setNote('');
   };
+
+  const sync = link?.state;
+  const emit = (channel: Channel, patch: Parameters<AppLink<TeacherAction>['emit']>[0]['patch'], text: string) => link?.emit({ from: 'teacher', channel, patch, text });
+  const submitAttendance = (list: string[]) => {
+    setAttSaved(true);
+    say(`Saved. ${list.length} absence alert${list.length === 1 ? '' : 's'} queued for parents on WhatsApp (sent only with consent).`);
+    const away = list.includes(LINK_CHILD);
+    emit('attendance', { att: away ? 'absent' : 'present' }, away ? 'Absence alert: Aarav marked absent at 8:45' : 'Aarav marked present at 8:45');
+  };
+  const postHomework = (title: string) => {
+    setHw((h) => [{ title, cls: '6-A', done: 0, total: 31, due: 'Monday' }, ...h]);
+    setNewHw('');
+    say('Homework posted to 6-A. Parents see it in tonight’s update.');
+    emit('homework', { hw: title, hwDone: false }, `Homework posted: ${title}`);
+  };
+  const submitMarks = () => {
+    say('Sent for approval. Families see marks only after the principal publishes.');
+    const mark = marks[0];
+    const best = MARKS_ENTRY[0].best;
+    emit('marks', { marks: { mark, best } }, `Marks published: Aarav ${mark}/20${mark > best ? ', a Personal Best' : ''}`);
+  };
+  const savePulse = (t: string) => {
+    setPulseSent(true);
+    say('Saved. The Pulse goes to 6-A parents at 6:30 pm.');
+    emit('pulse', { pulse: t, pulseReply: null }, `Daily Pulse: ${t}`);
+  };
+  const openDossiers = () => {
+    say('Dossiers ready: attendance, marks and parent replies for each booked family.');
+    emit('ptm', { ptm: true }, 'PTM agenda shared: Sat 26 Sep, 10:00');
+  };
+  const replyTo = (i: number) => {
+    say(`Reply sent to ${TEACHER_MESSAGES[i].from}.`);
+    if (i === 0) emit('messages', { reply: true }, 'Reply: one more fractions example');
+  };
+
+  const show = (c: Channel) => {
+    const to: Record<Channel, [Tab, More | null]> = {
+      attendance: ['attendance', null],
+      homework: ['homework', null],
+      marks: ['marks', null],
+      pulse: ['more', 'pulse'],
+      ptm: ['more', 'ptm'],
+      messages: ['more', 'messages'],
+    };
+    setTab(to[c][0]);
+    setMore(to[c][1]);
+  };
+  const run = (a: TeacherAction) => {
+    if (a === 'attendance') {
+      const next = absent.includes(LINK_CHILD) ? absent : [...absent, LINK_CHILD];
+      setAbsent(next);
+      submitAttendance(next);
+    } else if (a === 'homework') postHomework(LINK_HOMEWORK);
+    else if (a === 'pulse') {
+      setTopic(PULSE_TOPICS[0]);
+      savePulse(PULSE_TOPICS[0]);
+    } else if (a === 'marks') submitMarks();
+    else if (a === 'ptm') openDossiers();
+    else replyTo(0);
+  };
+
+  // Requests from the simulation: open a screen and/or act.
+  const cmd = link?.command;
+  useEffect(() => {
+    if (!cmd) return;
+    if (cmd.view) show(cmd.view);
+    if (cmd.act) run(cmd.act);
+    // Only a new request should run; the closures read the current state.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cmd?.id]);
+
+  // Announce what the parent just did.
+  const last = link?.last;
+  useEffect(() => {
+    if (last?.from === 'parent') say(`Parent update · ${last.text}`);
+  }, [last?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   let body: ReactNode;
   if (tab === 'today') {
@@ -161,11 +240,12 @@ export function TeacherApp() {
         </ul>
         <button
           type="button"
-          onClick={() => { setAttSaved(true); say(`Saved. ${absent.length} absence alert${absent.length === 1 ? '' : 's'} queued for parents on WhatsApp (sent only with consent).`); }}
+          onClick={() => submitAttendance(absent)}
           className={`${btn} bg-emerald text-white`}
         >
           {attSaved ? 'Saved ✓' : 'Submit attendance'}
         </button>
+        {sync?.leave && <p className="nca-pop rounded-lg bg-leaf/15 p-2 text-[11px] text-slate">{`Leave note from Aarav’s parent: “${LINK_LEAVE_NOTE}”`}</p>}
       </>
     );
   } else if (tab === 'homework') {
@@ -176,9 +256,7 @@ export function TeacherApp() {
           onSubmit={(e) => {
             e.preventDefault();
             if (!newHw.trim()) return;
-            setHw((h) => [{ title: newHw.trim(), cls: '6-A', done: 0, total: 31, due: 'Monday' }, ...h]);
-            setNewHw('');
-            say('Homework posted to 6-A. Parents see it in tonight’s update.');
+            postHomework(newHw.trim());
           }}
           className="flex gap-1.5"
         >
@@ -191,7 +269,9 @@ export function TeacherApp() {
           </button>
         </form>
         <ul className="flex flex-col gap-1.5">
-          {hw.map((h) => (
+          {hw.map((h0) => {
+            const h = sync?.hwDone && h0.title === sync.hw ? { ...h0, done: h0.done + 1 } : h0;
+            return (
             <li key={h.title} className="nca-lift flex flex-col gap-1 rounded-lg border border-slate/10 bg-white p-2.5">
               <span className="flex justify-between text-xs">
                 <b className="text-slate">{h.title}</b>
@@ -207,7 +287,8 @@ export function TeacherApp() {
                 </button>
               </span>
             </li>
-          ))}
+            );
+          })}
         </ul>
       </>
     );
@@ -241,9 +322,10 @@ export function TeacherApp() {
           })}
         </ul>
         <p className="text-[11px] text-slate/70">Personal Best compares each child with their own past, never with classmates.</p>
-        <button type="button" onClick={() => say('Sent for approval. Families see marks only after the principal publishes.')} className={`${btn} bg-emerald text-white`}>
+        <button type="button" onClick={submitMarks} className={`${btn} bg-emerald text-white`}>
           Submit for approval
         </button>
+        {sync?.ack && <p className="nca-pop rounded-lg bg-leaf/15 p-2 text-[11px] text-slate">Aarav’s parent: “Thank you for the Personal Best note!”</p>}
       </>
     );
   } else if (more === null) {
@@ -285,9 +367,10 @@ export function TeacherApp() {
           {topic && (
             <p className="rounded-lg bg-leaf/15 p-2 text-[11px] text-slate">{`Parents will read: “Today in Maths: ${topic}. Ghar par 5 minute poochhiye: aaj kya seekha?” with three reply buttons.`}</p>
           )}
-          <button type="button" disabled={!topic} onClick={() => { setPulseSent(true); say('Saved. The Pulse goes to 6-A parents at 6:30 pm.'); }} className={`${btn} bg-emerald text-white disabled:opacity-50`}>
+          <button type="button" disabled={!topic} onClick={() => topic && savePulse(topic)} className={`${btn} bg-emerald text-white disabled:opacity-50`}>
             {pulseSent ? 'Scheduled ✓' : 'Save topic'}
           </button>
+          {sync?.pulseReply && <p className="nca-pop rounded-lg bg-leaf/15 p-2 text-[11px] text-slate">{`Parent replies so far: Aarav’s parent · “${sync.pulseReply}”`}</p>}
         </Section>
       ),
       copilot: (
@@ -321,15 +404,18 @@ export function TeacherApp() {
       ptm: (
         <Section title="PTM · Sat 26 Sep">
           <ul className="flex flex-col">
-            {TEACHER_PTM.map((p) => (
-              <li key={p.time} className="nca-row flex justify-between gap-2 rounded px-1 py-1.5 text-xs">
-                <span className="font-bold text-slate">{p.time}</span>
-                <span className="min-w-0 flex-1 text-slate">{`${p.parent} · ${p.child}`}</span>
-                <span className={`rounded-full px-1.5 text-[10px] font-bold ${p.state === 'Open' ? tones.action.soft : tones.success.soft}`}>{p.state}</span>
-              </li>
-            ))}
+            {TEACHER_PTM.map((p) => {
+              const state = sync?.ptmConfirm && p.child.startsWith('Aarav') ? 'Confirmed' : p.state;
+              return (
+                <li key={p.time} className="nca-row flex justify-between gap-2 rounded px-1 py-1.5 text-xs">
+                  <span className="font-bold text-slate">{p.time}</span>
+                  <span className="min-w-0 flex-1 text-slate">{`${p.parent} · ${p.child}`}</span>
+                  <span className={`rounded-full px-1.5 text-[10px] font-bold ${state === 'Open' ? tones.action.soft : tones.success.soft}`}>{state}</span>
+                </li>
+              );
+            })}
           </ul>
-          <button type="button" onClick={() => say('Dossiers ready: attendance, marks and parent replies for each booked family.')} className={`${btn} w-fit ${tones.success.soft}`}>
+          <button type="button" onClick={openDossiers} className={`${btn} w-fit ${tones.success.soft}`}>
             Open meeting dossiers
           </button>
         </Section>
@@ -345,13 +431,13 @@ export function TeacherApp() {
       messages: (
         <Section title="Messages">
           <ul className="flex flex-col gap-1.5">
-            {TEACHER_MESSAGES.map((m) => (
-              <li key={m.from} className="rounded-lg bg-off-white p-2 text-xs">
+            {(sync?.thanks ? [{ from: 'Sharma ji (Aarav’s parent)', text: LINK_THANKS, when: 'just now' }, ...TEACHER_MESSAGES] : TEACHER_MESSAGES).map((m, i) => (
+              <li key={`${m.from}-${m.when}`} className={`rounded-lg bg-off-white p-2 text-xs ${sync?.thanks && i === 0 ? 'nca-pop' : ''}`}>
                 <b className="block text-slate">{m.from}</b>
                 <span className="block text-slate">{m.text}</span>
                 <span className="flex justify-between text-[10px] text-slate/70">
                   {m.when}
-                  <button type="button" onClick={() => say(`Reply sent to ${m.from}.`)} className="font-bold text-emerald underline-offset-2 hover:underline">
+                  <button type="button" onClick={() => (m.when === 'just now' ? say(`Reply sent to ${m.from}.`) : replyTo(TEACHER_MESSAGES.indexOf(m)))} className="font-bold text-emerald underline-offset-2 hover:underline">
                     Reply
                   </button>
                 </span>

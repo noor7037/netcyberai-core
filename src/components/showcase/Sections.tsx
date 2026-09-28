@@ -8,6 +8,7 @@ import { PrincipalDashboard } from './PrincipalDashboard';
 import { ScaledStage } from '@/components/home/ScaledStage';
 import { TeacherApp } from './TeacherApp';
 import { WhatsAppPhone } from './WhatsAppPhone';
+import { LinkedApps } from './LinkedApps';
 
 // The one demo system, shared by the homepage and /product-tour:
 // the principal's desktop dashboard, the teacher's staff app and the
@@ -60,17 +61,45 @@ export function AppsSection({ withParent = true }: { withParent?: boolean }) {
     <section aria-labelledby="apps-title" className="bg-off-white">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 lg:py-12">
         <div className="flex max-w-3xl flex-col gap-2">
-          <Eyebrow tone="success">{withParent ? 'For teachers and parents · mobile' : 'For teachers · mobile'}</Eyebrow>
+          <Eyebrow tone="success">
+            {withParent ? (
+              'For teachers and parents · mobile'
+            ) : (
+              <>
+                <span className="lg:hidden">For teachers · mobile</span>
+                <span className="hidden lg:inline">Teachers and parents · in sync</span>
+              </>
+            )}
+          </Eyebrow>
           <h2 id="apps-title" className="text-3xl font-extrabold tracking-tight text-slate sm:text-4xl">
-            {withParent ? 'Teachers get a staff app. Parents just use WhatsApp.' : 'Teachers get a staff app built for one-minute days.'}
+            {withParent ? (
+              'Teachers get a staff app. Parents just use WhatsApp.'
+            ) : (
+              <>
+                Teachers get a staff app built for one-minute days.<span className="hidden lg:inline"> Parents see it the same minute.</span>
+              </>
+            )}
           </h2>
-          <p className="text-slate/70">
+          <p className={`text-slate/70 ${withParent ? '' : 'lg:hidden'}`}>
             {withParent
               ? 'Both work in the phones below. Tap the tabs, mark attendance, open the chat menu, book a PTM slot.'
               : 'Tap the tabs: mark attendance, post homework, enter marks, record what was taught and accept a cover request. The parent’s side is the WhatsApp at the top of this page.'}
           </p>
+          {!withParent && (
+            <p className="hidden text-slate/70 lg:block">
+              What the teacher does reaches the parent at once, and the parent’s replies come straight back. Watch a school day play out, or
+              tap either phone to drive both yourself.
+            </p>
+          )}
         </div>
-        <div className={`mx-auto grid w-full max-w-4xl grid-cols-1 gap-10 ${withParent ? 'md:grid-cols-2' : 'md:grid-cols-[auto_minmax(0,1fr)] md:items-center'}`}>
+        {/* Homepage from 1024px: the teacher and parent apps side by side,
+            in sync (C84). Below 1024px: the teacher app alone, unchanged. */}
+        {!withParent && (
+          <div className="hidden lg:block">
+            <LinkedApps />
+          </div>
+        )}
+        <div className={`mx-auto grid w-full max-w-4xl grid-cols-1 gap-10 ${withParent ? 'md:grid-cols-2' : 'md:grid-cols-[auto_minmax(0,1fr)] md:items-center lg:hidden'}`}>
           {[
             {
               key: 'teacher',
