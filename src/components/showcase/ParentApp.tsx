@@ -11,7 +11,8 @@ import { LINK_LEAVE_NOTE, LINK_REPLY, LINK_THANKS, PULSE_REPLIES, type AppLink, 
 // homepage from 1024px (founder, 2026-09-29, Decision Log C84). It reads
 // the shared state in `link`: what the teacher does arrives here at once,
 // and what the parent does here reaches the teacher app. The parent app is
-// planned; today the same updates reach parents on WhatsApp. Taps work;
+// optional and coming soon, for families who want more detail; WhatsApp
+// stays the main channel and no parent has to install it. Taps work;
 // nothing is sent.
 
 type Tab = 'today' | 'attendance' | 'homework' | 'progress' | 'more';

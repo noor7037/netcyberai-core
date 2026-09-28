@@ -91,8 +91,8 @@ export const IMPACT_CARD = [
 ];
 
 // The parent app preview on the homepage (C84): Aarav's family, in the
-// teacher's class 6-A. Planned product; today parents get these updates
-// on WhatsApp.
+// teacher's class 6-A. An optional app, coming soon, for families who
+// want more detail; WhatsApp stays the main channel for every parent.
 export const PARENT = {
   name: 'Rohit Sharma',
   initials: 'RS',

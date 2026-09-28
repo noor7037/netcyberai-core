@@ -182,9 +182,11 @@ export function LinkedApps() {
         <ParentApp key={`p-${cycle}`} link={{ state, emit, command: pCmd, last }} />
         <p className="flex items-center justify-center gap-2 text-sm font-extrabold text-slate">
           <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-royal" />
-          Parent app
+          Parent app · optional
         </p>
-        <p className="text-center text-[11px] text-slate/70">The parent app is planned. Today the same updates reach parents on WhatsApp.</p>
+        <p className="text-center text-[11px] text-slate/70">
+          Coming soon, for families who want deeper insights. WhatsApp stays the main channel: no parent ever has to install anything.
+        </p>
       </div>
     </div>
   );
