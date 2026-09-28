@@ -44,6 +44,44 @@ export const TRIAL_CTA = {
   button: 'Book your free trial session',
 };
 
+// What the free tool cannot do and NetCyberAI does: shown as locked
+// features on every tool page (founder, Decision Log C79). Wording says
+// what the product is built to do; the note under each list asks schools
+// to check which parts are live for them today.
+export const NETCYBERAI_UNLOCKS: Record<FreeToolKind, { title: string; items: { title: string; text: string }[] }> = {
+  certificate: {
+    title: 'Unlocked with NetCyberAI',
+    items: [
+      { title: 'Bulk certificates in one click', text: 'A whole class or batch from your student records, with numbers issued in sequence.' },
+      { title: 'Auto-send to parents', text: 'The signed PDF goes to each family on WhatsApp the moment it is approved.' },
+      { title: 'Online QR verification', text: 'Colleges and employers scan to confirm a certificate against the school’s record.' },
+      { title: 'Request to signature workflow', text: 'Application, fee clearance, remarks and principal sign-off, with nothing lost on a desk.' },
+      { title: 'Permanent issue register', text: 'Every certificate recorded, duplicates blocked, reprints in seconds.' },
+      { title: 'School details saved once', text: 'Logo, seal and signatures set up once for every authorised staff member.' },
+    ],
+  },
+  decision: {
+    title: 'Unlocked with NetCyberAI',
+    items: [
+      { title: 'Numbers that fill themselves', text: 'Attendance, fees, marks and timetables come straight from the school record, not retyped.' },
+      { title: 'Automatic reminders and alerts', text: 'Fee reminders and attendance alerts go to each family on WhatsApp, one family at a time.' },
+      { title: 'Early warnings for the principal', text: 'Students, fees and classes drifting off track are flagged with an owner assigned.' },
+      { title: 'Reports on a schedule', text: 'Collection, attendance and results reports ready every week without a spreadsheet.' },
+      { title: 'Every campus in one view', text: 'Compare branches side by side when you run more than one school.' },
+      { title: 'Free setup and staff training', text: 'We set it up with your team and train your staff at no cost.' },
+    ],
+  },
+  data: {
+    title: 'Unlocked with NetCyberAI',
+    items: [
+      { title: 'One-step import', text: 'Every valid row saved at once; every problem row reported back, never dropped.' },
+      { title: 'We load your data for you', text: 'Send your Excel sheet, or even paper registers, and our team does the upload free.' },
+      { title: 'Consent recorded for every family', text: 'Guardian consent tracked before any message is sent.' },
+      { title: 'One master record', text: 'Fees, attendance and certificates all read from the same student record.' },
+    ],
+  },
+};
+
 export const KIND_LABELS: Record<FreeToolKind, { title: string; blurb: string }> = {
   decision: { title: 'Planning and decision tools', blurb: 'Fees, attendance, capacity, timetables, marks, payroll and budgets.' },
   certificate: { title: 'Certificates and receipts', blurb: 'Print-ready A4 documents with your logo. Nothing is uploaded.' },
@@ -64,7 +102,7 @@ const certFaqs = (doc: string): FreeTool['faqs'] => [
   },
   {
     question: 'How many certificates can I make for free?',
-    answer: 'Three without an account. After that, a free account (name, school and phone, no payment) unlocks unlimited certificates on that browser. We do not save certificates or form data.',
+    answer: 'As many as you need. There is no login, no limit and no watermark. We do not save your certificates or form data.',
   },
   {
     question: 'Is the PDF good enough to print?',
@@ -526,7 +564,7 @@ export const freeTools: FreeTool[] = [
     steps: certSteps('an Achievement Certificate'),
     faqs: [
       certFaqs('achievement certificate')[0],
-      { question: 'Can I make many certificates at once?', answer: 'Yes. Download the CSV template, add one row per student, and the studio makes one PDF with a page for each, stopping first if two rows share a number.' },
+      { question: 'Can I make certificates for a whole class at once?', answer: 'The free tool makes one certificate at a time. Bulk certificates for a whole class, and sending each one to the family on WhatsApp automatically, come with NetCyberAI. Book a free trial to see it with your own students.' },
       certFaqs('achievement certificate')[1],
       certFaqs('achievement certificate')[3],
     ],

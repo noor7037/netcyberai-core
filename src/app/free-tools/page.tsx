@@ -1,3 +1,5 @@
+import { FaqSection } from '@/components/content/FaqSection';
+import { FREE_TOOLS_FAQS } from '@/content/faqs';
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { EyebrowOnDark } from '@/components/visual/Primitives';
@@ -26,7 +28,7 @@ export default function FreeToolsPage() {
           <p className="max-w-3xl text-lg opacity-90">
             Plan fees and collections, rescue attendance before exams, size classrooms and sections, check timetables, analyse marks, budget payroll and
             running costs, and print transfer, bonafide and character certificates, report cards and fee receipts. Every tool runs in your browser, needs
-            no login for basic use and ends in a printable PDF.
+            no login and ends in a printable PDF.
           </p>
           <ul className="flex flex-wrap gap-2 text-sm font-semibold">
             <li className="inline-flex items-center gap-2 rounded-full border border-white/25 px-3 py-1">
@@ -79,6 +81,8 @@ export default function FreeToolsPage() {
           <TrialCta />
         </Container>
       </section>
+      <FaqSection id="free-tools-faq" items={FREE_TOOLS_FAQS} />
+
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbListJsonLd(pageMeta.freeTools)) }} />
     </>
   );

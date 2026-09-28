@@ -1,3 +1,5 @@
+import { FaqSection } from '@/components/content/FaqSection';
+import { PRODUCT_TOUR_FAQS } from '@/content/faqs';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/visual/Primitives';
@@ -38,6 +40,8 @@ export default function ProductTourPage() {
       <AppsSection />
       <ModuleIndex />
       <CTASection />
+      <FaqSection id="tour-faq" items={PRODUCT_TOUR_FAQS} />
+
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbListJsonLd(pageMeta.productTour)) }} />
     </>
   );

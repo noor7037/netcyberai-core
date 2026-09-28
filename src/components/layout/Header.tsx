@@ -174,7 +174,7 @@ function FeaturesPanel({ onNavigate }: { onNavigate: () => void }) {
 function ToolsPanel({ onNavigate }: { onNavigate: () => void }) {
   return (
     <div>
-      <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate/70">Free tools · no login for basic use, runs in your browser</p>
+      <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate/70">Free tools · no login, runs in your browser</p>
       <div className="grid grid-cols-3 gap-6">
         {(['decision', 'certificate', 'data'] as const).map((kind) => (
           <div key={kind}>

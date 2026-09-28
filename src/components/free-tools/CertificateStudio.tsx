@@ -2,7 +2,6 @@
 
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { Icon } from '@/components/visual/Icons';
-import { parseCsv } from '@/lib/import/csv';
 import { CERT_EXAMPLES, CERT_SCHOOL_EXAMPLE } from '@/demo-fixture/certificate-examples';
 import {
   CERT_DEFS,
@@ -20,19 +19,18 @@ import {
   type TemplateId,
 } from '@/lib/certificates/definitions';
 import { FONTS, renderCertificateSvg, type Measure } from '@/lib/certificates/render';
-import { FREE_LIMIT, addGenerations, generationCount, hasFreeAccount, needsAccount } from '@/lib/certificates/usage';
 import { A4_300DPI } from '@/lib/pdf/jpeg-pdf';
 import { canvasToJpeg, downloadBlob, pdfBlob, safeFilename, shareFile, svgToCanvas } from '@/lib/pdf/browser';
 import { toCsv } from '@/lib/free-tools/report';
-import { FreeAccountGate } from './FreeAccountGate';
 import { ImagePicker } from './ImagePicker';
 import { usePrint } from './PrintPortal';
+import { LockedFeatures } from './LockedFeatures';
 
 // The free certificate studio. Every value typed and every image chosen
 // lives only in this component's memory: no storage, no upload, no
 // server rendering. Closing, refreshing or pressing "Clear everything"
-// removes all of it. The only thing kept in the browser is the free-use
-// counter (a number) and the free-account flag (src/lib/certificates/usage.ts).
+// removes all of it. Free and unlimited, with no login (founder, C79).
+// Bulk generation and auto-send are shown as NetCyberAI features.
 
 const SCHOOL_IDS = new Set([...SCHOOL_FIELDS.map((f) => f.id), 'signName', 'signTitle']);
 const inputCls =
@@ -143,15 +141,10 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
   const [problems, setProblems] = useState<string[]>([]);
   const [status, setStatus] = useState('');
   const [busy, setBusy] = useState(false);
-  const [gate, setGate] = useState<null | (() => void)>(null);
-  const [used, setUsed] = useState<{ count: number; account: boolean } | null>(null);
   const measure = useMeasure();
   const { print, portal } = usePrint();
   const profileRef = useRef<HTMLInputElement>(null);
-  const bulkRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => setUsed({ count: generationCount(), account: hasFreeAccount() }), []);
-  const refreshUsage = () => setUsed({ count: generationCount(), account: hasFreeAccount() });
 
   const doc: CertDoc = useMemo(() => ({ def, template, values: { ...values, ...school }, rows, images, options }), [def, template, values, school, rows, images, options]);
   const deferred = useDeferredValue(doc);
@@ -219,11 +212,6 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
     document.getElementById('cert-doc-fields')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  const withGate = (n: number, run: () => void) => {
-    if (needsAccount(n)) setGate(() => run);
-    else run();
-  };
-
   function generate() {
     const missing = missingRequired(doc);
     if (missing.length) {
@@ -238,13 +226,11 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
       return;
     }
     setProblems([]);
-    withGate(1, () => {
-      addGenerations(1);
-      refreshUsage();
+    {
       setGeneratedKey(key);
       setIssued((l) => [...l.filter((i) => !(i.no === number && i.name === person)), { no: number, type: def.docTitle, name: person, admissionNo: doc.values.admissionNo ?? '', date: doc.values.issueDate || doc.values.paymentDate || '' }]);
       say('Certificate generated. Download the PDF or print it.');
-    });
+    }
   }
 
   async function exportSvgs(svgs: string[], filename: string, title: string) {
@@ -296,76 +282,11 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
     }
   }
 
-  // ---- bulk CSV ----------------------------------------------------------------
-  const bulkable = !def.tables?.length;
-  const allFields = [...SCHOOL_FIELDS, ...def.fields];
-
-  function bulkTemplate() {
-    const head = def.fields.map((f) => f.label);
-    downloadBlob(new Blob(['﻿' + toCsv([head])], { type: 'text/csv;charset=utf-8' }), safeFilename(`${def.docTitle} bulk template`, 'csv'));
-  }
-
-  async function bulk(file: File) {
-    if (file.size > 2 * 1024 * 1024) return say('That CSV is over 2 MB.');
-    const table = parseCsv(await file.text());
-    if (table.length < 2) return say('The CSV has no data rows.');
-    const head = table[0].map((h) => h.trim().toLowerCase());
-    const col = (f: CertField) => head.findIndex((h) => h === f.label.toLowerCase() || h === f.id.toLowerCase());
-    const data = table.slice(1, 201).filter((r) => r.some((c) => c.trim()));
-    let auto = number;
-    const docs: CertDoc[] = data.map((r) => {
-      const vals: CertValues = { ...defaultsFor(def), ...values, ...school };
-      for (const f of allFields) {
-        const i = col(f);
-        if (i >= 0 && (r[i] ?? '').trim()) vals[f.id] = r[i].trim().slice(0, f.max ?? 140);
-      }
-      if (col(def.fields.find((f) => f.id === def.numberField) as CertField) < 0 || !(vals[def.numberField] ?? '').trim()) {
-        vals[def.numberField] = auto;
-        auto = nextNumber(auto);
-      }
-      return { ...doc, values: vals };
-    });
-    const errs: string[] = [];
-    docs.forEach((d, i) => {
-      const miss = missingRequired(d);
-      if (miss.length) errs.push(`Row ${i + 2}: missing ${miss.join(', ')}`);
-    });
-    const seen = new Map<string, number>();
-    docs.forEach((d, i) => {
-      const no = (d.values[def.numberField] ?? '').trim();
-      if (!no) return;
-      if (seen.has(no)) errs.push(`Rows ${(seen.get(no) as number) + 2} and ${i + 2} share number ${no}.`);
-      else seen.set(no, i);
-      const prior = issued.find((x) => x.no === no);
-      if (prior) errs.push(`Row ${i + 2}: number ${no} was already issued in this session to ${prior.name}.`);
-    });
-    if (errs.length) {
-      setProblems(errs.slice(0, 15));
-      document.getElementById('cert-problems')?.focus();
-      return;
-    }
-    setProblems([]);
-    withGate(docs.length, async () => {
-      addGenerations(docs.length);
-      refreshUsage();
-      setIssued((l) => [
-        ...l,
-        ...docs.map((d) => ({ no: d.values[def.numberField] ?? '', type: def.docTitle, name: d.values[def.personField] ?? '', admissionNo: d.values.admissionNo ?? '', date: d.values.issueDate || d.values.paymentDate || '' })),
-      ]);
-      await exportSvgs(
-        docs.map((d) => renderCertificateSvg(d, measure)),
-        safeFilename(`${def.docTitle} bulk ${docs.length}`, 'pdf'),
-        `${def.docTitle} (${docs.length})`
-      );
-    });
-  }
-
   function registerCsv() {
     const out = [['Certificate', 'Number', 'Name', 'Admission No.', 'Date'], ...issued.map((i) => [i.type, i.no, i.name, i.admissionNo, i.date])];
     downloadBlob(new Blob(['﻿' + toCsv(out)], { type: 'text/csv;charset=utf-8' }), 'issue-register.csv');
   }
 
-  const freeLeft = used ? Math.max(0, FREE_LIMIT - used.count) : FREE_LIMIT;
   const schoolFields = [...SCHOOL_FIELDS];
   const docFields = def.fields.filter((f) => !SCHOOL_IDS.has(f.id));
 
@@ -558,38 +479,7 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
             </label>
           </section>
 
-          {bulkable && (
-            <details className="rounded-3xl border border-slate/10 bg-white p-5">
-              <summary className="cursor-pointer text-lg font-extrabold text-sapphire">Many certificates at once (CSV)</summary>
-              <div className="mt-3 flex flex-col gap-3 text-sm text-slate">
-                <p>
-                  One row per student, with the same column names as the form. School details, logo and signature come from this page. Blank numbers continue from the
-                  number above. Duplicate numbers are stopped before anything is made. Up to 200 rows; each row counts as one certificate.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <button type="button" className={quiet} onClick={bulkTemplate}>
-                    <Icon name="download" className="h-4 w-4" /> CSV template
-                  </button>
-                  <button type="button" className={quiet} onClick={() => bulkRef.current?.click()} disabled={busy}>
-                    Make PDF from CSV
-                  </button>
-                  <input
-                    ref={bulkRef}
-                    type="file"
-                    accept=".csv,text/csv"
-                    className="sr-only"
-                    tabIndex={-1}
-                    aria-hidden="true"
-                    onChange={(e) => {
-                      const f = e.target.files?.[0];
-                      if (f) void bulk(f);
-                      e.target.value = '';
-                    }}
-                  />
-                </div>
-              </div>
-            </details>
-          )}
+          <LockedFeatures kind="certificate" compact />
         </form>
 
         <aside className="flex min-w-0 flex-col gap-4 xl:sticky xl:top-20 xl:self-start" aria-label="Certificate preview and actions">
@@ -617,9 +507,7 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
               </li>
             </ol>
             <p className="text-xs text-slate/70">
-              {used?.account
-                ? 'Free account active on this browser: unlimited certificates.'
-                : `${freeLeft} of ${FREE_LIMIT} free certificates left without an account.`}
+              Free and unlimited. No login, no watermark.
             </p>
             <div id="cert-problems" tabIndex={-1} className="outline-none">
               {problems.length > 0 && (
@@ -651,16 +539,6 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
         </aside>
       </div>
 
-      <FreeAccountGate
-        open={gate !== null}
-        onClose={() => setGate(null)}
-        onUnlocked={() => {
-          const run = gate;
-          setGate(null);
-          refreshUsage();
-          run?.();
-        }}
-      />
       {portal}
     </div>
   );

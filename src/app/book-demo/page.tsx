@@ -1,3 +1,6 @@
+import { FaqSection } from '@/components/content/FaqSection';
+import { DEMO_FAQS } from '@/content/faqs';
+import { HowItWorks } from '@/components/home/HowItWorks';
 import { Container } from '@/components/ui/Container';
 import { LeadForm } from '@/components/marketing/LeadForm';
 import { PageHero } from '@/components/marketing/PageHero';
@@ -27,6 +30,9 @@ export default function BookDemoPage() {
           </div>
         </Container>
       </section>
+
+      <HowItWorks id="book-demo-faq-steps" tint="white" ctas={false} />
+      <FaqSection id="book-demo-faq" items={DEMO_FAQS} />
 
       <script
         type="application/ld+json"

@@ -10,6 +10,7 @@ import { ImportCheckerTool } from '@/components/free-tools/ImportCheckerTool';
 import { MarksAnalyzerTool } from '@/components/free-tools/MarksAnalyzerTool';
 import { ToolShell } from '@/components/free-tools/ToolShell';
 import { TrialCta } from '@/components/free-tools/TrialCta';
+import { LockedFeatures } from '@/components/free-tools/LockedFeatures';
 import { FREE_TOOLS_UPDATED, KIND_LABELS, findFreeTool, freeTools, toolsOfKind, type FreeTool } from '@/content/free-tools';
 import { getBlogPost } from '@/content/blog';
 import { findCertDef } from '@/lib/certificates/definitions';
@@ -85,7 +86,7 @@ export default function FreeToolPage({ params }: { params: { slug: string } }) {
           <p className="max-w-3xl text-lg opacity-90">{t.heroLead}</p>
           <ul className="flex flex-wrap gap-2 text-sm font-semibold">
             <li className="inline-flex items-center gap-2 rounded-full border border-white/25 px-3 py-1">
-              <Icon name="check" className="h-4 w-4" /> Free, no login for basic use
+              <Icon name="check" className="h-4 w-4" /> Free, no login, no limit
             </li>
             <li className="inline-flex items-center gap-2 rounded-full border border-white/25 px-3 py-1">
               <Icon name="lock" className="h-4 w-4" /> Runs in your browser
@@ -113,6 +114,11 @@ export default function FreeToolPage({ params }: { params: { slug: string } }) {
       <section aria-label={t.name} className="bg-off-white">
         <Container wide className="py-10">
           <Tool t={t} />
+          {t.kind !== 'certificate' && (
+            <div className="mt-10 print:hidden">
+              <LockedFeatures kind={t.kind} />
+            </div>
+          )}
         </Container>
       </section>
 
