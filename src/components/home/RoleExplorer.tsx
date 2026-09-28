@@ -2,7 +2,7 @@
 
 import { useRef, useState, type ReactNode } from 'react';
 import { Container } from '@/components/ui/Container';
-import { SectionHeading, DemoLabel } from '@/components/visual/Primitives';
+import { SectionHeading } from '@/components/visual/Primitives';
 import { Icon, type IconName } from '@/components/visual/Icons';
 import { BrowserFrame } from '@/components/visual/Frames';
 import {
@@ -158,7 +158,6 @@ export function RoleExplorer() {
             title="One school. Every role connected."
             lead="Move across a role to see what that person sees. Click to keep it open."
           />
-          <DemoLabel />
         </div>
 
         {/* Desktop */}

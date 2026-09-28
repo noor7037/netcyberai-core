@@ -664,7 +664,7 @@ export function WhatsAppPhone({ className = '', controls = true }: { className?:
               {overlay === 'cert' && (
                 <div className="overlay center" onClick={(e) => e.target === e.currentTarget && setOverlay(null)}>
                   <div className="sheet" role="dialog" aria-label="Progress certificate">
-                    <img className="certificate-img" src="/demo/rahul-certificate.webp" alt="Full Progress Certificate for Rahul Sharma (demo school)" />
+                    <img className="certificate-img" src="/demo/rahul-certificate.webp" alt="Full Progress Certificate for Rahul Sharma" />
                     <div className="cert-actions">
                       <button type="button" className="cert-close" onClick={() => setOverlay(null)}>
                         Close

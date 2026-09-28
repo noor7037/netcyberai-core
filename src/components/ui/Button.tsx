@@ -20,6 +20,9 @@ const variantClasses = {
   // in className, rendering dark-on-dark, unreadable text -- confirmed via a
   // real screenshot on the Hero and CTASection gradients before this fix.
   outlineLight: 'border-2 border-off-white text-off-white hover:bg-off-white/10',
+  // A third, equally weighted CTA in brand purple (white on grape-deep
+  // is 7.10:1, design-tokens.ts).
+  accent: 'bg-grape-deep text-white shadow-lg shadow-grape/25 hover:bg-grape-deep/90',
 } as const;
 
 type Variant = keyof typeof variantClasses;

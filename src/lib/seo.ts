@@ -161,7 +161,7 @@ export const pageMeta = {
     path: '/free-tools',
     title: 'Free Tools for Schools',
     description:
-      'Free tools for Indian schools: check a student list before import, calculate attendance targets, and write fee reminders and parent updates in Hinglish.',
+      'Free school tools: fee planner, attendance recovery, capacity, timetable and marks checks, payroll, and TC, bonafide and report card generators with PDF.',
   },
   productTour: {
     path: '/product-tour',

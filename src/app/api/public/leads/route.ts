@@ -10,7 +10,7 @@ import { withBackendConnection } from '@/lib/auth/db';
 // here at all). RLS on `leads` scopes both the insert and the
 // duplicate-check read to the `app_backend` role specifically
 // (supabase/migrations/20260925061202_leads_table.sql).
-const SOURCES = ['get_started', 'book_demo', 'contact', 'callback', 'start_pilot', 'quote'] as const;
+const SOURCES = ['get_started', 'book_demo', 'contact', 'callback', 'start_pilot', 'quote', 'free_tools'] as const;
 const CONTACT_METHODS = ['phone', 'whatsapp', 'email'] as const;
 // Burst limit: more than this many submissions from one phone number in
 // the window is refused with 429. Keyed on the phone the form already

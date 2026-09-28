@@ -1,3 +1,6 @@
+import { FaqSection } from '@/components/content/FaqSection';
+import { GET_STARTED_FAQS } from '@/content/faqs';
+import { HowItWorks } from '@/components/home/HowItWorks';
 import { Container } from '@/components/ui/Container';
 import { LeadForm } from '@/components/marketing/LeadForm';
 import { PageHero } from '@/components/marketing/PageHero';
@@ -27,6 +30,9 @@ export default function GetStartedPage() {
           </div>
         </Container>
       </section>
+
+      <HowItWorks id="get-started-faq-steps" tint="white" ctas={false} />
+      <FaqSection id="get-started-faq" items={GET_STARTED_FAQS} />
 
       <script
         type="application/ld+json"

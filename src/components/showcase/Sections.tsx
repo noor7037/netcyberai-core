@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/Button';
-import { DemoLabel, Eyebrow } from '@/components/visual/Primitives';
+import { Eyebrow } from '@/components/visual/Primitives';
 import { Icon } from '@/components/visual/Icons';
 import { tones, type Tone } from '@/lib/semantic';
 import { MODULES, NAV_GROUPS, type ModuleId } from '@/demo-fixture/principal-dashboard';
@@ -25,7 +25,7 @@ export function PrincipalSection({ headingLevel = 'h2' }: { headingLevel?: 'h1' 
             </H>
             <p className="text-slate/70">
               Attendance, fees, admissions, staff, exams, communication and the AI modules, with search, the “+ Add” forms for
-              every role and a page for each module. Click anything: it is a working preview on a fictional school.
+              every role and a page for each module. Click anything: it is a working preview with example data.
             </p>
           </div>
           <div className="flex shrink-0 flex-wrap gap-3">
@@ -46,7 +46,6 @@ export function PrincipalSection({ headingLevel = 'h2' }: { headingLevel?: 'h1' 
           </div>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <DemoLabel />
           <p className="text-xs text-slate/70">Buttons that would save or send show what would happen and change nothing.</p>
         </div>
       </div>
@@ -107,7 +106,6 @@ export function AppsSection({ withParent = true }: { withParent?: boolean }) {
             </div>
           ))}
         </div>
-        <DemoLabel className="self-center" />
       </div>
     </section>
   );

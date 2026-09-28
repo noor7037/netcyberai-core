@@ -6,6 +6,8 @@ import { EyebrowOnDark, SectionHeading } from '@/components/visual/Primitives';
 import { SpotlightCard } from '@/components/visual/SpotlightCard';
 import { Icon } from '@/components/visual/Icons';
 import { QuoteForm } from '@/components/marketing/QuoteForm';
+import { HowItWorks } from '@/components/home/HowItWorks';
+import { PRICING_SETUP_FAQ } from '@/content/faqs';
 import { moduleRows, plans, publishedClaims } from '@/content/pricing';
 import { tones } from '@/lib/semantic';
 import { whatsappLink } from '@/lib/site-config';
@@ -18,6 +20,7 @@ export const metadata = buildMetadata(pageMeta.pricing);
 // confirmed ones only. Do not hardcode offers or prices here.
 
 const faqs = [
+  PRICING_SETUP_FAQ,
   {
     question: 'How is NetCyberAI pricing structured?',
     answer:
@@ -26,7 +29,7 @@ const faqs = [
   {
     question: 'Is there a free plan?',
     answer:
-      'Yes, in the form available today: the free tools for checking a student list, calculating attendance targets and writing fee reminders and parent updates. They need no account and run in your browser. For the full platform, setup and staff training are free and your first month is free after setup.',
+      'Yes. Every free tool is unlimited with no login: fee, attendance, capacity, timetable, marks, payroll and budget planners, and transfer, bonafide and character certificates, report cards and fee receipts. For the full platform, you get a complete SOP and free staff training, and your first month is free with full capabilities.',
   },
   {
     question: 'What drives WhatsApp messaging cost?',
@@ -154,7 +157,9 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      <section id="compare" aria-labelledby="compare-title" className="scroll-mt-24 bg-off-white">
+      <HowItWorks id="pricing-steps" tint="off-white" />
+
+      <section id="compare" aria-labelledby="compare-title" className="scroll-mt-24 bg-white">
         <Container wide className="flex flex-col gap-6 py-16">
           <SectionHeading id="compare-title" eyebrow="Compare" tone="intelligence" title="Module by module" />
           <div className="relative min-w-0 max-w-full overflow-x-auto rounded-3xl border border-slate/10 bg-white" tabIndex={0} role="region" aria-labelledby="compare-title">
@@ -194,7 +199,7 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      <section id="quote" aria-labelledby="quote-title" className="scroll-mt-24 bg-white">
+      <section id="quote" aria-labelledby="quote-title" className="scroll-mt-24 bg-off-white">
         <Container wide className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-5">
           <div className="flex flex-col gap-4 lg:col-span-2">
             <SectionHeading
@@ -218,7 +223,7 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="pricing-faq-title" className="bg-off-white">
+      <section aria-labelledby="pricing-faq-title" className="bg-white">
         <Container wide className="flex flex-col gap-6 py-16">
           <h2 id="pricing-faq-title" className="text-2xl font-extrabold text-slate">
             Frequently asked questions

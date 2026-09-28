@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container';
-import { SectionHeading, DemoLabel } from '@/components/visual/Primitives';
+import { SectionHeading } from '@/components/visual/Primitives';
 import { LineChart } from '@/components/visual/Charts';
 import { CertificateCard } from '@/components/visual/Screens';
 import { ChatIn, PhoneFrame } from '@/components/visual/Frames';
@@ -36,7 +36,6 @@ export function PersonalBestJourney() {
             title="Every student can win a Personal Best"
             lead="Recognition that rewards progress against a student's own past, so the child at the back of the class can celebrate too."
           />
-          <DemoLabel onDark />
         </div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">

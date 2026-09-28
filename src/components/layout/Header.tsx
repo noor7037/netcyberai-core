@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Icon } from '@/components/visual/Icons';
 import { featurePages, products, solutions } from '@/content/catalog';
-import { freeTools } from '@/content/free-tools';
+import { KIND_LABELS, freeTools, toolsOfKind } from '@/content/free-tools';
 import { tones } from '@/lib/semantic';
 import { useFinePointer } from '@/lib/hooks';
 import { companyName } from '@/lib/site-config';
@@ -174,26 +174,30 @@ function FeaturesPanel({ onNavigate }: { onNavigate: () => void }) {
 function ToolsPanel({ onNavigate }: { onNavigate: () => void }) {
   return (
     <div>
-      <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate/70">Free tools · no sign-up, runs in your browser</p>
-      <ul className="grid grid-cols-2 gap-2">
-        {freeTools.map((t) => (
-          <li key={t.slug}>
-            <Link
-              href={`/free-tools/${t.slug}`}
-              onClick={onNavigate}
-              className="flex h-full gap-3 rounded-xl p-3 hover:bg-off-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal"
-            >
-              <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${tones[t.tone].solid}`}>
-                <Icon name={t.icon} className="h-4 w-4" />
-              </span>
-              <span className="min-w-0">
-                <span className="block text-sm font-bold text-slate">{t.name}</span>
-                <span className="block text-xs leading-snug text-slate/70">{t.menuBlurb}</span>
-              </span>
-            </Link>
-          </li>
+      <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate/70">Free tools · no login, runs in your browser</p>
+      <div className="grid grid-cols-3 gap-6">
+        {(['decision', 'certificate', 'data'] as const).map((kind) => (
+          <div key={kind}>
+            <p className="mb-2 text-sm font-extrabold text-sapphire">{KIND_LABELS[kind].title}</p>
+            <ul className={`grid gap-0.5 ${kind === 'decision' ? 'grid-cols-1 xl:grid-cols-2' : 'grid-cols-1'}`}>
+              {toolsOfKind(kind).map((t) => (
+                <li key={t.slug}>
+                  <Link
+                    href={`/free-tools/${t.slug}`}
+                    onClick={onNavigate}
+                    className="flex min-h-[40px] items-center gap-2.5 rounded-lg px-2 py-1.5 text-sm font-semibold text-slate hover:bg-off-white hover:text-royal focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal"
+                  >
+                    <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md ${tones[t.tone].solid}`}>
+                      <Icon name={t.icon} className="h-3.5 w-3.5" />
+                    </span>
+                    {t.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </ul>
+      </div>
       <Link href="/free-tools" onClick={onNavigate} className="mt-3 inline-flex min-h-[40px] items-center gap-1.5 text-sm font-bold text-royal hover:underline">
         All free tools <Icon name="arrow" className="h-4 w-4" />
       </Link>

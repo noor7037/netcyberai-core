@@ -1,3 +1,5 @@
+import { FaqSection } from '@/components/content/FaqSection';
+import { PRODUCT_TOUR_FAQS } from '@/content/faqs';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/visual/Primitives';
@@ -20,7 +22,7 @@ export default function ProductTourPage() {
             Explore NetCyberAI yourself
           </h1>
           <p className="max-w-3xl text-lg text-slate">
-            This is a hands-on tour of NetCyberAI in a fictional demo school. Open any of the principal’s modules, try the
+            This is a hands-on tour of NetCyberAI with example data. Open any of the principal’s modules, try the
             teacher’s staff app and the parent’s WhatsApp menu, then check the list below to see which modules a school can
             use today and which are still being built.
           </p>
@@ -38,6 +40,8 @@ export default function ProductTourPage() {
       <AppsSection />
       <ModuleIndex />
       <CTASection />
+      <FaqSection id="tour-faq" items={PRODUCT_TOUR_FAQS} />
+
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbListJsonLd(pageMeta.productTour)) }} />
     </>
   );

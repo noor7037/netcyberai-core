@@ -24,6 +24,12 @@ if (process.env.NODE_ENV === 'production' && !process.env.NEXT_PUBLIC_WHATSAPP_N
 export const whatsappNumber =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '919817707037';
 
+// "+91 98177 07037" for display; the raw number stays in whatsappNumber.
+export function displayPhone(n: string = whatsappNumber): string {
+  const d = n.replace(/\D/g, '');
+  return d.length === 12 && d.startsWith('91') ? `+91 ${d.slice(2, 7)} ${d.slice(7)}` : `+${d}`;
+}
+
 export function whatsappLink(message?: string): string {
   const base = `https://wa.me/${whatsappNumber}`;
   return message ? `${base}?text=${encodeURIComponent(message)}` : base;

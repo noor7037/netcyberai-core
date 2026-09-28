@@ -1,3 +1,5 @@
+import { FaqSection } from '@/components/content/FaqSection';
+import { PILOT_FAQS } from '@/content/faqs';
 import { Container } from '@/components/ui/Container';
 import { PageHero } from '@/components/marketing/PageHero';
 import { LeadForm } from '@/components/marketing/LeadForm';
@@ -110,6 +112,8 @@ export default function StartPilotPage() {
           </div>
         </Container>
       </section>
+
+      <FaqSection id="pilot-faq" items={PILOT_FAQS} />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbListJsonLd(pageMeta.startPilot)) }} />
     </>

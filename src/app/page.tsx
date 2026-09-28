@@ -6,6 +6,8 @@ import { CTASection } from '@/components/home/CTASection';
 import { Container } from '@/components/ui/Container';
 import { FaqBlock } from '@/components/content/FaqBlock';
 import { SectionHeading } from '@/components/visual/Primitives';
+import { HowItWorks } from '@/components/home/HowItWorks';
+import { HOME_GO_LIVE_FAQ } from '@/content/faqs';
 import { buildMetadata, pageMeta, serializeJsonLd, softwareApplicationJsonLd } from '@/lib/seo';
 import { companyName } from '@/lib/site-config';
 
@@ -24,7 +26,7 @@ const faqs = [
   {
     question: 'Which modules are live today?',
     answer:
-      'Live today: student records and CSV import, guardians and consent, attendance with absence alerts on WhatsApp, document scanning, QR ID cards, and staff sign-in for one or several schools. In development: the Daily Learning Pulse, fees and receipts, exams and Personal Best, and certificates. The screens on this site use a fictional demo school, and nothing is sold to a school as live until it is.',
+      'Live today: student records and CSV import, guardians and consent, attendance with absence alerts on WhatsApp, document scanning, QR ID cards, and staff sign-in for one or several schools. In development: the Daily Learning Pulse, fees and receipts, exams and Personal Best, and certificates. The screens on this site show example data, and nothing is sold to a school as live until it is.',
   },
   {
     question: 'Does it rank teachers or students publicly?',
@@ -36,6 +38,7 @@ const faqs = [
     answer:
       'There are four plans: Free tools any school can use today, and Starter, Growth and Compass for the full platform. Each school gets a custom quote based on its size and the modules it needs, confirmed by a real person.',
   },
+  HOME_GO_LIVE_FAQ,
 ];
 
 export default function HomePage() {
@@ -46,6 +49,7 @@ export default function HomePage() {
       <PrincipalSection />
       <AppsSection withParent={false} />
       <TrustSecurity />
+      <HowItWorks />
 
       <section aria-labelledby="faq-title" className="bg-off-white">
         <Container className="flex flex-col gap-6 py-12">

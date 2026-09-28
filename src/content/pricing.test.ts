@@ -28,3 +28,22 @@ describe('pricing claims discipline', () => {
     }
   });
 });
+
+describe('homepage promise row (founder, C80)', () => {
+  it('shows the four promises and the guarantee from confirmed claims', async () => {
+    const { heroChips, heroGuarantee } = await import('./pricing');
+    expect(heroChips()).toEqual([
+      'No setup fees',
+      'Complete SOP & free staff training',
+      'Free first month with full capabilities',
+      'Seamless move from registers & ledgers to digital',
+    ]);
+    // Source: founder commitment, Decision Log C80 (claim money-back-6m).
+    expect(heroGuarantee()).toBe('Six-month 100% money-back guarantee if you see no overall growth, including student learning growth and institutional development.');
+  });
+  it('no page shows the old demo label', () => {
+    const { execSync } = require('node:child_process') as typeof import('node:child_process');
+    const hits = execSync("grep -rln 'DemoLabel\\|Demo school · fictional numbers' src/app src/components || true").toString().trim();
+    expect(hits).toBe('');
+  });
+});

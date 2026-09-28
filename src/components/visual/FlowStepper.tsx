@@ -37,7 +37,7 @@ export function FlowStepper({ steps, tones: stepTones, icons }: { steps: Step[];
         const on = i < lit;
         return (
           <li key={s.title} className="relative">
-            <div className={`flex h-full flex-col gap-2 rounded-2xl border p-4 transition-all duration-500 ${on ? 'border-transparent bg-white shadow-xl' : 'border-slate/10 bg-white/70 opacity-60'}`}>
+            <div className={`flex h-full flex-col gap-2 rounded-2xl border p-4 transition-all duration-500 ${on ? 'border-transparent bg-white shadow-xl' : 'border-slate/10 bg-white'}`}>
               <span className={`flex h-9 w-9 items-center justify-center rounded-xl ${tones[stepTones[i]].solid}`}>
                 <Icon name={icons[i]} className="h-4 w-4" />
               </span>

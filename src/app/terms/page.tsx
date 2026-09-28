@@ -14,7 +14,7 @@ export default function TermsPage() {
         <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">Terms of Use</h1>
         <p className="text-lg text-slate">
           These terms explain what a visitor may and may not do on {companyName}&rsquo;s public
-          website and its interactive demos, including that all demo content is fictional
+          website and its interactive demos, including that all demo content uses example data
           and comes with no warranty. This page is a draft pending legal review, not a finished
           document you should treat as final.
         </p>
@@ -44,8 +44,8 @@ export default function TermsPage() {
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">2. The interactive demos</h2>
         <p className="text-sm text-slate">
-          The demo dashboard, teacher app and parent WhatsApp on this site are clearly-labelled
-          demonstrations using a fictional school and fictional data. It cannot send real messages,
+          The demo dashboard, teacher app and parent WhatsApp on this site are demonstrations
+          that use example data, not any real school&rsquo;s records. They cannot send real messages,
           process real payments, or store any information you enter. Nothing shown in the demo
           reflects real outcomes, real customers, or real data from any actual school.
         </p>

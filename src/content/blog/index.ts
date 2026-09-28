@@ -15,7 +15,28 @@ import { weeklyConfidenceBriefDinnerTableQuestions } from './weekly-confidence-b
 import { howToMeasureWhatParentsActuallyOpen } from './how-to-measure-what-parents-actually-open';
 import { schoolNoticesPaperDiaryToWhatsapp } from './school-notices-paper-diary-to-whatsapp';
 
+import { schoolFeeInstalmentPlanAndCollectionForecast } from './school-fee-instalment-plan-and-collection-forecast';
+import { attendanceRecoveryPlanForExamEligibility } from './attendance-recovery-plan-for-exam-eligibility';
+import { schoolCapacityAndSectionPlanning } from './school-capacity-and-section-planning';
+import { timetableClashesAndSubstitution } from './timetable-clashes-and-substitution';
+import { examResultAnalysisForTeachers } from './exam-result-analysis-for-teachers';
+import { schoolPayrollBudgetPlanning } from './school-payroll-budget-planning';
+import { admissionSeasonCapacityAndRevenue } from './admission-season-capacity-and-revenue';
+import { fairTeacherWorkloadAndSubstitution } from './fair-teacher-workload-and-substitution';
+import { schoolCostPerStudentAndBreakEvenFee } from './school-cost-per-student-and-break-even-fee';
+import { schoolCertificateFormatsGuide } from './school-certificate-formats-guide';
+
 export const blogPosts: BlogPost[] = [
+  schoolCertificateFormatsGuide,
+  schoolFeeInstalmentPlanAndCollectionForecast,
+  attendanceRecoveryPlanForExamEligibility,
+  schoolCapacityAndSectionPlanning,
+  timetableClashesAndSubstitution,
+  examResultAnalysisForTeachers,
+  schoolPayrollBudgetPlanning,
+  admissionSeasonCapacityAndRevenue,
+  fairTeacherWorkloadAndSubstitution,
+  schoolCostPerStudentAndBreakEvenFee,
   haryanaForm6FeeHikeComplianceGuide,
   automateSchoolFeeRemindersWhatsappUpiIndia,
   digitalTcCharacterCertificateWorkflow,

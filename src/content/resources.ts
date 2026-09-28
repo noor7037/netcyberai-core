@@ -127,7 +127,7 @@ export const resourceSections: ResourceSection[] = [
     heroLead:
       'Recorded product videos are still being prepared. In the meantime there are two ways to see NetCyberAI working today: the principal’s dashboard on our homepage, where every module opens with a click, and the product tour, which adds the teacher’s staff app, the parent’s WhatsApp and the honest status of every module.',
     items: [
-      { title: 'Principal dashboard', body: 'Every module of the principal’s dashboard, in a fictional school.', href: '/#principal-dashboard' },
+      { title: 'Principal dashboard', body: 'Every module of the principal’s dashboard, with example data.', href: '/#principal-dashboard' },
       { title: 'Product tour', body: 'Principal, teacher and parent views, plus which modules are live.', href: '/product-tour' },
     ],
   },
@@ -178,7 +178,7 @@ export const resourceSections: ResourceSection[] = [
       'What has been built into the NetCyberAI platform so far: records and imports, attendance, the WhatsApp send gate, tenant isolation and onboarding tools.',
     heroTitle: 'What has shipped in the platform',
     heroLead:
-      'These notes record what has actually been built into the NetCyberAI platform, newest first. They describe the foundations schools rely on, such as records, attendance, messaging safety and data isolation, rather than marketing features. Modules shown elsewhere on this site with fictional data are listed here only once they have genuinely shipped.',
+      'These notes record what has actually been built into the NetCyberAI platform, newest first. They describe the foundations schools rely on, such as records, attendance, messaging safety and data isolation, rather than marketing features. Modules shown elsewhere on this site with example data are listed here only once they have genuinely shipped.',
     items: [
       { title: 'Public website with interactive product tour', body: 'The visual site you are reading, with role explorer, live ecosystem and product previews.' },
       { title: 'Lead capture for demos and onboarding', body: 'Get Started and Book a Demo requests reach the onboarding pipeline.' },
