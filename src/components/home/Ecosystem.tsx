@@ -11,7 +11,8 @@ import { usePrefersReducedMotion } from '@/lib/hooks';
 // pulses, its ring turns, and a loop lights up each role in turn with
 // data flowing along its connector; module tiles light up one by one.
 // Hovering or focusing a role holds the loop on it. With reduced motion
-// everything is still and complete.
+// everything is still and complete. There is one layout at every width;
+// on phones the hero scales it down whole (HeroStage), like desktop mode.
 
 // Clockwise around the core, so the highlight travels in a circle.
 const LOOP: EcoRoleId[] = ['school', 'principal', 'teacher', 'parent', 'student'];
@@ -27,11 +28,11 @@ const COLORS: Record<EcoRoleId, { a: string; b: string; eco: string; bg: string 
 const TILE_BG = ['bg-royal', 'bg-emerald', 'bg-tangerine-deep', 'bg-grape-deep', 'bg-coral-deep', 'bg-azure', 'bg-emerald', 'bg-gold-deep', 'bg-coral-deep', 'bg-sapphire', 'bg-royal-deep'];
 
 const AREA: Record<EcoRoleId, string> = {
-  school: 'md:[grid-area:school]',
-  principal: 'md:[grid-area:principal]',
-  teacher: 'md:[grid-area:teacher]',
-  student: 'md:[grid-area:student]',
-  parent: 'md:[grid-area:parent]',
+  school: '[grid-area:school]',
+  principal: '[grid-area:principal]',
+  teacher: '[grid-area:teacher]',
+  student: '[grid-area:student]',
+  parent: '[grid-area:parent]',
 };
 
 interface Wire {
@@ -77,7 +78,7 @@ function Brain() {
 
 function Core({ coreRef }: { coreRef: React.RefObject<HTMLDivElement> }) {
   return (
-    <div ref={coreRef} className="nca-eco-core relative mx-auto aspect-square w-full max-w-[21rem] md:max-w-[24rem]">
+    <div ref={coreRef} className="nca-eco-core relative mx-auto aspect-square w-full max-w-[24rem]">
       <svg viewBox="0 0 400 400" className="absolute inset-0 h-full w-full overflow-visible">
         <defs>
           <radialGradient id="eco-disc" cx=".5" cy=".42" r=".6">
@@ -177,25 +178,29 @@ export function Ecosystem() {
   }, [reduced]);
 
   // Connectors are measured from the real layout, so they always meet
-  // the cards whatever the screen width or font size.
+  // the cards whatever the screen width or font size. On phones the hero
+  // is scaled down (HeroStage), so screen measurements are divided by
+  // that scale to get back to the layout's own pixels.
   useEffect(() => {
     const el = wrap.current;
     if (!el) return;
     const measure = () => {
       const W = el.getBoundingClientRect();
-      setSize({ w: W.width, h: W.height });
-      if (window.innerWidth < 768 || !core.current || !mods.current) return setWires([]);
-      const c = core.current.getBoundingClientRect();
-      const cx = c.left + c.width / 2 - W.left;
-      const cy = c.top + c.height / 2 - W.top;
+      const k = el.offsetWidth ? W.width / el.offsetWidth : 0;
+      setSize({ w: el.offsetWidth, h: el.offsetHeight });
+      if (!k || !core.current || !mods.current) return setWires([]);
+      const at = (b: DOMRect) => ({ left: (b.left - W.left) / k, top: (b.top - W.top) / k, width: b.width / k, height: b.height / k });
+      const c = at(core.current.getBoundingClientRect());
+      const cx = c.left + c.width / 2;
+      const cy = c.top + c.height / 2;
       const r = c.width * 0.47;
       const out: Wire[] = [];
       for (const id of LOOP) {
         const card = cards.current[id];
         if (!card) continue;
-        const b = card.getBoundingClientRect();
-        const bx = b.left - W.left;
-        const by = b.top - W.top;
+        const b = at(card.getBoundingClientRect());
+        const bx = b.left;
+        const by = b.top;
         let ax: number;
         let ay: number;
         if (id === 'principal') {
@@ -215,8 +220,7 @@ export function Ecosystem() {
         const d = id === 'principal' ? `M${sx} ${sy} L${ax} ${ay}` : `M${sx} ${sy} C${mx} ${sy} ${mx} ${ay} ${ax} ${ay}`;
         out.push({ id, d, sx, sy, ax, ay });
       }
-      const m = mods.current.getBoundingClientRect();
-      const my = m.top - W.top;
+      const my = at(mods.current.getBoundingClientRect()).top;
       out.push({ id: 'modules', d: `M${cx} ${cy + r} L${cx} ${my}`, sx: cx, sy: cy + r, ax: cx, ay: my });
       setWires(out);
     };
@@ -237,10 +241,10 @@ export function Ecosystem() {
   };
 
   return (
-    <div className="contents md:flex md:flex-col md:gap-3 xl:col-start-1 xl:row-start-1">
-      <div ref={wrap} className="contents md:relative md:block" aria-label="How NetCyberAI connects your whole school" role="group">
+    <div className="flex flex-col gap-3 xl:col-start-1 xl:row-start-1">
+      <div ref={wrap} className="relative block" aria-label="How NetCyberAI connects your whole school" role="group">
         {wires.length > 0 && (
-          <svg className="pointer-events-none absolute inset-0 hidden md:block" width={size.w} height={size.h} viewBox={`0 0 ${size.w} ${size.h}`} aria-hidden="true">
+          <svg className="pointer-events-none absolute inset-0" width={size.w} height={size.h} viewBox={`0 0 ${size.w} ${size.h}`} aria-hidden="true">
             {wires.map((w) => {
               const color = w.id === 'modules' ? '#8b3dff' : COLORS[w.id].eco;
               const on = w.id === activeId || w.id === 'modules';
@@ -266,11 +270,11 @@ export function Ecosystem() {
           </svg>
         )}
 
-        <div className="contents md:relative md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,1fr)] md:items-center md:gap-x-10 md:gap-y-6 md:[grid-template-areas:'school_principal_teacher''student_core_parent']">
-          <div className="order-1 md:order-none md:[grid-area:core]">
+        <div className="relative grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,1fr)] items-center gap-x-10 gap-y-6 [grid-template-areas:'school_principal_teacher''student_core_parent']">
+          <div className="[grid-area:core]">
             <Core coreRef={core} />
           </div>
-          <div className="nca-eco-roles order-3 -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 py-2 md:contents" aria-label="Roles" role="list">
+          <div className="contents" aria-label="Roles" role="list">
             {ECO_ROLES.map((r) => {
               const c = COLORS[r.id];
               const on = r.id === activeId;
@@ -286,7 +290,7 @@ export function Ecosystem() {
                   onMouseLeave={() => setHeld(false)}
                   onFocus={() => hold(r.id)}
                   onBlur={() => setHeld(false)}
-                  className={`nca-eco-card relative z-10 w-4/5 shrink-0 snap-center rounded-3xl border border-slate/10 bg-white p-3 shadow-md sm:w-[calc(50%-0.4rem)] md:w-auto ${AREA[r.id]} ${on ? 'is-active' : ''}`}
+                  className={`nca-eco-card relative z-10 rounded-3xl border border-slate/10 bg-white p-3 shadow-md ${AREA[r.id]} ${on ? 'is-active' : ''}`}
                 >
                   <Link
                     href={r.href}
@@ -301,7 +305,7 @@ export function Ecosystem() {
                       <span className="block text-xs opacity-95">{r.tagline}</span>
                     </span>
                   </Link>
-                  <ul className={`mt-2 grid gap-x-3 gap-y-1 px-1 ${r.id === 'principal' ? 'md:grid-cols-2' : ''}`}>
+                  <ul className={`mt-2 grid gap-x-3 gap-y-1 px-1 ${r.id === 'principal' ? 'grid-cols-2' : ''}`}>
                     {r.items.map((it) => (
                       <li key={it} className="flex items-center gap-2 text-[13px] leading-snug text-slate">
                         <span aria-hidden="true" className="nca-eco-dot flex h-4 w-4 shrink-0 items-center justify-center rounded-[5px]">
@@ -317,21 +321,21 @@ export function Ecosystem() {
           </div>
         </div>
 
-        <div ref={mods} className="nca-eco-platform relative z-10 order-4 rounded-[2rem] px-3 pb-4 pt-5 md:order-none md:mt-8">
-          <ul className="grid grid-cols-4 gap-x-1.5 gap-y-4 sm:grid-cols-6 md:grid-cols-11" aria-label="Platform modules">
+        <div ref={mods} className="nca-eco-platform relative z-10 mt-8 rounded-[2rem] px-3 pb-4 pt-5">
+          <ul className="grid grid-cols-11 gap-x-1.5 gap-y-4" aria-label="Platform modules">
             {ECO_MODULES.map((m, i) => (
               <li key={m.label} className="flex flex-col items-center gap-1.5 text-center">
-                <span style={{ color: '#ffffff' }} className={`nca-eco-tile flex h-11 w-11 items-center justify-center rounded-2xl shadow-md md:h-12 md:w-12 ${TILE_BG[i]} ${tile === i && !reduced ? 'is-on' : ''}`}>
-                  <Icon name={m.icon} className="h-5 w-5 md:h-6 md:w-6" />
+                <span style={{ color: '#ffffff' }} className={`nca-eco-tile flex h-12 w-12 items-center justify-center rounded-2xl shadow-md ${TILE_BG[i]} ${tile === i && !reduced ? 'is-on' : ''}`}>
+                  <Icon name={m.icon} className="h-6 w-6" />
                 </span>
-                <span className="text-[11px] font-bold leading-tight text-slate md:text-xs">{m.label}</span>
+                <span className="text-xs font-bold leading-tight text-slate">{m.label}</span>
               </li>
             ))}
           </ul>
         </div>
       </div>
-      <div className="order-5 flex flex-wrap items-center justify-between gap-2 text-xs text-slate/70 md:order-none">
-        <span>The complete NetCyberAI platform. Swipe the roles on mobile.</span>
+      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate/70">
+        <span>The complete NetCyberAI platform.</span>
         <Link href="/product-tour#modules" className="font-bold text-royal underline-offset-4 hover:underline">
           See which modules are live today →
         </Link>

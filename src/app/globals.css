@@ -309,11 +309,29 @@ dialog.modal-dialog::backdrop {
   transform: translateY(-4px) scale(1.08);
   box-shadow: 0 12px 24px -8px rgb(29 78 216 / 0.7);
 }
-.nca-eco-roles {
-  scrollbar-width: none;
-}
-.nca-eco-roles::-webkit-scrollbar {
-  display: none;
+
+/* Phones: the hero above the WhatsApp phone is the 980px desktop-site
+   layout scaled to the screen width (src/components/home/HeroStage.tsx
+   sets the scale and the scaled height). Role features get a light tint
+   of their role colour and heavier type so they stay readable small. */
+@media (max-width: 767.98px) {
+  .nca-hero-stage {
+    width: 100%;
+    height: var(--nca-stage-h, auto);
+    overflow: hidden;
+  }
+  .nca-hero-stage-inner {
+    width: 980px;
+    padding: 1.5rem 1.5rem 0;
+    transform-origin: 0 0;
+    transform: scale(var(--nca-stage-s, 1));
+  }
+  .nca-hero-stage .nca-eco-card li {
+    border-radius: 6px;
+    padding: 1px 4px;
+    font-weight: 600;
+    background-color: color-mix(in srgb, var(--eco) 9%, transparent);
+  }
 }
 
 /* Thin, quiet scrollbars inside the demo frames. */

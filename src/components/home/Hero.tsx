@@ -3,14 +3,16 @@ import { Icon } from '@/components/visual/Icons';
 import { heroChips, heroGuarantee } from '@/content/pricing';
 import { WhatsAppPhone } from '@/components/showcase/WhatsAppPhone';
 import { Ecosystem } from './Ecosystem';
+import { HeroStage } from './HeroStage';
 
 // Homepage hero (founder, 2026-09-28, Decision Log C79, C81): the
 // NetCyberAI ecosystem, animated and in live text, on top with the
 // parent's WhatsApp beside it on wide screens; then the headline, one
 // short paragraph that names the problem and the answer, and the calls to
-// action. No eyebrow line above the headline, so on phones the headline
-// and "Book a free demo" sit as close to the ecosystem core as possible.
-// Below 1280px the phone follows the text.
+// action, with no eyebrow line above the headline. Below 1280px the phone
+// follows the text. On phones the whole block above the phone is the
+// desktop layout scaled to the screen (HeroStage, C82); the phone itself
+// stays at real phone size.
 
 export function Hero() {
   const chips = heroChips();
@@ -19,59 +21,60 @@ export function Hero() {
     <section aria-labelledby="hero-title" className="nca-hero-sky relative overflow-hidden pb-12">
       <div aria-hidden="true" className="nca-hero-clouds absolute inset-0" />
 
-      {/* One container: on phones the ecosystem's parts and the text are
-          ordered core, headline, roles, modules, phone; from 768px the
-          ecosystem is one block with the text below; from 1280px the
-          phone stands beside the ecosystem. */}
-      <div className="relative mx-auto flex w-full max-w-[86rem] flex-col gap-5 px-4 pt-4 sm:px-6 sm:pt-6 md:gap-10 xl:grid xl:grid-cols-[minmax(0,1fr)_20rem] xl:items-center xl:gap-8 xl:pt-8">
-        <Ecosystem />
-        <div className="order-2 grid grid-cols-1 gap-4 md:order-none md:gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-10 xl:col-span-2 xl:row-start-2">
-          <h1 id="hero-title" className="text-[2.5rem] font-extrabold leading-[1.04] tracking-tight text-slate sm:text-6xl">
-            Smarter Schools. <span className="nca-brighter">Brighter Futures.</span>
-          </h1>
-          <div className="flex flex-col gap-4">
-            <p className="text-lg text-slate">
-              School work is scattered across registers, spreadsheets and busy WhatsApp groups. NetCyberAI brings your principal,
-              teachers, students and parents onto one connected platform: attendance, fees, exams and daily learning updates run
-              automatically, and parents get honest updates on WhatsApp with nothing to install.
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <Button href="/book-demo" variant="secondary">
-                Book a free demo <Icon name="arrow" className="ml-1 h-4 w-4" />
-              </Button>
-              <Button href="/get-started" variant="outline">
-                Get started
-              </Button>
-              <Button href="#principal-dashboard" variant="accent">
-                <Icon name="play" className="mr-1.5 h-4 w-4" /> Try the principal dashboard
-              </Button>
-            </div>
-            <ul className="flex flex-wrap gap-x-5 gap-y-2" aria-label="What every school gets">
-              {chips.map((c) => (
-                <li key={c} className="flex items-center gap-2 text-sm font-semibold text-slate">
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-leaf text-slate">
-                    <Icon name="check" className="h-3 w-3" />
-                  </span>
-                  {c}
-                </li>
-              ))}
-            </ul>
-            {guarantee && (
-              <p className="flex items-start gap-3 rounded-2xl border-2 border-emerald bg-white px-4 py-3 text-sm font-bold text-slate shadow-sm">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald text-white">
-                  <Icon name="shield" className="h-4 w-4" />
-                </span>
-                <span>{guarantee}</span>
+      {/* One container: the ecosystem with the text below it (scaled
+          down whole on phones), then the phone; from 1280px the phone
+          stands beside the ecosystem. */}
+      <div className="relative mx-auto flex w-full max-w-[86rem] flex-col gap-6 md:gap-10 md:px-6 md:pt-6 xl:grid xl:grid-cols-[minmax(0,1fr)_20rem] xl:items-center xl:gap-8 xl:pt-8">
+        <HeroStage>
+          <Ecosystem />
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-10 xl:col-span-2 xl:row-start-2">
+            <h1 id="hero-title" className="text-6xl font-extrabold leading-[1.04] tracking-tight text-slate">
+              Smarter Schools. <span className="nca-brighter">Brighter Futures.</span>
+            </h1>
+            <div className="flex flex-col gap-4">
+              <p className="text-lg text-slate">
+                School work is scattered across registers, spreadsheets and busy WhatsApp groups. NetCyberAI brings your principal,
+                teachers, students and parents onto one connected platform: attendance, fees, exams and daily learning updates run
+                automatically, and parents get honest updates on WhatsApp with nothing to install.
               </p>
-            )}
+              <div className="flex flex-wrap items-center gap-3">
+                <Button href="/book-demo" variant="secondary">
+                  Book a free demo <Icon name="arrow" className="ml-1 h-4 w-4" />
+                </Button>
+                <Button href="/get-started" variant="outline">
+                  Get started
+                </Button>
+                <Button href="#principal-dashboard" variant="accent">
+                  <Icon name="play" className="mr-1.5 h-4 w-4" /> Try the principal dashboard
+                </Button>
+              </div>
+              <ul className="flex flex-wrap gap-x-5 gap-y-2" aria-label="What every school gets">
+                {chips.map((c) => (
+                  <li key={c} className="flex items-center gap-2 text-sm font-semibold text-slate">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-leaf text-slate">
+                      <Icon name="check" className="h-3 w-3" />
+                    </span>
+                    {c}
+                  </li>
+                ))}
+              </ul>
+              {guarantee && (
+                <p className="flex items-start gap-3 rounded-2xl border-2 border-emerald bg-white px-4 py-3 text-sm font-bold text-slate shadow-sm">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald text-white">
+                    <Icon name="shield" className="h-4 w-4" />
+                  </span>
+                  <span>{guarantee}</span>
+                </p>
+              )}
+            </div>
           </div>
-        </div>
+        </HeroStage>
 
         <div className="hidden flex-col gap-3 xl:col-start-2 xl:row-start-1 xl:flex">
           <WhatsAppPhone controls={false} />
         </div>
 
-        <div className="order-6 mx-auto flex w-full max-w-[22rem] flex-col gap-3 md:order-none xl:hidden">
+        <div className="mx-auto flex w-full max-w-[22rem] flex-col gap-3 px-4 md:px-0 xl:hidden">
           <WhatsAppPhone />
         </div>
       </div>
