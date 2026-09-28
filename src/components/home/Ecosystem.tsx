@@ -12,7 +12,7 @@ import { usePrefersReducedMotion } from '@/lib/hooks';
 // data flowing along its connector; module tiles light up one by one.
 // Hovering or focusing a role holds the loop on it. With reduced motion
 // everything is still and complete. There is one layout at every width;
-// on phones the hero scales it down whole (HeroStage), like desktop mode.
+// on phones the hero scales it down whole (ScaledStage), like desktop mode.
 
 // Clockwise around the core, so the highlight travels in a circle.
 const LOOP: EcoRoleId[] = ['school', 'principal', 'teacher', 'parent', 'student'];
@@ -22,7 +22,8 @@ const COLORS: Record<EcoRoleId, { a: string; b: string; eco: string; bg: string 
   principal: { a: '#6D28D9', b: '#4400F0', eco: '#7C3AED', bg: 'bg-grape-deep' },
   teacher: { a: '#C2410C', b: '#9A3412', eco: '#EA580C', bg: 'bg-tangerine-deep' },
   student: { a: '#047857', b: '#0F766E', eco: '#16A34A', bg: 'bg-emerald' },
-  parent: { a: '#C2410C', b: '#B42318', eco: '#F97316', bg: 'bg-coral-deep' },
+  // The AI Copilot tile's colour, so Parent no longer matches Teacher's orange.
+  parent: { a: '#B45309', b: '#92400E', eco: '#B45309', bg: 'bg-gold-deep' },
 };
 
 const TILE_BG = ['bg-royal', 'bg-emerald', 'bg-tangerine-deep', 'bg-grape-deep', 'bg-coral-deep', 'bg-azure', 'bg-emerald', 'bg-gold-deep', 'bg-coral-deep', 'bg-sapphire', 'bg-royal-deep'];
@@ -179,7 +180,7 @@ export function Ecosystem() {
 
   // Connectors are measured from the real layout, so they always meet
   // the cards whatever the screen width or font size. On phones the hero
-  // is scaled down (HeroStage), so screen measurements are divided by
+  // is scaled down (ScaledStage), so screen measurements are divided by
   // that scale to get back to the layout's own pixels.
   useEffect(() => {
     const el = wrap.current;

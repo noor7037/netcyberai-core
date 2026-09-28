@@ -5,6 +5,7 @@ import { tones, type Tone } from '@/lib/semantic';
 import { MODULES, NAV_GROUPS, type ModuleId } from '@/demo-fixture/principal-dashboard';
 import { STATUS_LABEL, moduleStatus, type ModuleStatus } from '@/content/module-status';
 import { PrincipalDashboard } from './PrincipalDashboard';
+import { ScaledStage } from '@/components/home/ScaledStage';
 import { TeacherApp } from './TeacherApp';
 import { WhatsAppPhone } from './WhatsAppPhone';
 
@@ -37,13 +38,14 @@ export function PrincipalSection({ headingLevel = 'h2' }: { headingLevel?: 'h1' 
             </Button>
           </div>
         </div>
-        <p className="flex items-center gap-2 text-xs font-semibold text-slate/70 lg:hidden">
+        <p className="hidden items-center gap-2 text-xs font-semibold text-slate/70 md:flex lg:hidden">
           <Icon name="arrow" className="h-4 w-4" /> Desktop preview: scroll sideways inside the frame, or open it on a laptop.
         </p>
         <div className="nca-scroll -mx-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0" role="region" aria-label="Principal dashboard preview" tabIndex={0}>
-          <div className="min-w-[68rem]">
+          {/* Phones: the whole 68rem dashboard, scaled to fit (C83). */}
+          <ScaledStage width={1088} innerClassName="min-w-[68rem]">
             <PrincipalDashboard />
-          </div>
+          </ScaledStage>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="text-xs text-slate/70">Buttons that would save or send show what would happen and change nothing.</p>

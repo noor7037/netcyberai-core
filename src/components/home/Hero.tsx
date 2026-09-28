@@ -3,7 +3,7 @@ import { Icon } from '@/components/visual/Icons';
 import { heroChips, heroGuarantee } from '@/content/pricing';
 import { WhatsAppPhone } from '@/components/showcase/WhatsAppPhone';
 import { Ecosystem } from './Ecosystem';
-import { HeroStage } from './HeroStage';
+import { ScaledStage } from './ScaledStage';
 
 // Homepage hero (founder, 2026-09-28, Decision Log C79, C81): the
 // NetCyberAI ecosystem, animated and in live text, on top with the
@@ -11,7 +11,7 @@ import { HeroStage } from './HeroStage';
 // short paragraph that names the problem and the answer, and the calls to
 // action, with no eyebrow line above the headline. Below 1280px the phone
 // follows the text. On phones the whole block above the phone is the
-// desktop layout scaled to the screen (HeroStage, C82); the phone itself
+// desktop layout scaled to the screen (ScaledStage, C82); the phone itself
 // stays at real phone size.
 
 export function Hero() {
@@ -25,7 +25,7 @@ export function Hero() {
           down whole on phones), then the phone; from 1280px the phone
           stands beside the ecosystem. */}
       <div className="relative mx-auto flex w-full max-w-[86rem] flex-col gap-6 md:gap-10 md:px-6 md:pt-6 xl:grid xl:grid-cols-[minmax(0,1fr)_20rem] xl:items-center xl:gap-8 xl:pt-8">
-        <HeroStage>
+        <ScaledStage width={980} className="nca-hero-stage md:contents" innerClassName="flex flex-col gap-10 max-md:px-6 max-md:pt-6 md:contents">
           <Ecosystem />
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-10 xl:col-span-2 xl:row-start-2">
             <h1 id="hero-title" className="text-6xl font-extrabold leading-[1.04] tracking-tight text-slate">
@@ -68,7 +68,7 @@ export function Hero() {
               )}
             </div>
           </div>
-        </HeroStage>
+        </ScaledStage>
 
         <div className="hidden flex-col gap-3 xl:col-start-2 xl:row-start-1 xl:flex">
           <WhatsAppPhone controls={false} />

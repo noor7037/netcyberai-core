@@ -310,19 +310,20 @@ dialog.modal-dialog::backdrop {
   box-shadow: 0 12px 24px -8px rgb(29 78 216 / 0.7);
 }
 
-/* Phones: the hero above the WhatsApp phone is the 980px desktop-site
-   layout scaled to the screen width (src/components/home/HeroStage.tsx
-   sets the scale and the scaled height). Role features get a light tint
-   of their role colour and heavier type so they stay readable small. */
+/* Phones: blocks shown as Chrome's "desktop site" mode shows them, laid
+   out at a fixed desktop width and scaled to the screen
+   (src/components/home/ScaledStage.tsx sets the scale and the scaled
+   height): the hero above the WhatsApp phone and the principal
+   dashboard. In the hero, role features get a light tint of their role
+   colour and heavier type so they stay readable small. */
 @media (max-width: 767.98px) {
-  .nca-hero-stage {
+  .nca-stage {
     width: 100%;
     height: var(--nca-stage-h, auto);
     overflow: hidden;
   }
-  .nca-hero-stage-inner {
-    width: 980px;
-    padding: 1.5rem 1.5rem 0;
+  .nca-stage-inner {
+    width: var(--nca-stage-w);
     transform-origin: 0 0;
     transform: scale(var(--nca-stage-s, 1));
   }
