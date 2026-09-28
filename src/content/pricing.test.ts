@@ -46,4 +46,10 @@ describe('homepage promise row (founder, C80)', () => {
     const hits = execSync("grep -rln 'DemoLabel\\|Demo school · fictional numbers' src/app src/components || true").toString().trim();
     expect(hits).toBe('');
   });
+  it('hero headline is the brand line, with no eyebrow above it', () => {
+    const hero = readFileSync('src/components/home/Hero.tsx', 'utf8');
+    expect(hero).toContain('Smarter Schools. <span className="nca-brighter">Brighter Futures.</span>');
+    expect(hero).not.toMatch(/complete school management platform/i);
+    expect(hero).not.toContain('Simpler School Operations');
+  });
 });

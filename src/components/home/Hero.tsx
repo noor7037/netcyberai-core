@@ -4,11 +4,13 @@ import { heroChips, heroGuarantee } from '@/content/pricing';
 import { WhatsAppPhone } from '@/components/showcase/WhatsAppPhone';
 import { Ecosystem } from './Ecosystem';
 
-// Homepage hero (founder, 2026-09-28, Decision Log C79): the NetCyberAI
-// ecosystem, animated and in live text, on top with the parent's WhatsApp
-// beside it on wide screens; then one headline, one short paragraph that
-// names the problem and the answer, and the calls to action. Below 1280px
-// the phone follows the text.
+// Homepage hero (founder, 2026-09-28, Decision Log C79, C81): the
+// NetCyberAI ecosystem, animated and in live text, on top with the
+// parent's WhatsApp beside it on wide screens; then the headline, one
+// short paragraph that names the problem and the answer, and the calls to
+// action. No eyebrow line above the headline, so on phones the headline
+// and "Book a free demo" sit as close to the ecosystem core as possible.
+// Below 1280px the phone follows the text.
 
 export function Hero() {
   const chips = heroChips();
@@ -21,20 +23,12 @@ export function Hero() {
           ordered core, headline, roles, modules, phone; from 768px the
           ecosystem is one block with the text below; from 1280px the
           phone stands beside the ecosystem. */}
-      <div className="relative mx-auto flex w-full max-w-[86rem] flex-col gap-6 px-4 pt-6 sm:px-6 md:gap-10 xl:grid xl:grid-cols-[minmax(0,1fr)_20rem] xl:items-center xl:gap-8 xl:pt-8">
+      <div className="relative mx-auto flex w-full max-w-[86rem] flex-col gap-5 px-4 pt-4 sm:px-6 sm:pt-6 md:gap-10 xl:grid xl:grid-cols-[minmax(0,1fr)_20rem] xl:items-center xl:gap-8 xl:pt-8">
         <Ecosystem />
-        <div className="order-2 grid grid-cols-1 gap-6 md:order-none lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-10 xl:col-span-2 xl:row-start-2">
-          <div className="flex flex-col gap-4">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-wider text-emerald shadow-sm sm:text-xs">
-              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-emerald text-white">
-                <Icon name="check" className="h-3 w-3" />
-              </span>
-              The complete school management platform
-            </span>
-            <h1 id="hero-title" className="text-[2.5rem] font-extrabold leading-[1.04] tracking-tight text-slate sm:text-6xl">
-              Simpler School Operations. <span className="nca-brighter">Brighter Futures.</span>
-            </h1>
-          </div>
+        <div className="order-2 grid grid-cols-1 gap-4 md:order-none md:gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-10 xl:col-span-2 xl:row-start-2">
+          <h1 id="hero-title" className="text-[2.5rem] font-extrabold leading-[1.04] tracking-tight text-slate sm:text-6xl">
+            Smarter Schools. <span className="nca-brighter">Brighter Futures.</span>
+          </h1>
           <div className="flex flex-col gap-4">
             <p className="text-lg text-slate">
               School work is scattered across registers, spreadsheets and busy WhatsApp groups. NetCyberAI brings your principal,
