@@ -89,3 +89,34 @@ export const IMPACT_CARD = [
   { label: 'Topics revised after replies', value: '5' },
   { label: 'Personal Bests in my classes', value: '14' },
 ];
+
+// The parent app preview on the homepage (C84): Aarav's family, in the
+// teacher's class 6-A. An optional app, coming soon, for families who
+// want more detail; WhatsApp stays the main channel for every parent.
+export const PARENT = {
+  name: 'Rohit Sharma',
+  initials: 'RS',
+  child: 'Aarav',
+  cls: 'Class 6-A',
+  teacher: 'Ms Priya Mehta',
+  greeting: 'Good evening, Rohit',
+  date: 'Thursday, 24 Sep',
+};
+
+export const PARENT_MONTH = { present: 16, days: 17, label: 'September so far' };
+
+export const PARENT_HOMEWORK = [{ title: 'Comparing Fractions', subject: 'Mathematics', due: 'Friday', done: true }];
+
+export const PARENT_RESULTS = [
+  { test: 'Unit test 1 · Mathematics', score: '14/20' },
+  { test: 'Unit test 1 · Science', score: '16/20' },
+];
+
+export const PARENT_MESSAGE = { text: 'Aarav found the fractions homework hard. Can you share one more example?', when: 'Yesterday, 8:05 pm' };
+
+export const PARENT_MORE: { id: 'pulse' | 'ptm' | 'messages' | 'fees'; label: string; icon: IconName }[] = [
+  { id: 'pulse', label: 'Daily Pulse', icon: 'pulse' },
+  { id: 'ptm', label: 'PTM', icon: 'users' },
+  { id: 'messages', label: 'Message teacher', icon: 'chat' },
+  { id: 'fees', label: 'Fees & receipts', icon: 'fees' },
+];

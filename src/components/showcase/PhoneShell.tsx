@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 // the parent's WhatsApp and the homepage feed), so they read as one
 // product family. The screen scrolls inside the frame; the page never
 // scrolls sideways.
-const BAR = { slate: 'bg-slate text-white', emerald: 'bg-emerald text-white' };
+const BAR = { slate: 'bg-slate text-white', emerald: 'bg-emerald text-white', royal: 'bg-royal text-white' };
 
 export function PhoneShell({
   header,
@@ -20,7 +20,7 @@ export function PhoneShell({
   footer?: ReactNode;
   children: ReactNode;
   label: string;
-  bar?: 'slate' | 'emerald';
+  bar?: 'slate' | 'emerald' | 'royal';
   screen?: string;
   height?: string;
   className?: string;

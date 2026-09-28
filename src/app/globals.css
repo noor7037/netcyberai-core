@@ -335,6 +335,39 @@ dialog.modal-dialog::backdrop {
   }
 }
 
+/* Homepage teacher and parent apps in sync (LinkedApps.tsx): a dot runs
+   along a feature's line from the phone that acted to the other one. */
+.nca-link-ltr {
+  animation: nca-link-ltr 1s ease-in-out both;
+}
+.nca-link-rtl {
+  animation: nca-link-rtl 1s ease-in-out both;
+}
+@keyframes nca-link-ltr {
+  from {
+    left: 0;
+  }
+  to {
+    left: calc(100% - 0.875rem);
+  }
+}
+@keyframes nca-link-rtl {
+  from {
+    left: calc(100% - 0.875rem);
+  }
+  to {
+    left: 0;
+  }
+}
+.nca-link-live {
+  animation: nca-link-blink 1.6s ease-in-out infinite;
+}
+@keyframes nca-link-blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
 /* Thin, quiet scrollbars inside the demo frames. */
 .nca-scroll {
   scrollbar-width: thin;
