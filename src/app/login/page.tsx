@@ -47,7 +47,7 @@ const ERROR_TEXT: Record<string, string> = {
   password_rejected: 'That password was not accepted. Choose a longer one you have not used elsewhere.',
   mfa_invalid_code: 'That authenticator code did not work. Check your authenticator app and try again.',
   mfa_required: 'This account also needs the code from your authenticator app.',
-  email_send_failed: 'We could not email your sign-in code. Try again in a minute, or contact support.',
+  email_send_failed: 'Our email service could not send the email just now. Please try again in a few minutes, or contact support.',
   email_limit:
     'Our email service is busy and could not send another email just now. If an email from us already arrived, use its code or link. Otherwise try again later, or ask your school admin for a sign-in link.',
   link_invalid: 'That link has expired or was already used. Each link works once, for one hour, and only the newest email works. Send a new code below.',

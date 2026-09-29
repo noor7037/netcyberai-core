@@ -156,6 +156,11 @@ export async function requestEmailCode(email: string, purpose: CodePurpose, redi
       ? await client.auth.signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: redirectTo } })
       : await client.auth.resetPasswordForEmail(email, { redirectTo });
   throwIfRateLimited(error);
+  // The email service itself failing (a 5xx: wrong SMTP login, provider
+  // down) is reported, so nobody waits for an email that was never sent.
+  // Supabase only reaches the sending step for a registered address, so this
+  // reveals an account's existence only while email is broken (C92).
+  if (error && (error.status ?? 0) >= 500) throw new AuthError('email_send_failed', error.message ?? 'email not sent');
   // Any other error (most often "no such account") is deliberately not
   // reported: the answer must not reveal whether an email is registered.
 }
