@@ -30,7 +30,9 @@ fi
 
 echo "Public pages (expect 200):"
 for path in / /login /pricing /contact /get-started /book-demo /free-tools /privacy /terms /sitemap.xml /robots.txt; do
-  code="$(curl -s -o /dev/null -w '%{http_code}' --max-time 60 "$BASE$path")"
+  # `|| true`: a timeout or refused connection must be reported as a FAIL
+  # line (curl still prints 000), not end the script under `set -e`.
+  code="$(curl -s -o /dev/null -w '%{http_code}' --max-time 60 "$BASE$path" || true)"
   if [ "$code" = 200 ]; then pass "$path -> $code"; else fail "$path -> $code"; fi
 done
 
