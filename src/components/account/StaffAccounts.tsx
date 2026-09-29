@@ -25,6 +25,7 @@ const SEND_ERROR: Record<string, string> = {
   not_found: 'That account is not in this school.',
   rate_limited: 'An email was sent to this address a moment ago. Wait a minute, then try again.',
   email_limit: 'The email service has reached its hourly limit. Try again later, or use Founder tools to create a link to share.',
+  email_send_failed: 'The email service refused to send. Check the SMTP settings in Supabase, or use Founder tools to create a link to share.',
   forbidden: 'Only principals, school admins and platform admins can do this.',
 };
 
