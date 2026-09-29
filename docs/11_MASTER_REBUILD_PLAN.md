@@ -1,6 +1,6 @@
 # 11 — NetCyberAI Master Rebuild Plan (E2E Handoff)
 
-**Status:** Proposed — takes effect when the founder approves it and it is committed to `docs/`.
+**Status:** Partly superseded (2026-09-29, Decision Log C87). The website rebuild (U2) shipped differently, as Version 1 (C72–C86). The build order in §7, the demo-project design in D2 and U1, and the U0/U3/U5 visual work are replaced by `14_BACKEND_BUILD_PLAN.md`: product screens reuse the approved website previews, and the second Supabase project becomes production rather than demo. The module map (§3), tiers (D5), competitor matrix (§4) and standing rules (§8) still apply.
 **Date:** 2026-09-23
 **Audience:** Claude Code, any other AI builder, any human engineer joining cold.
 **Relation to other docs:** Sits after `10_DECISION_LOG.md` in reading order. Where this doc and `04_SYSTEM_DESIGN_PRD.md` §7 (IA) or `08_EXECUTION_BIBLE.md` (prompt order) disagree, **this doc wins** and the conflict must be logged as a Decision Log entry in the same PR that adopts it.

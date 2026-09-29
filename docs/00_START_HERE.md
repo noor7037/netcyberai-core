@@ -21,6 +21,13 @@ with, not as an end in itself.
 
 ## Current status
 
+**2026-09-29 — Version 1 website frozen; backend phase active.** The
+public website is locked as Version 1 (changes only by founder decision).
+Active work follows [`14_BACKEND_BUILD_PLAN.md`](14_BACKEND_BUILD_PLAN.md):
+Phase 0 (stabilise) → platform plumbing → teacher PWA → WhatsApp and the
+Daily Pulse loop → principal and Control Plane on real data → fees → exams →
+launch hardening. Its §0 lists the verified state and the open defects.
+
 **Phase 0 (public web platform) — shipped, PASSED.** See
 [`09_ACCEPTANCE_CHECKLIST.md`](09_ACCEPTANCE_CHECKLIST.md) for what
 was actually verified and how.
@@ -36,6 +43,11 @@ from day one specifically so that risk stays bounded. Build sequence:
 [`08_EXECUTION_BIBLE.md`](08_EXECUTION_BIBLE.md), Prompts A through M.
 
 ## Read order for a new session
+
+**Short path for backend-phase sessions (preferred, cheaper):** this file →
+[`14_BACKEND_BUILD_PLAN.md`](14_BACKEND_BUILD_PLAN.md) → the Constitution
+sections and Decision Log entries the task cites. The full order below is
+for work that changes the rules themselves.
 
 1. [`01_CONSTITUTION.md`](01_CONSTITUTION.md) — source of truth. Read
    the amendment index at the top first; it tells you what's changed
