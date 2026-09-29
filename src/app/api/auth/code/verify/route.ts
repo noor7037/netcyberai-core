@@ -1,20 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { loginWithEmailCode, normalizeCode, normalizeEmail } from '@/lib/auth/account';
+import { loginWithEmailCode, normalizeCode, resolveIdentifier } from '@/lib/auth/account';
 import { AuthError } from '@/lib/auth/errors';
-import { outcomeResponse, authErrorResponse } from '@/lib/auth/outcome-response';
+import { outcomeResponse, authErrorResponse, rememberDevice } from '@/lib/auth/outcome-response';
 
 // Signs in with an emailed code. The outcome goes through the same
 // resolution as password login: super_admin still needs the authenticator
-// step, people with several schools still choose one (C89).
+// step, people with several schools still choose one (C89, C90).
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
-  const email = normalizeEmail(body?.email);
   const code = normalizeCode(body?.code);
+  const email = await resolveIdentifier(body?.identifier ?? body?.email);
   if (!email || !code) {
     return NextResponse.json({ error: 'code_invalid' }, { status: 400 });
   }
   try {
-    return outcomeResponse(await loginWithEmailCode(email, code));
+    const { outcome, userId } = await loginWithEmailCode(email, code);
+    const res = outcomeResponse(outcome);
+    return body?.rememberDevice === true && res.ok ? rememberDevice(res, userId) : res;
   } catch (err) {
     if (err instanceof AuthError) return authErrorResponse(err);
     throw err;

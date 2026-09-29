@@ -7,10 +7,18 @@ export const PENDING_COOKIE = 'nca_pending';
 // one route; same httpOnly/secure/sameSite handling as every other cookie
 // here.
 export const IMPERSONATION_RETURN_COOKIE = 'nca_impersonation_return';
+// "Remember this device" (C90): skips the email-code step after a password
+// on this browser. Not cleared by a normal log out (that is the point);
+// cleared by "Forget this device", invalidated by "Sign out on all devices".
+export const DEVICE_COOKIE = 'nca_device';
 
 export const ACCESS_TTL_SECONDS = 15 * 60;
 export const REFRESH_TTL_SECONDS = 30 * 24 * 60 * 60;
 export const PENDING_TTL_SECONDS = 2 * 60;
+// The email-code step waits for an email to arrive, so it gets longer
+// than the 2-minute mfa/select-school hop (C90).
+export const EMAIL_STEP_TTL_SECONDS = 10 * 60;
+export const DEVICE_TTL_SECONDS = 30 * 24 * 60 * 60;
 export const IMPERSONATION_TTL_SECONDS = 15 * 60; // PRD §2.3 "time-boxed" -- matches ACCESS_TTL_SECONDS, no PRD-specified number
 
 export function cookieOptions(maxAgeSeconds: number) {

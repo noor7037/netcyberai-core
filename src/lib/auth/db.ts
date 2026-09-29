@@ -271,3 +271,78 @@ export async function withSelfContext<T>(userId: string, fn: (client: PoolClient
     client.release();
   }
 }
+
+// ---- account security helpers (C90) ----------------------------------------
+// Fixed statements, parameterized input, no request-chosen role. They run as
+// nca_super because users.token_version and users.phone are otherwise only
+// writable inside a tenant context, and these run before one exists (sign-in
+// by mobile number) or on the signed-in user's own row.
+
+async function asAccountService<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  const client = await getPool().connect();
+  try {
+    await client.query('begin');
+    await client.query('set local role nca_super'); // see withTenantContext's comment on why LOCAL, not plain SET
+    const result = await fn(client);
+    await client.query('commit');
+    return result;
+  } catch (err) {
+    await client.query('rollback').catch(() => {});
+    throw err;
+  } finally {
+    await client.query('reset role').catch(() => {});
+    client.release();
+  }
+}
+
+// Every access token, refresh token and remembered device of the user stops
+// working on its next use (all carry the old token_version).
+export async function bumpTokenVersion(userId: string): Promise<number> {
+  return asAccountService(async (client) => {
+    const { rows } = await client.query(
+      `update users set token_version = token_version + 1, updated_at = now() where user_id = $1 returning token_version`,
+      [userId]
+    );
+    if (!rows[0]) throw new Error('bumpTokenVersion: no such user');
+    return Number(rows[0].token_version);
+  });
+}
+
+// Sign-in by mobile number: the account's email, only when exactly one active
+// account has that number (compared on the last 10 digits).
+export async function emailForPhone(tenDigits: string): Promise<string | null> {
+  return asAccountService(async (client) => {
+    const { rows } = await client.query(
+      `select email from users
+       where is_active and email is not null and phone is not null
+         and right(regexp_replace(phone, '\\D', '', 'g'), 10) = $1
+       limit 2`,
+      [tenDigits]
+    );
+    return rows.length === 1 ? (rows[0].email as string) : null;
+  });
+}
+
+export async function ownPhone(userId: string): Promise<string | null> {
+  return asAccountService(async (client) => {
+    const { rows } = await client.query(`select phone from users where user_id = $1`, [userId]);
+    return (rows[0]?.phone as string | null) ?? null;
+  });
+}
+
+// Sets (or clears, with null) the signed-in user's own mobile number.
+// Returns false when another account already uses that number.
+export async function setOwnPhone(userId: string, phone: string | null): Promise<boolean> {
+  return asAccountService(async (client) => {
+    if (phone) {
+      const { rows } = await client.query(
+        `select 1 from users where user_id <> $1 and phone is not null
+           and right(regexp_replace(phone, '\\D', '', 'g'), 10) = right($2, 10) limit 1`,
+        [userId, phone]
+      );
+      if (rows.length) return false;
+    }
+    await client.query(`update users set phone = $2, updated_at = now() where user_id = $1`, [userId, phone]);
+    return true;
+  });
+}

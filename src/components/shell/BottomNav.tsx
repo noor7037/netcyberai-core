@@ -31,7 +31,7 @@ export function BottomNav({ items, ariaLabel }: Props) {
             aria-current={pathname === '/app/account' ? 'page' : undefined}
             className="flex min-h-[44px] items-center px-2 text-xs font-medium text-slate/70 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-sapphire"
           >
-            Password
+            Account
           </Link>
           <ScanButton />
         </span>
