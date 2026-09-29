@@ -66,7 +66,7 @@ function humanError(code: unknown, fallback: string): string {
 
 // Only features the sign-in flow actually has (src/app/api/auth/*).
 const FACTS: { icon: IconName; title: string; body: string }[] = [
-  { icon: 'mail', title: 'A code by email, every new device', body: 'After your password we email you a one-time code. Tick “remember this device” to skip it here for 30 days.' },
+  { icon: 'mail', title: 'An email check on every new device', body: 'After your password we email you a one-time link. Tick “remember this device” to skip it here for 30 days.' },
   { icon: 'lock', title: 'Stay signed in', body: 'You stay signed in on your device until you log out, as long as you use it at least once a month.' },
   { icon: 'school', title: 'Several schools, one login', body: 'If you work in more than one school, you choose which one to open.' },
   { icon: 'shield', title: 'Your school only', body: 'You only ever see records of the school you signed in to.' },
@@ -90,15 +90,15 @@ type Step =
 
 const HEADINGS: Partial<Record<Step['kind'], { title: string; lead: string }>> = {
   credentials: { title: 'Staff sign in', lead: 'For school staff using NetCyberAI. Parents do not need to sign in.' },
-  code_request: { title: 'Sign in with an email code', lead: 'We send a one-time code to the email on your account.' },
-  code_verify: { title: 'Enter your sign-in code', lead: 'Check your email for the code we just sent.' },
+  code_request: { title: 'Sign in with an email link', lead: 'We email you a one-time sign-in link. No password needed.' },
+  code_verify: { title: 'Check your email', lead: 'Your sign-in email is on its way.' },
   reset_request: {
     title: 'Set or reset your password',
-    lead: 'First time here, or forgot your password? We send a one-time code to the email on your account.',
+    lead: 'First time here, or forgot your password? We email you a one-time link to choose a new password.',
   },
-  reset_verify: { title: 'Choose your new password', lead: 'Enter the code from your email and your new password.' },
+  reset_verify: { title: 'Check your email', lead: 'Your password email is on its way.' },
   reset_mfa: { title: 'One more step', lead: 'Your account uses an authenticator app. Enter its 6-digit code to save the new password.' },
-  email_step: { title: 'Check your email', lead: 'We sent a one-time sign-in code.' },
+  email_step: { title: 'Check your email', lead: 'One more step to confirm it is you.' },
   link_password: { title: 'Choose your new password', lead: 'Your email is confirmed. Choose a password for your account.' },
   link_checking: { title: 'Signing you in…', lead: 'Checking the link from your email.' },
   mfa: { title: 'Staff sign in', lead: 'Enter the 6-digit code from your authenticator app.' },
@@ -289,9 +289,7 @@ export default function LoginPage() {
       setEmailCode('');
       setStep(next);
       startCooldown(60);
-      setNotice(
-        `If ${email.trim()} belongs to a NetCyberAI account, an email is on its way with a code and a link. Use either one. It can take a minute; check spam too.`
-      );
+      setNotice('It can take a minute. Check your spam folder too. Only the newest email works.');
     });
   };
 
@@ -405,7 +403,7 @@ export default function LoginPage() {
   const emailCodeInput = (
     <Input
       id="email-code"
-      label="Code from your email"
+      label="Or type the 6-digit code, if your email shows one"
       inputMode="numeric"
       autoComplete="one-time-code"
       value={emailCode}
@@ -423,6 +421,16 @@ export default function LoginPage() {
       onChange={(e) => setCode(e.target.value)}
       required
     />
+  );
+  // What to do next after an email is sent (C93): the email's link is the
+  // main path; a code is typed only if the email shows one.
+  const inboxHint = (lines: { to: string; action: string }) => (
+    <div className="mt-6 flex gap-3 rounded-md border-2 border-sapphire/20 bg-sapphire/5 p-4 text-sm text-slate">
+      <Icon name="mail" className="mt-0.5 h-5 w-5 shrink-0 text-sapphire" />
+      <p>
+        We emailed <span className="font-semibold">{lines.to}</span>. {lines.action}
+      </p>
+    </div>
   );
   const rememberBox = (
     <label className="flex min-h-[44px] items-center gap-3 text-sm text-slate">
@@ -568,6 +576,16 @@ export default function LoginPage() {
               </form>
             )}
 
+            {step.kind === 'code_verify' &&
+              inboxHint({
+                to: email.trim() || 'you',
+                action: 'Open it on this device and tap “Sign in”. You will be signed in here straight away.',
+              })}
+            {step.kind === 'reset_verify' &&
+              inboxHint({
+                to: email.trim() || 'you',
+                action: 'Open it on this device and tap the link. It brings you back here to choose your new password.',
+              })}
             {step.kind === 'code_verify' && (
               <form onSubmit={submitEmailCode} className="mt-6 flex flex-col gap-4">
                 {emailCodeInput}
@@ -630,9 +648,10 @@ export default function LoginPage() {
 
             {step.kind === 'email_step' && (
               <form onSubmit={submitEmailStep} className="mt-6 flex flex-col gap-4">
-                <p className="text-sm text-slate/80">
-                  Your password was right. For your safety we also sent a code to <span className="font-semibold">{step.maskedEmail}</span>.
-                </p>
+                {inboxHint({
+                  to: step.maskedEmail,
+                  action: 'Your password was right. For your safety, open that email on this device and tap its link, or type its code below.',
+                })}
                 {emailCodeInput}
                 {rememberBox}
                 <Button type="submit" disabled={submitting} className="w-full">
