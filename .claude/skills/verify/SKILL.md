@@ -69,7 +69,7 @@ reason to change the page.
 - A migration that creates a SECURITY DEFINER function revokes EXECUTE from
   `public, anon, authenticated, service_role` explicitly: Supabase's default
   privileges grant it to the last three by name, so `revoke ... from public`
-  alone leaves the function on the REST API (Decision Log C88).
+  alone leaves the function on the REST API (Decision Log C94).
 - Behaviour proofs run as `app_user` inside a DO block that ends in
   `raise exception` so everything, including the harness's transaction-local
   `grant app_user to postgres with set true`, rolls back.

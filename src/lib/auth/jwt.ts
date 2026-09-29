@@ -56,9 +56,10 @@ export async function verifyAccessToken(token: string): Promise<SessionClaims | 
 // server has not yet resolved either from a real membership row.
 interface PendingPayload {
   userId: string; // public.users.user_id, equal by construction to the auth.users.id that authenticated
-  purpose: 'mfa' | 'select_school';
+  purpose: 'mfa' | 'select_school' | 'reset' | 'email_step';
   aal: 'aal1' | 'aal2';
-  // Only present for purpose:'mfa' -- carries the just-issued, still-aal1
+  // Present for purpose:'mfa' and purpose:'reset' (a password reset whose
+  // account also has an authenticator, C89) -- carries the just-issued, still-aal1
   // Supabase Auth session across the login -> mfa-verify hop so the
   // verify step can call auth.mfa.challenge/verify without re-prompting
   // the password. Never used for anything DB-authorization-related.
@@ -66,12 +67,12 @@ interface PendingPayload {
   sbRefreshToken?: string;
 }
 
-export async function signPendingToken(payload: PendingPayload): Promise<string> {
+export async function signPendingToken(payload: PendingPayload, ttlSeconds = PENDING_TOKEN_TTL_SECONDS): Promise<string> {
   return new SignJWT({ typ: 'pending', ...payload })
     .setProtectedHeader({ alg: 'HS256' })
     .setSubject(payload.userId)
     .setIssuedAt()
-    .setExpirationTime(`${PENDING_TOKEN_TTL_SECONDS}s`)
+    .setExpirationTime(`${ttlSeconds}s`)
     .sign(secretKey());
 }
 
@@ -81,11 +82,35 @@ export async function verifyPendingToken(token: string): Promise<PendingPayload 
     if (payload.typ !== 'pending') return null;
     return {
       userId: String(payload.userId),
-      purpose: payload.purpose as 'mfa' | 'select_school',
+      purpose: payload.purpose as 'mfa' | 'select_school' | 'reset' | 'email_step',
       aal: payload.aal as 'aal1' | 'aal2',
       sbAccessToken: payload.sbAccessToken as string | undefined,
       sbRefreshToken: payload.sbRefreshToken as string | undefined,
     };
+  } catch {
+    return null;
+  }
+}
+
+// "Remember this device" (C90): proof that this browser already passed the
+// email-code step for this user. Bound to users.token_version, so "sign out
+// on all devices", a password reset and an admin's sign-out-everywhere all
+// make every remembered device ask for the email code again. Never accepted
+// where an access or pending token is expected (`typ` is checked).
+export async function signDeviceToken(userId: string, tokenVersion: number, ttlSeconds: number): Promise<string> {
+  return new SignJWT({ typ: 'device', tv: tokenVersion })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setSubject(userId)
+    .setIssuedAt()
+    .setExpirationTime(`${ttlSeconds}s`)
+    .sign(secretKey());
+}
+
+export async function verifyDeviceToken(token: string): Promise<{ userId: string; tokenVersion: number } | null> {
+  try {
+    const { payload } = await jwtVerify(token, secretKey());
+    if (payload.typ !== 'device' || typeof payload.sub !== 'string') return null;
+    return { userId: payload.sub, tokenVersion: Number(payload.tv) };
   } catch {
     return null;
   }

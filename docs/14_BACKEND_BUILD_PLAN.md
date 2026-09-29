@@ -11,7 +11,7 @@ only for the section a task cites. That rule is how we keep sessions cheap.
 
 ---
 
-## 0. Ground truth (verified 2026-09-29, not carried forward; Phase 0 re-measured the rows marked **Phase 0** the same day, Decision Log C88)
+## 0. Ground truth (verified 2026-09-29, not carried forward; Phase 0 re-measured the rows marked **Phase 0** the same day, Decision Log C94)
 
 | Area | State | Evidence |
 |---|---|---|
@@ -24,7 +24,7 @@ only for the section a task cites. That rule is how we keep sessions cheap.
 | Hosting | Vercel (Hobby: non-commercial only, D7 of doc 11) | Vercel API |
 | **Defect: missing secret** (**Phase 0**: still open, Noor) | Code reads `SUPABASE_SERVICE_ROLE_KEY` (document storage, invite-by-email); it is **not set** in any Vercel target (production, preview, development), so both fail in production | `src/lib/auth/env.ts` vs Vercel env list (names only) |
 | **Defect: leftover secrets** (**Phase 0**: still open, Noor; count corrected) | **10** diagnostic variable names in **16** entries, not 4: `DIAG_TOKEN` and `PROMPT_E_DIAG_TOKEN` (production, preview, development each), `DIAG_TOKEN_DEMO_ACCESS`, `DIAG_DEMO_PASSWORD`, `DIAG_DEMO_TOTP_SECRET`, `DIAG_TOKEN_H_VERIFY`, `DIAG_TOKEN_G_VERIFY`, `DIAG_TOKEN_F`, `DIAG_TOKEN_F_VERIFY`, `DIAG_TOKEN_F_VERIFY2` (preview, branch-scoped). Every route that read them is gone. `DIAG_DEMO_PASSWORD`/`DIAG_DEMO_TOTP_SECRET` are, by their own comments, the founder demo super_admin's real password and TOTP secret | Vercel env list (names and comments, values not decrypted) |
-| ~~Defect: migration drift~~ (**Phase 0**: fixed) | Replaying all 40 repo files into the empty `netcyberai-prod` applied 40/40 without an error. `scripts/catalog_snapshot.sql` then differed in 4 of 18 categories; one reconciling migration (`20260929065533`) applied to both makes all 18 identical (empty diff). Dev's migration **history** still carries its old names (a record, not rewritten); prod's history matches the repo file names 1:1 | C88; `scripts/catalog_snapshot.sql` on both projects |
+| ~~Defect: migration drift~~ (**Phase 0**: fixed) | Replaying all 40 repo files into the empty `netcyberai-prod` applied 40/40 without an error. `scripts/catalog_snapshot.sql` then differed in 4 of 18 categories; one reconciling migration (`20260929065533`) applied to both makes all 18 identical (empty diff). Dev's migration **history** still carries its old names (a record, not rewritten); prod's history matches the repo file names 1:1 | C94; `scripts/catalog_snapshot.sql` on both projects |
 | ~~Advisor warnings~~ (**Phase 0**: fixed except one) | Migration `20260929061317`: EXECUTE on the 3 SECURITY DEFINER functions now only `app_user` (credential functions) or the owner (`rls_auto_enable`); `search_path` pinned on `recompute_fee_status`, `audit_hash_chain`. Security advisor findings: dev 9 → 1 (leaked-password protection, Noor's Auth toggle), prod 0 | `has_function_privilege` before/after, `get_advisors` |
 | Local CI (**Phase 0**) | `scripts/ci_local.sh` mirrors all 20 `checks.yml` steps; `scripts/check_ci_mirror.py` (a CI step) fails on drift. `.claude/skills/verify/` and a SessionStart `npm ci` hook added | `bash scripts/ci_local.sh`: 20/20 passed |
 
@@ -119,7 +119,7 @@ Sessions are Claude Code sessions, not calendar days.
    protection in Supabase Auth; enable branch protection on `main` (require
    the `verify` check).
 
-**Phase 0 status (2026-09-29, C88):** steps 1–4 done; step 5 is the founder's.
+**Phase 0 status (2026-09-29, C94):** steps 1–4 done; step 5 is the founder's.
 
 ### Phase 1 — Platform plumbing (1–2 sessions)
 
@@ -270,4 +270,4 @@ Razorpay applications (§3): they gate Phases 3 and 5.
 | Date | Change |
 |---|---|
 | 2026-09-29 | Created after the Version 1 website freeze (Decision Log C87). |
-| 2026-09-29 | Phase 0 steps 1–4 done; §0 re-measured (Decision Log C88). |
+| 2026-09-29 | Phase 0 steps 1–4 done; §0 re-measured (Decision Log C94). |

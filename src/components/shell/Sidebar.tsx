@@ -10,6 +10,8 @@ type Props = {
   ariaLabel: string;
   /** Rendered under the logo, above the nav list -- e.g. a school switcher. Optional. */
   header?: React.ReactNode;
+  /** Where "Change password" goes (C89): /app/account or /control/account. */
+  accountHref?: string;
 };
 
 function MenuIcon() {
@@ -52,6 +54,9 @@ function NavList({ items, ariaLabel, onNavigate }: { items: NavItem[]; ariaLabel
   );
 }
 
+const footerLink =
+  'flex min-h-[44px] items-center rounded-md px-4 text-sm font-medium text-white/75 hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
+
 async function handleLogout(router: ReturnType<typeof useRouter>) {
   await fetch('/api/auth/logout', { method: 'POST' }).catch(() => {});
   router.push('/login');
@@ -67,7 +72,7 @@ async function handleLogout(router: ReturnType<typeof useRouter>) {
  * nav, screenshotted by the founder). Teacher keeps BottomNav (phone-
  * first, 6 items, no desktop assumed) -- unaffected by this change.
  */
-export function Sidebar({ items, ariaLabel, header }: Props) {
+export function Sidebar({ items, ariaLabel, header, accountHref }: Props) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const menuId = useId();
@@ -124,6 +129,11 @@ export function Sidebar({ items, ariaLabel, header }: Props) {
           </div>
           {header && <div className="border-b border-white/10 px-4 py-3">{header}</div>}
           <NavList items={items} ariaLabel={ariaLabel} onNavigate={() => setOpen(false)} />
+          {accountHref && (
+            <Link href={accountHref} onClick={() => setOpen(false)} className={`mx-3 -mb-2 ${footerLink}`}>
+              Account and security
+            </Link>
+          )}
           <button
             type="button"
             onClick={() => handleLogout(router)}
@@ -141,6 +151,11 @@ export function Sidebar({ items, ariaLabel, header }: Props) {
         </div>
         {header && <div className="border-b border-white/10 px-4 py-3">{header}</div>}
         <NavList items={items} ariaLabel={ariaLabel} />
+        {accountHref && (
+          <Link href={accountHref} className={`mx-3 -mb-2 ${footerLink}`}>
+            Account and security
+          </Link>
+        )}
         <button
           type="button"
           onClick={() => handleLogout(router)}

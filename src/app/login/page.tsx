@@ -8,11 +8,19 @@
 // marketing copy, no animation -- "presentable and on-brand," not a
 // launch-polish pass.
 //
+// C89 (founder, 2026-09-29): three ways in, all ending in the same
+// authenticator and school-choice steps -- password, a one-time code sent
+// to the account's email, and "set or reset your password" with an
+// emailed code (forgotten passwords and first-time staff alike).
+// C90: sign in with an email or mobile number; a password sign-in is
+// always followed by a code emailed to the account unless this browser is
+// a remembered device.
+//
 // [GAP] still open: this is the generic shape for the selection step,
 // not a final, designer-reviewed layout. Good enough to stop reading
 // like an error state or a buried dropdown; not a claim that it's done.
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import Link from 'next/link';
@@ -27,24 +35,39 @@ const NETWORK_ERROR = 'We could not reach the server. Check your connection and 
 const ERROR_TEXT: Record<string, string> = {
   invalid_credentials: 'That email and password do not match. Check both and try again.',
   no_memberships: 'This account is not linked to any school yet. Ask your school admin to add you.',
-  pending_token_invalid: 'Your sign-in step expired. Please enter your email and password again.',
+  pending_token_invalid: 'Your sign-in step expired. Please start again.',
   session_expired: 'Your session expired. Please sign in again.',
   session_revoked: 'This session was signed out. Please sign in again.',
   membership_invalid: 'You no longer have access to that school. Choose another, or ask your school admin.',
   forbidden: 'This account cannot do that. Ask your school admin if you think it should.',
+  account_disabled: 'This account is switched off. Ask your school admin.',
+  code_invalid: 'That code did not work or has expired. Check the latest email, or send a new code.',
+  rate_limited: 'Too many codes were asked for. Wait a minute, then try again.',
+  password_invalid: 'Use 8 to 72 characters, with no space at the start or end.',
+  password_rejected: 'That password was not accepted. Choose a longer one you have not used elsewhere.',
+  mfa_invalid_code: 'That authenticator code did not work. Check your authenticator app and try again.',
+  mfa_required: 'This account also needs the code from your authenticator app.',
+  email_send_failed: 'Our email service could not send the email just now. Please try again in a few minutes, or contact support.',
+  email_limit:
+    'Our email service is busy and could not send another email just now. If an email from us already arrived, use its code or link. Otherwise try again later, or ask your school admin for a sign-in link.',
+  link_invalid: 'That link has expired or was already used. Each link works once, for one hour, and only the newest email works. Send a new code below.',
+  setup_required: 'This needs a setting that is not switched on yet. Please contact support.',
+};
+
+// Supabase sends people back with #error_code=... when an emailed link fails.
+const LINK_ERROR_TEXT: Record<string, string> = {
+  otp_expired: ERROR_TEXT.link_invalid,
+  access_denied: ERROR_TEXT.link_invalid,
 };
 
 function humanError(code: unknown, fallback: string): string {
   return (typeof code === 'string' && ERROR_TEXT[code]) || fallback;
 }
 
-// Only features the sign-in flow actually has (src/app/api/auth/*):
-// password sign-in, an authenticator-code step for accounts that have
-// MFA, and choosing between schools for people with several
-// memberships. There is no self-serve password reset route, so the page
-// points to the school admin and Support instead of a dead link.
+// Only features the sign-in flow actually has (src/app/api/auth/*).
 const FACTS: { icon: IconName; title: string; body: string }[] = [
-  { icon: 'lock', title: 'Authenticator codes', body: 'Accounts with two-step verification are asked for a 6-digit code.' },
+  { icon: 'mail', title: 'An email check on every new device', body: 'After your password we email you a one-time link. Tick “remember this device” to skip it here for 30 days.' },
+  { icon: 'lock', title: 'Stay signed in', body: 'You stay signed in on your device until you log out, as long as you use it at least once a month.' },
   { icon: 'school', title: 'Several schools, one login', body: 'If you work in more than one school, you choose which one to open.' },
   { icon: 'shield', title: 'Your school only', body: 'You only ever see records of the school you signed in to.' },
 ];
@@ -53,9 +76,33 @@ type Membership = { membershipId: string; schoolId: string; schoolName: string; 
 
 type Step =
   | { kind: 'credentials' }
+  | { kind: 'code_request' }
+  | { kind: 'code_verify' }
+  | { kind: 'reset_request' }
+  | { kind: 'reset_verify' }
+  | { kind: 'reset_mfa' }
+  | { kind: 'link_password' }
+  | { kind: 'link_checking' }
+  | { kind: 'email_step'; maskedEmail: string }
   | { kind: 'mfa' }
   | { kind: 'select_school'; memberships: Membership[] }
   | { kind: 'done'; role: string; schoolId: string | null };
+
+const HEADINGS: Partial<Record<Step['kind'], { title: string; lead: string }>> = {
+  credentials: { title: 'Staff sign in', lead: 'For school staff using NetCyberAI. Parents do not need to sign in.' },
+  code_request: { title: 'Sign in with an email link', lead: 'We email you a one-time sign-in link. No password needed.' },
+  code_verify: { title: 'Check your email', lead: 'Your sign-in email is on its way.' },
+  reset_request: {
+    title: 'Set or reset your password',
+    lead: 'First time here, or forgot your password? We email you a one-time link to choose a new password.',
+  },
+  reset_verify: { title: 'Check your email', lead: 'Your password email is on its way.' },
+  reset_mfa: { title: 'One more step', lead: 'Your account uses an authenticator app. Enter its 6-digit code to save the new password.' },
+  email_step: { title: 'Check your email', lead: 'One more step to confirm it is you.' },
+  link_password: { title: 'Choose your new password', lead: 'Your email is confirmed. Choose a password for your account.' },
+  link_checking: { title: 'Signing you in…', lead: 'Checking the link from your email.' },
+  mfa: { title: 'Staff sign in', lead: 'Enter the 6-digit code from your authenticator app.' },
+};
 
 function formatRole(role: string): string {
   return role
@@ -64,35 +111,100 @@ function formatRole(role: string): string {
     .join(' ');
 }
 
+async function post(url: string, body: unknown): Promise<{ ok: boolean; data: Record<string, unknown> }> {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json().catch(() => ({}));
+  return { ok: res.ok, data };
+}
+
 export default function LoginPage() {
   const [step, setStep] = useState<Step>({ kind: 'credentials' });
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
+  const [emailCode, setEmailCode] = useState('');
   const [code, setCode] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [remember, setRemember] = useState(false);
+  // Resend is paused while the email service would refuse it anyway (C91),
+  // with the seconds shown, instead of an error after every tap.
+  const [cooldownUntil, setCooldownUntil] = useState(0);
+  const [now, setNow] = useState(() => Date.now());
+  const cooldown = Math.max(0, Math.ceil((cooldownUntil - now) / 1000));
 
-  async function submitCredentials(e: React.FormEvent) {
-    e.preventDefault();
+  useEffect(() => {
+    if (cooldownUntil <= Date.now()) return;
+    const t = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(t);
+  }, [cooldownUntil]);
+
+  function startCooldown(seconds: number) {
+    setNow(Date.now());
+    setCooldownUntil(Date.now() + seconds * 1000);
+  }
+
+  // Links such as /login?mode=reset (sent to first-time staff) open the
+  // right step directly. Links from emails land here too (C91): Supabase's
+  // own (#access_token=... or #error_code=...) and our own (?th=...&type=...).
+  useEffect(() => {
+    const search = new URLSearchParams(window.location.search);
+    const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    const mode = search.get('mode');
+    const tokenHash = search.get('th');
+    const linkError = hash.get('error_code') ?? (hash.get('error') ? 'access_denied' : null);
+    const accessToken = hash.get('access_token');
+    if (tokenHash || accessToken || linkError) window.history.replaceState(null, '', '/login');
+
+    if (linkError) {
+      setStep({ kind: 'code_request' });
+      setError(LINK_ERROR_TEXT[linkError] ?? ERROR_TEXT.link_invalid);
+    } else if (tokenHash || accessToken) {
+      const body = tokenHash
+        ? { tokenHash, type: search.get('type') }
+        : { accessToken, refreshToken: hash.get('refresh_token'), type: hash.get('type') };
+      setStep({ kind: 'link_checking' });
+      setSubmitting(true);
+      post('/api/auth/link', body)
+        .then(({ ok, data }) => {
+          if (!ok) {
+            setStep({ kind: 'code_request' });
+            setError(humanError(data.error, ERROR_TEXT.link_invalid));
+          } else if (data.status === 'set_password') {
+            setPassword('');
+            setConfirm('');
+            setStep({ kind: 'link_password' });
+          } else {
+            signedIn(data);
+          }
+        })
+        .catch(() => {
+          setStep({ kind: 'code_request' });
+          setError(NETWORK_ERROR);
+        })
+        .finally(() => setSubmitting(false));
+    } else if (mode === 'reset') setStep({ kind: 'reset_request' });
+    else if (mode === 'code') setStep({ kind: 'code_request' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function go(next: Step) {
     setError(null);
+    setNotice(null);
+    setStep(next);
+  }
+
+  async function run(action: () => Promise<void>) {
+    setError(null);
+    setNotice(null);
     setSubmitting(true);
     try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(humanError(data.error, 'Sign-in failed. Please try again.'));
-        return;
-      }
-      if (data.status === 'mfa_required') setStep({ kind: 'mfa' });
-      else if (data.status === 'select_school') setStep({ kind: 'select_school', memberships: data.memberships });
-      else if (data.status === 'ok') {
-        setStep({ kind: 'done', role: data.role, schoolId: data.schoolId });
-        window.location.href = data.role === 'super_admin' ? '/control' : '/app';
-      }
+      await action();
     } catch {
       setError(NETWORK_ERROR);
     } finally {
@@ -100,55 +212,234 @@ export default function LoginPage() {
     }
   }
 
-  async function submitMfa(e: React.FormEvent) {
-    e.preventDefault();
-    setError(null);
-    setSubmitting(true);
-    try {
-      const res = await fetch('/api/auth/mfa/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(humanError(data.error, 'That code did not work. Check your authenticator app and try again.'));
-        return;
-      }
-      if (data.status === 'select_school') setStep({ kind: 'select_school', memberships: data.memberships });
-      else if (data.status === 'ok') {
-        setStep({ kind: 'done', role: data.role, schoolId: data.schoolId });
-        window.location.href = data.role === 'super_admin' ? '/control' : '/app';
-      }
-    } catch {
-      setError(NETWORK_ERROR);
-    } finally {
-      setSubmitting(false);
+  // Every way in ends here: the same answers as password sign-in.
+  function signedIn(data: Record<string, unknown>) {
+    if (data.status === 'email_step') {
+      setEmailCode('');
+      setStep({ kind: 'email_step', maskedEmail: String(data.maskedEmail ?? 'your email') });
+    } else if (data.status === 'mfa_required') {
+      setCode('');
+      setStep({ kind: 'mfa' });
+    } else if (data.status === 'select_school') {
+      setStep({ kind: 'select_school', memberships: data.memberships as Membership[] });
+    } else if (data.status === 'ok') {
+      const role = data.role as string;
+      setStep({ kind: 'done', role, schoolId: (data.schoolId as string | null) ?? null });
+      window.location.href = role === 'super_admin' ? '/control' : '/app';
     }
   }
 
-  async function chooseSchool(membershipId: string) {
-    setError(null);
-    setSubmitting(true);
-    try {
-      const res = await fetch('/api/auth/select-school', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ membershipId }),
+  const submitCredentials = (e: React.FormEvent) => {
+    e.preventDefault();
+    return run(async () => {
+      const { ok, data } = await post('/api/auth/login', { identifier: email, password });
+      if (!ok) return setError(humanError(data.error, 'Sign-in failed. Please try again.'));
+      signedIn(data);
+    });
+  };
+
+  const submitEmailStep = (e: React.FormEvent) => {
+    e.preventDefault();
+    return run(async () => {
+      const { ok, data } = await post('/api/auth/email-step', { code: emailCode, rememberDevice: remember });
+      if (!ok) return setError(humanError(data.error, 'That code did not work. Please try again.'));
+      signedIn(data);
+    });
+  };
+
+  // A refused send is not a dead end: the person may already have a code or
+  // link from an earlier email, so they are taken to where they can use it.
+  function sendRefused(data: Record<string, unknown>): boolean {
+    if (data.error === 'rate_limited') {
+      const wait = Number(data.retryAfter) || 60;
+      startCooldown(wait);
+      setNotice(
+        `We already sent an email a moment ago. Use the code or link in the newest one. You can ask for another in ${wait} seconds.`
+      );
+      return true;
+    }
+    if (data.error === 'email_limit') {
+      startCooldown(60);
+      setError(ERROR_TEXT.email_limit);
+      return true;
+    }
+    return false;
+  }
+
+  const resendEmailStep = () =>
+    run(async () => {
+      const { ok, data } = await post('/api/auth/email-step', { resend: true });
+      if (!ok) {
+        if (sendRefused(data)) return;
+        return setError(humanError(data.error, 'We could not send a new code. Please try again.'));
+      }
+      startCooldown(60);
+      setNotice('A new code is on its way. Use the newest email: older codes stop working.');
+    });
+
+  const sendCode = (purpose: 'login' | 'reset') => (e?: React.FormEvent) => {
+    e?.preventDefault();
+    return run(async () => {
+      const { ok, data } = await post('/api/auth/code/request', { identifier: email, purpose });
+      const next: Step = { kind: purpose === 'login' ? 'code_verify' : 'reset_verify' };
+      if (!ok) {
+        if (sendRefused(data)) return setStep(next);
+        return setError(humanError(data.error, 'We could not send a code. Check the email and try again.'));
+      }
+      setEmailCode('');
+      setStep(next);
+      startCooldown(60);
+      setNotice('It can take a minute. Check your spam folder too. Only the newest email works.');
+    });
+  };
+
+  // "I already have a code": go straight to entering it, without sending
+  // another email (which would replace the code already sent).
+  const haveCode = (purpose: 'login' | 'reset') => () => {
+    if (!email.trim()) {
+      setError('Enter your email or mobile number first.');
+      return;
+    }
+    go({ kind: purpose === 'login' ? 'code_verify' : 'reset_verify' });
+  };
+
+  const submitLinkPassword = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password !== confirm) {
+      setError('The two passwords do not match.');
+      return;
+    }
+    return run(async () => {
+      const { ok, data } = await post('/api/auth/password/reset', { continue: true, newPassword: password, rememberDevice: remember });
+      if (!ok) {
+        if (data.error === 'mfa_required') {
+          setCode('');
+          setStep({ kind: 'reset_mfa' });
+          return;
+        }
+        return setError(humanError(data.error, 'We could not save that password. Please try again.'));
+      }
+      signedIn(data);
+    });
+  };
+
+  const submitEmailCode = (e: React.FormEvent) => {
+    e.preventDefault();
+    return run(async () => {
+      const { ok, data } = await post('/api/auth/code/verify', { identifier: email, code: emailCode, rememberDevice: remember });
+      if (!ok) return setError(humanError(data.error, 'That code did not work. Please try again.'));
+      signedIn(data);
+    });
+  };
+
+  const submitReset = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password !== confirm) {
+      setError('The two passwords do not match.');
+      return;
+    }
+    return run(async () => {
+      const { ok, data } = await post('/api/auth/password/reset', {
+        identifier: email,
+        code: emailCode,
+        newPassword: password,
+        rememberDevice: remember,
       });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(humanError(data.error, 'We could not open that school. Please try again.'));
+      if (!ok) return setError(humanError(data.error, 'We could not save that password. Please try again.'));
+      if (data.status === 'mfa_required') {
+        setCode('');
+        setStep({ kind: 'reset_mfa' });
         return;
       }
-      setStep({ kind: 'done', role: data.role, schoolId: data.schoolId });
+      signedIn(data);
+    });
+  };
+
+  const submitResetMfa = (e: React.FormEvent) => {
+    e.preventDefault();
+    return run(async () => {
+      const { ok, data } = await post('/api/auth/password/reset', {
+        continue: true,
+        newPassword: password,
+        mfaCode: code,
+        rememberDevice: remember,
+      });
+      if (!ok) return setError(humanError(data.error, 'That code did not work. Please try again.'));
+      signedIn(data);
+    });
+  };
+
+  const submitMfa = (e: React.FormEvent) => {
+    e.preventDefault();
+    return run(async () => {
+      const { ok, data } = await post('/api/auth/mfa/verify', { code });
+      if (!ok) return setError(humanError(data.error, 'That code did not work. Check your authenticator app and try again.'));
+      signedIn(data);
+    });
+  };
+
+  const chooseSchool = (membershipId: string) =>
+    run(async () => {
+      const { ok, data } = await post('/api/auth/select-school', { membershipId });
+      if (!ok) return setError(humanError(data.error, 'We could not open that school. Please try again.'));
+      setStep({ kind: 'done', role: data.role as string, schoolId: (data.schoolId as string | null) ?? null });
       window.location.href = '/app';
-    } catch {
-      setError(NETWORK_ERROR);
-    } finally {
-      setSubmitting(false);
-    }
-  }
+    });
+
+  const heading = HEADINGS[step.kind] ?? HEADINGS.credentials!;
+  const emailInput = (
+    <Input
+      id="email"
+      label="Email or mobile number"
+      type="text"
+      autoComplete="username"
+      autoCapitalize="none"
+      spellCheck={false}
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      required
+    />
+  );
+  const emailCodeInput = (
+    <Input
+      id="email-code"
+      label="Or type the 6-digit code, if your email shows one"
+      inputMode="numeric"
+      autoComplete="one-time-code"
+      value={emailCode}
+      onChange={(e) => setEmailCode(e.target.value)}
+      required
+    />
+  );
+  const authenticatorInput = (
+    <Input
+      id="mfa-code"
+      label="Authenticator code"
+      inputMode="numeric"
+      autoComplete="one-time-code"
+      value={code}
+      onChange={(e) => setCode(e.target.value)}
+      required
+    />
+  );
+  // What to do next after an email is sent (C93): the email's link is the
+  // main path; a code is typed only if the email shows one.
+  const inboxHint = (lines: { to: string; action: string }) => (
+    <div className="mt-6 flex gap-3 rounded-md border-2 border-sapphire/20 bg-sapphire/5 p-4 text-sm text-slate">
+      <Icon name="mail" className="mt-0.5 h-5 w-5 shrink-0 text-sapphire" />
+      <p>
+        We emailed <span className="font-semibold">{lines.to}</span>. {lines.action}
+      </p>
+    </div>
+  );
+  const rememberBox = (
+    <label className="flex min-h-[44px] items-center gap-3 text-sm text-slate">
+      <input type="checkbox" className="h-5 w-5" checked={remember} onChange={(e) => setRemember(e.target.checked)} />
+      Remember this device for 30 days (skip the email code here)
+    </label>
+  );
+  const linkButton =
+    'font-semibold text-royal underline disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire';
 
   return (
     <div className="grid min-h-[80vh] grid-cols-1 lg:grid-cols-2">
@@ -202,20 +493,12 @@ export default function LoginPage() {
           </>
         ) : (
           <>
-            <h1 className="text-2xl font-extrabold text-slate">Staff sign in</h1>
-            <p className="mt-1 text-sm text-slate/70">For school staff using NetCyberAI. Parents do not need to sign in.</p>
+            <h1 className="text-2xl font-extrabold text-slate">{heading.title}</h1>
+            <p className="mt-1 text-sm text-slate/70">{heading.lead}</p>
 
             {step.kind === 'credentials' && (
               <form onSubmit={submitCredentials} className="mt-6 flex flex-col gap-4">
-                <Input
-                  id="email"
-                  label="Email"
-                  type="email"
-                  autoComplete="username"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
+                {emailInput}
                 <Input
                   id="password"
                   label="Password"
@@ -225,24 +508,167 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
+                <div className="-mt-2 text-right text-sm">
+                  <button type="button" className={linkButton} onClick={() => go({ kind: 'reset_request' })}>
+                    Forgot password?
+                  </button>
+                </div>
                 <Button type="submit" disabled={submitting} className="w-full">
                   {submitting ? 'Signing in…' : 'Sign in'}
                 </Button>
+                <Button type="button" variant="secondary" disabled={submitting} className="w-full" onClick={() => go({ kind: 'code_request' })}>
+                  Email me a sign-in code
+                </Button>
+              </form>
+            )}
+
+            {(step.kind === 'code_request' || step.kind === 'reset_request') && (
+              <form onSubmit={sendCode(step.kind === 'code_request' ? 'login' : 'reset')} className="mt-6 flex flex-col gap-4">
+                {emailInput}
+                <Button type="submit" disabled={submitting || cooldown > 0} className="w-full">
+                  {submitting ? 'Sending…' : cooldown > 0 ? `Send code (wait ${cooldown}s)` : 'Send code'}
+                </Button>
+                <p className="text-sm text-slate/70">
+                  Already got an email from us?{' '}
+                  <button
+                    type="button"
+                    className={linkButton}
+                    onClick={haveCode(step.kind === 'code_request' ? 'login' : 'reset')}
+                  >
+                    Enter the code
+                  </button>{' '}
+                  or just tap the link in it.
+                </p>
+              </form>
+            )}
+
+            {step.kind === 'link_checking' && (
+              <p role="status" className="mt-6 text-sm text-slate/80">
+                One moment…
+              </p>
+            )}
+
+            {step.kind === 'link_password' && (
+              <form onSubmit={submitLinkPassword} className="mt-6 flex flex-col gap-4">
+                <Input
+                  id="new-password"
+                  label="New password"
+                  type="password"
+                  autoComplete="new-password"
+                  helperText="8 to 72 characters. A short sentence is easy to remember and hard to guess."
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <Input
+                  id="confirm-password"
+                  label="Type the new password again"
+                  type="password"
+                  autoComplete="new-password"
+                  value={confirm}
+                  onChange={(e) => setConfirm(e.target.value)}
+                  required
+                />
+                {rememberBox}
+                <Button type="submit" disabled={submitting} className="w-full">
+                  {submitting ? 'Saving…' : 'Save password and sign in'}
+                </Button>
+              </form>
+            )}
+
+            {step.kind === 'code_verify' &&
+              inboxHint({
+                to: email.trim() || 'you',
+                action: 'Open it on this device and tap “Sign in”. You will be signed in here straight away.',
+              })}
+            {step.kind === 'reset_verify' &&
+              inboxHint({
+                to: email.trim() || 'you',
+                action: 'Open it on this device and tap the link. It brings you back here to choose your new password.',
+              })}
+            {step.kind === 'code_verify' && (
+              <form onSubmit={submitEmailCode} className="mt-6 flex flex-col gap-4">
+                {emailCodeInput}
+                {rememberBox}
+                <Button type="submit" disabled={submitting} className="w-full">
+                  {submitting ? 'Checking…' : 'Sign in'}
+                </Button>
+                <p className="text-sm text-slate/70">
+                  No email?{' '}
+                  <button type="button" className={linkButton} disabled={submitting || cooldown > 0} onClick={() => sendCode('login')()}>
+                    {cooldown > 0 ? `Send a new code in ${cooldown}s` : 'Send a new code'}
+                  </button>
+                </p>
+              </form>
+            )}
+
+            {step.kind === 'reset_verify' && (
+              <form onSubmit={submitReset} className="mt-6 flex flex-col gap-4">
+                {emailCodeInput}
+                <Input
+                  id="new-password"
+                  label="New password"
+                  type="password"
+                  autoComplete="new-password"
+                  helperText="8 to 72 characters. A short sentence is easy to remember and hard to guess."
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <Input
+                  id="confirm-password"
+                  label="Type the new password again"
+                  type="password"
+                  autoComplete="new-password"
+                  value={confirm}
+                  onChange={(e) => setConfirm(e.target.value)}
+                  required
+                />
+                {rememberBox}
+                <Button type="submit" disabled={submitting} className="w-full">
+                  {submitting ? 'Saving…' : 'Save password and sign in'}
+                </Button>
+                <p className="text-sm text-slate/70">
+                  No email?{' '}
+                  <button type="button" className={linkButton} disabled={submitting || cooldown > 0} onClick={() => sendCode('reset')()}>
+                    {cooldown > 0 ? `Send a new code in ${cooldown}s` : 'Send a new code'}
+                  </button>
+                </p>
+              </form>
+            )}
+
+            {step.kind === 'reset_mfa' && (
+              <form onSubmit={submitResetMfa} className="mt-6 flex flex-col gap-4">
+                {authenticatorInput}
+                <Button type="submit" disabled={submitting} className="w-full">
+                  {submitting ? 'Saving…' : 'Save password and sign in'}
+                </Button>
+              </form>
+            )}
+
+            {step.kind === 'email_step' && (
+              <form onSubmit={submitEmailStep} className="mt-6 flex flex-col gap-4">
+                {inboxHint({
+                  to: step.maskedEmail,
+                  action: 'Your password was right. For your safety, open that email on this device and tap its link, or type its code below.',
+                })}
+                {emailCodeInput}
+                {rememberBox}
+                <Button type="submit" disabled={submitting} className="w-full">
+                  {submitting ? 'Checking…' : 'Continue'}
+                </Button>
+                <p className="text-sm text-slate/70">
+                  No email? Check spam, or{' '}
+                  <button type="button" className={linkButton} disabled={submitting || cooldown > 0} onClick={resendEmailStep}>
+                    {cooldown > 0 ? `send a new code in ${cooldown}s` : 'send a new code'}
+                  </button>
+                </p>
               </form>
             )}
 
             {step.kind === 'mfa' && (
               <form onSubmit={submitMfa} className="mt-6 flex flex-col gap-4">
-                <p className="text-sm text-slate/70">Enter the 6-digit code from your authenticator app.</p>
-                <Input
-                  id="mfa-code"
-                  label="Authenticator code"
-                  inputMode="numeric"
-                  autoComplete="one-time-code"
-                  value={code}
-                  onChange={(e) => setCode(e.target.value)}
-                  required
-                />
+                {authenticatorInput}
                 <Button type="submit" disabled={submitting} className="w-full">
                   {submitting ? 'Verifying…' : 'Verify'}
                 </Button>
@@ -251,15 +677,32 @@ export default function LoginPage() {
           </>
         )}
 
+        {notice && !error && (
+          <p role="status" className="mt-4 text-sm text-slate/80">
+            {notice}
+          </p>
+        )}
         {error && (
           <p role="alert" className="mt-4 text-sm font-medium text-red-800">
             {error}
           </p>
         )}
 
+        {step.kind !== 'credentials' && step.kind !== 'done' && (
+          <p className="mt-6 border-t border-slate/10 pt-4 text-sm">
+            <button type="button" className={linkButton} onClick={() => go({ kind: 'credentials' })}>
+              Back to sign in with password
+            </button>
+          </p>
+        )}
+
         {step.kind === 'credentials' && (
           <p className="mt-6 border-t border-slate/10 pt-4 text-sm text-slate/70">
-            Forgot your password or locked out? Ask your school admin, or{' '}
+            First time signing in?{' '}
+            <button type="button" className={linkButton} onClick={() => go({ kind: 'reset_request' })}>
+              Set your password
+            </button>{' '}
+            with a code sent to the email your school registered. Still stuck? Ask your school admin, or{' '}
             <Link href="/support" className="font-semibold text-royal underline">
               contact support
             </Link>

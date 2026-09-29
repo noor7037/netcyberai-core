@@ -130,6 +130,11 @@ ALLOWED_PERMISSIVE = (
         ("memberships", "memberships_self"),
         ("schools", "schools_visible_via_own_membership"),
         ("users", "users_self"),
+        # Users holding a membership of the current tenant (C89: principals
+        # and school admins send password-reset codes). Tenant-scoped through
+        # memberships, no role clause; who may list accounts is enforced in
+        # the API routes.
+        ("users", "users_school_staff_read"),
         # Audit log: append-only INSERT gate, and read-your-own-school SELECT.
         ("audit_log", "audit_insert_only"),
         ("audit_log", "audit_read_own_school"),

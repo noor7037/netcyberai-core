@@ -21,7 +21,7 @@ export default async function ControlLayout({ children }: { children: React.Reac
   }
   return (
     <div className="min-h-screen bg-off-white">
-      <Sidebar items={controlNav} ariaLabel="Platform 2 navigation" />
+      <Sidebar items={controlNav} ariaLabel="Platform 2 navigation" accountHref="/control/account" />
       <main className="md:pl-60">{children}</main>
     </div>
   );
