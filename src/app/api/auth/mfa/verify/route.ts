@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       res.cookies.set(PENDING_COOKIE, outcome.pendingToken, cookieOptions(PENDING_TTL_SECONDS));
       return res;
     }
-    if (outcome.status === 'mfa_required' || outcome.status === 'email_step') {
+    if (outcome.status === 'mfa_required' || outcome.status === 'email_step' || outcome.status === 'mfa_setup') {
       // Cannot happen: verifyMfaAndContinue only re-enters resolution at aal2.
       return NextResponse.json({ error: 'unexpected mfa_required after verify' }, { status: 500 });
     }

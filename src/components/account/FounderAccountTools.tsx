@@ -12,13 +12,13 @@ const ERROR_TEXT: Record<string, string> = {
   no_email: 'This account has no email.',
   password_invalid: 'Use 8 to 72 characters, with no space at the start or end.',
   password_rejected: 'Supabase did not accept that password. Try a longer one.',
-  super_admin_authenticator: 'A platform admin authenticator cannot be removed here yet.',
+  own_authenticator: 'You cannot remove your own authenticator. Replace it under Account and security instead.',
   not_found: 'Account not found.',
 };
 
 type Result = { kind: 'link'; link: string; code: string | null } | { kind: 'text'; ok: boolean; text: string };
 
-export function FounderAccountTools({ userId, name }: { userId: string; name: string }) {
+export function FounderAccountTools({ userId, name, isSelf = false }: { userId: string; name: string; isSelf?: boolean }) {
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
@@ -40,7 +40,7 @@ export function FounderAccountTools({ userId, name }: { userId: string; name: st
         action === 'temp_password'
           ? `Temporary password set and ${name} signed out everywhere. Tell them the password privately; they can change it under Account and security.`
           : action === 'remove_authenticator'
-            ? `Removed ${data.removed ?? 0} authenticator(s) and signed ${name} out everywhere.`
+            ? `Removed ${data.removed ?? 0} authenticator(s) and signed ${name} out everywhere. A platform admin sets up a new one at their next sign-in.`
             : `${name} is signed out on every device.`;
       setTempPassword('');
       setResult({ kind: 'text', ok: true, text });
@@ -78,14 +78,19 @@ export function FounderAccountTools({ userId, name }: { userId: string; name: st
         <Button type="button" variant="outline" disabled={busy} onClick={() => act('sign_out_all')}>
           Sign out everywhere
         </Button>
-        <Button
-          type="button"
-          variant="outline"
-          disabled={busy}
-          onClick={() => window.confirm(`Remove ${name}'s authenticator app?`) && act('remove_authenticator')}
-        >
-          Remove authenticator
-        </Button>
+        {!isSelf && (
+          <Button
+            type="button"
+            variant="outline"
+            disabled={busy}
+            onClick={() =>
+              window.confirm(`Remove ${name}'s authenticator app? They will be signed out everywhere and asked to set up a new one.`) &&
+              act('remove_authenticator')
+            }
+          >
+            Remove authenticator
+          </Button>
+        )}
       </div>
       <form
         className="flex flex-col gap-2 sm:flex-row"

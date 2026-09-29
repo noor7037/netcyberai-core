@@ -8,6 +8,7 @@ import { signOutEverywhere } from '@/lib/auth/account';
 import { createOneTimeLink, removeAuthenticators, setTemporaryPassword } from '@/lib/auth/admin-actions';
 import { findAnyAccount, isUserId } from '@/lib/auth/staff-accounts';
 import { writeAuditLog } from '@/lib/audit/log';
+import { canRemoveAuthenticatorOf } from '@/lib/auth/authenticator-rules';
 
 // Founder console account tools (C91). Works without email delivery.
 // Audited with the action name and flags only: never the link, code or password.
@@ -29,10 +30,12 @@ export async function POST(req: NextRequest, { params }: { params: { userId: str
       if (!target.email && (action === 'signin_link' || action === 'reset_link')) {
         return NextResponse.json({ error: 'no_email' }, { status: 409 });
       }
-      if (action === 'remove_authenticator' && target.role === 'super_admin') {
-        // No in-app authenticator enrolment exists yet, so a platform admin
-        // without one could not reach the control panel at all.
-        return NextResponse.json({ error: 'super_admin_authenticator' }, { status: 409 });
+      // Anyone's authenticator can be removed, a platform admin's included:
+      // they enrol a new one during their next sign-in, after the email step
+      // (C95). Never the caller's own, or a stolen password and email could
+      // swap the authenticator out from inside the console.
+      if (action === 'remove_authenticator' && !canRemoveAuthenticatorOf(guard.claims.sub, target.userId)) {
+        return NextResponse.json({ error: 'own_authenticator' }, { status: 409 });
       }
 
       let result: Record<string, unknown> = {};

@@ -1,11 +1,12 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { newAuthClient } from './supabase';
 import { bumpTokenVersion, emailForPhone, withBackendConnection, withSelfContext } from './db';
-import { fetchLiveUser, resolveAfterCredentials } from './resolve';
+import { fetchLiveUser, resolveAfterCredentials, type AuthenticatorContext } from './resolve';
 import { signPendingToken, verifyDeviceToken, verifyPendingToken } from './jwt';
 import { EMAIL_STEP_TTL_SECONDS } from './cookies';
 import { AuthError } from './errors';
 import type { LoginOutcome } from './types';
+import { emailProofFromAccessToken, emailProofFromAmr } from './authenticator-rules';
 
 // Account recovery and email codes (founder request 2026-09-29, Decision
 // Log C89): sign in with a one-time code sent to the account's email,
@@ -107,7 +108,7 @@ function needsSecondFactor(err: SupabaseAuthError): boolean {
   return !!err && (err.code === 'insufficient_aal' || /aal2|assurance level/i.test(err.message ?? ''));
 }
 
-async function passTotp(client: SupabaseClient, code: string): Promise<void> {
+export async function passTotp(client: SupabaseClient, code: string): Promise<void> {
   const { data: factors } = await client.auth.mfa.listFactors();
   const totp = factors?.totp?.find((f) => f.status === 'verified');
   if (!totp) throw new AuthError('mfa_not_enrolled', 'no verified TOTP factor');
@@ -167,13 +168,34 @@ export async function requestEmailCode(email: string, purpose: CodePurpose, redi
 
 export type SignedIn = { outcome: LoginOutcome; userId: string };
 
+// C95: whether the account has a confirmed authenticator, and whether this
+// session came from an emailed code or link. nextLevel (from the session
+// Supabase just issued) is aal2 exactly when an authenticator exists; "none"
+// is confirmed with Supabase before it is believed, because it can send a
+// platform admin into enrolment. Unknown (undefined) keeps the pre-C95
+// behaviour.
+async function authenticatorContext(
+  client: SupabaseClient,
+  aalData: { nextLevel: string | null; currentAuthenticationMethods: unknown } | null
+): Promise<AuthenticatorContext | undefined> {
+  if (!aalData) return undefined;
+  const emailProven = !!emailProofFromAmr(aalData.currentAuthenticationMethods);
+  if (aalData.nextLevel === 'aal2') return { hasVerified: true, emailProven };
+  const { data, error } = await client.auth.mfa.listFactors();
+  if (error || !data) return undefined;
+  return { hasVerified: data.totp.length > 0, emailProven };
+}
+
 async function signInFromClient(client: SupabaseClient, userId: string, session: { access_token: string; refresh_token: string }): Promise<SignedIn> {
   const { data: aalData } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
   const aal = (aalData?.currentLevel ?? 'aal1') as 'aal1' | 'aal2';
-  const outcome = await resolveAfterCredentials(userId, aal, {
-    sbAccessToken: session.access_token,
-    sbRefreshToken: session.refresh_token,
-  });
+  const authenticator = aal === 'aal2' ? undefined : await authenticatorContext(client, aalData);
+  const outcome = await resolveAfterCredentials(
+    userId,
+    aal,
+    { sbAccessToken: session.access_token, sbRefreshToken: session.refresh_token },
+    authenticator
+  );
   return { outcome, userId };
 }
 
@@ -202,6 +224,15 @@ async function deviceTrusted(deviceToken: string | undefined, userId: string): P
   return Number(live.token_version) === device.tokenVersion;
 }
 
+// A platform admin with no authenticator enrols one during sign-in, and that
+// needs the email proven in this sign-in (C95), so a remembered device does
+// not skip the email step for them.
+async function mustEnrolAuthenticator(client: SupabaseClient, userId: string): Promise<boolean> {
+  const { data } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
+  if (data?.nextLevel === 'aal2') return false;
+  return (await fetchLiveUser(userId)).role === 'super_admin';
+}
+
 export async function passwordLogin(identifier: string, password: string, deviceToken?: string, redirectTo?: string): Promise<LoginOutcome> {
   const email = await resolveIdentifier(identifier);
   if (!email) throw new AuthError('invalid_credentials', 'no account for that email or mobile number');
@@ -209,7 +240,8 @@ export async function passwordLogin(identifier: string, password: string, device
   const { data, error } = await client.auth.signInWithPassword({ email, password });
   if (error || !data.session || !data.user) throw new AuthError('invalid_credentials', error?.message ?? 'sign-in failed');
 
-  if (emailStepEnabled() && !(await deviceTrusted(deviceToken, data.user.id))) {
+  const skipEmailStep = (await deviceTrusted(deviceToken, data.user.id)) && !(await mustEnrolAuthenticator(client, data.user.id));
+  if (emailStepEnabled() && !skipEmailStep) {
     await sendSignInCode(email, redirectTo);
     const pendingToken = await signPendingToken({ userId: data.user.id, purpose: 'email_step', aal: 'aal1' }, EMAIL_STEP_TTL_SECONDS);
     return { status: 'email_step', pendingToken, maskedEmail: maskEmail(email) };
@@ -336,19 +368,8 @@ export async function changePassword(
 // Methods Supabase records for a session created by an emailed code or link.
 // A password session is refused here: it must go through passwordLogin, so
 // the email-code step cannot be skipped by calling Supabase directly.
-const EMAIL_PROOF_METHODS = new Set(['otp', 'magiclink', 'recovery', 'invite', 'email/signup']);
+// The list of such methods lives in authenticator-rules.ts (EMAIL_PROOF_METHODS).
 const LINK_MAX_AGE_SECONDS = 15 * 60;
-
-function emailProof(accessToken: string): { method: string; at: number } | null {
-  try {
-    const payload = JSON.parse(Buffer.from(accessToken.split('.')[1], 'base64url').toString('utf8'));
-    const amr: { method?: string; timestamp?: number }[] = Array.isArray(payload.amr) ? payload.amr : [];
-    const hit = amr.find((a) => a.method && EMAIL_PROOF_METHODS.has(a.method));
-    return hit?.method && hit.timestamp ? { method: hit.method, at: hit.timestamp } : null;
-  } catch {
-    return null;
-  }
-}
 
 export type LinkResult = { status: 'signed_in'; signedIn: SignedIn } | { status: 'set_password'; pendingToken: string };
 
@@ -387,7 +408,7 @@ async function finishLinkSession(
   session: { access_token: string; refresh_token: string },
   kind?: string
 ): Promise<LinkResult> {
-  const proof = emailProof(session.access_token);
+  const proof = emailProofFromAccessToken(session.access_token);
   if (!proof || Date.now() / 1000 - proof.at > LINK_MAX_AGE_SECONDS) throw new AuthError('link_invalid', 'not an email link session');
   const data = { user: { id: userId }, session };
 

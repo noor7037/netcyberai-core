@@ -3,6 +3,8 @@ import { newAuthClient } from './supabase';
 import { signAccessToken, signPendingToken, verifyPendingToken } from './jwt';
 import { newRefreshToken, hashToken } from './hash';
 import { AuthError } from './errors';
+import { AUTHENTICATOR_SETUP_TTL_SECONDS } from './cookies';
+import { authenticatorStepAtSignIn } from './authenticator-rules';
 import type { LoginOutcome, MembershipRow, SessionClaims, StaffRole } from './types';
 
 const REFRESH_TOKEN_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days; not specified numerically by PRD Sec2.3, a stated operational default
@@ -105,26 +107,54 @@ async function mintSession(
   return { accessToken, refreshToken, claims };
 }
 
+// What the Supabase session behind this sign-in says about authenticators
+// (C95): whether the account has a confirmed one, and whether this session
+// came from an emailed code or link. Absent when unknown, which keeps the
+// old behaviour (platform admins are asked for a code, nobody else is).
+export type AuthenticatorContext = { hasVerified: boolean; emailProven: boolean };
+
 async function resolveAfterCredentials(
   userId: string,
   aal: 'aal1' | 'aal2',
-  pendingSupabaseTokens?: { sbAccessToken: string; sbRefreshToken: string }
+  pendingSupabaseTokens?: { sbAccessToken: string; sbRefreshToken: string },
+  authenticator?: AuthenticatorContext
 ): Promise<LoginOutcome> {
   const live = await fetchLiveUser(userId);
   if (!live.is_active) {
     throw new AuthError('account_disabled', 'users.is_active is false');
   }
 
+  const step = authenticatorStepAtSignIn({
+    role: live.role,
+    aal,
+    // Unknown counts as "has one" for a platform admin (ask for the code, as
+    // before C95) and as "has none" for everyone else (nothing to ask).
+    hasVerifiedAuthenticator: authenticator?.hasVerified ?? live.role === 'super_admin',
+    emailProven: authenticator?.emailProven ?? false,
+  });
+  if (step === 'not_enrolled') {
+    throw new AuthError('mfa_not_enrolled', 'platform admin has no authenticator and the email was not proven in this sign-in');
+  }
+  if (step === 'setup') {
+    if (!pendingSupabaseTokens) throw new AuthError('pending_token_invalid', 'no Supabase session to enrol with');
+    const pendingToken = await signPendingToken(
+      { userId, purpose: 'mfa_setup', aal: 'aal1', ...pendingSupabaseTokens },
+      AUTHENTICATOR_SETUP_TTL_SECONDS
+    );
+    return { status: 'mfa_setup', pendingToken };
+  }
+  if (step === 'verify') {
+    const pendingToken = await signPendingToken({
+      userId,
+      purpose: 'mfa',
+      aal: 'aal1',
+      ...pendingSupabaseTokens,
+    });
+    return { status: 'mfa_required', pendingToken };
+  }
+
   if (live.role === 'super_admin') {
-    if (aal !== 'aal2') {
-      const pendingToken = await signPendingToken({
-        userId,
-        purpose: 'mfa',
-        aal: 'aal1',
-        ...pendingSupabaseTokens,
-      });
-      return { status: 'mfa_required', pendingToken };
-    }
+    // Reached only at aal2: step is 'none' for a platform admin only then.
     const minted = await mintSession(userId, 'super_admin', null, null, live.token_version, 'aal2');
     return { status: 'ok', ...minted };
   }

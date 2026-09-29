@@ -54,15 +54,22 @@ export async function verifyAccessToken(token: string): Promise<SessionClaims | 
 // is expected -- the `typ` discriminator is checked, not assumed -- and
 // they carry no role/schoolId, because at this point in the flow the
 // server has not yet resolved either from a real membership row.
+export type PendingPurpose = 'mfa' | 'select_school' | 'reset' | 'email_step' | 'mfa_setup' | 'authenticator';
+const PENDING_PURPOSES: readonly string[] = ['mfa', 'select_school', 'reset', 'email_step', 'mfa_setup', 'authenticator'];
+
 interface PendingPayload {
   userId: string; // public.users.user_id, equal by construction to the auth.users.id that authenticated
-  purpose: 'mfa' | 'select_school' | 'reset' | 'email_step';
+  purpose: PendingPurpose;
   aal: 'aal1' | 'aal2';
   // Present for purpose:'mfa' and purpose:'reset' (a password reset whose
   // account also has an authenticator, C89) -- carries the just-issued, still-aal1
   // Supabase Auth session across the login -> mfa-verify hop so the
   // verify step can call auth.mfa.challenge/verify without re-prompting
-  // the password. Never used for anything DB-authorization-related.
+  // the password. Also for 'mfa_setup' (a platform admin enrolling an
+  // authenticator during sign-in) and 'authenticator' (setting one up or
+  // replacing it on the account page), C95: the enrolment is confirmed with
+  // the same Supabase session that started it. Never used for anything
+  // DB-authorization-related.
   sbAccessToken?: string;
   sbRefreshToken?: string;
 }
@@ -79,10 +86,10 @@ export async function signPendingToken(payload: PendingPayload, ttlSeconds = PEN
 export async function verifyPendingToken(token: string): Promise<PendingPayload | null> {
   try {
     const { payload } = await jwtVerify(token, secretKey());
-    if (payload.typ !== 'pending') return null;
+    if (payload.typ !== 'pending' || !PENDING_PURPOSES.includes(String(payload.purpose))) return null;
     return {
       userId: String(payload.userId),
-      purpose: payload.purpose as 'mfa' | 'select_school' | 'reset' | 'email_step',
+      purpose: payload.purpose as PendingPurpose,
       aal: payload.aal as 'aal1' | 'aal2',
       sbAccessToken: payload.sbAccessToken as string | undefined,
       sbRefreshToken: payload.sbRefreshToken as string | undefined,
