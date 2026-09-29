@@ -11,7 +11,7 @@ only for the section a task cites. That rule is how we keep sessions cheap.
 
 ---
 
-## 0. Ground truth (verified 2026-09-29, not carried forward)
+## 0. Ground truth (verified 2026-09-29, not carried forward; Phase 0 re-measured the rows marked **Phase 0** the same day, Decision Log C88)
 
 | Area | State | Evidence |
 |---|---|---|
@@ -20,12 +20,13 @@ only for the section a task cites. That rule is how we keep sessions cheap.
 | Built backend | Students, guardians, consent ledger, DSR, CSV import, OCR scan, QR ID cards, attendance, syllabus progress, subjects, WhatsApp send-gate (mock provider), school WhatsApp config, onboarding, feature flags, invites | `docs/12_CAPABILITY_MATRIX.md` |
 | Product screens | `/control`: 4 of 14 pages real, 10 stubs. `/app`: 7 of 24 real, 17 stubs. No `/t` (teacher) or `/p` (parent) route yet | `grep StubPage` |
 | Schema only (no API/UI) | Fees (6 tables), exams/marks, pulse messages + replies, at-risk flags, recognition, teacher impact, certificates, templates | capability matrix |
-| Database | Supabase **Free** plan, **one** project (`netcyberai-dev`, ap-south-1, PG 17) serving production. 2 test-fixture schools, 160 fixture students, 47 tables. `pg_cron` + `pg_net` available | Supabase API |
+| Database (**Phase 0**) | Supabase **Free** plan, **two** projects, both ap-south-1, PG 17.6.1.166. `netcyberai-dev` (`unodnyyfqhxrbusbkite`) still serves production (Vercel points at it): 47 tables, 2 schools (both `is_test_fixture`), 160 students (all in fixture schools), 19 users, 2 leads, 0 WhatsApp configs. `netcyberai-prod` (`rkpfkqpotmpupbjfambg`, created 2026-09-29, `get_cost` $0/month): built only from `supabase/migrations/`, 47 tables, no data, not connected to Vercel. `pg_cron` + `pg_net` available, not installed | `list_projects`, `get_cost`, row counts |
 | Hosting | Vercel (Hobby: non-commercial only, D7 of doc 11) | Vercel API |
-| **Defect: missing secret** | Code reads `SUPABASE_SERVICE_ROLE_KEY` (document storage); it is **not set** on Vercel, so document upload fails in production | `src/lib/auth/env.ts` vs Vercel env list |
-| **Defect: leftover secrets** | `DIAG_TOKEN`, `PROMPT_E_DIAG_TOKEN` (production), `DIAG_DEMO_PASSWORD`, `DIAG_DEMO_TOTP_SECRET` (preview) still set; their routes were removed | Vercel env list |
-| **Defect: migration drift** | Live migration history and `supabase/migrations/` differ by name in 10+ places (e.g. live `fix_whatsapp_config_tenant_check_null_bypass`, `add_communication_log_reason_column`; repo `csv_imports`, `documents_storage_bucket`). A clean replay of the repo has never been proven | `list_migrations` vs repo |
-| **Advisor warnings** | 3 SECURITY DEFINER functions executable by `anon`/`authenticated` via the public REST API (`whatsapp_config_get_credentials`, `…_set_credentials`, `rls_auto_enable`). Checked: the credential functions refuse callers without the app's tenant setting, so **not exploitable today**, but the grant is still wrong. 2 functions without a fixed `search_path`. Leaked-password protection off | Supabase advisors + function bodies |
+| **Defect: missing secret** (**Phase 0**: still open, Noor) | Code reads `SUPABASE_SERVICE_ROLE_KEY` (document storage, invite-by-email); it is **not set** in any Vercel target (production, preview, development), so both fail in production | `src/lib/auth/env.ts` vs Vercel env list (names only) |
+| **Defect: leftover secrets** (**Phase 0**: still open, Noor; count corrected) | **10** diagnostic variable names in **16** entries, not 4: `DIAG_TOKEN` and `PROMPT_E_DIAG_TOKEN` (production, preview, development each), `DIAG_TOKEN_DEMO_ACCESS`, `DIAG_DEMO_PASSWORD`, `DIAG_DEMO_TOTP_SECRET`, `DIAG_TOKEN_H_VERIFY`, `DIAG_TOKEN_G_VERIFY`, `DIAG_TOKEN_F`, `DIAG_TOKEN_F_VERIFY`, `DIAG_TOKEN_F_VERIFY2` (preview, branch-scoped). Every route that read them is gone. `DIAG_DEMO_PASSWORD`/`DIAG_DEMO_TOTP_SECRET` are, by their own comments, the founder demo super_admin's real password and TOTP secret | Vercel env list (names and comments, values not decrypted) |
+| ~~Defect: migration drift~~ (**Phase 0**: fixed) | Replaying all 40 repo files into the empty `netcyberai-prod` applied 40/40 without an error. `scripts/catalog_snapshot.sql` then differed in 4 of 18 categories; one reconciling migration (`20260929065533`) applied to both makes all 18 identical (empty diff). Dev's migration **history** still carries its old names (a record, not rewritten); prod's history matches the repo file names 1:1 | C88; `scripts/catalog_snapshot.sql` on both projects |
+| ~~Advisor warnings~~ (**Phase 0**: fixed except one) | Migration `20260929061317`: EXECUTE on the 3 SECURITY DEFINER functions now only `app_user` (credential functions) or the owner (`rls_auto_enable`); `search_path` pinned on `recompute_fee_status`, `audit_hash_chain`. Security advisor findings: dev 9 → 1 (leaked-password protection, Noor's Auth toggle), prod 0 | `has_function_privilege` before/after, `get_advisors` |
+| Local CI (**Phase 0**) | `scripts/ci_local.sh` mirrors all 20 `checks.yml` steps; `scripts/check_ci_mirror.py` (a CI step) fails on drift. `.claude/skills/verify/` and a SessionStart `npm ci` hook added | `bash scripts/ci_local.sh`: 20/20 passed |
 
 ---
 
@@ -111,10 +112,14 @@ Sessions are Claude Code sessions, not calendar days.
    `.claude/skills/verify/SKILL.md`; add a SessionStart hook (`npm ci`) so
    each new session starts ready.
 4. **Docs:** capability matrix status refresh; this plan's §0 table updated.
-5. **Founder, in the dashboards (≈15 min):** delete the 4 leftover `DIAG_*`
-   env vars; set `SUPABASE_SERVICE_ROLE_KEY` (production + preview); turn on
-   leaked-password protection in Supabase Auth; enable branch protection on
-   `main` (require the `verify` check).
+5. **Founder, in the dashboards (≈15 min):** delete the 10 leftover
+   diagnostic env vars (16 entries, listed in §0) and change the founder demo
+   super_admin's password and TOTP, since both sat in a Vercel variable; set
+   `SUPABASE_SERVICE_ROLE_KEY` (production + preview); turn on leaked-password
+   protection in Supabase Auth; enable branch protection on `main` (require
+   the `verify` check).
+
+**Phase 0 status (2026-09-29, C88):** steps 1–4 done; step 5 is the founder's.
 
 ### Phase 1 — Platform plumbing (1–2 sessions)
 
@@ -216,7 +221,7 @@ External approvals are the real critical path; code is not.
 |---|---|---|---|---|
 | GitHub | Code, PRs, CI (`checks.yml`) | now | connected | Founder: branch protection on `main` |
 | Vercel | Hosting, previews, env vars | now | connected (MCP) | Founder: env hygiene (Phase 0), Pro before pilot |
-| Supabase | Postgres, Auth, Storage, Vault, pg_cron/pg_net | now | connected (MCP) | Phase 0 creates `netcyberai-prod`; Pro before pilot |
+| Supabase | Postgres, Auth, Storage, Vault, pg_cron/pg_net | now | connected (MCP) | `netcyberai-prod` created in Phase 0 (schema only, not yet connected to Vercel); Pro before pilot |
 | Meta WhatsApp Cloud API | Messages to parents | 3 | Founder: verification; Claude: adapter + webhook | Access token + phone number id into Vault via the existing config panel |
 | Razorpay | Fee payments, UPI | 5 | Founder: account/KYC; Claude: integration | Test keys + webhook secret as env vars |
 | Resend | Transactional email, Auth SMTP | 1 | Founder: account + DNS; Claude: adapter | API key env var; SMTP in Supabase Auth settings |
@@ -265,3 +270,4 @@ Razorpay applications (§3): they gate Phases 3 and 5.
 | Date | Change |
 |---|---|
 | 2026-09-29 | Created after the Version 1 website freeze (Decision Log C87). |
+| 2026-09-29 | Phase 0 steps 1–4 done; §0 re-measured (Decision Log C88). |
