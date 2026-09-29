@@ -38,7 +38,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   return (
     <ToastProvider>
       <div className="min-h-screen bg-off-white">
-        <Sidebar items={items} ariaLabel={label} />
+        <Sidebar items={items} ariaLabel={label} accountHref="/app/account" />
         <main className="md:pl-60">{children}</main>
       </div>
     </ToastProvider>

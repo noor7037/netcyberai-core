@@ -6,7 +6,12 @@ export type AuthErrorCode =
   | 'membership_invalid'
   | 'session_revoked'
   | 'session_expired'
-  | 'pending_token_invalid';
+  | 'pending_token_invalid'
+  | 'code_invalid'
+  | 'mfa_required'
+  | 'password_invalid'
+  | 'password_rejected'
+  | 'rate_limited';
 
 export class AuthError extends Error {
   code: AuthErrorCode;
