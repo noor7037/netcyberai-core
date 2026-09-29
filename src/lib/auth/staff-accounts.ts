@@ -1,5 +1,5 @@
 import type { PoolClient } from 'pg';
-import { requestEmailCode, revokeAllSessions } from './account';
+import { requestEmailCode, signOutEverywhere as signOutAllDevices } from './account';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { SessionClaims, StaffRole } from './types';
 
@@ -82,7 +82,7 @@ export async function sendResetFor(
   signOutEverywhere: boolean
 ): Promise<{ signedOutSessions: number }> {
   await requestEmailCode(target.email, 'reset');
-  const signedOutSessions = signOutEverywhere ? await revokeAllSessions(target.userId) : 0;
+  const signedOutSessions = signOutEverywhere ? await signOutAllDevices(target.userId) : 0;
   await writeAuditLog(client, {
     schoolId: target.schoolId,
     actorUserId: actor.sub,

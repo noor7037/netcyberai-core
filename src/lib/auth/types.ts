@@ -38,6 +38,7 @@ export interface MembershipRow {
 }
 
 export type LoginOutcome =
+  | { status: 'email_step'; pendingToken: string; maskedEmail: string }
   | { status: 'mfa_required'; pendingToken: string }
   | { status: 'no_memberships' }
   | { status: 'select_school'; pendingToken: string; memberships: MembershipRow[] }

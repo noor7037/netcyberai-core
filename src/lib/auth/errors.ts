@@ -11,7 +11,8 @@ export type AuthErrorCode =
   | 'mfa_required'
   | 'password_invalid'
   | 'password_rejected'
-  | 'rate_limited';
+  | 'rate_limited'
+  | 'email_send_failed';
 
 export class AuthError extends Error {
   code: AuthErrorCode;

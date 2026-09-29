@@ -1,8 +1,9 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { newAuthClient } from './supabase';
-import { withBackendConnection, withSelfContext } from './db';
-import { resolveAfterCredentials } from './resolve';
-import { signPendingToken, verifyPendingToken } from './jwt';
+import { bumpTokenVersion, emailForPhone, withBackendConnection, withSelfContext } from './db';
+import { fetchLiveUser, resolveAfterCredentials } from './resolve';
+import { signPendingToken, verifyDeviceToken, verifyPendingToken } from './jwt';
+import { EMAIL_STEP_TTL_SECONDS } from './cookies';
 import { AuthError } from './errors';
 import type { LoginOutcome } from './types';
 
@@ -29,6 +30,40 @@ export function normalizeEmail(raw: unknown): string | null {
   if (typeof raw !== 'string') return null;
   const email = raw.trim().toLowerCase();
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254 ? email : null;
+}
+
+// Indian mobile numbers (C90): 10 digits, optionally written with +91, 91
+// or a leading 0, and any spaces or dashes. Returns the 10 digits.
+export function normalizePhone(raw: unknown): string | null {
+  if (typeof raw !== 'string') return null;
+  let digits = raw.replace(/[\s\-().]/g, '');
+  if (!/^\+?\d+$/.test(digits)) return null;
+  digits = digits.replace(/^\+/, '');
+  if (digits.length === 12 && digits.startsWith('91')) digits = digits.slice(2);
+  else if (digits.length === 11 && digits.startsWith('0')) digits = digits.slice(1);
+  return /^[6-9]\d{9}$/.test(digits) ? digits : null;
+}
+
+// Email or mobile number -> the account's email. A mobile number resolves
+// only when exactly one active account has it.
+export async function resolveIdentifier(raw: unknown): Promise<string | null> {
+  if (typeof raw !== 'string') return null;
+  if (raw.includes('@')) return normalizeEmail(raw);
+  const phone = normalizePhone(raw);
+  return phone ? emailForPhone(phone) : null;
+}
+
+export function maskEmail(email: string): string {
+  const [name, domain] = email.split('@');
+  const shown = name.length <= 2 ? name[0] : `${name[0]}${'*'.repeat(Math.min(6, name.length - 2))}${name[name.length - 1]}`;
+  return `${shown}@${domain}`;
+}
+
+// Email code after the password (C90): on unless AUTH_EMAIL_STEP=off, the
+// switch for when email cannot be delivered (for example before custom SMTP
+// is set up) or for automated tests.
+export function emailStepEnabled(): boolean {
+  return process.env.AUTH_EMAIL_STEP !== 'off';
 }
 
 export function normalizeCode(raw: unknown): string | null {
@@ -108,19 +143,89 @@ export async function requestEmailCode(email: string, purpose: CodePurpose): Pro
   // reported: the answer must not reveal whether an email is registered.
 }
 
-export async function loginWithEmailCode(email: string, code: string): Promise<LoginOutcome> {
+export type SignedIn = { outcome: LoginOutcome; userId: string };
+
+async function signInFromClient(client: SupabaseClient, userId: string, session: { access_token: string; refresh_token: string }): Promise<SignedIn> {
+  const { data: aalData } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
+  const aal = (aalData?.currentLevel ?? 'aal1') as 'aal1' | 'aal2';
+  const outcome = await resolveAfterCredentials(userId, aal, {
+    sbAccessToken: session.access_token,
+    sbRefreshToken: session.refresh_token,
+  });
+  return { outcome, userId };
+}
+
+export async function loginWithEmailCode(email: string, code: string): Promise<SignedIn> {
   const client = newAuthClient();
   const { data, error } = await client.auth.verifyOtp({ email, token: code, type: 'email' });
   if (error || !data.session || !data.user) throw new AuthError('code_invalid', error?.message ?? 'code rejected');
-  const { data: aalData } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
-  const aal = (aalData?.currentLevel ?? 'aal1') as 'aal1' | 'aal2';
-  return resolveAfterCredentials(data.user.id, aal, {
-    sbAccessToken: data.session.access_token,
-    sbRefreshToken: data.session.refresh_token,
-  });
+  return signInFromClient(client, data.user.id, data.session);
 }
 
-export type ResetOutcome = { status: 'password_updated'; email: string } | { status: 'mfa_required'; pendingToken: string };
+// ---- password sign-in with the email-code step (C90) -------------------------
+
+async function sendSignInCode(email: string): Promise<void> {
+  const { error } = await newAuthClient().auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
+  if (!error) return;
+  if (isRateLimit(error)) throw new AuthError('rate_limited', error.message ?? 'rate limited');
+  // The password was already right, so saying the email failed reveals nothing.
+  throw new AuthError('email_send_failed', error.message ?? 'email not sent');
+}
+
+async function deviceTrusted(deviceToken: string | undefined, userId: string): Promise<boolean> {
+  if (!deviceToken) return false;
+  const device = await verifyDeviceToken(deviceToken);
+  if (!device || device.userId !== userId) return false;
+  const live = await fetchLiveUser(userId);
+  return Number(live.token_version) === device.tokenVersion;
+}
+
+export async function passwordLogin(identifier: string, password: string, deviceToken?: string): Promise<LoginOutcome> {
+  const email = await resolveIdentifier(identifier);
+  if (!email) throw new AuthError('invalid_credentials', 'no account for that email or mobile number');
+  const client = newAuthClient();
+  const { data, error } = await client.auth.signInWithPassword({ email, password });
+  if (error || !data.session || !data.user) throw new AuthError('invalid_credentials', error?.message ?? 'sign-in failed');
+
+  if (emailStepEnabled() && !(await deviceTrusted(deviceToken, data.user.id))) {
+    await sendSignInCode(email);
+    const pendingToken = await signPendingToken({ userId: data.user.id, purpose: 'email_step', aal: 'aal1' }, EMAIL_STEP_TTL_SECONDS);
+    return { status: 'email_step', pendingToken, maskedEmail: maskEmail(email) };
+  }
+  return (await signInFromClient(client, data.user.id, data.session)).outcome;
+}
+
+async function pendingEmailStep(pendingToken: string | undefined): Promise<{ userId: string; email: string }> {
+  const pending = pendingToken ? await verifyPendingToken(pendingToken) : null;
+  if (!pending || pending.purpose !== 'email_step') throw new AuthError('pending_token_invalid', 'no pending email step');
+  const email = await accountEmail(pending.userId);
+  if (!email) throw new AuthError('pending_token_invalid', 'account has no email');
+  return { userId: pending.userId, email };
+}
+
+export async function resendEmailStep(pendingToken: string | undefined): Promise<void> {
+  const { email } = await pendingEmailStep(pendingToken);
+  await sendSignInCode(email);
+}
+
+export async function completeEmailStep(pendingToken: string | undefined, code: string): Promise<SignedIn> {
+  const { userId, email } = await pendingEmailStep(pendingToken);
+  const client = newAuthClient();
+  const { data, error } = await client.auth.verifyOtp({ email, token: code, type: 'email' });
+  if (error || !data.session || !data.user) throw new AuthError('code_invalid', error?.message ?? 'code rejected');
+  // The code must belong to the account whose password was just checked.
+  if (data.user.id !== userId) throw new AuthError('code_invalid', 'code belongs to another account');
+  return signInFromClient(client, userId, data.session);
+}
+
+// Signs the user out everywhere: every session, every access token on its
+// next request, every remembered device.
+export async function signOutEverywhere(userId: string): Promise<number> {
+  await bumpTokenVersion(userId);
+  return revokeAllSessions(userId);
+}
+
+export type ResetOutcome = { status: 'signed_in'; signedIn: SignedIn } | { status: 'mfa_required'; pendingToken: string };
 
 // Verifies the emailed recovery code, then sets the new password. For an
 // account with an authenticator, Supabase only changes the password after
@@ -146,11 +251,15 @@ export async function resetPasswordWithCode(email: string, code: string, newPass
     await passTotp(client, mfaCode);
   }
   await setPassword(client, newPassword);
-  await revokeAllSessions(data.user.id);
-  return { status: 'password_updated', email };
+  // Proving the email and choosing a new password signs the person in here;
+  // everywhere else they are signed out.
+  await signOutEverywhere(data.user.id);
+  // After an authenticator check the client holds a newer (aal2) session.
+  const { data: fresh } = await client.auth.getSession();
+  return { status: 'signed_in', signedIn: await signInFromClient(client, data.user.id, fresh.session ?? data.session) };
 }
 
-export async function continueResetWithMfa(pendingToken: string, newPassword: string, mfaCode: string): Promise<{ status: 'password_updated'; email: string }> {
+export async function continueResetWithMfa(pendingToken: string, newPassword: string, mfaCode: string): Promise<SignedIn> {
   const pending = await verifyPendingToken(pendingToken);
   if (!pending || pending.purpose !== 'reset' || !pending.sbAccessToken || !pending.sbRefreshToken) {
     throw new AuthError('pending_token_invalid', 'no pending reset for this token');
@@ -160,8 +269,10 @@ export async function continueResetWithMfa(pendingToken: string, newPassword: st
   if (error || !data.user?.email) throw new AuthError('pending_token_invalid', error?.message ?? 'reset session expired');
   await passTotp(client, mfaCode);
   await setPassword(client, newPassword);
-  await revokeAllSessions(pending.userId);
-  return { status: 'password_updated', email: data.user.email };
+  await signOutEverywhere(pending.userId);
+  const { data: fresh } = await client.auth.getSession();
+  if (!fresh.session) throw new AuthError('pending_token_invalid', 'reset session expired');
+  return signInFromClient(client, pending.userId, fresh.session);
 }
 
 // ---- signed-in password change ----------------------------------------------

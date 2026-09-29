@@ -12,6 +12,9 @@
 // authenticator and school-choice steps -- password, a one-time code sent
 // to the account's email, and "set or reset your password" with an
 // emailed code (forgotten passwords and first-time staff alike).
+// C90: sign in with an email or mobile number; a password sign-in is
+// always followed by a code emailed to the account unless this browser is
+// a remembered device.
 //
 // [GAP] still open: this is the generic shape for the selection step,
 // not a final, designer-reviewed layout. Good enough to stop reading
@@ -44,6 +47,7 @@ const ERROR_TEXT: Record<string, string> = {
   password_rejected: 'That password was not accepted. Choose a longer one you have not used elsewhere.',
   mfa_invalid_code: 'That authenticator code did not work. Check your authenticator app and try again.',
   mfa_required: 'This account also needs the code from your authenticator app.',
+  email_send_failed: 'We could not email your sign-in code. Try again in a minute, or contact support.',
 };
 
 function humanError(code: unknown, fallback: string): string {
@@ -52,8 +56,8 @@ function humanError(code: unknown, fallback: string): string {
 
 // Only features the sign-in flow actually has (src/app/api/auth/*).
 const FACTS: { icon: IconName; title: string; body: string }[] = [
-  { icon: 'mail', title: 'Codes by email', body: 'Sign in, or set a new password, with a one-time code sent to your email.' },
-  { icon: 'lock', title: 'Authenticator codes', body: 'Accounts with two-step verification are also asked for a 6-digit code.' },
+  { icon: 'mail', title: 'A code by email, every new device', body: 'After your password we email you a one-time code. Tick “remember this device” to skip it here for 30 days.' },
+  { icon: 'lock', title: 'Stay signed in', body: 'You stay signed in on your device until you log out, as long as you use it at least once a month.' },
   { icon: 'school', title: 'Several schools, one login', body: 'If you work in more than one school, you choose which one to open.' },
   { icon: 'shield', title: 'Your school only', body: 'You only ever see records of the school you signed in to.' },
 ];
@@ -67,6 +71,7 @@ type Step =
   | { kind: 'reset_request' }
   | { kind: 'reset_verify' }
   | { kind: 'reset_mfa' }
+  | { kind: 'email_step'; maskedEmail: string }
   | { kind: 'mfa' }
   | { kind: 'select_school'; memberships: Membership[] }
   | { kind: 'done'; role: string; schoolId: string | null };
@@ -81,6 +86,7 @@ const HEADINGS: Partial<Record<Step['kind'], { title: string; lead: string }>> =
   },
   reset_verify: { title: 'Choose your new password', lead: 'Enter the code from your email and your new password.' },
   reset_mfa: { title: 'One more step', lead: 'Your account uses an authenticator app. Enter its 6-digit code to save the new password.' },
+  email_step: { title: 'Check your email', lead: 'We sent a one-time sign-in code.' },
   mfa: { title: 'Staff sign in', lead: 'Enter the 6-digit code from your authenticator app.' },
 };
 
@@ -111,6 +117,7 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [remember, setRemember] = useState(false);
 
   // Links such as /login?mode=reset (sent to first-time staff) open the
   // right step directly.
@@ -141,7 +148,10 @@ export default function LoginPage() {
 
   // Every way in ends here: the same answers as password sign-in.
   function signedIn(data: Record<string, unknown>) {
-    if (data.status === 'mfa_required') {
+    if (data.status === 'email_step') {
+      setEmailCode('');
+      setStep({ kind: 'email_step', maskedEmail: String(data.maskedEmail ?? 'your email') });
+    } else if (data.status === 'mfa_required') {
       setCode('');
       setStep({ kind: 'mfa' });
     } else if (data.status === 'select_school') {
@@ -156,21 +166,37 @@ export default function LoginPage() {
   const submitCredentials = (e: React.FormEvent) => {
     e.preventDefault();
     return run(async () => {
-      const { ok, data } = await post('/api/auth/login', { email, password });
+      const { ok, data } = await post('/api/auth/login', { identifier: email, password });
       if (!ok) return setError(humanError(data.error, 'Sign-in failed. Please try again.'));
       signedIn(data);
     });
   };
 
+  const submitEmailStep = (e: React.FormEvent) => {
+    e.preventDefault();
+    return run(async () => {
+      const { ok, data } = await post('/api/auth/email-step', { code: emailCode, rememberDevice: remember });
+      if (!ok) return setError(humanError(data.error, 'That code did not work. Please try again.'));
+      signedIn(data);
+    });
+  };
+
+  const resendEmailStep = () =>
+    run(async () => {
+      const { ok, data } = await post('/api/auth/email-step', { resend: true });
+      if (!ok) return setError(humanError(data.error, 'We could not send a new code. Please try again.'));
+      setNotice('A new code is on its way. Use the newest email.');
+    });
+
   const sendCode = (purpose: 'login' | 'reset') => (e?: React.FormEvent) => {
     e?.preventDefault();
     return run(async () => {
-      const { ok, data } = await post('/api/auth/code/request', { email, purpose });
+      const { ok, data } = await post('/api/auth/code/request', { identifier: email, purpose });
       if (!ok) return setError(humanError(data.error, 'We could not send a code. Check the email and try again.'));
       setEmailCode('');
       setStep({ kind: purpose === 'login' ? 'code_verify' : 'reset_verify' });
       setNotice(
-        `If ${email.trim()} has a NetCyberAI account, a code is on its way. It can take a minute; check spam too.`
+        `If ${email.trim()} belongs to a NetCyberAI account, a code is on its way to that account's email. It can take a minute; check spam too.`
       );
     });
   };
@@ -178,22 +204,11 @@ export default function LoginPage() {
   const submitEmailCode = (e: React.FormEvent) => {
     e.preventDefault();
     return run(async () => {
-      const { ok, data } = await post('/api/auth/code/verify', { email, code: emailCode });
+      const { ok, data } = await post('/api/auth/code/verify', { identifier: email, code: emailCode, rememberDevice: remember });
       if (!ok) return setError(humanError(data.error, 'That code did not work. Please try again.'));
       signedIn(data);
     });
   };
-
-  // After a new password is saved, sign straight in with it.
-  async function signInWithNewPassword() {
-    const { ok, data } = await post('/api/auth/login', { email, password });
-    if (!ok) {
-      setStep({ kind: 'credentials' });
-      setError(humanError(data.error, 'Your password was saved. Please sign in.'));
-      return;
-    }
-    signedIn(data);
-  }
 
   const submitReset = (e: React.FormEvent) => {
     e.preventDefault();
@@ -202,23 +217,33 @@ export default function LoginPage() {
       return;
     }
     return run(async () => {
-      const { ok, data } = await post('/api/auth/password/reset', { email, code: emailCode, newPassword: password });
+      const { ok, data } = await post('/api/auth/password/reset', {
+        identifier: email,
+        code: emailCode,
+        newPassword: password,
+        rememberDevice: remember,
+      });
       if (!ok) return setError(humanError(data.error, 'We could not save that password. Please try again.'));
       if (data.status === 'mfa_required') {
         setCode('');
         setStep({ kind: 'reset_mfa' });
         return;
       }
-      await signInWithNewPassword();
+      signedIn(data);
     });
   };
 
   const submitResetMfa = (e: React.FormEvent) => {
     e.preventDefault();
     return run(async () => {
-      const { ok, data } = await post('/api/auth/password/reset', { continue: true, newPassword: password, mfaCode: code });
+      const { ok, data } = await post('/api/auth/password/reset', {
+        continue: true,
+        newPassword: password,
+        mfaCode: code,
+        rememberDevice: remember,
+      });
       if (!ok) return setError(humanError(data.error, 'That code did not work. Please try again.'));
-      await signInWithNewPassword();
+      signedIn(data);
     });
   };
 
@@ -243,9 +268,11 @@ export default function LoginPage() {
   const emailInput = (
     <Input
       id="email"
-      label="Email"
-      type="email"
+      label="Email or mobile number"
+      type="text"
       autoComplete="username"
+      autoCapitalize="none"
+      spellCheck={false}
       value={email}
       onChange={(e) => setEmail(e.target.value)}
       required
@@ -272,6 +299,12 @@ export default function LoginPage() {
       onChange={(e) => setCode(e.target.value)}
       required
     />
+  );
+  const rememberBox = (
+    <label className="flex min-h-[44px] items-center gap-3 text-sm text-slate">
+      <input type="checkbox" className="h-5 w-5" checked={remember} onChange={(e) => setRemember(e.target.checked)} />
+      Remember this device for 30 days (skip the email code here)
+    </label>
   );
   const linkButton =
     'font-semibold text-royal underline disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire';
@@ -369,6 +402,7 @@ export default function LoginPage() {
             {step.kind === 'code_verify' && (
               <form onSubmit={submitEmailCode} className="mt-6 flex flex-col gap-4">
                 {emailCodeInput}
+                {rememberBox}
                 <Button type="submit" disabled={submitting} className="w-full">
                   {submitting ? 'Checking…' : 'Sign in'}
                 </Button>
@@ -403,6 +437,7 @@ export default function LoginPage() {
                   onChange={(e) => setConfirm(e.target.value)}
                   required
                 />
+                {rememberBox}
                 <Button type="submit" disabled={submitting} className="w-full">
                   {submitting ? 'Saving…' : 'Save password and sign in'}
                 </Button>
@@ -421,6 +456,25 @@ export default function LoginPage() {
                 <Button type="submit" disabled={submitting} className="w-full">
                   {submitting ? 'Saving…' : 'Save password and sign in'}
                 </Button>
+              </form>
+            )}
+
+            {step.kind === 'email_step' && (
+              <form onSubmit={submitEmailStep} className="mt-6 flex flex-col gap-4">
+                <p className="text-sm text-slate/80">
+                  Your password was right. For your safety we also sent a code to <span className="font-semibold">{step.maskedEmail}</span>.
+                </p>
+                {emailCodeInput}
+                {rememberBox}
+                <Button type="submit" disabled={submitting} className="w-full">
+                  {submitting ? 'Checking…' : 'Continue'}
+                </Button>
+                <p className="text-sm text-slate/70">
+                  No email? Check spam, or{' '}
+                  <button type="button" className={linkButton} disabled={submitting} onClick={resendEmailStep}>
+                    send a new code
+                  </button>
+                </p>
               </form>
             )}
 

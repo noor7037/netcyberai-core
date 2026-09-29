@@ -142,21 +142,8 @@ async function resolveAfterCredentials(
   return { status: 'select_school', pendingToken, memberships };
 }
 
-export async function login(email: string, password: string): Promise<LoginOutcome> {
-  const client = newAuthClient();
-  const { data, error } = await client.auth.signInWithPassword({ email, password });
-  if (error || !data.session || !data.user) {
-    throw new AuthError('invalid_credentials', error?.message ?? 'sign-in failed');
-  }
-
-  const { data: aalData } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
-  const aal = (aalData?.currentLevel ?? 'aal1') as 'aal1' | 'aal2';
-
-  return resolveAfterCredentials(data.user.id, aal, {
-    sbAccessToken: data.session.access_token,
-    sbRefreshToken: data.session.refresh_token,
-  });
-}
+// Password sign-in lives in account.ts (passwordLogin, C90) so that it can
+// never skip the email-code step; it hands off to resolveAfterCredentials.
 
 export async function verifyMfaAndContinue(pendingToken: string, code: string): Promise<LoginOutcome> {
   const pending = await verifyPendingToken(pendingToken);

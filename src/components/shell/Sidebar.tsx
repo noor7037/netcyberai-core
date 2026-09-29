@@ -131,7 +131,7 @@ export function Sidebar({ items, ariaLabel, header, accountHref }: Props) {
           <NavList items={items} ariaLabel={ariaLabel} onNavigate={() => setOpen(false)} />
           {accountHref && (
             <Link href={accountHref} onClick={() => setOpen(false)} className={`mx-3 -mb-2 ${footerLink}`}>
-              Change password
+              Account and security
             </Link>
           )}
           <button
@@ -153,7 +153,7 @@ export function Sidebar({ items, ariaLabel, header, accountHref }: Props) {
         <NavList items={items} ariaLabel={ariaLabel} />
         {accountHref && (
           <Link href={accountHref} className={`mx-3 -mb-2 ${footerLink}`}>
-            Change password
+            Account and security
           </Link>
         )}
         <button
