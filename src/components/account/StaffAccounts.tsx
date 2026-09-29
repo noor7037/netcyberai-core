@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { FounderAccountTools } from './FounderAccountTools';
 
 // Account list with "send reset code" (C89). Used by principals and school
 // admins for their own school (/app/staff, endpoint /api/app/users) and by
@@ -22,7 +23,8 @@ type Account = {
 const SEND_ERROR: Record<string, string> = {
   no_email: 'This account has no email, so no code can be sent.',
   not_found: 'That account is not in this school.',
-  rate_limited: 'Too many codes were sent. Wait a minute, then try again.',
+  rate_limited: 'An email was sent to this address a moment ago. Wait a minute, then try again.',
+  email_limit: 'The email service has reached its hourly limit. Try again later, or use Founder tools to create a link to share.',
   forbidden: 'Only principals, school admins and platform admins can do this.',
 };
 
@@ -33,7 +35,15 @@ function formatRole(role: string): string {
     .join(' ');
 }
 
-export function StaffAccounts({ endpoint, showSchools = false }: { endpoint: string; showSchools?: boolean }) {
+export function StaffAccounts({
+  endpoint,
+  showSchools = false,
+  founderTools = false,
+}: {
+  endpoint: string;
+  showSchools?: boolean;
+  founderTools?: boolean;
+}) {
   const [accounts, setAccounts] = useState<Account[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [query, setQuery] = useState('');
@@ -128,7 +138,7 @@ export function StaffAccounts({ endpoint, showSchools = false }: { endpoint: str
       <ul className="flex flex-col gap-3">
         {shown.map((a) => (
           <li key={a.userId}>
-            <Card className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <Card className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
               <div className="min-w-0">
                 <p className="font-semibold text-slate">
                   {a.displayName}
@@ -145,15 +155,16 @@ export function StaffAccounts({ endpoint, showSchools = false }: { endpoint: str
                   </p>
                 )}
               </div>
-              <Button
-                type="button"
-                variant="outline"
-                className="shrink-0"
-                disabled={!a.email || busy !== null}
-                onClick={() => sendReset(a)}
-              >
-                {busy === a.userId ? 'Sending…' : 'Send reset code'}
-              </Button>
+              <div className="flex shrink-0 flex-col gap-2 sm:items-end">
+                <Button type="button" variant="outline" disabled={!a.email || busy !== null} onClick={() => sendReset(a)}>
+                  {busy === a.userId ? 'Sending…' : 'Email reset code'}
+                </Button>
+              </div>
+              {founderTools && (
+                <div className="w-full sm:basis-full">
+                  <FounderAccountTools userId={a.userId} name={a.displayName} />
+                </div>
+              )}
             </Card>
           </li>
         ))}

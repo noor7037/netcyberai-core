@@ -48,6 +48,16 @@ const ERROR_TEXT: Record<string, string> = {
   mfa_invalid_code: 'That authenticator code did not work. Check your authenticator app and try again.',
   mfa_required: 'This account also needs the code from your authenticator app.',
   email_send_failed: 'We could not email your sign-in code. Try again in a minute, or contact support.',
+  email_limit:
+    'Our email service is busy and could not send another email just now. If an email from us already arrived, use its code or link. Otherwise try again later, or ask your school admin for a sign-in link.',
+  link_invalid: 'That link has expired or was already used. Each link works once, for one hour, and only the newest email works. Send a new code below.',
+  setup_required: 'This needs a setting that is not switched on yet. Please contact support.',
+};
+
+// Supabase sends people back with #error_code=... when an emailed link fails.
+const LINK_ERROR_TEXT: Record<string, string> = {
+  otp_expired: ERROR_TEXT.link_invalid,
+  access_denied: ERROR_TEXT.link_invalid,
 };
 
 function humanError(code: unknown, fallback: string): string {
@@ -71,6 +81,8 @@ type Step =
   | { kind: 'reset_request' }
   | { kind: 'reset_verify' }
   | { kind: 'reset_mfa' }
+  | { kind: 'link_password' }
+  | { kind: 'link_checking' }
   | { kind: 'email_step'; maskedEmail: string }
   | { kind: 'mfa' }
   | { kind: 'select_school'; memberships: Membership[] }
@@ -87,6 +99,8 @@ const HEADINGS: Partial<Record<Step['kind'], { title: string; lead: string }>> =
   reset_verify: { title: 'Choose your new password', lead: 'Enter the code from your email and your new password.' },
   reset_mfa: { title: 'One more step', lead: 'Your account uses an authenticator app. Enter its 6-digit code to save the new password.' },
   email_step: { title: 'Check your email', lead: 'We sent a one-time sign-in code.' },
+  link_password: { title: 'Choose your new password', lead: 'Your email is confirmed. Choose a password for your account.' },
+  link_checking: { title: 'Signing you in…', lead: 'Checking the link from your email.' },
   mfa: { title: 'Staff sign in', lead: 'Enter the 6-digit code from your authenticator app.' },
 };
 
@@ -118,13 +132,65 @@ export default function LoginPage() {
   const [notice, setNotice] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [remember, setRemember] = useState(false);
+  // Resend is paused while the email service would refuse it anyway (C91),
+  // with the seconds shown, instead of an error after every tap.
+  const [cooldownUntil, setCooldownUntil] = useState(0);
+  const [now, setNow] = useState(() => Date.now());
+  const cooldown = Math.max(0, Math.ceil((cooldownUntil - now) / 1000));
+
+  useEffect(() => {
+    if (cooldownUntil <= Date.now()) return;
+    const t = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(t);
+  }, [cooldownUntil]);
+
+  function startCooldown(seconds: number) {
+    setNow(Date.now());
+    setCooldownUntil(Date.now() + seconds * 1000);
+  }
 
   // Links such as /login?mode=reset (sent to first-time staff) open the
-  // right step directly.
+  // right step directly. Links from emails land here too (C91): Supabase's
+  // own (#access_token=... or #error_code=...) and our own (?th=...&type=...).
   useEffect(() => {
-    const mode = new URLSearchParams(window.location.search).get('mode');
-    if (mode === 'reset') setStep({ kind: 'reset_request' });
+    const search = new URLSearchParams(window.location.search);
+    const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    const mode = search.get('mode');
+    const tokenHash = search.get('th');
+    const linkError = hash.get('error_code') ?? (hash.get('error') ? 'access_denied' : null);
+    const accessToken = hash.get('access_token');
+    if (tokenHash || accessToken || linkError) window.history.replaceState(null, '', '/login');
+
+    if (linkError) {
+      setStep({ kind: 'code_request' });
+      setError(LINK_ERROR_TEXT[linkError] ?? ERROR_TEXT.link_invalid);
+    } else if (tokenHash || accessToken) {
+      const body = tokenHash
+        ? { tokenHash, type: search.get('type') }
+        : { accessToken, refreshToken: hash.get('refresh_token'), type: hash.get('type') };
+      setStep({ kind: 'link_checking' });
+      setSubmitting(true);
+      post('/api/auth/link', body)
+        .then(({ ok, data }) => {
+          if (!ok) {
+            setStep({ kind: 'code_request' });
+            setError(humanError(data.error, ERROR_TEXT.link_invalid));
+          } else if (data.status === 'set_password') {
+            setPassword('');
+            setConfirm('');
+            setStep({ kind: 'link_password' });
+          } else {
+            signedIn(data);
+          }
+        })
+        .catch(() => {
+          setStep({ kind: 'code_request' });
+          setError(NETWORK_ERROR);
+        })
+        .finally(() => setSubmitting(false));
+    } else if (mode === 'reset') setStep({ kind: 'reset_request' });
     else if (mode === 'code') setStep({ kind: 'code_request' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function go(next: Step) {
@@ -181,23 +247,81 @@ export default function LoginPage() {
     });
   };
 
+  // A refused send is not a dead end: the person may already have a code or
+  // link from an earlier email, so they are taken to where they can use it.
+  function sendRefused(data: Record<string, unknown>): boolean {
+    if (data.error === 'rate_limited') {
+      const wait = Number(data.retryAfter) || 60;
+      startCooldown(wait);
+      setNotice(
+        `We already sent an email a moment ago. Use the code or link in the newest one. You can ask for another in ${wait} seconds.`
+      );
+      return true;
+    }
+    if (data.error === 'email_limit') {
+      startCooldown(60);
+      setError(ERROR_TEXT.email_limit);
+      return true;
+    }
+    return false;
+  }
+
   const resendEmailStep = () =>
     run(async () => {
       const { ok, data } = await post('/api/auth/email-step', { resend: true });
-      if (!ok) return setError(humanError(data.error, 'We could not send a new code. Please try again.'));
-      setNotice('A new code is on its way. Use the newest email.');
+      if (!ok) {
+        if (sendRefused(data)) return;
+        return setError(humanError(data.error, 'We could not send a new code. Please try again.'));
+      }
+      startCooldown(60);
+      setNotice('A new code is on its way. Use the newest email: older codes stop working.');
     });
 
   const sendCode = (purpose: 'login' | 'reset') => (e?: React.FormEvent) => {
     e?.preventDefault();
     return run(async () => {
       const { ok, data } = await post('/api/auth/code/request', { identifier: email, purpose });
-      if (!ok) return setError(humanError(data.error, 'We could not send a code. Check the email and try again.'));
+      const next: Step = { kind: purpose === 'login' ? 'code_verify' : 'reset_verify' };
+      if (!ok) {
+        if (sendRefused(data)) return setStep(next);
+        return setError(humanError(data.error, 'We could not send a code. Check the email and try again.'));
+      }
       setEmailCode('');
-      setStep({ kind: purpose === 'login' ? 'code_verify' : 'reset_verify' });
+      setStep(next);
+      startCooldown(60);
       setNotice(
-        `If ${email.trim()} belongs to a NetCyberAI account, a code is on its way to that account's email. It can take a minute; check spam too.`
+        `If ${email.trim()} belongs to a NetCyberAI account, an email is on its way with a code and a link. Use either one. It can take a minute; check spam too.`
       );
+    });
+  };
+
+  // "I already have a code": go straight to entering it, without sending
+  // another email (which would replace the code already sent).
+  const haveCode = (purpose: 'login' | 'reset') => () => {
+    if (!email.trim()) {
+      setError('Enter your email or mobile number first.');
+      return;
+    }
+    go({ kind: purpose === 'login' ? 'code_verify' : 'reset_verify' });
+  };
+
+  const submitLinkPassword = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password !== confirm) {
+      setError('The two passwords do not match.');
+      return;
+    }
+    return run(async () => {
+      const { ok, data } = await post('/api/auth/password/reset', { continue: true, newPassword: password, rememberDevice: remember });
+      if (!ok) {
+        if (data.error === 'mfa_required') {
+          setCode('');
+          setStep({ kind: 'reset_mfa' });
+          return;
+        }
+        return setError(humanError(data.error, 'We could not save that password. Please try again.'));
+      }
+      signedIn(data);
     });
   };
 
@@ -393,8 +517,53 @@ export default function LoginPage() {
             {(step.kind === 'code_request' || step.kind === 'reset_request') && (
               <form onSubmit={sendCode(step.kind === 'code_request' ? 'login' : 'reset')} className="mt-6 flex flex-col gap-4">
                 {emailInput}
+                <Button type="submit" disabled={submitting || cooldown > 0} className="w-full">
+                  {submitting ? 'Sending…' : cooldown > 0 ? `Send code (wait ${cooldown}s)` : 'Send code'}
+                </Button>
+                <p className="text-sm text-slate/70">
+                  Already got an email from us?{' '}
+                  <button
+                    type="button"
+                    className={linkButton}
+                    onClick={haveCode(step.kind === 'code_request' ? 'login' : 'reset')}
+                  >
+                    Enter the code
+                  </button>{' '}
+                  or just tap the link in it.
+                </p>
+              </form>
+            )}
+
+            {step.kind === 'link_checking' && (
+              <p role="status" className="mt-6 text-sm text-slate/80">
+                One moment…
+              </p>
+            )}
+
+            {step.kind === 'link_password' && (
+              <form onSubmit={submitLinkPassword} className="mt-6 flex flex-col gap-4">
+                <Input
+                  id="new-password"
+                  label="New password"
+                  type="password"
+                  autoComplete="new-password"
+                  helperText="8 to 72 characters. A short sentence is easy to remember and hard to guess."
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <Input
+                  id="confirm-password"
+                  label="Type the new password again"
+                  type="password"
+                  autoComplete="new-password"
+                  value={confirm}
+                  onChange={(e) => setConfirm(e.target.value)}
+                  required
+                />
+                {rememberBox}
                 <Button type="submit" disabled={submitting} className="w-full">
-                  {submitting ? 'Sending…' : 'Send code'}
+                  {submitting ? 'Saving…' : 'Save password and sign in'}
                 </Button>
               </form>
             )}
@@ -408,8 +577,8 @@ export default function LoginPage() {
                 </Button>
                 <p className="text-sm text-slate/70">
                   No email?{' '}
-                  <button type="button" className={linkButton} disabled={submitting} onClick={() => sendCode('login')()}>
-                    Send a new code
+                  <button type="button" className={linkButton} disabled={submitting || cooldown > 0} onClick={() => sendCode('login')()}>
+                    {cooldown > 0 ? `Send a new code in ${cooldown}s` : 'Send a new code'}
                   </button>
                 </p>
               </form>
@@ -443,8 +612,8 @@ export default function LoginPage() {
                 </Button>
                 <p className="text-sm text-slate/70">
                   No email?{' '}
-                  <button type="button" className={linkButton} disabled={submitting} onClick={() => sendCode('reset')()}>
-                    Send a new code
+                  <button type="button" className={linkButton} disabled={submitting || cooldown > 0} onClick={() => sendCode('reset')()}>
+                    {cooldown > 0 ? `Send a new code in ${cooldown}s` : 'Send a new code'}
                   </button>
                 </p>
               </form>
@@ -471,8 +640,8 @@ export default function LoginPage() {
                 </Button>
                 <p className="text-sm text-slate/70">
                   No email? Check spam, or{' '}
-                  <button type="button" className={linkButton} disabled={submitting} onClick={resendEmailStep}>
-                    send a new code
+                  <button type="button" className={linkButton} disabled={submitting || cooldown > 0} onClick={resendEmailStep}>
+                    {cooldown > 0 ? `send a new code in ${cooldown}s` : 'send a new code'}
                   </button>
                 </p>
               </form>

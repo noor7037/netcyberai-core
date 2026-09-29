@@ -79,9 +79,10 @@ export async function sendResetFor(
   client: PoolClient,
   actor: SessionClaims,
   target: { userId: string; email: string; schoolId: string | null },
-  signOutEverywhere: boolean
+  signOutEverywhere: boolean,
+  redirectTo?: string
 ): Promise<{ signedOutSessions: number }> {
-  await requestEmailCode(target.email, 'reset');
+  await requestEmailCode(target.email, 'reset', redirectTo);
   const signedOutSessions = signOutEverywhere ? await signOutAllDevices(target.userId) : 0;
   await writeAuditLog(client, {
     schoolId: target.schoolId,

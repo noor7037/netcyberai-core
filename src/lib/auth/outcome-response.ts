@@ -62,8 +62,12 @@ const STATUS: Partial<Record<AuthError['code'], number>> = {
   password_rejected: 400,
   mfa_required: 409,
   email_send_failed: 502,
+  email_limit: 429,
+  setup_required: 503,
 };
 
 export function authErrorResponse(err: AuthError): NextResponse {
-  return NextResponse.json({ error: err.code }, { status: STATUS[err.code] ?? 401 });
+  const body: { error: string; retryAfter?: number } = { error: err.code };
+  if (err.retryAfter) body.retryAfter = err.retryAfter;
+  return NextResponse.json(body, { status: STATUS[err.code] ?? 401 });
 }

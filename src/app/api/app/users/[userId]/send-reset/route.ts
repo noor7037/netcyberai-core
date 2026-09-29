@@ -22,7 +22,7 @@ export async function POST(req: NextRequest, { params }: { params: { userId: str
       const target = await findSchoolAccount(client, guard.claims.schoolId, params.userId);
       if (!target) return { notFound: true as const };
       if (!target.email) return { noEmail: true as const };
-      return sendResetFor(client, guard.claims, { userId: target.userId, email: target.email, schoolId: guard.claims.schoolId }, signOutEverywhere);
+      return sendResetFor(client, guard.claims, { userId: target.userId, email: target.email, schoolId: guard.claims.schoolId }, signOutEverywhere, `${req.nextUrl.origin}/login`);
     });
     if ('notFound' in result) return NextResponse.json({ error: 'not_found' }, { status: 404 });
     if ('noEmail' in result) return NextResponse.json({ error: 'no_email' }, { status: 409 });

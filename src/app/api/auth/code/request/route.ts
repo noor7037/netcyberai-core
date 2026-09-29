@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
   }
   try {
     const email = await resolveIdentifier(raw);
-    if (email) await requestEmailCode(email, purpose);
+    if (email) await requestEmailCode(email, purpose, `${req.nextUrl.origin}/login`);
     return NextResponse.json({ status: 'sent' });
   } catch (err) {
     if (err instanceof AuthError) return authErrorResponse(err);

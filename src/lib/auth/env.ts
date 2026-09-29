@@ -17,6 +17,11 @@ export const appSessionSecret = () => required('APP_SESSION_SECRET');
 // comment for its two authorized callers -- enforced by
 // scripts/check_service_role.py.
 export const supabaseServiceRoleKey = () => required('SUPABASE_SERVICE_ROLE_KEY');
+// Whether the founder-console account tools can run (C91). Reports presence
+// only, never the value.
+export const hasServiceRoleKey = () => !!process.env.SUPABASE_SERVICE_ROLE_KEY;
+// The setting's name, for the founder's setup checklist.
+export const SERVICE_ROLE_SETTING_NAME = 'SUPABASE_SERVICE_ROLE_KEY';
 
 // DATABASE_URL is intentionally allowed to be unset in this environment:
 // app_backend (see supabase/migrations/20260917090000_auth_backend_role_and_sessions.sql)

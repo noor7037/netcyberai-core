@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   const pending = req.cookies.get(PENDING_COOKIE)?.value;
   try {
     if (body?.resend === true) {
-      await resendEmailStep(pending);
+      await resendEmailStep(pending, `${req.nextUrl.origin}/login`);
       return NextResponse.json({ status: 'sent' });
     }
     const code = normalizeCode(body?.code);

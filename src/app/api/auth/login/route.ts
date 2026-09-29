@@ -15,7 +15,9 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    return outcomeResponse(await passwordLogin(identifier, body.password, req.cookies.get(DEVICE_COOKIE)?.value));
+    return outcomeResponse(
+      await passwordLogin(identifier, body.password, req.cookies.get(DEVICE_COOKIE)?.value, `${req.nextUrl.origin}/login`)
+    );
   } catch (err) {
     if (err instanceof AuthError) return authErrorResponse(err);
     throw err;
