@@ -216,4 +216,4 @@ export async function switchSchool(current: SessionClaims, membershipId: string)
   return outcome;
 }
 
-export { fetchLiveUser, fetchActiveMemberships, fetchOwnedActiveMembership, mintSession };
+export { fetchLiveUser, fetchActiveMemberships, fetchOwnedActiveMembership, mintSession, resolveAfterCredentials };

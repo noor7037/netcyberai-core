@@ -19,6 +19,9 @@ publishes confirmed claims automatically).
 | 7 | Approved commercial terms: per-student price, free plan scope, hosting fees. **Done 2026-09-27 (C76):** no setup fees, free staff training, first month free after setup, cancel anytime | Pricing page shows only confirmed claims | still pending: `per-student-15`, `free-plan-permanent` |
 | 8 | Per-tenant full data export built and tested (docs/03 "recorded requirement, not built") | Constitution: full export must remain possible | "Export your data" claims (currently "planned") |
 | 9 | Migration playbook timed on a real school's data | A migration time can only be promised after measuring it | `migration-24h` (with the measured figure) |
+| 10 | Separate production database (`netcyberai-prod`), built by replaying the repo's migrations, empty diff against the schema in use (plan 14, Phase 0) | Real school data must never share a database with test fixtures; proves the repo can rebuild the database | Any real school onboarding |
+| 11 | `SUPABASE_SERVICE_ROLE_KEY` set on the production host; leftover `DIAG_*` variables deleted | Document upload needs it; stale secrets are an avoidable risk | Document scan and upload in production |
+| 12 | Transactional email (Resend) with SPF and DKIM, used as Supabase Auth SMTP | Invites and password resets must arrive | Staff invites at scale |
 
 Provider moves: the app talks to Postgres through `src/lib/auth/db.ts`
 (one choke point, enforced by `scripts/check_choke_point.py`) and to

@@ -25,7 +25,16 @@ export function BottomNav({ items, ariaLabel }: Props) {
           of Prompt F Task 4 -- resolves via POST /api/app/scan. */}
       <header className="sticky top-0 z-10 flex min-h-[44px] items-center justify-between border-b border-slate/10 bg-white px-3">
         <span className="text-sm font-semibold text-slate">NetCyberAI</span>
-        <ScanButton />
+        <span className="flex items-center gap-1">
+          <Link
+            href="/app/account"
+            aria-current={pathname === '/app/account' ? 'page' : undefined}
+            className="flex min-h-[44px] items-center px-2 text-xs font-medium text-slate/70 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-sapphire"
+          >
+            Password
+          </Link>
+          <ScanButton />
+        </span>
       </header>
 
       <nav

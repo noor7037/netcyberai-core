@@ -56,9 +56,10 @@ export async function verifyAccessToken(token: string): Promise<SessionClaims | 
 // server has not yet resolved either from a real membership row.
 interface PendingPayload {
   userId: string; // public.users.user_id, equal by construction to the auth.users.id that authenticated
-  purpose: 'mfa' | 'select_school';
+  purpose: 'mfa' | 'select_school' | 'reset';
   aal: 'aal1' | 'aal2';
-  // Only present for purpose:'mfa' -- carries the just-issued, still-aal1
+  // Present for purpose:'mfa' and purpose:'reset' (a password reset whose
+  // account also has an authenticator, C89) -- carries the just-issued, still-aal1
   // Supabase Auth session across the login -> mfa-verify hop so the
   // verify step can call auth.mfa.challenge/verify without re-prompting
   // the password. Never used for anything DB-authorization-related.
@@ -81,7 +82,7 @@ export async function verifyPendingToken(token: string): Promise<PendingPayload 
     if (payload.typ !== 'pending') return null;
     return {
       userId: String(payload.userId),
-      purpose: payload.purpose as 'mfa' | 'select_school',
+      purpose: payload.purpose as 'mfa' | 'select_school' | 'reset',
       aal: payload.aal as 'aal1' | 'aal2',
       sbAccessToken: payload.sbAccessToken as string | undefined,
       sbRefreshToken: payload.sbRefreshToken as string | undefined,
