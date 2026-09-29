@@ -3,8 +3,9 @@
 Built 2026-09-27 from three sources: the founder's supplied references
 (`NetCyberAI_Dashboard_Final_V2.html`, `NetCyberAI_Parent_WhatsApp_iPhone_Mockup.html`),
 the repository as it stands on `main` + this branch, and the live
-Supabase schema. Status is decided by evidence in code, never by the
-mockup:
+Supabase schema. Refreshed 2026-09-29 (Phase 0, Decision Log C94): only the
+rows with new evidence changed. Status is decided by evidence in code, never
+by the mockup:
 
 - **Live**: schema + API/server logic + UI, tenant-scoped, audited where the rule requires it.
 - **Backend only**: schema and server logic exist, no usable screen yet.
@@ -27,7 +28,7 @@ live feature.
 | Guardians + verification | School app | student profile | `parents`, `parent_student_map`, `api/app/guardians` | Live | students |
 | Consent ledger (DPDP) | School app | student profile | `consent_ledger`, `api/app/students/[id]/consent` | Live | guardians |
 | Data subject requests | School app | student profile | `data_subject_requests`, `api/app/dsr` | Live | consent |
-| Document scan + OCR | School app | student profile | `captured_documents`, `ocr_extractions`, `api/app/scan` | Live | students |
+| Document scan + OCR | School app | student profile | `captured_documents`, `ocr_extractions`, `api/app/scan` | Live in code; production has `SUPABASE_SERVICE_ROLE_KEY` since the `efa1094` deployment, preview deployments do not, so upload fails there (C94). No live upload tested since `[VERIFY]` | students |
 | QR ID cards | School app | `/id-card` | `student_qr_tokens`, `qr_scan_log` | Live | students |
 | Attendance marking | School app | `/app/attendance` | `attendance`, `api/app/attendance` | Live | classes, students |
 | Staff directory, leave | School app | stub | `teachers` | Schema only (teachers); leave not built | memberships |
@@ -86,7 +87,8 @@ live feature.
 | Capability | Status |
 |---|---|
 | Sign-in, MFA step, multi-school selection, switch school | Live |
-| Super admin: schools, features, invites, onboarding stage, impersonation | Live |
+| Super admin: schools, features, invites, onboarding stage, impersonation | Live; invite-by-email needs `SUPABASE_SERVICE_ROLE_KEY`: set for production, missing for preview (C94) |
+| Separate production database (`netcyberai-prod`) | Schema only: built from `supabase/migrations/`, catalog identical to dev, no data, not connected to Vercel (C94) |
 | Public lead intake (6 sources) → Control Plane onboarding list | Live (browser → API → DB verified in pieces; see Decision Log) |
 | Billing plans, messaging cost, monitoring, audit-log viewer | Stubs |
 

@@ -17,6 +17,9 @@ jobs:
 
       - run: npm ci
 
+      - name: scripts/ci_local.sh still mirrors this workflow
+        run: python3 scripts/check_ci_mirror.py
+
       - name: No fabricated numeric claims outside the demo fixture
         run: python3 scripts/check_claims.py
 
