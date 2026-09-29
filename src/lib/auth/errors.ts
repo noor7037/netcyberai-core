@@ -12,13 +12,19 @@ export type AuthErrorCode =
   | 'password_invalid'
   | 'password_rejected'
   | 'rate_limited'
-  | 'email_send_failed';
+  | 'email_send_failed'
+  | 'email_limit'
+  | 'link_invalid'
+  | 'setup_required';
 
 export class AuthError extends Error {
   code: AuthErrorCode;
-  constructor(code: AuthErrorCode, message: string) {
+  // For rate_limited: seconds until the email service accepts another request.
+  retryAfter?: number;
+  constructor(code: AuthErrorCode, message: string, retryAfter?: number) {
     super(message);
     this.name = 'AuthError';
     this.code = code;
+    this.retryAfter = retryAfter;
   }
 }

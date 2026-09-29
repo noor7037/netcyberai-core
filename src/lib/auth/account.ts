@@ -86,7 +86,21 @@ export function passwordProblem(raw: unknown): string | null {
 type SupabaseAuthError = { message?: string; status?: number; code?: string } | null;
 
 function isRateLimit(err: SupabaseAuthError): boolean {
-  return !!err && (err.status === 429 || /rate limit|too many/i.test(err.message ?? ''));
+  return !!err && (err.status === 429 || /rate limit|too many|only request this after/i.test(err.message ?? ''));
+}
+
+// Supabase answers two different "slow down"s (C91): the per-address wait
+// between emails ("you can only request this after 42 seconds"), and the
+// project's hourly email cap (over_email_send_rate_limit), which with the
+// built-in email service is only a few messages an hour for the whole site.
+function throwIfRateLimited(err: SupabaseAuthError): void {
+  if (!isRateLimit(err)) return;
+  const wait = /after (\d+) second/i.exec(err?.message ?? '');
+  if (wait) throw new AuthError('rate_limited', err?.message ?? 'rate limited', Number(wait[1]));
+  if (err?.code === 'over_email_send_rate_limit' || /email rate limit/i.test(err?.message ?? '')) {
+    throw new AuthError('email_limit', err?.message ?? 'email limit reached');
+  }
+  throw new AuthError('rate_limited', err?.message ?? 'rate limited', 60);
 }
 
 function needsSecondFactor(err: SupabaseAuthError): boolean {
@@ -132,13 +146,16 @@ export async function revokeAllSessions(userId: string, keepSessionId?: string):
 
 export type CodePurpose = 'login' | 'reset';
 
-export async function requestEmailCode(email: string, purpose: CodePurpose): Promise<void> {
+// `redirectTo` is where the email's link lands (C91): the login page, which
+// finishes the sign-in or password change from the link itself, so an email
+// works whether its template shows the code, the link, or both.
+export async function requestEmailCode(email: string, purpose: CodePurpose, redirectTo?: string): Promise<void> {
   const client = newAuthClient();
   const { error } =
     purpose === 'login'
-      ? await client.auth.signInWithOtp({ email, options: { shouldCreateUser: false } })
-      : await client.auth.resetPasswordForEmail(email);
-  if (isRateLimit(error)) throw new AuthError('rate_limited', error?.message ?? 'rate limited');
+      ? await client.auth.signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: redirectTo } })
+      : await client.auth.resetPasswordForEmail(email, { redirectTo });
+  throwIfRateLimited(error);
   // Any other error (most often "no such account") is deliberately not
   // reported: the answer must not reveal whether an email is registered.
 }
@@ -164,10 +181,10 @@ export async function loginWithEmailCode(email: string, code: string): Promise<S
 
 // ---- password sign-in with the email-code step (C90) -------------------------
 
-async function sendSignInCode(email: string): Promise<void> {
-  const { error } = await newAuthClient().auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
+async function sendSignInCode(email: string, redirectTo?: string): Promise<void> {
+  const { error } = await newAuthClient().auth.signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: redirectTo } });
   if (!error) return;
-  if (isRateLimit(error)) throw new AuthError('rate_limited', error.message ?? 'rate limited');
+  throwIfRateLimited(error);
   // The password was already right, so saying the email failed reveals nothing.
   throw new AuthError('email_send_failed', error.message ?? 'email not sent');
 }
@@ -180,7 +197,7 @@ async function deviceTrusted(deviceToken: string | undefined, userId: string): P
   return Number(live.token_version) === device.tokenVersion;
 }
 
-export async function passwordLogin(identifier: string, password: string, deviceToken?: string): Promise<LoginOutcome> {
+export async function passwordLogin(identifier: string, password: string, deviceToken?: string, redirectTo?: string): Promise<LoginOutcome> {
   const email = await resolveIdentifier(identifier);
   if (!email) throw new AuthError('invalid_credentials', 'no account for that email or mobile number');
   const client = newAuthClient();
@@ -188,7 +205,7 @@ export async function passwordLogin(identifier: string, password: string, device
   if (error || !data.session || !data.user) throw new AuthError('invalid_credentials', error?.message ?? 'sign-in failed');
 
   if (emailStepEnabled() && !(await deviceTrusted(deviceToken, data.user.id))) {
-    await sendSignInCode(email);
+    await sendSignInCode(email, redirectTo);
     const pendingToken = await signPendingToken({ userId: data.user.id, purpose: 'email_step', aal: 'aal1' }, EMAIL_STEP_TTL_SECONDS);
     return { status: 'email_step', pendingToken, maskedEmail: maskEmail(email) };
   }
@@ -203,9 +220,9 @@ async function pendingEmailStep(pendingToken: string | undefined): Promise<{ use
   return { userId: pending.userId, email };
 }
 
-export async function resendEmailStep(pendingToken: string | undefined): Promise<void> {
+export async function resendEmailStep(pendingToken: string | undefined, redirectTo?: string): Promise<void> {
   const { email } = await pendingEmailStep(pendingToken);
-  await sendSignInCode(email);
+  await sendSignInCode(email, redirectTo);
 }
 
 export async function completeEmailStep(pendingToken: string | undefined, code: string): Promise<SignedIn> {
@@ -259,7 +276,7 @@ export async function resetPasswordWithCode(email: string, code: string, newPass
   return { status: 'signed_in', signedIn: await signInFromClient(client, data.user.id, fresh.session ?? data.session) };
 }
 
-export async function continueResetWithMfa(pendingToken: string, newPassword: string, mfaCode: string): Promise<SignedIn> {
+export async function continueResetWithMfa(pendingToken: string, newPassword: string, mfaCode?: string): Promise<SignedIn> {
   const pending = await verifyPendingToken(pendingToken);
   if (!pending || pending.purpose !== 'reset' || !pending.sbAccessToken || !pending.sbRefreshToken) {
     throw new AuthError('pending_token_invalid', 'no pending reset for this token');
@@ -267,7 +284,10 @@ export async function continueResetWithMfa(pendingToken: string, newPassword: st
   const client = newAuthClient();
   const { data, error } = await client.auth.setSession({ access_token: pending.sbAccessToken, refresh_token: pending.sbRefreshToken });
   if (error || !data.user?.email) throw new AuthError('pending_token_invalid', error?.message ?? 'reset session expired');
-  await passTotp(client, mfaCode);
+  if (await hasVerifiedTotp(client)) {
+    if (!mfaCode) throw new AuthError('mfa_required', 'authenticator code required');
+    await passTotp(client, mfaCode);
+  }
   await setPassword(client, newPassword);
   await signOutEverywhere(pending.userId);
   const { data: fresh } = await client.auth.getSession();
@@ -304,4 +324,80 @@ export async function changePassword(
   await setPassword(client, newPassword);
   // Other devices are signed out; this one stays signed in.
   await revokeAllSessions(userId, sessionId);
+}
+
+// ---- sign-in and reset links from the email (C91) -----------------------------
+
+// Methods Supabase records for a session created by an emailed code or link.
+// A password session is refused here: it must go through passwordLogin, so
+// the email-code step cannot be skipped by calling Supabase directly.
+const EMAIL_PROOF_METHODS = new Set(['otp', 'magiclink', 'recovery', 'invite', 'email/signup']);
+const LINK_MAX_AGE_SECONDS = 15 * 60;
+
+function emailProof(accessToken: string): { method: string; at: number } | null {
+  try {
+    const payload = JSON.parse(Buffer.from(accessToken.split('.')[1], 'base64url').toString('utf8'));
+    const amr: { method?: string; timestamp?: number }[] = Array.isArray(payload.amr) ? payload.amr : [];
+    const hit = amr.find((a) => a.method && EMAIL_PROOF_METHODS.has(a.method));
+    return hit?.method && hit.timestamp ? { method: hit.method, at: hit.timestamp } : null;
+  } catch {
+    return null;
+  }
+}
+
+export type LinkResult = { status: 'signed_in'; signedIn: SignedIn } | { status: 'set_password'; pendingToken: string };
+
+// Finishes what an emailed link started. Supabase has already checked the
+// link and handed its session to the login page; the session is checked
+// again here with Supabase before anything is trusted.
+export type LinkKind = 'magiclink' | 'recovery' | 'invite' | 'email';
+const SET_PASSWORD_KINDS = new Set(['recovery', 'invite']);
+
+export async function completeEmailLink(accessToken: string, refreshToken: string, kind?: string): Promise<LinkResult> {
+  const client = newAuthClient();
+  // A malformed token makes supabase-js throw rather than return an error.
+  const { data, error } = await client.auth
+    .setSession({ access_token: accessToken, refresh_token: refreshToken })
+    .catch((e: unknown) => ({ data: { session: null, user: null }, error: { message: String(e) } }));
+  if (error || !data.session || !data.user) throw new AuthError('link_invalid', error?.message ?? 'link session rejected');
+  const { data: checked, error: userError } = await client.auth.getUser(data.session.access_token);
+  if (userError || checked.user?.id !== data.user.id) throw new AuthError('link_invalid', userError?.message ?? 'user mismatch');
+  return finishLinkSession(client, data.user.id, data.session, kind);
+}
+
+// Our own link format, /login?th=<token hash>&type=<kind> (C91): verified here
+// on the server, so it works whatever Supabase's Site URL setting says. Used by
+// the founder console's shareable links, and by email templates that point
+// straight at the login page.
+export async function completeTokenHash(tokenHash: string, kind: LinkKind): Promise<LinkResult> {
+  const client = newAuthClient();
+  const { data, error } = await client.auth.verifyOtp({ token_hash: tokenHash, type: kind });
+  if (error || !data.session || !data.user) throw new AuthError('link_invalid', error?.message ?? 'link rejected');
+  return finishLinkSession(client, data.user.id, data.session, kind);
+}
+
+async function finishLinkSession(
+  client: SupabaseClient,
+  userId: string,
+  session: { access_token: string; refresh_token: string },
+  kind?: string
+): Promise<LinkResult> {
+  const proof = emailProof(session.access_token);
+  if (!proof || Date.now() / 1000 - proof.at > LINK_MAX_AGE_SECONDS) throw new AuthError('link_invalid', 'not an email link session');
+  const data = { user: { id: userId }, session };
+
+  if (proof.method === 'recovery' || (kind && SET_PASSWORD_KINDS.has(kind))) {
+    const pendingToken = await signPendingToken(
+      {
+        userId: data.user.id,
+        purpose: 'reset',
+        aal: 'aal1',
+        sbAccessToken: data.session.access_token,
+        sbRefreshToken: data.session.refresh_token,
+      },
+      EMAIL_STEP_TTL_SECONDS
+    );
+    return { status: 'set_password', pendingToken };
+  }
+  return { status: 'signed_in', signedIn: await signInFromClient(client, userId, session) };
 }

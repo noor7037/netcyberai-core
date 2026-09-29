@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { AuthLinkForwarder } from '@/components/auth/AuthLinkForwarder';
 import { organizationJsonLd, serializeJsonLd, websiteJsonLd } from '@/lib/seo';
 import { companyName, ogLocale, siteDescription, siteLanguage, siteUrl } from '@/lib/site-config';
 import './globals.css';
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
+        <AuthLinkForwarder />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(organizationJsonLd()) }}

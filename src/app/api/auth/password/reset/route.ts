@@ -9,6 +9,8 @@ import { authErrorResponse, outcomeResponse, rememberDevice } from '@/lib/auth/o
 // authenticator answer `mfa_required` once, then finish with the
 // authenticator code (the verified recovery step waits in the pending
 // cookie). Success signs the person in here and out everywhere else (C90).
+// `continue` also finishes a reset started from the email's link (C91),
+// where the authenticator code is needed only if the account has one.
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const newPassword = body?.newPassword;
@@ -21,7 +23,7 @@ export async function POST(req: NextRequest) {
 
   try {
     if (body?.continue === true) {
-      if (!pending || !mfaCode) return NextResponse.json({ error: 'pending_token_invalid' }, { status: 400 });
+      if (!pending) return NextResponse.json({ error: 'pending_token_invalid' }, { status: 400 });
       const { outcome, userId } = await continueResetWithMfa(pending, newPassword, mfaCode);
       const res = outcomeResponse(outcome);
       return remember && res.ok ? rememberDevice(res, userId) : res;
