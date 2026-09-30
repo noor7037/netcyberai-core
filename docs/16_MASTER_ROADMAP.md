@@ -40,6 +40,7 @@ Pro, or migrate) are taken after the build and before the first school.
 3. **Multi-tenant safety.** RLS on every tenant table, role narrowing
    RESTRICTIVE, `check_rls_policies.py` allowlist, cross-tenant tests.
 4. **Module definition of done** (applies to every module in `17`):
+   settings schema + filters + bulk actions via the §1a frameworks ·
    data model + RLS + tests · API with audit · UI with loading / empty / error /
    no-permission states · works at 360, 390, 768, 1024, 1440 · English + Hindi
    strings · demo-school seed data · charts have a table view · catalog row in
@@ -54,18 +55,34 @@ Pro, or migrate) are taken after the build and before the first school.
 
 | # | Phase | Scope (modules from `17`) | Founder inputs | Done when |
 |---|---|---|---|---|
-| **P1** | Platform foundations | Live site on its own production DB (cutover); observability (errors, logs, uptime); module registry + per-school entitlements; app navigation (8 groups, `17` §2); app design system (`17` §4); i18n EN/HI; file storage; audit-log viewer; API rate limiter; Help Center; Raise Ticket | Sentry DSN; uptime alert contact | Every later module plugs into registry, nav, entitlements, i18n and design system without new plumbing |
+| **P1** | Platform foundations | Live site on its own production DB (cutover); observability (errors, logs, uptime); module registry + per-school entitlements; **settings, onboarding templates, custom fields, filters + saved views, bulk actions frameworks (`17` §1a)**; Student 360 search; app navigation (8 groups, `17` §2); app design system (`17` §4); i18n EN/HI; file storage; audit-log viewer; API rate limiter; Help Center; Raise Ticket | Sentry DSN; uptime alert contact | Every later module plugs into registry, nav, entitlements, i18n and design system without new plumbing |
 | **P2** | Teacher app (PWA) | Attendance, Homework, Academics ("taught today", lesson plan), Timetable (view), Daily Pulse compose, Homework Recovery v1, Teacher Copilot v1 | `ANTHROPIC_API_KEY` for Copilot | A teacher runs a full school day on a phone, offline-tolerant |
 | **P3** | WhatsApp live + parent loop | Communication, Daily Pulse send + replies, Parents, PTM Scheduler, Events, Complaints, Parent AI v1, delivery states | Meta Business verification, WABA number, approved templates | Parents receive, reply, and every message state is visible to the school |
 | **P4** | Principal + Control on real data | Dashboard (principal, real), Reports, Staff (leave), Proxy Auto, School Health Auditor, Early Warning v1, Control: billing plans, messaging cost, monitoring | Plan names and ₹ prices | Principal dashboard shows only real data, every tile drills down |
 | **P5** | Exams + learning intelligence | Exams & Report Card, Personal Best / Most Improved, Curriculum Gap Detector, Learning Genome, Early Warning v2 | Grading schemes used by target boards | Report cards published; growth and gaps computed from real marks |
 | **P6** | School operations + advanced AI | Setup (complete), Admissions pipeline, Timetable generator, Documents & Certificates, Compliance Pro · APAAR, Payroll, Career Graph, Digital Twin, Automation OS | Payroll rules (salary heads, statutory); APAAR access | All website modules exist; AI modules run on real data with human approval |
 | **P7** | Fees and payments | Fees (heads, structures, concessions, ledger), Razorpay, receipts, WhatsApp reminders, clearance gate for certificates | Razorpay KYC + keys; real concession types | Payment → ledger → receipt → reminder loop reconciles to the rupee |
+| **P7b** | Family App (parent + student, PWA) | Family App group in `17` §3a: dues + Pay Now, attendance calendar, reports, receipts, notices, PTM booking, homework submit, study material, online exams | Store listing decision (PWA first) | A parent handles fees, homework and notices without calling the school |
 | **P8** | Launch hardening | Backup-restore drill, load test, security audit, legal sign-off, hosting / plan decision and migration if chosen, first school onboarding runbook | Lawyer; hosting decision | Signed launch checklist (`13_LAUNCH_CHECKLIST.md`) |
 
 Payroll and the AI modules marked *spec v0* in `17` are specified by the
 supervisor so they can be built; the founder confirms or edits the spec before
 their phase starts.
+
+## 4a. Two executors in parallel (C100)
+
+Claude Code and Google Antigravity build at the same time in **separate
+clones** of the repo (never the same folder), on separate branches, in
+separate lanes. Both read `AGENTS.md`. The supervisor reviews and merges both.
+
+| Lane | Owner | Owns | Must not touch |
+|---|---|---|---|
+| **Core** | Claude Code (`claude/*` branches) | Database, migrations, RLS, auth, jobs pipeline, integrations (WhatsApp, Razorpay, email, AI), API routes, settings / filters / custom-fields engines, security | — |
+| **Experience** | Antigravity (`ag/*` branches) | App design system components, chart kit, motion, app shell visuals, module screens against the Core lane's APIs or typed fixtures, Help Center content, EN/HI copy, screenshot and visual checks | `supabase/migrations/**`, `src/lib/auth/**`, `src/lib/jobs/**`, `db.ts`, `scripts/check_*`, `.github/**`, env and secrets |
+
+Contracts between lanes are TypeScript types in `src/lib/contracts/**`
+(owned by Core; Experience consumes). Decision Log numbers: supervisor C100–C109,
+Claude Code from C110, Antigravity from C200.
 
 ## 5. Founder long-lead actions (start now)
 
@@ -77,5 +94,7 @@ their phase starts.
 
 ## 6. Change log
 
+- **2026-09-30** — C100: P7b Family App added; two-executor lanes (§4a);
+  configuration, filters and the founder's E2E list folded into `17`.
 - **2026-09-30** — Created (C99). Founder moved Fees to the last feature phase
   (P7); Launch hardening stays last (P8) so payment code is audited.

@@ -25,6 +25,34 @@ before its phase).
   "90 sec", "47 at-risk" come from the demo; the real product shows computed
   values only.
 
+## 1a. Configuration and filters — every module, every school (C100)
+
+Founder rule: a school configures NetCyberAI to its own way of working, and
+finds anything with filters. Built once in P1-b as platform frameworks; every
+module plugs in (part of the module definition of done).
+
+- **Settings framework.** Each module declares a typed settings schema
+  (defaults, allowed values, who may change it). Per-school values, validated,
+  audited, versioned, with "reset to default". The settings screen is generated
+  from the schema. Covers numbering formats (admission / receipt / roll no.),
+  academic calendar, working days, periods, grading schemes, attendance codes,
+  fee rules, late fines, reminder schedules, notification templates, languages,
+  branding (logo + one accent colour within the palette), module on/off.
+- **Onboarding templates.** A new school starts from a template (board, size,
+  levels) that pre-fills classes, subjects, fee heads, grading and calendar;
+  the founder maintains templates in Control. One-click school setup.
+- **Custom fields.** Schools add typed fields to Student, Guardian, Staff,
+  Admission lead (text, number, date, list, yes/no), usable in forms, filters,
+  imports, exports and reports.
+- **Filters and saved views.** Every list uses one filter engine: field +
+  operator + value, AND/OR groups, quick filters (class, section, status,
+  session, date range), full-text search, sort, column choice; saved views per
+  user or shared per school; role default views; URL-shareable; server-side
+  pagination; exports and bulk actions act on exactly the filtered set.
+- **Bulk everything.** Every list supports select-all-filtered + bulk action
+  with preview, confirmation, a background job for large sets, and an undo
+  window where the action allows it.
+
 ## 2. Navigation — 8 groups (sidebar sections that collapse like drop-downs)
 
 Replaces the demo's 5 uneven groups (17 items under one heading). Role shells
@@ -79,6 +107,34 @@ show only the modules a role may use (§5).
 | 32 | Automation OS (`automation`) | Spec v0: rule builder (trigger → condition → action) on the jobs pipeline; prebuilt automations; every run audited; human approval for parent-facing actions | P6 | Spec v0 |
 | 33 | Help Center (`help-center`) · Raise Ticket (`raise-ticket`) | In-app guides per module; ticket with screenshot, status, founder queue in Control | P1 | Partial / Planned |
 
+
+## 3a. Additions from the founder's E2E review (2026-09-30, C100)
+
+Source: the founder's "what 1000+ schools use daily" list. Picked items join the
+module in brackets; dropped or deferred items say why.
+
+| Area | Picked (module, phase) | Dropped / deferred and why |
+|---|---|---|
+| **Super Admin (Control)** | Schools list, add, suspend/activate, impersonate, storage limit, bulk school import (P4) · Plans, add-ons, subscriptions, payment history, pending orders, coupons, manual payment approval, renewal reminders, **grace period then read-only** on failed payment (P4) · Team roles for NetCyberAI staff, support desk (P1/P4) · Onboarding templates, settings hub, master module menu, notification templates (P1-b) · Reports: login, engagement, comms, fees, attendance, schools (P4) · Comms wallet, comms rates, WhatsApp setup (P3/P4) · Certificate templates (P6) · Cron / pipeline monitor, backup + restore drill (P1/P8) | Stripe/PayPal: Razorpay covers UPI, cards and QR in India, and the provider interface allows adding them later · SMS gateways: DLT registration first, deferred behind the provider interface · Custom domain per school: later (P8+), low value before scale · 6-theme engine: replaced by logo + one accent colour, keeping the brand consistent · CMS for landing pages / blog: the site is in code; Knowledge Base = Help Center · "Software updates" / server screens: managed by the host · Public API docs: when a partner needs them |
+| **School Setup** | Session manager, class/section, subjects, subject-teacher and class-teacher mapping, **promotion rules + one-click promote** (Setup, P6 — promote moved earlier to P5 if a session rollover is due), student categories, houses, bulk Excel/CSV import (Setup/Students) | — |
+| **Admissions CRM** | Lead dashboard, sources, stages, Kanban board, follow-up reminders, conversion, online admission form with guardian + documents, pending queue, sibling linking (Admissions, P6) | — |
+| **Daily operations** | Student 360° profile + 2-second search by name / admission no. / parent phone (Students, P1-b search) · Attendance daily/monthly, **Present All**, import from sheet, auto message to absent parents (P2/P3) · Staff attendance, leave, loans & advances → payroll (Staff/Payroll) · Timetable visual builder, **clash guard**, workload, my timetable, auto-fill free teacher (Timetable/Proxy) | — |
+| **Finance** | Fee structure builder, discounts / scholarships, fine / late-fee rules, collection, bulk generate, 3-copy receipt, payment link + UPI QR, all-years dues, **auto reminders (−3 days, due date, +7 days)**, expense & income ledger, vendor payments (Fees, P7) · Payroll + payslips from attendance (Payroll, P6) | — |
+| **Academics** | Lesson planner, syllabus tracker, **classwork logbook auto-shared with parents the same evening** (Academics + Pulse) · Homework with files, deadlines, online submission, evaluation, **copy to many sections** (Homework) · Study Center: chapter-wise PDFs and video links (new, P5) · Live class links (Jitsi/Zoom link + notify, P2) | Timetable-linked auto-push of material: after Study Center exists |
+| **Exams** | Offline and online exams (CBT), question bank with difficulty, bulk marks from Excel, one-click class marksheet PDF, assessment dashboard, grading, report card, **HPC — Holistic Progress Card (NEP)**, admit cards (Exams, P5) | OMR / on-screen marking: needs scanning hardware and workflows; deferred behind Document scan · **Auto rank / topper list:** internal-only and opt-in per school, never sent to parents (non-competitive recognition, C76) |
+| **Communication** | Notice board with **one post → WhatsApp + app + board**, calendar, holidays, PTM, certificates (bonafide, TC, ID, admit), complaints & feedback triage, surveys (P3/P6) · Health records: allergies, conditions, emergency contact, consent-gated (Students, P6) | Internal staff chat: WhatsApp already used; deferred · Apps Center: dropped |
+| **Reports** | Daily collection, dues, attendance % (students, staff), fee defaulters, lesson-plan completion (Reports, P4 + per module) | Topper list: see Exams |
+| **Parent & Student** | **Family App** (new group, P7b): profile card, dues with Pay Now, today's attendance, attendance calendar, report PDFs, receipts, ID card, notices, events, PTM booking, homework submit (photo/PDF), study material, online exam attempt, complaint | Separate student logins for minors: no. Students use the Family App under the parent's account (DPDP verifiable parental consent; C13/C24 stand for the staff web app). WhatsApp stays the main channel; the app is optional (C84). |
+
+### The 10 daily time-killers — built first inside their phase
+
+1 Bulk import / attendance / marks / receipts · 2 One-click promotion ·
+3 Auto fee reminders · 4 Auto report card (marks → grade → PDF for a class) ·
+5 Timetable clash guard · 6 Homework copy to many sections · 7 Student 360
+search · 8 Payment link / UPI QR · 9 One notice → every channel ·
+10 Logbook auto-share with parents. Each is a must-have acceptance item of
+its phase, not a later polish.
+
 ## 4. App design system (all dashboards and apps)
 
 - **Colours:** only the logo token set in `src/lib/design-tokens.ts`. Group
@@ -110,9 +166,13 @@ show only the modules a role may use (§5).
 | Teacher | Home, Teaching & Learning, Parent Engagement (own classes), Teacher Copilot, Help |
 | Accountant | Home, Finance, Reports, Help |
 | Academic coordinator | Home, Teaching & Learning, Exams, AI learning modules, Reports, Help |
-| Super admin (Control) | Platform: schools, onboarding, pipeline, plans, entitlements, monitoring, audit |
+| Super admin (Control) | Platform: schools, onboarding, templates, plans and billing, comms wallet, entitlements, support desk, pipeline, monitoring, audit and reports |
+| Parent (Family App, P7b) | Own children only: profile, attendance, homework, reports, fees and Pay Now, notices, PTM, complaints |
 
 ## 6. Change log
 
 - **2026-09-30** — Created (C99) from the website demo's 34 navigation items; 8-group
   navigation; Spec v0 for 11 modules that had no specification.
+- **2026-09-30** — C100: configuration and filters frameworks (§1a); the
+  founder's E2E list mapped module by module (§3a), with the drops and their
+  reasons; Family App group; time-killers made phase acceptance items.
