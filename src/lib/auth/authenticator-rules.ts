@@ -57,26 +57,48 @@ export type AuthenticatorStep = 'none' | 'verify' | 'setup' | 'not_enrolled';
 
 // What sign-in asks for after the password or email step, before a session
 // is issued. `verify` asks for the code; `setup` enrols one on this screen;
-// `not_enrolled` is the dead end left only when the email was not proven
-// (the email-code step switched off), because enrolment needs that proof.
+// `not_enrolled` is the dead end for a platform admin who did not prove both
+// the password and the email in this sign-in (an emailed code or link alone,
+// a password reset, or the email-code step switched off): enrolment needs
+// both, so neither a stolen password nor a stolen mailbox alone can plant an
+// authenticator (C95).
 export function authenticatorStepAtSignIn(input: {
   role: string;
   aal: 'aal1' | 'aal2';
   hasVerifiedAuthenticator: boolean;
   emailProven: boolean;
+  passwordProven: boolean;
 }): AuthenticatorStep {
   if (input.aal === 'aal2') return 'none';
   if (input.hasVerifiedAuthenticator) return 'verify';
   if (!authenticatorRequired(input.role)) return 'none';
-  return input.emailProven ? 'setup' : 'not_enrolled';
+  return input.emailProven && input.passwordProven ? 'setup' : 'not_enrolled';
 }
 
-export type FactorSummary = { id: string; factor_type: string; status: string };
+// Platform admins get the email-code step at every password sign-in; a
+// remembered device skips it only for everyone else (C95, deliberate).
+export function rememberedDeviceSkipsEmailStep(role: string): boolean {
+  return !authenticatorRequired(role);
+}
+
+export type FactorSummary = { id: string; factor_type: string; status: string; created_at?: string };
 
 // Enrolments started but never confirmed (the person closed the page): they
 // are removed before a new one starts, so they never pile up.
 export function unverifiedTotpIds(factors: readonly FactorSummary[]): string[] {
   return factors.filter((f) => f.factor_type === 'totp' && f.status !== 'verified').map((f) => f.id);
+}
+
+// Two setups started at the same moment (a double click, two tabs) each
+// clean up before enrolling, so both could survive. After enrolling, every
+// unconfirmed one older than (or as old as) the new one goes too, which
+// leaves at most one: the newest.
+export function staleUnverifiedTotpIds(factors: readonly FactorSummary[], newFactorId: string): string[] {
+  const created = factors.find((f) => f.id === newFactorId)?.created_at;
+  if (!created) return [];
+  return factors
+    .filter((f) => f.factor_type === 'totp' && f.status !== 'verified' && f.id !== newFactorId && !!f.created_at && f.created_at <= created)
+    .map((f) => f.id);
 }
 
 // "Replace authenticator": after the new one is confirmed, every other

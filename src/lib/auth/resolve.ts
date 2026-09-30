@@ -108,10 +108,12 @@ async function mintSession(
 }
 
 // What the Supabase session behind this sign-in says about authenticators
-// (C95): whether the account has a confirmed one, and whether this session
-// came from an emailed code or link. Absent when unknown, which keeps the
-// old behaviour (platform admins are asked for a code, nobody else is).
-export type AuthenticatorContext = { hasVerified: boolean; emailProven: boolean };
+// (C95): whether the account has a confirmed one, whether this session came
+// from an emailed code or link, and whether the password was also checked in
+// this same sign-in (only the password + email-code path sets that). Absent
+// when unknown, which keeps the old behaviour (platform admins are asked for
+// a code, nobody else is).
+export type AuthenticatorContext = { hasVerified: boolean; emailProven: boolean; passwordProven: boolean };
 
 async function resolveAfterCredentials(
   userId: string,
@@ -131,9 +133,10 @@ async function resolveAfterCredentials(
     // before C95) and as "has none" for everyone else (nothing to ask).
     hasVerifiedAuthenticator: authenticator?.hasVerified ?? live.role === 'super_admin',
     emailProven: authenticator?.emailProven ?? false,
+    passwordProven: authenticator?.passwordProven ?? false,
   });
   if (step === 'not_enrolled') {
-    throw new AuthError('mfa_not_enrolled', 'platform admin has no authenticator and the email was not proven in this sign-in');
+    throw new AuthError('mfa_not_enrolled', 'platform admin has no authenticator and did not prove both password and email in this sign-in');
   }
   if (step === 'setup') {
     if (!pendingSupabaseTokens) throw new AuthError('pending_token_invalid', 'no Supabase session to enrol with');

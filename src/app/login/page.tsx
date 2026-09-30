@@ -20,7 +20,7 @@
 // not a final, designer-reviewed layout. Good enough to stop reading
 // like an error state or a buried dropdown; not a claim that it's done.
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import Link from 'next/link';
@@ -54,7 +54,7 @@ const ERROR_TEXT: Record<string, string> = {
   link_invalid: 'That link has expired or was already used. Each link works once, for one hour, and only the newest email works. Send a new code below.',
   setup_required: 'This needs a setting that is not switched on yet. Please contact support.',
   mfa_not_enrolled:
-    'This account needs an authenticator app. Setting one up needs the emailed code, which is switched off right now. Please contact support.',
+    'This account needs an authenticator app. It is set up only after signing in with your password and then the emailed code. Sign in that way to set it up, or contact support.',
   mfa_already_enrolled: 'An authenticator app is already set up for this account. Sign in again and enter its code.',
   mfa_enroll_failed: 'We could not start the authenticator setup. Please try again.',
 };
@@ -403,8 +403,17 @@ export default function LoginPage() {
       });
     });
 
+  // One enrolment per visit to this step: React runs effects twice in
+  // development, and each start would enrol a new factor (C95).
+  const setupStarted = useRef(false);
   useEffect(() => {
-    if (step.kind === 'mfa_setup' && !step.enrolment) void startSetup();
+    if (step.kind !== 'mfa_setup') {
+      setupStarted.current = false;
+      return;
+    }
+    if (step.enrolment || setupStarted.current) return;
+    setupStarted.current = true;
+    void startSetup();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step.kind]);
 

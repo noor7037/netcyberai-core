@@ -12,6 +12,8 @@ import {
   isPendingTotpFactor,
   normalizeTotpCode,
   svgDataUrl,
+  rememberedDeviceSkipsEmailStep,
+  staleUnverifiedTotpIds,
   unverifiedTotpIds,
   type FactorSummary,
 } from './authenticator-rules';
@@ -23,7 +25,7 @@ function token(payload: unknown): string {
 }
 
 describe('authenticatorStepAtSignIn', () => {
-  const base = { aal: 'aal1' as const, hasVerifiedAuthenticator: false, emailProven: false };
+  const base = { aal: 'aal1' as const, hasVerifiedAuthenticator: false, emailProven: false, passwordProven: false };
 
   it('asks nothing more once the session is already at aal2', () => {
     expect(authenticatorStepAtSignIn({ ...base, role: 'super_admin', aal: 'aal2' })).toBe('none');
@@ -36,14 +38,26 @@ describe('authenticatorStepAtSignIn', () => {
     }
   });
 
-  it('enrols a platform admin without one only after the email was proven', () => {
-    expect(authenticatorStepAtSignIn({ ...base, role: 'super_admin', emailProven: true })).toBe('setup');
-    expect(authenticatorStepAtSignIn({ ...base, role: 'super_admin', emailProven: false })).toBe('not_enrolled');
+  it('enrols a platform admin without one only after both the password and the email were proven', () => {
+    const admin = { ...base, role: 'super_admin' };
+    expect(authenticatorStepAtSignIn({ ...admin, passwordProven: true, emailProven: true })).toBe('setup');
+    // A password alone (a remembered device, or the email step switched off).
+    expect(authenticatorStepAtSignIn({ ...admin, passwordProven: true, emailProven: false })).toBe('not_enrolled');
+    // A mailbox alone (an emailed code or link, a password reset).
+    expect(authenticatorStepAtSignIn({ ...admin, passwordProven: false, emailProven: true })).toBe('not_enrolled');
+    expect(authenticatorStepAtSignIn(admin)).toBe('not_enrolled');
+  });
+
+  it('gives platform admins the email step even on a remembered device', () => {
+    expect(rememberedDeviceSkipsEmailStep('super_admin')).toBe(false);
+    for (const role of ['principal', 'school_admin', 'teacher', 'accountant']) {
+      expect(rememberedDeviceSkipsEmailStep(role)).toBe(true);
+    }
   });
 
   it('does not require one of anyone else', () => {
     for (const role of ['principal', 'school_admin', 'teacher', 'accountant', 'academic_coordinator']) {
-      expect(authenticatorStepAtSignIn({ ...base, role, emailProven: true })).toBe('none');
+      expect(authenticatorStepAtSignIn({ ...base, role, emailProven: true, passwordProven: true })).toBe('none');
     }
   });
 });
@@ -116,6 +130,29 @@ describe('factor bookkeeping', () => {
     expect(isPendingTotpFactor(factors, 'sms')).toBe(false);
     expect(isPendingTotpFactor(factors, 'someone-elses')).toBe(false);
     expect(isPendingTotpFactor(factors, 42)).toBe(false);
+  });
+});
+
+describe('setups started at the same moment', () => {
+  const at = (s: number) => `2026-09-30T10:00:0${s}Z`;
+  it('keeps only the newest unconfirmed setup', () => {
+    const factors: FactorSummary[] = [
+      { id: 'old', factor_type: 'totp', status: 'verified', created_at: at(0) },
+      { id: 'raceA', factor_type: 'totp', status: 'unverified', created_at: at(1) },
+      { id: 'raceB', factor_type: 'totp', status: 'unverified', created_at: at(2) },
+    ];
+    // B's clean-up removes A; A's clean-up leaves B (it is newer).
+    expect(staleUnverifiedTotpIds(factors, 'raceB')).toEqual(['raceA']);
+    expect(staleUnverifiedTotpIds(factors, 'raceA')).toEqual([]);
+  });
+
+  it('never touches a confirmed authenticator or another factor type', () => {
+    const factors: FactorSummary[] = [
+      { id: 'old', factor_type: 'totp', status: 'verified', created_at: at(0) },
+      { id: 'phone', factor_type: 'phone', status: 'unverified', created_at: at(0) },
+      { id: 'new', factor_type: 'totp', status: 'unverified', created_at: at(3) },
+    ];
+    expect(staleUnverifiedTotpIds(factors, 'new')).toEqual([]);
   });
 });
 

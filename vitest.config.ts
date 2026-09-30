@@ -8,7 +8,9 @@ import path from 'node:path';
 export default defineConfig({
   test: {
     environment: 'node',
-    include: ['src/**/*.test.ts'],
+    // test/: flow tests that swap Supabase Auth and Postgres for in-memory
+    // stand-ins (C95); kept outside src/ so nothing there ships or reads as data.
+    include: ['src/**/*.test.ts', 'test/**/*.test.ts'],
   },
   resolve: {
     alias: {

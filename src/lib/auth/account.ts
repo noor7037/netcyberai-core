@@ -6,7 +6,7 @@ import { signPendingToken, verifyDeviceToken, verifyPendingToken } from './jwt';
 import { EMAIL_STEP_TTL_SECONDS } from './cookies';
 import { AuthError } from './errors';
 import type { LoginOutcome } from './types';
-import { emailProofFromAccessToken, emailProofFromAmr } from './authenticator-rules';
+import { emailProofFromAccessToken, emailProofFromAmr, rememberedDeviceSkipsEmailStep } from './authenticator-rules';
 
 // Account recovery and email codes (founder request 2026-09-29, Decision
 // Log C89): sign in with a one-time code sent to the account's email,
@@ -176,20 +176,29 @@ export type SignedIn = { outcome: LoginOutcome; userId: string };
 // behaviour.
 async function authenticatorContext(
   client: SupabaseClient,
-  aalData: { nextLevel: string | null; currentAuthenticationMethods: unknown } | null
+  aalData: { nextLevel: string | null; currentAuthenticationMethods: unknown } | null,
+  passwordProven: boolean
 ): Promise<AuthenticatorContext | undefined> {
   if (!aalData) return undefined;
   const emailProven = !!emailProofFromAmr(aalData.currentAuthenticationMethods);
-  if (aalData.nextLevel === 'aal2') return { hasVerified: true, emailProven };
+  if (aalData.nextLevel === 'aal2') return { hasVerified: true, emailProven, passwordProven };
   const { data, error } = await client.auth.mfa.listFactors();
   if (error || !data) return undefined;
-  return { hasVerified: data.totp.length > 0, emailProven };
+  return { hasVerified: data.totp.length > 0, emailProven, passwordProven };
 }
 
-async function signInFromClient(client: SupabaseClient, userId: string, session: { access_token: string; refresh_token: string }): Promise<SignedIn> {
+// `passwordProven`: the account's password was checked earlier in this same
+// sign-in (passwordLogin, then completeEmailStep). A platform admin may enrol
+// an authenticator only when that and the email are both proven (C95).
+async function signInFromClient(
+  client: SupabaseClient,
+  userId: string,
+  session: { access_token: string; refresh_token: string },
+  passwordProven = false
+): Promise<SignedIn> {
   const { data: aalData } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
   const aal = (aalData?.currentLevel ?? 'aal1') as 'aal1' | 'aal2';
-  const authenticator = aal === 'aal2' ? undefined : await authenticatorContext(client, aalData);
+  const authenticator = aal === 'aal2' ? undefined : await authenticatorContext(client, aalData, passwordProven);
   const outcome = await resolveAfterCredentials(
     userId,
     aal,
@@ -224,13 +233,12 @@ async function deviceTrusted(deviceToken: string | undefined, userId: string): P
   return Number(live.token_version) === device.tokenVersion;
 }
 
-// A platform admin with no authenticator enrols one during sign-in, and that
-// needs the email proven in this sign-in (C95), so a remembered device does
-// not skip the email step for them.
-async function mustEnrolAuthenticator(client: SupabaseClient, userId: string): Promise<boolean> {
-  const { data } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
-  if (data?.nextLevel === 'aal2') return false;
-  return (await fetchLiveUser(userId)).role === 'super_admin';
+// A remembered device skips the email step, except for platform admins, who
+// get it at every password sign-in (C95, deliberate): their accounts reach
+// every school, and enrolling an authenticator needs that email proof.
+async function deviceSkipsEmailStep(deviceToken: string | undefined, userId: string): Promise<boolean> {
+  if (!(await deviceTrusted(deviceToken, userId))) return false;
+  return rememberedDeviceSkipsEmailStep((await fetchLiveUser(userId)).role);
 }
 
 export async function passwordLogin(identifier: string, password: string, deviceToken?: string, redirectTo?: string): Promise<LoginOutcome> {
@@ -240,13 +248,12 @@ export async function passwordLogin(identifier: string, password: string, device
   const { data, error } = await client.auth.signInWithPassword({ email, password });
   if (error || !data.session || !data.user) throw new AuthError('invalid_credentials', error?.message ?? 'sign-in failed');
 
-  const skipEmailStep = (await deviceTrusted(deviceToken, data.user.id)) && !(await mustEnrolAuthenticator(client, data.user.id));
-  if (emailStepEnabled() && !skipEmailStep) {
+  if (emailStepEnabled() && !(await deviceSkipsEmailStep(deviceToken, data.user.id))) {
     await sendSignInCode(email, redirectTo);
     const pendingToken = await signPendingToken({ userId: data.user.id, purpose: 'email_step', aal: 'aal1' }, EMAIL_STEP_TTL_SECONDS);
     return { status: 'email_step', pendingToken, maskedEmail: maskEmail(email) };
   }
-  return (await signInFromClient(client, data.user.id, data.session)).outcome;
+  return (await signInFromClient(client, data.user.id, data.session, true)).outcome;
 }
 
 async function pendingEmailStep(pendingToken: string | undefined): Promise<{ userId: string; email: string }> {
@@ -269,7 +276,8 @@ export async function completeEmailStep(pendingToken: string | undefined, code: 
   if (error || !data.session || !data.user) throw new AuthError('code_invalid', error?.message ?? 'code rejected');
   // The code must belong to the account whose password was just checked.
   if (data.user.id !== userId) throw new AuthError('code_invalid', 'code belongs to another account');
-  return signInFromClient(client, userId, data.session);
+  // The pending token proves passwordLogin checked the password first.
+  return signInFromClient(client, userId, data.session, true);
 }
 
 // Signs the user out everywhere: every session, every access token on its

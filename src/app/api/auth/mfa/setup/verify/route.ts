@@ -5,7 +5,7 @@ import { AuthError } from '@/lib/auth/errors';
 import { PENDING_COOKIE } from '@/lib/auth/cookies';
 import { withTenantContext } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
-import { authErrorResponse, outcomeResponse } from '@/lib/auth/outcome-response';
+import { authErrorResponse, noStore, outcomeResponse } from '@/lib/auth/outcome-response';
 
 // Confirms the authenticator started by /api/auth/mfa/setup/start with its
 // first code, then finishes sign-in at aal2 (C95). Audited: the event only,
@@ -13,7 +13,7 @@ import { authErrorResponse, outcomeResponse } from '@/lib/auth/outcome-response'
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const code = normalizeTotpCode(body?.code);
-  if (!code) return NextResponse.json({ error: 'mfa_invalid_code' }, { status: 400 });
+  if (!code) return noStore(NextResponse.json({ error: 'mfa_invalid_code' }, { status: 400 }));
   try {
     const { outcome, userId } = await finishSignInSetup(req.cookies.get(PENDING_COOKIE)?.value, body?.factorId, code);
     if (outcome.status === 'ok') {
@@ -29,9 +29,9 @@ export async function POST(req: NextRequest) {
         })
       );
     }
-    return outcomeResponse(outcome);
+    return noStore(outcomeResponse(outcome));
   } catch (err) {
-    if (err instanceof AuthError) return authErrorResponse(err);
+    if (err instanceof AuthError) return noStore(authErrorResponse(err));
     throw err;
   }
 }

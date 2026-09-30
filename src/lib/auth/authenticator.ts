@@ -11,6 +11,7 @@ import {
   factorIdsToRemoveAfterReplace,
   formatSetupKey,
   isPendingTotpFactor,
+  staleUnverifiedTotpIds,
   svgDataUrl,
   unverifiedTotpIds,
   type FactorSummary,
@@ -37,7 +38,7 @@ const ISSUER = 'NetCyberAI';
 async function factorsOf(client: SupabaseClient): Promise<FactorSummary[]> {
   const { data, error } = await client.auth.mfa.listFactors();
   if (error || !data) throw new AuthError('mfa_enroll_failed', error?.message ?? 'could not read authenticators');
-  return data.all.map((f) => ({ id: f.id, factor_type: f.factor_type, status: f.status }));
+  return data.all.map((f) => ({ id: f.id, factor_type: f.factor_type, status: f.status, created_at: f.created_at }));
 }
 
 function hasVerifiedTotp(factors: FactorSummary[]): boolean {
@@ -55,6 +56,11 @@ async function enrolTotp(client: SupabaseClient): Promise<Enrolment> {
     friendlyName: authenticatorFriendlyName(new Date()),
   });
   if (error || !data || data.type !== 'totp') throw new AuthError('mfa_enroll_failed', error?.message ?? 'enrolment not started');
+  // A setup started at the same moment elsewhere (double click, second tab)
+  // may have slipped past the clean-up above; the newest one wins.
+  for (const id of staleUnverifiedTotpIds(await factorsOf(client), data.id)) {
+    await client.auth.mfa.unenroll({ factorId: id });
+  }
   return { factorId: data.id, qrCode: svgDataUrl(data.totp.qr_code), setupKey: formatSetupKey(data.totp.secret), uri: data.totp.uri };
 }
 

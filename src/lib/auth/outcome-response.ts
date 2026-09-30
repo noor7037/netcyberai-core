@@ -80,3 +80,11 @@ export function authErrorResponse(err: AuthError): NextResponse {
   if (err.retryAfter) body.retryAfter = err.retryAfter;
   return NextResponse.json(body, { status: STATUS[err.code] ?? 401 });
 }
+
+// Authenticator setup responses (C95) carry, or sit next to ones that carry,
+// a QR code and setup key: nothing on those routes may be cached, errors
+// included.
+export function noStore(res: NextResponse): NextResponse {
+  res.headers.set('Cache-Control', 'no-store');
+  return res;
+}
