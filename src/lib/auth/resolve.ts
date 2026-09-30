@@ -104,6 +104,11 @@ async function mintSession(
     sessionId,
   };
   const accessToken = await signAccessToken(claims);
+  // An invited person's first sign-in completes their invitation (C98).
+  // Loaded lazily (onboarding imports auth); never blocks signing in.
+  await import('@/lib/onboarding/first-sign-in')
+    .then((m) => m.recordSignIn(userId))
+    .catch((err: unknown) => console.error('[auth] invitation acceptance not recorded', err instanceof Error ? err.name : 'error'));
   return { accessToken, refreshToken, claims };
 }
 
