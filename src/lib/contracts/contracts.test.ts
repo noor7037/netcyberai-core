@@ -45,7 +45,8 @@ describe('module registry', () => {
     expect(modulesOf('principal')).toHaveLength(34);
     expect(modulesOf('school_admin')).toHaveLength(34);
     expect([...groupsOf('teacher')].sort()).toEqual(['ai-intelligence', 'help', 'home', 'parent-engagement', 'teaching-learning']);
-    expect(modulesOf('teacher').filter((id) => moduleById(id).group === 'ai-intelligence')).toEqual(['teacher-copilot']);
+    expect(modulesOf('teacher').filter((id) => moduleById(id).group === 'ai-intelligence')).toEqual(['teacher-copilot', 'parent-ai']);
+    expect(moduleById('parent-ai').teacherScope).toBe('ownClassesOnly');
     expect(modulesOf('accountant').sort()).toEqual(['dashboard', 'fees', 'help-center', 'payroll', 'raise-ticket', 'reports']);
     const coordinator = modulesOf('academic_coordinator');
     expect(coordinator).toEqual(expect.arrayContaining(['exams', 'reports', 'early-warning', 'learning-genome', 'curriculum-gap', 'teacher-copilot']));
@@ -69,7 +70,7 @@ describe('navigation and entitlements', () => {
     expect(nav.groups.map((g) => [g.id, g.items.map((i) => i.moduleId)])).toEqual([
       ['home', ['dashboard']],
       ['finance', ['fees']],
-      ['help', ['help-center']],
+      ['help', ['help-center', 'raise-ticket']],
     ]);
   });
 
@@ -78,6 +79,17 @@ describe('navigation and entitlements', () => {
     const suspended = { ...on('students', 'help-center'), accessMode: 'suspended' as const };
     expect(isModuleEnabled(suspended, 'students')).toBe(false);
     expect(isModuleEnabled(suspended, 'help-center')).toBe(true);
+  });
+
+  it('Help Center and Raise Ticket are on in every access mode, whatever the entitlements', () => {
+    const off = { ...base, modules: { 'help-center': { enabled: false, source: 'plan' as const } } };
+    for (const accessMode of ['full', 'grace', 'read_only', 'suspended'] as const) {
+      for (const e of [base, off]) {
+        expect(isModuleEnabled({ ...e, accessMode }, 'help-center')).toBe(true);
+        expect(isModuleEnabled({ ...e, accessMode }, 'raise-ticket')).toBe(true);
+      }
+      expect(buildNavigation('teacher', { ...base, accessMode }).groups.map((g) => g.id)).toEqual(['help']);
+    }
   });
 
   it('every item carries its status and phase, so an unbuilt module links to a "coming" page', () => {

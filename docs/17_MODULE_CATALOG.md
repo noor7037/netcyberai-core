@@ -53,6 +53,13 @@ module plugs in (part of the module definition of done).
   with preview, confirmation, a background job for large sets, and an undo
   window where the action allows it.
 
+**Built:** entitlements, the settings engine and custom fields (C112, APIs);
+the filter engine with saved views, and bulk actions (C113, PR-2b). A module
+plugs in by registering its settings schema (`src/lib/frameworks/settings-schemas.ts`)
+and, with C113, its list (`lists.ts`) and bulk actions (`bulk-actions.ts`). Help Center and Raise
+Ticket are always on, whatever the entitlements. Onboarding templates are not
+built yet (they arrive with the Control onboarding screens).
+
 ## 2. Navigation — 8 groups (sidebar sections that collapse like drop-downs)
 
 Replaces the demo's 5 uneven groups (17 items under one heading). Role shells
@@ -163,7 +170,7 @@ its phase, not a later polish.
 | Role | Groups |
 |---|---|
 | Principal, School admin | All school groups |
-| Teacher | Home, Teaching & Learning, Parent Engagement (own classes), Teacher Copilot, Help |
+| Teacher | Home, Teaching & Learning, Parent Engagement (own classes), Teacher Copilot, Parent AI (own classes, C112), Student 360 search (own classes, enforced by the database; not the Students module), Help |
 | Accountant | Home, Finance, Reports, Help |
 | Academic coordinator | Home, Teaching & Learning, Exams, AI learning modules, Reports, Help |
 | Super admin (Control) | Platform: schools, onboarding, templates, plans and billing, comms wallet, entitlements, support desk, pipeline, monitoring, audit and reports |
@@ -173,6 +180,8 @@ its phase, not a later polish.
 
 - **2026-09-30** — Created (C99) from the website demo's 34 navigation items; 8-group
   navigation; Spec v0 for 11 modules that had no specification.
+- **2026-09-30** — C112/C113: P1-b frameworks built (§1a); Parent AI and
+  own-classes Student 360 search added for teachers (§5).
 - **2026-09-30** — C100: configuration and filters frameworks (§1a); the
   founder's E2E list mapped module by module (§3a), with the drops and their
   reasons; Family App group; time-killers made phase acceptance items.

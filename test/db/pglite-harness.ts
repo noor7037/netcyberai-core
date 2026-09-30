@@ -2,6 +2,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import { PGlite } from '@electric-sql/pglite';
 import { pgcrypto } from '@electric-sql/pglite/contrib/pgcrypto';
+import { pg_trgm } from '@electric-sql/pglite/contrib/pg_trgm';
 import type { SessionClaims } from '@/lib/auth/types';
 import type { Sql } from '@/lib/jobs/types';
 
@@ -11,9 +12,13 @@ import type { Sql } from '@/lib/jobs/types';
 // exercised as in production. One connection: calls are serialized.
 
 const ROOT = path.resolve(__dirname, '../..');
-// The B2 migrations that need no Supabase-only extension (pg_cron, pg_net,
-// Vault), applied verbatim and in order.
-export const B2_MIGRATIONS = ['20260930063944_b2_onboarding_pipeline.sql', '20260930065803_b2_invitation_needs_founder.sql'].map((f) =>
+// The migrations that need no Supabase-only extension (pg_cron, pg_net,
+// Vault), applied verbatim and in order: B2, then P1-b (C112).
+export const B2_MIGRATIONS = [
+  '20260930063944_b2_onboarding_pipeline.sql',
+  '20260930065803_b2_invitation_needs_founder.sql',
+  '20260930120000_p1b_frameworks.sql',
+].map((f) =>
   readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8')
 );
 const NIL_UUID = '00000000-0000-0000-0000-000000000000';
@@ -29,7 +34,7 @@ export type TestDb = {
 };
 
 export async function createTestDb(): Promise<TestDb> {
-  const pg = new PGlite({ extensions: { pgcrypto } });
+  const pg = new PGlite({ extensions: { pgcrypto, pg_trgm } });
   await pg.exec(readFileSync(path.join(__dirname, 'base-schema.sql'), 'utf8'));
   for (const sql of B2_MIGRATIONS) await pg.exec(sql);
 
