@@ -206,15 +206,30 @@ export function inviteSendHandler(deps: InviteDeps): JobHandler {
           throw new PermanentJobError('this email already has a sign-in account but no staff profile; check it in Supabase Auth, then retry');
         }
       }
-      // Saved at once, so a retry after a later failure never invites twice.
-      await deps.platform((db) =>
-        db.query(`update staff_invitations set auth_user_id = $2, updated_at = now() where invitation_id = $1 and auth_user_id is null`, [
+      // Saved at once, with the "added to school" email for an existing
+      // account, so a retry after a later failure neither invites twice nor
+      // forgets that email.
+      await deps.platform(async (db) => {
+        await db.query(`update staff_invitations set auth_user_id = $2, updated_at = now() where invitation_id = $1 and auth_user_id is null`, [
           invitationId,
           userId,
-        ])
-      );
-    } else if (sendNumber > 1) {
+        ]);
+        if (existingAccount) {
+          await deps.queue.enqueue(db, {
+            type: 'email.send',
+            idempotencyKey: `email.send:added_to_school:${invitationId}`,
+            schoolId: inv.school_id,
+            payload: { to: [inv.email], template: 'added_to_school', data: { schoolName: inv.school_name, loginUrl: redirectTo } },
+          });
+        }
+      });
+    } else if (sendNumber > 1 && job.payload.passwordEmailSent !== true) {
       await deps.sendPasswordEmail(inv.email, redirectTo);
+      // Marked on the job itself, so a retry after a later failure does not
+      // send the same email again.
+      await deps.platform((db) =>
+        db.query(`update jobs set payload = payload || '{"passwordEmailSent": true}'::jsonb where job_id = $1`, [job.jobId])
+      );
     }
 
     await deps.platform(async (db) => {
@@ -238,14 +253,6 @@ export function inviteSendHandler(deps: InviteDeps): JobHandler {
         [invitationId, membershipId, sendNumber]
       );
       if (!rowCount) return; // another run got here first
-      if (existingAccount && sendNumber === 1) {
-        await deps.queue.enqueue(db, {
-          type: 'email.send',
-          idempotencyKey: `email.send:added_to_school:${invitationId}`,
-          schoolId: inv.school_id,
-          payload: { to: [inv.email], template: 'added_to_school', data: { schoolName: inv.school_name, loginUrl: redirectTo } },
-        });
-      }
       await writeAuditLog(db as PoolClient, {
         schoolId: inv.school_id,
         actorUserId: null,

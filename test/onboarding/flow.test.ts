@@ -63,7 +63,7 @@ import { POST as decideRoute } from '@/app/api/control/applications/[application
 import { GET as listInvitesRoute, POST as inviteRoute } from '@/app/api/app/staff/invitations/route';
 import { POST as resendInviteRoute } from '@/app/api/app/staff/invitations/[invitationId]/resend/route';
 import { recordSignIn } from '@/lib/onboarding/first-sign-in';
-import { inviteSendHandler } from '@/lib/onboarding/invitations';
+import { createInvitation, inviteSendHandler, resendInvitation } from '@/lib/onboarding/invitations';
 import { markProvisioned } from '@/lib/onboarding/applications';
 import { jobQueue } from '@/lib/jobs/pg-queue';
 import { inviteUserToSchool } from '@/lib/auth/admin-actions';
@@ -306,5 +306,75 @@ describe('abuse limits', () => {
     const keys = await q(`select key_hash from intake_rate_events`);
     expect(keys.every((k) => /^[0-9a-f]{64}$/.test(k.key_hash))).toBe(true);
     expect(JSON.stringify(keys)).not.toContain('198.51.100.9');
+  });
+});
+
+describe('invite job retries after a failure part-way (code-review findings)', () => {
+  // The provisioning transaction (the one that inserts the user) fails once.
+  function flakyPlatform() {
+    let failed = false;
+    return <T>(fn: (db: never) => Promise<T>) =>
+      h.db.platform(async (db) => {
+        if (!failed) {
+          const wrapped = {
+            query: async (sql: string, params?: unknown[]) => {
+              if (!failed && /^\s*insert into users/.test(sql)) {
+                failed = true;
+                throw new Error('connection reset');
+              }
+              return db.query(sql, params);
+            },
+          };
+          return fn(wrapped as never);
+        }
+        return fn(db as never);
+      });
+  }
+  const claimedFrom = async (key: string): Promise<ClaimedJob> => {
+    const [j] = await q(`select job_id, type, payload, attempts, max_attempts, school_id, idempotency_key from jobs where idempotency_key = $1`, [key]);
+    return { jobId: j.job_id, type: j.type, payload: j.payload, attempts: 1, maxAttempts: 8, schoolId: j.school_id, idempotencyKey: j.idempotency_key };
+  };
+
+  it('an existing account invited to another school still gets its "added to school" email, once', async () => {
+    const schoolC = randomUUID();
+    await q(`insert into schools (school_id, name, jurisdiction) values ($1, 'Third School', 'IN-PB')`, [schoolC]);
+    const { jobKeys } = await h.db.platform((db) =>
+      createInvitation(db, jobQueue, {
+        schoolId: schoolC,
+        email: APPLICANT.email, // already has an account (the first school's principal)
+        displayName: 'Priya Sharma',
+        role: 'school_admin',
+        source: 'staff',
+        invitedBy: { userId: FOUNDER_ID, role: 'super_admin' },
+        redirectTo: 'https://www.netcyberai.test/login',
+      })
+    );
+    const handler = inviteSendHandler({ platform: flakyPlatform(), queue: jobQueue, inviteUser: inviteUserToSchool, sendPasswordEmail: async () => {}, markProvisioned });
+    const job = await claimedFrom(jobKeys[0]);
+    await expect(handler(job)).rejects.toThrow('connection reset');
+    await handler(job);
+    expect(await count(`select count(*) n from jobs where idempotency_key like 'email.send:added_to_school:%'`)).toBe(1);
+    expect(await count(`select count(*) n from memberships where school_id = $1`, [schoolC])).toBe(1);
+  });
+
+  it('a resend whose bookkeeping failed does not send the password email again', async () => {
+    const [inv] = await q(`select invitation_id, sends from staff_invitations where email_key = 'ravi.teacher@school.test'`);
+    const { jobKeys } = await h.db.platform((db) =>
+      resendInvitation(db, jobQueue, inv.invitation_id, { userId: FOUNDER_ID, role: 'super_admin' }, 'https://www.netcyberai.test/login')
+    );
+    const sent: string[] = [];
+    const handler = inviteSendHandler({
+      platform: flakyPlatform(),
+      queue: jobQueue,
+      inviteUser: inviteUserToSchool,
+      sendPasswordEmail: async (email) => {
+        sent.push(email);
+      },
+      markProvisioned,
+    });
+    await expect(handler(await claimedFrom(jobKeys[0]))).rejects.toThrow('connection reset');
+    await handler(await claimedFrom(jobKeys[0])); // the retry reads the job again
+    expect(sent).toEqual(['ravi.teacher@school.test']);
+    expect((await q(`select sends from staff_invitations where invitation_id = $1`, [inv.invitation_id]))[0].sends).toBe(Number(inv.sends) + 1);
   });
 });
