@@ -5,6 +5,7 @@ import { changeModuleEntitlement, changeSchoolAccess, checkModuleAccess, loadEnt
 import { createDefinition, readValues, writeValues } from '@/lib/frameworks/custom-fields';
 import { readSettings, saveSettings, settingsHistory } from '@/lib/frameworks/settings-store';
 import { settingsSchemaFor } from '@/lib/frameworks/settings-schemas';
+import { applyPlan, DEFAULT_PLAN_ID, planById } from '@/lib/frameworks/plans';
 import { parseStudentSearch, searchStudents } from '@/lib/frameworks/student-search';
 
 // P1-b frameworks on real Postgres (PGlite) with the migration applied
@@ -231,6 +232,26 @@ describe('entitlements', () => {
     await db.platform((q) => changeSchoolAccess(q, { schoolId: A, accessMode: 'full', reason: 'paid' }, { userId: founder, role: 'super_admin' }));
     const audit = await db.platform((q) => q.query(`select count(*)::int n from audit_log where event_action like 'entitlement.%' and school_id = $1`, [A]));
     expect(audit.rows[0].n).toBe(6);
+  });
+});
+
+describe('plans', () => {
+  it('applying a plan switches its modules on, keeps the founder’s own switches, and is idempotent', async () => {
+    const C = randomUUID();
+    await db.platform((q) => q.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'C', 'IN-HR')`, [C]));
+    const founderActor = { userId: founder, role: 'super_admin' as const };
+    await db.platform((q) => changeModuleEntitlement(q, { schoolId: C, moduleId: 'attendance', enabled: false, reason: 'not yet' }, founderActor));
+    const first = await db.platform((q) => applyPlan(q, C, DEFAULT_PLAN_ID, founderActor, 'backfill'));
+    const again = await db.platform((q) => applyPlan(q, C, DEFAULT_PLAN_ID, founderActor, 'backfill'));
+    expect(first.ok && again.ok).toBe(true);
+    const e = await db.tenant(as('principal', principal, C), (q) => loadEntitlements(q, C));
+    expect(e.plan).toBe(DEFAULT_PLAN_ID);
+    expect(e.modules.students).toMatchObject({ enabled: true, source: 'plan' });
+    expect(e.modules.attendance).toMatchObject({ enabled: false, source: 'founder_override' }); // the founder's choice stays
+    expect(e.modules.fees).toBeUndefined(); // not in the plan: off
+    const n = await db.platform((q) => q.query(`select count(*)::int n from school_module_entitlements where school_id = $1`, [C]));
+    expect(n.rows[0].n).toBe(planById(DEFAULT_PLAN_ID)!.modules.length);
+    expect(await db.platform((q) => applyPlan(q, C, 'gold', founderActor, 'x y z'))).toEqual({ ok: false, error: 'unknown plan' });
   });
 });
 

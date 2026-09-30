@@ -57,8 +57,9 @@ module plugs in (part of the module definition of done).
 the filter engine with saved views, and bulk actions (C113, PR-2b). A module
 plugs in by registering its settings schema (`src/lib/frameworks/settings-schemas.ts`)
 and, with C113, its list (`lists.ts`) and bulk actions (`bulk-actions.ts`). Help Center and Raise
-Ticket are always on, whatever the entitlements. Onboarding templates are not
-built yet (they arrive with the Control onboarding screens).
+Ticket are always on, whatever the entitlements. A new school starts on the
+default plan (`plans.ts`, C114: every module that works today). Onboarding
+templates are not built yet (they arrive with the Control onboarding screens).
 
 ## 2. Navigation — 8 groups (sidebar sections that collapse like drop-downs)
 

@@ -3,6 +3,7 @@ import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
+import { applyPlan, DEFAULT_PLAN_ID } from '@/lib/frameworks/plans';
 
 const BOARD_TYPES = ['CBSE', 'ICSE', 'STATE', 'IB', 'OTHER'] as const;
 const TENANT_TYPES = ['school', 'coaching', 'college'] as const;
@@ -52,6 +53,8 @@ export async function POST(req: NextRequest) {
         targetId: row.school_id,
         afterState: row,
       });
+      // The default plan, in the same transaction (C114).
+      await applyPlan(client, row.school_id, DEFAULT_PLAN_ID, { userId: guard.claims.sub, role: guard.claims.role }, 'school created in Control');
       return row;
     });
     return NextResponse.json({ school }, { status: 201 });
