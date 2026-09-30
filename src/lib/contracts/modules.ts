@@ -74,7 +74,10 @@ export type ModuleDefinition = {
   phaseNote?: string;
   status: ModuleStatus;
   capabilities: readonly string[];
-  // The school-app route. Only modules with a screen are linked.
+  // The school-app route, reserved for every module. Modules without a
+  // screen yet (status planned, foundation or spec-v0) are still linked:
+  // the Experience lane shows a "coming in <phase>" page at that route,
+  // never a 404.
   href: string;
 };
 

@@ -80,6 +80,11 @@ describe('navigation and entitlements', () => {
     expect(isModuleEnabled(suspended, 'help-center')).toBe(true);
   });
 
+  it('every item carries its status and phase, so an unbuilt module links to a "coming" page', () => {
+    const nav = buildNavigation('principal', on('proxy'));
+    expect(nav.groups[0].items[0]).toMatchObject({ moduleId: 'proxy', href: '/app/proxy', status: 'planned', phase: 'P4' });
+  });
+
   it('badges are numbers from the server, never text', () => {
     const nav = buildNavigation('principal', on('complaints'), { complaints: { kind: 'count', value: 3, tone: 'alert' } });
     expect(nav.groups[0].items[0].badge).toEqual({ kind: 'count', value: 3, tone: 'alert' });

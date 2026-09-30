@@ -1,6 +1,6 @@
 import type { IconName } from '@/components/visual/Icons';
 import { isModuleEnabled, type SchoolEntitlements } from './entitlements';
-import { MODULE_GROUPS, MODULE_REGISTRY, type ColorToken, type ModuleGroupId, type ModuleId, type ModuleStatus, type SchoolRole } from './modules';
+import { MODULE_GROUPS, MODULE_REGISTRY, type ColorToken, type ModuleGroupId, type ModuleId, type ModuleStatus, type Phase, type SchoolRole } from './modules';
 
 // Navigation (Decision Log C110): the school app's sidebar is computed from
 // the registry, the signed-in role and the school's entitlements. The
@@ -19,6 +19,8 @@ export type NavItem = {
   href: string;
   icon: IconName;
   status: ModuleStatus;
+  // For a module not built yet: when it arrives (the page at `href` says so).
+  phase: Phase;
   badge?: NavBadge;
 };
 
@@ -49,6 +51,7 @@ export function buildNavigation(
         href: m.href,
         icon: m.icon,
         status: m.status,
+        phase: m.phase,
         ...(badges[m.id] ? { badge: badges[m.id] } : {}),
       })),
     }))
