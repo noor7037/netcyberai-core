@@ -32,8 +32,20 @@ const STUDENTS_DEFINITION: ListDefinition = {
     { key: 'roll_no', label: 'Roll no.', type: 'text', sortable: true, column: { defaultVisible: true } },
     { key: 'dob', label: 'Date of birth', type: 'date', sortable: true, column: { defaultVisible: false } },
     { key: 'created_at', label: 'Added on', type: 'date', sortable: true, column: { defaultVisible: false } },
+    // Siblings (C116). Counted among the family's active students.
+    { key: 'family_code', label: 'Family no.', type: 'text', sortable: true, column: { defaultVisible: false } },
+    { key: 'has_siblings', label: 'Has siblings', type: 'boolean', quick: true },
+    { key: 'family_size', label: 'Children in family', type: 'number', sortable: true },
+    { key: 'sibling_order', label: 'Sibling order', type: 'number', sortable: true },
   ],
 };
+
+// Sibling order: 1 = eldest active student of the family, by date of birth
+// (unknown last), then name. The same rule as the family view
+// (families.ts, SIBLING_ORDER_SQL). Null outside a family or when inactive.
+const ACTIVE_SIBLINGS = `from students sib where sib.school_id = s.school_id and sib.family_id = s.family_id and sib.status = 'active'`;
+const SIBLING_ORDER = `case when s.family_id is null or s.status <> 'active' then null else 1 + (select count(*)::int ${ACTIVE_SIBLINGS}
+  and (coalesce(sib.dob, 'infinity'::date), lower(sib.name), sib.student_id) < (coalesce(s.dob, 'infinity'::date), lower(s.name), s.student_id)) end`;
 
 export type StudentListRow = {
   id: string;
@@ -46,15 +58,17 @@ export type StudentListRow = {
   status: string;
   dob: string | null;
   created_at: string;
+  family_code: string | null;
 };
 
 const STUDENTS: ListSpec = {
   definition: STUDENTS_DEFINITION,
-  from: `students s left join classes c on c.school_id = s.school_id and c.class_id = s.class_id`,
+  from: `students s left join classes c on c.school_id = s.school_id and c.class_id = s.class_id
+         left join families fam on fam.school_id = s.school_id and fam.family_id = s.family_id`,
   idExpr: 's.student_id',
   schoolExpr: 's.school_id',
   select: `s.student_id as id, s.name, s.admission_no, s.class_id, c.name as class_name, c.section, s.roll_no,
-           s.status::text as status, to_char(s.dob, 'YYYY-MM-DD') as dob, s.created_at`,
+           s.status::text as status, to_char(s.dob, 'YYYY-MM-DD') as dob, s.created_at, fam.family_code`,
   fields: {
     name: { expr: 's.name', sortExpr: 'lower(s.name)' },
     admission_no: { expr: 's.admission_no', sortExpr: 'lower(s.admission_no)' },
@@ -65,8 +79,12 @@ const STUDENTS: ListSpec = {
     roll_no: { expr: 's.roll_no' },
     dob: { expr: 's.dob' },
     created_at: { expr: 's.created_at' },
+    family_code: { expr: 'fam.family_code', sortExpr: 'lower(fam.family_code)' },
+    has_siblings: { expr: `(s.family_id is not null and exists (select 1 ${ACTIVE_SIBLINGS} and sib.student_id <> s.student_id))` },
+    family_size: { expr: `(case when s.family_id is null then null else (select count(*)::int ${ACTIVE_SIBLINGS}) end)` },
+    sibling_order: { expr: `(${SIBLING_ORDER})` },
   },
-  searchExprs: ['s.name', 's.admission_no'],
+  searchExprs: ['s.name', 's.admission_no', 'fam.family_code'],
   customEntity: 'student',
 };
 

@@ -78,6 +78,10 @@ export async function previewBulk(db: Sql, actor: Actor, body: Record<string, un
   const spec = listSpec(action.def.listId)!;
   const sel = await resolveSelection(db, spec, actor.schoolId, body.selection);
   if (!sel.ok) return sel;
+  const { minRows = 1, maxRows = MAX_BULK_ROWS } = action.def;
+  if (sel.ids.length < minRows || sel.ids.length > maxRows) {
+    return { ok: false, status: 400, error: `${action.def.label} works on ${minRows} to ${maxRows} rows at a time` };
+  }
   const params = await action.checkParams(db, actor.schoolId, body.params ?? {});
   if (!params.ok) return { ok: false, status: 400, error: params.error };
 
@@ -103,7 +107,7 @@ export async function previewBulk(db: Sql, actor: Actor, body: Record<string, un
 }
 
 async function runAction(db: Sql, action: BulkAction, run: Record<string, any>, actor: { userId: string | null; role: SchoolRole | null }): Promise<void> {
-  const result = await action.apply(db, run.school_id, run.target_ids, run.params as BulkParams);
+  const result = await action.apply(db, run.school_id, run.target_ids, run.params as BulkParams, { userId: run.created_by, role: run.created_role });
   const failed = result.failures.length;
   const status = failed === 0 ? 'succeeded' : result.done === 0 ? 'failed' : 'partially_failed';
   const undoable = action.def.undoWindowSeconds && action.undo && result.done > 0;
@@ -206,7 +210,7 @@ export async function undoBulk(db: Sql, actor: Actor, runId: string): Promise<{ 
   if (!['succeeded', 'partially_failed'].includes(run.status) || !run.undo_until || new Date(run.undo_until) < new Date()) {
     return { ok: false, status: 409, error: 'undo_window_closed' };
   }
-  const { restored, skipped } = await action.undo(db, actor.schoolId, run.undo_data, run.params);
+  const { restored, skipped } = await action.undo(db, actor.schoolId, run.undo_data, run.params, { userId: actor.userId, role: actor.role });
   await db.query(`update bulk_runs set status = 'undone', undo_until = null where run_id = $1 and status in ('succeeded', 'partially_failed')`, [runId]);
   await writeAuditLog(db, {
     schoolId: actor.schoolId,

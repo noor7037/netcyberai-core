@@ -11,3 +11,4 @@ export * from './student-search';
 export * from './charts';
 export * from './fixture';
 export * from './custom-fields';
+export * from './families';

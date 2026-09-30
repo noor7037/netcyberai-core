@@ -26,6 +26,9 @@ export type BulkActionDefinition = {
   destructive: boolean;
   undoWindowSeconds?: number; // absent: cannot be undone
   syncLimit: number; // at most this many rows run inside the request; more go to a job
+  // Selection size the action accepts (C116: "link as siblings" is 2 to 20).
+  minRows?: number;
+  maxRows?: number;
 };
 
 export type BulkSelection =
