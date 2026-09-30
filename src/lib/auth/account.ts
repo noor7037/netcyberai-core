@@ -6,7 +6,14 @@ import { signPendingToken, verifyDeviceToken, verifyPendingToken } from './jwt';
 import { EMAIL_STEP_TTL_SECONDS } from './cookies';
 import { AuthError } from './errors';
 import type { LoginOutcome } from './types';
-import { emailAloneMaySetPassword, emailProofFromAccessToken, emailProofFromAmr, newestVerifiedTotp, rememberedDeviceSkipsEmailStep } from './authenticator-rules';
+import {
+  authenticatorRequired,
+  emailAloneMaySetPassword,
+  emailProofFromAccessToken,
+  emailProofFromAmr,
+  newestVerifiedTotp,
+  stepAfterPassword,
+} from './authenticator-rules';
 
 // Account recovery and email codes (founder request 2026-09-29, Decision
 // Log C89): sign in with a one-time code sent to the account's email,
@@ -54,9 +61,11 @@ export async function resolveIdentifier(raw: unknown): Promise<string | null> {
   return phone ? emailForPhone(phone) : null;
 }
 
+// n•••m@gmail.com (C96): enough to recognise the address, and the same
+// length whatever the name's length.
 export function maskEmail(email: string): string {
   const [name, domain] = email.split('@');
-  const shown = name.length <= 2 ? name[0] : `${name[0]}${'*'.repeat(Math.min(6, name.length - 2))}${name[name.length - 1]}`;
+  const shown = name.length <= 2 ? name[0] : `${name[0]}•••${name[name.length - 1]}`;
   return `${shown}@${domain}`;
 }
 
@@ -233,14 +242,9 @@ async function deviceTrusted(deviceToken: string | undefined, userId: string): P
   return Number(live.token_version) === device.tokenVersion;
 }
 
-// A remembered device skips the email step, except for platform admins, who
-// get it at every password sign-in (C95, deliberate): their accounts reach
-// every school, and enrolling an authenticator needs that email proof.
-async function deviceSkipsEmailStep(deviceToken: string | undefined, userId: string): Promise<boolean> {
-  if (!(await deviceTrusted(deviceToken, userId))) return false;
-  return rememberedDeviceSkipsEmailStep((await fetchLiveUser(userId)).role);
-}
-
+// After the password (C96): an authenticator account goes straight to its
+// code; otherwise the emailed code, unless this is a remembered device of an
+// account that is not a platform admin. See stepAfterPassword.
 export async function passwordLogin(identifier: string, password: string, deviceToken?: string, redirectTo?: string): Promise<LoginOutcome> {
   const email = await resolveIdentifier(identifier);
   if (!email) throw new AuthError('invalid_credentials', 'no account for that email or mobile number');
@@ -248,10 +252,21 @@ export async function passwordLogin(identifier: string, password: string, device
   const { data, error } = await client.auth.signInWithPassword({ email, password });
   if (error || !data.session || !data.user) throw new AuthError('invalid_credentials', error?.message ?? 'sign-in failed');
 
-  if (emailStepEnabled() && !(await deviceSkipsEmailStep(deviceToken, data.user.id))) {
+  // nextLevel aal2 = the account has a confirmed authenticator. If Supabase
+  // cannot say, the email step runs (the stricter path).
+  const { data: aal } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
+  const role = (await fetchLiveUser(data.user.id)).role;
+  const next = stepAfterPassword({
+    role,
+    hasVerifiedAuthenticator: aal?.nextLevel === 'aal2',
+    deviceTrusted: await deviceTrusted(deviceToken, data.user.id),
+    emailStepEnabled: emailStepEnabled(),
+  });
+  if (next === 'email_code') {
     await sendSignInCode(email, redirectTo);
     const pendingToken = await signPendingToken({ userId: data.user.id, purpose: 'email_step', aal: 'aal1' }, EMAIL_STEP_TTL_SECONDS);
-    return { status: 'email_step', pendingToken, maskedEmail: maskEmail(email) };
+    // A platform admin with no authenticator sets one up after this code.
+    return { status: 'email_step', pendingToken, maskedEmail: maskEmail(email), setupNext: authenticatorRequired(role) };
   }
   return (await signInFromClient(client, data.user.id, data.session, true)).outcome;
 }

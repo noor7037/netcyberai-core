@@ -87,7 +87,8 @@ live feature.
 | Capability | Status |
 |---|---|
 | Sign-in, MFA step, multi-school selection, switch school | Live |
-| Authenticator app self-service: set up during sign-in (platform admin), set up / replace on the account page (platform admin, principal, school admin), founder removal (never own); platform admins get the email step on every password sign-in | Live in code (C95), flow-tested against an in-memory Supabase stand-in; first live enrolment is the founder's own replacement `[VERIFY]` |
+| Authenticator app self-service: set up during sign-in (platform admin), set up / replace on the account page (platform admin, principal, school admin), founder removal (never own) | Live (C95): the founder's replacement verified in production 2026-09-30 05:08 UTC |
+| Sign-in after the password: authenticator code only for accounts with one (no email code); emailed code otherwise, skippable on a remembered device except for a platform admin; step guide beside the form | Live in code (C96), flow-tested; production check after merge: the founder's sign-in shows `/token` then `/factors/.../verify` and no `/otp` `[VERIFY]` |
 | Super admin: schools, features, invites, onboarding stage, impersonation | Live; invite-by-email needs `SUPABASE_SERVICE_ROLE_KEY`: set for production, missing for preview (C94) |
 | Separate production database (`netcyberai-prod`) | Schema only: built from `supabase/migrations/`, catalog identical to dev, no data, not connected to Vercel (C94) |
 | Public lead intake (6 sources) → Control Plane onboarding list | Live (browser → API → DB verified in pieces; see Decision Log) |
