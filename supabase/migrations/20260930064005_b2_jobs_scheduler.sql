@@ -6,7 +6,11 @@
 -- URL and secret live in Supabase Vault, never in this file:
 --
 --   select vault.create_secret('https://www.netcyberai.com/api/jobs/run', 'jobs_runner_url');
---   select vault.create_secret('<same value as JOBS_RUNNER_SECRET in Vercel>', 'jobs_runner_secret');
+--   select vault.create_secret(encode(extensions.gen_random_bytes(32), 'hex'), 'jobs_runner_secret');
+--
+-- The app checks the token against the secret's digest in the database
+-- (20260930064359_b2_jobs_runner_secret_digest), so the secret exists only
+-- in Vault. (Comment corrected after apply; no statement changed.)
 --
 -- Until both exist the tick does nothing, so a project that serves no app
 -- (or has not been configured yet) makes no calls. Why this clock and not
