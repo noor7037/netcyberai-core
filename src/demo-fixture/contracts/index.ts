@@ -210,7 +210,7 @@ export const bulkPreviewFixture = fixture<BulkPreview>({
   previewId: '00000000-0000-4000-8000-00000000f201',
   actionId: 'students.promote',
   count: 2,
-  sample: [
+  firstRows: [
     { id: '00000000-0000-4000-8000-00000000f101', label: 'Aarav Example', change: 'Class 10 A → Class 11 A' },
     { id: '00000000-0000-4000-8000-00000000f102', label: 'Diya Example', change: 'Class 10 B → Class 11 B' },
   ],

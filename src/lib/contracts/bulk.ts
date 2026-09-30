@@ -32,7 +32,7 @@ export type BulkPreview = {
   previewId: string; // confirm with this; expires
   actionId: string;
   count: number;
-  sample: readonly { id: string; label: string; change: string }[]; // first few rows, what happens to each
+  firstRows: readonly { id: string; label: string; change: string }[]; // the first few rows and what happens to each
   warnings: readonly string[]; // rows skipped and why
   runsAsJob: boolean;
   expiresAt: string;
