@@ -147,9 +147,11 @@ run_step "No secrets committed" <<'STEP'
 # variable, never the secret value itself, so it's excluded here
 # the same way src/lib/recognition.ts's "sample-size" is excluded
 # from the mock/dummy check above: a real non-match, not a path
-# carve-out for a genuine risk.
+# carve-out for a genuine risk. process.env.SOME_SECRET_NAME is the
+# same kind of reference, for optional settings (C99).
 if grep -rn 'sk_\|api_key\|SECRET\|PRIVATE_KEY' src/ \
-    | grep -v "required('[A-Z0-9_]\+')"; then
+    | grep -v "required('[A-Z0-9_]\+')" \
+    | grep -v "process\.env\.[A-Z0-9_]*\(SECRET\|PRIVATE_KEY\)[A-Z0-9_]*"; then
   echo "::error::Possible secret found in src/."
   exit 1
 fi

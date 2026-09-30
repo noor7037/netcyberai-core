@@ -11,7 +11,7 @@ export const DEFAULT_MAX_ATTEMPTS = 8;
 export const LEASE_SECONDS = 5 * 60;
 
 // `attempt` is the attempt that just failed, starting at 1. `jitter` in
-// [0, 1) spreads retries of many jobs that failed together (up to +20%).
+// [0, 1) spreads retries of many jobs that failed together (up to a fifth longer).
 export function retryDelaySeconds(attempt: number, jitter = 0): number {
   const exp = BASE_DELAY_SECONDS * 2 ** Math.max(0, attempt - 1);
   const capped = Math.min(exp, MAX_DELAY_SECONDS);
@@ -32,6 +32,6 @@ export function errorSummary(error: unknown): string {
   return raw
     .split('\n')[0]
     .replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, '<email>')
-    .replace(/\b(re_|sk_|pk_|eyJ)[A-Za-z0-9_\-.]{12,}/g, '<secret>')
+    .replace(/\b(?:(?:re|sk|pk)_|eyJ)[A-Za-z0-9_\-.]{12,}/g, '<secret>')
     .slice(0, 300);
 }
