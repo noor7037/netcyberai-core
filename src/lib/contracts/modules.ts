@@ -5,9 +5,8 @@ import type { colors } from '@/lib/design-tokens';
 // The module registry (Decision Log C110): every navigation item of
 // docs/17_MODULE_CATALOG.md §3 (Dashboard + 33 modules = 34 items), with
 // its navigation group (§2), tone (§4), icon, roles (§5), phase and status
-// (§3) and capability list. Owned by the Core lane; the Experience lane
-// builds navigation, screens and badges from it and never hard-codes a
-// module list. Ids are the demo's own (src/demo-fixture/principal-dashboard.ts),
+// (§3) and capability list. Navigation, screens and badges are built from
+// it; nothing hard-codes a module list. Ids are the demo's own (src/demo-fixture/principal-dashboard.ts),
 // so the real product and the website demo name modules the same way.
 
 export const MODULE_IDS = [
@@ -76,7 +75,7 @@ export type ModuleDefinition = {
   capabilities: readonly string[];
   // The school-app route, reserved for every module. Modules without a
   // screen yet (status planned, foundation or spec-v0) are still linked:
-  // the Experience lane shows a "coming in <phase>" page at that route,
+  // the app shows a "coming in <phase>" page at that route,
   // never a 404.
   href: string;
 };

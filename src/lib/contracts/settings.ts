@@ -3,7 +3,7 @@ import type { ModuleId, SchoolRole } from './modules';
 // The settings framework's contract (17 §1a; engine built in P1-b,
 // Decision Log C110). Every module declares a typed schema; each school's
 // values are validated against it, audited, versioned and resettable; the
-// Experience lane generates the settings screen from the schema and never
+// app generates the settings screen from the schema and never
 // hand-builds one.
 
 export type SettingType =

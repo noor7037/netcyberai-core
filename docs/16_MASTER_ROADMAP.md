@@ -69,20 +69,12 @@ Payroll and the AI modules marked *spec v0* in `17` are specified by the
 supervisor so they can be built; the founder confirms or edits the spec before
 their phase starts.
 
-## 4a. Two executors in parallel (C100)
+## 4a. One executor (C101)
 
-Claude Code and Google Antigravity build at the same time in **separate
-clones** of the repo (never the same folder), on separate branches, in
-separate lanes. Both read `AGENTS.md`. The supervisor reviews and merges both.
-
-| Lane | Owner | Owns | Must not touch |
-|---|---|---|---|
-| **Core** | Claude Code (`claude/*` branches) | Database, migrations, RLS, auth, jobs pipeline, integrations (WhatsApp, Razorpay, email, AI), API routes, settings / filters / custom-fields engines, security | — |
-| **Experience** | Antigravity (`ag/*` branches) | App design system components, chart kit, motion, app shell visuals, module screens against the Core lane's APIs or typed fixtures, Help Center content, EN/HI copy, screenshot and visual checks | `supabase/migrations/**`, `src/lib/auth/**`, `src/lib/jobs/**`, `db.ts`, `scripts/check_*`, `.github/**`, env and secrets |
-
-Contracts between lanes are TypeScript types in `src/lib/contracts/**`
-(owned by Core; Experience consumes). Decision Log numbers: supervisor C100–C109,
-Claude Code from C110, Antigravity from C200.
+Claude Code builds every lane: database, APIs, integrations and all screens.
+Typed contracts in `src/lib/contracts/**` (C110) come first; screens are
+built against them, on typed fixtures until the API exists. Decision Log
+numbers: supervisor C100–C109, Claude Code from C110.
 
 ## 5. Founder long-lead actions (start now)
 
@@ -94,6 +86,8 @@ Claude Code from C110, Antigravity from C200.
 
 ## 6. Change log
 
+- **2026-09-30** — C101: Antigravity dropped (founder); Claude Code is the only
+  executor. `AGENTS.md` folded into `CLAUDE.md`.
 - **2026-09-30** — C100: P7b Family App added; two-executor lanes (§4a);
   configuration, filters and the founder's E2E list folded into `17`.
 - **2026-09-30** — Created (C99). Founder moved Fees to the last feature phase

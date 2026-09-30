@@ -1,5 +1,5 @@
 // NON-REAL fixtures for every contract in src/lib/contracts (Decision Log
-// C110). For the Experience lane to build screens before the APIs exist,
+// C110). For screens to be built before the APIs exist,
 // and for tests. Every export is wrapped in fixture(): `nonReal: true` and a
 // notice a screen must show. No real school, person, phone or number.
 import {

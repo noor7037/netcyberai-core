@@ -1,6 +1,6 @@
 // Every contract fixture is wrapped in this, so non-real data can never be
 // mistaken for real data: screens built on fixtures show `notice`, and
-// src/demo-fixture/contracts/** is the only place fixtures live (AGENTS.md:
+// src/demo-fixture/contracts/** is the only place fixtures live (CLAUDE.md:
 // demo data only under src/demo-fixture/**).
 export type Fixture<T> = { readonly nonReal: true; readonly notice: string; readonly data: T };
 

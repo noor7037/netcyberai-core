@@ -1,6 +1,6 @@
 // Chart data shapes (17 §4 "one clear message per chart, value labels, a
 // table view per chart"; Decision Log C110). The API returns these; the
-// Experience lane's chart kit draws them. Every value is computed from
+// app's chart kit draws them. Every value is computed from
 // real records: null means "no data yet", never a guess.
 
 export type ValueUnit = 'count' | 'percent' | 'inr_paise' | 'days' | 'minutes' | 'score';

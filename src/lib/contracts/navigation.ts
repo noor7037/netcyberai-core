@@ -4,7 +4,7 @@ import { MODULE_GROUPS, MODULE_REGISTRY, type ColorToken, type ModuleGroupId, ty
 
 // Navigation (Decision Log C110): the school app's sidebar is computed from
 // the registry, the signed-in role and the school's entitlements. The
-// Experience lane renders it (8 collapsible groups, 17 §2) and never keeps
+// app shell renders it (8 collapsible groups, 17 §2) and never keeps
 // its own list. Badges carry numbers computed by the server only; the
 // demo's badge strings ("124 new", "90 sec") never reach the product.
 

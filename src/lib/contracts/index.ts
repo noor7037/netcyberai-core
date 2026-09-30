@@ -1,6 +1,6 @@
-// Contracts between the Core lane and the Experience lane (docs/16 §4a,
-// Decision Log C110). Types and small pure helpers only; no I/O. Owned by
-// Core; the Experience lane consumes them and asks for changes in its PR.
+// Typed contracts between the server and the screens (Decision Log C110,
+// C101). Types and small pure helpers only; no I/O. Screens are built
+// against these, on typed fixtures until the API exists.
 export * from './modules';
 export * from './entitlements';
 export * from './navigation';
