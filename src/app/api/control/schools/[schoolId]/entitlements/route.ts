@@ -3,6 +3,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { changeModuleEntitlement, changeSchoolAccess, loadEntitlements } from '@/lib/frameworks/entitlements';
+import { applyPlan } from '@/lib/frameworks/plans';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { AccessMode } from '@/lib/contracts/entitlements';
 import type { ModuleId } from '@/lib/contracts/modules';
@@ -10,6 +11,8 @@ import type { ModuleId } from '@/lib/contracts/modules';
 // The founder's entitlement switches for one school (Control, C112).
 // PUT { moduleId, enabled, limits?, reason } switches a module;
 // PUT { accessMode, plan?, graceEndsAt?, reason } sets plan and access.
+// PUT { applyPlan, reason } switches a plan's modules on (C114; also the
+// backfill for schools created before plans existed).
 // Every change is audited with its reason.
 export async function GET(req: NextRequest, { params }: { params: { schoolId: string } }) {
   const guard = await requireSuperAdmin(req);
@@ -37,6 +40,12 @@ export async function PUT(req: NextRequest, { params }: { params: { schoolId: st
     const result = await withTenantContext(guard.claims, async (db) => {
       const { rows } = await db.query(`select 1 from schools where school_id = $1`, [params.schoolId]);
       if (!rows[0]) return { ok: false as const, status: 404, error: 'school not found' };
+      const reason = typeof body.reason === 'string' ? body.reason.trim() : '';
+      if (typeof body.applyPlan === 'string') {
+        if (reason.length < 3 || reason.length > 500) return { ok: false as const, status: 400, error: 'a reason of 3 to 500 characters is required' };
+        const applied = await applyPlan(db, params.schoolId, body.applyPlan, actor, reason);
+        return applied.ok ? { ok: true as const, entitlements: await loadEntitlements(db, params.schoolId) } : { ok: false as const, status: 400, error: applied.error };
+      }
       const r =
         typeof body.moduleId === 'string'
           ? await changeModuleEntitlement(

@@ -85,3 +85,23 @@ export type SavedView = {
 export function isFilterGroup(node: FilterCondition | FilterGroup): node is FilterGroup {
   return 'combinator' in node;
 }
+
+// The `q` URL parameter: the ListQuery as base64url JSON (UTF-8 safe), so a
+// filtered view can be bookmarked and shared. Decoding only parses; the
+// server validates the result like any other query.
+export function encodeListQuery(query: ListQuery): string {
+  const bytes = new TextEncoder().encode(JSON.stringify(query));
+  let bin = '';
+  for (const b of bytes) bin += String.fromCharCode(b);
+  return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+export function decodeListQuery(param: string): unknown {
+  try {
+    if (param.length > 12000 || !/^[A-Za-z0-9_-]*$/.test(param)) return null;
+    const bin = atob(param.replace(/-/g, '+').replace(/_/g, '/'));
+    return JSON.parse(new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0))));
+  } catch {
+    return null;
+  }
+}

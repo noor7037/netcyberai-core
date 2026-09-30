@@ -68,6 +68,7 @@ import { markProvisioned } from '@/lib/onboarding/applications';
 import { jobQueue } from '@/lib/jobs/pg-queue';
 import { inviteUserToSchool } from '@/lib/auth/admin-actions';
 import type { ClaimedJob } from '@/lib/jobs/types';
+import { DEFAULT_PLAN_ID, planById } from '@/lib/frameworks/plans';
 
 const FOUNDER_ID = randomUUID();
 const APPLICANT = {
@@ -200,6 +201,13 @@ describe('approve: idempotent', () => {
       'school_application.provision',
     ]);
     expect(await count(`select count(*) n from audit_log where event_action = 'school.create'`)).toBe(1);
+
+    // The school starts on the default plan, written once with the school (C114).
+    const plan = planById(DEFAULT_PLAN_ID)!;
+    const ent = await q(`select module_id, enabled, source from school_module_entitlements order by module_id`);
+    expect(ent).toEqual([...plan.modules].sort().map((module_id) => ({ module_id, enabled: true, source: 'plan' })));
+    expect(await q(`select plan, access_mode from school_entitlements`)).toEqual([{ plan: DEFAULT_PLAN_ID, access_mode: 'full' }]);
+    expect(await count(`select count(*) n from audit_log where event_action = 'entitlement.plan_applied'`)).toBe(1);
   });
 
   it('the invite job, run again by hand, does nothing more', async () => {

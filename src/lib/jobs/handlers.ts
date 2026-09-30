@@ -4,6 +4,7 @@ import { inviteUserToSchool } from '@/lib/auth/admin-actions';
 import { emailSenderFromEnv } from '@/lib/email/sender';
 import { markProvisioned } from '@/lib/onboarding/applications';
 import { inviteSendHandler } from '@/lib/onboarding/invitations';
+import { bulkRunHandler } from '@/lib/frameworks/bulk-engine';
 import { emailSendHandler } from './email-handler';
 import { jobQueue } from './pg-queue';
 import { runJobs, KICK_BUDGET_MS, RUN_BATCH_CAP, type RunSummary } from './runner';
@@ -26,6 +27,8 @@ export function productionHandlers(): Record<string, JobHandler> {
       sendPasswordEmail: (email, redirectTo) => requestEmailCode(email, 'reset', redirectTo),
       markProvisioned,
     }),
+    // Bulk actions above their syncLimit (C112).
+    'bulk.run': bulkRunHandler({ platform }),
   };
 }
 
