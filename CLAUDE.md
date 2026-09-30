@@ -38,3 +38,23 @@ to babysit it manually — check back in a few minutes" as license to
 subscribe to PR activity, post an unrequested comment explaining a CI
 failure, and schedule itself a recurring hour-out check-in — none of which
 the user asked for.
+
+## Build rules (from the removed AGENTS.md, C101)
+
+- **Read first:** `docs/16_MASTER_ROADMAP.md` (standing rules §3, phases),
+  `docs/17_MODULE_CATALOG.md` (modules, configuration and filters frameworks
+  §1a, design system §4, roles §5), then `docs/10_DECISION_LOG.md` before
+  treating anything as a contradiction.
+- **Contracts first:** screens are built against `src/lib/contracts/**`, on
+  typed fixtures until the API exists. Nothing hard-codes a module list.
+- **Demo data** lives only in `src/demo-fixture/**`. No invented numbers,
+  names or claims in product UI (`scripts/check_claims.py`).
+- **UI:** only logo tokens from `src/lib/design-tokens.ts`; AA contrast
+  (`scripts/check_contrast.py`); motion off under `prefers-reduced-motion`;
+  responsive-native at 360/390/768/1024/1440 with 44 px targets.
+- **Every PR:** one coherent slice (split above ~1,500 lines);
+  `bash scripts/ci_local.sh` passes every step; tests for new logic;
+  screenshots at 390 and 1440 for UI. Never merge, never push to `main`, never
+  rewrite history. No secrets in code, logs, chat or PR text.
+- **Decision Log numbers:** Claude Code from C110.
+- **Report** in the Transparent Output Template, founder actions first.
