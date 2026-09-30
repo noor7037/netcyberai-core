@@ -11,7 +11,9 @@ safer rule.
    frameworks (§1a), the founder's E2E decisions (§3a), design system (§4),
    roles (§5).
 3. `docs/10_DECISION_LOG.md` — before treating anything as a contradiction.
-4. `CLAUDE.md` — PR-activity rule (applies to every agent: never subscribe to
+4. Antigravity only: `docs/antigravity/README.md` (setup, loop, task queue in
+   `docs/antigravity/tasks/`, report template).
+5. `CLAUDE.md` — PR-activity rule (applies to every agent: never subscribe to
    PR activity, comment on PRs or schedule check-ins without the founder's
    explicit yes).
 
