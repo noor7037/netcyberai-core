@@ -3,6 +3,7 @@ import path from 'path';
 import { PGlite } from '@electric-sql/pglite';
 import { pgcrypto } from '@electric-sql/pglite/contrib/pgcrypto';
 import type { SessionClaims } from '@/lib/auth/types';
+import type { Sql } from '@/lib/jobs/types';
 
 // Real Postgres (PGlite, compiled to WebAssembly) for the B2 tests (C98):
 // the base schema slice, then supabase/migrations/…_b2_onboarding_pipeline.sql
@@ -19,9 +20,9 @@ export type TestDb = {
   pg: PGlite;
   query(sql: string, params?: unknown[]): Promise<QueryResult>;
   // The callback gets a pg-compatible client (query(text, params) → rows, rowCount).
-  platform<T>(fn: (db: any) => Promise<T>): Promise<T>;
-  tenant<T>(claims: Pick<SessionClaims, 'role' | 'schoolId' | 'sub'>, fn: (db: any) => Promise<T>): Promise<T>;
-  asRole<T>(role: 'app_user' | 'app_backend' | 'anon' | 'authenticated', gucs: { tenant?: string; role?: string; user?: string }, fn: (db: any) => Promise<T>): Promise<T>;
+  platform<T>(fn: (db: Sql) => Promise<T>): Promise<T>;
+  tenant<T>(claims: Pick<SessionClaims, 'role' | 'schoolId' | 'sub'>, fn: (db: Sql) => Promise<T>): Promise<T>;
+  asRole<T>(role: 'app_user' | 'app_backend' | 'anon' | 'authenticated', gucs: { tenant?: string; role?: string; user?: string }, fn: (db: Sql) => Promise<T>): Promise<T>;
 };
 
 export async function createTestDb(): Promise<TestDb> {
@@ -39,13 +40,13 @@ export async function createTestDb(): Promise<TestDb> {
     const res = await pg.query(sql, params as any[]);
     return { rows: res.rows as any[], rowCount: res.affectedRows ?? res.rows.length };
   };
-  const inTx = <T>(setup: string[], gucs: [string, string][], fn: (db: { query: typeof query }) => Promise<T>) =>
+  const inTx = <T>(setup: string[], gucs: [string, string][], fn: (db: Sql) => Promise<T>) =>
     serial(async () => {
       await pg.exec('begin');
       try {
         for (const s of setup) await pg.exec(s);
         for (const [k, v] of gucs) await pg.query(`select set_config($1, $2, true)`, [k, v]);
-        const out = await fn({ query });
+        const out = await fn({ query } as unknown as Sql);
         await pg.exec('commit');
         return out;
       } catch (err) {
