@@ -200,3 +200,10 @@ create unique index idx_csv_imports_school_hash on csv_imports(school_id, file_h
 grant select, insert on csv_imports to app_user, nca_super;
 alter table csv_imports enable row level security;
 create policy csv_imports_tenant_isolation on csv_imports using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+-- The live parent scope on students (baseline RLS). It reads
+-- parent_student_map, so a parent_student_map policy that reads students
+-- would loop (C117); keeping it here makes the tests see that.
+create policy parent_scope_students on students as restrictive for select
+  using (current_setting('app.current_role', true) <> 'parent'
+         or student_id in (select psm.student_id from parent_student_map psm
+                           where psm.parent_id = (current_setting('app.current_user_id', true))::uuid));
