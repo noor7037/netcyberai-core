@@ -124,6 +124,7 @@ export default async function ApplicationPage({ params }: { params: { applicatio
 
       <section>
         <h2 className="mb-2 text-lg font-bold text-slate">History</h2>
+        {history.length === 0 && <p className="text-sm text-slate/70">No recorded steps.</p>}
         <ol className="flex flex-col gap-1 text-sm text-slate">
           {history.map((h, i) => (
             <li key={i}>
