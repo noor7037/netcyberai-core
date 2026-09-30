@@ -101,6 +101,15 @@ export function staleUnverifiedTotpIds(factors: readonly FactorSummary[], newFac
     .map((f) => f.id);
 }
 
+// The authenticator sign-in asks for. Normally there is one; if a
+// replacement's clean-up failed there are two, and the newest is the one the
+// person just set up (the old one may be on a lost phone).
+export function newestVerifiedTotp<T extends FactorSummary>(factors: readonly T[]): T | undefined {
+  return factors
+    .filter((f) => f.factor_type === 'totp' && f.status === 'verified')
+    .reduce<T | undefined>((best, f) => (!best || (f.created_at ?? '') > (best.created_at ?? '') ? f : best), undefined);
+}
+
 // "Replace authenticator": after the new one is confirmed, every other
 // authenticator of the account is removed.
 export function factorIdsToRemoveAfterReplace(factors: readonly FactorSummary[], newFactorId: string): string[] {

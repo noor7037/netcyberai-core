@@ -4,7 +4,7 @@ import { signAccessToken, signPendingToken, verifyPendingToken } from './jwt';
 import { newRefreshToken, hashToken } from './hash';
 import { AuthError } from './errors';
 import { AUTHENTICATOR_SETUP_TTL_SECONDS } from './cookies';
-import { authenticatorStepAtSignIn } from './authenticator-rules';
+import { authenticatorStepAtSignIn, newestVerifiedTotp } from './authenticator-rules';
 import type { LoginOutcome, MembershipRow, SessionClaims, StaffRole } from './types';
 
 const REFRESH_TOKEN_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days; not specified numerically by PRD Sec2.3, a stated operational default
@@ -188,9 +188,9 @@ export async function verifyMfaAndContinue(pendingToken: string, code: string): 
   await client.auth.setSession({ access_token: pending.sbAccessToken, refresh_token: pending.sbRefreshToken });
 
   const { data: factorsData, error: factorsError } = await client.auth.mfa.listFactors();
-  const totpFactor = factorsData?.totp?.find((f) => f.status === 'verified');
+  const totpFactor = newestVerifiedTotp(factorsData?.totp ?? []);
   if (factorsError || !totpFactor) {
-    throw new AuthError('mfa_not_enrolled', 'no verified TOTP factor for super_admin account');
+    throw new AuthError('mfa_not_enrolled', 'no verified TOTP factor for this account');
   }
 
   const { data: challenge, error: challengeError } = await client.auth.mfa.challenge({ factorId: totpFactor.id });

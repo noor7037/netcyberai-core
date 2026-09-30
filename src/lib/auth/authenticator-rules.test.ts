@@ -10,6 +10,7 @@ import {
   factorIdsToRemoveAfterReplace,
   formatSetupKey,
   isPendingTotpFactor,
+  newestVerifiedTotp,
   normalizeTotpCode,
   svgDataUrl,
   rememberedDeviceSkipsEmailStep,
@@ -153,6 +154,18 @@ describe('setups started at the same moment', () => {
       { id: 'new', factor_type: 'totp', status: 'unverified', created_at: at(3) },
     ];
     expect(staleUnverifiedTotpIds(factors, 'new')).toEqual([]);
+  });
+});
+
+describe('which authenticator sign-in asks for', () => {
+  it('the newest confirmed one, when a replacement left two', () => {
+    const factors: FactorSummary[] = [
+      { id: 'lost-phone', factor_type: 'totp', status: 'verified', created_at: '2026-01-01T00:00:00Z' },
+      { id: 'new-phone', factor_type: 'totp', status: 'verified', created_at: '2026-09-30T10:00:00Z' },
+      { id: 'half-done', factor_type: 'totp', status: 'unverified', created_at: '2026-09-30T11:00:00Z' },
+    ];
+    expect(newestVerifiedTotp(factors)?.id).toBe('new-phone');
+    expect(newestVerifiedTotp([])).toBeUndefined();
   });
 });
 

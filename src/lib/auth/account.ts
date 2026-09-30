@@ -6,7 +6,7 @@ import { signPendingToken, verifyDeviceToken, verifyPendingToken } from './jwt';
 import { EMAIL_STEP_TTL_SECONDS } from './cookies';
 import { AuthError } from './errors';
 import type { LoginOutcome } from './types';
-import { emailProofFromAccessToken, emailProofFromAmr, rememberedDeviceSkipsEmailStep } from './authenticator-rules';
+import { emailProofFromAccessToken, emailProofFromAmr, newestVerifiedTotp, rememberedDeviceSkipsEmailStep } from './authenticator-rules';
 
 // Account recovery and email codes (founder request 2026-09-29, Decision
 // Log C89): sign in with a one-time code sent to the account's email,
@@ -110,7 +110,7 @@ function needsSecondFactor(err: SupabaseAuthError): boolean {
 
 export async function passTotp(client: SupabaseClient, code: string): Promise<void> {
   const { data: factors } = await client.auth.mfa.listFactors();
-  const totp = factors?.totp?.find((f) => f.status === 'verified');
+  const totp = newestVerifiedTotp(factors?.totp ?? []);
   if (!totp) throw new AuthError('mfa_not_enrolled', 'no verified TOTP factor');
   const { data: challenge, error: challengeError } = await client.auth.mfa.challenge({ factorId: totp.id });
   if (challengeError || !challenge) throw new AuthError('mfa_invalid_code', challengeError?.message ?? 'challenge failed');
