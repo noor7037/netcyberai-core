@@ -71,7 +71,11 @@ for work that changes the rules themselves.
    prompts, A through M, in order. **Do not batch prompts.**
 9. [`09_ACCEPTANCE_CHECKLIST.md`](09_ACCEPTANCE_CHECKLIST.md) — what
    "done" means, checked against real output.
-10. [`10_DECISION_LOG.md`](10_DECISION_LOG.md) — read when something
+10. [`16_MASTER_ROADMAP.md`](16_MASTER_ROADMAP.md) and
+    [`17_MODULE_CATALOG.md`](17_MODULE_CATALOG.md) — **the current build
+    plan**: operating model, phases P1–P8, and every module's capabilities,
+    navigation group, phase and status. Start here for any build work.
+11. [`10_DECISION_LOG.md`](10_DECISION_LOG.md) — read when something
     in the above seems to contradict something else. It almost
     certainly doesn't — check here before re-deciding it.
 
