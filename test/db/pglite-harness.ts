@@ -18,6 +18,7 @@ export const B2_MIGRATIONS = [
   '20260930063944_b2_onboarding_pipeline.sql',
   '20260930065803_b2_invitation_needs_founder.sql',
   '20260930120000_p1b_frameworks.sql',
+  '20261001090000_p1b_teacher_guardian_scope.sql',
 ].map((f) =>
   readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8')
 );

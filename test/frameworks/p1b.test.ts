@@ -53,6 +53,66 @@ beforeAll(async () => {
   });
 }, 60000);
 
+describe('guardians: a teacher sees only their own classes’ (RLS)', () => {
+  // The same query as GET /api/app/students/[studentId]/guardians.
+  const guardiansOf = (role: string, user: string, studentId: string) =>
+    db.tenant(as(role, user), (q) =>
+      q.query(
+        `select p.parent_id, p.name, p.phone, p.email, p.relation
+         from parent_student_map psm
+         join parents p on p.school_id = psm.school_id and p.parent_id = psm.parent_id
+         where psm.school_id = $1 and psm.student_id = $2 order by p.name`,
+        [A, studentId]
+      )
+    );
+  const aaravGuardian = randomUUID();
+
+  beforeAll(async () => {
+    await db.platform(async (q) => {
+      await q.query(`insert into parents (parent_id, school_id, name, phone, email) values ($1, $2, 'Aarav Guardian', '9811111111', 'g@a.test')`, [aaravGuardian, A]);
+      await q.query(`insert into parent_student_map (school_id, parent_id, student_id) values ($1, $2, $3)`, [A, aaravGuardian, ids.aarav]);
+    });
+  });
+
+  it('a teacher reads the guardians of their own class, and none of another class', async () => {
+    expect((await guardiansOf('teacher', teacher, ids.aarav)).rows.map((r) => r.name)).toEqual(['Aarav Guardian']);
+    expect((await guardiansOf('teacher', teacher, ids.anaya)).rows).toEqual([]); // Anaya is in 8-B
+    const direct = await db.tenant(as('teacher', teacher), (q) =>
+      q.query(`select (select count(*)::int from parents) p, (select count(*)::int from parent_student_map) m`)
+    );
+    expect(direct.rows[0]).toEqual({ p: 1, m: 1 });
+  });
+
+  it('the principal and the school admin still read every guardian of the school', async () => {
+    for (const [role, user] of [['principal', principal], ['school_admin', randomUUID()]] as const) {
+      expect((await guardiansOf(role, user, ids.anaya)).rows.map((r) => r.phone)).toEqual(['+91 98765 43210']);
+      expect((await guardiansOf(role, user, ids.aarav)).rows).toHaveLength(1);
+    }
+  });
+
+  it('a teacher cannot write guardians or links, even for their own class', async () => {
+    const other = randomUUID();
+    await expect(
+      db.tenant(as('teacher', teacher), (q) => q.query(`insert into parent_student_map (school_id, parent_id, student_id) values ($1, $2, $3)`, [A, other, ids.anaya]))
+    ).rejects.toThrow(/row-level security/);
+    await expect(
+      db.tenant(as('teacher', teacher), (q) => q.query(`insert into parents (school_id, name, phone) values ($1, 'X', '9000000000')`, [A]))
+    ).rejects.toThrow(/row-level security/);
+    const upd = await db.tenant(as('teacher', teacher), (q) => q.query(`update parents set phone = '0' where parent_id = (select parent_id from parent_student_map where student_id = $1)`, [ids.anaya]));
+    expect(upd.rowCount).toBe(0);
+  });
+
+  it('the helper answers only for the caller and is not callable by anon or authenticated', async () => {
+    const own = await db.tenant(as('teacher', teacher), (q) => q.query(`select teacher_own_class_ids() ids`));
+    expect(own.rows[0].ids).toEqual([classA1]);
+    const principalOwn = await db.tenant(as('principal', principal), (q) => q.query(`select teacher_own_class_ids() ids`));
+    expect(principalOwn.rows[0].ids).toEqual([]);
+    for (const role of ['anon', 'authenticated'] as const) {
+      await expect(db.asRole(role, { tenant: A, role: 'teacher', user: teacher }, (q) => q.query(`select teacher_own_class_ids()`))).rejects.toThrow(/permission denied/);
+    }
+  });
+});
+
 describe('Student 360 search', () => {
   it('finds by name, admission number and guardian phone, only in the own school', async () => {
     expect(names(await search('principal', principal, 'aar'))).toEqual(['Aarav Sharma']);

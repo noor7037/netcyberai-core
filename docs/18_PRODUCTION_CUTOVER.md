@@ -22,9 +22,9 @@ pasted into chat, a file in the repo, or a PR. Claude never sees one.
 | 6 Vault secrets: the job runner's 2 and 4 WhatsApp tokens of deleted test configs (0 WhatsApp configs exist) | Runner secrets: new ones generated **in** prod; the rest stay | A secret is generated where it is used, never copied |
 | Storage objects (0), audit rows (11, test activity) | Stay | Nothing real |
 
-Prod today: all 48 repo migrations applied (48 history rows, one per file;
-dev's history has 51 rows, 3 of them Phase 0 probes kept as a record only; the
-48th is P1-b, C112), catalog identical to dev in all
+Prod today: all 49 repo migrations applied (49 history rows, one per file;
+dev's history has 52 rows, 3 of them Phase 0 probes kept as a record only; the
+last two are P1-b, C112), catalog identical to dev in all
 18 categories, the same roles, extensions and cron jobs, no data, no Vault
 secrets. Re-checked at "go" with `scripts/cutover/readiness.sql`.
 

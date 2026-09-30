@@ -212,6 +212,22 @@ ALLOWED_PERMISSIVE = (
     }
 )
 
+# The role-narrowing policies the tenant model depends on (Decision Log
+# C112): each must exist and stay RESTRICTIVE. This list is the opposite of
+# ALLOWED_PERMISSIVE: dropping one, or recreating it as PERMISSIVE (which
+# would OR access wider instead of narrowing it), fails the check.
+# teacher_scope_*: a teacher reads only their own classes' students,
+# guardians and guardian links, attendance and syllabus progress (17 §5).
+REQUIRED_RESTRICTIVE = {
+    ("students", "teacher_scope_students"),
+    ("parents", "teacher_scope_parents"),
+    ("parent_student_map", "teacher_scope_parent_student_map"),
+    ("attendance", "teacher_scope_attendance"),
+    ("syllabus_progress", "teacher_scope_syllabus_progress"),
+    ("students", "consent_gate_students"),
+    ("custom_field_values", "custom_field_values_office_only"),
+}
+
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)
 TEMPLATED_RE = re.compile(r"create\s+policy\s+%I_(?P<suffix>\w+)\s+on\s+%I", re.IGNORECASE)
 UNNEST_ARRAY_RE = re.compile(r"unnest\(array\[(?P<items>.*?)\]\)", re.IGNORECASE | re.DOTALL)
@@ -235,11 +251,17 @@ def parse_migrations(migrations_dir: Path) -> dict:
 
     for path in sorted(migrations_dir.glob("*.sql")):
         text = path.read_text()
+        # Every create/drop in this file, applied in the order it appears
+        # (C112): a file that drops a policy and recreates it (for example
+        # as RESTRICTIVE) must end with the policy present. Applying all
+        # creates before all drops recorded such policies as dropped.
+        events: list[tuple[int, str, tuple[str, str], tuple[bool, str] | None]] = []
 
         # Templated (loop) policies: every do-block that both unnests an
         # array of table names AND contains a %I_SUFFIX create-policy
         # template applies that template to every table in the array.
-        for block in DO_BLOCK_RE.findall(text):
+        for block_match in DO_BLOCK_RE.finditer(text):
+            block = block_match.group(0)
             suffixes = TEMPLATED_RE.findall(block)
             if not suffixes:
                 continue
@@ -250,7 +272,8 @@ def parse_migrations(migrations_dir: Path) -> dict:
             for suffix in suffixes:
                 cmd = _TEMPLATED_SUFFIX_CMD.get(suffix, "ALL")
                 for t in tables:
-                    policies[(t, f"{t}_{suffix}")] = (True, cmd)  # every templated policy in this repo is permissive
+                    # every templated policy in this repo is permissive
+                    events.append((block_match.start(), "create", (t, f"{t}_{suffix}"), (True, cmd)))
 
         # Static (non-templated) create policy statements.
         for m in CREATE_POLICY_RE.finditer(text):
@@ -261,11 +284,17 @@ def parse_migrations(migrations_dir: Path) -> dict:
             is_permissive = "restrictive" not in tail[:40].lower()
             cmd_match = FOR_CMD_RE.search(tail)
             cmd = cmd_match.group(1).upper() if cmd_match else "ALL"
-            policies[(table, name)] = (is_permissive, cmd)
+            events.append((m.start(), "create", (table, name), (is_permissive, cmd)))
 
         # Dropped policies stop existing, whichever form created them.
         for m in DROP_POLICY_RE.finditer(text):
-            policies.pop((m.group("table"), m.group("name")), None)
+            events.append((m.start(), "drop", (m.group("table"), m.group("name")), None))
+
+        for _pos, kind, key, value in sorted(events, key=lambda e: e[0]):
+            if kind == "create":
+                policies[key] = value  # type: ignore[assignment]
+            else:
+                policies.pop(key, None)
 
     return policies
 
@@ -367,6 +396,16 @@ def main() -> int:
             print(f"  {table}: {cmd} -- app_user would silently affect 0 rows here, not error")
     else:
         print(f"PASS: {len(mutations)} app-level UPDATE/DELETE/upsert targets all have a covering permissive policy.")
+
+    missing_restrictive = sorted(k for k in REQUIRED_RESTRICTIVE if policies.get(k, (True, ""))[0])
+    if missing_restrictive:
+        ok = False
+        print("FAIL: required RESTRICTIVE polic(y/ies) missing or not restrictive -- a role-narrowing rule is gone:")
+        for table, name in missing_restrictive:
+            state = "missing" if (table, name) not in policies else "PERMISSIVE"
+            print(f"  {table}.{name} ({state})")
+    else:
+        print(f"PASS: all {len(REQUIRED_RESTRICTIVE)} required RESTRICTIVE policies exist and are restrictive.")
 
     double_permissive = find_double_permissive_writes(policies)
     if double_permissive:
@@ -471,6 +510,25 @@ def self_test() -> int:
         )
         if find_double_permissive_writes(parse_migrations(clean_dir)):
             print("SELF-TEST FAILED: a table with only a single ALL-permissive policy was wrongly flagged")
+            return 1
+
+        # Drop then recreate in one file (C112): the policy exists at the
+        # end, with the recreated shape; a later drop alone removes it.
+        order_dir = tmp / "order"
+        order_dir.mkdir()
+        (order_dir / "0001_a.sql").write_text(
+            "create policy teacher_scope_students on students for select using (true);\n"
+        )
+        (order_dir / "0002_b.sql").write_text(
+            "drop policy if exists teacher_scope_students on students;\n"
+            "create policy teacher_scope_students on students as restrictive for select using (true);\n"
+            "create policy gone on students for select using (true);\n"
+            "drop policy gone on students;\n"
+        )
+        order = parse_migrations(order_dir)
+        if order.get(("students", "teacher_scope_students")) != (False, "SELECT") or ("students", "gone") in order:
+            print("SELF-TEST FAILED: create/drop order within a file was not respected")
+            print(order)
             return 1
 
         print("SELF-TEST PASSED")

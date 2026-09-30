@@ -138,6 +138,8 @@ create table parents (
   school_id uuid not null references schools(school_id),
   name text not null,
   phone text not null,
+  email text,
+  relation text,
   created_at timestamptz not null default now(),
   unique (school_id, parent_id)
 );

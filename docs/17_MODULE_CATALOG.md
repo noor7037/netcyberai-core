@@ -170,7 +170,7 @@ its phase, not a later polish.
 | Role | Groups |
 |---|---|
 | Principal, School admin | All school groups |
-| Teacher | Home, Teaching & Learning, Parent Engagement (own classes), Teacher Copilot, Parent AI (own classes, C112), Student 360 search (own classes, enforced by the database; not the Students module), Help |
+| Teacher | Home, Teaching & Learning, Parent Engagement (own classes), Teacher Copilot, Parent AI (own classes, C112), Student 360 search (own classes, enforced by the database; not the Students module); guardians of own classes only (C112), Help |
 | Accountant | Home, Finance, Reports, Help |
 | Academic coordinator | Home, Teaching & Learning, Exams, AI learning modules, Reports, Help |
 | Super admin (Control) | Platform: schools, onboarding, templates, plans and billing, comms wallet, entitlements, support desk, pipeline, monitoring, audit and reports |
