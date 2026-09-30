@@ -189,6 +189,26 @@ ALLOWED_PERMISSIVE = (
         # RESTRICTIVE staff_invitations_admin_only overlay (principal,
         # school admin, platform admin).
         ("staff_invitations", "staff_invitations_tenant_isolation"),
+        # P1-b frameworks (Decision Log C112). Entitlements: schools read
+        # their own (SELECT only; app_user holds no write grant), the
+        # founder writes (scoped `to nca_super`).
+        ("school_entitlements", "school_entitlements_tenant_read"),
+        ("school_entitlements", "school_entitlements_platform_write"),
+        ("school_module_entitlements", "school_module_entitlements_tenant_read"),
+        ("school_module_entitlements", "school_module_entitlements_platform_write"),
+        # Tenant isolation, each narrowed by a RESTRICTIVE role overlay
+        # (school_settings_no_teacher_write, custom_field_definitions_office_write,
+        # custom_field_values_office_only, saved_views_visible / _insert_own /
+        # _manage / _delete, bulk_runs_owner_or_office).
+        ("school_settings", "school_settings_tenant_isolation"),
+        ("custom_field_definitions", "custom_field_definitions_tenant_isolation"),
+        ("custom_field_values", "custom_field_values_tenant_isolation"),
+        ("saved_views", "saved_views_tenant_isolation"),
+        ("bulk_runs", "bulk_runs_tenant_isolation"),
+        # Settings history is append-only: tenant read and tenant insert,
+        # no update or delete grant (check_append_only_grants.py).
+        ("school_setting_changes", "school_setting_changes_tenant_read"),
+        ("school_setting_changes", "school_setting_changes_tenant_insert"),
     }
 )
 

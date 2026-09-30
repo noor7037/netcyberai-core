@@ -102,3 +102,76 @@ create policy users_tenant_isolation on users using (school_id = (current_settin
 create policy memberships_tenant_isolation on memberships using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 create policy audit_insert_only on audit_log for insert with check (true);
 create policy audit_read_own_school on audit_log for select using (school_id = (current_setting('app.current_tenant_id', true))::uuid or current_setting('app.current_role', true) = 'super_admin');
+
+-- P1-b (C112): the students / classes / guardians / teachers slice that
+-- Student 360 search and the teacher own-classes rule build on, with the
+-- live policies (read from the test database on 2026-09-30).
+create type student_status as enum ('pending_consent', 'active', 'inactive', 'transferred');
+
+create table classes (
+  class_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  name text not null,
+  grade text,
+  section text,
+  class_teacher_id uuid,
+  created_at timestamptz not null default now(),
+  unique (school_id, class_id)
+);
+create table students (
+  student_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  admission_no text,
+  name text not null,
+  class_id uuid,
+  roll_no text,
+  dob date,
+  status student_status not null default 'pending_consent',
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  unique (school_id, student_id),
+  foreign key (school_id, class_id) references classes (school_id, class_id)
+);
+create table parents (
+  parent_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  name text not null,
+  phone text not null,
+  created_at timestamptz not null default now(),
+  unique (school_id, parent_id)
+);
+create table parent_student_map (
+  school_id uuid not null references schools(school_id),
+  parent_id uuid not null,
+  student_id uuid not null,
+  primary key (school_id, parent_id, student_id)
+);
+create table teachers (
+  teacher_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  user_id uuid not null,
+  name text not null,
+  unique (school_id, teacher_id)
+);
+create table teacher_subjects (
+  school_id uuid not null,
+  teacher_id uuid not null,
+  subject_id uuid not null,
+  class_id uuid not null
+);
+
+grant select, insert, update, delete on classes, students, parents, parent_student_map, teachers, teacher_subjects to app_user, nca_super;
+alter table classes enable row level security;
+alter table students enable row level security;
+alter table parents enable row level security;
+alter table parent_student_map enable row level security;
+alter table teachers enable row level security;
+alter table teacher_subjects enable row level security;
+create policy classes_tenant_isolation on classes using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy students_tenant_isolation on students using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy parents_tenant_isolation on parents using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy parent_student_map_tenant_isolation on parent_student_map using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy teachers_tenant_isolation on teachers using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy teacher_subjects_tenant_isolation on teacher_subjects using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy consent_gate_students on students as restrictive for select
+  using (status <> 'pending_consent' or current_setting('app.current_role', true) = any (array['teacher', 'principal', 'school_admin', 'super_admin']));

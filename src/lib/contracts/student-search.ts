@@ -16,7 +16,9 @@ export type StudentSearchResult = {
   className: string | null;
   section: string | null;
   rollNo: string | null;
-  status: 'active' | 'alumni' | 'transferred' | 'inactive';
+  // The students.status enum; pending_consent is shown to the roles the
+  // consent gate lets see it (principal, school admin, teacher).
+  status: 'pending_consent' | 'active' | 'inactive' | 'transferred';
   matchedOn: StudentMatchField;
   // Only the last four digits, and only when the match was on the phone.
   guardianPhoneLast4?: string;

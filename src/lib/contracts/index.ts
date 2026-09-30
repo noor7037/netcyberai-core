@@ -10,3 +10,4 @@ export * from './bulk';
 export * from './student-search';
 export * from './charts';
 export * from './fixture';
+export * from './custom-fields';

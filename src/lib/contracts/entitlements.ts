@@ -32,10 +32,22 @@ export type SchoolEntitlements = {
   modules: Readonly<Partial<Record<ModuleId, ModuleEntitlement>>>;
 };
 
-// A module missing from the map is off: entitlements are opt-in, so a new
-// module never appears for a school until a plan or the founder turns it on.
+// Help Center and Raise Ticket are always on, in every access mode and
+// whatever the entitlements say (founder rule, C112): a school must always
+// be able to get help, above all a suspended one. The database refuses to
+// store them switched off (school_module_entitlements.help_modules_always_on).
+export const ALWAYS_ON_MODULES: readonly ModuleId[] = ['help-center', 'raise-ticket'];
+
+export function isAlwaysOn(moduleId: ModuleId): boolean {
+  return ALWAYS_ON_MODULES.includes(moduleId);
+}
+
+// Any other module missing from the map is off: entitlements are opt-in, so
+// a new module never appears for a school until a plan or the founder turns
+// it on. A suspended school keeps only the always-on modules.
 export function isModuleEnabled(entitlements: SchoolEntitlements, moduleId: ModuleId): boolean {
-  if (entitlements.accessMode === 'suspended') return moduleId === 'help-center' || moduleId === 'raise-ticket';
+  if (isAlwaysOn(moduleId)) return true;
+  if (entitlements.accessMode === 'suspended') return false;
   return entitlements.modules[moduleId]?.enabled === true;
 }
 

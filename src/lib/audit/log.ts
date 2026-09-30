@@ -18,7 +18,7 @@ interface AuditEntry {
 // trigger and audit_insert_only policy do the rest (hash chaining,
 // append-only). Never logs a plaintext credential or token; callers are
 // responsible for keeping before/after state to that same rule.
-export async function writeAuditLog(client: PoolClient, entry: AuditEntry): Promise<void> {
+export async function writeAuditLog(client: Pick<PoolClient, 'query'>, entry: AuditEntry): Promise<void> {
   await client.query(
     `insert into audit_log
        (school_id, actor_user_id, actor_role, event_action, target_type, target_id, before_state, after_state)
