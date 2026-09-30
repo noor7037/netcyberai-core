@@ -117,6 +117,12 @@ export const pageMeta = {
     description:
       'Tell us about your school and we will reach out to take you live on NetCyberAI — no invented pricing, a real request reaching our team, not a dead-end form.',
   },
+  registerSchool: {
+    path: '/register-school',
+    title: 'Register Your School',
+    description:
+      'Register your school on NetCyberAI: tell us about it, confirm the principal’s email with a code, and our team reviews it and invites the principal to sign in.',
+  },
   bookDemo: {
     path: '/book-demo',
     title: 'Book a Demo',

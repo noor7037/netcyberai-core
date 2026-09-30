@@ -60,3 +60,13 @@ export const STATE_LABELS: Record<ApplicationState, string> = {
   provisioned: 'Invite sent',
   active: 'Active',
 };
+
+export const STATE_BADGE: Record<ApplicationState, 'neutral' | 'success' | 'warning' | 'danger'> = {
+  submitted: 'neutral',
+  email_verified: 'warning',
+  under_review: 'warning',
+  approved: 'neutral',
+  rejected: 'danger',
+  provisioned: 'neutral',
+  active: 'success',
+};

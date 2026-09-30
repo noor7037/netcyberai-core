@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FaqSection } from '@/components/content/FaqSection';
 import { GET_STARTED_FAQS } from '@/content/faqs';
 import { HowItWorks } from '@/components/home/HowItWorks';
@@ -26,6 +27,13 @@ export default function GetStartedPage() {
       <section className="bg-off-white">
         <Container className="py-12">
           <div className="mx-auto max-w-2xl">
+            <p className="mb-6 rounded-lg border border-sapphire/20 bg-white p-4 text-slate">
+              Ready to set up your school’s account?{' '}
+              <Link href="/register-school" className="font-semibold text-royal underline">
+                Register your school
+              </Link>
+              . Our team reviews every application and emails the principal an invitation.
+            </p>
             <LeadForm source="get_started" />
           </div>
         </Container>

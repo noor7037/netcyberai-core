@@ -66,6 +66,17 @@ export default async function OnboardingPage() {
         </p>
       </div>
 
+      <Link
+        href="/control/onboarding/applications"
+        className="flex items-center justify-between rounded-md border border-sapphire/30 bg-sapphire/5 p-4 text-slate hover:border-sapphire"
+      >
+        <span>
+          <span className="block font-semibold">School applications</span>
+          <span className="block text-sm text-slate/70">From the public “Register your school” form: review, approve or reject.</span>
+        </span>
+        <span className="text-sm font-medium text-sapphire underline">Open →</span>
+      </Link>
+
       <CreateSchoolForm />
 
       <div>
