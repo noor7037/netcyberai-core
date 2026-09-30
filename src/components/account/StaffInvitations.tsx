@@ -13,7 +13,7 @@ type Invitation = {
   email: string;
   display_name: string;
   role: string;
-  status: 'pending' | 'sent' | 'accepted' | 'revoked';
+  status: 'pending' | 'sent' | 'accepted' | 'revoked' | 'needs_founder';
   sends: number;
   last_sent_at: string | null;
 };
@@ -30,6 +30,7 @@ const STATUS_LABELS: Record<Invitation['status'], string> = {
   sent: 'Invite sent',
   accepted: 'Signed in',
   revoked: 'Withdrawn',
+  needs_founder: 'This email already has a NetCyberAI account. Contact NetCyberAI support to add it to your school.',
 };
 const ERRORS: Record<string, string> = {
   already_invited: 'This email already has an invitation for this school.',

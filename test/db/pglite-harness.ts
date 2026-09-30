@@ -6,13 +6,16 @@ import type { SessionClaims } from '@/lib/auth/types';
 import type { Sql } from '@/lib/jobs/types';
 
 // Real Postgres (PGlite, compiled to WebAssembly) for the B2 tests (C98):
-// the base schema slice, then supabase/migrations/…_b2_onboarding_pipeline.sql
-// applied verbatim. The context wrappers below run the same statements as
+// the base schema slice, then the B2 migrations applied verbatim. The context wrappers below run the same statements as
 // src/lib/auth/db.ts (SET LOCAL ROLE, set_config), so RLS and grants are
 // exercised as in production. One connection: calls are serialized.
 
 const ROOT = path.resolve(__dirname, '../..');
-export const B2_MIGRATION = readFileSync(path.join(ROOT, 'supabase/migrations/20260930063944_b2_onboarding_pipeline.sql'), 'utf8');
+// The B2 migrations that need no Supabase-only extension (pg_cron, pg_net,
+// Vault), applied verbatim and in order.
+export const B2_MIGRATIONS = ['20260930063944_b2_onboarding_pipeline.sql', '20260930065803_b2_invitation_needs_founder.sql'].map((f) =>
+  readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8')
+);
 const NIL_UUID = '00000000-0000-0000-0000-000000000000';
 
 type QueryResult = { rows: any[]; rowCount: number };
@@ -28,7 +31,7 @@ export type TestDb = {
 export async function createTestDb(): Promise<TestDb> {
   const pg = new PGlite({ extensions: { pgcrypto } });
   await pg.exec(readFileSync(path.join(__dirname, 'base-schema.sql'), 'utf8'));
-  await pg.exec(B2_MIGRATION);
+  for (const sql of B2_MIGRATIONS) await pg.exec(sql);
 
   let chain: Promise<unknown> = Promise.resolve();
   const serial = <T>(fn: () => Promise<T>): Promise<T> => {

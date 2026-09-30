@@ -25,8 +25,17 @@ export default async function MonitoringPage() {
         problems: await problemJobs(db),
         funnel: await applicationCounts(db),
         lastRun: (await db.query(`select max(updated_at) as at from jobs where status in ('succeeded', 'dead')`)).rows[0]?.at as string | null,
+        // A school invited an email that already has an account (C98): it
+        // waits for NetCyberAI to resolve with the account's owner.
+        needsFounder: (
+          await db.query(
+            `select i.invitation_id, s.name as school_name, i.email, i.role::text as role, i.created_at
+               from staff_invitations i join schools s on s.school_id = i.school_id
+              where i.status = 'needs_founder' order by i.created_at desc limit 50`
+          )
+        ).rows,
       }))
-    : { counts: [], problems: [], funnel: {} as Record<string, number>, lastRun: null };
+    : { counts: [], problems: [], funnel: {} as Record<string, number>, lastRun: null, needsFounder: [] };
 
   const types = Array.from(new Set(data.counts.map((c) => c.type)));
   const cell = (type: string, status: string) => data.counts.find((c) => c.type === type && c.status === status);
@@ -97,6 +106,24 @@ export default async function MonitoringPage() {
                   <span className="block text-red-800">{j.last_error ?? 'no error recorded'}</span>
                 </span>
                 {j.status === 'dead' && <RetryJobButton jobId={j.job_id} />}
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      <section aria-labelledby="needs-founder">
+        <h2 id="needs-founder" className="mb-2 text-lg font-bold text-slate">
+          Invitations that need you ({data.needsFounder.length})
+        </h2>
+        {data.needsFounder.length === 0 ? (
+          <p className="text-sm text-slate/70">None. A school’s invitation to an email that already has a NetCyberAI account would wait here.</p>
+        ) : (
+          <ul className="flex flex-col gap-2 text-sm">
+            {data.needsFounder.map((i) => (
+              <li key={i.invitation_id} className="rounded-md border border-slate/10 bg-white p-3 text-slate">
+                <strong>{i.school_name}</strong> invited {i.email} as {i.role}. That email already has an account; nothing was attached.
+                Confirm with the account’s owner before adding them. <span className="text-slate/70">({when(i.created_at)})</span>
               </li>
             ))}
           </ul>

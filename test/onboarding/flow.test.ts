@@ -276,6 +276,27 @@ describe('first sign-in, then the principal invites staff', () => {
     expect(listed.invitations.map((i: { email: string }) => i.email).sort()).toEqual([APPLICANT.email, 'ravi.teacher@school.test']);
   });
 
+  it('a principal inviting an email that already has an account attaches nothing and emails nobody (security review)', async () => {
+    const cookie = await cookieFor(principalId, 'principal', schoolId);
+    const before = h.deliveries.length;
+    // ravi.teacher already has an account (from the first school's invitation above) … use a second school:
+    const otherSchool = randomUUID();
+    await q(`insert into schools (school_id, name, jurisdiction) values ($1, 'Attacker School', 'IN-RJ')`, [otherSchool]);
+    const attacker = await cookieFor(randomUUID(), 'principal', otherSchool);
+    const res = await inviteRoute(req('/api/app/staff/invitations', { email: APPLICANT.email, displayName: 'Victim', role: 'teacher' }, { cookie: attacker }));
+    expect(res.status).toBe(201);
+    const victimId = h.authUsers.get(APPLICANT.email)!;
+    expect(await count(`select count(*) n from memberships where user_id = $1 and school_id = $2`, [victimId, otherSchool])).toBe(0);
+    const [inv] = await q(`select status, auth_user_id from staff_invitations where school_id = $1`, [otherSchool]);
+    expect(inv).toEqual({ status: 'needs_founder', auth_user_id: null });
+    expect(h.deliveries.length).toBe(before);
+    expect(await count(`select count(*) n from jobs where idempotency_key like 'email.send:added_to_school:%' and school_id = $1`, [otherSchool])).toBe(0);
+    expect(await count(`select count(*) n from audit_log where event_action = 'staff_invitation.needs_founder'`)).toBe(1);
+    // The victim's own school still lists nothing new, and the principal's own session is unaffected.
+    expect((await inviteRoute(req('/api/app/staff/invitations', { email: APPLICANT.email, displayName: 'Victim', role: 'teacher' }, { cookie: attacker }))).status).toBe(409);
+    void cookie;
+  });
+
   it('a teacher cannot invite, and another school sees none of these invitations', async () => {
     const teacherCookie = await cookieFor(randomUUID(), 'teacher', schoolId);
     const r = await inviteRoute(req('/api/app/staff/invitations', { email: 'x@school.test', displayName: 'Xavier', role: 'teacher' }, { cookie: teacherCookie }));
@@ -343,8 +364,8 @@ describe('invite job retries after a failure part-way (code-review findings)', (
         schoolId: schoolC,
         email: APPLICANT.email, // already has an account (the first school's principal)
         displayName: 'Priya Sharma',
-        role: 'school_admin',
-        source: 'staff',
+        role: 'principal',
+        source: 'application', // an approved application: the email was proven by code
         invitedBy: { userId: FOUNDER_ID, role: 'super_admin' },
         redirectTo: 'https://www.netcyberai.test/login',
       })

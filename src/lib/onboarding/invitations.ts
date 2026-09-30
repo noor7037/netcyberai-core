@@ -90,7 +90,7 @@ export async function resendInvitation(
   const { rows } = await db.query(`select school_id, status, sends from staff_invitations where invitation_id = $1`, [invitationId]);
   const inv = rows[0] as { school_id: string; status: string; sends: number } | undefined;
   if (!inv) throw new PermanentJobError('invitation not found');
-  if (inv.status === 'accepted' || inv.status === 'revoked') return { jobKeys: [] };
+  if (inv.status === 'accepted' || inv.status === 'revoked' || inv.status === 'needs_founder') return { jobKeys: [] };
   const sendNumber = Number(inv.sends) + 1;
   const key = inviteKey(invitationId, sendNumber);
   const { created } = await queue.enqueue(db, {
@@ -118,7 +118,7 @@ export type InvitationRow = {
   email: string;
   display_name: string;
   role: StaffRole;
-  status: 'pending' | 'sent' | 'accepted' | 'revoked';
+  status: 'pending' | 'sent' | 'accepted' | 'revoked' | 'needs_founder';
   sends: number;
   last_sent_at: string | null;
   accepted_at: string | null;
@@ -149,6 +149,7 @@ export type InviteDeps = {
 
 type InvitationForJob = {
   school_id: string;
+  source: 'application' | 'staff';
   school_name: string;
   email: string;
   display_name: string;
@@ -176,7 +177,7 @@ export function inviteSendHandler(deps: InviteDeps): JobHandler {
     const { invitationId, sendNumber, redirectTo } = readPayload(job);
     const inv = await deps.platform(async (db) => {
       const { rows } = await db.query(
-        `select i.school_id, s.name as school_name, i.email, i.display_name, i.role::text as role, i.status, i.application_id,
+        `select i.school_id, i.source, s.name as school_name, i.email, i.display_name, i.role::text as role, i.status, i.application_id,
                 i.auth_user_id, i.sends
            from staff_invitations i join schools s on s.school_id = i.school_id
           where i.invitation_id = $1`,
@@ -185,7 +186,7 @@ export function inviteSendHandler(deps: InviteDeps): JobHandler {
       return rows[0] as InvitationForJob | undefined;
     });
     if (!inv) throw new PermanentJobError('invitation not found');
-    if (inv.status === 'revoked' || inv.status === 'accepted') return;
+    if (inv.status === 'revoked' || inv.status === 'accepted' || inv.status === 'needs_founder') return;
     if (Number(inv.sends) >= sendNumber) return;
 
     let userId = inv.auth_user_id;
@@ -195,8 +196,32 @@ export function inviteSendHandler(deps: InviteDeps): JobHandler {
       if ('userId' in invited) {
         userId = invited.userId;
       } else {
-        // The email already signs in to NetCyberAI (staff at another school):
-        // give that account this school too.
+        // The email already signs in to NetCyberAI (staff at another school).
+        // A school's own invitation never attaches that account by itself:
+        // it would hand the inviting school an account its owner never agreed
+        // to join (security review, C98). It stops for NetCyberAI to resolve.
+        // An approved application's principal proved this email with a code,
+        // so that invitation does attach it.
+        if (inv.source !== 'application') {
+          await deps.platform(async (db) => {
+            const { rowCount } = await db.query(
+              `update staff_invitations set status = 'needs_founder', updated_at = now() where invitation_id = $1 and status = 'pending'`,
+              [invitationId]
+            );
+            if (rowCount) {
+              await writeAuditLog(db as PoolClient, {
+                schoolId: inv.school_id,
+                actorUserId: null,
+                actorRole: null,
+                eventAction: 'staff_invitation.needs_founder',
+                targetType: 'staff_invitations',
+                targetId: invitationId,
+                afterState: { reason: 'existing_account' },
+              });
+            }
+          });
+          return;
+        }
         existingAccount = true;
         userId = await deps.platform(async (db) => {
           const { rows } = await db.query(`select user_id from users where lower(email) = lower($1) order by created_at limit 1`, [inv.email]);
