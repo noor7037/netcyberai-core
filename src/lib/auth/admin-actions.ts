@@ -64,3 +64,20 @@ export async function hasConfirmedAuthenticator(userId: string): Promise<boolean
   if (error) return null;
   return (data?.factors ?? []).some((f) => f.factor_type === 'totp' && f.status === 'verified');
 }
+
+// The invite job (C98): Supabase Auth creates the account and sends its
+// invite email, which lands on /login?th=…&type=invite (the set-password
+// step). An email that already has an account answers `exists`; the job
+// then gives that account the school instead. Only the invite job calls
+// this, never a request directly.
+export async function inviteUserToSchool(
+  email: string,
+  redirectTo: string,
+  displayName: string
+): Promise<{ userId: string } | { exists: true }> {
+  const { data, error } = await admin().auth.admin.inviteUserByEmail(email, { redirectTo, data: { display_name: displayName } });
+  if (!error && data?.user) return { userId: data.user.id };
+  const code = (error as { code?: string } | null)?.code;
+  if (code === 'email_exists' || /already (been )?registered/i.test(error?.message ?? '')) return { exists: true };
+  throw new Error(`invite failed: ${error?.status ?? 'no status'} ${code ?? ''}`.trim());
+}

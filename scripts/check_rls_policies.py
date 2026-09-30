@@ -168,6 +168,27 @@ ALLOWED_PERMISSIVE = (
         ("leads", "leads_backend_duplicate_check"),
         ("leads", "leads_super_admin_read"),
         ("leads", "leads_super_admin_write"),
+        # B2 (Decision Log C97, C98): platform tables. Every policy is
+        # scoped `to nca_super` (BYPASSRLS anyway; the policies state the
+        # intended access), app_user/app_backend/anon/authenticated hold no
+        # grant on them at all (test/onboarding/rls.test.ts, and the live
+        # proof in C98). The one school-side entry is jobs_enqueue: INSERT
+        # only, for app_user limited to type invite.send of its own school.
+        ("jobs", "jobs_platform_read"),
+        ("jobs", "jobs_platform_update"),
+        ("jobs", "jobs_enqueue"),
+        ("school_applications", "school_applications_platform_read"),
+        ("school_applications", "school_applications_platform_insert"),
+        ("school_applications", "school_applications_platform_update"),
+        ("intake_rate_events", "intake_rate_events_platform_read"),
+        ("intake_rate_events", "intake_rate_events_platform_insert"),
+        ("intake_rate_events", "intake_rate_events_platform_delete"),
+        ("platform_settings", "platform_settings_platform_read"),
+        ("platform_settings", "platform_settings_platform_update"),
+        # Tenant table: the usual tenant isolation, narrowed by the
+        # RESTRICTIVE staff_invitations_admin_only overlay (principal,
+        # school admin, platform admin).
+        ("staff_invitations", "staff_invitations_tenant_isolation"),
     }
 )
 
