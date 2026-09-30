@@ -18,9 +18,10 @@ type QueryResult = { rows: any[]; rowCount: number };
 export type TestDb = {
   pg: PGlite;
   query(sql: string, params?: unknown[]): Promise<QueryResult>;
-  platform<T>(fn: (db: { query: TestDb['query'] }) => Promise<T>): Promise<T>;
-  tenant<T>(claims: Pick<SessionClaims, 'role' | 'schoolId' | 'sub'>, fn: (db: { query: TestDb['query'] }) => Promise<T>): Promise<T>;
-  asRole<T>(role: 'app_user' | 'app_backend' | 'anon' | 'authenticated', gucs: { tenant?: string; role?: string; user?: string }, fn: (db: { query: TestDb['query'] }) => Promise<T>): Promise<T>;
+  // The callback gets a pg-compatible client (query(text, params) → rows, rowCount).
+  platform<T>(fn: (db: any) => Promise<T>): Promise<T>;
+  tenant<T>(claims: Pick<SessionClaims, 'role' | 'schoolId' | 'sub'>, fn: (db: any) => Promise<T>): Promise<T>;
+  asRole<T>(role: 'app_user' | 'app_backend' | 'anon' | 'authenticated', gucs: { tenant?: string; role?: string; user?: string }, fn: (db: any) => Promise<T>): Promise<T>;
 };
 
 export async function createTestDb(): Promise<TestDb> {
