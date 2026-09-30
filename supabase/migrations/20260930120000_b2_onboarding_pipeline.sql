@@ -16,6 +16,7 @@
 --                      principal). Tenant-scoped.
 -- intake_rate_events   Per-IP and per-email counters for the public form
 --                      (hashed keys only, never a raw IP address).
+-- platform_settings    Platform-wide switches (approval mode).
 --
 -- Platform tables are reached only through withPlatformService
 -- (src/lib/auth/db.ts, SET LOCAL ROLE nca_super). No school role can read
@@ -118,11 +119,25 @@ create table intake_rate_events (
 );
 create index idx_intake_rate_events_lookup on intake_rate_events (bucket, key_hash, created_at desc);
 
+-- ---- platform settings -----------------------------------------------------------
+-- Platform-wide switches the founder changes without a deploy. The first:
+-- onboarding.approval_mode, 'manual' (the founder approves every school)
+-- or 'auto' (a verified application is approved at once).
+create table platform_settings (
+  key        text primary key check (key ~ '^[a-z_]+\.[a-z_]+$'),
+  value      jsonb not null,
+  updated_by uuid,
+  updated_at timestamptz not null default now()
+);
+insert into platform_settings (key, value) values ('onboarding.approval_mode', '"manual"'::jsonb)
+  on conflict (key) do nothing;
+
 -- ---- grants -------------------------------------------------------------------
-revoke all on jobs, school_applications, intake_rate_events, staff_invitations from public, anon, authenticated, app_backend;
-revoke all on jobs, school_applications, intake_rate_events from app_user;
+revoke all on jobs, school_applications, intake_rate_events, staff_invitations, platform_settings from public, anon, authenticated, app_backend;
+revoke all on jobs, school_applications, intake_rate_events, platform_settings from app_user;
 grant select, insert, update on jobs, school_applications to nca_super;
 grant select, insert, delete on intake_rate_events to nca_super;
+grant select, update on platform_settings to nca_super;
 grant select, insert, update on staff_invitations to nca_super, app_user;
 -- Enqueue only: no SELECT, so the insert never uses RETURNING.
 grant insert on jobs to app_user;
@@ -136,6 +151,8 @@ alter table staff_invitations enable row level security;
 alter table staff_invitations force row level security;
 alter table intake_rate_events enable row level security;
 alter table intake_rate_events force row level security;
+alter table platform_settings enable row level security;
+alter table platform_settings force row level security;
 
 -- nca_super is BYPASSRLS; these platform policies are scoped `to nca_super`
 -- so they can never apply to any other role (the leads-table lesson,
@@ -159,6 +176,9 @@ create policy school_applications_platform_update on school_applications for upd
 create policy intake_rate_events_platform_read on intake_rate_events for select to nca_super using (true);
 create policy intake_rate_events_platform_insert on intake_rate_events for insert to nca_super with check (true);
 create policy intake_rate_events_platform_delete on intake_rate_events for delete to nca_super using (true);
+
+create policy platform_settings_platform_read on platform_settings for select to nca_super using (true);
+create policy platform_settings_platform_update on platform_settings for update to nca_super using (true) with check (true);
 
 -- Tenant isolation (the same shape every tenant table uses), then a
 -- RESTRICTIVE overlay: only the school's principal and school admin (and a

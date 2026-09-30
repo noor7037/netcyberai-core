@@ -47,6 +47,25 @@ revoke execute on function public.jobs_sweeper_tick() from public, anon, authent
 
 -- cron.schedule upserts by name, so replaying this file is harmless.
 select cron.schedule('jobs-sweeper', '* * * * *', 'select public.jobs_sweeper_tick()');
+-- Retention (C97), daily at 03:10 UTC:
+--   intake_rate_events older than 7 days: the longest rate window is one
+--     hour; a week keeps enough to look into an abuse wave, then goes.
+--   succeeded jobs older than 30 days: long enough to answer "did that
+--     email go out?" for a month; their payloads were already redacted.
+--   dead jobs older than 90 days: kept longer because a person has to act
+--     on them; the Pipeline view shows them until then.
+create or replace function public.jobs_retention_cleanup() returns void
+language sql
+security definer
+set search_path = public, pg_temp
+as $$
+  delete from intake_rate_events where created_at < now() - interval '7 days';
+  delete from jobs where status = 'succeeded' and completed_at < now() - interval '30 days';
+  delete from jobs where status = 'dead' and completed_at < now() - interval '90 days';
+$$;
+revoke execute on function public.jobs_retention_cleanup() from public, anon, authenticated, service_role;
+select cron.schedule('jobs-retention-cleanup', '10 3 * * *', 'select public.jobs_retention_cleanup()');
+
 -- pg_cron keeps every run's details forever unless told otherwise.
 select cron.schedule('jobs-sweeper-history-cleanup', '17 3 * * *',
   $$delete from cron.job_run_details where end_time < now() - interval '7 days'$$);
