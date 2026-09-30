@@ -50,6 +50,11 @@ Pro, or migrate) are taken after the build and before the first school.
    `/security-review`, at most 2 subagents, push after every major step.
 6. **Challenge rule.** Any executor may overrule an earlier decision, document or
    instruction when it finds something better: say so in one line, do it, log it.
+7. **Two databases (C111; from the P1-a cutover).** `netcyberai-prod` holds real
+   data and serves the live site; the old project is the **test database** for
+   previews, fixtures and demos, and never holds real data. Migrations are
+   test-first: `apply_migration` on the test database, checks there, then prod,
+   then the catalog snapshot on both. Runbook: `18_PRODUCTION_CUTOVER.md`.
 
 ## 4. Phases (order fixed by the founder, 2026-09-30)
 

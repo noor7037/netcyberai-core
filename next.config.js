@@ -12,6 +12,8 @@ const nextConfig = {
   // this list in sync with which routes import ocr.ts, and the actual
   // size cost is a few hundred KB, not something worth the upkeep.
   experimental: {
+    // src/instrumentation.ts: forwards server errors to the ErrorReporter (C111).
+    instrumentationHook: true,
     // Keep tesseract.js as a plain node_modules require() at runtime
     // instead of webpack-bundling it into the route's compiled chunk --
     // bundling is what broke createWorker's __dirname-relative path to
