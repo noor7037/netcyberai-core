@@ -82,7 +82,8 @@ separate lanes. Both read `AGENTS.md`. The supervisor reviews and merges both.
 
 Contracts between lanes are TypeScript types in `src/lib/contracts/**`
 (owned by Core; Experience consumes). Decision Log numbers: supervisor C100–C109,
-Claude Code from C110, Antigravity from C200.
+Claude Code from C110, Antigravity from C200. Antigravity's setup, loop and
+task queue: [`antigravity/README.md`](antigravity/README.md) (C101).
 
 ## 5. Founder long-lead actions (start now)
 
@@ -94,6 +95,8 @@ Claude Code from C110, Antigravity from C200.
 
 ## 6. Change log
 
+- **2026-09-30** — C101: Antigravity starter kit (`docs/antigravity/`); the
+  helper folder is a git clone, and work is handed back as `ag/*` branches.
 - **2026-09-30** — C100: P7b Family App added; two-executor lanes (§4a);
   configuration, filters and the founder's E2E list folded into `17`.
 - **2026-09-30** — Created (C99). Founder moved Fees to the last feature phase
