@@ -32,15 +32,17 @@ const toJob = (r: Row): ClaimedJob => ({
 
 export function createPgJobQueue(platform: Platform = withPlatformService as Platform): JobQueue {
   return {
-    // Inside the caller's transaction. No RETURNING and no read-back: a
-    // school session holds INSERT only. `created` is false when the same
-    // idempotency key was enqueued before (that job is left untouched).
+    // Inside the caller's transaction. No RETURNING, no read-back and no
+    // conflict target (naming one needs SELECT on it): a school session
+    // holds INSERT only. The only other unique column is the fresh job_id,
+    // so a conflict is always the idempotency key. `created` is false when
+    // that key was enqueued before (that job is left untouched).
     async enqueue(db: Sql, spec: JobSpec): Promise<EnqueueResult> {
       const jobId = randomUUID();
       const res = await db.query(
         `insert into jobs (job_id, type, payload, idempotency_key, school_id, max_attempts)
          values ($1, $2, $3, $4, $5, $6)
-         on conflict (idempotency_key) do nothing`,
+         on conflict do nothing`,
         [jobId, spec.type, JSON.stringify(spec.payload), spec.idempotencyKey, spec.schoolId ?? null, spec.maxAttempts ?? DEFAULT_MAX_ATTEMPTS]
       );
       return { jobId, created: (res.rowCount ?? 0) > 0 };

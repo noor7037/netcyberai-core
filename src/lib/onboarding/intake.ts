@@ -63,8 +63,10 @@ export function schoolNameKey(name: string): string {
   return name
     .toLowerCase()
     .normalize('NFKD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/[^a-z0-9ऀ-ॿ]+/g, ' ')
+    .replace(/[\u0300-\u036f]/g, '')
+    // St. Mary’s = st marys: apostrophes join, other punctuation separates.
+    .replace(/['’`]/g, '')
+    .replace(/[^a-z0-9\u0900-\u097f]+/g, ' ')
     .trim();
 }
 
