@@ -3,6 +3,7 @@ import { verifyAccessToken } from '@/lib/auth/jwt';
 import { canAccessControl, canAccessApp } from '@/lib/auth/guards';
 import { ACCESS_COOKIE, REFRESH_COOKIE } from '@/lib/auth/cookies';
 import type { StaffRole } from '@/lib/auth/types';
+import { REQUEST_ID_HEADER, requestIdFrom } from '@/lib/observability/request-id';
 
 // Edge-runtime gate: verifies the signed access-token JWT (jose is
 // WebCrypto-based, no Node APIs, so this runs at the edge) and checks
@@ -16,11 +17,26 @@ import type { StaffRole } from '@/lib/auth/types';
 // this falls back to redirecting to /login.
 type GateClaims = { role: StaffRole; schoolId: string | null };
 
+// Every request through here also gets a request id (C111): passed to the
+// route as x-request-id and returned in the response.
 export async function middleware(req: NextRequest) {
+  const requestId = requestIdFrom(req.headers);
+  const res = await gate(req, requestId);
+  res.headers.set(REQUEST_ID_HEADER, requestId);
+  return res;
+}
+
+function next(req: NextRequest, requestId: string): NextResponse {
+  const headers = new Headers(req.headers);
+  headers.set(REQUEST_ID_HEADER, requestId);
+  return NextResponse.next({ request: { headers } });
+}
+
+async function gate(req: NextRequest, requestId: string): Promise<NextResponse> {
   const { pathname } = req.nextUrl;
   const isControl = pathname.startsWith('/control');
   const isApp = pathname.startsWith('/app');
-  if (!isControl && !isApp) return NextResponse.next();
+  if (!isControl && !isApp) return next(req, requestId);
 
   const accessToken = req.cookies.get(ACCESS_COOKIE)?.value;
   let claims: GateClaims | null = accessToken ? await verifyAccessToken(accessToken) : null;
@@ -47,7 +63,7 @@ export async function middleware(req: NextRequest) {
     return NextResponse.json({ error: 'forbidden' }, { status: 403 });
   }
 
-  const res = NextResponse.next();
+  const res = next(req, requestId);
   if (refreshedSetCookie) {
     res.headers.append('set-cookie', refreshedSetCookie);
   }
@@ -55,5 +71,7 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/control/:path*', '/app/:path*'],
+  // The gated shells, plus API routes and sign-in for request ids. Public
+  // marketing pages are not matched: they stay static and untouched.
+  matcher: ['/control/:path*', '/app/:path*', '/api/:path*', '/login'],
 };

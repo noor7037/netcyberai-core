@@ -1,0 +1,35 @@
+# Uptime check (Decision Log C111). Every 10 minutes GitHub calls the live
+# site's /api/health; a run fails when the site does not answer, answers
+# with an error, or reports status "down". GitHub emails the person who last
+# changed this schedule when a scheduled run fails (their Actions
+# notification settings). Scheduled runs can start a few minutes late on
+# busy days; a dedicated uptime service can be added later with no code
+# change (the endpoint is the same).
+name: uptime
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: GET https://www.netcyberai.com/api/health
+        run: |
+          set -euo pipefail
+          body="$(curl -fsS --max-time 20 --retry 2 --retry-delay 10 https://www.netcyberai.com/api/health)"
+          echo "$body"
+          status="$(printf '%s' "$body" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("status", "missing"))')"
+          if [ "$status" = "down" ] || [ "$status" = "missing" ]; then
+            echo "::error::health status is $status"
+            exit 1
+          fi
+          if [ "$status" = "degraded" ]; then
+            echo "::warning::health status is degraded (background jobs are waiting)"
+          fi
