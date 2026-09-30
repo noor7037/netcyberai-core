@@ -114,10 +114,15 @@ describe('Student 360 search', () => {
     });
     for (const q of ['student 4a', 'S04200', '9000004242', 'zzzz']) {
       await search('principal', principal, q); // warm
-      const t0 = performance.now();
-      const r = await search('principal', principal, q);
-      const ms = performance.now() - t0;
-      expect(ms).toBeLessThan(300);
+      const times: number[] = [];
+      let r: Awaited<ReturnType<typeof search>> = [];
+      for (let i = 0; i < 5; i++) {
+        const t0 = performance.now();
+        r = await search('principal', principal, q);
+        times.push(performance.now() - t0);
+      }
+      // The median, so one slow tick on a shared CI runner does not decide it.
+      expect(times.sort((a, b) => a - b)[2]).toBeLessThan(300);
       if (q === 'S04200') expect(r[0]).toMatchObject({ admissionNo: 'S04200', matchedOn: 'admission_no' });
       if (q === '9000004242') expect(r[0]).toMatchObject({ admissionNo: 'S04242', guardianPhoneLast4: '4242' });
     }
@@ -158,9 +163,14 @@ describe('entitlements', () => {
     // Teachers do not get the Students module itself.
     const mod = await db.tenant(as('teacher', teacher), (q) => checkModuleAccess(q, { schoolId: A, role: 'teacher' }, 'students'));
     expect(mod).toMatchObject({ ok: false, error: 'role_not_allowed' });
+    // Grace ends on its own at graceEndsAt: then read-only.
+    await db.platform((q) => changeSchoolAccess(q, { schoolId: A, accessMode: 'grace', graceEndsAt: new Date(Date.now() - 1000).toISOString(), reason: 'payment failed' }, { userId: founder, role: 'super_admin' }));
+    expect((await db.tenant(as('principal', principal), (q) => loadEntitlements(q, A))).accessMode).toBe('read_only');
+    await db.platform((q) => changeSchoolAccess(q, { schoolId: A, accessMode: 'grace', graceEndsAt: new Date(Date.now() + 86400000).toISOString(), reason: 'payment failed' }, { userId: founder, role: 'super_admin' }));
+    expect((await db.tenant(as('principal', principal), (q) => checkModuleAccess(q, { schoolId: A, role: 'principal' }, 'students', { write: true }))).ok).toBe(true);
     await db.platform((q) => changeSchoolAccess(q, { schoolId: A, accessMode: 'full', reason: 'paid' }, { userId: founder, role: 'super_admin' }));
     const audit = await db.platform((q) => q.query(`select count(*)::int n from audit_log where event_action like 'entitlement.%' and school_id = $1`, [A]));
-    expect(audit.rows[0].n).toBe(4);
+    expect(audit.rows[0].n).toBe(6);
   });
 });
 

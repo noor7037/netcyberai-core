@@ -32,10 +32,13 @@ export async function loadEntitlements(db: Sql, schoolId: string): Promise<Schoo
     };
   }
   const h = head[0];
+  // Grace ends on its own: past graceEndsAt the school is read-only until
+  // the founder changes it (17 §3a: "grace period then read-only").
+  const graceOver = h?.access_mode === 'grace' && h.grace_ends_at && new Date(h.grace_ends_at) <= new Date();
   return {
     schoolId,
     plan: h?.plan ?? 'unassigned',
-    accessMode: h?.access_mode ?? 'full',
+    accessMode: graceOver ? 'read_only' : h?.access_mode ?? 'full',
     ...(h?.grace_ends_at ? { graceEndsAt: new Date(h.grace_ends_at).toISOString() } : {}),
     modules,
   };
