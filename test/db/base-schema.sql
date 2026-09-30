@@ -115,6 +115,7 @@ create table classes (
   grade text,
   section text,
   class_teacher_id uuid,
+  session_id uuid,
   created_at timestamptz not null default now(),
   unique (school_id, class_id)
 );

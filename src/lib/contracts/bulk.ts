@@ -16,7 +16,13 @@ export type BulkActionDefinition = {
   confirmBody: string; // may use {count}
   allowedRoles: readonly SchoolRole[];
   // Parameters the person fills before previewing (for example a target class).
-  params?: readonly { key: string; label: string; type: 'text' | 'number' | 'date' | 'select'; options?: readonly { value: string; label: string }[] }[];
+  params?: readonly {
+    key: string;
+    label: string;
+    type: 'text' | 'number' | 'date' | 'select';
+    options?: readonly { value: string; label: string }[];
+    optionsFrom?: 'classes' | 'sections' | 'sessions' | 'staff' | 'subjects'; // choices loaded from the school's data
+  }[];
   destructive: boolean;
   undoWindowSeconds?: number; // absent: cannot be undone
   syncLimit: number; // at most this many rows run inside the request; more go to a job
@@ -38,7 +44,9 @@ export type BulkPreview = {
   expiresAt: string;
 };
 
-export type BulkRunStatus = 'queued' | 'running' | 'succeeded' | 'partially_failed' | 'failed' | 'undone';
+// previewed: waiting for confirm; expired: not confirmed in time, or the
+// filtered set changed before confirm (C112).
+export type BulkRunStatus = 'previewed' | 'queued' | 'running' | 'succeeded' | 'partially_failed' | 'failed' | 'undone' | 'expired';
 
 export type BulkRun = {
   runId: string;
