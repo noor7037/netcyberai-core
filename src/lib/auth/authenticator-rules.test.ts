@@ -6,6 +6,7 @@ import {
   canManageOwnAuthenticator,
   canRemoveAuthenticatorOf,
   emailProofFromAccessToken,
+  emailAloneMaySetPassword,
   emailProofFromAmr,
   factorIdsToRemoveAfterReplace,
   formatSetupKey,
@@ -47,6 +48,12 @@ describe('authenticatorStepAtSignIn', () => {
     // A mailbox alone (an emailed code or link, a password reset).
     expect(authenticatorStepAtSignIn({ ...admin, passwordProven: false, emailProven: true })).toBe('not_enrolled');
     expect(authenticatorStepAtSignIn(admin)).toBe('not_enrolled');
+  });
+
+  it('never lets email alone set a platform admin password when no authenticator backs it', () => {
+    expect(emailAloneMaySetPassword('super_admin', false)).toBe(false);
+    expect(emailAloneMaySetPassword('super_admin', true)).toBe(true);
+    expect(emailAloneMaySetPassword('principal', false)).toBe(true);
   });
 
   it('gives platform admins the email step even on a remembered device', () => {

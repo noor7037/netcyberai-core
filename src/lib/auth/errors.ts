@@ -17,7 +17,8 @@ export type AuthErrorCode =
   | 'link_invalid'
   | 'setup_required'
   | 'mfa_already_enrolled'
-  | 'mfa_enroll_failed';
+  | 'mfa_enroll_failed'
+  | 'admin_reset_needs_founder';
 
 export class AuthError extends Error {
   code: AuthErrorCode;

@@ -176,6 +176,15 @@ export class FakeSupabase {
           current = s;
           return { data: { session: sessionView(s), user: { id: s.userId } }, error: null };
         },
+        async updateUser({ password }: { password?: string }) {
+          await tick();
+          const s = need();
+          // Supabase needs aal2 to change the password once a factor is confirmed.
+          if (fake.hasVerified(s.userId) && s.aal !== 'aal2') return fail({ user: null }, 'AAL2 session is required', 'insufficient_aal');
+          const u = fake.users.get(s.userId)!;
+          if (password) u.password = password;
+          return { data: { user: { id: u.id } }, error: null };
+        },
         async getSession() {
           await tick();
           return { data: { session: current ? sessionView(current) : null }, error: null };

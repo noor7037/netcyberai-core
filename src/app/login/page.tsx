@@ -57,6 +57,8 @@ const ERROR_TEXT: Record<string, string> = {
     'This account needs an authenticator app. It is set up only after signing in with your password and then the emailed code. Sign in that way to set it up, or contact support.',
   mfa_already_enrolled: 'An authenticator app is already set up for this account. Sign in again and enter its code.',
   mfa_enroll_failed: 'We could not start the authenticator setup. Please try again.',
+  admin_reset_needs_founder:
+    'This platform admin account has no authenticator app, so its password cannot be reset by email. Ask another platform admin to set a temporary password for you.',
 };
 
 // Supabase sends people back with #error_code=... when an emailed link fails.

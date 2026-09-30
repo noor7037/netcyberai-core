@@ -37,7 +37,7 @@ vi.mock('@/lib/auth/db', async (importOriginal) => {
   };
 });
 
-import { completeEmailStep, loginWithEmailCode, passwordLogin } from '@/lib/auth/account';
+import { completeEmailStep, loginWithEmailCode, passwordLogin, resetPasswordWithCode } from '@/lib/auth/account';
 import { signAccessToken, signDeviceToken, signPendingToken } from '@/lib/auth/jwt';
 import { ACCESS_COOKIE, AUTHENTICATOR_COOKIE, PENDING_COOKIE } from '@/lib/auth/cookies';
 import { authenticatorFriendlyName } from '@/lib/auth/authenticator-rules';
@@ -151,6 +151,28 @@ describe('(3) enrolment at sign-in needs the password and the email in the same 
     expect(res.status).toBe(401);
     expect(await res.json()).toEqual({ error: 'pending_token_invalid' });
     expect(fake.factorsOf(admin.id)).toHaveLength(0);
+  });
+});
+
+describe('(3) the mailbox alone cannot stand in for the password (security review)', () => {
+  it('refuses an email-only password reset for a platform admin without an authenticator', async () => {
+    const admin = fake.addUser({ email: 'admin@test.invalid', password: PASSWORD, role: 'super_admin' });
+    fake.emailedCodes.set(admin.email, '515151');
+    await expect(resetPasswordWithCode(admin.email, '515151', 'attacker chosen 1')).rejects.toMatchObject({
+      code: 'admin_reset_needs_founder',
+    });
+    expect(admin.password).toBe(PASSWORD);
+    // So the chosen password cannot open the setup step either.
+    await expect(passwordLogin(admin.email, 'attacker chosen 1')).rejects.toMatchObject({ code: 'invalid_credentials' });
+  });
+
+  it('still lets a platform admin with an authenticator reset by email plus its code', async () => {
+    const admin = fake.addUser({ email: 'admin@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const factor = fake.addVerifiedFactor(admin.id);
+    fake.emailedCodes.set(admin.email, '525252');
+    const out = await resetPasswordWithCode(admin.email, '525252', 'new password 22', fake.codeFor(factor));
+    expect(out.status).toBe('signed_in');
+    expect(admin.password).toBe('new password 22');
   });
 });
 

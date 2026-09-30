@@ -6,7 +6,7 @@ import { signPendingToken, verifyDeviceToken, verifyPendingToken } from './jwt';
 import { EMAIL_STEP_TTL_SECONDS } from './cookies';
 import { AuthError } from './errors';
 import type { LoginOutcome } from './types';
-import { emailProofFromAccessToken, emailProofFromAmr, newestVerifiedTotp, rememberedDeviceSkipsEmailStep } from './authenticator-rules';
+import { emailAloneMaySetPassword, emailProofFromAccessToken, emailProofFromAmr, newestVerifiedTotp, rememberedDeviceSkipsEmailStep } from './authenticator-rules';
 
 // Account recovery and email codes (founder request 2026-09-29, Decision
 // Log C89): sign in with a one-time code sent to the account's email,
@@ -294,6 +294,13 @@ export type ResetOutcome = { status: 'signed_in'; signedIn: SignedIn } | { statu
 // the second factor too: if no authenticator code came with the request,
 // the verified (single-use) recovery step is parked in a short-lived
 // pending token, and continueResetWithMfa finishes it.
+// Before any password is changed by email alone (C95 security review).
+async function refuseEmailOnlyAdminReset(userId: string): Promise<void> {
+  if (!emailAloneMaySetPassword((await fetchLiveUser(userId)).role, false)) {
+    throw new AuthError('admin_reset_needs_founder', 'platform admin without an authenticator: password is not reset by email alone');
+  }
+}
+
 export async function resetPasswordWithCode(email: string, code: string, newPassword: string, mfaCode?: string): Promise<ResetOutcome> {
   const client = newAuthClient();
   const { data, error } = await client.auth.verifyOtp({ email, token: code, type: 'recovery' });
@@ -311,6 +318,8 @@ export async function resetPasswordWithCode(email: string, code: string, newPass
       return { status: 'mfa_required', pendingToken };
     }
     await passTotp(client, mfaCode);
+  } else {
+    await refuseEmailOnlyAdminReset(data.user.id);
   }
   await setPassword(client, newPassword);
   // Proving the email and choosing a new password signs the person in here;
@@ -332,6 +341,8 @@ export async function continueResetWithMfa(pendingToken: string, newPassword: st
   if (await hasVerifiedTotp(client)) {
     if (!mfaCode) throw new AuthError('mfa_required', 'authenticator code required');
     await passTotp(client, mfaCode);
+  } else {
+    await refuseEmailOnlyAdminReset(pending.userId);
   }
   await setPassword(client, newPassword);
   await signOutEverywhere(pending.userId);

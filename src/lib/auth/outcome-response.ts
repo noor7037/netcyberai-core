@@ -73,6 +73,7 @@ const STATUS: Partial<Record<AuthError['code'], number>> = {
   setup_required: 503,
   mfa_already_enrolled: 409,
   mfa_enroll_failed: 502,
+  admin_reset_needs_founder: 403,
 };
 
 export function authErrorResponse(err: AuthError): NextResponse {

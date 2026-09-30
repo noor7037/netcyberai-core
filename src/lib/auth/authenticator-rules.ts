@@ -75,6 +75,15 @@ export function authenticatorStepAtSignIn(input: {
   return input.emailProven && input.passwordProven ? 'setup' : 'not_enrolled';
 }
 
+// A password reset by email alone (recovery code or link, invite). Refused
+// for a platform admin with no authenticator: otherwise the mailbox alone
+// would set the password and then pass "password + email" to enrol an
+// authenticator (C95 security review). Their password is reset by another
+// platform admin (founder tools) instead.
+export function emailAloneMaySetPassword(role: string, hasVerifiedAuthenticator: boolean): boolean {
+  return hasVerifiedAuthenticator || !authenticatorRequired(role);
+}
+
 // Platform admins get the email-code step at every password sign-in; a
 // remembered device skips it only for everyone else (C95, deliberate).
 export function rememberedDeviceSkipsEmailStep(role: string): boolean {
