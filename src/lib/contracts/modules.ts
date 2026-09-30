@@ -151,7 +151,8 @@ const ROWS: readonly Row[] = [
     capabilities: ['Planned vs taught vs assessed', 'Flags untaught or unassessed chapters per class'] },
   { id: 'teacher-copilot', label: 'Teacher Copilot', group: 'ai-intelligence', icon: 'teacher', roles: TEACHING, phase: 'P2', status: 'spec-v0',
     capabilities: ['Drafts lesson plans, worksheets, Pulse messages and remarks', 'Teacher edits and approves', 'Usage metered'] },
-  { id: 'parent-ai', label: 'Parent AI · What to Do?', group: 'ai-intelligence', icon: 'parent', roles: OFFICE, phase: 'P3', status: 'spec-v0',
+  // Teachers review the suggestions for their own classes (C112).
+  { id: 'parent-ai', label: 'Parent AI · What to Do?', group: 'ai-intelligence', icon: 'parent', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P3', status: 'spec-v0',
     capabilities: ['Weekly “what to do at home” per child', 'In the family’s language', 'Teacher-reviewed templates'] },
   { id: 'school-auditor', label: 'School Health Auditor', group: 'ai-intelligence', icon: 'school', roles: OFFICE, phase: 'P4', status: 'spec-v0',
     capabilities: ['Weekly score across attendance, coverage, fees, communication, compliance', 'Explained deductions', 'Fix list'] },

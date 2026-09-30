@@ -91,6 +91,8 @@ numbers: supervisor C100–C109, Claude Code from C110.
 
 ## 6. Change log
 
+- **2026-09-30** — C112/C113 (PR-2a, PR-2b): P1-b frameworks built as APIs;
+  cutover still not executed.
 - **2026-09-30** — C101: Antigravity dropped (founder); Claude Code is the only
   executor. `AGENTS.md` folded into `CLAUDE.md`.
 - **2026-09-30** — C100: P7b Family App added; two-executor lanes (§4a);
