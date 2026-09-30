@@ -203,6 +203,16 @@ describe('teachers see families only through their own classes', () => {
     await expect(asTeacher((q) => q.query(`update families set family_code = 'X'`))).rejects.toThrow(/row-level security/);
   });
 
+  it('a teacher cannot change a student’s family or a guardian’s merge mark, even in their own class', async () => {
+    await expect(asTeacher((q) => q.query(`update students set family_id = null where student_id = $1`, [st.riya]))).rejects.toThrow(/principal or school admin/);
+    await expect(asTeacher((q) => q.query(`update parents set merged_into = $1, merged_at = now() where parent_id = $2`, [par.mother, par.father]))).rejects.toThrow(
+      /principal or school admin|row-level security/
+    );
+    // Other student fields stay writable for the flows that need them (document review).
+    const ok = await asTeacher((q) => q.query(`update students set dob = dob where student_id = $1`, [st.riya]));
+    expect(ok.rowCount).toBe(1);
+  });
+
   it('another school sees none of it', async () => {
     const r = await db.tenant(claims('principal', randomUUID(), B), (q) => q.query(`select (select count(*)::int from families) f, (select count(*)::int from guardian_merges) g`));
     expect(r.rows[0]).toEqual({ f: 0, g: 0 });

@@ -21,6 +21,7 @@ export const B2_MIGRATIONS = [
   '20260930214813_p1b_teacher_guardian_scope.sql',
   '20260930225515_p1b_siblings.sql',
   '20260930225739_fix_student_guardian_policy_recursion.sql',
+  '20260930230548_p1b_family_writes_office_only.sql',
 ].map((f) =>
   readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8')
 );
