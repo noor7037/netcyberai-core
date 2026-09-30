@@ -40,6 +40,7 @@ describe('filter engine', () => {
       { filter: { combinator: 'and', conditions: [{ field: 'dob', op: 'between', value: { from: '2026-02-30', to: '2026-03-01' } }] } },
       { sort: [{ field: 'status', dir: 'asc' }] }, // not sortable
       { sort: [{ field: 'name', dir: 'sideways' }] },
+      { sort: [{ field: 'cf:22222222-2222-2222-2222-222222222222', dir: 'asc' }] }, // custom fields filter, never sort
       { pageSize: 500 },
       { cursor: 'nope' },
       { columns: ['password_hash'] },

@@ -76,6 +76,9 @@ describe('filter engine on the students list', () => {
     expect(red.rows.map((r) => r.id).sort()).toEqual([...ids].sort());
     const empty = await list({ filter: { combinator: 'and', conditions: [{ field: `cf:${f.field.fieldId}`, op: 'is_empty' }] } });
     expect(empty.total).toBe(297);
+    // Filtering on a custom field and paging still counts correctly.
+    const page = await list({ filter: { combinator: 'and', conditions: [{ field: `cf:${f.field.fieldId}`, op: 'is_empty' }] }, pageSize: 10, sort: [{ field: 'roll_no', dir: 'desc' }] });
+    expect(page).toMatchObject({ total: 297, rows: expect.any(Array) });
   });
 });
 

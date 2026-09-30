@@ -262,7 +262,9 @@ export function compileListQuery(
   sort.forEach((s, i) => {
     const r = resolve(s?.field, `sort[${i}].field`);
     if (!r) return;
-    if (!r.field.sortable && !r.field.custom) return void errors.push({ path: `sort[${i}].field`, message: 'cannot be sorted' });
+    // Only a list's own sortable fields: a custom field's expression carries
+    // a bind parameter the count query would not reference.
+    if (!r.field.sortable) return void errors.push({ path: `sort[${i}].field`, message: 'cannot be sorted' });
     if (s.dir !== 'asc' && s.dir !== 'desc') return void errors.push({ path: `sort[${i}].dir`, message: 'must be asc or desc' });
     order.push(`${r.sortExpr} ${s.dir} nulls last`);
   });
