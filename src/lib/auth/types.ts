@@ -40,6 +40,9 @@ export interface MembershipRow {
 export type LoginOutcome =
   | { status: 'email_step'; pendingToken: string; maskedEmail: string }
   | { status: 'mfa_required'; pendingToken: string }
+  // A platform admin without an authenticator, after the email step: enrol
+  // one on this screen before a session is issued (C95).
+  | { status: 'mfa_setup'; pendingToken: string }
   | { status: 'no_memberships' }
   | { status: 'select_school'; pendingToken: string; memberships: MembershipRow[] }
   | { status: 'ok'; accessToken: string; refreshToken: string; claims: SessionClaims };

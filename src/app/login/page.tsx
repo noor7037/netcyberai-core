@@ -20,12 +20,13 @@
 // not a final, designer-reviewed layout. Good enough to stop reading
 // like an error state or a buried dropdown; not a claim that it's done.
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import Link from 'next/link';
 import { Input } from '@/components/ui/Input';
 import { Icon, type IconName } from '@/components/visual/Icons';
+import { AuthenticatorEnrolment, type EnrolmentView } from '@/components/account/AuthenticatorEnrolment';
 
 const NETWORK_ERROR = 'We could not reach the server. Check your connection and try again.';
 
@@ -52,6 +53,12 @@ const ERROR_TEXT: Record<string, string> = {
     'Our email service is busy and could not send another email just now. If an email from us already arrived, use its code or link. Otherwise try again later, or ask your school admin for a sign-in link.',
   link_invalid: 'That link has expired or was already used. Each link works once, for one hour, and only the newest email works. Send a new code below.',
   setup_required: 'This needs a setting that is not switched on yet. Please contact support.',
+  mfa_not_enrolled:
+    'This account needs an authenticator app. It is set up only after signing in with your password and then the emailed code. Sign in that way to set it up, or contact support.',
+  mfa_already_enrolled: 'An authenticator app is already set up for this account. Sign in again and enter its code.',
+  mfa_enroll_failed: 'We could not start the authenticator setup. Please try again.',
+  admin_reset_needs_founder:
+    'This platform admin account has no authenticator app, so its password cannot be reset by email. Ask another platform admin to set a temporary password for you.',
 };
 
 // Supabase sends people back with #error_code=... when an emailed link fails.
@@ -85,6 +92,7 @@ type Step =
   | { kind: 'link_checking' }
   | { kind: 'email_step'; maskedEmail: string }
   | { kind: 'mfa' }
+  | { kind: 'mfa_setup'; enrolment: EnrolmentView | null }
   | { kind: 'select_school'; memberships: Membership[] }
   | { kind: 'done'; role: string; schoolId: string | null };
 
@@ -102,6 +110,10 @@ const HEADINGS: Partial<Record<Step['kind'], { title: string; lead: string }>> =
   link_password: { title: 'Choose your new password', lead: 'Your email is confirmed. Choose a password for your account.' },
   link_checking: { title: 'Signing you in…', lead: 'Checking the link from your email.' },
   mfa: { title: 'Staff sign in', lead: 'Enter the 6-digit code from your authenticator app.' },
+  mfa_setup: {
+    title: 'Set up your authenticator app',
+    lead: 'Platform admin accounts need one. Your email is confirmed; this takes about a minute, on this screen only.',
+  },
 };
 
 function formatRole(role: string): string {
@@ -220,6 +232,9 @@ export default function LoginPage() {
     } else if (data.status === 'mfa_required') {
       setCode('');
       setStep({ kind: 'mfa' });
+    } else if (data.status === 'mfa_setup') {
+      // A platform admin with no authenticator yet enrols one here (C95).
+      setStep({ kind: 'mfa_setup', enrolment: null });
     } else if (data.status === 'select_school') {
       setStep({ kind: 'select_school', memberships: data.memberships as Membership[] });
     } else if (data.status === 'ok') {
@@ -377,6 +392,39 @@ export default function LoginPage() {
       signedIn(data);
     });
   };
+
+  // C95: enrolment starts as soon as the step opens; the QR code and setup
+  // key come back to this screen only.
+  const startSetup = () =>
+    run(async () => {
+      const { ok, data } = await post('/api/auth/mfa/setup/start', {});
+      if (!ok) return setError(humanError(data.error, ERROR_TEXT.mfa_enroll_failed));
+      setStep({
+        kind: 'mfa_setup',
+        enrolment: { factorId: String(data.factorId), qrCode: String(data.qrCode), setupKey: String(data.setupKey), uri: String(data.uri) },
+      });
+    });
+
+  // One enrolment per visit to this step: React runs effects twice in
+  // development, and each start would enrol a new factor (C95).
+  const setupStarted = useRef(false);
+  useEffect(() => {
+    if (step.kind !== 'mfa_setup') {
+      setupStarted.current = false;
+      return;
+    }
+    if (step.enrolment || setupStarted.current) return;
+    setupStarted.current = true;
+    void startSetup();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step.kind]);
+
+  const submitSetup = (factorId: string) => (setupCode: string) =>
+    run(async () => {
+      const { ok, data } = await post('/api/auth/mfa/setup/verify', { factorId, code: setupCode });
+      if (!ok) return setError(humanError(data.error, 'That code did not work. Check the app and try the current code.'));
+      signedIn(data);
+    });
 
   const chooseSchool = (membershipId: string) =>
     run(async () => {
@@ -664,6 +712,27 @@ export default function LoginPage() {
                   </button>
                 </p>
               </form>
+            )}
+
+            {step.kind === 'mfa_setup' && (
+              <div className="mt-6">
+                {step.enrolment ? (
+                  <AuthenticatorEnrolment
+                    enrolment={step.enrolment}
+                    submitting={submitting}
+                    submitLabel="Turn on and sign in"
+                    onSubmit={submitSetup(step.enrolment.factorId)}
+                  />
+                ) : error ? (
+                  <Button type="button" variant="outline" disabled={submitting} className="w-full" onClick={startSetup}>
+                    Try again
+                  </Button>
+                ) : (
+                  <p role="status" className="text-sm text-slate/80">
+                    Preparing your QR code…
+                  </p>
+                )}
+              </div>
             )}
 
             {step.kind === 'mfa' && (

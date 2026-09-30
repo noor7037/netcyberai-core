@@ -1,11 +1,12 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { newAuthClient } from './supabase';
 import { bumpTokenVersion, emailForPhone, withBackendConnection, withSelfContext } from './db';
-import { fetchLiveUser, resolveAfterCredentials } from './resolve';
+import { fetchLiveUser, resolveAfterCredentials, type AuthenticatorContext } from './resolve';
 import { signPendingToken, verifyDeviceToken, verifyPendingToken } from './jwt';
 import { EMAIL_STEP_TTL_SECONDS } from './cookies';
 import { AuthError } from './errors';
 import type { LoginOutcome } from './types';
+import { emailAloneMaySetPassword, emailProofFromAccessToken, emailProofFromAmr, newestVerifiedTotp, rememberedDeviceSkipsEmailStep } from './authenticator-rules';
 
 // Account recovery and email codes (founder request 2026-09-29, Decision
 // Log C89): sign in with a one-time code sent to the account's email,
@@ -107,9 +108,9 @@ function needsSecondFactor(err: SupabaseAuthError): boolean {
   return !!err && (err.code === 'insufficient_aal' || /aal2|assurance level/i.test(err.message ?? ''));
 }
 
-async function passTotp(client: SupabaseClient, code: string): Promise<void> {
+export async function passTotp(client: SupabaseClient, code: string): Promise<void> {
   const { data: factors } = await client.auth.mfa.listFactors();
-  const totp = factors?.totp?.find((f) => f.status === 'verified');
+  const totp = newestVerifiedTotp(factors?.totp ?? []);
   if (!totp) throw new AuthError('mfa_not_enrolled', 'no verified TOTP factor');
   const { data: challenge, error: challengeError } = await client.auth.mfa.challenge({ factorId: totp.id });
   if (challengeError || !challenge) throw new AuthError('mfa_invalid_code', challengeError?.message ?? 'challenge failed');
@@ -167,13 +168,43 @@ export async function requestEmailCode(email: string, purpose: CodePurpose, redi
 
 export type SignedIn = { outcome: LoginOutcome; userId: string };
 
-async function signInFromClient(client: SupabaseClient, userId: string, session: { access_token: string; refresh_token: string }): Promise<SignedIn> {
+// C95: whether the account has a confirmed authenticator, and whether this
+// session came from an emailed code or link. nextLevel (from the session
+// Supabase just issued) is aal2 exactly when an authenticator exists; "none"
+// is confirmed with Supabase before it is believed, because it can send a
+// platform admin into enrolment. Unknown (undefined) keeps the pre-C95
+// behaviour.
+async function authenticatorContext(
+  client: SupabaseClient,
+  aalData: { nextLevel: string | null; currentAuthenticationMethods: unknown } | null,
+  passwordProven: boolean
+): Promise<AuthenticatorContext | undefined> {
+  if (!aalData) return undefined;
+  const emailProven = !!emailProofFromAmr(aalData.currentAuthenticationMethods);
+  if (aalData.nextLevel === 'aal2') return { hasVerified: true, emailProven, passwordProven };
+  const { data, error } = await client.auth.mfa.listFactors();
+  if (error || !data) return undefined;
+  return { hasVerified: data.totp.length > 0, emailProven, passwordProven };
+}
+
+// `passwordProven`: the account's password was checked earlier in this same
+// sign-in (passwordLogin, then completeEmailStep). A platform admin may enrol
+// an authenticator only when that and the email are both proven (C95).
+async function signInFromClient(
+  client: SupabaseClient,
+  userId: string,
+  session: { access_token: string; refresh_token: string },
+  passwordProven = false
+): Promise<SignedIn> {
   const { data: aalData } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
   const aal = (aalData?.currentLevel ?? 'aal1') as 'aal1' | 'aal2';
-  const outcome = await resolveAfterCredentials(userId, aal, {
-    sbAccessToken: session.access_token,
-    sbRefreshToken: session.refresh_token,
-  });
+  const authenticator = aal === 'aal2' ? undefined : await authenticatorContext(client, aalData, passwordProven);
+  const outcome = await resolveAfterCredentials(
+    userId,
+    aal,
+    { sbAccessToken: session.access_token, sbRefreshToken: session.refresh_token },
+    authenticator
+  );
   return { outcome, userId };
 }
 
@@ -202,6 +233,14 @@ async function deviceTrusted(deviceToken: string | undefined, userId: string): P
   return Number(live.token_version) === device.tokenVersion;
 }
 
+// A remembered device skips the email step, except for platform admins, who
+// get it at every password sign-in (C95, deliberate): their accounts reach
+// every school, and enrolling an authenticator needs that email proof.
+async function deviceSkipsEmailStep(deviceToken: string | undefined, userId: string): Promise<boolean> {
+  if (!(await deviceTrusted(deviceToken, userId))) return false;
+  return rememberedDeviceSkipsEmailStep((await fetchLiveUser(userId)).role);
+}
+
 export async function passwordLogin(identifier: string, password: string, deviceToken?: string, redirectTo?: string): Promise<LoginOutcome> {
   const email = await resolveIdentifier(identifier);
   if (!email) throw new AuthError('invalid_credentials', 'no account for that email or mobile number');
@@ -209,12 +248,12 @@ export async function passwordLogin(identifier: string, password: string, device
   const { data, error } = await client.auth.signInWithPassword({ email, password });
   if (error || !data.session || !data.user) throw new AuthError('invalid_credentials', error?.message ?? 'sign-in failed');
 
-  if (emailStepEnabled() && !(await deviceTrusted(deviceToken, data.user.id))) {
+  if (emailStepEnabled() && !(await deviceSkipsEmailStep(deviceToken, data.user.id))) {
     await sendSignInCode(email, redirectTo);
     const pendingToken = await signPendingToken({ userId: data.user.id, purpose: 'email_step', aal: 'aal1' }, EMAIL_STEP_TTL_SECONDS);
     return { status: 'email_step', pendingToken, maskedEmail: maskEmail(email) };
   }
-  return (await signInFromClient(client, data.user.id, data.session)).outcome;
+  return (await signInFromClient(client, data.user.id, data.session, true)).outcome;
 }
 
 async function pendingEmailStep(pendingToken: string | undefined): Promise<{ userId: string; email: string }> {
@@ -237,7 +276,8 @@ export async function completeEmailStep(pendingToken: string | undefined, code: 
   if (error || !data.session || !data.user) throw new AuthError('code_invalid', error?.message ?? 'code rejected');
   // The code must belong to the account whose password was just checked.
   if (data.user.id !== userId) throw new AuthError('code_invalid', 'code belongs to another account');
-  return signInFromClient(client, userId, data.session);
+  // The pending token proves passwordLogin checked the password first.
+  return signInFromClient(client, userId, data.session, true);
 }
 
 // Signs the user out everywhere: every session, every access token on its
@@ -254,6 +294,13 @@ export type ResetOutcome = { status: 'signed_in'; signedIn: SignedIn } | { statu
 // the second factor too: if no authenticator code came with the request,
 // the verified (single-use) recovery step is parked in a short-lived
 // pending token, and continueResetWithMfa finishes it.
+// Before any password is changed by email alone (C95 security review).
+async function refuseEmailOnlyAdminReset(userId: string): Promise<void> {
+  if (!emailAloneMaySetPassword((await fetchLiveUser(userId)).role, false)) {
+    throw new AuthError('admin_reset_needs_founder', 'platform admin without an authenticator: password is not reset by email alone');
+  }
+}
+
 export async function resetPasswordWithCode(email: string, code: string, newPassword: string, mfaCode?: string): Promise<ResetOutcome> {
   const client = newAuthClient();
   const { data, error } = await client.auth.verifyOtp({ email, token: code, type: 'recovery' });
@@ -271,6 +318,8 @@ export async function resetPasswordWithCode(email: string, code: string, newPass
       return { status: 'mfa_required', pendingToken };
     }
     await passTotp(client, mfaCode);
+  } else {
+    await refuseEmailOnlyAdminReset(data.user.id);
   }
   await setPassword(client, newPassword);
   // Proving the email and choosing a new password signs the person in here;
@@ -292,6 +341,8 @@ export async function continueResetWithMfa(pendingToken: string, newPassword: st
   if (await hasVerifiedTotp(client)) {
     if (!mfaCode) throw new AuthError('mfa_required', 'authenticator code required');
     await passTotp(client, mfaCode);
+  } else {
+    await refuseEmailOnlyAdminReset(pending.userId);
   }
   await setPassword(client, newPassword);
   await signOutEverywhere(pending.userId);
@@ -336,19 +387,8 @@ export async function changePassword(
 // Methods Supabase records for a session created by an emailed code or link.
 // A password session is refused here: it must go through passwordLogin, so
 // the email-code step cannot be skipped by calling Supabase directly.
-const EMAIL_PROOF_METHODS = new Set(['otp', 'magiclink', 'recovery', 'invite', 'email/signup']);
+// The list of such methods lives in authenticator-rules.ts (EMAIL_PROOF_METHODS).
 const LINK_MAX_AGE_SECONDS = 15 * 60;
-
-function emailProof(accessToken: string): { method: string; at: number } | null {
-  try {
-    const payload = JSON.parse(Buffer.from(accessToken.split('.')[1], 'base64url').toString('utf8'));
-    const amr: { method?: string; timestamp?: number }[] = Array.isArray(payload.amr) ? payload.amr : [];
-    const hit = amr.find((a) => a.method && EMAIL_PROOF_METHODS.has(a.method));
-    return hit?.method && hit.timestamp ? { method: hit.method, at: hit.timestamp } : null;
-  } catch {
-    return null;
-  }
-}
 
 export type LinkResult = { status: 'signed_in'; signedIn: SignedIn } | { status: 'set_password'; pendingToken: string };
 
@@ -387,7 +427,7 @@ async function finishLinkSession(
   session: { access_token: string; refresh_token: string },
   kind?: string
 ): Promise<LinkResult> {
-  const proof = emailProof(session.access_token);
+  const proof = emailProofFromAccessToken(session.access_token);
   if (!proof || Date.now() / 1000 - proof.at > LINK_MAX_AGE_SECONDS) throw new AuthError('link_invalid', 'not an email link session');
   const data = { user: { id: userId }, session };
 

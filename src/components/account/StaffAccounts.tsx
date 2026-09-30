@@ -40,10 +40,13 @@ export function StaffAccounts({
   endpoint,
   showSchools = false,
   founderTools = false,
+  currentUserId,
 }: {
   endpoint: string;
   showSchools?: boolean;
   founderTools?: boolean;
+  // The signed-in founder: their own row hides "Remove authenticator" (C95).
+  currentUserId?: string;
 }) {
   const [accounts, setAccounts] = useState<Account[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -163,7 +166,7 @@ export function StaffAccounts({
               </div>
               {founderTools && (
                 <div className="w-full sm:basis-full">
-                  <FounderAccountTools userId={a.userId} name={a.displayName} />
+                  <FounderAccountTools userId={a.userId} name={a.displayName} isSelf={a.userId === currentUserId} />
                 </div>
               )}
             </Card>

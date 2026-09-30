@@ -39,8 +39,8 @@ export async function setTemporaryPassword(userId: string, password: string): Pr
 }
 
 // For someone who lost the phone with their authenticator app. They sign in
-// with password and email code afterwards; super_admin accounts are asked to
-// enrol a new authenticator.
+// with password and email code afterwards; a platform admin then enrols a new
+// authenticator on the sign-in screen (C95). The route refuses the caller's own.
 export async function removeAuthenticators(userId: string): Promise<number> {
   const client = admin();
   const { data, error } = await client.auth.admin.mfa.listFactors({ userId });
@@ -52,4 +52,15 @@ export async function removeAuthenticators(userId: string): Promise<number> {
   }
   await signOutEverywhere(userId);
   return removed;
+}
+
+// Whether the account has a confirmed authenticator, for its own account
+// page (C95). null when it cannot be known (service role key not set, or
+// Supabase did not answer); the page then still offers set-up/replace, and
+// the password step finds out.
+export async function hasConfirmedAuthenticator(userId: string): Promise<boolean | null> {
+  if (!hasServiceRoleKey()) return null;
+  const { data, error } = await newAuthAdminClient().auth.admin.mfa.listFactors({ userId });
+  if (error) return null;
+  return (data?.factors ?? []).some((f) => f.factor_type === 'totp' && f.status === 'verified');
 }

@@ -9,6 +9,7 @@ import {
   PENDING_TTL_SECONDS,
   EMAIL_STEP_TTL_SECONDS,
   DEVICE_TTL_SECONDS,
+  AUTHENTICATOR_SETUP_TTL_SECONDS,
   cookieOptions,
 } from './cookies';
 import { AuthError } from './errors';
@@ -28,6 +29,12 @@ export function outcomeResponse(outcome: LoginOutcome): NextResponse {
   if (outcome.status === 'mfa_required') {
     const res = NextResponse.json({ status: 'mfa_required' });
     res.cookies.set(PENDING_COOKIE, outcome.pendingToken, cookieOptions(PENDING_TTL_SECONDS));
+    return res;
+  }
+  if (outcome.status === 'mfa_setup') {
+    // A platform admin enrols an authenticator on this screen (C95).
+    const res = NextResponse.json({ status: 'mfa_setup' });
+    res.cookies.set(PENDING_COOKIE, outcome.pendingToken, cookieOptions(AUTHENTICATOR_SETUP_TTL_SECONDS));
     return res;
   }
   if (outcome.status === 'no_memberships') {
@@ -64,10 +71,21 @@ const STATUS: Partial<Record<AuthError['code'], number>> = {
   email_send_failed: 502,
   email_limit: 429,
   setup_required: 503,
+  mfa_already_enrolled: 409,
+  mfa_enroll_failed: 502,
+  admin_reset_needs_founder: 403,
 };
 
 export function authErrorResponse(err: AuthError): NextResponse {
   const body: { error: string; retryAfter?: number } = { error: err.code };
   if (err.retryAfter) body.retryAfter = err.retryAfter;
   return NextResponse.json(body, { status: STATUS[err.code] ?? 401 });
+}
+
+// Authenticator setup responses (C95) carry, or sit next to ones that carry,
+// a QR code and setup key: nothing on those routes may be cached, errors
+// included.
+export function noStore(res: NextResponse): NextResponse {
+  res.headers.set('Cache-Control', 'no-store');
+  return res;
 }
