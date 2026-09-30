@@ -279,6 +279,16 @@ export async function withSelfContext<T>(userId: string, fn: (client: PoolClient
 // by mobile number) or on the signed-in user's own row.
 
 async function asAccountService<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  return withPlatformService(fn);
+}
+
+// Platform work that belongs to no school session (C97): the job runner,
+// public school applications before any tenant exists, and the founder's
+// approvals. Runs as nca_super (BYPASSRLS) in one transaction with SET
+// LOCAL ROLE, like asAccountService above. Callers pass fixed, parameterized
+// statements only; request input is validated before it reaches them and is
+// never used to choose a role, a table or a school context.
+export async function withPlatformService<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
   const client = await getPool().connect();
   try {
     await client.query('begin');
