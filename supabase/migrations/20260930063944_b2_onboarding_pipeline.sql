@@ -139,7 +139,8 @@ grant select, insert, update on jobs, school_applications to nca_super;
 grant select, insert, delete on intake_rate_events to nca_super;
 grant select, update on platform_settings to nca_super;
 grant select, insert, update on staff_invitations to nca_super, app_user;
--- Enqueue only: no SELECT, so the insert never uses RETURNING.
+-- Enqueue only: no SELECT, so the insert uses neither RETURNING nor a
+-- conflict target (both need SELECT); see src/lib/jobs/pg-queue.ts.
 grant insert on jobs to app_user;
 
 -- ---- row level security --------------------------------------------------------

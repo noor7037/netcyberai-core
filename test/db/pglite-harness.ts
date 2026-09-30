@@ -12,7 +12,7 @@ import type { Sql } from '@/lib/jobs/types';
 // exercised as in production. One connection: calls are serialized.
 
 const ROOT = path.resolve(__dirname, '../..');
-export const B2_MIGRATION = readFileSync(path.join(ROOT, 'supabase/migrations/20260930120000_b2_onboarding_pipeline.sql'), 'utf8');
+export const B2_MIGRATION = readFileSync(path.join(ROOT, 'supabase/migrations/20260930063944_b2_onboarding_pipeline.sql'), 'utf8');
 const NIL_UUID = '00000000-0000-0000-0000-000000000000';
 
 type QueryResult = { rows: any[]; rowCount: number };
