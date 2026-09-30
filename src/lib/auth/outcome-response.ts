@@ -22,7 +22,7 @@ import type { LoginOutcome } from './types';
 // the paths cannot drift apart.
 export function outcomeResponse(outcome: LoginOutcome): NextResponse {
   if (outcome.status === 'email_step') {
-    const res = NextResponse.json({ status: 'email_step', maskedEmail: outcome.maskedEmail });
+    const res = NextResponse.json({ status: 'email_step', maskedEmail: outcome.maskedEmail, setupNext: outcome.setupNext });
     res.cookies.set(PENDING_COOKIE, outcome.pendingToken, cookieOptions(EMAIL_STEP_TTL_SECONDS));
     return res;
   }

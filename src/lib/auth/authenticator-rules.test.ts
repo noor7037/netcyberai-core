@@ -14,7 +14,7 @@ import {
   newestVerifiedTotp,
   normalizeTotpCode,
   svgDataUrl,
-  rememberedDeviceSkipsEmailStep,
+  stepAfterPassword,
   staleUnverifiedTotpIds,
   unverifiedTotpIds,
   type FactorSummary,
@@ -56,11 +56,18 @@ describe('authenticatorStepAtSignIn', () => {
     expect(emailAloneMaySetPassword('principal', false)).toBe(true);
   });
 
-  it('gives platform admins the email step even on a remembered device', () => {
-    expect(rememberedDeviceSkipsEmailStep('super_admin')).toBe(false);
-    for (const role of ['principal', 'school_admin', 'teacher', 'accountant']) {
-      expect(rememberedDeviceSkipsEmailStep(role)).toBe(true);
+  it('after the password: authenticator accounts go straight to its code, never an emailed code (C96)', () => {
+    const base = { deviceTrusted: false, emailStepEnabled: true };
+    for (const role of ['super_admin', 'principal', 'school_admin']) {
+      for (const deviceTrusted of [false, true]) {
+        expect(stepAfterPassword({ ...base, role, deviceTrusted, hasVerifiedAuthenticator: true })).toBe('authenticator');
+      }
     }
+    // Without one: the emailed code; a remembered device skips it, except for a platform admin.
+    expect(stepAfterPassword({ ...base, role: 'teacher', hasVerifiedAuthenticator: false })).toBe('email_code');
+    expect(stepAfterPassword({ ...base, role: 'teacher', hasVerifiedAuthenticator: false, deviceTrusted: true })).toBe('none');
+    expect(stepAfterPassword({ ...base, role: 'super_admin', hasVerifiedAuthenticator: false, deviceTrusted: true })).toBe('email_code');
+    expect(stepAfterPassword({ ...base, role: 'teacher', hasVerifiedAuthenticator: false, emailStepEnabled: false })).toBe('none');
   });
 
   it('does not require one of anyone else', () => {

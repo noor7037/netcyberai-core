@@ -84,10 +84,24 @@ export function emailAloneMaySetPassword(role: string, hasVerifiedAuthenticator:
   return hasVerifiedAuthenticator || !authenticatorRequired(role);
 }
 
-// Platform admins get the email-code step at every password sign-in; a
-// remembered device skips it only for everyone else (C95, deliberate).
-export function rememberedDeviceSkipsEmailStep(role: string): boolean {
-  return !authenticatorRequired(role);
+// What follows a correct password (C96, reversing C90/C95 where they
+// conflict). An account with a confirmed authenticator goes straight to its
+// code, never to an emailed code: two different 6-digit codes one screen
+// apart got typed into the wrong box in production. Without an
+// authenticator the emailed code is the second step; a remembered device
+// skips it for 30 days, except for a platform admin, who needs that email
+// proof to enrol an authenticator (C95).
+export type AfterPassword = 'authenticator' | 'email_code' | 'none';
+export function stepAfterPassword(input: {
+  role: string;
+  hasVerifiedAuthenticator: boolean;
+  deviceTrusted: boolean;
+  emailStepEnabled: boolean;
+}): AfterPassword {
+  if (input.hasVerifiedAuthenticator) return 'authenticator';
+  if (!input.emailStepEnabled) return 'none';
+  if (authenticatorRequired(input.role)) return 'email_code';
+  return input.deviceTrusted ? 'none' : 'email_code';
 }
 
 export type FactorSummary = { id: string; factor_type: string; status: string; created_at?: string };

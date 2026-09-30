@@ -1,83 +1,39 @@
 'use client';
 
-// Task 3 (post-B2): brought up to "uses the existing design system,"
-// per docs/07_DESIGN_SYSTEM.md tokens and the Floor Device Standard --
-// Button/Card/Container (shipped) plus a minimal Input (see
-// src/components/ui/Input.tsx's own [GAP] note: Phase 1's fuller Input
-// with inline validation is still Prompt C's job). No illustration, no
-// marketing copy, no animation -- "presentable and on-brand," not a
-// launch-polish pass.
-//
-// C89 (founder, 2026-09-29): three ways in, all ending in the same
-// authenticator and school-choice steps -- password, a one-time code sent
-// to the account's email, and "set or reset your password" with an
-// emailed code (forgotten passwords and first-time staff alike).
-// C90: sign in with an email or mobile number; a password sign-in is
-// always followed by a code emailed to the account unless this browser is
-// a remembered device.
-//
-// [GAP] still open: this is the generic shape for the selection step,
-// not a final, designer-reviewed layout. Good enough to stop reading
-// like an error state or a buried dropdown; not a claim that it's done.
+// Staff sign-in. C89: password, a one-time code sent to the account's
+// email, or "set or reset your password" with an emailed code, all ending in
+// the same authenticator and school-choice steps. C90: email or mobile number.
+// C96 (founder, 2026-09-30, reverses C90/C95 where they conflict): an
+// account with an authenticator app signs in with password, then that app's
+// code, and gets no email code; everyone else gets the email code. Every
+// code is named by where it comes from, and a guide beside the form (or
+// folded under it on phones) follows the current step: src/app/login/guidance.ts.
 
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import Link from 'next/link';
 import { Input } from '@/components/ui/Input';
-import { Icon, type IconName } from '@/components/visual/Icons';
 import { AuthenticatorEnrolment, type EnrolmentView } from '@/components/account/AuthenticatorEnrolment';
+import {
+  AUTHENTICATOR_NOT_EMAIL,
+  EMAIL_CODE_NOT_AUTHENTICATOR,
+  ERROR_TEXT,
+  authenticatorCodeLabel,
+  emailCodeLabel,
+  guidanceFor,
+  humanError,
+  newestCodeLine,
+  type Guidance,
+} from './guidance';
 
 const NETWORK_ERROR = 'We could not reach the server. Check your connection and try again.';
-
-// The auth API returns machine codes (src/lib/auth/*); staff see a
-// sentence, never the raw code. Unknown codes fall back to the caller's
-// generic message rather than showing the code itself.
-const ERROR_TEXT: Record<string, string> = {
-  invalid_credentials: 'That email and password do not match. Check both and try again.',
-  no_memberships: 'This account is not linked to any school yet. Ask your school admin to add you.',
-  pending_token_invalid: 'Your sign-in step expired. Please start again.',
-  session_expired: 'Your session expired. Please sign in again.',
-  session_revoked: 'This session was signed out. Please sign in again.',
-  membership_invalid: 'You no longer have access to that school. Choose another, or ask your school admin.',
-  forbidden: 'This account cannot do that. Ask your school admin if you think it should.',
-  account_disabled: 'This account is switched off. Ask your school admin.',
-  code_invalid: 'That code did not work or has expired. Check the latest email, or send a new code.',
-  rate_limited: 'Too many codes were asked for. Wait a minute, then try again.',
-  password_invalid: 'Use 8 to 72 characters, with no space at the start or end.',
-  password_rejected: 'That password was not accepted. Choose a longer one you have not used elsewhere.',
-  mfa_invalid_code: 'That authenticator code did not work. Check your authenticator app and try again.',
-  mfa_required: 'This account also needs the code from your authenticator app.',
-  email_send_failed: 'Our email service could not send the email just now. Please try again in a few minutes, or contact support.',
-  email_limit:
-    'Our email service is busy and could not send another email just now. If an email from us already arrived, use its code or link. Otherwise try again later, or ask your school admin for a sign-in link.',
-  link_invalid: 'That link has expired or was already used. Each link works once, for one hour, and only the newest email works. Send a new code below.',
-  setup_required: 'This needs a setting that is not switched on yet. Please contact support.',
-  mfa_not_enrolled:
-    'This account needs an authenticator app. It is set up only after signing in with your password and then the emailed code. Sign in that way to set it up, or contact support.',
-  mfa_already_enrolled: 'An authenticator app is already set up for this account. Sign in again and enter its code.',
-  mfa_enroll_failed: 'We could not start the authenticator setup. Please try again.',
-  admin_reset_needs_founder:
-    'This platform admin account has no authenticator app, so its password cannot be reset by email. Ask another platform admin to set a temporary password for you.',
-};
 
 // Supabase sends people back with #error_code=... when an emailed link fails.
 const LINK_ERROR_TEXT: Record<string, string> = {
   otp_expired: ERROR_TEXT.link_invalid,
   access_denied: ERROR_TEXT.link_invalid,
 };
-
-function humanError(code: unknown, fallback: string): string {
-  return (typeof code === 'string' && ERROR_TEXT[code]) || fallback;
-}
-
-// Only features the sign-in flow actually has (src/app/api/auth/*).
-const FACTS: { icon: IconName; title: string; body: string }[] = [
-  { icon: 'mail', title: 'An email check on every new device', body: 'After your password we email you a one-time link. Tick “remember this device” to skip it here for 30 days.' },
-  { icon: 'lock', title: 'Stay signed in', body: 'You stay signed in on your device until you log out, as long as you use it at least once a month.' },
-  { icon: 'school', title: 'Several schools, one login', body: 'If you work in more than one school, you choose which one to open.' },
-  { icon: 'shield', title: 'Your school only', body: 'You only ever see records of the school you signed in to.' },
-];
 
 type Membership = { membershipId: string; schoolId: string; schoolName: string; role: string };
 
@@ -90,31 +46,11 @@ type Step =
   | { kind: 'reset_mfa' }
   | { kind: 'link_password' }
   | { kind: 'link_checking' }
-  | { kind: 'email_step'; maskedEmail: string }
+  | { kind: 'email_step'; maskedEmail: string; setupNext: boolean }
   | { kind: 'mfa' }
   | { kind: 'mfa_setup'; enrolment: EnrolmentView | null }
   | { kind: 'select_school'; memberships: Membership[] }
   | { kind: 'done'; role: string; schoolId: string | null };
-
-const HEADINGS: Partial<Record<Step['kind'], { title: string; lead: string }>> = {
-  credentials: { title: 'Staff sign in', lead: 'For school staff using NetCyberAI. Parents do not need to sign in.' },
-  code_request: { title: 'Sign in with an email link', lead: 'We email you a one-time sign-in link. No password needed.' },
-  code_verify: { title: 'Check your email', lead: 'Your sign-in email is on its way.' },
-  reset_request: {
-    title: 'Set or reset your password',
-    lead: 'First time here, or forgot your password? We email you a one-time link to choose a new password.',
-  },
-  reset_verify: { title: 'Check your email', lead: 'Your password email is on its way.' },
-  reset_mfa: { title: 'One more step', lead: 'Your account uses an authenticator app. Enter its 6-digit code to save the new password.' },
-  email_step: { title: 'Check your email', lead: 'One more step to confirm it is you.' },
-  link_password: { title: 'Choose your new password', lead: 'Your email is confirmed. Choose a password for your account.' },
-  link_checking: { title: 'Signing you in…', lead: 'Checking the link from your email.' },
-  mfa: { title: 'Staff sign in', lead: 'Enter the 6-digit code from your authenticator app.' },
-  mfa_setup: {
-    title: 'Set up your authenticator app',
-    lead: 'Platform admin accounts need one. Your email is confirmed; this takes about a minute, on this screen only.',
-  },
-};
 
 function formatRole(role: string): string {
   return role
@@ -144,6 +80,8 @@ export default function LoginPage() {
   const [notice, setNotice] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [remember, setRemember] = useState(false);
+  // When the newest emailed code was sent (C96): shown in the guide.
+  const [codeSentAt, setCodeSentAt] = useState<Date | null>(null);
   // Resend is paused while the email service would refuse it anyway (C91),
   // with the seconds shown, instead of an error after every tap.
   const [cooldownUntil, setCooldownUntil] = useState(0);
@@ -228,7 +166,8 @@ export default function LoginPage() {
   function signedIn(data: Record<string, unknown>) {
     if (data.status === 'email_step') {
       setEmailCode('');
-      setStep({ kind: 'email_step', maskedEmail: String(data.maskedEmail ?? 'your email') });
+      setCodeSentAt(new Date());
+      setStep({ kind: 'email_step', maskedEmail: String(data.maskedEmail ?? 'your email'), setupNext: data.setupNext === true });
     } else if (data.status === 'mfa_required') {
       setCode('');
       setStep({ kind: 'mfa' });
@@ -269,7 +208,7 @@ export default function LoginPage() {
       const wait = Number(data.retryAfter) || 60;
       startCooldown(wait);
       setNotice(
-        `We already sent an email a moment ago. Use the code or link in the newest one. You can ask for another in ${wait} seconds.`
+        `We already sent an email a moment ago. Type the code from the newest one. You can ask for another in ${wait} seconds.`
       );
       return true;
     }
@@ -289,7 +228,9 @@ export default function LoginPage() {
         return setError(humanError(data.error, 'We could not send a new code. Please try again.'));
       }
       startCooldown(60);
-      setNotice('A new code is on its way. Use the newest email: older codes stop working.');
+      const at = new Date();
+      setCodeSentAt(at);
+      setNotice(newestCodeLine(at));
     });
 
   const sendCode = (purpose: 'login' | 'reset') => (e?: React.FormEvent) => {
@@ -304,7 +245,9 @@ export default function LoginPage() {
       setEmailCode('');
       setStep(next);
       startCooldown(60);
-      setNotice('It can take a minute. Check your spam folder too. Only the newest email works.');
+      const at = new Date();
+      setCodeSentAt(at);
+      setNotice(`${newestCodeLine(at)} It can take a minute; check spam too.`);
     });
   };
 
@@ -434,7 +377,15 @@ export default function LoginPage() {
       window.location.href = '/app';
     });
 
-  const heading = HEADINGS[step.kind] ?? HEADINGS.credentials!;
+  // Where the emailed code went: the masked address from the server, or
+  // what the person typed on this screen.
+  const typedTarget = email.trim() || 'your email';
+  const guide = guidanceFor(step.kind, {
+    emailTarget: step.kind === 'email_step' ? step.maskedEmail : typedTarget,
+    setupNext: step.kind === 'email_step' && step.setupNext,
+    codeSentAt,
+  });
+
   const emailInput = (
     <Input
       id="email"
@@ -448,10 +399,11 @@ export default function LoginPage() {
       required
     />
   );
-  const emailCodeInput = (
+  const emailCodeInput = (target: string) => (
     <Input
       id="email-code"
-      label="Or type the 6-digit code, if your email shows one"
+      label={emailCodeLabel(target)}
+      helperText={EMAIL_CODE_NOT_AUTHENTICATOR}
       inputMode="numeric"
       autoComplete="one-time-code"
       value={emailCode}
@@ -462,23 +414,14 @@ export default function LoginPage() {
   const authenticatorInput = (
     <Input
       id="mfa-code"
-      label="Authenticator code"
+      label={authenticatorCodeLabel()}
+      helperText={AUTHENTICATOR_NOT_EMAIL}
       inputMode="numeric"
       autoComplete="one-time-code"
       value={code}
       onChange={(e) => setCode(e.target.value)}
       required
     />
-  );
-  // What to do next after an email is sent (C93): the email's link is the
-  // main path; a code is typed only if the email shows one.
-  const inboxHint = (lines: { to: string; action: string }) => (
-    <div className="mt-6 flex gap-3 rounded-md border-2 border-sapphire/20 bg-sapphire/5 p-4 text-sm text-slate">
-      <Icon name="mail" className="mt-0.5 h-5 w-5 shrink-0 text-sapphire" />
-      <p>
-        We emailed <span className="font-semibold">{lines.to}</span>. {lines.action}
-      </p>
-    </div>
   );
   const rememberBox = (
     <label className="flex min-h-[44px] items-center gap-3 text-sm text-slate">
@@ -488,42 +431,39 @@ export default function LoginPage() {
   );
   const linkButton =
     'font-semibold text-royal underline disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire';
+  const resendLine = (onClick: () => void) => (
+    <p className="text-sm text-slate/70">
+      No email?{' '}
+      <button type="button" className={linkButton} disabled={submitting || cooldown > 0} onClick={onClick}>
+        {cooldown > 0 ? `Send a new code in ${cooldown}s` : 'Send a new code'}
+      </button>
+    </p>
+  );
 
   return (
-    <div className="grid min-h-[80vh] grid-cols-1 lg:grid-cols-2">
-      <section aria-label="About staff sign-in" className="relative hidden overflow-hidden bg-midnight text-white lg:block">
+    <div className="grid grid-cols-1 lg:min-h-[80vh] lg:grid-cols-2">
+      <section aria-label="Sign-in guide" className="relative hidden overflow-hidden bg-midnight text-white lg:block">
         <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
         <div aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1" />
-        <div className="relative flex h-full flex-col justify-center gap-8 p-12">
-          <div className="flex flex-col gap-3">
-            <p className="text-sm font-bold uppercase tracking-wide opacity-80">NetCyberAI for school staff</p>
-            <p className="max-w-md text-3xl font-extrabold tracking-tight">Principals, admins, teachers and finance, on one school record.</p>
+        <div className="relative flex h-full flex-col justify-center gap-6 p-12">
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-bold uppercase tracking-wide opacity-80">{guide.position}</p>
+            <p className="max-w-md text-3xl font-extrabold tracking-tight">{guide.title}</p>
           </div>
-          <ul className="flex max-w-md flex-col gap-4">
-            {FACTS.map((f) => (
-              <li key={f.title} className="nca-glass flex gap-4 rounded-2xl p-4">
-                <Icon name={f.icon} className="mt-0.5 h-5 w-5 shrink-0" />
-                <span className="flex flex-col gap-0.5">
-                  <span className="font-bold">{f.title}</span>
-                  <span className="text-sm opacity-80">{f.body}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-          <p className="max-w-md text-sm opacity-80">
-            Parents do not need an account. They receive updates on WhatsApp.
-          </p>
+          <div className="nca-glass flex max-w-md flex-col gap-4 rounded-2xl p-5" aria-live="polite">
+            <GuideBody guide={guide} />
+          </div>
+          <p className="max-w-md text-sm opacity-80">For school staff. Parents do not need an account: they receive updates on WhatsApp.</p>
         </div>
       </section>
-      <div className="flex items-center justify-center bg-off-white px-4 py-10">
-      <Card className="w-full max-w-md">
-        {step.kind === 'select_school' ? (
-          <>
-            <h1 className="text-xl font-bold text-slate">Choose which school to work in</h1>
-            <p className="mt-1 text-sm text-slate/70">
-              Your account has access to more than one school. Pick the one you want to work in now — you can
-              switch later without signing out.
-            </p>
+
+      <div className="flex flex-col items-center gap-4 bg-off-white px-4 py-4 lg:justify-center lg:py-10">
+        <Card className="w-full max-w-md">
+          {/* The compact step line on phones; the full guide is beside or under the form. */}
+          <p className="text-sm font-bold text-royal">{guide.position}</p>
+          <h1 className="mt-1 text-2xl font-extrabold text-slate">{guide.title}</h1>
+
+          {step.kind === 'select_school' && (
             <div className="mt-6 flex flex-col gap-3">
               {step.memberships.map((m) => (
                 <button
@@ -538,252 +478,250 @@ export default function LoginPage() {
                 </button>
               ))}
             </div>
-          </>
-        ) : (
-          <>
-            <h1 className="text-2xl font-extrabold text-slate">{heading.title}</h1>
-            <p className="mt-1 text-sm text-slate/70">{heading.lead}</p>
+          )}
 
-            {step.kind === 'credentials' && (
-              <form onSubmit={submitCredentials} className="mt-6 flex flex-col gap-4">
-                {emailInput}
-                <Input
-                  id="password"
-                  label="Password"
-                  type="password"
-                  autoComplete="current-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <div className="-mt-2 text-right text-sm">
-                  <button type="button" className={linkButton} onClick={() => go({ kind: 'reset_request' })}>
-                    Forgot password?
-                  </button>
-                </div>
-                <Button type="submit" disabled={submitting} className="w-full">
-                  {submitting ? 'Signing in…' : 'Sign in'}
-                </Button>
-                <Button type="button" variant="secondary" disabled={submitting} className="w-full" onClick={() => go({ kind: 'code_request' })}>
-                  Email me a sign-in code
-                </Button>
-              </form>
-            )}
+          {step.kind === 'credentials' && (
+            <form onSubmit={submitCredentials} className="mt-5 flex flex-col gap-4">
+              {emailInput}
+              <Input
+                id="password"
+                label="Password"
+                type="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button type="button" className={`-mt-2 min-h-[44px] self-start text-base ${linkButton}`} onClick={() => go({ kind: 'reset_request' })}>
+                Forgot password?
+              </button>
+              <Button type="submit" disabled={submitting} className="w-full">
+                {submitting ? 'Signing in…' : 'Sign in'}
+              </Button>
+              <Button type="button" variant="secondary" disabled={submitting} className="w-full" onClick={() => go({ kind: 'code_request' })}>
+                Email me a sign-in code instead
+              </Button>
+            </form>
+          )}
 
-            {(step.kind === 'code_request' || step.kind === 'reset_request') && (
-              <form onSubmit={sendCode(step.kind === 'code_request' ? 'login' : 'reset')} className="mt-6 flex flex-col gap-4">
-                {emailInput}
-                <Button type="submit" disabled={submitting || cooldown > 0} className="w-full">
-                  {submitting ? 'Sending…' : cooldown > 0 ? `Send code (wait ${cooldown}s)` : 'Send code'}
-                </Button>
-                <p className="text-sm text-slate/70">
-                  Already got an email from us?{' '}
-                  <button
-                    type="button"
-                    className={linkButton}
-                    onClick={haveCode(step.kind === 'code_request' ? 'login' : 'reset')}
-                  >
-                    Enter the code
-                  </button>{' '}
-                  or just tap the link in it.
-                </p>
-              </form>
-            )}
-
-            {step.kind === 'link_checking' && (
-              <p role="status" className="mt-6 text-sm text-slate/80">
-                One moment…
+          {(step.kind === 'code_request' || step.kind === 'reset_request') && (
+            <form onSubmit={sendCode(step.kind === 'code_request' ? 'login' : 'reset')} className="mt-5 flex flex-col gap-4">
+              {emailInput}
+              <Button type="submit" disabled={submitting || cooldown > 0} className="w-full">
+                {submitting ? 'Sending…' : cooldown > 0 ? `Send code (wait ${cooldown}s)` : 'Send code'}
+              </Button>
+              <p className="text-sm text-slate/70">
+                Already have a code from us?{' '}
+                <button type="button" className={linkButton} onClick={haveCode(step.kind === 'code_request' ? 'login' : 'reset')}>
+                  Enter it
+                </button>
               </p>
-            )}
+            </form>
+          )}
 
-            {step.kind === 'link_password' && (
-              <form onSubmit={submitLinkPassword} className="mt-6 flex flex-col gap-4">
-                <Input
-                  id="new-password"
-                  label="New password"
-                  type="password"
-                  autoComplete="new-password"
-                  helperText="8 to 72 characters. A short sentence is easy to remember and hard to guess."
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <Input
-                  id="confirm-password"
-                  label="Type the new password again"
-                  type="password"
-                  autoComplete="new-password"
-                  value={confirm}
-                  onChange={(e) => setConfirm(e.target.value)}
-                  required
-                />
-                {rememberBox}
-                <Button type="submit" disabled={submitting} className="w-full">
-                  {submitting ? 'Saving…' : 'Save password and sign in'}
-                </Button>
-              </form>
-            )}
+          {step.kind === 'link_checking' && (
+            <p role="status" className="mt-6 text-sm text-slate/80">
+              One moment…
+            </p>
+          )}
 
-            {step.kind === 'code_verify' &&
-              inboxHint({
-                to: email.trim() || 'you',
-                action: 'Open it on this device and tap “Sign in”. You will be signed in here straight away.',
-              })}
-            {step.kind === 'reset_verify' &&
-              inboxHint({
-                to: email.trim() || 'you',
-                action: 'Open it on this device and tap the link. It brings you back here to choose your new password.',
-              })}
-            {step.kind === 'code_verify' && (
-              <form onSubmit={submitEmailCode} className="mt-6 flex flex-col gap-4">
-                {emailCodeInput}
-                {rememberBox}
-                <Button type="submit" disabled={submitting} className="w-full">
-                  {submitting ? 'Checking…' : 'Sign in'}
+          {step.kind === 'link_password' && (
+            <form onSubmit={submitLinkPassword} className="mt-5 flex flex-col gap-4">
+              <Input
+                id="new-password"
+                label="New password"
+                type="password"
+                autoComplete="new-password"
+                helperText="8 to 72 characters. A short sentence is easy to remember and hard to guess."
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <Input
+                id="confirm-password"
+                label="Type the new password again"
+                type="password"
+                autoComplete="new-password"
+                value={confirm}
+                onChange={(e) => setConfirm(e.target.value)}
+                required
+              />
+              {rememberBox}
+              <Button type="submit" disabled={submitting} className="w-full">
+                {submitting ? 'Saving…' : 'Save password and sign in'}
+              </Button>
+            </form>
+          )}
+
+          {step.kind === 'code_verify' && (
+            <form onSubmit={submitEmailCode} className="mt-5 flex flex-col gap-4">
+              {emailCodeInput(typedTarget)}
+              {rememberBox}
+              <Button type="submit" disabled={submitting} className="w-full">
+                {submitting ? 'Checking…' : 'Sign in'}
+              </Button>
+              {resendLine(() => sendCode('login')())}
+            </form>
+          )}
+
+          {step.kind === 'reset_verify' && (
+            <form onSubmit={submitReset} className="mt-5 flex flex-col gap-4">
+              {emailCodeInput(typedTarget)}
+              <Input
+                id="new-password"
+                label="New password"
+                type="password"
+                autoComplete="new-password"
+                helperText="8 to 72 characters. A short sentence is easy to remember and hard to guess."
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <Input
+                id="confirm-password"
+                label="Type the new password again"
+                type="password"
+                autoComplete="new-password"
+                value={confirm}
+                onChange={(e) => setConfirm(e.target.value)}
+                required
+              />
+              {rememberBox}
+              <Button type="submit" disabled={submitting} className="w-full">
+                {submitting ? 'Saving…' : 'Save password and sign in'}
+              </Button>
+              {resendLine(() => sendCode('reset')())}
+            </form>
+          )}
+
+          {step.kind === 'reset_mfa' && (
+            <form onSubmit={submitResetMfa} className="mt-5 flex flex-col gap-4">
+              {authenticatorInput}
+              <Button type="submit" disabled={submitting} className="w-full">
+                {submitting ? 'Saving…' : 'Save password and sign in'}
+              </Button>
+            </form>
+          )}
+
+          {step.kind === 'email_step' && (
+            <form onSubmit={submitEmailStep} className="mt-5 flex flex-col gap-4">
+              {emailCodeInput(step.maskedEmail)}
+              {/* A platform admin still to set up an authenticator always gets this step. */}
+              {!step.setupNext && rememberBox}
+              <Button type="submit" disabled={submitting} className="w-full">
+                {submitting ? 'Checking…' : 'Continue'}
+              </Button>
+              {resendLine(resendEmailStep)}
+            </form>
+          )}
+
+          {step.kind === 'mfa_setup' && (
+            <div className="mt-5">
+              {step.enrolment ? (
+                <AuthenticatorEnrolment
+                  enrolment={step.enrolment}
+                  submitting={submitting}
+                  submitLabel="Turn on and sign in"
+                  onSubmit={submitSetup(step.enrolment.factorId)}
+                />
+              ) : error ? (
+                <Button type="button" variant="outline" disabled={submitting} className="w-full" onClick={startSetup}>
+                  Try again
                 </Button>
-                <p className="text-sm text-slate/70">
-                  No email?{' '}
-                  <button type="button" className={linkButton} disabled={submitting || cooldown > 0} onClick={() => sendCode('login')()}>
-                    {cooldown > 0 ? `Send a new code in ${cooldown}s` : 'Send a new code'}
-                  </button>
+              ) : (
+                <p role="status" className="text-sm text-slate/80">
+                  Preparing your QR code…
                 </p>
-              </form>
-            )}
+              )}
+            </div>
+          )}
 
-            {step.kind === 'reset_verify' && (
-              <form onSubmit={submitReset} className="mt-6 flex flex-col gap-4">
-                {emailCodeInput}
-                <Input
-                  id="new-password"
-                  label="New password"
-                  type="password"
-                  autoComplete="new-password"
-                  helperText="8 to 72 characters. A short sentence is easy to remember and hard to guess."
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <Input
-                  id="confirm-password"
-                  label="Type the new password again"
-                  type="password"
-                  autoComplete="new-password"
-                  value={confirm}
-                  onChange={(e) => setConfirm(e.target.value)}
-                  required
-                />
-                {rememberBox}
-                <Button type="submit" disabled={submitting} className="w-full">
-                  {submitting ? 'Saving…' : 'Save password and sign in'}
-                </Button>
-                <p className="text-sm text-slate/70">
-                  No email?{' '}
-                  <button type="button" className={linkButton} disabled={submitting || cooldown > 0} onClick={() => sendCode('reset')()}>
-                    {cooldown > 0 ? `Send a new code in ${cooldown}s` : 'Send a new code'}
-                  </button>
-                </p>
-              </form>
-            )}
+          {step.kind === 'mfa' && (
+            <form onSubmit={submitMfa} className="mt-5 flex flex-col gap-4">
+              {authenticatorInput}
+              <Button type="submit" disabled={submitting} className="w-full">
+                {submitting ? 'Verifying…' : 'Verify and sign in'}
+              </Button>
+            </form>
+          )}
 
-            {step.kind === 'reset_mfa' && (
-              <form onSubmit={submitResetMfa} className="mt-6 flex flex-col gap-4">
-                {authenticatorInput}
-                <Button type="submit" disabled={submitting} className="w-full">
-                  {submitting ? 'Saving…' : 'Save password and sign in'}
-                </Button>
-              </form>
-            )}
+          {notice && !error && (
+            <p role="status" className="mt-4 text-sm text-slate/80">
+              {notice}
+            </p>
+          )}
+          {error && (
+            <p role="alert" className="mt-4 text-sm font-medium text-red-800">
+              {error}
+            </p>
+          )}
 
-            {step.kind === 'email_step' && (
-              <form onSubmit={submitEmailStep} className="mt-6 flex flex-col gap-4">
-                {inboxHint({
-                  to: step.maskedEmail,
-                  action: 'Your password was right. For your safety, open that email on this device and tap its link, or type its code below.',
-                })}
-                {emailCodeInput}
-                {rememberBox}
-                <Button type="submit" disabled={submitting} className="w-full">
-                  {submitting ? 'Checking…' : 'Continue'}
-                </Button>
-                <p className="text-sm text-slate/70">
-                  No email? Check spam, or{' '}
-                  <button type="button" className={linkButton} disabled={submitting || cooldown > 0} onClick={resendEmailStep}>
-                    {cooldown > 0 ? `send a new code in ${cooldown}s` : 'send a new code'}
-                  </button>
-                </p>
-              </form>
-            )}
+          {step.kind !== 'credentials' && step.kind !== 'done' && (
+            <p className="mt-5 border-t border-slate/10 pt-4 text-sm">
+              <button type="button" className={linkButton} onClick={() => go({ kind: 'credentials' })}>
+                Back to sign in with password
+              </button>
+            </p>
+          )}
 
-            {step.kind === 'mfa_setup' && (
-              <div className="mt-6">
-                {step.enrolment ? (
-                  <AuthenticatorEnrolment
-                    enrolment={step.enrolment}
-                    submitting={submitting}
-                    submitLabel="Turn on and sign in"
-                    onSubmit={submitSetup(step.enrolment.factorId)}
-                  />
-                ) : error ? (
-                  <Button type="button" variant="outline" disabled={submitting} className="w-full" onClick={startSetup}>
-                    Try again
-                  </Button>
-                ) : (
-                  <p role="status" className="text-sm text-slate/80">
-                    Preparing your QR code…
-                  </p>
-                )}
-              </div>
-            )}
+          {step.kind === 'credentials' && (
+            <p className="mt-5 border-t border-slate/10 pt-4 text-sm text-slate/70">
+              First time signing in?{' '}
+              <button type="button" className={linkButton} onClick={() => go({ kind: 'reset_request' })}>
+                Set your password
+              </button>
+              . New to NetCyberAI?{' '}
+              <Link href="/get-started" className="font-semibold text-royal underline">
+                Get started
+              </Link>
+              .
+            </p>
+          )}
+        </Card>
 
-            {step.kind === 'mfa' && (
-              <form onSubmit={submitMfa} className="mt-6 flex flex-col gap-4">
-                {authenticatorInput}
-                <Button type="submit" disabled={submitting} className="w-full">
-                  {submitting ? 'Verifying…' : 'Verify'}
-                </Button>
-              </form>
-            )}
-          </>
-        )}
+        {/* Phones: the full guide folds under the form, so the form stays in view. */}
+        <details className="w-full max-w-md rounded-lg border-2 border-slate/10 bg-white p-4 text-slate lg:hidden">
+          <summary className="min-h-[44px] cursor-pointer py-2 font-semibold text-royal">How sign-in works</summary>
+          <div className="mt-2 flex flex-col gap-4" aria-live="polite">
+            <GuideBody guide={guide} />
+            <p className="text-sm text-slate/80">For school staff. Parents do not need an account: they receive updates on WhatsApp.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  );
+}
 
-        {notice && !error && (
-          <p role="status" className="mt-4 text-sm text-slate/80">
-            {notice}
-          </p>
-        )}
-        {error && (
-          <p role="alert" className="mt-4 text-sm font-medium text-red-800">
-            {error}
-          </p>
-        )}
-
-        {step.kind !== 'credentials' && step.kind !== 'done' && (
-          <p className="mt-6 border-t border-slate/10 pt-4 text-sm">
-            <button type="button" className={linkButton} onClick={() => go({ kind: 'credentials' })}>
-              Back to sign in with password
-            </button>
-          </p>
-        )}
-
-        {step.kind === 'credentials' && (
-          <p className="mt-6 border-t border-slate/10 pt-4 text-sm text-slate/70">
-            First time signing in?{' '}
-            <button type="button" className={linkButton} onClick={() => go({ kind: 'reset_request' })}>
-              Set your password
-            </button>{' '}
-            with a code sent to the email your school registered. Still stuck? Ask your school admin, or{' '}
-            <Link href="/support" className="font-semibold text-royal underline">
+function GuideBody({ guide }: { guide: Guidance }) {
+  return (
+    <>
+      <div>
+        <p className="text-sm font-bold">What to do now</p>
+        <p className="mt-1 text-sm opacity-90">{guide.doNow}</p>
+      </div>
+      {guide.next && (
+        <div>
+          <p className="text-sm font-bold">What happens next</p>
+          <p className="mt-1 text-sm opacity-90">{guide.next}</p>
+        </div>
+      )}
+      {guide.stuck.length > 0 && (
+        <div>
+          <p className="text-sm font-bold">If you are stuck</p>
+          <ul className="mt-1 flex list-disc flex-col gap-1 pl-5 text-sm opacity-90">
+            {guide.stuck.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+          <p className="mt-2 text-sm opacity-90">
+            Still stuck? Ask your school admin, or{' '}
+            <Link href="/support" className="font-semibold underline">
               contact support
-            </Link>
-            . New to NetCyberAI?{' '}
-            <Link href="/get-started" className="font-semibold text-royal underline">
-              Get started
             </Link>
             .
           </p>
-        )}
-      </Card>
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 }

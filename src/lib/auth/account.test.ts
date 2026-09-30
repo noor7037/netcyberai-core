@@ -65,7 +65,7 @@ describe('normalizePhone', () => {
 
 describe('maskEmail', () => {
   it('keeps the first and last letter of the name and the domain', () => {
-    expect(maskEmail('noorislam@gmail.com')).toBe('n******m@gmail.com');
+    expect(maskEmail('noorislam@gmail.com')).toBe('n•••m@gmail.com');
     expect(maskEmail('ab@x.in')).toBe('a@x.in');
   });
 });

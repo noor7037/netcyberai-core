@@ -39,8 +39,11 @@ vi.mock('@/lib/auth/db', async (importOriginal) => {
 
 import { completeEmailStep, loginWithEmailCode, passwordLogin, resetPasswordWithCode } from '@/lib/auth/account';
 import { signAccessToken, signDeviceToken, signPendingToken } from '@/lib/auth/jwt';
-import { ACCESS_COOKIE, AUTHENTICATOR_COOKIE, PENDING_COOKIE } from '@/lib/auth/cookies';
+import { ACCESS_COOKIE, AUTHENTICATOR_COOKIE, DEVICE_COOKIE, PENDING_COOKIE } from '@/lib/auth/cookies';
 import { authenticatorFriendlyName } from '@/lib/auth/authenticator-rules';
+import { POST as loginRoute } from '@/app/api/auth/login/route';
+import { POST as emailStepRoute } from '@/app/api/auth/email-step/route';
+import { POST as mfaVerifyRoute } from '@/app/api/auth/mfa/verify/route';
 import { POST as signInSetupStart } from '@/app/api/auth/mfa/setup/start/route';
 import { POST as signInSetupVerify } from '@/app/api/auth/mfa/setup/verify/route';
 import { POST as accountSetupStart } from '@/app/api/auth/authenticator/start/route';
@@ -176,21 +179,52 @@ describe('(3) the mailbox alone cannot stand in for the password (security revie
   });
 });
 
-describe('(4) platform admins always get the email step', () => {
-  it('a remembered device does not skip it for a platform admin, with or without an authenticator', async () => {
-    const admin = fake.addUser({ email: 'admin@test.invalid', password: PASSWORD, role: 'super_admin' });
-    const device = await signDeviceToken(admin.id, admin.token_version, 3600);
-    expect((await passwordLogin(admin.email, PASSWORD, device)).status).toBe('email_step');
-    fake.addVerifiedFactor(admin.id);
-    expect((await passwordLogin(admin.email, PASSWORD, device)).status).toBe('email_step');
-    expect(fake.sentCodes).toEqual([admin.email, admin.email]);
+describe('C96: what follows the password', () => {
+  const login = (identifier: string, password: string, cookies: Record<string, string> = {}) =>
+    loginRoute(post('/api/auth/login', { identifier, password }, cookies));
+
+  it('an authenticator account: password, then its code only; no email is sent, remembered device or not', async () => {
+    for (const role of ['super_admin', 'principal']) {
+      fake.reset();
+      const user = fake.addUser({ email: `${role}@test.invalid`, password: PASSWORD, role });
+      const factor = fake.addVerifiedFactor(user.id);
+      const device = await signDeviceToken(user.id, user.token_version, 3600);
+      for (const cookies of [{}, { [DEVICE_COOKIE]: device }] as Record<string, string>[]) {
+        const res = await login(user.email, PASSWORD, cookies);
+        expect(await res.json()).toEqual({ status: 'mfa_required' });
+        const pending = { [PENDING_COOKIE]: res.cookies.get(PENDING_COOKIE)!.value };
+        // A wrong code is named as the authenticator's.
+        const wrong = await mfaVerifyRoute(post('/api/auth/mfa/verify', { code: '000000' }, pending));
+        expect((await wrong.json()).error).toBe('mfa_invalid_code');
+        const right = await mfaVerifyRoute(post('/api/auth/mfa/verify', { code: fake.codeFor(factor) }, pending));
+        // A platform admin is in; a principal passes the code (this stand-in has no school memberships).
+        expect((await right.json()).status).toBe(role === 'super_admin' ? 'ok' : 'no_memberships');
+      }
+      expect(fake.sentCodes).toEqual([]);
+    }
   });
 
-  it('a remembered device still skips it for a principal', async () => {
-    const principal = fake.addUser({ email: 'principal@test.invalid', password: PASSWORD, role: 'principal' });
-    const device = await signDeviceToken(principal.id, principal.token_version, 3600);
-    expect((await passwordLogin(principal.email, PASSWORD, device)).status).not.toBe('email_step');
-    expect(fake.sentCodes).toEqual([]);
+  it('a staff account without one: password, then the emailed code', async () => {
+    const teacher = fake.addUser({ email: 'noorislam8@test.invalid', password: PASSWORD, role: 'teacher' });
+    const res = await login(teacher.email, PASSWORD);
+    expect(await res.json()).toEqual({ status: 'email_step', maskedEmail: 'n•••8@test.invalid', setupNext: false });
+    expect(fake.sentCodes).toEqual([teacher.email]);
+    const pending = { [PENDING_COOKIE]: res.cookies.get(PENDING_COOKIE)!.value };
+    // An authenticator-style code typed here is named as a wrong email code.
+    const wrong = await emailStepRoute(post('/api/auth/email-step', { code: '000000' }, pending));
+    expect((await wrong.json()).error).toBe('code_invalid');
+    const right = await emailStepRoute(post('/api/auth/email-step', { code: fake.emailedCodes.get(teacher.email) }, pending));
+    expect((await right.json()).status).toBe('no_memberships');
+  });
+
+  it('a remembered device skips the emailed code for staff, never for a platform admin without an authenticator', async () => {
+    const teacher = fake.addUser({ email: 'teacher@test.invalid', password: PASSWORD, role: 'teacher' });
+    const admin = fake.addUser({ email: 'admin@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const teacherDevice = { [DEVICE_COOKIE]: await signDeviceToken(teacher.id, teacher.token_version, 3600) };
+    const adminDevice = { [DEVICE_COOKIE]: await signDeviceToken(admin.id, admin.token_version, 3600) };
+    expect((await (await login(teacher.email, PASSWORD, teacherDevice)).json()).status).toBe('no_memberships');
+    expect(await (await login(admin.email, PASSWORD, adminDevice)).json()).toMatchObject({ status: 'email_step', setupNext: true });
+    expect(fake.sentCodes).toEqual([admin.email]);
   });
 });
 
