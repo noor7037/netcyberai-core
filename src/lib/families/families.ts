@@ -170,9 +170,20 @@ export async function confirmSuggestion(
   if (!par[0]) return { ok: false, status: 404, error: 'guardian not found' };
   if (par[0].merged_into) return { ok: false, status: 409, error: 'this guardian was merged into another record' };
 
-  await db.query(`insert into parent_student_map (school_id, parent_id, student_id) values ($1, $2, $3) on conflict do nothing`, [actor.schoolId, parentId, studentId]);
+  // Every check runs before anything is written: a refused confirm leaves
+  // no guardian link behind (a /code-review finding).
   const { rows: kids } = await db.query(`select student_id from parent_student_map where school_id = $1 and parent_id = $2`, [actor.schoolId, parentId]);
   const ids = [...new Set([studentId, ...kids.map((k) => k.student_id as string)])];
+  if (ids.length > MAX_FAMILY_LINK) return { ok: false, status: 400, error: `a guardian with more than ${MAX_FAMILY_LINK} children is linked one at a time` };
+  if (ids.length >= 2) {
+    const { rows: fams } = await db.query(
+      `select count(distinct family_id)::int as n from students where school_id = $1 and student_id = any($2::uuid[]) and family_id is not null`,
+      [actor.schoolId, ids]
+    );
+    if (fams[0].n > 1) return { ok: false, status: 409, error: 'this student and the guardian’s children are in different families; move them first' };
+  }
+
+  await db.query(`insert into parent_student_map (school_id, parent_id, student_id) values ($1, $2, $3) on conflict do nothing`, [actor.schoolId, parentId, studentId]);
   await writeAuditLog(db, {
     schoolId: actor.schoolId,
     actorUserId: actor.userId,
@@ -183,7 +194,6 @@ export async function confirmSuggestion(
     afterState: { parentId, studentId },
   });
   if (ids.length < 2) return { ok: true, family: null };
-  if (ids.length > MAX_FAMILY_LINK) return { ok: false, status: 400, error: `a guardian with more than ${MAX_FAMILY_LINK} children is linked one at a time` };
   const linked = await linkSiblings(db, actor, ids);
   if (!linked.ok) return linked;
   return { ok: true, family: { familyId: linked.familyId, familyCode: linked.familyCode } };

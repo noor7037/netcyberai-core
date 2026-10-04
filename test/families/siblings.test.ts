@@ -144,6 +144,20 @@ describe('the office links', () => {
     expect(await count(`select count(*) n from students where family_id = $1`, [fam])).toBe(4);
   });
 
+  it('a refused confirm writes nothing (code-review finding)', async () => {
+    // Two new students already in their own family; Rakesh's children are in another one.
+    const [x, y] = [randomUUID(), randomUUID()];
+    await db.platform((q) => q.query(`insert into students (student_id, school_id, name, class_id, status) values ($1, $3, 'Cousin One', $4, 'active'), ($2, $3, 'Cousin Two', $4, 'active')`, [x, y, A, c2]));
+    const own = await asOffice((q) => linkSiblings(q, office, [x, y]));
+    expect(own.ok).toBe(true);
+    const r = await asOffice((q) => confirmSuggestion(q, office, x, par.father));
+    expect(r).toMatchObject({ ok: false, status: 409 });
+    expect(await count(`select count(*) n from parent_student_map where student_id = $1`, [x])).toBe(0);
+    // Leave no trace for the later tests: these two leave their family.
+    await asOffice((q) => setStudentFamily(q, office, x, null));
+    await asOffice((q) => setStudentFamily(q, office, y, null));
+  });
+
   it('the family number follows the Students setting', async () => {
     await asOffice((q) => saveSettings(q, office, settingsSchemaFor('students')!, { moduleId: 'students', baseRevision: 0, set: { family_code_format: 'F/{SEQ:3}' } }));
     const noMatch = (await db.query(`select student_id from students where name = 'No Match'`)).rows[0].student_id;
