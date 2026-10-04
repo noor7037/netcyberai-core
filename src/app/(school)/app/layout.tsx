@@ -1,46 +1,72 @@
 import { redirect } from 'next/navigation';
 import { getServerSession } from '@/lib/auth/server-session';
 import { canAccessApp, shellForRole } from '@/lib/auth/guards';
-import { Sidebar } from '@/components/shell/Sidebar';
-import { BottomNav } from '@/components/shell/BottomNav';
+import { SessionRevokedError, withTenantContext } from '@/lib/auth/db';
+import { AppShell } from '@/components/app-shell/AppShell';
+import { ScanButton } from '@/components/shell/ScanButton';
+import { toShellGroups, toShellItem } from '@/components/app-shell/shell-nav';
 import { ToastProvider } from '@/components/ui/Toast';
-import { officeNav, financeNav, academicNav, teacherNav } from '@/lib/nav/nav-items';
+import type { SchoolEntitlements } from '@/lib/contracts/entitlements';
+import type { SchoolRole } from '@/lib/contracts/modules';
+import { bottomNavItems, buildNavigation } from '@/lib/contracts/navigation';
+import { loadEntitlements } from '@/lib/frameworks/entitlements';
 
 // Every page under this route group renders through THIS layout by
-// Next.js's own nesting rules. Which of the four shells' nav a session
-// sees is decided ONCE, here, from the resolved role already on the
-// verified session -- never re-derived per page, so there is exactly
-// one place a role could see the wrong shell's nav, and it's checked
-// by scripts/check_route_guards.py and the Playwright verification in
-// this prompt's report, not left to each page to get right.
+// Next.js's own nesting rules. The guard below runs first and is checked
+// by scripts/check_route_guards.py; nothing after it can widen access.
+//
+// The menu is computed here, once (C121): the module registry × this role
+// × the school's entitlements (buildNavigation, 17 §2), in 8 groups; the
+// teacher shell also gets the phone bottom bar. It decides only what is
+// shown: every module API checks role and entitlement itself, and RLS
+// stays the backstop.
+
+const ROLE_LABEL: Record<SchoolRole, string> = {
+  principal: 'Principal',
+  school_admin: 'School admin',
+  teacher: 'Teacher',
+  accountant: 'Accountant',
+  academic_coordinator: 'Academic coordinator',
+};
+
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession();
   if (!canAccessApp(session)) {
     redirect('/login');
   }
 
-  const shell = shellForRole(session!.role);
-
-  if (shell === 'teacher') {
-    return (
-      <ToastProvider>
-        <div className="min-h-screen bg-off-white pb-16">
-          <BottomNav items={teacherNav} ariaLabel="Teacher navigation" />
-          <main>{children}</main>
-        </div>
-      </ToastProvider>
-    );
+  const role = session!.role as SchoolRole;
+  const schoolId = session!.schoolId!;
+  let entitlements: SchoolEntitlements = { schoolId, plan: 'unassigned', accessMode: 'full', modules: {} };
+  let schoolName = 'NetCyberAI';
+  let menuIncomplete = false;
+  try {
+    ({ entitlements, schoolName } = await withTenantContext(session!, async (db) => {
+      const { rows } = await db.query(`select name from schools where school_id = $1`, [schoolId]);
+      return { entitlements: await loadEntitlements(db, schoolId), schoolName: (rows[0]?.name as string | undefined) ?? 'NetCyberAI' };
+    }));
+  } catch (err) {
+    if (err instanceof SessionRevokedError) redirect('/login');
+    // The pages still load and check their own access; the menu shows Help
+    // only and says so, instead of the whole app failing.
+    console.error('[app-shell] menu data unavailable', err instanceof Error ? err.name : 'error');
+    menuIncomplete = true;
   }
 
-  const items = shell === 'finance' ? financeNav : shell === 'academic' ? academicNav : officeNav;
-  const label = shell === 'finance' ? 'Finance navigation' : shell === 'academic' ? 'Academic navigation' : 'Office navigation';
+  const nav = buildNavigation(role, entitlements);
+  const isTeacher = shellForRole(role) === 'teacher';
+  const bottom = isTeacher ? bottomNavItems(nav).map(toShellItem) : undefined;
 
   return (
     <ToastProvider>
-      <div className="min-h-screen bg-off-white">
-        <Sidebar items={items} ariaLabel={label} accountHref="/app/account" />
-        <main className="md:pl-60">{children}</main>
-      </div>
+      <AppShell groups={toShellGroups(nav)} bottomItems={bottom} brand={schoolName} roleLabel={ROLE_LABEL[role]} navLabel="School navigation" accountHref="/app/account" action={isTeacher ? <ScanButton onDark /> : undefined}>
+        {menuIncomplete && (
+          <p role="status" className="bg-tangerine/10 px-4 py-2 text-sm text-slate">
+            The menu could not load fully. Refresh the page to try again.
+          </p>
+        )}
+        {children}
+      </AppShell>
     </ToastProvider>
   );
 }

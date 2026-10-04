@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { decodeListQuery, encodeListQuery, isFilterGroup, LIST_QUERY_PARAM, OPERATORS_BY_TYPE, type FilterCondition, type FilterField, type ListDefinition, type ListQuery } from '@/lib/contracts/filters';
-import { addCondition, clearFilters, describe, quickValues, removeAt, setBooleanQuick, setCombinator, setQuickFilter, setSearch, type Options } from './list-query';
+import { addCondition, clearFilters, describe, quickValues, removeAt, setBooleanQuick, setCombinator, setQuickFilter, setSearch, validateListQuery, type Options } from './list-query';
 
 // The filter bar every list uses (17 §1a): search, quick-filter chips, a
 // "More filters" panel (a sheet on phones) with match all / any, the
@@ -120,7 +120,21 @@ function AddCondition({ fields, onAdd, options }: { fields: readonly FilterField
   );
 }
 
-export function FilterBar({ definition, query, onChange, options = {}, trailing }: { definition: ListDefinition; query: ListQuery; onChange: (q: ListQuery) => void; options?: Options; trailing?: ReactNode }) {
+export function FilterBar({
+  definition,
+  query,
+  onChange,
+  options = {},
+  trailing,
+  staleLink = false,
+}: {
+  definition: ListDefinition;
+  query: ListQuery;
+  onChange: (q: ListQuery) => void;
+  options?: Options;
+  trailing?: ReactNode;
+  staleLink?: boolean; // the link's `q` did not fit this list and was dropped
+}) {
   const [more, setMore] = useState(false);
   const [text, setText] = useState(query.search ?? '');
   // The latest query, so a search typed while a filter changes applies to
@@ -138,6 +152,11 @@ export function FilterBar({ definition, query, onChange, options = {}, trailing 
   const combinator = query.filter?.combinator ?? 'and';
   return (
     <div className="flex flex-col gap-2">
+      {staleLink && (
+        <p role="status" className="rounded-md border border-tangerine/40 bg-tangerine/10 px-3 py-2 text-sm text-slate">
+          This link&apos;s filters no longer apply, so the full list is shown.
+        </p>
+      )}
       <div className="flex flex-wrap items-center gap-2">
         <label className="min-w-[12rem] flex-1">
           <span className="sr-only">Search</span>
@@ -201,20 +220,33 @@ export function FilterBar({ definition, query, onChange, options = {}, trailing 
 
 // The list query, kept in the URL parameter `q` (contracts/filters.ts) so a
 // filtered list can be bookmarked and shared. Replaces the history entry,
-// so filtering does not fill the back button.
-export function useUrlListQuery(initial: ListQuery = {}): [ListQuery, (q: ListQuery) => void] {
+// so filtering does not fill the back button. A `q` that does not fit the
+// list (validateListQuery) is dropped from the URL and reported as
+// `staleLink`, so the screen can say "This link's filters no longer apply"
+// (C120).
+export function useUrlListQuery(definition: ListDefinition, initial: ListQuery = {}): [ListQuery, (q: ListQuery) => void, { staleLink: boolean }] {
   const [query, setQuery] = useState<ListQuery>(initial);
-  useEffect(() => {
-    const raw = new URLSearchParams(window.location.search).get(LIST_QUERY_PARAM);
-    const decoded = raw ? decodeListQuery(raw) : null;
-    if (decoded && typeof decoded === 'object' && !Array.isArray(decoded)) setQuery(decoded as ListQuery);
-  }, []);
-  const update = (q: ListQuery) => {
-    setQuery(q);
+  const [staleLink, setStaleLink] = useState(false);
+  const write = (q: ListQuery | null) => {
     const url = new URL(window.location.href);
-    if (q.filter || q.search || q.sort || q.columns) url.searchParams.set(LIST_QUERY_PARAM, encodeListQuery(q));
+    if (q && (q.filter || q.search || q.sort || q.columns)) url.searchParams.set(LIST_QUERY_PARAM, encodeListQuery(q));
     else url.searchParams.delete(LIST_QUERY_PARAM);
     window.history.replaceState(window.history.state, '', url);
   };
-  return [query, update];
+  useEffect(() => {
+    const raw = new URLSearchParams(window.location.search).get(LIST_QUERY_PARAM);
+    if (!raw) return;
+    const valid = validateListQuery(definition, decodeListQuery(raw));
+    if (valid) setQuery(valid);
+    else {
+      setStaleLink(true);
+      write(null);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const update = (q: ListQuery) => {
+    setQuery(q);
+    setStaleLink(false);
+    write(q);
+  };
+  return [query, update, { staleLink }];
 }

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { moduleStatus } from '@/content/module-status';
 import * as fixtures from '@/demo-fixture/contracts';
-import { buildNavigation, chartAsTable, isModuleEnabled, MODULE_GROUPS, MODULE_IDS, MODULE_REGISTRY, moduleById, type ModuleGroupId, type ModuleId, type SchoolEntitlements, type SchoolRole } from './index';
+import { bottomNavItems, buildNavigation, chartAsTable, isModuleEnabled, MODULE_GROUPS, MODULE_IDS, MODULE_REGISTRY, moduleById, type ModuleGroupId, type ModuleId, type SchoolEntitlements, type SchoolRole } from './index';
 
 // The registry against docs/17_MODULE_CATALOG.md (C110).
 
@@ -95,6 +95,13 @@ describe('navigation and entitlements', () => {
   it('every item carries its status and phase, so an unbuilt module links to a "coming" page', () => {
     const nav = buildNavigation('principal', on('proxy'));
     expect(nav.groups[0].items[0]).toMatchObject({ moduleId: 'proxy', href: '/app/proxy', status: 'planned', phase: 'P4' });
+  });
+
+  it('the phone bottom bar takes the prioritised modules the role has, in order (C121)', () => {
+    const all = Object.fromEntries(MODULE_REGISTRY.map((m) => [m.id, { enabled: true, source: 'plan' as const }]));
+    expect(bottomNavItems(buildNavigation('teacher', { ...base, modules: all })).map((i) => i.moduleId)).toEqual(['dashboard', 'attendance', 'homework', 'pulse']);
+    expect(bottomNavItems(buildNavigation('teacher', on('dashboard', 'pulse'))).map((i) => i.moduleId)).toEqual(['dashboard', 'pulse']);
+    expect(bottomNavItems(buildNavigation('accountant', { ...base, modules: all })).map((i) => i.moduleId)).toEqual(['dashboard']);
   });
 
   it('badges are numbers from the server, never text', () => {

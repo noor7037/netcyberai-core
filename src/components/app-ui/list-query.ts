@@ -1,4 +1,4 @@
-import { isFilterGroup, type FilterCondition, type FilterField, type FilterGroup, type FilterValue, type ListQuery } from '@/lib/contracts/filters';
+import { isFilterGroup, OPERATORS_BY_TYPE, type FilterCondition, type FilterField, type FilterGroup, type FilterValue, type ListDefinition, type ListQuery } from '@/lib/contracts/filters';
 
 // Pure edits of a ListQuery (contracts/filters.ts) for the filter bar: the
 // top-level group holds the conditions people add; a quick filter owns the
@@ -90,4 +90,57 @@ export function describe(node: FilterCondition | FilterGroup, fields: readonly F
   const v = valueWords(field, node.value, options);
   const days = node.op === 'last_n_days' ? ' days' : '';
   return `${field?.label ?? node.field} ${OP_WORDS[node.op] ?? node.op}${v ? ` ${v}${days}` : ''}`;
+}
+
+// ---- Links from outside (C120) -------------------------------------------------
+// A `q` from a link (hand-edited, or saved before a field changed) is
+// checked against the list's definition before it is used: known fields
+// only, the operators of each field's type, the value shape each operator
+// needs, and the engine's limits. Anything wrong: the whole query is
+// dropped (null) and the list shows unfiltered, never a half-applied filter.
+
+const MAX_DEPTH = 3;
+const MAX_CONDITIONS = 30;
+const DATE = /^\d{4}-\d{2}-\d{2}$/;
+const isObj = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
+const scalar = (v: unknown) => typeof v === 'string' || (typeof v === 'number' && Number.isFinite(v));
+
+function validValue(field: FilterField, op: string, v: unknown): boolean {
+  if (op === 'is_empty' || op === 'is_not_empty') return v === undefined || v === null;
+  if (op === 'in' || op === 'not_in') return Array.isArray(v) && v.length > 0 && v.length <= 200 && v.every(scalar);
+  if (op === 'between') return isObj(v) && scalar(v.from) && scalar(v.to) && Object.keys(v).length === 2;
+  if (op === 'last_n_days') return Number.isInteger(v) && (v as number) >= 1 && (v as number) <= 3660;
+  if (field.type === 'boolean') return typeof v === 'boolean';
+  if (field.type === 'number') return typeof v === 'number' && Number.isFinite(v);
+  if (field.type === 'date') return typeof v === 'string' && DATE.test(v);
+  return typeof v === 'string' && v.length >= 1 && v.length <= 200;
+}
+
+export function validateListQuery(def: ListDefinition, input: unknown): ListQuery | null {
+  if (!isObj(input)) return null;
+  const allowed = new Set(['filter', 'search', 'sort', 'columns', 'pageSize', 'cursor']);
+  if (Object.keys(input).some((k) => !allowed.has(k))) return null;
+  const fields = new Map(def.fields.map((f) => [f.key, f]));
+  let count = 0;
+  const group = (g: unknown, depth: number): boolean => {
+    if (!isObj(g) || depth > MAX_DEPTH || (g.combinator !== 'and' && g.combinator !== 'or') || !Array.isArray(g.conditions)) return false;
+    return g.conditions.every((n) => {
+      if (isObj(n) && 'combinator' in n) return group(n, depth + 1);
+      if (!isObj(n) || ++count > MAX_CONDITIONS) return false;
+      const f = typeof n.field === 'string' ? fields.get(n.field) : undefined;
+      return !!f && (OPERATORS_BY_TYPE[f.type] as readonly unknown[]).includes(n.op) && validValue(f, n.op as string, n.value);
+    });
+  };
+  if (input.filter !== undefined && !group(input.filter, 1)) return null;
+  if (input.search !== undefined && (typeof input.search !== 'string' || input.search.length > 100)) return null;
+  if (
+    input.sort !== undefined &&
+    !(Array.isArray(input.sort) && input.sort.length <= 3 && input.sort.every((s) => isObj(s) && fields.get(s.field as string)?.sortable && (s.dir === 'asc' || s.dir === 'desc')))
+  ) {
+    return null;
+  }
+  if (input.columns !== undefined && !(Array.isArray(input.columns) && input.columns.length <= 50 && input.columns.every((c) => fields.has(c as string)))) return null;
+  if (input.pageSize !== undefined && !(Number.isInteger(input.pageSize) && (input.pageSize as number) >= 1 && (input.pageSize as number) <= 200)) return null;
+  const { cursor: _c, ...query } = input; // a position from an old link is never reused
+  return query as ListQuery;
 }

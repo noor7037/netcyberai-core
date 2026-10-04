@@ -24,7 +24,7 @@ const columns: DataColumn<Row>[] = [
 ];
 
 export function GalleryLists() {
-  const [query, setQuery] = useUrlListQuery();
+  const [query, setQuery, { staleLink }] = useUrlListQuery(studentListFixture.data);
   const [views, setViews] = useState<SavedView[]>(galleryViews);
   const [active, setActive] = useState<string | null>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());
@@ -45,6 +45,7 @@ export function GalleryLists() {
     <AppCard title="Filters, saved views and bulk actions" description="Quick filters, More filters (a sheet on a phone), saved views, row selection and the bulk bar.">
       <FilterBar
         definition={studentListFixture.data}
+        staleLink={staleLink}
         query={query}
         onChange={(q) => {
           setQuery(q);

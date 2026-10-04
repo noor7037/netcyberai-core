@@ -130,3 +130,39 @@ describe('coming in phase', () => {
     }
   });
 });
+
+describe('links from outside (C120)', () => {
+  const def = studentListFixture.data;
+  const good = { filter: { combinator: 'and', conditions: [{ field: 'status', op: 'in', value: ['active'] }, { combinator: 'or', conditions: [{ field: 'date_of_birth', op: 'before', value: '2015-01-01' }] }] }, search: 'aar', sort: [{ field: 'display_name', dir: 'asc' }], cursor: 'eyJvIjo1MH0' };
+
+  it('accepts a query that fits the list, without its old page position', () => {
+    const v = listQuery.validateListQuery(def, good)!;
+    expect(v).not.toBeNull();
+    expect(v).not.toHaveProperty('cursor');
+    expect(v.filter!.conditions).toHaveLength(2);
+  });
+
+  it.each([
+    ['not an object', 'x'],
+    ['an array', []],
+    ['an unknown key', { ...good, extra: 1 }],
+    ['an unknown field', { filter: { combinator: 'and', conditions: [{ field: 'password_hash', op: 'eq', value: 'x' }] } }],
+    ['a wrong operator for the type', { filter: { combinator: 'and', conditions: [{ field: 'display_name', op: 'gt', value: 'a' }] } }],
+    ['a wrong value shape', { filter: { combinator: 'and', conditions: [{ field: 'status', op: 'in', value: 'active' }] } }],
+    ['a bad date', { filter: { combinator: 'and', conditions: [{ field: 'date_of_birth', op: 'before', value: '01/01/2015' }] } }],
+    ['a bad combinator', { filter: { combinator: 'xor', conditions: [] } }],
+    ['conditions that are not a list', { filter: { combinator: 'and', conditions: 'all' } }],
+    ['groups nested too deep', { filter: { combinator: 'and', conditions: [{ combinator: 'and', conditions: [{ combinator: 'and', conditions: [{ combinator: 'and', conditions: [] }] }] }] } }],
+    ['a field that cannot be sorted', { sort: [{ field: 'status', dir: 'asc' }] }],
+    ['an unknown column', { columns: ['secret'] }],
+    ['a page size out of range', { pageSize: 5000 }],
+  ])('drops a query with %s', (_why, q) => {
+    expect(listQuery.validateListQuery(def, q)).toBeNull();
+  });
+
+  it('the filter bar says so when a link was dropped', () => {
+    const html = renderToStaticMarkup(h(FilterBar, { definition: def, query: {}, onChange: noop, staleLink: true }));
+    expect(html).toContain('This link&#x27;s filters no longer apply');
+    expect(renderToStaticMarkup(h(FilterBar, { definition: def, query: {}, onChange: noop }))).not.toContain('no longer apply');
+  });
+});

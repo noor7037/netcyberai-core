@@ -64,7 +64,11 @@ templates are not built yet (they arrive with the Control onboarding screens).
 ## 2. Navigation — 8 groups (sidebar sections that collapse like drop-downs)
 
 Replaces the demo's 5 uneven groups (17 items under one heading). Role shells
-show only the modules a role may use (§5).
+show only the modules a role may use (§5). **Built (C121):** the app shell draws
+these groups from the registry and the school's entitlements; phones get a
+drawer, and the teacher shell a bottom bar (Dashboard, Attendance, Homework,
+Daily Pulse, More); every module route is reserved, with a "Coming in phase"
+page until the module is built.
 
 | Group | Modules |
 |---|---|

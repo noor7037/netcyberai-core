@@ -23,7 +23,8 @@ const RESULT_LABEL: Record<ScanOutcome['result'], string> = {
 // a manual entry field is the honest fallback -- never a camera UI
 // that only pretends to decode, per this component's own predecessor's
 // no-silent-failure comment.
-export function ScanButton() {
+// `onDark`: in the app shell's dark top bar and sidebar (C121).
+export function ScanButton({ onDark = false }: { onDark?: boolean }) {
   const [open, setOpen] = useState(false);
   const [supportsDetector, setSupportsDetector] = useState(false);
   const [manualValue, setManualValue] = useState('');
@@ -108,7 +109,7 @@ export function ScanButton() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="flex min-h-[44px] min-w-[44px] items-center gap-1.5 rounded-md px-2 text-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire"
+        className={`flex min-h-[44px] min-w-[44px] items-center gap-1.5 rounded-md px-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${onDark ? 'bg-midnight text-white focus-visible:outline-white' : 'text-slate focus-visible:outline-sapphire'}`}
       >
         <span aria-hidden="true">📷</span>
         <span className="text-sm font-medium">Scan</span>

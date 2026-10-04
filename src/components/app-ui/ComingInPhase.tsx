@@ -11,6 +11,8 @@ export function ComingInPhase({ moduleId }: { moduleId: ModuleId }) {
   const group = MODULE_GROUPS.find((g) => g.id === m.group)!;
   const [primary] = m.tone;
   const tone = TOKEN_TONES[primary];
+  // Live or partial modules are partly in use already (for example guardians on the student page).
+  const inUse = m.status === 'live' || m.status === 'partial';
   return (
     <section aria-labelledby="coming-title" className="relative mx-auto flex max-w-2xl flex-col gap-4 overflow-hidden rounded-2xl border border-slate/10 bg-white p-6">
       <span aria-hidden="true" className={`absolute inset-x-0 top-0 h-1.5 ${tone.bar}`} />
@@ -25,8 +27,11 @@ export function ComingInPhase({ moduleId }: { moduleId: ModuleId }) {
           </h1>
         </div>
       </div>
-      <p className={`self-start rounded-full px-3 py-1 text-sm font-bold ${tone.soft}`}>Coming in phase {m.phase}</p>
-      <p className="text-sm text-slate/70">{m.phaseNote ? `${m.phaseNote}. ` : ''}This is what the module will do:</p>
+      <p className={`self-start rounded-full px-3 py-1 text-sm font-bold ${tone.soft}`}>{inUse ? `Full module in phase ${m.phase}` : `Coming in phase ${m.phase}`}</p>
+      <p className="text-sm text-slate/70">
+        {m.phaseNote ? `${m.phaseNote}. ` : ''}
+        {inUse ? 'Parts of it are already in use elsewhere in the app. The full module will do this:' : 'This is what the module will do:'}
+      </p>
       <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         {m.capabilities.map((c) => (
           <li key={c} className="flex gap-2 text-sm text-slate">

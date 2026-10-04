@@ -1,13 +1,8 @@
 import { redirect } from 'next/navigation';
-import { getServerSession } from '@/lib/auth/server-session';
-import { shellForRole } from '@/lib/auth/guards';
 
-// The bare /app index redirects to the resolved role's actual default
-// screen -- Prompt D scope is real nav destinations, not a landing
-// page nobody's nav links to. AppLayout has already confirmed a
-// resolved membership exists by the time this runs.
-export default async function AppHomePage() {
-  const session = await getServerSession();
-  const shell = session ? shellForRole(session.role) : null;
-  redirect(shell === 'teacher' ? '/app/my-day' : '/app/dashboard');
+// The bare /app index opens Home (the Dashboard module), which every
+// role's menu starts with (C121; registry, 17 §2). AppLayout has already
+// confirmed a resolved membership exists by the time this runs.
+export default function AppHomePage() {
+  redirect('/app/dashboard');
 }
