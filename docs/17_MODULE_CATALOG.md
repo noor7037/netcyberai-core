@@ -145,6 +145,10 @@ its phase, not a later polish.
 
 ## 4. App design system (all dashboards and apps)
 
+- **Built (C118):** `src/components/app-ui/**` (cards, page header, status
+  pills, KPI tiles, chart cards with table view, responsive lists, loading /
+  empty / error / no-access states, tone classes for every logo token);
+  gallery at `/design-system` in development.
 - **Colours:** only the logo token set in `src/lib/design-tokens.ts`. Group
   tones: School & People = sapphire/royal · Teaching & Learning = royal/azure ·
   Parent Engagement = cyan/turquoise · Finance = tangerine/amber · Records &
