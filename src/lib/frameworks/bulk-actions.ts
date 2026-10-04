@@ -1,5 +1,7 @@
 import type { BulkActionDefinition } from '@/lib/contracts/bulk';
 import type { Sql } from '@/lib/jobs/types';
+import type { SchoolRole } from '@/lib/contracts/modules';
+import { linkSiblings } from '@/lib/families/families';
 import { isUuid } from './custom-fields';
 
 // Every bulk action, in one registry (17 §1a, C112). An action works on
@@ -9,15 +11,17 @@ import { isUuid } from './custom-fields';
 // when it is built. Students' "move to class" is the first.
 
 export type BulkParams = Readonly<Record<string, string | number>>;
+export type BulkActor = { userId: string; role: SchoolRole };
 export type BulkApplyResult = { done: number; failures: { id: string; reason: string }[]; undo: unknown };
 
 export type BulkAction = {
   def: BulkActionDefinition;
   checkParams(db: Sql, schoolId: string, params: unknown): Promise<{ ok: true; params: BulkParams } | { ok: false; error: string }>;
   preview(db: Sql, schoolId: string, ids: readonly string[], params: BulkParams): Promise<{ firstRows: { id: string; label: string; change: string }[]; warnings: string[] }>;
-  apply(db: Sql, schoolId: string, ids: readonly string[], params: BulkParams): Promise<BulkApplyResult>;
+  // `actor`: who confirmed the run (also when a job runs it).
+  apply(db: Sql, schoolId: string, ids: readonly string[], params: BulkParams, actor: BulkActor): Promise<BulkApplyResult>;
   // Restores what `apply` changed, only where nothing changed it since.
-  undo?(db: Sql, schoolId: string, undo: unknown, params: BulkParams): Promise<{ restored: number; skipped: number }>;
+  undo?(db: Sql, schoolId: string, undo: unknown, params: BulkParams, actor: BulkActor): Promise<{ restored: number; skipped: number }>;
 };
 
 const PREVIEW_ROWS = 5;
@@ -95,7 +99,66 @@ const moveClass: BulkAction = {
   },
 };
 
-export const BULK_ACTIONS: readonly BulkAction[] = [moveClass];
+// "Link as siblings" (C116): the selected students become one family (the
+// one some of them are already in, or a new one). Refused, for all of them,
+// when they are already in different families. Undo puts each student back
+// in the family they were in, where nobody changed it since.
+const linkAsSiblings: BulkAction = {
+  def: {
+    actionId: 'students.link_siblings',
+    moduleId: 'students',
+    listId: 'students',
+    label: 'Link as siblings',
+    confirmTitle: 'Link these students as siblings',
+    confirmBody: '{count} students will be one family. You can undo this for 10 minutes.',
+    allowedRoles: ['principal', 'school_admin'],
+    destructive: false,
+    undoWindowSeconds: 600,
+    syncLimit: 20,
+    minRows: 2,
+    maxRows: 20,
+  },
+
+  async checkParams() {
+    return { ok: true, params: {} };
+  },
+
+  async preview(db, schoolId, ids) {
+    const { rows } = await db.query(
+      `select s.student_id, s.name, f.family_code from students s
+       left join families f on f.school_id = s.school_id and f.family_id = s.family_id
+       where s.school_id = $1 and s.student_id = any($2::uuid[]) order by lower(s.name), s.student_id`,
+      [schoolId, ids]
+    );
+    const codes = [...new Set(rows.map((r) => r.family_code).filter(Boolean))];
+    const joining = codes.length === 1 ? `family ${codes[0]}` : 'a new family';
+    return {
+      firstRows: rows.slice(0, PREVIEW_ROWS).map((r) => ({ id: r.student_id, label: r.name, change: r.family_code === codes[0] && codes.length === 1 ? `stays in ${codes[0]}` : `joins ${joining}` })),
+      warnings: codes.length > 1 ? [`These students are in ${codes.length} different families (${codes.join(', ')}). Move them one at a time from the student page.`] : [],
+    };
+  },
+
+  async apply(db, schoolId, ids, _params, actor) {
+    const r = await linkSiblings(db, { schoolId, userId: actor.userId, role: actor.role }, [...ids]);
+    if (!r.ok) return { done: 0, failures: ids.map((id) => ({ id, reason: r.error })), undo: null };
+    return { done: ids.length, failures: [], undo: { familyId: r.familyId, ids: r.changed.map((c) => c.studentId), from: r.changed.map((c) => c.from) } };
+  },
+
+  async undo(db, schoolId, undo) {
+    const u = undo as { familyId: string; ids: string[]; from: (string | null)[] } | null;
+    if (!u?.ids?.length) return { restored: 0, skipped: 0 };
+    const res = await db.query(
+      `update students s set family_id = u.from_family, updated_at = now()
+       from unnest($2::uuid[], $3::uuid[]) as u(id, from_family)
+       where s.school_id = $1 and s.student_id = u.id and s.family_id = $4`,
+      [schoolId, u.ids, u.from, u.familyId]
+    );
+    const restored = res.rowCount ?? 0;
+    return { restored, skipped: u.ids.length - restored };
+  },
+};
+
+export const BULK_ACTIONS: readonly BulkAction[] = [moveClass, linkAsSiblings];
 
 export function bulkAction(actionId: unknown): BulkAction | null {
   return BULK_ACTIONS.find((a) => a.def.actionId === actionId) ?? null;

@@ -37,6 +37,25 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
       },
     ],
   },
+  // Students (C116): the family number format. Changing it affects only
+  // families created afterwards; existing numbers never change.
+  {
+    moduleId: 'students',
+    version: 1,
+    fields: [
+      {
+        key: 'family_code_format',
+        label: 'Family number format',
+        help: 'How new family numbers look. Use {YYYY} or {YY} for the year and {SEQ:4} for a 4-digit counter.',
+        section: 'Numbering',
+        type: 'numbering',
+        default: 'FAM-{YYYY}-{SEQ:4}',
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+    ],
+  },
 ];
 
 export function settingsSchemaFor(moduleId: ModuleId): ModuleSettingsSchema | null {

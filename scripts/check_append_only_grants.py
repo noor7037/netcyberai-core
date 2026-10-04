@@ -67,7 +67,8 @@ MIGRATIONS_DIR = REPO_ROOT / "supabase" / "migrations"
 # supabase/migrations/20260922070000_fee_engine_restrictive_accounting_and_payments_append_only.sql,
 # the same shape as audit_log/consent_ledger/webhook_events.
 # `school_setting_changes` (P1-b, Decision Log C112): the settings history.
-APPEND_ONLY_TABLES = {"audit_log", "consent_ledger", "payments", "school_setting_changes", "sessions", "webhook_events"}
+# `guardian_merges` (Decision Log C116): the record of guardian merges.
+APPEND_ONLY_TABLES = {"audit_log", "consent_ledger", "guardian_merges", "payments", "school_setting_changes", "sessions", "webhook_events"}
 
 # "Non-privileged, app-facing": any role a real request -- ordinary or
 # this app's own super_admin bypass -- can run as, or any role

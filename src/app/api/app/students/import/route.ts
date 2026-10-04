@@ -19,8 +19,10 @@ export async function POST(req: NextRequest) {
 
   try {
     const buffer = Buffer.from(await file.arrayBuffer());
-    const result = await runCsvImport(guard.claims, buffer, file.name);
-    return NextResponse.json(result, { status: result.alreadyImported ? 200 : 201 });
+    // ?preview=1: check every row and suggest siblings, write nothing (C116).
+    const preview = req.nextUrl.searchParams.get('preview') === '1';
+    const result = await runCsvImport(guard.claims, buffer, file.name, { preview });
+    return NextResponse.json(result, { status: result.alreadyImported || preview ? 200 : 201 });
   } catch (err) {
     if (isUniqueViolation(err)) {
       // Lost a race against an identical concurrent upload -- the other

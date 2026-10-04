@@ -147,7 +147,11 @@ create table parent_student_map (
   school_id uuid not null references schools(school_id),
   parent_id uuid not null,
   student_id uuid not null,
-  primary key (school_id, parent_id, student_id)
+  verification_status text not null default 'not_required',
+  verification_method text,
+  updated_at timestamptz not null default now(),
+  primary key (parent_id, student_id),
+  foreign key (school_id, parent_id) references parents (school_id, parent_id)
 );
 create table teachers (
   teacher_id uuid primary key default gen_random_uuid(),
@@ -178,6 +182,24 @@ create policy teachers_tenant_isolation on teachers using (school_id = (current_
 create policy teacher_subjects_tenant_isolation on teacher_subjects using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 create policy consent_gate_students on students as restrictive for select
   using (status <> 'pending_consent' or current_setting('app.current_role', true) = any (array['teacher', 'principal', 'school_admin', 'super_admin']));
+
+-- PR-2c (C116): CSV import bookkeeping, for the import preview tests.
+create table csv_imports (
+  import_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  file_hash text not null,
+  file_name text not null,
+  imported_by uuid not null,
+  row_count int not null,
+  imported_count int not null,
+  skipped_count int not null,
+  errors jsonb not null default '[]'::jsonb,
+  created_at timestamptz not null default now()
+);
+create unique index idx_csv_imports_school_hash on csv_imports(school_id, file_hash);
+grant select, insert on csv_imports to app_user, nca_super;
+alter table csv_imports enable row level security;
+create policy csv_imports_tenant_isolation on csv_imports using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 -- The live parent scope on students (baseline RLS). It reads
 -- parent_student_map, so a parent_student_map policy that reads students
 -- would loop (C117); keeping it here makes the tests see that.

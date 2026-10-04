@@ -209,6 +209,14 @@ ALLOWED_PERMISSIVE = (
         # no update or delete grant (check_append_only_grants.py).
         ("school_setting_changes", "school_setting_changes_tenant_read"),
         ("school_setting_changes", "school_setting_changes_tenant_insert"),
+        # Sibling mapping (Decision Log C116): tenant isolation, narrowed by
+        # the RESTRICTIVE families_office_write / teacher_scope_families /
+        # school_sequences_office_write / guardian_merges_office_only.
+        # guardian_merges is append-only: tenant read and tenant insert.
+        ("school_sequences", "school_sequences_tenant_isolation"),
+        ("families", "families_tenant_isolation"),
+        ("guardian_merges", "guardian_merges_tenant_read"),
+        ("guardian_merges", "guardian_merges_tenant_insert"),
     }
 )
 
@@ -226,6 +234,9 @@ REQUIRED_RESTRICTIVE = {
     ("syllabus_progress", "teacher_scope_syllabus_progress"),
     ("students", "consent_gate_students"),
     ("custom_field_values", "custom_field_values_office_only"),
+    ("families", "teacher_scope_families"),
+    ("families", "families_office_write"),
+    ("guardian_merges", "guardian_merges_office_only"),
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)

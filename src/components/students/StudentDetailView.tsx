@@ -9,6 +9,9 @@ import { useToast } from '@/components/ui/Toast';
 import { DocumentCapture } from './DocumentCapture';
 import { ConsentPanel } from './ConsentPanel';
 import { DsrPanel } from './DsrPanel';
+import { FamilyPanel } from './FamilyPanel';
+import { SiblingSuggestions } from './SiblingSuggestions';
+import type { SiblingSuggestion } from '@/lib/contracts/families';
 
 type Student = {
   student_id: string;
@@ -35,7 +38,48 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
   const [editing, setEditing] = useState(false);
   const [guardians, setGuardians] = useState<Guardian[] | null>(null);
   const [addOpen, setAddOpen] = useState(false);
+  const [familyKey, setFamilyKey] = useState(0);
+  const [suggestions, setSuggestions] = useState<SiblingSuggestion[]>([]);
+  const [confirming, setConfirming] = useState<string | null>(null);
   const toast = useToast();
+
+  // Sibling suggestions (C116): when the phone or email typed for a new
+  // guardian matches a guardian already on record, offer to link to them
+  // instead of creating a duplicate. Nothing is linked until confirmed.
+  async function checkSiblings(form: HTMLFormElement | null) {
+    if (!form) return;
+    const data = new FormData(form);
+    const phone = String(data.get('phone') ?? '');
+    const email = String(data.get('email') ?? '');
+    if (phone.replace(/\D/g, '').length < 10 && !email.includes('@')) return setSuggestions([]);
+    const res = await fetch('/api/app/families/suggestions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone, email, excludeStudentId: student.student_id }),
+    }).catch(() => null);
+    const body = res && res.ok ? await res.json() : { suggestions: [] };
+    setSuggestions(body.suggestions ?? []);
+  }
+
+  async function confirmSibling(s: SiblingSuggestion) {
+    setConfirming(s.parentId);
+    const res = await fetch('/api/app/families/confirm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ studentId: student.student_id, parentId: s.parentId }),
+    });
+    setConfirming(null);
+    if (!res.ok) {
+      const { error } = await res.json().catch(() => ({ error: 'could not link' }));
+      return toast.show(error, 'danger');
+    }
+    const g = await fetch(`/api/app/students/${student.student_id}/guardians`).then((r) => r.json()).catch(() => ({ guardians: [] }));
+    setGuardians(g.guardians ?? []);
+    setSuggestions([]);
+    setAddOpen(false);
+    setFamilyKey((k) => k + 1);
+    toast.show(`Linked to ${s.guardianName} and their family`, 'success');
+  }
 
   useEffect(() => {
     fetch(`/api/app/students/${student.student_id}/guardians`)
@@ -91,6 +135,8 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
     }
     const { guardian } = await res.json();
     setGuardians((prev) => [...(prev ?? []), guardian]);
+    setFamilyKey((k) => k + 1);
+    setSuggestions([]);
     setAddOpen(false);
     toast.show('Guardian added', 'success');
   }
@@ -195,16 +241,25 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
       </section>
 
       <div className="mt-6 flex flex-col gap-6">
+        <FamilyPanel studentId={student.student_id} refreshKey={familyKey} />
         <ConsentPanel studentId={student.student_id} guardians={guardians ?? []} canManage={canEdit} />
         <DocumentCapture studentId={student.student_id} guardians={guardians ?? []} />
         <DsrPanel studentId={student.student_id} canManage={canEdit} />
       </div>
 
-      <Modal open={addOpen} onClose={() => setAddOpen(false)} title="Add guardian">
+      <Modal
+        open={addOpen}
+        onClose={() => {
+          setAddOpen(false);
+          setSuggestions([]);
+        }}
+        title="Add guardian"
+      >
         <form onSubmit={handleAddGuardian} className="flex flex-col gap-4">
           <Input id="g-name" name="name" label="Full name" required />
-          <Input id="g-phone" name="phone" label="Phone (WhatsApp)" required />
-          <Input id="g-email" name="email" label="Email" type="email" />
+          <Input id="g-phone" name="phone" label="Phone (WhatsApp)" required onBlur={(e) => checkSiblings(e.currentTarget.form)} />
+          <Input id="g-email" name="email" label="Email" type="email" onBlur={(e) => checkSiblings(e.currentTarget.form)} />
+          <SiblingSuggestions suggestions={suggestions} onConfirm={confirmSibling} busyParentId={confirming} />
           <Input id="g-relation" name="relation" label="Relation" placeholder="Father, Mother, Guardian…" />
           <button type="submit" className="min-h-[44px] rounded-md bg-sapphire px-4 text-sm font-semibold text-white">
             Save
