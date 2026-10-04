@@ -12,6 +12,9 @@ export default defineConfig({
     // stand-ins (C95); kept outside src/ so nothing there ships or reads as data.
     include: ['src/**/*.test.ts', 'test/**/*.test.ts'],
   },
+  // Components (.tsx) use the automatic JSX runtime, as Next.js does, so
+  // render tests can load them without importing React.
+  esbuild: { jsx: 'automatic' },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
