@@ -1,5 +1,5 @@
 import { getServerSession } from '@/lib/auth/server-session';
-import { StubPage } from '@/components/shell/StubPage';
+import { ModuleComingPage } from '@/components/app-shell/ModuleComingPage';
 import { StaffAccounts } from '@/components/account/StaffAccounts';
 import { StaffInvitations } from '@/components/account/StaffInvitations';
 
@@ -8,7 +8,7 @@ import { StaffInvitations } from '@/components/account/StaffInvitations';
 export default async function StaffPage() {
   const session = await getServerSession();
   if (session?.role !== 'principal' && session?.role !== 'school_admin') {
-    return <StubPage title="Staff" description="Staff records and teacher allocation for this school." />;
+    return <ModuleComingPage moduleId="staff" />;
   }
   return (
     <div className="flex flex-col gap-4 p-4 md:p-6">

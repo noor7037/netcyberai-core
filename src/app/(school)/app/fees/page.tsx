@@ -1,5 +1,6 @@
-import { StubPage } from '@/components/shell/StubPage';
+import { ModuleComingPage } from '@/components/app-shell/ModuleComingPage';
 
+// Not built yet: the module's Coming page from the registry (C121).
 export default function FeesPage() {
-  return <StubPage title="Fees" description="Fee structures, assignments, invoices, payments, receipts, concessions, and reconciliation." />;
+  return <ModuleComingPage moduleId="fees" />;
 }

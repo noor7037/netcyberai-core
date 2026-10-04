@@ -1,5 +1,6 @@
-import { StubPage } from '@/components/shell/StubPage';
+import { ModuleComingPage } from '@/components/app-shell/ModuleComingPage';
 
+// Not built yet: the module's Coming page from the registry (C121).
 export default function ExamsPage() {
-  return <StubPage title="Exams" description="Exam types, schedule, marks entry, verification, approval, grading, and report cards." />;
+  return <ModuleComingPage moduleId="exams" />;
 }

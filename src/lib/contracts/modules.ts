@@ -73,6 +73,10 @@ export type ModuleDefinition = {
   phaseNote?: string;
   status: ModuleStatus;
   capabilities: readonly string[];
+  // Phone bottom bar order (17 §4: the teacher shell keeps bottom
+  // navigation): modules with a priority appear there, lowest first, when
+  // the role may use them and the school has them (C121).
+  mobilePriority?: number;
   // The school-app route, reserved for every module. Modules without a
   // screen yet (status planned, foundation or spec-v0) are still linked:
   // the app shows a "coming in <phase>" page at that route,
@@ -91,7 +95,7 @@ const REPORTS: readonly SchoolRole[] = ['principal', 'school_admin', 'accountant
 type Row = Omit<ModuleDefinition, 'tone' | 'href'> & { href?: string };
 
 const ROWS: readonly Row[] = [
-  { id: 'dashboard', label: 'Dashboard', group: 'home', icon: 'principal', roles: ALL, phase: 'P4', phaseNote: 'Shell in P1', status: 'partial',
+  { id: 'dashboard', mobilePriority: 1, label: 'Dashboard', group: 'home', icon: 'principal', roles: ALL, phase: 'P4', phaseNote: 'Shell in P1', status: 'partial',
     capabilities: ['Role dashboards: principal, office, finance, academic, teacher', 'Every tile real and drill-down', 'Date range', 'Alerts feed', 'Export'] },
 
   { id: 'setup', label: 'Setup', group: 'school-people', icon: 'school', roles: OFFICE, phase: 'P6', phaseNote: 'Parts live', status: 'partial',
@@ -107,20 +111,20 @@ const ROWS: readonly Row[] = [
 
   { id: 'academics', label: 'Academics', group: 'teaching-learning', icon: 'academics', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P2', status: 'partial',
     capabilities: ['Syllabus map', '“Taught today”', 'Lesson plans', 'Coverage', 'Objectives met', 'Classwork logbook shared with parents the same evening'] },
-  { id: 'attendance', label: 'Attendance', group: 'teaching-learning', icon: 'attendance', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P2', status: 'live',
+  { id: 'attendance', mobilePriority: 2, label: 'Attendance', group: 'teaching-learning', icon: 'attendance', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P2', status: 'live',
     capabilities: ['Class marking', 'Present All', 'Late and leave codes', 'Staff attendance', 'Absence alerts', 'Trends', 'Chronic-absence signal', 'Import from sheet'] },
   { id: 'timetable', label: 'Timetable', group: 'teaching-learning', icon: 'operations', roles: TEACHING, phase: 'P6', phaseNote: 'View in P2', status: 'planned',
     capabilities: ['Periods', 'Generator with constraints', 'Teacher and class views', 'Clash guard', 'Workload', 'Change history'] },
   { id: 'proxy', label: 'Proxy Auto', group: 'teaching-learning', icon: 'link', roles: TEACHING, phase: 'P4', status: 'planned',
     capabilities: ['Leave-driven substitution suggestions by free period and subject fit', 'One-tap assign', 'Notify substitute'] },
-  { id: 'homework', label: 'Homework', group: 'teaching-learning', icon: 'homework', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P2', status: 'planned',
+  { id: 'homework', mobilePriority: 3, label: 'Homework', group: 'teaching-learning', icon: 'homework', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P2', status: 'planned',
     capabilities: ['Set with photo or attachment', 'Due dates', 'Completion by parent reply', 'Class completion stats', 'Copy to many sections', 'Online submission and evaluation'] },
   { id: 'recovery', label: 'Homework Recovery', group: 'teaching-learning', icon: 'homework', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P2', status: 'spec-v0',
     capabilities: ['Detect students missing homework repeatedly in a window', 'Suggest a catch-up plan', 'Teacher approves', 'Parent informed via Pulse'] },
   { id: 'exams', label: 'Exams & Report Card', group: 'teaching-learning', icon: 'exams', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P5', status: 'foundation',
     capabilities: ['Exam setup', 'Marks entry with validation', 'Bulk marks from Excel', 'Grading', 'Report card PDF', 'Holistic Progress Card', 'Admit cards', 'Publish', 'Personal Best and Most Improved'] },
 
-  { id: 'pulse', label: 'Daily Pulse', group: 'parent-engagement', icon: 'pulse', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P3', phaseNote: 'Compose in P2', status: 'foundation',
+  { id: 'pulse', mobilePriority: 4, label: 'Daily Pulse', group: 'parent-engagement', icon: 'pulse', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P3', phaseNote: 'Compose in P2', status: 'foundation',
     capabilities: ['Compose from “taught today”', 'Hinglish, Hindi and English', 'Send on WhatsApp', 'Understanding replies', 'Teacher follow-up queue', 'Response-rate North Star'] },
   { id: 'communication', label: 'Communication', group: 'parent-engagement', icon: 'chat', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P3', status: 'partial',
     capabilities: ['Notices for school and class', 'One notice to every channel', 'Templates', 'Send-gate: consent, quiet hours, budget', 'Delivery states', 'Failure retry', 'Cost view'] },

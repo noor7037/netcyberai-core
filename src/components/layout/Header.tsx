@@ -247,8 +247,9 @@ export function Header() {
   }, [menu]);
 
   // Found by Playwright verification in an earlier prompt: the marketing
-  // chrome doesn't belong above the internal /control and /app shells.
-  if (pathname.startsWith('/control') || pathname.startsWith('/app')) {
+  // chrome doesn't belong above the internal /control and /app shells
+  // (nor the development-only shell preview, C121).
+  if (pathname.startsWith('/control') || pathname.startsWith('/app') || pathname.startsWith('/design-system/shell')) {
     return null;
   }
 

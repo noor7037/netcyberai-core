@@ -22,6 +22,7 @@ export type NavItem = {
   // For a module not built yet: when it arrives (the page at `href` says so).
   phase: Phase;
   badge?: NavBadge;
+  mobilePriority?: number;
 };
 
 export type NavGroup = {
@@ -52,9 +53,20 @@ export function buildNavigation(
         icon: m.icon,
         status: m.status,
         phase: m.phase,
+        ...(m.mobilePriority ? { mobilePriority: m.mobilePriority } : {}),
         ...(badges[m.id] ? { badge: badges[m.id] } : {}),
       })),
     }))
     .filter((g) => g.items.length > 0);
   return { groups };
+}
+
+// The phone bottom bar (C121): the navigation's items that carry a mobile
+// priority, lowest first, at most `max`; everything else stays in the menu.
+export function bottomNavItems(nav: Navigation, max = 4): NavItem[] {
+  return nav.groups
+    .flatMap((g) => g.items)
+    .filter((i) => i.mobilePriority !== undefined)
+    .sort((a, b) => a.mobilePriority! - b.mobilePriority!)
+    .slice(0, max);
 }

@@ -21,8 +21,8 @@ export async function requireAppSession(
 }
 
 // Student/guardian/class master-data writes: gated to the two roles
-// officeNav actually surfaces these pages to (school_admin, principal --
-// see src/lib/nav/nav-items.ts). Every other staff role (teacher,
+// the Office menu surfaces these pages to (school_admin, principal --
+// see the module registry, src/lib/contracts/modules.ts). Every other staff role (teacher,
 // accountant, academic_coordinator) can still READ this data -- the
 // existing students_tenant_isolation/classes_tenant_isolation RLS
 // policies are blanket, whole-school, all-command policies with no

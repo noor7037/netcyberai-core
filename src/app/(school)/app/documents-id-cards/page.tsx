@@ -1,5 +1,6 @@
-import { StubPage } from '@/components/shell/StubPage';
+import { ModuleComingPage } from '@/components/app-shell/ModuleComingPage';
 
+// Not built yet: the module's Coming page from the registry (C121).
 export default function DocumentsIdCardsPage() {
-  return <StubPage title="Documents & ID Cards" description="Captured documents, OCR review, and QR ID card issuance/revocation." />;
+  return <ModuleComingPage moduleId="documents" />;
 }

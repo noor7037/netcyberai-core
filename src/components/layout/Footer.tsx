@@ -21,10 +21,10 @@ const COMPANY = [
 ];
 
 // Mirrors Header.tsx: the marketing chrome doesn't belong on the internal
-// /control or /app shells.
+// /control or /app shells (nor the development-only shell preview, C121).
 export function Footer() {
   const pathname = usePathname();
-  if (pathname.startsWith('/control') || pathname.startsWith('/app')) {
+  if (pathname.startsWith('/control') || pathname.startsWith('/app') || pathname.startsWith('/design-system/shell')) {
     return null;
   }
 

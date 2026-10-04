@@ -1,5 +1,6 @@
-import { StubPage } from '@/components/shell/StubPage';
+import { ModuleComingPage } from '@/components/app-shell/ModuleComingPage';
 
+// Not built yet: the module's Coming page from the registry (C121).
 export default function PulsePage() {
-  return <StubPage title="Pulse" description="Daily Learning Pulse dispatch status and parent open/response rates." />;
+  return <ModuleComingPage moduleId="pulse" />;
 }
