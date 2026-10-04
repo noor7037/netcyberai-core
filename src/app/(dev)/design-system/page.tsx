@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { AppCard, ChartCard, DataList, EmptyState, KpiTile, NoAccessState, PageHeader, Skeleton, StatusPill, TOKEN_TONES, type DataColumn, type StatusTone } from '@/components/app-ui';
+import { AppCard, ChartCard, ComingInPhase, DataList, EmptyState, KpiTile, NoAccessState, PageHeader, Skeleton, StatusPill, TOKEN_TONES, type DataColumn, type StatusTone } from '@/components/app-ui';
 import { MODULE_GROUPS } from '@/lib/contracts/modules';
 import { attendanceTrendFixture, classCoverageFixture, feeShareFixture, kpiTilesFixture, studentPageFixture } from '@/demo-fixture/contracts';
 import { FIXTURE_NOTICE } from '@/lib/contracts/fixture';
 import { GalleryInteractive } from './GalleryInteractive';
+import { GalleryLists } from './GalleryLists';
 
 // The app design system gallery (PR-3a, 17 §4): every app-ui piece in its
 // states, on illustrative fixtures from src/demo-fixture. Development
@@ -87,6 +88,10 @@ export default function DesignSystemGallery() {
             empty={{ title: 'No students yet', whatToDo: 'Add a student or import a CSV file.' }}
           />
         </AppCard>
+
+        <GalleryLists />
+
+        <ComingInPhase moduleId="ptm" />
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <AppCard title="Loading">
