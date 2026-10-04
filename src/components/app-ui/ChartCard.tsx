@@ -28,6 +28,8 @@ function Drawing({ chart }: { chart: ChartData }) {
     // Only dates where every series has a value; the rest are counted below.
     const full = dates.filter((t) => chart.series.every((s) => s.points.find((p) => p.t === t)?.v != null));
     const missing = dates.length - full.length;
+    // No date with every series present: the kit cannot draw it faithfully, so the table shows it.
+    if (full.length === 0) return <TableInstead chart={chart} reason="The series have no day in common yet, so they are shown as a table." />;
     const values = chart.series.flatMap((s) => s.points.map((p) => p.v).filter((v): v is number => v !== null));
     const max = chart.unit === 'percent' ? 100 : Math.max(1, ...values) * 1.1;
     return (
@@ -45,6 +47,8 @@ function Drawing({ chart }: { chart: ChartData }) {
     );
   }
   if (chart.kind === 'category') {
+    // The column kit draws one series; several are compared in the table rather than one shown alone.
+    if (chart.series.length !== 1) return <TableInstead chart={chart} reason="Several series are compared in the table." />;
     const s = chart.series[0];
     const data = chart.categories.map((label, i) => ({ label, value: s.values[i] })).filter((d): d is { label: string; value: number } => d.value !== null);
     const missing = chart.categories.length - data.length;
@@ -75,6 +79,15 @@ function Drawing({ chart }: { chart: ChartData }) {
         );
       })}
     </ul>
+  );
+}
+
+function TableInstead({ chart, reason }: { chart: ChartData; reason: string }) {
+  return (
+    <>
+      <p className="text-xs text-slate/70">{reason}</p>
+      <ChartTable chart={chart} />
+    </>
   );
 }
 

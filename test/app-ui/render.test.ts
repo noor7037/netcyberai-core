@@ -30,6 +30,27 @@ describe('app-ui renders', () => {
     expect(empty).not.toContain('>Table<');
   });
 
+  it('a chart the kit cannot draw faithfully is shown as its table, with the reason (code-review finding)', () => {
+    const disjoint = renderToStaticMarkup(
+      h(ChartCard, {
+        chart: {
+          kind: 'time_series', id: 'x', title: 'Two classes', unit: 'percent', granularity: 'day',
+          series: [
+            { id: 'a', label: 'Class 6', points: [{ t: '2026-09-21', v: 90 }, { t: '2026-09-22', v: null }] },
+            { id: 'b', label: 'Class 8', points: [{ t: '2026-09-21', v: null }, { t: '2026-09-22', v: 80 }] },
+          ],
+        },
+      })
+    );
+    expect(disjoint).toContain('no day in common');
+    expect(disjoint).toContain('<table');
+    const multi = renderToStaticMarkup(
+      h(ChartCard, { chart: { ...classCoverageFixture.data, series: [...classCoverageFixture.data.series, { id: 'planned', label: 'Planned', values: [60, 60, 60] }] } })
+    );
+    expect(multi).toContain('Several series are compared in the table.');
+    expect(multi).toContain('Planned');
+  });
+
   it('a list renders a table for wide screens and cards for phones, with 44 px row links', () => {
     const html = renderToStaticMarkup(
       h(DataList<(typeof studentPageFixture.data.rows)[number]>, {
