@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { decodeListQuery, encodeListQuery, isFilterGroup, LIST_QUERY_PARAM, OPERATORS_BY_TYPE, type FilterCondition, type FilterField, type ListDefinition, type ListQuery } from '@/lib/contracts/filters';
 import { addCondition, clearFilters, describe, quickValues, removeAt, setBooleanQuick, setCombinator, setQuickFilter, setSearch, type Options } from './list-query';
 
@@ -123,10 +123,14 @@ function AddCondition({ fields, onAdd, options }: { fields: readonly FilterField
 export function FilterBar({ definition, query, onChange, options = {}, trailing }: { definition: ListDefinition; query: ListQuery; onChange: (q: ListQuery) => void; options?: Options; trailing?: ReactNode }) {
   const [more, setMore] = useState(false);
   const [text, setText] = useState(query.search ?? '');
+  // The latest query, so a search typed while a filter changes applies to
+  // the new query, not the one from when typing started (a /code-review finding).
+  const latest = useRef(query);
+  latest.current = query;
   useEffect(() => setText(query.search ?? ''), [query.search]);
   useEffect(() => {
-    if (text === (query.search ?? '')) return;
-    const t = setTimeout(() => onChange(setSearch(query, text)), 300);
+    if (text === (latest.current.search ?? '')) return;
+    const t = setTimeout(() => onChange(setSearch(latest.current, text)), 300);
     return () => clearTimeout(t);
   }, [text]); // eslint-disable-line react-hooks/exhaustive-deps
 

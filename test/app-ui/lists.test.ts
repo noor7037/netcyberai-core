@@ -73,6 +73,33 @@ describe('selection and the bulk bar', () => {
     expect(list(new Set(), true)).toContain('All 48 matching rows are selected.');
   });
 
+  it('a row checkbox is labelled in words even when the primary column renders an element (code-review finding)', () => {
+    const html = renderToStaticMarkup(
+      h(DataList<(typeof rows)[number]>, {
+        caption: 'Students',
+        columns: [{ key: 'n', header: 'Name', primary: true, render: (r) => h('strong', null, r.displayName) }],
+        rows,
+        rowKey: (r) => r.studentId,
+        empty: { title: 'x', whatToDo: 'y' },
+        selection: { selected: new Set<string>(), onChange: noop, allMatching: false, onAllMatching: noop, total: 2 },
+      })
+    );
+    expect(html).not.toContain('[object Object]');
+    expect(html).toContain('aria-label="Select row 1"');
+    const named = renderToStaticMarkup(
+      h(DataList<(typeof rows)[number]>, {
+        caption: 'Students',
+        columns: [{ key: 'n', header: 'Name', primary: true, render: (r) => h('strong', null, r.displayName) }],
+        rows,
+        rowKey: (r) => r.studentId,
+        rowLabel: (r) => r.displayName,
+        empty: { title: 'x', whatToDo: 'y' },
+        selection: { selected: new Set<string>(), onChange: noop, allMatching: false, onAllMatching: noop, total: 2 },
+      })
+    );
+    expect(named).toContain('aria-label="Select Diya Example"');
+  });
+
   it('shows only the actions this role may run, then the preview, then progress with Undo', () => {
     const bar = (role: 'principal' | 'teacher', extra = {}) =>
       renderToStaticMarkup(h(BulkBar, { actions: [bulkActionFixture.data], role, count: 2, selection: { mode: 'ids', ids: ['a', 'b'] }, onClear: noop, ...extra }));

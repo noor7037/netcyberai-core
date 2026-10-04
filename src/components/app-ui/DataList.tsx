@@ -39,6 +39,7 @@ export function DataList<Row>({
   onRetry,
   empty,
   selection,
+  rowLabel,
 }: {
   caption: string;
   columns: readonly DataColumn<Row>[];
@@ -50,6 +51,9 @@ export function DataList<Row>({
   onRetry?: () => void;
   empty: { title: string; whatToDo: string; action?: ReactNode };
   selection?: ListSelection;
+  // What a screen reader says for a row's checkbox; defaults to the primary
+  // column when it renders plain text.
+  rowLabel?: (row: Row) => string;
 }) {
   if (error) return <ErrorState message={error} onRetry={onRetry} />;
   if (loading || rows === null) return <Skeleton lines={5} />;
@@ -87,7 +91,11 @@ export function DataList<Row>({
       toggle(id);
     }
   };
-  const label = (row: Row) => String(primary.render(row) ?? '');
+  const label = (row: Row) => {
+    if (rowLabel) return rowLabel(row);
+    const r = primary.render(row);
+    return typeof r === 'string' || typeof r === 'number' ? String(r) : `row ${rows.indexOf(row) + 1}`;
+  };
 
   return (
     // Handlers only with selection: without it this renders from server
