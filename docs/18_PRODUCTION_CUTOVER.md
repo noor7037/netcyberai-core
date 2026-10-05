@@ -47,7 +47,8 @@ Do these any time; none of them changes the live site.
 **B. Supabase, prod project → SQL Editor:** give `app_backend` a password.
 In your own terminal: `openssl rand -hex 32`. Then in the prod SQL editor:
 `alter role app_backend with password '<that value>';`. Keep it in your
-password manager.
+password manager. Run this on the **prod** project only, never on the dev
+project (§2 D).
 
 **C. Collect from Supabase, prod project → Project Settings:**
 - Project URL and the anon (publishable) key (API).
@@ -57,12 +58,16 @@ password manager.
   (replace `postgres.` with `app_backend.`) and its password is the one from B.
   That string is the new `DATABASE_URL`.
 
-**D. For rollback, before changing anything:** save the **current**
-(dev) values of `DATABASE_URL`, `NEXT_PUBLIC_SUPABASE_URL`,
-`NEXT_PUBLIC_SUPABASE_ANON_KEY` and `SUPABASE_SERVICE_ROLE_KEY` in your
-password manager. Vercel cannot show "sensitive" values again. If you do not
-have the dev `DATABASE_URL`, set a new dev `app_backend` password the same
-way as B (on the dev project) and build it the same way as C.
+**D. Rollback needs no saved values. Do not change anything on the dev
+project.** §3 step 3 never deletes or overwrites a shared entry: for
+`DATABASE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+and `APP_SESSION_SECRET` the existing entry stays exactly as it is, with
+**Production** only unticked, so rolling back is re-ticking it (§4). The one
+entry that is edited, `SUPABASE_SERVICE_ROLE_KEY`, can be copied again at any
+time from Supabase → the dev project → Project Settings → API.
+**Never set a new `app_backend` password on the dev project:** the live site
+signs in to the database with the current one, so changing it takes the live
+site down at once (C122).
 
 **E. A new session secret for Production only:** `openssl rand -hex 32`.
 Today `APP_SESSION_SECRET` is one value shared by Production, Preview and
@@ -83,14 +88,16 @@ stays up throughout.
    dev to prod; counts compared and reported (numbers only).
 3. **Noor, Vercel → netcyberai-core → Settings → Environment Variables:**
    the current entries are shared by several environments, so **split, do
-   not overwrite:**
+   not overwrite, and never delete an existing entry** (rollback is
+   re-ticking it, §4):
    - `DATABASE_URL`: edit the existing entry and untick **Production** (it
      stays for Preview and Development: the test database). Add a new entry,
      **Production** only, with the value from §2 C.
    - `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`: the same
      (existing entry keeps Preview; new Production-only entry with prod values).
    - `SUPABASE_SERVICE_ROLE_KEY` (Production only today): edit it to the prod
-     service_role key.
+     service_role key. This is the only value that is replaced; the dev one
+     stays available in the Supabase dashboard (§2 D).
    - `APP_SESSION_SECRET`: untick Production on the existing entry; add a
      Production-only entry with the value from §2 E.
    Then Deployments → the latest Production deployment → **Redeploy** (the
@@ -114,11 +121,19 @@ stays up throughout.
 
 ## 4. Rollback (any time, fastest first)
 
-1. **Noor, Vercel:** set the Production values of the four variables from
-   §2 D back (and `APP_SESSION_SECRET`: remove the Production-only entry and
-   re-tick Production on the shared one); Redeploy. The old database was
-   never changed by the cutover except losing its two runner secrets, and
-   your old account and authenticator still work there.
+1. **Noor, Vercel → Environment Variables** (no saved values needed):
+   - `DATABASE_URL`, `NEXT_PUBLIC_SUPABASE_URL`,
+     `NEXT_PUBLIC_SUPABASE_ANON_KEY` and `APP_SESSION_SECRET`: delete the
+     **Production-only** entry added in §3 step 3, then edit the original
+     entry and tick **Production** again (in that order: one key cannot have
+     two entries for the same environment).
+   - `SUPABASE_SERVICE_ROLE_KEY`: edit it back to the dev project's
+     service_role key, copied from Supabase → the dev project → Project
+     Settings → API.
+   Then Redeploy. The old database was never changed by the cutover except
+   losing its two runner secrets (step 2 puts them back), its `app_backend`
+   password is untouched, and your old account and authenticator still work
+   there.
 2. **Claude:** re-create the runner secrets in the test database, delete
    prod's; list anything created on prod during the window (leads,
    applications, users: counts first, then rows copied back on your "yes").
