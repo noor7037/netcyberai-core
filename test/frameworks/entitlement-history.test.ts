@@ -6,7 +6,8 @@ import { changeModuleEntitlement, changeSchoolAccess, entitlementHistory } from 
 import { applyPlan, DEFAULT_PLAN_ID, planById } from '@/lib/frameworks/plans';
 
 // Control's entitlement history (C123) is the audit log's own rows: every
-// change writes one, and the founder reads them back with name and reason.
+// change writes one, and the founder reads them back with name and reason
+// (the reason from the founder-only table, C124).
 
 let db: TestDb;
 const A = randomUUID();
@@ -43,9 +44,10 @@ describe('entitlement history', () => {
     expect(h.every((e) => !Number.isNaN(Date.parse(e.at)))).toBe(true);
   });
 
-  it('is the founder’s to read: a school role cannot read another school’s, and sees only its own audit rows', async () => {
+  it('is the founder’s to read: a school role cannot read it, for its own school or another (C124)', async () => {
     const principal = { role: 'principal' as any, sub: randomUUID(), schoolId: B };
-    expect((await db.tenant(principal, (q) => entitlementHistory(q, A))).length).toBe(0);
-    expect((await db.tenant(principal, (q) => entitlementHistory(q, B))).map((e) => e.reason)).toEqual(['other school']);
+    const denied = /permission denied for table entitlement_change_reasons/;
+    await expect(db.tenant(principal, (q) => entitlementHistory(q, A))).rejects.toThrow(denied);
+    await expect(db.tenant(principal, (q) => entitlementHistory(q, B))).rejects.toThrow(denied);
   });
 });

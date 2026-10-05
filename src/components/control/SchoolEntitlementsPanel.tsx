@@ -60,7 +60,7 @@ const validReason = (r: string) => r.trim().length >= 3 && r.trim().length <= 50
 function Reason({ value, onChange, id }: { value: string; onChange: (v: string) => void; id: string }) {
   return (
     <label htmlFor={id} className="text-sm font-semibold text-slate">
-      Reason (kept in the audit log)
+      Reason (only you can read it; the school never sees it)
       <input id={id} value={value} onChange={(e) => onChange(e.target.value)} maxLength={500} required className={field} />
     </label>
   );

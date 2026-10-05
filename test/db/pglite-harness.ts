@@ -22,9 +22,8 @@ export const B2_MIGRATIONS = [
   '20260930225515_p1b_siblings.sql',
   '20260930225739_fix_student_guardian_policy_recursion.sql',
   '20260930230548_p1b_family_writes_office_only.sql',
-].map((f) =>
-  readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8')
-);
+  '20261005120000_c124_founder_reasons.sql',
+].map((f) => ({ file: f, sql: readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8') }));
 const NIL_UUID = '00000000-0000-0000-0000-000000000000';
 
 type QueryResult = { rows: any[]; rowCount: number };
@@ -37,10 +36,16 @@ export type TestDb = {
   asRole<T>(role: 'app_user' | 'app_backend' | 'anon' | 'authenticated', gucs: { tenant?: string; role?: string; user?: string }, fn: (db: Sql) => Promise<T>): Promise<T>;
 };
 
-export async function createTestDb(): Promise<TestDb> {
+// `before`: SQL run as the owner just before the migration whose file name
+// contains `migration`, for tests of what a migration does to rows that
+// were already there.
+export async function createTestDb(opts: { before?: { migration: string; sql: string } } = {}): Promise<TestDb> {
   const pg = new PGlite({ extensions: { pgcrypto, pg_trgm } });
   await pg.exec(readFileSync(path.join(__dirname, 'base-schema.sql'), 'utf8'));
-  for (const sql of B2_MIGRATIONS) await pg.exec(sql);
+  for (const m of B2_MIGRATIONS) {
+    if (opts.before && m.file.includes(opts.before.migration)) await pg.exec(opts.before.sql);
+    await pg.exec(m.sql);
+  }
 
   let chain: Promise<unknown> = Promise.resolve();
   const serial = <T>(fn: () => Promise<T>): Promise<T> => {

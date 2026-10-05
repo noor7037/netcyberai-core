@@ -217,6 +217,10 @@ ALLOWED_PERMISSIVE = (
         ("families", "families_tenant_isolation"),
         ("guardian_merges", "guardian_merges_tenant_read"),
         ("guardian_merges", "guardian_merges_tenant_insert"),
+        # Founder reasons (Decision Log C124): scoped `to nca_super`; every
+        # other role holds no grant on the table at all.
+        ("entitlement_change_reasons", "entitlement_change_reasons_platform_read"),
+        ("entitlement_change_reasons", "entitlement_change_reasons_platform_insert"),
     }
 )
 
@@ -237,6 +241,9 @@ REQUIRED_RESTRICTIVE = {
     ("families", "teacher_scope_families"),
     ("families", "families_office_write"),
     ("guardian_merges", "guardian_merges_office_only"),
+    # C124: hides the older 'entitlement.%' audit rows that carry the
+    # founder's reason from every role subject to row level security.
+    ("audit_log", "audit_founder_reason_hidden"),
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)

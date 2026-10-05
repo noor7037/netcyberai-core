@@ -68,7 +68,8 @@ MIGRATIONS_DIR = REPO_ROOT / "supabase" / "migrations"
 # the same shape as audit_log/consent_ledger/webhook_events.
 # `school_setting_changes` (P1-b, Decision Log C112): the settings history.
 # `guardian_merges` (Decision Log C116): the record of guardian merges.
-APPEND_ONLY_TABLES = {"audit_log", "consent_ledger", "guardian_merges", "payments", "school_setting_changes", "sessions", "webhook_events"}
+# `entitlement_change_reasons` (Decision Log C124): the founder's reasons.
+APPEND_ONLY_TABLES = {"audit_log", "consent_ledger", "entitlement_change_reasons", "guardian_merges", "payments", "school_setting_changes", "sessions", "webhook_events"}
 
 # "Non-privileged, app-facing": any role a real request -- ordinary or
 # this app's own super_admin bypass -- can run as, or any role
@@ -186,14 +187,15 @@ def self_test() -> int:
     import tempfile
 
     tmp = Path(tempfile.mkdtemp())
+    # Every append-only table, so the fixtures keep up with the list above.
+    all_tables = ", ".join(sorted(APPEND_ONLY_TABLES))
     try:
         # Fully clean fixture: every watched table/role pair explicitly
         # revoked, mirroring the shape this repo's real migrations use.
         clean_dir = tmp / "clean"
         clean_dir.mkdir()
         (clean_dir / "0001_baseline.sql").write_text(
-            "revoke update, delete on audit_log, consent_ledger, payments, sessions, webhook_events "
-            "from app_user, anon, authenticated, nca_super;\n"
+            f"revoke update, delete on {all_tables} from app_user, anon, authenticated, nca_super;\n"
         )
         if find_violations(clean_dir):
             print("SELF-TEST FAILED: a fully-revoked fixture was still flagged")
@@ -221,8 +223,7 @@ def self_test() -> int:
         dirty_dir = tmp / "dirty"
         dirty_dir.mkdir()
         (dirty_dir / "0001_baseline.sql").write_text(
-            "revoke update, delete on audit_log, consent_ledger, payments, sessions, webhook_events "
-            "from app_user, anon, authenticated, nca_super;\n"
+            f"revoke update, delete on {all_tables} from app_user, anon, authenticated, nca_super;\n"
         )
         (dirty_dir / "0002_drift.sql").write_text("grant update on webhook_events to app_user;\n")
         dirty_violations = find_violations(dirty_dir)
@@ -243,8 +244,7 @@ def self_test() -> int:
         blanket_dir = tmp / "blanket"
         blanket_dir.mkdir()
         (blanket_dir / "0001_baseline.sql").write_text(
-            "revoke update, delete on audit_log, consent_ledger, payments, sessions, webhook_events "
-            "from app_user, anon, authenticated, nca_super;\n"
+            f"revoke update, delete on {all_tables} from app_user, anon, authenticated, nca_super;\n"
         )
         (blanket_dir / "0002_blanket.sql").write_text(
             "grant select, insert, update, delete on all tables in schema public to app_user;\n"

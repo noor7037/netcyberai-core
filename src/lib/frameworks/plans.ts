@@ -1,4 +1,4 @@
-import { writeAuditLog } from '@/lib/audit/log';
+import { writeEntitlementAudit } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { MODULE_REGISTRY, type ModuleId } from '@/lib/contracts/modules';
 import type { Sql } from '@/lib/jobs/types';
@@ -58,14 +58,14 @@ export async function applyPlan(
     [schoolId, plan.modules]
   );
   const modules = rows.map((r) => r.module_id as ModuleId).sort();
-  await writeAuditLog(db, {
+  await writeEntitlementAudit(db, {
     schoolId,
     actorUserId: actor.userId,
     actorRole: actor.role,
     eventAction: 'entitlement.plan_applied',
     targetType: 'school_entitlements',
     targetId: schoolId,
-    afterState: { plan: plan.planId, modules, reason },
-  });
+    afterState: { plan: plan.planId, modules },
+  }, reason);
   return { ok: true, modules };
 }
