@@ -57,11 +57,13 @@ on conflict (audit_id) do nothing;
 -- It covers the older rows and any row a deployment from before C124 still
 -- writes (so this migration is safe to apply before or after the code, and
 -- across a rollback): such a row is hidden, never refused.
+-- Matched as text, in any letter case and at any depth: a row that mentions
+-- a reason anywhere is hidden. Hiding one row too many is the safe mistake.
 create policy audit_founder_reason_hidden on audit_log as restrictive for select
   using (
     not (
-      event_action like 'entitlement.%'
-      and (coalesce(after_state ? 'reason', false) or coalesce(before_state ? 'reason', false))
+      event_action ilike 'entitlement.%'
+      and (coalesce(after_state::text ilike '%reason%', false) or coalesce(before_state::text ilike '%reason%', false))
     )
   );
 
@@ -95,3 +97,15 @@ $$;
 -- A trigger function is never called directly; the trigger still fires for
 -- every role (EXECUTE is checked when a trigger is created, not when it fires).
 revoke execute on function audit_hash_chain() from public, anon, authenticated, service_role;
+
+-- audit_log has FORCE ROW LEVEL SECURITY, so "as the table owner" sees every
+-- row only if that owner bypasses row level security. Stop here if not.
+do $$
+begin
+  if not exists (
+    select 1 from pg_proc p join pg_roles r on r.oid = p.proowner
+    where p.oid = 'public.audit_hash_chain()'::regprocedure and (r.rolbypassrls or r.rolsuper)
+  ) then
+    raise exception 'audit_hash_chain() must be owned by a role that bypasses row level security';
+  end if;
+end $$;

@@ -111,8 +111,18 @@ describe('founder reasons are founder-only (C124)', () => {
       const { rows } = await db.tenant(as(role, B), (q) => q.query(`select before_state, after_state from audit_log`));
       expect(JSON.stringify(rows)).not.toMatch(/written the old way|in before_state/);
     }
+    // Nested, in a list, or in another letter case: hidden all the same.
+    await db.platform((q) => writeAuditLog(q, { ...entry, afterState: { meta: { Reason: 'nested why' } } }));
+    await db.platform((q) => writeAuditLog(q, { ...entry, eventAction: 'Entitlement.Module_Changed', afterState: [{ REASON: 'listed why' }] }));
+    // anon and authenticated hold SELECT on audit_log on the live database.
+    await db.query(`grant select on audit_log to anon, authenticated`);
+    const readers = [...SCHOOL_ROLES.map((role) => ['app_user', role] as const), ['anon', 'principal'] as const, ['authenticated', 'super_admin'] as const];
+    for (const [dbRole, role] of readers) {
+      const { rows } = await db.asRole(dbRole, { tenant: B, role, user: staff }, (q) => q.query(`select before_state, after_state from audit_log`));
+      expect(JSON.stringify(rows)).not.toMatch(/written the old way|in before_state|nested why|listed why/);
+    }
     const h = await db.platform((q) => entitlementHistory(q, B));
-    expect(h.map((e) => e.reason)).toEqual([null, 'written the old way', 'other school']);
+    expect(h.map((e) => e.reason)).toEqual([null, null, 'written the old way', 'other school']);
   });
 
   it('both tables stay append-only, for the founder too', async () => {
