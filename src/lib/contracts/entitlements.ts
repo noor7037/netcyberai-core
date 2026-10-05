@@ -3,7 +3,7 @@ import type { ModuleId } from './modules';
 // Per-school entitlements (Decision Log C110; built in P1-b). A school's
 // plan switches modules on, the founder can override any module in Control,
 // and a module can carry numeric limits (storage, messages, staff seats).
-// Plan names and prices are the founder's decision (16 §4, P4), so a plan
+// Plan names and prices are the founder's decision (16 §4, P5), so a plan
 // is just an id here.
 
 export type PlanId = string;
@@ -80,7 +80,7 @@ export type EntitlementHistoryEntry = {
   reason: string | null;
 };
 
-// A plan the founder can apply to a school (names are technical until P4).
+// A plan the founder can apply to a school (names are technical until P5).
 export type PlanSummary = { planId: string; label: string; moduleIds: readonly ModuleId[] };
 
 const ACCESS_WORDS: Record<AccessMode, string> = { full: 'Full access', grace: 'Grace period', read_only: 'Read only', suspended: 'Suspended' };

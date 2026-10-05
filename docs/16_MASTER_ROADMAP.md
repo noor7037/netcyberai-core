@@ -56,17 +56,17 @@ Pro, or migrate) are taken after the build and before the first school.
    test-first: `apply_migration` on the test database, checks there, then prod,
    then the catalog snapshot on both. Runbook: `18_PRODUCTION_CUTOVER.md`.
 
-## 4. Phases (order fixed by the founder, 2026-09-30)
+## 4. Phases (order fixed by the founder, 2026-09-30; Fees moved before Exams, 2026-10-05, C102)
 
 | # | Phase | Scope (modules from `17`) | Founder inputs | Done when |
 |---|---|---|---|---|
 | **P1** | Platform foundations | Live site on its own production DB (cutover); observability (errors, logs, uptime); module registry + per-school entitlements; **settings, onboarding templates, custom fields, filters + saved views, bulk actions frameworks (`17` §1a)**; Student 360 search; app navigation (8 groups, `17` §2); app design system (`17` §4); i18n EN/HI; file storage; audit-log viewer; API rate limiter; Help Center; Raise Ticket | Sentry DSN; uptime alert contact | Every later module plugs into registry, nav, entitlements, i18n and design system without new plumbing |
 | **P2** | Teacher app (PWA) | Attendance, Homework, Academics ("taught today", lesson plan), Timetable (view), Daily Pulse compose, Homework Recovery v1, Teacher Copilot v1 | `ANTHROPIC_API_KEY` for Copilot | A teacher runs a full school day on a phone, offline-tolerant |
-| **P3** | WhatsApp live + parent loop | Communication, Daily Pulse send + replies, Parents, PTM Scheduler, Events, Complaints, Parent AI v1, delivery states | Meta Business verification, WABA number, approved templates | Parents receive, reply, and every message state is visible to the school |
-| **P4** | Principal + Control on real data | Dashboard (principal, real), Reports, Staff (leave), Proxy Auto, School Health Auditor, Early Warning v1, Control: billing plans, messaging cost, monitoring | Plan names and ₹ prices | Principal dashboard shows only real data, every tile drills down |
-| **P5** | Exams + learning intelligence | Exams & Report Card, Personal Best / Most Improved, Curriculum Gap Detector, Learning Genome, Early Warning v2 | Grading schemes used by target boards | Report cards published; growth and gaps computed from real marks |
-| **P6** | School operations + advanced AI | Setup (complete), Admissions pipeline, Timetable generator, Documents & Certificates, Compliance Pro · APAAR, Payroll, Career Graph, Digital Twin, Automation OS | Payroll rules (salary heads, statutory); APAAR access | All website modules exist; AI modules run on real data with human approval |
-| **P7** | Fees and payments | Fees (heads, structures, concessions, ledger), Razorpay, receipts, WhatsApp reminders, clearance gate for certificates | Razorpay KYC + keys; real concession types | Payment → ledger → receipt → reminder loop reconciles to the rupee |
+| **P3** | Fees and payments | Fees (heads, structures, concessions incl. the sibling concession, ledger, combined family dues with one payment link per family), Razorpay, receipts, reminders by email with a payment link (WhatsApp reminders switch on in P4), clearance gate for certificates | Razorpay KYC + keys; real concession types | Payment → ledger → receipt → reminder loop reconciles to the rupee |
+| **P4** | WhatsApp live + parent loop | Communication, Daily Pulse send + replies, Parents, PTM Scheduler, Events, Complaints, Parent AI v1, delivery states | Meta Business verification, WABA number, approved templates | Parents receive, reply, and every message state is visible to the school |
+| **P5** | Principal + Control on real data | Dashboard (principal, real), Reports, Staff (leave), Proxy Auto, School Health Auditor, Early Warning v1, Control: billing plans, messaging cost, monitoring | Plan names and ₹ prices | Principal dashboard shows only real data, every tile drills down |
+| **P6** | Exams + learning intelligence | Exams & Report Card, Personal Best / Most Improved, Curriculum Gap Detector, Learning Genome, Early Warning v2 | Grading schemes used by target boards | Report cards published; growth and gaps computed from real marks |
+| **P7** | School operations + advanced AI | Setup (complete), Admissions pipeline, Timetable generator, Documents & Certificates, Compliance Pro · APAAR, Payroll, Career Graph, Digital Twin, Automation OS | Payroll rules (salary heads, statutory); APAAR access | All website modules exist; AI modules run on real data with human approval |
 | **P7b** | Family App (parent + student, PWA) | Family App group in `17` §3a: dues + Pay Now, attendance calendar, reports, receipts, notices, PTM booking, homework submit, study material, online exams | Store listing decision (PWA first) | A parent handles fees, homework and notices without calling the school |
 | **P8** | Launch hardening | Backup-restore drill, load test, security audit, legal sign-off, hosting / plan decision and migration if chosen, first school onboarding runbook | Lawyer; hosting decision | Signed launch checklist (`13_LAUNCH_CHECKLIST.md`) |
 
@@ -83,14 +83,20 @@ numbers: supervisor C100–C109, Claude Code from C110.
 
 ## 5. Founder long-lead actions (start now)
 
-1. Meta Business verification + WhatsApp number (blocks P3).
-2. Razorpay account + KYC (blocks P7).
+1. Meta Business verification + WhatsApp number (blocks P4; Fees in P3 sends reminders by email until then).
+2. Razorpay account + KYC (blocks P3: now the first founder input needed after P2).
 3. Lawyer: privacy, terms, DPDP children's-data consent (blocks P8).
 4. One design-partner school reviewing screens weekly (improves every phase).
 5. Pending: `RESEND_API_KEY` in Vercel; delete `DIAG_*` / `PROMPT_E_DIAG_TOKEN` env vars.
 
 ## 6. Change log
 
+- **2026-10-05** — C102 (founder): Fees moves before Exams. New order: P1
+  foundations, P2 Teacher app, P3 Fees and payments, P4 WhatsApp + parent
+  loop, P5 Principal + Control on real data, P6 Exams + learning
+  intelligence, P7 School operations + advanced AI, P7b Family App (after
+  Fees, unchanged), P8 Launch. Older entries below keep the numbers of their
+  day. C124: founder reasons are founder-only. Cutover still not executed.
 - **2026-10-01** — C116 (PR-2c): sibling mapping; C117 hotfix (students and
   guardian policy loop). Cutover still not executed.
 - **2026-09-30** — C112/C113 (PR-2a, PR-2b): P1-b frameworks built as APIs;

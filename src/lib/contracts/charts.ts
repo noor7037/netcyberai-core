@@ -14,7 +14,7 @@ export type KpiTile = {
   value: number | null;
   unit: ValueUnit;
   trend?: Trend;
-  drillHref?: string; // every principal tile drills down (16 §4, P4)
+  drillHref?: string; // every principal tile drills down (16 §4, P5)
 };
 
 export type TimeSeriesChart = {
