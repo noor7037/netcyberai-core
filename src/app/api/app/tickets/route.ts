@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { jsonError, readJson } from '@/lib/frameworks/route';
 import { respond, schoolTickets } from '@/lib/support/ticket-routes';
 import { createTicket, listTickets } from '@/lib/support/tickets';
@@ -7,7 +7,7 @@ import { createTicket, listTickets } from '@/lib/support/tickets';
 // every ticket of the school; anyone else: their own). POST { subject,
 // body, category, moduleId? } raises one.
 export async function GET(req: NextRequest) {
-  return schoolTickets(req, async ({ db }) => NextResponse.json({ tickets: await listTickets(db, { status: req.nextUrl.searchParams.get('status') }) }));
+  return schoolTickets(req, async ({ db }) => respond(await listTickets(db, { status: req.nextUrl.searchParams.get('status') }), 'tickets'));
 }
 
 export async function POST(req: NextRequest) {

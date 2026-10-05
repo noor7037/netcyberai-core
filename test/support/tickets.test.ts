@@ -1,9 +1,13 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { randomUUID } from 'crypto';
 import { createTestDb, type TestDb } from '../db/pglite-harness';
-import { canReply, canTransition, nextStatuses, ticketRef, TICKET_STATUSES, type TicketStatus } from '@/lib/contracts/tickets';
+import { NextRequest } from 'next/server';
+import { canReply, canTransition, nextStatuses, schoolMayMove, ticketRef, TICKET_STATUSES, type TicketStatus } from '@/lib/contracts/tickets';
 import { MemoryFileStorage, sniffImageType } from '@/lib/storage/file-storage';
+import { tooLarge } from '@/lib/support/ticket-routes';
 import { addTicketMessage, addTicketScreenshot, changeTicketStatus, createTicket, getTicket, listTickets, ticketScreenshotUrl, type TicketActor } from '@/lib/support/tickets';
+import { POST as uploadRoute } from '@/app/api/app/tickets/[ticketId]/attachments/route';
+import { GET as queueRoute } from '@/app/api/control/tickets/route';
 
 // Raise Ticket (C126) on real Postgres (PGlite): the status machine, who
 // sees which ticket, the audit trail and screenshots. School-side calls run
@@ -31,6 +35,12 @@ const raise = async (c = teacher, input: Record<string, unknown> = NEW) => {
 const move = (id: string, to: string, by: 'platform' | typeof teacher = 'platform') =>
   by === 'platform' ? db.platform((q) => changeTicketStatus(q, id, to, platform)) : db.tenant(by, (q) => changeTicketStatus(q, id, to, school(by.role, by.sub)));
 const statusOf = async (id: string) => (await db.query(`select status from support_tickets where ticket_id = $1`, [id])).rows[0].status as TicketStatus;
+const list = async (run: (fn: (q: any) => Promise<any>) => Promise<any>, opts: Record<string, unknown> = {}) => {
+  const r = await run((q) => listTickets(q, opts));
+  if (!r.ok) throw new Error(r.error);
+  return r.value as { subject: string; schoolName?: string }[];
+};
+const as = (c: typeof teacher) => <T,>(fn: (q: any) => Promise<T>) => db.tenant(c, fn);
 const audit = async (id: string) => (await db.query(`select event_action, before_state, after_state, actor_user_id from audit_log where target_id = $1 order by audit_id`, [id])).rows;
 
 beforeAll(async () => {
@@ -58,6 +68,9 @@ describe('the status machine', () => {
     ]);
     expect(allowed('school')).toEqual(['waiting_on_school>in_progress', 'resolved>open', 'resolved>closed', 'closed>open']);
     expect(nextStatuses('resolved', 'school')).toEqual(['closed', 'open']);
+    // Answering is done by replying: a school cannot set that move directly.
+    expect(nextStatuses('waiting_on_school', 'school')).toEqual([]);
+    expect(schoolMayMove('waiting_on_school', 'in_progress')).toBe(false);
     expect(TICKET_STATUSES.filter(canReply)).toEqual(['open', 'in_progress', 'waiting_on_school']);
     expect(ticketRef('1a2b3c4d-0000-4000-8000-000000000000')).toBe('T-1A2B3C4D');
   });
@@ -124,6 +137,7 @@ describe('the status machine', () => {
     const id = await raise();
     const ask = await db.platform((q) => addTicketMessage(q, id, { body: 'Which class and date?', thenStatus: 'waiting_on_school' }, platform));
     expect(ask).toMatchObject({ ok: true, value: { status: 'waiting_on_school' } });
+    expect(await move(id, 'in_progress', teacher)).toMatchObject({ ok: false, status: 409, error: 'reply to the ticket to answer it' });
     const reply = await db.tenant(teacher, (q) => addTicketMessage(q, id, { body: '5A, today.' }, school('teacher', ids.teacher)));
     expect(reply).toMatchObject({ ok: true, value: { status: 'in_progress' } });
     await move(id, 'resolved');
@@ -160,7 +174,7 @@ describe('who sees which ticket', () => {
     office = await raise(principal, { ...NEW, subject: 'Principal ticket', category: 'billing', moduleId: null });
     other = await raise(claims('principal', ids.principalB, B), { ...NEW, subject: 'Other school ticket' });
   });
-  const subjects = async (c: any) => (await db.tenant(c, (q) => listTickets(q))).map((t) => t.subject).filter((s) => / ticket$/.test(s)).sort();
+  const subjects = async (c: any) => (await list(as(c))).map((t) => t.subject).filter((s) => / ticket$/.test(s)).sort();
 
   it('a teacher or accountant sees only the tickets they raised; the office sees the whole school’s; never another school’s', async () => {
     expect(await subjects(teacher)).toEqual(['Teacher Tara ticket']);
@@ -177,11 +191,14 @@ describe('who sees which ticket', () => {
   });
 
   it('the founder sees every school’s tickets, with the school’s name, and can narrow by school or status', async () => {
-    const all = await db.platform((q) => listTickets(q, { allSchools: true }));
+    const all = await list(db.platform, { allSchools: true });
     expect(all.filter((t) => / ticket$/.test(t.subject)).map((t) => t.schoolName).sort()).toEqual(['A School', 'A School', 'A School', 'B School']);
-    expect((await db.platform((q) => listTickets(q, { allSchools: true, schoolId: B }))).map((t) => t.subject)).toEqual(['Other school ticket']);
+    expect((await list(db.platform, { allSchools: true, schoolId: B })).map((t) => t.subject)).toEqual(['Other school ticket']);
     await move(other, 'in_progress');
-    expect((await db.platform((q) => listTickets(q, { allSchools: true, status: 'in_progress', schoolId: B }))).length).toBe(1);
+    expect((await list(db.platform, { allSchools: true, status: 'in_progress', schoolId: B })).length).toBe(1);
+    // A filter that is not one is refused, never read as "everything".
+    expect(await db.platform((q) => listTickets(q, { allSchools: true, schoolId: 'B School' }))).toMatchObject({ ok: false, status: 400 });
+    expect(await db.platform((q) => listTickets(q, { allSchools: true, status: 'urgent' }))).toMatchObject({ ok: false, status: 400 });
     expect((await db.platform((q) => getTicket(q, mine, { allSchools: true })))).toMatchObject({ raisedByName: 'Tara', schoolName: 'A School', ref: expect.stringMatching(/^T-[0-9A-F]{8}$/) });
   });
 
@@ -216,12 +233,28 @@ describe('who sees which ticket', () => {
     }
   });
 
+  it('a ticket’s audit rows follow the ticket: the office and the person who acted, not a colleague', async () => {
+    const rowsFor = async (c: any) => (await db.tenant(c, (q) => q.query(`select event_action from audit_log where target_id = $1 order by audit_id`, [colleagues]))).rows.map((r) => r.event_action);
+    expect(await rowsFor(teacher)).toEqual([]); // Tara learns nothing about Tanvi's ticket
+    expect(await rowsFor(claims('accountant', ids.accountant))).toEqual([]);
+    expect(await rowsFor(claims('teacher', ids.teacher2))).toEqual(['ticket.created']); // Tanvi: what she did herself
+    expect(await rowsFor(principal)).toEqual(['ticket.created', 'ticket.message_added']);
+    expect(await rowsFor(claims('principal', ids.principalB, B))).toEqual([]);
+    // Other audit rows of the school are unaffected.
+    await db.query(`insert into audit_log (school_id, event_action, target_id) values ($1, 'student.updated', 'x')`, [A]);
+    expect((await db.tenant(teacher, (q) => q.query(`select 1 from audit_log where event_action = 'student.updated'`))).rows.length).toBe(1);
+  });
+
   it('validates a new ticket and limits how many one person raises in an hour', async () => {
     const bad = (input: Record<string, unknown>) => db.tenant(teacher, (q) => createTicket(q, { ...school('teacher', ids.teacher), schoolId: A }, input));
     expect(await bad({ ...NEW, subject: 'x' })).toMatchObject({ ok: false, status: 400 });
     expect(await bad({ ...NEW, body: 'short' })).toMatchObject({ ok: false, status: 400 });
     expect(await bad({ ...NEW, category: 'gossip' })).toMatchObject({ ok: false, status: 400 });
     expect(await bad({ ...NEW, moduleId: 'not-a-module' })).toMatchObject({ ok: false, status: 400 });
+    // Counted as the table counts: two emoji are two characters, not four.
+    expect(await bad({ ...NEW, subject: '👍👍' })).toMatchObject({ ok: false, status: 400 });
+    expect(await bad({ ...NEW, body: '👍👍👍👍👍' })).toMatchObject({ ok: false, status: 400 });
+    expect((await bad({ ...NEW, subject: 'उपस्थिति सेव नहीं हो रही' })).ok).toBe(true);
     const c = claims('accountant', ids.accountant);
     for (let i = 0; i < 10; i++) await raise(c);
     expect(await db.tenant(c, (q) => createTicket(q, { ...school('accountant', ids.accountant), schoolId: A }, NEW))).toMatchObject({ ok: false, status: 429 });
@@ -240,7 +273,7 @@ describe('screenshots', () => {
   it('stores a screenshot under the school’s own prefix and hands it out only to those who see the ticket', async () => {
     const id = await raise(teacher, { ...NEW, subject: 'With a screenshot' });
     const actor = school('teacher', ids.teacher);
-    const up = await db.tenant(teacher, (q) => addTicketScreenshot(q, storage, id, { name: '../../etc/passwd<script>.png', bytes: PNG }, actor));
+    const up = await addTicketScreenshot(as(teacher), storage, id, { name: '../../etc/passwd<script>.png', bytes: PNG }, actor);
     expect(up).toMatchObject({ ok: true, value: { mimeType: 'image/png', sizeBytes: PNG.length, uploadedSide: 'school', fileName: '.._.._etc_passwd_script_.png' } });
     const [key] = [...storage.files.keys()];
     expect(key).toMatch(new RegExp(`^${A}/tickets/${id}/[0-9a-f-]{36}\\.png$`));
@@ -252,29 +285,62 @@ describe('screenshots', () => {
     // A colleague, another role, another school: no link.
     expect(await db.tenant(claims('teacher', ids.teacher2), (q) => ticketScreenshotUrl(q, storage, id, attachmentId))).toBeNull();
     expect(await db.tenant(claims('principal', ids.principalB, B), (q) => ticketScreenshotUrl(q, storage, id, attachmentId))).toBeNull();
-    expect(await db.tenant(claims('teacher', ids.teacher2), (q) => addTicketScreenshot(q, storage, id, { name: 'a.png', bytes: PNG }, school('teacher', ids.teacher2)))).toMatchObject({ ok: false, status: 404 });
-    expect((await db.tenant(teacher, (q) => getTicket(q, id)))!.attachments.length).toBe(1);
-    expect((await audit(id)).map((r) => r.event_action)).toEqual(['ticket.created', 'ticket.screenshot_added']);
+    expect(await addTicketScreenshot(as(claims('teacher', ids.teacher2)), storage, id, { name: 'a.png', bytes: PNG }, school('teacher', ids.teacher2))).toMatchObject({ ok: false, status: 404 });
+    expect(storage.files.size).toBe(1);
+    const rawCount = async (c: any) => (await db.tenant(c, (q) => q.query(`select count(*)::int n from support_ticket_attachments`))).rows[0].n;
+    expect(await rawCount(claims('teacher', ids.teacher2))).toBe(0);
+    expect(await rawCount(claims('principal', ids.principalB, B))).toBe(0);
+    const hindi = await addTicketScreenshot(as(teacher), storage, id, { name: 'उपस्थिति त्रुटि.png', bytes: PNG }, actor);
+    expect(hindi).toMatchObject({ ok: true, value: { fileName: 'उपस्थिति त्रुटि.png' } });
+    expect((await db.tenant(teacher, (q) => getTicket(q, id)))!.attachments.length).toBe(2);
+    expect((await audit(id)).map((r) => r.event_action)).toEqual(['ticket.created', 'ticket.screenshot_added', 'ticket.screenshot_added']);
   });
 
-  it('refuses a file that is not an image, is too large, or is one too many; a failed store leaves no row', async () => {
+  it('refuses a file that is not an image, is too large, or is one too many; a failure on either side leaves nothing behind', async () => {
     const id = await raise(teacher, { ...NEW, subject: 'Limits' });
     const actor = school('teacher', ids.teacher);
-    const add = (bytes: Uint8Array, s = storage) => db.tenant(teacher, (q) => addTicketScreenshot(q, s, id, { name: 'a.png', bytes }, actor));
+    const own = new MemoryFileStorage();
+    const add = (bytes: Uint8Array, s = own, tx = as(teacher)) => addTicketScreenshot(tx, s, id, { name: 'a.png', bytes }, actor);
+    const rows = async () => (await db.query(`select count(*)::int n from support_ticket_attachments where ticket_id = $1`, [id])).rows[0].n;
     expect(await add(new TextEncoder().encode('<svg xmlns="http://www.w3.org/2000/svg"/>'))).toMatchObject({ ok: false, status: 400 });
     expect(await add(new Uint8Array(0))).toMatchObject({ ok: false, status: 400 });
-    const big = new Uint8Array(5 * 1024 * 1024 + 1);
+    const big = new Uint8Array(4 * 1024 * 1024 + 1);
     big.set(PNG);
     expect(await add(big)).toMatchObject({ ok: false, status: 400 });
+    // The store refuses the file: no row.
     const broken = new MemoryFileStorage();
     broken.put = async () => { throw new Error('store is down'); };
     await expect(add(PNG, broken)).rejects.toThrow('store is down');
-    expect((await db.query(`select count(*)::int n from support_ticket_attachments where ticket_id = $1`, [id])).rows[0].n).toBe(0);
+    expect(await rows()).toBe(0);
+    // The file is stored but its row cannot be written: the file is removed.
+    let calls = 0;
+    const failsSecond = <T,>(fn: (q: any) => Promise<T>) => (++calls === 2 ? Promise.reject(new Error('database is down')) : db.tenant(teacher, fn));
+    await expect(add(PNG, own, failsSecond)).rejects.toThrow('database is down');
+    expect([await rows(), own.files.size]).toEqual([0, 0]);
+    // The ticket is resolved while the file travels: refused, and the file is removed.
+    const resolving = new MemoryFileStorage();
+    const put = resolving.put.bind(resolving);
+    resolving.put = async (...args) => { await put(...args); await move(id, 'resolved'); };
+    expect(await add(PNG, resolving)).toMatchObject({ ok: false, status: 409 });
+    expect([await rows(), resolving.files.size]).toEqual([0, 0]);
+    await move(id, 'open', teacher);
     for (let i = 0; i < 5; i++) expect((await add(PNG)).ok).toBe(true);
     expect(await add(PNG)).toMatchObject({ ok: false, status: 409 });
+    expect([await rows(), own.files.size]).toEqual([5, 5]);
     // A row whose file would sit under another school's prefix is refused by the table itself.
     await expect(
       db.tenant(teacher, (q) => q.query(`insert into support_ticket_attachments (school_id, ticket_id, storage_key, file_name, mime_type, size_bytes, uploaded_by, uploaded_side) values ($1, $2, $3, 'a.png', 'image/png', 10, $4, 'school')`, [A, id, `${B}/tickets/${id}/x.png`, ids.teacher]))
     ).rejects.toThrow(/check constraint/);
+  });
+
+  it('the routes check the session before reading a body, and refuse an oversized one from its declared length', async () => {
+    const body = new FormData();
+    body.set('file', new Blob([new Uint8Array(6 * 1024 * 1024)]), 'big.png');
+    const res = await uploadRoute(new NextRequest('http://localhost/api/app/tickets/x/attachments', { method: 'POST', body }), { params: { ticketId: randomUUID() } });
+    expect(res.status).toBe(401);
+    expect((await queueRoute(new NextRequest('http://localhost/api/control/tickets'))).status).toBe(401);
+    const sized = (n: string | null) => new NextRequest('http://localhost/x', { method: 'POST', headers: n === null ? {} : { 'content-length': n } });
+    expect([sized(String(6 * 1024 * 1024)), sized(null), sized('abc')].map(tooLarge)).toEqual([true, true, true]);
+    expect(tooLarge(sized(String(3 * 1024 * 1024)))).toBe(false);
   });
 });

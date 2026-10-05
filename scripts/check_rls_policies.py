@@ -258,6 +258,7 @@ REQUIRED_RESTRICTIVE = {
     ("support_tickets", "support_tickets_raise_as_self"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
+    ("audit_log", "audit_ticket_rows_own_or_office"),
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)

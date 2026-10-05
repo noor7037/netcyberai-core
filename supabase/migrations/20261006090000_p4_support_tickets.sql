@@ -52,7 +52,7 @@ create table support_ticket_attachments (
   storage_key   text not null unique,
   file_name     text not null check (char_length(file_name) between 1 and 120),
   mime_type     text not null check (mime_type in ('image/png', 'image/jpeg', 'image/webp')),
-  size_bytes    int not null check (size_bytes between 1 and 5242880),
+  size_bytes    int not null check (size_bytes between 1 and 4194304),
   uploaded_by   uuid not null,
   uploaded_side text not null check (uploaded_side in ('school', 'platform')),
   created_at    timestamptz not null default now(),
@@ -98,6 +98,7 @@ end;
 $$;
 create trigger support_ticket_status_guard_trigger before update on support_tickets
   for each row execute function support_ticket_status_guard();
+revoke execute on function support_ticket_status_guard() from public, anon, authenticated, service_role;
 
 -- ---- grants ----------------------------------------------------------------------
 revoke all on support_tickets, support_ticket_messages, support_ticket_attachments from public, anon, authenticated, service_role, app_backend;
@@ -156,4 +157,16 @@ create policy support_ticket_attachments_visible_ticket on support_ticket_attach
     exists (select 1 from support_tickets t where t.ticket_id = support_ticket_attachments.ticket_id)
     and uploaded_by = (nullif(current_setting('app.current_user_id', true), ''))::uuid
     and uploaded_side = 'school'
+  );
+
+-- ---- ticket rows in the audit log -------------------------------------------------
+-- Every role of a school reads its own audit rows (audit_read_own_school).
+-- A ticket's audit rows say who raised what kind of ticket and when, so they
+-- follow the ticket: the office, or the person who acted. RESTRICTIVE; the
+-- founder reads as nca_super. The hash chain reads as the table owner (C124).
+create policy audit_ticket_rows_own_or_office on audit_log as restrictive for select
+  using (
+    event_action not like 'ticket.%'
+    or current_setting('app.current_role', true) in ('principal', 'school_admin')
+    or actor_user_id = (nullif(current_setting('app.current_user_id', true), ''))::uuid
   );

@@ -31,7 +31,8 @@ export const TICKET_STATUS_LABEL: Record<TicketStatus, string> = {
 
 // from → to → who may make the move. Reopen is resolved → open and
 // closed → open. A school's reply to a ticket that is waiting on it moves
-// the ticket back to in progress.
+// the ticket back to in progress. That move is made by replying only:
+// a school cannot set it without answering (schoolMayMove).
 export const TICKET_TRANSITIONS: Record<TicketStatus, Partial<Record<TicketStatus, readonly TicketSide[]>>> = {
   open: { in_progress: ['platform'], waiting_on_school: ['platform'], resolved: ['platform'] },
   in_progress: { waiting_on_school: ['platform'], resolved: ['platform'] },
@@ -52,9 +53,14 @@ export function canTransition(from: TicketStatus, to: TicketStatus, side: Ticket
   return TICKET_TRANSITIONS[from][to]?.includes(side) ?? false;
 }
 
+// What a school may ask for directly: confirm closed, or reopen.
+export function schoolMayMove(from: TicketStatus, to: TicketStatus): boolean {
+  return canTransition(from, to, 'school') && !(from === 'waiting_on_school' && to === 'in_progress');
+}
+
 // The moves this side may make from a status, in the table's order.
 export function nextStatuses(from: TicketStatus, side: TicketSide): TicketStatus[] {
-  return (Object.keys(TICKET_TRANSITIONS[from]) as TicketStatus[]).filter((to) => canTransition(from, to, side));
+  return (Object.keys(TICKET_TRANSITIONS[from]) as TicketStatus[]).filter((to) => (side === 'school' ? schoolMayMove(from, to) : canTransition(from, to, side)));
 }
 
 // A reply is possible while the ticket is being worked on; a resolved or
@@ -66,7 +72,8 @@ export function canReply(status: TicketStatus): boolean {
 // Screenshots: images only, checked by content, not by the file's name.
 export const TICKET_SCREENSHOT_TYPES = ['image/png', 'image/jpeg', 'image/webp'] as const;
 export type TicketScreenshotType = (typeof TICKET_SCREENSHOT_TYPES)[number];
-export const TICKET_SCREENSHOT_MAX_BYTES = 5 * 1024 * 1024;
+// 4 MB: under the host's request limit, so the app's own message is what people see.
+export const TICKET_SCREENSHOT_MAX_BYTES = 4 * 1024 * 1024;
 export const TICKET_SCREENSHOTS_PER_TICKET = 5;
 
 export const TICKET_LIMITS = { subject: [3, 150], body: [10, 5000], message: [1, 5000] } as const;

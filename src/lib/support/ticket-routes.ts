@@ -33,18 +33,21 @@ export function respond<T>(r: TicketResult<T>, key: string, okStatus = 200): Nex
   return r.ok ? NextResponse.json({ [key]: r.value }, { status: okStatus }) : jsonError(r.status, r.error);
 }
 
-let storage: FileStorage = supabaseFileStorage;
-export const ticketStorage = () => storage;
-// Tests swap the store; nothing else calls this.
-export function setTicketStorage(s: FileStorage) {
-  storage = s;
-}
+export const ticketStorage = (): FileStorage => supabaseFileStorage;
 
 export function storageError(err: unknown): NextResponse | null {
   return err instanceof FileStorageUnavailableError ? jsonError(503, 'screenshots cannot be stored yet; send the ticket without one') : null;
 }
 
-// The uploaded file of a multipart request, bounded before it is read.
+// A request body larger than a screenshot plus its form wrapping is refused
+// from its declared length, before any of it is read.
+export function tooLarge(req: NextRequest): boolean {
+  const declared = Number(req.headers.get('content-length'));
+  return !Number.isFinite(declared) || declared <= 0 || declared > TICKET_SCREENSHOT_MAX_BYTES + 64 * 1024;
+}
+
+// The uploaded file of a multipart request. Call only after the session
+// check and tooLarge().
 export async function readScreenshot(req: NextRequest): Promise<{ name: string; bytes: Uint8Array } | null> {
   const form = await req.formData().catch(() => null);
   const file = form?.get('file');
