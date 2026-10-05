@@ -20,7 +20,7 @@ describe('shell navigation', () => {
     expect(groups.map((g) => g.label)).toEqual(['Home', 'School & People', 'Teaching & Learning', 'Parent Engagement', 'Finance', 'Records & Compliance', 'AI Intelligence', 'Help']);
     const items = groups.flatMap((g) => g.items);
     expect(items).toHaveLength(MODULE_REGISTRY.length);
-    expect(items.find((i) => i.href === '/app/ptm')).toMatchObject({ comingIn: 'P3' });
+    expect(items.find((i) => i.href === '/app/ptm')).toMatchObject({ comingIn: 'P4' });
     expect(items.find((i) => i.href === '/app/students')!.comingIn).toBeUndefined();
   });
 

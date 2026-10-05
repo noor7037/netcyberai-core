@@ -6,7 +6,7 @@ import type { Sql } from '@/lib/jobs/types';
 // Plans (C114). Entitlements are opt-in, so a school with no rows has only
 // Help. A new school starts on the default plan, written in the same
 // transaction that creates it (application approval, or Control → new
-// school). Plan names and prices are the founder's decision (16 §4, P4);
+// school). Plan names and prices are the founder's decision (16 §4, P5);
 // 'standard' is the technical starting point until then.
 //
 // A plan's modules are derived from the registry, never listed by hand:

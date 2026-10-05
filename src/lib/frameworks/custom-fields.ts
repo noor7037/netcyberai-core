@@ -25,7 +25,7 @@ export const ENTITY_MODULE: Record<CustomFieldEntity, ModuleId> = {
 };
 
 // Where a record of each entity lives, to check it belongs to the school.
-// Admission leads arrive with the Admissions module (P6): until then a
+// Admission leads arrive with the Admissions module (P7): until then a
 // field can be defined for them, but no value can be stored.
 const ENTITY_RECORD_SQL: Record<CustomFieldEntity, string | null> = {
   student: `select 1 from students where school_id = $1 and student_id = $2`,

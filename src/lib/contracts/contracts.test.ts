@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { moduleStatus } from '@/content/module-status';
 import * as fixtures from '@/demo-fixture/contracts';
-import { bottomNavItems, buildNavigation, chartAsTable, isModuleEnabled, MODULE_GROUPS, MODULE_IDS, MODULE_REGISTRY, moduleById, type ModuleGroupId, type ModuleId, type SchoolEntitlements, type SchoolRole } from './index';
+import { bottomNavItems, buildNavigation, chartAsTable, isModuleEnabled, MODULE_GROUPS, MODULE_IDS, MODULE_REGISTRY, moduleById, PHASES, type ModuleGroupId, type ModuleId, type SchoolEntitlements, type SchoolRole } from './index';
 
 // The registry against docs/17_MODULE_CATALOG.md (C110).
 
@@ -29,9 +29,14 @@ describe('module registry', () => {
   });
 
   it('carries the 17 §3 status and phase', () => {
-    expect(moduleById('students')).toMatchObject({ status: 'live', phase: 'P6' });
-    expect(moduleById('fees')).toMatchObject({ status: 'foundation', phase: 'P7' });
-    expect(moduleById('payroll')).toMatchObject({ status: 'spec-v0', phase: 'P6' });
+    expect(moduleById('students')).toMatchObject({ status: 'live', phase: 'P7' });
+    expect(moduleById('fees')).toMatchObject({ status: 'foundation', phase: 'P3' });
+    expect(moduleById('payroll')).toMatchObject({ status: 'spec-v0', phase: 'P7' });
+    // C102: Fees comes before WhatsApp, and both before Exams.
+    const at = (id: ModuleId) => PHASES.indexOf(moduleById(id).phase);
+    expect(at('fees')).toBeLessThan(at('communication'));
+    expect(at('communication')).toBeLessThan(at('exams'));
+    expect(moduleById('fees').phaseNote).toContain('WhatsApp from P4');
     expect(moduleById('raise-ticket')).toMatchObject({ status: 'planned', phase: 'P1' });
     expect(MODULE_REGISTRY.filter((m) => m.status === 'spec-v0').map((m) => m.id).sort()).toEqual(
       ['automation', 'career', 'complaints', 'curriculum-gap', 'learning-genome', 'parent-ai', 'payroll', 'recovery', 'school-auditor', 'teacher-copilot', 'twin'].sort()
@@ -94,7 +99,7 @@ describe('navigation and entitlements', () => {
 
   it('every item carries its status and phase, so an unbuilt module links to a "coming" page', () => {
     const nav = buildNavigation('principal', on('proxy'));
-    expect(nav.groups[0].items[0]).toMatchObject({ moduleId: 'proxy', href: '/app/proxy', status: 'planned', phase: 'P4' });
+    expect(nav.groups[0].items[0]).toMatchObject({ moduleId: 'proxy', href: '/app/proxy', status: 'planned', phase: 'P5' });
   });
 
   it('the phone bottom bar takes the prioritised modules the role has, in order (C121)', () => {
