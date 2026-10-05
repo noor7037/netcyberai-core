@@ -63,3 +63,37 @@ export type EntitlementChange = {
   limits?: Readonly<Record<string, number>>;
   reason: string;
 };
+
+// One entry of a school's entitlement history, read from the audit log for
+// the founder (Control, C123): who changed what, when, and why.
+export type EntitlementHistoryEntry = {
+  id: string;
+  at: string; // ISO timestamp
+  actorName: string | null; // null: done by the platform itself (provisioning, backfill)
+  kind: 'module_changed' | 'access_changed' | 'plan_applied';
+  moduleId?: string;
+  enabled?: { from: boolean | null; to: boolean };
+  accessMode?: { from: AccessMode | null; to: AccessMode };
+  graceEndsAt?: string | null;
+  plan?: string;
+  moduleCount?: number;
+  reason: string | null;
+};
+
+// A plan the founder can apply to a school (names are technical until P4).
+export type PlanSummary = { planId: string; label: string; moduleIds: readonly ModuleId[] };
+
+const ACCESS_WORDS: Record<AccessMode, string> = { full: 'Full access', grace: 'Grace period', read_only: 'Read only', suspended: 'Suspended' };
+export const accessModeLabel = (m: AccessMode): string => ACCESS_WORDS[m];
+
+// The change in one sentence, for the history list.
+export function describeEntitlementChange(e: EntitlementHistoryEntry, moduleLabel: (id: string) => string): string {
+  if (e.kind === 'module_changed' && e.enabled) return `${moduleLabel(e.moduleId ?? '')} switched ${e.enabled.to ? 'on' : 'off'}`;
+  if (e.kind === 'access_changed' && e.accessMode) {
+    const from = e.accessMode.from ? ` (was ${accessModeLabel(e.accessMode.from).toLowerCase()})` : '';
+    return `Access set to ${accessModeLabel(e.accessMode.to).toLowerCase()}${from}`;
+  }
+  if (e.kind === 'plan_applied') return `Plan “${e.plan}” applied${e.moduleCount !== undefined ? `: ${e.moduleCount} ${e.moduleCount === 1 ? 'module' : 'modules'} switched on` : ''}`;
+  return 'Entitlements changed';
+}
+

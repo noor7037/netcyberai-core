@@ -25,6 +25,8 @@ export const controlNav: NavItem[] = [
 // built below rather than silently truncated to make "19" true.
 export const schoolDetailTabs: { id: string; label: string }[] = [
   { id: 'overview', label: 'Overview' },
+  // Not in the PRD's list: plan, module switches and access mode (C123).
+  { id: 'modules-access', label: 'Modules & access' },
   { id: 'profile', label: 'Profile' },
   { id: 'users', label: 'Users' },
   { id: 'students', label: 'Students' },
