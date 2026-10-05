@@ -25,7 +25,7 @@ describe('Control: modules and access', () => {
     expect(html).toContain('Read only');
     expect(html).toContain('Grace ended');
     expect(html).toContain('Apply a plan');
-    expect(html).toContain('Reason (kept in the audit log)');
+    expect(html).toContain('Reason (only you can read it; the school never sees it)');
   });
 
   it('lists every module with a switch, except Help, which is always on', () => {

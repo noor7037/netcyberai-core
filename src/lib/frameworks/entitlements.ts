@@ -1,4 +1,4 @@
-import { writeAuditLog } from '@/lib/audit/log';
+import { writeEntitlementAudit } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { canWrite, isAlwaysOn, isModuleEnabled, type AccessMode, type EntitlementChange, type EntitlementHistoryEntry, type ModuleEntitlement, type SchoolEntitlements } from '@/lib/contracts/entitlements';
 import { isModuleId, moduleById, type ModuleId, type SchoolRole } from '@/lib/contracts/modules';
@@ -6,7 +6,8 @@ import type { Sql } from '@/lib/jobs/types';
 
 // Per-school entitlements (contracts/entitlements.ts, C112): read by every
 // module gate, changed only by the founder in Control (nca_super; the
-// database grants school roles SELECT only). Every change is audited.
+// database grants school roles SELECT only). Every change is audited; the
+// founder's reason is kept apart, where only the founder can read it (C124).
 
 const ACCESS_MODES: readonly AccessMode[] = ['full', 'grace', 'read_only', 'suspended'];
 
@@ -99,7 +100,7 @@ export async function changeModuleEntitlement(
      returning enabled, source, limits`,
     [change.schoolId, change.moduleId, change.enabled, change.limits ? JSON.stringify(change.limits) : null, actor.userId]
   );
-  await writeAuditLog(db, {
+  await writeEntitlementAudit(db, {
     schoolId: change.schoolId,
     actorUserId: actor.userId,
     actorRole: actor.role,
@@ -107,8 +108,8 @@ export async function changeModuleEntitlement(
     targetType: 'school_module_entitlements',
     targetId: change.moduleId,
     beforeState: before[0] ?? null,
-    afterState: { ...rows[0], reason },
-  });
+    afterState: rows[0],
+  }, reason);
   return { ok: true };
 }
 
@@ -133,7 +134,7 @@ export async function changeSchoolAccess(db: Sql, change: AccessChange, actor: {
      returning plan, access_mode, grace_ends_at`,
     [change.schoolId, change.plan ?? null, change.accessMode, grace ?? null, actor.userId]
   );
-  await writeAuditLog(db, {
+  await writeEntitlementAudit(db, {
     schoolId: change.schoolId,
     actorUserId: actor.userId,
     actorRole: actor.role,
@@ -141,18 +142,24 @@ export async function changeSchoolAccess(db: Sql, change: AccessChange, actor: {
     targetType: 'school_entitlements',
     targetId: change.schoolId,
     beforeState: before[0] ?? null,
-    afterState: { ...rows[0], reason },
-  });
+    afterState: rows[0],
+  }, reason);
   return { ok: true };
 }
 
 // The school's entitlement history for Control (C123): the audit log's own
 // rows (every change above writes one), newest first, with the actor's
-// name. Runs as nca_super. Read only.
+// name and the founder's reason (C124: from the founder-only table, which a
+// school role has no grant on, so this fails for one; a row written by a
+// deployment from before C124 still has it in after_state, hidden from
+// schools). Runs as nca_super. Read only.
 export async function entitlementHistory(db: Sql, schoolId: string, limit = 50): Promise<EntitlementHistoryEntry[]> {
   const { rows } = await db.query(
-    `select a.audit_id, a.occurred_at, a.event_action, a.target_id, a.before_state, a.after_state, u.display_name
-     from audit_log a left join users u on u.user_id = a.actor_user_id
+    `select a.audit_id, a.occurred_at, a.event_action, a.target_id, a.before_state, a.after_state, u.display_name,
+            coalesce(r.reason, a.after_state ->> 'reason') as reason
+     from audit_log a
+     left join users u on u.user_id = a.actor_user_id
+     left join entitlement_change_reasons r on r.audit_id = a.audit_id
      where a.school_id = $1 and a.event_action in ('entitlement.module_changed', 'entitlement.access_changed', 'entitlement.plan_applied')
      order by a.audit_id desc limit $2`,
     [schoolId, Math.min(Math.max(limit, 1), 200)]
@@ -160,7 +167,7 @@ export async function entitlementHistory(db: Sql, schoolId: string, limit = 50):
   return rows.map((r): EntitlementHistoryEntry => {
     const before = (r.before_state ?? {}) as Record<string, any>;
     const after = (r.after_state ?? {}) as Record<string, any>;
-    const base = { id: String(r.audit_id), at: new Date(r.occurred_at).toISOString(), actorName: (r.display_name as string | null) ?? null, reason: typeof after.reason === 'string' ? after.reason : null };
+    const base = { id: String(r.audit_id), at: new Date(r.occurred_at).toISOString(), actorName: (r.display_name as string | null) ?? null, reason: (r.reason as string | null) ?? null };
     if (r.event_action === 'entitlement.module_changed') {
       return { ...base, kind: 'module_changed', moduleId: r.target_id, enabled: { from: typeof before.enabled === 'boolean' ? before.enabled : null, to: after.enabled === true } };
     }
