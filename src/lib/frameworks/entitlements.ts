@@ -1,6 +1,6 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
-import { canWrite, isAlwaysOn, isModuleEnabled, type AccessMode, type EntitlementChange, type ModuleEntitlement, type SchoolEntitlements } from '@/lib/contracts/entitlements';
+import { canWrite, isAlwaysOn, isModuleEnabled, type AccessMode, type EntitlementChange, type EntitlementHistoryEntry, type ModuleEntitlement, type SchoolEntitlements } from '@/lib/contracts/entitlements';
 import { isModuleId, moduleById, type ModuleId, type SchoolRole } from '@/lib/contracts/modules';
 import type { Sql } from '@/lib/jobs/types';
 
@@ -145,3 +145,29 @@ export async function changeSchoolAccess(db: Sql, change: AccessChange, actor: {
   });
   return { ok: true };
 }
+
+// The school's entitlement history for Control (C123): the audit log's own
+// rows (every change above writes one), newest first, with the actor's
+// name. Runs as nca_super. Read only.
+export async function entitlementHistory(db: Sql, schoolId: string, limit = 50): Promise<EntitlementHistoryEntry[]> {
+  const { rows } = await db.query(
+    `select a.audit_id, a.occurred_at, a.event_action, a.target_id, a.before_state, a.after_state, u.display_name
+     from audit_log a left join users u on u.user_id = a.actor_user_id
+     where a.school_id = $1 and a.event_action in ('entitlement.module_changed', 'entitlement.access_changed', 'entitlement.plan_applied')
+     order by a.audit_id desc limit $2`,
+    [schoolId, Math.min(Math.max(limit, 1), 200)]
+  );
+  return rows.map((r): EntitlementHistoryEntry => {
+    const before = (r.before_state ?? {}) as Record<string, any>;
+    const after = (r.after_state ?? {}) as Record<string, any>;
+    const base = { id: String(r.audit_id), at: new Date(r.occurred_at).toISOString(), actorName: (r.display_name as string | null) ?? null, reason: typeof after.reason === 'string' ? after.reason : null };
+    if (r.event_action === 'entitlement.module_changed') {
+      return { ...base, kind: 'module_changed', moduleId: r.target_id, enabled: { from: typeof before.enabled === 'boolean' ? before.enabled : null, to: after.enabled === true } };
+    }
+    if (r.event_action === 'entitlement.access_changed') {
+      return { ...base, kind: 'access_changed', accessMode: { from: before.access_mode ?? null, to: after.access_mode }, graceEndsAt: after.grace_ends_at ? new Date(after.grace_ends_at).toISOString() : null };
+    }
+    return { ...base, kind: 'plan_applied', plan: after.plan, moduleCount: Array.isArray(after.modules) ? after.modules.length : undefined };
+  });
+}
+

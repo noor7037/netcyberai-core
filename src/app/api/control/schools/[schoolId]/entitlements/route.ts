@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { withTenantContext } from '@/lib/auth/db';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
-import { changeModuleEntitlement, changeSchoolAccess, loadEntitlements } from '@/lib/frameworks/entitlements';
-import { applyPlan } from '@/lib/frameworks/plans';
+import { changeModuleEntitlement, changeSchoolAccess, entitlementHistory, loadEntitlements } from '@/lib/frameworks/entitlements';
+import { applyPlan, PLANS } from '@/lib/frameworks/plans';
 import { isUuid } from '@/lib/frameworks/custom-fields';
-import type { AccessMode } from '@/lib/contracts/entitlements';
+import type { AccessMode, PlanSummary } from '@/lib/contracts/entitlements';
 import type { ModuleId } from '@/lib/contracts/modules';
 
 // The founder's entitlement switches for one school (Control, C112).
@@ -19,8 +19,14 @@ export async function GET(req: NextRequest, { params }: { params: { schoolId: st
   if ('error' in guard) return guard.error;
   if (!isUuid(params.schoolId)) return NextResponse.json({ error: 'school not found' }, { status: 404 });
   try {
-    const entitlements = await withTenantContext(guard.claims, (db) => loadEntitlements(db, params.schoolId));
-    return NextResponse.json({ entitlements });
+    // ?history=1 adds who changed what, when and why, from the audit log (C123).
+    const withHistory = req.nextUrl.searchParams.get('history') === '1';
+    const data = await withTenantContext(guard.claims, async (db) => ({
+      entitlements: await loadEntitlements(db, params.schoolId),
+      ...(withHistory ? { history: await entitlementHistory(db, params.schoolId) } : {}),
+    }));
+    const plans: PlanSummary[] = PLANS.map((p) => ({ planId: p.planId, label: p.label, moduleIds: p.modules }));
+    return NextResponse.json({ ...data, plans });
   } catch (err) {
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
