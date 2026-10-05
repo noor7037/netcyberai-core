@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import type { PoolClient } from 'pg';
 import { withTenantContext } from '@/lib/auth/db';
 import { requireAppSession } from '@/lib/auth/require-app-session';
+import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import type { SessionClaims } from '@/lib/auth/types';
 import type { SchoolRole } from '@/lib/contracts/modules';
@@ -31,6 +32,23 @@ export async function appRoute(
   const claims = guard.claims as AppClaims;
   try {
     return await withTenantContext(claims, (db) => handler({ claims, db }));
+  } catch (err) {
+    const resp = sessionErrorResponse(err);
+    if (resp) return resp;
+    throw err;
+  }
+}
+
+// The same for /api/control/**: a platform admin's session, one transaction
+// as nca_super.
+export async function controlRoute(
+  req: NextRequest,
+  handler: (ctx: { claims: SessionClaims; db: PoolClient }) => Promise<NextResponse>
+): Promise<NextResponse> {
+  const guard = await requireSuperAdmin(req);
+  if ('error' in guard) return guard.error;
+  try {
+    return await withTenantContext(guard.claims, (db) => handler({ claims: guard.claims, db }));
   } catch (err) {
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
