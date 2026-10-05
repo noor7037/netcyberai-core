@@ -66,17 +66,26 @@ function Reason({ value, onChange, id }: { value: string; onChange: (v: string) 
   );
 }
 
-export function SchoolEntitlementsPanel({ api, initial }: { api: EntitlementsApi; initial?: EntitlementsData }) {
+export function SchoolEntitlementsPanel({
+  api,
+  initial,
+  initialDialog,
+}: {
+  api: EntitlementsApi;
+  initial?: EntitlementsData;
+  // Render tests only: the switch dialog open for a module, with an error.
+  initialDialog?: { moduleId: string; error?: string };
+}) {
   const [data, setData] = useState<EntitlementsData | null>(initial ?? null);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(initialDialog?.error ?? null);
   const [busy, setBusy] = useState(false);
   const [mode, setMode] = useState<AccessMode>(initial?.entitlements.accessMode ?? 'full');
   const [graceDate, setGraceDate] = useState('');
   const [accessReason, setAccessReason] = useState('');
   const [planId, setPlanId] = useState('');
   const [planReason, setPlanReason] = useState('');
-  const [toggle, setToggle] = useState<ModuleDefinition | null>(null);
+  const [toggle, setToggle] = useState<ModuleDefinition | null>(MODULE_REGISTRY.find((m) => m.id === initialDialog?.moduleId) ?? null);
   const [toggleReason, setToggleReason] = useState('');
 
   const load = useCallback(() => {
@@ -128,6 +137,18 @@ export function SchoolEntitlementsPanel({ api, initial }: { api: EntitlementsApi
     change({ applyPlan: planId, reason: planReason.trim() }, () => setPlanReason(''));
   };
 
+  // Shown on the page, or inside the switch dialog while it is open (a
+  // modal dialog covers the page, so an error behind it would not be seen).
+  const errorBox = (
+    <p role="alert" className="rounded-md border border-coral/40 bg-coral/10 p-3 text-sm text-slate">
+      {error}
+    </p>
+  );
+  const closeToggle = () => {
+    setToggle(null);
+    setError(null);
+  };
+
   const columns: DataColumn<EntitlementHistoryEntry>[] = [
     { key: 'what', header: 'What changed', primary: true, render: (h) => describeEntitlementChange(h, label) },
     { key: 'who', header: 'Who', render: (h) => h.actorName ?? 'NetCyberAI (automatic)' },
@@ -137,11 +158,7 @@ export function SchoolEntitlementsPanel({ api, initial }: { api: EntitlementsApi
 
   return (
     <div className="flex flex-col gap-4">
-      {error && (
-        <p role="alert" className="rounded-md border border-coral/40 bg-coral/10 p-3 text-sm text-slate">
-          {error}
-        </p>
-      )}
+      {error && !toggle && errorBox}
 
       <AppCard title="Plan and access" tone="sapphire" description={`${onCount} of ${MODULE_REGISTRY.length} modules are on for this school.`}>
         <div className="flex flex-wrap items-center gap-2 text-sm text-slate">
@@ -224,6 +241,7 @@ export function SchoolEntitlementsPanel({ api, initial }: { api: EntitlementsApi
                             disabled={busy}
                             onClick={() => {
                               setToggleReason('');
+                              setError(null);
                               setToggle(m);
                             }}
                             aria-label={`Switch ${on ? 'off' : 'on'} ${m.label}`}
@@ -251,7 +269,7 @@ export function SchoolEntitlementsPanel({ api, initial }: { api: EntitlementsApi
         />
       </AppCard>
 
-      <Modal open={!!toggle} onClose={() => setToggle(null)} title={toggle ? `Switch ${isOn(toggle) ? 'off' : 'on'} ${toggle.label}?` : ''}>
+      <Modal open={!!toggle} onClose={closeToggle} title={toggle ? `Switch ${isOn(toggle) ? 'off' : 'on'} ${toggle.label}?` : ''}>
         {toggle && (
           <form
             className="flex flex-col gap-3"
@@ -264,11 +282,12 @@ export function SchoolEntitlementsPanel({ api, initial }: { api: EntitlementsApi
               {isOn(toggle) ? 'People at this school will stop seeing this module in their menu, and its screens will say it is not switched on.' : 'People whose role may use this module will see it in their menu.'}
             </p>
             <Reason id="toggle-reason" value={toggleReason} onChange={setToggleReason} />
+            {error && errorBox}
             <div className="flex flex-wrap gap-2">
               <button type="submit" disabled={busy || !validReason(toggleReason)} className={button}>
                 {busy ? 'Saving…' : `Switch ${isOn(toggle) ? 'off' : 'on'}`}
               </button>
-              <button type="button" onClick={() => setToggle(null)} className="min-h-[44px] px-4 text-sm font-semibold text-slate">
+              <button type="button" onClick={closeToggle} className="min-h-[44px] px-4 text-sm font-semibold text-slate">
                 Cancel
               </button>
             </div>

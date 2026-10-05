@@ -41,6 +41,15 @@ describe('Control: modules and access', () => {
     expect(html).toContain(`3 of ${MODULE_REGISTRY.length} modules are on`);
   });
 
+  it('a failed switch says so inside the dialog, not behind it (code-review finding)', () => {
+    const html = renderToStaticMarkup(h(SchoolEntitlementsPanel, { api, initial: data, initialDialog: { moduleId: 'fees', error: 'The change was not saved.' } }));
+    const dialog = html.slice(html.indexOf('<dialog'));
+    expect(dialog).toContain('Switch on Fees?');
+    expect(dialog).toContain('role="alert"');
+    expect(dialog).toContain('The change was not saved.');
+    expect(html.slice(0, html.indexOf('<dialog'))).not.toContain('role="alert"'); // not also behind it
+  });
+
   it('shows who changed what and why, or says there is no history yet', () => {
     const html = render();
     expect(html).toContain('Fees switched off');
