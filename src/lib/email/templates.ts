@@ -3,8 +3,8 @@ import { PermanentJobError } from '@/lib/jobs/types';
 // Emails the app sends itself (C97). Every value that came from a form is
 // HTML-escaped: a school name is data, never markup.
 
-export type EmailTemplate = 'application_code' | 'application_verified' | 'added_to_school';
-export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'application_verified', 'added_to_school'];
+export type EmailTemplate = 'application_code' | 'application_verified' | 'added_to_school' | 'ticket_raised';
+export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'application_verified', 'added_to_school', 'ticket_raised'];
 
 export function escapeHtml(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -62,6 +62,22 @@ export function renderEmail(template: string, data: Record<string, unknown>, sec
             `<p><a href="${escapeHtml(link)}" style="color:#1d4ed8">Sign in</a> and choose the school.</p>`
         ),
         text: `You now have access to ${school} on NetCyberAI with your existing account. Sign in: ${link}`,
+      };
+    }
+    // To the founder (C127): which school, what kind, and the link. Never
+    // the ticket's own words: those stay in the app.
+    case 'ticket_raised': {
+      const school = str(data, 'schoolName');
+      const category = str(data, 'category');
+      const link = str(data, 'ticketUrl');
+      return {
+        subject: `New support ticket: ${school}`,
+        html: wrap(
+          `<p>A support ticket was raised:</p>` +
+            `<p><strong>${escapeHtml(school)}</strong><br>${escapeHtml(category)}</p>` +
+            `<p><a href="${escapeHtml(link)}" style="color:#1d4ed8">Open it in the Control Plane</a></p>`
+        ),
+        text: `New support ticket from ${school}: ${category}\nOpen: ${link}`,
       };
     }
     default:

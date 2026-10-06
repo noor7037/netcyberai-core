@@ -134,6 +134,29 @@ describe('founder reasons are founder-only (C124)', () => {
     await expect(db.platform((q) => q.query(`insert into entitlement_change_reasons (audit_id, school_id, reason) select audit_id, school_id, 'second' from entitlement_change_reasons limit 1`))).rejects.toThrow(/duplicate key/);
   });
 
+  it('rows of one school with the same timestamp still chain in one order: the one inserted last is the previous row (C127)', async () => {
+    // Force the tie: three rows with one identical occurred_at, written with
+    // the trigger off, the middle one physically first.
+    const S = randomUUID();
+    const at = '2026-01-01 00:00:00+00';
+    await db.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'Tie', 'IN-HR')`, [S]);
+    await db.query(`alter table audit_log disable trigger audit_hash_chain_trigger`);
+    const base = Number((await db.query(`select coalesce(max(audit_id), 0) + 1000 as n from audit_log`)).rows[0].n);
+    for (const [offset, hash] of [[2, 'h-middle'], [1, 'h-first'], [3, 'h-last']] as const) {
+      await db.query(`insert into audit_log (audit_id, school_id, event_action, occurred_at, prev_hash, row_hash) values ($1, $2, 'tie.row', $3, 'x', $4)`, [base + offset, S, at, hash]);
+    }
+    await db.query(`alter table audit_log enable trigger audit_hash_chain_trigger`);
+    await db.tenant(as('principal', S), (q) => writeAuditLog(q, { schoolId: S, actorUserId: null, actorRole: 'principal', eventAction: 'tie.next', targetId: 'kept' }));
+    const { rows } = await db.query(`select event_action, prev_hash from audit_log where school_id = $1 order by occurred_at, audit_id`, [S]);
+    expect(rows.map((r) => r.prev_hash)).toEqual(['x', 'x', 'x', 'h-last']);
+    // A burst of rows in one transaction (many share a millisecond on this clock) stays one chain.
+    await db.tenant(as('principal', S), async (q) => {
+      for (let i = 0; i < 40; i++) await writeAuditLog(q, { schoolId: S, actorUserId: null, actorRole: 'principal', eventAction: 'tie.burst', targetId: String(i) });
+    });
+    const burst = (await db.query(`select prev_hash, row_hash from audit_log where school_id = $1 and event_action in ('tie.next', 'tie.burst') order by occurred_at, audit_id`, [S])).rows;
+    burst.slice(1).forEach((r, i) => expect(r.prev_hash).toBe(burst[i].row_hash));
+  });
+
   it('the hash chain is unbroken: a school role’s next row links to a row it cannot see', async () => {
     // A's newest row is hidden from the principal: an older-style entitlement row.
     await db.query(`insert into audit_log (school_id, event_action, target_id, after_state) values ($1, 'entitlement.access_changed', $2, '{"reason":"hidden tail"}')`, [A, A]);
@@ -148,7 +171,7 @@ describe('founder reasons are founder-only (C124)', () => {
       const { rows } = await db.query(
         `select prev_hash, row_hash, event_action, target_id, occurred_at::text t,
                 encode(extensions.digest(coalesce(prev_hash,'') || event_action || coalesce(target_id,'') || occurred_at::text, 'sha256'), 'hex') expected
-         from audit_log where school_id is not distinct from $1 order by occurred_at`,
+         from audit_log where school_id is not distinct from $1 order by occurred_at, audit_id`,
         [school]
       );
       expect(rows.length).toBeGreaterThan(0);

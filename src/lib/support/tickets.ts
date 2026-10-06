@@ -7,6 +7,7 @@ import {
   isTicketStatus,
   schoolMayMove,
   ticketRef,
+  TICKET_CATEGORY_LABEL,
   TICKET_LIMITS,
   TICKET_SCREENSHOT_MAX_BYTES,
   TICKET_SCREENSHOTS_PER_TICKET,
@@ -19,7 +20,8 @@ import {
 } from '@/lib/contracts/tickets';
 import { isModuleId } from '@/lib/contracts/modules';
 import { isUuid } from '@/lib/frameworks/custom-fields';
-import type { Sql } from '@/lib/jobs/types';
+import { PermanentJobError, type JobHandler, type JobQueue, type Sql } from '@/lib/jobs/types';
+import { siteUrl } from '@/lib/site-config';
 import { sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
 
 // Raise Ticket (PR-4, C126). Every function runs inside the caller's
@@ -65,7 +67,14 @@ function text(v: unknown, [min, max]: readonly [number, number]): string | null 
   return n >= min && n <= max ? t : null;
 }
 
-export async function createTicket(db: Sql, actor: TicketActor & { schoolId: string }, input: Record<string, unknown>): Promise<TicketResult<TicketSummary>> {
+// `queue`: when given, NetCyberAI is told by email (a ticket.notify job in
+// the same transaction; `jobKey` lets the caller run it right after commit).
+export async function createTicket(
+  db: Sql,
+  actor: TicketActor & { schoolId: string },
+  input: Record<string, unknown>,
+  queue?: JobQueue
+): Promise<TicketResult<TicketSummary & { jobKey?: string }>> {
   const subject = text(input.subject, TICKET_LIMITS.subject);
   const body = text(input.body, TICKET_LIMITS.body);
   if (!subject) return fail(400, `a subject of ${TICKET_LIMITS.subject[0]} to ${TICKET_LIMITS.subject[1]} characters is required`);
@@ -95,7 +104,10 @@ export async function createTicket(db: Sql, actor: TicketActor & { schoolId: str
     targetId: rows[0].ticket_id,
     afterState: { status: 'open', category: input.category, module_id: moduleId },
   });
-  return { ok: true, value: toSummary(rows[0]) };
+  if (!queue) return { ok: true, value: toSummary(rows[0]) };
+  const jobKey = `ticket.notify:${rows[0].ticket_id}`;
+  await queue.enqueue(db, { type: 'ticket.notify', idempotencyKey: jobKey, schoolId: actor.schoolId, payload: { ticketId: rows[0].ticket_id }, maxAttempts: 4 });
+  return { ok: true, value: { ...toSummary(rows[0]), jobKey } };
 }
 
 // The tickets this session can see: for a school role, row level security
@@ -324,4 +336,38 @@ export async function ticketScreenshotUrl(db: Sql, storage: FileStorage, ticketI
   if (!isUuid(ticketId) || !isUuid(attachmentId)) return null;
   const { rows } = await db.query(`select storage_key from support_ticket_attachments where attachment_id = $1 and ticket_id = $2`, [attachmentId, ticketId]);
   return rows[0] ? storage.signedUrl(rows[0].storage_key, SIGNED_LINK_SECONDS) : null;
+}
+
+// ticket.notify (C127): the founder's email for a new ticket. Runs as the
+// platform. The job was enqueued by a school session, so nothing in it is
+// trusted beyond the ticket's id: the ticket is read here and must belong
+// to the job's school. The email itself is a second job (email.send, to
+// the founders: ONBOARDING_NOTIFY_EMAIL), keyed on the ticket, so however
+// often this runs one email is sent. School name, category and a link
+// only; never the ticket's words.
+export function ticketNotifyHandler(deps: { platform: <T>(fn: (db: Sql) => Promise<T>) => Promise<T>; queue: JobQueue }): JobHandler {
+  return async (job) => {
+    const ticketId = (job.payload as Record<string, unknown>).ticketId;
+    if (!isUuid(ticketId)) throw new PermanentJobError('ticket.notify payload is invalid');
+    await deps.platform(async (db) => {
+      const { rows } = await db.query(
+        `select t.ticket_id, t.school_id, t.category, s.name as school_name
+         from support_tickets t join schools s on s.school_id = t.school_id where t.ticket_id = $1`,
+        [ticketId]
+      );
+      const t = rows[0];
+      if (!t || t.school_id !== job.schoolId) throw new PermanentJobError('ticket not found for this school');
+      await deps.queue.enqueue(db, {
+        type: 'email.send',
+        idempotencyKey: `email.send:ticket_raised:${t.ticket_id}`,
+        schoolId: t.school_id,
+        payload: {
+          to: 'founders',
+          template: 'ticket_raised',
+          data: { schoolName: t.school_name, category: TICKET_CATEGORY_LABEL[t.category as keyof typeof TICKET_CATEGORY_LABEL] ?? 'Support', ticketUrl: `${siteUrl}/control/tickets/${t.ticket_id}` },
+        },
+        maxAttempts: 4,
+      });
+    });
+  };
 }
