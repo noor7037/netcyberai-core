@@ -24,6 +24,8 @@ export const B2_MIGRATIONS = [
   '20260930230548_p1b_family_writes_office_only.sql',
   '20261005155446_c124_founder_reasons.sql',
   '20261005171906_p4_support_tickets.sql',
+  '20261006010000_audit_chain_tiebreak.sql',
+  '20261006010100_ticket_notify_enqueue.sql',
 ].map((f) => ({ file: f, sql: readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8') }));
 const NIL_UUID = '00000000-0000-0000-0000-000000000000';
 

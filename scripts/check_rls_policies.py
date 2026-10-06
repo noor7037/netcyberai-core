@@ -385,6 +385,68 @@ def find_double_permissive_writes(policies: dict) -> list[tuple[str, str, str]]:
     return sorted(set(findings))
 
 
+SQL_COMMENT_RE = re.compile(r"--[^\n]*")
+CREATE_TABLE_RE = re.compile(r"create\s+table\s+(?:if\s+not\s+exists\s+)?(?:public\.)?\"?(?P<table>\w+)\"?\s*\(", re.IGNORECASE)
+DROP_TABLE_RE = re.compile(r"drop\s+table\s+(?:if\s+exists\s+)?(?:public\.)?\"?(?P<table>\w+)\"?", re.IGNORECASE)
+RLS_SWITCH_RE = re.compile(
+    r"alter\s+table\s+(?:only\s+)?(?:public\.)?\"?(?P<table>\w+)\"?\s+(?P<kind>enable|force|disable|no\s+force)\s+row\s+level\s+security",
+    re.IGNORECASE,
+)
+TEMPLATED_RLS_RE = re.compile(r"alter\s+table\s+%I\s+(?P<kind>enable|force)\s+row\s+level\s+security", re.IGNORECASE)
+
+
+def find_tables_without_rls(migrations_dir: Path) -> list[tuple[str, str]]:
+    """A fourth, independent check (Decision Log C127): every table a
+    migration creates must have row level security both ENABLED and FORCED
+    (forced, so the table's owner is subject to it too) by the end of the
+    replay. Without it the policies on the table do nothing, and the checks
+    above would still pass. Returns [(table, what is missing)].
+
+    Reads plain `alter table <t> enable|force row level security` and the
+    templated do-block form the first migrations use (`execute
+    format('alter table %I enable ...', t)` over `unnest(array[...])`).
+    A later `disable` / `no force` switches it back off. Tables in
+    TABLES_WITHOUT_RLS are exempt by design; a dropped table is ignored."""
+    created: dict[str, None] = {}
+    state: dict[str, set[str]] = {}
+    for path in sorted(migrations_dir.glob("*.sql")):
+        text = SQL_COMMENT_RE.sub("", path.read_text())
+        events: list[tuple[int, str, str]] = []
+        for m in CREATE_TABLE_RE.finditer(text):
+            events.append((m.start(), "create", m.group("table").lower()))
+        for m in DROP_TABLE_RE.finditer(text):
+            events.append((m.start(), "drop", m.group("table").lower()))
+        for m in RLS_SWITCH_RE.finditer(text):
+            events.append((m.start(), re.sub(r"\s+", " ", m.group("kind").lower()), m.group("table").lower()))
+        for block in DO_BLOCK_RE.finditer(text):
+            kinds = {m.group("kind").lower() for m in TEMPLATED_RLS_RE.finditer(block.group(0))}
+            tables = [t.lower() for arr in UNNEST_ARRAY_RE.finditer(block.group(0)) for t in QUOTED_ITEM_RE.findall(arr.group("items"))]
+            for kind in kinds:
+                for t in tables:
+                    events.append((block.start(), kind, t))
+        for _, kind, table in sorted(events, key=lambda e: e[0]):
+            if kind == "create":
+                created[table] = None
+                state.setdefault(table, set())
+            elif kind == "drop":
+                created.pop(table, None)
+                state.pop(table, None)
+            elif kind in ("enable", "force"):
+                state.setdefault(table, set()).add(kind)
+            elif kind == "disable":
+                state.setdefault(table, set()).discard("enable")
+            elif kind == "no force":
+                state.setdefault(table, set()).discard("force")
+    missing = []
+    for table in created:
+        if table in TABLES_WITHOUT_RLS:
+            continue
+        lacks = [k.upper() for k in ("enable", "force") if k not in state.get(table, set())]
+        if lacks:
+            missing.append((table, " and ".join(lacks)))
+    return sorted(missing)
+
+
 def main() -> int:
     policies = parse_migrations(MIGRATIONS_DIR)
     permissive = {k for k, (is_permissive, _cmd) in policies.items() if is_permissive}
@@ -452,6 +514,20 @@ def main() -> int:
             print(f"  {table}: {blanket} (PERMISSIVE, ALL) + {overlay} (PERMISSIVE) -- make {overlay} RESTRICTIVE")
     else:
         print("PASS: no PERMISSIVE write-restricting overlay rides alongside a PERMISSIVE ALL-command policy on the same table.")
+
+    without_rls = find_tables_without_rls(MIGRATIONS_DIR)
+    if without_rls:
+        ok = False
+        print("FAIL: a table created in a migration does not have row level security both ENABLED and FORCED:")
+        for table, lacks in without_rls:
+            print(f"  {table}: missing {lacks} row level security")
+        print(
+            "\nAdd to the migration that creates it:\n"
+            "  alter table <table> enable row level security;\n"
+            "  alter table <table> force row level security;"
+        )
+    else:
+        print("PASS: every table created in a migration has row level security enabled and forced.")
 
     return 0 if ok else 1
 
@@ -562,6 +638,44 @@ def self_test() -> int:
         if order.get(("students", "teacher_scope_students")) != (False, "SELECT") or ("students", "gone") in order:
             print("SELF-TEST FAILED: create/drop order within a file was not respected")
             print(order)
+            return 1
+
+        # Every created table needs ENABLE and FORCE (C127).
+        rls_dir = tmp / "rls"
+        rls_dir.mkdir()
+        (rls_dir / "0001_a.sql").write_text(
+            "create table good (id int);\n"
+            "alter table good enable row level security;\n"
+            "alter table good force row level security;\n"
+            "create table if not exists public.only_enabled (id int);\n"
+            "alter table only_enabled enable row level security;\n"
+            "create table bare (id int);\n"
+            "-- alter table bare enable row level security; (a comment does not count)\n"
+            "create table sessions (id int);\n"
+            "create table templated_a (id int);\ncreate table templated_b (id int);\n"
+            "do $$ declare t text; begin\n"
+            "  for t in select unnest(array['templated_a', 'templated_b']) loop\n"
+            "    execute format('alter table %I enable row level security', t);\n"
+            "    execute format('alter table %I force row level security', t);\n"
+            "  end loop; end $$;\n"
+            "create table gone (id int);\n"
+            "create table switched_off (id int);\n"
+            "alter table switched_off enable row level security;\n"
+            "alter table switched_off force row level security;\n"
+        )
+        (rls_dir / "0002_b.sql").write_text(
+            "drop table gone;\n"
+            "alter table switched_off disable row level security;\n"
+            "create table later_fixed (id int);\n"
+        )
+        (rls_dir / "0003_c.sql").write_text(
+            "alter table later_fixed enable row level security;\nalter table later_fixed force row level security;\n"
+        )
+        got = find_tables_without_rls(rls_dir)
+        want = [("bare", "ENABLE and FORCE"), ("only_enabled", "FORCE"), ("switched_off", "ENABLE")]
+        if got != want:
+            print("SELF-TEST FAILED: tables without ENABLE/FORCE row level security were not reported exactly")
+            print(f"  got  {got}\n  want {want}")
             return 1
 
         print("SELF-TEST PASSED")

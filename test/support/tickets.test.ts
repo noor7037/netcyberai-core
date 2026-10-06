@@ -5,7 +5,11 @@ import { NextRequest } from 'next/server';
 import { canReply, canTransition, nextStatuses, schoolMayMove, ticketRef, TICKET_STATUSES, type TicketStatus } from '@/lib/contracts/tickets';
 import { MemoryFileStorage, sniffImageType } from '@/lib/storage/file-storage';
 import { tooLarge } from '@/lib/support/ticket-routes';
-import { addTicketMessage, addTicketScreenshot, changeTicketStatus, createTicket, getTicket, listTickets, ticketScreenshotUrl, type TicketActor } from '@/lib/support/tickets';
+import { addTicketMessage, addTicketScreenshot, changeTicketStatus, createTicket, getTicket, listTickets, ticketNotifyHandler, ticketScreenshotUrl, type TicketActor } from '@/lib/support/tickets';
+import type { EmailMessage } from '@/lib/email/sender';
+import { emailSendHandler } from '@/lib/jobs/email-handler';
+import { createPgJobQueue } from '@/lib/jobs/pg-queue';
+import { runJobs } from '@/lib/jobs/runner';
 import { POST as uploadRoute } from '@/app/api/app/tickets/[ticketId]/attachments/route';
 import { GET as queueRoute } from '@/app/api/control/tickets/route';
 
@@ -342,5 +346,55 @@ describe('screenshots', () => {
     const sized = (n: string | null) => new NextRequest('http://localhost/x', { method: 'POST', headers: n === null ? {} : { 'content-length': n } });
     expect([sized(String(6 * 1024 * 1024)), sized(null), sized('abc')].map(tooLarge)).toEqual([true, true, true]);
     expect(tooLarge(sized(String(3 * 1024 * 1024)))).toBe(false);
+  });
+});
+
+describe('the founder is told by email when a ticket is raised (C127)', () => {
+  it('one email through the jobs pipeline: school, category and a Control link; never the ticket’s words; however often the jobs run', async () => {
+    const queue = createPgJobQueue((fn) => db.platform(fn as never));
+    const sent: EmailMessage[] = [];
+    const sender = { send: async (m: EmailMessage) => { if (!sent.some((s) => s.idempotencyKey === m.idempotencyKey)) sent.push(m); return { providerId: 'x' }; } };
+    const platformTx = <T,>(fn: (q: any) => Promise<T>) => db.platform(fn);
+    const handlers = {
+      'ticket.notify': ticketNotifyHandler({ platform: platformTx, queue }),
+      'email.send': emailSendHandler({ sender: () => sender, platform: platformTx }),
+    };
+    const c = claims('academic_coordinator', randomUUID());
+    const r = await db.tenant(c, (q) => createTicket(q, { ...school(c.role, c.sub), schoolId: A }, { ...NEW, subject: 'Secret subject words', body: 'Secret body words about a parent.', category: 'billing' }, queue));
+    if (!r.ok) throw new Error(r.error);
+    expect(r.value.jobKey).toBe(`ticket.notify:${r.value.ticketId}`);
+    const jobs = async () => (await db.query(`select type, status, school_id, payload from jobs where idempotency_key like $1 order by created_at`, [`%${r.value.ticketId}`])).rows;
+    expect(await jobs()).toMatchObject([{ type: 'ticket.notify', status: 'pending', school_id: A, payload: { ticketId: r.value.ticketId } }]);
+
+    process.env.ONBOARDING_NOTIFY_EMAIL = 'founder@netcyberai.test';
+    try {
+      for (let i = 0; i < 3; i++) await runJobs({ handlers, queue });
+      // The same ticket notified again (a retried request) adds nothing.
+      await db.platform((q) => queue.enqueue(q, { type: 'ticket.notify', idempotencyKey: `again:${r.value.ticketId}`, schoolId: A, payload: { ticketId: r.value.ticketId } }));
+      for (let i = 0; i < 2; i++) await runJobs({ handlers, queue });
+    } finally {
+      delete process.env.ONBOARDING_NOTIFY_EMAIL;
+    }
+    expect((await jobs()).map((j) => [j.type, j.status])).toEqual([['ticket.notify', 'succeeded'], ['email.send', 'succeeded'], ['ticket.notify', 'succeeded']]);
+    expect(sent).toHaveLength(1);
+    expect(sent[0].to).toEqual(['founder@netcyberai.test']);
+    expect(sent[0].subject).toBe('New support ticket: A School');
+    expect(sent[0].text).toBe(`New support ticket from A School: Plan or billing\nOpen: https://netcyberai.com/control/tickets/${r.value.ticketId}`);
+    expect(sent[0].html + sent[0].text + sent[0].subject).not.toMatch(/Secret|parent/);
+  });
+
+  it('a school session can enqueue the notice only for its own school, and a job naming another school’s ticket is dead, with no email', async () => {
+    const queue = createPgJobQueue((fn) => db.platform(fn as never));
+    const t = { tenant: A, role: 'teacher', user: ids.teacher };
+    const ins = (type: string, schoolId: string | null) => db.asRole('app_user', t, (q) => q.query(`insert into jobs (type, idempotency_key, school_id, payload) values ($1, $2, $3, '{}')`, [type, randomUUID(), schoolId]));
+    await expect(ins('ticket.notify', B)).rejects.toThrow(/row-level security/);
+    await expect(ins('ticket.notify', null)).rejects.toThrow(/row-level security/);
+    await expect(ins('email.send', A)).rejects.toThrow(/row-level security/);
+    await expect(db.asRole('app_user', t, (q) => q.query(`select count(*) from jobs`))).rejects.toThrow(/permission denied/);
+    const theirs = await raise(claims('principal', ids.principalB, B));
+    await db.tenant(teacher, (q) => queue.enqueue(q, { type: 'ticket.notify', idempotencyKey: `forged:${theirs}`, schoolId: A, payload: { ticketId: theirs } }));
+    await runJobs({ handlers: { 'ticket.notify': ticketNotifyHandler({ platform: <T,>(fn: (q: any) => Promise<T>) => db.platform(fn), queue }) }, queue });
+    const rows = (await db.query(`select type, status from jobs where idempotency_key like $1`, [`%${theirs}`])).rows;
+    expect(rows).toEqual([{ type: 'ticket.notify', status: 'dead' }]);
   });
 });
