@@ -221,6 +221,15 @@ ALLOWED_PERMISSIVE = (
         # other role holds no grant on the table at all.
         ("entitlement_change_reasons", "entitlement_change_reasons_platform_read"),
         ("entitlement_change_reasons", "entitlement_change_reasons_platform_insert"),
+        # Raise Ticket (Decision Log C126): tenant isolation, narrowed by the
+        # RESTRICTIVE support_tickets_own_or_office / _raise_as_self and the
+        # *_visible_ticket overlays. Replies and screenshots are append-only:
+        # tenant read and tenant insert.
+        ("support_tickets", "support_tickets_tenant_isolation"),
+        ("support_ticket_messages", "support_ticket_messages_tenant_read"),
+        ("support_ticket_messages", "support_ticket_messages_tenant_insert"),
+        ("support_ticket_attachments", "support_ticket_attachments_tenant_read"),
+        ("support_ticket_attachments", "support_ticket_attachments_tenant_insert"),
     }
 )
 
@@ -244,6 +253,12 @@ REQUIRED_RESTRICTIVE = {
     # C124: hides the older 'entitlement.%' audit rows that carry the
     # founder's reason from every role subject to row level security.
     ("audit_log", "audit_founder_reason_hidden"),
+    # C126: inside a school, tickets are the raiser's or the office's.
+    ("support_tickets", "support_tickets_own_or_office"),
+    ("support_tickets", "support_tickets_raise_as_self"),
+    ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
+    ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
+    ("audit_log", "audit_ticket_rows_own_or_office"),
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)

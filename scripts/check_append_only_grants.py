@@ -69,7 +69,9 @@ MIGRATIONS_DIR = REPO_ROOT / "supabase" / "migrations"
 # `school_setting_changes` (P1-b, Decision Log C112): the settings history.
 # `guardian_merges` (Decision Log C116): the record of guardian merges.
 # `entitlement_change_reasons` (Decision Log C124): the founder's reasons.
-APPEND_ONLY_TABLES = {"audit_log", "consent_ledger", "entitlement_change_reasons", "guardian_merges", "payments", "school_setting_changes", "sessions", "webhook_events"}
+# `support_ticket_messages`, `support_ticket_attachments` (C126): ticket replies and screenshots.
+APPEND_ONLY_TABLES = {"audit_log", "consent_ledger", "entitlement_change_reasons", "guardian_merges", "payments", "school_setting_changes", "sessions",
+                      "support_ticket_attachments", "support_ticket_messages", "webhook_events"}
 
 # "Non-privileged, app-facing": any role a real request -- ordinary or
 # this app's own super_admin bypass -- can run as, or any role
@@ -91,7 +93,7 @@ NON_PRIVILEGED_ROLES = {"app_user", "anon", "authenticated", "nca_super"}
 WATCHED_PRIVS = {"UPDATE", "DELETE"}
 
 GRANT_RE = re.compile(
-    r"\bgrant\s+(?P<privs>[a-z_,\s]+?)\s+on\s+(?P<tables>[\w\"',\s]+?)\s+to\s+(?P<roles>[\w\"',\s]+?);",
+    r"\bgrant\s+(?P<privs>[a-z_,\s()]+?)\s+on\s+(?P<tables>[\w\"',\s]+?)\s+to\s+(?P<roles>[\w\"',\s]+?);",
     re.IGNORECASE,
 )
 REVOKE_RE = re.compile(
@@ -111,7 +113,8 @@ def _split_list(raw: str) -> list[str]:
 
 
 def _privs_of_interest(raw: str) -> set[str]:
-    return {p.strip().upper() for p in raw.split(",")} & WATCHED_PRIVS
+    # First word of each item, so a column grant ("update (body)") counts.
+    return {(p.split() or [""])[0].split("(")[0].upper() for p in raw.split(",")} & WATCHED_PRIVS
 
 
 def parse_grant_state(migrations_dir: Path) -> dict[tuple[str, str], set[str]]:
@@ -231,6 +234,13 @@ def self_test() -> int:
             print("SELF-TEST FAILED: a planted re-grant of UPDATE on webhook_events to app_user was NOT caught")
             print(dirty_violations)
             return 1
+
+        # A column-level grant is still an UPDATE grant.
+        (dirty_dir / "0002b_column.sql").write_text("grant update (payload) on audit_log to app_user;\n")
+        if not any(v.startswith("audit_log: app_user") for v in find_violations(dirty_dir)):
+            print("SELF-TEST FAILED: a column-level UPDATE grant on audit_log was NOT caught")
+            return 1
+        (dirty_dir / "0002c_fix.sql").write_text("revoke update on audit_log from app_user;\n")
 
         (dirty_dir / "0003_fix.sql").write_text("revoke update on webhook_events from app_user;\n")
         if find_violations(dirty_dir):

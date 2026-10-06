@@ -51,6 +51,9 @@ DEFINITION_MODULE = "src/lib/auth/supabase.ts"
 CREDENTIAL_MODULE = "src/lib/auth/env.ts"
 AUTHORIZED_CALLERS = {
     "src/lib/capture/storage.ts",
+    # FileStorage on the private bucket (PR-4, C126): school-prefixed keys,
+    # signed links only. Callers depend on the FileStorage interface.
+    "src/lib/storage/supabase-file-storage.ts",
     # Founder-console account tools (C91): one-time sign-in/reset links,
     # temporary password, removing a lost authenticator. super_admin only.
     "src/lib/auth/admin-actions.ts",
