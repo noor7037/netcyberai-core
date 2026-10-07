@@ -173,6 +173,11 @@ run_step "Build" NEXT_PUBLIC_WHATSAPP_NUMBER=919817707037 <<'STEP'
 npm run build
 STEP
 
+run_step "The screenshot harness and session minting cannot reach production" <<'STEP'
+python3 scripts/check_harness_isolation.py --self-test
+python3 scripts/check_harness_isolation.py --build .next
+STEP
+
 uses_step actions/setup-python@v5 python-version=3.12
 
 run_step "SEO/AEO audit" NEXT_PUBLIC_WHATSAPP_NUMBER=919817707037 <<'STEP'

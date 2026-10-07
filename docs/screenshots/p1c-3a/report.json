@@ -1,0 +1,850 @@
+{
+  "migrationsApplied": 53,
+  "migrationsSkipped": [
+    "20260930064005_b2_jobs_scheduler.sql",
+    "20260930064359_b2_jobs_runner_secret_digest.sql",
+    "20260930070018_b2_pg_net_extensions_schema.sql"
+  ],
+  "screens": [
+    {
+      "name": "app-dashboard",
+      "width": 1440,
+      "route": "/app/dashboard",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/dashboard",
+      "h1": [
+        "Illustrative Public School"
+      ],
+      "modulePage": 0,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-students",
+      "width": 1440,
+      "route": "/app/students",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/students",
+      "h1": [
+        "Students"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-student-profile",
+      "width": 1440,
+      "route": "/app/students/00000000-0000-4000-8000-000000500001",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/students/00000000-0000-4000-8000-000000500001",
+      "h1": [
+        "Aarav Example A"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-student-id-card",
+      "width": 1440,
+      "route": "/app/students/00000000-0000-4000-8000-000000500001/id-card",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/students/00000000-0000-4000-8000-000000500001/id-card",
+      "h1": [
+        "ID card: Aarav Example A"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-admissions",
+      "width": 1440,
+      "route": "/app/admissions",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/admissions",
+      "h1": [
+        "Admissions"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-attendance",
+      "width": 1440,
+      "route": "/app/attendance",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/attendance",
+      "h1": [
+        "Attendance"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-staff",
+      "width": 1440,
+      "route": "/app/staff",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/staff",
+      "h1": [
+        "Staff accounts"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-compliance",
+      "width": 1440,
+      "route": "/app/compliance",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/compliance",
+      "h1": [
+        "Compliance"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-taught-today",
+      "width": 1440,
+      "route": "/app/syllabus",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/syllabus",
+      "h1": [
+        "Taught today"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-settings",
+      "width": 1440,
+      "route": "/app/settings",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/settings",
+      "h1": [
+        "Settings"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-account",
+      "width": 1440,
+      "route": "/app/account",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/account",
+      "h1": [
+        "Account and security"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-help",
+      "width": 1440,
+      "route": "/app/help",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/help",
+      "h1": [
+        "Help Center"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-tickets",
+      "width": 1440,
+      "route": "/app/help/ticket",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/help/ticket",
+      "h1": [
+        "Support tickets"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-ticket-new",
+      "width": 1440,
+      "route": "/app/help/ticket/new",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/help/ticket/new",
+      "h1": [
+        "Raise a ticket"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-ticket",
+      "width": 1440,
+      "route": "/app/help/ticket/00000000-0000-4000-8000-0000000f0001",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/help/ticket/00000000-0000-4000-8000-0000000f0001",
+      "h1": [
+        "Support ticket"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "teacher-attendance",
+      "width": 1440,
+      "route": "/app/attendance",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/attendance",
+      "h1": [
+        "Attendance"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "teacher-taught-today",
+      "width": 1440,
+      "route": "/app/syllabus",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/syllabus",
+      "h1": [
+        "Taught today"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "teacher-tickets",
+      "width": 1440,
+      "route": "/app/help/ticket",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/help/ticket",
+      "h1": [
+        "Support tickets"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-dashboard",
+      "width": 1440,
+      "route": "/control",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control",
+      "h1": [
+        "NetCyberAI Control"
+      ],
+      "modulePage": 0,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-schools",
+      "width": 1440,
+      "route": "/control/schools",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/schools",
+      "h1": [
+        "Schools"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-school",
+      "width": 1440,
+      "route": "/control/schools/a0000000-0000-4000-8000-000000000001",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/schools/a0000000-0000-4000-8000-000000000001",
+      "h1": [
+        "Illustrative Public School"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-users",
+      "width": 1440,
+      "route": "/control/users",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/users",
+      "h1": [
+        "Users"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-onboarding",
+      "width": 1440,
+      "route": "/control/onboarding",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/onboarding",
+      "h1": [
+        "Onboarding"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-applications",
+      "width": 1440,
+      "route": "/control/onboarding/applications",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/onboarding/applications",
+      "h1": [
+        "School applications"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-pipeline",
+      "width": 1440,
+      "route": "/control/monitoring",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/monitoring",
+      "h1": [
+        "Pipeline"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-tickets",
+      "width": 1440,
+      "route": "/control/tickets",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/tickets",
+      "h1": [
+        "Support tickets"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-ticket",
+      "width": 1440,
+      "route": "/control/tickets/00000000-0000-4000-8000-0000000f0001",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/tickets/00000000-0000-4000-8000-0000000f0001",
+      "h1": [
+        "Support ticket"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-account",
+      "width": 1440,
+      "route": "/control/account",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/account",
+      "h1": [
+        "Account and security"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-dashboard",
+      "width": 390,
+      "route": "/app/dashboard",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/dashboard",
+      "h1": [
+        "Illustrative Public School"
+      ],
+      "modulePage": 0,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-students",
+      "width": 390,
+      "route": "/app/students",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/students",
+      "h1": [
+        "Students"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-student-profile",
+      "width": 390,
+      "route": "/app/students/00000000-0000-4000-8000-000000500001",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/students/00000000-0000-4000-8000-000000500001",
+      "h1": [
+        "Aarav Example A"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-student-id-card",
+      "width": 390,
+      "route": "/app/students/00000000-0000-4000-8000-000000500001/id-card",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/students/00000000-0000-4000-8000-000000500001/id-card",
+      "h1": [
+        "ID card: Aarav Example A"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-admissions",
+      "width": 390,
+      "route": "/app/admissions",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/admissions",
+      "h1": [
+        "Admissions"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-attendance",
+      "width": 390,
+      "route": "/app/attendance",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/attendance",
+      "h1": [
+        "Attendance"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-staff",
+      "width": 390,
+      "route": "/app/staff",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/staff",
+      "h1": [
+        "Staff accounts"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-compliance",
+      "width": 390,
+      "route": "/app/compliance",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/compliance",
+      "h1": [
+        "Compliance"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-taught-today",
+      "width": 390,
+      "route": "/app/syllabus",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/syllabus",
+      "h1": [
+        "Taught today"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-settings",
+      "width": 390,
+      "route": "/app/settings",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/settings",
+      "h1": [
+        "Settings"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-account",
+      "width": 390,
+      "route": "/app/account",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/account",
+      "h1": [
+        "Account and security"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-help",
+      "width": 390,
+      "route": "/app/help",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/help",
+      "h1": [
+        "Help Center"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-tickets",
+      "width": 390,
+      "route": "/app/help/ticket",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/help/ticket",
+      "h1": [
+        "Support tickets"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-ticket-new",
+      "width": 390,
+      "route": "/app/help/ticket/new",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/help/ticket/new",
+      "h1": [
+        "Raise a ticket"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "app-ticket",
+      "width": 390,
+      "route": "/app/help/ticket/00000000-0000-4000-8000-0000000f0001",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/help/ticket/00000000-0000-4000-8000-0000000f0001",
+      "h1": [
+        "Support ticket"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "teacher-attendance",
+      "width": 390,
+      "route": "/app/attendance",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/attendance",
+      "h1": [
+        "Attendance"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "teacher-taught-today",
+      "width": 390,
+      "route": "/app/syllabus",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/syllabus",
+      "h1": [
+        "Taught today"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "teacher-tickets",
+      "width": 390,
+      "route": "/app/help/ticket",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/app/help/ticket",
+      "h1": [
+        "Support tickets"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-dashboard",
+      "width": 390,
+      "route": "/control",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control",
+      "h1": [
+        "NetCyberAI Control"
+      ],
+      "modulePage": 0,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-schools",
+      "width": 390,
+      "route": "/control/schools",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/schools",
+      "h1": [
+        "Schools"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-school",
+      "width": 390,
+      "route": "/control/schools/a0000000-0000-4000-8000-000000000001",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/schools/a0000000-0000-4000-8000-000000000001",
+      "h1": [
+        "Illustrative Public School"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-users",
+      "width": 390,
+      "route": "/control/users",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/users",
+      "h1": [
+        "Users"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-onboarding",
+      "width": 390,
+      "route": "/control/onboarding",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/onboarding",
+      "h1": [
+        "Onboarding"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-applications",
+      "width": 390,
+      "route": "/control/onboarding/applications",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/onboarding/applications",
+      "h1": [
+        "School applications"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-pipeline",
+      "width": 390,
+      "route": "/control/monitoring",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/monitoring",
+      "h1": [
+        "Pipeline"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-tickets",
+      "width": 390,
+      "route": "/control/tickets",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/tickets",
+      "h1": [
+        "Support tickets"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-ticket",
+      "width": 390,
+      "route": "/control/tickets/00000000-0000-4000-8000-0000000f0001",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/tickets/00000000-0000-4000-8000-0000000f0001",
+      "h1": [
+        "Support ticket"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    },
+    {
+      "name": "control-account",
+      "width": 390,
+      "route": "/control/account",
+      "status": 200,
+      "serverSaid": [],
+      "landedOn": "/control/account",
+      "h1": [
+        "Account and security"
+      ],
+      "modulePage": 1,
+      "horizontalScroll": false,
+      "smallTargets": [],
+      "pageErrors": []
+    }
+  ]
+}

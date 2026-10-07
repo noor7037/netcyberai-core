@@ -89,7 +89,7 @@ export default async function OnboardingPage() {
                   <p className="font-medium text-slate">{s.name}</p>
                   <p className="text-sm text-slate/70">{STAGE_LABELS[s.onboarding_stage] ?? s.onboarding_stage}</p>
                 </div>
-                <Link href={`/control/schools/${s.school_id}`} className="text-sm font-medium text-sapphire underline">
+                <Link href={`/control/schools/${s.school_id}`} className="inline-flex min-h-[44px] items-center text-sm font-medium text-sapphire underline">
                   Manage →
                 </Link>
               </li>

@@ -29,7 +29,7 @@ export default async function ApplicationsPage({ searchParams }: { searchParams:
       key={state ?? 'all'}
       href={state ? `/control/onboarding/applications?status=${state}` : '/control/onboarding/applications'}
       aria-current={filter === state ? 'page' : undefined}
-      className={`rounded-full border px-3 py-1.5 text-sm ${filter === state ? 'border-sapphire bg-sapphire/10 font-semibold text-slate' : 'border-slate/15 text-slate/80'}`}
+      className={`inline-flex min-h-[44px] items-center rounded-full border px-3 text-sm ${filter === state ? 'border-sapphire bg-sapphire/10 font-semibold text-slate' : 'border-slate/15 text-slate/80'}`}
     >
       {label}
       {n !== undefined ? ` (${n})` : ''}

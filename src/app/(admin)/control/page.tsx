@@ -13,7 +13,7 @@ const columns: TableColumn<SchoolRow>[] = [
     key: 'name',
     header: 'School',
     render: (s) => (
-      <Link href={`/control/schools/${s.id}`} className="font-medium text-sapphire underline">
+      <Link href={`/control/schools/${s.id}`} className="inline-flex min-h-[44px] items-center font-medium text-sapphire underline">
         {s.name}
       </Link>
     ),

@@ -157,14 +157,14 @@ export function ConsentPanel({ studentId, guardians, canManage }: { studentId: s
                   {canManage && (
                     <div className="flex gap-2">
                       {status !== 'active' && status !== 'tombstoned' && (
-                        <button type="button" className="text-sapphire" onClick={() => setVerifyGuardian(g.parent_id)}>
+                        <button type="button" className="min-h-[44px] px-2 text-sapphire" onClick={() => setVerifyGuardian(g.parent_id)}>
                           Verify
                         </button>
                       )}
                       {status === 'active' && (
                         <button
                           type="button"
-                          className="text-red-800"
+                          className="min-h-[44px] px-2 text-red-800"
                           onClick={async () => {
                             const r = await callVerification(g.parent_id, { action: 'withdraw' });
                             if (r) loadLinks();
@@ -198,10 +198,10 @@ export function ConsentPanel({ studentId, guardians, canManage }: { studentId: s
                 </div>
                 {canManage && guardians.length > 0 && (
                   <div className="flex gap-2">
-                    <button type="button" className="text-sapphire" onClick={() => setGrantOpen({ purpose: p.key, granted: true })}>
+                    <button type="button" className="min-h-[44px] px-2 text-sapphire" onClick={() => setGrantOpen({ purpose: p.key, granted: true })}>
                       Grant
                     </button>
-                    <button type="button" className="text-red-800" onClick={() => setGrantOpen({ purpose: p.key, granted: false })}>
+                    <button type="button" className="min-h-[44px] px-2 text-red-800" onClick={() => setGrantOpen({ purpose: p.key, granted: false })}>
                       Withdraw
                     </button>
                   </div>
@@ -213,7 +213,7 @@ export function ConsentPanel({ studentId, guardians, canManage }: { studentId: s
       </div>
 
       <details>
-        <summary className="cursor-pointer text-sm font-semibold text-slate/70">History ({history.length})</summary>
+        <summary className="cursor-pointer py-3 text-sm font-semibold text-slate/70">History ({history.length})</summary>
         <ul className="mt-2 flex flex-col gap-1 text-xs text-slate/70">
           {history.map((h) => (
             <li key={h.consent_id}>

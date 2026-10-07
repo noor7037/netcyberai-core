@@ -135,7 +135,7 @@ export function ComplianceView({ canManage }: { canManage: boolean }) {
               even if the CPI+5% comparison above shows otherwise. Not legal advice.
             </p>
             {canManage && (
-              <button type="button" onClick={toggleMute} className="self-start text-sm font-semibold text-slate/70">
+              <button type="button" onClick={toggleMute} className="min-h-[44px] self-start text-sm font-semibold text-slate/70">
                 Hide fee advisory notices
               </button>
             )}
