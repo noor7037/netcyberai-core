@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { AppShell } from '@/components/app-shell/AppShell';
+import { controlShellGroups } from '@/components/app-shell/shell-nav';
 import { PageHeader } from '@/components/app-ui/PageHeader';
 import { FIXTURE_NOTICE } from '@/lib/contracts/fixture';
 import { controlNav } from '@/lib/nav/nav-items';
@@ -16,7 +17,7 @@ export default function ControlEntitlementsPreviewPage() {
   if (process.env.NODE_ENV === 'production') notFound();
   return (
     <AppShell
-      groups={[{ id: 'control', label: 'Control', tone: ['sapphire', 'royal'], items: controlNav.map((n) => ({ href: n.href === '/control/schools' ? '/design-system/shell/control' : n.href, label: n.label })) }]}
+      groups={controlShellGroups(controlNav, (h) => (h === '/control/schools' ? '/design-system/shell/control' : h))}
       brand="NetCyberAI Control"
       roleLabel="Platform admin"
       navLabel="Platform 2 navigation"

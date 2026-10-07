@@ -69,9 +69,20 @@ export const onAccentColors = {
   onPeach: colors.slate,
 } as const;
 
-// Chart categorical order, validated with the dataviz skill's
-// validate_palette.js (light surface): lightness band, chroma, CVD
-// separation and normal-vision floor all PASS; turquoise and tangerine
-// sit under 3:1 against the surface, so every chart that uses them
-// ships visible value labels and a table view.
-export const chartSeries = [colors.royal, colors.turquoise, colors.tangerine, colors.grape] as const;
+// Chart series colours (docs/19 §3.5, C131): a fixed order, never cycled.
+// Validated with the dataviz validator (validate_palette.js, light surface
+// #FFFFFF, 2026-10-07): lightness band, chroma floor, colour-blind
+// separation (worst adjacent ΔE 15.4) and the normal-vision floor all PASS.
+// Tangerine and turquoise sit under 3:1 on white, so every chart that uses
+// them shows value labels and offers a table view. A 7th series is never a
+// generated hue: it folds into "Other" (seriesColor).
+export const chartSeries = [colors.royal, colors.tangerine, colors.turquoise, colors.grape, colors.azure, colors.violet] as const;
+export const chartOther = colors.slate;
+export function seriesColor(index: number): string {
+  return chartSeries[index] ?? chartOther;
+}
+
+// Sequential (magnitude) ramp: one hue, light to dark, as royal at these
+// opacities on the white surface. Validated with --ordinal: monotone
+// lightness, visible steps, light end 2.16:1 against the surface.
+export const sequentialRoyal = { color: colors.royal, steps: [0.45, 0.65, 0.85, 1] } as const;

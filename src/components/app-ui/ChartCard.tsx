@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ColumnChart, LineChart } from '@/components/visual/Charts';
 import { chartAsTable, type ChartData } from '@/lib/contracts/charts';
-import { chartSeries } from '@/lib/design-tokens';
+import { seriesColor } from '@/lib/design-tokens';
 import type { ColorToken } from '@/lib/contracts/modules';
 import { AppCard } from './Card';
 import { formatValue, NO_VALUE } from './format';
@@ -37,7 +37,7 @@ function Drawing({ chart }: { chart: ChartData }) {
         <LineChart
           title={chart.title}
           labels={full.map(shortDate)}
-          series={chart.series.map((s, i) => ({ name: s.label, color: chartSeries[i % chartSeries.length], values: full.map((t) => s.points.find((p) => p.t === t)!.v!) }))}
+          series={chart.series.map((s, i) => ({ name: s.label, color: seriesColor(i), values: full.map((t) => s.points.find((p) => p.t === t)!.v!) }))}
           min={0}
           max={max}
           unit={chart.unit === 'percent' ? '%' : ''}
@@ -54,7 +54,7 @@ function Drawing({ chart }: { chart: ChartData }) {
     const missing = chart.categories.length - data.length;
     return (
       <>
-        <ColumnChart title={chart.title} data={data} color={chartSeries[0]} max={chart.unit === 'percent' ? 100 : undefined} unit={chart.unit === 'percent' ? '%' : ''} />
+        <ColumnChart title={chart.title} data={data} color={seriesColor(0)} max={chart.unit === 'percent' ? 100 : undefined} unit={chart.unit === 'percent' ? '%' : ''} />
         {missing > 0 && <p className="text-xs text-slate/70">{missing === 1 ? '1 has' : `${missing} have`} no data yet and {missing === 1 ? 'is' : 'are'} left out.</p>}
       </>
     );
@@ -73,7 +73,7 @@ function Drawing({ chart }: { chart: ChartData }) {
               </span>
             </div>
             <span className="block h-2 overflow-hidden rounded-full bg-slate/10" aria-hidden="true">
-              <span className="block h-full rounded-full" style={{ width: `${share}%`, backgroundColor: chartSeries[i % chartSeries.length] }} />
+              <span className="block h-full rounded-full" style={{ width: `${share}%`, backgroundColor: seriesColor(i) }} />
             </span>
           </li>
         );

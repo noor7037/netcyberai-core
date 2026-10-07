@@ -4,7 +4,9 @@ import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Icon } from '@/components/visual/Icons';
+import { ModuleIcon } from '@/components/app-ui/ModuleIcon';
 import { TOKEN_TONES } from '@/components/app-ui/tones';
+import type { ColorToken } from '@/lib/contracts/modules';
 import type { NavBadge } from '@/lib/contracts/navigation';
 import { activeHref, type ShellGroup, type ShellItem } from './shell-nav';
 
@@ -19,15 +21,15 @@ function Badge({ badge }: { badge: NavBadge }) {
   return <span className="ml-auto rounded-full bg-white px-2 text-xs font-bold text-midnight">{text}</span>;
 }
 
-function ItemLink({ item, active, onNavigate }: { item: ShellItem; active: boolean; onNavigate?: () => void }) {
+function ItemLink({ item, active, tone, onNavigate }: { item: ShellItem; active: boolean; tone: ColorToken; onNavigate?: () => void }) {
   return (
     <Link
       href={item.href}
       aria-current={active ? 'page' : undefined}
       onClick={onNavigate}
-      className={`flex min-h-[44px] items-center gap-3 rounded-md px-3 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-white ${active ? 'bg-white/15 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white'}`}
+      className={`flex min-h-[48px] items-center gap-3 rounded-lg px-2 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-white ${active ? 'bg-white/15 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white'}`}
     >
-      {item.icon && <Icon name={item.icon} className="h-4 w-4 shrink-0" aria-hidden="true" />}
+      {item.icon && <ModuleIcon name={item.icon} tone={item.tone ?? tone} size="sm" variant="solid" className={active ? 'ring-2 ring-white' : ''} />}
       <span className="min-w-0 flex-1 truncate" title={item.label}>
         {item.label}
       </span>
@@ -63,7 +65,7 @@ function Groups({ groups, active, onNavigate }: { groups: readonly ShellGroup[];
                 onClick={() => toggle(g.id)}
                 className="flex min-h-[44px] w-full items-center gap-2 rounded-md bg-midnight px-3 text-left text-xs font-bold uppercase tracking-wider text-white/80 hover:text-white"
               >
-                <span aria-hidden="true" className={`h-2 w-2 shrink-0 rounded-full ring-1 ring-white/50 ${TOKEN_TONES[g.tone[0]].bar}`} />
+                <span aria-hidden="true" className={`h-3 w-3 shrink-0 rounded ring-1 ring-white/50 ${TOKEN_TONES[g.tone[0]].bar}`} />
                 <span className="flex-1">{g.label}</span>
                 <span aria-hidden="true" className={`transition-transform ${isOpen ? 'rotate-90' : ''}`}>
                   ›
@@ -74,7 +76,7 @@ function Groups({ groups, active, onNavigate }: { groups: readonly ShellGroup[];
               <ul id={listId} className="mb-1 flex flex-col gap-0.5 pl-2">
                 {g.items.map((i) => (
                   <li key={i.href}>
-                    <ItemLink item={i} active={i.href === active} onNavigate={onNavigate} />
+                    <ItemLink item={i} active={i.href === active} tone={g.tone[0]} onNavigate={onNavigate} />
                   </li>
                 ))}
               </ul>

@@ -51,3 +51,9 @@ export const STATUS_TONES: Record<StatusTone, ColorToken> = {
   ai: 'grape',
   recognition: 'gold',
 };
+
+// The tinted surface of a tone without its text colour (KPI tiles, hero
+// chips): the first class of `soft`. Text on it is always slate.
+export function toneTint(tone: ColorToken): string {
+  return TOKEN_TONES[tone].soft.split(' ')[0];
+}

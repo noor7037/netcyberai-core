@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { getServerSession } from '@/lib/auth/server-session';
 import { canAccessControl } from '@/lib/auth/guards';
 import { AppShell } from '@/components/app-shell/AppShell';
-import type { ShellGroup } from '@/components/app-shell/shell-nav';
+import { controlShellGroups, type ShellGroup } from '@/components/app-shell/shell-nav';
 import { controlNav } from '@/lib/nav/nav-items';
 
 // Redundant with middleware.ts's edge gate on purpose -- defense in
@@ -18,7 +18,7 @@ import { controlNav } from '@/lib/nav/nav-items';
 //
 // The Control plane uses the same app shell as the school app (C121),
 // with its own single group.
-const CONTROL_GROUPS: ShellGroup[] = [{ id: 'control', label: 'Control', tone: ['sapphire', 'royal'], items: controlNav.map((n) => ({ href: n.href, label: n.label })) }];
+const CONTROL_GROUPS: ShellGroup[] = controlShellGroups(controlNav);
 
 export default async function ControlLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession();
