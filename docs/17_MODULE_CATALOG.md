@@ -117,7 +117,7 @@ page until the module is built.
 | 30 | Career Graph (`career`) | Spec v0: from class 9, interests + subject performance → career clusters and stream guidance; counsellor notes | P7 | Spec v0 |
 | 31 | Digital Twin (`twin`) | Spec v0: what-if simulator on the school's own data (fee change, teacher hiring, attendance target) with stated assumptions | P7 | Spec v0 |
 | 32 | Automation OS (`automation`) | Spec v0: rule builder (trigger → condition → action) on the jobs pipeline; prebuilt automations; every run audited; human approval for parent-facing actions | P7 | Spec v0 |
-| 33 | Help Center (`help-center`) · Raise Ticket (`raise-ticket`) | In-app guides per module; ticket with screenshot, status, founder queue in Control | P1 | Partial / Live |
+| 33 | Help Center (`help-center`) · Raise Ticket (`raise-ticket`) | In-app guides per module; ticket with screenshot, status, founder queue in Control | P1 | Live |
 
 
 ## 3a. Additions from the founder's E2E review (2026-09-30, C100)
@@ -187,6 +187,8 @@ its phase, not a later polish.
 
 ## 6. Change log
 
+- **2026-10-07** — C129: Help Center is live (§3 row 33): 12 task guides in
+  English and Hindi (Hindi not yet reviewed), search, related guides.
 - **2026-10-07** — C126–C128: Raise Ticket is live (§3 row 33): status
   machine, founder queue in Control, screenshots, founder email.
 - **2026-10-05** — C102: Fees moves before Exams. Phases renumbered in §3 and
