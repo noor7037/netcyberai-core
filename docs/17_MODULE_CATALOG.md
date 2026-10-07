@@ -147,8 +147,59 @@ search · 8 Payment link / UPI QR · 9 One notice → every channel ·
 10 Logbook auto-share with parents. Each is a must-have acceptance item of
 its phase, not a later polish.
 
+## 3b. Additions from the Strengthening Brief (2026-10-07, C104)
+
+Source: [`reference/2026-10-03_STRENGTHENING_BRIEF.md`](reference/2026-10-03_STRENGTHENING_BRIEF.md),
+written from the founder's conversations with schools and teachers. **Every
+item is adopted; nothing in the catalog is removed or renamed.** A module is
+only ever dropped after the founder has watched 2–5 real schools not use it.
+IDs are the brief's.
+
+| ID | What it adds | Module home | Phase |
+|---|---|---|---|
+| **D1** Fee Recovery Engine | Reminders before the due date with the pay link; receipt back on WhatsApp; daily follow-up list ranked by amount, age and history; promise-to-pay tracker; hardship routed to a concession approval by a person, never more reminders; later an explainable risk score (rules first, a model only if it beats the rules) | Fees, Communication, Early Warning | P3 (list, promise, hardship) · P4 (WhatsApp) · P6 (score) |
+| **D2** Compliance Desk | Dated, sourced obligation calendar; mandatory-disclosure builder incl. teacher qualifications; SQAAF evidence tracker; Haryana Form 6 draft (advisory exists); principal reminders | Compliance Pro | P7 |
+| **D3** Student Data Integrity | Register vs reference mismatch finder (name, DOB, guardian); fix list; consent-checked parent correction request on WhatsApp; re-check; APAAR / UDISE+ / candidate-list readiness. Aadhaar: last four digits and name match only, never images | Students, Compliance Pro · APAAR | P7 (checker from P1 import rules) |
+| **D4** RTE Claim Desk | RTE tagging; evidence file per child; claim sheet in the state layout; dues ageing; exception list; association evidence pack. Preparation only, never submitted on a school's behalf | Fees, Students, Compliance Pro | P3 (tagging) · P7 (desk) |
+| **D5** Teacher Work Completion | One tap "taught today" → Pulse draft + classwork log; homework and assessment evidence attach; Copilot drafts plans, worksheets, remarks, competency-aware papers; HPC observation notes by text or voice, approved by the teacher | Academics, Daily Pulse, Teacher Copilot, Exams | P2 · P6 (HPC, papers) |
+| **D6** Learning loop completion | Parent reply "needs help" → teacher queue item with a suggested follow-up → outcome recorded → feeds Early Warning | Daily Pulse, Early Warning | P2 (queue) · P4 (replies) · P5 (signal) |
+| **D7** Consent & Trust Kit | Consent ledger view (exists), consent over WhatsApp, DPA template, breach playbook, per-tenant export, no "certified" wording | Parents, Compliance Pro | P4 · P7 (export) · P8 (legal texts) |
+| **D8** Staff qualification & eligibility | Qualifications, TET/CTET status, expiry reminders; feeds disclosure (D2) | Staff | P5 |
+| **D9** Admissions leakage fix | Enquiry from WhatsApp and web form, stages, follow-up tasks, visit booking, conversion by source | Admissions | P7 |
+| **E1** Provenance standard | Every record behind a flag, report or message stores source, evidence links, validation status and who/when, rule version, AI-assisted yes/no, approver and when; reuses audit and document tables | All modules (standard written in P1-c) | P1-c (standard) · each phase (columns) |
+| **E2** "Why this?" drawer | Every flag, risk marker or recommendation opens its evidence, rule and history | App design system (`19` §3.3) | P1-c (component) · P5 (all flags) |
+| **E3** Proof page | Important claims with evidence count, exceptions, last check, approver; drill-down from every number | Dashboard, School Health Auditor | P5 |
+| **E4** Versioned rules | Compliance, RTE and fee rules stored with `effective_from`, source and recorded date; a change adds a row (today `compliance_config` is one row per school and is overwritten) | Fees, Compliance Pro | P3 (fee rules) · P7 (compliance) |
+| **P7** Measurement | "Taught" tap coverage, response rate, delivery rate and time-to-send, cost per student per month by category, onboarding hours, teacher minutes per class; weekly export; **no per-parent engagement score anywhere** | Every phase emits its own metrics; Reports exports | P2 onward · P5 (export) |
+| **T5** Status from one source | Public module badges computed from `module-status.ts`; CI fails if a module marked live lacks its route, API and table | Website + registry | P1-c |
+| **T7** WhatsApp cost model | Each message records its template category, billable flag, estimated cost and GST from `message_rate_table` (with verification date); utility vs marketing scenarios tested; cost view in Control | Communication, Control | P1-c (data) · P5 (view) |
+| **T8 / T9** Pricing and migration wording | Price-per-student template with a dated WhatsApp cost example; free-migration cap wording. Numbers come from the founder | Website | When the founder gives the numbers |
+| **A1** Free diagnostic tools (9) | Student Data Integrity Checker (extends the import checker) · disclosure completeness · SQAAF readiness planner · section and classroom rule check · RTE dues ageing (user enters the rate) · Form 6 fee-hike calculator (reuses the Form 6 advisory) · WhatsApp cost calculator with verification date · DPDP readiness checklist (lawyer wording before publishing) · HPC evidence completeness. Client-side, no login | Website free tools | Side PRs between phases, in that order |
+| **A2** School Operations Gap Map | Principal answers what they use today; output: gaps, NetCyberAI equivalent, migration path, overlay option; opt-in contact | Website | Side PR |
+| **A3** "Send me this result" | Opt-in, separate from the calculation; lead tagged with the exact tool | Website + leads | With A1 |
+| **A4** Founding Schools programme | Application and diagnostic page (number of schools is the founder's call) | Website | Before P8; wording founder-approved |
+| **A5** Build journal / changelog | Public dated record of what shipped and the problem it solves; metrics only once measured | Website | From P1-c, updated by every PR |
+| **A8** Lead and acquisition cost | Source, stage, hours spent, outcome, computed cost per school | Control | P5 |
+| **S1** ERP Exit Kit | Inventory, saved field mappings per source ERP, import checker, consent collection, parallel run for one class, class-by-class go-live | Setup, Students | P7 |
+| **S2** Overlay import | Scheduled CSV/XLSX of students, fees and attendance from an existing ERP | Setup | P7 |
+| **S3** Per-tenant export | One export of every tenant table; restore-into-isolation documented | Compliance Pro | P7 (before P8) |
+| **S4** Parity gap register | Typical ERP checklist rows → covering module and status, generated from module status | Website / Reports | P5 |
+| **C1** Smart Class lesson link | A lesson opened on the classroom projector from Academics; finishing it is one tap to "taught today" (C106) | Academics | P7 (planned) |
+
+Not part of the school platform (brief §4.I, separate products behind their
+own gates): TET prep, consent/verification API, inclusion desk, campus
+compliance check, coaching-centre edition, exam scan toolkit. The brief's
+do-not-build list (generic AI tutor, doubt chatbot, credit scoring, RTE
+lending, marketplaces, face recognition) is recorded; face recognition is
+already a permanent ban (C23).
+
 ## 4. App design system (all dashboards and apps)
 
+- **Binding standard (C105):** [`19_EASE_AND_COLOUR_STANDARD.md`](19_EASE_AND_COLOUR_STANDARD.md)
+  — "a non-technical person learns everything in one sitting", the ten
+  ease-of-use rules, and the colourful dashboard standard (module icon tiles,
+  KPI tile v2, ring / gauge / gradient-area / heat-grid charts, validated
+  six-colour order). Where this section and `19` differ, `19` wins.
 - **Built (C118):** `src/components/app-ui/**` (cards, page header, status
   pills, KPI tiles, chart cards with table view, responsive lists, loading /
   empty / error / no-access states, tone classes for every logo token);
@@ -187,6 +238,10 @@ its phase, not a later polish.
 
 ## 6. Change log
 
+- **2026-10-07** — C104–C106: Strengthening Brief adopted in full as §3b
+  (every item mapped to a module and phase; nothing removed); ease-of-use and
+  colour standard `19` made binding (§4); classroom kit recorded as a
+  founder-run offering with a planned Smart Class lesson link (C1).
 - **2026-10-07** — C129: Help Center is live (§3 row 33): 12 task guides in
   English and Hindi (Hindi not yet reviewed), search, related guides.
 - **2026-10-07** — C126–C128: Raise Ticket is live (§3 row 33): status

@@ -43,6 +43,28 @@ const paths: Record<string, string> = {
   lock: 'M6 11h12v10H6zM8 11V7a4 4 0 118 0v4',
   mail: 'M3 5h18v14H3zM3 6l9 7 9-7',
   support: 'M4 13a8 8 0 1116 0M4 13v4a2 2 0 002 2h1v-7H6a2 2 0 00-2 2M20 13v4a2 2 0 01-2 2h-1v-7h1a2 2 0 012 2',
+  // One icon per module (docs/19 §3.2, C131): drawn here, same 24 px grid,
+  // stroke and rounded joins. Nothing is traced from the reference board.
+  dashboard: 'M4 4h7v9H4zM13 4h7v5h-7zM13 11h7v9h-7zM4 15h7v5H4z',
+  staff: 'M5 6h14v14H5zM9 3v5M15 3v5M12 14a2 2 0 100-4 2 2 0 000 4zM8.5 18c.6-1.6 1.9-2.4 3.5-2.4s2.9.8 3.5 2.4',
+  timetable: 'M4 6h16v14H4zM4 11h16M10 11v9M15 11v9M8 3v4M16 3v4',
+  proxy: 'M4 8h13M14 5l3 3-3 3M20 16H7M10 13l-3 3 3 3',
+  recovery: 'M4 12a8 8 0 0114-5.3L20 8M20 4v4h-4M20 12a8 8 0 01-14 5.3L4 16M4 20v-4h4M9.5 12l2 2 3.5-3.5',
+  ptm: 'M3 5h11v8H8l-3 3v-3H3zM16 9h5v8h-2v3l-3-3h-4v-2',
+  events: 'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4M12 12.2l1 2 2.2.3-1.6 1.6.4 2.2-2-1.1-2 1.1.4-2.2-1.6-1.6 2.2-.3z',
+  complaints: 'M4 5h16v11h-7l-4 4v-4H4zM12 8v3.5M12 13.5v.01',
+  earlyWarning: 'M8 10a4 4 0 118 0c0 4 2 5.5 2 5.5H6S8 14 8 10M10.5 19h3M3.5 8a8 8 0 012-3.5M20.5 8a8 8 0 00-2-3.5',
+  genome: 'M6 8a2 2 0 100-4 2 2 0 000 4zM18 8a2 2 0 100-4 2 2 0 000 4zM12 14a2 2 0 100-4 2 2 0 000 4zM6 20a2 2 0 100-4 2 2 0 000 4zM18 20a2 2 0 100-4 2 2 0 000 4zM7.5 7.5l3 3M16.5 7.5l-3 3M7.5 16.5l3-3M16.5 16.5l-3-3',
+  curriculumGap: 'M5 4h14v16H5zM8 8h8M8 12h3M14.5 12H16M8 16h8',
+  copilot: 'M5 19L15 9M13 7l4 4M17 3l.8 2.2L20 6l-2.2.8L17 9l-.8-2.2L14 6l2.2-.8zM6 5v3M4.5 6.5h3M19 14v3M17.5 15.5h3',
+  parentAi: 'M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z',
+  auditor: 'M8 4h8v3H8zM6 5.5H5v15h14v-15h-1M7.5 14H10l1.5-3 2 5 1.5-2h2',
+  career: 'M12 21a9 9 0 100-18 9 9 0 000 18zM15.5 8.5l-2 5-5 2 2-5z',
+  twin: 'M4 9h10v10H4zM10 9V5h10v10h-6',
+  automation: 'M13 3L5 13h6l-1 8 8-10h-6z',
+  ticket: 'M4 7h16v3a2 2 0 000 4v3H4v-3a2 2 0 000-4zM14 7v10',
+  search: 'M11 18a7 7 0 100-14 7 7 0 000 14zM16 16l5 5',
+  plus: 'M12 5v14M5 12h14',
 };
 
 export type IconName = keyof typeof paths;

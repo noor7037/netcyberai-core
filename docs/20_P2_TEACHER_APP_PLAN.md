@@ -1,4 +1,4 @@
-# 19 — P2 plan: the Teacher app
+# 20 — P2 plan: the Teacher app
 
 **Status:** plan for review (Decision Log C130). No code in this PR.
 **Scope:** roadmap `16` §4 phase P2 and catalog `17` rows 7 (Academics),
@@ -6,6 +6,14 @@
 14 (Daily Pulse, compose) and 27 (Teacher Copilot).
 **Done when** (`16` §4): a teacher runs a full school day on a phone,
 offline-tolerant.
+**Builds on P1-c** (`19_EASE_AND_COLOUR_STANDARD.md`, C105): every P2 screen
+renders through `ModulePage`, uses its module's icon tile and group colour,
+KPI tile v2 and the §3.4 chart forms, is in English and Hindi, has its tour,
+its "Show me how" guide and teaching empty states, and passes the §6 task
+test (`19` §5). Teacher targets are 48 px.
+**Carries from `17` §3b:** D5 (one tap "taught today" → Pulse draft and
+classwork log), D6 (parent "needs help" → teacher queue), and the P7
+measurement events ("taught" tap coverage, minutes to mark a class).
 
 ## 1. Where we start (checked in the code, 2026-10-07)
 
@@ -25,7 +33,8 @@ Bottom bar: **Today · Attendance · Homework · Pulse · More**. Every screen
 works with one thumb, 44 px targets, and shows a small sync line ("All saved"
 or "3 waiting to send").
 
-1. **Today** (`/app/my-day`, the teacher's home). Today's periods in order,
+1. **Today** (`/app/my-day`, the teacher's home: the role home of `19` rule
+   2, built from the "today cards" contract). Today's periods in order,
    from the timetable: time, class, subject. Each period has its next action
    as one button: Mark attendance → Taught today → Set homework. Above the
    list: what is still open today (attendance not marked for 5A, 2 homework
@@ -59,15 +68,34 @@ open, then production, then the catalog snapshot.
 | PR | Delivers | Data model change | Acceptance test |
 |---|---|---|---|
 | **5a. Phone shell and offline base** | Installable app (manifest, icons, service worker that keeps the app shell); the device store and the outbox (§4) with their tests; the sync line; Today on what exists already (my classes, attendance done or not). | None. | Installs from Chrome on Android and opens to Today with the network off, showing the last data and "offline". Signing out clears the device store. Outbox tests: order kept, a retried operation is applied once, a failed one stays visible. |
-| **5b. Attendance on the phone** | Present all; late and leave codes; offline marking that syncs; the same-day edit window as a school setting. | `attendance.status` gains `leave`, plus an optional `leave_code`; `client_operations` (one row per operation id, so a replay is harmless). | Mark a class with the network off, reconnect: every mark is saved once. The same class marked on two devices: the first is kept, the second is shown the difference and becomes a correction with a reason. A teacher cannot mark another teacher's class (as `app_user`). |
+| **5b. Attendance on the phone** | Present all; late and leave codes; offline marking that syncs; the same-day edit window as a school setting. **Fix:** the attendance API stamps a mark with the UTC date today, which is the wrong day between midnight and 05:30 in India; marks, "today" and the edit window use India's date (the dashboards already do, C131). **Measurement:** minutes to mark a class (first tap to submit), recorded per submission with no student detail. | `attendance.status` gains `leave`, plus an optional `leave_code`; `client_operations` (one row per operation id, so a replay is harmless). | Mark a class with the network off, reconnect: every mark is saved once. The same class marked on two devices: the first is kept, the second is shown the difference and becomes a correction with a reason. A teacher cannot mark another teacher's class (as `app_user`). A mark saved at 00:30 India time is stored under that India day (test with a fixed clock). The minutes-to-mark event is written once per submission. |
 | **5c. Timetable (view) and entry** | Office: periods from settings, a grid per class, CSV import, a clash guard (a teacher or a class in two places at once is refused). Teacher: my week; Today lists real periods. | `timetable_entries` (class, weekday, period, subject, teacher), tenant RLS, teacher reads own and own classes'. | Entering a clash is refused with the two entries named. A CSV with a clash imports nothing and lists the rows. A teacher sees their week; Today shows today's periods in order. |
-| **5d. Academics: syllabus map, taught today, logbook** | Syllabus map per class and subject (chapters and topics, typed or imported); taught today from the map; lesson note; coverage %; the daily logbook entry. | `syllabus_units`; `syllabus_progress` gains `unit_id` and `note`. Existing rows stay valid. | Coverage is taught units over planned units, and matches a hand count in the test. Taught today works offline and syncs. A topic typed by hand still saves (no map needed). |
+| **5d. Academics: syllabus map, taught today, logbook (D5)** | Syllabus map per class and subject (chapters and topics, typed or imported); **one tap "taught today"** from the map, which also writes the classwork log entry and prepares the day's Pulse draft (finished in 5f); lesson note; coverage %. **Measurement:** "taught" tap coverage: periods with a taught-today mark over periods on the timetable, per teacher and class per day. | `syllabus_units`; `syllabus_progress` gains `unit_id` and `note`. Existing rows stay valid. | Coverage is taught units over planned units, and matches a hand count in the test. Taught today works offline and syncs. A topic typed by hand still saves (no map needed). One tap creates exactly one classwork log entry and one Pulse draft seed, and a second tap for the same period changes them instead of adding more. Tap coverage for a seeded week matches a hand count. |
 | **5e. Homework** | Set with photo (through `FileStorage`), due date, **copy to many sections**; check completion; completion per class. | `homework`, `homework_targets` (one per section), `homework_status` (per student), `homework_attachments`. | One homework copied to three sections makes three assignments that can be checked separately; editing the original does not change sent copies without asking. Completion marked offline syncs once. A teacher cannot set homework for a class they do not teach. |
-| **5f. Daily Pulse compose** | Draft from taught today and homework; three languages; edit; mark ready; list of ready messages. Sending stays off until P4. | `pulse_messages` gains `status` (draft, ready, sent), `language`, `created_by`. | A ready message contains the day's topic and homework. Nothing is sent: no job is enqueued and the screen says sending starts with WhatsApp. Only the class's teacher or the office can edit it. |
+| **5f. Daily Pulse compose (D5, D6 queue)** | The draft seeded by "taught today" (5d) plus the homework set; three languages; edit; mark ready; list of ready messages. Sending stays off until P4. **D6:** the teacher's "needs help" queue: an item per student whose parent replied "needs help", with a suggested follow-up, and the outcome recorded when the teacher acts. Parent replies arrive in P4, so in P2 the queue, its states and its screen are built and tested with entries created by the teacher or the office; the reply → queue link switches on in P4, and the outcome feeds Early Warning in P5. | `pulse_messages` gains `status` (draft, ready, sent), `language`, `created_by`; `pulse_followups` (student, reason, suggested follow-up, status: open, done, not needed; outcome note; decided by), tenant RLS, teacher sees own classes only. | A ready message contains the day's topic and homework. Nothing is sent: no job is enqueued and the screen says sending starts with WhatsApp. Only the class's teacher or the office can edit it. A follow-up moves open → done or not needed with an outcome, each move audited; a teacher cannot see another class's follow-ups (as `app_user`). |
 | **5g. Homework Recovery v1** | Finds students who missed N homework in a window (both are school settings); suggests a catch-up plan; the teacher approves or dismisses; approved plans are queued for the parent message in P4. | `recovery_plans` (student, window, items, status, decided by). | With seeded homework results the list is exactly the students over the threshold. Approve and dismiss are audited. Nothing reaches a parent in P2. |
 | **5h. Teacher Copilot v1** | Drafts a lesson plan, a worksheet, a Pulse message or a remark from the syllabus map; the teacher edits and approves; nothing is saved or sent without approval; usage metered per school. Behind an `AIProvider` interface. | `ai_usage` (school, user, kind, tokens, when); no prompt or draft text stored. | With the stand-in provider: a draft appears, can be edited, and is saved only on approve. A school over its monthly limit is refused with a clear message. No student name or guardian detail is in what is sent to the provider (test on the request). |
 
 If a slice grows past the limit it is split, and the split is said in its PR.
+
+**Every PR above also ships, per `19` §5:** the screen through `ModulePage`
+(the CI check from P1c-2 fails otherwise); its module icon tile and group
+colour; its "today" cards for the role home and its "+ New" actions (the
+contracts from P1c-3); English and Hindi; its first-visit tour (at most 3
+steps), its "Show me how" Help Center guide and empty states that teach;
+plain-language errors from the catalogue (P1c-2); and the task test for its
+top 5 tasks, with the tap count recorded in the PR.
+
+**Measurement (`17` §3b P7), built with the feature that produces it:**
+
+| Metric | Recorded in | How |
+|---|---|---|
+| Minutes to mark a class | 5b | One row per submission: class, date, seconds from opening the roster to submit. No student detail. |
+| "Taught" tap coverage | 5d | Taught-today marks over timetable periods, per class per day (needs the timetable from 5c). |
+
+Both go to one small `usage_events` table (school, kind, class, day, value)
+with tenant RLS, written by the server. There is **no per-parent or
+per-student engagement score** anywhere (`17` §3b). The weekly export is P5.
 
 ## 4. Offline tolerance
 
@@ -145,7 +173,16 @@ For **5h (Copilot)** only, because they cannot exist without him:
 - Homework Recovery: 3 missed in the last 10 school days.
 - Languages for Pulse: Hinglish first, as on the website.
 
-## 8. Limits of what I can verify
+## 8. Order relative to P1-c
+
+P1-c comes first (C104–C106): P1c-1 (visual foundation, merged), P1c-2
+(`ModulePage`, its CI check, the error catalogue), P1c-3 (language switch,
+search, "+ New", role homes with the today-cards contract), P1c-4 (tours,
+"Show me how", teaching empty states), P1c-5 (truth and hygiene). P2 starts
+after them, so 5a builds the teacher's Today on the role-home contract rather
+than inventing its own.
+
+## 9. Limits of what I can verify
 
 - I can check screens in a desktop browser at phone sizes and test the
   offline logic in code. I cannot hold a real phone: installing on Android

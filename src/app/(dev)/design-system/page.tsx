@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { AppCard, ChartCard, ComingInPhase, DataList, EmptyState, KpiTile, NoAccessState, PageHeader, Skeleton, StatusPill, TOKEN_TONES, type DataColumn, type StatusTone } from '@/components/app-ui';
-import { MODULE_GROUPS } from '@/lib/contracts/modules';
+import { AppCard, AreaTrend, CalendarHeat, ChartCard, ComingInPhase, DataList, DonutChart, EmptyState, GaugeChart, HeroBand, KpiTile, ModuleIcon, NoAccessState, PageHeader, RingProgress, Skeleton, StatusPill, TOKEN_TONES, type DataColumn, type StatusTone } from '@/components/app-ui';
+import { chartSeries } from '@/lib/design-tokens';
+import { MODULE_GROUPS, MODULE_REGISTRY } from '@/lib/contracts/modules';
+import { attendanceDaysFixture, feeDonutFixture, galleryTitles, heatDaysFixture, sparkFixture } from '@/demo-fixture/visual-foundation';
 import { attendanceTrendFixture, classCoverageFixture, feeShareFixture, kpiTilesFixture, studentPageFixture } from '@/demo-fixture/contracts';
 import { FIXTURE_NOTICE } from '@/lib/contracts/fixture';
 import { GalleryInteractive } from './GalleryInteractive';
@@ -65,11 +67,53 @@ export default function DesignSystemGallery() {
           </div>
         </AppCard>
 
-        <section aria-label="KPI tiles" className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-          {kpiTilesFixture.data.map((t) => (
-            <KpiTile key={t.id} tile={t} />
+        <HeroBand variant="cinematic" greeting="Good morning" date="Friday, 25 September 2026" title="Illustrative Public School" chips={[{ label: 'Mark attendance', href: '/design-system', count: 2 }, { label: 'Open fees', href: '/design-system', count: 17 }]} />
+        <HeroBand greeting="Good afternoon" date="Friday, 25 September 2026" title="Illustrative Public School" chips={[]} />
+
+        <AppCard title="Module icons" description="One icon per module, in a tile of its group’s colour (docs/19 §3.2). Drawn in-house.">
+          {MODULE_GROUPS.map((g) => (
+            <div key={g.id} className="mb-3">
+              <p className="mb-2 text-sm font-bold text-slate">{g.label}</p>
+              <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+                {MODULE_REGISTRY.filter((m) => m.group === g.id).map((m, i) => (
+                  <li key={m.id} className="flex items-center gap-2 rounded-xl border border-slate/10 bg-white p-2 text-sm font-semibold text-slate">
+                    <ModuleIcon name={m.icon} tone={g.tone[0]} variant={i === 0 ? 'solid' : 'soft'} />
+                    <span className="min-w-0 truncate">{m.label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
+        </AppCard>
+
+        <AppCard title="Chart series order" description="Six colours in a fixed order, never cycled; a 7th series folds into “Other” (docs/19 §3.5). Text is never coloured by its series.">
+          <ol className="flex flex-wrap gap-2">
+            {chartSeries.map((c, i) => (
+              <li key={c} className="flex items-center gap-2 rounded-full border border-slate/10 bg-white px-3 py-1 text-sm text-slate">
+                <span aria-hidden="true" className="h-4 w-4 rounded-sm" style={{ backgroundColor: c }} />
+                Series {i + 1}
+              </li>
+            ))}
+          </ol>
+        </AppCard>
+
+        <section aria-label="KPI tiles" className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {kpiTilesFixture.data.map((t, i) => (
+            <KpiTile key={t.id} tile={t} tone={(['royal', 'tangerine', 'emerald'] as const)[i % 3]} icon={(['attendance', 'fees', 'shield'] as const)[i % 3]} spark={i === 0 ? sparkFixture : undefined} />
+          ))}
+          <KpiTile tone="grape" icon="auditor" tile={{ kind: 'kpi', id: 'none', label: 'School health', value: null, unit: 'score' }} />
         </section>
+
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <RingProgress title="Attendance marked today" done={42} total={60} noun="classes" doneWord="marked" emptyHint="Appears once attendance is marked." />
+          <DonutChart title={galleryTitles.donut} slices={feeDonutFixture} unit="inr_paise" tone="tangerine" emptyHint="Fee entries appear here once fees are recorded." />
+          <GaugeChart title="School health score" score={68} tone="grape" emptyHint="The score appears after the first weekly check." />
+          <AreaTrend title={galleryTitles.area} seriesLabel="Present" points={attendanceDaysFixture} unit="percent" emptyHint="Appears once attendance is marked." />
+          <CalendarHeat title="Class attendance by day" days={heatDaysFixture} unit="percent" tone="royal" emptyHint="Appears once attendance is marked." />
+          <CalendarHeat title="Class attendance by day (table view)" days={heatDaysFixture.slice(0, 7)} unit="percent" initialView="table" emptyHint="Appears once attendance is marked." />
+          <RingProgress title="Syllabus covered (no data yet)" done={0} total={0} noun="topics" emptyHint="Add the syllabus map and mark what was taught." />
+          <GaugeChart title="School health score (no data yet)" score={null} emptyHint="The score appears after the first weekly check." />
+        </div>
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <ChartCard chart={attendanceTrendFixture.data} tone="royal" />
