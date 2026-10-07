@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { AppShell } from '@/components/app-shell/AppShell';
 import { toShellGroups } from '@/components/app-shell/shell-nav';
-import { PageHeader } from '@/components/app-ui/PageHeader';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 import { HelpArticleView } from '@/components/help/HelpArticleView';
 import { HelpIndex } from '@/components/help/HelpIndex';
 import { HELP_TEXT, helpArticle, isHelpLang } from '@/content/help/articles';
@@ -20,10 +20,9 @@ export default function HelpPreviewPage({ searchParams }: { searchParams: { lang
   const article = searchParams.article ? helpArticle(searchParams.article) : null;
   return (
     <AppShell groups={toShellGroups(principalNavigationFixture.data)} brand="Illustrative School" roleLabel="Principal" navLabel="School navigation" accountHref="/design-system/shell/help">
-      <div className="flex flex-col gap-4 p-4 md:p-6">
-        <PageHeader eyebrow="Help" tone="sapphire" title={HELP_TEXT.title[lang]} />
+      <ModulePage moduleId="help-center" title={HELP_TEXT.title[lang]} purpose={HELP_TEXT.intro[lang]}>
         {article ? <HelpArticleView article={article} lang={lang} mode="preview" /> : <HelpIndex lang={lang} mode="preview" initialQuery={searchParams.q ?? ''} />}
-      </div>
+      </ModulePage>
     </AppShell>
   );
 }

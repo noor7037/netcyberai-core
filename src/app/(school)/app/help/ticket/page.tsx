@@ -1,4 +1,5 @@
-import { PageHeader } from '@/components/app-ui/PageHeader';
+import Link from 'next/link';
+import { ModulePage, PRIMARY_ACTION } from '@/components/app-ui/ModulePage';
 import { SchoolTicketList } from '@/components/tickets/TicketScreens';
 
 // Raise Ticket (C126): this person's tickets (the office sees the whole
@@ -6,9 +7,17 @@ import { SchoolTicketList } from '@/components/tickets/TicketScreens';
 // and in every access mode (C112); the API decides who sees which ticket.
 export default function TicketsPage() {
   return (
-    <div className="flex flex-col gap-4 p-4 md:p-6">
-      <PageHeader eyebrow="Help" tone="sapphire" title="Support tickets" description="Ask NetCyberAI for help and follow the answers here." />
+    <ModulePage
+      moduleId="raise-ticket"
+      title="Support tickets"
+      purpose="Ask NetCyberAI for help and follow the answers here."
+      primary={
+        <Link href="/app/help/ticket/new" className={PRIMARY_ACTION}>
+          Raise a ticket
+        </Link>
+      }
+    >
       <SchoolTicketList />
-    </div>
+    </ModulePage>
   );
 }

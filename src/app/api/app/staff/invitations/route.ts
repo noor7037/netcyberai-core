@@ -6,6 +6,7 @@ import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { kickJobs } from '@/lib/jobs/handlers';
 import { jobQueue } from '@/lib/jobs/pg-queue';
 import { InvitationExistsError, canInvite, createInvitation, invitableRoles, listInvitations } from '@/lib/onboarding/invitations';
+import { checkText, validationError } from '@/lib/errors/catalogue';
 
 // A school's staff invitations (C98). The principal (or school admin)
 // picks the role; the invitee never does, and there are no parent or
@@ -34,9 +35,9 @@ export async function POST(req: NextRequest) {
   if (!canInvite(guard.claims.role, body?.role)) return NextResponse.json({ error: 'role_not_allowed' }, { status: 403 });
   const email = normalizeEmail(body?.email);
   const displayName = typeof body?.displayName === 'string' ? body.displayName.replace(/\s+/g, ' ').trim() : '';
-  if (!email || displayName.length < 2 || displayName.length > 200) {
-    return NextResponse.json({ error: 'invalid', message: 'A valid email and a name (2 to 200 characters) are required.' }, { status: 400 });
-  }
+  if (!email) return NextResponse.json(validationError(typeof body?.email === 'string' && body.email.trim() ? 'email_format' : 'required', { field: 'email' }), { status: 400 });
+  const nameCheck = checkText(displayName, 'name', 2, 200);
+  if (!nameCheck.ok) return NextResponse.json(nameCheck.error, { status: 400 });
   try {
     const created = await withTenantContext(guard.claims, (db) =>
       createInvitation(db, jobQueue, {

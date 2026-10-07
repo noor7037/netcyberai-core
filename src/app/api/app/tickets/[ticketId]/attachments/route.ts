@@ -4,8 +4,9 @@ import { requireAppSession } from '@/lib/auth/require-app-session';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { checkModuleAccess } from '@/lib/frameworks/entitlements';
 import { jsonError, type AppClaims } from '@/lib/frameworks/route';
-import { readScreenshot, respond, storageError, ticketStorage, tooLarge } from '@/lib/support/ticket-routes';
+import { noBody, readScreenshot, respond, storageError, ticketStorage, tooLarge } from '@/lib/support/ticket-routes';
 import { addTicketScreenshot } from '@/lib/support/tickets';
+import { validationError } from '@/lib/errors/catalogue';
 
 // POST multipart { file }: a screenshot (PNG, JPEG or WebP, at most 4 MB)
 // on a ticket this person can see. The session is checked before any of
@@ -15,9 +16,12 @@ export async function POST(req: NextRequest, { params }: { params: { ticketId: s
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
   const claims = guard.claims as AppClaims;
-  if (tooLarge(req)) return jsonError(413, 'a screenshot must be an image of at most 4 MB');
+  const tooBig = validationError('file_too_large', { field: 'screenshot', maxMb: 4 });
+  if (noBody(req)) return NextResponse.json(validationError('file_missing'), { status: 400 });
+  if (tooLarge(req)) return NextResponse.json(tooBig, { status: 413 });
   const file = await readScreenshot(req);
-  if (!file) return jsonError(400, 'a screenshot must be an image of at most 4 MB');
+  if (file === 'missing') return NextResponse.json(validationError('file_missing'), { status: 400 });
+  if (file === 'too_large') return NextResponse.json(tooBig, { status: 400 });
   try {
     const access = await withTenantContext(claims, (db) => checkModuleAccess(db, claims, 'raise-ticket', { write: true }));
     if (!access.ok) return jsonError(access.status, access.error);

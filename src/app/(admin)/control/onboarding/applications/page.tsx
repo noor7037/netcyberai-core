@@ -6,6 +6,7 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { ApprovalModeToggle } from '@/components/control/ApprovalModeToggle';
 import { APPLICATION_STATES, STATE_BADGE, STATE_LABELS, isApplicationState, type ApplicationState } from '@/lib/onboarding/application-machine';
 import { applicationCounts, approvalMode, listApplications } from '@/lib/onboarding/applications';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 
 // School applications from /register-school (C98), newest first, filtered
 // by state. Each opens to its detail, decisions and history.
@@ -36,20 +37,18 @@ export default async function ApplicationsPage({ searchParams }: { searchParams:
   );
 
   return (
-    <div className="flex flex-col gap-5 p-4 md:p-6">
-      <div>
-        <p className="text-sm">
-          <Link href="/control/onboarding" className="text-sapphire underline">
-            Onboarding
-          </Link>{' '}
-          /
-        </p>
-        <h1 className="text-xl font-bold text-slate">School applications</h1>
-        <p className="text-sm text-slate/70">
-          From the public “Register your school” form. Submitted → email confirmed → under review → approved → invite sent → active (the
-          principal’s first sign-in).
-        </p>
-      </div>
+    <ModulePage
+      title="School applications"
+      purpose="From the public “Register your school” form: submitted, email confirmed, under review, approved, invite sent, active (the principal’s first sign-in)."
+      icon="admissions"
+      tone="turquoise"
+      eyebrow="Onboarding"
+      more={
+        <Link href="/control/onboarding" className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
+          ← Onboarding
+        </Link>
+      }
+    >
       <ApprovalModeToggle mode={data.mode} />
       <nav aria-label="Filter by state" className="flex flex-wrap gap-2">
         {tab(null, 'All')}
@@ -78,6 +77,6 @@ export default async function ApplicationsPage({ searchParams }: { searchParams:
           ))}
         </ul>
       )}
-    </div>
+    </ModulePage>
   );
 }

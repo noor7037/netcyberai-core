@@ -29,8 +29,8 @@ export function HelpIndex({ lang, mode, initialQuery = '' }: { lang: HelpLang; m
 
   return (
     <div lang={lang} className="flex flex-col gap-5">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-slate">{HELP_TEXT.intro[lang]}</p>
+      {/* The page header above already says what the Help Center is. */}
+      <div className="flex flex-wrap items-center justify-end gap-3">
         <LanguageSwitch lang={lang} hrefs={{ en: hrefs.index('en'), hi: hrefs.index('hi') }} />
       </div>
       <HindiNotice lang={lang} />

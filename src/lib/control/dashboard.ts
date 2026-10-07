@@ -23,6 +23,9 @@ export type ControlDashboardData = {
   feesDueMinor: number;
   ticketsOpen: number;
   ticketsInProgress: number;
+  // Open or in-progress tickets from test schools: not counted above, but
+  // they are in the queue, so the dashboard says so instead of "none waiting".
+  ticketsFromTestSchools: number;
   dailySends: { day: string; sent: number; delivered: number }[]; // last 14 India days that have messages
 };
 
@@ -56,7 +59,12 @@ export async function loadControlDashboard(db: Sql): Promise<ControlDashboardDat
        where ${LIVE} and (created_at at time zone 'Asia/Kolkata')::date > ${INDIA_TODAY} - 14
        group by 1 order by 1`
     ),
-    db.query(`select count(*) filter (where status = 'open') as open, count(*) filter (where status = 'in_progress') as in_progress from support_tickets where ${LIVE}`),
+    db.query(
+      `select count(*) filter (where status = 'open' and ${LIVE}) as open,
+              count(*) filter (where status = 'in_progress' and ${LIVE}) as in_progress,
+              count(*) filter (where status in ('open', 'in_progress') and not (${LIVE})) as from_test
+       from support_tickets`
+    ),
   ]);
 
   const schools: ControlSchoolRow[] = schoolsRes.rows.map((r) => ({ id: r.school_id, name: r.name, stage: r.onboarding_stage, students: Number(r.student_count), isFixture: r.is_test_fixture }));
@@ -81,6 +89,7 @@ export async function loadControlDashboard(db: Sql): Promise<ControlDashboardDat
     feesDueMinor: Number(feesRes.rows[0]?.due_minor ?? 0),
     ticketsOpen: Number(ticketsRes.rows[0]?.open ?? 0),
     ticketsInProgress: Number(ticketsRes.rows[0]?.in_progress ?? 0),
+    ticketsFromTestSchools: Number(ticketsRes.rows[0]?.from_test ?? 0),
     dailySends: dailyRes.rows.map((r) => ({ day: r.day as string, sent: Number(r.sent), delivered: Number(r.delivered) })),
   };
 }

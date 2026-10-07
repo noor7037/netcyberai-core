@@ -8,6 +8,7 @@ import { STATE_BADGE, STATE_LABELS, founderActions } from '@/lib/onboarding/appl
 import { getApplication } from '@/lib/onboarding/applications';
 import { INDIAN_STATES } from '@/lib/onboarding/states';
 import { UUID_RE } from '@/lib/onboarding/public-http';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 
 // One application: details, decisions, the principal's invitation, the
 // jobs that carry it out, and every recorded step (C98).
@@ -47,20 +48,21 @@ export default async function ApplicationPage({ params }: { params: { applicatio
   const stateName = INDIAN_STATES.find((s) => s.code === app.state_code)?.name ?? app.state_code;
 
   return (
-    <div className="flex flex-col gap-5 p-4 md:p-6">
-      <div>
-        <p className="text-sm">
-          <Link href="/control/onboarding/applications" className="text-sapphire underline">
-            School applications
-          </Link>{' '}
-          /
-        </p>
-        <div className="flex flex-wrap items-center gap-3">
-          <h1 className="text-xl font-bold text-slate">{app.school_name}</h1>
+    <ModulePage
+      title={app.school_name}
+      purpose="A school’s application: its details, your decision, and what has happened so far."
+      icon="admissions"
+      tone="turquoise"
+      eyebrow="School application"
+      more={
+        <>
+          <Link href="/control/onboarding/applications" className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
+            ← School applications
+          </Link>
           <Badge variant={STATE_BADGE[app.status]}>{STATE_LABELS[app.status]}</Badge>
-        </div>
-      </div>
-
+        </>
+      }
+    >
       <dl className="grid grid-cols-1 gap-3 rounded-md border border-slate/10 bg-white p-4 text-sm sm:grid-cols-2">
         {[
           ['City', `${app.city}, ${stateName}`],
@@ -134,6 +136,6 @@ export default async function ApplicationPage({ params }: { params: { applicatio
           ))}
         </ol>
       </section>
-    </div>
+    </ModulePage>
   );
 }

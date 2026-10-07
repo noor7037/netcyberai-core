@@ -30,7 +30,8 @@ export function platformTickets(req: NextRequest, handler: (ctx: TicketCtx & { c
 }
 
 export function respond<T>(r: TicketResult<T>, key: string, okStatus = 200): NextResponse {
-  return r.ok ? NextResponse.json({ [key]: r.value }, { status: okStatus }) : jsonError(r.status, r.error);
+  // A refusal carries its catalogue rule, so the screen can say it in the person's language.
+  return r.ok ? NextResponse.json({ [key]: r.value }, { status: okStatus }) : jsonError(r.status, r.error, r.code ? { code: r.code, params: r.params ?? {} } : {});
 }
 
 export const ticketStorage = (): FileStorage => supabaseFileStorage;
@@ -46,11 +47,19 @@ export function tooLarge(req: NextRequest): boolean {
   return !Number.isFinite(declared) || declared <= 0 || declared > TICKET_SCREENSHOT_MAX_BYTES + 64 * 1024;
 }
 
+// A body with no declared length, or none at all, carries no file.
+export function noBody(req: NextRequest): boolean {
+  const declared = Number(req.headers.get('content-length'));
+  return !Number.isFinite(declared) || declared <= 0;
+}
+
 // The uploaded file of a multipart request. Call only after the session
 // check and tooLarge().
-export async function readScreenshot(req: NextRequest): Promise<{ name: string; bytes: Uint8Array } | null> {
+// 'missing': no file, or an empty one. 'too_large': over the limit.
+export async function readScreenshot(req: NextRequest): Promise<{ name: string; bytes: Uint8Array } | 'missing' | 'too_large'> {
   const form = await req.formData().catch(() => null);
   const file = form?.get('file');
-  if (!file || typeof file === 'string' || file.size === 0 || file.size > TICKET_SCREENSHOT_MAX_BYTES) return null;
+  if (!file || typeof file === 'string' || file.size === 0) return 'missing';
+  if (file.size > TICKET_SCREENSHOT_MAX_BYTES) return 'too_large';
   return { name: file.name, bytes: new Uint8Array(await file.arrayBuffer()) };
 }

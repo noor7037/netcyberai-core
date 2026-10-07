@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { AppShell } from '@/components/app-shell/AppShell';
 import { controlShellGroups, toShellGroups } from '@/components/app-shell/shell-nav';
-import { PageHeader } from '@/components/app-ui/PageHeader';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 import { principalNavigationFixture } from '@/demo-fixture/contracts';
 import { FIXTURE_NOTICE } from '@/lib/contracts/fixture';
 import { controlNav } from '@/lib/nav/nav-items';
@@ -21,14 +21,20 @@ export default function TicketsPreviewPage({ searchParams }: { searchParams: { s
   const view = searchParams.view ?? '';
   const here = `/design-system/shell/tickets?side=${control ? 'control' : 'school'}`;
   const title = view === 'new' ? 'Raise a ticket' : view ? 'Support ticket' : 'Support tickets';
+  const purpose = view === 'new' ? 'Tell NetCyberAI what you need. Replies appear on the ticket.' : view ? (control ? 'The school’s question, your replies, and the status.' : 'What you asked, the replies, and what happens next.') : control ? 'Tickets from every school. You get an email when one is raised.' : 'Ask NetCyberAI for help and follow the answers here.';
   const body = (
-    <div className="flex flex-col gap-4 p-4 md:p-6">
-      <PageHeader eyebrow={control ? 'Support' : 'Help'} tone="sapphire" title={title} description={view ? undefined : control ? 'Tickets from every school. You get an email when one is raised.' : 'Ask NetCyberAI for help and follow the answers here.'} />
-      <p role="note" className="rounded-md border border-tangerine/40 bg-tangerine/10 p-3 text-sm text-slate">
-        {FIXTURE_NOTICE}
-      </p>
+    <ModulePage
+      {...(control ? { icon: 'ticket' as const, tone: 'gold' as const, eyebrow: 'Support' } : { moduleId: 'raise-ticket' as const })}
+      title={title}
+      purpose={purpose}
+      notice={
+        <p role="note" className="rounded-md border border-tangerine/40 bg-tangerine/10 p-3 text-sm text-slate">
+          {FIXTURE_NOTICE}
+        </p>
+      }
+    >
       <TicketsPreview side={control ? 'platform' : 'school'} view={view} />
-    </div>
+    </ModulePage>
   );
   return control ? (
     <AppShell

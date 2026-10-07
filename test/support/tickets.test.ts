@@ -251,7 +251,9 @@ describe('who sees which ticket', () => {
 
   it('validates a new ticket and limits how many one person raises in an hour', async () => {
     const bad = (input: Record<string, unknown>) => db.tenant(teacher, (q) => createTicket(q, { ...school('teacher', ids.teacher), schoolId: A }, input));
-    expect(await bad({ ...NEW, subject: 'x' })).toMatchObject({ ok: false, status: 400 });
+    expect(await bad({ ...NEW, subject: 'x' })).toMatchObject({ ok: false, status: 400, code: 'too_short', error: 'Subject has 1 character; it needs at least 3.', params: { field: 'subject', have: 1, min: 3 } });
+    expect(await bad({ ...NEW, body: '' })).toMatchObject({ ok: false, status: 400, code: 'required', error: 'Enter the description.' });
+    expect(await bad({ ...NEW, category: 'gossip' })).toMatchObject({ ok: false, code: 'choose_one', error: 'Choose the topic of the ticket from the list.' });
     expect(await bad({ ...NEW, body: 'short' })).toMatchObject({ ok: false, status: 400 });
     expect(await bad({ ...NEW, category: 'gossip' })).toMatchObject({ ok: false, status: 400 });
     expect(await bad({ ...NEW, moduleId: 'not-a-module' })).toMatchObject({ ok: false, status: 400 });

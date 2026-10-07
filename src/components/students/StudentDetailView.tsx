@@ -12,6 +12,8 @@ import { DsrPanel } from './DsrPanel';
 import { FamilyPanel } from './FamilyPanel';
 import { SiblingSuggestions } from './SiblingSuggestions';
 import type { SiblingSuggestion } from '@/lib/contracts/families';
+import { ModulePage, PRIMARY_ACTION } from '@/components/app-ui/ModulePage';
+import { explainError } from '@/lib/errors/catalogue';
 
 type Student = {
   student_id: string;
@@ -104,8 +106,7 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
       body: JSON.stringify(body),
     });
     if (!res.ok) {
-      const { error } = await res.json().catch(() => ({ error: 'could not save changes' }));
-      toast.show(error, 'danger');
+      toast.show(explainError(await res.json().catch(() => null), 'The changes were not saved. Check the details and try again.', 'en', res.status), 'danger');
       return;
     }
     const { student: updated } = await res.json();
@@ -129,8 +130,8 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
       body: JSON.stringify(body),
     });
     if (!res.ok) {
-      const { error } = await res.json().catch(() => ({ error: 'could not add guardian' }));
-      toast.show(error, 'danger');
+      // The form stays open with everything typed still in it.
+      toast.show(explainError(await res.json().catch(() => null), 'The guardian was not added. Check the details and try again.', 'en', res.status), 'danger');
       return;
     }
     const { guardian } = await res.json();
@@ -154,17 +155,17 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
   }
 
   return (
-    <div className="p-4 md:p-6">
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <h1 className="text-xl font-bold text-slate">{student.name}</h1>
-        <div className="flex items-center gap-3">
-          <Badge variant={STATUS_VARIANT[student.status]}>{student.status.replace('_', ' ')}</Badge>
-          <Link href={`/app/students/${student.student_id}/id-card`} className="text-sm font-semibold text-sapphire">
-            ID card
-          </Link>
-        </div>
-      </div>
-
+    <ModulePage
+      moduleId="students"
+      title={student.name}
+      purpose="This student’s details, guardians, family, consent and documents."
+      primary={
+        <Link href={`/app/students/${student.student_id}/id-card`} className={PRIMARY_ACTION}>
+          ID card
+        </Link>
+      }
+      more={<Badge variant={STATUS_VARIANT[student.status]}>{student.status.replace('_', ' ')}</Badge>}
+    >
       <section className="mb-6 rounded-lg border border-slate/10 p-4">
         <div className="mb-3 flex items-center justify-between">
           <h2 className="text-base font-semibold text-slate">Details</h2>
@@ -266,6 +267,6 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
           </button>
         </form>
       </Modal>
-    </div>
+    </ModulePage>
   );
 }

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
+import { explainError } from '@/lib/errors/catalogue';
 
 // Invite staff (C98): the principal or school admin picks the role; the
 // invitee gets an email to set a password. No parent or student accounts.
@@ -35,7 +36,6 @@ const STATUS_LABELS: Record<Invitation['status'], string> = {
 const ERRORS: Record<string, string> = {
   already_invited: 'This email already has an invitation for this school.',
   role_not_allowed: 'You cannot invite that role.',
-  invalid: 'Enter a valid email and a name.',
 };
 
 export function StaffInvitations() {
@@ -70,7 +70,7 @@ export function StaffInvitations() {
         body: JSON.stringify({ displayName: name, email, role }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) return setMessage({ ok: false, text: ERRORS[data.error] ?? 'That did not work. Please try again.' });
+      if (!res.ok) return setMessage({ ok: false, text: ERRORS[data.error] ?? explainError(data, 'That did not work. Please try again.', 'en', res.status) });
       setMessage({ ok: true, text: `Invitation on its way to ${email}.` });
       setName('');
       setEmail('');

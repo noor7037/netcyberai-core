@@ -7,6 +7,7 @@ import { JOB_STATUSES } from '@/lib/jobs/types';
 import { pipelineCounts, problemJobs } from '@/lib/jobs/pg-queue';
 import { applicationCounts } from '@/lib/onboarding/applications';
 import { APPLICATION_STATES, STATE_LABELS } from '@/lib/onboarding/application-machine';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 
 // Monitoring, first section: the Pipeline (C97). Every job by type and
 // status, jobs waiting for a retry, and dead jobs with a Retry button; then
@@ -42,14 +43,13 @@ export default async function MonitoringPage() {
   const retrying = data.counts.reduce((n, c) => n + Number(c.retrying), 0);
 
   return (
-    <div className="flex flex-col gap-6 p-4 md:p-6">
-      <div>
-        <h1 className="text-xl font-bold text-slate">Pipeline</h1>
-        <p className="text-sm text-slate/70">
-          Background jobs (emails, invitations). Each is retried with growing waits, then marked dead for you to retry.{' '}
-          {data.lastRun ? `Last finished job: ${when(data.lastRun)}.` : 'No job has finished yet.'}
-        </p>
-      </div>
+    <ModulePage
+      title="Pipeline"
+      purpose={`Background jobs (emails, invitations). Each is retried with growing waits, then marked dead for you to retry. ${data.lastRun ? `Last finished job: ${when(data.lastRun)}.` : 'No job has finished yet.'}`}
+      icon="pulse"
+      tone="emerald"
+      eyebrow="Control"
+    >
 
       <section aria-labelledby="jobs-by-status">
         <h2 id="jobs-by-status" className="mb-2 text-lg font-bold text-slate">
@@ -144,6 +144,6 @@ export default async function MonitoringPage() {
           ))}
         </ul>
       </section>
-    </div>
+    </ModulePage>
   );
 }

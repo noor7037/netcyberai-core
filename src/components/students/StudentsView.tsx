@@ -10,6 +10,8 @@ import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import { SiblingSuggestions } from './SiblingSuggestions';
 import type { SiblingSuggestion } from '@/lib/contracts/families';
+import { ModulePage, PRIMARY_ACTION, QUIET_ACTION } from '@/components/app-ui/ModulePage';
+import { explainError } from '@/lib/errors/catalogue';
 
 type Student = {
   student_id: string;
@@ -104,8 +106,8 @@ export function StudentsView({ title, description, statusFilter }: Props) {
       body: JSON.stringify(body),
     });
     if (!res.ok) {
-      const { error } = await res.json().catch(() => ({ error: 'could not create student' }));
-      toast.show(error, 'danger');
+      // The form stays open with everything typed still in it.
+      toast.show(explainError(await res.json().catch(() => null), 'The student was not added. Check the details and try again.', 'en', res.status), 'danger');
       return;
     }
     setModalOpen(false);
@@ -123,8 +125,7 @@ export function StudentsView({ title, description, statusFilter }: Props) {
       body: JSON.stringify({ name }),
     });
     if (!res.ok) {
-      const { error } = await res.json().catch(() => ({ error: 'could not create class' }));
-      toast.show(error, 'danger');
+      toast.show(explainError(await res.json().catch(() => null), 'The class was not added. Check the name and try again.', 'en', res.status), 'danger');
       return;
     }
     const { class: created } = await res.json();
@@ -211,55 +212,46 @@ export function StudentsView({ title, description, statusFilter }: Props) {
   ];
 
   return (
-    <div className="p-4 md:p-6">
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="text-xl font-bold text-slate">{title}</h1>
-          {description && <p className="mt-1 max-w-2xl text-sm text-slate/70">{description}</p>}
-        </div>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={() => setClassModalOpen(true)}
-            className="min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire"
-          >
+    <ModulePage
+      moduleId={statusFilter === 'pending_consent' ? 'admissions' : 'students'}
+      title={title}
+      purpose={description ?? 'All students at this school.'}
+      primary={
+        <button type="button" onClick={() => setModalOpen(true)} className={PRIMARY_ACTION}>
+          + Add student
+        </button>
+      }
+      more={
+        <>
+          <button type="button" onClick={() => setClassModalOpen(true)} className={QUIET_ACTION}>
             Manage classes
           </button>
           {statusFilter === 'pending_consent' && (
-            <button
-              type="button"
-              onClick={() => setImportModalOpen(true)}
-              className="min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire"
-            >
+            <button type="button" onClick={() => setImportModalOpen(true)} className={QUIET_ACTION}>
               Import CSV
             </button>
           )}
-          <button
-            type="button"
-            onClick={() => setModalOpen(true)}
-            className="min-h-[44px] rounded-md bg-sapphire px-4 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire"
+        </>
+      }
+      search={
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              load();
+            }}
+            className="flex max-w-sm gap-2"
           >
-            + Add student
-          </button>
-        </div>
-      </div>
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          load();
-        }}
-        className="mb-4 flex max-w-sm gap-2"
-      >
-        <Input
-          id="search"
-          label="Search"
-          placeholder="Name or admission no."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="flex-1"
-        />
-      </form>
+            <Input
+              id="search"
+              label="Search"
+              placeholder="Name or admission no."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="flex-1"
+            />
+          </form>
+      }
+    >
 
       <Table
         columns={columns}
@@ -403,6 +395,6 @@ export function StudentsView({ title, description, statusFilter }: Props) {
           </div>
         )}
       </Modal>
-    </div>
+    </ModulePage>
   );
 }

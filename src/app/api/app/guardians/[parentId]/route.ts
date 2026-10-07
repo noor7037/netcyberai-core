@@ -4,6 +4,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected, NoRowsAffectedError } from '@/lib/db/rows';
+import { checkEmail, checkPhone, validationError } from '@/lib/errors/catalogue';
 
 const EDITABLE_FIELDS = ['name', 'phone', 'email', 'relation'] as const;
 
@@ -27,7 +28,16 @@ export async function PATCH(req: NextRequest, { params }: { params: { parentId: 
   for (const field of EDITABLE_FIELDS) {
     if (field in body) {
       if ((field === 'name' || field === 'phone') && !String(body[field] ?? '').trim()) {
-        return NextResponse.json({ error: `${field} cannot be empty` }, { status: 400 });
+        return NextResponse.json(validationError('required', { field: field === 'name' ? 'guardian_name' : 'phone' }), { status: 400 });
+      }
+      // The same checks as adding a guardian (docs/19 rule 9).
+      if (field === 'phone') {
+        const phoneCheck = checkPhone(String(body.phone));
+        if (!phoneCheck.ok) return NextResponse.json(phoneCheck.error, { status: 400 });
+      }
+      if (field === 'email' && typeof body.email === 'string' && body.email.trim()) {
+        const emailProblem = checkEmail(body.email);
+        if (emailProblem) return NextResponse.json(emailProblem, { status: 400 });
       }
       values.push(body[field] === '' ? null : body[field]);
       setClauses.push(`${field} = $${values.length}`);

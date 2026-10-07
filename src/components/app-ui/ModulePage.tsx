@@ -1,0 +1,92 @@
+import type { ReactNode } from 'react';
+import type { IconName } from '@/components/visual/Icons';
+import { MODULE_GROUPS, moduleById, type ColorToken, type ModuleId } from '@/lib/contracts/modules';
+import { ModuleIcon } from './ModuleIcon';
+import { TOKEN_TONES } from './tones';
+
+// The one layout every working screen shares (docs/19 rule 1): learn one
+// screen, know them all. Top to bottom, always in this order:
+//
+//   header   the module's icon tile, its title, one line on what the screen
+//            is for, and ONE primary button
+//   more     quieter actions, when a screen has them
+//   notice   a message about the whole screen
+//   search   the search box
+//   filters  filter chips
+//   body     the list, cards or form (children)
+//   bulk     the bar that appears when rows are selected
+//
+// A slot a screen does not need is left out; the order never changes.
+// Give `moduleId` and the icon, colour and group name come from the registry.
+// scripts/check_module_pages.py fails a /app or /control page that does not
+// render through this (apart from its documented exceptions).
+export function ModulePage({
+  moduleId,
+  title,
+  purpose,
+  eyebrow,
+  tone,
+  icon,
+  primary,
+  more,
+  notice,
+  search,
+  filters,
+  bulk,
+  headerLang,
+  hideHeaderInPrint = false,
+  children,
+}: {
+  moduleId?: ModuleId;
+  title: string;
+  purpose: string; // one line, plain words
+  eyebrow?: string;
+  tone?: ColorToken;
+  icon?: IconName;
+  primary?: ReactNode; // exactly one primary button or link
+  more?: ReactNode;
+  notice?: ReactNode;
+  search?: ReactNode;
+  filters?: ReactNode;
+  bulk?: ReactNode;
+  headerLang?: string; // when the title and purpose are not in the page's language (Help Center in Hindi)
+  hideHeaderInPrint?: boolean; // a screen whose body is printed on its own (an ID card)
+  children: ReactNode;
+}) {
+  const mod = moduleId ? moduleById(moduleId) : null;
+  const group = mod ? MODULE_GROUPS.find((g) => g.id === mod.group) : null;
+  const colour = tone ?? group?.tone[0] ?? 'royal';
+  const glyph = icon ?? mod?.icon;
+  const over = eyebrow ?? group?.label;
+  return (
+    <div data-module-page={moduleId ?? 'page'} className="flex flex-col gap-4 p-4 md:p-6">
+      <header lang={headerLang} className={`flex flex-wrap items-center justify-between gap-3 ${hideHeaderInPrint ? 'print:hidden' : ''}`}>
+        <div className="flex min-w-0 items-center gap-3">
+          {glyph && <ModuleIcon name={glyph} tone={colour} size="lg" />}
+          <div className="min-w-0">
+            {over && <p className={`text-xs font-bold uppercase tracking-wider ${TOKEN_TONES[colour].fg}`}>{over}</p>}
+            <h1 className="text-2xl font-extrabold text-slate">{title}</h1>
+            <p className="mt-0.5 max-w-prose text-sm text-slate/70">{purpose}</p>
+          </div>
+        </div>
+        {primary && <div data-slot="primary">{primary}</div>}
+      </header>
+      {more && (
+        <div data-slot="more" className="flex flex-wrap items-center gap-2">
+          {more}
+        </div>
+      )}
+      {notice}
+      {search && <div data-slot="search">{search}</div>}
+      {filters && <div data-slot="filters">{filters}</div>}
+      <div data-slot="body" className="flex min-w-0 flex-col gap-4">
+        {children}
+      </div>
+      {bulk}
+    </div>
+  );
+}
+
+// The look of the one primary button, for links and buttons alike.
+export const PRIMARY_ACTION = 'inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md bg-sapphire px-4 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal disabled:opacity-60';
+export const QUIET_ACTION = 'inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md border border-slate/20 bg-white px-4 text-sm font-semibold text-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal';

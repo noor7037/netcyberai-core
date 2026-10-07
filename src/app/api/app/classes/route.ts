@@ -5,6 +5,7 @@ import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { isForeignKeyViolation } from '@/lib/db/pg-errors';
 import { deriveGradeSection } from '@/lib/classes/grade-section';
+import { validationError } from '@/lib/errors/catalogue';
 
 export async function GET(req: NextRequest) {
   const guard = await requireAppSession(req);
@@ -44,7 +45,7 @@ export async function POST(req: NextRequest) {
   const classTeacherId = typeof body?.classTeacherId === 'string' ? body.classTeacherId : null;
   const sessionId = typeof body?.sessionId === 'string' ? body.sessionId : null;
   if (!name) {
-    return NextResponse.json({ error: 'name is required (e.g. "8-A")' }, { status: 400 });
+    return NextResponse.json(validationError('required', { field: 'class_name' }), { status: 400 });
   }
 
   // grade/section are optional, explicit fields (added alongside academic_sessions,

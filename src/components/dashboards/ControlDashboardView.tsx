@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { AppCard } from '@/components/app-ui/Card';
 import { greetingFor, HeroBand, indiaDate, indiaHour } from '@/components/app-ui/HeroBand';
@@ -18,13 +19,14 @@ export function ControlDashboardView({ data, schoolsTable, now = new Date() }: {
   const live = data.liveSchools > 0;
   // No live school: nothing to total. null shows "No data yet" on each tile.
   const total = (n: number) => (live ? n : null);
+  const fromTest = data.ticketsFromTestSchools;
   const attention: AttentionItem[] = [
     ...(data.ticketsOpen > 0 ? [{ id: 'open', label: data.ticketsOpen === 1 ? 'support ticket is waiting to be picked up' : 'support tickets are waiting to be picked up', count: data.ticketsOpen, href: '/control/tickets', action: 'Open tickets', why: 'A ticket is “open” until someone at NetCyberAI starts work on it or replies.', icon: 'ticket' as const, tone: 'gold' as const }] : []),
     ...(data.ticketsInProgress > 0 ? [{ id: 'progress', label: data.ticketsInProgress === 1 ? 'ticket is being worked on' : 'tickets are being worked on', count: data.ticketsInProgress, href: '/control/tickets', action: 'Continue', why: 'These tickets were started and are not resolved yet.', icon: 'support' as const, tone: 'royal' as const }] : []),
   ];
   return (
     <div className="flex flex-col gap-5 p-4 md:p-6">
-      <HeroBand variant="cinematic" greeting={greetingFor(indiaHour(now))} date={indiaDate(now)} title="NetCyberAI Control" chips={attention.map((a) => ({ label: a.action, href: a.href, count: a.count }))} allClear="No ticket is waiting for you." />
+      <HeroBand variant="cinematic" greeting={greetingFor(indiaHour(now))} date={indiaDate(now)} title="NetCyberAI Control" chips={attention.map((a) => ({ label: a.action, href: a.href, count: a.count }))} allClear={fromTest > 0 ? 'No ticket from a live school is waiting for you.' : 'No ticket is waiting for you.'} />
       {fixtures > 0 && (
         <p role="note" className="rounded-md border border-tangerine/40 bg-tangerine/10 p-3 text-sm text-slate">
           {live
@@ -40,7 +42,16 @@ export function ControlDashboardView({ data, schoolsTable, now = new Date() }: {
         <KpiTile tone="tangerine" icon="fees" tile={{ kind: 'kpi', id: 'fees', label: 'Fees marked paid', value: total(data.feesCollectedMinor), unit: 'inr_paise', drillHref: '/control/billing-plans' }} />
       </section>
 
-      <AttentionList items={attention} allClear="No support ticket is open or in progress." />
+      <AttentionList items={attention} allClear={fromTest > 0 ? 'No ticket from a live school is open or in progress.' : 'No support ticket is open or in progress.'} />
+      {fromTest > 0 && (
+        <p className="-mt-2 px-1 text-sm text-slate">
+          {fromTest === 1 ? '1 ticket from a test school is' : `${fromTest} tickets from test schools are`} also in the{' '}
+          <Link href="/control/tickets" className="inline-flex min-h-[44px] items-center font-semibold text-sapphire underline">
+            ticket queue
+          </Link>
+          , not counted above.
+        </p>
+      )}
 
       <section aria-label="Charts" className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div className="flex flex-col gap-2">

@@ -42,6 +42,8 @@ describe('Control dashboard totals', () => {
     expect([d.totalComms, d.blocked, d.deliveryRate]).toEqual([5, 1, 80]);
     expect(d.dailySends).toEqual([{ day: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/), sent: 5, delivered: 4 }]);
     expect([d.ticketsOpen, d.ticketsInProgress]).toEqual([1, 2]);
+    // The fixture's 11 open or in-progress tickets are not counted, but are known to be in the queue.
+    expect(d.ticketsFromTestSchools).toBe(11);
   });
 
   it('still list every school, the fixture with its own student count and its badge flag', async () => {
@@ -57,6 +59,7 @@ describe('Control dashboard totals', () => {
     expect(d.deliveryRate).toBeNull();
     expect(d.dailySends).toEqual([]);
     expect(d.schools).toHaveLength(2);
+    expect(d.ticketsFromTestSchools).toBe(14);
     await db.query(`update schools set is_test_fixture = false where school_id = $1`, [LIVE]);
   });
 });

@@ -250,11 +250,14 @@ describe('the live dashboards', () => {
   });
 
   it('control, no live school yet: every total says "No data yet"; no number is borrowed from a test school', () => {
-    const none = { ...controlDashboardFixture, schools: controlDashboardFixture.schools.map((s) => ({ ...s, isFixture: true })), liveSchools: 0, activeStudents: 0, totalStudents: 0, totalStaff: 0, totalComms: 0, blocked: 0, deliveryRate: null, consentActive: 0, consentPending: 0, feesCollectedMinor: 0, feesDueMinor: 0, ticketsOpen: 0, ticketsInProgress: 0, dailySends: [] };
+    const none = { ...controlDashboardFixture, schools: controlDashboardFixture.schools.map((s) => ({ ...s, isFixture: true })), liveSchools: 0, activeStudents: 0, totalStudents: 0, totalStaff: 0, totalComms: 0, blocked: 0, deliveryRate: null, consentActive: 0, consentPending: 0, feesCollectedMinor: 0, feesDueMinor: 0, ticketsOpen: 0, ticketsInProgress: 0, ticketsFromTestSchools: 3, dailySends: [] };
     const html = render(h(ControlDashboardView, { data: none, now: NOW, schoolsTable: null }));
     expect(html).toContain('There is no live school yet. 2 test schools are listed below; test data is never counted in these totals.');
     expect((html.match(/No data yet/g) ?? []).length).toBe(5); // students, staff, fees tiles and the two charts
-    expect(html).toContain('No ticket is waiting for you.');
+    // Test schools' tickets are not counted, but the dashboard does not claim the queue is empty.
+    expect(html).toContain('No ticket from a live school is waiting for you.');
+    expect(html).toContain('3 tickets from test schools are');
+    expect(html).toContain('href="/control/tickets"');
     expect(html).not.toContain('messages logged in the last 30 days');
     expect(html).not.toContain('₹');
   });

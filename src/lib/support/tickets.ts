@@ -20,6 +20,7 @@ import {
 } from '@/lib/contracts/tickets';
 import { isModuleId } from '@/lib/contracts/modules';
 import { isUuid } from '@/lib/frameworks/custom-fields';
+import { checkText, validationError, type ErrorRule, type ValidationError } from '@/lib/errors/catalogue';
 import { PermanentJobError, type JobHandler, type JobQueue, type Sql } from '@/lib/jobs/types';
 import { siteUrl } from '@/lib/site-config';
 import { sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
@@ -31,9 +32,11 @@ import { sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
 // (C41). A ticket that is not visible is "not found", never "forbidden".
 
 export type TicketActor = { userId: string; role: StaffRole; side: TicketSide };
-export type TicketResult<T> = { ok: true; value: T } | { ok: false; status: 400 | 404 | 409 | 429; error: string };
+export type TicketResult<T> = { ok: true; value: T } | { ok: false; status: 400 | 404 | 409 | 429; error: string; code?: ErrorRule; params?: Record<string, string | number> };
 
 const fail = (status: 400 | 404 | 409 | 429, error: string) => ({ ok: false as const, status, error });
+// A refusal that is a rule of the error catalogue (docs/19 rule 9).
+const refuse = (status: 400 | 409 | 429, e: ValidationError) => ({ ok: false as const, status, ...e });
 const iso = (v: unknown) => new Date(v as string).toISOString();
 const RAISE_LIMIT_PER_HOUR = 10;
 const REPLY_LIMIT_PER_HOUR = 60;
@@ -60,13 +63,6 @@ function toSummary(r: Record<string, any>): TicketSummary {
   };
 }
 
-function text(v: unknown, [min, max]: readonly [number, number]): string | null {
-  if (typeof v !== 'string') return null;
-  const t = v.trim();
-  const n = [...t].length; // code points, as the table's char_length counts
-  return n >= min && n <= max ? t : null;
-}
-
 // `queue`: when given, NetCyberAI is told by email (a ticket.notify job in
 // the same transaction; `jobKey` lets the caller run it right after commit).
 export async function createTicket(
@@ -75,11 +71,13 @@ export async function createTicket(
   input: Record<string, unknown>,
   queue?: JobQueue
 ): Promise<TicketResult<TicketSummary & { jobKey?: string }>> {
-  const subject = text(input.subject, TICKET_LIMITS.subject);
-  const body = text(input.body, TICKET_LIMITS.body);
-  if (!subject) return fail(400, `a subject of ${TICKET_LIMITS.subject[0]} to ${TICKET_LIMITS.subject[1]} characters is required`);
-  if (!body) return fail(400, `a description of ${TICKET_LIMITS.body[0]} to ${TICKET_LIMITS.body[1]} characters is required`);
-  if (!isTicketCategory(input.category)) return fail(400, 'choose what the ticket is about');
+  const subjectCheck = checkText(input.subject, 'subject', TICKET_LIMITS.subject[0], TICKET_LIMITS.subject[1]);
+  if (!subjectCheck.ok) return refuse(400, subjectCheck.error);
+  const bodyCheck = checkText(input.body, 'description', TICKET_LIMITS.body[0], TICKET_LIMITS.body[1]);
+  if (!bodyCheck.ok) return refuse(400, bodyCheck.error);
+  const subject = subjectCheck.value;
+  const body = bodyCheck.value;
+  if (!isTicketCategory(input.category)) return refuse(400, validationError('choose_one', { field: 'category' }));
   const moduleId = input.moduleId === undefined || input.moduleId === null || input.moduleId === '' ? null : input.moduleId;
   if (moduleId !== null && !isModuleId(moduleId)) return fail(400, 'unknown module');
 
@@ -87,7 +85,7 @@ export async function createTicket(
     `select count(*)::int n from support_tickets where raised_by = $1 and created_at > now() - interval '1 hour'`,
     [actor.userId]
   );
-  if (recent[0].n >= RAISE_LIMIT_PER_HOUR) return fail(429, 'too many tickets in the last hour; add to an open ticket instead');
+  if (recent[0].n >= RAISE_LIMIT_PER_HOUR) return refuse(429, validationError('ticket_limit'));
 
   const { rows } = await db.query(
     `insert into support_tickets (school_id, raised_by, raised_role, category, module_id, subject, body)
@@ -219,8 +217,9 @@ export async function changeTicketStatus(db: Sql, ticketId: string, to: unknown,
 // to in progress. From NetCyberAI, `thenStatus` sets the status with the
 // reply (for example "waiting on school" with a question).
 export async function addTicketMessage(db: Sql, ticketId: string, input: Record<string, unknown>, actor: TicketActor): Promise<TicketResult<{ messageId: string; status: TicketStatus }>> {
-  const body = text(input.body, TICKET_LIMITS.message);
-  if (!body) return fail(400, `a reply of up to ${TICKET_LIMITS.message[1]} characters is required`);
+  const replyCheck = checkText(input.body, 'reply', TICKET_LIMITS.message[0], TICKET_LIMITS.message[1]);
+  if (!replyCheck.ok) return refuse(400, replyCheck.error);
+  const body = replyCheck.value;
   const then = actor.side === 'platform' && input.thenStatus !== undefined && input.thenStatus !== null ? input.thenStatus : null;
   if (then !== null && !isTicketStatus(then)) return fail(400, 'unknown status');
   const t = await lockTicket(db, ticketId);
@@ -230,7 +229,7 @@ export async function addTicketMessage(db: Sql, ticketId: string, input: Record<
     `select count(*)::int n from support_ticket_messages where author_user_id = $1 and created_at > now() - interval '1 hour'`,
     [actor.userId]
   );
-  if (recent[0].n >= REPLY_LIMIT_PER_HOUR) return fail(429, 'too many replies in the last hour');
+  if (recent[0].n >= REPLY_LIMIT_PER_HOUR) return refuse(429, validationError('too_fast'));
   if (then !== null && then !== t.status && !canTransition(t.status, then, 'platform')) return fail(409, `a ticket that is ${t.status.replace(/_/g, ' ')} cannot be set to ${then.replace(/_/g, ' ')}`);
 
   const { rows } = await db.query(
@@ -263,7 +262,7 @@ async function screenshotAllowed(db: Sql, ticketId: string): Promise<TicketResul
   if (!t) return fail(404, 'ticket not found');
   if (!canReply(t.status)) return fail(409, 'reopen the ticket to add a screenshot');
   const { rows: count } = await db.query(`select count(*)::int n from support_ticket_attachments where ticket_id = $1`, [t.ticket_id]);
-  if (count[0].n >= TICKET_SCREENSHOTS_PER_TICKET) return fail(409, `a ticket holds at most ${TICKET_SCREENSHOTS_PER_TICKET} screenshots`);
+  if (count[0].n >= TICKET_SCREENSHOTS_PER_TICKET) return refuse(409, validationError('too_many', { max: TICKET_SCREENSHOTS_PER_TICKET }));
   return { ok: true, value: t };
 }
 
@@ -273,9 +272,10 @@ async function screenshotAllowed(db: Sql, ticketId: string): Promise<TicketResul
 // row and its audit entry, with the checks repeated. If (3) fails the
 // caller removes the file. The type comes from the file's own bytes.
 export async function planTicketScreenshot(db: Sql, ticketId: string, file: { name: string; bytes: Uint8Array }): Promise<TicketResult<ScreenshotPlan>> {
-  if (file.bytes.length === 0 || file.bytes.length > TICKET_SCREENSHOT_MAX_BYTES) return fail(400, 'a screenshot must be an image of at most 4 MB');
+  if (file.bytes.length === 0) return refuse(400, validationError('file_missing'));
+  if (file.bytes.length > TICKET_SCREENSHOT_MAX_BYTES) return refuse(400, validationError('file_too_large', { field: 'screenshot', maxMb: 4 }));
   const mimeType = sniffImageType(file.bytes);
-  if (!mimeType) return fail(400, 'a screenshot must be a PNG, JPEG or WebP image');
+  if (!mimeType) return refuse(400, validationError('file_type', { field: 'screenshot', allowed: 'PNG, JPEG, WebP' }));
   const ok = await screenshotAllowed(db, ticketId);
   if (!ok.ok) return ok;
   const t = ok.value;

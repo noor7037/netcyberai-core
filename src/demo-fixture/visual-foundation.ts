@@ -91,6 +91,7 @@ export const controlDashboardFixture: ControlDashboardData = {
   feesDueMinor: 96_000_00,
   ticketsOpen: 2,
   ticketsInProgress: 1,
+  ticketsFromTestSchools: 1,
   dailySends: [64, 80, 71, 96, 88, 102, 90, 110, 95, 120, 104, 98].map((sent, i) => ({ day: day(i + 14), sent, delivered: Math.round(sent * 0.94) })),
 };
 

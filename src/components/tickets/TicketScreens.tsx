@@ -13,7 +13,7 @@ export const CONTROL_TICKET_ROUTES: TicketRoutes = { list: '/control/tickets', d
 
 export function SchoolTicketList() {
   const api = useMemo(() => httpTicketsApi('school'), []);
-  return <TicketList api={api} routes={SCHOOL_TICKET_ROUTES} />;
+  return <TicketList api={api} routes={SCHOOL_TICKET_ROUTES} raiseInHeader />;
 }
 
 export function SchoolRaiseTicket() {

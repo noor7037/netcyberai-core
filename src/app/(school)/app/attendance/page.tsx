@@ -1,5 +1,6 @@
 import { getServerSession } from '@/lib/auth/server-session';
 import { AttendanceView } from '@/components/attendance/AttendanceView';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 
 export default async function AttendancePage() {
   const session = await getServerSession();
@@ -10,9 +11,8 @@ export default async function AttendancePage() {
     session?.role === 'academic_coordinator';
 
   return (
-    <div className="flex flex-col gap-6 p-4 md:p-6">
-      <h1 className="text-xl font-bold text-slate">Attendance</h1>
+    <ModulePage moduleId="attendance" title="Attendance" purpose="Choose a class. Everyone starts as present: tap only who is absent or late, then submit.">
       <AttendanceView canManage={canManage} />
-    </div>
+    </ModulePage>
   );
 }
