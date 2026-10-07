@@ -21,6 +21,13 @@ with, not as an end in itself.
 
 ## Current status
 
+**2026-10-07 — current plan.** Build the whole ecosystem first (all 33
+modules plus every Strengthening Brief item, nothing cut), then a real-data
+rehearsal, then the first school (C104). Next phase: **P1-c, the ease and
+colour foundation** ([`19_EASE_AND_COLOUR_STANDARD.md`](19_EASE_AND_COLOUR_STANDARD.md),
+C105), then P2 Teacher app. P1 is done except the production cutover,
+deferred to P8 (C103). The status paragraphs below are history.
+
 **2026-09-29 — Version 1 website frozen; backend phase active.** The
 public website is locked as Version 1 (changes only by founder decision).
 Active work follows [`14_BACKEND_BUILD_PLAN.md`](14_BACKEND_BUILD_PLAN.md):
@@ -75,6 +82,10 @@ for work that changes the rules themselves.
     [`17_MODULE_CATALOG.md`](17_MODULE_CATALOG.md) — **the current build
     plan**: operating model, phases P1–P8, and every module's capabilities,
     navigation group, phase and status. Start here for any build work.
+    With them: [`19_EASE_AND_COLOUR_STANDARD.md`](19_EASE_AND_COLOUR_STANDARD.md)
+    (binding for every screen) and the founder's
+    [`reference/2026-10-03_STRENGTHENING_BRIEF.md`](reference/2026-10-03_STRENGTHENING_BRIEF.md)
+    (mapped into `17` §3b).
 11. [`10_DECISION_LOG.md`](10_DECISION_LOG.md) — read when something
     in the above seems to contradict something else. It almost
     certainly doesn't — check here before re-deciding it.
