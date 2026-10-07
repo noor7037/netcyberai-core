@@ -75,9 +75,10 @@ export const officeDashboardEmptyFixture: OfficeDashboardData = {
 
 export const controlDashboardFixture: ControlDashboardData = {
   schools: [
-    { id: 's1', name: 'Illustrative Public School', stage: 'go_live', students: 430, isFixture: true },
-    { id: 's2', name: 'Illustrative Academy', stage: 'data_import', students: 160, isFixture: true },
+    { id: 's1', name: 'Illustrative Public School', stage: 'go_live', students: 590, isFixture: false },
+    { id: 's2', name: 'Illustrative Test School', stage: 'data_import', students: 160, isFixture: true },
   ],
+  liveSchools: 1,
   activeStudents: 560,
   totalStudents: 590,
   totalStaff: 39,

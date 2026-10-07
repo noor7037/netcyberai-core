@@ -57,7 +57,7 @@ export function OfficeDashboardView({ data, now = new Date() }: { data: OfficeDa
 
       <section aria-label="Key numbers" className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <KpiTile tone="royal" icon="attendance" spark={trendValues} tile={{ kind: 'kpi', id: 'attendance', label: 'Attendance today', value: attendancePct, unit: 'percent', drillHref: '/app/attendance', trend: attendancePct === null ? undefined : trendFromSeries(trendValues, 'percent', 'the previous marked day', 'up') }} />
-        <KpiTile tone="turquoise" icon="student" tile={{ kind: 'kpi', id: 'students', label: 'Students', value: data.totalStudents, unit: 'count', drillHref: '/app/students' }} />
+        <KpiTile tone="turquoise" icon="student" tile={{ kind: 'kpi', id: 'students', label: data.totalStudents > data.activeStudents ? `Active students (of ${data.totalStudents.toLocaleString('en-IN')} records)` : 'Active students', value: data.activeStudents, unit: 'count', drillHref: '/app/students' }} />
         <KpiTile tone="grape" icon="staff" tile={{ kind: 'kpi', id: 'staff', label: 'Teaching staff', value: data.totalStaff, unit: 'count', drillHref: '/app/staff' }} />
         <KpiTile tone="tangerine" icon="fees" tile={{ kind: 'kpi', id: 'overdue', label: 'Fees overdue', value: data.feesOverdueMinor, unit: 'inr_paise', drillHref: '/app/fees' }} />
       </section>
