@@ -167,7 +167,7 @@ const ROWS: readonly Row[] = [
   { id: 'automation', label: 'Automation OS', group: 'ai-intelligence', icon: 'sparkle', roles: OFFICE, phase: 'P7', status: 'spec-v0',
     capabilities: ['Rule builder: trigger → condition → action', 'Prebuilt automations', 'Every run audited', 'Human approval for parent-facing actions'] },
 
-  { id: 'help-center', label: 'Help Center', group: 'help', icon: 'support', roles: ALL, phase: 'P1', status: 'partial', href: '/app/help',
+  { id: 'help-center', label: 'Help Center', group: 'help', icon: 'support', roles: ALL, phase: 'P1', status: 'live', href: '/app/help',
     capabilities: ['In-app guides per module', 'Search'] },
   { id: 'raise-ticket', label: 'Raise Ticket', group: 'help', icon: 'mail', roles: ALL, phase: 'P1', status: 'live', href: '/app/help/ticket',
     capabilities: ['Ticket with screenshot', 'Status', 'Founder queue in Control'] },
