@@ -3,13 +3,39 @@
 **Governs:** moving the live site from `netcyberai-dev` (`unodnyyfqhxrbusbkite`)
 to `netcyberai-prod` (`rkpfkqpotmpupbjfambg`), and what happens to the old
 database afterwards. Decision Log C111.
-**Status:** prepared, **not executed**. Nothing in Vercel changes until Noor
-writes "go" in chat.
+**Status (2026-10-07, C103): DEFERRED to the very end, before the first real
+school.** A first attempt on 2026-10-06/07 was stopped and rolled back; see §0.
+Do not restart it, and do not ask Noor for any cutover step, until the
+supervisor schedules it. The live site runs on the old database.
 **Secrets:** every value below is typed by Noor into the Supabase or Vercel
 dashboard or his own terminal, and kept in his password manager. None is
 pasted into chat, a file in the repo, or a PR. Claude never sees one.
 
 ---
+
+## 0. Current state after the stopped attempt (verified 2026-10-07)
+
+- **Live site:** on the old database (`unodnyyfqhxrbusbkite`). `/api/health`
+  answers ok on commit `e56f948`; the app's database connections are on the old
+  project and none on prod; no runtime errors since the 10:06 UTC redeploy.
+- **Outage:** 2026-10-07 09:09–10:07 UTC sign-in and the job runner failed (the
+  Production `DATABASE_URL` was first missing, then not a connection string).
+  Fixed by putting the original shared `DATABASE_URL` entry back on Production.
+  No school uses the system yet; no data was lost.
+- **Prod database:** steps 1–2 ran (schemas identical, the 2 leads copied). No
+  accounts, no schools, no runner secrets. Harmless; the final cutover re-counts.
+- **Leftovers in Vercel (left on purpose until the final cutover):**
+  - `SUPABASE_SERVICE_ROLE_KEY` (Production) was most likely replaced with the
+    **prod** key while every other setting still points at the old project. So
+    service-role features (founder one-time links and temporary passwords,
+    document and ticket-screenshot uploads, school invites) may fail until the
+    final cutover, where this key is meant to be the prod one anyway.
+  - `APP_SESSION_SECRET` now targets **Production only** (likely a new value);
+    Preview and Development have none, so preview deployments cannot sign in.
+  - `ONBOARDING_NOTIFY_EMAIL` is set (Production).
+- **Lesson for the final cutover (C103):** Noor gets one short sheet with only
+  what must come from him; every other step is done by Claude; each Vercel value
+  is checked (shape, not content) before any redeploy.
 
 ## 1. What moves and what stays (inventory 2026-09-30, counts only)
 
