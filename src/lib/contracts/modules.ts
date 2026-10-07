@@ -169,7 +169,7 @@ const ROWS: readonly Row[] = [
 
   { id: 'help-center', label: 'Help Center', group: 'help', icon: 'support', roles: ALL, phase: 'P1', status: 'partial', href: '/app/help',
     capabilities: ['In-app guides per module', 'Search'] },
-  { id: 'raise-ticket', label: 'Raise Ticket', group: 'help', icon: 'mail', roles: ALL, phase: 'P1', status: 'planned', href: '/app/help/ticket',
+  { id: 'raise-ticket', label: 'Raise Ticket', group: 'help', icon: 'mail', roles: ALL, phase: 'P1', status: 'live', href: '/app/help/ticket',
     capabilities: ['Ticket with screenshot', 'Status', 'Founder queue in Control'] },
 ];
 

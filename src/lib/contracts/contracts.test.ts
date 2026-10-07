@@ -37,7 +37,7 @@ describe('module registry', () => {
     expect(at('fees')).toBeLessThan(at('communication'));
     expect(at('communication')).toBeLessThan(at('exams'));
     expect(moduleById('fees').phaseNote).toContain('WhatsApp from P4');
-    expect(moduleById('raise-ticket')).toMatchObject({ status: 'planned', phase: 'P1' });
+    expect(moduleById('raise-ticket')).toMatchObject({ status: 'live', phase: 'P1' });
     expect(MODULE_REGISTRY.filter((m) => m.status === 'spec-v0').map((m) => m.id).sort()).toEqual(
       ['automation', 'career', 'complaints', 'curriculum-gap', 'learning-genome', 'parent-ai', 'payroll', 'recovery', 'school-auditor', 'teacher-copilot', 'twin'].sort()
     );

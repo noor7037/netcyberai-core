@@ -1,5 +1,6 @@
-import { StubPage } from '@/components/shell/StubPage';
+import { redirect } from 'next/navigation';
 
+// Support in the Control navigation is the ticket queue (C126).
 export default function SupportPage() {
-  return <StubPage title="Support" description="Support tickets and incidents across all schools." />;
+  redirect('/control/tickets');
 }
