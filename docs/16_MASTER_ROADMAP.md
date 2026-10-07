@@ -113,7 +113,9 @@ numbers: supervisor C100–C109, Claude Code from C110.
   Strengthening Brief adopted in full (`17` §3b); new **P1-c** ease and colour
   foundation before P2 (`19`); P8 gains the real-data rehearsal and the
   infrastructure decision; classroom kit recorded as a founder-run offering.
-
+- **2026-10-07** — C126–C130: P1 complete except the cutover (deferred to the
+  end, C103): Raise Ticket and the Help Center are live. P2 plan:
+  `20_P2_TEACHER_APP_PLAN.md`.
 - **2026-10-05** — C102 (founder): Fees moves before Exams. New order: P1
   foundations, P2 Teacher app, P3 Fees and payments, P4 WhatsApp + parent
   loop, P5 Principal + Control on real data, P6 Exams + learning
