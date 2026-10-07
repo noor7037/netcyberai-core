@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { AppShell } from '@/components/app-shell/AppShell';
-import { toShellGroups } from '@/components/app-shell/shell-nav';
+import { controlShellGroups, toShellGroups } from '@/components/app-shell/shell-nav';
 import { PageHeader } from '@/components/app-ui/PageHeader';
 import { principalNavigationFixture } from '@/demo-fixture/contracts';
 import { FIXTURE_NOTICE } from '@/lib/contracts/fixture';
@@ -32,7 +32,7 @@ export default function TicketsPreviewPage({ searchParams }: { searchParams: { s
   );
   return control ? (
     <AppShell
-      groups={[{ id: 'control', label: 'Control', tone: ['sapphire', 'royal'], items: controlNav.map((n) => ({ href: n.href === '/control/support' ? here : n.href, label: n.label })) }]}
+      groups={controlShellGroups(controlNav, (h) => (h === '/control/support' ? here : h))}
       brand="NetCyberAI Control"
       roleLabel="Platform admin"
       navLabel="Platform 2 navigation"

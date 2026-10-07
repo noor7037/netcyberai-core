@@ -1,39 +1,66 @@
 'use client';
 
 import Link from 'next/link';
+import type { IconName } from '@/components/visual/Icons';
 import type { KpiTile as KpiTileData } from '@/lib/contracts/charts';
+import { colors } from '@/lib/design-tokens';
+import type { ColorToken } from '@/lib/contracts/modules';
 import { formatTrend, formatValue } from './format';
+import { ModuleIcon } from './ModuleIcon';
 import { useCountUp } from './motion';
+import { toneTint } from './tones';
 
-// A KPI tile (17 §4): the value computed by the server, counted up, its
-// trend in words and colour, and a drill-down link. null means no data yet
-// and says so; a demo badge string can never reach it (numbers only).
+// KPI tile v2 (docs/19 §3.3): a tinted surface in the tile's tone, its icon
+// chip, the value computed by the server (counted up, always in slate,
+// never in a series colour), the trend as a pill with an arrow AND words,
+// a small sparkline in the tone, and the whole tile as the drill-down
+// link. null means no data yet and says so.
 
-const TREND_CLASS = { good: 'text-emerald', bad: 'text-coral-deep', neutral: 'text-slate/70' } as const;
+const TREND_PILL = { good: 'bg-white text-emerald', bad: 'bg-white text-coral-deep', neutral: 'bg-white text-slate' } as const;
 
-export function KpiTile({ tile }: { tile: KpiTileData }) {
+// The last values as a thin line. Decorative: the value and the trend pill
+// carry the meaning, and the dashboard's chart has the table view.
+function Sparkline({ values, tone }: { values: readonly (number | null)[]; tone: ColorToken }) {
+  const pts = values.map((v, i) => ({ v, i })).filter((p): p is { v: number; i: number } => p.v !== null);
+  if (pts.length < 2) return null;
+  const min = Math.min(...pts.map((p) => p.v));
+  const max = Math.max(...pts.map((p) => p.v));
+  const x = (i: number) => 2 + (i / (values.length - 1)) * 96;
+  const y = (v: number) => (max === min ? 12 : 21 - ((v - min) / (max - min)) * 18);
+  return (
+    <svg viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true" className="mt-auto h-6 w-full">
+      <polyline points={pts.map((p) => `${x(p.i).toFixed(1)},${y(p.v).toFixed(1)}`).join(' ')} fill="none" stroke={colors[tone]} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+    </svg>
+  );
+}
+
+export function KpiTile({ tile, tone = 'royal', icon, spark }: { tile: KpiTileData; tone?: ColorToken; icon?: IconName; spark?: readonly (number | null)[] }) {
   const shown = useCountUp(tile.value);
   const trend = tile.trend ? formatTrend(tile.trend) : null;
   const value = formatValue(shown === null ? null : tile.unit === 'count' ? Math.round(shown) : shown, tile.unit);
   const body = (
     <>
-      <p className="text-sm font-semibold text-slate/70">{tile.label}</p>
+      <div className="flex items-center gap-2">
+        {icon && <ModuleIcon name={icon} tone={tone} size="sm" variant="solid" />}
+        <p className="min-w-0 text-sm font-semibold text-slate">{tile.label}</p>
+      </div>
       <p className="text-3xl font-extrabold tabular-nums text-slate" aria-label={`${tile.label}: ${formatValue(tile.value, tile.unit)}`}>
         {value}
       </p>
       {tile.value === null ? (
-        <p className="text-sm text-slate/70">No data yet</p>
+        <p className="text-sm text-slate">No data yet</p>
       ) : (
         trend && (
-          <p className={`text-sm font-semibold ${TREND_CLASS[trend.tone]}`}>
+          <p className={`self-start rounded-full px-2 py-0.5 text-xs font-bold ${TREND_PILL[trend.tone]}`}>
             <span aria-hidden="true">{trend.short}</span>
             <span className="sr-only">{trend.spoken}</span>
           </p>
         )
       )}
+      {spark && tile.value !== null && <Sparkline values={spark} tone={tone} />}
     </>
   );
-  const cls = 'nca-lift flex min-h-[112px] min-w-0 flex-col gap-1 rounded-xl border border-slate/10 bg-white p-4';
+  const cls = `nca-lift flex min-h-[132px] min-w-0 flex-col gap-1.5 rounded-2xl border border-slate/10 p-4 ${toneTint(tone)}`;
   return tile.drillHref ? (
     <Link href={tile.drillHref} className={`${cls} focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal`}>
       {body}
@@ -42,4 +69,3 @@ export function KpiTile({ tile }: { tile: KpiTileData }) {
     <div className={cls}>{body}</div>
   );
 }
-
