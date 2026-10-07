@@ -58,3 +58,13 @@ the user asked for.
   rewrite history. No secrets in code, logs, chat or PR text.
 - **Decision Log numbers:** Claude Code from C110.
 - **Report** in the Transparent Output Template, founder actions first.
+
+## Founder workload rule (C103)
+
+- Do not give Noor dashboard, settings, password or connection-string tasks
+  during the build. Do every step you can yourself. Ask Noor only for inputs
+  that cannot exist without him (for example Razorpay sign-up at P3), and say
+  plainly why the work cannot move without it.
+- The production database cutover is **deferred to the very end**, before the
+  first real school (docs/18 §0). Do not restart it or ask Noor for any of its
+  steps until the supervisor schedules it.
