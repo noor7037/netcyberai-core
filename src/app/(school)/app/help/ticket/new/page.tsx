@@ -1,11 +1,10 @@
-import { PageHeader } from '@/components/app-ui/PageHeader';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 import { SchoolRaiseTicket } from '@/components/tickets/TicketScreens';
 
 export default function RaiseTicketPage() {
   return (
-    <div className="flex flex-col gap-4 p-4 md:p-6">
-      <PageHeader eyebrow="Help" tone="sapphire" title="Raise a ticket" />
+    <ModulePage moduleId="raise-ticket" title="Raise a ticket" purpose="Tell NetCyberAI what you need. Replies appear on the ticket.">
       <SchoolRaiseTicket />
-    </div>
+    </ModulePage>
   );
 }

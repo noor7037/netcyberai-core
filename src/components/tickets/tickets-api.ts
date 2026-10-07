@@ -1,4 +1,5 @@
 import type { NewTicket, TicketDetail, TicketSide, TicketStatus, TicketSummary } from '@/lib/contracts/tickets';
+import { explainError } from '@/lib/errors/catalogue';
 
 // What the ticket screens need from the server (C126 APIs). The school
 // screens and the founder's queue are the same components on two of these;
@@ -19,12 +20,10 @@ export type TicketsApi = {
 async function call<T>(url: string, init: RequestInit | undefined, pick: string, fallback: string): Promise<T> {
   const r = await fetch(url, { cache: 'no-store', ...init });
   const body = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error(typeof body.error === 'string' ? sentence(body.error) : fallback);
+  if (!r.ok) throw new Error(explainError(body, fallback, 'en', r.status));
   return body[pick] as T;
 }
 
-// The API answers in lower case without a full stop; people read sentences.
-const sentence = (s: string) => `${s.charAt(0).toUpperCase()}${s.slice(1)}${/[.?!]$/.test(s) ? '' : '.'}`;
 const json = (body: unknown): RequestInit => ({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
 
 export function httpTicketsApi(side: TicketSide): TicketsApi {

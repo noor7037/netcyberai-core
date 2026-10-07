@@ -5,6 +5,7 @@ import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected, NoRowsAffectedError } from '@/lib/db/rows';
 import { isForeignKeyViolation } from '@/lib/db/pg-errors';
+import { checkDate, validationError } from '@/lib/errors/catalogue';
 
 export async function GET(req: NextRequest, { params }: { params: { studentId: string } }) {
   const guard = await requireAppSession(req);
@@ -59,14 +60,18 @@ export async function PATCH(req: NextRequest, { params }: { params: { studentId:
   for (const field of EDITABLE_FIELDS) {
     if (field in body) {
       if (field === 'name' && !String(body.name ?? '').trim()) {
-        return NextResponse.json({ error: 'name cannot be empty' }, { status: 400 });
+        return NextResponse.json(validationError('required', { field: 'student_name' }), { status: 400 });
+      }
+      if (field === 'dob' && typeof body.dob === 'string' && body.dob) {
+        const problem = checkDate(body.dob, 'dob', { notAfter: new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date()) });
+        if (problem) return NextResponse.json(problem, { status: 400 });
       }
       values.push(body[field] === '' ? null : body[field]);
       setClauses.push(`${COLUMN_FOR[field]} = $${values.length}`);
     }
   }
   if (setClauses.length === 0) {
-    return NextResponse.json({ error: `no editable fields provided (${EDITABLE_FIELDS.join(', ')})` }, { status: 400 });
+    return NextResponse.json(validationError('nothing_to_save'), { status: 400 });
   }
   setClauses.push('updated_at = now()');
 
@@ -103,7 +108,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { studentId:
     return NextResponse.json({ student });
   } catch (err) {
     if (isForeignKeyViolation(err)) {
-      return NextResponse.json({ error: 'classId does not belong to this school' }, { status: 400 });
+      return NextResponse.json(validationError('class_not_in_school'), { status: 400 });
     }
     if (err instanceof NoRowsAffectedError) {
       return NextResponse.json({ error: 'not found' }, { status: 404 });

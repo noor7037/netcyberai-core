@@ -8,6 +8,7 @@ export { ChartCard, ChartTable } from './ChartCard';
 export { AreaTrend, CalendarHeat, ChartFrame, DEFAULT_BANDS, DonutChart, GaugeChart, RingProgress, type DonutSlice, type GaugeBand, type HeatDay, type TrendPoint } from './ProgressCharts';
 export { greetingFor, HeroBand, indiaDate, indiaHour, type HeroChip } from './HeroBand';
 export { ModuleIcon } from './ModuleIcon';
+export { ModulePage, PRIMARY_ACTION, QUIET_ACTION } from './ModulePage';
 export { DataList, type DataColumn, type ListSelection } from './DataList';
 export { FilterBar, useUrlListQuery } from './FilterBar';
 export * as listQuery from './list-query';

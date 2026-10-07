@@ -141,6 +141,10 @@ run_step "Every /control and /app route goes through its guard" <<'STEP'
 python3 scripts/check_route_guards.py
 STEP
 
+run_step "Every /app and /control screen renders through ModulePage" <<'STEP'
+python3 scripts/check_module_pages.py
+STEP
+
 run_step "No secrets committed" <<'STEP'
 # required('SOME_ENV_VAR_NAME') (src/lib/auth/env.ts) looks up an
 # env var by NAME via process.env[name] -- it's a reference to a

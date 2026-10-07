@@ -27,6 +27,7 @@ create table schools (
   pilot_allow_outbound boolean not null default false,
   onboarding_stage onboarding_stage not null default 'tenant_created',
   jurisdiction text not null,
+  is_test_fixture boolean not null default false,
   timezone text not null default 'Asia/Kolkata',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
@@ -207,3 +208,27 @@ create policy parent_scope_students on students as restrictive for select
   using (current_setting('app.current_role', true) <> 'parent'
          or student_id in (select psm.student_id from parent_student_map psm
                            where psm.parent_id = (current_setting('app.current_user_id', true))::uuid));
+
+-- The slices of fees and messages the Control dashboard totals read (C132).
+create type fee_status as enum ('pending', 'paid', 'overdue', 'waived', 'partial');
+create type comm_status as enum ('queued', 'sent', 'delivered', 'read', 'failed', 'blocked_pilot', 'blocked_consent', 'blocked_budget', 'blocked_quiet_hours', 'blocked_no_template', 'budget_exceeded_transactional');
+create table fees_ledger (
+  fee_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  student_id uuid not null,
+  amount_minor bigint not null,
+  due_date date not null default current_date,
+  status fee_status not null default 'pending',
+  created_at timestamptz not null default now()
+);
+create table communication_log (
+  log_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  status comm_status not null default 'queued',
+  created_at timestamptz not null default now()
+);
+alter table fees_ledger enable row level security;
+alter table communication_log enable row level security;
+create policy fees_ledger_tenant_isolation on fees_ledger using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy communication_log_tenant_isolation on communication_log using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update, delete on fees_ledger, communication_log to app_user, nca_super;

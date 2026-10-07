@@ -198,7 +198,7 @@ describe('the live dashboards', () => {
     const html = render(h(OfficeDashboardView, { data: officeDashboardFixture, now: NOW }));
     expect(html).toContain('Illustrative Public School');
     expect(html).toContain('4 things need you today'); // unmarked students, overdue fees, consent, held messages
-    for (const label of ['Attendance today', 'Students', 'Teaching staff', 'Fees overdue']) expect(html).toContain(label);
+    for (const label of ['Attendance today', 'Active students', 'Teaching staff', 'Fees overdue']) expect(html).toContain(label);
     expect(html).toContain('94.5%'); // 378 of 400 present
     expect(html).toContain('12</span> active students have no attendance saved today');
     expect(html).toContain('17</span> fee entries are overdue');
@@ -238,21 +238,35 @@ describe('the live dashboards', () => {
     expect(html).not.toContain('<polyline');
   });
 
-  it('control: tickets waiting come first, and test-only data is labelled', () => {
+  it('control: tickets waiting come first; totals count live schools and say that test schools are left out', () => {
     const html = render(h(ControlDashboardView, { data: controlDashboardFixture, now: NOW, schoolsTable: null }));
     expect(html).toContain('NetCyberAI Control');
     expect(html).toContain('2 things need you today');
     expect(html).toContain('2</span> support tickets are waiting to be picked up');
-    expect(html).toContain('Every school so far is a tagged test school.');
-    expect(html).toContain('Schools (2 test)');
+    expect(html).toContain('Live schools');
+    expect(html).toContain('The totals count live schools only. 1 test school is listed below and not counted.');
     expect(html).toContain('560 of 590 students are active with consent recorded');
     expect(html).toContain('Fees marked paid');
-    const real = render(h(ControlDashboardView, { data: { ...controlDashboardFixture, ticketsOpen: 0, ticketsInProgress: 0, schools: [{ ...controlDashboardFixture.schools[0], isFixture: false }] }, now: NOW, schoolsTable: null }));
-    expect(real).not.toContain('tagged test school');
-    expect(real).toContain('No ticket is waiting for you.');
-    // Some, not all, are test schools: the totals say so.
-    const mixed = render(h(ControlDashboardView, { data: { ...controlDashboardFixture, schools: [controlDashboardFixture.schools[0], { ...controlDashboardFixture.schools[1], isFixture: false }] }, now: NOW, schoolsTable: null }));
-    expect(mixed).toContain('The totals below include 1 tagged test school.');
+  });
+
+  it('control, no live school yet: every total says "No data yet"; no number is borrowed from a test school', () => {
+    const none = { ...controlDashboardFixture, schools: controlDashboardFixture.schools.map((s) => ({ ...s, isFixture: true })), liveSchools: 0, activeStudents: 0, totalStudents: 0, totalStaff: 0, totalComms: 0, blocked: 0, deliveryRate: null, consentActive: 0, consentPending: 0, feesCollectedMinor: 0, feesDueMinor: 0, ticketsOpen: 0, ticketsInProgress: 0, ticketsFromTestSchools: 3, dailySends: [] };
+    const html = render(h(ControlDashboardView, { data: none, now: NOW, schoolsTable: null }));
+    expect(html).toContain('There is no live school yet. 2 test schools are listed below; test data is never counted in these totals.');
+    expect((html.match(/No data yet/g) ?? []).length).toBe(5); // students, staff, fees tiles and the two charts
+    // Test schools' tickets are not counted, but the dashboard does not claim the queue is empty.
+    expect(html).toContain('No ticket from a live school is waiting for you.');
+    expect(html).toContain('3 tickets from test schools are');
+    expect(html).toContain('href="/control/tickets"');
+    expect(html).not.toContain('messages logged in the last 30 days');
+    expect(html).not.toContain('₹');
+  });
+
+  it('school dashboard: the students tile counts active students and says how many records there are', () => {
+    const html = render(h(OfficeDashboardView, { data: officeDashboardFixture, now: NOW }));
+    expect(html).toContain('Active students (of 430 records)');
+    expect(html).toContain('aria-label="Active students (of 430 records): 412"');
+    expect(render(h(OfficeDashboardView, { data: { ...officeDashboardFixture, totalStudents: 412 }, now: NOW }))).toContain('aria-label="Active students: 412"');
   });
 
   it('a trend is computed from the last two real values, or not shown', () => {

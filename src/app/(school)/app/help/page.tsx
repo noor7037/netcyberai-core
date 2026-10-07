@@ -1,4 +1,4 @@
-import { PageHeader } from '@/components/app-ui/PageHeader';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 import { HelpIndex } from '@/components/help/HelpIndex';
 import { HELP_TEXT, isHelpLang } from '@/content/help/articles';
 
@@ -7,9 +7,8 @@ import { HELP_TEXT, isHelpLang } from '@/content/help/articles';
 export default function HelpPage({ searchParams }: { searchParams: { lang?: string } }) {
   const lang = isHelpLang(searchParams.lang) ? searchParams.lang : 'en';
   return (
-    <div className="flex flex-col gap-4 p-4 md:p-6">
-      <PageHeader eyebrow="Help" tone="sapphire" title={HELP_TEXT.title[lang]} />
+    <ModulePage moduleId="help-center" title={HELP_TEXT.title[lang]} purpose={HELP_TEXT.intro[lang]} headerLang={lang}>
       <HelpIndex lang={lang} mode="app" />
-    </div>
+    </ModulePage>
   );
 }

@@ -67,6 +67,9 @@ jobs:
       - name: Every /control and /app route goes through its guard
         run: python3 scripts/check_route_guards.py
 
+      - name: Every /app and /control screen renders through ModulePage
+        run: python3 scripts/check_module_pages.py
+
       - name: No secrets committed
         run: |
           # required('SOME_ENV_VAR_NAME') (src/lib/auth/env.ts) looks up an

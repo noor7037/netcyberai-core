@@ -1,14 +1,14 @@
 import { getServerSession } from '@/lib/auth/server-session';
 import { WhatsAppConfigPanel } from '@/components/settings/WhatsAppConfigPanel';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 
 export default async function SettingsPage() {
   const session = await getServerSession();
   const canManage = session?.role === 'school_admin' || session?.role === 'principal';
 
   return (
-    <div className="flex flex-col gap-6 p-4 md:p-6">
-      <h1 className="text-xl font-bold text-slate">Settings</h1>
+    <ModulePage moduleId="setup" title="Settings" purpose="How your school’s WhatsApp messages are set up.">
       <WhatsAppConfigPanel canManage={canManage} />
-    </div>
+    </ModulePage>
   );
 }

@@ -1,11 +1,10 @@
-import { PageHeader } from '@/components/app-ui/PageHeader';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 import { SchoolTicketDetail } from '@/components/tickets/TicketScreens';
 
 export default function TicketPage({ params }: { params: { ticketId: string } }) {
   return (
-    <div className="flex flex-col gap-4 p-4 md:p-6">
-      <PageHeader eyebrow="Help" tone="sapphire" title="Support ticket" />
+    <ModulePage moduleId="raise-ticket" title="Support ticket" purpose="What you asked, the replies, and what happens next.">
       <SchoolTicketDetail ticketId={params.ticketId} />
-    </div>
+    </ModulePage>
   );
 }

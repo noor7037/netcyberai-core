@@ -5,6 +5,7 @@ import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected, NoRowsAffectedError } from '@/lib/db/rows';
 import { isForeignKeyViolation, isUniqueViolation } from '@/lib/db/pg-errors';
+import { checkEmail, checkPhone, validationError } from '@/lib/errors/catalogue';
 
 export async function GET(req: NextRequest, { params }: { params: { studentId: string } }) {
   const guard = await requireAppSession(req);
@@ -51,11 +52,15 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
   const email = typeof body?.email === 'string' ? body.email.trim() || null : null;
   const relation = typeof body?.relation === 'string' ? body.relation.trim() || null : null;
 
-  if (!existingParentId && (!name || !phone)) {
-    return NextResponse.json(
-      { error: 'provide parentId to link an existing guardian, or name + phone to create a new one' },
-      { status: 400 }
-    );
+  // A new guardian: say exactly what is missing or wrong, in plain words
+  // (docs/19 rule 9). The number is checked, not rewritten.
+  if (!existingParentId) {
+    if (!name) return NextResponse.json(validationError('required', { field: 'guardian_name' }), { status: 400 });
+    if (!phone) return NextResponse.json(validationError('required', { field: 'phone' }), { status: 400 });
+    const phoneCheck = checkPhone(phone);
+    if (!phoneCheck.ok) return NextResponse.json(phoneCheck.error, { status: 400 });
+    const emailProblem = email ? checkEmail(email) : null;
+    if (emailProblem) return NextResponse.json(emailProblem, { status: 400 });
   }
 
   try {

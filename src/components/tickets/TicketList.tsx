@@ -12,7 +12,9 @@ import type { TicketRoutes, TicketsApi } from './tickets-api';
 // sees the school's, anyone else their own); for the founder, every
 // school's, with the school's name and a school filter. Newest activity
 // first. A table from 768 px, cards below.
-export function TicketList({ api, routes, initial }: { api: TicketsApi; routes: TicketRoutes; initial?: TicketSummary[] }) {
+// `raiseInHeader`: the page already shows "Raise a ticket" as its one primary
+// button (ModulePage), so the list does not repeat it beside the filters.
+export function TicketList({ api, routes, initial, raiseInHeader = false }: { api: TicketsApi; routes: TicketRoutes; initial?: TicketSummary[]; raiseInHeader?: boolean }) {
   const platform = api.side === 'platform';
   const [rows, setRows] = useState<TicketSummary[] | null>(initial ?? null);
   const [error, setError] = useState<string | null>(null);
@@ -90,7 +92,7 @@ export function TicketList({ api, routes, initial }: { api: TicketsApi; routes: 
             </select>
           </label>
         )}
-        {raise && <div className="ml-auto">{raise}</div>}
+        {raise && !raiseInHeader && <div className="ml-auto">{raise}</div>}
       </div>
       <DataList
         caption={platform ? 'Support tickets from every school' : 'Your support tickets'}

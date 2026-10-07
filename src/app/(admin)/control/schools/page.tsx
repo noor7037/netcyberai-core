@@ -3,6 +3,7 @@ import { Table, type TableColumn } from '@/components/ui/Table';
 import { Button } from '@/components/ui/Button';
 import { getServerSession } from '@/lib/auth/server-session';
 import { withTenantContext } from '@/lib/auth/db';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 
 type SchoolRow = { id: string; name: string; status: string };
 
@@ -31,8 +32,7 @@ export default async function SchoolsPage() {
     : [];
 
   return (
-    <div className="p-4 md:p-6">
-      <h1 className="mb-4 text-xl font-bold text-slate">Schools</h1>
+    <ModulePage title="Schools" purpose="Every school on NetCyberAI. Open one to see its onboarding, modules and access." icon="school" tone="sapphire" eyebrow="Control">
       <Table<SchoolRow>
         columns={columns}
         rows={rows}
@@ -45,6 +45,6 @@ export default async function SchoolsPage() {
           </Button>
         }
       />
-    </div>
+    </ModulePage>
   );
 }

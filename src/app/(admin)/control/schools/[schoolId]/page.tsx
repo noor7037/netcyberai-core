@@ -5,6 +5,7 @@ import { getServerSession } from '@/lib/auth/server-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { SchoolOnboardingPanel } from '@/components/control/SchoolOnboardingPanel';
 import { SchoolEntitlements } from '@/components/control/SchoolEntitlementsPanel';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 
 // Prompt E fills in the real Overview tab (onboarding stage, pilot
 // status, consent meter, feature flags, invite, impersonation), and
@@ -56,16 +57,14 @@ export default async function SchoolDetailPage({ params }: { params: { schoolId:
   });
 
   return (
-    <div className="p-4 md:p-6">
-      <h1 className="mb-1 text-xl font-bold text-slate">{school ? school.name : 'School detail'}</h1>
-      <p className="mb-4 text-sm text-slate/70">
-        {params.schoolId === 'shell-preview'
-          ? 'Shell preview -- no real school exists behind this id yet.'
-          : school
-            ? `School id: ${params.schoolId}`
-            : `No school found for id: ${params.schoolId}`}
-      </p>
+    <ModulePage
+      title={school ? school.name : 'School detail'}
+      purpose={params.schoolId === 'shell-preview' ? 'Shell preview: no real school exists behind this id yet.' : school ? `School id: ${params.schoolId}` : `No school found for id: ${params.schoolId}`}
+      icon="school"
+      tone="sapphire"
+      eyebrow="School"
+    >
       <Tabs items={items} orientation="vertical" />
-    </div>
+    </ModulePage>
   );
 }

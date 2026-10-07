@@ -4,6 +4,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { CreateSchoolForm } from '@/components/control/CreateSchoolForm';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { Badge } from '@/components/ui/Badge';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 
 const STAGE_LABELS: Record<string, string> = {
   tenant_created: 'Tenant Created',
@@ -56,15 +57,12 @@ export default async function OnboardingPage() {
     : { inProgress: [], leads: [] };
 
   return (
-    <div className="flex flex-col gap-6 p-4 md:p-6">
-      <div>
-        <h1 className="mb-1 text-xl font-bold text-slate">Onboarding</h1>
-        <p className="text-sm text-slate/70">
-          Lead → Approved → Tenant Created → Admin Invited → Data Imported → Data Validated →{' '}
-          <strong className="text-slate">Consent Collection (a gate, not a checkbox)</strong> → Configuration →
-          Training → Pilot Outbound Approved → Go-Live.
-        </p>
-      </div>
+    <ModulePage title="Onboarding" purpose="Bring a school on, step by step: lead, approval, data, consent, training, go-live." icon="admissions" tone="turquoise" eyebrow="Control">
+      <p className="text-sm text-slate/70">
+        Lead → Approved → Tenant Created → Admin Invited → Data Imported → Data Validated →{' '}
+        <strong className="text-slate">Consent Collection (a gate, not a checkbox)</strong> → Configuration → Training → Pilot Outbound
+        Approved → Go-Live.
+      </p>
 
       <Link
         href="/control/onboarding/applications"
@@ -126,6 +124,6 @@ export default async function OnboardingPage() {
           </ul>
         )}
       </div>
-    </div>
+    </ModulePage>
   );
 }

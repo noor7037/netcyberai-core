@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useToast } from '@/components/ui/Toast';
+import { ModulePage, PRIMARY_ACTION, QUIET_ACTION } from '@/components/app-ui/ModulePage';
 
 type TokenState = { tokenId: string; issuedAt: string; qrSvg: string } | null;
 
@@ -52,23 +53,29 @@ export function IdCardView({ studentId, studentName, schoolName, className }: { 
   if (loading) return <p className="p-6 text-sm text-slate/70">Loading…</p>;
 
   return (
-    <div className="p-4 md:p-6">
-      <div className="mb-4 flex gap-2 print:hidden">
-        <button type="button" onClick={handleIssue} className="min-h-[44px] rounded-md bg-sapphire px-4 text-sm font-semibold text-white">
+    <ModulePage
+      moduleId="students"
+      title={`ID card: ${studentName}`}
+      purpose="Issue the card, print it, and revoke it at once if it is lost."
+      hideHeaderInPrint
+      primary={
+        <button type="button" onClick={handleIssue} className={`${PRIMARY_ACTION} print:hidden`}>
           {token ? 'Reissue (invalidates current card)' : 'Issue ID card'}
         </button>
-        {token && (
-          <button type="button" onClick={handleRevoke} className="min-h-[44px] rounded-md border border-red-600/40 px-4 text-sm font-semibold text-red-800">
-            Report lost / revoke
-          </button>
-        )}
-        {token && (
-          <button type="button" onClick={() => window.print()} className="min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate">
-            Print
-          </button>
-        )}
-      </div>
-
+      }
+      more={
+        token && (
+          <span className="flex flex-wrap gap-2 print:hidden">
+            <button type="button" onClick={handleRevoke} className="min-h-[44px] rounded-md border border-red-600/40 bg-white px-4 text-sm font-semibold text-red-800">
+              Report lost / revoke
+            </button>
+            <button type="button" onClick={() => window.print()} className={QUIET_ACTION}>
+              Print
+            </button>
+          </span>
+        )
+      }
+    >
       {!token ? (
         <p className="text-sm text-slate/70">No active ID card. Issue one to generate a QR code.</p>
       ) : (
@@ -81,6 +88,6 @@ export function IdCardView({ studentId, studentName, schoolName, className }: { 
           <p className="text-[10px] text-slate/70">Card is inert if reissued or reported lost.</p>
         </div>
       )}
-    </div>
+    </ModulePage>
   );
 }

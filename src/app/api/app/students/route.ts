@@ -4,6 +4,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { isForeignKeyViolation } from '@/lib/db/pg-errors';
+import { checkDate, checkText, validationError } from '@/lib/errors/catalogue';
 
 const STUDENT_STATUSES = ['pending_consent', 'active', 'inactive', 'transferred'] as const;
 const LIST_LIMIT_DEFAULT = 50;
@@ -87,9 +88,11 @@ export async function POST(req: NextRequest) {
   const rollNo = typeof body?.rollNo === 'string' ? body.rollNo.trim() || null : null;
   const dob = typeof body?.dob === 'string' ? body.dob : null;
 
-  if (!name) {
-    return NextResponse.json({ error: 'name is required' }, { status: 400 });
-  }
+  // Plain-language answers from the error catalogue (docs/19 rule 9).
+  const nameCheck = checkText(name, 'student_name', 1, 200);
+  if (!nameCheck.ok) return NextResponse.json(nameCheck.error, { status: 400 });
+  const dobProblem = dob ? checkDate(dob, 'dob', { notAfter: new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date()) }) : null;
+  if (dobProblem) return NextResponse.json(dobProblem, { status: 400 });
 
   try {
     const student = await withTenantContext(guard.claims, async (client) => {
@@ -114,7 +117,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ student }, { status: 201 });
   } catch (err) {
     if (isForeignKeyViolation(err)) {
-      return NextResponse.json({ error: 'classId does not belong to this school' }, { status: 400 });
+      return NextResponse.json(validationError('class_not_in_school'), { status: 400 });
     }
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
