@@ -18,7 +18,7 @@ export async function POST(req: NextRequest, { params }: { params: { documentId:
   const body = await req.json().catch(() => null);
   const decisions: ReviewDecision[] = Array.isArray(body?.decisions) ? body.decisions : [];
   if (decisions.length === 0) {
-    return ruleError(400, 'nothing_to_save');
+    return ruleError(400, 'not_sent_properly');
   }
   for (const d of decisions) {
     if (typeof d.extractionId !== 'string' || typeof d.accepted !== 'boolean') {

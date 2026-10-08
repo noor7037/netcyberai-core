@@ -29,7 +29,8 @@ describe('the moved APIs say refusals through the catalogue', () => {
   it('no route writes its own refusal sentence', () => {
     for (const f of files) {
       const text = readFileSync(f, 'utf8');
-      const own = text.match(/\{\s*error:\s*['"`][^'"`]*['"`]|jsonError\(\s*\d+\s*,\s*['"`]/g) ?? [];
+      // A sentence written in the route, or a thrown error's own words passed on.
+      const own = text.match(/\{\s*error:\s*['"`][^'"`]*['"`]|jsonError\(\s*\d+\s*,\s*['"`]|error:\s*err\.message/g) ?? [];
       expect(own, path.relative(API, f)).toEqual([]);
     }
   });

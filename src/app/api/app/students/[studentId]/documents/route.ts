@@ -61,7 +61,7 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
     return ruleError(400, 'file_type', { field: 'file', allowed: 'JPEG, PNG, WebP, PDF' });
   }
   if (file.size > MAX_BYTES || file.size === 0) {
-    return file.size === 0 ? ruleError(400, 'file_missing') : ruleError(400, 'file_too_large', { field: 'file', maxMb: 8 });
+    return file.size === 0 ? ruleError(400, 'file_empty') : ruleError(400, 'file_too_large', { field: 'file', maxMb: 8 });
   }
 
   const bytes = Buffer.from(await file.arrayBuffer());

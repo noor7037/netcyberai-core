@@ -35,10 +35,10 @@ export async function POST(req: NextRequest, { params }: { params: { requestId: 
     });
     return NextResponse.json({ request, result });
   } catch (err) {
-    if (err instanceof NotAuthorizedForExecutionError) return NextResponse.json({ error: err.message }, { status: 409 });
-    if (err instanceof WrongRequestTypeError) return NextResponse.json({ error: err.message }, { status: 400 });
+    if (err instanceof NotAuthorizedForExecutionError) return ruleError(409, 'approve_first');
+    if (err instanceof WrongRequestTypeError) return ruleError(400, 'only_for_deletion');
     if (err instanceof Error && (err.message === 'request not found' || err.message === 'this request has already been executed')) {
-      return NextResponse.json({ error: err.message }, { status: err.message === 'request not found' ? 404 : 409 });
+      return err.message === 'request not found' ? ruleError(404, 'not_found', { field: 'data_request' }) : ruleError(409, 'already_done');
     }
     const resp = sessionErrorResponse(err);
     if (resp) return resp;

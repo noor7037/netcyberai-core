@@ -17,8 +17,9 @@ function words(lang: Lang, card: TodayCard): { title: string; detail: string | n
   const base = `today.${card.type}.${card.state}`;
   const values = { count: card.count, total: card.total ?? card.count, subject: card.subject ?? '' };
   const title = isMessageKey(base) ? t(lang, base, values) : tCount(lang, base, card.count, values);
+  // The detail line: one sentence, or `.one` / `.other` chosen by the count its noun belongs to.
   const detailBase = `${base}.detail`;
-  const detail = isMessageKey(`${detailBase}.other`) ? tCount(lang, detailBase, card.state === 'done' ? card.count : (card.total ?? card.count), values) : null;
+  const detail = isMessageKey(detailBase) ? t(lang, detailBase, values) : isMessageKey(`${detailBase}.other`) ? tCount(lang, detailBase, card.count, values) : null;
   return { title, detail };
 }
 
@@ -41,7 +42,7 @@ function Card({ card, lang }: { card: TodayCard; lang: Lang }) {
             {t(lang, 'myDay.doneMark')}
           </span>
         ) : (
-          <span className="inline-flex min-h-[44px] shrink-0 items-center gap-1 rounded-md bg-sapphire px-3 text-sm font-semibold text-white">
+          <span aria-hidden="true" className="inline-flex min-h-[44px] shrink-0 items-center gap-1 rounded-md bg-sapphire px-3 text-sm font-semibold text-white">
             {t(lang, `today.${card.type}.action` as MessageKey)}
             <Icon name="arrow" className="h-4 w-4" aria-hidden="true" />
           </span>

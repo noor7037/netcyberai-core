@@ -25,6 +25,17 @@ error state drawn outside the template, a different screen for one role).
 between two screens in one expression (`return ok ? <A /> : <B />`) is
 refused: write it as two returns, so each can be checked.
 
+The check must be able to read the component, and fails when it cannot: the
+page is written `export default function Name(...) {` and a view
+`export function Name(...) {`, without a return type between the
+parameters and the body; a top-level `return something()` that is not JSX,
+null, redirect() or notFound() is refused, because the screen it returns
+cannot be seen from here.
+
+Still not seen (review catches these): a screen built in a helper and
+returned from inside an `if { }` block, and a wrapper component that is
+not ModulePage but renders it.
+
 Static, text-based, file-local (the same honesty as check_route_guards.py):
 it proves the component is used, not what the page looks like. Screenshots
 at 390 and 1440 in each PR are the visual proof.
@@ -73,22 +84,38 @@ def component_file(src: Path, spec: str) -> Path | None:
 
 
 RETURN_RE = re.compile(r"\breturn\b")
+NOT_A_SCREEN_RETURN_RE = re.compile(r"^(?:$|null\b|undefined\b|redirect\(|notFound\(|permanentRedirect\()")
 JSX_RE = re.compile(r"<[A-Za-z]")
 ROOT_RE = re.compile(r"\(?\s*<([A-Za-z][\w.]*)")
 FRAGMENT_RE = re.compile(r"\(?\s*<>")
 
 
 def _matching(text: str, start: int, open_ch: str, close_ch: str) -> int:
-    """Index just past the bracket that closes the one at `start`."""
+    """Index just past the bracket that closes the one at `start`. Brackets
+    inside quoted text do not count."""
     depth = 0
-    for i in range(start, len(text)):
-        if text[i] == open_ch:
+    quote = ""
+    i = start
+    while i < len(text):
+        ch = text[i]
+        if quote:
+            if ch == "\\":
+                i += 1
+            elif ch == quote:
+                quote = ""
+        elif ch in "'\"`":
+            quote = ch
+        elif ch == open_ch:
             depth += 1
-        elif text[i] == close_ch:
+        elif ch == close_ch:
             depth -= 1
             if depth == 0:
                 return i + 1
+        i += 1
     return len(text)
+
+
+UNREADABLE = "\0unreadable"
 
 
 def component_body(text: str, name: str | None) -> str | None:
@@ -99,8 +126,11 @@ def component_body(text: str, name: str | None) -> str | None:
     if not m:
         return None
     params_end = _matching(text, m.end(), "(", ")")
-    brace = text.find("{", params_end)
-    return text[brace : _matching(text, brace, "{", "}")] if brace >= 0 else None
+    after = text[params_end:].lstrip()
+    if not after.startswith("{"):
+        return UNREADABLE  # a return type (or anything else) between the parameters and the body
+    brace = text.index("{", params_end)
+    return text[brace : _matching(text, brace, "{", "}")]
 
 
 def screen_returns(body: str) -> list[str]:
@@ -122,7 +152,13 @@ def screen_returns(body: str) -> list[str]:
         expr = body[m.end() : end]
         inside_until = end
         if not JSX_RE.search(expr) and "<>" not in expr:
-            continue  # return null, return; return redirect(...)
+            # return null, return; return redirect(...): not a screen. At the top
+            # level of the component anything else returns a screen built
+            # somewhere this check cannot see.
+            depth = body.count("{", 0, m.start()) - body.count("}", 0, m.start())
+            if depth == 1 and not NOT_A_SCREEN_RETURN_RE.match(expr.strip().lstrip("(").strip()):
+                out.append("?")
+            continue
         if expr.lstrip().startswith(("{", "[")):
             continue  # a callback building a row of data ({ label, content: <X /> }), not a screen
         root = ROOT_RE.match(expr.lstrip())
@@ -138,12 +174,12 @@ def screen_returns(body: str) -> list[str]:
 NOT_A_SCREEN = {"ModuleComingPage", "StubPage"}
 
 
-def path_problem(where: str, body: str | None, allowed: set[str]) -> str | None:
-    if body is None:
-        return None
+def path_problem(where: str, body: str | None, allowed: set[str], shape: str) -> str | None:
+    if body is None or body == UNREADABLE:
+        return f"{where} cannot be read by this check; write it as `{shape}` with no return type before the body"
     for root in screen_returns(body):
         if root == "?":
-            return f"{where} has a return that chooses between screens in one expression; write it as separate returns so every path is checked"
+            return f"{where} has a return whose screen cannot be seen here (two screens in one expression, or a screen built elsewhere); return the JSX itself, one screen per return"
         if root not in allowed:
             shown = "a fragment" if root == "<>" else f"<{root}>"
             return f"{where} returns {shown} on one path, outside ModulePage; every path of the screen renders through ModulePage"
@@ -160,11 +196,11 @@ def verdict(src: Path, page: Path) -> str | None:
         if f and USES_RE.search(strip_comments(f.read_text())) and re.search(rf"<{re.escape(f.stem)}\b", text):
             views[f.stem] = f
     if USES_RE.search(text) or views:
-        problem = path_problem("the page", component_body(text, None), {"ModulePage"} | NOT_A_SCREEN | set(views))
+        problem = path_problem("the page", component_body(text, None), {"ModulePage"} | NOT_A_SCREEN | set(views), "export default function Page(...) {")
         if problem:
             return problem
         for name, f in sorted(views.items()):
-            problem = path_problem(f"its view {name}", component_body(strip_comments(f.read_text()), name), {"ModulePage"})
+            problem = path_problem(f"its view {name}", component_body(strip_comments(f.read_text()), name), {"ModulePage"}, f"export function {name}(...) {{")
             if problem:
                 return problem
         return None
@@ -266,7 +302,9 @@ def self_test() -> int:
         # template, callbacks that return rows, a Coming page for some roles.
         write(
             app / "paths-ok" / "page.tsx",
-            "export default async function P({ params }: { params: { id: string } }) {\n"
+            "export default async function P({ params, sep = ')' }: { params: { id: string }; sep?: string }) {\n"
+            "  async function save() {\n    if (!ok) return;\n    return fetch('/x');\n  }\n"
+            "  useEffect(() => {\n    return () => stop();\n  }, []);\n"
             "  if (!ok) return null;\n"
             "  if (gone) notFound();\n"
             "  if (teacher) return <ModuleComingPage moduleId=\"fees\" />;\n"
@@ -274,6 +312,7 @@ def self_test() -> int:
             "  const tabs = list.map((x) => {\n    return { id: x.id, content: <Panel /> };\n  });\n"
             "  return (\n    <ModulePage title='a' purpose='b'>\n      {rows.map((r) => {\n        return <li key={r.id}>{r.name}</li>;\n      })}\n      {empty ? <p>none</p> : <ul />}\n    </ModulePage>\n  );\n}\n",
         )
+        write(comp / "views" / "ArrowView.tsx", "export const ArrowView = () => {\n  if (loading) return <div>Loading</div>;\n  return <ModulePage title='x' purpose='y'>z</ModulePage>;\n};\n")
         write(comp / "views" / "TwoFacedView.tsx", "export function TwoFacedView() {\n  if (loading) return <div>Loading</div>;\n  return <ModulePage title='x' purpose='y'>z</ModulePage>;\n}\n")
         if find_violations(src, exceptions):
             print("SELF-TEST FAILED: a page whose every path is the template was flagged")
@@ -290,6 +329,11 @@ def self_test() -> int:
             "path-ternary": "export default function P() {\n  return ok ? <ModulePage title='a' purpose='b'>c</ModulePage> : <div>Own</div>;\n}\n",
             # The view it hands the screen to is the template only on one path.
             "path-view": "import { TwoFacedView } from '@/components/views/TwoFacedView';\nexport default function P() { return <TwoFacedView />; }\n",
+            # Written so the check cannot read it: each must fail, not pass unread.
+            "path-arrow": "const P = async () => {\n  if (x) return <div>Own</div>;\n  return <ModulePage title='a' purpose='b'>c</ModulePage>;\n};\nexport default P;\n",
+            "path-annotated": "export default async function P(): Promise<{ a: string }> {\n  if (x) return <div>Own</div>;\n  return <ModulePage title='a' purpose='b'>c</ModulePage>;\n}\n",
+            "path-elsewhere": "function Own() { return <div>Own</div>; }\nexport default function P() {\n  if (x) return <ModulePage title='a' purpose='b'>c</ModulePage>;\n  return Own();\n}\n",
+            "path-arrow-view": "import { ArrowView } from '@/components/views/ArrowView';\nexport default function P() { return <ArrowView />; }\n",
             # A ModulePage view for some, an own layout for others.
             "path-view-or-own": "import { GoodView } from '@/components/views/GoodView';\nexport default function P() {\n  if (x) return <section>Own</section>;\n  return <GoodView />;\n}\n",
         }

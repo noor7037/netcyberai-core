@@ -111,7 +111,7 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
       return ruleError(409, 'already_linked');
     }
     if (isForeignKeyViolation(err)) {
-      return ruleError(400, 'not_found', { field: 'guardian' });
+      return ruleError(400, 'choose_one', { field: 'guardian' });
     }
     const resp = sessionErrorResponse(err);
     if (resp) return resp;

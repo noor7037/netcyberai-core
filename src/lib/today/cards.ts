@@ -17,9 +17,13 @@ const OFFICE = ['principal', 'school_admin'] as const;
 // One card when the count is above zero, none otherwise.
 const waiting = (type: TodayCard['type'], moduleId: TodayCard['moduleId'], count: number, href: string): TodayCard[] => (count > 0 ? [{ id: type, type, moduleId, state: 'todo', count, href }] : []);
 
+// The whole of today in India as a range on a timestamp column, so an index
+// on that column can be used.
+const DURING_TODAY = (column: string) => `${column} >= (${TODAY})::timestamp at time zone 'Asia/Kolkata' and ${column} < (${TODAY} + 1)::timestamp at time zone 'Asia/Kolkata'`;
+
 // No attendance is expected on a Sunday; a school that does open marks it
 // from the Attendance screen as usual.
-async function isSunday(db: TodaySql): Promise<boolean> {
+export async function isSundayInIndia(db: TodaySql): Promise<boolean> {
   const { rows } = await db.query(`select extract(dow from ${TODAY})::int as dow`);
   return n(rows[0]?.dow) === 0;
 }
@@ -34,13 +38,16 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     moduleId: 'attendance',
     roles: ['teacher'],
     async load(db, ctx) {
-      if (await isSunday(db)) return [];
+      if (ctx.sunday) return [];
+      // Counted from the students who are in the class now, as the Attendance
+      // screen does: a student moved in after being marked elsewhere today is
+      // marked; one moved out is no longer this class's.
       const { rows } = await db.query(
         `select c.class_id, c.name, c.section,
                 (select count(*) from students s where s.school_id = c.school_id and s.class_id = c.class_id and s.status = 'active') as active,
-                (select count(*) from attendance a
-                   join students s on s.school_id = a.school_id and s.student_id = a.student_id and s.status = 'active'
-                  where a.school_id = c.school_id and a.class_id = c.class_id and a.date = ${TODAY}) as marked
+                (select count(*) from students s
+                   join attendance a on a.school_id = s.school_id and a.student_id = s.student_id and a.date = ${TODAY}
+                  where s.school_id = c.school_id and s.class_id = c.class_id and s.status = 'active') as marked
          from classes c
          where c.school_id = $1
            and exists (select 1 from teacher_subjects ts
@@ -53,7 +60,7 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
         .filter((r) => n(r.active) > 0)
         .map((r): TodayCard => {
           const active = n(r.active);
-          const marked = Math.min(n(r.marked), active);
+          const marked = n(r.marked);
           const done = marked >= active;
           return {
             id: `attendance-class:${r.class_id}`,
@@ -74,11 +81,13 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     moduleId: 'attendance',
     roles: OFFICE,
     async load(db, ctx) {
-      if (await isSunday(db)) return [];
+      if (ctx.sunday) return [];
       const { rows } = await db.query(
         `with c as (
            select c.class_id,
-                  exists (select 1 from attendance a where a.school_id = c.school_id and a.class_id = c.class_id and a.date = ${TODAY}) as marked
+                  exists (select 1 from students s
+                            join attendance a on a.school_id = s.school_id and a.student_id = s.student_id and a.date = ${TODAY}
+                           where s.school_id = c.school_id and s.class_id = c.class_id and s.status = 'active') as marked
            from classes c
            where c.school_id = $1
              and exists (select 1 from students s where s.school_id = c.school_id and s.class_id = c.class_id and s.status = 'active')
@@ -112,11 +121,13 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     },
   },
   {
+    // Past the due date and not paid or waived. Worked out from the date:
+    // nothing sets a fee to "overdue" when its date simply passes.
     type: 'fees-overdue',
     moduleId: 'fees',
     roles: ['principal', 'accountant'],
     async load(db, ctx) {
-      const { rows } = await db.query(`select count(*) as c from fees_ledger where school_id = $1 and status = 'overdue'`, [ctx.schoolId]);
+      const { rows } = await db.query(`select count(*) as c from fees_ledger where school_id = $1 and due_date < ${TODAY} and status::text in ('pending', 'overdue', 'partial')`, [ctx.schoolId]);
       return waiting('fees-overdue', 'fees', n(rows[0]?.c), '/app/fees');
     },
   },
@@ -132,14 +143,16 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     },
   },
   {
-    // Messages the safeguards held back today (consent missing, quiet hours, budget).
+    // Messages the safeguards held back today: consent missing, quiet hours,
+    // budget. A pilot school's sends are all held by design and a missing
+    // template is a setup matter; neither is a thing that needs the principal today.
     type: 'messages-held',
     moduleId: 'communication',
     roles: ['principal'],
     async load(db, ctx) {
       const { rows } = await db.query(
         `select count(*) as c from communication_log
-         where school_id = $1 and status::text like 'blocked%' and (created_at at time zone 'Asia/Kolkata')::date = ${TODAY}`,
+         where school_id = $1 and status::text in ('blocked_consent', 'blocked_quiet_hours', 'blocked_budget') and ${DURING_TODAY('created_at')}`,
         [ctx.schoolId]
       );
       return waiting('messages-held', 'communication', n(rows[0]?.c), '/app/communication');
@@ -153,15 +166,30 @@ export function providersFor(role: TodayContext['role'], entitlements: SchoolEnt
 }
 
 // A provider that cannot answer leaves its card out; it never stops the
-// home or the other cards. `failed` lets the page say that something is missing.
-export async function loadMyDay(db: TodaySql, ctx: TodayContext, entitlements: SchoolEntitlements): Promise<MyDay & { failed: number }> {
+// home or the other cards (each runs behind its own savepoint, so a failed
+// statement does not end the transaction). `failed` lets the page say that
+// something is missing. `given` is for tests: the day of the week, and the
+// providers to run.
+export async function loadMyDay(
+  db: TodaySql,
+  who: Omit<TodayContext, 'sunday'>,
+  entitlements: SchoolEntitlements,
+  given: { sunday?: boolean; providers?: readonly TodayProvider[] } = {}
+): Promise<MyDay & { failed: number }> {
   const cards: TodayCard[] = [];
   let failed = 0;
-  for (const p of providersFor(ctx.role, entitlements)) {
+  let ctx: TodayContext;
+  try {
+    ctx = { ...who, sunday: given.sunday ?? (await isSundayInIndia(db)) };
+  } catch {
+    return { ...arrangeMyDay([]), failed: 1 };
+  }
+  for (const p of given.providers ?? providersFor(ctx.role, entitlements)) {
     try {
       await db.query('savepoint today_card');
-      cards.push(...(await p.load(db, ctx)));
+      const found = await p.load(db, ctx);
       await db.query('release savepoint today_card');
+      cards.push(...found);
     } catch (err) {
       await db.query('rollback to savepoint today_card').catch(() => undefined);
       console.error('[my-day] a card could not be computed', p.type, err instanceof Error ? err.name : 'error');

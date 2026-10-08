@@ -31,7 +31,8 @@ export type TodayCard = {
 };
 
 // What a provider is told about the person.
-export type TodayContext = { schoolId: string; userId: string; role: SchoolRole };
+// `sunday`: today is a Sunday in India (worked out once for all providers).
+export type TodayContext = { schoolId: string; userId: string; role: SchoolRole; sunday: boolean };
 
 // A minimal SQL client: the caller's own tenant-context transaction.
 export type TodaySql = { query: (text: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };

@@ -123,6 +123,46 @@ describe('each rule says what is wrong and how to fix it, in English and Hindi',
     expect(en('read_only')).toBe('Your school’s account can be read but not changed right now. Ask your principal, or raise a ticket to NetCyberAI.');
     expect(hi('read_only')).toMatch(DEVANAGARI);
   });
+  it('guardian_not_linked', () => {
+    expect(en('guardian_not_linked')).toBe('This guardian is not linked to this student. Link the guardian on the student’s page first.');
+    expect(hi('guardian_not_linked')).toMatch(DEVANAGARI);
+  });
+  it('file_empty', () => {
+    expect(en('file_empty')).toBe('This file is empty. Choose another file.');
+    expect(hi('file_empty')).toMatch(DEVANAGARI);
+  });
+  it('step_out_of_order', () => {
+    expect(en('step_out_of_order')).toBe('This step cannot be done now. Refresh the page to see where things stand, then continue from there.');
+    expect(hi('step_out_of_order')).toMatch(DEVANAGARI);
+  });
+  it('code_expired', () => {
+    expect(en('code_expired')).toBe('This code has run out. Ask for a new code, then enter it.');
+    expect(hi('code_expired')).toMatch(DEVANAGARI);
+  });
+  it('code_wrong', () => {
+    expect(en('code_wrong')).toBe('That code does not match. Check the code and enter it again.');
+    expect(hi('code_wrong')).toMatch(DEVANAGARI);
+  });
+  it('code_too_many_tries', () => {
+    expect(en('code_too_many_tries')).toBe('There were too many wrong tries. Ask for a new code, then enter it.');
+    expect(hi('code_too_many_tries')).toMatch(DEVANAGARI);
+  });
+  it('guardian_not_verified', () => {
+    expect(en('guardian_not_verified')).toBe('This guardian is not verified yet. Verify the guardian first (the “Verify” button beside their name), then record the consent.');
+    expect(hi('guardian_not_verified')).toMatch(DEVANAGARI);
+  });
+  it('only_for_deletion', () => {
+    expect(en('only_for_deletion')).toBe('This step is only for requests to delete data. This request is of another kind.');
+    expect(hi('only_for_deletion')).toMatch(DEVANAGARI);
+  });
+  it('approve_first', () => {
+    expect(en('approve_first')).toBe('This request has not been approved yet. Approve it first, then carry it out.');
+    expect(hi('approve_first')).toMatch(DEVANAGARI);
+  });
+  it('already_done', () => {
+    expect(en('already_done')).toBe('This has already been done. There is nothing more to do.');
+    expect(hi('already_done')).toMatch(DEVANAGARI);
+  });
   it('not_saved', () => {
     expect(en('not_saved')).toBe('This could not be saved just now. Check your internet, then try again.');
     expect(hi('not_saved')).toMatch(DEVANAGARI);
@@ -133,7 +173,7 @@ describe('each rule says what is wrong and how to fix it, in English and Hindi',
   });
 
   it('every rule has a test above, both languages, and no technical word', () => {
-    const tested = ['required', 'choose_one', 'too_short', 'too_long', 'phone_digits', 'phone_characters', 'ticket_limit', 'not_allowed', 'signed_out', 'phone_start', 'email_format', 'date_format', 'date_not_real', 'date_in_future', 'class_not_in_school', 'already_exists', 'nothing_to_save', 'file_missing', 'file_too_large', 'file_type', 'too_many', 'too_fast', 'not_saved', 'not_found', 'already_linked', 'two_step_delete', 'not_sent_properly', 'module_off', 'read_only'];
+    const tested = ['required', 'choose_one', 'too_short', 'too_long', 'phone_digits', 'phone_characters', 'ticket_limit', 'not_allowed', 'signed_out', 'phone_start', 'email_format', 'date_format', 'date_not_real', 'date_in_future', 'class_not_in_school', 'already_exists', 'nothing_to_save', 'file_missing', 'file_too_large', 'file_type', 'too_many', 'too_fast', 'not_saved', 'not_found', 'already_linked', 'two_step_delete', 'not_sent_properly', 'module_off', 'read_only', 'guardian_not_linked', 'file_empty', 'step_out_of_order', 'code_expired', 'code_wrong', 'code_too_many_tries', 'guardian_not_verified', 'only_for_deletion', 'approve_first', 'already_done'];
     expect(Object.keys(ERROR_RULES).sort()).toEqual([...tested].sort());
     const sample = { field: 'phone', have: 2, min: 3, max: 9, need: 10, value: 'x', maxMb: 4, allowed: 'PNG' };
     for (const rule of Object.keys(ERROR_RULES) as ErrorRule[]) {

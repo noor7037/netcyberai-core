@@ -34,10 +34,10 @@ const ents = (modules: Record<string, { enabled: boolean }> = {}, accessMode: Sc
   accessMode,
   modules: Object.fromEntries(MODULE_REGISTRY.map((m) => [m.id, { enabled: modules[m.id]?.enabled ?? true, source: 'plan' as const }])),
 });
-const day = (role: SchoolRole, user: string, e = ents(), school = A) =>
-  db.tenant({ role: role as any, sub: user, schoolId: school }, (sql) => loadMyDay(sql, { schoolId: school, userId: user, role }, e));
+// A weekday unless a test says otherwise, so the attendance cards are tested every day of the week.
+const day = (role: SchoolRole, user: string, e = ents(), school = A, sunday = false) =>
+  db.tenant({ role: role as any, sub: user, schoolId: school }, (sql) => loadMyDay(sql, { schoolId: school, userId: user, role }, e, { sunday }));
 const card = (cards: TodayCard[], type: string) => cards.find((c) => c.type === type);
-const sunday = async () => Number((await db.query(`select extract(dow from (now() at time zone 'Asia/Kolkata')::date)::int as d`)).rows[0].d) === 0;
 
 beforeAll(async () => {
   db = await createTestDb();
@@ -68,7 +68,9 @@ beforeAll(async () => {
          ($1, $2, 100000, (now() at time zone 'Asia/Kolkata')::date, 'pending'),
          ($1, $3, 100000, (now() at time zone 'Asia/Kolkata')::date, 'paid'),
          ($1, $2, 100000, (now() at time zone 'Asia/Kolkata')::date - 10, 'overdue'),
-         ($1, $3, 100000, (now() at time zone 'Asia/Kolkata')::date - 20, 'overdue')`,
+         ($1, $3, 100000, (now() at time zone 'Asia/Kolkata')::date - 20, 'pending'),
+         ($1, $3, 100000, (now() at time zone 'Asia/Kolkata')::date - 30, 'paid'),
+         ($1, $3, 100000, (now() at time zone 'Asia/Kolkata')::date + 5, 'pending')`,
       [A, students[0], students[1]]
     );
     await q.query(
@@ -112,17 +114,14 @@ describe('each role’s day, counted from the school’s own rows', () => {
   it('teacher: a card for their own class only, counting its active students, and only their own ticket', async () => {
     const d = await day('teacher', teacher);
     expect(d.failed).toBe(0);
-    if (!(await sunday())) {
-      const mine = d.cards.filter((c) => c.type === 'attendance-class');
-      expect(mine).toHaveLength(1);
-      expect(mine[0]).toMatchObject({ state: 'todo', count: 3, total: 3, subject: '5-A', href: `/app/attendance?class=${classOwn}` });
-    }
+    const mine = d.cards.filter((c) => c.type === 'attendance-class');
+    expect(mine).toHaveLength(1);
+    expect(mine[0]).toMatchObject({ state: 'todo', count: 3, total: 3, subject: '5-A', href: `/app/attendance?class=${classOwn}` });
     expect(card(d.cards, 'tickets-waiting')).toMatchObject({ count: 1 });
     expect(d.cards.some((c) => ['consent-waiting', 'fees-overdue', 'fees-due-today', 'attendance-school', 'messages-held'].includes(c.type))).toBe(false);
   });
 
   it('a teacher who teaches a class through a subject gets that class, not the other teacher’s', async () => {
-    if (await sunday()) return;
     const d = await day('teacher', otherTeacher);
     const mine = d.cards.filter((c) => c.type === 'attendance-class');
     expect(mine.map((c) => c.subject)).toEqual(['6-A']);
@@ -131,7 +130,6 @@ describe('each role’s day, counted from the school’s own rows', () => {
   });
 
   it('teacher: once attendance is saved the card turns to done, with the number marked', async () => {
-    if (await sunday()) return;
     await db.platform(async (q) => {
       for (const s of students.slice(0, 2)) await q.query(`insert into attendance (school_id, student_id, class_id, date, status) values ($1, $2, $3, (now() at time zone 'Asia/Kolkata')::date, 'present')`, [A, s, classOwn]);
     });
@@ -145,7 +143,7 @@ describe('each role’s day, counted from the school’s own rows', () => {
   it('office: classes with no attendance (a class without students is not counted), consent, fees due today, tickets', async () => {
     const d = await day('school_admin', admin);
     expect(d.failed).toBe(0);
-    if (!(await sunday())) expect(card(d.cards, 'attendance-school')).toMatchObject({ state: 'todo', count: 1, total: 2 });
+    expect(card(d.cards, 'attendance-school')).toMatchObject({ state: 'todo', count: 1, total: 2 });
     expect(card(d.cards, 'consent-waiting')).toMatchObject({ count: 1 });
     expect(card(d.cards, 'fees-due-today')).toMatchObject({ count: 1 }); // the paid one is not due
     expect(card(d.cards, 'tickets-waiting')).toMatchObject({ count: 2 }); // the office sees every ticket; the open one is not waiting on the school
@@ -154,6 +152,7 @@ describe('each role’s day, counted from the school’s own rows', () => {
 
   it('principal: the things that need a principal, and "N things need you"', async () => {
     const d = await day('principal', principal);
+    // Past due and unpaid, whatever its status says: one marked overdue, one still "pending". Paid and not-yet-due are not counted.
     expect(card(d.cards, 'fees-overdue')).toMatchObject({ count: 2 });
     expect(card(d.cards, 'consent-waiting')).toMatchObject({ count: 1 });
     expect(card(d.cards, 'messages-held')).toBeUndefined(); // none held today: no card, not a zero
@@ -181,14 +180,53 @@ describe('each role’s day, counted from the school’s own rows', () => {
     expect(asked.cards).toEqual([]);
   });
 
-  it('a card that cannot be computed is left out and reported; the others still come', async () => {
+  it('on a Sunday there is no attendance card, for the teacher or the office', async () => {
+    expect((await day('teacher', teacher, ents(), A, true)).cards.some((c) => c.type === 'attendance-class')).toBe(false);
+    const office = await day('school_admin', admin, ents(), A, true);
+    expect(office.cards.some((c) => c.type === 'attendance-school')).toBe(false);
+    expect(card(office.cards, 'consent-waiting')).toMatchObject({ count: 1 }); // the rest of the day is still there
+  });
+
+  it('a student moved to another class after being marked counts where they are now, as the Attendance screen shows', async () => {
+    // students[3] is the one active student of 6-A; marked there, then moved into 5-A.
+    await db.platform(async (q) => {
+      await q.query(`insert into attendance (school_id, student_id, class_id, date, status) values ($1, $2, $3, (now() at time zone 'Asia/Kolkata')::date, 'present')`, [A, students[3], classOther]);
+      await q.query(`update students set class_id = $2 where student_id = $1`, [students[3], classOwn]);
+    });
+    try {
+      // The office: 5-A has four active students, all marked today, and 6-A has none left. Every class is done.
+      expect(card((await day('school_admin', admin)).cards, 'attendance-school')).toMatchObject({ state: 'done', count: 1, total: 1 });
+      // The 5-A teacher cannot see a mark made in a class they do not teach (teacher_scope_attendance), on
+      // the card or on their Attendance screen: both show this one student as still to mark.
+      expect(card((await day('teacher', teacher)).cards, 'attendance-class')).toMatchObject({ state: 'todo', count: 1, total: 4 });
+      // 6-A has no active student left: no card, and not a false "done" from the moved student's mark.
+      expect((await day('teacher', otherTeacher)).cards.filter((c) => c.type === 'attendance-class')).toEqual([]);
+    } finally {
+      await db.platform((q) => q.query(`update students set class_id = $2 where student_id = $1`, [students[3], classOther]));
+    }
+  });
+
+  it('messages held back today are counted only for consent, hours and budget, and only today', async () => {
+    await db.platform((q) =>
+      q.query(
+        `insert into communication_log (school_id, status, created_at) values
+           ($1, 'blocked_consent', now()), ($1, 'blocked_budget', now()), ($1, 'blocked_pilot', now()), ($1, 'blocked_no_template', now()),
+           ($1, 'blocked_consent', now() - interval '3 days'), ($1, 'delivered', now())`,
+        [A]
+      )
+    );
+    expect(card((await day('principal', principal)).cards, 'messages-held')).toMatchObject({ count: 2 });
+  });
+
+  it('a card whose query fails in the database is left out and reported; the cards after it still come', async () => {
     const original = console.error;
     console.error = () => undefined;
     try {
-      // One transaction, in which every query about fees fails.
-      const d = await db.platform((q) =>
-        loadMyDay({ query: (text: string, params?: unknown[]) => (text.includes('fees_ledger') ? Promise.reject(new Error('down')) : q.query(text, params)) } as any, { schoolId: A, userId: principal, role: 'principal' }, ents())
+      const broken = { type: 'fees-overdue' as const, moduleId: 'fees' as const, roles: ['principal'] as const, load: async (sql: any) => (await sql.query('select * from a_table_that_does_not_exist')).rows };
+      const d = await db.tenant({ role: 'principal' as any, sub: principal, schoolId: A }, (sql) =>
+        loadMyDay(sql, { schoolId: A, userId: principal, role: 'principal' }, ents(), { sunday: false, providers: [broken, ...TODAY_PROVIDERS.filter((p) => p.type === 'consent-waiting' || p.type === 'tickets-waiting')] })
       );
+      // The failed statement did not end the transaction: the two cards after it were still counted.
       expect(d.failed).toBe(1);
       expect(card(d.cards, 'consent-waiting')).toMatchObject({ count: 1 });
       expect(card(d.cards, 'tickets-waiting')).toMatchObject({ count: 2 });
@@ -209,20 +247,26 @@ describe('the screen', () => {
   it('English: one tap per card, the count in words, why it is there', () => {
     const html = render('en');
     expect(html).toContain('2 things need you today');
-    expect(html).toContain('Mark attendance: Class 5-A');
+    expect(html).toContain('Mark attendance: 5-A');
     expect(html).toContain('2 of 24 students not marked yet');
     expect(html).toContain('1 ticket is waiting for your reply');
-    expect(html).toContain('Attendance saved: Class 6-B');
+    expect(html).toContain('Attendance saved: 6-B');
     expect(html).toContain('30 students marked');
     expect(html).toContain('href="/app/attendance?class=1"');
     expect(html).toContain('Why this?');
-    expect(html.indexOf('Class 5-A')).toBeLessThan(html.indexOf('Class 6-B'));
+    expect(html.indexOf('5-A')).toBeLessThan(html.indexOf('6-B'));
+  });
+
+  it('Hindi counts with the right form: one student left out of many', () => {
+    const one: TodayCard = { ...cards[0], count: 1 };
+    expect(render('hi', [one])).toContain('24 में से 1 विद्यार्थी की हाज़िरी बाकी है');
+    expect(render('en', [one])).toContain('1 of 24 student not marked yet');
   });
 
   it('Hindi: the same day in Hindi, marked as Hindi', () => {
     const html = render('hi');
     expect(html).toContain('lang="hi"');
-    expect(html).toContain('हाज़िरी लगाएँ: कक्षा 5-A');
+    expect(html).toContain('हाज़िरी लगाएँ: 5-A');
     expect(html).toContain('24 में से 2 विद्यार्थियों की हाज़िरी बाकी है');
     expect(html).not.toContain('Mark attendance');
   });

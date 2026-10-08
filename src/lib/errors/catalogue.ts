@@ -157,6 +157,46 @@ export const ERROR_RULES = {
     en: () => 'Your school’s account can be read but not changed right now. Ask your principal, or raise a ticket to NetCyberAI.',
     hi: () => 'आपके स्कूल का खाता अभी सिर्फ़ देखा जा सकता है, बदला नहीं जा सकता। अपने प्रिंसिपल से कहें, या NetCyberAI को टिकट भेजें।',
   },
+  guardian_not_linked: {
+    en: () => 'This guardian is not linked to this student. Link the guardian on the student’s page first.',
+    hi: () => 'यह अभिभावक इस विद्यार्थी से जुड़ा नहीं है। पहले विद्यार्थी के पेज पर अभिभावक को जोड़ें।',
+  },
+  file_empty: {
+    en: () => 'This file is empty. Choose another file.',
+    hi: () => 'यह फ़ाइल खाली है। कोई दूसरी फ़ाइल चुनें।',
+  },
+  step_out_of_order: {
+    en: () => 'This step cannot be done now. Refresh the page to see where things stand, then continue from there.',
+    hi: () => 'यह चरण अभी नहीं हो सकता। पेज को दोबारा खोलकर देखें कि काम कहाँ तक पहुँचा है, फिर वहीं से आगे बढ़ें।',
+  },
+  code_expired: {
+    en: () => 'This code has run out. Ask for a new code, then enter it.',
+    hi: () => 'इस कोड का समय निकल गया है। नया कोड माँगें, फिर उसे डालें।',
+  },
+  code_wrong: {
+    en: () => 'That code does not match. Check the code and enter it again.',
+    hi: () => 'यह कोड मेल नहीं खाता। कोड देखकर दोबारा डालें।',
+  },
+  code_too_many_tries: {
+    en: () => 'There were too many wrong tries. Ask for a new code, then enter it.',
+    hi: () => 'बहुत बार ग़लत कोड डाला गया। नया कोड माँगें, फिर उसे डालें।',
+  },
+  guardian_not_verified: {
+    en: () => 'This guardian is not verified yet. Verify the guardian first (the “Verify” button beside their name), then record the consent.',
+    hi: () => 'इस अभिभावक की पुष्टि अभी नहीं हुई है। पहले अभिभावक की पुष्टि करें (नाम के पास “Verify” बटन), फिर सहमति दर्ज करें।',
+  },
+  only_for_deletion: {
+    en: () => 'This step is only for requests to delete data. This request is of another kind.',
+    hi: () => 'यह चरण सिर्फ़ डेटा हटाने के अनुरोधों के लिए है। यह अनुरोध किसी और प्रकार का है।',
+  },
+  approve_first: {
+    en: () => 'This request has not been approved yet. Approve it first, then carry it out.',
+    hi: () => 'इस अनुरोध को अभी मंज़ूरी नहीं मिली है। पहले मंज़ूरी दें, फिर इसे पूरा करें।',
+  },
+  already_done: {
+    en: () => 'This has already been done. There is nothing more to do.',
+    hi: () => 'यह पहले ही हो चुका है। और कुछ करने की ज़रूरत नहीं।',
+  },
   not_saved: {
     en: () => 'This could not be saved just now. Check your internet, then try again.',
     hi: () => 'यह अभी सेव नहीं हो पाया। इंटरनेट देखें, फिर दोबारा कोशिश करें।',

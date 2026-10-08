@@ -84,10 +84,10 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
     return NextResponse.json(row, { status: 201 });
   } catch (err) {
     if (err instanceof GuardianNotActiveError) {
-      return NextResponse.json({ error: err.message }, { status: 409 });
+      return ruleError(409, 'guardian_not_verified');
     }
     if (err instanceof Error && err.message === 'this guardian is not linked to this student') {
-      return NextResponse.json({ error: err.message }, { status: 400 });
+      return ruleError(400, 'guardian_not_linked');
     }
     const resp = sessionErrorResponse(err);
     if (resp) return resp;

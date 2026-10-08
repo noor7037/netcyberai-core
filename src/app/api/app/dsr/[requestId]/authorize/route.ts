@@ -32,8 +32,8 @@ export async function POST(req: NextRequest, { params }: { params: { requestId: 
     });
     return NextResponse.json(row);
   } catch (err) {
-    if (err instanceof WrongRequestTypeError) return NextResponse.json({ error: err.message }, { status: 400 });
-    if (err instanceof Error && err.message === 'request not found') return NextResponse.json({ error: err.message }, { status: 404 });
+    if (err instanceof WrongRequestTypeError) return ruleError(400, 'only_for_deletion');
+    if (err instanceof Error && err.message === 'request not found') return ruleError(404, 'not_found', { field: 'data_request' });
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
     throw err;

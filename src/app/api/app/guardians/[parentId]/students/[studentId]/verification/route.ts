@@ -36,7 +36,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
       );
       return rows[0] ?? null;
     });
-    if (!link) return ruleError(404, 'not_found', { field: 'guardian' });
+    if (!link) return ruleError(404, 'guardian_not_linked');
     return NextResponse.json(link);
   } catch (err) {
     const resp = sessionErrorResponse(err);
@@ -157,11 +157,11 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
 
     return ruleError(400, 'not_sent_properly');
   } catch (err) {
-    if (err instanceof GuardianLinkNotFoundError) return NextResponse.json({ error: err.message }, { status: 404 });
-    if (err instanceof InvalidTransitionError) return NextResponse.json({ error: err.message }, { status: 409 });
-    if (err instanceof CodeExpiredError || err instanceof CodeMismatchError || err instanceof TooManyAttemptsError) {
-      return NextResponse.json({ error: err.message }, { status: 400 });
-    }
+    if (err instanceof GuardianLinkNotFoundError) return ruleError(404, 'guardian_not_linked');
+    if (err instanceof InvalidTransitionError) return ruleError(409, 'step_out_of_order');
+    if (err instanceof CodeExpiredError) return ruleError(400, 'code_expired');
+    if (err instanceof CodeMismatchError) return ruleError(400, 'code_wrong');
+    if (err instanceof TooManyAttemptsError) return ruleError(400, 'code_too_many_tries');
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
     throw err;

@@ -61,13 +61,18 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   // My Day is everyone's home (docs/19 rule 2): the first link of the menu,
   // and of the teacher's bottom bar in place of the dashboard they do not have.
   const myDay = { href: '/app/my-day', label: t(lang, 'myDay.title'), icon: 'check' as const };
-  const groups = toShellGroups(nav, lang).map((g) => (g.id === 'home' ? { ...g, items: [myDay, ...g.items.filter((i) => isOffice || i.href !== '/app/dashboard')] } : g));
+  const menu = toShellGroups(nav, lang);
+  const home = menu.find((g) => g.id === 'home');
+  // A school without the Dashboard module (or suspended) still has its home.
+  const homeGroup = { id: 'home', label: t(lang, 'group.home'), tone: ['royal', 'electric'] as const, items: [myDay, ...(home?.items ?? []).filter((i) => isOffice || i.href !== '/app/dashboard')] };
+  const groups = [homeGroup, ...menu.filter((g) => g.id !== 'home')];
+  const bottomBar = bottom && [myDay, ...bottom.filter((i) => i.href !== '/app/dashboard')].slice(0, 4);
 
   return (
     <ToastProvider>
       <AppShell
         groups={groups}
-        bottomItems={bottom?.map((i) => (i.href === '/app/dashboard' && !isOffice ? myDay : i))}
+        bottomItems={bottomBar}
         brand={schoolName}
         roleLabel={t(lang, `role.${role}`)}
         navLabel={t(lang, 'shell.nav.school')}

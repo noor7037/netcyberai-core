@@ -6,7 +6,7 @@ import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import type { SessionClaims } from '@/lib/auth/types';
 import type { SchoolRole } from '@/lib/contracts/modules';
-import { validationError, type ErrorRule } from '@/lib/errors/catalogue';
+import { validationError, type ErrorRule, type FieldKey } from '@/lib/errors/catalogue';
 
 // The shape every P1-b /api/app/** route shares (C112): a school session,
 // one tenant-context transaction, and the session errors mapped to 401.
@@ -22,7 +22,7 @@ export function jsonError(status: number, error: string, extra: Record<string, u
 // A refusal that is a rule of the error catalogue (docs/19 rule 9): `error`
 // is the plain English sentence, `code` and `params` let a screen say it in
 // the person's language.
-export function ruleError(status: number, rule: ErrorRule, params: Record<string, string | number> = {}): NextResponse {
+export function ruleError(status: number, rule: ErrorRule, params: { field?: FieldKey } & Record<string, string | number> = {}): NextResponse {
   return NextResponse.json(validationError(rule, params), { status });
 }
 
