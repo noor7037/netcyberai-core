@@ -4,7 +4,10 @@ import { GLOBAL_SEARCH_MIN_CHARS, GLOBAL_SEARCH_PER_KIND, type GlobalSearchKind,
 import { moduleById, type ModuleId, type SchoolRole } from '@/lib/contracts/modules';
 import { isTicketStatus, ticketRef } from '@/lib/contracts/tickets';
 import type { Sql } from '@/lib/jobs/types';
+import { classLabel } from './class-label';
 import { likeEscape, parseStudentSearch, searchStudents, STUDENT_SEARCH_ROLES } from './student-search';
+
+export { classLabel };
 
 // Global search (docs/19 rule 6, C135). Runs inside the caller's tenant
 // context, so row-level security decides which rows exist for them: a
@@ -98,12 +101,6 @@ async function searchStaff(db: Sql, schoolId: string, term: string): Promise<Glo
     href: '/app/staff',
     detail: { kind: 'staff' as const, role: r.role, active: r.active === true },
   }));
-}
-
-// "5" + "A" is "5-A"; a class already named "5-A" stays "5-A".
-export function classLabel(name: string | null, section: string | null): string | null {
-  if (!name) return null;
-  return section && !name.toUpperCase().endsWith(section.toUpperCase()) ? `${name}-${section}` : name;
 }
 
 // The school app's search. `kinds` comes from searchableKinds: a kind that

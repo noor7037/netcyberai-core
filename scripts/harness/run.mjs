@@ -60,6 +60,7 @@ const STUDENT = '00000000-0000-4000-8000-000000500001';
 const TICKET = '00000000-0000-4000-8000-0000000f0001';
 const PEOPLE = {
   principal: { sub: '00000000-0000-4000-8000-00000000a001', role: 'principal', schoolId: SCHOOL, membershipId: '00000000-0000-4000-8000-0000000a1001' },
+  office: { sub: '00000000-0000-4000-8000-00000000a002', role: 'school_admin', schoolId: SCHOOL, membershipId: '00000000-0000-4000-8000-0000000a1002' },
   teacher: { sub: '00000000-0000-4000-8000-00000000a003', role: 'teacher', schoolId: SCHOOL, membershipId: '00000000-0000-4000-8000-0000000a1003' },
   founder: { sub: '00000000-0000-4000-8000-00000000f001', role: 'super_admin', schoolId: null, membershipId: null },
 };
@@ -99,6 +100,10 @@ const hindiThenSearch = async (page) => {
 };
 // [who, name, route, prepare (before the picture), after (put things back)]
 const SCREENS = [
+  ['principal', 'app-my-day', '/app/my-day'],
+  ['principal', 'app-my-day-hindi', '/app/my-day', speak('हिन्दी'), backToEnglish],
+  ['office', 'office-my-day', '/app/my-day'],
+  ['teacher', 'teacher-my-day', '/app/my-day'],
   ['principal', 'app-dashboard', '/app/dashboard'],
   ['principal', 'app-students', '/app/students'],
   ['principal', 'app-student-profile', `/app/students/${STUDENT}`],

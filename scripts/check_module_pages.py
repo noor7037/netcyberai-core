@@ -16,8 +16,14 @@ A page.tsx passes when one of these is true:
    shared "coming in a later phase" page (ModuleComingPage, StubPage).
 4. It is a documented exception below, with the reason.
 
-Known limit: a page that renders ModulePage on one path and its own layout
-on another passes; review catches that, this check does not.
+Every path counts (C136). Inside the page's component, and inside the view
+it hands the screen to, each `return` that returns a screen must return
+<ModulePage>, a view that is one, or the shared Coming page: a page cannot
+show ModulePage to some people and its own layout to others (a loading or
+error state drawn outside the template, a different screen for one role).
+`return null`, redirect() and notFound() are fine. A return that chooses
+between two screens in one expression (`return ok ? <A /> : <B />`) is
+refused: write it as two returns, so each can be checked.
 
 Static, text-based, file-local (the same honesty as check_route_guards.py):
 it proves the component is used, not what the page looks like. Screenshots
@@ -66,16 +72,102 @@ def component_file(src: Path, spec: str) -> Path | None:
     return None
 
 
+RETURN_RE = re.compile(r"\breturn\b")
+JSX_RE = re.compile(r"<[A-Za-z]")
+ROOT_RE = re.compile(r"\(?\s*<([A-Za-z][\w.]*)")
+FRAGMENT_RE = re.compile(r"\(?\s*<>")
+
+
+def _matching(text: str, start: int, open_ch: str, close_ch: str) -> int:
+    """Index just past the bracket that closes the one at `start`."""
+    depth = 0
+    for i in range(start, len(text)):
+        if text[i] == open_ch:
+            depth += 1
+        elif text[i] == close_ch:
+            depth -= 1
+            if depth == 0:
+                return i + 1
+    return len(text)
+
+
+def component_body(text: str, name: str | None) -> str | None:
+    """The body of `export default function` (name None) or of the exported
+    component `name`; None when it cannot be found."""
+    pattern = r"export\s+default\s+(?:async\s+)?function\b[^(]*" if name is None else rf"export\s+(?:default\s+)?(?:async\s+)?function\s+{re.escape(name)}\b[^(]*"
+    m = re.search(pattern, text)
+    if not m:
+        return None
+    params_end = _matching(text, m.end(), "(", ")")
+    brace = text.find("{", params_end)
+    return text[brace : _matching(text, brace, "{", "}")] if brace >= 0 else None
+
+
+def screen_returns(body: str) -> list[str]:
+    """What each return of a component returns: a tag name, "<>" for a
+    fragment, or "?" for an expression that chooses between screens. Returns
+    inside another return (a callback in the JSX) are part of that screen."""
+    out: list[str] = []
+    inside_until = 0
+    for m in RETURN_RE.finditer(body):
+        if m.start() < inside_until:
+            continue
+        rest = body[m.end() :]
+        stripped = rest.lstrip()
+        if stripped.startswith("("):
+            end = _matching(body, m.end() + (len(rest) - len(stripped)), "(", ")")
+        else:
+            semi = body.find(";", m.end())
+            end = semi if semi >= 0 else len(body)
+        expr = body[m.end() : end]
+        inside_until = end
+        if not JSX_RE.search(expr) and "<>" not in expr:
+            continue  # return null, return; return redirect(...)
+        if expr.lstrip().startswith(("{", "[")):
+            continue  # a callback building a row of data ({ label, content: <X /> }), not a screen
+        root = ROOT_RE.match(expr.lstrip())
+        if root:
+            out.append(root.group(1))
+        elif FRAGMENT_RE.match(expr.lstrip()):
+            out.append("<>")
+        else:
+            out.append("?")
+    return out
+
+
+NOT_A_SCREEN = {"ModuleComingPage", "StubPage"}
+
+
+def path_problem(where: str, body: str | None, allowed: set[str]) -> str | None:
+    if body is None:
+        return None
+    for root in screen_returns(body):
+        if root == "?":
+            return f"{where} has a return that chooses between screens in one expression; write it as separate returns so every path is checked"
+        if root not in allowed:
+            shown = "a fragment" if root == "<>" else f"<{root}>"
+            return f"{where} returns {shown} on one path, outside ModulePage; every path of the screen renders through ModulePage"
+    return None
+
+
 def verdict(src: Path, page: Path) -> str | None:
     """None when the page passes; otherwise why it fails."""
     text = strip_comments(page.read_text())
-    if USES_RE.search(text):
-        return None
+    # Views this page may hand the screen to: imported components that are a ModulePage.
+    views: dict[str, Path] = {}
     for spec in IMPORT_RE.findall(text):
         f = component_file(src, spec)
-        # The imported view must both be rendered by the page and be a ModulePage.
         if f and USES_RE.search(strip_comments(f.read_text())) and re.search(rf"<{re.escape(f.stem)}\b", text):
-            return None
+            views[f.stem] = f
+    if USES_RE.search(text) or views:
+        problem = path_problem("the page", component_body(text, None), {"ModulePage"} | NOT_A_SCREEN | set(views))
+        if problem:
+            return problem
+        for name, f in sorted(views.items()):
+            problem = path_problem(f"its view {name}", component_body(strip_comments(f.read_text()), name), {"ModulePage"})
+            if problem:
+                return problem
+        return None
     if NOT_A_SCREEN_RE.search(text):
         # A page that only redirects or only shows the shared Coming page.
         body = re.sub(r"\{/\*.*?\*/\}", "", text, flags=re.S)
@@ -164,6 +256,53 @@ def self_test() -> int:
                 return 1
         if len(got) != 5:
             print("SELF-TEST FAILED: expected exactly the five planted pages")
+            print(got)
+            return 1
+
+        for name in ("bare", "plainview", "unused", "mixed", "commented"):
+            (app / name / "page.tsx").unlink()
+
+        # Every path counts (C136). Fine: a guard, a loading state INSIDE the
+        # template, callbacks that return rows, a Coming page for some roles.
+        write(
+            app / "paths-ok" / "page.tsx",
+            "export default async function P({ params }: { params: { id: string } }) {\n"
+            "  if (!ok) return null;\n"
+            "  if (gone) notFound();\n"
+            "  if (teacher) return <ModuleComingPage moduleId=\"fees\" />;\n"
+            "  if (loading) {\n    return <ModulePage title='a' purpose='b'><LoadingState /></ModulePage>;\n  }\n"
+            "  const tabs = list.map((x) => {\n    return { id: x.id, content: <Panel /> };\n  });\n"
+            "  return (\n    <ModulePage title='a' purpose='b'>\n      {rows.map((r) => {\n        return <li key={r.id}>{r.name}</li>;\n      })}\n      {empty ? <p>none</p> : <ul />}\n    </ModulePage>\n  );\n}\n",
+        )
+        write(comp / "views" / "TwoFacedView.tsx", "export function TwoFacedView() {\n  if (loading) return <div>Loading</div>;\n  return <ModulePage title='x' purpose='y'>z</ModulePage>;\n}\n")
+        if find_violations(src, exceptions):
+            print("SELF-TEST FAILED: a page whose every path is the template was flagged")
+            print(find_violations(src, exceptions))
+            return 1
+        planted = {
+            # ModulePage for most, an own layout when loading.
+            "path-loading": "export default function P() {\n  if (loading) return <div className='p-4'>Loading</div>;\n  return <ModulePage title='a' purpose='b'>c</ModulePage>;\n}\n",
+            # An own layout for one role.
+            "path-role": "export default function P() {\n  if (role === 'teacher') {\n    return (\n      <main>\n        <h1>Mine</h1>\n      </main>\n    );\n  }\n  return <ModulePage title='a' purpose='b'>c</ModulePage>;\n}\n",
+            # A fragment on one path.
+            "path-fragment": "export default function P() {\n  if (x) return <><h1>Own</h1></>;\n  return <ModulePage title='a' purpose='b'>c</ModulePage>;\n}\n",
+            # Two screens chosen in one expression.
+            "path-ternary": "export default function P() {\n  return ok ? <ModulePage title='a' purpose='b'>c</ModulePage> : <div>Own</div>;\n}\n",
+            # The view it hands the screen to is the template only on one path.
+            "path-view": "import { TwoFacedView } from '@/components/views/TwoFacedView';\nexport default function P() { return <TwoFacedView />; }\n",
+            # A ModulePage view for some, an own layout for others.
+            "path-view-or-own": "import { GoodView } from '@/components/views/GoodView';\nexport default function P() {\n  if (x) return <section>Own</section>;\n  return <GoodView />;\n}\n",
+        }
+        for name, text in planted.items():
+            write(app / name / "page.tsx", text)
+        got = find_violations(src, exceptions)
+        for name in planted:
+            if not any(f"/{name}/page.tsx" in v for v in got):
+                print(f"SELF-TEST FAILED: the '{name}' page was not caught")
+                print(got)
+                return 1
+        if len(got) != len(planted):
+            print("SELF-TEST FAILED: expected exactly the planted every-path pages")
             print(got)
             return 1
 

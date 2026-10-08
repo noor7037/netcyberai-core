@@ -50,8 +50,6 @@ export function IdCardView({ studentId, studentName, schoolName, className }: { 
     toast.show('Card revoked', 'success');
   }
 
-  if (loading) return <p className="p-6 text-sm text-slate/70">Loading…</p>;
-
   return (
     <ModulePage
       moduleId="students"
@@ -59,7 +57,7 @@ export function IdCardView({ studentId, studentName, schoolName, className }: { 
       purpose="Issue the card, print it, and revoke it at once if it is lost."
       hideHeaderInPrint
       primary={
-        <button type="button" onClick={handleIssue} className={`${PRIMARY_ACTION} print:hidden`}>
+        <button type="button" onClick={handleIssue} disabled={loading} className={`${PRIMARY_ACTION} print:hidden`}>
           {token ? 'Reissue (invalidates current card)' : 'Issue ID card'}
         </button>
       }
@@ -76,7 +74,11 @@ export function IdCardView({ studentId, studentName, schoolName, className }: { 
         )
       }
     >
-      {!token ? (
+      {loading ? (
+        <p role="status" className="text-sm text-slate/70">
+          Loading…
+        </p>
+      ) : !token ? (
         <p className="text-sm text-slate/70">No active ID card. Issue one to generate a QR code.</p>
       ) : (
         <div className="mx-auto flex w-72 flex-col items-center gap-2 rounded-lg border border-slate/20 p-4 text-center">

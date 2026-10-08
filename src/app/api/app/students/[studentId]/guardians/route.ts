@@ -6,6 +6,7 @@ import { writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected, NoRowsAffectedError } from '@/lib/db/rows';
 import { isForeignKeyViolation, isUniqueViolation } from '@/lib/db/pg-errors';
 import { checkEmail, checkPhone, validationError } from '@/lib/errors/catalogue';
+import { ruleError } from '@/lib/frameworks/route';
 
 export async function GET(req: NextRequest, { params }: { params: { studentId: string } }) {
   const guard = await requireAppSession(req);
@@ -42,7 +43,7 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
   if (!canWriteMasterData(guard.claims.role)) {
-    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+    return ruleError(403, 'not_allowed');
   }
 
   const body = await req.json().catch(() => null);
@@ -103,14 +104,14 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
       });
       return parentRows[0];
     });
-    if (!guardian) return NextResponse.json({ error: 'student not found' }, { status: 404 });
+    if (!guardian) return ruleError(404, 'not_found', { field: 'student' });
     return NextResponse.json({ guardian }, { status: 201 });
   } catch (err) {
     if (isUniqueViolation(err)) {
-      return NextResponse.json({ error: 'this guardian is already linked to this student' }, { status: 409 });
+      return ruleError(409, 'already_linked');
     }
     if (isForeignKeyViolation(err)) {
-      return NextResponse.json({ error: 'parentId does not belong to this school' }, { status: 400 });
+      return ruleError(400, 'not_found', { field: 'guardian' });
     }
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
@@ -122,12 +123,12 @@ export async function DELETE(req: NextRequest, { params }: { params: { studentId
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
   if (!canWriteMasterData(guard.claims.role)) {
-    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+    return ruleError(403, 'not_allowed');
   }
 
   const parentId = req.nextUrl.searchParams.get('parentId');
   if (!parentId) {
-    return NextResponse.json({ error: 'parentId query param is required' }, { status: 400 });
+    return ruleError(400, 'not_sent_properly');
   }
 
   try {
@@ -149,7 +150,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { studentId
     return NextResponse.json({ status: 'unlinked' });
   } catch (err) {
     if (err instanceof NoRowsAffectedError) {
-      return NextResponse.json({ error: 'not found' }, { status: 404 });
+      return ruleError(404, 'not_found', { field: 'guardian' });
     }
     const resp = sessionErrorResponse(err);
     if (resp) return resp;

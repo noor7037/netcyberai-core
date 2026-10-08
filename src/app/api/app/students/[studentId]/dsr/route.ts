@@ -4,6 +4,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { DSR_REQUEST_TYPES, createDsrRequest, listDsrRequests, type DsrRequestType } from '@/lib/consent/dsr';
+import { ruleError } from '@/lib/frameworks/route';
 
 // Task 3: staff-initiated only (Decision Log C13 -- no parent portal).
 // A parent asks by phone or in person; staff logs it against the real
@@ -26,17 +27,17 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
   if (!canWriteMasterData(guard.claims.role)) {
-    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+    return ruleError(403, 'not_allowed');
   }
 
   const body = await req.json().catch(() => null);
   const requestType = body?.requestType;
   const requestedByDescription = body?.requestedByDescription;
   if (!(DSR_REQUEST_TYPES as readonly string[]).includes(requestType)) {
-    return NextResponse.json({ error: `requestType must be one of ${DSR_REQUEST_TYPES.join(', ')}` }, { status: 400 });
+    return ruleError(400, 'choose_one', { field: 'request_type' });
   }
   if (typeof requestedByDescription !== 'string' || requestedByDescription.trim().length === 0) {
-    return NextResponse.json({ error: 'requestedByDescription is required -- who asked, and how (e.g. "father, phone call")' }, { status: 400 });
+    return ruleError(400, 'required', { field: 'who_asked' });
   }
   const notes = typeof body?.notes === 'string' ? body.notes.slice(0, 2000) : null;
 

@@ -4,6 +4,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { signedDocumentUrl } from '@/lib/capture/storage';
 import { captureDocument, DOC_TYPES, type DocType } from '@/lib/capture/documents';
+import { ruleError } from '@/lib/frameworks/route';
 
 const MAX_BYTES = 8 * 1024 * 1024;
 const ALLOWED_MIME = new Set(['image/jpeg', 'image/png', 'image/webp', 'application/pdf']);
@@ -51,16 +52,16 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
   const parentId = form?.get('parentId'); // guardian_id only: whose ID this is, for the name-match check
 
   if (!file || typeof file === 'string') {
-    return NextResponse.json({ error: 'file (multipart form field) is required' }, { status: 400 });
+    return ruleError(400, 'file_missing');
   }
   if (typeof docType !== 'string' || !DOC_TYPES.includes(docType as DocType)) {
-    return NextResponse.json({ error: `docType must be one of ${DOC_TYPES.join(', ')}` }, { status: 400 });
+    return ruleError(400, 'choose_one', { field: 'document_type' });
   }
   if (!ALLOWED_MIME.has(file.type)) {
-    return NextResponse.json({ error: `mime type ${file.type} not allowed` }, { status: 400 });
+    return ruleError(400, 'file_type', { field: 'file', allowed: 'JPEG, PNG, WebP, PDF' });
   }
   if (file.size > MAX_BYTES || file.size === 0) {
-    return NextResponse.json({ error: 'file must be non-empty and at most 8MB' }, { status: 400 });
+    return file.size === 0 ? ruleError(400, 'file_missing') : ruleError(400, 'file_too_large', { field: 'file', maxMb: 8 });
   }
 
   const bytes = Buffer.from(await file.arrayBuffer());
@@ -74,7 +75,7 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
       file.type,
       typeof parentId === 'string' ? parentId : null
     );
-    if (!outcome) return NextResponse.json({ error: 'student not found' }, { status: 404 });
+    if (!outcome) return ruleError(404, 'not_found', { field: 'student' });
     return NextResponse.json(outcome, { status: 201 });
   } catch (err) {
     const resp = sessionErrorResponse(err);

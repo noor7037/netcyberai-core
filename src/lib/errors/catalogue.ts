@@ -19,6 +19,20 @@ export const FIELD_NAMES = {
   name: { en: 'name', hi: 'नाम' },
   search: { en: 'search', hi: 'खोज' },
   language: { en: 'language', hi: 'भाषा' },
+  student: { en: 'student', hi: 'विद्यार्थी' },
+  guardian: { en: 'guardian', hi: 'अभिभावक' },
+  document: { en: 'document', hi: 'दस्तावेज़' },
+  data_request: { en: 'data request', hi: 'डेटा अनुरोध' },
+  settings: { en: 'settings page', hi: 'सेटिंग पेज' },
+  decision: { en: 'decision (granted or withdrawn)', hi: 'फ़ैसला (दी गई या वापस ली गई)' },
+  purpose: { en: 'purpose', hi: 'उद्देश्य' },
+  status: { en: 'status', hi: 'स्थिति' },
+  request_type: { en: 'kind of request', hi: 'अनुरोध का प्रकार' },
+  document_type: { en: 'kind of document', hi: 'दस्तावेज़ का प्रकार' },
+  verification_method: { en: 'way the guardian was verified', hi: 'अभिभावक की पुष्टि का तरीका' },
+  code: { en: 'code', hi: 'कोड' },
+  who_asked: { en: 'note on who asked and how (for example “father, phone call”)', hi: 'किसने और कैसे कहा, इसका नोट (जैसे “पिता, फ़ोन पर”)' },
+  whatsapp_details: { en: 'phone number ID, access token and webhook verify token', hi: 'फ़ोन नंबर ID, एक्सेस टोकन और वेबहुक वेरिफ़ाई टोकन' },
   student_name: { en: 'student’s name', hi: 'विद्यार्थी का नाम' },
   guardian_name: { en: 'guardian’s name', hi: 'अभिभावक का नाम' },
   class_name: { en: 'class name', hi: 'कक्षा का नाम' },
@@ -118,6 +132,30 @@ export const ERROR_RULES = {
   signed_out: {
     en: () => 'You are signed out. Sign in again, then repeat this.',
     hi: () => 'आप साइन आउट हो गए हैं। दोबारा साइन इन करें, फिर इसे दोहराएँ।',
+  },
+  not_found: {
+    en: (p: P) => `We could not find this ${f(p, 'en')}. It may have been removed. Go back and open it again.`,
+    hi: (p: P) => `यह ${f(p, 'hi')} नहीं मिला। हो सकता है इसे हटा दिया गया हो। वापस जाकर दोबारा खोलें।`,
+  },
+  already_linked: {
+    en: () => 'This guardian is already linked to this student. There is nothing more to do.',
+    hi: () => 'यह अभिभावक इस विद्यार्थी से पहले से जुड़ा है। और कुछ करने की ज़रूरत नहीं।',
+  },
+  two_step_delete: {
+    en: () => 'A request to delete data is finished in two steps: first approve it, then carry it out. Use those two buttons.',
+    hi: () => 'डेटा हटाने का अनुरोध दो चरणों में पूरा होता है: पहले मंज़ूरी दें, फिर उसे पूरा करें। उन्हीं दो बटनों का इस्तेमाल करें।',
+  },
+  not_sent_properly: {
+    en: () => 'This did not reach us as expected. Refresh the page, then try again.',
+    hi: () => 'यह हम तक ठीक से नहीं पहुँचा। पेज को दोबारा खोलें, फिर कोशिश करें।',
+  },
+  module_off: {
+    en: () => 'Your school does not have this part switched on. Ask your principal, or raise a ticket to NetCyberAI.',
+    hi: () => 'आपके स्कूल में यह हिस्सा चालू नहीं है। अपने प्रिंसिपल से कहें, या NetCyberAI को टिकट भेजें।',
+  },
+  read_only: {
+    en: () => 'Your school’s account can be read but not changed right now. Ask your principal, or raise a ticket to NetCyberAI.',
+    hi: () => 'आपके स्कूल का खाता अभी सिर्फ़ देखा जा सकता है, बदला नहीं जा सकता। अपने प्रिंसिपल से कहें, या NetCyberAI को टिकट भेजें।',
   },
   not_saved: {
     en: () => 'This could not be saved just now. Check your internet, then try again.',

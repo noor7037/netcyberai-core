@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 
-// The bare /app index opens Home (the Dashboard module), which every
-// role's menu starts with (C121; registry, 17 §2). AppLayout has already
-// confirmed a resolved membership exists by the time this runs.
+// The bare /app index opens My Day (docs/19 rule 2, C136): today's work
+// first, for every role. AppLayout has already confirmed a resolved
+// membership exists by the time this runs.
 export default function AppHomePage() {
-  redirect('/app/dashboard');
+  redirect('/app/my-day');
 }

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAppSession, canWriteMasterData } from '@/lib/auth/require-app-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
+import { ruleError } from '@/lib/frameworks/route';
 
 // GET: routing metadata only -- status/phone_number_id/waba_id, never
 // the credential itself. Any staff role in the school can see this
@@ -46,7 +47,7 @@ export async function POST(req: NextRequest) {
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
   if (!canWriteMasterData(guard.claims.role)) {
-    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+    return ruleError(403, 'not_allowed');
   }
 
   const body = await req.json().catch(() => null);
@@ -59,10 +60,7 @@ export async function POST(req: NextRequest) {
     typeof webhookVerifyToken !== 'string' ||
     !webhookVerifyToken
   ) {
-    return NextResponse.json(
-      { error: 'phoneNumberId, accessToken, and webhookVerifyToken are required' },
-      { status: 400 }
-    );
+    return ruleError(400, 'required', { field: 'whatsapp_details' });
   }
 
   try {

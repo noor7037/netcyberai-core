@@ -11,6 +11,7 @@ import {
   recordConsentDecision,
   type ConsentPurpose,
 } from '@/lib/consent/gate';
+import { ruleError } from '@/lib/frameworks/route';
 
 const NOTICE_VERSION = 'v1'; // bumped when the consent notice text itself changes; static for now, no notice UI exists yet
 
@@ -41,7 +42,7 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
   if (!canWriteMasterData(guard.claims.role)) {
-    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+    return ruleError(403, 'not_allowed');
   }
 
   const body = await req.json().catch(() => null);
@@ -49,13 +50,13 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
   const granted = body?.granted;
   const parentId = body?.parentId;
   if (!(ALL_CONSENT_PURPOSES as readonly string[]).includes(purpose)) {
-    return NextResponse.json({ error: `purpose must be one of ${ALL_CONSENT_PURPOSES.join(', ')}` }, { status: 400 });
+    return ruleError(400, 'choose_one', { field: 'purpose' });
   }
   if (typeof granted !== 'boolean') {
-    return NextResponse.json({ error: 'granted (boolean) is required' }, { status: 400 });
+    return ruleError(400, 'choose_one', { field: 'decision' });
   }
   if (typeof parentId !== 'string') {
-    return NextResponse.json({ error: 'parentId is required -- identifies which guardian this decision is tied to' }, { status: 400 });
+    return ruleError(400, 'choose_one', { field: 'guardian' });
   }
 
   try {

@@ -232,3 +232,32 @@ alter table communication_log enable row level security;
 create policy fees_ledger_tenant_isolation on fees_ledger using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 create policy communication_log_tenant_isolation on communication_log using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert, update, delete on fees_ledger, communication_log to app_user, nca_super;
+
+-- Attendance, as My Day's cards read it (C136): the table, its tenant
+-- isolation and the teacher rule exactly as the migrations define them
+-- (20260917071920, 20260917073745, 20260917075715): a teacher reads and
+-- writes attendance only for classes they teach a subject in.
+create table attendance (
+  attendance_id uuid primary key default gen_random_uuid(),
+  school_id     uuid not null references schools(school_id),
+  student_id    uuid not null,
+  class_id      uuid not null,
+  date          date not null,
+  status        text not null check (status in ('present','absent','late')),
+  marked_by     uuid,
+  created_at    timestamptz not null default now()
+);
+create unique index idx_attendance_unique on attendance(school_id, student_id, date);
+create index idx_attendance_school_date on attendance(school_id, date);
+alter table attendance enable row level security;
+create policy attendance_tenant_isolation on attendance using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy teacher_scope_attendance on attendance as restrictive
+  for all using (
+    current_setting('app.current_role', true) <> 'teacher'
+    or class_id in (
+      select ts.class_id from teacher_subjects ts
+      join teachers t on t.teacher_id = ts.teacher_id
+      where t.user_id = current_setting('app.current_user_id', true)::uuid
+    )
+  );
+grant select, insert, update, delete on attendance to app_user, nca_super;

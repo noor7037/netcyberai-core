@@ -4,6 +4,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { executeDsrDeletion, NotAuthorizedForExecutionError, WrongRequestTypeError } from '@/lib/consent/dsr';
+import { ruleError } from '@/lib/frameworks/route';
 
 // The one place pseudonymization actually runs. Refuses outright unless
 // /authorize already ran (executeDsrDeletion checks authorized_by/
@@ -15,7 +16,7 @@ export async function POST(req: NextRequest, { params }: { params: { requestId: 
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
   if (!canAuthorizeErasure(guard.claims.role)) {
-    return NextResponse.json({ error: 'forbidden -- only school_admin/principal may execute erasure' }, { status: 403 });
+    return ruleError(403, 'not_allowed');
   }
 
   try {

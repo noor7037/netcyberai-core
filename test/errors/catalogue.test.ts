@@ -99,6 +99,30 @@ describe('each rule says what is wrong and how to fix it, in English and Hindi',
     expect(en('too_many', { max: 5 })).toBe('There are already 5 here, which is the most allowed.');
     expect(hi('too_many', { max: 5 })).toContain('5');
   });
+  it('not_found', () => {
+    expect(en('not_found', { field: 'guardian' })).toBe('We could not find this guardian. It may have been removed. Go back and open it again.');
+    expect(hi('not_found', { field: 'guardian' })).toBe('यह अभिभावक नहीं मिला। हो सकता है इसे हटा दिया गया हो। वापस जाकर दोबारा खोलें।');
+  });
+  it('already_linked', () => {
+    expect(en('already_linked')).toBe('This guardian is already linked to this student. There is nothing more to do.');
+    expect(hi('already_linked')).toMatch(DEVANAGARI);
+  });
+  it('two_step_delete', () => {
+    expect(en('two_step_delete')).toBe('A request to delete data is finished in two steps: first approve it, then carry it out. Use those two buttons.');
+    expect(hi('two_step_delete')).toMatch(DEVANAGARI);
+  });
+  it('not_sent_properly', () => {
+    expect(en('not_sent_properly')).toBe('This did not reach us as expected. Refresh the page, then try again.');
+    expect(hi('not_sent_properly')).toMatch(DEVANAGARI);
+  });
+  it('module_off', () => {
+    expect(en('module_off')).toBe('Your school does not have this part switched on. Ask your principal, or raise a ticket to NetCyberAI.');
+    expect(hi('module_off')).toMatch(DEVANAGARI);
+  });
+  it('read_only', () => {
+    expect(en('read_only')).toBe('Your school’s account can be read but not changed right now. Ask your principal, or raise a ticket to NetCyberAI.');
+    expect(hi('read_only')).toMatch(DEVANAGARI);
+  });
   it('not_saved', () => {
     expect(en('not_saved')).toBe('This could not be saved just now. Check your internet, then try again.');
     expect(hi('not_saved')).toMatch(DEVANAGARI);
@@ -109,7 +133,7 @@ describe('each rule says what is wrong and how to fix it, in English and Hindi',
   });
 
   it('every rule has a test above, both languages, and no technical word', () => {
-    const tested = ['required', 'choose_one', 'too_short', 'too_long', 'phone_digits', 'phone_characters', 'ticket_limit', 'not_allowed', 'signed_out', 'phone_start', 'email_format', 'date_format', 'date_not_real', 'date_in_future', 'class_not_in_school', 'already_exists', 'nothing_to_save', 'file_missing', 'file_too_large', 'file_type', 'too_many', 'too_fast', 'not_saved'];
+    const tested = ['required', 'choose_one', 'too_short', 'too_long', 'phone_digits', 'phone_characters', 'ticket_limit', 'not_allowed', 'signed_out', 'phone_start', 'email_format', 'date_format', 'date_not_real', 'date_in_future', 'class_not_in_school', 'already_exists', 'nothing_to_save', 'file_missing', 'file_too_large', 'file_type', 'too_many', 'too_fast', 'not_saved', 'not_found', 'already_linked', 'two_step_delete', 'not_sent_properly', 'module_off', 'read_only'];
     expect(Object.keys(ERROR_RULES).sort()).toEqual([...tested].sort());
     const sample = { field: 'phone', have: 2, min: 3, max: 9, need: 10, value: 'x', maxMb: 4, allowed: 'PNG' };
     for (const rule of Object.keys(ERROR_RULES) as ErrorRule[]) {
