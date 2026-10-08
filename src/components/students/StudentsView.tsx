@@ -196,7 +196,7 @@ export function StudentsView({ title, description, statusFilter }: Props) {
       key: 'name',
       header: 'Name',
       render: (s) => (
-        <Link href={`/app/students/${s.student_id}`} className="font-semibold text-sapphire hover:underline">
+        <Link href={`/app/students/${s.student_id}`} className="inline-flex min-h-[44px] items-center font-semibold text-sapphire hover:underline">
           {s.name}
         </Link>
       ),

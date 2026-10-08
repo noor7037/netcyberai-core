@@ -137,7 +137,7 @@ export default async function MonitoringPage() {
         <ul className="flex flex-wrap gap-2 text-sm">
           {APPLICATION_STATES.map((s) => (
             <li key={s}>
-              <Link href={`/control/onboarding/applications?status=${s}`} className="block rounded-md border border-slate/10 bg-white px-3 py-2 text-slate hover:border-sapphire">
+              <Link href={`/control/onboarding/applications?status=${s}`} className="flex min-h-[44px] items-center gap-1 rounded-md border border-slate/10 bg-white px-3 text-slate hover:border-sapphire">
                 {STATE_LABELS[s]}: <strong>{data.funnel[s] ?? 0}</strong>
               </Link>
             </li>

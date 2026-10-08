@@ -15,7 +15,7 @@ export async function GET(req: NextRequest, { params }: { params: { studentId: s
     const student = await withTenantContext(guard.claims, async (client) => {
       const { rows } = await client.query(
         `select s.student_id, s.admission_no, s.name, s.class_id, c.name as class_name,
-                s.roll_no, s.dob, s.status, s.created_at, s.updated_at
+                s.roll_no, s.dob::text as dob, s.status, s.created_at, s.updated_at
          from students s
          left join classes c on c.school_id = s.school_id and c.class_id = s.class_id
          where s.school_id = $1 and s.student_id = $2`,
@@ -87,7 +87,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { studentId:
       const result = await client.query(
         `update students set ${setClauses.join(', ')}
          where school_id = $${values.length - 1} and student_id = $${values.length}
-         returning student_id, admission_no, name, class_id, roll_no, dob, status, updated_at`,
+         returning student_id, admission_no, name, class_id, roll_no, dob::text as dob, status, updated_at`,
         values
       );
       assertRowsAffected(result, `student ${params.studentId} update matched 0 rows`);

@@ -19,7 +19,8 @@ type Props = {
    * school-detail tab list, screenshotted by the founder). Same
    * roving-tabindex keyboard model either way; arrow keys still move
    * next/previous in the list, which reads naturally in a vertical rail
-   * too.
+   * too. Under 768 px the rail becomes one scrolling row above the
+   * panel, so the page itself never scrolls sideways.
    */
   orientation?: 'horizontal' | 'vertical';
   /** Prefix for tab/panel ids, so two tab sets on one page never share an id. */
@@ -68,7 +69,7 @@ export function Tabs({ items, defaultActiveId, orientation = 'horizontal', idPre
       aria-orientation={isVertical ? 'vertical' : undefined}
       className={
         isVertical
-          ? 'flex w-56 shrink-0 flex-col gap-1 border-r border-slate/10 pr-2'
+          ? 'flex w-full shrink-0 gap-1 overflow-x-auto border-b border-slate/10 pb-2 md:w-56 md:flex-col md:overflow-visible md:border-b-0 md:border-r md:pb-0 md:pr-2'
           : 'flex gap-1 overflow-x-auto border-b border-slate/10'
       }
     >
@@ -89,7 +90,7 @@ export function Tabs({ items, defaultActiveId, orientation = 'horizontal', idPre
             onKeyDown={(e) => onKeyDown(e, index)}
             className={
               isVertical
-                ? `min-h-[44px] whitespace-nowrap rounded-md px-4 text-left text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire ${
+                ? `min-h-[44px] shrink-0 whitespace-nowrap rounded-md px-4 text-left text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire ${
                     selected ? 'bg-sapphire/10 text-sapphire' : 'text-slate/70 hover:bg-slate/5 hover:text-slate'
                   }`
                 : `min-h-[44px] shrink-0 whitespace-nowrap border-b-2 px-4 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire ${
@@ -112,14 +113,15 @@ export function Tabs({ items, defaultActiveId, orientation = 'horizontal', idPre
       aria-labelledby={`${idPrefix}tab-${item.id}`}
       hidden={item.id !== activeId}
       tabIndex={0}
-      className={isVertical ? 'min-w-0 flex-1 pl-6' : 'py-4'}
+      className={isVertical ? 'min-w-0 flex-1 md:pl-6' : 'py-4'}
     >
       {item.content}
     </div>
   ));
 
   if (isVertical) {
-    return <div className="flex items-start gap-2">{tabList}{panels}</div>;
+    // A row of tabs above the panel on a phone; a column beside it from 768 px.
+    return <div className="flex flex-col gap-3 md:flex-row md:items-start md:gap-2">{tabList}{panels}</div>;
   }
 
   return (

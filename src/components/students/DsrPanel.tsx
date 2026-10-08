@@ -96,7 +96,7 @@ export function DsrPanel({ studentId, canManage }: { studentId: string; canManag
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-base font-semibold text-slate">Data subject requests</h2>
         {canManage && (
-          <button type="button" onClick={() => setNewOpen(true)} className="text-sm font-semibold text-sapphire">
+          <button type="button" onClick={() => setNewOpen(true)} className="min-h-[44px] px-2 text-sm font-semibold text-sapphire">
             + Log request
           </button>
         )}
@@ -118,12 +118,12 @@ export function DsrPanel({ studentId, canManage }: { studentId: string; canManag
               {r.request_type === 'deletion' && canManage && r.status !== 'completed' && r.status !== 'rejected' && (
                 <div className="mt-2 flex gap-3">
                   {!r.authorized_by && (
-                    <button type="button" className="text-sm font-semibold text-amber-text" onClick={() => handleAuthorize(r.request_id)}>
+                    <button type="button" className="min-h-[44px] px-2 text-sm font-semibold text-amber-text" onClick={() => handleAuthorize(r.request_id)}>
                       Authorize erasure
                     </button>
                   )}
                   {r.authorized_by && !r.executed_at && (
-                    <button type="button" className="text-sm font-semibold text-red-800" onClick={() => handleExecute(r.request_id)}>
+                    <button type="button" className="min-h-[44px] px-2 text-sm font-semibold text-red-800" onClick={() => handleExecute(r.request_id)}>
                       Execute erasure
                     </button>
                   )}

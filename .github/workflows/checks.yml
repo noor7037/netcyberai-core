@@ -97,6 +97,11 @@ jobs:
           NEXT_PUBLIC_WHATSAPP_NUMBER: "919817707037"
         run: npm run build
 
+      - name: The screenshot harness and session minting cannot reach production
+        run: |
+          python3 scripts/check_harness_isolation.py --self-test
+          python3 scripts/check_harness_isolation.py --build .next
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"

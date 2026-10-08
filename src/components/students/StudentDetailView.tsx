@@ -170,7 +170,7 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
         <div className="mb-3 flex items-center justify-between">
           <h2 className="text-base font-semibold text-slate">Details</h2>
           {canEdit && !editing && (
-            <button type="button" onClick={() => setEditing(true)} className="text-sm font-semibold text-sapphire">
+            <button type="button" onClick={() => setEditing(true)} className="min-h-[44px] px-2 text-sm font-semibold text-sapphire">
               Edit
             </button>
           )}
@@ -208,7 +208,7 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
         <div className="mb-3 flex items-center justify-between">
           <h2 className="text-base font-semibold text-slate">Guardians</h2>
           {canEdit && (
-            <button type="button" onClick={() => setAddOpen(true)} className="text-sm font-semibold text-sapphire">
+            <button type="button" onClick={() => setAddOpen(true)} className="min-h-[44px] px-2 text-sm font-semibold text-sapphire">
               + Add guardian
             </button>
           )}
@@ -231,7 +231,7 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
                   </p>
                 </div>
                 {canEdit && (
-                  <button type="button" onClick={() => handleUnlink(g.parent_id)} className="text-red-800">
+                  <button type="button" onClick={() => handleUnlink(g.parent_id)} className="min-h-[44px] px-2 text-red-800">
                     Unlink
                   </button>
                 )}

@@ -51,7 +51,7 @@ export async function GET(req: NextRequest) {
       params.push(limit, offset);
       const { rows } = await client.query(
         `select s.student_id, s.admission_no, s.name, s.class_id, c.name as class_name,
-                s.roll_no, s.dob, s.status, s.created_at
+                s.roll_no, s.dob::text as dob, s.status, s.created_at
          from students s
          left join classes c on c.school_id = s.school_id and c.class_id = s.class_id
          where ${where}
@@ -99,7 +99,7 @@ export async function POST(req: NextRequest) {
       const { rows } = await client.query(
         `insert into students (school_id, admission_no, name, class_id, roll_no, dob, status)
          values ($1, $2, $3, $4, $5, $6, 'pending_consent')
-         returning student_id, admission_no, name, class_id, roll_no, dob, status, created_at`,
+         returning student_id, admission_no, name, class_id, roll_no, dob::text as dob, status, created_at`,
         [guard.claims.schoolId, admissionNo, name, classId, rollNo, dob]
       );
       const row = rows[0];
