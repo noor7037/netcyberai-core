@@ -8,6 +8,9 @@ import { ModuleIcon } from '@/components/app-ui/ModuleIcon';
 import { TOKEN_TONES } from '@/components/app-ui/tones';
 import type { ColorToken } from '@/lib/contracts/modules';
 import type { NavBadge } from '@/lib/contracts/navigation';
+import { t as translate, type Lang } from '@/lib/i18n';
+import { LangProvider, useT } from './LangContext';
+import { LanguageSwitch } from './LanguageSwitch';
 import { activeHref, type ShellGroup, type ShellItem } from './shell-nav';
 
 // The app shell (17 §2, §4; C121): on wide screens a sidebar of
@@ -15,13 +18,20 @@ import { activeHref, type ShellGroup, type ShellItem } from './shell-nav';
 // bar whose menu opens the same groups as a drawer, plus, for the teacher
 // shell, a bottom bar with the day-to-day modules. The page's group opens
 // by itself. Unbuilt modules say "Soon"; badges are server numbers only.
+// Above every page sits one bar (C134) with the language switch. Every
+// word of the shell comes from the message files. The shell's own parts
+// carry `lang`; the page inside does not, because a screen that has not
+// been moved to the message files yet is still in English and a screen
+// reader must read it as English.
 
 function Badge({ badge }: { badge: NavBadge }) {
-  const text = badge.kind === 'new' ? 'New' : badge.kind === 'percent' ? `${badge.value}%` : String(badge.value);
+  const { t } = useT();
+  const text = badge.kind === 'new' ? t('shell.badge.new') : badge.kind === 'percent' ? `${badge.value}%` : String(badge.value);
   return <span className="ml-auto rounded-full bg-white px-2 text-xs font-bold text-midnight">{text}</span>;
 }
 
 function ItemLink({ item, active, tone, onNavigate }: { item: ShellItem; active: boolean; tone: ColorToken; onNavigate?: () => void }) {
+  const { t } = useT();
   return (
     <Link
       href={item.href}
@@ -36,7 +46,8 @@ function ItemLink({ item, active, tone, onNavigate }: { item: ShellItem; active:
       {item.badge && <Badge badge={item.badge} />}
       {item.comingIn && (
         <span className="rounded-full border border-white/30 bg-midnight px-2 text-xs text-white">
-          Soon<span className="sr-only">, coming in phase {item.comingIn}</span>
+          {t('shell.soon')}
+          <span className="sr-only">{t('shell.soon.phase', { phase: item.comingIn })}</span>
         </span>
       )}
     </Link>
@@ -90,11 +101,12 @@ function Groups({ groups, active, onNavigate }: { groups: readonly ShellGroup[];
 
 function Footer({ accountHref }: { accountHref: string }) {
   const router = useRouter();
+  const { t } = useT();
   const link = 'flex min-h-[44px] w-full items-center rounded-md bg-midnight px-3 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white';
   return (
     <div className="flex flex-col gap-0.5 border-t border-white/10 p-3">
       <Link href={accountHref} className={link}>
-        My account
+        {t('shell.account')}
       </Link>
       <button
         type="button"
@@ -105,7 +117,7 @@ function Footer({ accountHref }: { accountHref: string }) {
           router.refresh();
         }}
       >
-        Sign out
+        {t('shell.signOut')}
       </button>
     </div>
   );
@@ -119,6 +131,8 @@ export function AppShell({
   navLabel,
   accountHref,
   action,
+  lang = 'en',
+  langKnown = true,
   children,
 }: {
   groups: readonly ShellGroup[];
@@ -129,8 +143,12 @@ export function AppShell({
   accountHref: string;
   // A persistent action beside the menu (the teacher's QR scan, PRD §7.3).
   action?: ReactNode;
+  lang?: Lang;
+  // False when this browser has no language cookie for this person yet.
+  langKnown?: boolean;
   children: ReactNode;
 }) {
+  const t = (key: Parameters<typeof translate>[1]) => translate(lang, key);
   const pathname = usePathname() ?? '';
   const active = activeHref(groups, pathname);
   const [drawer, setDrawer] = useState(false);
@@ -160,27 +178,32 @@ export function AppShell({
   );
 
   return (
-    <div className="min-h-screen bg-off-white">
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col bg-midnight md:flex">
+    <LangProvider lang={lang}>
+      <div className="min-h-screen bg-off-white">
+      <aside lang={lang} className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col bg-midnight md:flex">
         <span aria-hidden="true" className="nca-spectrum-bar block h-1" />
         {head}
-        {action && <div className="px-3 pb-2">{action}</div>}
+        {action && (
+          <div lang="en" className="px-3 pb-2">
+            {action}
+          </div>
+        )}
         <nav aria-label={navLabel} className="flex-1 overflow-y-auto px-2 pb-2">
           <Groups groups={groups} active={active} />
         </nav>
         <Footer accountHref={accountHref} />
       </aside>
 
-      <header className="sticky top-0 z-30 flex h-14 items-center justify-between bg-midnight px-4 md:hidden">
+      <header lang={lang} className="sticky top-0 z-30 flex h-14 items-center justify-between bg-midnight px-4 md:hidden">
         <p className="truncate text-base font-extrabold text-white">{brand}</p>
         <div className="flex items-center gap-1">
-          {action}
+          {action && <span lang="en">{action}</span>}
           <button
             ref={toggleRef}
             type="button"
             aria-expanded={drawer}
             aria-controls={drawerId}
-            aria-label={drawer ? 'Close menu' : 'Open menu'}
+            aria-label={t(drawer ? 'shell.menu.close' : 'shell.menu.open')}
             onClick={() => setDrawer((d) => !d)}
             className="flex h-11 w-11 items-center justify-center rounded-md bg-midnight text-white hover:bg-white/10"
           >
@@ -192,10 +215,10 @@ export function AppShell({
       </header>
 
       {drawer && (
-        <div id={drawerId} ref={panelRef} role="dialog" aria-modal="true" aria-label={navLabel} className="fixed inset-0 z-40 flex flex-col bg-midnight md:hidden">
+        <div id={drawerId} ref={panelRef} lang={lang} role="dialog" aria-modal="true" aria-label={navLabel} className="fixed inset-0 z-40 flex flex-col bg-midnight md:hidden">
           <div className="flex items-center justify-between pr-2">
             {head}
-            <button type="button" onClick={() => setDrawer(false)} aria-label="Close menu" className="flex h-11 w-11 items-center justify-center rounded-md bg-midnight text-2xl text-white">
+            <button type="button" onClick={() => setDrawer(false)} aria-label={t('shell.menu.close')} className="flex h-11 w-11 items-center justify-center rounded-md bg-midnight text-2xl text-white">
               ×
             </button>
           </div>
@@ -206,10 +229,17 @@ export function AppShell({
         </div>
       )}
 
-      <main className={`md:pl-64 ${bottomItems?.length ? 'pb-20 md:pb-0' : ''}`}>{children}</main>
+      <main className={`md:pl-64 ${bottomItems?.length ? 'pb-20 md:pb-0' : ''}`}>
+        <div lang={lang} data-shell-lang={lang} className="z-20 flex flex-wrap items-center gap-2 border-b border-slate/10 bg-white px-4 py-2 md:sticky md:top-0 md:px-6 print:hidden">
+          <div className="ml-auto">
+            <LanguageSwitch known={langKnown} />
+          </div>
+        </div>
+        {children}
+      </main>
 
       {bottomItems && bottomItems.length > 0 && (
-        <nav aria-label="Quick navigation" className="fixed inset-x-0 bottom-0 z-30 grid border-t border-white/10 bg-midnight md:hidden" style={{ gridTemplateColumns: `repeat(${bottomItems.length + 1}, minmax(0, 1fr))` }}>
+        <nav lang={lang} aria-label={t('shell.nav.quick')} className="fixed inset-x-0 bottom-0 z-30 grid border-t border-white/10 bg-midnight md:hidden" style={{ gridTemplateColumns: `repeat(${bottomItems.length + 1}, minmax(0, 1fr))` }}>
           {bottomItems.map((i) => (
             <Link
               key={i.href}
@@ -225,10 +255,11 @@ export function AppShell({
             <span aria-hidden="true" className="text-lg leading-none">
               ☰
             </span>
-            More
+            {t('shell.menu.more')}
           </button>
         </nav>
       )}
-    </div>
+      </div>
+    </LangProvider>
   );
 }

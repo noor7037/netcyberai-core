@@ -21,7 +21,7 @@ export default function ShellPreview({ searchParams }: { searchParams: { role?: 
   return (
     <AppShell
       groups={toShellGroups(nav)}
-      bottomItems={teacher ? bottomNavItems(nav).map(toShellItem) : undefined}
+      bottomItems={teacher ? bottomNavItems(nav).map((i) => toShellItem(i)) : undefined}
       brand="Illustrative School"
       roleLabel={teacher ? 'Teacher' : 'Principal'}
       navLabel="School navigation"
