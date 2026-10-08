@@ -32,7 +32,11 @@ rel as (
   where c.relnamespace = 'public'::regnamespace and c.relkind in ('r', 'p', 'v', 'm', 'f', 'S')
 ),
 snap(cat, key, detail) as (
-  select 'table', r.relname,
+  -- ::text, not name: a union takes its column type from this first branch,
+  -- and `name` cuts every key at 63 characters. Long policy keys then tied
+  -- and were ordered differently on each run, so the policy hash differed
+  -- between two identical databases (found 2026-10-08, C134).
+  select 'table', r.relname::text,
          concat_ws('|', r.relkind, 'rls=' || r.relrowsecurity, 'force=' || r.relforcerowsecurity, 'owner=' || pg_get_userbyid(r.relowner))
   from rel r
 
