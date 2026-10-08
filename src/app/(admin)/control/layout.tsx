@@ -19,7 +19,7 @@ import { controlNav } from '@/lib/nav/nav-items';
 // that resolves to a /control/... URL without living under this folder.
 //
 // The Control plane uses the same app shell as the school app (C121),
-// with its own single group.
+// with its own single group, its own search and no "+ New".
 
 export default async function ControlLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession();
@@ -28,7 +28,7 @@ export default async function ControlLayout({ children }: { children: React.Reac
   }
   const { lang, known } = getLang(session!.sub);
   return (
-    <AppShell groups={controlShellGroups(controlNav, undefined, lang)} brand={t(lang, 'shell.brand.control')} roleLabel={t(lang, 'role.super_admin')} navLabel={t(lang, 'shell.nav.control')} accountHref="/control/account" lang={lang} langKnown={known}>
+    <AppShell groups={controlShellGroups(controlNav, undefined, lang)} brand={t(lang, 'shell.brand.control')} roleLabel={t(lang, 'role.super_admin')} navLabel={t(lang, 'shell.nav.control')} accountHref="/control/account" lang={lang} langKnown={known} scope="control">
       {children}
     </AppShell>
   );
