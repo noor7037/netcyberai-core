@@ -264,7 +264,7 @@ create policy teacher_scope_attendance on attendance as restrictive
 grant select, insert, update, delete on attendance to app_user, nca_super;
 
 -- P2 5b (C144): operations received from devices and measurement, as
--- 20261011160000_p2_attendance_phone.sql defines them.
+-- 20261011164830_p2_attendance_phone.sql defines them.
 create table client_operations (
   school_id uuid not null references schools(school_id),
   operation_id uuid not null,
