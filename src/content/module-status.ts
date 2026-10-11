@@ -51,7 +51,7 @@ export const moduleStatus: Record<ModuleId, { status: ModuleStatus; note: string
   career: { status: 'needs-spec', note: 'Not in the current product documents.' },
   twin: { status: 'needs-spec', note: 'Not in the current product documents.' },
   compliance: { status: 'partial', note: 'Consent ledger, audit trail and data requests are live; APAAR is on the later roadmap.' },
-  pulse: { status: 'partial', note: 'One tap “taught today” prepares the day’s draft, and the teacher’s “needs help” queue is live; composing, sending and parents’ replies are not built yet.' },
+  pulse: { status: 'partial', note: 'One tap “taught today” prepares the day’s message in English, Hindi and Hinglish with the homework; the teacher can change it and mark it ready, and the “needs help” queue is live. Sending and parents’ replies are not built yet.' },
   ptm: { status: 'planned', note: 'Part of the school calendar on the roadmap.' },
   proxy: { status: 'planned', note: 'Substitution follows staff leave on the roadmap.' },
   'help-center': { status: 'live', note: 'Step-by-step guides in English and Hindi, inside the school app and on the website.' },

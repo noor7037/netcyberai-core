@@ -353,6 +353,30 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['timetable', 'period', 'periods', 'schedule', 'clash', 'csv', 'time table', 'समय-सारणी', 'टाइम टेबल', 'पीरियड'],
   },
   {
+    slug: 'daily-pulse-message',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Prepare the day’s message to parents', hi: 'अभिभावकों के लिए दिन का संदेश तैयार करें' },
+    summary: {
+      en: 'When you record a lesson in Taught today, its message to parents is written for you in English, Hindi and Hinglish, with the day’s homework. Read it, change it if you wish, and mark it ready.',
+      hi: 'Taught today में पाठ दर्ज करते ही अभिभावकों का संदेश अंग्रेज़ी, हिंदी और हिंग्लिश में, दिन के गृहकार्य के साथ, अपने-आप लिख जाता है। पढ़ें, चाहें तो बदलें, और तैयार करें।',
+    },
+    steps: [
+      { en: 'Record the lesson in Taught today. Set the day’s homework in Homework, if there is any.', hi: 'Taught today में पाठ दर्ज करें। अगर गृहकार्य है तो Homework में दें।' },
+      { en: 'Open “Daily Pulse”. Under “Today’s messages to parents” there is one message for each lesson.', hi: '“Daily Pulse” खोलें। “Today’s messages to parents” के नीचे हर पाठ का एक संदेश है।' },
+      { en: 'Tap “English”, “Hindi” or “Hinglish” to read each one. Change the words if you wish, then press “Save the words”.', hi: 'हर एक को पढ़ने के लिए “English”, “Hindi” या “Hinglish” टैप करें। चाहें तो शब्द बदलें, फिर “Save the words” दबाएँ।' },
+      { en: 'Press “Mark ready”. “Back to draft” takes it back.', hi: '“Mark ready” दबाएँ। “Back to draft” से वापस ड्राफ़्ट हो जाता है।' },
+    ],
+    tips: [
+      { en: 'Nothing is sent to parents yet. Sending starts with WhatsApp; until then a ready message stays here.', hi: 'अभी अभिभावकों को कुछ नहीं भेजा जाता। भेजना WhatsApp के साथ शुरू होगा; तब तक तैयार संदेश यहीं रहता है।' },
+      { en: 'A lesson marked “Not taught” has no message: parents are never told a lesson happened when it did not.', hi: '“Not taught” वाले पाठ का कोई संदेश नहीं बनता: अभिभावकों को कभी नहीं बताया जाता कि पाठ हुआ जबकि वह नहीं हुआ।' },
+      { en: 'If you change the lesson in Taught today, its message is written again and goes back to draft.', hi: 'अगर आप Taught today में पाठ बदलते हैं, तो उसका संदेश फिर से लिखा जाता है और वापस ड्राफ़्ट हो जाता है।' },
+    ],
+    start: { href: '/app/pulse', label: { en: 'Daily Pulse', hi: 'Daily Pulse' } },
+    related: ['taught-today', 'set-homework', 'needs-help-queue'],
+    keywords: ['pulse', 'daily pulse', 'message', 'parents', 'hinglish', 'ready', 'draft', 'संदेश', 'अभिभावक', 'पल्स'],
+  },
+  {
     slug: 'needs-help-queue',
     category: 'daily',
     audience: 'office_and_teachers',

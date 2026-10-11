@@ -118,6 +118,8 @@ export async function changeDraft(db: PoolClient, actor: Actor, pulseId: string,
   const wanted = change.status === 'ready' || change.status === 'draft' ? change.status : undefined;
   const status = wanted ?? (wordsChanged ? 'draft' : before.status);
   if (status === 'ready' && Object.values(next).some((b) => !b)) return { ok: false, reason: 'words_missing' };
+  // Nothing asked for that is not already so: nothing is written or logged.
+  if (!wordsChanged && status === before.status) return { ok: true, draft: (await db.query(`${SELECT} where m.school_id = $1 and m.pulse_id = $2`, [actor.schoolId, pulseId])).rows[0] };
   await db.query(`update pulse_messages set body_en = $3, body_hi = $4, body_hinglish = $5, status = $6, edited = $7 where school_id = $1 and pulse_id = $2`, [actor.schoolId, pulseId, next.en, next.hi, next.hinglish, status, before.edited || wordsChanged]);
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: status !== before.status ? `pulse.${status}` : 'pulse.edited', targetType: 'pulse_messages', targetId: pulseId, beforeState: { status: before.status }, afterState: { status, wordsChanged } });
   return { ok: true, draft: (await db.query(`${SELECT} where m.school_id = $1 and m.pulse_id = $2`, [actor.schoolId, pulseId])).rows[0] };
