@@ -8,7 +8,10 @@ import { ModuleIcon } from '@/components/app-ui/ModuleIcon';
 import { TOKEN_TONES } from '@/components/app-ui/tones';
 import type { ColorToken } from '@/lib/contracts/modules';
 import type { NavBadge } from '@/lib/contracts/navigation';
+import type { QuickAddItem } from '@/lib/contracts/quick-add';
 import { t as translate, type Lang } from '@/lib/i18n';
+import { GlobalSearch } from './GlobalSearch';
+import { QuickAdd } from './QuickAdd';
 import { LangProvider, useT } from './LangContext';
 import { LanguageSwitch } from './LanguageSwitch';
 import { activeHref, type ShellGroup, type ShellItem } from './shell-nav';
@@ -18,7 +21,8 @@ import { activeHref, type ShellGroup, type ShellItem } from './shell-nav';
 // bar whose menu opens the same groups as a drawer, plus, for the teacher
 // shell, a bottom bar with the day-to-day modules. The page's group opens
 // by itself. Unbuilt modules say "Soon"; badges are server numbers only.
-// Above every page sits one bar (C134) with the language switch. Every
+// Above every page sits one bar (C134, C135): search, "+ New" and the
+// language switch. Every
 // word of the shell comes from the message files. The shell's own parts
 // carry `lang`; the page inside does not, because a screen that has not
 // been moved to the message files yet is still in English and a screen
@@ -133,6 +137,8 @@ export function AppShell({
   action,
   lang = 'en',
   langKnown = true,
+  scope = 'school',
+  quickAdd = [],
   children,
 }: {
   groups: readonly ShellGroup[];
@@ -146,6 +152,9 @@ export function AppShell({
   lang?: Lang;
   // False when this browser has no language cookie for this person yet.
   langKnown?: boolean;
+  // Which search this shell has: the school's, or Control's.
+  scope?: 'school' | 'control';
+  quickAdd?: readonly QuickAddItem[];
   children: ReactNode;
 }) {
   const t = (key: Parameters<typeof translate>[1]) => translate(lang, key);
@@ -230,7 +239,9 @@ export function AppShell({
       )}
 
       <main className={`md:pl-64 ${bottomItems?.length ? 'pb-20 md:pb-0' : ''}`}>
-        <div lang={lang} data-shell-lang={lang} className="z-20 flex flex-wrap items-center gap-2 border-b border-slate/10 bg-white px-4 py-2 md:sticky md:top-0 md:px-6 print:hidden">
+        <div lang={lang} data-shell-lang={lang} role="region" aria-label={t('shell.tools')} className="z-20 flex flex-wrap items-center gap-2 border-b border-slate/10 bg-white px-4 py-2 md:sticky md:top-0 md:px-6 print:hidden">
+          <GlobalSearch scope={scope} />
+          <QuickAdd items={quickAdd} />
           <div className="ml-auto">
             <LanguageSwitch known={langKnown} />
           </div>

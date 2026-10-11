@@ -17,6 +17,7 @@ type L = Record<ErrorLang, string>;
 // What a field is called in a sentence.
 export const FIELD_NAMES = {
   name: { en: 'name', hi: 'नाम' },
+  search: { en: 'search', hi: 'खोज' },
   language: { en: 'language', hi: 'भाषा' },
   student_name: { en: 'student’s name', hi: 'विद्यार्थी का नाम' },
   guardian_name: { en: 'guardian’s name', hi: 'अभिभावक का नाम' },

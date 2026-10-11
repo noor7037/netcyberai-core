@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Table, type TableColumn } from '@/components/ui/Table';
 import { Badge } from '@/components/ui/Badge';
 import { Modal } from '@/components/ui/Modal';
@@ -48,14 +49,25 @@ type Props = {
   title: string;
   description?: string;
   statusFilter?: Student['status'];
+  // Arrived from "+ New → Add student" (?new=1): the form opens by itself.
+  openNew?: boolean;
 };
 
-export function StudentsView({ title, description, statusFilter }: Props) {
+export function StudentsView({ title, description, statusFilter, openNew = false }: Props) {
+  const router = useRouter();
   const [students, setStudents] = useState<Student[] | null>(null);
   const [classes, setClasses] = useState<ClassRow[]>([]);
   const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [errorMessage, setErrorMessage] = useState('');
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(openNew);
+  useEffect(() => {
+    if (openNew) setModalOpen(true);
+  }, [openNew]);
+  // Closing the form drops ?new=1, so "+ New" opens it again next time.
+  const closeModal = () => {
+    setModalOpen(false);
+    if (openNew) router.replace('/app/students');
+  };
   const [classModalOpen, setClassModalOpen] = useState(false);
   const [importModalOpen, setImportModalOpen] = useState(false);
   const [importResult, setImportResult] = useState<ImportResult | null>(null);
@@ -110,7 +122,7 @@ export function StudentsView({ title, description, statusFilter }: Props) {
       toast.show(explainError(await res.json().catch(() => null), 'The student was not added. Check the details and try again.', 'en', res.status), 'danger');
       return;
     }
-    setModalOpen(false);
+    closeModal();
     toast.show('Student added — status: pending consent', 'success');
     load();
   }
@@ -268,7 +280,7 @@ export function StudentsView({ title, description, statusFilter }: Props) {
         }
       />
 
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Add student">
+      <Modal open={modalOpen} onClose={closeModal} title="Add student">
         <form onSubmit={handleCreate} className="flex flex-col gap-4">
           <Input id="name" name="name" label="Full name" required />
           <Input id="admissionNo" name="admissionNo" label="Admission number" />
