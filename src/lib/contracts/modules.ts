@@ -113,7 +113,7 @@ const ROWS: readonly Row[] = [
     capabilities: ['Syllabus map', '“Taught today”', 'Lesson plans', 'Coverage', 'Objectives met', 'Classwork logbook shared with parents the same evening'] },
   { id: 'attendance', mobilePriority: 2, label: 'Attendance', group: 'teaching-learning', icon: 'attendance', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P2', status: 'live',
     capabilities: ['Class marking', 'Present All', 'Late and leave codes', 'Staff attendance', 'Absence alerts', 'Trends', 'Chronic-absence signal', 'Import from sheet'] },
-  { id: 'timetable', label: 'Timetable', group: 'teaching-learning', icon: 'timetable', roles: TEACHING, phase: 'P7', phaseNote: 'View in P2', status: 'planned',
+  { id: 'timetable', label: 'Timetable', group: 'teaching-learning', icon: 'timetable', roles: TEACHING, phase: 'P7', phaseNote: 'Entry, clash guard and each teacher’s week are live (P2); the generator in P7', status: 'partial',
     capabilities: ['Periods', 'Generator with constraints', 'Teacher and class views', 'Clash guard', 'Workload', 'Change history'] },
   { id: 'proxy', label: 'Proxy Auto', group: 'teaching-learning', icon: 'proxy', roles: TEACHING, phase: 'P5', status: 'planned',
     capabilities: ['Leave-driven substitution suggestions by free period and subject fit', 'One-tap assign', 'Notify substitute'] },

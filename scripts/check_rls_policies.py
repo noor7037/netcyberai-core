@@ -231,6 +231,9 @@ ALLOWED_PERMISSIVE = (
         # operations) and usage_events_read_leadership.
         ("client_operations", "client_operations_tenant_isolation"),
         ("usage_events", "usage_events_tenant_isolation"),
+        # P2 5c (C145): tenant isolation only; narrowed by the RESTRICTIVE
+        # staff_read and office_insert/update/delete, required below.
+        ("timetable_entries", "timetable_entries_tenant_isolation"),
         ("support_ticket_messages", "support_ticket_messages_tenant_read"),
         ("support_ticket_messages", "support_ticket_messages_tenant_insert"),
         ("support_ticket_attachments", "support_ticket_attachments_tenant_read"),
@@ -265,6 +268,11 @@ REQUIRED_RESTRICTIVE = {
     # are read by the school's leadership only.
     ("client_operations", "client_operations_own"),
     ("usage_events", "usage_events_read_leadership"),
+    # C145: a teacher reads their own periods and classes; only the office writes.
+    ("timetable_entries", "timetable_entries_staff_read"),
+    ("timetable_entries", "timetable_entries_office_insert"),
+    ("timetable_entries", "timetable_entries_office_update"),
+    ("timetable_entries", "timetable_entries_office_delete"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
     ("audit_log", "audit_ticket_rows_own_or_office"),

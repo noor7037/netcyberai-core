@@ -103,7 +103,8 @@ describe('the contract', () => {
   });
 
   it('a module switched off takes its cards away (docs/19 rule 7); tickets are always on', () => {
-    expect(providersFor('teacher', ents({ attendance: { enabled: false } })).map((p) => p.type)).toEqual(['tickets-waiting']);
+    expect(providersFor('teacher', ents({ attendance: { enabled: false } })).map((p) => p.type)).toEqual(['timetable-today', 'tickets-waiting']);
+    expect(providersFor('teacher', ents({ attendance: { enabled: false }, timetable: { enabled: false } })).map((p) => p.type)).toEqual(['tickets-waiting']);
     expect(providersFor('accountant', ents({ fees: { enabled: false } })).map((p) => p.type)).toEqual(['tickets-waiting']);
     expect(providersFor('principal', ents({ fees: { enabled: false }, communication: { enabled: false } })).map((p) => p.type)).toEqual(['attendance-school', 'consent-waiting', 'tickets-waiting']);
     expect(providersFor('principal', ents({}, 'suspended')).map((p) => p.type)).toEqual(['tickets-waiting']);

@@ -295,3 +295,30 @@ create policy usage_events_read_leadership on usage_events as restrictive for se
   using (current_setting('app.current_role', true) = any (array['principal', 'school_admin', 'super_admin']));
 grant select, insert, update on client_operations to app_user, nca_super;
 grant select, insert on usage_events to app_user, nca_super;
+
+-- P2 5c (C145): the timetable as My Day's card reads it
+-- (20261011170000_p2_timetable.sql), with the subjects it names.
+create table subjects (
+  subject_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  name text not null
+);
+create table timetable_entries (
+  entry_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  class_id uuid not null,
+  weekday smallint not null check (weekday between 1 and 7),
+  period smallint not null check (period between 1 and 12),
+  subject_id uuid not null,
+  teacher_user_id uuid not null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  constraint timetable_class_slot unique (school_id, class_id, weekday, period),
+  constraint timetable_teacher_slot unique (school_id, teacher_user_id, weekday, period)
+);
+alter table subjects enable row level security;
+alter table timetable_entries enable row level security;
+create policy subjects_tenant_isolation on subjects using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy timetable_entries_tenant_isolation on timetable_entries using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update, delete on subjects, timetable_entries to app_user, nca_super;
+

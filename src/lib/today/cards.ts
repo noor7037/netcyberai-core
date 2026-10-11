@@ -3,6 +3,7 @@ import { arrangeMyDay, type MyDay, type TodayCard, type TodayContext, type Today
 import { feeIsOverdueSql } from '@/lib/fees/overdue';
 import { classLabel } from '@/lib/frameworks/class-label';
 import { INDIA_TODAY_SQL } from '@/lib/time/india';
+import { periodsToday } from '@/lib/timetable/timetable';
 
 // The "today" cards of the modules that are live (docs/19 rule 2, C136).
 // Each provider runs inside the caller's own tenant context, so row-level
@@ -103,6 +104,18 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
       const unmarked = n(rows[0]?.unmarked);
       if (classes === 0) return [];
       return [{ id: 'attendance-school', type: 'attendance-school', moduleId: 'attendance', state: unmarked > 0 ? 'todo' : 'done', count: unmarked > 0 ? unmarked : classes, total: classes, href: '/app/attendance' }];
+    },
+  },
+  {
+    // "You teach 4 periods today", in order (C145). It is information, not
+    // work waiting, so it is never counted as waiting.
+    type: 'timetable-today',
+    moduleId: 'timetable',
+    roles: ['teacher'],
+    async load(db, ctx) {
+      const periods = await periodsToday(db as never, ctx.schoolId, ctx.userId);
+      if (periods.length === 0) return [];
+      return [{ id: 'timetable-today', type: 'timetable-today', moduleId: 'timetable', state: 'done', count: periods.length, subject: periods.map((e) => `${e.period}. ${e.class_name} ${e.subject_name}`).join(' · '), href: '/app/timetable' }];
     },
   },
   {
