@@ -355,3 +355,26 @@ alter table pulse_followups enable row level security;
 create policy pulse_followups_tenant_isolation on pulse_followups using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert, update on pulse_followups to app_user, nca_super;
 
+-- C150: homework, as My Day's card counts it.
+create table homework_targets (
+  target_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  homework_id uuid not null,
+  class_id uuid not null,
+  title text not null,
+  due_date date not null
+);
+create table homework_status (
+  school_id uuid not null references schools(school_id),
+  target_id uuid not null,
+  class_id uuid not null,
+  student_id uuid not null,
+  done boolean not null,
+  primary key (target_id, student_id)
+);
+alter table homework_targets enable row level security;
+alter table homework_status enable row level security;
+create policy homework_targets_tenant_isolation on homework_targets using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy homework_status_tenant_isolation on homework_status using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update on homework_targets, homework_status to app_user, nca_super;
+

@@ -117,7 +117,7 @@ const ROWS: readonly Row[] = [
     capabilities: ['Periods', 'Generator with constraints', 'Teacher and class views', 'Clash guard', 'Workload', 'Change history'] },
   { id: 'proxy', label: 'Proxy Auto', group: 'teaching-learning', icon: 'proxy', roles: TEACHING, phase: 'P5', status: 'planned',
     capabilities: ['Leave-driven substitution suggestions by free period and subject fit', 'One-tap assign', 'Notify substitute'] },
-  { id: 'homework', mobilePriority: 3, label: 'Homework', group: 'teaching-learning', icon: 'homework', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P2', status: 'planned',
+  { id: 'homework', mobilePriority: 3, label: 'Homework', group: 'teaching-learning', icon: 'homework', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P2', phaseNote: 'Set, copy to sections and check are live; sharing with parents in P4', status: 'partial',
     capabilities: ['Set with photo or attachment', 'Due dates', 'Completion by parent reply', 'Class completion stats', 'Copy to many sections', 'Online submission and evaluation'] },
   { id: 'recovery', label: 'Homework Recovery', group: 'teaching-learning', icon: 'recovery', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P2', status: 'spec-v0',
     capabilities: ['Detect students missing homework repeatedly in a window', 'Suggest a catch-up plan', 'Teacher approves', 'Parent informed via Pulse'] },

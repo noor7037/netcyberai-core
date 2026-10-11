@@ -377,6 +377,31 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['needs help', 'follow up', 'follow-up', 'pulse', 'daily pulse', 'queue', 'मदद', 'फ़ॉलो-अप', 'पल्स'],
   },
   {
+    slug: 'set-homework',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Set homework and check who has done it', hi: 'गृहकार्य दें और देखें किसने किया' },
+    summary: {
+      en: 'Write a homework once, copy it to every section it is for, and mark each student done or not done.',
+      hi: 'गृहकार्य एक बार लिखें, जिन-जिन सेक्शन के लिए है उनमें कॉपी करें, और हर विद्यार्थी पर किया या नहीं किया लगाएँ।',
+    },
+    steps: [
+      { en: 'Open “Homework”, then “Set homework”. Choose the “Subject” and the “Due date”, and write “What to do”.', hi: '“Homework” खोलें, फिर “Set homework”। “Subject” और “Due date” चुनें, और “What to do” लिखें।' },
+      { en: 'Under “For which sections”, tick every section the homework is for. Each one gets its own copy.', hi: '“For which sections” के नीचे उन सभी सेक्शन पर निशान लगाएँ जिनके लिए गृहकार्य है। हर एक को अपनी कॉपी मिलती है।' },
+      { en: 'If you wish, add “A photo or a PDF (optional)” of the page or worksheet. Then press the button to set it.', hi: 'चाहें तो पन्ने या वर्कशीट की “A photo or a PDF (optional)” जोड़ें। फिर देने के लिए बटन दबाएँ।' },
+      { en: 'On the due date, press “Check who has done it” on a section’s homework. Tap “Done” or “Not done” beside each student, or “All done”, then “Save”.', hi: 'तारीख़ वाले दिन किसी सेक्शन के गृहकार्य पर “Check who has done it” दबाएँ। हर विद्यार्थी के पास “Done” या “Not done” टैप करें, या “All done”, फिर “Save”।' },
+      { en: 'To correct a homework, press “Change”. Tick the sections whose copy should change; the others keep it as it was given.', hi: 'गृहकार्य ठीक करने के लिए “Change” दबाएँ। जिन सेक्शन की कॉपी बदलनी है उन पर निशान लगाएँ; बाकी की वैसी ही रहती है जैसी दी गई थी।' },
+    ],
+    tips: [
+      { en: 'Checking works with no internet: it is kept on the phone and sent when the internet is back. Setting and changing a homework need the internet.', hi: 'जाँचना बिना इंटरनेट के भी चलता है: यह फ़ोन पर रहता है और इंटरनेट आते ही भेज दिया जाता है। गृहकार्य देने और बदलने के लिए इंटरनेट चाहिए।' },
+      { en: 'A teacher sets homework only for their own classes. The office can set it for any class.', hi: 'शिक्षक सिर्फ़ अपनी कक्षाओं को गृहकार्य दे सकता है। दफ़्तर किसी भी कक्षा को दे सकता है।' },
+      { en: 'Parents do not receive homework yet. That starts with WhatsApp.', hi: 'अभी अभिभावकों को गृहकार्य नहीं भेजा जाता। यह WhatsApp के साथ शुरू होगा।' },
+    ],
+    start: { href: '/app/homework', label: { en: 'Homework', hi: 'Homework' } },
+    related: ['taught-today', 'needs-help-queue', 'mark-attendance'],
+    keywords: ['homework', 'home work', 'assignment', 'worksheet', 'due', 'sections', 'गृहकार्य', 'होमवर्क'],
+  },
+  {
     slug: 'compliance-screen',
     category: 'daily',
     audience: 'office',
