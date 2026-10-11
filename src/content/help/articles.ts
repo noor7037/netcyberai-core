@@ -245,6 +245,8 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'A teacher sees only their own classes. The office sees every class.', hi: 'शिक्षक को केवल अपनी कक्षाएँ दिखती हैं। कार्यालय को सभी कक्षाएँ दिखती हैं।' },
       { en: '“No students in this class” means the class has no students yet. A student whose consent is pending is listed, with a “Consent pending” tag.', hi: '“No students in this class” का मतलब है कि कक्षा में अभी विद्यार्थी नहीं हैं। जिस विद्यार्थी की सहमति बाकी है, वह “Consent pending” के निशान के साथ दिखता है।' },
       { en: 'If someone else marked the class first, their marks stay. You see “Already marked differently” and can press “Save mine as a correction”.', hi: 'अगर किसी और ने कक्षा की हाज़िरी पहले लगा दी, तो उनकी हाज़िरी रहती है। आपको “Already marked differently” दिखता है और आप “Save mine as a correction” दबा सकते हैं।' },
+      { en: 'The office can enter or correct a past day: choose the “Day”, write the “Reason”, then tap the mark. The school sets how many days back in Settings.', hi: 'दफ़्तर पिछले दिन की हाज़िरी दर्ज या ठीक कर सकता है: “Day” चुनें, “Reason” लिखें, फिर निशान पर टैप करें। कितने दिन पीछे तक, यह स्कूल Settings में तय करता है।' },
+      { en: 'Marks made with no internet that arrive after the day ended are not lost: they wait for the office, which presses “Apply these marks” or “Dismiss”.', hi: 'बिना इंटरनेट के लगी हाज़िरी अगर दिन ख़त्म होने के बाद पहुँचे तो खोती नहीं: वह दफ़्तर का इंतज़ार करती है, जो “Apply these marks” या “Dismiss” दबाता है।' },
       { en: 'Every correction is recorded with who made it and why.', hi: 'हर सुधार इस जानकारी के साथ दर्ज होता है कि किसने और क्यों किया।' },
     ],
     start: { href: '/app/attendance', label: { en: 'Attendance', hi: 'Attendance' } },

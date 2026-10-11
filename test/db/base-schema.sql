@@ -322,3 +322,22 @@ create policy subjects_tenant_isolation on subjects using (school_id = (current_
 create policy timetable_entries_tenant_isolation on timetable_entries using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert, update, delete on subjects, timetable_entries to app_user, nca_super;
 
+-- C146: late attendance submissions waiting for the office
+-- (20261011175653_p2_office_corrections.sql).
+create table attendance_correction_requests (
+  request_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  class_id uuid not null,
+  for_date date not null,
+  requested_by uuid not null,
+  entries jsonb not null,
+  status text not null default 'waiting',
+  decided_by uuid,
+  decided_at timestamptz,
+  decision_reason text,
+  created_at timestamptz not null default now()
+);
+alter table attendance_correction_requests enable row level security;
+create policy attendance_correction_requests_tenant_isolation on attendance_correction_requests using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update on attendance_correction_requests to app_user, nca_super;
+

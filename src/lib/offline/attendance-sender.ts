@@ -32,6 +32,9 @@ export type KeptRoster = { date: string; roster: KeptRosterRow[] };
 export const rosterKey = (classId: string) => `attendance:roster:${classId}`;
 export const differencesKey = (classId: string, date: string) => `attendance:differences:${classId}:${date}`;
 export const CLASSES_KEY = 'attendance:classes';
+// Marks that arrived after their day ended and now wait for the office (C146).
+export const SENT_TO_OFFICE_KEY = 'attendance:sent-to-office';
+export type SentToOffice = { classId: string; date: string };
 
 type Fetch = (input: string, init: RequestInit) => Promise<Response>;
 
@@ -50,8 +53,17 @@ export async function sendAttendanceMark(op: Operation, store: DeviceStore | nul
   // The session ended, or the server is unwell: it stays on the phone and is
   // sent after the next sign-in by the same person, or when the server answers.
   if (res.status === 401 || res.status === 429 || res.status >= 500) return { ok: false, kind: 'retry' };
-  const body = (await res.json().catch(() => null)) as { code?: string; rule?: string; differences?: Difference[]; alreadyMarked?: string[] } | null;
+  const body = (await res.json().catch(() => null)) as { code?: string; rule?: string; outcome?: string; differences?: Difference[]; alreadyMarked?: string[] } | null;
   if (!res.ok) return { ok: false, kind: 'refused', reason: body?.code ?? body?.rule ?? `http_${res.status}`, detail: { classId: mark.classId } };
+
+  if (body?.outcome === 'sent_to_office') {
+    // Not a mark: a request the office decides. The person is told on the Attendance screen.
+    if (store) {
+      const before = (await store.get<SentToOffice[]>(SENT_TO_OFFICE_KEY).catch(() => undefined)) ?? [];
+      await store.put(SENT_TO_OFFICE_KEY, [...before.filter((s) => !(s.classId === mark.classId && s.date === op.forDate)), { classId: mark.classId, date: op.forDate }]).catch(() => undefined);
+    }
+    return { ok: true };
+  }
 
   if (store) {
     // The kept list now shows these marks as saved, so with the network gone

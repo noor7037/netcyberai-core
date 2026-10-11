@@ -289,9 +289,9 @@ describe('marking with no network', () => {
     expect(await rows(`select 1 from usage_events`)).toEqual([]); // no time was given: nothing is recorded
   });
 
-  it('marks that reach the server after their day ended are not saved to any day, and the phone keeps them visible with the reason', async () => {
+  it('marks that reach the server too long after their day (past the office’s correction window) are not saved to any day, and the phone keeps them visible with the reason', async () => {
     await reset();
-    const p = phone(classTeacher, '2026-10-13'); // the server's day has moved on
+    const p = phone(classTeacher, '2026-10-25'); // 13 days on: older than the office may correct
     p.net.state.on = false;
     const op = await p.outbox.add<AttendanceMark>(ATTENDANCE_MARK, DAY, { classId: CLASS_5A, entries: presentAllBut([S.asha]), secondsToMark: 50 });
     p.net.state.on = true;

@@ -56,6 +56,26 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
       },
     ],
   },
+  // Attendance (C146): how far back the office may enter or correct a day.
+  {
+    moduleId: 'attendance',
+    version: 1,
+    fields: [
+      {
+        key: 'correction_window_days',
+        label: 'Days the office may correct',
+        help: 'How many days back the principal or school admin may enter or correct attendance, with a reason. Marks from a phone that arrive late within these days wait for the office.',
+        section: 'Corrections',
+        type: 'number',
+        default: 7,
+        min: 0,
+        max: 60,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+    ],
+  },
   // Timetable (C145): how many periods a school day has. Lowering it hides
   // nothing: periods already entered beyond it stay until the office clears them.
   {

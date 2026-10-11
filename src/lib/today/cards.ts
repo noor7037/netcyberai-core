@@ -107,6 +107,16 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     },
   },
   {
+    // Marks that arrived after their day ended and wait for the office (C146).
+    type: 'attendance-requests',
+    moduleId: 'attendance',
+    roles: OFFICE,
+    async load(db, ctx) {
+      const { rows } = await db.query(`select count(*) as c from attendance_correction_requests where school_id = $1 and status = 'waiting'`, [ctx.schoolId]);
+      return waiting('attendance-requests', 'attendance', n(rows[0]?.c), '/app/attendance');
+    },
+  },
+  {
     // "You teach 4 periods today", in order (C145). It is information, not
     // work waiting, so it is never counted as waiting.
     type: 'timetable-today',

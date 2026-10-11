@@ -106,7 +106,7 @@ describe('the contract', () => {
     expect(providersFor('teacher', ents({ attendance: { enabled: false } })).map((p) => p.type)).toEqual(['timetable-today', 'tickets-waiting']);
     expect(providersFor('teacher', ents({ attendance: { enabled: false }, timetable: { enabled: false } })).map((p) => p.type)).toEqual(['tickets-waiting']);
     expect(providersFor('accountant', ents({ fees: { enabled: false } })).map((p) => p.type)).toEqual(['tickets-waiting']);
-    expect(providersFor('principal', ents({ fees: { enabled: false }, communication: { enabled: false } })).map((p) => p.type)).toEqual(['attendance-school', 'consent-waiting', 'tickets-waiting']);
+    expect(providersFor('principal', ents({ fees: { enabled: false }, communication: { enabled: false } })).map((p) => p.type)).toEqual(['attendance-school', 'attendance-requests', 'consent-waiting', 'tickets-waiting']);
     expect(providersFor('principal', ents({}, 'suspended')).map((p) => p.type)).toEqual(['tickets-waiting']);
   });
 });

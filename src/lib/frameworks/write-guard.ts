@@ -93,6 +93,7 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['guardians/**', 'parents'],
   ['students/**', 'students'],
   ['students', 'students'],
+  ['attendance/**', 'attendance'],
   ['attendance', 'attendance'],
   ['timetable', 'timetable'],
   ['syllabus', 'academics'],

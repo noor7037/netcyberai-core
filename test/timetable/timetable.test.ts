@@ -1,3 +1,5 @@
+import { readFileSync } from 'fs';
+import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
@@ -195,10 +197,31 @@ describe('on the real schema', () => {
     await expect(as(t1, (c) => importTimetable(c, actor(t1), `${H}5-A,WED,1,Maths,t1@a.invalid\n`))).rejects.toThrow(/row-level security/);
   });
 
+  it('the academic coordinator fills the timetable too (C146); an accountant reads it and cannot write', async () => {
+    const COORD = 'e1000000-0000-4000-8000-0000000000a7';
+    const ACCOUNTANT = 'e1000000-0000-4000-8000-0000000000a8';
+    await db.pg.query(`insert into users (user_id, school_id, email, role, display_name) values ($1, $3, 'c@a.invalid', 'academic_coordinator', 'Coordinator'), ($2, $3, 'acc@a.invalid', 'accountant', 'Accountant')`, [COORD, ACCOUNTANT, A]);
+    const coord: Who = { role: 'academic_coordinator', user: COORD, school: A };
+    const accountant: Who = { role: 'accountant', user: ACCOUNTANT, school: A };
+    expect((await put(coord, C5, 5, 1, T2)).ok).toBe(true);
+    expect(await as(coord, (c) => clearEntry(c, actor(coord), { classId: C5, weekday: 5, period: 1 }))).toBe(true);
+    expect((await as(accountant, (c) => entriesForClass(c, A, C5))).length).toBeGreaterThan(0);
+    await expect(put(accountant, C5, 5, 1, T2)).rejects.toThrow(/row-level security/);
+    for (const file of ['src/app/api/app/timetable/route.ts', 'src/app/api/app/timetable/import/route.ts']) expect(readFileSync(path.resolve(__dirname, '../..', file), 'utf8')).toContain("'academic_coordinator'");
+  });
+
+  it('Timetable is switched on for every existing school, once, and a founder’s own switch is left alone (C146)', async () => {
+    const statement = readFileSync(path.resolve(__dirname, '../../supabase/migrations/20261011175653_p2_office_corrections.sql'), 'utf8').match(/insert into school_module_entitlements[\s\S]*?;/)![0];
+    await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'timetable', false, 'founder_override')`, [B]);
+    await db.pg.exec(statement);
+    await db.pg.exec(statement);
+    expect((await db.pg.query(`select school_id, enabled, source from school_module_entitlements where module_id = 'timetable' order by school_id`)).rows).toEqual([{ school_id: A, enabled: true, source: 'plan' }, { school_id: B, enabled: false, source: 'founder_override' }]);
+  });
+
   it('clearing a period removes it and is audited', async () => {
     expect(await as(principal, (c) => clearEntry(c, actor(principal), { classId: C6, weekday: 1, period: 2 }))).toBe(true);
     expect(await as(principal, (c) => clearEntry(c, actor(principal), { classId: C6, weekday: 1, period: 2 }))).toBe(false);
     expect(await saved()).toHaveLength(3);
-    expect((await db.pg.query(`select 1 from audit_log where school_id = $1 and event_action = 'timetable.clear'`, [A])).rows).toHaveLength(1);
+    expect((await db.pg.query(`select 1 from audit_log where school_id = $1 and event_action = 'timetable.clear' and actor_user_id = $2`, [A, PRINCIPAL])).rows).toHaveLength(1);
   });
 });
