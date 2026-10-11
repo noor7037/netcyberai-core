@@ -117,7 +117,7 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     moduleId: 'fees',
     roles: ['school_admin', 'accountant'],
     async load(db, ctx) {
-      const { rows } = await db.query(`select count(*) as c from fees_ledger where school_id = $1 and due_date = ${TODAY} and status::text = 'pending'`, [ctx.schoolId]);
+      const { rows } = await db.query(`select count(*) as c from fees_ledger where school_id = $1 and due_date = ${TODAY} and status::text in ('pending', 'partial')`, [ctx.schoolId]);
       return waiting('fees-due-today', 'fees', n(rows[0]?.c), '/app/fees');
     },
   },

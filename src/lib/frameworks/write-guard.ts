@@ -42,8 +42,11 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['students/**', 'students'],
   ['students', 'students'],
   ['families/**', 'students'],
+  // A scanned document being read into a student's record (Students: "document
+  // scan with OCR autofill"), not the Documents & Certificates module.
   ['documents/**', 'students'],
   ['qr-tokens/**', 'students'],
+  // Looking up an ID card writes the scan log, so it counts as a change.
   ['scan', 'students'],
   ['attendance/**', 'attendance'],
   ['attendance', 'attendance'],
@@ -111,7 +114,7 @@ export async function guardWrite(claims: SessionClaims & { schoolId: string }, p
   const module = writeModuleFor(pathname);
   if (module === null) {
     console.error('[write-guard] a write route is not in WRITE_ROUTES', pathname.replace(/[0-9a-f]{8}-[0-9a-f-]{27}/gi, '*'));
-    return refuse('not_sent_properly', 500);
+    return refuse('not_saved', 500); // our omission, not the person's: say only that it was not saved
   }
   if (module === 'checks-itself' || (module !== 'any-module' && isAlwaysOn(module))) return null;
   try {

@@ -39,7 +39,13 @@ function routeFiles(dir: string): string[] {
 }
 const writeRoutes = routeFiles(API)
   .map((file) => ({ file, rel: path.relative(API, path.dirname(file)), text: readFileSync(file, 'utf8') }))
-  .filter((r) => /export async function (POST|PUT|PATCH|DELETE)\b/.test(r.text));
+  .filter((r) => /export\s+(?:async\s+function|const)\s+(POST|PUT|PATCH|DELETE)\b/.test(r.text));
+// Each exported handler of a file with its own code, so a guarded GET cannot stand in for an unguarded POST.
+function handlers(text: string): { method: string; body: string }[] {
+  const starts = [...text.matchAll(/export\s+(?:async\s+function|const)\s+(GET|POST|PUT|PATCH|DELETE)\b/g)];
+  return starts.map((m, i) => ({ method: m[1], body: text.slice(m.index!, i + 1 < starts.length ? starts[i + 1].index! : text.length) }));
+}
+const writeHandlers = writeRoutes.flatMap((r) => handlers(r.text).filter((h) => h.method !== 'GET').map((h) => ({ ...h, rel: r.rel })));
 // A real-looking URL for a route folder: [param] becomes an id.
 const urlOf = (rel: string) => `/api/app/${rel.replace(/\[[^\]]+\]/g, randomUUID())}`;
 
@@ -88,9 +94,10 @@ describe('every write route is covered', () => {
   });
 
   it('every write route goes through the shared session guard, which is where the write guard runs', () => {
-    for (const r of writeRoutes) {
-      // requireAppSession itself, or a wrapper that calls it (appRoute; schoolTickets wraps appRoute).
-      expect(/\b(requireAppSession|appRoute|schoolTickets)\(/.test(r.text), r.rel).toBe(true);
+    expect(writeHandlers.length).toBeGreaterThanOrEqual(49);
+    for (const h of writeHandlers) {
+      // requireAppSession itself, or a wrapper that calls it (appRoute; schoolTickets wraps appRoute), in THIS handler.
+      expect(/\b(requireAppSession|appRoute|schoolTickets)\(\s*req\b/.test(h.body), `${h.method} ${h.rel}`).toBe(true);
     }
     const guard = readFileSync(path.join(__dirname, '../../src/lib/auth/require-app-session.ts'), 'utf8');
     expect(guard).toMatch(/WRITE_METHODS\.includes\(req\.method\)[\s\S]{0,120}guardWrite\(/);
@@ -99,8 +106,58 @@ describe('every write route is covered', () => {
   });
 
   it('a route that says it checks for itself really does, with write: true', () => {
-    for (const r of writeRoutes) {
-      if (writeModuleFor(urlOf(r.rel)) === 'checks-itself') expect(r.text, r.rel).toMatch(/checkModuleAccess\([\s\S]*?write:\s*true/);
+    for (const h of writeHandlers) {
+      if (writeModuleFor(urlOf(h.rel)) === 'checks-itself') expect(h.body, `${h.method} ${h.rel}`).toMatch(/checkModuleAccess\([\s\S]*?write:\s*true/);
+    }
+  });
+
+  it('each kind of path belongs to the module it should: the order of the table cannot quietly change this', () => {
+    const id = randomUUID();
+    const expected: Record<string, string> = {
+      students: 'students',
+      [`students/${id}`]: 'students',
+      'students/import': 'students',
+      [`students/${id}/family`]: 'students',
+      [`students/${id}/documents`]: 'students',
+      [`students/${id}/qr-token`]: 'students',
+      [`students/${id}/consent`]: 'parents',
+      [`students/${id}/guardians`]: 'parents',
+      [`students/${id}/dsr`]: 'parents',
+      [`guardians/${id}`]: 'parents',
+      'guardians/merge': 'parents',
+      [`guardians/${id}/students/${id}/verification`]: 'parents',
+      [`dsr/${id}/execute`]: 'parents',
+      'families/link': 'students',
+      [`documents/${id}/review`]: 'students',
+      [`qr-tokens/${id}/revoke`]: 'students',
+      scan: 'students',
+      attendance: 'attendance',
+      [`attendance/${id}`]: 'attendance',
+      syllabus: 'academics',
+      classes: 'setup',
+      subjects: 'setup',
+      'subjects/assignments': 'setup',
+      'compliance/form6': 'compliance',
+      'whatsapp-config': 'communication',
+      tickets: 'raise-ticket',
+      [`tickets/${id}/messages`]: 'raise-ticket',
+      'staff/invitations': 'any-module',
+      [`users/${id}/send-reset`]: 'any-module',
+      views: 'any-module',
+      'bulk/confirm': 'checks-itself',
+      'custom-fields': 'checks-itself',
+      'settings/attendance': 'checks-itself',
+    };
+    for (const [p, module] of Object.entries(expected)) {
+      expect(writeModuleFor(`/api/app/${p}`), p).toBe(module);
+      expect(writeModuleFor(`/api/app/${p}/`), `${p}/`).toBe(module); // a trailing slash changes nothing
+    }
+  });
+
+  it('every module a route belongs to is in the standard plan, so no school loses a flow it has', () => {
+    const inPlan = new Set(MODULE_REGISTRY.filter((m) => m.status === 'live' || m.status === 'partial').map((m) => m.id as string));
+    for (const [pattern, module] of WRITE_ROUTES) {
+      if (module !== 'checks-itself' && module !== 'any-module' && module !== 'raise-ticket') expect(inPlan.has(module), `${pattern} → ${module}`).toBe(true);
     }
   });
 

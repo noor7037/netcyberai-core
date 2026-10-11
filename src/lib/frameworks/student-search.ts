@@ -33,15 +33,23 @@ export function parseStudentSearch(q: unknown, limit: unknown): ParsedSearch | n
 }
 
 // A parent's phone is matched only as a whole number (C137): ten digits, or
-// + and a country code followed by the number. Part of a number finds
-// nobody, so a number cannot be worked out by guessing it digit by digit.
+// + and a country code followed by the number, or the two other ways a
+// whole Indian number is commonly written (0 before it, or 91 before it).
+// Part of a number finds nobody, so a number cannot be worked out by
+// guessing it digit by digit.
 // Returns the ten digits to compare, or null when the text is not a whole
 // phone number.
 export function fullPhone(term: string): string | null {
   const s = term.trim();
   if (!/^\+?[\d\s()-]+$/.test(s)) return null;
   const digits = s.replace(/\D/g, '');
-  if (digits.length === 10 && !s.startsWith('+')) return digits;
+  if (!s.startsWith('+')) {
+    if (digits.length === 10) return digits;
+    // "09876543210" (trunk zero) and "919876543210" (country code without the plus).
+    if (digits.length === 11 && digits.startsWith('0')) return digits.slice(1);
+    if (digits.length === 12 && digits.startsWith('91')) return digits.slice(2);
+    return null;
+  }
   // "+91 98765 43210": a country code of one to three digits, then the ten.
   if (s.startsWith('+') && digits.length >= 11 && digits.length <= 13) return digits.slice(-10);
   return null;

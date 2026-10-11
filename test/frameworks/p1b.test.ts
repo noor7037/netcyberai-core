@@ -146,13 +146,13 @@ describe('Student 360 search', () => {
   });
 
   it('a phone is matched only as a whole number: ten digits, or + and a country code (C137)', () => {
-    for (const whole of ['9876543210', '98765 43210', '(98765) 43-210', '+91 98765 43210', '+919876543210', '+1 9876543210', '+971 9876543210']) expect(fullPhone(whole), whole).toBe('9876543210');
-    for (const part of ['9876', '98765', '987654321', '43210', '+91 98765', '+91', '919876543210', '09876543210', '98765432101', '+1234 9876543210', 'ADM-9876543210', '9876543210a', '']) expect(fullPhone(part), part).toBeNull();
+    for (const whole of ['9876543210', '98765 43210', '(98765) 43-210', '+91 98765 43210', '+919876543210', '+1 9876543210', '+971 9876543210', '09876543210', '0 98765 43210', '919876543210', '91 98765 43210']) expect(fullPhone(whole), whole).toBe('9876543210');
+    for (const part of ['9876', '98765', '987654321', '43210', '+91 98765', '+91', '929876543210', '19876543210', '098765432', '91987654321', '98765432101', '+1234 9876543210', 'ADM-9876543210', '9876543210a', '']) expect(fullPhone(part), part).toBeNull();
   });
 
   it('part of a parent’s number finds nobody, however it is cut: a number cannot be guessed digit by digit', async () => {
     // Anaya's guardian is +91 98765 43210. The whole number finds her; no part of it does.
-    for (const whole of ['9876543210', '+91 98765 43210', '98765 43210']) expect(names(await search('principal', principal, whole)), whole).toEqual(['Anaya Verma']);
+    for (const whole of ['9876543210', '+91 98765 43210', '98765 43210', '09876543210', '919876543210']) expect(names(await search('principal', principal, whole)), whole).toEqual(['Anaya Verma']);
     for (const part of ['9876', '98765', '987654', '9876543', '98765432', '987654321', '43210', '543210', '6543210', '76543210', '876543210', '+91 98765', '+91 9876543']) {
       const found = await search('principal', principal, part);
       expect(found.filter((r) => r.matchedOn === 'guardian_phone'), part).toEqual([]);
