@@ -253,7 +253,13 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
 
       <div className="mt-6 flex flex-col gap-6">
         <FamilyPanel studentId={student.student_id} refreshKey={familyKey} />
-        <ConsentPanel studentId={student.student_id} guardians={guardians ?? []} canManage={canEdit} />
+        <ConsentPanel
+          studentId={student.student_id}
+          guardians={guardians ?? []}
+          canManage={canEdit}
+          studentStatus={student.status}
+          onStudentStatusChange={(status) => setStudent((s) => ({ ...s, status }))}
+        />
         <DocumentCapture studentId={student.student_id} guardians={guardians ?? []} />
         <DsrPanel studentId={student.student_id} canManage={canEdit} />
       </div>

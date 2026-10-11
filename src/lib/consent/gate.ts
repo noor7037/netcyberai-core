@@ -1,4 +1,6 @@
 import type { PoolClient } from 'pg';
+import type { StaffRole } from '@/lib/auth/types';
+import { syncStudentStatusWithConsent, type StudentStatusChange } from './student-status';
 
 // The full six-purpose set (Decision Log C20), mirroring the live
 // consent_purpose enum exactly. src/lib/onboarding/stages.ts already
@@ -110,7 +112,14 @@ export interface RecordConsentParams {
   granted: boolean;
   parentId: string;
   actorUserId: string;
+  actorRole: StaffRole;
   noticeVersion: string;
+}
+
+export interface ConsentDecisionResult extends ConsentLedgerRow {
+  // Set when this decision moved the student between 'pending_consent' and
+  // 'active' (C142, ./student-status.ts); null when the status stayed.
+  studentStatusChange: StudentStatusChange | null;
 }
 
 // Task 1: withdrawal is a new row, never an UPDATE -- this function
@@ -130,7 +139,12 @@ export interface RecordConsentParams {
 // recorded in evidence_ref ("parent:<uuid>"), a pointer, exactly what
 // that column's own comment says it is for, and verification_method
 // is carried over from that guardian's own recorded method.
-export async function recordConsentDecision(client: PoolClient, params: RecordConsentParams): Promise<ConsentLedgerRow> {
+//
+// C142: the student's status follows the ledger in the same transaction.
+// The grant that completes the required purposes makes the student
+// 'active'; withdrawing a required purpose returns an active student to
+// 'pending_consent'. Each move writes its own audit row.
+export async function recordConsentDecision(client: PoolClient, params: RecordConsentParams): Promise<ConsentDecisionResult> {
   const { rows: linkRows } = await client.query(
     `select verification_status, verification_method from parent_student_map
      where school_id = $1 and parent_id = $2 and student_id = $3`,
@@ -162,5 +176,13 @@ export async function recordConsentDecision(client: PoolClient, params: RecordCo
       params.noticeVersion,
     ]
   );
-  return rows[0];
+  const studentStatusChange = await syncStudentStatusWithConsent(client, {
+    schoolId: params.schoolId,
+    studentId: params.studentId,
+    actorUserId: params.actorUserId,
+    actorRole: params.actorRole,
+    decision: { purpose: params.purpose, granted: params.granted },
+    consentId: rows[0].consent_id,
+  });
+  return { ...rows[0], studentStatusChange };
 }

@@ -68,6 +68,7 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
         granted,
         parentId,
         actorUserId: guard.claims.sub,
+        actorRole: guard.claims.role,
         noticeVersion: NOTICE_VERSION,
       });
       await writeAuditLog(client, {
