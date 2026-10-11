@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
+import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useToast } from '@/components/ui/Toast';
 import { DocumentCapture } from './DocumentCapture';
 import { ConsentPanel } from './ConsentPanel';
@@ -217,7 +218,7 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
         {guardians === null ? (
           <p className="text-sm text-slate/70">Loading…</p>
         ) : guardians.length === 0 ? (
-          <p className="text-sm text-slate/70">No guardians linked yet.</p>
+          <TeachEmpty id="guardians" compact onAction={canEdit ? () => setAddOpen(true) : undefined} />
         ) : (
           <ul className="flex flex-col gap-2">
             {guardians.map((g) => (

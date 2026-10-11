@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Table, type TableColumn } from '@/components/ui/Table';
 import { Badge } from '@/components/ui/Badge';
 import { Modal } from '@/components/ui/Modal';
+import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
@@ -273,8 +274,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
         getRowId={(s) => s.student_id}
         state={state === 'loading' ? 'loading' : state === 'error' ? 'error' : 'ready'}
         errorMessage={errorMessage}
-        emptyTitle="No students yet"
-        emptyDescription="Add a student manually, or import a CSV from Admissions."
+        empty={<TeachEmpty id="students" onAction={() => setModalOpen(true)} />}
         retryAction={
           <button type="button" onClick={load} className="text-sm font-semibold text-sapphire">
             Retry
@@ -316,7 +316,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
           </button>
         </form>
         {classes.length === 0 ? (
-          <p className="text-sm text-slate/70">No classes yet.</p>
+          <TeachEmpty id="classes" compact onAction={() => document.getElementById('className')?.focus()} />
         ) : (
           <ul className="flex flex-col gap-1">
             {classes.map((c) => (

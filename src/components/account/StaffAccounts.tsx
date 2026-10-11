@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { FounderAccountTools } from './FounderAccountTools';
+import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 
 // Account list with "send reset code" (C89). Used by principals and school
 // admins for their own school (/app/staff, endpoint /api/app/users) and by
@@ -137,7 +138,7 @@ export function StaffAccounts({
         </p>
       )}
       {!accounts && !loadError && <p className="text-sm text-slate/70">Loading accounts…</p>}
-      {accounts && shown.length === 0 && <p className="text-sm text-slate/70">No accounts match.</p>}
+      {accounts && shown.length === 0 && <TeachEmpty id="staff-search" compact onAction={() => setQuery('')} />}
 
       <ul className="flex flex-col gap-3">
         {shown.map((a) => (

@@ -1,8 +1,8 @@
 import { getServerSession } from '@/lib/auth/server-session';
 import { withTenantContext } from '@/lib/auth/db';
-import { EmptyState } from '@/components/ui/EmptyState';
 import { ComplianceView } from '@/components/compliance/ComplianceView';
 import { ModulePage } from '@/components/app-ui/ModulePage';
+import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 
 // Task 5, PRD §2.3: impersonation must be "visible to the impersonated
 // school" -- this is that visibility. audit_log's own
@@ -34,7 +34,7 @@ export default async function CompliancePage() {
           reason recorded before access was granted. Support access you cannot see is not support.
         </p>
         {events.length === 0 ? (
-          <EmptyState title="No support access on record" description="Nothing to show yet." />
+          <TeachEmpty id="support-access" />
         ) : (
           <ul className="flex flex-col gap-2">
             {events.map((e, i) => (
