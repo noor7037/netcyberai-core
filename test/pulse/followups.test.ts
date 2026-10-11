@@ -118,7 +118,7 @@ describe('the "needs help" queue', () => {
   });
 
   it('Daily Pulse is switched on for every existing school, once; public roles have no access', async () => {
-    const statement = readFileSync(path.resolve(__dirname, '../../supabase/migrations/20261012110000_p2_pulse_followups.sql'), 'utf8').match(/insert into school_module_entitlements[\s\S]*?;/)![0];
+    const statement = readFileSync(path.resolve(__dirname, '../../supabase/migrations/20261011181234_p2_pulse_followups.sql'), 'utf8').match(/insert into school_module_entitlements[\s\S]*?;/)![0];
     await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'pulse', false, 'founder_override')`, [B]);
     await db.pg.exec(statement);
     await db.pg.exec(statement);
