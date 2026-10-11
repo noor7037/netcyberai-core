@@ -92,7 +92,7 @@ describe('an empty list says what to do next, and carries the button', () => {
   });
 
   it('every empty state is used by a screen, and the bare "No … yet." lines are gone from those screens', () => {
-    const files = ['components/students/StudentsView.tsx', 'components/students/StudentDetailView.tsx', 'components/students/FamilyPanel.tsx', 'components/students/DsrPanel.tsx', 'components/attendance/AttendanceView.tsx', 'components/timetable/TimetableView.tsx', 'components/account/StaffAccounts.tsx', 'components/academics/SyllabusView.tsx', 'app/(school)/app/compliance/page.tsx'];
+    const files = ['components/students/StudentsView.tsx', 'components/students/StudentDetailView.tsx', 'components/students/FamilyPanel.tsx', 'components/students/DsrPanel.tsx', 'components/attendance/AttendanceView.tsx', 'components/timetable/TimetableView.tsx', 'components/pulse/NeedsHelpView.tsx', 'components/account/StaffAccounts.tsx', 'components/academics/SyllabusView.tsx', 'app/(school)/app/compliance/page.tsx'];
     const all = files.map(src).join('\n');
     for (const id of EMPTY_IDS) expect(new RegExp(`<TeachEmpty[^>]*['"]${id}['"]`).test(all), id).toBe(true);
     // The lines these screens used to show, wherever they were written (text, a string, a prop).

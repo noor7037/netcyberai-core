@@ -117,6 +117,16 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     },
   },
   {
+    // Students noted as needing a follow-up (D6, C148). RLS shows a teacher their own classes'.
+    type: 'followups-open',
+    moduleId: 'pulse',
+    roles: ['principal', 'school_admin', 'teacher'],
+    async load(db, ctx) {
+      const { rows } = await db.query(`select count(*) as c from pulse_followups where school_id = $1 and status = 'open'`, [ctx.schoolId]);
+      return waiting('followups-open', 'pulse', n(rows[0]?.c), '/app/pulse');
+    },
+  },
+  {
     // "You teach 4 periods today", in order (C145). It is information, not
     // work waiting, so it is never counted as waiting.
     type: 'timetable-today',

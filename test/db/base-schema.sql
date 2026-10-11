@@ -341,3 +341,17 @@ alter table attendance_correction_requests enable row level security;
 create policy attendance_correction_requests_tenant_isolation on attendance_correction_requests using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert, update on attendance_correction_requests to app_user, nca_super;
 
+-- C148: the needs-help queue, as My Day's card counts it.
+create table pulse_followups (
+  followup_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  student_id uuid not null,
+  class_id uuid not null,
+  kind text not null,
+  status text not null default 'open',
+  created_at timestamptz not null default now()
+);
+alter table pulse_followups enable row level security;
+create policy pulse_followups_tenant_isolation on pulse_followups using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update on pulse_followups to app_user, nca_super;
+

@@ -61,6 +61,8 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['attendance', 'attendance'],
   ['timetable/**', 'timetable'],
   ['timetable', 'timetable'],
+  ['followups/**', 'pulse'],
+  ['followups', 'pulse'],
   ['syllabus/**', 'academics'],
   ['syllabus', 'academics'],
   // Classes, subjects and who teaches what are the school's Setup.
@@ -97,6 +99,7 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['attendance/**', 'attendance'],
   ['attendance', 'attendance'],
   ['timetable', 'timetable'],
+  ['followups', 'pulse'],
   ['syllabus', 'academics'],
   ['compliance/**', 'compliance'],
   ['whatsapp-config', 'communication'],

@@ -124,7 +124,7 @@ const ROWS: readonly Row[] = [
   { id: 'exams', label: 'Exams & Report Card', group: 'teaching-learning', icon: 'exams', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P6', status: 'foundation',
     capabilities: ['Exam setup', 'Marks entry with validation', 'Bulk marks from Excel', 'Grading', 'Report card PDF', 'Holistic Progress Card', 'Admit cards', 'Publish', 'Personal Best and Most Improved'] },
 
-  { id: 'pulse', mobilePriority: 4, label: 'Daily Pulse', group: 'parent-engagement', icon: 'pulse', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', phaseNote: 'Compose in P2', status: 'foundation',
+  { id: 'pulse', mobilePriority: 4, label: 'Daily Pulse', group: 'parent-engagement', icon: 'pulse', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', phaseNote: 'The needs-help queue is live (P2); compose next; sending in P4', status: 'partial',
     capabilities: ['Compose from “taught today”', 'Hinglish, Hindi and English', 'Send on WhatsApp', 'Understanding replies', 'Teacher follow-up queue', 'Response-rate North Star'] },
   { id: 'communication', label: 'Communication', group: 'parent-engagement', icon: 'chat', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', status: 'partial',
     capabilities: ['Notices for school and class', 'One notice to every channel', 'Templates', 'Send-gate: consent, quiet hours, budget', 'Delivery states', 'Failure retry', 'Cost view'] },
