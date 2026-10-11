@@ -2,17 +2,25 @@ import { NextRequest, NextResponse } from 'next/server';
 import { DRAFT_KINDS, configuredProvider } from '@/lib/ai/provider';
 import { copilotState, draft } from '@/lib/copilot/copilot';
 import { isUuid } from '@/lib/frameworks/custom-fields';
-import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
+import { checkModuleAccess } from '@/lib/frameworks/entitlements';
+import { accessDenied, appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 
 // Teacher Copilot v1 (docs/20 5h, C154).
 //   GET   whether Copilot is on for this school, and this month's use against the limit
 //   POST  a draft from one topic of the syllabus map. The draft is returned, not stored.
 export async function GET(req: NextRequest) {
-  return appRoute(req, async ({ claims, db }) => NextResponse.json(await copilotState(db, claims.schoolId, configuredProvider())));
+  return appRoute(req, async ({ claims, db }) => {
+    const access = await checkModuleAccess(db, claims, 'teacher-copilot');
+    if (!access.ok) return access.error === 'module_not_enabled' ? NextResponse.json({ on: false, why: 'module_off' }) : accessDenied(access);
+    return NextResponse.json(await copilotState(db, claims.schoolId, configuredProvider()));
+  });
 }
 
 export async function POST(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
+    // The module's own switch, with the read-only rule (the access guard leaves this route to it).
+    const access = await checkModuleAccess(db, claims, 'teacher-copilot', { write: true });
+    if (!access.ok) return accessDenied(access);
     const body = await readJson(req);
     const kind = DRAFT_KINDS.find((k) => k === body?.kind);
     if (!kind || !isUuid(body?.classId) || !isUuid(body?.subjectId) || !isUuid(body?.unitId)) return ruleError(400, 'not_sent_properly');

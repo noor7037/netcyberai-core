@@ -206,3 +206,57 @@ than inventing its own.
 - Preview deployments cannot sign in until the final cutover (`18` §0), so
   signed-in checks run on the development previews and the database tests,
   as in P1.
+
+## 10. Closing check (2026-10-13, C155)
+
+Every acceptance line of §3, against what is in the repository. "Tested"
+means an automated test on the whole schema as the app's database role, or
+a real-browser run in the harness, named in the slice's PR.
+
+| Slice | Acceptance line | State |
+|---|---|---|
+| 5a | Outbox: order kept, a retried operation applied once, a failed one stays visible | Tested (`test/offline/outbox.test.ts`). |
+| 5a | Opens with the network off, showing the last data and "offline" | Tested on a production build in a desktop browser with the server stopped (`scripts/harness/offline-prod.mjs`). **Open:** not yet installed and opened on a real Android phone. |
+| 5a | Signing out clears the device store | Built; checked by a source test only. **Open:** no browser test of sign-out. |
+| 5b | Mark a class offline, reconnect: every mark saved once | Tested, in the browser too. |
+| 5b | Two devices: the first is kept, the second sees the difference and saves a correction with a reason | Tested. |
+| 5b | A teacher cannot mark another teacher's class | Tested, and refused by the database directly. |
+| 5b | A mark at 00:30 India time is stored under that India day | Tested with a fixed clock. |
+| 5b | Minutes-to-mark written once per submission | Tested. |
+| 5b | The same-day edit window as a school setting | **Open.** The teacher's rule is fixed (10 minutes free, then a note, the same India day). What is a setting is the office's window for past days (C146). |
+| 5c | A clash is refused with the two entries named; a CSV with a clash imports nothing and lists the rows | Tested, in the browser too. |
+| 5c | A teacher sees their week; Today shows today's periods in order | Tested. |
+| 5d | Coverage matches a hand count; tap coverage for a seeded week matches a hand count | Tested. Tap coverage is per class and day (C149). |
+| 5d | Taught today works offline and syncs; a typed topic saves with no map; one tap makes exactly one log entry and one draft, a second tap changes them | Tested, in the browser too. |
+| 5e | One homework copied to three sections makes three assignments checked separately; editing the original does not change sent copies without asking | Tested. |
+| 5e | Completion marked offline syncs once; a teacher cannot set homework for a class they do not teach | Tested, in the browser too. |
+| 5e | Set with a photo through `FileStorage` | Tested against the in-memory store. In the deployed app a file is kept only after the database cutover (docs/18 §0); until then the homework is saved without it and the screen says so (C153). |
+| 5f | A ready message contains the day's topic and homework; nothing is sent; only the class's teacher or the office can edit it | Tested, in the browser too. |
+| 5f | A follow-up moves open → done or not needed with an outcome, audited; a teacher cannot see another class's | Tested. |
+| 5g | The list is exactly the students over the threshold; approve and dismiss are audited; nothing reaches a parent | Tested, in the browser too. |
+| 5h | With the stand-in: a draft appears, can be edited, is saved only on approve; a school over its limit is refused; nothing about a person is sent to the provider | Tested, in the browser too. |
+| 5h | Drafts a remark | **Not built, by decision** (C153): AI-drafted remarks about a student wait for the consent-purpose decision (O6). |
+| 5h | A real model behind `AIProvider` | **Open.** Only the stand-in exists. The real provider is added and tested when the founder supplies a key; Copilot is off for every school until then. |
+
+**Done when** (`16` §4): "a teacher runs a full school day on a phone,
+offline-tolerant." Built and tested: My Day, attendance, timetable, taught
+today, homework, the day's message, the needs-help queue, recovery.
+Attendance, taught today and homework completion work with no network and
+sync once.
+
+**Open items carried out of P2**
+
+1. Install on a real Android phone, open offline, and sign out (5a). Needs a
+   person with a phone; no founder dashboard task.
+2. The teacher's same-day edit window as a school setting (5b).
+3. Hindi on every P2 screen, and the Hindi and Hinglish Pulse templates, are
+   unreviewed (founder's approval, as for P1).
+4. These need the network: setting or changing homework, changing the
+   syllabus map or the timetable, corrections of a saved mark, Pulse edits,
+   Copilot.
+5. A real AI provider, and the founder's key and monthly limit (5h).
+6. Files in the deployed app wait for the cutover (docs/18 §0).
+7. Not built in P2 and not on the plan's acceptance lines: reordering or
+   editing a syllabus topic; deleting a homework or its file; a school's own
+   leave list; tracking an approved recovery plan to completion.
+

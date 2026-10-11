@@ -1,17 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { MAX_NOTE_BODY, approveNote, listNotes } from '@/lib/copilot/copilot';
 import { isUuid } from '@/lib/frameworks/custom-fields';
-import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
+import { checkModuleAccess } from '@/lib/frameworks/entitlements';
+import { accessDenied, appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 
 // Lesson plans and worksheets a teacher approved (C154).
 //   GET   the saved ones the caller may see
 //   POST  approve and save the words as the teacher left them
 export async function GET(req: NextRequest) {
-  return appRoute(req, async ({ claims, db }) => NextResponse.json({ notes: await listNotes(db, claims.schoolId) }));
+  return appRoute(req, async ({ claims, db }) => {
+    const access = await checkModuleAccess(db, claims, 'teacher-copilot');
+    if (!access.ok) return accessDenied(access);
+    return NextResponse.json({ notes: await listNotes(db, claims.schoolId) });
+  });
 }
 
 export async function POST(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
+    // The module's own switch, with the read-only rule (the access guard leaves this route to it).
+    const access = await checkModuleAccess(db, claims, 'teacher-copilot', { write: true });
+    if (!access.ok) return accessDenied(access);
     const body = await readJson(req);
     const kind = body?.kind === 'lesson_plan' || body?.kind === 'worksheet' ? body.kind : null;
     if (!kind || !isUuid(body?.classId) || !isUuid(body?.subjectId) || !isUuid(body?.unitId) || typeof body?.body !== 'string' || body.body.length > MAX_NOTE_BODY * 2) return ruleError(400, 'not_sent_properly');

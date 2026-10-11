@@ -449,6 +449,30 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['recovery', 'catch up', 'catch-up', 'missed homework', 'not done', 'भरपाई', 'छूटा गृहकार्य'],
   },
   {
+    slug: 'teacher-copilot',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Get a first draft from Teacher Copilot', hi: 'Teacher Copilot से पहला मसौदा लें' },
+    summary: {
+      en: 'Copilot writes a first draft of a lesson plan, a worksheet or the day’s message from a topic on your syllabus map. You read it, change it and approve it.',
+      hi: 'Copilot आपके पाठ्यक्रम के नक्शे के विषय-बिंदु से पाठ-योजना, वर्कशीट या दिन के संदेश का पहला मसौदा लिखता है। आप उसे पढ़ते, बदलते और मंज़ूर करते हैं।',
+    },
+    steps: [
+      { en: 'Open “Teacher Copilot”. Under “What to draft”, choose “Lesson plan”, “Worksheet” or “Message to parents”.', hi: '“Teacher Copilot” खोलें। “What to draft” के नीचे “Lesson plan”, “Worksheet” या “Message to parents” चुनें।' },
+      { en: 'Choose the “Class and subject” and the “Topic”, then press “Write a draft”.', hi: '“Class and subject” और “Topic” चुनें, फिर “Write a draft” दबाएँ।' },
+      { en: 'Read the draft and change what is needed. A draft can be wrong.', hi: 'मसौदा पढ़ें और जो ज़रूरी हो बदलें। मसौदा ग़लत हो सकता है।' },
+      { en: 'Press “Approve and save” to keep it under your name, or “Discard”.', hi: 'अपने नाम से रखने के लिए “Approve and save” दबाएँ, या “Discard”।' },
+    ],
+    tips: [
+      { en: 'Only the class level, the subject and the topic are sent to write a draft. Nothing about any student, parent or teacher is sent.', hi: 'मसौदा लिखने के लिए सिर्फ़ कक्षा का स्तर, विषय और विषय-बिंदु भेजे जाते हैं। किसी विद्यार्थी, अभिभावक या शिक्षक के बारे में कुछ नहीं भेजा जाता।' },
+      { en: 'Nothing is kept until you approve, and nothing is sent to parents from here.', hi: 'आपकी मंज़ूरी तक कुछ नहीं रखा जाता, और यहाँ से अभिभावकों को कुछ नहीं भेजा जाता।' },
+      { en: 'Each school has a monthly limit. If the screen says Copilot is not switched on, nothing is needed from you.', hi: 'हर स्कूल की एक मासिक सीमा है। अगर स्क्रीन कहे कि Copilot चालू नहीं है, तो आपसे कुछ नहीं चाहिए।' },
+    ],
+    start: { href: '/app/teacher-copilot', label: { en: 'Teacher Copilot', hi: 'Teacher Copilot' } },
+    related: ['taught-today', 'daily-pulse-message', 'set-homework'],
+    keywords: ['copilot', 'ai', 'draft', 'lesson plan', 'worksheet', 'मसौदा', 'पाठ-योजना', 'वर्कशीट'],
+  },
+  {
     slug: 'compliance-screen',
     category: 'daily',
     audience: 'office',

@@ -23,8 +23,10 @@ export type CopilotState = { on: true; limit: number; used: number } | { on: fal
 // switched on for it, the founder has set its monthly limit, and a provider
 // is configured. Until then it is off, and says which is missing.
 export async function copilotState(db: PoolClient, schoolId: string, provider: AIProvider | null): Promise<CopilotState> {
-  const module = (await loadEntitlements(db, schoolId)).modules['teacher-copilot'];
-  if (!module?.enabled) return { on: false, why: 'module_off' };
+  const entitlements = await loadEntitlements(db, schoolId);
+  const module = entitlements.modules['teacher-copilot'];
+  // A paused or read-only school drafts and saves nothing new.
+  if (!module?.enabled || (entitlements.accessMode !== 'full' && entitlements.accessMode !== 'grace')) return { on: false, why: 'module_off' };
   const limit = module.limits?.[LIMIT_KEY];
   if (typeof limit !== 'number' || !(limit > 0)) return { on: false, why: 'no_limit' };
   if (!provider) return { on: false, why: 'no_provider' };
@@ -98,6 +100,9 @@ export type ApproveResult = { ok: true; noteId: string } | { ok: false; reason: 
 // kept are the ones the teacher approved, under their name.
 export async function approveNote(db: PoolClient, actor: Actor, input: { kind: 'lesson_plan' | 'worksheet'; classId: string; subjectId: string; unitId: string; body: string }): Promise<ApproveResult> {
   if (!STAFF.includes(actor.role) || !['lesson_plan', 'worksheet'].includes(input.kind)) return { ok: false, reason: 'not_allowed' };
+  // Saving goes through the same switch as drafting, whatever provider is configured.
+  const entitlements = await loadEntitlements(db, actor.schoolId);
+  if (!entitlements.modules['teacher-copilot']?.enabled || (entitlements.accessMode !== 'full' && entitlements.accessMode !== 'grace')) return { ok: false, reason: 'not_allowed' };
   const body = input.body.trim();
   if (!body) return { ok: false, reason: 'empty' };
   if (body.length > MAX_NOTE_BODY) return { ok: false, reason: 'too_long' };

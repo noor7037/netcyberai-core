@@ -161,6 +161,15 @@ describe('nothing is kept until the teacher approves', () => {
     expect(await as(t1, (c) => approveNote(c, actor(t1), { kind: 'lesson_plan', classId: C5, subjectId: MATHS, unitId: UNIT, body: 'x'.repeat(8001) }))).toEqual({ ok: false, reason: 'too_long' });
   });
 
+  it('a read-only or paused school drafts and saves nothing new', async () => {
+    await db.pg.query(`insert into school_entitlements (school_id, plan, access_mode) values ($1, 'standard', 'read_only') on conflict (school_id) do update set access_mode = 'read_only'`, [A]);
+    const provider = recording();
+    expect(await ask(t1, provider)).toEqual({ ok: false, reason: 'off', why: 'module_off' });
+    expect(await as(t1, (c) => approveNote(c, actor(t1), { kind: 'worksheet', classId: C5, subjectId: MATHS, unitId: UNIT, body: 'x' }))).toEqual({ ok: false, reason: 'not_allowed' });
+    expect(provider.seen).toEqual([]);
+    await db.pg.query(`update school_entitlements set access_mode = 'full' where school_id = $1`, [A]);
+  });
+
   it('saved notes are for the class’s teacher and the office; nobody approves in another’s name', async () => {
     expect((await as(t1, (c) => listNotes(c, A))).map((n) => [n.class_name, n.kind, n.ai_assisted])).toEqual([['5-A', 'lesson_plan', true]]);
     expect(await as(t2, (c) => listNotes(c, A))).toEqual([]);
