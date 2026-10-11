@@ -312,6 +312,37 @@ const feesDuesDone = async () => {
   const r = rows[0];
   if (r.n !== duesStudents || r.students !== duesStudents || Number(r.net) !== duesStudents * 150050 || r.wrong !== 0) throw new Error(`expected ${duesStudents} lines, one per active student, 1,500.50 each, all adding up: ${JSON.stringify(r)}`);
 };
+// A payment at the counter (C160): dues are raised as above, the office takes
+// a part payment for the first student, pressing the button twice, and opens
+// the receipt. One receipt, one credit, and the school's figures reconcile.
+const clearPayments = async () => {
+  // By receipt, not by due: the money goes to the student's oldest dues first, and those are the seed's.
+  // The status trigger runs on the delete and puts each due's status back.
+  await db.pg.query(`delete from payments where receipt_id in (select receipt_id from receipts where school_id = $1 and issued_by = $2)`, [SCHOOL, PEOPLE.principal.sub]);
+  await db.pg.query(`delete from receipts where school_id = $1 and issued_by = $2`, [SCHOOL, PEOPLE.principal.sub]);
+};
+const feesPay = async (page) => {
+  await clearPayments();
+  await feesDues(page);
+  await page.selectOption('#pay-class', { label: '5-A' });
+  await page.waitForFunction(() => document.querySelectorAll('#pay-student option').length > 1, null, { timeout: 15000 });
+  await page.selectOption('#pay-student', { index: 1 });
+  await page.locator('[data-open-due]').first().waitFor({ timeout: 15000 });
+  await page.locator('#pay-amount').fill('1000');
+  await page.selectOption('#pay-method', 'upi');
+  await page.locator('#pay-reference').fill('UPI 4411');
+  await page.locator('[data-take]').dblclick();
+  await page.locator('[data-last-receipt] a').waitFor({ timeout: 15000 });
+  await page.locator('[data-last-receipt] a').click();
+  await page.locator('[data-receipt]').waitFor({ timeout: 20000 });
+};
+const feesPayDone = async () => {
+  const { rows } = await db.pg.query(`select (select count(*)::int from receipts where school_id = $1 and issued_by = $2) as receipts, (select coalesce(sum(total_minor), 0)::int from receipts where school_id = $1 and issued_by = $2) as received, (select coalesce(sum(p.amount_minor), 0)::int from payments p join receipts r on r.receipt_id = p.receipt_id where r.school_id = $1 and r.issued_by = $2) as credited`, [SCHOOL, PEOPLE.principal.sub]);
+  await clearPayments();
+  await clearDues();
+  const r = rows[0];
+  if (r.receipts !== 1 || r.received !== 100000 || r.credited !== 100000) throw new Error(`expected one receipt of 1,000 credited once: ${JSON.stringify(r)}`);
+};
 // The "needs help" queue (C148): one student waiting, then the outcome is
 // recorded and the card leaves the queue.
 const needsHelp = async (page) => {
@@ -449,6 +480,7 @@ const SCREENS = [
   ['principal', 'app-attendance', '/app/attendance', chooseClass],
   ['principal', 'app-fees', '/app/fees', feesSetup, feesSetupDone],
   ['principal', 'app-fees-dues', '/app/fees', feesDues, feesDuesDone],
+  ['principal', 'app-fees-receipt', '/app/fees', feesPay, feesPayDone],
   ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],
   ['principal', 'app-timetable-clash', '/app/timetable', timetableClash],

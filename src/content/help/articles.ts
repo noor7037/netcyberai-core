@@ -523,6 +523,30 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['dues', 'fees', 'raise dues', 'concession', 'discount', 'rte', 'scholarship', 'sibling', 'देय', 'रियायत', 'छूट'],
   },
   {
+    slug: 'take-fee-payment',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Take a fee payment and give a receipt', hi: 'फ़ीस का भुगतान लें और रसीद दें' },
+    summary: {
+      en: 'Find the student, see what is owed, type what was received and how. One press gives one numbered receipt to print.',
+      hi: 'विद्यार्थी चुनें, देखें कितना बाकी है, कितना मिला और कैसे, यह लिखें। एक बार दबाने पर एक नंबर वाली रसीद बनती है।',
+    },
+    steps: [
+      { en: 'Open “Fees”. Under “Take a payment”, choose the “Class” and the “Student”. The dues still owed are listed, oldest first.', hi: '“Fees” खोलें। “Take a payment” के नीचे “Class” और “Student” चुनें। बाकी देय राशियाँ दिखती हैं, सबसे पुरानी पहले।' },
+      { en: 'Type the “Amount received, in rupees”, choose “How it was paid” and, for a cheque or UPI, the reference.', hi: '“Amount received, in rupees” लिखें, “How it was paid” चुनें और चेक या UPI हो तो संदर्भ लिखें।' },
+      { en: 'Press “Take payment”. The money goes to the oldest due first.', hi: '“Take payment” दबाएँ। रकम सबसे पुरानी देय राशि में पहले जाती है।' },
+      { en: 'Press “Open the receipt to print”, then “Print”.', hi: '“Open the receipt to print” दबाएँ, फिर “Print”।' },
+    ],
+    tips: [
+      { en: 'If a parent wants the money to go to a particular due, tick “Choose which dues this money is for (otherwise the oldest first)” and type the amount beside each.', hi: 'अगर अभिभावक चाहें कि रकम किसी ख़ास देय में जाए, तो “Choose which dues this money is for (otherwise the oldest first)” पर निशान लगाएँ और हर एक के पास राशि लिखें।' },
+      { en: 'For brothers and sisters, tick “Take it for the whole family (brothers and sisters together)”. One receipt covers them all.', hi: 'भाई-बहनों के लिए “Take it for the whole family (brothers and sisters together)” पर निशान लगाएँ। एक रसीद सबके लिए बनती है।' },
+      { en: 'A wrong receipt is not edited. The principal or the school admin presses “Reverse” and writes why; the dues are then owed again and the number is not used again.', hi: 'ग़लत रसीद बदली नहीं जाती। प्रिंसिपल या स्कूल एडमिन “Reverse” दबाकर कारण लिखते हैं; देय राशि फिर बाकी हो जाती है और वह नंबर दोबारा इस्तेमाल नहीं होता।' },
+    ],
+    start: { href: '/app/fees', label: { en: 'Fees', hi: 'Fees' } },
+    related: ['raise-fee-dues', 'fee-structures'],
+    keywords: ['payment', 'receipt', 'cash', 'cheque', 'upi', 'fees', 'collect', 'reverse', 'भुगतान', 'रसीद', 'नकद'],
+  },
+  {
     slug: 'compliance-screen',
     category: 'daily',
     audience: 'office',
