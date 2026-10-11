@@ -1,3 +1,6 @@
+import { errorMessage } from '@/lib/errors/catalogue';
+import { loadEntitlements } from '@/lib/frameworks/entitlements';
+import { writeRefusal } from '@/lib/frameworks/write-guard';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { BulkPreview, BulkRun, BulkSelection } from '@/lib/contracts/bulk';
 import type { SchoolRole } from '@/lib/contracts/modules';
@@ -195,6 +198,17 @@ export function bulkRunHandler(deps: { platform: <T>(fn: (db: Sql) => Promise<T>
       if (run.status !== 'queued') return; // already run (a retried job)
       const action = bulkAction(run.action_id);
       if (!action) throw new PermanentJobError('unknown action');
+      // The school may have been paused, made read-only or lost the module
+      // between confirming and this job running (C137): then nothing is changed.
+      const refused = writeRefusal(await loadEntitlements(db, run.school_id), action.def.moduleId);
+      if (refused) {
+        await db.query(
+          `update bulk_runs set status = 'failed', done = 0, failed = cardinality(target_ids), failures = $3, started_at = now(), finished_at = now()
+           where school_id = $1 and run_id = $2 and status = 'queued'`,
+          [run.school_id, runId, JSON.stringify([{ id: '', reason: errorMessage(refused) }])]
+        );
+        return;
+      }
       await db.query(`update bulk_runs set status = 'running', started_at = now() where run_id = $1 and status = 'queued'`, [runId]);
       await runAction(db, action, run, { userId: run.created_by, role: run.created_role });
     });

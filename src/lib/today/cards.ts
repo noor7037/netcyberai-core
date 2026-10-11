@@ -1,5 +1,6 @@
 import { isModuleEnabled, type SchoolEntitlements } from '@/lib/contracts/entitlements';
 import { arrangeMyDay, type MyDay, type TodayCard, type TodayContext, type TodayProvider, type TodaySql } from '@/lib/contracts/today-cards';
+import { feeIsOverdueSql } from '@/lib/fees/overdue';
 import { classLabel } from '@/lib/frameworks/class-label';
 
 // The "today" cards of the modules that are live (docs/19 rule 2, C136).
@@ -116,18 +117,18 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     moduleId: 'fees',
     roles: ['school_admin', 'accountant'],
     async load(db, ctx) {
-      const { rows } = await db.query(`select count(*) as c from fees_ledger where school_id = $1 and due_date = ${TODAY} and status::text in ('pending', 'overdue', 'partial')`, [ctx.schoolId]);
+      const { rows } = await db.query(`select count(*) as c from fees_ledger where school_id = $1 and due_date = ${TODAY} and status::text in ('pending', 'partial')`, [ctx.schoolId]);
       return waiting('fees-due-today', 'fees', n(rows[0]?.c), '/app/fees');
     },
   },
   {
-    // Past the due date and not paid or waived. Worked out from the date:
-    // nothing sets a fee to "overdue" when its date simply passes.
+    // Still pending with its due date passed: the same rule as the dashboard
+    // (src/lib/fees/overdue.ts).
     type: 'fees-overdue',
     moduleId: 'fees',
     roles: ['principal', 'accountant'],
     async load(db, ctx) {
-      const { rows } = await db.query(`select count(*) as c from fees_ledger where school_id = $1 and due_date < ${TODAY} and status::text in ('pending', 'overdue', 'partial')`, [ctx.schoolId]);
+      const { rows } = await db.query(`select count(*) as c from fees_ledger where school_id = $1 and ${feeIsOverdueSql()}`, [ctx.schoolId]);
       return waiting('fees-overdue', 'fees', n(rows[0]?.c), '/app/fees');
     },
   },

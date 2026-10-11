@@ -94,8 +94,8 @@ from generate_series(1, 60) g;
 -- The live modules switched on for the live school, as the default plan does.
 insert into school_entitlements (school_id, plan) values ('a0000000-0000-4000-8000-000000000001', 'standard'), ('b0000000-0000-4000-8000-000000000002', 'standard');
 insert into school_module_entitlements (school_id, module_id, enabled, source)
-select 'a0000000-0000-4000-8000-000000000001', m, true, 'plan'
-from unnest(array['dashboard','setup','students','parents','academics','attendance','communication','documents','compliance','help-center','raise-ticket','staff','admissions','fees','reports']) m;
+select s, m, true, 'plan'
+from unnest(array['a0000000-0000-4000-8000-000000000001', 'b0000000-0000-4000-8000-000000000002']::uuid[]) s, unnest(array['dashboard','setup','students','parents','academics','attendance','communication','documents','compliance','help-center','raise-ticket','staff','admissions','fees','reports']) m;
 
 insert into support_tickets (ticket_id, school_id, raised_by, raised_role, category, module_id, subject, body, status) values
   ('00000000-0000-4000-8000-0000000f0001', 'a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-00000000a003', 'teacher', 'not_working', 'attendance', 'Attendance for 5-A will not save', 'When I mark attendance for class 5-A and press Submit, the page shows an error.', 'waiting_on_school'),

@@ -163,6 +163,10 @@ describe('each rule says what is wrong and how to fix it, in English and Hindi',
     expect(en('already_done')).toBe('This has already been done. There is nothing more to do.');
     expect(hi('already_done')).toMatch(DEVANAGARI);
   });
+  it('account_paused', () => {
+    expect(en('account_paused')).toBe('Your school’s account is paused, so nothing can be changed right now. Ask your principal, or raise a ticket to NetCyberAI.');
+    expect(hi('account_paused')).toMatch(DEVANAGARI);
+  });
   it('not_saved', () => {
     expect(en('not_saved')).toBe('This could not be saved just now. Check your internet, then try again.');
     expect(hi('not_saved')).toMatch(DEVANAGARI);
@@ -173,7 +177,7 @@ describe('each rule says what is wrong and how to fix it, in English and Hindi',
   });
 
   it('every rule has a test above, both languages, and no technical word', () => {
-    const tested = ['required', 'choose_one', 'too_short', 'too_long', 'phone_digits', 'phone_characters', 'ticket_limit', 'not_allowed', 'signed_out', 'phone_start', 'email_format', 'date_format', 'date_not_real', 'date_in_future', 'class_not_in_school', 'already_exists', 'nothing_to_save', 'file_missing', 'file_too_large', 'file_type', 'too_many', 'too_fast', 'not_saved', 'not_found', 'already_linked', 'two_step_delete', 'not_sent_properly', 'module_off', 'read_only', 'guardian_not_linked', 'file_empty', 'step_out_of_order', 'code_expired', 'code_wrong', 'code_too_many_tries', 'guardian_not_verified', 'only_for_deletion', 'approve_first', 'already_done'];
+    const tested = ['required', 'choose_one', 'too_short', 'too_long', 'phone_digits', 'phone_characters', 'ticket_limit', 'not_allowed', 'signed_out', 'phone_start', 'email_format', 'date_format', 'date_not_real', 'date_in_future', 'class_not_in_school', 'already_exists', 'nothing_to_save', 'file_missing', 'file_too_large', 'file_type', 'too_many', 'too_fast', 'not_saved', 'not_found', 'already_linked', 'two_step_delete', 'not_sent_properly', 'module_off', 'read_only', 'guardian_not_linked', 'file_empty', 'step_out_of_order', 'code_expired', 'code_wrong', 'code_too_many_tries', 'guardian_not_verified', 'only_for_deletion', 'approve_first', 'already_done', 'account_paused'];
     expect(Object.keys(ERROR_RULES).sort()).toEqual([...tested].sort());
     const sample = { field: 'phone', have: 2, min: 3, max: 9, need: 10, value: 'x', maxMb: 4, allowed: 'PNG' };
     for (const rule of Object.keys(ERROR_RULES) as ErrorRule[]) {

@@ -153,6 +153,10 @@ export const ERROR_RULES = {
     en: () => 'Your school does not have this part switched on. Ask your principal, or raise a ticket to NetCyberAI.',
     hi: () => 'आपके स्कूल में यह हिस्सा चालू नहीं है। अपने प्रिंसिपल से कहें, या NetCyberAI को टिकट भेजें।',
   },
+  account_paused: {
+    en: () => 'Your school’s account is paused, so nothing can be changed right now. Ask your principal, or raise a ticket to NetCyberAI.',
+    hi: () => 'आपके स्कूल का खाता अभी रोका गया है, इसलिए अभी कुछ बदला नहीं जा सकता। अपने प्रिंसिपल से कहें, या NetCyberAI को टिकट भेजें।',
+  },
   read_only: {
     en: () => 'Your school’s account can be read but not changed right now. Ask your principal, or raise a ticket to NetCyberAI.',
     hi: () => 'आपके स्कूल का खाता अभी सिर्फ़ देखा जा सकता है, बदला नहीं जा सकता। अपने प्रिंसिपल से कहें, या NetCyberAI को टिकट भेजें।',

@@ -3,7 +3,7 @@
 // Log C110). One box, results as the person types.
 
 export type StudentSearchRequest = {
-  q: string; // at least 2 characters; digits search admission numbers and phones
+  q: string; // at least 2 characters; a phone is matched only as a whole number (10 digits, or + and country code)
   limit?: number; // default 10, maximum 25
 };
 

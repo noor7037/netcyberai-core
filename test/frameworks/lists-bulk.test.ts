@@ -8,6 +8,8 @@ import { createDefinition, writeValues } from '@/lib/frameworks/custom-fields';
 import { compileListQuery, runList } from '@/lib/frameworks/filter-engine';
 import { listSpec, type StudentListRow } from '@/lib/frameworks/lists';
 import { createView, listViews, updateView } from '@/lib/frameworks/saved-views';
+import { changeSchoolAccess } from '@/lib/frameworks/entitlements';
+import { applyPlan, DEFAULT_PLAN_ID } from '@/lib/frameworks/plans';
 import { bulkRunHandler, confirmBulk, getBulkRun, previewBulk, undoBulk } from '@/lib/frameworks/bulk-engine';
 
 // The filter engine, saved views and bulk actions on real Postgres (C112).
@@ -40,6 +42,8 @@ beforeAll(async () => {
   db = await createTestDb();
   await db.platform(async (q) => {
     await q.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'A', 'IN-HR')`, [A]);
+    // The school has its plan's modules, as every real school does: a queued bulk run checks them again when it runs (C137).
+    await applyPlan(q, A, DEFAULT_PLAN_ID, { userId: null, role: null }, 'test setup');
     await q.query(`insert into classes (class_id, school_id, name, section) values ($1, $4, '8-A', 'A'), ($2, $4, '8-B', 'B'), ($3, $4, '9-A', 'A')`, [c8a, c8b, c9a, A]);
     await q.query(
       `insert into students (school_id, admission_no, name, class_id, roll_no, status, dob)
@@ -158,6 +162,29 @@ describe('bulk actions: move to class', () => {
     const run = await asPrincipal((q) => getBulkRun(q, A, p.preview.previewId));
     expect(run).toMatchObject({ status: 'succeeded', done: 271 });
     expect(await inClass(c9a)).toBe(271);
+  });
+
+  it('a queued run changes nothing if the school was made read-only before the job ran (C137)', async () => {
+    const selection = { mode: 'ids' as const, ids: (await db.query(`select student_id from students where school_id = $1 order by name limit 260`, [A])).rows.map((r) => r.student_id) };
+    const target = (await db.query(`select class_id from classes where school_id = $1 and class_id <> $2 limit 1`, [A, c9a])).rows[0].class_id;
+    const before = await inClass(target);
+    const p = await asPrincipal((q) => previewBulk(q, actor, { actionId: 'students.move_class', selection, params: { classId: target } }));
+    if (!p.ok) throw new Error(JSON.stringify(p));
+    expect(p.preview.runsAsJob).toBe(true);
+    const c = await asPrincipal((q) => confirmBulk(q, actor, p.preview.previewId, queue()));
+    expect(c).toMatchObject({ ok: true, run: { status: 'queued' } });
+    const founderActor = { userId: randomUUID(), role: 'super_admin' as const };
+    await db.platform((q) => changeSchoolAccess(q, { schoolId: A, accessMode: 'read_only', reason: 'test' }, founderActor));
+    try {
+      await runJobs({ handlers: { 'bulk.run': bulkRunHandler({ platform: (fn) => db.platform(fn) }) }, queue: queue(), limit: 5 } as any);
+      const run = await asPrincipal((q) => getBulkRun(q, A, p.preview.previewId));
+      expect(run).toMatchObject({ status: 'failed', done: 0, failed: 260 });
+      const why = (await db.query(`select failures::text as f from bulk_runs where run_id = $1`, [p.preview.previewId])).rows[0].f;
+      expect(why).toContain('can be read but not changed');
+      expect(await inClass(target)).toBe(before);
+    } finally {
+      await db.platform((q) => changeSchoolAccess(q, { schoolId: A, accessMode: 'full', reason: 'test' }, founderActor));
+    }
   });
 
   it('refuses ids outside the list and roles the action does not allow', async () => {
