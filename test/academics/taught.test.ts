@@ -47,7 +47,7 @@ const tap = (who: Who, more: Partial<TaughtInput> = {}) =>
 const log = () => rows(`select progress_id, class_id, subject_id, date::text as date, topic, status, unit_id, note from syllabus_progress where school_id = $1 order by date, class_id, subject_id`, [A]);
 const drafts = () => rows(`select pulse_id, class_id, subject_id, topic, exception_state, status, sent_on::text as sent_on, created_by, source_progress_id, body_hinglish from pulse_messages where school_id = $1 order by sent_on, class_id, subject_id`, [A]);
 const taps = () => rows(`select kind, class_id, day::text as day, value::int as value from usage_events where school_id = $1 order by day, class_id`, [A]);
-const reset = () => db.pg.exec(`delete from pulse_messages; delete from syllabus_progress; delete from syllabus_units; delete from usage_events;`);
+const reset = () => db.pg.exec(`delete from homework_status; delete from homework_targets; delete from homework; delete from pulse_messages; delete from syllabus_progress; delete from syllabus_units; delete from usage_events;`);
 
 beforeAll(async () => {
   db = await startHarnessDb({ port: 0 });
@@ -73,7 +73,7 @@ describe('one tap', () => {
     expect(first).toMatchObject({ kind: 'ok', created: true });
     expect(await log()).toMatchObject([{ class_id: C5, subject_id: MATHS, date: DAY, topic: 'Fractions: halves and quarters', status: 'taught', unit_id: null, note: null }]);
     const [draft] = await drafts();
-    expect(draft).toMatchObject({ class_id: C5, subject_id: MATHS, topic: 'Fractions: halves and quarters', exception_state: 'taught', status: 'draft', sent_on: DAY, created_by: T1, body_hinglish: '' });
+    expect(draft).toMatchObject({ class_id: C5, subject_id: MATHS, topic: 'Fractions: halves and quarters', exception_state: 'taught', status: 'draft', sent_on: DAY, created_by: T1, body_hinglish: '5-A, Maths: aaj class mein “Fractions: halves and quarters” padhaya gaya.' });
     expect(draft.source_progress_id).toBe((await log())[0].progress_id);
     expect(await taps()).toEqual([{ kind: 'taught.tap', class_id: C5, day: DAY, value: 1 }]);
 
@@ -89,10 +89,15 @@ describe('one tap', () => {
     expect((await rows(`select event_action from audit_log where school_id = $1 and target_id = $2 order by audit_id`, [A, first.entry.progress_id])).map((r: { event_action: string }) => r.event_action)).toEqual(['syllabus.record', 'syllabus.update']);
   });
 
-  it('a lesson not taught is never prepared as taught', async () => {
+  it('a lesson not taught produces no message, and takes back one prepared earlier', async () => {
     await reset();
+    expect(await tap(t1, { status: 'not_taught', topic: 'Fractions: word problems' })).toMatchObject({ kind: 'ok', pulseId: null });
+    expect(await drafts()).toEqual([]);
+    await tap(t1, { status: 'taught', topic: 'Fractions: word problems' });
+    expect(await drafts()).toHaveLength(1);
     await tap(t1, { status: 'not_taught', topic: 'Fractions: word problems' });
-    expect(await drafts()).toMatchObject([{ exception_state: 'not_taught', status: 'draft' }]);
+    expect(await drafts()).toEqual([]);
+    expect(await log()).toMatchObject([{ status: 'not_taught' }]);
   });
 
   it('a topic typed by hand saves with no syllabus map', async () => {
@@ -238,6 +243,7 @@ describe('"taught" tap coverage against the timetable', () => {
     await tap(t1, { date: '2026-10-12', subjectId: HINDI, topic: 'Kabir' });
     await tap(t2, { date: '2026-10-12', classId: C6, topic: 'Integers' });
     await tap(t1, { date: '2026-10-13', status: 'not_taught' });
+    expect((await drafts()).map((d: { sent_on: string }) => d.sent_on)).toEqual(['2026-10-12', '2026-10-12', '2026-10-12']); // none for the lesson not taught
     const week = await as(principal, (c) => taughtTapCoverage(c, A, '2026-10-12', '2026-10-18'));
     expect(week.map((w) => [w.day, w.class_name, w.scheduled, w.marked])).toEqual([
       ['2026-10-12', '5-A', 2, 2],

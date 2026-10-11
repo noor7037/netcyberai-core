@@ -164,6 +164,37 @@ const homeworkFlowDone = async (page) => {
   await clearHomework();
   if (rows[0].targets !== 1 || rows[0].n !== homeworkStudents || rows[0].done !== homeworkStudents) throw new Error(`after reconnecting: ${rows[0].n} answers (${rows[0].done} done) for ${homeworkStudents} students in ${rows[0].targets} assignment(s)`);
 };
+// Today's message to parents (C151): a lesson is recorded and homework set
+// through the app's own API, the message appears with both, the teacher
+// marks it ready, and nothing is sent.
+let loggedBefore = 0;
+const sendingRows = async () => (await db.pg.query(`select (select count(*)::int from communication_log) + (select count(*)::int from jobs) as n`)).rows[0].n;
+const pulseMessage = async (page) => {
+  loggedBefore = await sendingRows();
+  await clearHomework();
+  await clearTaught();
+  const today = (await db.pg.query(`select ${TODAY_SQL}::text as d`)).rows[0].d;
+  const sent = await page.evaluate(async (today) => {
+    const json = (method, url, body) => fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then((r) => r.status);
+    const taught = await json('PUT', '/api/app/syllabus', { classId: '00000000-0000-4000-8000-0000000c0051', subjectId: '00000000-0000-4000-8000-0000000d0001', topic: 'Fractions: halves and quarters', status: 'taught' });
+    const homework = await json('POST', '/api/app/homework', { subjectId: '00000000-0000-4000-8000-0000000d0001', title: 'Questions 1 to 5, page 42', dueDate: today, classIds: ['00000000-0000-4000-8000-0000000c0051'] });
+    return [taught, homework];
+  }, today);
+  if (sent.join() !== '201,201') throw new Error(`the lesson or the homework was not saved: ${sent}`);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-pulse-draft]').first().waitFor({ timeout: 15000 });
+  const words = await page.locator('[data-pulse-draft] textarea').first().inputValue();
+  if (!words.includes('Fractions: halves and quarters') || !words.includes('Questions 1 to 5, page 42')) throw new Error(`the message does not hold the lesson and the homework: ${words}`);
+  await page.locator('[data-mark-ready]').first().click();
+  await page.locator('[data-pulse-draft]').getByText('Ready', { exact: true }).first().waitFor({ timeout: 15000 });
+  await page.getByRole('tab', { name: 'Hinglish' }).first().click();
+};
+const pulseMessageDone = async () => {
+  const { rows } = await db.pg.query(`select (select count(*)::int from pulse_messages where status = 'ready') as ready, (select count(*)::int from pulse_messages where status = 'sent') as sent, $1::int as logged`, [(await sendingRows()) - loggedBefore]);
+  await clearHomework();
+  await clearTaught();
+  if (rows[0].ready !== 1 || rows[0].sent !== 0 || rows[0].logged !== 0) throw new Error(`expected one ready message and nothing sent: ${JSON.stringify(rows[0])}`);
+};
 // The "needs help" queue (C148): one student waiting, then the outcome is
 // recorded and the card leaves the queue.
 const needsHelp = async (page) => {
@@ -324,6 +355,7 @@ const SCREENS = [
   ['teacher', 'teacher-taught-today', '/app/syllabus'],
   ['teacher', 'teacher-homework', '/app/homework', homeworkFlow, homeworkFlowDone],
   ['teacher', 'teacher-needs-help', '/app/pulse', needsHelp, needsHelpDone],
+  ['teacher', 'teacher-pulse-message', '/app/pulse', pulseMessage, pulseMessageDone],
   ['teacher', 'teacher-taught-one-tap', '/app/syllabus', oneTapTaught, oneTapTaughtDone],
   ['teacher', 'teacher-tickets', '/app/help/ticket'],
   ['founder', 'control-dashboard', '/control'],
