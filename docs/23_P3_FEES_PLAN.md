@@ -95,7 +95,7 @@ medium with a security read.
 | **6a. Heads and structures** | The Fees page for the office: fee heads; a structure per class and session with its items and frequencies; a change makes a new version from a date. Fees becomes partly live and is switched on for existing schools (C149 rule). | `fee_structures` gains `session_id` and a unique version key; nothing is overwritten. | A structure changed mid-year leaves the earlier version in place and both are listed with their dates. A teacher can read none of it (as `app_user`). |
 | **6b. Raising dues, concessions, RTE** | "Raise dues" for a class and period from the structure in force on that date, net of approved concessions; safe to run twice. Concessions screen with approval. RTE tag on a student; their lines are raised and conceded as `rte`. | `fees_ledger` gains `head_id`, `period_key`, `gross_minor`, `concession_minor` (`amount_minor` stays the net) and a unique key per student, head and period. `students.rte_admission` (boolean, with the entry class and date). `fee_concessions` gains `status` (proposed, approved, ended) and `decided_at`. | Raising dues twice makes no second line. Gross, concession and net add up on every line; a percentage is rounded half up to the paisa. An RTE child's tuition line is net 0 and counted under RTE. An unapproved concession changes nothing. |
 | **6c. Counter payments and receipts** | Take a payment for a student or a family: cash, UPI, cheque. Money is put against the oldest due first, or as the office chooses. A numbered receipt that prints. A reversal with a reason. | `receipts` (number from the numbering framework, family or student, total, issued by); `payments` gains `receipt_id` and `reverses_payment_id`. | **Reconciles to the rupee:** for seeded dues and a mix of full, part and reversed payments, every balance matches a hand count and the school total equals the sum of balances. A payment cannot exceed what is owed. A receipt number is never reused, even after a reversal. |
-| **6d. Overdue, and part-paid past due** | The nightly job marks a pending fee `overdue` once India's date passes its due date. A part-paid fee past its date is `overdue` too, on its remaining balance. Dashboards and My Day read the stored status and the balance. | The status trigger uses India's date and the balance; a `fee_status_runs` row per night (how many changed, the reconciliation result). | A fee due yesterday (India) is overdue after the job and not before midnight India time (fixed clock). A fee of ₹1,000 with ₹400 paid, past its date, counts ₹600 overdue. The job run twice changes nothing the second time. |
+| **6d. Overdue, part-paid past due, late fee** | The nightly job marks a pending fee `overdue` once India's date passes its due date. A late fee, if the school has switched it on in settings (off by default, C158), is raised by the same job as a new due line. A part-paid fee past its date is `overdue` too, on its remaining balance. Dashboards and My Day read the stored status and the balance. | The status trigger uses India's date and the balance; a `fee_status_runs` row per night (how many changed, the reconciliation result). | A fee due yesterday (India) is overdue after the job and not before midnight India time (fixed clock). A fee of ₹1,000 with ₹400 paid, past its date, counts ₹600 overdue. The job run twice changes nothing the second time. |
 | **6e. Sibling concession and family dues** | A sibling rule in Fees settings (which child, which heads, how much), proposed from **confirmed** family links only, approved by a person, ended when a sibling leaves. The family dues screen: every child's lines and one total. | Fees settings schema; `fee_concessions.source` (rule or person) and `family_id`. | Two confirmed siblings: the rule proposes the concession for the right child and nothing applies until approved. An unconfirmed link proposes nothing. When a sibling is marked transferred the concession ends from that date and later dues are raised without it. The family total equals the sum of its children's balances. |
 | **6f. Payment link and the stand-in provider** | `PaymentProvider` (as `FileStorage` and `AIProvider`): create a link for a family's dues, receive the gateway's notice, apply it once, issue the receipt. A stand-in provider for tests and the harness. The Razorpay adapter is added, behind the same interface, when the founder's test keys exist. | `payment_links` (family, amount, lines covered, status, provider reference); a unique gateway payment id on `payments`. | With the stand-in: a link for a family covers exactly its open lines; the notice applies the money oldest first and issues one receipt; the same notice twice changes nothing; a notice with a wrong signature or amount is refused and logged. Nothing is ever marked paid by a browser redirect alone. |
 | **6g. Fee recovery, reminders, clearance** | The daily follow-up list for the office (amount, age, last contact); record a promise to pay with a date; mark hardship, which stops reminders and opens a concession request for a person to decide. Email reminders at −3, 0 and +7 days with the link. The clearance gate on certificates. | `fee_followups` (family, kind: call, promise, hardship; promise date; outcome; by whom); `fee_reminders` (family, due line, which reminder, sent or held and why). | A family with a promise open gets no reminder until the promise date passes. Hardship stops every reminder and creates a concession request; nothing is conceded until a person approves. No family gets more than one reminder a day. A certificate for a student with dues is held, and an override needs a reason and is audited. |
@@ -106,20 +106,22 @@ medium with a security read.
   monthly head, `2026-Q1`, `2026-H1`, `2026-27` for annual and one-time.
   The school's session decides which months a period covers.
 - **Rounding.** Half up to the paisa, once, when the due is raised.
-- **Allocation.** A payment goes to the oldest due first unless the office
-  chooses the lines. A family payment is spread the same way across its
+- **Allocation** (decided, C158). A payment goes to the oldest due first by
+  default; the office may pick a different due when recording it, and the
+  choice is audited. A family payment is spread the same way across its
   children.
-- **Late fee.** Not in P3. The fine rule (`17` §3a) needs the founder's
-  real fee policy; a fine is a new due line when it comes, never a change to
-  an old one.
+- **Late fee** (decided, C158): a school setting, **off by default**. The
+  rule and its amounts are configuration, never constants. When a school
+  switches it on, a fine is a new due line raised by the nightly job (6d),
+  never a change to an old line.
 - **Receipt.** One numbered receipt per payment event, printable from the
   browser. The three-copy layout waits for a real school's format.
 - **RTE.** P3 tags the child and keeps their lines visible as conceded
   under `rte`. It claims nothing from the State and prints no claim sheet.
 - **Reminders.** Email only in P3, to the guardian's email if there is one.
   A family with no email is on the follow-up list and gets no reminder.
-- **Sibling rule default.** None. A school sets its own; until it does the
-  rule proposes nothing.
+- **Sibling rule default** (decided, C158). None. Each school sets its own,
+  applied only from confirmed family links, with approval (C116).
 
 ## 6. What needs Noor
 
