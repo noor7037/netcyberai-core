@@ -297,7 +297,7 @@ grant select, insert, update on client_operations to app_user, nca_super;
 grant select, insert on usage_events to app_user, nca_super;
 
 -- P2 5c (C145): the timetable as My Day's card reads it
--- (20261011170000_p2_timetable.sql), with the subjects it names.
+-- (20261011170134_p2_timetable.sql), with the subjects it names.
 create table subjects (
   subject_id uuid primary key default gen_random_uuid(),
   school_id uuid not null references schools(school_id),
