@@ -1,9 +1,13 @@
+import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
+import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { notFound } from 'next/navigation';
 import { getServerSession } from '@/lib/auth/server-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { IdCardView } from '@/components/students/IdCardView';
 
 export default async function IdCardPage({ params }: { params: { studentId: string } }) {
+  const off = await moduleOffReason('students');
+  if (off) return <ModuleOffPage moduleId="students" reason={off} />;
   const session = await getServerSession();
   if (!session || !session.schoolId) notFound();
 

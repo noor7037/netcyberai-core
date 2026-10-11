@@ -119,6 +119,15 @@ const openModulesTab = async (page) => {
   await page.getByRole('tab', { name: 'Modules & access' }).click();
   await page.locator('[data-module-off]').first().waitFor({ timeout: 15000 });
 };
+// A module switched off for the school (C140): its page shows the "module off" state.
+const attendanceOff = async (page) => {
+  await db.pg.query(`update school_module_entitlements set enabled = false where school_id = $1 and module_id = 'attendance'`, [SCHOOL]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-module-off-page]').waitFor({ timeout: 15000 });
+};
+const attendanceOn = async () => {
+  await db.pg.query(`update school_module_entitlements set enabled = true where school_id = $1 and module_id = 'attendance'`, [SCHOOL]);
+};
 // On a phone the menu is closed, so the Hindi would not be in the picture: open it.
 const hindiWithMenu = async (page) => {
   await speak('हिन्दी')(page);
@@ -146,6 +155,8 @@ const SCREENS = [
   ['principal', 'app-student-empty-hindi', `/app/students/${STUDENT_NO_GUARDIAN}`, speak('हिन्दी'), backToEnglish],
   ['principal', 'app-settings-hindi', '/app/settings', speak('हिन्दी'), backToEnglish],
   ['founder', 'control-modules', `/control/schools/${SCHOOL}`, openModulesTab],
+  ['principal', 'app-module-off', '/app/attendance', attendanceOff, attendanceOn],
+  ['founder', 'control-messaging-cost', '/control/messaging-cost'],
   ['principal', 'app-dashboard', '/app/dashboard'],
   ['principal', 'app-students', '/app/students'],
   ['principal', 'app-student-profile', `/app/students/${STUDENT}`],

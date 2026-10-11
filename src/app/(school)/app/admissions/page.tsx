@@ -1,3 +1,5 @@
+import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
+import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { StudentsView } from '@/components/students/StudentsView';
 
 // [GAP] vs PRD §3.1's full admissions pipeline (Enquiry -> Application
@@ -10,7 +12,9 @@ import { StudentsView } from '@/components/students/StudentsView';
 // multi-stage pipeline UI with nothing behind it. Building the earlier
 // stages is real, scoped work for a future prompt, not something to
 // silently invent here.
-export default function AdmissionsPage() {
+export default async function AdmissionsPage() {
+  const off = await moduleOffReason('admissions');
+  if (off) return <ModuleOffPage moduleId="admissions" reason={off} />;
   return (
     <StudentsView
       title="Admissions"

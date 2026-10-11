@@ -5,7 +5,7 @@
 link to the Help Center guide for that screen's task. The link is
 ModulePage's `help` prop: <ModulePage help="mark-attendance" ...>.
 
-This check fails CI when a page under /app or /control that renders
+This check fails CI when a page of the school app (/app) that renders
 through ModulePage (itself, or through the view it hands the screen to)
 has no `help="<slug>"`, or names a guide that does not exist in
 src/content/help/articles.ts.
@@ -34,7 +34,10 @@ import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-ROOTS = ["src/app/(school)/app", "src/app/(admin)/control"]
+# The school app. Control is the founder's own workspace: the Help Center's
+# guides are written for schools, so Control's pages carry no "Show me how"
+# and are not checked (C140; they were on the allowlist before).
+ROOTS = ["src/app/(school)/app"]
 ALLOWLIST = "scripts/show_me_how_allowlist.json"
 ARTICLES = "src/content/help/articles.ts"
 BASE_REF = "origin/main"
@@ -47,6 +50,7 @@ COMMENT_RE = re.compile(r"\{/\*.*?\*/\}|/\*.*?\*/|(?:^|(?<=[;{}(),]))[ \t]*//[^\
 MODULE_PAGE_START_RE = re.compile(r"<ModulePage\b")
 HELP_RE = re.compile(r"\bhelp=\"([a-z0-9-]+)\"")
 IMPORT_RE = re.compile(r"import\s+(?:type\s+)?\{[^}]*\}\s+from\s+'@/components/([^']+)'")
+NOT_THE_SCREEN = {"ModuleOffPage", "ModuleComingPage", "StubPage"}
 SLUG_RE = re.compile(r"^\s*slug:\s*'([a-z0-9-]+)'", re.M)
 
 
@@ -105,14 +109,14 @@ def module_page_tags(root: Path, page: Path) -> list[str] | None:
     tags = opening_tags(text)
     if tags:
         return tags
+    found: list[str] = []
     for spec in IMPORT_RE.findall(text):
         for ext in (".tsx", ".ts"):
             f = root / "src" / "components" / f"{spec}{ext}"
-            if f.is_file() and re.search(rf"<{re.escape(f.stem)}\b", text):
-                tags = opening_tags(read(f))
-                if tags:
-                    return tags
-    return None
+            # Not the screen itself: what a module's page shows when the module is off or not built.
+            if f.is_file() and f.stem not in NOT_THE_SCREEN and re.search(rf"<{re.escape(f.stem)}\b", text):
+                found.extend(opening_tags(read(f)))
+    return found or None
 
 
 def pages(root: Path) -> list[Path]:

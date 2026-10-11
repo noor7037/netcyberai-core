@@ -1,4 +1,6 @@
 import type { IconName } from '@/components/visual/Icons';
+import type { ModuleId } from '@/demo-fixture/principal-dashboard';
+import { moduleStatus, STATUS_LABEL } from './module-status';
 
 // The NetCyberAI ecosystem, word for word from the founder's artwork
 // (2026-09-28, Decision Log C79), rebuilt as live, selectable text for the
@@ -67,16 +69,26 @@ export const ECO_CORE = {
   ringBottom: ['Security & Privacy', 'Multi-School Ready', 'Integrated Platform'],
 };
 
-export const ECO_MODULES: { label: string; icon: IconName }[] = [
-  { label: 'Academics', icon: 'academics' },
-  { label: 'Attendance', icon: 'attendance' },
-  { label: 'Fees & Payments', icon: 'fees' },
-  { label: 'Exams & Results', icon: 'exams' },
-  { label: 'Homework', icon: 'homework' },
-  { label: 'Communication', icon: 'chat' },
-  { label: 'Reports & Analytics', icon: 'chart' },
-  { label: 'AI Copilot', icon: 'sparkle' },
+// The tiles of the artwork. A tile that is one of the product's modules
+// names it, and takes its status from src/content/module-status.ts: this
+// file never states a status of its own (scripts/check_module_status.py).
+// The homepage draws the tiles as before; the status is for any page that
+// needs to say what is live.
+export const ECO_MODULES: { label: string; icon: IconName; module?: ModuleId }[] = [
+  { label: 'Academics', icon: 'academics', module: 'academics' },
+  { label: 'Attendance', icon: 'attendance', module: 'attendance' },
+  { label: 'Fees & Payments', icon: 'fees', module: 'fees' },
+  { label: 'Exams & Results', icon: 'exams', module: 'exams' },
+  { label: 'Homework', icon: 'homework', module: 'homework' },
+  { label: 'Communication', icon: 'chat', module: 'communication' },
+  { label: 'Reports & Analytics', icon: 'chart', module: 'reports' },
+  { label: 'AI Copilot', icon: 'sparkle', module: 'teacher-copilot' },
   { label: 'Notifications & Alerts', icon: 'bell' },
   { label: 'Multi-School Management', icon: 'school' },
-  { label: 'Security & Compliance', icon: 'shield' },
+  { label: 'Security & Compliance', icon: 'shield', module: 'compliance' },
 ];
+
+// The status label of a tile, or null for a tile that is not one module.
+export function ecoModuleStatus(tile: { module?: ModuleId }): string | null {
+  return tile.module ? STATUS_LABEL[moduleStatus[tile.module].status] : null;
+}

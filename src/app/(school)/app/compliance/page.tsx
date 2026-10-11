@@ -1,3 +1,5 @@
+import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
+import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { getServerSession } from '@/lib/auth/server-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { ComplianceView } from '@/components/compliance/ComplianceView';
@@ -9,6 +11,8 @@ import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 // audit_read_own_school RLS policy already scopes this correctly to
 // the caller's own tenant; nothing here widens that.
 export default async function CompliancePage() {
+  const off = await moduleOffReason('compliance');
+  if (off) return <ModuleOffPage moduleId="compliance" reason={off} />;
   const session = await getServerSession();
   const events = session
     ? await withTenantContext(session, async (client) => {

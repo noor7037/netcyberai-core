@@ -8,7 +8,7 @@ import type { SchoolEntitlements } from '@/lib/contracts/entitlements';
 import { MODULE_REGISTRY } from '@/lib/contracts/modules';
 import { changeModuleEntitlement, changeSchoolAccess } from '@/lib/frameworks/entitlements';
 import { applyPlan, DEFAULT_PLAN_ID } from '@/lib/frameworks/plans';
-import { WRITE_METHODS, WRITE_ROUTES, writeModuleFor, writeRefusal } from '@/lib/frameworks/write-guard';
+import { allowedWhenReadOnly, READ_ROUTES, readModuleFor, readRefusal, WRITE_METHODS, WRITE_ROUTES, writeModuleFor, writeRefusal } from '@/lib/frameworks/write-guard';
 
 // The write guard (docs/19 rule 7, C137): a change is refused when the
 // school's account is paused or read-only, or the route's module is off.
@@ -18,6 +18,7 @@ import { WRITE_METHODS, WRITE_ROUTES, writeModuleFor, writeRefusal } from '@/lib
 
 const state = vi.hoisted(() => ({ claims: null as any, db: null as any }));
 vi.mock('@/lib/auth/require-session', () => ({ requireSession: async () => state.claims }));
+vi.mock('@/lib/auth/server-session', () => ({ getServerSession: async () => state.claims }));
 vi.mock('@/lib/auth/db', async (original) => ({
   ...(await original<typeof import('@/lib/auth/db')>()),
   withTenantContext: (claims: any, fn: any) => state.db.tenant(claims, fn),
@@ -29,6 +30,13 @@ import { POST as markAttendance } from '@/app/api/app/attendance/route';
 import { POST as addClass } from '@/app/api/app/classes/route';
 import { POST as raiseTicket } from '@/app/api/app/tickets/route';
 import { GET as listStudents } from '@/app/api/app/students/route';
+import { GET as attendanceRoster } from '@/app/api/app/attendance/route';
+import { GET as listClasses } from '@/app/api/app/classes/route';
+import { POST as scanCard } from '@/app/api/app/scan/route';
+import { POST as sendReset } from '@/app/api/app/users/[userId]/send-reset/route';
+import AttendancePage from '@/app/(school)/app/attendance/page';
+import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
+import { ModulePage } from '@/components/app-ui/ModulePage';
 
 const API = path.join(__dirname, '../../src/app/api/app');
 function routeFiles(dir: string): string[] {
@@ -81,6 +89,63 @@ describe('the rule', () => {
     expect(writeRefusal(ents('full', ['attendance']), 'attendance')).toBe('module_off');
     expect(writeRefusal(ents('full', ['attendance']), 'students')).toBeNull();
     expect(writeRefusal({ ...ents('full'), modules: {} }, 'students')).toBe('module_off'); // never switched on
+  });
+});
+
+describe('the rule for reads (C140)', () => {
+  it('a module switched off is not readable; a read-only school reads as before; a paused school reads only help', () => {
+    expect(readRefusal(ents('full', ['attendance']), 'attendance')).toBe('module_off');
+    expect(readRefusal(ents('full', ['attendance']), 'students')).toBeNull();
+    expect(readRefusal(ents('read_only'), 'students')).toBeNull();
+    expect(readRefusal(ents('suspended'), 'students')).toBe('account_paused');
+    expect(readRefusal(ents('suspended'), 'any-module')).toBe('account_paused');
+    expect(readRefusal(ents('suspended'), 'raise-ticket')).toBeNull();
+    // What several modules draw on stays readable when one of them is off.
+    expect(readRefusal(ents('full', ['setup', 'students']), 'any-module')).toBeNull();
+  });
+
+  it('every read route is in the table', () => {
+    const readRoutes = routeFiles(API)
+      .map((file) => ({ rel: path.relative(API, path.dirname(file)), text: readFileSync(file, 'utf8') }))
+      .filter((r) => /export\s+(?:async\s+function|const)\s+GET\b/.test(r.text));
+    expect(readRoutes.length).toBeGreaterThanOrEqual(30);
+    for (const r of readRoutes) expect(readModuleFor(urlOf(r.rel)), r.rel).not.toBeNull();
+    for (const [pattern] of READ_ROUTES) expect(readRoutes.some((r) => matchesPattern(pattern, r.rel)), pattern).toBe(true);
+  });
+
+  it('each kind of read belongs to the module it should', () => {
+    const id = randomUUID();
+    const expected: Record<string, string> = {
+      students: 'students', [`students/${id}`]: 'students', 'students/search': 'students', [`students/${id}/documents`]: 'students',
+      [`students/${id}/guardians`]: 'parents', [`students/${id}/consent`]: 'parents', [`students/${id}/dsr`]: 'parents', [`guardians/${id}/merges`]: 'parents',
+      attendance: 'attendance', syllabus: 'academics', 'compliance/retention': 'compliance', 'whatsapp-config': 'communication', 'pulse/today': 'pulse',
+      tickets: 'raise-ticket', [`tickets/${id}`]: 'raise-ticket',
+      classes: 'any-module', subjects: 'any-module', users: 'any-module', 'staff/invitations': 'any-module', views: 'any-module', entitlements: 'any-module',
+      search: 'checks-itself', 'lists/students': 'checks-itself', 'custom-fields': 'checks-itself', 'settings/attendance': 'checks-itself',
+    };
+    for (const [p, module] of Object.entries(expected)) expect(readModuleFor(`/api/app/${p}`), p).toBe(module);
+  });
+
+  it('a read route that says it checks for itself really does', () => {
+    for (const file of routeFiles(API)) {
+      const rel = path.relative(API, path.dirname(file));
+      const get = handlers(readFileSync(file, 'utf8')).find((h) => h.method === 'GET');
+      if (get && readModuleFor(urlOf(rel)) === 'checks-itself') expect(get.body, rel).toMatch(/checkModuleAccess\(|searchableKinds\(/);
+    }
+  });
+});
+
+describe('what a read-only school may still do (C140)', () => {
+  it('reset a colleague’s password and look up an ID card, and nothing else', () => {
+    const id = randomUUID();
+    expect(allowedWhenReadOnly(`/api/app/users/${id}/send-reset`)).toBe(true);
+    expect(allowedWhenReadOnly('/api/app/scan')).toBe(true);
+    for (const p of ['students', `students/${id}`, 'attendance', 'staff/invitations', 'classes', `users/${id}`, 'views']) expect(allowedWhenReadOnly(`/api/app/${p}`), p).toBe(false);
+    expect(writeRefusal(ents('read_only'), 'any-module', true)).toBeNull();
+    expect(writeRefusal(ents('read_only'), 'students', true)).toBeNull();
+    // A paused school stays blocked, and the ID card's module must still be on.
+    expect(writeRefusal(ents('suspended'), 'any-module', true)).toBe('account_paused');
+    expect(writeRefusal(ents('read_only', ['students']), 'students', true)).toBe('module_off');
   });
 });
 
@@ -234,10 +299,12 @@ describe('the real routes, on real Postgres', () => {
     expect(await count('students')).toBe(before);
   });
 
-  it('read-only and suspended schools can still read, and can still raise a ticket', async () => {
+  it('a read-only school still reads; a paused school does not; both can still raise a ticket', async () => {
     for (const mode of ['read_only', 'suspended'] as const) {
       await setAccess(mode);
-      expect((await listStudents(req('GET', '/api/app/students'))).status, mode).toBe(200);
+      const read = await listStudents(req('GET', '/api/app/students'));
+      if (mode === 'read_only') expect(read.status).toBe(200);
+      else expect(await said(read)).toEqual({ status: 403, code: 'account_paused' });
       const res = await raiseTicket(req('POST', '/api/app/tickets', { subject: 'We need help', body: 'Our account says it is paused and we need to ask why.', category: 'billing' }));
       expect(res.status, mode).toBe(201);
     }
@@ -262,6 +329,67 @@ describe('the real routes, on real Postgres', () => {
     expect(await count('students')).toBe(students);
     expect(again.markAttendance.status).toBe(201);
     await setModule('students', true);
+  });
+
+  it('a module switched off cannot be read either: its API says module_off, the others answer (C140)', async () => {
+    await setAccess('full');
+    await setModule('attendance', false);
+    try {
+      expect(await said(await attendanceRoster(req('GET', `/api/app/attendance?classId=${classId}`)))).toEqual({ status: 403, code: 'module_off' });
+      expect((await listStudents(req('GET', '/api/app/students'))).status).toBe(200);
+      expect((await listClasses(req('GET', '/api/app/classes'))).status).toBe(200);
+    } finally {
+      await setModule('attendance', true);
+    }
+    expect((await attendanceRoster(req('GET', `/api/app/attendance?classId=${classId}`))).status).toBe(200);
+    // Classes are drawn on by other modules' screens: readable with Setup off.
+    await setModule('setup', false);
+    try {
+      expect((await listClasses(req('GET', '/api/app/classes'))).status).toBe(200);
+    } finally {
+      await setModule('setup', true);
+    }
+  });
+
+  it('a module switched off: its page shows the "module off" state in place of the screen (C140)', async () => {
+    await setAccess('full');
+    const on: any = await AttendancePage({ searchParams: {} });
+    expect(on.type).toBe(ModulePage);
+    await setModule('attendance', false);
+    try {
+      const off: any = await AttendancePage({ searchParams: {} });
+      expect(off.type).toBe(ModuleOffPage);
+      expect(off.props).toEqual({ moduleId: 'attendance', reason: 'module_off' });
+    } finally {
+      await setModule('attendance', true);
+    }
+    await setAccess('suspended');
+    try {
+      const paused: any = await AttendancePage({ searchParams: {} });
+      expect(paused.type).toBe(ModuleOffPage);
+      expect(paused.props.reason).toBe('account_paused');
+    } finally {
+      await setAccess('full');
+    }
+  });
+
+  it('read-only: a colleague’s password can still be reset and an ID card looked up; paused: neither (C140)', async () => {
+    const reset = () => sendReset(req('POST', `/api/app/users/${principal}/send-reset`), { params: { userId: principal } });
+    const scan = () => scanCard(req('POST', '/api/app/scan', { payload: 'not-a-card', purpose: 'lookup' }));
+    await setAccess('read_only');
+    // Not refused by the account's state: each goes on to its own work and gives its own answer.
+    const outcome = async (call: () => Promise<Response>) => call().then(async (res) => (await res.json()).code ?? `answered ${res.status}`, () => 'went on to its own work');
+    expect(['read_only', 'account_paused', 'module_off']).not.toContain(await outcome(reset));
+    expect(await outcome(scan)).not.toBe('read_only');
+    // The rest of a read-only school is still read-only.
+    expect((await tryEverything()).addStudent).toEqual({ status: 403, code: 'read_only' });
+    await setAccess('suspended');
+    try {
+      expect(await said(await reset())).toEqual({ status: 403, code: 'account_paused' });
+      expect(await said(await scan())).toEqual({ status: 403, code: 'account_paused' });
+    } finally {
+      await setAccess('full');
+    }
   });
 
   it('a school in good standing is not held up', async () => {

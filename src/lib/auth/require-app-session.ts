@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireSession } from './require-session';
 import { canAccessApp } from './guards';
 import type { SessionClaims, StaffRole } from './types';
-import { guardWrite, WRITE_METHODS } from '@/lib/frameworks/write-guard';
+import { guardRead, guardWrite, WRITE_METHODS } from '@/lib/frameworks/write-guard';
 
 // Every /api/app/** route needs the identical guard: a real session,
 // with an actual selected school (super_admin has none -- canAccessApp
@@ -26,6 +26,10 @@ export async function requireAppSession(
   const app = claims as SessionClaims & { schoolId: string };
   if (WRITE_METHODS.includes(req.method)) {
     const refused = await guardWrite(app, req.nextUrl.pathname);
+    if (refused) return { error: refused };
+  } else {
+    // A read of a module the school has switched off is refused too (C140).
+    const refused = await guardRead(app, req.nextUrl.pathname);
     if (refused) return { error: refused };
   }
   return { claims: app };
