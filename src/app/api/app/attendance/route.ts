@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAppSession, canWriteAttendance } from '@/lib/auth/require-app-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
-import { ATTENDANCE_STATUSES, LEAVE_CODES, getAttendanceRoster, submitAttendance, type AttendanceEntry } from '@/lib/attendance/attendance';
+import { ATTENDANCE_STATUSES, LEAVE_CODES, correctionWindowDays, getAttendanceRoster, submitAttendance, withinCorrectionWindow, type AttendanceEntry } from '@/lib/attendance/attendance';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { indiaDate, isIsoDate } from '@/lib/time/india';
 
@@ -24,10 +24,13 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const roster = await withTenantContext(guard.claims, (client) =>
-      getAttendanceRoster(client, { schoolId: guard.claims.schoolId, classId, date, today })
-    );
-    return NextResponse.json({ date, today, roster });
+    const office = guard.claims.role === 'principal' || guard.claims.role === 'school_admin';
+    const { roster, windowDays } = await withTenantContext(guard.claims, async (client) => ({
+      roster: await getAttendanceRoster(client, { schoolId: guard.claims.schoolId, classId, date, today }),
+      windowDays: office ? await correctionWindowDays(client, guard.claims.schoolId) : 0,
+    }));
+    // The office may enter or correct a past day inside the school's window (C146).
+    return NextResponse.json({ date, today, roster, ...(office ? { windowDays, officeMayCorrect: withinCorrectionWindow(date, today, windowDays) } : {}) });
   } catch (err) {
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
@@ -43,7 +46,9 @@ export async function GET(req: NextRequest) {
 //
 // A phone that was offline sends `operationId` (applied once however often
 // it arrives) and `forDate` (the day the marks were made for): a submission
-// for a day that is over saves nothing and answers 409 `day_passed`.
+// for a day that is over saves no mark: inside the school's correction
+// window it becomes a request for the office (202 `sent_to_office`, C146);
+// outside it, 409 `day_passed`.
 export async function POST(req: NextRequest) {
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
@@ -89,6 +94,7 @@ export async function POST(req: NextRequest) {
       })
     );
     if (result.outcome === 'not_yours') return NextResponse.json({ error: 'this change was not made by you', code: 'not_yours' }, { status: 409 });
+    if (result.outcome === 'sent_to_office') return NextResponse.json(result, { status: 202 });
     if (result.outcome === 'day_passed') return NextResponse.json({ error: 'that day is over', code: 'day_passed', ...result }, { status: 409 });
     return NextResponse.json(result, { status: result.replayed ? 200 : 201 });
   } catch (err) {

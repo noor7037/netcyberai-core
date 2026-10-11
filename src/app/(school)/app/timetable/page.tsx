@@ -13,7 +13,8 @@ export default async function TimetablePage() {
   if (off) return <ModuleOffPage moduleId="timetable" reason={off} />;
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
-  const office = session?.role === 'school_admin' || session?.role === 'principal';
+  // The office and the academic coordinator fill it (C146).
+  const office = session?.role === 'school_admin' || session?.role === 'principal' || session?.role === 'academic_coordinator';
   return (
     <ModulePage moduleId="timetable" help="timetable" tour="timetable" title={t(lang, 'tt.title')} purpose={t(lang, office ? 'tt.purpose.office' : 'tt.purpose.teacher')}>
       <TimetableView office={office} teacher={session?.role === 'teacher'} />

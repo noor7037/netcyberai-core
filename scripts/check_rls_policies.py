@@ -234,6 +234,9 @@ ALLOWED_PERMISSIVE = (
         # P2 5c (C145): tenant isolation only; narrowed by the RESTRICTIVE
         # staff_read and office_insert/update/delete, required below.
         ("timetable_entries", "timetable_entries_tenant_isolation"),
+        # C146: tenant isolation only; narrowed by the RESTRICTIVE read,
+        # make_own and office_decide, required below.
+        ("attendance_correction_requests", "attendance_correction_requests_tenant_isolation"),
         ("support_ticket_messages", "support_ticket_messages_tenant_read"),
         ("support_ticket_messages", "support_ticket_messages_tenant_insert"),
         ("support_ticket_attachments", "support_ticket_attachments_tenant_read"),
@@ -273,6 +276,10 @@ REQUIRED_RESTRICTIVE = {
     ("timetable_entries", "timetable_entries_office_insert"),
     ("timetable_entries", "timetable_entries_office_update"),
     ("timetable_entries", "timetable_entries_office_delete"),
+    # C146: the office reads the queue and decides; a request is made in one's own name.
+    ("attendance_correction_requests", "attendance_correction_requests_read"),
+    ("attendance_correction_requests", "attendance_correction_requests_make_own"),
+    ("attendance_correction_requests", "attendance_correction_requests_office_decide"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
     ("audit_log", "audit_ticket_rows_own_or_office"),

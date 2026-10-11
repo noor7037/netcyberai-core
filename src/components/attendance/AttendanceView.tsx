@@ -10,7 +10,7 @@ import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
 import { useOffline } from '@/components/app-shell/OfflineContext';
 import type { Operation } from '@/lib/offline/outbox';
-import { ATTENDANCE_MARK, CLASSES_KEY, differencesKey, rosterKey, type AttendanceMark, type Difference, type KeptRoster, type KeptRosterRow, type MarkStatus } from '@/lib/offline/attendance-sender';
+import { ATTENDANCE_MARK, CLASSES_KEY, SENT_TO_OFFICE_KEY, differencesKey, rosterKey, type AttendanceMark, type Difference, type KeptRoster, type KeptRosterRow, type MarkStatus, type SentToOffice } from '@/lib/offline/attendance-sender';
 import { indiaDate } from '@/lib/time/india';
 
 // Mirrors src/lib/attendance/attendance.ts (FREE_EDIT_WINDOW_MINUTES,
@@ -23,6 +23,7 @@ export const LEAVE_CODES_DISPLAY = ['sick', 'family', 'school_activity', 'other'
 
 type ClassOption = { class_id: string; name: string };
 type Draft = Record<string, { status: MarkStatus; leaveCode: string | null }>;
+type Request = { request_id: string; class_name: string; for_date: string; requested_by_name: string; students: number; in_window: boolean };
 
 const STATUS_VARIANT: Record<MarkStatus, 'success' | 'danger' | 'warning' | 'neutral'> = {
   present: 'success',
@@ -56,6 +57,13 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
   const [correctTarget, setCorrectTarget] = useState<{ row: KeptRosterRow; status: MarkStatus; leaveCode: string | null; own?: boolean } | null>(null);
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  // The office's correction path (C146): a past day, the reason, and the requests waiting.
+  const [day, setDay] = useState('');
+  const [past, setPast] = useState<{ allowed: boolean; windowDays: number } | null>(null);
+  const [reason, setReason] = useState('');
+  const [requests, setRequests] = useState<Request[]>([]);
+  const [decisionReason, setDecisionReason] = useState<Record<string, string>>({});
+  const [sentToOffice, setSentToOffice] = useState<SentToOffice[]>([]);
   const openedAt = useRef(0);
   const reloadWhenSaved = useRef(false);
 
@@ -90,6 +98,7 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
       setWaiting(queued);
       setFailed(ops.filter((o) => o.state === 'failed'));
       setDifferences((await store?.get<Difference[]>(differencesKey(id, date)).catch(() => undefined)) ?? []);
+      setSentToOffice((await store?.get<SentToOffice[]>(SENT_TO_OFFICE_KEY).catch(() => undefined)) ?? []);
     },
     [operations, store]
   );
@@ -100,12 +109,24 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
       let kept: KeptRoster | undefined;
       let from: typeof source = 'server';
       try {
-        const res = await fetch(`/api/app/attendance?classId=${id}`);
+        const res = await fetch(`/api/app/attendance?classId=${id}${office && day ? `&date=${day}` : ''}`);
         const body = await res.json();
         if (!res.ok) {
           from = 'failed';
         } else {
           kept = { date: body.date, roster: body.roster };
+          setPast(body.date !== body.today ? { allowed: body.officeMayCorrect === true, windowDays: body.windowDays ?? 0 } : null);
+          if (body.date !== body.today) {
+            // A past day is the office's own view: nothing of it is kept on the device.
+            setSource('server');
+            setRoster(body.roster);
+            setRosterDate(body.date);
+            setDraft({});
+            setWaiting({});
+            setDifferences([]);
+            setLoading(false);
+            return;
+          }
           // The phone keeps names and roll numbers for the day, no more (docs/20 §4).
           await store?.put(rosterKey(id), { date: kept.date, roster: kept.roster.map((r) => ({ ...r, admission_no: '' })) } satisfies KeptRoster).catch(() => undefined);
         }
@@ -132,8 +153,55 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
       openedAt.current = Date.now();
       setLoading(false);
     },
-    [store, loadPhoneState]
+    [store, loadPhoneState, office, day]
   );
+
+  const loadRequests = useCallback(async () => {
+    if (!office) return;
+    const res = await fetch('/api/app/attendance/corrections').catch(() => null);
+    const body = (await res?.json().catch(() => null)) ?? {};
+    if (res?.ok) setRequests(body.requests ?? []);
+  }, [office]);
+  useEffect(() => {
+    void loadRequests();
+  }, [loadRequests]);
+
+  async function officeCorrect(row: KeptRosterRow, status: MarkStatus) {
+    if (!reason.trim()) {
+      toast.show(t('att.past.reasonFirst'), 'danger');
+      return;
+    }
+    const res = await fetch('/api/app/attendance/corrections', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId: row.student_id, date: rosterDate, status, leaveCode: status === 'leave' ? 'other' : null, reason }) }).catch(() => null);
+    if (!res?.ok) {
+      toast.show(t('att.correct.failed'), 'danger');
+      return;
+    }
+    toast.show(t('att.corrected'), 'success');
+    void loadRoster(classId);
+  }
+
+  async function decide(requestId: string, action: 'apply' | 'dismiss') {
+    const why = (decisionReason[requestId] ?? '').trim();
+    if (!why) {
+      toast.show(t('att.past.reasonFirst'), 'danger');
+      return;
+    }
+    const res = await fetch(`/api/app/attendance/corrections/${requestId}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, reason: why }) }).catch(() => null);
+    const body = (await res?.json().catch(() => null)) ?? {};
+    if (!res?.ok) {
+      toast.show(t(body.code === 'outside_window' ? 'att.requests.tooOld' : 'att.correct.failed'), 'danger');
+      return;
+    }
+    toast.show(action === 'apply' ? t('att.requests.applied', { applied: body.applied, kept: body.kept }) : t('att.requests.dismissed'), 'success');
+    void loadRequests();
+    if (classId) void loadRoster(classId);
+  }
+
+  async function forgetSent(s: SentToOffice) {
+    const left = sentToOffice.filter((x) => x !== s);
+    setSentToOffice(left);
+    await (left.length ? store?.put(SENT_TO_OFFICE_KEY, left) : store?.delete(SENT_TO_OFFICE_KEY))?.catch(() => undefined);
+  }
 
   useEffect(() => {
     if (classId && ready) void loadRoster(classId);
@@ -152,7 +220,7 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sync.state]);
 
-  const toMark = roster.filter((r) => !r.status && !waiting[r.student_id]);
+  const toMark = past ? [] : roster.filter((r) => !r.status && !waiting[r.student_id]);
   const markOf = (id: string) => draft[id] ?? { status: 'present' as MarkStatus, leaveCode: null };
   const counts = STATUSES.map((s) => [s, toMark.filter((r) => markOf(r.student_id).status === s).length] as const);
 
@@ -222,7 +290,45 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
 
   return (
     <section lang={lang} className="flex flex-col gap-4">
-      <div className="max-w-xs">
+      {office && requests.length > 0 && (
+        <div data-correction-requests className="flex flex-col gap-3 rounded-md border border-tangerine/40 bg-tangerine/10 p-3 text-sm text-slate">
+          <p className="font-semibold">{tCount('att.requests.title', requests.length)}</p>
+          <p>{t('att.requests.how')}</p>
+          {requests.map((r) => (
+            <div key={r.request_id} data-request className="flex flex-col gap-2 rounded-md bg-white p-3">
+              <p className="font-semibold">{t('att.requests.line', { class: r.class_name, date: r.for_date, name: r.requested_by_name, students: r.students })}</p>
+              {!r.in_window && <p className="text-red-800">{t('att.requests.tooOld')}</p>}
+              <Input id={`request-reason-${r.request_id}`} label={t('att.past.reason')} value={decisionReason[r.request_id] ?? ''} onChange={(e) => setDecisionReason((d) => ({ ...d, [r.request_id]: e.target.value }))} />
+              <div className="flex flex-wrap gap-2">
+                {r.in_window && (
+                  <button type="button" className="min-h-[48px] rounded-md bg-sapphire px-4 text-sm font-semibold text-white" onClick={() => void decide(r.request_id, 'apply')}>
+                    {t('att.requests.apply')}
+                  </button>
+                )}
+                <button type="button" className={`${TAP} border-slate/20 text-slate`} onClick={() => void decide(r.request_id, 'dismiss')}>
+                  {t('att.requests.dismiss')}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {sentToOffice.length > 0 && (
+        <div role="status" data-sent-to-office className="flex flex-col gap-2 rounded-md border border-tangerine/40 bg-tangerine/10 p-3 text-sm text-slate">
+          {sentToOffice.map((s) => (
+            <div key={`${s.classId}-${s.date}`} className="flex flex-wrap items-center gap-2">
+              <p className="min-w-0 flex-1">{t('att.sentToOffice', { class: className(s.classId), date: s.date })}</p>
+              <button type="button" className={`${TAP} border-slate/20 bg-white text-slate`} onClick={() => void forgetSent(s)}>
+                {t('att.sentToOffice.ok')}
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="flex flex-wrap items-end gap-3">
+        <div className="w-full max-w-xs">
         <Select id="attendance-class" label={t('att.class')} value={classId} onChange={(e) => setClassId(e.target.value)}>
           <option value="">{t('att.class.choose')}</option>
           {classes.map((c) => (
@@ -231,7 +337,21 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
             </option>
           ))}
         </Select>
+        </div>
+        {office && (
+          <label className="flex flex-col gap-1 text-sm font-semibold text-slate">
+            {t('att.past.day')}
+            <input type="date" data-attendance-day value={day} max={indiaDate()} onChange={(e) => setDay(e.target.value === indiaDate() ? '' : e.target.value)} className="min-h-[48px] rounded-md border border-slate/20 bg-white px-3 text-sm font-normal text-slate" />
+          </label>
+        )}
       </div>
+
+      {!loading && classId && past && (
+        <div data-past-day className="flex flex-col gap-2 rounded-md border border-slate/20 bg-white p-3 text-sm text-slate">
+          <p className="font-semibold">{past.allowed ? t('att.past.title', { date: rosterDate }) : t('att.past.closed', { date: rosterDate, days: past.windowDays })}</p>
+          {past.allowed && <Input id="past-reason" label={t('att.past.reason')} helperText={t('att.past.reason.help')} value={reason} onChange={(e) => setReason(e.target.value)} />}
+        </div>
+      )}
 
       {failed.length > 0 && (
         <div role="alert" data-attendance-failed className="flex flex-col gap-2 rounded-md border border-red-800/30 bg-white p-3 text-sm text-slate">
@@ -311,6 +431,7 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
               const queued = waiting[row.student_id];
               const isUnmarked = !row.status && !queued;
               const current: MarkStatus = row.status ?? queued?.status ?? markOf(row.student_id).status;
+              const showBadge = past ? !!row.status : !isUnmarked;
               return (
                 <li key={row.student_id} data-student-row className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-slate/10 p-3 text-sm">
                   <div className="min-w-0">
@@ -323,13 +444,23 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
                     )}
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
-                    {!isUnmarked && <Badge variant={STATUS_VARIANT[current]}>{statusWord(current)}</Badge>}
+                    {showBadge && <Badge variant={STATUS_VARIANT[current]}>{statusWord(current)}</Badge>}
+                    {past && !row.status && <span className="text-xs text-slate/70">{t('att.past.notMarked')}</span>}
                     {queued && !row.status && (
                       <span data-waiting className="text-xs font-semibold text-slate/70">
                         {t('att.waiting')}
                       </span>
                     )}
-                    {canManage && isUnmarked && (
+                    {past?.allowed && (
+                      <div className="flex flex-wrap gap-1" role="group" aria-label={row.name}>
+                        {STATUSES.filter((s) => s !== row.status).map((s) => (
+                          <button key={s} type="button" onClick={() => void officeCorrect(row, s)} className={`${TAP} border-slate/10 text-slate hover:bg-slate/5`}>
+                            {row.status ? t('att.change', { status: statusWord(s) }) : statusWord(s)}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                    {!past && canManage && isUnmarked && (
                       <div className="flex flex-wrap gap-1" role="group" aria-label={row.name}>
                         {STATUSES.map((s) => (
                           <button
@@ -358,7 +489,7 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
                         )}
                       </div>
                     )}
-                    {canManage && row.status && row.locked && <span className="text-xs text-slate/70">{t('att.locked')}</span>}
+                    {!past?.allowed && canManage && row.status && row.locked && <span className="text-xs text-slate/70">{t('att.locked')}</span>}
                     {canManage && row.status && !row.locked && row.attendance_id && (
                       <div className="flex flex-wrap gap-1">
                         {STATUSES.filter((s) => s !== current).map((s) => (

@@ -107,6 +107,23 @@ const backOnline = async (page) => {
   for (const m of seededMarks) await db.pg.query(`insert into attendance (school_id, class_id, date, student_id, status, marked_by) values ($1, $2, ${TODAY_SQL}, $3, $4, $5)`, [SCHOOL, CLASS_5A, m.student_id, m.status, m.marked_by]);
   if (saved.n !== rosterSize || saved.students !== rosterSize || saved.absent !== 1) throw new Error(`after reconnecting: ${saved.n} marks for ${saved.students} students (${saved.absent} absent), expected ${rosterSize} marks, one each, 1 absent`);
 };
+// The office's correction path (C146): a teacher's late marks wait at the top
+// of the screen, and yesterday is open for entry with a reason.
+const officeCorrections = async (page) => {
+  await db.pg.query(`delete from attendance_correction_requests where school_id = $1`, [SCHOOL]);
+  await db.pg.query(
+    `insert into attendance_correction_requests (school_id, class_id, for_date, requested_by, entries)
+     select $1, $2, ${TODAY_SQL} - 1, $3, jsonb_agg(jsonb_build_object('studentId', student_id, 'status', 'present', 'leaveCode', null)) from students where school_id = $1 and class_id = $2`,
+    [SCHOOL, CLASS_5A, PEOPLE.teacher.sub]
+  );
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-request]').first().waitFor({ timeout: 15000 });
+  const yesterday = (await db.pg.query(`select (${TODAY_SQL} - 1)::text as d`)).rows[0].d;
+  await page.locator('[data-attendance-day]').fill(yesterday);
+  await chooseClass(page);
+  await page.locator('[data-past-day]').waitFor({ timeout: 15000 });
+};
+const officeCorrectionsDone = () => db.pg.query(`delete from attendance_correction_requests where school_id = $1`, [SCHOOL]);
 // The clash guard, as the office meets it (C145): in 5-B, period 1 on Monday,
 // choose the teacher who is teaching 5-A at that time. The period is not saved.
 const timetableClash = async (page) => {
@@ -209,6 +226,7 @@ const SCREENS = [
   ['principal', 'app-student-id-card', `/app/students/${STUDENT}/id-card`],
   ['principal', 'app-admissions', '/app/admissions'],
   ['principal', 'app-attendance', '/app/attendance', chooseClass],
+  ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],
   ['principal', 'app-timetable-clash', '/app/timetable', timetableClash],
   ['principal', 'app-staff', '/app/staff'],

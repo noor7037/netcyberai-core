@@ -3,6 +3,8 @@ import type { StaffRole } from '@/lib/auth/types';
 import { writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected } from '@/lib/db/rows';
 import { sendWhatsAppMessage } from '@/lib/whatsapp/gate';
+import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
+import { readSettings } from '@/lib/frameworks/settings-store';
 
 // 04_SYSTEM_DESIGN_PRD.md Sec3.2's own state machine:
 //   Capture -> same-day correction window (10 min, no note) ->
@@ -214,6 +216,8 @@ export async function markAttendance(
 export type SubmitAttendanceResult =
   | ({ outcome: 'saved'; replayed: boolean } & MarkAttendanceResult)
   | { outcome: 'day_passed'; replayed: boolean; forDate: string; today: string }
+  // The day ended before the marks arrived (C146): they wait for the office.
+  | { outcome: 'sent_to_office'; replayed: boolean; forDate: string; requestId: string }
   | { outcome: 'not_yours' };
 
 export const MAX_SECONDS_TO_MARK = 2 * 60 * 60;
@@ -249,7 +253,19 @@ export async function submitAttendance(
 
   let result: SubmitAttendanceResult;
   if (params.forDate !== params.today) {
-    result = { outcome: 'day_passed', replayed: false, forDate: params.forDate, today: params.today };
+    // After its day, a submission is never applied as a mark. Within the
+    // school's correction window it becomes a request in the office's queue;
+    // older than that, or for a day that has not come, it is refused.
+    const inClass = await client.query(`select 1 from classes where school_id = $1 and class_id = $2`, [params.schoolId, params.classId]);
+    if (params.entries.length > 0 && inClass.rows[0] && withinCorrectionWindow(params.forDate, params.today, await correctionWindowDays(client, params.schoolId))) {
+      const made = await client.query(
+        `insert into attendance_correction_requests (school_id, class_id, for_date, requested_by, entries) values ($1, $2, $3, $4, $5::jsonb) returning request_id`,
+        [params.schoolId, params.classId, params.forDate, params.markedBy, JSON.stringify(params.entries.map((e) => ({ studentId: e.studentId, status: e.status, leaveCode: e.status === 'leave' ? e.leaveCode ?? null : null })))]
+      );
+      result = { outcome: 'sent_to_office', replayed: false, forDate: params.forDate, requestId: made.rows[0].request_id };
+    } else {
+      result = { outcome: 'day_passed', replayed: false, forDate: params.forDate, today: params.today };
+    }
   } else {
     const marked = await markAttendance(client, { schoolId: params.schoolId, classId: params.classId, date: params.today, markedBy: params.markedBy, entries: params.entries });
     result = { outcome: 'saved', replayed: false, ...marked };
@@ -325,3 +341,145 @@ export async function correctAttendance(
 
   return result.rows[0];
 }
+
+// ---- The office's correction path (C146) ------------------------------
+//
+// A principal or school admin may enter or correct attendance for a day
+// that has ended, with a reason, inside the school's correction window (a
+// setting, 7 days unless the school changes it). Every such change is in
+// the audit log with the reason. No message goes to a family about a past
+// day: the absence notice is for the day itself.
+
+export const DEFAULT_CORRECTION_WINDOW_DAYS = 7;
+export const MAX_CORRECTION_WINDOW_DAYS = 60;
+const OFFICE_ROLES: readonly string[] = ['principal', 'school_admin'];
+
+export async function correctionWindowDays(client: PoolClient, schoolId: string): Promise<number> {
+  const schema = SETTINGS_SCHEMAS.find((s) => s.moduleId === 'attendance');
+  const value = schema ? (await readSettings(client, schoolId, schema)).effective.correction_window_days : undefined;
+  const n = typeof value === 'number' ? Math.floor(value) : DEFAULT_CORRECTION_WINDOW_DAYS;
+  return n >= 0 && n <= MAX_CORRECTION_WINDOW_DAYS ? n : DEFAULT_CORRECTION_WINDOW_DAYS;
+}
+
+const dayNumber = (iso: string) => Math.round(Date.parse(`${iso}T00:00:00Z`) / 86_400_000);
+// A past day, no further back than the window.
+export function withinCorrectionWindow(date: string, today: string, windowDays: number): boolean {
+  const back = dayNumber(today) - dayNumber(date);
+  return back >= 1 && back <= windowDays;
+}
+
+type OfficeActor = { schoolId: string; userId: string; role: StaffRole };
+export type OfficeCorrectionResult =
+  | { ok: true; attendanceId: string; entered: boolean }
+  | { ok: false; reason: 'not_allowed' | 'reason_required' | 'outside_window' | 'unknown_student' };
+
+export async function officeCorrectAttendance(
+  client: PoolClient,
+  actor: OfficeActor,
+  params: { studentId: string; date: string; status: AttendanceStatus; leaveCode?: string | null; reason: string; today: string }
+): Promise<OfficeCorrectionResult> {
+  if (!OFFICE_ROLES.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
+  const reason = params.reason.trim();
+  if (!reason) return { ok: false, reason: 'reason_required' };
+  if (!withinCorrectionWindow(params.date, params.today, await correctionWindowDays(client, actor.schoolId))) return { ok: false, reason: 'outside_window' };
+  const student = (await client.query(`select class_id from students where school_id = $1 and student_id = $2 and status in ('active', 'pending_consent') and class_id is not null`, [actor.schoolId, params.studentId])).rows[0];
+  if (!student) return { ok: false, reason: 'unknown_student' };
+
+  const before = (await client.query(`select attendance_id, status, leave_code from attendance where school_id = $1 and student_id = $2 and date = $3`, [actor.schoolId, params.studentId, params.date])).rows[0] ?? null;
+  const leaveCode = params.status === 'leave' ? params.leaveCode ?? null : null;
+  const saved = before
+    ? await client.query(`update attendance set status = $3, leave_code = $4 where school_id = $1 and attendance_id = $2 returning attendance_id`, [actor.schoolId, before.attendance_id, params.status, leaveCode])
+    : await client.query(`insert into attendance (school_id, class_id, date, student_id, status, leave_code, marked_by) values ($1, $2, $3, $4, $5, $6, $7) returning attendance_id`, [actor.schoolId, student.class_id, params.date, params.studentId, params.status, leaveCode, actor.userId]);
+  assertRowsAffected(saved, 'office attendance correction affected 0 rows -- RLS likely denied it silently');
+  const attendanceId = saved.rows[0].attendance_id as string;
+  await writeAuditLog(client, {
+    schoolId: actor.schoolId,
+    actorUserId: actor.userId,
+    actorRole: actor.role,
+    eventAction: before ? 'attendance.office_correct' : 'attendance.office_enter',
+    targetType: 'attendance',
+    targetId: attendanceId,
+    beforeState: before ? { status: before.status, leaveCode: before.leave_code } : null,
+    afterState: { status: params.status, leaveCode, date: params.date, reason },
+  });
+  return { ok: true, attendanceId, entered: !before };
+}
+
+export type CorrectionRequest = {
+  request_id: string;
+  class_id: string;
+  class_name: string;
+  for_date: string;
+  requested_by_name: string;
+  created_at: string;
+  students: number;
+  in_window: boolean;
+};
+
+export async function waitingCorrectionRequests(client: PoolClient, schoolId: string, today: string): Promise<CorrectionRequest[]> {
+  const days = await correctionWindowDays(client, schoolId);
+  const { rows } = await client.query(
+    `select r.request_id, r.class_id, c.name as class_name, r.for_date::text as for_date, u.display_name as requested_by_name, r.created_at, jsonb_array_length(r.entries)::int as students
+       from attendance_correction_requests r
+       join classes c on c.school_id = r.school_id and c.class_id = r.class_id
+       join users u on u.school_id = r.school_id and u.user_id = r.requested_by
+      where r.school_id = $1 and r.status = 'waiting'
+      order by r.for_date, r.created_at`,
+    [schoolId]
+  );
+  return rows.map((r) => ({ ...r, in_window: withinCorrectionWindow(r.for_date, today, days) }));
+}
+
+export type DecideResult = { ok: true; applied: number; kept: number } | { ok: false; reason: 'not_allowed' | 'reason_required' | 'outside_window' | 'not_found' };
+
+// Apply: each student of the request who has no mark for that day gets the
+// requested one. A student already marked keeps the saved mark (the office
+// changes that one by itself, on the day's roster). Dismiss: nothing is saved.
+export async function decideCorrectionRequest(
+  client: PoolClient,
+  actor: OfficeActor,
+  params: { requestId: string; action: 'apply' | 'dismiss'; reason: string; today: string }
+): Promise<DecideResult> {
+  if (!OFFICE_ROLES.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
+  const reason = params.reason.trim();
+  if (!reason) return { ok: false, reason: 'reason_required' };
+  const request = (await client.query(`select request_id, class_id, for_date::text as for_date, requested_by, entries from attendance_correction_requests where school_id = $1 and request_id = $2 and status = 'waiting' for update`, [actor.schoolId, params.requestId])).rows[0];
+  if (!request) return { ok: false, reason: 'not_found' };
+
+  let applied = 0;
+  let kept = 0;
+  if (params.action === 'apply') {
+    if (!withinCorrectionWindow(request.for_date, params.today, await correctionWindowDays(client, actor.schoolId))) return { ok: false, reason: 'outside_window' };
+    const entries = (request.entries as { studentId?: unknown; status?: unknown; leaveCode?: unknown }[]).filter(
+      (e): e is { studentId: string; status: AttendanceStatus; leaveCode: string | null } => typeof e.studentId === 'string' && ATTENDANCE_STATUSES.includes(e.status as AttendanceStatus)
+    );
+    const inserted = await client.query(
+      `insert into attendance (school_id, class_id, date, student_id, status, leave_code, marked_by)
+       select $1, $2, $3, s.student_id, n.status, case when n.status = 'leave' then n.leave_code end, $4
+         from unnest($5::uuid[], $6::text[], $7::text[]) as n(student_id, status, leave_code)
+         join students s on s.school_id = $1 and s.student_id = n.student_id and s.class_id = $2 and s.status in ('active', 'pending_consent')
+       on conflict (school_id, student_id, date) do nothing
+       returning student_id`,
+      [actor.schoolId, request.class_id, request.for_date, request.requested_by, entries.map((e) => e.studentId), entries.map((e) => e.status), entries.map((e) => (typeof e.leaveCode === 'string' ? e.leaveCode : null))]
+    );
+    applied = inserted.rows.length;
+    kept = entries.length - applied;
+  }
+  const decided = await client.query(
+    `update attendance_correction_requests set status = $3, decided_by = $4, decided_at = now(), decision_reason = $5 where school_id = $1 and request_id = $2 and status = 'waiting'`,
+    [actor.schoolId, params.requestId, params.action === 'apply' ? 'applied' : 'dismissed', actor.userId, reason.slice(0, 500)]
+  );
+  assertRowsAffected(decided, 'correction request decision affected 0 rows -- RLS likely denied it silently');
+  await writeAuditLog(client, {
+    schoolId: actor.schoolId,
+    actorUserId: actor.userId,
+    actorRole: actor.role,
+    eventAction: params.action === 'apply' ? 'attendance.request_applied' : 'attendance.request_dismissed',
+    targetType: 'attendance_correction_requests',
+    targetId: params.requestId,
+    beforeState: { status: 'waiting', classId: request.class_id, date: request.for_date, requestedBy: request.requested_by },
+    afterState: { applied, kept, reason },
+  });
+  return { ok: true, applied, kept };
+}
+

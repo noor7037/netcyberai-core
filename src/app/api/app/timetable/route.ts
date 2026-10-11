@@ -11,7 +11,8 @@ import { clearEntry, entriesForClass, entriesForTeacher, periodsPerDay, putEntry
 //   PUT            fill one period (office); a teacher clash answers 409 and names the other entry
 //   DELETE         clear one period (office)
 
-const OFFICE = ['principal', 'school_admin'];
+// Who fills the timetable: the office and the academic coordinator (C146).
+const OFFICE = ['principal', 'school_admin', 'academic_coordinator'];
 const slotOf = (body: Record<string, unknown> | null) => {
   const weekday = Number(body?.weekday);
   const period = Number(body?.period);
