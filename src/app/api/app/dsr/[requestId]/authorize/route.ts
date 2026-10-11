@@ -4,6 +4,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { authorizeDsrDeletion, WrongRequestTypeError } from '@/lib/consent/dsr';
+import { ruleError } from '@/lib/frameworks/route';
 
 // Task 3's explicit, separately-confirmed authorization step. Logging a
 // deletion request (POST .../dsr) never reaches this on its own --
@@ -13,7 +14,7 @@ export async function POST(req: NextRequest, { params }: { params: { requestId: 
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
   if (!canAuthorizeErasure(guard.claims.role)) {
-    return NextResponse.json({ error: 'forbidden -- only school_admin/principal may authorize erasure' }, { status: 403 });
+    return ruleError(403, 'not_allowed');
   }
 
   try {
@@ -31,8 +32,8 @@ export async function POST(req: NextRequest, { params }: { params: { requestId: 
     });
     return NextResponse.json(row);
   } catch (err) {
-    if (err instanceof WrongRequestTypeError) return NextResponse.json({ error: err.message }, { status: 400 });
-    if (err instanceof Error && err.message === 'request not found') return NextResponse.json({ error: err.message }, { status: 404 });
+    if (err instanceof WrongRequestTypeError) return ruleError(400, 'only_for_deletion');
+    if (err instanceof Error && err.message === 'request not found') return ruleError(404, 'not_found', { field: 'data_request' });
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
     throw err;

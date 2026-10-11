@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { isModuleId } from '@/lib/contracts/modules';
 import type { SettingsUpdate } from '@/lib/contracts/settings';
 import { checkModuleAccess } from '@/lib/frameworks/entitlements';
-import { appRoute, jsonError, readJson } from '@/lib/frameworks/route';
+import { accessDenied, appRoute, readJson, ruleError } from '@/lib/frameworks/route';
 import { settingsSchemaFor } from '@/lib/frameworks/settings-schemas';
 import { readSettings, saveSettings, settingsHistory } from '@/lib/frameworks/settings-store';
 
@@ -18,10 +18,10 @@ function schemaOr404(moduleId: string) {
 
 export async function GET(req: NextRequest, { params }: { params: { moduleId: string } }) {
   const schema = schemaOr404(params.moduleId);
-  if (!schema) return jsonError(404, 'this module has no settings');
+  if (!schema) return ruleError(404, 'not_found', { field: 'settings' });
   return appRoute(req, async ({ claims, db }) => {
     const access = await checkModuleAccess(db, claims, schema.moduleId);
-    if (!access.ok) return jsonError(access.status, access.error);
+    if (!access.ok) return accessDenied(access);
     const view = await readSettings(db, claims.schoolId, schema);
     const history = req.nextUrl.searchParams.get('history') === '1' ? await settingsHistory(db, claims.schoolId, schema.moduleId) : undefined;
     return NextResponse.json({ ...view, ...(history ? { history } : {}) });
@@ -30,12 +30,12 @@ export async function GET(req: NextRequest, { params }: { params: { moduleId: st
 
 export async function PUT(req: NextRequest, { params }: { params: { moduleId: string } }) {
   const schema = schemaOr404(params.moduleId);
-  if (!schema) return jsonError(404, 'this module has no settings');
+  if (!schema) return ruleError(404, 'not_found', { field: 'settings' });
   const body = await readJson(req);
-  if (!body) return jsonError(400, 'a JSON body is required');
+  if (!body) return ruleError(400, 'not_sent_properly');
   return appRoute(req, async ({ claims, db }) => {
     const access = await checkModuleAccess(db, claims, schema.moduleId, { write: true });
-    if (!access.ok) return jsonError(access.status, access.error);
+    if (!access.ok) return accessDenied(access);
     const update: SettingsUpdate = {
       moduleId: schema.moduleId,
       baseRevision: body.baseRevision as number,

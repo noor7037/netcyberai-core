@@ -17,6 +17,7 @@ import {
   withdrawVerification,
   type DirectVerificationMethod,
 } from '@/lib/consent/guardian-verification';
+import { ruleError } from '@/lib/frameworks/route';
 
 type Params = { parentId: string; studentId: string };
 
@@ -35,7 +36,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
       );
       return rows[0] ?? null;
     });
-    if (!link) return NextResponse.json({ error: 'guardian not linked to this student' }, { status: 404 });
+    if (!link) return ruleError(404, 'guardian_not_linked');
     return NextResponse.json(link);
   } catch (err) {
     const resp = sessionErrorResponse(err);
@@ -53,7 +54,7 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
   if (!canWriteMasterData(guard.claims.role)) {
-    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+    return ruleError(403, 'not_allowed');
   }
 
   const body = await req.json().catch(() => null);
@@ -68,7 +69,7 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
     if (action === 'verify_direct') {
       const method = body?.method;
       if (!(DIRECT_VERIFICATION_METHODS as readonly string[]).includes(method)) {
-        return NextResponse.json({ error: `method must be one of ${DIRECT_VERIFICATION_METHODS.join(', ')}` }, { status: 400 });
+        return ruleError(400, 'choose_one', { field: 'verification_method' });
       }
       const evidenceRef = typeof body?.evidenceRef === 'string' ? body.evidenceRef.slice(0, 500) : null;
       await withTenantContext(guard.claims, async (client) => {
@@ -115,7 +116,7 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
     if (action === 'confirm_code') {
       const code = body?.code;
       if (typeof code !== 'string') {
-        return NextResponse.json({ error: 'code is required' }, { status: 400 });
+        return ruleError(400, 'required', { field: 'code' });
       }
       await withTenantContext(guard.claims, async (client) => {
         await confirmVerificationCode(client, {
@@ -154,13 +155,13 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
       return NextResponse.json({ status: 'withdrawn' });
     }
 
-    return NextResponse.json({ error: 'action must be one of start, verify_direct, request_code, confirm_code, withdraw' }, { status: 400 });
+    return ruleError(400, 'not_sent_properly');
   } catch (err) {
-    if (err instanceof GuardianLinkNotFoundError) return NextResponse.json({ error: err.message }, { status: 404 });
-    if (err instanceof InvalidTransitionError) return NextResponse.json({ error: err.message }, { status: 409 });
-    if (err instanceof CodeExpiredError || err instanceof CodeMismatchError || err instanceof TooManyAttemptsError) {
-      return NextResponse.json({ error: err.message }, { status: 400 });
-    }
+    if (err instanceof GuardianLinkNotFoundError) return ruleError(404, 'guardian_not_linked');
+    if (err instanceof InvalidTransitionError) return ruleError(409, 'step_out_of_order');
+    if (err instanceof CodeExpiredError) return ruleError(400, 'code_expired');
+    if (err instanceof CodeMismatchError) return ruleError(400, 'code_wrong');
+    if (err instanceof TooManyAttemptsError) return ruleError(400, 'code_too_many_tries');
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
     throw err;

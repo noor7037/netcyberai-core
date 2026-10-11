@@ -35,9 +35,9 @@ const STATUS_VARIANT: Record<AttendanceStatus, 'success' | 'danger' | 'warning'>
 // the pre-submit local state for students not yet marked today --
 // once submitted, every further change is a correction (PATCH), not
 // part of this draft.
-export function AttendanceView({ canManage }: { canManage: boolean }) {
+export function AttendanceView({ canManage, initialClassId }: { canManage: boolean; initialClassId?: string }) {
   const [classes, setClasses] = useState<ClassOption[]>([]);
-  const [classId, setClassId] = useState('');
+  const [classId, setClassId] = useState(initialClassId ?? '');
   const [roster, setRoster] = useState<RosterRow[]>([]);
   const [draft, setDraft] = useState<Record<string, AttendanceStatus>>({});
   const [correctTarget, setCorrectTarget] = useState<{ row: RosterRow; status: AttendanceStatus } | null>(null);

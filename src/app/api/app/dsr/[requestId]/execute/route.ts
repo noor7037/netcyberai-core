@@ -4,6 +4,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { executeDsrDeletion, NotAuthorizedForExecutionError, WrongRequestTypeError } from '@/lib/consent/dsr';
+import { ruleError } from '@/lib/frameworks/route';
 
 // The one place pseudonymization actually runs. Refuses outright unless
 // /authorize already ran (executeDsrDeletion checks authorized_by/
@@ -15,7 +16,7 @@ export async function POST(req: NextRequest, { params }: { params: { requestId: 
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
   if (!canAuthorizeErasure(guard.claims.role)) {
-    return NextResponse.json({ error: 'forbidden -- only school_admin/principal may execute erasure' }, { status: 403 });
+    return ruleError(403, 'not_allowed');
   }
 
   try {
@@ -34,10 +35,10 @@ export async function POST(req: NextRequest, { params }: { params: { requestId: 
     });
     return NextResponse.json({ request, result });
   } catch (err) {
-    if (err instanceof NotAuthorizedForExecutionError) return NextResponse.json({ error: err.message }, { status: 409 });
-    if (err instanceof WrongRequestTypeError) return NextResponse.json({ error: err.message }, { status: 400 });
+    if (err instanceof NotAuthorizedForExecutionError) return ruleError(409, 'approve_first');
+    if (err instanceof WrongRequestTypeError) return ruleError(400, 'only_for_deletion');
     if (err instanceof Error && (err.message === 'request not found' || err.message === 'this request has already been executed')) {
-      return NextResponse.json({ error: err.message }, { status: err.message === 'request not found' ? 404 : 409 });
+      return err.message === 'request not found' ? ruleError(404, 'not_found', { field: 'data_request' }) : ruleError(409, 'already_done');
     }
     const resp = sessionErrorResponse(err);
     if (resp) return resp;

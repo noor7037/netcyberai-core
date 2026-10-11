@@ -5,6 +5,7 @@ import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected, NoRowsAffectedError } from '@/lib/db/rows';
 import { checkEmail, checkPhone, validationError } from '@/lib/errors/catalogue';
+import { ruleError } from '@/lib/frameworks/route';
 
 const EDITABLE_FIELDS = ['name', 'phone', 'email', 'relation'] as const;
 
@@ -15,12 +16,12 @@ export async function PATCH(req: NextRequest, { params }: { params: { parentId: 
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
   if (!canWriteMasterData(guard.claims.role)) {
-    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+    return ruleError(403, 'not_allowed');
   }
 
   const body = await req.json().catch(() => null);
   if (!body || typeof body !== 'object') {
-    return NextResponse.json({ error: 'invalid body' }, { status: 400 });
+    return ruleError(400, 'not_sent_properly');
   }
 
   const setClauses: string[] = [];
@@ -44,7 +45,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { parentId: 
     }
   }
   if (setClauses.length === 0) {
-    return NextResponse.json({ error: `no editable fields provided (${EDITABLE_FIELDS.join(', ')})` }, { status: 400 });
+    return ruleError(400, 'nothing_to_save');
   }
 
   try {
@@ -76,11 +77,11 @@ export async function PATCH(req: NextRequest, { params }: { params: { parentId: 
       });
       return row;
     });
-    if (!guardian) return NextResponse.json({ error: 'not found' }, { status: 404 });
+    if (!guardian) return ruleError(404, 'not_found', { field: 'guardian' });
     return NextResponse.json({ guardian });
   } catch (err) {
     if (err instanceof NoRowsAffectedError) {
-      return NextResponse.json({ error: 'not found' }, { status: 404 });
+      return ruleError(404, 'not_found', { field: 'guardian' });
     }
     const resp = sessionErrorResponse(err);
     if (resp) return resp;

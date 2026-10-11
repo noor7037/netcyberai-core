@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkModuleAccess } from '@/lib/frameworks/entitlements';
-import { appRoute, jsonError, readJson } from '@/lib/frameworks/route';
+import { accessDenied, appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 import { mergeGuardians } from '@/lib/families/families';
 
 // Merge two guardian records that are the same person (C116):
@@ -8,10 +8,10 @@ import { mergeGuardians } from '@/lib/families/families';
 // kept one; the merged record stays, marked, so nothing is lost. Office only.
 export async function POST(req: NextRequest) {
   const body = await readJson(req);
-  if (!body) return jsonError(400, 'keepParentId and mergeParentId are required');
+  if (!body) return ruleError(400, 'not_sent_properly');
   return appRoute(req, async ({ claims, db }) => {
     const access = await checkModuleAccess(db, claims, 'parents', { write: true });
-    if (!access.ok) return jsonError(access.status, access.error);
+    if (!access.ok) return accessDenied(access);
     const r = await mergeGuardians(db, { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, body.keepParentId, body.mergeParentId);
     return r.ok ? NextResponse.json(r) : jsonError(r.status, r.error);
   });
