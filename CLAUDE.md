@@ -52,12 +52,38 @@ the user asked for.
 - **UI:** only logo tokens from `src/lib/design-tokens.ts`; AA contrast
   (`scripts/check_contrast.py`); motion off under `prefers-reduced-motion`;
   responsive-native at 360/390/768/1024/1440 with 44 px targets.
-- **Every PR:** one coherent slice (split above ~1,500 lines);
+- **Every PR:** one coherent slice (size limits in "Working efficiently");
   `bash scripts/ci_local.sh` passes every step; tests for new logic;
   screenshots at 390 and 1440 for UI. Never merge, never push to `main`, never
   rewrite history. No secrets in code, logs, chat or PR text.
 - **Decision Log numbers:** Claude Code from C110.
 - **Report** in the Transparent Output Template, founder actions first.
+
+## Working efficiently (founder, 2026-10-11, C107)
+
+Same quality bar, less repetition. These rules apply to every session, so
+prompts do not repeat them.
+
+- **Iterate on targeted tests** (the changed files' tests, `tsc`). Run the full
+  `ci_local.sh` **once**, right before the push; GitHub CI runs it again.
+  Re-run it in full only if the review fixes touched shared code.
+- **Harness screenshots: changed screens only**, one run before the PR. Never
+  the full 56-screen set unless the shell or a shared component changed.
+- **One review per PR, scaled to risk.** Auth, RLS, migrations, money, the
+  send-gate or personal data: `/code-review` (medium) plus `/security-review`.
+  UI, copy, docs or tests only: `/code-review` (low), no security review.
+  Docs-only: no review.
+- **PR size by risk:** up to ~3,000 lines for UI, copy, docs or tests; ~1,500
+  for anything touching the database, auth, money or messaging. Do not split a
+  low-risk slice just to stay small.
+- **Keep going without waiting.** Open each PR and continue to the next slice
+  in the same run; the supervisor reviews and merges in batches.
+- **Short reports:** founder actions, PRs with one line each, what was verified,
+  open decisions, gaps. Do not restate the brief or list unchanged items.
+- **Decision Log rows:** decisions and their reasons only, a few lines. The PR
+  description holds the detail.
+- **Read once per session:** the "Read first" docs at the start, not again for
+  each slice.
 
 ## Founder workload rule (C103)
 
