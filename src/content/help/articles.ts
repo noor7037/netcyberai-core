@@ -312,11 +312,15 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     },
     steps: [
       { en: 'Open Academics. Each row is one class and subject you teach.', hi: 'Academics खोलें। हर पंक्ति एक कक्षा और विषय है जो आप पढ़ाते हैं।' },
-      { en: 'A row that shows “Not recorded” has nothing saved for today yet.', hi: 'जिस पंक्ति में “Not recorded” लिखा है, उसमें आज के लिए अभी कुछ सेव नहीं हुआ।' },
-      { en: 'Tap what happened: “Taught”, “Partly taught”, “Delayed” or “Not taught”. It is saved at once.', hi: 'जो हुआ उस पर टैप करें: “Taught”, “Partly taught”, “Delayed” या “Not taught”। यह तुरंत सेव हो जाता है।' },
+      { en: 'If the row shows “Next on the syllabus:”, one tap on “Taught today” records that topic as taught.', hi: 'अगर पंक्ति में “Next on the syllabus:” दिखे, तो “Taught today” पर एक टैप उस विषय-बिंदु को पढ़ाया हुआ दर्ज कर देता है।' },
+      { en: 'Or type the “Topic taught” and tap what happened: “Taught”, “Partly taught”, “Delayed” or “Not taught”. It is saved at once.', hi: 'या “Topic taught” लिखें और जो हुआ उस पर टैप करें: “Taught”, “Partly taught”, “Delayed” या “Not taught”। यह तुरंत सेव हो जाता है।' },
+      { en: 'A row that shows “Not recorded” has nothing saved for today yet.', hi: 'जिस पंक्ति में “Not recorded” लिखा है, उसमें आज के लिए अभी कुछ सेव नहीं है।' },
       { en: 'Made a mistake? Tap the right one; the newest choice replaces the earlier one for today.', hi: 'ग़लती हो गई? सही विकल्प पर टैप करें; आज के लिए नया चुनाव पुराने की जगह ले लेता है।' },
+      { en: 'To plan the year, open “Syllabus map” in the row, write one topic per line as Chapter | Topic, and press “Add topics”.', hi: 'साल की योजना के लिए पंक्ति में “Syllabus map” खोलें, हर पंक्ति में एक विषय-बिंदु Chapter | Topic के रूप में लिखें, और “Add topics” दबाएँ।' },
     ],
     tips: [
+      { en: 'One tap also fills the classwork log and prepares the day’s message to parents. Nothing is sent to parents yet.', hi: 'एक टैप से कक्षा-कार्य का रजिस्टर भी भरता है और अभिभावकों का दिन का संदेश तैयार होता है। अभी अभिभावकों को कुछ भेजा नहीं जाता।' },
+      { en: 'With no internet the tap is kept on the phone and sent when the internet is back.', hi: 'इंटरनेट न हो तो टैप फ़ोन पर रहता है और इंटरनेट आते ही भेज दिया जाता है।' },
       { en: 'No rows? A teacher sees only the classes and subjects assigned to them. Ask your school admin to assign yours.', hi: 'कोई पंक्ति नहीं? शिक्षक को सिर्फ़ वही कक्षाएँ और विषय दिखते हैं जो उन्हें दिए गए हैं। अपने स्कूल एडमिन से कहें।' },
     ],
     start: { href: '/app/syllabus', label: { en: 'Taught today', hi: 'Taught today' } },

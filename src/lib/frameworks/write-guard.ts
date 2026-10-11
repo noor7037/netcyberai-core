@@ -61,6 +61,7 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['attendance', 'attendance'],
   ['timetable/**', 'timetable'],
   ['timetable', 'timetable'],
+  ['syllabus/**', 'academics'],
   ['syllabus', 'academics'],
   // Classes, subjects and who teaches what are the school's Setup.
   ['classes', 'setup'],

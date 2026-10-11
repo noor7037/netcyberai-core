@@ -237,6 +237,9 @@ ALLOWED_PERMISSIVE = (
         # C146: tenant isolation only; narrowed by the RESTRICTIVE read,
         # make_own and office_decide, required below.
         ("attendance_correction_requests", "attendance_correction_requests_tenant_isolation"),
+        # P2 5d (C147): tenant isolation only; narrowed by the RESTRICTIVE
+        # teacher_scope and staff_insert/delete, required below.
+        ("syllabus_units", "syllabus_units_tenant_isolation"),
         ("support_ticket_messages", "support_ticket_messages_tenant_read"),
         ("support_ticket_messages", "support_ticket_messages_tenant_insert"),
         ("support_ticket_attachments", "support_ticket_attachments_tenant_read"),
@@ -280,6 +283,11 @@ REQUIRED_RESTRICTIVE = {
     ("attendance_correction_requests", "attendance_correction_requests_read"),
     ("attendance_correction_requests", "attendance_correction_requests_make_own"),
     ("attendance_correction_requests", "attendance_correction_requests_office_decide"),
+    # C147: a teacher reads and writes only their own classes' map and Pulse messages.
+    ("syllabus_units", "syllabus_units_teacher_scope"),
+    ("syllabus_units", "syllabus_units_staff_insert"),
+    ("syllabus_units", "syllabus_units_staff_delete"),
+    ("pulse_messages", "teacher_scope_pulse_messages"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
     ("audit_log", "audit_ticket_rows_own_or_office"),
