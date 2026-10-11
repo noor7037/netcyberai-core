@@ -249,6 +249,9 @@ ALLOWED_PERMISSIVE = (
         ("homework_attachments", "homework_attachments_tenant_isolation"),
         # C152: tenant isolation only; narrowed by the RESTRICTIVE staff, teacher_scope and decide_as_self, required below.
         ("recovery_plans", "recovery_plans_tenant_isolation"),
+        # C154: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("ai_usage", "ai_usage_tenant_isolation"),
+        ("teaching_notes", "teaching_notes_tenant_isolation"),
         ("support_ticket_messages", "support_ticket_messages_tenant_read"),
         ("support_ticket_messages", "support_ticket_messages_tenant_insert"),
         ("support_ticket_attachments", "support_ticket_attachments_tenant_read"),
@@ -313,6 +316,12 @@ REQUIRED_RESTRICTIVE = {
     ("recovery_plans", "recovery_plans_staff"),
     ("recovery_plans", "recovery_plans_teacher_scope"),
     ("recovery_plans", "recovery_plans_decide_as_self"),
+    # C154: usage is written as oneself and read by leadership or its owner; notes are staff-only, a teacher's own classes, approved as oneself.
+    ("ai_usage", "ai_usage_write_as_self"),
+    ("ai_usage", "ai_usage_read"),
+    ("teaching_notes", "teaching_notes_staff"),
+    ("teaching_notes", "teaching_notes_teacher_scope"),
+    ("teaching_notes", "teaching_notes_approve_as_self"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
     ("audit_log", "audit_ticket_rows_own_or_office"),

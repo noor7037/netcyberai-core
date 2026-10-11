@@ -153,7 +153,7 @@ const ROWS: readonly Row[] = [
     capabilities: ['Per-student skill map by subject and chapter', 'Strengths and gaps', 'Shown to teachers, summarised to parents'] },
   { id: 'curriculum-gap', label: 'Curriculum Gap Detector', group: 'ai-intelligence', icon: 'curriculumGap', roles: LEARNING_AI, phase: 'P6', status: 'spec-v0',
     capabilities: ['Planned vs taught vs assessed', 'Flags untaught or unassessed chapters per class'] },
-  { id: 'teacher-copilot', label: 'Teacher Copilot', group: 'ai-intelligence', icon: 'copilot', roles: TEACHING, phase: 'P2', status: 'spec-v0',
+  { id: 'teacher-copilot', label: 'Teacher Copilot', group: 'ai-intelligence', icon: 'copilot', roles: TEACHING, phase: 'P2', phaseNote: 'Built on a stand-in (v1); off for every school until the founder sets a key and a monthly limit', status: 'foundation',
     capabilities: ['Drafts lesson plans, worksheets, Pulse messages and remarks', 'Teacher edits and approves', 'Usage metered'] },
   // Teachers review the suggestions for their own classes (C112).
   { id: 'parent-ai', label: 'Parent AI · What to Do?', group: 'ai-intelligence', icon: 'parentAi', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', status: 'spec-v0',

@@ -64,6 +64,8 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['homework/**', 'homework'],
   ['homework', 'homework'],
   ['recovery', 'recovery'],
+  // Has its own switch (C154): off unless the module, the founder's monthly limit and a provider are all there; copilotState also refuses a paused or read-only school.
+  ['copilot/**', 'checks-itself'],
   ['followups/**', 'pulse'],
   ['followups', 'pulse'],
   ['pulse-drafts/**', 'pulse'],
@@ -106,6 +108,8 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['homework/**', 'homework'],
   ['homework', 'homework'],
   ['recovery', 'recovery'],
+  // Has its own switch (C154): off unless the module, the founder's monthly limit and a provider are all there; copilotState also refuses a paused or read-only school.
+  ['copilot/**', 'checks-itself'],
   ['followups', 'pulse'],
   ['pulse-drafts', 'pulse'],
   ['syllabus', 'academics'],

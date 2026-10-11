@@ -42,7 +42,7 @@ export const moduleStatus: Record<ModuleId, { status: ModuleStatus; note: string
   reports: { status: 'planned', note: 'Built after the modules they report on.' },
   'learning-genome': { status: 'needs-spec', note: 'Not in the current product documents.' },
   'early-warning': { status: 'foundation', note: 'The at-risk signal table exists; signals need attendance and marks history (build step 5).' },
-  'teacher-copilot': { status: 'needs-spec', note: 'Not in the current product documents.' },
+  'teacher-copilot': { status: 'foundation', note: 'Version 1 is built and tested on a stand-in: drafts from the syllabus map, edited and approved by the teacher, metered per school. It is not switched on for any school, and no AI model is connected yet.' },
   'school-auditor': { status: 'needs-spec', note: 'Not in the current product documents.' },
   'parent-ai': { status: 'needs-spec', note: 'Not in the current product documents.' },
   recovery: { status: 'partial', note: 'Version 1: lists students who missed several homeworks, suggests a catch-up plan and records the teacher’s approval; parents are not informed yet.' },

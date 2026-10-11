@@ -219,6 +219,29 @@ const recoveryApprove = async (page) => {
   await clearHomework();
   if (rows.length !== 1 || rows[0].status !== 'approved' || rows[0].items !== 3 || grew !== 0) throw new Error(`expected one approved plan of 3 homeworks and nothing sent: ${JSON.stringify(rows)} sent ${grew}`);
 };
+// Teacher Copilot (C154) on the stand-in: a draft appears, the teacher
+// changes it and approves; one note is saved under the teacher's name and
+// one use is metered.
+const copilotDraft = async (page) => {
+  await db.pg.exec(`delete from teaching_notes; delete from ai_usage;`);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.selectOption('#cp-pair', { index: 1 });
+  const pairs = await page.locator('#cp-pair option').allTextContents();
+  await page.selectOption('#cp-pair', { label: pairs.find((p) => p.includes('Mathematics')) });
+  await page.selectOption('#cp-topic', { index: 1 });
+  await page.locator('[data-draft]').click();
+  await page.locator('[data-copilot-draft] textarea').waitFor({ timeout: 15000 });
+  if ((await db.pg.query(`select count(*)::int as n from teaching_notes`)).rows[0].n !== 0) throw new Error('a draft was saved before approval');
+  await page.locator('[data-copilot-draft] textarea').press('End');
+  await page.locator('[data-copilot-draft] textarea').pressSequentially(' (checked)');
+};
+const copilotApprove = async (page) => {
+  await page.locator('[data-approve]').click();
+  await page.locator('[data-notes]').waitFor({ timeout: 15000 });
+  const { rows } = await db.pg.query(`select (select count(*)::int from teaching_notes where ai_assisted and approved_by = $1 and body like '%(checked)%') as notes, (select count(*)::int from ai_usage where user_id = $1) as uses`, [PEOPLE.teacher.sub]);
+  await db.pg.exec(`delete from teaching_notes; delete from ai_usage;`);
+  if (rows[0].notes !== 1 || rows[0].uses !== 1) throw new Error(`expected one approved note and one metered use: ${JSON.stringify(rows[0])}`);
+};
 // The "needs help" queue (C148): one student waiting, then the outcome is
 // recorded and the card leaves the queue.
 const needsHelp = async (page) => {
@@ -378,6 +401,7 @@ const SCREENS = [
   ['teacher', 'teacher-attendance-offline', '/app/attendance', markOffline, backOnline],
   ['teacher', 'teacher-taught-today', '/app/syllabus'],
   ['teacher', 'teacher-homework', '/app/homework', homeworkFlow, homeworkFlowDone],
+  ['teacher', 'teacher-copilot', '/app/teacher-copilot', copilotDraft, copilotApprove],
   ['teacher', 'teacher-recovery', '/app/recovery', recoveryList, recoveryApprove],
   ['teacher', 'teacher-needs-help', '/app/pulse', needsHelp, needsHelpDone],
   ['teacher', 'teacher-pulse-message', '/app/pulse', pulseMessage, pulseMessageDone],
@@ -451,6 +475,8 @@ const childEnv = {
   NODE_ENV: 'development',
   NEXT_TELEMETRY_DISABLED: '1',
   NCA_HARNESS: HARNESS_MARKER,
+  // Teacher Copilot answers from the stand-in, never a real model (C154).
+  AI_PROVIDER: 'stand-in',
   DATABASE_URL: db.url,
   APP_SESSION_SECRET: secret,
   NEXT_PUBLIC_SUPABASE_URL: 'http://127.0.0.1:9',

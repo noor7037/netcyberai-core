@@ -124,3 +124,7 @@ insert into syllabus_units (school_id, class_id, subject_id, position, chapter, 
   ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-0000000c0051', '00000000-0000-4000-8000-0000000d0001', 4, 'Decimals', 'Tenths'),
   ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-0000000c0051', '00000000-0000-4000-8000-0000000d0001', 5, 'Decimals', 'Hundredths');
 
+-- Teacher Copilot (C154): switched on for the illustrative school only, with a monthly limit, so the harness can show it on the stand-in.
+insert into school_module_entitlements (school_id, module_id, enabled, source, limits) values ('a0000000-0000-4000-8000-000000000001', 'teacher-copilot', true, 'founder_override', '{"monthly_tokens": 20000}')
+on conflict (school_id, module_id) do update set enabled = true, limits = excluded.limits;
+
