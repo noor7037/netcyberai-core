@@ -145,7 +145,7 @@ describe('heads and structures, on the real schema', () => {
   });
 
   it('Fees is switched on for every existing school, once, and a founder’s own switch is left alone', async () => {
-    const statement = readFileSync(path.resolve(__dirname, '../../supabase/migrations/20261013100000_p3_fee_structures.sql'), 'utf8').match(/insert into school_module_entitlements[\s\S]*?;/)![0];
+    const statement = readFileSync(path.resolve(__dirname, '../../supabase/migrations/20261011193133_p3_fee_structures.sql'), 'utf8').match(/insert into school_module_entitlements[\s\S]*?;/)![0];
     await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'fees', false, 'founder_override')`, [B]);
     await db.pg.exec(statement);
     await db.pg.exec(statement);
