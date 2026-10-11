@@ -308,7 +308,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
           <Input id="rollNo" name="rollNo" label="Roll number" />
           <Input id="dob" name="dob" label="Date of birth" type="date" />
           <p className="text-sm text-slate/70">
-            New students start as <strong>pending consent</strong> until a parent/guardian consent is recorded.
+            New students start as <strong>pending consent</strong> until a verified guardian grants both required consents.
           </p>
           <button
             type="submit"

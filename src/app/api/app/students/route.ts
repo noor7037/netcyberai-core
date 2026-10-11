@@ -71,9 +71,10 @@ export async function GET(req: NextRequest) {
 
 // Enrolment always lands in pending_consent, never active -- PRD §3.1:
 // "Enrolment creates the student record in pending_consent, never
-// active." Resolving consent (moving a student to active) is Prompt
-// G's job, not this route's -- status is deliberately not a client-
-// settable field here.
+// active." The student becomes active when the required consents are
+// granted (C142, src/lib/consent/student-status.ts), never through this
+// route -- status is deliberately not a client-settable field here, and
+// the database refuses an app insert with status 'active'.
 export async function POST(req: NextRequest) {
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;

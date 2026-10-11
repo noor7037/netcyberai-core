@@ -42,7 +42,7 @@ const COLUMN_FOR: Record<(typeof EDITABLE_FIELDS)[number], string> = {
 };
 
 // Status is deliberately not accepted here -- same reason as POST /students:
-// consent-driven activation is Prompt G's job, not general-purpose CRUD.
+// the status follows the consent ledger (C142, src/lib/consent/student-status.ts).
 export async function PATCH(req: NextRequest, { params }: { params: { studentId: string } }) {
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;

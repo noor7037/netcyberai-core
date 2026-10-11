@@ -150,8 +150,9 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'Open “Students”. If the class does not exist yet, press “Manage classes”, type its name (for example 8-A) and press “Add”.', hi: '“Students” खोलें। अगर कक्षा अभी नहीं बनी है, तो “Manage classes” दबाएँ, उसका नाम लिखें (जैसे 8-A) और “Add” दबाएँ।' },
       { en: 'Press “Add student”.', hi: '“Add student” दबाएँ।' },
       { en: 'Fill in “Full name”, and if you have them “Admission number”, “Class”, “Roll number” and “Date of birth”.', hi: '“Full name” भरें, और उपलब्ध हों तो “Admission number”, “Class”, “Roll number” और “Date of birth” भी।' },
-      { en: 'Press “Save”. The student starts as “pending consent” until a parent or guardian’s consent is recorded.', hi: '“Save” दबाएँ। जब तक माता-पिता या अभिभावक की सहमति दर्ज नहीं होती, विद्यार्थी “pending consent” स्थिति में रहता है।' },
+      { en: 'Press “Save”. The student starts as “pending consent” and is not yet in the attendance list.', hi: '“Save” दबाएँ। विद्यार्थी “pending consent” स्थिति से शुरू होता है और अभी हाज़िरी सूची में नहीं होता।' },
       { en: 'Open the student and press “Add guardian”: name, “Phone (WhatsApp)”, email and relation.', hi: 'विद्यार्थी को खोलें और “Add guardian” दबाएँ: नाम, “Phone (WhatsApp)”, ईमेल और संबंध।' },
+      { en: 'Under “Consent”, press “Verify” beside the guardian, then “Grant” for the two purposes marked “required for service”. The student becomes active and appears in attendance.', hi: '“Consent” के नीचे अभिभावक के पास “Verify” दबाएँ, फिर “required for service” वाले दोनों उद्देश्यों के लिए “Grant” दबाएँ। विद्यार्थी सक्रिय हो जाता है और हाज़िरी में दिखता है।' },
     ],
     tips: [
       { en: 'Adding many students? Import them from a CSV file instead.', hi: 'बहुत से विद्यार्थी जोड़ने हैं? उन्हें CSV फ़ाइल से import करें।' },
@@ -290,6 +291,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     tips: [
       { en: '“Edit” changes the student’s details. “ID card” makes the card with its QR code.', hi: '“Edit” से विद्यार्थी की जानकारी बदलती है। “ID card” से QR कोड वाला कार्ड बनता है।' },
       { en: 'When a parent asks to see, correct or delete their child’s data, press “+ Log request” so it is followed to the end.', hi: 'जब कोई अभिभावक अपने बच्चे का डेटा देखने, सुधारने या हटाने को कहे, “+ Log request” दबाएँ ताकि वह अंत तक पूरा हो।' },
+      { en: 'When both purposes marked “required for service” are granted by a verified guardian, the student becomes active and appears in attendance. Withdrawing either one returns the student to “pending consent”.', hi: 'जब पुष्टि किया हुआ अभिभावक “required for service” वाले दोनों उद्देश्यों की सहमति दे देता है, विद्यार्थी सक्रिय हो जाता है और हाज़िरी में दिखता है। इनमें से कोई एक वापस लेने पर विद्यार्थी फिर “pending consent” में चला जाता है।' },
       { en: 'Consent is never edited: a change is recorded as a new line, and the old one stays in the history.', hi: 'सहमति कभी बदली नहीं जाती: बदलाव नई पंक्ति में दर्ज होता है, और पुरानी पंक्ति इतिहास में रहती है।' },
     ],
     start: { href: '/app/students', label: { en: 'Students', hi: 'Students' } },

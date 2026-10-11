@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Modal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
+import { useT } from '@/components/app-shell/LangContext';
 
 type Guardian = { parent_id: string; name: string; relation: string | null };
 
@@ -44,7 +45,23 @@ const DIRECT_METHODS = [
   { value: 'digilocker_token', label: 'Digilocker token shown' },
 ];
 
-export function ConsentPanel({ studentId, guardians, canManage }: { studentId: string; guardians: Guardian[]; canManage: boolean }) {
+type StudentStatus = 'pending_consent' | 'active' | 'inactive' | 'transferred';
+
+export function ConsentPanel({
+  studentId,
+  guardians,
+  canManage,
+  studentStatus,
+  onStudentStatusChange,
+}: {
+  studentId: string;
+  guardians: Guardian[];
+  canManage: boolean;
+  studentStatus: StudentStatus;
+  // The student's status follows consent (C142): told here so the page's badge changes at once.
+  onStudentStatusChange: (status: StudentStatus) => void;
+}) {
+  const { t } = useT();
   const [eligibility, setEligibility] = useState<Eligibility | null>(null);
   const [history, setHistory] = useState<LedgerRow[]>([]);
   const [links, setLinks] = useState<Record<string, GuardianLink | null>>({});
@@ -89,8 +106,15 @@ export function ConsentPanel({ studentId, guardians, canManage }: { studentId: s
       toast.show(error, 'danger');
       return;
     }
+    const body = await res.json().catch(() => null);
+    const moved: StudentStatus | undefined = body?.studentStatusChange?.to;
     setGrantOpen(null);
-    toast.show(grantOpen.granted ? 'Consent granted' : 'Consent withdrawn', 'success');
+    if (moved) {
+      onStudentStatusChange(moved);
+      toast.show(t(moved === 'active' ? 'consent.student-now-active' : 'consent.student-now-pending'), moved === 'active' ? 'success' : 'warning');
+    } else {
+      toast.show(grantOpen.granted ? 'Consent granted' : 'Consent withdrawn', 'success');
+    }
     loadConsent();
   }
 
@@ -184,6 +208,9 @@ export function ConsentPanel({ studentId, guardians, canManage }: { studentId: s
 
       <div className="mb-4">
         <h3 className="mb-2 text-sm font-semibold text-slate/70">Purposes</h3>
+        {(studentStatus === 'pending_consent' || studentStatus === 'active') && (
+          <p className="mb-2 text-sm text-slate/70">{t(studentStatus === 'active' ? 'consent.required-hint-active' : 'consent.required-hint-pending')}</p>
+        )}
         {eligibility === null ? (
           <p className="text-sm text-slate/70">Loading…</p>
         ) : (

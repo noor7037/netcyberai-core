@@ -62,7 +62,7 @@ describe('an empty list says what to do next, and carries the button', () => {
   it('where the person can act the button is there, and it does the thing', () => {
     const withButton = render('en', { id: 'guardians', onAction: () => undefined });
     expect(withButton).toContain('No guardian linked yet');
-    expect(withButton).toContain('Consent can be recorded only after one is linked');
+    expect(withButton).toContain('the student becomes active when both required consents are granted');
     expect(withButton).toMatch(/<button[^>]*>Add guardian<\/button>/);
     const withLink = render('en', { id: 'attendance-roster', href: '/app/students' });
     expect(withLink).toMatch(/<a[^>]*href="\/app\/students"[^>]*>Open students<\/a>/);

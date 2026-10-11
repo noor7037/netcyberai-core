@@ -449,6 +449,22 @@ Each purpose independently withdrawable. Verification method recorded
 `consent_ledger` is append-only. Withdrawal is a new row, never a
 mutation.
 
+**The student's status follows the ledger (C142).** A student leaves
+`pending_consent` and becomes `active` in the same transaction as the
+grant that completes the two required purposes (`core_records` and
+`operational_communication`), each granted by a verified guardian.
+Withdrawing either required purpose returns an `active` student to
+`pending_consent`; granting it again restores `active`. Only that
+withdrawal moves a student back: one who was made `active` before this
+rule, with no consent on record, stays `active`. Every move
+writes an audit row (`student.activated`,
+`student.returned_to_pending_consent`). `inactive` and `transferred`
+are the office's decisions and are never moved by consent. The database
+enforces it: only the principal or school admin changes a status, and
+none becomes `active` without the required consents
+(`student_required_consents_granted`, trigger
+`students_status_follows_consent`).
+
 **No outbound message and no recognition scoring touches a student in
 `pending_consent`.** This is enforced in the send gate and in the
 recognition job, not by convention.
