@@ -53,6 +53,8 @@ export function IdCardView({ studentId, studentName, schoolName, className }: { 
   return (
     <ModulePage
       moduleId="students"
+      help="student-id-cards"
+      tour="id-card"
       title={`ID card: ${studentName}`}
       purpose="Issue the card, print it, and revoke it at once if it is lost."
       hideHeaderInPrint

@@ -12,7 +12,9 @@ import type { QuickAddItem } from '@/lib/contracts/quick-add';
 import { t as translate, type Lang } from '@/lib/i18n';
 import { GlobalSearch } from './GlobalSearch';
 import { QuickAdd } from './QuickAdd';
+import type { TourId } from '@/lib/contracts/tours';
 import { LangProvider, useT } from './LangContext';
+import { ToursProvider } from './ToursContext';
 import { LanguageSwitch } from './LanguageSwitch';
 import { activeHref, type ShellGroup, type ShellItem } from './shell-nav';
 
@@ -137,6 +139,7 @@ export function AppShell({
   action,
   lang = 'en',
   langKnown = true,
+  toursSeen = [],
   scope = 'school',
   quickAdd = [],
   children,
@@ -152,6 +155,8 @@ export function AppShell({
   lang?: Lang;
   // False when this browser has no language cookie for this person yet.
   langKnown?: boolean;
+  // The first-visit tours this person has seen; null when this browser does not know yet.
+  toursSeen?: readonly TourId[] | null;
   // Which search this shell has: the school's, or Control's.
   scope?: 'school' | 'control';
   quickAdd?: readonly QuickAddItem[];
@@ -188,6 +193,7 @@ export function AppShell({
 
   return (
     <LangProvider lang={lang}>
+      <ToursProvider initial={toursSeen}>
       <div className="min-h-screen bg-off-white">
       <aside lang={lang} className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col bg-midnight md:flex">
         <span aria-hidden="true" className="nca-spectrum-bar block h-1" />
@@ -271,6 +277,7 @@ export function AppShell({
         </nav>
       )}
       </div>
+      </ToursProvider>
     </LangProvider>
   );
 }

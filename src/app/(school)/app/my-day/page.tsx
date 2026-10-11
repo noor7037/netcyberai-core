@@ -6,6 +6,7 @@ import { canAccessApp, shellForRole } from '@/lib/auth/guards';
 import { getServerSession } from '@/lib/auth/server-session';
 import type { SchoolRole } from '@/lib/contracts/modules';
 import { arrangeMyDay, type MyDay } from '@/lib/contracts/today-cards';
+import { myDayTour } from '@/lib/contracts/tours';
 import { loadEntitlements } from '@/lib/frameworks/entitlements';
 import { t, type Lang } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
@@ -39,7 +40,7 @@ export default async function MyDayPage() {
   }
 
   return (
-    <ModulePage moduleId="dashboard" title={t(lang, 'myDay.title')} purpose={t(lang, 'myDay.purpose')} eyebrow={greeting(lang, new Date())} headerLang={lang}>
+    <ModulePage moduleId="dashboard" help="use-my-day" tour={myDayTour(role)} title={t(lang, 'myDay.title')} purpose={t(lang, 'myDay.purpose')} eyebrow={greeting(lang, new Date())} headerLang={lang}>
       <MyDayView day={day} lang={lang} failed={day.failed} dashboardHref={shellForRole(role) === 'office' ? '/app/dashboard' : undefined} />
     </ModulePage>
   );

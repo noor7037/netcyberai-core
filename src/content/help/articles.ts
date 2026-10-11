@@ -250,6 +250,29 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['attendance', 'absent', 'present', 'late', 'roll call', 'register', 'haziri', 'हाज़िरी', 'उपस्थिति', 'अनुपस्थित'],
   },
   {
+    slug: 'use-my-day',
+    category: 'daily',
+    audience: 'everyone',
+    title: { en: 'Start your day from My Day', hi: 'मेरा दिन से अपना दिन शुरू करें' },
+    summary: {
+      en: 'My Day opens when you sign in. It lists what is waiting for you today, counted from your school’s own records, and each card opens the right screen in one tap.',
+      hi: 'साइन इन करते ही मेरा दिन खुलता है। इसमें आज के बाकी काम दिखते हैं, जो आपके स्कूल के अपने रिकॉर्ड से गिने जाते हैं, और हर कार्ड एक टैप में सही स्क्रीन खोलता है।',
+    },
+    steps: [
+      { en: 'Sign in. My Day opens by itself; you can always return to it from My Day at the top of the menu.', hi: 'साइन इन करें। मेरा दिन अपने-आप खुलता है; मेनू में सबसे ऊपर मेरा दिन से कभी भी यहाँ लौट सकते हैं।' },
+      { en: 'Read the cards under things need you today. A teacher sees their own classes; the office and the principal see the whole school.', hi: 'आज … काम आपका इंतज़ार कर रहे हैं के नीचे के कार्ड पढ़ें। शिक्षक को अपनी कक्षाएँ दिखती हैं; दफ़्तर और प्रधानाचार्य को पूरा स्कूल।' },
+      { en: 'Tap a card to open it. For example, Mark attendance: 5-A opens Attendance with that class already chosen.', hi: 'खोलने के लिए कार्ड पर टैप करें। जैसे हाज़िरी लगाएँ: 5-A से हाज़िरी खुलती है और वह कक्षा पहले से चुनी होती है।' },
+      { en: 'When the work is done the card moves to Done today. With nothing waiting, the page says so.', hi: 'काम पूरा होने पर कार्ड आज हो चुके काम में चला जाता है। कुछ बाकी न हो तो पेज वही बताता है।' },
+    ],
+    tips: [
+      { en: 'Why this? under a card says, in one line, the rule that put it there.', hi: 'कार्ड के नीचे यह क्यों दिख रहा है? एक पंक्ति में बताता है कि वह किस नियम से यहाँ आया।' },
+      { en: 'There is no attendance card on a Sunday.', hi: 'रविवार को हाज़िरी का कार्ड नहीं आता।' },
+    ],
+    start: { href: '/app/my-day', label: { en: 'My Day', hi: 'मेरा दिन' } },
+    related: ['mark-attendance', 'add-a-student', 'raise-a-ticket'],
+    keywords: ['home', 'today', 'my day', 'dashboard', 'tasks', 'cards', 'आज', 'मेरा दिन', 'होम', 'aaj ka kaam'],
+  },
+  {
     slug: 'make-a-certificate',
     category: 'daily',
     audience: 'office',

@@ -7,7 +7,7 @@ import { HELP_TEXT, isHelpLang } from '@/content/help/articles';
 export default function HelpPage({ searchParams }: { searchParams: { lang?: string } }) {
   const lang = isHelpLang(searchParams.lang) ? searchParams.lang : 'en';
   return (
-    <ModulePage moduleId="help-center" title={HELP_TEXT.title[lang]} purpose={HELP_TEXT.intro[lang]} headerLang={lang}>
+    <ModulePage moduleId="help-center" tour="help" title={HELP_TEXT.title[lang]} purpose={HELP_TEXT.intro[lang]} headerLang={lang}>
       <HelpIndex lang={lang} mode="app" />
     </ModulePage>
   );

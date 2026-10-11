@@ -85,6 +85,35 @@ const speak = (language) => async (page) => {
   await page.locator(`[data-shell-lang="${language === 'English' ? 'en' : 'hi'}"]`).first().waitFor({ timeout: 15000 });
   await page.waitForTimeout(400);
 };
+// First-visit tours (C138). Every other screen is photographed as a person
+// who has seen the tours (the cookie below), so the pictures show the screen
+// itself. These screens are opened as a first visit: the cookie is dropped,
+// the app asks the account (which has seen none) and the tour appears.
+// Afterwards the tour is skipped with its own button and the page reloaded,
+// to prove the account remembers it; then the cookie is put back.
+const TOUR_IDS = [...readFileSync(path.join(ROOT, 'src/lib/contracts/tours.ts'), 'utf8').matchAll(/^  '?([a-z-]+)'?: \{ steps:/gm)].map((m) => m[1]);
+if (TOUR_IDS.length < 14) throw new Error('harness: could not read the tour ids from src/lib/contracts/tours.ts');
+const seenAllCookie = (who) => ({ name: 'nca_tours', value: `${PEOPLE[who].sub}.${TOUR_IDS.join(',')}`, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' });
+const firstVisit = async (page) => {
+  await page.context().clearCookies({ name: 'nca_tours' });
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-tour]').waitFor({ timeout: 15000 });
+};
+const firstVisitInHindi = async (page) => {
+  await firstVisit(page);
+  await speak('हिन्दी')(page);
+  await page.locator('[data-tour][lang="hi"]').waitFor({ timeout: 15000 });
+};
+const skipAndCheck = (who, thenEnglish = false) => async (page) => {
+  await page.locator('[data-tour]').getByRole('button', { name: /^(Skip|छोड़ें)$/ }).click();
+  await page.locator('[data-tour]').waitFor({ state: 'detached', timeout: 10000 });
+  await page.context().clearCookies({ name: 'nca_tours' });
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForTimeout(800);
+  if (await page.locator('[data-tour]').count()) throw new Error('the tour came back after it was skipped: the account did not remember it');
+  if (thenEnglish) await speak('English')(page);
+  await page.context().addCookies([seenAllCookie(who)]);
+};
 // On a phone the menu is closed, so the Hindi would not be in the picture: open it.
 const hindiWithMenu = async (page) => {
   await speak('हिन्दी')(page);
@@ -104,6 +133,9 @@ const SCREENS = [
   ['principal', 'app-my-day-hindi', '/app/my-day', speak('हिन्दी'), backToEnglish],
   ['office', 'office-my-day', '/app/my-day'],
   ['teacher', 'teacher-my-day', '/app/my-day'],
+  ['principal', 'app-students-first-visit', '/app/students', firstVisit, skipAndCheck('principal')],
+  ['principal', 'app-attendance-first-visit-hindi', '/app/attendance', firstVisitInHindi, skipAndCheck('principal', true)],
+  ['teacher', 'teacher-my-day-first-visit', '/app/my-day', firstVisit, skipAndCheck('teacher')],
   ['principal', 'app-dashboard', '/app/dashboard'],
   ['principal', 'app-students', '/app/students'],
   ['principal', 'app-student-profile', `/app/students/${STUDENT}`],
@@ -277,11 +309,13 @@ try {
   const report = [];
   const screens = SCREENS.filter(([, name]) => !ONLY || name.includes(ONLY));
   for (const width of [1440, 390]) {
+    // Each width starts with people who have chosen no language and seen no tour.
+    await db.pg.query(`update users set tours_seen = '{}', ui_language = null`);
     for (const who of Object.keys(PEOPLE)) {
       const mine = screens.filter(([w]) => w === who);
       if (!mine.length) continue;
       const context = await browser.newContext({ viewport: { width, height: width === 390 ? 844 : 900 }, reducedMotion: 'reduce', deviceScaleFactor: 1 });
-      await context.addCookies([{ name: 'nca_access', value: cookies[who], domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' }]);
+      await context.addCookies([{ name: 'nca_access', value: cookies[who], domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' }, seenAllCookie(who)]);
       const page = await context.newPage();
       const errors = [];
       page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));

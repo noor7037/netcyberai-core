@@ -145,6 +145,11 @@ run_step "Every /app and /control screen renders through ModulePage" <<'STEP'
 python3 scripts/check_module_pages.py
 STEP
 
+run_step "Every module page has \"Show me how\" with a guide that exists" <<'STEP'
+python3 scripts/check_show_me_how.py --self-test
+python3 scripts/check_show_me_how.py
+STEP
+
 run_step "Words on /app and /control screens come from the message files (English and Hindi)" <<'STEP'
 python3 scripts/check_ui_strings.py --self-test
 python3 scripts/check_ui_strings.py

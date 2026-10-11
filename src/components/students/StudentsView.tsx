@@ -226,6 +226,8 @@ export function StudentsView({ title, description, statusFilter, openNew = false
   return (
     <ModulePage
       moduleId={statusFilter === 'pending_consent' ? 'admissions' : 'students'}
+      help="add-a-student"
+      tour="students"
       title={title}
       purpose={description ?? 'All students at this school.'}
       primary={

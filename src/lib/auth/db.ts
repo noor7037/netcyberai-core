@@ -357,6 +357,26 @@ export async function setOwnLanguage(userId: string, lang: 'en' | 'hi'): Promise
   });
 }
 
+// The first-visit tours the signed-in user has finished or skipped (C138).
+// The caller passes a tour id it has already checked against the contract.
+export async function ownToursSeen(userId: string): Promise<string[]> {
+  return asAccountService(async (client) => {
+    const { rows } = await client.query(`select tours_seen from users where user_id = $1`, [userId]);
+    return Array.isArray(rows[0]?.tours_seen) ? (rows[0].tours_seen as string[]) : [];
+  });
+}
+
+export const MARK_TOUR_SEEN_SQL = `update users set tours_seen = case when $2 = any(tours_seen) then tours_seen else array_append(tours_seen, $2) end, updated_at = now()
+       where user_id = $1 returning tours_seen`;
+
+// Adds one tour to the user's own list (once) and returns the list.
+export async function markTourSeen(userId: string, tourId: string): Promise<string[]> {
+  return asAccountService(async (client) => {
+    const { rows } = await client.query(MARK_TOUR_SEEN_SQL, [userId, tourId]);
+    return Array.isArray(rows[0]?.tours_seen) ? (rows[0].tours_seen as string[]) : [];
+  });
+}
+
 // Sets (or clears, with null) the signed-in user's own mobile number.
 // Returns false when another account already uses that number.
 export async function setOwnPhone(userId: string, phone: string | null): Promise<boolean> {

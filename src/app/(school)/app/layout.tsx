@@ -11,7 +11,7 @@ import type { SchoolRole } from '@/lib/contracts/modules';
 import { bottomNavItems, buildNavigation } from '@/lib/contracts/navigation';
 import { buildQuickAdd } from '@/lib/contracts/quick-add';
 import { t } from '@/lib/i18n';
-import { getLang } from '@/lib/i18n/server';
+import { getLang, getToursSeen } from '@/lib/i18n/server';
 import { loadEntitlements } from '@/lib/frameworks/entitlements';
 
 // Every page under this route group renders through THIS layout by
@@ -80,6 +80,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         action={isTeacher ? <ScanButton onDark /> : undefined}
         lang={lang}
         langKnown={known}
+        toursSeen={getToursSeen(session!.sub)}
         scope="school"
         quickAdd={quickAdd}
       >

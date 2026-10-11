@@ -1,6 +1,9 @@
 import type { ReactNode } from 'react';
 import type { IconName } from '@/components/visual/Icons';
 import { MODULE_GROUPS, moduleById, type ColorToken, type ModuleId } from '@/lib/contracts/modules';
+import { FirstVisitTour } from '@/components/app-shell/FirstVisitTour';
+import { ShowMeHow } from '@/components/app-shell/ShowMeHow';
+import type { TourId } from '@/lib/contracts/tours';
 import { ModuleIcon } from './ModuleIcon';
 import { TOKEN_TONES } from './tones';
 
@@ -8,7 +11,8 @@ import { TOKEN_TONES } from './tones';
 // screen, know them all. Top to bottom, always in this order:
 //
 //   header   the module's icon tile, its title, one line on what the screen
-//            is for, and ONE primary button
+//            is for, "Show me how" (the guide for this screen's task), and
+//            ONE primary button
 //   more     quieter actions, when a screen has them
 //   notice   a message about the whole screen
 //   search   the search box
@@ -17,6 +21,7 @@ import { TOKEN_TONES } from './tones';
 //   bulk     the bar that appears when rows are selected
 //
 // A slot a screen does not need is left out; the order never changes.
+// `help` is the Help Center guide's slug; `tour` the first-visit tour (docs/19 rule 8).
 // Give `moduleId` and the icon, colour and group name come from the registry.
 // scripts/check_module_pages.py fails a /app or /control page that does not
 // render through this (apart from its documented exceptions).
@@ -35,6 +40,8 @@ export function ModulePage({
   bulk,
   headerLang,
   hideHeaderInPrint = false,
+  help,
+  tour,
   children,
 }: {
   moduleId?: ModuleId;
@@ -51,6 +58,8 @@ export function ModulePage({
   bulk?: ReactNode;
   headerLang?: string; // when the title and purpose are not in the page's language (Help Center in Hindi)
   hideHeaderInPrint?: boolean; // a screen whose body is printed on its own (an ID card)
+  help?: string; // slug of the Help Center guide for this screen's task
+  tour?: TourId; // the first-visit tour of this screen
   children: ReactNode;
 }) {
   const mod = moduleId ? moduleById(moduleId) : null;
@@ -69,8 +78,14 @@ export function ModulePage({
             <p className="mt-0.5 max-w-prose text-sm text-slate/70">{purpose}</p>
           </div>
         </div>
-        {primary && <div data-slot="primary">{primary}</div>}
+        {(help || primary) && (
+          <div className="flex flex-wrap items-center gap-2">
+            {help && <ShowMeHow slug={help} />}
+            {primary && <div data-slot="primary">{primary}</div>}
+          </div>
+        )}
       </header>
+      {tour && <FirstVisitTour id={tour} />}
       {more && (
         <div data-slot="more" className="flex flex-wrap items-center gap-2">
           {more}
