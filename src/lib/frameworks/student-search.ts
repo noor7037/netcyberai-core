@@ -9,7 +9,7 @@ import type { SchoolRole } from '@/lib/contracts/modules';
 import type { Sql } from '@/lib/jobs/types';
 
 // Student 360 search (17 §3a, C112): one box, by name, admission number,
-// roll number or guardian phone. Runs inside the caller's tenant context,
+// roll number or a guardian's whole phone number. Runs inside the caller's tenant context,
 // so the database decides what each role sees: a teacher only students of
 // their own classes (teacher_scope_students), pending-consent students
 // only for the roles the consent gate allows. The API never widens it.
@@ -24,16 +24,27 @@ export function parseStudentSearch(q: unknown, limit: unknown): ParsedSearch | n
   if (typeof q !== 'string') return null;
   const term = q.trim().replace(/\s+/g, ' ').slice(0, 100);
   if (term.length < STUDENT_SEARCH_MIN_CHARS) return null;
-  const onlyPhone = /^[+\d\s()-]+$/.test(term);
-  const digits = onlyPhone ? term.replace(/\D/g, '') : '';
   const n = Number(limit);
   return {
     term,
-    // A phone is searched from 4 digits, so a short number never lists every
-    // family that has it somewhere in their phone.
-    digits: digits.length >= 4 ? digits.slice(-10) : null,
+    digits: fullPhone(term),
     limit: Number.isInteger(n) && n > 0 ? Math.min(n, STUDENT_SEARCH_MAX_LIMIT) : STUDENT_SEARCH_DEFAULT_LIMIT,
   };
+}
+
+// A parent's phone is matched only as a whole number (C137): ten digits, or
+// + and a country code followed by the number. Part of a number finds
+// nobody, so a number cannot be worked out by guessing it digit by digit.
+// Returns the ten digits to compare, or null when the text is not a whole
+// phone number.
+export function fullPhone(term: string): string | null {
+  const s = term.trim();
+  if (!/^\+?[\d\s()-]+$/.test(s)) return null;
+  const digits = s.replace(/\D/g, '');
+  if (digits.length === 10 && !s.startsWith('+')) return digits;
+  // "+91 98765 43210": a country code of one to three digits, then the ten.
+  if (s.startsWith('+') && digits.length >= 11 && digits.length <= 13) return digits.slice(-10);
+  return null;
 }
 
 // For ILIKE: the term's own % and _ are literal.
@@ -63,7 +74,7 @@ with cand as (
   join parent_student_map m on m.school_id = s.school_id and m.student_id = s.student_id
   join parents p on p.school_id = m.school_id and p.parent_id = m.parent_id
   where $4::text is not null and s.school_id = $1
-    and regexp_replace(p.phone, '[^0-9]', '', 'g') like '%' || $4::text || '%'
+    and right(regexp_replace(p.phone, '[^0-9]', '', 'g'), 10) = $4::text
 ),
 best as (
   select distinct on (student_id) student_id, matched_on, rank, phone

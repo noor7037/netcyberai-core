@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireSession } from './require-session';
 import { canAccessApp } from './guards';
 import type { SessionClaims, StaffRole } from './types';
+import { guardWrite, WRITE_METHODS } from '@/lib/frameworks/write-guard';
 
 // Every /api/app/** route needs the identical guard: a real session,
 // with an actual selected school (super_admin has none -- canAccessApp
@@ -10,6 +11,11 @@ import type { SessionClaims, StaffRole } from './types';
 // open endpoint" rule applies here exactly as it does there: the (school)
 // shell's nav hides pages a role shouldn't see, but that is never a
 // substitute for checking at the route itself.
+//
+// A request that changes something also passes the write guard here
+// (C137): refused when the school's account is paused or read-only, or the
+// route's module is switched off for the school. Because it sits in this
+// one guard, every write route has it without asking.
 export async function requireAppSession(
   req: NextRequest
 ): Promise<{ claims: SessionClaims & { schoolId: string } } | { error: NextResponse }> {
@@ -17,7 +23,12 @@ export async function requireAppSession(
   if (!claims || !canAccessApp(claims)) {
     return { error: NextResponse.json({ error: 'not authenticated' }, { status: 401 }) };
   }
-  return { claims: claims as SessionClaims & { schoolId: string } };
+  const app = claims as SessionClaims & { schoolId: string };
+  if (WRITE_METHODS.includes(req.method)) {
+    const refused = await guardWrite(app, req.nextUrl.pathname);
+    if (refused) return { error: refused };
+  }
+  return { claims: app };
 }
 
 // Student/guardian/class master-data writes: gated to the two roles

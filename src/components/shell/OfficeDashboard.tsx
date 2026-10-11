@@ -1,5 +1,6 @@
 import { OfficeDashboardView, type OfficeDashboardData } from '@/components/dashboards/OfficeDashboardView';
 import { withTenantContext } from '@/lib/auth/db';
+import { loadFeesSummary } from '@/lib/fees/overdue';
 import type { SessionClaims } from '@/lib/auth/types';
 
 // PRD §7.3/§4.4's "exception-first" structure (Needs your decision today
@@ -30,16 +31,8 @@ export async function OfficeDashboard({ session }: { session: SessionClaims }) {
          where date > (now() at time zone 'Asia/Kolkata')::date - 14 and date <= (now() at time zone 'Asia/Kolkata')::date
          group by date order by date`
       ),
-      client.query(
-        `select
-           coalesce(sum(amount_minor) filter (where status = 'paid'), 0) as collected_minor,
-           coalesce(sum(amount_minor) filter (where status = 'pending'), 0) as pending_minor,
-           coalesce(sum(amount_minor) filter (where status = 'overdue'), 0) as overdue_minor,
-           coalesce(sum(amount_minor) filter (where status::text = 'partial'), 0) as partial_minor,
-           coalesce(sum(amount_minor) filter (where status::text = 'waived'), 0) as waived_minor,
-           count(*) filter (where status = 'overdue') as overdue_count
-         from fees_ledger`
-      ),
+      // Overdue is worked out from the due date (C137, src/lib/fees/overdue.ts).
+      loadFeesSummary(client),
       client.query(`select count(*) filter (where status = 'pending_consent') as pending, count(*) as total from students`),
       client.query(`select count(*) as total from communication_log where status::text like 'blocked%' and created_at > now() - interval '7 days'`),
       client.query(
@@ -66,12 +59,12 @@ export async function OfficeDashboard({ session }: { session: SessionClaims }) {
         date: r.date as string,
         pct: Math.round((Number(r.present) / Number(r.total)) * 1000) / 10, // one decimal, as the tile shows it
       })),
-      feesCollectedMinor: Number(feesRes.rows[0]?.collected_minor ?? 0),
-      feesPendingMinor: Number(feesRes.rows[0]?.pending_minor ?? 0),
-      feesOverdueMinor: Number(feesRes.rows[0]?.overdue_minor ?? 0),
-      feesPartialMinor: Number(feesRes.rows[0]?.partial_minor ?? 0),
-      feesWaivedMinor: Number(feesRes.rows[0]?.waived_minor ?? 0),
-      overdueCount: Number(feesRes.rows[0]?.overdue_count ?? 0),
+      feesCollectedMinor: feesRes.collectedMinor,
+      feesPendingMinor: feesRes.pendingMinor,
+      feesOverdueMinor: feesRes.overdueMinor,
+      feesPartialMinor: feesRes.partialMinor,
+      feesWaivedMinor: feesRes.waivedMinor,
+      overdueCount: feesRes.overdueCount,
       consentPending: Number(consentRes.rows[0]?.pending ?? 0),
       consentTotal: Number(consentRes.rows[0]?.total ?? 0),
       blockedThisWeek: Number(blockedRes.rows[0]?.total ?? 0),

@@ -61,6 +61,21 @@ CSV import), because the generator is P7 and the teacher's Today needs data.
 
 ## 3. Order of PRs
 
+**Moved into P2 from the P1c-3b review (Decision Log C137), to be done with
+5b (attendance):**
+
+- **Class teacher and attendance.** Today a teacher may read and mark
+  attendance only for classes they teach a subject in
+  (`teacher_scope_attendance`). A class teacher who teaches no subject in
+  their own class cannot mark its attendance, although the students policy
+  already treats them as that class's own. P2 makes the two agree: the class
+  teacher can mark their own class. Policy change, tested as `app_user`,
+  test database first.
+- **The day is India's.** The attendance API takes "today" from the UTC
+  date; My Day and the dashboards use the date in India. Between midnight
+  and 5:30 a.m. India time they disagree. P2 moves attendance onto the same
+  India date (one shared helper), with a test at the boundary.
+
 Each is one slice under ~1,500 lines, with screenshots at 390 and 1440, and
 stops for review. Migrations go to the test database first, after the PR is
 open, then production, then the catalog snapshot.

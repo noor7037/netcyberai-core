@@ -325,18 +325,18 @@ try {
         return row;
         };
         // The throwaway database answers one query at a time, and now and
-        // then an API call made while the page loads gets a 500 from it. One
-        // more try tells that apart from a real fault; the first try's
+        // then an API call made while the page loads gets a 500 from it. Up to
+        // two more tries tell that apart from a real fault; the first try's
         // errors stay in the report either way.
         let row = await shoot();
-        if (row.pageErrors.some((e) => / answered 5\d\d$|Unexpected end of JSON/.test(e))) {
-          const first = { pageErrors: row.pageErrors, serverSaid: row.serverSaid };
+        for (let again = 0; again < 2 && row.pageErrors.some((e) => / answered 5\d\d$|Unexpected end of JSON/.test(e)); again++) {
+          const first = row.firstTry ?? { pageErrors: row.pageErrors, serverSaid: row.serverSaid };
           row = { ...(await shoot()), firstTry: first };
         }
         const serverSaid = row.serverSaid;
         report.push(row);
         if (serverSaid.length) console.log('   server: ' + serverSaid.join(' | '));
-        console.log(`${width} ${name}: ${row.status} h1=${JSON.stringify(row.h1)} modulePage=${row.modulePage} hscroll=${row.horizontalScroll} small=${row.smallTargets.length} errors=${row.pageErrors.length}${row.landedOn !== route.split('?')[0] ? ` LANDED ON ${row.landedOn}` : ''}${row.firstTry ? ' (second try)' : ''}`);
+        console.log(`${width} ${name}: ${row.status} h1=${JSON.stringify(row.h1)} modulePage=${row.modulePage} hscroll=${row.horizontalScroll} small=${row.smallTargets.length} errors=${row.pageErrors.length}${row.landedOn !== route.split('?')[0] ? ` LANDED ON ${row.landedOn}` : ''}${row.firstTry ? ' (after a retry)' : ''}`);
       }
       await context.close();
     }
