@@ -7,7 +7,7 @@ import type { ModuleId } from '@/lib/contracts/modules';
 import { validationError, type ErrorRule } from '@/lib/errors/catalogue';
 import { loadEntitlements } from '@/lib/frameworks/entitlements';
 
-// The write guard (docs/19 rule 7, C137). Every request under /api/app that
+// The access guard (docs/19 rule 7, C137; reads added in C140). Every request under /api/app that
 // changes something (POST, PUT, PATCH, DELETE) passes through
 // requireAppSession, which calls this before the route's own code runs. A
 // change is refused when the school's account is suspended or read-only, or
@@ -19,6 +19,11 @@ import { loadEntitlements } from '@/lib/frameworks/entitlements';
 // write route that is not in this table is refused (and
 // test/frameworks/write-guard.test.ts fails): a new route must say where it
 // belongs before it can change anything.
+//
+// Reads (C140): a GET is refused when its module is switched off for the
+// school, or the school's account is paused. A read-only school reads as
+// before. READ_ROUTES says which module a read belongs to; a list several
+// modules draw on (classes, subjects, staff accounts) belongs to none.
 
 export const WRITE_METHODS: readonly string[] = ['POST', 'PUT', 'PATCH', 'DELETE'];
 
@@ -30,7 +35,11 @@ export type WriteModule = ModuleId | 'checks-itself' | 'any-module';
 
 // Path under /api/app → module. `*` is one segment, a trailing `**` is the
 // rest. The first match wins, so the more exact paths come first.
-export const WRITE_ROUTES: readonly (readonly [string, WriteModule])[] = [
+// 'even-read-only' (C140): a read-only school may still do this. Resetting
+// a colleague's password keeps people able to sign in, and looking up an ID
+// card changes nothing a person can see (it writes a scan log). A paused
+// school stays blocked.
+export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-only'?])[] = [
   // What is recorded about a guardian sits with Parents (17 §3: guardians,
   // verification, consent, data requests), wherever its button is drawn.
   ['students/*/consent', 'parents'],
@@ -47,7 +56,7 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['documents/**', 'students'],
   ['qr-tokens/**', 'students'],
   // Looking up an ID card writes the scan log, so it counts as a change.
-  ['scan', 'students'],
+  ['scan', 'students', 'even-read-only'],
   ['attendance/**', 'attendance'],
   ['attendance', 'attendance'],
   ['syllabus', 'academics'],
@@ -60,6 +69,7 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // account itself: every school must be able to, whatever its plan (the
   // first thing a new principal does). Only the account's state is checked.
   ['staff/**', 'any-module'],
+  ['users/*/send-reset', 'any-module', 'even-read-only'],
   ['users/**', 'any-module'],
   ['whatsapp-config', 'communication'],
   // Always on: a school can ask for help whatever its account's state.
@@ -68,6 +78,40 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['views/**', 'any-module'],
   ['views', 'any-module'],
   ['bulk/**', 'checks-itself'],
+  ['custom-fields/**', 'checks-itself'],
+  ['custom-fields', 'checks-itself'],
+  ['settings/*', 'checks-itself'],
+];
+
+// Path under /api/app → the module a READ belongs to. Same patterns.
+export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
+  ['students/*/consent', 'parents'],
+  ['students/*/guardians', 'parents'],
+  ['students/*/dsr', 'parents'],
+  ['guardians/**', 'parents'],
+  ['students/**', 'students'],
+  ['students', 'students'],
+  ['attendance', 'attendance'],
+  ['syllabus', 'academics'],
+  ['compliance/**', 'compliance'],
+  ['whatsapp-config', 'communication'],
+  // Has its own switch (the school's daily_pulse flag) and its own session check.
+  ['pulse/**', 'checks-itself'],
+  ['tickets/**', 'raise-ticket'],
+  ['tickets', 'raise-ticket'],
+  // Drawn on by several modules' screens (the class chooser in Attendance,
+  // staff names, a person's saved views, what the school has switched on).
+  ['classes', 'any-module'],
+  ['subjects', 'any-module'],
+  ['staff/**', 'any-module'],
+  ['users', 'any-module'],
+  ['views', 'any-module'],
+  ['entitlements', 'any-module'],
+  ['bulk/actions', 'any-module'],
+  ['bulk/*', 'any-module'],
+  // The module is named in the request and the route checks it.
+  ['search', 'checks-itself'],
+  ['lists/*', 'checks-itself'],
   ['custom-fields/**', 'checks-itself'],
   ['custom-fields', 'checks-itself'],
   ['settings/*', 'checks-itself'],
@@ -95,13 +139,38 @@ export function writeModuleFor(pathname: string): WriteModule | null {
   return WRITE_ROUTES.find(([pattern]) => matches(pattern, segments))?.[1] ?? null;
 }
 
-// Why a change is refused, or null when it may go ahead. Pure: the rule itself.
-export function writeRefusal(entitlements: SchoolEntitlements, module: WriteModule): ErrorRule | null {
+const segmentsOf = (pathname: string): string[] | null => {
+  const at = pathname.indexOf('/api/app/');
+  return at < 0 ? null : pathname.slice(at + '/api/app/'.length).split('/').filter(Boolean);
+};
+
+// May a read-only school still make this change?
+export function allowedWhenReadOnly(pathname: string): boolean {
+  const segments = segmentsOf(pathname);
+  return !!segments && WRITE_ROUTES.find(([pattern]) => matches(pattern, segments))?.[2] === 'even-read-only';
+}
+
+export function readModuleFor(pathname: string): WriteModule | null {
+  const segments = segmentsOf(pathname);
+  return segments ? (READ_ROUTES.find(([pattern]) => matches(pattern, segments))?.[1] ?? null) : null;
+}
+
+// Why a read is refused, or null. A read-only school reads as before.
+export function readRefusal(entitlements: SchoolEntitlements, module: WriteModule): ErrorRule | null {
   if (module === 'checks-itself') return null;
   if (module !== 'any-module' && isAlwaysOn(module)) return null;
   if (entitlements.accessMode === 'suspended') return 'account_paused';
   if (module !== 'any-module' && !isModuleEnabled(entitlements, module)) return 'module_off';
-  if (!canWrite(entitlements)) return 'read_only';
+  return null;
+}
+
+// Why a change is refused, or null when it may go ahead. Pure: the rule itself.
+export function writeRefusal(entitlements: SchoolEntitlements, module: WriteModule, evenReadOnly = false): ErrorRule | null {
+  if (module === 'checks-itself') return null;
+  if (module !== 'any-module' && isAlwaysOn(module)) return null;
+  if (entitlements.accessMode === 'suspended') return 'account_paused';
+  if (module !== 'any-module' && !isModuleEnabled(entitlements, module)) return 'module_off';
+  if (!canWrite(entitlements) && !evenReadOnly) return 'read_only';
   return null;
 }
 
@@ -119,7 +188,27 @@ export async function guardWrite(claims: SessionClaims & { schoolId: string }, p
   if (module === 'checks-itself' || (module !== 'any-module' && isAlwaysOn(module))) return null;
   try {
     const entitlements = await withTenantContext(claims, (db) => loadEntitlements(db, claims.schoolId));
-    const rule = writeRefusal(entitlements, module);
+    const rule = writeRefusal(entitlements, module, allowedWhenReadOnly(pathname));
+    return rule ? refuse(rule) : null;
+  } catch (err) {
+    const resp = sessionErrorResponse(err);
+    if (resp) return resp;
+    throw err;
+  }
+}
+
+// The same for a read. One short read of the school's entitlements in the
+// caller's own tenant context, before the route's own work.
+export async function guardRead(claims: SessionClaims & { schoolId: string }, pathname: string): Promise<NextResponse | null> {
+  const module = readModuleFor(pathname);
+  if (module === null) {
+    console.error('[access-guard] a read route is not in READ_ROUTES', pathname.replace(/[0-9a-f]{8}-[0-9a-f-]{27}/gi, '*'));
+    return refuse('not_sent_properly', 500);
+  }
+  if (module === 'checks-itself' || (module !== 'any-module' && isAlwaysOn(module))) return null;
+  try {
+    const entitlements = await withTenantContext(claims, (db) => loadEntitlements(db, claims.schoolId));
+    const rule = readRefusal(entitlements, module);
     return rule ? refuse(rule) : null;
   } catch (err) {
     const resp = sessionErrorResponse(err);

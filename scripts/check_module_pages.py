@@ -171,7 +171,8 @@ def screen_returns(body: str) -> list[str]:
     return out
 
 
-NOT_A_SCREEN = {"ModuleComingPage", "StubPage"}
+# ModuleOffPage (C140) is itself a ModulePage: what a module's page shows when the module is off.
+NOT_A_SCREEN = {"ModuleComingPage", "StubPage", "ModuleOffPage"}
 
 
 def path_problem(where: str, body: str | None, allowed: set[str], shape: str) -> str | None:

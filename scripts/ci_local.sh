@@ -145,6 +145,11 @@ run_step "Every /app and /control screen renders through ModulePage" <<'STEP'
 python3 scripts/check_module_pages.py
 STEP
 
+run_step "A module the website calls live has its page, API and table" <<'STEP'
+python3 scripts/check_module_status.py --self-test
+python3 scripts/check_module_status.py
+STEP
+
 run_step "Every module page has \"Show me how\" with a guide that exists" <<'STEP'
 python3 scripts/check_show_me_how.py --self-test
 python3 scripts/check_show_me_how.py

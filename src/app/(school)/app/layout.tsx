@@ -86,6 +86,11 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         scope="school"
         quickAdd={quickAdd}
       >
+        {entitlements.accessMode === 'suspended' && (
+          <p role="status" lang={lang} data-account-paused className="bg-tangerine/10 px-4 py-2 text-sm font-semibold text-slate">
+            {t(lang, 'modules.paused')}
+          </p>
+        )}
         {menuIncomplete && (
           <p role="status" lang={lang} className="bg-tangerine/10 px-4 py-2 text-sm text-slate">
             {t(lang, 'shell.menu.incomplete')}

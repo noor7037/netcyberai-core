@@ -93,6 +93,8 @@ describe('the tours', () => {
       if (!found.length) {
         for (const m of text.matchAll(/from '@\/components\/([^']+)'/g)) {
           const view = path.join(root, 'components', `${m[1]}.tsx`);
+          // Not the screen itself: what the page shows when its module is off or not built.
+          if (['ModuleOffPage', 'ModuleComingPage'].includes(path.basename(m[1]))) continue;
           if (new RegExp(`<${path.basename(m[1])}\\b`).test(text)) found = found.concat(tags(readFileSync(view, 'utf8')));
         }
       }

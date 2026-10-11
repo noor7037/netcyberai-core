@@ -44,12 +44,54 @@ export interface SendWhatsAppMessageResult {
   providerUsed: 'school_specific' | 'platform_default' | null;
 }
 
-// Real WhatsApp Business API pricing is not known -- no real
-// credentials or Meta Business Manager account exist yet (Task 0). A
-// small nominal placeholder so the budget check has something
-// non-zero to actually gate on; replace once real per-message cost
-// data exists (Prompt H/L, alongside the real provider adapter).
-const PLACEHOLDER_EST_COST_PAISE = 50;
+// What a message costs (T7, C140). Nothing about money is written in this
+// file: the category comes from the template (whatsapp_templates.
+// billing_category) and the rate and GST from message_rate_table, the row
+// in force on the day the message is sent (the school's own date). A rate
+// is put in that table only once verified on Meta's official pricing page.
+// With no verified rate on record the message is still logged as billable,
+// with its cost left at zero and cost_basis 'rate_not_verified', so the
+// gap is visible in Control and never papered over with a guess.
+export type BillingCategory = 'marketing' | 'utility' | 'authentication' | 'service';
+export type MessageRate = { rateId: string; ratePaise: number; gstPercent: number };
+export type MessageCost = { category: BillingCategory; billable: boolean; estCostPaise: number; gstPaise: number; rateId: string | null; costBasis: 'rate_table' | 'rate_not_verified' | 'not_billable' };
+
+// The template's category; utility when the template is not on record (the
+// send is refused for that anyway, a few lines further on).
+export async function templateCategory(client: PoolClient, schoolId: string, templateName: string): Promise<BillingCategory> {
+  const { rows } = await client.query(
+    `select billing_category from whatsapp_templates
+     where template_name = $2 and (school_id = $1 or school_id is null)
+     order by school_id nulls last
+     limit 1`,
+    [schoolId, templateName]
+  );
+  return (rows[0]?.billing_category as BillingCategory | undefined) ?? 'utility';
+}
+
+// The rate in force for a category on the school's own date today, or null.
+export async function rateOnSendDate(client: PoolClient, category: BillingCategory, timezone: string): Promise<MessageRate | null> {
+  const { rows } = await client.query(
+    `select rate_id, rate_paise, gst_percent from message_rate_table
+     where channel = 'whatsapp' and billing_category = $1 and effective_from <= (now() at time zone $2)::date
+     order by effective_from desc, created_at desc
+     limit 1`,
+    [category, timezone]
+  );
+  return rows[0] ? { rateId: rows[0].rate_id, ratePaise: Number(rows[0].rate_paise), gstPercent: Number(rows[0].gst_percent) } : null;
+}
+
+// Pure: the reason a real send must wait for a verified rate, or null.
+export function unpricedRealSend(providerKind: 'school_specific' | 'platform_default', rate: MessageRate | null): string | null {
+  return providerKind === 'school_specific' && !rate ? 'rate not verified: no rate is on record for this message category, so its cost cannot be counted against the budget' : null;
+}
+
+// Pure: what is recorded for one attempt.
+export function messageCost(category: BillingCategory, billable: boolean, rate: MessageRate | null): MessageCost {
+  if (!billable) return { category, billable: false, estCostPaise: 0, gstPaise: 0, rateId: null, costBasis: 'not_billable' };
+  if (!rate) return { category, billable: true, estCostPaise: 0, gstPaise: 0, rateId: null, costBasis: 'rate_not_verified' };
+  return { category, billable: true, estCostPaise: rate.ratePaise, gstPaise: Math.round((rate.ratePaise * rate.gstPercent) / 100), rateId: rate.rateId, costBasis: 'rate_table' };
+}
 
 interface SchoolGateContext {
   is_pilot: boolean;
@@ -65,21 +107,31 @@ async function logAttempt(
   params: SendWhatsAppMessageParams,
   status: CommStatus,
   reason: string | null,
-  extra: { providerUsed?: 'school_specific' | 'platform_default'; fallbackReason?: string | null; providerMessageId?: string | null } = {}
+  extra: { providerUsed?: 'school_specific' | 'platform_default'; fallbackReason?: string | null; providerMessageId?: string | null; category?: BillingCategory; rate?: MessageRate | null } = {}
 ): Promise<string> {
-  const billable = status === comm_status_sent;
+  // Only a message that was sent can cost anything. (Meta charges on
+  // delivery; delivery receipts arrive with the real provider in P4, and
+  // `billable` is corrected from them then.)
+  const cost = messageCost(extra.category ?? (await templateCategory(client, params.schoolId, params.templateName)), status === comm_status_sent, extra.rate ?? null);
+  if (cost.costBasis === 'rate_not_verified') {
+    console.warn('[send-gate] rate not verified: no rate on record for this category and date; cost recorded as zero', cost.category);
+  }
   const { rows } = await client.query(
     `insert into communication_log
-       (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise,
+       (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, rate_id, cost_basis,
         status, provider_message_id, dedupe_key, provider_used, fallback_reason, reason)
-     values ($1, $2, 'whatsapp', $3, 'utility', $4, $5, 0, $6, $7, $8, $9, $10, $11)
+     values ($1, $2, 'whatsapp', $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
      returning log_id`,
     [
       params.schoolId,
       params.toPhone,
       params.templateName,
-      billable,
-      billable ? PLACEHOLDER_EST_COST_PAISE : 0,
+      cost.category,
+      cost.billable,
+      cost.estCostPaise,
+      cost.gstPaise,
+      cost.rateId,
+      cost.costBasis,
       status,
       extra.providerMessageId ?? null,
       params.dedupeKey,
@@ -165,14 +217,20 @@ export async function sendWhatsAppMessage(
   const { rows: spendRows } = await client.query(
     `select coalesce(sum(est_cost_paise + gst_paise), 0) as spend
      from communication_log
-     where school_id = $1 and billable = true
+     where school_id = $1 and billable = true and cost_basis = 'rate_table'
        and date_trunc('month', created_at at time zone $2) = date_trunc('month', now() at time zone $2)`,
     [params.schoolId, school.timezone]
   );
   const monthSpend = Number(spendRows[0].spend);
   const budget = Number(school.monthly_budget_paise);
-  if (monthSpend + PLACEHOLDER_EST_COST_PAISE > budget) {
-    const reason = `this month's WhatsApp spend (${monthSpend} paise) plus this message would exceed the configured budget (${budget} paise)`;
+  // What this message would cost, from the rate table. With no verified
+  // rate its cost is not known and counts as zero here; the budget still
+  // has to be set, and still stops a school that has already spent it.
+  const category = await templateCategory(client, params.schoolId, params.templateName);
+  const rate = await rateOnSendDate(client, category, school.timezone);
+  const next = messageCost(category, true, rate);
+  if (monthSpend + next.estCostPaise + next.gstPaise > budget || monthSpend >= budget) {
+    const reason = `this month's WhatsApp spend (${monthSpend} paise) has reached, or with this message would pass, the configured budget (${budget} paise)`;
     return { logId: await logAttempt(client, params, 'blocked_budget', reason), status: 'blocked_budget', reason, idempotent: false, providerUsed: null };
   }
 
@@ -189,6 +247,15 @@ export async function sendWhatsAppMessage(
   let provider: WhatsAppProviderSPI;
   let providerUsed: 'school_specific' | 'platform_default';
   let fallbackReason: string | null = null;
+
+  // A message that really costs money is never sent at an unknown price: a
+  // budget cannot limit what it cannot count. Until a verified rate is on
+  // record for the category, a school's own (real) WhatsApp account does not
+  // send; the platform's stand-in, which costs nothing, still does.
+  const unpriced = unpricedRealSend(resolution.kind, rate);
+  if (unpriced) {
+    return { logId: await logAttempt(client, params, 'blocked_budget', unpriced, { category, rate }), status: 'blocked_budget', reason: unpriced, idempotent: false, providerUsed: null };
+  }
 
   if (resolution.kind === 'school_specific') {
     providerUsed = 'school_specific';
@@ -207,11 +274,11 @@ export async function sendWhatsAppMessage(
     const result = await provider.send({ toPhone: params.toPhone, templateName: params.templateName, templateParams: params.templateParams });
     const status: CommStatus = result.success ? comm_status_sent : comm_status_failed;
     const reason = result.success ? null : result.errorMessage;
-    const logId = await logAttempt(client, params, status, reason, { providerUsed, fallbackReason, providerMessageId: result.providerMessageId });
+    const logId = await logAttempt(client, params, status, reason, { providerUsed, fallbackReason, providerMessageId: result.providerMessageId, category, rate });
     return { logId, status, reason, idempotent: false, providerUsed };
   } catch (err) {
     const reason = err instanceof Error ? err.message : 'unknown provider error';
-    const logId = await logAttempt(client, params, comm_status_failed, reason, { providerUsed, fallbackReason });
+    const logId = await logAttempt(client, params, comm_status_failed, reason, { providerUsed, fallbackReason, category, rate });
     return { logId, status: comm_status_failed, reason, idempotent: false, providerUsed };
   }
 }

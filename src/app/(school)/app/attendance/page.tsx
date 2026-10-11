@@ -1,3 +1,5 @@
+import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
+import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { getServerSession } from '@/lib/auth/server-session';
 import { AttendanceView } from '@/components/attendance/AttendanceView';
 import { ModulePage } from '@/components/app-ui/ModulePage';
@@ -5,6 +7,8 @@ import { isUuid } from '@/lib/frameworks/custom-fields';
 
 // ?class=<id> comes from a My Day card and opens that class directly.
 export default async function AttendancePage({ searchParams }: { searchParams: { class?: string } }) {
+  const off = await moduleOffReason('attendance');
+  if (off) return <ModuleOffPage moduleId="attendance" reason={off} />;
   const session = await getServerSession();
   const canManage =
     session?.role === 'school_admin' ||

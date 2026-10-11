@@ -104,7 +104,7 @@ const ROWS: readonly Row[] = [
     capabilities: ['Enquiry → visit → application → test/interview → offer → enrol pipeline', 'Sources', 'Follow-up tasks', 'Conversion analytics', 'Converts to Student', 'Kanban board', 'Online admission form', 'Sibling linking'] },
   { id: 'students', label: 'Students', group: 'school-people', icon: 'student', roles: OFFICE, phase: 'P7', phaseNote: 'Live; Student 360 search in P1', status: 'live',
     capabilities: ['Profile', 'CSV import', 'Document scan with OCR autofill', 'QR ID cards', 'Siblings', 'Promotions', 'Transfers', 'History', 'Student 360 search'] },
-  { id: 'parents', label: 'Parents', group: 'school-people', icon: 'parent', roles: OFFICE, phase: 'P4', status: 'live',
+  { id: 'parents', label: 'Parents', group: 'school-people', icon: 'parent', roles: OFFICE, phase: 'P4', phaseNote: 'Guardians, consent and data requests are live on the student’s page; its own screen in P4', status: 'partial',
     capabilities: ['Guardians', 'Verification', 'DPDP consent', 'Data requests', 'Contact preferences', 'WhatsApp linkage'] },
   { id: 'staff', label: 'Staff', group: 'school-people', icon: 'staff', roles: OFFICE, phase: 'P5', status: 'foundation',
     capabilities: ['Staff records', 'Roles', 'Documents', 'Leave requests and approvals', 'Workload', 'Attendance', 'Staff invitations'] },
