@@ -33,7 +33,7 @@ export const moduleStatus: Record<ModuleId, { status: ModuleStatus; note: string
   timetable: { status: 'partial', note: 'Period entry with a clash guard, CSV import and each teacher’s week are live; the generator, workload and change history are build step 7.' },
   homework: { status: 'partial', note: 'A teacher sets homework with a photo or PDF, copies it to sections and checks who has done it; parents do not receive it yet.' },
   exams: { status: 'foundation', note: 'Exam and marks tables exist; entry, report cards and Personal Best are build step 5.' },
-  fees: { status: 'partial', note: 'The office sets fee heads and each class’s fee structure, with dated versions. Raising dues, payments, receipts and reminders are being built (build step 4).' },
+  fees: { status: 'partial', note: 'The office sets fee heads and each class’s fee structure with dated versions, raises a month’s dues, records approved concessions and marks RTE admissions. Payments, receipts and reminders are being built (build step 4).' },
   payroll: { status: 'needs-spec', note: 'Listed only as a later roadmap card; needs a specification (salary heads, statutory rules) to build.' },
   communication: { status: 'partial', note: 'The consent-checked WhatsApp send-gate and absence alerts are live; notices and templates are next.' },
   events: { status: 'planned', note: 'School calendar, events and PTM are on the roadmap.' },

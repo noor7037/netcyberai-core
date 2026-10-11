@@ -33,6 +33,17 @@ export async function addHead(db: PoolClient, actor: Actor, input: { name: strin
   return { ok: true, head: made.rows[0] };
 }
 
+// Whether every child must pay this head. It decides what RTE covers when
+// dues are raised next; dues already raised are not changed.
+export async function setHeadMandatory(db: PoolClient, actor: Actor, headId: string, isMandatory: boolean): Promise<HeadResult> {
+  if (!FINANCE.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
+  const before = (await db.query(`select is_mandatory from fee_heads where school_id = $1 and head_id = $2 for update`, [actor.schoolId, headId])).rows[0];
+  if (!before) return { ok: false, reason: 'not_found' };
+  const changed = await db.query(`update fee_heads set is_mandatory = $3 where school_id = $1 and head_id = $2 returning head_id, name, is_mandatory, is_active`, [actor.schoolId, headId, isMandatory]);
+  if (before.is_mandatory !== isMandatory) await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.head_mandatory_changed', targetType: 'fee_heads', targetId: headId, beforeState: { isMandatory: before.is_mandatory }, afterState: { isMandatory } });
+  return { ok: true, head: changed.rows[0] };
+}
+
 // Retire or bring back a head. Its name never changes: it is on structures already made.
 export async function setHeadActive(db: PoolClient, actor: Actor, headId: string, isActive: boolean): Promise<HeadResult> {
   if (!FINANCE.includes(actor.role)) return { ok: false, reason: 'not_allowed' };

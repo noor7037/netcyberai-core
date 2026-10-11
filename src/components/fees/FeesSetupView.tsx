@@ -78,6 +78,12 @@ export function FeesSetupView() {
     void load();
   }
 
+  async function setMandatory(h: Head, isMandatory: boolean) {
+    const r = await send(`/api/app/fees/heads/${h.head_id}`, 'PATCH', { isMandatory });
+    if (!r.ok) toast.show(t('fee.failed'), 'danger');
+    void load();
+  }
+
   if (state === 'loading')
     return (
       <p role="status" lang={lang} className="text-sm text-slate/70">
@@ -121,6 +127,7 @@ export function FeesSetupView() {
 
       <div data-fee-heads className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
         <h2 className="text-base font-bold text-slate">{t('fee.heads')}</h2>
+        <p className="text-sm text-slate/70">{t('fee.head.mandatory.help')}</p>
         {data.heads.length === 0 && <TeachEmpty id="fee-heads" compact />}
         <ul className="flex flex-col gap-2">
           {data.heads.map((h) => (
@@ -129,9 +136,15 @@ export function FeesSetupView() {
                 {h.name}
                 {!h.is_active && <Badge variant="neutral">{t('fee.head.retired')}</Badge>}
               </span>
-              <button type="button" disabled={busy} className={TAP} onClick={() => void retire(h)}>
-                {t(h.is_active ? 'fee.head.retire' : 'fee.head.restore')}
-              </button>
+              <span className="flex flex-wrap items-center gap-2">
+                <label className="flex min-h-[44px] cursor-pointer items-center gap-2 font-normal">
+                  <input type="checkbox" data-mandatory className="h-5 w-5" checked={h.is_mandatory} disabled={busy} onChange={(e) => void setMandatory(h, e.target.checked)} />
+                  {t('fee.head.mandatory')}
+                </label>
+                <button type="button" disabled={busy} className={TAP} onClick={() => void retire(h)}>
+                  {t(h.is_active ? 'fee.head.retire' : 'fee.head.restore')}
+                </button>
+              </span>
             </li>
           ))}
         </ul>

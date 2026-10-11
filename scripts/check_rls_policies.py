@@ -326,6 +326,11 @@ REQUIRED_RESTRICTIVE = {
     ("fee_heads", "fee_heads_finance_read"),
     ("fee_structures", "fee_structures_finance_read"),
     ("fee_structure_items", "fee_structure_items_finance_read"),
+    # C159: dues, payments and concessions are read by the finance roles (dues also by a parent, their own children's).
+    ("fees_ledger", "fees_ledger_finance_read"),
+    ("fees_ledger", "fees_ledger_finance_write"),
+    ("payments", "payments_finance_read"),
+    ("fee_concessions", "fee_concessions_finance_read"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
     ("audit_log", "audit_ticket_rows_own_or_office"),

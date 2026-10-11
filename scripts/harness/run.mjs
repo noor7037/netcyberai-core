@@ -276,6 +276,42 @@ const feesSetupDone = async () => {
   await clearFees();
   if (rows.length !== 2 || rows[0].total !== 150050 || rows[1].total !== 165000) throw new Error(`expected two versions, 1,500.50 then 1,650, the first untouched: ${JSON.stringify(rows)}`);
 };
+// Dues (C159): a head and a structure are set through the app's own API,
+// then the office raises this month for 5-A on the page, twice. Each active
+// student must hold exactly one line, and every line must add up.
+let duesStudents = 0;
+const clearDues = async () => {
+  await db.pg.query(`delete from fees_ledger where school_id = $1 and structure_id in (select structure_id from fee_structures where school_id = $1 and created_by = $2)`, [SCHOOL, PEOPLE.principal.sub]);
+  await clearFees();
+};
+const feesDues = async (page) => {
+  await clearDues();
+  await db.pg.query(`insert into academic_sessions (school_id, label, start_date, end_date, is_current) select $1, 'Harness session', ${TODAY_SQL} - 30, ${TODAY_SQL} + 300, not exists (select 1 from academic_sessions where school_id = $1 and is_current) where not exists (select 1 from academic_sessions where school_id = $1 and label = 'Harness session')`, [SCHOOL]);
+  const session = (await db.pg.query(`select session_id, start_date::text as start_date from academic_sessions where school_id = $1 and label = 'Harness session'`, [SCHOOL])).rows[0];
+  const made = await page.evaluate(async ({ session, classId }) => {
+    const post = (url, body) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(async (r) => ({ status: r.status, body: await r.json() }));
+    const head = await post('/api/app/fees/heads', { name: 'Harness activity fee' });
+    const structure = await post('/api/app/fees/structures', { classId, sessionId: session.session_id, effectiveFrom: session.start_date, items: [{ headId: head.body.head?.head_id, amountMinor: 150050, frequency: 'monthly' }] });
+    return [head.status, structure.status];
+  }, { session, classId: CLASS_5A });
+  if (made.join() !== '201,201') throw new Error(`the head or the structure was not saved: ${made}`);
+  duesStudents = (await db.pg.query(`select count(*)::int as n from students where school_id = $1 and class_id = $2 and status = 'active'`, [SCHOOL, CLASS_5A])).rows[0].n;
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.selectOption('#due-class', { label: '5-A' });
+  await page.selectOption('#due-session', { label: 'Harness session' });
+  await page.locator('#due-date').waitFor({ timeout: 15000 });
+  await page.waitForFunction(() => document.querySelector('#due-date')?.value !== '', null, { timeout: 15000 });
+  await page.locator('[data-raise]').click();
+  await page.locator('[data-due-line]').first().waitFor({ timeout: 15000 });
+  await page.locator('[data-raise]').click();
+  await page.waitForTimeout(1500);
+};
+const feesDuesDone = async () => {
+  const { rows } = await db.pg.query(`select count(*)::int as n, count(distinct student_id)::int as students, sum(amount_minor)::bigint as net, count(*) filter (where gross_minor - concession_minor <> amount_minor)::int as wrong from fees_ledger where school_id = $1 and structure_id in (select structure_id from fee_structures where school_id = $1 and created_by = $2)`, [SCHOOL, PEOPLE.principal.sub]);
+  await clearDues();
+  const r = rows[0];
+  if (r.n !== duesStudents || r.students !== duesStudents || Number(r.net) !== duesStudents * 150050 || r.wrong !== 0) throw new Error(`expected ${duesStudents} lines, one per active student, 1,500.50 each, all adding up: ${JSON.stringify(r)}`);
+};
 // The "needs help" queue (C148): one student waiting, then the outcome is
 // recorded and the card leaves the queue.
 const needsHelp = async (page) => {
@@ -412,6 +448,7 @@ const SCREENS = [
   ['principal', 'app-admissions', '/app/admissions'],
   ['principal', 'app-attendance', '/app/attendance', chooseClass],
   ['principal', 'app-fees', '/app/fees', feesSetup, feesSetupDone],
+  ['principal', 'app-fees-dues', '/app/fees', feesDues, feesDuesDone],
   ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],
   ['principal', 'app-timetable-clash', '/app/timetable', timetableClash],
