@@ -226,6 +226,11 @@ ALLOWED_PERMISSIVE = (
         # *_visible_ticket overlays. Replies and screenshots are append-only:
         # tenant read and tenant insert.
         ("support_tickets", "support_tickets_tenant_isolation"),
+        # P2 5b (C144): tenant isolation only. What narrows them is RESTRICTIVE
+        # and required below: client_operations_own (a person's own
+        # operations) and usage_events_read_leadership.
+        ("client_operations", "client_operations_tenant_isolation"),
+        ("usage_events", "usage_events_tenant_isolation"),
         ("support_ticket_messages", "support_ticket_messages_tenant_read"),
         ("support_ticket_messages", "support_ticket_messages_tenant_insert"),
         ("support_ticket_attachments", "support_ticket_attachments_tenant_read"),
@@ -256,6 +261,10 @@ REQUIRED_RESTRICTIVE = {
     # C126: inside a school, tickets are the raiser's or the office's.
     ("support_tickets", "support_tickets_own_or_office"),
     ("support_tickets", "support_tickets_raise_as_self"),
+    # C144: an operation id belongs to the person who made it; measurements
+    # are read by the school's leadership only.
+    ("client_operations", "client_operations_own"),
+    ("usage_events", "usage_events_read_leadership"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
     ("audit_log", "audit_ticket_rows_own_or_office"),

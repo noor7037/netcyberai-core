@@ -1,7 +1,8 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { createOutbox, syncState, type Operation, type Outbox, type OutboxStatus, type Sender, type SyncState } from '@/lib/offline/outbox';
+import { createOutbox, syncState, type Operation, type Outbox, type OutboxStatus, type SendResult, type Sender, type SyncState } from '@/lib/offline/outbox';
+import { ATTENDANCE_MARK, sendAttendanceMark } from '@/lib/offline/attendance-sender';
 import { deleteDeviceStore, deviceStoreName, idbStore, memoryStore, type DeviceStore } from '@/lib/offline/store';
 
 // The phone's side of working offline (docs/20 §4, C143): the device store
@@ -9,7 +10,7 @@ import { deleteDeviceStore, deviceStoreName, idbStore, memoryStore, type DeviceS
 // the sending of what waits: when the app opens, when the network returns,
 // and when the person presses "Send now". A screen adds a change with
 // `queue(...)`; a module says how its kind of change is sent with
-// `registerSender` (attendance arrives in 5b).
+// `registerSender` (attendance: src/lib/offline/attendance-sender.ts).
 
 type Offline = {
   ready: boolean;
@@ -25,8 +26,10 @@ type Offline = {
   clear: () => Promise<void>;
 };
 
-const SENDERS: Record<string, Sender> = {};
-export function registerSender(kind: string, sender: Sender): void {
+// A sender is given this person's device store, to keep what the answer says.
+export type DeviceSender = (op: Operation, store: DeviceStore | null) => Promise<SendResult>;
+const SENDERS: Record<string, DeviceSender> = { [ATTENDANCE_MARK]: sendAttendanceMark };
+export function registerSender(kind: string, sender: DeviceSender): void {
   SENDERS[kind] = sender;
 }
 
@@ -41,7 +44,10 @@ export function OfflineProvider({ schoolId, userId, children }: { schoolId: stri
   const store = useRef<DeviceStore | null>(null);
 
   const sendNow = useCallback(async () => {
-    if (outbox.current && navigator.onLine) setStatus(await outbox.current.flush(SENDERS));
+    if (!outbox.current || !navigator.onLine) return;
+    const senders: Record<string, Sender> = {};
+    for (const [kind, send] of Object.entries(SENDERS)) senders[kind] = (op) => send(op, store.current);
+    setStatus(await outbox.current.flush(senders));
   }, []);
 
   useEffect(() => {
@@ -85,34 +91,37 @@ export function OfflineProvider({ schoolId, userId, children }: { schoolId: stri
     };
   }, [sendNow]);
 
+  // These keep one identity for the life of the provider, so a screen that
+  // depends on them does not start over each time the outbox moves.
+  const operations = useCallback(async () => outbox.current?.all() ?? [], []);
+  const queue = useCallback<Offline['queue']>(
+    async (kind, forDate, payload) => {
+      if (!outbox.current) return null;
+      const op = await outbox.current.add(kind, forDate, payload);
+      void sendNow();
+      return op;
+    },
+    [sendNow]
+  );
+  const retry = useCallback(
+    async (id: string) => {
+      await outbox.current?.retry(id);
+      void sendNow();
+    },
+    [sendNow]
+  );
+  const remove = useCallback(async (id: string) => void (await outbox.current?.remove(id)), []);
+  const clear = useCallback(async () => {
+    outbox.current = null;
+    store.current = null;
+    if (schoolId && userId) await deleteDeviceStore(deviceStoreName(schoolId, userId)).catch(() => undefined);
+    await clearKeptPages();
+    forgetOwner();
+  }, [schoolId, userId]);
+
   const value = useMemo<Offline>(
-    () => ({
-      ready,
-      online,
-      sync: syncState(status, online),
-      store: store.current,
-      operations: async () => outbox.current?.all() ?? [],
-      queue: async (kind, forDate, payload) => {
-        if (!outbox.current) return null;
-        const op = await outbox.current.add(kind, forDate, payload);
-        void sendNow();
-        return op;
-      },
-      sendNow,
-      retry: async (id) => {
-        await outbox.current?.retry(id);
-        void sendNow();
-      },
-      remove: async (id) => void (await outbox.current?.remove(id)),
-      clear: async () => {
-        outbox.current = null;
-        store.current = null;
-        if (schoolId && userId) await deleteDeviceStore(deviceStoreName(schoolId, userId)).catch(() => undefined);
-        await clearKeptPages();
-        forgetOwner();
-      },
-    }),
-    [ready, online, status, sendNow, schoolId, userId]
+    () => ({ ready, online, sync: syncState(status, online), store: store.current, operations, queue, sendNow, retry, remove, clear }),
+    [ready, online, status, operations, queue, sendNow, retry, remove, clear]
   );
   return <OfflineContext.Provider value={value}>{children}</OfflineContext.Provider>;
 }

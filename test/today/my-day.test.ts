@@ -125,8 +125,8 @@ describe('each role’s day, counted from the school’s own rows', () => {
     const d = await day('teacher', otherTeacher);
     const mine = d.cards.filter((c) => c.type === 'attendance-class');
     expect(mine.map((c) => c.subject)).toEqual(['6-A']);
-    // One active student there; the pending-consent one is not counted.
-    expect(mine[0]).toMatchObject({ count: 1, total: 1 });
+    // One active student there and one waiting for consent: both are marked (C143).
+    expect(mine[0]).toMatchObject({ count: 2, total: 2 });
   });
 
   it('teacher: once attendance is saved the card turns to done, with the number marked', async () => {
@@ -194,13 +194,13 @@ describe('each role’s day, counted from the school’s own rows', () => {
       await q.query(`update students set class_id = $2 where student_id = $1`, [students[3], classOwn]);
     });
     try {
-      // The office: 5-A has four active students, all marked today, and 6-A has none left. Every class is done.
-      expect(card((await day('school_admin', admin)).cards, 'attendance-school')).toMatchObject({ state: 'done', count: 1, total: 1 });
+      // The office: 5-A has four students, all marked today; 6-A keeps its student who waits for consent, unmarked.
+      expect(card((await day('school_admin', admin)).cards, 'attendance-school')).toMatchObject({ state: 'todo', count: 1, total: 2 });
       // The 5-A teacher cannot see a mark made in a class they do not teach (teacher_scope_attendance), on
       // the card or on their Attendance screen: both show this one student as still to mark.
       expect(card((await day('teacher', teacher)).cards, 'attendance-class')).toMatchObject({ state: 'todo', count: 1, total: 4 });
-      // 6-A has no active student left: no card, and not a false "done" from the moved student's mark.
-      expect((await day('teacher', otherTeacher)).cards.filter((c) => c.type === 'attendance-class')).toEqual([]);
+      // 6-A is left with that one student to mark: not a false "done" from the moved student's mark.
+      expect((await day('teacher', otherTeacher)).cards.filter((c) => c.type === 'attendance-class')).toMatchObject([{ state: 'todo', count: 1, total: 1 }]);
     } finally {
       await db.platform((q) => q.query(`update students set class_id = $2 where student_id = $1`, [students[3], classOther]));
     }

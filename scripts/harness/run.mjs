@@ -72,6 +72,41 @@ const chooseClass = async (page) => {
   await page.selectOption('select', { label: '5-A' }).catch(() => undefined);
   await page.waitForTimeout(800);
 };
+// Marking with no network (C144), the way a teacher does it: open the class,
+// lose the network, tap one student absent, submit. The picture is taken with
+// the submission waiting on the phone. Then the network returns: the sync
+// line must say saved, and every student of the class must hold exactly one
+// mark for today. The day's seeded marks are put back after, so the screens that follow see the same school.
+const TODAY_SQL = `(now() at time zone 'Asia/Kolkata')::date`;
+const CLASS_5A = '00000000-0000-4000-8000-0000000c0051';
+const marksToday = async () => (await db.pg.query(`select count(*)::int as n, count(distinct student_id)::int as students, count(*) filter (where status = 'absent')::int as absent from attendance where school_id = $1 and class_id = $2 and date = ${TODAY_SQL}`, [SCHOOL, CLASS_5A])).rows[0];
+const clearMarksToday = () => db.pg.query(`delete from attendance where school_id = $1 and class_id = $2 and date = ${TODAY_SQL}`, [SCHOOL, CLASS_5A]);
+let rosterSize = 0;
+let seededMarks = [];
+const markOffline = async (page) => {
+  seededMarks = (await db.pg.query(`select student_id, status, marked_by from attendance where school_id = $1 and class_id = $2 and date = ${TODAY_SQL}`, [SCHOOL, CLASS_5A])).rows;
+  await clearMarksToday();
+  await page.reload({ waitUntil: 'networkidle' });
+  await chooseClass(page);
+  await page.locator('[data-student-row]').first().waitFor({ timeout: 15000 });
+  rosterSize = await page.locator('[data-student-row]').count();
+  await page.context().setOffline(true);
+  await page.locator('[data-sync="offline"]').waitFor({ timeout: 15000 });
+  await page.locator('[data-student-row]').first().getByRole('button', { name: 'Absent' }).click();
+  await page.locator('[data-submit-attendance]').click();
+  await page.locator('[data-sync="waiting"]').waitFor({ timeout: 15000 });
+  await page.locator('[data-waiting]').first().waitFor({ timeout: 15000 });
+  const before = await marksToday();
+  if (before.n !== 0) throw new Error(`offline, yet ${before.n} marks reached the database`);
+};
+const backOnline = async (page) => {
+  await page.context().setOffline(false);
+  await page.locator('[data-sync="saved"]').waitFor({ timeout: 30000 });
+  const saved = await marksToday();
+  await clearMarksToday();
+  for (const m of seededMarks) await db.pg.query(`insert into attendance (school_id, class_id, date, student_id, status, marked_by) values ($1, $2, ${TODAY_SQL}, $3, $4, $5)`, [SCHOOL, CLASS_5A, m.student_id, m.status, m.marked_by]);
+  if (saved.n !== rosterSize || saved.students !== rosterSize || saved.absent !== 1) throw new Error(`after reconnecting: ${saved.n} marks for ${saved.students} students (${saved.absent} absent), expected ${rosterSize} marks, one each, 1 absent`);
+};
 // The shell's own tools (C134, C135), used the way a person uses them.
 const typeInSearch = (text) => async (page) => {
   await page.getByRole('combobox', { name: /Search|खोजें/ }).fill(text);
@@ -180,6 +215,7 @@ const SCREENS = [
   ['teacher', 'teacher-new-menu', '/app/attendance', openNew],
   ['teacher', 'teacher-search', '/app/attendance', typeInSearch('aar')],
   ['teacher', 'teacher-attendance', '/app/attendance', chooseClass],
+  ['teacher', 'teacher-attendance-offline', '/app/attendance', markOffline, backOnline],
   ['teacher', 'teacher-taught-today', '/app/syllabus'],
   ['teacher', 'teacher-tickets', '/app/help/ticket'],
   ['founder', 'control-dashboard', '/control'],

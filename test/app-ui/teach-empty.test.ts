@@ -56,7 +56,7 @@ describe('an empty list says what to do next, and carries the button', () => {
     expect(html).toContain('This could not be loaded');
     expect(html).not.toContain('<button');
     expect(src('components/students/StudentDetailView.tsx')).toMatch(/guardiansFailed \? <TeachEmpty id="not-loaded"/);
-    expect(src('components/attendance/AttendanceView.tsx')).toMatch(/rosterFailed \? <TeachEmpty id="not-loaded"/);
+    expect(src('components/attendance/AttendanceView.tsx')).toMatch(/source === 'failed' \? <TeachEmpty id="not-loaded"/);
   });
 
   it('where the person can act the button is there, and it does the thing', () => {
