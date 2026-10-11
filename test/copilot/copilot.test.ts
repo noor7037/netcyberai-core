@@ -91,7 +91,7 @@ describe('switched off until the founder switches it on', () => {
     expect(provider.seen).toEqual([]);
     expect((await db.pg.query(`select 1 from ai_usage`)).rows).toEqual([]);
     // The migration switches no school on.
-    expect(readFileSync(path.resolve(__dirname, '../../supabase/migrations/20261013090000_p2_teacher_copilot.sql'), 'utf8')).not.toMatch(/insert into school_module_entitlements/);
+    expect(readFileSync(path.resolve(__dirname, '../../supabase/migrations/20261011192054_p2_teacher_copilot.sql'), 'utf8')).not.toMatch(/insert into school_module_entitlements/);
   });
 });
 
