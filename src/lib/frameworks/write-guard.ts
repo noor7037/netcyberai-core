@@ -97,7 +97,6 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['attendance/**', 'attendance'],
   ['attendance', 'attendance'],
   ['timetable', 'timetable'],
-  ['syllabus/**', 'academics'],
   ['syllabus', 'academics'],
   ['compliance/**', 'compliance'],
   ['whatsapp-config', 'communication'],

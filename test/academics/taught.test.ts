@@ -2,6 +2,9 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { parseSyllabusInput } from '@/lib/academics/syllabus';
+import { TAUGHT_MARK, sendTaughtMark, type TaughtMark } from '@/lib/offline/taught-sender';
+import { createOutbox, type Sender } from '@/lib/offline/outbox';
+import { memoryStore } from '@/lib/offline/store';
 import { addUnits, coverage, parseUnitLines, recordTaught, removeUnit, taughtTapCoverage, unitsFor, type TaughtInput } from '@/lib/academics/taught';
 
 // One tap "taught today" (D5, docs/20 5d, C147), on the whole real schema as
@@ -128,6 +131,43 @@ describe('one tap', () => {
     // The office records for a named teacher.
     expect(await tap(principal, { subjectId: HINDI, topic: 'Kabir' })).toMatchObject({ kind: 'ok', created: true });
     expect(await log()).toHaveLength(2);
+  });
+});
+
+describe('with no network', () => {
+  it('the tap waits on the phone, is sent once, and a lost answer sent again changes nothing', async () => {
+    await reset();
+    const store = memoryStore();
+    const outbox = createOutbox(store);
+    const net = { on: false, loseAnswer: true, calls: 0 };
+    const senders: Record<string, Sender> = {
+      [TAUGHT_MARK]: (op) =>
+        sendTaughtMark(op, store, async (_url, init) => {
+          if (!net.on) throw new TypeError('network off');
+          net.calls += 1;
+          const body = JSON.parse(String(init.body));
+          const parsed = parseSyllabusInput(body, DAY);
+          if (!parsed.ok) return Response.json({ error: parsed.error }, { status: 400 });
+          const result = await as(t1, (c) => recordTaught(c, actor(t1), { ...parsed.value, unitId: body.unitId ?? null, note: body.note ?? null }));
+          if (net.loseAnswer) {
+            net.loseAnswer = false;
+            throw new TypeError('answer lost');
+          }
+          return Response.json(result, { status: 201 });
+        }),
+    };
+    await outbox.add<TaughtMark>(TAUGHT_MARK, DAY, { classId: C5, subjectId: MATHS, topic: 'Fractions: halves', status: 'taught', unitId: null, note: null });
+    expect(await outbox.flush(senders)).toMatchObject({ waiting: 1, failed: 0 });
+    expect(await log()).toEqual([]);
+    net.on = true;
+    expect(await outbox.flush(senders)).toMatchObject({ waiting: 1 }); // saved, but the phone did not hear
+    expect(await outbox.flush(senders)).toMatchObject({ waiting: 0, failed: 0 });
+    expect(net.calls).toBe(2);
+    expect([(await log()).length, (await drafts()).length, (await taps()).length]).toEqual([1, 1, 1]);
+    // A lesson dated too far back is refused and stays visible on the phone.
+    await outbox.add<TaughtMark>(TAUGHT_MARK, '2026-09-01', { classId: C5, subjectId: MATHS, topic: 'Old', status: 'taught', unitId: null, note: null });
+    expect(await outbox.flush(senders)).toMatchObject({ waiting: 0, failed: 1 });
+    expect(await outbox.all()).toMatchObject([{ state: 'failed', reason: 'not_accepted', detail: { topic: 'Old' } }]);
   });
 });
 

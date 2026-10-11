@@ -107,6 +107,30 @@ const backOnline = async (page) => {
   for (const m of seededMarks) await db.pg.query(`insert into attendance (school_id, class_id, date, student_id, status, marked_by) values ($1, $2, ${TODAY_SQL}, $3, $4, $5)`, [SCHOOL, CLASS_5A, m.student_id, m.status, m.marked_by]);
   if (saved.n !== rosterSize || saved.students !== rosterSize || saved.absent !== 1) throw new Error(`after reconnecting: ${saved.n} marks for ${saved.students} students (${saved.absent} absent), expected ${rosterSize} marks, one each, 1 absent`);
 };
+// One tap "taught today" (C147), offline: the network goes, the teacher taps
+// the next syllabus topic, the tap waits; the network returns and there is
+// exactly one classwork log row and one Pulse draft for it.
+const taughtRows = async () => (await db.pg.query(`select (select count(*)::int from syllabus_progress where school_id = $1 and date = ${TODAY_SQL}) as log, (select count(*)::int from pulse_messages where school_id = $1 and sent_on = ${TODAY_SQL} and status = 'draft') as drafts, (select count(*)::int from usage_events where school_id = $1 and kind = 'taught.tap' and day = ${TODAY_SQL}) as taps`, [SCHOOL])).rows[0];
+const clearTaught = () => db.pg.exec(`delete from pulse_messages; delete from syllabus_progress; delete from usage_events where kind = 'taught.tap';`);
+const oneTapTaught = async (page) => {
+  await clearTaught();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-one-tap]').first().waitFor({ timeout: 15000 });
+  await page.context().setOffline(true);
+  await page.locator('[data-sync="offline"]').waitFor({ timeout: 15000 });
+  await page.locator('[data-one-tap]').first().click();
+  await page.locator('[data-sync="waiting"]').waitFor({ timeout: 15000 });
+  await page.locator('[data-lesson] [data-waiting]').first().waitFor({ timeout: 15000 });
+  const before = await taughtRows();
+  if (before.log !== 0) throw new Error('offline, yet the lesson reached the database');
+};
+const oneTapTaughtDone = async (page) => {
+  await page.context().setOffline(false);
+  await page.locator('[data-sync="saved"]').waitFor({ timeout: 30000 });
+  const after = await taughtRows();
+  await clearTaught();
+  if (after.log !== 1 || after.drafts !== 1 || after.taps !== 1) throw new Error(`after reconnecting: ${after.log} log rows, ${after.drafts} drafts, ${after.taps} measurements; expected one of each`);
+};
 // The office's correction path (C146): a teacher's late marks wait at the top
 // of the screen, and yesterday is open for entry with a reason.
 const officeCorrections = async (page) => {
@@ -249,6 +273,7 @@ const SCREENS = [
   ['teacher', 'teacher-timetable', '/app/timetable'],
   ['teacher', 'teacher-attendance-offline', '/app/attendance', markOffline, backOnline],
   ['teacher', 'teacher-taught-today', '/app/syllabus'],
+  ['teacher', 'teacher-taught-one-tap', '/app/syllabus', oneTapTaught, oneTapTaughtDone],
   ['teacher', 'teacher-tickets', '/app/help/ticket'],
   ['founder', 'control-dashboard', '/control'],
   ['founder', 'control-schools', '/control/schools'],

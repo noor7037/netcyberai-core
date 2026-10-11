@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { createOutbox, syncState, type Operation, type Outbox, type OutboxStatus, type SendResult, type Sender, type SyncState } from '@/lib/offline/outbox';
 import { ATTENDANCE_MARK, sendAttendanceMark } from '@/lib/offline/attendance-sender';
+import { TAUGHT_MARK, sendTaughtMark } from '@/lib/offline/taught-sender';
 import { deleteDeviceStore, deviceStoreName, idbStore, memoryStore, type DeviceStore } from '@/lib/offline/store';
 
 // The phone's side of working offline (docs/20 §4, C143): the device store
@@ -28,7 +29,7 @@ type Offline = {
 
 // A sender is given this person's device store, to keep what the answer says.
 export type DeviceSender = (op: Operation, store: DeviceStore | null) => Promise<SendResult>;
-const SENDERS: Record<string, DeviceSender> = { [ATTENDANCE_MARK]: sendAttendanceMark };
+const SENDERS: Record<string, DeviceSender> = { [ATTENDANCE_MARK]: sendAttendanceMark, [TAUGHT_MARK]: sendTaughtMark };
 export function registerSender(kind: string, sender: DeviceSender): void {
   SENDERS[kind] = sender;
 }
