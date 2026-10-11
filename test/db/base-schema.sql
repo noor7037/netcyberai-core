@@ -323,7 +323,7 @@ create policy timetable_entries_tenant_isolation on timetable_entries using (sch
 grant select, insert, update, delete on subjects, timetable_entries to app_user, nca_super;
 
 -- C146: late attendance submissions waiting for the office
--- (20261012090000_p2_office_corrections.sql).
+-- (20261011175653_p2_office_corrections.sql).
 create table attendance_correction_requests (
   request_id uuid primary key default gen_random_uuid(),
   school_id uuid not null references schools(school_id),

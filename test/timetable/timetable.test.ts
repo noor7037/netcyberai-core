@@ -211,7 +211,7 @@ describe('on the real schema', () => {
   });
 
   it('Timetable is switched on for every existing school, once, and a founder’s own switch is left alone (C146)', async () => {
-    const statement = readFileSync(path.resolve(__dirname, '../../supabase/migrations/20261012090000_p2_office_corrections.sql'), 'utf8').match(/insert into school_module_entitlements[\s\S]*?;/)![0];
+    const statement = readFileSync(path.resolve(__dirname, '../../supabase/migrations/20261011175653_p2_office_corrections.sql'), 'utf8').match(/insert into school_module_entitlements[\s\S]*?;/)![0];
     await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'timetable', false, 'founder_override')`, [B]);
     await db.pg.exec(statement);
     await db.pg.exec(statement);
