@@ -31,6 +31,7 @@ export const TOURS = {
   homework: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   recovery: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   copilot: { steps: [{ slot: 'body' }, { slot: 'body' }] },
+  fees: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   compliance: { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   staff: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   settings: { steps: [{ slot: 'body' }, {}] },

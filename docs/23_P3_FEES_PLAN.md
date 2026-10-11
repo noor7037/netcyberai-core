@@ -18,7 +18,7 @@ contrast, 44 px targets, no invented numbers.
 | Piece | Today |
 |---|---|
 | Screens | None. `/app/fees` is the "coming" page. The dashboards and My Day count fees from `fees_ledger`. |
-| `fee_heads`, `fee_structures`, `fee_structure_items` | Tables with tenant RLS; only the principal, school admin and accountant write them. No screen, no rows. A structure is per class and academic year with an `effective_from`. |
+| `fee_heads`, `fee_structures`, `fee_structure_items` | Tables with tenant RLS; only the principal, school admin and accountant write them, but **any staff role could read them** (closed in 6a). No screen. Fixture rows on the test database only (3 heads, 8 structures); none on production. A structure is per class and academic year with an `effective_from`. |
 | `fee_concessions` | Table: per student, optionally per head; kinds `sibling`, `staff_ward`, `rte`, `negotiated`, `hardship`, `scholarship`; percent or amount; a reason and an approver are required. No screen. |
 | `fees_ledger` | One row per amount due: student, amount in minor units, currency, due date, status, gateway ids. **It has no head and no period**, so a concession cannot be matched to a line (recorded as a gap in the fee engine migration). |
 | `payments` | Many per ledger line; append-only; method cash, UPI, card, net banking, cheque or adjustment. A trigger recomputes the ledger line's status from its payments. |

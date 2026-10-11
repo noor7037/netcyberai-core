@@ -20,7 +20,7 @@ describe('the guides', () => {
     expect(HELP_ARTICLES.map((a) => a.slug)).toEqual([
       'sign-in', 'forgot-password', 'set-up-authenticator', 'send-staff-reset-code',
       'add-a-student', 'import-students-csv', 'link-siblings', 'student-id-cards',
-      'mark-attendance', 'use-my-day', 'student-page', 'taught-today', 'timetable', 'daily-pulse-message', 'needs-help-queue', 'set-homework', 'homework-recovery', 'teacher-copilot', 'compliance-screen', 'whatsapp-settings', 'make-a-certificate', 'raise-a-ticket', 'register-your-school',
+      'mark-attendance', 'use-my-day', 'student-page', 'taught-today', 'timetable', 'daily-pulse-message', 'needs-help-queue', 'set-homework', 'homework-recovery', 'teacher-copilot', 'fee-structures', 'compliance-screen', 'whatsapp-settings', 'make-a-certificate', 'raise-a-ticket', 'register-your-school',
     ]);
     expect(new Set(HELP_ARTICLES.map((a) => a.slug)).size).toBe(HELP_ARTICLES.length);
     expect(HELP_ARTICLES.every((a) => /^[a-z][a-z0-9-]+$/.test(a.slug) && a.slug !== 'ticket')).toBe(true); // /app/help/ticket is Raise Ticket

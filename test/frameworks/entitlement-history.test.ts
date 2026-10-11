@@ -21,21 +21,22 @@ beforeAll(async () => {
     await q.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'A', 'IN-HR'), ($2, 'B', 'IN-DL')`, [A, B]);
     await q.query(`insert into users (user_id, role, display_name) values ($1, 'super_admin', 'Noor')`, [founder]);
     await applyPlan(q, A, DEFAULT_PLAN_ID, { userId: null, role: null }, 'school created from application');
-    await changeModuleEntitlement(q, { schoolId: A, moduleId: 'fees', enabled: true, reason: 'pilot of fees' }, actor);
-    await changeModuleEntitlement(q, { schoolId: A, moduleId: 'fees', enabled: false, reason: 'pilot ended' }, actor);
+    await changeModuleEntitlement(q, { schoolId: A, moduleId: 'exams', enabled: true, reason: 'pilot of exams' }, actor);
+    await changeModuleEntitlement(q, { schoolId: A, moduleId: 'exams', enabled: false, reason: 'pilot ended' }, actor);
     await changeSchoolAccess(q, { schoolId: A, accessMode: 'grace', graceEndsAt: '2030-01-31T23:59:59+05:30', reason: 'payment late' }, actor);
-    await changeModuleEntitlement(q, { schoolId: B, moduleId: 'fees', enabled: true, reason: 'other school' }, actor);
+    await changeModuleEntitlement(q, { schoolId: B, moduleId: 'exams', enabled: true, reason: 'other school' }, actor);
   });
 }, 60000);
 
+// The module switched by hand here must be one the standard plan does not hold: Fees was, until it became partly live (C157).
 describe('entitlement history', () => {
   it('lists every change of the school, newest first, with who, what, when and why', async () => {
     const h = await db.platform((q) => entitlementHistory(q, A));
-    const label = (id: string) => ({ fees: 'Fees' })[id] ?? id;
+    const label = (id: string) => ({ exams: 'Exams' })[id] ?? id;
     expect(h.map((e) => [describeEntitlementChange(e, label), e.actorName, e.reason])).toEqual([
       ['Access set to grace period (was full access)', 'Noor', 'payment late'],
-      ['Fees switched off', 'Noor', 'pilot ended'],
-      ['Fees switched on', 'Noor', 'pilot of fees'],
+      ['Exams switched off', 'Noor', 'pilot ended'],
+      ['Exams switched on', 'Noor', 'pilot of exams'],
       [`Plan “standard” applied: ${planById(DEFAULT_PLAN_ID)!.modules.length} modules switched on`, null, 'school created from application'],
     ]);
     expect(h[1].enabled).toEqual({ from: true, to: false });

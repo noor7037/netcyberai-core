@@ -135,7 +135,7 @@ const ROWS: readonly Row[] = [
   { id: 'complaints', label: 'Complaints', group: 'parent-engagement', icon: 'complaints', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', status: 'spec-v0',
     capabilities: ['Intake from WhatsApp and web', 'Category', 'Owner', 'SLA timer', 'Status machine', 'Resolution note', 'Escalation to principal'] },
 
-  { id: 'fees', label: 'Fees', group: 'finance', icon: 'fees', roles: FINANCE, phase: 'P3', phaseNote: 'Reminders by email with a payment link; on WhatsApp from P4', status: 'foundation',
+  { id: 'fees', label: 'Fees', group: 'finance', icon: 'fees', roles: FINANCE, phase: 'P3', phaseNote: 'Heads and structures are live; dues, payments and receipts next. Reminders by email with a payment link; on WhatsApp from P4', status: 'partial',
     capabilities: ['Heads and structures', 'Concessions and scholarships', 'Late-fee rules', 'Ledger', 'Razorpay payment link and UPI QR', 'Receipts', 'Auto reminders', 'Reconciliation', 'Clearance gate'] },
   { id: 'payroll', label: 'Payroll', group: 'finance', icon: 'finance', roles: FINANCE, phase: 'P7', status: 'spec-v0',
     capabilities: ['Salary structures', 'Statutory rules as configuration', 'Monthly run state machine', 'Payslip PDF', 'Bank export', 'Loans and advances from Staff'] },

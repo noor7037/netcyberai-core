@@ -322,6 +322,10 @@ REQUIRED_RESTRICTIVE = {
     ("teaching_notes", "teaching_notes_staff"),
     ("teaching_notes", "teaching_notes_teacher_scope"),
     ("teaching_notes", "teaching_notes_approve_as_self"),
+    # C157: only the principal, the school admin and the accountant read fee rules.
+    ("fee_heads", "fee_heads_finance_read"),
+    ("fee_structures", "fee_structures_finance_read"),
+    ("fee_structure_items", "fee_structure_items_finance_read"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
     ("audit_log", "audit_ticket_rows_own_or_office"),
