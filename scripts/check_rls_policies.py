@@ -249,6 +249,8 @@ ALLOWED_PERMISSIVE = (
         ("homework_attachments", "homework_attachments_tenant_isolation"),
         # C152: tenant isolation only; narrowed by the RESTRICTIVE staff, teacher_scope and decide_as_self, required below.
         ("recovery_plans", "recovery_plans_tenant_isolation"),
+        # C160: tenant isolation only; narrowed by the RESTRICTIVE receipts_finance and receipts_issue_as_self, required below.
+        ("receipts", "receipts_tenant_isolation"),
         # C154: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("ai_usage", "ai_usage_tenant_isolation"),
         ("teaching_notes", "teaching_notes_tenant_isolation"),
@@ -331,6 +333,9 @@ REQUIRED_RESTRICTIVE = {
     ("fees_ledger", "fees_ledger_finance_write"),
     ("payments", "payments_finance_read"),
     ("fee_concessions", "fee_concessions_finance_read"),
+    # C160: receipts are the finance roles', issued in one's own name.
+    ("receipts", "receipts_finance"),
+    ("receipts", "receipts_issue_as_self"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
     ("audit_log", "audit_ticket_rows_own_or_office"),
