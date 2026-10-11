@@ -65,6 +65,7 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['homework', 'homework'],
   ['followups/**', 'pulse'],
   ['followups', 'pulse'],
+  ['pulse-drafts/**', 'pulse'],
   ['syllabus/**', 'academics'],
   ['syllabus', 'academics'],
   // Classes, subjects and who teaches what are the school's Setup.
@@ -104,6 +105,7 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['homework/**', 'homework'],
   ['homework', 'homework'],
   ['followups', 'pulse'],
+  ['pulse-drafts', 'pulse'],
   ['syllabus', 'academics'],
   ['compliance/**', 'compliance'],
   ['whatsapp-config', 'communication'],

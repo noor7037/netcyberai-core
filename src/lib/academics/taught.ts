@@ -1,6 +1,7 @@
 import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
+import { prepareDraft } from '@/lib/pulse/drafts';
 import type { SyllabusInput } from './syllabus';
 
 // One tap "taught today" (D5, docs/20 5d, C147). The tap writes the
@@ -21,7 +22,7 @@ export type TaughtInput = SyllabusInput & { unitId: string | null; note: string 
 export type Actor = { schoolId: string; userId: string; role: StaffRole };
 
 export type TaughtResult =
-  | { kind: 'ok'; created: boolean; entry: { progress_id: string; date: string; topic: string; status: string; class_id: string; subject_id: string; teacher_id: string; unit_id: string | null; note: string | null }; pulseId: string }
+  | { kind: 'ok'; created: boolean; entry: { progress_id: string; date: string; topic: string; status: string; class_id: string; subject_id: string; teacher_id: string; unit_id: string | null; note: string | null }; pulseId: string | null }
   | { kind: 'no_teacher_profile' }
   | { kind: 'unknown_unit' };
 
@@ -53,19 +54,9 @@ export async function recordTaught(db: PoolClient, actor: Actor, input: TaughtIn
   if (!rows[0]) throw new Error('syllabus upsert affected no rows');
   const entry = rows[0];
 
-  // The lesson's Pulse draft: one per log row. A message already sent is
-  // history and is left alone; anything else follows the log and is a draft
-  // again, because what it says has changed.
-  const pulse = await db.query(
-    `insert into pulse_messages (school_id, class_id, subject_id, topic, exception_state, sent_on, status, created_by, source_progress_id)
-     values ($1, $2, $3, $4, $5, $6, 'draft', $7, $8)
-     on conflict on constraint pulse_messages_one_per_log_row
-     do update set topic = excluded.topic, exception_state = excluded.exception_state, status = 'draft'
-       where pulse_messages.status <> 'sent'
-     returning pulse_id`,
-    [actor.schoolId, input.classId, input.subjectId, input.topic, input.status, input.date, actor.userId, entry.progress_id]
-  );
-  const pulseId = (pulse.rows[0]?.pulse_id ?? (await db.query(`select pulse_id from pulse_messages where school_id = $1 and source_progress_id = $2`, [actor.schoolId, entry.progress_id])).rows[0].pulse_id) as string;
+  // The lesson's Pulse draft: one per log row, in three languages, with the
+  // day's homework (src/lib/pulse/drafts.ts). A lesson not taught has none.
+  const pulseId = await prepareDraft(db, actor, entry.progress_id);
 
   // Measured once per lesson, on the first tap: class and day, nobody's name.
   if (!before[0]) await db.query(`insert into usage_events (school_id, kind, class_id, day, value) values ($1, 'taught.tap', $2, $3, 1)`, [actor.schoolId, input.classId, input.date]);

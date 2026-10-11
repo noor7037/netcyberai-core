@@ -1,6 +1,7 @@
 import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
+import { refreshDraftsForHomework } from '@/lib/pulse/drafts';
 import { FileStorageUnavailableError, sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
 
 // Homework (docs/20 5e, C150). The teacher writes it once and copies it to
@@ -82,6 +83,9 @@ export async function createHomework(db: PoolClient, actor: Actor, input: Homewo
     [actor.schoolId, homeworkId, classIds, input.title, input.details, input.dueDate]
   );
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'homework.set', targetType: 'homework', targetId: homeworkId, beforeState: undefined, afterState: { subjectId: input.subjectId, dueDate: input.dueDate, sections: classIds.length } });
+  // The day's Pulse drafts for these sections take the homework in (C151).
+  const today = (await db.query(`select (now() at time zone 'Asia/Kolkata')::date::text as d`)).rows[0].d as string;
+  await refreshDraftsForHomework(db, actor.schoolId, input.subjectId, classIds, today);
   return { ok: true, homeworkId, targetIds: targets.rows.map((r) => r.target_id as string) };
 }
 
@@ -98,6 +102,10 @@ export async function editHomework(db: PoolClient, actor: Actor, homeworkId: str
   if (applyTo.some((t) => !copies.includes(t))) return { ok: false, reason: 'not_a_copy' };
   await db.query(`update homework set title = $3, details = $4, due_date = $5, updated_at = now() where school_id = $1 and homework_id = $2`, [actor.schoolId, homeworkId, input.title, input.details, input.dueDate]);
   if (applyTo.length) await db.query(`update homework_targets set title = $3, details = $4, due_date = $5, updated_at = now() where school_id = $1 and target_id = any($2::uuid[])`, [actor.schoolId, applyTo, input.title, input.details, input.dueDate]);
+  if (applyTo.length) {
+    const changed = (await db.query(`select t.class_id, h.subject_id, (t.assigned_at at time zone 'Asia/Kolkata')::date::text as day from homework_targets t join homework h on h.school_id = t.school_id and h.homework_id = t.homework_id where t.school_id = $1 and t.target_id = any($2::uuid[])`, [actor.schoolId, applyTo])).rows as { class_id: string; subject_id: string; day: string }[];
+    for (const c of changed) await refreshDraftsForHomework(db, actor.schoolId, c.subject_id, [c.class_id], c.day);
+  }
   const leftAsSent = copies.filter((c) => !applyTo.includes(c));
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'homework.edit', targetType: 'homework', targetId: homeworkId, beforeState: before, afterState: { title: input.title, details: input.details, due_date: input.dueDate, changedCopies: applyTo.length, leftAsSent: leftAsSent.length } });
   return { ok: true, changedTargets: applyTo, leftAsSent };
