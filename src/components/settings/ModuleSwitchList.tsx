@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ModuleIcon } from '@/components/app-ui/ModuleIcon';
 import { isAlwaysOn, isModuleEnabled, type SchoolEntitlements } from '@/lib/contracts/entitlements';
 import { MODULE_GROUPS, MODULE_REGISTRY, type ModuleDefinition } from '@/lib/contracts/modules';
-import { t, tOr, type Lang } from '@/lib/i18n';
+import { isMessageKey, t, tOr, type Lang } from '@/lib/i18n';
 import { moduleOffSentence, needsOwnSentence } from '@/lib/i18n/module-off';
 
 // The school's modules, on its own Settings page (docs/19 rule 7, C139):
@@ -13,8 +13,10 @@ import { moduleOffSentence, needsOwnSentence } from '@/lib/i18n/module-off';
 export function ModuleSwitchList({ entitlements, lang }: { entitlements: SchoolEntitlements; lang: Lang }) {
   const groups = [...MODULE_GROUPS].sort((a, b) => a.order - b.order);
   // What exists today comes first; what is not built yet is one tap away, so the page stays short.
-  const built = MODULE_REGISTRY.filter(needsOwnSentence);
-  const later = MODULE_REGISTRY.filter((m) => !needsOwnSentence(m));
+  // A module with a sentence of its own has a working part today, whatever its status says.
+  const hasOwn = (m: ModuleDefinition) => needsOwnSentence(m) || isMessageKey(`moduleOff.${m.id}`);
+  const built = MODULE_REGISTRY.filter(hasOwn);
+  const later = MODULE_REGISTRY.filter((m) => !hasOwn(m));
 
   const row = (m: ModuleDefinition) => {
     const g = groups.find((x) => x.id === m.group)!;
@@ -42,6 +44,8 @@ export function ModuleSwitchList({ entitlements, lang }: { entitlements: SchoolE
           {t(lang, 'modules.title')}
         </h2>
         <p className="max-w-prose text-sm text-slate">{t(lang, 'modules.intro')}</p>
+        {entitlements.accessMode === 'suspended' && <p className="mt-2 max-w-prose rounded-md bg-tangerine/10 px-3 py-2 text-sm font-semibold text-slate">{t(lang, 'modules.paused')}</p>}
+        {entitlements.accessMode === 'read_only' && <p className="mt-2 max-w-prose rounded-md bg-tangerine/10 px-3 py-2 text-sm font-semibold text-slate">{t(lang, 'modules.readOnly')}</p>}
       </div>
       {groups
         .filter((g) => built.some((m) => m.group === g.id))

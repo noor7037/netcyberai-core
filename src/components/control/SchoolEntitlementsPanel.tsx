@@ -287,7 +287,7 @@ export function SchoolEntitlementsPanel({
             }}
           >
             <p className="text-sm text-slate/70">
-              {isOn(toggle) ? 'People at this school will stop seeing this module in their menu, and its screens will say it is not switched on.' : 'People whose role may use this module will see it in their menu.'}
+              {isOn(toggle) ? 'People at this school will stop seeing this module in their menu.' : 'People whose role may use this module will see it in their menu.'}
             </p>
             {isOn(toggle) && (
               <p lang={lang} className="rounded-md bg-tangerine/10 px-3 py-2 text-sm text-slate">

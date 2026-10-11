@@ -132,7 +132,7 @@ export function FamilyPanel({ studentId, refreshKey = 0 }: { studentId: string; 
         )}
       </div>
       {view.guardians.length === 0 ? (
-        <TeachEmpty id="family-guardians" compact />
+        <TeachEmpty id={view.canManage ? 'family-guardians' : 'guardians-view'} compact />
       ) : (
         <ul className="flex flex-col gap-2">
           {view.guardians.map((g) => (

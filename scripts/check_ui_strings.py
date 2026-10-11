@@ -125,7 +125,7 @@ ONE_WORD_RE = re.compile(rf"^[A-Zऀ-ॿ][a-zऀ-ॿ]+[.!?…:]?$")
 # Quoted text that is not shown to anyone.
 NOT_SHOWN_BEFORE = re.compile(r"(?:===|!==|==|!=|\bcase|\bfrom|\bimport|\bthrow new \w+\(|console\.\w+\(|\bclassName=\{?|\bkey=\{?|\btypeof\s+\w+\s*[!=]==?)\s*$")
 # Signs that a match between angle brackets is code, not words on a screen.
-CODE_SIGNS = re.compile(r"=>|===|!==|;|\s=\s|&&|\|\||\?\.|\breturn\b|\bconst\b|\)\s*:|^\s*[),.\]]|^\s*\w+\s*\?\s*$|\?\s*['\"]|^as \w+$")
+CODE_SIGNS = re.compile(r"=>|===|!==|;|\s=\s|&&|\|\||\?\.|\breturn\b|\bconst\b|\)\s*:|^\s*[),.\]]|^\s*\w+\s*\?\s*$|\?\s*['\"]|^as \w+$|^\s*[:?]\s*[\w.!]+\s*\??\s*$")
 # Stricter beside a brace, where most matches are code ("} else {").
 BRACE_CODE_SIGNS = re.compile(r"[()=;?&|\[\]'\"`$]|:\s*\S")
 JS_WORDS = {"else", "return", "const", "let", "if", "try", "catch", "finally", "async", "function", "export", "await", "satisfies", "extends", "implements", "while", "switch"}
@@ -403,6 +403,7 @@ def self_test() -> int:
             "      <input accept=\"image/*\" aria-label={t('a.title')} />\n"
             "      <a href=\"https://example.invalid/a\">{t('a.title')}</a>\n"
             "      {n > total ? <b>{t('a.title')}</b> : null}\n"
+            "      {failed ? <Empty id=\"x\" /> : office ? <Empty id=\"y\" /> : <Empty id=\"z\" />}\n"
             "      <h1>{t('a.count', { count: n })}</h1>\n"
             "      <time>{format(d, 'D MMM YYYY')}</time> // ui-strings: not words (a date pattern)\n"
             "      <p className={on ? 'block' : 'hidden'} style={{ fontFamily: 'inter' }} />\n"

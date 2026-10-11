@@ -9,11 +9,13 @@ import { isMessageKey, type MessageKey } from '@/lib/i18n';
 // plain sentence on what to do next, and the button that does it. The words
 // are in the message files (`empty.<id>.title`, `.do`, `.action`), in the
 // person's language. Where this person's role cannot do the next step, the
-// sentence says who can, and there is no button.
+// sentence says who can, and there is no button (the `-view` ids). A list
+// that could not be loaded is not an empty list: it says `not-loaded`.
 
 export const EMPTY_IDS = [
-  'students', 'classes', 'guardians', 'family-guardians', 'siblings', 'siblings-view', 'data-requests', 'data-requests-view',
-  'attendance-roster', 'staff-search', 'taught-today-teacher', 'taught-today-office', 'support-access',
+  'students', 'students-none-waiting', 'students-no-match', 'classes', 'guardians', 'guardians-view', 'family-guardians', 'siblings', 'siblings-view',
+  'data-requests', 'data-requests-view', 'attendance-roster', 'attendance-roster-view', 'staff-search', 'taught-today-teacher', 'taught-today-office',
+  'support-access', 'not-loaded',
 ] as const;
 export type EmptyId = (typeof EMPTY_IDS)[number];
 
@@ -38,7 +40,7 @@ export function TeachEmpty({ id, onAction, href, compact = false }: { id: EmptyI
     );
   }
   return (
-    <div lang={lang} role="status" data-empty={id} className={`flex flex-col items-start gap-2 rounded-xl border border-dashed border-slate/20 bg-white ${compact ? 'p-3' : 'p-5'}`}>
+    <div lang={lang} data-empty={id} className={`flex flex-col items-start gap-2 rounded-xl border border-dashed border-slate/20 bg-white ${compact ? 'p-3' : 'p-5'}`}>
       <p className="text-base font-bold text-slate">{t(`empty.${id}.title` as MessageKey)}</p>
       <p className="max-w-prose text-sm text-slate">{t(`empty.${id}.do` as MessageKey)}</p>
       {action}

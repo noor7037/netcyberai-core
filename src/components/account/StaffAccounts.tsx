@@ -138,7 +138,7 @@ export function StaffAccounts({
         </p>
       )}
       {!accounts && !loadError && <p className="text-sm text-slate/70">Loading accounts…</p>}
-      {accounts && shown.length === 0 && <TeachEmpty id="staff-search" compact onAction={() => setQuery('')} />}
+      {accounts && shown.length === 0 && query && <TeachEmpty id="staff-search" compact onAction={() => setQuery('')} />}
 
       <ul className="flex flex-col gap-3">
         {shown.map((a) => (

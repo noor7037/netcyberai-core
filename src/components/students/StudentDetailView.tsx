@@ -40,6 +40,7 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
   const [student, setStudent] = useState(initial);
   const [editing, setEditing] = useState(false);
   const [guardians, setGuardians] = useState<Guardian[] | null>(null);
+  const [guardiansFailed, setGuardiansFailed] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
   const [familyKey, setFamilyKey] = useState(0);
   const [suggestions, setSuggestions] = useState<SiblingSuggestion[]>([]);
@@ -86,9 +87,15 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
 
   useEffect(() => {
     fetch(`/api/app/students/${student.student_id}/guardians`)
-      .then((r) => r.json())
-      .then((body) => setGuardians(body.guardians ?? []))
-      .catch(() => setGuardians([]));
+      .then(async (r) => {
+        const body = await r.json();
+        if (!r.ok) throw new Error('not loaded');
+        setGuardians(body.guardians ?? []);
+      })
+      .catch(() => {
+        setGuardiansFailed(true);
+        setGuardians([]);
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -218,7 +225,7 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
         {guardians === null ? (
           <p className="text-sm text-slate/70">Loading…</p>
         ) : guardians.length === 0 ? (
-          <TeachEmpty id="guardians" compact onAction={canEdit ? () => setAddOpen(true) : undefined} />
+          guardiansFailed ? <TeachEmpty id="not-loaded" compact /> : canEdit ? <TeachEmpty id="guardians" compact onAction={() => setAddOpen(true)} /> : <TeachEmpty id="guardians-view" compact />
         ) : (
           <ul className="flex flex-col gap-2">
             {guardians.map((g) => (

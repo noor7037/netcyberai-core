@@ -32,9 +32,31 @@ describe('an empty list says what to do next, and carries the button', () => {
         }
       }
       const todo = t('en', `empty.${id}.do` as any);
-      // It tells the person to do something, or who can: never only "nothing here".
-      expect(todo, id).toMatch(/\b(Add|Ask|Check|If|When|Each|The office|link|log|raise|use)\b/i);
+      // With a button, the button's words exist in both languages. Without one,
+      // the sentence says who can do it, or that nothing is needed.
+      if (isMessageKey(`empty.${id}.action`)) expect(t('hi', `empty.${id}.action` as any), id).toMatch(DEVANAGARI);
+      else expect(todo, id).toMatch(/Ask your school admin|The office|tell the office|Nothing is needed from you|Guardians section above|refresh the page/);
     }
+  });
+
+  it('the student list tells an empty school, an empty search and "nobody waiting" apart', () => {
+    expect(render('en', { id: 'students', onAction: () => undefined })).toContain('Add your first student');
+    const noMatch = render('en', { id: 'students-no-match', onAction: () => undefined });
+    expect(noMatch).toContain('No student matches your search');
+    expect(noMatch).toMatch(/<button[^>]*>Clear the search<\/button>/);
+    expect(noMatch).not.toContain('first student');
+    expect(render('en', { id: 'students-none-waiting', onAction: () => undefined })).toContain('No student is waiting for consent');
+    const view = src('components/students/StudentsView.tsx');
+    expect(view).toMatch(/search \? \(\s*<TeachEmpty id="students-no-match"/);
+    expect(view).toMatch(/statusFilter === 'pending_consent' \? \(\s*<TeachEmpty id="students-none-waiting"/);
+  });
+
+  it('a list that could not be loaded says that, not that it is empty', () => {
+    const html = render('en', { id: 'not-loaded' });
+    expect(html).toContain('This could not be loaded');
+    expect(html).not.toContain('<button');
+    expect(src('components/students/StudentDetailView.tsx')).toMatch(/guardiansFailed \? <TeachEmpty id="not-loaded"/);
+    expect(src('components/attendance/AttendanceView.tsx')).toMatch(/rosterFailed \? <TeachEmpty id="not-loaded"/);
   });
 
   it('where the person can act the button is there, and it does the thing', () => {
@@ -47,8 +69,16 @@ describe('an empty list says what to do next, and carries the button', () => {
   });
 
   it('where the person’s role cannot act there is no button, and the sentence says who can', () => {
-    const html = render('en', { id: 'guardians' }); // a teacher: no onAction given
+    const html = render('en', { id: 'guardians-view' }); // what a teacher sees on a student's page
     expect(html).not.toContain('<button');
+    expect(html).toContain('The office adds guardians. Ask your school admin');
+    expect(html).not.toContain('Add a parent or guardian.');
+    expect(src('components/students/StudentDetailView.tsx')).toMatch(/canEdit \? <TeachEmpty id="guardians"[^:]*: <TeachEmpty id="guardians-view"/);
+    expect(src('components/students/FamilyPanel.tsx')).toContain("view.canManage ? 'family-guardians' : 'guardians-view'");
+    const roster = render('en', { id: 'attendance-roster-view' });
+    expect(roster).toContain('Ask your school admin');
+    expect(roster).not.toContain('href=');
+    expect(src('components/attendance/AttendanceView.tsx')).toMatch(/office \? <TeachEmpty id="attendance-roster" href="\/app\/students" \/> : <TeachEmpty id="attendance-roster-view"/);
     expect(render('en', { id: 'siblings-view' })).toContain('Ask your school admin');
     expect(render('en', { id: 'taught-today-teacher' })).toContain('Ask your school admin');
     expect(render('en', { id: 'support-access' })).toContain('Nothing is needed from you');
@@ -64,10 +94,10 @@ describe('an empty list says what to do next, and carries the button', () => {
   it('every empty state is used by a screen, and the bare "No … yet." lines are gone from those screens', () => {
     const files = ['components/students/StudentsView.tsx', 'components/students/StudentDetailView.tsx', 'components/students/FamilyPanel.tsx', 'components/students/DsrPanel.tsx', 'components/attendance/AttendanceView.tsx', 'components/account/StaffAccounts.tsx', 'components/academics/SyllabusView.tsx', 'app/(school)/app/compliance/page.tsx'];
     const all = files.map(src).join('\n');
-    for (const id of EMPTY_IDS) expect(all.includes(`id="${id}"`), id).toBe(true);
-    for (const f of files) {
-      const bare = src(f).match(/>\s*(No [a-z ]+ (yet|linked|on record|match|you can see)\.?|Nothing to show yet\.?)\s*</gi) ?? [];
-      expect(bare, f).toEqual([]);
+    for (const id of EMPTY_IDS) expect(new RegExp(`<TeachEmpty[^>]*['"]${id}['"]`).test(all), id).toBe(true);
+    // The lines these screens used to show, wherever they were written (text, a string, a prop).
+    for (const old of ['No guardians linked yet', 'No classes yet', 'No requests on record', 'No siblings linked', 'No siblings you can see', 'No accounts match', 'Nothing to show yet', 'No subject assignments yet', 'No classes assigned to you yet', 'No active students in this class.', 'emptyTitle="No students yet"']) {
+      expect(all.includes(old), old).toBe(false);
     }
   });
 });
@@ -99,6 +129,23 @@ describe('one plain sentence on what a module being off changes, and for whom', 
     for (const id of ALWAYS_ON_MODULES) expect(moduleOffSentence('en', MODULE_REGISTRY.find((m) => m.id === id)!)).toContain('Always on');
   });
 
+  it('a sentence says what the code does: the menu, search, "New", My Day and the refused changes', () => {
+    const of = (id: string) => moduleOffSentence('en', MODULE_REGISTRY.find((m) => m.id === id)!);
+    // Students: scan and family linking are refused too (the write guard), and it leaves search, New and My Day.
+    for (const words of ['scan an ID card', 'link a family', 'search', '“New”', 'My Day', 'Records are kept']) expect(of('students')).toContain(words);
+    // Parents: data requests are refused as well as consent.
+    expect(of('parents')).toContain('data request');
+    // Attendance: the "+ New" action and coordinators.
+    for (const words of ['“New”', 'coordinators', 'My Day']) expect(of('attendance')).toContain(words);
+    // Staff: the screen and search go; nothing is claimed about what still works.
+    expect(of('staff')).toContain('search');
+    expect(of('staff')).not.toContain('still work');
+    // Admissions carries Import CSV with it.
+    expect(of('admissions')).toContain('Import CSV');
+    // No sentence says the school's data is deleted or becomes unreadable.
+    for (const m of MODULE_REGISTRY) expect(moduleOffSentence('en', m), m.id).not.toMatch(/deleted|erased|cannot be read|unreadable/i);
+  });
+
   it('a sentence names who is affected', () => {
     for (const id of ['students', 'attendance', 'parents', 'setup', 'academics', 'communication', 'compliance', 'dashboard', 'admissions']) {
       expect(moduleOffSentence('en', MODULE_REGISTRY.find((m) => m.id === id)!), id).toMatch(/office|Teachers|Nobody|principal|accountant/i);
@@ -122,10 +169,30 @@ describe('the school’s Settings list', () => {
     expect(html).toMatch(/href="\/app\/help\/ticket\/new"[^>]*>Raise a ticket</);
   });
 
-  it('a suspended school sees everything off except help and tickets', () => {
+  it('a suspended school sees everything off except help and tickets, and is told its account is paused', () => {
     const html = list('en', ents('suspended', ['students', 'attendance']));
     expect(state(html, 'students')).toBe('false');
     expect(state(html, 'help-center')).toBe('true');
+    expect(html).toContain('account is paused');
+  });
+
+  it('a read-only school is told that what is on can be opened but nothing can be saved', () => {
+    expect(list('en', ents('read_only', ['students']))).toContain('nothing can be saved');
+    expect(list('en', ents('full', ['students']))).not.toContain('nothing can be saved');
+  });
+
+  it('modules with a working part are in the main list; only the truly unbuilt are folded away', () => {
+    const html = list('en', ents('full', ['students']));
+    const folded = html.slice(html.indexOf('<details'));
+    for (const id of ['staff', 'admissions', 'fees', 'students']) expect(folded.includes(`data-module="${id}"`), id).toBe(false);
+    expect(folded).toContain('data-module="ptm"');
+  });
+
+  it('Settings is reachable: the office’s menu links to it', () => {
+    const layout = src('app/(school)/app/layout.tsx');
+    expect(layout).toContain("href: '/app/settings'");
+    expect(layout).toMatch(/isOffice \? \[settings\] : \[\]/);
+    expect(t('hi', 'shell.settings')).toMatch(DEVANAGARI);
   });
 
   it('in Hindi the list is in Hindi', () => {

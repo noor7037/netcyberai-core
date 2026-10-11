@@ -64,7 +64,9 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   const menu = toShellGroups(nav, lang);
   const home = menu.find((g) => g.id === 'home');
   // A school without the Dashboard module (or suspended) still has its home.
-  const homeGroup = { id: 'home', label: t(lang, 'group.home'), tone: ['royal', 'electric'] as const, items: [myDay, ...(home?.items ?? []).filter((i) => isOffice || i.href !== '/app/dashboard')] };
+  // Settings (what is switched on for the school, WhatsApp) is the office's, and is reached from here.
+  const settings = { href: '/app/settings', label: t(lang, 'shell.settings'), icon: 'operations' as const };
+  const homeGroup = { id: 'home', label: t(lang, 'group.home'), tone: ['royal', 'electric'] as const, items: [myDay, ...(home?.items ?? []).filter((i) => isOffice || i.href !== '/app/dashboard'), ...(isOffice ? [settings] : [])] };
   const groups = [homeGroup, ...menu.filter((g) => g.id !== 'home')];
   const bottomBar = bottom && [myDay, ...bottom.filter((i) => i.href !== '/app/dashboard')].slice(0, 4);
 

@@ -14,7 +14,7 @@ export default async function AttendancePage({ searchParams }: { searchParams: {
 
   return (
     <ModulePage moduleId="attendance" help="mark-attendance" tour="attendance" title="Attendance" purpose="Choose a class. Everyone starts as present: tap only who is absent or late, then submit.">
-      <AttendanceView canManage={canManage} initialClassId={isUuid(searchParams.class) ? searchParams.class : undefined} />
+      <AttendanceView canManage={canManage} office={session?.role === 'school_admin' || session?.role === 'principal'} initialClassId={isUuid(searchParams.class) ? searchParams.class : undefined} />
     </ModulePage>
   );
 }

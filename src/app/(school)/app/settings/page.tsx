@@ -19,7 +19,10 @@ export default async function SettingsPage() {
   let entitlements: SchoolEntitlements | null = null;
   if (session?.schoolId && canManage) {
     const schoolId = session.schoolId;
-    entitlements = await withTenantContext(session, (db) => loadEntitlements(db, schoolId)).catch(() => null);
+    entitlements = await withTenantContext(session, (db) => loadEntitlements(db, schoolId)).catch((err) => {
+      console.error('[settings] the module list could not be loaded', err instanceof Error ? err.name : 'error');
+      return null;
+    });
   }
 
   return (
