@@ -57,6 +57,7 @@ if (process.env.NODE_ENV === 'production' || process.env.VERCEL || process.env.C
 
 const SCHOOL = 'a0000000-0000-4000-8000-000000000001';
 const STUDENT = '00000000-0000-4000-8000-000000500001';
+const STUDENT_NO_GUARDIAN = '00000000-0000-4000-8000-000000500002';
 const TICKET = '00000000-0000-4000-8000-0000000f0001';
 const PEOPLE = {
   principal: { sub: '00000000-0000-4000-8000-00000000a001', role: 'principal', schoolId: SCHOOL, membershipId: '00000000-0000-4000-8000-0000000a1001' },
@@ -114,6 +115,10 @@ const skipAndCheck = (who, thenEnglish = false) => async (page) => {
   if (thenEnglish) await speak('English')(page);
   await page.context().addCookies([seenAllCookie(who)]);
 };
+const openModulesTab = async (page) => {
+  await page.getByRole('tab', { name: 'Modules & access' }).click();
+  await page.locator('[data-module-off]').first().waitFor({ timeout: 15000 });
+};
 // On a phone the menu is closed, so the Hindi would not be in the picture: open it.
 const hindiWithMenu = async (page) => {
   await speak('हिन्दी')(page);
@@ -136,6 +141,11 @@ const SCREENS = [
   ['principal', 'app-students-first-visit', '/app/students', firstVisit, skipAndCheck('principal')],
   ['principal', 'app-attendance-first-visit-hindi', '/app/attendance', firstVisitInHindi, skipAndCheck('principal', true)],
   ['teacher', 'teacher-my-day-first-visit', '/app/my-day', firstVisit, skipAndCheck('teacher')],
+  // Empty states that teach, and the module switches' sentences (C139).
+  ['principal', 'app-student-empty', `/app/students/${STUDENT_NO_GUARDIAN}`],
+  ['principal', 'app-student-empty-hindi', `/app/students/${STUDENT_NO_GUARDIAN}`, speak('हिन्दी'), backToEnglish],
+  ['principal', 'app-settings-hindi', '/app/settings', speak('हिन्दी'), backToEnglish],
+  ['founder', 'control-modules', `/control/schools/${SCHOOL}`, openModulesTab],
   ['principal', 'app-dashboard', '/app/dashboard'],
   ['principal', 'app-students', '/app/students'],
   ['principal', 'app-student-profile', `/app/students/${STUDENT}`],

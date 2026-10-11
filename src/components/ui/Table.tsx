@@ -19,6 +19,7 @@ interface Props<T> {
   emptyDescription?: string;
   retryAction?: ReactNode;
   emptyAction?: ReactNode;
+  empty?: ReactNode; // the whole empty state, when the list brings its own
 }
 
 // Mobile strategy decision (docs/07_DESIGN_SYSTEM.md Table entry: "cards
@@ -54,10 +55,13 @@ export function Table<T>({
   emptyDescription,
   retryAction,
   emptyAction,
+  empty,
 }: Props<T>) {
   if (state === 'loading') return <LoadingState label="Loading…" />;
   if (state === 'error') return <ErrorState message={errorMessage} action={retryAction} />;
   if (state === 'empty' || rows.length === 0) {
+    // A list that teaches (docs/19 rule 8) gives its own empty state.
+    if (empty) return <>{empty}</>;
     return <EmptyState title={emptyTitle} description={emptyDescription} action={emptyAction} />;
   }
 

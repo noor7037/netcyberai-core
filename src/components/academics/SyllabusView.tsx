@@ -2,9 +2,9 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/Badge';
-import { EmptyState } from '@/components/ui/EmptyState';
 import { ErrorState } from '@/components/ui/ErrorState';
 import { LoadingState } from '@/components/ui/LoadingState';
+import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 
 // "Taught today": one row per class + subject the signed-in person can
 // record. Tapping a status saves immediately (PUT /api/app/syllabus); the
@@ -101,14 +101,7 @@ export function SyllabusView({ isTeacher }: { isTeacher: boolean }) {
     );
   if (pairs.length === 0)
     return (
-      <EmptyState
-        title={isTeacher ? 'No classes assigned to you yet' : 'No subject assignments yet'}
-        description={
-          isTeacher
-            ? 'Ask your school admin to assign your subjects and classes. They will appear here.'
-            : 'Assign teachers to subjects and classes first; each assignment becomes a row here.'
-        }
-      />
+      isTeacher ? <TeachEmpty id="taught-today-teacher" /> : <TeachEmpty id="taught-today-office" href="/app/help/ticket/new" />
     );
 
   const done = pairs.filter((p) => entries[key(p.class_id, p.subject_id)]).length;

@@ -7,6 +7,7 @@ import { Modal } from '@/components/ui/Modal';
 import { useToast } from '@/components/ui/Toast';
 import type { FamilyView } from '@/lib/contracts/families';
 import type { StudentSearchResult } from '@/lib/contracts/student-search';
+import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 
 // Student 360 → Siblings and Family (C116): the student's siblings (name,
 // class, status, order by age), all children and guardians of the family,
@@ -101,9 +102,7 @@ export function FamilyPanel({ studentId, refreshKey = 0 }: { studentId: string; 
 
       <h3 className="mb-2 text-sm font-semibold text-slate">Siblings</h3>
       {siblings.length === 0 ? (
-        <p className="mb-4 text-sm text-slate/70">
-          {view.canManage ? 'No siblings linked. Link one here, or when adding a guardian already on record.' : 'No siblings you can see.'}
-        </p>
+        <div className="mb-4">{view.canManage ? <TeachEmpty id="siblings" compact onAction={() => setLinkOpen(true)} /> : <TeachEmpty id="siblings-view" compact />}</div>
       ) : (
         <ul className="mb-4 flex flex-col gap-2">
           {siblings.map((m) => (
@@ -133,7 +132,7 @@ export function FamilyPanel({ studentId, refreshKey = 0 }: { studentId: string; 
         )}
       </div>
       {view.guardians.length === 0 ? (
-        <p className="text-sm text-slate/70">No guardians linked yet.</p>
+        <TeachEmpty id={view.canManage ? 'family-guardians' : 'guardians-view'} compact />
       ) : (
         <ul className="flex flex-col gap-2">
           {view.guardians.map((g) => (

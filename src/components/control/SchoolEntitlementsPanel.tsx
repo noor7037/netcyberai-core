@@ -6,7 +6,9 @@ import { DataList, type DataColumn } from '@/components/app-ui/DataList';
 import { ErrorState, Skeleton } from '@/components/app-ui/States';
 import { StatusPill } from '@/components/app-ui/StatusPill';
 import type { StatusTone } from '@/components/app-ui/tones';
+import { useT } from '@/components/app-shell/LangContext';
 import { Modal } from '@/components/ui/Modal';
+import { moduleOffSentence } from '@/lib/i18n/module-off';
 import {
   accessModeLabel,
   describeEntitlementChange,
@@ -76,6 +78,7 @@ export function SchoolEntitlementsPanel({
   // Render tests only: the switch dialog open for a module, with an error.
   initialDialog?: { moduleId: string; error?: string };
 }) {
+  const { lang, t } = useT();
   const [data, setData] = useState<EntitlementsData | null>(initial ?? null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(initialDialog?.error ?? null);
@@ -232,6 +235,11 @@ export function SchoolEntitlementsPanel({
                         <p className="text-xs text-slate/70">
                           {always ? 'Always on for every school' : !e ? 'Not switched on' : e.source === 'founder_override' ? 'Set by hand' : e.source === 'trial' ? 'Trial' : e.enabled ? 'From the plan' : 'Off in the plan'}
                         </p>
+                        {/* What "off" changes for the school's people, in one sentence (docs/19 rule 7). */}
+                        <p lang={lang} data-module-off={m.id} className="mt-0.5 max-w-prose text-xs text-slate">
+                          {!always && <span className="font-semibold">{t('modules.whenOff')} </span>}
+                          {moduleOffSentence(lang, m)}
+                        </p>
                       </div>
                       <div className="flex items-center gap-2">
                         <StatusPill tone={on ? 'success' : 'neutral'}>{on ? 'On' : 'Off'}</StatusPill>
@@ -279,8 +287,13 @@ export function SchoolEntitlementsPanel({
             }}
           >
             <p className="text-sm text-slate/70">
-              {isOn(toggle) ? 'People at this school will stop seeing this module in their menu, and its screens will say it is not switched on.' : 'People whose role may use this module will see it in their menu.'}
+              {isOn(toggle) ? 'People at this school will stop seeing this module in their menu.' : 'People whose role may use this module will see it in their menu.'}
             </p>
+            {isOn(toggle) && (
+              <p lang={lang} className="rounded-md bg-tangerine/10 px-3 py-2 text-sm text-slate">
+                {moduleOffSentence(lang, toggle)}
+              </p>
+            )}
             <Reason id="toggle-reason" value={toggleReason} onChange={setToggleReason} />
             {error && errorBox}
             <div className="flex flex-wrap gap-2">

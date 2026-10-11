@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Table, type TableColumn } from '@/components/ui/Table';
 import { Badge } from '@/components/ui/Badge';
 import { Modal } from '@/components/ui/Modal';
+import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
@@ -57,6 +58,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
   const router = useRouter();
   const [students, setStudents] = useState<Student[] | null>(null);
   const [classes, setClasses] = useState<ClassRow[]>([]);
+  const [classesLoaded, setClassesLoaded] = useState(false);
   const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [errorMessage, setErrorMessage] = useState('');
   const [modalOpen, setModalOpen] = useState(openNew);
@@ -90,6 +92,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
       const classesBody = classesRes.ok ? await classesRes.json() : { classes: [] };
       setStudents(studentsBody.students);
       setClasses(classesBody.classes);
+      setClassesLoaded(classesRes.ok);
       setState('ready');
     } catch {
       setErrorMessage('Could not load students. Check your connection and try again.');
@@ -273,8 +276,16 @@ export function StudentsView({ title, description, statusFilter, openNew = false
         getRowId={(s) => s.student_id}
         state={state === 'loading' ? 'loading' : state === 'error' ? 'error' : 'ready'}
         errorMessage={errorMessage}
-        emptyTitle="No students yet"
-        emptyDescription="Add a student manually, or import a CSV from Admissions."
+        empty={
+          // Nothing matches the search; nobody is waiting (Admissions); or the school has no student yet.
+          search ? (
+            <TeachEmpty id="students-no-match" onAction={() => setSearch('')} />
+          ) : statusFilter === 'pending_consent' ? (
+            <TeachEmpty id="students-none-waiting" onAction={() => setModalOpen(true)} />
+          ) : (
+            <TeachEmpty id="students" onAction={() => setModalOpen(true)} />
+          )
+        }
         retryAction={
           <button type="button" onClick={load} className="text-sm font-semibold text-sapphire">
             Retry
@@ -316,7 +327,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
           </button>
         </form>
         {classes.length === 0 ? (
-          <p className="text-sm text-slate/70">No classes yet.</p>
+          classesLoaded ? <TeachEmpty id="classes" compact onAction={() => document.getElementById('className')?.focus()} /> : <TeachEmpty id="not-loaded" compact />
         ) : (
           <ul className="flex flex-col gap-1">
             {classes.map((c) => (

@@ -6,6 +6,7 @@ import { Modal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
+import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 
 type DsrRequest = {
   request_id: string;
@@ -104,7 +105,7 @@ export function DsrPanel({ studentId, canManage }: { studentId: string; canManag
       {requests === null ? (
         <p className="text-sm text-slate/70">Loading…</p>
       ) : requests.length === 0 ? (
-        <p className="text-sm text-slate/70">No requests on record.</p>
+        canManage ? <TeachEmpty id="data-requests" compact onAction={() => setNewOpen(true)} /> : <TeachEmpty id="data-requests-view" compact />
       ) : (
         <ul className="flex flex-col gap-2">
           {requests.map((r) => (

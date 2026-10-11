@@ -7,6 +7,7 @@ import { Modal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
 import type { AttendanceStatus } from '@/lib/attendance/attendance';
+import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 
 // Mirrors src/lib/attendance/attendance.ts's FREE_EDIT_WINDOW_MINUTES for
 // display only -- that module pulls in the `pg` driver (server-only) and
@@ -35,10 +36,12 @@ const STATUS_VARIANT: Record<AttendanceStatus, 'success' | 'danger' | 'warning'>
 // the pre-submit local state for students not yet marked today --
 // once submitted, every further change is a correction (PATCH), not
 // part of this draft.
-export function AttendanceView({ canManage, initialClassId }: { canManage: boolean; initialClassId?: string }) {
+// `office`: the principal or school admin, who can add students and record consent.
+export function AttendanceView({ canManage, initialClassId, office = false }: { canManage: boolean; initialClassId?: string; office?: boolean }) {
   const [classes, setClasses] = useState<ClassOption[]>([]);
   const [classId, setClassId] = useState(initialClassId ?? '');
   const [roster, setRoster] = useState<RosterRow[]>([]);
+  const [rosterFailed, setRosterFailed] = useState(false);
   const [draft, setDraft] = useState<Record<string, AttendanceStatus>>({});
   const [correctTarget, setCorrectTarget] = useState<{ row: RosterRow; status: AttendanceStatus } | null>(null);
   const [loading, setLoading] = useState(false);
@@ -57,8 +60,11 @@ export function AttendanceView({ canManage, initialClassId }: { canManage: boole
     setLoading(false);
     if (!res.ok) {
       toast.show(body.error ?? 'could not load roster', 'danger');
+      setRoster([]);
+      setRosterFailed(true);
       return;
     }
+    setRosterFailed(false);
     setRoster(body.roster);
     const nextDraft: Record<string, AttendanceStatus> = {};
     for (const row of body.roster as RosterRow[]) {
@@ -197,7 +203,7 @@ export function AttendanceView({ canManage, initialClassId }: { canManage: boole
         </>
       )}
 
-      {!loading && classId && roster.length === 0 && <p className="text-sm text-slate/70">No active students in this class.</p>}
+      {!loading && classId && roster.length === 0 && (rosterFailed ? <TeachEmpty id="not-loaded" /> : office ? <TeachEmpty id="attendance-roster" href="/app/students" /> : <TeachEmpty id="attendance-roster-view" />)}
 
       <Modal open={correctTarget !== null} onClose={() => setCorrectTarget(null)} title="Correction note required">
         <form
