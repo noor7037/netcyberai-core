@@ -81,6 +81,11 @@ export async function rateOnSendDate(client: PoolClient, category: BillingCatego
   return rows[0] ? { rateId: rows[0].rate_id, ratePaise: Number(rows[0].rate_paise), gstPercent: Number(rows[0].gst_percent) } : null;
 }
 
+// Pure: the reason a real send must wait for a verified rate, or null.
+export function unpricedRealSend(providerKind: 'school_specific' | 'platform_default', rate: MessageRate | null): string | null {
+  return providerKind === 'school_specific' && !rate ? 'rate not verified: no rate is on record for this message category, so its cost cannot be counted against the budget' : null;
+}
+
 // Pure: what is recorded for one attempt.
 export function messageCost(category: BillingCategory, billable: boolean, rate: MessageRate | null): MessageCost {
   if (!billable) return { category, billable: false, estCostPaise: 0, gstPaise: 0, rateId: null, costBasis: 'not_billable' };
@@ -212,7 +217,7 @@ export async function sendWhatsAppMessage(
   const { rows: spendRows } = await client.query(
     `select coalesce(sum(est_cost_paise + gst_paise), 0) as spend
      from communication_log
-     where school_id = $1 and billable = true
+     where school_id = $1 and billable = true and cost_basis = 'rate_table'
        and date_trunc('month', created_at at time zone $2) = date_trunc('month', now() at time zone $2)`,
     [params.schoolId, school.timezone]
   );
@@ -225,7 +230,7 @@ export async function sendWhatsAppMessage(
   const rate = await rateOnSendDate(client, category, school.timezone);
   const next = messageCost(category, true, rate);
   if (monthSpend + next.estCostPaise + next.gstPaise > budget || monthSpend >= budget) {
-    const reason = `this month's WhatsApp spend (${monthSpend} paise) plus this message would exceed the configured budget (${budget} paise)`;
+    const reason = `this month's WhatsApp spend (${monthSpend} paise) has reached, or with this message would pass, the configured budget (${budget} paise)`;
     return { logId: await logAttempt(client, params, 'blocked_budget', reason), status: 'blocked_budget', reason, idempotent: false, providerUsed: null };
   }
 
@@ -242,6 +247,15 @@ export async function sendWhatsAppMessage(
   let provider: WhatsAppProviderSPI;
   let providerUsed: 'school_specific' | 'platform_default';
   let fallbackReason: string | null = null;
+
+  // A message that really costs money is never sent at an unknown price: a
+  // budget cannot limit what it cannot count. Until a verified rate is on
+  // record for the category, a school's own (real) WhatsApp account does not
+  // send; the platform's stand-in, which costs nothing, still does.
+  const unpriced = unpricedRealSend(resolution.kind, rate);
+  if (unpriced) {
+    return { logId: await logAttempt(client, params, 'blocked_budget', unpriced, { category, rate }), status: 'blocked_budget', reason: unpriced, idempotent: false, providerUsed: null };
+  }
 
   if (resolution.kind === 'school_specific') {
     providerUsed = 'school_specific';

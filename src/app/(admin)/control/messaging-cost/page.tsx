@@ -99,8 +99,8 @@ function View({ data, lang }: { data: MessagingCost; lang: Lang }) {
                 </tr>
               </thead>
               <tbody>
-                {data.rates.map((r) => (
-                  <tr key={`${r.category}-${r.effectiveFrom}`} className="border-b border-slate/10">
+                {data.rates.map((r, i) => (
+                  <tr key={`${r.category}-${r.effectiveFrom}-${i}`} className="border-b border-slate/10">
                     <th scope="row" className={`${TD} text-left font-semibold`}>{category(r.category)}</th>
                     <td className={TD}>{rupees(r.ratePaise)}</td>
                     <td className={TD}>{r.gstPercent}</td>

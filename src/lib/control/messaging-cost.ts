@@ -28,8 +28,11 @@ export async function loadMessagingCost(db: Sql): Promise<MessagingCost> {
     `select s.school_id, s.name, coalesce(l.billing_category, 'not set') as category,
             count(*) as attempts,
             count(*) filter (where l.billable) as billable,
-            coalesce(sum(l.est_cost_paise) filter (where l.billable), 0) as cost,
-            coalesce(sum(l.gst_paise) filter (where l.billable), 0) as gst,
+            -- Only what was costed from the rate table is money. Rows from before
+            -- C140 carry a made-up placeholder amount and no cost_basis: they
+            -- add nothing here and are counted as "rate not verified".
+            coalesce(sum(l.est_cost_paise) filter (where l.billable and l.cost_basis = 'rate_table'), 0) as cost,
+            coalesce(sum(l.gst_paise) filter (where l.billable and l.cost_basis = 'rate_table'), 0) as gst,
             count(*) filter (where l.billable and l.cost_basis is distinct from 'rate_table') as unverified
      from communication_log l
      join schools s on s.school_id = l.school_id

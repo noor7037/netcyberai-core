@@ -118,7 +118,7 @@ describe('the rule for reads (C140)', () => {
     const expected: Record<string, string> = {
       students: 'students', [`students/${id}`]: 'students', 'students/search': 'students', [`students/${id}/documents`]: 'students',
       [`students/${id}/guardians`]: 'parents', [`students/${id}/consent`]: 'parents', [`students/${id}/dsr`]: 'parents', [`guardians/${id}/merges`]: 'parents',
-      attendance: 'attendance', syllabus: 'academics', 'compliance/retention': 'compliance', 'whatsapp-config': 'communication', 'pulse/today': 'pulse',
+      attendance: 'attendance', syllabus: 'academics', 'compliance/retention': 'compliance', 'whatsapp-config': 'communication', 'pulse/today': 'checks-itself',
       tickets: 'raise-ticket', [`tickets/${id}`]: 'raise-ticket',
       classes: 'any-module', subjects: 'any-module', users: 'any-module', 'staff/invitations': 'any-module', views: 'any-module', entitlements: 'any-module',
       search: 'checks-itself', 'lists/students': 'checks-itself', 'custom-fields': 'checks-itself', 'settings/attendance': 'checks-itself',
@@ -130,7 +130,36 @@ describe('the rule for reads (C140)', () => {
     for (const file of routeFiles(API)) {
       const rel = path.relative(API, path.dirname(file));
       const get = handlers(readFileSync(file, 'utf8')).find((h) => h.method === 'GET');
-      if (get && readModuleFor(urlOf(rel)) === 'checks-itself') expect(get.body, rel).toMatch(/checkModuleAccess\(|searchableKinds\(/);
+      if (get && readModuleFor(urlOf(rel)) === 'checks-itself') expect(get.body, rel).toMatch(/checkModuleAccess\(|searchableKinds\(|daily_pulse/);
+    }
+  });
+
+  it('every read goes through the shared session guard, where the read guard runs', () => {
+    // One documented exception: Daily Pulse has its own session check and its own switch.
+    const own = new Set(['pulse/today']);
+    let checked = 0;
+    for (const file of routeFiles(API)) {
+      const rel = path.relative(API, path.dirname(file));
+      const get = handlers(readFileSync(file, 'utf8')).find((h) => h.method === 'GET');
+      if (!get || own.has(rel)) continue;
+      checked += 1;
+      expect(/\b(requireAppSession|appRoute|schoolTickets)\(\s*req\b/.test(get.body), rel).toBe(true);
+    }
+    expect(checked).toBeGreaterThanOrEqual(30);
+    expect(readFileSync(path.join(__dirname, '../../src/lib/auth/require-app-session.ts'), 'utf8')).toMatch(/guardRead\(/);
+  });
+
+  it('every module a read belongs to is in the standard plan, so no school loses a screen it has', () => {
+    const inPlan = new Set(MODULE_REGISTRY.filter((m) => m.status === 'live' || m.status === 'partial').map((m) => m.id as string));
+    for (const [pattern, module] of READ_ROUTES) {
+      if (module !== 'checks-itself' && module !== 'any-module' && module !== 'raise-ticket') expect(inPlan.has(module), `${pattern} → ${module}`).toBe(true);
+    }
+    // And the pages: each gate names a module of the plan.
+    const pages = ['students/page.tsx', 'students/[studentId]/page.tsx', 'students/[studentId]/id-card/page.tsx', 'admissions/page.tsx', 'attendance/page.tsx', 'syllabus/page.tsx', 'compliance/page.tsx', 'dashboard/page.tsx'];
+    for (const p of pages) {
+      const gate = /moduleOffReason\('([a-z-]+)'\)/.exec(readFileSync(path.join(__dirname, '../../src/app/(school)/app', p), 'utf8'));
+      expect(gate, p).not.toBeNull();
+      expect(inPlan.has(gate![1]), `${p} → ${gate![1]}`).toBe(true);
     }
   });
 });

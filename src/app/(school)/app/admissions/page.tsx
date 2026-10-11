@@ -13,8 +13,10 @@ import { StudentsView } from '@/components/students/StudentsView';
 // stages is real, scoped work for a future prompt, not something to
 // silently invent here.
 export default async function AdmissionsPage() {
-  const off = await moduleOffReason('admissions');
-  if (off) return <ModuleOffPage moduleId="admissions" reason={off} />;
+  // The enrolment queue is the Students module's own data (new students waiting for
+  // consent); Admissions as a module of its own is not built or in any plan yet.
+  const off = await moduleOffReason('students');
+  if (off) return <ModuleOffPage moduleId="students" reason={off} />;
   return (
     <StudentsView
       title="Admissions"

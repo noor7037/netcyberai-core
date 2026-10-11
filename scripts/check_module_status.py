@@ -34,6 +34,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 STATUS_FILE = "src/content/module-status.ts"
 REGISTRY_FILE = "src/lib/contracts/modules.ts"
 ECOSYSTEM_FILE = "src/content/ecosystem.ts"
+# The real file has 33; fewer means the file was reformatted and this check can no longer read it.
+MIN_MODULES = 3
 
 STATUS_RE = re.compile(r"^\s*'?([a-z][a-z-]*)'?:\s*\{\s*status:\s*'([a-z-]+)'", re.M)
 EVIDENCE_BLOCK_RE = re.compile(r"LIVE_EVIDENCE[^=]*=\s*\{(.*?)\n\};", re.S)
@@ -54,8 +56,8 @@ def find_violations(root: Path) -> list[str]:
     block = EVIDENCE_BLOCK_RE.search(text)
     status_text = text[: block.start()] if block else text
     statuses = dict(STATUS_RE.findall(status_text))
-    if not statuses:
-        out.append(f"{STATUS_FILE}: no module statuses found")
+    if len(statuses) < MIN_MODULES:
+        out.append(f"{STATUS_FILE}: only {len(statuses)} module statuses could be read (each is written on one line: `id: {{ status: '…', note: '…' }},`)")
     evidence = {m.group(1): m.groups()[1:] for m in EVIDENCE_RE.finditer(block.group(1))} if block else {}
     migrations = "\n".join(p.read_text(encoding="utf-8") for p in sorted((root / "supabase" / "migrations").glob("*.sql"))) if (root / "supabase" / "migrations").is_dir() else ""
 

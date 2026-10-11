@@ -95,7 +95,8 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['syllabus', 'academics'],
   ['compliance/**', 'compliance'],
   ['whatsapp-config', 'communication'],
-  ['pulse/**', 'pulse'],
+  // Has its own switch (the school's daily_pulse flag) and its own session check.
+  ['pulse/**', 'checks-itself'],
   ['tickets/**', 'raise-ticket'],
   ['tickets', 'raise-ticket'],
   // Drawn on by several modules' screens (the class chooser in Attendance,

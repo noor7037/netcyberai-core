@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
-import { messageCost, rateOnSendDate, sendWhatsAppMessage, templateCategory, type MessageRate } from '@/lib/whatsapp/gate';
+import { messageCost, rateOnSendDate, sendWhatsAppMessage, templateCategory, unpricedRealSend, type MessageRate } from '@/lib/whatsapp/gate';
 import { loadMessagingCost } from '@/lib/control/messaging-cost';
 
 // The send-gate's money (T7, C140), on the whole real schema (every
@@ -63,6 +63,11 @@ describe('the rule, with nothing about money written in the code', () => {
   });
   it('with no verified rate the cost is left at zero and marked, not guessed', () => {
     expect(messageCost('utility', true, null)).toEqual({ category: 'utility', billable: true, estCostPaise: 0, gstPaise: 0, rateId: null, costBasis: 'rate_not_verified' });
+  });
+  it('a real send never goes out at an unknown price; the platform’s stand-in, which costs nothing, still does', () => {
+    expect(unpricedRealSend('school_specific', null)).toContain('rate not verified');
+    expect(unpricedRealSend('school_specific', rate)).toBeNull();
+    expect(unpricedRealSend('platform_default', null)).toBeNull();
   });
   it('the gate holds no rate of its own', async () => {
     const { readFileSync } = await import('node:fs');
@@ -129,7 +134,7 @@ describe('with rates on record: utility and marketing are costed apart, by the r
   });
 
   it('the budget counts the real cost with GST: a message that would pass the budget is held back', async () => {
-    const spent = Number((await db.pg.query(`select coalesce(sum(est_cost_paise + gst_paise), 0)::int as s from communication_log where school_id = $1 and billable`, [SCHOOL])).rows[0].s);
+    const spent = Number((await db.pg.query(`select coalesce(sum(est_cost_paise + gst_paise), 0)::int as s from communication_log where school_id = $1 and billable and cost_basis = 'rate_table'`, [SCHOOL])).rows[0].s);
     // Room for one utility message (1,298 paise with GST) but not for a marketing one (8,260).
     await db.pg.query(`update schools set monthly_budget_paise = $2 where school_id = $1`, [SCHOOL, spent + 2000]);
     expect((await send('open_day_invite')).status).toBe('blocked_budget');
@@ -150,6 +155,8 @@ describe('Control’s cost view: live schools, last 30 days, read only', () => {
   it('totals by school and category from the log, counts what has no verified rate, and leaves test schools out', async () => {
     await send('absence_alert', TEST_SCHOOL, 'c0000000-0000-4000-8000-000000500002');
     await db.pg.query(`insert into communication_log (school_id, channel, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, created_at) values ($1, 'whatsapp', 'utility', true, 555, 100, 'rate_table', 'sent', now() - interval '45 days')`, [SCHOOL]);
+    // A row from before C140: a made-up placeholder amount and no cost_basis. It is not money.
+    await db.pg.query(`insert into communication_log (school_id, channel, billing_category, billable, est_cost_paise, gst_paise, status) values ($1, 'whatsapp', 'utility', true, 50, 0, 'sent')`, [SCHOOL]);
     const view = await db.pg.transaction(async (tx: any) => {
       await tx.query('set local role nca_super');
       return loadMessagingCost(tx);
@@ -157,8 +164,8 @@ describe('Control’s cost view: live schools, last 30 days, read only', () => {
     expect(view.schools.map((s: any) => s.schoolName)).toEqual(['Live School']);
     const live = view.schools[0];
     const logged = (await db.pg.query(
-      `select count(*) filter (where billable)::int as billable, coalesce(sum(est_cost_paise) filter (where billable), 0)::int as cost, coalesce(sum(gst_paise) filter (where billable), 0)::int as gst,
-              count(*) filter (where cost_basis = 'rate_not_verified')::int as unverified, count(*)::int as attempts
+      `select count(*) filter (where billable)::int as billable, coalesce(sum(est_cost_paise) filter (where cost_basis = 'rate_table'), 0)::int as cost, coalesce(sum(gst_paise) filter (where cost_basis = 'rate_table'), 0)::int as gst,
+              count(*) filter (where billable and cost_basis is distinct from 'rate_table')::int as unverified, count(*)::int as attempts
        from communication_log where school_id = $1 and created_at > now() - interval '30 days'`, [SCHOOL])).rows[0];
     expect(live).toMatchObject({ attempts: logged.attempts, billable: logged.billable, costPaise: logged.cost, gstPaise: logged.gst, rateNotVerified: logged.unverified });
     expect(live.rateNotVerified).toBeGreaterThan(0);
@@ -166,6 +173,8 @@ describe('Control’s cost view: live schools, last 30 days, read only', () => {
     expect(byCategory.utility.costPaise).toBeGreaterThan(0);
     expect(byCategory.marketing.costPaise).toBe(7000);
     expect(view.totals.costPaise).toBe(live.costPaise);
+    // The old placeholder row added nothing to the cost: 1,100 per utility message and nothing else.
+    expect(byCategory.utility.costPaise % 1100).toBe(0);
     // The 45-day-old message and the test school's are not in it.
     expect(view.totals.costPaise).not.toBe(live.costPaise + 555);
     // The rates it was costed with, each with where and when it was verified.
