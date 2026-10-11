@@ -491,3 +491,10 @@ html {
   background-image: linear-gradient(90deg, #02cff9, #1d4ed8, #22c55e);
   opacity: 0.35;
 }
+
+/* The part of a screen a first-visit tour step is about (C138). */
+[data-tour-here] {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 4px;
+  border-radius: 12px;
+}

@@ -16,6 +16,7 @@ import { AuthError } from './errors';
 import { signDeviceToken } from './jwt';
 import { fetchLiveUser } from './resolve';
 import type { LoginOutcome } from './types';
+import { TOURS_COOKIE } from '@/lib/contracts/tours';
 import { LANG_COOKIE } from '@/lib/i18n';
 
 // One place that turns a sign-in outcome into the HTTP answer and cookies,
@@ -57,6 +58,7 @@ export function outcomeResponse(outcome: LoginOutcome): NextResponse {
   // made on another device, or by whoever used this browser before, never
   // carries over through an old cookie.
   res.cookies.delete(LANG_COOKIE);
+  res.cookies.delete(TOURS_COOKIE); // the same for the tours they have seen (C138)
   return res;
 }
 

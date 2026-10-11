@@ -12,7 +12,7 @@ export default async function StaffPage() {
     return <ModuleComingPage moduleId="staff" />;
   }
   return (
-    <ModulePage moduleId="staff" title="Staff accounts" purpose="Invite staff, and email a reset code to anyone who cannot sign in.">
+    <ModulePage moduleId="staff" help="send-staff-reset-code" tour="staff" title="Staff accounts" purpose="Invite staff, and email a reset code to anyone who cannot sign in.">
       <StaffInvitations />
       <StaffAccounts endpoint="/api/app/users" />
     </ModulePage>

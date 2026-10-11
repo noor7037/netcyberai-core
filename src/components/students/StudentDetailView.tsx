@@ -157,6 +157,7 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
   return (
     <ModulePage
       moduleId="students"
+      tour="student-profile"
       title={student.name}
       purpose="This student’s details, guardians, family, consent and documents."
       primary={

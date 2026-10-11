@@ -9,6 +9,8 @@ export default function TicketsPage() {
   return (
     <ModulePage
       moduleId="raise-ticket"
+      help="raise-a-ticket"
+      tour="tickets"
       title="Support tickets"
       purpose="Ask NetCyberAI for help and follow the answers here."
       primary={

@@ -25,7 +25,7 @@ export default async function CompliancePage() {
     : [];
 
   return (
-    <ModulePage moduleId="compliance" title="Compliance" purpose="Consent, data requests, and every time NetCyberAI staff looked at your school’s data.">
+    <ModulePage moduleId="compliance" tour="compliance" title="Compliance" purpose="Consent, data requests, and every time NetCyberAI staff looked at your school’s data.">
       <ComplianceView canManage={session?.role === 'school_admin' || session?.role === 'principal'} />
       <section>
         <h2 className="mb-2 text-lg font-bold text-slate">Support access to this school</h2>

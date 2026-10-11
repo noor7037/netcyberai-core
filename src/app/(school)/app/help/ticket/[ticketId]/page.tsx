@@ -3,7 +3,7 @@ import { SchoolTicketDetail } from '@/components/tickets/TicketScreens';
 
 export default function TicketPage({ params }: { params: { ticketId: string } }) {
   return (
-    <ModulePage moduleId="raise-ticket" title="Support ticket" purpose="What you asked, the replies, and what happens next.">
+    <ModulePage moduleId="raise-ticket" help="raise-a-ticket" title="Support ticket" purpose="What you asked, the replies, and what happens next.">
       <SchoolTicketDetail ticketId={params.ticketId} />
     </ModulePage>
   );

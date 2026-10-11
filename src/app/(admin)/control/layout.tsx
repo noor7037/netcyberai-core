@@ -4,7 +4,7 @@ import { canAccessControl } from '@/lib/auth/guards';
 import { AppShell } from '@/components/app-shell/AppShell';
 import { controlShellGroups } from '@/components/app-shell/shell-nav';
 import { t } from '@/lib/i18n';
-import { getLang } from '@/lib/i18n/server';
+import { getLang, getToursSeen } from '@/lib/i18n/server';
 import { controlNav } from '@/lib/nav/nav-items';
 
 // Redundant with middleware.ts's edge gate on purpose -- defense in
@@ -28,7 +28,7 @@ export default async function ControlLayout({ children }: { children: React.Reac
   }
   const { lang, known } = getLang(session!.sub);
   return (
-    <AppShell groups={controlShellGroups(controlNav, undefined, lang)} brand={t(lang, 'shell.brand.control')} roleLabel={t(lang, 'role.super_admin')} navLabel={t(lang, 'shell.nav.control')} accountHref="/control/account" lang={lang} langKnown={known} scope="control">
+    <AppShell groups={controlShellGroups(controlNav, undefined, lang)} brand={t(lang, 'shell.brand.control')} roleLabel={t(lang, 'role.super_admin')} navLabel={t(lang, 'shell.nav.control')} accountHref="/control/account" lang={lang} langKnown={known} toursSeen={getToursSeen(session!.sub)} scope="control">
       {children}
     </AppShell>
   );

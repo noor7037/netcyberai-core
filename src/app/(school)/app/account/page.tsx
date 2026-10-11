@@ -8,7 +8,7 @@ import { ModulePage } from '@/components/app-ui/ModulePage';
 // (C95); the panel shows only for them.
 export default function AccountPage() {
   return (
-    <ModulePage title="Account and security" purpose="Change your password, your sign-in number and the devices that stay signed in." icon="lock" tone="sapphire" eyebrow="My account">
+    <ModulePage help="set-up-authenticator" title="Account and security" purpose="Change your password, your sign-in number and the devices that stay signed in." icon="lock" tone="sapphire" eyebrow="My account">
       <ChangePasswordForm />
       <AuthenticatorPanel />
       <SecurityPanel />
