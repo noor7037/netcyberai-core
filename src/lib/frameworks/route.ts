@@ -40,11 +40,12 @@ export async function appRoute(
   req: NextRequest,
   handler: (ctx: { claims: AppClaims; db: PoolClient }) => Promise<NextResponse>
 ): Promise<NextResponse> {
-  const guard = await requireAppSession(req);
+  // A read's module check runs inside this route's own transaction (C143).
+  const guard = await requireAppSession(req, { readGuard: 'in-transaction' });
   if ('error' in guard) return guard.error;
   const claims = guard.claims as AppClaims;
   try {
-    return await withTenantContext(claims, (db) => handler({ claims, db }));
+    return await withTenantContext(claims, async (db) => (await guard.readCheck?.(db)) ?? handler({ claims, db }));
   } catch (err) {
     const resp = sessionErrorResponse(err);
     if (resp) return resp;

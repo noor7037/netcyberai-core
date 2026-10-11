@@ -147,6 +147,8 @@ describe('the rule for reads (C140)', () => {
     }
     expect(checked).toBeGreaterThanOrEqual(30);
     expect(readFileSync(path.join(__dirname, '../../src/lib/auth/require-app-session.ts'), 'utf8')).toMatch(/guardRead\(/);
+    // appRoute runs the same check inside its own transaction (C143), and never skips it.
+    expect(readFileSync(path.join(__dirname, '../../src/lib/frameworks/route.ts'), 'utf8')).toMatch(/readGuard: 'in-transaction'[\s\S]{0,300}await guard\.readCheck\?\.\(db\)\) \?\? handler/);
   });
 
   it('every module a read belongs to is in the standard plan, so no school loses a screen it has', () => {
@@ -195,7 +197,7 @@ describe('every write route is covered', () => {
     }
     const guard = readFileSync(path.join(__dirname, '../../src/lib/auth/require-app-session.ts'), 'utf8');
     expect(guard).toMatch(/WRITE_METHODS\.includes\(req\.method\)[\s\S]{0,120}guardWrite\(/);
-    expect(readFileSync(path.join(__dirname, '../../src/lib/frameworks/route.ts'), 'utf8')).toMatch(/export async function appRoute[\s\S]{0,300}requireAppSession\(req\)/);
+    expect(readFileSync(path.join(__dirname, '../../src/lib/frameworks/route.ts'), 'utf8')).toMatch(/export async function appRoute[\s\S]{0,400}requireAppSession\(req\b/);
     expect(readFileSync(path.join(__dirname, '../../src/lib/support/ticket-routes.ts'), 'utf8')).toMatch(/export function schoolTickets[\s\S]{0,200}appRoute\(req/);
   });
 
@@ -417,6 +419,34 @@ describe('the real routes, on real Postgres', () => {
       expect(await said(await reset())).toEqual({ status: 403, code: 'account_paused' });
       expect(await said(await scan())).toEqual({ status: 403, code: 'account_paused' });
     } finally {
+      await setAccess('full');
+    }
+  });
+
+  it('a route built on appRoute is guarded inside its own transaction: one transaction per read, same refusal (C143)', async () => {
+    const { GET: listTickets } = await import('@/app/api/app/tickets/route');
+    const { GET: searchStudents } = await import('@/app/api/app/students/search/route');
+    let transactions = 0;
+    const tenant = state.db.tenant.bind(state.db);
+    state.db.tenant = (claims: any, fn: any) => {
+      transactions += 1;
+      return tenant(claims, fn);
+    };
+    try {
+      await setAccess('full');
+      transactions = 0;
+      expect((await searchStudents(req('GET', '/api/app/students/search?q=exi'))).status).toBe(200);
+      expect(transactions).toBe(1);
+      await setModule('students', false);
+      transactions = 0;
+      expect(await said(await searchStudents(req('GET', '/api/app/students/search?q=exi')))).toEqual({ status: 403, code: 'module_off' });
+      expect(transactions).toBe(1);
+      await setModule('students', true);
+      await setAccess('suspended');
+      expect((await listTickets(req('GET', '/api/app/tickets'))).status).toBe(200); // help stays open
+    } finally {
+      state.db.tenant = tenant;
+      await setModule('students', true);
       await setAccess('full');
     }
   });

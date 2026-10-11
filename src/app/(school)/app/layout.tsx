@@ -82,6 +82,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         action={isTeacher ? <ScanButton onDark /> : undefined}
         lang={lang}
         langKnown={known}
+        device={{ schoolId, userId: session!.sub }}
         toursSeen={getToursSeen(session!.sub)}
         scope="school"
         quickAdd={quickAdd}

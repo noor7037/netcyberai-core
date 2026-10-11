@@ -16,6 +16,8 @@ import type { TourId } from '@/lib/contracts/tours';
 import { LangProvider, useT } from './LangContext';
 import { ToursProvider } from './ToursContext';
 import { LanguageSwitch } from './LanguageSwitch';
+import { OfflineProvider, useOffline } from './OfflineContext';
+import { SyncLine } from './SyncLine';
 import { activeHref, type ShellGroup, type ShellItem } from './shell-nav';
 
 // The app shell (17 §2, §4; C121): on wide screens a sidebar of
@@ -107,7 +109,8 @@ function Groups({ groups, active, onNavigate }: { groups: readonly ShellGroup[];
 
 function Footer({ accountHref }: { accountHref: string }) {
   const router = useRouter();
-  const { t } = useT();
+  const { t, tCount } = useT();
+  const { sendNow, operations, clear } = useOffline();
   const link = 'flex min-h-[44px] w-full items-center rounded-md bg-midnight px-3 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white';
   return (
     <div className="flex flex-col gap-0.5 border-t border-white/10 p-3">
@@ -118,7 +121,12 @@ function Footer({ accountHref }: { accountHref: string }) {
         type="button"
         className={link}
         onClick={async () => {
+          // Changes still on this phone are sent first; if any cannot be, the person is asked (docs/20 §4).
+          await sendNow().catch(() => undefined);
+          const left = (await operations().catch(() => [])).length;
+          if (left > 0 && !window.confirm(tCount('sync.signOut.waiting', left))) return;
           await fetch('/api/auth/logout', { method: 'POST' }).catch(() => undefined);
+          await clear();
           router.push('/login');
           router.refresh();
         }}
@@ -140,6 +148,7 @@ export function AppShell({
   lang = 'en',
   langKnown = true,
   toursSeen = [],
+  device = null,
   scope = 'school',
   quickAdd = [],
   children,
@@ -157,6 +166,8 @@ export function AppShell({
   langKnown?: boolean;
   // The first-visit tours this person has seen; null when this browser does not know yet.
   toursSeen?: readonly TourId[] | null;
+  // The school app only: whose device store and outbox this is (working offline, C143).
+  device?: { schoolId: string; userId: string } | null;
   // Which search this shell has: the school's, or Control's.
   scope?: 'school' | 'control';
   quickAdd?: readonly QuickAddItem[];
@@ -194,6 +205,7 @@ export function AppShell({
   return (
     <LangProvider lang={lang}>
       <ToursProvider initial={toursSeen}>
+      <OfflineProvider schoolId={device?.schoolId ?? null} userId={device?.userId ?? null}>
       <div className="min-h-screen bg-off-white">
       <aside lang={lang} className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col bg-midnight md:flex">
         <span aria-hidden="true" className="nca-spectrum-bar block h-1" />
@@ -248,6 +260,7 @@ export function AppShell({
         <div lang={lang} data-shell-lang={lang} role="region" aria-label={t('shell.tools')} className="z-20 flex flex-wrap items-center gap-2 border-b border-slate/10 bg-white px-4 py-2 md:sticky md:top-0 md:px-6 print:hidden">
           <GlobalSearch scope={scope} />
           <QuickAdd items={quickAdd} />
+          {device && <SyncLine />}
           <div className="ml-auto">
             <LanguageSwitch known={langKnown} />
           </div>
@@ -277,6 +290,7 @@ export function AppShell({
         </nav>
       )}
       </div>
+      </OfflineProvider>
       </ToursProvider>
     </LangProvider>
   );

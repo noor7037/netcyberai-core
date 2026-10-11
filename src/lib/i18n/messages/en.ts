@@ -376,4 +376,18 @@ export const en = {
   'cost.verifiedOn': 'Verified on',
   'cost.inForce': 'In force today',
   'cost.notInForce': 'Not in force today',
+
+  // Working offline: the sync line
+  'sync.saved': 'All saved',
+  'sync.offline': 'Offline: showing what was last loaded',
+  'sync.sending.one': 'Sending {count} change…',
+  'sync.sending.other': 'Sending {count} changes…',
+  'sync.waiting.one': '{count} change waiting to send',
+  'sync.waiting.other': '{count} changes waiting to send',
+  'sync.waiting.offline': '(no internet)',
+  'sync.failed.one': '{count} change was not saved',
+  'sync.failed.other': '{count} changes were not saved',
+  'sync.sendNow': 'Send now',
+  'sync.signOut.waiting.one': '{count} change made on this phone has not been sent yet. Sign out anyway? It will be lost.',
+  'sync.signOut.waiting.other': '{count} changes made on this phone have not been sent yet. Sign out anyway? They will be lost.',
 } as const;

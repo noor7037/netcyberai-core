@@ -372,4 +372,18 @@ export const hi: Record<keyof typeof en, string> = {
   'cost.verifiedOn': 'कब जाँची गई',
   'cost.inForce': 'आज लागू',
   'cost.notInForce': 'आज लागू नहीं',
+
+  // Working offline: the sync line
+  'sync.saved': 'सब सेव है',
+  'sync.offline': 'ऑफ़लाइन: पिछली बार जो खुला था वही दिख रहा है',
+  'sync.sending.one': '{count} बदलाव भेजा जा रहा है…',
+  'sync.sending.other': '{count} बदलाव भेजे जा रहे हैं…',
+  'sync.waiting.one': '{count} बदलाव भेजा जाना बाकी है',
+  'sync.waiting.other': '{count} बदलाव भेजे जाने बाकी हैं',
+  'sync.waiting.offline': '(इंटरनेट नहीं है)',
+  'sync.failed.one': '{count} बदलाव सेव नहीं हुआ',
+  'sync.failed.other': '{count} बदलाव सेव नहीं हुए',
+  'sync.sendNow': 'अभी भेजें',
+  'sync.signOut.waiting.one': 'इस फ़ोन पर किया गया {count} बदलाव अभी भेजा नहीं गया है। फिर भी साइन आउट करें? वह खो जाएगा।',
+  'sync.signOut.waiting.other': 'इस फ़ोन पर किए गए {count} बदलाव अभी भेजे नहीं गए हैं। फिर भी साइन आउट करें? वे खो जाएँगे।',
 };

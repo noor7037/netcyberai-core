@@ -162,6 +162,9 @@ def hard_coded(text: str) -> list[str]:
 
     for m in TAG_TEXT_RE.finditer(text):
         words = " ".join(m.group(1).split())
+        # "=> Promise<void>": the > of an arrow, then a type, is code.
+        if m.start() > 0 and text[m.start() - 1] == "=":
+            continue
         if words and not CODE_SIGNS.search(words):
             spans[m.start(1)] = words
     for m in BRACE_TEXT_RE.finditer(text):
@@ -405,6 +408,7 @@ def self_test() -> int:
             "      {n > total ? <b>{t('a.title')}</b> : null}\n"
             "      {failed ? <Empty id=\"x\" /> : office ? <Empty id=\"y\" /> : <Empty id=\"z\" />}\n"
             "      <h1>{t('a.count', { count: n })}</h1>\n"
+            "      <Later load={(id: string): Promise<void> => go(id)} again={() => Promise<Row[]>} />\n"
             "      <time>{format(d, 'D MMM YYYY')}</time> // ui-strings: not words (a date pattern)\n"
             "      <p className={on ? 'block' : 'hidden'} style={{ fontFamily: 'inter' }} />\n"
             "    </div>\n"

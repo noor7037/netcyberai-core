@@ -48,7 +48,8 @@ FETCH_TIMEOUT = 15
 # Non-page routes that legitimately exist in the build but must NOT be
 # in sitemap.xml (infrastructure routes, not content pages).
 NON_PAGE_ROUTE_SUFFIXES = ("/opengraph-image",)
-NON_PAGE_ROUTES = {"/robots.txt", "/sitemap.xml", "/llms.txt", "/icon.svg"}
+# The school app's install manifest and its icons (C143) are files, not pages.
+NON_PAGE_ROUTES = {"/robots.txt", "/sitemap.xml", "/llms.txt", "/icon.svg", "/manifest.webmanifest", "/icons/192", "/icons/512", "/icons/maskable"}
 
 # Authenticated-only internal shells (src/app/sitemap.ts's own INTERNAL_ROOTS
 # exclusion: the /control admin panel, the /app tenant app, and /login) are
