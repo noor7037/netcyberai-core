@@ -113,8 +113,9 @@ describe('the rule', () => {
 describe('becoming active', () => {
   it('a student stays pending until every required purpose is granted by a verified guardian, then becomes active', async () => {
     expect(await statusOf(S.asha)).toBe('pending_consent');
-    const roster = () => as(teacher, (c) => getAttendanceRoster(c, { schoolId: A, classId: CLASS_A, date: '2026-10-12' }));
-    expect((await roster()).map((r: { student_id: string }) => r.student_id)).not.toContain(S.asha);
+    const roster = () => as(teacher, (c) => getAttendanceRoster(c, { schoolId: A, classId: CLASS_A, date: '2026-10-12', today: '2026-10-12' }));
+    // Waiting for consent, the student is in the roster with the tag (C143).
+    expect((await roster()).find((r: { student_id: string }) => r.student_id === S.asha)).toMatchObject({ consent_pending: true });
 
     const first = await decide(principal, S.asha, 'core_records', true);
     expect(first.studentStatusChange).toBeNull();
@@ -123,8 +124,8 @@ describe('becoming active', () => {
     const second = await decide(principal, S.asha, 'operational_communication', true);
     expect(second.studentStatusChange).toEqual({ from: 'pending_consent', to: 'active' });
     expect(await statusOf(S.asha)).toBe('active');
-    // The teacher can now mark this student.
-    expect((await roster()).map((r: { student_id: string }) => r.student_id)).toContain(S.asha);
+    // Active now: the tag is gone.
+    expect((await roster()).find((r: { student_id: string }) => r.student_id === S.asha)).toMatchObject({ consent_pending: false });
 
     const audits = await statusAudits(S.asha);
     expect(audits).toHaveLength(1);

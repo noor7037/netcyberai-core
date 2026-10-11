@@ -243,7 +243,8 @@ create table attendance (
   student_id    uuid not null,
   class_id      uuid not null,
   date          date not null,
-  status        text not null check (status in ('present','absent','late')),
+  status        text not null check (status in ('present','absent','late','leave')),
+  leave_code    text,
   marked_by     uuid,
   created_at    timestamptz not null default now()
 );
@@ -261,3 +262,36 @@ create policy teacher_scope_attendance on attendance as restrictive
     )
   );
 grant select, insert, update, delete on attendance to app_user, nca_super;
+
+-- P2 5b (C144): operations received from devices and measurement, as
+-- 20261011164830_p2_attendance_phone.sql defines them.
+create table client_operations (
+  school_id uuid not null references schools(school_id),
+  operation_id uuid not null,
+  user_id uuid not null,
+  kind text not null,
+  for_date date not null,
+  result jsonb,
+  received_at timestamptz not null default now(),
+  primary key (school_id, operation_id)
+);
+create table usage_events (
+  event_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  kind text not null,
+  class_id uuid,
+  day date not null,
+  value numeric not null check (value >= 0),
+  created_at timestamptz not null default now()
+);
+alter table client_operations enable row level security;
+alter table usage_events enable row level security;
+create policy client_operations_tenant_isolation on client_operations using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy client_operations_own on client_operations as restrictive for all
+  using (user_id = nullif(current_setting('app.current_user_id', true), '')::uuid)
+  with check (user_id = nullif(current_setting('app.current_user_id', true), '')::uuid);
+create policy usage_events_tenant_isolation on usage_events using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy usage_events_read_leadership on usage_events as restrictive for select
+  using (current_setting('app.current_role', true) = any (array['principal', 'school_admin', 'super_admin']));
+grant select, insert, update on client_operations to app_user, nca_super;
+grant select, insert on usage_events to app_user, nca_super;

@@ -2,6 +2,7 @@ import { isModuleEnabled, type SchoolEntitlements } from '@/lib/contracts/entitl
 import { arrangeMyDay, type MyDay, type TodayCard, type TodayContext, type TodayProvider, type TodaySql } from '@/lib/contracts/today-cards';
 import { feeIsOverdueSql } from '@/lib/fees/overdue';
 import { classLabel } from '@/lib/frameworks/class-label';
+import { INDIA_TODAY_SQL } from '@/lib/time/india';
 
 // The "today" cards of the modules that are live (docs/19 rule 2, C136).
 // Each provider runs inside the caller's own tenant context, so row-level
@@ -11,7 +12,7 @@ import { classLabel } from '@/lib/frameworks/class-label';
 //
 // "Today" is the day in India, which is the day a school means.
 
-const TODAY = `(now() at time zone 'Asia/Kolkata')::date`;
+const TODAY = INDIA_TODAY_SQL;
 const n = (v: unknown) => Number(v ?? 0);
 const OFFICE = ['principal', 'school_admin'] as const;
 
@@ -33,8 +34,9 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   {
     // A teacher's own classes: "Mark attendance: Class 5-A".
     // "Own" means what the database lets this teacher mark: the classes they
-    // teach a subject in (teacher_scope_attendance). A card never offers work
-    // the person would then be refused.
+    // teach a subject in or are the class teacher of (teacher_scope_attendance,
+    // C144). A card never offers work the person would then be refused.
+    // Students waiting for consent are marked too (C143).
     type: 'attendance-class',
     moduleId: 'attendance',
     roles: ['teacher'],
@@ -45,15 +47,16 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
       // marked; one moved out is no longer this class's.
       const { rows } = await db.query(
         `select c.class_id, c.name, c.section,
-                (select count(*) from students s where s.school_id = c.school_id and s.class_id = c.class_id and s.status = 'active') as active,
+                (select count(*) from students s where s.school_id = c.school_id and s.class_id = c.class_id and s.status in ('active', 'pending_consent')) as active,
                 (select count(*) from students s
                    join attendance a on a.school_id = s.school_id and a.student_id = s.student_id and a.date = ${TODAY}
-                  where s.school_id = c.school_id and s.class_id = c.class_id and s.status = 'active') as marked
+                  where s.school_id = c.school_id and s.class_id = c.class_id and s.status in ('active', 'pending_consent')) as marked
          from classes c
          where c.school_id = $1
-           and exists (select 1 from teacher_subjects ts
-                         join teachers t on t.school_id = ts.school_id and t.teacher_id = ts.teacher_id
-                        where ts.school_id = c.school_id and ts.class_id = c.class_id and t.user_id = $2)
+           and (c.class_teacher_id = $2
+                or exists (select 1 from teacher_subjects ts
+                             join teachers t on t.school_id = ts.school_id and t.teacher_id = ts.teacher_id
+                            where ts.school_id = c.school_id and ts.class_id = c.class_id and t.user_id = $2))
          order by c.name, c.section, c.class_id`,
         [ctx.schoolId, ctx.userId]
       );
@@ -88,10 +91,10 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
            select c.class_id,
                   exists (select 1 from students s
                             join attendance a on a.school_id = s.school_id and a.student_id = s.student_id and a.date = ${TODAY}
-                           where s.school_id = c.school_id and s.class_id = c.class_id and s.status = 'active') as marked
+                           where s.school_id = c.school_id and s.class_id = c.class_id and s.status in ('active', 'pending_consent')) as marked
            from classes c
            where c.school_id = $1
-             and exists (select 1 from students s where s.school_id = c.school_id and s.class_id = c.class_id and s.status = 'active')
+             and exists (select 1 from students s where s.school_id = c.school_id and s.class_id = c.class_id and s.status in ('active', 'pending_consent'))
          )
          select count(*) filter (where not marked) as unmarked, count(*) as classes from c`,
         [ctx.schoolId]
