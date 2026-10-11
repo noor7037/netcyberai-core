@@ -340,6 +340,23 @@ export async function ownPhone(userId: string): Promise<string | null> {
   });
 }
 
+// The language the signed-in user chose for the app (C134), or null when
+// they have never chosen. Only 'en' and 'hi' can be stored (a check in the
+// database), and the caller passes a value it has already checked.
+export async function ownLanguage(userId: string): Promise<'en' | 'hi' | null> {
+  return asAccountService(async (client) => {
+    const { rows } = await client.query(`select ui_language from users where user_id = $1`, [userId]);
+    const v = rows[0]?.ui_language;
+    return v === 'en' || v === 'hi' ? v : null;
+  });
+}
+
+export async function setOwnLanguage(userId: string, lang: 'en' | 'hi'): Promise<void> {
+  await asAccountService(async (client) => {
+    await client.query(`update users set ui_language = $2, updated_at = now() where user_id = $1`, [userId, lang]);
+  });
+}
+
 // Sets (or clears, with null) the signed-in user's own mobile number.
 // Returns false when another account already uses that number.
 export async function setOwnPhone(userId: string, phone: string | null): Promise<boolean> {

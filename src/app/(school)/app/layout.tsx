@@ -9,6 +9,8 @@ import { ToastProvider } from '@/components/ui/Toast';
 import type { SchoolEntitlements } from '@/lib/contracts/entitlements';
 import type { SchoolRole } from '@/lib/contracts/modules';
 import { bottomNavItems, buildNavigation } from '@/lib/contracts/navigation';
+import { t } from '@/lib/i18n';
+import { getLang } from '@/lib/i18n/server';
 import { loadEntitlements } from '@/lib/frameworks/entitlements';
 
 // Every page under this route group renders through THIS layout by
@@ -21,13 +23,8 @@ import { loadEntitlements } from '@/lib/frameworks/entitlements';
 // shown: every module API checks role and entitlement itself, and RLS
 // stays the backstop.
 
-const ROLE_LABEL: Record<SchoolRole, string> = {
-  principal: 'Principal',
-  school_admin: 'School admin',
-  teacher: 'Teacher',
-  accountant: 'Accountant',
-  academic_coordinator: 'Academic coordinator',
-};
+// Every word of the shell comes from the message files, in the language the
+// person chose (C134).
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession();
@@ -53,16 +50,27 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     menuIncomplete = true;
   }
 
+  const { lang, known } = getLang(session!.sub);
   const nav = buildNavigation(role, entitlements);
   const isTeacher = shellForRole(role) === 'teacher';
-  const bottom = isTeacher ? bottomNavItems(nav).map(toShellItem) : undefined;
+  const bottom = isTeacher ? bottomNavItems(nav).map((i) => toShellItem(i, lang)) : undefined;
 
   return (
     <ToastProvider>
-      <AppShell groups={toShellGroups(nav)} bottomItems={bottom} brand={schoolName} roleLabel={ROLE_LABEL[role]} navLabel="School navigation" accountHref="/app/account" action={isTeacher ? <ScanButton onDark /> : undefined}>
+      <AppShell
+        groups={toShellGroups(nav, lang)}
+        bottomItems={bottom}
+        brand={schoolName}
+        roleLabel={t(lang, `role.${role}`)}
+        navLabel={t(lang, 'shell.nav.school')}
+        accountHref="/app/account"
+        action={isTeacher ? <ScanButton onDark /> : undefined}
+        lang={lang}
+        langKnown={known}
+      >
         {menuIncomplete && (
-          <p role="status" className="bg-tangerine/10 px-4 py-2 text-sm text-slate">
-            The menu could not load fully. Refresh the page to try again.
+          <p role="status" lang={lang} className="bg-tangerine/10 px-4 py-2 text-sm text-slate">
+            {t(lang, 'shell.menu.incomplete')}
           </p>
         )}
         {children}

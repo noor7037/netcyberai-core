@@ -48,7 +48,7 @@ describe('app shell render', () => {
     return renderToStaticMarkup(
       h(AppShell, {
         groups: toShellGroups(nav),
-        bottomItems: role === 'teacher' ? bottomNavItems(nav).map(toShellItem) : undefined,
+        bottomItems: role === 'teacher' ? bottomNavItems(nav).map((i) => toShellItem(i)) : undefined,
         brand: 'Illustrative School',
         roleLabel: role,
         navLabel: 'School navigation',
@@ -70,7 +70,7 @@ describe('app shell render', () => {
 
   it('the teacher shell has the phone bottom bar with its priority modules, More, and the scan action', () => {
     const html = render('teacher');
-    expect(html).toContain('aria-label="Quick navigation"');
+    expect(html).toContain('aria-label="Quick menu"');
     for (const label of ['Dashboard', 'Attendance', 'Homework', 'Daily Pulse', 'More', 'Scan']) expect(html).toContain(label);
     expect(html).not.toContain('Payroll'); // not a teacher module
   });

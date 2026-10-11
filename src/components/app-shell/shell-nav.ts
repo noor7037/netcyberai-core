@@ -1,6 +1,7 @@
 import type { IconName } from '@/components/visual/Icons';
 import type { ColorToken, ModuleStatus, Phase } from '@/lib/contracts/modules';
 import type { NavBadge, Navigation, NavItem } from '@/lib/contracts/navigation';
+import { tOr, type Lang } from '@/lib/i18n';
 
 // What the shell draws (C121): groups of links. The school app's groups
 // come from buildNavigation (registry × role × entitlements, 17 §2); the
@@ -13,18 +14,20 @@ export type ShellGroup = { id: string; label: string; tone: readonly [ColorToken
 
 const NOT_BUILT: readonly ModuleStatus[] = ['planned', 'foundation', 'spec-v0'];
 
-export function toShellItem(i: NavItem): ShellItem {
+// Labels are looked up in the message files (`module.<id>`, `group.<id>`,
+// `control.nav.<page>`); the registry's English label is the fallback.
+export function toShellItem(i: NavItem, lang: Lang = 'en'): ShellItem {
   return {
     href: i.href,
-    label: i.label,
+    label: tOr(lang, `module.${i.moduleId}`, i.label),
     icon: i.icon,
     ...(i.badge ? { badge: i.badge } : {}),
     ...(NOT_BUILT.includes(i.status) ? { comingIn: i.phase } : {}),
   };
 }
 
-export function toShellGroups(nav: Navigation): ShellGroup[] {
-  return nav.groups.map((g) => ({ id: g.id, label: g.label, tone: g.tone, items: g.items.map(toShellItem) }));
+export function toShellGroups(nav: Navigation, lang: Lang = 'en'): ShellGroup[] {
+  return nav.groups.map((g) => ({ id: g.id, label: tOr(lang, `group.${g.id}`, g.label), tone: g.tone, items: g.items.map((i) => toShellItem(i, lang)) }));
 }
 
 // The link that matches the page: exact, or the closest parent route.
@@ -52,13 +55,14 @@ const CONTROL_LOOK: Record<string, [IconName, ColorToken]> = {
   '/control/system-settings': ['operations', 'slate'],
 };
 
-export function controlShellGroups(nav: readonly { href: string; label: string }[], rewrite: (href: string) => string = (h) => h): ShellGroup[] {
+export function controlShellGroups(nav: readonly { href: string; label: string }[], rewrite: (href: string) => string = (h) => h, lang: Lang = 'en'): ShellGroup[] {
+  const key = (href: string) => `control.nav.${href === '/control' ? 'dashboard' : href.replace('/control/', '')}`;
   return [
     {
       id: 'control',
-      label: 'Control',
+      label: tOr(lang, 'group.control', 'Control'),
       tone: ['sapphire', 'royal'],
-      items: nav.map((n) => ({ href: rewrite(n.href), label: n.label, ...(CONTROL_LOOK[n.href] ? { icon: CONTROL_LOOK[n.href][0], tone: CONTROL_LOOK[n.href][1] } : {}) })),
+      items: nav.map((n) => ({ href: rewrite(n.href), label: tOr(lang, key(n.href), n.label), ...(CONTROL_LOOK[n.href] ? { icon: CONTROL_LOOK[n.href][0], tone: CONTROL_LOOK[n.href][1] } : {}) })),
     },
   ];
 }

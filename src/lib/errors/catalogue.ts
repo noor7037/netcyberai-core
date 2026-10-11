@@ -17,6 +17,7 @@ type L = Record<ErrorLang, string>;
 // What a field is called in a sentence.
 export const FIELD_NAMES = {
   name: { en: 'name', hi: 'नाम' },
+  language: { en: 'language', hi: 'भाषा' },
   student_name: { en: 'student’s name', hi: 'विद्यार्थी का नाम' },
   guardian_name: { en: 'guardian’s name', hi: 'अभिभावक का नाम' },
   class_name: { en: 'class name', hi: 'कक्षा का नाम' },
@@ -116,6 +117,10 @@ export const ERROR_RULES = {
   signed_out: {
     en: () => 'You are signed out. Sign in again, then repeat this.',
     hi: () => 'आप साइन आउट हो गए हैं। दोबारा साइन इन करें, फिर इसे दोहराएँ।',
+  },
+  not_saved: {
+    en: () => 'This could not be saved just now. Check your internet, then try again.',
+    hi: () => 'यह अभी सेव नहीं हो पाया। इंटरनेट देखें, फिर दोबारा कोशिश करें।',
   },
   too_fast: {
     en: () => 'That is a lot in a short time. Wait a few minutes, then try again.',

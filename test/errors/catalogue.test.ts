@@ -99,13 +99,17 @@ describe('each rule says what is wrong and how to fix it, in English and Hindi',
     expect(en('too_many', { max: 5 })).toBe('There are already 5 here, which is the most allowed.');
     expect(hi('too_many', { max: 5 })).toContain('5');
   });
+  it('not_saved', () => {
+    expect(en('not_saved')).toBe('This could not be saved just now. Check your internet, then try again.');
+    expect(hi('not_saved')).toMatch(DEVANAGARI);
+  });
   it('too_fast', () => {
     expect(en('too_fast')).toBe('That is a lot in a short time. Wait a few minutes, then try again.');
     expect(hi('too_fast')).toMatch(DEVANAGARI);
   });
 
   it('every rule has a test above, both languages, and no technical word', () => {
-    const tested = ['required', 'choose_one', 'too_short', 'too_long', 'phone_digits', 'phone_characters', 'ticket_limit', 'not_allowed', 'signed_out', 'phone_start', 'email_format', 'date_format', 'date_not_real', 'date_in_future', 'class_not_in_school', 'already_exists', 'nothing_to_save', 'file_missing', 'file_too_large', 'file_type', 'too_many', 'too_fast'];
+    const tested = ['required', 'choose_one', 'too_short', 'too_long', 'phone_digits', 'phone_characters', 'ticket_limit', 'not_allowed', 'signed_out', 'phone_start', 'email_format', 'date_format', 'date_not_real', 'date_in_future', 'class_not_in_school', 'already_exists', 'nothing_to_save', 'file_missing', 'file_too_large', 'file_type', 'too_many', 'too_fast', 'not_saved'];
     expect(Object.keys(ERROR_RULES).sort()).toEqual([...tested].sort());
     const sample = { field: 'phone', have: 2, min: 3, max: 9, need: 10, value: 'x', maxMb: 4, allowed: 'PNG' };
     for (const rule of Object.keys(ERROR_RULES) as ErrorRule[]) {

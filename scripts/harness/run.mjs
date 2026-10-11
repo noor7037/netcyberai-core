@@ -5,6 +5,9 @@
 //   node scripts/harness/run.mjs                 screenshots into ./harness-output
 //   node scripts/harness/run.mjs --serve         leave the app running, print sign-in links
 //   node scripts/harness/run.mjs --out <dir> --only <substring>
+//   node scripts/harness/run.mjs --keep docs/screenshots/<pr-slug> --screens app-hindi,control-hindi
+//       also saves those screens as compressed WebP for the PR (C134: no
+//       full-size PNG in git, only screens the PR changes, 1.5 MB per PR at most)
 //
 // What it does: (1) starts the harness database (db.mjs: the real
 // migrations plus src/demo-fixture/harness-seed.sql), (2) starts `next dev`
@@ -18,9 +21,9 @@
 // only in this process, so it is worthless against any other deployment;
 // and it refuses to start outside a local development run.
 // scripts/check_harness_isolation.py enforces the first three in CI.
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { randomBytes, randomUUID } from 'node:crypto';
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import net from 'node:net';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -32,6 +35,13 @@ const arg = (name) => (process.argv.includes(name) ? process.argv[process.argv.i
 const SERVE = process.argv.includes('--serve');
 const OUT = path.resolve(arg('--out') ?? path.join(ROOT, 'harness-output'));
 const ONLY = arg('--only');
+const KEEP = arg('--keep') ? path.resolve(arg('--keep')) : null;
+const KEEP_SCREENS = (arg('--screens') ?? '').split(',').filter(Boolean);
+const KEEP_LIMIT_BYTES = 1.5 * 1024 * 1024;
+if (KEEP && !KEEP_SCREENS.length) {
+  console.error('harness: --keep needs --screens name1,name2 (only the screens the PR changes).');
+  process.exit(2);
+}
 const APP_PORT = Number(arg('--port') ?? 3210);
 if (!Number.isInteger(APP_PORT) || APP_PORT < 1024 || APP_PORT > 65000) {
   console.error('harness: --port must be a number between 1024 and 65000.');
@@ -60,6 +70,22 @@ const chooseClass = async (page) => {
   await page.selectOption('select', { label: '5-A' }).catch(() => undefined);
   await page.waitForTimeout(800);
 };
+// The language switch (C134), used the way a person uses it.
+const speak = (language) => async (page) => {
+  await page.getByRole('button', { name: language, exact: true }).click();
+  await page.locator(`[data-shell-lang="${language === 'English' ? 'en' : 'hi'}"]`).first().waitFor({ timeout: 15000 });
+  await page.waitForTimeout(400);
+};
+// On a phone the menu is closed, so the Hindi would not be in the picture: open it.
+const hindiWithMenu = async (page) => {
+  await speak('हिन्दी')(page);
+  if (page.viewportSize().width < 768) await page.getByRole('button', { name: 'मेनू खोलें' }).first().click();
+};
+const backToEnglish = async (page) => {
+  await page.keyboard.press('Escape');
+  await speak('English')(page);
+};
+// [who, name, route, prepare (before the picture), after (put things back)]
 const SCREENS = [
   ['principal', 'app-dashboard', '/app/dashboard'],
   ['principal', 'app-students', '/app/students'],
@@ -76,6 +102,7 @@ const SCREENS = [
   ['principal', 'app-tickets', '/app/help/ticket'],
   ['principal', 'app-ticket-new', '/app/help/ticket/new'],
   ['principal', 'app-ticket', `/app/help/ticket/${TICKET}`],
+  ['principal', 'app-hindi', '/app/dashboard', hindiWithMenu, backToEnglish],
   ['teacher', 'teacher-attendance', '/app/attendance', chooseClass],
   ['teacher', 'teacher-taught-today', '/app/syllabus'],
   ['teacher', 'teacher-tickets', '/app/help/ticket'],
@@ -89,6 +116,7 @@ const SCREENS = [
   ['founder', 'control-tickets', '/control/tickets'],
   ['founder', 'control-ticket', `/control/tickets/${TICKET}`],
   ['founder', 'control-account', '/control/account'],
+  ['founder', 'control-hindi', '/control/schools', hindiWithMenu, backToEnglish],
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed
@@ -214,11 +242,17 @@ try {
       const page = await context.newPage();
       const errors = [];
       page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));
-      for (const [, name, route, prepare] of mine) {
+      // An API call the screen made that did not succeed: named, so a page error has its cause beside it.
+      page.on('response', (r) => {
+        if (r.url().includes('/api/') && r.status() >= 400) errors.push(`${r.request().method()} ${new URL(r.url()).pathname} answered ${r.status()}`);
+      });
+      for (const [, name, route, prepare, after] of mine) {
+        const shoot = async () => {
         const logFrom = appLog.length;
         const response = await page.goto(base + route, { waitUntil: 'networkidle', timeout: 90000 }).catch((e) => ({ status: () => 0, error: e.message }));
         await page.waitForTimeout(600);
-        if (prepare) await prepare(page);
+        const prepared = prepare ? await prepare(page).then(() => null, (e) => e.message.split('\n')[0].slice(0, 160)) : null;
+        if (prepared) errors.push(`could not prepare the screen: ${prepared}`);
         const seen = await page.evaluate(() => {
           const main = document.querySelector('main') ?? document.body;
           const small = [...main.querySelectorAll('a, button, select, input:not([type=checkbox]):not([type=radio]):not([type=file]), textarea, summary')]
@@ -236,22 +270,55 @@ try {
           };
         });
         await page.screenshot({ path: path.join(OUT, `${name}-${width}.png`), fullPage: true });
+        // Put things back (the language), and say so if that failed: the
+        // screens after this one would otherwise be photographed wrongly.
+        const undone = after ? await after(page).then(() => null, (e) => e.message.split('\n')[0].slice(0, 160)) : null;
+        if (undone) errors.push(`could not put the screen back: ${undone}`);
         // A server error: keep what the app printed, so the report says why.
-        const serverSaid = response.status() >= 500 ? appLog.slice(logFrom).split('\n').filter((l) => /error|Error|⨯/.test(l)).slice(-4).map((l) => l.trim().slice(0, 300)) : [];
+        const failedOnServer = response.status() >= 500 || errors.some((e) => / answered 5\d\d$/.test(e));
+        const serverSaid = failedOnServer ? appLog.slice(logFrom).split('\n').filter((l) => /error|Error|⨯/.test(l)).slice(-4).map((l) => l.trim().slice(0, 300)) : [];
         const row = { name, width, route, status: response.status(), serverSaid, landedOn: seen.path, h1: seen.h1, modulePage: seen.modulePage, horizontalScroll: seen.horizontalScroll, smallTargets: seen.smallTargets, pageErrors: [...errors] };
         errors.length = 0;
+        return row;
+        };
+        // The throwaway database answers one query at a time, and now and
+        // then an API call made while the page loads gets a 500 from it. One
+        // more try tells that apart from a real fault; the first try's
+        // errors stay in the report either way.
+        let row = await shoot();
+        if (row.pageErrors.some((e) => / answered 5\d\d$|Unexpected end of JSON/.test(e))) {
+          const first = { pageErrors: row.pageErrors, serverSaid: row.serverSaid };
+          row = { ...(await shoot()), firstTry: first };
+        }
+        const serverSaid = row.serverSaid;
         report.push(row);
         if (serverSaid.length) console.log('   server: ' + serverSaid.join(' | '));
-        console.log(`${width} ${name}: ${row.status} h1=${JSON.stringify(row.h1)} modulePage=${row.modulePage} hscroll=${row.horizontalScroll} small=${row.smallTargets.length} errors=${row.pageErrors.length}${seen.path !== route ? ` LANDED ON ${seen.path}` : ''}`);
+        console.log(`${width} ${name}: ${row.status} h1=${JSON.stringify(row.h1)} modulePage=${row.modulePage} hscroll=${row.horizontalScroll} small=${row.smallTargets.length} errors=${row.pageErrors.length}${row.landedOn !== route.split('?')[0] ? ` LANDED ON ${row.landedOn}` : ''}${row.firstTry ? ' (second try)' : ''}`);
       }
       await context.close();
     }
   }
   await browser.close();
+  writeFileSync(path.join(OUT, 'app.log'), appLog);
   writeFileSync(path.join(OUT, 'report.json'), JSON.stringify({ migrationsApplied: db.applied.length, migrationsSkipped: db.skipped, screens: report }, null, 2));
-  const bad = report.filter((r) => r.status !== 200 || r.landedOn !== r.route || r.horizontalScroll || r.smallTargets.length || r.pageErrors.length);
+  const bad = report.filter((r) => r.status !== 200 || r.landedOn !== r.route.split('?')[0] || r.horizontalScroll || r.smallTargets.length || r.pageErrors.length);
   console.log(`harness: ${report.length} pictures in ${OUT}; ${bad.length} need a look.`);
-  await stop(bad.length ? 1 : 0);
+  let overSize = false;
+  if (KEEP && KEEP_SCREENS.length) {
+    mkdirSync(KEEP, { recursive: true });
+    let total = 0;
+    for (const name of KEEP_SCREENS) {
+      for (const width of [390, 1440]) {
+        const to = path.join(KEEP, `${name}-${width}.webp`);
+        const made = spawnSync('cwebp', ['-quiet', '-q', '55', '-m', '6', path.join(OUT, `${name}-${width}.png`), '-o', to]);
+        if (made.error || made.status !== 0) throw new Error(`harness: could not write ${to} (cwebp is needed: brew install webp). ${made.error?.message ?? made.stderr}`);
+        total += statSync(to).size;
+      }
+    }
+    overSize = total > KEEP_LIMIT_BYTES;
+    console.log(`harness: ${KEEP_SCREENS.length * 2} WebP pictures in ${KEEP}, ${(total / 1024).toFixed(0)} KB in all${overSize ? ' -- OVER the 1.5 MB a PR may carry' : ''}.`);
+  }
+  await stop(bad.length || overSize ? 1 : 0);
 } catch (err) {
   console.error(err.message);
   console.error(appLog.split('\n').slice(-15).join('\n'));

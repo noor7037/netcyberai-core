@@ -16,6 +16,7 @@ import { AuthError } from './errors';
 import { signDeviceToken } from './jwt';
 import { fetchLiveUser } from './resolve';
 import type { LoginOutcome } from './types';
+import { LANG_COOKIE } from '@/lib/i18n';
 
 // One place that turns a sign-in outcome into the HTTP answer and cookies,
 // shared by every way in (password, email code, password reset; C89/C90) so
@@ -52,6 +53,10 @@ export function outcomeResponse(outcome: LoginOutcome): NextResponse {
   res.cookies.set(ACCESS_COOKIE, outcome.accessToken, cookieOptions(ACCESS_TTL_SECONDS));
   res.cookies.set(REFRESH_COOKIE, outcome.refreshToken, cookieOptions(REFRESH_TTL_SECONDS));
   res.cookies.delete(PENDING_COOKIE);
+  // A new sign-in asks the account for its language again (C134): a choice
+  // made on another device, or by whoever used this browser before, never
+  // carries over through an old cookie.
+  res.cookies.delete(LANG_COOKIE);
   return res;
 }
 

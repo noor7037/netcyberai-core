@@ -145,6 +145,11 @@ run_step "Every /app and /control screen renders through ModulePage" <<'STEP'
 python3 scripts/check_module_pages.py
 STEP
 
+run_step "Words on /app and /control screens come from the message files (English and Hindi)" <<'STEP'
+python3 scripts/check_ui_strings.py --self-test
+python3 scripts/check_ui_strings.py
+STEP
+
 run_step "No secrets committed" <<'STEP'
 # required('SOME_ENV_VAR_NAME') (src/lib/auth/env.ts) looks up an
 # env var by NAME via process.env[name] -- it's a reference to a

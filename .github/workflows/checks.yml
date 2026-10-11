@@ -70,6 +70,11 @@ jobs:
       - name: Every /app and /control screen renders through ModulePage
         run: python3 scripts/check_module_pages.py
 
+      - name: Words on /app and /control screens come from the message files (English and Hindi)
+        run: |
+          python3 scripts/check_ui_strings.py --self-test
+          python3 scripts/check_ui_strings.py
+
       - name: No secrets committed
         run: |
           # required('SOME_ENV_VAR_NAME') (src/lib/auth/env.ts) looks up an
