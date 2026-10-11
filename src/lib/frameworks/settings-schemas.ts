@@ -127,6 +127,17 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         editableBy: OFFICE,
         affectsExistingRecords: false,
       },
+      {
+        key: 'receipt_no_format',
+        label: 'Receipt number format',
+        help: 'How new receipt numbers look. Use {YYYY} or {YY} for the year and {SEQ:5} for a 5-digit counter. Receipts already issued keep their numbers.',
+        section: 'Receipts',
+        type: 'numbering',
+        default: 'RCP-{YYYY}-{SEQ:5}',
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
     ],
   },
   // Timetable (C145): how many periods a school day has. Lowering it hides
