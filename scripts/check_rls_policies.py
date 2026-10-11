@@ -242,6 +242,11 @@ ALLOWED_PERMISSIVE = (
         ("syllabus_units", "syllabus_units_tenant_isolation"),
         # C148: tenant isolation only; narrowed by the RESTRICTIVE staff and teacher_scope, required below.
         ("pulse_followups", "pulse_followups_tenant_isolation"),
+        # P2 5e (C150): tenant isolation only; narrowed by the RESTRICTIVE *_staff and *_teacher_scope, required below.
+        ("homework", "homework_tenant_isolation"),
+        ("homework_targets", "homework_targets_tenant_isolation"),
+        ("homework_status", "homework_status_tenant_isolation"),
+        ("homework_attachments", "homework_attachments_tenant_isolation"),
         ("support_ticket_messages", "support_ticket_messages_tenant_read"),
         ("support_ticket_messages", "support_ticket_messages_tenant_insert"),
         ("support_ticket_attachments", "support_ticket_attachments_tenant_read"),
@@ -293,6 +298,15 @@ REQUIRED_RESTRICTIVE = {
     # C148: the needs-help queue is for those who teach or run the school; a teacher, their own classes.
     ("pulse_followups", "pulse_followups_staff"),
     ("pulse_followups", "pulse_followups_teacher_scope"),
+    # C150: homework is for those who teach or run the school; a teacher, their own classes.
+    ("homework", "homework_staff"),
+    ("homework", "homework_teacher_scope"),
+    ("homework_targets", "homework_targets_staff"),
+    ("homework_targets", "homework_targets_teacher_scope"),
+    ("homework_status", "homework_status_staff"),
+    ("homework_status", "homework_status_teacher_scope"),
+    ("homework_attachments", "homework_attachments_staff"),
+    ("homework_attachments", "homework_attachments_teacher_scope"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
     ("audit_log", "audit_ticket_rows_own_or_office"),

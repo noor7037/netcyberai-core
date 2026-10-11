@@ -131,6 +131,39 @@ const oneTapTaughtDone = async (page) => {
   await clearTaught();
   if (after.log !== 1 || after.drafts !== 1 || after.taps !== 1) throw new Error(`after reconnecting: ${after.log} log rows, ${after.drafts} drafts, ${after.taps} measurements; expected one of each`);
 };
+// Homework (C150), as a teacher does it: set one for today, open it, lose the
+// network, mark everyone done, save. The picture is taken with the check
+// waiting. Network back: each student of the section holds one answer.
+const clearHomework = () => db.pg.exec(`delete from homework_status; delete from homework_attachments; delete from homework_targets; delete from homework;`);
+let homeworkStudents = 0;
+const homeworkFlow = async (page) => {
+  await clearHomework();
+  await page.reload({ waitUntil: 'networkidle' });
+  const today = (await db.pg.query(`select ${TODAY_SQL}::text as d`)).rows[0].d;
+  await page.selectOption('#hw-subject', { label: 'Mathematics' });
+  await page.locator('#hw-due').fill(today);
+  await page.locator('#hw-title').fill('Fractions: questions 1 to 5, page 42');
+  await page.locator('[data-set-homework] input[type=checkbox]').first().check();
+  await page.locator('[data-set-go]').click();
+  await page.locator('[data-assignment]').first().waitFor({ timeout: 15000 });
+  await page.locator('[data-check]').first().click();
+  await page.locator('[data-check-row]').first().waitFor({ timeout: 15000 });
+  homeworkStudents = await page.locator('[data-check-row]').count();
+  await page.context().setOffline(true);
+  await page.locator('[data-sync="offline"]').waitFor({ timeout: 15000 });
+  await page.locator('[data-all-done]').click();
+  await page.locator('[data-save-check]').click();
+  await page.locator('[data-sync="waiting"]').waitFor({ timeout: 15000 });
+  const { rows } = await db.pg.query(`select count(*)::int as n from homework_status`);
+  if (rows[0].n !== 0) throw new Error('offline, yet the check reached the database');
+};
+const homeworkFlowDone = async (page) => {
+  await page.context().setOffline(false);
+  await page.locator('[data-sync="saved"]').waitFor({ timeout: 30000 });
+  const { rows } = await db.pg.query(`select count(*)::int as n, count(*) filter (where done)::int as done, (select count(*)::int from homework_targets) as targets from homework_status`);
+  await clearHomework();
+  if (rows[0].targets !== 1 || rows[0].n !== homeworkStudents || rows[0].done !== homeworkStudents) throw new Error(`after reconnecting: ${rows[0].n} answers (${rows[0].done} done) for ${homeworkStudents} students in ${rows[0].targets} assignment(s)`);
+};
 // The "needs help" queue (C148): one student waiting, then the outcome is
 // recorded and the card leaves the queue.
 const needsHelp = async (page) => {
@@ -289,6 +322,7 @@ const SCREENS = [
   ['teacher', 'teacher-timetable', '/app/timetable'],
   ['teacher', 'teacher-attendance-offline', '/app/attendance', markOffline, backOnline],
   ['teacher', 'teacher-taught-today', '/app/syllabus'],
+  ['teacher', 'teacher-homework', '/app/homework', homeworkFlow, homeworkFlowDone],
   ['teacher', 'teacher-needs-help', '/app/pulse', needsHelp, needsHelpDone],
   ['teacher', 'teacher-taught-one-tap', '/app/syllabus', oneTapTaught, oneTapTaughtDone],
   ['teacher', 'teacher-tickets', '/app/help/ticket'],

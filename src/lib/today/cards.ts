@@ -127,6 +127,22 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     },
   },
   {
+    // Homework due today that is not fully checked (C150). RLS shows a teacher their own classes'.
+    type: 'homework-to-check',
+    moduleId: 'homework',
+    roles: ['teacher'],
+    async load(db, ctx) {
+      const { rows } = await db.query(
+        `select count(*) as c from homework_targets t
+          where t.school_id = $1 and t.due_date = ${TODAY}
+            and (select count(*) from students s where s.school_id = t.school_id and s.class_id = t.class_id and s.status in ('active', 'pending_consent'))
+              > (select count(*) from homework_status hs join students s on s.school_id = hs.school_id and s.student_id = hs.student_id and s.class_id = t.class_id and s.status in ('active', 'pending_consent') where hs.target_id = t.target_id)`,
+        [ctx.schoolId]
+      );
+      return waiting('homework-to-check', 'homework', n(rows[0]?.c), '/app/homework');
+    },
+  },
+  {
     // "You teach 4 periods today", in order (C145). It is information, not
     // work waiting, so it is never counted as waiting.
     type: 'timetable-today',
