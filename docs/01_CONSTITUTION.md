@@ -289,9 +289,10 @@ actually been met — not to assume it has.
 ## §7. WhatsApp cost governance — NEW (was entirely absent from v1.0)
 
 Meta's per-message billing changed 1 July 2025 (conversation-based →
-per-message) and is scheduled to change again around 1 October 2026,
-making previously-free service messages and in-window utility
-templates billable. **Any public-facing price quoted anywhere (site,
+per-message) and changed again with the rate cards effective 1 October
+2026 (Meta's pricing page, as updated 30 September 2026). Treat every
+message category as billable unless Meta's current page says otherwise;
+the amounts live in `message_rate_table`, never in this document. **Any public-facing price quoted anywhere (site,
 pricing page, sales material) must be re-verified against Meta's live
 INR pricing card at time of publish, with the verification date shown
 next to the figure.** Do not carry forward a number from an old prompt

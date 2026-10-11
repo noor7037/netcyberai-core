@@ -26,7 +26,7 @@ export default async function SettingsPage() {
   }
 
   return (
-    <ModulePage moduleId="setup" tour="settings" title="Settings" purpose="What is switched on for your school, and how its WhatsApp messages are set up.">
+    <ModulePage moduleId="setup" help="whatsapp-settings" tour="settings" title="Settings" purpose="What is switched on for your school, and how its WhatsApp messages are set up.">
       {entitlements && <ModuleSwitchList entitlements={entitlements} lang={lang} />}
       <WhatsAppConfigPanel canManage={canManage} />
     </ModulePage>

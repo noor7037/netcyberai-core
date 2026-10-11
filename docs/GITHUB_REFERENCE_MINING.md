@@ -46,7 +46,7 @@ matches what was already researched, it doesn't add new repos to mine.
 - **License:** none found (no `LICENSE` file, no `license` field in any config file checked).
 - **Stack:** Django 4.2 + Django REST Framework, PostgreSQL, JWT (SimpleJWT), Swagger UI (drf-yasg), `pytest.ini` present (has a real test suite — worth noting since NetCyberAI currently has none).
 - **Domain coverage:** Accounts/JWT auth, Students, Teachers, Attendance (daily/bulk + summaries), Grades (bulk grading, auto-calculation, reports), Timetable (weekly slots), Fees (M-Pesa/cash/bank — Kenyan payment context), Library (inventory, issue/return, overdue fines).
-- **Relevance:** PHP/Java aren't the only "wrong stack" — Django/Python is also architecturally distinct from Next.js/TypeScript, so same D1 reasoning applies: reference only, no code merge. Its **existence of a real pytest suite** for a solo/small project is the most useful single fact here — direct evidence that a test suite is normal practice even for hobby-scale school-ERP projects, reinforcing Gap G2 from `12_RECONSTRUCTION_INVESTIGATION.md`.
+- **Relevance:** PHP/Java aren't the only "wrong stack" — Django/Python is also architecturally distinct from Next.js/TypeScript, so same D1 reasoning applies: reference only, no code merge. Its **existence of a real pytest suite** for a solo/small project is the most useful single fact here — direct evidence that a test suite is normal practice even for hobby-scale school-ERP projects, reinforcing Gap G2 from `22_RECONSTRUCTION_INVESTIGATION.md`.
 - **Classification: REFERENCE ONLY** (stack mismatch; no license to adopt code under anyway).
 
 ### Nahyomee/School-Management-Schema
@@ -67,7 +67,7 @@ matches what was already researched, it doesn't add new repos to mine.
 
 ---
 
-## 2. Repos already mined in the prior investigation (PR #13, `12_RECONSTRUCTION_INVESTIGATION.md` §6) — not re-fetched here
+## 2. Repos already mined in the prior investigation (PR #13, `22_RECONSTRUCTION_INVESTIGATION.md` §6) — not re-fetched here
 
 Frappe Education (GPL-3.0), Gibbon (GPL-3.0), RosarioSIS (GPL-2.0), OpenEduCat (LGPL-3.0), GegoK12 (MIT) were independently verified directly against GitHub/LICENSE files in the prior investigation. Findings stand unchanged; see that document rather than re-deriving them here, per the founder's own "do not repeatedly reread everything" instruction.
 

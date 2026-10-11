@@ -1,6 +1,6 @@
 # 16 — Master Roadmap and Operating Model
 
-**Status:** canonical from 2026-09-30 (Decision Log C99). Supersedes the phase
+**Status:** canonical from 2026-09-30 (Decision Log C99b). Supersedes the phase
 order of `14_BACKEND_BUILD_PLAN.md` §2 where they differ; `14` stays the source
 for Phase 0 evidence and founder long-lead actions.
 **Companion:** [`17_MODULE_CATALOG.md`](17_MODULE_CATALOG.md) — every module,
@@ -130,5 +130,5 @@ numbers: supervisor C100–C109, Claude Code from C110.
   executor. `AGENTS.md` folded into `CLAUDE.md`.
 - **2026-09-30** — C100: P7b Family App added; two-executor lanes (§4a);
   configuration, filters and the founder's E2E list folded into `17`.
-- **2026-09-30** — Created (C99). Founder moved Fees to the last feature phase
+- **2026-09-30** — Created (C99b). Founder moved Fees to the last feature phase
   (P7); Launch hardening stays last (P8) so payment code is audited.

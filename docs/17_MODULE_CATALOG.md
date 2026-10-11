@@ -1,6 +1,6 @@
 # 17 — Module Catalog (build contract for every module)
 
-**Status:** canonical from 2026-09-30 (Decision Log C99). Phases: see
+**Status:** canonical from 2026-09-30 (Decision Log C99b). Phases: see
 [`16_MASTER_ROADMAP.md`](16_MASTER_ROADMAP.md).
 **Sources of truth for intent:** the public website and demo —
 `src/demo-fixture/principal-dashboard.ts` (34 navigation items: Dashboard + 33 modules, nav, visuals),
@@ -250,7 +250,7 @@ already a permanent ban (C23).
   §3a (Fees P3; WhatsApp + parent loop P4; Principal/Control P5; Exams P6;
   School ops P7; Family App P7b and Launch P8 unchanged). Older entries below
   keep the numbers of their day.
-- **2026-09-30** — Created (C99) from the website demo's 34 navigation items; 8-group
+- **2026-09-30** — Created (C99b) from the website demo's 34 navigation items; 8-group
   navigation; Spec v0 for 11 modules that had no specification.
 - **2026-10-01** — C116: sibling mapping (Students, §3 row 4) built; sibling
   items for P3, P7 and P7b recorded in §3a.

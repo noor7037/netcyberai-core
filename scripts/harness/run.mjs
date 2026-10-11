@@ -328,7 +328,10 @@ try {
   mkdirSync(OUT, { recursive: true });
   const browser = await chromium.launch();
   const report = [];
-  const screens = SCREENS.filter(([, name]) => !ONLY || name.includes(ONLY));
+  // --only takes one or more parts of screen names, separated by commas; --screens (the
+  // pictures to keep) is enough on its own: then only those screens are opened.
+  const wanted = ONLY ? ONLY.split(',').filter(Boolean) : KEEP_SCREENS;
+  const screens = SCREENS.filter(([, name]) => !wanted.length || wanted.some((w) => (ONLY ? name.includes(w) : name === w)));
   for (const width of [1440, 390]) {
     // Each width starts with people who have chosen no language and seen no tour.
     await db.pg.query(`update users set tours_seen = '{}', ui_language = null`);
