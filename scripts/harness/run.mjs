@@ -242,6 +242,40 @@ const copilotApprove = async (page) => {
   await db.pg.exec(`delete from teaching_notes; delete from ai_usage;`);
   if (rows[0].notes !== 1 || rows[0].uses !== 1) throw new Error(`expected one approved note and one metered use: ${JSON.stringify(rows[0])}`);
 };
+// Fees (C157): the office adds a head and sets a class's structure; then a
+// second version from a later date. Both versions must be on the page and in
+// the database, the first untouched.
+const feeRows = async () => (await db.pg.query(`select f.effective_from::text as from_date, (select sum(i.amount_minor)::int from fee_structure_items i where i.structure_id = f.structure_id) as total from fee_structures f where f.school_id = $1 and f.class_id = $2 and f.created_by = $3 order by f.effective_from`, [SCHOOL, CLASS_5A, PEOPLE.principal.sub])).rows;
+const clearFees = async () => {
+  await db.pg.query(`delete from fee_structure_items where structure_id in (select structure_id from fee_structures where school_id = $1 and created_by = $2)`, [SCHOOL, PEOPLE.principal.sub]);
+  await db.pg.query(`delete from fee_structures where school_id = $1 and created_by = $2`, [SCHOOL, PEOPLE.principal.sub]);
+  await db.pg.query(`delete from fee_heads where school_id = $1 and name = 'Harness activity fee'`, [SCHOOL]);
+};
+const feesSetup = async (page) => {
+  await clearFees();
+  await db.pg.query(`insert into academic_sessions (school_id, label, start_date, end_date, is_current) select $1, 'Harness session', ${TODAY_SQL} - 30, ${TODAY_SQL} + 300, not exists (select 1 from academic_sessions where school_id = $1 and is_current) where not exists (select 1 from academic_sessions where school_id = $1 and label = 'Harness session')`, [SCHOOL]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('#fee-head-name').fill('Harness activity fee');
+  await page.locator('[data-add-head]').click();
+  await page.getByText('Harness activity fee').first().waitFor({ timeout: 15000 });
+  await page.selectOption('#fee-class', { label: '5-A' });
+  await page.selectOption('#fee-session', { label: 'Harness session' });
+  const day = (n) => db.pg.query(`select (${TODAY_SQL} + $1::int)::text as d`, [n]).then((r) => r.rows[0].d);
+  const saveVersion = async (date, amount) => {
+    await page.locator('#fee-from').fill(date);
+    const box = page.locator('[data-new-version] input[inputmode="decimal"]').last();
+    await box.fill(amount);
+    await page.locator('[data-save-version]').click();
+    await page.locator(`[data-version="${date}"]`).waitFor({ timeout: 15000 });
+  };
+  await saveVersion(await day(-10), '1500.50');
+  await saveVersion(await day(20), '1650');
+};
+const feesSetupDone = async () => {
+  const rows = await feeRows();
+  await clearFees();
+  if (rows.length !== 2 || rows[0].total !== 150050 || rows[1].total !== 165000) throw new Error(`expected two versions, 1,500.50 then 1,650, the first untouched: ${JSON.stringify(rows)}`);
+};
 // The "needs help" queue (C148): one student waiting, then the outcome is
 // recorded and the card leaves the queue.
 const needsHelp = async (page) => {
@@ -377,6 +411,7 @@ const SCREENS = [
   ['principal', 'app-student-id-card', `/app/students/${STUDENT}/id-card`],
   ['principal', 'app-admissions', '/app/admissions'],
   ['principal', 'app-attendance', '/app/attendance', chooseClass],
+  ['principal', 'app-fees', '/app/fees', feesSetup, feesSetupDone],
   ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],
   ['principal', 'app-timetable-clash', '/app/timetable', timetableClash],

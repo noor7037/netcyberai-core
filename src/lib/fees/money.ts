@@ -1,7 +1,7 @@
 // Money in P3 (docs/23 §3 rule 1): whole minor units (paise) only. Nothing
 // here uses a floating-point number for an amount.
 
-export const MAX_MINOR = 99_999_999_99; // ₹9,99,99,999.99: no single fee line is larger
+export const MAX_MINOR = 99_999_999_99; // just under ten crore rupees: no single fee line is larger
 
 // "1500", "1500.5", "1,500.50" → paise. Null for anything else: a sign,
 // three decimals, letters, an empty box.

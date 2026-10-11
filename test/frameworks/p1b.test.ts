@@ -276,7 +276,8 @@ describe('plans', () => {
     expect(e.plan).toBe(DEFAULT_PLAN_ID);
     expect(e.modules.students).toMatchObject({ enabled: true, source: 'plan' });
     expect(e.modules.attendance).toMatchObject({ enabled: false, source: 'founder_override' }); // the founder's choice stays
-    expect(e.modules.fees).toBeUndefined(); // not in the plan: off
+    expect(e.modules.fees).toMatchObject({ enabled: true, source: 'plan' }); // partly live since C157, so in the plan
+    expect(e.modules.exams).toBeUndefined(); // not in the plan: off
     const n = await db.platform((q) => q.query(`select count(*)::int n from school_module_entitlements where school_id = $1`, [C]));
     expect(n.rows[0].n).toBe(planById(DEFAULT_PLAN_ID)!.modules.length);
     expect(await db.platform((q) => applyPlan(q, C, 'gold', founderActor, 'x y z'))).toEqual({ ok: false, error: 'unknown plan' });

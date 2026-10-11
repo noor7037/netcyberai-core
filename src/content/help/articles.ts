@@ -473,6 +473,31 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['copilot', 'ai', 'draft', 'lesson plan', 'worksheet', 'मसौदा', 'पाठ-योजना', 'वर्कशीट'],
   },
   {
+    slug: 'fee-structures',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Set what each class pays', hi: 'तय करें कि हर कक्षा कितना देती है' },
+    summary: {
+      en: 'Name what the school charges for, then set each class’s amounts. A change starts from a date and never rewrites the earlier amounts.',
+      hi: 'स्कूल किस-किस की फ़ीस लेता है, यह नाम दें, फिर हर कक्षा की राशियाँ तय करें। बदलाव एक तारीख़ से शुरू होता है और पहले की राशियाँ कभी नहीं बदलता।',
+    },
+    steps: [
+      { en: 'Open “Fees”. Under “Fee heads”, type a name such as Tuition and press “Add head”.', hi: '“Fees” खोलें। “Fee heads” के नीचे ट्यूशन जैसा नाम लिखें और “Add head” दबाएँ।' },
+      { en: 'Under “Fee structure by class”, choose the “Class” and the “Session”.', hi: '“Fee structure by class” के नीचे “Class” और “Session” चुनें।' },
+      { en: 'Choose the date under “Applies from”, type the “Amount in rupees” for each head and choose “How often”.', hi: '“Applies from” के नीचे तारीख़ चुनें, हर मद की “Amount in rupees” लिखें और “How often” चुनें।' },
+      { en: 'Press “Save as a new version”. The page shows “In force now” on the version that applies today.', hi: '“Save as a new version” दबाएँ। जो रूप आज लागू है उस पर “In force now” दिखता है।' },
+      { en: 'To change fees later, press “Start from these amounts”, change what is needed, choose the new date and save again.', hi: 'बाद में फ़ीस बदलने के लिए “Start from these amounts” दबाएँ, जो ज़रूरी हो बदलें, नई तारीख़ चुनें और फिर सेव करें।' },
+    ],
+    tips: [
+      { en: 'Nothing saved here is ever changed or deleted. A mistake is corrected by a new version from the same or a later date.', hi: 'यहाँ सेव की हुई कोई चीज़ कभी बदली या हटाई नहीं जाती। ग़लती नए रूप से ठीक होती है।' },
+      { en: 'Only the principal, the school admin and the accountant see fees. Teachers do not.', hi: 'फ़ीस केवल प्रिंसिपल, स्कूल एडमिन और अकाउंटेंट को दिखती है। शिक्षकों को नहीं।' },
+      { en: 'A fee head that is no longer used can be retired with “Retire”. It stays on the structures already made.', hi: 'जो मद अब इस्तेमाल नहीं होता उसे “Retire” से बंद किया जा सकता है। पहले बने ढाँचों में वह बना रहता है।' },
+    ],
+    start: { href: '/app/fees', label: { en: 'Fees', hi: 'Fees' } },
+    related: ['add-a-student', 'raise-a-ticket'],
+    keywords: ['fees', 'fee', 'fee structure', 'fee head', 'tuition', 'amount', 'फ़ीस', 'शुल्क', 'ट्यूशन'],
+  },
+  {
     slug: 'compliance-screen',
     category: 'daily',
     audience: 'office',

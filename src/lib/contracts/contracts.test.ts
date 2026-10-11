@@ -30,7 +30,7 @@ describe('module registry', () => {
 
   it('carries the 17 §3 status and phase', () => {
     expect(moduleById('students')).toMatchObject({ status: 'live', phase: 'P7' });
-    expect(moduleById('fees')).toMatchObject({ status: 'foundation', phase: 'P3' });
+    expect(moduleById('fees')).toMatchObject({ status: 'partial', phase: 'P3' }); // heads and structures live (C157)
     expect(moduleById('payroll')).toMatchObject({ status: 'spec-v0', phase: 'P7' });
     // C102: Fees comes before WhatsApp, and both before Exams.
     const at = (id: ModuleId) => PHASES.indexOf(moduleById(id).phase);
