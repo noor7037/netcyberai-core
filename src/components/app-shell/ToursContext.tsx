@@ -29,8 +29,12 @@ export function ToursProvider({ initial, children }: { initial: readonly TourId[
 
   const markSeen = useCallback((id: TourId) => {
     setSeen((s) => new Set([...(s ?? []), id]));
-    // Kept on the account; if this fails the tour shows once more another day, which is harmless.
-    fetch('/api/auth/tours', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ tour: id }) }).catch(() => undefined);
+    // Kept on the account. One more try if the first does not get through; if
+    // both fail the tour shows again when the page is next loaded, which is harmless.
+    const save = () => fetch('/api/auth/tours', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ tour: id }) }).then((res) => res.ok);
+    save()
+      .then((ok) => ok || save())
+      .catch(() => save().catch(() => undefined));
   }, []);
 
   const value = useMemo(() => ({ seen, markSeen }), [seen, markSeen]);

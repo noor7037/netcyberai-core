@@ -92,6 +92,7 @@ const speak = (language) => async (page) => {
 // Afterwards the tour is skipped with its own button and the page reloaded,
 // to prove the account remembers it; then the cookie is put back.
 const TOUR_IDS = [...readFileSync(path.join(ROOT, 'src/lib/contracts/tours.ts'), 'utf8').matchAll(/^  '?([a-z-]+)'?: \{ steps:/gm)].map((m) => m[1]);
+if (TOUR_IDS.length < 14) throw new Error('harness: could not read the tour ids from src/lib/contracts/tours.ts');
 const seenAllCookie = (who) => ({ name: 'nca_tours', value: `${PEOPLE[who].sub}.${TOUR_IDS.join(',')}`, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' });
 const firstVisit = async (page) => {
   await page.context().clearCookies({ name: 'nca_tours' });
@@ -104,7 +105,7 @@ const firstVisitInHindi = async (page) => {
   await page.locator('[data-tour][lang="hi"]').waitFor({ timeout: 15000 });
 };
 const skipAndCheck = (who, thenEnglish = false) => async (page) => {
-  await page.locator('[data-tour] button').last().click(); // Skip (छोड़ें)
+  await page.locator('[data-tour]').getByRole('button', { name: /^(Skip|छोड़ें)$/ }).click();
   await page.locator('[data-tour]').waitFor({ state: 'detached', timeout: 10000 });
   await page.context().clearCookies({ name: 'nca_tours' });
   await page.reload({ waitUntil: 'networkidle' });

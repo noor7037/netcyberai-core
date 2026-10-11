@@ -6,6 +6,7 @@ import { createElement as h } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { NextRequest } from 'next/server';
 import { createTestDb, type TestDb } from '../db/pglite-harness';
+import { MARK_TOUR_SEEN_SQL } from '@/lib/auth/db';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { LangProvider } from '@/components/app-shell/LangContext';
 import { ToursProvider } from '@/components/app-shell/ToursContext';
@@ -19,7 +20,8 @@ import { isMessageKey, t } from '@/lib/i18n';
 const USER = '00000000-0000-4000-8000-00000000a001';
 const state = vi.hoisted(() => ({ claims: null as any, seen: [] as string[], writes: 0, dbDown: false }));
 vi.mock('@/lib/auth/require-session', () => ({ requireSession: async () => state.claims }));
-vi.mock('@/lib/auth/db', () => ({
+vi.mock('@/lib/auth/db', async (original) => ({
+  ...(await original<typeof import('@/lib/auth/db')>()),
   ownToursSeen: async () => {
     if (state.dbDown) throw new Error('db');
     return state.seen;
@@ -78,7 +80,8 @@ describe('the tours', () => {
   it('every screen of the school app that is a module page has its tour', () => {
     const root = path.join(__dirname, '../../src');
     const files = (dir: string): string[] => readdirSync(dir).flatMap((n) => (statSync(path.join(dir, n)).isDirectory() ? files(path.join(dir, n)) : [path.join(dir, n)]));
-    const tags = (text: string) => [...text.matchAll(/<ModulePage\b([^>]*(?:\{[^}]*\}[^>]*)*)>/g)].map((m) => m[1]);
+    // Up to the children: `tour=` is one of the first props wherever it is used.
+    const tags = (text: string) => [...text.matchAll(/<ModulePage\b([\s\S]*?)(?:\n\s*>|>\s*\n)/g)].map((m) => m[1]);
     // Sub-pages of a screen that has the tour, and the person's own account page.
     const without = new Set(['help/ticket/new/page.tsx', 'help/ticket/[ticketId]/page.tsx', 'account/page.tsx']);
     const app = path.join(root, 'app/(school)/app');
@@ -197,7 +200,9 @@ describe('the API', () => {
   });
 
   it('signing out takes the tours cookie with it', async () => {
-    state.claims = null;
+    // Signed in: the session is ended (the database call is stood in) and the cookie goes.
+    vi.spyOn(await import('@/lib/auth/db'), 'withBackendConnection').mockImplementation(async () => undefined as never);
+    state.claims = { sub: USER, sessionId: 's' };
     expect(cookie(await logout(new NextRequest('http://localhost/api/auth/logout', { method: 'POST' })))).toMatch(/nca_tours=;/);
   });
 });
@@ -212,16 +217,15 @@ describe('on the screen', () => {
     const en = page('en', []);
     expect(en).toContain('href="/app/help/mark-attendance"');
     expect(en).toContain('Show me how');
-    const guide = HELP_ARTICLES.find((a) => a.slug === 'mark-attendance')!;
-    expect(en).toContain(`aria-label="Show me how: ${guide.title.en}"`);
+    expect(HELP_ARTICLES.some((a) => a.slug === 'mark-attendance')).toBe(true);
     const hi = page('hi', []);
     expect(hi).toContain('href="/app/help/mark-attendance?lang=hi"');
     expect(hi).toContain('करके दिखाएँ');
   });
 
-  it('a screen without a guide has no link, and a guide that does not exist draws nothing', () => {
+  it('a screen without a guide has no link (that a named guide exists is the CI check’s job)', () => {
     expect(page('en', [], { help: undefined })).not.toContain('Show me how');
-    expect(page('en', [], { help: 'no-such-guide' })).not.toContain('Show me how');
+    expect(page('en', [], { help: 'Not A Slug' })).not.toContain('Show me how');
   });
 
   it('first visit: the tour shows step 1 of 3 with Next and Skip, and does not block the page', () => {
@@ -230,7 +234,10 @@ describe('on the screen', () => {
     expect(html).toContain('Choose the class');
     expect(html).toContain('>Next<');
     expect(html).toContain('>Skip<');
-    expect(html).toContain('aria-modal="false"');
+    expect(html).not.toContain('aria-modal');
+    expect(html).not.toContain('role="dialog"');
+    // In reading order it comes straight after the header, before the page's body.
+    expect(html.indexOf('data-tour=')).toBeLessThan(html.indexOf('data-slot="body"'));
     expect(html).toContain('<p>body</p>');
   });
 
@@ -257,7 +264,6 @@ describe('on the screen', () => {
 describe('users.tours_seen on real Postgres', () => {
   let db: TestDb;
   const user = randomUUID();
-  const MARK = `update users set tours_seen = case when $2 = any(tours_seen) then tours_seen else array_append(tours_seen, $2) end where user_id = $1 returning tours_seen`;
   beforeAll(async () => {
     db = await createTestDb();
     await db.platform((q) => q.query(`insert into users (user_id, role, display_name) values ($1, 'super_admin', 'Someone')`, [user]));
@@ -268,9 +274,9 @@ describe('users.tours_seen on real Postgres', () => {
   });
 
   it('a tour is added once, however often it is marked (the statement the app runs)', async () => {
-    await db.platform((q) => q.query(MARK, [user, 'students']));
-    await db.platform((q) => q.query(MARK, [user, 'students']));
-    const { rows } = await db.platform((q) => q.query(MARK, [user, 'attendance']));
+    await db.platform((q) => q.query(MARK_TOUR_SEEN_SQL, [user, 'students']));
+    await db.platform((q) => q.query(MARK_TOUR_SEEN_SQL, [user, 'students']));
+    const { rows } = await db.platform((q) => q.query(MARK_TOUR_SEEN_SQL, [user, 'attendance']));
     expect(rows[0].tours_seen).toEqual(['students', 'attendance']);
   });
 

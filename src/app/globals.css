@@ -498,3 +498,8 @@ html {
   outline-offset: 4px;
   border-radius: 12px;
 }
+@media print {
+  [data-tour-here] {
+    outline: none;
+  }
+}

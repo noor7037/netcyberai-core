@@ -41,8 +41,10 @@ BASE_REF = "origin/main"
 # Only the self-test sets this: a stand-in for the base branch's allowlist.
 _BASE_FILE_FOR_SELF_TEST: Path | None = None
 
-COMMENT_RE = re.compile(r"\{/\*.*?\*/\}|/\*.*?\*/|(?<![:'\"`])//[^\n]*", re.S)
-MODULE_PAGE_RE = re.compile(r"<ModulePage\b([^>]*(?:\{[^}]*\}[^>]*)*)>", re.S)
+# A // comment starts a line or follows code punctuation; " // " inside a
+# quoted attribute is words, and must not swallow the rest of the tag.
+COMMENT_RE = re.compile(r"\{/\*.*?\*/\}|/\*.*?\*/|(?:^|(?<=[;{}(),]))[ \t]*//[^\n]*", re.S | re.M)
+MODULE_PAGE_START_RE = re.compile(r"<ModulePage\b")
 HELP_RE = re.compile(r"\bhelp=\"([a-z0-9-]+)\"")
 IMPORT_RE = re.compile(r"import\s+(?:type\s+)?\{[^}]*\}\s+from\s+'@/components/([^']+)'")
 SLUG_RE = re.compile(r"^\s*slug:\s*'([a-z0-9-]+)'", re.M)
@@ -52,19 +54,62 @@ def read(path: Path) -> str:
     return COMMENT_RE.sub("", path.read_text(encoding="utf-8"))
 
 
+def opening_tags(text: str) -> list[str]:
+    """The attributes of every <ModulePage ...> opening tag. The tag ends at
+    the first > that is outside every {expression} and every quoted value,
+    so `primary={<button onClick={() => go()}>…</button>}` before `help=`
+    does not cut it short."""
+    out: list[str] = []
+    for m in MODULE_PAGE_START_RE.finditer(text):
+        depth = 0
+        quote = ""
+        i = m.end()
+        while i < len(text):
+            ch = text[i]
+            if quote:
+                if ch == quote:
+                    quote = ""
+            elif depth == 0 and ch == '"':
+                quote = ch
+            elif ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+            elif ch == ">" and depth == 0:
+                break
+            i += 1
+        out.append(text[m.end() : i])
+    return out
+
+
+def top_level(tag: str) -> str:
+    """The tag's own attributes, without what is inside its {expressions}:
+    a help="…" on a button inside `primary={…}` is not the page's."""
+    out: list[str] = []
+    depth = 0
+    for ch in tag:
+        if ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+        elif depth == 0:
+            out.append(ch)
+    return "".join(out)
+
+
 def module_page_tags(root: Path, page: Path) -> list[str] | None:
     """The opening <ModulePage ...> tags of a page: its own, or those of the
     view it renders. None when the page does not render through ModulePage
     (a redirect, a Coming page, a dashboard)."""
     text = read(page)
-    tags = [m.group(1) for m in MODULE_PAGE_RE.finditer(text)]
+    tags = opening_tags(text)
     if tags:
         return tags
     for spec in IMPORT_RE.findall(text):
         for ext in (".tsx", ".ts"):
             f = root / "src" / "components" / f"{spec}{ext}"
             if f.is_file() and re.search(rf"<{re.escape(f.stem)}\b", text):
-                tags = [m.group(1) for m in MODULE_PAGE_RE.finditer(read(f))]
+                tags = opening_tags(read(f))
                 if tags:
                     return tags
     return None
@@ -108,7 +153,7 @@ def find_violations(root: Path) -> list[str]:
         if tags is None:
             continue
         seen.add(rel)
-        named = [HELP_RE.search(tag) for tag in tags]
+        named = [HELP_RE.search(top_level(tag)) for tag in tags]
         missing = [m for m in named if m is None]
         for m in named:
             if m is not None and m.group(1) not in slugs:
@@ -197,6 +242,18 @@ def self_test() -> int:
         write("src/components/views/BareView.tsx", "export function BareView() { return <ModulePage title=\"x\" purpose=\"y\">z</ModulePage>; }\n")
         write(f"{app}/new/page.tsx", "import { BareView } from '@/components/views/BareView';\nexport default function P() { return <BareView />; }\n")
         if not expect("a view without the link was not caught", "new/page.tsx: no \"Show me how\""):
+            return 1
+        # help= written after a button with its own > and an arrow function: still found.
+        write(f"{app}/new/page.tsx", "export default function P() {\n  return (\n    <ModulePage\n      title={a > b ? 'x' : 'y'}\n      primary={<button onClick={() => go()}>Add</button>}\n      purpose=\"Fees // term 1\"\n      help=\"mark-attendance\"\n    >\n      z\n    </ModulePage>\n  );\n}\n")
+        if not expect("a help= written after a button and a // in a value was not found", None):
+            return 1
+        # A help= that belongs to something inside the tag is not the page's.
+        write(f"{app}/new/page.tsx", "export default function P() { return <ModulePage title=\"New\" purpose=\"y\" primary={<Tip help=\"mark-attendance\" />}>z</ModulePage>; }\n")
+        if not expect("a help= on a child inside the tag was taken for the page's", "new/page.tsx: no \"Show me how\""):
+            return 1
+        # A // inside a one-line tag's words must not hide the tag.
+        write(f"{app}/new/page.tsx", "export default function P() { return <ModulePage title=\"New\" purpose=\"Fees // term 1\">z</ModulePage>; }\n")
+        if not expect("a page whose tag has // in its words was skipped", "new/page.tsx: no \"Show me how\""):
             return 1
         (tmp / f"{app}/new/page.tsx").unlink()
 

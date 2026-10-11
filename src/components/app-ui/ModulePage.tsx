@@ -85,6 +85,7 @@ export function ModulePage({
           </div>
         )}
       </header>
+      {tour && <FirstVisitTour id={tour} />}
       {more && (
         <div data-slot="more" className="flex flex-wrap items-center gap-2">
           {more}
@@ -97,7 +98,6 @@ export function ModulePage({
         {children}
       </div>
       {bulk}
-      {tour && <FirstVisitTour id={tour} />}
     </div>
   );
 }

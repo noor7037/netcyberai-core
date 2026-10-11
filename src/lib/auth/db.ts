@@ -366,14 +366,13 @@ export async function ownToursSeen(userId: string): Promise<string[]> {
   });
 }
 
+export const MARK_TOUR_SEEN_SQL = `update users set tours_seen = case when $2 = any(tours_seen) then tours_seen else array_append(tours_seen, $2) end, updated_at = now()
+       where user_id = $1 returning tours_seen`;
+
 // Adds one tour to the user's own list (once) and returns the list.
 export async function markTourSeen(userId: string, tourId: string): Promise<string[]> {
   return asAccountService(async (client) => {
-    const { rows } = await client.query(
-      `update users set tours_seen = case when $2 = any(tours_seen) then tours_seen else array_append(tours_seen, $2) end, updated_at = now()
-       where user_id = $1 returning tours_seen`,
-      [userId, tourId]
-    );
+    const { rows } = await client.query(MARK_TOUR_SEEN_SQL, [userId, tourId]);
     return Array.isArray(rows[0]?.tours_seen) ? (rows[0].tours_seen as string[]) : [];
   });
 }
