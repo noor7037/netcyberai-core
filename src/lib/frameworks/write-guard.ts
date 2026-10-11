@@ -197,19 +197,25 @@ export async function guardWrite(claims: SessionClaims & { schoolId: string }, p
   }
 }
 
-// The same for a read. One short read of the school's entitlements in the
-// caller's own tenant context, before the route's own work.
-export async function guardRead(claims: SessionClaims & { schoolId: string }, pathname: string): Promise<NextResponse | null> {
+// The same for a read, inside a transaction the caller already has (C143):
+// appRoute runs it at the start of the route's own transaction, so a read
+// costs no extra round of database work. Returns the refusal, or null.
+export async function checkRead(db: Parameters<typeof loadEntitlements>[0], schoolId: string, pathname: string): Promise<NextResponse | null> {
   const module = readModuleFor(pathname);
   if (module === null) {
     console.error('[access-guard] a read route is not in READ_ROUTES', pathname.replace(/[0-9a-f]{8}-[0-9a-f-]{27}/gi, '*'));
     return refuse('not_sent_properly', 500);
   }
   if (module === 'checks-itself' || (module !== 'any-module' && isAlwaysOn(module))) return null;
+  const rule = readRefusal(await loadEntitlements(db, schoolId), module);
+  return rule ? refuse(rule) : null;
+}
+
+// For a route that opens its own transaction later (the older routes): one
+// short read in the caller's own tenant context, before the route's work.
+export async function guardRead(claims: SessionClaims & { schoolId: string }, pathname: string): Promise<NextResponse | null> {
   try {
-    const entitlements = await withTenantContext(claims, (db) => loadEntitlements(db, claims.schoolId));
-    const rule = readRefusal(entitlements, module);
-    return rule ? refuse(rule) : null;
+    return await withTenantContext(claims, (db) => checkRead(db, claims.schoolId, pathname));
   } catch (err) {
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
