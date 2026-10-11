@@ -3,7 +3,7 @@
 NetCyberAI's actual live schema (44 tables, `mcp__Supabase__list_tables`
 against `netcyberai-dev`, re-confirmed 2026-09-24) versus the data models of
 the four directly-mined reference repos (`GITHUB_REFERENCE_MINING.md`) and the
-five previously-mined open-source ERPs (`12_RECONSTRUCTION_INVESTIGATION.md`
+five previously-mined open-source ERPs (`22_RECONSTRUCTION_INVESTIGATION.md`
 §6). Only real, concrete deltas are listed — not a restatement of every table.
 
 | Domain | NetCyberAI (live schema) | Reference repos | Gap? |

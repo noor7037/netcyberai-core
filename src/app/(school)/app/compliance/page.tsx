@@ -29,7 +29,7 @@ export default async function CompliancePage() {
     : [];
 
   return (
-    <ModulePage moduleId="compliance" tour="compliance" title="Compliance" purpose="Fee notice rules for your state, how long records are kept, and every time NetCyberAI staff looked at your school’s data.">
+    <ModulePage moduleId="compliance" help="compliance-screen" tour="compliance" title="Compliance" purpose="Fee notice rules for your state, how long records are kept, and every time NetCyberAI staff looked at your school’s data.">
       <ComplianceView canManage={session?.role === 'school_admin' || session?.role === 'principal'} />
       <section>
         <h2 className="mb-2 text-lg font-bold text-slate">Support access to this school</h2>
