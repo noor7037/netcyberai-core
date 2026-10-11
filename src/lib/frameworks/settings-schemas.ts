@@ -76,6 +76,39 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
       },
     ],
   },
+  // Homework Recovery (C152): who is listed for a catch-up plan.
+  {
+    moduleId: 'recovery',
+    version: 1,
+    fields: [
+      {
+        key: 'missed_threshold',
+        label: 'Homeworks not done',
+        help: 'A student is listed for a catch-up plan after this many homeworks marked “Not done”, from 1 to 10.',
+        section: 'Who is listed',
+        type: 'number',
+        default: 3,
+        min: 1,
+        max: 10,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      {
+        key: 'window_school_days',
+        label: 'Within this many school days',
+        help: 'How many school days back to look, from 3 to 30. Only the school’s working days are counted.',
+        section: 'Who is listed',
+        type: 'number',
+        default: 10,
+        min: 3,
+        max: 30,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+    ],
+  },
   // Timetable (C145): how many periods a school day has. Lowering it hides
   // nothing: periods already entered beyond it stay until the office clears them.
   {

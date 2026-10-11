@@ -195,6 +195,30 @@ const pulseMessageDone = async () => {
   await clearTaught();
   if (rows[0].ready !== 1 || rows[0].sent !== 0 || rows[0].logged !== 0) throw new Error(`expected one ready message and nothing sent: ${JSON.stringify(rows[0])}`);
 };
+// Homework Recovery (C152): one student marked "not done" for three
+// homeworks in the last days is listed with a plan; the teacher approves it;
+// the card leaves the list and nothing is sent.
+const recoveryList = async (page) => {
+  await db.pg.exec(`delete from recovery_plans;`);
+  await clearHomework();
+  for (let i = 1; i <= 3; i++) {
+    const { rows } = await db.pg.query(`insert into homework (school_id, subject_id, title, due_date, created_by) values ($1, '00000000-0000-4000-8000-0000000d0001', $2, ${TODAY_SQL} - $3::int, $4) returning homework_id`, [SCHOOL, `Fractions worksheet ${i}`, i, PEOPLE.teacher.sub]);
+    const target = await db.pg.query(`insert into homework_targets (school_id, homework_id, class_id, title, due_date) values ($1, $2, $3, $4, ${TODAY_SQL} - $5::int) returning target_id`, [SCHOOL, rows[0].homework_id, CLASS_5A, `Fractions worksheet ${i}`, i]);
+    await db.pg.query(`insert into homework_status (school_id, target_id, class_id, student_id, done, checked_by) values ($1, $2, $3, $4, false, $5)`, [SCHOOL, target.rows[0].target_id, CLASS_5A, STUDENT, PEOPLE.teacher.sub]);
+  }
+  loggedBefore = await sendingRows();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-candidate]').first().waitFor({ timeout: 15000 });
+};
+const recoveryApprove = async (page) => {
+  await page.locator('[data-approve]').first().click();
+  await page.locator('[data-empty="recovery"]').waitFor({ timeout: 15000 });
+  const { rows } = await db.pg.query(`select status, jsonb_array_length(items) as items from recovery_plans`);
+  const grew = (await sendingRows()) - loggedBefore;
+  await db.pg.exec(`delete from recovery_plans;`);
+  await clearHomework();
+  if (rows.length !== 1 || rows[0].status !== 'approved' || rows[0].items !== 3 || grew !== 0) throw new Error(`expected one approved plan of 3 homeworks and nothing sent: ${JSON.stringify(rows)} sent ${grew}`);
+};
 // The "needs help" queue (C148): one student waiting, then the outcome is
 // recorded and the card leaves the queue.
 const needsHelp = async (page) => {
@@ -354,6 +378,7 @@ const SCREENS = [
   ['teacher', 'teacher-attendance-offline', '/app/attendance', markOffline, backOnline],
   ['teacher', 'teacher-taught-today', '/app/syllabus'],
   ['teacher', 'teacher-homework', '/app/homework', homeworkFlow, homeworkFlowDone],
+  ['teacher', 'teacher-recovery', '/app/recovery', recoveryList, recoveryApprove],
   ['teacher', 'teacher-needs-help', '/app/pulse', needsHelp, needsHelpDone],
   ['teacher', 'teacher-pulse-message', '/app/pulse', pulseMessage, pulseMessageDone],
   ['teacher', 'teacher-taught-one-tap', '/app/syllabus', oneTapTaught, oneTapTaughtDone],

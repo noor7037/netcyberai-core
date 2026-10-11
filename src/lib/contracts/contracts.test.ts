@@ -38,8 +38,10 @@ describe('module registry', () => {
     expect(at('communication')).toBeLessThan(at('exams'));
     expect(moduleById('fees').phaseNote).toContain('WhatsApp from P4');
     expect(moduleById('raise-ticket')).toMatchObject({ status: 'live', phase: 'P1' });
+    // Homework Recovery left this list when its v1 was built (C152).
+    expect(moduleById('recovery')).toMatchObject({ status: 'partial', phase: 'P2' });
     expect(MODULE_REGISTRY.filter((m) => m.status === 'spec-v0').map((m) => m.id).sort()).toEqual(
-      ['automation', 'career', 'complaints', 'curriculum-gap', 'learning-genome', 'parent-ai', 'payroll', 'recovery', 'school-auditor', 'teacher-copilot', 'twin'].sort()
+      ['automation', 'career', 'complaints', 'curriculum-gap', 'learning-genome', 'parent-ai', 'payroll', 'school-auditor', 'teacher-copilot', 'twin'].sort()
     );
     for (const m of MODULE_REGISTRY) expect(m.capabilities.length).toBeGreaterThan(0);
   });
