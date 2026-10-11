@@ -30,7 +30,7 @@ export const moduleStatus: Record<ModuleId, { status: ModuleStatus; note: string
   staff: { status: 'foundation', note: 'Teacher records exist; leave and substitution are on the roadmap.' },
   academics: { status: 'partial', note: '“Taught today” per class and subject is live for teachers; lesson plans are planned.' },
   attendance: { status: 'live', note: 'Class attendance marking, with absence alerts on WhatsApp once a school leaves pilot mode.' },
-  timetable: { status: 'planned', note: 'Build step 7, after subjects and teacher assignments.' },
+  timetable: { status: 'partial', note: 'Period entry with a clash guard, CSV import and each teacher’s week are live; the generator, workload and change history are build step 7.' },
   homework: { status: 'planned', note: 'Build step 7.' },
   exams: { status: 'foundation', note: 'Exam and marks tables exist; entry, report cards and Personal Best are build step 5.' },
   fees: { status: 'foundation', note: 'Fee structures, ledger and payment tables exist; reminders, payments and receipts are build step 4.' },

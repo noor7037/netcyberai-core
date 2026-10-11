@@ -10,7 +10,7 @@ import type { ModuleId, SchoolRole } from './modules';
 // language (message keys `today.<type>.<state>…`). A provider with nothing
 // to say returns no card; a home with no card shows an honest empty state.
 
-export const TODAY_CARD_TYPES = ['attendance-class', 'attendance-school', 'consent-waiting', 'fees-due-today', 'fees-overdue', 'tickets-waiting', 'messages-held'] as const;
+export const TODAY_CARD_TYPES = ['attendance-class', 'attendance-school', 'consent-waiting', 'fees-due-today', 'fees-overdue', 'tickets-waiting', 'messages-held', 'timetable-today'] as const;
 export type TodayCardType = (typeof TODAY_CARD_TYPES)[number];
 
 export type TodayCard = {

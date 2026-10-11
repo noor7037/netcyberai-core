@@ -95,7 +95,7 @@ from generate_series(1, 60) g;
 insert into school_entitlements (school_id, plan) values ('a0000000-0000-4000-8000-000000000001', 'standard'), ('b0000000-0000-4000-8000-000000000002', 'standard');
 insert into school_module_entitlements (school_id, module_id, enabled, source)
 select s, m, true, 'plan'
-from unnest(array['a0000000-0000-4000-8000-000000000001', 'b0000000-0000-4000-8000-000000000002']::uuid[]) s, unnest(array['dashboard','setup','students','parents','academics','attendance','communication','documents','compliance','help-center','raise-ticket','staff','admissions','fees','reports']) m;
+from unnest(array['a0000000-0000-4000-8000-000000000001', 'b0000000-0000-4000-8000-000000000002']::uuid[]) s, unnest(array['dashboard','setup','students','parents','academics','attendance','timetable','communication','documents','compliance','help-center','raise-ticket','staff','admissions','fees','reports']) m;
 
 insert into support_tickets (ticket_id, school_id, raised_by, raised_role, category, module_id, subject, body, status) values
   ('00000000-0000-4000-8000-0000000f0001', 'a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-00000000a003', 'teacher', 'not_working', 'attendance', 'Attendance for 5-A will not save', 'When I mark attendance for class 5-A and press Submit, the page shows an error.', 'waiting_on_school'),
@@ -108,3 +108,11 @@ insert into audit_log (school_id, actor_user_id, actor_role, event_action, targe
   ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-00000000a002', 'school_admin', 'student.create', 'students', '00000000-0000-4000-8000-000000500026', null),
   ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-00000000a003', 'teacher', 'attendance.submitted', 'classes', '00000000-0000-4000-8000-0000000c0051', null),
   ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-00000000f001', 'super_admin', 'ImpersonationStarted', 'schools', 'a0000000-0000-4000-8000-000000000001', '{"reason":"Helping the office with a class import"}');
+
+-- The timetable (C145): Tara's and Tanvi's week in 5-A and 5-B, Monday to Saturday.
+insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id)
+select 'a0000000-0000-4000-8000-000000000001', c.class_id, d, p.period, p.subject_id, case when (c.name = '5-A') = (p.period % 2 = 1) then '00000000-0000-4000-8000-00000000a003'::uuid else '00000000-0000-4000-8000-00000000a004'::uuid end
+from (values ('00000000-0000-4000-8000-0000000c0051'::uuid, '5-A'), ('00000000-0000-4000-8000-0000000c0052'::uuid, '5-B')) c(class_id, name)
+cross join generate_series(1, 6) d
+cross join (values (1, '00000000-0000-4000-8000-0000000d0001'::uuid), (2, '00000000-0000-4000-8000-0000000d0002'::uuid), (3, '00000000-0000-4000-8000-0000000d0001'::uuid)) p(period, subject_id);
+

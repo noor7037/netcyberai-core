@@ -56,6 +56,27 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
       },
     ],
   },
+  // Timetable (C145): how many periods a school day has. Lowering it hides
+  // nothing: periods already entered beyond it stay until the office clears them.
+  {
+    moduleId: 'timetable',
+    version: 1,
+    fields: [
+      {
+        key: 'periods_per_day',
+        label: 'Periods in a day',
+        help: 'How many teaching periods a school day has, from 1 to 12. The timetable shows this many.',
+        section: 'School day',
+        type: 'number',
+        default: 8,
+        min: 1,
+        max: 12,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+    ],
+  },
 ];
 
 export function settingsSchemaFor(moduleId: ModuleId): ModuleSettingsSchema | null {

@@ -322,6 +322,31 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['syllabus', 'lesson', 'topic', 'taught', 'academics', 'class log', 'पाठ', 'पढ़ाया', 'सिलेबस', 'aaj kya padhaya'],
   },
   {
+    slug: 'timetable',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Fill and read the timetable', hi: 'समय-सारणी भरें और देखें' },
+    summary: {
+      en: 'The office fills each class’s week, one period at a time or from a CSV file. A teacher sees their own week. A teacher can never be in two classes at once.',
+      hi: 'दफ़्तर हर कक्षा का हफ़्ता भरता है, एक-एक पीरियड या CSV फ़ाइल से। शिक्षक को अपना हफ़्ता दिखता है। एक शिक्षक एक ही समय पर दो कक्षाओं में नहीं हो सकता।',
+    },
+    steps: [
+      { en: 'Open “Timetable” and choose the class under “Class”. Each block is a day; each line is a period.', hi: '“Timetable” खोलें और “Class” के नीचे कक्षा चुनें। हर खाना एक दिन है; हर पंक्ति एक पीरियड।' },
+      { en: 'Tap a period. Choose the “Subject” and the “Teacher”, then press “Save period”.', hi: 'किसी पीरियड पर टैप करें। “Subject” और “Teacher” चुनें, फिर “Save period” दबाएँ।' },
+      { en: 'If that teacher is already teaching another class at that time, the period is not saved and the screen names the other class. Choose another teacher or another period.', hi: 'अगर वह शिक्षक उस समय पहले से दूसरी कक्षा पढ़ा रहा है, तो पीरियड सेव नहीं होता और स्क्रीन दूसरी कक्षा का नाम बताती है। दूसरा शिक्षक या दूसरा पीरियड चुनें।' },
+      { en: 'To empty a period, tap it and press “Clear this period”.', hi: 'पीरियड खाली करने के लिए उस पर टैप करें और “Clear this period” दबाएँ।' },
+      { en: 'To fill many periods at once, open “Import from a CSV file”, choose the file and press “Import”.', hi: 'एक साथ कई पीरियड भरने के लिए “Import from a CSV file” खोलें, फ़ाइल चुनें और “Import” दबाएँ।' },
+    ],
+    tips: [
+      { en: 'A CSV file with any problem or clash imports nothing. The screen lists each line to correct.', hi: 'जिस CSV फ़ाइल में कोई गड़बड़ी या टकराव हो, उससे कुछ भी इम्पोर्ट नहीं होता। स्क्रीन ठीक करने वाली हर पंक्ति बताती है।' },
+      { en: 'A teacher sees only their own periods and their own classes’ timetable, and cannot change it.', hi: 'शिक्षक को केवल अपने पीरियड और अपनी कक्षाओं की समय-सारणी दिखती है, और वह उसे बदल नहीं सकता।' },
+      { en: 'How many periods a day has is set by the office in Settings.', hi: 'एक दिन में कितने पीरियड हैं, यह दफ़्तर Settings में तय करता है।' },
+    ],
+    start: { href: '/app/timetable', label: { en: 'Timetable', hi: 'Timetable' } },
+    related: ['mark-attendance', 'taught-today', 'use-my-day'],
+    keywords: ['timetable', 'period', 'periods', 'schedule', 'clash', 'csv', 'time table', 'समय-सारणी', 'टाइम टेबल', 'पीरियड'],
+  },
+  {
     slug: 'compliance-screen',
     category: 'daily',
     audience: 'office',
