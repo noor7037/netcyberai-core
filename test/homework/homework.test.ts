@@ -223,7 +223,7 @@ describe('a photo or a file', () => {
 
 describe('the switch-on and the grants', () => {
   it('Homework is switched on for every existing school, once; public roles have no access to its tables', async () => {
-    const statement = readFileSync(path.resolve(__dirname, '../../supabase/migrations/20261012120000_p2_homework.sql'), 'utf8').match(/insert into school_module_entitlements[\s\S]*?;/)![0];
+    const statement = readFileSync(path.resolve(__dirname, '../../supabase/migrations/20261011183026_p2_homework.sql'), 'utf8').match(/insert into school_module_entitlements[\s\S]*?;/)![0];
     await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'homework', false, 'founder_override')`, [B]);
     await db.pg.exec(statement);
     await db.pg.exec(statement);
