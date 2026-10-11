@@ -247,6 +247,8 @@ ALLOWED_PERMISSIVE = (
         ("homework_targets", "homework_targets_tenant_isolation"),
         ("homework_status", "homework_status_tenant_isolation"),
         ("homework_attachments", "homework_attachments_tenant_isolation"),
+        # C152: tenant isolation only; narrowed by the RESTRICTIVE staff, teacher_scope and decide_as_self, required below.
+        ("recovery_plans", "recovery_plans_tenant_isolation"),
         ("support_ticket_messages", "support_ticket_messages_tenant_read"),
         ("support_ticket_messages", "support_ticket_messages_tenant_insert"),
         ("support_ticket_attachments", "support_ticket_attachments_tenant_read"),
@@ -307,6 +309,10 @@ REQUIRED_RESTRICTIVE = {
     ("homework_status", "homework_status_teacher_scope"),
     ("homework_attachments", "homework_attachments_staff"),
     ("homework_attachments", "homework_attachments_teacher_scope"),
+    # C152: catch-up plans: staff only; a teacher, their own classes; decided in one's own name.
+    ("recovery_plans", "recovery_plans_staff"),
+    ("recovery_plans", "recovery_plans_teacher_scope"),
+    ("recovery_plans", "recovery_plans_decide_as_self"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
     ("audit_log", "audit_ticket_rows_own_or_office"),

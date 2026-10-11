@@ -426,6 +426,29 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['homework', 'home work', 'assignment', 'worksheet', 'due', 'sections', 'गृहकार्य', 'होमवर्क'],
   },
   {
+    slug: 'homework-recovery',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Help a student catch up on missed homework', hi: 'छूटे गृहकार्य की भरपाई में विद्यार्थी की मदद करें' },
+    summary: {
+      en: 'Homework Recovery lists the students who have not done several homeworks lately and suggests a catch-up plan. You approve it or dismiss it.',
+      hi: 'Homework Recovery उन विद्यार्थियों की सूची दिखाता है जिन्होंने हाल में कई गृहकार्य नहीं किए, और भरपाई की योजना सुझाता है। आप उसे मंज़ूर या ख़ारिज करते हैं।',
+    },
+    steps: [
+      { en: 'Open “Homework Recovery”. Each card is one student and the homeworks marked “Not done”.', hi: '“Homework Recovery” खोलें। हर कार्ड एक विद्यार्थी और उसके “Not done” वाले गृहकार्य हैं।' },
+      { en: 'Read the suggested plan: one homework a school day, the oldest first.', hi: 'सुझाई गई योजना पढ़ें: हर स्कूल-दिन एक गृहकार्य, सबसे पुराना पहले।' },
+      { en: 'Press “Approve the plan” to keep it, or “Dismiss” if the student does not need one.', hi: 'रखने के लिए “Approve the plan” दबाएँ, या अगर विद्यार्थी को ज़रूरत नहीं तो “Dismiss”।' },
+    ],
+    tips: [
+      { en: 'A student is listed only from homework you marked “Not done” in Homework. Homework left unchecked is not counted.', hi: 'विद्यार्थी केवल उन गृहकार्यों से सूची में आता है जिन पर आपने Homework में “Not done” लगाया। बिना जाँचा गृहकार्य नहीं गिना जाता।' },
+      { en: 'Nothing is sent to parents yet. An approved plan waits for the message that starts with WhatsApp.', hi: 'अभी अभिभावकों को कुछ नहीं भेजा जाता। मंज़ूर योजना उस संदेश का इंतज़ार करती है जो WhatsApp के साथ शुरू होगा।' },
+      { en: 'The list is by name. It does not rank children, and students and parents never see it.', hi: 'सूची नाम के क्रम में है। यह बच्चों की रैंकिंग नहीं है, और विद्यार्थी व अभिभावक इसे कभी नहीं देखते।' },
+    ],
+    start: { href: '/app/recovery', label: { en: 'Homework Recovery', hi: 'Homework Recovery' } },
+    related: ['set-homework', 'needs-help-queue', 'daily-pulse-message'],
+    keywords: ['recovery', 'catch up', 'catch-up', 'missed homework', 'not done', 'भरपाई', 'छूटा गृहकार्य'],
+  },
+  {
     slug: 'compliance-screen',
     category: 'daily',
     audience: 'office',

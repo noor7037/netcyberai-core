@@ -45,7 +45,7 @@ export const moduleStatus: Record<ModuleId, { status: ModuleStatus; note: string
   'teacher-copilot': { status: 'needs-spec', note: 'Not in the current product documents.' },
   'school-auditor': { status: 'needs-spec', note: 'Not in the current product documents.' },
   'parent-ai': { status: 'needs-spec', note: 'Not in the current product documents.' },
-  recovery: { status: 'needs-spec', note: 'Not in the current product documents.' },
+  recovery: { status: 'partial', note: 'Version 1: lists students who missed several homeworks, suggests a catch-up plan and records the teacher’s approval; parents are not informed yet.' },
   'curriculum-gap': { status: 'needs-spec', note: 'Not in the current product documents.' },
   automation: { status: 'needs-spec', note: 'Not in the current product documents.' },
   career: { status: 'needs-spec', note: 'Not in the current product documents.' },

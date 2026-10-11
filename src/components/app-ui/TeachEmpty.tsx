@@ -14,7 +14,7 @@ import { isMessageKey, type MessageKey } from '@/lib/i18n';
 
 export const EMPTY_IDS = [
   'students', 'students-none-waiting', 'students-no-match', 'classes', 'guardians', 'guardians-view', 'family-guardians', 'siblings', 'siblings-view',
-  'data-requests', 'data-requests-view', 'attendance-roster', 'attendance-roster-view', 'staff-search', 'taught-today-teacher', 'taught-today-office', 'timetable-teacher', 'timetable-no-classes', 'timetable-empty-view', 'needs-help', 'homework', 'homework-no-classes', 'pulse-drafts',
+  'data-requests', 'data-requests-view', 'attendance-roster', 'attendance-roster-view', 'staff-search', 'taught-today-teacher', 'taught-today-office', 'timetable-teacher', 'timetable-no-classes', 'timetable-empty-view', 'needs-help', 'homework', 'homework-no-classes', 'pulse-drafts', 'recovery',
   'support-access', 'not-loaded',
 ] as const;
 export type EmptyId = (typeof EMPTY_IDS)[number];
