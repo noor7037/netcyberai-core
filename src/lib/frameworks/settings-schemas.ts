@@ -109,6 +109,26 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
       },
     ],
   },
+  // Fees (C159): the day of the month a due falls on unless the office picks another.
+  {
+    moduleId: 'fees',
+    version: 1,
+    fields: [
+      {
+        key: 'due_day',
+        label: 'Day of the month fees are due',
+        help: 'The date offered when dues are raised for a month, from 1 to 28. The office can choose another date each time.',
+        section: 'Dues',
+        type: 'number',
+        default: 10,
+        min: 1,
+        max: 28,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+    ],
+  },
   // Timetable (C145): how many periods a school day has. Lowering it hides
   // nothing: periods already entered beyond it stay until the office clears them.
   {
