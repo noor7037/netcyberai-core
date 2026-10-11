@@ -353,6 +353,30 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['timetable', 'period', 'periods', 'schedule', 'clash', 'csv', 'time table', 'समय-सारणी', 'टाइम टेबल', 'पीरियड'],
   },
   {
+    slug: 'needs-help-queue',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Follow up a student who needs help', hi: 'मदद चाहने वाले विद्यार्थी का फ़ॉलो-अप करें' },
+    summary: {
+      en: 'Daily Pulse lists the students who need a follow-up from you, with a suggestion. After you act, record what happened.',
+      hi: 'Daily Pulse उन विद्यार्थियों की सूची दिखाता है जिन्हें आपके फ़ॉलो-अप की ज़रूरत है, एक सुझाव के साथ। काम करने के बाद दर्ज करें कि क्या हुआ।',
+    },
+    steps: [
+      { en: 'Open “Daily Pulse”. Each card is one student, why they need help, and a “Suggested follow-up:”.', hi: '“Daily Pulse” खोलें। हर कार्ड एक विद्यार्थी है, उसे मदद क्यों चाहिए, और एक “Suggested follow-up:”।' },
+      { en: 'Help the student in the way that fits. The suggestion is only a starting point.', hi: 'जो तरीक़ा ठीक लगे, उससे विद्यार्थी की मदद करें। सुझाव सिर्फ़ शुरुआत के लिए है।' },
+      { en: 'Write a line under “What happened”, then tap “Done”. If no follow-up was needed after all, tap “Not needed”.', hi: '“What happened” के नीचे एक पंक्ति लिखें, फिर “Done” टैप करें। अगर फ़ॉलो-अप की ज़रूरत ही नहीं थी, तो “Not needed” टैप करें।' },
+      { en: 'To note a student yourself, use “Add a student who needs help”: choose the class and the student, say what is needed, and press “Add to the queue”.', hi: 'विद्यार्थी को ख़ुद जोड़ने के लिए “Add a student who needs help” इस्तेमाल करें: कक्षा और विद्यार्थी चुनें, बताएँ क्या चाहिए, और “Add to the queue” दबाएँ।' },
+    ],
+    tips: [
+      { en: 'A teacher sees only the students of their own classes. The office sees every class.', hi: 'शिक्षक को केवल अपनी कक्षाओं के विद्यार्थी दिखते हैं। दफ़्तर को सभी कक्षाएँ दिखती हैं।' },
+      { en: 'The list is in the order the students were added. It does not rank children.', hi: 'सूची उसी क्रम में है जिसमें विद्यार्थी जोड़े गए। यह बच्चों की कोई रैंकिंग नहीं है।' },
+      { en: 'Nothing is sent to parents from this screen. When WhatsApp sending starts, a parent’s reply will add the student here.', hi: 'इस स्क्रीन से अभिभावकों को कुछ नहीं भेजा जाता। WhatsApp शुरू होने पर अभिभावक का जवाब विद्यार्थी को यहाँ जोड़ देगा।' },
+    ],
+    start: { href: '/app/pulse', label: { en: 'Daily Pulse', hi: 'Daily Pulse' } },
+    related: ['taught-today', 'mark-attendance', 'use-my-day'],
+    keywords: ['needs help', 'follow up', 'follow-up', 'pulse', 'daily pulse', 'queue', 'मदद', 'फ़ॉलो-अप', 'पल्स'],
+  },
+  {
     slug: 'compliance-screen',
     category: 'daily',
     audience: 'office',

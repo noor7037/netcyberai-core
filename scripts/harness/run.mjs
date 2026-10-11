@@ -131,6 +131,22 @@ const oneTapTaughtDone = async (page) => {
   await clearTaught();
   if (after.log !== 1 || after.drafts !== 1 || after.taps !== 1) throw new Error(`after reconnecting: ${after.log} log rows, ${after.drafts} drafts, ${after.taps} measurements; expected one of each`);
 };
+// The "needs help" queue (C148): one student waiting, then the outcome is
+// recorded and the card leaves the queue.
+const needsHelp = async (page) => {
+  await db.pg.query(`delete from pulse_followups where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`insert into pulse_followups (school_id, student_id, class_id, kind, reason, created_by) values ($1, $2, $3, 'did_not_understand', 'Fractions on the number line', $4)`, [SCHOOL, STUDENT, CLASS_5A, PEOPLE.teacher.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-followup]').first().waitFor({ timeout: 15000 });
+};
+const needsHelpDone = async (page) => {
+  await page.locator('[data-followup] input').first().fill('Sat with the student for five minutes after class');
+  await page.locator('[data-followup]').first().getByRole('button', { name: 'Done' }).click();
+  await page.locator('[data-empty="needs-help"]').waitFor({ timeout: 15000 });
+  const { rows } = await db.pg.query(`select status, outcome, decided_by from pulse_followups where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`delete from pulse_followups where school_id = $1`, [SCHOOL]);
+  if (rows.length !== 1 || rows[0].status !== 'done' || !rows[0].outcome || rows[0].decided_by !== PEOPLE.teacher.sub) throw new Error(`the outcome was not recorded: ${JSON.stringify(rows)}`);
+};
 // The office's correction path (C146): a teacher's late marks wait at the top
 // of the screen, and yesterday is open for entry with a reason.
 const officeCorrections = async (page) => {
@@ -273,6 +289,7 @@ const SCREENS = [
   ['teacher', 'teacher-timetable', '/app/timetable'],
   ['teacher', 'teacher-attendance-offline', '/app/attendance', markOffline, backOnline],
   ['teacher', 'teacher-taught-today', '/app/syllabus'],
+  ['teacher', 'teacher-needs-help', '/app/pulse', needsHelp, needsHelpDone],
   ['teacher', 'teacher-taught-one-tap', '/app/syllabus', oneTapTaught, oneTapTaughtDone],
   ['teacher', 'teacher-tickets', '/app/help/ticket'],
   ['founder', 'control-dashboard', '/control'],

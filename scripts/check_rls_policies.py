@@ -240,6 +240,8 @@ ALLOWED_PERMISSIVE = (
         # P2 5d (C147): tenant isolation only; narrowed by the RESTRICTIVE
         # teacher_scope and staff_insert/delete, required below.
         ("syllabus_units", "syllabus_units_tenant_isolation"),
+        # C148: tenant isolation only; narrowed by the RESTRICTIVE staff and teacher_scope, required below.
+        ("pulse_followups", "pulse_followups_tenant_isolation"),
         ("support_ticket_messages", "support_ticket_messages_tenant_read"),
         ("support_ticket_messages", "support_ticket_messages_tenant_insert"),
         ("support_ticket_attachments", "support_ticket_attachments_tenant_read"),
@@ -288,6 +290,9 @@ REQUIRED_RESTRICTIVE = {
     ("syllabus_units", "syllabus_units_staff_insert"),
     ("syllabus_units", "syllabus_units_staff_delete"),
     ("pulse_messages", "teacher_scope_pulse_messages"),
+    # C148: the needs-help queue is for those who teach or run the school; a teacher, their own classes.
+    ("pulse_followups", "pulse_followups_staff"),
+    ("pulse_followups", "pulse_followups_teacher_scope"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
     ("audit_log", "audit_ticket_rows_own_or_office"),
