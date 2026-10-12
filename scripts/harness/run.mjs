@@ -315,9 +315,18 @@ const feesDuesDone = async () => {
 // A payment at the counter (C160): dues are raised as above, the office takes
 // a part payment for the first student, pressing the button twice, and opens
 // the receipt. One receipt, one credit, and the school's figures reconcile.
+// A receipt and its evidence point at each other, and evidence is never edited: the harness puts the
+// screen back as the database's owner, with triggers and references set aside for these statements only.
+const dropEvidence = async (where) => {
+  await db.pg.query(`set session_replication_role = replica`);
+  await db.pg.query(`delete from payment_evidence where school_id = $1 and receipt_id in (select receipt_id from receipts where school_id = $1 and ${where})`, [SCHOOL]);
+  await db.pg.query(`delete from payment_evidence where school_id = $1 and receipt_id is null`, [SCHOOL]);
+  await db.pg.query(`set session_replication_role = origin`);
+};
 const clearPayments = async () => {
   // By receipt, not by due: the money goes to the student's oldest dues first, and those are the seed's.
   // The status trigger runs on the delete and puts each due's status back.
+  await dropEvidence(`issued_by = '${PEOPLE.principal.sub}'`);
   await db.pg.query(`delete from payments where receipt_id in (select receipt_id from receipts where school_id = $1 and issued_by = $2)`, [SCHOOL, PEOPLE.principal.sub]);
   await db.pg.query(`delete from receipts where school_id = $1 and issued_by = $2`, [SCHOOL, PEOPLE.principal.sub]);
 };
@@ -370,6 +379,7 @@ const feesOverdueDone = async (page) => {
 // paying the same link again is refused.
 const clearOnline = async () => {
   await db.pg.query(`delete from payment_events where school_id = $1 or link_id in (select link_id from payment_links where school_id = $1)`, [SCHOOL]);
+  await dropEvidence(`method = 'online'`);
   await db.pg.query(`delete from payments where school_id = $1 and method = 'online'`, [SCHOOL]);
   await db.pg.query(`update payment_links set receipt_id = null, status = 'cancelled', closed_at = coalesce(closed_at, now()) where school_id = $1`, [SCHOOL]);
   await db.pg.query(`delete from receipts where school_id = $1 and method = 'online'`, [SCHOOL]);
@@ -420,6 +430,39 @@ const payOnlineDone = async () => {
   if (r.receipts !== 1 || r.applied !== 1 || r.link_amount === null || r.receipt_total !== r.link_amount || r.credited !== r.link_amount) throw new Error(`the link was not credited exactly once: ${JSON.stringify(r)}`);
   if (p.again !== 409) throw new Error(`paying the same link again must be refused, got ${p.again}`);
   if (p.forged !== 401 || r.refused !== 1) throw new Error(`a notice with a bad signature must be refused and recorded: ${p.forged}, ${r.refused}`);
+};
+// The gateway's keys (C171): the principal types made-up Razorpay test keys
+// and saves. The page then shows only the last four characters of the key
+// id; nothing typed is anywhere in the page or, as typed, in the database;
+// and Razorpay still cannot be switched on (not allowed, not tested).
+const HARNESS_KEYS = { id: 'rzp_test_HARNESSFICTION01', secret: 'harness-fictional-key-part-0001', hook: 'harness-fictional-hook-0001' };
+const clearRails = async () => {
+  await db.pg.query(`delete from payment_credentials where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`delete from payment_methods where school_id = $1`, [SCHOOL]);
+};
+let railsSeen = null;
+const saveGatewayKeys = async (page) => {
+  await clearRails();
+  await page.reload({ waitUntil: 'networkidle' });
+  const rails = page.locator('[data-payment-rails]');
+  await rails.locator('#rails-key-id').fill(HARNESS_KEYS.id);
+  await rails.locator('#rails-key-secret').fill(HARNESS_KEYS.secret);
+  await rails.locator('#rails-webhook-secret').fill(HARNESS_KEYS.hook);
+  await rails.locator('[data-save-keys]').click();
+  await rails.locator('[data-saved-keys="test"]').waitFor({ timeout: 20000 });
+  railsSeen = { saved: await rails.locator('[data-saved-keys="test"]').textContent(), html: await page.content(), fields: await rails.locator('#rails-key-secret').inputValue() };
+};
+const saveGatewayKeysDone = async () => {
+  const { rows } = await db.pg.query(`select c.ciphertext, c.key_last4, c.saved_from, (select enabled from payment_methods where school_id = $1 and method = 'razorpay') as on, (select string_agg(after_state::text, ' ') from audit_log where school_id = $1 and event_action = 'payments.credentials_saved') as audit from payment_credentials c where c.school_id = $1`, [SCHOOL]);
+  await clearRails();
+  const r = rows[0];
+  const s = railsSeen ?? {};
+  if (!r || r.key_last4 !== 'ON01' || r.saved_from !== 'school' || !String(s.saved).includes('ON01')) throw new Error(`the keys were not saved with their last four characters shown: ${JSON.stringify({ last4: r?.key_last4, saved: s.saved })}`);
+  for (const secret of [HARNESS_KEYS.secret, HARNESS_KEYS.hook, HARNESS_KEYS.id]) {
+    if (String(s.html).includes(secret)) throw new Error('a key is still in the page after saving');
+    if (String(r.ciphertext).includes(secret) || String(r.audit).includes(secret)) throw new Error('a key is in the database as typed');
+  }
+  if (s.fields !== '') throw new Error('the form still holds the key secret after saving');
 };
 // The sibling rule (C168): with the rule on and two children of 5-A linked as
 // one family, "Check sibling concessions" proposes one concession, for the
@@ -684,6 +727,7 @@ const SCREENS = [
   ['principal', 'app-taught-today', '/app/syllabus'],
   ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],
   ['teacher', 'app-settings-teacher', '/app/settings', settingsReadOnly],
+  ['principal', 'app-settings-payments', '/app/settings', saveGatewayKeys, saveGatewayKeysDone],
   ['principal', 'app-account', '/app/account'],
   ['principal', 'app-help', '/app/help'],
   ['principal', 'app-tickets', '/app/help/ticket'],
@@ -780,6 +824,8 @@ const childEnv = {
   AI_PROVIDER: 'stand-in',
   // Online payments answer from the stand-in provider, never a real gateway (C169).
   PAYMENT_PROVIDER: 'stand-in',
+  // A key for this run only, so saving a gateway's keys can be shown (C171). It is made here, used here and never written anywhere.
+  PAYMENT_CREDENTIALS_KEY: randomBytes(32).toString('base64'),
   PAYMENT_STANDIN_SECRET: `${secret}-payments-stand-in-secret-0123456789`,
   DATABASE_URL: db.url,
   APP_SESSION_SECRET: secret,

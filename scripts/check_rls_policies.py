@@ -257,6 +257,11 @@ ALLOWED_PERMISSIVE = (
         ("payment_links", "payment_links_tenant_isolation"),
         # C169: tenant isolation only; narrowed by the RESTRICTIVE payment_events_finance, required below. app_user holds SELECT only.
         ("payment_events", "payment_events_tenant_isolation"),
+        # C171: tenant isolation only; each narrowed by RESTRICTIVE policies required below. payment_credentials has no grant for app_user at all.
+        ("payment_methods", "payment_methods_tenant_isolation"),
+        ("payment_gateway_access", "payment_gateway_access_tenant_isolation"),
+        ("payment_credentials", "payment_credentials_tenant_isolation"),
+        ("payment_evidence", "payment_evidence_tenant_isolation"),
         ("payment_link_lines", "payment_link_lines_tenant_isolation"),
         # C154: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("ai_usage", "ai_usage_tenant_isolation"),
@@ -347,6 +352,13 @@ REQUIRED_RESTRICTIVE = {
     # C168: payment links and their lines are the finance roles'; a link is made in one's own name.
     ("payment_links", "payment_links_finance"),
     ("payment_events", "payment_events_finance"),
+    # C171: payment rails.
+    ("payment_methods", "payment_methods_finance_read"),
+    ("payment_methods", "payment_methods_office_insert"),
+    ("payment_methods", "payment_methods_office_update"),
+    ("payment_gateway_access", "payment_gateway_access_finance"),
+    ("payment_credentials", "payment_credentials_nobody"),
+    ("payment_evidence", "payment_evidence_finance"),
     ("payment_links", "payment_links_made_as_self"),
     ("payment_link_lines", "payment_link_lines_finance"),
     ("receipts", "receipts_issue_as_self"),
@@ -407,7 +419,8 @@ def parse_migrations(migrations_dir: Path) -> dict:
             name, table = m.group("name"), m.group("table")
             if "%" in name:
                 continue  # templated form (%I_...), already handled above
-            tail = text[m.end() : m.end() + 200]
+            # Only this statement: a short policy must not be read with the next statement's FOR clause (C171).
+            tail = text[m.end() : m.end() + 200].split(";")[0]
             is_permissive = "restrictive" not in tail[:40].lower()
             cmd_match = FOR_CMD_RE.search(tail)
             cmd = cmd_match.group(1).upper() if cmd_match else "ALL"
