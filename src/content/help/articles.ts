@@ -674,6 +674,28 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['follow up', 'overdue', 'promise', 'hardship', 'refund', 'recovery', 'fees', 'बकाया', 'वादा', 'वापसी'],
   },
   {
+    slug: 'message-states',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'See where each message to a parent got to', hi: 'देखें कि अभिभावक को गया हर संदेश कहाँ तक पहुँचा' },
+    summary: {
+      en: 'Every WhatsApp message your school sends is listed with its state: sent, delivered, read, failed, or held back with the reason.',
+      hi: 'आपके स्कूल का भेजा हर WhatsApp संदेश अपनी स्थिति के साथ सूची में है: भेजा गया, पहुँचा, पढ़ा गया, विफल, या कारण के साथ रोका गया।',
+    },
+    steps: [
+      { en: 'Open “Communication”. “Messages to parents” lists the last days, newest first.', hi: '“Communication” खोलें। “Messages to parents” में पिछले दिनों के संदेश हैं, सबसे नया पहले।' },
+      { en: 'Tap “Failed” to see the messages that could not be delivered, then check that guardian’s number on the student’s page.', hi: 'जो संदेश नहीं पहुँच सके उन्हें देखने के लिए “Failed” दबाएँ, फिर विद्यार्थी के पेज पर उस अभिभावक का नंबर जाँचें।' },
+      { en: 'Tap “Held back” to see what was not sent and why.', hi: 'क्या नहीं भेजा गया और क्यों, यह देखने के लिए “Held back” दबाएँ।' },
+    ],
+    tips: [
+      { en: 'A message held back because the parent has not agreed is not sent later by itself. Record the parent’s consent on the student’s page first.', hi: 'अभिभावक की सहमति न होने से रोका गया संदेश बाद में अपने आप नहीं जाता। पहले विद्यार्थी के पेज पर अभिभावक की सहमति दर्ज करें।' },
+      { en: 'While WhatsApp is not connected, the page says so: messages are recorded, and none reaches a phone.', hi: 'जब तक WhatsApp जुड़ा नहीं है, पेज यह बताता है: संदेश दर्ज होते हैं, पर कोई भी फ़ोन तक नहीं पहुँचता।' },
+    ],
+    start: { href: '/app/communication', label: { en: 'Communication', hi: 'Communication' } },
+    related: ['whatsapp-settings', 'mark-attendance'],
+    keywords: ['message', 'whatsapp', 'delivered', 'read', 'failed', 'held', 'communication', 'संदेश', 'पहुँचा'],
+  },
+  {
     slug: 'whatsapp-settings',
     category: 'support',
     audience: 'office',

@@ -45,6 +45,8 @@ export interface WhatsAppProvider {
 // The older name, kept for the gate's callers.
 export type WhatsAppProviderSPI = WhatsAppProvider;
 
+// The header the stand-in's webhook carries its signature in.
+export const STAND_IN_SIGNATURE_HEADER = 'x-standin-signature';
 export const signStandInNotice = (secret: string, rawBody: string): string => createHmac('sha256', secret).update(rawBody).digest('hex');
 const STATUSES = ['sent', 'delivered', 'read', 'failed'];
 const isIso = (v: unknown): v is string => typeof v === 'string' && v.length <= 40 && !Number.isNaN(Date.parse(v));

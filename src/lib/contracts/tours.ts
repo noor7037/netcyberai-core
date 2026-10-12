@@ -28,6 +28,7 @@ export const TOURS = {
   'taught-today': { steps: [{ slot: 'body' }, { slot: 'body' }] },
   timetable: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   pulse: { steps: [{ slot: 'body' }, { slot: 'body' }] },
+  communication: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   homework: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   recovery: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   copilot: { steps: [{ slot: 'body' }, { slot: 'body' }] },

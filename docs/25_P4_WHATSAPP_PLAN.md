@@ -27,7 +27,7 @@ contrast, 44 px targets, no invented numbers.
 | Inbound | `webhook_events` (provider `whatsapp` allowed, unique payload hash). **0 rows in both databases; no route writes to it.** No table for a parent's message or a thread. |
 | Cost | `message_rate_table` (rate and GST per category from a date, with where and when it was verified): **0 rows in both databases.** The gate records cost from it, or zero with `rate_not_verified`. Control shows cost per school and category for 30 days and says which categories have no rate (`src/lib/control/messaging-cost.ts`). `billable` is set at send; Meta charges on delivery. |
 | Daily Pulse | `pulse_messages`, `pulse_response_log`, `pulse_followups`; drafts and the needs-help queue are live (P2). Nothing is sent. |
-| Screens | Communication is partly live (what was held back, and why). Parents, PTM, Events, Complaints and Parent AI are "coming" pages. Guardians, consent and data requests live on the student's page. |
+| Screens | Communication was a "coming" page until slice 7b (My Day counted held messages; corrected in C183). Parents, PTM, Events, Complaints and Parent AI are "coming" pages. Guardians, consent and data requests live on the student's page. |
 | Schools | Test database: 2 schools, both test schools, both pilot with outbound not approved, neither with a budget. Production: none. So nothing can leave today, by four separate rules. |
 | Fees (P3) | Reminders go by email (C179). The payer page shows "Payment initiated" on screen only. Receipts are on screen and in print. |
 
@@ -64,7 +64,7 @@ contrast, 44 px targets, no invented numbers.
 4. **Quiet hours hold; they do not drop.** A held message is sent after
    quiet hours unless it has gone stale (each template says how long it
    stays worth sending).
-5. **A template is sent only in an approved version.** Our wording and
+5. **Every template's first line names the school** ("<School name>: …"), because one platform number serves every school (C183). **A template is sent only in an approved version.** Our wording and
    Meta's approval are recorded separately. A change of words is a new
    version; the old one stays for the record.
 6. **Free text only inside the 24-hour window** that a parent's own message
