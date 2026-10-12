@@ -45,10 +45,10 @@ live feature.
 |---|---|---|---|---|---|
 | Fee heads, structures, items | School app | stub | `fee_heads`, `fee_structures`, `fee_structure_items` | Schema only | sessions, classes |
 | Student fee obligations / ledger | School app | stub | `fees_ledger` | Schema only | fee structures |
-| Payments, reconciliation | School app | stub | `payments`, `webhook_events` | Schema only (Razorpay keys unconfirmed, task 89) | ledger |
+| Payments, reconciliation | School app | live (counter, 6c) | `payments`, `receipts`, `payment_links`, `payment_events` | Counter and stand-in gateway built (6c, 6f). Next per `24`: direct UPI with bank-statement proof (6h); Razorpay built and dormant behind credentials (6f-2) | ledger |
 | Concessions | School app | none | `fee_concessions` | Schema only | ledger |
 | Reminders on WhatsApp | Parent | none | send-gate + templates | Not built (gate exists) | ledger, consent |
-| Receipts (PDF) | Parent | none | none | Not built | payments |
+| Receipts | School app, payer page | live | `receipts` | Numbered, printable (6c); online receipts share the series (6f) | payments |
 | Financial clearance → certificate gate | School app | none | `certificate_requests` | Schema only | ledger |
 
 ## Communication

@@ -98,6 +98,8 @@ medium with a security read.
 | **6d. Overdue, part-paid past due, late fee** | The nightly job marks a pending fee `overdue` once India's date passes its due date. A late fee, if the school has switched it on in settings (off by default, C158), is raised by the same job as a new due line. A part-paid fee past its date is `overdue` too, on its remaining balance. Dashboards and My Day read the stored status and the balance. | The status trigger uses India's date and the balance; a `fee_status_runs` row per night (how many changed, the reconciliation result). | A fee due yesterday (India) is overdue after the job and not before midnight India time (fixed clock). A fee of ₹1,000 with ₹400 paid, past its date, counts ₹600 overdue. The job run twice changes nothing the second time. |
 | **6e. Sibling concession and family dues** | A sibling rule in Fees settings (which child, which heads, how much), proposed from **confirmed** family links only, approved by a person, ended when a sibling leaves. The family dues screen: every child's lines and one total. | Fees settings schema; `fee_concessions.source` (rule or person) and `family_id`. | Two confirmed siblings: the rule proposes the concession for the right child and nothing applies until approved. An unconfirmed link proposes nothing. When a sibling is marked transferred the concession ends from that date and later dues are raised without it. The family total equals the sum of its children's balances. |
 | **6f. Payment link and the stand-in provider** | `PaymentProvider` (as `FileStorage` and `AIProvider`): create a link for a family's dues, receive the gateway's notice, apply it once, issue the receipt. A stand-in provider for tests and the harness. The Razorpay adapter is added, behind the same interface, when the founder's test keys exist. | `payment_links` (family, amount, lines covered, status, provider reference); a unique gateway payment id on `payments`. | With the stand-in: a link for a family covers exactly its open lines; the notice applies the money oldest first and issues one receipt; the same notice twice changes nothing; a notice with a wrong signature or amount is refused and logged. Nothing is ever marked paid by a browser redirect alone. |
+| **6f-2. Payment rails: methods per school, credentials, Razorpay dormant** (C170, `24` §3.2, §3.8) | Collection methods per school (counter, direct UPI, Razorpay, stand-in), shown on the payer page. An encrypted, write-only credential store set from Control or the school's Settings. The Razorpay adapter (Payment Links, signed webhook, server-side fetch before credit) fully built and **off until keys are entered and "Test connection" passes**. A webhook address per school configuration. | `payment_methods`, `payment_credentials`, `payment_evidence` (unique source + external id); `payment_links.method`. | `24` §6 Razorpay bullets. No credential in any response, log or audit row. The stand-in still never runs in production. |
+| **6h. Direct UPI with bank-statement proof** (C170, `24` §3.3–3.7) | The school's own merchant UPI ID on the payer page (QR, "Open UPI app", reference code); "I have paid" with the UTR (never proof); bank accounts and a statement column mapping; statement upload with preview; matching by R1/R2 only; the exceptions list with a manual match that requires a bank row; counter UPI and cheques reconciled against the statement; the upload reminder and the nightly alert. | `bank_accounts`, `bank_statement_imports`, `bank_credit_rows`, `payment_reports`; `payment_links.reference_code`. | `24` §6. Split into two PRs if over ~1,500 lines (import + matching, then the payer page + exceptions). |
 | **6g. Fee recovery, reminders, clearance** | The daily follow-up list for the office (amount, age, last contact); record a promise to pay with a date; mark hardship, which stops reminders and opens a concession request for a person to decide. Email reminders at −3, 0 and +7 days with the link. The clearance gate on certificates. | `fee_followups` (family, kind: call, promise, hardship; promise date; outcome; by whom); `fee_reminders` (family, due line, which reminder, sent or held and why). | A family with a promise open gets no reminder until the promise date passes. Hardship stops every reminder and creates a concession request; nothing is conceded until a person approves. No family gets more than one reminder a day. A certificate for a student with dues is held, and an override needs a reason and is audited. |
 
 ## 5. Decisions the plan makes, unless told otherwise
@@ -126,6 +128,10 @@ medium with a security read.
 - **A signed notice with another amount** (decided in the build, C169): not
   refused. The money moved, so it is credited as far as dues are owed and
   any excess is recorded for a refund by hand.
+- **How parents pay** (decided, C170, `24`): direct UPI to the school's own
+  merchant UPI ID, proven by the bank statement; a gateway only where a
+  school switches one on with its own keys. Never a screenshot or an
+  unverified UTR.
 - **Reminders.** Email only in P3, to the guardian's email if there is one.
   A family with no email is on the follow-up list and gets no reminder.
 - **Sibling rule default** (decided, C158). None. Each school sets its own,
@@ -135,17 +141,22 @@ medium with a security read.
 
 Nothing for 6a to 6e, the stand-in part of 6f, or 6g.
 
-For the **Razorpay adapter in 6f** only, because they cannot exist without
-him: Razorpay sign-up (KYC) and the **test** keys. Needed when 6f's stand-in
-is merged, not before. Live keys are a launch item, not a P3 item.
+**Changed by C170 (`24`):** Razorpay KYC is **no longer needed for P3**.
+Direct UPI with bank-statement proof (6h) needs nothing from Noor to build.
+The Razorpay adapter (6f-2) is built and stays off until a school's keys are
+entered. Before the first school goes live: the pilot school's bank, its
+merchant UPI ID and one real statement (with permission), gathered in
+conversations Noor already has. Optional: approach BOUs for Bharat Connect
+(`24` §4).
 
 **Real concession types** (roadmap input): the six kinds already in the
 schema are used until a real school's list is known.
 
 ## 7. Limits of what I can verify
 
-- No real money moves in P3 until the test keys exist; the loop is proven
-  on the stand-in provider and in the tests.
+- No real money moves until a pilot school's real UPI ID and statement are
+  used (`24` §6 live-readiness gate); the loops are proven on the stand-in,
+  recorded Razorpay examples, sample statements and the tests.
 - Email reminders are proven up to the job queue and the sender's
   interface; delivery to a real inbox depends on the deferred cutover
   (`18` §0), as sign-in emails do.
