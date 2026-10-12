@@ -582,6 +582,26 @@ const feeRecoveryDone = async () => {
   await clearFollowUps();
   if (rows[0].calls < 1 || rows[0].promises !== 1 || !recoverySeen?.families || recoverySeen.refundsShown !== 1) throw new Error(`fee recovery: ${JSON.stringify({ ...rows[0], ...recoverySeen })}`);
 };
+// Fee clearance (C179): the principal picks a student who owes at the fee counter, sees the certificate is held,
+// and lets it through with a reason. The override is one audited row; it is removed afterwards.
+const feeClearanceScreen = async (page) => {
+  await db.pg.query(`delete from fee_clearance_overrides where school_id = $1`, [SCHOOL]);
+  const owing = (await db.pg.query(`select s.name, c.name as class_name from fees_ledger l join students s on s.student_id = l.student_id join classes c on c.class_id = s.class_id where l.school_id = $1 and l.amount_minor > coalesce((select sum(p.amount_minor) from payments p where p.fee_id = l.fee_id), 0) order by s.name limit 1`, [SCHOOL])).rows[0];
+  if (!owing) throw new Error('no student of the fixture school owes a fee');
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.selectOption('#pay-class', { label: owing.class_name });
+  await page.waitForFunction(() => document.querySelectorAll('#pay-student option').length > 1, null, { timeout: 15000 });
+  await page.selectOption('#pay-student', { label: owing.name });
+  await page.locator('[data-clearance="held"]').waitFor({ timeout: 20000 });
+  await page.locator('#clearance-reason').fill('The family is moving city; the trust has agreed');
+  await page.locator('[data-clearance-override]').click();
+  await page.locator('[data-clearance="cleared"]').waitFor({ timeout: 20000 });
+};
+const feeClearanceScreenDone = async () => {
+  const { rows } = await db.pg.query(`select (select count(*)::int from fee_clearance_overrides where school_id = $1) as n, (select count(*)::int from audit_log where school_id = $1 and event_action = 'fees.clearance_overridden' and occurred_at > now() - interval '5 minutes') > 0 as audited`, [SCHOOL]);
+  await db.pg.query(`delete from fee_clearance_overrides where school_id = $1`, [SCHOOL]);
+  if (rows[0].n !== 1 || rows[0].audited !== true) throw new Error(`fee clearance: ${JSON.stringify(rows[0])}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -894,6 +914,7 @@ const SCREENS = [
   ['principal', 'app-fees-pay-online', '/app/fees', payOnline, payOnlineDone],
   ['principal', 'app-fees-pay-upi', '/app/fees', payByUpi, payByUpiDone],
   ['principal', 'app-fees-recovery', '/app/fees', feeRecovery, feeRecoveryDone],
+  ['principal', 'app-fees-clearance', '/app/fees', feeClearanceScreen, feeClearanceScreenDone],
   ['principal', 'app-fees-bank', '/app/fees', bankStatement, bankStatementDone],
   ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],

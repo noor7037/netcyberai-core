@@ -112,7 +112,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // Fees (C159): the day of the month a due falls on unless the office picks another.
   {
     moduleId: 'fees',
-    version: 5,
+    version: 6,
     fields: [
       {
         key: 'due_day',
@@ -148,6 +148,18 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         default: 20,
         min: 1,
         max: 500,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      // Fee reminders by email to guardians (docs/23 6g, C179): off unless the school switches them on.
+      {
+        key: 'reminders_enabled',
+        label: 'Email fee reminders to guardians',
+        help: 'When on, a guardian with an email address is reminded 3 days before a fee is due, on the day, and 7 days after, with the payment link. One email a family a day. No reminder goes while a promise to pay or hardship is open. Off until you switch it on.',
+        section: 'Reminders',
+        type: 'boolean',
+        default: false,
         required: true,
         editableBy: OFFICE,
         affectsExistingRecords: false,

@@ -267,6 +267,8 @@ ALLOWED_PERMISSIVE = (
         # C176: tenant isolation only; each narrowed by the RESTRICTIVE policies required below.
         ("fee_followups", "fee_followups_tenant_isolation"),  # C178: narrowed to the finance roles below
         ("fee_refunds", "fee_refunds_tenant_isolation"),
+        ("fee_reminders", "fee_reminders_tenant_isolation"),  # C179
+        ("fee_clearance_overrides", "fee_clearance_overrides_tenant_isolation"),
         ("school_holidays", "school_holidays_tenant_isolation"),
         ("bank_accounts", "bank_accounts_tenant_isolation"),
         ("bank_statement_imports", "bank_statement_imports_tenant_isolation"),
@@ -374,6 +376,9 @@ REQUIRED_RESTRICTIVE = {
     ("fee_followups", "fee_followups_as_self"),
     ("fee_refunds", "fee_refunds_finance"),
     ("fee_refunds", "fee_refunds_as_self"),
+    ("fee_reminders", "fee_reminders_finance"),
+    ("fee_clearance_overrides", "fee_clearance_overrides_office"),
+    ("fee_clearance_overrides", "fee_clearance_overrides_finance"),
     ("school_holidays", "school_holidays_office_insert"),
     ("school_holidays", "school_holidays_office_delete"),
     ("bank_accounts", "bank_accounts_finance"),
