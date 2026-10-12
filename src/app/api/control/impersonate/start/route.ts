@@ -5,6 +5,7 @@ import { fetchActiveMemberships, fetchLiveUser } from '@/lib/auth/resolve';
 import { signAccessToken } from '@/lib/auth/jwt';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
+import { membershipToViewAs } from '@/lib/control/people';
 import { ACCESS_COOKIE, IMPERSONATION_RETURN_COOKIE, IMPERSONATION_TTL_SECONDS, cookieOptions } from '@/lib/auth/cookies';
 
 // Task 5: impersonation resolves to the target's REAL membership row and
@@ -19,24 +20,25 @@ export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const targetUserId = typeof body?.targetUserId === 'string' ? body.targetUserId : '';
   const reason = typeof body?.reason === 'string' ? body.reason.trim() : '';
-  if (!targetUserId || !reason) {
-    return NextResponse.json({ error: 'targetUserId and a non-empty reason are required' }, { status: 400 });
+  const membershipId = typeof body?.membershipId === 'string' && body.membershipId ? body.membershipId : null;
+  if (!targetUserId || !reason || reason.length > 300) {
+    return NextResponse.json({ error: 'targetUserId and a reason of at most 300 characters are required' }, { status: 400 });
   }
 
+  // The membership the founder chose on that school's page (C165), never
+  // simply the person's first. Only its id comes from the request: the row
+  // is read here, and must be this person's own and active. The school and
+  // the role come from the row.
   const memberships = await fetchActiveMemberships(targetUserId);
-  const membership = memberships[0];
+  const membership = membershipToViewAs(memberships, membershipId);
   if (!membership) {
-    return NextResponse.json({ error: 'target user has no active membership to impersonate into' }, { status: 404 });
+    const unclear = !membershipId && memberships.length > 1;
+    return NextResponse.json({ error: unclear ? 'this person belongs to more than one school: say which membership' : 'this person has no such active membership' }, { status: unclear ? 400 : 404 });
   }
   const targetLive = await fetchLiveUser(targetUserId).catch(() => null);
   if (!targetLive || !targetLive.is_active) {
     return NextResponse.json({ error: 'target user is not active' }, { status: 409 });
   }
-  // [GAP] a target with multiple active memberships is impersonated into
-  // the first (oldest) one only -- PRD §2.3 doesn't specify a school
-  // picker for this flow, and this prompt's scope is the mechanism, not
-  // every UI affordance around it.
-
   const expiresAt = new Date(Date.now() + IMPERSONATION_TTL_SECONDS * 1000);
 
   let impersonationId: string;
