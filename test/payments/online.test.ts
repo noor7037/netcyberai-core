@@ -4,7 +4,7 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { cancelPaymentLink, createPaymentLink } from '@/lib/fees/family';
 import { getReceipt, reconcile, takePayment } from '@/lib/fees/payments';
 import { applyProviderEvent, handleNotice, linkForPayer, planCapture } from '@/lib/payments/apply';
-import { configuredPaymentProvider, signStandIn, standInPaymentProvider } from '@/lib/payments/provider';
+import { STAND_IN_SIGNATURE_HEADER, configuredPaymentProvider, signStandIn, standInPaymentProvider } from '@/lib/payments/provider';
 
 // Online payments on the stand-in provider (docs/23 6f, C169). The promise
 // under test: a provider's notice is believed only if its signature holds,
@@ -13,22 +13,23 @@ import { configuredPaymentProvider, signStandIn, standInPaymentProvider } from '
 
 const SECRET = 'a-stand-in-secret-used-only-in-these-tests-0123456789';
 const provider = standInPaymentProvider(SECRET);
+const sig = (value: string | null) => (name: string) => (name === STAND_IN_SIGNATURE_HEADER ? value : null);
 let n = 0;
 const notice = (type: 'payment.captured' | 'payment.failed', order: string, payment: string, amount: number, id = `evt_${++n}`) => JSON.stringify({ id, type, order, payment, amount });
 
 describe('the provider door', () => {
   const raw = notice('payment.captured', 'order_1', 'pay_1', 150050, 'evt_fixed');
   it('reads a notice only when its signature holds', () => {
-    expect(provider.readNotice(raw, signStandIn(SECRET, raw))).toEqual({ eventId: 'evt_fixed', type: 'captured', providerRef: 'order_1', paymentId: 'pay_1', amountMinor: 150050 });
-    expect(provider.readNotice(raw, null)).toBeNull();
-    expect(provider.readNotice(raw, 'not-a-signature')).toBeNull();
-    expect(provider.readNotice(raw, signStandIn('another-secret-another-secret-another-secret', raw))).toBeNull();
+    expect(provider.readNotice(raw, sig(signStandIn(SECRET, raw)))).toEqual({ eventId: 'evt_fixed', type: 'captured', providerRef: 'order_1', paymentId: 'pay_1', amountMinor: 150050 });
+    expect(provider.readNotice(raw, sig(null))).toBeNull();
+    expect(provider.readNotice(raw, sig('not-a-signature'))).toBeNull();
+    expect(provider.readNotice(raw, sig(signStandIn('another-secret-another-secret-another-secret', raw)))).toBeNull();
     // The body changed after signing (the amount raised): the old signature no longer holds.
-    expect(provider.readNotice(raw.replace('150050', '999999'), signStandIn(SECRET, raw))).toBeNull();
+    expect(provider.readNotice(raw.replace('150050', '999999'), sig(signStandIn(SECRET, raw)))).toBeNull();
   });
   it('refuses a signed notice that is not well formed', () => {
     for (const bad of ['not json', JSON.stringify({ id: 'e', type: 'payment.refunded', order: 'o', payment: 'p', amount: 1 }), JSON.stringify({ id: 'e', type: 'payment.captured', order: 'o', payment: 'p', amount: 10.5 }), JSON.stringify({ id: 'e', type: 'payment.captured', order: 'o', payment: 'p', amount: -1 }), JSON.stringify({ type: 'payment.captured', order: 'o', payment: 'p', amount: 1 })])
-      expect(provider.readNotice(bad, signStandIn(SECRET, bad)), bad).toBeNull();
+      expect(provider.readNotice(bad, sig(signStandIn(SECRET, bad))), bad).toBeNull();
   });
   it('the stand-in is never the provider of a production build, and never without its own secret', () => {
     expect(configuredPaymentProvider({ NODE_ENV: 'production', PAYMENT_PROVIDER: 'stand-in' }, SECRET)).toBeNull();
@@ -98,7 +99,7 @@ const platform = (fn: (client: any) => Promise<any>): Promise<any> =>
     return fn(tx);
   });
 const actor = (who: Who) => ({ schoolId: who.school, userId: who.user, role: who.role as never });
-const send = (raw: string, signature: string | null = signStandIn(SECRET, raw)) => handleNotice(platform, provider, raw, signature);
+const send = (raw: string, signature: string | null = signStandIn(SECRET, raw)) => handleNotice(platform, provider, raw, (name) => (name === STAND_IN_SIGNATURE_HEADER ? signature : null));
 const due = (student: string, amount: number, date: string) => db.pg.query(`insert into fees_ledger (school_id, student_id, amount_minor, due_date) values ($1, $2, $3, $4)`, [A, student, amount, date]);
 const makeLink = async (amountMinor: number | null = null) => {
   const r = await as(accountant, (c) => createPaymentLink(c, actor(accountant), { studentId: ASHA, amountMinor }, provider));
@@ -138,7 +139,7 @@ describe('on the real schema', () => {
   it('a captured payment for the link’s amount credits exactly its lines and issues one numbered receipt, like the counter’s', async () => {
     first = await makeLink();
     expect(first.amountMinor).toBe(380100);
-    expect(await platform((c) => linkForPayer(c, first.token))).toEqual({ schoolName: 'School A', amountMinor: 380100, state: 'open', receiptNo: null, provider: 'stand-in', providerRef: first.ref });
+    expect(await platform((c) => linkForPayer(c, first.token))).toEqual({ schoolName: 'School A', amountMinor: 380100, state: 'open', receiptNo: null, provider: 'stand-in', providerRef: first.ref, checkoutUrl: `/pay/${first.token}`, testMode: true });
     firstRaw = notice('payment.captured', first.ref, 'pay_one', 380100);
     const got = await send(firstRaw);
     expect(got).toMatchObject({ status: 200, result: { outcome: 'applied', appliedMinor: 380100, unappliedMinor: 0 } });
@@ -250,7 +251,7 @@ describe('on the real schema', () => {
     expect((await as(principalB, (c) => c.query(`select 1 from payment_events`))).rows).toEqual([]);
     await expect(as(accountant, (c) => c.query(`insert into payment_events (provider, event_id, kind, outcome) values ('stand-in', 'evt_fake', 'captured', 'applied')`))).rejects.toThrow(/permission denied/);
     await expect(as(accountant, (c) => c.query(`update payment_events set outcome = 'applied'`))).rejects.toThrow(/permission denied/);
-    expect(Object.keys((await platform((c) => linkForPayer(c, first.token))) ?? {}).sort()).toEqual(['amountMinor', 'provider', 'providerRef', 'receiptNo', 'schoolName', 'state']);
+    expect(Object.keys((await platform((c) => linkForPayer(c, first.token))) ?? {}).sort()).toEqual(['amountMinor', 'checkoutUrl', 'provider', 'providerRef', 'receiptNo', 'schoolName', 'state', 'testMode']);
     for (const bad of ['', 'short', `${first.token}'; drop table receipts; --`]) expect(await platform((c) => linkForPayer(c, bad))).toBeNull();
     // A link made with no provider configured cannot be paid online.
     await due(BILAL, 3000, '2026-08-10');

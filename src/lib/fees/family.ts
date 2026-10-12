@@ -80,7 +80,7 @@ export async function openLink(db: PoolClient, schoolId: string, studentId: stri
 // `amountMinor` null means everything the family owes today. With a payment
 // provider, a checkout is opened for the link and its reference kept; without
 // one the link is a record that cannot be paid online.
-export async function createPaymentLink(db: PoolClient, actor: Actor, input: { studentId: string; amountMinor: number | null }, provider: PaymentProvider | null = null): Promise<LinkResult> {
+export async function createPaymentLink(db: PoolClient, actor: Actor, input: { studentId: string; amountMinor: number | null }, provider: PaymentProvider | null = null, configId: string | null = null): Promise<LinkResult> {
   if (!FINANCE.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   const student = (await db.query(`select family_id from fee_billing_students() where school_id = $1 and student_id = $2`, [actor.schoolId, input.studentId])).rows[0];
   if (!student) return { ok: false, reason: 'unknown_student' };
@@ -102,9 +102,10 @@ export async function createPaymentLink(db: PoolClient, actor: Actor, input: { s
   const linkId = made.rows[0].link_id as string;
   await db.query(`insert into payment_link_lines (school_id, link_id, fee_id, amount_minor) select $1, $2, n.fee_id, n.amount from unnest($3::uuid[], $4::bigint[]) as n(fee_id, amount)`, [actor.schoolId, linkId, split.lines.map((l) => l.feeId), split.lines.map((l) => l.amountMinor)]);
   if (provider) {
-    const token = (await db.query(`select token from payment_links where link_id = $1`, [linkId])).rows[0].token as string;
-    const checkout = await provider.createCheckout({ linkId, token, amountMinor: amount });
-    await db.query(`update payment_links set provider = $3, provider_ref = $4 where school_id = $1 and link_id = $2`, [actor.schoolId, linkId, provider.name, checkout.providerRef]);
+    const row = (await db.query(`select token, expires_at from payment_links where link_id = $1`, [linkId])).rows[0];
+    // If the provider cannot open a checkout this throws, and the link is not made at all.
+    const checkout = await provider.createCheckout({ linkId, token: row.token as string, amountMinor: amount, expiresAt: new Date(row.expires_at as string) });
+    await db.query(`update payment_links set provider = $3, provider_ref = $4, checkout_url = $5, config_id = $6 where school_id = $1 and link_id = $2`, [actor.schoolId, linkId, provider.name, checkout.providerRef, checkout.checkoutUrl, configId]);
   }
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.payment_link_created', targetType: 'payment_links', targetId: linkId, beforeState: undefined, afterState: { amountMinor: amount, lines: split.lines.length, children: split.perChild.length } });
   return { ok: true, link: (await openLink(db, actor.schoolId, input.studentId)) as PaymentLink, created: true };

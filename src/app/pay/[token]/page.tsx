@@ -36,7 +36,20 @@ export default async function PayPage({ params }: { params: { token: string } })
           <div data-pay-state={link.state} className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4 text-sm">
             {link.state === 'paid' && both((lang) => t(lang, 'payer.paid', { receipt: link.receiptNo ?? '' }))}
             {link.state === 'closed' && both((lang) => t(lang, 'payer.closed'))}
-            {link.state === 'open' && (provider?.name === 'stand-in' && link.provider === 'stand-in' ? <StandInPayButton token={params.token} labels={{ pay: t('en', 'payer.standin.pay'), note: t('en', 'payer.standin.note'), failed: t('en', 'payer.standin.failed') }} /> : both((lang) => t(lang, 'payer.notOn')))}
+            {link.state === 'open' && link.testMode && link.provider !== 'stand-in' && both((lang) => t(lang, 'payer.testMode'))}
+            {link.state === 'open' &&
+              (provider?.name === 'stand-in' && link.provider === 'stand-in' ? (
+                <StandInPayButton token={params.token} labels={{ pay: t('en', 'payer.standin.pay'), note: t('en', 'payer.standin.note'), failed: t('en', 'payer.standin.failed') }} />
+              ) : link.provider && link.provider !== 'stand-in' && link.checkoutUrl?.startsWith('https://') ? (
+                <>
+                  {both((lang) => t(lang, 'payer.gateway.note'))}
+                  <a data-gateway-pay href={link.checkoutUrl} rel="noopener noreferrer" className="inline-flex min-h-[48px] items-center justify-center rounded-md bg-sapphire px-5 text-base font-semibold text-white">
+                    {t('en', 'payer.gateway.pay')} · {t('hi', 'payer.gateway.pay')}
+                  </a>
+                </>
+              ) : (
+                both((lang) => t(lang, 'payer.notOn'))
+              ))}
           </div>
         </>
       )}

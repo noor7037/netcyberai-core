@@ -15,16 +15,24 @@ import { createHmac, timingSafeEqual } from 'crypto';
 export type ProviderEvent = {
   eventId: string; // the provider's id for this notice: the same notice sent again carries the same id
   type: 'captured' | 'failed';
-  providerRef: string; // the provider's reference for the checkout (its order id)
+  providerRef: string; // the provider's reference for the checkout (its order or payment-link id); '' when the notice does not carry it
+  ourLinkId?: string; // our own link id, when the provider hands back the note we attached to the checkout
   paymentId: string; // the provider's id for this one payment attempt
   amountMinor: number; // what was captured, in paise
 };
+// A notice whose signature holds but which is not about a payment we credit (a link expired, a refund made in the dashboard).
+export type IgnoredNotice = { ignored: string };
+export type Header = (name: string) => string | null;
 
 export interface PaymentProvider {
   readonly name: string;
-  createCheckout(link: { linkId: string; token: string; amountMinor: number }): Promise<{ providerRef: string; checkoutUrl: string }>;
+  createCheckout(link: { linkId: string; token: string; amountMinor: number; expiresAt?: Date }): Promise<{ providerRef: string; checkoutUrl: string }>;
   // The notice, if its signature holds and it is well formed; null otherwise.
-  readNotice(rawBody: string, signature: string | null): ProviderEvent | null;
+  readNotice(rawBody: string, header: Header): ProviderEvent | IgnoredNotice | null;
+  // Ask the provider itself about a captured payment before any credit, so the notice is not the only proof.
+  confirmCapture?(event: ProviderEvent): Promise<{ ok: true } | { ok: false; reason: string }>;
+  // A harmless call that shows whether the keys work, answered in plain words.
+  testConnection?(): Promise<{ ok: boolean; message: string }>;
 }
 
 export const STAND_IN_SIGNATURE_HEADER = 'x-standin-signature';
@@ -40,7 +48,8 @@ export function standInPaymentProvider(secret: string): PaymentProvider {
     async createCheckout(link) {
       return { providerRef: `standin_order_${link.linkId}`, checkoutUrl: `/pay/${link.token}` };
     },
-    readNotice(rawBody, signature) {
+    readNotice(rawBody, header) {
+      const signature = header(STAND_IN_SIGNATURE_HEADER);
       if (!signature || !/^[0-9a-f]{64}$/.test(signature)) return null;
       const expected = Buffer.from(signStandIn(secret, rawBody), 'hex');
       if (!timingSafeEqual(expected, Buffer.from(signature, 'hex'))) return null;
