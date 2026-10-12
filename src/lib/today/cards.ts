@@ -174,13 +174,13 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     },
   },
   {
-    // Still pending with its due date passed: the same rule as the dashboard
-    // (src/lib/fees/overdue.ts).
+    // Past its due date with something still owed, part paid or not: the same
+    // rule as the dashboard (src/lib/fees/overdue.ts).
     type: 'fees-overdue',
     moduleId: 'fees',
     roles: ['principal', 'accountant'],
     async load(db, ctx) {
-      const { rows } = await db.query(`select count(*) as c from fees_ledger where school_id = $1 and ${feeIsOverdueSql()}`, [ctx.schoolId]);
+      const { rows } = await db.query(`select count(*) as c from fees_ledger l where l.school_id = $1 and ${feeIsOverdueSql('l.')} and l.amount_minor > coalesce((select sum(p.amount_minor) from payments p where p.fee_id = l.fee_id), 0)`, [ctx.schoolId]);
       return waiting('fees-overdue', 'fees', n(rows[0]?.c), '/app/fees');
     },
   },

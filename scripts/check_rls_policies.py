@@ -251,6 +251,8 @@ ALLOWED_PERMISSIVE = (
         ("recovery_plans", "recovery_plans_tenant_isolation"),
         # C160: tenant isolation only; narrowed by the RESTRICTIVE receipts_finance and receipts_issue_as_self, required below.
         ("receipts", "receipts_tenant_isolation"),
+        # C163: tenant isolation only; narrowed by the RESTRICTIVE fee_status_runs_finance, required below. app_user holds SELECT only.
+        ("fee_status_runs", "fee_status_runs_tenant_isolation"),
         # C154: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("ai_usage", "ai_usage_tenant_isolation"),
         ("teaching_notes", "teaching_notes_tenant_isolation"),
@@ -335,6 +337,8 @@ REQUIRED_RESTRICTIVE = {
     ("fee_concessions", "fee_concessions_finance_read"),
     # C160: receipts are the finance roles', issued in one's own name.
     ("receipts", "receipts_finance"),
+    # C163: the nightly fee results are the finance roles'.
+    ("fee_status_runs", "fee_status_runs_finance"),
     ("receipts", "receipts_issue_as_self"),
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),

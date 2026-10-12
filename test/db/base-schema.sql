@@ -227,6 +227,16 @@ create table communication_log (
   status comm_status not null default 'queued',
   created_at timestamptz not null default now()
 );
+-- Payments, as the overdue rule reads them (C163): what is overdue is the unpaid balance.
+create table payments (
+  payment_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  fee_id uuid not null references fees_ledger(fee_id),
+  amount_minor bigint not null
+);
+alter table payments enable row level security;
+create policy payments_tenant_isolation on payments using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert on payments to app_user, nca_super;
 alter table fees_ledger enable row level security;
 alter table communication_log enable row level security;
 create policy fees_ledger_tenant_isolation on fees_ledger using (school_id = (current_setting('app.current_tenant_id', true))::uuid);

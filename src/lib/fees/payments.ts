@@ -25,9 +25,9 @@ const REVERSERS: readonly string[] = ['principal', 'school_admin'];
 export const DEFAULT_RECEIPT_FORMAT = 'RCP-{YYYY}-{SEQ:5}';
 type Actor = { schoolId: string; userId: string; role: StaffRole };
 
-export type OpenDue = { fee_id: string; student_id: string; student_name: string; head_name: string | null; period_key: string | null; due_date: string; net_minor: number; paid_minor: number; balance_minor: number };
+export type OpenDue = { fee_id: string; student_id: string; student_name: string; head_name: string | null; period_key: string | null; is_late_fee: boolean; overdue: boolean; due_date: string; net_minor: number; paid_minor: number; balance_minor: number };
 
-const OPEN_DUES = `select l.fee_id, l.student_id, st.name as student_name, h.name as head_name, l.period_key, l.due_date::text as due_date, l.amount_minor as net_minor,
+const OPEN_DUES = `select l.fee_id, l.student_id, st.name as student_name, h.name as head_name, l.period_key, l.late_fee_for is not null as is_late_fee, (l.status::text = 'overdue' or l.due_date < (now() at time zone 'Asia/Kolkata')::date) as overdue, l.due_date::text as due_date, l.amount_minor as net_minor,
          coalesce((select sum(p.amount_minor) from payments p where p.fee_id = l.fee_id), 0) as paid_minor
     from fees_ledger l
     join fee_billing_students() st on st.school_id = l.school_id and st.student_id = l.student_id
@@ -150,10 +150,10 @@ export async function reverseReceipt(db: PoolClient, actor: Actor, receiptId: st
   return { ok: true, reversed: undone.rows.length };
 }
 
-export type ReceiptView = { receipt_id: string; receipt_no: string; issued_at: string; total_minor: number; method: string; reference: string | null; allocation: string; student_name: string; class_name: string | null; family_code: string | null; issued_by_name: string; reversed_at: string | null; reversal_reason: string | null; lines: { student_name: string; head_name: string | null; period_key: string | null; amount_minor: number }[] };
+export type ReceiptView = { receipt_id: string; receipt_no: string; issued_at: string; total_minor: number; method: string; reference: string | null; allocation: string; student_name: string; class_name: string | null; family_code: string | null; issued_by_name: string; reversed_at: string | null; reversal_reason: string | null; lines: { student_name: string; head_name: string | null; period_key: string | null; is_late_fee: boolean; amount_minor: number }[] };
 
 const RECEIPT = `select r.receipt_id, r.receipt_no, r.issued_at, r.total_minor, r.method, r.reference, r.allocation, st.name as student_name, c.name as class_name, f.family_code, u.display_name as issued_by_name, r.reversed_at, r.reversal_reason,
-         coalesce((select jsonb_agg(jsonb_build_object('student_name', ps.name, 'head_name', h.name, 'period_key', l.period_key, 'amount_minor', p.amount_minor) order by l.due_date, l.created_at)
+         coalesce((select jsonb_agg(jsonb_build_object('student_name', ps.name, 'head_name', h.name, 'period_key', l.period_key, 'is_late_fee', l.late_fee_for is not null, 'amount_minor', p.amount_minor) order by l.due_date, l.created_at)
                      from payments p join fees_ledger l on l.fee_id = p.fee_id join fee_billing_students() ps on ps.student_id = l.student_id left join fee_heads h on h.head_id = l.head_id
                     where p.school_id = r.school_id and p.receipt_id = r.receipt_id and p.reverses_payment_id is null), '[]'::jsonb) as lines
     from receipts r

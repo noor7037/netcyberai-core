@@ -4,6 +4,7 @@ import { inviteUserToSchool } from '@/lib/auth/admin-actions';
 import { emailSenderFromEnv } from '@/lib/email/sender';
 import { markProvisioned } from '@/lib/onboarding/applications';
 import { inviteSendHandler } from '@/lib/onboarding/invitations';
+import { feesNightlyHandler } from '@/lib/fees/nightly';
 import { bulkRunHandler } from '@/lib/frameworks/bulk-engine';
 import { ticketNotifyHandler } from '@/lib/support/tickets';
 import { emailSendHandler } from './email-handler';
@@ -32,6 +33,8 @@ export function productionHandlers(): Record<string, JobHandler> {
     'bulk.run': bulkRunHandler({ platform }),
     // A new support ticket: the founder's email (C127).
     'ticket.notify': ticketNotifyHandler({ platform, queue: jobQueue }),
+    // Each night after midnight in India: overdue dues, late fees where a school has them on, the reconciliation check (C163).
+    'fees.nightly': feesNightlyHandler({ platform }),
   };
 }
 

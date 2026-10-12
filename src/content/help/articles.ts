@@ -570,6 +570,29 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['compliance', 'retention', 'form 6', 'fee notice', 'support access', 'audit', 'dpdp', 'नियम', 'डेटा', 'रिकॉर्ड', 'kisne data dekha'],
   },
   {
+    slug: 'fees-overdue-late-fee',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Overdue fees and the late fee', hi: 'बकाया फ़ीस और विलंब शुल्क' },
+    summary: {
+      en: 'Each night the app marks every fee past its due date with money still owed as overdue, part paid or not. A late fee is charged only if the school sets one.',
+      hi: 'हर रात ऐप उस हर फ़ीस को बकाया चिह्नित करता है जिसकी जमा तारीख़ निकल चुकी है और पैसा बाकी है, चाहे कुछ हिस्सा जमा हो। विलंब शुल्क तभी लगता है जब स्कूल उसे तय करे।',
+    },
+    steps: [
+      { en: 'Open “Fees”. The box at the top shows “Overdue”: the money still owed on fees past their due date.', hi: '“Fees” खोलें। ऊपर के बॉक्स में “Overdue” दिखता है: जमा तारीख़ निकल चुकी फ़ीस पर बाकी पैसा।' },
+      { en: 'Under “Take a payment”, choose the student. A due past its date is marked “Overdue”.', hi: '“Take a payment” के नीचे विद्यार्थी चुनें। जिस देय राशि की तारीख़ निकल चुकी है, उस पर “Overdue” लिखा होता है।' },
+      { en: 'To charge a late fee, the principal or the school admin goes to “Late fee”, types the “Late fee, in rupees (0 for none)” and the “Days of grace after the due date”, and presses “Save late fee”.', hi: 'विलंब शुल्क लगाने के लिए प्रिंसिपल या स्कूल एडमिन “Late fee” में जाकर “Late fee, in rupees (0 for none)” और “Days of grace after the due date” लिखते हैं और “Save late fee” दबाते हैं।' },
+    ],
+    tips: [
+      { en: 'A part-paid fee past its date counts as overdue on what is left, not on the full amount.', hi: 'कुछ हिस्सा जमा हो चुकी फ़ीस की तारीख़ निकलने पर सिर्फ़ बाकी रकम बकाया गिनी जाती है, पूरी रकम नहीं।' },
+      { en: 'A late fee is a new due beside the fee. The fee itself is never changed, and each fee gets one late fee at most.', hi: 'विलंब शुल्क फ़ीस के साथ एक नई देय राशि है। फ़ीस ख़ुद कभी नहीं बदलती, और हर फ़ीस पर ज़्यादा से ज़्यादा एक विलंब शुल्क लगता है।' },
+      { en: 'Setting a late fee never fines the past: only fees falling due from that day on.', hi: 'विलंब शुल्क तय करने से पुरानी फ़ीस पर जुर्माना नहीं लगता: सिर्फ़ उस दिन से देय होने वाली फ़ीस पर।' },
+    ],
+    start: { href: '/app/fees', label: { en: 'Fees', hi: 'Fees' } },
+    related: ['take-fee-payment', 'raise-fee-dues'],
+    keywords: ['overdue', 'late fee', 'fine', 'fees', 'due date', 'बकाया', 'विलंब शुल्क', 'जुर्माना'],
+  },
+  {
     slug: 'whatsapp-settings',
     category: 'support',
     audience: 'office',

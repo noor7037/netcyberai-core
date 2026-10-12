@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
+import { lastNightlyRun } from '@/lib/fees/nightly';
+import { loadFeesSummary } from '@/lib/fees/overdue';
 import { COUNTER_METHODS, openDues, recentReceipts, reconcile, takePayment } from '@/lib/fees/payments';
 import { FINANCE } from '@/lib/fees/structures';
 
 // Payments at the counter (docs/23 6c, C160).
 //   GET  ?studentId=&scope=student|family  what is still owed, oldest first
-//   GET                                     the school's totals and its latest receipts
+//   GET                                     the school's totals, what is overdue, the last nightly check and its latest receipts
 //   POST take a payment and issue one receipt. `clientRef` makes a repeat of the same press harmless.
 export async function GET(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
@@ -19,7 +21,8 @@ export async function GET(req: NextRequest) {
       if (!student) return jsonError(404, 'not found', { code: 'unknown_student' });
       return NextResponse.json({ student, dues: await openDues(db, claims.schoolId, studentId, q.get('scope') === 'family' ? 'family' : 'student') });
     }
-    return NextResponse.json({ totals: await reconcile(db, claims.schoolId), receipts: await recentReceipts(db, claims.schoolId), mayReverse: claims.role === 'principal' || claims.role === 'school_admin' });
+    const summary = await loadFeesSummary(db);
+    return NextResponse.json({ totals: await reconcile(db, claims.schoolId), overdue: { minor: summary.overdueMinor, count: summary.overdueCount }, lastRun: await lastNightlyRun(db, claims.schoolId), receipts: await recentReceipts(db, claims.schoolId), mayReverse: claims.role === 'principal' || claims.role === 'school_admin' });
   });
 }
 

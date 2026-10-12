@@ -204,8 +204,8 @@ describe('the live dashboards', () => {
     expect(html).toContain('17</span> fee entries are overdue');
     expect((html.match(/Why this\?/g) ?? []).length).toBe(4);
     expect(html).toContain('400 of 412 active students marked');
-    expect(html).toContain('Fee entries by status');
-    expect(html).toContain('Part paid (full amount billed)');
+    expect(html).toContain('Fees: received and owed');
+    expect(html).toContain('Owed and overdue');
     expect(html).toContain('412 of 430 students are active with consent recorded');
     expect(html).toContain('href="/app/help/ticket/new"');
   });

@@ -68,6 +68,7 @@ const APP_USER: Record<string, string> = {
   pulse_response_log: 'DELETE,INSERT,SELECT,UPDATE',
   qr_scan_log: 'DELETE,INSERT,SELECT,UPDATE',
   receipts: 'INSERT,SELECT,UPDATE',
+  fee_status_runs: 'SELECT', // written by the nightly job as the platform role (C163)
   recognition_events: 'DELETE,INSERT,SELECT,UPDATE',
   recovery_plans: 'INSERT,SELECT',
   retention_policy: 'DELETE,INSERT,SELECT,UPDATE',
