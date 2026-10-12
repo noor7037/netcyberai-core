@@ -74,7 +74,51 @@ export async function applyProviderEvent(db: Sql, provider: string, event: Provi
   if (already) return finish(done('duplicate', 'same_payment', { receiptId: already.receipt_id, receiptNo: already.receipt_no }), link);
   if (event.amountMinor <= 0) return finish(done('refused', 'no_amount'), link);
 
-  // 3. The family is locked: the same lock the counter takes.
+  const credited = await creditEvidence(db, {
+    source: 'gateway_notice',
+    externalId: `${provider}:${event.paymentId}`,
+    amountMinor: event.amountMinor,
+    link,
+    receipt: { method: 'online', gateway: provider, gatewayPaymentId: event.paymentId, issuedBy: null, reference: event.paymentId },
+    audit: { provider, paymentId: event.paymentId },
+  });
+  return finish(credited, link);
+}
+
+export type LinkToCredit = { link_id: string; school_id: string; family_id: string | null; student_id: string; status: string; amount_minor: string | number };
+export type Evidence = {
+  source: 'gateway_notice' | 'school_confirmed' | 'bank_statement_row' | 'network_notice';
+  externalId: string; // unique with the source, for ever: the provider's payment id, the school's UTR, the bank's row
+  amountMinor: number;
+  link: LinkToCredit;
+  rule?: 'A' | 'R1' | 'R2' | 'manual';
+  decidedBy?: string | null;
+  reason?: string | null;
+  receipt: { method: 'online' | 'upi' | 'netbanking' | 'cheque'; gateway: string | null; gatewayPaymentId: string | null; issuedBy: string | null; reference: string };
+  audit?: Record<string, unknown>;
+};
+
+// THE ONE LEDGER DOOR (docs/24 §3.1, C171). Every credit that does not come
+// from the counter's own form ends here, fed evidence and never a claim.
+// The evidence row is written first and is unique on (source, external id):
+// the same notice, bank row or confirmation a second time finds it and
+// credits nothing. Then one allocation rule, one receipt series, one audit
+// row. The caller holds the link's row lock.
+export async function creditEvidence(db: Sql, e: Evidence): Promise<Applied> {
+  const link = e.link;
+  const noted = await db.query(
+    `insert into payment_evidence (school_id, source, external_id, amount_minor, link_id, rule, decided_by, reason) values ($1, $2, $3, $4, $5, $6, $7, $8)
+     on conflict (source, external_id) do nothing returning evidence_id`,
+    [link.school_id, e.source, e.externalId, e.amountMinor, link.link_id, e.rule ?? null, e.decidedBy ?? null, e.reason ?? null]
+  );
+  if (noted.rowCount !== 1) {
+    const before = (await db.query(`select r.receipt_id, r.receipt_no from payment_evidence v left join receipts r on r.receipt_id = v.receipt_id where v.source = $1 and v.external_id = $2`, [e.source, e.externalId])).rows[0];
+    return done('duplicate', 'same_evidence', { receiptId: before?.receipt_id ?? undefined, receiptNo: before?.receipt_no ?? undefined });
+  }
+  const evidenceId = noted.rows[0].evidence_id as string;
+  const settle = (receiptId: string | null, appliedMinor: number, unappliedMinor: number) => db.query(`update payment_evidence set receipt_id = $2, applied_minor = $3, unapplied_minor = $4 where evidence_id = $1`, [evidenceId, receiptId, appliedMinor, unappliedMinor]);
+
+  // The family is locked: the same lock the counter takes.
   await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`pay:${link.school_id}:${link.family_id ?? link.student_id}`]);
   const open = (await db.query(
     `select l.fee_id, (l.amount_minor - coalesce((select sum(p.amount_minor) from payments p where p.fee_id = l.fee_id), 0))::bigint as balance, n.amount_minor as line_minor
@@ -86,37 +130,38 @@ export async function applyProviderEvent(db: Sql, provider: string, event: Provi
     [link.school_id, link.student_id, link.link_id, link.family_id]
   )).rows as { fee_id: string; balance: string; line_minor: string | null }[];
   const plan = planCapture(
-    event.amountMinor,
+    e.amountMinor,
     open.filter((d) => d.line_minor !== null).map((d) => ({ feeId: d.fee_id, lineMinor: Number(d.line_minor), balanceMinor: Number(d.balance) })),
     open.filter((d) => Number(d.balance) > 0).map((d) => ({ feeId: d.fee_id, balanceMinor: Number(d.balance) }))
   );
   const applied = plan.parts.reduce((t, p) => t + p.amountMinor, 0);
-  const closeLink = (receiptId: string | null) =>
-    db.query(`update payment_links set status = case when $3::uuid is null then status else 'paid' end, closed_at = coalesce(closed_at, now()), receipt_id = coalesce(receipt_id, $3) where school_id = $1 and link_id = $2 and status <> 'paid'`, [link.school_id, link.link_id, receiptId]);
+  const actor = { actorUserId: e.decidedBy ?? null, actorRole: null };
   if (applied === 0) {
     // Nothing is owed any more (the family paid at the counter meanwhile): the whole amount is to be refunded,
     // and the link is closed so that it cannot be paid again.
     await db.query(`update payment_links set status = 'cancelled', closed_at = now() where school_id = $1 and link_id = $2 and status = 'open'`, [link.school_id, link.link_id]);
-    await writeAuditLog(db, { schoolId: link.school_id, actorUserId: null, actorRole: null, eventAction: 'fees.online_payment_not_applied', targetType: 'payment_links', targetId: link.link_id, beforeState: undefined, afterState: { provider, paymentId: event.paymentId, amountMinor: event.amountMinor } });
-    return finish(done('not_applied', 'nothing_owed', { unappliedMinor: plan.unappliedMinor }), link);
+    await settle(null, 0, plan.unappliedMinor);
+    await writeAuditLog(db, { schoolId: link.school_id, ...actor, eventAction: 'fees.online_payment_not_applied', targetType: 'payment_links', targetId: link.link_id, beforeState: undefined, afterState: { evidenceId, source: e.source, amountMinor: e.amountMinor, ...e.audit } });
+    return done('not_applied', 'nothing_owed', { unappliedMinor: plan.unappliedMinor });
   }
 
   const receiptNo = await nextNumber(db, link.school_id, 'receipt', await receiptFormat(db as PoolClient, link.school_id));
   const receiptId = (await db.query(
-    `insert into receipts (school_id, receipt_no, student_id, family_id, total_minor, method, reference, allocation, payment_link_id, gateway, gateway_payment_id)
-     values ($1, $2, $3, $4, $5, 'online', $6, 'oldest_first', $7, $8, $9) returning receipt_id`,
-    [link.school_id, receiptNo, link.student_id, link.family_id, applied, event.paymentId.slice(0, 80), link.link_id, provider, event.paymentId]
+    `insert into receipts (school_id, receipt_no, student_id, family_id, total_minor, method, reference, allocation, payment_link_id, gateway, gateway_payment_id, issued_by, evidence_id)
+     values ($1, $2, $3, $4, $5, $6, $7, 'oldest_first', $8, $9, $10, $11, $12) returning receipt_id`,
+    [link.school_id, receiptNo, link.student_id, link.family_id, applied, e.receipt.method, e.receipt.reference.slice(0, 80), link.link_id, e.receipt.gateway, e.receipt.gatewayPaymentId, e.receipt.issuedBy, evidenceId]
   )).rows[0].receipt_id as string;
   await db.query(
-    `insert into payments (school_id, fee_id, amount_minor, method, receipt_id, gateway, gateway_payment_id)
-     select $1, n.fee_id, n.amount_minor, 'online', $2, $3, $4 from unnest($5::uuid[], $6::bigint[]) as n(fee_id, amount_minor)`,
-    [link.school_id, receiptId, provider, event.paymentId, plan.parts.map((p) => p.feeId), plan.parts.map((p) => p.amountMinor)]
+    `insert into payments (school_id, fee_id, amount_minor, method, receipt_id, gateway, gateway_payment_id, received_by)
+     select $1, n.fee_id, n.amount_minor, $2, $3, $4, $5, $6 from unnest($7::uuid[], $8::bigint[]) as n(fee_id, amount_minor)`,
+    [link.school_id, e.receipt.method, receiptId, e.receipt.gateway ?? e.source, e.receipt.gatewayPaymentId, e.receipt.issuedBy, plan.parts.map((p) => p.feeId), plan.parts.map((p) => p.amountMinor)]
   );
-  await closeLink(receiptId);
+  await db.query(`update payment_links set status = 'paid', closed_at = coalesce(closed_at, now()), receipt_id = coalesce(receipt_id, $3) where school_id = $1 and link_id = $2 and status <> 'paid'`, [link.school_id, link.link_id, receiptId]);
+  await settle(receiptId, applied, plan.unappliedMinor);
   const partly = plan.unappliedMinor > 0;
-  const short = event.amountMinor < Number(link.amount_minor);
-  await writeAuditLog(db, { schoolId: link.school_id, actorUserId: null, actorRole: null, eventAction: 'fees.online_payment_applied', targetType: 'receipts', targetId: receiptId, beforeState: undefined, afterState: { receiptNo, provider, paymentId: event.paymentId, capturedMinor: event.amountMinor, appliedMinor: applied, unappliedMinor: plan.unappliedMinor, dues: plan.parts.length } });
-  return finish({ outcome: partly ? 'applied_in_part' : 'applied', reason: partly ? 'more_than_owed' : short ? 'less_than_the_link' : link.status !== 'open' ? `link_was_${link.status}` : undefined, receiptId, receiptNo, appliedMinor: applied, unappliedMinor: plan.unappliedMinor }, link);
+  const short = e.amountMinor < Number(link.amount_minor);
+  await writeAuditLog(db, { schoolId: link.school_id, ...actor, eventAction: 'fees.online_payment_applied', targetType: 'receipts', targetId: receiptId, beforeState: undefined, afterState: { receiptNo, evidenceId, source: e.source, rule: e.rule ?? null, capturedMinor: e.amountMinor, appliedMinor: applied, unappliedMinor: plan.unappliedMinor, dues: plan.parts.length, ...e.audit } });
+  return { outcome: partly ? 'applied_in_part' : 'applied', reason: partly ? 'more_than_owed' : short ? 'less_than_the_link' : link.status !== 'open' ? `link_was_${link.status}` : undefined, receiptId, receiptNo, appliedMinor: applied, unappliedMinor: plan.unappliedMinor };
 }
 
 type Platform = <T>(fn: (db: Sql) => Promise<T>) => Promise<T>;

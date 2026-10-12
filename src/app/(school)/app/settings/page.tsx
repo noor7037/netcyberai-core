@@ -2,6 +2,7 @@ import { getServerSession } from '@/lib/auth/server-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { WhatsAppConfigPanel } from '@/components/settings/WhatsAppConfigPanel';
 import { ModuleSwitchList } from '@/components/settings/ModuleSwitchList';
+import { PaymentRailsPanel } from '@/components/payments/PaymentRailsPanel';
 import { SchoolSettingsPanel } from '@/components/settings/SchoolSettingsPanel';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import type { SchoolEntitlements } from '@/lib/contracts/entitlements';
@@ -42,6 +43,7 @@ export default async function SettingsPage() {
     <ModulePage moduleId="setup" help="whatsapp-settings" tour="settings" title="Settings" purpose="What is switched on for your school, how each part is set up, and its WhatsApp messages.">
       {entitlements && <ModuleSwitchList entitlements={entitlements} lang={lang} />}
       <SchoolSettingsPanel modules={settings} />
+      {(canManage || session?.role === 'accountant') && settings.some((m) => m.moduleId === 'fees') && <PaymentRailsPanel scope="school" />}
       <WhatsAppConfigPanel canManage={canManage} />
     </ModulePage>
   );

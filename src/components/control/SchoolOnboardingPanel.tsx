@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
+import { PaymentRailsPanel } from '@/components/payments/PaymentRailsPanel';
 import { SchoolPeoplePanel } from './SchoolPeoplePanel';
 
 const STAGE_LABELS: Record<string, string> = {
@@ -230,6 +231,7 @@ export function SchoolOnboardingPanel({
       </section>
 
       <SchoolPeoplePanel schoolId={schoolId} />
+      <PaymentRailsPanel scope="control" schoolId={schoolId} />
     </div>
   );
 }

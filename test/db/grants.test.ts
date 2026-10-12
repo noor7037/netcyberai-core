@@ -71,6 +71,10 @@ const APP_USER: Record<string, string> = {
   pulse_response_log: 'DELETE,INSERT,SELECT,UPDATE',
   qr_scan_log: 'DELETE,INSERT,SELECT,UPDATE',
   receipts: 'INSERT,SELECT,UPDATE',
+  payment_credentials: '', // ciphertext only, and still not the app role's: the server's payment path reads it as the platform role (C171)
+  payment_evidence: 'INSERT,SELECT,UPDATE', // the one door every credit goes through; a trigger keeps what it says fixed
+  payment_gateway_access: 'SELECT', // set by NetCyberAI in Control
+  payment_methods: 'INSERT,SELECT,UPDATE',
   payment_events: 'SELECT', // written when a provider's notice is applied, as the platform role (C169)
   payment_links: 'INSERT,SELECT,UPDATE', // never deleted: cancelled, paid or expired (C168)
   payment_link_lines: 'INSERT,SELECT', // fixed when the link is made
@@ -114,6 +118,9 @@ const APP_USER: Record<string, string> = {
 const NCA_SUPER_DIFFERS: Record<string, string> = {
   entitlement_change_reasons: 'INSERT,SELECT', // the founder's reasons: written once
   fee_status_runs: 'INSERT,SELECT', // the nightly job writes a result once
+  payment_credentials: 'INSERT,SELECT,UPDATE',
+  payment_gateway_access: 'INSERT,SELECT,UPDATE',
+  payment_methods: 'SELECT',
   payment_events: 'INSERT,SELECT,UPDATE', // a provider's notice: recorded, then its outcome set
   payment_links: 'SELECT,UPDATE', // closing a link when its payment is applied (C169)
   payment_link_lines: 'SELECT',

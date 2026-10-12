@@ -118,6 +118,12 @@ export async function takePayment(db: PoolClient, actor: Actor, input: TakeInput
     [actor.schoolId, receiptNo, input.studentId, input.scope === 'family' ? student.family_id : null, input.amountMinor, input.method, reference, input.allocations ? 'chosen' : 'oldest_first', actor.userId, input.clientRef ?? null]
   );
   const receiptId = made.rows[0].receipt_id as string;
+  // The counter's credit goes through the same door as every other (docs/24 §3.1): its evidence is the receipt the desk issued.
+  const evidence = await db.query(
+    `insert into payment_evidence (school_id, source, external_id, amount_minor, decided_by, receipt_id, applied_minor) values ($1, 'counter', $2, $3, $4, $5, $3) returning evidence_id`,
+    [actor.schoolId, `receipt:${receiptId}`, input.amountMinor, actor.userId, receiptId]
+  );
+  await db.query(`update receipts set evidence_id = $3 where school_id = $1 and receipt_id = $2`, [actor.schoolId, receiptId, evidence.rows[0].evidence_id]);
   await db.query(
     `insert into payments (school_id, fee_id, amount_minor, method, received_by, receipt_id, gateway)
      select $1, n.fee_id, n.amount_minor, $2, $3, $4, 'counter' from unnest($5::uuid[], $6::bigint[]) as n(fee_id, amount_minor)`,
