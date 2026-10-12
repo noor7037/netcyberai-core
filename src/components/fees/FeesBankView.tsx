@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import { minorToRupees } from '@/lib/fees/money';
+import { BankLists, type Lists } from './BankLists';
 import type { MessageKey } from '@/lib/i18n';
 
 // Bank statements (docs/24 §3.4 path B, C176). The office downloads the statement from net banking as CSV and
@@ -27,6 +28,7 @@ export function FeesBankView() {
   const [accounts, setAccounts] = useState<Account[] | null>(null);
   const [uploads, setUploads] = useState<Upload[]>([]);
   const [mayAdd, setMayAdd] = useState(false);
+  const [lists, setLists] = useState<Lists | null>(null);
   const [account, setAccount] = useState({ label: '', bankName: '', accountLast4: '', ifsc: '' });
   const [accountId, setAccountId] = useState('');
   const [text, setText] = useState('');
@@ -44,6 +46,7 @@ export function FeesBankView() {
     if (!body) return;
     setAccounts(body.accounts ?? []);
     setUploads(body.imports ?? []);
+    setLists(body.lists ?? null);
     setMayAdd(body.mayAddAccount === true);
     setAccountId((id) => id || body.accounts?.[0]?.account_id || '');
   }, []);
@@ -80,7 +83,8 @@ export function FeesBankView() {
     if (!preview?.summary || !map) return;
     const r = await post({ action: 'import', accountId, text, map, from, to, confirmed: { creditRows: preview.summary.creditRows, creditTotalMinor: preview.summary.creditTotalMinor } });
     if (!r.ok) return toast.show(t(r.body.code === 'not_confirmed' ? 'bank.changed' : 'fee.failed'), 'danger');
-    setDone(t(r.body.balanceContinues === false ? 'bank.kept.gap' : 'bank.kept', { added: Number(r.body.rowsAdded), already: Number(r.body.alreadyHere) }));
+    const m = r.body.matched as { credited: number; seen: number; needsPerson: number; left: number } | null;
+    setDone(t(r.body.balanceContinues === false ? 'bank.kept.gap' : 'bank.kept', { added: Number(r.body.rowsAdded), already: Number(r.body.alreadyHere) }) + (m ? ` ${t('bank.matched', { credited: m.credited, seen: m.seen, needs: m.needsPerson, left: m.left })}` : ''));
     setPreview(null);
     setText('');
     setFileName('');
@@ -186,6 +190,8 @@ export function FeesBankView() {
           {done && <p role="status" data-bank-done className="rounded-md bg-emerald/10 px-3 py-2 text-sm font-semibold text-slate">{done}</p>}
         </div>
       )}
+
+      {lists && <BankLists lists={lists} onChanged={() => void load()} />}
 
       {uploads.length > 0 && (
         <ul data-bank-uploads className="flex flex-col gap-1 border-t border-slate/10 pt-3 text-sm text-slate">
