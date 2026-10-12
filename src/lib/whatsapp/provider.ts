@@ -8,8 +8,8 @@ import { createHmac, randomUUID, timingSafeEqual } from 'crypto';
 //     failure and replies), so every loop is proven without Meta. It is what
 //     every school resolves to today, and what a TEST SCHOOL resolves to
 //     always, whatever credentials exist.
-//   - Meta's Cloud API adapter: not built yet (slice 7e). It stays behind
-//     encrypted platform credentials entered in Control.
+//   - Meta's Cloud API adapter (./meta.ts): built and dormant behind
+//     encrypted platform credentials, switched on in Control.
 // Nothing calls send() except src/lib/whatsapp/gate.ts
 // (scripts/check_whatsapp_send_gate.py holds that in CI).
 
@@ -23,6 +23,8 @@ export interface WhatsAppSendParams {
   language?: 'en' | 'hi';
   templateVersion?: number;
   metaTemplateId?: string | null;
+  // Whether the school is a test school. A real provider refuses unless this is exactly false (docs/25 rule 2).
+  testSchool?: boolean;
 }
 
 export interface WhatsAppSendResult {
@@ -114,18 +116,5 @@ export class StandInWhatsAppProvider implements WhatsAppProvider {
   }
 }
 
-// Meta's Cloud API adapter is slice 7e. Until it is built and platform
-// credentials are entered in Control, nothing here can reach Meta: every
-// method refuses, plainly.
-export class MetaWhatsAppProvider implements WhatsAppProvider {
-  readonly name = 'meta' as const;
-  async send(): Promise<WhatsAppSendResult> {
-    throw new Error('The Meta WhatsApp adapter is not built yet (docs/25 slice 7e); no message was sent.');
-  }
-  async testConnection(): Promise<{ ok: boolean; message: string }> {
-    return { ok: false, message: 'The Meta WhatsApp adapter is not built yet.' };
-  }
-  readNotice(): NoticeRead {
-    return { ok: false, reason: 'no_secret' };
-  }
-}
+// Meta's Cloud API adapter is in ./meta.ts (slice 7e): dormant until the platform's credentials are saved,
+// tested and switched on in Control.

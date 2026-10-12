@@ -16,6 +16,7 @@ import type { WhatsAppNotice, WhatsAppProvider } from './provider';
 // is delivered, and costs nothing if it failed.
 
 export type NoticeOutcome = { status: 200 | 401; duplicate: boolean; applied: number; stale: number; unknown: number; inbound: number; reason?: string };
+export const MAX_REFUSED_KEPT_PER_HOUR = 100;
 const RANK: Record<string, number> = { queued: 0, sent: 1, delivered: 2, read: 3 };
 
 async function applyStatus(db: Sql, provider: WhatsAppProvider, n: Extract<WhatsAppNotice, { kind: 'status' }>): Promise<'applied' | 'stale' | 'unknown'> {
@@ -49,7 +50,9 @@ export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody:
     db.query(`insert into webhook_events (school_id, provider, payload_hash, payload, signature_ok, outcome, processed_at) values ($1, 'whatsapp', $2, $3, $4, $5, now())`, [schoolId, hash, JSON.stringify(payload), ok, outcome.slice(0, 200)]);
   if (!read.ok) {
     // Not trusted: only that it came, from which provider and how long it was. Nothing in it is kept or used.
-    await record(false, `refused: ${read.reason}`, { provider: provider.name, bytes: rawBody.length }, null);
+    // And only so many an hour: the address is public, and strangers must not be able to fill the table.
+    const lately = Number((await db.query(`select count(*) as n from webhook_events where provider = 'whatsapp' and signature_ok = false and created_at > now() - interval '1 hour'`)).rows[0].n);
+    if (lately < MAX_REFUSED_KEPT_PER_HOUR) await record(false, `refused: ${read.reason}`, { provider: provider.name, bytes: rawBody.length }, null);
     return { status: 401, duplicate: false, applied: 0, stale: 0, unknown: 0, inbound: 0, reason: read.reason };
   }
   const out = { applied: 0, stale: 0, unknown: 0, inbound: 0 };

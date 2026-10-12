@@ -1,0 +1,47 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { withPlatformService } from '@/lib/auth/db';
+import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
+import type { Sql } from '@/lib/jobs/types';
+import { messagingKey, metaAccountMeta, openMetaCredentials, recordMetaTest, saveMetaAccount, setMetaEnabled } from '@/lib/whatsapp/credentials';
+import { MetaWhatsAppProvider } from '@/lib/whatsapp/meta';
+
+// Control → the platform's WhatsApp account (docs/25 slice 7e, C186). NetCyberAI staff only.
+//   GET   what is saved (never a secret), whether it is switched on, and whether this server holds the key
+//   POST  { action: 'save', phoneNumberId, wabaId, accessToken, appSecret, verifyToken }   save or replace; always switched off
+//         { action: 'test' }                 ask Meta about the saved number; sends nothing
+//         { action: 'on' | 'off' }           the switch; on only after a test that passed
+// The secrets are write-only: nothing here, or anywhere, gives them back.
+export const dynamic = 'force-dynamic';
+const platform = withPlatformService as <T>(fn: (db: Sql) => Promise<T>) => Promise<T>;
+const WEBHOOK_PATH = '/api/public/whatsapp/webhook/meta';
+
+export async function GET(req: NextRequest) {
+  const guard = await requireSuperAdmin(req);
+  if ('error' in guard) return guard.error;
+  return NextResponse.json({ account: await platform((db) => metaAccountMeta(db)), keyAvailable: messagingKey() !== null, webhookPath: WEBHOOK_PATH }, { headers: { 'Cache-Control': 'no-store' } });
+}
+
+export async function POST(req: NextRequest) {
+  const guard = await requireSuperAdmin(req);
+  if ('error' in guard) return guard.error;
+  const body = await req.json().catch(() => null);
+  const text = (v: unknown, max: number) => (typeof v === 'string' && v.length <= max ? v.trim() : '');
+  const by = { userId: guard.claims.sub };
+  if (body?.action === 'save') {
+    const result = await platform((db) => saveMetaAccount(db, by, { phoneNumberId: text(body.phoneNumberId, 40), wabaId: text(body.wabaId, 40), accessToken: text(body.accessToken, 700), appSecret: text(body.appSecret, 200), verifyToken: text(body.verifyToken, 200) }));
+    return result.ok ? NextResponse.json({ ok: true }, { status: 201 }) : NextResponse.json({ error: 'the account was not saved', code: result.reason }, { status: result.reason === 'no_encryption_key' ? 503 : 400 });
+  }
+  if (body?.action === 'test') {
+    const account = await platform((db) => openMetaCredentials(db, false));
+    if (!account) return NextResponse.json({ error: 'no account is saved, or this server does not hold the key', code: messagingKey() ? 'no_account' : 'no_encryption_key' }, { status: 404 });
+    // Asked outside any transaction; then the answer is recorded.
+    const result = await new MetaWhatsAppProvider(account).testConnection();
+    await platform((db) => recordMetaTest(db, result.ok, result.message));
+    return NextResponse.json(result);
+  }
+  if (body?.action === 'on' || body?.action === 'off') {
+    const result = await platform((db) => setMetaEnabled(db, by, body.action === 'on'));
+    return result.ok ? NextResponse.json({ ok: true }) : NextResponse.json({ error: 'not switched', code: result.reason }, { status: result.reason === 'no_account' ? 404 : 409 });
+  }
+  return NextResponse.json({ error: 'not sent properly' }, { status: 400 });
+}

@@ -159,6 +159,8 @@ ALLOWED_PERMISSIVE = (
         # C184: the platform's own templates are decided by NetCyberAI staff as the
         # platform role; scoped `to nca_super`, so no school role gains anything.
         ("whatsapp_templates", "whatsapp_templates_platform_decide"),
+        # C186: the platform's WhatsApp account; scoped `to nca_super`; no school role holds any grant on it.
+        ("whatsapp_credentials", "whatsapp_credentials_platform"),
         # `leads` is the one genuinely pre-tenant table (public Get
         # Started/Book Demo intake, reached via withBackendConnection,
         # never withTenantContext -- there is no school_id yet). Public
@@ -372,6 +374,7 @@ REQUIRED_RESTRICTIVE = {
     ("payment_methods", "payment_methods_office_update"),
     ("payment_gateway_access", "payment_gateway_access_finance"),
     ("payment_credentials", "payment_credentials_nobody"),
+    ("whatsapp_credentials", "whatsapp_credentials_nobody"),
     ("payment_evidence", "payment_evidence_finance"),
     ("payment_reports", "payment_reports_finance"),
     # C176: holidays are the office's to change; bank accounts, statements and rows are the finance roles'.
