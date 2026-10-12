@@ -15,7 +15,7 @@ import type { MessageKey } from '@/lib/i18n';
 
 type Method = { method: string; enabled: boolean; sortOrder: number };
 type Saved = { configId: string; provider: string; mode: 'test' | 'live'; keyLast4: string; savedAt: string; savedByName: string | null; savedFrom: 'school' | 'control'; testedAt: string | null; testOk: boolean | null; testMessage: string | null; webhookPath: string };
-type Gateway = { credentials: Saved[]; allowed: boolean; canSave: boolean };
+type Gateway = { credentials: Saved[]; allowed: boolean; canSave: boolean; testSchool: boolean };
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 
@@ -136,6 +136,7 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
             <p className="break-all text-xs text-slate/70">{t('rails.keys.webhook', { url: `${typeof window === 'undefined' ? '' : window.location.origin}${c.webhookPath}` })}</p>
           </div>
         ))}
+        {!gateway.testSchool && <p data-test-keys-note className="text-sm text-slate/70">{t('rails.keys.testOnly')}</p>}
         {!gateway.canSave && <p role="status" data-no-key className="rounded-md bg-tangerine/10 px-3 py-2 text-sm font-semibold text-slate">{t('rails.keys.error.no_encryption_key')}</p>}
         {mayEdit && (
           <form onSubmit={saveKeys} className="grid gap-3 sm:grid-cols-2" autoComplete="off">

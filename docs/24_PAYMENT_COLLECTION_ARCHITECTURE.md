@@ -260,8 +260,19 @@ The adapter is **fully built now and stays dormant** (6f-2):
   and `payment.failed` to "failed". Before crediting, the server **fetches
   the payment from Razorpay** and checks the amount and status, so the
   notice is not the only proof.
+- **Test keys never credit a real school (C173).** A payment made with test
+  keys, or on the stand-in, moves no money. For a school that is not a
+  test-fixture school (`schools.is_test_fixture = false`):
+  - the method can be switched on only with **live** keys that passed "Test
+    connection";
+  - no checkout is ever opened with test keys or the stand-in;
+  - a test-mode notice is recorded and flagged, never credited;
+  - the database refuses it as well: every `payment_evidence` row carries
+    its mode, and a trigger refuses mode `test` for a real school, whoever
+    writes it.
+  Test-fixture schools take test payments, which is how the path is tried.
 - **Switching on** = keys saved + "Test connection" passed + the method
-  turned on. **Switching off** stops new links at once; notices for links
+  turned on (for a real school: the live keys). **Switching off** stops new links at once; notices for links
   already made are still accepted and credited.
 - **Which schools may use a gateway** is a Control setting per school (and
   later per plan).
@@ -376,6 +387,7 @@ All tables have tenant RLS, forced, with rights pinned in `test/db/grants.test.t
 
 ## 10. Change log
 
+- **2026-10-19**: §3.8: test keys never credit a real school (C173).
 - **2026-10-12**: §3.3–3.5 rewritten to the founder's flow (parent enters the
   UTR, the school is notified and verifies, then the receipt goes out), with
   two verification paths and the statement as the cross-check (C170 amended).

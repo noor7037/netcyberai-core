@@ -69,14 +69,24 @@ export async function applyProviderEvent(db: Sql, provider: string, event: Provi
   // The link: by the provider's own reference, or by our id when the provider hands our note back.
   const ours = event.ourLinkId && /^[0-9a-f-]{36}$/i.test(event.ourLinkId) ? event.ourLinkId : null;
   const link = (await db.query(
-    `select link_id, school_id, family_id, student_id, status, amount_minor, config_id from payment_links
-      where provider = $1 and ((provider_ref = $2 and $2 <> '') or ($3::uuid is not null and link_id = $3)) for update`,
+    `select k.link_id, k.school_id, k.family_id, k.student_id, k.status, k.amount_minor, k.config_id,
+            (select s.is_test_fixture from schools s where s.school_id = k.school_id) as test_school,
+            (select c.mode from payment_credentials c where c.config_id = k.config_id) as config_mode
+       from payment_links k
+      where k.provider = $1 and ((k.provider_ref = $2 and $2 <> '') or ($3::uuid is not null and k.link_id = $3)) for update of k`,
     [provider, event.providerRef, ours]
-  )).rows[0] as { link_id: string; school_id: string; family_id: string | null; student_id: string; status: string; amount_minor: string; config_id: string | null } | undefined;
+  )).rows[0] as { link_id: string; school_id: string; family_id: string | null; student_id: string; status: string; amount_minor: string; config_id: string | null; test_school: boolean; config_mode: string | null } | undefined;
   if (!link) return finish(done('refused', 'unknown_link'));
   // A notice that came to one school's address can credit only that school, and only a link opened with that configuration.
   if (checks.scope && link.school_id !== checks.scope.schoolId) return finish(done('refused', 'other_school'));
   if (checks.scope && link.config_id !== checks.scope.configId) return finish(done('refused', 'other_configuration'), link);
+  // TEST MONEY IS NOT MONEY (C173). The stand-in, and a gateway's test keys, move nothing. For a real school such a
+  // notice is recorded and flagged, never credited, whatever it says. Only a test-fixture school takes test payments.
+  const mode: 'test' | 'live' = provider === 'stand-in' || link.config_mode !== 'live' ? 'test' : 'live';
+  if (mode === 'test' && link.test_school !== true) {
+    await writeAuditLog(db, { schoolId: link.school_id, actorUserId: null, actorRole: null, eventAction: 'fees.online_payment_flagged', targetType: 'payment_links', targetId: link.link_id, beforeState: undefined, afterState: { provider, paymentId: event.paymentId, noticeMinor: event.amountMinor, reason: 'test_mode_for_a_real_school' } });
+    return finish(done('refused', 'test_mode_for_a_real_school'), link);
+  }
 
   // 2. This payment, once: whatever notice id it comes under.
   const already = (await db.query(`select receipt_id, receipt_no from receipts where gateway = $1 and gateway_payment_id = $2`, [provider, event.paymentId])).rows[0];
@@ -96,6 +106,7 @@ export async function applyProviderEvent(db: Sql, provider: string, event: Provi
     source: 'gateway_notice',
     externalId: `${provider}:${event.paymentId}`,
     amountMinor: event.amountMinor,
+    mode,
     link,
     receipt: { method: 'online', gateway: provider, gatewayPaymentId: event.paymentId, issuedBy: null, reference: event.paymentId },
     audit: { provider, paymentId: event.paymentId },
@@ -108,6 +119,7 @@ export type Evidence = {
   source: 'gateway_notice' | 'school_confirmed' | 'bank_statement_row' | 'network_notice';
   externalId: string; // unique with the source, for ever: the provider's payment id, the school's UTR, the bank's row
   amountMinor: number;
+  mode?: 'test' | 'live'; // test money (a provider's test keys, the stand-in): the database refuses it for a real school
   link: LinkToCredit;
   rule?: 'A' | 'R1' | 'R2' | 'manual';
   decidedBy?: string | null;
@@ -125,9 +137,9 @@ export type Evidence = {
 export async function creditEvidence(db: Sql, e: Evidence): Promise<Applied> {
   const link = e.link;
   const noted = await db.query(
-    `insert into payment_evidence (school_id, source, external_id, amount_minor, link_id, rule, decided_by, reason) values ($1, $2, $3, $4, $5, $6, $7, $8)
+    `insert into payment_evidence (school_id, source, external_id, amount_minor, link_id, rule, decided_by, reason, mode) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)
      on conflict (source, external_id) do nothing returning evidence_id`,
-    [link.school_id, e.source, e.externalId, e.amountMinor, link.link_id, e.rule ?? null, e.decidedBy ?? null, e.reason ?? null]
+    [link.school_id, e.source, e.externalId, e.amountMinor, link.link_id, e.rule ?? null, e.decidedBy ?? null, e.reason ?? null, e.mode ?? 'live']
   );
   if (noted.rowCount !== 1) {
     const before = (await db.query(`select r.receipt_id, r.receipt_no from payment_evidence v left join receipts r on r.receipt_id = v.receipt_id where v.source = $1 and v.external_id = $2`, [e.source, e.externalId])).rows[0];

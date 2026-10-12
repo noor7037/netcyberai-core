@@ -387,7 +387,11 @@ const clearOnline = async () => {
   await db.pg.query(`delete from payment_links where school_id = $1`, [SCHOOL]);
 };
 let onlinePaid = null;
+// The stand-in is test money, and only a test school takes test payments (C173): for this one screen the
+// harness school is marked as a test school, and put back afterwards.
+const asTestSchool = (on) => db.pg.query(`update schools set is_test_fixture = $2 where school_id = $1`, [SCHOOL, on]);
 const payOnline = async (page) => {
+  await asTestSchool(true);
   await clearOnline();
   await clearPayments();
   await feesDues(page);
@@ -424,6 +428,7 @@ const payOnlineDone = async () => {
   await clearOnline();
   await clearPayments();
   await clearDues();
+  await asTestSchool(false);
   const r = rows[0];
   const p = onlinePaid ?? {};
   if (p.before !== 'open' || !String(p.text).includes(r.receipt_no)) throw new Error(`the parent's page did not go from open to paid with the receipt number: ${JSON.stringify(p)} ${r.receipt_no}`);
