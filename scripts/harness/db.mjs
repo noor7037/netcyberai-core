@@ -30,6 +30,14 @@ create extension if not exists pg_trgm with schema extensions;
 create extension if not exists "uuid-ossp" with schema extensions;
 create role anon nologin; create role authenticated nologin; create role service_role nologin bypassrls;
 create role supabase_admin nologin; create role authenticator nologin;
+-- Supabase's own default privileges, as both real databases have them
+-- (pg_default_acl, read 2026-10-15): every new table, sequence and function
+-- in public is given to anon, authenticated and service_role. The harness
+-- starts the same way, so a migration that forgets to take those rights away
+-- is caught here and not only on a real database (C161).
+alter default privileges in schema public grant all on tables to anon, authenticated, service_role;
+alter default privileges in schema public grant all on sequences to anon, authenticated, service_role;
+alter default privileges in schema public grant execute on functions to anon, authenticated, service_role;
 create schema auth;
 create table auth.users (id uuid primary key default gen_random_uuid(), email text);
 create function auth.uid() returns uuid language sql as $$ select null::uuid $$;
