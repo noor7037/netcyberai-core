@@ -3,7 +3,8 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { decideConcession, listConcessions, proposeConcession, setRteTag } from '@/lib/fees/concessions';
 import { duesFor, duesThatDoNotAddUp, lineAmounts, percentOfMinor, periodKeyFor, periodKeysIn, raiseDues } from '@/lib/fees/dues';
-import { addHead, addStructureVersion } from '@/lib/fees/structures';
+import { getReceipt, openDues, takePayment } from '@/lib/fees/payments';
+import { addHead, addStructureVersion, listHeads, setHeadRteCovered } from '@/lib/fees/structures';
 
 // Raising dues, concessions and the RTE tag (docs/23 6b, C159): the
 // arithmetic with no database, then the whole real schema as app_user.
@@ -57,9 +58,10 @@ const TEACHER = 'ae000000-0000-4000-8000-0000000000a3';
 const ADMIN = 'ae000000-0000-4000-8000-0000000000a4';
 const PRINCIPAL_B = 'ae000000-0000-4000-8000-0000000000b1';
 const C5 = 'ae000000-0000-4000-8000-0000000000c1';
+const C6 = 'ae000000-0000-4000-8000-0000000000c2';
 const SESSION = 'ae000000-0000-4000-8000-0000000000e1';
 const sid = (n: number) => `ae000000-0000-4000-8000-0000005000${String(n).padStart(2, '0')}`;
-const S = { asha: sid(1), bilal: sid(2), chitra: sid(3), left: sid(4) };
+const S = { asha: sid(1), bilal: sid(2), chitra: sid(3), left: sid(4), waiting: sid(6), gita: sid(7) };
 const TODAY = '2026-07-05';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -80,6 +82,8 @@ const as = <T>(who: Who, fn: (client: any) => Promise<T>): Promise<T> =>
     await tx.query(`select set_config('app.current_user_id', $1, true)`, [who.user]);
     return fn(tx);
   });
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const q = (who: Who, fn: (client: any) => Promise<any>): Promise<any> => as(who, fn);
 const actor = (who: Who) => ({ schoolId: who.school, userId: who.user, role: who.role as never });
 let tuition = '';
 let transport = '';
@@ -101,9 +105,11 @@ describe('on the real schema', () => {
       insert into students (student_id, school_id, admission_no, name, class_id) values
         ('${S.asha}', '${A}', 'A-1', 'Asha', '${C5}'), ('${S.bilal}', '${A}', 'A-2', 'Bilal', '${C5}'), ('${S.chitra}', '${A}', 'A-3', 'Chitra', '${C5}');
       insert into students (student_id, school_id, admission_no, name, class_id, status) values ('${S.left}', '${A}', 'A-4', 'Left', '${C5}', 'transferred');
-      insert into students (student_id, school_id, admission_no, name, class_id) values ('${sid(5)}', '${A}', 'A-5', 'Waiting', '${C5}');
+      insert into students (student_id, school_id, admission_no, name, class_id, status) values ('${sid(5)}', '${A}', 'A-5', 'Inactive', '${C5}', 'inactive');
+      insert into classes (class_id, school_id, name) values ('${C6}', '${A}', '6-A');
+      insert into students (student_id, school_id, admission_no, name, class_id) values ('${S.waiting}', '${A}', 'A-6', 'Waiting', '${C6}'), ('${S.gita}', '${A}', 'A-7', 'Gita', '${C6}');
       alter table students disable trigger user;
-      update students set status = 'active' where student_id in ('${S.asha}', '${S.bilal}', '${S.chitra}');
+      update students set status = 'active' where student_id in ('${S.asha}', '${S.bilal}', '${S.chitra}', '${S.gita}');
       alter table students enable trigger user;
     `);
     const head = async (name: string, isMandatory: boolean) => {
@@ -130,8 +136,8 @@ describe('on the real schema', () => {
     expect((await lines('2026-04')).map((l: { name: string; head: string; period_key: string; net: number; status: string }) => [l.name, l.head, l.period_key, l.net, l.status]).slice(0, 3)).toEqual([['Asha', 'Admission', 'once', 500000, 'pending'], ['Asha', 'Transport', '2026-04', 80000, 'pending'], ['Asha', 'Tuition', '2026-04', 150050, 'pending']]);
     // May: the one-time head is not due again. A student who has left has no line.
     expect(await raise(accountant, '2026-05')).toMatchObject({ raised: 6, grossMinor: 3 * (150050 + 80000) });
-    expect((await db.pg.query(`select 1 from fees_ledger where student_id = any($1::uuid[])`, [[S.left, sid(5)]])).rows).toEqual([]); // left the school; still waiting for consent
-    // Whoever raises, the result is the same: the principal sees the waiting student, the accountant does not.
+    expect((await db.pg.query(`select 1 from fees_ledger where student_id = any($1::uuid[])`, [[S.left, sid(5)]])).rows).toEqual([]); // left the school; inactive
+    // Whoever raises, the result is the same.
     expect(await raise(principal, '2026-05')).toMatchObject({ raised: 0, alreadyThere: 6, students: 3 });
     expect((await db.pg.query(`select event_action, after_state->>'lines' as lines from audit_log where school_id = $1 and event_action = 'fees.dues_raised' order by audit_id`, [A])).rows).toEqual([{ event_action: 'fees.dues_raised', lines: '9' }, { event_action: 'fees.dues_raised', lines: '6' }]);
   });
@@ -197,6 +203,55 @@ describe('on the real schema', () => {
     // An older caller that gives only the net still works: nothing was conceded.
     await db.pg.query(`insert into fees_ledger (school_id, student_id, amount_minor, due_date) values ($1, $2, 12300, '2026-04-10')`, [A, S.asha]);
     expect((await db.pg.query(`select gross_minor::int as g, concession_minor::int as c from fees_ledger where amount_minor = 12300`)).rows).toEqual([{ g: 12300, c: 0 }]);
+  });
+
+  it('a child still waiting for consent is billed like any other, and the fee desk reads only the billing fields (C162)', async () => {
+    // The consent gate still hides the waiting child's record from the accountant.
+    expect((await q(accountant, (c) => c.query(`select name from students where class_id = $1 order by name`, [C6]))).rows).toEqual([{ name: 'Gita' }]);
+    // The billing function gives the fee desk the few fields it needs, whatever the status: no phone, address, birth date or documents.
+    const billing = await q(accountant, (c) => c.query(`select * from fee_billing_students() where class_id = $1 order by name`, [C6]));
+    expect(billing.rows.map((r: { name: string; status: string }) => [r.name, r.status])).toEqual([['Gita', 'active'], ['Waiting', 'pending_consent']]);
+    expect(billing.fields.map((f: { name: string }) => f.name).sort()).toEqual(['class_id', 'family_id', 'name', 'rte_admission', 'school_id', 'status', 'student_id']);
+    expect((await q(accountant, (c) => c.query(`select name from fee_billing_students() where status in ('inactive', 'transferred') order by name`))).rows).toEqual([{ name: 'Inactive' }, { name: 'Left' }]);
+    // Nobody else gets a row from it: not a teacher, not another school, not a caller with no school set.
+    for (const who of [teacher, principalB, { role: 'accountant', user: ACCOUNTANT, school: B }, { role: 'parent', user: TEACHER, school: A }]) expect((await q(who, (c) => c.query(`select 1 from fee_billing_students() where school_id = $1`, [A]))).rows, who.role).toEqual([]);
+    // (test/db/grants.test.ts: anon and authenticated cannot call any function in public.)
+
+    await as(accountant, (c) => addStructureVersion(c, actor(accountant), { classId: C6, sessionId: SESSION, effectiveFrom: '2026-04-01', items: [{ headId: tuition, amountMinor: 200000, frequency: 'monthly' }] }));
+    const raiseC6 = (who: Who) => as(who, (c) => raiseDues(c, actor(who), { classId: C6, sessionId: SESSION, month: '2026-06', dueDate: '2026-06-10' }));
+    // Raised by the accountant, who cannot see the waiting child's record: both children get a line.
+    expect(await raiseC6(accountant)).toEqual({ ok: true, raised: 2, alreadyThere: 0, students: 2, grossMinor: 400000, concessionMinor: 0, netMinor: 400000 });
+    expect(await raiseC6(principal)).toMatchObject({ raised: 0, alreadyThere: 2, students: 2 });
+    expect((await as(accountant, (c) => duesFor(c, A, C6, ['2026-06']))).map((l) => [l.student_name, l.net_minor])).toEqual([['Gita', 200000], ['Waiting', 200000]]);
+    // The counter can take the waiting child's money and propose a concession for them.
+    expect((await as(accountant, (c) => openDues(c, A, S.waiting, 'student'))).map((d) => [d.student_name, d.balance_minor])).toEqual([['Waiting', 200000]]);
+    const paid = await as(accountant, (c) => takePayment(c, actor(accountant), { studentId: S.waiting, scope: 'student', amountMinor: 50000, method: 'cash', reference: null, allocations: null }));
+    expect(paid).toMatchObject({ ok: true, replayed: false });
+    expect((await as(accountant, (c) => openDues(c, A, S.waiting, 'student')))[0].balance_minor).toBe(150000);
+    expect(paid.ok && (await as(accountant, (c) => getReceipt(c, A, paid.receiptId)))?.student_name).toBe('Waiting');
+    expect(await propose(accountant, S.waiting, {})).toMatchObject({ ok: true });
+    // A child who has left or is inactive is still not billed.
+    expect((await db.pg.query(`select 1 from fees_ledger where student_id = any($1::uuid[])`, [[S.left, sid(5)]])).rows).toEqual([]);
+  });
+
+  it('RTE covers the heads marked as covered: a new head follows "every child pays it", then the two are set apart (C162)', async () => {
+    const flags = async () => Object.fromEntries((await as(accountant, (c) => listHeads(c, A))).map((h) => [h.name, [h.is_mandatory, h.rte_covered]]));
+    expect(await flags()).toEqual({ Admission: [true, true], Transport: [false, false], Tuition: [true, true] });
+    // A head added without saying (an import, an older caller) takes its mandatory flag.
+    await db.pg.query(`insert into fee_heads (school_id, name, is_mandatory) values ($1, 'Exam', true), ($1, 'Trip', false)`, [A]);
+    expect(await flags()).toMatchObject({ Exam: [true, true], Trip: [false, false] });
+    // The school covers transport for RTE children and charges them the (mandatory) admission head.
+    expect(await as(teacher, (c) => setHeadRteCovered(c, actor(teacher), transport, true))).toEqual({ ok: false, reason: 'not_allowed' });
+    expect(await as(accountant, (c) => setHeadRteCovered(c, actor(accountant), transport, true))).toMatchObject({ ok: true, head: { is_mandatory: false, rte_covered: true } });
+    expect(await as(accountant, (c) => setHeadRteCovered(c, actor(accountant), tuition, false))).toMatchObject({ ok: true, head: { is_mandatory: true, rte_covered: false } });
+    expect(await as(accountant, (c) => setHeadRteCovered(c, actor(accountant), tuition, false))).toMatchObject({ ok: true }); // no change, no second audit row
+    expect((await db.pg.query(`select count(*)::int as n from audit_log where school_id = $1 and event_action = 'fees.head_rte_covered_changed'`, [A])).rows[0].n).toBe(2);
+    await raise(accountant, '2026-11');
+    const asha = (await lines('2026-11')).filter((l: { name: string }) => l.name === 'Asha');
+    expect(asha.map((l: { head: string; concession: number; net: number; status: string }) => [l.head, l.concession, l.net, l.status])).toEqual([['Transport', 80000, 0, 'waived'], ['Tuition', 0, 165000, 'pending']]);
+    // Dues raised earlier keep what they were raised with.
+    expect((await lines('2026-08')).filter((l: { name: string }) => l.name === 'Asha').map((l: { head: string; net: number }) => [l.head, l.net])).toEqual([['Transport', 80000], ['Tuition', 0]]);
+    expect(await as(accountant, (c) => duesThatDoNotAddUp(c, A))).toEqual([]);
   });
 
   it('refusals: a month outside the session, a due date before the month, no structure, and anyone but the finance roles', async () => {

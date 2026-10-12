@@ -16,7 +16,7 @@ import { FREQUENCIES, minorToRupees, rupeesToMinor, yearlyTotalMinor, type Frequ
 // earlier one stays on the page with its dates. Amounts are typed in rupees
 // and kept as whole paise.
 
-type Head = { head_id: string; name: string; is_mandatory: boolean; is_active: boolean };
+type Head = { head_id: string; name: string; is_mandatory: boolean; rte_covered: boolean; is_active: boolean };
 type Item = { head_id: string; head_name: string; amount_minor: number; frequency: Frequency };
 type Structure = { structure_id: string; class_id: string; session_id: string | null; academic_year: string; effective_from: string; items: Item[] };
 type Data = { today: string; heads: Head[]; structures: Structure[]; classes: { class_id: string; name: string }[]; sessions: { session_id: string; label: string; start_date: string; end_date: string; is_current: boolean }[] };
@@ -84,6 +84,12 @@ export function FeesSetupView() {
     void load();
   }
 
+  async function setRteCovered(h: Head, rteCovered: boolean) {
+    const r = await send(`/api/app/fees/heads/${h.head_id}`, 'PATCH', { rteCovered });
+    if (!r.ok) toast.show(t('fee.failed'), 'danger');
+    void load();
+  }
+
   if (state === 'loading')
     return (
       <p role="status" lang={lang} className="text-sm text-slate/70">
@@ -140,6 +146,10 @@ export function FeesSetupView() {
                 <label className="flex min-h-[44px] cursor-pointer items-center gap-2 font-normal">
                   <input type="checkbox" data-mandatory className="h-5 w-5" checked={h.is_mandatory} disabled={busy} onChange={(e) => void setMandatory(h, e.target.checked)} />
                   {t('fee.head.mandatory')}
+                </label>
+                <label className="flex min-h-[44px] cursor-pointer items-center gap-2 font-normal">
+                  <input type="checkbox" data-rte-covered className="h-5 w-5" checked={h.rte_covered} disabled={busy} onChange={(e) => void setRteCovered(h, e.target.checked)} />
+                  {t('fee.head.rteCovered')}
                 </label>
                 <button type="button" disabled={busy} className={TAP} onClick={() => void retire(h)}>
                   {t(h.is_active ? 'fee.head.retire' : 'fee.head.restore')}

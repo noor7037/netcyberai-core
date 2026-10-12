@@ -118,6 +118,9 @@ medium with a security read.
   browser. The three-copy layout waits for a real school's format.
 - **RTE.** P3 tags the child and keeps their lines visible as conceded
   under `rte`. It claims nothing from the State and prints no claim sheet.
+- **Who is billed** (decided, C162). Active students and those whose
+  consent is still awaited; not inactive or transferred. RTE covers the
+  heads a school marks as covered (a new head follows its mandatory flag).
 - **Reminders.** Email only in P3, to the guardian's email if there is one.
   A family with no email is on the follow-up list and gets no reminder.
 - **Sibling rule default** (decided, C158). None. Each school sets its own,

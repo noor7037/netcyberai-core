@@ -30,7 +30,7 @@ export type OpenDue = { fee_id: string; student_id: string; student_name: string
 const OPEN_DUES = `select l.fee_id, l.student_id, st.name as student_name, h.name as head_name, l.period_key, l.due_date::text as due_date, l.amount_minor as net_minor,
          coalesce((select sum(p.amount_minor) from payments p where p.fee_id = l.fee_id), 0) as paid_minor
     from fees_ledger l
-    join students st on st.school_id = l.school_id and st.student_id = l.student_id
+    join fee_billing_students() st on st.school_id = l.school_id and st.student_id = l.student_id
     left join fee_heads h on h.school_id = l.school_id and h.head_id = l.head_id`;
 const asDue = (r: Record<string, unknown>): OpenDue => ({ ...(r as unknown as OpenDue), net_minor: Number(r.net_minor), paid_minor: Number(r.paid_minor), balance_minor: Number(r.net_minor) - Number(r.paid_minor) });
 
@@ -40,7 +40,7 @@ export async function openDues(db: PoolClient, schoolId: string, studentId: stri
   const { rows } = await db.query(
     `${OPEN_DUES}
       where l.school_id = $1
-        and (l.student_id = $2 or ($3 and st.family_id is not null and st.family_id = (select family_id from students where school_id = $1 and student_id = $2)))
+        and (l.student_id = $2 or ($3 and st.family_id is not null and st.family_id = (select family_id from fee_billing_students() where school_id = $1 and student_id = $2)))
       order by l.due_date, l.created_at, l.fee_id`,
     [schoolId, studentId, scope === 'family']
   );
@@ -76,7 +76,7 @@ export async function takePayment(db: PoolClient, actor: Actor, input: TakeInput
   if (!FINANCE.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   if (!Number.isInteger(input.amountMinor) || input.amountMinor <= 0) return { ok: false, reason: 'amount' };
   if (!COUNTER_METHODS.includes(input.method)) return { ok: false, reason: 'method' };
-  const student = (await db.query(`select family_id from students where school_id = $1 and student_id = $2`, [actor.schoolId, input.studentId])).rows[0];
+  const student = (await db.query(`select family_id from fee_billing_students() where school_id = $1 and student_id = $2`, [actor.schoolId, input.studentId])).rows[0];
   if (!student) return { ok: false, reason: 'unknown_student' };
   // One payer at a time: two counters taking money for the same family wait for each other.
   await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`pay:${actor.schoolId}:${student.family_id ?? input.studentId}`]);
@@ -154,10 +154,10 @@ export type ReceiptView = { receipt_id: string; receipt_no: string; issued_at: s
 
 const RECEIPT = `select r.receipt_id, r.receipt_no, r.issued_at, r.total_minor, r.method, r.reference, r.allocation, st.name as student_name, c.name as class_name, f.family_code, u.display_name as issued_by_name, r.reversed_at, r.reversal_reason,
          coalesce((select jsonb_agg(jsonb_build_object('student_name', ps.name, 'head_name', h.name, 'period_key', l.period_key, 'amount_minor', p.amount_minor) order by l.due_date, l.created_at)
-                     from payments p join fees_ledger l on l.fee_id = p.fee_id join students ps on ps.student_id = l.student_id left join fee_heads h on h.head_id = l.head_id
+                     from payments p join fees_ledger l on l.fee_id = p.fee_id join fee_billing_students() ps on ps.student_id = l.student_id left join fee_heads h on h.head_id = l.head_id
                     where p.school_id = r.school_id and p.receipt_id = r.receipt_id and p.reverses_payment_id is null), '[]'::jsonb) as lines
     from receipts r
-    join students st on st.school_id = r.school_id and st.student_id = r.student_id
+    join fee_billing_students() st on st.school_id = r.school_id and st.student_id = r.student_id
     left join classes c on c.school_id = st.school_id and c.class_id = st.class_id
     left join families f on f.school_id = r.school_id and f.family_id = r.family_id
     join users u on u.school_id = r.school_id and u.user_id = r.issued_by`;

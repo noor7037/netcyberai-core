@@ -21,7 +21,7 @@ export async function listConcessions(db: PoolClient, schoolId: string): Promise
   const { rows } = await db.query(
     `select c.concession_id, c.student_id, st.name as student_name, cl.name as class_name, h.name as head_name, c.kind, c.percent_off::float8 as percent_off, c.amount_off_minor, c.reason, c.status, c.valid_from::text as valid_from, c.valid_to::text as valid_to
        from fee_concessions c
-       join students st on st.school_id = c.school_id and st.student_id = c.student_id
+       join fee_billing_students() st on st.school_id = c.school_id and st.student_id = c.student_id
        left join classes cl on cl.school_id = st.school_id and cl.class_id = st.class_id
        left join fee_heads h on h.school_id = c.school_id and h.head_id = c.head_id
       where c.school_id = $1
@@ -47,7 +47,7 @@ export async function proposeConcession(db: PoolClient, actor: Actor, input: Pro
   if (percent !== null && !(percent > 0 && percent <= 100 && Math.round(percent * 100) === percent * 100)) return { ok: false, reason: 'measure' };
   if (amount !== null && !(Number.isInteger(amount) && amount > 0 && amount <= MAX_MINOR)) return { ok: false, reason: 'measure' };
   if (!isDate(input.validFrom) || (input.validTo !== null && (!isDate(input.validTo) || input.validTo < input.validFrom))) return { ok: false, reason: 'dates' };
-  if (!(await db.query(`select 1 from students where school_id = $1 and student_id = $2`, [actor.schoolId, input.studentId])).rows[0]) return { ok: false, reason: 'unknown_student' };
+  if (!(await db.query(`select 1 from fee_billing_students() where school_id = $1 and student_id = $2`, [actor.schoolId, input.studentId])).rows[0]) return { ok: false, reason: 'unknown_student' };
   if (input.headId && !(await db.query(`select 1 from fee_heads where school_id = $1 and head_id = $2`, [actor.schoolId, input.headId])).rows[0]) return { ok: false, reason: 'unknown_head' };
   const made = await db.query(
     `insert into fee_concessions (school_id, student_id, head_id, kind, percent_off, amount_off_minor, reason, status, proposed_by, valid_from, valid_to)
