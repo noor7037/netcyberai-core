@@ -1,6 +1,6 @@
 import type { PoolClient } from 'pg';
 import { isPurposeGranted, type ConsentPurpose } from '@/lib/consent/gate';
-import { isTemplateApproved } from '@/lib/whatsapp/templates';
+import { missingVariables, templateToSend, type TemplateLanguage, type TemplateToSend } from '@/lib/whatsapp/templates';
 import { resolveProvider } from '@/lib/whatsapp/config';
 import { MetaWhatsAppProvider, StandInWhatsAppProvider, type ProviderName, type WhatsAppProviderSPI } from '@/lib/whatsapp/provider';
 
@@ -36,6 +36,8 @@ export interface SendWhatsAppMessageParams {
   dedupeKey: string;
   // The guardian this goes to, when the caller knows (C182): kept on the log so a message can be found by family.
   parentId?: string | null;
+  // The language to send in (C184). English when not given, or when the template has no approved version in it.
+  language?: TemplateLanguage;
 }
 
 export interface SendWhatsAppMessageResult {
@@ -64,7 +66,7 @@ export async function templateCategory(client: PoolClient, schoolId: string, tem
   const { rows } = await client.query(
     `select billing_category from whatsapp_templates
      where template_name = $2 and (school_id = $1 or school_id is null)
-     order by school_id nulls last
+     order by school_id nulls last, version desc
      limit 1`,
     [schoolId, templateName]
   );
@@ -103,6 +105,7 @@ interface SchoolGateContext {
   quiet_hours_end: string;
   timezone: string;
   is_test_fixture: boolean;
+  name: string;
 }
 
 async function logAttempt(
@@ -110,7 +113,7 @@ async function logAttempt(
   params: SendWhatsAppMessageParams,
   status: CommStatus,
   reason: string | null,
-  extra: { providerUsed?: 'school_specific' | 'platform_default'; fallbackReason?: string | null; providerMessageId?: string | null; category?: BillingCategory; rate?: MessageRate | null; provider?: ProviderName } = {}
+  extra: { providerUsed?: 'school_specific' | 'platform_default'; fallbackReason?: string | null; providerMessageId?: string | null; category?: BillingCategory; rate?: MessageRate | null; provider?: ProviderName; template?: TemplateToSend | null; filled?: Record<string, string> } = {}
 ): Promise<string> {
   // Only a message a real provider sent can cost anything: the stand-in
   // reaches no phone and is never billable. A real account's message is
@@ -125,8 +128,8 @@ async function logAttempt(
   const { rows } = await client.query(
     `insert into communication_log
        (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, rate_id, cost_basis,
-        status, provider_message_id, dedupe_key, provider_used, fallback_reason, reason, student_id, parent_id, purpose, provider)
-     values ($1, $2, 'whatsapp', $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)
+        status, provider_message_id, dedupe_key, provider_used, fallback_reason, reason, student_id, parent_id, purpose, provider, template_version, language, template_params)
+     values ($1, $2, 'whatsapp', $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22)
      returning log_id`,
     [
       params.schoolId,
@@ -148,6 +151,9 @@ async function logAttempt(
       params.parentId ?? null,
       params.purpose,
       extra.provider ?? null,
+      extra.template?.version ?? null,
+      extra.template?.language ?? null,
+      extra.template && extra.filled ? JSON.stringify(extra.filled) : null,
     ]
   );
   return rows[0].log_id;
@@ -177,7 +183,7 @@ export async function sendWhatsAppMessage(
   }
 
   const { rows: schoolRows } = await client.query<SchoolGateContext>(
-    `select is_pilot, pilot_allow_outbound, monthly_budget_paise, quiet_hours_start, quiet_hours_end, timezone, is_test_fixture
+    `select is_pilot, pilot_allow_outbound, monthly_budget_paise, quiet_hours_start, quiet_hours_end, timezone, is_test_fixture, name
      from schools where school_id = $1`,
     [params.schoolId]
   );
@@ -244,11 +250,22 @@ export async function sendWhatsAppMessage(
     return { logId: await logAttempt(client, params, 'blocked_budget', reason), status: 'blocked_budget', reason, idempotent: false, providerUsed: null };
   }
 
-  // 5. Template approval -- refuse rather than attempt-and-hope.
-  const approved = await isTemplateApproved(client, params.schoolId, params.templateName);
-  if (!approved) {
+  // 5. The template (C184): the newest version WE approved, in the language
+  // asked for. Refuse rather than attempt-and-hope. The school's own name is
+  // put in here, from its own row: every message's first line names the
+  // school, and no caller can leave it out or put another in. Every variable
+  // the version needs must have a value before any provider is asked.
+  const language = params.language ?? 'en';
+  let template = await templateToSend(client, params.schoolId, params.templateName, language, false);
+  if (!template) {
     const reason = `template "${params.templateName}" is not an approved template for this school`;
     return { logId: await logAttempt(client, params, 'blocked_no_template', reason), status: 'blocked_no_template', reason, idempotent: false, providerUsed: null };
+  }
+  const filled = { ...params.templateParams, school: school.name };
+  const missing = missingVariables(template, filled);
+  if (missing.length > 0) {
+    const reason = `template "${params.templateName}" needs a value for: ${missing.join(', ')}`;
+    return { logId: await logAttempt(client, params, 'blocked_no_template', reason, { template }), status: 'blocked_no_template', reason, idempotent: false, providerUsed: null };
   }
 
   // 6. Provider resolution. A TEST SCHOOL always gets the stand-in (docs/25
@@ -292,16 +309,26 @@ export async function sendWhatsAppMessage(
     }
   }
 
+  // A real account sends only a version Meta has approved as well.
+  if (provider.name === 'meta') {
+    template = await templateToSend(client, params.schoolId, params.templateName, language, true);
+    if (!template || missingVariables(template, filled).length > 0) {
+      const reason = `template "${params.templateName}" has no version approved by Meta yet`;
+      return { logId: await logAttempt(client, params, 'blocked_no_template', reason, { category, rate }), status: 'blocked_no_template', reason, idempotent: false, providerUsed: null };
+    }
+  }
+  const said = { template, filled: Object.fromEntries(template.variables.map((v) => [v, filled[v as keyof typeof filled] as string])) };
+
   // 7. Send, then log the real outcome -- sent or failed, never silent.
   try {
-    const result = await provider.send({ toPhone: params.toPhone, templateName: params.templateName, templateParams: params.templateParams });
+    const result = await provider.send({ toPhone: params.toPhone, templateName: params.templateName, templateParams: said.filled, language: template.language, templateVersion: template.version, metaTemplateId: template.metaTemplateId });
     const status: CommStatus = result.success ? comm_status_sent : comm_status_failed;
     const reason = result.success ? null : result.errorMessage;
-    const logId = await logAttempt(client, params, status, reason, { providerUsed, fallbackReason, providerMessageId: result.providerMessageId, category, rate, provider: provider.name });
+    const logId = await logAttempt(client, params, status, reason, { providerUsed, fallbackReason, providerMessageId: result.providerMessageId, category, rate, provider: provider.name, ...said });
     return { logId, status, reason, idempotent: false, providerUsed };
   } catch (err) {
     const reason = err instanceof Error ? err.message : 'unknown provider error';
-    const logId = await logAttempt(client, params, comm_status_failed, reason, { providerUsed, fallbackReason, category, rate, provider: provider.name });
+    const logId = await logAttempt(client, params, comm_status_failed, reason, { providerUsed, fallbackReason, category, rate, provider: provider.name, ...said });
     return { logId, status: comm_status_failed, reason, idempotent: false, providerUsed };
   }
 }

@@ -156,6 +156,9 @@ ALLOWED_PERMISSIVE = (
         # school. Write restriction is the RESTRICTIVE
         # whatsapp_templates_admin_write overlay, same as above.
         ("whatsapp_templates", "whatsapp_templates_read"),
+        # C184: the platform's own templates are decided by NetCyberAI staff as the
+        # platform role; scoped `to nca_super`, so no school role gains anything.
+        ("whatsapp_templates", "whatsapp_templates_platform_decide"),
         # `leads` is the one genuinely pre-tenant table (public Get
         # Started/Book Demo intake, reached via withBackendConnection,
         # never withTenantContext -- there is no school_id yet). Public

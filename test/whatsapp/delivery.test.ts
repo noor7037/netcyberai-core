@@ -67,6 +67,7 @@ describe('delivery states, on the real schema', () => {
       await db.pg.query(`insert into parents (parent_id, school_id, name, phone) values ($1, $2, 'A Guardian', '+910000000011')`, [parent(s), s]);
       await db.pg.query(`insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version) select $1, $2, 'operational_communication', true, (enum_range(null::consent_method))[1], 'v1'`, [s, student(s)]);
     }
+    await db.pg.exec(`update whatsapp_templates set meta_status = 'approved', meta_template_id = 'made-up' where status = 'approved'`); // the made-up real account sends only what Meta has approved (C184)
     vi.spyOn(console, 'warn').mockImplementation(() => undefined);
   }, 120_000);
   afterAll(async () => db?.stop());
