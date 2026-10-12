@@ -84,6 +84,7 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['users/*/send-reset', 'any-module', 'even-read-only'],
   ['users/**', 'any-module'],
   ['whatsapp-config', 'communication'],
+  ['communication/**', 'communication'],
   // Always on: a school can ask for help whatever its account's state.
   ['tickets/**', 'raise-ticket'],
   ['tickets', 'raise-ticket'],

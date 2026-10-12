@@ -696,6 +696,29 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['message', 'whatsapp', 'delivered', 'read', 'failed', 'held', 'communication', 'संदेश', 'पहुँचा'],
   },
   {
+    slug: 'answer-a-parent',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Answer a parent who wrote back', hi: 'जवाब लिखने वाले अभिभावक को उत्तर दें' },
+    summary: {
+      en: 'When a parent replies to a message from the school, it appears as a conversation. You can answer in your own words for 24 hours after they write.',
+      hi: 'जब कोई अभिभावक स्कूल के संदेश का जवाब देता है, तो वह एक बातचीत के रूप में दिखता है। उनके लिखने के बाद 24 घंटे तक आप अपने शब्दों में जवाब दे सकते हैं।',
+    },
+    steps: [
+      { en: 'Open “Communication”. “What parents wrote back” lists each conversation, new ones first.', hi: '“Communication” खोलें। “What parents wrote back” में हर बातचीत है, नई सबसे पहले।' },
+      { en: 'Tap a conversation to read everything the parent wrote and everything the school sent to that number.', hi: 'अभिभावक ने जो लिखा और स्कूल ने उस नंबर पर जो भेजा, वह सब पढ़ने के लिए बातचीत पर दबाएँ।' },
+      { en: 'Write in “Your reply” and press “Send reply”. It goes within a minute.', hi: '“Your reply” में लिखें और “Send reply” दबाएँ। यह एक मिनट के भीतर जाता है।' },
+    ],
+    tips: [
+      { en: 'After 24 hours without a new message from the parent, a reply in your own words can no longer be sent. If they write again, you can answer.', hi: 'अभिभावक का नया संदेश आए बिना 24 घंटे बीत जाएँ, तो अपने शब्दों में जवाब नहीं भेजा जा सकता। वे फिर लिखें, तो आप जवाब दे सकते हैं।' },
+      { en: 'A parent who writes STOP gets no more WhatsApp messages from the school. When they ask for messages again, the principal or school admin uses “Start messages again” and writes how they asked.', hi: 'जो अभिभावक STOP लिखता है, उसे स्कूल से और WhatsApp संदेश नहीं मिलते। जब वे फिर संदेश माँगें, तो प्रिंसिपल या स्कूल एडमिन “Start messages again” दबाकर लिखते हैं कि उन्होंने कैसे कहा।' },
+      { en: 'A teacher sees only the conversations of parents of their own classes.', hi: 'शिक्षक को सिर्फ़ अपनी कक्षाओं के अभिभावकों की बातचीत दिखती है।' },
+    ],
+    start: { href: '/app/communication', label: { en: 'Communication', hi: 'Communication' } },
+    related: ['message-states', 'mark-attendance'],
+    keywords: ['reply', 'parent', 'whatsapp', 'conversation', 'stop', 'answer', 'जवाब', 'अभिभावक', 'बातचीत'],
+  },
+  {
     slug: 'whatsapp-settings',
     category: 'support',
     audience: 'office',

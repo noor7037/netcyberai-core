@@ -27,6 +27,12 @@ export interface WhatsAppSendParams {
   testSchool?: boolean;
 }
 
+export interface WhatsAppTextParams {
+  toPhone: string;
+  text: string;
+  testSchool?: boolean;
+}
+
 export interface WhatsAppSendResult {
   success: boolean;
   providerMessageId: string | null;
@@ -43,6 +49,8 @@ export type NoticeRead = { ok: true; notices: WhatsAppNotice[] } | { ok: false; 
 export interface WhatsAppProvider {
   readonly name: ProviderName;
   send(params: WhatsAppSendParams): Promise<WhatsAppSendResult>;
+  // Free text (C187): only ever a reply inside the 24 hours a parent's own message opens. The gate decides that.
+  sendText(params: WhatsAppTextParams): Promise<WhatsAppSendResult>;
   // Whether the account behind this provider can be reached, said plainly. Makes no send.
   testConnection(): Promise<{ ok: boolean; message: string }>;
   // A webhook body and its signature header, checked and read. A body that cannot be trusted reads as nothing.
@@ -77,6 +85,10 @@ export class StandInWhatsAppProvider implements WhatsAppProvider {
     this.calls.push({ ...params, providerMessageId, at: new Date() });
     if (this.forceFailure) return { success: false, providerMessageId: null, errorMessage: 'the stand-in was told to fail', raw: { standIn: true } };
     return { success: true, providerMessageId, errorMessage: null, raw: { standIn: true } };
+  }
+
+  async sendText(params: WhatsAppTextParams): Promise<WhatsAppSendResult> {
+    return this.send({ toPhone: params.toPhone, templateName: '(free text)', templateParams: { text: params.text } });
   }
 
   async testConnection(): Promise<{ ok: boolean; message: string }> {

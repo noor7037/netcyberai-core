@@ -270,6 +270,10 @@ ALLOWED_PERMISSIVE = (
         # C174: tenant isolation only; narrowed by the RESTRICTIVE payment_reports_finance, required below.
         ("payment_reports", "payment_reports_tenant_isolation"),
         # C176: tenant isolation only; each narrowed by the RESTRICTIVE policies required below.
+        # C187: tenant isolation only; each narrowed to the right staff by the RESTRICTIVE policies required below.
+        ("message_threads", "message_threads_tenant_isolation"),
+        ("inbound_messages", "inbound_messages_tenant_isolation"),
+        ("whatsapp_opt_outs", "whatsapp_opt_outs_tenant_isolation"),
         ("fee_followups", "fee_followups_tenant_isolation"),  # C178: narrowed to the finance roles below
         ("fee_refunds", "fee_refunds_tenant_isolation"),
         ("fee_reminders", "fee_reminders_tenant_isolation"),  # C179
@@ -378,6 +382,10 @@ REQUIRED_RESTRICTIVE = {
     ("payment_evidence", "payment_evidence_finance"),
     ("payment_reports", "payment_reports_finance"),
     # C176: holidays are the office's to change; bank accounts, statements and rows are the finance roles'.
+    ("message_threads", "message_threads_staff"),
+    ("inbound_messages", "inbound_messages_staff"),
+    ("whatsapp_opt_outs", "whatsapp_opt_outs_staff"),
+    ("whatsapp_opt_outs", "whatsapp_opt_outs_office"),
     ("fee_followups", "fee_followups_finance"),
     ("fee_followups", "fee_followups_as_self"),
     ("fee_refunds", "fee_refunds_finance"),

@@ -98,6 +98,7 @@ const realAccount = () => {
   const provider: WhatsAppProvider = {
     name: 'meta',
     send: async (p) => (sent.push(p.toPhone), { success: true, providerMessageId: `made-up-${sent.length}`, errorMessage: null, raw: null }),
+    sendText: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
     testConnection: async () => ({ ok: true, message: 'made up' }),
     readNotice: () => ({ ok: false, reason: 'no_secret' }),
   };

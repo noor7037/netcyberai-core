@@ -731,6 +731,54 @@ const whatsappAccountDone = async () => {
   const want = { noKey: 1, saveDisabled: true, secretsHidden: true, get: 404, post: 404 };
   if (JSON.stringify(whatsappSeen) !== JSON.stringify(want) || saved !== 0) throw new Error(`the WhatsApp account screen without a key: ${JSON.stringify(whatsappSeen)}, ${saved} saved`);
 };
+// Parents' replies (C187): a guardian of the fixture school writes to the platform number (the stand-in's signed
+// notice at the public webhook). The principal sees the conversation, answers in their own words, and the reply
+// waits its turn. The guardian then writes STOP: the thread says so and the reply box is gone.
+const clearReplies = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from communication_log where thread_id is not null; delete from jobs where type = 'whatsapp.send'; delete from inbound_messages; delete from whatsapp_opt_outs; delete from message_threads; delete from webhook_events where provider = 'whatsapp'; set session_replication_role = origin;`);
+};
+let repliesSeen = null;
+let pilotBefore = null;
+const parentReplies = async (page) => {
+  await clearReplies();
+  pilotBefore = (await db.pg.query(`select is_pilot, pilot_allow_outbound from schools where school_id = $1`, [SCHOOL])).rows[0];
+  await db.pg.query(`update schools set pilot_allow_outbound = true where school_id = $1`, [SCHOOL]);
+  const guardians = (await db.pg.query(`select p.phone, count(*) over (partition by regexp_replace(p.phone, '[^0-9]', '', 'g')) as shared from parents p where p.school_id = $1 order by p.created_at, p.parent_id`, [SCHOOL])).rows;
+  const digits = (guardians.find((g) => Number(g.shared) === 1 && /^[6-9][0-9]{9}$/.test(g.phone.replace(/[^0-9]/g, '').slice(-10))) ?? {}).phone?.replace(/[^0-9]/g, '').slice(-10);
+  if (!digits) throw new Error('the fixture school has no guardian with a usable number');
+  const from = `+91${digits}`;
+  const post = async (text) => {
+    const rawBody = JSON.stringify({ provider: 'stand-in', notices: [{ kind: 'inbound', providerMessageId: `standin-in-${randomUUID()}`, fromPhone: from, text, at: new Date().toISOString() }] });
+    return (await fetch(`${base}/api/public/whatsapp/webhook/stand-in`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-standin-signature': createHmac('sha256', childEnv.WHATSAPP_STANDIN_SECRET).update(rawBody).digest('hex') }, body: rawBody })).status;
+  };
+  const first = await post('Will the school be open on Saturday?');
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-thread]').first().click();
+  await page.locator('[data-thread-open]').waitFor({ timeout: 20000 });
+  await page.locator('#thread-reply').fill('Yes, the school is open on Saturday until 12:30.');
+  await page.locator('[data-thread-send]').click();
+  await page.waitForFunction(() => document.querySelectorAll('[data-thread-message="out"]').length === 1, null, { timeout: 20000 });
+  const threadShows = await page.locator('[data-thread-message]').evaluateAll((els) => els.map((e) => e.getAttribute('data-thread-message')).join());
+  const stop = await post('STOP');
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-thread]').first().click();
+  await page.locator('[data-thread-stopped]').waitFor({ timeout: 20000 });
+  repliesSeen = { first, stop, threadShows, replyBoxAfterStop: await page.locator('#thread-reply').count() };
+};
+const parentRepliesDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from message_threads where school_id = $1) as threads, (select count(*)::int from inbound_messages where school_id = $1) as inbound,
+            (select count(*)::int from communication_log where school_id = $1 and thread_id is not null and sent_by = $2 and status = 'queued') as replies_waiting,
+            (select count(*)::int from whatsapp_opt_outs where school_id = $1 and lifted_at is null) as stopped,
+            (select count(*)::int from inbound_messages where school_id is distinct from $1) as elsewhere`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  await clearReplies();
+  await db.pg.query(`update schools set pilot_allow_outbound = $2 where school_id = $1`, [SCHOOL, pilotBefore.pilot_allow_outbound]);
+  const want = { threads: 1, inbound: 2, replies_waiting: 1, stopped: 1, elsewhere: 0 };
+  if (JSON.stringify(rows[0]) !== JSON.stringify(want)) throw new Error(`parents' replies in the database: ${JSON.stringify(rows[0])}`);
+  if (JSON.stringify(repliesSeen) !== JSON.stringify({ first: 200, stop: 200, threadShows: 'in,out', replyBoxAfterStop: 0 })) throw new Error(`parents' replies on the screen: ${JSON.stringify(repliesSeen)}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -1085,6 +1133,7 @@ const SCREENS = [
   ['principal', 'app-staff', '/app/staff'],
   ['principal', 'app-compliance', '/app/compliance'],
   ['principal', 'app-communication', '/app/communication', messageStates, messageStatesDone],
+  ['principal', 'app-communication-replies', '/app/communication', parentReplies, parentRepliesDone],
   ['principal', 'app-taught-today', '/app/syllabus'],
   ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],
   ['teacher', 'app-settings-teacher', '/app/settings', settingsReadOnly],

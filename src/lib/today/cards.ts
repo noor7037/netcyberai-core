@@ -207,6 +207,17 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     },
   },
   {
+    // Conversations with a message from a parent nobody has opened yet (C187). Row level security shows the
+    // office every conversation and a teacher those of their own classes' guardians.
+    type: 'replies-waiting',
+    moduleId: 'communication',
+    roles: ['principal', 'school_admin', 'teacher'],
+    async load(db, ctx) {
+      const { rows } = await db.query(`select count(*) as c from message_threads where school_id = $1 and unread > 0`, [ctx.schoolId]);
+      return waiting('replies-waiting', 'communication', n(rows[0]?.c), '/app/communication');
+    },
+  },
+  {
     // Tickets NetCyberAI has answered and is waiting on the school for. Row
     // level security shows the office every ticket and anyone else their own.
     type: 'tickets-waiting',

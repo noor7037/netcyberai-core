@@ -49,7 +49,7 @@ PROVIDER_MODULE = "src/lib/whatsapp/provider.ts"
 GATE_MODULE = "src/lib/whatsapp/gate.ts"
 
 PROVIDER_IMPORT_RE = re.compile(r"\b(MockWhatsAppProvider|StandInWhatsAppProvider|MetaWhatsAppProvider|WhatsAppProvider|WhatsAppProviderSPI)\b")
-SEND_CALL_RE = re.compile(r"\.send\s*\(")
+SEND_CALL_RE = re.compile(r"\.send(Text)?\s*\(")
 CREDENTIALS_FN_RE = re.compile(r"\bwhatsapp_config_get_credentials\b")
 
 
