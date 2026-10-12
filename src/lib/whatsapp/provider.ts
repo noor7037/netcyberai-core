@@ -1,7 +1,20 @@
-// Task 2b: the provider-agnostic surface every WhatsApp send eventually
-// goes through. Never called from anywhere except src/lib/whatsapp/gate.ts
-// -- that module is the single choke point (scripts/check_whatsapp_send_gate.py
-// enforces this mechanically), mirroring the SET ROLE choke point in db.ts.
+import { createHmac, randomUUID, timingSafeEqual } from 'crypto';
+
+// The WhatsApp provider interface (docs/25 slice 7a, C182), shaped as
+// PaymentProvider is: the app talks to this, never to a vendor. Two
+// providers stand behind it:
+//   - the stand-in: reaches no phone and no network. It answers as the real
+//     one will (an id for each send; signed notices of delivery, reading,
+//     failure and replies), so every loop is proven without Meta. It is what
+//     every school resolves to today, and what a TEST SCHOOL resolves to
+//     always, whatever credentials exist.
+//   - Meta's Cloud API adapter: not built yet (slice 7e). It stays behind
+//     encrypted platform credentials entered in Control.
+// Nothing calls send() except src/lib/whatsapp/gate.ts
+// (scripts/check_whatsapp_send_gate.py holds that in CI).
+
+export type ProviderName = 'stand-in' | 'meta';
+
 export interface WhatsAppSendParams {
   toPhone: string;
   templateName: string;
@@ -15,62 +28,98 @@ export interface WhatsAppSendResult {
   raw: unknown;
 }
 
-export interface WhatsAppProviderSPI {
+// What a provider tells us afterwards: where a message got to, or what a parent wrote back.
+export type WhatsAppNotice =
+  | { kind: 'status'; providerMessageId: string; status: 'sent' | 'delivered' | 'read' | 'failed'; at: string; failureCode?: string }
+  | { kind: 'inbound'; providerMessageId: string; fromPhone: string; text: string; at: string };
+export type NoticeRead = { ok: true; notices: WhatsAppNotice[] } | { ok: false; reason: 'no_secret' | 'bad_signature' | 'not_understood' };
+
+export interface WhatsAppProvider {
+  readonly name: ProviderName;
   send(params: WhatsAppSendParams): Promise<WhatsAppSendResult>;
+  // Whether the account behind this provider can be reached, said plainly. Makes no send.
+  testConnection(): Promise<{ ok: boolean; message: string }>;
+  // A webhook body and its signature header, checked and read. A body that cannot be trusted reads as nothing.
+  readNotice(rawBody: string, signature: string | null): NoticeRead;
 }
+// The older name, kept for the gate's callers.
+export type WhatsAppProviderSPI = WhatsAppProvider;
 
-export interface MockCallRecord {
-  toPhone: string;
-  templateName: string;
-  templateParams: Record<string, string>;
-  timestamp: Date;
-}
+export const signStandInNotice = (secret: string, rawBody: string): string => createHmac('sha256', secret).update(rawBody).digest('hex');
+const STATUSES = ['sent', 'delivered', 'read', 'failed'];
+const isIso = (v: unknown): v is string => typeof v === 'string' && v.length <= 40 && !Number.isNaN(Date.parse(v));
 
-// Records every call, makes no real network call, returns a
-// controllable synthetic outcome. This is what every school resolves
-// to today (platform default and, until a school completes its own
-// WABA onboarding, tenant-scoped too) since no real WhatsApp Business
-// API credentials exist anywhere in this project yet (Task 0).
-export class MockWhatsAppProvider implements WhatsAppProviderSPI {
-  public readonly calls: MockCallRecord[] = [];
-  private forceFailure: boolean;
+export type StandInCall = WhatsAppSendParams & { providerMessageId: string | null; at: Date };
 
-  constructor(options: { forceFailure?: boolean } = {}) {
+export class StandInWhatsAppProvider implements WhatsAppProvider {
+  readonly name = 'stand-in' as const;
+  // What it was asked to send, for tests. Nothing here leaves the process.
+  public readonly calls: StandInCall[] = [];
+  private readonly secret: string;
+  private readonly forceFailure: boolean;
+
+  // The secret signs the stand-in's own notices. Without one it still "sends", and trusts no notice at all.
+  constructor(options: { secret?: string; forceFailure?: boolean } = {}, secret: string = process.env.WHATSAPP_STANDIN_SECRET ?? '') {
+    this.secret = options.secret ?? secret;
     this.forceFailure = options.forceFailure ?? false;
   }
 
   async send(params: WhatsAppSendParams): Promise<WhatsAppSendResult> {
-    this.calls.push({ ...params, timestamp: new Date() });
-    if (this.forceFailure) {
-      return { success: false, providerMessageId: null, errorMessage: 'mock forced failure', raw: { mock: true } };
+    const providerMessageId = this.forceFailure ? null : `standin-${randomUUID()}`;
+    this.calls.push({ ...params, providerMessageId, at: new Date() });
+    if (this.forceFailure) return { success: false, providerMessageId: null, errorMessage: 'the stand-in was told to fail', raw: { standIn: true } };
+    return { success: true, providerMessageId, errorMessage: null, raw: { standIn: true } };
+  }
+
+  async testConnection(): Promise<{ ok: boolean; message: string }> {
+    return { ok: true, message: 'The stand-in is in use: no message reaches a phone.' };
+  }
+
+  // The body of a notice as the stand-in would post it, and its signature: for tests and the screen harness.
+  notice(notices: WhatsAppNotice[]): { rawBody: string; signature: string } {
+    const rawBody = JSON.stringify({ provider: 'stand-in', notices });
+    return { rawBody, signature: signStandInNotice(this.secret, rawBody) };
+  }
+
+  readNotice(rawBody: string, signature: string | null): NoticeRead {
+    if (this.secret.length < 32) return { ok: false, reason: 'no_secret' };
+    const expected = Buffer.from(signStandInNotice(this.secret, rawBody), 'hex');
+    const given = Buffer.from(/^[0-9a-f]{64}$/.test(signature ?? '') ? (signature as string) : '', 'hex');
+    if (given.length !== expected.length || !timingSafeEqual(expected, given)) return { ok: false, reason: 'bad_signature' };
+    let body: unknown;
+    try {
+      body = JSON.parse(rawBody);
+    } catch {
+      return { ok: false, reason: 'not_understood' };
     }
-    return {
-      success: true,
-      providerMessageId: `mock-${this.calls.length}-${Date.now()}`,
-      errorMessage: null,
-      raw: { mock: true, params },
-    };
+    const list = (body as { provider?: unknown; notices?: unknown }).provider === 'stand-in' ? (body as { notices?: unknown }).notices : null;
+    if (!Array.isArray(list) || list.length > 100) return { ok: false, reason: 'not_understood' };
+    const notices: WhatsAppNotice[] = [];
+    for (const n of list as Record<string, unknown>[]) {
+      const id = typeof n?.providerMessageId === 'string' && n.providerMessageId.length <= 200 ? n.providerMessageId : null;
+      if (!id || !isIso(n.at)) return { ok: false, reason: 'not_understood' };
+      if (n.kind === 'status' && typeof n.status === 'string' && STATUSES.includes(n.status)) {
+        notices.push({ kind: 'status', providerMessageId: id, status: n.status as 'sent', at: n.at, ...(typeof n.failureCode === 'string' ? { failureCode: n.failureCode.slice(0, 60) } : {}) });
+      } else if (n.kind === 'inbound' && typeof n.fromPhone === 'string' && /^\+[0-9]{8,15}$/.test(n.fromPhone) && typeof n.text === 'string') {
+        notices.push({ kind: 'inbound', providerMessageId: id, fromPhone: n.fromPhone, text: n.text.slice(0, 4096), at: n.at });
+      } else return { ok: false, reason: 'not_understood' };
+    }
+    return { ok: true, notices };
   }
 }
 
-// The real adapter (graph.facebook.com) -- deliberately, honestly
-// unimplemented. Task 0 confirmed two hard blockers, neither fixable
-// from this session: (1) this sandbox's own egress policy rejects
-// graph.facebook.com outright (403 at the proxy's CONNECT step,
-// confirmed via /__agentproxy/status, not assumed); (2) zero real
-// WhatsApp Business API credentials exist anywhere in this Vercel
-// project (checked every env var, every target). Faking this into
-// "working" would be indistinguishable from a real integration until
-// the first real send silently failed against Meta's actual API.
-// TODO(WhatsApp credential gap -- Prompt H/L): implement once (a) this
-// sandbox or its Vercel deployment target can reach graph.facebook.com
-// (re-test via the C38 diagnostic-route pattern), and (b) real
-// platform-level or tenant-level credentials exist to send with.
-export class MetaWhatsAppProvider implements WhatsAppProviderSPI {
+// Meta's Cloud API adapter is slice 7e. Until it is built and platform
+// credentials are entered in Control, nothing here can reach Meta: every
+// method refuses, plainly.
+export class MetaWhatsAppProvider implements WhatsAppProvider {
+  readonly name = 'meta' as const;
   async send(): Promise<WhatsAppSendResult> {
-    throw new Error(
-      'MetaWhatsAppProvider is not implemented: no real WhatsApp Business API credentials exist yet, ' +
-        'and this sandbox\'s egress policy blocks graph.facebook.com. See the TODO on this class.'
-    );
+    throw new Error('The Meta WhatsApp adapter is not built yet (docs/25 slice 7e); no message was sent.');
+  }
+  async testConnection(): Promise<{ ok: boolean; message: string }> {
+    return { ok: false, message: 'The Meta WhatsApp adapter is not built yet.' };
+  }
+  readNotice(): NoticeRead {
+    return { ok: false, reason: 'no_secret' };
   }
 }

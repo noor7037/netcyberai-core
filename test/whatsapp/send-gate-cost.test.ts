@@ -3,6 +3,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { messageCost, rateOnSendDate, sendWhatsAppMessage, templateCategory, unpricedRealSend, type MessageRate } from '@/lib/whatsapp/gate';
 import { loadMessagingCost } from '@/lib/control/messaging-cost';
+import type { WhatsAppProvider } from '@/lib/whatsapp/provider';
 
 // The send-gate's money (T7, C140), on the whole real schema (every
 // migration replayed on PGlite): the category comes from the template, the
@@ -25,8 +26,17 @@ const asSchool = <T>(fn: (client: any) => Promise<T>, school = SCHOOL): Promise<
     return fn(tx);
   });
 let n = 0;
+// Money is only ever recorded for a real account (C182: what the stand-in "sends" reaches no phone and is never
+// billable). So the live school here sends through a made-up real account that calls nothing; the test school
+// is left to the gate, which gives it the stand-in.
+const realAccount: WhatsAppProvider = {
+  name: 'meta',
+  send: async () => ({ success: true, providerMessageId: `made-up-${n}`, errorMessage: null, raw: null }),
+  testConnection: async () => ({ ok: true, message: 'made up for this test' }),
+  readNotice: () => ({ ok: false, reason: 'no_secret' }),
+};
 const send = (template: string, school = SCHOOL, student = STUDENT) =>
-  asSchool((client) => sendWhatsAppMessage(client, { schoolId: school, studentId: student, purpose: 'operational_communication', toPhone: '+910000000000', templateName: template, templateParams: {}, dedupeKey: `t-${++n}` }), school);
+  asSchool((client) => sendWhatsAppMessage(client, { schoolId: school, studentId: student, purpose: 'operational_communication', toPhone: '+910000000000', templateName: template, templateParams: {}, dedupeKey: `t-${++n}` }, school === SCHOOL ? { platformDefaultProvider: realAccount } : {}), school);
 const row = async (logId: string) => (await db.pg.query(`select billing_category, billable, est_cost_paise::int as cost, gst_paise::int as gst, rate_id, cost_basis, status::text as status from communication_log where log_id = $1`, [logId])).rows[0];
 
 beforeAll(async () => {
