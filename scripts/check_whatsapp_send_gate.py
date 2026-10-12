@@ -28,8 +28,8 @@ check_service_role.py already make: it looks for the literal patterns
 `.send(` and `whatsapp_config_get_credentials`, not a real TypeScript
 call graph. `.send(` is broader than WhatsApp alone (e.g. a form
 library's own `.send()`), so it only counts as a violation when the
-same line's file also imports MockWhatsAppProvider or
-MetaWhatsAppProvider -- narrowing to files that actually hold a
+same line's file also names a WhatsApp provider (the stand-in, Meta's
+adapter, or the WhatsAppProvider interface itself) -- narrowing to files that actually hold a
 provider instance, not every `.send(` in the codebase.
 
 Usage:
@@ -48,7 +48,7 @@ SCAN_ROOT = REPO_ROOT / "src"
 PROVIDER_MODULE = "src/lib/whatsapp/provider.ts"
 GATE_MODULE = "src/lib/whatsapp/gate.ts"
 
-PROVIDER_IMPORT_RE = re.compile(r"\b(MockWhatsAppProvider|MetaWhatsAppProvider)\b")
+PROVIDER_IMPORT_RE = re.compile(r"\b(MockWhatsAppProvider|StandInWhatsAppProvider|MetaWhatsAppProvider|WhatsAppProvider|WhatsAppProviderSPI)\b")
 SEND_CALL_RE = re.compile(r"\.send\s*\(")
 CREDENTIALS_FN_RE = re.compile(r"\bwhatsapp_config_get_credentials\b")
 

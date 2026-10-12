@@ -2,7 +2,7 @@ import type { PoolClient } from 'pg';
 import { isPurposeGranted, type ConsentPurpose } from '@/lib/consent/gate';
 import { isTemplateApproved } from '@/lib/whatsapp/templates';
 import { resolveProvider } from '@/lib/whatsapp/config';
-import { MetaWhatsAppProvider, MockWhatsAppProvider, type WhatsAppProviderSPI } from '@/lib/whatsapp/provider';
+import { MetaWhatsAppProvider, StandInWhatsAppProvider, type ProviderName, type WhatsAppProviderSPI } from '@/lib/whatsapp/provider';
 
 // THE single WhatsApp send-gate. Exactly one module may call a real
 // provider's send() function (this one), mirroring the SET ROLE choke
@@ -10,7 +10,7 @@ import { MetaWhatsAppProvider, MockWhatsAppProvider, type WhatsAppProviderSPI } 
 // (attendance-absence notification, and any future one) calls
 // sendWhatsAppMessage -- never a provider directly.
 // scripts/check_whatsapp_send_gate.py enforces this mechanically: it
-// fails CI if MockWhatsAppProvider/MetaWhatsAppProvider.send is called,
+// fails CI if StandInWhatsAppProvider/MetaWhatsAppProvider.send is called,
 // or whatsapp_config_get_credentials is queried, from anywhere outside
 // this file.
 
@@ -34,6 +34,8 @@ export interface SendWhatsAppMessageParams {
   templateName: string;
   templateParams: Record<string, string>;
   dedupeKey: string;
+  // The guardian this goes to, when the caller knows (C182): kept on the log so a message can be found by family.
+  parentId?: string | null;
 }
 
 export interface SendWhatsAppMessageResult {
@@ -100,6 +102,7 @@ interface SchoolGateContext {
   quiet_hours_start: string;
   quiet_hours_end: string;
   timezone: string;
+  is_test_fixture: boolean;
 }
 
 async function logAttempt(
@@ -107,20 +110,20 @@ async function logAttempt(
   params: SendWhatsAppMessageParams,
   status: CommStatus,
   reason: string | null,
-  extra: { providerUsed?: 'school_specific' | 'platform_default'; fallbackReason?: string | null; providerMessageId?: string | null; category?: BillingCategory; rate?: MessageRate | null } = {}
+  extra: { providerUsed?: 'school_specific' | 'platform_default'; fallbackReason?: string | null; providerMessageId?: string | null; category?: BillingCategory; rate?: MessageRate | null; provider?: ProviderName } = {}
 ): Promise<string> {
-  // Only a message that was sent can cost anything. (Meta charges on
-  // delivery; delivery receipts arrive with the real provider in P4, and
-  // `billable` is corrected from them then.)
-  const cost = messageCost(extra.category ?? (await templateCategory(client, params.schoolId, params.templateName)), status === comm_status_sent, extra.rate ?? null);
+  // Only a message that was sent can cost anything, and only one a real
+  // provider sent: the stand-in reaches no phone and is never billable.
+  // (Meta charges on delivery; `billable` follows the delivery notice from slice 7b.)
+  const cost = messageCost(extra.category ?? (await templateCategory(client, params.schoolId, params.templateName)), status === comm_status_sent && extra.provider !== 'stand-in', extra.rate ?? null);
   if (cost.costBasis === 'rate_not_verified') {
     console.warn('[send-gate] rate not verified: no rate on record for this category and date; cost recorded as zero', cost.category);
   }
   const { rows } = await client.query(
     `insert into communication_log
        (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, rate_id, cost_basis,
-        status, provider_message_id, dedupe_key, provider_used, fallback_reason, reason)
-     values ($1, $2, 'whatsapp', $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+        status, provider_message_id, dedupe_key, provider_used, fallback_reason, reason, student_id, parent_id, purpose, provider)
+     values ($1, $2, 'whatsapp', $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)
      returning log_id`,
     [
       params.schoolId,
@@ -138,6 +141,10 @@ async function logAttempt(
       extra.providerUsed ?? null,
       extra.fallbackReason ?? null,
       reason,
+      params.studentId,
+      params.parentId ?? null,
+      params.purpose,
+      extra.provider ?? null,
     ]
   );
   return rows[0].log_id;
@@ -167,7 +174,7 @@ export async function sendWhatsAppMessage(
   }
 
   const { rows: schoolRows } = await client.query<SchoolGateContext>(
-    `select is_pilot, pilot_allow_outbound, monthly_budget_paise, quiet_hours_start, quiet_hours_end, timezone
+    `select is_pilot, pilot_allow_outbound, monthly_budget_paise, quiet_hours_start, quiet_hours_end, timezone, is_test_fixture
      from schools where school_id = $1`,
     [params.schoolId]
   );
@@ -241,32 +248,45 @@ export async function sendWhatsAppMessage(
     return { logId: await logAttempt(client, params, 'blocked_no_template', reason), status: 'blocked_no_template', reason, idempotent: false, providerUsed: null };
   }
 
-  // 6. Provider resolution. A school-specific config that isn't
+  // 6. Provider resolution. A TEST SCHOOL always gets the stand-in (docs/25
+  // rule 2, C182): its guardians' numbers are never written to through a
+  // real account, whatever configuration or credentials exist; its own
+  // config is not even read. Otherwise a school-specific config that isn't
   // `active` falls back to the platform default, logged with why.
-  const resolution = await resolveProvider(client, params.schoolId);
   let provider: WhatsAppProviderSPI;
   let providerUsed: 'school_specific' | 'platform_default';
   let fallbackReason: string | null = null;
+  const standIn = () => options.platformDefaultProvider ?? new StandInWhatsAppProvider();
 
-  // A message that really costs money is never sent at an unknown price: a
-  // budget cannot limit what it cannot count. Until a verified rate is on
-  // record for the category, a school's own (real) WhatsApp account does not
-  // send; the platform's stand-in, which costs nothing, still does.
-  const unpriced = unpricedRealSend(resolution.kind, rate);
-  if (unpriced) {
-    return { logId: await logAttempt(client, params, 'blocked_budget', unpriced, { category, rate }), status: 'blocked_budget', reason: unpriced, idempotent: false, providerUsed: null };
-  }
-
-  if (resolution.kind === 'school_specific') {
-    providerUsed = 'school_specific';
-    // The ONLY call site for this function in the whole codebase --
-    // decrypting a real credential happens nowhere else.
-    await client.query(`select * from whatsapp_config_get_credentials($1)`, [resolution.configId]);
-    provider = new MetaWhatsAppProvider(); // unimplemented -- see provider.ts's own TODO
-  } else {
+  if (school.is_test_fixture) {
     providerUsed = 'platform_default';
-    fallbackReason = resolution.fallbackReason;
-    provider = options.platformDefaultProvider ?? new MockWhatsAppProvider();
+    fallbackReason = 'test school: the stand-in only, never a real number';
+    provider = standIn();
+    if (provider.name !== 'stand-in') {
+      const reason = 'a test school never sends through a real account';
+      return { logId: await logAttempt(client, params, comm_status_failed, reason, { category, rate, fallbackReason }), status: comm_status_failed, reason, idempotent: false, providerUsed: null };
+    }
+  } else {
+    const resolution = await resolveProvider(client, params.schoolId);
+    // A message that really costs money is never sent at an unknown price: a
+    // budget cannot limit what it cannot count. Until a verified rate is on
+    // record for the category, a school's own (real) WhatsApp account does not
+    // send; the platform's stand-in, which costs nothing, still does.
+    const unpriced = unpricedRealSend(resolution.kind, rate);
+    if (unpriced) {
+      return { logId: await logAttempt(client, params, 'blocked_budget', unpriced, { category, rate }), status: 'blocked_budget', reason: unpriced, idempotent: false, providerUsed: null };
+    }
+    if (resolution.kind === 'school_specific') {
+      providerUsed = 'school_specific';
+      // The ONLY call site for this function in the whole codebase --
+      // decrypting a real credential happens nowhere else.
+      await client.query(`select * from whatsapp_config_get_credentials($1)`, [resolution.configId]);
+      provider = new MetaWhatsAppProvider(); // not built yet -- docs/25 slice 7e
+    } else {
+      providerUsed = 'platform_default';
+      fallbackReason = resolution.fallbackReason;
+      provider = standIn();
+    }
   }
 
   // 7. Send, then log the real outcome -- sent or failed, never silent.
@@ -274,11 +294,11 @@ export async function sendWhatsAppMessage(
     const result = await provider.send({ toPhone: params.toPhone, templateName: params.templateName, templateParams: params.templateParams });
     const status: CommStatus = result.success ? comm_status_sent : comm_status_failed;
     const reason = result.success ? null : result.errorMessage;
-    const logId = await logAttempt(client, params, status, reason, { providerUsed, fallbackReason, providerMessageId: result.providerMessageId, category, rate });
+    const logId = await logAttempt(client, params, status, reason, { providerUsed, fallbackReason, providerMessageId: result.providerMessageId, category, rate, provider: provider.name });
     return { logId, status, reason, idempotent: false, providerUsed };
   } catch (err) {
     const reason = err instanceof Error ? err.message : 'unknown provider error';
-    const logId = await logAttempt(client, params, comm_status_failed, reason, { providerUsed, fallbackReason, category, rate });
+    const logId = await logAttempt(client, params, comm_status_failed, reason, { providerUsed, fallbackReason, category, rate, provider: provider.name });
     return { logId, status: comm_status_failed, reason, idempotent: false, providerUsed };
   }
 }

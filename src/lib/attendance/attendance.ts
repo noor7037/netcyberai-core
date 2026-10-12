@@ -115,6 +115,7 @@ async function notifyGuardiansOfAbsence(
       templateName: 'attendance_absence_notification',
       templateParams: { studentId: params.studentId },
       dedupeKey: `attendance_absence:${params.attendanceId}:${guardian.parent_id}`,
+      parentId: guardian.parent_id,
     });
   }
 }
