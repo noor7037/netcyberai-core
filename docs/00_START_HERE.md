@@ -89,6 +89,7 @@ for work that changes the rules themselves.
     For fees and payments: [`23_P3_FEES_PLAN.md`](23_P3_FEES_PLAN.md) and
     [`24_PAYMENT_COLLECTION_ARCHITECTURE.md`](24_PAYMENT_COLLECTION_ARCHITECTURE.md)
     (how money is collected and proven; C170).
+    For WhatsApp and the parent loop: [`25_P4_WHATSAPP_PLAN.md`](25_P4_WHATSAPP_PLAN.md) (C181).
 11. [`10_DECISION_LOG.md`](10_DECISION_LOG.md) — read when something
     in the above seems to contradict something else. It almost
     certainly doesn't — check here before re-deciding it.
