@@ -112,7 +112,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // Fees (C159): the day of the month a due falls on unless the office picks another.
   {
     moduleId: 'fees',
-    version: 4,
+    version: 5,
     fields: [
       {
         key: 'due_day',
@@ -148,6 +148,20 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         default: 20,
         min: 1,
         max: 500,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      // Counter UPI and cheques are expected in the bank statement (docs/24 §3.6, C177).
+      {
+        key: 'bank_unseen_days',
+        label: 'Days before a counter UPI or cheque payment not seen in the bank is listed',
+        help: 'A payment taken at the counter by UPI, cheque or bank transfer should show in the bank statement. After this many days without it, from 1 to 30, it is listed for the office to look into. The receipt stays valid.',
+        section: 'Bank statements',
+        type: 'number',
+        default: 3,
+        min: 1,
+        max: 30,
         required: true,
         editableBy: OFFICE,
         affectsExistingRecords: false,
