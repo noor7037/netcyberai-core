@@ -96,14 +96,15 @@ describe('no table or function is reached through supabase-js anywhere in src/',
   };
   walk(path.resolve(__dirname, '../../src'));
 
-  it('no .rpc(), no .schema(), and .from(\'…\') only on .storage', () => {
+  it('no .rpc(), no .schema(), and .from(…) only on .storage', () => {
     const offenders: string[] = [];
     for (const f of files) {
       const text = readFileSync(f, 'utf8');
       text.split('\n').forEach((line, i) => {
         if (/^\s*(\/\/|\*)/.test(line)) return;
-        const tableCall = /\.from\(\s*['"`A-Z]/.test(line) && !/\.storage\s*\.from\(/.test(line) && !/(Array|Buffer|Object|Uint8Array|Date)\.from\(/.test(line);
-        if (tableCall || /\.(rpc|schema)\(\s*['"`]/.test(line)) offenders.push(`${path.relative(path.resolve(__dirname, '../..'), f)}:${i + 1}`);
+        // Any .from( at all that is not a bucket or a built-in (Array.from and the like): a table named by a variable counts too.
+        const tableCall = /\.from\(/.test(line.replace(/\b(Array|Buffer|Object|Uint8Array|Set|Map)\.from\(/g, '').replace(/\.storage\s*\.from\(/g, ''));
+        if (tableCall || /\.(rpc|schema)\(/.test(line)) offenders.push(`${path.relative(path.resolve(__dirname, '../..'), f)}:${i + 1}`);
       });
     }
     expect(offenders).toEqual([]);
