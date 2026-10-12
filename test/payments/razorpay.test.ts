@@ -164,7 +164,7 @@ describe('on the real schema, through the webhook’s own code', () => {
     });
     db = await startHarnessDb({ port: 0 });
     await db.pg.exec(`
-      insert into schools (school_id, name, jurisdiction) values ('${A}', 'School A', 'IN-HR'), ('${B}', 'School B', 'IN-DL');
+      insert into schools (school_id, name, jurisdiction, is_test_fixture) values ('${A}', 'School A', 'IN-HR', true), ('${B}', 'School B', 'IN-DL', true); -- test schools: only they take test payments (C173)
       insert into users (user_id, school_id, email, role, display_name) values ('${FOUNDER}', null, 'f@x.invalid', 'super_admin', 'Founder'), ('${ACCOUNTANT}', '${A}', 'acc@a.invalid', 'accountant', 'Accountant A');
       insert into students (student_id, school_id, admission_no, name) values ('${ASHA}', '${A}', 'A-1', 'Asha'), ('${OTHER_CHILD}', '${B}', 'B-1', 'Other');
       alter table students disable trigger user; update students set status = 'active'; alter table students enable trigger user;
