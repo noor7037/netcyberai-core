@@ -84,7 +84,7 @@ export default async function ReceiptPage({ params }: { params: { receiptId: str
           {t(lang, 'rcp.method', { method: t(lang, `pay.method.${r.method}` as MessageKey) })}
           {r.reference ? ` · ${r.reference}` : ''}
         </p>
-        <p className="pt-6">{t(lang, 'rcp.issuedBy', { name: r.issued_by_name })}</p>
+        <p className="pt-6">{r.issued_by_name ? t(lang, 'rcp.issuedBy', { name: r.issued_by_name }) : t(lang, 'rcp.online')}</p>
       </article>
     </ModulePage>
   );

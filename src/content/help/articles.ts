@@ -539,6 +539,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'Press “Open the receipt to print”, then “Print”.', hi: '“Open the receipt to print” दबाएँ, फिर “Print”।' },
     ],
     tips: [
+      { en: 'Under “Payment link for the family”, the office can make one link for everything the family owes. Until online payment is switched on for your school it says so, and the payment is taken at the counter.', hi: '“Payment link for the family” के नीचे दफ़्तर परिवार के पूरे बकाये के लिए एक लिंक बना सकता है। जब तक आपके स्कूल के लिए ऑनलाइन भुगतान चालू नहीं होता, वहाँ यही लिखा रहता है और भुगतान काउंटर पर लिया जाता है।' },
       { en: 'With the family ticked, “What the family owes” lists each child’s amount and one total.', hi: 'परिवार पर निशान लगाने पर “What the family owes” में हर बच्चे की राशि और एक कुल जोड़ दिखता है।' },
       { en: 'If a parent wants the money to go to a particular due, tick “Choose which dues this money is for (otherwise the oldest first)” and type the amount beside each.', hi: 'अगर अभिभावक चाहें कि रकम किसी ख़ास देय में जाए, तो “Choose which dues this money is for (otherwise the oldest first)” पर निशान लगाएँ और हर एक के पास राशि लिखें।' },
       { en: 'For brothers and sisters, tick “Take it for the whole family (brothers and sisters together)”. One receipt covers them all.', hi: 'भाई-बहनों के लिए “Take it for the whole family (brothers and sisters together)” पर निशान लगाएँ। एक रसीद सबके लिए बनती है।' },

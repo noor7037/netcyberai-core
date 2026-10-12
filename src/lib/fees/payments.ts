@@ -19,6 +19,7 @@ import { FINANCE } from './structures';
 // The balance rule (docs/23 §3 rule 2): for every due, net − payments =
 // balance ≥ 0; reconcile() checks it for the whole school in one query.
 
+// 'online' is a receipt made from a payment provider's notice, never at the counter.
 export const COUNTER_METHODS = ['cash', 'upi', 'cheque', 'card', 'netbanking'] as const;
 export type Method = (typeof COUNTER_METHODS)[number];
 const REVERSERS: readonly string[] = ['principal', 'school_admin'];
@@ -150,7 +151,7 @@ export async function reverseReceipt(db: PoolClient, actor: Actor, receiptId: st
   return { ok: true, reversed: undone.rows.length };
 }
 
-export type ReceiptView = { receipt_id: string; receipt_no: string; issued_at: string; total_minor: number; method: string; reference: string | null; allocation: string; student_name: string; class_name: string | null; family_code: string | null; issued_by_name: string; reversed_at: string | null; reversal_reason: string | null; lines: { student_name: string; head_name: string | null; period_key: string | null; is_late_fee: boolean; amount_minor: number }[] };
+export type ReceiptView = { receipt_id: string; receipt_no: string; issued_at: string; total_minor: number; method: string; reference: string | null; allocation: string; student_name: string; class_name: string | null; family_code: string | null; issued_by_name: string | null; reversed_at: string | null; reversal_reason: string | null; lines: { student_name: string; head_name: string | null; period_key: string | null; is_late_fee: boolean; amount_minor: number }[] };
 
 const RECEIPT = `select r.receipt_id, r.receipt_no, r.issued_at, r.total_minor, r.method, r.reference, r.allocation, st.name as student_name, c.name as class_name, f.family_code, u.display_name as issued_by_name, r.reversed_at, r.reversal_reason,
          coalesce((select jsonb_agg(jsonb_build_object('student_name', ps.name, 'head_name', h.name, 'period_key', l.period_key, 'is_late_fee', l.late_fee_for is not null, 'amount_minor', p.amount_minor) order by l.due_date, l.created_at)
@@ -160,7 +161,7 @@ const RECEIPT = `select r.receipt_id, r.receipt_no, r.issued_at, r.total_minor, 
     join fee_billing_students() st on st.school_id = r.school_id and st.student_id = r.student_id
     left join classes c on c.school_id = st.school_id and c.class_id = st.class_id
     left join families f on f.school_id = r.school_id and f.family_id = r.family_id
-    join users u on u.school_id = r.school_id and u.user_id = r.issued_by`;
+    left join users u on u.school_id = r.school_id and u.user_id = r.issued_by`;
 const asReceipt = (r: Record<string, unknown>): ReceiptView => ({ ...(r as unknown as ReceiptView), total_minor: Number(r.total_minor), lines: (r.lines as ReceiptView['lines']).map((l) => ({ ...l, amount_minor: Number(l.amount_minor) })) });
 
 export async function getReceipt(db: PoolClient, schoolId: string, receiptId: string): Promise<ReceiptView | null> {

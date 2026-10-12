@@ -123,6 +123,9 @@ medium with a security read.
 - **Who is billed** (decided, C162). Active students and those whose
   consent is still awaited; not inactive or transferred. RTE covers the
   heads a school marks as covered (a new head follows its mandatory flag).
+- **A signed notice with another amount** (decided in the build, C169): not
+  refused. The money moved, so it is credited as far as dues are owed and
+  any excess is recorded for a refund by hand.
 - **Reminders.** Email only in P3, to the guardian's email if there is one.
   A family with no email is on the follow-up list and gets no reminder.
 - **Sibling rule default** (decided, C158). None. Each school sets its own,
