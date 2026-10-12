@@ -514,6 +514,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'For a child admitted under RTE, press “Mark as RTE”, give the “Class at admission” and “Admitted on”, then “Save RTE mark”.', hi: 'RTE के तहत दाख़िल बच्चे के लिए “Mark as RTE” दबाएँ, “Class at admission” और “Admitted on” दें, फिर “Save RTE mark”।' },
     ],
     tips: [
+      { en: 'For brothers and sisters: switch on “Sibling concession” in “Settings” under “Fees”, then press “Check sibling concessions” here. It proposes one for each child the rule covers, only in families the office has linked; each waits for “Approve”.', hi: 'भाई-बहनों के लिए: “Settings” में “Fees” के नीचे “Sibling concession” चालू करें, फिर यहाँ “Check sibling concessions” दबाएँ। नियम में आने वाले हर बच्चे के लिए एक रियायत प्रस्तावित होती है, सिर्फ़ उन परिवारों में जिन्हें दफ़्तर ने जोड़ा है; हर एक “Approve” का इंतज़ार करती है।' },
       { en: 'Raising the same month twice is safe: it adds only the lines that are missing, for example for a student who joined later.', hi: 'वही महीना दो बार बनाना सुरक्षित है: सिर्फ़ छूटी हुई पंक्तियाँ जुड़ती हैं, जैसे बाद में आए विद्यार्थी की।' },
       { en: 'A due that has been raised is never changed. A concession approved later applies to the months raised after it.', hi: 'बन चुकी देय राशि कभी नहीं बदलती। बाद में मंज़ूर रियायत उसके बाद बने महीनों पर लागू होती है।' },
       { en: 'A student whose parent’s consent is still awaited is billed like any other; consent decides messages, not fees. A student who has left or is inactive is not billed.', hi: 'जिस विद्यार्थी के अभिभावक की सहमति अभी बाकी है, उसका बिल बाकी सबकी तरह बनता है; सहमति संदेशों का फ़ैसला करती है, फ़ीस का नहीं। जो विद्यार्थी स्कूल छोड़ चुका है या निष्क्रिय है, उसका बिल नहीं बनता।' },
@@ -538,6 +539,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'Press “Open the receipt to print”, then “Print”.', hi: '“Open the receipt to print” दबाएँ, फिर “Print”।' },
     ],
     tips: [
+      { en: 'With the family ticked, “What the family owes” lists each child’s amount and one total.', hi: 'परिवार पर निशान लगाने पर “What the family owes” में हर बच्चे की राशि और एक कुल जोड़ दिखता है।' },
       { en: 'If a parent wants the money to go to a particular due, tick “Choose which dues this money is for (otherwise the oldest first)” and type the amount beside each.', hi: 'अगर अभिभावक चाहें कि रकम किसी ख़ास देय में जाए, तो “Choose which dues this money is for (otherwise the oldest first)” पर निशान लगाएँ और हर एक के पास राशि लिखें।' },
       { en: 'For brothers and sisters, tick “Take it for the whole family (brothers and sisters together)”. One receipt covers them all.', hi: 'भाई-बहनों के लिए “Take it for the whole family (brothers and sisters together)” पर निशान लगाएँ। एक रसीद सबके लिए बनती है।' },
       { en: 'A wrong receipt is not edited. The principal or the school admin presses “Reverse” and writes why; the dues are then owed again and the number is not used again.', hi: 'ग़लत रसीद बदली नहीं जाती। प्रिंसिपल या स्कूल एडमिन “Reverse” दबाकर कारण लिखते हैं; देय राशि फिर बाकी हो जाती है और वह नंबर दोबारा इस्तेमाल नहीं होता।' },

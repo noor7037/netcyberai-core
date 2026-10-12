@@ -71,6 +71,8 @@ const APP_USER: Record<string, string> = {
   pulse_response_log: 'DELETE,INSERT,SELECT,UPDATE',
   qr_scan_log: 'DELETE,INSERT,SELECT,UPDATE',
   receipts: 'INSERT,SELECT,UPDATE',
+  payment_links: 'INSERT,SELECT,UPDATE', // never deleted: cancelled, paid or expired (C168)
+  payment_link_lines: 'INSERT,SELECT', // fixed when the link is made
   fee_status_runs: 'SELECT', // written by the nightly job as the platform role (C163)
   recognition_events: 'DELETE,INSERT,SELECT,UPDATE',
   recovery_plans: 'INSERT,SELECT',
@@ -111,6 +113,8 @@ const APP_USER: Record<string, string> = {
 const NCA_SUPER_DIFFERS: Record<string, string> = {
   entitlement_change_reasons: 'INSERT,SELECT', // the founder's reasons: written once
   fee_status_runs: 'INSERT,SELECT', // the nightly job writes a result once
+  payment_links: '', // the platform role gets these when a provider's notice is applied (6f)
+  payment_link_lines: '',
   intake_rate_events: 'DELETE,INSERT,SELECT,UPDATE',
   jobs: 'DELETE,INSERT,SELECT,UPDATE',
   message_rate_table: 'DELETE,INSERT,SELECT,UPDATE',

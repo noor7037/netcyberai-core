@@ -15,11 +15,11 @@ export type ConcessionKind = (typeof CONCESSION_KINDS)[number];
 const APPROVERS: readonly string[] = ['principal', 'school_admin'];
 type Actor = { schoolId: string; userId: string; role: StaffRole };
 
-export type Concession = { concession_id: string; student_id: string; student_name: string; class_name: string | null; head_name: string | null; kind: string; percent_off: number | null; amount_off_minor: number | null; reason: string; status: 'proposed' | 'approved' | 'ended'; valid_from: string; valid_to: string | null };
+export type Concession = { concession_id: string; student_id: string; student_name: string; class_name: string | null; head_name: string | null; kind: string; percent_off: number | null; amount_off_minor: number | null; reason: string; status: 'proposed' | 'approved' | 'ended'; source: 'person' | 'rule'; valid_from: string; valid_to: string | null };
 
 export async function listConcessions(db: PoolClient, schoolId: string): Promise<Concession[]> {
   const { rows } = await db.query(
-    `select c.concession_id, c.student_id, st.name as student_name, cl.name as class_name, h.name as head_name, c.kind, c.percent_off::float8 as percent_off, c.amount_off_minor, c.reason, c.status, c.valid_from::text as valid_from, c.valid_to::text as valid_to
+    `select c.concession_id, c.student_id, st.name as student_name, cl.name as class_name, h.name as head_name, c.kind, c.percent_off::float8 as percent_off, c.amount_off_minor, c.reason, c.status, c.source, c.valid_from::text as valid_from, c.valid_to::text as valid_to
        from fee_concessions c
        join fee_billing_students() st on st.school_id = c.school_id and st.student_id = c.student_id
        left join classes cl on cl.school_id = st.school_id and cl.class_id = st.class_id

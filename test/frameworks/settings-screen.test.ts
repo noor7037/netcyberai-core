@@ -22,6 +22,11 @@ describe('every setting has its words, in English and Hindi', () => {
         expect(E[`${base}.label`], `${base}.label`).toBe(f.label);
         expect(E[`${base}.help`], `${base}.help`).toBe(f.help);
         for (const part of ['label', 'help']) expect(/[ऀ-ॿ]/.test(H[`${base}.${part}`] ?? ''), `${base}.${part} in Hindi`).toBe(true);
+        // A choice setting: every choice has its words too.
+        for (const o of f.type === 'select' ? f.options ?? [] : []) {
+          expect(E[`${base}.option.${o.value}`], `${base}.option.${o.value}`).toBe(o.label);
+          expect(/[ऀ-ॿ]/.test(H[`${base}.option.${o.value}`] ?? ''), `${base}.option.${o.value} in Hindi`).toBe(true);
+        }
       }
       expect(E[`module.${schema.moduleId}`], `module.${schema.moduleId}`).toBeTruthy();
     }

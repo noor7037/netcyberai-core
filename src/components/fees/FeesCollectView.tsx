@@ -17,7 +17,7 @@ import { minorToRupees, rupeesToMinor } from '@/lib/fees/money';
 // however many times the press arrives. A wrong receipt is reversed with a
 // reason by the principal or the school admin; nothing is edited.
 
-type Due = { fee_id: string; student_name: string; head_name: string | null; period_key: string | null; is_late_fee: boolean; overdue: boolean; due_date: string; balance_minor: number };
+type Due = { fee_id: string; student_id: string; student_name: string; head_name: string | null; period_key: string | null; is_late_fee: boolean; overdue: boolean; due_date: string; balance_minor: number };
 type Receipt = { receipt_id: string; receipt_no: string; issued_at: string; total_minor: number; method: string; student_name: string; reversed_at: string | null };
 type Totals = { netMinor: number; paidMinor: number; balanceMinor: number; problems: unknown[] };
 type Overdue = { minor: number; count: number };
@@ -238,6 +238,21 @@ export function FeesCollectView() {
                 </li>
               ))}
             </ul>
+            {scope === 'family' && (
+              <div data-family-dues className="rounded-md border border-slate/10 px-3 py-2 text-sm text-slate">
+                <p className="font-semibold">{t('fam.title')}</p>
+                <ul>
+                  {[...new Map(dues.map((d) => [d.student_id, d.student_name])).entries()].map(([id, name]) => (
+                    <li key={id} data-family-child>
+                      {t('fam.child', { name, amount: minorToRupees(dues.filter((d) => d.student_id === id).reduce((sum, d) => sum + d.balance_minor, 0)) })}
+                    </li>
+                  ))}
+                </ul>
+                <p data-family-total className="font-semibold">
+                  {t('fam.total', { amount: minorToRupees(owed) })}
+                </p>
+              </div>
+            )}
             <p data-owed className="text-sm font-semibold text-slate">
               {t('pay.owed', { amount: minorToRupees(owed) })}
             </p>
