@@ -132,6 +132,9 @@ export async function withTenantContext<T>(
       if (!impRows[0]) {
         throw new SessionRevokedError('impersonation session expired or ended');
       }
+      // Every audit row written in this transaction records who was really
+      // acting (C165): audit_log.impersonated_by takes this by default.
+      await client.query(`select set_config('app.impersonator_user_id', $1, true)`, [claims.impersonation.actorUserId]);
     }
 
     const result = await fn(client);

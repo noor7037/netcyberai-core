@@ -377,6 +377,34 @@ const feesOverdueDone = async (page) => {
   if (r.late_lines !== 0) throw new Error('saving the late-fee setting raised a due; only the nightly job may');
   if (!/first check has not run/.test(nightly ?? '')) throw new Error(`the nightly line is wrong: ${nightly}`);
 };
+// The founder's "View as" (C165): from the school's page in Control, open the
+// app as its principal. The reason is prefilled, the app opens as that person
+// in THIS school with the banner on the page, and "End" puts the founder back.
+const clearViewAs = () => db.pg.query(`delete from impersonation_sessions where actor_user_id = $1`, [PEOPLE.founder.sub]);
+const viewAs = async (page) => {
+  await clearViewAs();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-person="principal"] [data-view-as]').first().click();
+  const reason = await page.locator('#view-as-reason').inputValue();
+  if (reason !== 'Founder review') throw new Error(`the reason is not prefilled: "${reason}"`);
+  await page.locator('[data-view-as-start]').click();
+  await page.waitForURL(/\/app\/my-day/, { timeout: 30000 });
+  await page.locator('[data-view-as-banner]').waitFor({ timeout: 20000 });
+};
+const viewAsDone = async (page) => {
+  const banner = await page.locator('[data-view-as-banner]').textContent();
+  const started = (await db.pg.query(`select i.target_user_id, i.target_school_id, i.reason, i.ended_at, u.display_name from impersonation_sessions i join users u on u.user_id = i.target_user_id where i.actor_user_id = $1`, [PEOPLE.founder.sub])).rows;
+  await page.locator('[data-view-as-end]').click();
+  await page.waitForURL(/\/control\/schools\//, { timeout: 30000 });
+  await page.locator('[data-school-people]').waitFor({ timeout: 20000 });
+  const ended = (await db.pg.query(`select ended_at from impersonation_sessions where actor_user_id = $1`, [PEOPLE.founder.sub])).rows;
+  const audit = (await db.pg.query(`select event_action from audit_log where school_id = $1 and event_action in ('ImpersonationStarted', 'ImpersonationEnded') and occurred_at > now() - interval '5 minutes' order by audit_id desc limit 2`, [SCHOOL])).rows.map((r) => r.event_action);
+  await clearViewAs();
+  if (started.length !== 1 || started[0].target_user_id !== PEOPLE.principal.sub || started[0].target_school_id !== SCHOOL || started[0].reason !== 'Founder review' || started[0].ended_at !== null) throw new Error(`the view was not started as this school's principal: ${JSON.stringify(started)}`);
+  if (!banner.includes(started[0].display_name) || !/Principal/.test(banner) || !/ends/.test(banner)) throw new Error(`the banner does not say who, what role and until when: ${banner}`);
+  if (ended.length !== 1 || ended[0].ended_at === null) throw new Error('"End" did not end the view');
+  if (audit.join() !== 'ImpersonationEnded,ImpersonationStarted') throw new Error(`the start and the end are not both in the school's audit trail: ${audit}`);
+};
 // Sign-out through the shell's own button (C161): the cookies go, and the
 // app sends the next visit to the sign-in page.
 const signOut = async (page) => {
@@ -561,6 +589,7 @@ const SCREENS = [
   ['founder', 'control-dashboard', '/control'],
   ['founder', 'control-schools', '/control/schools'],
   ['founder', 'control-school', `/control/schools/${SCHOOL}`],
+  ['founder', 'control-view-as', `/control/schools/${SCHOOL}`, viewAs, viewAsDone],
   ['founder', 'control-users', '/control/users'],
   ['founder', 'control-onboarding', '/control/onboarding'],
   ['founder', 'control-applications', '/control/onboarding/applications'],

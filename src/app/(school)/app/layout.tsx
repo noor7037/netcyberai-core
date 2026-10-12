@@ -3,6 +3,7 @@ import { getServerSession } from '@/lib/auth/server-session';
 import { canAccessApp, shellForRole } from '@/lib/auth/guards';
 import { SessionRevokedError, withTenantContext } from '@/lib/auth/db';
 import { AppShell } from '@/components/app-shell/AppShell';
+import { ViewAsBanner } from '@/components/app-shell/ViewAsBanner';
 import { ScanButton } from '@/components/shell/ScanButton';
 import { toShellGroups, toShellItem } from '@/components/app-shell/shell-nav';
 import { ToastProvider } from '@/components/ui/Toast';
@@ -38,10 +39,19 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   let entitlements: SchoolEntitlements = { schoolId, plan: 'unassigned', accessMode: 'full', modules: {} };
   let schoolName = 'NetCyberAI';
   let menuIncomplete = false;
+  // While the founder is viewing as this person (C165): whose view it is and when it ends.
+  let viewAs: { name: string; endsAt: string } | null = null;
   try {
-    ({ entitlements, schoolName } = await withTenantContext(session!, async (db) => {
+    ({ entitlements, schoolName, viewAs } = await withTenantContext(session!, async (db) => {
       const { rows } = await db.query(`select name from schools where school_id = $1`, [schoolId]);
-      return { entitlements: await loadEntitlements(db, schoolId), schoolName: (rows[0]?.name as string | undefined) ?? 'NetCyberAI' };
+      const imp = session!.impersonation
+        ? (await db.query(`select i.expires_at, u.display_name from impersonation_sessions i join users u on u.user_id = i.target_user_id where i.impersonation_id = $1`, [session!.impersonation.impersonationId])).rows[0]
+        : null;
+      return {
+        entitlements: await loadEntitlements(db, schoolId),
+        schoolName: (rows[0]?.name as string | undefined) ?? 'NetCyberAI',
+        viewAs: imp ? { name: imp.display_name as string, endsAt: new Date(imp.expires_at as string).toISOString() } : null,
+      };
     }));
   } catch (err) {
     if (err instanceof SessionRevokedError) redirect('/login');
@@ -87,6 +97,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         scope="school"
         quickAdd={quickAdd}
       >
+        {viewAs && <ViewAsBanner name={viewAs.name} role={role} endsAt={viewAs.endsAt} schoolId={schoolId} />}
         {entitlements.accessMode === 'suspended' && (
           <p role="status" lang={lang} data-account-paused className="bg-tangerine/10 px-4 py-2 text-sm font-semibold text-slate">
             {t(lang, 'modules.paused')}

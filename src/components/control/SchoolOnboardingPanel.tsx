@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
+import { SchoolPeoplePanel } from './SchoolPeoplePanel';
 
 const STAGE_LABELS: Record<string, string> = {
   tenant_created: 'Tenant Created',
@@ -57,10 +58,6 @@ export function SchoolOnboardingPanel({
   const [inviteName, setInviteName] = useState('');
   const [inviteRole, setInviteRole] = useState(INVITABLE_ROLES[0]);
   const [inviteStatus, setInviteStatus] = useState<string | null>(null);
-  const [targetUserId, setTargetUserId] = useState('');
-  const [reason, setReason] = useState('');
-  const [impersonation, setImpersonation] = useState<{ impersonationId: string; expiresAt: string } | null>(null);
-  const [impersonateStatus, setImpersonateStatus] = useState<string | null>(null);
 
   async function loadConsent() {
     const res = await fetch(`/api/control/schools/${schoolId}/consent-summary`);
@@ -129,29 +126,6 @@ export function SchoolOnboardingPanel({
     }
   }
 
-  async function startImpersonation(e: React.FormEvent) {
-    e.preventDefault();
-    setImpersonateStatus(null);
-    try {
-      const data = await jsonOrError(
-        await fetch('/api/control/impersonate/start', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ targetUserId, reason }),
-        })
-      );
-      setImpersonation({ impersonationId: data.impersonationId, expiresAt: data.expiresAt });
-      setImpersonateStatus(`Started. Time-boxed to ${new Date(data.expiresAt).toLocaleTimeString()}. Logged as ImpersonationStarted, visible in this school's own audit trail.`);
-    } catch (err) {
-      setImpersonateStatus(err instanceof Error ? err.message : 'impersonation failed to start');
-    }
-  }
-
-  async function endImpersonation() {
-    await fetch('/api/control/impersonate/end', { method: 'POST' });
-    setImpersonation(null);
-    setImpersonateStatus('Ended. Logged as ImpersonationEnded.');
-  }
 
   return (
     <div className="flex flex-col gap-8">
@@ -255,23 +229,7 @@ export function SchoolOnboardingPanel({
         {inviteStatus && <p className="mt-2 text-sm text-slate">{inviteStatus}</p>}
       </section>
 
-      <section>
-        <h3 className="mb-2 text-base font-bold text-slate">Impersonation</h3>
-        {!impersonation ? (
-          <form onSubmit={startImpersonation} className="flex flex-col gap-3 md:flex-row md:items-end">
-            <Input id="target-user-id" label="Target user_id" value={targetUserId} onChange={(e) => setTargetUserId(e.target.value)} required />
-            <Input id="reason" label="Reason (required before access is granted)" value={reason} onChange={(e) => setReason(e.target.value)} required />
-            <Button type="submit" variant="outline">
-              Start impersonation
-            </Button>
-          </form>
-        ) : (
-          <Button variant="outline" onClick={endImpersonation}>
-            End impersonation
-          </Button>
-        )}
-        {impersonateStatus && <p className="mt-2 text-sm text-slate">{impersonateStatus}</p>}
-      </section>
+      <SchoolPeoplePanel schoolId={schoolId} />
     </div>
   );
 }
