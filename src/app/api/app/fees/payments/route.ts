@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
     const studentId = q.get('studentId');
     if (studentId !== null) {
       if (!isUuid(studentId)) return ruleError(400, 'not_sent_properly');
-      const student = (await db.query(`select name, family_id is not null as in_family from students where school_id = $1 and student_id = $2`, [claims.schoolId, studentId])).rows[0];
+      const student = (await db.query(`select name, family_id is not null as in_family from fee_billing_students() where school_id = $1 and student_id = $2`, [claims.schoolId, studentId])).rows[0];
       if (!student) return jsonError(404, 'not found', { code: 'unknown_student' });
       return NextResponse.json({ student, dues: await openDues(db, claims.schoolId, studentId, q.get('scope') === 'family' ? 'family' : 'student') });
     }

@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
     if (!isUuid(classId) || !isUuid(sessionId) || !MONTH.test(month)) return ruleError(400, 'not_sent_properly');
     const session = (await db.query(`select label, start_date::text as start_date, end_date::text as end_date from academic_sessions where school_id = $1 and session_id = $2`, [claims.schoolId, sessionId])).rows[0] as SessionDates | undefined;
     if (!session) return jsonError(404, 'not found', { code: 'unknown_session' });
-    const students = (await db.query(`select student_id, name, rte_admission from students where school_id = $1 and class_id = $2 and status = 'active' order by name`, [claims.schoolId, classId])).rows;
+    const students = (await db.query(`select student_id, name, rte_admission from fee_billing_students() where school_id = $1 and class_id = $2 and status in ('active', 'pending_consent') order by name`, [claims.schoolId, classId])).rows;
     return NextResponse.json({ dueDay: await defaultDueDay(db, claims.schoolId), lines: await duesFor(db, claims.schoolId, classId, periodKeysIn(month, session)), students });
   });
 }

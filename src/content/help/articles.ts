@@ -503,8 +503,8 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     audience: 'office',
     title: { en: 'Raise a month’s fee dues, with concessions', hi: 'महीने की फ़ीस की देय राशि बनाएँ, रियायतों के साथ' },
     summary: {
-      en: 'Each month the office raises the dues for a class. Every active student gets a line for each head due, less any approved concession.',
-      hi: 'हर महीने दफ़्तर कक्षा की देय राशि बनाता है। हर सक्रिय विद्यार्थी को हर देय मद की एक पंक्ति मिलती है, मंज़ूर रियायत घटाकर।',
+      en: 'Each month the office raises the dues for a class. Every student on the rolls gets a line for each head due, less any approved concession.',
+      hi: 'हर महीने दफ़्तर कक्षा की देय राशि बनाता है। नामांकित हर विद्यार्थी को हर देय मद की एक पंक्ति मिलती है, मंज़ूर रियायत घटाकर।',
     },
     steps: [
       { en: 'Open “Fees”. Under “Raise dues for a month”, choose the “Class”, the “Month” and the “Due date”.', hi: '“Fees” खोलें। “Raise dues for a month” के नीचे “Class”, “Month” और “Due date” चुनें।' },
@@ -516,7 +516,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     tips: [
       { en: 'Raising the same month twice is safe: it adds only the lines that are missing, for example for a student who joined later.', hi: 'वही महीना दो बार बनाना सुरक्षित है: सिर्फ़ छूटी हुई पंक्तियाँ जुड़ती हैं, जैसे बाद में आए विद्यार्थी की।' },
       { en: 'A due that has been raised is never changed. A concession approved later applies to the months raised after it.', hi: 'बन चुकी देय राशि कभी नहीं बदलती। बाद में मंज़ूर रियायत उसके बाद बने महीनों पर लागू होती है।' },
-      { en: 'A student still waiting for consent gets no dues until they are active. Raise the month again then.', hi: 'जिस विद्यार्थी की सहमति बाकी है, उसकी देय राशि सक्रिय होने तक नहीं बनती। तब महीना फिर से बनाएँ।' },
+      { en: 'A student whose parent’s consent is still awaited is billed like any other; consent decides messages, not fees. A student who has left or is inactive is not billed.', hi: 'जिस विद्यार्थी के अभिभावक की सहमति अभी बाकी है, उसका बिल बाकी सबकी तरह बनता है; सहमति संदेशों का फ़ैसला करती है, फ़ीस का नहीं। जो विद्यार्थी स्कूल छोड़ चुका है या निष्क्रिय है, उसका बिल नहीं बनता।' },
     ],
     start: { href: '/app/fees', label: { en: 'Fees', hi: 'Fees' } },
     related: ['fee-structures', 'add-a-student'],

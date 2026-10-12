@@ -277,8 +277,8 @@ const feesSetupDone = async () => {
   if (rows.length !== 2 || rows[0].total !== 150050 || rows[1].total !== 165000) throw new Error(`expected two versions, 1,500.50 then 1,650, the first untouched: ${JSON.stringify(rows)}`);
 };
 // Dues (C159): a head and a structure are set through the app's own API,
-// then the office raises this month for 5-A on the page, twice. Each active
-// student must hold exactly one line, and every line must add up.
+// then the office raises this month for 5-A on the page, twice. Each student
+// on the rolls (active or waiting for consent, C162) must hold exactly one line, and every line must add up.
 let duesStudents = 0;
 const clearDues = async () => {
   await db.pg.query(`delete from fees_ledger where school_id = $1 and structure_id in (select structure_id from fee_structures where school_id = $1 and created_by = $2)`, [SCHOOL, PEOPLE.principal.sub]);
@@ -295,7 +295,7 @@ const feesDues = async (page) => {
     return [head.status, structure.status];
   }, { session, classId: CLASS_5A });
   if (made.join() !== '201,201') throw new Error(`the head or the structure was not saved: ${made}`);
-  duesStudents = (await db.pg.query(`select count(*)::int as n from students where school_id = $1 and class_id = $2 and status = 'active'`, [SCHOOL, CLASS_5A])).rows[0].n;
+  duesStudents = (await db.pg.query(`select count(*)::int as n from students where school_id = $1 and class_id = $2 and status in ('active', 'pending_consent')`, [SCHOOL, CLASS_5A])).rows[0].n;
   await page.reload({ waitUntil: 'networkidle' });
   await page.selectOption('#due-class', { label: '5-A' });
   await page.selectOption('#due-session', { label: 'Harness session' });

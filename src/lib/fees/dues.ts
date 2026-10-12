@@ -91,11 +91,11 @@ export async function raiseDues(db: PoolClient, actor: Actor, input: { classId: 
 
   // One class at a time: two people raising the same month wait for each other.
   await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`dues:${actor.schoolId}:${input.classId}:${input.month}`]);
-  const mandatory = new Map(((await db.query(`select head_id, is_mandatory from fee_heads where school_id = $1 and head_id = any($2::uuid[])`, [actor.schoolId, due.map((d) => d.head_id)])).rows as { head_id: string; is_mandatory: boolean }[]).map((h) => [h.head_id, h.is_mandatory]));
-  // Active students only. A student still waiting for consent is not visible to the accountant (the consent
-  // gate), so including them would make the result depend on who pressed the button. Once the student is
-  // active, raising the month again adds their lines and no one else's.
-  const students = (await db.query(`select student_id, rte_admission from students where school_id = $1 and class_id = $2 and status = 'active' order by name`, [actor.schoolId, input.classId])).rows as { student_id: string; rte_admission: boolean }[];
+  const rteCovered = new Map(((await db.query(`select head_id, rte_covered from fee_heads where school_id = $1 and head_id = any($2::uuid[])`, [actor.schoolId, due.map((d) => d.head_id)])).rows as { head_id: string; rte_covered: boolean }[]).map((h) => [h.head_id, h.rte_covered]));
+  // Active students and those still waiting for consent (C162): a child owes fees before the parent's consent
+  // is recorded; consent governs messages. Read through the billing function, so the list is the same whoever
+  // presses the button (the consent gate hides a waiting student's record from the accountant).
+  const students = (await db.query(`select student_id, rte_admission from fee_billing_students() where school_id = $1 and class_id = $2 and status in ('active', 'pending_consent') order by name`, [actor.schoolId, input.classId])).rows as { student_id: string; rte_admission: boolean }[];
   const concessions = (await db.query(
     `select concession_id, student_id, head_id, kind, percent_off::float8 as percent_off, amount_off_minor
        from fee_concessions
@@ -108,8 +108,8 @@ export async function raiseDues(db: PoolClient, actor: Actor, input: { classId: 
   for (const s of students) {
     for (const d of due) {
       const mine = concessions.filter((c) => c.student_id === s.student_id && (c.head_id === null || c.head_id === d.head_id)).map((c) => ({ concessionId: c.concession_id, kind: c.kind, percentOff: c.percent_off, amountOffMinor: c.amount_off_minor === null ? null : Number(c.amount_off_minor) }));
-      // RTE covers the heads every child must pay; an optional head (transport, say) is the family's choice.
-      lines.push({ studentId: s.student_id, headId: d.head_id, periodKey: d.periodKey as string, a: lineAmounts(d.amount_minor, mine, s.rte_admission && mandatory.get(d.head_id) === true) });
+      // RTE covers the heads the school has marked as covered; any other head is charged as for every child.
+      lines.push({ studentId: s.student_id, headId: d.head_id, periodKey: d.periodKey as string, a: lineAmounts(d.amount_minor, mine, s.rte_admission && rteCovered.get(d.head_id) === true) });
     }
   }
   if (lines.length === 0) return { ok: true, raised: 0, alreadyThere: 0, students: 0, grossMinor: 0, concessionMinor: 0, netMinor: 0 };
@@ -140,7 +140,7 @@ export async function duesFor(db: PoolClient, schoolId: string, classId: string,
     `select l.fee_id, l.student_id, st.name as student_name, h.name as head_name, l.period_key, l.gross_minor, l.concession_minor, l.amount_minor as net_minor, l.due_date::text as due_date, l.status::text as status,
             coalesce((select jsonb_agg(distinct d->>'kind') from jsonb_array_elements(l.concession_detail) d), '[]'::jsonb) as kinds
        from fees_ledger l
-       join students st on st.school_id = l.school_id and st.student_id = l.student_id
+       join fee_billing_students() st on st.school_id = l.school_id and st.student_id = l.student_id
        join fee_heads h on h.school_id = l.school_id and h.head_id = l.head_id
       where l.school_id = $1 and st.class_id = $2 and l.period_key = any($3::text[])
       order by st.name, lower(h.name)`,

@@ -13,12 +13,12 @@ import { FREQUENCIES, MAX_MINOR, type Frequency } from './money';
 export const FINANCE: readonly string[] = ['principal', 'school_admin', 'accountant'];
 type Actor = { schoolId: string; userId: string; role: StaffRole };
 
-export type Head = { head_id: string; name: string; is_mandatory: boolean; is_active: boolean };
+export type Head = { head_id: string; name: string; is_mandatory: boolean; rte_covered: boolean; is_active: boolean };
 export type StructureItem = { head_id: string; head_name: string; amount_minor: number; frequency: Frequency };
 export type Structure = { structure_id: string; class_id: string; class_name: string; session_id: string | null; academic_year: string; effective_from: string; created_at: string; items: StructureItem[] };
 
 export async function listHeads(db: PoolClient, schoolId: string): Promise<Head[]> {
-  return (await db.query(`select head_id, name, is_mandatory, is_active from fee_heads where school_id = $1 order by is_active desc, lower(name)`, [schoolId])).rows;
+  return (await db.query(`select head_id, name, is_mandatory, rte_covered, is_active from fee_heads where school_id = $1 order by is_active desc, lower(name)`, [schoolId])).rows;
 }
 
 export type HeadResult = { ok: true; head: Head } | { ok: false; reason: 'not_allowed' | 'name' | 'exists' | 'not_found' };
@@ -28,26 +28,37 @@ export async function addHead(db: PoolClient, actor: Actor, input: { name: strin
   const name = input.name.trim().replace(/\s+/g, ' ');
   if (!name || name.length > 60) return { ok: false, reason: 'name' };
   if ((await db.query(`select 1 from fee_heads where school_id = $1 and lower(btrim(name)) = lower($2)`, [actor.schoolId, name])).rows[0]) return { ok: false, reason: 'exists' };
-  const made = await db.query(`insert into fee_heads (school_id, name, is_mandatory) values ($1, $2, $3) returning head_id, name, is_mandatory, is_active`, [actor.schoolId, name, input.isMandatory]);
+  const made = await db.query(`insert into fee_heads (school_id, name, is_mandatory) values ($1, $2, $3) returning head_id, name, is_mandatory, rte_covered, is_active`, [actor.schoolId, name, input.isMandatory]);
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.head_added', targetType: 'fee_heads', targetId: made.rows[0].head_id, beforeState: undefined, afterState: { name, isMandatory: input.isMandatory } });
   return { ok: true, head: made.rows[0] };
 }
 
-// Whether every child must pay this head. It decides what RTE covers when
-// dues are raised next; dues already raised are not changed.
+// Whether every child must pay this head. (What RTE covers is the head's own flag, below.)
 export async function setHeadMandatory(db: PoolClient, actor: Actor, headId: string, isMandatory: boolean): Promise<HeadResult> {
   if (!FINANCE.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   const before = (await db.query(`select is_mandatory from fee_heads where school_id = $1 and head_id = $2 for update`, [actor.schoolId, headId])).rows[0];
   if (!before) return { ok: false, reason: 'not_found' };
-  const changed = await db.query(`update fee_heads set is_mandatory = $3 where school_id = $1 and head_id = $2 returning head_id, name, is_mandatory, is_active`, [actor.schoolId, headId, isMandatory]);
+  const changed = await db.query(`update fee_heads set is_mandatory = $3 where school_id = $1 and head_id = $2 returning head_id, name, is_mandatory, rte_covered, is_active`, [actor.schoolId, headId, isMandatory]);
   if (before.is_mandatory !== isMandatory) await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.head_mandatory_changed', targetType: 'fee_heads', targetId: headId, beforeState: { isMandatory: before.is_mandatory }, afterState: { isMandatory } });
+  return { ok: true, head: changed.rows[0] };
+}
+
+// Whether RTE covers this head (C162). A new head takes its "every child pays
+// it" value; after that the two are set apart. It decides what an RTE child
+// is charged when dues are raised next; dues already raised are not changed.
+export async function setHeadRteCovered(db: PoolClient, actor: Actor, headId: string, rteCovered: boolean): Promise<HeadResult> {
+  if (!FINANCE.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
+  const before = (await db.query(`select rte_covered from fee_heads where school_id = $1 and head_id = $2 for update`, [actor.schoolId, headId])).rows[0];
+  if (!before) return { ok: false, reason: 'not_found' };
+  const changed = await db.query(`update fee_heads set rte_covered = $3 where school_id = $1 and head_id = $2 returning head_id, name, is_mandatory, rte_covered, is_active`, [actor.schoolId, headId, rteCovered]);
+  if (before.rte_covered !== rteCovered) await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.head_rte_covered_changed', targetType: 'fee_heads', targetId: headId, beforeState: { rteCovered: before.rte_covered }, afterState: { rteCovered } });
   return { ok: true, head: changed.rows[0] };
 }
 
 // Retire or bring back a head. Its name never changes: it is on structures already made.
 export async function setHeadActive(db: PoolClient, actor: Actor, headId: string, isActive: boolean): Promise<HeadResult> {
   if (!FINANCE.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
-  const changed = await db.query(`update fee_heads set is_active = $3 where school_id = $1 and head_id = $2 returning head_id, name, is_mandatory, is_active`, [actor.schoolId, headId, isActive]);
+  const changed = await db.query(`update fee_heads set is_active = $3 where school_id = $1 and head_id = $2 returning head_id, name, is_mandatory, rte_covered, is_active`, [actor.schoolId, headId, isActive]);
   if (!changed.rows[0]) return { ok: false, reason: 'not_found' };
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: isActive ? 'fees.head_restored' : 'fees.head_retired', targetType: 'fee_heads', targetId: headId, beforeState: { isActive: !isActive }, afterState: { isActive } });
   return { ok: true, head: changed.rows[0] };

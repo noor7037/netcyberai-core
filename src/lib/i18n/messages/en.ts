@@ -800,9 +800,10 @@ export const en = {
   'empty.fee-no-classes.do': 'Ask your school admin to add the school’s classes and its academic session first.',
   // Fees: dues, concessions, RTE (C159).
   'fee.head.mandatory': 'Every child pays it',
-  'fee.head.mandatory.help': 'Tick “Every child pays it” for a head no family can opt out of, such as tuition. A head covered by RTE is one every child pays.',
+  'fee.head.mandatory.help': 'Tick “Every child pays it” for a head no family can opt out of, such as tuition. Tick “RTE covers it” for a head a child admitted under RTE is not charged. A new head starts with both the same.',
+  'fee.head.rteCovered': 'RTE covers it',
   'due.title': 'Raise dues for a month',
-  'due.how': 'Choose the class, the month and the due date. Each active student gets one line for every head due that month, less any approved concession. Raising the same month again adds only what is missing.',
+  'due.how': 'Choose the class, the month and the due date. Each student on the rolls, including one whose parent’s consent is still awaited, gets one line for every head due that month, less any approved concession. Raising the same month again adds only what is missing.',
   'due.month': 'Month',
   'due.dueDate': 'Due date',
   'due.raise': 'Raise dues',
