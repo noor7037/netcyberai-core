@@ -18,6 +18,7 @@ const comm_status_sent = 'sent';
 const comm_status_failed = 'failed';
 
 export type CommStatus =
+  | 'queued'
   | 'sent'
   | 'failed'
   | 'blocked_pilot'
@@ -38,6 +39,8 @@ export interface SendWhatsAppMessageParams {
   parentId?: string | null;
   // The language to send in (C184). English when not given, or when the template has no approved version in it.
   language?: TemplateLanguage;
+  // Set by the outbox only (C185): the queued row this send is for. Its outcome is written onto that row.
+  queuedLogId?: string;
 }
 
 export interface SendWhatsAppMessageResult {
@@ -125,6 +128,19 @@ async function logAttempt(
   if (cost.costBasis === 'rate_not_verified') {
     console.warn('[send-gate] rate not verified: no rate on record for this category and date; cost recorded as zero', cost.category);
   }
+  if (params.queuedLogId) {
+    // The outbox: the row was written when the message was queued; its outcome is written onto it. Only a
+    // queued row is ever touched, so an outcome is recorded once.
+    await client.query(
+      `update communication_log
+          set billing_category = $2, billable = $3, est_cost_paise = $4, gst_paise = $5, rate_id = $6, cost_basis = $7, status = $8::comm_status, provider_message_id = $9,
+              provider_used = $10, fallback_reason = $11, reason = $12, provider = $13, template_version = $14, language = $15, template_params = coalesce($16::jsonb, template_params), sending_at = null
+        where log_id = $1 and status = 'queued'`,
+      [params.queuedLogId, cost.category, cost.billable, cost.estCostPaise, cost.gstPaise, cost.rateId, cost.costBasis, status, extra.providerMessageId ?? null, extra.providerUsed ?? null, extra.fallbackReason ?? null, reason, extra.provider ?? null,
+        extra.template?.version ?? null, extra.template?.language ?? null, extra.template && extra.filled ? JSON.stringify(extra.filled) : null]
+    );
+    return params.queuedLogId;
+  }
   const { rows } = await client.query(
     `insert into communication_log
        (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, rate_id, cost_basis,
@@ -159,29 +175,17 @@ async function logAttempt(
   return rows[0].log_id;
 }
 
-export async function sendWhatsAppMessage(
-  client: PoolClient,
-  params: SendWhatsAppMessageParams,
-  options: { platformDefaultProvider?: WhatsAppProviderSPI } = {}
-): Promise<SendWhatsAppMessageResult> {
-  // 0. Idempotency, checked first: the same trigger firing twice (retry,
-  // duplicate webhook, whatever) must not double-send. A dedupe hit
-  // returns the ORIGINAL outcome untouched -- no new log row, no new
-  // send attempt, regardless of what the original outcome was.
-  const { rows: existingRows } = await client.query(
-    `select log_id, status from communication_log where school_id = $1 and dedupe_key = $2`,
-    [params.schoolId, params.dedupeKey]
-  );
-  if (existingRows[0]) {
-    return {
-      logId: existingRows[0].log_id,
-      status: existingRows[0].status,
-      reason: 'duplicate trigger -- returning the original attempt\'s outcome, not sending again',
-      idempotent: true,
-      providerUsed: null,
-    };
-  }
+type Ready = { ready: true; provider: WhatsAppProviderSPI; providerUsed: 'school_specific' | 'platform_default'; fallbackReason: string | null; category: BillingCategory; rate: MessageRate | null; said: { template: TemplateToSend; filled: Record<string, string> } };
+type Wait = { wait: true; until: Date };
+type Passed = { passed: true };
+type GateOptions = { platformDefaultProvider?: WhatsAppProviderSPI };
+export const DEFAULT_STALE_MINUTES = 720;
 
+// Every rule, in order, up to the moment of sending. It returns the outcome
+// if a rule stopped the message (already written to the log), or what to
+// send and through whom. For a queued message (`outbox`) quiet hours do not
+// stop it: it waits until they end, unless by then it would be too old.
+async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, options: GateOptions, outbox?: { createdAt: Date; now: Date; queueing?: boolean }): Promise<SendWhatsAppMessageResult | Ready | Wait | Passed> {
   const { rows: schoolRows } = await client.query<SchoolGateContext>(
     `select is_pilot, pilot_allow_outbound, monthly_budget_paise, quiet_hours_start, quiet_hours_end, timezone, is_test_fixture, name
      from schools where school_id = $1`,
@@ -211,14 +215,25 @@ export async function sendWhatsAppMessage(
   // schools.timezone), never hardcoded. The window wraps midnight by
   // default (21:00-07:00), so a plain start<=t<end check would be
   // backwards; handled generally for either shape.
+  const at = outbox?.now ?? new Date();
   const { rows: quietRows } = await client.query(
-    `select case
-       when $2::time <= $3::time then (($1::timestamptz at time zone $4)::time >= $2::time and ($1::timestamptz at time zone $4)::time < $3::time)
-       else (($1::timestamptz at time zone $4)::time >= $2::time or ($1::timestamptz at time zone $4)::time < $3::time)
-     end as in_quiet_hours`,
-    [new Date().toISOString(), school.quiet_hours_start, school.quiet_hours_end, school.timezone]
+    `select q.in_quiet_hours,
+            ((($1::timestamptz at time zone $4)::date + case when $2::time > $3::time and ($1::timestamptz at time zone $4)::time >= $2::time then 1 else 0 end) + $3::time) at time zone $4 as ends_at
+       from (select case
+         when $2::time <= $3::time then (($1::timestamptz at time zone $4)::time >= $2::time and ($1::timestamptz at time zone $4)::time < $3::time)
+         else (($1::timestamptz at time zone $4)::time >= $2::time or ($1::timestamptz at time zone $4)::time < $3::time)
+       end as in_quiet_hours) q`,
+    [at.toISOString(), school.quiet_hours_start, school.quiet_hours_end, school.timezone]
   );
   if (quietRows[0].in_quiet_hours) {
+    if (outbox) {
+      // Held, not dropped (docs/25 rule 4): it goes when quiet hours end, unless it would be stale by then.
+      const until = new Date(quietRows[0].ends_at as string);
+      const staleMinutes = (await templateToSend(client, params.schoolId, params.templateName, params.language ?? 'en', false))?.staleAfterMinutes ?? DEFAULT_STALE_MINUTES;
+      if (until.getTime() <= outbox.createdAt.getTime() + staleMinutes * 60_000) return { wait: true, until };
+      const reason = `held for the school's quiet hours (${school.quiet_hours_start}-${school.quiet_hours_end} ${school.timezone}); by the time they end it would be too old to be worth sending`;
+      return { logId: await logAttempt(client, params, 'blocked_quiet_hours', reason), status: 'blocked_quiet_hours', reason, idempotent: false, providerUsed: null };
+    }
     const reason = `current time falls within this school's quiet hours (${school.quiet_hours_start}-${school.quiet_hours_end} ${school.timezone})`;
     return { logId: await logAttempt(client, params, 'blocked_quiet_hours', reason), status: 'blocked_quiet_hours', reason, idempotent: false, providerUsed: null };
   }
@@ -267,6 +282,10 @@ export async function sendWhatsAppMessage(
     const reason = `template "${params.templateName}" needs a value for: ${missing.join(', ')}`;
     return { logId: await logAttempt(client, params, 'blocked_no_template', reason, { template }), status: 'blocked_no_template', reason, idempotent: false, providerUsed: null };
   }
+
+  // Queueing stops here: the rules a person would want to hear about at once have passed. The provider is
+  // chosen, and every rule read again, when the message is sent.
+  if (outbox?.queueing) return { passed: true };
 
   // 6. Provider resolution. A TEST SCHOOL always gets the stand-in (docs/25
   // rule 2, C182): its guardians' numbers are never written to through a
@@ -319,16 +338,150 @@ export async function sendWhatsAppMessage(
   }
   const said = { template, filled: Object.fromEntries(template.variables.map((v) => [v, filled[v as keyof typeof filled] as string])) };
 
+  return { ready: true, provider, providerUsed, fallbackReason, category, rate, said };
+}
+
+const SEND_ARGS = (params: SendWhatsAppMessageParams, r: Ready) => ({ toPhone: params.toPhone, templateName: params.templateName, templateParams: r.said.filled, language: r.said.template.language, templateVersion: r.said.template.version, metaTemplateId: r.said.template.metaTemplateId });
+const LOGGED = (r: Ready) => ({ providerUsed: r.providerUsed, fallbackReason: r.fallbackReason, category: r.category, rate: r.rate, provider: r.provider.name, ...r.said });
+
+// Send now, in the caller's own transaction: every rule, the provider, the
+// log row. A message blocked by quiet hours is NOT sent later on this path;
+// callers that want it held use queueWhatsAppMessage (the outbox).
+export async function sendWhatsAppMessage(client: PoolClient, params: SendWhatsAppMessageParams, options: GateOptions = {}): Promise<SendWhatsAppMessageResult> {
+  // 0. Idempotency, checked first: the same trigger firing twice (retry,
+  // duplicate webhook, whatever) must not double-send. A dedupe hit
+  // returns the ORIGINAL outcome untouched -- no new log row, no new
+  // send attempt, regardless of what the original outcome was.
+  const { rows: existingRows } = await client.query(`select log_id, status from communication_log where school_id = $1 and dedupe_key = $2`, [params.schoolId, params.dedupeKey]);
+  if (existingRows[0]) {
+    return { logId: existingRows[0].log_id, status: existingRows[0].status, reason: 'duplicate trigger -- returning the original attempt\'s outcome, not sending again', idempotent: true, providerUsed: null };
+  }
+  const r = await prepare(client, params, options);
+  if ('wait' in r || 'passed' in r) throw new Error('unreachable: only a queued message waits');
+  if (!('ready' in r)) return r;
   // 7. Send, then log the real outcome -- sent or failed, never silent.
   try {
-    const result = await provider.send({ toPhone: params.toPhone, templateName: params.templateName, templateParams: said.filled, language: template.language, templateVersion: template.version, metaTemplateId: template.metaTemplateId });
+    const result = await r.provider.send(SEND_ARGS(params, r));
     const status: CommStatus = result.success ? comm_status_sent : comm_status_failed;
     const reason = result.success ? null : result.errorMessage;
-    const logId = await logAttempt(client, params, status, reason, { providerUsed, fallbackReason, providerMessageId: result.providerMessageId, category, rate, provider: provider.name, ...said });
-    return { logId, status, reason, idempotent: false, providerUsed };
+    const logId = await logAttempt(client, params, status, reason, { ...LOGGED(r), providerMessageId: result.providerMessageId });
+    return { logId, status, reason, idempotent: false, providerUsed: r.providerUsed };
   } catch (err) {
     const reason = err instanceof Error ? err.message : 'unknown provider error';
-    const logId = await logAttempt(client, params, comm_status_failed, reason, { providerUsed, fallbackReason, category, rate, provider: provider.name, ...said });
-    return { logId, status: comm_status_failed, reason, idempotent: false, providerUsed };
+    const logId = await logAttempt(client, params, comm_status_failed, reason, LOGGED(r));
+    return { logId, status: comm_status_failed, reason, idempotent: false, providerUsed: r.providerUsed };
   }
+}
+
+// --- The outbox (docs/25 slice 7d, C185) --------------------------------------------------------------------
+//
+// A message is QUEUED in the caller's transaction (one row, one job) and
+// sent by the job runner, where every rule is read again at that moment:
+// consent as it stands then, the budget then, the template then.
+//   - Quiet hours hold a queued message; they do not drop it. It goes when
+//     they end, unless by then it would be too old (each template says how
+//     long it stays worth sending).
+//   - A provider failure is tried again, a few times, minutes apart.
+//   - Never twice: the row is marked "sending" and committed BEFORE the
+//     provider is asked, and the provider is asked outside any transaction.
+//     If the process dies in between, nobody knows whether the message
+//     went, so it is NOT sent again: it is recorded as failed, saying so.
+
+export const WHATSAPP_SEND_JOB = 'whatsapp.send';
+export const MAX_SEND_ATTEMPTS = 3;
+const RETRY_AFTER_MINUTES = [2, 10];
+type QueueLike = { enqueue: (db: Pick<PoolClient, 'query'>, spec: { type: string; payload: Record<string, unknown>; idempotencyKey: string; schoolId?: string | null; maxAttempts?: number; runAt?: Date }) => Promise<unknown> };
+const jobKey = (logId: string, n: number) => `${WHATSAPP_SEND_JOB}:${logId}:${n}`;
+
+export async function queueWhatsAppMessage(client: PoolClient, queue: QueueLike, params: SendWhatsAppMessageParams, at: () => Date = () => new Date()): Promise<SendWhatsAppMessageResult & { jobKey: string | null }> {
+  const { rows: existing } = await client.query(`select log_id, status from communication_log where school_id = $1 and dedupe_key = $2`, [params.schoolId, params.dedupeKey]);
+  if (existing[0]) return { logId: existing[0].log_id, status: existing[0].status, reason: 'duplicate trigger -- returning the original attempt\'s outcome, not sending again', idempotent: true, providerUsed: null, jobKey: null };
+  // The rules a person would want to hear about at once are read now: a school in pilot, no consent, no budget,
+  // no approved words, a missing value. Such a message is recorded as held and never queued. Everything is read
+  // again when it is sent.
+  const now = at();
+  const r = await prepare(client, params, {}, { createdAt: now, now, queueing: true });
+  if ('logId' in r) return { ...r, jobKey: null };
+  const notBefore = 'wait' in r ? r.until : now;
+  const { rows } = await client.query(
+    `insert into communication_log (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, student_id, parent_id, purpose, language, template_params, not_before, created_at)
+     values ($1, $2, 'whatsapp', $3, $4, false, 0, 0, 'not_billable', 'queued', $5, $6, $7, $8, $9, $10, $11, $12) returning log_id`,
+    [params.schoolId, params.toPhone, params.templateName, await templateCategory(client, params.schoolId, params.templateName), params.dedupeKey, params.studentId, params.parentId ?? null, params.purpose, params.language ?? 'en', JSON.stringify(params.templateParams), notBefore.toISOString(), now.toISOString()]
+  );
+  const logId = rows[0].log_id as string;
+  await queue.enqueue(client, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, 0), schoolId: params.schoolId, maxAttempts: 3, payload: { logId }, ...('wait' in r ? { runAt: r.until } : {}) });
+  return { logId, status: 'queued', reason: null, idempotent: false, providerUsed: null, jobKey: jobKey(logId, 0) };
+}
+
+type Platform = <T>(fn: (db: PoolClient) => Promise<T>) => Promise<T>;
+export type DeliverOutcome = { status: CommStatus | 'gone'; retryAt?: Date; reason?: string | null };
+
+// One queued message, by the job runner, as the platform role.
+export async function deliverQueued(deps: { platform: Platform; queue: QueueLike; now?: () => Date; provider?: WhatsAppProviderSPI }, logId: string): Promise<DeliverOutcome> {
+  const now = (deps.now ?? (() => new Date()))();
+  const later = async (db: PoolClient, schoolId: string, at: Date, attempts: number) => {
+    await db.query(`update communication_log set not_before = $2, sending_at = null where log_id = $1 and status = 'queued'`, [logId, at.toISOString()]);
+    await deps.queue.enqueue(db, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, at.getTime()), schoolId, maxAttempts: 3, payload: { logId, attempt: attempts }, runAt: at });
+  };
+  // 1. Decide, and mark it as being sent. Committed before the provider is asked.
+  const first = await deps.platform(async (db): Promise<{ done: DeliverOutcome } | { params: SendWhatsAppMessageParams; ready: Ready; attempts: number; schoolId: string }> => {
+    const row = (await db.query(`select school_id, student_id, parent_id, purpose, to_phone, template_name, language, template_params, dedupe_key, status::text as status, created_at, attempts, sending_at, not_before from communication_log where log_id = $1 for update`, [logId])).rows[0];
+    if (!row || row.status !== 'queued') return { done: { status: (row?.status ?? 'gone') as CommStatus | 'gone' } };
+    if (row.not_before && new Date(row.not_before).getTime() > now.getTime()) return { done: { status: 'queued' as const, retryAt: new Date(row.not_before) } }; // an earlier job for a message since put off
+    const params: SendWhatsAppMessageParams = { schoolId: row.school_id, studentId: row.student_id, parentId: row.parent_id, purpose: row.purpose, toPhone: row.to_phone, templateName: row.template_name, templateParams: row.template_params ?? {}, dedupeKey: row.dedupe_key, language: row.language ?? 'en', queuedLogId: logId };
+    if (row.sending_at) {
+      const reason = 'the send was interrupted and nobody knows whether it went; it is not sent again, so that a parent is never messaged twice';
+      await logAttempt(db, params, comm_status_failed, reason);
+      return { done: { status: comm_status_failed, reason } };
+    }
+    const r = await prepare(db, params, { platformDefaultProvider: deps.provider }, { createdAt: new Date(row.created_at), now });
+    if ('passed' in r) throw new Error('unreachable');
+    if ('wait' in r) {
+      await later(db, row.school_id, r.until, row.attempts);
+      return { done: { status: 'queued' as const, retryAt: r.until } };
+    }
+    if (!('ready' in r)) return { done: { status: r.status, reason: r.reason } };
+    const stale = r.said.template.staleAfterMinutes ?? DEFAULT_STALE_MINUTES;
+    if (now.getTime() > new Date(row.created_at).getTime() + stale * 60_000) {
+      const reason = `too old to be worth sending: it was written more than ${stale} minutes ago`;
+      await logAttempt(db, params, comm_status_failed, reason, LOGGED(r));
+      return { done: { status: comm_status_failed, reason } };
+    }
+    await db.query(`update communication_log set sending_at = $2, attempts = attempts + 1 where log_id = $1`, [logId, now.toISOString()]);
+    return { params, ready: r, attempts: row.attempts + 1, schoolId: row.school_id as string };
+  });
+  if ('done' in first) return first.done;
+
+  // 2. Ask the provider. No transaction is open.
+  let result: { success: boolean; providerMessageId: string | null; errorMessage: string | null };
+  try {
+    result = await first.ready.provider.send(SEND_ARGS(first.params, first.ready));
+  } catch (err) {
+    result = { success: false, providerMessageId: null, errorMessage: err instanceof Error ? err.message : 'unknown provider error' };
+  }
+
+  // 3. Record what happened; on a failure, try again later, a few times.
+  return deps.platform(async (db): Promise<DeliverOutcome> => {
+    if (result.success) {
+      await logAttempt(db, first.params, comm_status_sent, null, { ...LOGGED(first.ready), providerMessageId: result.providerMessageId });
+      return { status: comm_status_sent };
+    }
+    if (first.attempts < MAX_SEND_ATTEMPTS) {
+      const at = new Date(now.getTime() + RETRY_AFTER_MINUTES[Math.min(first.attempts - 1, RETRY_AFTER_MINUTES.length - 1)] * 60_000);
+      await later(db, first.schoolId, at, first.attempts);
+      return { status: 'queued' as const, retryAt: at, reason: result.errorMessage };
+    }
+    await logAttempt(db, first.params, comm_status_failed, result.errorMessage, LOGGED(first.ready));
+    return { status: comm_status_failed, reason: result.errorMessage };
+  });
+}
+
+// The job: one queued message. Whatever the rules decide is an outcome, not an error; the job itself only fails
+// (and is retried by the queue) when the database or the code does.
+export function whatsappSendHandler(deps: { platform: Platform; queue: QueueLike; now?: () => Date; provider?: WhatsAppProviderSPI }) {
+  return async (job: { payload: Record<string, unknown> }): Promise<void> => {
+    const logId = job.payload.logId;
+    if (typeof logId !== 'string' || !/^[0-9a-f-]{36}$/.test(logId)) throw new Error('whatsapp.send: bad payload');
+    await deliverQueued(deps, logId);
+  };
 }

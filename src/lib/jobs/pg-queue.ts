@@ -40,10 +40,10 @@ export function createPgJobQueue(platform: Platform = withPlatformService as Pla
     async enqueue(db: Sql, spec: JobSpec): Promise<EnqueueResult> {
       const jobId = randomUUID();
       const res = await db.query(
-        `insert into jobs (job_id, type, payload, idempotency_key, school_id, max_attempts)
-         values ($1, $2, $3, $4, $5, $6)
+        `insert into jobs (job_id, type, payload, idempotency_key, school_id, max_attempts, next_run_at)
+         values ($1, $2, $3, $4, $5, $6, coalesce($7::timestamptz, now()))
          on conflict do nothing`,
-        [jobId, spec.type, JSON.stringify(spec.payload), spec.idempotencyKey, spec.schoolId ?? null, spec.maxAttempts ?? DEFAULT_MAX_ATTEMPTS]
+        [jobId, spec.type, JSON.stringify(spec.payload), spec.idempotencyKey, spec.schoolId ?? null, spec.maxAttempts ?? DEFAULT_MAX_ATTEMPTS, spec.runAt ? spec.runAt.toISOString() : null]
       );
       return { jobId, created: (res.rowCount ?? 0) > 0 };
     },
