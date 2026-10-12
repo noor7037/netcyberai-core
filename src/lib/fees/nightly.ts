@@ -11,7 +11,7 @@ import { reconcile } from './payments';
 // every school with dues:
 //   1. a due past its date with anything still owed is marked overdue,
 //      part paid or not;
-//   2. if the school has switched late fees on (off unless it has), each
+//   2. if the school has switched the late fee on (off unless it has), each
 //      overdue due past the grace days gets one late-fee line, a new due;
 //   3. the reconciliation check runs, and its result is recorded.
 // One row in fee_status_runs per school and night. Running the same night
@@ -19,15 +19,16 @@ import { reconcile } from './payments';
 
 export type LateFeeRule = { feeMinor: number; graceDays: number; since: string | null };
 
-// The school's late-fee rule. `since` is the day it was last switched on or
-// changed, in India: only dues falling due on or after it are fined, so
-// switching it on never fines the past.
+// The school's late-fee rule: nothing unless it is switched on and has an
+// amount. `since` is the day it was last switched on or its amount changed,
+// in India: only dues falling due on or after it are fined, so switching it
+// on never fines the past.
 export async function lateFeeRule(db: Sql, schoolId: string): Promise<LateFeeRule> {
   const schema = SETTINGS_SCHEMAS.find((s) => s.moduleId === 'fees');
   const v = schema ? (await readSettings(db as PoolClient, schoolId, schema)).effective : {};
-  const rupees = typeof v.late_fee_rupees === 'number' && v.late_fee_rupees > 0 ? v.late_fee_rupees : 0;
+  const rupees = v.late_fee_enabled === true && typeof v.late_fee_rupees === 'number' && v.late_fee_rupees > 0 ? v.late_fee_rupees : 0;
   const grace = typeof v.late_fee_grace_days === 'number' && v.late_fee_grace_days >= 0 ? Math.floor(v.late_fee_grace_days) : 0;
-  const changed = (await db.query(`select ((max(changed_at) at time zone 'Asia/Kolkata')::date)::text as since from school_setting_changes where school_id = $1 and module_id = 'fees' and setting_key = 'late_fee_rupees'`, [schoolId])).rows[0];
+  const changed = (await db.query(`select ((max(changed_at) at time zone 'Asia/Kolkata')::date)::text as since from school_setting_changes where school_id = $1 and module_id = 'fees' and setting_key in ('late_fee_enabled', 'late_fee_rupees')`, [schoolId])).rows[0];
   return { feeMinor: rupees > 0 ? rupeesToMinor(String(rupees)) ?? 0 : 0, graceDays: grace, since: (changed?.since as string | null) ?? null };
 }
 

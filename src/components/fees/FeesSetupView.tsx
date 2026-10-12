@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
 import { Badge } from '@/components/ui/Badge';
-import { FeesLateFeeCard } from './FeesLateFeeCard';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
@@ -169,7 +168,6 @@ export function FeesSetupView() {
         </div>
       </div>
 
-      <FeesLateFeeCard />
 
       <div data-fee-structures className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
         <h2 className="text-base font-bold text-slate">{t('fee.structures')}</h2>

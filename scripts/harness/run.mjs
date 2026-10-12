@@ -343,39 +343,68 @@ const feesPayDone = async () => {
   const r = rows[0];
   if (r.receipts !== 1 || r.received !== 100000 || r.credited !== 100000) throw new Error(`expected one receipt of 1,000 credited once: ${JSON.stringify(r)}`);
 };
-// Overdue and the late fee (C163): the principal sets a late fee on the
-// page; the totals box shows as overdue exactly the unpaid balance of the
-// dues past their date, and says the nightly check has not run here yet.
+// Overdue (C163): the totals box shows as overdue exactly the unpaid balance
+// of the dues past their date, and says the nightly check has not run here.
 const clearLateFee = async () => {
   await db.pg.query(`delete from school_setting_changes where school_id = $1 and module_id = 'fees'`, [SCHOOL]);
   await db.pg.query(`delete from school_settings where school_id = $1 and module_id = 'fees'`, [SCHOOL]);
 };
 const feesOverdue = async (page) => {
-  await clearLateFee();
-  await page.reload({ waitUntil: 'networkidle' });
-  await page.locator('#late-fee-rupees').fill('50');
-  await page.locator('#late-fee-grace').fill('3');
-  await page.locator('[data-save-late-fee]').click();
-  await page.waitForFunction(() => /50/.test(document.querySelector('[data-late-fee-now]')?.textContent ?? ''), null, { timeout: 15000 });
   await page.locator('[data-fee-overdue]').waitFor({ timeout: 15000 });
 };
 const feesOverdueDone = async (page) => {
   const shown = Math.round(Number((await page.locator('[data-fee-overdue]').textContent()).replace(/[^0-9.]/g, '')) * 100);
   const nightly = await page.locator('[data-fee-nightly]').textContent();
   const { rows } = await db.pg.query(
-    `select (select coalesce(sum(l.amount_minor - coalesce((select sum(p.amount_minor) from payments p where p.fee_id = l.fee_id), 0)), 0)::bigint from fees_ledger l
-              where l.school_id = $1 and (l.status::text = 'overdue' or (l.status::text in ('pending', 'partial') and l.due_date < ${TODAY_SQL}))) as overdue,
-            (select setting_values from school_settings where school_id = $1 and module_id = 'fees') as saved,
-            (select count(*)::int from school_setting_changes where school_id = $1 and module_id = 'fees') as changes,
-            (select count(*)::int from fees_ledger where school_id = $1 and late_fee_for is not null) as late_lines`,
+    `select coalesce(sum(l.amount_minor - coalesce((select sum(p.amount_minor) from payments p where p.fee_id = l.fee_id), 0)), 0)::bigint as overdue from fees_ledger l
+      where l.school_id = $1 and (l.status::text = 'overdue' or (l.status::text in ('pending', 'partial') and l.due_date < ${TODAY_SQL}))`,
     [SCHOOL]
   );
-  await clearLateFee();
-  const r = rows[0];
-  if (Number(r.overdue) !== shown) throw new Error(`the page shows ${shown} paise overdue; the unpaid balance past its date is ${r.overdue}`);
-  if (r.saved?.late_fee_rupees !== 50 || r.saved?.late_fee_grace_days !== 3 || r.changes < 1) throw new Error(`the late fee was not saved with its history: ${JSON.stringify(r)}`);
-  if (r.late_lines !== 0) throw new Error('saving the late-fee setting raised a due; only the nightly job may');
+  if (Number(rows[0].overdue) !== shown) throw new Error(`the page shows ${shown} paise overdue; the unpaid balance past its date is ${rows[0].overdue}`);
   if (!/first check has not run/.test(nightly ?? '')) throw new Error(`the nightly line is wrong: ${nightly}`);
+};
+// The school's Settings screen, generated from the module settings schemas
+// (C166). The principal switches the late fee on with an amount and saves;
+// it is stored with its history and audited, and raises no due by itself.
+// Then one value is put back with "Reset to default".
+const settingsLateFee = async (page) => {
+  await clearLateFee();
+  await page.reload({ waitUntil: 'networkidle' });
+  const fees = page.locator('[data-settings-module="fees"]');
+  await fees.locator('#set-fees-late_fee_enabled').check();
+  await fees.locator('#set-fees-late_fee_rupees').fill('50');
+  await fees.locator('#set-fees-late_fee_grace_days').fill('3');
+  await fees.locator('[data-save-settings]').click();
+  await fees.locator('[data-setting="late_fee_enabled"] [data-reset]').waitFor({ timeout: 20000 });
+};
+const settingsLateFeeDone = async (page) => {
+  const read = async () => (await db.pg.query(
+    `select (select setting_values from school_settings where school_id = $1 and module_id = 'fees') as saved,
+            (select count(*)::int from school_setting_changes where school_id = $1 and module_id = 'fees') as changes,
+            (select count(*)::int from audit_log where school_id = $1 and event_action = 'settings.changed' and target_id = 'fees' and occurred_at > now() - interval '5 minutes') as audited,
+            (select count(*)::int from fees_ledger where school_id = $1 and late_fee_for is not null) as late_lines`,
+    [SCHOOL]
+  )).rows[0];
+  const saved = await read();
+  const modules = await page.locator('[data-settings-module]').evaluateAll((els) => els.map((e) => e.getAttribute('data-settings-module')));
+  const fees = page.locator('[data-settings-module="fees"]');
+  await fees.locator('[data-setting="late_fee_rupees"] [data-reset]').click();
+  await fees.locator('[data-setting="late_fee_rupees"] [data-is-default]').waitFor({ timeout: 20000 });
+  const reset = await read();
+  await clearLateFee();
+  if (saved.saved?.late_fee_enabled !== true || saved.saved?.late_fee_rupees !== 50 || saved.saved?.late_fee_grace_days !== 3 || saved.changes !== 3 || saved.audited < 1) throw new Error(`the late fee was not saved with its history and audit row: ${JSON.stringify(saved)}`);
+  if (saved.late_lines !== 0) throw new Error('saving the setting raised a due; only the nightly job may');
+  if ('late_fee_rupees' in (reset.saved ?? {}) || reset.saved?.late_fee_enabled !== true || reset.changes !== 4) throw new Error(`"Reset to default" did not put one value back and keep the rest: ${JSON.stringify(reset)}`);
+  for (const m of ['setup', 'students', 'attendance', 'fees', 'timetable']) if (!modules.includes(m)) throw new Error(`the Settings screen has no card for ${m}: ${modules}`);
+};
+// A teacher sees the settings of the modules they can open, and can change none.
+const settingsReadOnly = async (page) => {
+  const state = await page.evaluate(() => ({
+    cards: document.querySelectorAll('[data-settings-module]').length,
+    open: document.querySelectorAll('[data-settings-module] input:not([disabled]), [data-settings-module] select:not([disabled])').length,
+    buttons: document.querySelectorAll('[data-save-settings], [data-reset]').length,
+  }));
+  if (state.cards === 0 || state.open !== 0 || state.buttons !== 0) throw new Error(`a teacher must see settings and be able to change none: ${JSON.stringify(state)}`);
 };
 // The founder's "View as" (C165): from the school's page in Control, open the
 // app as its principal. The reason is prefilled, the app opens as that person
@@ -562,7 +591,8 @@ const SCREENS = [
   ['principal', 'app-staff', '/app/staff'],
   ['principal', 'app-compliance', '/app/compliance'],
   ['principal', 'app-taught-today', '/app/syllabus'],
-  ['principal', 'app-settings', '/app/settings'],
+  ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],
+  ['teacher', 'app-settings-teacher', '/app/settings', settingsReadOnly],
   ['principal', 'app-account', '/app/account'],
   ['principal', 'app-help', '/app/help'],
   ['principal', 'app-tickets', '/app/help/ticket'],

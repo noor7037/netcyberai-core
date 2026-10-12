@@ -136,14 +136,14 @@ describe('the nightly job', () => {
 });
 
 describe('the late fee', () => {
-  it('is off unless the school sets an amount: no night so far raised one', async () => {
+  it('is off unless the school switches it on: an amount alone charges nothing, and no night so far raised one', async () => {
     expect(await as(accountant, (c) => lateFeeRule(c, A))).toEqual({ feeMinor: 0, graceDays: 0, since: null });
     expect((await db.pg.query(`select count(*)::int as n from fees_ledger where late_fee_for is not null`)).rows[0].n).toBe(0);
   });
 
   it('once set, each overdue fee past the days of grace gets one late-fee line, a new due; never the past, never twice', async () => {
     const schema = SETTINGS_SCHEMAS.find((s) => s.moduleId === 'fees')!;
-    expect(await as(principal, (c) => saveSettings(c, actor(principal), schema, { moduleId: 'fees', baseRevision: 0, set: { late_fee_rupees: 50, late_fee_grace_days: 5 } }))).toMatchObject({ ok: true });
+    expect(await as(principal, (c) => saveSettings(c, actor(principal), schema, { moduleId: 'fees', baseRevision: 0, set: { late_fee_enabled: true, late_fee_rupees: 50, late_fee_grace_days: 5 } }))).toMatchObject({ ok: true });
     const rule = await as(accountant, (c) => lateFeeRule(c, A));
     expect(rule).toMatchObject({ feeMinor: 5000, graceDays: 5 });
     expect(rule.since).toMatch(/^\d{4}-\d{2}-\d{2}$/);
