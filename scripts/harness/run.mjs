@@ -469,6 +469,76 @@ const saveGatewayKeysDone = async () => {
   }
   if (s.fields !== '') throw new Error('the form still holds the key secret after saving');
 };
+// Direct UPI (C174), the founder's flow end to end. The school has its UPI ID set up. The office makes the
+// family's link; a parent with no session opens it, sees "Pay with UPI" and a QR carrying the reference, enters
+// the UTR, and is told the payment is initiated, never that it is paid. Nothing is credited. The principal then
+// finds it "in the bank", ticks the box and confirms: one receipt, and the parent's page says paid.
+const UPI_SETUP = { upiId: 'illustrative.fees@examplebank', payeeName: 'Illustrative Public School', bankName: 'An Example Bank', accountLast4: '4821', ifsc: 'EXMP0001234', verifiers: ['accountant', 'principal'], principalLimitMinor: 0, notify: 'digest' };
+const clearUpi = async () => {
+  await db.pg.query(`delete from payment_reports where school_id = $1`, [SCHOOL]);
+  await dropEvidence(`method = 'upi' and payment_link_id is not null`);
+  await db.pg.query(`delete from payments where school_id = $1 and receipt_id in (select receipt_id from receipts where school_id = $1 and method = 'upi' and payment_link_id is not null)`, [SCHOOL]);
+  await db.pg.query(`update payment_links set receipt_id = null, status = 'cancelled', closed_at = coalesce(closed_at, now()) where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`delete from receipts where school_id = $1 and method = 'upi' and payment_link_id is not null`, [SCHOOL]);
+  await db.pg.query(`delete from payment_link_lines where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`delete from payment_links where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`delete from payment_methods where school_id = $1 and method = 'direct_upi'`, [SCHOOL]);
+};
+let upiSeen = null;
+const payByUpi = async (page) => {
+  await clearUpi();
+  await db.pg.query(`insert into payment_methods (school_id, method, enabled, sort_order, settings, updated_by) values ($1, 'direct_upi', true, 1, $2, $3)`, [SCHOOL, JSON.stringify(UPI_SETUP), PEOPLE.principal.sub]);
+  await feesDues(page);
+  await page.selectOption('#pay-class', { label: '5-A' });
+  await page.waitForFunction(() => document.querySelectorAll('#pay-student option').length > 1, null, { timeout: 15000 });
+  await page.selectOption('#pay-student', { index: 1 });
+  await page.locator('[data-make-link]').click();
+  const url = (await page.locator('[data-pay-url]').textContent({ timeout: 20000 })).trim();
+  const parent = await page.context().browser().newContext();
+  const pay = await parent.newPage();
+  await pay.goto(url, { waitUntil: 'networkidle' });
+  const href = await pay.locator('[data-upi-pay]').getAttribute('href');
+  const reference = (await pay.locator('[data-upi-reference]').textContent()).trim();
+  const qr = await pay.locator('[data-upi-qr] svg').count();
+  const fileFields = await pay.locator('input[type="file"]').count();
+  await pay.locator('#utr').fill('412345678901');
+  await pay.locator('[data-utr-send]').click();
+  await pay.locator('[data-upi-initiated]').waitFor({ timeout: 20000 });
+  const initiated = await pay.locator('[data-upi-initiated]').textContent();
+  const stateWhileWaiting = await pay.locator('[data-pay-state]').getAttribute('data-pay-state');
+  const creditedWhileWaiting = (await db.pg.query(`select count(*)::int as n from payments where school_id = $1 and method = 'upi' and receipt_id in (select receipt_id from receipts where payment_link_id is not null)`, [SCHOOL])).rows[0].n;
+  // The school: the waiting payment is on the Fees page; the principal finds it in the bank and confirms.
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-verify] [data-found]').first().click();
+  await page.locator('[data-verify] [data-checked]').check();
+  await page.locator('[data-verify] [data-found-confirm]').click();
+  await page.locator('[data-verify]').waitFor({ state: 'detached', timeout: 20000 });
+  await pay.reload({ waitUntil: 'networkidle' });
+  const paid = await pay.locator('[data-pay-state="paid"]').textContent({ timeout: 20000 });
+  await parent.close();
+  upiSeen = { href, reference, qr, fileFields, initiated, stateWhileWaiting, creditedWhileWaiting, paid };
+};
+const payByUpiDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from receipts where school_id = $1 and method = 'upi' and payment_link_id is not null) as receipts,
+            (select receipt_no from receipts where school_id = $1 and method = 'upi' and payment_link_id is not null) as receipt_no,
+            (select coalesce(sum(total_minor), 0)::int from receipts where school_id = $1 and method = 'upi' and payment_link_id is not null) as total,
+            (select amount_minor::int from payment_links where school_id = $1 and status = 'paid') as link_amount,
+            (select json_build_object('source', v.source, 'rule', v.rule, 'by', v.decided_by, 'utr', r.utr, 'status', r.status) from payment_reports r join payment_evidence v on v.evidence_id = r.evidence_id where r.school_id = $1) as proof`,
+    [SCHOOL]
+  );
+  await clearUpi();
+  await clearPayments();
+  await clearDues();
+  const r = rows[0];
+  const s = upiSeen ?? {};
+  const q = new URLSearchParams(String(s.href).split('?')[1] ?? '');
+  if (!String(s.href).startsWith('upi://pay?') || q.get('pa') !== UPI_SETUP.upiId || q.get('pn') !== UPI_SETUP.payeeName || q.get('cu') !== 'INR' || !/^NCA-[A-HJKMNP-Z2-9]{8}$/.test(q.get('tr') ?? '') || q.get('tn') !== q.get('tr') || q.get('tr') !== s.reference || Number(q.get('am')) * 100 !== r.link_amount) throw new Error(`the UPI link is not right: ${s.href}`);
+  if (s.qr !== 1 || s.fileFields !== 0) throw new Error(`the page must show one QR and no file field: ${JSON.stringify({ qr: s.qr, fileFields: s.fileFields })}`);
+  if (!/Payment initiated\. The school will verify it/.test(String(s.initiated)) || s.stateWhileWaiting !== 'open' || s.creditedWhileWaiting !== 0) throw new Error(`a reported UTR must credit nothing and never say paid: ${JSON.stringify(s)}`);
+  if (r.receipts !== 1 || r.total !== r.link_amount || !String(s.paid).includes(r.receipt_no)) throw new Error(`"Found in bank" must issue one receipt and tell the parent: ${JSON.stringify(r)} ${s.paid}`);
+  if (r.proof?.source !== 'school_confirmed' || r.proof?.rule !== 'A' || r.proof?.by !== PEOPLE.principal.sub || r.proof?.utr !== '412345678901' || r.proof?.status !== 'verified') throw new Error(`the receipt did not go through the evidence table as a named confirmation: ${JSON.stringify(r.proof)}`);
+};
 // The sibling rule (C168): with the rule on and two children of 5-A linked as
 // one family, "Check sibling concessions" proposes one concession, for the
 // younger child, marked as coming from the rule and waiting for approval.
@@ -724,6 +794,7 @@ const SCREENS = [
   ['principal', 'app-fees-overdue', '/app/fees', feesOverdue, feesOverdueDone],
   ['principal', 'app-fees-sibling', '/app/fees', siblingRule, siblingRuleDone],
   ['principal', 'app-fees-pay-online', '/app/fees', payOnline, payOnlineDone],
+  ['principal', 'app-fees-pay-upi', '/app/fees', payByUpi, payByUpiDone],
   ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],
   ['principal', 'app-timetable-clash', '/app/timetable', timetableClash],

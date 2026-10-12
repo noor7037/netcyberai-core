@@ -2,6 +2,7 @@ import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { FeesCollectView } from '@/components/fees/FeesCollectView';
 import { FeesDuesView } from '@/components/fees/FeesDuesView';
+import { FeesVerifyView } from '@/components/fees/FeesVerifyView';
 import { FeesSetupView } from '@/components/fees/FeesSetupView';
 import { getServerSession } from '@/lib/auth/server-session';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
@@ -19,6 +20,7 @@ export default async function FeesPage() {
   return (
     <ModulePage moduleId="fees" help="fee-structures" tour="fees" title={t(lang, 'fee.title')} purpose={t(lang, 'fee.purpose')}>
       <div className="flex flex-col gap-6">
+        <FeesVerifyView />
         <FeesCollectView />
         <FeesDuesView />
         <FeesSetupView />

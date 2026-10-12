@@ -262,6 +262,8 @@ ALLOWED_PERMISSIVE = (
         ("payment_gateway_access", "payment_gateway_access_tenant_isolation"),
         ("payment_credentials", "payment_credentials_tenant_isolation"),
         ("payment_evidence", "payment_evidence_tenant_isolation"),
+        # C174: tenant isolation only; narrowed by the RESTRICTIVE payment_reports_finance, required below.
+        ("payment_reports", "payment_reports_tenant_isolation"),
         ("payment_link_lines", "payment_link_lines_tenant_isolation"),
         # C154: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("ai_usage", "ai_usage_tenant_isolation"),
@@ -359,6 +361,7 @@ REQUIRED_RESTRICTIVE = {
     ("payment_gateway_access", "payment_gateway_access_finance"),
     ("payment_credentials", "payment_credentials_nobody"),
     ("payment_evidence", "payment_evidence_finance"),
+    ("payment_reports", "payment_reports_finance"),
     ("payment_links", "payment_links_made_as_self"),
     ("payment_link_lines", "payment_link_lines_finance"),
     ("receipts", "receipts_issue_as_self"),

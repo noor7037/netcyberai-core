@@ -4,6 +4,7 @@ import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { allocateOldestFirst, openDues, type OpenDue } from './payments';
 import type { PaymentProvider } from '@/lib/payments/provider';
+import { newReferenceCode } from '@/lib/payments/upi';
 import { FINANCE } from './structures';
 
 // A family's dues, and one payment link per family (docs/23 6e, C168).
@@ -95,10 +96,16 @@ export async function createPaymentLink(db: PoolClient, actor: Actor, input: { s
   if (existing) return existing.amountMinor === amount ? { ok: true, link: existing, created: false } : { ok: false, reason: 'link_exists' };
 
   const split = splitAcrossChildren(amount, dues);
-  const made = await db.query(
-    `insert into payment_links (school_id, family_id, student_id, token, amount_minor, created_by, expires_at) values ($1, $2, $3, $4, $5, $6, now() + make_interval(days => $7)) returning link_id`,
-    [actor.schoolId, student.family_id, input.studentId, randomBytes(32).toString('base64url'), amount, actor.userId, LINK_DAYS]
-  );
+  // The reference code is unique in the school; a clash (about one in a trillion) just draws again.
+  let made = { rows: [] as { link_id: string }[], rowCount: 0 as number | null };
+  for (let attempt = 0; attempt < 5 && made.rowCount !== 1; attempt += 1) {
+    made = await db.query(
+      `insert into payment_links (school_id, family_id, student_id, token, amount_minor, created_by, expires_at, reference_code) values ($1, $2, $3, $4, $5, $6, now() + make_interval(days => $7), $8)
+       on conflict (school_id, reference_code) where reference_code is not null do nothing returning link_id`,
+      [actor.schoolId, student.family_id, input.studentId, randomBytes(32).toString('base64url'), amount, actor.userId, LINK_DAYS, newReferenceCode()]
+    );
+  }
+  if (made.rowCount !== 1) throw new Error('a payment link could not be given a reference code');
   const linkId = made.rows[0].link_id as string;
   await db.query(`insert into payment_link_lines (school_id, link_id, fee_id, amount_minor) select $1, $2, n.fee_id, n.amount from unnest($3::uuid[], $4::bigint[]) as n(fee_id, amount)`, [actor.schoolId, linkId, split.lines.map((l) => l.feeId), split.lines.map((l) => l.amountMinor)]);
   if (provider) {

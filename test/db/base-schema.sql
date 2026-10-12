@@ -237,6 +237,15 @@ create table payments (
 alter table payments enable row level security;
 create policy payments_tenant_isolation on payments using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert on payments to app_user, nca_super;
+-- UPI payments reported by parents, as My Day counts them (C174).
+create table payment_reports (
+  report_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  status text not null default 'reported'
+);
+alter table payment_reports enable row level security;
+create policy payment_reports_tenant_isolation on payment_reports using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update on payment_reports to app_user, nca_super;
 alter table fees_ledger enable row level security;
 alter table communication_log enable row level security;
 create policy fees_ledger_tenant_isolation on fees_ledger using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
