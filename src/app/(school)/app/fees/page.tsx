@@ -3,6 +3,7 @@ import { ModulePage } from '@/components/app-ui/ModulePage';
 import { FeesBankView } from '@/components/fees/FeesBankView';
 import { FeesCollectView } from '@/components/fees/FeesCollectView';
 import { FeesDuesView } from '@/components/fees/FeesDuesView';
+import { FeesFirstLoad } from '@/components/fees/FeesFirstLoad';
 import { FeesVerifyView } from '@/components/fees/FeesVerifyView';
 import { FeesRecoveryView } from '@/components/fees/FeesRecoveryView';
 import { FeesSetupView } from '@/components/fees/FeesSetupView';
@@ -21,6 +22,7 @@ export default async function FeesPage() {
   const { lang } = getLang(session?.sub ?? '');
   return (
     <ModulePage moduleId="fees" help="fee-structures" tour="fees" title={t(lang, 'fee.title')} purpose={t(lang, 'fee.purpose')}>
+      <FeesFirstLoad>
       <div className="flex flex-col gap-6">
         <FeesVerifyView />
         <FeesCollectView />
@@ -29,6 +31,7 @@ export default async function FeesPage() {
         <FeesDuesView />
         <FeesSetupView />
       </div>
+      </FeesFirstLoad>
     </ModulePage>
   );
 }

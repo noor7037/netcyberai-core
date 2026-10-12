@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
+import { useFeesPart } from './FeesFirstLoad';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
@@ -27,6 +28,7 @@ const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold 
 export function FeesSetupView() {
   const { t, lang } = useT();
   const toast = useToast();
+  const getSetup = useFeesPart('setup', '/api/app/fees/setup');
   const [data, setData] = useState<Data | null>(null);
   const [state, setState] = useState<'loading' | 'ready' | 'failed'>('loading');
   const [headName, setHeadName] = useState('');
@@ -38,7 +40,7 @@ export function FeesSetupView() {
 
   const load = useCallback(async () => {
     try {
-      const res = await fetch('/api/app/fees/setup');
+      const res = await getSetup();
       const body = (await res.json()) as Data;
       if (!res.ok) throw new Error('not loaded');
       setData(body);
@@ -47,7 +49,7 @@ export function FeesSetupView() {
     } catch {
       setState('failed');
     }
-  }, []);
+  }, [getSetup]);
   useEffect(() => {
     void load();
   }, [load]);

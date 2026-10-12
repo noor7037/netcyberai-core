@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { FEES_PARTS } from '@/lib/fees/page-data';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 import { CONCESSION_KINDS, listConcessions, proposeConcession } from '@/lib/fees/concessions';
@@ -10,7 +11,7 @@ import { FINANCE } from '@/lib/fees/structures';
 export async function GET(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
     if (!FINANCE.includes(claims.role)) return ruleError(403, 'not_allowed');
-    return NextResponse.json({ concessions: await listConcessions(db, claims.schoolId), mayApprove: claims.role === 'principal' || claims.role === 'school_admin' });
+    return NextResponse.json(await FEES_PARTS.concessions(db, { schoolId: claims.schoolId, role: claims.role }));
   });
 }
 
