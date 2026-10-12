@@ -9,6 +9,9 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 //   - The app's role (app_user) has exactly the rights listed here, table by
 //     table. The list was read from the test database on 2026-10-15 and is
 //     the same on production. '' means none: the table is the platform's.
+//   - Every other role is pinned too (C164): the platform role (nca_super),
+//     the sign-in role (app_backend), audit_writer and Supabase's
+//     service_role. A role not named here holds nothing.
 //   - The public Supabase roles (anon, authenticated) can do nothing to any
 //     table, sequence or function, and nor can PUBLIC.
 //   - Nothing is granted by default any more.
@@ -103,6 +106,29 @@ const APP_USER: Record<string, string> = {
   whatsapp_templates: 'DELETE,INSERT,SELECT,UPDATE',
 };
 
+// The platform role (nca_super) holds what the app's role holds, except here.
+// It bypasses row level security, so these rights are its only limit.
+const NCA_SUPER_DIFFERS: Record<string, string> = {
+  entitlement_change_reasons: 'INSERT,SELECT', // the founder's reasons: written once
+  fee_status_runs: 'INSERT,SELECT', // the nightly job writes a result once
+  intake_rate_events: 'DELETE,INSERT,SELECT,UPDATE',
+  jobs: 'DELETE,INSERT,SELECT,UPDATE',
+  message_rate_table: 'DELETE,INSERT,SELECT,UPDATE',
+  platform_settings: 'DELETE,INSERT,SELECT,UPDATE',
+  school_applications: 'DELETE,INSERT,SELECT,UPDATE',
+  school_entitlements: 'INSERT,SELECT,UPDATE',
+  school_module_entitlements: 'INSERT,SELECT,UPDATE',
+};
+// Every other role that holds anything on a table.
+const OTHER_ROLES: Record<string, Record<string, string>> = {
+  app_backend: { leads: 'INSERT,SELECT', sessions: 'INSERT,SELECT,UPDATE' },
+  audit_writer: { audit_log: 'INSERT,SELECT' },
+};
+// Supabase's service_role (the server's secret key; the app uses it for file storage only) holds
+// everything on every table but these four, which took it away in their own migrations.
+const SERVICE_ROLE_NONE = ['entitlement_change_reasons', 'support_ticket_attachments', 'support_ticket_messages', 'support_tickets'];
+const EVERYTHING = 'DELETE,INSERT,MAINTAIN,REFERENCES,SELECT,TRIGGER,TRUNCATE,UPDATE';
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let db: any;
 const rows = async (sql: string, params: unknown[] = []) => (await db.pg.query(sql, params)).rows;
@@ -124,6 +150,25 @@ describe('rights on schema public', () => {
     expect(Object.keys(held).filter((t) => !(t in APP_USER))).toEqual([]);
     expect(Object.keys(APP_USER).filter((t) => !(t in held))).toEqual([]);
     expect(held).toEqual(APP_USER);
+  });
+
+  it('every other role has exactly the rights pinned: the platform role, the sign-in role, audit_writer, service_role; nobody else holds anything', async () => {
+    const found = await rows(
+      `select c.relname as t, pg_get_userbyid(a.grantee) as role, string_agg(a.privilege_type, ',' order by a.privilege_type) as rights
+         from pg_class c, aclexplode(c.relacl) a
+        where c.relnamespace = 'public'::regnamespace and c.relkind in ('r', 'p') and a.grantee <> c.relowner and pg_get_userbyid(a.grantee) <> 'app_user'
+        group by 1, 2`
+    );
+    const held: Record<string, Record<string, string>> = {};
+    for (const r of found as { t: string; role: string; rights: string }[]) (held[r.role] ??= {})[r.t] = r.rights;
+    const only = (o: Record<string, string>) => Object.fromEntries(Object.entries(o).filter(([, v]) => v !== ''));
+    const expected: Record<string, Record<string, string>> = {
+      ...OTHER_ROLES,
+      nca_super: only({ ...APP_USER, ...NCA_SUPER_DIFFERS }),
+      service_role: Object.fromEntries(Object.keys(APP_USER).filter((t) => !SERVICE_ROLE_NONE.includes(t)).map((t) => [t, EVERYTHING])),
+    };
+    expect(Object.keys(held).sort()).toEqual(Object.keys(expected).sort());
+    for (const role of Object.keys(expected)) expect(held[role], role).toEqual(expected[role]);
   });
 
   it('anon, authenticated and PUBLIC can do nothing to any table, sequence or function, TRUNCATE included', async () => {
@@ -153,20 +198,20 @@ describe('rights on schema public', () => {
     expect(await rows(`select c.relname, a.privilege_type from pg_class c, aclexplode(c.relacl) a where c.relnamespace = 'public'::regnamespace and pg_get_userbyid(a.grantee) = 'app_user' and a.privilege_type not in ('SELECT', 'INSERT', 'UPDATE', 'DELETE', 'USAGE')`)).toEqual([]);
   });
 
-  it('nothing is granted by default to anon, authenticated or the app’s role', async () => {
+  it('nothing is granted by default to anon, authenticated, the app’s role or the platform role', async () => {
     const defaults = await rows(
       `select d.defaclobjtype::text as kind, pg_get_userbyid(a.grantee) as grantee from pg_default_acl d, aclexplode(d.defaclacl) a
-        where d.defaclnamespace = 'public'::regnamespace and pg_get_userbyid(a.grantee) in ('anon', 'authenticated', 'app_user')`
+        where d.defaclnamespace = 'public'::regnamespace and pg_get_userbyid(a.grantee) in ('anon', 'authenticated', 'app_user', 'nca_super')`
     );
     expect(defaults).toEqual([]);
     // A table made now, with no grant of its own, is nobody's but its owner's and the platform's.
     await db.pg.exec(`create table grants_probe (id int); create sequence grants_probe_seq;`);
     const probe = await rows(
       `select r.rolname, has_table_privilege(r.rolname, 'grants_probe', 'SELECT') or has_table_privilege(r.rolname, 'grants_probe', 'INSERT') or has_table_privilege(r.rolname, 'grants_probe', 'TRUNCATE') as on_table, has_sequence_privilege(r.rolname, 'grants_probe_seq', 'USAGE') as on_sequence
-         from pg_roles r where r.rolname in ('anon', 'authenticated', 'app_user') order by 1`
+         from pg_roles r where r.rolname in ('anon', 'authenticated', 'app_user', 'nca_super') order by 1`
     );
     await db.pg.exec(`drop table grants_probe; drop sequence grants_probe_seq;`);
-    expect(probe).toEqual([{ rolname: 'anon', on_table: false, on_sequence: false }, { rolname: 'app_user', on_table: false, on_sequence: false }, { rolname: 'authenticated', on_table: false, on_sequence: false }]);
+    expect(probe).toEqual(['anon', 'app_user', 'authenticated', 'nca_super'].map((rolname) => ({ rolname, on_table: false, on_sequence: false })));
   });
 
   it('before the hardening migration the harness had the fault the real databases had, so this test means something', async () => {
