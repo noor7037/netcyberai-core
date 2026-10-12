@@ -185,6 +185,17 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     },
   },
   {
+    // UPI payments parents have reported and nobody has yet found in the school's bank (C174). A parent's
+    // receipt waits on this, so it is on the verifiers' day until a person decides each one.
+    type: 'payments-to-verify',
+    moduleId: 'fees',
+    roles: ['principal', 'accountant', 'school_admin'],
+    async load(db, ctx) {
+      const { rows } = await db.query(`select count(*) as c from payment_reports where school_id = $1 and status in ('reported', 'awaiting_principal')`, [ctx.schoolId]);
+      return waiting('payments-to-verify', 'fees', n(rows[0]?.c), '/app/fees');
+    },
+  },
+  {
     // Tickets NetCyberAI has answered and is waiting on the school for. Row
     // level security shows the office every ticket and anyone else their own.
     type: 'tickets-waiting',

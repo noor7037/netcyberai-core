@@ -124,6 +124,9 @@ export type Evidence = {
   rule?: 'A' | 'R1' | 'R2' | 'manual';
   decidedBy?: string | null;
   reason?: string | null;
+  // Who is writing: the platform role (a provider's notice) reads students directly; a school's own role reads them
+  // through the billing function, so a child still waiting for consent is not left out of the family's dues.
+  via?: 'platform' | 'school';
   receipt: { method: 'online' | 'upi' | 'netbanking' | 'cheque'; gateway: string | null; gatewayPaymentId: string | null; issuedBy: string | null; reference: string };
   audit?: Record<string, unknown>;
 };
@@ -153,9 +156,8 @@ export async function creditEvidence(db: Sql, e: Evidence): Promise<Applied> {
   const open = (await db.query(
     `select l.fee_id, (l.amount_minor - coalesce((select sum(p.amount_minor) from payments p where p.fee_id = l.fee_id), 0))::bigint as balance, n.amount_minor as line_minor
        from fees_ledger l
-       join students st on st.school_id = l.school_id and st.student_id = l.student_id
        left join payment_link_lines n on n.link_id = $3 and n.fee_id = l.fee_id
-      where l.school_id = $1 and (l.student_id = $2 or ($4::uuid is not null and st.family_id = $4))
+      where l.school_id = $1 and (l.student_id = $2 or ($4::uuid is not null and l.student_id in (select st.student_id from ${e.via === 'school' ? 'fee_billing_students()' : 'students'} st where st.school_id = $1 and st.family_id = $4)))
       order by l.due_date, l.created_at, l.fee_id`,
     [link.school_id, link.student_id, link.link_id, link.family_id]
   )).rows as { fee_id: string; balance: string; line_minor: string | null }[];
@@ -171,7 +173,7 @@ export async function creditEvidence(db: Sql, e: Evidence): Promise<Applied> {
     // and the link is closed so that it cannot be paid again.
     await db.query(`update payment_links set status = 'cancelled', closed_at = now() where school_id = $1 and link_id = $2 and status = 'open'`, [link.school_id, link.link_id]);
     await settle(null, 0, plan.unappliedMinor);
-    await writeAuditLog(db, { schoolId: link.school_id, ...actor, eventAction: 'fees.online_payment_not_applied', targetType: 'payment_links', targetId: link.link_id, beforeState: undefined, afterState: { evidenceId, source: e.source, amountMinor: e.amountMinor, ...e.audit } });
+    await writeAuditLog(db, { schoolId: link.school_id, ...actor, eventAction: 'fees.payment_not_applied', targetType: 'payment_links', targetId: link.link_id, beforeState: undefined, afterState: { evidenceId, source: e.source, amountMinor: e.amountMinor, ...e.audit } });
     return done('not_applied', 'nothing_owed', { unappliedMinor: plan.unappliedMinor });
   }
 
@@ -190,7 +192,7 @@ export async function creditEvidence(db: Sql, e: Evidence): Promise<Applied> {
   await settle(receiptId, applied, plan.unappliedMinor);
   const partly = plan.unappliedMinor > 0;
   const short = e.amountMinor < Number(link.amount_minor);
-  await writeAuditLog(db, { schoolId: link.school_id, ...actor, eventAction: 'fees.online_payment_applied', targetType: 'receipts', targetId: receiptId, beforeState: undefined, afterState: { receiptNo, evidenceId, source: e.source, rule: e.rule ?? null, capturedMinor: e.amountMinor, appliedMinor: applied, unappliedMinor: plan.unappliedMinor, dues: plan.parts.length, ...e.audit } });
+  await writeAuditLog(db, { schoolId: link.school_id, ...actor, eventAction: e.source === 'gateway_notice' ? 'fees.online_payment_applied' : 'fees.payment_applied', targetType: 'receipts', targetId: receiptId, beforeState: undefined, afterState: { receiptNo, evidenceId, source: e.source, rule: e.rule ?? null, capturedMinor: e.amountMinor, appliedMinor: applied, unappliedMinor: plan.unappliedMinor, dues: plan.parts.length, ...e.audit } });
   return { outcome: partly ? 'applied_in_part' : 'applied', reason: partly ? 'more_than_owed' : short ? 'less_than_the_link' : link.status !== 'open' ? `link_was_${link.status}` : undefined, receiptId, receiptNo, appliedMinor: applied, unappliedMinor: plan.unappliedMinor };
 }
 

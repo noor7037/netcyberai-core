@@ -597,6 +597,30 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['overdue', 'late fee', 'fine', 'fees', 'due date', 'बकाया', 'विलंब शुल्क', 'जुर्माना'],
   },
   {
+    slug: 'verify-upi-payment',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Verify a UPI payment a parent has made', hi: 'अभिभावक के UPI भुगतान की जाँच करें' },
+    summary: {
+      en: 'A parent pays the school’s own UPI ID and enters the UTR. The receipt goes out only when someone at the school has found that payment in the school’s bank.',
+      hi: 'अभिभावक स्कूल की अपनी UPI ID पर भुगतान करके UTR लिखते हैं। रसीद तभी जाती है जब स्कूल में कोई उस भुगतान को स्कूल के बैंक में देख ले।',
+    },
+    steps: [
+      { en: 'Open “Fees”. Payments waiting for you are at the top, each with the family, the amount and the UTR.', hi: '“Fees” खोलें। जाँच का इंतज़ार कर रहे भुगतान सबसे ऊपर हैं: परिवार, राशि और UTR के साथ।' },
+      { en: 'Look for that UTR in the school’s own bank app or statement.', hi: 'स्कूल के अपने बैंक ऐप या स्टेटमेंट में वह UTR ढूँढें।' },
+      { en: 'If it is there, press “Found in bank”, type the “Amount seen in the bank, in rupees”, tick the box and press “Confirm and issue the receipt”.', hi: 'अगर वह वहाँ है, तो “Found in bank” दबाएँ, “Amount seen in the bank, in rupees” लिखें, बॉक्स पर निशान लगाएँ और “Confirm and issue the receipt” दबाएँ।' },
+      { en: 'If it is not there, press “Not found”. The parent is asked to check the UTR or contact the office.', hi: 'अगर वह वहाँ नहीं है, तो “Not found” दबाएँ। अभिभावक से UTR जाँचने या दफ़्तर से संपर्क करने को कहा जाता है।' },
+    ],
+    tips: [
+      { en: 'A screenshot from a parent is never proof. Only what you see in the school’s bank is.', hi: 'अभिभावक का स्क्रीनशॉट कभी सबूत नहीं है। सबूत सिर्फ़ वही है जो आप स्कूल के बैंक में देखते हैं।' },
+      { en: 'If the bank shows a different amount, type the amount you saw. That is what is credited; anything extra goes to the refund list.', hi: 'अगर बैंक में अलग राशि दिखे, तो वही लिखें जो आपने देखी। वही जमा होती है; अतिरिक्त रकम वापसी सूची में जाती है।' },
+      { en: 'Above the amount your school has set, the principal must also confirm before the receipt goes out.', hi: 'स्कूल की तय की हुई रकम से ऊपर, रसीद जाने से पहले प्रिंसिपल की पुष्टि भी ज़रूरी है।' },
+    ],
+    start: { href: '/app/fees', label: { en: 'Fees', hi: 'Fees' } },
+    related: ['take-fee-payment', 'fees-overdue-late-fee'],
+    keywords: ['upi', 'utr', 'verify', 'bank', 'payment', 'receipt', 'यूपीआई', 'जाँच', 'भुगतान'],
+  },
+  {
     slug: 'whatsapp-settings',
     category: 'support',
     audience: 'office',

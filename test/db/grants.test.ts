@@ -75,6 +75,7 @@ const APP_USER: Record<string, string> = {
   payment_evidence: 'INSERT,SELECT,UPDATE', // the one door every credit goes through; a trigger keeps what it says fixed
   payment_gateway_access: 'SELECT', // set by NetCyberAI in Control
   payment_methods: 'INSERT,SELECT,UPDATE',
+  payment_reports: 'SELECT,UPDATE', // written by the parent's page (the platform role); the school reads and decides (C174)
   payment_events: 'SELECT', // written when a provider's notice is applied, as the platform role (C169)
   payment_links: 'INSERT,SELECT,UPDATE', // never deleted: cancelled, paid or expired (C168)
   payment_link_lines: 'INSERT,SELECT', // fixed when the link is made
@@ -121,6 +122,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   payment_credentials: 'INSERT,SELECT,UPDATE',
   payment_gateway_access: 'INSERT,SELECT,UPDATE',
   payment_methods: 'SELECT',
+  payment_reports: 'INSERT,SELECT,UPDATE',
   payment_events: 'INSERT,SELECT,UPDATE', // a provider's notice: recorded, then its outcome set
   payment_links: 'SELECT,UPDATE', // closing a link when its payment is applied (C169)
   payment_link_lines: 'SELECT',

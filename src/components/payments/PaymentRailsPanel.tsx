@@ -13,7 +13,9 @@ import type { MessageKey } from '@/lib/i18n';
 // reason). Keys are typed here and never shown again: the server answers
 // with the last four characters of the key id, who saved it and when.
 
-type Method = { method: string; enabled: boolean; sortOrder: number };
+type Method = { method: string; enabled: boolean; sortOrder: number; settings?: Record<string, unknown> };
+const VERIFIERS = ['accountant', 'principal', 'school_admin'] as const;
+const UPI_EMPTY = { upiId: '', payeeName: '', bankName: '', accountLast4: '', ifsc: '', verifiers: ['accountant', 'principal'] as string[], limitRupees: '0', notify: 'digest' };
 type Saved = { configId: string; provider: string; mode: 'test' | 'live'; keyLast4: string; savedAt: string; savedByName: string | null; savedFrom: 'school' | 'control'; testedAt: string | null; testOk: boolean | null; testMessage: string | null; webhookPath: string };
 type Gateway = { credentials: Saved[]; allowed: boolean; canSave: boolean; testSchool: boolean };
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
@@ -30,12 +32,16 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
   const [mayEdit, setMayEdit] = useState(false);
   const [busy, setBusy] = useState(false);
   const [form, setForm] = useState({ mode: 'test', keyId: '', keySecret: '', webhookSecret: '', reason: '' });
+  const [upi, setUpi] = useState(UPI_EMPTY);
 
   const load = useCallback(async () => {
     const res = await fetch(api).catch(() => null);
     const body = res?.ok ? await res.json().catch(() => null) : null;
     if (!body) return;
     setMethods(body.methods ?? []);
+    const saved = ((body.methods ?? []) as Method[]).find((m) => m.method === 'direct_upi')?.settings;
+    if (saved && typeof saved.upiId === 'string')
+      setUpi({ upiId: String(saved.upiId), payeeName: String(saved.payeeName ?? ''), bankName: String(saved.bankName ?? ''), accountLast4: String(saved.accountLast4 ?? ''), ifsc: String(saved.ifsc ?? ''), verifiers: Array.isArray(saved.verifiers) ? (saved.verifiers as string[]) : UPI_EMPTY.verifiers, limitRupees: String(Math.floor(Number(saved.principalLimitMinor ?? 0) / 100)), notify: saved.notify === 'each' ? 'each' : 'digest' });
     setGateway(body.gateway ?? null);
     setMayEdit(scope === 'control' || body.mayEdit === true);
   }, [api, scope]);
@@ -65,6 +71,12 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
       setForm({ mode: form.mode, keyId: '', keySecret: '', webhookSecret: '', reason: '' });
       toast.show(t('rails.keys.saved'), 'success');
     } else toast.show(t(`rails.keys.error.${['no_encryption_key', 'wrong_mode', 'key_id', 'key_secret', 'webhook_secret', 'reason'].includes(r.code ?? '') ? r.code : 'other'}` as MessageKey), 'danger');
+  }
+
+  async function saveUpi(enabled: boolean) {
+    const limit = /^\d{1,9}$/.test(upi.limitRupees.trim()) ? Number(upi.limitRupees) * 100 : -1;
+    const r = await send('PUT', { method: 'direct_upi', enabled, settings: { upiId: upi.upiId, payeeName: upi.payeeName, bankName: upi.bankName, accountLast4: upi.accountLast4, ifsc: upi.ifsc, verifiers: upi.verifiers, principalLimitMinor: limit, notify: upi.notify } });
+    toast.show(t(r.ok ? 'rails.upi.saved' : (`rails.upi.error.${['upi_id', 'payee', 'bank', 'last4', 'ifsc', 'verifiers', 'limit'].includes(r.code ?? '') ? r.code : 'upi_id'}` as MessageKey)), r.ok ? 'success' : 'danger');
   }
 
   async function testKeys(mode: string) {
@@ -116,6 +128,44 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
         <p role={note.bad ? 'alert' : 'status'} data-rails-note className={`rounded-md px-3 py-2 text-sm font-semibold ${note.bad ? 'bg-tangerine/10 text-slate' : 'bg-emerald/10 text-slate'}`}>
           {note.text}
         </p>
+      )}
+
+      {scope === 'school' && (
+        <div data-upi-setup className="flex flex-col gap-3 border-t border-slate/10 pt-3">
+          <h3 className="text-base font-bold text-slate">{t('rails.upi.title')}</h3>
+          <p className="text-sm text-slate/70">{t('rails.upi.how')}</p>
+          <fieldset disabled={!mayEdit || busy} className="grid gap-3 sm:grid-cols-2">
+            <Input id="upi-id" label={t('rails.upi.upiId')} autoComplete="off" value={upi.upiId} onChange={(e) => setUpi({ ...upi, upiId: e.target.value })} />
+            <Input id="upi-payee" label={t('rails.upi.payee')} maxLength={80} value={upi.payeeName} onChange={(e) => setUpi({ ...upi, payeeName: e.target.value })} />
+            <Input id="upi-bank" label={t('rails.upi.bank')} maxLength={60} value={upi.bankName} onChange={(e) => setUpi({ ...upi, bankName: e.target.value })} />
+            <Input id="upi-last4" label={t('rails.upi.last4')} inputMode="numeric" maxLength={4} value={upi.accountLast4} onChange={(e) => setUpi({ ...upi, accountLast4: e.target.value })} />
+            <Input id="upi-ifsc" label={t('rails.upi.ifsc')} maxLength={11} value={upi.ifsc} onChange={(e) => setUpi({ ...upi, ifsc: e.target.value.toUpperCase() })} />
+            <Input id="upi-limit" label={t('rails.upi.limit')} inputMode="numeric" value={upi.limitRupees} onChange={(e) => setUpi({ ...upi, limitRupees: e.target.value })} />
+            <div className="flex flex-col gap-1 text-sm text-slate">
+              <span className="font-semibold">{t('rails.upi.verifiers')}</span>
+              {VERIFIERS.map((role) => (
+                <label key={role} className="flex min-h-[44px] cursor-pointer items-center gap-2">
+                  <input type="checkbox" className="h-5 w-5" checked={upi.verifiers.includes(role)} onChange={(e) => setUpi({ ...upi, verifiers: e.target.checked ? [...upi.verifiers, role] : upi.verifiers.filter((v) => v !== role) })} />
+                  {t(`role.${role}` as MessageKey)}
+                </label>
+              ))}
+            </div>
+            <Select id="upi-notify" label={t('rails.upi.notify')} value={upi.notify} onChange={(e) => setUpi({ ...upi, notify: e.target.value })}>
+              <option value="digest">{t('rails.upi.notify.digest')}</option>
+              <option value="each">{t('rails.upi.notify.each')}</option>
+            </Select>
+          </fieldset>
+          {mayEdit && (
+            <div className="flex flex-wrap gap-2">
+              <button type="button" data-upi-save disabled={busy} className={PRIMARY} onClick={() => void saveUpi(true)}>
+                {t('rails.upi.save')}
+              </button>
+              <button type="button" disabled={busy} className={TAP} onClick={() => void saveUpi(false)}>
+                {t('rails.upi.saveOff')}
+              </button>
+            </div>
+          )}
+        </div>
       )}
 
       <div data-gateway className="flex flex-col gap-3 border-t border-slate/10 pt-3">

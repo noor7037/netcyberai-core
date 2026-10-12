@@ -3,7 +3,7 @@ import { requireSession } from '@/lib/auth/require-session';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 import { FINANCE } from '@/lib/fees/structures';
 import { saveCredentials } from '@/lib/payments/credentials';
-import { listMethods, setMethod, type MethodRow } from '@/lib/payments/methods';
+import { listMethods, setDirectUpi, setMethod, type MethodRow } from '@/lib/payments/methods';
 import { gatewayReady, gatewaySetup, paymentsPlatform, webhookPath } from '@/lib/payments/setup';
 
 // The school's ways of taking fees (docs/24 §3.2, §3.8, C171).
@@ -32,6 +32,14 @@ export async function GET(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   const body = await readJson(req);
+  // Direct UPI is saved with its whole set-up: the UPI ID, the account, who verifies, the principal's limit.
+  if (body?.method === 'direct_upi' && typeof body.enabled === 'boolean' && body.settings && typeof body.settings === 'object') {
+    return appRoute(req, async ({ claims, db }) => {
+      const result = await setDirectUpi(db, { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, { enabled: body.enabled as boolean, settings: body.settings });
+      if (result.ok) return NextResponse.json({ ok: true });
+      return result.reason === 'not_allowed' ? ruleError(403, 'not_allowed') : jsonError(400, 'the UPI set-up was not saved', { code: result.reason });
+    });
+  }
   if (typeof body?.method !== 'string' || typeof body.enabled !== 'boolean' || typeof body.sortOrder !== 'number') return ruleError(400, 'not_sent_properly');
   // Whether the gateway is ready is read first, for the school in the session; the change itself is checked again inside.
   const session = await requireSession(req);
