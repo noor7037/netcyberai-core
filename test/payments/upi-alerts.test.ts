@@ -6,7 +6,7 @@ import { feesNightlyHandler } from '@/lib/fees/nightly';
 import { createPaymentLink } from '@/lib/fees/family';
 import { createPgJobQueue } from '@/lib/jobs/pg-queue';
 import { reportUtr, verifyReport, workingDaysBetween } from '@/lib/payments/upi';
-import { DAILY_EMAIL_CAP, notifyNewReport, reopenReport, runUpiAlerts } from '@/lib/payments/upi-alerts';
+import { dailyEmailCap, notifyNewReport, reopenReport, runUpiAlerts } from '@/lib/payments/upi-alerts';
 
 // Telling the verifiers, the reminders, reopening a "not found" and the
 // test-school guard (docs/24 §3.3 step 6, §3.5, C175).
@@ -20,6 +20,21 @@ describe('working days: India dates, Sundays left out', () => {
     expect(workingDaysBetween('2099-07-10', '2099-07-13')).toBe(2); // Friday to Monday
     expect(workingDaysBetween('2099-07-13', '2099-07-20')).toBe(6); // a whole week
     expect(workingDaysBetween('2099-07-13', '2099-07-10')).toBe(0);
+  });
+});
+
+describe('working days: the school’s own week and holidays (C176)', () => {
+  const week = (...days: number[]) => new Set(days);
+  it('a 5-day school: Saturday and Sunday do not count', () => {
+    const fiveDay = { weekdays: week(1, 2, 3, 4, 5), holidays: new Set<string>() };
+    expect(workingDaysBetween('2099-07-10', '2099-07-11', fiveDay)).toBe(0); // Friday to Saturday
+    expect(workingDaysBetween('2099-07-10', '2099-07-13', fiveDay)).toBe(1); // Friday to Monday
+    expect(workingDaysBetween('2099-07-10', '2099-07-14', fiveDay)).toBe(2); // Friday to Tuesday
+  });
+  it('a holiday does not count', () => {
+    const withHoliday = { weekdays: week(1, 2, 3, 4, 5, 6), holidays: new Set(['2099-07-11']) };
+    expect(workingDaysBetween('2099-07-10', '2099-07-11', withHoliday)).toBe(0); // Saturday is a holiday
+    expect(workingDaysBetween('2099-07-10', '2099-07-13', withHoliday)).toBe(1); // only Monday counts
   });
 });
 
@@ -113,20 +128,21 @@ describe('on the real schema', () => {
     // Stand in for a day on which the cap is already reached.
     const told = (await db.pg.query(`select count(*)::int as n from payment_reports where school_id = $1 and (notified_at at time zone 'Asia/Kolkata')::date = '2099-07-10'`, [A])).rows[0].n;
     expect(told).toBe(1);
-    expect(DAILY_EMAIL_CAP).toBe(20);
+    // The cap is the school's own Fees setting (default 20, never a constant): this school sets it to 1.
+    expect(await platform((c) => dailyEmailCap(c, A))).toBe(20);
+    await db.pg.query(`insert into school_settings (school_id, module_id, schema_version, setting_values, revision, updated_by) values ($1, 'fees', 4, '{"upi_email_cap": 1}', 1, $2)`, [A, PRINCIPAL]);
+    expect(await platform((c) => dailyEmailCap(c, A))).toBe(1);
     const before = (await emails()).length;
     const student = sid(++child);
     await db.pg.query(`insert into students (student_id, school_id, admission_no, name) values ($1, $2, 'A-cap', 'Capped')`, [student, A]);
     await db.pg.exec(`alter table students disable trigger user; update students set status = 'active'; alter table students enable trigger user;`);
     await db.pg.query(`insert into fees_ledger (school_id, student_id, amount_minor, due_date) values ($1, $2, 100000, '2026-04-10')`, [A, student]);
     const link = (await as(accountant, (c) => createPaymentLink(c, actor(accountant), { studentId: student, amountMinor: null }))).link;
-    // 20 already told today (made up by a query the cap check reads the same way).
+    // One was already told today, so with a cap of 1 this one is not emailed now.
     const capped = await platform(async (c) => {
       await reportUtr(c, link.token, '500000000002');
       const id = (await c.query(`select report_id from payment_reports where utr = '500000000002'`)).rows[0].report_id;
-      const real = c.query.bind(c);
-      const pretend = { query: (text: string, params?: unknown[]) => (/count\(\*\)::int as n from payment_reports/.test(text) ? Promise.resolve({ rows: [{ n: DAILY_EMAIL_CAP }] }) : real(text, params)) };
-      return notifyNewReport(pretend as never, queue, A, id, '2099-07-10');
+      return notifyNewReport(c, queue, A, id, '2099-07-10');
     });
     expect(capped).toBe('capped');
     expect((await emails()).length).toBe(before);
@@ -170,6 +186,24 @@ describe('on the real schema', () => {
     await report('500000000005', '2099-09-07');
     await feesNightlyHandler({ platform, queue, now: () => new Date('2099-09-07T19:00:00Z') })({ jobId: 'j', type: 'fees.nightly', payload: {}, attempts: 1, maxAttempts: 8, schoolId: null, idempotencyKey: 'k' });
     expect(await rowOf('500000000005')).toMatchObject({ status: 'reported', told: true, reminded: true }); // 8 September in India: one working day
+  });
+
+  it('the reminder waits for the school’s own working days: a 5-day week and a holiday', async () => {
+    // From here this school works Monday to Friday, and Monday 12 October 2099 is a holiday.
+    await db.pg.query(`insert into school_settings (school_id, module_id, schema_version, setting_values, revision, updated_by) values ($1, 'setup', 1, '{"working_days": ["MON", "TUE", "WED", "THU", "FRI"]}', 1, $2)`, [A, PRINCIPAL]);
+    await db.pg.query(`insert into school_holidays (school_id, holiday_date, name, created_by) values ($1, '2099-10-12', 'A school holiday', $2)`, [A, PRINCIPAL]);
+    await report('500000000009', '2099-10-09'); // a Friday
+    expect((await night('2099-10-10')).reminded).toBe(0); // Saturday: not a working day here
+    expect((await night('2099-10-12')).reminded).toBe(0); // Monday: the holiday
+    expect((await rowOf('500000000009')).reminded).toBe(false);
+    const tuesday = await night('2099-10-13'); // the first working day after the report
+    expect((await rowOf('500000000009')).reminded).toBe(true);
+    expect(tuesday.alerted).toBe(0);
+    await night('2099-10-14'); // Wednesday: the second working day
+    expect((await rowOf('500000000009')).alerted).toBe(true);
+    await db.pg.query(`delete from school_settings where school_id = $1 and module_id = 'setup'`, [A]);
+    await db.pg.query(`delete from school_holidays where school_id = $1`, [A]);
+    await as(accountant, async (c) => verifyReport(c, actor(accountant), (await c.query(`select report_id from payment_reports where utr = '500000000009'`)).rows[0].report_id, { action: 'not_found' }));
   });
 
   it('REOPEN: the principal or the accountant puts a "not found" back, with a reason; the parent still cannot re-enter that UTR', async () => {

@@ -264,6 +264,11 @@ ALLOWED_PERMISSIVE = (
         ("payment_evidence", "payment_evidence_tenant_isolation"),
         # C174: tenant isolation only; narrowed by the RESTRICTIVE payment_reports_finance, required below.
         ("payment_reports", "payment_reports_tenant_isolation"),
+        # C176: tenant isolation only; each narrowed by the RESTRICTIVE policies required below.
+        ("school_holidays", "school_holidays_tenant_isolation"),
+        ("bank_accounts", "bank_accounts_tenant_isolation"),
+        ("bank_statement_imports", "bank_statement_imports_tenant_isolation"),
+        ("bank_credit_rows", "bank_credit_rows_tenant_isolation"),
         ("payment_link_lines", "payment_link_lines_tenant_isolation"),
         # C154: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("ai_usage", "ai_usage_tenant_isolation"),
@@ -362,6 +367,14 @@ REQUIRED_RESTRICTIVE = {
     ("payment_credentials", "payment_credentials_nobody"),
     ("payment_evidence", "payment_evidence_finance"),
     ("payment_reports", "payment_reports_finance"),
+    # C176: holidays are the office's to change; bank accounts, statements and rows are the finance roles'.
+    ("school_holidays", "school_holidays_office_insert"),
+    ("school_holidays", "school_holidays_office_delete"),
+    ("bank_accounts", "bank_accounts_finance"),
+    ("bank_accounts", "bank_accounts_office_insert"),
+    ("bank_statement_imports", "bank_statement_imports_finance"),
+    ("bank_statement_imports", "bank_statement_imports_as_self"),
+    ("bank_credit_rows", "bank_credit_rows_finance"),
     ("payment_links", "payment_links_made_as_self"),
     ("payment_link_lines", "payment_link_lines_finance"),
     ("receipts", "receipts_issue_as_self"),

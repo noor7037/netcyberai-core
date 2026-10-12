@@ -2,7 +2,9 @@ import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import type { JobQueue, Sql } from '@/lib/jobs/types';
 import { siteUrl } from '@/lib/site-config';
-import { readUpiSettings, workingDaysBetween, type UpiSettings } from './upi';
+import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
+import { readSettings } from '@/lib/frameworks/settings-store';
+import { readUpiSettings, schoolCalendar, workingDaysBetween, type UpiSettings } from './upi';
 
 // Telling the school that UPI payments are waiting (docs/24 §3.3 step 6, §3.5, C175). Every email goes through the
 // job queue and the one email sender. They say how many payments wait and for how much; no child, no parent, no UTR.
@@ -11,7 +13,13 @@ import { readUpiSettings, workingDaysBetween, type UpiSettings } from './upi';
 //     an alert to the principal after 2. Each at most once per report.
 // Nothing here decides a payment. A report is never confirmed by time passing: it only gets louder.
 
-export const DAILY_EMAIL_CAP = 20; // "each payment" emails per school per India day; beyond it the digest carries the rest
+// "Each payment" emails per school per India day are capped by a Fees setting (default 20, at least 1): beyond it
+// the night's digest carries the rest. It is the school's number, never a constant here (C176).
+export async function dailyEmailCap(db: Sql, schoolId: string): Promise<number> {
+  const fees = SETTINGS_SCHEMAS.find((x) => x.moduleId === 'fees');
+  const v = fees ? (await readSettings(db, schoolId, fees)).effective.upi_email_cap : undefined;
+  return typeof v === 'number' && Number.isInteger(v) && v >= 1 ? v : 20;
+}
 
 type Waiting = { report_id: string; amount_minor: string; reported_on: string; notified_at: string | null; reminded_at: string | null; alerted_at: string | null };
 const rupees = (minor: number) => (minor / 100).toLocaleString('en-IN', { minimumFractionDigits: minor % 100 === 0 ? 0 : 2, maximumFractionDigits: 2 });
@@ -43,7 +51,7 @@ export async function notifyNewReport(db: Sql, queue: JobQueue, schoolId: string
   const settings = await upiSettings(db, schoolId);
   if (settings.notify !== 'each') return 'digest';
   const sentToday = (await db.query(`select count(*)::int as n from payment_reports where school_id = $1 and (notified_at at time zone 'Asia/Kolkata')::date = $2::date`, [schoolId, today])).rows[0].n as number;
-  if (sentToday >= DAILY_EMAIL_CAP) return 'capped'; // the night's digest carries it
+  if (sentToday >= (await dailyEmailCap(db, schoolId))) return 'capped'; // the night's digest carries it
   const report = (await db.query(`select report_id, amount_minor, reported_at::text as reported_on, notified_at, reminded_at, alerted_at from payment_reports where school_id = $1 and report_id = $2`, [schoolId, reportId])).rows as Waiting[];
   if (!(await send(db, queue, schoolId, 'new', `upi.new:${reportId}`, await addresses(db, schoolId, settings.verifiers), report))) return 'nobody';
   await db.query(`update payment_reports set notified_at = now() where school_id = $1 and report_id = $2`, [schoolId, reportId]);
@@ -68,7 +76,8 @@ export async function runUpiAlerts(db: Sql, queue: JobQueue, schoolId: string, t
   const digest = (await send(db, queue, schoolId, 'digest', `upi.digest:${schoolId}:${today}`, verifiers, untold)) ? untold.length : 0;
   if (digest > 0) await mark('notified_at', untold);
 
-  const age = (r: Waiting) => workingDaysBetween(r.reported_on, today);
+  const calendar = await schoolCalendar(db, schoolId);
+  const age = (r: Waiting) => workingDaysBetween(r.reported_on, today, calendar);
   const late = waiting.filter((r) => r.reminded_at === null && age(r) >= 1);
   const reminded = (await send(db, queue, schoolId, 'reminder', `upi.reminder:${schoolId}:${today}`, verifiers, late)) ? late.length : 0;
   if (reminded > 0) await mark('reminded_at', late);

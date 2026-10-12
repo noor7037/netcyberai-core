@@ -621,6 +621,31 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['upi', 'utr', 'verify', 'bank', 'payment', 'receipt', 'यूपीआई', 'जाँच', 'भुगतान'],
   },
   {
+    slug: 'upload-bank-statement',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Give the school’s bank statement', hi: 'स्कूल का बैंक स्टेटमेंट दें' },
+    summary: {
+      en: 'The bank statement is the proof of what reached the school. You download it from net banking and give it here; only the money that came in is kept.',
+      hi: 'बैंक स्टेटमेंट इस बात का सबूत है कि स्कूल तक क्या पहुँचा। आप इसे नेट बैंकिंग से डाउनलोड करके यहाँ देते हैं; सिर्फ़ आया हुआ पैसा रखा जाता है।',
+    },
+    steps: [
+      { en: 'In your bank’s net banking, download the account statement as a CSV file.', hi: 'अपने बैंक की नेट बैंकिंग में खाते का स्टेटमेंट CSV फ़ाइल के रूप में डाउनलोड करें।' },
+      { en: 'Open “Fees” and go to “Bank statements”. The first time, the principal or school admin uses “Add a bank account”.', hi: '“Fees” खोलें और “Bank statements” पर जाएँ। पहली बार प्रिंसिपल या स्कूल एडमिन “Add a bank account” से खाता जोड़ते हैं।' },
+      { en: 'Fill “Statement from” and “Statement to”, choose the file and read the statement.', hi: '“Statement from” और “Statement to” भरें, फ़ाइल चुनें और स्टेटमेंट पढ़वाएँ।' },
+      { en: 'Check the number of payments and the total against your statement. If they are wrong, correct the columns and press “Read again with these columns”.', hi: 'भुगतानों की संख्या और कुल राशि अपने स्टेटमेंट से मिलाएँ। ग़लत हों तो कॉलम ठीक करके “Read again with these columns” दबाएँ।' },
+      { en: 'When they are right, confirm. Only then are the rows kept.', hi: 'सही होने पर पुष्टि करें। तभी पंक्तियाँ रखी जाती हैं।' },
+    ],
+    tips: [
+      { en: 'Giving the same statement twice, or one that overlaps the last, is safe: only new rows are added.', hi: 'वही स्टेटमेंट दो बार देना, या पिछले से मिलता-जुलता स्टेटमेंट देना सुरक्षित है: सिर्फ़ नई पंक्तियाँ जुड़ती हैं।' },
+      { en: 'If you see “Does not continue from the statement before it”, a statement in between may be missing. Download and give that one too.', hi: 'अगर “Does not continue from the statement before it” दिखे, तो बीच का कोई स्टेटमेंट छूटा हो सकता है। उसे भी डाउनलोड करके दें।' },
+      { en: 'Giving a statement does not mark any fee as paid by itself.', hi: 'स्टेटमेंट देने से कोई फ़ीस अपने आप जमा नहीं मानी जाती।' },
+    ],
+    start: { href: '/app/fees', label: { en: 'Fees', hi: 'Fees' } },
+    related: ['verify-upi-payment', 'take-fee-payment'],
+    keywords: ['bank', 'statement', 'csv', 'upload', 'reconcile', 'fees', 'बैंक', 'स्टेटमेंट'],
+  },
+  {
     slug: 'whatsapp-settings',
     category: 'support',
     audience: 'office',
