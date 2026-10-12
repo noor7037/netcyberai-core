@@ -3,8 +3,8 @@ import { PermanentJobError } from '@/lib/jobs/types';
 // Emails the app sends itself (C97). Every value that came from a form is
 // HTML-escaped: a school name is data, never markup.
 
-export type EmailTemplate = 'application_code' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting';
-export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting'];
+export type EmailTemplate = 'application_code' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder';
+export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder'];
 
 export function escapeHtml(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -84,6 +84,22 @@ export function renderEmail(template: string, data: Record<string, unknown>, sec
         subject: `${data.kind === 'alert' ? 'Waiting two days: ' : data.kind === 'reminder' ? 'Reminder: ' : ''}${count} UPI payment${one ? '' : 's'} to verify (₹${amount})`,
         html: wrap(`<p><strong>${escapeHtml(lead)}</strong></p><p>Total reported: ₹${escapeHtml(amount)}</p><p>${escapeHtml(why)}</p><p><a href="${escapeHtml(link)}" style="color:#1d4ed8">Open Fees</a></p>`),
         text: `${lead}\nTotal reported: ₹${amount}\n${why}\nOpen Fees: ${link}`,
+      };
+    }
+    // To a guardian (C179): the school, the amount, the date and the payment link. No child's name.
+    case 'fee_reminder': {
+      const school = str(data, 'schoolName');
+      const amount = str(data, 'amount');
+      const due = str(data, 'dueDate').split('-').reverse().join('-');
+      const payUrl = typeof data.payUrl === 'string' ? data.payUrl : '';
+      const lead = data.kind === 'after_7' ? `School fees of ₹${amount} were due on ${due} at ${school} and are still unpaid.` : data.kind === 'due_day' ? `School fees of ₹${amount} are due today (${due}) at ${school}.` : `School fees of ₹${amount} are due on ${due} at ${school}.`;
+      const total = typeof data.total === 'string' && data.total ? ` With other fees due soon, ₹${data.total} in all.` : '';
+      const how = payUrl ? 'You can pay with any UPI app from the link below. Your receipt is issued once the school has seen the payment in its bank account.' : 'Please pay at the school office.';
+      const after = 'If you have already paid, or need more time, please tell the school office. This is an automatic reminder sent by NetCyberAI for the school.';
+      return {
+        subject: `${data.kind === 'after_7' ? 'Fees overdue' : 'Fee reminder'}: ₹${amount}, ${school}`,
+        html: wrap(`<p><strong>${escapeHtml(lead)}</strong>${escapeHtml(total)}</p><p>${escapeHtml(how)}</p>${payUrl ? `<p><a href="${escapeHtml(payUrl)}" style="color:#1d4ed8">See what is due and pay</a></p>` : ''}<p>${escapeHtml(after)}</p>`),
+        text: `${lead}${total}\n${how}${payUrl ? `\nSee what is due and pay: ${payUrl}` : ''}\n${after}`,
       };
     }
     case 'ticket_raised': {

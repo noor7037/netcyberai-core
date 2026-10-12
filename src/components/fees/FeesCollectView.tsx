@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { FeeClearance } from './FeeClearance';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
@@ -241,6 +242,8 @@ export function FeesCollectView() {
             {t('pay.family')}
           </label>
         )}
+
+        {studentId && <FeeClearance studentId={studentId} refreshKey={dues} />}
 
         {dues !== null && dues.length === 0 && (
           <p role="status" data-nothing-owed className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">

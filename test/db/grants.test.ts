@@ -77,6 +77,8 @@ const APP_USER: Record<string, string> = {
   bank_accounts: 'INSERT,SELECT,UPDATE',
   fee_followups: 'INSERT,SELECT,UPDATE', // closed, never edited (trigger)
   fee_refunds: 'INSERT,SELECT',
+  fee_reminders: 'SELECT', // written by the nightly job only
+  fee_clearance_overrides: 'INSERT,SELECT',
   bank_credit_rows: 'INSERT,SELECT,UPDATE', // the bank's own lines; a trigger keeps them fixed (C176)
   bank_statement_imports: 'INSERT,SELECT',
   school_holidays: 'DELETE,INSERT,SELECT',
@@ -129,6 +131,8 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   payment_gateway_access: 'INSERT,SELECT,UPDATE',
   fee_followups: 'SELECT', // the nightly reminders hold while a promise or hardship is open
   fee_refunds: '',
+  fee_reminders: 'INSERT,SELECT', // the nightly reminders (C179)
+  fee_clearance_overrides: '',
   bank_accounts: '', // the platform role has no business in a school's bank statements
   bank_credit_rows: '',
   bank_statement_imports: '',
@@ -136,8 +140,8 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   payment_methods: 'SELECT',
   payment_reports: 'INSERT,SELECT,UPDATE',
   payment_events: 'INSERT,SELECT,UPDATE', // a provider's notice: recorded, then its outcome set
-  payment_links: 'SELECT,UPDATE', // closing a link when its payment is applied (C169)
-  payment_link_lines: 'SELECT',
+  payment_links: 'INSERT,SELECT,UPDATE', // closing a link when its payment is applied (C169); the nightly reminder makes the family's link (C179)
+  payment_link_lines: 'INSERT,SELECT',
   intake_rate_events: 'DELETE,INSERT,SELECT,UPDATE',
   jobs: 'DELETE,INSERT,SELECT,UPDATE',
   message_rate_table: 'DELETE,INSERT,SELECT,UPDATE',

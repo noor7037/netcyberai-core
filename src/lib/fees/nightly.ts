@@ -4,6 +4,7 @@ import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
 import { PermanentJobError, type JobHandler, type JobQueue, type Sql } from '@/lib/jobs/types';
 import { runUpiAlerts } from '@/lib/payments/upi-alerts';
+import { runFeeReminders } from './reminders';
 import { indiaDate, isIsoDate } from '@/lib/time/india';
 import { rupeesToMinor } from './money';
 import { reconcile } from './payments';
@@ -101,6 +102,16 @@ export function feesNightlyHandler(deps: { platform: Platform; queue?: JobQueue;
       for (const schoolId of waiting) {
         try {
           await deps.platform((db) => runUpiAlerts(db, queue, schoolId, runDate));
+        } catch {
+          failed.push(schoolId);
+        }
+      }
+    }
+    // Fee reminders to guardians (C179): only where a school has switched them on; each due line's reminder once.
+    if (queue) {
+      for (const schoolId of schools) {
+        try {
+          await deps.platform((db) => runFeeReminders(db, queue, schoolId, runDate));
         } catch {
           failed.push(schoolId);
         }
