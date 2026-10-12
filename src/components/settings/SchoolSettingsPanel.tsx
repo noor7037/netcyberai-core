@@ -26,7 +26,7 @@ const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold 
 const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
 
 function ModuleCard({ module }: { module: SettingsModule }) {
-  const { t } = useT();
+  const { t, lang } = useT();
   const toast = useToast();
   const router = useRouter();
   const [values, setValues] = useState<Record<string, SettingValue>>(() => Object.fromEntries(module.fields.map((f) => [f.def.key, f.value])));
@@ -43,6 +43,17 @@ function ModuleCard({ module }: { module: SettingsModule }) {
     else toast.show(t(res?.status === 409 ? 'set.stale' : res?.status === 403 ? 'set.notAllowed' : res?.status === 400 ? 'set.invalid' : 'set.failed'), 'danger');
     // The page is read again either way: it then shows what is really stored.
     router.refresh();
+  }
+
+  // The change history of this part (C180): read when it is opened, newest first.
+  type Change = { key: string; from: SettingValue | null; to: SettingValue | null; changedByName?: string | null; changedAt: string };
+  const [history, setHistory] = useState<Change[] | 'loading' | 'failed' | null>(null);
+  async function openHistory(open: boolean) {
+    if (!open || Array.isArray(history) || history === 'loading') return;
+    setHistory('loading');
+    const res = await fetch(`/api/app/settings/${module.moduleId}?history=1`).catch(() => null);
+    const body = res?.ok ? await res.json().catch(() => null) : null;
+    setHistory(Array.isArray(body?.history) ? body.history : 'failed');
   }
 
   const show = (f: SettingDefinition, v: SettingValue): string => {
@@ -78,12 +89,28 @@ function ModuleCard({ module }: { module: SettingsModule }) {
           </div>
         </fieldset>
       );
-    if (f.type === 'select' || f.type === 'color_token')
+    // A colour is chosen by looking at it (C180): one swatch each, with its name under it, the chosen one ringed.
+    if (f.type === 'color_token')
+      return (
+        <fieldset id={id} data-swatches className="flex flex-col gap-2">
+          <legend className="text-sm font-semibold text-slate">{label}</legend>
+          <div className="flex flex-wrap gap-2">
+            {(Object.keys(colors) as (keyof typeof colors)[]).map((name) => (
+              <label key={name} data-swatch={name} className={`flex min-h-[44px] min-w-[72px] cursor-pointer flex-col items-center gap-1 rounded-md border-2 p-1 text-xs text-slate ${v === name ? 'border-midnight font-bold' : 'border-transparent'} ${!mayEdit || busy ? 'cursor-default opacity-70' : ''}`}>
+                <input type="radio" name={id} value={name} className="sr-only" checked={v === name} disabled={!mayEdit || busy} onChange={() => set(name)} />
+                <span aria-hidden className="h-8 w-full rounded border border-slate/20" style={{ backgroundColor: colors[name] }} />
+                {name}
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      );
+    if (f.type === 'select')
       return (
         <Select id={id} label={label} value={String(v)} disabled={!mayEdit || busy} onChange={(e) => set(e.target.value)}>
-          {(f.type === 'select' ? (f.options ?? []).map((o) => o.value) : Object.keys(colors)).map((o) => (
-            <option key={o} value={o}>
-              {f.type === 'select' ? t(`set.${module.moduleId}.${f.key}.option.${o}` as MessageKey) : o}
+          {(f.options ?? []).map((o) => (
+            <option key={o.value} value={o.value}>
+              {t(`set.${module.moduleId}.${f.key}.option.${o.value}` as MessageKey)}
             </option>
           ))}
         </Select>
@@ -127,6 +154,26 @@ function ModuleCard({ module }: { module: SettingsModule }) {
       ) : (
         <p className="text-sm text-slate/70">{t('set.readOnly')}</p>
       )}
+      <details data-settings-history className="border-t border-slate/10 pt-2 text-sm text-slate" onToggle={(e) => void openHistory((e.target as HTMLDetailsElement).open)}>
+        <summary className="flex min-h-[44px] cursor-pointer items-center font-semibold text-sapphire">{t('set.history')}</summary>
+        {history === 'loading' && <p className="text-slate/70">{t('set.history.loading')}</p>}
+        {history === 'failed' && <p className="text-slate/70">{t('set.history.failed')}</p>}
+        {Array.isArray(history) && history.length === 0 && <p className="text-slate/70">{t('set.history.none')}</p>}
+        {Array.isArray(history) && history.length > 0 && (
+          <ul className="flex flex-col gap-1">
+            {history.map((c, i) => {
+              const def = module.fields.find((f) => f.def.key === c.key)?.def;
+              const say = (v: SettingValue | null) => (v === null ? t('set.history.default') : def ? show(def, v) : String(v));
+              return (
+                <li key={i} data-history-row>
+                  <span className="font-semibold">{def ? t(key(def, 'label')) : c.key}</span>: {say(c.from)} → {say(c.to)}
+                  <span className="text-slate/70"> · {t('set.history.by', { name: c.changedByName ?? '', when: new Date(c.changedAt).toLocaleString(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' }) })}</span>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </details>
     </section>
   );
 }

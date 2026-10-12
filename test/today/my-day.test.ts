@@ -165,6 +165,16 @@ describe('each role’s day, counted from the school’s own rows', () => {
     expect(d.cards.map((c) => c.type).sort()).toEqual(['fees-due-today', 'fees-overdue']);
   });
 
+  it('promises to pay due today or gone by, still open, are on the fee office’s day; later or closed ones are not (C180)', async () => {
+    await db.platform((q) => q.query(`insert into fee_followups (school_id, kind, status, promise_date) values
+      ('${A}', 'promise', 'open', (now() at time zone 'Asia/Kolkata')::date), ('${A}', 'promise', 'open', (now() at time zone 'Asia/Kolkata')::date - 3),
+      ('${A}', 'promise', 'open', (now() at time zone 'Asia/Kolkata')::date + 2), ('${A}', 'promise', 'closed', (now() at time zone 'Asia/Kolkata')::date), ('${A}', 'hardship', 'open', null)`));
+    expect(card((await day('accountant', accountant)).cards, 'promises-due')).toMatchObject({ count: 2, state: 'todo', href: '/app/fees' });
+    expect(card((await day('teacher', teacher)).cards, 'promises-due')).toBeUndefined();
+    await db.platform((q) => q.query(`delete from fee_followups`));
+    expect(card((await day('accountant', accountant)).cards, 'promises-due')).toBeUndefined();
+  });
+
   it('with nothing waiting there are no cards: an honest empty day', async () => {
     const d = await day('academic_coordinator', coordinator);
     expect(d).toMatchObject({ cards: [], waiting: 0, failed: 0 });

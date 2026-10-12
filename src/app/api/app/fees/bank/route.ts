@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { FEES_PARTS } from '@/lib/fees/page-data';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 import type { ColumnMap } from '@/lib/bank/parse';
@@ -18,7 +19,7 @@ import { FINANCE } from '@/lib/fees/structures';
 export async function GET(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
     if (!FINANCE.includes(claims.role)) return ruleError(403, 'not_allowed');
-    return NextResponse.json({ accounts: await listAccounts(db, claims.schoolId), imports: await listImports(db, claims.schoolId), lists: await bankLists(db, claims.schoolId, claims.role), mayAddAccount: claims.role === 'principal' || claims.role === 'school_admin' });
+    return NextResponse.json(await FEES_PARTS.bank(db, { schoolId: claims.schoolId, role: claims.role }));
   });
 }
 
