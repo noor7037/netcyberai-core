@@ -48,6 +48,7 @@ function ModuleCard({ module }: { module: SettingsModule }) {
   const show = (f: SettingDefinition, v: SettingValue): string => {
     if (typeof v === 'boolean') return t(v ? 'set.on' : 'set.off');
     if (f.type === 'weekdays' && Array.isArray(v)) return (v as string[]).map((d) => t(`tt.day.${d}` as MessageKey)).join(', ');
+    if (f.type === 'select') return t(`set.${module.moduleId}.${f.key}.option.${String(v)}` as MessageKey);
     return String(v);
   };
 
@@ -82,7 +83,7 @@ function ModuleCard({ module }: { module: SettingsModule }) {
         <Select id={id} label={label} value={String(v)} disabled={!mayEdit || busy} onChange={(e) => set(e.target.value)}>
           {(f.type === 'select' ? (f.options ?? []).map((o) => o.value) : Object.keys(colors)).map((o) => (
             <option key={o} value={o}>
-              {o}
+              {f.type === 'select' ? t(`set.${module.moduleId}.${f.key}.option.${o}` as MessageKey) : o}
             </option>
           ))}
         </Select>

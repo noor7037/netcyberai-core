@@ -19,7 +19,7 @@ import { minorToRupees, rupeesToMinor } from '@/lib/fees/money';
 type Line = { fee_id: string; student_id: string; student_name: string; head_name: string; gross_minor: number; concession_minor: number; net_minor: number; due_date: string; status: string; kinds: string[] };
 type Student = { student_id: string; name: string; rte_admission: boolean };
 type Setup = { today: string; heads: { head_id: string; name: string; is_active: boolean }[]; classes: { class_id: string; name: string }[]; sessions: { session_id: string; label: string; start_date: string; end_date: string; is_current: boolean }[] };
-type Concession = { concession_id: string; student_name: string; class_name: string | null; head_name: string | null; kind: string; percent_off: number | null; amount_off_minor: number | null; reason: string; status: 'proposed' | 'approved' | 'ended'; valid_from: string };
+type Concession = { concession_id: string; student_name: string; class_name: string | null; head_name: string | null; kind: string; percent_off: number | null; amount_off_minor: number | null; reason: string; status: 'proposed' | 'approved' | 'ended'; source?: 'person' | 'rule'; valid_from: string };
 const KINDS = ['sibling', 'staff_ward', 'negotiated', 'hardship', 'scholarship'] as const;
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
@@ -120,6 +120,13 @@ export function FeesDuesView() {
   async function decide(c: Concession, action: 'approve' | 'reject' | 'end') {
     const r = await send(`/api/app/fees/concessions/${c.concession_id}`, { action });
     if (!r.ok) toast.show(t(r.body.code === 'own_proposal' ? 'con.ownProposal' : 'fee.failed'), 'danger');
+    void loadConcessions();
+  }
+
+  async function checkSiblings() {
+    const r = await send('/api/app/fees/concessions/sibling', {});
+    if (!r.ok) toast.show(t('fee.failed'), 'danger');
+    else toast.show(r.body.proposed || r.body.ended ? t('con.sibling.done', { proposed: Number(r.body.proposed), ended: Number(r.body.ended) }) : t('con.sibling.none'), 'success');
     void loadConcessions();
   }
 
@@ -271,6 +278,13 @@ export function FeesDuesView() {
         </div>
       )}
 
+      <div data-sibling-rule className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4">
+        <p className="text-sm text-slate/70">{t('con.sibling.how')}</p>
+        <button type="button" data-sibling-check disabled={busy} className={`${TAP} self-start`} onClick={() => void checkSiblings()}>
+          {t('con.sibling.check')}
+        </button>
+      </div>
+
       {concessions.length > 0 && (
         <div data-concessions className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4">
           <h2 className="text-base font-bold text-slate">{t('con.list')}</h2>
@@ -282,6 +296,7 @@ export function FeesDuesView() {
                 <span className="block text-slate/70">{c.reason}</span>
               </span>
               <span className="flex flex-wrap items-center gap-2">
+                {c.source === 'rule' && <Badge variant="neutral">{t('con.source.rule')}</Badge>}
                 <Badge variant={c.status === 'approved' ? 'success' : c.status === 'proposed' ? 'warning' : 'neutral'}>{t(`con.status.${c.status}` as MessageKey)}</Badge>
                 {mayApprove && c.status === 'proposed' && (
                   <>

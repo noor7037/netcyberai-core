@@ -363,6 +363,37 @@ const feesOverdueDone = async (page) => {
   if (Number(rows[0].overdue) !== shown) throw new Error(`the page shows ${shown} paise overdue; the unpaid balance past its date is ${rows[0].overdue}`);
   if (!/first check has not run/.test(nightly ?? '')) throw new Error(`the nightly line is wrong: ${nightly}`);
 };
+// The sibling rule (C168): with the rule on and two children of 5-A linked as
+// one family, "Check sibling concessions" proposes one concession, for the
+// younger child, marked as coming from the rule and waiting for approval.
+const SIBLING_FAMILY = '00000000-0000-4000-8000-0000000fa168';
+const clearSiblings = async () => {
+  await db.pg.query(`delete from fee_concessions where school_id = $1 and source = 'rule'`, [SCHOOL]);
+  await db.pg.query(`alter table students disable trigger user`);
+  await db.pg.query(`update students set family_id = null where school_id = $1 and family_id = $2`, [SCHOOL, SIBLING_FAMILY]);
+  await db.pg.query(`alter table students enable trigger user`);
+  await db.pg.query(`delete from families where family_id = $1`, [SIBLING_FAMILY]);
+  await clearLateFee();
+};
+const siblingRule = async (page) => {
+  await clearSiblings();
+  await db.pg.query(`insert into families (family_id, school_id, family_code, created_by) values ($1, $2, 'HARNESS-FAM', $3)`, [SIBLING_FAMILY, SCHOOL, PEOPLE.principal.sub]);
+  await db.pg.query(`alter table students disable trigger user`);
+  await db.pg.query(`update students set family_id = $2 where student_id in (select student_id from students where school_id = $1 and class_id = $3 and status = 'active' and family_id is null order by name limit 2)`, [SCHOOL, SIBLING_FAMILY, CLASS_5A]);
+  await db.pg.query(`alter table students enable trigger user`);
+  await db.pg.query(`insert into academic_sessions (school_id, label, start_date, end_date, is_current) select $1, 'Harness session', ${TODAY_SQL} - 30, ${TODAY_SQL} + 300, not exists (select 1 from academic_sessions where school_id = $1 and is_current) where not exists (select 1 from academic_sessions where school_id = $1 and label = 'Harness session')`, [SCHOOL]);
+  await db.pg.query(`insert into school_settings (school_id, module_id, schema_version, setting_values, revision, updated_by) values ($1, 'fees', 3, '{"sibling_enabled": true, "sibling_percent": 10}', 1, $2)`, [SCHOOL, PEOPLE.principal.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-sibling-check]').click();
+  await page.locator('[data-concession="proposed"]').first().waitFor({ timeout: 20000 });
+};
+const siblingRuleDone = async (page) => {
+  const badge = await page.locator('[data-concessions]').textContent();
+  const { rows } = await db.pg.query(`select c.status, c.source, c.percent_off::float8 as percent, c.mandatory_only, (select count(*)::int from students s where s.family_id = c.family_id) as in_family from fee_concessions c where c.school_id = $1 and c.source = 'rule'`, [SCHOOL]);
+  await clearSiblings();
+  if (rows.length !== 1 || rows[0].status !== 'proposed' || rows[0].percent !== 10 || rows[0].mandatory_only !== true || rows[0].in_family !== 2) throw new Error(`expected one proposal, for the younger of two linked children: ${JSON.stringify(rows)}`);
+  if (!/From the sibling rule/.test(badge ?? '') || !/Waiting for approval/.test(badge ?? '')) throw new Error('the proposal is not shown as from the rule and waiting for approval');
+};
 // The school's Settings screen, generated from the module settings schemas
 // (C166). The principal switches the late fee on with an amount and saves;
 // it is stored with its history and audited, and raises no due by itself.
@@ -585,6 +616,7 @@ const SCREENS = [
   ['principal', 'app-fees-dues', '/app/fees', feesDues, feesDuesDone],
   ['principal', 'app-fees-receipt', '/app/fees', feesPay, feesPayDone],
   ['principal', 'app-fees-overdue', '/app/fees', feesOverdue, feesOverdueDone],
+  ['principal', 'app-fees-sibling', '/app/fees', siblingRule, siblingRuleDone],
   ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],
   ['principal', 'app-timetable-clash', '/app/timetable', timetableClash],

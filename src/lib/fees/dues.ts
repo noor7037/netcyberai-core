@@ -3,7 +3,9 @@ import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
+import { indiaDate } from '@/lib/time/india';
 import type { Frequency } from './money';
+import { applySiblingRule } from './sibling';
 import { FINANCE, structureInForce } from './structures';
 
 // Raising dues (docs/23 6b, C159). For a class and a month, every head due
@@ -91,23 +93,28 @@ export async function raiseDues(db: PoolClient, actor: Actor, input: { classId: 
 
   // One class at a time: two people raising the same month wait for each other.
   await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`dues:${actor.schoolId}:${input.classId}:${input.month}`]);
-  const rteCovered = new Map(((await db.query(`select head_id, rte_covered from fee_heads where school_id = $1 and head_id = any($2::uuid[])`, [actor.schoolId, due.map((d) => d.head_id)])).rows as { head_id: string; rte_covered: boolean }[]).map((h) => [h.head_id, h.rte_covered]));
+  const heads = (await db.query(`select head_id, rte_covered, is_mandatory from fee_heads where school_id = $1 and head_id = any($2::uuid[])`, [actor.schoolId, due.map((d) => d.head_id)])).rows as { head_id: string; rte_covered: boolean; is_mandatory: boolean }[];
+  const rteCovered = new Map(heads.map((h) => [h.head_id, h.rte_covered]));
+  const mandatory = new Map(heads.map((h) => [h.head_id, h.is_mandatory]));
+  // The sibling rule is brought up to date first (C168): a child whose brother or sister has left no longer
+  // has the concession from today, and a newly covered child gets a proposal (which applies to nothing until approved).
+  await applySiblingRule(db, actor, indiaDate());
   // Active students and those still waiting for consent (C162): a child owes fees before the parent's consent
   // is recorded; consent governs messages. Read through the billing function, so the list is the same whoever
   // presses the button (the consent gate hides a waiting student's record from the accountant).
   const students = (await db.query(`select student_id, rte_admission from fee_billing_students() where school_id = $1 and class_id = $2 and status in ('active', 'pending_consent') order by name`, [actor.schoolId, input.classId])).rows as { student_id: string; rte_admission: boolean }[];
   const concessions = (await db.query(
-    `select concession_id, student_id, head_id, kind, percent_off::float8 as percent_off, amount_off_minor
+    `select concession_id, student_id, head_id, kind, percent_off::float8 as percent_off, amount_off_minor, mandatory_only
        from fee_concessions
       where school_id = $1 and status = 'approved' and student_id = any($2::uuid[]) and valid_from <= $3::date and (valid_to is null or valid_to >= $3::date)
       order by created_at, concession_id`,
     [actor.schoolId, students.map((s) => s.student_id), monthStart]
-  )).rows as { concession_id: string; student_id: string; head_id: string | null; kind: string; percent_off: number | null; amount_off_minor: string | null }[];
+  )).rows as { concession_id: string; student_id: string; head_id: string | null; kind: string; percent_off: number | null; amount_off_minor: string | null; mandatory_only: boolean }[];
 
   const lines: { studentId: string; headId: string; periodKey: string; a: LineAmounts }[] = [];
   for (const s of students) {
     for (const d of due) {
-      const mine = concessions.filter((c) => c.student_id === s.student_id && (c.head_id === null || c.head_id === d.head_id)).map((c) => ({ concessionId: c.concession_id, kind: c.kind, percentOff: c.percent_off, amountOffMinor: c.amount_off_minor === null ? null : Number(c.amount_off_minor) }));
+      const mine = concessions.filter((c) => c.student_id === s.student_id && (c.head_id === null || c.head_id === d.head_id) && (!c.mandatory_only || mandatory.get(d.head_id) === true)).map((c) => ({ concessionId: c.concession_id, kind: c.kind, percentOff: c.percent_off, amountOffMinor: c.amount_off_minor === null ? null : Number(c.amount_off_minor) }));
       // RTE covers the heads the school has marked as covered; any other head is charged as for every child.
       lines.push({ studentId: s.student_id, headId: d.head_id, periodKey: d.periodKey as string, a: lineAmounts(d.amount_minor, mine, s.rte_admission && rteCovered.get(d.head_id) === true) });
     }
