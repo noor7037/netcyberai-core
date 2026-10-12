@@ -3,6 +3,7 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { allocateOldestFirst, openDues, type OpenDue } from './payments';
+import type { PaymentProvider } from '@/lib/payments/provider';
 import { FINANCE } from './structures';
 
 // A family's dues, and one payment link per family (docs/23 6e, C168).
@@ -53,15 +54,15 @@ export async function familyDues(db: PoolClient, schoolId: string, studentId: st
   return { familyCode: (student.family_code as string | null) ?? null, children, totalMinor: children.reduce((t, c) => t + c.owedMinor, 0) };
 }
 
-export type PaymentLink = { linkId: string; token: string; amountMinor: number; status: string; expiresAt: string; lines: { feeId: string; studentId: string; studentName: string; amountMinor: number }[] };
+export type PaymentLink = { linkId: string; token: string; amountMinor: number; status: string; expiresAt: string; payable: boolean; lines: { feeId: string; studentId: string; studentName: string; amountMinor: number }[] };
 export type LinkResult = { ok: true; link: PaymentLink; created: boolean } | { ok: false; reason: 'not_allowed' | 'unknown_student' | 'nothing_owed' | 'amount' | 'more_than_owed' | 'link_exists' | 'not_found' };
 
-const LINK = `select k.link_id, k.token, k.amount_minor, k.status, k.expires_at,
+const LINK = `select k.link_id, k.token, k.amount_minor, k.status, k.expires_at, k.provider_ref is not null as payable,
          coalesce((select jsonb_agg(jsonb_build_object('feeId', n.fee_id, 'studentId', l.student_id, 'studentName', st.name, 'amountMinor', n.amount_minor) order by l.due_date, l.created_at, l.fee_id)
                      from payment_link_lines n join fees_ledger l on l.fee_id = n.fee_id join fee_billing_students() st on st.student_id = l.student_id
                     where n.link_id = k.link_id), '[]'::jsonb) as lines
     from payment_links k`;
-const asLink = (r: Record<string, unknown>): PaymentLink => ({ linkId: r.link_id as string, token: r.token as string, amountMinor: Number(r.amount_minor), status: r.status as string, expiresAt: new Date(r.expires_at as string).toISOString(), lines: (r.lines as PaymentLink['lines']).map((l) => ({ ...l, amountMinor: Number(l.amountMinor) })) });
+const asLink = (r: Record<string, unknown>): PaymentLink => ({ linkId: r.link_id as string, token: r.token as string, amountMinor: Number(r.amount_minor), status: r.status as string, expiresAt: new Date(r.expires_at as string).toISOString(), payable: r.payable === true, lines: (r.lines as PaymentLink['lines']).map((l) => ({ ...l, amountMinor: Number(l.amountMinor) })) });
 
 // The family's open link, if it has one. A link past its date is closed first, so it is never offered.
 export async function openLink(db: PoolClient, schoolId: string, studentId: string): Promise<PaymentLink | null> {
@@ -76,8 +77,10 @@ export async function openLink(db: PoolClient, schoolId: string, studentId: stri
 
 // One open link per family. Asking again for the same amount gives the same
 // link; for another amount the office cancels the old one first.
-// `amountMinor` null means everything the family owes today.
-export async function createPaymentLink(db: PoolClient, actor: Actor, input: { studentId: string; amountMinor: number | null }): Promise<LinkResult> {
+// `amountMinor` null means everything the family owes today. With a payment
+// provider, a checkout is opened for the link and its reference kept; without
+// one the link is a record that cannot be paid online.
+export async function createPaymentLink(db: PoolClient, actor: Actor, input: { studentId: string; amountMinor: number | null }, provider: PaymentProvider | null = null): Promise<LinkResult> {
   if (!FINANCE.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   const student = (await db.query(`select family_id from fee_billing_students() where school_id = $1 and student_id = $2`, [actor.schoolId, input.studentId])).rows[0];
   if (!student) return { ok: false, reason: 'unknown_student' };
@@ -98,6 +101,11 @@ export async function createPaymentLink(db: PoolClient, actor: Actor, input: { s
   );
   const linkId = made.rows[0].link_id as string;
   await db.query(`insert into payment_link_lines (school_id, link_id, fee_id, amount_minor) select $1, $2, n.fee_id, n.amount from unnest($3::uuid[], $4::bigint[]) as n(fee_id, amount)`, [actor.schoolId, linkId, split.lines.map((l) => l.feeId), split.lines.map((l) => l.amountMinor)]);
+  if (provider) {
+    const token = (await db.query(`select token from payment_links where link_id = $1`, [linkId])).rows[0].token as string;
+    const checkout = await provider.createCheckout({ linkId, token, amountMinor: amount });
+    await db.query(`update payment_links set provider = $3, provider_ref = $4 where school_id = $1 and link_id = $2`, [actor.schoolId, linkId, provider.name, checkout.providerRef]);
+  }
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.payment_link_created', targetType: 'payment_links', targetId: linkId, beforeState: undefined, afterState: { amountMinor: amount, lines: split.lines.length, children: split.perChild.length } });
   return { ok: true, link: (await openLink(db, actor.schoolId, input.studentId)) as PaymentLink, created: true };
 }

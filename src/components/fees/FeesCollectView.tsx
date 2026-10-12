@@ -21,6 +21,7 @@ type Due = { fee_id: string; student_id: string; student_name: string; head_name
 type Receipt = { receipt_id: string; receipt_no: string; issued_at: string; total_minor: number; method: string; student_name: string; reversed_at: string | null };
 type Totals = { netMinor: number; paidMinor: number; balanceMinor: number; problems: unknown[] };
 type Overdue = { minor: number; count: number };
+type PayLink = { linkId: string; token: string; amountMinor: number; payable: boolean };
 type LastRun = { runDate: string; markedOverdue: number; lateFeesRaised: number; problems: number };
 const METHODS = ['cash', 'upi', 'cheque', 'card', 'netbanking'] as const;
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate';
@@ -47,6 +48,9 @@ export function FeesCollectView() {
   const [totals, setTotals] = useState<Totals | null>(null);
   const [overdue, setOverdue] = useState<Overdue | null>(null);
   const [lastRun, setLastRun] = useState<LastRun | null>(null);
+  const [link, setLink] = useState<PayLink | null>(null);
+  const [online, setOnline] = useState(false);
+  const [familyOwed, setFamilyOwed] = useState<number | null>(null);
   const [receipts, setReceipts] = useState<Receipt[]>([]);
   const [mayReverse, setMayReverse] = useState(false);
   const [reversing, setReversing] = useState<{ id: string; reason: string } | null>(null);
@@ -97,6 +101,11 @@ export function FeesCollectView() {
     setPicked({});
     // One id per form: pressing twice, or a retry, is the same payment.
     setClientRef(crypto.randomUUID());
+    // The family's total and its payment link, whichever way the dues above are shown.
+    const fam = await fetch(`/api/app/fees/family?studentId=${studentId}`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    setFamilyOwed(fam?.family?.totalMinor ?? null);
+    setLink(fam?.link ?? null);
+    setOnline(fam?.online === true);
   }, [studentId, scope]);
   useEffect(() => {
     setLast(null);
@@ -108,6 +117,23 @@ export function FeesCollectView() {
   const pickedBad = pickedParts.some((p) => p.amountMinor === null);
   const pickedTotal = pickedParts.reduce((s, p) => s + (p.amountMinor ?? 0), 0);
   const amountMinor = choose ? pickedTotal : rupeesToMinor(amount);
+
+  // One link per family, for everything it owes now. Its lines are fixed when it is made.
+  async function makeLink() {
+    setBusy(true);
+    const res = await fetch('/api/app/fees/links', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ studentId, amountMinor: null }) }).catch(() => null);
+    setBusy(false);
+    if (!res?.ok) toast.show(t('fee.failed'), 'danger');
+    void loadDues();
+  }
+  async function cancelLink() {
+    if (!link) return;
+    setBusy(true);
+    const res = await fetch(`/api/app/fees/links/${link.linkId}`, { method: 'DELETE' }).catch(() => null);
+    setBusy(false);
+    if (!res?.ok) toast.show(t('fee.failed'), 'danger');
+    void loadDues();
+  }
 
   async function take() {
     if (!amountMinor || amountMinor <= 0 || pickedBad) {
@@ -256,6 +282,32 @@ export function FeesCollectView() {
             <p data-owed className="text-sm font-semibold text-slate">
               {t('pay.owed', { amount: minorToRupees(owed) })}
             </p>
+            <div data-pay-link className="flex flex-col gap-2 rounded-md border border-slate/10 px-3 py-2 text-sm text-slate">
+              <p className="font-semibold">{t('link.title')}</p>
+              {!online && <p className="text-slate/70">{t('link.notOn')}</p>}
+              {online && !link && (
+                <>
+                  <p className="text-slate/70">{t('link.how')}</p>
+                  <button type="button" data-make-link disabled={busy} className={`${TAP} self-start`} onClick={() => void makeLink()}>
+                    {t('link.make', { amount: minorToRupees(familyOwed ?? owed) })}
+                  </button>
+                </>
+              )}
+              {online && link && (
+                <>
+                  <p>{t('link.open', { amount: minorToRupees(link.amountMinor) })}</p>
+                  <code data-pay-url className="break-all rounded bg-off-white px-2 py-1 text-xs">{`${typeof window === 'undefined' ? '' : window.location.origin}/pay/${link.token}`}</code>
+                  <span className="flex flex-wrap gap-2">
+                    <button type="button" className={TAP} onClick={() => void navigator.clipboard?.writeText(`${window.location.origin}/pay/${link.token}`).then(() => toast.show(t('link.copied'), 'success'))}>
+                      {t('link.copy')}
+                    </button>
+                    <button type="button" data-cancel-link disabled={busy} className={TAP} onClick={() => void cancelLink()}>
+                      {t('link.cancel')}
+                    </button>
+                  </span>
+                </>
+              )}
+            </div>
             <label className="flex min-h-[44px] cursor-pointer items-center gap-2 text-sm text-slate">
               <input type="checkbox" data-choose className="h-5 w-5" checked={choose} onChange={(e) => setChoose(e.target.checked)} />
               {t('pay.pick')}

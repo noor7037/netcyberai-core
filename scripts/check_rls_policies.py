@@ -255,6 +255,8 @@ ALLOWED_PERMISSIVE = (
         ("fee_status_runs", "fee_status_runs_tenant_isolation"),
         # C168: tenant isolation only; narrowed by the RESTRICTIVE finance policies (and made-as-self on links), required below.
         ("payment_links", "payment_links_tenant_isolation"),
+        # C169: tenant isolation only; narrowed by the RESTRICTIVE payment_events_finance, required below. app_user holds SELECT only.
+        ("payment_events", "payment_events_tenant_isolation"),
         ("payment_link_lines", "payment_link_lines_tenant_isolation"),
         # C154: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("ai_usage", "ai_usage_tenant_isolation"),
@@ -344,6 +346,7 @@ REQUIRED_RESTRICTIVE = {
     ("fee_status_runs", "fee_status_runs_finance"),
     # C168: payment links and their lines are the finance roles'; a link is made in one's own name.
     ("payment_links", "payment_links_finance"),
+    ("payment_events", "payment_events_finance"),
     ("payment_links", "payment_links_made_as_self"),
     ("payment_link_lines", "payment_link_lines_finance"),
     ("receipts", "receipts_issue_as_self"),

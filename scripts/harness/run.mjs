@@ -363,6 +363,64 @@ const feesOverdueDone = async (page) => {
   if (Number(rows[0].overdue) !== shown) throw new Error(`the page shows ${shown} paise overdue; the unpaid balance past its date is ${rows[0].overdue}`);
   if (!/first check has not run/.test(nightly ?? '')) throw new Error(`the nightly line is wrong: ${nightly}`);
 };
+// Online payment on the stand-in provider (C169). The office makes the
+// family's link at the counter; the link's page is opened as a parent would
+// (no session) and paid; the provider's signed notice is applied. The page
+// then says "Paid" with the receipt number, the money is credited once, and
+// paying the same link again is refused.
+const clearOnline = async () => {
+  await db.pg.query(`delete from payment_events where school_id = $1 or link_id in (select link_id from payment_links where school_id = $1)`, [SCHOOL]);
+  await db.pg.query(`delete from payments where school_id = $1 and method = 'online'`, [SCHOOL]);
+  await db.pg.query(`update payment_links set receipt_id = null, status = 'cancelled', closed_at = coalesce(closed_at, now()) where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`delete from receipts where school_id = $1 and method = 'online'`, [SCHOOL]);
+  await db.pg.query(`delete from payment_link_lines where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`delete from payment_links where school_id = $1`, [SCHOOL]);
+};
+let onlinePaid = null;
+const payOnline = async (page) => {
+  await clearOnline();
+  await clearPayments();
+  await feesDues(page);
+  await page.selectOption('#pay-class', { label: '5-A' });
+  await page.waitForFunction(() => document.querySelectorAll('#pay-student option').length > 1, null, { timeout: 15000 });
+  await page.selectOption('#pay-student', { index: 1 });
+  await page.locator('[data-make-link]').click();
+  const url = (await page.locator('[data-pay-url]').textContent({ timeout: 20000 })).trim();
+  // As a parent: a fresh browser with no session at all.
+  const parent = await page.context().browser().newContext();
+  const pay = await parent.newPage();
+  await pay.goto(url, { waitUntil: 'networkidle' });
+  const before = await pay.locator('[data-pay-state]').getAttribute('data-pay-state');
+  await pay.locator('[data-standin-pay]').click();
+  await pay.locator('[data-pay-state="paid"]').waitFor({ timeout: 20000 });
+  const text = await pay.locator('[data-pay-state="paid"]').textContent();
+  const again = await pay.evaluate(async (token) => (await fetch('/api/public/payments/standin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token }) })).status, url.split('/pay/')[1]);
+  const forged = await pay.evaluate(async () => (await fetch('/api/public/payments/webhook/stand-in', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-standin-signature': 'f'.repeat(64) }, body: JSON.stringify({ id: 'evt_forged', type: 'payment.captured', order: 'x', payment: 'y', amount: 1 }) })).status);
+  await parent.close();
+  onlinePaid = { before, text, again, forged };
+  await page.reload({ waitUntil: 'networkidle' });
+};
+const payOnlineDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from receipts where school_id = $1 and method = 'online') as receipts,
+            (select coalesce(sum(total_minor), 0)::int from receipts where school_id = $1 and method = 'online') as receipt_total,
+            (select coalesce(sum(amount_minor), 0)::int from payments where school_id = $1 and method = 'online') as credited,
+            (select amount_minor::int from payment_links where school_id = $1 and status = 'paid') as link_amount,
+            (select receipt_no from receipts where school_id = $1 and method = 'online') as receipt_no,
+            (select count(*)::int from payment_events where outcome = 'applied') as applied,
+            (select count(*)::int from payment_events where outcome = 'refused') as refused`,
+    [SCHOOL]
+  );
+  await clearOnline();
+  await clearPayments();
+  await clearDues();
+  const r = rows[0];
+  const p = onlinePaid ?? {};
+  if (p.before !== 'open' || !String(p.text).includes(r.receipt_no)) throw new Error(`the parent's page did not go from open to paid with the receipt number: ${JSON.stringify(p)} ${r.receipt_no}`);
+  if (r.receipts !== 1 || r.applied !== 1 || r.link_amount === null || r.receipt_total !== r.link_amount || r.credited !== r.link_amount) throw new Error(`the link was not credited exactly once: ${JSON.stringify(r)}`);
+  if (p.again !== 409) throw new Error(`paying the same link again must be refused, got ${p.again}`);
+  if (p.forged !== 401 || r.refused !== 1) throw new Error(`a notice with a bad signature must be refused and recorded: ${p.forged}, ${r.refused}`);
+};
 // The sibling rule (C168): with the rule on and two children of 5-A linked as
 // one family, "Check sibling concessions" proposes one concession, for the
 // younger child, marked as coming from the rule and waiting for approval.
@@ -617,6 +675,7 @@ const SCREENS = [
   ['principal', 'app-fees-receipt', '/app/fees', feesPay, feesPayDone],
   ['principal', 'app-fees-overdue', '/app/fees', feesOverdue, feesOverdueDone],
   ['principal', 'app-fees-sibling', '/app/fees', siblingRule, siblingRuleDone],
+  ['principal', 'app-fees-pay-online', '/app/fees', payOnline, payOnlineDone],
   ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],
   ['principal', 'app-timetable-clash', '/app/timetable', timetableClash],
@@ -719,6 +778,9 @@ const childEnv = {
   NCA_HARNESS: HARNESS_MARKER,
   // Teacher Copilot answers from the stand-in, never a real model (C154).
   AI_PROVIDER: 'stand-in',
+  // Online payments answer from the stand-in provider, never a real gateway (C169).
+  PAYMENT_PROVIDER: 'stand-in',
+  PAYMENT_STANDIN_SECRET: `${secret}-payments-stand-in-secret-0123456789`,
   DATABASE_URL: db.url,
   APP_SESSION_SECRET: secret,
   NEXT_PUBLIC_SUPABASE_URL: 'http://127.0.0.1:9',
