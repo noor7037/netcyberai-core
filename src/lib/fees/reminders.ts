@@ -56,7 +56,7 @@ async function linkFor(db: Sql, schoolId: string, payerId: string): Promise<{ li
   let linkId: string | undefined;
   for (let attempt = 0; attempt < 5 && !linkId; attempt += 1) {
     linkId = (await db.query(
-      `insert into payment_links (school_id, family_id, student_id, token, amount_minor, created_by, expires_at, reference_code) values ($1, $2, $3, $4, $5, null, now() + make_interval(days => $6), $7)
+      `insert into payment_links (school_id, family_id, student_id, token, amount_minor, created_by, origin, expires_at, reference_code) values ($1, $2, $3, $4, $5, null, 'reminder_job', now() + make_interval(days => $6), $7)
        on conflict (school_id, reference_code) where reference_code is not null do nothing returning link_id`,
       [schoolId, dues[0].family_id, dues[0].student_id, token, owed, LINK_DAYS, newReferenceCode()]
     )).rows[0]?.link_id as string | undefined;

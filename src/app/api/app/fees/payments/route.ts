@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
-import { lastNightlyRun } from '@/lib/fees/nightly';
-import { loadFeesSummary } from '@/lib/fees/overdue';
-import { COUNTER_METHODS, openDues, recentReceipts, reconcile, takePayment } from '@/lib/fees/payments';
+import { FEES_PARTS } from '@/lib/fees/page-data';
+import { COUNTER_METHODS, openDues, takePayment } from '@/lib/fees/payments';
 import { FINANCE } from '@/lib/fees/structures';
 
 // Payments at the counter (docs/23 6c, C160).
@@ -21,8 +20,7 @@ export async function GET(req: NextRequest) {
       if (!student) return jsonError(404, 'not found', { code: 'unknown_student' });
       return NextResponse.json({ student, dues: await openDues(db, claims.schoolId, studentId, q.get('scope') === 'family' ? 'family' : 'student') });
     }
-    const summary = await loadFeesSummary(db);
-    return NextResponse.json({ totals: await reconcile(db, claims.schoolId), overdue: { minor: summary.overdueMinor, count: summary.overdueCount }, lastRun: await lastNightlyRun(db, claims.schoolId), receipts: await recentReceipts(db, claims.schoolId), mayReverse: claims.role === 'principal' || claims.role === 'school_admin' });
+    return NextResponse.json(await FEES_PARTS.payments(db, { schoolId: claims.schoolId, role: claims.role }));
   });
 }
 

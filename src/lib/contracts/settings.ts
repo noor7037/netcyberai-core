@@ -81,6 +81,7 @@ export type SettingChange = {
   from: SettingValue | null; // null = was the default
   to: SettingValue | null; // null = reset to the default
   changedBy: string; // user id
+  changedByName?: string | null; // their name, for the school's own history list
   changedAt: string;
   revision: number;
 };

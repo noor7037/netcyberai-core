@@ -113,8 +113,8 @@ describe('on the real schema', () => {
     expect(sent).toHaveLength(1);
     expect(sent[0].to).toEqual(['guardian.one@example.invalid']);
     expect(sent[0].data).toMatchObject({ schoolName: 'School A', amount: '500.00', dueDate: today, kind: 'due_day', total: '1,500.00' }); // Bina's is due today; with Asha's, ₹1,500 in all
-    const link = (await db.pg.query(`select token, amount_minor::int as amount, created_by, family_id, reference_code, (select count(*)::int from payment_link_lines n where n.link_id = k.link_id) as lines from payment_links k`)).rows;
-    expect(link).toEqual([expect.objectContaining({ amount: 150000, created_by: null, family_id: FAMILY, lines: 2 })]);
+    const link = (await db.pg.query(`select token, amount_minor::int as amount, created_by, origin, family_id, reference_code, (select count(*)::int from payment_link_lines n where n.link_id = k.link_id) as lines from payment_links k`)).rows;
+    expect(link).toEqual([expect.objectContaining({ amount: 150000, created_by: null, origin: 'reminder_job', family_id: FAMILY, lines: 2 })]);
     expect(sent[0].data.payUrl).toMatch(new RegExp(`/pay/${link[0].token}$`));
     expect(JSON.stringify(sent[0])).not.toMatch(/Asha|Bina/);
     expect(await reminders()).toEqual([
@@ -170,6 +170,24 @@ describe('on the real schema', () => {
     expect(await refused(() => as(principal, (c) => c.query(`insert into fee_reminders (school_id, fee_id, which, payer_id, outcome, run_date) values ($1, $2, 'due_day', $3, 'sent', current_date)`, [A, fee, sid(5)])))).toMatch(/permission denied/);
     expect((await as(teacher, (c) => c.query(`select 1 from fee_reminders`))).rows).toHaveLength(0);
     expect((await as(accountant, (c) => c.query(`select 1 from fee_reminders`))).rows.length).toBeGreaterThan(0);
+  });
+
+  it('who made a link: only the nightly reminder makes one without a person, and it never changes (C180)', async () => {
+    const insert = (creator: string | null, origin: string) => `insert into payment_links (school_id, student_id, token, amount_minor, created_by, origin, expires_at) values ('${A}', '${sid(5)}', '${'t'.repeat(40)}', 100, ${creator ? `'${creator}'` : 'null'}, '${origin}', now() + interval '1 day')`;
+    // A school role: no link without a creator, whatever origin it claims.
+    expect(await refused(() => as(accountant, (c) => c.query(insert(null, 'person'))))).toMatch(/origin_names_creator|row-level security/);
+    expect(await refused(() => as(accountant, (c) => c.query(insert(null, 'reminder_job'))))).toMatch(/only the nightly reminder/);
+    expect(await refused(() => as(principal, (c) => c.query(insert(null, 'reminder_job'))))).toMatch(/only the nightly reminder/);
+    expect(await refused(() => as(accountant, (c) => c.query(insert(ACCOUNTANT, 'reminder_job'))))).toMatch(/origin_names_creator|only the nightly reminder/);
+    // The database's owner cannot either: the rule is about who writes, not about rights.
+    expect(await refused(() => db.pg.query(insert(null, 'reminder_job')))).toMatch(/only the nightly reminder/);
+    // The platform role cannot leave out the origin and so pass a nameless link off as a person's.
+    expect(await refused(() => platform((c) => c.query(insert(null, 'person'))))).toMatch(/origin_names_creator|row-level security/);
+    // A person's link is made as before, and neither field changes afterwards.
+    expect(await refused(() => as(accountant, (c) => c.query(insert(ACCOUNTANT, 'person'))))).toBe('allowed');
+    expect(await refused(() => as(accountant, (c) => c.query(`update payment_links set created_by = '${PRINCIPAL}' where token = '${'t'.repeat(40)}'`)))).toMatch(/never changes/);
+    expect(await refused(() => platform((c) => c.query(`update payment_links set origin = 'reminder_job', created_by = null where token = '${'t'.repeat(40)}'`)))).toMatch(/never changes/);
+    expect(await refused(() => as(accountant, (c) => c.query(`update payment_links set status = 'cancelled', closed_at = now() where token = '${'t'.repeat(40)}'`)))).toBe('allowed');
   });
 
   it('clearance: held while fees are owed; the principal lets it through with a reason; more dues hold it again', async () => {

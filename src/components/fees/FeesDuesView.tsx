@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
+import { useFeesPart } from './FeesFirstLoad';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
@@ -27,6 +28,8 @@ const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold 
 export function FeesDuesView() {
   const { t, lang } = useT();
   const toast = useToast();
+  const getConcessions = useFeesPart('concessions', '/api/app/fees/concessions');
+  const getSetup = useFeesPart('setup', '/api/app/fees/setup');
   const [setup, setSetup] = useState<Setup | null>(null);
   const [failed, setFailed] = useState(false);
   const [classId, setClassId] = useState('');
@@ -42,16 +45,16 @@ export function FeesDuesView() {
   const [busy, setBusy] = useState(false);
 
   const loadConcessions = useCallback(async () => {
-    const res = await fetch('/api/app/fees/concessions').catch(() => null);
+    const res = await getConcessions().catch(() => null);
     const body = (await res?.json().catch(() => null)) ?? {};
     if (res?.ok) {
       setConcessions(body.concessions);
       setMayApprove(body.mayApprove === true);
     }
-  }, []);
+  }, [getConcessions]);
 
   useEffect(() => {
-    fetch('/api/app/fees/setup')
+    getSetup()
       .then(async (res) => {
         const body = (await res.json()) as Setup;
         if (!res.ok) throw new Error('not loaded');
@@ -61,7 +64,7 @@ export function FeesDuesView() {
       })
       .catch(() => setFailed(true));
     void loadConcessions();
-  }, [loadConcessions]);
+  }, [loadConcessions, getSetup]);
 
   const loadLines = useCallback(async () => {
     if (!classId || !sessionId || !month) return;

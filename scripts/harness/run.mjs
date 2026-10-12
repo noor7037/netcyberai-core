@@ -602,6 +602,27 @@ const feeClearanceScreenDone = async () => {
   await db.pg.query(`delete from fee_clearance_overrides where school_id = $1`, [SCHOOL]);
   if (rows[0].n !== 1 || rows[0].audited !== true) throw new Error(`fee clearance: ${JSON.stringify(rows[0])}`);
 };
+// The Fees page opens with one call for its data (C180, docs/19 rule 10): every /api/app/fees/ request made
+// while it loads is counted, and only the summary may be among them.
+let feesCalls = null;
+const feesOneCall = async (page) => {
+  const seen = [];
+  const note = (r) => {
+    const u = new URL(r.url());
+    if (u.pathname.startsWith('/api/app/fees/') && r.method() === 'GET') seen.push(u.pathname);
+  };
+  page.on('request', note);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-fee-overdue]').waitFor({ timeout: 20000 });
+  await page.locator('[data-recovery]').waitFor({ timeout: 20000 });
+  await page.locator('[data-bank]').waitFor({ timeout: 20000 });
+  page.off('request', note);
+  feesCalls = seen;
+};
+const feesOneCallDone = async () => {
+  // Development runs each effect twice; the second run shares the first one's request.
+  if (feesCalls.length !== 1 || feesCalls[0] !== '/api/app/fees/summary') throw new Error(`the Fees page should open with one data call; it made ${JSON.stringify(feesCalls)}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -692,7 +713,11 @@ const siblingRuleDone = async (page) => {
 // (C166). The principal switches the late fee on with an amount and saves;
 // it is stored with its history and audited, and raises no due by itself.
 // Then one value is put back with "Reset to default".
+let swatches = 0;
+let historyRows = [];
 const settingsLateFee = async (page) => {
+  await db.pg.query(`delete from school_setting_changes where school_id = $1 and module_id = 'setup'`, [SCHOOL]);
+  await db.pg.query(`delete from school_settings where school_id = $1 and module_id = 'setup'`, [SCHOOL]);
   await clearLateFee();
   await page.reload({ waitUntil: 'networkidle' });
   const fees = page.locator('[data-settings-module="fees"]');
@@ -701,6 +726,15 @@ const settingsLateFee = async (page) => {
   await fees.locator('#set-fees-late_fee_grace_days').fill('3');
   await fees.locator('[data-save-settings]').click();
   await fees.locator('[data-setting="late_fee_enabled"] [data-reset]').waitFor({ timeout: 20000 });
+  // The accent colour is chosen from swatches, and each part shows its own change history (C180).
+  const setup = page.locator('[data-settings-module="setup"]');
+  swatches = await setup.locator('[data-swatch]').count();
+  await setup.locator('[data-swatch="grape"]').click();
+  await setup.locator('[data-save-settings]').click();
+  await setup.locator('[data-setting="accent_color"] [data-reset]').waitFor({ timeout: 20000 });
+  await page.locator('[data-settings-module="fees"] [data-settings-history] summary').click();
+  await page.locator('[data-settings-module="fees"] [data-history-row]').first().waitFor({ timeout: 20000 });
+  historyRows = await page.locator('[data-settings-module="fees"] [data-history-row]').allTextContents();
 };
 const settingsLateFeeDone = async (page) => {
   const read = async () => (await db.pg.query(
@@ -716,7 +750,12 @@ const settingsLateFeeDone = async (page) => {
   await fees.locator('[data-setting="late_fee_rupees"] [data-reset]').click();
   await fees.locator('[data-setting="late_fee_rupees"] [data-is-default]').waitFor({ timeout: 20000 });
   const reset = await read();
+  const accent = (await db.pg.query(`select setting_values->>'accent_color' as c from school_settings where school_id = $1 and module_id = 'setup'`, [SCHOOL])).rows[0]?.c;
+  await db.pg.query(`delete from school_setting_changes where school_id = $1 and module_id = 'setup'`, [SCHOOL]);
+  await db.pg.query(`delete from school_settings where school_id = $1 and module_id = 'setup'`, [SCHOOL]);
   await clearLateFee();
+  if (swatches < 10 || accent !== 'grape') throw new Error(`the accent colour was not chosen from the swatches: ${swatches} swatches, saved ${accent}`);
+  if (historyRows.length !== 3 || !historyRows.some((r) => /Charge a late fee: default → On/.test(r))) throw new Error(`the change history is not right: ${JSON.stringify(historyRows)}`);
   if (saved.saved?.late_fee_enabled !== true || saved.saved?.late_fee_rupees !== 50 || saved.saved?.late_fee_grace_days !== 3 || saved.changes !== 3 || saved.audited < 1) throw new Error(`the late fee was not saved with its history and audit row: ${JSON.stringify(saved)}`);
   if (saved.late_lines !== 0) throw new Error('saving the setting raised a due; only the nightly job may');
   if ('late_fee_rupees' in (reset.saved ?? {}) || reset.saved?.late_fee_enabled !== true || reset.changes !== 4) throw new Error(`"Reset to default" did not put one value back and keep the rest: ${JSON.stringify(reset)}`);
@@ -735,6 +774,8 @@ const settingsReadOnly = async (page) => {
 // app as its principal. The reason is prefilled, the app opens as that person
 // in THIS school with the banner on the page, and "End" puts the founder back.
 const clearViewAs = () => db.pg.query(`delete from impersonation_sessions where actor_user_id = $1`, [PEOPLE.founder.sub]);
+let viewLeft = null;
+let viewedRow = null;
 const viewAs = async (page) => {
   await clearViewAs();
   await page.reload({ waitUntil: 'networkidle' });
@@ -744,6 +785,13 @@ const viewAs = async (page) => {
   await page.locator('[data-view-as-start]').click();
   await page.waitForURL(/\/app\/my-day/, { timeout: 30000 });
   await page.locator('[data-view-as-banner]').waitFor({ timeout: 20000 });
+  // The countdown (C180), and one change made during the view: the school's own Compliance page marks it.
+  viewLeft = Number(await page.locator('[data-view-as-left]').getAttribute('data-view-as-left'));
+  await db.pg.query(`delete from school_holidays where school_id = $1`, [SCHOOL]);
+  const added = await page.evaluate(() => fetch('/api/app/settings/holidays', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ date: '2099-08-15', name: 'Independence Day' }) }).then((r) => r.status));
+  if (added !== 201) throw new Error(`a change during the view was not saved: ${added}`);
+  await page.goto(new URL("/app/compliance", page.url()).href, { waitUntil: 'networkidle' });
+  viewedRow = await page.locator('[data-viewed-row]').first().textContent({ timeout: 20000 });
 };
 const viewAsDone = async (page) => {
   const banner = await page.locator('[data-view-as-banner]').textContent();
@@ -754,6 +802,10 @@ const viewAsDone = async (page) => {
   const ended = (await db.pg.query(`select ended_at from impersonation_sessions where actor_user_id = $1`, [PEOPLE.founder.sub])).rows;
   const audit = (await db.pg.query(`select event_action from audit_log where school_id = $1 and event_action in ('ImpersonationStarted', 'ImpersonationEnded') and occurred_at > now() - interval '5 minutes' order by audit_id desc limit 2`, [SCHOOL])).rows.map((r) => r.event_action);
   await clearViewAs();
+  await db.pg.query(`delete from school_holidays where school_id = $1`, [SCHOOL]);
+  const marked = (await db.pg.query(`select impersonated_by from audit_log where school_id = $1 and event_action = 'settings.holiday_added' order by audit_id desc limit 1`, [SCHOOL])).rows[0];
+  if (!(viewLeft > 60 && viewLeft <= 900)) throw new Error(`the banner does not count down the time left: ${viewLeft}`);
+  if (marked?.impersonated_by !== PEOPLE.founder.sub || !/Viewed by founder/.test(viewedRow ?? '') || !/settings\.holiday_added/.test(viewedRow ?? '')) throw new Error(`a change made during the view is not marked for the school: ${viewedRow}`);
   if (started.length !== 1 || started[0].target_user_id !== PEOPLE.principal.sub || started[0].target_school_id !== SCHOOL || started[0].reason !== 'Founder review' || started[0].ended_at !== null) throw new Error(`the view was not started as this school's principal: ${JSON.stringify(started)}`);
   if (!banner.includes(started[0].display_name) || !/Principal/.test(banner) || !/ends/.test(banner)) throw new Error(`the banner does not say who, what role and until when: ${banner}`);
   if (ended.length !== 1 || ended[0].ended_at === null) throw new Error('"End" did not end the view');
@@ -915,6 +967,7 @@ const SCREENS = [
   ['principal', 'app-fees-pay-upi', '/app/fees', payByUpi, payByUpiDone],
   ['principal', 'app-fees-recovery', '/app/fees', feeRecovery, feeRecoveryDone],
   ['principal', 'app-fees-clearance', '/app/fees', feeClearanceScreen, feeClearanceScreenDone],
+  ['principal', 'app-fees-one-call', '/app/fees', feesOneCall, feesOneCallDone],
   ['principal', 'app-fees-bank', '/app/fees', bankStatement, bankStatementDone],
   ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],
@@ -1026,6 +1079,8 @@ const childEnv = {
   PAYMENT_CREDENTIALS_KEY: randomBytes(32).toString('base64'),
   PAYMENT_STANDIN_SECRET: `${secret}-payments-stand-in-secret-0123456789`,
   DATABASE_URL: db.url,
+  // One connection: the in-memory database is one session, so requests take turns (see src/lib/auth/db.ts).
+  DB_POOL_MAX: '1',
   APP_SESSION_SECRET: secret,
   NEXT_PUBLIC_SUPABASE_URL: 'http://127.0.0.1:9',
   NEXT_PUBLIC_SUPABASE_ANON_KEY: 'harness-not-a-key',

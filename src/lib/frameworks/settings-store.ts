@@ -118,9 +118,10 @@ export async function saveSettings(
 
 export async function settingsHistory(db: Sql, schoolId: string, moduleId: ModuleId, limit = 50): Promise<SettingChange[]> {
   const { rows } = await db.query(
-    `select setting_key, from_value, to_value, changed_by, changed_at, revision
-     from school_setting_changes where school_id = $1 and module_id = $2
-     order by change_id desc limit $3`,
+    `select c.setting_key, c.from_value, c.to_value, c.changed_by, c.changed_at, c.revision, u.display_name as changed_by_name
+     from school_setting_changes c left join users u on u.user_id = c.changed_by
+     where c.school_id = $1 and c.module_id = $2
+     order by c.change_id desc limit $3`,
     [schoolId, moduleId, Math.min(Math.max(limit, 1), 200)]
   );
   return rows.map((r) => ({
@@ -128,6 +129,7 @@ export async function settingsHistory(db: Sql, schoolId: string, moduleId: Modul
     from: r.from_value,
     to: r.to_value,
     changedBy: r.changed_by,
+    changedByName: r.changed_by_name ?? null,
     changedAt: new Date(r.changed_at).toISOString(),
     revision: r.revision,
   }));

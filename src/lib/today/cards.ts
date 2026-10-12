@@ -196,6 +196,17 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     },
   },
   {
+    // Promises to pay whose date is today or has gone by, still open (C178, C180): the office rings the family
+    // again or closes the promise. Reminders to that family have started again.
+    type: 'promises-due',
+    moduleId: 'fees',
+    roles: ['principal', 'accountant', 'school_admin'],
+    async load(db, ctx) {
+      const { rows } = await db.query(`select count(*) as c from fee_followups where school_id = $1 and kind = 'promise' and status = 'open' and promise_date <= ${TODAY}`, [ctx.schoolId]);
+      return waiting('promises-due', 'fees', n(rows[0]?.c), '/app/fees');
+    },
+  },
+  {
     // Tickets NetCyberAI has answered and is waiting on the school for. Row
     // level security shows the office every ticket and anyone else their own.
     type: 'tickets-waiting',

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { useFeesPart } from './FeesFirstLoad';
 import { FeeClearance } from './FeeClearance';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
@@ -31,6 +32,8 @@ const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold 
 export function FeesCollectView() {
   const { t, lang } = useT();
   const toast = useToast();
+  const getPayments = useFeesPart('payments', '/api/app/fees/payments');
+  const getSetup = useFeesPart('setup', '/api/app/fees/setup');
   const [classes, setClasses] = useState<{ class_id: string; name: string }[]>([]);
   const [classId, setClassId] = useState('');
   const [students, setStudents] = useState<{ student_id: string; name: string }[]>([]);
@@ -57,7 +60,7 @@ export function FeesCollectView() {
   const [reversing, setReversing] = useState<{ id: string; reason: string } | null>(null);
 
   const loadSummary = useCallback(async () => {
-    const res = await fetch('/api/app/fees/payments').catch(() => null);
+    const res = await getPayments().catch(() => null);
     const body = (await res?.json().catch(() => null)) ?? {};
     if (res?.ok) {
       setTotals(body.totals);
@@ -66,14 +69,14 @@ export function FeesCollectView() {
       setReceipts(body.receipts);
       setMayReverse(body.mayReverse === true);
     }
-  }, []);
+  }, [getPayments]);
   useEffect(() => {
-    fetch('/api/app/fees/setup')
-      .then((r) => r.json())
+    getSetup()
+      .then((r) => r.json() as Promise<{ classes?: typeof classes }>)
       .then((b) => setClasses(b.classes ?? []))
       .catch(() => undefined);
     void loadSummary();
-  }, [loadSummary]);
+  }, [loadSummary, getSetup]);
 
   useEffect(() => {
     setStudents([]);

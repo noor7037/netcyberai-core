@@ -9,7 +9,11 @@ function getPool(): Pool {
     // unreachable database left requests hanging for minutes (until the
     // OS gave up on TCP) and a public form spinning with no answer.
     // Ten seconds turns that into a prompt, visible error.
-    pool = new Pool({ connectionString: databaseUrl(), max: 10, connectionTimeoutMillis: 10_000 });
+    // DB_POOL_MAX: how many connections this process may hold (10 unless set). The screen harness sets 1: its
+    // in-memory database is a single session shared by every connection, so two requests at once would run
+    // inside each other's transaction; one connection makes them take turns.
+    const max = Number(process.env.DB_POOL_MAX);
+    pool = new Pool({ connectionString: databaseUrl(), max: Number.isInteger(max) && max > 0 && max <= 50 ? max : 10, connectionTimeoutMillis: process.env.DB_POOL_MAX === '1' ? 60_000 : 10_000 });
   }
   return pool;
 }
