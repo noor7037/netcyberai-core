@@ -484,6 +484,68 @@ const clearUpi = async () => {
   await db.pg.query(`delete from payment_links where school_id = $1`, [SCHOOL]);
   await db.pg.query(`delete from payment_methods where school_id = $1 and method = 'direct_upi'`, [SCHOOL]);
 };
+// Bank statements (C176): the principal adds the account, gives a FICTIONAL statement (written here, labelled as
+// such), is shown the count and the total, confirms, and the credit rows are kept. Nothing is credited.
+const BANK_CSV = `FICTIONAL TEST STATEMENT - An Example Bank - not a real bank
+Txn Date,Description,Ref No,Debit,Credit,Balance
+01/04/2099,UPI/CR/409912345678/A PARENT/NCA-7K3Q9MPD,,,"2,300.50","1,02,300.50"
+02/04/2099,NEFT TO A SUPPLIER,N123,"10,000.00",,"92,300.50"
+03-Apr-2099,UPI/CR/409912345679/ANOTHER PARENT,,,"1,00,000.00","1,92,300.50"
+`;
+const clearBank = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from bank_credit_rows where school_id = '${SCHOOL}'; delete from bank_statement_imports where school_id = '${SCHOOL}'; delete from bank_accounts where school_id = '${SCHOOL}'; set session_replication_role = origin;`);
+};
+let bankSeen = null;
+const bankStatement = async (page) => {
+  await clearBank();
+  await page.reload({ waitUntil: 'networkidle' });
+  const bank = page.locator('[data-bank]');
+  const empty = await bank.locator('[data-bank-empty]').count();
+  await bank.locator('#bank-label').fill('Fees account');
+  await bank.locator('#bank-name').fill('An Example Bank');
+  await bank.locator('#bank-last4').fill('4821');
+  await bank.locator('#bank-ifsc').fill('EXMP0001234');
+  await bank.locator('[data-bank-add]').click();
+  await bank.locator('[data-bank-upload]').waitFor({ timeout: 20000 });
+  await bank.locator('#bank-from').fill('2099-04-01');
+  await bank.locator('#bank-to').fill('2099-04-30');
+  await bank.locator('#bank-file').setInputFiles({ name: 'fictional-statement.csv', mimeType: 'text/csv', buffer: Buffer.from(BANK_CSV) });
+  await bank.locator('[data-bank-read]:not([disabled])').click();
+  const preview = (await bank.locator('[data-bank-preview] p').first().textContent({ timeout: 20000 })).trim();
+  const savedBeforeConfirm = (await db.pg.query(`select count(*)::int as n from bank_credit_rows where school_id = $1`, [SCHOOL])).rows[0].n;
+  await bank.locator('[data-bank-keep]').click();
+  const done = (await bank.locator('[data-bank-done]').textContent({ timeout: 20000 })).trim();
+  await bank.locator('[data-bank-uploads] li').first().waitFor({ timeout: 20000 });
+  bankSeen = { empty, preview, savedBeforeConfirm, done };
+};
+const bankStatementDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from bank_credit_rows where school_id = $1) as kept, (select coalesce(sum(amount_minor), 0)::int from bank_credit_rows where school_id = $1) as total,
+            (select count(*)::int from bank_credit_rows where school_id = $1 and match_status <> 'unmatched') as decided,
+            (select statement_profile is not null from bank_accounts where school_id = $1) as remembered,
+            (select count(*)::int from audit_log where school_id = $1 and event_action = 'bank.statement_uploaded' and occurred_at > now() - interval '5 minutes') > 0 as audited`,
+    [SCHOOL]
+  );
+  await clearBank();
+  const want = { kept: 2, total: 10230050, decided: 0, remembered: true, audited: true };
+  if (JSON.stringify(rows[0]) !== JSON.stringify(want)) throw new Error(`bank statement: ${JSON.stringify(rows[0])}`);
+  const seen = { empty: 1, preview: '2 payments came in, ₹1,02,300.50 in all', savedBeforeConfirm: 0, done: 'Kept. 2 new rows; 0 were already here.' };
+  if (JSON.stringify(bankSeen) !== JSON.stringify(seen)) throw new Error(`bank statement screen: ${JSON.stringify(bankSeen)}`);
+};
+// Holidays on the Settings screen (C176): the principal adds one, it is listed and audited.
+const addHoliday = async (page) => {
+  await db.pg.query(`delete from school_holidays where school_id = $1`, [SCHOOL]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('#holiday-date').fill('2099-08-15');
+  await page.locator('#holiday-name').fill('Independence Day');
+  await page.locator('[data-holiday-add]').click();
+  await page.locator('[data-holiday="2099-08-15"]').waitFor({ timeout: 20000 });
+};
+const addHolidayDone = async () => {
+  const { rows } = await db.pg.query(`select (select count(*)::int from school_holidays where school_id = $1) as n, (select count(*)::int from audit_log where school_id = $1 and event_action = 'settings.holiday_added' and occurred_at > now() - interval '5 minutes') > 0 as audited`, [SCHOOL]);
+  await db.pg.query(`delete from school_holidays where school_id = $1`, [SCHOOL]);
+  if (rows[0].n !== 1 || rows[0].audited !== true) throw new Error(`holiday: ${JSON.stringify(rows[0])}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -795,6 +857,7 @@ const SCREENS = [
   ['principal', 'app-fees-sibling', '/app/fees', siblingRule, siblingRuleDone],
   ['principal', 'app-fees-pay-online', '/app/fees', payOnline, payOnlineDone],
   ['principal', 'app-fees-pay-upi', '/app/fees', payByUpi, payByUpiDone],
+  ['principal', 'app-fees-bank', '/app/fees', bankStatement, bankStatementDone],
   ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],
   ['principal', 'app-timetable-clash', '/app/timetable', timetableClash],
@@ -803,6 +866,7 @@ const SCREENS = [
   ['principal', 'app-taught-today', '/app/syllabus'],
   ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],
   ['teacher', 'app-settings-teacher', '/app/settings', settingsReadOnly],
+  ['principal', 'app-settings-holidays', '/app/settings', addHoliday, addHolidayDone],
   ['principal', 'app-settings-payments', '/app/settings', saveGatewayKeys, saveGatewayKeysDone],
   ['principal', 'app-account', '/app/account'],
   ['principal', 'app-help', '/app/help'],

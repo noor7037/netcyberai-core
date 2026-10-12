@@ -3,6 +3,8 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import type { Sql } from '@/lib/jobs/types';
+import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
+import { readSettings } from '@/lib/frameworks/settings-store';
 import { indiaDate } from '@/lib/time/india';
 import { creditEvidence, type Applied } from './apply';
 
@@ -119,7 +121,8 @@ export async function waitingReports(db: PoolClient, schoolId: string): Promise<
     [schoolId]
   );
   const today = indiaDate();
-  return rows.map((r) => ({ ...r, working_days_waiting: workingDaysBetween(indiaDate(new Date(r.reported_at)), today), reference: r.reference ? referenceLabel(r.reference) : null, amount_minor: Number(r.amount_minor), amount_seen_minor: r.amount_seen_minor === null ? null : Number(r.amount_seen_minor), reported_at: new Date(r.reported_at).toISOString() }));
+  const calendar = await schoolCalendar(db, schoolId);
+  return rows.map((r) => ({ ...r, working_days_waiting: workingDaysBetween(indiaDate(new Date(r.reported_at)), today, calendar), reference: r.reference ? referenceLabel(r.reference) : null, amount_minor: Number(r.amount_minor), amount_seen_minor: r.amount_seen_minor === null ? null : Number(r.amount_seen_minor), reported_at: new Date(r.reported_at).toISOString() }));
 }
 
 export type VerifyInput = { action: 'found'; amountSeenMinor: number; checked: boolean } | { action: 'not_found' };
@@ -173,10 +176,27 @@ export async function verifyReport(db: PoolClient, actor: Actor, reportId: strin
   return { ok: true, state: 'verified', credit };
 }
 
-// Counted here and in the alerts: every day after `from` up to `to`, Sundays left out.
-export function workingDaysBetween(from: string, to: string): number {
+// A school's working calendar (C176): the weekdays it works (its own setting; Monday to Saturday when it has none)
+// and the days it is closed. India dates throughout.
+export type WorkingCalendar = { weekdays: ReadonlySet<number>; holidays: ReadonlySet<string> };
+const DAY_NUMBER: Record<string, number> = { SUN: 0, MON: 1, TUE: 2, WED: 3, THU: 4, FRI: 5, SAT: 6 };
+export const DEFAULT_CALENDAR: WorkingCalendar = { weekdays: new Set([1, 2, 3, 4, 5, 6]), holidays: new Set() };
+
+export async function schoolCalendar(db: Sql, schoolId: string): Promise<WorkingCalendar> {
+  const setup = SETTINGS_SCHEMAS.find((x) => x.moduleId === 'setup');
+  const days = setup ? (await readSettings(db, schoolId, setup)).effective.working_days : undefined;
+  const weekdays = new Set((Array.isArray(days) ? (days as unknown[]) : []).map((d) => DAY_NUMBER[String(d)]).filter((n): n is number => n !== undefined));
+  const holidays = new Set(((await db.query(`select holiday_date::text as d from school_holidays where school_id = $1`, [schoolId])).rows as { d: string }[]).map((r) => r.d));
+  return { weekdays: weekdays.size > 0 ? weekdays : DEFAULT_CALENDAR.weekdays, holidays };
+}
+
+// Working days from one India date to another: every day after `from` up to `to` that the school works.
+export function workingDaysBetween(from: string, to: string, calendar: WorkingCalendar = DEFAULT_CALENDAR): number {
   let n = 0;
-  for (let d = Date.parse(`${from}T00:00:00Z`) + 86_400_000; d <= Date.parse(`${to}T00:00:00Z`); d += 86_400_000) if (new Date(d).getUTCDay() !== 0) n += 1;
+  for (let d = Date.parse(`${from}T00:00:00Z`) + 86_400_000; d <= Date.parse(`${to}T00:00:00Z`); d += 86_400_000) {
+    const day = new Date(d);
+    if (calendar.weekdays.has(day.getUTCDay()) && !calendar.holidays.has(day.toISOString().slice(0, 10))) n += 1;
+  }
   return n;
 }
 

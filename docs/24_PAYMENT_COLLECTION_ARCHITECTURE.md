@@ -394,6 +394,7 @@ All tables have tenant RLS, forced, with rights pinned in `test/db/grants.test.t
 
 ## 10. Change log
 
+- **2026-10-21**: §3.4 path B built as far as the statement coming in (CSV only; column map per account; preview then confirm; credit rows only). Working days are the school's own week and holidays; the "each payment" email cap is a Fees setting (C176).
 - **2026-10-20**: §3.3 step 8: a "not found" can be reopened by the principal or accountant; §3.8: a school with test-mode evidence stays a test school (C175).
 - **2026-10-19**: §3.8: test keys never credit a real school (C173).
 - **2026-10-12**: §3.3–3.5 rewritten to the founder's flow (parent enters the

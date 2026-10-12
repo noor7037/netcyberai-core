@@ -74,6 +74,10 @@ const APP_USER: Record<string, string> = {
   payment_credentials: '', // ciphertext only, and still not the app role's: the server's payment path reads it as the platform role (C171)
   payment_evidence: 'INSERT,SELECT,UPDATE', // the one door every credit goes through; a trigger keeps what it says fixed
   payment_gateway_access: 'SELECT', // set by NetCyberAI in Control
+  bank_accounts: 'INSERT,SELECT,UPDATE',
+  bank_credit_rows: 'INSERT,SELECT,UPDATE', // the bank's own lines; a trigger keeps them fixed (C176)
+  bank_statement_imports: 'INSERT,SELECT',
+  school_holidays: 'DELETE,INSERT,SELECT',
   payment_methods: 'INSERT,SELECT,UPDATE',
   payment_reports: 'SELECT,UPDATE', // written by the parent's page (the platform role); the school reads and decides (C174)
   payment_events: 'SELECT', // written when a provider's notice is applied, as the platform role (C169)
@@ -121,6 +125,10 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   fee_status_runs: 'INSERT,SELECT', // the nightly job writes a result once
   payment_credentials: 'INSERT,SELECT,UPDATE',
   payment_gateway_access: 'INSERT,SELECT,UPDATE',
+  bank_accounts: '', // the platform role has no business in a school's bank statements
+  bank_credit_rows: '',
+  bank_statement_imports: '',
+  school_holidays: 'SELECT', // the nightly alerts count working days
   payment_methods: 'SELECT',
   payment_reports: 'INSERT,SELECT,UPDATE',
   payment_events: 'INSERT,SELECT,UPDATE', // a provider's notice: recorded, then its outcome set

@@ -112,7 +112,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // Fees (C159): the day of the month a due falls on unless the office picks another.
   {
     moduleId: 'fees',
-    version: 3,
+    version: 4,
     fields: [
       {
         key: 'due_day',
@@ -134,6 +134,20 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         section: 'Receipts',
         type: 'numbering',
         default: 'RCP-{YYYY}-{SEQ:5}',
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      // UPI to the school's own account (C175, C176).
+      {
+        key: 'upi_email_cap',
+        label: 'Emails a day for UPI payments to verify',
+        help: 'When the verifiers are emailed for each UPI payment, this is the most that go out in one day, from 1 to 500. Payments beyond it are told in one summary that night.',
+        section: 'UPI payments',
+        type: 'number',
+        default: 20,
+        min: 1,
+        max: 500,
         required: true,
         editableBy: OFFICE,
         affectsExistingRecords: false,

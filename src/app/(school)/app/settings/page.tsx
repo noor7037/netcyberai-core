@@ -1,6 +1,7 @@
 import { getServerSession } from '@/lib/auth/server-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { WhatsAppConfigPanel } from '@/components/settings/WhatsAppConfigPanel';
+import { HolidaysCard } from '@/components/settings/HolidaysCard';
 import { ModuleSwitchList } from '@/components/settings/ModuleSwitchList';
 import { PaymentRailsPanel } from '@/components/payments/PaymentRailsPanel';
 import { SchoolSettingsPanel } from '@/components/settings/SchoolSettingsPanel';
@@ -43,6 +44,7 @@ export default async function SettingsPage() {
     <ModulePage moduleId="setup" help="whatsapp-settings" tour="settings" title="Settings" purpose="What is switched on for your school, how each part is set up, and its WhatsApp messages.">
       {entitlements && <ModuleSwitchList entitlements={entitlements} lang={lang} />}
       <SchoolSettingsPanel modules={settings} />
+      {settings.some((m) => m.moduleId === 'setup') && <HolidaysCard />}
       {(canManage || session?.role === 'accountant') && settings.some((m) => m.moduleId === 'fees') && <PaymentRailsPanel scope="school" />}
       <WhatsAppConfigPanel canManage={canManage} />
     </ModulePage>

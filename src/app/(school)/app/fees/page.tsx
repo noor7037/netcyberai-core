@@ -1,5 +1,6 @@
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { ModulePage } from '@/components/app-ui/ModulePage';
+import { FeesBankView } from '@/components/fees/FeesBankView';
 import { FeesCollectView } from '@/components/fees/FeesCollectView';
 import { FeesDuesView } from '@/components/fees/FeesDuesView';
 import { FeesVerifyView } from '@/components/fees/FeesVerifyView';
@@ -22,6 +23,7 @@ export default async function FeesPage() {
       <div className="flex flex-col gap-6">
         <FeesVerifyView />
         <FeesCollectView />
+        <FeesBankView />
         <FeesDuesView />
         <FeesSetupView />
       </div>
