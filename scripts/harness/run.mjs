@@ -343,6 +343,16 @@ const feesPayDone = async () => {
   const r = rows[0];
   if (r.receipts !== 1 || r.received !== 100000 || r.credited !== 100000) throw new Error(`expected one receipt of 1,000 credited once: ${JSON.stringify(r)}`);
 };
+// Sign-out through the shell's own button (C161): the cookies go, and the
+// app sends the next visit to the sign-in page.
+const signOut = async (page) => {
+  if (page.viewportSize().width < 768) await page.getByRole('button', { name: 'Open menu' }).first().click();
+  await page.getByRole('button', { name: 'Sign out' }).first().click();
+  await page.waitForURL(/\/login/, { timeout: 20000 });
+  await page.goto(page.url().replace(/\/login.*$/, '/app/my-day'), { waitUntil: 'networkidle' });
+  if (!/\/login/.test(page.url())) throw new Error(`after signing out, /app/my-day still opened: ${page.url()}`);
+  if ((await page.context().cookies()).some((c) => c.name === 'nca_access')) throw new Error('the session cookie is still there after signing out');
+};
 // The "needs help" queue (C148): one student waiting, then the outcome is
 // recorded and the card leaves the queue.
 const needsHelp = async (page) => {
@@ -461,6 +471,8 @@ const SCREENS = [
   ['principal', 'app-my-day', '/app/my-day'],
   ['principal', 'app-my-day-hindi', '/app/my-day', speak('हिन्दी'), backToEnglish],
   ['office', 'office-my-day', '/app/my-day'],
+  // Last for this person: after it they are signed out.
+  ['office', 'office-sign-out', '/app/my-day', signOut],
   ['teacher', 'teacher-my-day', '/app/my-day'],
   ['principal', 'app-students-first-visit', '/app/students', firstVisit, skipAndCheck('principal')],
   ['principal', 'app-attendance-first-visit-hindi', '/app/attendance', firstVisitInHindi, skipAndCheck('principal', true)],
