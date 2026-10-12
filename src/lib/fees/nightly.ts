@@ -2,7 +2,8 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
-import { PermanentJobError, type JobHandler, type Sql } from '@/lib/jobs/types';
+import { PermanentJobError, type JobHandler, type JobQueue, type Sql } from '@/lib/jobs/types';
+import { runUpiAlerts } from '@/lib/payments/upi-alerts';
 import { indiaDate, isIsoDate } from '@/lib/time/india';
 import { rupeesToMinor } from './money';
 import { reconcile } from './payments';
@@ -75,7 +76,7 @@ type Platform = <T>(fn: (db: Sql) => Promise<T>) => Promise<T>;
 // The job: every school with a due, each in its own transaction, so one
 // school's failure does not undo another's night. A failure is retried by
 // the queue; schools already done are skipped.
-export function feesNightlyHandler(deps: { platform: Platform; now?: () => Date }): JobHandler {
+export function feesNightlyHandler(deps: { platform: Platform; queue?: JobQueue; now?: () => Date }): JobHandler {
   return async (job) => {
     const today = indiaDate((deps.now ?? (() => new Date()))());
     const asked = job.payload.date;
@@ -90,6 +91,19 @@ export function feesNightlyHandler(deps: { platform: Platform; now?: () => Date 
         await deps.platform((db) => runFeesNightlyForSchool(db, schoolId, runDate));
       } catch {
         failed.push(schoolId);
+      }
+    }
+    // UPI payments still waiting to be verified (C175): the digest, the reminder after one working day, the
+    // principal's alert after two. Each report is marked as it is told, so a second run tells nobody twice.
+    const queue = deps.queue;
+    if (queue) {
+      const waiting = await deps.platform(async (db) => (await db.query(`select distinct school_id from payment_reports where status in ('reported', 'awaiting_principal')`)).rows.map((r) => r.school_id as string));
+      for (const schoolId of waiting) {
+        try {
+          await deps.platform((db) => runUpiAlerts(db, queue, schoolId, runDate));
+        } catch {
+          failed.push(schoolId);
+        }
       }
     }
     if (failed.length > 0) throw new Error(`fees.nightly: ${failed.length} school(s) not done`);
