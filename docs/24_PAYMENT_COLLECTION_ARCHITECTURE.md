@@ -82,6 +82,7 @@ Every way of paying ends in the same function, the one 6f built
 ```
 evidence = { source, external_id, amount_minor, what it pays for }
 source   ∈ gateway_notice      (signed webhook: Razorpay, stand-in, later Cashfree…)
+           school_confirmed    (direct UPI: a named school verifier saw the UTR's credit in the school's bank)
            bank_statement_row  (direct UPI or bank transfer, matched to a statement)
            network_notice      (Bharat Connect, later)
            counter             (cash and cheque at the desk, 6c, as today)
@@ -102,7 +103,7 @@ payer in the school's chosen order:
 | Method | Kind | Status at C170 |
 |---|---|---|
 | `counter` | Cash and cheque at the desk | Built (6c) |
-| `direct_upi` | The school's own merchant UPI ID; proof by bank statement | **Build next (6h)** |
+| `direct_upi` | The school's own merchant UPI ID; parent enters the UTR; the school verifies (one by one, or by statement) | **Build next (6h)** |
 | `razorpay` | Gateway, the school's own Razorpay account | **Built and dormant (6f-2):** switched on by entering keys, nothing else |
 | `stand-in` | Test gateway | Built (6f); never in a production build |
 | `bharat_connect` | Biller network | Designed here; built only after Noor decides on a BOU |
@@ -110,66 +111,105 @@ payer in the school's chosen order:
 The **payer page** (`/pay/<token>`, 6f) shows every enabled method for that
 school. A school with none enabled shows "Pay at the school office".
 
-### 3.3 Direct UPI, end to end
+### 3.3 Direct UPI, end to end (founder's flow, C170 amended)
+
+The founder's flow, kept as he described it, with the verification made
+firm. **The school confirms its own money; NetCyberAI records who confirmed
+what, and checks it against the bank whenever a statement is given.**
+
+```
+Parent                         NetCyberAI                          School (accountant / principal)
+──────                         ──────────                          ───────────────────────────────
+WhatsApp/email: fee due  ◀──── reminder with "Pay now" link
+taps link → payer page
+taps "Pay with UPI" ─────────▶ (UPI app opens; amount, school UPI ID, reference filled)
+pays in the UPI app → money is in the school's account in seconds
+back on the page: enters UTR ▶ status: "Payment initiated. The school
+                               will verify it; you will get the
+                               receipt once verified."  ─────────▶ notification: "₹2,300 reported by
+                                                                   the family of class 5-A, UTR …"
+                                                                   checks the school's bank app:
+                                                                   [Found in bank]  [Not found]
+                               ◀──────────────────────────────────  (or uploads today's statement:
+                                                                    every waiting payment is checked at once)
+receipt (slip) + "Payment  ◀── receipt issued through the one ledger door
+confirmed" on WhatsApp/email
+```
 
 1. **Set-up (school office, once).** Settings → Fees → Payments: the school's
    **merchant UPI ID** (from its own bank, on its current account), the payee
-   name, and the bank account it lands in (bank, last 4 digits, IFSC). Then
-   upload one recent statement; the app guesses the columns (date, narration,
-   reference, credit, balance) and the office confirms them on a preview.
-   That **statement profile** is saved for the account. Profiles for common
-   banks may be pre-filled, but any bank works through the mapping.
-2. **The link.** A reminder (email in P3, WhatsApp from P4) carries the
-   family's payment link. The page shows the amount, the school's name, a
-   **reference code** (8 characters, no look-alike letters, unique in the
-   school, e.g. `NCA-7K3Q9MPD`), a UPI QR, and on a phone an "Open UPI app"
-   button. Both carry `upi://pay?pa=<school UPI ID>&pn=<payee>&am=<amount>&cu=INR&tn=<reference>&tr=<reference>`.
-3. **The parent pays** in any UPI app. The money is in the school's account
-   in seconds.
-4. **"I have paid" (optional).** The parent may type the 12-digit UTR shown
-   in their app. The link becomes **"Payment reported, being confirmed by the
-   school's bank record"**. No receipt and no ledger change. There is no
-   upload field: screenshots are never taken.
-5. **Proof.** The accountant downloads the statement from net banking
-   (Excel/CSV) and uploads it: once a day, or whenever they like. The app:
-   - reads it with the saved profile, keeps **credit rows only** (the
-     school's spending is not our business), and shows a preview with the
-     row count and credit total, which the uploader confirms against the
-     statement;
-   - checks continuity where the file has balances (opening balance = the
-     previous upload's closing balance) and warns on a gap;
-   - matches each new credit row (§3.4) and applies matched ones through the
-     one ledger door. Receipts are issued and the parent is told.
-6. **Exceptions** go to a list for the office (§3.5). Nothing waits silently.
+   name, the bank account it lands in (bank, last 4 digits, IFSC), and **who
+   may verify** (default: accountant and principal). The statement column map
+   (§3.4 path B) is set the first time a statement is uploaded, not before.
+2. **The reminder** (email in P3; WhatsApp from P4, after Meta verification)
+   carries the family's "Pay now" link.
+3. **The payer page** shows the amount, the school's name, a **reference
+   code** (8 characters, no look-alike letters, unique in the school, e.g.
+   `NCA-7K3Q9MPD`), a UPI QR, and on a phone a "Pay with UPI" button. Both
+   carry `upi://pay?pa=<school UPI ID>&pn=<payee>&am=<amount>&cu=INR&tn=<reference>&tr=<reference>`.
+4. **The parent pays** in any UPI app. A web page cannot learn from the UPI
+   app that the payment happened; that is why step 5 exists.
+5. **The parent enters the UTR** (12 digits, shown in every UPI app after
+   paying). It is checked for form and **must not already be used in this
+   school**: an old or another family's UTR is refused at once. The page
+   then says: **"Payment initiated. The school will verify it; you will get
+   the receipt once it is verified."** No receipt, no ledger change, no
+   screenshot field anywhere. A parent who skips this still pays; the
+   payment is then found by the statement (path B) or at the counter.
+6. **The school is told at once:** an in-app notification and a My Day card
+   for the verifiers; email to the principal (a daily digest, or each one,
+   as the school chooses); WhatsApp from P4.
+7. **The school verifies** (§3.4) and the receipt is issued through the one
+   ledger door; the parent gets the slip and "Payment confirmed".
+8. **Not found** → the parent is told, without blame: "The school could not
+   find this payment yet. Please check the UTR, or contact the office." The
+   report stays open for the office; nothing is credited.
 
-### 3.4 The matching rule (deterministic, no guessing)
+### 3.4 How the school verifies: two paths, both proof from the bank
 
-A bank row is matched **automatically** only when exactly one open link
-qualifies under one of these, tried in order:
+| Path | When it suits | What the verifier does | Evidence recorded |
+|---|---|---|---|
+| **A. Confirm one by one** | A few online payments a day; no set-up needed | Opens the waiting payment (family, amount, UTR, time), checks the school's own bank app or passbook, presses **Found in bank**, ticking "I checked the school's bank account: this UTR shows a credit of ₹X". If the amount seen differs, they enter the amount seen. | `school_confirmed`: the UTR, the amount seen, **who confirmed and when** (audited, never edited). |
+| **B. Upload the statement** | Fee season (many payments a day), or once a week as a check | Downloads the statement from net banking (Excel/CSV) and uploads it. Every waiting payment is checked at once. | `bank_statement_row`: the bank's own line. |
 
-| Rule | Both must hold |
-|---|---|
-| **R1. Reference** | The row's narration contains the link's reference code, **and** the credit is within the window (the link's creation to the upload date). |
-| **R2. UTR** | The row's UTR/RRN equals a UTR the parent reported for the link, **and** the amount equals the link's amount. |
+**Path B's matching rule (automatic, deterministic):** a credit row confirms
+a payment only when exactly one open report or link qualifies:
 
-- An amount different from the link under **R1** is applied as 6f does: oldest
-  due first, excess to the refund list.
-- Two links qualifying for one row, or one link for two rows under R2, means
-  **no automatic match**: both go to exceptions.
-- A bank row is used **at most once**, ever (unique key on the row's
-  identity: account + UTR, or account + date + amount + narration hash when a
-  bank gives no UTR column).
-- **Amount and date alone never match automatically**, however likely it
-  looks.
+- **R1. Reference:** the row's narration contains the link's reference code,
+  and the credit falls within the window (from the link's creation to the
+  upload date).
+- **R2. UTR:** the row's UTR/RRN equals the UTR the parent entered, and the
+  amount equals the link's amount.
 
-### 3.5 Exceptions: a person decides, with the bank row as proof
+Two candidates means no automatic match: both go to the office's list.
+**Amount and date alone never match.** A bank row is used **at most once**,
+ever. The statement upload keeps **credit rows only**, shows a preview with
+the count and total for the uploader to confirm, and checks the opening
+balance against the last upload's closing balance.
 
-The office sees: unmatched credit rows; reported payments not yet seen in a
-statement; rows two links could claim. A person may **match a row to a link
-by hand**. The bank row is required (so this is still verified money), along
-with a reason. It is audited. Above an amount the school sets, the principal
-must approve. A person can also mark a row "not a fee" (a donation, a
-refund), again audited.
+**Path B also checks path A.** When a statement arrives, every payment
+confirmed one by one since the last statement must appear in it. One that
+does not is shown **in red to the principal**: "Confirmed by <name> on
+<date>, not in the bank statement". This is how a mistaken or dishonest
+confirmation is caught.
+
+**Amounts:** a different amount (seen in the bank under path A, or under R1)
+is applied as 6f does: oldest due first; any excess goes to the refund list.
+
+**Who may verify** is a school setting. Above an amount the school sets, a
+path-A confirmation by the accountant also needs the principal's tap. The
+principal always sees the day's confirmations in one list.
+
+### 3.5 The office's list: nothing waits silently
+
+- A payment reported but not verified after **1 working day** reminds the
+  verifiers; after **2** it alerts the principal; the parent's page keeps
+  saying "being verified" and never "paid".
+- Statement credits that match nothing (a parent who never entered a UTR, a
+  donation) are listed. A person may match one to a family's link by hand
+  (the bank row is the proof, with a reason, audited) or mark it "not a fee".
+- Path-A confirmations missing from a later statement (red, above).
+- A report is **never confirmed automatically by time passing.**
 
 ### 3.6 Counter UPI and cheques are reconciled too
 
@@ -185,11 +225,13 @@ arrives is caught here.
 
 | What could go wrong unseen | Guard |
 |---|---|
-| The office stops uploading statements, so payments sit "being confirmed" and parents get angry | My Day card: "Upload today's bank statement: N payments waiting". The nightly job alerts the principal when a reported payment is more than 1 working day old with no upload since. |
+| The school does not verify, so payments sit "being verified" and parents get angry | Notification at once; My Day card "N payments waiting"; reminder after 1 working day, principal alert after 2 (§3.5). |
+| A verifier presses "Found in bank" without looking, or falsely | Named and audited; the principal's tap above the school's limit; every path-A confirmation is checked against the next statement and shown in red if missing. |
+| A parent enters someone else's or an old UTR | A UTR can be used once per school; the verifier checks the amount against the bank; path B checks the amount too. |
 | A wrong column mapping (credit read as debit; Indian digit grouping `1,00,000.00`) | Preview with total and count confirmed by the uploader; parser tests for Indian formats, Dr/Cr columns, negative signs, merged cells; a file whose credit total is 0 or whose dates fall outside its stated period is refused. |
 | The same statement, or overlapping ones, uploaded twice | Bank-row identity is unique; a re-upload adds only the new rows and says so. |
-| A credit the payer's app stripped the note from | R2 (UTR) or exceptions; never a guess. |
-| A UPI app limits or warns on a dynamic QR for a merchant UPI ID | **Gate before any school goes live (§6):** tested on the pilot bank's UPI ID in GPay, PhonePe, Paytm and BHIM at ₹1,999, ₹2,001 and ₹25,000. Fallback: show the school's own bank-issued QR, with the parent typing the amount and reference, and rely on R2. |
+| A credit the payer's app stripped the note from | Path A, R2 (UTR) or the office's list; never a guess. |
+| A UPI app limits or warns on a dynamic QR for a merchant UPI ID | **Gate before any school goes live (§6):** tested on the pilot bank's UPI ID in GPay, PhonePe, Paytm and BHIM at ₹1,999, ₹2,001 and ₹25,000. Fallback: show the school's own bank-issued QR, with the parent typing the amount and reference, and rely on the UTR. |
 | A gateway is switched on while direct UPI also shows | Allowed: each source has its own evidence key, and a double payment is caught as excess and goes to the refund list. |
 
 ### 3.8 Razorpay (and any gateway) switched on by credentials only
@@ -266,8 +308,8 @@ All tables have tenant RLS, forced, with rights pinned in `test/db/grants.test.t
 | `bank_accounts` | Per school: label, bank name, last 4, IFSC, statement profile (column map, date format, amount style) |
 | `bank_statement_imports` | Per upload: account, file SHA-256, period, rows read, credit total, opening/closing balance, uploaded by, status |
 | `bank_credit_rows` | Per credit row: account, dates, narration, UTR/RRN, amount, row identity (unique), import, match status |
-| `payment_reports` | Parent's "I have paid": link, UTR, when. Status: reported, matched, unmatched, expired |
-| `payment_evidence` | `(source, external_id)` **unique**, amount, what it was applied to, receipt, rule (R1/R2/manual), who and why if manual |
+| `payment_reports` | Parent's UTR for a link: UTR (unique per school), when. Status: reported, verified, not_found, withdrawn. A verification row: who, when, path A or B, amount seen. |
+| `payment_evidence` | `(source, external_id)` **unique**, amount, what it was applied to, receipt, rule (A, R1, R2, manual), who and why if a person decided |
 
 `payment_links` (6e) gains `reference_code` (unique per school) and `method`.
 
@@ -275,10 +317,12 @@ All tables have tenant RLS, forced, with rights pinned in `test/db/grants.test.t
 
 - Upload the same statement twice → the second adds 0 rows and credits ₹0.
 - R1 and R2 each match and issue one receipt; amount alone never does; two
-  candidates → exception, no credit.
+  candidates → the office's list, no credit.
 - Excess and duplicate payments → refund list; partial → oldest first, the
   rest still owed; the school reconciles to the rupee (`23` §3 rule 2).
-- A manual match without a bank row is impossible (database constraint).
+- Path A: a UTR used twice in a school is refused; "Found in bank" issues one receipt and tells the parent; "Not found" credits nothing; above the limit it waits for the principal; a path-A confirmation missing from a later statement is shown red to the principal.
+- A hand match of a statement credit without a bank row is impossible (database constraint).
+- Nothing is confirmed by time passing; reminders at 1 and 2 working days.
 - Razorpay: with recorded signed examples, a valid notice credits once;
   tampered, replayed or other-school notices credit nothing; the server-side
   fetch disagreeing with the notice → not credited, flagged. Credentials
@@ -289,11 +333,17 @@ All tables have tenant RLS, forced, with rights pinned in `test/db/grants.test.t
 
 ## 7. Blind spots (accepted, watched)
 
+- **A person's "Found in bank" is trusted until a statement checks it.** A
+  school that never uploads a statement relies on its verifiers' honesty, as
+  it does at the counter today. NetCyberAI names who confirmed, and the
+  principal sees every confirmation.
 - **The statement file is trusted.** A staff member with upload rights could
   edit it. Guards: only finance roles upload; each file's hash is kept; balance
   continuity; the principal sees every upload and manual match. NetCyberAI
   cannot prove a file is untampered. For that, a school needs B or C.
 - **Confirmation lag** depends on the school's habit, not on us.
+- **Fee season load:** confirming 50+ payments a day one by one is slow; the
+  statement upload is the answer, and the screen says so when the queue grows.
 - **MDR from 15 Oct 2026 is new and contested** (a Supreme Court petition,
   no stay reported). The education rate above ₹2,000 is unpublished. The
   cost row above must be re-checked when it is.
@@ -326,6 +376,9 @@ All tables have tenant RLS, forced, with rights pinned in `test/db/grants.test.t
 
 ## 10. Change log
 
+- **2026-10-12**: §3.3–3.5 rewritten to the founder's flow (parent enters the
+  UTR, the school is notified and verifies, then the receipt goes out), with
+  two verification paths and the statement as the cross-check (C170 amended).
 - **2026-10-12**: Created (C170). Founder asked for collection without a
   gateway; direct UPI + bank-statement proof chosen; Razorpay kept dormant
   behind credentials; Bharat Connect recommended for Noor to explore.
