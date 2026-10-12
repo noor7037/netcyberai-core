@@ -12,7 +12,8 @@ import { minorToRupees, rupeesToMinor } from '@/lib/fees/money';
 // and giving the amount they saw. Above the school's limit the principal confirms as well. Nothing here is
 // decided by time passing; a report stays until a person decides it.
 
-type Waiting = { report_id: string; payer: string; class_name: string | null; utr: string; reference: string | null; amount_minor: number; reported_at: string; status: 'reported' | 'awaiting_principal'; amount_seen_minor: number | null; checked_by_name: string | null };
+type NotFound = { report_id: string; payer: string; utr: string; amount_minor: number };
+type Waiting = { working_days_waiting: number; report_id: string; payer: string; class_name: string | null; utr: string; reference: string | null; amount_minor: number; reported_at: string; status: 'reported' | 'awaiting_principal'; amount_seen_minor: number | null; checked_by_name: string | null };
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 
@@ -27,12 +28,18 @@ export function FeesVerifyView() {
   const [seen, setSeen] = useState('');
   const [checked, setChecked] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [notFound, setNotFound] = useState<NotFound[]>([]);
+  const [mayReopen, setMayReopen] = useState(false);
+  const [reopening, setReopening] = useState<string | null>(null);
+  const [reason, setReason] = useState('');
 
   const load = useCallback(async () => {
     const res = await fetch('/api/app/fees/reports').catch(() => null);
     const body = res?.ok ? await res.json().catch(() => null) : null;
     if (!body) return;
     setWaiting(body.waiting ?? []);
+    setNotFound(body.notFound ?? []);
+    setMayReopen(body.mayReopen === true);
     setMayVerify(body.mayVerify === true);
     setIsPrincipal(body.isPrincipal === true);
     setLimitMinor(Number(body.limitMinor ?? 0));
@@ -58,7 +65,18 @@ export function FeesVerifyView() {
     void load();
   }
 
-  if (!waiting || waiting.length === 0) return null;
+  async function reopen(r: NotFound) {
+    setBusy(true);
+    const res = await fetch(`/api/app/fees/reports/${r.report_id}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'reopen', reason }) }).catch(() => null);
+    const body = (await res?.json().catch(() => null)) ?? {};
+    setBusy(false);
+    toast.show(t(res?.ok ? 'ver.reopen.done' : body.code === 'another_waiting' ? 'ver.reopen.another' : 'fee.failed'), res?.ok ? 'success' : 'danger');
+    setReopening(null);
+    setReason('');
+    void load();
+  }
+
+  if (!waiting || (waiting.length === 0 && notFound.length === 0)) return null;
   const when = (iso: string) => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }).format(new Date(iso));
 
   return (
@@ -80,6 +98,11 @@ export function FeesVerifyView() {
                     {r.reference ? ` · ${r.reference}` : ''} · {when(r.reported_at)}
                   </span>
                 </span>
+                {r.working_days_waiting >= 1 && (
+                  <span data-waiting-days={r.working_days_waiting} className={`text-xs font-bold ${r.working_days_waiting >= 2 ? 'text-red-800' : 'text-slate'}`}>
+                    {t('ver.waitingDays', { days: r.working_days_waiting })}
+                  </span>
+                )}
                 {r.status === 'awaiting_principal' && <Badge variant="warning">{t('ver.awaitingPrincipal', { name: r.checked_by_name ?? '', amount: minorToRupees(r.amount_seen_minor ?? 0) })}</Badge>}
               </span>
               {mine && open !== r.report_id && (
@@ -113,6 +136,32 @@ export function FeesVerifyView() {
           );
         })}
       </ul>
+      {notFound.length > 0 && (
+        <div data-not-found-list className="flex flex-col gap-2 border-t border-slate/10 pt-3">
+          <h3 className="text-sm font-bold text-slate">{t('ver.notFound.title')}</h3>
+          <p className="text-sm text-slate/70">{t('ver.notFound.how')}</p>
+          {notFound.map((r) => (
+            <div key={r.report_id} data-not-found-report className="flex flex-col gap-2 rounded-md bg-off-white px-3 py-2 text-sm text-slate">
+              <span>
+                <span className="font-semibold">{r.payer}</span> · {`₹${minorToRupees(r.amount_minor)}`} · {t('ver.utr', { utr: r.utr })}
+              </span>
+              {mayReopen && reopening !== r.report_id && (
+                <button type="button" data-reopen disabled={busy} className={`${TAP} self-start`} onClick={() => setReopening(r.report_id)}>
+                  {t('ver.reopen')}
+                </button>
+              )}
+              {mayReopen && reopening === r.report_id && (
+                <span className="flex flex-col gap-2">
+                  <Input id={`reopen-${r.report_id}`} label={t('ver.reopen.reason')} maxLength={300} value={reason} onChange={(e) => setReason(e.target.value)} />
+                  <button type="button" data-reopen-confirm disabled={busy || !reason.trim()} className={`${PRIMARY} self-start`} onClick={() => void reopen(r)}>
+                    {t('ver.reopen.confirm')}
+                  </button>
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

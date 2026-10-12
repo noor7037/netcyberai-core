@@ -34,7 +34,7 @@ export function productionHandlers(): Record<string, JobHandler> {
     // A new support ticket: the founder's email (C127).
     'ticket.notify': ticketNotifyHandler({ platform, queue: jobQueue }),
     // Each night after midnight in India: overdue dues, late fees where a school has them on, the reconciliation check (C163).
-    'fees.nightly': feesNightlyHandler({ platform }),
+    'fees.nightly': feesNightlyHandler({ platform, queue: jobQueue }),
   };
 }
 

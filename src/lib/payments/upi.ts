@@ -3,6 +3,7 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import type { Sql } from '@/lib/jobs/types';
+import { indiaDate } from '@/lib/time/india';
 import { creditEvidence, type Applied } from './apply';
 
 // Direct UPI to the school's own account (docs/24 §3.3, §3.4 path A, C174).
@@ -81,7 +82,7 @@ const MAX_REPORTS_PER_LINK = 5;
 
 // The parent says: I paid, and this is the UTR. Recorded as a claim. A UTR already used in this school, by
 // anyone, for anything, is refused; the answer does not say whose it was.
-export async function reportUtr(db: Sql, token: string, utrRaw: string): Promise<ReportResult> {
+export async function reportUtr(db: Sql, token: string, utrRaw: string, told?: (schoolId: string, reportId: string) => Promise<unknown>): Promise<ReportResult> {
   const utr = utrRaw.replace(/\s+/g, '');
   if (!/^[0-9]{12}$/.test(utr)) return { ok: false, reason: 'utr' };
   if (!/^[A-Za-z0-9_-]{32,64}$/.test(token)) return { ok: false, reason: 'no_such_link' };
@@ -94,13 +95,15 @@ export async function reportUtr(db: Sql, token: string, utrRaw: string): Promise
   if (mine.n >= MAX_REPORTS_PER_LINK) return { ok: false, reason: 'too_many' };
   const made = await db.query(`insert into payment_reports (school_id, link_id, utr, amount_minor) values ($1, $2, $3, $4) on conflict (school_id, utr) do nothing returning report_id`, [link.school_id, link.link_id, utr, link.amount_minor]);
   if (made.rowCount !== 1) return { ok: false, reason: 'utr_used' };
+  // The verifiers are told in the same transaction (an email job, if that is the school's choice).
+  await told?.(link.school_id, made.rows[0].report_id);
   await writeAuditLog(db, { schoolId: link.school_id, actorUserId: null, actorRole: null, eventAction: 'fees.upi_reported', targetType: 'payment_reports', targetId: made.rows[0].report_id, beforeState: undefined, afterState: { linkId: link.link_id, amountMinor: Number(link.amount_minor) } });
   return { ok: true };
 }
 
 // ---- The school's side --------------------------------------------------------
 
-export type WaitingReport = { report_id: string; payer: string; class_name: string | null; utr: string; reference: string | null; amount_minor: number; reported_at: string; status: 'reported' | 'awaiting_principal'; amount_seen_minor: number | null; checked_by_name: string | null };
+export type WaitingReport = { working_days_waiting: number; report_id: string; payer: string; class_name: string | null; utr: string; reference: string | null; amount_minor: number; reported_at: string; status: 'reported' | 'awaiting_principal'; amount_seen_minor: number | null; checked_by_name: string | null };
 
 export async function waitingReports(db: PoolClient, schoolId: string): Promise<WaitingReport[]> {
   const { rows } = await db.query(
@@ -115,7 +118,8 @@ export async function waitingReports(db: PoolClient, schoolId: string): Promise<
       order by r.reported_at`,
     [schoolId]
   );
-  return rows.map((r) => ({ ...r, reference: r.reference ? referenceLabel(r.reference) : null, amount_minor: Number(r.amount_minor), amount_seen_minor: r.amount_seen_minor === null ? null : Number(r.amount_seen_minor), reported_at: new Date(r.reported_at).toISOString() }));
+  const today = indiaDate();
+  return rows.map((r) => ({ ...r, working_days_waiting: workingDaysBetween(indiaDate(new Date(r.reported_at)), today), reference: r.reference ? referenceLabel(r.reference) : null, amount_minor: Number(r.amount_minor), amount_seen_minor: r.amount_seen_minor === null ? null : Number(r.amount_seen_minor), reported_at: new Date(r.reported_at).toISOString() }));
 }
 
 export type VerifyInput = { action: 'found'; amountSeenMinor: number; checked: boolean } | { action: 'not_found' };
@@ -167,4 +171,25 @@ export async function verifyReport(db: PoolClient, actor: Actor, reportId: strin
   await db.query(`update payment_reports set status = 'verified', decided_by = $3, decided_at = now(), amount_seen_minor = $4, evidence_id = $5 where school_id = $1 and report_id = $2`, [actor.schoolId, reportId, actor.userId, input.amountSeenMinor, evidenceId]);
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.upi_found_in_bank', targetType: 'payment_reports', targetId: reportId, beforeState: { status: report.status }, afterState: { status: 'verified', amountSeenMinor: input.amountSeenMinor, evidenceId, alsoCheckedBy: report.checked_by ?? null, outcome: credit.outcome, unappliedMinor: credit.unappliedMinor } });
   return { ok: true, state: 'verified', credit };
+}
+
+// Counted here and in the alerts: every day after `from` up to `to`, Sundays left out.
+export function workingDaysBetween(from: string, to: string): number {
+  let n = 0;
+  for (let d = Date.parse(`${from}T00:00:00Z`) + 86_400_000; d <= Date.parse(`${to}T00:00:00Z`); d += 86_400_000) if (new Date(d).getUTCDay() !== 0) n += 1;
+  return n;
+}
+
+export type NotFoundReport = { report_id: string; payer: string; utr: string; amount_minor: number; decided_at: string };
+// Reports marked "not found" in the last 60 days: the office may look again and reopen one.
+export async function recentNotFound(db: PoolClient, schoolId: string): Promise<NotFoundReport[]> {
+  const { rows } = await db.query(
+    `select r.report_id, coalesce(f.family_code || ' · ', '') || st.name as payer, r.utr, r.amount_minor, r.decided_at
+       from payment_reports r join payment_links k on k.school_id = r.school_id and k.link_id = r.link_id
+       join fee_billing_students() st on st.school_id = k.school_id and st.student_id = k.student_id
+       left join families f on f.school_id = k.school_id and f.family_id = k.family_id
+      where r.school_id = $1 and r.status = 'not_found' and r.decided_at > now() - interval '60 days' order by r.decided_at desc limit 50`,
+    [schoolId]
+  );
+  return rows.map((r) => ({ ...r, amount_minor: Number(r.amount_minor), decided_at: new Date(r.decided_at).toISOString() }));
 }

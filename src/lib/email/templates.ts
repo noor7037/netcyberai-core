@@ -3,8 +3,8 @@ import { PermanentJobError } from '@/lib/jobs/types';
 // Emails the app sends itself (C97). Every value that came from a form is
 // HTML-escaped: a school name is data, never markup.
 
-export type EmailTemplate = 'application_code' | 'application_verified' | 'added_to_school' | 'ticket_raised';
-export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'application_verified', 'added_to_school', 'ticket_raised'];
+export type EmailTemplate = 'application_code' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting';
+export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting'];
 
 export function escapeHtml(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -66,6 +66,26 @@ export function renderEmail(template: string, data: Record<string, unknown>, sec
     }
     // To the founder (C127): which school, what kind, and the link. Never
     // the ticket's own words: those stay in the app.
+    // UPI payments waiting for the school to verify (C175). It says how many and how much: no child, no parent, no UTR.
+    case 'upi_waiting': {
+      const school = str(data, 'schoolName');
+      const count = str(data, 'count');
+      const amount = str(data, 'amount');
+      const link = str(data, 'url');
+      const one = count === '1';
+      const lead =
+        data.kind === 'alert'
+          ? `${count} UPI payment${one ? ' has' : 's have'} waited two working days to be verified at ${school}.`
+          : data.kind === 'reminder'
+            ? `${count} UPI payment${one ? ' is' : 's are'} still waiting to be verified at ${school}.`
+            : `${count} UPI payment${one ? ' is' : 's are'} waiting to be verified at ${school}.`;
+      const why = 'A parent has paid by UPI and entered the UTR. They get their receipt only when someone at the school finds the payment in the school’s bank account and presses “Found in bank”. Nothing is confirmed by itself.';
+      return {
+        subject: `${data.kind === 'alert' ? 'Waiting two days: ' : data.kind === 'reminder' ? 'Reminder: ' : ''}${count} UPI payment${one ? '' : 's'} to verify (₹${amount})`,
+        html: wrap(`<p><strong>${escapeHtml(lead)}</strong></p><p>Total reported: ₹${escapeHtml(amount)}</p><p>${escapeHtml(why)}</p><p><a href="${escapeHtml(link)}" style="color:#1d4ed8">Open Fees</a></p>`),
+        text: `${lead}\nTotal reported: ₹${amount}\n${why}\nOpen Fees: ${link}`,
+      };
+    }
     case 'ticket_raised': {
       const school = str(data, 'schoolName');
       const category = str(data, 'category');

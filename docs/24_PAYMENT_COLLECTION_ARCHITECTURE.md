@@ -164,6 +164,11 @@ confirmed" on WhatsApp/email
 8. **Not found** → the parent is told, without blame: "The school could not
    find this payment yet. Please check the UTR, or contact the office." The
    report stays open for the office; nothing is credited.
+   **Reopen (C175):** the principal or the accountant may put a "not found"
+   back for checking, with a reason (audited). The parent cannot re-enter
+   that same UTR. In 6h-2 a statement row whose UTR matches a "not found"
+   report goes to the office's list as "Marked not found — but in the bank"
+   for a person to confirm; it is never credited automatically.
 
 ### 3.4 How the school verifies: two paths, both proof from the bank
 
@@ -271,6 +276,8 @@ The adapter is **fully built now and stays dormant** (6f-2):
     its mode, and a trigger refuses mode `test` for a real school, whoever
     writes it.
   Test-fixture schools take test payments, which is how the path is tried.
+  A school that holds any test-mode evidence cannot be un-marked as a test
+  school: the database refuses it (C175).
 - **Switching on** = keys saved + "Test connection" passed + the method
   turned on (for a real school: the live keys). **Switching off** stops new links at once; notices for links
   already made are still accepted and credited.
@@ -387,6 +394,7 @@ All tables have tenant RLS, forced, with rights pinned in `test/db/grants.test.t
 
 ## 10. Change log
 
+- **2026-10-20**: §3.3 step 8: a "not found" can be reopened by the principal or accountant; §3.8: a school with test-mode evidence stays a test school (C175).
 - **2026-10-19**: §3.8: test keys never credit a real school (C173).
 - **2026-10-12**: §3.3–3.5 rewritten to the founder's flow (parent enters the
   UTR, the school is notified and verifies, then the receipt goes out), with
