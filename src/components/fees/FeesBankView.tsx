@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { useFeesPart } from './FeesFirstLoad';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
@@ -25,6 +26,7 @@ const COLUMNS = ['date', 'narration', 'credit', 'debit', 'amount', 'drCr', 'bala
 export function FeesBankView() {
   const { t, lang } = useT();
   const toast = useToast();
+  const getBank = useFeesPart('bank', '/api/app/fees/bank');
   const [accounts, setAccounts] = useState<Account[] | null>(null);
   const [uploads, setUploads] = useState<Upload[]>([]);
   const [mayAdd, setMayAdd] = useState(false);
@@ -41,7 +43,7 @@ export function FeesBankView() {
   const [done, setDone] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    const res = await fetch('/api/app/fees/bank').catch(() => null);
+    const res = await getBank().catch(() => null);
     const body = res?.ok ? await res.json().catch(() => null) : null;
     if (!body) return;
     setAccounts(body.accounts ?? []);
@@ -49,7 +51,7 @@ export function FeesBankView() {
     setLists(body.lists ?? null);
     setMayAdd(body.mayAddAccount === true);
     setAccountId((id) => id || body.accounts?.[0]?.account_id || '');
-  }, []);
+  }, [getBank]);
   useEffect(() => {
     void load();
   }, [load]);

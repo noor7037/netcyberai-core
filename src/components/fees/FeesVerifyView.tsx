@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { useFeesPart } from './FeesFirstLoad';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
@@ -20,6 +21,7 @@ const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold 
 export function FeesVerifyView() {
   const { t, lang } = useT();
   const toast = useToast();
+  const getReports = useFeesPart('reports', '/api/app/fees/reports');
   const [waiting, setWaiting] = useState<Waiting[] | null>(null);
   const [mayVerify, setMayVerify] = useState(false);
   const [isPrincipal, setIsPrincipal] = useState(false);
@@ -34,7 +36,7 @@ export function FeesVerifyView() {
   const [reason, setReason] = useState('');
 
   const load = useCallback(async () => {
-    const res = await fetch('/api/app/fees/reports').catch(() => null);
+    const res = await getReports().catch(() => null);
     const body = res?.ok ? await res.json().catch(() => null) : null;
     if (!body) return;
     setWaiting(body.waiting ?? []);
@@ -43,7 +45,7 @@ export function FeesVerifyView() {
     setMayVerify(body.mayVerify === true);
     setIsPrincipal(body.isPrincipal === true);
     setLimitMinor(Number(body.limitMinor ?? 0));
-  }, []);
+  }, [getReports]);
   useEffect(() => {
     void load();
   }, [load]);

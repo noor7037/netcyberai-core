@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { useFeesPart } from './FeesFirstLoad';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
@@ -20,6 +21,7 @@ const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold 
 export function FeesRecoveryView() {
   const { t, lang } = useT();
   const toast = useToast();
+  const getRecovery = useFeesPart('recovery', '/api/app/fees/recovery');
   const [rows, setRows] = useState<Row[] | null>(null);
   const [refunds, setRefunds] = useState<Refund[]>([]);
   const [mayRefund, setMayRefund] = useState(false);
@@ -30,13 +32,13 @@ export function FeesRecoveryView() {
   const [busy, setBusy] = useState(false);
 
   const load = useCallback(async () => {
-    const res = await fetch('/api/app/fees/recovery').catch(() => null);
+    const res = await getRecovery().catch(() => null);
     const body = res?.ok ? await res.json().catch(() => null) : null;
     if (!body) return;
     setRows(body.followUps ?? []);
     setRefunds(body.refunds ?? []);
     setMayRefund(body.mayRecordRefund === true);
-  }, []);
+  }, [getRecovery]);
   useEffect(() => {
     void load();
   }, [load]);
