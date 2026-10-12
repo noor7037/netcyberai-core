@@ -22,7 +22,6 @@ export type OfficeDashboardData = {
   feesCollectedMinor: number;
   feesPendingMinor: number;
   feesOverdueMinor: number;
-  feesPartialMinor: number; // billed amount of entries that are part paid
   feesWaivedMinor: number;
   overdueCount: number;
   consentPending: number;
@@ -46,7 +45,7 @@ export function OfficeDashboardView({ data, now = new Date() }: { data: OfficeDa
     ...(unmarked > 0 && !sunday
       ? [{ id: 'att', label: `${plural(unmarked, 'active student has', 'active students have')} no attendance saved today`, count: unmarked, href: '/app/attendance', action: 'Mark attendance', why: data.markedToday === 0 ? 'No attendance has been saved for today for any class. If the school is closed today, ignore this.' : 'Attendance is saved for some students today, but not for these.', icon: 'attendance' as const, tone: 'royal' as const }]
       : []),
-    ...(data.overdueCount > 0 ? [{ id: 'fees', label: plural(data.overdueCount, 'fee entry is overdue', 'fee entries are overdue'), count: data.overdueCount, href: '/app/fees', action: 'Open fees', why: 'These fee entries are still pending and their due date has passed.', icon: 'fees' as const, tone: 'tangerine' as const }] : []),
+    ...(data.overdueCount > 0 ? [{ id: 'fees', label: plural(data.overdueCount, 'fee entry is overdue', 'fee entries are overdue'), count: data.overdueCount, href: '/app/fees', action: 'Open fees', why: 'For these fee entries their due date has passed and money is still owed.', icon: 'fees' as const, tone: 'tangerine' as const }] : []),
     ...(data.consentPending > 0 ? [{ id: 'consent', label: `${plural(data.consentPending, 'student is', 'students are')} waiting for consent`, count: data.consentPending, href: '/app/students', action: 'Open students', why: 'A student stays “pending consent” until a parent or guardian’s consent is recorded. Messages to parents are held until then.', icon: 'shield' as const, tone: 'emerald' as const }] : []),
     ...(data.blockedThisWeek > 0 ? [{ id: 'blocked', label: `${plural(data.blockedThisWeek, 'message was', 'messages were')} held back in the last 7 days`, count: data.blockedThisWeek, href: '/app/communication', action: 'Open messages', why: 'A message is held when consent is missing, it is outside allowed hours, or the budget is used up. Holding it is the safeguard working.', icon: 'chat' as const, tone: 'cyan' as const }] : []),
   ];
@@ -75,14 +74,13 @@ export function OfficeDashboardView({ data, now = new Date() }: { data: OfficeDa
         />
         <RingProgress title="Attendance marked today" done={data.markedToday} total={markable} noun="active students" doneWord="marked" tone="royal" emptyHint="Add students and record their consent; then today’s marking shows here." />
         <DonutChart
-          title="Fee entries by status"
+          title="Fees: received and owed"
           unit="inr_paise"
           tone="tangerine"
           slices={[
-            { id: 'paid', label: 'Paid', value: data.feesCollectedMinor },
-            { id: 'partial', label: 'Part paid (full amount billed)', value: data.feesPartialMinor },
-            { id: 'pending', label: 'Pending, not yet due', value: data.feesPendingMinor },
-            { id: 'overdue', label: 'Overdue', value: data.feesOverdueMinor },
+            { id: 'paid', label: 'Received', value: data.feesCollectedMinor },
+            { id: 'pending', label: 'Owed, not yet due', value: data.feesPendingMinor },
+            { id: 'overdue', label: 'Owed and overdue', value: data.feesOverdueMinor },
             { id: 'waived', label: 'Waived', value: data.feesWaivedMinor },
           ]}
           emptyHint="Fee entries appear here once the first fees are recorded."

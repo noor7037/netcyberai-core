@@ -17,9 +17,11 @@ import { minorToRupees, rupeesToMinor } from '@/lib/fees/money';
 // however many times the press arrives. A wrong receipt is reversed with a
 // reason by the principal or the school admin; nothing is edited.
 
-type Due = { fee_id: string; student_name: string; head_name: string | null; period_key: string | null; due_date: string; balance_minor: number };
+type Due = { fee_id: string; student_name: string; head_name: string | null; period_key: string | null; is_late_fee: boolean; overdue: boolean; due_date: string; balance_minor: number };
 type Receipt = { receipt_id: string; receipt_no: string; issued_at: string; total_minor: number; method: string; student_name: string; reversed_at: string | null };
 type Totals = { netMinor: number; paidMinor: number; balanceMinor: number; problems: unknown[] };
+type Overdue = { minor: number; count: number };
+type LastRun = { runDate: string; markedOverdue: number; lateFeesRaised: number; problems: number };
 const METHODS = ['cash', 'upi', 'cheque', 'card', 'netbanking'] as const;
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
@@ -43,6 +45,8 @@ export function FeesCollectView() {
   const [busy, setBusy] = useState(false);
   const [last, setLast] = useState<{ receiptId: string; receiptNo: string } | null>(null);
   const [totals, setTotals] = useState<Totals | null>(null);
+  const [overdue, setOverdue] = useState<Overdue | null>(null);
+  const [lastRun, setLastRun] = useState<LastRun | null>(null);
   const [receipts, setReceipts] = useState<Receipt[]>([]);
   const [mayReverse, setMayReverse] = useState(false);
   const [reversing, setReversing] = useState<{ id: string; reason: string } | null>(null);
@@ -52,6 +56,8 @@ export function FeesCollectView() {
     const body = (await res?.json().catch(() => null)) ?? {};
     if (res?.ok) {
       setTotals(body.totals);
+      setOverdue(body.overdue ?? null);
+      setLastRun(body.lastRun ?? null);
       setReceipts(body.receipts);
       setMayReverse(body.mayReverse === true);
     }
@@ -149,12 +155,12 @@ export function FeesCollectView() {
   }
 
   if (classes.length === 0) return null;
-  const dueLabel = (d: Due) => [scope === 'family' ? d.student_name : null, d.head_name ?? t('rcp.fee'), d.period_key && d.period_key !== 'once' ? d.period_key : null].filter(Boolean).join(' · ');
+  const dueLabel = (d: Due) => [scope === 'family' ? d.student_name : null, d.head_name ?? t(d.is_late_fee ? 'pay.lateFee' : 'rcp.fee'), d.period_key && d.period_key !== 'once' ? d.period_key : null].filter(Boolean).join(' · ');
 
   return (
     <section lang={lang} className="flex flex-col gap-6">
       {totals && (
-        <div data-fee-totals className="grid gap-3 rounded-lg border border-slate/10 bg-white p-4 text-sm text-slate sm:grid-cols-3">
+        <div data-fee-totals className="grid gap-3 rounded-lg border border-slate/10 bg-white p-4 text-sm text-slate sm:grid-cols-4">
           <p>
             <span className="block text-slate/70">{t('pay.totals.net')}</span>
             <span className="text-lg font-bold">{`₹${minorToRupees(totals.netMinor)}`}</span>
@@ -167,8 +173,16 @@ export function FeesCollectView() {
             <span className="block text-slate/70">{t('pay.totals.balance')}</span>
             <span data-fee-balance className="text-lg font-bold">{`₹${minorToRupees(totals.balanceMinor)}`}</span>
           </p>
+          <p>
+            <span className="block text-slate/70">{t('pay.totals.overdue')}</span>
+            <span data-fee-overdue className="text-lg font-bold">{`₹${minorToRupees(overdue?.minor ?? 0)}`}</span>
+            <span className="block text-xs text-slate/70">{t('pay.totals.overdueCount', { count: overdue?.count ?? 0 })}</span>
+          </p>
+          <p data-fee-nightly className="text-xs text-slate/70 sm:col-span-4">
+            {lastRun ? t(lastRun.problems === 0 ? 'pay.nightly' : 'pay.nightly.problem', { date: lastRun.runDate, count: lastRun.markedOverdue, late: lastRun.lateFeesRaised }) : t('pay.nightly.none')}
+          </p>
           {totals.problems.length > 0 && (
-            <p role="alert" className="font-semibold text-red-800 sm:col-span-3">
+            <p role="alert" className="font-semibold text-red-800 sm:col-span-4">
               {t('pay.totals.problem', { count: totals.problems.length })}
             </p>
           )}
@@ -214,7 +228,10 @@ export function FeesCollectView() {
                 <li key={d.fee_id} data-open-due className="grid items-center gap-2 rounded-md bg-off-white px-3 py-2 text-sm text-slate sm:grid-cols-[1fr_auto_10rem]">
                   <span>
                     <span className="font-semibold">{dueLabel(d)}</span>
-                    <span className="block text-xs text-slate/70">{t('pay.dueOn', { date: d.due_date })}</span>
+                    <span className="block text-xs text-slate/70">
+                      {t('pay.dueOn', { date: d.due_date })}
+                      {d.overdue && <span data-due-overdue className="ml-2 font-semibold text-red-800">{t('pay.due.overdue')}</span>}
+                    </span>
                   </span>
                   <span className="font-semibold">{`₹${minorToRupees(d.balance_minor)}`}</span>
                   {choose && <Input id={`pick-${d.fee_id}`} label={t('pay.pick.amount')} inputMode="decimal" value={picked[d.fee_id] ?? ''} onChange={(e) => setPicked((p) => ({ ...p, [d.fee_id]: e.target.value }))} />}

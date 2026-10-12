@@ -3,7 +3,9 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { allocateOldestFirst, getReceipt, openDues, reconcile, reverseReceipt, takePayment, type TakeInput } from '@/lib/fees/payments';
 
-// Payments, receipts and reversals (docs/23 6c, C160). The acceptance test
+// Payments, receipts and reversals (docs/23 6c, C160). Every due here fell
+// due months ago, so a part-paid one is overdue on what is left (C163).
+// The acceptance test
 // of the slice is the last word of P3's "done when": it reconciles to the
 // rupee. Every balance below is worked out by hand in the comments.
 
@@ -84,7 +86,7 @@ describe('on the real schema', () => {
     if (!r.ok) throw new Error('unreachable');
     receipts.first = r.receiptId;
     expect(r.receiptNo).toMatch(/^RCP-\d{4}-00001$/);
-    expect(await balances()).toMatchObject({ ashaApr: [0, 'paid'], ashaMay: [100100, 'partial'], ashaJun: [150050, expect.any(String)] });
+    expect(await balances()).toMatchObject({ ashaApr: [0, 'paid'], ashaMay: [100100, 'overdue'], ashaJun: [150050, expect.any(String)] });
     const receipt = await as(accountant, (c) => getReceipt(c, A, r.receiptId));
     expect(receipt).toMatchObject({ receipt_no: r.receiptNo, total_minor: 200000, method: 'cash', allocation: 'oldest_first', student_name: 'Asha', issued_by_name: 'Accountant A', reversed_at: null });
     expect(receipt!.lines.map((l) => l.amount_minor)).toEqual([150050, 49950]);
@@ -97,7 +99,7 @@ describe('on the real schema', () => {
     if (!first.ok || !again.ok) throw new Error('unreachable');
     expect(again).toMatchObject({ replayed: true, receiptId: first.receiptId, receiptNo: first.receiptNo });
     expect((await db.pg.query(`select count(*)::int as n from receipts where school_id = $1 and student_id = $2`, [A, S.chitra])).rows[0].n).toBe(1);
-    expect((await balances()).chitraApr).toEqual([150000, 'partial']); // 2,000 − 500, credited once
+    expect((await balances()).chitraApr).toEqual([150000, 'overdue']); // 2,000 − 500, credited once
     receipts.chitra = first.receiptId;
   });
 
@@ -107,7 +109,7 @@ describe('on the real schema', () => {
     expect(r).toMatchObject({ ok: true, payments: [{ feeId: F.ashaJun, amountMinor: 150050 }] });
     if (!r.ok) throw new Error('unreachable');
     receipts.chosen = r.receiptId;
-    expect(await balances()).toMatchObject({ ashaMay: [100100, 'partial'], ashaJun: [0, 'paid'] });
+    expect(await balances()).toMatchObject({ ashaMay: [100100, 'overdue'], ashaJun: [0, 'paid'] });
     expect((await db.pg.query(`select actor_user_id, after_state->>'allocation' as allocation from audit_log where school_id = $1 and event_action = 'fees.payment_taken' and target_id = $2`, [A, r.receiptId])).rows).toEqual([{ actor_user_id: PRINCIPAL, allocation: 'chosen' }]);
     // A chosen split must be this payer's own open dues, within each balance, and add up to the amount.
     for (const allocations of [[{ feeId: F.chitraApr, amountMinor: 1000 }], [{ feeId: F.ashaMay, amountMinor: 100101 }], [{ feeId: F.ashaMay, amountMinor: 500 }, { feeId: F.ashaMay, amountMinor: 500 }], [{ feeId: F.ashaMay, amountMinor: 999 }]]) {
@@ -124,9 +126,9 @@ describe('on the real schema', () => {
     if (!r.ok) throw new Error('unreachable');
     receipts.family = r.receiptId;
     expect((await as(accountant, (c) => getReceipt(c, A, r.receiptId)))).toMatchObject({ family_code: 'FAM-1', reference: 'Cheque 000123' });
-    expect(await balances()).toMatchObject({ bilalApr: [0, 'paid'], ashaMay: [80100, 'partial'] });
+    expect(await balances()).toMatchObject({ bilalApr: [0, 'paid'], ashaMay: [80100, 'overdue'] });
     // Chitra is not of that family: a family payment never touches her dues.
-    expect((await balances()).chitraApr).toEqual([150000, 'partial']);
+    expect((await balances()).chitraApr).toEqual([150000, 'overdue']);
   });
 
   it('more than is owed is refused, by the app and by the database itself', async () => {
@@ -148,7 +150,7 @@ describe('on the real schema', () => {
     expect(await as(principal, (c) => reverseReceipt(c, actor(principal), receipts.first, 'again'))).toEqual({ ok: false, reason: 'already_reversed' });
     expect((await db.pg.query(`select count(*)::int as n from payments where school_id = $1`, [A])).rows[0].n).toBe(before + 2);
     // April is owed in full again; May owes 1,500.50 − 200 (the family cheque) = 1,300.50.
-    expect(await balances()).toMatchObject({ ashaApr: [150050, expect.stringMatching(/pending|overdue/)], ashaMay: [130050, 'partial'] });
+    expect(await balances()).toMatchObject({ ashaApr: [150050, expect.stringMatching(/pending|overdue/)], ashaMay: [130050, 'overdue'] });
     expect(await as(principal, (c) => getReceipt(c, A, receipts.first))).toMatchObject({ reversal_reason: 'Entered against the wrong student', reversed_at: expect.anything() });
     // The next receipt takes the next number; the reversed number is not reused.
     const next = await take(accountant, S.asha, 150050);
@@ -174,7 +176,7 @@ describe('on the real schema', () => {
     //   Bilal April    800.00  paid 800 (family cheque)                                 → 0
     //   Chitra April 2,000.00  paid 500                                                 → 1,500.00
     //   Net 7,301.50; paid 4,501.00; still owed 2,800.50.
-    expect(await balances()).toEqual({ ashaApr: [0, 'paid'], ashaMay: [130050, 'partial'], ashaJun: [0, 'paid'], bilalApr: [0, 'paid'], chitraApr: [150000, 'partial'] });
+    expect(await balances()).toEqual({ ashaApr: [0, 'paid'], ashaMay: [130050, 'overdue'], ashaJun: [0, 'paid'], bilalApr: [0, 'paid'], chitraApr: [150000, 'overdue'] });
     const r = await as(accountant, (c) => reconcile(c, A));
     expect(r).toEqual({ dues: 5, grossMinor: 730150, concessionMinor: 0, netMinor: 730150, paidMinor: 450100, balanceMinor: 280050, problems: [] });
     // The same total three ways: net − paid, the sum of the balances, and the sum of the live receipts.

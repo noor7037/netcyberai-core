@@ -113,7 +113,9 @@ medium with a security read.
 - **Late fee** (decided, C158): a school setting, **off by default**. The
   rule and its amounts are configuration, never constants. When a school
   switches it on, a fine is a new due line raised by the nightly job (6d),
-  never a change to an old line.
+  never a change to an old line. As built (C163): an amount in rupees
+  (0 = off) and days of grace; one late fee per due at most; only dues
+  falling due on or after the day the setting was last changed are fined.
 - **Receipt.** One numbered receipt per payment event, printable from the
   browser. The three-copy layout waits for a real school's format.
 - **RTE.** P3 tags the child and keeps their lines visible as conceded

@@ -65,7 +65,7 @@ export default async function ReceiptPage({ params }: { params: { receiptId: str
           <tbody>
             {r.lines.map((l, i) => (
               <tr key={i} className="border-b border-slate/10">
-                <td className="py-2">{[r.family_code ? l.student_name : null, l.head_name ?? t(lang, 'rcp.fee'), l.period_key && l.period_key !== 'once' ? l.period_key : null].filter(Boolean).join(' · ')}</td>
+                <td className="py-2">{[r.family_code ? l.student_name : null, l.head_name ?? t(lang, l.is_late_fee ? 'pay.lateFee' : 'rcp.fee'), l.period_key && l.period_key !== 'once' ? l.period_key : null].filter(Boolean).join(' · ')}</td>
                 <td className="py-2 text-right">{`₹${minorToRupees(l.amount_minor)}`}</td>
               </tr>
             ))}

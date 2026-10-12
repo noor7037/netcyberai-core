@@ -343,6 +343,40 @@ const feesPayDone = async () => {
   const r = rows[0];
   if (r.receipts !== 1 || r.received !== 100000 || r.credited !== 100000) throw new Error(`expected one receipt of 1,000 credited once: ${JSON.stringify(r)}`);
 };
+// Overdue and the late fee (C163): the principal sets a late fee on the
+// page; the totals box shows as overdue exactly the unpaid balance of the
+// dues past their date, and says the nightly check has not run here yet.
+const clearLateFee = async () => {
+  await db.pg.query(`delete from school_setting_changes where school_id = $1 and module_id = 'fees'`, [SCHOOL]);
+  await db.pg.query(`delete from school_settings where school_id = $1 and module_id = 'fees'`, [SCHOOL]);
+};
+const feesOverdue = async (page) => {
+  await clearLateFee();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('#late-fee-rupees').fill('50');
+  await page.locator('#late-fee-grace').fill('3');
+  await page.locator('[data-save-late-fee]').click();
+  await page.waitForFunction(() => /50/.test(document.querySelector('[data-late-fee-now]')?.textContent ?? ''), null, { timeout: 15000 });
+  await page.locator('[data-fee-overdue]').waitFor({ timeout: 15000 });
+};
+const feesOverdueDone = async (page) => {
+  const shown = Math.round(Number((await page.locator('[data-fee-overdue]').textContent()).replace(/[^0-9.]/g, '')) * 100);
+  const nightly = await page.locator('[data-fee-nightly]').textContent();
+  const { rows } = await db.pg.query(
+    `select (select coalesce(sum(l.amount_minor - coalesce((select sum(p.amount_minor) from payments p where p.fee_id = l.fee_id), 0)), 0)::bigint from fees_ledger l
+              where l.school_id = $1 and (l.status::text = 'overdue' or (l.status::text in ('pending', 'partial') and l.due_date < ${TODAY_SQL}))) as overdue,
+            (select setting_values from school_settings where school_id = $1 and module_id = 'fees') as saved,
+            (select count(*)::int from school_setting_changes where school_id = $1 and module_id = 'fees') as changes,
+            (select count(*)::int from fees_ledger where school_id = $1 and late_fee_for is not null) as late_lines`,
+    [SCHOOL]
+  );
+  await clearLateFee();
+  const r = rows[0];
+  if (Number(r.overdue) !== shown) throw new Error(`the page shows ${shown} paise overdue; the unpaid balance past its date is ${r.overdue}`);
+  if (r.saved?.late_fee_rupees !== 50 || r.saved?.late_fee_grace_days !== 3 || r.changes < 1) throw new Error(`the late fee was not saved with its history: ${JSON.stringify(r)}`);
+  if (r.late_lines !== 0) throw new Error('saving the late-fee setting raised a due; only the nightly job may');
+  if (!/first check has not run/.test(nightly ?? '')) throw new Error(`the nightly line is wrong: ${nightly}`);
+};
 // Sign-out through the shell's own button (C161): the cookies go, and the
 // app sends the next visit to the sign-in page.
 const signOut = async (page) => {
@@ -493,6 +527,7 @@ const SCREENS = [
   ['principal', 'app-fees', '/app/fees', feesSetup, feesSetupDone],
   ['principal', 'app-fees-dues', '/app/fees', feesDues, feesDuesDone],
   ['principal', 'app-fees-receipt', '/app/fees', feesPay, feesPayDone],
+  ['principal', 'app-fees-overdue', '/app/fees', feesOverdue, feesOverdueDone],
   ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],
   ['principal', 'app-timetable-clash', '/app/timetable', timetableClash],

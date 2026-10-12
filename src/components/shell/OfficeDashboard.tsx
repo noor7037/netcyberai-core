@@ -62,7 +62,6 @@ export async function OfficeDashboard({ session }: { session: SessionClaims }) {
       feesCollectedMinor: feesRes.collectedMinor,
       feesPendingMinor: feesRes.pendingMinor,
       feesOverdueMinor: feesRes.overdueMinor,
-      feesPartialMinor: feesRes.partialMinor,
       feesWaivedMinor: feesRes.waivedMinor,
       overdueCount: feesRes.overdueCount,
       consentPending: Number(consentRes.rows[0]?.pending ?? 0),

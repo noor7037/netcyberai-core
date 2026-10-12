@@ -9,8 +9,9 @@ import { MODULE_REGISTRY } from '@/lib/contracts/modules';
 import { loadFeesSummary } from '@/lib/fees/overdue';
 import { loadMyDay } from '@/lib/today/cards';
 
-// "Fees overdue" (C137): an entry is overdue when it is still pending and
-// its due date has passed, by the date in India. One rule for the
+// "Fees overdue" (C137, C163): an entry is overdue when its due date has
+// passed, by the date in India, and something is still owed on it, part
+// paid or not. What counts is the unpaid balance. One rule for the
 // dashboard's tile, its attention item and chart, and My Day's card.
 
 let db: TestDb;
@@ -34,33 +35,35 @@ beforeAll(async () => {
          ($1, $2, 1600000, ${TODAY} + 7, 'pending'),   -- not yet due
          ($1, $2, 3200000, ${TODAY} - 9, 'paid'),      -- paid, though its date has passed
          ($1, $2, 6400000, ${TODAY} - 9, 'waived'),    -- waived
-         ($1, $2, 12800000, ${TODAY} - 9, 'partial'),  -- part paid: shown as part paid, not as overdue
          ($3, $2, 99900000, ${TODAY} - 9, 'pending')   -- another school's
       `,
       [A, s, B]
     );
+    // Part paid and past its date: OVERDUE on what is left (128,000 billed, 28,000 paid). Part paid and not yet due: owed, not overdue.
+    const late = (await q.query(`insert into fees_ledger (school_id, student_id, amount_minor, due_date, status) values ($1, $2, 12800000, ${TODAY} - 9, 'partial') returning fee_id`, [A, s])).rows[0].fee_id;
+    const early = (await q.query(`insert into fees_ledger (school_id, student_id, amount_minor, due_date, status) values ($1, $2, 500000, ${TODAY} + 3, 'partial') returning fee_id`, [A, s])).rows[0].fee_id;
+    await q.query(`insert into payments (school_id, fee_id, amount_minor) values ($1, $2, 2800000), ($1, $3, 100000)`, [A, late, early]);
   });
 }, 60000);
 
 describe('the rule, counted in the school’s own rows', () => {
-  it('overdue = pending with the due date passed, plus those already stored as overdue', async () => {
+  it('overdue = past its date with money still owed, part paid or not, counted on the balance', async () => {
     const f = await db.tenant(as(A), (q) => loadFeesSummary(q));
-    expect(f.overdueCount).toBe(3);
-    expect(f.overdueMinor).toBe(100000 + 200000 + 400000);
+    expect(f.overdueCount).toBe(4);
+    expect(f.overdueMinor).toBe(100000 + 200000 + 400000 + (12800000 - 2800000));
   });
 
-  it('due today is not overdue yet; paid, waived and part paid never are', async () => {
+  it('due today is not overdue yet; paid and waived never are; received is the money that came in', async () => {
     const f = await db.tenant(as(A), (q) => loadFeesSummary(q));
-    expect(f.pendingMinor).toBe(800000 + 1600000); // pending and not past its date
-    expect(f.collectedMinor).toBe(3200000);
+    expect(f.pendingMinor).toBe(800000 + 1600000 + (500000 - 100000)); // still owed and not past its date
+    expect(f.collectedMinor).toBe(3200000 + 2800000 + 100000);
     expect(f.waivedMinor).toBe(6400000);
-    expect(f.partialMinor).toBe(12800000);
   });
 
   it('nothing is counted twice: the parts add up to everything the school billed', async () => {
     const f = await db.tenant(as(A), (q) => loadFeesSummary(q));
     const total = Number((await db.query(`select sum(amount_minor) as s from fees_ledger where school_id = $1`, [A])).rows[0].s);
-    expect(f.collectedMinor + f.pendingMinor + f.overdueMinor + f.partialMinor + f.waivedMinor).toBe(total);
+    expect(f.collectedMinor + f.pendingMinor + f.overdueMinor + f.waivedMinor).toBe(total);
   });
 
   it('another school’s fees are never counted', async () => {
@@ -70,35 +73,36 @@ describe('the rule, counted in the school’s own rows', () => {
 
   it('a school with no fees has zeros, not an error', async () => {
     const f = await db.tenant(as(randomUUID()), (q) => loadFeesSummary(q));
-    expect(f).toEqual({ collectedMinor: 0, pendingMinor: 0, overdueMinor: 0, overdueCount: 0, partialMinor: 0, waivedMinor: 0 });
+    expect(f).toEqual({ collectedMinor: 0, pendingMinor: 0, overdueMinor: 0, overdueCount: 0, waivedMinor: 0 });
   });
 });
 
 describe('every place that says "overdue" agrees', () => {
-  it('My Day’s card counts the same three entries as the dashboard', async () => {
+  it('My Day’s card counts the same four entries as the dashboard', async () => {
     const ents: SchoolEntitlements = { schoolId: A, plan: 'standard', accessMode: 'full', modules: Object.fromEntries(MODULE_REGISTRY.map((m) => [m.id, { enabled: true, source: 'plan' as const }])) };
     const day = await db.tenant(as(A), (q) => loadMyDay(q, { schoolId: A, userId: principal, role: 'principal' }, ents, { sunday: false }));
-    expect(day.cards.find((c) => c.type === 'fees-overdue')).toMatchObject({ count: 3 });
+    expect(day.cards.find((c) => c.type === 'fees-overdue')).toMatchObject({ count: 4 });
   });
 
   it('the dashboard’s tile, attention item, hero chip and chart all show the worked-out numbers', async () => {
     const f = await db.tenant(as(A), (q) => loadFeesSummary(q));
     const data: OfficeDashboardData = {
       schoolName: 'A', activeStudents: 10, totalStudents: 10, totalStaff: 1, presentToday: 0, absentToday: 0, markedToday: 0, attendanceTrend: [],
-      feesCollectedMinor: f.collectedMinor, feesPendingMinor: f.pendingMinor, feesOverdueMinor: f.overdueMinor, feesPartialMinor: f.partialMinor, feesWaivedMinor: f.waivedMinor, overdueCount: f.overdueCount,
+      feesCollectedMinor: f.collectedMinor, feesPendingMinor: f.pendingMinor, feesOverdueMinor: f.overdueMinor, feesWaivedMinor: f.waivedMinor, overdueCount: f.overdueCount,
       consentPending: 0, consentTotal: 10, blockedThisWeek: 0, recentActivity: [],
     };
     const html = renderToStaticMarkup(h(OfficeDashboardView, { data }));
-    expect(html).toContain('₹7,000'); // the tile: 1,000 + 2,000 + 4,000 rupees overdue
-    expect(html).toMatch(/<span[^>]*>3<\/span> fee entries are overdue/);
-    expect(html).toContain('still pending and their due date has passed');
-    expect(html).toContain('Pending, not yet due');
+    expect(html).toContain('₹1,07,000'); // the tile: 1,000 + 2,000 + 4,000 + the 1,00,000 left on the part-paid fee
+    expect(html).toMatch(/<span[^>]*>4<\/span> fee entries are overdue/);
+    expect(html).toContain('their due date has passed and money is still owed');
+    expect(html).toContain('Owed, not yet due');
+    expect(html).not.toContain('Part paid (full amount billed)');
   });
 
   it('with nothing overdue the dashboard does not raise it', () => {
     const data: OfficeDashboardData = {
       schoolName: 'A', activeStudents: 10, totalStudents: 10, totalStaff: 1, presentToday: 0, absentToday: 0, markedToday: 0, attendanceTrend: [],
-      feesCollectedMinor: 0, feesPendingMinor: 500000, feesOverdueMinor: 0, feesPartialMinor: 0, feesWaivedMinor: 0, overdueCount: 0,
+      feesCollectedMinor: 0, feesPendingMinor: 500000, feesOverdueMinor: 0, feesWaivedMinor: 0, overdueCount: 0,
       consentPending: 0, consentTotal: 10, blockedThisWeek: 0, recentActivity: [],
     };
     expect(renderToStaticMarkup(h(OfficeDashboardView, { data }))).not.toMatch(/fee entr(y is|ies are) overdue/);
