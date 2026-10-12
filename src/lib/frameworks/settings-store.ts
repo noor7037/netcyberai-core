@@ -1,8 +1,11 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import type { ModuleId, SchoolRole } from '@/lib/contracts/modules';
-import type { ModuleSettingsSchema, SchoolSettings, SettingChange, SettingValue, SettingsUpdate, SettingsUpdateResult } from '@/lib/contracts/settings';
+import type { StaffRole } from '@/lib/auth/types';
+import type { ModuleSettingsSchema, SchoolSettings, SettingChange, SettingDefinition, SettingValue, SettingsUpdate, SettingsUpdateResult } from '@/lib/contracts/settings';
 import type { Sql } from '@/lib/jobs/types';
+import { checkModuleAccess } from './entitlements';
 import { applySettingsUpdate, effectiveValues } from './settings-engine';
+import { SETTINGS_SCHEMAS } from './settings-schemas';
 
 // Storage for the settings engine (C112): one row per school and module
 // with only the non-default values and a revision; every change also
@@ -39,6 +42,25 @@ export async function readSettings(db: Sql, schoolId: string, schema: ModuleSett
       updatedAt: row ? new Date(row.updated_at).toISOString() : new Date(0).toISOString(),
     },
   };
+}
+
+// Every module's settings this person may open, for the school's Settings
+// screen (17 §1a, C166): the schema, the values in force, which of them the
+// school has set, and whether this person may change each field. A module
+// the school does not have, or this role may not open, is left out.
+export type ModuleSettingsForScreen = { moduleId: ModuleId; revision: number; fields: { def: SettingDefinition; value: SettingValue; isDefault: boolean; mayEdit: boolean }[] };
+export async function readAllSettings(db: Sql, claims: { schoolId: string; role: StaffRole }): Promise<ModuleSettingsForScreen[]> {
+  const out: ModuleSettingsForScreen[] = [];
+  for (const schema of SETTINGS_SCHEMAS) {
+    if (!(await checkModuleAccess(db, claims, schema.moduleId)).ok) continue;
+    const view = await readSettings(db, claims.schoolId, schema);
+    out.push({
+      moduleId: schema.moduleId,
+      revision: view.settings.revision,
+      fields: schema.fields.map((def) => ({ def, value: view.effective[def.key], isDefault: !(def.key in view.settings.values), mayEdit: (def.editableBy as readonly string[]).includes(claims.role) })),
+    });
+  }
+  return out;
 }
 
 export async function saveSettings(

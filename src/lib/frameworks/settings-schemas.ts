@@ -112,7 +112,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // Fees (C159): the day of the month a due falls on unless the office picks another.
   {
     moduleId: 'fees',
-    version: 1,
+    version: 2,
     fields: [
       {
         key: 'due_day',
@@ -138,11 +138,22 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         editableBy: OFFICE,
         affectsExistingRecords: false,
       },
-      // Late fee (C158, C163): off unless the school types an amount.
+      // Late fee (C158, C163, C166): off unless the school switches it on and gives an amount.
+      {
+        key: 'late_fee_enabled',
+        label: 'Charge a late fee',
+        help: 'Off: no late fee is ever added. On: each fee still unpaid after its due date and the days of grace gets one late-fee line, added at night as a new due. Only fees falling due from the day you switch this on are fined.',
+        section: 'Late fee',
+        type: 'boolean',
+        default: false,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
       {
         key: 'late_fee_rupees',
         label: 'Late fee, in rupees',
-        help: 'Leave it at 0 for no late fee. With an amount, each fee still unpaid after its due date and the days of grace gets one late-fee line, added at night. Only fees falling due from the day you set this are fined.',
+        help: 'The amount added once to each overdue fee, in whole rupees. It is used only while “Charge a late fee” is on.',
         section: 'Late fee',
         type: 'number',
         default: 0,
@@ -155,7 +166,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
       {
         key: 'late_fee_grace_days',
         label: 'Days of grace before a late fee',
-        help: 'How many days after the due date a fee may stay unpaid before the late fee is added. It matters only when a late fee is set.',
+        help: 'How many days after the due date a fee may stay unpaid before the late fee is added. It is used only while “Charge a late fee” is on.',
         section: 'Late fee',
         type: 'number',
         default: 0,
