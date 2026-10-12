@@ -51,9 +51,9 @@ describe('fee recovery, on the real schema', () => {
       insert into students (student_id, school_id, admission_no, name, family_id) values ('${sid(1)}', '${A}', 'A-1', 'Asha', '${FAMILY}'), ('${sid(2)}', '${A}', 'A-2', 'Bina', '${FAMILY}'), ('${sid(3)}', '${A}', 'A-3', 'Chetan', null), ('${sid(4)}', '${A}', 'A-4', 'Deepa', null);
       alter table students disable trigger user; update students set status = 'active'; alter table students enable trigger user;
       insert into fees_ledger (school_id, student_id, amount_minor, due_date) values
-        ('${A}', '${sid(1)}', 100000, current_date - 40), ('${A}', '${sid(2)}', 50000, current_date - 10),
-        ('${A}', '${sid(3)}', 70000, current_date - 20),
-        ('${A}', '${sid(4)}', 90000, current_date + 20);
+        ('${A}', '${sid(1)}', 100000, (now() at time zone 'Asia/Kolkata')::date - 40), ('${A}', '${sid(2)}', 50000, (now() at time zone 'Asia/Kolkata')::date - 10),
+        ('${A}', '${sid(3)}', 70000, (now() at time zone 'Asia/Kolkata')::date - 20),
+        ('${A}', '${sid(4)}', 90000, (now() at time zone 'Asia/Kolkata')::date + 20);
     `);
   }, 120_000);
   afterAll(async () => db?.close?.());
@@ -84,7 +84,7 @@ describe('fee recovery, on the real schema', () => {
     // The sister is the same family: the promise is the family's.
     expect(await promise(sid(2), ahead(6))).toEqual({ ok: false, reason: 'already_open' });
     expect((await list())[0]).toMatchObject({ promise_date: ahead(5), promise_passed: false, last_kind: 'promise' });
-    await db.pg.exec(`alter table fee_followups disable trigger user; update fee_followups set promise_date = current_date - 2 where kind = 'promise'; alter table fee_followups enable trigger user;`);
+    await db.pg.exec(`alter table fee_followups disable trigger user; update fee_followups set promise_date = (now() at time zone 'Asia/Kolkata')::date - 2 where kind = 'promise'; alter table fee_followups enable trigger user;`);
     expect((await list())[0]).toMatchObject({ promise_passed: true });
     // Closed with a note; then a new one may be made.
     expect(await as(accountant, (c) => closeFollowUp(c, actor(accountant), made.followupId, ''))).toEqual({ ok: false, reason: 'note' });
@@ -142,7 +142,7 @@ describe('fee recovery, on the real schema', () => {
     expect(await as(accountant, (c) => refundList(c, A))).toEqual([expect.objectContaining({ refunded_on: today, how: 'NEFT ref 123 to the father', recorded_by: 'Priya Principal' })]);
     // The database: never a part, never more, never changed.
     await db.pg.exec(`set session_replication_role = replica; delete from fee_refunds; set session_replication_role = origin;`);
-    expect(await refused(() => as(principal, (c) => c.query(`insert into fee_refunds (school_id, evidence_id, amount_minor, how, refunded_on, recorded_by) values ($1, $2, 10000, 'part', current_date, $3)`, [A, id, PRINCIPAL])))).toMatch(/whole amount/);
+    expect(await refused(() => as(principal, (c) => c.query(`insert into fee_refunds (school_id, evidence_id, amount_minor, how, refunded_on, recorded_by) values ($1, $2, 10000, 'part', (now() at time zone 'Asia/Kolkata')::date, $3)`, [A, id, PRINCIPAL])))).toMatch(/whole amount/);
     expect(await as(principal, (c) => recordRefund(c, actor(principal), id, 'NEFT ref 123 to the father', today))).toEqual({ ok: true });
     expect(await refused(() => as(principal, (c) => c.query(`update fee_refunds set how = 'x'`)))).toMatch(/permission denied/);
     expect(await refused(() => as(principal, (c) => c.query(`delete from fee_refunds`)))).toMatch(/permission denied/);
