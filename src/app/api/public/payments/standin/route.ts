@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { withPlatformService } from '@/lib/auth/db';
 import type { Sql } from '@/lib/jobs/types';
 import { handleNotice, linkForPayer } from '@/lib/payments/apply';
-import { configuredPaymentProvider, signStandIn } from '@/lib/payments/provider';
+import { STAND_IN_SIGNATURE_HEADER, configuredPaymentProvider, signStandIn } from '@/lib/payments/provider';
 
 // The stand-in provider's own side (C169): what a real gateway does after a
 // parent pays on its page. It makes a notice, signs it with the stand-in's
@@ -22,6 +22,6 @@ export async function POST(req: NextRequest) {
   if (!link || link.provider !== 'stand-in' || !link.providerRef) return NextResponse.json({ error: 'not found' }, { status: 404 });
   if (link.state !== 'open') return NextResponse.json({ error: 'this link is not open', state: link.state }, { status: 409 });
   const raw = JSON.stringify({ id: `evt_${randomUUID()}`, type: body?.fail === true ? 'payment.failed' : 'payment.captured', order: link.providerRef, payment: `pay_${randomUUID()}`, amount: link.amountMinor });
-  const { result } = await handleNotice(platform, provider, raw, signStandIn(secret, raw));
+  const { result } = await handleNotice(platform, provider, raw, (name) => (name === STAND_IN_SIGNATURE_HEADER ? signStandIn(secret, raw) : null));
   return NextResponse.json({ outcome: result.outcome }, { headers: { 'Cache-Control': 'no-store' } });
 }

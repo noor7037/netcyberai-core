@@ -67,6 +67,15 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
     } else toast.show(t(`rails.keys.error.${['no_encryption_key', 'wrong_mode', 'key_id', 'key_secret', 'webhook_secret', 'reason'].includes(r.code ?? '') ? r.code : 'other'}` as MessageKey), 'danger');
   }
 
+  async function testKeys(mode: string) {
+    setBusy(true);
+    const res = await fetch(scope === 'school' ? `${api}/test` : api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'test', mode }) }).catch(() => null);
+    const answer = (await res?.json().catch(() => null)) ?? {};
+    setBusy(false);
+    setNote({ text: typeof answer.message === 'string' ? answer.message : t('fee.failed'), bad: answer.ok !== true });
+    void load();
+  }
+
   async function setAccess(allowed: boolean) {
     const r = await send('POST', { action: 'access', allowed, reason: form.reason });
     if (!r.ok) toast.show(t('rails.keys.error.reason'), 'danger');
@@ -119,6 +128,11 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
               {t(c.mode === 'live' ? 'rails.mode.live' : 'rails.mode.test')}: {t('rails.keys.ending', { last4: c.keyLast4, date: date(c.savedAt), by: c.savedFrom === 'control' ? t('rails.keys.byNetCyberAI') : (c.savedByName ?? '') })}
             </p>
             <p className="text-slate/70">{c.testOk === null ? t('rails.keys.notTested') : c.testOk ? t('rails.keys.testOk', { date: date(c.testedAt as string) }) : t('rails.keys.testFailed', { message: c.testMessage ?? '' })}</p>
+            {mayEdit && (
+              <button type="button" data-test-keys={c.mode} disabled={busy} className={`${TAP} my-1`} onClick={() => void testKeys(c.mode)}>
+                {t('rails.keys.test')}
+              </button>
+            )}
             <p className="break-all text-xs text-slate/70">{t('rails.keys.webhook', { url: `${typeof window === 'undefined' ? '' : window.location.origin}${c.webhookPath}` })}</p>
           </div>
         ))}

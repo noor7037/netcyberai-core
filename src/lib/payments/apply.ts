@@ -4,7 +4,7 @@ import { receiptFormat } from '@/lib/fees/payments';
 import { nextNumber } from '@/lib/frameworks/numbering';
 import type { Sql } from '@/lib/jobs/types';
 import type { PoolClient } from 'pg';
-import type { PaymentProvider, ProviderEvent } from './provider';
+import type { Header, PaymentProvider, ProviderEvent } from './provider';
 
 // Applying a provider's notice (docs/23 6f, C169). One transaction, as the
 // platform role (there is no signed-in person). Three things make "applied
@@ -48,7 +48,11 @@ export function planCapture(amountMinor: number, lines: readonly { feeId: string
   return { parts: [...parts.entries()].map(([feeId, amount]) => ({ feeId, amountMinor: amount })), unappliedMinor: left };
 }
 
-export async function applyProviderEvent(db: Sql, provider: string, event: ProviderEvent): Promise<Applied> {
+// `scope`: the one school and configuration this notice may credit (a webhook address of its own, docs/24 §3.8).
+// `confirmed`: what the provider itself said when asked about the payment, where the provider can be asked.
+export type NoticeChecks = { scope?: { schoolId: string; configId: string }; confirmed?: { ok: true } | { ok: false; reason: string } };
+
+export async function applyProviderEvent(db: Sql, provider: string, event: ProviderEvent, checks: NoticeChecks = {}): Promise<Applied> {
   // 1. The notice itself, once.
   const noted = await db.query(
     `insert into payment_events (provider, event_id, kind, provider_ref, gateway_payment_id, amount_minor, outcome) values ($1, $2, $3, $4, $5, $6, 'received')
@@ -62,8 +66,17 @@ export async function applyProviderEvent(db: Sql, provider: string, event: Provi
     return result;
   };
 
-  const link = (await db.query(`select link_id, school_id, family_id, student_id, status, amount_minor from payment_links where provider = $1 and provider_ref = $2 for update`, [provider, event.providerRef])).rows[0] as { link_id: string; school_id: string; family_id: string | null; student_id: string; status: string; amount_minor: string } | undefined;
+  // The link: by the provider's own reference, or by our id when the provider hands our note back.
+  const ours = event.ourLinkId && /^[0-9a-f-]{36}$/i.test(event.ourLinkId) ? event.ourLinkId : null;
+  const link = (await db.query(
+    `select link_id, school_id, family_id, student_id, status, amount_minor, config_id from payment_links
+      where provider = $1 and ((provider_ref = $2 and $2 <> '') or ($3::uuid is not null and link_id = $3)) for update`,
+    [provider, event.providerRef, ours]
+  )).rows[0] as { link_id: string; school_id: string; family_id: string | null; student_id: string; status: string; amount_minor: string; config_id: string | null } | undefined;
   if (!link) return finish(done('refused', 'unknown_link'));
+  // A notice that came to one school's address can credit only that school, and only a link opened with that configuration.
+  if (checks.scope && link.school_id !== checks.scope.schoolId) return finish(done('refused', 'other_school'));
+  if (checks.scope && link.config_id !== checks.scope.configId) return finish(done('refused', 'other_configuration'), link);
 
   // 2. This payment, once: whatever notice id it comes under.
   const already = (await db.query(`select receipt_id, receipt_no from receipts where gateway = $1 and gateway_payment_id = $2`, [provider, event.paymentId])).rows[0];
@@ -73,6 +86,11 @@ export async function applyProviderEvent(db: Sql, provider: string, event: Provi
   }
   if (already) return finish(done('duplicate', 'same_payment', { receiptId: already.receipt_id, receiptNo: already.receipt_no }), link);
   if (event.amountMinor <= 0) return finish(done('refused', 'no_amount'), link);
+  // The provider, asked directly, does not agree with the notice: nothing is credited, and the notice stays on record as refused.
+  if (checks.confirmed && !checks.confirmed.ok) {
+    await writeAuditLog(db, { schoolId: link.school_id, actorUserId: null, actorRole: null, eventAction: 'fees.online_payment_flagged', targetType: 'payment_links', targetId: link.link_id, beforeState: undefined, afterState: { provider, paymentId: event.paymentId, noticeMinor: event.amountMinor, reason: checks.confirmed.reason } });
+    return finish(done('refused', `provider_fetch_disagrees:${checks.confirmed.reason}`.slice(0, 200)), link);
+  }
 
   const credited = await creditEvidence(db, {
     source: 'gateway_notice',
@@ -169,36 +187,40 @@ type Platform = <T>(fn: (db: Sql) => Promise<T>) => Promise<T>;
 // The whole webhook, apart from HTTP: check the signature, then apply. A
 // notice that cannot be trusted is recorded once (by a digest of its body,
 // so a replay of the same bytes is one row) and nothing else happens.
-export async function handleNotice(platform: Platform, provider: PaymentProvider, rawBody: string, signature: string | null): Promise<{ status: 200 | 401; result: Applied }> {
-  const event = provider.readNotice(rawBody, signature);
+export async function handleNotice(platform: Platform, provider: PaymentProvider, rawBody: string, header: Header, checks: Pick<NoticeChecks, 'scope'> = {}): Promise<{ status: 200 | 401; result: Applied }> {
+  const event = provider.readNotice(rawBody, header);
   if (!event) {
     const digest = createHash('sha256').update(rawBody).digest('hex').slice(0, 40);
     // Anyone can send this endpoint rubbish, so the record of it is bounded: at most 200 such rows an hour.
     await platform((db) =>
       db.query(
-        `insert into payment_events (provider, event_id, kind, outcome, reason)
-         select $1, $2, 'unreadable', 'refused', 'bad_signature_or_shape'
+        `insert into payment_events (provider, event_id, kind, outcome, reason, school_id)
+         select $1, $2, 'unreadable', 'refused', 'bad_signature_or_shape', $3::uuid
           where (select count(*) from payment_events where kind = 'unreadable' and received_at > now() - interval '1 hour') < 200
          on conflict (provider, event_id) do nothing`,
-        [provider.name, `unsigned:${digest}`]
+        [provider.name, `unsigned:${digest}`, checks.scope?.schoolId ?? null]
       )
     );
     return { status: 401, result: done('refused', 'bad_signature_or_shape') };
   }
-  return { status: 200, result: await platform((db) => applyProviderEvent(db, provider.name, event)) };
+  if ('ignored' in event) return { status: 200, result: done('ignored', event.ignored.slice(0, 100)) };
+  // Before any credit, the provider is asked about the payment itself. If it cannot be reached this throws,
+  // the answer is an error, and the provider sends the notice again later: nothing is credited on the notice alone.
+  const confirmed = event.type === 'captured' && provider.confirmCapture ? await provider.confirmCapture(event) : undefined;
+  return { status: 200, result: await platform((db) => applyProviderEvent(db, provider.name, event, { ...checks, confirmed })) };
 }
 
 // What a payer's page may know about a link, by its token: the school's
 // name, the amount and where it stands. No child, no due, no person.
-export type PayerView = { schoolName: string; amountMinor: number; state: 'open' | 'paid' | 'closed'; receiptNo: string | null; provider: string | null; providerRef: string | null };
+export type PayerView = { schoolName: string; amountMinor: number; state: 'open' | 'paid' | 'closed'; receiptNo: string | null; provider: string | null; providerRef: string | null; checkoutUrl: string | null; testMode: boolean };
 export async function linkForPayer(db: Sql, token: string): Promise<PayerView | null> {
   if (!/^[A-Za-z0-9_-]{32,64}$/.test(token)) return null;
   const r = (await db.query(
-    `select s.name as school_name, k.amount_minor, k.status, k.expires_at > now() as in_time, k.provider, k.provider_ref, r.receipt_no
-       from payment_links k join schools s on s.school_id = k.school_id left join receipts r on r.receipt_id = k.receipt_id
+    `select s.name as school_name, k.amount_minor, k.status, k.expires_at > now() as in_time, k.provider, k.provider_ref, k.checkout_url, c.mode, r.receipt_no
+       from payment_links k join schools s on s.school_id = k.school_id left join receipts r on r.receipt_id = k.receipt_id left join payment_credentials c on c.config_id = k.config_id
       where k.token = $1`,
     [token]
   )).rows[0];
   if (!r) return null;
-  return { schoolName: r.school_name as string, amountMinor: Number(r.amount_minor), state: r.status === 'paid' ? 'paid' : r.status === 'open' && r.in_time ? 'open' : 'closed', receiptNo: (r.receipt_no as string | null) ?? null, provider: (r.provider as string | null) ?? null, providerRef: (r.provider_ref as string | null) ?? null };
+  return { schoolName: r.school_name as string, amountMinor: Number(r.amount_minor), state: r.status === 'paid' ? 'paid' : r.status === 'open' && r.in_time ? 'open' : 'closed', receiptNo: (r.receipt_no as string | null) ?? null, provider: (r.provider as string | null) ?? null, providerRef: (r.provider_ref as string | null) ?? null, checkoutUrl: (r.checkout_url as string | null) ?? null, testMode: r.mode === 'test' || r.provider === 'stand-in' };
 }
