@@ -73,7 +73,7 @@ non-technical users who must learn it in one sitting
 | **P1** | Platform foundations | Live site on its own production DB (cutover); observability (errors, logs, uptime); module registry + per-school entitlements; **settings, onboarding templates, custom fields, filters + saved views, bulk actions frameworks (`17` §1a)**; Student 360 search; app navigation (8 groups, `17` §2); app design system (`17` §4); i18n EN/HI; file storage; audit-log viewer; API rate limiter; Help Center; Raise Ticket | Sentry DSN; uptime alert contact | Every later module plugs into registry, nav, entitlements, i18n and design system without new plumbing |
 | **P1-c** | Ease and colour foundation (C105) | `19` §4: `ModulePage` template + CI check, role "My Day" homes, Hindi/English switch in the app, global search, "+ New" quick-add, first-visit tours and "Show me how" links, plain-language error catalogue, module icon tiles (33 distinct icons), KPI tile v2, ring / gauge / gradient-area / heat-grid / donut charts, hero band; restyle of the existing screens; truth and hygiene from `17` §3b (T5 status check, T7 message cost data, E1 provenance standard written, docs index and duplicate numbering) | None | Every live screen passes `19` §5; later modules inherit it with no new plumbing |
 | **P2** | Teacher app (PWA) | Attendance, Homework, Academics ("taught today", lesson plan), Timetable (view), Daily Pulse compose, Homework Recovery v1, Teacher Copilot v1 | `ANTHROPIC_API_KEY` for Copilot | A teacher runs a full school day on a phone, offline-tolerant |
-| **P3** | Fees and payments | Fees (heads, structures, concessions incl. the sibling concession, ledger, combined family dues with one payment link per family), Razorpay, receipts, reminders by email with a payment link (WhatsApp reminders switch on in P4), clearance gate for certificates; the nightly job that marks a pending fee `overdue` once its due date (India date) has passed (until then the screens work it out from the date, C137); a part-paid fee past its due date counted as overdue on its unpaid balance, once payments are recorded (today it shows as "part paid", C140) | Razorpay KYC + keys; real concession types | Payment → ledger → receipt → reminder loop reconciles to the rupee |
+| **P3** | Fees and payments | Fees (heads, structures, concessions incl. the sibling concession, ledger, combined family dues with one payment link per family), payment collection per `24` (direct UPI to the school's own account proven by bank statement; Razorpay built and switched on per school by credentials, C170), receipts, reminders by email with a payment link (WhatsApp reminders switch on in P4), clearance gate for certificates; the nightly job that marks a pending fee `overdue` once its due date (India date) has passed (until then the screens work it out from the date, C137); a part-paid fee past its due date counted as overdue on its unpaid balance, once payments are recorded (today it shows as "part paid", C140) | Pilot school's bank, merchant UPI ID and one statement (C170); real concession types | Payment → ledger → receipt → reminder loop reconciles to the rupee |
 | **P4** | WhatsApp live + parent loop | Communication, Daily Pulse send + replies, Parents, PTM Scheduler, Events, Complaints, Parent AI v1, delivery states | Meta Business verification, WABA number, approved templates | Parents receive, reply, and every message state is visible to the school |
 | **P5** | Principal + Control on real data | Dashboard (principal, real), Reports, Staff (leave), Proxy Auto, School Health Auditor, Early Warning v1, Control: billing plans, messaging cost, monitoring | Plan names and ₹ prices | Principal dashboard shows only real data, every tile drills down |
 | **P6** | Exams + learning intelligence | Exams & Report Card, Personal Best / Most Improved, Curriculum Gap Detector, Learning Genome, Early Warning v2 | Grading schemes used by target boards | Report cards published; growth and gaps computed from real marks |
@@ -99,7 +99,10 @@ numbers: supervisor C100–C109, Claude Code from C110.
 ## 5. Founder long-lead actions (start now)
 
 1. Meta Business verification + WhatsApp number (blocks P4; Fees in P3 sends reminders by email until then).
-2. Razorpay account + KYC (blocks P3: now the first founder input needed after P2).
+2. ~~Razorpay account + KYC~~: no longer blocks P3 (C170, `24`). Instead,
+   from the schools already being met: their bank, merchant UPI QR, and
+   whether net banking gives an Excel/CSV statement. Optional: talk to
+   Bharat Connect operating units (`24` §4).
 3. Lawyer: privacy, terms, DPDP children's-data consent (blocks P8).
 4. Keep sharing what principals and teachers say (the founder already meets
    them); optionally show them a module's 5-task script (`19` §6). Never a blocker.
@@ -109,6 +112,7 @@ numbers: supervisor C100–C109, Claude Code from C110.
 
 ## 6. Change log
 
+- **2026-10-12** — C170: payment collection per `24` (direct UPI with bank-statement proof; Razorpay dormant behind credentials); Razorpay KYC no longer a founder blocker.
 - **2026-10-07** — C104–C106 (founder): build everything first reaffirmed;
   Strengthening Brief adopted in full (`17` §3b); new **P1-c** ease and colour
   foundation before P2 (`19`); P8 gains the real-data rehearsal and the
