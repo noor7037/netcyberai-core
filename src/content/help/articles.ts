@@ -648,6 +648,30 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['bank', 'statement', 'csv', 'upload', 'reconcile', 'fees', 'बैंक', 'स्टेटमेंट'],
   },
   {
+    slug: 'follow-up-unpaid-fees',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Follow up unpaid fees', hi: 'बकाया फ़ीस का फ़ॉलो-अप करें' },
+    summary: {
+      en: 'One list of the families whose fees are past their date, with what the office last did. Note calls, promises to pay and hardship, and keep track of money to give back.',
+      hi: 'उन परिवारों की एक सूची जिनकी फ़ीस की तारीख़ निकल चुकी है, और दफ़्तर ने पिछली बार क्या किया। कॉल, भुगतान के वादे और आर्थिक कठिनाई दर्ज करें, और लौटाए जाने वाले पैसे का हिसाब रखें।',
+    },
+    steps: [
+      { en: 'Open “Fees” and go to “Follow up unpaid fees”. The family that has waited longest is first.', hi: '“Fees” खोलें और “Follow up unpaid fees” पर जाएँ। सबसे लंबे समय से बाक़ी परिवार सबसे पहले है।' },
+      { en: 'After speaking to a family, press “Note a call” and write what was said.', hi: 'परिवार से बात करने के बाद “Note a call” दबाएँ और जो बात हुई वह लिखें।' },
+      { en: 'If they give a date, press “Promise to pay” and fill “They will pay by”.', hi: 'अगर वे तारीख़ दें, तो “Promise to pay” दबाएँ और “They will pay by” भरें।' },
+      { en: 'If the family cannot pay, press “Hardship”, write what they told you and the concession to request. The principal or school admin then decides it under concessions.', hi: 'अगर परिवार भुगतान नहीं कर सकता, तो “Hardship” दबाएँ, उन्होंने जो बताया वह और माँगी जाने वाली रियायत लिखें। फिर प्रिंसिपल या स्कूल एडमिन रियायतों में उस पर फ़ैसला करते हैं।' },
+    ],
+    tips: [
+      { en: 'While a promise or hardship is open, that family is sent no reminder. Close it when it ends.', hi: 'जब तक वादा या आर्थिक कठिनाई खुली है, उस परिवार को कोई रिमाइंडर नहीं जाता। ख़त्म होने पर उसे बंद करें।' },
+      { en: 'Hardship only asks for a concession. Nothing is taken off the fees until someone other than you approves it.', hi: 'आर्थिक कठिनाई सिर्फ़ रियायत माँगती है। जब तक आपके अलावा कोई और मंज़ूर न करे, फ़ीस में से कुछ नहीं घटता।' },
+      { en: 'Under “Refund list” is money that arrived and could not be put against a fee. The school gives it back itself; the principal or school admin then uses “Record that it was given back”.', hi: '“Refund list” में वह पैसा है जो आया पर किसी फ़ीस में नहीं लग सका। स्कूल उसे ख़ुद लौटाता है; फिर प्रिंसिपल या स्कूल एडमिन “Record that it was given back” से दर्ज करते हैं।' },
+    ],
+    start: { href: '/app/fees', label: { en: 'Fees', hi: 'Fees' } },
+    related: ['fees-overdue-late-fee', 'take-fee-payment'],
+    keywords: ['follow up', 'overdue', 'promise', 'hardship', 'refund', 'recovery', 'fees', 'बकाया', 'वादा', 'वापसी'],
+  },
+  {
     slug: 'whatsapp-settings',
     category: 'support',
     audience: 'office',

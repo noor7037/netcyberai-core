@@ -75,6 +75,8 @@ const APP_USER: Record<string, string> = {
   payment_evidence: 'INSERT,SELECT,UPDATE', // the one door every credit goes through; a trigger keeps what it says fixed
   payment_gateway_access: 'SELECT', // set by NetCyberAI in Control
   bank_accounts: 'INSERT,SELECT,UPDATE',
+  fee_followups: 'INSERT,SELECT,UPDATE', // closed, never edited (trigger)
+  fee_refunds: 'INSERT,SELECT',
   bank_credit_rows: 'INSERT,SELECT,UPDATE', // the bank's own lines; a trigger keeps them fixed (C176)
   bank_statement_imports: 'INSERT,SELECT',
   school_holidays: 'DELETE,INSERT,SELECT',
@@ -125,6 +127,8 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   fee_status_runs: 'INSERT,SELECT', // the nightly job writes a result once
   payment_credentials: 'INSERT,SELECT,UPDATE',
   payment_gateway_access: 'INSERT,SELECT,UPDATE',
+  fee_followups: 'SELECT', // the nightly reminders hold while a promise or hardship is open
+  fee_refunds: '',
   bank_accounts: '', // the platform role has no business in a school's bank statements
   bank_credit_rows: '',
   bank_statement_imports: '',

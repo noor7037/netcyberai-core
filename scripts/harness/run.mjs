@@ -553,6 +553,35 @@ const addHolidayDone = async () => {
   await db.pg.query(`delete from school_holidays where school_id = $1`, [SCHOOL]);
   if (rows[0].n !== 1 || rows[0].audited !== true) throw new Error(`holiday: ${JSON.stringify(rows[0])}`);
 };
+// Fee recovery (C178): the follow-up list from the fixture school's overdue dues; the principal notes a call and a
+// promise to pay on the first family. Both are put back afterwards.
+const clearFollowUps = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from fee_followups where school_id = '${SCHOOL}'; set session_replication_role = origin;`);
+};
+let recoverySeen = null;
+const feeRecovery = async (page) => {
+  await clearFollowUps();
+  await page.reload({ waitUntil: 'networkidle' });
+  const rec = page.locator('[data-recovery]');
+  await rec.locator('[data-followup]').first().waitFor({ timeout: 20000 });
+  const families = await rec.locator('[data-followup]').count();
+  const first = rec.locator('[data-followup]').first();
+  await first.locator('[data-followup-call]').click();
+  await first.locator('input').first().fill('Spoke to the mother; she will come on Monday');
+  await first.locator('[data-followup-save]').click();
+  await first.locator('[data-followup-promise]').waitFor({ timeout: 20000 });
+  await first.locator('[data-followup-promise]').click();
+  await first.locator('input').first().fill('Will pay after salary');
+  await first.locator('input[type="date"]').fill(new Date(Date.now() + 5.5 * 3600_000 + 3 * 86400_000).toISOString().slice(0, 10));
+  await first.locator('[data-followup-save]').click();
+  await page.waitForFunction(() => /Promised by/.test(document.querySelector('[data-followup]')?.textContent ?? ''), null, { timeout: 20000 });
+  recoverySeen = { families: families > 0, refundsShown: await rec.locator('[data-refunds]').count() };
+};
+const feeRecoveryDone = async () => {
+  const { rows } = await db.pg.query(`select (select count(*)::int from fee_followups where school_id = $1 and kind = 'call') as calls, (select count(*)::int from fee_followups where school_id = $1 and kind = 'promise' and status = 'open') as promises`, [SCHOOL]);
+  await clearFollowUps();
+  if (rows[0].calls < 1 || rows[0].promises !== 1 || !recoverySeen?.families || recoverySeen.refundsShown !== 1) throw new Error(`fee recovery: ${JSON.stringify({ ...rows[0], ...recoverySeen })}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -864,6 +893,7 @@ const SCREENS = [
   ['principal', 'app-fees-sibling', '/app/fees', siblingRule, siblingRuleDone],
   ['principal', 'app-fees-pay-online', '/app/fees', payOnline, payOnlineDone],
   ['principal', 'app-fees-pay-upi', '/app/fees', payByUpi, payByUpiDone],
+  ['principal', 'app-fees-recovery', '/app/fees', feeRecovery, feeRecoveryDone],
   ['principal', 'app-fees-bank', '/app/fees', bankStatement, bankStatementDone],
   ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],

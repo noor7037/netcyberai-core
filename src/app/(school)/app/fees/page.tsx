@@ -4,6 +4,7 @@ import { FeesBankView } from '@/components/fees/FeesBankView';
 import { FeesCollectView } from '@/components/fees/FeesCollectView';
 import { FeesDuesView } from '@/components/fees/FeesDuesView';
 import { FeesVerifyView } from '@/components/fees/FeesVerifyView';
+import { FeesRecoveryView } from '@/components/fees/FeesRecoveryView';
 import { FeesSetupView } from '@/components/fees/FeesSetupView';
 import { getServerSession } from '@/lib/auth/server-session';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
@@ -24,6 +25,7 @@ export default async function FeesPage() {
         <FeesVerifyView />
         <FeesCollectView />
         <FeesBankView />
+        <FeesRecoveryView />
         <FeesDuesView />
         <FeesSetupView />
       </div>
