@@ -87,6 +87,8 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['communication/**', 'communication'],
   ['ptm/**', 'ptm'],
   ['ptm', 'ptm'],
+  ['events/**', 'events'],
+  ['events', 'events'],
   // Always on: a school can ask for help whatever its account's state.
   ['tickets/**', 'raise-ticket'],
   ['tickets', 'raise-ticket'],
@@ -124,6 +126,7 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['communication/**', 'communication'],
   ['ptm/**', 'ptm'],
   ['ptm', 'ptm'],
+  ['events', 'events'],
   // Has its own switch (the school's daily_pulse flag) and its own session check.
   ['pulse/**', 'checks-itself'],
   ['tickets/**', 'raise-ticket'],

@@ -79,6 +79,8 @@ const APP_USER: Record<string, string> = {
   bank_accounts: 'INSERT,SELECT,UPDATE',
   class_notices: 'INSERT,SELECT,UPDATE', // never edited, decided once (trigger); never deleted
   ptm_events: 'INSERT,SELECT,UPDATE',
+  school_events: 'INSERT,SELECT,UPDATE',
+  event_replies: 'SELECT', // written by the platform role from the parent's reply
   ptm_slots: 'INSERT,SELECT',
   ptm_bookings: 'INSERT,SELECT,UPDATE', // moved, never deleted
   message_threads: 'SELECT,UPDATE', // read, and marked read; written by the webhook as the platform role (C187)
@@ -146,6 +148,8 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   fee_clearance_overrides: '',
   class_notices: 'SELECT',
   ptm_events: 'SELECT',
+  school_events: 'SELECT',
+  event_replies: 'INSERT,SELECT,UPDATE',
   ptm_slots: 'SELECT',
   message_threads: 'INSERT,SELECT,UPDATE',
   inbound_messages: 'INSERT,SELECT',

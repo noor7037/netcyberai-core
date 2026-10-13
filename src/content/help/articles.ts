@@ -770,6 +770,29 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['ptm', 'meeting', 'parent teacher', 'slot', 'book', 'reminder', 'बैठक', 'समय'],
   },
   {
+    slug: 'invite-to-an-event',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Invite parents to a school event', hi: 'अभिभावकों को स्कूल के कार्यक्रम में बुलाएँ' },
+    summary: {
+      en: 'Add an event for some classes or for every class, invite the parents on WhatsApp, and see how many are coming.',
+      hi: 'कुछ कक्षाओं या सभी कक्षाओं के लिए कार्यक्रम जोड़ें, अभिभावकों को WhatsApp पर बुलाएँ, और देखें कितने आ रहे हैं।',
+    },
+    steps: [
+      { en: 'Open “Events”. Under “Add an event”, give the name, the date, where it is and who is invited, then press “Save the event”.', hi: '“Events” खोलें। “Add an event” में नाम, तारीख़, जगह और किसे बुलाना है भरें, फिर “Save the event” दबाएँ।' },
+      { en: 'Check the event in the list, then press “Invite the parents”. Only the classes you chose are told.', hi: 'सूची में कार्यक्रम जाँचें, फिर “Invite the parents” दबाएँ। सिर्फ़ चुनी हुई कक्षाओं को बताया जाता है।' },
+      { en: 'Parents reply YES or NO. The event shows how many were invited, how many are coming and how many are not.', hi: 'अभिभावक YES या NO लिखते हैं। कार्यक्रम पर दिखता है कि कितने बुलाए गए, कितने आ रहे हैं और कितने नहीं।' },
+    ],
+    tips: [
+      { en: 'Everyone invited who has not said NO is reminded the day before.', hi: 'जिन बुलाए गए अभिभावकों ने NO नहीं कहा, उन्हें एक दिन पहले याद दिलाया जाता है।' },
+      { en: '“Cancel the event” tells every parent who was invited.', hi: '“Cancel the event” हर बुलाए गए अभिभावक को बता देता है।' },
+      { en: 'A parent who has not agreed to school messages, or who wrote STOP, is not sent the invitation.', hi: 'जिस अभिभावक ने स्कूल के संदेशों की सहमति नहीं दी, या STOP लिखा, उसे बुलावा नहीं भेजा जाता।' },
+    ],
+    start: { href: '/app/events', label: { en: 'Events', hi: 'Events' } },
+    related: ['send-a-notice', 'plan-a-ptm'],
+    keywords: ['event', 'function', 'sports day', 'invite', 'rsvp', 'cancel', 'कार्यक्रम', 'बुलावा'],
+  },
+  {
     slug: 'answer-a-parent',
     category: 'daily',
     audience: 'office_and_teachers',

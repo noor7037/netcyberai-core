@@ -922,6 +922,47 @@ const ptmScreenDone = async () => {
   if (r.invited !== 1 || r.booked !== 1 || r.invitations < 1 || r.twice !== 0 || r.reminders !== 1) throw new Error(`the meeting in the database: ${JSON.stringify(r)}`);
   if (JSON.stringify(ptmSeen) !== JSON.stringify({ sentAsDraft: 0, slots: 4, booked: 1 })) throw new Error(`the meeting on the screen: ${JSON.stringify(ptmSeen)}`);
 };
+// Events (C194): the principal adds an event for 5-A and invites: the guardians of 5-A are told, once each,
+// through the gate. Then cancels it: those invited are told. Everything is put back.
+const clearEvents = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from communication_log where dedupe_key like 'event:%'; delete from jobs where type in ('whatsapp.send', 'event.remind'); delete from event_replies; delete from school_events; delete from whatsapp_templates where meta_template_id = 'harness-7l'; set session_replication_role = origin;`);
+};
+let eventsSeen = null;
+let eventPilotBefore = null;
+const eventsScreen = async (page) => {
+  await clearEvents();
+  eventPilotBefore = (await db.pg.query(`select pilot_allow_outbound from schools where school_id = $1`, [SCHOOL])).rows[0];
+  await db.pg.query(`update schools set pilot_allow_outbound = true where school_id = $1`, [SCHOOL]);
+  for (const [name, variables] of Object.entries({ event_invitation: '{school,title,when,details}', event_cancelled: '{school,title,when}' })) await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_template_id) values (null, $1, 1, 'en', '{{school}}: ' || $1, $2, 'utility', 1440, 'approved', 'harness-7l')`, [name, variables]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-event-new]').waitFor({ timeout: 20000 });
+  await page.locator('#event-title').fill('Sports day');
+  await page.locator('#event-date').fill(new Date(Date.now() + 5.5 * 3600000 + 4 * 86400000).toISOString().slice(0, 10));
+  await page.locator('#event-time').fill('09:30');
+  await page.locator('#event-details').fill('On the school ground. Please send a water bottle.');
+  await page.locator('[data-event-all]').uncheck();
+  await page.locator('label', { hasText: '5-A' }).locator('[data-event-class]').check();
+  await page.locator('[data-event-make]').click();
+  await page.locator('[data-event="draft"]').waitFor({ timeout: 20000 });
+  const sentAsDraft = (await db.pg.query(`select count(*)::int as n from communication_log where dedupe_key like 'event:%'`)).rows[0].n;
+  await page.locator('[data-event-invite]').click();
+  await page.locator('[data-event="invited"] [data-event-counts]').waitFor({ timeout: 20000 });
+  eventsSeen = { sentAsDraft };
+};
+const eventsScreenDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from school_events where school_id = $1 and status = 'invited' and invited_by = $2) as invited,
+            (select count(*)::int from communication_log where dedupe_key like 'event:%:inv:%') as invitations,
+            (select count(*)::int from communication_log l join students s on s.student_id = l.student_id join classes c on c.class_id = s.class_id where l.dedupe_key like 'event:%' and c.name <> '5-A') as other_classes,
+            (select count(*)::int from (select to_phone from communication_log where dedupe_key like 'event:%:inv:%' group by to_phone having count(*) > 1) d) as twice,
+            (select count(*)::int from jobs where type = 'event.remind') as reminders`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  await clearEvents();
+  await db.pg.query(`update schools set pilot_allow_outbound = $2 where school_id = $1`, [SCHOOL, eventPilotBefore.pilot_allow_outbound]);
+  const r = rows[0];
+  if (r.invited !== 1 || r.invitations < 1 || r.other_classes !== 0 || r.twice !== 0 || r.reminders !== 1 || eventsSeen.sentAsDraft !== 0) throw new Error(`the event: ${JSON.stringify(r)} ${JSON.stringify(eventsSeen)}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -1280,6 +1321,7 @@ const SCREENS = [
   ['principal', 'app-communication-notices', '/app/communication', classNotice, classNoticeDone],
   ['principal', 'app-parents', '/app/parents', parentsScreen, parentsScreenDone],
   ['principal', 'app-ptm', '/app/ptm', ptmScreen, ptmScreenDone],
+  ['principal', 'app-events', '/app/events', eventsScreen, eventsScreenDone],
   ['teacher', 'app-parents-teacher', '/app/parents', parentsTeacher, parentsTeacherDone],
   ['principal', 'app-taught-today', '/app/syllabus'],
   ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],
