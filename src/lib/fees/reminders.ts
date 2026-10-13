@@ -4,7 +4,9 @@ import { readSettings } from '@/lib/frameworks/settings-store';
 import type { JobQueue, Sql } from '@/lib/jobs/types';
 import { newReferenceCode } from '@/lib/payments/upi';
 import { siteUrl } from '@/lib/site-config';
+import { whatsappIsLive } from '@/lib/whatsapp/gate';
 import { allocateOldestFirst } from './payments';
+import { tellFeeReminder } from './whatsapp';
 
 // Fee reminders by email (docs/23 6g, §3 rule 9, C179). Run each night with the other fee work.
 //
@@ -25,7 +27,7 @@ import { allocateOldestFirst } from './payments';
 // its own account: the open link if there is one, or a new one for all that
 // is owed. It names the school, the amount and the date: no child.
 
-export type ReminderRun = { sent: number; held: number; linksMade: number };
+export type ReminderRun = { sent: number; held: number; linksMade: number; byWhatsApp: number };
 export const REMINDER_KINDS = [['before_3', 3], ['due_day', 0], ['after_7', -7]] as const;
 const LINK_DAYS = 7;
 const rupees = (minor: number) => (minor / 100).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -68,8 +70,8 @@ async function linkFor(db: Sql, schoolId: string, payerId: string): Promise<{ li
 }
 
 // One school, one night, as the platform role, inside the caller's transaction.
-export async function runFeeReminders(db: Sql, queue: JobQueue, schoolId: string, today: string): Promise<ReminderRun> {
-  const run: ReminderRun = { sent: 0, held: 0, linksMade: 0 };
+export async function runFeeReminders(db: Sql, queue: JobQueue, schoolId: string, today: string, env: Record<string, string | undefined> = process.env): Promise<ReminderRun> {
+  const run: ReminderRun = { sent: 0, held: 0, linksMade: 0, byWhatsApp: 0 };
   if (!(await remindersOn(db, schoolId))) return run;
   await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`fees.reminders:${schoolId}`]);
   const due = (await db.query(
@@ -84,13 +86,15 @@ export async function runFeeReminders(db: Sql, queue: JobQueue, schoolId: string
     [schoolId, today]
   )).rows.map((r) => ({ ...r, balance: Number(r.balance) })).filter((r) => r.balance > 0) as { fee_id: string; due_date: string; payer_id: string; which: string; balance: number }[];
   const school = (await db.query(`select name from schools where school_id = $1`, [schoolId])).rows[0]?.name as string;
+  // WhatsApp is the channel only where a message would really reach a phone (C188); otherwise email, as before.
+  const whatsapp = due.length > 0 && (await whatsappIsLive(db, schoolId, env));
 
   for (const payerId of [...new Set(due.map((d) => d.payer_id))]) {
     const lines = due.filter((d) => d.payer_id === payerId);
-    const note = (outcome: 'sent' | 'held', reason: string | null, linkId: string | null) =>
+    const note = (outcome: 'sent' | 'held', reason: string | null, linkId: string | null, channel: 'email' | 'whatsapp' | null = null) =>
       db.query(
-        `insert into fee_reminders (school_id, fee_id, which, payer_id, outcome, held_reason, link_id, run_date) select $1, n.fee_id, n.which, $2, $3, $4, $5, $6 from unnest($7::uuid[], $8::text[]) as n(fee_id, which) on conflict (school_id, fee_id, which) do nothing`,
-        [schoolId, payerId, outcome, reason, linkId, today, lines.map((l) => l.fee_id), lines.map((l) => l.which)]
+        `insert into fee_reminders (school_id, fee_id, which, payer_id, outcome, held_reason, link_id, run_date, channel) select $1, n.fee_id, n.which, $2, $3, $4, $5, $6, $9 from unnest($7::uuid[], $8::text[]) as n(fee_id, which) on conflict (school_id, fee_id, which) do nothing`,
+        [schoolId, payerId, outcome, reason, linkId, today, lines.map((l) => l.fee_id), lines.map((l) => l.which), channel]
       );
     const hold = (await db.query(`select kind from fee_followups where school_id = $1 and coalesce(family_id, student_id) = $2 and status = 'open' and (kind = 'hardship' or promise_date >= $3::date) order by kind limit 1`, [schoolId, payerId, today])).rows[0]?.kind as 'hardship' | 'promise' | undefined;
     // Guardians of the family's children: an address, and that child's consent for operational communication as it stands now.
@@ -104,9 +108,17 @@ export async function runFeeReminders(db: Sql, queue: JobQueue, schoolId: string
     )).rows as { email: string; consented: boolean }[];
     const to = [...new Set(guardians.filter((g) => g.consented && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(g.email)).map((g) => g.email))].slice(0, 4);
     const already = !!(await db.query(`select 1 from fee_reminders where school_id = $1 and payer_id = $2 and run_date = $3 and outcome = 'sent'`, [schoolId, payerId, today])).rows[0];
-    const held = hold ?? (guardians.length === 0 ? 'no_email' : to.length === 0 ? 'no_consent' : already ? 'one_a_day' : null);
-    if (held) {
-      await note('held', held, null);
+    // A promise or hardship holds every channel; so does "one a day".
+    const stopped = hold ?? (already ? 'one_a_day' : null);
+    if (stopped) {
+      await note('held', stopped, null);
+      run.held += lines.length;
+      continue;
+    }
+    // A link is made only for a family that can be reminded some way.
+    const noEmail = guardians.length === 0 ? 'no_email' : to.length === 0 ? 'no_consent' : null;
+    if (noEmail && !whatsapp) {
+      await note('held', noEmail, null);
       run.held += lines.length;
       continue;
     }
@@ -118,14 +130,32 @@ export async function runFeeReminders(db: Sql, queue: JobQueue, schoolId: string
     const kind = (['after_7', 'due_day', 'before_3'] as const).find((k) => lines.some((l) => l.which === k)) as string;
     const head = lines.filter((l) => l.which === kind);
     const headMinor = head.reduce((t, l) => t + l.balance, 0);
+    const payUrl = link ? `${siteUrl}/pay/${link.token}` : '';
+    // ONE channel a day (C188). WhatsApp first, where it is live and the gate lets a message to this family
+    // through (consent, STOP, approved words, a link to give); if none is queued, email, as before.
+    if (whatsapp) {
+      const anchor = (await db.query(`select student_id, family_id from students where school_id = $1 and coalesce(family_id, student_id) = $2 order by name, student_id limit 1`, [schoolId, payerId])).rows[0];
+      const told = anchor ? await tellFeeReminder(db, queue, schoolId, { familyId: anchor.family_id, studentId: anchor.student_id, payerId }, { kind, amountMinor: headMinor, dueDate: head[0].due_date, payUrl, today }) : null;
+      if (told && told.queued > 0) {
+        await note('sent', null, link?.linkId ?? null, 'whatsapp');
+        run.sent += lines.length;
+        run.byWhatsApp += lines.length;
+        continue;
+      }
+    }
+    if (noEmail) {
+      await note('held', noEmail, null);
+      run.held += lines.length;
+      continue;
+    }
     await queue.enqueue(db, {
       type: 'email.send',
       idempotencyKey: `fee-reminder:${schoolId}:${payerId}:${today}`,
       schoolId,
       maxAttempts: 4,
-      payload: { to, template: 'fee_reminder', data: { schoolName: school, amount: rupees(headMinor), dueDate: head[0].due_date, kind, total: total > headMinor ? rupees(total) : '', payUrl: link ? `${siteUrl}/pay/${link.token}` : '' } },
+      payload: { to, template: 'fee_reminder', data: { schoolName: school, amount: rupees(headMinor), dueDate: head[0].due_date, kind, total: total > headMinor ? rupees(total) : '', payUrl } },
     });
-    await note('sent', null, link?.linkId ?? null);
+    await note('sent', null, link?.linkId ?? null, 'email');
     run.sent += lines.length;
   }
   return run;

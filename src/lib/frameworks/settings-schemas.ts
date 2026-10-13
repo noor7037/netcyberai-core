@@ -156,7 +156,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
       {
         key: 'reminders_enabled',
         label: 'Email fee reminders to guardians',
-        help: 'When on, a guardian with an email address is reminded 3 days before a fee is due, on the day, and 7 days after, with the payment link. One email a family a day. No reminder goes while a promise to pay or hardship is open. Off until you switch it on.',
+        help: 'When on, a guardian with an email address is reminded 3 days before a fee is due, on the day, and 7 days after, with the payment link. One email a family a day. No reminder goes while a promise to pay or hardship is open. Where WhatsApp is connected for your school the reminder goes there, and by email otherwise: never both on one day. Off until you switch it on.',
         section: 'Reminders',
         type: 'boolean',
         default: false,

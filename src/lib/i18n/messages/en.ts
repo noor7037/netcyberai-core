@@ -1170,7 +1170,7 @@ export const en = {
   'bank.problem.no_map': 'The column names could not be recognised. Choose the columns below.',
   'bank.problem.period': 'Give the dates the statement runs from and to.',
   'set.fees.reminders_enabled.label': 'Email fee reminders to guardians',
-  'set.fees.reminders_enabled.help': 'When on, a guardian with an email address is reminded 3 days before a fee is due, on the day, and 7 days after, with the payment link. One email a family a day. No reminder goes while a promise to pay or hardship is open. Off until you switch it on.',
+  'set.fees.reminders_enabled.help': 'When on, a guardian with an email address is reminded 3 days before a fee is due, on the day, and 7 days after, with the payment link. One email a family a day. No reminder goes while a promise to pay or hardship is open. Where WhatsApp is connected for your school the reminder goes there, and by email otherwise: never both on one day. Off until you switch it on.',
   'set.fees.bank_unseen_days.label': 'Days before a counter UPI or cheque payment not seen in the bank is listed',
   'set.fees.bank_unseen_days.help': 'A payment taken at the counter by UPI, cheque or bank transfer should show in the bank statement. After this many days without it, from 1 to 30, it is listed for the office to look into. The receipt stays valid.',
   'bank.matched': 'From this statement: {credited} payments confirmed and receipts issued; {seen} already-recorded payments seen in the bank; {needs} need a person; {left} matched nothing.',

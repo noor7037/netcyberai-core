@@ -99,16 +99,16 @@ describe('on the real schema', () => {
   afterAll(async () => db?.close?.());
 
   it('nothing is sent until the school switches reminders on; a test school never sends', async () => {
-    expect(await night()).toEqual({ sent: 0, held: 0, linksMade: 0 });
+    expect(await night()).toEqual({ sent: 0, held: 0, linksMade: 0, byWhatsApp: 0 });
     await switchOn(true, T);
-    expect(await night(T)).toEqual({ sent: 0, held: 0, linksMade: 0 });
+    expect(await night(T)).toEqual({ sent: 0, held: 0, linksMade: 0, byWhatsApp: 0 });
     expect(await emails()).toEqual([]);
     expect(await reminders()).toEqual([]);
   });
 
   it('switched on: one email a family for the lines due in 3 days, today and 7 days ago, with the family’s link; held ones say why', async () => {
     await switchOn(true);
-    expect(await night()).toEqual({ sent: 2, held: 2, linksMade: 1 });
+    expect(await night()).toEqual({ sent: 2, held: 2, linksMade: 1, byWhatsApp: 0 });
     const sent = await emails();
     expect(sent).toHaveLength(1);
     expect(sent[0].to).toEqual(['guardian.one@example.invalid']);
@@ -124,13 +124,13 @@ describe('on the real schema', () => {
       { name: 'Deepa', which: 'due_day', outcome: 'held', why: 'no_consent' },
     ]);
     // The same night again: nothing more.
-    expect(await night()).toEqual({ sent: 0, held: 0, linksMade: 0 });
+    expect(await night()).toEqual({ sent: 0, held: 0, linksMade: 0, byWhatsApp: 0 });
     expect(await emails()).toHaveLength(1);
   });
 
   it('one reminder a family a day: a second line the same day is held; the open link is used again another day', async () => {
     await db.pg.query(`insert into fees_ledger (school_id, student_id, amount_minor, due_date) values ($1, $2, 20000, $3)`, [A, sid(1), day(-7)]);
-    expect(await night()).toEqual({ sent: 0, held: 1, linksMade: 0 });
+    expect(await night()).toEqual({ sent: 0, held: 1, linksMade: 0, byWhatsApp: 0 });
     expect((await reminders()).find((r: { name: string; which: string }) => r.name === 'Asha' && r.which === 'after_7')).toMatchObject({ outcome: 'held', why: 'one_a_day' });
     // Three days on, Asha's first fee is due that day: the same open link goes out.
     expect(await night(A, day(3))).toMatchObject({ sent: 1, linksMade: 0 });
