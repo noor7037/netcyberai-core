@@ -656,7 +656,7 @@ export const hi: Record<keyof typeof en, string> = {
   'moduleOff.homework': '“Homework” मेनू से हट जाता है। शिक्षक और दफ़्तर इसे दे नहीं सकते और जाँच नहीं सकते, और इसका कार्ड My Day से हट जाता है।',
   // Daily Pulse: today's messages (C151).
   'pc.title': 'अभिभावकों के लिए आज के संदेश',
-  'pc.notSent': 'अभी कुछ नहीं भेजा जाता। भेजना WhatsApp के साथ शुरू होगा। तब तक “तैयार” किया हुआ संदेश यहीं रहता है और कहीं नहीं जाता।',
+  'pc.notSent': 'अभिभावकों को कुछ भी अपने आप नहीं जाता। संदेश को तैयार चिह्नित करें, फिर “Send to parents” दबाएँ। जब तक आपके स्कूल के लिए WhatsApp जुड़ा नहीं है, भेजा गया संदेश दर्ज होता है और किसी फ़ोन तक नहीं पहुँचता; Communication यह बताता है।',
   'pc.loading': 'खुल रहा है…',
   'pc.count.one': 'आज {count} संदेश तैयार हुआ; {ready} “तैयार”',
   'pc.count.other': 'आज {count} संदेश तैयार हुए; {ready} “तैयार”',
@@ -1406,6 +1406,12 @@ export const hi: Record<keyof typeof en, string> = {
   'today.replies-waiting.todo.other': '{count} अभिभावकों ने लिखा है और जवाब का इंतज़ार कर रहे हैं',
   'today.replies-waiting.action': 'संदेश खोलें',
   'today.replies-waiting.why': 'अभिभावक के लिखने के बाद सिर्फ़ 24 घंटे तक आप अपने शब्दों में जवाब दे सकते हैं।',
+  // Daily Pulse: sending and answers (C189).
+  'pc.send': 'अभिभावकों को भेजें',
+  'pc.send.done': '{queued} अभिभावकों को भेजा जा रहा है। {held} रोके गए; कारण Communication में दिखता है।',
+  'pc.send.nobody': 'इस कक्षा के किसी अभिभावक का फ़ोन नंबर दर्ज नहीं है, इसलिए भेजने के लिए कोई नहीं है।',
+  'pc.sent.summary': 'भेज दिया गया। {queued} संदेश रास्ते में हैं या पहुँच गए; {held} रोके गए या विफल रहे। अभिभावकों के जवाब: {understood} को समझ आया, {help} को मदद चाहिए।',
+  'msg.template.daily_pulse': 'दैनिक पल्स',
   'sync.saved': 'सब सेव है',
   'sync.offline': 'ऑफ़लाइन: पिछली बार जो खुला था वही दिख रहा है',
   'sync.sending.one': '{count} बदलाव भेजा जा रहा है…',

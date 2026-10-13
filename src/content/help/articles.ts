@@ -366,9 +366,11 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'Open “Daily Pulse”. Under “Today’s messages to parents” there is one message for each lesson.', hi: '“Daily Pulse” खोलें। “Today’s messages to parents” के नीचे हर पाठ का एक संदेश है।' },
       { en: 'Tap “English”, “Hindi” or “Hinglish” to read each one. Change the words if you wish, then press “Save the words”.', hi: 'हर एक को पढ़ने के लिए “English”, “Hindi” या “Hinglish” टैप करें। चाहें तो शब्द बदलें, फिर “Save the words” दबाएँ।' },
       { en: 'Press “Mark ready”. “Back to draft” takes it back.', hi: '“Mark ready” दबाएँ। “Back to draft” से वापस ड्राफ़्ट हो जाता है।' },
+      { en: 'When the words are right, press “Send to parents”. The message goes to the guardians of that class who have agreed to the Daily Pulse.', hi: 'जब शब्द सही हों, तो “Send to parents” दबाएँ। संदेश उस कक्षा के उन अभिभावकों को जाता है जिन्होंने Daily Pulse के लिए सहमति दी है।' },
     ],
     tips: [
-      { en: 'Nothing is sent to parents yet. Sending starts with WhatsApp; until then a ready message stays here.', hi: 'अभी अभिभावकों को कुछ नहीं भेजा जाता। भेजना WhatsApp के साथ शुरू होगा; तब तक तैयार संदेश यहीं रहता है।' },
+      { en: 'Nothing goes to parents by itself: a person marks the message ready and a person sends it. Until WhatsApp is connected for your school, a sent message is recorded and reaches no phone.', hi: 'अभिभावकों को कुछ भी अपने आप नहीं जाता: एक व्यक्ति संदेश को तैयार चिह्नित करता है और एक व्यक्ति उसे भेजता है। जब तक आपके स्कूल के लिए WhatsApp जुड़ा नहीं है, भेजा गया संदेश दर्ज होता है और किसी फ़ोन तक नहीं पहुँचता।' },
+      { en: 'A parent can answer 1 if the child understood, or 2 if the child needs help. An answer of 2 puts the child in the needs-help list for their teacher.', hi: 'अभिभावक जवाब में 1 लिख सकते हैं अगर बच्चे को समझ आया, या 2 अगर बच्चे को मदद चाहिए। 2 लिखने पर बच्चा अपने शिक्षक की मदद वाली सूची में आ जाता है।' },
       { en: 'A lesson marked “Not taught” has no message: parents are never told a lesson happened when it did not.', hi: '“Not taught” वाले पाठ का कोई संदेश नहीं बनता: अभिभावकों को कभी नहीं बताया जाता कि पाठ हुआ जबकि वह नहीं हुआ।' },
       { en: 'If you change the lesson in Taught today, its message is written again and goes back to draft.', hi: 'अगर आप Taught today में पाठ बदलते हैं, तो उसका संदेश फिर से लिखा जाता है और वापस ड्राफ़्ट हो जाता है।' },
     ],

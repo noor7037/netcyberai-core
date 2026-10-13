@@ -6,8 +6,8 @@ import { MAX_PULSE_BODY, pulseBodies, type PulseBodies } from './text';
 // The day's Pulse drafts (docs/20 5f, C151). A draft is prepared by one tap
 // "taught today" (src/lib/academics/taught.ts) and holds the lesson and the
 // homework set that day for the same class and subject. A person may change
-// the words and mark it ready. Nothing here sends anything: sending starts
-// with WhatsApp in P4, and no job is enqueued.
+// the words and mark it ready. Nothing in this file sends anything: a
+// ready message is sent by a person, in src/lib/pulse/send.ts (C189).
 //
 // RLS: a teacher reads and writes only their own classes' messages.
 
@@ -28,9 +28,18 @@ export type Draft = {
   body_en: string;
   body_hi: string;
   body_hinglish: string;
+  // Once sent (C189): how many messages went into the queue or were held, and what parents answered.
+  queued: number;
+  held: number;
+  understood: number;
+  needs_help: number;
 };
 
-const SELECT = `select m.pulse_id, m.class_id, c.name as class_name, m.subject_id, s.name as subject_name, m.topic, m.exception_state, m.sent_on::text as sent_on, m.status, m.edited, m.body_en, m.body_hi, m.body_hinglish
+const SELECT = `select m.pulse_id, m.class_id, c.name as class_name, m.subject_id, s.name as subject_name, m.topic, m.exception_state, m.sent_on::text as sent_on, m.status, m.edited, m.body_en, m.body_hi, m.body_hinglish,
+         (select count(*)::int from communication_log l where l.school_id = m.school_id and l.dedupe_key like 'pulse:' || m.pulse_id || ':%' and l.status::text not like 'blocked_%' and l.status::text <> 'failed') as queued,
+         (select count(*)::int from communication_log l where l.school_id = m.school_id and l.dedupe_key like 'pulse:' || m.pulse_id || ':%' and (l.status::text like 'blocked_%' or l.status::text = 'failed')) as held,
+         (select count(*)::int from pulse_response_log r where r.school_id = m.school_id and r.pulse_id = m.pulse_id and r.tier = 1) as understood,
+         (select count(*)::int from pulse_response_log r where r.school_id = m.school_id and r.pulse_id = m.pulse_id and r.tier = 2) as needs_help
     from pulse_messages m
     join classes c on c.school_id = m.school_id and c.class_id = m.class_id
     left join subjects s on s.school_id = m.school_id and s.subject_id = m.subject_id`;

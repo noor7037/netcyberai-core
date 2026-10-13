@@ -1,6 +1,7 @@
 import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
+import { notePulseReply } from '@/lib/pulse/replies';
 import { normalizePhone, writtenForms } from './phone';
 import type { ProviderName, WhatsAppNotice } from './provider';
 import { TEMPLATE_REGISTRY, renderTemplate } from './templates';
@@ -54,7 +55,11 @@ export async function receiveInbound(db: Sql, provider: ProviderName, n: Extract
     [whose.schoolId, phone, whose.parentId, n.at]
   )).rows[0].thread_id as string;
   await db.query(`insert into inbound_messages (school_id, thread_id, provider, provider_message_id, body, is_stop, received_at) values ($1, $2, $3, $4, $5, $6, $7)`, [whose.schoolId, thread, provider, n.providerMessageId, n.text.slice(0, 4096), stop, n.at]);
-  if (!stop) return { kind: 'threaded', schoolId: whose.schoolId, threadId: thread, stop: false };
+  if (!stop) {
+    // An answer to the day's Pulse ("1" understood, "2" needs help) is counted, when it is plain whose it is.
+    await notePulseReply(db, { schoolId: whose.schoolId, phone, text: n.text, at: n.at, providerMessageId: n.providerMessageId });
+    return { kind: 'threaded', schoolId: whose.schoolId, threadId: thread, stop: false };
+  }
   const made = await db.query(`insert into whatsapp_opt_outs (school_id, phone, stopped_at) values ($1, $2, $3) on conflict (school_id, phone) where lifted_at is null do nothing`, [whose.schoolId, phone, n.at]);
   if (made.rowCount !== 1) return { kind: 'threaded', schoolId: whose.schoolId, threadId: thread, stop: true }; // already stopped: told once, not again
   await writeAuditLog(db, { schoolId: whose.schoolId, actorUserId: null, actorRole: null, eventAction: 'whatsapp.stopped_by_parent', targetType: 'message_threads', targetId: thread, beforeState: undefined, afterState: { threadId: thread } });

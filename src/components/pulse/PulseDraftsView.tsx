@@ -15,7 +15,7 @@ import type { MessageKey } from '@/lib/i18n';
 
 const LANGS = ['en', 'hi', 'hinglish'] as const;
 type BodyLang = (typeof LANGS)[number];
-type Draft = { pulse_id: string; class_name: string; subject_name: string | null; status: 'draft' | 'ready' | 'sent'; edited: boolean; body_en: string; body_hi: string; body_hinglish: string };
+type Draft = { pulse_id: string; class_name: string; subject_name: string | null; status: 'draft' | 'ready' | 'sent'; edited: boolean; body_en: string; body_hi: string; body_hinglish: string; queued?: number; held?: number; understood?: number; needs_help?: number };
 const TAP = 'min-h-[48px] rounded-md border px-4 text-sm font-semibold';
 const bodyOf = (d: Draft, l: BodyLang) => (l === 'en' ? d.body_en : l === 'hi' ? d.body_hi : d.body_hinglish);
 
@@ -59,6 +59,18 @@ export function PulseDraftsView() {
       return;
     }
     toast.show(t(status === 'ready' ? 'pc.ready.done' : status === 'draft' ? 'pc.draft.done' : 'pc.saved'), 'success');
+    void load();
+  }
+
+  // A person sends a message they (or a colleague) marked ready (C189). It goes to the class's guardians through
+  // the send-gate; the answer says how many were queued and how many were held back.
+  async function send(d: Draft) {
+    setBusy(d.pulse_id);
+    const res = await fetch(`/api/app/pulse-drafts/${d.pulse_id}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'send' }) }).catch(() => null);
+    const body = (await res?.json().catch(() => null)) ?? {};
+    setBusy(null);
+    if (!res?.ok) toast.show(t(body.code === 'nobody' ? 'pc.send.nobody' : 'pc.failed'), 'danger');
+    else toast.show(t('pc.send.done', { queued: Number(body.queued ?? 0), held: Number(body.held ?? 0) }), 'success');
     void load();
   }
 
@@ -120,11 +132,23 @@ export function PulseDraftsView() {
                       {t('pc.ready')}
                     </button>
                   ) : (
-                    <button type="button" disabled={busy === d.pulse_id} className={`${TAP} border-slate/20 text-slate`} onClick={() => void change(d, 'draft')}>
-                      {t('pc.draft')}
-                    </button>
+                    <>
+                      <button type="button" disabled={busy === d.pulse_id} className={`${TAP} border-slate/20 text-slate`} onClick={() => void change(d, 'draft')}>
+                        {t('pc.draft')}
+                      </button>
+                      {!dirty && (
+                        <button type="button" data-send-pulse disabled={busy === d.pulse_id} className="min-h-[48px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60" onClick={() => void send(d)}>
+                          {t('pc.send')}
+                        </button>
+                      )}
+                    </>
                   )}
                 </div>
+              )}
+              {locked && (
+                <p data-pulse-sent className="rounded-md bg-off-white px-3 py-2">
+                  {t('pc.sent.summary', { queued: d.queued ?? 0, held: d.held ?? 0, understood: d.understood ?? 0, help: d.needs_help ?? 0 })}
+                </p>
               )}
             </li>
           );
