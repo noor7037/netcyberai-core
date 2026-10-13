@@ -34,6 +34,7 @@ const realAccount: WhatsAppProvider = {
   name: 'meta',
   send: async () => ({ success: true, providerMessageId: `made-up-${n}-${Math.random().toString(36).slice(2)}`, errorMessage: null, raw: null }),
   sendText: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
+  sendChoice: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
   testConnection: async () => ({ ok: true, message: 'made up for this test' }),
   // Made up as well: it believes whatever it is handed, so a test can say "this was delivered".
   readNotice: (rawBody) => ({ ok: true, notices: JSON.parse(rawBody) }),

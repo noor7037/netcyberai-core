@@ -7,7 +7,8 @@ import { assertRowsAffected, NoRowsAffectedError } from '@/lib/db/rows';
 import { checkEmail, checkPhone, validationError } from '@/lib/errors/catalogue';
 import { ruleError } from '@/lib/frameworks/route';
 
-const EDITABLE_FIELDS = ['name', 'phone', 'email', 'relation'] as const;
+// preferred_language (C190): 'en', 'hi', or empty for "the school's default".
+const EDITABLE_FIELDS = ['name', 'phone', 'email', 'relation', 'preferred_language'] as const;
 
 // Correcting a guardian's own details (a mistyped phone number, an
 // added email) -- not for re-pointing which student(s) they're linked
@@ -36,6 +37,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { parentId: 
         const phoneCheck = checkPhone(String(body.phone));
         if (!phoneCheck.ok) return NextResponse.json(phoneCheck.error, { status: 400 });
       }
+      if (field === 'preferred_language' && !['en', 'hi', '', null].includes(body.preferred_language)) return ruleError(400, 'not_sent_properly');
       if (field === 'email' && typeof body.email === 'string' && body.email.trim()) {
         const emailProblem = checkEmail(body.email);
         if (emailProblem) return NextResponse.json(emailProblem, { status: 400 });
@@ -51,7 +53,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { parentId: 
   try {
     const guardian = await withTenantContext(guard.claims, async (client) => {
       const before = await client.query(
-        `select parent_id, name, phone, email, relation from parents where school_id = $1 and parent_id = $2`,
+        `select parent_id, name, phone, email, relation, preferred_language from parents where school_id = $1 and parent_id = $2`,
         [guard.claims.schoolId, params.parentId]
       );
       if (!before.rows[0]) return null;
@@ -60,7 +62,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { parentId: 
       const result = await client.query(
         `update parents set ${setClauses.join(', ')}
          where school_id = $${values.length - 1} and parent_id = $${values.length}
-         returning parent_id, name, phone, email, relation`,
+         returning parent_id, name, phone, email, relation, preferred_language`,
         values
       );
       assertRowsAffected(result, `guardian ${params.parentId} update matched 0 rows`);

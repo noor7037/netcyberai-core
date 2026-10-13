@@ -153,6 +153,8 @@ export async function templateToSend(client: Pick<PoolClient, 'query'>, schoolId
     `select id, template_name, version, language, body, variables, billing_category, stale_after_minutes, meta_status, meta_template_id
        from whatsapp_templates
       where template_name = $2 and (school_id = $1 or school_id is null) and status = 'approved' and language in ($3, 'en') and ($4 = false or meta_status = 'approved')
+        -- Words in a language other than English go out only once a reader of that language has reviewed them (C190).
+        and (language = 'en' or wording_reviewed)
       order by (language = $3) desc, school_id nulls last, version desc
       limit 1`,
     [schoolId, templateName, language, needsMeta]
@@ -173,7 +175,7 @@ export function missingVariables(template: Pick<TemplateToSend, 'variables'>, pa
 
 // --- Control: the founder's side ---------------------------------------------------------------------------
 
-export type TemplateRow = { id: string; name: string; version: number; language: TemplateLanguage; body: string | null; variables: string[]; category: string; staleAfterMinutes: number | null; status: 'approved' | 'pending' | 'rejected'; approvedByName: string | null; approvedAt: string | null; metaStatus: string; metaTemplateId: string | null; metaDecidedAt: string | null; inCode: boolean; sendsNow: boolean };
+export type TemplateRow = { id: string; name: string; version: number; language: TemplateLanguage; body: string | null; variables: string[]; category: string; staleAfterMinutes: number | null; status: 'approved' | 'pending' | 'rejected'; approvedByName: string | null; approvedAt: string | null; metaStatus: string; metaTemplateId: string | null; metaDecidedAt: string | null; inCode: boolean; sendsNow: boolean; wordingReviewed: boolean; wordingReviewedNote: string | null };
 export const META_STATUSES = ['not_submitted', 'pending', 'approved', 'rejected', 'paused'] as const;
 
 // Every version in the code that the database does not yet hold is written, waiting for approval. A row from
@@ -201,16 +203,16 @@ export async function syncTemplates(db: Sql): Promise<{ added: number; filled: n
 
 export async function listTemplates(db: Sql): Promise<TemplateRow[]> {
   const { rows } = await db.query(
-    `select t.id, t.template_name, t.version, t.language, t.body, t.variables, t.billing_category, t.stale_after_minutes, t.status::text as status, u.display_name as approved_by_name, t.approved_at, t.meta_status, t.meta_template_id, t.meta_decided_at,
-            t.version = (select max(n.version) from whatsapp_templates n where n.school_id is null and n.template_name = t.template_name and n.language = t.language and n.status = 'approved') as sends_now
+    `select t.id, t.template_name, t.version, t.language, t.body, t.variables, t.billing_category, t.stale_after_minutes, t.status::text as status, u.display_name as approved_by_name, t.approved_at, t.meta_status, t.meta_template_id, t.meta_decided_at, t.wording_reviewed, t.wording_reviewed_note,
+            t.version = (select max(n.version) from whatsapp_templates n where n.school_id is null and n.template_name = t.template_name and n.language = t.language and n.status = 'approved' and (n.language = 'en' or n.wording_reviewed)) as sends_now
        from whatsapp_templates t left join users u on u.user_id = t.approved_by
       where t.school_id is null order by t.template_name, t.language, t.version desc`
   );
   const iso = (v: unknown) => (v ? new Date(v as string).toISOString() : null);
-  return rows.map((r) => ({ id: r.id, name: r.template_name, version: r.version, language: r.language, body: r.body, variables: r.variables ?? [], category: r.billing_category, staleAfterMinutes: r.stale_after_minutes, status: r.status, approvedByName: r.approved_by_name ?? null, approvedAt: iso(r.approved_at), metaStatus: r.meta_status, metaTemplateId: r.meta_template_id, metaDecidedAt: iso(r.meta_decided_at), inCode: TEMPLATE_REGISTRY.some((d) => d.name === r.template_name && d.version === r.version && d.body[r.language as TemplateLanguage] === r.body), sendsNow: r.sends_now === true }));
+  return rows.map((r) => ({ id: r.id, name: r.template_name, version: r.version, language: r.language, body: r.body, variables: r.variables ?? [], category: r.billing_category, staleAfterMinutes: r.stale_after_minutes, status: r.status, approvedByName: r.approved_by_name ?? null, approvedAt: iso(r.approved_at), metaStatus: r.meta_status, metaTemplateId: r.meta_template_id, metaDecidedAt: iso(r.meta_decided_at), inCode: TEMPLATE_REGISTRY.some((d) => d.name === r.template_name && d.version === r.version && d.body[r.language as TemplateLanguage] === r.body), sendsNow: r.sends_now === true, wordingReviewed: r.wording_reviewed === true, wordingReviewedNote: r.wording_reviewed_note ?? null }));
 }
 
-export type TemplateActionResult = { ok: true } | { ok: false; reason: 'not_found' | 'no_words' | 'not_in_code' | 'meta_status' | 'meta_id' };
+export type TemplateActionResult = { ok: true } | { ok: false; reason: 'not_found' | 'no_words' | 'not_in_code' | 'meta_status' | 'meta_id' | 'note' | 'english' };
 
 // Our own approval: a person at NetCyberAI has read these exact words. Only words that are still the code's.
 export async function decideTemplate(db: Sql, by: { userId: string }, id: string, approve: boolean): Promise<TemplateActionResult> {
@@ -231,4 +233,17 @@ export async function recordMetaDecision(db: Sql, id: string, input: { metaStatu
   if (metaId.length > 100 || (input.metaStatus !== 'not_submitted' && metaId === '')) return { ok: false, reason: 'meta_id' };
   const done = await db.query(`update whatsapp_templates set meta_status = $2, meta_template_id = nullif($3, ''), meta_decided_at = now() where id = $1 and school_id is null`, [id, input.metaStatus, metaId]);
   return done.rowCount === 1 ? { ok: true } : { ok: false, reason: 'not_found' };
+}
+
+// A reader of the language has read this version's words (C190): who, as the founder writes it down, and when.
+// Only for a language other than English; it cannot be taken back, because a version's words never change.
+export async function markWordingReviewed(db: Sql, by: { userId: string }, id: string, noteRaw: string): Promise<TemplateActionResult> {
+  const note = noteRaw.trim().replace(/\s+/g, ' ').slice(0, 200);
+  if (!note) return { ok: false, reason: 'note' };
+  const row = (await db.query(`select language, body from whatsapp_templates where id = $1 and school_id is null for update`, [id])).rows[0];
+  if (!row) return { ok: false, reason: 'not_found' };
+  if (row.language === 'en') return { ok: false, reason: 'english' };
+  if (row.body === null) return { ok: false, reason: 'no_words' };
+  await db.query(`update whatsapp_templates set wording_reviewed = true, wording_reviewed_by = $2, wording_reviewed_at = now(), wording_reviewed_note = $3 where id = $1 and wording_reviewed = false`, [id, by.userId, note]);
+  return { ok: true };
 }

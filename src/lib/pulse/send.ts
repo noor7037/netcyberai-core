@@ -2,7 +2,8 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import type { JobQueue } from '@/lib/jobs/types';
-import { queueWhatsAppMessage } from '@/lib/whatsapp/gate';
+import { languageFor, queueWhatsAppMessage } from '@/lib/whatsapp/gate';
+import { templateToSend } from '@/lib/whatsapp/templates';
 import { normalizePhone } from '@/lib/whatsapp/phone';
 
 // Sending the day's Pulse (docs/25 slice 7h, C189).
@@ -14,8 +15,9 @@ import { normalizePhone } from '@/lib/whatsapp/phone';
 // agreed to the Pulse is held, and shown as held.
 //
 // The words are the school's own for that day, carried in one template
-// ("<School>: <the day's update> Reply 1 … or 2 …"). English for now: the
-// app does not yet know which language each family reads.
+// ("<School>: <the day's update> Reply 1 … or 2 …"), in the guardian's own
+// language, else the school's, else English; Hindi only once its wording
+// has been reviewed (C190).
 
 type Actor = { schoolId: string; userId: string; role: StaffRole };
 const STAFF: readonly string[] = ['principal', 'school_admin', 'teacher'];
@@ -27,7 +29,7 @@ export type SendPulseResult = { ok: true; queued: number; held: number; withoutN
 export async function sendPulse(db: PoolClient, queue: JobQueue, actor: Actor, pulseId: string): Promise<SendPulseResult> {
   if (!STAFF.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   // Row level security shows a teacher only their own classes' messages.
-  const pulse = (await db.query(`select class_id, status, body_en from pulse_messages where school_id = $1 and pulse_id = $2 for update`, [actor.schoolId, pulseId])).rows[0];
+  const pulse = (await db.query(`select class_id, status, body_en, body_hi from pulse_messages where school_id = $1 and pulse_id = $2 for update`, [actor.schoolId, pulseId])).rows[0];
   if (!pulse) return { ok: false, reason: 'not_found' };
   if (pulse.status === 'sent') return { ok: false, reason: 'already_sent' };
   if (pulse.status !== 'ready' || !oneLine(pulse.body_en)) return { ok: false, reason: 'not_ready' };
@@ -38,6 +40,7 @@ export async function sendPulse(db: PoolClient, queue: JobQueue, actor: Actor, p
       where s.school_id = $1 and s.class_id = $2 and s.status = 'active' order by s.name, s.student_id, p.created_at, p.parent_id`,
     [actor.schoolId, pulse.class_id]
   )).rows as { student_id: string; parent_id: string; phone: string | null }[];
+  const hindiReady = (await templateToSend(db, actor.schoolId, 'daily_pulse', 'hi', false))?.language === 'hi';
   const out = { queued: 0, held: 0, withoutNumber: 0 };
   const told = new Set<string>();
   for (const g of guardians) {
@@ -49,7 +52,11 @@ export async function sendPulse(db: PoolClient, queue: JobQueue, actor: Actor, p
     // One message per child and number, however many guardian rows share the number.
     if (told.has(`${g.student_id}:${phone}`)) continue;
     told.add(`${g.student_id}:${phone}`);
-    const r = await queueWhatsAppMessage(db, queue, { schoolId: actor.schoolId, studentId: g.student_id, parentId: g.parent_id, purpose: 'daily_pulse', toPhone: phone, templateName: 'daily_pulse', templateParams: { update: oneLine(pulse.body_en) }, dedupeKey: `pulse:${pulseId}:${g.student_id}:${g.parent_id}` });
+    // The guardian's own language, else the school's, else English (C190). Hindi only if the Hindi words of this
+    // message exist and the Hindi template version has been reviewed and approved; otherwise English.
+    const wanted = await languageFor(db, actor.schoolId, g.parent_id);
+    const hindi = wanted === 'hi' && oneLine(pulse.body_hi ?? '') !== '' && hindiReady;
+    const r = await queueWhatsAppMessage(db, queue, { schoolId: actor.schoolId, studentId: g.student_id, parentId: g.parent_id, purpose: 'daily_pulse', toPhone: phone, templateName: 'daily_pulse', templateParams: { update: oneLine(hindi ? pulse.body_hi : pulse.body_en) }, language: hindi ? 'hi' : 'en', dedupeKey: `pulse:${pulseId}:${g.student_id}:${g.parent_id}` });
     if (r.status === 'queued') out.queued += 1;
     else out.held += 1;
   }

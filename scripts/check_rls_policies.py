@@ -161,6 +161,8 @@ ALLOWED_PERMISSIVE = (
         ("whatsapp_templates", "whatsapp_templates_platform_decide"),
         # C186: the platform's WhatsApp account; scoped `to nca_super`; no school role holds any grant on it.
         ("whatsapp_credentials", "whatsapp_credentials_platform"),
+        # C190: held messages, encrypted; scoped `to nca_super`; no school role holds any grant.
+        ("held_inbound", "held_inbound_platform"),
         # `leads` is the one genuinely pre-tenant table (public Get
         # Started/Book Demo intake, reached via withBackendConnection,
         # never withTenantContext -- there is no school_id yet). Public
@@ -379,6 +381,7 @@ REQUIRED_RESTRICTIVE = {
     ("payment_gateway_access", "payment_gateway_access_finance"),
     ("payment_credentials", "payment_credentials_nobody"),
     ("whatsapp_credentials", "whatsapp_credentials_nobody"),
+    ("held_inbound", "held_inbound_nobody"),
     ("payment_evidence", "payment_evidence_finance"),
     ("payment_reports", "payment_reports_finance"),
     # C176: holidays are the office's to change; bank accounts, statements and rows are the finance roles'.

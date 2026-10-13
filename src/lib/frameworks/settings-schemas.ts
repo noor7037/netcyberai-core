@@ -13,7 +13,7 @@ const OFFICE = ['principal', 'school_admin'] as const;
 export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   {
     moduleId: 'setup',
-    version: 1,
+    version: 2,
     fields: [
       {
         key: 'accent_color',
@@ -23,6 +23,21 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         type: 'color_token',
         default: 'royal',
         editableBy: OFFICE,
+      },
+      {
+        key: 'parent_language',
+        label: 'Language for messages to parents',
+        help: 'The language the school writes to parents in when a guardian has not chosen one. A message goes in Hindi only once its Hindi wording has been reviewed; until then it goes in English.',
+        section: 'Messages',
+        type: 'select',
+        default: 'en',
+        options: [
+          { value: 'en', label: 'English' },
+          { value: 'hi', label: 'Hindi' },
+        ],
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
       },
       {
         key: 'working_days',

@@ -33,7 +33,7 @@ const APP_USER: Record<string, string> = {
   certificate_requests: 'DELETE,INSERT,SELECT,UPDATE',
   classes: 'DELETE,INSERT,SELECT,UPDATE',
   client_operations: 'INSERT,SELECT,UPDATE',
-  communication_log: 'DELETE,INSERT,SELECT,UPDATE',
+  communication_log: 'INSERT,SELECT,UPDATE', // never deleted by the app (C190); erasure gets its own audited function
   compliance_config: 'DELETE,INSERT,SELECT,UPDATE',
   consent_ledger: 'INSERT,SELECT',
   csv_imports: 'DELETE,INSERT,SELECT,UPDATE',
@@ -71,6 +71,7 @@ const APP_USER: Record<string, string> = {
   pulse_response_log: 'DELETE,INSERT,SELECT,UPDATE',
   qr_scan_log: 'DELETE,INSERT,SELECT,UPDATE',
   receipts: 'INSERT,SELECT,UPDATE',
+  held_inbound: '', // a parent's held words, encrypted: the platform role only (C190)
   whatsapp_credentials: '', // the platform's own WhatsApp account: never the app role's (C186)
   payment_credentials: '', // ciphertext only, and still not the app role's: the server's payment path reads it as the platform role (C171)
   payment_evidence: 'INSERT,SELECT,UPDATE', // the one door every credit goes through; a trigger keeps what it says fixed
@@ -133,6 +134,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   fee_status_runs: 'INSERT,SELECT', // the nightly job writes a result once
   payment_credentials: 'INSERT,SELECT,UPDATE',
   whatsapp_credentials: 'INSERT,SELECT,UPDATE',
+  held_inbound: 'INSERT,SELECT,UPDATE',
   payment_gateway_access: 'INSERT,SELECT,UPDATE',
   fee_followups: 'SELECT', // the nightly reminders hold while a promise or hardship is open
   fee_refunds: '',

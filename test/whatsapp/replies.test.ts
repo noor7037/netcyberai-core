@@ -3,8 +3,9 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { createPgJobQueue } from '@/lib/jobs/pg-queue';
 import { applyNotices } from '@/lib/whatsapp/delivery';
-import { deliverQueued, enqueueQueued, queueThreadReply, queueWhatsAppMessage } from '@/lib/whatsapp/gate';
+import { askWhichSchool, deliverQueued, dropHeld, enqueueQueued, queueThreadReply, queueWhatsAppMessage } from '@/lib/whatsapp/gate';
 import { textSendBody } from '@/lib/whatsapp/meta';
+import { chosenSchool, whichSchoolQuestion } from '@/lib/whatsapp/held';
 import { normalizePhone, writtenForms } from '@/lib/whatsapp/phone';
 import { StandInWhatsAppProvider, type WhatsAppNotice, type WhatsAppProvider } from '@/lib/whatsapp/provider';
 import { isStop, liftOptOut, listThreads, threadMessages, unknownSenders } from '@/lib/whatsapp/replies';
@@ -25,6 +26,20 @@ describe('numbers and words', () => {
   it('STOP is the whole message, in English or Hindi, and nothing else is', () => {
     for (const yes of ['STOP', ' stop ', 'Stop.', 'रोकें', 'बंद', 'बंद करें', 'UNSUBSCRIBE']) expect(isStop(yes), yes).toBe(true);
     for (const no of ['please do not stop the bus', 'stop sending homework so late', 'रोकें मत', 'ok']) expect(isStop(no), no).toBe(false);
+  });
+  it('“Which school?”: up to three as quick replies with short titles, more as a numbered list; an answer is a tap or the school’s number', () => {
+    const three = whichSchoolQuestion([{ school_id: 'a', name: 'Asha Public School' }, { school_id: 'b', name: 'A School With A Very Long Name Indeed' }]);
+    expect(three.choices).toEqual([{ id: 'school:a', title: 'Asha Public School' }, { id: 'school:b', title: 'A School With A Ver…' }]);
+    expect(three.choices.every((c) => c.title.length <= 20)).toBe(true);
+    expect(three.text).toContain('1 for Asha Public School, 2 for A School With A Very Long Name Indeed');
+    const four = whichSchoolQuestion(['a', 'b', 'c', 'd'].map((x) => ({ school_id: x, name: `School ${x}` })));
+    expect(four.choices).toEqual([]);
+    expect(four.text).toContain('4 for School d');
+    expect(chosenSchool(['a', 'b'], { text: 'School B', choiceId: 'school:b' })).toBe('b');
+    expect(chosenSchool(['a', 'b'], { text: 'x', choiceId: 'school:zzz' })).toBeNull();
+    expect(chosenSchool(['a', 'b'], { text: ' 2. ' })).toBe('b');
+    expect(chosenSchool(['a', 'b'], { text: '3' })).toBeNull();
+    expect(chosenSchool(['a', 'b'], { text: 'the second one' })).toBeNull();
   });
   it('a free-text send is Meta’s documented body', () => {
     expect(textSendBody({ toPhone: '+16505551234', text: 'Thank you, noted.' })).toEqual({ messaging_product: 'whatsapp', recipient_type: 'individual', to: '+16505551234', type: 'text', text: { preview_url: false, body: 'Thank you, noted.' } });
@@ -87,6 +102,7 @@ const listening = () => {
     name: 'stand-in',
     send: async () => ({ success: true, providerMessageId: `standin-t-${Math.random().toString(36).slice(2)}`, errorMessage: null, raw: null }),
     sendText: async (p) => (said.push({ to: p.toPhone, text: p.text }), { success: true, providerMessageId: `standin-x-${said.length}-${Math.random().toString(36).slice(2)}`, errorMessage: null, raw: null }),
+    sendChoice: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
     testConnection: async () => ({ ok: true, message: 'made up' }),
     readNotice: () => ({ ok: false, reason: 'no_secret' }),
   };
@@ -242,6 +258,84 @@ describe('on the real schema', () => {
     const mine = (await db.pg.query(`select log_id from communication_log where thread_id = $1 and status = 'queued'`, [thread])).rows[0].log_id;
     expect(await deliverQueued({ platform, queue, provider: real }, mine)).toEqual({ status: 'failed', reason: 'a test school never sends through a real account' });
     expect(asked).not.toHaveBeenCalled();
+  });
+
+  it('a number two schools know, neither of which wrote in the last 24 hours: the parent is asked which school; the message is held sealed and goes to the school chosen (C190)', async () => {
+    // A key for this test only, made here: thirty-two bytes of one value. Not the server's key.
+    process.env.MESSAGING_CREDENTIALS_KEY = Buffer.alloc(32, 5).toString('base64');
+    try {
+      await db.pg.exec(`insert into parents (parent_id, school_id, name, phone) values ('${u(81)}', '${A}', 'Guardian Seven', '9000000007'), ('${u(82)}', '${B}', 'Guardian Seven', '+919000000007'), ('${u(83)}', '${A}', 'Guardian Eight', '9000000008'), ('${u(84)}', '${TEST}', 'Guardian Eight', '9000000008');
+        insert into parent_student_map (school_id, parent_id, student_id) values ('${A}', '${u(81)}', '${u(31)}'), ('${B}', '${u(82)}', '${u(34)}');`);
+      const unknownBefore = await platform((c) => unknownSenders(c));
+      expect(await writes('+919000000007', 'My son forgot his tiffin at home', 1, 'standin-in-held')).toMatchObject({ status: 200, inbound: 1 });
+      const held = (await db.pg.query(`select held_id, status, school_ids, ciphertext, phone_digest, asked_at, expires_at - received_at as kept_for from held_inbound`)).rows;
+      expect(held).toHaveLength(1);
+      expect(held[0]).toMatchObject({ status: 'held', asked_at: null });
+      expect(held[0].school_ids.sort()).toEqual([A, B].sort());
+      // Sealed: neither the words nor the number can be read from the row, and no school has it yet.
+      expect(JSON.stringify((await db.pg.query(`select * from held_inbound`)).rows)).not.toMatch(/tiffin|9000000007/);
+      expect(JSON.stringify((await db.pg.query(`select * from inbound_messages`)).rows)).not.toMatch(/tiffin/);
+      expect(await platform((c) => unknownSenders(c))).toBe(unknownBefore);
+      expect((await db.pg.query(`select payload from jobs where payload ? 'askHeld' or payload ? 'dropHeld'`)).rows).toHaveLength(2);
+      // The question: asked once, with the schools as quick replies.
+      const asked: { to: string; text: string; choices: { id: string; title: string }[] }[] = [];
+      const p = listening();
+      p.provider.sendChoice = async (q) => (asked.push({ to: q.toPhone, text: q.text, choices: q.choices }), { success: true, providerMessageId: 'standin-question-1', errorMessage: null, raw: null });
+      expect(await askWhichSchool({ platform, provider: p.provider }, held[0].held_id)).toBe('asked');
+      expect(await askWhichSchool({ platform, provider: p.provider }, held[0].held_id)).toBe('not_asked');
+      expect(asked).toHaveLength(1);
+      expect(asked[0]).toMatchObject({ to: '+919000000007', choices: [{ id: `school:${A}`, title: 'School A' }, { id: `school:${B}`, title: 'School B' }] });
+      expect(asked[0].text).toMatch(/^NetCyberAI: This number is on record with more than one school\. Which school is your message about\?/);
+      // Something else from the number while the question is open is not kept, and the question is not asked again.
+      await writes('+919000000007', 'Hello?');
+      expect((await db.pg.query(`select count(*)::int as n from held_inbound`)).rows[0].n).toBe(1);
+      // The parent taps "School B": B receives the message as first written; A never sees it; the sealed copy is gone.
+      const tap: WhatsAppNotice[] = [{ kind: 'inbound', providerMessageId: 'standin-in-tap', fromPhone: '+919000000007', text: 'School B', at: at(0), choiceId: `school:${B}` }];
+      const signed = standIn.notice(tap);
+      await platform((c) => applyNotices(c, standIn, signed.rawBody, signed.signature, enqueueQueued(queue)));
+      expect((await as(principalB, (c) => listThreads(c, B))).find((t) => t.phone_last4 === '0007')).toMatchObject({ guardian: 'Guardian Seven', last_text: 'My son forgot his tiffin at home' });
+      expect((await as(principal, (c) => listThreads(c, A))).some((t) => t.phone_last4 === '0007')).toBe(false);
+      expect((await db.pg.query(`select status, chosen_school_id, ciphertext, iv, tag from held_inbound where held_id = $1`, [held[0].held_id])).rows[0]).toEqual({ status: 'delivered', chosen_school_id: B, ciphertext: null, iv: null, tag: null });
+      expect(await dropHeld({ platform, now: () => new Date(Date.now() + 30 * 3_600_000) }, held[0].held_id)).toBe(false); // already decided
+    } finally {
+      delete process.env.MESSAGING_CREDENTIALS_KEY;
+    }
+  });
+
+  it('the answer may be the school’s number; with no answer in 24 hours the message is dropped, saying so, and its words are erased; a test school keeps the question off any real account', async () => {
+    process.env.MESSAGING_CREDENTIALS_KEY = Buffer.alloc(32, 5).toString('base64');
+    try {
+      await db.pg.exec(`delete from communication_log where school_id = '${B}' and to_phone like '%9000000007'`).catch(() => undefined);
+      // B wrote to +919000000007 only via the thread just made (an inbound), never outbound: still two schools, no window.
+      await writes('+919000000007', 'Is tomorrow a holiday?', 1, 'standin-in-held-2');
+      const second = (await db.pg.query(`select held_id, school_ids from held_inbound where status = 'held'`)).rows[0];
+      await askWhichSchool({ platform, provider: listening().provider }, second.held_id);
+      const order = (await db.pg.query(`select school_ids from held_inbound where held_id = $1`, [second.held_id])).rows[0].school_ids as string[];
+      await writes('+919000000007', String(order.indexOf(A) + 1));
+      expect((await as(principal, (c) => listThreads(c, A))).find((t) => t.phone_last4 === '0007')).toMatchObject({ last_text: 'Is tomorrow a holiday?' });
+      // A number known to a real school and a TEST school: the question never goes through a real account.
+      await writes('+919000000008', 'Fees query', 1, 'standin-in-held-3');
+      const third = (await db.pg.query(`select held_id from held_inbound where status = 'held'`)).rows[0];
+      const real = { ...listening().provider, name: 'meta' as const };
+      const reached = vi.fn();
+      real.sendChoice = async () => (reached(), { success: true, providerMessageId: 'x', errorMessage: null, raw: null });
+      expect(await askWhichSchool({ platform, provider: real }, third.held_id)).toBe('not_asked');
+      expect(reached).not.toHaveBeenCalled();
+      // Nobody answers. Before the 24 hours are up it is kept; after, it is dropped and erased.
+      expect(await dropHeld({ platform, now: () => new Date(Date.now() + 3_600_000) }, third.held_id)).toBe(false);
+      expect(await dropHeld({ platform, now: () => new Date(Date.now() + 24 * 3_600_000) }, third.held_id)).toBe(true);
+      expect((await db.pg.query(`select status, reason, ciphertext, chosen_school_id from held_inbound where held_id = $1`, [third.held_id])).rows[0]).toEqual({ status: 'dropped', reason: 'no school was chosen within 24 hours', ciphertext: null, chosen_school_id: null });
+      expect(JSON.stringify((await db.pg.query(`select * from inbound_messages`)).rows)).not.toMatch(/Fees query/);
+      // No school role can read the held table at all.
+      await expect(as(principal, (c) => c.query(`select 1 from held_inbound`))).rejects.toThrow(/permission denied/);
+    } finally {
+      delete process.env.MESSAGING_CREDENTIALS_KEY;
+    }
+    // Without the key on the server nothing can be held: counted, not kept, as before.
+    const before = await platform((c) => unknownSenders(c));
+    await writes('+919000000008', 'Another query');
+    expect(await platform((c) => unknownSenders(c))).toBe(before + 1);
+    expect((await db.pg.query(`select count(*)::int as n from held_inbound where status = 'held'`)).rows[0].n).toBe(0);
   });
 
   it('the database: a thread is whose it is; an opt-out is only lifted, once; free text belongs to a thread; no school role writes a parent’s words', async () => {

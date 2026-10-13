@@ -3,7 +3,8 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { createPgJobQueue } from '@/lib/jobs/pg-queue';
 import { MAX_SEND_ATTEMPTS, deliverQueued, queueWhatsAppMessage, whatsappSendHandler } from '@/lib/whatsapp/gate';
-import type { WhatsAppProvider } from '@/lib/whatsapp/provider';
+import { applyNotices } from '@/lib/whatsapp/delivery';
+import { StandInWhatsAppProvider, type WhatsAppProvider } from '@/lib/whatsapp/provider';
 
 // The outbox (docs/25 slice 7d, C185). Every number is made up; nothing leaves the process.
 
@@ -44,6 +45,7 @@ const counting = () => {
       return { success: true, providerMessageId: `standin-${state.sent.length}-${Math.random().toString(36).slice(2)}`, errorMessage: null, raw: null };
     },
     sendText: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
+    sendChoice: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
     testConnection: async () => ({ ok: true, message: 'made up' }),
     readNotice: () => ({ ok: false, reason: 'no_secret' }),
   };
@@ -152,14 +154,45 @@ describe('the outbox, on the real schema', () => {
     expect(p.state.sent).toEqual([]);
   });
 
-  it('never twice: a send that was interrupted is not repeated, and says so', async () => {
+  it('never twice: an interrupted send is UNCERTAIN, not failed, and is never sent again (C190)', async () => {
     const p = counting();
     const q = await enqueue(india(6, '10:00'));
     // The process died after "sending" was committed and before the outcome was written.
-    await db.pg.query(`update communication_log set sending_at = now(), attempts = 1 where log_id = $1`, [q.logId]);
-    expect(await deliver(q.logId, india(6, '10:05'), p.provider)).toMatchObject({ status: 'failed', reason: expect.stringContaining('never messaged twice') });
+    await db.pg.query(`update communication_log set sending_at = now(), attempts = 1, provider = 'stand-in' where log_id = $1`, [q.logId]);
+    expect(await deliver(q.logId, india(6, '10:05'), p.provider)).toMatchObject({ status: 'uncertain', reason: expect.stringContaining('never messaged twice') });
+    expect(await deliver(q.logId, india(6, '10:10'), p.provider)).toMatchObject({ status: 'uncertain' });
     expect(p.state.asked).toBe(0);
-    expect(await row(q.logId)).toMatchObject({ status: 'failed', sending_at: null });
+    expect(await row(q.logId)).toMatchObject({ status: 'uncertain', sending_at: null, has_id: false });
+  });
+
+  it('a later notice from the provider moves an uncertain message forward, when it is the only one to that number; two are not guessed between', async () => {
+    const standIn = new StandInWhatsAppProvider({ secret: 'a-secret-for-this-test-only-0123456789abcdef' });
+    const tell = (id: string, status: 'sent' | 'delivered' | 'read' | 'failed', recipient: string | undefined, at: Date) => {
+      const { rawBody, signature } = standIn.notice([{ kind: 'status', providerMessageId: id, status, at: at.toISOString(), ...(recipient ? { recipient } : {}) }]);
+      return platform((c) => applyNotices(c, standIn, rawBody, signature));
+    };
+    const one = (await db.pg.query(`select log_id from communication_log where status = 'uncertain'`)).rows[0].log_id as string;
+    await db.pg.query(`update communication_log set created_at = created_at where log_id = $1`, [one]);
+    // A notice that does not say whom it was for cannot find it.
+    expect(await tell('standin-late-1', 'delivered', undefined, india(6, '10:20'))).toMatchObject({ applied: 0, unknown: 1 });
+    // Another number's notice does not touch it.
+    expect(await tell('standin-late-2', 'delivered', '+910000000099', india(6, '10:20'))).toMatchObject({ applied: 0, unknown: 1 });
+    expect(await tell('standin-late-3', 'delivered', '+910000000011', india(6, '10:21'))).toMatchObject({ applied: 1 });
+    expect(await row(one)).toMatchObject({ status: 'delivered', has_id: true, reason: 'the send was interrupted; the provider has since said it went' });
+    // And from there it moves on like any other message.
+    expect(await tell('standin-late-3', 'read', '+910000000011', india(6, '10:25'))).toMatchObject({ applied: 1 });
+    expect((await row(one)).status).toBe('read');
+    // Two uncertain messages to one number: a notice is not guessed onto either.
+    const a = await enqueue(india(12, '10:00'));
+    const b = await enqueue(india(12, '10:01'));
+    await db.pg.query(`update communication_log set status = 'uncertain', provider = 'stand-in' where log_id = any($1::uuid[])`, [[a.logId, b.logId]]);
+    expect(await tell('standin-late-4', 'delivered', '+910000000011', india(12, '10:05'))).toMatchObject({ applied: 0, unknown: 1 });
+    expect([(await row(a.logId)).status, (await row(b.logId)).status]).toEqual(['uncertain', 'uncertain']);
+    // The database: uncertain never goes back to queued, and may be said to have failed.
+    const set = (sql: string, id: string) => platform((c) => c.query(`update communication_log set ${sql} where log_id = '${id}'`)).then(() => 'allowed', (e: Error) => e.message);
+    expect(await set(`status = 'queued'`, a.logId)).toMatch(/only moves forward/);
+    expect(await set(`status = 'failed'`, a.logId)).toBe('allowed');
+    expect(await set(`status = 'sent'`, b.logId)).toBe('allowed');
   });
 
   it('“sending” is committed before the provider is asked', async () => {

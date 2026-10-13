@@ -18,6 +18,7 @@ const real: WhatsAppProvider = {
   name: 'meta',
   send: async () => ({ success: true, providerMessageId: `made-up-${Math.random().toString(36).slice(2)}`, errorMessage: null, raw: null }),
   sendText: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
+  sendChoice: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
   testConnection: async () => ({ ok: true, message: 'made up' }),
   readNotice: (rawBody) => ({ ok: true, notices: JSON.parse(rawBody) }),
 };
@@ -182,6 +183,9 @@ describe('delivery states, on the real schema', () => {
     expect(await set(`status = 'read'`)).toBe('allowed');
     const heldId = (await db.pg.query(`select log_id from communication_log where school_id = $1 and status = 'blocked_no_template' limit 1`, [A])).rows[0].log_id;
     expect(await asSchool(A, (c) => c.query(`update communication_log set status = 'sent' where log_id = $1`, [heldId])).then(() => 'allowed', (e: Error) => e.message)).toMatch(/only moves forward/);
+    // No role of the app removes a message from the log (C190); erasure will have its own audited function.
+    expect(await asSchool(A, (c) => c.query(`delete from communication_log where log_id = $1`, [m.logId])).then(() => 'allowed', (e: Error) => e.message)).toMatch(/permission denied/);
+    expect(await platform((c) => c.query(`delete from communication_log where log_id = $1`, [m.logId])).then(() => 'allowed', (e: Error) => e.message)).toMatch(/permission denied/);
     // A notice is kept as it came: no role may change or remove one.
     expect(await platform((c) => c.query(`update webhook_events set outcome = 'x'`)).then(() => 'allowed', (e: Error) => e.message)).toMatch(/permission denied/);
     expect(await platform((c) => c.query(`delete from webhook_events`)).then(() => 'allowed', (e: Error) => e.message)).toMatch(/permission denied/);
