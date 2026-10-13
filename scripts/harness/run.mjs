@@ -22,7 +22,7 @@
 // and it refuses to start outside a local development run.
 // scripts/check_harness_isolation.py enforces the first three in CI.
 import { spawn, spawnSync } from 'node:child_process';
-import { randomBytes, randomUUID } from 'node:crypto';
+import { createHmac, randomBytes, randomUUID } from 'node:crypto';
 import { mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import net from 'node:net';
 import path from 'node:path';
@@ -623,6 +623,57 @@ const feesOneCallDone = async () => {
   // Development runs each effect twice; the second run shares the first one's request.
   if (feesCalls.length !== 1 || feesCalls[0] !== '/api/app/fees/summary') throw new Error(`the Fees page should open with one data call; it made ${JSON.stringify(feesCalls)}`);
 };
+// Communication (C183): three messages of the school are in the log as the stand-in "sent" them. The stand-in's
+// own signed notices arrive at the public webhook: one is delivered, one read, one failed. A forged notice is
+// refused and changes nothing, and the same notice twice changes nothing. The principal's list shows each state.
+const MSG_KEY = 'harness-7b-';
+const clearMessages = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from communication_log where dedupe_key like '${MSG_KEY}%'; delete from webhook_events where provider = 'whatsapp'; set session_replication_role = origin;`);
+};
+let messagesSeen = null;
+const messageStates = async (page) => {
+  await clearMessages();
+  const who = (await db.pg.query(`select m.student_id, m.parent_id, p.phone from parent_student_map m join parents p on p.parent_id = m.parent_id where m.school_id = $1 order by m.student_id limit 1`, [SCHOOL])).rows[0];
+  if (!who) throw new Error('the fixture school has no guardian');
+  for (const n of [1, 2, 3, 4])
+    await db.pg.query(
+      `insert into communication_log (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, provider_message_id, dedupe_key, provider_used, student_id, parent_id, purpose, provider, reason)
+       values ($1, $2, 'whatsapp', 'attendance_absence_notification', 'utility', false, 0, 0, 'not_billable', $3, $4, $5, 'platform_default', $6, $7, 'operational_communication', $8, $9)`,
+      [SCHOOL, who.phone, n === 4 ? 'blocked_consent' : 'sent', n === 4 ? null : `standin-harness-${n}`, `${MSG_KEY}${n}`, who.student_id, who.parent_id, n === 4 ? null : 'stand-in', n === 4 ? 'consent for purpose "operational_communication" is not currently granted' : null]
+    );
+  const signingSecret = childEnv.WHATSAPP_STANDIN_SECRET;
+  const post = async (notices, key = signingSecret) => {
+    const rawBody = JSON.stringify({ provider: 'stand-in', notices });
+    const res = await fetch(`${base}/api/public/whatsapp/webhook/stand-in`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-standin-signature': createHmac('sha256', key).update(rawBody).digest('hex') }, body: rawBody });
+    return res.status;
+  };
+  const at = new Date().toISOString();
+  const note = (n, status, extra = {}) => ({ kind: 'status', providerMessageId: `standin-harness-${n}`, status, at, ...extra });
+  const forged = await post([note(1, 'read')], `${signingSecret}-not-the-secret`);
+  const first = await post([note(1, 'delivered'), note(2, 'read'), note(3, 'failed', { failureCode: 'not_on_whatsapp' })]);
+  const again = await post([note(1, 'delivered'), note(2, 'read'), note(3, 'failed', { failureCode: 'not_on_whatsapp' })]);
+  const backwards = await post([note(2, 'delivered')]);
+  const noSuchProvider = (await fetch(`${base}/api/public/whatsapp/webhook/meta`, { method: 'POST', body: '{}' })).status;
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-messages]').waitFor({ timeout: 20000 });
+  const states = await page.locator('[data-message]').evaluateAll((els) => [...new Set(els.map((e) => e.getAttribute('data-message')))].filter((x) => x !== 'sent').sort());
+  const standInNote = await page.locator('[data-messages-standin]').count();
+  await page.locator('[data-state="failed"]').click();
+  await page.waitForFunction(() => document.querySelector('[data-state="failed"]')?.getAttribute('aria-pressed') === 'true' && [...document.querySelectorAll('[data-message]')].every((e) => e.getAttribute('data-message') === 'failed') && document.querySelectorAll('[data-message]').length > 0, null, { timeout: 20000 });
+  const onlyFailed = 'failed';
+  await page.locator('[data-state-all]').click();
+  await page.waitForFunction(() => new Set([...document.querySelectorAll('[data-message]')].map((e) => e.getAttribute('data-message'))).size >= 4, null, { timeout: 20000 });
+  messagesSeen = { forged, first, again, backwards, noSuchProvider, states: states.join(), standInNote, onlyFailed };
+};
+const messageStatesDone = async () => {
+  const rows = (await db.pg.query(`select status::text as s from communication_log where dedupe_key like '${MSG_KEY}%' order by dedupe_key`)).rows.map((r) => r.s).join();
+  const kept = (await db.pg.query(`select signature_ok, outcome from webhook_events where provider = 'whatsapp' order by created_at, event_id`)).rows.map((r) => `${r.signature_ok}:${r.outcome}`);
+  await clearMessages();
+  const want = { forged: 401, first: 200, again: 200, backwards: 200, noSuchProvider: 404, states: 'delivered,failed,held,read', standInNote: 1, onlyFailed: 'failed' };
+  if (JSON.stringify(messagesSeen) !== JSON.stringify(want)) throw new Error(`message states on the screen: ${JSON.stringify(messagesSeen)}`);
+  if (rows !== 'delivered,read,failed,blocked_consent') throw new Error(`message states in the log: ${rows}`);
+  if (kept.join(' | ') !== 'false:refused: bad_signature | true:applied 3, stale 0, unknown 0, replies 0 | true:applied 0, stale 1, unknown 0, replies 0') throw new Error(`the notices kept: ${kept.join(' | ')}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -974,6 +1025,7 @@ const SCREENS = [
   ['principal', 'app-timetable-clash', '/app/timetable', timetableClash],
   ['principal', 'app-staff', '/app/staff'],
   ['principal', 'app-compliance', '/app/compliance'],
+  ['principal', 'app-communication', '/app/communication', messageStates, messageStatesDone],
   ['principal', 'app-taught-today', '/app/syllabus'],
   ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],
   ['teacher', 'app-settings-teacher', '/app/settings', settingsReadOnly],
@@ -1078,6 +1130,8 @@ const childEnv = {
   // A key for this run only, so saving a gateway's keys can be shown (C171). It is made here, used here and never written anywhere.
   PAYMENT_CREDENTIALS_KEY: randomBytes(32).toString('base64'),
   PAYMENT_STANDIN_SECRET: `${secret}-payments-stand-in-secret-0123456789`,
+  // The WhatsApp stand-in signs its delivery notices with this (C183). No phone is reached, with or without it.
+  WHATSAPP_STANDIN_SECRET: `${secret}-whatsapp-stand-in-secret-0123456789`,
   DATABASE_URL: db.url,
   // One connection: the in-memory database is one session, so requests take turns (see src/lib/auth/db.ts).
   DB_POOL_MAX: '1',

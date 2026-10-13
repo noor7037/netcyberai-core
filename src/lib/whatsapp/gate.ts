@@ -112,10 +112,13 @@ async function logAttempt(
   reason: string | null,
   extra: { providerUsed?: 'school_specific' | 'platform_default'; fallbackReason?: string | null; providerMessageId?: string | null; category?: BillingCategory; rate?: MessageRate | null; provider?: ProviderName } = {}
 ): Promise<string> {
-  // Only a message that was sent can cost anything, and only one a real
-  // provider sent: the stand-in reaches no phone and is never billable.
-  // (Meta charges on delivery; `billable` follows the delivery notice from slice 7b.)
-  const cost = messageCost(extra.category ?? (await templateCategory(client, params.schoolId, params.templateName)), status === comm_status_sent && extra.provider !== 'stand-in', extra.rate ?? null);
+  // Only a message a real provider sent can cost anything: the stand-in
+  // reaches no phone and is never billable. A real account's message is
+  // priced here, at sending, and becomes billable when the provider says it
+  // was delivered (src/lib/whatsapp/delivery.ts); until then its price is
+  // held against the budget as money on its way out.
+  const priced = messageCost(extra.category ?? (await templateCategory(client, params.schoolId, params.templateName)), status === comm_status_sent && extra.provider !== 'stand-in', extra.rate ?? null);
+  const cost = { ...priced, billable: false };
   if (cost.costBasis === 'rate_not_verified') {
     console.warn('[send-gate] rate not verified: no rate on record for this category and date; cost recorded as zero', cost.category);
   }
@@ -224,7 +227,7 @@ export async function sendWhatsAppMessage(
   const { rows: spendRows } = await client.query(
     `select coalesce(sum(est_cost_paise + gst_paise), 0) as spend
      from communication_log
-     where school_id = $1 and billable = true and cost_basis = 'rate_table'
+     where school_id = $1 and cost_basis = 'rate_table' and (billable = true or status = 'sent')
        and date_trunc('month', created_at at time zone $2) = date_trunc('month', now() at time zone $2)`,
     [params.schoolId, school.timezone]
   );

@@ -4,6 +4,7 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { messageCost, rateOnSendDate, sendWhatsAppMessage, templateCategory, unpricedRealSend, type MessageRate } from '@/lib/whatsapp/gate';
 import { loadMessagingCost } from '@/lib/control/messaging-cost';
 import type { WhatsAppProvider } from '@/lib/whatsapp/provider';
+import { applyNotices } from '@/lib/whatsapp/delivery';
 
 // The send-gate's money (T7, C140), on the whole real schema (every
 // migration replayed on PGlite): the category comes from the template, the
@@ -31,12 +32,23 @@ let n = 0;
 // is left to the gate, which gives it the stand-in.
 const realAccount: WhatsAppProvider = {
   name: 'meta',
-  send: async () => ({ success: true, providerMessageId: `made-up-${n}`, errorMessage: null, raw: null }),
+  send: async () => ({ success: true, providerMessageId: `made-up-${n}-${Math.random().toString(36).slice(2)}`, errorMessage: null, raw: null }),
   testConnection: async () => ({ ok: true, message: 'made up for this test' }),
-  readNotice: () => ({ ok: false, reason: 'no_secret' }),
+  // Made up as well: it believes whatever it is handed, so a test can say "this was delivered".
+  readNotice: (rawBody) => ({ ok: true, notices: JSON.parse(rawBody) }),
 };
-const send = (template: string, school = SCHOOL, student = STUDENT) =>
-  asSchool((client) => sendWhatsAppMessage(client, { schoolId: school, studentId: student, purpose: 'operational_communication', toPhone: '+910000000000', templateName: template, templateParams: {}, dedupeKey: `t-${++n}` }, school === SCHOOL ? { platformDefaultProvider: realAccount } : {}), school);
+// A real account's message is billable once it is delivered (C183), so each one sent here is then delivered.
+const send = async (template: string, school = SCHOOL, student = STUDENT) => {
+  const out = await asSchool((client) => sendWhatsAppMessage(client, { schoolId: school, studentId: student, purpose: 'operational_communication', toPhone: '+910000000000', templateName: template, templateParams: {}, dedupeKey: `t-${++n}` }, school === SCHOOL ? { platformDefaultProvider: realAccount } : {}), school);
+  if (school === SCHOOL && out.status === 'sent') {
+    const id = (await db.pg.query(`select provider_message_id from communication_log where log_id = $1`, [out.logId])).rows[0].provider_message_id;
+    await db.pg.transaction(async (tx: any) => {
+      await tx.query('set local role nca_super');
+      return applyNotices(tx, realAccount, JSON.stringify([{ kind: 'status', providerMessageId: id, status: 'delivered', at: new Date().toISOString() }]), null);
+    });
+  }
+  return out;
+};
 const row = async (logId: string) => (await db.pg.query(`select billing_category, billable, est_cost_paise::int as cost, gst_paise::int as gst, rate_id, cost_basis, status::text as status from communication_log where log_id = $1`, [logId])).rows[0];
 
 beforeAll(async () => {
@@ -94,7 +106,7 @@ describe('before any rate is verified: "rate not verified"', () => {
   it('a sent message is logged as billable in its template’s category, cost zero, marked rate_not_verified', async () => {
     const utility = await send('absence_alert');
     expect(utility.status).toBe('sent');
-    expect(await row(utility.logId)).toEqual({ billing_category: 'utility', billable: true, cost: 0, gst: 0, rate_id: null, cost_basis: 'rate_not_verified', status: 'sent' });
+    expect(await row(utility.logId)).toEqual({ billing_category: 'utility', billable: true, cost: 0, gst: 0, rate_id: null, cost_basis: 'rate_not_verified', status: 'delivered' });
     const marketing = await send('open_day_invite');
     expect(await row(marketing.logId)).toMatchObject({ billing_category: 'marketing', billable: true, cost_basis: 'rate_not_verified' });
     expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('rate not verified'), 'marketing');
@@ -125,9 +137,9 @@ describe('with rates on record: utility and marketing are costed apart, by the r
 
   it('a utility message and a marketing message record their own category, rate, cost and GST', async () => {
     const utility = await send('absence_alert');
-    expect(await row(utility.logId)).toEqual({ billing_category: 'utility', billable: true, cost: 1100, gst: 198, rate_id: utilityNow, cost_basis: 'rate_table', status: 'sent' });
+    expect(await row(utility.logId)).toEqual({ billing_category: 'utility', billable: true, cost: 1100, gst: 198, rate_id: utilityNow, cost_basis: 'rate_table', status: 'delivered' });
     const marketing = await send('open_day_invite');
-    expect(await row(marketing.logId)).toEqual({ billing_category: 'marketing', billable: true, cost: 7000, gst: 1260, rate_id: marketingNow, cost_basis: 'rate_table', status: 'sent' });
+    expect(await row(marketing.logId)).toEqual({ billing_category: 'marketing', billable: true, cost: 7000, gst: 1260, rate_id: marketingNow, cost_basis: 'rate_table', status: 'delivered' });
   });
 
   it('a category with no rate yet is still marked rate_not_verified, beside ones that have a rate', async () => {
