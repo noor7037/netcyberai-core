@@ -3,6 +3,8 @@ import { isPurposeGranted, type ConsentPurpose } from '@/lib/consent/gate';
 import { missingVariables, templateToSend, type TemplateLanguage, type TemplateToSend } from '@/lib/whatsapp/templates';
 import { resolveProvider } from '@/lib/whatsapp/config';
 import { openMetaCredentials } from '@/lib/whatsapp/credentials';
+import { normalizePhone } from '@/lib/whatsapp/phone';
+import { WINDOW_HOURS } from '@/lib/whatsapp/replies';
 import { MetaWhatsAppProvider } from '@/lib/whatsapp/meta';
 import { StandInWhatsAppProvider, type ProviderName, type WhatsAppProviderSPI } from '@/lib/whatsapp/provider';
 
@@ -213,6 +215,14 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
     return { logId: await logAttempt(client, params, 'blocked_consent', reason), status: 'blocked_consent', reason, idempotent: false, providerUsed: null };
   }
 
+  // 2b. The parent wrote STOP (C187): no WhatsApp message from this school to that number until the office
+  // lifts it at the parent's asking. WhatsApp only; the consent ledger is as the parent left it.
+  const toNumber = normalizePhone(params.toPhone);
+  if (toNumber && (await client.query(`select 1 from whatsapp_opt_outs where school_id = $1 and phone = $2 and lifted_at is null`, [params.schoolId, toNumber])).rows[0]) {
+    const reason = 'this number asked to stop WhatsApp messages from the school';
+    return { logId: await logAttempt(client, params, 'blocked_consent', reason), status: 'blocked_consent', reason, idempotent: false, providerUsed: null };
+  }
+
   // 3. Quiet hours -- config-driven (schools.quiet_hours_start/end,
   // schools.timezone), never hardcoded. The window wraps midnight by
   // default (21:00-07:00), so a plain start<=t<end check would be
@@ -342,7 +352,7 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
   return { ready: true, testSchool: school.is_test_fixture, provider, providerUsed, fallbackReason, category, rate, said };
 }
 
-const SEND_ARGS = (params: SendWhatsAppMessageParams, r: Ready) => ({ testSchool: r.testSchool, toPhone: params.toPhone, templateName: params.templateName, templateParams: r.said.filled, language: r.said.template.language, templateVersion: r.said.template.version, metaTemplateId: r.said.template.metaTemplateId });
+const SEND_ARGS = (params: SendWhatsAppMessageParams, r: Ready) => ({ testSchool: r.testSchool, toPhone: normalizePhone(params.toPhone) ?? params.toPhone, templateName: params.templateName, templateParams: r.said.filled, language: r.said.template.language, templateVersion: r.said.template.version, metaTemplateId: r.said.template.metaTemplateId });
 const LOGGED = (r: Ready) => ({ providerUsed: r.providerUsed, fallbackReason: r.fallbackReason, category: r.category, rate: r.rate, provider: r.provider.name, ...r.said });
 
 // Send now, in the caller's own transaction: every rule, the provider, the
@@ -414,6 +424,35 @@ export async function queueWhatsAppMessage(client: PoolClient, queue: QueueLike,
   return { logId, status: 'queued', reason: null, idempotent: false, providerUsed: null, jobKey: jobKey(logId, 0) };
 }
 
+export type ReplyResult = { ok: true; logId: string; jobKey: string } | { ok: false; reason: 'text' | 'no_thread' | 'window_closed' | 'stopped' | 'pilot' };
+// A member of staff answers a parent, in free text, inside the 24 hours the parent's own message opened
+// (docs/25 rule 6). The caller's own tenant transaction: row level security has already decided whether this
+// person may see the thread at all. Queued like every other message, and every rule is read again when it goes.
+export async function queueThreadReply(client: PoolClient, queue: QueueLike, by: { schoolId: string; userId: string }, threadId: string, textRaw: string, at: () => Date = () => new Date()): Promise<ReplyResult> {
+  const text = textRaw.trim();
+  if (text.length === 0 || text.length > 4096) return { ok: false, reason: 'text' };
+  const now = at();
+  const t = (await client.query(
+    `select t.phone, t.parent_id, t.last_inbound_at > $3::timestamptz - make_interval(hours => $4) as open, s.is_pilot and not s.pilot_allow_outbound as pilot,
+            exists (select 1 from whatsapp_opt_outs o where o.school_id = t.school_id and o.phone = t.phone and o.lifted_at is null) as stopped
+       from message_threads t join schools s on s.school_id = t.school_id where t.school_id = $1 and t.thread_id = $2`,
+    [by.schoolId, threadId, now.toISOString(), WINDOW_HOURS]
+  )).rows[0];
+  if (!t) return { ok: false, reason: 'no_thread' };
+  if (t.pilot) return { ok: false, reason: 'pilot' };
+  if (t.stopped) return { ok: false, reason: 'stopped' };
+  if (!t.open) return { ok: false, reason: 'window_closed' };
+  const logId = (await client.query(
+    `insert into communication_log (school_id, to_phone, channel, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, parent_id, purpose, thread_id, body, sent_by, not_before, created_at)
+     values ($1, $2, 'whatsapp', 'service', false, 0, 0, 'not_billable', 'queued', $3, $4, 'operational_communication', $5, $6, $7, $8, $8) returning log_id`,
+    [by.schoolId, t.phone, `reply:${threadId}:${now.getTime()}:${by.userId}`, t.parent_id, threadId, text, by.userId, now.toISOString()]
+  )).rows[0].log_id as string;
+  await queue.enqueue(client, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, 0), schoolId: by.schoolId, maxAttempts: 3, payload: { logId } });
+  return { ok: true, logId, jobKey: jobKey(logId, 0) };
+}
+// How the webhook hands the job queue a confirmation it has just written (a parent wrote STOP).
+export const enqueueQueued = (queue: QueueLike) => (db: Pick<PoolClient, 'query'>, logId: string, schoolId: string) => queue.enqueue(db, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, 0), schoolId, maxAttempts: 3, payload: { logId } });
+
 type Platform = <T>(fn: (db: PoolClient) => Promise<T>) => Promise<T>;
 export type DeliverOutcome = { status: CommStatus | 'gone'; retryAt?: Date; reason?: string | null };
 
@@ -425,8 +464,8 @@ export async function deliverQueued(deps: { platform: Platform; queue: QueueLike
     await deps.queue.enqueue(db, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, at.getTime()), schoolId, maxAttempts: 3, payload: { logId, attempt: attempts }, runAt: at });
   };
   // 1. Decide, and mark it as being sent. Committed before the provider is asked.
-  const first = await deps.platform(async (db): Promise<{ done: DeliverOutcome } | { params: SendWhatsAppMessageParams; ready: Ready; attempts: number; schoolId: string }> => {
-    const row = (await db.query(`select school_id, student_id, parent_id, purpose, to_phone, template_name, language, template_params, dedupe_key, status::text as status, created_at, attempts, sending_at, not_before from communication_log where log_id = $1 for update`, [logId])).rows[0];
+  const first = await deps.platform(async (db): Promise<{ done: DeliverOutcome } | { params: SendWhatsAppMessageParams; ready: Ready; attempts: number; schoolId: string; text?: string }> => {
+    const row = (await db.query(`select school_id, student_id, parent_id, purpose, to_phone, template_name, language, template_params, dedupe_key, status::text as status, created_at, attempts, sending_at, not_before, thread_id, body from communication_log where log_id = $1 for update`, [logId])).rows[0];
     if (!row || row.status !== 'queued') return { done: { status: (row?.status ?? 'gone') as CommStatus | 'gone' } };
     if (row.not_before && new Date(row.not_before).getTime() > now.getTime()) return { done: { status: 'queued' as const, retryAt: new Date(row.not_before) } }; // an earlier job for a message since put off
     const params: SendWhatsAppMessageParams = { schoolId: row.school_id, studentId: row.student_id, parentId: row.parent_id, purpose: row.purpose, toPhone: row.to_phone, templateName: row.template_name, templateParams: row.template_params ?? {}, dedupeKey: row.dedupe_key, language: row.language ?? 'en', queuedLogId: logId };
@@ -434,6 +473,22 @@ export async function deliverQueued(deps: { platform: Platform; queue: QueueLike
       const reason = 'the send was interrupted and nobody knows whether it went; it is not sent again, so that a parent is never messaged twice';
       await logAttempt(db, params, comm_status_failed, reason);
       return { done: { status: comm_status_failed, reason } };
+    }
+    if (row.body !== null) {
+      // A free-text reply (C187): only inside the 24 hours the parent's own message opened, read again now.
+      const stopped = (reason: string) => db.query(`update communication_log set status = 'failed', reason = $2, sending_at = null where log_id = $1 and status = 'queued'`, [logId, reason]).then(() => ({ done: { status: comm_status_failed as CommStatus, reason } }));
+      const t = (await db.query(`select t.last_inbound_at > $2::timestamptz - make_interval(hours => $3) as open, s.is_test_fixture, s.is_pilot and not s.pilot_allow_outbound as pilot from message_threads t join schools s on s.school_id = t.school_id where t.thread_id = $1`, [row.thread_id, now.toISOString(), WINDOW_HOURS])).rows[0];
+      if (!t) return stopped('the conversation no longer exists');
+      if (t.pilot) return stopped('school is in pilot mode; outbound sending has not been approved yet');
+      if (!t.open) return stopped(`more than ${WINDOW_HOURS} hours have passed since the parent last wrote; free text can no longer be sent`);
+      // After STOP nothing goes but the one confirmation the system itself wrote.
+      if (row.purpose !== 'core_records' && (await db.query(`select 1 from whatsapp_opt_outs where school_id = $1 and phone = $2 and lifted_at is null`, [row.school_id, row.to_phone])).rows[0]) return stopped('this number asked to stop WhatsApp messages from the school');
+      const account = t.is_test_fixture || deps.provider ? null : await openMetaCredentials(db, true);
+      const provider: WhatsAppProviderSPI = deps.provider ?? (account ? new MetaWhatsAppProvider(account) : new StandInWhatsAppProvider());
+      if (t.is_test_fixture && provider.name !== 'stand-in') return stopped('a test school never sends through a real account');
+      await db.query(`update communication_log set sending_at = $2, attempts = attempts + 1 where log_id = $1`, [logId, now.toISOString()]);
+      const ready = { ready: true, testSchool: t.is_test_fixture as boolean, provider, providerUsed: 'platform_default', fallbackReason: null, category: 'service', rate: null, said: { template: null as never, filled: {} } } satisfies Ready;
+      return { params, ready, attempts: row.attempts + 1, schoolId: row.school_id as string, text: row.body as string };
     }
     const r = await prepare(db, params, { platformDefaultProvider: deps.provider }, { createdAt: new Date(row.created_at), now });
     if ('passed' in r) throw new Error('unreachable');
@@ -456,13 +511,19 @@ export async function deliverQueued(deps: { platform: Platform; queue: QueueLike
   // 2. Ask the provider. No transaction is open.
   let result: { success: boolean; providerMessageId: string | null; errorMessage: string | null };
   try {
-    result = await first.ready.provider.send(SEND_ARGS(first.params, first.ready));
+    result = first.text !== undefined ? await first.ready.provider.sendText({ toPhone: first.params.toPhone, text: first.text, testSchool: first.ready.testSchool }) : await first.ready.provider.send(SEND_ARGS(first.params, first.ready));
   } catch (err) {
     result = { success: false, providerMessageId: null, errorMessage: err instanceof Error ? err.message : 'unknown provider error' };
   }
 
   // 3. Record what happened; on a failure, try again later, a few times.
   return deps.platform(async (db): Promise<DeliverOutcome> => {
+    if (first.text !== undefined) {
+      // A reply inside the parent's own conversation costs nothing; it is sent once, or said to have failed.
+      await db.query(`update communication_log set status = $2::comm_status, provider_message_id = $3, provider = $4, provider_used = 'platform_default', reason = $5, sending_at = null where log_id = $1 and status = 'queued'`, [logId, result.success ? 'sent' : 'failed', result.providerMessageId, first.ready.provider.name, result.success ? null : result.errorMessage]);
+      if (result.success) await db.query(`update message_threads set last_outbound_at = $2 where thread_id = (select thread_id from communication_log where log_id = $1)`, [logId, now.toISOString()]);
+      return { status: result.success ? comm_status_sent : comm_status_failed, reason: result.success ? null : result.errorMessage };
+    }
     if (result.success) {
       await logAttempt(db, first.params, comm_status_sent, null, { ...LOGGED(first.ready), providerMessageId: result.providerMessageId });
       return { status: comm_status_sent };

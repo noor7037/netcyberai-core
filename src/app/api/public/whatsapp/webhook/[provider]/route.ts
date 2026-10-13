@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { withPlatformService } from '@/lib/auth/db';
+import { jobQueue } from '@/lib/jobs/pg-queue';
 import type { Sql } from '@/lib/jobs/types';
 import { openMetaCredentials } from '@/lib/whatsapp/credentials';
 import { applyNotices } from '@/lib/whatsapp/delivery';
+import { enqueueQueued } from '@/lib/whatsapp/gate';
 import { META_SIGNATURE_HEADER, MetaWhatsAppProvider, answerChallenge } from '@/lib/whatsapp/meta';
 import { STAND_IN_SIGNATURE_HEADER, StandInWhatsAppProvider, type WhatsAppProvider } from '@/lib/whatsapp/provider';
 
@@ -44,7 +46,7 @@ export async function POST(req: NextRequest, { params }: { params: { provider: s
   if (!found) return NextResponse.json({ error: 'not found' }, { status: 404 });
   const rawBody = await req.text();
   if (rawBody.length === 0 || rawBody.length > MAX_BODY) return NextResponse.json({ error: 'not sent properly' }, { status: 400 });
-  const out = await platform((db) => applyNotices(db, found.provider, rawBody, req.headers.get(found.header)));
+  const out = await platform((db) => applyNotices(db, found.provider, rawBody, req.headers.get(found.header), enqueueQueued(jobQueue)));
   // The provider is told only that it was heard, or that it was not believed.
   return NextResponse.json(out.status === 200 ? { ok: true } : { error: 'not accepted' }, { status: out.status, headers: { 'Cache-Control': 'no-store' } });
 }

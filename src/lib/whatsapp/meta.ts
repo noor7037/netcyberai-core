@@ -1,5 +1,5 @@
 import { createHmac, timingSafeEqual } from 'crypto';
-import type { NoticeRead, WhatsAppNotice, WhatsAppProvider, WhatsAppSendParams, WhatsAppSendResult } from './provider';
+import type { NoticeRead, WhatsAppNotice, WhatsAppProvider, WhatsAppSendParams, WhatsAppSendResult, WhatsAppTextParams } from './provider';
 
 // Meta's WhatsApp Cloud API (docs/25 slice 7e, C186). Built from Meta's own
 // documentation as it read on 2026-10-13, and DORMANT: it is used only when
@@ -13,6 +13,8 @@ import type { NoticeRead, WhatsAppNotice, WhatsAppProvider, WhatsAppSendParams, 
 //                     Answer: { messaging_product, contacts: [{ input, wa_id }], messages: [{ id, message_status }] }
 //     https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages
 //     https://developers.facebook.com/documentation/business-messaging/whatsapp/templates/overview
+//   Send free text    The same address; body { messaging_product, recipient_type, to, type: "text", text: { preview_url, body } }, body up to 4096 characters.
+//     https://developers.facebook.com/documentation/business-messaging/whatsapp/messages/text-messages
 //   The webhook       First check: GET with hub.mode=subscribe, hub.verify_token, hub.challenge; answer the challenge.
 //                     Every notice: header X-Hub-Signature-256 = "sha256=" + HMAC-SHA256 of the raw body with the App Secret.
 //     https://developers.facebook.com/docs/graph-api/webhooks/getting-started
@@ -59,6 +61,11 @@ export function templateSendBody(p: WhatsAppSendParams): Record<string, unknown>
   };
 }
 
+// The body of a free-text send, exactly as documented.
+export function textSendBody(p: WhatsAppTextParams): Record<string, unknown> {
+  return { messaging_product: 'whatsapp', recipient_type: 'individual', to: p.toPhone, type: 'text', text: { preview_url: false, body: p.text } };
+}
+
 // The webhook's first check: Meta asks with the token we chose and expects its challenge back. Null: refuse.
 export function answerChallenge(config: Pick<MetaConfig, 'verifyToken'>, query: { mode: string | null; token: string | null; challenge: string | null }): string | null {
   if (query.mode !== 'subscribe' || !query.token || !query.challenge || query.challenge.length > 200) return null;
@@ -78,19 +85,29 @@ export class MetaWhatsAppProvider implements WhatsAppProvider {
     return { Authorization: `Bearer ${this.config.accessToken}`, 'Content-Type': 'application/json' };
   }
 
-  async send(params: WhatsAppSendParams): Promise<WhatsAppSendResult> {
+  // One request to the messages address, answered as documented: an id, or Meta's refusal said shortly.
+  private async post(testSchool: boolean | undefined, toPhone: string, body: Record<string, unknown>): Promise<WhatsAppSendResult> {
     // The gate never hands a test school's message to a real account; this is the second lock (docs/25 rule 2).
-    if (params.testSchool !== false) return { success: false, providerMessageId: null, errorMessage: 'a test school never sends through a real account', raw: null };
-    if (!/^\+[1-9][0-9]{7,14}$/.test(params.toPhone)) return { success: false, providerMessageId: null, errorMessage: 'the number is not a full international number', raw: null };
+    if (testSchool !== false) return { success: false, providerMessageId: null, errorMessage: 'a test school never sends through a real account', raw: null };
+    if (!/^\+[1-9][0-9]{7,14}$/.test(toPhone)) return { success: false, providerMessageId: null, errorMessage: 'the number is not a full international number', raw: null };
     try {
-      const res = await this.fetcher(`${GRAPH_HOST}/${GRAPH_VERSION}/${this.config.phoneNumberId}/messages`, { method: 'POST', headers: this.headers(), body: JSON.stringify(templateSendBody(params)), signal: AbortSignal.timeout(TIMEOUT_MS) });
-      const body = await res.json().catch(() => null);
-      const id = str(obj(arr(obj(body).messages)[0]).id);
-      if (!res.ok || !id) return { success: false, providerMessageId: null, errorMessage: res.ok ? 'Meta accepted the request and gave no message id' : errorOf(body, res.status), raw: null };
+      const res = await this.fetcher(`${GRAPH_HOST}/${GRAPH_VERSION}/${this.config.phoneNumberId}/messages`, { method: 'POST', headers: this.headers(), body: JSON.stringify(body), signal: AbortSignal.timeout(TIMEOUT_MS) });
+      const answer = await res.json().catch(() => null);
+      const id = str(obj(arr(obj(answer).messages)[0]).id);
+      if (!res.ok || !id) return { success: false, providerMessageId: null, errorMessage: res.ok ? 'Meta accepted the request and gave no message id' : errorOf(answer, res.status), raw: null };
       return { success: true, providerMessageId: id, errorMessage: null, raw: null };
     } catch (err) {
       return { success: false, providerMessageId: null, errorMessage: `Meta could not be reached (${err instanceof Error ? err.name : 'error'})`, raw: null };
     }
+  }
+
+  async send(params: WhatsAppSendParams): Promise<WhatsAppSendResult> {
+    return this.post(params.testSchool, params.toPhone, templateSendBody(params));
+  }
+
+  async sendText(params: WhatsAppTextParams): Promise<WhatsAppSendResult> {
+    if (params.text.length === 0 || params.text.length > 4096) return { success: false, providerMessageId: null, errorMessage: 'the text is empty or longer than 4096 characters', raw: null };
+    return this.post(params.testSchool, params.toPhone, textSendBody(params));
   }
 
   async testConnection(): Promise<{ ok: boolean; message: string }> {

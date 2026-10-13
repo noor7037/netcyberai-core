@@ -76,6 +76,9 @@ const APP_USER: Record<string, string> = {
   payment_evidence: 'INSERT,SELECT,UPDATE', // the one door every credit goes through; a trigger keeps what it says fixed
   payment_gateway_access: 'SELECT', // set by NetCyberAI in Control
   bank_accounts: 'INSERT,SELECT,UPDATE',
+  message_threads: 'SELECT,UPDATE', // read, and marked read; written by the webhook as the platform role (C187)
+  inbound_messages: 'SELECT',
+  whatsapp_opt_outs: 'SELECT,UPDATE', // lifted by the office
   fee_followups: 'INSERT,SELECT,UPDATE', // closed, never edited (trigger)
   fee_refunds: 'INSERT,SELECT',
   fee_reminders: 'SELECT', // written by the nightly job only
@@ -135,6 +138,9 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   fee_refunds: '',
   fee_reminders: 'INSERT,SELECT', // the nightly reminders (C179)
   fee_clearance_overrides: '',
+  message_threads: 'INSERT,SELECT,UPDATE',
+  inbound_messages: 'INSERT,SELECT',
+  whatsapp_opt_outs: 'INSERT,SELECT,UPDATE',
   bank_accounts: '', // the platform role has no business in a school's bank statements
   bank_credit_rows: '',
   bank_statement_imports: '',

@@ -103,8 +103,8 @@ describe('the contract', () => {
   });
 
   it('a module switched off takes its cards away (docs/19 rule 7); tickets are always on', () => {
-    expect(providersFor('teacher', ents({ attendance: { enabled: false } })).map((p) => p.type)).toEqual(['followups-open', 'homework-to-check', 'timetable-today', 'tickets-waiting']);
-    expect(providersFor('teacher', ents({ attendance: { enabled: false }, timetable: { enabled: false }, pulse: { enabled: false }, homework: { enabled: false } })).map((p) => p.type)).toEqual(['tickets-waiting']);
+    expect(providersFor('teacher', ents({ attendance: { enabled: false } })).map((p) => p.type).sort()).toEqual(['followups-open', 'homework-to-check', 'replies-waiting', 'tickets-waiting', 'timetable-today'].sort());
+    expect(providersFor('teacher', ents({ attendance: { enabled: false }, timetable: { enabled: false }, pulse: { enabled: false }, homework: { enabled: false }, communication: { enabled: false } })).map((p) => p.type)).toEqual(['tickets-waiting']);
     expect(providersFor('accountant', ents({ fees: { enabled: false } })).map((p) => p.type)).toEqual(['tickets-waiting']);
     expect(providersFor('principal', ents({ fees: { enabled: false }, communication: { enabled: false } })).map((p) => p.type)).toEqual(['attendance-school', 'attendance-requests', 'followups-open', 'consent-waiting', 'tickets-waiting']);
     expect(providersFor('principal', ents({}, 'suspended')).map((p) => p.type)).toEqual(['tickets-waiting']);

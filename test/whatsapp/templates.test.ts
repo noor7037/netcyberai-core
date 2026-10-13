@@ -73,6 +73,7 @@ const counting = (name: 'stand-in' | 'meta') => {
   const provider: WhatsAppProvider = {
     name,
     send: async (p) => (sent.push({ params: p.templateParams, version: p.templateVersion, language: p.language }), { success: true, providerMessageId: `${name}-${sent.length}-${Math.random().toString(36).slice(2)}`, errorMessage: null, raw: null }),
+    sendText: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
     testConnection: async () => ({ ok: true, message: 'made up' }),
     readNotice: () => ({ ok: false, reason: 'no_secret' }),
   };

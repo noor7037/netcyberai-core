@@ -17,6 +17,7 @@ const standIn = new StandInWhatsAppProvider({ secret: SECRET });
 const real: WhatsAppProvider = {
   name: 'meta',
   send: async () => ({ success: true, providerMessageId: `made-up-${Math.random().toString(36).slice(2)}`, errorMessage: null, raw: null }),
+  sendText: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
   testConnection: async () => ({ ok: true, message: 'made up' }),
   readNotice: (rawBody) => ({ ok: true, notices: JSON.parse(rawBody) }),
 };

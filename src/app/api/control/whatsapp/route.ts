@@ -4,6 +4,7 @@ import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import type { Sql } from '@/lib/jobs/types';
 import { messagingKey, metaAccountMeta, openMetaCredentials, recordMetaTest, saveMetaAccount, setMetaEnabled } from '@/lib/whatsapp/credentials';
 import { MetaWhatsAppProvider } from '@/lib/whatsapp/meta';
+import { unknownSenders } from '@/lib/whatsapp/replies';
 
 // Control → the platform's WhatsApp account (docs/25 slice 7e, C186). NetCyberAI staff only.
 //   GET   what is saved (never a secret), whether it is switched on, and whether this server holds the key
@@ -18,7 +19,7 @@ const WEBHOOK_PATH = '/api/public/whatsapp/webhook/meta';
 export async function GET(req: NextRequest) {
   const guard = await requireSuperAdmin(req);
   if ('error' in guard) return guard.error;
-  return NextResponse.json({ account: await platform((db) => metaAccountMeta(db)), keyAvailable: messagingKey() !== null, webhookPath: WEBHOOK_PATH }, { headers: { 'Cache-Control': 'no-store' } });
+  return NextResponse.json({ account: await platform((db) => metaAccountMeta(db)), keyAvailable: messagingKey() !== null, webhookPath: WEBHOOK_PATH, unknownSenders: await platform((db) => unknownSenders(db)) }, { headers: { 'Cache-Control': 'no-store' } });
 }
 
 export async function POST(req: NextRequest) {

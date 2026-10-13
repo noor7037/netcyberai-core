@@ -246,6 +246,15 @@ create table payment_reports (
 alter table payment_reports enable row level security;
 create policy payment_reports_tenant_isolation on payment_reports using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert, update on payment_reports to app_user, nca_super;
+-- Parents' conversations, as My Day counts them (C187).
+create table message_threads (
+  thread_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  unread int not null default 0
+);
+alter table message_threads enable row level security;
+create policy message_threads_tenant_isolation on message_threads using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update on message_threads to app_user, nca_super;
 -- Promises to pay, as My Day counts them (C180).
 create table fee_followups (
   followup_id uuid primary key default gen_random_uuid(),

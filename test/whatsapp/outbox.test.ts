@@ -43,6 +43,7 @@ const counting = () => {
       state.sent.push(p.toPhone);
       return { success: true, providerMessageId: `standin-${state.sent.length}-${Math.random().toString(36).slice(2)}`, errorMessage: null, raw: null };
     },
+    sendText: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
     testConnection: async () => ({ ok: true, message: 'made up' }),
     readNotice: () => ({ ok: false, reason: 'no_secret' }),
   };
