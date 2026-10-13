@@ -45,6 +45,7 @@ const CONTROL_LOOK: Record<string, [IconName, ColorToken]> = {
   '/control/users': ['users', 'azure'],
   '/control/onboarding': ['admissions', 'turquoise'],
   '/control/messaging-cost': ['chat', 'cyan'],
+  '/control/templates': ['chat', 'azure'],
   '/control/monitoring': ['pulse', 'emerald'],
   '/control/analytics': ['chart', 'grape'],
   '/control/billing-plans': ['fees', 'tangerine'],

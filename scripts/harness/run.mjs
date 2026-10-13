@@ -674,6 +674,40 @@ const messageStatesDone = async () => {
   if (rows !== 'delivered,read,failed,blocked_consent') throw new Error(`message states in the log: ${rows}`);
   if (kept.join(' | ') !== 'false:refused: bad_signature | true:applied 3, stale 0, unknown 0, replies 0 | true:applied 0, stale 1, unknown 0, replies 0') throw new Error(`the notices kept: ${kept.join(' | ')}`);
 };
+// Control → message templates (C184): the founder brings in the versions written in the code, reads one and
+// approves it, and records Meta's decision on it. Everything is put back afterwards.
+const TEMPLATE_BEFORE = `select coalesce(json_agg(json_build_object('id', id, 'name', template_name, 'language', language, 'version', version)), '[]'::json) as rows from whatsapp_templates`;
+let templatesBefore = [];
+let templatesSeen = null;
+const clearTemplates = async () => {
+  const keep = templatesBefore.map((r) => `'${r.id}'`).join(',') || `'00000000-0000-0000-0000-000000000000'`;
+  await db.pg.exec(`set session_replication_role = replica; delete from whatsapp_templates where id not in (${keep}); update whatsapp_templates set body = null, variables = '{}', stale_after_minutes = null, status = 'approved', approved_by = null, approved_at = null, meta_status = 'not_submitted', meta_template_id = null, meta_decided_at = null where id in (${keep}); set session_replication_role = origin;`);
+};
+const messageTemplates = async (page) => {
+  templatesBefore = (await db.pg.query(TEMPLATE_BEFORE)).rows[0].rows;
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-templates-sync]').click();
+  await page.locator('[data-template="fee_receipt"]').waitFor({ timeout: 20000 });
+  const versions = await page.locator('[data-template-version]').count();
+  const firstLines = await page.locator('[data-template-version] p[lang]').evaluateAll((els) => els.map((e) => e.textContent.startsWith('{{school}}: ')));
+  const card = page.locator('[data-template="fee_receipt"] [data-template-version="en-1"]');
+  await card.locator('[data-template-approve]').click();
+  await page.locator('[data-templates-note]').waitFor({ timeout: 20000 });
+  await page.waitForFunction(() => /one sent/.test(document.querySelector('[data-template="fee_receipt"] [data-template-version="en-1"]')?.textContent ?? ''), null, { timeout: 20000 });
+  await card.locator('[data-template-meta]').click();
+  await card.locator('select').selectOption('pending');
+  await card.locator('input').fill('made-up-meta-id');
+  await card.locator('[data-template-meta-save]').click();
+  await page.waitForFunction(() => /With Meta/.test(document.querySelector('[data-template="fee_receipt"] [data-template-version="en-1"]')?.textContent ?? ''), null, { timeout: 20000 });
+  templatesSeen = { versions, allNameSchoolFirst: firstLines.length > 0 && firstLines.every(Boolean) };
+};
+const messageTemplatesDone = async () => {
+  const row = (await db.pg.query(`select status::text as status, approved_by, meta_status, meta_template_id from whatsapp_templates where template_name = 'fee_receipt' and language = 'en' and version = 1`)).rows[0];
+  const total = (await db.pg.query(`select count(*)::int as n from whatsapp_templates where school_id is null`)).rows[0].n;
+  await clearTemplates();
+  if (row?.status !== 'approved' || row.approved_by !== PEOPLE.founder.sub || row.meta_status !== 'pending' || row.meta_template_id !== 'made-up-meta-id') throw new Error(`the template was not approved and Meta's decision recorded: ${JSON.stringify(row)}`);
+  if (!templatesSeen?.allNameSchoolFirst || templatesSeen.versions !== total || total < 10) throw new Error(`the templates on the screen: ${JSON.stringify(templatesSeen)} of ${total}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -1003,6 +1037,7 @@ const SCREENS = [
   ['founder', 'control-modules', `/control/schools/${SCHOOL}`, openModulesTab],
   ['principal', 'app-module-off', '/app/attendance', attendanceOff, attendanceOn],
   ['founder', 'control-messaging-cost', '/control/messaging-cost'],
+  ['founder', 'control-templates', '/control/templates', messageTemplates, messageTemplatesDone],
   ['principal', 'app-dashboard', '/app/dashboard'],
   ['principal', 'app-students', '/app/students'],
   ['principal', 'app-student-profile', `/app/students/${STUDENT}`],

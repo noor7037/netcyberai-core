@@ -67,6 +67,7 @@ beforeAll(async () => {
       (null, 'login_code', 'approved', 'authentication'),
       (null, 'not_approved_yet', 'pending', 'marketing');
   `);
+  await db.pg.exec(`update whatsapp_templates set meta_status = 'approved', meta_template_id = 'made-up' where status = 'approved'`); // the made-up real account sends only what Meta has approved (C184)
   vi.spyOn(console, 'warn').mockImplementation(() => undefined);
 }, 120_000);
 

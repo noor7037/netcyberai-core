@@ -106,6 +106,12 @@ async function notifyGuardiansOfAbsence(
      where psm.school_id = $1 and psm.student_id = $2`,
     [params.schoolId, params.studentId]
   );
+  if (guardians.length === 0) return;
+  // What the message says (C184): the child's first name and the day, nothing more.
+  const { rows: about } = await client.query(
+    `select split_part(btrim(s.name), ' ', 1) as child, to_char(a.date, 'DD-MM-YYYY') as day from attendance a join students s on s.school_id = a.school_id and s.student_id = a.student_id where a.school_id = $1 and a.attendance_id = $2`,
+    [params.schoolId, params.attendanceId]
+  );
   for (const guardian of guardians) {
     await sendWhatsAppMessage(client, {
       schoolId: params.schoolId,
@@ -113,7 +119,7 @@ async function notifyGuardiansOfAbsence(
       purpose: 'operational_communication',
       toPhone: guardian.phone,
       templateName: 'attendance_absence_notification',
-      templateParams: { studentId: params.studentId },
+      templateParams: { child: about[0]?.child ?? '', date: about[0]?.day ?? '' },
       dedupeKey: `attendance_absence:${params.attendanceId}:${guardian.parent_id}`,
       parentId: guardian.parent_id,
     });

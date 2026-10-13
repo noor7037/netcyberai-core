@@ -19,6 +19,10 @@ export interface WhatsAppSendParams {
   toPhone: string;
   templateName: string;
   templateParams: Record<string, string>;
+  // Which version and language of the template (C184), and Meta's own id for it when it has one.
+  language?: 'en' | 'hi';
+  templateVersion?: number;
+  metaTemplateId?: string | null;
 }
 
 export interface WhatsAppSendResult {

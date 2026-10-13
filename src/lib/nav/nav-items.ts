@@ -8,6 +8,7 @@ export const controlNav: NavItem[] = [
   { label: 'Users', href: '/control/users' },
   { label: 'Onboarding', href: '/control/onboarding' },
   { label: 'Messaging & Cost', href: '/control/messaging-cost' },
+  { label: 'Message templates', href: '/control/templates' },
   { label: 'Monitoring', href: '/control/monitoring' },
   { label: 'Analytics', href: '/control/analytics' },
   { label: 'Billing & Plans', href: '/control/billing-plans' },
