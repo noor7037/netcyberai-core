@@ -130,7 +130,7 @@ const ROWS: readonly Row[] = [
     capabilities: ['Notices for school and class', 'One notice to every channel', 'Templates', 'Send-gate: consent, quiet hours, budget', 'Delivery states', 'Failure retry', 'Cost view'] },
   { id: 'ptm', label: 'PTM Scheduler', group: 'parent-engagement', icon: 'ptm', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', phaseNote: 'Class teachers’ slots, booking by reply, reminder and attendance are live; subject teachers’ slots later', status: 'partial',
     capabilities: ['Slots per teacher', 'Parent booking over WhatsApp', 'Reminders', 'Attendance', 'Notes'] },
-  { id: 'events', label: 'Events', group: 'parent-engagement', icon: 'events', roles: ENGAGEMENT, phase: 'P4', status: 'planned',
+  { id: 'events', label: 'Events', group: 'parent-engagement', icon: 'events', roles: ENGAGEMENT, phase: 'P4', phaseNote: 'Events, invitations, YES and NO counted, reminder and cancellation are live; calendar and photos later', status: 'partial',
     capabilities: ['School calendar', 'Holidays', 'Events', 'RSVPs', 'Reminders'] },
   { id: 'complaints', label: 'Complaints', group: 'parent-engagement', icon: 'complaints', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', status: 'spec-v0',
     capabilities: ['Intake from WhatsApp and web', 'Category', 'Owner', 'SLA timer', 'Status machine', 'Resolution note', 'Escalation to principal'] },

@@ -31,6 +31,7 @@ export const TOURS = {
   communication: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   parents: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   ptm: { steps: [{ slot: 'body' }, { slot: 'body' }] },
+  events: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   homework: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   recovery: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   copilot: { steps: [{ slot: 'body' }, { slot: 'body' }] },

@@ -182,6 +182,43 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
     },
   },
   {
+    // School events (C194): to the guardians of the invited classes only; YES and NO are counted.
+    name: 'event_invitation',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 2880,
+    variables: ['school', 'title', 'when', 'details'],
+    body: {
+      en: '{{school}}: {{title}} on {{when}}. {{details}} Reply YES if you will come, or NO if you cannot.',
+      hi: '{{school}}: {{when}} को {{title}}। {{details}} आएँगे तो YES लिखकर भेजें, नहीं आ सकेंगे तो NO।',
+    },
+  },
+  {
+    name: 'event_reminder',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 900,
+    variables: ['school', 'title', 'when'],
+    body: {
+      en: '{{school}}: A reminder: {{title}} is on {{when}}.',
+      hi: '{{school}}: याद दिला दें: {{title}} {{when}} को है।',
+    },
+  },
+  {
+    name: 'event_cancelled',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'title', 'when'],
+    body: {
+      en: '{{school}}: {{title}} on {{when}} has been cancelled. We are sorry for the change.',
+      hi: '{{school}}: {{when}} का {{title}} रद्द हो गया है। बदलाव के लिए खेद है।',
+    },
+  },
+  {
     name: 'messages_stopped',
     version: 1,
     category: 'utility',
