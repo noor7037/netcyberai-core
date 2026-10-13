@@ -2,7 +2,8 @@ import type { PoolClient } from 'pg';
 import type { StaffRole } from '@/lib/auth/types';
 import { writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected } from '@/lib/db/rows';
-import { sendWhatsAppMessage } from '@/lib/whatsapp/gate';
+import { jobQueue } from '@/lib/jobs/pg-queue';
+import { queueWhatsAppMessage } from '@/lib/whatsapp/gate';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
 
@@ -113,7 +114,8 @@ async function notifyGuardiansOfAbsence(
     [params.schoolId, params.attendanceId]
   );
   for (const guardian of guardians) {
-    await sendWhatsAppMessage(client, {
+    // Queued, not sent here (C185): the job runner sends it within the minute, and quiet hours hold it, not drop it.
+    await queueWhatsAppMessage(client, jobQueue, {
       schoolId: params.schoolId,
       studentId: params.studentId,
       purpose: 'operational_communication',

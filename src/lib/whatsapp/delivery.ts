@@ -68,7 +68,7 @@ export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody:
 
 export type MessageRow = { log_id: string; created_at: string; child: string | null; guardian: string | null; phone_last4: string | null; template_name: string | null; status: string; reason: string | null; provider: string | null; delivered_at: string | null; read_at: string | null; failed_at: string | null };
 export type MessageList = { messages: MessageRow[]; counts: Record<string, number>; days: number };
-export const MESSAGE_STATES = ['sent', 'delivered', 'read', 'failed', 'held'] as const;
+export const MESSAGE_STATES = ['queued', 'sent', 'delivered', 'read', 'failed', 'held'] as const;
 const HELD = `status::text like 'blocked_%'`;
 
 // The school's own messages of the last 14 days, newest first: who, what, and where each got to. The caller's

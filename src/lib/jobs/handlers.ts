@@ -7,15 +7,16 @@ import { inviteSendHandler } from '@/lib/onboarding/invitations';
 import { feesNightlyHandler } from '@/lib/fees/nightly';
 import { bulkRunHandler } from '@/lib/frameworks/bulk-engine';
 import { ticketNotifyHandler } from '@/lib/support/tickets';
+import { whatsappSendHandler, WHATSAPP_SEND_JOB } from '@/lib/whatsapp/gate';
 import { emailSendHandler } from './email-handler';
 import { jobQueue } from './pg-queue';
 import { runJobs, KICK_BUDGET_MS, RUN_BATCH_CAP, type RunSummary } from './runner';
 import type { JobHandler, Sql } from './types';
 
 // Every job type and its handler, wired to production services (C97).
-// There is no WhatsApp job yet; when there is, its handler calls
-// sendWhatsAppMessage (src/lib/whatsapp/gate.ts) and nothing else, which
-// scripts/check_whatsapp_send_gate.py already enforces for all of src/.
+// The WhatsApp job's handler lives in the send-gate itself
+// (src/lib/whatsapp/gate.ts): nothing else may call a provider, which
+// scripts/check_whatsapp_send_gate.py enforces for all of src/.
 
 const platform = withPlatformService as <T>(fn: (db: Sql) => Promise<T>) => Promise<T>;
 
@@ -33,6 +34,8 @@ export function productionHandlers(): Record<string, JobHandler> {
     'bulk.run': bulkRunHandler({ platform }),
     // A new support ticket: the founder's email (C127).
     'ticket.notify': ticketNotifyHandler({ platform, queue: jobQueue }),
+    // One queued WhatsApp message (C185): every rule read again at the moment of sending, through the one gate.
+    [WHATSAPP_SEND_JOB]: whatsappSendHandler({ platform: withPlatformService, queue: jobQueue }),
     // Each night after midnight in India: overdue dues, late fees where a school has them on, the reconciliation check (C163).
     'fees.nightly': feesNightlyHandler({ platform, queue: jobQueue }),
   };

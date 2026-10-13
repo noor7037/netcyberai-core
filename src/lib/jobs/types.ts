@@ -19,6 +19,8 @@ export type JobSpec = {
   idempotencyKey: string;
   schoolId?: string | null;
   maxAttempts?: number;
+  // Not before this moment (C185): a message held for quiet hours. Now, when not given.
+  runAt?: Date;
 };
 
 export type ClaimedJob = {
