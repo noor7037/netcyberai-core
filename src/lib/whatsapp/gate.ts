@@ -2,7 +2,9 @@ import type { PoolClient } from 'pg';
 import { isPurposeGranted, type ConsentPurpose } from '@/lib/consent/gate';
 import { missingVariables, templateToSend, type TemplateLanguage, type TemplateToSend } from '@/lib/whatsapp/templates';
 import { resolveProvider } from '@/lib/whatsapp/config';
-import { MetaWhatsAppProvider, StandInWhatsAppProvider, type ProviderName, type WhatsAppProviderSPI } from '@/lib/whatsapp/provider';
+import { openMetaCredentials } from '@/lib/whatsapp/credentials';
+import { MetaWhatsAppProvider } from '@/lib/whatsapp/meta';
+import { StandInWhatsAppProvider, type ProviderName, type WhatsAppProviderSPI } from '@/lib/whatsapp/provider';
 
 // THE single WhatsApp send-gate. Exactly one module may call a real
 // provider's send() function (this one), mirroring the SET ROLE choke
@@ -88,7 +90,7 @@ export async function rateOnSendDate(client: PoolClient, category: BillingCatego
   return rows[0] ? { rateId: rows[0].rate_id, ratePaise: Number(rows[0].rate_paise), gstPercent: Number(rows[0].gst_percent) } : null;
 }
 
-// Pure: the reason a real send must wait for a verified rate, or null.
+// Pure: the reason a real send must wait for a verified rate, or null. ('school_specific' is the old name for "a real account".)
 export function unpricedRealSend(providerKind: 'school_specific' | 'platform_default', rate: MessageRate | null): string | null {
   return providerKind === 'school_specific' && !rate ? 'rate not verified: no rate is on record for this message category, so its cost cannot be counted against the budget' : null;
 }
@@ -175,7 +177,7 @@ async function logAttempt(
   return rows[0].log_id;
 }
 
-type Ready = { ready: true; provider: WhatsAppProviderSPI; providerUsed: 'school_specific' | 'platform_default'; fallbackReason: string | null; category: BillingCategory; rate: MessageRate | null; said: { template: TemplateToSend; filled: Record<string, string> } };
+type Ready = { ready: true; testSchool: boolean; provider: WhatsAppProviderSPI; providerUsed: 'school_specific' | 'platform_default'; fallbackReason: string | null; category: BillingCategory; rate: MessageRate | null; said: { template: TemplateToSend; filled: Record<string, string> } };
 type Wait = { wait: true; until: Date };
 type Passed = { passed: true };
 type GateOptions = { platformDefaultProvider?: WhatsAppProviderSPI };
@@ -306,25 +308,24 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
       return { logId: await logAttempt(client, params, comm_status_failed, reason, { category, rate, fallbackReason }), status: comm_status_failed, reason, idempotent: false, providerUsed: null };
     }
   } else {
-    const resolution = await resolveProvider(client, params.schoolId);
+    // One platform number serves every school (docs/25 §5, C186). A school's own number
+    // (school_whatsapp_configs) stays in the schema and is not used: its credentials are never read.
+    const own = await resolveProvider(client, params.schoolId);
+    providerUsed = 'platform_default';
+    fallbackReason = own.kind === 'school_specific' ? 'a school\'s own number is not in use; the platform number serves every school' : own.fallbackReason;
+    // The platform's real account, only if its credentials are saved, tested and switched on in Control, and
+    // this server holds the key. Read as the platform role: a school session cannot see that table at all, so a
+    // message sent from one falls to the stand-in, and real sends go through the outbox (the job runner).
+    const asPlatform = options.platformDefaultProvider ? false : (await client.query(`select current_user = 'nca_super' as yes`)).rows[0].yes === true;
+    const account = asPlatform ? await openMetaCredentials(client, true) : null;
+    provider = options.platformDefaultProvider ?? (account ? new MetaWhatsAppProvider(account) : new StandInWhatsAppProvider());
     // A message that really costs money is never sent at an unknown price: a
     // budget cannot limit what it cannot count. Until a verified rate is on
-    // record for the category, a school's own (real) WhatsApp account does not
-    // send; the platform's stand-in, which costs nothing, still does.
-    const unpriced = unpricedRealSend(resolution.kind, rate);
+    // record for the category, a real account does not send; the stand-in,
+    // which costs nothing, still does.
+    const unpriced = provider.name === 'meta' ? unpricedRealSend('school_specific', rate) : null;
     if (unpriced) {
       return { logId: await logAttempt(client, params, 'blocked_budget', unpriced, { category, rate }), status: 'blocked_budget', reason: unpriced, idempotent: false, providerUsed: null };
-    }
-    if (resolution.kind === 'school_specific') {
-      providerUsed = 'school_specific';
-      // The ONLY call site for this function in the whole codebase --
-      // decrypting a real credential happens nowhere else.
-      await client.query(`select * from whatsapp_config_get_credentials($1)`, [resolution.configId]);
-      provider = new MetaWhatsAppProvider(); // not built yet -- docs/25 slice 7e
-    } else {
-      providerUsed = 'platform_default';
-      fallbackReason = resolution.fallbackReason;
-      provider = standIn();
     }
   }
 
@@ -338,10 +339,10 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
   }
   const said = { template, filled: Object.fromEntries(template.variables.map((v) => [v, filled[v as keyof typeof filled] as string])) };
 
-  return { ready: true, provider, providerUsed, fallbackReason, category, rate, said };
+  return { ready: true, testSchool: school.is_test_fixture, provider, providerUsed, fallbackReason, category, rate, said };
 }
 
-const SEND_ARGS = (params: SendWhatsAppMessageParams, r: Ready) => ({ toPhone: params.toPhone, templateName: params.templateName, templateParams: r.said.filled, language: r.said.template.language, templateVersion: r.said.template.version, metaTemplateId: r.said.template.metaTemplateId });
+const SEND_ARGS = (params: SendWhatsAppMessageParams, r: Ready) => ({ testSchool: r.testSchool, toPhone: params.toPhone, templateName: params.templateName, templateParams: r.said.filled, language: r.said.template.language, templateVersion: r.said.template.version, metaTemplateId: r.said.template.metaTemplateId });
 const LOGGED = (r: Ready) => ({ providerUsed: r.providerUsed, fallbackReason: r.fallbackReason, category: r.category, rate: r.rate, provider: r.provider.name, ...r.said });
 
 // Send now, in the caller's own transaction: every rule, the provider, the

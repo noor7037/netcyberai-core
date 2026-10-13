@@ -708,6 +708,29 @@ const messageTemplatesDone = async () => {
   if (row?.status !== 'approved' || row.approved_by !== PEOPLE.founder.sub || row.meta_status !== 'pending' || row.meta_template_id !== 'made-up-meta-id') throw new Error(`the template was not approved and Meta's decision recorded: ${JSON.stringify(row)}`);
   if (!templatesSeen?.allNameSchoolFirst || templatesSeen.versions !== total || total < 10) throw new Error(`the templates on the screen: ${JSON.stringify(templatesSeen)} of ${total}`);
 };
+// Control → WhatsApp account (C186). The harness gives the app NO messaging key, as a server without one: the
+// screen says so in plain words, nothing can be saved, and Meta's webhook address does not exist yet.
+let whatsappSeen = null;
+const whatsappAccount = async (page) => {
+  await page.locator('[data-whatsapp-account]').waitFor({ timeout: 20000 });
+  const noKey = await page.locator('[data-wa-no-key]').count();
+  await page.locator('#wa-phoneNumberId').fill('106540352242922');
+  await page.locator('#wa-wabaId').fill('102290129340398');
+  await page.locator('#wa-accessToken').fill('made-up-token-for-the-harness-0123456789');
+  await page.locator('#wa-appSecret').fill('madeupappsecret0123456789abcdef');
+  await page.locator('#wa-verifyToken').fill('made-up-verify-token-0123456789');
+  const saveDisabled = await page.locator('[data-wa-save]').isDisabled();
+  const secretsHidden = await page.locator('#wa-accessToken, #wa-appSecret, #wa-verifyToken').evaluateAll((els) => els.every((e) => e.type === 'password'));
+  const hook = `${base}/api/public/whatsapp/webhook/meta`;
+  const get = (await fetch(`${hook}?hub.mode=subscribe&hub.verify_token=anything&hub.challenge=1`)).status;
+  const post = (await fetch(hook, { method: 'POST', headers: { 'x-hub-signature-256': 'sha256=00' }, body: '{}' })).status;
+  whatsappSeen = { noKey, saveDisabled, secretsHidden, get, post };
+};
+const whatsappAccountDone = async () => {
+  const saved = (await db.pg.query(`select count(*)::int as n from whatsapp_credentials`)).rows[0].n;
+  const want = { noKey: 1, saveDisabled: true, secretsHidden: true, get: 404, post: 404 };
+  if (JSON.stringify(whatsappSeen) !== JSON.stringify(want) || saved !== 0) throw new Error(`the WhatsApp account screen without a key: ${JSON.stringify(whatsappSeen)}, ${saved} saved`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -1037,6 +1060,7 @@ const SCREENS = [
   ['founder', 'control-modules', `/control/schools/${SCHOOL}`, openModulesTab],
   ['principal', 'app-module-off', '/app/attendance', attendanceOff, attendanceOn],
   ['founder', 'control-messaging-cost', '/control/messaging-cost'],
+  ['founder', 'control-whatsapp', '/control/whatsapp', whatsappAccount, whatsappAccountDone],
   ['founder', 'control-templates', '/control/templates', messageTemplates, messageTemplatesDone],
   ['principal', 'app-dashboard', '/app/dashboard'],
   ['principal', 'app-students', '/app/students'],

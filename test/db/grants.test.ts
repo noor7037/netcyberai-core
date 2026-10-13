@@ -71,6 +71,7 @@ const APP_USER: Record<string, string> = {
   pulse_response_log: 'DELETE,INSERT,SELECT,UPDATE',
   qr_scan_log: 'DELETE,INSERT,SELECT,UPDATE',
   receipts: 'INSERT,SELECT,UPDATE',
+  whatsapp_credentials: '', // the platform's own WhatsApp account: never the app role's (C186)
   payment_credentials: '', // ciphertext only, and still not the app role's: the server's payment path reads it as the platform role (C171)
   payment_evidence: 'INSERT,SELECT,UPDATE', // the one door every credit goes through; a trigger keeps what it says fixed
   payment_gateway_access: 'SELECT', // set by NetCyberAI in Control
@@ -128,6 +129,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   entitlement_change_reasons: 'INSERT,SELECT', // the founder's reasons: written once
   fee_status_runs: 'INSERT,SELECT', // the nightly job writes a result once
   payment_credentials: 'INSERT,SELECT,UPDATE',
+  whatsapp_credentials: 'INSERT,SELECT,UPDATE',
   payment_gateway_access: 'INSERT,SELECT,UPDATE',
   fee_followups: 'SELECT', // the nightly reminders hold while a promise or hardship is open
   fee_refunds: '',

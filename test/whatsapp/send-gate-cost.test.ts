@@ -104,13 +104,11 @@ describe('before any rate is verified: "rate not verified"', () => {
     expect((await db.pg.query(`select count(*)::int as c from message_rate_table`)).rows[0].c).toBe(0);
   });
 
-  it('a sent message is logged as billable in its template’s category, cost zero, marked rate_not_verified', async () => {
+  it('with no verified rate a real account does not send at all: a budget cannot limit what it cannot count (C186)', async () => {
     const utility = await send('absence_alert');
-    expect(utility.status).toBe('sent');
-    expect(await row(utility.logId)).toEqual({ billing_category: 'utility', billable: true, cost: 0, gst: 0, rate_id: null, cost_basis: 'rate_not_verified', status: 'delivered' });
-    const marketing = await send('open_day_invite');
-    expect(await row(marketing.logId)).toMatchObject({ billing_category: 'marketing', billable: true, cost_basis: 'rate_not_verified' });
-    expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('rate not verified'), 'marketing');
+    expect(utility).toMatchObject({ status: 'blocked_budget', reason: expect.stringContaining('rate not verified') });
+    expect(await row(utility.logId)).toEqual({ billing_category: 'utility', billable: false, cost: 0, gst: 0, rate_id: null, cost_basis: 'not_billable', status: 'blocked_budget' });
+    expect((await send('open_day_invite')).status).toBe('blocked_budget');
   });
 });
 
@@ -143,9 +141,10 @@ describe('with rates on record: utility and marketing are costed apart, by the r
     expect(await row(marketing.logId)).toEqual({ billing_category: 'marketing', billable: true, cost: 7000, gst: 1260, rate_id: marketingNow, cost_basis: 'rate_table', status: 'delivered' });
   });
 
-  it('a category with no rate yet is still marked rate_not_verified, beside ones that have a rate', async () => {
+  it('a category with no rate yet does not send, beside ones that have a rate and do', async () => {
     const auth = await send('login_code');
-    expect(await row(auth.logId)).toMatchObject({ billing_category: 'authentication', billable: true, cost: 0, cost_basis: 'rate_not_verified' });
+    expect(auth.status).toBe('blocked_budget');
+    expect(await row(auth.logId)).toMatchObject({ billing_category: 'authentication', billable: false, cost: 0, cost_basis: 'not_billable' });
   });
 
   it('a message that is blocked costs nothing and says so, in its own category', async () => {
@@ -191,7 +190,7 @@ describe('Control’s cost view: live schools, last 30 days, read only', () => {
               count(*) filter (where billable and cost_basis is distinct from 'rate_table')::int as unverified, count(*)::int as attempts
        from communication_log where school_id = $1 and created_at > now() - interval '30 days'`, [SCHOOL])).rows[0];
     expect(live).toMatchObject({ attempts: logged.attempts, billable: logged.billable, costPaise: logged.cost, gstPaise: logged.gst, rateNotVerified: logged.unverified });
-    expect(live.rateNotVerified).toBeGreaterThan(0);
+    expect(live.rateNotVerified).toBe(1); // only the row from before C140, below; a real account no longer sends unpriced
     const byCategory = Object.fromEntries(live.categories.map((c: any) => [c.category, c]));
     expect(byCategory.utility.costPaise).toBeGreaterThan(0);
     expect(byCategory.marketing.costPaise).toBe(7000);

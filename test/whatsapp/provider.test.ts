@@ -2,7 +2,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { sendWhatsAppMessage } from '@/lib/whatsapp/gate';
-import { MetaWhatsAppProvider, StandInWhatsAppProvider, signStandInNotice, type WhatsAppNotice, type WhatsAppProvider } from '@/lib/whatsapp/provider';
+import { StandInWhatsAppProvider, signStandInNotice, type WhatsAppNotice, type WhatsAppProvider } from '@/lib/whatsapp/provider';
 
 // The provider interface, the stand-in, and the test-school rule (docs/25 slice 7a, C182).
 // Every number here is made up (+9100000000xx); nothing leaves the process.
@@ -61,12 +61,6 @@ describe('the stand-in', () => {
     expect(signed({ provider: 'stand-in', notices: [notices[0], { kind: 'status', providerMessageId: 'x', status: 'read', at: 'yesterday' }] })).toEqual({ ok: false, reason: 'not_understood' });
   });
 
-  it('Meta’s adapter is not built: it sends nothing and reads nothing', async () => {
-    const meta = new MetaWhatsAppProvider();
-    await expect(meta.send()).rejects.toThrow(/not built yet/);
-    expect(await meta.testConnection()).toMatchObject({ ok: false });
-    expect(meta.readNotice()).toEqual({ ok: false, reason: 'no_secret' });
-  });
 });
 
 const LIVE = 'c1000000-0000-4000-8000-000000000001';
@@ -148,9 +142,10 @@ describe('the gate, on the real schema', () => {
     expect(await row(out.logId)).toMatchObject({ status: 'failed', provider: null, billable: false, has_id: false });
   });
 
-  it('the same school, not a test school: its own account is what the gate turns to (and, with no verified rate, does not send)', async () => {
+  it('a school’s own number is not in use: a live school with one switched on still goes by the platform’s (here, the stand-in)', async () => {
     const out = await send(LIVE);
-    expect(out).toMatchObject({ status: 'blocked_budget', reason: expect.stringContaining('rate not verified') });
+    expect(out).toMatchObject({ status: 'sent', providerUsed: 'platform_default' });
+    expect(await row(out.logId)).toMatchObject({ provider: 'stand-in', fallback_reason: expect.stringContaining('own number is not in use'), billable: false });
   });
 
   it('every rule that blocked before still blocks, before any provider is asked', async () => {
