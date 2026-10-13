@@ -99,6 +99,7 @@ numbers: supervisor C100–C109, Claude Code from C110.
 ## 5. Founder long-lead actions (start now)
 
 1. Meta Business verification + WhatsApp number (blocks P4; Fees in P3 sends reminders by email until then).
+0. **GitHub billing (now):** GitHub Actions stopped starting checks on 2026-10-13 ("recent account payments have failed or your spending limit needs to be increased"). Only the account owner can fix it in GitHub → Settings → Billing & plans. Until then the supervisor runs the same CI script before each merge.
 2. ~~Razorpay account + KYC~~: no longer blocks P3 (C170, `24`). Instead,
    from the schools already being met: their bank, merchant UPI QR, and
    whether net banking gives an Excel/CSV statement. Optional: talk to
