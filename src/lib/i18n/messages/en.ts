@@ -660,7 +660,7 @@ export const en = {
   'moduleOff.homework': '“Homework” leaves the menu. Teachers and the office can no longer set it or check who has done it, and its card leaves My Day.',
   // Daily Pulse: today's messages (C151).
   'pc.title': 'Today’s messages to parents',
-  'pc.notSent': 'Nothing is sent yet. Sending starts with WhatsApp. Until then, a message marked ready is kept here and goes nowhere.',
+  'pc.notSent': 'Nothing goes to parents by itself. Mark a message ready, then press “Send to parents”. Until WhatsApp is connected for your school, a sent message is recorded and reaches no phone; Communication says so.',
   'pc.loading': 'Loading…',
   'pc.count.one': '{count} message prepared today; {ready} ready',
   'pc.count.other': '{count} messages prepared today; {ready} ready',
@@ -1410,6 +1410,12 @@ export const en = {
   'today.replies-waiting.todo.other': '{count} parents have written and are waiting for an answer',
   'today.replies-waiting.action': 'Open messages',
   'today.replies-waiting.why': 'You can answer in your own words only for 24 hours after a parent writes.',
+  // Daily Pulse: sending and answers (C189).
+  'pc.send': 'Send to parents',
+  'pc.send.done': 'On its way to {queued} guardians. {held} were held back; Communication shows why.',
+  'pc.send.nobody': 'No guardian of this class has a phone number on record, so there is nobody to send to.',
+  'pc.sent.summary': 'Sent. {queued} messages on their way or delivered; {held} held back or failed. Parents’ answers: {understood} understood, {help} need help.',
+  'msg.template.daily_pulse': 'Daily Pulse',
   'sync.saved': 'All saved',
   'sync.offline': 'Offline: showing what was last loaded',
   'sync.sending.one': 'Sending {count} change…',

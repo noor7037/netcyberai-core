@@ -195,6 +195,32 @@ const pulseMessageDone = async () => {
   await clearTaught();
   if (rows[0].ready !== 1 || rows[0].sent !== 0 || rows[0].logged !== 0) throw new Error(`expected one ready message and nothing sent: ${JSON.stringify(rows[0])}`);
 };
+// Sending the day's message (C189): the same message, marked ready, then "Send to parents" by the teacher. Each
+// guardian's message goes through the send-gate (here it is held or queued; nothing reaches a phone), the message
+// is marked sent with who sent it, and the screen says how many went and how many were held.
+const clearPulseSends = () => db.pg.exec(`set session_replication_role = replica; delete from communication_log where dedupe_key like 'pulse:%'; delete from jobs where type = 'whatsapp.send'; set session_replication_role = origin;`);
+let pulseSent = null;
+const pulseSend = async (page) => {
+  await clearPulseSends();
+  await pulseMessage(page);
+  await page.locator('[data-send-pulse]').first().click();
+  pulseSent = (await page.locator('[data-pulse-sent]').first().textContent({ timeout: 20000 })).trim();
+};
+const pulseSendDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from pulse_messages where status = 'sent' and sent_by = $1 and sent_at is not null) as sent,
+            (select count(*)::int from communication_log where dedupe_key like 'pulse:%') as messages,
+            (select count(*)::int from communication_log where dedupe_key like 'pulse:%' and purpose = 'daily_pulse' and template_name = 'daily_pulse') as as_pulse,
+            (select count(*)::int from communication_log where dedupe_key like 'pulse:%' and status::text in ('sent', 'delivered', 'read')) as reached_a_provider`,
+    [PEOPLE.teacher.sub]
+  );
+  await clearPulseSends();
+  await clearHomework();
+  await clearTaught();
+  const r = rows[0];
+  if (r.sent !== 1 || r.messages < 1 || r.as_pulse !== r.messages || r.reached_a_provider !== 0) throw new Error(`sending the Pulse: ${JSON.stringify(r)}`);
+  if (!/^Sent\./.test(pulseSent ?? '')) throw new Error(`the screen does not say what was sent: ${pulseSent}`);
+};
 // Homework Recovery (C152): one student marked "not done" for three
 // homeworks in the last days is listed with a plan; the teacher approves it;
 // the card leaves the list and nothing is sent.
@@ -1160,6 +1186,7 @@ const SCREENS = [
   ['teacher', 'teacher-recovery', '/app/recovery', recoveryList, recoveryApprove],
   ['teacher', 'teacher-needs-help', '/app/pulse', needsHelp, needsHelpDone],
   ['teacher', 'teacher-pulse-message', '/app/pulse', pulseMessage, pulseMessageDone],
+  ['teacher', 'teacher-pulse-send', '/app/pulse', pulseSend, pulseSendDone],
   ['teacher', 'teacher-taught-one-tap', '/app/syllabus', oneTapTaught, oneTapTaughtDone],
   ['teacher', 'teacher-tickets', '/app/help/ticket'],
   ['founder', 'control-dashboard', '/control'],

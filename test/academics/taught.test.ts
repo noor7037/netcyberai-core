@@ -115,7 +115,7 @@ describe('one tap', () => {
     await db.pg.query(`update pulse_messages set status = 'ready'`);
     await tap(t1, { topic: 'Fractions: on the number line' });
     expect(await drafts()).toMatchObject([{ status: 'draft', topic: 'Fractions: on the number line' }]);
-    await db.pg.query(`update pulse_messages set status = 'sent'`);
+    await db.pg.query(`update pulse_messages set status = 'sent', sent_at = now(), sent_by = created_by`); // as a person's send records it (C189)
     const again = await tap(t1, { topic: 'Something else' });
     expect(again.kind).toBe('ok');
     expect(await drafts()).toMatchObject([{ status: 'sent', topic: 'Fractions: on the number line' }]);

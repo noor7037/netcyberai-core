@@ -95,6 +95,19 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
     },
   },
   {
+    // The day's update for a class, in the school's own words for that day, marked ready and sent by a person.
+    name: 'daily_pulse',
+    version: 1,
+    category: 'utility',
+    purpose: 'daily_pulse',
+    staleAfterMinutes: 600,
+    variables: ['school', 'update'],
+    body: {
+      en: '{{school}}: {{update}} Reply 1 if your child understood today’s lesson, or 2 if your child needs help.',
+      hi: '{{school}}: {{update}} अगर आपके बच्चे को आज का पाठ समझ आया तो 1 लिखें, और अगर मदद चाहिए तो 2 लिखें।',
+    },
+  },
+  {
     name: 'messages_stopped',
     version: 1,
     category: 'utility',

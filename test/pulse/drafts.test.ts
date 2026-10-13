@@ -171,7 +171,7 @@ describe('the draft, as the app keeps it', () => {
     expect(await as(t2, (c) => changeDraft(c, actor(t2), d.pulse_id, { status: 'ready' }))).toEqual({ ok: false, reason: 'not_found' });
     expect(await as(accountant, (c) => changeDraft(c, actor(accountant), d.pulse_id, { status: 'ready' }))).toEqual({ ok: false, reason: 'not_allowed' });
     expect(await as(principal, (c) => changeDraft(c, actor(principal), d.pulse_id, { status: 'ready' }))).toMatchObject({ ok: true, draft: { status: 'ready' } });
-    await db.pg.query(`update pulse_messages set status = 'sent'`);
+    await db.pg.query(`update pulse_messages set status = 'sent', sent_at = now(), sent_by = created_by`); // as a person's send records it (C189)
     expect(await as(t1, (c) => changeDraft(c, actor(t1), d.pulse_id, { bodies: { en: 'x' } }))).toEqual({ ok: false, reason: 'already_sent' });
     expect(await as(t1, (c) => changeDraft(c, actor(t1), d.pulse_id, { bodies: { en: 'x'.repeat(1001) } }))).toEqual({ ok: false, reason: 'already_sent' });
   });
