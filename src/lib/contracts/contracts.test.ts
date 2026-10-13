@@ -42,7 +42,7 @@ describe('module registry', () => {
     expect(moduleById('teacher-copilot')).toMatchObject({ status: 'foundation', phase: 'P2' });
     expect(moduleById('recovery')).toMatchObject({ status: 'partial', phase: 'P2' });
     expect(MODULE_REGISTRY.filter((m) => m.status === 'spec-v0').map((m) => m.id).sort()).toEqual(
-      ['automation', 'career', 'curriculum-gap', 'learning-genome', 'parent-ai', 'payroll', 'school-auditor', 'twin'].sort()
+      ['automation', 'career', 'curriculum-gap', 'learning-genome', 'payroll', 'school-auditor', 'twin'].sort()
     );
     for (const m of MODULE_REGISTRY) expect(m.capabilities.length).toBeGreaterThan(0);
   });

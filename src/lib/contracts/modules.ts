@@ -156,7 +156,7 @@ const ROWS: readonly Row[] = [
   { id: 'teacher-copilot', label: 'Teacher Copilot', group: 'ai-intelligence', icon: 'copilot', roles: TEACHING, phase: 'P2', phaseNote: 'Built on a stand-in (v1); off for every school until the founder sets a key and a monthly limit', status: 'foundation',
     capabilities: ['Drafts lesson plans, worksheets, Pulse messages and remarks', 'Teacher edits and approves', 'Usage metered'] },
   // Teachers review the suggestions for their own classes (C112).
-  { id: 'parent-ai', label: 'Parent AI · What to Do?', group: 'ai-intelligence', icon: 'parentAi', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', status: 'spec-v0',
+  { id: 'parent-ai', label: 'Parent AI · What to Do?', group: 'ai-intelligence', icon: 'parentAi', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', phaseNote: 'An answer for one child, drafted from the school’s records and approved by a person, is live; a weekly answer for every child later', status: 'partial',
     capabilities: ['Weekly “what to do at home” per child', 'In the family’s language', 'Teacher-reviewed templates'] },
   { id: 'school-auditor', label: 'School Health Auditor', group: 'ai-intelligence', icon: 'auditor', roles: OFFICE, phase: 'P5', status: 'spec-v0',
     capabilities: ['Weekly score across attendance, coverage, fees, communication, compliance', 'Explained deductions', 'Fix list'] },

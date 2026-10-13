@@ -817,6 +817,29 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['complaint', 'concern', 'grievance', 'escalate', 'principal', 'close', 'शिकायत', 'समस्या'],
   },
   {
+    slug: 'what-to-do-at-home',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Tell a parent what they can do at home', hi: 'अभिभावक को बताएँ कि वे घर पर क्या कर सकते हैं' },
+    summary: {
+      en: 'A draft answer is put together from what the child’s class was taught this week and the child’s own homework. You read it and approve it before it goes.',
+      hi: 'जवाब का मसौदा इस हफ़्ते बच्चे की कक्षा में जो पढ़ाया गया और बच्चे के अपने होमवर्क से बनता है। जाने से पहले आप उसे पढ़कर मंज़ूर करते हैं।',
+    },
+    steps: [
+      { en: 'Open “Parent AI · What to Do?”. Under “Draft an answer for a parent”, find the guardian and choose the child.', hi: '“Parent AI · What to Do?” खोलें। “Draft an answer for a parent” में अभिभावक को खोजें और बच्चा चुनें।' },
+      { en: 'Press “Draft the answer”. The draft appears under “Answers” with “What this answer used”.', hi: '“Draft the answer” दबाएँ। मसौदा “Answers” में “What this answer used” के साथ दिखता है।' },
+      { en: 'Read it and change the words if you need to. Then press “Approve and send”, or “Discard”.', hi: 'इसे पढ़ें और ज़रूरत हो तो शब्द बदलें। फिर “Approve and send” या “Discard” दबाएँ।' },
+    ],
+    tips: [
+      { en: 'Nothing goes to a parent until a person has approved it.', hi: 'किसी व्यक्ति की मंज़ूरी के बिना अभिभावक को कुछ नहीं जाता।' },
+      { en: 'The draft uses only this child’s class topics and this child’s own homework. No other child’s work is in it.', hi: 'मसौदा सिर्फ़ इस बच्चे की कक्षा के विषय और इस बच्चे का अपना होमवर्क इस्तेमाल करता है। किसी और बच्चे का काम इसमें नहीं होता।' },
+      { en: 'If nothing has been recorded as taught this week, there is nothing to base an answer on. Record what was taught in Daily Pulse first.', hi: 'अगर इस हफ़्ते कुछ पढ़ाया गया दर्ज नहीं है, तो जवाब का कोई आधार नहीं है। पहले Daily Pulse में दर्ज करें कि क्या पढ़ाया गया।' },
+    ],
+    start: { href: '/app/parent-ai', label: { en: 'Parent AI · What to Do?', hi: 'Parent AI · What to Do?' } },
+    related: ['answer-a-parent', 'daily-pulse-message'],
+    keywords: ['home', 'help', 'parent ai', 'what to do', 'homework', 'tip', 'घर', 'मदद'],
+  },
+  {
     slug: 'answer-a-parent',
     category: 'daily',
     audience: 'office_and_teachers',

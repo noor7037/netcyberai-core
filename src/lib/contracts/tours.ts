@@ -33,6 +33,7 @@ export const TOURS = {
   ptm: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   events: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   complaints: { steps: [{ slot: 'body' }, { slot: 'body' }] },
+  'parent-ai': { steps: [{ slot: 'body' }, { slot: 'body' }] },
   homework: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   recovery: { steps: [{ slot: 'body' }, { slot: 'body' }] },
   copilot: { steps: [{ slot: 'body' }, { slot: 'body' }] },

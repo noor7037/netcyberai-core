@@ -11,8 +11,12 @@
 export const DRAFT_KINDS = ['lesson_plan', 'worksheet', 'pulse_message'] as const;
 export type DraftKind = (typeof DRAFT_KINDS)[number];
 
+// One more kind, asked for by Parent AI only (C196): a tip for a parent about the topic the class was taught. Like
+// every request it carries the class level, the subject and the topic, and no person.
+export const HOME_HELP = 'home_help';
+
 export type DraftRequest = {
-  kind: DraftKind;
+  kind: DraftKind | typeof HOME_HELP;
   classLevel: string; // the grade, e.g. "5": never the section's roll or any person
   subject: string;
   chapter: string;
@@ -41,7 +45,9 @@ export const standInProvider: AIProvider = {
         ? [`Lesson plan (${r.minutes ?? 40} minutes)`, head, '', `1. Recall (5 minutes): ask what the class remembers that leads to “${r.topic}”.`, `2. Teach: explain “${r.topic}” with one worked example on the board.`, '3. Practise: two questions in pairs; walk round and listen.', '4. Check: one question each on a slip of paper.', '5. Homework: one question that uses today’s idea.'].join('\n')
         : r.kind === 'worksheet'
           ? [`Worksheet: ${head}`, '', ...Array.from({ length: r.questions ?? 5 }, (_, i) => `${i + 1}. A question on “${r.topic}” (write the question here).`)].join('\n')
-          : `Class ${r.classLevel}, ${r.subject}: today the class learned “${r.topic}”. Ask your child to tell you one thing about it.`;
+          : r.kind === HOME_HELP
+            ? `Ask your child to explain “${r.topic}” to you in their own words, then to show you one example from the notebook.`
+            : `Class ${r.classLevel}, ${r.subject}: today the class learned “${r.topic}”. Ask your child to tell you one thing about it.`;
     return { text, tokensIn: words(JSON.stringify(r)), tokensOut: words(text) };
   },
 };
