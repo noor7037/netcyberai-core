@@ -90,6 +90,7 @@ for work that changes the rules themselves.
     [`24_PAYMENT_COLLECTION_ARCHITECTURE.md`](24_PAYMENT_COLLECTION_ARCHITECTURE.md)
     (how money is collected and proven; C170).
     For WhatsApp and the parent loop: [`25_P4_WHATSAPP_PLAN.md`](25_P4_WHATSAPP_PLAN.md) (C181).
+    For the principal's dashboard, reports, staff leave and Control: [`26_P5_PRINCIPAL_CONTROL_PLAN.md`](26_P5_PRINCIPAL_CONTROL_PLAN.md) (C199).
 11. [`10_DECISION_LOG.md`](10_DECISION_LOG.md) — read when something
     in the above seems to contradict something else. It almost
     certainly doesn't — check here before re-deciding it.
