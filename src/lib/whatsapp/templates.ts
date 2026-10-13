@@ -108,6 +108,19 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
     },
   },
   {
+    // A notice written by staff and approved by the principal, for one class or for every class.
+    name: 'class_notice',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'class', 'notice'],
+    body: {
+      en: '{{school}}: Notice for {{class}}. {{notice}}',
+      hi: '{{school}}: {{class}} के लिए सूचना। {{notice}}',
+    },
+  },
+  {
     name: 'messages_stopped',
     version: 1,
     category: 'utility',

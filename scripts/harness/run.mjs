@@ -805,6 +805,44 @@ const parentRepliesDone = async () => {
   if (JSON.stringify(rows[0]) !== JSON.stringify(want)) throw new Error(`parents' replies in the database: ${JSON.stringify(rows[0])}`);
   if (JSON.stringify(repliesSeen) !== JSON.stringify({ first: 200, stop: 200, threadShows: 'in,out', replyBoxAfterStop: 0 })) throw new Error(`parents' replies on the screen: ${JSON.stringify(repliesSeen)}`);
 };
+// Notices to parents (C191): the principal writes a notice for a class. Writing it sends nothing. Approving it is
+// what sends it: one message a guardian of that class, through the gate, as the notice template.
+const clearNotices = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from communication_log where dedupe_key like 'notice:%'; delete from jobs where type = 'whatsapp.send'; delete from class_notices; delete from whatsapp_templates where template_name = 'class_notice' and meta_template_id = 'harness-7i'; set session_replication_role = origin;`);
+};
+let noticesSeen = null;
+let noticePilotBefore = null;
+const classNotice = async (page) => {
+  await clearNotices();
+  noticePilotBefore = (await db.pg.query(`select pilot_allow_outbound from schools where school_id = $1`, [SCHOOL])).rows[0];
+  await db.pg.query(`update schools set pilot_allow_outbound = true where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_template_id) values (null, 'class_notice', 1, 'en', '{{school}}: Notice for {{class}}. {{notice}}', '{school,class,notice}', 'utility', 1440, 'approved', 'harness-7i')`);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-notices]').waitFor({ timeout: 20000 });
+  await page.selectOption('#notice-class', { label: '5-A' });
+  await page.locator('#notice-body').fill('The parent meeting is on Saturday at 10 am in the school hall.');
+  await page.locator('[data-notice-write]').click();
+  await page.locator('[data-notice="waiting"]').waitFor({ timeout: 20000 });
+  const sentBeforeApproval = (await db.pg.query(`select count(*)::int as n from communication_log where dedupe_key like 'notice:%'`)).rows[0].n;
+  await page.locator('[data-notice-approve]').click();
+  await page.locator('[data-notice="sent"] [data-notice-counts]').waitFor({ timeout: 20000 });
+  noticesSeen = { sentBeforeApproval, waitingLeft: await page.locator('[data-notice="waiting"]').count() };
+};
+const classNoticeDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from class_notices where school_id = $1 and status = 'sent' and decided_by = $2) as sent_notices,
+            (select count(*)::int from communication_log l where l.dedupe_key like 'notice:%') as messages,
+            (select count(*)::int from communication_log l where l.dedupe_key like 'notice:%' and (l.template_name <> 'class_notice' or l.purpose <> 'operational_communication')) as not_as_notice,
+            (select count(*)::int from communication_log l join students s on s.student_id = l.student_id join classes c on c.class_id = s.class_id where l.dedupe_key like 'notice:%' and c.name <> '5-A') as other_classes,
+            (select count(*)::int from (select to_phone from communication_log where dedupe_key like 'notice:%' group by to_phone having count(*) > 1) d) as told_twice`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  await clearNotices();
+  await db.pg.query(`update schools set pilot_allow_outbound = $2 where school_id = $1`, [SCHOOL, noticePilotBefore.pilot_allow_outbound]);
+  const r = rows[0];
+  if (r.sent_notices !== 1 || r.messages < 1 || r.not_as_notice !== 0 || r.other_classes !== 0 || r.told_twice !== 0) throw new Error(`the notice in the database: ${JSON.stringify(r)}`);
+  if (JSON.stringify(noticesSeen) !== JSON.stringify({ sentBeforeApproval: 0, waitingLeft: 0 })) throw new Error(`the notice on the screen: ${JSON.stringify(noticesSeen)}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -1160,6 +1198,7 @@ const SCREENS = [
   ['principal', 'app-compliance', '/app/compliance'],
   ['principal', 'app-communication', '/app/communication', messageStates, messageStatesDone],
   ['principal', 'app-communication-replies', '/app/communication', parentReplies, parentRepliesDone],
+  ['principal', 'app-communication-notices', '/app/communication', classNotice, classNoticeDone],
   ['principal', 'app-taught-today', '/app/syllabus'],
   ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],
   ['teacher', 'app-settings-teacher', '/app/settings', settingsReadOnly],
