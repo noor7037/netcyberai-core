@@ -278,7 +278,9 @@ ALLOWED_PERMISSIVE = (
         ("ptm_slots", "ptm_slots_tenant_isolation"),
         ("ptm_bookings", "ptm_bookings_tenant_isolation"),
         ("school_events", "school_events_tenant_isolation"),  # C194: narrowed by the RESTRICTIVE policies below
-        ("event_replies", "event_replies_tenant_isolation"),  # C191: narrowed by the RESTRICTIVE policies below
+        ("event_replies", "event_replies_tenant_isolation"),
+        ("complaints", "complaints_tenant_isolation"),  # C195: narrowed by the RESTRICTIVE policies below
+        ("complaint_events", "complaint_events_tenant_isolation"),  # C191: narrowed by the RESTRICTIVE policies below
         ("message_threads", "message_threads_tenant_isolation"),
         ("inbound_messages", "inbound_messages_tenant_isolation"),
         ("whatsapp_opt_outs", "whatsapp_opt_outs_tenant_isolation"),
@@ -402,6 +404,9 @@ REQUIRED_RESTRICTIVE = {
     ("school_events", "school_events_office_makes"),
     ("school_events", "school_events_office_changes"),
     ("event_replies", "event_replies_staff"),
+    ("complaints", "complaints_staff"),
+    ("complaints", "complaints_as_self"),
+    ("complaint_events", "complaint_events_with_complaint"),
     ("class_notices", "class_notices_as_self"),
     ("class_notices", "class_notices_principal_decides"),
     ("message_threads", "message_threads_staff"),

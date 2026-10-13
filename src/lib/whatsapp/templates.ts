@@ -219,6 +219,43 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
     },
   },
   {
+    // Complaints (C195): the parent is told at each step: noted, passed to the principal, closed with what was done.
+    name: 'complaint_received',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'ref', 'owner', 'due'],
+    body: {
+      en: '{{school}}: We have noted your concern (reference {{ref}}). {{owner}} will look into it and reply to you by {{due}}.',
+      hi: '{{school}}: हमने आपकी बात दर्ज कर ली है (संदर्भ {{ref}})। {{owner}} इसे देखेंगे और {{due}} तक आपको जवाब देंगे।',
+    },
+  },
+  {
+    name: 'complaint_escalated',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'ref'],
+    body: {
+      en: '{{school}}: Your concern (reference {{ref}}) has not been settled in time, so it has been passed to the principal, who will look into it.',
+      hi: '{{school}}: आपकी बात (संदर्भ {{ref}}) समय पर नहीं सुलझी, इसलिए इसे प्रिंसिपल को सौंप दिया गया है, जो इसे देखेंगे।',
+    },
+  },
+  {
+    name: 'complaint_closed',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'ref', 'note'],
+    body: {
+      en: '{{school}}: About your concern (reference {{ref}}): {{note}} If this does not settle it, reply to this message.',
+      hi: '{{school}}: आपकी बात (संदर्भ {{ref}}) के बारे में: {{note}} अगर इससे बात न सुलझे, तो इस संदेश का जवाब दें।',
+    },
+  },
+  {
     name: 'messages_stopped',
     version: 1,
     category: 'utility',

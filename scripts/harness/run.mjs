@@ -963,6 +963,41 @@ const eventsScreenDone = async () => {
   const r = rows[0];
   if (r.invited !== 1 || r.invitations < 1 || r.other_classes !== 0 || r.twice !== 0 || r.reminders !== 1 || eventsSeen.sentAsDraft !== 0) throw new Error(`the event: ${JSON.stringify(r)} ${JSON.stringify(eventsSeen)}`);
 };
+// Complaints (C195): the principal records a guardian's complaint and gives it to a member of staff; then closes it
+// with what was done. Closing without words is not possible on the screen or in the database. Put back afterwards.
+const clearComplaints = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from communication_log where dedupe_key like 'complaint:%'; delete from jobs where type in ('whatsapp.send', 'complaint.escalate'); delete from complaint_events; delete from complaints; delete from whatsapp_templates where meta_template_id = 'harness-7m'; set session_replication_role = origin;`);
+};
+let complaintsSeen = null;
+const complaintsScreen = async (page) => {
+  await clearComplaints();
+  for (const [name, variables] of Object.entries({ complaint_received: '{school,ref,owner,due}', complaint_closed: '{school,ref,note}' })) await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_template_id) values (null, $1, 1, 'en', '{{school}}: ' || $1, $2, 'utility', 1440, 'approved', 'harness-7m')`, [name, variables]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-complaint-new]').waitFor({ timeout: 20000 });
+  await page.locator('#complaint-guardian').fill('Example');
+  await page.locator('[data-complaint-guardian]').first().click();
+  await page.selectOption('#complaint-child', { index: 1 });
+  await page.selectOption('#complaint-owner', { index: 1 });
+  await page.locator('#complaint-summary').fill('The school bus reached late three days this week.');
+  await page.locator('[data-complaint-open]').click();
+  await page.locator('[data-complaint="open"]').waitFor({ timeout: 20000 });
+  const closeDisabledWithoutWords = await page.locator('[data-complaint-close]').first().isDisabled();
+  await page.locator('[data-complaint="open"] input').first().fill('The bus now leaves ten minutes earlier.');
+  await page.locator('[data-complaint-close]').first().click();
+  await page.locator('[data-complaint="closed"]').waitFor({ timeout: 20000 });
+  complaintsSeen = { closeDisabledWithoutWords, steps: await page.locator('[data-complaint="closed"] [data-complaint-step]').evaluateAll((els) => els.map((e) => e.getAttribute('data-complaint-step')).join()) };
+};
+const complaintsScreenDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from complaints where school_id = $1 and status = 'closed' and closing_note = 'The bus now leaves ten minutes earlier.' and closed_by = $2 and principal_seen_at is not null) as closed,
+            (select count(*)::int from complaint_events) as steps, (select count(*)::int from jobs where type = 'complaint.escalate') as escalations`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  await clearComplaints();
+  const r = rows[0];
+  if (r.closed !== 1 || r.steps !== 2 || r.escalations !== 1) throw new Error(`the complaint in the database: ${JSON.stringify(r)}`);
+  if (JSON.stringify(complaintsSeen) !== JSON.stringify({ closeDisabledWithoutWords: true, steps: 'opened,closed' })) throw new Error(`the complaint on the screen: ${JSON.stringify(complaintsSeen)}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -1322,6 +1357,7 @@ const SCREENS = [
   ['principal', 'app-parents', '/app/parents', parentsScreen, parentsScreenDone],
   ['principal', 'app-ptm', '/app/ptm', ptmScreen, ptmScreenDone],
   ['principal', 'app-events', '/app/events', eventsScreen, eventsScreenDone],
+  ['principal', 'app-complaints', '/app/complaints', complaintsScreen, complaintsScreenDone],
   ['teacher', 'app-parents-teacher', '/app/parents', parentsTeacher, parentsTeacherDone],
   ['principal', 'app-taught-today', '/app/syllabus'],
   ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],

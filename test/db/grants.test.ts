@@ -80,6 +80,8 @@ const APP_USER: Record<string, string> = {
   class_notices: 'INSERT,SELECT,UPDATE', // never edited, decided once (trigger); never deleted
   ptm_events: 'INSERT,SELECT,UPDATE',
   school_events: 'INSERT,SELECT,UPDATE',
+  complaints: 'INSERT,SELECT,UPDATE', // what it says never changes; closed stays closed (trigger); never deleted
+  complaint_events: 'INSERT,SELECT', // append-only
   event_replies: 'SELECT', // written by the platform role from the parent's reply
   ptm_slots: 'INSERT,SELECT',
   ptm_bookings: 'INSERT,SELECT,UPDATE', // moved, never deleted
@@ -149,6 +151,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   class_notices: 'SELECT',
   ptm_events: 'SELECT',
   school_events: 'SELECT',
+  complaints: 'SELECT,UPDATE', // the job that passes an overdue one to the principal
   event_replies: 'INSERT,SELECT,UPDATE',
   ptm_slots: 'SELECT',
   message_threads: 'INSERT,SELECT,UPDATE',

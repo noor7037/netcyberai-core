@@ -255,6 +255,16 @@ create table message_threads (
 alter table message_threads enable row level security;
 create policy message_threads_tenant_isolation on message_threads using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert, update on message_threads to app_user, nca_super;
+-- Complaints, as My Day counts the overdue ones (C195).
+create table complaints (
+  complaint_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  status text not null default 'open',
+  due_at timestamptz not null default now()
+);
+alter table complaints enable row level security;
+create policy complaints_tenant_isolation on complaints using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update on complaints to app_user, nca_super;
 -- Promises to pay, as My Day counts them (C180).
 create table fee_followups (
   followup_id uuid primary key default gen_random_uuid(),
