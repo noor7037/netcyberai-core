@@ -123,14 +123,14 @@ export async function receiveInbound(db: Sql, provider: ProviderName, n: Extract
   return { kind: 'held', heldId };
 }
 
-export type ThreadRow = { thread_id: string; guardian: string; children: string | null; phone_last4: string; last_inbound_at: string; unread: number; last_text: string | null; window_open: boolean; stopped: boolean };
+export type ThreadRow = { thread_id: string; parent_id: string; guardian: string; children: string | null; phone_last4: string; last_inbound_at: string; unread: number; last_text: string | null; window_open: boolean; stopped: boolean };
 export type ThreadMessage = { id: string; direction: 'in' | 'out'; at: string; text: string | null; template_name: string | null; status: string | null; by: string | null };
 const iso = (v: unknown) => new Date(v as string).toISOString();
 
 // The caller's own tenant transaction: row level security decides which threads a person sees.
 export async function listThreads(db: Sql, schoolId: string): Promise<ThreadRow[]> {
   const { rows } = await db.query(
-    `select t.thread_id, p.name as guardian, right(t.phone, 4) as phone_last4, t.last_inbound_at, t.unread,
+    `select t.thread_id, t.parent_id, p.name as guardian, right(t.phone, 4) as phone_last4, t.last_inbound_at, t.unread,
             (select string_agg(s.name, ', ' order by s.name) from parent_student_map m join students s on s.school_id = m.school_id and s.student_id = m.student_id where m.school_id = t.school_id and m.parent_id = t.parent_id) as children,
             (select left(i.body, 140) from inbound_messages i where i.thread_id = t.thread_id order by i.received_at desc limit 1) as last_text,
             t.last_inbound_at > now() - make_interval(hours => $2) as window_open,

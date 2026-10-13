@@ -843,6 +843,40 @@ const classNoticeDone = async () => {
   if (r.sent_notices !== 1 || r.messages < 1 || r.not_as_notice !== 0 || r.other_classes !== 0 || r.told_twice !== 0) throw new Error(`the notice in the database: ${JSON.stringify(r)}`);
   if (JSON.stringify(noticesSeen) !== JSON.stringify({ sentBeforeApproval: 0, waitingLeft: 0 })) throw new Error(`the notice on the screen: ${JSON.stringify(noticesSeen)}`);
 };
+// Parents (C192): the principal finds a guardian, opens them, and chooses Hindi for their messages; the screen and
+// the database both say so, and the choice is put back. A teacher opens a guardian of their own class and gets no
+// way to change anything, and never the whole number.
+let parentsSeen = null;
+let parentTouched = null;
+const parentsScreen = async (page) => {
+  await page.locator('[data-guardian]').first().waitFor({ timeout: 20000 });
+  await page.locator('[data-guardian]').first().click();
+  await page.locator('[data-guardian-open] [data-guardian-phone]').waitFor({ timeout: 20000 });
+  const name = (await page.locator('[data-guardian-open] h2').textContent()).trim();
+  parentTouched = (await db.pg.query(`select parent_id, preferred_language from parents where school_id = $1 and name = $2 order by parent_id limit 1`, [SCHOOL, name])).rows[0];
+  await page.selectOption('#guardian-language', 'hi');
+  await page.locator('[data-guardian-language="hi"]').waitFor({ timeout: 20000 });
+  parentsSeen = { purposes: await page.locator('[data-guardian-child]').first().locator('[data-consent]').count(), requests: await page.locator('[data-guardian-requests]').count() };
+};
+const parentsScreenDone = async () => {
+  const now = (await db.pg.query(`select preferred_language from parents where parent_id = $1`, [parentTouched.parent_id])).rows[0].preferred_language;
+  await db.pg.query(`update parents set preferred_language = $2 where parent_id = $1`, [parentTouched.parent_id, parentTouched.preferred_language]);
+  if (now !== 'hi' || parentsSeen.purposes !== 6 || parentsSeen.requests !== 1) throw new Error(`the Parents screen: language ${now}, ${JSON.stringify(parentsSeen)}`);
+};
+let parentsTeacherSeen = null;
+const parentsTeacher = async (page) => {
+  await page.locator('[data-guardian]').first().waitFor({ timeout: 20000 });
+  const listed = await page.locator('[data-guardian]').count();
+  await page.locator('[data-guardian]').first().click();
+  await page.locator('[data-guardian-open] [data-guardian-phone]').waitFor({ timeout: 20000 });
+  const text = await page.locator('[data-guardian-open]').textContent();
+  parentsTeacherSeen = { listed, canChange: (await page.locator('[data-consent-change]').count()) + (await page.locator('#guardian-language').count()) + (await page.locator('[data-guardian-requests]').count()), wholeNumber: /[0-9]{7,}/.test(text.replace(/\s/g, '')) };
+};
+const parentsTeacherDone = async () => {
+  const all = (await db.pg.query(`select count(*)::int as n from parents where school_id = $1 and merged_into is null`, [SCHOOL])).rows[0].n;
+  const t = parentsTeacherSeen;
+  if (t.listed < 1 || t.listed > all || t.canChange !== 0 || t.wholeNumber) throw new Error(`the teacher's Parents screen: ${JSON.stringify(t)} of ${all} guardians`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -1199,6 +1233,8 @@ const SCREENS = [
   ['principal', 'app-communication', '/app/communication', messageStates, messageStatesDone],
   ['principal', 'app-communication-replies', '/app/communication', parentReplies, parentRepliesDone],
   ['principal', 'app-communication-notices', '/app/communication', classNotice, classNoticeDone],
+  ['principal', 'app-parents', '/app/parents', parentsScreen, parentsScreenDone],
+  ['teacher', 'app-parents-teacher', '/app/parents', parentsTeacher, parentsTeacherDone],
   ['principal', 'app-taught-today', '/app/syllabus'],
   ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],
   ['teacher', 'app-settings-teacher', '/app/settings', settingsReadOnly],
