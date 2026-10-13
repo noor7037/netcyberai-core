@@ -2,7 +2,10 @@ import type { PoolClient } from 'pg';
 import { isPurposeGranted, type ConsentPurpose } from '@/lib/consent/gate';
 import { missingVariables, templateToSend, type TemplateLanguage, type TemplateToSend } from '@/lib/whatsapp/templates';
 import { resolveProvider } from '@/lib/whatsapp/config';
+import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
+import { readSettings } from '@/lib/frameworks/settings-store';
 import { openMetaCredentials } from '@/lib/whatsapp/credentials';
+import { openHeld, whichSchoolQuestion } from '@/lib/whatsapp/held';
 import { normalizePhone } from '@/lib/whatsapp/phone';
 import { WINDOW_HOURS } from '@/lib/whatsapp/replies';
 import { MetaWhatsAppProvider } from '@/lib/whatsapp/meta';
@@ -23,6 +26,7 @@ const comm_status_failed = 'failed';
 
 export type CommStatus =
   | 'queued'
+  | 'uncertain'
   | 'sent'
   | 'failed'
   | 'blocked_pilot'
@@ -179,6 +183,15 @@ async function logAttempt(
   return rows[0].log_id;
 }
 
+// The language to write to a guardian in (C190): theirs if they have said, else the school's default, else English.
+export async function languageFor(db: Pick<PoolClient, 'query'>, schoolId: string, parentId: string | null): Promise<TemplateLanguage> {
+  const own = parentId ? (await db.query(`select preferred_language from parents where school_id = $1 and parent_id = $2`, [schoolId, parentId])).rows[0]?.preferred_language : null;
+  if (own === 'en' || own === 'hi') return own;
+  const setup = SETTINGS_SCHEMAS.find((x) => x.moduleId === 'setup');
+  const school = setup ? (await readSettings(db as PoolClient, schoolId, setup)).effective.parent_language : undefined;
+  return school === 'hi' ? 'hi' : 'en';
+}
+
 type Ready = { ready: true; testSchool: boolean; provider: WhatsAppProviderSPI; providerUsed: 'school_specific' | 'platform_default'; fallbackReason: string | null; category: BillingCategory; rate: MessageRate | null; said: { template: TemplateToSend; filled: Record<string, string> } };
 type Wait = { wait: true; until: Date };
 type Passed = { passed: true };
@@ -282,7 +295,7 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
   // put in here, from its own row: every message's first line names the
   // school, and no caller can leave it out or put another in. Every variable
   // the version needs must have a value before any provider is asked.
-  const language = params.language ?? 'en';
+  const language = params.language ?? (await languageFor(client, params.schoolId, params.parentId ?? null));
   let template = await templateToSend(client, params.schoolId, params.templateName, language, false);
   if (!template) {
     const reason = `template "${params.templateName}" is not an approved template for this school`;
@@ -451,7 +464,14 @@ export async function queueThreadReply(client: PoolClient, queue: QueueLike, by:
   return { ok: true, logId, jobKey: jobKey(logId, 0) };
 }
 // How the webhook hands the job queue a confirmation it has just written (a parent wrote STOP).
-export const enqueueQueued = (queue: QueueLike) => (db: Pick<PoolClient, 'query'>, logId: string, schoolId: string) => queue.enqueue(db, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, 0), schoolId, maxAttempts: 3, payload: { logId } });
+export const enqueueQueued = (queue: QueueLike) => ({
+  confirm: (db: Pick<PoolClient, 'query'>, logId: string, schoolId: string) => queue.enqueue(db, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, 0), schoolId, maxAttempts: 3, payload: { logId } }),
+  // A held message (C190): ask which school now, and end the hold when its 24 hours are up.
+  held: async (db: Pick<PoolClient, 'query'>, heldId: string, expiresAt: Date) => {
+    await queue.enqueue(db, { type: WHATSAPP_SEND_JOB, idempotencyKey: `${WHATSAPP_SEND_JOB}:ask:${heldId}`, maxAttempts: 3, payload: { askHeld: heldId } });
+    await queue.enqueue(db, { type: WHATSAPP_SEND_JOB, idempotencyKey: `${WHATSAPP_SEND_JOB}:drop:${heldId}`, maxAttempts: 3, payload: { dropHeld: heldId }, runAt: expiresAt });
+  },
+});
 
 // Whether a message for this school would reach a real phone today: the platform's account is switched on and
 // this server holds its key, and the school is a real school, approved to send, with a budget. As the platform
@@ -480,9 +500,12 @@ export async function deliverQueued(deps: { platform: Platform; queue: QueueLike
     if (row.not_before && new Date(row.not_before).getTime() > now.getTime()) return { done: { status: 'queued' as const, retryAt: new Date(row.not_before) } }; // an earlier job for a message since put off
     const params: SendWhatsAppMessageParams = { schoolId: row.school_id, studentId: row.student_id, parentId: row.parent_id, purpose: row.purpose, toPhone: row.to_phone, templateName: row.template_name, templateParams: row.template_params ?? {}, dedupeKey: row.dedupe_key, language: row.language ?? 'en', queuedLogId: logId };
     if (row.sending_at) {
+      // UNCERTAIN, not failed (C190): nobody knows whether it went. It is never sent again, so that a parent is
+      // never messaged twice; if the provider later says where a message to this number got to, that notice moves
+      // it forward (src/lib/whatsapp/delivery.ts).
       const reason = 'the send was interrupted and nobody knows whether it went; it is not sent again, so that a parent is never messaged twice';
-      await logAttempt(db, params, comm_status_failed, reason);
-      return { done: { status: comm_status_failed, reason } };
+      await db.query(`update communication_log set status = 'uncertain', reason = $2, sending_at = null where log_id = $1 and status = 'queued'`, [logId, reason]);
+      return { done: { status: 'uncertain' as const, reason } };
     }
     if (row.body !== null) {
       // A free-text reply (C187): only inside the 24 hours the parent's own message opened, read again now.
@@ -496,7 +519,7 @@ export async function deliverQueued(deps: { platform: Platform; queue: QueueLike
       const account = t.is_test_fixture || deps.provider ? null : await openMetaCredentials(db, true);
       const provider: WhatsAppProviderSPI = deps.provider ?? (account ? new MetaWhatsAppProvider(account) : new StandInWhatsAppProvider());
       if (t.is_test_fixture && provider.name !== 'stand-in') return stopped('a test school never sends through a real account');
-      await db.query(`update communication_log set sending_at = $2, attempts = attempts + 1 where log_id = $1`, [logId, now.toISOString()]);
+      await db.query(`update communication_log set sending_at = $2, attempts = attempts + 1, provider = $3 where log_id = $1`, [logId, now.toISOString(), provider.name]);
       const ready = { ready: true, testSchool: t.is_test_fixture as boolean, provider, providerUsed: 'platform_default', fallbackReason: null, category: 'service', rate: null, said: { template: null as never, filled: {} } } satisfies Ready;
       return { params, ready, attempts: row.attempts + 1, schoolId: row.school_id as string, text: row.body as string };
     }
@@ -513,7 +536,9 @@ export async function deliverQueued(deps: { platform: Platform; queue: QueueLike
       await logAttempt(db, params, comm_status_failed, reason, LOGGED(r));
       return { done: { status: comm_status_failed, reason } };
     }
-    await db.query(`update communication_log set sending_at = $2, attempts = attempts + 1 where log_id = $1`, [logId, now.toISOString()]);
+    // Which provider is about to be asked is written with "sending": if the send is interrupted, a later notice
+    // from that provider can still find the message.
+    await db.query(`update communication_log set sending_at = $2, attempts = attempts + 1, provider = $3 where log_id = $1`, [logId, now.toISOString(), r.provider.name]);
     return { params, ready: r, attempts: row.attempts + 1, schoolId: row.school_id as string };
   });
   if ('done' in first) return first.done;
@@ -548,12 +573,52 @@ export async function deliverQueued(deps: { platform: Platform; queue: QueueLike
   });
 }
 
-// The job: one queued message. Whatever the rules decide is an outcome, not an error; the job itself only fails
-// (and is retried by the queue) when the database or the code does.
+// "Which school is this about?" (C190): asked once, by the platform, of a parent whose number several schools
+// have on record. Marked as asked and committed before the provider is asked; never asked twice. A real account
+// is used only if NONE of those schools is a test school; otherwise the stand-in.
+export async function askWhichSchool(deps: { platform: Platform; now?: () => Date; provider?: WhatsAppProviderSPI }, heldId: string, env: Record<string, string | undefined> = process.env): Promise<'asked' | 'not_asked' | 'failed'> {
+  const now = (deps.now ?? (() => new Date()))();
+  const first = await deps.platform(async (db) => {
+    const h = (await db.query(`select provider_message_id, school_ids, ciphertext, iv, tag, key_version, asked_at, expires_at from held_inbound where held_id = $1 and status = 'held' for update`, [heldId])).rows[0];
+    if (!h || h.asked_at || new Date(h.expires_at).getTime() <= now.getTime()) return null;
+    const schools = (await db.query(`select school_id, name, is_test_fixture from schools where school_id = any($1::uuid[]) order by name, school_id`, [h.school_ids])).rows as { school_id: string; name: string; is_test_fixture: boolean }[];
+    const anyTest = schools.some((x) => x.is_test_fixture);
+    const account = anyTest || deps.provider ? null : await openMetaCredentials(db, true, env);
+    const provider: WhatsAppProviderSPI = deps.provider ?? (account ? new MetaWhatsAppProvider(account) : new StandInWhatsAppProvider());
+    if (anyTest && provider.name !== 'stand-in') return null;
+    await db.query(`update held_inbound set asked_at = $2 where held_id = $1`, [heldId, now.toISOString()]);
+    // The order the parent is shown is the order kept: "2" means the second school here.
+    await db.query(`update held_inbound set school_ids = $2 where held_id = $1`, [heldId, schools.map((x) => x.school_id)]);
+    return { provider, anyTest, phone: openHeld(h.provider_message_id, h, env).phone, question: whichSchoolQuestion(schools) };
+  });
+  if (!first) return 'not_asked';
+  let result: { success: boolean; providerMessageId: string | null };
+  try {
+    result = first.question.choices.length > 0 ? await first.provider.sendChoice({ toPhone: first.phone, text: first.question.text, choices: first.question.choices, testSchool: first.anyTest }) : await first.provider.sendText({ toPhone: first.phone, text: first.question.text, testSchool: first.anyTest });
+  } catch {
+    result = { success: false, providerMessageId: null };
+  }
+  await deps.platform((db) => db.query(`update held_inbound set question_message_id = $2 where held_id = $1`, [heldId, result.providerMessageId]));
+  return result.success ? 'asked' : 'failed';
+}
+
+// The 24 hours are up and no school was chosen: the message is dropped, saying so, and its words are erased.
+export async function dropHeld(deps: { platform: Platform; now?: () => Date }, heldId: string): Promise<boolean> {
+  const now = (deps.now ?? (() => new Date()))();
+  return deps.platform(async (db) => {
+    const done = await db.query(`update held_inbound set status = 'dropped', reason = 'no school was chosen within 24 hours', ciphertext = null, iv = null, tag = null, key_version = null, decided_at = $2 where held_id = $1 and status = 'held' and expires_at <= $2`, [heldId, now.toISOString()]);
+    return done.rowCount === 1;
+  });
+}
+
+// The job: one queued message, or one held message to ask about or to drop. Whatever the rules decide is an
+// outcome, not an error; the job itself only fails (and is retried by the queue) when the database or the code does.
 export function whatsappSendHandler(deps: { platform: Platform; queue: QueueLike; now?: () => Date; provider?: WhatsAppProviderSPI }) {
+  const uuid = (v: unknown): v is string => typeof v === 'string' && /^[0-9a-f-]{36}$/.test(v);
   return async (job: { payload: Record<string, unknown> }): Promise<void> => {
-    const logId = job.payload.logId;
-    if (typeof logId !== 'string' || !/^[0-9a-f-]{36}$/.test(logId)) throw new Error('whatsapp.send: bad payload');
-    await deliverQueued(deps, logId);
+    if (uuid(job.payload.askHeld)) return void (await askWhichSchool(deps, job.payload.askHeld));
+    if (uuid(job.payload.dropHeld)) return void (await dropHeld(deps, job.payload.dropHeld));
+    if (!uuid(job.payload.logId)) throw new Error('whatsapp.send: bad payload');
+    await deliverQueued(deps, job.payload.logId);
   };
 }

@@ -6,7 +6,7 @@ import { createPgJobQueue } from '@/lib/jobs/pg-queue';
 import { accountProblem, messagingKey, metaAccountMeta, openMetaCredentials, recordMetaTest, saveMetaAccount, sealMeta, setMetaEnabled, unsealMeta } from '@/lib/whatsapp/credentials';
 import { applyNotices } from '@/lib/whatsapp/delivery';
 import { deliverQueued, queueWhatsAppMessage, sendWhatsAppMessage } from '@/lib/whatsapp/gate';
-import { GRAPH_VERSION, MetaWhatsAppProvider, answerChallenge, templateSendBody } from '@/lib/whatsapp/meta';
+import { GRAPH_VERSION, MetaWhatsAppProvider, answerChallenge, choiceSendBody, templateSendBody } from '@/lib/whatsapp/meta';
 
 // Meta's Cloud API adapter and the platform's credentials (docs/25 slice 7e, C186).
 // NO NETWORK CALL IS MADE: every answer "from Meta" below is a recorded example in Meta's documented shape,
@@ -80,12 +80,28 @@ describe('Meta’s formats, against Meta’s documented examples', () => {
   it('a notice signed with the App Secret is read: Meta’s "failed" example and its text-message example', () => {
     const provider = new MetaWhatsAppProvider(CONFIG, recorded(SENT_OK).fetcher);
     const failed = JSON.stringify(FAILED);
-    expect(provider.readNotice(failed, sign(failed))).toEqual({ ok: true, notices: [{ kind: 'status', providerMessageId: 'wamid.HBgLMTY1MDM4Nzk0MzkVAgARGBI0QUQ2MjA4NEYyRkExNjMyREUA', status: 'failed', at: '2025-06-28T20:34:48.000Z', failureCode: '131049' }] });
+    expect(provider.readNotice(failed, sign(failed))).toEqual({ ok: true, notices: [{ kind: 'status', providerMessageId: 'wamid.HBgLMTY1MDM4Nzk0MzkVAgARGBI0QUQ2MjA4NEYyRkExNjMyREUA', status: 'failed', at: '2025-06-28T20:34:48.000Z', failureCode: '131049', recipient: '+16505551234' }] });
     const text = JSON.stringify(TEXT);
     expect(provider.readNotice(text, sign(text))).toEqual({ ok: true, notices: [{ kind: 'inbound', providerMessageId: 'wamid.HBgLMTY1MDM4Nzk0MzkVAgASGBQzQTA0QTY1OTlBRUUwMzgxMDE0NEYA=', fromPhone: '+16505551234', text: 'Does it come in another color?', at: '2025-06-08T20:59:43.000Z' }] });
     const many = JSON.stringify(envelope({ statuses: [{ id: 'wamid.A', status: 'sent', timestamp: '1751142800', recipient_id: '1' }, { id: 'wamid.A', status: 'delivered', timestamp: '1751142801', recipient_id: '1' }, { id: 'wamid.A', status: 'read', timestamp: '1751142802', recipient_id: '1' }, { id: 'wamid.B', status: 'played', timestamp: '1751142803', recipient_id: '1' }, { id: 'wamid.C', status: 'deleted', timestamp: 'soon' }] }));
     const read = provider.readNotice(many, sign(many));
     expect(read.ok && read.notices.map((n) => (n.kind === 'status' ? n.status : n.kind))).toEqual(['sent', 'delivered', 'read']);
+  });
+
+  it('a question with quick replies is Meta’s documented body, within its limits; the tap comes back with the reply’s id (C190)', async () => {
+    const q = { toPhone: '+16505551234', text: 'Which school is your message about?', choices: [{ id: 'school:a', title: 'School A' }, { id: 'school:b', title: 'School B' }], testSchool: false };
+    expect(choiceSendBody(q)).toEqual({ messaging_product: 'whatsapp', recipient_type: 'individual', to: '+16505551234', type: 'interactive', interactive: { type: 'button', body: { text: 'Which school is your message about?' }, action: { buttons: [{ type: 'reply', reply: { id: 'school:a', title: 'School A' } }, { type: 'reply', reply: { id: 'school:b', title: 'School B' } }] } } });
+    const meta = recorded(SENT_OK);
+    const provider = new MetaWhatsAppProvider(CONFIG, meta.fetcher);
+    expect((await provider.sendChoice(q)).success).toBe(true);
+    expect(meta.calls[0].body).toEqual(choiceSendBody(q));
+    // Four buttons, or a title over 20 characters: refused here, Meta is not asked.
+    expect((await provider.sendChoice({ ...q, choices: [1, 2, 3, 4].map((n) => ({ id: `s:${n}`, title: `School ${n}` })) })).success).toBe(false);
+    expect((await provider.sendChoice({ ...q, choices: [{ id: 's', title: 'A school with a very long name' }] })).success).toBe(false);
+    expect((await provider.sendChoice({ ...q, testSchool: true })).errorMessage).toBe('a test school never sends through a real account');
+    expect(meta.calls).toHaveLength(1);
+    const tap = JSON.stringify(envelope({ messages: [{ from: '16505551234', id: 'wamid.tap', timestamp: '1749416383', type: 'interactive', interactive: { type: 'button_reply', button_reply: { id: 'school:b', title: 'School B' } } }] }));
+    expect(provider.readNotice(tap, sign(tap))).toEqual({ ok: true, notices: [{ kind: 'inbound', providerMessageId: 'wamid.tap', fromPhone: '+16505551234', text: 'School B', at: '2025-06-08T20:59:43.000Z', choiceId: 'school:b' }] });
   });
 
   it('a wrong secret, a changed body, a signature without its prefix: nothing is read; another number’s notice is left alone', () => {

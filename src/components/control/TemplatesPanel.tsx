@@ -10,7 +10,7 @@ import type { MessageKey } from '@/lib/i18n';
 // Control → WhatsApp templates (docs/25 slice 7c, C184): every version's exact words, our approval, and Meta's.
 // The words come from the code; this screen never edits them. New words are a new version, written in code.
 
-type Row = { id: string; name: string; version: number; language: 'en' | 'hi'; body: string | null; variables: string[]; category: string; staleAfterMinutes: number | null; status: 'approved' | 'pending' | 'rejected'; approvedByName: string | null; approvedAt: string | null; metaStatus: string; metaTemplateId: string | null; inCode: boolean; sendsNow: boolean };
+type Row = { id: string; name: string; version: number; language: 'en' | 'hi'; body: string | null; variables: string[]; category: string; staleAfterMinutes: number | null; status: 'approved' | 'pending' | 'rejected'; approvedByName: string | null; approvedAt: string | null; metaStatus: string; metaTemplateId: string | null; inCode: boolean; sendsNow: boolean; wordingReviewed?: boolean; wordingReviewedNote?: string | null };
 const META = ['not_submitted', 'pending', 'approved', 'rejected', 'paused'] as const;
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
@@ -22,6 +22,7 @@ export function TemplatesPanel() {
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);
   const [meta, setMeta] = useState<{ id: string; status: string; metaId: string } | null>(null);
+  const [review, setReview] = useState<{ id: string; note: string } | null>(null);
 
   const load = useCallback(async () => {
     const res = await fetch('/api/control/templates').catch(() => null);
@@ -39,6 +40,7 @@ export function TemplatesPanel() {
     setBusy(false);
     setNote(res?.ok ? done(answer) : t(answer.code === 'not_in_code' ? 'tpl.bad.notInCode' : answer.code === 'meta_id' ? 'tpl.bad.metaId' : 'tpl.bad'));
     setMeta(null);
+    setReview(null);
     void load();
   }
 
@@ -64,6 +66,7 @@ export function TemplatesPanel() {
                 <span className="font-bold">{t('tpl.version', { version: r.version, language: t(r.language === 'hi' ? 'tpl.lang.hi' : 'tpl.lang.en') })}</span>
                 <Badge variant={OURS[r.status]}>{t(`tpl.ours.${r.status}` as MessageKey)}</Badge>
                 <Badge variant={r.metaStatus === 'approved' ? 'success' : r.metaStatus === 'rejected' || r.metaStatus === 'paused' ? 'danger' : 'neutral'}>{t(`tpl.meta.${r.metaStatus}` as MessageKey)}</Badge>
+                {r.language !== 'en' && <Badge variant={r.wordingReviewed ? 'success' : 'warning'}>{t(r.wordingReviewed ? 'tpl.reviewed' : 'tpl.notReviewed')}</Badge>}
                 {r.sendsNow && <Badge variant="success">{t('tpl.sendsNow')}</Badge>}
                 {!r.inCode && r.body !== null && <Badge variant="danger">{t('tpl.notInCode')}</Badge>}
               </div>
@@ -84,6 +87,15 @@ export function TemplatesPanel() {
                   {t('tpl.meta.record')}
                 </button>
               </div>
+              {r.language !== 'en' && r.wordingReviewed && r.wordingReviewedNote && <p className="text-xs text-slate/70">{t('tpl.reviewed.by', { note: r.wordingReviewedNote })}</p>}
+              {r.language !== 'en' && !r.wordingReviewed && r.body !== null && (
+                <div className="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-end">
+                  <Input id={`tpl-review-${r.id}`} label={t('tpl.review.note')} maxLength={200} value={review?.id === r.id ? review.note : ''} onChange={(e) => setReview({ id: r.id, note: e.target.value })} />
+                  <button type="button" data-template-reviewed disabled={busy || review?.id !== r.id || !review.note.trim()} className={TAP} onClick={() => void post({ action: 'reviewed', id: r.id, note: review?.note ?? '' }, () => t('tpl.review.done'))}>
+                    {t('tpl.review.save')}
+                  </button>
+                </div>
+              )}
               {meta?.id === r.id && (
                 <div className="grid gap-2 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
                   <Select id={`tpl-meta-status-${r.id}`} label={t('tpl.meta.status')} value={meta.status} onChange={(e) => setMeta({ ...meta, status: e.target.value })}>

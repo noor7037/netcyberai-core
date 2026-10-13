@@ -33,6 +33,10 @@ export interface WhatsAppTextParams {
   testSchool?: boolean;
 }
 
+export interface WhatsAppChoiceParams extends WhatsAppTextParams {
+  choices: { id: string; title: string }[];
+}
+
 export interface WhatsAppSendResult {
   success: boolean;
   providerMessageId: string | null;
@@ -42,8 +46,10 @@ export interface WhatsAppSendResult {
 
 // What a provider tells us afterwards: where a message got to, or what a parent wrote back.
 export type WhatsAppNotice =
-  | { kind: 'status'; providerMessageId: string; status: 'sent' | 'delivered' | 'read' | 'failed'; at: string; failureCode?: string }
-  | { kind: 'inbound'; providerMessageId: string; fromPhone: string; text: string; at: string };
+  // `recipient`: the number the message went to, when the provider says it (C190: an uncertain send is found by it).
+  | { kind: 'status'; providerMessageId: string; status: 'sent' | 'delivered' | 'read' | 'failed'; at: string; failureCode?: string; recipient?: string }
+  // `choiceId`: the id of the quick reply the parent tapped, when the message is an answer to one.
+  | { kind: 'inbound'; providerMessageId: string; fromPhone: string; text: string; at: string; choiceId?: string };
 export type NoticeRead = { ok: true; notices: WhatsAppNotice[] } | { ok: false; reason: 'no_secret' | 'bad_signature' | 'not_understood' };
 
 export interface WhatsAppProvider {
@@ -51,6 +57,8 @@ export interface WhatsAppProvider {
   send(params: WhatsAppSendParams): Promise<WhatsAppSendResult>;
   // Free text (C187): only ever a reply inside the 24 hours a parent's own message opens. The gate decides that.
   sendText(params: WhatsAppTextParams): Promise<WhatsAppSendResult>;
+  // A question with up to three quick replies (C190), inside the same 24 hours.
+  sendChoice(params: WhatsAppChoiceParams): Promise<WhatsAppSendResult>;
   // Whether the account behind this provider can be reached, said plainly. Makes no send.
   testConnection(): Promise<{ ok: boolean; message: string }>;
   // A webhook body and its signature header, checked and read. A body that cannot be trusted reads as nothing.
@@ -91,6 +99,10 @@ export class StandInWhatsAppProvider implements WhatsAppProvider {
     return this.send({ toPhone: params.toPhone, templateName: '(free text)', templateParams: { text: params.text } });
   }
 
+  async sendChoice(params: WhatsAppChoiceParams): Promise<WhatsAppSendResult> {
+    return this.send({ toPhone: params.toPhone, templateName: '(question)', templateParams: { text: params.text, choices: params.choices.map((c) => c.title).join(' | ') } });
+  }
+
   async testConnection(): Promise<{ ok: boolean; message: string }> {
     return { ok: true, message: 'The stand-in is in use: no message reaches a phone.' };
   }
@@ -119,9 +131,9 @@ export class StandInWhatsAppProvider implements WhatsAppProvider {
       const id = typeof n?.providerMessageId === 'string' && n.providerMessageId.length <= 200 ? n.providerMessageId : null;
       if (!id || !isIso(n.at)) return { ok: false, reason: 'not_understood' };
       if (n.kind === 'status' && typeof n.status === 'string' && STATUSES.includes(n.status)) {
-        notices.push({ kind: 'status', providerMessageId: id, status: n.status as 'sent', at: n.at, ...(typeof n.failureCode === 'string' ? { failureCode: n.failureCode.slice(0, 60) } : {}) });
+        notices.push({ kind: 'status', providerMessageId: id, status: n.status as 'sent', at: n.at, ...(typeof n.failureCode === 'string' ? { failureCode: n.failureCode.slice(0, 60) } : {}), ...(typeof n.recipient === 'string' && /^\+[0-9]{8,15}$/.test(n.recipient) ? { recipient: n.recipient } : {}) });
       } else if (n.kind === 'inbound' && typeof n.fromPhone === 'string' && /^\+[0-9]{8,15}$/.test(n.fromPhone) && typeof n.text === 'string') {
-        notices.push({ kind: 'inbound', providerMessageId: id, fromPhone: n.fromPhone, text: n.text.slice(0, 4096), at: n.at });
+        notices.push({ kind: 'inbound', providerMessageId: id, fromPhone: n.fromPhone, text: n.text.slice(0, 4096), at: n.at, ...(typeof n.choiceId === 'string' && n.choiceId.length <= 256 ? { choiceId: n.choiceId } : {}) });
       } else return { ok: false, reason: 'not_understood' };
     }
     return { ok: true, notices };

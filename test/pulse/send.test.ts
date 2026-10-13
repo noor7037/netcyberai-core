@@ -163,6 +163,24 @@ describe('on the real schema', () => {
     expect((await db.pg.query(`select count(*)::int as n from inbound_messages where body in ('2', 'Will there be a test on Friday?')`)).rows[0].n).toBe(4);
   });
 
+  it('the language: a guardian’s own, else the school’s, else English; Hindi only once its wording is reviewed (C190)', async () => {
+    const t = TEMPLATE_REGISTRY.find((x) => x.name === 'daily_pulse')!;
+    const pulse = 'c8000000-0000-4000-8000-000000000064';
+    await db.pg.query(`insert into pulse_messages (pulse_id, school_id, class_id, topic, body_en, body_hi, body_hinglish, sent_on, status, created_by) values ($1, $2, $3, 'Maps', '6-B, Geography: today the class learned “Maps”.', '6-B, भूगोल: आज कक्षा में “नक्शे” पढ़ाया गया।', 'hinglish', $4, 'ready', $5)`, [pulse, A, CLASS_6B, today, TEACHER_6B]);
+    await db.pg.query(`update parents set preferred_language = 'hi' where parent_id = $1`, [u(46)]);
+    await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status) values (null, 'daily_pulse', 1, 'hi', $1, $2, 'utility', 600, 'approved')`, [t.body.hi, [...t.variables]]);
+    // The guardian prefers Hindi and the Hindi version is approved, but nobody has reviewed its wording: English goes.
+    await as(teacher6B, (c) => sendPulse(c, queue, actor(teacher6B), pulse));
+    const first = (await db.pg.query(`select language, template_params->>'update' as said from communication_log where dedupe_key like $1`, [`pulse:${pulse}:%`])).rows;
+    expect(first).toEqual([{ language: 'en', said: '6-B, Geography: today the class learned “Maps”.' }]);
+    // Reviewed: the next day's message goes in Hindi, with the Hindi words.
+    await db.pg.query(`update whatsapp_templates set wording_reviewed = true, wording_reviewed_by = $1, wording_reviewed_at = now(), wording_reviewed_note = 'Read by a Hindi teacher' where template_name = 'daily_pulse' and language = 'hi'`, [PRINCIPAL]);
+    const next = 'c8000000-0000-4000-8000-000000000065';
+    await db.pg.query(`insert into pulse_messages (pulse_id, school_id, class_id, topic, body_en, body_hi, body_hinglish, sent_on, status, created_by) values ($1, $2, $3, 'Maps 2', '6-B, Geography: today the class learned “Maps 2”.', '6-B, भूगोल: आज कक्षा में “नक्शे 2” पढ़ाया गया।', 'hinglish', $4, 'ready', $5)`, [next, A, CLASS_6B, today, TEACHER_6B]);
+    await as(teacher6B, (c) => sendPulse(c, queue, actor(teacher6B), next));
+    expect((await db.pg.query(`select language, template_params->>'update' as said from communication_log where dedupe_key like $1`, [`pulse:${next}:%`])).rows).toEqual([{ language: 'hi', said: '6-B, भूगोल: आज कक्षा में “नक्शे 2” पढ़ाया गया।' }]);
+  });
+
   it('the database: a message is “sent” only with who sent it and when', async () => {
     await expect(db.pg.query(`update pulse_messages set status = 'sent' where pulse_id = $1`, [PULSE_DRAFT])).rejects.toThrow(/sent_says_who/);
     await expect(db.pg.query(`update pulse_messages set sent_at = now(), sent_by = $2 where pulse_id = $1`, [PULSE_DRAFT, TEACHER_5A])).rejects.toThrow(/sent_says_who/);

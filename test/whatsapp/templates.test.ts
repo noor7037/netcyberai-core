@@ -2,9 +2,9 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { ALL_CONSENT_PURPOSES } from '@/lib/consent/gate';
-import { sendWhatsAppMessage } from '@/lib/whatsapp/gate';
+import { languageFor, sendWhatsAppMessage } from '@/lib/whatsapp/gate';
 import { StandInWhatsAppProvider, type WhatsAppProvider } from '@/lib/whatsapp/provider';
-import { SCHOOL_PREFIX, TEMPLATE_LANGUAGES, TEMPLATE_REGISTRY, decideTemplate, definitionProblem, listTemplates, recordMetaDecision, renderTemplate, syncTemplates, templateToSend, variablesIn } from '@/lib/whatsapp/templates';
+import { SCHOOL_PREFIX, TEMPLATE_LANGUAGES, TEMPLATE_REGISTRY, decideTemplate, definitionProblem, listTemplates, markWordingReviewed, recordMetaDecision, renderTemplate, syncTemplates, templateToSend, variablesIn } from '@/lib/whatsapp/templates';
 
 // Templates with versions and two approvals (docs/25 slice 7c, C184).
 
@@ -74,6 +74,7 @@ const counting = (name: 'stand-in' | 'meta') => {
     name,
     send: async (p) => (sent.push({ params: p.templateParams, version: p.templateVersion, language: p.language }), { success: true, providerMessageId: `${name}-${sent.length}-${Math.random().toString(36).slice(2)}`, errorMessage: null, raw: null }),
     sendText: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
+    sendChoice: async () => ({ success: false, providerMessageId: null, errorMessage: 'not used in this test', raw: null }),
     testConnection: async () => ({ ok: true, message: 'made up' }),
     readNotice: () => ({ ok: false, reason: 'no_secret' }),
   };
@@ -141,10 +142,27 @@ describe('on the real schema', () => {
     expect(standIn.sent.at(-1)).toMatchObject({ language: 'en' });
     const hindi = await idOf('attendance_absence_notification', 'hi');
     expect(await platform((c) => decideTemplate(c, { userId: FOUNDER }, hindi, true))).toEqual({ ok: true });
+    // Approved, but nobody who reads Hindi has reviewed the words: still English (C190).
+    expect((await send({ provider: standIn.provider, language: 'hi' })).status).toBe('sent');
+    expect(standIn.sent.at(-1)).toMatchObject({ language: 'en' });
+    expect(await platform((c) => markWordingReviewed(c, { userId: FOUNDER }, hindi, '  '))).toEqual({ ok: false, reason: 'note' });
+    const english = await idOf('attendance_absence_notification', 'en');
+    expect(await platform((c) => markWordingReviewed(c, { userId: FOUNDER }, english, 'x'))).toEqual({ ok: false, reason: 'english' });
+    expect(await platform((c) => markWordingReviewed(c, { userId: FOUNDER }, hindi, 'Read by a Hindi teacher at the pilot school, 14 October'))).toEqual({ ok: true });
     expect((await send({ provider: standIn.provider, language: 'hi' })).status).toBe('sent');
     expect(standIn.sent.at(-1)).toMatchObject({ language: 'hi', version: 1 });
+    // The guardian's own language, then the school's default, then English.
+    await db.pg.query(`insert into parents (parent_id, school_id, name, phone, preferred_language) values ('c3700000-0000-4000-8000-000000000001', $1, 'A Guardian', '+910000000011', 'hi'), ('c3700000-0000-4000-8000-000000000002', $1, 'Another', '+910000000012', null)`, [LIVE]);
+    expect(await asSchool((c) => languageFor(c, LIVE, 'c3700000-0000-4000-8000-000000000001'))).toBe('hi');
+    expect(await asSchool((c) => languageFor(c, LIVE, 'c3700000-0000-4000-8000-000000000002'))).toBe('en');
+    await db.pg.query(`insert into school_settings (school_id, module_id, setting_values, schema_version, updated_by) values ($1, 'setup', '{"parent_language": "hi"}', 2, $2)`, [LIVE, FOUNDER]);
+    expect(await asSchool((c) => languageFor(c, LIVE, 'c3700000-0000-4000-8000-000000000002'))).toBe('hi');
+    expect(await asSchool((c) => languageFor(c, LIVE, null))).toBe('hi');
+    await db.pg.query(`update parents set preferred_language = 'en' where parent_id = 'c3700000-0000-4000-8000-000000000002'`);
+    expect(await asSchool((c) => languageFor(c, LIVE, 'c3700000-0000-4000-8000-000000000002'))).toBe('en');
+    await db.pg.query(`delete from school_settings where school_id = $1 and module_id = 'setup'`, [LIVE]);
     const hi = (await platform((c) => listTemplates(c))).find((r) => r.name === 'attendance_absence_notification' && r.language === 'hi');
-    expect(hi).toMatchObject({ status: 'approved', approvedByName: 'The Founder', sendsNow: true });
+    expect(hi).toMatchObject({ status: 'approved', approvedByName: 'The Founder', sendsNow: true, wordingReviewed: true, wordingReviewedNote: 'Read by a Hindi teacher at the pilot school, 14 October' });
   });
 
   it('a real account sends only a version Meta has approved too; the stand-in needs only ours', async () => {
