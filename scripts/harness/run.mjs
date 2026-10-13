@@ -877,6 +877,51 @@ const parentsTeacherDone = async () => {
   const t = parentsTeacherSeen;
   if (t.listed < 1 || t.listed > all || t.canChange !== 0 || t.wholeNumber) throw new Error(`the teacher's Parents screen: ${JSON.stringify(t)} of ${all} guardians`);
 };
+// Parent-teacher meetings (C193): the principal plans a day for 5-A, invites the parents (one message a guardian's
+// number and teacher, through the gate), and books a time for a parent who phoned. Everything is put back.
+const PTM_TEMPLATES = { ptm_invitation: '{school,date,teacher,children,from,to}', ptm_booked: '{school,date,time,teacher}', ptm_cancelled: '{school,date,teacher}' };
+const clearPtm = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from communication_log where dedupe_key like 'ptm:%'; delete from jobs where type in ('whatsapp.send', 'ptm.remind'); delete from ptm_bookings; delete from ptm_slots; delete from ptm_events; delete from whatsapp_templates where meta_template_id = 'harness-7k'; set session_replication_role = origin;`);
+};
+let ptmSeen = null;
+let ptmPilotBefore = null;
+const ptmScreen = async (page) => {
+  await clearPtm();
+  ptmPilotBefore = (await db.pg.query(`select pilot_allow_outbound from schools where school_id = $1`, [SCHOOL])).rows[0];
+  await db.pg.query(`update schools set pilot_allow_outbound = true where school_id = $1`, [SCHOOL]);
+  for (const [name, variables] of Object.entries(PTM_TEMPLATES)) await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_template_id) values (null, $1, 1, 'en', '{{school}}: ' || $1, $2, 'utility', 1440, 'approved', 'harness-7k')`, [name, variables]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-ptm-new]').waitFor({ timeout: 20000 });
+  await page.locator('#ptm-title').fill('Term meeting');
+  await page.locator('#ptm-date').fill(new Date(Date.now() + 5.5 * 3600000 + 3 * 86400000).toISOString().slice(0, 10));
+  await page.locator('#ptm-from').fill('10:00');
+  await page.locator('#ptm-to').fill('11:00');
+  await page.locator('label', { hasText: '5-A' }).locator('[data-ptm-class]').check();
+  await page.locator('[data-ptm-make]').click();
+  await page.locator('[data-ptm-open="draft"]').waitFor({ timeout: 20000 });
+  const sentAsDraft = (await db.pg.query(`select count(*)::int as n from communication_log where dedupe_key like 'ptm:%'`)).rows[0].n;
+  await page.locator('[data-ptm-invite]').click();
+  await page.locator('[data-ptm-open="invited"]').waitFor({ timeout: 20000 });
+  const slot = page.locator('[data-ptm-slot="free"]').first();
+  await slot.locator('select').selectOption({ index: 1 });
+  await slot.locator('[data-ptm-book]').click();
+  await page.locator('[data-ptm-slot="booked"]').waitFor({ timeout: 20000 });
+  ptmSeen = { sentAsDraft, slots: await page.locator('[data-ptm-slot]').count(), booked: await page.locator('[data-ptm-slot="booked"]').count() };
+};
+const ptmScreenDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from ptm_events where school_id = $1 and status = 'invited') as invited, (select count(*)::int from ptm_bookings where booked_via = 'staff' and booked_by = $2) as booked,
+            (select count(*)::int from communication_log where dedupe_key like 'ptm:%:inv:%') as invitations,
+            (select count(*)::int from (select to_phone from communication_log where dedupe_key like 'ptm:%:inv:%' group by to_phone, split_part(dedupe_key, ':', 4) having count(*) > 1) d) as twice,
+            (select count(*)::int from jobs where type = 'ptm.remind') as reminders`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  await clearPtm();
+  await db.pg.query(`update schools set pilot_allow_outbound = $2 where school_id = $1`, [SCHOOL, ptmPilotBefore.pilot_allow_outbound]);
+  const r = rows[0];
+  if (r.invited !== 1 || r.booked !== 1 || r.invitations < 1 || r.twice !== 0 || r.reminders !== 1) throw new Error(`the meeting in the database: ${JSON.stringify(r)}`);
+  if (JSON.stringify(ptmSeen) !== JSON.stringify({ sentAsDraft: 0, slots: 4, booked: 1 })) throw new Error(`the meeting on the screen: ${JSON.stringify(ptmSeen)}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -1234,6 +1279,7 @@ const SCREENS = [
   ['principal', 'app-communication-replies', '/app/communication', parentReplies, parentRepliesDone],
   ['principal', 'app-communication-notices', '/app/communication', classNotice, classNoticeDone],
   ['principal', 'app-parents', '/app/parents', parentsScreen, parentsScreenDone],
+  ['principal', 'app-ptm', '/app/ptm', ptmScreen, ptmScreenDone],
   ['teacher', 'app-parents-teacher', '/app/parents', parentsTeacher, parentsTeacherDone],
   ['principal', 'app-taught-today', '/app/syllabus'],
   ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],

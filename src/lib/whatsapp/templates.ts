@@ -121,6 +121,67 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
     },
   },
   {
+    // Parent-teacher meetings (C193): one a guardian and teacher; the parent books by replying with a time.
+    name: 'ptm_invitation',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 2880,
+    variables: ['school', 'date', 'teacher', 'children', 'from', 'to'],
+    body: {
+      en: '{{school}}: Parent-teacher meeting on {{date}}. {{teacher}} would like to meet you about {{children}}, between {{from}} and {{to}}. Reply with the time that suits you, for example 10:30, to book it.',
+      hi: '{{school}}: {{date}} को अभिभावक-शिक्षक बैठक है। {{teacher}} आपसे {{children}} के बारे में {{from}} से {{to}} के बीच मिलना चाहते हैं। जो समय आपको ठीक लगे वह लिखकर भेजें, जैसे 10:30, और वह आपके लिए तय हो जाएगा।',
+    },
+  },
+  {
+    name: 'ptm_booked',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'date', 'time', 'teacher'],
+    body: {
+      en: '{{school}}: Your meeting with {{teacher}} is booked for {{time}} on {{date}}. To change it, reply with another time.',
+      hi: '{{school}}: {{teacher}} के साथ आपकी बैठक {{date}} को {{time}} पर तय है। बदलने के लिए दूसरा समय लिखकर भेजें।',
+    },
+  },
+  {
+    name: 'ptm_time_not_free',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 720,
+    variables: ['school', 'teacher', 'times'],
+    body: {
+      en: '{{school}}: That time is not free with {{teacher}}. Free times: {{times}}. Reply with one of them to book it.',
+      hi: '{{school}}: {{teacher}} के साथ वह समय ख़ाली नहीं है। ख़ाली समय: {{times}}। इनमें से एक लिखकर भेजें।',
+    },
+  },
+  {
+    name: 'ptm_reminder',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 900,
+    variables: ['school', 'date', 'time', 'teacher'],
+    body: {
+      en: '{{school}}: A reminder: your meeting with {{teacher}} is at {{time}} on {{date}}.',
+      hi: '{{school}}: याद दिला दें: {{teacher}} के साथ आपकी बैठक {{date}} को {{time}} पर है।',
+    },
+  },
+  {
+    name: 'ptm_cancelled',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'date', 'teacher'],
+    body: {
+      en: '{{school}}: The parent-teacher meeting on {{date}} has been cancelled, so your meeting with {{teacher}} will not take place. We are sorry for the change.',
+      hi: '{{school}}: {{date}} की अभिभावक-शिक्षक बैठक रद्द हो गई है, इसलिए {{teacher}} के साथ आपकी बैठक नहीं होगी। बदलाव के लिए खेद है।',
+    },
+  },
+  {
     name: 'messages_stopped',
     version: 1,
     category: 'utility',

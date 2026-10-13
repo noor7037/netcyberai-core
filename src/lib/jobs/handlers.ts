@@ -5,6 +5,7 @@ import { emailSenderFromEnv } from '@/lib/email/sender';
 import { markProvisioned } from '@/lib/onboarding/applications';
 import { inviteSendHandler } from '@/lib/onboarding/invitations';
 import { feesNightlyHandler } from '@/lib/fees/nightly';
+import { PTM_REMIND_JOB, ptmRemindHandler } from '@/lib/ptm/ptm';
 import { bulkRunHandler } from '@/lib/frameworks/bulk-engine';
 import { ticketNotifyHandler } from '@/lib/support/tickets';
 import { whatsappSendHandler, WHATSAPP_SEND_JOB } from '@/lib/whatsapp/gate';
@@ -38,6 +39,8 @@ export function productionHandlers(): Record<string, JobHandler> {
     [WHATSAPP_SEND_JOB]: whatsappSendHandler({ platform: withPlatformService, queue: jobQueue }),
     // Each night after midnight in India: overdue dues, late fees where a school has them on, the reconciliation check (C163).
     'fees.nightly': feesNightlyHandler({ platform, queue: jobQueue }),
+    // The day before a parent-teacher meeting: each booked parent is reminded (C193).
+    [PTM_REMIND_JOB]: ptmRemindHandler({ platform: withPlatformService, queue: jobQueue }),
   };
 }
 

@@ -465,6 +465,8 @@ export async function queueThreadReply(client: PoolClient, queue: QueueLike, by:
 }
 // How the webhook hands the job queue a confirmation it has just written (a parent wrote STOP).
 export const enqueueQueued = (queue: QueueLike) => ({
+  // For what a parent's reply sets off beyond its own thread (a meeting slot booked, C193).
+  queue,
   confirm: (db: Pick<PoolClient, 'query'>, logId: string, schoolId: string) => queue.enqueue(db, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, 0), schoolId, maxAttempts: 3, payload: { logId } }),
   // A held message (C190): ask which school now, and end the hold when its 24 hours are up.
   held: async (db: Pick<PoolClient, 'query'>, heldId: string, expiresAt: Date) => {

@@ -1,6 +1,7 @@
 import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
+import { notePtmReply, type PtmQueue } from '@/lib/ptm/ptm';
 import { notePulseReply } from '@/lib/pulse/replies';
 import { HOLD_HOURS, chosenSchool, openHeld, phoneDigest, sealHeld } from './held';
 import { normalizePhone, writtenForms } from './phone';
@@ -31,7 +32,7 @@ export const isStop = (text: string) => STOP_WORDS.test(text);
 
 export type Received = { kind: 'threaded'; schoolId: string; threadId: string; stop: boolean; confirm?: { logId: string } } | { kind: 'held'; heldId: string } | { kind: 'unknown' } | { kind: 'duplicate' };
 // How the webhook hands work to the job queue: a confirmation it has written, a question to ask, a hold to end.
-export type InboundJobs = { confirm: (db: Sql, logId: string, schoolId: string) => Promise<unknown>; held: (db: Sql, heldId: string, expiresAt: Date) => Promise<unknown> };
+export type InboundJobs = { confirm: (db: Sql, logId: string, schoolId: string) => Promise<unknown>; held: (db: Sql, heldId: string, expiresAt: Date) => Promise<unknown>; queue?: PtmQueue };
 type Env = Record<string, string | undefined>;
 
 export type Whose = { kind: 'one'; schoolId: string; parentId: string } | { kind: 'several'; schoolIds: string[] } | { kind: 'none' };
@@ -58,6 +59,8 @@ async function placeInSchool(db: Sql, provider: ProviderName, whose: { schoolId:
   if (!stop) {
     // An answer to the day's Pulse ("1" understood, "2" needs help) is counted, when it is plain whose it is.
     await notePulseReply(db, { schoolId: whose.schoolId, phone: m.phone, text: m.text, at: m.at, providerMessageId: m.providerMessageId });
+    // A time ("10:30") from a parent invited to a meeting still to come books that slot (C193).
+    await notePtmReply(db as PoolClient, jobs?.queue, { schoolId: whose.schoolId, phone: m.phone, text: m.text, at: m.at, providerMessageId: m.providerMessageId });
     return { kind: 'threaded', schoolId: whose.schoolId, threadId: thread, stop: false };
   }
   const made = await db.query(`insert into whatsapp_opt_outs (school_id, phone, stopped_at) values ($1, $2, $3) on conflict (school_id, phone) where lifted_at is null do nothing`, [whose.schoolId, m.phone, m.at]);
