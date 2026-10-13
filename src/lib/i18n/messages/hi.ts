@@ -1776,6 +1776,27 @@ export const hi: Record<keyof typeof en, string> = {
   'bud.held': 'इस महीने {count} संदेश रोके गए क्योंकि बजट पूरा हो गया था या तय नहीं था।',
   'bud.how': 'संदेश तब गिना जाता है जब वह पहुँच जाता है। बजट NetCyberAI आपके स्कूल के साथ तय करता है।',
   'bud.ask': 'NetCyberAI से बजट तय करने या बदलने को कहें',
+  // --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
+  // p5-8a begin
+  // p5-8a end
+  // p5-8b begin
+  // p5-8b end
+  // p5-8c begin
+  // p5-8c end
+  // p5-8d begin
+  // p5-8d end
+  // p5-8e begin
+  // p5-8e end
+  // p5-8f begin
+  // p5-8f end
+  // p5-8g begin
+  // p5-8g end
+  // p5-8h begin
+  // p5-8h end
+  // p5-8i begin
+  // p5-8i end
+  // p5-8j begin
+  // p5-8j end
   'sync.saved': 'सब सेव है',
   'sync.offline': 'ऑफ़लाइन: पिछली बार जो खुला था वही दिख रहा है',
   'sync.sending.one': '{count} बदलाव भेजा जा रहा है…',

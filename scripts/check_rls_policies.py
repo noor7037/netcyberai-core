@@ -301,6 +301,27 @@ ALLOWED_PERMISSIVE = (
         ("support_ticket_messages", "support_ticket_messages_tenant_insert"),
         ("support_ticket_attachments", "support_ticket_attachments_tenant_read"),
         ("support_ticket_attachments", "support_ticket_attachments_tenant_insert"),
+        # --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
+        # p5-8a begin
+        # p5-8a end
+        # p5-8b begin
+        # p5-8b end
+        # p5-8c begin
+        # p5-8c end
+        # p5-8d begin
+        # p5-8d end
+        # p5-8e begin
+        # p5-8e end
+        # p5-8f begin
+        # p5-8f end
+        # p5-8g begin
+        # p5-8g end
+        # p5-8h begin
+        # p5-8h end
+        # p5-8i begin
+        # p5-8i end
+        # p5-8j begin
+        # p5-8j end
     }
 )
 
@@ -436,6 +457,27 @@ REQUIRED_RESTRICTIVE = {
     ("support_ticket_messages", "support_ticket_messages_visible_ticket"),
     ("support_ticket_attachments", "support_ticket_attachments_visible_ticket"),
     ("audit_log", "audit_ticket_rows_own_or_office"),
+    # --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
+    # p5-8a begin
+    # p5-8a end
+    # p5-8b begin
+    # p5-8b end
+    # p5-8c begin
+    # p5-8c end
+    # p5-8d begin
+    # p5-8d end
+    # p5-8e begin
+    # p5-8e end
+    # p5-8f begin
+    # p5-8f end
+    # p5-8g begin
+    # p5-8g end
+    # p5-8h begin
+    # p5-8h end
+    # p5-8i begin
+    # p5-8i end
+    # p5-8j begin
+    # p5-8j end
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)

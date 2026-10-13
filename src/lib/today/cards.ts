@@ -255,6 +255,27 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
       return waiting('messages-held', 'communication', n(rows[0]?.c), '/app/communication');
     },
   },
+  // --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
+  // p5-8a begin
+  // p5-8a end
+  // p5-8b begin
+  // p5-8b end
+  // p5-8c begin
+  // p5-8c end
+  // p5-8d begin
+  // p5-8d end
+  // p5-8e begin
+  // p5-8e end
+  // p5-8f begin
+  // p5-8f end
+  // p5-8g begin
+  // p5-8g end
+  // p5-8h begin
+  // p5-8h end
+  // p5-8i begin
+  // p5-8i end
+  // p5-8j begin
+  // p5-8j end
 ];
 
 // Which providers are this person's: their role, and a module the school has on.

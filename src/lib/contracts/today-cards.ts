@@ -10,7 +10,30 @@ import type { ModuleId, SchoolRole } from './modules';
 // language (message keys `today.<type>.<state>…`). A provider with nothing
 // to say returns no card; a home with no card shows an honest empty state.
 
-export const TODAY_CARD_TYPES = ['attendance-class', 'attendance-school', 'attendance-requests', 'followups-open', 'homework-to-check', 'consent-waiting', 'fees-due-today', 'fees-overdue', 'payments-to-verify', 'promises-due', 'replies-waiting', 'complaints-overdue', 'tickets-waiting', 'messages-held', 'timetable-today'] as const;
+export const TODAY_CARD_TYPES = [
+  'attendance-class', 'attendance-school', 'attendance-requests', 'followups-open', 'homework-to-check', 'consent-waiting', 'fees-due-today', 'fees-overdue', 'payments-to-verify', 'promises-due', 'replies-waiting', 'complaints-overdue', 'tickets-waiting', 'messages-held', 'timetable-today',
+  // --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
+  // p5-8a begin
+  // p5-8a end
+  // p5-8b begin
+  // p5-8b end
+  // p5-8c begin
+  // p5-8c end
+  // p5-8d begin
+  // p5-8d end
+  // p5-8e begin
+  // p5-8e end
+  // p5-8f begin
+  // p5-8f end
+  // p5-8g begin
+  // p5-8g end
+  // p5-8h begin
+  // p5-8h end
+  // p5-8i begin
+  // p5-8i end
+  // p5-8j begin
+  // p5-8j end
+] as const;
 export type TodayCardType = (typeof TODAY_CARD_TYPES)[number];
 
 export type TodayCard = {

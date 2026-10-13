@@ -120,8 +120,8 @@ describe('one plain sentence on what a module being off changes, and for whom', 
   });
 
   it('a module that is not built says so, and names the roles whose menu it leaves', () => {
-    const ptm = MODULE_REGISTRY.find((m) => m.id === 'proxy')!;
-    expect(moduleOffSentence('en', ptm)).toBe('Not built yet. Switched off, its “Soon” entry leaves the menu of: Principal, School admin, Teacher, Academic coordinator.');
+    const ptm = MODULE_REGISTRY.find((m) => m.id === 'payroll')!;
+    expect(moduleOffSentence('en', ptm)).toBe('Not built yet. Switched off, its “Soon” entry leaves the menu of: Principal, School admin, Accountant.');
     expect(moduleOffSentence('hi', ptm)).toContain('प्रधानाचार्य');
   });
 
@@ -185,7 +185,7 @@ describe('the school’s Settings list', () => {
     const html = list('en', ents('full', ['students']));
     const folded = html.slice(html.indexOf('<details'));
     for (const id of ['staff', 'admissions', 'fees', 'students']) expect(folded.includes(`data-module="${id}"`), id).toBe(false);
-    expect(folded).toContain('data-module="proxy"');
+    expect(folded).toContain('data-module="payroll"');
   });
 
   it('Settings is reachable: the office’s menu links to it', () => {

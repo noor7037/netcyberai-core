@@ -21,6 +21,27 @@ describe('the guides', () => {
       'sign-in', 'forgot-password', 'set-up-authenticator', 'send-staff-reset-code',
       'add-a-student', 'import-students-csv', 'link-siblings', 'student-id-cards',
       'mark-attendance', 'use-my-day', 'student-page', 'taught-today', 'timetable', 'daily-pulse-message', 'needs-help-queue', 'set-homework', 'homework-recovery', 'teacher-copilot', 'fee-structures', 'raise-fee-dues', 'take-fee-payment', 'compliance-screen', 'fees-overdue-late-fee', 'verify-upi-payment', 'upload-bank-statement', 'follow-up-unpaid-fees', 'see-a-guardian', 'message-states', 'send-a-notice', 'plan-a-ptm', 'invite-to-an-event', 'handle-a-complaint', 'what-to-do-at-home', 'answer-a-parent', 'whatsapp-settings', 'make-a-certificate', 'raise-a-ticket', 'register-your-school',
+      // --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
+      // p5-8a begin
+      // p5-8a end
+      // p5-8b begin
+      // p5-8b end
+      // p5-8c begin
+      // p5-8c end
+      // p5-8d begin
+      // p5-8d end
+      // p5-8e begin
+      // p5-8e end
+      // p5-8f begin
+      // p5-8f end
+      // p5-8g begin
+      // p5-8g end
+      // p5-8h begin
+      // p5-8h end
+      // p5-8i begin
+      // p5-8i end
+      // p5-8j begin
+      // p5-8j end
     ]);
     expect(new Set(HELP_ARTICLES.map((a) => a.slug)).size).toBe(HELP_ARTICLES.length);
     expect(HELP_ARTICLES.every((a) => /^[a-z][a-z0-9-]+$/.test(a.slug) && a.slug !== 'ticket')).toBe(true); // /app/help/ticket is Raise Ticket
