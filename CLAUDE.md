@@ -108,8 +108,13 @@ quality bar does not change.
   supervisor merges as one batch, the lead runs the full `ci_local.sh` once on
   the top of the stack, not once per PR. Re-run it only if a later fix touches
   shared code.
-- **Reviews** may run as parallel agents, one per PR, at the level the
-  "Working efficiently" rules set.
+- **One agent per slice: no separate check or fix agents.** The builder
+  reviews its own diff once, at the level "Working efficiently" sets. A
+  separate review agent only for auth, RLS, money, messaging or personal
+  data, one pass, and only when the builder's own review is not enough.
+- **Brief agents tightly:** the exact files, the docs section and the
+  acceptance test. An agent does not explore the whole repository; every
+  agent starts cold, so a wide brief costs hundreds of thousands of tokens.
 - **Never repeat work that is already done and merged:** no re-reading
   unchanged docs, no re-running unchanged screens or tests, no re-verifying
   merged slices.
