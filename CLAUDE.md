@@ -85,6 +85,35 @@ prompts do not repeat them.
 - **Read once per session:** the "Read first" docs at the start, not again for
   each slice.
 
+## Parallel agents (founder, 2026-10-14, C198)
+
+The plan now allows several agents at once. Use them to finish faster; the
+quality bar does not change.
+
+- **The lead session plans, splits and integrates.** It hands independent
+  slices to sub-agents (the Agent tool, each in its own git worktree), at most
+  3 at a time, each with a short brief: the slice, the docs section, the
+  acceptance test, and the files it may touch.
+- **Run in parallel only what does not collide:** separate modules, screens
+  or files. Work on the same tables, the same shared component or the same
+  route stays in one agent.
+- **Kept serial, by the lead only:**
+  - **Migrations:** one at a time, test database, checked, then production,
+    in PR order.
+  - **Decision Log numbers:** the lead reserves them before the agents start.
+  - **Shared docs** (`10`, `16`, `17`, `00`, the plan files): edited by the
+    lead only.
+  - **The PR stack order.**
+- **Each agent iterates on its own targeted tests and `tsc`.** For a stack the
+  supervisor merges as one batch, the lead runs the full `ci_local.sh` once on
+  the top of the stack, not once per PR. Re-run it only if a later fix touches
+  shared code.
+- **Reviews** may run as parallel agents, one per PR, at the level the
+  "Working efficiently" rules set.
+- **Never repeat work that is already done and merged:** no re-reading
+  unchanged docs, no re-running unchanged screens or tests, no re-verifying
+  merged slices.
+
 ## Founder workload rule (C103)
 
 - Do not give Noor dashboard, settings, password or connection-string tasks
