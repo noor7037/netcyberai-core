@@ -273,7 +273,10 @@ ALLOWED_PERMISSIVE = (
         ("payment_reports", "payment_reports_tenant_isolation"),
         # C176: tenant isolation only; each narrowed by the RESTRICTIVE policies required below.
         # C187: tenant isolation only; each narrowed to the right staff by the RESTRICTIVE policies required below.
-        ("class_notices", "class_notices_tenant_isolation"),  # C191: narrowed by the RESTRICTIVE policies below
+        ("class_notices", "class_notices_tenant_isolation"),
+        ("ptm_events", "ptm_events_tenant_isolation"),  # C193: narrowed by the RESTRICTIVE policies below
+        ("ptm_slots", "ptm_slots_tenant_isolation"),
+        ("ptm_bookings", "ptm_bookings_tenant_isolation"),  # C191: narrowed by the RESTRICTIVE policies below
         ("message_threads", "message_threads_tenant_isolation"),
         ("inbound_messages", "inbound_messages_tenant_isolation"),
         ("whatsapp_opt_outs", "whatsapp_opt_outs_tenant_isolation"),
@@ -387,6 +390,12 @@ REQUIRED_RESTRICTIVE = {
     ("payment_reports", "payment_reports_finance"),
     # C176: holidays are the office's to change; bank accounts, statements and rows are the finance roles'.
     ("class_notices", "class_notices_staff"),
+    ("ptm_events", "ptm_events_staff"),
+    ("ptm_events", "ptm_events_office_makes"),
+    ("ptm_events", "ptm_events_office_changes"),
+    ("ptm_slots", "ptm_slots_staff"),
+    ("ptm_slots", "ptm_slots_office_makes"),
+    ("ptm_bookings", "ptm_bookings_staff"),
     ("class_notices", "class_notices_as_self"),
     ("class_notices", "class_notices_principal_decides"),
     ("message_threads", "message_threads_staff"),

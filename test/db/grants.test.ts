@@ -78,6 +78,9 @@ const APP_USER: Record<string, string> = {
   payment_gateway_access: 'SELECT', // set by NetCyberAI in Control
   bank_accounts: 'INSERT,SELECT,UPDATE',
   class_notices: 'INSERT,SELECT,UPDATE', // never edited, decided once (trigger); never deleted
+  ptm_events: 'INSERT,SELECT,UPDATE',
+  ptm_slots: 'INSERT,SELECT',
+  ptm_bookings: 'INSERT,SELECT,UPDATE', // moved, never deleted
   message_threads: 'SELECT,UPDATE', // read, and marked read; written by the webhook as the platform role (C187)
   inbound_messages: 'SELECT',
   whatsapp_opt_outs: 'SELECT,UPDATE', // lifted by the office
@@ -142,6 +145,8 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   fee_reminders: 'INSERT,SELECT', // the nightly reminders (C179)
   fee_clearance_overrides: '',
   class_notices: 'SELECT',
+  ptm_events: 'SELECT',
+  ptm_slots: 'SELECT',
   message_threads: 'INSERT,SELECT,UPDATE',
   inbound_messages: 'INSERT,SELECT',
   whatsapp_opt_outs: 'INSERT,SELECT,UPDATE',

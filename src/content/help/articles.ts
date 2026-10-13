@@ -746,6 +746,30 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['notice', 'circular', 'class', 'parents', 'approve', 'whatsapp', 'नोटिस', 'सूचना'],
   },
   {
+    slug: 'plan-a-ptm',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Plan a parent-teacher meeting', hi: 'अभिभावक-शिक्षक बैठक तय करें' },
+    summary: {
+      en: 'The office plans a meeting day and invites parents on WhatsApp. A parent books a time by replying, and the teacher marks who came.',
+      hi: 'कार्यालय बैठक का दिन तय करता है और अभिभावकों को WhatsApp पर बुलाता है। अभिभावक जवाब देकर समय लेते हैं, और शिक्षक दर्ज करते हैं कि कौन आया।',
+    },
+    steps: [
+      { en: 'Open “PTM Scheduler”. Under “Plan a meeting day”, give the name, the date, the times and the classes, then press “Make the meeting”.', hi: '“PTM Scheduler” खोलें। “Plan a meeting day” में नाम, तारीख़, समय और कक्षाएँ भरें, फिर “Make the meeting” दबाएँ।' },
+      { en: 'Check the teachers and times, then press “Invite the parents”. Each parent gets one message from each of their children’s class teachers.', hi: 'शिक्षक और समय जाँचें, फिर “Invite the parents” दबाएँ। हर अभिभावक को अपने बच्चों के हर कक्षा-शिक्षक की ओर से एक संदेश मिलता है।' },
+      { en: 'A parent replies with a time, such as 10:30, and that time shows their name. For a parent who phones, choose them and press “Book this time”.', hi: 'अभिभावक एक समय लिखकर भेजते हैं, जैसे 10:30, और उस समय पर उनका नाम दिखता है। फ़ोन करने वाले अभिभावक को चुनकर “Book this time” दबाएँ।' },
+      { en: 'On the day, the teacher presses “Came” or “Did not come” for each parent and can add a note.', hi: 'बैठक के दिन शिक्षक हर अभिभावक के लिए “Came” या “Did not come” दबाते हैं और टिप्पणी जोड़ सकते हैं।' },
+    ],
+    tips: [
+      { en: 'A time can be booked by one parent only. A parent who asks for a taken time is told which times are free.', hi: 'एक समय सिर्फ़ एक अभिभावक ले सकता है। लिया हुआ समय माँगने वाले अभिभावक को बताया जाता है कि कौन-से समय ख़ाली हैं।' },
+      { en: 'Each parent who has booked is reminded the day before.', hi: 'समय ले चुके हर अभिभावक को एक दिन पहले याद दिलाया जाता है।' },
+      { en: '“Cancel the meeting” tells every parent who had booked.', hi: '“Cancel the meeting” समय ले चुके हर अभिभावक को बता देता है।' },
+    ],
+    start: { href: '/app/ptm', label: { en: 'PTM Scheduler', hi: 'PTM Scheduler' } },
+    related: ['send-a-notice', 'answer-a-parent'],
+    keywords: ['ptm', 'meeting', 'parent teacher', 'slot', 'book', 'reminder', 'बैठक', 'समय'],
+  },
+  {
     slug: 'answer-a-parent',
     category: 'daily',
     audience: 'office_and_teachers',
