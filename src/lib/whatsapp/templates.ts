@@ -256,6 +256,19 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
     },
   },
   {
+    // Parent AI v1 (C196): an answer to "what can I do at home?", read and approved by a person before it goes.
+    name: 'home_help',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'child', 'answer'],
+    body: {
+      en: '{{school}}: What you can do at home for {{child}}. {{answer}}',
+      hi: '{{school}}: {{child}} के लिए आप घर पर क्या कर सकते हैं। {{answer}}',
+    },
+  },
+  {
     name: 'messages_stopped',
     version: 1,
     category: 'utility',

@@ -998,6 +998,44 @@ const complaintsScreenDone = async () => {
   if (r.closed !== 1 || r.steps !== 2 || r.escalations !== 1) throw new Error(`the complaint in the database: ${JSON.stringify(r)}`);
   if (JSON.stringify(complaintsSeen) !== JSON.stringify({ closeDisabledWithoutWords: true, steps: 'opened,closed' })) throw new Error(`the complaint on the screen: ${JSON.stringify(complaintsSeen)}`);
 };
+// Parent AI v1 (C196): the principal drafts "what to do at home" for a guardian of 5-A from a topic taught today.
+// The draft sends nothing and shows what it used; approving it is what sends it. Everything is put back.
+const clearParentAi = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from communication_log where dedupe_key like 'parent-ai:%'; delete from jobs where type = 'whatsapp.send'; delete from parent_ai_answers; delete from ai_usage where kind = 'home_help'; delete from pulse_messages where topic = 'Fractions (harness 7n)'; delete from whatsapp_templates where meta_template_id = 'harness-7n'; set session_replication_role = origin;`);
+};
+let parentAiSeen = null;
+let parentAiPilotBefore = null;
+const parentAiScreen = async (page) => {
+  await clearParentAi();
+  parentAiPilotBefore = (await db.pg.query(`select pilot_allow_outbound from schools where school_id = $1`, [SCHOOL])).rows[0];
+  await db.pg.query(`update schools set pilot_allow_outbound = true where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_template_id) values (null, 'home_help', 1, 'en', '{{school}}: What you can do at home for {{child}}. {{answer}}', '{school,child,answer}', 'utility', 1440, 'approved', 'harness-7n')`);
+  await db.pg.query(`insert into pulse_messages (school_id, class_id, topic, body_en, body_hi, body_hinglish, sent_on, status, created_by) select $1, c.class_id, 'Fractions (harness 7n)', 'x', 'हिन्दी', 'x', (now() at time zone 'Asia/Kolkata')::date, 'ready', $2 from classes c where c.school_id = $1 and c.name = '5-A'`, [SCHOOL, PEOPLE.principal.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-parent-ai-new]').waitFor({ timeout: 20000 });
+  await page.locator('#parent-ai-guardian').fill('Example');
+  await page.locator('[data-parent-ai-guardian]').first().click();
+  await page.locator('[data-parent-ai-draft]').click();
+  await page.locator('[data-answer="draft"]').waitFor({ timeout: 20000 });
+  const sentAsDraft = (await db.pg.query(`select count(*)::int as n from communication_log where dedupe_key like 'parent-ai:%'`)).rows[0].n;
+  const cited = await page.locator('[data-answer="draft"] [data-answer-sources] li').count();
+  await page.locator('[data-answer-approve]').click();
+  await page.locator('[data-answer="sent"]').waitFor({ timeout: 20000 });
+  parentAiSeen = { sentAsDraft, cited: cited > 0 };
+};
+const parentAiScreenDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from parent_ai_answers where school_id = $1 and status = 'sent' and approved_by = $2 and jsonb_array_length(sources) >= 1) as sent,
+            (select count(*)::int from communication_log where dedupe_key like 'parent-ai:%' and template_name = 'home_help') as messages, (select count(*)::int from ai_usage where kind = 'home_help') as model_calls, (select count(*)::int from parent_ai_answers where ai_assisted) as with_ai`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  await clearParentAi();
+  await db.pg.query(`update schools set pilot_allow_outbound = $2 where school_id = $1`, [SCHOOL, parentAiPilotBefore.pilot_allow_outbound]);
+  const r = rows[0];
+  // The harness runs with the stand-in AI door open for the fixture school: a tip that came through it is metered, once.
+  if (r.sent !== 1 || r.messages !== 1 || r.model_calls !== r.with_ai) throw new Error(`the answer in the database: ${JSON.stringify(r)}`);
+  if (JSON.stringify(parentAiSeen) !== JSON.stringify({ sentAsDraft: 0, cited: true })) throw new Error(`the answer on the screen: ${JSON.stringify(parentAiSeen)}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -1358,6 +1396,7 @@ const SCREENS = [
   ['principal', 'app-ptm', '/app/ptm', ptmScreen, ptmScreenDone],
   ['principal', 'app-events', '/app/events', eventsScreen, eventsScreenDone],
   ['principal', 'app-complaints', '/app/complaints', complaintsScreen, complaintsScreenDone],
+  ['principal', 'app-parent-ai', '/app/parent-ai', parentAiScreen, parentAiScreenDone],
   ['teacher', 'app-parents-teacher', '/app/parents', parentsTeacher, parentsTeacherDone],
   ['principal', 'app-taught-today', '/app/syllabus'],
   ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],

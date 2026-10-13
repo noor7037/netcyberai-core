@@ -88,6 +88,7 @@ export function ThreadsView() {
           <h3 className="text-base font-bold">{t('thr.with', { guardian: open.thread.guardian, last4: open.thread.phone_last4 })}</h3>
           <a data-thread-guardian className="inline-flex min-h-[44px] items-center self-start font-semibold text-sapphire underline" href={`/app/parents?guardian=${open.thread.parent_id}`}>{t('thr.seeGuardian')}</a>
           <a data-thread-complaint className="inline-flex min-h-[44px] items-center self-start font-semibold text-sapphire underline" href={`/app/complaints?guardian=${open.thread.parent_id}`}>{t('thr.complaint')}</a>
+          <a data-thread-home-help className="inline-flex min-h-[44px] items-center self-start font-semibold text-sapphire underline" href={`/app/parent-ai?guardian=${open.thread.parent_id}`}>{t('thr.homeHelp')}</a>
           <ul className="flex flex-col gap-2">
             {open.messages.map((m) => (
               <li key={m.id} data-thread-message={m.direction} className={`max-w-prose rounded-md px-3 py-2 ${m.direction === 'in' ? 'self-start bg-off-white' : 'self-end border border-slate/10'}`}>
