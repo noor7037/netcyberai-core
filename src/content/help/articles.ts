@@ -698,6 +698,30 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['message', 'whatsapp', 'delivered', 'read', 'failed', 'held', 'communication', 'संदेश', 'पहुँचा'],
   },
   {
+    slug: 'send-a-notice',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Send a notice to a class’s parents', hi: 'किसी कक्षा के अभिभावकों को नोटिस भेजें' },
+    summary: {
+      en: 'Staff write a notice for a class. The principal approves it, and only then does it go to that class’s guardians on WhatsApp.',
+      hi: 'स्टाफ़ किसी कक्षा के लिए नोटिस लिखता है। प्रिंसिपल उसे मंज़ूर करते हैं, और तभी वह उस कक्षा के अभिभावकों को WhatsApp पर जाता है।',
+    },
+    steps: [
+      { en: 'Open “Communication” and find “Notices to parents”.', hi: '“Communication” खोलें और “Notices to parents” देखें।' },
+      { en: 'Choose the class, write the notice as parents will read it, and press “Send for approval”.', hi: 'कक्षा चुनें, नोटिस वैसा लिखें जैसा अभिभावक पढ़ेंगे, और “Send for approval” दबाएँ।' },
+      { en: 'The principal reads it and presses “Approve and send”, or “Do not approve” with a reason the writer sees.', hi: 'प्रिंसिपल उसे पढ़कर “Approve and send” दबाते हैं, या “Do not approve” के साथ कारण लिखते हैं जो लिखने वाले को दिखता है।' },
+      { en: 'After it is sent, the notice shows how many guardians it was delivered to and how many read it.', hi: 'भेजे जाने के बाद नोटिस दिखाता है कि वह कितने अभिभावकों तक पहुँचा और कितनों ने पढ़ा।' },
+    ],
+    tips: [
+      { en: 'A teacher writes only for a class of their own. A notice for “All classes” is written by the principal or the school admin.', hi: 'शिक्षक सिर्फ़ अपनी कक्षा के लिए लिखते हैं। “All classes” का नोटिस प्रिंसिपल या स्कूल एडमिन लिखते हैं।' },
+      { en: 'A notice cannot be edited after it is written. If the words are wrong, the principal does not approve it and it is written again.', hi: 'लिखने के बाद नोटिस बदला नहीं जा सकता। शब्द ग़लत हों, तो प्रिंसिपल उसे मंज़ूर नहीं करते और वह फिर लिखा जाता है।' },
+      { en: 'A parent who has not agreed to messages, or who wrote STOP, is not sent the notice.', hi: 'जिस अभिभावक ने संदेशों की सहमति नहीं दी, या STOP लिखा, उसे नोटिस नहीं भेजा जाता।' },
+    ],
+    start: { href: '/app/communication', label: { en: 'Communication', hi: 'Communication' } },
+    related: ['message-states', 'answer-a-parent'],
+    keywords: ['notice', 'circular', 'class', 'parents', 'approve', 'whatsapp', 'नोटिस', 'सूचना'],
+  },
+  {
     slug: 'answer-a-parent',
     category: 'daily',
     audience: 'office_and_teachers',
