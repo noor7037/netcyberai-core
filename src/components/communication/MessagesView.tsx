@@ -13,7 +13,7 @@ const STATES = ['queued', 'uncertain', 'sent', 'delivered', 'read', 'failed', 'h
 type State = (typeof STATES)[number];
 const stateOf = (status: string): State => (status.startsWith('blocked_') ? 'held' : (STATES as readonly string[]).includes(status) ? (status as State) : 'sent');
 const VARIANT = { queued: 'neutral', uncertain: 'warning', sent: 'neutral', delivered: 'success', read: 'success', failed: 'danger', held: 'warning' } as const;
-const TEMPLATES = ['attendance_absence_notification', 'daily_pulse', 'class_notice', 'ptm_invitation', 'ptm_booked', 'ptm_time_not_free', 'ptm_reminder', 'ptm_cancelled', 'event_invitation', 'event_reminder', 'event_cancelled'];
+const TEMPLATES = ['attendance_absence_notification', 'daily_pulse', 'class_notice', 'ptm_invitation', 'ptm_booked', 'ptm_time_not_free', 'ptm_reminder', 'ptm_cancelled', 'event_invitation', 'event_reminder', 'event_cancelled', 'complaint_received', 'complaint_escalated', 'complaint_closed'];
 const HELD_REASONS = ['blocked_pilot', 'blocked_consent', 'blocked_budget', 'blocked_quiet_hours', 'blocked_no_template'];
 
 export function MessagesView({ mayRead }: { mayRead: boolean }) {

@@ -132,7 +132,7 @@ const ROWS: readonly Row[] = [
     capabilities: ['Slots per teacher', 'Parent booking over WhatsApp', 'Reminders', 'Attendance', 'Notes'] },
   { id: 'events', label: 'Events', group: 'parent-engagement', icon: 'events', roles: ENGAGEMENT, phase: 'P4', phaseNote: 'Events, invitations, YES and NO counted, reminder and cancellation are live; calendar and photos later', status: 'partial',
     capabilities: ['School calendar', 'Holidays', 'Events', 'RSVPs', 'Reminders'] },
-  { id: 'complaints', label: 'Complaints', group: 'parent-engagement', icon: 'complaints', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', status: 'spec-v0',
+  { id: 'complaints', label: 'Complaints', group: 'parent-engagement', icon: 'complaints', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', phaseNote: 'Recording, owner, due time, notes, closing with a note and passing an overdue one to the principal are live; categories and intake straight from WhatsApp later', status: 'partial',
     capabilities: ['Intake from WhatsApp and web', 'Category', 'Owner', 'SLA timer', 'Status machine', 'Resolution note', 'Escalation to principal'] },
 
   { id: 'fees', label: 'Fees', group: 'finance', icon: 'fees', roles: FINANCE, phase: 'P3', phaseNote: 'Structures, dues, concessions, RTE marks, counter payments and receipts are live; payment links and reminders next (email in P3, WhatsApp from P4)', status: 'partial',

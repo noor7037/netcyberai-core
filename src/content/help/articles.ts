@@ -793,6 +793,30 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['event', 'function', 'sports day', 'invite', 'rsvp', 'cancel', 'कार्यक्रम', 'बुलावा'],
   },
   {
+    slug: 'handle-a-complaint',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Record and settle a parent’s complaint', hi: 'अभिभावक की शिकायत दर्ज करें और सुलझाएँ' },
+    summary: {
+      en: 'A complaint is recorded with who will look into it and by when. The parent is told when it is noted and when it is closed.',
+      hi: 'शिकायत इस बात के साथ दर्ज होती है कि उसे कौन देखेगा और कब तक। दर्ज होने और बंद होने पर अभिभावक को बताया जाता है।',
+    },
+    steps: [
+      { en: 'Open “Complaints”. Under “Record a complaint”, find the guardian and write what they said.', hi: '“Complaints” खोलें। “Record a complaint” में अभिभावक को खोजें और लिखें कि उन्होंने क्या कहा।' },
+      { en: 'The principal or school admin chooses who will look into it and by when, then presses “Record the complaint”.', hi: 'प्रिंसिपल या स्कूल एडमिन चुनते हैं कि इसे कौन देखेगा और कब तक, फिर “Record the complaint” दबाते हैं।' },
+      { en: 'While you look into it, write what you find and press “Add as a note”. Notes stay inside the school.', hi: 'इसे देखते समय जो पता चले वह लिखकर “Add as a note” दबाएँ। टिप्पणियाँ स्कूल के भीतर रहती हैं।' },
+      { en: 'When it is settled, write what was done and press “Close, and tell the parent this”.', hi: 'सुलझ जाने पर लिखें कि क्या किया गया और “Close, and tell the parent this” दबाएँ।' },
+    ],
+    tips: [
+      { en: 'A complaint cannot be closed without your words: the parent reads them.', hi: 'आपके शब्दों के बिना शिकायत बंद नहीं हो सकती: अभिभावक उन्हें पढ़ते हैं।' },
+      { en: 'A complaint not settled by its due time is passed to the principal and shows on the principal’s My Day.', hi: 'जो शिकायत अपने समय तक नहीं सुलझती वह प्रिंसिपल को सौंप दी जाती है और उनके My Day पर दिखती है।' },
+      { en: 'A complaint about a member of staff is not shown to that person until the principal has seen it.', hi: 'स्टाफ़ के किसी सदस्य के बारे में शिकायत उस व्यक्ति को तब तक नहीं दिखती जब तक प्रिंसिपल उसे देख न लें।' },
+    ],
+    start: { href: '/app/complaints', label: { en: 'Complaints', hi: 'Complaints' } },
+    related: ['answer-a-parent', 'see-a-guardian'],
+    keywords: ['complaint', 'concern', 'grievance', 'escalate', 'principal', 'close', 'शिकायत', 'समस्या'],
+  },
+  {
     slug: 'answer-a-parent',
     category: 'daily',
     audience: 'office_and_teachers',

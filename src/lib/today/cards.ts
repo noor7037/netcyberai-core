@@ -207,6 +207,17 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     },
   },
   {
+    // Complaints still open past their due time (C195): they have been passed to the principal, who is the one
+    // to settle them now.
+    type: 'complaints-overdue',
+    moduleId: 'complaints',
+    roles: ['principal'],
+    async load(db, ctx) {
+      const { rows } = await db.query(`select count(*) as c from complaints where school_id = $1 and status = 'open' and due_at <= now()`, [ctx.schoolId]);
+      return waiting('complaints-overdue', 'complaints', n(rows[0]?.c), '/app/complaints');
+    },
+  },
+  {
     // Conversations with a message from a parent nobody has opened yet (C187). Row level security shows the
     // office every conversation and a teacher those of their own classes' guardians.
     type: 'replies-waiting',
