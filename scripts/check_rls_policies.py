@@ -161,6 +161,8 @@ ALLOWED_PERMISSIVE = (
         ("whatsapp_templates", "whatsapp_templates_platform_decide"),
         # C186: the platform's WhatsApp account; scoped `to nca_super`; no school role holds any grant on it.
         ("whatsapp_credentials", "whatsapp_credentials_platform"),
+        # C190: held messages, encrypted; scoped `to nca_super`; no school role holds any grant.
+        ("held_inbound", "held_inbound_platform"),
         # `leads` is the one genuinely pre-tenant table (public Get
         # Started/Book Demo intake, reached via withBackendConnection,
         # never withTenantContext -- there is no school_id yet). Public
@@ -271,6 +273,15 @@ ALLOWED_PERMISSIVE = (
         ("payment_reports", "payment_reports_tenant_isolation"),
         # C176: tenant isolation only; each narrowed by the RESTRICTIVE policies required below.
         # C187: tenant isolation only; each narrowed to the right staff by the RESTRICTIVE policies required below.
+        ("class_notices", "class_notices_tenant_isolation"),
+        ("ptm_events", "ptm_events_tenant_isolation"),  # C193: narrowed by the RESTRICTIVE policies below
+        ("ptm_slots", "ptm_slots_tenant_isolation"),
+        ("ptm_bookings", "ptm_bookings_tenant_isolation"),
+        ("school_events", "school_events_tenant_isolation"),  # C194: narrowed by the RESTRICTIVE policies below
+        ("event_replies", "event_replies_tenant_isolation"),
+        ("complaints", "complaints_tenant_isolation"),  # C195: narrowed by the RESTRICTIVE policies below
+        ("complaint_events", "complaint_events_tenant_isolation"),
+        ("parent_ai_answers", "parent_ai_answers_tenant_isolation"),  # C196: narrowed by the RESTRICTIVE policies below  # C191: narrowed by the RESTRICTIVE policies below
         ("message_threads", "message_threads_tenant_isolation"),
         ("inbound_messages", "inbound_messages_tenant_isolation"),
         ("whatsapp_opt_outs", "whatsapp_opt_outs_tenant_isolation"),
@@ -379,9 +390,28 @@ REQUIRED_RESTRICTIVE = {
     ("payment_gateway_access", "payment_gateway_access_finance"),
     ("payment_credentials", "payment_credentials_nobody"),
     ("whatsapp_credentials", "whatsapp_credentials_nobody"),
+    ("held_inbound", "held_inbound_nobody"),
     ("payment_evidence", "payment_evidence_finance"),
     ("payment_reports", "payment_reports_finance"),
     # C176: holidays are the office's to change; bank accounts, statements and rows are the finance roles'.
+    ("class_notices", "class_notices_staff"),
+    ("ptm_events", "ptm_events_staff"),
+    ("ptm_events", "ptm_events_office_makes"),
+    ("ptm_events", "ptm_events_office_changes"),
+    ("ptm_slots", "ptm_slots_staff"),
+    ("ptm_slots", "ptm_slots_office_makes"),
+    ("ptm_bookings", "ptm_bookings_staff"),
+    ("school_events", "school_events_staff"),
+    ("school_events", "school_events_office_makes"),
+    ("school_events", "school_events_office_changes"),
+    ("event_replies", "event_replies_staff"),
+    ("complaints", "complaints_staff"),
+    ("complaints", "complaints_as_self"),
+    ("complaint_events", "complaint_events_with_complaint"),
+    ("parent_ai_answers", "parent_ai_answers_staff"),
+    ("parent_ai_answers", "parent_ai_answers_as_self"),
+    ("class_notices", "class_notices_as_self"),
+    ("class_notices", "class_notices_principal_decides"),
     ("message_threads", "message_threads_staff"),
     ("inbound_messages", "inbound_messages_staff"),
     ("whatsapp_opt_outs", "whatsapp_opt_outs_staff"),

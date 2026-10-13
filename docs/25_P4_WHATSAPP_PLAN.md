@@ -153,3 +153,30 @@ Then the credentials are entered once in Control. Nothing else.
 - Meta's rates are entered from its pricing page with the date; I cannot
   confirm an invoice.
 - Hindi wording is unreviewed until a Hindi reader checks it.
+
+## 8. Going live: the checklist (written after slice 7o, C197)
+
+P4 is built and proven on the stand-in. No message has reached a real phone.
+These steps, in this order, are what stands between that and the first real
+school. Each says who does it and how the app shows it is done. Nothing here
+is skipped by a flag: the send-gate refuses a real send until each is true.
+
+| # | Step | Who | Done when |
+|---|---|---|---|
+| 1 | **The encryption key.** `MESSAGING_CREDENTIALS_KEY` (32 random bytes, base64) is set on the deployment, in the same way and place as `PAYMENT_CREDENTIALS_KEY`. It is never put in code, a log, chat or a PR. | Supervisor's deployment session | Control → WhatsApp account no longer says the server holds no key, and "Save, switched off" is enabled. |
+| 2 | **Meta Business verification** of NetCyberAI. | Noor (Meta asks for the business's own documents) | Meta's Business Manager shows the business as verified. |
+| 3 | **A phone number** for the WhatsApp Business account that is not in use on WhatsApp, and the one-time code sent to it. | Noor | The number is listed under the WhatsApp Business account. |
+| 4 | **The account in Control.** Phone-number id, WABA id, access token, app secret and a verify token are entered once in Control → WhatsApp account. They are write-only. "Test the connection" is pressed. The webhook address shown there is set in Meta's app with the same verify token. | Supervisor's session, with Noor present for the values only he can see | The test passes and Meta's webhook check succeeds. The account stays switched off. |
+| 5 | **Templates.** Control → Message templates → "Bring in the versions written in the code". Each English version is read and approved there, then submitted in Meta's Business Manager with the same name, category (utility) and words, and Meta's decision is recorded beside it. The templates: `attendance_absence_notification`, `fee_reminder`, `fee_overdue`, `fee_payment_initiated`, `fee_receipt`, `daily_pulse`, `class_notice`, `ptm_invitation`, `ptm_booked`, `ptm_time_not_free`, `ptm_reminder`, `ptm_cancelled`, `event_invitation`, `event_reminder`, `event_cancelled`, `complaint_received`, `complaint_escalated`, `complaint_closed`, `home_help`, `messages_stopped`. | Supervisor's session prepares; Meta decides | Each template a school will use shows "approved" by us and by Meta. A template Meta has not approved is not sent on the real account. |
+| 6 | **Hindi review.** A Hindi reader reads every Hindi version; each one read is marked with "Mark the wording as reviewed" in Control → Message templates, with who read it and when. | A Hindi reader chosen by Noor | Until a version is marked, a guardian who prefers Hindi is sent the English version. |
+| 7 | **Rates.** The rate for each category in use (utility first) is read on Meta's own pricing page for India and entered in Control → Messaging & Cost with the page's address and the day it was read. Sources: <https://developers.facebook.com/docs/whatsapp/pricing> (per-message pricing since 1 July 2025) and the rate cards at <https://business.whatsapp.com/products/platform-pricing>. No rate is in the code. | Supervisor's session | "Rate not verified" no longer names that category. A real send in a category with no rate in force is refused. |
+| 8 | **A school's monthly limit.** Set in Control → Messaging & Cost with a reason. | Supervisor's session, with the amount agreed with the school | The school's Communication page shows its budget. With no limit, its messages are held. |
+| 9 | **The first real send, to the founder's own number.** A school that is not a test school is given one student whose guardian's number is Noor's own, with consent recorded. The account is switched on in Control. One absence notice is sent. | Supervisor's session, Noor holding the phone | The message arrives; Communication shows it sent, then delivered, then read; Messaging & Cost shows its cost; a reply from the phone appears as a conversation; STOP stops further messages. |
+| 10 | **Only then** is a real school's sending switched on (its pilot switch), one template at a time, starting with absence notices. | Supervisor's session | The school's Communication page stops saying WhatsApp is not connected. |
+
+What the checklist cannot prove in advance, and the first real send will:
+Meta's formats are built from its public documentation, not from an observed
+message; Meta's invoice is the only proof of a rate; a utility template
+delivered inside an open customer-service window is free at Meta but is
+counted here at the utility rate, so the app's spend can be higher than the
+invoice and never lower.

@@ -1,4 +1,5 @@
 import { ModulePage } from '@/components/app-ui/ModulePage';
+import { CostControls } from '@/components/control/CostControls';
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
 import { loadMessagingCost, type CostLine, type MessagingCost } from '@/lib/control/messaging-cost';
@@ -126,7 +127,10 @@ export default async function MessagingCostPage() {
   const data = session ? await withTenantContext(session, (db) => loadMessagingCost(db)) : null;
   return (
     <ModulePage title={t(lang, 'cost.title')} purpose={t(lang, 'cost.purpose')} icon="chat" tone="cyan" eyebrow={t(lang, 'group.control')} headerLang={lang}>
-      {data && <View data={data} lang={lang} />}
+      <div className="flex flex-col gap-5">
+        {data && <View data={data} lang={lang} />}
+        <CostControls />
+      </div>
     </ModulePage>
   );
 }

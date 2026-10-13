@@ -9,11 +9,11 @@ import type { MessageKey } from '@/lib/i18n';
 // or held back with the reason. Counted from the log; nothing here is estimated.
 
 type Row = { log_id: string; created_at: string; not_before?: string | null; child: string | null; guardian: string | null; phone_last4: string | null; template_name: string | null; status: string; reason: string | null; provider: string | null; delivered_at: string | null; read_at: string | null; failed_at: string | null };
-const STATES = ['queued', 'sent', 'delivered', 'read', 'failed', 'held'] as const;
+const STATES = ['queued', 'uncertain', 'sent', 'delivered', 'read', 'failed', 'held'] as const;
 type State = (typeof STATES)[number];
 const stateOf = (status: string): State => (status.startsWith('blocked_') ? 'held' : (STATES as readonly string[]).includes(status) ? (status as State) : 'sent');
-const VARIANT = { queued: 'neutral', sent: 'neutral', delivered: 'success', read: 'success', failed: 'danger', held: 'warning' } as const;
-const TEMPLATES = ['attendance_absence_notification', 'daily_pulse'];
+const VARIANT = { queued: 'neutral', uncertain: 'warning', sent: 'neutral', delivered: 'success', read: 'success', failed: 'danger', held: 'warning' } as const;
+const TEMPLATES = ['attendance_absence_notification', 'daily_pulse', 'class_notice', 'ptm_invitation', 'ptm_booked', 'ptm_time_not_free', 'ptm_reminder', 'ptm_cancelled', 'event_invitation', 'event_reminder', 'event_cancelled', 'complaint_received', 'complaint_escalated', 'complaint_closed', 'home_help'];
 const HELD_REASONS = ['blocked_pilot', 'blocked_consent', 'blocked_budget', 'blocked_quiet_hours', 'blocked_no_template'];
 
 export function MessagesView({ mayRead }: { mayRead: boolean }) {
@@ -73,6 +73,7 @@ export function MessagesView({ mayRead }: { mayRead: boolean }) {
                 <p>
                   {m.child ? t('msg.about', { child: m.child }) : ''} {m.guardian ? t('msg.to', { guardian: m.guardian, last4: m.phone_last4 ?? '' }) : m.phone_last4 ? t('msg.toNumber', { last4: m.phone_last4 }) : ''}
                 </p>
+                {s === 'uncertain' && <p className="font-semibold">{t('msg.uncertainWhy')}</p>}
                 {s === 'queued' && <p className="text-slate/70">{t('msg.queuedWhy')}</p>}
                 {at && <p className="text-slate/70">{t(`msg.at.${s}` as MessageKey, { when: when.format(new Date(at)) })}</p>}
                 {s === 'held' && <p className="font-semibold">{HELD_REASONS.includes(m.status) ? t(`msg.held.${m.status}` as MessageKey) : (m.reason ?? '')}</p>}

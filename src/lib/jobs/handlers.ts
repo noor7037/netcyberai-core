@@ -4,7 +4,10 @@ import { inviteUserToSchool } from '@/lib/auth/admin-actions';
 import { emailSenderFromEnv } from '@/lib/email/sender';
 import { markProvisioned } from '@/lib/onboarding/applications';
 import { inviteSendHandler } from '@/lib/onboarding/invitations';
+import { COMPLAINT_ESCALATE_JOB, complaintEscalateHandler } from '@/lib/complaints/complaints';
+import { EVENT_REMIND_JOB, eventRemindHandler } from '@/lib/events/events';
 import { feesNightlyHandler } from '@/lib/fees/nightly';
+import { PTM_REMIND_JOB, ptmRemindHandler } from '@/lib/ptm/ptm';
 import { bulkRunHandler } from '@/lib/frameworks/bulk-engine';
 import { ticketNotifyHandler } from '@/lib/support/tickets';
 import { whatsappSendHandler, WHATSAPP_SEND_JOB } from '@/lib/whatsapp/gate';
@@ -38,6 +41,12 @@ export function productionHandlers(): Record<string, JobHandler> {
     [WHATSAPP_SEND_JOB]: whatsappSendHandler({ platform: withPlatformService, queue: jobQueue }),
     // Each night after midnight in India: overdue dues, late fees where a school has them on, the reconciliation check (C163).
     'fees.nightly': feesNightlyHandler({ platform, queue: jobQueue }),
+    // The day before a parent-teacher meeting: each booked parent is reminded (C193).
+    [PTM_REMIND_JOB]: ptmRemindHandler({ platform: withPlatformService, queue: jobQueue }),
+    // The day before a school event: everyone invited who did not say no (C194).
+    [EVENT_REMIND_JOB]: eventRemindHandler({ platform: withPlatformService, queue: jobQueue }),
+    // A complaint still open at its due time is passed to the principal (C195).
+    [COMPLAINT_ESCALATE_JOB]: complaintEscalateHandler({ platform: withPlatformService, queue: jobQueue }),
   };
 }
 

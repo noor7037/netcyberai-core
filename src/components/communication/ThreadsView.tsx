@@ -11,7 +11,7 @@ import type { MessageKey } from '@/lib/i18n';
 // in their own words only inside the 24 hours the parent's own message opened; after that the box is closed and
 // says why. A parent who wrote STOP gets nothing more on WhatsApp until the office lifts it at their asking.
 
-type Thread = { thread_id: string; guardian: string; children: string | null; phone_last4: string; last_inbound_at: string; unread: number; last_text: string | null; window_open: boolean; stopped: boolean };
+type Thread = { thread_id: string; parent_id: string; guardian: string; children: string | null; phone_last4: string; last_inbound_at: string; unread: number; last_text: string | null; window_open: boolean; stopped: boolean };
 type Message = { id: string; direction: 'in' | 'out'; at: string; text: string | null; template_name: string | null; status: string | null; by: string | null };
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
@@ -86,6 +86,9 @@ export function ThreadsView() {
       {open && (
         <div data-thread-open className="flex flex-col gap-3 border-t border-slate/10 pt-3 text-sm text-slate">
           <h3 className="text-base font-bold">{t('thr.with', { guardian: open.thread.guardian, last4: open.thread.phone_last4 })}</h3>
+          <a data-thread-guardian className="inline-flex min-h-[44px] items-center self-start font-semibold text-sapphire underline" href={`/app/parents?guardian=${open.thread.parent_id}`}>{t('thr.seeGuardian')}</a>
+          <a data-thread-complaint className="inline-flex min-h-[44px] items-center self-start font-semibold text-sapphire underline" href={`/app/complaints?guardian=${open.thread.parent_id}`}>{t('thr.complaint')}</a>
+          <a data-thread-home-help className="inline-flex min-h-[44px] items-center self-start font-semibold text-sapphire underline" href={`/app/parent-ai?guardian=${open.thread.parent_id}`}>{t('thr.homeHelp')}</a>
           <ul className="flex flex-col gap-2">
             {open.messages.map((m) => (
               <li key={m.id} data-thread-message={m.direction} className={`max-w-prose rounded-md px-3 py-2 ${m.direction === 'in' ? 'self-start bg-off-white' : 'self-end border border-slate/10'}`}>

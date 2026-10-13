@@ -20,7 +20,7 @@ describe('shell navigation', () => {
     expect(groups.map((g) => g.label)).toEqual(['Home', 'School & People', 'Teaching & Learning', 'Parent Engagement', 'Finance', 'Records & Compliance', 'AI Intelligence', 'Help']);
     const items = groups.flatMap((g) => g.items);
     expect(items).toHaveLength(MODULE_REGISTRY.length);
-    expect(items.find((i) => i.href === '/app/ptm')).toMatchObject({ comingIn: 'P4' });
+    expect(items.find((i) => i.href === '/app/proxy')).toMatchObject({ comingIn: 'P5' });
     expect(items.find((i) => i.href === '/app/students')!.comingIn).toBeUndefined();
   });
 
@@ -32,11 +32,11 @@ describe('shell navigation', () => {
   });
 
   it('an unbuilt route shows its Coming page, or why the person cannot use it', () => {
-    expect(comingState('principal', ent, 'ptm')).toBe('coming');
-    expect(comingState('accountant', ent, 'ptm')).toBe('role');
-    expect(comingState('principal', { ...ent, modules: {} }, 'ptm')).toBe('module');
+    expect(comingState('principal', ent, 'proxy')).toBe('coming');
+    expect(comingState('accountant', ent, 'proxy')).toBe('role');
+    expect(comingState('principal', { ...ent, modules: {} }, 'proxy')).toBe('module');
     expect(comingState('teacher', { ...ent, modules: {}, accessMode: 'suspended' }, 'raise-ticket')).toBe('coming'); // help is always on
-    expect(moduleForSegment('ptm')?.id).toBe('ptm');
+    expect(moduleForSegment('proxy')?.id).toBe('proxy');
     expect(moduleForSegment('documents')).toBeNull(); // its route is /app/documents-id-cards
     expect(moduleForSegment('settings')).toBeNull(); // not a module route: 404 from the dynamic page
   });

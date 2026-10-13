@@ -108,6 +108,167 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
     },
   },
   {
+    // A notice written by staff and approved by the principal, for one class or for every class.
+    name: 'class_notice',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'class', 'notice'],
+    body: {
+      en: '{{school}}: Notice for {{class}}. {{notice}}',
+      hi: '{{school}}: {{class}} के लिए सूचना। {{notice}}',
+    },
+  },
+  {
+    // Parent-teacher meetings (C193): one a guardian and teacher; the parent books by replying with a time.
+    name: 'ptm_invitation',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 2880,
+    variables: ['school', 'date', 'teacher', 'children', 'from', 'to'],
+    body: {
+      en: '{{school}}: Parent-teacher meeting on {{date}}. {{teacher}} would like to meet you about {{children}}, between {{from}} and {{to}}. Reply with the time that suits you, for example 10:30, to book it.',
+      hi: '{{school}}: {{date}} को अभिभावक-शिक्षक बैठक है। {{teacher}} आपसे {{children}} के बारे में {{from}} से {{to}} के बीच मिलना चाहते हैं। जो समय आपको ठीक लगे वह लिखकर भेजें, जैसे 10:30, और वह आपके लिए तय हो जाएगा।',
+    },
+  },
+  {
+    name: 'ptm_booked',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'date', 'time', 'teacher'],
+    body: {
+      en: '{{school}}: Your meeting with {{teacher}} is booked for {{time}} on {{date}}. To change it, reply with another time.',
+      hi: '{{school}}: {{teacher}} के साथ आपकी बैठक {{date}} को {{time}} पर तय है। बदलने के लिए दूसरा समय लिखकर भेजें।',
+    },
+  },
+  {
+    name: 'ptm_time_not_free',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 720,
+    variables: ['school', 'teacher', 'times'],
+    body: {
+      en: '{{school}}: That time is not free with {{teacher}}. Free times: {{times}}. Reply with one of them to book it.',
+      hi: '{{school}}: {{teacher}} के साथ वह समय ख़ाली नहीं है। ख़ाली समय: {{times}}। इनमें से एक लिखकर भेजें।',
+    },
+  },
+  {
+    name: 'ptm_reminder',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 900,
+    variables: ['school', 'date', 'time', 'teacher'],
+    body: {
+      en: '{{school}}: A reminder: your meeting with {{teacher}} is at {{time}} on {{date}}.',
+      hi: '{{school}}: याद दिला दें: {{teacher}} के साथ आपकी बैठक {{date}} को {{time}} पर है।',
+    },
+  },
+  {
+    name: 'ptm_cancelled',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'date', 'teacher'],
+    body: {
+      en: '{{school}}: The parent-teacher meeting on {{date}} has been cancelled, so your meeting with {{teacher}} will not take place. We are sorry for the change.',
+      hi: '{{school}}: {{date}} की अभिभावक-शिक्षक बैठक रद्द हो गई है, इसलिए {{teacher}} के साथ आपकी बैठक नहीं होगी। बदलाव के लिए खेद है।',
+    },
+  },
+  {
+    // School events (C194): to the guardians of the invited classes only; YES and NO are counted.
+    name: 'event_invitation',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 2880,
+    variables: ['school', 'title', 'when', 'details'],
+    body: {
+      en: '{{school}}: {{title}} on {{when}}. {{details}} Reply YES if you will come, or NO if you cannot.',
+      hi: '{{school}}: {{when}} को {{title}}। {{details}} आएँगे तो YES लिखकर भेजें, नहीं आ सकेंगे तो NO।',
+    },
+  },
+  {
+    name: 'event_reminder',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 900,
+    variables: ['school', 'title', 'when'],
+    body: {
+      en: '{{school}}: A reminder: {{title}} is on {{when}}.',
+      hi: '{{school}}: याद दिला दें: {{title}} {{when}} को है।',
+    },
+  },
+  {
+    name: 'event_cancelled',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'title', 'when'],
+    body: {
+      en: '{{school}}: {{title}} on {{when}} has been cancelled. We are sorry for the change.',
+      hi: '{{school}}: {{when}} का {{title}} रद्द हो गया है। बदलाव के लिए खेद है।',
+    },
+  },
+  {
+    // Complaints (C195): the parent is told at each step: noted, passed to the principal, closed with what was done.
+    name: 'complaint_received',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'ref', 'owner', 'due'],
+    body: {
+      en: '{{school}}: We have noted your concern (reference {{ref}}). {{owner}} will look into it and reply to you by {{due}}.',
+      hi: '{{school}}: हमने आपकी बात दर्ज कर ली है (संदर्भ {{ref}})। {{owner}} इसे देखेंगे और {{due}} तक आपको जवाब देंगे।',
+    },
+  },
+  {
+    name: 'complaint_escalated',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'ref'],
+    body: {
+      en: '{{school}}: Your concern (reference {{ref}}) has not been settled in time, so it has been passed to the principal, who will look into it.',
+      hi: '{{school}}: आपकी बात (संदर्भ {{ref}}) समय पर नहीं सुलझी, इसलिए इसे प्रिंसिपल को सौंप दिया गया है, जो इसे देखेंगे।',
+    },
+  },
+  {
+    name: 'complaint_closed',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'ref', 'note'],
+    body: {
+      en: '{{school}}: About your concern (reference {{ref}}): {{note}} If this does not settle it, reply to this message.',
+      hi: '{{school}}: आपकी बात (संदर्भ {{ref}}) के बारे में: {{note}} अगर इससे बात न सुलझे, तो इस संदेश का जवाब दें।',
+    },
+  },
+  {
+    // Parent AI v1 (C196): an answer to "what can I do at home?", read and approved by a person before it goes.
+    name: 'home_help',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'child', 'answer'],
+    body: {
+      en: '{{school}}: What you can do at home for {{child}}. {{answer}}',
+      hi: '{{school}}: {{child}} के लिए आप घर पर क्या कर सकते हैं। {{answer}}',
+    },
+  },
+  {
     name: 'messages_stopped',
     version: 1,
     category: 'utility',
@@ -153,6 +314,8 @@ export async function templateToSend(client: Pick<PoolClient, 'query'>, schoolId
     `select id, template_name, version, language, body, variables, billing_category, stale_after_minutes, meta_status, meta_template_id
        from whatsapp_templates
       where template_name = $2 and (school_id = $1 or school_id is null) and status = 'approved' and language in ($3, 'en') and ($4 = false or meta_status = 'approved')
+        -- Words in a language other than English go out only once a reader of that language has reviewed them (C190).
+        and (language = 'en' or wording_reviewed)
       order by (language = $3) desc, school_id nulls last, version desc
       limit 1`,
     [schoolId, templateName, language, needsMeta]
@@ -173,7 +336,7 @@ export function missingVariables(template: Pick<TemplateToSend, 'variables'>, pa
 
 // --- Control: the founder's side ---------------------------------------------------------------------------
 
-export type TemplateRow = { id: string; name: string; version: number; language: TemplateLanguage; body: string | null; variables: string[]; category: string; staleAfterMinutes: number | null; status: 'approved' | 'pending' | 'rejected'; approvedByName: string | null; approvedAt: string | null; metaStatus: string; metaTemplateId: string | null; metaDecidedAt: string | null; inCode: boolean; sendsNow: boolean };
+export type TemplateRow = { id: string; name: string; version: number; language: TemplateLanguage; body: string | null; variables: string[]; category: string; staleAfterMinutes: number | null; status: 'approved' | 'pending' | 'rejected'; approvedByName: string | null; approvedAt: string | null; metaStatus: string; metaTemplateId: string | null; metaDecidedAt: string | null; inCode: boolean; sendsNow: boolean; wordingReviewed: boolean; wordingReviewedNote: string | null };
 export const META_STATUSES = ['not_submitted', 'pending', 'approved', 'rejected', 'paused'] as const;
 
 // Every version in the code that the database does not yet hold is written, waiting for approval. A row from
@@ -201,16 +364,16 @@ export async function syncTemplates(db: Sql): Promise<{ added: number; filled: n
 
 export async function listTemplates(db: Sql): Promise<TemplateRow[]> {
   const { rows } = await db.query(
-    `select t.id, t.template_name, t.version, t.language, t.body, t.variables, t.billing_category, t.stale_after_minutes, t.status::text as status, u.display_name as approved_by_name, t.approved_at, t.meta_status, t.meta_template_id, t.meta_decided_at,
-            t.version = (select max(n.version) from whatsapp_templates n where n.school_id is null and n.template_name = t.template_name and n.language = t.language and n.status = 'approved') as sends_now
+    `select t.id, t.template_name, t.version, t.language, t.body, t.variables, t.billing_category, t.stale_after_minutes, t.status::text as status, u.display_name as approved_by_name, t.approved_at, t.meta_status, t.meta_template_id, t.meta_decided_at, t.wording_reviewed, t.wording_reviewed_note,
+            t.version = (select max(n.version) from whatsapp_templates n where n.school_id is null and n.template_name = t.template_name and n.language = t.language and n.status = 'approved' and (n.language = 'en' or n.wording_reviewed)) as sends_now
        from whatsapp_templates t left join users u on u.user_id = t.approved_by
       where t.school_id is null order by t.template_name, t.language, t.version desc`
   );
   const iso = (v: unknown) => (v ? new Date(v as string).toISOString() : null);
-  return rows.map((r) => ({ id: r.id, name: r.template_name, version: r.version, language: r.language, body: r.body, variables: r.variables ?? [], category: r.billing_category, staleAfterMinutes: r.stale_after_minutes, status: r.status, approvedByName: r.approved_by_name ?? null, approvedAt: iso(r.approved_at), metaStatus: r.meta_status, metaTemplateId: r.meta_template_id, metaDecidedAt: iso(r.meta_decided_at), inCode: TEMPLATE_REGISTRY.some((d) => d.name === r.template_name && d.version === r.version && d.body[r.language as TemplateLanguage] === r.body), sendsNow: r.sends_now === true }));
+  return rows.map((r) => ({ id: r.id, name: r.template_name, version: r.version, language: r.language, body: r.body, variables: r.variables ?? [], category: r.billing_category, staleAfterMinutes: r.stale_after_minutes, status: r.status, approvedByName: r.approved_by_name ?? null, approvedAt: iso(r.approved_at), metaStatus: r.meta_status, metaTemplateId: r.meta_template_id, metaDecidedAt: iso(r.meta_decided_at), inCode: TEMPLATE_REGISTRY.some((d) => d.name === r.template_name && d.version === r.version && d.body[r.language as TemplateLanguage] === r.body), sendsNow: r.sends_now === true, wordingReviewed: r.wording_reviewed === true, wordingReviewedNote: r.wording_reviewed_note ?? null }));
 }
 
-export type TemplateActionResult = { ok: true } | { ok: false; reason: 'not_found' | 'no_words' | 'not_in_code' | 'meta_status' | 'meta_id' };
+export type TemplateActionResult = { ok: true } | { ok: false; reason: 'not_found' | 'no_words' | 'not_in_code' | 'meta_status' | 'meta_id' | 'note' | 'english' };
 
 // Our own approval: a person at NetCyberAI has read these exact words. Only words that are still the code's.
 export async function decideTemplate(db: Sql, by: { userId: string }, id: string, approve: boolean): Promise<TemplateActionResult> {
@@ -231,4 +394,17 @@ export async function recordMetaDecision(db: Sql, id: string, input: { metaStatu
   if (metaId.length > 100 || (input.metaStatus !== 'not_submitted' && metaId === '')) return { ok: false, reason: 'meta_id' };
   const done = await db.query(`update whatsapp_templates set meta_status = $2, meta_template_id = nullif($3, ''), meta_decided_at = now() where id = $1 and school_id is null`, [id, input.metaStatus, metaId]);
   return done.rowCount === 1 ? { ok: true } : { ok: false, reason: 'not_found' };
+}
+
+// A reader of the language has read this version's words (C190): who, as the founder writes it down, and when.
+// Only for a language other than English; it cannot be taken back, because a version's words never change.
+export async function markWordingReviewed(db: Sql, by: { userId: string }, id: string, noteRaw: string): Promise<TemplateActionResult> {
+  const note = noteRaw.trim().replace(/\s+/g, ' ').slice(0, 200);
+  if (!note) return { ok: false, reason: 'note' };
+  const row = (await db.query(`select language, body from whatsapp_templates where id = $1 and school_id is null for update`, [id])).rows[0];
+  if (!row) return { ok: false, reason: 'not_found' };
+  if (row.language === 'en') return { ok: false, reason: 'english' };
+  if (row.body === null) return { ok: false, reason: 'no_words' };
+  await db.query(`update whatsapp_templates set wording_reviewed = true, wording_reviewed_by = $2, wording_reviewed_at = now(), wording_reviewed_note = $3 where id = $1 and wording_reviewed = false`, [id, by.userId, note]);
+  return { ok: true };
 }

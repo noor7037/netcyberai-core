@@ -1,7 +1,10 @@
 import { createHash } from 'crypto';
+import type { PoolClient } from 'pg';
 import type { Sql } from '@/lib/jobs/types';
+import { messageCost, rateOnSendDate, templateCategory } from './gate';
+import { writtenForms } from './phone';
 import type { WhatsAppNotice, WhatsAppProvider } from './provider';
-import { receiveInbound } from './replies';
+import { receiveInbound, type InboundJobs } from './replies';
 
 // Delivery states (docs/25 slice 7b, C183). A provider tells us afterwards
 // where a message got to. Each notice is:
@@ -18,14 +21,33 @@ import { receiveInbound } from './replies';
 
 export type NoticeOutcome = { status: 200 | 401; duplicate: boolean; applied: number; stale: number; unknown: number; inbound: number; reason?: string };
 export const MAX_REFUSED_KEPT_PER_HOUR = 100;
-const RANK: Record<string, number> = { queued: 0, sent: 1, delivered: 2, read: 3 };
+const RANK: Record<string, number> = { queued: 0, uncertain: 1, sent: 2, delivered: 3, read: 4 };
 
 async function applyStatus(db: Sql, provider: WhatsAppProvider, n: Extract<WhatsAppNotice, { kind: 'status' }>): Promise<'applied' | 'stale' | 'unknown'> {
-  const row = (await db.query(`select log_id, status::text as status from communication_log where provider_message_id = $1 and provider = $2 for update`, [n.providerMessageId, provider.name])).rows[0];
+  let row = (await db.query(`select log_id, status::text as status from communication_log where provider_message_id = $1 and provider = $2 for update`, [n.providerMessageId, provider.name])).rows[0];
+  if (!row && n.recipient && n.status !== 'failed') {
+    // An interrupted send has no id of ours to be found by (C190). If this provider now reports on a message to a
+    // number that has exactly ONE uncertain message from it in the day before, this is that message: it takes the
+    // provider's id and moves forward. Two uncertain messages to one number are not guessed between.
+    const uncertain = (await db.query(
+      `select l.log_id, l.school_id, l.template_name, s.timezone from communication_log l join schools s on s.school_id = l.school_id
+        where l.status = 'uncertain' and l.provider = $1 and l.provider_message_id is null and regexp_replace(l.to_phone, '[^0-9]', '', 'g') = any($2::text[])
+          and l.created_at > $3::timestamptz - interval '24 hours' and l.created_at <= $3::timestamptz for update of l`,
+      [provider.name, writtenForms(n.recipient), n.at]
+    )).rows;
+    if (uncertain.length === 1) {
+      const u = uncertain[0];
+      // It did go, so a real account's message is priced now, as it would have been when sent.
+      const cost = provider.name === 'meta' && u.template_name ? messageCost(await templateCategory(db as PoolClient, u.school_id, u.template_name), true, await rateOnSendDate(db as PoolClient, await templateCategory(db as PoolClient, u.school_id, u.template_name), u.timezone)) : null;
+      await db.query(`update communication_log set provider_message_id = $2, status = 'sent', reason = 'the send was interrupted; the provider has since said it went', est_cost_paise = coalesce($3, est_cost_paise), gst_paise = coalesce($4, gst_paise), rate_id = coalesce($5, rate_id), cost_basis = coalesce($6, cost_basis) where log_id = $1`, [u.log_id, n.providerMessageId, cost?.estCostPaise ?? null, cost?.gstPaise ?? null, cost?.rateId ?? null, cost?.costBasis ?? null]);
+      row = { log_id: u.log_id, status: 'sent' };
+      if (n.status === 'sent') return 'applied';
+    }
+  }
   if (!row) return 'unknown';
   const was = row.status as string;
   if (n.status === 'failed') {
-    if (was !== 'sent' && was !== 'queued') return 'stale';
+    if (was !== 'sent' && was !== 'queued' && was !== 'uncertain') return 'stale';
     // It never arrived: it costs nothing.
     await db.query(`update communication_log set status = 'failed', failed_at = $2, failure_code = $3, reason = coalesce(reason, 'the provider could not deliver it'), billable = false, est_cost_paise = 0, gst_paise = 0, rate_id = null, cost_basis = 'not_billable' where log_id = $1`, [row.log_id, n.at, n.failureCode ?? null]);
     return 'applied';
@@ -43,8 +65,8 @@ async function applyStatus(db: Sql, provider: WhatsAppProvider, n: Extract<Whats
 }
 
 // One webhook body, as the platform role, in the caller's transaction.
-// `confirm`: how a queued confirmation (a parent wrote STOP) is handed to the job queue; the send-gate gives it.
-export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody: string, signature: string | null, confirm?: (db: Sql, logId: string, schoolId: string) => Promise<unknown>): Promise<NoticeOutcome> {
+// `jobs`: how a confirmation (a parent wrote STOP) or a question (which school?) is handed to the job queue; the send-gate gives it.
+export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody: string, signature: string | null, jobs?: InboundJobs): Promise<NoticeOutcome> {
   const hash = createHash('sha256').update(`${provider.name}\n${rawBody}`).digest('hex');
   if ((await db.query(`select 1 from webhook_events where payload_hash = $1`, [hash])).rows[0]) return { status: 200, duplicate: true, applied: 0, stale: 0, unknown: 0, inbound: 0 };
   const read = provider.readNotice(rawBody, signature);
@@ -61,7 +83,7 @@ export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody:
   for (const n of read.notices) {
     if (n.kind === 'inbound') {
       // A parent's own words go to their school's thread (replies.ts), never into this table.
-      if ((await receiveInbound(db, provider.name, n, confirm)).kind !== 'duplicate') out.inbound += 1;
+      if ((await receiveInbound(db, provider.name, n, jobs)).kind !== 'duplicate') out.inbound += 1;
     } else out[await applyStatus(db, provider, n)] += 1;
   }
   const ids = read.notices.filter((n) => n.kind === 'status').map((n) => n.providerMessageId);
@@ -75,7 +97,7 @@ export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody:
 
 export type MessageRow = { log_id: string; created_at: string; child: string | null; guardian: string | null; phone_last4: string | null; template_name: string | null; status: string; reason: string | null; provider: string | null; delivered_at: string | null; read_at: string | null; failed_at: string | null };
 export type MessageList = { messages: MessageRow[]; counts: Record<string, number>; days: number };
-export const MESSAGE_STATES = ['queued', 'sent', 'delivered', 'read', 'failed', 'held'] as const;
+export const MESSAGE_STATES = ['queued', 'uncertain', 'sent', 'delivered', 'read', 'failed', 'held'] as const;
 const HELD = `status::text like 'blocked_%'`;
 
 // The school's own messages of the last 14 days, newest first: who, what, and where each got to. The caller's

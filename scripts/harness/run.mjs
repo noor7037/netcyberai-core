@@ -805,6 +805,267 @@ const parentRepliesDone = async () => {
   if (JSON.stringify(rows[0]) !== JSON.stringify(want)) throw new Error(`parents' replies in the database: ${JSON.stringify(rows[0])}`);
   if (JSON.stringify(repliesSeen) !== JSON.stringify({ first: 200, stop: 200, threadShows: 'in,out', replyBoxAfterStop: 0 })) throw new Error(`parents' replies on the screen: ${JSON.stringify(repliesSeen)}`);
 };
+// Notices to parents (C191): the principal writes a notice for a class. Writing it sends nothing. Approving it is
+// what sends it: one message a guardian of that class, through the gate, as the notice template.
+const clearNotices = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from communication_log where dedupe_key like 'notice:%'; delete from jobs where type = 'whatsapp.send'; delete from class_notices; delete from whatsapp_templates where template_name = 'class_notice' and meta_template_id = 'harness-7i'; set session_replication_role = origin;`);
+};
+let noticesSeen = null;
+let noticePilotBefore = null;
+const classNotice = async (page) => {
+  await clearNotices();
+  noticePilotBefore = (await db.pg.query(`select pilot_allow_outbound from schools where school_id = $1`, [SCHOOL])).rows[0];
+  await db.pg.query(`update schools set pilot_allow_outbound = true where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_template_id) values (null, 'class_notice', 1, 'en', '{{school}}: Notice for {{class}}. {{notice}}', '{school,class,notice}', 'utility', 1440, 'approved', 'harness-7i')`);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-notices]').waitFor({ timeout: 20000 });
+  await page.selectOption('#notice-class', { label: '5-A' });
+  await page.locator('#notice-body').fill('The parent meeting is on Saturday at 10 am in the school hall.');
+  await page.locator('[data-notice-write]').click();
+  await page.locator('[data-notice="waiting"]').waitFor({ timeout: 20000 });
+  const sentBeforeApproval = (await db.pg.query(`select count(*)::int as n from communication_log where dedupe_key like 'notice:%'`)).rows[0].n;
+  await page.locator('[data-notice-approve]').click();
+  await page.locator('[data-notice="sent"] [data-notice-counts]').waitFor({ timeout: 20000 });
+  noticesSeen = { sentBeforeApproval, waitingLeft: await page.locator('[data-notice="waiting"]').count() };
+};
+const classNoticeDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from class_notices where school_id = $1 and status = 'sent' and decided_by = $2) as sent_notices,
+            (select count(*)::int from communication_log l where l.dedupe_key like 'notice:%') as messages,
+            (select count(*)::int from communication_log l where l.dedupe_key like 'notice:%' and (l.template_name <> 'class_notice' or l.purpose <> 'operational_communication')) as not_as_notice,
+            (select count(*)::int from communication_log l join students s on s.student_id = l.student_id join classes c on c.class_id = s.class_id where l.dedupe_key like 'notice:%' and c.name <> '5-A') as other_classes,
+            (select count(*)::int from (select to_phone from communication_log where dedupe_key like 'notice:%' group by to_phone having count(*) > 1) d) as told_twice`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  await clearNotices();
+  await db.pg.query(`update schools set pilot_allow_outbound = $2 where school_id = $1`, [SCHOOL, noticePilotBefore.pilot_allow_outbound]);
+  const r = rows[0];
+  if (r.sent_notices !== 1 || r.messages < 1 || r.not_as_notice !== 0 || r.other_classes !== 0 || r.told_twice !== 0) throw new Error(`the notice in the database: ${JSON.stringify(r)}`);
+  if (JSON.stringify(noticesSeen) !== JSON.stringify({ sentBeforeApproval: 0, waitingLeft: 0 })) throw new Error(`the notice on the screen: ${JSON.stringify(noticesSeen)}`);
+};
+// Parents (C192): the principal finds a guardian, opens them, and chooses Hindi for their messages; the screen and
+// the database both say so, and the choice is put back. A teacher opens a guardian of their own class and gets no
+// way to change anything, and never the whole number.
+let parentsSeen = null;
+let parentTouched = null;
+const parentsScreen = async (page) => {
+  await page.locator('[data-guardian]').first().waitFor({ timeout: 20000 });
+  await page.locator('[data-guardian]').first().click();
+  await page.locator('[data-guardian-open] [data-guardian-phone]').waitFor({ timeout: 20000 });
+  const name = (await page.locator('[data-guardian-open] h2').textContent()).trim();
+  parentTouched = (await db.pg.query(`select parent_id, preferred_language from parents where school_id = $1 and name = $2 order by parent_id limit 1`, [SCHOOL, name])).rows[0];
+  await page.selectOption('#guardian-language', 'hi');
+  await page.locator('[data-guardian-language="hi"]').waitFor({ timeout: 20000 });
+  parentsSeen = { purposes: await page.locator('[data-guardian-child]').first().locator('[data-consent]').count(), requests: await page.locator('[data-guardian-requests]').count() };
+};
+const parentsScreenDone = async () => {
+  const now = (await db.pg.query(`select preferred_language from parents where parent_id = $1`, [parentTouched.parent_id])).rows[0].preferred_language;
+  await db.pg.query(`update parents set preferred_language = $2 where parent_id = $1`, [parentTouched.parent_id, parentTouched.preferred_language]);
+  if (now !== 'hi' || parentsSeen.purposes !== 6 || parentsSeen.requests !== 1) throw new Error(`the Parents screen: language ${now}, ${JSON.stringify(parentsSeen)}`);
+};
+let parentsTeacherSeen = null;
+const parentsTeacher = async (page) => {
+  await page.locator('[data-guardian]').first().waitFor({ timeout: 20000 });
+  const listed = await page.locator('[data-guardian]').count();
+  await page.locator('[data-guardian]').first().click();
+  await page.locator('[data-guardian-open] [data-guardian-phone]').waitFor({ timeout: 20000 });
+  const text = await page.locator('[data-guardian-open]').textContent();
+  parentsTeacherSeen = { listed, canChange: (await page.locator('[data-consent-change]').count()) + (await page.locator('#guardian-language').count()) + (await page.locator('[data-guardian-requests]').count()), wholeNumber: /[0-9]{7,}/.test(text.replace(/\s/g, '')) };
+};
+const parentsTeacherDone = async () => {
+  const all = (await db.pg.query(`select count(*)::int as n from parents where school_id = $1 and merged_into is null`, [SCHOOL])).rows[0].n;
+  const t = parentsTeacherSeen;
+  if (t.listed < 1 || t.listed > all || t.canChange !== 0 || t.wholeNumber) throw new Error(`the teacher's Parents screen: ${JSON.stringify(t)} of ${all} guardians`);
+};
+// Parent-teacher meetings (C193): the principal plans a day for 5-A, invites the parents (one message a guardian's
+// number and teacher, through the gate), and books a time for a parent who phoned. Everything is put back.
+const PTM_TEMPLATES = { ptm_invitation: '{school,date,teacher,children,from,to}', ptm_booked: '{school,date,time,teacher}', ptm_cancelled: '{school,date,teacher}' };
+const clearPtm = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from communication_log where dedupe_key like 'ptm:%'; delete from jobs where type in ('whatsapp.send', 'ptm.remind'); delete from ptm_bookings; delete from ptm_slots; delete from ptm_events; delete from whatsapp_templates where meta_template_id = 'harness-7k'; set session_replication_role = origin;`);
+};
+let ptmSeen = null;
+let ptmPilotBefore = null;
+const ptmScreen = async (page) => {
+  await clearPtm();
+  ptmPilotBefore = (await db.pg.query(`select pilot_allow_outbound from schools where school_id = $1`, [SCHOOL])).rows[0];
+  await db.pg.query(`update schools set pilot_allow_outbound = true where school_id = $1`, [SCHOOL]);
+  for (const [name, variables] of Object.entries(PTM_TEMPLATES)) await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_template_id) values (null, $1, 1, 'en', '{{school}}: ' || $1, $2, 'utility', 1440, 'approved', 'harness-7k')`, [name, variables]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-ptm-new]').waitFor({ timeout: 20000 });
+  await page.locator('#ptm-title').fill('Term meeting');
+  await page.locator('#ptm-date').fill(new Date(Date.now() + 5.5 * 3600000 + 3 * 86400000).toISOString().slice(0, 10));
+  await page.locator('#ptm-from').fill('10:00');
+  await page.locator('#ptm-to').fill('11:00');
+  await page.locator('label', { hasText: '5-A' }).locator('[data-ptm-class]').check();
+  await page.locator('[data-ptm-make]').click();
+  await page.locator('[data-ptm-open="draft"]').waitFor({ timeout: 20000 });
+  const sentAsDraft = (await db.pg.query(`select count(*)::int as n from communication_log where dedupe_key like 'ptm:%'`)).rows[0].n;
+  await page.locator('[data-ptm-invite]').click();
+  await page.locator('[data-ptm-open="invited"]').waitFor({ timeout: 20000 });
+  const slot = page.locator('[data-ptm-slot="free"]').first();
+  await slot.locator('select').selectOption({ index: 1 });
+  await slot.locator('[data-ptm-book]').click();
+  await page.locator('[data-ptm-slot="booked"]').waitFor({ timeout: 20000 });
+  ptmSeen = { sentAsDraft, slots: await page.locator('[data-ptm-slot]').count(), booked: await page.locator('[data-ptm-slot="booked"]').count() };
+};
+const ptmScreenDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from ptm_events where school_id = $1 and status = 'invited') as invited, (select count(*)::int from ptm_bookings where booked_via = 'staff' and booked_by = $2) as booked,
+            (select count(*)::int from communication_log where dedupe_key like 'ptm:%:inv:%') as invitations,
+            (select count(*)::int from (select to_phone from communication_log where dedupe_key like 'ptm:%:inv:%' group by to_phone, split_part(dedupe_key, ':', 4) having count(*) > 1) d) as twice,
+            (select count(*)::int from jobs where type = 'ptm.remind') as reminders`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  await clearPtm();
+  await db.pg.query(`update schools set pilot_allow_outbound = $2 where school_id = $1`, [SCHOOL, ptmPilotBefore.pilot_allow_outbound]);
+  const r = rows[0];
+  if (r.invited !== 1 || r.booked !== 1 || r.invitations < 1 || r.twice !== 0 || r.reminders !== 1) throw new Error(`the meeting in the database: ${JSON.stringify(r)}`);
+  if (JSON.stringify(ptmSeen) !== JSON.stringify({ sentAsDraft: 0, slots: 4, booked: 1 })) throw new Error(`the meeting on the screen: ${JSON.stringify(ptmSeen)}`);
+};
+// Events (C194): the principal adds an event for 5-A and invites: the guardians of 5-A are told, once each,
+// through the gate. Then cancels it: those invited are told. Everything is put back.
+const clearEvents = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from communication_log where dedupe_key like 'event:%'; delete from jobs where type in ('whatsapp.send', 'event.remind'); delete from event_replies; delete from school_events; delete from whatsapp_templates where meta_template_id = 'harness-7l'; set session_replication_role = origin;`);
+};
+let eventsSeen = null;
+let eventPilotBefore = null;
+const eventsScreen = async (page) => {
+  await clearEvents();
+  eventPilotBefore = (await db.pg.query(`select pilot_allow_outbound from schools where school_id = $1`, [SCHOOL])).rows[0];
+  await db.pg.query(`update schools set pilot_allow_outbound = true where school_id = $1`, [SCHOOL]);
+  for (const [name, variables] of Object.entries({ event_invitation: '{school,title,when,details}', event_cancelled: '{school,title,when}' })) await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_template_id) values (null, $1, 1, 'en', '{{school}}: ' || $1, $2, 'utility', 1440, 'approved', 'harness-7l')`, [name, variables]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-event-new]').waitFor({ timeout: 20000 });
+  await page.locator('#event-title').fill('Sports day');
+  await page.locator('#event-date').fill(new Date(Date.now() + 5.5 * 3600000 + 4 * 86400000).toISOString().slice(0, 10));
+  await page.locator('#event-time').fill('09:30');
+  await page.locator('#event-details').fill('On the school ground. Please send a water bottle.');
+  await page.locator('[data-event-all]').uncheck();
+  await page.locator('label', { hasText: '5-A' }).locator('[data-event-class]').check();
+  await page.locator('[data-event-make]').click();
+  await page.locator('[data-event="draft"]').waitFor({ timeout: 20000 });
+  const sentAsDraft = (await db.pg.query(`select count(*)::int as n from communication_log where dedupe_key like 'event:%'`)).rows[0].n;
+  await page.locator('[data-event-invite]').click();
+  await page.locator('[data-event="invited"] [data-event-counts]').waitFor({ timeout: 20000 });
+  eventsSeen = { sentAsDraft };
+};
+const eventsScreenDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from school_events where school_id = $1 and status = 'invited' and invited_by = $2) as invited,
+            (select count(*)::int from communication_log where dedupe_key like 'event:%:inv:%') as invitations,
+            (select count(*)::int from communication_log l join students s on s.student_id = l.student_id join classes c on c.class_id = s.class_id where l.dedupe_key like 'event:%' and c.name <> '5-A') as other_classes,
+            (select count(*)::int from (select to_phone from communication_log where dedupe_key like 'event:%:inv:%' group by to_phone having count(*) > 1) d) as twice,
+            (select count(*)::int from jobs where type = 'event.remind') as reminders`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  await clearEvents();
+  await db.pg.query(`update schools set pilot_allow_outbound = $2 where school_id = $1`, [SCHOOL, eventPilotBefore.pilot_allow_outbound]);
+  const r = rows[0];
+  if (r.invited !== 1 || r.invitations < 1 || r.other_classes !== 0 || r.twice !== 0 || r.reminders !== 1 || eventsSeen.sentAsDraft !== 0) throw new Error(`the event: ${JSON.stringify(r)} ${JSON.stringify(eventsSeen)}`);
+};
+// Complaints (C195): the principal records a guardian's complaint and gives it to a member of staff; then closes it
+// with what was done. Closing without words is not possible on the screen or in the database. Put back afterwards.
+const clearComplaints = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from communication_log where dedupe_key like 'complaint:%'; delete from jobs where type in ('whatsapp.send', 'complaint.escalate'); delete from complaint_events; delete from complaints; delete from whatsapp_templates where meta_template_id = 'harness-7m'; set session_replication_role = origin;`);
+};
+let complaintsSeen = null;
+const complaintsScreen = async (page) => {
+  await clearComplaints();
+  for (const [name, variables] of Object.entries({ complaint_received: '{school,ref,owner,due}', complaint_closed: '{school,ref,note}' })) await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_template_id) values (null, $1, 1, 'en', '{{school}}: ' || $1, $2, 'utility', 1440, 'approved', 'harness-7m')`, [name, variables]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-complaint-new]').waitFor({ timeout: 20000 });
+  await page.locator('#complaint-guardian').fill('Example');
+  await page.locator('[data-complaint-guardian]').first().click();
+  await page.selectOption('#complaint-child', { index: 1 });
+  await page.selectOption('#complaint-owner', { index: 1 });
+  await page.locator('#complaint-summary').fill('The school bus reached late three days this week.');
+  await page.locator('[data-complaint-open]').click();
+  await page.locator('[data-complaint="open"]').waitFor({ timeout: 20000 });
+  const closeDisabledWithoutWords = await page.locator('[data-complaint-close]').first().isDisabled();
+  await page.locator('[data-complaint="open"] input').first().fill('The bus now leaves ten minutes earlier.');
+  await page.locator('[data-complaint-close]').first().click();
+  await page.locator('[data-complaint="closed"]').waitFor({ timeout: 20000 });
+  complaintsSeen = { closeDisabledWithoutWords, steps: await page.locator('[data-complaint="closed"] [data-complaint-step]').evaluateAll((els) => els.map((e) => e.getAttribute('data-complaint-step')).join()) };
+};
+const complaintsScreenDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from complaints where school_id = $1 and status = 'closed' and closing_note = 'The bus now leaves ten minutes earlier.' and closed_by = $2 and principal_seen_at is not null) as closed,
+            (select count(*)::int from complaint_events) as steps, (select count(*)::int from jobs where type = 'complaint.escalate') as escalations`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  await clearComplaints();
+  const r = rows[0];
+  if (r.closed !== 1 || r.steps !== 2 || r.escalations !== 1) throw new Error(`the complaint in the database: ${JSON.stringify(r)}`);
+  if (JSON.stringify(complaintsSeen) !== JSON.stringify({ closeDisabledWithoutWords: true, steps: 'opened,closed' })) throw new Error(`the complaint on the screen: ${JSON.stringify(complaintsSeen)}`);
+};
+// Parent AI v1 (C196): the principal drafts "what to do at home" for a guardian of 5-A from a topic taught today.
+// The draft sends nothing and shows what it used; approving it is what sends it. Everything is put back.
+const clearParentAi = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from communication_log where dedupe_key like 'parent-ai:%'; delete from jobs where type = 'whatsapp.send'; delete from parent_ai_answers; delete from ai_usage where kind = 'home_help'; delete from pulse_messages where topic = 'Fractions (harness 7n)'; delete from whatsapp_templates where meta_template_id = 'harness-7n'; set session_replication_role = origin;`);
+};
+let parentAiSeen = null;
+let parentAiPilotBefore = null;
+const parentAiScreen = async (page) => {
+  await clearParentAi();
+  parentAiPilotBefore = (await db.pg.query(`select pilot_allow_outbound from schools where school_id = $1`, [SCHOOL])).rows[0];
+  await db.pg.query(`update schools set pilot_allow_outbound = true where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_template_id) values (null, 'home_help', 1, 'en', '{{school}}: What you can do at home for {{child}}. {{answer}}', '{school,child,answer}', 'utility', 1440, 'approved', 'harness-7n')`);
+  await db.pg.query(`insert into pulse_messages (school_id, class_id, topic, body_en, body_hi, body_hinglish, sent_on, status, created_by) select $1, c.class_id, 'Fractions (harness 7n)', 'x', 'हिन्दी', 'x', (now() at time zone 'Asia/Kolkata')::date, 'ready', $2 from classes c where c.school_id = $1 and c.name = '5-A'`, [SCHOOL, PEOPLE.principal.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-parent-ai-new]').waitFor({ timeout: 20000 });
+  await page.locator('#parent-ai-guardian').fill('Example');
+  await page.locator('[data-parent-ai-guardian]').first().click();
+  await page.locator('[data-parent-ai-draft]').click();
+  await page.locator('[data-answer="draft"]').waitFor({ timeout: 20000 });
+  const sentAsDraft = (await db.pg.query(`select count(*)::int as n from communication_log where dedupe_key like 'parent-ai:%'`)).rows[0].n;
+  const cited = await page.locator('[data-answer="draft"] [data-answer-sources] li').count();
+  await page.locator('[data-answer-approve]').click();
+  await page.locator('[data-answer="sent"]').waitFor({ timeout: 20000 });
+  parentAiSeen = { sentAsDraft, cited: cited > 0 };
+};
+const parentAiScreenDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from parent_ai_answers where school_id = $1 and status = 'sent' and approved_by = $2 and jsonb_array_length(sources) >= 1) as sent,
+            (select count(*)::int from communication_log where dedupe_key like 'parent-ai:%' and template_name = 'home_help') as messages, (select count(*)::int from ai_usage where kind = 'home_help') as model_calls, (select count(*)::int from parent_ai_answers where ai_assisted) as with_ai`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  await clearParentAi();
+  await db.pg.query(`update schools set pilot_allow_outbound = $2 where school_id = $1`, [SCHOOL, parentAiPilotBefore.pilot_allow_outbound]);
+  const r = rows[0];
+  // The harness runs with the stand-in AI door open for the fixture school: a tip that came through it is metered, once.
+  if (r.sent !== 1 || r.messages !== 1 || r.model_calls !== r.with_ai) throw new Error(`the answer in the database: ${JSON.stringify(r)}`);
+  if (JSON.stringify(parentAiSeen) !== JSON.stringify({ sentAsDraft: 0, cited: true })) throw new Error(`the answer on the screen: ${JSON.stringify(parentAiSeen)}`);
+};
+// Control → Messaging & Cost (C197): the founder adds a rate with Meta's page and today's date (a made-up number,
+// taken away afterwards), and sets a school's monthly limit with a reason (put back afterwards).
+let costSeen = null;
+let budgetsBefore = [];
+const clearCost = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from message_rate_table where verified_source like '%harness-7o%'; set session_replication_role = origin;`);
+};
+const messagingCost = async (page) => {
+  await clearCost();
+  budgetsBefore = (await db.pg.query(`select school_id, monthly_budget_paise from schools`)).rows;
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-cost-rate-form]').waitFor({ timeout: 20000 });
+  await page.locator('#rate-rupees').fill('0.11');
+  await page.locator('#rate-source').fill('https://developers.facebook.com/docs/whatsapp/pricing?harness-7o');
+  await page.locator('[data-cost-rate-add]').click();
+  await page.waitForFunction(() => /Added/.test(document.querySelector('[data-cost-note]')?.textContent ?? ''), null, { timeout: 20000 });
+  const school = page.locator('[data-cost-school]').first();
+  await school.locator('input').nth(0).fill('500');
+  await school.locator('input').nth(1).fill('Agreed with the principal.');
+  await school.locator('[data-cost-budget-save]').click();
+  await page.waitForFunction(() => /limit is set/.test(document.querySelector('[data-cost-note]')?.textContent ?? ''), null, { timeout: 20000 });
+  costSeen = { schools: await page.locator('[data-cost-school]').count() };
+};
+const messagingCostDone = async () => {
+  const { rows } = await db.pg.query(`select (select count(*)::int from message_rate_table where verified_source like '%harness-7o%' and rate_paise = 11 and billing_category = 'utility') as rates, (select count(*)::int from schools where monthly_budget_paise = 50000) as budgets, (select count(*)::int from audit_log where event_action in ('whatsapp.rate_added', 'whatsapp.budget_set')) as audited`);
+  await clearCost();
+  for (const b of budgetsBefore) await db.pg.query(`update schools set monthly_budget_paise = $2 where school_id = $1`, [b.school_id, b.monthly_budget_paise]);
+  const r = rows[0];
+  if (r.rates < 1 || r.budgets < 1 || r.audited < 2 || costSeen.schools < 1) throw new Error(`messaging cost: ${JSON.stringify(r)} ${JSON.stringify(costSeen)}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -1133,7 +1394,7 @@ const SCREENS = [
   ['principal', 'app-settings-hindi', '/app/settings', speak('हिन्दी'), backToEnglish],
   ['founder', 'control-modules', `/control/schools/${SCHOOL}`, openModulesTab],
   ['principal', 'app-module-off', '/app/attendance', attendanceOff, attendanceOn],
-  ['founder', 'control-messaging-cost', '/control/messaging-cost'],
+  ['founder', 'control-messaging-cost', '/control/messaging-cost', messagingCost, messagingCostDone],
   ['founder', 'control-whatsapp', '/control/whatsapp', whatsappAccount, whatsappAccountDone],
   ['founder', 'control-templates', '/control/templates', messageTemplates, messageTemplatesDone],
   ['principal', 'app-dashboard', '/app/dashboard'],
@@ -1160,6 +1421,13 @@ const SCREENS = [
   ['principal', 'app-compliance', '/app/compliance'],
   ['principal', 'app-communication', '/app/communication', messageStates, messageStatesDone],
   ['principal', 'app-communication-replies', '/app/communication', parentReplies, parentRepliesDone],
+  ['principal', 'app-communication-notices', '/app/communication', classNotice, classNoticeDone],
+  ['principal', 'app-parents', '/app/parents', parentsScreen, parentsScreenDone],
+  ['principal', 'app-ptm', '/app/ptm', ptmScreen, ptmScreenDone],
+  ['principal', 'app-events', '/app/events', eventsScreen, eventsScreenDone],
+  ['principal', 'app-complaints', '/app/complaints', complaintsScreen, complaintsScreenDone],
+  ['principal', 'app-parent-ai', '/app/parent-ai', parentAiScreen, parentAiScreenDone],
+  ['teacher', 'app-parents-teacher', '/app/parents', parentsTeacher, parentsTeacherDone],
   ['principal', 'app-taught-today', '/app/syllabus'],
   ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],
   ['teacher', 'app-settings-teacher', '/app/settings', settingsReadOnly],

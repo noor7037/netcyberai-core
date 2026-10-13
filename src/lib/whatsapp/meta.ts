@@ -1,5 +1,5 @@
 import { createHmac, timingSafeEqual } from 'crypto';
-import type { NoticeRead, WhatsAppNotice, WhatsAppProvider, WhatsAppSendParams, WhatsAppSendResult, WhatsAppTextParams } from './provider';
+import type { NoticeRead, WhatsAppChoiceParams, WhatsAppNotice, WhatsAppProvider, WhatsAppSendParams, WhatsAppSendResult, WhatsAppTextParams } from './provider';
 
 // Meta's WhatsApp Cloud API (docs/25 slice 7e, C186). Built from Meta's own
 // documentation as it read on 2026-10-13, and DORMANT: it is used only when
@@ -15,6 +15,10 @@ import type { NoticeRead, WhatsAppNotice, WhatsAppProvider, WhatsAppSendParams, 
 //     https://developers.facebook.com/documentation/business-messaging/whatsapp/templates/overview
 //   Send free text    The same address; body { messaging_product, recipient_type, to, type: "text", text: { preview_url, body } }, body up to 4096 characters.
 //     https://developers.facebook.com/documentation/business-messaging/whatsapp/messages/text-messages
+//   Quick replies     The same address; { type: "interactive", interactive: { type: "button", body: { text }, action: { buttons: [{ type: "reply",
+//                     reply: { id, title } }] } } }: at most 3 buttons, a title of at most 20 characters. The answer arrives as
+//                     messages[]: { type: "interactive", interactive: { type: "button_reply", button_reply: { id, title } } }
+//     https://developers.facebook.com/documentation/business-messaging/whatsapp/messages/interactive-reply-buttons-messages
 //   The webhook       First check: GET with hub.mode=subscribe, hub.verify_token, hub.challenge; answer the challenge.
 //                     Every notice: header X-Hub-Signature-256 = "sha256=" + HMAC-SHA256 of the raw body with the App Secret.
 //     https://developers.facebook.com/docs/graph-api/webhooks/getting-started
@@ -66,6 +70,11 @@ export function textSendBody(p: WhatsAppTextParams): Record<string, unknown> {
   return { messaging_product: 'whatsapp', recipient_type: 'individual', to: p.toPhone, type: 'text', text: { preview_url: false, body: p.text } };
 }
 
+// A question with quick replies, exactly as documented: at most three, each title at most 20 characters.
+export function choiceSendBody(p: WhatsAppChoiceParams): Record<string, unknown> {
+  return { messaging_product: 'whatsapp', recipient_type: 'individual', to: p.toPhone, type: 'interactive', interactive: { type: 'button', body: { text: p.text }, action: { buttons: p.choices.map((c) => ({ type: 'reply', reply: { id: c.id, title: c.title } })) } } };
+}
+
 // The webhook's first check: Meta asks with the token we chose and expects its challenge back. Null: refuse.
 export function answerChallenge(config: Pick<MetaConfig, 'verifyToken'>, query: { mode: string | null; token: string | null; challenge: string | null }): string | null {
   if (query.mode !== 'subscribe' || !query.token || !query.challenge || query.challenge.length > 200) return null;
@@ -110,6 +119,11 @@ export class MetaWhatsAppProvider implements WhatsAppProvider {
     return this.post(params.testSchool, params.toPhone, textSendBody(params));
   }
 
+  async sendChoice(params: WhatsAppChoiceParams): Promise<WhatsAppSendResult> {
+    if (params.text.length === 0 || params.text.length > 1024 || params.choices.length < 1 || params.choices.length > 3 || params.choices.some((c) => !c.title || c.title.length > 20 || !c.id || c.id.length > 256)) return { success: false, providerMessageId: null, errorMessage: 'the question or its quick replies are outside what WhatsApp allows', raw: null };
+    return this.post(params.testSchool, params.toPhone, choiceSendBody(params));
+  }
+
   async testConnection(): Promise<{ ok: boolean; message: string }> {
     try {
       const res = await this.fetcher(`${GRAPH_HOST}/${GRAPH_VERSION}/${this.config.phoneNumberId}?fields=verified_name,display_phone_number,quality_rating`, { method: 'GET', headers: this.headers(), signal: AbortSignal.timeout(TIMEOUT_MS) });
@@ -147,14 +161,17 @@ export class MetaWhatsAppProvider implements WhatsAppProvider {
           const when = at(s.timestamp);
           if (!id || !when || (s.status !== 'sent' && s.status !== 'delivered' && s.status !== 'read' && s.status !== 'failed')) continue; // "played" and anything new: not ours to act on
           const code = obj(arr(s.errors)[0]).code;
-          notices.push({ kind: 'status', providerMessageId: id, status: s.status, at: when, ...(s.status === 'failed' && (typeof code === 'number' || typeof code === 'string') ? { failureCode: String(code).slice(0, 60) } : {}) });
+          const recipient = typeof s.recipient_id === 'string' && /^[1-9][0-9]{7,14}$/.test(s.recipient_id) ? `+${s.recipient_id}` : null;
+          notices.push({ kind: 'status', providerMessageId: id, status: s.status, at: when, ...(s.status === 'failed' && (typeof code === 'number' || typeof code === 'string') ? { failureCode: String(code).slice(0, 60) } : {}), ...(recipient ? { recipient } : {}) });
         }
         for (const m of arr(value.messages).map(obj)) {
           const id = str(m.id);
           const when = at(m.timestamp);
           const from = typeof m.from === 'string' && /^[1-9][0-9]{7,14}$/.test(m.from) ? `+${m.from}` : null;
-          const text = m.type === 'text' ? str(obj(m.text).body, 4096) : null;
-          if (id && when && from && text) notices.push({ kind: 'inbound', providerMessageId: id, fromPhone: from, text, at: when });
+          const tapped = m.type === 'interactive' && obj(m.interactive).type === 'button_reply' ? obj(obj(m.interactive).button_reply) : null;
+          const text = m.type === 'text' ? str(obj(m.text).body, 4096) : tapped ? str(tapped.title, 100) : null;
+          const choiceId = tapped ? str(tapped.id, 256) : null;
+          if (id && when && from && text) notices.push({ kind: 'inbound', providerMessageId: id, fromPhone: from, text, at: when, ...(choiceId ? { choiceId } : {}) });
         }
       }
     return { ok: true, notices };
