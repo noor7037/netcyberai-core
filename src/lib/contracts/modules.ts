@@ -128,7 +128,7 @@ const ROWS: readonly Row[] = [
     capabilities: ['Compose from “taught today”', 'Hinglish, Hindi and English', 'Send on WhatsApp', 'Understanding replies', 'Teacher follow-up queue', 'Response-rate North Star'] },
   { id: 'communication', label: 'Communication', group: 'parent-engagement', icon: 'chat', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', status: 'partial',
     capabilities: ['Notices for school and class', 'One notice to every channel', 'Templates', 'Send-gate: consent, quiet hours, budget', 'Delivery states', 'Failure retry', 'Cost view'] },
-  { id: 'ptm', label: 'PTM Scheduler', group: 'parent-engagement', icon: 'ptm', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', phaseNote: 'Class teachers’ slots, booking by reply, reminder and attendance are live; subject teachers’ slots later', status: 'partial',
+  { id: 'ptm', label: 'PTM Scheduler', group: 'parent-engagement', icon: 'ptm', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', phaseNote: 'Slots for class teachers and, when chosen, subject teachers; booking by reply, reminder and attendance are live', status: 'partial',
     capabilities: ['Slots per teacher', 'Parent booking over WhatsApp', 'Reminders', 'Attendance', 'Notes'] },
   { id: 'events', label: 'Events', group: 'parent-engagement', icon: 'events', roles: ENGAGEMENT, phase: 'P4', phaseNote: 'Events, invitations, YES and NO counted, reminder and cancellation are live; calendar and photos later', status: 'partial',
     capabilities: ['School calendar', 'Holidays', 'Events', 'RSVPs', 'Reminders'] },

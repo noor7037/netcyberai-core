@@ -25,7 +25,7 @@ export function PtmView() {
   const [data, setData] = useState<Data | null>(null);
   const [failed, setFailed] = useState(false);
   const [open, setOpen] = useState<Detail | null>(null);
-  const [form, setForm] = useState({ title: '', heldOn: '', startsAt: '10:00', endsAt: '13:00', slotMinutes: 15, classIds: [] as string[] });
+  const [form, setForm] = useState({ title: '', heldOn: '', startsAt: '10:00', endsAt: '13:00', slotMinutes: 15, classIds: [] as string[], withSubjectTeachers: false });
   const [pick, setPick] = useState<Record<string, string>>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
@@ -101,6 +101,11 @@ export function PtmView() {
               ))}
             </div>
           </fieldset>
+          <label className="flex min-h-[44px] items-center gap-2">
+            <input type="checkbox" data-ptm-subject-teachers className="h-5 w-5" checked={form.withSubjectTeachers} onChange={(e) => setForm({ ...form, withSubjectTeachers: e.target.checked })} />
+            <span>{t('ptm.new.subjectTeachers')}</span>
+          </label>
+          <p className="text-xs text-slate/70">{t('ptm.new.subjectTeachersHow')}</p>
           <button type="button" data-ptm-make disabled={busy || !form.title.trim() || !form.heldOn || form.classIds.length === 0} className={`${PRIMARY} self-start`} onClick={() => void send('/api/app/ptm', form, (r) => t('ptm.made', { slots: r.slots ?? 0, teachers: r.teachers ?? 0 }))}>
             {t('ptm.new.make')}
           </button>

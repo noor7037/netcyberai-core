@@ -16,6 +16,8 @@ import { normalizePhone } from '@/lib/whatsapp/phone';
 //   - Past its due time and still open, it is passed to the PRINCIPAL, who becomes its owner and sees it on My Day.
 //   - NOBODY BUT THE PRINCIPAL sees a complaint about themselves until the principal has seen it. That is the
 //     database's rule (the complaints_staff policy); this file never works around it.
+//   - NOBODY CHANGES a complaint about themselves, the principal included (C200): one about the principal is
+//     recorded and looked into by the school admin, and overdue it passes to the school admin.
 
 type Sql = Pick<PoolClient, 'query'>;
 type Queue = { enqueue: (db: Sql, spec: JobSpec) => Promise<unknown> };
@@ -29,7 +31,7 @@ export const reference = (complaintId: string) => complaintId.slice(0, 8).toUppe
 
 // Tell the parent, if they can be told: a usable number and a child to hold the consent against. Returns whether a
 // message was queued; a held or impossible message is recorded as "not told" on the step.
-async function tellParent(db: PoolClient, queue: Queue, c: { schoolId: string; complaintId: string; parentId: string; studentId: string | null }, step: 'received' | 'escalated' | 'closed', params: Record<string, string>): Promise<boolean> {
+async function tellParent(db: PoolClient, queue: Queue, c: { schoolId: string; complaintId: string; parentId: string; studentId: string | null }, step: 'received' | 'escalated' | 'escalated_office' | 'closed', params: Record<string, string>): Promise<boolean> {
   const p = (await db.query(
     `select p.phone, coalesce($3::uuid, (select m.student_id from parent_student_map m join students s on s.school_id = m.school_id and s.student_id = m.student_id where m.school_id = p.school_id and m.parent_id = p.parent_id order by s.name, s.student_id limit 1)) as student_id
        from parents p where p.school_id = $1 and p.parent_id = $2`,
@@ -53,7 +55,7 @@ export async function openComplaint(db: PoolClient, queue: Queue, actor: Actor, 
   if (actor.role === 'teacher' && (input.ownerId !== actor.userId || input.aboutUserId)) return { ok: false, reason: 'for_the_office' };
   if (input.aboutUserId && input.aboutUserId === input.ownerId) return { ok: false, reason: 'owner_is_about' };
   // A complaint about the person at the keyboard is recorded by someone else: they may not see it until the principal has.
-  if (input.aboutUserId === actor.userId && actor.role !== 'principal') return { ok: false, reason: 'about' };
+  if (input.aboutUserId === actor.userId) return { ok: false, reason: 'about' };
   // The guardian and the child, as this person's own session may see them (a teacher: their own classes').
   if (!(await db.query(`select 1 from parents where school_id = $1 and parent_id = $2 and merged_into is null`, [actor.schoolId, input.parentId])).rows[0]) return { ok: false, reason: 'guardian' };
   if (input.studentId && !(await db.query(`select 1 from parent_student_map where school_id = $1 and parent_id = $2 and student_id = $3`, [actor.schoolId, input.parentId, input.studentId])).rows[0]) return { ok: false, reason: 'child' };
@@ -77,6 +79,10 @@ export async function openComplaint(db: PoolClient, queue: Queue, actor: Actor, 
 export type StepResult = { ok: true; parentTold?: boolean } | { ok: false; reason: 'not_allowed' | 'not_found' | 'closed' | 'note' | 'owner' | 'owner_is_about' };
 // The complaint as this session may see it and change it: its owner, or the office.
 async function mine(db: PoolClient, actor: Actor, complaintId: string) {
+  // Nobody notes, reassigns or closes a complaint about themselves: the principal neither (C200). Read first without
+  // a lock: the database refuses that person the row for a change, and they should hear why, not "not found".
+  const seen = (await db.query(`select about_user_id from complaints where school_id = $1 and complaint_id = $2`, [actor.schoolId, complaintId])).rows[0] as { about_user_id: string | null } | undefined;
+  if (seen && seen.about_user_id === actor.userId) return { ok: false as const, reason: 'not_allowed' as const };
   const c = (await db.query(`select complaint_id, parent_id, student_id, about_user_id, owner_id, status from complaints where school_id = $1 and complaint_id = $2 for update`, [actor.schoolId, complaintId])).rows[0] as { complaint_id: string; parent_id: string; student_id: string | null; about_user_id: string | null; owner_id: string; status: string } | undefined;
   if (!c) return { ok: false as const, reason: 'not_found' as const };
   if (!OFFICE.includes(actor.role) && c.owner_id !== actor.userId) return { ok: false as const, reason: 'not_allowed' as const };
@@ -124,7 +130,7 @@ export async function closeComplaint(db: PoolClient, queue: Queue, actor: Actor,
 
 export type ComplaintRow = {
   complaint_id: string; ref: string; guardian: string; child: string | null; about: string | null; owner_id: string; owner: string; source: 'thread' | 'office'; summary: string; status: 'open' | 'closed';
-  due_at: string; overdue: boolean; escalated: boolean; created_at: string; closing_note: string | null; mayChange: boolean;
+  due_at: string; overdue: boolean; escalated: boolean; created_at: string; closing_note: string | null; mayChange: boolean; aboutYou: boolean;
   events: { kind: string; note: string | null; by: string | null; parent_told: boolean; at: string }[];
 };
 const iso = (v: unknown) => new Date(v as string).toISOString();
@@ -135,7 +141,7 @@ export async function listComplaints(db: PoolClient, actor: Actor, now: Date = n
   if (!COMPLAINT_ROLES.includes(actor.role)) return [];
   if (actor.role === 'principal') await db.query(`update complaints set principal_seen_at = $2 where school_id = $1 and principal_seen_at is null`, [actor.schoolId, now]);
   const { rows } = await db.query(
-    `select c.complaint_id, p.name as guardian, s.name as child, a.display_name as about, c.owner_id, o.display_name as owner, c.source, c.summary, c.status, c.due_at, c.escalated_at, c.created_at, c.closing_note,
+    `select c.complaint_id, p.name as guardian, s.name as child, a.display_name as about, c.about_user_id, c.owner_id, o.display_name as owner, c.source, c.summary, c.status, c.due_at, c.escalated_at, c.created_at, c.closing_note,
             coalesce((select json_agg(json_build_object('kind', e.kind, 'note', e.note, 'by', u.display_name, 'parent_told', e.parent_told, 'at', e.at) order by e.at, e.event_id)
                         from complaint_events e left join users u on u.user_id = e.by_user where e.complaint_id = c.complaint_id), '[]'::json) as events
        from complaints c join parents p on p.parent_id = c.parent_id left join students s on s.student_id = c.student_id
@@ -146,7 +152,7 @@ export async function listComplaints(db: PoolClient, actor: Actor, now: Date = n
   return rows.map((r) => ({
     complaint_id: r.complaint_id, ref: reference(r.complaint_id), guardian: r.guardian, child: r.child, about: r.about, owner_id: r.owner_id, owner: r.owner, source: r.source, summary: r.summary, status: r.status,
     due_at: iso(r.due_at), overdue: r.status === 'open' && new Date(r.due_at) <= now, escalated: Boolean(r.escalated_at), created_at: iso(r.created_at), closing_note: r.closing_note,
-    mayChange: r.status === 'open' && (OFFICE.includes(actor.role) || r.owner_id === actor.userId),
+    mayChange: r.status === 'open' && r.about_user_id !== actor.userId && (OFFICE.includes(actor.role) || r.owner_id === actor.userId), aboutYou: r.about_user_id === actor.userId,
     events: (r.events as { kind: string; note: string | null; by: string | null; parent_told: boolean; at: string }[]).map((e) => ({ ...e, at: iso(e.at) })),
   }));
 }
@@ -169,10 +175,17 @@ export function complaintEscalateHandler(deps: { platform: Platform; queue: Queu
       const c = (await db.query(`select parent_id, student_id, about_user_id, owner_id, status, due_at, escalated_at from complaints where school_id = $1 and complaint_id = $2 for update`, [schoolId, complaintId])).rows[0];
       if (!c || c.status !== 'open' || c.escalated_at) return;
       if (new Date(c.due_at) > now) throw new Error('complaint.escalate: not due yet');
-      const principal = (await db.query(`select user_id from users where school_id = $1 and role = 'principal' and is_active and user_id is distinct from $2 order by created_at, user_id limit 1`, [schoolId, c.about_user_id])).rows[0]?.user_id as string | undefined;
-      await db.query(`update complaints set escalated_at = $3, owner_id = coalesce($4, owner_id) where school_id = $1 and complaint_id = $2`, [schoolId, complaintId, now, principal ?? null]);
-      const parentTold = principal ? await tellParent(db, deps.queue, { schoolId, complaintId, parentId: c.parent_id, studentId: c.student_id }, 'escalated', {}) : false;
-      await db.query(`insert into complaint_events (school_id, complaint_id, kind, parent_told, at) values ($1, $2, 'escalated', $3, $4)`, [schoolId, complaintId, parentTold, now]);
+      // Who it passes to. Usually the principal. A complaint ABOUT the principal goes to the school admin (C200),
+      // or to another principal if the school has no admin. Never to the person it is about.
+      const staff = (await db.query(`select user_id, role::text as role, display_name from users where school_id = $1 and role::text in ('principal', 'school_admin') and is_active and user_id is distinct from $2 order by created_at, user_id`, [schoolId, c.about_user_id])).rows as { user_id: string; role: string; display_name: string }[];
+      const aboutPrincipal = c.about_user_id ? (await db.query(`select 1 from users where school_id = $1 and user_id = $2 and role = 'principal'`, [schoolId, c.about_user_id])).rows.length === 1 : false;
+      const order = aboutPrincipal ? ['school_admin', 'principal'] : ['principal'];
+      const next = order.map((role) => staff.find((s) => s.role === role)).find(Boolean);
+      const passes = Boolean(next) && next!.user_id !== c.owner_id;
+      await db.query(`update complaints set escalated_at = $3, owner_id = coalesce($4, owner_id) where school_id = $1 and complaint_id = $2`, [schoolId, complaintId, now, passes ? next!.user_id : null]);
+      // The parent is told only when it really changes hands, in words that say to whom.
+      const parentTold = passes ? await tellParent(db, deps.queue, { schoolId, complaintId, parentId: c.parent_id, studentId: c.student_id }, next!.role === 'principal' ? 'escalated' : 'escalated_office', {}) : false;
+      await db.query(`insert into complaint_events (school_id, complaint_id, kind, note, parent_told, at) values ($1, $2, 'escalated', $3, $4, $5)`, [schoolId, complaintId, passes ? next!.display_name : null, parentTold, now]);
     });
   };
 }

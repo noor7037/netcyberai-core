@@ -260,7 +260,9 @@ create table complaints (
   complaint_id uuid primary key default gen_random_uuid(),
   school_id uuid not null references schools(school_id),
   status text not null default 'open',
-  due_at timestamptz not null default now()
+  due_at timestamptz not null default now(),
+  owner_id uuid,
+  about_user_id uuid
 );
 alter table complaints enable row level security;
 create policy complaints_tenant_isolation on complaints using (school_id = (current_setting('app.current_tenant_id', true))::uuid);

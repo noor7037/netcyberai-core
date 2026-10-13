@@ -3,6 +3,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { addNote, assignComplaint, closeComplaint, complaintEscalateHandler, listComplaints, openComplaint, reference } from '@/lib/complaints/complaints';
 import { createPgJobQueue } from '@/lib/jobs/pg-queue';
+import { TODAY_PROVIDERS } from '@/lib/today/cards';
 import { TEMPLATE_REGISTRY, definitionProblem } from '@/lib/whatsapp/templates';
 
 // Complaints (docs/25 slice 7m, C195). The acceptance test: nothing closes without a note; an overdue complaint
@@ -12,7 +13,7 @@ import { TEMPLATE_REGISTRY, definitionProblem } from '@/lib/whatsapp/templates';
 describe('the words', () => {
   it('every complaint template names the school first', () => {
     const mine = TEMPLATE_REGISTRY.filter((t) => t.name.startsWith('complaint_'));
-    expect(mine.map((t) => t.name)).toEqual(['complaint_received', 'complaint_escalated', 'complaint_closed']);
+    expect(mine.map((t) => t.name)).toEqual(['complaint_received', 'complaint_escalated', 'complaint_escalated_office', 'complaint_closed']);
     for (const t of mine) expect(definitionProblem(t), t.name).toBeNull();
   });
 });
@@ -190,5 +191,60 @@ describe('on the real schema', () => {
     const row = (await as(tarun, (c) => listComplaints(c, actor(tarun)))).find((r) => r.complaint_id === (quiet as { complaintId: string }).complaintId)!;
     expect(row).toMatchObject({ owner: 'Asif Admin', mayChange: false });
     expect(row.events.map((e) => [e.kind, e.note, e.parent_told])).toEqual([['opened', null, false], ['assigned', 'Asif Admin', false]]);
+  });
+
+  // C200: the follow-up the supervisor set in C198.
+  it('a complaint about the principal is never changed by the principal; overdue, it becomes the school admin’s and the parent is told so', async () => {
+    const overdueCard = (who: Who) => as(who, (c) => TODAY_PROVIDERS.find((p) => p.type === 'complaints-overdue')!.load(c, { schoolId: A, userId: who.user, role: who.role as never, sunday: false })).then((cards) => cards.reduce((sum, card) => sum + card.count, 0));
+    const base = { parentId: G_FARAH, studentId: FARAH, aboutUserId: PRINCIPAL, summary: 'The principal did not return my call.', dueHours: 24, source: 'office' as const };
+    // Nobody records a complaint about themselves, the principal neither; and it is never given to the principal.
+    expect(await as(principal, (c) => openComplaint(c, queue, actor(principal), { ...base, ownerId: ADMIN }))).toEqual({ ok: false, reason: 'about' });
+    expect(await as(admin, (c) => openComplaint(c, queue, actor(admin), { ...base, ownerId: PRINCIPAL }))).toEqual({ ok: false, reason: 'owner_is_about' });
+    // The school admin records it and gives it to a teacher to look into.
+    const made = await as(admin, (c) => openComplaint(c, queue, actor(admin), { ...base, ownerId: TARUN }));
+    const id = (made as { complaintId: string }).complaintId;
+    // The principal reads it, and is told it is about them; every way of changing it is closed.
+    const seen = (await as(principal, (c) => listComplaints(c, actor(principal)))).find((r) => r.complaint_id === id)!;
+    expect(seen).toMatchObject({ about: 'Priya Principal', aboutYou: true, mayChange: false });
+    expect(await as(principal, (c) => addNote(c, actor(principal), id, 'It was a misunderstanding.'))).toEqual({ ok: false, reason: 'not_allowed' });
+    expect(await as(principal, (c) => assignComplaint(c, actor(principal), id, ADMIN))).toEqual({ ok: false, reason: 'not_allowed' });
+    expect(await as(principal, (c) => closeComplaint(c, queue, actor(principal), id, 'Settled.'))).toEqual({ ok: false, reason: 'not_allowed' });
+    // In the database too: the principal's own session changes no row and adds no step.
+    expect((await as<Out>(principal, (c) => c.query(`update complaints set owner_id = '${ADMIN}' where complaint_id = '${id}'`))).rowCount).toBe(0);
+    expect((await as<Out>(principal, (c) => c.query(`update complaints set status = 'closed', closed_by = '${PRINCIPAL}', closed_at = now(), closing_note = 'Settled.' where complaint_id = '${id}'`))).rowCount).toBe(0);
+    await expect(as(principal, (c) => c.query(`insert into complaint_events (school_id, complaint_id, kind, note, by_user) values ('${A}', '${id}', 'note', 'x', '${PRINCIPAL}')`))).rejects.toThrow(/row-level security/);
+    expect((await db.pg.query(`select status, owner_id from complaints where complaint_id = $1`, [id])).rows[0]).toEqual({ status: 'open', owner_id: TARUN });
+    // At its due time it becomes the school admin's, and the parent is told it went to the school office.
+    const adminBefore = await overdueCard(admin);
+    const principalBefore = await overdueCard(principal);
+    const late = new Date(Date.now() + 25 * 3600_000);
+    await escalate(id, late);
+    const row = (await as(admin, (c) => listComplaints(c, actor(admin), late))).find((r) => r.complaint_id === id)!;
+    expect(row).toMatchObject({ owner: 'Asif Admin', escalated: true, overdue: true, mayChange: true });
+    expect(row.events.map((e) => [e.kind, e.note, e.parent_told])).toEqual([['opened', null, true], ['escalated', 'Asif Admin', true]]);
+    expect((await as(principal, (c) => listComplaints(c, actor(principal), late))).find((r) => r.complaint_id === id)).toMatchObject({ owner: 'Asif Admin', mayChange: false });
+    // My Day: it is on the school admin's day; it is not on the principal's, who cannot act on it.
+    await db.pg.exec(`set session_replication_role = replica; update complaints set due_at = now() - interval '1 hour' where complaint_id = '${id}'; set session_replication_role = origin;`);
+    expect(await overdueCard(admin)).toBe(adminBefore + 1);
+    expect(await overdueCard(principal)).toBe(principalBefore);
+    // The admin settles it.
+    expect(await as(admin, (c) => closeComplaint(c, queue, actor(admin), id, 'The principal has now called you back.'))).toMatchObject({ ok: true });
+  });
+
+  it('about the principal, from a parent who can be messaged: the words say "the school office", never "the principal"', async () => {
+    const made = await as(admin, (c) => openComplaint(c, queue, actor(admin), { parentId: G_ASHA, studentId: ASHA, aboutUserId: PRINCIPAL, ownerId: TARA, summary: 'I could not meet the principal on the open day.', dueHours: 24, source: 'office' }));
+    const id = (made as { complaintId: string }).complaintId;
+    await escalate(id, new Date(Date.now() + 25 * 3600_000));
+    const said = await told(id);
+    expect(said.map((r: { t: string }) => r.t)).toEqual(['complaint_received', 'complaint_escalated_office']);
+    const words = TEMPLATE_REGISTRY.find((t) => t.name === 'complaint_escalated_office')!.body.en;
+    expect(words).toContain('the school office');
+    expect(words).not.toMatch(/principal/i);
+    // Already with the school admin when it falls due: nothing changes hands, so the parent is not told it was passed on.
+    const withAdmin = await as(admin, (c) => openComplaint(c, queue, actor(admin), { parentId: G_ASHA, studentId: ASHA, aboutUserId: PRINCIPAL, ownerId: ADMIN, summary: 'A second matter about the principal.', dueHours: 24, source: 'office' }));
+    const id2 = (withAdmin as { complaintId: string }).complaintId;
+    await escalate(id2, new Date(Date.now() + 25 * 3600_000));
+    expect((await told(id2)).map((r: { t: string }) => r.t)).toEqual(['complaint_received']);
+    expect((await db.pg.query(`select owner_id, escalated_at is not null as escalated from complaints where complaint_id = $1`, [id2])).rows[0]).toEqual({ owner_id: ADMIN, escalated: true });
   });
 });

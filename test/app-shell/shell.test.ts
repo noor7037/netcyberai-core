@@ -38,6 +38,7 @@ describe('shell navigation', () => {
     expect(comingState('teacher', { ...ent, modules: {}, accessMode: 'suspended' }, 'raise-ticket')).toBe('coming'); // help is always on
     expect(moduleForSegment('admissions')?.id).toBe('admissions');
     expect(moduleForSegment('documents')).toBeNull(); // its route is /app/documents-id-cards
+    expect(moduleForSegment('class-notices')).toBeNull(); // the old stub is gone (C200): notices live in Communication, and this address is a 404
     expect(moduleForSegment('settings')).toBeNull(); // not a module route: 404 from the dynamic page
   });
 });

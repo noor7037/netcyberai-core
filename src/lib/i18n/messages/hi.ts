@@ -1659,7 +1659,7 @@ export const hi: Record<keyof typeof en, string> = {
   'cmp.aboutStaff': '{name} के बारे में',
   'cmp.ownerDue': '{owner} इसे देख रहे हैं। {due} तक सुलझानी है।',
   'cmp.ownerWas': '{owner} ने इसे देखा। {due} तक सुलझानी थी।',
-  'cmp.escalated': 'यह समय पर नहीं सुलझी, इसलिए प्रिंसिपल को सौंप दी गई।',
+  'cmp.escalated': 'यह समय पर नहीं सुलझी, इसलिए आगे सौंप दी गई।',
   'cmp.step.opened': '{by} ने दर्ज की',
   'cmp.step.note': '{by} की टिप्पणी: {note}',
   'cmp.step.assigned': '{by} ने इसे {note} को सौंपा',
@@ -1692,7 +1692,7 @@ export const hi: Record<keyof typeof en, string> = {
   'today.complaints-overdue.todo.one': '{count} शिकायत का समय निकल गया है और वह आपका इंतज़ार कर रही है',
   'today.complaints-overdue.todo.other': '{count} शिकायतों का समय निकल गया है और वे आपका इंतज़ार कर रही हैं',
   'today.complaints-overdue.action': 'शिकायतें खोलें',
-  'today.complaints-overdue.why': 'जो शिकायत अपने समय तक नहीं सुलझती वह प्रिंसिपल को सौंप दी जाती है, और अभिभावक को यह बताया जाता है।',
+  'today.complaints-overdue.why': 'जो शिकायत अपने समय तक नहीं सुलझती वह आगे सौंप दी जाती है, और अभिभावक को यह बताया जाता है।',
   'thr.complaint': 'इसे शिकायत के रूप में दर्ज करें',
   'msg.template.complaint_received': 'शिकायत दर्ज',
   'msg.template.complaint_escalated': 'शिकायत प्रिंसिपल को सौंपी गई',
@@ -1778,6 +1778,11 @@ export const hi: Record<keyof typeof en, string> = {
   'bud.ask': 'NetCyberAI से बजट तय करने या बदलने को कहें',
   // --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
   // p5-8a begin
+  'cmp.aboutYou': 'यह शिकायत आपके बारे में है, इसलिए इसे कोई और देखता है। आप इसे पढ़ सकते हैं; बदल नहीं सकते।',
+  'cmp.step.escalatedTo': '{note} को सौंपी गई',
+  'msg.template.complaint_escalated_office': 'शिकायत स्कूल कार्यालय को सौंपी गई',
+  'ptm.new.subjectTeachers': 'इन कक्षाओं के विषय-शिक्षकों को भी समयों की एक पंक्ति दें',
+  'ptm.new.subjectTeachersHow': 'विषय-शिक्षक समय-सारणी से लिए जाते हैं। अभिभावकों को पहले की तरह कक्षा-शिक्षक बुलाते हैं; विषय-शिक्षक के साथ समय यहाँ स्कूल तय करता है।',
   // p5-8a end
   // p5-8b begin
   // p5-8b end

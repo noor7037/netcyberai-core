@@ -10,7 +10,7 @@ import type { MessageKey } from '@/lib/i18n';
 // when; add notes; close it with what was done, which the parent is told. Overdue ones pass to the principal.
 
 type Step = { kind: string; note: string | null; by: string | null; parent_told: boolean; at: string };
-type Complaint = { complaint_id: string; ref: string; guardian: string; child: string | null; about: string | null; owner_id: string; owner: string; source: 'thread' | 'office'; summary: string; status: 'open' | 'closed'; due_at: string; overdue: boolean; escalated: boolean; created_at: string; closing_note: string | null; mayChange: boolean; events: Step[] };
+type Complaint = { complaint_id: string; ref: string; guardian: string; child: string | null; about: string | null; owner_id: string; owner: string; source: 'thread' | 'office'; summary: string; status: 'open' | 'closed'; due_at: string; overdue: boolean; escalated: boolean; created_at: string; closing_note: string | null; mayChange: boolean; aboutYou: boolean; events: Step[] };
 type Data = { complaints: Complaint[]; staff: { user_id: string; name: string; role: string }[]; me: string; office: boolean };
 type Guardian = { parent_id: string; name: string; children: { student_id: string; name: string; class_name: string | null }[] };
 const ERRORS = ['summary', 'due', 'guardian', 'child', 'owner', 'about', 'owner_is_about', 'for_the_office', 'closed', 'note'];
@@ -170,10 +170,11 @@ export function ComplaintsView() {
                 {c.about && <p className="font-semibold">{t('cmp.aboutStaff', { name: c.about })}</p>}
                 <p className="text-slate/70">{t(c.status === 'closed' ? 'cmp.ownerWas' : 'cmp.ownerDue', { owner: c.owner, due: when.format(new Date(c.due_at)) })}</p>
                 {c.escalated && <p className="font-semibold">{t('cmp.escalated')}</p>}
+                {c.aboutYou && <p data-complaint-about-you className="rounded-md bg-off-white px-3 py-2 font-semibold">{t('cmp.aboutYou')}</p>}
                 <ul className="flex flex-col gap-1 border-l-2 border-slate/10 pl-3">
                   {c.events.map((e, i) => (
                     <li key={i} data-complaint-step={e.kind}>
-                      <span className="font-semibold">{t(`cmp.step.${e.kind}` as MessageKey, { by: e.by ?? '', note: e.note ?? '' })}</span>{' '}
+                      <span className="font-semibold">{t((e.kind === 'escalated' && e.note ? 'cmp.step.escalatedTo' : `cmp.step.${e.kind}`) as MessageKey, { by: e.by ?? '', note: e.note ?? '' })}</span>{' '}
                       <span className="text-slate/70">{when.format(new Date(e.at))}{e.kind === 'opened' || e.kind === 'escalated' || e.kind === 'closed' ? ` · ${t(e.parent_told ? 'cmp.parentTold' : 'cmp.parentNotTold')}` : ''}</span>
                     </li>
                   ))}

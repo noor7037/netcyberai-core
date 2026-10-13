@@ -1663,7 +1663,7 @@ export const en = {
   'cmp.aboutStaff': 'About {name}',
   'cmp.ownerDue': '{owner} is looking into it. Due by {due}.',
   'cmp.ownerWas': 'Looked into by {owner}. Was due by {due}.',
-  'cmp.escalated': 'It was not settled in time, so it was passed to the principal.',
+  'cmp.escalated': 'It was not settled in time, so it was passed on.',
   'cmp.step.opened': 'Recorded by {by}',
   'cmp.step.note': '{by} noted: {note}',
   'cmp.step.assigned': '{by} gave it to {note}',
@@ -1696,7 +1696,7 @@ export const en = {
   'today.complaints-overdue.todo.one': '{count} complaint is past its time and waiting for you',
   'today.complaints-overdue.todo.other': '{count} complaints are past their time and waiting for you',
   'today.complaints-overdue.action': 'Open complaints',
-  'today.complaints-overdue.why': 'A complaint not settled by its due time is passed to the principal, and the parent is told so.',
+  'today.complaints-overdue.why': 'A complaint not settled by its due time is passed on, and the parent is told so.',
   'thr.complaint': 'Record this as a complaint',
   'msg.template.complaint_received': 'Complaint noted',
   'msg.template.complaint_escalated': 'Complaint passed to the principal',
@@ -1782,6 +1782,11 @@ export const en = {
   'bud.ask': 'Ask NetCyberAI to set or change the budget',
   // --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
   // p5-8a begin
+  'cmp.aboutYou': 'This complaint is about you, so someone else looks into it. You can read it; you cannot change it.',
+  'cmp.step.escalatedTo': 'Passed to {note}',
+  'msg.template.complaint_escalated_office': 'Complaint passed to the school office',
+  'ptm.new.subjectTeachers': 'Also give a row of times to the subject teachers of these classes',
+  'ptm.new.subjectTeachersHow': 'Subject teachers are taken from the timetable. Parents are invited by the class teacher as before; a time with a subject teacher is booked here by the school.',
   // p5-8a end
   // p5-8b begin
   // p5-8b end
