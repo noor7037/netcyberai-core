@@ -1036,6 +1036,36 @@ const parentAiScreenDone = async () => {
   if (r.sent !== 1 || r.messages !== 1 || r.model_calls !== r.with_ai) throw new Error(`the answer in the database: ${JSON.stringify(r)}`);
   if (JSON.stringify(parentAiSeen) !== JSON.stringify({ sentAsDraft: 0, cited: true })) throw new Error(`the answer on the screen: ${JSON.stringify(parentAiSeen)}`);
 };
+// Control → Messaging & Cost (C197): the founder adds a rate with Meta's page and today's date (a made-up number,
+// taken away afterwards), and sets a school's monthly limit with a reason (put back afterwards).
+let costSeen = null;
+let budgetsBefore = [];
+const clearCost = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from message_rate_table where verified_source like '%harness-7o%'; set session_replication_role = origin;`);
+};
+const messagingCost = async (page) => {
+  await clearCost();
+  budgetsBefore = (await db.pg.query(`select school_id, monthly_budget_paise from schools`)).rows;
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-cost-rate-form]').waitFor({ timeout: 20000 });
+  await page.locator('#rate-rupees').fill('0.11');
+  await page.locator('#rate-source').fill('https://developers.facebook.com/docs/whatsapp/pricing?harness-7o');
+  await page.locator('[data-cost-rate-add]').click();
+  await page.waitForFunction(() => /Added/.test(document.querySelector('[data-cost-note]')?.textContent ?? ''), null, { timeout: 20000 });
+  const school = page.locator('[data-cost-school]').first();
+  await school.locator('input').nth(0).fill('500');
+  await school.locator('input').nth(1).fill('Agreed with the principal.');
+  await school.locator('[data-cost-budget-save]').click();
+  await page.waitForFunction(() => /limit is set/.test(document.querySelector('[data-cost-note]')?.textContent ?? ''), null, { timeout: 20000 });
+  costSeen = { schools: await page.locator('[data-cost-school]').count() };
+};
+const messagingCostDone = async () => {
+  const { rows } = await db.pg.query(`select (select count(*)::int from message_rate_table where verified_source like '%harness-7o%' and rate_paise = 11 and billing_category = 'utility') as rates, (select count(*)::int from schools where monthly_budget_paise = 50000) as budgets, (select count(*)::int from audit_log where event_action in ('whatsapp.rate_added', 'whatsapp.budget_set')) as audited`);
+  await clearCost();
+  for (const b of budgetsBefore) await db.pg.query(`update schools set monthly_budget_paise = $2 where school_id = $1`, [b.school_id, b.monthly_budget_paise]);
+  const r = rows[0];
+  if (r.rates < 1 || r.budgets < 1 || r.audited < 2 || costSeen.schools < 1) throw new Error(`messaging cost: ${JSON.stringify(r)} ${JSON.stringify(costSeen)}`);
+};
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -1364,7 +1394,7 @@ const SCREENS = [
   ['principal', 'app-settings-hindi', '/app/settings', speak('हिन्दी'), backToEnglish],
   ['founder', 'control-modules', `/control/schools/${SCHOOL}`, openModulesTab],
   ['principal', 'app-module-off', '/app/attendance', attendanceOff, attendanceOn],
-  ['founder', 'control-messaging-cost', '/control/messaging-cost'],
+  ['founder', 'control-messaging-cost', '/control/messaging-cost', messagingCost, messagingCostDone],
   ['founder', 'control-whatsapp', '/control/whatsapp', whatsappAccount, whatsappAccountDone],
   ['founder', 'control-templates', '/control/templates', messageTemplates, messageTemplatesDone],
   ['principal', 'app-dashboard', '/app/dashboard'],

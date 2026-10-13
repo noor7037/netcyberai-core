@@ -1,5 +1,6 @@
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { ModulePage } from '@/components/app-ui/ModulePage';
+import { BudgetView } from '@/components/communication/BudgetView';
 import { MessagesView } from '@/components/communication/MessagesView';
 import { NoticesView } from '@/components/communication/NoticesView';
 import { ThreadsView } from '@/components/communication/ThreadsView';
@@ -20,6 +21,7 @@ export default async function CommunicationPage() {
       <div className="flex flex-col gap-6">
         {(session?.role === 'principal' || session?.role === 'school_admin' || session?.role === 'teacher') && <NoticesView />}
         {(session?.role === 'principal' || session?.role === 'school_admin' || session?.role === 'teacher') && <ThreadsView />}
+        {(session?.role === 'principal' || session?.role === 'school_admin') && <BudgetView />}
         <MessagesView mayRead={session?.role === 'principal' || session?.role === 'school_admin'} />
         <p className="text-sm text-slate/70">{t(lang, 'msg.page.notYet')}</p>
       </div>
