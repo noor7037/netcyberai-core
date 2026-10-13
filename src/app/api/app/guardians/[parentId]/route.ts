@@ -5,10 +5,23 @@ import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected, NoRowsAffectedError } from '@/lib/db/rows';
 import { checkEmail, checkPhone, validationError } from '@/lib/errors/catalogue';
-import { ruleError } from '@/lib/frameworks/route';
+import { isUuid } from '@/lib/frameworks/custom-fields';
+import { appRoute, ruleError } from '@/lib/frameworks/route';
+import { PARENT_SCREEN_ROLES, guardianDetail } from '@/lib/parents/guardians';
 
 // preferred_language (C190): 'en', 'hi', or empty for "the school's default".
 const EDITABLE_FIELDS = ['name', 'phone', 'email', 'relation', 'preferred_language'] as const;
+
+// GET: one guardian as the Parents screen shows them (C192): children, consent by purpose, the phone and its state,
+// data requests. A teacher gets only a guardian of their own classes; for anyone else's it is "not found".
+export async function GET(req: NextRequest, { params }: { params: { parentId: string } }) {
+  return appRoute(req, async ({ claims, db }) => {
+    if (!PARENT_SCREEN_ROLES.includes(claims.role)) return ruleError(403, 'not_allowed');
+    const detail = isUuid(params.parentId) ? await guardianDetail(db, { schoolId: claims.schoolId, role: claims.role }, params.parentId) : null;
+    if (!detail) return ruleError(404, 'not_found', { field: 'guardian' });
+    return NextResponse.json(detail, { headers: { 'Cache-Control': 'no-store' } });
+  });
+}
 
 // Correcting a guardian's own details (a mistyped phone number, an
 // added email) -- not for re-pointing which student(s) they're linked

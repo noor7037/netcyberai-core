@@ -676,6 +676,30 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['follow up', 'overdue', 'promise', 'hardship', 'refund', 'recovery', 'fees', 'बकाया', 'वादा', 'वापसी'],
   },
   {
+    slug: 'see-a-guardian',
+    category: 'students',
+    audience: 'office_and_teachers',
+    title: { en: 'See everything about one guardian', hi: 'एक अभिभावक के बारे में सब कुछ देखें' },
+    summary: {
+      en: 'The Parents screen shows a guardian’s children, what they have agreed to, whether messages reach their number, and their data requests.',
+      hi: 'Parents स्क्रीन पर अभिभावक के बच्चे, उनकी सहमति, संदेश उनके नंबर तक पहुँचते हैं या नहीं, और उनके डेटा अनुरोध दिखते हैं।',
+    },
+    steps: [
+      { en: 'Open “Parents” and type the guardian’s name or their child’s name.', hi: '“Parents” खोलें और अभिभावक का नाम या उनके बच्चे का नाम लिखें।' },
+      { en: 'Tap the guardian. “Their number” says whether messages can go to it.', hi: 'अभिभावक पर दबाएँ। “Their number” बताता है कि उस पर संदेश जा सकते हैं या नहीं।' },
+      { en: 'Under “Children and consent”, each kind of message shows “Agreed” or “Not agreed” for each child.', hi: '“Children and consent” में हर बच्चे के लिए हर तरह के संदेश पर “Agreed” या “Not agreed” दिखता है।' },
+      { en: 'The principal or school admin presses “Record agreement” or “Record withdrawal” when the parent tells the school.', hi: 'जब अभिभावक स्कूल को बताएँ, तो प्रिंसिपल या स्कूल एडमिन “Record agreement” या “Record withdrawal” दबाते हैं।' },
+    ],
+    tips: [
+      { en: 'A change in consent applies from the very next message.', hi: 'सहमति में बदलाव अगले ही संदेश से लागू होता है।' },
+      { en: 'A teacher sees only the guardians of children in their own classes, and the last four digits of the number.', hi: 'शिक्षक को सिर्फ़ अपनी कक्षाओं के बच्चों के अभिभावक दिखते हैं, और नंबर के आख़िरी चार अंक।' },
+      { en: 'Under “Language of messages” the office can choose English or Hindi for one guardian.', hi: '“Language of messages” में कार्यालय एक अभिभावक के लिए अंग्रेज़ी या हिन्दी चुन सकता है।' },
+    ],
+    start: { href: '/app/parents', label: { en: 'Parents', hi: 'Parents' } },
+    related: ['message-states', 'answer-a-parent'],
+    keywords: ['parent', 'guardian', 'consent', 'language', 'stop', 'number', 'अभिभावक', 'सहमति'],
+  },
+  {
     slug: 'message-states',
     category: 'daily',
     audience: 'office',
