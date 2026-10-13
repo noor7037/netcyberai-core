@@ -453,6 +453,16 @@ export async function queueThreadReply(client: PoolClient, queue: QueueLike, by:
 // How the webhook hands the job queue a confirmation it has just written (a parent wrote STOP).
 export const enqueueQueued = (queue: QueueLike) => (db: Pick<PoolClient, 'query'>, logId: string, schoolId: string) => queue.enqueue(db, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, 0), schoolId, maxAttempts: 3, payload: { logId } });
 
+// Whether a message for this school would reach a real phone today: the platform's account is switched on and
+// this server holds its key, and the school is a real school, approved to send, with a budget. As the platform
+// role only. A caller with another way to reach the parent (the fee reminder has email) asks this first, so that
+// a family is not "reminded" by a message that goes nowhere.
+export async function whatsappIsLive(db: Pick<PoolClient, 'query'>, schoolId: string, env: Record<string, string | undefined> = process.env): Promise<boolean> {
+  const s = (await db.query(`select is_test_fixture, is_pilot and not pilot_allow_outbound as pilot, monthly_budget_paise is null as no_budget from schools where school_id = $1`, [schoolId])).rows[0];
+  if (!s || s.is_test_fixture || s.pilot || s.no_budget) return false;
+  return (await openMetaCredentials(db, true, env)) !== null;
+}
+
 type Platform = <T>(fn: (db: PoolClient) => Promise<T>) => Promise<T>;
 export type DeliverOutcome = { status: CommStatus | 'gone'; retryAt?: Date; reason?: string | null };
 

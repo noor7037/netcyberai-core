@@ -1,5 +1,6 @@
 import { createHash } from 'crypto';
 import { writeAuditLog } from '@/lib/audit/log';
+import { tellReceipt } from '@/lib/fees/whatsapp';
 import { receiptFormat } from '@/lib/fees/payments';
 import { nextNumber } from '@/lib/frameworks/numbering';
 import type { Sql } from '@/lib/jobs/types';
@@ -193,6 +194,8 @@ export async function creditEvidence(db: Sql, e: Evidence): Promise<Applied> {
   const partly = plan.unappliedMinor > 0;
   const short = e.amountMinor < Number(link.amount_minor);
   await writeAuditLog(db, { schoolId: link.school_id, ...actor, eventAction: e.source === 'gateway_notice' ? 'fees.online_payment_applied' : 'fees.payment_applied', targetType: 'receipts', targetId: receiptId, beforeState: undefined, afterState: { receiptNo, evidenceId, source: e.source, rule: e.rule ?? null, capturedMinor: e.amountMinor, appliedMinor: applied, unappliedMinor: plan.unappliedMinor, dues: plan.parts.length, ...e.audit } });
+  // The receipt exists: the family is told its number on WhatsApp (C188). Only here, after the money is verified.
+  await tellReceipt(db, { schoolId: link.school_id, familyId: link.family_id, studentId: link.student_id, receiptId, receiptNo, amountMinor: applied });
   return { outcome: partly ? 'applied_in_part' : 'applied', reason: partly ? 'more_than_owed' : short ? 'less_than_the_link' : link.status !== 'open' ? `link_was_${link.status}` : undefined, receiptId, receiptNo, appliedMinor: applied, unappliedMinor: plan.unappliedMinor };
 }
 
