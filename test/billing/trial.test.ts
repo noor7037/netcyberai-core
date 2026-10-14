@@ -174,7 +174,10 @@ describe('the principal’s line, and who reads the free month', () => {
     expect(await trialAudits({ school: R, role: 'school_admin', user: ADMIN_R })).toEqual(['entitlement.trial_started']);
     for (const [role, user] of [['teacher', TEACHER_R], ['accountant', ACCOUNTANT_R], ['academic_coordinator', COORD_R]]) expect(await trialAudits({ school: R, role, user }), role).toEqual([]);
     // The plan applied with it stays visible to every role of the school, as every plan change is (C124).
-    expect((await as({ school: R, role: 'teacher', user: TEACHER_R }, async (c) => (await c.query(`select count(*)::int as n from audit_log where event_action = 'entitlement.plan_applied'`)).rows[0].n))).toBeGreaterThan(0);
+    // Review of C226: every one of the school's plan-change rows, the free month's included, not just some row.
+    const allPlanRows = (await db.pg.query(`select count(*)::int as n from audit_log where school_id = $1 and event_action = 'entitlement.plan_applied'`, [R])).rows[0].n;
+    expect(allPlanRows).toBeGreaterThanOrEqual(2);
+    expect((await as({ school: R, role: 'teacher', user: TEACHER_R }, async (c) => (await c.query(`select count(*)::int as n from audit_log where event_action = 'entitlement.plan_applied'`)).rows[0].n))).toBe(allPlanRows);
     // The plan's name: for the office of the school, while the free month is in force; nothing for anyone else.
     const name = (who: Who, school: string) => as(who, async (c) => (await c.query(`select school_trial_plan_name($1::uuid) as name`, [school])).rows[0].name);
     expect(await name({ school: R, role: 'principal', user: PRINCIPAL_R }, R)).toBe('Growth');

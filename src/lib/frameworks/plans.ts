@@ -146,6 +146,10 @@ export type ApplyPlanResult = { ok: true; modules: ModuleId[]; switchedOff: Modu
 // (the database refuses it too). Idempotent. Runs as nca_super (only the
 // platform writes entitlements and subscriptions).
 export async function applyPlan(db: Sql, schoolId: string, planId: string, actor: Actor, reason: string): Promise<ApplyPlanResult> {
+  // The school's billing lock first, as recordPayment and the free month's start and nightly move take it (review of
+  // C226): a plan applied from Control and the night's move of a free month never interleave. Taken again, harmlessly,
+  // by a caller that already holds it in this transaction.
+  await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`billing:${schoolId}`]);
   const plan = await loadPlan(db, planId);
   if (!plan) return { ok: false, error: 'unknown plan' };
   const { rows: sub } = await db.query(`select plan_id from school_subscriptions where school_id = $1 for update`, [schoolId]);

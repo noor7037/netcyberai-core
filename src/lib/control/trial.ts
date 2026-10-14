@@ -227,7 +227,9 @@ export async function endTrialIfOver(db: Sql, schoolId: string, today: string, j
   await lockSchool(db, schoolId);
   const row = (await db.query(`select ends_on::text as ends_on, ended_at from school_trials where school_id = $1 for update`, [schoolId])).rows[0];
   if (!row || row.ended_at !== null || row.ends_on >= today) return null;
-  const planId = ((await db.query(`select plan_id from school_subscriptions where school_id = $1`, [schoolId])).rows[0]?.plan_id as string | undefined) ?? (await defaultPlanId(db));
+  // The subscription row is locked before any module row, in applyPlan's order, so the plan read here is the one
+  // applied (review of C226).
+  const planId = ((await db.query(`select plan_id from school_subscriptions where school_id = $1 for update`, [schoolId])).rows[0]?.plan_id as string | undefined) ?? (await defaultPlanId(db));
   if (!planId) throw new Error('trial: no plan to move the school to');
   await db.query(`update school_module_entitlements set source = 'plan', updated_at = now() where school_id = $1 and source = 'trial'`, [schoolId]);
   const reason = `Free month: the last day was ${row.ends_on}. On the school's plan from ${today}.`;
