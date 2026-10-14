@@ -1081,6 +1081,33 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p5-8h end
   // p5-8i begin
+  {
+    slug: 'school-check-up',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Run a check-up of your school', hi: 'अपने स्कूल की जाँच चलाएँ' },
+    summary: {
+      en: 'The School Health Auditor looks at twelve things in your school’s own records by fixed rules, and says how many checks pass of those that apply.',
+      hi: 'School Health Auditor तय नियमों से आपके स्कूल के अपने रिकॉर्ड में बारह चीज़ें देखता है, और बताता है कि लागू होने वाली जाँचों में से कितनी ठीक हैं।',
+    },
+    steps: [
+      { en: 'Open “School Health Auditor” and press “Run the first check-up”, or “Check again” if one has been run before.', hi: '“School Health Auditor” खोलें और “Run the first check-up” दबाएँ, या पहले कोई जाँच हुई हो तो “Check again”।' },
+      { en: 'Read the result at the top: how many checks pass, of the checks that apply. A check that is not set up yet is not counted.', hi: 'ऊपर नतीजा पढ़ें: लागू होने वाली जाँचों में से कितनी ठीक हैं। जो जाँच अभी शुरू नहीं हुई, वह गिनी नहीं जाती।' },
+      { en: 'Under “Needs attention”, each check says how many it found. Press its button to open the screen that fixes it.', hi: '“Needs attention” में हर जाँच बताती है कि उसे कितने मिले। उसे ठीक करने वाली स्क्रीन खोलने के लिए उसका बटन दबाएँ।' },
+      { en: 'Press “Why this?” under a check to read its rule and where it is counted.', hi: 'किसी जाँच का नियम और गिनने की जगह पढ़ने के लिए उसके नीचे “Why this?” दबाएँ।' },
+      { en: 'After you fix something, come back and press “Check again”. The check passes once the records are right.', hi: 'कुछ ठीक करने के बाद लौटें और “Check again” दबाएँ। रिकॉर्ड ठीक होते ही जाँच ठीक हो जाती है।' },
+      { en: '“Last check-ups” keeps one line for each day a check-up was run: that is your trend.', hi: '“Last check-ups” में हर उस दिन की एक पंक्ति रहती है जब जाँच चली: यही आपका रुझान है।' },
+    ],
+    tips: [
+      { en: 'Rules only: no AI model is used, and there is no score, grade or percentage. Each check passes, needs attention, or is not set up yet.', hi: 'सिर्फ़ नियम: कोई AI मॉडल नहीं, और कोई अंक, ग्रेड या प्रतिशत नहीं। हर जाँच ठीक है, ध्यान चाहती है, या अभी शुरू नहीं हुई।' },
+      { en: '“Not set up yet” lists what has not been started, such as a timetable, a fee structure or a message budget, and says what to set up first.', hi: '“Not set up yet” में वह है जो शुरू नहीं हुआ, जैसे समय-सारणी, फ़ीस ढाँचा या संदेशों का बजट, और यह कि पहले क्या शुरू करना है।' },
+      { en: 'A check that could not be run is never shown as passing. Press “Check again”; if it keeps happening, raise a ticket.', hi: 'जो जाँच नहीं चल सकी, उसे कभी ठीक नहीं दिखाया जाता। “Check again” दबाएँ; बार-बार ऐसा हो तो टिकट बनाएँ।' },
+      { en: 'Only the principal and the school admin run and read check-ups. A past day’s check-up is never changed.', hi: 'जाँच सिर्फ़ प्रिंसिपल और स्कूल एडमिन चलाते और पढ़ते हैं। बीते दिन की जाँच कभी नहीं बदलती।' },
+    ],
+    start: { href: '/app/school-auditor', label: { en: 'School Health Auditor', hi: 'स्कूल की सेहत (School Health Auditor)' } },
+    related: ['read-the-dashboard', 'use-my-day'],
+    keywords: ['auditor', 'check-up', 'checkup', 'health', 'school health', 'checks', 'audit', 'fix list', 'जाँच', 'सेहत', 'ऑडिट'],
+  },
   // p5-8i end
   // p5-8j begin
   {

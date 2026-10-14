@@ -159,7 +159,7 @@ const ROWS: readonly Row[] = [
   // Teachers review the suggestions for their own classes (C112).
   { id: 'parent-ai', label: 'Parent AI · What to Do?', group: 'ai-intelligence', icon: 'parentAi', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', phaseNote: 'An answer for one child, drafted from the school’s records and approved by a person, is live; a weekly answer for every child later', status: 'partial',
     capabilities: ['Weekly “what to do at home” per child', 'In the family’s language', 'Teacher-reviewed templates'] },
-  { id: 'school-auditor', label: 'School Health Auditor', group: 'ai-intelligence', icon: 'auditor', roles: OFFICE, phase: 'P5', status: 'spec-v0',
+  { id: 'school-auditor', label: 'School Health Auditor', group: 'ai-intelligence', icon: 'auditor', roles: OFFICE, phase: 'P5', phaseNote: 'Twelve checks by fixed rules, each passing, needing attention with a count and the screen that fixes it, or not set up; "N of M checks pass" and a dated record of each check-up are live. Rules only: no AI model', status: 'partial',
     capabilities: ['Weekly score across attendance, coverage, fees, communication, compliance', 'Explained deductions', 'Fix list'] },
   { id: 'career', label: 'Career Graph', group: 'ai-intelligence', icon: 'career', roles: OFFICE, phase: 'P7', status: 'spec-v0',
     capabilities: ['From class 9', 'Interests and subject performance → career clusters', 'Stream guidance', 'Counsellor notes'] },

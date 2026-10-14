@@ -43,6 +43,7 @@ describe('the guides', () => {
       'run-a-report',
       // p5-8h end
       // p5-8i begin
+      'school-check-up',
       // p5-8i end
       // p5-8j begin
       'early-warning-flags',

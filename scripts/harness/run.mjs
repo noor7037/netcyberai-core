@@ -2220,6 +2220,64 @@ const reportsHindiDone = async (page) => {
 };
 // p5-8h end
 // p5-8i begin
+// School Health Auditor v1 (C208). A brand-new school's first visit: no check-up yet, and what one does. Then the
+// principal runs the day's first check-up on the illustrative school, sees the checks that need attention with their
+// counts, follows the consent check to the list of the students waiting for consent (exactly those it counted) and
+// comes back. The check reads the day's row in school_health_runs, holds it to what the screen said and to the
+// school's own rows, and takes it away; the audit row stays (the log is never cut) and is counted from where it stood.
+const AUDITOR_WAITING = ['Dev Example B', 'Kiara Example B', 'Neel Example B'];
+const clearHealthRuns = () => db.pg.query(`delete from school_health_runs where school_id = $1`, [SCHOOL]);
+const auditorAudit = async () => (await db.pg.query(`select count(*)::int as n from audit_log where event_action = 'school_health.checked'`)).rows[0].n;
+let auditorAuditBefore = 0;
+let auditorSeen = null;
+const auditorFirst = async (page) => {
+  await clearHealthRuns();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-auditor="empty"] [data-auditor-run]').waitFor({ timeout: 20000 });
+};
+const auditorRun = async (page) => {
+  await clearHealthRuns();
+  auditorAuditBefore = await auditorAudit();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-auditor="empty"] [data-auditor-run]').click();
+  await page.locator('[data-auditor="run"] [data-auditor-result]').waitFor({ timeout: 30000 });
+  const result = (await page.locator('[data-auditor-result]').textContent()).trim();
+  const attention = await page.locator('[data-auditor-section="attention"] [data-check]').evaluateAll((els) => els.map((e) => [e.getAttribute('data-check'), Number(e.getAttribute('data-count'))]));
+  // The consent check opens the students waiting for consent: the list of exactly the rows it counted.
+  await page.locator('[data-check-fix="consent"]').click();
+  // (Allow for the development server building Admissions the first time it is opened.)
+  await page.waitForURL('**/app/admissions', { timeout: 90000 });
+  await page.waitForLoadState('networkidle');
+  // The list is drawn as a table on a wide screen and as cards on a phone: wait for the one that is shown.
+  await page.waitForFunction((name) => document.body.innerText.includes(name), AUDITOR_WAITING[0], { timeout: 90000 });
+  const opened = new URL(page.url()).pathname;
+  const listed = await page.evaluate((names) => names.filter((n) => document.body.innerText.includes(n)).length, AUDITOR_WAITING);
+  await page.goBack({ waitUntil: 'networkidle' });
+  await page.locator('[data-auditor="run"] [data-auditor-result]').waitFor({ timeout: 30000 });
+  // "Why this?" of the first check that needs attention, open for the picture.
+  await page.locator('[data-auditor-section="attention"] [data-why] summary').first().click();
+  auditorSeen = { result, attention, opened, listed, back: (await page.locator('[data-auditor-result]').textContent()).trim() };
+};
+const auditorRunDone = async () => {
+  const { rows } = await db.pg.query(`select run_date = ${TODAY_SQL} as today, rule_version, passed, applicable, results, recorded_by from school_health_runs where school_id = $1`, [SCHOOL]);
+  const held = (await db.pg.query(
+    `select count(*)::int as n from communication_log where school_id = $1 and channel = 'whatsapp' and status::text like 'blocked_%' and created_at >= ((${TODAY_SQL} - 6)::timestamp at time zone 'Asia/Kolkata')`,
+    [SCHOOL]
+  )).rows[0].n;
+  const audited = (await auditorAudit()) - auditorAuditBefore;
+  await clearHealthRuns();
+  const r = rows[0];
+  if (rows.length !== 1 || !r.today || r.rule_version !== 1 || r.recorded_by !== PEOPLE.principal.sub || audited !== 1) throw new Error(`the check-up in the database: ${JSON.stringify({ rows: rows.length, ...r, audited })}`);
+  const attention = r.results.filter((x) => x.state === 'needs_attention').map((x) => [x.id, x.count]);
+  const count = (id) => attention.find(([x]) => x === id)?.[1] ?? 0;
+  if (JSON.stringify(attention) !== JSON.stringify(auditorSeen.attention)) throw new Error(`what needs attention, on the screen ${JSON.stringify(auditorSeen.attention)} and kept ${JSON.stringify(attention)}`);
+  if (auditorSeen.result !== `${r.passed} of ${r.applicable} checks pass` || auditorSeen.back !== auditorSeen.result) throw new Error(`the result: ${JSON.stringify(auditorSeen)} against ${r.passed} of ${r.applicable}`);
+  // The illustrative school's own rows: 6-A has no class teacher; three students wait for consent, the three the
+  // list showed; the message log holds the held messages of these seven days. No fee structure and no budget.
+  const states = Object.fromEntries(r.results.map((x) => [x.id, x.state]));
+  if (count('class_teacher') !== 1 || count('consent') !== AUDITOR_WAITING.length || auditorSeen.listed !== AUDITOR_WAITING.length || auditorSeen.opened !== '/app/admissions' || count('messages_held') !== held) throw new Error(`the counts: ${JSON.stringify({ attention, held, seen: auditorSeen })}`);
+  if (states.fee_structure !== 'not_set_up' || states.message_budget !== 'not_set_up' || r.results.length !== 12) throw new Error(`not set up: ${JSON.stringify(states)}`);
+};
 // p5-8i end
 // p5-8j begin
 // Early Warning (C209). One child of 5-A was away on most days three weeks ago: the principal presses "Check now",
@@ -2850,6 +2908,8 @@ const SCREENS = [
   ['principal', 'app-reports-hindi', '/app/reports?report=absentees&range=30d', reportsHindi, reportsHindiDone],
   // p5-8h end
   // p5-8i begin
+  ['principal', 'app-school-auditor-first', '/app/school-auditor', auditorFirst],
+  ['principal', 'app-school-auditor', '/app/school-auditor', auditorRun, auditorRunDone],
   // p5-8i end
   // p5-8j begin
   ['principal', 'app-early-warning', '/app/early-warning', earlyWarningScreen, earlyWarningScreenDone],
