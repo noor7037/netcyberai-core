@@ -3058,6 +3058,24 @@ export const en = {
   'ew.closed.not_active': 'Closed {when}: the child is no longer an active student of a class.',
   'ew.closed.how': 'A flag closes by itself at a check when its reasons are gone. If a reason comes back, a new flag opens. An attendance reason stays on its flag, and says so, while too few days are marked to check it again.',
   // p5-8j end
+  // c210-rls begin
+  // c210-rls end
+  // c210-leave begin
+  // c210-leave end
+  // c210-jobs begin
+  // c210-jobs end
+  // c210-ui begin
+  // c210-ui end
+  // p6-9a begin
+  // p6-9a end
+  // p6-9b begin
+  // p6-9b end
+  // p6-9c begin
+  // p6-9c end
+  // p6-9d begin
+  // p6-9d end
+  // p6-9e begin
+  // p6-9e end
   'sync.saved': 'All saved',
   'sync.offline': 'Offline: showing what was last loaded',
   'sync.sending.one': 'Sending {count} change…',

@@ -3054,6 +3054,24 @@ export const hi: Record<keyof typeof en, string> = {
   'ew.closed.not_active': '{when} को बंद: बच्चा अब किसी कक्षा का सक्रिय विद्यार्थी नहीं है।',
   'ew.closed.how': 'कारण न रहने पर संकेत जाँच के समय अपने आप बंद हो जाता है। कारण लौटे तो नया संकेत खुलता है। जब तक दोबारा जाँचने लायक़ दिन हाज़िरी न लगे, हाज़िरी का कारण अपने संकेत पर बना रहता है और यह बताता है।',
   // p5-8j end
+  // c210-rls begin
+  // c210-rls end
+  // c210-leave begin
+  // c210-leave end
+  // c210-jobs begin
+  // c210-jobs end
+  // c210-ui begin
+  // c210-ui end
+  // p6-9a begin
+  // p6-9a end
+  // p6-9b begin
+  // p6-9b end
+  // p6-9c begin
+  // p6-9c end
+  // p6-9d begin
+  // p6-9d end
+  // p6-9e begin
+  // p6-9e end
   'sync.saved': 'सब सेव है',
   'sync.offline': 'ऑफ़लाइन: पिछली बार जो खुला था वही दिख रहा है',
   'sync.sending.one': '{count} बदलाव भेजा जा रहा है…',

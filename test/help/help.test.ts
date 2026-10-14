@@ -48,6 +48,24 @@ describe('the guides', () => {
       // p5-8j begin
       'early-warning-flags',
       // p5-8j end
+      // c210-rls begin
+      // c210-rls end
+      // c210-leave begin
+      // c210-leave end
+      // c210-jobs begin
+      // c210-jobs end
+      // c210-ui begin
+      // c210-ui end
+      // p6-9a begin
+      // p6-9a end
+      // p6-9b begin
+      // p6-9b end
+      // p6-9c begin
+      // p6-9c end
+      // p6-9d begin
+      // p6-9d end
+      // p6-9e begin
+      // p6-9e end
     ]);
     expect(new Set(HELP_ARTICLES.map((a) => a.slug)).size).toBe(HELP_ARTICLES.length);
     expect(HELP_ARTICLES.every((a) => /^[a-z][a-z0-9-]+$/.test(a.slug) && a.slug !== 'ticket')).toBe(true); // /app/help/ticket is Raise Ticket

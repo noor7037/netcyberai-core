@@ -1139,6 +1139,24 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['early warning', 'flag', 'at risk', 'attendance', 'absent', 'homework', 'needs help', 'check now', 'chetavni', 'चेतावनी', 'संकेत', 'अनुपस्थित'],
   },
   // p5-8j end
+  // c210-rls begin
+  // c210-rls end
+  // c210-leave begin
+  // c210-leave end
+  // c210-jobs begin
+  // c210-jobs end
+  // c210-ui begin
+  // c210-ui end
+  // p6-9a begin
+  // p6-9a end
+  // p6-9b begin
+  // p6-9b end
+  // p6-9c begin
+  // p6-9c end
+  // p6-9d begin
+  // p6-9d end
+  // p6-9e begin
+  // p6-9e end
 ];
 
 export function helpArticle(slug: string): HelpArticle | null {

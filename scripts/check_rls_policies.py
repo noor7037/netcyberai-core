@@ -340,6 +340,24 @@ ALLOWED_PERMISSIVE = (
         ("early_warning_flags", "early_warning_flags_tenant_isolation"),
         ("early_warning_actions", "early_warning_actions_tenant_isolation"),
         # p5-8j end
+        # c210-rls begin
+        # c210-rls end
+        # c210-leave begin
+        # c210-leave end
+        # c210-jobs begin
+        # c210-jobs end
+        # c210-ui begin
+        # c210-ui end
+        # p6-9a begin
+        # p6-9a end
+        # p6-9b begin
+        # p6-9b end
+        # p6-9c begin
+        # p6-9c end
+        # p6-9d begin
+        # p6-9d end
+        # p6-9e begin
+        # p6-9e end
     }
 )
 
@@ -525,6 +543,24 @@ REQUIRED_RESTRICTIVE = {
     ("early_warning_actions", "early_warning_actions_as_self"),
     ("audit_log", "audit_early_warning_rows_office_or_actor"),
     # p5-8j end
+    # c210-rls begin
+    # c210-rls end
+    # c210-leave begin
+    # c210-leave end
+    # c210-jobs begin
+    # c210-jobs end
+    # c210-ui begin
+    # c210-ui end
+    # p6-9a begin
+    # p6-9a end
+    # p6-9b begin
+    # p6-9b end
+    # p6-9c begin
+    # p6-9c end
+    # p6-9d begin
+    # p6-9d end
+    # p6-9e begin
+    # p6-9e end
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)
