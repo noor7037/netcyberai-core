@@ -520,7 +520,8 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     moduleId: 'fees',
     roles: ['principal', 'school_admin', 'accountant'],
     async load(db, ctx) {
-      const { unpaidPastFirstBucket } = await import('@/lib/rte/desk');
+      const { deskInPlan, unpaidPastFirstBucket } = await import('@/lib/rte/desk');
+      if (!(await deskInPlan(db as never, ctx.schoolId))) return []; // a part of the plan (C223-A, C225)
       return waiting('rte-claims-unpaid', 'fees', await unpaidPastFirstBucket(db as never, ctx.schoolId), '/app/fees/rte');
     },
   },

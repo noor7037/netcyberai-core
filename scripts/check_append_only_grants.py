@@ -74,6 +74,7 @@ APPEND_ONLY_TABLES = {"audit_log", "consent_ledger", "entitlement_change_reasons
                       "support_ticket_attachments", "support_ticket_messages", "webhook_events"}
 APPEND_ONLY_TABLES.add("subscription_payments")  # P5 8e (C204): NetCyberAI's own payments from schools, corrected by a new row
 APPEND_ONLY_TABLES.add("early_warning_actions")  # P5 8j (C209): what a person did about a flag; a later outcome is a new row
+APPEND_ONLY_TABLES.add("rte_claim_receipts")  # C225: the state's payments on an RTE claim; a mistake is a reversing row
 
 # "Non-privileged, app-facing": any role a real request -- ordinary or
 # this app's own super_admin bypass -- can run as, or any role

@@ -216,6 +216,7 @@ const APP_USER: Record<string, string> = {
   attendance_change_reasons: 'DELETE,INSERT,SELECT', // the words given for an attendance change, beside the audit row; deleted only by an erasure (review of C224)
   // c224 end
   // c225 begin
+  rte_claim_receipts: 'INSERT,SELECT', // the state's payments: recorded, never changed or removed; a mistake is a reversing row (C225)
   // c225 end
   // c226 begin
   // c226 end
@@ -348,6 +349,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   attendance_change_reasons: '', // the school's own: the platform role reads nothing here
   // c224 end
   // c225 begin
+  rte_claim_receipts: '', // the platform role reads nothing of a school's RTE claims (C225)
   // c225 end
   // c226 begin
   // c226 end

@@ -4222,7 +4222,7 @@ let rteSeen = null;
 let rteFrom = null;
 const clearRte = async () => {
   await db.pg.exec(`set session_replication_role = replica;
-    delete from rte_evidence where school_id = '${SCHOOL}'; delete from rte_claims where school_id = '${SCHOOL}'; delete from rte_rates where school_id = '${SCHOOL}';
+    delete from rte_evidence where school_id = '${SCHOOL}'; delete from rte_claim_receipts where school_id = '${SCHOOL}'; delete from rte_claims where school_id = '${SCHOOL}'; delete from rte_rates where school_id = '${SCHOOL}';
     delete from captured_documents where document_id = '${RTE_DOC}';
     with gone as (delete from fee_structure_items where head_id in (select head_id from fee_heads where school_id = '${SCHOOL}' and name = '${RTE_HEAD}') returning structure_id)
     delete from fee_structures where structure_id in (select structure_id from gone);
@@ -4429,6 +4429,104 @@ const studentsTeacherDone = async () => {
 };
 // c224 end
 // c225 begin
+// The RTE desk's close-out (C225). Screen app-fees-rte-parts, the principal: two children of 5-A marked RTE, the
+// year's rate typed in the database (12,500), and 5-A's tuition of 1,200 a month (the p7-10c fixture's head, so its
+// clearRte removes it). On the page both claims are raised; the state pays the first in two parts (5,000, then the
+// rest, which the form fills in): it is paid. The second gets 4,000, the rest is written off with a note, then the
+// principal reopens it with a reason. The check reads the receipts, the states and the audit rows (never a reference
+// or a note in them) and puts everything back. Screen app-fees-rte-plan, the school admin, on a plan without the
+// desk: the page says so plainly and the desk's route refuses; the subscription is put back.
+const C225_REFS = ['PFMS/HARNESS/0101', 'PFMS/HARNESS/0102', 'PFMS/HARNESS/0103'];
+const C225_NOTE = 'The district paid four thousand only.';
+const C225_REASON = 'The district will pay the rest by its new order.';
+let c225Tagged = [];
+let c225From = null;
+let c225Seen = null;
+let c225SubBefore;
+let c225PlanSeen = null;
+const c225Clear = async () => {
+  await clearRte();
+  for (const s of c225Tagged) await db.pg.query(`update students set rte_admission = $2, rte_entry_class = $3, rte_admitted_on = $4 where student_id = $1`, [s.student_id, s.rte_admission, s.rte_entry_class, s.rte_admitted_on]);
+  c225Tagged = [];
+};
+const rteParts = async (page) => {
+  await c225Clear();
+  c225From = (await db.pg.query(`select coalesce(max(audit_id), 0)::bigint as id from audit_log`)).rows[0].id;
+  await db.pg.query(`insert into academic_sessions (school_id, label, start_date, end_date, is_current) select $1, 'Harness session', ${TODAY_SQL} - 30, ${TODAY_SQL} + 300, not exists (select 1 from academic_sessions where school_id = $1 and is_current) where not exists (select 1 from academic_sessions where school_id = $1 and label = 'Harness session')`, [SCHOOL]);
+  const session = (await db.pg.query(`select session_id, start_date::text as start_date from academic_sessions where school_id = $1 order by is_current desc, (label = 'Harness session') desc limit 1`, [SCHOOL])).rows[0];
+  const head = (await db.pg.query(`insert into fee_heads (school_id, name, is_mandatory) values ($1, $2, true) returning head_id`, [SCHOOL, RTE_HEAD])).rows[0].head_id;
+  const structure = (await db.pg.query(`insert into fee_structures (school_id, class_id, academic_year, session_id, effective_from, created_by) select $1, $2, label, session_id, start_date, $3 from academic_sessions where session_id = $4 returning structure_id`, [SCHOOL, CLASS_5A, PEOPLE.principal.sub, session.session_id])).rows[0].structure_id;
+  await db.pg.query(`insert into fee_structure_items (school_id, structure_id, head_id, amount_minor, frequency) values ($1, $2, $3, 120000, 'monthly')`, [SCHOOL, structure, head]);
+  c225Tagged = (await db.pg.query(`select student_id, rte_admission, rte_entry_class, rte_admitted_on::text as rte_admitted_on from students where school_id = $1 and class_id = $2 and status = 'active' order by name limit 2`, [SCHOOL, CLASS_5A])).rows;
+  await db.pg.query(`update students set rte_admission = true, rte_entry_class = '5-A', rte_admitted_on = $2 where student_id = any($1::uuid[])`, [c225Tagged.map((s) => s.student_id), session.start_date]);
+  await db.pg.query(`insert into rte_rates (school_id, session_id, rate_minor, source, typed_by) values ($1, $2, 1250000, 'State RTE notification for this year, as typed by the office', $3)`, [SCHOOL, session.session_id, PEOPLE.principal.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-rte-rate-now]').waitFor({ timeout: 20000 });
+  await page.locator('[data-rte-raise-all]').click();
+  await page.locator('[data-rte-state="raised"]').nth(1).waitFor({ timeout: 20000 });
+  const [one, two] = c225Tagged.map((s) => page.locator(`[data-rte-child="${s.student_id}"]`));
+  await one.locator('[data-rte-open-paid]').click();
+  await one.locator('input[id^="rte-amount-"]').fill('5000');
+  await one.locator('input[id^="rte-reference-"]').fill(C225_REFS[0]);
+  await one.locator('[data-rte-paid-save]').click();
+  await one.locator('[data-rte-receipts="1"]').waitFor({ timeout: 20000 });
+  await one.locator('[data-rte-open-paid]').click();
+  await one.locator('input[id^="rte-reference-"]').fill(C225_REFS[1]);
+  await one.locator('[data-rte-paid-save]').click();
+  await page.locator(`[data-rte-child="${c225Tagged[0].student_id}"][data-rte-state="paid"]`).waitFor({ timeout: 20000 });
+  await two.locator('[data-rte-open-paid]').click();
+  await two.locator('input[id^="rte-amount-"]').fill('4000');
+  await two.locator('input[id^="rte-reference-"]').fill(C225_REFS[2]);
+  await two.locator('[data-rte-paid-save]').click();
+  await two.locator('[data-rte-receipts="1"]').waitFor({ timeout: 20000 });
+  await two.locator('[data-rte-open-write-off]').click();
+  await two.locator('input[id^="rte-write-off-"]').fill(C225_NOTE);
+  await two.locator('[data-rte-write-off-save]').click();
+  await page.locator(`[data-rte-child="${c225Tagged[1].student_id}"][data-rte-state="written_off"]`).waitFor({ timeout: 20000 });
+  await two.locator('[data-rte-open-reopen]').click();
+  await two.locator('input[id^="rte-reopen-"]').fill(C225_REASON);
+  await two.locator('[data-rte-reopen-save]').click();
+  await two.locator('[data-rte-reopened]').waitFor({ timeout: 20000 });
+  c225Seen = {
+    paid: await page.locator('[data-rte-state="paid"]').count(),
+    raised: await page.locator('[data-rte-state="raised"]').count(),
+    receipts: await page.locator('[data-rte-receipt="receipt"]').count(),
+    reopened: await page.locator('[data-rte-reopened]').count(),
+    counting: await page.locator('[data-rte-counting="rte_covered"]').count(),
+  };
+};
+const rtePartsDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from rte_claim_receipts where school_id = $1) as receipts,
+            (select count(*)::int from rte_claims where school_id = $1 and state = 'paid' and settled_by = $2 and reference = $5) as paid,
+            (select count(*)::int from rte_claims where school_id = $1 and state = 'raised' and reopened_by = $2 and reopen_reason = $3 and write_off_note is null) as reopened,
+            (select (select sum(amount_minor) from rte_claim_receipts where school_id = $1) = (select amount_minor from rte_claims where school_id = $1 and state = 'paid') + 400000) as received,
+            (select string_agg(event_action, ',' order by audit_id) from audit_log where audit_id > $4 and event_action like 'rte.%') as audited,
+            (select count(*)::int from audit_log where audit_id > $4 and event_action like 'rte.%' and (coalesce(before_state::text, '') || coalesce(after_state::text, '')) ~ 'HARNESS|district') as free_text`,
+    [SCHOOL, PEOPLE.principal.sub, C225_REASON, c225From, C225_REFS[1]]
+  );
+  await c225Clear();
+  const r = rows[0];
+  const want = { receipts: 3, paid: 1, reopened: 1, received: true, audited: 'rte.claim_raised,rte.claim_raised,rte.receipt_recorded,rte.claim_paid,rte.receipt_recorded,rte.claim_written_off,rte.claim_reopened', free_text: 0 };
+  if (JSON.stringify(r) !== JSON.stringify(want)) throw new Error(`the RTE payments in the database: ${JSON.stringify(r)}`);
+  if (JSON.stringify(c225Seen) !== JSON.stringify({ paid: 1, raised: 1, receipts: 3, reopened: 1, counting: 1 })) throw new Error(`the RTE payments on the screen: ${JSON.stringify(c225Seen)}`);
+};
+const rtePlan = async (page) => {
+  if (c225SubBefore === undefined) c225SubBefore = (await db.pg.query(`select plan_id from school_subscriptions where school_id = $1`, [SCHOOL])).rows[0] ?? null;
+  await db.pg.query(`insert into school_subscriptions (school_id, plan_id) values ($1, 'starter') on conflict (school_id) do update set plan_id = 'starter'`, [SCHOOL]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-rte-not-in-plan]').waitFor({ timeout: 20000 });
+  c225PlanSeen = {
+    notInPlan: await page.locator('[data-rte-not-in-plan]').count(),
+    desk: await page.locator('[data-rte-desk]').count(),
+    route: (await page.request.get(new URL('/api/app/fees/rte/desk', page.url()).href)).status(),
+  };
+};
+const rtePlanDone = async () => {
+  if (c225SubBefore === null) await db.pg.query(`delete from school_subscriptions where school_id = $1`, [SCHOOL]);
+  else if (c225SubBefore) await db.pg.query(`update school_subscriptions set plan_id = $2 where school_id = $1`, [SCHOOL, c225SubBefore.plan_id]);
+  if (JSON.stringify(c225PlanSeen) !== JSON.stringify({ notInPlan: 1, desk: 0, route: 403 })) throw new Error(`the RTE desk on a plan without it: ${JSON.stringify(c225PlanSeen)}`);
+};
 // c225 end
 // c226 begin
 // c226 end
@@ -5036,6 +5134,8 @@ const SCREENS = [
   ['teacher', 'app-students-teacher', '/app/students', studentsTeacher, studentsTeacherDone],
   // c224 end
   // c225 begin
+  ['principal', 'app-fees-rte-parts', '/app/fees/rte', rteParts, rtePartsDone],
+  ['office', 'app-fees-rte-plan', '/app/fees/rte', rtePlan, rtePlanDone],
   // c225 end
   // c226 begin
   // c226 end

@@ -256,24 +256,25 @@ describe('on the real schema, as the app’s own role', () => {
   });
 
   it('one Aadhaar rule (C223-A answer 6): every free-text column of Admissions refuses what hasAadhaarNumber refuses, and keeps what it keeps', async () => {
-    const refused = ['1234 5678 9012', 'card 2345-6789-0123 seen', 'ref 1234567890123', '१२३४ ५६७८ ९०१२'];
-    const kept = ['Call 98000 00320 after 5', 'Visit on 14/10/2026', 'Class 5-A, roll 12'];
+    const refused = ['1234 5678 9012', 'card 2345-6789-0123 seen', 'ref 123456789012', '१२३४ ५६७८ ९०१२'];
+    // A longer number (a bank UTR) passes the one rule (C225); a phone with its country code and '+' too.
+    const kept = ['Call 98000 00320 after 5', 'Visit on 14/10/2026', 'Class 5-A, roll 12', 'ref 1234567890123', 'Call +91 98765 43210'];
     for (const s of refused) expect(hasAadhaarNumber(s), s).toBe(true);
     for (const s of kept) expect(hasAadhaarNumber(s), s).toBe(false);
     for (const s of refused) expect((await owner(`select public.no_aadhaar_number($1) as ok`, [s]))[0].ok, s).toBe(false);
     for (const s of kept) expect((await owner(`select public.no_aadhaar_number($1) as ok`, [s]))[0].ok, s).toBe(true);
     // The app refuses first ...
-    expect(await as(admin, (c) => recordEnquiry(c, actor(admin), { ...base, phone: '9800000320', note: 'ref 1234567890123' }))).toEqual({ ok: false, reason: 'aadhaar' });
+    expect(await as(admin, (c) => recordEnquiry(c, actor(admin), { ...base, phone: '9800000320', note: 'ref 123456789012' }))).toEqual({ ok: false, reason: 'aadhaar' });
     expect(await as(admin, (c) => recordEnquiry(c, actor(admin), { ...base, phone: '9800000320', childName: 'Riya १२३४ ५६७८ ९०१२' }))).toEqual({ ok: false, reason: 'aadhaar' });
     // ... and the database refuses too, in every column, where the 4-4-4 pattern of C221 let these through.
     const insert = (cols: string, vals: string) => as(admin, (c) => c.query(`insert into admission_enquiries (school_id, class_id, source, owner_id, created_by, phone, ${cols}) values ($1, $2, 'other', $3, $3, '+919800000320', ${vals})`, [A, C5A, ADMIN]));
-    await expect(insert('child_name, guardian_name', `'Z 1234567890123', 'Z'`)).rejects.toThrow(/admission_enquiries_child_name_check/);
+    await expect(insert('child_name, guardian_name', `'Z 123456789012', 'Z'`)).rejects.toThrow(/admission_enquiries_child_name_check/);
     await expect(insert('child_name, guardian_name', `'Z', 'Z १२३४ ५६७८ ९०१२'`)).rejects.toThrow(/admission_enquiries_guardian_name_check/);
-    await expect(insert('child_name, guardian_name, next_step', `'Z', 'Z', 'ref 1234567890123'`)).rejects.toThrow(/admission_enquiries_next_step_check/);
+    await expect(insert('child_name, guardian_name, next_step', `'Z', 'Z', 'ref 123456789012'`)).rejects.toThrow(/admission_enquiries_next_step_check/);
     const open = await record({ childName: 'Tara Example', phone: '9800000321' });
-    await expect(as(admin, (c) => c.query(`update admission_enquiries set stage = 'not_joining', closed_reason = 'ref 1234567890123', next_step = null where enquiry_id = $1`, [open]))).rejects.toThrow(/admission_enquiries_closed_reason_check/);
-    await expect(as(admin, (c) => c.query(`insert into admission_events (school_id, enquiry_id, kind, note, by_user) values ($1, $2, 'note', 'ref 1234567890123', $3)`, [A, open, ADMIN]))).rejects.toThrow(/admission_events_note_check/);
-    await expect(owner(`insert into admission_events (school_id, enquiry_id, kind, follow_up, next_step, by_user) values ($1, $2, 'follow_up', null, 'ref 1234567890123', $3)`, [A, open, ADMIN])).rejects.toThrow(/admission_events_next_step_check/);
+    await expect(as(admin, (c) => c.query(`update admission_enquiries set stage = 'not_joining', closed_reason = 'ref 123456789012', next_step = null where enquiry_id = $1`, [open]))).rejects.toThrow(/admission_enquiries_closed_reason_check/);
+    await expect(as(admin, (c) => c.query(`insert into admission_events (school_id, enquiry_id, kind, note, by_user) values ($1, $2, 'note', 'ref 123456789012', $3)`, [A, open, ADMIN]))).rejects.toThrow(/admission_events_note_check/);
+    await expect(owner(`insert into admission_events (school_id, enquiry_id, kind, follow_up, next_step, by_user) values ($1, $2, 'follow_up', null, 'ref 123456789012', $3)`, [A, open, ADMIN])).rejects.toThrow(/admission_events_next_step_check/);
   });
 });
 

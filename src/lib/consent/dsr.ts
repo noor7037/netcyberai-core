@@ -106,7 +106,7 @@ export interface PseudonymizationResult {
   guardianLinksTombstoned: number;
   qrTokensRevoked: number;
   dataCheckRowsErased: number;
-  rteEvidenceRemoved: number;
+  rteRowsErased: number;
   admissionEnquiriesErased: number;
   admissionStepsErased: number;
   admissionFamilyEnquiriesDeleted: number;
@@ -197,9 +197,10 @@ export async function pseudonymizeStudent(client: PoolClient, schoolId: string, 
   // and the child's name, the guardian's name, the phone and every note and next step on it are blanked, through the
   // database's own function (an admitted enquiry never changes otherwise).
   const { rows: admission } = await client.query(`select enquiries, steps, family_enquiries from public.erase_admission_enquiries($1)`, [studentId]);
-  // The RTE evidence file (C223): its typed notes (an income or category proof) go too. The claims are money the
-  // state owes the school, and are kept, as the child's fees are.
-  const { rowCount: rteEvidenceRemoved } = await client.query(`delete from rte_evidence where school_id = $1 and student_id = $2`, [schoolId, studentId]);
+  // The RTE desk (C223, C225): the child's evidence file goes, and the write-off notes and reasons for reopening on
+  // the child's claims are cleared, through the database's own function. The claims and the state's payments are
+  // money the state owes the school, and are kept, as the child's fees are.
+  const { rows: rteNotes } = await client.query(`select public.erase_student_rte_notes($1) as n`, [studentId]);
   // The words given for changing the child's attendance (review of C224): kept beside their audit rows, removed here.
   const { rowCount: attendanceRowsErased } = await client.query(`delete from attendance_change_reasons where school_id = $1 and student_id = $2`, [schoolId, studentId]);
 
@@ -213,7 +214,7 @@ export async function pseudonymizeStudent(client: PoolClient, schoolId: string, 
     guardianLinksTombstoned: guardianLinksTombstoned ?? 0,
     qrTokensRevoked: qrTokensRevoked ?? 0,
     dataCheckRowsErased: Number(dataCheck[0]?.n ?? 0),
-    rteEvidenceRemoved: rteEvidenceRemoved ?? 0,
+    rteRowsErased: Number(rteNotes[0]?.n ?? 0),
     admissionEnquiriesErased: Number(admission[0]?.enquiries ?? 0),
     admissionStepsErased: Number(admission[0]?.steps ?? 0),
     admissionFamilyEnquiriesDeleted: Number(admission[0]?.family_enquiries ?? 0),

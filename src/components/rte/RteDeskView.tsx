@@ -6,15 +6,16 @@ import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { minorToRupees } from '@/lib/fees/money';
 import type { MessageKey } from '@/lib/i18n';
-import type { AgeBucket } from '@/lib/rte/rules';
-import type { Desk, DeskChild } from '@/lib/rte/desk';
+import type { AgeBucket } from '@/lib/rte/ageing';
+import type { Claim, Desk, DeskChild } from '@/lib/rte/desk';
+import { minorToPlainRupees, REVERSAL_REASONS } from '@/lib/rte/rules';
 
-// The RTE claim desk (docs/28 slice 10c, C223). The year's state rate (typed with where it comes from), each RTE
-// child with their evidence file and the year's claim (raise it, mark it paid, or write it off), the claim sheet as
-// a CSV, and every year's unpaid claims by age. Every figure comes from the server: the screen never works out a
-// claim itself.
+// The RTE claim desk (docs/28 slice 10c, C223; C225). The year's state rate (typed with where it comes from) and
+// which fee heads count, each RTE child with their evidence file and the year's claim (raise it, record what the
+// state pays in parts, write off what is short, reopen a written-off claim), the claim sheet as a CSV, and every
+// year's unpaid claims by age. Every figure comes from the server: the screen never works out a claim itself.
 
-const ERRORS = ['rate', 'source', 'aadhaar', 'unknown_session', 'raised_on', 'no_rate', 'not_rte', 'claimed', 'not_on_sheet', 'no_class', 'no_fee', 'no_children', 'settled', 'paid_on', 'reference', 'note', 'kind', 'nothing', 'document'];
+const ERRORS = ['rate', 'source', 'aadhaar', 'unknown_session', 'raised_on', 'no_rate', 'not_rte', 'claimed', 'not_on_sheet', 'no_class', 'no_fee', 'no_children', 'settled', 'reference', 'note', 'kind', 'nothing', 'document', 'choose_class', 'class', 'not_written_off', 'amount', 'over', 'received_on', 'reason', 'receipt'];
 const DOC_TYPES = ['birth_certificate', 'previous_school_tc', 'previous_report_card', 'address_proof', 'student_photograph', 'caste_category_certificate', 'medical_record'];
 const KINDS = ['admission_order', 'lottery', 'income_or_category', 'other'] as const;
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
@@ -24,7 +25,12 @@ const CARD = 'flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4
 const BUCKET_TONE: Record<AgeBucket, 'success' | 'neutral' | 'warning' | 'danger'> = { paid: 'success', upTo90: 'neutral', upTo180: 'warning', upTo365: 'warning', overYear: 'danger' };
 
 type Reply = { ok: boolean; body: Record<string, unknown> };
-type Settle = { claimId: string; mode: 'paid' | 'write_off'; paidOn: string; reference: string; note: string };
+// The one form open on a claim: a payment, a write-off, a reopening, or taking a receipt back.
+type ClaimForm =
+  | { claimId: string; mode: 'receipt'; amount: string; receivedOn: string; reference: string }
+  | { claimId: string; mode: 'write_off'; note: string }
+  | { claimId: string; mode: 'reopen'; reason: string }
+  | { claimId: string; mode: 'reverse'; receiptId: string; reason: string };
 type EvidenceForm = { studentId: string; kind: string; documentId: string; note: string };
 
 export function RteDeskView() {
@@ -34,7 +40,8 @@ export function RteDeskView() {
   const [sessionId, setSessionId] = useState('');
   const [rate, setRate] = useState({ amount: '', source: '' });
   const [raisedOn, setRaisedOn] = useState('');
-  const [settle, setSettle] = useState<Settle | null>(null);
+  const [form, setForm] = useState<ClaimForm | null>(null);
+  const [chosen, setChosen] = useState<Record<string, string>>({});
   const [evidence, setEvidence] = useState<EvidenceForm | null>(null);
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
@@ -80,6 +87,7 @@ export function RteDeskView() {
   if (!data.session) return <p data-rte-no-year className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('rtd.noYear')}</p>;
   const session = data.session;
   const ready = data.children.filter((c) => c.proposed);
+  const claimUrl = (claim: Claim) => `/api/app/fees/rte/claims/${claim.claim_id}`;
 
   return (
     <div lang={lang} data-rte-desk className="flex flex-col gap-4 text-sm text-slate">
@@ -88,7 +96,7 @@ export function RteDeskView() {
       <section data-rte-rate className={CARD}>
         <div className="flex flex-col gap-1 sm:max-w-xs">
           <label htmlFor="rte-year" className="font-semibold">{t('rtd.year')}</label>
-          <select id="rte-year" className={FIELD} value={sessionId} onChange={(e) => { setSettle(null); setEvidence(null); setNote(null); void load(e.target.value); }}>
+          <select id="rte-year" className={FIELD} value={sessionId} onChange={(e) => { setForm(null); setEvidence(null); setNote(null); void load(e.target.value); }}>
             {data.sessions.map((s) => (
               <option key={s.session_id} value={s.session_id}>{s.label}</option>
             ))}
@@ -122,6 +130,13 @@ export function RteDeskView() {
         <button type="button" data-rte-rate-save disabled={busy || !rate.amount.trim() || !rate.source.trim()} className={`${PRIMARY} self-start`} onClick={() => void send('/api/app/fees/rte/rates', 'POST', { sessionId: session.session_id, rate: rate.amount, source: rate.source }, () => t('rtd.rate.saved'), () => setRate({ amount: '', source: '' }))}>
           {t('rtd.rate.save')}
         </button>
+        <div data-rte-counting={data.counting.choice} className="flex flex-col gap-1 rounded-md border border-slate/10 px-3 py-2">
+          <p className="font-semibold">{t('rtd.counting.title')}</p>
+          <p>{t(`set.fees.rte_claim_heads.option.${data.counting.choice}` as MessageKey)}: {data.counting.heads.length ? data.counting.heads.join(', ') : t('rtd.counting.noHeads')}</p>
+          <p className="font-semibold">{t('rtd.counting.check')}</p>
+          <p className="text-slate/70">{t(data.mayDecide ? 'rtd.counting.change' : 'rtd.counting.changeOffice')}</p>
+          {data.mayDecide && <a href="/app/settings" data-rte-counting-settings className="inline-flex min-h-[44px] items-center self-start text-sapphire underline">{t('rtd.counting.openSettings')}</a>}
+        </div>
       </section>
 
       <section data-rte-sheet className={CARD}>
@@ -187,7 +202,7 @@ export function RteDeskView() {
                   ] as const).map(([k, v]) => (
                     <div key={k}>
                       <dt className="text-slate/70">{t(k)}</dt>
-                      <dd className="font-bold">{money(v)}</dd>
+                      <dd data-rte-age-figure={k.slice(12)} className="font-bold">{money(v)}</dd>
                     </div>
                   ))}
                 </dl>
@@ -212,14 +227,126 @@ export function RteDeskView() {
     return `${tCount('rtd.raisedSaved', Number(body.raised ?? 0))}${skipped ? ` ${tCount('rtd.skipped', skipped)}` : ''}`;
   }
 
+  function paymentWords(body: Record<string, unknown>): string {
+    return body.state === 'paid' ? t('rtd.paidSaved') : t('rtd.receiptSaved', { due: money(Number(body.dueMinor ?? 0)) });
+  }
+
+  // The claim's money: what was paid and when, what is still due, and each receipt (one typed wrongly can be taken
+  // back while the claim is raised).
+  function claimMoney(claim: Claim) {
+    const open = form && form.claimId === claim.claim_id ? form : null;
+    return (
+      <div className="flex flex-col gap-2">
+        <dl className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <div>
+            <dt className="text-slate/70">{t('rtd.received')}</dt>
+            <dd data-rte-received className="font-bold">{money(claim.received_minor)}</dd>
+          </div>
+          <div>
+            <dt className="text-slate/70">{t('rtd.due')}</dt>
+            <dd data-rte-due className="font-bold">{money(claim.due_minor)}</dd>
+          </div>
+        </dl>
+        {claim.receipts.length > 0 && (
+          <ul data-rte-receipts={claim.receipts.length} className="flex flex-col gap-2">
+            {claim.receipts.map((r) => (
+              <li key={r.receipt_id} data-rte-receipt={r.reverses ? 'reversal' : r.reversed ? 'reversed' : 'receipt'} className="flex flex-wrap items-start justify-between gap-2 border-l-2 border-slate/10 pl-3">
+                <div className="min-w-0 flex-1">
+                  {r.reverses ? (
+                    <p className="break-words">{t('rtd.receipt.reversal', { amount: money(-r.amount_minor), date: date(r.received_on), why: t(`rtd.reversal.${r.reversal_reason ?? 'typed_wrong'}` as MessageKey), name: r.recorded_by ?? '' })}</p>
+                  ) : (
+                    <p className="break-words">{t('rtd.receipt.row', { amount: money(r.amount_minor), date: date(r.received_on), reference: r.reference ?? '', name: r.recorded_by ?? '' })}</p>
+                  )}
+                  {r.reversed && <p className="text-slate/70">{t('rtd.receipt.takenBack')}</p>}
+                </div>
+                {claim.state === 'raised' && !r.reverses && !r.reversed && !open && (
+                  <button type="button" data-rte-open-reverse className={TAP} onClick={() => setForm({ claimId: claim.claim_id, mode: 'reverse', receiptId: r.receipt_id, reason: 'typed_wrong' })}>{t('rtd.reverse')}</button>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    );
+  }
+
   // A render function, not a component: a component made inside this one would be new on every render, and its
   // inputs would lose what is being typed.
+  function claimActions(claim: Claim) {
+    const open = form && form.claimId === claim.claim_id ? form : null;
+    return (
+      <>
+        {claim.state === 'raised' && !open && (
+          <div className="flex flex-wrap gap-2">
+            <button type="button" data-rte-open-paid className={TAP} onClick={() => setForm({ claimId: claim.claim_id, mode: 'receipt', amount: minorToPlainRupees(claim.due_minor), receivedOn: data?.today ?? '', reference: '' })}>{t('rtd.recordPayment')}</button>
+            <button type="button" data-rte-open-write-off className={TAP} onClick={() => setForm({ claimId: claim.claim_id, mode: 'write_off', note: '' })}>{t(claim.received_minor > 0 ? 'rtd.writeOffRest' : 'rtd.writeOff')}</button>
+          </div>
+        )}
+        {claim.state === 'written_off' && data?.mayDecide && !open && (
+          <button type="button" data-rte-open-reopen className={`${TAP} self-start`} onClick={() => setForm({ claimId: claim.claim_id, mode: 'reopen', reason: '' })}>{t('rtd.reopen')}</button>
+        )}
+        {claim.state === 'written_off' && !data?.mayDecide && <p className="text-slate/70">{t('rtd.reopenOffice')}</p>}
+        {open?.mode === 'receipt' && (
+          <div className="flex flex-col gap-2">
+            <div className="grid gap-3 sm:grid-cols-4 sm:items-end">
+              <Input id={`rte-amount-${claim.claim_id}`} inputMode="decimal" label={t('rtd.amountReceived')} maxLength={14} value={open.amount} onChange={(e) => setForm({ ...open, amount: e.target.value })} />
+              <Input id={`rte-paid-on-${claim.claim_id}`} type="date" label={t('rtd.receivedOn')} min={claim.raised_on} max={data?.today} value={open.receivedOn} onChange={(e) => setForm({ ...open, receivedOn: e.target.value })} />
+              <Input id={`rte-reference-${claim.claim_id}`} label={t('rtd.reference')} maxLength={80} value={open.reference} onChange={(e) => setForm({ ...open, reference: e.target.value })} />
+              <button type="button" data-rte-paid-save disabled={busy || !open.amount.trim() || !open.receivedOn || !open.reference.trim()} className={PRIMARY} onClick={() => void send(claimUrl(claim), 'POST', { action: 'receipt', amount: open.amount, receivedOn: open.receivedOn, reference: open.reference }, paymentWords, () => setForm(null))}>
+                {t('rtd.savePayment')}
+              </button>
+            </div>
+            <p className="text-slate/70">{t('rtd.paymentHelp', { due: money(claim.due_minor) })}</p>
+            <button type="button" className={`${TAP} self-start`} onClick={() => setForm(null)}>{t('rtd.cancel')}</button>
+          </div>
+        )}
+        {open?.mode === 'write_off' && (
+          <div className="grid gap-3 sm:grid-cols-3 sm:items-end">
+            <div className="sm:col-span-2">
+              <Input id={`rte-write-off-${claim.claim_id}`} label={t('rtd.writeOffNote')} helperText={t('rtd.evidence.noteHelp')} maxLength={300} value={open.note} onChange={(e) => setForm({ ...open, note: e.target.value })} />
+            </div>
+            <button type="button" data-rte-write-off-save disabled={busy || !open.note.trim()} className={PRIMARY} onClick={() => void send(claimUrl(claim), 'POST', { action: 'write_off', note: open.note }, () => t('rtd.writtenOffSaved'), () => setForm(null))}>
+              {t(claim.received_minor > 0 ? 'rtd.writeOffRest' : 'rtd.writeOff')}
+            </button>
+            <button type="button" className={`${TAP} self-start`} onClick={() => setForm(null)}>{t('rtd.cancel')}</button>
+          </div>
+        )}
+        {open?.mode === 'reopen' && (
+          <div className="grid gap-3 sm:grid-cols-3 sm:items-end">
+            <div className="sm:col-span-2">
+              <Input id={`rte-reopen-${claim.claim_id}`} label={t('rtd.reopenReason')} helperText={t('rtd.evidence.noteHelp')} maxLength={300} value={open.reason} onChange={(e) => setForm({ ...open, reason: e.target.value })} />
+            </div>
+            <button type="button" data-rte-reopen-save disabled={busy || !open.reason.trim()} className={PRIMARY} onClick={() => void send(claimUrl(claim), 'POST', { action: 'reopen', reason: open.reason }, () => t('rtd.reopenedSaved'), () => setForm(null))}>
+              {t('rtd.reopen')}
+            </button>
+            <button type="button" className={`${TAP} self-start`} onClick={() => setForm(null)}>{t('rtd.cancel')}</button>
+          </div>
+        )}
+        {open?.mode === 'reverse' && (
+          <div className="grid gap-3 sm:grid-cols-3 sm:items-end">
+            <div className="flex flex-col gap-1 sm:col-span-2">
+              <label htmlFor={`rte-reverse-${claim.claim_id}`} className="font-semibold">{t('rtd.reverseWhy')}</label>
+              <select id={`rte-reverse-${claim.claim_id}`} className={FIELD} value={open.reason} onChange={(e) => setForm({ ...open, reason: e.target.value })}>
+                {REVERSAL_REASONS.map((r) => (
+                  <option key={r} value={r}>{t(`rtd.reversal.${r}` as MessageKey)}</option>
+                ))}
+              </select>
+            </div>
+            <button type="button" data-rte-reverse-save disabled={busy} className={PRIMARY} onClick={() => void send(claimUrl(claim), 'POST', { action: 'reverse', receiptId: open.receiptId, reason: open.reason }, () => t('rtd.reversedSaved'), () => setForm(null))}>
+              {t('rtd.reverse')}
+            </button>
+            <button type="button" className={`${TAP} self-start`} onClick={() => setForm(null)}>{t('rtd.cancel')}</button>
+          </div>
+        )}
+      </>
+    );
+  }
+
   function childCard(c: DeskChild) {
     const claim = c.claim;
     const state = claim?.state ?? 'none';
     const figures = claim ?? c.proposed;
-    const open = settle && claim && settle.claimId === claim.claim_id ? settle : null;
-    const form = evidence?.studentId === c.student_id ? evidence : null;
+    const evidenceForm = evidence?.studentId === c.student_id ? evidence : null;
     return (
       <li key={c.student_id} data-rte-child={c.student_id} data-rte-state={claim ? state : c.proposed ? 'ready' : (c.blocked ?? c.offSheet ?? 'none')} className="flex flex-col gap-3 rounded-md border border-slate/10 p-3">
         <div className="flex flex-wrap items-center gap-2">
@@ -228,6 +355,7 @@ export function RteDeskView() {
           {c.admission_no && <span className="text-slate/70">{t('rtd.child.admission', { no: c.admission_no })}</span>}
           {c.onSheet && <Badge variant={state === 'paid' ? 'success' : state === 'raised' ? 'warning' : 'neutral'}>{t(`rtd.state.${state}` as MessageKey)}</Badge>}
         </div>
+        {c.class_source && c.class_source !== 'current' && <p data-rte-class-source={c.class_source} className="text-slate/70">{t(`rtd.classSource.${c.class_source}` as MessageKey, { year })}</p>}
         {c.entry_class && c.admitted_on && <p className="text-slate/70">{t('rtd.child.entry', { class: c.entry_class, date: date(c.admitted_on) })}</p>}
         {c.offSheet && <p className="font-semibold">{t(c.offSheet === 'left' ? 'rtd.child.left' : 'rtd.child.admittedLater')}</p>}
         {!c.rte && <p className="font-semibold">{t('rtd.child.untagged')}</p>}
@@ -255,6 +383,22 @@ export function RteDeskView() {
               </dl>
             )}
             {c.blocked && <p data-rte-blocked={c.blocked} className="rounded-md bg-off-white px-3 py-2">{t(`rtd.blocked.${c.blocked}` as MessageKey)}</p>}
+            {c.blocked === 'choose_class' && data?.mayDecide && (
+              <div className="flex flex-wrap items-end gap-3">
+                <div className="flex w-full flex-col gap-1 sm:w-56">
+                  <label htmlFor={`rte-class-${c.student_id}`} className="font-semibold">{t('rtd.chooseClass', { year })}</label>
+                  <select id={`rte-class-${c.student_id}`} className={FIELD} value={chosen[c.student_id] ?? ''} onChange={(e) => setChosen({ ...chosen, [c.student_id]: e.target.value })}>
+                    <option value="">{t('rtd.chooseClassNone')}</option>
+                    {(data?.classes ?? []).map((k) => (
+                      <option key={k.class_id} value={k.class_id}>{k.name}</option>
+                    ))}
+                  </select>
+                </div>
+                <button type="button" data-rte-raise-chosen disabled={busy || !raisedOn || !chosen[c.student_id]} className={PRIMARY} onClick={() => void send('/api/app/fees/rte/claims', 'POST', { sessionId, studentIds: [c.student_id], raisedOn, classId: chosen[c.student_id] }, raisedWords)}>
+                  {t('rtd.raiseChosen')}
+                </button>
+              </div>
+            )}
             {c.proposed && (
               <button type="button" data-rte-raise disabled={busy || !raisedOn} className={`${PRIMARY} self-start`} onClick={() => void send('/api/app/fees/rte/claims', 'POST', { sessionId, studentIds: [c.student_id], raisedOn }, raisedWords)}>
                 {t('rtd.raise')}
@@ -269,33 +413,11 @@ export function RteDeskView() {
                     <Badge variant={BUCKET_TONE[claim.bucket]}>{t(`rtd.bucket.${claim.bucket}` as MessageKey)}</Badge>
                   </p>
                 )}
-                {claim.state === 'paid' && <p data-rte-paid className="font-semibold">{t('rtd.claim.paid', { date: date(claim.paid_on ?? ''), reference: claim.reference ?? '', name: claim.settled_by ?? '' })}</p>}
-                {claim.state === 'written_off' && <p className="break-words font-semibold">{t('rtd.claim.writtenOff', { name: claim.settled_by ?? '', note: claim.write_off_note ?? '' })}</p>}
-                {claim.state === 'raised' && !open && (
-                  <div className="flex flex-wrap gap-2">
-                    <button type="button" data-rte-open-paid className={TAP} onClick={() => setSettle({ claimId: claim.claim_id, mode: 'paid', paidOn: data?.today ?? '', reference: '', note: '' })}>{t('rtd.markPaid')}</button>
-                    <button type="button" data-rte-open-write-off className={TAP} onClick={() => setSettle({ claimId: claim.claim_id, mode: 'write_off', paidOn: '', reference: '', note: '' })}>{t('rtd.writeOff')}</button>
-                  </div>
-                )}
-                {open && open.mode === 'paid' && (
-                  <div className="grid gap-3 sm:grid-cols-3 sm:items-end">
-                    <Input id={`rte-paid-on-${claim.claim_id}`} type="date" label={t('rtd.paidOn')} min={claim.raised_on} max={data?.today} value={open.paidOn} onChange={(e) => setSettle({ ...open, paidOn: e.target.value })} />
-                    <Input id={`rte-reference-${claim.claim_id}`} label={t('rtd.reference')} maxLength={80} value={open.reference} onChange={(e) => setSettle({ ...open, reference: e.target.value })} />
-                    <button type="button" data-rte-paid-save disabled={busy || !open.paidOn || !open.reference.trim()} className={PRIMARY} onClick={() => void send(`/api/app/fees/rte/claims/${claim.claim_id}`, 'POST', { action: 'paid', paidOn: open.paidOn, reference: open.reference }, () => t('rtd.paidSaved'), () => setSettle(null))}>
-                      {t('rtd.markPaid')}
-                    </button>
-                  </div>
-                )}
-                {open && open.mode === 'write_off' && (
-                  <div className="grid gap-3 sm:grid-cols-3 sm:items-end">
-                    <div className="sm:col-span-2">
-                      <Input id={`rte-write-off-${claim.claim_id}`} label={t('rtd.writeOffNote')} helperText={t('rtd.evidence.noteHelp')} maxLength={300} value={open.note} onChange={(e) => setSettle({ ...open, note: e.target.value })} />
-                    </div>
-                    <button type="button" data-rte-write-off-save disabled={busy || !open.note.trim()} className={PRIMARY} onClick={() => void send(`/api/app/fees/rte/claims/${claim.claim_id}`, 'POST', { action: 'write_off', note: open.note }, () => t('rtd.writtenOffSaved'), () => setSettle(null))}>
-                      {t('rtd.writeOff')}
-                    </button>
-                  </div>
-                )}
+                {claimMoney(claim)}
+                {claim.state === 'paid' && <p data-rte-paid className="font-semibold">{t('rtd.claim.paidInFull', { date: date(claim.paid_on ?? ''), name: claim.settled_by ?? '' })}</p>}
+                {claim.state === 'written_off' && <p data-rte-written-off className="break-words font-semibold">{claim.write_off_note ? t('rtd.claim.writtenOff', { name: claim.settled_by ?? '', note: claim.write_off_note }) : t('rtd.claim.writtenOffErased', { name: claim.settled_by ?? '' })}</p>}
+                {claim.reopened_by && claim.reopened_at && <p data-rte-reopened className="break-words text-slate/70">{claim.reopen_reason ? t('rtd.claim.reopened', { name: claim.reopened_by, date: date(claim.reopened_at), reason: claim.reopen_reason }) : t('rtd.claim.reopenedErased', { name: claim.reopened_by, date: date(claim.reopened_at) })}</p>}
+                {claimActions(claim)}
               </div>
             )}
           </>
@@ -323,7 +445,7 @@ export function RteDeskView() {
                 ))}
               </ul>
             )}
-            {!form ? (
+            {!evidenceForm ? (
               <button type="button" data-rte-evidence-open className={`${TAP} self-start`} onClick={() => setEvidence({ studentId: c.student_id, kind: 'admission_order', documentId: '', note: '' })}>
                 {t('rtd.evidence.add')}
               </button>
@@ -332,7 +454,7 @@ export function RteDeskView() {
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="flex flex-col gap-1">
                     <label htmlFor={`rte-kind-${c.student_id}`} className="font-semibold">{t('rtd.evidence.kind')}</label>
-                    <select id={`rte-kind-${c.student_id}`} className={FIELD} value={form.kind} onChange={(e) => setEvidence({ ...form, kind: e.target.value })}>
+                    <select id={`rte-kind-${c.student_id}`} className={FIELD} value={evidenceForm.kind} onChange={(e) => setEvidence({ ...evidenceForm, kind: e.target.value })}>
                       {KINDS.map((k) => (
                         <option key={k} value={k}>{t(`rtd.kind.${k}` as MessageKey)}</option>
                       ))}
@@ -340,7 +462,7 @@ export function RteDeskView() {
                   </div>
                   <div className="flex flex-col gap-1">
                     <label htmlFor={`rte-doc-${c.student_id}`} className="font-semibold">{t('rtd.evidence.document')}</label>
-                    <select id={`rte-doc-${c.student_id}`} className={FIELD} value={form.documentId} onChange={(e) => setEvidence({ ...form, documentId: e.target.value })}>
+                    <select id={`rte-doc-${c.student_id}`} className={FIELD} value={evidenceForm.documentId} onChange={(e) => setEvidence({ ...evidenceForm, documentId: e.target.value })}>
                       <option value="">{t('rtd.evidence.noDocument')}</option>
                       {c.documents.map((d) => (
                         <option key={d.document_id} value={d.document_id}>{t('rtd.evidence.doc', { type: docType(d.doc_type), date: date(d.uploaded_at) })}</option>
@@ -349,8 +471,8 @@ export function RteDeskView() {
                     {c.documents.length === 0 && <p className="text-slate/70">{t('rtd.evidence.noDocuments')}</p>}
                   </div>
                 </div>
-                <Input id={`rte-note-${c.student_id}`} label={t('rtd.evidence.note')} helperText={t('rtd.evidence.noteHelp')} maxLength={300} value={form.note} onChange={(e) => setEvidence({ ...form, note: e.target.value })} />
-                <button type="button" data-rte-evidence-add disabled={busy || (!form.documentId && !form.note.trim())} className={`${PRIMARY} self-start`} onClick={() => void send('/api/app/fees/rte/evidence', 'POST', { studentId: c.student_id, kind: form.kind, documentId: form.documentId || null, note: form.note.trim() || null }, () => t('rtd.evidence.added'), () => setEvidence(null))}>
+                <Input id={`rte-note-${c.student_id}`} label={t('rtd.evidence.note')} helperText={t('rtd.evidence.noteHelp')} maxLength={300} value={evidenceForm.note} onChange={(e) => setEvidence({ ...evidenceForm, note: e.target.value })} />
+                <button type="button" data-rte-evidence-add disabled={busy || (!evidenceForm.documentId && !evidenceForm.note.trim())} className={`${PRIMARY} self-start`} onClick={() => void send('/api/app/fees/rte/evidence', 'POST', { studentId: c.student_id, kind: evidenceForm.kind, documentId: evidenceForm.documentId || null, note: evidenceForm.note.trim() || null }, () => t('rtd.evidence.added'), () => setEvidence(null))}>
                   {t('rtd.evidence.add')}
                 </button>
               </div>

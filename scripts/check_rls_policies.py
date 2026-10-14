@@ -397,6 +397,7 @@ ALLOWED_PERMISSIVE = (
         ("attendance_change_reasons", "attendance_change_reasons_tenant_isolation"),  # review of C224: narrowed by the RESTRICTIVE policies below
         # c224 end
         # c225 begin
+        ("rte_claim_receipts", "rte_claim_receipts_tenant_isolation"),
         # c225 end
         # c226 begin
         # c226 end
@@ -713,6 +714,8 @@ REQUIRED_RESTRICTIVE = {
     ("attendance_change_reasons", "attendance_change_reasons_erased_by_office"),
     # c224 end
     # c225 begin
+    ("rte_claim_receipts", "rte_claim_receipts_finance"),
+    ("rte_claim_receipts", "rte_claim_receipts_recorded_as_self"),
     # c225 end
     # c226 begin
     # c226 end

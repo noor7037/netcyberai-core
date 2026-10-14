@@ -4,7 +4,7 @@ import { csvResponse, toCsv } from '@/lib/export/csv';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, ruleError } from '@/lib/frameworks/route';
 import { DEFAULT_LANG, LANG_COOKIE, readLangCookie } from '@/lib/i18n';
-import { loadDesk } from '@/lib/rte/desk';
+import { deskInPlan, loadDesk } from '@/lib/rte/desk';
 import { rteSheetCsv } from '@/lib/rte/sheet-csv';
 
 // GET ?session=<id>: the year's claim sheet as a spreadsheet (C223), built from the same desk as the screen, in the
@@ -13,6 +13,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
+    if (!(await deskInPlan(db, claims.schoolId))) return ruleError(403, 'not_allowed'); // a part of the plan (C223-A)
     const asked = req.nextUrl.searchParams.get('session');
     const desk = await loadDesk(db, { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, { sessionId: isUuid(asked) ? asked : null });
     if (!desk) return ruleError(403, 'not_allowed');
