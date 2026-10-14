@@ -522,3 +522,14 @@ create table school_health_runs (
 alter table school_health_runs enable row level security;
 create policy school_health_runs_tenant_isolation on school_health_runs using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert, update on school_health_runs to app_user;
+
+-- The grading scheme, as My Day asks whether a school has one yet (C213).
+create table grading_schemes (
+  scheme_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  version integer not null,
+  scheme jsonb not null
+);
+alter table grading_schemes enable row level security;
+create policy grading_schemes_tenant_isolation on grading_schemes using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert on grading_schemes to app_user;

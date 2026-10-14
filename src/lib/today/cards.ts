@@ -441,6 +441,22 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   // c210-ui begin
   // c210-ui end
   // p6-9a begin
+  {
+    // The school has no grading scheme yet (C213): the principal and the school admin are asked to set it up, from
+    // the board's preset or empty. Gone once a version is saved. The card is about the session's own school only:
+    // row level security hides another school's versions, and their absence there says nothing.
+    type: 'grading-scheme',
+    moduleId: 'exams',
+    roles: OFFICE,
+    async load(db, ctx) {
+      const { rows } = await db.query(
+        `select $1::uuid = nullif(current_setting('app.current_tenant_id', true), '')::uuid as own,
+                exists (select 1 from grading_schemes where school_id = $1) as has`,
+        [ctx.schoolId]
+      );
+      return rows[0]?.own === true && rows[0]?.has === false ? waiting('grading-scheme', 'exams', 1, '/app/exams/scheme') : [];
+    },
+  },
   // p6-9a end
   // p6-9b begin
   // p6-9b end

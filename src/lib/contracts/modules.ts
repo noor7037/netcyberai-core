@@ -121,7 +121,7 @@ const ROWS: readonly Row[] = [
     capabilities: ['Set with photo or attachment', 'Due dates', 'Completion by parent reply', 'Class completion stats', 'Copy to many sections', 'Online submission and evaluation'] },
   { id: 'recovery', label: 'Homework Recovery', group: 'teaching-learning', icon: 'recovery', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P2', phaseNote: 'Detect, suggest and approve are live (v1); the parent message in P4', status: 'partial',
     capabilities: ['Detect students missing homework repeatedly in a window', 'Suggest a catch-up plan', 'Teacher approves', 'Parent informed via Pulse'] },
-  { id: 'exams', label: 'Exams & Report Card', group: 'teaching-learning', icon: 'exams', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P6', status: 'foundation',
+  { id: 'exams', label: 'Exams & Report Card', group: 'teaching-learning', icon: 'exams', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P6', phaseNote: 'The school’s board and its grading scheme (bands, pass marks, components, terms and the report card layout, from the board’s preset or empty) are live on the Grading scheme screen, which My Day opens while a school has none; exams, marks and report cards next', status: 'partial',
     capabilities: ['Exam setup', 'Marks entry with validation', 'Bulk marks from Excel', 'Grading', 'Report card PDF', 'Holistic Progress Card', 'Admit cards', 'Publish', 'Personal Best and Most Improved'] },
 
   { id: 'pulse', mobilePriority: 4, label: 'Daily Pulse', group: 'parent-engagement', icon: 'pulse', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', phaseNote: 'The needs-help queue is live (P2); compose next; sending in P4', status: 'partial',

@@ -171,6 +171,9 @@ const APP_USER: Record<string, string> = {
   // c210-ui begin
   // c210-ui end
   // p6-9a begin
+  boards: 'SELECT', // every school role reads the boards and their presets; only the platform role adds them (C213)
+  board_presets: 'SELECT',
+  grading_schemes: 'INSERT,SELECT', // a version is saved, never changed or removed
   // p6-9a end
   // p6-9b begin
   // p6-9b end
@@ -264,6 +267,9 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // c210-ui begin
   // c210-ui end
   // p6-9a begin
+  boards: 'INSERT,SELECT', // added in Control, never changed or removed (C213)
+  board_presets: 'INSERT,SELECT', // a new preset replaces an old one; none is changed
+  grading_schemes: '', // a school's grading scheme is its own: the platform role reads nothing here
   // p6-9a end
   // p6-9b begin
   // p6-9b end

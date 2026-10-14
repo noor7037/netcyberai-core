@@ -130,7 +130,7 @@ describe('the three plans are data: per-student prices a month and a year, and t
     expect([listed.essential.features, listed.growth.features, listed.premium.features]).toEqual([[], ['principal-dashboard', 'staff-leave'], ['principal-dashboard', 'staff-leave', 'personal-best']]);
     // Modules a plan sells that are not built yet wait: applying Premium switches on only what works today.
     const premium = (await platform((c) => loadPlan(c, 'premium')))!;
-    expect(premium.waitingModuleIds.sort()).toEqual(['curriculum-gap', 'exams', 'learning-genome']);
+    expect(premium.waitingModuleIds.sort()).toEqual(['curriculum-gap', 'learning-genome']); // Exams works from C213
     const on = (await rows(`select module_id from school_module_entitlements where school_id = $1 and enabled order by 1`, [P])).map((r: { module_id: string }) => r.module_id);
     expect(on).toEqual([...ESSENTIAL, ...GROWTH_ADDS, ...PREMIUM_ADDS].filter((m) => workingModules().includes(m as never)).sort());
   });

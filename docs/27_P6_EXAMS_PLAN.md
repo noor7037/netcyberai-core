@@ -83,8 +83,9 @@ decided.
    - State boards get no invented preset. Control adds a board preset when a
      school from that board signs, copied from the board's official
      circular, with its URL.
-   - The only grade tables in the code are the CBSE and CISCE presets
-     (`src/lib/exams/board-presets.ts`). Control's board presets are rows.
+   - There is no grade table in the code: the CBSE and CISCE presets are
+     rows seeded by 9a's migration (`board_presets`), and Control adds
+     others the same way.
    - The scheme in force is the school's setting. A published exam keeps
      the scheme it was published with, so a later change never rewrites a
      report card.

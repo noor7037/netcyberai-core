@@ -220,7 +220,7 @@ describe('plans are rows, not code', () => {
     expect(await make({ allWorkingModules: false, moduleIds: ['payroll'] })).toEqual({ ok: false, reason: 'modules' }); // not built, and nothing else: nothing would be switched on
     expect(await make({ allWorkingModules: false, moduleIds: ['students', 'no-such-module'] })).toEqual({ ok: false, reason: 'modules' });
     expect(await make({ features: ['a-made-up-feature'] })).toEqual({ ok: false, reason: 'features' });
-    expect(await make({ features: ['personal-best'] })).toEqual({ ok: false, reason: 'features' }); // a part of Exams, which works for no plan yet
+    expect(await make({ allWorkingModules: false, moduleIds: ['students'], features: ['personal-best'] })).toEqual({ ok: false, reason: 'features' }); // a part of Exams, which this plan does not give (C213: Exams works now)
     expect(await make({ messagesPerStudentMonth: -1 })).toEqual({ ok: false, reason: 'messages' });
     expect(await make({ messagesPerStudentMonth: 2.5 })).toEqual({ ok: false, reason: 'messages' });
     expect(await make({ limits: { students: { enrolled: -1 } } })).toEqual({ ok: false, reason: 'limits' });
@@ -247,9 +247,9 @@ describe('applying a plan switches on exactly its modules', () => {
 
   it('a chosen list: those modules on, every other module the last plan gave off; what the founder set by hand keeps the founder’s choice', async () => {
     expect((await platform((c) => createPlan(c, by, { ...planInput({ name: 'Small Made-up', allWorkingModules: false, moduleIds: ['students', 'attendance', 'fees'], limits: { students: { enrolled: 500 } } }), planId: 'small-made-up' }))).ok).toBe(true);
-    // By hand, before: Attendance off (the plan gives it), Exams on (no plan gives it).
+    // By hand, before: Attendance off (the plan gives it), Payroll on (no plan gives it: not built yet; Exams was used here until it became partial, C213).
     await platform((c) => changeModuleEntitlement(c, { schoolId: G, moduleId: 'attendance', enabled: false, reason: 'not yet' }, founder));
-    await platform((c) => changeModuleEntitlement(c, { schoolId: G, moduleId: 'exams', enabled: true, reason: 'a pilot' }, founder));
+    await platform((c) => changeModuleEntitlement(c, { schoolId: G, moduleId: 'payroll', enabled: true, reason: 'a pilot' }, founder));
 
     const applied = await platform((c) => applyPlan(c, G, 'small-made-up', founder, 'moved to the small plan'));
     expect(applied).toMatchObject({ ok: true, modules: ['fees', 'students'] });
@@ -263,8 +263,8 @@ describe('applying a plan switches on exactly its modules', () => {
     expect((applied as { switchedOff: string[] }).switchedOff).toEqual([...others].sort());
     expect([after['help-center'], after['raise-ticket']]).toEqual(['on:plan', 'on:plan']);
     // ...and the founder's two choices stand, one against the plan and one beyond it.
-    expect([after.attendance, after.exams]).toEqual(['off:founder_override', 'on:founder_override']);
-    expect(await onFor(G)).toEqual(['exams', 'fees', 'help-center', 'raise-ticket', 'students']);
+    expect([after.attendance, after.payroll]).toEqual(['off:founder_override', 'on:founder_override']);
+    expect(await onFor(G)).toEqual(['fees', 'help-center', 'payroll', 'raise-ticket', 'students']);
     // The plan's limit came with its module.
     expect(await rows(`select limits from school_module_entitlements where school_id = $1 and module_id = 'students'`, [G])).toEqual([{ limits: { enrolled: 500 } }]);
     expect(await rows(`select e.plan, s.plan_id from school_entitlements e join school_subscriptions s on s.school_id = e.school_id where e.school_id = $1`, [G])).toEqual([{ plan: 'small-made-up', plan_id: 'small-made-up' }]);
@@ -277,13 +277,13 @@ describe('applying a plan switches on exactly its modules', () => {
 
     expect((await platform((c) => createPlan(c, by, { ...planInput({ name: 'Other Made-up', allWorkingModules: false, moduleIds: ['students', 'parents'] }), planId: 'other-made-up' }))).ok).toBe(true);
     expect(await platform((c) => applyPlan(c, G, 'other-made-up', founder, 'moved again'))).toMatchObject({ ok: true, modules: ['parents', 'students'], switchedOff: ['fees'] });
-    expect(await onFor(G)).toEqual(['exams', 'help-center', 'parents', 'raise-ticket', 'students']);
+    expect(await onFor(G)).toEqual(['help-center', 'parents', 'payroll', 'raise-ticket', 'students']);
     // The limit belonged to the small plan: this plan gives Students without one.
     expect(await rows(`select limits from school_module_entitlements where school_id = $1 and module_id = 'students'`, [G])).toEqual([{ limits: {} }]);
 
     // Back on the plan that gives every working module: all of them, but still not the module the founder switched off.
     expect((await platform((c) => applyPlan(c, G, SEEDED, founder, 'back to everything'))).ok).toBe(true);
-    expect(await onFor(G)).toEqual([...workingModules().filter((m) => m !== 'attendance'), 'exams'].sort());
+    expect(await onFor(G)).toEqual([...workingModules().filter((m) => m !== 'attendance'), 'payroll'].sort());
   });
 
   it('each change of plan is in the school’s history with who and why; an unknown plan is refused', async () => {

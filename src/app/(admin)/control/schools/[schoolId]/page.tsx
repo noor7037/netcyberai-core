@@ -5,6 +5,7 @@ import { getServerSession } from '@/lib/auth/server-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { SchoolOnboardingPanel } from '@/components/control/SchoolOnboardingPanel';
 import { SchoolEntitlements } from '@/components/control/SchoolEntitlementsPanel';
+import { BoardSchoolPanel } from '@/components/control/BoardSchoolPanel';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 
 // Prompt E fills in the real Overview tab (onboarding stage, pilot
@@ -43,6 +44,10 @@ export default async function SchoolDetailPage({ params }: { params: { schoolId:
     }
     if (tab.id === 'modules-access' && school) {
       return { id: tab.id, label: tab.label, content: <SchoolEntitlements schoolId={school.school_id} /> };
+    }
+    // The board the school records (C213); its grading scheme is the school's own, on its Exams screen.
+    if (tab.id === 'exams' && school) {
+      return { id: tab.id, label: tab.label, content: <BoardSchoolPanel schoolId={school.school_id} /> };
     }
     return {
       id: tab.id,
