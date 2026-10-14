@@ -47,16 +47,6 @@ const faqs = [
     answer:
       'No. Parents pay by UPI straight into your school’s own bank account, and the school confirms each payment against its bank before a receipt is issued. NetCyberAI never holds your fee money and takes no cut of it.',
   },
-  {
-    question: 'Is there a pilot for new schools?',
-    answer:
-      'Yes. Every new school starts in pilot mode with outbound WhatsApp messaging switched off, so nothing reaches a real parent until the school explicitly turns it on. That lets you, your staff and us confirm the data and messages look right first.',
-  },
-  {
-    question: 'Which modules can we use today?',
-    answer:
-      'The table marks every module as available now, ready to start once your school’s WhatsApp is switched on, or in development. Available now: student records, imports, consent, attendance, homework, fees with UPI collection and receipts, staff leave with automatic cover, the principal dashboard and reports, complaints, Early Warning and the School Health Auditor. Ready with WhatsApp: parent messages, notices, the Daily Learning Pulse, meetings and events. In development: exams and report cards, Parent AI and the learning insights.',
-  },
 ];
 
 const BADGE: Record<ModuleAvailability, string> = {
