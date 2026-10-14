@@ -55,6 +55,7 @@ import { GET as complaintsRoute } from '@/app/api/app/complaints/route';
 import { GET as followupsRoute } from '@/app/api/app/followups/route';
 import { GET as proxyRoute } from '@/app/api/app/proxy/route';
 import { GET as studentsRoute } from '@/app/api/app/students/route';
+import { AdmissionsWaiting } from '@/components/admissions/AdmissionsWaiting';
 import { AttendanceDays, AttendanceShown } from '@/components/attendance/AttendanceShown';
 import { BudgetView } from '@/components/communication/BudgetView';
 import { MessagesView } from '@/components/communication/MessagesView';
@@ -109,7 +110,7 @@ const PAGES: Record<string, (props: { searchParams: Record<string, string> }) =>
   '/app/proxy': ProxyPage as never,
 };
 // The lists of "the rows behind a number" a page may put on the screen for an address.
-const LISTS: unknown[] = [AttendanceShown, AttendanceDays, FeesShown, HomeworkShown, PulseShown, NoticesShown, EventsShown, ParentAiShown, TicketsShown, ComplaintsShown, PtmShown, StaffLeaveShown];
+const LISTS: unknown[] = [AdmissionsWaiting, AttendanceShown, AttendanceDays, FeesShown, HomeworkShown, PulseShown, NoticesShown, EventsShown, ParentAiShown, TicketsShown, ComplaintsShown, PtmShown, StaffLeaveShown];
 
 // An element of that type in the tree a page hands down (before anything is drawn).
 const find = (el: any, type: unknown): any => {

@@ -192,6 +192,8 @@ const APP_USER: Record<string, string> = {
   school_billing_terms: '', // a school's own terms (C212): read and written in Control only, never by a school
   // c212-pricing end
   // p7-10a begin
+  admission_enquiries: 'INSERT,SELECT,UPDATE', // never deleted; admitted is for good (trigger) (C221)
+  admission_events: 'INSERT,SELECT', // append-only: the trigger keeps every change, a person adds a note
   // p7-10a end
   // p7-10b begin
   // p7-10b end
@@ -310,6 +312,8 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   school_billing_terms: 'INSERT,SELECT,UPDATE', // never deleted; an UPDATE may only bring a last day forward (a trigger)
   // c212-pricing end
   // p7-10a begin
+  admission_enquiries: '', // a family's enquiry is the school office's own: the platform role reads nothing here (C221)
+  admission_events: '',
   // p7-10a end
   // p7-10b begin
   // p7-10b end

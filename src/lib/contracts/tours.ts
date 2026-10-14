@@ -100,6 +100,7 @@ export const TOURS = {
   // c212-pricing begin
   // c212-pricing end
   // p7-10a begin
+  admissions: { steps: [{ slot: 'primary' }, { slot: 'body' }, { slot: 'body' }] },
   // p7-10a end
   // p7-10b begin
   // p7-10b end

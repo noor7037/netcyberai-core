@@ -1315,6 +1315,32 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   // c212-pricing begin
   // c212-pricing end
   // p7-10a begin
+  {
+    slug: 'admissions-enquiries',
+    category: 'students',
+    audience: 'office',
+    title: { en: 'Record admission enquiries, follow them up and admit a child', hi: 'दाख़िले की पूछताछ दर्ज करें, संपर्क रखें और बच्चे को दाख़िला दें' },
+    summary: {
+      en: 'Every family that asks about a place is written down with who follows it up and when. Admit makes the child’s student record in the class sought, on the class’s fee structure.',
+      hi: 'दाख़िले के बारे में पूछने वाला हर परिवार इस बात के साथ लिखा जाता है कि कौन संपर्क रखेगा और कब। दाख़िला देने से चुनी कक्षा में, कक्षा के फ़ीस ढाँचे पर, बच्चे का विद्यार्थी रिकॉर्ड बनता है।',
+    },
+    steps: [
+      { en: 'Open “Admissions” and press “+ Record an enquiry”. Write the child, the class sought, the parent or guardian, the phone and how they asked, choose who follows it up and when, then press “Record the enquiry”.', hi: '“Admissions” खोलें और “+ Record an enquiry” दबाएँ। बच्चा, कौन सी कक्षा, माता-पिता या अभिभावक, फ़ोन और उन्होंने कैसे पूछा, यह लिखें, चुनें कि कौन संपर्क रखेगा और कब, फिर “Record the enquiry” दबाएँ।' },
+      { en: 'Each day, start with “Follow up today”: the enquiries whose follow-up date is today or has passed, the most overdue first. They are on My Day too.', hi: 'हर दिन “Follow up today” से शुरू करें: वे पूछताछ जिनकी संपर्क तारीख़ आज है या निकल गई है, सबसे पुरानी पहले। ये My Day पर भी दिखती हैं।' },
+      { en: 'After a call or a visit, open “Record what happened” on the enquiry, write what happened, choose the stage and the next follow-up, and press “Save what happened”. Every step is kept under “Steps”.', hi: 'फ़ोन या मुलाक़ात के बाद पूछताछ पर “Record what happened” खोलें, जो हुआ वह लिखें, चरण और अगला संपर्क चुनें, और “Save what happened” दबाएँ। हर कदम “Steps” में रहता है।' },
+      { en: '“Gone quiet” lists the open enquiries with no contact for the number of days your school set in Settings. Call them, or choose “Not joining” and write why.', hi: '“Gone quiet” में वे खुली पूछताछ दिखती हैं जिनसे उतने दिनों से संपर्क नहीं हुआ जितने आपके स्कूल ने सेटिंग में तय किए हैं। उन्हें फ़ोन करें, या “Not joining” चुनें और कारण लिखें।' },
+      { en: 'When the family confirms, press “Admit”, add the admission number and date of birth if you have them, and confirm with the button that names the class.', hi: 'परिवार के हाँ कहने पर “Admit” दबाएँ, दाख़िला नंबर और जन्म तिथि हों तो भरें, और कक्षा के नाम वाले बटन से पक्का करें।' },
+      { en: 'One student record is made in that class, waiting for a guardian’s consent like every new pupil, and the child is on the class’s fee structure. The child is listed under “Waiting for consent” until consent is recorded.', hi: 'उस कक्षा में एक विद्यार्थी रिकॉर्ड बनता है, हर नए विद्यार्थी की तरह अभिभावक की सहमति की प्रतीक्षा में, और बच्चा कक्षा के फ़ीस ढाँचे पर होता है। सहमति दर्ज होने तक बच्चा “Waiting for consent” में दिखता है।' },
+    ],
+    tips: [
+      { en: 'To pass an enquiry to a colleague in the office, choose them under “Give it to”.', hi: 'पूछताछ दफ़्तर के किसी साथी को देने के लिए उन्हें “Give it to” में चुनें।' },
+      { en: 'Never write an Aadhaar number in an enquiry: a number of twelve digits like one is refused.', hi: 'पूछताछ में कभी आधार नंबर न लिखें: उसके जैसा बारह अंकों का नंबर नहीं लिया जाता।' },
+      { en: 'Only the principal and the school admin see enquiries. Teachers and the accountant do not.', hi: 'पूछताछ सिर्फ़ प्रिंसिपल और स्कूल एडमिन देखते हैं। शिक्षक और अकाउंटेंट नहीं।' },
+    ],
+    start: { href: '/app/admissions', label: { en: 'Admissions', hi: 'दाख़िले (Admissions)' } },
+    related: ['add-a-student', 'import-students-csv'],
+    keywords: ['admission', 'admissions', 'enquiry', 'inquiry', 'follow up', 'follow-up', 'pipeline', 'new family', 'admit', 'dakhila', 'poochtaachh', 'दाख़िला', 'दाखिला', 'पूछताछ', 'संपर्क'],
+  },
   // p7-10a end
   // p7-10b begin
   // p7-10b end

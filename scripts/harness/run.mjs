@@ -1446,7 +1446,7 @@ const dashboardRows = async (page) => {
       // Nobody waiting for consent: the screen says so with its own empty state and no count line.
       await page.locator('[data-students-count], [data-empty]').first().waitFor({ timeout: 30000 });
       const counted = await page.locator('[data-students-count]').count();
-      rows[id] = { kind: 'rows', tile: tile.value, said: counted ? Number(await page.locator('[data-students-count]').getAttribute('data-students-count')) : 0, listed: counted ? await page.locator('tbody tr').count() : 0 };
+      rows[id] = { kind: 'rows', tile: tile.value, said: counted ? Number(await page.locator('[data-students-count]').getAttribute('data-students-count')) : 0, listed: counted ? await page.locator(url.pathname === '/app/admissions' ? '[data-adm-waiting] [data-shown-row]' : 'tbody tr').count() : 0 }; // Admissions (C221): its list of the children waiting for consent
     } else if (url.pathname === '/app/communication' && (q.has('from') || q.has('state'))) {
       await page.locator('[data-messages]:not([data-messages-range="last"])').waitFor({ timeout: 30000 });
       rows[id] = { kind: 'rows', tile: tile.value, said: firstNumber(await page.locator('[data-state-all]').textContent()), listed: await page.locator('[data-message]').count() };
@@ -3985,6 +3985,105 @@ const pricingTermsDone = async () => {
 };
 // c212-pricing end
 // p7-10a begin
+// Admissions (C221). Two enquiries are there first: one overdue (on "Follow up today") and one with no contact for
+// twenty days (on "Gone quiet"). The principal records an enquiry for 5-A from WhatsApp, records the visit (the stage
+// moves and the next follow-up is set) and admits the child: exactly one student record, waiting for consent, in
+// 5-A, on 5-A's fee structure, and the enquiry says admitted with every step kept. The check reads the database and
+// puts everything back (the audit rows stay: the log is never cut).
+const ADM_CHILD = 'Riya Example N';
+const ADM_DUE = 'e0000000-0000-4000-8000-0000000ad001';
+const ADM_QUIET = 'e0000000-0000-4000-8000-0000000ad002';
+const clearAdmissions = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from admission_events where school_id = '${SCHOOL}';
+    delete from admission_enquiries where school_id = '${SCHOOL}';
+    delete from students where school_id = '${SCHOOL}' and name = '${ADM_CHILD}';
+    delete from fee_structure_items where structure_id in (select structure_id from fee_structures where school_id = '${SCHOOL}' and created_by = '${PEOPLE.principal.sub}');
+    delete from fee_structures where school_id = '${SCHOOL}' and created_by = '${PEOPLE.principal.sub}';
+    delete from fee_heads where school_id = '${SCHOOL}' and name = 'Harness admissions fee';
+    set session_replication_role = origin;`);
+};
+let admissionsSeen = null;
+let admissionsStructure = null;
+const admissionsPipeline = async (page) => {
+  await clearAdmissions();
+  // Two enquiries recorded earlier, with their first step, as the database's owner (the steps are the app's to write).
+  await db.pg.exec(`set session_replication_role = replica;
+    insert into admission_enquiries (enquiry_id, school_id, child_name, guardian_name, phone, class_id, source, stage, owner_id, next_follow_up, next_step, created_by, created_at) values
+      ('${ADM_DUE}', '${SCHOOL}', 'Anaya Example D', 'Kavita Example D', '+919800000102', '00000000-0000-4000-8000-0000000c0061', 'phone_call', 'visit_booked', '${PEOPLE.office.sub}', ${TODAY_SQL} - 1, 'Call to fix the visit', '${PEOPLE.office.sub}', now() - interval '3 days'),
+      ('${ADM_QUIET}', '${SCHOOL}', 'Kabir Example Q', 'Meera Example Q', '+919800000101', '00000000-0000-4000-8000-0000000c0052', 'walk_in', 'visited', '${PEOPLE.principal.sub}', null, null, '${PEOPLE.principal.sub}', now() - interval '20 days');
+    insert into admission_events (school_id, enquiry_id, kind, stage_to, owner_id, by_user, at, n) values
+      ('${SCHOOL}', '${ADM_DUE}', 'recorded', 'visit_booked', '${PEOPLE.office.sub}', '${PEOPLE.office.sub}', now() - interval '3 days', 1),
+      ('${SCHOOL}', '${ADM_QUIET}', 'recorded', 'visited', '${PEOPLE.principal.sub}', '${PEOPLE.principal.sub}', now() - interval '20 days', 1);
+    set session_replication_role = origin;`);
+  // 5-A's fee structure, set through the app's own fees API.
+  await db.pg.query(`insert into academic_sessions (school_id, label, start_date, end_date, is_current) select $1, 'Harness session', ${TODAY_SQL} - 30, ${TODAY_SQL} + 300, not exists (select 1 from academic_sessions where school_id = $1 and is_current) where not exists (select 1 from academic_sessions where school_id = $1 and label = 'Harness session')`, [SCHOOL]);
+  const session = (await db.pg.query(`select session_id, start_date::text as start_date from academic_sessions where school_id = $1 and label = 'Harness session'`, [SCHOOL])).rows[0];
+  const made = await page.evaluate(async ({ session, classId }) => {
+    const post = (url, body) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(async (r) => ({ status: r.status, body: await r.json() }));
+    const head = await post('/api/app/fees/heads', { name: 'Harness admissions fee' });
+    const structure = await post('/api/app/fees/structures', { classId, sessionId: session.session_id, effectiveFrom: session.start_date, items: [{ headId: head.body.head?.head_id, amountMinor: 120000, frequency: 'monthly' }] });
+    return [head.status, structure.status];
+  }, { session, classId: CLASS_5A });
+  if (made.join() !== '201,201') throw new Error(`the fee head or structure was not saved: ${made}`);
+  // The screen's first-visit tour is not in the way of the clicks below.
+  await db.pg.query(`update users set tours_seen = array_append(tours_seen, 'admissions') where user_id = $1 and not ('admissions' = any (tours_seen))`, [PEOPLE.principal.sub]);
+  admissionsStructure = (await db.pg.query(`select structure_id from fee_structures where school_id = $1 and class_id = $2 and created_by = $3`, [SCHOOL, CLASS_5A, PEOPLE.principal.sub])).rows[0]?.structure_id ?? null;
+  const day = (n) => db.pg.query(`select (${TODAY_SQL} + $1::int)::text as d`, [n]).then((r) => r.rows[0].d);
+  await page.reload({ waitUntil: 'networkidle' });
+  // Record an enquiry.
+  await page.locator('[data-adm-new-open]').click();
+  await page.locator('[data-adm-new]').waitFor({ timeout: 20000 });
+  await page.locator('#adm-child').fill(ADM_CHILD);
+  await page.selectOption('#adm-class', { label: '5-A' });
+  await page.locator('#adm-guardian').fill('Sunita Example N');
+  await page.locator('#adm-phone').fill('98000 00103');
+  await page.selectOption('#adm-source', 'whatsapp');
+  await page.locator('#adm-follow-up').fill(await day(0));
+  await page.locator('#adm-next-step').fill('Visit on Saturday');
+  await page.locator('[data-adm-record]').click();
+  const card = () => page.locator('[data-adm-open] [data-enquiry]', { hasText: ADM_CHILD });
+  await card().waitFor({ timeout: 20000 });
+  // What happened: the family visited; the next follow-up is tomorrow.
+  await card().locator('[data-adm-act] summary').click();
+  await card().locator('[data-adm-act-note]').fill('Came with her father and saw the classrooms.');
+  await card().locator('[data-adm-stage]').selectOption('visited');
+  await card().locator('[data-adm-act-follow-up]').fill(await day(1));
+  await card().locator('[data-adm-act-next-step]').fill('Bring the birth certificate');
+  await card().locator('[data-adm-save]').click();
+  await page.locator('[data-adm-open] [data-enquiry][data-stage="visited"]', { hasText: ADM_CHILD }).waitFor({ timeout: 20000 });
+  // Admit.
+  await card().locator('[data-adm-admit]').click();
+  await card().locator('[data-adm-admit-form] input').first().fill('H-0103');
+  await card().locator('[data-adm-admit-confirm]').click();
+  await page.locator('[data-adm-note]', { hasText: 'is admitted' }).waitFor({ timeout: 20000 });
+  await page.locator('[data-adm-waiting] [data-shown-row]', { hasText: ADM_CHILD }).waitFor({ timeout: 30000 });
+  // The admitted enquiry and its steps, open for the picture.
+  await page.locator('[data-adm-closed] > summary').click();
+  const closed = page.locator('[data-adm-closed] [data-enquiry]', { hasText: ADM_CHILD });
+  await closed.locator('[data-adm-steps] summary').click();
+  await closed.locator('[data-adm-step]').nth(4).waitFor({ timeout: 20000 });
+  admissionsSeen = {
+    due: await page.locator('[data-adm-due]').getAttribute('data-count'),
+    quiet: await page.locator('[data-adm-quiet]').getAttribute('data-count'),
+    quietRow: (await page.locator('[data-adm-row="quiet"]').allTextContents()).join(' | '),
+    note: (await page.locator('[data-adm-note]').textContent()) ?? '',
+    steps: (await closed.locator('[data-adm-step]').evaluateAll((els) => els.map((e) => e.getAttribute('data-adm-step')))).join(),
+  };
+};
+const admissionsPipelineDone = async () => {
+  const enquiry = (await db.pg.query(`select enquiry_id, stage, student_id, admitted_structure_id, source, created_by from admission_enquiries where school_id = $1 and child_name = $2`, [SCHOOL, ADM_CHILD])).rows;
+  const students = (await db.pg.query(`select student_id, class_id, status::text as status, admission_no from students where school_id = $1 and name = $2`, [SCHOOL, ADM_CHILD])).rows;
+  const steps = enquiry[0] ? (await db.pg.query(`select kind, stage_from, stage_to from admission_events where enquiry_id = $1 order by n`, [enquiry[0].enquiry_id])).rows.map((r) => r.kind).join() : '';
+  const seen = admissionsSeen;
+  const structure = admissionsStructure;
+  await clearAdmissions();
+  const e = enquiry[0];
+  if (enquiry.length !== 1 || e.stage !== 'admitted' || e.source !== 'whatsapp' || e.created_by !== PEOPLE.principal.sub || !structure || e.admitted_structure_id !== structure) throw new Error(`the enquiry in the database: ${JSON.stringify({ enquiry, structure })}`);
+  if (students.length !== 1 || students[0].student_id !== e.student_id || students[0].class_id !== CLASS_5A || students[0].status !== 'pending_consent' || students[0].admission_no !== 'H-0103') throw new Error(`exactly one student record, waiting for consent, in 5-A: ${JSON.stringify(students)}`);
+  if (steps !== 'recorded,note,stage,follow_up,stage') throw new Error(`the steps kept: ${steps}`);
+  if (!seen || seen.due !== '1' || seen.quiet !== '1' || !seen.quietRow.includes('Kabir Example Q') || !seen.quietRow.includes('20 days') || !seen.note.includes('5-A’s fee structure') || seen.steps !== 'recorded,note,stage,follow_up,stage') throw new Error(`the screen: ${JSON.stringify(seen)}`);
+};
 // p7-10a end
 // p7-10b begin
 // p7-10b end
@@ -4579,6 +4678,7 @@ const SCREENS = [
   ['founder', 'control-billing-terms', '/control/billing-plans', pricingTerms, pricingTermsDone],
   // c212-pricing end
   // p7-10a begin
+  ['principal', 'app-admissions-pipeline', '/app/admissions', admissionsPipeline, admissionsPipelineDone],
   // p7-10a end
   // p7-10b begin
   // p7-10b end

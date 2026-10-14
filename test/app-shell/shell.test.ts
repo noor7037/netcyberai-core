@@ -20,7 +20,9 @@ describe('shell navigation', () => {
     expect(groups.map((g) => g.label)).toEqual(['Home', 'School & People', 'Teaching & Learning', 'Parent Engagement', 'Finance', 'Records & Compliance', 'AI Intelligence', 'Help']);
     const items = groups.flatMap((g) => g.items);
     expect(items).toHaveLength(MODULE_REGISTRY.length);
-    expect(items.find((i) => i.href === '/app/admissions')).toMatchObject({ comingIn: 'P7' });
+    // Admissions is built (C221); a module still to come is marked with its phase.
+    expect(items.find((i) => i.href === '/app/admissions')!.comingIn).toBeUndefined();
+    expect(toShellItem({ ...buildNavigation('principal', ent).groups.flatMap((g) => g.items).find((i) => i.href === '/app/admissions')!, status: 'planned' })).toMatchObject({ comingIn: 'P7' });
     expect(items.find((i) => i.href === '/app/students')!.comingIn).toBeUndefined();
   });
 

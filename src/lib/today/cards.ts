@@ -1,3 +1,4 @@
+import { followUpsDue } from '@/lib/admissions/admissions';
 import { isModuleEnabled, type SchoolEntitlements } from '@/lib/contracts/entitlements';
 import { planHasFeature } from '@/lib/frameworks/plans';
 import { arrangeMyDay, type MyDay, type TodayCard, type TodayContext, type TodayProvider, type TodaySql } from '@/lib/contracts/today-cards';
@@ -484,6 +485,17 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   // c212-pricing begin
   // c212-pricing end
   // p7-10a begin
+  {
+    // Enquiries whose follow-up date is today or past (C221): the Admissions screen's own "Follow up today" list,
+    // counted by the website tracker's own rule (followUpsDue). The office's: row level security shows an
+    // enquiry to the principal and the school admin only.
+    type: 'admissions-follow-up',
+    moduleId: 'admissions',
+    roles: OFFICE,
+    async load(db, ctx) {
+      return waiting('admissions-follow-up', 'admissions', await followUpsDue(db, ctx.schoolId), '/app/admissions');
+    },
+  },
   // p7-10a end
   // p7-10b begin
   // p7-10b end
