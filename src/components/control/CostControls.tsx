@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { useT } from '@/components/app-shell/LangContext';
 import { Input } from '@/components/ui/Input';
@@ -8,6 +8,8 @@ import type { MessageKey } from '@/lib/i18n';
 
 // Control → Messaging & Cost (docs/25 slice 7o, C197): a rate read from Meta's own pricing page, with the page and
 // the day it was read; and each school's monthly limit beside what its delivered messages have cost this month.
+// The month's list above these forms is drawn on the server (C205). After a save, the lines here, that list and the
+// word that it worked change in one step, so the two halves of the page never show different limits or rates.
 
 type School = { schoolId: string; schoolName: string; budgetPaise: number | null; spentPaise: number; delivered: number; onItsWayPaise: number; onItsWay: number; heldForBudget: number };
 const CATEGORIES = ['utility', 'marketing', 'authentication', 'service'];
@@ -25,26 +27,33 @@ export function CostControls() {
   const [budget, setBudget] = useState<Record<string, { rupees: string; reason: string }>>({});
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
+  const [refreshing, startTransition] = useTransition();
 
-  const load = useCallback(async () => {
+  const read = useCallback(async (): Promise<School[] | null> => {
     const res = await fetch('/api/control/messaging-cost').catch(() => null);
     const got = res?.ok ? await res.json().catch(() => null) : null;
-    if (got) setSchools(got.schools);
+    return got ? (got.schools as School[]) : null;
   }, []);
   useEffect(() => {
-    void load();
-  }, [load]);
+    void read().then((fresh) => fresh && setSchools(fresh));
+  }, [read]);
 
   const send = async (payload: unknown, done: MessageKey, url = '/api/control/messaging-cost') => {
     setBusy(true);
     setNote(null);
     const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => null);
     const got = res ? await res.json().catch(() => null) : null;
+    if (!res?.ok) {
+      setBusy(false);
+      return setNote({ ok: false, text: ERRORS.includes(got?.code) ? t(`cost.err.${got.code}` as MessageKey) : t('cost.err.other') });
+    }
+    const fresh = await read();
     setBusy(false);
-    if (!res?.ok) return setNote({ ok: false, text: ERRORS.includes(got?.code) ? t(`cost.err.${got.code}` as MessageKey) : t('cost.err.other') });
-    setNote({ ok: true, text: t(done) });
-    await load();
-    router.refresh();
+    startTransition(() => {
+      if (fresh) setSchools(fresh);
+      router.refresh();
+      setNote({ ok: true, text: t(done) });
+    });
   };
 
   return (
@@ -71,7 +80,7 @@ export function CostControls() {
           <Input id="rate-from" type="date" label={t('cost.from')} value={rate.effectiveFrom} onChange={(e) => setRate({ ...rate, effectiveFrom: e.target.value })} />
         </div>
         <Input id="rate-source" type="url" label={t('cost.add.source')} maxLength={500} value={rate.source} onChange={(e) => setRate({ ...rate, source: e.target.value })} />
-        <button type="button" data-cost-rate-add disabled={busy || rate.rateRupees.trim() === '' || !rate.source.trim()} className={`${PRIMARY} self-start`} onClick={() => void send({ action: 'rate', category: rate.category, rateRupees: Number(rate.rateRupees), gstPercent: Number(rate.gstPercent), source: rate.source, verifiedOn: rate.verifiedOn, effectiveFrom: rate.effectiveFrom }, 'cost.add.done')}>
+        <button type="button" data-cost-rate-add disabled={busy || refreshing || rate.rateRupees.trim() === '' || !rate.source.trim()} className={`${PRIMARY} self-start`} onClick={() => void send({ action: 'rate', category: rate.category, rateRupees: Number(rate.rateRupees), gstPercent: Number(rate.gstPercent), source: rate.source, verifiedOn: rate.verifiedOn, effectiveFrom: rate.effectiveFrom }, 'cost.add.done')}>
           {t('cost.add.save')}
         </button>
       </section>
@@ -93,7 +102,7 @@ export function CostControls() {
                 <div className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)_auto] sm:items-end">
                   <Input id={`budget-${s.schoolId}`} inputMode="decimal" label={t('cost.budget.amount')} value={draft.rupees} onChange={(e) => setBudget({ ...budget, [s.schoolId]: { ...draft, rupees: e.target.value } })} />
                   <Input id={`budget-why-${s.schoolId}`} label={t('cost.budget.reason')} maxLength={300} value={draft.reason} onChange={(e) => setBudget({ ...budget, [s.schoolId]: { ...draft, reason: e.target.value } })} />
-                  <button type="button" data-cost-budget-save disabled={busy || draft.rupees.trim() === '' || !draft.reason.trim()} className={TAP} onClick={() => void send({ budgetRupees: Number(draft.rupees), reason: draft.reason }, 'cost.budget.done', `/api/control/schools/${s.schoolId}/budget`)}>
+                  <button type="button" data-cost-budget-save disabled={busy || refreshing || draft.rupees.trim() === '' || !draft.reason.trim()} className={TAP} onClick={() => void send({ budgetRupees: Number(draft.rupees), reason: draft.reason }, 'cost.budget.done', `/api/control/schools/${s.schoolId}/budget`)}>
                     {t('cost.budget.save')}
                   </button>
                 </div>
