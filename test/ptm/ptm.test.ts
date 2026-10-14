@@ -279,4 +279,48 @@ describe('on the real schema', () => {
     // The slot rules are the same for every teacher: her 10:00 cannot be booked twice.
     expect(await as(principal, (c) => bookSlot(c, actor(principal), { slotId: tinaSlot, parentId: G_DEV_ESHA }))).toEqual({ ok: false, reason: 'taken' });
   });
+
+  // C210: the second part of the slice's acceptance sentence, "a subject teacher reads the names of guardians booked
+  // with them and of no one else".
+  it('a subject teacher reads the name of each guardian booked with her, and the child’s; no one else’s, and never a number', async () => {
+    const id = (await db.pg.query(`select ptm_id from ptm_events where title = 'Term 3 meeting, with subject teachers'`)).rows[0].ptm_id as string;
+    // Anita (Asha's guardian) is booked with Tina at 10:00 (above); now also with Tara, the class teacher, at 10:15.
+    const taraSlot = (await db.pg.query(`select slot_id from ptm_slots where ptm_id = $1 and teacher_id = $2 and starts_at = '10:15'`, [id, TARA])).rows[0].slot_id as string;
+    expect(await as(principal, (c) => bookSlot(c, actor(principal), { slotId: taraSlot, parentId: G_ASHA }))).toMatchObject({ ok: true });
+    const hers = (await as(tina, (c) => ptmDetail(c, actor(tina), id)))!;
+    expect(hers.teachers.map((t) => t.teacher)).toEqual(['Tina Teacher']);
+    expect(hers.teachers[0].slots.find((s) => s.time === '10:00')!.booking).toMatchObject({ guardian: 'Anita Sharma', children: 'Asha', via: 'staff' });
+    // General guardian access is not widened: she reads no guardian's row, and offers nobody to book.
+    expect(await as(tina, async (c) => (await c.query(`select count(*)::int as n from parents`)).rows[0].n)).toBe(0);
+    expect(hers.teachers[0].guardians).toEqual([]);
+    // The database's answer itself: her own booking only, a name and the children, no number.
+    const asked = (who: Who, ptm = id) => as(who, async (c) => (await c.query(`select * from public.ptm_booked_with_me($1) order by guardian`, [ptm])).rows);
+    const mine = await asked(tina);
+    expect(mine.map((r: { guardian: string; children: string }) => [r.guardian, r.children])).toEqual([['Anita Sharma', 'Asha']]);
+    expect(Object.keys(mine[0]).sort()).toEqual(['booking_id', 'children', 'guardian']);
+    expect(JSON.stringify(mine)).not.toMatch(/9000000001|phone/);
+    // Another teacher is answered for their own slot only (Tara: her 10:15), never for Tina's; Tarun has none here.
+    expect((await asked(tara)).map((r: { guardian: string }) => r.guardian)).toEqual(['Anita Sharma']);
+    expect((await asked(tara))[0].booking_id).not.toBe(mine[0].booking_id);
+    expect(await asked(tarun)).toEqual([]);
+    // An accountant, and the office, are not answered by it (the office reads the bookings themselves).
+    expect(await asked({ role: 'accountant', user: u(15) })).toEqual([]);
+    expect(await asked(principal)).toEqual([]);
+    // The same teacher for a meeting where every booking is on someone else's slot: nothing.
+    expect(await as(tina, async (c) => (await c.query(`select count(*)::int as n from ptm_bookings where ptm_id = $1`, [PTM])).rows[0].n)).toBe(0);
+    expect(await db.pg.query(`select count(*)::int as n from ptm_bookings where ptm_id = $1`, [PTM]).then((r: { rows: { n: number }[] }) => r.rows[0].n)).toBeGreaterThan(0);
+    expect(await asked(tina, PTM)).toEqual([]);
+    // A booking on her own slot for a guardian who is not hers to meet (Fatima: her child is in 6-B, which Tina does
+    // not teach), written by her own session straight into the table, as the app never would: no name comes back,
+    // and the screen says the guardian is outside her classes' records.
+    const tina1015 = (await db.pg.query(`select slot_id from ptm_slots where ptm_id = $1 and teacher_id = $2 and starts_at = '10:15'`, [id, TINA])).rows[0].slot_id as string;
+    await as(tina, (c) => c.query(`insert into ptm_bookings (school_id, ptm_id, slot_id, teacher_id, parent_id, booked_via, booked_by) values ($1, $2, $3, $4, $5, 'staff', $4)`, [A, id, tina1015, TINA, G_FATIMA]));
+    try {
+      expect((await asked(tina)).map((r: { guardian: string }) => r.guardian)).toEqual(['Anita Sharma']);
+      const shown = (await as(tina, (c) => ptmDetail(c, actor(tina), id)))!.teachers[0].slots.find((s) => s.time === '10:15')!.booking;
+      expect(shown).toMatchObject({ guardian: '', children: '' });
+    } finally {
+      await db.pg.query(`delete from ptm_bookings where ptm_id = $1 and parent_id = $2`, [id, G_FATIMA]);
+    }
+  });
 });

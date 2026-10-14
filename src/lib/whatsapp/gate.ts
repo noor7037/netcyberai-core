@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import type { PoolClient } from 'pg';
 import { isPurposeGranted, type ConsentPurpose } from '@/lib/consent/gate';
 import { missingVariables, templateToSend, type TemplateLanguage, type TemplateToSend } from '@/lib/whatsapp/templates';
@@ -151,12 +152,13 @@ async function logAttempt(
     );
     return params.queuedLogId;
   }
-  const { rows } = await client.query(
+  // The id is made here, not read back (C210): a school session may write a message it may not read afterwards.
+  const logId = randomUUID();
+  await client.query(
     `insert into communication_log
-       (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, rate_id, cost_basis,
+       (log_id, school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, rate_id, cost_basis,
         status, provider_message_id, dedupe_key, provider_used, fallback_reason, reason, student_id, parent_id, purpose, provider, template_version, language, template_params)
-     values ($1, $2, 'whatsapp', $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22)
-     returning log_id`,
+     values ($23, $1, $2, 'whatsapp', $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22)`,
     [
       params.schoolId,
       params.toPhone,
@@ -180,9 +182,10 @@ async function logAttempt(
       extra.template?.version ?? null,
       extra.template?.language ?? null,
       extra.template && extra.filled ? JSON.stringify(extra.filled) : null,
+      logId,
     ]
   );
-  return rows[0].log_id;
+  return logId;
 }
 
 // The language to write to a guardian in (C190): theirs if they have said, else the school's default, else English.
@@ -274,11 +277,12 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
   }
   // What counts against the limit is written once, in cost.ts (COUNTED_AGAINST_LIMIT): a priced message counts from
   // the moment it is sent. The cost screens add up the same rows, so they judge a limit on this very sum.
+  // The month's priced messages of the whole school, whoever is asking (C210): whatsapp_priced_this_month gives
+  // their state and price only, so a role that may not read the message log is still held by the same budget.
   const { rows: spendRows } = await client.query(
     `select coalesce(sum(l.est_cost_paise + l.gst_paise), 0) as spend
-     from communication_log l
-     where l.school_id = $1 and ${COUNTED_AGAINST_LIMIT}
-       and date_trunc('month', l.created_at at time zone $2) = date_trunc('month', now() at time zone $2)`,
+     from public.whatsapp_priced_this_month($1, $2) l
+     where ${COUNTED_AGAINST_LIMIT}`,
     [params.schoolId, school.timezone]
   );
   const monthSpend = Number(spendRows[0].spend);
@@ -372,6 +376,12 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
 const SEND_ARGS = (params: SendWhatsAppMessageParams, r: Ready) => ({ testSchool: r.testSchool, toPhone: normalizePhone(params.toPhone) ?? params.toPhone, templateName: params.templateName, templateParams: r.said.filled, language: r.said.template.language, templateVersion: r.said.template.version, metaTemplateId: r.said.template.metaTemplateId });
 const LOGGED = (r: Ready) => ({ providerUsed: r.providerUsed, fallbackReason: r.fallbackReason, category: r.category, rate: r.rate, provider: r.provider.name, ...r.said });
 
+// The earlier attempt with the same dedupe key, whoever made it (C210): communication_log_dedupe answers with its id
+// and status only, so the check holds for a role that may not read the message log itself.
+async function earlierAttempt(client: PoolClient, params: SendWhatsAppMessageParams): Promise<{ log_id: string; status: CommStatus }[]> {
+  return (await client.query(`select log_id, status from public.communication_log_dedupe($1, $2)`, [params.schoolId, params.dedupeKey])).rows;
+}
+
 // Send now, in the caller's own transaction: every rule, the provider, the
 // log row. A message blocked by quiet hours is NOT sent later on this path;
 // callers that want it held use queueWhatsAppMessage (the outbox).
@@ -380,7 +390,7 @@ export async function sendWhatsAppMessage(client: PoolClient, params: SendWhatsA
   // duplicate webhook, whatever) must not double-send. A dedupe hit
   // returns the ORIGINAL outcome untouched -- no new log row, no new
   // send attempt, regardless of what the original outcome was.
-  const { rows: existingRows } = await client.query(`select log_id, status from communication_log where school_id = $1 and dedupe_key = $2`, [params.schoolId, params.dedupeKey]);
+  const existingRows = await earlierAttempt(client, params);
   if (existingRows[0]) {
     return { logId: existingRows[0].log_id, status: existingRows[0].status, reason: 'duplicate trigger -- returning the original attempt\'s outcome, not sending again', idempotent: true, providerUsed: null };
   }
@@ -422,7 +432,7 @@ type QueueLike = { enqueue: (db: Pick<PoolClient, 'query'>, spec: { type: string
 const jobKey = (logId: string, n: number) => `${WHATSAPP_SEND_JOB}:${logId}:${n}`;
 
 export async function queueWhatsAppMessage(client: PoolClient, queue: QueueLike, params: SendWhatsAppMessageParams, at: () => Date = () => new Date()): Promise<SendWhatsAppMessageResult & { jobKey: string | null }> {
-  const { rows: existing } = await client.query(`select log_id, status from communication_log where school_id = $1 and dedupe_key = $2`, [params.schoolId, params.dedupeKey]);
+  const existing = await earlierAttempt(client, params);
   if (existing[0]) return { logId: existing[0].log_id, status: existing[0].status, reason: 'duplicate trigger -- returning the original attempt\'s outcome, not sending again', idempotent: true, providerUsed: null, jobKey: null };
   // The rules a person would want to hear about at once are read now: a school in pilot, no consent, no budget,
   // no approved words, a missing value. Such a message is recorded as held and never queued. Everything is read
@@ -431,12 +441,12 @@ export async function queueWhatsAppMessage(client: PoolClient, queue: QueueLike,
   const r = await prepare(client, params, {}, { createdAt: now, now, queueing: true });
   if ('logId' in r) return { ...r, jobKey: null };
   const notBefore = 'wait' in r ? r.until : now;
-  const { rows } = await client.query(
-    `insert into communication_log (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, student_id, parent_id, purpose, language, template_params, not_before, created_at)
-     values ($1, $2, 'whatsapp', $3, $4, false, 0, 0, 'not_billable', 'queued', $5, $6, $7, $8, $9, $10, $11, $12) returning log_id`,
-    [params.schoolId, params.toPhone, params.templateName, await templateCategory(client, params.schoolId, params.templateName), params.dedupeKey, params.studentId, params.parentId ?? null, params.purpose, params.language ?? 'en', JSON.stringify(params.templateParams), notBefore.toISOString(), now.toISOString()]
+  const logId = randomUUID();
+  await client.query(
+    `insert into communication_log (log_id, school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, student_id, parent_id, purpose, language, template_params, not_before, created_at)
+     values ($13, $1, $2, 'whatsapp', $3, $4, false, 0, 0, 'not_billable', 'queued', $5, $6, $7, $8, $9, $10, $11, $12)`,
+    [params.schoolId, params.toPhone, params.templateName, await templateCategory(client, params.schoolId, params.templateName), params.dedupeKey, params.studentId, params.parentId ?? null, params.purpose, params.language ?? 'en', JSON.stringify(params.templateParams), notBefore.toISOString(), now.toISOString(), logId]
   );
-  const logId = rows[0].log_id as string;
   await queue.enqueue(client, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, 0), schoolId: params.schoolId, maxAttempts: 3, payload: { logId }, ...('wait' in r ? { runAt: r.until } : {}) });
   return { logId, status: 'queued', reason: null, idempotent: false, providerUsed: null, jobKey: jobKey(logId, 0) };
 }
@@ -459,11 +469,12 @@ export async function queueThreadReply(client: PoolClient, queue: QueueLike, by:
   if (t.pilot) return { ok: false, reason: 'pilot' };
   if (t.stopped) return { ok: false, reason: 'stopped' };
   if (!t.open) return { ok: false, reason: 'window_closed' };
-  const logId = (await client.query(
-    `insert into communication_log (school_id, to_phone, channel, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, parent_id, purpose, thread_id, body, sent_by, not_before, created_at)
-     values ($1, $2, 'whatsapp', 'service', false, 0, 0, 'not_billable', 'queued', $3, $4, 'operational_communication', $5, $6, $7, $8, $8) returning log_id`,
-    [by.schoolId, t.phone, `reply:${threadId}:${now.getTime()}:${by.userId}`, t.parent_id, threadId, text, by.userId, now.toISOString()]
-  )).rows[0].log_id as string;
+  const logId = randomUUID();
+  await client.query(
+    `insert into communication_log (log_id, school_id, to_phone, channel, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, parent_id, purpose, thread_id, body, sent_by, not_before, created_at)
+     values ($9, $1, $2, 'whatsapp', 'service', false, 0, 0, 'not_billable', 'queued', $3, $4, 'operational_communication', $5, $6, $7, $8, $8)`,
+    [by.schoolId, t.phone, `reply:${threadId}:${now.getTime()}:${by.userId}`, t.parent_id, threadId, text, by.userId, now.toISOString(), logId]
+  );
   await queue.enqueue(client, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, 0), schoolId: by.schoolId, maxAttempts: 3, payload: { logId } });
   return { ok: true, logId, jobKey: jobKey(logId, 0) };
 }

@@ -2454,6 +2454,59 @@ const earlyWarningTeacherDone = async () => {
 };
 // p5-8j end
 // c210-rls begin
+// A subject teacher's meeting (C210): Tara teaches 5-B in the timetable but is not its class teacher and has no
+// subject of 5-B in her record, so 5-B's guardians are not hers to read. A meeting for 5-B that includes subject
+// teachers gives her times; the office has booked a 5-B guardian with her. Her slot shows that guardian's name and
+// the child's (ptm_booked_with_me), not "a guardian outside your classes' records"; she still reads no guardian's
+// row. Everything is put back.
+const C210_PTM = '00000000-0000-4000-8000-0000002100e1';
+const C210_GUARDIAN = '00000000-0000-4000-8000-0000002100a1';
+const C210_CLASS_5B = '00000000-0000-4000-8000-0000000c0052';
+const C210_TANVI = '00000000-0000-4000-8000-00000000a004';
+const clearSubjectPtm = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from ptm_bookings where ptm_id = '${C210_PTM}'; delete from ptm_slots where ptm_id = '${C210_PTM}'; delete from ptm_events where ptm_id = '${C210_PTM}'; delete from parent_student_map where parent_id = '${C210_GUARDIAN}'; delete from parents where parent_id = '${C210_GUARDIAN}'; set session_replication_role = origin;`);
+};
+let subjectPtmSeen = null;
+const ptmSubjectTeacher = async (page) => {
+  await clearSubjectPtm();
+  const heldOn = new Date(Date.now() + 5.5 * 3600000 + 3 * 86400000).toISOString().slice(0, 10);
+  await db.pg.query(`insert into parents (parent_id, school_id, name, phone, relation) values ($1, $2, 'Kavita Example', '9800000021', 'Mother')`, [C210_GUARDIAN, SCHOOL]);
+  await db.pg.query(`insert into parent_student_map (school_id, parent_id, student_id) values ($1, $2, $3)`, [SCHOOL, C210_GUARDIAN, STUDENT_NO_GUARDIAN]);
+  await db.pg.query(
+    `insert into ptm_events (ptm_id, school_id, title, held_on, starts_at, ends_at, slot_minutes, class_ids, status, created_by, invited_by, invited_at, with_subject_teachers)
+     values ($1, $2, 'Term meeting, 5-B', $3, '10:00', '10:30', 15, array[$4::uuid], 'invited', $5, $5, now(), true)`,
+    [C210_PTM, SCHOOL, heldOn, C210_CLASS_5B, PEOPLE.principal.sub]
+  );
+  await db.pg.query(`insert into ptm_slots (school_id, ptm_id, teacher_id, starts_at) select $1, $2, t, s::time from unnest(array[$3::uuid, $4::uuid]) t cross join unnest(array['10:00', '10:15']) s`, [SCHOOL, C210_PTM, PEOPLE.teacher.sub, C210_TANVI]);
+  await db.pg.query(
+    `insert into ptm_bookings (school_id, ptm_id, slot_id, teacher_id, parent_id, booked_via, booked_by)
+     select $1, $2, s.slot_id, s.teacher_id, $3, 'staff', $4 from ptm_slots s where s.ptm_id = $2 and s.teacher_id = $5 and s.starts_at = '10:00'`,
+    [SCHOOL, C210_PTM, C210_GUARDIAN, PEOPLE.principal.sub, PEOPLE.teacher.sub]
+  );
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-ptm-meeting]').first().click();
+  await page.locator('[data-ptm-slot="booked"]').waitFor({ timeout: 20000 });
+  const booked = (await page.locator('[data-ptm-slot="booked"]').textContent()) ?? '';
+  subjectPtmSeen = {
+    teachers: await page.locator('[data-ptm-teacher]').count(),
+    slots: await page.locator('[data-ptm-slot]').count(),
+    named: booked.includes('Kavita Example') && booked.includes('Diya Example A'),
+    hidden: booked.includes('outside your classes'),
+    number: /[0-9]{7,}/.test(booked.replace(/\s/g, '')),
+  };
+};
+const ptmSubjectTeacherDone = async () => {
+  // In the teacher's own database session: the guardian's row is still not hers to read.
+  const readable = await db.pg.transaction(async (tx) => {
+    await tx.query('set local role app_user');
+    for (const [k, v] of [['app.current_tenant_id', SCHOOL], ['app.current_role', 'teacher'], ['app.current_user_id', PEOPLE.teacher.sub]]) await tx.query(`select set_config($1, $2, true)`, [k, v]);
+    return (await tx.query(`select count(*)::int as n from parents where parent_id = $1`, [C210_GUARDIAN])).rows[0].n;
+  });
+  const { rows } = await db.pg.query(`select count(*)::int as bookings, (count(*) filter (where attended is not null))::int as marked from ptm_bookings where ptm_id = $1`, [C210_PTM]);
+  await clearSubjectPtm();
+  if (readable !== 0 || rows[0].bookings !== 1 || rows[0].marked !== 0) throw new Error(`the subject teacher's meeting in the database: guardian rows she reads ${readable}, ${JSON.stringify(rows[0])}`);
+  if (JSON.stringify(subjectPtmSeen) !== JSON.stringify({ teachers: 1, slots: 2, named: true, hidden: false, number: false })) throw new Error(`the subject teacher's meeting on the screen: ${JSON.stringify(subjectPtmSeen)}`);
+};
 // c210-rls end
 // c210-leave begin
 // c210-leave end
@@ -3119,6 +3172,7 @@ const SCREENS = [
   ['teacher', 'teacher-early-warning', '/app/early-warning', earlyWarningTeacher, earlyWarningTeacherDone],
   // p5-8j end
   // c210-rls begin
+  ['teacher', 'teacher-ptm-subject', '/app/ptm', ptmSubjectTeacher, ptmSubjectTeacherDone],
   // c210-rls end
   // c210-leave begin
   // c210-leave end

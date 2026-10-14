@@ -212,9 +212,9 @@ describe('on the real schema', () => {
     // A school cannot write a platform template, nor one for another school.
     expect(await refused(() => asSchool((c) => c.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, status) values (null, 'theirs', 1, 'en', '{{school}}: hello', '{school}', 'approved')`)))).toMatch(/row-level security/);
     expect(await refused(() => asSchool((c) => c.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, status) values ('${OTHER}', 'theirs', 1, 'en', '{{school}}: hello', '{school}', 'approved')`)))).toMatch(/row-level security/);
-    // What a message said is fixed with the message.
+    // What a message said is fixed with the message, even for the platform (a school's own session changes no message row, C210).
     const out = await send();
-    expect(await refused(() => asSchool((c) => c.query(`update communication_log set template_params = '{"school": "x"}' where log_id = $1`, [out.logId])))).toMatch(/never changes/);
-    expect(await refused(() => asSchool((c) => c.query(`update communication_log set template_version = 3 where log_id = $1`, [out.logId])))).toMatch(/never changes/);
+    expect(await refused(() => platform((c) => c.query(`update communication_log set template_params = '{"school": "x"}' where log_id = $1`, [out.logId])))).toMatch(/never changes/);
+    expect(await refused(() => platform((c) => c.query(`update communication_log set template_version = 3 where log_id = $1`, [out.logId])))).toMatch(/never changes/);
   });
 });

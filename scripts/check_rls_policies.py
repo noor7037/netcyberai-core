@@ -548,6 +548,23 @@ REQUIRED_RESTRICTIVE = {
     ("audit_log", "audit_early_warning_rows_office_or_actor"),
     # p5-8j end
     # c210-rls begin
+    # C210: the four tables the dashboard's registry alone held by role now carry role policies of their own: each
+    # role reads and writes them exactly as the app does (the access map is in the migration's header).
+    ("attendance", "attendance_role_read"),
+    ("attendance", "attendance_role_insert"),
+    ("attendance", "attendance_role_update"),
+    ("attendance", "attendance_not_deleted"),
+    ("pulse_messages", "pulse_messages_role_read"),
+    ("pulse_messages", "pulse_messages_role_insert"),
+    ("pulse_messages", "pulse_messages_role_update"),
+    ("pulse_messages", "pulse_messages_role_delete"),
+    ("pulse_response_log", "pulse_response_log_role_read"),
+    ("pulse_response_log", "pulse_response_log_not_inserted"),
+    ("pulse_response_log", "pulse_response_log_not_updated"),
+    ("pulse_response_log", "pulse_response_log_not_deleted"),
+    ("communication_log", "communication_log_role_read"),
+    ("communication_log", "communication_log_role_insert"),
+    ("communication_log", "communication_log_not_updated"),
     # c210-rls end
     # c210-leave begin
     # c210-leave end

@@ -416,16 +416,12 @@ describe('who gets which report', () => {
     expect(still).toBe(7);
   });
 
-  // The pairs the database alone would answer: tables with no role policy (attendance, pulse_messages,
-  // pulse_response_log, communication_log), where row level security keeps a reader to the school (and a teacher
-  // to their own classes) but not to a role; and a teacher's own classes' homework, which is theirs to read on the
-  // Homework screen. For these the report's own role list is what refuses, before any query runs (the test above).
-  // They are the same tables test/insights/access.test.ts names for the dashboard. Every other pair is refused by
-  // the database itself, which the test below proves pair by pair: when a role policy lands on one of these
-  // tables this list shrinks, and the test fails until it does.
+  // The pairs the database alone would answer: a teacher's own classes' attendance, homework, Daily Pulse and
+  // messages, which are theirs to read on their own screens (role policies on attendance, pulse_messages,
+  // pulse_response_log and communication_log since C210 refuse the accountant and the coordinator). For these the
+  // report's own role list is what refuses, before any query runs (the test above). Every other pair is refused by
+  // the database itself, which the test below proves pair by pair.
   const HELD_BY_THE_LIST_ONLY: Record<string, ReportId[]> = {
-    accountant: ['attendance-by-class', 'absentees', 'pulse-coverage', 'messages-by-state'],
-    academic_coordinator: ['pulse-coverage', 'messages-by-state'],
     teacher: ['attendance-by-class', 'absentees', 'homework-coverage', 'pulse-coverage', 'messages-by-state'],
   };
 
@@ -450,9 +446,9 @@ describe('who gets which report', () => {
     }
     expect(answered).toEqual(HELD_BY_THE_LIST_ONLY);
     // "A coordinator no fee report" and "an accountant no homework or leave report" are the database's own rule.
-    expect(answered.academic_coordinator).not.toContain('daily-collection');
-    expect(answered.academic_coordinator).not.toContain('dues');
-    expect(answered.accountant).not.toContain('homework-coverage');
+    expect(answered.academic_coordinator ?? []).not.toContain('daily-collection');
+    expect(answered.academic_coordinator ?? []).not.toContain('dues');
+    expect(answered.accountant ?? []).not.toContain('homework-coverage');
     for (const role of Object.keys(answered)) expect(answered[role], role).not.toContain('staff-leave');
   });
 
