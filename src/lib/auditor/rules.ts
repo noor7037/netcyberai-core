@@ -53,11 +53,11 @@ export const LEAVE_WAITED_MORE_THAN_DAYS = 2;
 // screen where the thing is set up. A check that needs attention carries its own address, which may be this
 // screen or a narrower list of exactly the rows it counted.
 //
-// class_teacher opens Raise Ticket: no screen of the app changes the class teacher of a class that already
-// exists, so that is where the fix starts today. It moves to the screen that does, once there is one.
+// class_teacher opens the list of classes (Students, "Manage classes", opened by ?classes=1), where the principal
+// and the school admin choose each class's class teacher (C210).
 export type CheckMeta = { moduleId: ModuleId; screen: string };
 export const CHECK_META: Record<CheckId, CheckMeta> = {
-  class_teacher: { moduleId: 'students', screen: '/app/help/ticket/new' },
+  class_teacher: { moduleId: 'students', screen: '/app/students?classes=1' },
   student_guardian: { moduleId: 'students', screen: '/app/students' },
   guardian_phone: { moduleId: 'parents', screen: '/app/parents' },
   consent: { moduleId: 'students', screen: '/app/students' },

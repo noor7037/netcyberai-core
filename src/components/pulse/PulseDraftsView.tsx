@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
+import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
 import { useToast } from '@/components/ui/Toast';
 import type { MessageKey } from '@/lib/i18n';
@@ -12,6 +13,10 @@ import type { MessageKey } from '@/lib/i18n';
 // Hindi and Hinglish. The teacher may change the words and mark it ready.
 // Nothing is sent from here: sending starts with WhatsApp, and the screen
 // says so.
+//
+// `shownAbove` (C210): the page was opened from the dashboard's messages
+// sent, and those messages are drawn above this list. After a change made
+// here (a message sent above all), that list is read again too.
 
 const LANGS = ['en', 'hi', 'hinglish'] as const;
 type BodyLang = (typeof LANGS)[number];
@@ -19,8 +24,9 @@ type Draft = { pulse_id: string; class_name: string; subject_name: string | null
 const TAP = 'min-h-[48px] rounded-md border px-4 text-sm font-semibold';
 const bodyOf = (d: Draft, l: BodyLang) => (l === 'en' ? d.body_en : l === 'hi' ? d.body_hi : d.body_hinglish);
 
-export function PulseDraftsView() {
+export function PulseDraftsView({ shownAbove = false }: { shownAbove?: boolean }) {
   const { t, tCount, lang } = useT();
+  const refreshShown = useShownRefresh(shownAbove);
   const toast = useToast();
   const [state, setState] = useState<'loading' | 'ready' | 'failed'>('loading');
   const [drafts, setDrafts] = useState<Draft[]>([]);
@@ -44,6 +50,12 @@ export function PulseDraftsView() {
     void load();
   }, [load]);
 
+  // After a change that succeeded: this list is read again, and then the list drawn above it.
+  const afterChange = async () => {
+    await load();
+    refreshShown();
+  };
+
   async function change(d: Draft, status?: 'ready' | 'draft') {
     const bodies: Partial<Record<BodyLang, string>> = {};
     for (const l of LANGS) {
@@ -59,7 +71,7 @@ export function PulseDraftsView() {
       return;
     }
     toast.show(t(status === 'ready' ? 'pc.ready.done' : status === 'draft' ? 'pc.draft.done' : 'pc.saved'), 'success');
-    void load();
+    void afterChange();
   }
 
   // A person sends a message they (or a colleague) marked ready (C189). It goes to the class's guardians through
@@ -69,9 +81,13 @@ export function PulseDraftsView() {
     const res = await fetch(`/api/app/pulse-drafts/${d.pulse_id}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'send' }) }).catch(() => null);
     const body = (await res?.json().catch(() => null)) ?? {};
     setBusy(null);
-    if (!res?.ok) toast.show(t(body.code === 'nobody' ? 'pc.send.nobody' : 'pc.failed'), 'danger');
-    else toast.show(t('pc.send.done', { queued: Number(body.queued ?? 0), held: Number(body.held ?? 0) }), 'success');
-    void load();
+    if (!res?.ok) {
+      toast.show(t(body.code === 'nobody' ? 'pc.send.nobody' : 'pc.failed'), 'danger');
+      void load();
+      return;
+    }
+    toast.show(t('pc.send.done', { queued: Number(body.queued ?? 0), held: Number(body.held ?? 0) }), 'success');
+    void afterChange();
   }
 
   const ready = drafts.filter((d) => d.status === 'ready').length;

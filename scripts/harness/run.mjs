@@ -2802,6 +2802,121 @@ const monitoringSchoolChecksDone = async () => {
 };
 // c210-jobs end
 // c210-ui begin
+// The class teacher of a class (C210). The principal runs a check-up on the School Health Auditor: 6-A has no class
+// teacher, and the check's button opens the list of classes on Students (/app/students?classes=1). There the
+// principal chooses Tanvi for 6-A; the picture shows the list. The check reads the database (the class teacher and
+// an audit row in the principal's name), then clears 6-A's class teacher on the same list and reads it again. 6-A
+// ends as the seed has it, with no class teacher; the check-up is taken away (its audit rows stay: the log is never
+// cut).
+const CLASS_6A = '00000000-0000-4000-8000-0000000c0061';
+const TANVI = '00000000-0000-4000-8000-00000000a004';
+let classTeacherSeen = null;
+const classTeacherAudits = async () => (await db.pg.query(`select count(*)::int as n from audit_log where event_action = 'class.class_teacher' and target_id = $1 and actor_user_id = $2`, [CLASS_6A, PEOPLE.principal.sub])).rows[0].n;
+const classTeacherOf6A = async () => (await db.pg.query(`select class_teacher_id from classes where class_id = $1`, [CLASS_6A])).rows[0].class_teacher_id;
+const classTeacherSaved = (page, want) =>
+  page.waitForFunction(([id, value]) => {
+    const select = document.querySelector(`[data-class-teacher="${id}"]`);
+    return select && !select.disabled && select.value === value;
+  }, [CLASS_6A, want], { timeout: 20000 });
+const classTeacherFromAuditor = async (page) => {
+  await clearHealthRuns();
+  await db.pg.query(`update classes set class_teacher_id = null where class_id = $1`, [CLASS_6A]);
+  classTeacherSeen = { auditsBefore: await classTeacherAudits() };
+  await page.goto(`${base}/app/school-auditor`, { waitUntil: 'networkidle', timeout: 90000 });
+  await page.locator('[data-auditor="empty"] [data-auditor-run]').click();
+  const fix = page.locator('[data-check-fix="class_teacher"]');
+  await fix.waitFor({ timeout: 30000 });
+  classTeacherSeen.href = await fix.getAttribute('href');
+  classTeacherSeen.button = ((await fix.textContent()) ?? '').trim();
+  await fix.click();
+  await page.waitForURL('**/app/students?classes=1', { timeout: 90000 });
+  const select = page.locator(`[data-class-teacher="${CLASS_6A}"]`);
+  await select.waitFor({ timeout: 30000 });
+  classTeacherSeen.options = await select.locator('option').allTextContents();
+  await select.selectOption(TANVI);
+  await classTeacherSaved(page, TANVI);
+  classTeacherSeen.saved = await classTeacherOf6A();
+  classTeacherSeen.auditsAfterSet = await classTeacherAudits();
+};
+const classTeacherFromAuditorDone = async (page) => {
+  try {
+    const seen = classTeacherSeen;
+    if (seen?.href !== '/app/students?classes=1' || seen.button !== 'Choose class teachers') throw new Error(`the auditor's check opens ${seen?.href} with "${seen?.button}"`);
+    // Active teachers of the school, and "no class teacher": never the principal or the office.
+    if (!seen.options.includes('No class teacher') || !seen.options.includes('Tanvi Example') || !seen.options.includes('Tara Example') || seen.options.some((o) => /Priya|Arjun|Bela/.test(o))) throw new Error(`the choices for 6-A: ${JSON.stringify(seen.options)}`);
+    if (seen.saved !== TANVI || seen.auditsAfterSet !== seen.auditsBefore + 1) throw new Error(`6-A after choosing Tanvi: ${JSON.stringify(seen)}`);
+    // Cleared on the same list, with no reload.
+    await page.locator(`[data-class-teacher="${CLASS_6A}"]`).selectOption('');
+    await classTeacherSaved(page, '');
+    const cleared = await classTeacherOf6A();
+    const audits = await classTeacherAudits();
+    if (cleared !== null || audits !== seen.auditsBefore + 2) throw new Error(`6-A after clearing: ${cleared}, ${audits - seen.auditsBefore} audit rows`);
+  } finally {
+    await db.pg.query(`update classes set class_teacher_id = null where class_id = $1`, [CLASS_6A]);
+    await clearHealthRuns();
+  }
+};
+// Dashboard lists that follow a change below them (C210), on three more screens: the screen is opened from the
+// dashboard number with one row behind it (shownAfterAdding), the picture is taken, then the principal changes that
+// row in the list below the way a person does, and the list above must say 0 in the page that was already open
+// (changeBelow: no reload). The database is read after, and every added row is taken away.
+const shownRowStatus = async (sql, id) => (await db.pg.query(sql, [id])).rows[0]?.status;
+const noticeShownChange = async (page) => {
+  try {
+    await changeBelow(page, async () => {
+      const notice = page.locator('[data-notice="waiting"]', { hasText: 'Harness 8d' });
+      await notice.locator('[data-notice-reject]').click();
+      await notice.locator('#notice-reject-reason').fill('Harness 8d: the date is wrong.');
+      await notice.locator('[data-notice-reject-save]').click();
+    }, 'Notices waiting for approval: 0');
+    const status = await shownRowStatus(`select status::text as status from class_notices where notice_id = $1`, `${H8D}4`);
+    if (status !== 'rejected') throw new Error(`the notice rejected on the screen is ${status} in the database`);
+  } finally {
+    await clearDashboardRows();
+  }
+};
+const eventShownChange = async (page) => {
+  try {
+    await changeBelow(page, () => page.locator('[data-event="draft"]', { hasText: 'Harness 8d science fair' }).locator('[data-event-cancel]').click(), 'Events coming: 0');
+    const status = await shownRowStatus(`select status::text as status from school_events where event_id = $1`, `${H8D}5`);
+    if (status !== 'cancelled') throw new Error(`the event cancelled on the screen is ${status} in the database`);
+  } finally {
+    await clearDashboardRows();
+  }
+};
+const answerShownChange = async (page) => {
+  try {
+    await changeBelow(page, () => page.locator('[data-answer="draft"]').first().locator('[data-answer-discard]').click(), 'Draft answers waiting for approval: 0');
+    const status = await shownRowStatus(`select status::text as status from parent_ai_answers where answer_id = $1`, `${H8D}6`);
+    if (status !== 'discarded') throw new Error(`the draft discarded on the screen is ${status} in the database`);
+  } finally {
+    await clearDashboardRows();
+  }
+};
+// Control → Monitoring never sends a member of staff's full email to the browser (C210). An invitation that waits
+// for NetCyberAI is put in; the page is opened again, and both what the server sent and the page drawn are read:
+// the invitation shows "h…@staff.example" and the full address is in neither. The invitation is taken away after.
+const MASKED_INVITE = '00000000-0000-4000-8000-0000000c2101';
+const MASKED_EMAIL = 'harness.staff.c210@staff.example';
+let maskedSeen = null;
+const removeMaskedInvite = () => db.pg.exec(`set session_replication_role = replica; delete from staff_invitations where invitation_id = '${MASKED_INVITE}'; set session_replication_role = origin;`);
+const monitoringMasked = async (page) => {
+  await removeMaskedInvite();
+  await db.pg.query(`insert into staff_invitations (invitation_id, school_id, email, email_key, display_name, role, status, source, invited_by) values ($1, $2, $3, $3, 'Harness Staff', 'teacher', 'needs_founder', 'staff', $4)`, [MASKED_INVITE, SCHOOL, MASKED_EMAIL, PEOPLE.principal.sub]);
+  const res = await page.reload({ waitUntil: 'networkidle', timeout: 90000 });
+  const sent = res ? await res.text() : '';
+  const line = page.locator('[data-monitoring-invitation]', { hasText: 'h…@staff.example' });
+  await line.first().waitFor({ timeout: 30000 });
+  await line.first().scrollIntoViewIfNeeded();
+  maskedSeen = { line: ((await line.first().textContent()) ?? '').trim(), inSent: sent.includes('harness.staff'), inPage: (await page.content()).includes('harness.staff'), sentBytes: sent.length };
+};
+const monitoringMaskedDone = async () => {
+  try {
+    if (!maskedSeen?.line.includes('invited h…@staff.example as Teacher') || maskedSeen.inSent || maskedSeen.inPage || maskedSeen.sentBytes === 0) throw new Error(`the invitation on Monitoring: ${JSON.stringify(maskedSeen)}`);
+  } finally {
+    await removeMaskedInvite();
+  }
+};
 // c210-ui end
 // p6-9a begin
 // p6-9a end
@@ -3301,6 +3416,14 @@ const SCREENS = [
   ['founder', 'control-monitoring-school-checks', '/control/monitoring', monitoringSchoolChecks, monitoringSchoolChecksDone],
   // c210-jobs end
   // c210-ui begin
+  // C210: the class teacher chosen and cleared on the list of classes the auditor's check opens; three more screens
+  // opened from a dashboard number whose list above follows a change below with no reload; Monitoring's invitations
+  // with the staff email masked.
+  ['principal', 'app-classes-class-teacher', '/app/students?classes=1', classTeacherFromAuditor, classTeacherFromAuditorDone],
+  ['principal', 'app-notices-rows-change', '/app/communication?show=notices', shownAfterAdding(true), noticeShownChange],
+  ['principal', 'app-events-rows-change', '/app/events?show=coming', shownAfterAdding(true), eventShownChange],
+  ['principal', 'app-answers-rows-change', '/app/parent-ai?show=drafts', shownAfterAdding(false), answerShownChange],
+  ['founder', 'control-monitoring-masked', '/control/monitoring', monitoringMasked, monitoringMaskedDone],
   // c210-ui end
   // p6-9a begin
   // p6-9a end

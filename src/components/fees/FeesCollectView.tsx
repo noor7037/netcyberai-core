@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
-import { useFeesPart } from './FeesFirstLoad';
+import { useFeesChanged, useFeesPart } from './FeesFirstLoad';
 import { FeeClearance } from './FeeClearance';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
@@ -34,6 +34,7 @@ export function FeesCollectView() {
   const toast = useToast();
   const getPayments = useFeesPart('payments', '/api/app/fees/payments');
   const getSetup = useFeesPart('setup', '/api/app/fees/setup');
+  const feesChanged = useFeesChanged();
   const [classes, setClasses] = useState<{ class_id: string; name: string }[]>([]);
   const [classId, setClassId] = useState('');
   const [students, setStudents] = useState<{ student_id: string; name: string }[]>([]);
@@ -167,6 +168,7 @@ export function FeesCollectView() {
     setChoose(false);
     void loadDues();
     void loadSummary();
+    feesChanged();
   }
 
   async function reverse() {
@@ -182,6 +184,7 @@ export function FeesCollectView() {
     setReversing(null);
     void loadDues();
     void loadSummary();
+    feesChanged();
   }
 
   if (classes.length === 0) return null;

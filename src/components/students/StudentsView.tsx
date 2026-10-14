@@ -27,7 +27,9 @@ type Student = {
   status: 'pending_consent' | 'active' | 'inactive' | 'transferred';
 };
 
-type ClassRow = { class_id: string; name: string };
+// A class as GET /api/app/classes gives it. `class_teacher_active`: its class teacher is still an active teacher.
+type ClassRow = { class_id: string; name: string; class_teacher_id?: string | null; class_teacher_name?: string | null; class_teacher_active?: boolean };
+type TeacherOption = { user_id: string; name: string };
 
 type ImportRowError = { row: number; name: string; admissionNo: string | null; errors: string[] };
 type ImportResult = {
@@ -53,9 +55,11 @@ type Props = {
   statusFilter?: Student['status'];
   // Arrived from "+ New → Add student" (?new=1): the form opens by itself.
   openNew?: boolean;
+  // Arrived from the School Health Auditor's class-teacher check (?classes=1): the list of classes opens by itself (C210).
+  openClasses?: boolean;
 };
 
-export function StudentsView({ title, description, statusFilter, openNew = false }: Props) {
+export function StudentsView({ title, description, statusFilter, openNew = false, openClasses = false }: Props) {
   const router = useRouter();
   const { t, tCount } = useT();
   const [students, setStudents] = useState<Student[] | null>(null);
@@ -74,7 +78,19 @@ export function StudentsView({ title, description, statusFilter, openNew = false
     setModalOpen(false);
     if (openNew) router.replace('/app/students');
   };
-  const [classModalOpen, setClassModalOpen] = useState(false);
+  const [classModalOpen, setClassModalOpen] = useState(openClasses);
+  useEffect(() => {
+    if (openClasses) setClassModalOpen(true);
+  }, [openClasses]);
+  // Closing the list drops ?classes=1 the same way.
+  const closeClassModal = () => {
+    setClassModalOpen(false);
+    if (openClasses) router.replace('/app/students');
+  };
+  // The class teacher of each class (C210): the principal and the school admin choose from the active teachers.
+  const [teachers, setTeachers] = useState<TeacherOption[]>([]);
+  const [mayChangeClassTeacher, setMayChangeClassTeacher] = useState(false);
+  const [savingClass, setSavingClass] = useState<string | null>(null);
   const [importModalOpen, setImportModalOpen] = useState(false);
   const [importResult, setImportResult] = useState<ImportResult | null>(null);
   const [importing, setImporting] = useState(false);
@@ -98,6 +114,8 @@ export function StudentsView({ title, description, statusFilter, openNew = false
       setStudents(studentsBody.students);
       setTotal(Number(studentsBody.total ?? studentsBody.students.length));
       setClasses(classesBody.classes);
+      setTeachers(classesBody.teachers ?? []);
+      setMayChangeClassTeacher(classesBody.mayChangeClassTeacher === true);
       setClassesLoaded(classesRes.ok);
       setState('ready');
     } catch {
@@ -153,6 +171,25 @@ export function StudentsView({ title, description, statusFilter, openNew = false
     setClasses((prev) => [...prev, created].sort((a, b) => a.name.localeCompare(b.name)));
     (e.target as HTMLFormElement).reset();
     toast.show(`Class "${created.name}" added`, 'success');
+  }
+
+  // Set or clear one class's class teacher. The list shows what the server now holds, or stays as it was.
+  async function chooseClassTeacher(c: ClassRow, teacherId: string | null) {
+    setSavingClass(c.class_id);
+    const res = await fetch(`/api/app/classes/${c.class_id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ classTeacherId: teacherId }),
+    }).catch(() => null);
+    const body = res ? await res.json().catch(() => null) : null;
+    setSavingClass(null);
+    if (!res?.ok || !body?.class) {
+      toast.show(t(body?.code === 'not_a_teacher' ? 'cls.teacher.notTeacher' : 'cls.teacher.failed'), 'danger');
+      return;
+    }
+    const saved = body.class as ClassRow;
+    setClasses((prev) => prev.map((x) => (x.class_id === saved.class_id ? { ...x, ...saved } : x)));
+    toast.show(saved.class_teacher_id ? t('cls.teacher.set', { name: saved.class_teacher_name ?? '', class: saved.name }) : t('cls.teacher.cleared', { class: saved.name }), 'success');
   }
 
   // `preview`: check every row and suggest siblings; nothing is written (C116).
@@ -331,7 +368,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
         </form>
       </Modal>
 
-      <Modal open={classModalOpen} onClose={() => setClassModalOpen(false)} title="Manage classes">
+      <Modal open={classModalOpen} onClose={closeClassModal} title="Manage classes">
         <form onSubmit={handleCreateClass} className="mb-4 flex items-end gap-2">
           <Input id="className" name="className" label="New class (e.g. 8-A)" required className="flex-1" />
           <button type="submit" className="min-h-[44px] rounded-md bg-sapphire px-4 text-sm font-semibold text-white">
@@ -341,13 +378,38 @@ export function StudentsView({ title, description, statusFilter, openNew = false
         {classes.length === 0 ? (
           classesLoaded ? <TeachEmpty id="classes" compact onAction={() => document.getElementById('className')?.focus()} /> : <TeachEmpty id="not-loaded" compact />
         ) : (
-          <ul className="flex flex-col gap-1">
-            {classes.map((c) => (
-              <li key={c.class_id} className="rounded-md border border-slate/10 px-3 py-2 text-sm text-slate">
-                {c.name}
-              </li>
-            ))}
-          </ul>
+          <div className="flex flex-col gap-2">
+            {mayChangeClassTeacher && <p className="text-sm text-slate">{t(teachers.length > 0 ? 'cls.teacher.how' : 'cls.teacher.noTeachers')}</p>}
+            <ul data-classes className="flex flex-col gap-2">
+              {classes.map((c) => (
+                <li key={c.class_id} data-class={c.class_id} className="flex flex-col gap-2 rounded-md border border-slate/10 px-3 py-2 text-sm text-slate">
+                  <span className="font-semibold">{c.name}</span>
+                  {mayChangeClassTeacher ? (
+                    <Select
+                      id={`class-teacher-${c.class_id}`}
+                      label={t('cls.teacher.label', { class: c.name })}
+                      data-class-teacher={c.class_id}
+                      value={c.class_teacher_id ?? ''}
+                      disabled={savingClass === c.class_id}
+                      onChange={(e) => void chooseClassTeacher(c, e.target.value || null)}
+                    >
+                      <option value="">{t('cls.teacher.none')}</option>
+                      {c.class_teacher_id && !teachers.some((x) => x.user_id === c.class_teacher_id) && (
+                        <option value={c.class_teacher_id}>{t('cls.teacher.off', { name: c.class_teacher_name ?? '' })}</option>
+                      )}
+                      {teachers.map((x) => (
+                        <option key={x.user_id} value={x.user_id}>
+                          {x.name}
+                        </option>
+                      ))}
+                    </Select>
+                  ) : (
+                    <span>{c.class_teacher_name ? t('cls.teacher.is', { name: c.class_teacher_name }) : t('cls.teacher.isNone')}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </Modal>
 

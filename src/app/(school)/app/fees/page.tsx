@@ -18,16 +18,18 @@ import { getLang } from '@/lib/i18n/server';
 // structure (6a, C157); raising a month's dues, concessions and RTE marks
 // (6b, C159). Payments and receipts follow; the page says what is not there yet.
 // ?show=<filter> (with ?from=&to= for receipts) comes from a dashboard number and lists the rows behind it (C203).
+// The parts below are told that a list is drawn above them, so a change made there has that list read again (C210).
 export default async function FeesPage({ searchParams = {} }: { searchParams?: { show?: string; from?: string; to?: string } }) {
   const off = await moduleOffReason('fees');
   if (off) return <ModuleOffPage moduleId="fees" reason={off} />;
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
+  const shown = isFeesShow(searchParams.show) ? searchParams.show : null;
   return (
     <ModulePage moduleId="fees" help="fee-structures" tour="fees" title={t(lang, 'fee.title')} purpose={t(lang, 'fee.purpose')}>
-      <FeesFirstLoad>
+      <FeesFirstLoad shownAbove={shown !== null}>
       <div className="flex flex-col gap-6">
-        {isFeesShow(searchParams.show) && <FeesShown show={searchParams.show} range={readRange(searchParams)} />}
+        {shown && <FeesShown show={shown} range={readRange(searchParams)} />}
         <FeesVerifyView />
         <FeesCollectView />
         <FeesBankView />

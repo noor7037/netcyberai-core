@@ -80,6 +80,8 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // c210-jobs begin
   // c210-jobs end
   // c210-ui begin
+  // Setting or clearing the class teacher of one class (C210) is the school's Setup, as adding a class is.
+  ['classes/*', 'setup'],
   // c210-ui end
   // p6-9a begin
   // p6-9a end

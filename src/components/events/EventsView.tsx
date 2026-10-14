@@ -2,12 +2,16 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
 
 // School events (docs/25 slice 7l, C194). The office makes an event for some classes or for every class and invites;
 // parents answer YES or NO by reply and the answers are counted; cancelling tells those invited.
+//
+// `shownAbove` (C210): the page was opened from the dashboard's "Events coming", and those events are drawn above
+// this list. After a change made here, that list is read again too.
 
 type Event = { event_id: string; title: string; held_on: string; starts_at: string | null; details: string; status: 'draft' | 'invited' | 'cancelled'; classes: string | null; invited: number; yes: number; no: number };
 type Data = { events: Event[]; classes: { class_id: string; name: string }[]; mayManage: boolean };
@@ -17,8 +21,9 @@ const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-se
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 const sayTime = (t: string) => `${((Number(t.slice(0, 2)) + 11) % 12) + 1}:${t.slice(3, 5)} ${Number(t.slice(0, 2)) < 12 ? 'am' : 'pm'}`;
 
-export function EventsView() {
+export function EventsView({ shownAbove = false }: { shownAbove?: boolean }) {
   const { t, lang } = useT();
+  const refreshShown = useShownRefresh(shownAbove);
   const [data, setData] = useState<Data | null>(null);
   const [failed, setFailed] = useState(false);
   const [form, setForm] = useState({ title: '', heldOn: '', startsAt: '', details: '', all: true, classIds: [] as string[] });
@@ -45,6 +50,9 @@ export function EventsView() {
     setNote({ ok: true, text: done(got ?? {}) });
     if (clear) setForm({ title: '', heldOn: '', startsAt: '', details: '', all: true, classIds: [] });
     await load();
+    // The events coming, drawn above this list, are read again too: an event just made is among them, one just
+    // cancelled is not.
+    refreshShown();
   };
 
   if (failed) return <p role="alert" className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('evt.failed')}</p>;

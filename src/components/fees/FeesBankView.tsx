@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
-import { useFeesPart } from './FeesFirstLoad';
+import { useFeesChanged, useFeesPart } from './FeesFirstLoad';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
@@ -27,6 +27,7 @@ export function FeesBankView() {
   const { t, lang } = useT();
   const toast = useToast();
   const getBank = useFeesPart('bank', '/api/app/fees/bank');
+  const feesChanged = useFeesChanged();
   const [accounts, setAccounts] = useState<Account[] | null>(null);
   const [uploads, setUploads] = useState<Upload[]>([]);
   const [mayAdd, setMayAdd] = useState(false);
@@ -91,6 +92,8 @@ export function FeesBankView() {
     setText('');
     setFileName('');
     void load();
+    // Rows matched to UPI payments on keeping a statement become receipts.
+    feesChanged();
   }
 
   if (accounts === null) return null;
@@ -193,7 +196,7 @@ export function FeesBankView() {
         </div>
       )}
 
-      {lists && <BankLists lists={lists} onChanged={() => void load()} />}
+      {lists && <BankLists lists={lists} onChanged={() => (void load(), feesChanged())} />}
 
       {uploads.length > 0 && (
         <ul data-bank-uploads className="flex flex-col gap-1 border-t border-slate/10 pt-3 text-sm text-slate">

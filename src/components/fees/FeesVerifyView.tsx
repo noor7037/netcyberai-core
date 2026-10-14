@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
-import { useFeesPart } from './FeesFirstLoad';
+import { useFeesChanged, useFeesPart } from './FeesFirstLoad';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
@@ -22,6 +22,7 @@ export function FeesVerifyView() {
   const { t, lang } = useT();
   const toast = useToast();
   const getReports = useFeesPart('reports', '/api/app/fees/reports');
+  const feesChanged = useFeesChanged();
   const [waiting, setWaiting] = useState<Waiting[] | null>(null);
   const [mayVerify, setMayVerify] = useState(false);
   const [isPrincipal, setIsPrincipal] = useState(false);
@@ -65,6 +66,7 @@ export function FeesVerifyView() {
     else toast.show(t(body.state === 'verified' ? (body.unappliedMinor > 0 ? 'ver.done.excess' : 'ver.done.found') : body.state === 'awaiting_principal' ? 'ver.done.waitsPrincipal' : 'ver.done.notFound'), 'success');
     setOpen(null);
     void load();
+    if (res?.ok) feesChanged();
   }
 
   async function reopen(r: NotFound) {
@@ -76,6 +78,7 @@ export function FeesVerifyView() {
     setReopening(null);
     setReason('');
     void load();
+    if (res?.ok) feesChanged();
   }
 
   if (!waiting || (waiting.length === 0 && notFound.length === 0)) return null;

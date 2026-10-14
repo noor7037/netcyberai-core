@@ -22,8 +22,9 @@ import type { TicketRoutes, TicketsApi } from './tickets-api';
 // One ticket (C126): what was asked, the screenshots, the replies in order,
 // a reply box while the ticket is being worked on, and the moves this side
 // may make (contracts/tickets.ts decides; the server checks again). After
-// every change the ticket is read again from the server.
-export function TicketDetail({ api, routes, ticketId, initial }: { api: TicketsApi; routes: TicketRoutes; ticketId: string; initial?: Ticket }) {
+// every change the ticket is read again from the server, and `onChanged`
+// is called (C210).
+export function TicketDetail({ api, routes, ticketId, initial, onChanged }: { api: TicketsApi; routes: TicketRoutes; ticketId: string; initial?: Ticket; onChanged?: () => void }) {
   const side = api.side;
   const [ticket, setTicket] = useState<Ticket | null>(initial ?? null);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -41,13 +42,15 @@ export function TicketDetail({ api, routes, ticketId, initial }: { api: TicketsA
   }, [api, ticketId]);
   useEffect(load, [load]);
 
-  async function act(fn: () => Promise<void>, done?: () => void) {
+  // `changes`: false for what changes nothing (opening a screenshot).
+  async function act(fn: () => Promise<void>, done?: () => void, changes = true) {
     setBusy(true);
     setError(null);
     try {
       await fn();
       done?.();
       setTicket(await api.get(ticketId));
+      if (changes) onChanged?.();
     } catch (e) {
       setError(e instanceof Error ? e.message : 'That did not work. Try again.');
     } finally {
@@ -67,9 +70,13 @@ export function TicketDetail({ api, routes, ticketId, initial }: { api: TicketsA
     if (replyOk) act(() => api.reply(ticketId, reply.trim(), then || undefined), () => (setReply(''), setThen('')));
   };
   const open = (attachmentId: string) =>
-    act(async () => {
-      window.open(await api.screenshotUrl(ticketId, attachmentId), '_blank', 'noopener');
-    });
+    act(
+      async () => {
+        window.open(await api.screenshotUrl(ticketId, attachmentId), '_blank', 'noopener');
+      },
+      undefined,
+      false
+    );
   const add = (file: File | undefined) => {
     if (!file) return;
     const problem = screenshotProblem(file);

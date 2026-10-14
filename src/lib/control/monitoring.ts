@@ -473,18 +473,31 @@ export function needsALook(m: Monitoring): Record<MonitoringSection, boolean> {
   };
 }
 
-// --- The one list on the page that names a person ------------------------------------------------------------
+// --- The one list on the page about a person ---------------------------------------------------------------
 
 // A school invited an email that already has a NetCyberAI account (C98): the invitation waits for NetCyberAI to
-// confirm with the account's owner. To do that the founder must see which email, so this list, and only this one,
-// shows it: a member of staff, as the school typed it. It is kept apart from loadMonitoring, whose answer holds no
-// person at all.
-export type InvitationWaiting = { invitationId: string; schoolName: string; email: string; role: string; createdAt: string };
+// confirm with the account's owner. This list says which school, which role and enough of the email to tell one
+// invitation from another: its first letter and its domain, "a…@school.in" (C210). The full address never leaves
+// this function, so it is never sent to the browser; the school that typed it has it. It is kept apart from
+// loadMonitoring, whose answer holds no person at all.
+export type InvitationWaiting = { invitationId: string; schoolName: string; maskedEmail: string; role: string; createdAt: string };
+
+// The first letter of the name, three dots and the domain. Nothing of the name after its first letter, and no
+// domain when the address has none ("…" alone when there is nothing to show at all).
+export function maskStaffEmail(email: string | null | undefined): string {
+  const text = typeof email === 'string' ? email.trim() : '';
+  const at = text.lastIndexOf('@');
+  const name = at >= 0 ? text.slice(0, at) : text;
+  const domain = at >= 0 ? text.slice(at + 1) : '';
+  const first = [...name][0] ?? '';
+  return domain ? `${first}…@${domain}` : `${first}…`;
+}
+
 export async function invitationsWaiting(db: Sql): Promise<InvitationWaiting[]> {
   const { rows } = await db.query(
     `select i.invitation_id, s.name as school_name, i.email, i.role::text as role, i.created_at
        from staff_invitations i join schools s on s.school_id = i.school_id
       where i.status = 'needs_founder' order by i.created_at desc limit 50`
   );
-  return rows.map((r) => ({ invitationId: r.invitation_id as string, schoolName: r.school_name as string, email: r.email as string, role: r.role as string, createdAt: new Date(r.created_at as string).toISOString() }));
+  return rows.map((r) => ({ invitationId: r.invitation_id as string, schoolName: r.school_name as string, maskedEmail: maskStaffEmail(r.email as string), role: r.role as string, createdAt: new Date(r.created_at as string).toISOString() }));
 }

@@ -571,6 +571,10 @@ REQUIRED_RESTRICTIVE = {
     # c210-jobs begin
     # c210-jobs end
     # c210-ui begin
+    # C210: adding, changing and removing a class is the principal's and the school admin's; reading is unchanged.
+    ("classes", "classes_added_by_office"),
+    ("classes", "classes_changed_by_office"),
+    ("classes", "classes_removed_by_office"),
     # c210-ui end
     # p6-9a begin
     # p6-9a end

@@ -2,12 +2,16 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
 
 // Notices to parents (docs/25 slice 7i, C191). Staff write one for a class (the office, for every class too); it
 // waits for the principal; approving it is what sends it. Who received and read it is counted from the message log.
+//
+// `shownAbove` (C210): the page was opened from the dashboard's "Notices waiting for approval", and those notices
+// are drawn above this list. After a change made here, that list is read again too.
 
 type Notice = { notice_id: string; class_id: string | null; class_name: string | null; body: string; status: 'waiting' | 'sent' | 'rejected'; written_by_name: string | null; written_at: string; decided_by_name: string | null; reject_reason: string | null; on_its_way: number; delivered: number; read: number; held: number };
 type Data = { notices: Notice[]; classes: { class_id: string; name: string }[]; mayDecide: boolean; mayWriteToAll: boolean };
@@ -17,8 +21,9 @@ const VARIANT = { waiting: 'warning', sent: 'success', rejected: 'neutral' } as 
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-50';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 
-export function NoticesView() {
+export function NoticesView({ shownAbove = false }: { shownAbove?: boolean }) {
   const { t, lang } = useT();
+  const refreshShown = useShownRefresh(shownAbove);
   const [data, setData] = useState<Data | null>(null);
   const [failed, setFailed] = useState(false);
   const [classId, setClassId] = useState('');
@@ -50,6 +55,8 @@ export function NoticesView() {
     setRejecting(null);
     setReason('');
     await load();
+    // The notices waiting, drawn above this list, are read again too: one just approved or rejected waits no more.
+    refreshShown();
   };
 
   if (failed) return <p role="alert" className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('ntc.failed')}</p>;

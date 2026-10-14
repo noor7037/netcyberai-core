@@ -15,8 +15,8 @@ import { APPLICATION_STATES } from '@/lib/onboarding/application-machine';
 //
 // No parent's or child's name, no phone number and no words of a message are on this page: the loader reads none.
 // The error and reason texts it shows were cut by cutContacts before they got here. Below the monitoring sections
-// are the two onboarding lists the page has always had; the invitations list is the one place a person is named
-// (a member of staff a school invited), and it says so.
+// are the two onboarding lists the page has always had; the invitations list is the one place about a person (a
+// member of staff a school invited), and it shows only the first letter and the domain of their email (C210).
 
 const TH = 'px-3 py-2 text-left text-xs font-bold uppercase tracking-wider text-slate/70';
 const TD = 'px-3 py-2 text-sm text-slate tabular-nums';
@@ -456,7 +456,7 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
           <ul className="flex flex-col gap-2 text-sm">
             {invitations.map((i) => (
               <li key={i.invitationId} data-monitoring-invitation className="break-words rounded-md border border-slate/10 bg-off-white p-3 text-slate">
-                {t(lang, 'monitoring.invites.line', { school: i.schoolName, email: i.email, role: tOr(lang, `role.${i.role}`, i.role) })} <span className="text-slate/70">{t(lang, 'monitoring.invites.since', { when: whenInIndia(lang, i.createdAt) })}</span>
+                {t(lang, 'monitoring.invites.line', { school: i.schoolName, email: i.maskedEmail, role: tOr(lang, `role.${i.role}`, i.role) })} <span className="text-slate/70">{t(lang, 'monitoring.invites.since', { when: whenInIndia(lang, i.createdAt) })}</span>
               </li>
             ))}
           </ul>

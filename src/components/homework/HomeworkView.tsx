@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
 import { useOffline } from '@/components/app-shell/OfflineContext';
+import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
 import { Select } from '@/components/ui/Select';
@@ -17,6 +18,10 @@ import type { Operation } from '@/lib/offline/outbox';
 // Checking who has done it works with no network: it waits in the outbox
 // and is sent when the network returns. Setting, changing and files need
 // the network.
+//
+// `shownAbove` (C210): the page was opened from a dashboard number, and the
+// assignments behind it are drawn above this screen. After a change the
+// server now holds, that list is read again too.
 
 type Assignment = { target_id: string; homework_id: string; class_id: string; class_name: string; subject_name: string; title: string; details: string | null; due_date: string; students: number; checked: number; done: number; files: number; siblings: { target_id: string; class_name: string }[] };
 type Choice = { classes: { class_id: string; name: string }[]; subjects: { subject_id: string; name: string }[] };
@@ -28,8 +33,9 @@ type KeptRoster = { roster: Row[]; files: FileRow[] };
 const TAP = 'min-h-[48px] rounded-md border px-4 text-sm font-semibold';
 const PRIMARY = 'min-h-[48px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 
-export function HomeworkView() {
+export function HomeworkView({ shownAbove = false }: { shownAbove?: boolean }) {
   const { t, tCount, lang } = useT();
+  const refreshShown = useShownRefresh(shownAbove);
   const { ready, online, store, sync, queue, operations } = useOffline();
   const toast = useToast();
   const [data, setData] = useState<Kept | null>(null);
@@ -73,11 +79,18 @@ export function HomeworkView() {
     if (ready) void load();
   }, [ready, load]);
 
+  // After a change the server now holds (a homework set or changed, a check saved): this screen's own list is read
+  // again, and then the list drawn above it, which counts the same assignments.
+  const afterChange = async () => {
+    await load();
+    refreshShown();
+  };
+
   useEffect(() => {
     if (!ready) return;
     if (sync.state === 'saved' && reloadWhenSaved.current) {
       reloadWhenSaved.current = false;
-      void load();
+      void afterChange();
     } else if (sync.state !== 'saved') {
       reloadWhenSaved.current = true;
       void loadWaiting();
@@ -112,7 +125,7 @@ export function HomeworkView() {
     toast.show(`${tCount('hw.set.done', form.classIds.length)}${fileNote}`, fileNote ? 'danger' : 'success');
     setForm({ subjectId: form.subjectId, title: '', details: '', dueDate: '', classIds: [] });
     setFile(null);
-    void load();
+    void afterChange();
   }
 
   async function openAssignment(a: Assignment) {
@@ -146,7 +159,7 @@ export function HomeworkView() {
       const res = await fetch(`/api/app/homework/targets/${a.target_id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ entries }) }).catch(() => null);
       setBusy(false);
       toast.show(t(res?.ok ? 'hw.check.saved' : 'hw.check.failed'), res?.ok ? 'success' : 'danger');
-      if (res?.ok) void load();
+      if (res?.ok) void afterChange();
       return;
     }
     // The list kept on the phone shows what was just marked.
@@ -168,7 +181,7 @@ export function HomeworkView() {
     }
     toast.show(t('hw.edit.done', { changed: body.changedTargets.length, left: body.leftAsSent.length }), 'success');
     setEditing(null);
-    void load();
+    void afterChange();
   }
 
   async function openFile(a: Assignment, f: FileRow) {

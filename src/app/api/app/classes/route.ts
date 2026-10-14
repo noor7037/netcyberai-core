@@ -4,18 +4,23 @@ import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { isForeignKeyViolation } from '@/lib/db/pg-errors';
+import { classTeacherOptions, maySetClassTeacher } from '@/lib/classes/class-teacher';
 import { deriveGradeSection } from '@/lib/classes/grade-section';
 import { validationError } from '@/lib/errors/catalogue';
+import { isUuid } from '@/lib/frameworks/custom-fields';
 
 export async function GET(req: NextRequest) {
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
 
   try {
-    const classes = await withTenantContext(guard.claims, async (client) => {
+    // For the principal and the school admin, also the teachers a class teacher may be chosen from (C210).
+    const mayChangeClassTeacher = maySetClassTeacher(guard.claims.role);
+    const { classes, teachers } = await withTenantContext(guard.claims, async (client) => {
       const { rows } = await client.query(
         `select c.class_id, c.name, c.grade, c.section, c.session_id, c.class_teacher_id,
                 u.display_name as class_teacher_name,
+                coalesce(u.role = 'teacher' and u.is_active, false) as class_teacher_active,
                 (select count(*) from students s where s.school_id = c.school_id and s.class_id = c.class_id) as student_count
          from classes c
          left join users u on u.school_id = c.school_id and u.user_id = c.class_teacher_id
@@ -23,9 +28,9 @@ export async function GET(req: NextRequest) {
          order by c.name asc`,
         [guard.claims.schoolId]
       );
-      return rows;
+      return { classes: rows, teachers: mayChangeClassTeacher ? await classTeacherOptions(client, guard.claims.schoolId) : [] };
     });
-    return NextResponse.json({ classes });
+    return NextResponse.json({ classes, teachers, mayChangeClassTeacher });
   } catch (err) {
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
@@ -56,8 +61,18 @@ export async function POST(req: NextRequest) {
   const grade = typeof body?.grade === 'string' && body.grade.trim() ? body.grade.trim() : derived.grade;
   const section = typeof body?.section === 'string' && body.section.trim() ? body.section.trim() : derived.section;
 
+  if (classTeacherId !== null && !isUuid(classTeacherId)) {
+    return NextResponse.json(validationError('not_sent_properly'), { status: 400 });
+  }
+
   try {
     const created = await withTenantContext(guard.claims, async (client) => {
+      // A class teacher given with a new class is an active teacher of this school, as when one is chosen later
+      // on the Classes list (C210).
+      if (classTeacherId !== null) {
+        const teacher = await client.query(`select 1 from users where school_id = $1 and user_id = $2 and role = 'teacher' and is_active`, [guard.claims.schoolId, classTeacherId]);
+        if (teacher.rowCount === 0) return null;
+      }
       const { rows } = await client.query(
         `insert into classes (school_id, name, grade, section, session_id, class_teacher_id)
          values ($1, $2, $3, $4, $5, $6)
@@ -76,6 +91,7 @@ export async function POST(req: NextRequest) {
       });
       return row;
     });
+    if (!created) return NextResponse.json({ error: 'only an active teacher of this school can be a class teacher', code: 'not_a_teacher' }, { status: 400 });
     return NextResponse.json({ class: created }, { status: 201 });
   } catch (err) {
     if (isForeignKeyViolation(err)) {
