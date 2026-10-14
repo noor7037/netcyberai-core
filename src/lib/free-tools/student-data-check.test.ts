@@ -89,9 +89,9 @@ describe('student data check: gender', () => {
 
 describe('student data check: reading the list', () => {
   it('reads the template columns, ignores unknown ones and lists missing ones', () => {
-    const r = parseStudentList(`﻿${HEAD},Roll\nA1,5A,Aarav,05-04-2015,M,Aarav,05-04-2015,M,7\n\n`);
+    const r = parseStudentList(`﻿${HEAD},Roll\nADM-1,5A,Aarav,05-04-2015,M,Aarav,05-04-2015,M,7\n\n`);
     expect(r.students).toHaveLength(1);
-    expect(r.students[0]).toMatchObject({ admission_no: 'A1', class: '5A', name_in_school: 'Aarav', parent_name: '' });
+    expect(r.students[0]).toMatchObject({ admission_no: 'ADM-1', class: '5A', name_in_school: 'Aarav', parent_name: '' });
     expect(r.unknownColumns).toEqual(['Roll']);
     expect(r.missingColumns).toEqual([]);
     expect(parseStudentList('admission_no,class\nA1,5A\n').missingColumns).toContain('name_in_aadhaar');
@@ -102,7 +102,7 @@ describe('student data check: reading the list', () => {
     expect(r.missingColumns).toEqual([]);
   });
   it('never keeps a column that looks like Aadhaar numbers', () => {
-    const csv = `${HEAD},aadhaar\nA1,5A,Aarav,05-04-2015,M,Aarav,05-04-2015,M,2345 6789 0123\nA2,5A,Riya,05-04-2015,F,Riya,05-04-2015,F,\n`;
+    const csv = `${HEAD},aadhaar\nADM-1,5A,Aarav,05-04-2015,M,Aarav,05-04-2015,M,2345 6789 0123\nA2,5A,Riya,05-04-2015,F,Riya,05-04-2015,F,\n`;
     const r = parseStudentList(csv);
     expect(r.droppedColumns).toEqual(['aadhaar']);
     expect(r.unknownColumns).toEqual([]);
@@ -118,7 +118,7 @@ describe('student data check: reading the list', () => {
     expect(r.missingColumns).toEqual(['admission_no']);
   });
   it('round-trips the saved list, including guarded cells', () => {
-    const r = parseStudentList(`${HEAD},parent_name,parent_phone\nA1,5A,Aarav,05-04-2015,M,Aarav,05-04-2015,M,Meena,+91 98765 43210\n`);
+    const r = parseStudentList(`${HEAD},parent_name,parent_phone\nADM-1,5A,Aarav,05-04-2015,M,Aarav,05-04-2015,M,Meena,+91 98765 43210\n`);
     const again = parseStudentList(studentsToCsv(r.students));
     expect(again.students).toEqual(r.students);
     expect(again.students[0].parent_phone).toBe('+91 98765 43210');
@@ -129,10 +129,10 @@ describe('student data check: reading the list', () => {
 describe('student data check: results and letters', () => {
   const list = parseStudentList(
     `${HEAD},parent_name\n` +
-      'A1,5A,Aarav Sharma,05-04-2015,M,Aarav Sharma,05-04-2015,Male,\n' +
-      'A2,5A,AARAV KUMAR,05-04-2015,M,Aarav Kumar,05-04-2015,M,\n' +
-      'A3,5B,Riya Sen,05-04-2015,F,Riya Sen,04-05-2015,F,Meena Sen\n' +
-      'A4,4A,Kabir Das,01-01-2016,M,Ishaan Das,01-01-2016,F,\n'
+      'ADM-1,5A,Aarav Sharma,05-04-2015,M,Aarav Sharma,05-04-2015,Male,\n' +
+      'ADM-2,5A,AARAV KUMAR,05-04-2015,M,Aarav Kumar,05-04-2015,M,\n' +
+      'ADM-3,5B,Riya Sen,05-04-2015,F,Riya Sen,04-05-2015,F,Meena Sen\n' +
+      'ADM-4,4A,Kabir Das,01-01-2016,M,Ishaan Das,01-01-2016,F,\n'
   );
   const checked = checkStudents(list.students);
 
@@ -141,8 +141,8 @@ describe('student data check: results and letters', () => {
   });
   it('sorts differences most serious first', () => {
     const rows = mismatchRows(checked);
-    expect(rows.map((r) => `${r.c.student.admission_no}:${r.f.field}:${r.f.finding}`)).toEqual(['A4:name:different', 'A4:gender:different', 'A3:dob:swapped', 'A2:name:format']);
-    expect(studentsWithMismatch(checked).map((c) => c.student.admission_no)).toEqual(['A4', 'A3', 'A2']);
+    expect(rows.map((r) => `${r.c.student.admission_no}:${r.f.field}:${r.f.finding}`)).toEqual(['ADM-4:name:different', 'ADM-4:gender:different', 'ADM-3:dob:swapped', 'ADM-2:name:format']);
+    expect(studentsWithMismatch(checked).map((c) => c.student.admission_no)).toEqual(['ADM-4', 'ADM-3', 'ADM-2']);
   });
   it('builds a report and a mismatches CSV', () => {
     const r = dataCheckReport(checked);
@@ -152,21 +152,21 @@ describe('student data check: results and letters', () => {
     expect(table.kind === 'table' && table.rows).toHaveLength(4);
     const csv = mismatchesCsv(checked);
     expect(csv.split('\r\n')).toHaveLength(5);
-    expect(csv).toContain('A3,5B,Riya Sen,Date of birth,05-04-2015,04-05-2015,Day and month swapped,Meena Sen,');
+    expect(csv).toContain('ADM-3,5B,Riya Sen,Date of birth,05-04-2015,04-05-2015,Day and month swapped,Meena Sen,');
   });
   it('writes one letter per student with a difference, with only the differing details', () => {
     const letters = lettersFor(checked);
-    expect(letters.map((l) => l.admissionNo)).toEqual(['A4', 'A3', 'A2']);
+    expect(letters.map((l) => l.admissionNo)).toEqual(['ADM-4', 'ADM-3', 'ADM-2']);
     const a3 = correctionLetter(checked[2]);
     expect(a3.salutation).toBe('Dear Meena Sen,');
     expect(a3.fields).toEqual([{ label: 'Date of birth', school: '05-04-2015', aadhaar: '04-05-2015', finding: 'Day and month swapped' }]);
     expect(a3.choices).toEqual(['School record is correct', 'Aadhaar is correct', 'Neither — the correct details are:']);
     expect(correctionLetter(checked[3]).salutation).toBe('Dear parent or guardian,');
-    expect(lettersFor(checked, '5A').map((l) => l.admissionNo)).toEqual(['A2']);
+    expect(lettersFor(checked, '5A').map((l) => l.admissionNo)).toEqual(['ADM-2']);
     expect(mismatchClasses(checked)).toEqual(['4A', '5A', '5B']);
   });
   it('says so when everything matches', () => {
-    const r = dataCheckReport(checkStudents(parseStudentList(`${HEAD}\nA1,5A,Aarav,05-04-2015,M,Aarav,05-04-2015,M\n`).students));
+    const r = dataCheckReport(checkStudents(parseStudentList(`${HEAD}\nADM-1,5A,Aarav,05-04-2015,M,Aarav,05-04-2015,M\n`).students));
     expect(r.sections[1]).toMatchObject({ kind: 'notes', tone: 'good' });
   });
   it('checks the example list, which shows every kind of finding', () => {
