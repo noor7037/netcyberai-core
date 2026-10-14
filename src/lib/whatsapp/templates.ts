@@ -293,6 +293,21 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
       hi: '{{school}}: अब आपको स्कूल से WhatsApp संदेश नहीं मिलेंगे। इन्हें फिर शुरू करने के लिए कृपया स्कूल दफ़्तर को बताएँ।',
     },
   },
+  {
+    // The student data check (C222): the details where the school record and Aadhaar as printed differ, drafted by
+    // the office and sent by a person. The parent's reply in this conversation is kept with the request. The
+    // details are a name, a date of birth or a gender only: never an Aadhaar number (the app and the database refuse one).
+    name: 'data_check_request',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 2880,
+    variables: ['school', 'child', 'details'],
+    body: {
+      en: '{{school}}: For UDISE+ and APAAR, {{child}}’s details in the school record must match Aadhaar. These differ: {{details}}. Please reply here with the correct details, or tell the school office. Please do not send the Aadhaar number.',
+      hi: '{{school}}: UDISE+ और APAAR के लिए {{child}} का स्कूल रिकॉर्ड आधार से मेल खाना चाहिए। ये अलग हैं: {{details}}। कृपया यहीं सही जानकारी लिखकर भेजें, या स्कूल दफ़्तर को बताएँ। कृपया आधार नंबर न भेजें।',
+    },
+  },
 ];
 
 const VARIABLE = /\{\{([a-z0-9_]+)\}\}/g;

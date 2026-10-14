@@ -80,6 +80,7 @@ describe('the guides', () => {
       'admissions-enquiries',
       // p7-10a end
       // p7-10b begin
+      'student-data-check',
       // p7-10b end
       // p7-10c begin
       // p7-10c end

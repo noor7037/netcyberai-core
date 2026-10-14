@@ -66,6 +66,7 @@ export const TODAY_CARD_TYPES = [
   'admissions-follow-up',
   // p7-10a end
   // p7-10b begin
+  'data-check-answers',
   // p7-10b end
   // p7-10c begin
   // p7-10c end

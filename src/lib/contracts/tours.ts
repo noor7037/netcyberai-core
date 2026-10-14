@@ -103,6 +103,7 @@ export const TOURS = {
   admissions: { steps: [{ slot: 'primary' }, { slot: 'body' }, { slot: 'body' }] },
   // p7-10a end
   // p7-10b begin
+  'data-check': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // p7-10b end
   // p7-10c begin
   // p7-10c end

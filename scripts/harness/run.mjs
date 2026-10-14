@@ -4086,6 +4086,129 @@ const admissionsPipelineDone = async () => {
 };
 // p7-10a end
 // p7-10b begin
+// The student data check (C222). The principal types what Aadhaar prints for a child of 5-A (an Aadhaar number is
+// refused on the screen first, and nothing is saved), asks a parent about another child's differences (the draft is
+// read, then sent through the send-gate), the parent's reply arrives in the conversation and is kept with the
+// request, and the principal corrects the record. The class teacher of 5-A sees her own class only, and no button.
+// Everything is put back: the rows, the child's gender, the school's sending settings and the consent added.
+const DC_AARAV = '00000000-0000-4000-8000-000000500001';
+const DC_MEERA = '00000000-0000-4000-8000-000000500004';
+const DC_VIHAAN = '00000000-0000-4000-8000-000000500007';
+const DC_DIYA_5B = '00000000-0000-4000-8000-000000500002';
+const DC_RAJESH = '00000000-0000-4000-8000-0000000e0001';
+let dcSchoolBefore = null;
+let dcThreadExisted = false;
+let dcSeen = null;
+const clearDataCheck = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from data_check_requests where school_id = '${SCHOOL}'; delete from student_id_as_printed where school_id = '${SCHOOL}';
+    delete from communication_log where template_name = 'data_check_request'; delete from jobs where type = 'whatsapp.send';
+    delete from inbound_messages where provider_message_id like 'harness-10b-%';
+    delete from consent_ledger where school_id = '${SCHOOL}' and student_id = '${DC_MEERA}' and notice_version = 'harness-10b';
+    delete from whatsapp_templates where meta_template_id = 'harness-10b';
+    update students set gender = 'not_given' where school_id = '${SCHOOL}';
+    set session_replication_role = origin;`);
+  if (!dcThreadExisted) await db.pg.query(`delete from message_threads where school_id = $1 and phone = '+919800000001'`, [SCHOOL]);
+  if (dcSchoolBefore) await db.pg.query(`update schools set pilot_allow_outbound = $2, monthly_budget_paise = $3, quiet_hours_start = $4, quiet_hours_end = $5 where school_id = $1`, [SCHOOL, dcSchoolBefore.pilot_allow_outbound, dcSchoolBefore.monthly_budget_paise, dcSchoolBefore.quiet_hours_start, dcSchoolBefore.quiet_hours_end]);
+};
+// Two children of the school with what Aadhaar prints already typed: Meera (5-A: day and month swapped, no gender on
+// the school record) and Vihaan (5-A) or Diya (5-B).
+const typeTwo = async (second) => {
+  await db.pg.query(
+    `insert into student_id_as_printed (school_id, student_id, printed_name, printed_dob, printed_gender, typed_by)
+     select s.school_id, s.student_id, case when s.student_id = $2 then s.name else 'Vihan Example' end,
+            case when s.student_id = $2 then to_date(to_char(s.dob, 'YYYY-DD-MM'), 'YYYY-MM-DD') else s.dob end, 'female', $4
+       from students s where s.school_id = $1 and s.student_id = any(array[$2, $3]::uuid[])`,
+    [SCHOOL, DC_MEERA, second, PEOPLE.principal.sub]
+  );
+};
+const dataCheckScreen = async (page) => {
+  if (!dcSchoolBefore) dcSchoolBefore = (await db.pg.query(`select pilot_allow_outbound, monthly_budget_paise, quiet_hours_start::text, quiet_hours_end::text from schools where school_id = $1`, [SCHOOL])).rows[0];
+  dcThreadExisted = (await db.pg.query(`select 1 from message_threads where school_id = $1 and phone = '+919800000001'`, [SCHOOL])).rows.length > 0;
+  await clearDataCheck();
+  await db.pg.query(`update schools set pilot_allow_outbound = true, monthly_budget_paise = 500000, quiet_hours_start = '00:00', quiet_hours_end = '00:00' where school_id = $1`, [SCHOOL]);
+  await db.pg.query(`insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version) select $1, $2, 'operational_communication', true, (enum_range(null::consent_method))[1], 'harness-10b'`, [SCHOOL, DC_MEERA]);
+  await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_template_id) values (null, 'data_check_request', 1, 'en', $1, '{school,child,details}', 'utility', 2880, 'approved', 'harness-10b')`, ['{{school}}: For UDISE+ and APAAR, {{child}}’s details in the school record must match Aadhaar. These differ: {{details}}. Please reply here with the correct details, or tell the school office. Please do not send the Aadhaar number.']);
+  await typeTwo(DC_VIHAAN);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-data-check]').waitFor({ timeout: 20000 });
+  // Typing what Aadhaar prints for Aarav, a child of 5-A not typed yet. An Aadhaar number is refused on the screen.
+  await page.selectOption('#dc-class', { label: '5-A' });
+  await page.selectOption('#dc-show', 'untyped');
+  const aarav = page.locator(`[data-dc-child="${DC_AARAV}"]`);
+  await aarav.locator('[data-dc-type]').click();
+  await page.locator(`#dc-name-${DC_AARAV}`).fill('1234 5678 9012');
+  const refused = (await aarav.locator('[data-dc-save]').isDisabled()) && (await aarav.getByText('That looks like an Aadhaar number').count()) > 0;
+  await page.locator(`#dc-name-${DC_AARAV}`).fill('Aarav Example');
+  await page.locator(`#dc-dob-${DC_AARAV}`).fill('2015-04-18');
+  await page.selectOption(`#dc-gender-${DC_AARAV}`, 'male');
+  await aarav.locator('[data-dc-save]').click();
+  await aarav.waitFor({ state: 'detached', timeout: 20000 });
+  // Asking Meera's parent: the draft is read, then sent.
+  await page.selectOption('#dc-show', 'attention');
+  const meera = page.locator(`[data-dc-child="${DC_MEERA}"]`);
+  await meera.locator('[data-dc-ask]').click();
+  await meera.locator('[data-dc-draft-button]').click();
+  const words = (await meera.locator('[data-dc-words]').textContent({ timeout: 20000 })) ?? '';
+  await meera.locator('[data-dc-send]').click();
+  await meera.locator('[data-dc-request]').nth(1).waitFor({ timeout: 20000 });
+  // The parent answers in the conversation (the stand-in provider delivered the message; no phone is reached).
+  await db.pg.query(`update communication_log set status = 'sent' where template_name = 'data_check_request' and status = 'queued'`);
+  const thread = (await db.pg.query(
+    `insert into message_threads (school_id, phone, parent_id, last_inbound_at, unread) values ($1, '+919800000001', $2, now(), 1)
+     on conflict (school_id, phone) do update set last_inbound_at = now() returning thread_id`,
+    [SCHOOL, DC_RAJESH]
+  )).rows[0].thread_id;
+  await db.pg.query(`insert into inbound_messages (school_id, thread_id, provider, provider_message_id, body, is_stop, received_at) values ($1, $2, 'stand-in', 'harness-10b-' || $3, 'Aadhaar is right: born 6 August 2015. She is a girl.', false, now())`, [SCHOOL, thread, String(Date.now())]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await meera.locator('[data-dc-reply]').first().waitFor({ timeout: 20000 });
+  // The principal corrects the gender from the answer.
+  const gender = meera.locator('[data-dc-request-field="gender"]');
+  await gender.locator('select').selectOption('female');
+  await gender.locator('[data-dc-correct]').click();
+  await meera.locator('[data-dc-request="corrected"]').waitFor({ timeout: 20000 });
+  dcSeen = {
+    refused,
+    words: words.startsWith('Illustrative Public School: For UDISE+ and APAAR, Meera Example A’s details') && words.includes('Date of birth: school record 08-06-2015, Aadhaar 06-08-2015'),
+    replies: await meera.locator('[data-dc-reply]').count(),
+    states: (await meera.locator('[data-dc-request]').evaluateAll((els) => els.map((e) => `${e.getAttribute('data-dc-request-field')}:${e.getAttribute('data-dc-request')}`).sort().join())),
+  };
+};
+const dataCheckScreenDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from student_id_as_printed where student_id = $1 and printed_name = 'Aarav Example' and printed_gender = 'male' and typed_by = $3) as aarav,
+            (select count(*)::int from student_id_as_printed where printed_name ~ '[0-9]') as digits,
+            (select count(*)::int from data_check_requests r join communication_log l on l.log_id = r.message_log_id and l.template_name = 'data_check_request' and l.student_id = r.student_id
+              where r.student_id = $2 and r.reply_message_id is not null) as answered,
+            (select count(*)::int from data_check_requests where student_id = $2 and field = 'gender' and outcome = 'corrected' and corrected_to = 'female' and decided_by = $3) as corrected,
+            (select gender from students where student_id = $2) as gender,
+            (select count(*)::int from audit_log where event_action = 'student.data_check_corrected' and target_id = $2::text and actor_user_id = $3) as audited`,
+    [DC_AARAV, DC_MEERA, PEOPLE.principal.sub]
+  );
+  await clearDataCheck();
+  const r = rows[0];
+  if (r.aarav !== 1 || r.digits !== 0 || r.answered !== 2 || r.corrected !== 1 || r.gender !== 'female' || r.audited < 1) throw new Error(`the data check in the database: ${JSON.stringify(r)}`);
+  if (JSON.stringify(dcSeen) !== JSON.stringify({ refused: true, words: true, replies: 2, states: 'dob:answered,gender:corrected' })) throw new Error(`the data check on the screen: ${JSON.stringify(dcSeen)}`);
+};
+let dcTeacherSeen = null;
+const dataCheckTeacher = async (page) => {
+  dcThreadExisted = true;
+  await clearDataCheck();
+  await typeTwo(DC_DIYA_5B);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-data-check]').waitFor({ timeout: 20000 });
+  await page.locator('[data-dc-child]').first().waitFor({ timeout: 20000 });
+  dcTeacherSeen = {
+    children: await page.locator('[data-dc-child]').evaluateAll((els) => els.map((e) => e.getAttribute('data-dc-child')).join()),
+    classes: await page.locator('#dc-class option').evaluateAll((els) => els.map((e) => e.textContent).join()),
+    buttons: await page.locator('[data-dc-type], [data-dc-ask], [data-dc-correct], [data-dc-close], [data-dc-attach]').count(),
+    note: await page.locator('[data-dc-teacher]').count(),
+  };
+};
+const dataCheckTeacherDone = async () => {
+  await clearDataCheck();
+  if (JSON.stringify(dcTeacherSeen) !== JSON.stringify({ children: DC_MEERA, classes: 'All classes,5-A', buttons: 0, note: 1 })) throw new Error(`the class teacher's data check: ${JSON.stringify(dcTeacherSeen)}`);
+};
 // p7-10b end
 // p7-10c begin
 // p7-10c end
@@ -4681,6 +4804,8 @@ const SCREENS = [
   ['principal', 'app-admissions-pipeline', '/app/admissions', admissionsPipeline, admissionsPipelineDone],
   // p7-10a end
   // p7-10b begin
+  ['principal', 'app-data-check', '/app/students/data-check', dataCheckScreen, dataCheckScreenDone],
+  ['teacher', 'app-data-check-teacher', '/app/students/data-check', dataCheckTeacher, dataCheckTeacherDone],
   // p7-10b end
   // p7-10c begin
   // p7-10c end

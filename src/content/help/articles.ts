@@ -1343,6 +1343,32 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p7-10a end
   // p7-10b begin
+  {
+    slug: 'student-data-check',
+    category: 'students',
+    audience: 'office',
+    title: { en: 'Check children’s details against Aadhaar for UDISE+ and APAAR', hi: 'UDISE+ और APAAR के लिए बच्चों का विवरण आधार से मिलाएँ' },
+    summary: {
+      en: 'Type each child’s name, date of birth and gender as printed on Aadhaar. The differences are listed, most serious first. Ask the parent on WhatsApp, then correct the record or close the request.',
+      hi: 'हर बच्चे का नाम, जन्म तिथि और लिंग वैसा भरें जैसा आधार पर छपा है। अंतर सबसे गंभीर से शुरू करके दिखते हैं। अभिभावक से WhatsApp पर पूछें, फिर रिकॉर्ड ठीक करें या अनुरोध बंद करें।',
+    },
+    steps: [
+      { en: 'Open “Student data check”. Choose a class, and under “Show” choose “Not typed yet”.', hi: '“Student data check” खोलें। कक्षा चुनें, और “Show” में “Not typed yet” चुनें।' },
+      { en: 'Press “Type as printed”. Type the name, date of birth and gender exactly as printed on the child’s Aadhaar, then press “Save what Aadhaar prints”. Never type the Aadhaar number: it is refused.', hi: '“Type as printed” दबाएँ। बच्चे के आधार पर जैसा छपा है ठीक वैसा नाम, जन्म तिथि और लिंग भरें, फिर “Save what Aadhaar prints” दबाएँ। आधार नंबर कभी न भरें: उसे मना किया जाता है।' },
+      { en: 'Choose “Needing a look”. A “Real difference” comes first and needs the family; spacing, order or a “Likely spelling slip” needs a careful look.', hi: '“Needing a look” चुनें। “Real difference” सबसे पहले आता है और उसके लिए परिवार चाहिए; जगह, क्रम या “Likely spelling slip” को ध्यान से देखें।' },
+      { en: 'To ask the family, press “Ask the parent”, choose the guardian and the details, press “See the message” and read it, then press “Send on WhatsApp”.', hi: 'परिवार से पूछने के लिए “Ask the parent” दबाएँ, अभिभावक और बातें चुनें, “See the message” दबाकर संदेश पढ़ें, फिर “Send on WhatsApp” दबाएँ।' },
+      { en: 'The parent’s reply on WhatsApp is kept with the request by itself. If they answer in person or by phone, write it and press “Attach the answer”.', hi: 'WhatsApp पर अभिभावक का जवाब अपने आप अनुरोध के साथ रखा जाता है। अगर वे सामने या फ़ोन पर बताएँ, तो लिखकर “Attach the answer” दबाएँ।' },
+      { en: 'Then put the right value and press “Correct the record”, or write why and press “Close the request”.', hi: 'फिर सही विवरण भरकर “Correct the record” दबाएँ, या कारण लिखकर “Close the request” दबाएँ।' },
+    ],
+    tips: [
+      { en: 'The message goes through the school’s send-gate: only with the parent’s consent, outside quiet hours and within the month’s budget.', hi: 'संदेश स्कूल के भेजने वाले द्वार से जाता है: सिर्फ़ अभिभावक की सहमति से, शांत घंटों के बाहर और महीने के बजट के भीतर।' },
+      { en: 'Each correction is kept in the audit trail with the value before and after.', hi: 'हर सुधार पहले और बाद के विवरण के साथ ऑडिट रिकॉर्ड में रखा जाता है।' },
+      { en: 'The class teacher sees their own class’s children and requests and changes nothing. The accountant does not see them.', hi: 'कक्षा शिक्षक अपनी कक्षा के बच्चे और अनुरोध देखते हैं और कुछ नहीं बदलते। अकाउंटेंट इन्हें नहीं देखते।' },
+    ],
+    start: { href: '/app/students/data-check', label: { en: 'Student data check', hi: 'विद्यार्थी विवरण जाँच (Student data check)' } },
+    related: ['student-page', 'answer-a-parent'],
+    keywords: ['aadhaar', 'apaar', 'udise', 'data check', 'mismatch', 'date of birth', 'gender', 'correction', 'aadhar', 'आधार', 'अपार', 'मिलान', 'जन्म तिथि', 'लिंग'],
+  },
   // p7-10b end
   // p7-10c begin
   // p7-10c end
