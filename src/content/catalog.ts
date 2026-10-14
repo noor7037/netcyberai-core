@@ -155,7 +155,7 @@ export const products: CatalogPage[] = [
     related: ['academics', 'reports-analytics', 'parent-engagement'],
     faqs: [
       { question: 'Does the AI change marks or records?', answer: 'No. It reads validated records and proposes. People with the right permissions decide, and every decision is audited.' },
-      { question: 'Is there a class ranking?', answer: 'Personal Best is the primary recognition. Most Improved is secondary. Class top-3 lists are optional and off by default.' },
+      { question: 'Is there a class ranking?', answer: 'No. Personal Best is the main recognition and Most Improved the second. Class results are listed in roll order and never ranked.' },
       { question: 'Who sees a teacher’s Impact Card?', answer: 'Only the teacher and their principal. It is never public and never a leaderboard.' },
       { question: 'What data does it use?', answer: 'Only data entered and validated in the NetCyberAI portal for that school, isolated from every other school.' },
     ],
@@ -346,7 +346,7 @@ export const products: CatalogPage[] = [
     outcomes: ['Consistent marks across the school', 'Homework visible at home', 'Results ready without copying'],
     related: ['ai-insights', 'parent-engagement', 'reports-analytics'],
     faqs: [
-      { question: 'Can we keep our own grading scheme?', answer: 'Exams are set up with the school’s own maximum marks and subjects; results follow that structure.' },
+      { question: 'Can we keep our own grading scheme?', answer: 'Yes. The school builds its scheme of grades, pass marks and components, or starts from the CBSE or CISCE preset, which is copied from the board’s own document. Results follow that scheme.' },
       { question: 'Is homework shared automatically?', answer: 'Homework recorded for the day is included in that day’s Pulse, which the teacher approves before it is sent.' },
       { question: 'Can teachers see each other’s marks?', answer: 'Access follows each person’s role and classes, set by the school.' },
       { question: 'Do you support multiple academic sessions?', answer: 'Yes. Classes and exams are scoped to an academic session, so each year stays separate.' },
