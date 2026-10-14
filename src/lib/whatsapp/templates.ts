@@ -244,6 +244,19 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
     },
   },
   {
+    // Overdue, and about the principal: it passes to the school admin, so the words do not name the principal (C200).
+    name: 'complaint_escalated_office',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 1440,
+    variables: ['school', 'ref'],
+    body: {
+      en: '{{school}}: Your concern (reference {{ref}}) has not been settled in time, so it has been passed to the school office, who will look into it.',
+      hi: '{{school}}: आपकी बात (संदर्भ {{ref}}) समय पर नहीं सुलझी, इसलिए इसे स्कूल कार्यालय को सौंप दिया गया है, जो इसे देखेगा।',
+    },
+  },
+  {
     name: 'complaint_closed',
     version: 1,
     category: 'utility',

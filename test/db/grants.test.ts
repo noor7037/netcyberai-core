@@ -134,6 +134,27 @@ const APP_USER: Record<string, string> = {
   users: 'DELETE,INSERT,SELECT,UPDATE',
   webhook_events: 'INSERT,SELECT',
   whatsapp_templates: 'DELETE,INSERT,SELECT,UPDATE',
+  // --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
+  // p5-8a begin
+  // p5-8a end
+  // p5-8b begin
+  // p5-8b end
+  // p5-8c begin
+  // p5-8c end
+  // p5-8d begin
+  // p5-8d end
+  // p5-8e begin
+  // p5-8e end
+  // p5-8f begin
+  // p5-8f end
+  // p5-8g begin
+  // p5-8g end
+  // p5-8h begin
+  // p5-8h end
+  // p5-8i begin
+  // p5-8i end
+  // p5-8j begin
+  // p5-8j end
 };
 
 // The platform role (nca_super) holds what the app's role holds, except here.
@@ -175,6 +196,27 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   school_applications: 'DELETE,INSERT,SELECT,UPDATE',
   school_entitlements: 'INSERT,SELECT,UPDATE',
   school_module_entitlements: 'INSERT,SELECT,UPDATE',
+  // --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
+  // p5-8a begin
+  // p5-8a end
+  // p5-8b begin
+  // p5-8b end
+  // p5-8c begin
+  // p5-8c end
+  // p5-8d begin
+  // p5-8d end
+  // p5-8e begin
+  // p5-8e end
+  // p5-8f begin
+  // p5-8f end
+  // p5-8g begin
+  // p5-8g end
+  // p5-8h begin
+  // p5-8h end
+  // p5-8i begin
+  // p5-8i end
+  // p5-8j begin
+  // p5-8j end
 };
 // Every other role that holds anything on a table.
 const OTHER_ROLES: Record<string, Record<string, string>> = {

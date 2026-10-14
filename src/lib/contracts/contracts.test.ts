@@ -101,8 +101,8 @@ describe('navigation and entitlements', () => {
   });
 
   it('every item carries its status and phase, so an unbuilt module links to a "coming" page', () => {
-    const nav = buildNavigation('principal', on('proxy'));
-    expect(nav.groups[0].items[0]).toMatchObject({ moduleId: 'proxy', href: '/app/proxy', status: 'planned', phase: 'P5' });
+    const nav = buildNavigation('principal', on('admissions'));
+    expect(nav.groups[0].items[0]).toMatchObject({ moduleId: 'admissions', href: '/app/admissions', status: 'planned', phase: 'P7' });
   });
 
   it('the phone bottom bar takes the prioritised modules the role has, in order (C121)', () => {

@@ -47,7 +47,8 @@ export function timesMeant(text: string): string[] {
   return h >= 1 && h <= 11 ? [`${String(h).padStart(2, '0')}:${min}`, `${String(h + 12).padStart(2, '0')}:${min}`] : [`${String(h).padStart(2, '0')}:${min}`];
 }
 
-export type PtmInput = { title: string; heldOn: string; startsAt: string; endsAt: string; slotMinutes: number; classIds: string[] };
+// withSubjectTeachers (C200): also give a row of times to every teacher who teaches one of the classes in the timetable.
+export type PtmInput = { title: string; heldOn: string; startsAt: string; endsAt: string; slotMinutes: number; classIds: string[]; withSubjectTeachers?: boolean };
 export type CreateResult = { ok: true; ptmId: string; teachers: number; slots: number } | { ok: false; reason: 'not_allowed' | 'title' | 'date' | 'times' | 'classes' | 'no_teacher' | 'too_many_slots'; classes?: string[] };
 
 export async function createPtm(db: PoolClient, actor: Actor, input: PtmInput, today: string = indiaDate()): Promise<CreateResult> {
@@ -64,8 +65,12 @@ export async function createPtm(db: PoolClient, actor: Actor, input: PtmInput, t
   if (!ids.length || classes.length !== ids.length) return { ok: false, reason: 'classes' };
   const without = classes.filter((c) => !c.class_teacher_id).map((c) => c.name);
   if (without.length) return { ok: false, reason: 'no_teacher', classes: without };
-  const ptmId = (await db.query(`insert into ptm_events (school_id, title, held_on, starts_at, ends_at, slot_minutes, class_ids, created_by) values ($1, $2, $3, $4, $5, $6, $7::uuid[], $8) returning ptm_id`, [actor.schoolId, title, input.heldOn, input.startsAt, input.endsAt, input.slotMinutes, ids, actor.userId])).rows[0].ptm_id as string;
-  const teachers = [...new Set(classes.map((c) => c.class_teacher_id as string))];
+  const ptmId = (await db.query(`insert into ptm_events (school_id, title, held_on, starts_at, ends_at, slot_minutes, class_ids, created_by, with_subject_teachers) values ($1, $2, $3, $4, $5, $6, $7::uuid[], $8, $9) returning ptm_id`, [actor.schoolId, title, input.heldOn, input.startsAt, input.endsAt, input.slotMinutes, ids, actor.userId, input.withSubjectTeachers === true])).rows[0].ptm_id as string;
+  // A teacher is a user, as in the timetable: the one place the app itself records who teaches a class.
+  const subjectTeachers = input.withSubjectTeachers === true
+    ? (await db.query(`select distinct t.teacher_user_id from timetable_entries t join users u on u.school_id = t.school_id and u.user_id = t.teacher_user_id and u.is_active where t.school_id = $1 and t.class_id = any($2::uuid[])`, [actor.schoolId, ids])).rows.map((r) => r.teacher_user_id as string)
+    : [];
+  const teachers = [...new Set([...classes.map((c) => c.class_teacher_id as string), ...subjectTeachers])];
   await db.query(`insert into ptm_slots (school_id, ptm_id, teacher_id, starts_at) select $1, $2, t, s::time from unnest($3::uuid[]) t cross join unnest($4::text[]) s`, [actor.schoolId, ptmId, teachers, starts]);
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'ptm.created', targetType: 'ptm_events', targetId: ptmId, beforeState: undefined, afterState: { heldOn: input.heldOn, classes: ids.length, teachers: teachers.length, slots: starts.length } });
   return { ok: true, ptmId, teachers: teachers.length, slots: teachers.length * starts.length };
@@ -74,20 +79,27 @@ export async function createPtm(db: PoolClient, actor: Actor, input: PtmInput, t
 // For each teacher of the meeting, the guardians of that teacher's children in it, one row a guardian's NUMBER:
 // a parent of two children in the class is one row with both names.
 type Invitee = { teacher_id: string; teacher: string; parent_id: string; guardian: string; phone: string | null; student_id: string; children: string };
-async function invitees(db: Sql, schoolId: string, ptmId: string): Promise<Invitee[]> {
+// `withSubject`: false for the invitation (ONE message a guardian and CLASS teacher, C193); true for who may be booked
+// with whom, where a meeting that includes subject teachers adds the teachers of the class's timetable (C200).
+async function invitees(db: Sql, schoolId: string, ptmId: string, withSubject = false): Promise<Invitee[]> {
   return (await db.query(
-    `select c.class_teacher_id as teacher_id, u.display_name as teacher, (array_agg(p.parent_id order by p.created_at, p.parent_id))[1] as parent_id, (array_agg(p.name order by p.created_at, p.parent_id))[1] as guardian,
+    `with pairs as (
+       select c.class_teacher_id as teacher_id, c.class_id from ptm_events e join classes c on c.school_id = e.school_id and c.class_id = any(e.class_ids) and c.class_teacher_id is not null
+        where e.school_id = $1 and e.ptm_id = $2
+       union
+       select t.teacher_user_id, t.class_id from ptm_events e join timetable_entries t on t.school_id = e.school_id and t.class_id = any(e.class_ids)
+        where e.school_id = $1 and e.ptm_id = $2 and e.with_subject_teachers and $3::boolean
+     )
+     select x.teacher_id, u.display_name as teacher, (array_agg(p.parent_id order by p.created_at, p.parent_id))[1] as parent_id, (array_agg(p.name order by p.created_at, p.parent_id))[1] as guardian,
             (array_agg(p.phone order by p.created_at, p.parent_id))[1] as phone, (array_agg(s.student_id order by s.name, s.student_id))[1] as student_id,
             (select string_agg(n, ', ' order by n) from (select distinct unnest(array_agg(s.name)) n) d) as children
-       from ptm_events e join classes c on c.school_id = e.school_id and c.class_id = any(e.class_ids) and c.class_teacher_id is not null
-       join users u on u.user_id = c.class_teacher_id
-       join students s on s.school_id = c.school_id and s.class_id = c.class_id and s.status = 'active'
+       from pairs x join users u on u.user_id = x.teacher_id
+       join students s on s.school_id = $1 and s.class_id = x.class_id and s.status = 'active'
        join parent_student_map m on m.school_id = s.school_id and m.student_id = s.student_id
        join parents p on p.school_id = m.school_id and p.parent_id = m.parent_id and p.merged_into is null
-      where e.school_id = $1 and e.ptm_id = $2
-      group by c.class_teacher_id, u.display_name, regexp_replace(p.phone, '[^0-9]', '', 'g')
-      order by u.display_name, c.class_teacher_id, guardian`,
-    [schoolId, ptmId]
+      group by x.teacher_id, u.display_name, regexp_replace(p.phone, '[^0-9]', '', 'g')
+      order by u.display_name, x.teacher_id, guardian`,
+    [schoolId, ptmId, withSubject]
   )).rows;
 }
 
@@ -143,7 +155,9 @@ async function bookedParents(db: Sql, schoolId: string, ptmId: string, onlyUnrem
   const rows = (await db.query(
     `select b.booking_id, b.parent_id, p.phone, u.display_name as teacher, sl.starts_at,
             (select s.student_id from parent_student_map m join students s on s.school_id = m.school_id and s.student_id = m.student_id join classes c on c.school_id = s.school_id and c.class_id = s.class_id
-              where m.school_id = b.school_id and m.parent_id = b.parent_id and c.class_teacher_id = b.teacher_id and c.class_id = any(e.class_ids) order by s.name, s.student_id limit 1) as student_id
+              where m.school_id = b.school_id and m.parent_id = b.parent_id and c.class_id = any(e.class_ids)
+                and (c.class_teacher_id = b.teacher_id or exists (select 1 from timetable_entries t where t.school_id = c.school_id and t.class_id = c.class_id and t.teacher_user_id = b.teacher_id))
+              order by s.name, s.student_id limit 1) as student_id
        from ptm_bookings b join ptm_events e on e.ptm_id = b.ptm_id join ptm_slots sl on sl.slot_id = b.slot_id join parents p on p.parent_id = b.parent_id join users u on u.user_id = b.teacher_id
       where b.school_id = $1 and b.ptm_id = $2 and ($3 = false or b.reminded_at is null) order by sl.starts_at, b.booking_id`,
     [schoolId, ptmId, onlyUnreminded]
@@ -186,7 +200,7 @@ export async function ptmDetail(db: PoolClient, actor: Actor, ptmId: string, tod
       where s.school_id = $1 and s.ptm_id = $2 order by u.display_name, s.teacher_id, s.starts_at`,
     [actor.schoolId, ptmId]
   )).rows;
-  const people = await invitees(db, actor.schoolId, ptmId);
+  const people = await invitees(db, actor.schoolId, ptmId, true);
   const teachers: PtmDetail['teachers'] = [];
   for (const s of slots) {
     let t = teachers.find((x) => x.teacher_id === s.teacher_id);
@@ -204,7 +218,7 @@ export async function bookSlot(db: PoolClient, actor: Actor, input: { slotId: st
   const slot = (await db.query(`select s.ptm_id, s.teacher_id, e.status from ptm_slots s join ptm_events e on e.ptm_id = s.ptm_id where s.school_id = $1 and s.slot_id = $2`, [actor.schoolId, input.slotId])).rows[0];
   if (!slot) return { ok: false, reason: 'not_found' };
   if (slot.status === 'cancelled') return { ok: false, reason: 'not_open' };
-  if (!(await invitees(db, actor.schoolId, slot.ptm_id)).some((g) => g.teacher_id === slot.teacher_id && g.parent_id === input.parentId)) return { ok: false, reason: 'not_invited' };
+  if (!(await invitees(db, actor.schoolId, slot.ptm_id, true)).some((g) => g.teacher_id === slot.teacher_id && g.parent_id === input.parentId)) return { ok: false, reason: 'not_invited' };
   const made = await takeSlot(db, { schoolId: actor.schoolId, ptmId: slot.ptm_id, slotId: input.slotId, teacherId: slot.teacher_id, parentId: input.parentId, via: 'staff', by: actor.userId });
   if (!made) return { ok: false, reason: 'taken' };
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: made.moved ? 'ptm.booking_moved' : 'ptm.booked', targetType: 'ptm_bookings', targetId: made.bookingId, beforeState: undefined, afterState: { slotId: input.slotId, via: 'staff' } });

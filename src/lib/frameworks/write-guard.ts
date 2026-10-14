@@ -40,6 +40,27 @@ export type WriteModule = ModuleId | 'checks-itself' | 'any-module';
 // card changes nothing a person can see (it writes a scan log). A paused
 // school stays blocked.
 export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-only'?])[] = [
+  // --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
+  // p5-8a begin
+  // p5-8a end
+  // p5-8b begin
+  // p5-8b end
+  // p5-8c begin
+  // p5-8c end
+  // p5-8d begin
+  // p5-8d end
+  // p5-8e begin
+  // p5-8e end
+  // p5-8f begin
+  // p5-8f end
+  // p5-8g begin
+  // p5-8g end
+  // p5-8h begin
+  // p5-8h end
+  // p5-8i begin
+  // p5-8i end
+  // p5-8j begin
+  // p5-8j end
   // What is recorded about a guardian sits with Parents (17 §3: guardians,
   // verification, consent, data requests), wherever its button is drawn.
   ['students/*/consent', 'parents'],
@@ -106,6 +127,27 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
 
 // Path under /api/app → the module a READ belongs to. Same patterns.
 export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
+  // --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
+  // p5-8a begin
+  // p5-8a end
+  // p5-8b begin
+  // p5-8b end
+  // p5-8c begin
+  // p5-8c end
+  // p5-8d begin
+  // p5-8d end
+  // p5-8e begin
+  // p5-8e end
+  // p5-8f begin
+  // p5-8f end
+  // p5-8g begin
+  // p5-8g end
+  // p5-8h begin
+  // p5-8h end
+  // p5-8i begin
+  // p5-8i end
+  // p5-8j begin
+  // p5-8j end
   ['students/*/consent', 'parents'],
   ['students/*/guardians', 'parents'],
   ['students/*/dsr', 'parents'],

@@ -242,4 +242,41 @@ describe('on the real schema', () => {
     await run({ jobId: 'j', type: 'ptm.remind', payload: { ptmId: PTM }, attempts: 1, maxAttempts: 3, schoolId: A, idempotencyKey: 'k' });
     expect(await said('ptm_reminder')).toHaveLength(5);
   });
+
+  // C200: the follow-up the supervisor set in C198.
+  it('a meeting can include subject teachers: each teacher of the class’s timetable gets a row of times, and a parent still gets one invitation a class teacher', async () => {
+    // Tina teaches Maths to 5-A in the timetable. She is nobody's class teacher.
+    await db.pg.exec(`
+      insert into subjects (subject_id, school_id, name) values ('${u(61)}', '${A}', 'Maths');
+      insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) values ('${A}', '${CLASS_5A}', 1, 2, '${u(61)}', '${TINA}'), ('${A}', '${CLASS_5A}', 3, 2, '${u(61)}', '${TINA}');
+    `);
+    const input = { title: 'Term 3 meeting', heldOn: day(5), startsAt: '10:00', endsAt: '11:00', slotMinutes: 15, classIds: [CLASS_5A, CLASS_6B] };
+    const plain = await as(principal, (c) => createPtm(c, actor(principal), input));
+    expect(plain).toMatchObject({ ok: true, teachers: 2, slots: 8 }); // as before: class teachers only
+    const made = await as(principal, (c) => createPtm(c, actor(principal), { ...input, title: 'Term 3 meeting, with subject teachers', withSubjectTeachers: true }));
+    expect(made).toMatchObject({ ok: true, teachers: 3, slots: 12 });
+    const id = (made as { ptmId: string }).ptmId;
+    // Tina sees the meeting she has times in, and only her own row; not the meeting she has no part in.
+    const hers = (await as(tina, (c) => ptmDetail(c, actor(tina), id)))!;
+    expect(hers.teachers.map((t) => t.teacher)).toEqual(['Tina Teacher']);
+    expect(hers.teachers[0].slots.map((x) => x.time)).toEqual(['10:00', '10:15', '10:30', '10:45']);
+    expect(await as(tina, (c) => ptmDetail(c, actor(tina), (plain as { ptmId: string }).ptmId))).toBeNull();
+    expect((await as(tina, (c) => listPtms(c, A))).map((p) => p.ptm_id)).toEqual([id]);
+    // The invitation is still one a guardian and CLASS teacher: none from Tina, and no more messages than before.
+    const before = (await said('ptm_invitation')).length;
+    expect(await as(principal, (c) => invitePtm(c, queue, actor(principal), id))).toMatchObject({ ok: true, queued: 5 });
+    const sent = (await said('ptm_invitation')).slice(before);
+    expect(sent).toHaveLength(5);
+    expect(sent.map((r: { p: { teacher: string } }) => r.p.teacher)).not.toContain('Tina Teacher');
+    // A time with a subject teacher is booked by the school: a 5-A parent may be; a parent with no child in 5-A may not.
+    const tinaSlot = (await db.pg.query(`select slot_id from ptm_slots where ptm_id = $1 and teacher_id = $2 and starts_at = '10:00'`, [id, TINA])).rows[0].slot_id as string;
+    expect(await as(principal, (c) => bookSlot(c, actor(principal), { slotId: tinaSlot, parentId: G_FATIMA }))).toEqual({ ok: false, reason: 'not_invited' });
+    expect(await as(principal, (c) => bookSlot(c, actor(principal), { slotId: tinaSlot, parentId: G_ASHA }))).toMatchObject({ ok: true, moved: false });
+    const all = (await as(principal, (c) => ptmDetail(c, actor(principal), id)))!;
+    expect(all.teachers.map((t) => t.teacher)).toEqual(['Tara Teacher', 'Tarun Teacher', 'Tina Teacher']);
+    expect(all.teachers[2].guardians.map((g) => g.guardian).sort()).toEqual(['Anita Sharma', 'Deepa Rao', 'Gopal Verma']);
+    expect(all.teachers[2].slots[0].booking).toMatchObject({ guardian: 'Anita Sharma', children: 'Asha', via: 'staff' });
+    // The slot rules are the same for every teacher: her 10:00 cannot be booked twice.
+    expect(await as(principal, (c) => bookSlot(c, actor(principal), { slotId: tinaSlot, parentId: G_DEV_ESHA }))).toEqual({ ok: false, reason: 'taken' });
+  });
 });
