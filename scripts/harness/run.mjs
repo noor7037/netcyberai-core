@@ -1652,6 +1652,127 @@ const schoolInGraceDone = async () => {
 };
 // p5-8e end
 // p5-8f begin
+// Control → Messaging & Cost by month (C205): the founder sets the school's limit, steps to last month and back by
+// the links, picks last month in the month switch and downloads its list. Messages are put into the seeded school's
+// log with made-up prices: four delivered in last month (one of them at 23:50 India time on its last day), one ten
+// minutes later (this month's, so it must not be counted), one on its way and one held back. The record of limit
+// changes says last month's limit was 7 rupees; the founder sets 9 rupees today, on the screen: the moment the screen
+// says it is set, this month's list above the form must already show it, and last month must still be judged against
+// the 7 rupees in force at its end (6.50 of it is counted, and it held a message back). The check compares the row
+// on the screen, the downloaded file and the sums counted from the log, then puts everything back.
+let costMonthSeen = null;
+let costMonthLimitBefore;
+const lastIndiaMonth = () => {
+  const d = new Date(Date.now() + 5.5 * 3600_000);
+  d.setUTCDate(1);
+  d.setUTCMonth(d.getUTCMonth() - 1);
+  return d.toISOString().slice(0, 7);
+};
+const clearCostMonth = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from communication_log where dedupe_key like 'harness-8f-%';
+    delete from audit_log where event_action = 'whatsapp.budget_set' and school_id = '${SCHOOL}' and after_state ->> 'reason' = 'harness-8f: the limit of last month.';
+    set session_replication_role = origin;`);
+};
+const costMonth = async (page) => {
+  await clearCostMonth();
+  costMonthSeen = null;
+  const month = lastIndiaMonth();
+  if (costMonthLimitBefore === undefined) costMonthLimitBefore = (await db.pg.query(`select monthly_budget_paise from schools where school_id = $1`, [SCHOOL])).rows[0].monthly_budget_paise;
+  // 110 paise and 20 of GST a message: made up. Four delivered in last month: 520 paise spent; with the one on its
+  // way, 650 counted against that month's limit of 700.
+  const thisMonthStarts = `date_trunc('month', (now() at time zone 'Asia/Kolkata'))`;
+  const at = (expr) => `(${expr}) at time zone 'Asia/Kolkata'`;
+  // A limit change of last month, as the app records one. An audit row's time is stamped by the database's own
+  // trigger, so a row of the past can only be put in with the triggers off, as the harness's superuser.
+  await db.pg.exec(`set session_replication_role = replica;
+    insert into audit_log (school_id, actor_user_id, actor_role, event_action, target_type, target_id, before_state, after_state, occurred_at, created_at)
+    values ('${SCHOOL}', '${PEOPLE.founder.sub}', 'super_admin', 'whatsapp.budget_set', 'schools', '${SCHOOL}', '{"budgetPaise": null}', '{"budgetPaise": 700, "reason": "harness-8f: the limit of last month."}', ${at(`${thisMonthStarts} - interval '20 days'`)}, ${at(`${thisMonthStarts} - interval '20 days'`)});
+    set session_replication_role = origin;`);
+  const row = (n, status, billable, when) =>
+    `('${SCHOOL}', '+919000000001', 'whatsapp', 'class_notice', 'utility', ${billable}, 110, 20, 'rate_table', '${status}', 'harness-8f-${n}', 'platform_default', 'operational_communication', 'meta', ${when})`;
+  await db.pg.exec(`
+    insert into communication_log (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, provider_used, purpose, provider, created_at) values
+      ${row(1, 'delivered', true, at(`${thisMonthStarts} - interval '12 days'`))},
+      ${row(2, 'read', true, at(`${thisMonthStarts} - interval '9 days'`))},
+      ${row(3, 'delivered', true, at(`${thisMonthStarts} - interval '3 days'`))},
+      ${row(4, 'delivered', true, at(`${thisMonthStarts} - interval '10 minutes'`))},
+      ${row(5, 'delivered', true, at(`${thisMonthStarts} + interval '10 minutes'`))},
+      ${row(6, 'sent', false, at(`${thisMonthStarts} - interval '2 days'`))};
+    insert into communication_log (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, provider_used, purpose, created_at) values
+      ('${SCHOOL}', '+919000000001', 'whatsapp', 'class_notice', 'utility', false, 0, 0, 'not_billable', 'blocked_budget', 'harness-8f-7', 'platform_default', 'operational_communication', ${at(`${thisMonthStarts} - interval '1 day'`)});`);
+  await page.reload({ waitUntil: 'networkidle' });
+  const form = page.locator('[data-cost-school]').filter({ hasText: 'Illustrative Public School' });
+  await form.locator('input').nth(0).fill('9');
+  await form.locator('input').nth(1).fill('harness-8f: a made-up limit.');
+  await form.locator('[data-cost-budget-save]').click();
+  await page.waitForFunction(() => /limit is set/.test(document.querySelector('[data-cost-note]')?.textContent ?? ''), null, { timeout: 20000 });
+  // Read at once, with no waiting: the list drawn on the server and the line beside the form.
+  const limitAbove = await page.locator(`[data-cost-list-row="${SCHOOL}"] td`).first().textContent();
+  const limitBelow = await form.locator('p').nth(1).textContent();
+  // One step back and one forward by the links, which change the month without loading the page afresh: each time the
+  // month switch must name the month now shown, or "Show month" would jump back to the month it still names.
+  const thisMonth = await page.locator('[data-cost-month]').getAttribute('data-cost-month');
+  await page.locator('[data-cost-month-earlier]').click();
+  await page.locator(`[data-cost-month="${month}"]`).waitFor({ timeout: 20000 });
+  const pickerEarlier = [new URL(page.url()).search, await page.locator('#cost-month').inputValue()];
+  await page.locator('[data-cost-month-later]').click();
+  await page.locator(`[data-cost-month="${thisMonth}"]`).waitFor({ timeout: 20000 });
+  const pickerLater = [new URL(page.url()).search, await page.locator('#cost-month').inputValue()];
+  await page.locator('#cost-month').selectOption(month);
+  await page.locator('[data-cost-month-show]').click();
+  await page.locator(`[data-cost-month="${month}"]`).waitFor({ timeout: 20000 });
+  await page.waitForLoadState('networkidle');
+  const [download] = await Promise.all([page.waitForEvent('download', { timeout: 20000 }), page.locator('[data-cost-export]').click()]);
+  costMonthSeen = {
+    month,
+    limitAbove,
+    limitBelow,
+    thisMonth,
+    pickerEarlier,
+    pickerLater,
+    address: new URL(page.url()).search,
+    rows: await page.locator('[data-cost-list-row]').evaluateAll((trs) => trs.map((tr) => [...tr.querySelectorAll('th, td')].map((c) => c.textContent.trim()))),
+    flags: await page.locator('[data-cost-flag]').evaluateAll((els) => els.map((e) => e.getAttribute('data-cost-flag'))),
+    sentences: await page.locator('[data-cost-counts]').count(),
+    limitNote: await page.locator('[data-cost-limit-then]').count(),
+    history: await page.locator(`[data-cost-history-row="${SCHOOL}"] td`).allTextContents(),
+    later: await page.locator('[data-cost-month-later]').count(),
+    fileName: download.suggestedFilename(),
+    file: readFileSync(await download.path(), 'utf8'),
+  };
+};
+const costMonthDone = async () => {
+  const month = lastIndiaMonth();
+  const { rows } = await db.pg.query(
+    `select (select coalesce(sum(est_cost_paise + gst_paise), 0)::int from communication_log where school_id = $1 and channel = 'whatsapp' and billable and cost_basis = 'rate_table' and status::text in ('delivered', 'read') and to_char(created_at at time zone 'Asia/Kolkata', 'YYYY-MM') = $2) as spent,
+            (select coalesce(sum(est_cost_paise + gst_paise), 0)::int from communication_log where school_id = $1 and channel = 'whatsapp' and cost_basis = 'rate_table' and (billable or status = 'sent') and to_char(created_at at time zone 'Asia/Kolkata', 'YYYY-MM') = $2) as counted,
+            (select monthly_budget_paise::int from schools where school_id = $1) as limit_now,
+            (select count(*)::int from schools where is_test_fixture = false) as live_schools,
+            (select count(*)::int from audit_log where event_action = 'messaging_cost.exported' and actor_user_id = $3 and school_id is null and target_id = $2 and after_state ->> 'month' = $2 and not (after_state::text ~ 'Illustrative')) as audited`,
+    [SCHOOL, month, PEOPLE.founder.sub]
+  );
+  await clearCostMonth();
+  if (costMonthLimitBefore !== undefined) await db.pg.query(`update schools set monthly_budget_paise = $2 where school_id = $1`, [SCHOOL, costMonthLimitBefore]);
+  const r = rows[0];
+  const seen = costMonthSeen ?? {};
+  // Counted by hand: four delivered messages of last month at 130 paise each. The one at ten past midnight is this
+  // month's. With the one on its way, 650 paise counts against the limit. The limit set now is the 9 rupees typed.
+  if (r.spent !== 520 || r.counted !== 650 || r.limit_now !== 900 || r.audited < 1) throw new Error(`messaging cost by month, in the database: ${JSON.stringify(r)}`);
+  // Last month's row: judged against the 7 rupees in force at its end, not the 9 set today. 6.50 of it is counted
+  // (5.20 spent and 1.30 on its way), and it held one message back.
+  const mine = (seen.rows ?? []).find((cells) => cells[0] === 'Illustrative Public School');
+  if (JSON.stringify(mine) !== JSON.stringify(['Illustrative Public School', '₹7.00', '₹5.20', '4', '1', '₹1.30', '₹6.50', '1', '0', 'Limit held messages back'])) throw new Error(`messaging cost by month, the school's row on the screen: ${JSON.stringify(seen.rows)}`);
+  // The limit set on the screen was in this month's list above the form the moment the screen said so.
+  if (seen.limitAbove !== '₹9.00' || !/^Limit ₹9\.00\./.test(seen.limitBelow ?? '')) throw new Error(`messaging cost by month, the limit in the two halves of the page: ${JSON.stringify({ above: seen.limitAbove, below: seen.limitBelow })}`);
+  // After a step by a link, the month switch names the month in the address.
+  if (JSON.stringify([seen.pickerEarlier, seen.pickerLater]) !== JSON.stringify([[`?month=${month}`, month], [`?month=${seen.thisMonth}`, seen.thisMonth]])) throw new Error(`messaging cost by month, the month switch after "Earlier month" and "Later month": ${JSON.stringify({ earlier: seen.pickerEarlier, later: seen.pickerLater })}`);
+  if (seen.address !== `?month=${month}` || JSON.stringify(seen.flags) !== '["held"]' || seen.sentences !== 1 || seen.limitNote !== 1 || seen.later !== 1 || seen.history?.[5] !== '₹5.20') throw new Error(`messaging cost by month, on the screen: ${JSON.stringify({ ...seen, file: undefined })}`);
+  // The file has the rows on the screen: the same schools in the same order, each amount the same number.
+  const lines = (seen.file ?? '').replace(/^﻿/, '').split('\r\n').filter(Boolean).slice(1);
+  const onScreen = (seen.rows ?? []).map((cells) => [month, ...cells.map((c) => c.replace(/[₹,]/g, ''))].join(','));
+  if (seen.fileName !== `messaging-cost-${month}.csv` || lines.length !== r.live_schools || JSON.stringify(lines) !== JSON.stringify(onScreen) || !lines.includes(`${month},Illustrative Public School,7.00,5.20,4,1,1.30,6.50,1,0,Limit held messages back`)) throw new Error(`messaging cost by month, the file: ${JSON.stringify({ fileName: seen.fileName, lines, onScreen })}`);
+};
 // p5-8f end
 // p5-8g begin
 // p5-8g end
@@ -2100,6 +2221,7 @@ const SCREENS = [
   ['principal', 'app-paid-until', '/app/my-day', schoolInGrace, schoolInGraceDone],
   // p5-8e end
   // p5-8f begin
+  ['founder', 'control-cost-month', '/control/messaging-cost', costMonth, costMonthDone],
   // p5-8f end
   // p5-8g begin
   // p5-8g end

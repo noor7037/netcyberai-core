@@ -2,6 +2,7 @@ import type { PoolClient } from 'pg';
 import { isPurposeGranted, type ConsentPurpose } from '@/lib/consent/gate';
 import { missingVariables, templateToSend, type TemplateLanguage, type TemplateToSend } from '@/lib/whatsapp/templates';
 import { resolveProvider } from '@/lib/whatsapp/config';
+import { COUNTED_AGAINST_LIMIT, RATE_NOT_VERIFIED } from '@/lib/whatsapp/cost';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
 import { openMetaCredentials } from '@/lib/whatsapp/credentials';
@@ -97,8 +98,9 @@ export async function rateOnSendDate(client: PoolClient, category: BillingCatego
 }
 
 // Pure: the reason a real send must wait for a verified rate, or null. ('school_specific' is the old name for "a real account".)
+// The reason starts with RATE_NOT_VERIFIED: the cost screens tell such a message from one the limit held by it (cost.ts).
 export function unpricedRealSend(providerKind: 'school_specific' | 'platform_default', rate: MessageRate | null): string | null {
-  return providerKind === 'school_specific' && !rate ? 'rate not verified: no rate is on record for this message category, so its cost cannot be counted against the budget' : null;
+  return providerKind === 'school_specific' && !rate ? `${RATE_NOT_VERIFIED}: no rate is on record for this message category, so its cost cannot be counted against the budget` : null;
 }
 
 // Pure: what is recorded for one attempt.
@@ -270,11 +272,13 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
     const reason = 'monthly WhatsApp budget is not configured for this school';
     return { logId: await logAttempt(client, params, 'blocked_budget', reason), status: 'blocked_budget', reason, idempotent: false, providerUsed: null };
   }
+  // What counts against the limit is written once, in cost.ts (COUNTED_AGAINST_LIMIT): a priced message counts from
+  // the moment it is sent. The cost screens add up the same rows, so they judge a limit on this very sum.
   const { rows: spendRows } = await client.query(
-    `select coalesce(sum(est_cost_paise + gst_paise), 0) as spend
-     from communication_log
-     where school_id = $1 and cost_basis = 'rate_table' and (billable = true or status = 'sent')
-       and date_trunc('month', created_at at time zone $2) = date_trunc('month', now() at time zone $2)`,
+    `select coalesce(sum(l.est_cost_paise + l.gst_paise), 0) as spend
+     from communication_log l
+     where l.school_id = $1 and ${COUNTED_AGAINST_LIMIT}
+       and date_trunc('month', l.created_at at time zone $2) = date_trunc('month', now() at time zone $2)`,
     [params.schoolId, school.timezone]
   );
   const monthSpend = Number(spendRows[0].spend);
