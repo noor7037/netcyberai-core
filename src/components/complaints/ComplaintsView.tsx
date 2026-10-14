@@ -180,7 +180,7 @@ export function ComplaintsView({ shownAbove = false }: { shownAbove?: boolean })
                 <p className="whitespace-pre-wrap break-words">{c.summary}</p>
                 {c.about && <p className="font-semibold">{t('cmp.aboutStaff', { name: c.about })}</p>}
                 <p className="text-slate/70">{t(c.status === 'closed' ? 'cmp.ownerWas' : 'cmp.ownerDue', { owner: c.owner, due: when.format(new Date(c.due_at)) })}</p>
-                {c.escalated && <p className="font-semibold">{t('cmp.escalated')}</p>}
+                {c.escalated && c.events.some((e) => e.kind === 'escalated' && e.note) && <p className="font-semibold">{t('cmp.escalated')}</p>}
                 {c.aboutYou && <p data-complaint-about-you className="rounded-md bg-off-white px-3 py-2 font-semibold">{t('cmp.aboutYou')}</p>}
                 <ul className="flex flex-col gap-1 border-l-2 border-slate/10 pl-3">
                   {c.events.map((e, i) => (

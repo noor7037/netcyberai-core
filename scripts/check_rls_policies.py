@@ -303,9 +303,7 @@ ALLOWED_PERMISSIVE = (
         ("support_ticket_attachments", "support_ticket_attachments_tenant_insert"),
         # --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
         # p5-8a begin
-        ("complaints", "complaints_not_by_its_subject"),
-    ("complaint_events", "complaint_events_not_by_its_subject"),
-    # p5-8a end
+        # p5-8a end
         # p5-8b begin
         # C201: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("staff_leave", "staff_leave_tenant_isolation"),
@@ -479,6 +477,9 @@ REQUIRED_RESTRICTIVE = {
     ("audit_log", "audit_ticket_rows_own_or_office"),
     # --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
     # p5-8a begin
+    # C200: nobody changes, notes or closes a complaint that is about themselves.
+    ("complaints", "complaints_not_by_its_subject"),
+    ("complaint_events", "complaint_events_not_by_its_subject"),
     # p5-8a end
     # p5-8b begin
     # C201: leave is read by the person and the office only; asked and changed in one's own name.

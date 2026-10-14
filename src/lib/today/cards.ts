@@ -211,10 +211,12 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     // to settle them now.
     type: 'complaints-overdue',
     moduleId: 'complaints',
-    roles: ['principal', 'school_admin'],
+    roles: ['principal', 'school_admin', 'teacher'],
     async load(db, ctx) {
       // The principal: every overdue one they may act on (never one about themselves). The school admin: the
-      // overdue ones that are theirs, which is where a complaint about the principal goes (C200).
+      // overdue ones that are theirs, which is where a complaint about the principal goes (C200). A teacher: the
+      // overdue ones still theirs, which happens when there was nobody to pass it to (a complaint about the
+      // principal in a school with no school admin): otherwise it would be on nobody's day.
       const { rows } = await db.query(
         `select count(*) as c from complaints where school_id = $1 and status = 'open' and due_at <= now() and about_user_id is distinct from $2::uuid and ($3 = 'principal' or owner_id = $2::uuid)`,
         [ctx.schoolId, ctx.userId, ctx.role]
