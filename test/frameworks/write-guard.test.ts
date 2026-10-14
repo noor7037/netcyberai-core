@@ -7,7 +7,7 @@ import { createTestDb, type TestDb } from '../db/pglite-harness';
 import type { SchoolEntitlements } from '@/lib/contracts/entitlements';
 import { MODULE_REGISTRY } from '@/lib/contracts/modules';
 import { changeModuleEntitlement, changeSchoolAccess } from '@/lib/frameworks/entitlements';
-import { applyPlan, DEFAULT_PLAN_ID } from '@/lib/frameworks/plans';
+import { applyPlan } from '@/lib/frameworks/plans';
 import { allowedWhenReadOnly, READ_ROUTES, readModuleFor, readRefusal, WRITE_METHODS, WRITE_ROUTES, writeModuleFor, writeRefusal } from '@/lib/frameworks/write-guard';
 
 // The write guard (docs/19 rule 7, C137): a change is refused when the
@@ -37,6 +37,9 @@ import { POST as sendReset } from '@/app/api/app/users/[userId]/send-reset/route
 import AttendancePage from '@/app/(school)/app/attendance/page';
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { ModulePage } from '@/components/app-ui/ModulePage';
+
+// The id of the plan the migration seeds; the code itself names no plan (C204).
+const DEFAULT_PLAN_ID = 'standard';
 
 const API = path.join(__dirname, '../../src/app/api/app');
 function routeFiles(dir: string): string[] {

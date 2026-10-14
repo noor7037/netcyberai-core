@@ -146,6 +146,9 @@ const APP_USER: Record<string, string> = {
   // p5-8d begin
   // p5-8d end
   // p5-8e begin
+  plans: '', // the platform's: names and prices are typed in Control (C204)
+  school_subscriptions: 'SELECT', // a school reads its own paid-until day; only the platform role writes
+  subscription_payments: '', // payments recorded by NetCyberAI: never the app role's
   // p5-8e end
   // p5-8f begin
   // p5-8f end
@@ -210,6 +213,9 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // p5-8d begin
   // p5-8d end
   // p5-8e begin
+  plans: 'INSERT,SELECT,UPDATE', // retired, never deleted
+  school_subscriptions: 'INSERT,SELECT,UPDATE',
+  subscription_payments: 'INSERT,SELECT', // append-only: a wrong row is corrected by another row
   // p5-8e end
   // p5-8f begin
   // p5-8f end

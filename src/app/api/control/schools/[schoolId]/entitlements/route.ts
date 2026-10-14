@@ -3,16 +3,17 @@ import { withTenantContext } from '@/lib/auth/db';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { changeModuleEntitlement, changeSchoolAccess, entitlementHistory, loadEntitlements } from '@/lib/frameworks/entitlements';
-import { applyPlan, PLANS } from '@/lib/frameworks/plans';
+import { applyPlan, listPlans } from '@/lib/frameworks/plans';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { AccessMode, PlanSummary } from '@/lib/contracts/entitlements';
 import type { ModuleId } from '@/lib/contracts/modules';
 
 // The founder's entitlement switches for one school (Control, C112).
 // PUT { moduleId, enabled, limits?, reason } switches a module;
-// PUT { accessMode, plan?, graceEndsAt?, reason } sets plan and access.
-// PUT { applyPlan, reason } switches a plan's modules on (C114; also the
-// backfill for schools created before plans existed).
+// PUT { accessMode, graceEndsAt?, reason } sets the access mode by hand.
+// PUT { applyPlan, reason } puts the school on a plan: exactly that plan's
+// modules (C114, C204). The plans are rows of the plans table; a retired one
+// is offered only to a school already on it.
 // Every change is audited with its reason.
 export async function GET(req: NextRequest, { params }: { params: { schoolId: string } }) {
   const guard = await requireSuperAdmin(req);
@@ -21,12 +22,12 @@ export async function GET(req: NextRequest, { params }: { params: { schoolId: st
   try {
     // ?history=1 adds who changed what, when and why, from the audit log (C123).
     const withHistory = req.nextUrl.searchParams.get('history') === '1';
-    const data = await withTenantContext(guard.claims, async (db) => ({
-      entitlements: await loadEntitlements(db, params.schoolId),
-      ...(withHistory ? { history: await entitlementHistory(db, params.schoolId) } : {}),
-    }));
-    const plans: PlanSummary[] = PLANS.map((p) => ({ planId: p.planId, label: p.label, moduleIds: p.modules }));
-    return NextResponse.json({ ...data, plans });
+    const data = await withTenantContext(guard.claims, async (db) => {
+      const entitlements = await loadEntitlements(db, params.schoolId);
+      const plans: PlanSummary[] = (await listPlans(db)).filter((p) => !p.retired || p.planId === entitlements.plan).map((p) => ({ planId: p.planId, label: p.name, moduleIds: p.moduleIds }));
+      return { entitlements, plans, ...(withHistory ? { history: await entitlementHistory(db, params.schoolId) } : {}) };
+    });
+    return NextResponse.json(data);
   } catch (err) {
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
@@ -61,7 +62,7 @@ export async function PUT(req: NextRequest, { params }: { params: { schoolId: st
             )
           : await changeSchoolAccess(
               db,
-              { schoolId: params.schoolId, accessMode: body.accessMode as AccessMode, plan: body.plan, graceEndsAt: body.graceEndsAt, reason: body.reason },
+              { schoolId: params.schoolId, accessMode: body.accessMode as AccessMode, graceEndsAt: body.graceEndsAt, reason: body.reason },
               actor
             );
       return r.ok ? { ok: true as const, entitlements: await loadEntitlements(db, params.schoolId) } : { ok: false as const, status: 400, error: r.error };

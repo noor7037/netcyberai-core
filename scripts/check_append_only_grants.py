@@ -72,6 +72,7 @@ MIGRATIONS_DIR = REPO_ROOT / "supabase" / "migrations"
 # `support_ticket_messages`, `support_ticket_attachments` (C126): ticket replies and screenshots.
 APPEND_ONLY_TABLES = {"audit_log", "consent_ledger", "entitlement_change_reasons", "guardian_merges", "payments", "school_setting_changes", "sessions",
                       "support_ticket_attachments", "support_ticket_messages", "webhook_events"}
+APPEND_ONLY_TABLES.add("subscription_payments")  # P5 8e (C204): NetCyberAI's own payments from schools, corrected by a new row
 
 # "Non-privileged, app-facing": any role a real request -- ordinary or
 # this app's own super_admin bypass -- can run as, or any role

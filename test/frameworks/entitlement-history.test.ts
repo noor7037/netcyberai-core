@@ -3,7 +3,10 @@ import { randomUUID } from 'crypto';
 import { createTestDb, type TestDb } from '../db/pglite-harness';
 import { describeEntitlementChange } from '@/lib/contracts/entitlements';
 import { changeModuleEntitlement, changeSchoolAccess, entitlementHistory } from '@/lib/frameworks/entitlements';
-import { applyPlan, DEFAULT_PLAN_ID, planById } from '@/lib/frameworks/plans';
+import { applyPlan, workingModules } from '@/lib/frameworks/plans';
+
+// The id of the plan the migration seeds; the code itself names no plan (C204).
+const DEFAULT_PLAN_ID = 'standard';
 
 // Control's entitlement history (C123) is the audit log's own rows: every
 // change writes one, and the founder reads them back with name and reason
@@ -37,7 +40,7 @@ describe('entitlement history', () => {
       ['Access set to grace period (was full access)', 'Noor', 'payment late'],
       ['Exams switched off', 'Noor', 'pilot ended'],
       ['Exams switched on', 'Noor', 'pilot of exams'],
-      [`Plan “standard” applied: ${planById(DEFAULT_PLAN_ID)!.modules.length} modules switched on`, null, 'school created from application'],
+      [`Plan “standard” applied: ${workingModules().length} modules switched on`, null, 'school created from application'],
     ]);
     expect(h[1].enabled).toEqual({ from: true, to: false });
     expect(h[2].enabled).toEqual({ from: null, to: true });

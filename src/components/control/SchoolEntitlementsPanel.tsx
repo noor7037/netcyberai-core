@@ -8,6 +8,7 @@ import { StatusPill } from '@/components/app-ui/StatusPill';
 import type { StatusTone } from '@/components/app-ui/tones';
 import { useT } from '@/components/app-shell/LangContext';
 import { Modal } from '@/components/ui/Modal';
+import { lastGraceDay } from '@/lib/control/grace-day';
 import { moduleOffSentence } from '@/lib/i18n/module-off';
 import {
   accessModeLabel,
@@ -56,7 +57,9 @@ const ACCESS_HELP: Record<AccessMode, string> = {
 const field = 'mt-1 min-h-[44px] w-full rounded-md border border-slate/20 bg-white px-3 text-sm font-normal text-slate';
 const button = 'min-h-[44px] rounded-md bg-sapphire px-4 text-sm font-semibold text-white disabled:opacity-60';
 const when = (iso: string) => new Date(iso).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
-const day = (iso: string) => new Date(iso).toLocaleDateString('en-IN', { dateStyle: 'medium' });
+// The last day of a grace period, from the instant it ends: India's day, whatever zone the browser is in, and the
+// same day Billing & Plans and the school's own screen name (lastGraceDay).
+const graceDay = (endsAt: string) => new Date(`${lastGraceDay(endsAt)}T00:00:00Z`).toLocaleDateString('en-IN', { dateStyle: 'medium', timeZone: 'UTC' });
 const validReason = (r: string) => r.trim().length >= 3 && r.trim().length <= 500;
 
 function Reason({ value, onChange, id }: { value: string; onChange: (v: string) => void; id: string }) {
@@ -167,7 +170,7 @@ export function SchoolEntitlementsPanel({
         <div className="flex flex-wrap items-center gap-2 text-sm text-slate">
           <StatusPill tone="info">Plan: {ent.plan}</StatusPill>
           <StatusPill tone={ACCESS_TONE[ent.accessMode]}>{accessModeLabel(ent.accessMode)}</StatusPill>
-          {ent.graceEndsAt && <span>{new Date(ent.graceEndsAt) > new Date() ? `Grace ends ${day(ent.graceEndsAt)}` : `Grace ended ${day(ent.graceEndsAt)}`}</span>}
+          {ent.graceEndsAt && <span>{new Date(ent.graceEndsAt) > new Date() ? `Grace ends ${graceDay(ent.graceEndsAt)}` : `Grace ended ${graceDay(ent.graceEndsAt)}`}</span>}
         </div>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <form onSubmit={setAccess} className="flex flex-col gap-3 rounded-lg border border-slate/10 p-3">
@@ -207,7 +210,7 @@ export function SchoolEntitlementsPanel({
               </select>
             </label>
             <p className="text-sm text-slate/70">
-              {plan ? `Switches on ${plan.moduleIds.length} modules: ${plan.moduleIds.map(label).join(', ')}. ` : ''}
+              {plan ? `Gives exactly these ${plan.moduleIds.length} modules: ${plan.moduleIds.map(label).join(', ')}. A module an earlier plan gave and this one does not is switched off. ` : ''}
               Modules you switched by hand keep your choice.
             </p>
             <Reason id="plan-reason" value={planReason} onChange={setPlanReason} />

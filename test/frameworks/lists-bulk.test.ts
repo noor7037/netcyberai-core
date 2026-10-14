@@ -9,8 +9,11 @@ import { compileListQuery, runList } from '@/lib/frameworks/filter-engine';
 import { listSpec, type StudentListRow } from '@/lib/frameworks/lists';
 import { createView, listViews, updateView } from '@/lib/frameworks/saved-views';
 import { changeSchoolAccess } from '@/lib/frameworks/entitlements';
-import { applyPlan, DEFAULT_PLAN_ID } from '@/lib/frameworks/plans';
+import { applyPlan } from '@/lib/frameworks/plans';
 import { bulkRunHandler, confirmBulk, getBulkRun, previewBulk, undoBulk } from '@/lib/frameworks/bulk-engine';
+
+// The id of the plan the migration seeds; the code itself names no plan (C204).
+const DEFAULT_PLAN_ID = 'standard';
 
 // The filter engine, saved views and bulk actions on real Postgres (C112).
 

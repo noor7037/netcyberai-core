@@ -3,7 +3,10 @@ import { randomUUID } from 'crypto';
 import { createTestDb, type TestDb } from '../db/pglite-harness';
 import { writeAuditLog } from '@/lib/audit/log';
 import { changeModuleEntitlement, changeSchoolAccess, entitlementHistory } from '@/lib/frameworks/entitlements';
-import { applyPlan, DEFAULT_PLAN_ID } from '@/lib/frameworks/plans';
+import { applyPlan } from '@/lib/frameworks/plans';
+
+// The id of the plan the migration seeds; the code itself names no plan (C204).
+const DEFAULT_PLAN_ID = 'standard';
 
 // C124: the founder's reason for an entitlement change is founder-only,
 // enforced in the database. Every school-side read below runs as app_user
