@@ -1234,6 +1234,31 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p6-9d end
   // p6-9e begin
+  {
+    slug: 'read-a-learning-genome',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Read a child’s Learning Genome', hi: 'किसी बच्चे का लर्निंग जीनोम पढ़ें' },
+    summary: {
+      en: 'One child’s own percent in each exam with marks entered, homework done, and the parents’ Daily Pulse replies to each chapter, with strengths and gaps by the school’s lines. The child is compared only with themselves.',
+      hi: 'एक बच्चे का हर उस परीक्षा में अपना प्रतिशत जिसके अंक दर्ज हैं, किए गए होमवर्क, और हर अध्याय पर अभिभावकों के Daily Pulse जवाब, स्कूल की रेखाओं से मज़बूतियों और कमियों के साथ। बच्चे की तुलना सिर्फ़ उसी से होती है।',
+    },
+    steps: [
+      { en: 'Open Learning Genome. Under “Choose a child”, choose the “Class”, then the “Child”. A teacher sees the classes they teach or are class teacher of.', hi: 'Learning Genome खोलें। “Choose a child” में पहले “Class” चुनें, फिर “Child”। शिक्षक को वे कक्षाएँ दिखती हैं जिन्हें वे पढ़ाते हैं या जिनके कक्षा अध्यापक हैं।' },
+      { en: 'Read “Strengths” and “Gaps” first. Each says what the school’s rule found and the line it was held against, such as the points a subject rose or fell against the child’s own previous exam.', hi: 'पहले “Strengths” और “Gaps” पढ़ें। हर एक बताता है कि स्कूल के नियम ने क्या पाया और किस रेखा से मिलाया, जैसे कोई विषय बच्चे की अपनी पिछली परीक्षा से कितने अंक बढ़ा या घटा।' },
+      { en: 'Under “Subjects”, each exam whose marks are entered shows the child’s percent and grade, and the marks it was worked out from. Absent and exempt are not marks and are left out.', hi: '“Subjects” में, हर वह परीक्षा जिसके अंक दर्ज हैं, बच्चे का प्रतिशत और ग्रेड दिखाती है, और वे अंक जिनसे यह निकला। अनुपस्थित और छूट अंक नहीं हैं, वे बाहर रहते हैं।' },
+      { en: 'Each subject also shows its homework: how many were done of those checked, and the days they were due.', hi: 'हर विषय उसका होमवर्क भी दिखाता है: जाँचे गए में से कितने किए गए, और वे किन दिनों देय थे।' },
+      { en: 'Under “Chapters”, each chapter shows how often the parents replied “needs help” or “understood” to the Daily Pulse of its taught lessons, and which lessons those were.', hi: '“Chapters” में हर अध्याय दिखाता है कि उसके पढ़ाए गए पाठों के Daily Pulse पर अभिभावकों ने कितनी बार “needs help” या “understood” कहा, और वे कौन-से पाठ थे।' },
+    ],
+    tips: [
+      { en: 'Nothing is stored and nothing is sent to parents: the genome is worked out each time it is opened, from the marks, homework and replies on record.', hi: 'कुछ सहेजा नहीं जाता और अभिभावकों को कुछ नहीं जाता: जीनोम हर बार खोलने पर दर्ज अंकों, होमवर्क और जवाबों से निकाला जाता है।' },
+      { en: 'No child is ranked or compared with another child, and no AI model is used: only the rules and the lines shown. The principal and the school admin change the lines in Settings.', hi: 'किसी बच्चे की रैंक नहीं बनती, न किसी की तुलना दूसरे बच्चे से होती है, और कोई AI मॉडल इस्तेमाल नहीं होता: सिर्फ़ दिखाए गए नियम और रेखाएँ। प्रिंसिपल और स्कूल एडमिन Settings में रेखाएँ बदलते हैं।' },
+      { en: 'Until report cards are published, an exam counts once its paper’s marks are entered. A teacher sees the replies to the lessons they taught themselves.', hi: 'जब तक रिपोर्ट कार्ड प्रकाशित नहीं होते, कोई परीक्षा तब गिनी जाती है जब उसके पेपर के अंक दर्ज हो जाएँ। शिक्षक उन पाठों के जवाब देखते हैं जो उन्होंने ख़ुद पढ़ाए।' },
+    ],
+    start: { href: '/app/learning-genome', label: { en: 'Learning Genome', hi: 'लर्निंग जीनोम (Learning Genome)' } },
+    related: ['enter-exam-marks', 'early-warning-flags'],
+    keywords: ['learning genome', 'genome', 'strengths', 'gaps', 'weak', 'chapter', 'subject', 'progress', 'child', 'pulse', 'needs help', 'understood', 'homework', 'marks', 'जीनोम', 'मज़बूती', 'कमी', 'अध्याय', 'प्रगति'],
+  },
   // p6-9e end
   // p6-9f begin
   // p6-9f end
