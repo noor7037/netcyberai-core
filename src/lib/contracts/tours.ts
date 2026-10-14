@@ -106,6 +106,7 @@ export const TOURS = {
   'data-check': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // p7-10b end
   // p7-10c begin
+  'fees-rte': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // p7-10c end
   // p7-10d begin
   // p7-10d end

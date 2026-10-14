@@ -106,6 +106,7 @@ export interface PseudonymizationResult {
   guardianLinksTombstoned: number;
   qrTokensRevoked: number;
   dataCheckRowsErased: number;
+  rteEvidenceRemoved: number;
 }
 
 // The mechanical answer Task 3 asks for: scrub the student's own PII
@@ -187,6 +188,9 @@ export async function pseudonymizeStudent(client: PoolClient, schoolId: string, 
   // The student data check (C222): what was typed from the child's Aadhaar and every request about the child go with
   // the name and date of birth, through the database's own function (the app's role deletes nothing there).
   const { rows: dataCheck } = await client.query(`select public.erase_student_data_check($1) as n`, [studentId]);
+  // The RTE evidence file (C223): its typed notes (an income or category proof) go too. The claims are money the
+  // state owes the school, and are kept, as the child's fees are.
+  const { rowCount: rteEvidenceRemoved } = await client.query(`delete from rte_evidence where school_id = $1 and student_id = $2`, [schoolId, studentId]);
 
   return {
     studentId,
@@ -198,6 +202,7 @@ export async function pseudonymizeStudent(client: PoolClient, schoolId: string, 
     guardianLinksTombstoned: guardianLinksTombstoned ?? 0,
     qrTokensRevoked: qrTokensRevoked ?? 0,
     dataCheckRowsErased: Number(dataCheck[0]?.n ?? 0),
+    rteEvidenceRemoved: rteEvidenceRemoved ?? 0,
   };
 }
 

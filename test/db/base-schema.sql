@@ -653,3 +653,16 @@ create table data_check_requests (
 alter table data_check_requests enable row level security;
 create policy data_check_requests_tenant_isolation on data_check_requests using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select on data_check_requests to app_user;
+-- RTE claims (C223), as My Day counts those raised and still unpaid past the first age bucket
+-- (the p7_rte_claims migration): the three finance roles only.
+create table rte_claims (
+  claim_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  state text not null default 'raised',
+  amount_minor bigint not null,
+  raised_on date not null
+);
+alter table rte_claims enable row level security;
+create policy rte_claims_tenant_isolation on rte_claims using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy rte_claims_finance on rte_claims as restrictive for all using (current_setting('app.current_role', true) in ('principal', 'school_admin', 'accountant'));
+grant select on rte_claims to app_user;

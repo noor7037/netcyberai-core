@@ -4211,6 +4211,81 @@ const dataCheckTeacherDone = async () => {
 };
 // p7-10b end
 // p7-10c begin
+// The RTE claim desk (C223): two children of 5-A are marked RTE and 5-A has a tuition of 1,200 a month in the
+// harness session. On the page the principal types the state's rate (12,500) with its source, raises every ready
+// claim, marks one paid with the state's reference, and adds a captured document with a note to a child's evidence.
+// Each claim must be the lower of the rate and the year's fee, to the paisa; every change audited. Put back after.
+const RTE_DOC = '00000000-0000-4000-8000-0000000c2231';
+const RTE_HEAD = 'Harness RTE tuition';
+let rteTagged = [];
+let rteSeen = null;
+let rteFrom = null;
+const clearRte = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from rte_evidence where school_id = '${SCHOOL}'; delete from rte_claims where school_id = '${SCHOOL}'; delete from rte_rates where school_id = '${SCHOOL}';
+    delete from captured_documents where document_id = '${RTE_DOC}';
+    with gone as (delete from fee_structure_items where head_id in (select head_id from fee_heads where school_id = '${SCHOOL}' and name = '${RTE_HEAD}') returning structure_id)
+    delete from fee_structures where structure_id in (select structure_id from gone);
+    delete from fee_heads where school_id = '${SCHOOL}' and name = '${RTE_HEAD}';
+    set session_replication_role = origin;`);
+  // The RTE mark as it was (the trigger that guards it is for the app's role only).
+  for (const s of rteTagged) await db.pg.query(`update students set rte_admission = $2, rte_entry_class = $3, rte_admitted_on = $4 where student_id = $1`, [s.student_id, s.rte_admission, s.rte_entry_class, s.rte_admitted_on]);
+  rteTagged = [];
+};
+const rteDesk = async (page) => {
+  await clearRte();
+  rteFrom = (await db.pg.query(`select coalesce(max(audit_id), 0)::bigint as id from audit_log`)).rows[0].id;
+  await db.pg.query(`insert into academic_sessions (school_id, label, start_date, end_date, is_current) select $1, 'Harness session', ${TODAY_SQL} - 30, ${TODAY_SQL} + 300, not exists (select 1 from academic_sessions where school_id = $1 and is_current) where not exists (select 1 from academic_sessions where school_id = $1 and label = 'Harness session')`, [SCHOOL]);
+  const session = (await db.pg.query(`select session_id, start_date::text as start_date from academic_sessions where school_id = $1 order by is_current desc, (label = 'Harness session') desc limit 1`, [SCHOOL])).rows[0];
+  const head = (await db.pg.query(`insert into fee_heads (school_id, name, is_mandatory) values ($1, $2, true) returning head_id`, [SCHOOL, RTE_HEAD])).rows[0].head_id;
+  const structure = (await db.pg.query(`insert into fee_structures (school_id, class_id, academic_year, session_id, effective_from, created_by) select $1, $2, label, session_id, start_date, $3 from academic_sessions where session_id = $4 returning structure_id`, [SCHOOL, CLASS_5A, PEOPLE.principal.sub, session.session_id])).rows[0].structure_id;
+  await db.pg.query(`insert into fee_structure_items (school_id, structure_id, head_id, amount_minor, frequency) values ($1, $2, $3, 120000, 'monthly')`, [SCHOOL, structure, head]);
+  rteTagged = (await db.pg.query(`select student_id, rte_admission, rte_entry_class, rte_admitted_on::text as rte_admitted_on from students where school_id = $1 and class_id = $2 and status = 'active' order by name limit 2`, [SCHOOL, CLASS_5A])).rows;
+  await db.pg.query(`update students set rte_admission = true, rte_entry_class = '5-A', rte_admitted_on = $2 where student_id = any($1::uuid[])`, [rteTagged.map((s) => s.student_id), session.start_date]);
+  await db.pg.query(`insert into captured_documents (document_id, school_id, student_id, doc_type, storage_path, mime_type, size_bytes, uploaded_by) values ($1, $2, $3, 'birth_certificate', 'harness/rte/birth.pdf', 'application/pdf', 1000, $4)`, [RTE_DOC, SCHOOL, rteTagged[0].student_id, PEOPLE.principal.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-rte-rate-none]').waitFor({ timeout: 20000 });
+  await page.locator('#rte-rate').fill('12500');
+  await page.locator('#rte-rate-source').fill('State RTE reimbursement notification for this year, as typed by the office');
+  await page.locator('[data-rte-rate-save]').click();
+  await page.locator('[data-rte-rate-now]').waitFor({ timeout: 20000 });
+  await page.locator('[data-rte-raise-all]').click();
+  await page.locator('[data-rte-state="raised"]').nth(1).waitFor({ timeout: 20000 });
+  const first = page.locator(`[data-rte-child="${rteTagged[0].student_id}"]`);
+  await first.locator('[data-rte-open-paid]').click();
+  await first.locator('input[id^="rte-reference-"]').fill('PFMS/HARNESS/0001');
+  await first.locator('[data-rte-paid-save]').click();
+  await page.locator(`[data-rte-child="${rteTagged[0].student_id}"][data-rte-state="paid"]`).waitFor({ timeout: 20000 });
+  await first.locator('[data-rte-evidence] summary').click();
+  await first.locator('[data-rte-evidence-open]').click();
+  await first.locator('select[id^="rte-kind-"]').selectOption('lottery');
+  await first.locator('select[id^="rte-doc-"]').selectOption(RTE_DOC);
+  await first.locator('input[id^="rte-note-"]').fill('Lottery list 3, number 14');
+  await first.locator('[data-rte-evidence-add]').click();
+  await first.locator('[data-rte-evidence-item="lottery"]').waitFor({ timeout: 20000 });
+  rteSeen = {
+    raised: await page.locator('[data-rte-state="raised"]').count(),
+    paid: await page.locator('[data-rte-state="paid"]').count(),
+    ageingYears: await page.locator('[data-rte-age-year]').count(),
+  };
+};
+const rteDeskDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from rte_rates where school_id = $1 and rate_minor = 1250000 and typed_by = $2) as rates,
+            (select count(*)::int from rte_claims where school_id = $1 and raised_by = $2) as claims,
+            (select count(*)::int from rte_claims c where c.school_id = $1 and c.amount_minor = least(c.rate_minor, c.fee_minor) and c.rate_minor = 1250000
+                and c.fee_minor = 120000 * (select (extract(year from age(date_trunc('month', s.end_date), date_trunc('month', s.start_date))) * 12 + extract(month from age(date_trunc('month', s.end_date), date_trunc('month', s.start_date))) + 1)::int from academic_sessions s where s.session_id = c.session_id)) as to_the_paisa,
+            (select count(*)::int from rte_claims where school_id = $1 and state = 'paid' and reference = 'PFMS/HARNESS/0001' and settled_by = $2) as paid,
+            (select count(*)::int from rte_evidence where school_id = $1 and document_id = $3 and kind = 'lottery' and note = 'Lottery list 3, number 14') as evidence,
+            (select string_agg(event_action, ',' order by audit_id) from audit_log where audit_id > $4 and event_action like 'rte.%') as audited`,
+    [SCHOOL, PEOPLE.principal.sub, RTE_DOC, rteFrom]
+  );
+  await clearRte();
+  const r = rows[0];
+  const want = { rates: 1, claims: 2, to_the_paisa: 2, paid: 1, evidence: 1, audited: 'rte.rate_typed,rte.claim_raised,rte.claim_raised,rte.claim_paid,rte.evidence_added' };
+  if (JSON.stringify(r) !== JSON.stringify(want)) throw new Error(`the RTE desk in the database: ${JSON.stringify(r)}`);
+  if (JSON.stringify(rteSeen) !== JSON.stringify({ raised: 1, paid: 1, ageingYears: 1 })) throw new Error(`the RTE desk on the screen: ${JSON.stringify(rteSeen)}`);
+};
 // p7-10c end
 // p7-10d begin
 // p7-10d end
@@ -4808,6 +4883,7 @@ const SCREENS = [
   ['teacher', 'app-data-check-teacher', '/app/students/data-check', dataCheckTeacher, dataCheckTeacherDone],
   // p7-10b end
   // p7-10c begin
+  ['principal', 'app-fees-rte', '/app/fees/rte', rteDesk, rteDeskDone],
   // p7-10c end
   // p7-10d begin
   // p7-10d end
