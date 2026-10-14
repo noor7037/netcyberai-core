@@ -176,6 +176,7 @@ const APP_USER: Record<string, string> = {
   grading_schemes: 'INSERT,SELECT', // a version is saved, never changed or removed
   // p6-9a end
   // p6-9b begin
+  exam_papers: 'DELETE,INSERT,SELECT,UPDATE', // a paper is removed only while it has no marks (C214)
   // p6-9b end
   // p6-9c begin
   // p6-9c end
@@ -272,6 +273,9 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   grading_schemes: '', // a school's grading scheme is its own: the platform role reads nothing here
   // p6-9a end
   // p6-9b begin
+  exams: '', // a school's exams and marks are its own: the platform role reads nothing here (C214)
+  exam_papers: '',
+  marks: '',
   // p6-9b end
   // p6-9c begin
   // p6-9c end

@@ -533,3 +533,57 @@ create table grading_schemes (
 alter table grading_schemes enable row level security;
 create policy grading_schemes_tenant_isolation on grading_schemes using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert on grading_schemes to app_user;
+
+
+-- Exams, papers and marks, as My Day counts the papers waiting for a teacher's marks (C214), with the two
+-- functions that count them: who may enter a paper's marks, and how far its entry has come.
+create table exams (
+  exam_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  name text not null,
+  status text not null default 'open'
+);
+create table exam_papers (
+  paper_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  exam_id uuid not null,
+  class_id uuid not null,
+  subject_id uuid not null,
+  paper_date date,
+  components jsonb not null
+);
+create table marks (
+  mark_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  paper_id uuid not null,
+  component text not null,
+  student_id uuid not null
+);
+alter table exams enable row level security;
+alter table exam_papers enable row level security;
+alter table marks enable row level security;
+create policy exams_tenant_isolation on exams using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy exam_papers_tenant_isolation on exam_papers using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy marks_tenant_isolation on marks using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update, delete on exams, exam_papers, marks to app_user;
+create function public.may_enter_marks(p_class_id uuid, p_subject_id uuid) returns boolean
+language sql stable security definer set search_path = public, pg_temp as $$
+  select case
+    when coalesce(current_setting('app.current_role', true), '') in ('principal', 'school_admin', 'academic_coordinator') then true
+    when coalesce(current_setting('app.current_role', true), '') = 'teacher' then
+      exists (select 1 from teacher_subjects ts join teachers t on t.school_id = ts.school_id and t.teacher_id = ts.teacher_id
+               where ts.school_id = nullif(current_setting('app.current_tenant_id', true), '')::uuid and ts.class_id = p_class_id and ts.subject_id = p_subject_id
+                 and t.user_id = nullif(current_setting('app.current_user_id', true), '')::uuid)
+      or exists (select 1 from classes c where c.school_id = nullif(current_setting('app.current_tenant_id', true), '')::uuid and c.class_id = p_class_id
+                    and c.class_teacher_id = nullif(current_setting('app.current_user_id', true), '')::uuid)
+    else false
+  end
+$$;
+create function public.exam_paper_progress(p_paper_id uuid) returns table (roll integer, entered integer)
+language sql stable security definer set search_path = public, pg_temp as $$
+  select (select count(*)::integer from students s where s.school_id = p.school_id and s.class_id = p.class_id and s.status in ('active', 'pending_consent')),
+         (select count(*)::integer from students s where s.school_id = p.school_id and s.class_id = p.class_id and s.status in ('active', 'pending_consent')
+             and (select count(*) from marks m where m.school_id = p.school_id and m.paper_id = p.paper_id and m.student_id = s.student_id) >= jsonb_array_length(p.components))
+    from exam_papers p where p.paper_id = p_paper_id and p.school_id = nullif(current_setting('app.current_tenant_id', true), '')::uuid
+$$;
+grant execute on function public.may_enter_marks(uuid, uuid), public.exam_paper_progress(uuid) to app_user;

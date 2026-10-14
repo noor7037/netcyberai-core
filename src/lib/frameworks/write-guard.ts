@@ -88,6 +88,9 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['exams/scheme', 'exams'],
   // p6-9a end
   // p6-9b begin
+  // Exams and marks entry (C214): switched off, nobody makes an exam, changes a paper or enters a mark.
+  ['exams/**', 'exams'],
+  ['exams', 'exams'],
   // p6-9b end
   // p6-9c begin
   // p6-9c end
@@ -213,6 +216,9 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['exams/scheme', 'exams'],
   // p6-9a end
   // p6-9b begin
+  // The exams of a session, a paper's marks and a class result (C214).
+  ['exams/**', 'exams'],
+  ['exams', 'exams'],
   // p6-9b end
   // p6-9c begin
   // p6-9c end

@@ -3069,6 +3069,189 @@ const controlSchoolBoardDone = async () => {
 };
 // p6-9a end
 // p6-9b begin
+// Exams and marks entry (C214). A fixture with fixed ids, so the paper and result screens have an address: a grading
+// scheme (made up: Written 80 and Oral 20 of a subject, four bands, two terms), the exam "Unit test 1 (harness)" with
+// 5-A Mathematics (6 of the 9 children entered) and 5-A English (all 9: one absent, one exempt). Exams is switched on
+// for the school (the seed predates the module). Every row is taken away by the last screen of the block.
+const X_EXAM = '00000000-0000-4000-8000-00000009be01';
+const X_MATHS = '00000000-0000-4000-8000-00000009bf01';
+const X_ENGLISH = '00000000-0000-4000-8000-00000009bf02';
+const X_5A = '00000000-0000-4000-8000-0000000c0051';
+const X_KIDS = [1, 4, 7, 10, 13, 16, 19, 22, 25]; // 5-A in the seed: roll 1 to 9; the last waits for consent
+const xKid = (g) => `00000000-0000-4000-8000-0000005${String(g).padStart(5, '0')}`;
+let xEntitlementBefore;
+const clearExams = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from marks where school_id = '${SCHOOL}';
+    delete from exam_papers where school_id = '${SCHOOL}';
+    delete from exams where school_id = '${SCHOOL}';
+    delete from grading_schemes where school_id = '${SCHOOL}';
+    delete from audit_log where school_id = '${SCHOOL}' and split_part(event_action, '.', 1) in ('exam', 'exam_paper');
+    set session_replication_role = origin;`);
+};
+const examsFixture = async () => {
+  await clearExams();
+  if (xEntitlementBefore === undefined) xEntitlementBefore = (await db.pg.query(`select enabled, source from school_module_entitlements where school_id = $1 and module_id = 'exams'`, [SCHOOL])).rows[0] ?? null;
+  await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'exams', true, 'plan') on conflict (school_id, module_id) do update set enabled = true`, [SCHOOL]);
+  const scheme = {
+    bands: [{ from: 75, to: 100, grade: 'A', meaning: null }, { from: 50, to: 74, grade: 'B', meaning: null }, { from: 33, to: 49, grade: 'C', meaning: null }, { from: 0, to: 32, grade: 'D', meaning: null }],
+    decimals: 0, passMark: 33,
+    components: [{ key: 'written', kind: 'theory', name: 'Written', share: 80, passMark: null, parts: [] }, { key: 'oral', kind: 'other', name: 'Oral', share: 20, passMark: null, parts: [] }],
+    terms: [{ name: 'Term 1' }, { name: 'Term 2' }],
+    layout: { components: true, total: true, percent: true, grade: true, attendance: true, remarks: true, coScholastic: false },
+    coScholastic: null,
+  };
+  const parts = JSON.stringify([{ key: 'written', name: 'Written', max: 40, share: 80 }, { key: 'oral', name: 'Oral', max: 10, share: 20 }]);
+  await db.pg.query(`insert into grading_schemes (school_id, version, scheme, made_by) values ($1, 1, $2::jsonb, $3)`, [SCHOOL, JSON.stringify(scheme), PEOPLE.principal.sub]);
+  await db.pg.query(`insert into exams (exam_id, school_id, name, term, created_by) values ($1, $2, 'Unit test 1 (harness)', 'Term 1', $3)`, [X_EXAM, SCHOOL, PEOPLE.principal.sub]);
+  await db.pg.query(
+    `insert into exam_papers (paper_id, school_id, exam_id, class_id, subject_id, paper_date, components, created_by) values
+       ($1, $3, $4, $5, '00000000-0000-4000-8000-0000000d0001', $6::date, $7::jsonb, $8), ($2, $3, $4, $5, '00000000-0000-4000-8000-0000000d0002', $6::date, $7::jsonb, $8)`,
+    [X_MATHS, X_ENGLISH, SCHOOL, X_EXAM, X_5A, indiaDay(1), parts, PEOPLE.principal.sub]
+  );
+  // English: every child of 5-A; Mathematics: the first six. Entered by Tara, the class teacher.
+  const rows = [];
+  for (const g of X_KIDS) {
+    rows.push([X_ENGLISH, g, 'written', g === 10 ? 'absent' : 'score', g === 10 ? null : 20 + (g % 17)]);
+    rows.push([X_ENGLISH, g, 'oral', g === 13 ? 'exempt' : 'score', g === 13 ? null : 5 + (g % 5)]);
+    if (g <= 16) {
+      rows.push([X_MATHS, g, 'written', 'score', 18 + ((g * 7) % 22)]);
+      rows.push([X_MATHS, g, 'oral', 'score', 4 + (g % 6)]);
+    }
+  }
+  for (const [paperId, g, component, kind, score] of rows) {
+    await db.pg.query(
+      `insert into marks (school_id, exam_id, subject_id, paper_id, component, student_id, kind, score, max_score, entered_by)
+       select $1, p.exam_id, p.subject_id, p.paper_id, $3, $4, $5, $6, 0, $7 from exam_papers p where p.paper_id = $2`,
+      [SCHOOL, paperId, component, xKid(g), kind, score, PEOPLE.teacher.sub]
+    );
+  }
+  await db.pg.query(`update exam_papers set entered_by = $2 where paper_id = $1`, [X_ENGLISH, PEOPLE.teacher.sub]);
+};
+const examsPutBack = async () => {
+  await clearExams();
+  if (xEntitlementBefore === null) await db.pg.query(`delete from school_module_entitlements where school_id = $1 and module_id = 'exams'`, [SCHOOL]);
+  else if (xEntitlementBefore) await db.pg.query(`update school_module_entitlements set enabled = $2, source = $3 where school_id = $1 and module_id = 'exams'`, [SCHOOL, xEntitlementBefore.enabled, xEntitlementBefore.source]);
+  xEntitlementBefore = undefined;
+};
+// The principal makes "Half-yearly (harness)" for Term 1: 5-B Mathematics (Written 80, Oral 20) and 6-A English
+// (Written 80 only). The fixture stays for the screens after this one; the exam made here is taken away.
+let examsMadeSeen = null;
+const examsMake = async (page) => {
+  await examsFixture();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-exam-make]').waitFor({ timeout: 20000 });
+  await page.locator('#exam-name').fill('Half-yearly (harness)');
+  await page.locator('#exam-term').selectOption('Term 1');
+  await page.locator('#exam-paper-0-class').selectOption({ label: '5-B' });
+  await page.locator('#exam-paper-0-subject').selectOption({ label: 'Mathematics' });
+  await page.locator('#exam-paper-0-date').fill(indiaDay(0));
+  await page.locator('#exam-paper-0-max-written').fill('80');
+  await page.locator('#exam-paper-0-max-oral').fill('20');
+  await page.locator('[data-exam-add-paper]').click();
+  await page.locator('#exam-paper-1-class').selectOption({ label: '6-A' });
+  await page.locator('#exam-paper-1-subject').selectOption({ label: 'English' });
+  await page.locator('#exam-paper-1-max-oral').fill('');
+  await page.locator('[data-exam-make-save]').click();
+  await page.locator('[data-exams-note="ok"]').waitFor({ timeout: 20000 });
+  await page.locator('[data-exam] h3', { hasText: 'Half-yearly (harness)' }).waitFor({ timeout: 20000 });
+  examsMadeSeen = {
+    exams: await page.locator('[data-exam]').count(),
+    waiting: await page.locator('[data-to-enter]').count(),
+    englishEntered: await page.locator(`[data-paper="${X_ENGLISH}"]`).getAttribute('data-paper-entered'),
+  };
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+const examsMakeDone = async () => {
+  const { rows } = await db.pg.query(
+    `select e.name, e.term, e.created_by, c.name as class, s.name as subject, p.components, p.paper_date::text as day,
+            (select count(*)::int from audit_log a where a.school_id = e.school_id and a.event_action = 'exam.made' and a.target_id = e.exam_id::text and a.actor_user_id = e.created_by) as audits
+       from exams e join exam_papers p on p.exam_id = e.exam_id join classes c on c.class_id = p.class_id join subjects s on s.subject_id = p.subject_id
+      where e.school_id = $1 and e.name = 'Half-yearly (harness)' order by c.name`,
+    [SCHOOL]
+  );
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from exam_papers where exam_id in (select exam_id from exams where school_id = '${SCHOOL}' and name = 'Half-yearly (harness)');
+    delete from exams where school_id = '${SCHOOL}' and name = 'Half-yearly (harness)';
+    delete from audit_log where school_id = '${SCHOOL}' and event_action = 'exam.made';
+    set session_replication_role = origin;`);
+  const want = [
+    { name: 'Half-yearly (harness)', term: 'Term 1', created_by: PEOPLE.principal.sub, class: '5-B', subject: 'Mathematics', components: [{ key: 'written', max: 80, name: 'Written', share: 80 }, { key: 'oral', max: 20, name: 'Oral', share: 20 }], day: indiaDay(0), audits: 1 },
+    { name: 'Half-yearly (harness)', term: 'Term 1', created_by: PEOPLE.principal.sub, class: '6-A', subject: 'English', components: [{ key: 'written', max: 80, name: 'Written', share: 80 }], day: indiaDay(0), audits: 1 },
+  ];
+  if (JSON.stringify(rows) !== JSON.stringify(want)) throw new Error(`the exam made in the database: ${JSON.stringify(rows)}`);
+  // Two exams listed; waiting: 5-A Mathematics and the two new papers (5-A English is entered).
+  if (JSON.stringify(examsMadeSeen) !== JSON.stringify({ exams: 2, waiting: 3, englishEntered: 'yes' })) throw new Error(`the exams on the screen: ${JSON.stringify(examsMadeSeen)}`);
+};
+// The class result of 5-A: in roll order, with each subject's percent and grade by the scheme. Roll 1: English
+// Written 21 of 40 and Oral 6 of 10, 54 percent, B; Mathematics 25 of 40 and 5 of 10, 60 percent, B; overall 57, B.
+// Mathematics is not entered yet for rolls 7 to 9, so they have no percent there and no overall.
+let resultSeen = null;
+const examsResult = async (page) => {
+  if (!(await db.pg.query(`select 1 from exams where exam_id = $1`, [X_EXAM])).rows.length) await examsFixture();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-class-result-view]').waitFor({ timeout: 20000 });
+  const order = await page.locator('[data-result-cards] [data-result-child]').evaluateAll((els) => els.map((e) => e.getAttribute('data-result-child')));
+  const wide = (await page.viewportSize()).width >= 768;
+  const first = wide ? page.locator('[data-result-table] tbody tr').first() : page.locator('[data-result-cards] > li').first();
+  resultSeen = { order, first: (await first.innerText()).replace(/\s+/g, ' '), ranked: /\brank|position|topper/i.test((await page.locator('[data-module-page]').innerText()).replace(/No child is ranked/g, '')), last: (wide ? await page.locator('[data-result-table] tbody tr').last().innerText() : await page.locator('[data-result-cards] > li').last().innerText()).replace(/\s+/g, ' ') };
+};
+const examsResultDone = async () => {
+  const seen = resultSeen ?? {};
+  const want = X_KIDS.map(xKid);
+  if (JSON.stringify(seen.order) !== JSON.stringify(want)) throw new Error(`the result is not in roll order: ${JSON.stringify(seen.order)}`);
+  if (!/54%/.test(seen.first ?? '') || !/60%/.test(seen.first ?? '') || !/57%/.test(seen.first ?? '') || !/Grade B/.test(seen.first ?? '')) throw new Error(`roll 1 on the screen: ${seen.first}`);
+  if (!/not entered yet/.test(seen.last ?? '')) throw new Error(`roll 9 on the screen: ${seen.last}`);
+  if (seen.ranked !== false) throw new Error('the result screen says rank, position or topper');
+};
+// A teacher's exams: the paper waiting for her marks (5-A Mathematics), not the one that is entered.
+let teacherExamsSeen = null;
+const examsTeacher = async (page) => {
+  if (!(await db.pg.query(`select 1 from exams where exam_id = $1`, [X_EXAM])).rows.length) await examsFixture();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-exams-to-enter]').waitFor({ timeout: 20000 });
+  teacherExamsSeen = { waiting: await page.locator('[data-to-enter]').evaluateAll((els) => els.map((e) => e.getAttribute('data-to-enter'))), make: await page.locator('[data-exam-make]').count() };
+};
+const examsTeacherDone = async () => {
+  if (JSON.stringify(teacherExamsSeen) !== JSON.stringify({ waiting: [X_MATHS], make: 0 })) throw new Error(`the teacher's exams: ${JSON.stringify(teacherExamsSeen)}`);
+};
+// Tara enters the last three children of 5-A Mathematics on her phone: a mark above the maximum is shown as wrong and
+// cannot be saved; roll 8 is absent in Written. Saved, the paper is entered. Then every row is taken away.
+let entrySeen = null;
+const examsEntry = async (page) => {
+  if (!(await db.pg.query(`select 1 from exams where exam_id = $1`, [X_EXAM])).rows.length) await examsFixture();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-paper-entry]').waitFor({ timeout: 20000 });
+  const cell = (g, part) => page.locator(`#mark-${xKid(g)}-${part}`);
+  await cell(19, 'written').fill('45');
+  const wrongShown = await page.locator(`[data-entry-child="${xKid(19)}"] [role="alert"]`).count();
+  const saveDisabled = await page.locator('[data-marks-save]').first().isDisabled();
+  await cell(19, 'written').fill('33');
+  await cell(19, 'oral').fill('7');
+  await page.locator(`[data-entry-child="${xKid(22)}"] [data-mark-cell="written"] [data-mark-kind="absent"]`).click();
+  await cell(22, 'oral').fill('9');
+  await cell(25, 'written').fill('25.5');
+  await cell(25, 'oral').fill('6');
+  await page.locator('[data-marks-save]').first().click();
+  await page.locator('[data-entry-state="entered"]').waitFor({ timeout: 20000 });
+  entrySeen = { wrongShown, saveDisabled, note: await page.locator('[data-entry-note]').textContent() };
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+const examsEntryDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from marks where paper_id = $1) as marks,
+            (select count(*)::int from marks where paper_id = $1 and entered_by = $2) as hers,
+            (select kind || ':' || coalesce(score::text, '-') from marks where paper_id = $1 and student_id = $3 and component = 'written') as absent,
+            (select score::text from marks where paper_id = $1 and student_id = $4 and component = 'written') as decimal,
+            (select entered_by = $2 and entered_at is not null from exam_papers where paper_id = $1) as entered,
+            (select count(*)::int from audit_log where event_action = 'exam_paper.marks_saved' and target_id = $1::text and actor_user_id = $2) as audits`,
+    [X_MATHS, PEOPLE.teacher.sub, xKid(22), xKid(25)]
+  );
+  await examsPutBack();
+  const want = [{ marks: 18, hers: 18, absent: 'absent:-', decimal: '25.5', entered: true, audits: 1 }];
+  if (JSON.stringify(rows) !== JSON.stringify(want)) throw new Error(`the marks in the database: ${JSON.stringify(rows)}`);
+  if (entrySeen?.wrongShown !== 1 || entrySeen?.saveDisabled !== true || !/the paper is entered/.test(entrySeen?.note ?? '')) throw new Error(`the marks on the screen: ${JSON.stringify(entrySeen)}`);
+};
 // p6-9b end
 // p6-9c begin
 // p6-9c end
@@ -3713,6 +3896,10 @@ const SCREENS = [
   ['founder', 'control-school-board', `/control/schools/${SCHOOL}`, controlSchoolBoard, controlSchoolBoardDone],
   // p6-9a end
   // p6-9b begin
+  ['principal', 'app-exams-list', '/app/exams', examsMake, examsMakeDone],
+  ['principal', 'app-exams-result', `/app/exams/${X_EXAM}/classes/${X_5A}`, examsResult, examsResultDone],
+  ['teacher', 'app-exams-teacher', '/app/exams', examsTeacher, examsTeacherDone],
+  ['teacher', 'app-exams-entry', `/app/exams/papers/${X_MATHS}`, examsEntry, examsEntryDone],
   // p6-9b end
   // p6-9c begin
   // p6-9c end

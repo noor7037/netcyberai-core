@@ -1,6 +1,7 @@
 import { isModuleEnabled, type SchoolEntitlements } from '@/lib/contracts/entitlements';
 import { planHasFeature } from '@/lib/frameworks/plans';
 import { arrangeMyDay, type MyDay, type TodayCard, type TodayContext, type TodayProvider, type TodaySql } from '@/lib/contracts/today-cards';
+import { TO_ENTER_SQL } from '@/lib/exams/papers';
 import { feeIsOverdueSql } from '@/lib/fees/overdue';
 import { classLabel } from '@/lib/frameworks/class-label';
 import { INDIA_TODAY_SQL } from '@/lib/time/india';
@@ -459,6 +460,18 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   },
   // p6-9a end
   // p6-9b begin
+  {
+    // Papers that wait for this teacher's marks (C214): their subject in a class, or their class as class teacher;
+    // an open exam's paper dated today or before; at least one child on the roll still without a mark, absent or
+    // exempt. The one rule the exams screen lists them by (TO_ENTER_SQL). Gone once every child has one.
+    type: 'marks-to-enter',
+    moduleId: 'exams',
+    roles: ['teacher'],
+    async load(db, ctx) {
+      const { rows } = await db.query(`select count(*) as c from (${TO_ENTER_SQL}) w`, [ctx.schoolId]);
+      return waiting('marks-to-enter', 'exams', n(rows[0]?.c), '/app/exams');
+    },
+  },
   // p6-9b end
   // p6-9c begin
   // p6-9c end
