@@ -97,7 +97,7 @@ page until the module is built.
 | 10 | Proxy Auto (`proxy`) | Leave-driven substitution suggestions by free period + subject fit; one-tap assign; notify substitute | P5 | Partial (C202; the substitute is told in the app) |
 | 11 | Homework (`homework`) | Set with photo/attachment, due dates, completion by parent reply, class completion stats | P2 | Planned |
 | 12 | Homework Recovery (`recovery`) | Spec v0: detects students missing ≥N homework in a window, suggests a catch-up plan, teacher approves, parent informed via Pulse | P2 | Spec v0 |
-| 13 | Exams & Report Card (`exams`) | Exam setup, marks entry with validation, grading, report card PDF (templates), publish, Personal Best / Most Improved | P6 | Foundation |
+| 13 | Exams & Report Card (`exams`) | Exam setup, marks entry with validation, grading, report card PDF (templates), publish, Personal Best / Most Improved | P6 | Partial (boards and scheme builder, exams and marks entry, publish and report cards: C213 to C215) |
 | 14 | Daily Pulse (`pulse`) | Compose from "taught today", Hinglish/Hindi/English, send on WhatsApp, 3–4 understanding replies, teacher follow-up queue, response-rate North Star | P2 compose · P4 send | Foundation |
 | 15 | Communication (`communication`) | Notices (school/class), templates, send-gate (consent, quiet hours, budget), delivery states, failure retry, cost view | P4 | Partial |
 | 16 | PTM Scheduler (`ptm`) | Slots per teacher, parent booking over WhatsApp, reminders, attendance, notes | P4 | Partial (P4) |
@@ -108,9 +108,9 @@ page until the module is built.
 | 21 | Documents & Certificates (`documents`) | ID cards, 7 certificate types (studio exists), request → fee-clearance/waiver → PDF → WhatsApp delivery → audit | P7 | Partial |
 | 22 | Compliance Pro · APAAR (`compliance`) | Consent ledger, audit trail, DSR (live); APAAR ID capture/validation, UDISE+ data readiness report, Form 6 fee-regulation advisory | P7 | Partial |
 | 23 | Reports (`reports`) | Report builder across modules, scheduled reports by email/WhatsApp, CSV/PDF export | P5 | Partial (fixed reports by role with CSV: C207) |
-| 24 | Early Warning (`early-warning`) | Attendance + marks + homework + Pulse signals → flags with their reasons and evidence (never a score); teacher/principal action log; parent dispatch gated by legal basis | P5 v1 · P6 v2 | Partial (v1, staff only, table `early_warning_flags`: C209) |
-| 25 | Learning Genome (`learning-genome`) | Spec v0: per-student skill map by subject/chapter from marks, Pulse replies and homework; strengths/gaps; shown to teachers, summarised to parents | P6 | Spec v0 |
-| 26 | Curriculum Gap Detector (`curriculum-gap`) | Spec v0: planned syllabus vs "taught today" vs assessed topics → flags untaught or unassessed chapters per class | P6 | Spec v0 |
+| 24 | Early Warning (`early-warning`) | Attendance + marks + homework + Pulse signals → flags with their reasons and evidence (never a score); teacher/principal action log; parent dispatch gated by legal basis | P5 v1 · P6 v2 | Partial (v2: marks join, rule version 2: C218; nightly: C210) |
+| 25 | Learning Genome (`learning-genome`) | Spec v0: per-student skill map by subject/chapter from marks, Pulse replies and homework; strengths/gaps; shown to teachers, summarised to parents | P6 | Partial (v1, staff only: C217) |
+| 26 | Curriculum Gap Detector (`curriculum-gap`) | Spec v0: planned syllabus vs "taught today" vs assessed topics → flags untaught or unassessed chapters per class | P6 | Partial (v1: C216) |
 | 27 | Teacher Copilot (`teacher-copilot`) | Spec v0: AI drafts lesson plans, worksheets, Pulse messages and remarks from the syllabus; teacher edits and approves; usage metered | P2 | Spec v0 |
 | 28 | Parent AI · What to Do? (`parent-ai`) | Spec v0: weekly "what to do at home" suggestions per child from the Pulse and marks, in the family's language; teacher-reviewed templates | P4 | Partial (P4) |
 | 29 | School Health Auditor (`school-auditor`) | Checks across attendance, timetable, fees, communication, complaints and staff with the reason for each and a fix list; "N of M checks pass", never a score (C208) | P5 | Partial (v1: twelve rule checks, run when the office asks: C208) |
