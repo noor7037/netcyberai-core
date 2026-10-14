@@ -65,6 +65,7 @@ describe('the guides', () => {
       // p6-9c begin
       // p6-9c end
       // p6-9d begin
+      'find-curriculum-gaps',
       // p6-9d end
       // p6-9e begin
       // p6-9e end

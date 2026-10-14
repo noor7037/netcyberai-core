@@ -1206,6 +1206,32 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   // p6-9c begin
   // p6-9c end
   // p6-9d begin
+  {
+    slug: 'find-curriculum-gaps',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'See which units were taught, assessed or skipped', hi: 'देखें कौन-सी इकाइयाँ पढ़ाई गईं, जाँची गईं या छूट गईं' },
+    summary: {
+      en: 'For a class and a subject, every unit of the syllabus map is shown once with its state: taught and assessed, taught but not assessed, assessed before it was taught, skipped, or not taught yet, and the days it rests on.',
+      hi: 'किसी कक्षा और विषय के लिए पाठ्यक्रम के नक्शे की हर इकाई एक बार अपनी स्थिति के साथ दिखती है: पढ़ाई और जाँची गई, पढ़ाई पर जाँची नहीं गई, पढ़ाने से पहले जाँची गई, छूट गई, या अभी नहीं पढ़ाई गई, और वे दिन जिन पर यह टिकी है।',
+    },
+    steps: [
+      { en: 'Open “Curriculum Gap Detector” from the menu. A teacher sees their own classes; the principal, the school admin and the academic coordinator can choose any class.', hi: 'मेनू से “Curriculum Gap Detector” खोलें। शिक्षक को अपनी कक्षाएँ दिखती हैं; प्रिंसिपल, स्कूल एडमिन और एकेडमिक कोऑर्डिनेटर कोई भी कक्षा चुन सकते हैं।' },
+      { en: 'Choose the class under “Class” and the subject under “Subject”. A subject marked “no syllabus map yet” has no map for that class.', hi: '“Class” में कक्षा और “Subject” में विषय चुनें। जिस विषय पर “no syllabus map yet” लिखा है, उसका उस कक्षा के लिए कोई नक्शा नहीं है।' },
+      { en: 'The counts at the top say how many units are in each state. Below them, every unit of the syllabus map is listed once, in the map’s order, with its state.', hi: 'ऊपर की गिनती बताती है कि हर स्थिति में कितनी इकाइयाँ हैं। उसके नीचे पाठ्यक्रम के नक्शे की हर इकाई एक बार, नक्शे के क्रम में, अपनी स्थिति के साथ दिखती है।' },
+      { en: 'Under each unit are the days its state rests on: when it was taught, and the exam papers that assess it with their dates. “How each state is decided” gives the rule.', hi: 'हर इकाई के नीचे वे दिन हैं जिन पर उसकी स्थिति टिकी है: वह कब पढ़ाई गई, और कौन-से परीक्षा पेपर उसे जाँचते हैं, उनकी तारीख़ों के साथ। “How each state is decided” नियम बताता है।' },
+      { en: 'If the page says “Not set up”, the class has no syllabus map for that subject yet. Press “Open Taught today” and add the chapters and topics under “Syllabus map”.', hi: 'अगर पेज पर “Not set up” लिखा है, तो उस कक्षा का उस विषय के लिए अभी कोई नक्शा नहीं है। “Open Taught today” दबाएँ और “Syllabus map” के नीचे अध्याय और विषय-बिंदु जोड़ें।' },
+      { en: 'To close a gap, record the lesson in “Taught today”, or have the unit ticked under “Chapters this paper assesses” on the exam paper. The page shows the new state the next time it opens.', hi: 'किसी छूटे हिस्से को पूरा करने के लिए “Taught today” में पाठ दर्ज करें, या परीक्षा पेपर में “Chapters this paper assesses” के नीचे इकाई पर निशान लगवाएँ। अगली बार खुलने पर पेज नई स्थिति दिखाता है।' },
+    ],
+    tips: [
+      { en: '“Skipped” means never taught while a unit after it in the map was taught. “Assessed before it was taught” means the unit is on a paper and was not taught before the paper’s date.', hi: '“Skipped” का मतलब है कभी नहीं पढ़ाई गई, जबकि नक्शे में उसके बाद की कोई इकाई पढ़ाई जा चुकी है। “Assessed before it was taught” का मतलब है इकाई किसी पेपर में है और पेपर की तारीख़ से पहले नहीं पढ़ाई गई।' },
+      { en: 'Only lessons marked “Taught” count. A lesson marked partly taught, delayed or not taught does not.', hi: 'सिर्फ़ “Taught” दर्ज पाठ गिने जाते हैं। कुछ पढ़ाया, टल गया या नहीं पढ़ाया दर्ज पाठ नहीं गिने जाते।' },
+      { en: 'Nothing here ranks a class or a teacher, and nothing is sent to parents. The states are worked out by fixed rules from what is recorded, each time the page opens.', hi: 'यहाँ किसी कक्षा या शिक्षक की रैंक नहीं बनती, और अभिभावकों को कुछ नहीं भेजा जाता। स्थितियाँ दर्ज जानकारी से तय नियमों के हिसाब से, हर बार पेज खुलने पर निकाली जाती हैं।' },
+    ],
+    start: { href: '/app/curriculum-gap', label: { en: 'Curriculum Gap Detector', hi: 'पाठ्यक्रम में छूटे हिस्से (Curriculum Gap Detector)' } },
+    related: ['taught-today', 'enter-exam-marks'],
+    keywords: ['curriculum', 'gap', 'gaps', 'syllabus', 'syllabus map', 'skipped', 'not taught', 'assessed', 'untaught', 'chapter', 'unit', 'pathyakram', 'पाठ्यक्रम', 'छूटे', 'इकाई', 'अध्याय'],
+  },
   // p6-9d end
   // p6-9e begin
   // p6-9e end

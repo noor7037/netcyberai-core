@@ -152,7 +152,8 @@ const ROWS: readonly Row[] = [
     capabilities: ['Attendance, marks, homework and Pulse signals', 'Flags with their reasons and evidence, never a score', 'Action log', 'Parent dispatch gated by legal basis'] },
   { id: 'learning-genome', label: 'Learning Genome', group: 'ai-intelligence', icon: 'genome', roles: LEARNING_AI, phase: 'P6', status: 'spec-v0',
     capabilities: ['Per-student skill map by subject and chapter', 'Strengths and gaps', 'Shown to teachers, summarised to parents'] },
-  { id: 'curriculum-gap', label: 'Curriculum Gap Detector', group: 'ai-intelligence', icon: 'curriculumGap', roles: LEARNING_AI, phase: 'P6', status: 'spec-v0',
+  // The office and the coordinator read every class; a teacher their own classes, which the database decides (C216).
+  { id: 'curriculum-gap', label: 'Curriculum Gap Detector', group: 'ai-intelligence', icon: 'curriculumGap', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P6', phaseNote: 'For a class and subject, each unit of the syllabus map as taught and assessed, taught but not assessed, assessed before it was taught, skipped or not taught yet, with the days it rests on and a count of each, is live; rules only', status: 'partial',
     capabilities: ['Planned vs taught vs assessed', 'Flags untaught or unassessed chapters per class'] },
   { id: 'teacher-copilot', label: 'Teacher Copilot', group: 'ai-intelligence', icon: 'copilot', roles: TEACHING, phase: 'P2', phaseNote: 'Built on a stand-in (v1); off for every school until the founder sets a key and a monthly limit', status: 'foundation',
     capabilities: ['Drafts lesson plans, worksheets, Pulse messages and remarks', 'Teacher edits and approves', 'Usage metered'] },
