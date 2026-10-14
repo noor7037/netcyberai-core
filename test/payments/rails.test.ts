@@ -143,6 +143,8 @@ describe('on the real schema', () => {
     }
     // The audit row says what was saved, by whom and why: the last four characters only.
     expect((await db.pg.query(`select after_state from audit_log where school_id = $1 and event_action = 'payments.credentials_saved' order by audit_id desc limit 1`, [A])).rows[0].after_state).toEqual({ provider: 'razorpay', mode: 'live', keyLast4: '0002', from: 'control', reasoned: true }); // never a reason's words (C224)
+    // Review of C224: the founder's words from Control are kept where only the founder reads them (C124); a school's own save gives none.
+    expect((await db.pg.query(`select r.reason from entitlement_change_reasons r join audit_log a on a.audit_id = r.audit_id where a.school_id = $1 and a.event_action = 'payments.credentials_saved' order by a.audit_id`, [A])).rows.map((r: { reason: string }) => r.reason)).toEqual(['Entered for the school at its request', 'Rotated']);
     // The files that handle keys write no log line at all, and the routes answer with the saved metadata only.
     for (const f of ['src/lib/payments/credentials.ts', 'src/lib/payments/setup.ts', 'src/app/api/app/fees/payment-setup/route.ts', 'src/app/api/control/schools/[schoolId]/payments/route.ts']) {
       const text = readFileSync(path.resolve(__dirname, '../..', f), 'utf8');

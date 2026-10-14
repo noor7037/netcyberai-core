@@ -257,6 +257,8 @@ describe('a school’s subscription records its period', () => {
     expect(await platform((c) => setBillingPeriod(c, by, G, { period: 'month', reason: 'the school pays each month' }))).toEqual({ ok: true, period: 'month' });
     expect(await rows(`select billing_period from school_subscriptions where school_id = $1`, [G])).toEqual([{ billing_period: 'month' }]);
     expect(await rows(`select before_state, after_state, actor_user_id from audit_log where school_id = $1 and event_action = 'billing.terms.period_changed'`, [G])).toEqual([{ before_state: { billing_period: null }, after_state: { billing_period: 'month', reasoned: true }, actor_user_id: FOUNDER }]); // never a reason's words (C224)
+    // Review of C224: the founder's words are kept where only the founder reads them (C124).
+    expect(await rows(`select r.reason from entitlement_change_reasons r join audit_log a on a.audit_id = r.audit_id where a.school_id = $1 and a.event_action = 'billing.terms.period_changed'`, [G])).toEqual([{ reason: 'the school pays each month' }]);
     await expect(db.pg.query(`update school_subscriptions set billing_period = 'quarter' where school_id = $1`, [G])).rejects.toThrow(/check constraint/);
     // The school's own session reads its own row (8e), and so its period; it cannot change it.
     expect(await as(principalG, async (c) => (await c.query(`select billing_period from school_subscriptions`)).rows)).toEqual([{ billing_period: 'month' }]);

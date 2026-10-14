@@ -4338,6 +4338,7 @@ export const hi: Record<keyof typeof en, string> = {
   'students.import.columns': 'Columns: name (ज़रूरी), admission_no, class_name (जैसा यहाँ कक्षा का नाम है, ठीक वैसा), roll_no, dob (YYYY-MM-DD रूप में) और gender (male, female या transgender, जैसा आधार पर छपा है; पता न हो तो खाली छोड़ें)। हर बच्चा सहमति की प्रतीक्षा से शुरू होता है। वही फ़ाइल दोबारा upload करना सुरक्षित है: कोई दो बार नहीं जुड़ता। वैकल्पिक guardian_phone और guardian_email columns केवल यहाँ पहले से मौजूद भाई-बहन सुझाते हैं; आपकी पुष्टि के बिना कुछ नहीं जुड़ता।',
   // c224 end
   // c225 begin
+  'rtd.csv.writtenOff': 'बट्टे खाते में (₹)',
   'set.fees.rte_claim_heads.label': 'RTE दावे में गिने जाने वाले फ़ीस मद',
   'set.fees.rte_claim_heads.help': 'स्कूल की कौन-सी फ़ीसें मिलकर वह फ़ीस बनती हैं जिससे RTE दावे की तुलना होती है। एक बार ली जाने वाली फ़ीस, जैसे दाख़िला फ़ीस, कभी नहीं गिनी जाती। अपने राज्य की अधिसूचना देखें। पहले से बने दावे अपनी फ़ीस रखते हैं।',
   'set.fees.rte_claim_heads.option.rte_covered': 'हर नियमित मद जो RTE बच्चा नहीं देता',

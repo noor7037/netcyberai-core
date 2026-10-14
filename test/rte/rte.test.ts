@@ -441,13 +441,24 @@ describe('on the real schema', () => {
 
   it('the claim sheet as a CSV, to the rupee: what was paid and what is still due, with a total', async () => {
     const file = rteSheetCsv('en', await desk(accountant, Y_THIS));
-    expect(file.header).toEqual(['Child', 'Admission no.', 'Class', 'School fee for the year (₹)', 'State rate (₹)', 'Claim (₹)', 'Paid by the state (₹)', 'Still due (₹)', 'Claimed at', 'State', 'Raised on', 'Paid on', 'Reference', 'Evidence']);
+    expect(file.header).toEqual(['Child', 'Admission no.', 'Class', 'School fee for the year (₹)', 'State rate (₹)', 'Claim (₹)', 'Paid by the state (₹)', 'Still due (₹)', 'Written off (₹)', 'Claimed at', 'State', 'Raised on', 'Paid on', 'Reference', 'Evidence']);
     const byName = Object.fromEntries(file.rows.map((r) => [r[0], r]));
-    expect(byName.Asha).toEqual(['Asha', 'A-1', '5-A', '19351.50', '12500.00', '12500.00', '0.00', '12500.00', 'The state rate', 'Raised', THIS.start, '', '', 1]);
-    expect(byName.Bina.slice(5, 13)).toEqual(['11000.00', '11000.00', '0.00', 'The state rate', 'Paid', THIS.start, THIS.start, 'PFMS/HR/0070; PFMS/HR/0071']);
+    expect(byName.Asha).toEqual(['Asha', 'A-1', '5-A', '19351.50', '12500.00', '12500.00', '0.00', '12500.00', '', 'The state rate', 'Raised', THIS.start, '', '', 1]);
+    expect(byName.Bina.slice(5, 14)).toEqual(['11000.00', '11000.00', '0.00', '', 'The state rate', 'Paid', THIS.start, THIS.start, 'PFMS/HR/0070; PFMS/HR/0071']);
     // Gita, in 6-A now, is ready to raise at 11,000: the sheet counts her proposed claim too.
-    expect(file.rows[file.rows.length - 1]).toEqual(['Total', '', '', '', '', '45500.00', '11000.00', '23500.00', '', '', '', '', '', '']);
+    expect(file.rows[file.rows.length - 1]).toEqual(['Total', '', '', '', '', '45500.00', '11000.00', '23500.00', '0.00', '', '', '', '', '', '']);
     expect(rteSheetCsv('hi', await desk(accountant, Y_THIS)).header[6]).toBe('राज्य ने दिया (₹)');
+    // Review of C225: last year has a claim paid in part and the rest written off. The totals add up: for the claims
+    // raised, the claim total is what was paid, written off and still due.
+    const last = rteSheetCsv('en', await desk(accountant, Y_LAST));
+    const rowsLast = last.rows.slice(0, -1);
+    const sum = (i: number) => rowsLast.reduce((n, r) => n + Math.round(Number(r[i] || 0) * 100), 0);
+    const totalRow = last.rows[last.rows.length - 1];
+    expect(rowsLast.some((r) => r[10] === 'Written off' && Number(r[8]) > 0 && Number(r[6]) > 0)).toBe(true);
+    expect([5, 6, 7, 8].map((i) => Math.round(Number(totalRow[i]) * 100))).toEqual([5, 6, 7, 8].map(sum));
+    const raised = rowsLast.filter((r) => r[10] !== 'Not raised');
+    const minor = (v: unknown) => Math.round(Number(v || 0) * 100);
+    for (const r of raised) expect(minor(r[5]), String(r[0])).toBe(minor(r[6]) + minor(r[7]) + minor(r[8]));
   });
 
   it('My Day: the three roles see the claims unpaid past the first bucket, and nobody does on a plan without the desk', async () => {
@@ -505,5 +516,21 @@ describe('on the real schema', () => {
     }).catch((e: { failed?: string }) => e.failed);
     expect(outcome).toMatch(/rte_evidence\.note \(1 rows\)/);
     expect((await db.pg.query(`select count(*)::int as n from pg_constraint where conname = 'rte_evidence_note_check'`)).rows[0].n).toBe(1);
+  });
+  it('review of C225: a head retired since still counts in the months a year’s structure charged it, and is no longer named', async () => {
+    const NEW = u(79);
+    await db.pg.query(`insert into students (student_id, school_id, admission_no, name, class_id, status, rte_admission, rte_entry_class, rte_admitted_on) values ($1, $2, 'A-9', 'Hema', $3, 'pending_consent', true, '5-A', '2026-04-02')`, [NEW, A, C5]);
+    const fee = async () => child(await desk(accountant, Y_THIS), NEW).proposed?.fee_minor;
+    const was = await fee();
+    // Tuition 3 x 1,500.50 + 9 x 1,650 and activity 12 x 100, as for Asha (the default: every recurring head an RTE child does not pay).
+    expect(was).toBe(2055150);
+    const activity = (await db.pg.query(`select head_id from fee_heads where school_id = $1 and lower(name) = 'activity'`, [A])).rows[0].head_id;
+    await db.pg.query(`update fee_heads set is_active = false where head_id = $1`, [activity]);
+    try {
+      expect(await fee()).toBe(was);
+      expect((await desk(accountant, Y_THIS)).counting.heads).toEqual(['Tuition']);
+    } finally {
+      await db.pg.query(`update fee_heads set is_active = true where head_id = $1`, [activity]);
+    }
   });
 });

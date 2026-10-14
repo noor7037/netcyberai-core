@@ -4342,6 +4342,7 @@ export const en = {
   'students.import.columns': 'Columns: name (needed), admission_no, class_name (as a class is named here, exactly), roll_no, dob (as YYYY-MM-DD) and gender (male, female or transgender, as Aadhaar prints it; leave it empty if not known). Every child starts as waiting for consent. Uploading the same file again is safe: nobody is added twice. Optional guardian_phone and guardian_email columns only suggest brothers and sisters already here; nothing is linked until you confirm.',
   // c224 end
   // c225 begin
+  'rtd.csv.writtenOff': 'Written off (₹)',
   'set.fees.rte_claim_heads.label': 'Fee heads counted in an RTE claim',
   'set.fees.rte_claim_heads.help': 'Which of the school’s fees make up the fee an RTE claim is compared with. A one-time fee, such as an admission fee, is never counted. Check your state’s notification. Claims already raised keep their fee.',
   'set.fees.rte_claim_heads.option.rte_covered': 'Every recurring head an RTE child does not pay',

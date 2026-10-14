@@ -2,10 +2,11 @@
 --
 -- 0. public.no_aadhaar_number(text) is redefined as the one rule, the twin of src/lib/privacy/aadhaar.ts (both run on
 --    test/fixtures/aadhaar-cases.ts). Devanagari digits are digits. A NUMBER is a run of digits with runs of spaces or
---    hyphens allowed between its groups. A text is refused when a number has twelve digits in all, or a group of
---    exactly twelve digits, or three groups of exactly four digits in a row (Aadhaar's printed form). A number written
---    with "+" straight before it is a phone with its country code: the first two do not apply to it, the third does.
---    So a longer bank UTR passes, a twelve-digit number standing alone is refused, "1234 5678 9012 3456" is refused.
+--    hyphens allowed between its groups. A text is refused when a number has twelve digits in all in groups of at
+--    least three digits each, or a group of exactly twelve digits, or three groups of exactly four digits in a row
+--    (Aadhaar's printed form). A number written with "+" straight before it, of at most fifteen digits, is a phone with
+--    its country code: the first two do not apply to it, the third does. So a longer bank UTR passes, dates and school
+--    years pass, a twelve-digit number standing alone is refused, "1234 5678 9012 3456" is refused (review of C225).
 --    A check that calls the function is not checked again when the function changes, so step 1 first counts, for
 --    every column of every table that uses the rule (the data check, admissions and the RTE desk), the rows the new
 --    rule would refuse, and stops the migration naming each table and column if there is any.
@@ -59,7 +60,7 @@ begin
   for m in select regexp_matches(t, '(\+?)([0-9]+( +[0-9]+)*)', 'g') loop
     groups := array(select length(g) from unnest(regexp_split_to_array(m[2], ' +')) as g);
     total := (select sum(x) from unnest(groups) as x);
-    if m[1] = '' and (total = 12 or 12 = any (groups)) then
+    if (m[1] = '' or total > 15) and (12 = any (groups) or (total = 12 and 3 <= all (groups))) then
       return false;
     end if;
     for i in 1 .. coalesce(array_length(groups, 1), 0) - 2 loop
@@ -96,6 +97,7 @@ begin
       union all select 'rte_claims', 'reference', count(*) from rte_claims where not public.no_aadhaar_number(reference)
       union all select 'rte_claims', 'write_off_note', count(*) from rte_claims where not public.no_aadhaar_number(write_off_note)
       union all select 'rte_evidence', 'note', count(*) from rte_evidence where not public.no_aadhaar_number(note)
+      union all select 'attendance_change_reasons', 'reason', count(*) from attendance_change_reasons where not public.no_aadhaar_number(reason)
     ) counted
    where n > 0;
   if found is not null then

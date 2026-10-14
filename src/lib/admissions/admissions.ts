@@ -474,7 +474,9 @@ export async function deleteFamilyEnquiries(db: Sql, actor: Actor, phoneRaw: unk
   if (!Array.isArray(expected) || !expected.every((x) => typeof x === 'string')) return { ok: false, reason: 'changed' };
   if ([...new Set(expected as string[])].sort().join(',') !== now.join(',')) return { ok: false, reason: 'changed' };
   if (now.length === 0) return { ok: false, reason: 'nothing' };
-  const gone = (await db.query(`select deleted_enquiry, deleted_steps from public.delete_family_enquiries($1)`, [found.family.phone])).rows as { deleted_enquiry: string; deleted_steps: number }[];
+  // The database deletes exactly the list confirmed, under a lock, or nothing (the list changed in the meantime).
+  const gone = (await db.query(`select deleted_enquiry, deleted_steps from public.delete_family_enquiries($1, $2::uuid[])`, [found.family.phone, now])).rows as { deleted_enquiry: string; deleted_steps: number }[];
+  if (gone.length === 0) return { ok: false, reason: 'changed' };
   const enquiryIds = gone.map((g) => g.deleted_enquiry);
   const steps = gone.reduce((n, g) => n + Number(g.deleted_steps), 0);
   // Ids and counts only: never the phone, never a name.

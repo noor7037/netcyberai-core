@@ -19,11 +19,14 @@ import { describe, expect, it } from 'vitest';
 // so the list only ever shrinks.
 
 const ROOT = path.resolve(__dirname, '../..');
-const WRITERS = new Set(['writeAuditLog', 'writeEntitlementAudit']);
+const WRITERS = new Set(['writeAuditLog', 'writeEntitlementAudit', 'writeAttendanceAudit']);
 const PERSONAL = new Set(['name', 'names', 'phone', 'phones', 'mobile', 'email', 'dob', 'birth', 'address', 'note', 'notes', 'reason', 'reasons', 'why', 'text', 'message', 'body', 'details', 'title', 'reference', 'comment', 'description', 'summary', 'remark', 'remarks', 'outcome', 'narration', 'utr', 'aadhaar']);
 
 // file -> problem -> why it is not personal data. Problems are "key:<key>", "value:<key>" or "opaque:<expression>".
 const ALLOWED: Record<string, Record<string, string>> = {
+  'src/lib/audit/log.ts': {
+    'opaque:entry': 'writeAttendanceAudit passes its entry on to writeAuditLog when no words were given; that entry is checked at each call of writeAttendanceAudit, which is in WRITERS (review of C224)',
+  },
   'src/app/api/app/classes/route.ts': { 'opaque:row': 'a class as made: its id, name (5-A), grade, section, session and class teacher’s id' },
   'src/app/api/app/subjects/route.ts': { 'opaque:row': 'a subject as made: its id and name (Mathematics)' },
   'src/app/api/app/subjects/assignments/route.ts': { 'opaque:a': 'three ids: the teacher, the subject and the class' },

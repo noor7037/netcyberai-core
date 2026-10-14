@@ -1,6 +1,6 @@
 import type { PoolClient } from 'pg';
 import type { StaffRole } from '@/lib/auth/types';
-import { writeAuditLog } from '@/lib/audit/log';
+import { writeAttendanceAudit, writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected } from '@/lib/db/rows';
 import { jobQueue } from '@/lib/jobs/pg-queue';
 import { queueWhatsAppMessage } from '@/lib/whatsapp/gate';
@@ -337,7 +337,9 @@ export async function correctAttendance(
     await notifyGuardiansOfAbsence(client, { schoolId: params.schoolId, attendanceId: params.attendanceId, studentId: before.student_id });
   }
 
-  await writeAuditLog(client, {
+  // The note's words go beside the audit row (attendance_change_reasons), never into it (C224).
+  const note = params.note?.trim() ?? '';
+  await writeAttendanceAudit(client, {
     schoolId: params.schoolId,
     actorUserId: params.actorUserId,
     actorRole: params.actorRole,
@@ -346,7 +348,7 @@ export async function correctAttendance(
     targetId: params.attendanceId,
     beforeState: { status: before.status },
     afterState: { status: params.newStatus, noted: Boolean(params.note?.trim()) }, // never the note's words (C224)
-  });
+  }, note ? { studentId: before.student_id, reason: note } : null);
 
   return result.rows[0];
 }
@@ -401,7 +403,8 @@ export async function officeCorrectAttendance(
     : await client.query(`insert into attendance (school_id, class_id, date, student_id, status, leave_code, marked_by) values ($1, $2, $3, $4, $5, $6, $7) returning attendance_id`, [actor.schoolId, student.class_id, params.date, params.studentId, params.status, leaveCode, actor.userId]);
   assertRowsAffected(saved, 'office attendance correction affected 0 rows -- RLS likely denied it silently');
   const attendanceId = saved.rows[0].attendance_id as string;
-  await writeAuditLog(client, {
+  // The reason's words go beside the audit row (attendance_change_reasons), never into it (C224).
+  await writeAttendanceAudit(client, {
     schoolId: actor.schoolId,
     actorUserId: actor.userId,
     actorRole: actor.role,
@@ -409,8 +412,8 @@ export async function officeCorrectAttendance(
     targetType: 'attendance',
     targetId: attendanceId,
     beforeState: before ? { status: before.status, leaveCode: before.leave_code } : null,
-    afterState: { status: params.status, leaveCode, date: params.date, reasoned: true }, // never the reason's words (C224)
-  });
+    afterState: { status: params.status, leaveCode, date: params.date, reasoned: true },
+  }, { studentId: params.studentId, reason });
   return { ok: true, attendanceId, entered: !before };
 }
 
