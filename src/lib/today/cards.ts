@@ -512,6 +512,18 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   },
   // p7-10b end
   // p7-10c begin
+  {
+    // RTE claims raised with the state and still unpaid past the free tool's first age bucket (C223), for the three
+    // roles that keep the RTE claim desk: a follow-up with the education office. Counted with the desk's own rule
+    // (the free tool's ageBucket), so the card and the desk agree. Gone once each is paid or written off.
+    type: 'rte-claims-unpaid',
+    moduleId: 'fees',
+    roles: ['principal', 'school_admin', 'accountant'],
+    async load(db, ctx) {
+      const { unpaidPastFirstBucket } = await import('@/lib/rte/desk');
+      return waiting('rte-claims-unpaid', 'fees', await unpaidPastFirstBucket(db as never, ctx.schoolId), '/app/fees/rte');
+    },
+  },
   // p7-10c end
   // p7-10d begin
   // p7-10d end

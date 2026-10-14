@@ -83,6 +83,7 @@ describe('the guides', () => {
       'student-data-check',
       // p7-10b end
       // p7-10c begin
+      'claim-rte-reimbursement',
       // p7-10c end
       // p7-10d begin
       // p7-10d end

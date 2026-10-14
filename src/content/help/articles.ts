@@ -1371,6 +1371,31 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p7-10b end
   // p7-10c begin
+  {
+    slug: 'claim-rte-reimbursement',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Claim RTE reimbursement from the state', hi: 'राज्य से RTE प्रतिपूर्ति का दावा करें' },
+    summary: {
+      en: 'For each child admitted under RTE, the year’s claim is the lower of the state’s per-child rate and the school’s fee for the child’s class. Keep each child’s evidence, raise the claims, mark them paid, and see what is still unpaid. For the principal, the school admin and the accountant.',
+      hi: 'RTE के तहत दाख़िल हर बच्चे के लिए साल का दावा राज्य की प्रति बच्चा दर और बच्चे की कक्षा की स्कूल फ़ीस में से जो कम हो, वह है। हर बच्चे के सबूत रखें, दावे बनाएँ, भुगतान दर्ज करें, और देखें कि क्या अभी बकाया है। प्रिंसिपल, स्कूल एडमिन और अकाउंटेंट के लिए।',
+    },
+    steps: [
+      { en: 'First mark each child admitted under RTE: on the Fees page, under “RTE admissions”, press “Mark as RTE”. Then open the RTE claim desk from the Fees page.', hi: 'पहले RTE के तहत दाख़िल हर बच्चे को दर्ज करें: फ़ीस पेज पर “RTE admissions” में “Mark as RTE” दबाएँ। फिर फ़ीस पेज से RTE दावा डेस्क खोलें।' },
+      { en: 'Choose the “School year”. Type the “State rate per child (₹)” from your state’s notification and, under “Where this rate comes from”, its number, date or link. Press “Save the rate”. A new rate later replaces it; claims already raised keep theirs.', hi: '“School year” चुनें। अपने राज्य की अधिसूचना से “State rate per child (₹)” लिखें और “Where this rate comes from” में उसका नंबर, तारीख़ या लिंक। “Save the rate” दबाएँ। बाद की नई दर इसकी जगह लेती है; पहले से बने दावे अपनी दर रखते हैं।' },
+      { en: 'Each child shows the school fee for the year (the fee heads RTE covers, from the class’s fee structure), the state rate, and the claim, which is the lower of the two. Choose the day under “Raised on”, then press “Raise the claim” for a child, or “Raise every ready claim”.', hi: 'हर बच्चे के लिए साल की स्कूल फ़ीस (कक्षा के फ़ीस ढाँचे से, RTE में आने वाले मद), राज्य की दर, और दावा दिखता है, जो दोनों में से कम है। “Raised on” में दिन चुनें, फिर किसी बच्चे के लिए “Raise the claim” या “Raise every ready claim” दबाएँ।' },
+      { en: 'When the state pays, press “Mark paid”, choose the day the money came and type “The state’s reference”. If it will not be paid, press “Write off” and say why under “Why it is written off”.', hi: 'जब राज्य भुगतान करे, “Mark paid” दबाएँ, पैसा आने का दिन चुनें और “The state’s reference” लिखें। अगर भुगतान नहीं होगा, “Write off” दबाएँ और “Why it is written off” में कारण लिखें।' },
+      { en: 'Open a child’s evidence and press “Add evidence”: choose “What it is”, then one of the child’s captured documents under “A captured document”, or type a note. Never type an Aadhaar number.', hi: 'बच्चे के सबूत खोलें और “Add evidence” दबाएँ: “What it is” चुनें, फिर “A captured document” में बच्चे का कोई स्कैन किया दस्तावेज़ चुनें, या नोट लिखें। कभी आधार नंबर न लिखें।' },
+      { en: 'Press “Download the claim sheet (CSV)” for the year’s sheet to file with the education office. “Unpaid claims by age” shows, year by year, each claim still unpaid by how long ago it was raised.', hi: 'शिक्षा कार्यालय में जमा करने के लिए साल की शीट पाने को “Download the claim sheet (CSV)” दबाएँ। “Unpaid claims by age” साल-दर-साल हर बकाया दावा दिखाता है, इस हिसाब से कि वह कितने समय पहले बना।' },
+    ],
+    tips: [
+      { en: 'No claim can be raised without the year’s state rate, and a child is claimed once a year. The amount is worked out by the rule; it is never typed.', hi: 'साल की राज्य की दर के बिना कोई दावा नहीं बनता, और एक बच्चे का दावा साल में एक बार बनता है। राशि नियम से निकलती है; इसे कभी लिखा नहीं जाता।' },
+      { en: 'The desk prepares the claim. It does not file it: file it on your state’s RTE portal or with the education office, and check every figure against the state’s notification.', hi: 'डेस्क दावा तैयार करता है। यह उसे जमा नहीं करता: इसे अपने राज्य के RTE पोर्टल पर या शिक्षा कार्यालय में जमा करें, और हर आँकड़ा राज्य की अधिसूचना से मिलाएँ।' },
+    ],
+    start: { href: '/app/fees/rte', label: { en: 'RTE claim desk', hi: 'RTE दावा डेस्क' } },
+    related: ['fee-structures', 'raise-fee-dues'],
+    keywords: ['rte', 'right to education', 'reimbursement', 'claim', 'state rate', '12(1)(c)', 'section 12', 'evidence', 'lottery', 'admission order', 'unpaid', 'ageing', 'pratipurti', 'प्रतिपूर्ति', 'दावा', 'आरटीई', 'सबूत'],
+  },
   // p7-10c end
   // p7-10d begin
   // p7-10d end

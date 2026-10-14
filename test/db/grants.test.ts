@@ -200,6 +200,9 @@ const APP_USER: Record<string, string> = {
   data_check_requests: 'INSERT,SELECT,UPDATE', // never removed: a request is corrected or closed
   // p7-10b end
   // p7-10c begin
+  rte_rates: 'INSERT,SELECT', // a new rate replaces the year's rate; none is changed or removed (C223)
+  rte_claims: 'INSERT,SELECT,UPDATE', // raised, then paid or written off once (trigger); never removed
+  rte_evidence: 'DELETE,INSERT,SELECT', // a wrong piece of evidence is removed, audited; never changed
   // p7-10c end
   // p7-10d begin
   // p7-10d end
@@ -322,6 +325,9 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   data_check_requests: '', // the reply is linked by a database function as the owner, never by the platform role
   // p7-10b end
   // p7-10c begin
+  rte_rates: '', // a school's RTE claims and the children's evidence are its own: the platform role reads nothing here (C223)
+  rte_claims: '',
+  rte_evidence: '',
   // p7-10c end
   // p7-10d begin
   // p7-10d end

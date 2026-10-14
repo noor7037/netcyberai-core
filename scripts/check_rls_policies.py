@@ -380,6 +380,10 @@ ALLOWED_PERMISSIVE = (
         ("data_check_requests", "data_check_requests_tenant_isolation"),
         # p7-10b end
         # p7-10c begin
+        # C223: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("rte_rates", "rte_rates_tenant_isolation"),
+        ("rte_claims", "rte_claims_tenant_isolation"),
+        ("rte_evidence", "rte_evidence_tenant_isolation"),
         # p7-10c end
         # p7-10d begin
         # p7-10d end
@@ -676,6 +680,16 @@ REQUIRED_RESTRICTIVE = {
     ("data_check_requests", "data_check_requests_decided_by_office"),
     # p7-10b end
     # p7-10c begin
+    # C223: the RTE claim desk is read and written by the principal, the school admin and the accountant only, in
+    # their own name; its audit rows by those three roles, or the person who acted.
+    ("rte_rates", "rte_rates_finance"),
+    ("rte_rates", "rte_rates_typed_as_self"),
+    ("rte_claims", "rte_claims_finance"),
+    ("rte_claims", "rte_claims_raised_as_self"),
+    ("rte_claims", "rte_claims_settled_as_self"),
+    ("rte_evidence", "rte_evidence_finance"),
+    ("rte_evidence", "rte_evidence_added_as_self"),
+    ("audit_log", "audit_rte_rows_finance_or_actor"),
     # p7-10c end
     # p7-10d begin
     # p7-10d end

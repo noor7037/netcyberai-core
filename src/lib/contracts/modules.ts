@@ -135,7 +135,7 @@ const ROWS: readonly Row[] = [
   { id: 'complaints', label: 'Complaints', group: 'parent-engagement', icon: 'complaints', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', phaseNote: 'Recording, owner, due time, notes, closing with a note and passing an overdue one to the principal are live; categories and intake straight from WhatsApp later', status: 'partial',
     capabilities: ['Intake from WhatsApp and web', 'Category', 'Owner', 'SLA timer', 'Status machine', 'Resolution note', 'Escalation to principal'] },
 
-  { id: 'fees', label: 'Fees', group: 'finance', icon: 'fees', roles: FINANCE, phase: 'P3', phaseNote: 'Structures, dues, concessions, RTE marks, counter payments and receipts are live; payment links and reminders next (email in P3, WhatsApp from P4)', status: 'partial',
+  { id: 'fees', label: 'Fees', group: 'finance', icon: 'fees', roles: FINANCE, phase: 'P3', phaseNote: 'Structures, dues, concessions, RTE marks and the RTE claim desk, counter payments and receipts are live; payment links and reminders next (email in P3, WhatsApp from P4)', status: 'partial',
     capabilities: ['Heads and structures', 'Concessions and scholarships', 'Late-fee rules', 'Ledger', 'Razorpay payment link and UPI QR', 'Receipts', 'Auto reminders', 'Reconciliation', 'Clearance gate'] },
   { id: 'payroll', label: 'Payroll', group: 'finance', icon: 'finance', roles: FINANCE, phase: 'P7', status: 'spec-v0',
     capabilities: ['Salary structures', 'Statutory rules as configuration', 'Monthly run state machine', 'Payslip PDF', 'Bank export', 'Loans and advances from Staff'] },

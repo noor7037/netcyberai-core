@@ -69,6 +69,7 @@ export const TODAY_CARD_TYPES = [
   'data-check-answers',
   // p7-10b end
   // p7-10c begin
+  'rte-claims-unpaid',
   // p7-10c end
   // p7-10d begin
   // p7-10d end

@@ -159,6 +159,7 @@ export function FeesDuesView() {
       <div data-dues className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
         <h2 className="text-base font-bold text-slate">{t('due.title')}</h2>
         <p className="text-sm text-slate/70">{t('due.how')}</p>
+        <a href="/app/fees/rte" data-rte-desk-link className="inline-flex min-h-[44px] items-center self-start text-sm font-semibold text-sapphire underline">{t('rtd.fromFees')}</a>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Select id="due-class" label={t('fee.class')} value={classId} onChange={(e) => setClassId(e.target.value)}>
             <option value="">{t('fee.class.choose')}</option>
