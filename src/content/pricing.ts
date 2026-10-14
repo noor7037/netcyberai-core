@@ -10,9 +10,9 @@ import type { Tone } from '@/lib/semantic';
 //              'confirmed' only when it is an approved commitment.
 //   gap        no evidence, or evidence against it; never published.
 //
-// Plan contents come from docs/04_SYSTEM_DESIGN_PRD.md §8.1 (module map
-// per tier); plan names follow the founder's 2026-09-27 instruction
-// (Free / Starter / Growth / Compass, Compass replacing Campus).
+// Plan names follow the founder's 2026-09-27 instruction (Free / Starter /
+// Growth / Compass, Compass replacing Campus). Prices and the module split
+// per plan: founder decision 2026-10-14 (Decision Log C198 addendum).
 
 export type ClaimStatus = 'confirmed' | 'proposed' | 'gap';
 
@@ -64,13 +64,22 @@ export const commercialClaims: CommercialClaim[] = [
     evidence: 'Existing pricing FAQ; plans gate modules via plan_modules feature flags (PRD §8).',
   },
   {
-    id: 'per-student-15',
-    title: 'Per-student price of fifteen rupees a month',
-    body: 'Simple per-student pricing.',
+    id: 'per-student-pricing',
+    title: 'Simple per-student pricing',
+    body: 'You pay for the students enrolled, monthly or yearly. Yearly billing gives you two months free.',
     icon: 'fees',
     tone: 'action',
-    status: 'proposed',
-    evidence: 'Founder request 2026-09-27. PRD §9 lists final ₹ pricing as a GAP. Not an approved commercial term yet.',
+    status: 'confirmed',
+    evidence: 'Founder decision (Noor), 2026-10-14, Decision Log C198 addendum: Starter, Growth and Compass priced per student, monthly or yearly at ten months for twelve.',
+  },
+  {
+    id: 'flexible-terms',
+    title: 'Terms that fit your school',
+    body: 'Larger schools and groups can agree a price, complimentary modules or a discount with us. Whatever is agreed is written into your school’s agreement.',
+    icon: 'link',
+    tone: 'trust',
+    status: 'confirmed',
+    evidence: 'Founder decision (Noor), 2026-10-14, Decision Log C198 addendum: per-school negotiated price, complimentary modules and discount, each recorded with a reason in Control.',
   },
   {
     id: 'first-month-free',
@@ -224,77 +233,127 @@ export interface Plan {
   id: 'free' | 'starter' | 'growth' | 'compass';
   name: string;
   forWhom: string;
+  // Rupees per enrolled student. Yearly is ten months for twelve.
+  // Source: founder decision (Noor), 2026-10-14, Decision Log C198 addendum.
+  price?: { monthly: number; yearly: number };
   highlights: string[];
   support: string;
   cta: { label: string; href: string };
   recommended?: boolean;
 }
 
+export const YEARLY_MONTHS_CHARGED = 10;
+
 export const plans: Plan[] = [
   {
     id: 'free',
     name: 'Free',
     forWhom: 'Any school, today, with no account',
-    highlights: ['Student Import Checker', 'Attendance Calculator', 'Fee reminder and parent update builders'],
+    highlights: ['Student Import Checker', 'Attendance Calculator', 'Fee reminder and parent update builders', 'Certificate studio'],
     support: 'Self-serve',
     cta: { label: 'Open the free tools', href: '/free-tools' },
   },
   {
     id: 'starter',
     name: 'Starter',
-    forWhom: 'Smaller schools going digital for the first time',
-    highlights: ['Student records and CSV import', 'Attendance with parent alerts', 'Fees and receipts', 'DPDP consent and reports'],
-    support: 'Email',
-    cta: { label: 'Get a quote', href: '#quote' },
+    forWhom: 'Every school’s daily essentials',
+    price: { monthly: 15, yearly: 15 * YEARLY_MONTHS_CHARGED },
+    highlights: [
+      'Student records, CSV import, document scan and QR ID cards',
+      'Attendance, homework and the teacher app',
+      'Fees: dues, concessions, RTE, receipts and reminders',
+      'UPI payments straight to your school’s own bank account',
+      'Notices, the Daily Learning Pulse and parent replies on WhatsApp',
+      'Guardians and DPDP consent',
+    ],
+    support: 'Email and WhatsApp',
+    cta: { label: 'Start your free month', href: '/start-pilot' },
   },
   {
     id: 'growth',
     name: 'Growth',
-    forWhom: 'The core NetCyberAI experience',
-    highlights: ['Everything in Starter', 'Daily Learning Pulse on WhatsApp', 'Personal Best recognition', 'Admissions, exams and report cards', 'Document scan, QR ID cards'],
+    forWhom: 'The complete school office and parent loop',
+    price: { monthly: 30, yearly: 30 * YEARLY_MONTHS_CHARGED },
+    highlights: [
+      'Everything in Starter',
+      'Principal dashboard where every number opens its list, and reports',
+      'Staff leave with substitute teachers suggested automatically',
+      'Parent–teacher meetings, events and complaints',
+      'A Parents screen for every guardian',
+      'Exams and report cards',
+    ],
     support: 'Email and WhatsApp',
-    cta: { label: 'Get a quote', href: '#quote' },
+    cta: { label: 'Start your free month', href: '/start-pilot' },
     recommended: true,
   },
   {
     id: 'compass',
     name: 'Compass',
-    forWhom: 'Established schools that want the full picture',
-    highlights: ['Everything in Growth', 'Weekly Confidence Brief', 'Private Teacher Impact Card', 'At-risk signals', 'Staff, leave and academic planning'],
+    forWhom: 'Schools that want the AI and early-warning layer',
+    price: { monthly: 50, yearly: 50 * YEARLY_MONTHS_CHARGED },
+    highlights: [
+      'Everything in Growth',
+      'Early Warning for students who need attention',
+      'School Health Auditor',
+      'Parent AI answers, approved by a teacher before sending',
+      'Personal Best recognition, Learning Genome and Curriculum Gap',
+      'Private Teacher Impact Card and Weekly Confidence Brief',
+    ],
     support: 'Priority',
-    cta: { label: 'Get a quote', href: '#quote' },
+    cta: { label: 'Start your free month', href: '/start-pilot' },
   },
 ];
 
-// Module comparison (PRD §8.1). `live` mirrors docs/12_CAPABILITY_MATRIX.md
-// so the table can say honestly which modules a school can use today.
+// Module comparison, with where each one stands today. Mirrors
+// src/content/module-status.ts and docs/12_CAPABILITY_MATRIX.md:
+//   now        a school can use it today
+//   whatsapp   built and tested; reaches parents once the school's
+//              WhatsApp is switched on (Meta approval)
+//   building   in development
+export type ModuleAvailability = 'now' | 'whatsapp' | 'building';
+
+export const AVAILABILITY_LABEL: Record<ModuleAvailability, string> = {
+  now: 'Available now',
+  whatsapp: 'Ready, starts with WhatsApp',
+  building: 'In development',
+};
+
 export interface ModuleRow {
   module: string;
-  live: boolean;
+  status: ModuleAvailability;
   in: Record<Plan['id'], boolean>;
 }
 
-const row = (module: string, live: boolean, free: boolean, starter: boolean, growth: boolean, compass: boolean): ModuleRow => ({
+const row = (module: string, status: ModuleAvailability, free: boolean, starter: boolean, growth: boolean, compass: boolean): ModuleRow => ({
   module,
-  live,
+  status,
   in: { free, starter, growth, compass },
 });
 
 export const moduleRows: ModuleRow[] = [
-  row('Free browser tools', true, true, true, true, true),
-  row('Student records and CSV import', true, false, true, true, true),
-  row('Attendance and absence alerts', true, false, true, true, true),
-  row('Guardians and DPDP consent', true, false, true, true, true),
-  row('Fees and receipts', false, false, true, true, true),
-  row('Reports', false, false, true, true, true),
-  row('Document scan with autofill', true, false, false, true, true),
-  row('QR ID cards', true, false, false, true, true),
-  row('Admissions pipeline', false, false, false, true, true),
-  row('Exams and report cards', false, false, false, true, true),
-  row('Daily Learning Pulse', false, false, false, true, true),
-  row('Personal Best recognition', false, false, false, true, true),
-  row('Weekly Confidence Brief', false, false, false, false, true),
-  row('Teacher Impact Card', false, false, false, false, true),
-  row('At-risk signals', false, false, false, false, true),
-  row('Staff and leave', false, false, false, false, true),
+  row('Free browser tools and certificate studio', 'now', true, true, true, true),
+  row('Student records, CSV import and QR ID cards', 'now', false, true, true, true),
+  row('Document scan with autofill', 'now', false, true, true, true),
+  row('Guardians and DPDP consent', 'now', false, true, true, true),
+  row('Attendance', 'now', false, true, true, true),
+  row('Homework and the teacher app', 'now', false, true, true, true),
+  row('Fees, concessions, RTE marks and receipts', 'now', false, true, true, true),
+  row('UPI payment to the school’s own account, checked against the bank', 'now', false, true, true, true),
+  row('Fee reminders by email', 'now', false, true, true, true),
+  row('Absence alerts and fee messages on WhatsApp', 'whatsapp', false, true, true, true),
+  row('Class notices with the principal’s approval', 'whatsapp', false, true, true, true),
+  row('Daily Learning Pulse and parent replies', 'whatsapp', false, true, true, true),
+  row('Principal dashboard and reports', 'now', false, false, true, true),
+  row('Staff leave and automatic cover', 'now', false, false, true, true),
+  row('Complaints with escalation to the principal', 'now', false, false, true, true),
+  row('Parents screen', 'now', false, false, true, true),
+  row('Parent–teacher meetings', 'whatsapp', false, false, true, true),
+  row('Events and invitations', 'whatsapp', false, false, true, true),
+  row('Exams and report cards', 'building', false, false, true, true),
+  row('Early Warning', 'now', false, false, false, true),
+  row('School Health Auditor', 'now', false, false, false, true),
+  row('Parent AI', 'building', false, false, false, true),
+  row('Personal Best recognition', 'building', false, false, false, true),
+  row('Learning Genome and Curriculum Gap', 'building', false, false, false, true),
+  row('Teacher Impact Card and Weekly Confidence Brief', 'building', false, false, false, true),
 ];

@@ -8,6 +8,7 @@ import {
   siteTagline,
   siteUrl,
 } from './site-config';
+import { plans } from '@/content/pricing';
 
 export const ogImageSize = { width: 1200, height: 630 } as const;
 
@@ -103,7 +104,7 @@ export const pageMeta = {
     path: '/pricing',
     title: 'Pricing',
     description:
-      'NetCyberAI pricing: Free, Starter, Growth and Compass plans compared module by module, with a custom quote for your school and pilot mode before you commit.',
+      'NetCyberAI pricing per student: Free tools, then Starter, Growth and Compass plans, monthly or yearly with two months free, compared module by module here.',
   },
   blog: {
     path: '/blog',
@@ -302,26 +303,25 @@ export function breadcrumbListJsonLd(page: { path: string; title: string }): Jso
   };
 }
 
-// Single source for pricing-tier copy: the /pricing page renders this
-// same array, so the visible cards and this structured data can never
-// drift apart. No `price` on any Offer — pricing is not set yet, and
-// an Offer without a price is valid schema, not an error.
+// Single source for pricing-tier copy in structured data. Prices are read
+// from src/content/pricing.ts (rupees per enrolled student per month), so
+// the visible cards and this data can never drift apart.
 export const pricingTiers = [
   {
     name: 'Free',
-    description: 'Free browser tools for any school: student import checker, attendance calculator, and fee reminder and parent update builders.',
+    description: 'Free browser tools for any school: student import checker, attendance calculator, certificate studio, and fee reminder and parent update builders.',
   },
   {
     name: 'Starter',
-    description: 'Student records, attendance with parent alerts, fees and receipts, DPDP consent and reports for smaller schools.',
+    description: 'Student records, attendance, homework, fees with UPI collection to the school’s own account, receipts, notices and the Daily Learning Pulse.',
   },
   {
     name: 'Growth',
-    description: 'Starter, plus the Daily Learning Pulse on WhatsApp, Personal Best recognition, admissions, exams and report cards.',
+    description: 'Starter, plus the principal dashboard and reports, staff leave with automatic cover, meetings, events, complaints, exams and report cards.',
   },
   {
     name: 'Compass',
-    description: 'Growth, plus the Weekly Confidence Brief, private Teacher Impact Card, at-risk signals and staff planning.',
+    description: 'Growth, plus Early Warning, the School Health Auditor, Parent AI, Personal Best recognition and learning insights.',
   },
 ] satisfies { name: string; description: string }[];
 
@@ -333,11 +333,20 @@ export function softwareApplicationJsonLd(): JsonLd {
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     url: siteUrl,
-    offers: pricingTiers.map((tier) => ({
-      '@type': 'Offer',
-      name: tier.name,
-      description: tier.description,
-    })),
+    offers: pricingTiers.map((tier) => {
+      const monthly = plans.find((p) => p.name === tier.name)?.price?.monthly;
+      return {
+        '@type': 'Offer',
+        name: tier.name,
+        description: tier.description,
+        ...(monthly === undefined
+          ? { price: '0', priceCurrency: 'INR' }
+          : {
+              priceCurrency: 'INR',
+              priceSpecification: { '@type': 'UnitPriceSpecification', price: String(monthly), priceCurrency: 'INR', unitText: 'per student per month' },
+            }),
+      };
+    }),
   };
 }
 

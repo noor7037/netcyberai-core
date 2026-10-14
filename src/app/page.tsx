@@ -26,7 +26,7 @@ const faqs = [
   {
     question: 'Which modules are live today?',
     answer:
-      'Live today: student records and CSV import, guardians and consent, attendance with absence alerts on WhatsApp, document scanning, QR ID cards, and staff sign-in for one or several schools. In development: the Daily Learning Pulse, fees and receipts, exams and Personal Best, and certificates. The screens on this site show example data, and nothing is sold to a school as live until it is.',
+      'Available now: student records and CSV import, guardians and consent, attendance, homework, fees with UPI payment straight to the school’s own account and receipts, staff leave with automatic cover, the principal dashboard and reports, complaints, Early Warning and the School Health Auditor. Ready and waiting for the school’s WhatsApp to be switched on: parent messages, notices, the Daily Learning Pulse, meetings and events. In development: exams and report cards, Personal Best and Parent AI. The screens on this site show example data, and nothing is sold to a school as live until it is.',
   },
   {
     question: 'Does it rank teachers or students publicly?',
@@ -36,7 +36,7 @@ const faqs = [
   {
     question: `What does ${companyName} cost?`,
     answer:
-      'There are four plans: Free tools any school can use today, and Starter, Growth and Compass for the full platform. Each school gets a custom quote based on its size and the modules it needs, confirmed by a real person.',
+      'Free tools any school can use today, and Starter, Growth and Compass for the full platform, priced per enrolled student, monthly or yearly with two months free. Your first month is free, and larger schools and groups can agree their own price. See the pricing page for the numbers.',
   },
   HOME_GO_LIVE_FAQ,
 ];
