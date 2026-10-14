@@ -202,6 +202,14 @@ export function applySettingsUpdate(
     changes.push({ key, from, to: null });
   }
 
+  // A rule between fields (C209), on the values that would now be in force: what is stored, the defaults for the rest.
+  if (schema.check && changes.length > 0) {
+    const inForce: Record<string, SettingValue> = Object.create(null);
+    for (const def of schema.fields) inForce[def.key] = next.get(def.key) ?? def.default;
+    const together = schema.check(inForce);
+    if (together.length) return { ok: false, reason: 'invalid', errors: [...together] };
+  }
+
   return { ok: true, values: Object.fromEntries(next), changes };
 }
 
@@ -216,5 +224,7 @@ export function schemaProblems(schema: ModuleSettingsSchema): string[] {
     if (validateValue(f, f.default) !== null) problems.push(`${f.key}: default is not valid (${validateValue(f, f.default)})`);
     if (f.editableBy.length === 0) problems.push(`${f.key}: nobody can edit it`);
   }
+  // The defaults themselves must pass the module's own rule between fields.
+  for (const e of schema.check?.(Object.fromEntries(schema.fields.map((f) => [f.key, f.default]))) ?? []) problems.push(`${e.key}: the defaults cannot stand together (${e.message})`);
   return problems;
 }

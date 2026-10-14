@@ -147,7 +147,8 @@ const ROWS: readonly Row[] = [
   { id: 'reports', label: 'Reports', group: 'records-compliance', icon: 'reports', roles: REPORTS, phase: 'P5', phaseNote: 'A fixed list of reports by role (collection, dues, attendance, absentees, homework, Daily Pulse, messages, staff leave), each with a date range, a total and a CSV of the same rows, is live; a report builder, scheduled reports and PDF later', status: 'partial',
     capabilities: ['Report builder across modules', 'Scheduled reports by email or WhatsApp', 'CSV and PDF export'] },
 
-  { id: 'early-warning', label: 'Early Warning', group: 'ai-intelligence', icon: 'earlyWarning', roles: LEARNING_AI, phase: 'P6', phaseNote: 'v1 in P5', status: 'foundation',
+  // A teacher reads the flags of their own classes, which the database decides (C209).
+  { id: 'early-warning', label: 'Early Warning', group: 'ai-intelligence', icon: 'earlyWarning', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P6', phaseNote: 'v1 is live for staff only: flags by rules from attendance, homework and needs-help follow-ups, each with its reasons, evidence and rule version, and a log of what was done; marks join in P6; nothing is sent to parents', status: 'partial',
     capabilities: ['Attendance, marks, homework and Pulse signals', 'At-risk score with reasons', 'Action log', 'Parent dispatch gated by legal basis'] },
   { id: 'learning-genome', label: 'Learning Genome', group: 'ai-intelligence', icon: 'genome', roles: LEARNING_AI, phase: 'P6', status: 'spec-v0',
     capabilities: ['Per-student skill map by subject and chapter', 'Strengths and gaps', 'Shown to teachers, summarised to parents'] },

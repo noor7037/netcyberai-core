@@ -309,6 +309,57 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
       },
     ],
   },
+  // Early Warning (C209): when attendance gives a reason to look at how a child is getting on. The homework
+  // reason uses Homework Recovery's own two settings, and a needs-help follow-up has none. A change is used from
+  // the next check: a flag already open is worked out again then, and closes if its reason is gone.
+  // The days that must be marked cannot be more than the days looked back: with such numbers attendance could
+  // never be a reason for any child, and the school would not be told. Refused, whichever of the two is changed.
+  {
+    moduleId: 'early-warning',
+    version: 1,
+    check: (v) => (Number(v.min_marked_days) > Number(v.window_days) ? [{ key: 'min_marked_days', message: 'cannot be more than the days looked back' }] : []),
+    fields: [
+      {
+        key: 'attendance_below',
+        label: 'In school on fewer than this many days in every 100',
+        help: 'Attendance becomes a reason to look when a child was in school, present or late, on fewer than this many of every 100 days marked, from 1 to 100. Days on recorded leave are left out.',
+        section: 'Attendance',
+        type: 'number',
+        default: 75,
+        min: 1,
+        max: 100,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: true,
+      },
+      {
+        key: 'window_days',
+        label: 'Looking back this many days',
+        help: 'How many days back attendance is counted, today included, from 7 to 90, and never fewer than the days that must be marked below.',
+        section: 'Attendance',
+        type: 'number',
+        default: 30,
+        min: 7,
+        max: 90,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: true,
+      },
+      {
+        key: 'min_marked_days',
+        label: 'Only when at least this many days were marked',
+        help: 'Attendance is not used until this many of those days have a mark other than leave, from 1 to 60, and never more than the days looked back above. With fewer days, one or two absences would look larger than they are.',
+        section: 'Attendance',
+        type: 'number',
+        default: 10,
+        min: 1,
+        max: 60,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: true,
+      },
+    ],
+  },
 ];
 
 export function settingsSchemaFor(moduleId: ModuleId): ModuleSettingsSchema | null {

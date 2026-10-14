@@ -45,6 +45,7 @@ describe('the guides', () => {
       // p5-8i begin
       // p5-8i end
       // p5-8j begin
+      'early-warning-flags',
       // p5-8j end
     ]);
     expect(new Set(HELP_ARTICLES.map((a) => a.slug)).size).toBe(HELP_ARTICLES.length);

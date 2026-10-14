@@ -1083,6 +1083,34 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   // p5-8i begin
   // p5-8i end
   // p5-8j begin
+  {
+    slug: 'early-warning-flags',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Look at the children Early Warning has flagged', hi: 'उन बच्चों को देखें जिनके लिए Early Warning ने संकेत दिया है' },
+    summary: {
+      en: 'A flag is a reason to look at a child’s attendance, homework or a needs-help follow-up. It says why, a person writes what was done, and it closes by itself when its reasons are gone. Nothing is sent to parents.',
+      hi: 'संकेत किसी बच्चे की हाज़िरी, होमवर्क या मदद के फ़ॉलो-अप को देखने का एक कारण है। वह अपना कारण बताता है, कोई व्यक्ति लिखता है कि क्या किया गया, और कारण न रहने पर वह अपने आप बंद हो जाता है। अभिभावकों को कुछ नहीं भेजा जाता।',
+    },
+    steps: [
+      { en: 'Open “Early Warning” from the menu. A teacher sees the children of their own classes; the principal, the school admin and the academic coordinator see the whole school.', hi: 'मेनू से “Early Warning” खोलें। शिक्षक को अपनी कक्षाओं के बच्चे दिखते हैं; प्रिंसिपल, स्कूल एडमिन और एकेडमिक कोऑर्डिनेटर को पूरा स्कूल।' },
+      { en: 'The principal, the school admin or the academic coordinator presses “Check now”. The check reads the attendance, homework and needs-help follow-ups already on record.', hi: 'प्रिंसिपल, स्कूल एडमिन या एकेडमिक कोऑर्डिनेटर “Check now” दबाते हैं। जाँच पहले से दर्ज हाज़िरी, होमवर्क और मदद के फ़ॉलो-अप पढ़ती है।' },
+      { en: 'Under “Open flags”, each child has one flag with its reasons. Open “Why this?” to read the days and homeworks it rests on, the rule and its version, and when it was last checked.', hi: '“Open flags” में हर बच्चे का एक संकेत उसके कारणों के साथ होता है। “Why this?” खोलकर पढ़ें कि वह किन दिनों और होमवर्क पर टिका है, नियम और उसका संस्करण क्या है, और पिछली जाँच कब हुई।' },
+      { en: 'Talk to the child or the family, or give extra help. Then press “Add what was done”, choose what you did, write a note, and press “Save what was done”.', hi: 'बच्चे या परिवार से बात करें, या अलग से मदद दें। फिर “Add what was done” दबाएँ, चुनें कि आपने क्या किया, टिप्पणी लिखें, और “Save what was done” दबाएँ।' },
+      { en: 'If you learn later what came of it, add it as a new entry in the same way. Nothing already written is changed.', hi: 'अगर बाद में पता चले कि इससे क्या हुआ, तो उसे उसी तरह नई प्रविष्टि के रूप में जोड़ें। पहले से लिखा कुछ नहीं बदलता।' },
+      { en: 'At the next check, a flag whose reasons are gone moves to the closed list by itself. If a reason comes back, a new flag opens.', hi: 'अगली जाँच में, जिस संकेत के कारण नहीं रहे वह अपने आप बंद सूची में चला जाता है। कारण लौटे तो नया संकेत खुलता है।' },
+    ],
+    tips: [
+      { en: 'A flag is not a verdict about a child. Children, classes and teachers are never ranked: every list is in the order of class and name.', hi: 'संकेत बच्चे के बारे में कोई फ़ैसला नहीं है। बच्चों, कक्षाओं और शिक्षकों की कभी रैंकिंग नहीं होती: हर सूची कक्षा और नाम के क्रम में है।' },
+      { en: 'Attendance counts only when enough days were marked, and days on recorded leave are left out. The principal or the school admin can change the numbers in Settings.', hi: 'हाज़िरी तभी गिनी जाती है जब काफ़ी दिन हाज़िरी लगी हो, और दर्ज छुट्टी के दिन नहीं गिने जाते। प्रिंसिपल या स्कूल एडमिन सेटिंग में संख्याएँ बदल सकते हैं।' },
+      { en: 'While too few days are marked, the check says nothing about a child’s attendance. It opens no flag for it, a flag already open for attendance stays open and says it could not be checked again, and the page says for how many students attendance could be used.', hi: 'जब तक काफ़ी दिन हाज़िरी नहीं लगी, जाँच बच्चे की हाज़िरी के बारे में कुछ नहीं कहती। इसके लिए नया संकेत नहीं खुलता, हाज़िरी के लिए पहले से खुला संकेत खुला रहता है और बताता है कि उसे दोबारा जाँचा नहीं जा सका, और पेज बताता है कि कितने विद्यार्थियों की हाज़िरी इस्तेमाल हो सकी।' },
+      { en: 'Fees are never a reason, and a student waiting for consent is not flagged.', hi: 'फ़ीस कभी कारण नहीं होती, और सहमति का इंतज़ार कर रहे विद्यार्थी के लिए संकेत नहीं बनता।' },
+      { en: 'Nothing here is sent to a parent. “Spoke to the guardian, in person or by phone” records something a person did themself.', hi: 'यहाँ से अभिभावक को कुछ नहीं भेजा जाता। “Spoke to the guardian, in person or by phone” वह दर्ज करता है जो किसी व्यक्ति ने ख़ुद किया।' },
+    ],
+    start: { href: '/app/early-warning', label: { en: 'Early Warning', hi: 'समय रहते चेतावनी (Early Warning)' } },
+    related: ['needs-help-queue', 'homework-recovery'],
+    keywords: ['early warning', 'flag', 'at risk', 'attendance', 'absent', 'homework', 'needs help', 'check now', 'chetavni', 'चेतावनी', 'संकेत', 'अनुपस्थित'],
+  },
   // p5-8j end
 ];
 

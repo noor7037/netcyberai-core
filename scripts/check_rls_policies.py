@@ -94,7 +94,7 @@ _TENANT_ISOLATION_TABLES = [
     "exams", "marks", "fees_ledger", "communication_log", "recognition_events",
     "teacher_impact_metrics", "parent_feedback", "certificate_requests", "system_config",
     "fee_heads", "fee_structures", "fee_structure_items", "fee_concessions", "payments",
-    "compliance_config", "at_risk_flags", "pulse_messages", "pulse_response_log",
+    "compliance_config", "pulse_messages", "pulse_response_log",
     "student_qr_tokens", "qr_scan_log", "captured_documents", "ocr_extractions",
     "webhook_events", "memberships", "csv_imports",
     "retention_policy", "data_subject_requests",
@@ -335,6 +335,10 @@ ALLOWED_PERMISSIVE = (
         # p5-8i begin
         # p5-8i end
         # p5-8j begin
+        # C209: tenant isolation only; narrowed by the RESTRICTIVE policies required below. early_warning_flags is
+        # at_risk_flags under its new name: the migration drops the old policy and makes this one.
+        ("early_warning_flags", "early_warning_flags_tenant_isolation"),
+        ("early_warning_actions", "early_warning_actions_tenant_isolation"),
         # p5-8j end
     }
 )
@@ -504,6 +508,15 @@ REQUIRED_RESTRICTIVE = {
     # p5-8i begin
     # p5-8i end
     # p5-8j begin
+    # C209: flags are read by the three roles that run the check and, for their own classes, by a teacher; opened and
+    # changed by the three roles only. An action follows its flag and is added in one's own name. The audit rows
+    # of Early Warning follow the same three roles, or the person who acted.
+    ("early_warning_flags", "early_warning_flags_readers"),
+    ("early_warning_flags", "early_warning_flags_opened_as_self"),
+    ("early_warning_flags", "early_warning_flags_checked_by_office"),
+    ("early_warning_actions", "early_warning_actions_with_flag"),
+    ("early_warning_actions", "early_warning_actions_as_self"),
+    ("audit_log", "audit_early_warning_rows_office_or_actor"),
     # p5-8j end
 }
 

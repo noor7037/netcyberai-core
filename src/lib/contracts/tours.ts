@@ -67,6 +67,7 @@ export const TOURS = {
   // p5-8i begin
   // p5-8i end
   // p5-8j begin
+  'early-warning': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // p5-8j end
 } as const satisfies Record<string, TourDefinition>;
 

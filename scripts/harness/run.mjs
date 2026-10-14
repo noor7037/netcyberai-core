@@ -2051,6 +2051,174 @@ const reportsHindiDone = async (page) => {
 // p5-8i begin
 // p5-8i end
 // p5-8j begin
+// Early Warning (C209). One child of 5-A was away on most days three weeks ago: the principal presses "Check now",
+// the flag appears with what it rests on, "Why this?" is opened and what was done is written down. The numbers
+// on the flag are compared with the child's own marks in the database. The child's guardians have numbers, the
+// school's switch for telling parents is on and consent for it is given: still no message and no job is
+// written. Then a teacher's screen: of two flags in the school she is shown the one of her own class, with no
+// "Check now", and adds what she did. Everything put in is taken away after; the audit rows stay (the log is
+// never cut) and are counted from where they stood.
+// The check also says for how many students attendance could be used (those with ten counted days in the last
+// thirty), which is compared with a count made in the database. And on the teacher's screen her own class's flag
+// carries an attendance reason that a later check could not work out again: the flag says so, with its numbers.
+const EW_CHILD_5B = '00000000-0000-4000-8000-000000500002';
+const EW_CLASS_5B = '00000000-0000-4000-8000-0000000c0052';
+const EW_OTHER_TEACHER = '00000000-0000-4000-8000-00000000a004';
+const EW_FOLLOWUPS = ['00000000-0000-4000-8000-00000e5a0001', '00000000-0000-4000-8000-00000e5a0002'];
+const clearEarlyWarning = () =>
+  db.pg.exec(`set session_replication_role = replica;
+    delete from early_warning_actions; delete from early_warning_flags;
+    delete from attendance where school_id = '${SCHOOL}' and student_id = '${STUDENT}' and date < ${TODAY_SQL} - 10;
+    delete from pulse_followups where followup_id in ('${EW_FOLLOWUPS.join("', '")}');
+    delete from consent_ledger where school_id = '${SCHOOL}' and student_id = '${STUDENT}' and purpose = 'at_risk';
+    update schools set at_risk_parent_dispatch_enabled = false where school_id = '${SCHOOL}';
+    set session_replication_role = origin;`);
+const earlyWarningAudit = async () => (await db.pg.query(`select count(*)::int as n from audit_log where event_action like 'early_warning.%'`)).rows[0].n;
+let earlyWarningBefore = null;
+let earlyWarningSeen = null;
+const earlyWarningScreen = async (page) => {
+  await clearEarlyWarning();
+  // Eleven to twenty-two days back (before the seeded marks begin): away on eight days, on recorded leave on two,
+  // in school on two. The parents could be written to, and everything that would let a message go is switched on.
+  await db.pg.exec(`set session_replication_role = replica;
+    insert into attendance (school_id, student_id, class_id, date, status, marked_by, leave_code)
+      select '${SCHOOL}', '${STUDENT}', '${CLASS_5A}', ${TODAY_SQL} - g, case when g in (13, 14) then 'leave' when g in (11, 22) then 'present' else 'absent' end, '${PEOPLE.teacher.sub}', case when g in (13, 14) then 'sick' end
+        from generate_series(11, 22) g;
+    insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version) select '${SCHOOL}', '${STUDENT}', 'at_risk', true, (enum_range(null::consent_method))[1], 'v1';
+    update schools set at_risk_parent_dispatch_enabled = true where school_id = '${SCHOOL}';
+    set session_replication_role = origin;`);
+  earlyWarningBefore = { sending: await sendingRows(), audit: await earlyWarningAudit() };
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-ew-check-now]').waitFor({ timeout: 20000 });
+  const openBeforeCheck = await page.locator('[data-ew-flag="open"]').count();
+  await page.locator('[data-ew-check-now]').click();
+  const flag = page.locator('[data-ew-flag="open"]', { hasText: 'Aarav Example A' });
+  await flag.waitFor({ timeout: 20000 });
+  const checkNote = await page.locator('[data-ew-note]').getAttribute('data-ew-note');
+  // Why this: what the flag rests on, the rule and its version.
+  await flag.locator('[data-ew-why] summary').click();
+  const why = await flag.locator('[data-ew-why]').innerText();
+  // What was done, written by the principal.
+  await flag.locator('[data-ew-add-open]').click();
+  const saveNeedsAKind = await flag.locator('[data-ew-save]').isDisabled();
+  await flag.locator('[data-ew-kind]').selectOption('spoke_to_guardian');
+  await flag.locator('[data-ew-add] input').nth(0).fill('Spoke to his father at the school gate.');
+  await flag.locator('[data-ew-add] input').nth(1).fill('He was unwell; he is back from Monday.');
+  await flag.locator('[data-ew-save]').click();
+  await flag.locator('[data-ew-action="spoke_to_guardian"]').waitFor({ timeout: 20000 });
+  earlyWarningSeen = {
+    openBeforeCheck,
+    checkNote,
+    reasons: await flag.getAttribute('data-ew-reasons'),
+    line: await flag.locator('[data-ew-line="attendance"]').count(),
+    whyHasEvidence: await flag.locator('[data-ew-evidence="attendance"]').count(),
+    whySaysRule: why.includes('rule version 1') && why.includes('no AI model'),
+    whySaysLeave: why.includes('Days on recorded leave, left out of the count: 2.'),
+    saveNeedsAKind,
+    logged: await flag.locator('[data-ew-action]').count(),
+    openOnScreen: await page.locator('[data-ew-flag="open"]').count(),
+    countedByClass: await page.locator('[data-ew-class-count]').evaluateAll((els) => els.reduce((n, e) => n + Number(e.getAttribute('data-ew-class-count')), 0)),
+    lastCheck: await page.locator('[data-ew-last-check]').getAttribute('data-ew-last-check'),
+    saysStaffOnly: (await page.locator('[data-ew-what]').innerText()).includes('Nothing on this page is sent to a parent'),
+    attendanceUsed: await page.locator('[data-ew-attendance-used]').getAttribute('data-ew-attendance-used'),
+  };
+};
+const earlyWarningScreenDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from early_warning_flags where school_id = $1 and resolved_at is null) as open,
+            (select count(*)::int from early_warning_flags where school_id = $1 and student_id = $2 and class_id = $4 and resolved_at is null and reasons = '{attendance}' and rule_version = 1 and opened_by = $3 and not notified_parent) as flag,
+            (select (evidence -> 'attendance') - 'absentDates' - 'from' - 'to' from early_warning_flags where school_id = $1 and student_id = $2 and resolved_at is null) as evidence,
+            (select jsonb_build_object('present', count(*) filter (where status = 'present'), 'late', count(*) filter (where status = 'late'), 'absent', count(*) filter (where status = 'absent'), 'leave', count(*) filter (where status = 'leave'))
+               from attendance where school_id = $1 and student_id = $2 and date between ${TODAY_SQL} - 29 and ${TODAY_SQL}) as marks,
+            (select count(*)::int from early_warning_actions a join early_warning_flags f on f.flag_id = a.flag_id
+              where f.student_id = $2 and a.kind = 'spoke_to_guardian' and a.by_user = $3 and a.note = 'Spoke to his father at the school gate.' and a.outcome = 'He was unwell; he is back from Monday.') as steps,
+            (select count(*)::int from early_warning_actions) as steps_in_all,
+            (select count(*)::int from early_warning_flags where notified_parent) as parents_told,
+            (select count(*)::int from parents p join parent_student_map m on m.parent_id = p.parent_id where m.student_id = $2 and p.phone is not null) as guardians_with_a_number,
+            (select at_risk_parent_dispatch_enabled from schools where school_id = $1) as switch_on,
+            (select count(*)::int from consent_ledger where school_id = $1 and student_id = $2 and purpose = 'at_risk' and granted) as consent,
+            (select count(*)::int from students where school_id = $1 and status = 'active' and class_id is not null) as active,
+            (select count(*)::int from (select a.student_id from attendance a join students s on s.school_id = a.school_id and s.student_id = a.student_id
+               where a.school_id = $1 and s.status = 'active' and s.class_id is not null and a.status <> 'leave' and a.date between ${TODAY_SQL} - 29 and ${TODAY_SQL}
+               group by a.student_id having count(*) >= 10) judged) as attendance_used`,
+    [SCHOOL, STUDENT, PEOPLE.principal.sub, CLASS_5A]
+  );
+  const after = { sending: await sendingRows(), audit: await earlyWarningAudit() };
+  await clearEarlyWarning();
+  const r = rows[0];
+  const m = r.marks;
+  const counted = m.present + m.late + m.absent;
+  // The flag's own numbers are the child's marks of the last 30 days, with the days on leave left out.
+  const evidence = { present: m.present, late: m.late, absent: m.absent, leave: m.leave, counted, rate: Math.round(((m.present + m.late) / counted) * 1000) / 10, below: 75, minDays: 10 };
+  const same = (a, b) => JSON.stringify(Object.entries(a ?? {}).sort()) === JSON.stringify(Object.entries(b).sort());
+  if (r.flag !== 1 || r.steps !== 1 || r.steps_in_all !== 1 || r.parents_told !== 0 || m.leave !== 2 || m.absent < 8 || !same(r.evidence, evidence)) throw new Error(`the flag in the database: ${JSON.stringify(r)}, by hand ${JSON.stringify(evidence)}`);
+  // Everything that would let a message go was in place, and none was written: no message, no job.
+  if (r.guardians_with_a_number < 1 || r.switch_on !== true || r.consent !== 1) throw new Error(`the parents could not have been written to anyway: ${JSON.stringify(r)}`);
+  if (after.sending !== earlyWarningBefore.sending) throw new Error(`Early Warning wrote a message or queued a job: ${earlyWarningBefore.sending} before, ${after.sending} after`);
+  // One check and one step, each on the record.
+  if (after.audit - earlyWarningBefore.audit !== 2) throw new Error(`${after.audit - earlyWarningBefore.audit} audit rows for one check and one step`);
+  // For how many students attendance could be used: the screen's own sentence against the count made above. The
+  // flagged child is one of them, and it is not everyone (the other classes have fewer than ten days marked).
+  if (r.attendance_used < 1 || r.active < 2) throw new Error(`attendance could be used for ${r.attendance_used} of ${r.active}: the screen has nothing to prove`);
+  const seen = { openBeforeCheck: 0, checkNote: 'ok', reasons: 'attendance', line: 1, whyHasEvidence: 1, whySaysRule: true, whySaysLeave: true, saveNeedsAKind: true, logged: 1, openOnScreen: r.open, countedByClass: r.open, lastCheck: 'yes', saysStaffOnly: true, attendanceUsed: `${r.attendance_used}/${r.active}` };
+  if (JSON.stringify(earlyWarningSeen) !== JSON.stringify(seen)) throw new Error(`Early Warning on the screen: ${JSON.stringify(earlyWarningSeen)}, wanted ${JSON.stringify(seen)}`);
+};
+// A teacher: the office's check has flagged a child of her class (5-A) and a child of 5-B. Each has an open
+// follow-up in the needs-help queue, which is what the flags rest on.
+let earlyWarningTeacherSeen = null;
+const earlyWarningTeacher = async (page) => {
+  await clearEarlyWarning();
+  await db.pg.exec(`
+    insert into pulse_followups (followup_id, school_id, student_id, class_id, kind, reason, created_by) values
+      ('${EW_FOLLOWUPS[0]}', '${SCHOOL}', '${STUDENT}', '${CLASS_5A}', 'did_not_understand', 'Fractions on the number line', '${PEOPLE.teacher.sub}'),
+      ('${EW_FOLLOWUPS[1]}', '${SCHOOL}', '${EW_CHILD_5B}', '${EW_CLASS_5B}', 'homework_help', 'Long division', '${EW_OTHER_TEACHER}');
+    insert into early_warning_flags (school_id, student_id, class_id, reasons, evidence, rule_version, opened_by)
+      select f.school_id, f.student_id, f.class_id, '{needs_help}', jsonb_build_object('needs_help', jsonb_build_object('open', jsonb_build_array(jsonb_build_object('kind', f.kind, 'since', (f.created_at at time zone 'Asia/Kolkata')::date::text, 'source', f.source)))), 1, '${PEOPLE.principal.sub}'
+        from pulse_followups f where f.followup_id in ('${EW_FOLLOWUPS.join("', '")}');
+    -- Her own class's flag also has an attendance reason from forty days back, which today's check could not work
+    -- out again: nine counted days in the last thirty, and the rule needs ten. The reason is held, and says so.
+    update early_warning_flags set reasons = '{attendance,needs_help}',
+           evidence = evidence || jsonb_build_object('attendance', jsonb_build_object('from', (${TODAY_SQL} - 40)::text, 'to', (${TODAY_SQL} - 11)::text, 'present', 6, 'late', 1, 'absent', 5, 'leave', 0, 'counted', 12,
+             'rate', 58.3, 'below', 75, 'minDays', 10, 'absentDates', jsonb_build_array((${TODAY_SQL} - 20)::text), 'held', jsonb_build_object('on', (${TODAY_SQL})::text, 'from', (${TODAY_SQL} - 29)::text, 'counted', 9, 'minDays', 10)))
+     where school_id = '${SCHOOL}' and student_id = '${STUDENT}';`);
+  earlyWarningBefore = { sending: await sendingRows(), audit: await earlyWarningAudit() };
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-early-warning="teacher"]').waitFor({ timeout: 20000 });
+  const flag = page.locator('[data-ew-flag="open"]').first();
+  await flag.waitFor({ timeout: 20000 });
+  await flag.locator('[data-ew-why] summary').click();
+  await flag.locator('[data-ew-add-open]').click();
+  await flag.locator('[data-ew-kind]').selectOption('extra_help');
+  await flag.locator('[data-ew-add] input').nth(0).fill('Ten minutes after class on the number line.');
+  await flag.locator('[data-ew-save]').click();
+  await flag.locator('[data-ew-action="extra_help"]').waitFor({ timeout: 20000 });
+  const words = await page.locator('[data-early-warning]').innerText();
+  earlyWarningTeacherSeen = {
+    flags: await page.locator('[data-ew-flag="open"]').count(),
+    own: words.includes('Aarav Example A'),
+    otherClass: words.includes('Diya Example A'),
+    checkNow: await page.locator('[data-ew-check-now]').count(),
+    countedByClass: await page.locator('[data-ew-class-count]').evaluateAll((els) => els.map((e) => e.getAttribute('data-ew-class-count')).join()),
+    whyHasEvidence: await flag.locator('[data-ew-evidence="needs_help"]').count(),
+    logged: await flag.locator('[data-ew-action]').count(),
+    // The held attendance reason: the days its numbers are from, and that it could not be checked again, with why.
+    heldLines: await flag.locator('[data-ew-line="attendance"], [data-ew-line="attendance-held"]').count(),
+    heldSaysWhy: /could not be checked again/.test(words) && /Days marked since [^:]+: 9; the rule needs 10\./.test(words) && words.includes('In school on 7 of 12 days marked from'),
+  };
+};
+const earlyWarningTeacherDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from early_warning_flags where school_id = $1 and resolved_at is null) as flags,
+            (select count(*)::int from early_warning_actions a join early_warning_flags f on f.flag_id = a.flag_id where f.student_id = $2 and a.kind = 'extra_help' and a.by_user = $3 and a.note = 'Ten minutes after class on the number line.' and a.outcome is null) as steps,
+            (select count(*)::int from early_warning_actions) as steps_in_all`,
+    [SCHOOL, STUDENT, PEOPLE.teacher.sub]
+  );
+  const after = { sending: await sendingRows(), audit: await earlyWarningAudit() };
+  await clearEarlyWarning();
+  if (JSON.stringify(rows[0]) !== JSON.stringify({ flags: 2, steps: 1, steps_in_all: 1 }) || after.sending !== earlyWarningBefore.sending || after.audit - earlyWarningBefore.audit !== 1) throw new Error(`a teacher's step in the database: ${JSON.stringify(rows[0])}, sending ${earlyWarningBefore.sending} then ${after.sending}, ${after.audit - earlyWarningBefore.audit} audit rows`);
+  const seen = { flags: 1, own: true, otherClass: false, checkNow: 0, countedByClass: '1', whyHasEvidence: 1, logged: 1, heldLines: 2, heldSaysWhy: true };
+  if (JSON.stringify(earlyWarningTeacherSeen) !== JSON.stringify(seen)) throw new Error(`Early Warning on a teacher's screen: ${JSON.stringify(earlyWarningTeacherSeen)}`);
+};
 // p5-8j end
 let upiSeen = null;
 const payByUpi = async (page) => {
@@ -2506,6 +2674,8 @@ const SCREENS = [
   // p5-8i begin
   // p5-8i end
   // p5-8j begin
+  ['principal', 'app-early-warning', '/app/early-warning', earlyWarningScreen, earlyWarningScreenDone],
+  ['teacher', 'teacher-early-warning', '/app/early-warning', earlyWarningTeacher, earlyWarningTeacherDone],
   // p5-8j end
 ];
 
