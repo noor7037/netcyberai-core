@@ -117,6 +117,10 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // p7-10d begin
   // p7-10d end
   // p7-10e begin
+  // Certificates (C228): switched off, nobody issues, withdraws or sends a certificate, or keeps the seal and the
+  // signature. Above documents/** (scanned documents, which belong to Students).
+  ['documents/certificates/**', 'documents'],
+  ['documents/certificates', 'documents'],
   // p7-10e end
   // p7-10f begin
   // p7-10f end
@@ -275,6 +279,9 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // p7-10d begin
   // p7-10d end
   // p7-10e begin
+  // The certificates screen, the class's children with their fee clearance, the issue register and the certificates as
+  // they print (C228). Switched off, none of them answers.
+  ['documents/certificates', 'documents'],
   // p7-10e end
   // p7-10f begin
   // p7-10f end

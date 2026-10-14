@@ -893,8 +893,8 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     audience: 'office',
     title: { en: 'Make a certificate with the free certificate tool', hi: 'मुफ़्त certificate tool से प्रमाणपत्र बनाएँ' },
     summary: {
-      en: 'Certificates inside the school app are not built yet. Until then, the free tool on our website makes transfer, bonafide, character, study and achievement certificates as a PDF.',
-      hi: 'स्कूल ऐप के अंदर प्रमाणपत्र अभी नहीं बने हैं। तब तक हमारी वेबसाइट का मुफ़्त tool transfer, bonafide, character, study और achievement प्रमाणपत्र PDF के रूप में बनाता है।',
+      en: 'The free tool on our website makes transfer, bonafide, character, study and achievement certificates as a PDF, without your student records. Certificates from the student record, with the issue register and a QR code to verify them, are in the school app under Documents & Certificates.',
+      hi: 'हमारी वेबसाइट का मुफ़्त tool transfer, bonafide, character, study और achievement प्रमाणपत्र PDF के रूप में बनाता है, आपके विद्यार्थी रिकॉर्ड के बिना। विद्यार्थी रिकॉर्ड से बने प्रमाणपत्र, issue register और जाँच के लिए QR code के साथ, स्कूल ऐप में Documents & Certificates में हैं।',
     },
     steps: [
       { en: 'Open “Free tools” on the NetCyberAI website and choose the certificate you need.', hi: 'NetCyberAI वेबसाइट पर “Free tools” खोलें और जो प्रमाणपत्र चाहिए उसे चुनें।' },
@@ -907,10 +907,10 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     tips: [
       { en: 'Nothing is uploaded or saved: the form, logo and certificate stay in your browser tab. Closing the tab clears them.', hi: 'कुछ भी upload या सेव नहीं होता: फ़ॉर्म, logo और प्रमाणपत्र आपके browser टैब में ही रहते हैं। टैब बंद करते ही वे मिट जाते हैं।' },
       { en: 'Save your school profile as a file on your device and load it next time to skip typing.', hi: 'अपने स्कूल की profile को डिवाइस पर फ़ाइल के रूप में सेव करें और अगली बार उसे load करें, ताकि दोबारा लिखना न पड़े।' },
-      { en: 'This tool does not read your student records and keeps no issue register for you. That comes with certificates inside the app.', hi: 'यह tool आपके विद्यार्थी रिकॉर्ड नहीं पढ़ता और आपके लिए कोई issue register नहीं रखता। यह सुविधा ऐप के अंदर के प्रमाणपत्रों के साथ आएगी।' },
+      { en: 'This tool does not read your student records and keeps no issue register for you. Certificates inside the app do both.', hi: 'यह tool आपके विद्यार्थी रिकॉर्ड नहीं पढ़ता और आपके लिए कोई issue register नहीं रखता। ऐप के अंदर के प्रमाणपत्र ये दोनों करते हैं।' },
     ],
     start: { href: '/free-tools', label: { en: 'Free tools', hi: 'Free tools' } },
-    related: ['student-id-cards', 'raise-a-ticket'],
+    related: ['issue-certificates', 'student-id-cards', 'raise-a-ticket'],
     keywords: ['tc', 'transfer certificate', 'bonafide', 'character certificate', 'study certificate', 'pdf', 'प्रमाणपत्र', 'टीसी', 'बोनाफाइड', 'सर्टिफिकेट'],
   },
   {
@@ -1430,6 +1430,33 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p7-10d end
   // p7-10e begin
+  {
+    slug: 'issue-certificates',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Issue certificates from the student record', hi: 'विद्यार्थी के रिकॉर्ड से प्रमाणपत्र जारी करें' },
+    summary: {
+      en: 'Transfer, bonafide, character and study certificates are filled from the student record, for one child or a whole class. A child who owes fees is held unless the principal waives it with a reason. Every certificate goes into the issue register with its own number and a QR code anyone can scan to check it. For the principal and the school admin.',
+      hi: 'स्थानांतरण, बोनाफ़ाइड, चरित्र और अध्ययन प्रमाणपत्र विद्यार्थी के रिकॉर्ड से भरे जाते हैं, एक बच्चे या पूरी कक्षा के लिए। जिस बच्चे की फ़ीस बाक़ी है वह रुका रहता है, जब तक प्रिंसिपल कारण के साथ छूट न दें। हर प्रमाणपत्र अपने नंबर और QR कोड के साथ रजिस्टर में जाता है, जिसे कोई भी स्कैन करके जाँच सकता है। प्रिंसिपल और स्कूल एडमिन के लिए।',
+    },
+    steps: [
+      { en: 'Open “Documents & Certificates”. Under “Issue certificates”, choose the “Certificate” and the “Class”.', hi: '“Documents & Certificates” खोलें। “Issue certificates” में “Certificate” और “Class” चुनें।' },
+      { en: 'Type what the record does not hold, once for everyone: the “Reason for leaving” for a transfer certificate, the “Purpose” for a bonafide or study certificate.', hi: 'जो रिकॉर्ड में नहीं है वह सबके लिए एक बार लिखें: स्थानांतरण प्रमाणपत्र के लिए “Reason for leaving”, बोनाफ़ाइड या अध्ययन प्रमाणपत्र के लिए “Purpose”।' },
+      { en: 'Each child shows the fee clearance. Press “Select everyone who can be issued one”, or tick children one by one.', hi: 'हर बच्चे के साथ फ़ीस क्लियरेंस दिखता है। “Select everyone who can be issued one” दबाएँ, या एक-एक बच्चे पर निशान लगाएँ।' },
+      { en: 'A child who owes is held. Only the principal can press “Waive the fee clearance” and write “Why the fee clearance is waived”; it is kept with the certificate.', hi: 'जिसकी फ़ीस बाक़ी है वह रुका रहता है। सिर्फ़ प्रिंसिपल “Waive the fee clearance” दबाकर “Why the fee clearance is waived” लिख सकते हैं; यह प्रमाणपत्र के साथ रखा जाता है।' },
+      { en: 'Press the issue button. Then press “Download these as one PDF” to print the batch: one page for each child, in roll order.', hi: 'जारी करने का बटन दबाएँ। फिर बैच छापने के लिए “Download these as one PDF” दबाएँ: हर बच्चे का एक पन्ना, रोल नंबर के क्रम में।' },
+      { en: 'In the “Issue register”, press “Download PDF” for one certificate, or “Send to the family” to send it on WhatsApp through the school’s send-gate.', hi: '“Issue register” में किसी एक प्रमाणपत्र के लिए “Download PDF” दबाएँ, या स्कूल के भेजने वाले द्वार से WhatsApp पर भेजने के लिए “Send to the family” दबाएँ।' },
+      { en: 'Issued by mistake? The principal presses “Withdraw”, writes “Why it is withdrawn” and presses “Withdraw the certificate”. It keeps its number, and its QR code says it is withdrawn.', hi: 'ग़लती से जारी हुआ? प्रिंसिपल “Withdraw” दबाएँ, “Why it is withdrawn” लिखें और “Withdraw the certificate” दबाएँ। वह अपना नंबर रखता है, और उसका QR कोड बताता है कि वह वापस ले लिया गया है।' },
+    ],
+    tips: [
+      { en: 'Under “Seal and signature”, the principal uploads the school seal and their signature once; every certificate carries them.', hi: '“Seal and signature” में प्रिंसिपल एक बार स्कूल की मुहर और अपने हस्ताक्षर अपलोड करते हैं; हर प्रमाणपत्र पर वे छपते हैं।' },
+      { en: 'A child has one transfer certificate at a time. Need another paper? Print a copy from the register instead of issuing a new number.', hi: 'एक बच्चे का एक समय में एक ही स्थानांतरण प्रमाणपत्र होता है। दूसरा काग़ज़ चाहिए? नया नंबर जारी करने के बजाय रजिस्टर से प्रति छापें।' },
+      { en: 'The QR page shows only valid or withdrawn, the certificate, the school, the number, the date and the first name with the surname’s initial. Never an Aadhaar number, a date of birth or fees.', hi: 'QR पेज पर सिर्फ़ मान्य या वापस लिया गया, प्रमाणपत्र, स्कूल, नंबर, तारीख़ और पहला नाम उपनाम के पहले अक्षर के साथ दिखते हैं। कभी आधार नंबर, जन्म तिथि या फ़ीस नहीं।' },
+    ],
+    start: { href: '/app/documents-id-cards', label: { en: 'Documents & Certificates', hi: 'दस्तावेज़ और प्रमाणपत्र (Documents & Certificates)' } },
+    related: ['make-a-certificate', 'take-fee-payment'],
+    keywords: ['certificate', 'tc', 'transfer certificate', 'leaving certificate', 'bonafide', 'character certificate', 'study certificate', 'register', 'qr', 'verify', 'withdraw', 'seal', 'signature', 'fee clearance', 'प्रमाणपत्र', 'टीसी', 'बोनाफाइड', 'स्थानांतरण', 'चरित्र प्रमाणपत्र'],
+  },
   // p7-10e end
   // p7-10f begin
   // p7-10f end

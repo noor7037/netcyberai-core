@@ -4381,6 +4381,132 @@ const disclosurePrintDone = async () => {
 };
 // p7-10d end
 // p7-10e begin
+// Certificates (C228). The principal issues transfer certificates for 5-A from the record: a child the fee counter
+// let through and a child with nothing owed are cleared, a child who owes is held until the principal waives it with
+// a reason, and a child whose record lacks a guardian's name is not issued one. The batch downloads as one PDF made in
+// the browser. The principal withdraws one with a reason; the QR page, opened with no session at all, says valid for
+// the other and withdrawn for it, with nothing but the type, school, number, day and a first name with an initial.
+const CERT_AARAV = '00000000-0000-4000-8000-000000500001'; // owes; the fee counter lets him through (an override)
+const CERT_MEERA = '00000000-0000-4000-8000-000000500004'; // owes; the principal waives it
+const CERT_KIARA = '00000000-0000-4000-8000-000000500025'; // owes nothing; no guardian on record
+const CERT_REASON = 'The family has moved to another city.';
+const CERT_WAIVER = 'The family has asked for time; a trust pays the fees next month.';
+const CERT_WITHDRAW = 'Issued with the wrong reason for leaving.';
+const VERIFY_TOKEN = 'harness-10e-verify-token-0000001';
+const clearCertificates = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from certificate_copies; delete from certificates_issued; delete from certificate_marks;
+    delete from fee_clearance_overrides where reason = 'Harness 10e: let through at the fee counter.';
+    delete from audit_log where event_action like 'certificate.%';
+    set session_replication_role = origin;`);
+};
+// What the QR page shows to someone with no session: its state, and each fact by name.
+const verifyAsAStranger = async (page, token) => {
+  const stranger = await page.context().browser().newContext();
+  try {
+    const p = await stranger.newPage();
+    const res = await p.goto(`${new URL(page.url()).origin}/verify/${token}`, { waitUntil: 'networkidle' });
+    return {
+      status: res.status(),
+      state: await p.locator('[data-verify-state]').getAttribute('data-verify-state'),
+      facts: await p.locator('[data-verify-fact]').evaluateAll((els) => els.map((e) => e.getAttribute('data-verify-fact')).join()),
+      name: (await p.locator('[data-verify-fact="name"] dd').count()) ? (await p.locator('[data-verify-fact="name"] dd').textContent()).trim() : null,
+      robots: await p.locator('meta[name="robots"]').getAttribute('content'),
+      text: await p.locator('body').innerText(),
+    };
+  } finally {
+    await stranger.close();
+  }
+};
+let certificatesSeen = null;
+const certificatesScreen = async (page) => {
+  await clearCertificates();
+  await db.pg.query(`insert into fee_clearance_overrides (school_id, student_id, owed_minor, reason, decided_by) values ($1, $2, 450000, 'Harness 10e: let through at the fee counter.', $3)`, [SCHOOL, CERT_AARAV, PEOPLE.principal.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-certificates-issue]').waitFor({ timeout: 20000 });
+  await page.selectOption('#crt-type', 'transfer');
+  await page.selectOption('#crt-class', { label: '5-A' });
+  await page.locator('[data-certificates-roster]').waitFor({ timeout: 20000 });
+  await page.locator('#crt-reason').fill(CERT_REASON);
+  await page.locator('[data-certificates-select-all]').click();
+  const meera = page.locator('[data-certificate-child="held"]', { hasText: 'Meera Example A' });
+  await meera.locator('[data-certificate-waive]').click();
+  await page.locator(`#crt-waive-${CERT_MEERA}`).fill(CERT_WAIVER);
+  const button = (await page.locator('[data-certificates-issue-button]').textContent()).trim();
+  await page.locator('[data-certificates-issue-button]').click();
+  await page.locator('[data-certificates-outcome] [data-certificates-batch-pdf]').waitFor({ timeout: 30000 });
+  const incomplete = (await page.locator('[data-certificate-incomplete]').allTextContents()).map((s) => s.trim());
+  // The batch, one PDF made on this device.
+  const [download] = await Promise.all([page.waitForEvent('download', { timeout: 60000 }), page.locator('[data-certificates-batch-pdf]').click()]);
+  const pdf = readFileSync(await download.path());
+  // The principal withdraws TC/0001, with a reason.
+  const first = page.locator('[data-certificate-number="TC/0001"]');
+  await first.locator('[data-certificate-withdraw]').click();
+  await first.locator('input[id^="crt-withdraw-"]').fill(CERT_WITHDRAW);
+  await first.locator('[data-certificate-withdraw-confirm]').click();
+  await page.locator('[data-certificate-number="TC/0001"][data-certificate-row="withdrawn"]').waitFor({ timeout: 20000 });
+  const tokens = Object.fromEntries((await db.pg.query(`select number, verify_token from certificates_issued where school_id = $1`, [SCHOOL])).rows.map((r) => [r.number, r.verify_token]));
+  certificatesSeen = {
+    button,
+    incomplete,
+    pdf: { name: download.suggestedFilename(), head: pdf.subarray(0, 5).toString('latin1'), pages: (pdf.toString('latin1').match(/\/Type \/Page \/Parent/g) ?? []).length },
+    rows: await page.locator('[data-certificate-row]').evaluateAll((els) => els.map((e) => `${e.getAttribute('data-certificate-number')}:${e.getAttribute('data-certificate-row')}`).join()),
+    valid: tokens['TC/0002'] ? await verifyAsAStranger(page, tokens['TC/0002']) : null,
+    withdrawn: tokens['TC/0001'] ? await verifyAsAStranger(page, tokens['TC/0001']) : null,
+  };
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+const certificatesScreenDone = async () => {
+  const { rows } = await db.pg.query(
+    `select number, student_id, clearance, owed_minor::int as owed, waived_by, waiver_reason, withdrawn_by, withdraw_reason, issued_by, printed ->> 'studentName' as name
+       from certificates_issued where school_id = $1 order by cert_type, seq`,
+    [SCHOOL]
+  );
+  const audited = (await db.pg.query(`select string_agg(event_action, ',' order by audit_id) as a from audit_log where event_action like 'certificate.%'`)).rows[0].a;
+  await clearCertificates();
+  const p = PEOPLE.principal.sub;
+  const want = [
+    { number: 'TC/0001', student_id: CERT_AARAV, clearance: 'fee_override', owed: 450000, waived_by: null, waiver_reason: null, withdrawn_by: p, withdraw_reason: CERT_WITHDRAW, issued_by: p, name: 'Aarav Example A' },
+    { number: 'TC/0002', student_id: CERT_MEERA, clearance: 'waived', owed: 450000, waived_by: p, waiver_reason: CERT_WAIVER, withdrawn_by: null, withdraw_reason: null, issued_by: p, name: 'Meera Example A' },
+  ];
+  if (JSON.stringify(rows) !== JSON.stringify(want)) throw new Error(`the certificates in the database: ${JSON.stringify(rows)}`);
+  if (audited !== 'certificate.issued,certificate.issued,certificate.withdrawn') throw new Error(`the certificates' audit rows: ${audited}`);
+  const s = certificatesSeen;
+  if (s.button !== 'Issue 3 certificates') throw new Error(`the issue button said: ${s.button}`);
+  if (s.incomplete.length !== 1 || !s.incomplete[0].startsWith('Kiara Example B: the record has no father’s or guardian’s name.')) throw new Error(`the incomplete child: ${JSON.stringify(s.incomplete)}`);
+  if (JSON.stringify(s.pdf) !== JSON.stringify({ name: 'certificates.pdf', head: '%PDF-', pages: 2 })) throw new Error(`the batch PDF: ${JSON.stringify(s.pdf)}`);
+  if (s.rows !== 'TC/0002:valid,TC/0001:withdrawn') throw new Error(`the register on the screen: ${s.rows}`);
+  for (const [seen, state, name] of [[s.valid, 'valid', 'Meera A.'], [s.withdrawn, 'withdrawn', 'Aarav A.']]) {
+    if (!seen || seen.status !== 200 || seen.state !== state || seen.facts !== 'type,school,number,date,name' || seen.name !== name || !/noindex/.test(seen.robots ?? '')) throw new Error(`the QR page, signed out, for a ${state} certificate: ${JSON.stringify({ ...seen, text: undefined })}`);
+    for (const never of ['Example A', 'Rajesh', 'Sunita', '5-A', 'ILL-0', '2015', CERT_REASON, CERT_WAIVER, CERT_WITHDRAW, '450']) if (seen.text.includes(never)) throw new Error(`the QR page shows "${never}"`);
+  }
+};
+// The QR page itself, as anyone sees it: a certificate of the register, made directly in the database.
+let verifySeen = null;
+const verifyScreen = async (page) => {
+  await clearCertificates();
+  // Made as the database's owner with the triggers held, so its token is the known one this screen's address uses.
+  await db.pg.exec('set session_replication_role = replica');
+  try {
+    await db.pg.query(
+      `insert into certificates_issued (school_id, cert_type, seq, student_id, class_id, issued_on, issued_by, printed, clearance, owed_minor, verify_token)
+       values ($1, 'transfer', 1, $2, $3, ${TODAY_SQL}, $4, '{"studentName": "Aarav Example A", "dob": "2015-04-18", "fatherName": "Rajesh Example", "lastClass": "5-A"}', 'nothing_owed', 0, $5)`,
+      [SCHOOL, CERT_AARAV, CLASS_5A, PEOPLE.principal.sub, VERIFY_TOKEN]
+    );
+  } finally {
+    await db.pg.exec('set session_replication_role = origin');
+  }
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-verify-state="valid"]').waitFor({ timeout: 20000 });
+  verifySeen = { stranger: await verifyAsAStranger(page, VERIFY_TOKEN), unknown: await verifyAsAStranger(page, 'harness-10e-verify-token-0000002') };
+};
+const verifyScreenDone = async () => {
+  await clearCertificates();
+  const { stranger, unknown } = verifySeen;
+  if (stranger.status !== 200 || stranger.state !== 'valid' || stranger.facts !== 'type,school,number,date,name' || stranger.name !== 'Aarav A.') throw new Error(`the QR page, signed out: ${JSON.stringify({ ...stranger, text: undefined })}`);
+  for (const never of ['Example A', 'Rajesh', '5-A', '2015']) if (stranger.text.includes(never)) throw new Error(`the QR page shows "${never}"`);
+  if (unknown.status !== 200 || unknown.state !== 'unknown' || unknown.facts !== '') throw new Error(`the QR page for a token that does not exist: ${JSON.stringify({ ...unknown, text: undefined })}`);
+};
 // p7-10e end
 // p7-10f begin
 // p7-10f end
@@ -5330,6 +5456,8 @@ const SCREENS = [
   ['principal', 'app-compliance-disclosure', '/app/compliance/desk/disclosure', disclosurePrint, disclosurePrintDone],
   // p7-10d end
   // p7-10e begin
+  ['principal', 'app-certificates', '/app/documents-id-cards', certificatesScreen, certificatesScreenDone],
+  ['principal', 'verify-certificate', `/verify/${VERIFY_TOKEN}`, verifyScreen, verifyScreenDone],
   // p7-10e end
   // p7-10f begin
   // p7-10f end

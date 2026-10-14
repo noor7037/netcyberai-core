@@ -211,6 +211,9 @@ const APP_USER: Record<string, string> = {
   sqaaf_evidence: 'DELETE,INSERT,SELECT', // a wrong piece of evidence is removed, audited; never changed
   // p7-10d end
   // p7-10e begin
+  certificates_issued: 'INSERT,SELECT,UPDATE', // never deleted: a number is never reused; UPDATE only withdraws (trigger) (C228)
+  certificate_copies: 'INSERT,SELECT', // a copy sent to a family; removed only by a child's erasure (definer function)
+  certificate_marks: 'DELETE,INSERT,SELECT,UPDATE', // the seal and the signature: the principal replaces or removes them
   // p7-10e end
   // p7-10f begin
   // p7-10f end
@@ -349,6 +352,9 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   sqaaf_evidence: '',
   // p7-10d end
   // p7-10e begin
+  certificates_issued: '', // a school's register is its own: the platform role runs certificate_verify() only (C228)
+  certificate_copies: '', // the family's link is answered by certificate_copy() only
+  certificate_marks: '',
   // p7-10e end
   // p7-10f begin
   // p7-10f end

@@ -308,6 +308,20 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
       hi: '{{school}}: UDISE+ और APAAR के लिए {{child}} का स्कूल रिकॉर्ड आधार से मेल खाना चाहिए। ये अलग हैं: {{details}}। कृपया यहीं सही जानकारी लिखकर भेजें, या स्कूल दफ़्तर को बताएँ। कृपया आधार नंबर न भेजें।',
     },
   },
+  {
+    // Certificates (C228): a certificate issued from the record, sent to the family by a person. The link opens the
+    // PDF for 30 days while the certificate stands; nothing about the child is in the words beyond the name and number.
+    name: 'certificate_issued',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 2880,
+    variables: ['school', 'child', 'certificate', 'number', 'link'],
+    body: {
+      en: '{{school}}: {{child}}’s {{certificate}} (No. {{number}}) is ready. Download the PDF here: {{link}} The signed paper can be collected from the school office.',
+      hi: '{{school}}: {{child}} का {{certificate}} (संख्या {{number}}) तैयार है। PDF यहाँ से डाउनलोड करें: {{link}} हस्ताक्षर वाला काग़ज़ स्कूल दफ़्तर से लिया जा सकता है।',
+    },
+  },
 ];
 
 const VARIABLE = /\{\{([a-z0-9_]+)\}\}/g;

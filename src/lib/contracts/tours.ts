@@ -113,6 +113,7 @@ export const TOURS = {
   'compliance-disclosure': { steps: [{ slot: 'primary' }] },
   // p7-10d end
   // p7-10e begin
+  certificates: { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // p7-10e end
   // p7-10f begin
   // p7-10f end
