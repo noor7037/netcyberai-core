@@ -2918,6 +2918,155 @@ const monitoringMaskedDone = async () => {
 };
 // c210-ui end
 // p6-9a begin
+// Boards and the grading scheme builder (C213). The seeded school records no board and has no scheme; Exams is
+// switched on for it here (the seed predates the module), and every row made is taken away afterwards.
+const CBSE_DOC = 'https://cbseacademic.nic.in/web_material/CurriculumMain26/Sec/Curriculum_Sec_2025-26.pdf';
+let examsEntitlementBefore = null;
+const examsOn = async () => {
+  examsEntitlementBefore = (await db.pg.query(`select enabled, source from school_module_entitlements where school_id = $1 and module_id = 'exams'`, [SCHOOL])).rows[0] ?? null;
+  await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'exams', true, 'plan') on conflict (school_id, module_id) do update set enabled = true`, [SCHOOL]);
+};
+const clearGrading = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from grading_schemes where school_id = '${SCHOOL}';
+    update schools set board_id = null, board_set_by = null, board_set_at = null where school_id = '${SCHOOL}';
+    delete from audit_log where event_action in ('grading_scheme.saved', 'school.board_set') and school_id = '${SCHOOL}';
+    delete from audit_log where event_action in ('board.added', 'board_preset.added') and (target_id = 'harness-state' or target_id in (select preset_id::text from board_presets where board_id = 'harness-state'));
+    delete from board_presets where board_id = 'harness-state';
+    delete from boards where board_id = 'harness-state';
+    set session_replication_role = origin;`);
+  if (examsEntitlementBefore === null) await db.pg.query(`delete from school_module_entitlements where school_id = $1 and module_id = 'exams'`, [SCHOOL]);
+  else await db.pg.query(`update school_module_entitlements set enabled = $2, source = $3 where school_id = $1 and module_id = 'exams'`, [SCHOOL, examsEntitlementBefore.enabled, examsEntitlementBefore.source]);
+};
+// The principal records CBSE, starts from its preset and sees its source and the gap the document prints (41 to 44,
+// as printed); moves C2 down to 41, which closes it; tries 42 (now C2) and saves version 1.
+let gradingSeen = null;
+const gradingScheme = async (page) => {
+  await clearGrading();
+  await examsOn();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-scheme-empty]').waitFor({ timeout: 20000 });
+  await page.locator('#scheme-board').selectOption('cbse');
+  await page.locator('[data-scheme-board-save]').click();
+  await page.locator('[data-scheme-note="ok"]').waitFor({ timeout: 20000 });
+  await page.locator('[data-scheme-start-preset="Classes IX-X"]').click();
+  await page.locator('[data-scheme-editor]').waitFor({ timeout: 20000 });
+  const printed = await page.locator('[data-gap="41-44"][data-as-printed="yes"]').count();
+  const documentSays = await page.locator('[data-scheme-editor] [data-scheme-document-says]').count();
+  const source = await page.locator('[data-scheme-editor] [data-scheme-source] a').getAttribute('href');
+  await page.locator('#scheme-band-5-from').fill('41');
+  await page.locator('[data-gap="41-44"]').waitFor({ state: 'detached', timeout: 10000 });
+  const gapsAfter = await page.locator('[data-scheme-editor] [data-gap]').evaluateAll((els) => els.map((e) => e.getAttribute('data-gap')).join());
+  await page.locator('[data-scheme-save]').click();
+  await page.locator('[data-scheme-current="1"]').waitFor({ timeout: 20000 });
+  await page.locator('#scheme-try').fill('42');
+  const tried = await page.locator('[data-scheme-try-line="grade"]').textContent();
+  const passLine = await page.locator('[data-scheme-try-line="pass"]').textContent();
+  await page.evaluate(() => window.scrollTo(0, 0));
+  gradingSeen = { printed, documentSays, source, gapsAfter, tried, passLine };
+};
+const gradingSchemeDone = async () => {
+  const { rows } = await db.pg.query(
+    `select g.version, g.made_by, g.from_preset_id = (select preset_id from board_presets where board_id = 'cbse' and level = 'Classes IX-X') as from_cbse,
+            (select b ->> 'from' from jsonb_array_elements(g.scheme -> 'bands') b where b ->> 'grade' = 'C2') as c2_from, s.board_id, s.board_set_by,
+            (select count(*)::int from audit_log a where a.school_id = g.school_id and a.event_action in ('grading_scheme.saved', 'school.board_set')) as audits
+       from grading_schemes g join schools s on s.school_id = g.school_id where g.school_id = $1`,
+    [SCHOOL]
+  );
+  await clearGrading();
+  const want = [{ version: 1, made_by: PEOPLE.principal.sub, from_cbse: true, c2_from: '41', board_id: 'cbse', board_set_by: PEOPLE.principal.sub, audits: 2 }];
+  if (JSON.stringify(rows) !== JSON.stringify(want)) throw new Error(`the grading scheme in the database: ${JSON.stringify(rows)}`);
+  const seen = gradingSeen ?? {};
+  if (seen.printed !== 1 || seen.documentSays < 1 || seen.source !== CBSE_DOC || seen.gapsAfter !== '0-32' || !/is rounded to 42: grade C2\./.test(seen.tried ?? '') || !/pass mark of 33: passed/.test(seen.passLine ?? '')) throw new Error(`the grading scheme on the screen: ${JSON.stringify(seen)}`);
+};
+// A CISCE school starts from the ICSE preset: the grades and pass mark of the Regulations, and it is asked for the
+// mark ranges they do not give. Nothing is saved.
+let cisceSeen = null;
+const gradingCisce = async (page) => {
+  await clearGrading();
+  await examsOn();
+  await db.pg.query(`update schools set board_id = 'cisce' where school_id = $1`, [SCHOOL]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-scheme-start-preset="ICSE (Class X)"]').click();
+  await page.locator('[data-scheme-ask-ranges]').waitFor({ timeout: 20000 });
+  await page.locator('#scheme-try').fill('72');
+  cisceSeen = {
+    unranged: await page.locator('[data-scheme-unranged]').textContent(),
+    passMark: await page.locator('#scheme-pass').inputValue(),
+    tried: await page.locator('[data-scheme-try-line="grade"]').textContent(),
+    co: await page.locator('#scheme-area-0').inputValue(),
+  };
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+const gradingCisceDone = async () => {
+  const saved = (await db.pg.query(`select count(*)::int as n from grading_schemes where school_id = $1`, [SCHOOL])).rows[0].n;
+  await clearGrading();
+  const seen = cisceSeen ?? {};
+  if (saved !== 0 || !/1, 2, 3, 4, 5, 6, 7, 8, 9/.test(seen.unranged ?? '') || seen.passMark !== '33' || !/no mark ranges yet/.test(seen.tried ?? '') || seen.co !== 'SUPW and Community Service') throw new Error(`the CISCE start: saved ${saved}, ${JSON.stringify(seen)}`);
+};
+// Control: the founder adds a state board and its preset, copied from a (made-up) circular with its address.
+let boardsSeen = null;
+const HARNESS_CIRCULAR = 'https://example.invalid/harness/circular-7-of-2026.pdf';
+const controlBoards = async (page) => {
+  await clearGrading();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('#board-id').fill('harness-state');
+  await page.locator('#board-name').fill('Harness State Board (made up)');
+  await page.locator('[data-board-add]').click();
+  await page.locator('[data-board="harness-state"]').waitFor({ timeout: 20000 });
+  await page.locator('[data-add="preset"]').click();
+  await page.locator('#preset-board').selectOption('harness-state');
+  await page.locator('#preset-level').fill('Classes IX-X');
+  await page.locator('#preset-title').fill('Circular 7 of 2026: grading in secondary classes (made up)');
+  await page.locator('#preset-url').fill(HARNESS_CIRCULAR);
+  await page.locator('#preset-pass').fill('33');
+  await page.locator('#preset-band-0-from').fill('33');
+  await page.locator('#preset-band-0-to').fill('100');
+  await page.locator('#preset-band-0-grade').fill('Pass');
+  await page.locator('[data-preset-form] [data-add="band"]').click();
+  await page.locator('#preset-band-1-from').fill('0');
+  await page.locator('#preset-band-1-to').fill('32');
+  await page.locator('#preset-band-1-grade').fill('Not yet');
+  await page.locator('[data-preset-form] button', { hasText: 'Add a note' }).click();
+  await page.locator('#preset-note-0').fill('Made up for the harness: the circular gives no meanings.');
+  await page.locator('[data-preset-save]').click();
+  await page.locator('[data-board="harness-state"] [data-preset="Classes IX-X"]').waitFor({ timeout: 20000 });
+  boardsSeen = { link: await page.locator('[data-board="harness-state"] [data-preset="Classes IX-X"] a').getAttribute('href'), presets: await page.locator('[data-preset]').count() };
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+const controlBoardsDone = async () => {
+  const { rows } = await db.pg.query(
+    `select b.added_by as board_by, p.added_by as preset_by, p.source_url, p.pass_mark::text as pass_mark, jsonb_array_length(p.bands) as bands, jsonb_array_length(p.notes) as notes,
+            (select count(*)::int from audit_log where event_action in ('board.added', 'board_preset.added') and actor_user_id = $1 and (target_id = 'harness-state' or target_id = p.preset_id::text)) as audits
+       from boards b join board_presets p on p.board_id = b.board_id where b.board_id = 'harness-state'`,
+    [PEOPLE.founder.sub]
+  );
+  await clearGrading();
+  const want = [{ board_by: PEOPLE.founder.sub, preset_by: PEOPLE.founder.sub, source_url: HARNESS_CIRCULAR, pass_mark: '33.00', bands: 2, notes: 1, audits: 2 }];
+  if (JSON.stringify(rows) !== JSON.stringify(want)) throw new Error(`the state board in the database: ${JSON.stringify(rows)}`);
+  if (boardsSeen?.link !== HARNESS_CIRCULAR || boardsSeen?.presets !== 4) throw new Error(`the state board on the screen: ${JSON.stringify(boardsSeen)}`);
+};
+// Control → a school → Exams: the founder records the school's board.
+const controlSchoolBoard = async (page) => {
+  await clearGrading();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.getByRole('tab', { name: 'Exams' }).click();
+  await page.locator('[data-school-board]').waitFor({ timeout: 15000 });
+  await page.locator('#school-board').selectOption('cisce');
+  await page.locator('[data-school-board-save]').click();
+  await page.waitForFunction(() => /board is recorded/.test(document.querySelector('[data-school-board] [role="status"]')?.textContent ?? ''), null, { timeout: 20000 });
+  // Read back: who recorded it and when, and nothing left to save.
+  await page.locator('[data-school-board] p', { hasText: 'Recorded by Illustrative Founder' }).waitFor({ timeout: 20000 });
+  await page.locator('[data-school-board-save]:disabled').waitFor({ timeout: 10000 });
+};
+const controlSchoolBoardDone = async () => {
+  const { rows } = await db.pg.query(
+    `select s.board_id, s.board_set_by, (select count(*)::int from audit_log a where a.school_id = s.school_id and a.event_action = 'school.board_set' and a.actor_user_id = $2) as audits from schools s where s.school_id = $1`,
+    [SCHOOL, PEOPLE.founder.sub]
+  );
+  await clearGrading();
+  if (JSON.stringify(rows) !== JSON.stringify([{ board_id: 'cisce', board_set_by: PEOPLE.founder.sub, audits: 1 }])) throw new Error(`the school's board set in Control: ${JSON.stringify(rows)}`);
+};
 // p6-9a end
 // p6-9b begin
 // p6-9b end
@@ -3558,6 +3707,10 @@ const SCREENS = [
   ['founder', 'control-monitoring-masked', '/control/monitoring', monitoringMasked, monitoringMaskedDone],
   // c210-ui end
   // p6-9a begin
+  ['principal', 'app-exams-scheme', '/app/exams/scheme', gradingScheme, gradingSchemeDone],
+  ['principal', 'app-exams-scheme-cisce', '/app/exams/scheme', gradingCisce, gradingCisceDone],
+  ['founder', 'control-boards', '/control/boards', controlBoards, controlBoardsDone],
+  ['founder', 'control-school-board', `/control/schools/${SCHOOL}`, controlSchoolBoard, controlSchoolBoardDone],
   // p6-9a end
   // p6-9b begin
   // p6-9b end

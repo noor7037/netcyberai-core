@@ -1148,6 +1148,32 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   // c210-ui begin
   // c210-ui end
   // p6-9a begin
+  {
+    slug: 'set-up-grading-scheme',
+    category: 'support',
+    audience: 'office',
+    title: { en: 'Set up your school’s grading scheme', hi: 'अपने स्कूल की ग्रेडिंग योजना बनाएँ' },
+    summary: {
+      en: 'Record your board, start from its preset or from nothing, and set the bands, pass marks, components, terms and what the report card shows. Saving makes a new version; the latest is in force.',
+      hi: 'अपना बोर्ड दर्ज करें, उसके प्रीसेट से या ख़ाली से शुरू करें, और बैंड, पास अंक, भाग, सत्र और रिपोर्ट कार्ड में क्या दिखे, यह तय करें। सहेजने से नया संस्करण बनता है; सबसे नया लागू होता है।',
+    },
+    steps: [
+      { en: 'Open “Grading scheme” from Exams. Under “Your school’s board”, choose your board and press “Save the board”.', hi: 'Exams से “Grading scheme” खोलें। “Your school’s board” में अपना बोर्ड चुनें और “Save the board” दबाएँ।' },
+      { en: 'Press the button that starts from your board’s preset, or “Start empty”. A preset says which official document it was copied from, with a link to open it.', hi: 'अपने बोर्ड के प्रीसेट से शुरू करने वाला बटन दबाएँ, या “Start empty”। प्रीसेट बताता है कि वह किस आधिकारिक दस्तावेज़ से लिया गया है, और उसे खोलने का लिंक देता है।' },
+      { en: 'Change the bands: from, to, grade and meaning. Press “Add a band” for one more. “Gaps and overlaps” lists any percent in no band, or in two; a gap copied from the board’s document says so.', hi: 'बैंड बदलें: से, तक, ग्रेड और अर्थ। एक और जोड़ने के लिए “Add a band” दबाएँ। “Gaps and overlaps” में वह हर प्रतिशत दिखता है जो किसी बैंड में नहीं, या दो में है; जो कमी बोर्ड के दस्तावेज़ से आई है, वह यह बताती है।' },
+      { en: 'If the board’s document gives no mark ranges, enter the range your school uses for each grade, or leave them all empty: report cards then show marks only.', hi: 'अगर बोर्ड का दस्तावेज़ अंक-सीमा नहीं देता, तो हर ग्रेड के लिए अपने स्कूल की सीमा भरें, या सब ख़ाली छोड़ें: तब रिपोर्ट कार्ड में सिर्फ़ अंक दिखते हैं।' },
+      { en: 'Set the pass mark, the components and their shares, the terms, and what the report card shows.', hi: 'पास अंक, भाग और उनके हिस्से, सत्र, और रिपोर्ट कार्ड में क्या दिखे, यह तय करें।' },
+      { en: 'Type a percent under “Try it” to see the grade and the pass it gets. Then press “Save as version” and the new version is in force.', hi: '“Try it” में कोई प्रतिशत लिखकर देखें कि उसे कौन-सा ग्रेड और पास मिलता है। फिर “Save as version” दबाएँ और नया संस्करण लागू हो जाता है।' },
+    ],
+    tips: [
+      { en: 'Nothing saved is ever changed. To change the scheme, press “Change the scheme” and save again: earlier versions stay on record.', hi: 'सहेजा गया कुछ भी कभी नहीं बदलता। योजना बदलनी हो तो “Change the scheme” दबाएँ और फिर से सहेजें: पुराने संस्करण रिकॉर्ड में रहते हैं।' },
+      { en: 'Presets exist for CBSE and CISCE, each copied from the board’s official document. For a state board, NetCyberAI adds the preset from the board’s circular when your school joins.', hi: 'CBSE और CISCE के प्रीसेट हैं, हर एक बोर्ड के आधिकारिक दस्तावेज़ से लिया गया। राज्य बोर्ड के लिए, आपका स्कूल जुड़ने पर NetCyberAI बोर्ड के परिपत्र से प्रीसेट जोड़ता है।' },
+      { en: 'A percent in no band gets no grade, never the nearest one. The academic coordinator can read the scheme; only the principal and the school admin change it.', hi: 'जो प्रतिशत किसी बैंड में नहीं, उसे कोई ग्रेड नहीं मिलता, सबसे पास वाला भी नहीं। एकेडमिक कोऑर्डिनेटर योजना पढ़ सकते हैं; बदलते सिर्फ़ प्रिंसिपल और स्कूल एडमिन हैं।' },
+    ],
+    start: { href: '/app/exams/scheme', label: { en: 'Grading scheme', hi: 'ग्रेडिंग योजना (Grading scheme)' } },
+    related: ['use-my-day', 'school-check-up'],
+    keywords: ['grading', 'grade', 'grades', 'scheme', 'board', 'cbse', 'icse', 'isc', 'cisce', 'state board', 'pass mark', 'bands', 'report card', 'marks', 'ग्रेड', 'ग्रेडिंग', 'बोर्ड', 'पास अंक', 'रिपोर्ट कार्ड'],
+  },
   // p6-9a end
   // p6-9b begin
   // p6-9b end

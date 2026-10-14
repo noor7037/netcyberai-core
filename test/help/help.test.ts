@@ -57,6 +57,7 @@ describe('the guides', () => {
       // c210-ui begin
       // c210-ui end
       // p6-9a begin
+      'set-up-grading-scheme',
       // p6-9a end
       // p6-9b begin
       // p6-9b end

@@ -349,6 +349,9 @@ ALLOWED_PERMISSIVE = (
         # c210-ui begin
         # c210-ui end
         # p6-9a begin
+        ("boards", "boards_read"),  # C213: every school role reads; only the platform role adds
+        ("board_presets", "board_presets_read"),
+        ("grading_schemes", "grading_schemes_tenant_isolation"),  # C213: narrowed by the RESTRICTIVE policies below
         # p6-9a end
         # p6-9b begin
         # p6-9b end
@@ -579,6 +582,8 @@ REQUIRED_RESTRICTIVE = {
     ("classes", "classes_removed_by_office"),
     # c210-ui end
     # p6-9a begin
+    ("grading_schemes", "grading_schemes_staff"),
+    ("grading_schemes", "grading_schemes_saved_by_office"),
     # p6-9a end
     # p6-9b begin
     # p6-9b end

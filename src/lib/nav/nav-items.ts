@@ -13,6 +13,7 @@ export const controlNav: NavItem[] = [
   { label: 'Monitoring', href: '/control/monitoring' },
   { label: 'Analytics', href: '/control/analytics' },
   { label: 'Billing & Plans', href: '/control/billing-plans' },
+  { label: 'Boards & grading', href: '/control/boards' },
   { label: 'Compliance', href: '/control/compliance' },
   { label: 'Integrations', href: '/control/integrations' },
   { label: 'Support', href: '/control/support' },

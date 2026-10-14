@@ -47,6 +47,7 @@ export const TODAY_CARD_TYPES = [
   // c210-ui begin
   // c210-ui end
   // p6-9a begin
+  'grading-scheme',
   // p6-9a end
   // p6-9b begin
   // p6-9b end
