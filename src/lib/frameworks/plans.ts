@@ -4,61 +4,94 @@ import { ALWAYS_ON_MODULES } from '@/lib/contracts/entitlements';
 import { isModuleId, MODULE_REGISTRY, type ModuleId } from '@/lib/contracts/modules';
 import type { Sql } from '@/lib/jobs/types';
 
-// Plans are settings (docs/26 rule 8, C204): their names, prices and periods
-// are rows of the `plans` table, typed in Control. Nothing here names a plan
-// or a price. Which plan a new school gets is a platform setting.
+// Plans are settings (docs/26 rule 8, C204): their names and prices are rows
+// of the `plans` table, typed in Control. Nothing here names a plan or a
+// price. Which plan a new school gets is a platform setting.
+//
+// Priced per active student (founder, C212): a price a month and a price a
+// year, each per student, in paise; the school's subscription says which of
+// the two it pays. The amount due is worked out in one place,
+// src/lib/control/billing-amount.ts.
 //
 // A plan gives either every module that works today (derived from the
 // registry at the moment it is applied, never listed by hand) or a chosen
-// list. The rows a school gets are fixed when the plan is applied; a module
-// that goes live later reaches a school when the plan is applied again.
+// list. A chosen list may name a module that is not built yet: the plan
+// sells it, and it is switched on once it works. The rows a school gets are
+// fixed when the plan is applied; a module that goes live later reaches a
+// school when the plan is applied again.
 
-export const PLAN_PERIODS = ['month', 'quarter', 'year'] as const;
-export type PlanPeriod = (typeof PLAN_PERIODS)[number];
+// The two periods a school can pay for.
+export const BILLING_PERIODS = ['month', 'year'] as const;
+export type BillingPeriod = (typeof BILLING_PERIODS)[number];
+export const isBillingPeriod = (v: unknown): v is BillingPeriod => (BILLING_PERIODS as readonly unknown[]).includes(v);
+// Parts of a module that a plan gives or holds back. Only the module that owns a feature reads it, through
+// planHasFeature (personal-best: Exams, from P6; principal-dashboard: Dashboard; staff-leave: Staff).
+export const PLAN_FEATURES = ['personal-best', 'principal-dashboard', 'staff-leave'] as const;
+export type PlanFeature = (typeof PLAN_FEATURES)[number];
+export const isPlanFeature = (v: unknown): v is PlanFeature => (PLAN_FEATURES as readonly unknown[]).includes(v);
 // Named whole-number limits a module, as school_module_entitlements.limits holds them.
 export type PlanLimits = Partial<Record<ModuleId, Record<string, number>>>;
 
 export type Plan = {
   planId: string;
   name: string;
-  priceMinor: number | null; // null: no price set yet
+  // Per active student, in paise. Both null: no price set yet (never zero by default).
+  priceMonthMinor: number | null;
+  priceYearMinor: number | null;
   currency: string;
-  period: PlanPeriod | null;
   graceDays: number;
   allWorkingModules: boolean;
   moduleIds: ModuleId[]; // the modules it gives today
+  waitingModuleIds: ModuleId[]; // listed, not built yet: switched on once they work and the plan is applied again
+  features: PlanFeature[];
+  messagesPerStudentMonth: number | null; // WhatsApp messages included per student a month; null: not set yet
   limits: PlanLimits;
   retired: boolean;
 };
 
 // The platform setting that holds the id of the plan a new school starts on.
 export const DEFAULT_PLAN_SETTING = 'billing.default_plan';
-const PLAN_COLUMNS = `plan_id, name, price_minor, currency, period, grace_days, all_working_modules, module_ids, limits, retired_at`;
+const PLAN_COLUMNS = `plan_id, name, price_month_minor, price_year_minor, currency, grace_days, all_working_modules, module_ids, features, whatsapp_messages_per_student_month, limits, retired_at`;
 
 // Every module that works today: status live or partial.
 export function workingModules(): ModuleId[] {
   return MODULE_REGISTRY.filter((m) => m.status === 'live' || m.status === 'partial').map((m) => m.id);
 }
 
+const paise = (v: unknown): number | null => (v === null || v === undefined ? null : Number(v));
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function planFromRow(r: any): Plan {
-  const chosen = (Array.isArray(r.module_ids) ? r.module_ids : []).filter(isModuleId); // a module removed from the registry is dropped
+  const listed = (Array.isArray(r.module_ids) ? r.module_ids : []).filter(isModuleId); // a module removed from the registry is dropped
+  const working = workingModules();
   const limits: PlanLimits = {};
   for (const [id, value] of Object.entries((r.limits ?? {}) as Record<string, unknown>)) {
     if (isModuleId(id) && value && typeof value === 'object' && !Array.isArray(value)) limits[id] = value as Record<string, number>;
   }
+  const all = r.all_working_modules === true;
   return {
     planId: r.plan_id,
     name: r.name,
-    priceMinor: r.price_minor === null || r.price_minor === undefined ? null : Number(r.price_minor),
+    priceMonthMinor: paise(r.price_month_minor),
+    priceYearMinor: paise(r.price_year_minor),
     currency: r.currency,
-    period: (r.period as PlanPeriod | null) ?? null,
     graceDays: Number(r.grace_days),
-    allWorkingModules: r.all_working_modules === true,
-    moduleIds: r.all_working_modules === true ? workingModules() : chosen,
+    allWorkingModules: all,
+    moduleIds: all ? working : listed.filter((m: ModuleId) => working.includes(m)),
+    waitingModuleIds: all ? [] : listed.filter((m: ModuleId) => !working.includes(m)),
+    features: (Array.isArray(r.features) ? r.features : []).filter(isPlanFeature),
+    messagesPerStudentMonth: r.whatsapp_messages_per_student_month === null || r.whatsapp_messages_per_student_month === undefined ? null : Number(r.whatsapp_messages_per_student_month),
     limits,
     retired: r.retired_at !== null && r.retired_at !== undefined,
   };
+}
+
+// Whether the plan a school is on gives a feature (P6 asks for 'personal-best'). Through a database function, so a
+// school's own session can ask about its own school without reading any plan, name or price; for another school it
+// answers false. The platform role may ask about any school. Read when asked: a change of plan counts at once.
+export async function planHasFeature(db: Sql, schoolId: string, feature: PlanFeature): Promise<boolean> {
+  const { rows } = await db.query(`select school_plan_has_feature($1::uuid, $2) as yes`, [schoolId, feature]);
+  return rows[0]?.yes === true;
 }
 
 export async function loadPlan(db: Sql, planId: unknown): Promise<Plan | null> {
@@ -84,8 +117,8 @@ export type ApplyPlanResult = { ok: true; modules: ModuleId[]; switchedOff: Modu
 // Puts a school on a plan: exactly the plan's modules are on. A module the
 // plan gives is switched on with the plan's limits; a module an earlier plan
 // gave and this one does not is switched off. A module the founder set by
-// hand (source founder_override) keeps the founder's choice, and a trial is
-// left alone; Help is never switched off. Access mode and the paid-until day
+// hand (source founder_override) keeps the founder's choice, and a trial and
+// a complimentary module (C212) are left alone; Help is never switched off. Access mode and the paid-until day
 // are left as they are. A retired plan is not given to a school that is not
 // already on it. Idempotent. Runs as nca_super (only the platform writes
 // entitlements and subscriptions).

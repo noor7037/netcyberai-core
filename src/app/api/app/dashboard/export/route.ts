@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server';
 import { writeAuditLog } from '@/lib/audit/log';
 import { csvResponse, toCsv } from '@/lib/export/csv';
 import { loadEntitlements } from '@/lib/frameworks/entitlements';
+import { planHasFeature } from '@/lib/frameworks/plans';
 import { appRoute, ruleError } from '@/lib/frameworks/route';
 import { DEFAULT_LANG, LANG_COOKIE, readLangCookie, t } from '@/lib/i18n';
 import { DASHBOARD_CSV_HEADER, dashboardCsvRows, dashboardModel } from '@/lib/insights/dashboard';
@@ -15,6 +16,7 @@ import { DEFAULT_RANGE, isRangeId } from '@/lib/insights/screens';
 // and how many rows. The numbers themselves are not copied into the audit trail.
 export async function GET(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
+    if (!(await planHasFeature(db, claims.schoolId, 'principal-dashboard'))) return ruleError(403, 'not_allowed'); // a part of the plan (C212)
     if (claims.role !== 'principal' && claims.role !== 'school_admin') return ruleError(403, 'not_allowed');
     const asked = req.nextUrl.searchParams.get('range');
     if (asked !== null && !isRangeId(asked)) return ruleError(400, 'not_sent_properly');

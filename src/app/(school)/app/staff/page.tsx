@@ -5,7 +5,7 @@ import { StaffInvitations } from '@/components/account/StaffInvitations';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { StaffLeaveOffice } from '@/components/staff/StaffLeaveOffice';
 import { StaffLeaveShown } from '@/components/staff/StaffLeaveShown';
-import { moduleOffReason } from '@/lib/frameworks/page-access';
+import { featureOff, moduleOffReason } from '@/lib/frameworks/page-access';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 import { isStaffShow } from '@/lib/insights/screens';
@@ -26,7 +26,8 @@ export default async function StaffPage({ searchParams = {} }: { searchParams?: 
   if (session?.role !== 'principal' && session?.role !== 'school_admin') {
     return <ModuleComingPage moduleId="staff" />;
   }
-  const leaveOff = await moduleOffReason('staff');
+  // Leave is also a part of the plan (C212: 'staff-leave', Growth and Premium).
+  const leaveOff = (await moduleOffReason('staff')) ?? ((await featureOff('staff-leave')) ? 'not_in_plan' : null);
   const { lang } = getLang(session.sub);
   const shown = isStaffShow(searchParams.show) ? searchParams.show : null;
   return (

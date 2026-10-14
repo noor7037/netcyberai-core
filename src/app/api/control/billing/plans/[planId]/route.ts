@@ -5,7 +5,7 @@ import { planInputFromBody } from '@/lib/control/billing-input';
 import { asLiveStaff } from '@/lib/control/billing-route';
 
 // One plan (docs/26 slice 8e, C204). NetCyberAI staff only. The plan is the one in the address.
-//   POST { action: 'edit', name, priceRupees, period, graceDays, allWorkingModules, moduleIds, limits }
+//   POST { action: 'edit', name, priceMonthRupees, priceYearRupees, graceDays, allWorkingModules, moduleIds, limits, features, messagesPerStudentMonth }
 //   POST { action: 'retire' } | { action: 'restore' }   retired: not offered to a school that is not on it
 //   POST { action: 'default' }                          the plan a new school starts on
 export const dynamic = 'force-dynamic';

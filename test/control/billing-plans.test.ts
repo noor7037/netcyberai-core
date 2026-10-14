@@ -66,7 +66,9 @@ const job = (payload: Record<string, unknown> = {}) => ({ jobId: 'j', type: BILL
 const nightly = (onDay: string) => billingNightlyHandler({ platform, now: noonOn(onDay) })(job({ date: onDay }));
 const stored = async (school: string) => (await rows(`select e.access_mode, e.grace_ends_at, s.paid_until::text as paid_until, s.billing_access, s.billing_access_since::text as since from school_subscriptions s left join school_entitlements e on e.school_id = s.school_id where s.school_id = $1`, [school]))[0];
 const accessAudits = async (school: string) => (await rows(`select a.actor_user_id, a.before_state ->> 'access_mode' as was, a.after_state ->> 'access_mode' as now, a.after_state ->> 'by' as by, r.reason from audit_log a left join entitlement_change_reasons r on r.audit_id = a.audit_id where a.school_id = $1 and a.event_action = 'entitlement.access_changed' order by a.audit_id`, [school]));
-const planInput = (over: Record<string, unknown> = {}) => ({ name: 'Made-up Plan', priceMinor: null, period: null, graceDays: 5, allWorkingModules: true, moduleIds: [], limits: {}, ...over });
+const planInput = (over: Record<string, unknown> = {}) => ({ name: 'Made-up Plan', priceMonthMinor: null, priceYearMinor: null, graceDays: 5, allWorkingModules: true, moduleIds: [], limits: {}, ...over });
+// The three plans the C212 migration seeds as data (test/control/billing-pricing.test.ts proves their prices and modules).
+const C212_SEEDS = ['essential', 'growth', 'premium'];
 // A school billed until `paidUntil`: a payment recorded on a day in the past, when it still covered the school.
 const billed = async (school: string, paidUntil: string) => {
   const r = await platform((c) => recordPayment(c, by, school, { amountMinor: 50_000_00, paidOn: day(-60), coversUntil: paidUntil, reference: `made-up-ref-${school.slice(-2)}` }, day(-60)));
@@ -92,11 +94,12 @@ afterAll(async () => db?.stop());
 
 describe('plans are rows, not code', () => {
   it('the migration seeds one plan from what the constant was: every working module, a name, and no price', async () => {
-    expect(await rows(`select plan_id, price_minor, period, all_working_modules, module_ids, retired_at from plans`)).toEqual([{ plan_id: SEEDED, price_minor: null, period: null, all_working_modules: true, module_ids: [], retired_at: null }]);
-    expect((await rows(`select name from plans`))[0].name).toMatch(/\S/);
-    const [plan] = await platform((c) => listPlans(c));
+    // C212 seeds three more, priced per student; this one keeps no price.
+    expect(await rows(`select plan_id, price_month_minor, price_year_minor, all_working_modules, module_ids, retired_at from plans where plan_id <> all($1::text[])`, [C212_SEEDS])).toEqual([{ plan_id: SEEDED, price_month_minor: null, price_year_minor: null, all_working_modules: true, module_ids: [], retired_at: null }]);
+    expect((await rows(`select name from plans where plan_id = $1`, [SEEDED]))[0].name).toMatch(/\S/);
+    const plan = (await platform((c) => listPlans(c))).find((p) => p.planId === SEEDED)!;
     expect(plan.moduleIds).toEqual(workingModules());
-    expect(plan.priceMinor).toBeNull();
+    expect([plan.priceMonthMinor, plan.priceYearMinor]).toEqual([null, null]);
     // Which plan a new school gets is a platform setting, not a constant.
     expect(await platform((c) => defaultPlanId(c))).toBe(SEEDED);
     expect(await rows(`select value from platform_settings where key = 'billing.default_plan'`)).toEqual([{ value: SEEDED }]);
@@ -123,11 +126,11 @@ describe('plans are rows, not code', () => {
   });
 
   it('no plan name, plan id or price is written anywhere in src: every plan in the table is searched for, in every file', async () => {
-    // A second plan, with a name and a price, so the search has more than the seed to look for.
-    const made = await platform((c) => createPlan(c, by, { ...planInput({ name: 'Zebra Quartz', priceMinor: 4_321_00, period: 'quarter' }), planId: 'zebra-quartz' }));
+    // Another plan, with a name and a price, so the search has more than the seeds to look for.
+    const made = await platform((c) => createPlan(c, by, { ...planInput({ name: 'Zebra Quartz', priceMonthMinor: 4_321_00, priceYearMinor: 43_210_00 }), planId: 'zebra-quartz' }));
     expect(made).toMatchObject({ ok: true });
-    const plans = await rows(`select plan_id, name, price_minor from plans order by plan_id`);
-    expect(plans.length).toBeGreaterThanOrEqual(2);
+    const plans = await rows(`select plan_id, name from plans order by plan_id`);
+    expect(plans.length).toBeGreaterThanOrEqual(5);
 
     // Every .ts and .tsx file under src, the illustrative data of src/demo-fixture included: the website's showcase
     // and the development previews import it, so a plan written there would be a plan written in src.
@@ -137,15 +140,29 @@ describe('plans are rows, not code', () => {
         if (statSync(full).isDirectory()) return files(full);
         return /\.(ts|tsx)$/.test(name) && !/\.test\.tsx?$/.test(name) ? [full] : [];
       });
-    const sources = files(path.join(ROOT, 'src'));
+    // The public website names the plans it sells and is written by the supervisor, not by the app (founder,
+    // 2026-10-14, C212): its own files are left out. Everything of the app is searched: the school's screens,
+    // Control, the APIs, the libraries behind them, and the illustrative data.
+    const WEBSITE = [/^src\/content\/(?!help\/)/, /^src\/app\/(?!\((school|admin|dev)\)\/|api\/)/, /^src\/components\/(marketing|showcase|home|catalog|visual|content|layout|free-tools)\//, /^src\/lib\/(seo|og-card)\.tsx?$/];
+    const all = files(path.join(ROOT, 'src'));
+    const sources = all.filter((f) => !WEBSITE.some((w) => w.test(path.relative(ROOT, f))));
     expect(sources.length).toBeGreaterThan(500);
+    expect(all.length - sources.length).toBeLessThan(200); // the website is the smaller part
     expect(sources).toContain(path.join(ROOT, 'src/demo-fixture/control-entitlements.ts'));
-    // One line is not about a plan and is left out of the search, by its own words: an option of the "Audit Logging"
-    // field in the website showcase's illustrative form happens to be the same everyday word as the seeded plan's name.
-    const NOT_A_PLAN: Record<string, RegExp> = { 'src/demo-fixture/principal-dashboard.ts': /^.*s\('Audit Logging', \[.*$/m };
-    expect(readFileSync(path.join(ROOT, 'src/demo-fixture/principal-dashboard.ts'), 'utf8').match(new RegExp(NOT_A_PLAN['src/demo-fixture/principal-dashboard.ts'].source, 'gm')) ?? []).toHaveLength(1);
+    // Lines that are not about a plan are left out of the search, each by its own words: an option of the "Audit
+    // Logging" field in the website showcase's illustrative form is the same everyday word as the first plan's name,
+    // and a kind of message on the showcase's phone is the same word as a seeded plan's id. Each matches one line.
+    const NOT_A_PLAN: Record<string, RegExp> = {
+      'src/demo-fixture/principal-dashboard.ts': /^.*s\('Audit Logging', \[.*$/gm,
+      'src/demo-fixture/whatsapp-chats.ts': /^.*\{ t: 'growth'; rows: .*$/gm,
+    };
+    for (const [file, re] of Object.entries(NOT_A_PLAN)) expect(readFileSync(path.join(ROOT, file), 'utf8').match(re) ?? [], file).toHaveLength(1);
     // The files this slice is made of are in the search, by name.
-    const mine = ['src/lib/frameworks/plans.ts', 'src/app/(admin)/control/billing-plans/page.tsx', 'src/components/control/BillingPlansView.tsx', 'src/components/control/BillingSchools.tsx', 'src/lib/control/billing.ts', 'src/lib/control/billing-nightly.ts', 'src/lib/control/billing-notice.ts', 'src/lib/onboarding/applications.ts', 'src/app/api/control/schools/route.ts'];
+    const mine = [
+      'src/lib/frameworks/plans.ts', 'src/app/(admin)/control/billing-plans/page.tsx', 'src/components/control/BillingPlansView.tsx', 'src/components/control/BillingSchools.tsx', 'src/lib/control/billing.ts', 'src/lib/control/billing-nightly.ts', 'src/lib/control/billing-notice.ts', 'src/lib/onboarding/applications.ts', 'src/app/api/control/schools/route.ts',
+      // C212
+      'src/lib/control/billing-amount.ts', 'src/lib/control/billing-terms.ts', 'src/lib/control/billing-input.ts', 'src/components/control/BillingTerms.tsx', 'src/app/api/control/schools/[schoolId]/subscription/route.ts',
+    ];
     for (const f of mine) expect(sources, f).toContain(path.join(ROOT, f));
 
     const quoted = (word: string) => new RegExp(`['"\`>]${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}['"\`<]`);
@@ -174,40 +191,49 @@ describe('plans are rows, not code', () => {
 
   it('the list on the screen comes from the table: a row added is listed with its name, price and how many schools are on it', async () => {
     const o = await platform((c) => billingOverview(c));
-    expect(o.plans.map((p) => [p.planId, p.name, p.priceMinor, p.period, p.schools])).toEqual([
+    expect(o.plans.filter((p) => !C212_SEEDS.includes(p.planId)).map((p) => [p.planId, p.name, p.priceMonthMinor, p.priceYearMinor, p.schools])).toEqual([
       [SEEDED, (await rows(`select name from plans where plan_id = $1`, [SEEDED]))[0].name, null, null, 8],
-      ['zebra-quartz', 'Zebra Quartz', 4_321_00, 'quarter', 0],
+      ['zebra-quartz', 'Zebra Quartz', 4_321_00, 43_210_00, 0],
     ]);
+    // The seeded plans are rows too, listed by name, with no school on them: nothing was moved.
+    expect(o.plans.filter((p) => C212_SEEDS.includes(p.planId)).map((p) => [p.planId, p.schools])).toEqual(C212_SEEDS.map((id) => [id, 0]));
     expect(o.defaultPlanId).toBe(SEEDED);
     expect(o.workingModules).toEqual(workingModules());
   });
 
   it('a plan is typed in rupees and kept in paise; what is typed wrongly is refused in plain codes', async () => {
     expect([rupeesFromBody('1,500.50'), rupeesFromBody(''), rupeesFromBody(null), rupeesFromBody('12 thousand'), rupeesFromBody(-5), rupeesFromBody(2500)]).toEqual([150050, null, null, undefined, undefined, 250000]);
-    expect(planInputFromBody({ name: 'x', priceRupees: 'a lot' })).toEqual({ ok: false, reason: 'price' });
+    expect(planInputFromBody({ name: 'x', priceMonthRupees: 'a lot' })).toEqual({ ok: false, reason: 'price' });
+    expect(planInputFromBody({ name: 'x', priceMonthRupees: '15', priceYearRupees: '150', messagesPerStudentMonth: 'many' })).toEqual({ ok: false, reason: 'messages' });
+    expect(planInputFromBody({ name: 'x', priceMonthRupees: '15', priceYearRupees: '150.5' })).toMatchObject({ ok: true, value: { priceMonthMinor: 1500, priceYearMinor: 15050, messagesPerStudentMonth: null } });
     const make = (over: Record<string, unknown>, planId = 'made-up') => platform((c) => createPlan(c, by, { ...planInput(over), planId }));
     expect(await make({}, 'Has Capitals')).toEqual({ ok: false, reason: 'plan_id' });
     expect(await make({}, 'unassigned')).toEqual({ ok: false, reason: 'plan_id' });
     expect(await make({ name: '   ' })).toEqual({ ok: false, reason: 'name' });
-    expect(await make({ priceMinor: 10.5, period: 'year' })).toEqual({ ok: false, reason: 'price' });
-    expect(await make({ priceMinor: 100_00 })).toEqual({ ok: false, reason: 'period' }); // a price is always for a period
-    expect(await make({ period: 'fortnight' })).toEqual({ ok: false, reason: 'period' });
+    expect(await make({ priceMonthMinor: 10.5, priceYearMinor: 105 })).toEqual({ ok: false, reason: 'price' });
+    expect(await make({ priceMonthMinor: 100_00 })).toEqual({ ok: false, reason: 'prices' }); // a school pays for a month or a year: both prices, or neither
+    expect(await make({ priceYearMinor: 1_000_00 })).toEqual({ ok: false, reason: 'prices' });
     expect(await make({ graceDays: 91 })).toEqual({ ok: false, reason: 'grace_days' });
     expect(await make({ graceDays: 2.5 })).toEqual({ ok: false, reason: 'grace_days' });
     expect(await make({ allWorkingModules: false, moduleIds: [] })).toEqual({ ok: false, reason: 'modules' });
     expect(await make({ allWorkingModules: false, moduleIds: ['students', 'students'] })).toEqual({ ok: false, reason: 'modules' });
-    expect(await make({ allWorkingModules: false, moduleIds: ['payroll'] })).toEqual({ ok: false, reason: 'modules' }); // not built: not offered in a plan
+    expect(await make({ allWorkingModules: false, moduleIds: ['payroll'] })).toEqual({ ok: false, reason: 'modules' }); // not built, and nothing else: nothing would be switched on
+    expect(await make({ allWorkingModules: false, moduleIds: ['students', 'no-such-module'] })).toEqual({ ok: false, reason: 'modules' });
+    expect(await make({ features: ['a-made-up-feature'] })).toEqual({ ok: false, reason: 'features' });
+    expect(await make({ features: ['personal-best'] })).toEqual({ ok: false, reason: 'features' }); // a part of Exams, which works for no plan yet
+    expect(await make({ messagesPerStudentMonth: -1 })).toEqual({ ok: false, reason: 'messages' });
+    expect(await make({ messagesPerStudentMonth: 2.5 })).toEqual({ ok: false, reason: 'messages' });
     expect(await make({ limits: { students: { enrolled: -1 } } })).toEqual({ ok: false, reason: 'limits' });
     expect(await make({ allWorkingModules: false, moduleIds: ['students'], limits: { fees: { dues: 5 } } })).toEqual({ ok: false, reason: 'limits' }); // a limit for a module the plan does not give
     expect(await make({}, 'zebra-quartz')).toEqual({ ok: false, reason: 'id_taken' });
     expect(await make({ name: ' zebra  quartz ' })).toEqual({ ok: false, reason: 'name_taken' });
     // The database holds the same lines for anything that does not come through the screen.
-    await expect(db.pg.query(`insert into plans (plan_id, name, grace_days, price_minor) values ('no-period', 'No period', 0, 100)`)).rejects.toThrow(/check constraint/);
+    await expect(db.pg.query(`insert into plans (plan_id, name, grace_days, price_month_minor) values ('no-year', 'No year', 0, 100)`)).rejects.toThrow(/check constraint/);
     await expect(db.pg.query(`insert into plans (plan_id, name, grace_days, all_working_modules, module_ids) values ('both', 'Both', 0, true, '{students}')`)).rejects.toThrow(/check constraint/);
     await expect(db.pg.query(`insert into plans (plan_id, name, grace_days) values ('same-name', 'ZEBRA QUARTZ', 0)`)).rejects.toThrow(/unique/);
-    expect(await rows(`select count(*)::int as n from plans`)).toEqual([{ n: 2 }]);
+    expect(await rows(`select count(*)::int as n from plans`)).toEqual([{ n: 2 + C212_SEEDS.length }]);
     // Each plan made or changed is audited as the platform's own event, which no school can read.
-    expect(await rows(`select event_action, target_id, school_id, actor_user_id, after_state ->> 'price_minor' as price from audit_log where event_action like 'billing.plan%' order by audit_id`)).toEqual([{ event_action: 'billing.plan_created', target_id: 'zebra-quartz', school_id: null, actor_user_id: FOUNDER, price: '432100' }]);
+    expect(await rows(`select event_action, target_id, school_id, actor_user_id, after_state ->> 'price_month_minor' as price from audit_log where event_action like 'billing.plan%' and actor_user_id is not null order by audit_id`)).toEqual([{ event_action: 'billing.plan_created', target_id: 'zebra-quartz', school_id: null, actor_user_id: FOUNDER, price: '432100' }]);
     expect((await read(principalA, `select 1 from audit_log where event_action like 'billing.plan%'`))).toEqual([]);
   });
 });
@@ -305,10 +331,10 @@ describe('applying a plan switches on exactly its modules', () => {
   it('editing a plan is audited with what it was, and does not reach a school until the plan is applied to it again', async () => {
     expect((await platform((c) => applyPlan(c, E, 'small-made-up', founder, 'on the small plan'))).ok).toBe(true);
     const before = await planRows(E);
-    const r = await platform((c) => updatePlan(c, by, 'small-made-up', planInput({ name: 'Small Made-up', priceMinor: 9_000_00, period: 'year', graceDays: 3, allWorkingModules: false, moduleIds: ['students', 'homework'] })));
-    expect(r).toMatchObject({ ok: true, plan: { priceMinor: 9_000_00, period: 'year', graceDays: 3, moduleIds: ['students', 'homework'] } });
+    const r = await platform((c) => updatePlan(c, by, 'small-made-up', planInput({ name: 'Small Made-up', priceMonthMinor: 900_00, priceYearMinor: 9_000_00, graceDays: 3, allWorkingModules: false, moduleIds: ['students', 'homework'] })));
+    expect(r).toMatchObject({ ok: true, plan: { priceMonthMinor: 900_00, priceYearMinor: 9_000_00, graceDays: 3, moduleIds: ['students', 'homework'] } });
     expect(await planRows(E)).toEqual(before);
-    expect(await rows(`select before_state -> 'module_ids' as was, after_state -> 'module_ids' as now, after_state ->> 'price_minor' as price from audit_log where event_action = 'billing.plan_changed'`)).toEqual([{ was: ['students', 'attendance', 'fees'], now: ['students', 'homework'], price: '900000' }]);
+    expect(await rows(`select before_state -> 'module_ids' as was, after_state -> 'module_ids' as now, after_state ->> 'price_year_minor' as price from audit_log where event_action = 'billing.plan_changed'`)).toEqual([{ was: ['students', 'attendance', 'fees'], now: ['students', 'homework'], price: '900000' }]);
     expect(await platform((c) => updatePlan(c, by, 'no-such-plan', planInput()))).toEqual({ ok: false, reason: 'not_found' });
     expect((await platform((c) => applyPlan(c, E, SEEDED, founder, 'back for the next tests'))).ok).toBe(true);
   });
@@ -637,7 +663,7 @@ describe('who can read and write: the three tables are the platform’s', () => 
     for (const who of [principalA, teacherA, principalB]) {
       await expect(as(who, (c) => c.query(`select 1 from subscription_payments`))).rejects.toThrow(/permission denied/);
       await expect(as(who, (c) => c.query(`select 1 from subscription_payments where school_id = $1`, [who.school]))).rejects.toThrow(/permission denied/);
-      await expect(as(who, (c) => c.query(`select name, price_minor from plans`))).rejects.toThrow(/permission denied/);
+      await expect(as(who, (c) => c.query(`select name, price_month_minor, price_year_minor from plans`))).rejects.toThrow(/permission denied/);
     }
     // What a school can read about a payment is its own audit row, and that row holds no amount, reference or note.
     const audit = (await read(principalA, `select after_state, before_state from audit_log where event_action like 'billing.payment%'`));
@@ -653,7 +679,7 @@ describe('who can read and write: the three tables are the platform’s', () => 
       await expect(as(who, (c) => c.query(`delete from school_subscriptions where school_id = $1`, [A]))).rejects.toThrow(/permission denied/);
       await expect(as(who, (c) => c.query(`insert into subscription_payments (school_id, plan_id, amount_minor, paid_on, covers_until, reference, recorded_by) values ($1, 'five-days', 100, $2::date, $3::date, 'made-up', $4)`, [A, TODAY, day(999), who.user]))).rejects.toThrow(/permission denied/);
       await expect(as(who, (c) => c.query(`insert into plans (plan_id, name, grace_days) values ('mine', 'Mine', 0)`))).rejects.toThrow(/permission denied/);
-      await expect(as(who, (c) => c.query(`update plans set price_minor = 1, period = 'year'`))).rejects.toThrow(/permission denied/);
+      await expect(as(who, (c) => c.query(`update plans set price_month_minor = 1, price_year_minor = 10`))).rejects.toThrow(/permission denied/);
       await expect(as(who, (c) => c.query(`update school_entitlements set access_mode = 'full' where school_id = $1`, [A]))).rejects.toThrow(/permission denied/);
       await expect(as(who, (c) => c.query(`update platform_settings set value = '"mine"'::jsonb`))).rejects.toThrow(/permission denied/);
     }

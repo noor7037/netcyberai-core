@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isUuid } from '@/lib/frameworks/custom-fields';
+import { planHasFeature } from '@/lib/frameworks/plans';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 import { decideLeave, withdrawLeave } from '@/lib/staff/leave';
 
@@ -11,6 +12,7 @@ import { decideLeave, withdrawLeave } from '@/lib/staff/leave';
 //                     that their teachers are told on My Day.
 export async function POST(req: NextRequest, { params }: { params: { leaveId: string } }) {
   return appRoute(req, async ({ claims, db }) => {
+    if (!(await planHasFeature(db, claims.schoolId, 'staff-leave'))) return ruleError(403, 'not_allowed'); // a part of the plan (C212)
     const b = await readJson(req);
     if (!b || !isUuid(params.leaveId)) return ruleError(400, 'not_sent_properly');
     const actor = { schoolId: claims.schoolId, userId: claims.sub, role: claims.role };

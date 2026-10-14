@@ -1,6 +1,7 @@
 import { writeEntitlementAudit } from '@/lib/audit/log';
 import { PermanentJobError, type JobHandler, type Sql } from '@/lib/jobs/types';
 import { indiaDate, isIsoDate } from '@/lib/time/india';
+import { schoolsWithComplimentary, syncComplimentaryModules } from './billing-terms';
 
 // The nightly billing check (docs/26 slice 8e, C204). Just after midnight in
 // India, for every school that is not a test school and has a paid-until day:
@@ -171,6 +172,10 @@ type Platform = <T>(fn: (db: Sql) => Promise<T>) => Promise<T>;
 // The job: every billed school past its paid-until day, each in its own
 // transaction, so one school's failure does not undo another's. A failure
 // is retried by the queue; a school already moved is left as it is.
+// Then (C212) every school with a complimentary module to look after: a
+// complimentary term that begins today is switched on, and one whose last
+// day has passed goes back to what the plan gives (syncComplimentaryModules).
+// Test schools too: a complimentary module is not a matter of payment.
 export function billingNightlyHandler(deps: { platform: Platform; now?: () => Date }): JobHandler {
   return async (job) => {
     const today = indiaDate((deps.now ?? (() => new Date()))());
@@ -189,6 +194,14 @@ export function billingNightlyHandler(deps: { platform: Platform; now?: () => Da
     for (const schoolId of schools) {
       try {
         await deps.platform((db) => runBillingCheckForSchool(db, schoolId, today));
+      } catch {
+        failed.push(schoolId);
+      }
+    }
+    const complimentary = await deps.platform((db) => schoolsWithComplimentary(db, today));
+    for (const schoolId of complimentary) {
+      try {
+        await deps.platform((db) => syncComplimentaryModules(db, schoolId, today, null));
       } catch {
         failed.push(schoolId);
       }

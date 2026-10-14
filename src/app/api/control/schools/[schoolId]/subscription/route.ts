@@ -1,18 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { recordPayment, schoolBilling, schoolPayments } from '@/lib/control/billing';
-import { rupeesFromBody } from '@/lib/control/billing-input';
+import { amountDue } from '@/lib/control/billing-amount';
+import { rupeesFromBody, termInputFromBody } from '@/lib/control/billing-input';
 import { asLiveStaff } from '@/lib/control/billing-route';
+import { addTerm, endTerm, listTerms, setBillingPeriod } from '@/lib/control/billing-terms';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { applyPlan } from '@/lib/frameworks/plans';
 
-// One school's subscription (docs/26 slice 8e, C204). NetCyberAI staff only. The school is the one in the address.
-//   GET   its plan, paid-until day and access, and every payment recorded for it
+// One school's subscription (docs/26 slice 8e, C204; terms and the amount due, C212). NetCyberAI staff only. The
+// school is the one in the address.
+//   GET   its plan, paid-until day and access, every payment recorded for it, its terms (newest first), and the
+//         amount due for one period with its working (students counted, minimum, price, discount)
 //   POST  { action: 'payment', amountRupees, paidOn, coversUntil, reference, note?, correctsPaymentId? }
 //         a payment taken outside the app; with correctsPaymentId it corrects that earlier row (nothing is ever edited).
 //         Answers the paid-until day, the school's access now, and handGraceEnded: true when the payment brought the
 //         school up to date and so ended a grace period that had been set by hand.
 //   POST  { action: 'plan', planId, reason }   puts the school on a plan: exactly that plan's modules
+//   POST  { action: 'period', period: 'month' | 'year', reason }   the period the school pays for
+//   POST  { action: 'term', kind: 'price' | 'complimentary' | 'discount' | 'minimum', priceMonthRupees, priceYearRupees
+//         | moduleId | percent | minimumStudents, startsOn, endsOn?, reason }   a term; it ends one of its kind it overlaps
+//   POST  { action: 'end_term', termId, endsOn, reason }   brings a term's last day forward
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest, { params }: { params: { schoolId: string } }) {
@@ -21,7 +29,7 @@ export async function GET(req: NextRequest, { params }: { params: { schoolId: st
   if (!isUuid(params.schoolId)) return NextResponse.json({ error: 'school not found' }, { status: 404 });
   const run = await asLiveStaff(guard.claims, async (db) => {
     const school = await schoolBilling(db, params.schoolId);
-    return school ? { school, payments: await schoolPayments(db, params.schoolId) } : null;
+    return school ? { school, payments: await schoolPayments(db, params.schoolId), terms: await listTerms(db, params.schoolId), amount: await amountDue(db, params.schoolId) } : null;
   });
   if ('refused' in run) return run.refused;
   if (!run.value) return NextResponse.json({ error: 'school not found' }, { status: 404 });
@@ -59,6 +67,25 @@ export async function POST(req: NextRequest, { params }: { params: { schoolId: s
     const r = run.value;
     if (r.ok) return NextResponse.json({ ok: true, modules: r.modules.length, switchedOff: r.switchedOff.length });
     return NextResponse.json({ error: 'the plan was not changed', code: r.error === 'not_found' ? 'not_found' : r.error === 'plan retired' ? 'retired' : 'plan' }, { status: r.error === 'not_found' ? 404 : 400 });
+  }
+
+  if (b.action === 'period') {
+    const run = await asLiveStaff(guard.claims, (db) => setBillingPeriod(db, { userId: guard.claims.sub }, params.schoolId, { period: b.period, reason: b.reason }));
+    if ('refused' in run) return run.refused;
+    const r = run.value;
+    if (r.ok) return NextResponse.json({ ok: true, period: r.period });
+    return NextResponse.json({ error: 'the period was not changed', code: r.reason }, { status: r.reason === 'not_found' ? 404 : 400 });
+  }
+
+  if (b.action === 'term' || b.action === 'end_term') {
+    const input = b.action === 'term' ? termInputFromBody(b) : null;
+    if (input && !input.ok) return NextResponse.json({ error: 'the term was not saved', code: input.reason }, { status: 400 });
+    const by = { userId: guard.claims.sub };
+    const run = await asLiveStaff(guard.claims, (db) => (input?.ok ? addTerm(db, by, params.schoolId, input.value) : endTerm(db, by, params.schoolId, { termId: b.termId, endsOn: b.endsOn, reason: b.reason })));
+    if ('refused' in run) return run.refused;
+    const r = run.value;
+    if (r.ok) return NextResponse.json({ ok: true, termId: r.termId, replaced: r.replaced.length, switchedOn: r.switchedOn, switchedOff: r.switchedOff }, { status: b.action === 'term' ? 201 : 200 });
+    return NextResponse.json({ error: 'the term was not saved', code: r.reason }, { status: r.reason === 'not_found' ? 404 : 400 });
   }
   return NextResponse.json({ error: 'not sent properly' }, { status: 400 });
 }

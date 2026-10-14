@@ -5,24 +5,33 @@ import { useT } from '@/components/app-shell/LangContext';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import type { BillingOverview, BillingState, PaymentRow, SchoolBilling } from '@/lib/control/billing';
+import type { AmountDue } from '@/lib/control/billing-amount';
 import { lastGraceDay } from '@/lib/control/grace-day';
+import { minorToRupees } from '@/lib/fees/money';
 import type { MessageKey } from '@/lib/i18n';
+import { BillingTerms } from './BillingTerms';
 
-// Control → Billing & Plans, the schools (docs/26 slice 8e, C204): each school's plan, the day it has paid until,
-// its access and when grace ends; "Record a payment", "Change plan", and the payments already recorded. A payment
-// is never edited: "Correct this entry" adds a new row that names the wrong one. Amounts are typed in rupees and
-// shown from the stored paise.
+// Control → Billing & Plans, the schools (docs/26 slice 8e, C204): each school's plan, the period it pays for, the
+// amount due for that period (C212), the day it has paid until, its access and when grace ends; "Record a payment",
+// "Change plan", "Terms and amount due", and the payments already recorded. A payment is never edited: "Correct this
+// entry" adds a new row that names the wrong one. Amounts are typed in rupees and shown from the stored paise.
 
-type Send = (url: string, payload: unknown, done: MessageKey | ((answer: Record<string, unknown>) => MessageKey)) => Promise<boolean>;
-type Panel = 'payment' | 'plan' | 'history';
+export type Send = (url: string, payload: unknown, done: MessageKey | ((answer: Record<string, unknown>) => MessageKey)) => Promise<boolean>;
+type Panel = 'payment' | 'plan' | 'history' | 'terms';
 type PayDraft = { amountRupees: string; paidOn: string; coversUntil: string; reference: string; note: string; corrects: PaymentRow | null; nothingPaid: boolean };
 const STATE_VARIANT: Record<BillingState, 'neutral' | 'success' | 'warning' | 'danger'> = { not_billed: 'neutral', paid: 'success', due: 'warning', grace: 'warning', read_only: 'danger', suspended: 'danger' };
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 const rupees = (paise: number) => `₹${(paise / 100).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-const MONTHS: Record<string, number> = { month: 1, quarter: 3, year: 12 };
+const MONTHS: Record<string, number> = { month: 1, year: 12 };
 const iso = (d: Date) => d.toISOString().slice(0, 10);
+// The amount due for the school's period, or what is missing before it can be worked out.
+export function amountLine(t: (key: MessageKey, params?: Record<string, string | number>) => string, amount: AmountDue | null): string {
+  if (!amount) return '—';
+  if (amount.amountMinor === null || amount.period === null) return t(`billing.due.${amount.missing ?? 'no_price'}` as MessageKey);
+  return t(`billing.due.${amount.period}` as MessageKey, { amount: rupees(amount.amountMinor) });
+}
 
 // A day one period after `from`, kept inside the month (31 January and a month is the last day of February).
 function addPeriod(from: string, period: string): string {
@@ -33,9 +42,9 @@ function addPeriod(from: string, period: string): string {
 }
 // The day a payment made today would cover until: one period on from what is already paid, or from yesterday when nothing is.
 function suggestCoversUntil(school: SchoolBilling, paidOn: string): string {
-  if (!school.planPeriod) return '';
+  if (!school.period) return '';
   const yesterday = iso(new Date(Date.parse(`${paidOn}T00:00:00Z`) - 86_400_000));
-  return addPeriod(school.paidUntil ?? yesterday, school.planPeriod);
+  return addPeriod(school.paidUntil ?? yesterday, school.period);
 }
 
 export function BillingSchools({ data, busy, send }: { data: BillingOverview; busy: boolean; send: Send }) {
@@ -54,14 +63,16 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
     const got = res?.ok ? await res.json().catch(() => null) : null;
     setPayments(got ? (got.payments as PaymentRow[]) : []);
   };
-  const show = (school: SchoolBilling, panel: Panel, corrects: PaymentRow | null = null) => {
+  const show = (school: BillingOverview['schools'][number], panel: Panel, corrects: PaymentRow | null = null) => {
     if (!corrects && open?.schoolId === school.schoolId && open.panel === panel) return setOpen(null);
     setOpen({ schoolId: school.schoolId, panel });
+    // A new payment starts from the amount due for the school's period, when there is one (C212); it can be changed.
+    const due = school.amount?.amountMinor ?? null;
     if (panel === 'payment')
       setPay(
         corrects
           ? { amountRupees: String(corrects.amountMinor / 100), paidOn: corrects.paidOn, coversUntil: corrects.coversUntil ?? '', reference: corrects.reference, note: '', corrects, nothingPaid: false }
-          : { amountRupees: '', paidOn: data.today, coversUntil: suggestCoversUntil(school, data.today), reference: '', note: '', corrects: null, nothingPaid: false }
+          : { amountRupees: due !== null && due > 0 ? minorToRupees(due) : '', paidOn: data.today, coversUntil: suggestCoversUntil(school, data.today), reference: '', note: '', corrects: null, nothingPaid: false }
       );
     if (panel === 'plan') setPlan({ planId: '', reason: '' });
     if (panel === 'history') void loadPayments(school.schoolId);
@@ -99,10 +110,22 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
                 </Badge>
                 {s.isTest && <Badge>{t('billing.school.test')}</Badge>}
               </div>
-              <dl className="grid gap-x-4 gap-y-1 sm:grid-cols-2 lg:grid-cols-4">
+              <dl className="grid gap-x-4 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
                 <div>
                   <dt className="text-slate/70">{t('billing.col.plan')}</dt>
                   <dd className="font-semibold">{s.planName ?? t('billing.school.noPlan')}</dd>
+                </div>
+                <div>
+                  <dt className="text-slate/70">{t('billing.col.period')}</dt>
+                  <dd data-billing-period className="font-semibold">
+                    {s.period ? t(`billing.period.${s.period}` as MessageKey) : t('billing.period.none')}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-slate/70">{t('billing.col.amount')}</dt>
+                  <dd data-billing-amount className="font-semibold">
+                    {amountLine(t, s.amount)}
+                  </dd>
                 </div>
                 <div>
                   <dt className="text-slate/70">{t('billing.col.paidUntil')}</dt>
@@ -131,6 +154,9 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
                 </button>
                 <button type="button" data-billing-history disabled={busy} className={TAP} aria-expanded={mine === 'history'} onClick={() => show(s, 'history')}>
                   {t('billing.history.open')}
+                </button>
+                <button type="button" data-billing-terms disabled={busy} className={TAP} aria-expanded={mine === 'terms'} onClick={() => show(s, 'terms')}>
+                  {t('billing.terms.open')}
                 </button>
               </div>
               {!s.planId && <p className="max-w-prose text-slate/70">{t('billing.school.noPlanHow')}</p>}
@@ -205,6 +231,8 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
                   </button>
                 </form>
               )}
+
+              {mine === 'terms' && <BillingTerms school={s} data={data} busy={busy} send={send} />}
 
               {mine === 'history' && (
                 <div data-billing-history-list className="flex flex-col gap-2 rounded-md bg-off-white p-3">
