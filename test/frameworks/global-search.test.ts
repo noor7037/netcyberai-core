@@ -245,14 +245,21 @@ describe('two seconds (docs/19 rule 6)', () => {
       );
       await q.query('analyze');
     });
+    // Each search's own time: one run first, not timed (Postgres plans the query), then the middle of three timed runs.
+    // The whole suite runs many PGlite databases at once on one machine, and a single run can stall behind another
+    // file's work for seconds (the lead measured a p95 of 2.7 to 3.0 s that way, and 0.37 s alone); a search that is
+    // really slow is slow in all three runs and still fails.
     const times: number[] = [];
     for (const q of ['student 4a', 'S02200', '9000002242', 'zzzz', 'kav', 'T-1a2b', 'stu', 'ab', '0000', 'student e']) {
-      for (let i = 0; i < 2; i++) {
+      await find('principal', principal, q);
+      const runs: number[] = [];
+      for (let i = 0; i < 3; i++) {
         const started = performance.now();
         const r = await find('principal', principal, q);
-        times.push(performance.now() - started);
+        runs.push(performance.now() - started);
         for (const kind of ['student', 'staff', 'ticket']) expect(r.filter((x) => x.kind === kind).length).toBeLessThanOrEqual(GLOBAL_SEARCH_PER_KIND);
       }
+      times.push(runs.sort((a, b) => a - b)[1]);
     }
     times.sort((a, b) => a - b);
     const p95 = times[Math.ceil(times.length * 0.95) - 1];
