@@ -43,7 +43,7 @@ export const moduleStatus: Record<ModuleId, { status: ModuleStatus; note: string
   'learning-genome': { status: 'needs-spec', note: 'Not in the current product documents.' },
   'early-warning': { status: 'partial', note: 'Version 1, for staff only: flags by rules from attendance, homework and “needs help” follow-ups, each with its evidence, and a log of what a person did. Marks join later; nothing is sent to parents.' },
   'teacher-copilot': { status: 'foundation', note: 'Version 1 is built and tested on a stand-in: drafts from the syllabus map, edited and approved by the teacher, metered per school. It is not switched on for any school, and no AI model is connected yet.' },
-  'school-auditor': { status: 'needs-spec', note: 'Not in the current product documents.' },
+  'school-auditor': { status: 'partial', note: 'Version 1: twelve checks by fixed rules (no AI), each passing, needing attention with a count and the screen that fixes it, or not set up, and a dated record of each check-up. It runs when the office asks; a weekly run is not built yet.' },
   'parent-ai': { status: 'needs-spec', note: 'Not in the current product documents.' },
   recovery: { status: 'partial', note: 'Version 1: lists students who missed several homeworks, suggests a catch-up plan and records the teacher’s approval; parents are not informed yet.' },
   'curriculum-gap': { status: 'needs-spec', note: 'Not in the current product documents.' },

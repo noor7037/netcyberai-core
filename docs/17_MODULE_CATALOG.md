@@ -113,7 +113,7 @@ page until the module is built.
 | 26 | Curriculum Gap Detector (`curriculum-gap`) | Spec v0: planned syllabus vs "taught today" vs assessed topics → flags untaught or unassessed chapters per class | P6 | Spec v0 |
 | 27 | Teacher Copilot (`teacher-copilot`) | Spec v0: AI drafts lesson plans, worksheets, Pulse messages and remarks from the syllabus; teacher edits and approves; usage metered | P2 | Spec v0 |
 | 28 | Parent AI · What to Do? (`parent-ai`) | Spec v0: weekly "what to do at home" suggestions per child from the Pulse and marks, in the family's language; teacher-reviewed templates | P4 | Partial (P4) |
-| 29 | School Health Auditor (`school-auditor`) | Spec v0: weekly score across attendance, coverage, fees, communication, compliance with explained deductions and a fix list | P5 | Spec v0 |
+| 29 | School Health Auditor (`school-auditor`) | Checks across attendance, timetable, fees, communication, complaints and staff with the reason for each and a fix list; "N of M checks pass", never a score (C208) | P5 | Partial (v1: twelve rule checks, run when the office asks: C208) |
 | 30 | Career Graph (`career`) | Spec v0: from class 9, interests + subject performance → career clusters and stream guidance; counsellor notes | P7 | Spec v0 |
 | 31 | Digital Twin (`twin`) | Spec v0: what-if simulator on the school's own data (fee change, teacher hiring, attendance target) with stated assumptions | P7 | Spec v0 |
 | 32 | Automation OS (`automation`) | Spec v0: rule builder (trigger → condition → action) on the jobs pipeline; prebuilt automations; every run audited; human approval for parent-facing actions | P7 | Spec v0 |
