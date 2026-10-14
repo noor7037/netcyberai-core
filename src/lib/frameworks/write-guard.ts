@@ -65,6 +65,8 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // p5-8h begin
   // p5-8h end
   // p5-8i begin
+  // School Health Auditor (C208): switched off, nobody runs a check-up.
+  ['school-auditor', 'school-auditor'],
   // p5-8i end
   // p5-8j begin
   // Early Warning (C209): switched off, nobody runs the check or adds what was done about a flag.
@@ -165,6 +167,8 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['reports', 'reports'],
   // p5-8h end
   // p5-8i begin
+  // The latest check-up and the last ones, for the principal and the school admin (C208).
+  ['school-auditor', 'school-auditor'],
   // p5-8i end
   // p5-8j begin
   // The flags a person may read, with their reasons, evidence and what was done (C209).

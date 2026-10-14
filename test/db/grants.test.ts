@@ -156,6 +156,7 @@ const APP_USER: Record<string, string> = {
   // p5-8h begin
   // p5-8h end
   // p5-8i begin
+  school_health_runs: 'INSERT,SELECT,UPDATE', // never deleted: a past day's check-up never changes (C208)
   // p5-8i end
   // p5-8j begin
   early_warning_flags: 'INSERT,SELECT,UPDATE', // never deleted: a flag closes (C209); the table was at_risk_flags
@@ -225,6 +226,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // p5-8h begin
   // p5-8h end
   // p5-8i begin
+  school_health_runs: '', // a check-up is the school office's own: the platform role reads nothing here (C208)
   // p5-8i end
   // p5-8j begin
   early_warning_flags: '', // nothing is sent or scheduled for a flag, so the platform role has no business in it

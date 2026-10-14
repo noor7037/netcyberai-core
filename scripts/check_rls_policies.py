@@ -333,6 +333,8 @@ ALLOWED_PERMISSIVE = (
         # p5-8h begin
         # p5-8h end
         # p5-8i begin
+        # C208: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("school_health_runs", "school_health_runs_tenant_isolation"),
         # p5-8i end
         # p5-8j begin
         # C209: tenant isolation only; narrowed by the RESTRICTIVE policies required below. early_warning_flags is
@@ -506,6 +508,10 @@ REQUIRED_RESTRICTIVE = {
     # p5-8h begin
     # p5-8h end
     # p5-8i begin
+    # C208: check-ups are read and written by the principal and the school admin only, in one's own name.
+    ("school_health_runs", "school_health_runs_office"),
+    ("school_health_runs", "school_health_runs_recorded_as_self"),
+    ("school_health_runs", "school_health_runs_rewritten_as_self"),
     # p5-8i end
     # p5-8j begin
     # C209: flags are read by the three roles that run the check and, for their own classes, by a teacher; opened and
