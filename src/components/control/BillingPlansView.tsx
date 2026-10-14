@@ -11,6 +11,7 @@ import { minorToRupees, rupeesToMinor } from '@/lib/fees/money';
 import type { PlanFeature } from '@/lib/frameworks/plans';
 import type { MessageKey } from '@/lib/i18n';
 import { BillingSchools } from './BillingSchools';
+import { BillingTrials } from './BillingTrials';
 
 // Control → Billing & Plans (docs/26 slice 8e, C204; per enrolled student, C212). The plans, typed here and kept in the
 // database (no name and no price is written in code): a price a month and a price a year per enrolled student (the
@@ -39,6 +40,7 @@ const ERRORS = [
   'plan_id', 'name', 'price', 'prices', 'period', 'grace_days', 'modules', 'limits', 'features', 'messages', 'id_taken', 'name_taken', 'not_found', 'is_default', 'retired', 'test_only',
   'no_plan', 'amount', 'paid_on', 'covers_until', 'reference', 'note', 'corrects', 'reason', 'plan',
   'billing_period', 'kind', 'module', 'percent', 'minimum', 'starts_on', 'ends_on', 'term',
+  'trial_used', 'billed', 'no_trial', 'trial_over', 'trial_ends_on', // the free month (C226)
 ];
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
@@ -287,6 +289,7 @@ export function BillingPlansView({ initial }: { initial: BillingOverview }) {
         )}
       </section>
 
+      <BillingTrials data={data} />
       <BillingSchools data={data} busy={busy} send={send} />
     </div>
   );

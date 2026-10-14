@@ -218,6 +218,7 @@ const APP_USER: Record<string, string> = {
   rte_claim_receipts: 'INSERT,SELECT', // the state's payments: recorded, never changed or removed; a mistake is a reversing row (C225)
   // c225 end
   // c226 begin
+  school_trials: 'SELECT', // the free month: the school's principal and school admin read their own (row level security); only Control writes (C226)
   // c226 end
   // c219 begin
   co_scholastic_grades: 'DELETE,INSERT,SELECT,UPDATE', // frozen with the class's publication (trigger); cleared while not published
@@ -350,6 +351,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   rte_claim_receipts: '', // the platform role reads nothing of a school's RTE claims (C225)
   // c225 end
   // c226 begin
+  school_trials: 'INSERT,SELECT,UPDATE', // started and extended in Control, ended by the nightly job; never removed (no DELETE, and a trigger)
   // c226 end
   // c219 begin
   schools: 'DELETE,INSERT,SELECT,UPDATE', // Control makes schools and sets plan, billing, pilot, test, budget and board (C219)

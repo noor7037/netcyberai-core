@@ -5,6 +5,7 @@ import { amountDue } from '@/lib/control/billing-amount';
 import { rupeesFromBody, termInputFromBody } from '@/lib/control/billing-input';
 import { asLiveStaff } from '@/lib/control/billing-route';
 import { addTerm, endTerm, listTerms, setBillingPeriod } from '@/lib/control/billing-terms';
+import { extendTrial, listTrials, startTrial, trialHistory } from '@/lib/control/trial';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { applyPlan } from '@/lib/frameworks/plans';
 
@@ -21,7 +22,14 @@ import { applyPlan } from '@/lib/frameworks/plans';
 //   POST  { action: 'term', kind: 'price' | 'complimentary' | 'discount' | 'minimum', priceMonthRupees, priceYearRupees
 //         | moduleId | percent | minimumStudents, startsOn, endsOn?, reason }   a term; it ends one of its kind it overlaps
 //   POST  { action: 'end_term', termId, endsOn, reason }   brings a term's last day forward
+//   POST  { action: 'trial_start', endsOn?, planId?, reason }   starts the school's free month today (C226, docs/30):
+//         to day 30 unless another last day is given, then the plan given (else the school's plan)
+//   POST  { action: 'trial_extend', endsOn, reason }   moves the free month's last day later
+// GET also answers the school's free month (or null) and its history, each reason with it (Control only).
 export const dynamic = 'force-dynamic';
+
+// A free month's refusal as the screen's error code ('ends_on' is the free month's own wording).
+const trialCode = (reason: string) => (reason === 'ends_on' ? 'trial_ends_on' : reason);
 
 export async function GET(req: NextRequest, { params }: { params: { schoolId: string } }) {
   const guard = await requireSuperAdmin(req);
@@ -29,7 +37,9 @@ export async function GET(req: NextRequest, { params }: { params: { schoolId: st
   if (!isUuid(params.schoolId)) return NextResponse.json({ error: 'school not found' }, { status: 404 });
   const run = await asLiveStaff(guard.claims, async (db) => {
     const school = await schoolBilling(db, params.schoolId);
-    return school ? { school, payments: await schoolPayments(db, params.schoolId), terms: await listTerms(db, params.schoolId), amount: await amountDue(db, params.schoolId) } : null;
+    if (!school) return null;
+    const trial = (await listTrials(db, undefined, params.schoolId))[0] ?? null;
+    return { school, payments: await schoolPayments(db, params.schoolId), terms: await listTerms(db, params.schoolId), amount: await amountDue(db, params.schoolId), trial, trialHistory: await trialHistory(db, params.schoolId) };
   });
   if ('refused' in run) return run.refused;
   if (!run.value) return NextResponse.json({ error: 'school not found' }, { status: 404 });
@@ -86,6 +96,24 @@ export async function POST(req: NextRequest, { params }: { params: { schoolId: s
     const r = run.value;
     if (r.ok) return NextResponse.json({ ok: true, termId: r.termId, replaced: r.replaced.length, switchedOn: r.switchedOn, switchedOff: r.switchedOff }, { status: b.action === 'term' ? 201 : 200 });
     return NextResponse.json({ error: 'the term was not saved', code: r.reason }, { status: r.reason === 'not_found' ? 404 : 400 });
+  }
+
+  if (b.action === 'trial_start') {
+    const by = { userId: guard.claims.sub, role: guard.claims.role };
+    const run = await asLiveStaff(guard.claims, (db) => startTrial(db, by, params.schoolId, { endsOn: b.endsOn, planId: b.planId, reason: b.reason }));
+    if ('refused' in run) return run.refused;
+    const r = run.value;
+    if (r.ok) return NextResponse.json({ ok: true, endsOn: r.endsOn, planId: r.planId, modules: r.modules.length }, { status: 201 });
+    return NextResponse.json({ error: 'the free month was not started', code: trialCode(r.reason) }, { status: r.reason === 'not_found' ? 404 : r.reason === 'trial_used' ? 409 : 400 });
+  }
+
+  if (b.action === 'trial_extend') {
+    const by = { userId: guard.claims.sub, role: guard.claims.role };
+    const run = await asLiveStaff(guard.claims, (db) => extendTrial(db, by, params.schoolId, { endsOn: b.endsOn, reason: b.reason }));
+    if ('refused' in run) return run.refused;
+    const r = run.value;
+    if (r.ok) return NextResponse.json({ ok: true, endsOn: r.endsOn });
+    return NextResponse.json({ error: 'the free month was not extended', code: trialCode(r.reason) }, { status: r.reason === 'not_found' ? 404 : 400 });
   }
   return NextResponse.json({ error: 'not sent properly' }, { status: 400 });
 }

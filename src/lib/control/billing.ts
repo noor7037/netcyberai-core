@@ -10,6 +10,7 @@ import { indiaDate, isIsoDate } from '@/lib/time/india';
 import { amountDue, MAX_STUDENT_MONTH_PAISE, MAX_STUDENT_YEAR_PAISE, type AmountDue } from './billing-amount';
 import { billingFacts, billingOwnSql, graceDaysInWords, writeBillingAccess } from './billing-nightly';
 import { lastGraceDay } from './grace-day';
+import { listTrials, MAX_TRIAL_DAYS, TRIAL_DAYS, TRIAL_NOTICE_DAYS, type Trial } from './trial';
 
 // Control → Billing & Plans (docs/26 slice 8e, C204). Everything here runs
 // as the platform role, for NetCyberAI staff only: the plans (create, edit,
@@ -204,6 +205,11 @@ export type BillingOverview = {
   maxGraceDays: number;
   // Each school with the amount it owes for one period, from the one rule (billing-amount.ts).
   schools: (SchoolBilling & { amount: AmountDue | null })[];
+  // C226: every school's free month, in force first and the soonest last day first (docs/30).
+  trials: Trial[];
+  trialDays: number;
+  maxTrialDays: number;
+  trialNoticeDays: number;
 };
 
 const SCHOOL_BILLING_SQL = `select s.school_id, s.name, s.is_test_fixture, p.plan_id, p.name as plan_name, sub.billing_period, sub.paid_until::text as paid_until,
@@ -258,6 +264,10 @@ export async function billingOverview(db: Sql, today: string = indiaDate()): Pro
     limitChoices: PLAN_LIMIT_CHOICES,
     maxGraceDays: MAX_GRACE_DAYS,
     schools,
+    trials: await listTrials(db, today),
+    trialDays: TRIAL_DAYS,
+    maxTrialDays: MAX_TRIAL_DAYS,
+    trialNoticeDays: TRIAL_NOTICE_DAYS,
   };
 }
 

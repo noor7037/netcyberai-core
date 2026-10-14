@@ -399,6 +399,9 @@ ALLOWED_PERMISSIVE = (
         ("rte_claim_receipts", "rte_claim_receipts_tenant_isolation"),
         # c225 end
         # c226 begin
+        # C226: the free month. Tenant isolation, narrowed to the principal and the school admin by the RESTRICTIVE
+        # policy required below; the app role holds SELECT only, so a school never writes it.
+        ("school_trials", "school_trials_tenant_isolation"),
         # c226 end
         # c219 begin
         # C219: co-scholastic grades. Tenant isolation, narrowed by the RESTRICTIVE policies required below.
@@ -713,6 +716,9 @@ REQUIRED_RESTRICTIVE = {
     ("rte_claim_receipts", "rte_claim_receipts_recorded_as_self"),
     # c225 end
     # c226 begin
+    # C226: a school's free month, and its audit rows, are read by its principal and school admin only.
+    ("school_trials", "school_trials_office"),
+    ("audit_log", "audit_trial_rows_office"),
     # c226 end
     # c219 begin
     # C219: only the principal and the school admin update their own school's row (and only its profile columns, by

@@ -7,7 +7,7 @@ import { ViewAsBanner } from '@/components/app-shell/ViewAsBanner';
 import { ScanButton } from '@/components/shell/ScanButton';
 import { toShellGroups, toShellItem } from '@/components/app-shell/shell-nav';
 import { ToastProvider } from '@/components/ui/Toast';
-import { accessNoticeText, schoolAccessNotice, type AccessNotice } from '@/lib/control/billing-notice';
+import { accessNoticeText, schoolAccessNotice, schoolTrialNotice, trialNoticeText, type AccessNotice, type TrialNotice } from '@/lib/control/billing-notice';
 import type { SchoolEntitlements } from '@/lib/contracts/entitlements';
 import type { SchoolRole } from '@/lib/contracts/modules';
 import { bottomNavItems, buildNavigation } from '@/lib/contracts/navigation';
@@ -44,8 +44,10 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   let viewAs: { name: string; endsAt: string } | null = null;
   // In grace or read-only: the dated line the school reads on every screen (C204).
   let accessNotice: AccessNotice | null = null;
+  // In the free month, for the principal and the school admin: the days left, and the notice from 7 days before (C226).
+  let trialNotice: TrialNotice | null = null;
   try {
-    ({ entitlements, schoolName, viewAs, accessNotice } = await withTenantContext(session!, async (db) => {
+    ({ entitlements, schoolName, viewAs, accessNotice, trialNotice } = await withTenantContext(session!, async (db) => {
       const { rows } = await db.query(`select name from schools where school_id = $1`, [schoolId]);
       const imp = session!.impersonation
         ? (await db.query(`select i.expires_at, u.display_name from impersonation_sessions i join users u on u.user_id = i.target_user_id where i.impersonation_id = $1`, [session!.impersonation.impersonationId])).rows[0]
@@ -55,8 +57,9 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         entitlements: loaded,
         schoolName: (rows[0]?.name as string | undefined) ?? 'NetCyberAI',
         viewAs: imp ? { name: imp.display_name as string, endsAt: new Date(imp.expires_at as string).toISOString() } : null,
-        // The last read of this transaction: if it fails, the menu above is still whole and the line is left out.
+        // The last reads of this transaction: if one fails, the menu above is still whole and its line is left out.
         accessNotice: await schoolAccessNotice(db, loaded).catch(() => null),
+        trialNotice: await schoolTrialNotice(db, schoolId, role).catch(() => null),
       };
     }));
   } catch (err) {
@@ -112,6 +115,11 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         {accessNotice && (
           <p role="status" lang={lang} data-access-notice={accessNotice.kind} className="bg-tangerine/10 px-4 py-2 text-sm font-semibold text-slate">
             {accessNoticeText(lang, accessNotice)}
+          </p>
+        )}
+        {trialNotice && (
+          <p role="status" lang={lang} data-trial-notice={trialNotice.kind} className={trialNotice.kind === 'days_left' ? 'bg-off-white px-4 py-2 text-sm text-slate' : 'bg-tangerine/10 px-4 py-2 text-sm font-semibold text-slate'}>
+            {trialNoticeText(lang, trialNotice)}
           </p>
         )}
         {menuIncomplete && (

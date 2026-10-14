@@ -36,6 +36,8 @@ export const B2_MIGRATIONS = [
   // parts only (its sections 1 to 3, which touch the billing tables alone, verbatim): its other parts need the tables
   // of later phases, which this small database does not have.
   ...readdirSync(path.join(ROOT, 'supabase/migrations')).filter((f) => f.endsWith('_c219_p6_closeout.sql')),
+  // C226: the plan placement and the free month (school_trials), which the billing code reads. Billing tables only.
+  ...readdirSync(path.join(ROOT, 'supabase/migrations')).filter((f) => f.endsWith('_c226_plans_trial.sql')),
 ].map((f) => {
   const sql = readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8');
   if (!f.endsWith('_c219_p6_closeout.sql')) return { file: f, sql };
