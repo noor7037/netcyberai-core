@@ -1070,6 +1070,144 @@ const messagingCostDone = async () => {
 // p5-8a begin
 // p5-8a end
 // p5-8b begin
+// Staff leave (C201). On Staff the principal approves one request, refuses another with a note and records leave
+// for someone who phoned in; the principal's own request is there with nothing to press. Approved leave far ahead
+// and leave that has ended are on the screen too: the principal cancels one that ended last week, and reaches one
+// that ended long ago by moving the list's first day back. On the account page a teacher puts in a request and
+// sees it waiting beside an earlier answer; a principal who is the only person in the office is told that nobody
+// can decide theirs yet. Every leave row is taken away after; the audit rows stay (the log is never cut) and are
+// counted from where they stood.
+const LEAVE_OTHER_TEACHER = '00000000-0000-4000-8000-00000000a004';
+const clearLeave = () => db.pg.exec(`set session_replication_role = replica; delete from staff_leave; set session_replication_role = origin;`);
+const leaveAudit = async () => (await db.pg.query(`select count(*)::int as n from audit_log where event_action like 'leave.%'`)).rows[0].n;
+const leaveDay = async (n) => (await db.pg.query(`select (${TODAY_SQL} + $1::int)::text as d`, [n])).rows[0].d;
+const putLeave = (user, from, to, kind, reason, decidedBy = null) =>
+  db.pg.query(
+    `insert into staff_leave (school_id, user_id, from_date, to_date, kind, reason, status, recorded_by, decided_by, decided_at)
+     values ($1, $2, ${TODAY_SQL} + $3::int, ${TODAY_SQL} + $4::int, $5, $6, case when $7::uuid is null then 'waiting' else 'approved' end, $2, $7::uuid, case when $7::uuid is not null then now() end)`,
+    [SCHOOL, user, from, to, kind, reason, decidedBy]
+  );
+let leaveAuditBefore = 0;
+let staffLeaveSeen = null;
+const staffLeave = async (page) => {
+  await clearLeave();
+  leaveAuditBefore = await leaveAudit();
+  await putLeave(PEOPLE.teacher.sub, 3, 4, 'casual', 'A family function in another town.');
+  await putLeave(LEAVE_OTHER_TEACHER, 6, 6, 'sick', 'An appointment with the doctor.');
+  await putLeave(PEOPLE.principal.sub, 10, 10, 'other', 'A meeting at the education office.');
+  // Approved leave the office must still be able to find and cancel: far ahead, ended last week, ended long ago.
+  await putLeave(PEOPLE.teacher.sub, 45, 46, 'casual', 'A wedding in the family.', PEOPLE.principal.sub);
+  await putLeave(LEAVE_OTHER_TEACHER, -5, -3, 'sick', 'Was unwell for three days.', PEOPLE.principal.sub);
+  await putLeave(PEOPLE.office.sub, -9, -9, 'casual', 'A day at the district office.', PEOPLE.principal.sub);
+  await putLeave(PEOPLE.teacher.sub, -80, -79, 'other', 'An examination duty at another school.', PEOPLE.principal.sub);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-leave-waiting-row="theirs"]').first().waitFor({ timeout: 20000 });
+  const rows = (part) => page.locator(`[data-leave-${part}] [data-leave-calendar-row]`).count();
+  const rowsBecome = (part, n) => page.waitForFunction(([p, want]) => document.querySelectorAll(`[data-leave-${p}] [data-leave-calendar-row]`).length === want, [part, n], { timeout: 20000 });
+  // As the screen opens: the leave far ahead, and the two that ended in the last weeks, each with its button.
+  const atFirst = { ahead: await rows('ahead'), ended: await rows('ended'), cancelButtons: await page.locator('[data-leave-cancel-open]').count() };
+  const refuseNeedsNote = await page.locator('[data-leave-refuse]').first().isDisabled();
+  const ownButtons = await page.locator('[data-leave-waiting-row="own"] button').count();
+  // The first request (the teacher's) is approved: it moves to the days ahead.
+  await page.locator('[data-leave-approve]').first().click();
+  await rowsBecome('ahead', 2);
+  await page.waitForFunction(() => document.querySelectorAll('[data-leave-waiting-row="theirs"]').length === 1, null, { timeout: 20000 });
+  // The second is refused, with the note its person will read.
+  await page.locator('[data-leave-waiting-row="theirs"] input').first().fill('Two teachers are already away that day.');
+  await page.locator('[data-leave-refuse]').first().click();
+  await page.waitForFunction(() => document.querySelectorAll('[data-leave-waiting-row="theirs"]').length === 0, null, { timeout: 20000 });
+  // The school admin phoned in this morning: recorded, and approved at once in the principal's name.
+  await page.selectOption('#leave-record-who', PEOPLE.office.sub);
+  await page.locator('#leave-record-from').fill(await leaveDay(0));
+  await page.locator('#leave-record-reason').fill('Phoned in unwell this morning.');
+  await page.locator('[data-leave-record-send]').click();
+  await rowsBecome('ahead', 3);
+  // The school admin's day last week was written down by mistake: cancelled after its day, with a note.
+  const ended = page.locator('[data-leave-ended] [data-leave-calendar-row]');
+  await ended.first().locator('[data-leave-cancel-open]').click();
+  await ended.first().locator('input').fill('He was in school that day.');
+  await ended.first().locator('[data-leave-cancel]').click();
+  await rowsBecome('ended', 1);
+  const note = await page.locator('[data-leave-note]').getAttribute('data-leave-note');
+  // Leave that ended long ago is reached by moving the first day of the list back.
+  await page.locator('#leave-calendar-from').fill(await leaveDay(-90));
+  await rowsBecome('ended', 2);
+  staffLeaveSeen = { atFirst, refuseNeedsNote, ownButtons, stillWaiting: await page.locator('[data-leave-waiting-row]').count(), note, ownLine: await page.locator('[data-leave-own]').getAttribute('data-leave-own'), aheadAtLast: await rows('ahead') };
+};
+const staffLeaveDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from staff_leave where school_id = $1 and user_id = $2 and status = 'approved' and decided_by = $3 and recorded_by = $2 and from_date = ${TODAY_SQL} + 3) as approved,
+            (select count(*)::int from staff_leave where school_id = $1 and user_id = $4 and status = 'refused' and decided_by = $3 and decision_note = 'Two teachers are already away that day.') as refused,
+            (select count(*)::int from staff_leave where school_id = $1 and user_id = $5 and status = 'approved' and decided_by = $3 and recorded_by = $3 and from_date = ${TODAY_SQL} and to_date = ${TODAY_SQL}) as recorded,
+            (select count(*)::int from staff_leave where school_id = $1 and user_id = $3 and status = 'waiting' and decided_by is null) as own_waiting,
+            (select count(*)::int from staff_leave where school_id = $1 and user_id = $5 and status = 'withdrawn' and withdrawn_by = $3 and withdrawn_note = 'He was in school that day.' and decided_by = $3 and to_date = ${TODAY_SQL} - 9) as cancelled_after,
+            (select count(*)::int from staff_leave where school_id = $1 and status = 'approved') as still_approved,
+            (select count(*)::int from staff_leave where decided_by = user_id) as decided_own,
+            (select count(*)::int from staff_leave) as in_all`,
+    [SCHOOL, PEOPLE.teacher.sub, PEOPLE.principal.sub, LEAVE_OTHER_TEACHER, PEOPLE.office.sub]
+  );
+  const audited = (await leaveAudit()) - leaveAuditBefore;
+  await clearLeave();
+  const want = { approved: 1, refused: 1, recorded: 1, own_waiting: 1, cancelled_after: 1, still_approved: 5, decided_own: 0, in_all: 8 };
+  if (JSON.stringify(rows[0]) !== JSON.stringify(want) || audited !== 4) throw new Error(`leave in the database: ${JSON.stringify(rows[0])}, ${audited} audit rows`);
+  const seen = { atFirst: { ahead: 1, ended: 2, cancelButtons: 3 }, refuseNeedsNote: true, ownButtons: 0, stillWaiting: 1, note: 'ok', ownLine: 'decided', aheadAtLast: 3 };
+  if (JSON.stringify(staffLeaveSeen) !== JSON.stringify(seen)) throw new Error(`leave on the Staff screen: ${JSON.stringify(staffLeaveSeen)}`);
+};
+let accountLeaveSeen = null;
+const accountLeave = async (page) => {
+  await clearLeave();
+  leaveAuditBefore = await leaveAudit();
+  // An earlier request, already answered by the principal.
+  await putLeave(PEOPLE.teacher.sub, 20, 21, 'casual', 'A wedding in the family.', PEOPLE.principal.sub);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-my-leave]').waitFor({ timeout: 20000 });
+  const sendNeedsDaysAndReason = await page.locator('[data-my-leave-send]').isDisabled();
+  await page.locator('#my-leave-from').fill(await leaveDay(5));
+  await page.locator('#my-leave-to').fill(await leaveDay(6));
+  await page.selectOption('#my-leave-kind', 'sick');
+  await page.locator('#my-leave-reason').fill('A small operation, and a day of rest after it.');
+  await page.locator('[data-my-leave-send]').click();
+  await page.locator('[data-my-leave-row="waiting"]').waitFor({ timeout: 20000 });
+  accountLeaveSeen = {
+    sendNeedsDaysAndReason,
+    rows: await page.locator('[data-my-leave-row]').evaluateAll((els) => els.map((e) => e.getAttribute('data-my-leave-row')).join()),
+    answers: await page.locator('[data-my-leave-row="approved"] [data-leave-answer]').count(),
+    withdraw: await page.locator('[data-my-leave-withdraw]').count(),
+    how: await page.locator('[data-my-leave-how]').getAttribute('data-my-leave-how'),
+  };
+};
+const accountLeaveDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from staff_leave where school_id = $1 and user_id = $2 and status = 'waiting' and recorded_by = $2 and decided_by is null and kind = 'sick'
+               and from_date = ${TODAY_SQL} + 5 and to_date = ${TODAY_SQL} + 6 and reason = 'A small operation, and a day of rest after it.') as asked,
+            (select count(*)::int from staff_leave where school_id = $1 and user_id = $2 and status = 'approved' and decided_by = $3) as answered,
+            (select count(*)::int from staff_leave) as in_all`,
+    [SCHOOL, PEOPLE.teacher.sub, PEOPLE.principal.sub]
+  );
+  const audited = (await leaveAudit()) - leaveAuditBefore;
+  await clearLeave();
+  if (JSON.stringify(rows[0]) !== JSON.stringify({ asked: 1, answered: 1, in_all: 2 }) || audited !== 1) throw new Error(`the teacher's leave in the database: ${JSON.stringify(rows[0])}, ${audited} audit rows`);
+  if (JSON.stringify(accountLeaveSeen) !== JSON.stringify({ sendNeedsDaysAndReason: true, rows: 'approved,waiting', answers: 1, withdraw: 2, how: 'decided' })) throw new Error(`leave on the account page: ${JSON.stringify(accountLeaveSeen)}`);
+};
+// A school with one person in its office: for this screen the school admin's account is switched off, so the
+// principal is the only one who decides leave, and nobody decides their own. "My leave" must say so, and say what
+// changes it. The account is switched back on after, whatever happened.
+let aloneLeaveSeen = null;
+const accountLeaveAlone = async (page) => {
+  await clearLeave();
+  await db.pg.query(`update users set is_active = false where user_id = $1`, [PEOPLE.office.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  const how = page.locator('[data-my-leave-how]');
+  await how.waitFor({ timeout: 20000 });
+  const words = await how.innerText();
+  aloneLeaveSeen = { how: await how.getAttribute('data-my-leave-how'), saysWhy: words.includes('Nobody decides their own'), saysWhatNext: words.includes('“Invite staff”'), namesAnother: words.includes('the other person in the office') };
+};
+const accountLeaveAloneDone = async () => {
+  await db.pg.query(`update users set is_active = true where user_id = $1`, [PEOPLE.office.sub]);
+  const left = (await db.pg.query(`select count(*)::int as n from staff_leave`)).rows[0].n;
+  await clearLeave();
+  if (left !== 0 || JSON.stringify(aloneLeaveSeen) !== JSON.stringify({ how: 'alone', saysWhy: true, saysWhatNext: true, namesAnother: false })) throw new Error(`"My leave" for the only person in the office: ${JSON.stringify(aloneLeaveSeen)}, ${left} leave rows`);
+};
 // p5-8b end
 // p5-8c begin
 // p5-8c end
@@ -1495,6 +1633,9 @@ const SCREENS = [
   // p5-8a begin
   // p5-8a end
   // p5-8b begin
+  ['principal', 'app-staff-leave', '/app/staff', staffLeave, staffLeaveDone],
+  ['teacher', 'app-account-leave', '/app/account', accountLeave, accountLeaveDone],
+  ['principal', 'app-account-leave-alone', '/app/account', accountLeaveAlone, accountLeaveAloneDone],
   // p5-8b end
   // p5-8c begin
   // p5-8c end

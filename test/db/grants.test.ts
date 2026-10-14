@@ -138,6 +138,7 @@ const APP_USER: Record<string, string> = {
   // p5-8a begin
   // p5-8a end
   // p5-8b begin
+  staff_leave: 'INSERT,SELECT,UPDATE', // never deleted: withdrawn or cancelled (C201)
   // p5-8b end
   // p5-8c begin
   // p5-8c end
@@ -200,6 +201,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // p5-8a begin
   // p5-8a end
   // p5-8b begin
+  staff_leave: '', // the platform role has no business in a person's leave
   // p5-8b end
   // p5-8c begin
   // p5-8c end

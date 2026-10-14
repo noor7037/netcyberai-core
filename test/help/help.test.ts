@@ -25,6 +25,7 @@ describe('the guides', () => {
       // p5-8a begin
       // p5-8a end
       // p5-8b begin
+      'staff-leave',
       // p5-8b end
       // p5-8c begin
       // p5-8c end

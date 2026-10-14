@@ -106,7 +106,7 @@ const ROWS: readonly Row[] = [
     capabilities: ['Profile', 'CSV import', 'Document scan with OCR autofill', 'QR ID cards', 'Siblings', 'Promotions', 'Transfers', 'History', 'Student 360 search'] },
   { id: 'parents', label: 'Parents', group: 'school-people', icon: 'parent', roles: OFFICE, phase: 'P4', phaseNote: 'One screen a guardian: children, consent, number, data requests. A teacher opens a guardian of their own classes from Communication', status: 'partial',
     capabilities: ['Guardians', 'Verification', 'DPDP consent', 'Data requests', 'Contact preferences', 'WhatsApp linkage'] },
-  { id: 'staff', label: 'Staff', group: 'school-people', icon: 'staff', roles: OFFICE, phase: 'P5', status: 'foundation',
+  { id: 'staff', label: 'Staff', group: 'school-people', icon: 'staff', roles: OFFICE, phase: 'P5', phaseNote: 'Invitations, accounts and leave (ask on My account, the office decides, the leave calendar) are live; staff records, documents, workload and staff attendance later', status: 'partial',
     capabilities: ['Staff records', 'Roles', 'Documents', 'Leave requests and approvals', 'Workload', 'Attendance', 'Staff invitations'] },
 
   { id: 'academics', label: 'Academics', group: 'teaching-learning', icon: 'academics', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P2', status: 'partial',

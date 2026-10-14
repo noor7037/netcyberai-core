@@ -307,6 +307,8 @@ ALLOWED_PERMISSIVE = (
     ("complaint_events", "complaint_events_not_by_its_subject"),
     # p5-8a end
         # p5-8b begin
+        # C201: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("staff_leave", "staff_leave_tenant_isolation"),
         # p5-8b end
         # p5-8c begin
         # p5-8c end
@@ -463,6 +465,11 @@ REQUIRED_RESTRICTIVE = {
     # p5-8a begin
     # p5-8a end
     # p5-8b begin
+    # C201: leave is read by the person and the office only; asked and changed in one's own name.
+    ("staff_leave", "staff_leave_own_or_office"),
+    ("staff_leave", "staff_leave_asked_as_self"),
+    ("staff_leave", "staff_leave_in_own_name"),
+    ("audit_log", "audit_leave_rows_own_or_office"),
     # p5-8b end
     # p5-8c begin
     # p5-8c end
