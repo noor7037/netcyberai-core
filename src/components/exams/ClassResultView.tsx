@@ -34,11 +34,16 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
     <div lang={lang} data-class-result-view className="flex flex-col gap-4 text-sm text-slate">
       <section className={SECTION}>
         <h2 className="text-base font-bold">{data.exam.name} · {data.className}</h2>
-        <p data-result-scheme>{data.scheme ? t('ex.result.scheme', { version: data.scheme.version }) : t('ex.result.noScheme')}</p>
+        {data.publication && data.scheme ? (
+          <p data-result-published={data.publication.version}>{t('rc.result.published', { version: data.publication.version, scheme: data.scheme.version })}</p>
+        ) : (
+          <p data-result-scheme>{data.scheme ? t('ex.result.scheme', { version: data.scheme.version }) : t('ex.result.noScheme')}</p>
+        )}
         <p className="text-slate/70">{t('ex.result.order')}</p>
         {data.notShown > 0 && <p className="rounded-md bg-off-white px-3 py-2">{t('ex.entry.notShown', { n: data.notShown })}</p>}
         <div className="flex flex-wrap gap-2">
           {data.scheme === null && <a href="/app/exams/scheme" className={TAP}>{t('ex.make.openScheme')}</a>}
+          <a href={`/app/exams/${examId}/classes/${classId}/report-cards`} data-result-report-cards className={TAP}>{t('rc.result.open')}</a>
           <a href="/app/exams" className={TAP}>{t('ex.allExams')}</a>
         </div>
       </section>

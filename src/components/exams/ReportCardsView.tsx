@@ -1,0 +1,278 @@
+'use client';
+
+import { useCallback, useEffect, useState } from 'react';
+import { useT } from '@/components/app-shell/LangContext';
+import { Badge } from '@/components/ui/Badge';
+import type { ReportCardsScreen } from '@/lib/exams/publish';
+import type { ReportCardSet } from '@/lib/exams/report-card';
+import { reportCardBlocks, type CardBlock } from '@/lib/exams/report-card-text';
+import type { MessageKey } from '@/lib/i18n';
+import { downloadBlob, safeFilename } from '@/lib/pdf/browser';
+import { momentWords } from './exam-format';
+import { reportCardsPdf } from './report-card-pdf';
+import { FIELD, PRIMARY, SECTION, TAP } from './SchemeParts';
+
+// Publish and report cards (docs/27 row 9c, C215). The office (the principal, the school admin, the academic
+// coordinator) publishes a class's result once every paper is entered: its marks, papers and remarks are then
+// frozen, and the grading scheme in force is kept with it. Only the principal reopens it, with a reason. The class
+// teacher writes each child's remark before it is published. The office and the class teacher show and download
+// report cards, one child or the whole class, drawn as a PDF on this device. Children are listed in roll order; each
+// card holds one child's own marks. The server and the database decide who may do what.
+
+const ERRORS = ['not_found', 'not_entered', 'no_scheme', 'published', 'not_published', 'reason', 'remarks', 'child', 'remark', 'not_allowed'];
+
+export function ReportCardsView({ examId, classId }: { examId: string; classId: string }) {
+  const { t, lang } = useT();
+  const [data, setData] = useState<ReportCardsScreen | null>(null);
+  const [failed, setFailed] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
+  const [reason, setReason] = useState('');
+  const [remarks, setRemarks] = useState<Record<string, string>>({});
+  const [shown, setShown] = useState<{ studentId: string; blocks: CardBlock[] } | null>(null);
+  const base = `/api/app/exams/${examId}/classes/${classId}/report-cards`;
+
+  const load = useCallback(async () => {
+    const res = await fetch(base, { cache: 'no-store' }).catch(() => null);
+    const got = res?.ok ? ((await res.json().catch(() => null)) as ReportCardsScreen | null) : null;
+    setFailed(!got);
+    if (got) {
+      setData(got);
+      setRemarks(Object.fromEntries(got.children.map((c) => [c.studentId, c.remark ?? ''])));
+    }
+  }, [base]);
+  useEffect(() => {
+    void load();
+  }, [load]);
+
+  const post = async (payload: unknown, done: (body: Record<string, unknown>) => string) => {
+    setBusy(true);
+    setNote(null);
+    const res = await fetch(base, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => null);
+    const body = res ? ((await res.json().catch(() => null)) as Record<string, unknown> | null) : null;
+    setBusy(false);
+    if (!res?.ok || !body) {
+      const code = typeof body?.code === 'string' ? body.code : '';
+      setNote({ ok: false, text: ERRORS.includes(code) ? t(`rc.err.${code}` as MessageKey) : res?.status === 403 ? t('rc.err.not_allowed') : t('rc.err.other') });
+      return false;
+    }
+    setNote({ ok: true, text: done(body) });
+    setShown(null);
+    await load();
+    return true;
+  };
+
+  const cards = async (studentId: string | null): Promise<ReportCardSet | null> => {
+    const res = await fetch(`${base}/cards${studentId ? `?student=${encodeURIComponent(studentId)}` : ''}`, { cache: 'no-store' }).catch(() => null);
+    return res?.ok ? ((await res.json().catch(() => null)) as ReportCardSet | null) : null;
+  };
+  const show = async (studentId: string) => {
+    if (shown?.studentId === studentId) return setShown(null);
+    const set = await cards(studentId);
+    if (!set?.cards[0]) return setNote({ ok: false, text: t('rc.download.failed') });
+    setShown({ studentId, blocks: reportCardBlocks(set, set.cards[0], lang) });
+  };
+  const download = async (studentId: string | null) => {
+    if (!data) return;
+    setBusy(true);
+    setNote({ ok: true, text: t('rc.download.making') });
+    try {
+      const set = await cards(studentId);
+      if (!set?.cards.length) throw new Error('cards');
+      const roll = studentId ? set.cards[0].rollNo ?? '' : '';
+      const file = safeFilename(`report-card ${set.exam.name} ${set.className} ${roll}`, 'pdf');
+      const blob = await reportCardsPdf(set.cards.map((c) => reportCardBlocks(set, c, lang)), file, `${set.schoolName} · ${set.exam.name} · ${set.className}`);
+      downloadBlob(blob, file);
+      setNote({ ok: true, text: t('rc.download.made', { file }) });
+    } catch {
+      setNote({ ok: false, text: t('rc.download.failed') });
+    }
+    setBusy(false);
+  };
+
+  if (failed) return <p role="alert" className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('rc.failed')}</p>;
+  if (!data) return null;
+  const pub = data.inForce;
+  const reopened = !pub ? data.history.find((h) => h.reopenedAt !== null) ?? null : null;
+  const changedRemarks = data.children.filter((c) => (remarks[c.studentId] ?? '').trim() !== (c.remark ?? ''));
+  const who = (c: ReportCardsScreen['children'][number]) => (c.rollNo ? t('ex.entry.child', { roll: c.rollNo, name: c.name }) : c.name);
+
+  return (
+    <div lang={lang} data-report-cards data-published={pub ? String(pub.version) : 'no'} className="flex flex-col gap-4 text-sm text-slate">
+      {note && (
+        <p role="status" data-rc-note={note.ok ? 'ok' : 'error'} className={`rounded-md px-3 py-2 font-semibold ${note.ok ? 'bg-off-white text-slate' : 'border border-red-800/30 text-red-800'}`}>
+          {note.text}
+        </p>
+      )}
+
+      <section data-rc-state className={SECTION}>
+        <div className="flex flex-wrap items-start justify-between gap-2">
+          <h2 className="min-w-0 text-base font-bold">{data.exam.name} · {data.className}</h2>
+          <Badge variant={pub ? 'success' : reopened ? 'warning' : 'neutral'}>
+            {pub ? t('rc.state.published', { version: pub.version }) : reopened ? t('rc.state.reopened') : t('rc.state.notPublished')}
+          </Badge>
+        </div>
+        {pub && <p>{pub.publishedBy ? t('rc.publishedBy', { name: pub.publishedBy, when: momentWords(pub.publishedAt, lang), scheme: pub.schemeVersion }) : t('rc.publishedNoName', { when: momentWords(pub.publishedAt, lang), scheme: pub.schemeVersion })}</p>}
+        {reopened && <p data-rc-reopened>{t('rc.reopenedBy', { version: reopened.version, name: reopened.reopenedBy ?? '', when: momentWords(reopened.reopenedAt as string, lang), reason: reopened.reason ?? '' })}</p>}
+        {data.recognitionOn && <p className="text-slate/70">{t('rc.recognition.on')}</p>}
+        <p className="text-slate/70">{t('rc.noRank')}</p>
+        <div className="flex flex-wrap gap-2">
+          <a href={`/app/exams/${examId}/classes/${classId}`} className={TAP}>{t('ex.exam.resultOf', { className: data.className })}</a>
+          <a href="/app/exams" className={TAP}>{t('ex.allExams')}</a>
+        </div>
+      </section>
+
+      <section data-rc-papers className={SECTION}>
+        <h2 className="text-base font-bold">{t('rc.papers.title')}</h2>
+        <ul className="flex flex-col gap-2">
+          {data.papers.map((p) => (
+            <li key={p.paperId} className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-slate/10 p-3">
+              <span className="font-semibold">{p.subjectName}</span>
+              <Badge variant={p.entered ? 'success' : 'warning'}>{p.entered ? t('ex.paper.entered') : t('ex.paper.waiting')}</Badge>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {!pub && (
+        <section data-rc-publish className={SECTION}>
+          <h2 className="text-base font-bold">{t('rc.publish.title')}</h2>
+          {data.scheme ? <p>{t('rc.publish.how', { className: data.className, version: data.scheme.version })}</p> : <p>{t('rc.publish.noScheme')}</p>}
+          {data.papers.some((p) => !p.entered) && <p className="rounded-md bg-off-white px-3 py-2">{t('rc.publish.waiting')}</p>}
+          {data.mayPublish ? (
+            <button type="button" data-rc-publish-button className={`${PRIMARY} self-start`} disabled={busy || !data.ready} onClick={() => void post({ action: 'publish' }, (b) => t('rc.publish.done', { version: Number(b.version) }))}>
+              {t('rc.publish.button')}
+            </button>
+          ) : (
+            <p className="text-slate/70">{t('rc.publish.officeOnly')}</p>
+          )}
+        </section>
+      )}
+
+      {data.mayReopen && (
+        <section data-rc-reopen className={SECTION}>
+          <h2 className="text-base font-bold">{t('rc.reopen.title')}</h2>
+          <p>{t('rc.reopen.how')}</p>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="rc-reason" className="text-xs font-semibold">{t('rc.reopen.reason')}</label>
+            <textarea id="rc-reason" className={`${FIELD} py-2`} rows={2} maxLength={500} value={reason} onChange={(e) => setReason(e.target.value)} />
+            <p className="text-xs text-slate/70">{t('rc.reopen.reasonHow')}</p>
+          </div>
+          <button
+            type="button"
+            data-rc-reopen-button
+            className={`${TAP} self-start`}
+            disabled={busy || reason.trim().length < 5}
+            onClick={() => void post({ action: 'reopen', reason }, () => t('rc.reopen.done')).then((ok) => ok && setReason(''))}
+          >
+            {t('rc.reopen.button')}
+          </button>
+        </section>
+      )}
+
+      <section data-rc-children className={SECTION}>
+        <div>
+          <h2 className="text-base font-bold">{t('rc.children.title')}</h2>
+          <p className="text-slate/70">{pub ? (data.mayDownload ? t('rc.download.how') : t('rc.download.who')) : t('rc.download.notYet')}</p>
+          {data.mayWriteRemarks && <p className="text-slate/70">{t('rc.remarks.how')}</p>}
+          {!data.mayWriteRemarks && !pub && (data.classTeacher ? <p className="text-slate/70">{t('rc.remarks.byTeacher', { name: data.classTeacher })}</p> : <p className="text-slate/70">{t('rc.remarks.noTeacher')}</p>)}
+        </div>
+        {pub && data.mayDownload && (
+          <button type="button" data-rc-download-all className={`${PRIMARY} self-start`} disabled={busy} onClick={() => void download(null)}>
+            {t('rc.download.all')}
+          </button>
+        )}
+        {data.notShown > 0 && <p className="rounded-md bg-off-white px-3 py-2">{t('ex.entry.notShown', { n: data.notShown })}</p>}
+        {!data.children.length && <p className="rounded-md bg-off-white px-3 py-2">{t('ex.entry.noChildren')}</p>}
+        <ol className="flex flex-col gap-2">
+          {data.children.map((c) => (
+            <li key={c.studentId} data-rc-child={c.studentId} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="min-w-0 font-semibold">{who(c)}</p>
+                {pub && data.mayDownload && (
+                  <div className="flex flex-wrap gap-2">
+                    <button type="button" data-rc-show className={TAP} aria-expanded={shown?.studentId === c.studentId} onClick={() => void show(c.studentId)}>
+                      {shown?.studentId === c.studentId ? t('rc.download.hide') : t('rc.download.show')}
+                    </button>
+                    <button type="button" data-rc-download className={TAP} disabled={busy} onClick={() => void download(c.studentId)}>
+                      {t('rc.download.one')}
+                    </button>
+                  </div>
+                )}
+              </div>
+              {data.mayWriteRemarks ? (
+                <div className="flex flex-col gap-1">
+                  <label htmlFor={`rc-remark-${c.studentId}`} className="text-xs font-semibold">{t('rc.remarks.label', { name: c.name })}</label>
+                  <textarea id={`rc-remark-${c.studentId}`} data-rc-remark className={`${FIELD} py-2`} rows={2} maxLength={500} value={remarks[c.studentId] ?? ''} onChange={(e) => setRemarks({ ...remarks, [c.studentId]: e.target.value })} />
+                </div>
+              ) : (
+                c.remark && <p className="text-slate/70">{c.remark}</p>
+              )}
+              {shown?.studentId === c.studentId && <CardPreview blocks={shown.blocks} />}
+            </li>
+          ))}
+        </ol>
+        {data.mayWriteRemarks && (
+          <button
+            type="button"
+            data-rc-remarks-save
+            className={`${PRIMARY} self-start`}
+            disabled={busy || !changedRemarks.length}
+            onClick={() => void post({ action: 'remarks', remarks: changedRemarks.map((c) => ({ studentId: c.studentId, remark: (remarks[c.studentId] ?? '').trim() })) }, () => t('rc.remarks.saved'))}
+          >
+            {changedRemarks.length ? t('rc.remarks.save') : t('rc.remarks.nothing')}
+          </button>
+        )}
+      </section>
+
+      {data.history.length > 0 && (
+        <section data-rc-history className={SECTION}>
+          <h2 className="text-base font-bold">{t('rc.history.title')}</h2>
+          <ul className="flex flex-col gap-2">
+            {data.history.map((h) => (
+              <li key={h.version} className="rounded-md border border-slate/10 p-3">
+                <p>{t('rc.history.published', { version: h.version, name: h.publishedBy ?? '', when: momentWords(h.publishedAt, lang) })}</p>
+                {h.reopenedAt && <p className="text-slate/70">{t('rc.history.reopened', { name: h.reopenedBy ?? '', when: momentWords(h.reopenedAt, lang), reason: h.reason ?? '' })}</p>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+  );
+}
+
+// The card as the PDF prints it: the same blocks of words.
+function CardPreview({ blocks }: { blocks: readonly CardBlock[] }) {
+  return (
+    <div data-rc-card className="flex flex-col gap-1 rounded-md border border-slate/10 bg-white p-3">
+      {blocks.map((b, i) => {
+        if (b.kind === 'title') return <p key={i} className="text-base font-bold">{b.text}</p>;
+        if (b.kind === 'subtitle') return <p key={i} className="font-semibold">{b.text}</p>;
+        if (b.kind === 'heading') return <p key={i} className="mt-2 font-bold">{b.text}</p>;
+        if (b.kind === 'line') return <p key={i} data-rc-line className={b.strong ? 'font-semibold' : undefined}>{b.text}</p>;
+        if (b.kind === 'note') return <p key={i} className="text-xs text-slate/70">{b.text}</p>;
+        return (
+          <div key={i} className="my-2 max-w-full overflow-x-auto">
+            <table className="w-full text-left text-xs" data-rc-table>
+              <thead>
+                <tr className="border-b border-slate/10">
+                  {b.columns.map((c, ci) => (
+                    <th key={ci} scope="col" className={`p-2 ${b.numeric[ci] ? 'text-right' : ''}`}>{c}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {b.rows.map((r, ri) => (
+                  <tr key={ri} className={`border-b border-slate/10 ${b.totalRow && ri === b.rows.length - 1 ? 'bg-off-white font-semibold' : ''}`}>
+                    {r.map((cell, ci) => (ci === 0 ? <th key={ci} scope="row" className="p-2 font-semibold">{cell}</th> : <td key={ci} className={`p-2 ${b.numeric[ci] ? 'text-right' : ''}`}>{cell}</td>))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      })}
+    </div>
+  );
+}

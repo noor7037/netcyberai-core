@@ -2,6 +2,7 @@ import type { Sql } from '@/lib/jobs/types';
 import { EXAM_READERS, papersOf, type Actor } from './exams';
 import { grade, percent, roundPercent, type MarkPart, type NoGradeReason } from './grading';
 import { markParts, ON_ROLL, ROLL_ORDER, type Mark, type MarkKind, type PaperComponent } from './papers';
+import { publicationInForce } from './publish';
 import type { GradingScheme } from './scheme';
 import { schemeInForce } from './schemes';
 
@@ -22,6 +23,7 @@ export type ClassResult = {
   className: string;
   papers: ResultPaper[];
   scheme: { version: number; decimals: 0 | 1 } | null;
+  publication: { version: number } | null; // published for this class (C215): graded by the scheme kept with it
   children: ResultChild[];
   notShown: number;
 };
@@ -72,7 +74,9 @@ export async function classResult(db: Sql, actor: Actor, examId: string, classId
     m[r.component] = { kind: r.kind as MarkKind, score: r.score === null ? null : Number(r.score) };
     found.set(key, m);
   }
-  const current = await schemeInForce(db, actor.schoolId);
+  // A published class keeps the scheme it was published with (C215): a later change of the scheme never rewrites it.
+  const kept = await publicationInForce(db, actor.schoolId, examId, classId);
+  const current = kept ? { version: kept.schemeVersion, scheme: kept.scheme } : await schemeInForce(db, actor.schoolId);
   const scheme = current?.scheme ?? null;
   const resultPapers: ResultPaper[] = papers.map((p) => ({ paperId: p.paperId, subjectName: p.subjectName, date: p.date, components: p.components }));
   return {
@@ -81,6 +85,7 @@ export async function classResult(db: Sql, actor: Actor, examId: string, classId
     className: papers[0].className,
     papers: resultPapers,
     scheme: current ? { version: current.version, decimals: current.scheme.decimals } : null,
+    publication: kept ? { version: kept.version } : null,
     children: roll.map((s) => ({
       studentId: s.student_id,
       name: s.name,

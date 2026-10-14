@@ -357,6 +357,8 @@ ALLOWED_PERMISSIVE = (
         ("exam_papers", "exam_papers_tenant_isolation"),  # C214: narrowed by the RESTRICTIVE policies below
         # p6-9b end
         # p6-9c begin
+        ("exam_publications", "exam_publications_tenant_isolation"),  # C215: narrowed by the RESTRICTIVE policies below
+        ("report_remarks", "report_remarks_tenant_isolation"),
         # p6-9c end
         # p6-9d begin
         # p6-9d end
@@ -607,6 +609,17 @@ REQUIRED_RESTRICTIVE = {
     ("audit_log", "audit_exam_rows_office_or_actor"),
     # p6-9b end
     # p6-9c begin
+    # C215: a publication is read by the three roles that run exams and by a teacher for their own classes; made by
+    # the three roles in their own name; reopened only by the principal, in their own name; never removed. A remark is
+    # read the same way, and written, changed and cleared only by the class's class teacher.
+    ("exam_publications", "exam_publications_readers"),
+    ("exam_publications", "exam_publications_published_by_office"),
+    ("exam_publications", "exam_publications_reopened_by_principal"),
+    ("exam_publications", "exam_publications_never_removed"),
+    ("report_remarks", "report_remarks_readers"),
+    ("report_remarks", "report_remarks_written_by_class_teacher"),
+    ("report_remarks", "report_remarks_changed_by_class_teacher"),
+    ("report_remarks", "report_remarks_cleared_by_class_teacher"),
     # p6-9c end
     # p6-9d begin
     # p6-9d end

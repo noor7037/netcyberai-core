@@ -587,3 +587,23 @@ language sql stable security definer set search_path = public, pg_temp as $$
     from exam_papers p where p.paper_id = p_paper_id and p.school_id = nullif(current_setting('app.current_tenant_id', true), '')::uuid
 $$;
 grant execute on function public.may_enter_marks(uuid, uuid), public.exam_paper_progress(uuid) to app_user;
+
+-- A published exam's class (C215): its papers wait for nobody's marks, so My Day's count asks whether one is
+-- published.
+create table exam_publications (
+  publication_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  exam_id uuid not null,
+  class_id uuid not null,
+  reopened_at timestamptz
+);
+alter table exam_publications enable row level security;
+create policy exam_publications_tenant_isolation on exam_publications using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select on exam_publications to app_user;
+create function public.exam_class_published(p_exam_id uuid, p_class_id uuid) returns boolean
+language sql stable security definer set search_path = public, pg_temp as $$
+  select exists (select 1 from exam_publications x
+                  where x.school_id = nullif(current_setting('app.current_tenant_id', true), '')::uuid
+                    and x.exam_id = p_exam_id and x.class_id = p_class_id and x.reopened_at is null)
+$$;
+grant execute on function public.exam_class_published(uuid, uuid) to app_user;

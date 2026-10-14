@@ -1204,6 +1204,31 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p6-9b end
   // p6-9c begin
+  {
+    slug: 'publish-report-cards',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Publish a result and download report cards', hi: 'परिणाम प्रकाशित करें और रिपोर्ट कार्ड डाउनलोड करें' },
+    summary: {
+      en: 'When every paper of a class is entered, the office publishes the class’s result: its marks are frozen and the grading scheme is kept with it. The office and the class teacher then download each child’s report card as a PDF.',
+      hi: 'जब किसी कक्षा का हर पेपर भर जाए, ऑफ़िस उस कक्षा का परिणाम प्रकाशित करता है: उसके अंक जम जाते हैं और ग्रेडिंग योजना उसके साथ रखी जाती है। फिर ऑफ़िस और कक्षा अध्यापक हर बच्चे का रिपोर्ट कार्ड PDF में डाउनलोड करते हैं।',
+    },
+    steps: [
+      { en: 'Open Exams. Under an exam, press “Publish and report cards” for a class.', hi: 'Exams खोलें। किसी परीक्षा में किसी कक्षा के लिए “Publish and report cards” दबाएँ।' },
+      { en: 'Class teacher: write a remark for each child, then press “Save remarks”. Remarks are frozen with the marks once the result is published.', hi: 'कक्षा अध्यापक: हर बच्चे के लिए टिप्पणी लिखें, फिर “Save remarks” दबाएँ। परिणाम प्रकाशित होते ही टिप्पणियाँ अंकों के साथ जम जाती हैं।' },
+      { en: 'Office: when every paper says “Entered”, press “Publish the result”. The marks of the class are frozen, and the grading scheme in force is kept with them.', hi: 'ऑफ़िस: जब हर पेपर पर “Entered” दिखे, “Publish the result” दबाएँ। कक्षा के अंक जम जाते हैं, और लागू ग्रेडिंग योजना उनके साथ रखी जाती है।' },
+      { en: 'Press “Show the card” to see a child’s report card, “Download PDF” for that child, or “Download every report card” for the whole class in one PDF.', hi: 'किसी बच्चे का रिपोर्ट कार्ड देखने के लिए “Show the card”, उसी बच्चे के लिए “Download PDF”, या पूरी कक्षा की एक PDF के लिए “Download every report card” दबाएँ।' },
+      { en: 'Principal: to correct a mark after publishing, write why under “Reopen for corrections” and press “Reopen with this reason”. Correct the marks, then publish again: the card says which publication it is.', hi: 'प्रिंसिपल: प्रकाशन के बाद कोई अंक सुधारना हो तो “Reopen for corrections” में कारण लिखें और “Reopen with this reason” दबाएँ। अंक सुधारें, फिर दोबारा प्रकाशित करें: कार्ड बताता है कि यह कौन सा प्रकाशन है।' },
+    ],
+    tips: [
+      { en: 'Personal Best and Most Improved are on the card only where the school’s plan includes them. Each child is compared only with their own earlier published exams; a first exam has neither, and the card says so.', hi: 'पर्सनल बेस्ट और मोस्ट इम्प्रूव्ड कार्ड पर तभी आते हैं जब स्कूल के प्लान में शामिल हों। हर बच्चे की तुलना सिर्फ़ उसकी अपनी पिछली प्रकाशित परीक्षाओं से होती है; पहली परीक्षा में दोनों नहीं होते, और कार्ड यह बताता है।' },
+      { en: 'A report card shows one child’s own marks, percent and grade. Children are listed in roll order and never compared with each other.', hi: 'रिपोर्ट कार्ड एक बच्चे के अपने अंक, प्रतिशत और ग्रेड दिखाता है। बच्चे रोल क्रम में हैं और कभी एक-दूसरे से तुलना नहीं होती।' },
+      { en: 'Report cards are printed or handed over. They are not sent on WhatsApp.', hi: 'रिपोर्ट कार्ड छापकर या हाथ में दिए जाते हैं। वे WhatsApp पर नहीं भेजे जाते।' },
+    ],
+    start: { href: '/app/exams', label: { en: 'Exams', hi: 'परीक्षाएँ (Exams)' } },
+    related: ['enter-exam-marks', 'set-up-grading-scheme'],
+    keywords: ['report card', 'report cards', 'publish', 'result', 'reopen', 'remark', 'remarks', 'pdf', 'personal best', 'most improved', 'marksheet', 'progress card', 'रिपोर्ट कार्ड', 'परिणाम', 'प्रकाशित', 'टिप्पणी'],
+  },
   // p6-9c end
   // p6-9d begin
   {

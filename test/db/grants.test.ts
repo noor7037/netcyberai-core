@@ -179,6 +179,8 @@ const APP_USER: Record<string, string> = {
   exam_papers: 'DELETE,INSERT,SELECT,UPDATE', // a paper is removed only while it has no marks (C214)
   // p6-9b end
   // p6-9c begin
+  exam_publications: 'INSERT,SELECT,UPDATE', // never deleted: a publication is reopened, with a reason (C215)
+  report_remarks: 'DELETE,INSERT,SELECT,UPDATE', // the class teacher clears a remark while the class is not published
   // p6-9c end
   // p6-9d begin
   // p6-9d end
@@ -278,6 +280,8 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   marks: '',
   // p6-9b end
   // p6-9c begin
+  exam_publications: '', // a school's results are its own: the platform role reads nothing here (C215)
+  report_remarks: '',
   // p6-9c end
   // p6-9d begin
   // p6-9d end
