@@ -2471,6 +2471,10 @@ const earlyWarningTeacherDone = async () => {
 // p6-9d end
 // p6-9e begin
 // p6-9e end
+// p6-9f begin
+// p6-9f end
+// c212-pricing begin
+// c212-pricing end
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -2955,6 +2959,10 @@ const SCREENS = [
   // p6-9d end
   // p6-9e begin
   // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed

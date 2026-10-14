@@ -91,6 +91,10 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // p6-9d end
   // p6-9e begin
   // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
   // What is recorded about a guardian sits with Parents (17 §3: guardians,
   // verification, consent, data requests), wherever its button is drawn.
   ['students/*/consent', 'parents'],
@@ -210,6 +214,10 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // p6-9d end
   // p6-9e begin
   // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
   ['students/*/consent', 'parents'],
   ['students/*/guardians', 'parents'],
   ['students/*/dsr', 'parents'],

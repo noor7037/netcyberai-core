@@ -372,6 +372,10 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // p6-9d end
   // p6-9e begin
   // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
 ];
 
 export function settingsSchemaFor(moduleId: ModuleId): ModuleSettingsSchema | null {

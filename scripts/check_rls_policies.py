@@ -358,6 +358,10 @@ ALLOWED_PERMISSIVE = (
         # p6-9d end
         # p6-9e begin
         # p6-9e end
+        # p6-9f begin
+        # p6-9f end
+        # c212-pricing begin
+        # c212-pricing end
     }
 )
 
@@ -561,6 +565,10 @@ REQUIRED_RESTRICTIVE = {
     # p6-9d end
     # p6-9e begin
     # p6-9e end
+    # p6-9f begin
+    # p6-9f end
+    # c212-pricing begin
+    # c212-pricing end
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)

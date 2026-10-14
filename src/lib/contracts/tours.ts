@@ -88,6 +88,10 @@ export const TOURS = {
   // p6-9d end
   // p6-9e begin
   // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
 } as const satisfies Record<string, TourDefinition>;
 
 export type TourId = keyof typeof TOURS;

@@ -180,6 +180,10 @@ const APP_USER: Record<string, string> = {
   // p6-9d end
   // p6-9e begin
   // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
 };
 
 // The platform role (nca_super) holds what the app's role holds, except here.
@@ -268,6 +272,10 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // p6-9d end
   // p6-9e begin
   // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
 };
 // Every other role that holds anything on a table.
 const OTHER_ROLES: Record<string, Record<string, string>> = {

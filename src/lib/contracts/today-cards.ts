@@ -54,6 +54,10 @@ export const TODAY_CARD_TYPES = [
   // p6-9d end
   // p6-9e begin
   // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
 ] as const;
 export type TodayCardType = (typeof TODAY_CARD_TYPES)[number];
 
