@@ -78,7 +78,7 @@ export async function saveCoScholastic(db: Sql, actor: Actor, examId: string, cl
       saved = (await db.query(
         `insert into co_scholastic_grades (school_id, exam_id, class_id, student_id, area, grade, written_by)
          select $1, $2, $3, x.student_id, x.area, x.grade, $4 from unnest($5::uuid[], $6::text[], $7::text[]) as x(student_id, area, grade)
-         on conflict (school_id, exam_id, student_id, area) do update set grade = excluded.grade, written_by = excluded.written_by
+         on conflict (school_id, exam_id, class_id, student_id, area) do update set grade = excluded.grade, written_by = excluded.written_by
           where co_scholastic_grades.grade is distinct from excluded.grade`,
         [actor.schoolId, examId, classId, actor.userId, writes.map((w) => w.studentId), writes.map((w) => w.area), writes.map((w) => w.grade)]
       )).rowCount ?? 0;

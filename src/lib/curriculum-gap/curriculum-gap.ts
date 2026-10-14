@@ -71,12 +71,13 @@ export async function unitFacts(db: Sql, classId: string, subjectId: string, ses
   }));
 }
 
-// One class and subject's gaps in a session: "not set up" without a map or without a lesson of it marked in the
-// session, otherwise every unit with its state and the counts.
+// One class and subject's gaps in a session: "not set up" without a map, or with neither a lesson marked nor a paper
+// set in the session; otherwise every unit with its state and the counts (a paper before any lesson is the gap the
+// detector exists to show: review of C219).
 export async function classGap(db: Sql, classId: string, subjectId: string, sessionId: string): Promise<GapView> {
   const facts = await unitFacts(db, classId, subjectId, sessionId);
   if (facts.length === 0) return { setUp: false, why: 'no_map' };
-  if (!facts.some((f) => f.lessons > 0)) return { setUp: false, why: 'no_lessons' };
+  if (!facts.some((f) => f.lessons > 0 || f.papers.length > 0)) return { setUp: false, why: 'no_lessons' };
   const { units, counts } = gapStates(facts);
   return { setUp: true, units, counts, total: units.length };
 }

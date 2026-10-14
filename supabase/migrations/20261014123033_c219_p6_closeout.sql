@@ -298,7 +298,7 @@ create table co_scholastic_grades (
   written_at timestamptz not null default now(),
   unique (school_id, grade_id),
   -- One grade a child, exam and area.
-  unique (school_id, exam_id, student_id, area),
+  unique (school_id, exam_id, class_id, student_id, area),
   foreign key (school_id, exam_id) references exams(school_id, exam_id),
   foreign key (school_id, class_id) references classes(school_id, class_id),
   foreign key (school_id, student_id) references students(school_id, student_id),
@@ -400,8 +400,12 @@ comment on column exam_publications.attendance is 'C219: each child''s attendanc
 -- Each child on the class's roll: the days marked for them in the exam's session up to `upto`, and how many of
 -- those they were in school (present or late). Null when the exam has no session. One rule in one place: the trigger
 -- below and the fill-in of the publications made before this migration.
+-- SECURITY DEFINER (review of C219): the whole roll is counted whoever publishes. The academic coordinator, who may
+-- publish, does not read a child whose consent is waiting, and that child's card would otherwise be frozen with no
+-- day at all. It answers only the roles that publish, for their own school, or the database's owner (the fill-in
+-- below); anyone else, the accountant included, gets nothing.
 create function public.publication_attendance(p_school_id uuid, p_exam_id uuid, p_class_id uuid, p_upto date) returns jsonb
-language sql stable set search_path = public, pg_temp as $$
+language sql stable security definer set search_path = public, pg_temp as $$
   select case when a.session_id is null then null else coalesce((
     select jsonb_object_agg(x.student_id::text, jsonb_build_object('present', x.present, 'days', x.days))
       from (
@@ -417,10 +421,12 @@ language sql stable set search_path = public, pg_temp as $$
   ), '{}'::jsonb) end
     from exams e left join academic_sessions a on a.school_id = e.school_id and a.session_id = e.session_id
    where e.school_id = p_school_id and e.exam_id = p_exam_id
+     and (coalesce(current_setting('role', true), 'none') <> 'app_user'
+          or (p_school_id = nullif(current_setting('app.current_tenant_id', true), '')::uuid
+              and coalesce(current_setting('app.current_role', true), '') in ('principal', 'school_admin', 'academic_coordinator')))
 $$;
 revoke all on function public.publication_attendance(uuid, uuid, uuid, date) from public, anon, authenticated, service_role;
--- Called by the publication's trigger in the publisher's own session; it reads with the caller's own rights, so it
--- answers nobody more than their own row level security gives them.
+-- Called by the publication's trigger in the publisher's own session.
 grant execute on function public.publication_attendance(uuid, uuid, uuid, date) to app_user;
 
 -- The publications already made: as their cards show them today, up to the day each was published.

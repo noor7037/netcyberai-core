@@ -321,4 +321,35 @@ describe('attendance on a card is frozen at publish', () => {
     // Up to 5 August: the 3rd (present), the 4th (late) and the 5th (now corrected to present); not the 6th.
     expect(await kept()).toEqual({ [K1]: { present: 3, days: 3 }, [K2]: { present: 0, days: 0 } });
   });
+
+  it('review of C219: when the coordinator publishes, a child waiting for consent keeps their days; the accountant learns nothing from the reader', async () => {
+    if ((await owner(`select 1 from exam_publications where exam_id = $1 and class_id = $2 and reopened_at is null`, [EXAM, C5A])).length) await reopen();
+    await db.pg.exec(`set session_replication_role = replica; update students set status = 'pending_consent' where student_id = '${K2}'; insert into attendance (school_id, student_id, class_id, date, status) values ('${A}', '${K2}', '${C5A}', '2026-08-03', 'present'); set session_replication_role = origin;`);
+    try {
+      expect(await as(coordinator, (c) => publishClass(c, actor(coordinator), EXAM, C5A))).toMatchObject({ ok: true });
+      expect((await kept())[K2]).toEqual({ present: 1, days: 1 });
+      // The reader answers only the roles that publish, for their own school.
+      const reader = (who: Who) => as(who, async (c) => (await c.query(`select public.publication_attendance($1, $2, $3, '2026-12-31'::date) as a`, [A, EXAM, C5A])).rows[0].a);
+      expect(await reader(accountant)).toBeNull();
+      expect(await reader(bPrincipal)).toBeNull();
+    } finally {
+      await db.pg.exec(`set session_replication_role = replica; delete from attendance where student_id = '${K2}' and date = '2026-08-03'; update students set status = 'active' where student_id = '${K2}'; set session_replication_role = origin;`);
+    }
+  });
+});
+
+describe('review of C219: a child who moves class keeps one grade per class', () => {
+  it('after a move, the office records the new class’s grade; the old class’s grade, frozen with its publication, is untouched', async () => {
+    const before = await owner(`select class_id, grade from co_scholastic_grades where student_id = $1 and area = 'Work Education'`, [K1]);
+    expect(before).toEqual([{ class_id: C5A, grade: expect.any(String) }]);
+    await owner(`update students set class_id = $1 where student_id = $2`, [C5B, K1]);
+    try {
+      expect(await save(principal, [grade(K1, 'Work Education', 'B')], C5B)).toEqual({ ok: true, saved: 1, cleared: 0 });
+      expect(Object.fromEntries(await as(principal, (c) => coScholasticOf(c, A, EXAM, C5B)))).toEqual({ [K1]: { 'Work Education': 'B' } });
+      expect(await owner(`select class_id, grade from co_scholastic_grades where student_id = $1 and area = 'Work Education' order by class_id = $2`, [K1, C5B])).toEqual([...before, { class_id: C5B, grade: 'B' }]);
+    } finally {
+      await owner(`delete from co_scholastic_grades where student_id = $1 and class_id = $2`, [K1, C5B]);
+      await owner(`update students set class_id = $1 where student_id = $2`, [C5A, K1]);
+    }
+  });
 });

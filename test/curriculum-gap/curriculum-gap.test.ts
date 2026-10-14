@@ -363,6 +363,18 @@ describe('one session at a time (C219)', () => {
     // School B's own session now shows its own map, with no lesson marked in it.
     expect((await call(bPrincipal)).body).toMatchObject({ sessionId: S_B, gap: { setUp: false, why: 'no_lessons' } });
   });
+
+  it('review of C219: a session with a paper and no lesson is set up, its units assessed before they were taught', async () => {
+    const S_PAPER = u(54);
+    await owner(`insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current) values ($1, $2, '2024-25', '2024-04-01', '2025-03-31', false)`, [S_PAPER, A]);
+    const made = await as(principal, (c) =>
+      makeExam(c, actor(principal), { name: 'Annual 2024-25', sessionId: S_PAPER, term: null, papers: [{ classId: C5A, subjectId: MATHS, date: '2025-03-12', unitIds: [U3], maxima: { marks: 50 } }] })
+    );
+    expect(made.ok).toBe(true);
+    const got = await call(principal, `${maths5A}&sessionId=${S_PAPER}`);
+    expect(got.body).toMatchObject({ sessionId: S_PAPER, gap: { setUp: true, total: 6 } });
+    expect(statesOf(got.body)).toEqual([[U1, 'not-yet-taught'], [U2, 'not-yet-taught'], [U3, 'assessed-before-taught'], [U4, 'not-yet-taught'], [U5, 'not-yet-taught'], [U6, 'not-yet-taught']]);
+  });
 });
 
 describe('the module', () => {
