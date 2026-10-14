@@ -640,3 +640,16 @@ create table admission_events (
 alter table admission_events enable row level security;
 create policy admission_events_tenant_isolation on admission_events using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert on admission_events to app_user;
+-- The student data check (C222), as My Day counts the requests a guardian has answered and the office has not yet
+-- corrected or closed.
+create table data_check_requests (
+  request_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  student_id uuid not null,
+  outcome text,
+  reply_at timestamptz,
+  office_note_at timestamptz
+);
+alter table data_check_requests enable row level security;
+create policy data_check_requests_tenant_isolation on data_check_requests using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select on data_check_requests to app_user;

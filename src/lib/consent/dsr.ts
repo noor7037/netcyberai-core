@@ -105,6 +105,7 @@ export interface PseudonymizationResult {
   storageDeleteFailures: string[];
   guardianLinksTombstoned: number;
   qrTokensRevoked: number;
+  dataCheckRowsErased: number;
 }
 
 // The mechanical answer Task 3 asks for: scrub the student's own PII
@@ -127,7 +128,7 @@ export async function pseudonymizeStudent(client: PoolClient, schoolId: string, 
   const before = { name: beforeRows[0].name as string, dob: beforeRows[0].dob as string | null };
 
   const redactedName = `Redacted Student ${studentId.slice(0, 8)}`;
-  await client.query(`update students set name = $3, dob = null, updated_at = now() where school_id = $1 and student_id = $2`, [
+  await client.query(`update students set name = $3, dob = null, gender = 'not_given', updated_at = now() where school_id = $1 and student_id = $2`, [
     schoolId,
     studentId,
     redactedName,
@@ -183,6 +184,10 @@ export async function pseudonymizeStudent(client: PoolClient, schoolId: string, 
     [schoolId, studentId]
   );
 
+  // The student data check (C222): what was typed from the child's Aadhaar and every request about the child go with
+  // the name and date of birth, through the database's own function (the app's role deletes nothing there).
+  const { rows: dataCheck } = await client.query(`select public.erase_student_data_check($1) as n`, [studentId]);
+
   return {
     studentId,
     before,
@@ -192,6 +197,7 @@ export async function pseudonymizeStudent(client: PoolClient, schoolId: string, 
     storageDeleteFailures,
     guardianLinksTombstoned: guardianLinksTombstoned ?? 0,
     qrTokensRevoked: qrTokensRevoked ?? 0,
+    dataCheckRowsErased: Number(dataCheck[0]?.n ?? 0),
   };
 }
 

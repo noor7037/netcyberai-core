@@ -498,6 +498,18 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   },
   // p7-10a end
   // p7-10b begin
+  {
+    // Children whose student data check has an answer waiting (C222): the guardian's reply in the conversation, kept
+    // with the request by the database, or an answer the office attached; the office is to correct the record or
+    // close the request. Counted by child: one reply about three details is one answer to read.
+    type: 'data-check-answers',
+    moduleId: 'students',
+    roles: ['principal', 'school_admin'],
+    async load(db, ctx) {
+      const { rows } = await db.query(`select count(distinct student_id) as c from data_check_requests where school_id = $1 and outcome is null and (reply_at is not null or office_note_at is not null)`, [ctx.schoolId]);
+      return waiting('data-check-answers', 'students', n(rows[0]?.c), '/app/students/data-check');
+    },
+  },
   // p7-10b end
   // p7-10c begin
   // p7-10c end

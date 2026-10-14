@@ -108,6 +108,9 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['admissions', 'admissions'],
   // p7-10a end
   // p7-10b begin
+  // The student data check (C222) belongs to Students: switched off, nobody types what Aadhaar prints, asks a parent,
+  // corrects a record from it or closes a request.
+  ['students/data-check/**', 'students'],
   // p7-10b end
   // p7-10c begin
   // p7-10c end
@@ -258,6 +261,8 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['admissions', 'admissions'],
   // p7-10a end
   // p7-10b begin
+  // The student data check (C222): the children, their findings and requests. Switched off with Students.
+  ['students/data-check', 'students'],
   // p7-10b end
   // p7-10c begin
   // p7-10c end

@@ -375,6 +375,9 @@ ALLOWED_PERMISSIVE = (
         ("admission_events", "admission_events_tenant_isolation"),
         # p7-10a end
         # p7-10b begin
+        # C222: narrowed by the RESTRICTIVE policies below (the office; a class teacher reads their own class).
+        ("student_id_as_printed", "student_id_as_printed_tenant_isolation"),
+        ("data_check_requests", "data_check_requests_tenant_isolation"),
         # p7-10b end
         # p7-10c begin
         # p7-10c end
@@ -662,6 +665,15 @@ REQUIRED_RESTRICTIVE = {
     ("audit_log", "audit_admissions_rows_office"),
     # p7-10a end
     # p7-10b begin
+    # C222: what Aadhaar prints and the correction requests are read by the office and by the class teacher of the
+    # child's class; typed, asked, answered, corrected and closed by the office only, in their own name. The accountant
+    # reads nothing.
+    ("student_id_as_printed", "student_id_as_printed_readers"),
+    ("student_id_as_printed", "student_id_as_printed_typed_by_office"),
+    ("student_id_as_printed", "student_id_as_printed_changed_by_office"),
+    ("data_check_requests", "data_check_requests_readers"),
+    ("data_check_requests", "data_check_requests_asked_by_office"),
+    ("data_check_requests", "data_check_requests_decided_by_office"),
     # p7-10b end
     # p7-10c begin
     # p7-10c end

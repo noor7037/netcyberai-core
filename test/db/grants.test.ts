@@ -196,6 +196,8 @@ const APP_USER: Record<string, string> = {
   admission_events: 'INSERT,SELECT', // append-only: the trigger keeps every change, a person adds a note
   // p7-10a end
   // p7-10b begin
+  student_id_as_printed: 'INSERT,SELECT,UPDATE', // what Aadhaar prints, typed by the office; never removed (C222)
+  data_check_requests: 'INSERT,SELECT,UPDATE', // never removed: a request is corrected or closed
   // p7-10b end
   // p7-10c begin
   // p7-10c end
@@ -316,6 +318,8 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   admission_events: '',
   // p7-10a end
   // p7-10b begin
+  student_id_as_printed: '', // a child's details as printed on Aadhaar are the school's own: the platform role reads nothing here (C222)
+  data_check_requests: '', // the reply is linked by a database function as the owner, never by the platform role
   // p7-10b end
   // p7-10c begin
   // p7-10c end
