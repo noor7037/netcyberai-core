@@ -41,6 +41,7 @@ export const TODAY_CARD_TYPES = [
   // c210-leave begin
   // c210-leave end
   // c210-jobs begin
+  'checkup-attention', 'checkup-not-run',
   // c210-jobs end
   // c210-ui begin
   // c210-ui end

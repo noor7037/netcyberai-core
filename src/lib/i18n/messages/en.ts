@@ -2979,7 +2979,7 @@ export const en = {
   'ew.what.staffOnly': 'Flags are for staff. Nothing on this page is sent to a parent.',
   'ew.what.order': 'Every list here is in the order of class and name. None of them is a ranking.',
   'ew.check.title': 'The school’s check',
-  'ew.check.how': 'A check looks at every active student. It opens a flag where it finds a reason, brings open flags up to date, and closes a flag when its reasons are gone. Nothing runs by itself: a person presses the button.',
+  'ew.check.how': 'A check looks at every active student. It opens a flag where it finds a reason, brings open flags up to date, and closes a flag when its reasons are gone. It runs by itself each night just after midnight, and whenever a person presses the button.',
   'ew.check.never': 'No check has been run yet.',
   'ew.check.last': 'Last checked {when} by {name}.',
   'ew.check.lastNoName': 'Last checked {when}.',
@@ -3063,6 +3063,30 @@ export const en = {
   // c210-leave begin
   // c210-leave end
   // c210-jobs begin
+  // The nightly Early Warning check and the weekly check-up (C210).
+  'ew.why.openedNightly': 'Flag opened {when}, by the nightly check.',
+  'ew.check.lastNightly': 'Last checked {when}, by the nightly check.',
+  'ew.closed.byNightly': 'The nightly check closed it.',
+  'aud.checkedOn.weekly': 'Check-up of {date}, run at {time} by the weekly check-up.',
+  'aud.weekly.how': 'A check-up also runs by itself early each Monday, the weekly check-up, and you can run one whenever you like. A day keeps one check-up.',
+  'today.checkup-attention.todo.one': '{count} check needs attention in this week’s check-up',
+  'today.checkup-attention.todo.other': '{count} checks need attention in this week’s check-up',
+  'today.checkup-attention.done': 'This week’s check-up: {count} of {total} checks pass',
+  'today.checkup-attention.action': 'Open the check-up',
+  'today.checkup-attention.why': 'The School Health Auditor checks your school’s own records by fixed rules, by itself early each Monday and whenever you run it. Each check that needs attention opens the screen that fixes it.',
+  'today.checkup-not-run.todo': 'No check-up has been run this week',
+  'today.checkup-not-run.action': 'Run a check-up',
+  'today.checkup-not-run.why': 'The weekly check-up runs by itself early each Monday. None is on record for this week yet, so run one now to see what needs attention.',
+  'monitoring.schoolChecks.title': 'Each school’s own checks',
+  'monitoring.schoolChecks.how': 'Just after midnight in India, each school with Early Warning on gets its nightly check; early each Monday, each school with the School Health Auditor on gets its weekly check-up. One job for each school. This reads the jobs for the night of {night} and for the week from {week}. Live schools only; no school is named.',
+  'monitoring.schoolChecks.earlyWarning': 'Early Warning, each night',
+  'monitoring.schoolChecks.auditor': 'School Health Auditor, each week',
+  'monitoring.schoolChecks.line': 'Schools with a job: {queued}. Finished: {ran}. Last finished: {last}.',
+  'monitoring.schoolChecks.queued.do': 'Some of these jobs were queued and no worker has started them, so they have no error to read. The job runner is behind or has stopped: look at the Health check above.',
+  'monitoring.schoolChecks.running.do': 'Some of these jobs are with a worker now (attempt {attempts}). Reload this page in a few minutes. If they have not moved, the worker stopped part-way: they are then counted under Stuck while running above, and the job runner takes them up again.',
+  'monitoring.schoolChecks.retrying.do': 'Some of these jobs failed and wait for another try (tries so far: {attempts}). Their errors are in the failed jobs above.',
+  'monitoring.schoolChecks.failed.do': 'Some of these jobs gave up. Find them in the failed jobs above, read the error and choose Retry. A check that runs late checks the school as it is then.',
+  'monitoring.schoolChecks.not_queued.do': 'No job was queued, though a live school has the module on. Either the scheduler did not fire, or the job runner has not yet said that it runs these checks (it says so on its first round after a deploy). Check the scheduler’s entries and the Health check above. On a database with no scheduler, such as a test copy, this is expected.',
   // c210-jobs end
   // c210-ui begin
   // c210-ui end

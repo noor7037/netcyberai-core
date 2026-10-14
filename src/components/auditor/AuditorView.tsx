@@ -90,6 +90,7 @@ export function AuditorScreen({ data, busy, note, onRun }: { data: AuditorData; 
           <p className="text-base font-bold text-slate">{t('aud.empty.title')}</p>
           <p className="max-w-prose text-sm text-slate">{t('aud.empty.do')}</p>
           <p className="max-w-prose text-sm text-slate/70">{t('aud.how')}</p>
+          <p data-auditor-weekly className="max-w-prose text-sm text-slate/70">{t('aud.weekly.how')}</p>
           {runButton}
         </div>
       </div>
@@ -107,13 +108,16 @@ export function AuditorScreen({ data, busy, note, onRun }: { data: AuditorData; 
         </h2>
         {sum.notSetUp > 0 && <p data-auditor-not-set-up={sum.notSetUp}>{countWords(lang, 'aud.summary.notSetUp', sum.notSetUp)}</p>}
         {sum.notChecked > 0 && <p data-auditor-not-checked={sum.notChecked}>{countWords(lang, 'aud.summary.notChecked', sum.notChecked)}</p>}
-        <p className="text-slate/70">
-          {latest.recordedBy
-            ? t('aud.checkedOn', { date: dayWords(lang, latest.date), time: timeWords(lang, latest.recordedAt), name: latest.recordedBy })
-            : t('aud.checkedOn.noName', { date: dayWords(lang, latest.date), time: timeWords(lang, latest.recordedAt) })}
+        <p data-auditor-recorded-by={latest.byWeeklyCheckUp ? 'weekly' : 'person'} className="text-slate/70">
+          {latest.byWeeklyCheckUp
+            ? t('aud.checkedOn.weekly', { date: dayWords(lang, latest.date), time: timeWords(lang, latest.recordedAt) })
+            : latest.recordedBy
+              ? t('aud.checkedOn', { date: dayWords(lang, latest.date), time: timeWords(lang, latest.recordedAt), name: latest.recordedBy })
+              : t('aud.checkedOn.noName', { date: dayWords(lang, latest.date), time: timeWords(lang, latest.recordedAt) })}
         </p>
         {latest.date !== data.today && <p data-auditor-older className="rounded-md bg-off-white px-3 py-2">{t('aud.older')}</p>}
         <p className="max-w-prose text-slate/70">{t('aud.how')}</p>
+        <p data-auditor-weekly className="max-w-prose text-slate/70">{t('aud.weekly.how')}</p>
         <div>{runButton}</div>
       </section>
 

@@ -15,6 +15,7 @@ import {
   EARLY_WARNING_RULE_VERSION,
   FLAG_ROLES,
   NEEDS_HELP_KINDS,
+  NIGHTLY_CHECK_JOB,
   isActionKind,
   reasonsOf,
   type AttendanceEvidence,
@@ -30,9 +31,11 @@ import {
 // needs-help queue.
 //
 //   - runCheck is ONE PERSON'S TAP ("Check now"), in that person's own session: the principal, the school admin
-//     or the academic coordinator. Nothing runs by itself, and every read is under the caller's own row level
-//     security. For every active student of a class it works out the signals, opens a flag where there is none,
-//     brings an open flag's evidence up to date, and closes a flag when no signal remains.
+//     or the academic coordinator; or THE NIGHTLY CHECK (C210, src/lib/jobs/school-checks.ts), the same function run in the school's
+//     own session as its office sees it (the role 'principal', no person), whose flags say the nightly check opened
+//     or closed them. Every read is under the caller's own row level security. For every active student of a
+//     class it works out the signals, opens a flag where there is none, brings an open flag's evidence up to date,
+//     and closes a flag when no signal remains.
 //   - ATTENDANCE: in school on fewer than the school's number in every 100 days over the last days (both school
 //     settings), counted only when enough days were marked. A day on recorded leave is left out of both sides:
 //     inSchoolRate in src/lib/attendance/day.ts is the one place that says so.
@@ -57,6 +60,9 @@ import {
 //     name it would refuse.
 
 type Actor = { schoolId: string; userId: string; role: StaffRole };
+// The nightly check (C210): no person, and no role of its own (its session is the principal's).
+export type NightlyCheck = { schoolId: string; job: typeof NIGHTLY_CHECK_JOB };
+export type CheckActor = Actor | NightlyCheck;
 const ofThisSchool = async (db: PoolClient, schoolId: string, userId: string) => Boolean((await db.query(`select 1 from users where school_id = $1 and user_id = $2`, [schoolId, userId])).rows[0]);
 
 const DAY_MS = 86_400_000;
@@ -206,11 +212,20 @@ function stable(value: unknown): string {
 // counted days than the school's minimum, and the check says nothing about their attendance, good or bad.
 export type CheckResult = { ok: true; students: number; attendanceUsed: number; opened: number; changed: number; kept: number; closed: number; open: number } | { ok: false; reason: 'not_allowed' | 'elsewhere' };
 
-// "Check now". Safe to run twice: a second run on the same rows opens nothing, closes nothing and rewrites no
-// evidence; it only records that the flags were checked again.
-export async function runCheck(db: PoolClient, actor: Actor, now: Date = new Date()): Promise<CheckResult> {
-  if (!CHECK_ROLES.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
-  if (!(await ofThisSchool(db, actor.schoolId, actor.userId))) return { ok: false, reason: 'elsewhere' };
+// "Check now", or the nightly check. Safe to run twice: a second run on the same rows opens nothing, closes nothing
+// and rewrites no evidence; it only records that the flags were checked again.
+export async function runCheck(db: PoolClient, actor: CheckActor, now: Date = new Date()): Promise<CheckResult> {
+  // Who the flags it opens and closes are put down to: the person, or the nightly check (exactly one of the two,
+  // which the database holds, and the database admits the job's name only inside the job's own transaction).
+  let by: { user: string; job: null; role: StaffRole } | { user: null; job: typeof NIGHTLY_CHECK_JOB; role: null };
+  if ('job' in actor) {
+    if (actor.job !== NIGHTLY_CHECK_JOB) return { ok: false, reason: 'not_allowed' };
+    by = { user: null, job: NIGHTLY_CHECK_JOB, role: null };
+  } else {
+    if (!CHECK_ROLES.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
+    if (!(await ofThisSchool(db, actor.schoolId, actor.userId))) return { ok: false, reason: 'elsewhere' };
+    by = { user: actor.userId, job: null, role: actor.role };
+  }
   // Two people pressing at once take turns, so neither opens a second flag for a child.
   await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`early-warning:${actor.schoolId}`]);
   const today = indiaDate(now);
@@ -224,7 +239,7 @@ export async function runCheck(db: PoolClient, actor: Actor, now: Date = new Dat
   let closed = 0;
   const flagged = new Set<string>();
   const close = async (flagId: string, why: 'signals_cleared' | 'not_active') => {
-    await db.query(`update early_warning_flags set resolved_at = $3, closed_reason = $4, closed_by = $5, checked_at = $3 where school_id = $1 and flag_id = $2`, [actor.schoolId, flagId, now, why, actor.userId]);
+    await db.query(`update early_warning_flags set resolved_at = $3, closed_reason = $4, closed_by = $5, closed_by_job = $6, checked_at = $3 where school_id = $1 and flag_id = $2`, [actor.schoolId, flagId, now, why, by.user, by.job]);
     closed += 1;
   };
   for (const f of open) {
@@ -257,14 +272,15 @@ export async function runCheck(db: PoolClient, actor: Actor, now: Date = new Dat
   for (const s of signals.values()) {
     if (flagged.has(s.studentId)) continue;
     await db.query(
-      `insert into early_warning_flags (school_id, student_id, class_id, reasons, evidence, rule_version, opened_by, detected_at, checked_at) values ($1, $2, $3, $4::text[], $5::jsonb, $6, $7, $8, $8)`,
-      [actor.schoolId, s.studentId, s.classId, reasonsOf(s.evidence), JSON.stringify(s.evidence), EARLY_WARNING_RULE_VERSION, actor.userId, now]
+      `insert into early_warning_flags (school_id, student_id, class_id, reasons, evidence, rule_version, opened_by, opened_by_job, detected_at, checked_at) values ($1, $2, $3, $4::text[], $5::jsonb, $6, $7, $9, $8, $8)`,
+      [actor.schoolId, s.studentId, s.classId, reasonsOf(s.evidence), JSON.stringify(s.evidence), EARLY_WARNING_RULE_VERSION, by.user, now, by.job]
     );
     opened += 1;
   }
   const result = { students: active.size, attendanceUsed: active.size - tooFew.size, opened, changed, kept, closed, open: opened + changed + kept };
-  // The check is a person's act: who, when, under which rule and settings, and what it did. No child is named here.
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'early_warning.checked', targetType: 'early_warning_flags', beforeState: undefined, afterState: { at: now.toISOString(), date: today, ruleVersion: EARLY_WARNING_RULE_VERSION, settings, ...result } });
+  // The check is a person's act, or the nightly check's: who (or `by` the job, with no person), when, under which
+  // rule and settings, and what it did. No child is named here.
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: by.user, actorRole: by.role, eventAction: 'early_warning.checked', targetType: 'early_warning_flags', beforeState: undefined, afterState: { at: now.toISOString(), date: today, ruleVersion: EARLY_WARNING_RULE_VERSION, settings, ...result, ...(by.job ? { by: by.job } : {}) } });
   return { ok: true, ...result };
 }
 
@@ -279,7 +295,7 @@ export async function listFlags(db: PoolClient, actor: Actor, now: Date = new Da
   const since = new Date(now.getTime() - CLOSED_SHOWN_DAYS * DAY_MS);
   const { rows } = await db.query(
     `select f.flag_id, f.student_id, s.name as student_name, c.class_id, c.name as class_name, c.section, f.reasons, f.evidence, f.rule_version,
-            f.detected_at, f.checked_at, f.resolved_at, f.closed_reason, o.display_name as opened_by,
+            f.detected_at, f.checked_at, f.resolved_at, f.closed_reason, o.display_name as opened_by, f.opened_by_job, f.closed_by_job,
             coalesce((select jsonb_agg(jsonb_build_object('action_id', a.action_id, 'kind', a.kind, 'note', a.note, 'outcome', a.outcome, 'by', u.display_name, 'at', a.at) order by a.at, a.action_id)
                         from early_warning_actions a
                         left join users u on u.school_id = a.school_id and u.user_id = a.by_user
@@ -305,6 +321,8 @@ export async function listFlags(db: PoolClient, actor: Actor, now: Date = new Da
     detected_at: new Date(r.detected_at).toISOString(),
     checked_at: new Date(r.checked_at).toISOString(),
     opened_by: r.opened_by ?? null,
+    opened_by_nightly: r.opened_by_job === NIGHTLY_CHECK_JOB,
+    closed_by_nightly: r.closed_by_job === NIGHTLY_CHECK_JOB,
     resolved_at: r.resolved_at ? new Date(r.resolved_at).toISOString() : null,
     closed_reason: r.closed_reason ?? null,
     actions: (r.actions as Flag['actions']).map((a) => ({ ...a, at: new Date(a.at).toISOString() })),
@@ -350,6 +368,7 @@ export async function lastCheck(db: PoolClient, schoolId: string): Promise<LastC
   return {
     at: typeof s.at === 'string' ? s.at : new Date(row.occurred_at).toISOString(),
     by: row.display_name ?? null,
+    ...(s.by === NIGHTLY_CHECK_JOB ? { nightly: true } : {}),
     ruleVersion: n(s.ruleVersion),
     students: n(s.students),
     attendanceUsed: known(s.attendanceUsed),

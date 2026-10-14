@@ -505,3 +505,17 @@ create policy early_warning_flags_tenant_isolation on early_warning_flags using 
 create policy early_warning_actions_tenant_isolation on early_warning_actions using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert, update on early_warning_flags to app_user;
 grant select, insert on early_warning_actions to app_user;
+
+-- The School Health Auditor's check-ups, as My Day reads this week's (C210).
+create table school_health_runs (
+  run_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  run_date date not null,
+  results jsonb not null,
+  passed integer not null,
+  applicable integer not null,
+  unique (school_id, run_date)
+);
+alter table school_health_runs enable row level security;
+create policy school_health_runs_tenant_isolation on school_health_runs using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update on school_health_runs to app_user;

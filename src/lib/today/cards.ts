@@ -376,6 +376,48 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   // c210-leave begin
   // c210-leave end
   // c210-jobs begin
+  {
+    // The School Health Auditor (C210): this week's check-up, for the office that reads check-ups. The latest one of
+    // this week (Monday to today in India: the auditor records one by itself early each Monday, and a person may run
+    // more). With checks that need attention, how many, as waiting; with none, the week's result, as done. Counted
+    // from the check-up's own stored results with the screen's own rule (summarise), so the card and the page agree.
+    type: 'checkup-attention',
+    moduleId: 'school-auditor',
+    roles: ['principal', 'school_admin'],
+    async load(db, ctx) {
+      const { summarise } = await import('@/lib/auditor/rules');
+      const { thisWeeksCheckUp } = await import('@/lib/auditor/store');
+      const week = await thisWeeksCheckUp(db as never, ctx.schoolId);
+      if (!week) return [];
+      const { attention, notChecked } = summarise(week.results);
+      if (attention > 0) return waiting('checkup-attention', 'school-auditor', attention, '/app/school-auditor');
+      // Nothing applies yet (a school with nothing set up): there is no result to say, and the page says why. A check
+      // that could not be run is never shown as a pass, so with one of those the week is not "done" either: the page
+      // says which, and to check again.
+      if (week.applicable === 0 || notChecked > 0) return [];
+      return [{ id: 'checkup-attention', type: 'checkup-attention', moduleId: 'school-auditor', state: 'done', count: week.passed, total: week.applicable, href: '/app/school-auditor' }];
+    },
+  },
+  {
+    // No check-up has been recorded this week (the weekly one has not run for this school yet, or the auditor was
+    // only just switched on): a prompt to run one. A card about something MISSING must not appear because row level
+    // security hid the rows, so it is shown only where the session reads the school's own switch for the auditor, on:
+    // asked about another school, the switch is not there to read, and there is no card. Nor where the school's
+    // records cannot be changed (read-only, a grace period that has ended): a check-up cannot be kept there, and the
+    // weekly one is not queued for it, so the prompt would ask for what cannot be done.
+    type: 'checkup-not-run',
+    moduleId: 'school-auditor',
+    roles: ['principal', 'school_admin'],
+    async load(db, ctx) {
+      const { loadEntitlements } = await import('@/lib/frameworks/entitlements');
+      const { canWrite } = await import('@/lib/contracts/entitlements');
+      const entitlements = await loadEntitlements(db as never, ctx.schoolId);
+      if (!isModuleEnabled(entitlements, 'school-auditor') || !canWrite(entitlements)) return [];
+      const { thisWeeksCheckUp } = await import('@/lib/auditor/store');
+      if (await thisWeeksCheckUp(db as never, ctx.schoolId)) return [];
+      return [{ id: 'checkup-not-run', type: 'checkup-not-run', moduleId: 'school-auditor', state: 'todo', count: 0, href: '/app/school-auditor' }];
+    },
+  },
   // c210-jobs end
   // c210-ui begin
   // c210-ui end

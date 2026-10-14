@@ -2458,6 +2458,183 @@ const earlyWarningTeacherDone = async () => {
 // c210-leave begin
 // c210-leave end
 // c210-jobs begin
+// The schools' own scheduled checks (C210), run for real: the job runner of the running app is called the way the
+// scheduler calls it (POST /api/jobs/run with the runner's credential; the harness skips the migration that keeps
+// that credential in Vault, so a screen puts in the same function and a secret for this run, and takes both away).
+// The first call is the deployed code saying which job types it runs; then the database's own enqueue function
+// queues one job a school with the module on; the second call runs them, each in its school's own session with no
+// person. Other jobs waiting in the queue are held back meanwhile and put back after. Everything is taken away
+// after each screen; audit rows stay (the log is never cut).
+const SCHOOL_JOB_TYPES = ['early_warning.nightly', 'auditor.weekly'];
+const RUNNER_TOKEN = randomBytes(32).toString('hex');
+let schoolJobsHeld = [];
+let schoolJobsHandlersBefore = null;
+const schoolJobsOpen = async () => {
+  schoolJobsHandlersBefore = (await db.pg.query(`select value from platform_settings where key = 'jobs.handlers'`)).rows[0]?.value ?? null;
+  schoolJobsHeld = (await db.pg.query(`update jobs set next_run_at = next_run_at + interval '1000 years' where status = 'pending' and type <> all($1::text[]) returning job_id`, [SCHOOL_JOB_TYPES])).rows.map((r) => r.job_id);
+  await db.pg.exec(readFileSync(path.join(ROOT, 'supabase/migrations/20260930064359_b2_jobs_runner_secret_digest.sql'), 'utf8'));
+  await db.pg.query(`delete from vault.secrets where name = 'jobs_runner_secret'`);
+  await db.pg.query(`insert into vault.secrets (name, secret) values ('jobs_runner_secret', $1)`, [RUNNER_TOKEN]);
+};
+const schoolJobsClose = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from jobs where type in ('early_warning.nightly', 'auditor.weekly'); set session_replication_role = origin;`);
+  if (schoolJobsHeld.length) await db.pg.query(`update jobs set next_run_at = next_run_at - interval '1000 years' where job_id = any($1::uuid[])`, [schoolJobsHeld]);
+  schoolJobsHeld = [];
+  await db.pg.exec(`delete from vault.secrets where name = 'jobs_runner_secret'; drop function if exists public.jobs_runner_secret_digest();`);
+  await db.pg.query(`update platform_settings set value = coalesce($1::jsonb, '[]'::jsonb) where key = 'jobs.handlers'`, [schoolJobsHandlersBefore === null ? null : JSON.stringify(schoolJobsHandlersBefore)]);
+};
+// One round of the runner, as the scheduler calls it every minute.
+const runnerRound = async () => {
+  const res = await fetch(`${base}/api/jobs/run`, { method: 'POST', headers: { authorization: `Bearer ${RUNNER_TOKEN}` } });
+  if (res.status !== 200) throw new Error(`the job runner answered ${res.status}`);
+  return res.json();
+};
+// The night's (or the week's) check for every school with the module on: the runner says what it runs, the database
+// queues, the runner runs. Returns what the second round did.
+const runSchoolCheck = async (enqueue) => {
+  await schoolJobsOpen();
+  const first = await runnerRound();
+  const handled = (await db.pg.query(`select value from platform_settings where key = 'jobs.handlers'`)).rows[0]?.value ?? [];
+  if (!SCHOOL_JOB_TYPES.every((t) => handled.includes(t)) || first.claimed !== 0) throw new Error(`the runner's first round: ${JSON.stringify({ first, handled })}`);
+  await db.pg.query(`select public.${enqueue}()`);
+  return runnerRound();
+};
+
+// Early Warning, by the nightly check. Aarav (5-A) was away on most days three weeks ago, as on the screen of
+// "Check now" (C209). Nobody presses anything: the nightly job opens his flag, and the screen says the nightly check
+// opened it and was the last check. The flag is compared with the database: no person, the nightly check's name.
+let ewNightlySeen = null;
+let ewNightlyRound = null;
+const earlyWarningNightly = async (page) => {
+  await clearEarlyWarning();
+  await db.pg.exec(`set session_replication_role = replica;
+    insert into attendance (school_id, student_id, class_id, date, status, marked_by, leave_code)
+      select '${SCHOOL}', '${STUDENT}', '${CLASS_5A}', ${TODAY_SQL} - g, case when g in (11, 22) then 'present' else 'absent' end, '${PEOPLE.teacher.sub}', null
+        from generate_series(11, 22) g;
+    set session_replication_role = origin;`);
+  ewNightlyRound = await runSchoolCheck('early_warning_nightly_enqueue');
+  await page.reload({ waitUntil: 'networkidle' });
+  const flag = page.locator('[data-ew-flag="open"]', { hasText: 'Aarav Example A' });
+  await flag.waitFor({ timeout: 20000 });
+  await flag.locator('[data-ew-why] summary').click();
+  ewNightlySeen = {
+    lastCheckBy: await page.locator('[data-ew-last-check]').getAttribute('data-ew-last-check-by'),
+    lastCheckSays: /Last checked .+, by the nightly check\./.test(await page.locator('[data-ew-last-check]').innerText()),
+    whySays: (await flag.locator('[data-ew-why]').innerText()).includes(', by the nightly check.'),
+    howSays: (await page.locator('[data-ew-check]').innerText()).includes('It runs by itself each night just after midnight'),
+    open: await page.locator('[data-ew-flag="open"]').count(),
+  };
+};
+const earlyWarningNightlyDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from early_warning_flags where school_id = $1 and resolved_at is null) as open,
+            (select count(*)::int from early_warning_flags where school_id = $1 and student_id = $2 and resolved_at is null and opened_by is null and opened_by_job = 'early_warning.nightly' and reasons = '{attendance}') as by_nightly,
+            (select count(*)::int from early_warning_flags where opened_by is not null) as by_a_person,
+            (select string_agg(status, ',' order by status) from jobs where type = 'early_warning.nightly' and school_id = $1) as job,
+            (select count(*)::int from audit_log where school_id = $1 and event_action = 'early_warning.checked' and actor_user_id is null and after_state ->> 'by' = 'early_warning.nightly' and occurred_at > now() - interval '10 minutes') as audited`,
+    [SCHOOL, STUDENT]
+  );
+  await clearEarlyWarning();
+  await schoolJobsClose();
+  const r = rows[0];
+  // The seeded school and the test school both have Early Warning on: two jobs, both done.
+  if (ewNightlyRound?.claimed !== 2 || ewNightlyRound?.succeeded !== 2) throw new Error(`the runner's second round: ${JSON.stringify(ewNightlyRound)}`);
+  if (r.by_nightly !== 1 || r.by_a_person !== 0 || r.job !== 'succeeded' || r.audited < 1) throw new Error(`the nightly check in the database: ${JSON.stringify(r)}`);
+  const seen = { lastCheckBy: 'nightly', lastCheckSays: true, whySays: true, howSays: true, open: r.open };
+  if (JSON.stringify(ewNightlySeen) !== JSON.stringify(seen)) throw new Error(`the nightly check on the screen: ${JSON.stringify(ewNightlySeen)}, wanted ${JSON.stringify(seen)}`);
+};
+
+// The School Health Auditor, by the weekly check-up: nobody presses anything; the week's check-up is on the screen,
+// recorded by the weekly check-up, with the same "N of M" and the same checks needing attention as the row the job
+// kept.
+let auditorWeeklySeen = null;
+let auditorWeeklyRound = null;
+const clearAllHealthRuns = () => db.pg.exec(`set session_replication_role = replica; delete from school_health_runs; set session_replication_role = origin;`);
+const auditorWeekly = async (page) => {
+  await clearAllHealthRuns();
+  auditorWeeklyRound = await runSchoolCheck('auditor_weekly_enqueue');
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-auditor="run"] [data-auditor-result]').waitFor({ timeout: 30000 });
+  auditorWeeklySeen = {
+    result: (await page.locator('[data-auditor-result]').textContent()).trim(),
+    by: await page.locator('[data-auditor-recorded-by]').getAttribute('data-auditor-recorded-by'),
+    says: /run at .+ by the weekly check-up\.$/.test((await page.locator('[data-auditor-recorded-by]').innerText()).trim()),
+    weeklyNote: await page.locator('[data-auditor="run"] [data-auditor-weekly]').count(),
+    attention: await page.locator('[data-auditor-section="attention"] [data-check]').evaluateAll((els) => els.map((e) => [e.getAttribute('data-check'), Number(e.getAttribute('data-count'))])),
+  };
+};
+const auditorWeeklyDone = async () => {
+  const { rows } = await db.pg.query(`select school_id, run_date = ${TODAY_SQL} as today, passed, applicable, results, recorded_by, recorded_by_job from school_health_runs order by school_id`);
+  const audited = (await db.pg.query(`select count(*)::int as n from audit_log where event_action = 'school_health.checked' and actor_user_id is null and after_state ->> 'by' = 'auditor.weekly' and occurred_at > now() - interval '10 minutes'`)).rows[0].n;
+  await clearAllHealthRuns();
+  await schoolJobsClose();
+  const mine = rows.find((r) => r.school_id === SCHOOL);
+  if (auditorWeeklyRound?.claimed !== 2 || auditorWeeklyRound?.succeeded !== 2 || rows.length !== 2 || audited < 2) throw new Error(`the weekly check-ups: ${JSON.stringify({ round: auditorWeeklyRound, rows: rows.length, audited })}`);
+  if (!mine?.today || mine.recorded_by !== null || mine.recorded_by_job !== 'auditor.weekly') throw new Error(`the weekly check-up in the database: ${JSON.stringify(mine)}`);
+  const attention = mine.results.filter((x) => x.state === 'needs_attention').map((x) => [x.id, x.count]);
+  const seen = { result: `${mine.passed} of ${mine.applicable} checks pass`, by: 'weekly', says: true, weeklyNote: 1, attention };
+  if (JSON.stringify(auditorWeeklySeen) !== JSON.stringify(seen)) throw new Error(`the weekly check-up on the screen: ${JSON.stringify(auditorWeeklySeen)}, wanted ${JSON.stringify(seen)}`);
+};
+
+// My Day of the school admin: before the week's check-up, a prompt to run one; after the weekly job, the number of
+// checks that need attention, as the kept check-up counts them.
+let myDayCheckupSeen = null;
+const myDayCheckup = async (page) => {
+  await clearAllHealthRuns();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-today-card="checkup-not-run"]').waitFor({ timeout: 20000 });
+  const prompt = (await page.locator('[data-today-card="checkup-not-run"]').innerText()).includes('No check-up has been run this week');
+  await runSchoolCheck('auditor_weekly_enqueue');
+  await page.reload({ waitUntil: 'networkidle' });
+  const card = page.locator('[data-today-card="checkup-attention"]');
+  await card.waitFor({ timeout: 20000 });
+  const words = await card.innerText();
+  myDayCheckupSeen = {
+    prompt,
+    promptGone: await page.locator('[data-today-card="checkup-not-run"]').count(),
+    state: await card.getAttribute('data-state'),
+    count: Number(/(\d+) checks? needs? attention in this week’s check-up/.exec(words)?.[1] ?? -1),
+    href: await card.locator('a').getAttribute('href'),
+  };
+};
+const myDayCheckupDone = async () => {
+  const { rows } = await db.pg.query(`select results from school_health_runs where school_id = $1 and run_date = ${TODAY_SQL} and recorded_by_job = 'auditor.weekly'`, [SCHOOL]);
+  await clearAllHealthRuns();
+  await schoolJobsClose();
+  const attention = rows[0]?.results.filter((x) => x.state === 'needs_attention').length ?? 0;
+  const seen = { prompt: true, promptGone: 0, state: 'todo', count: attention, href: '/app/school-auditor' };
+  if (rows.length !== 1 || attention < 1 || JSON.stringify(myDayCheckupSeen) !== JSON.stringify(seen)) throw new Error(`the check-up on My Day: ${JSON.stringify(myDayCheckupSeen)}, wanted ${JSON.stringify(seen)}`);
+};
+
+// Control → Monitoring: last night's Early Warning jobs (one done for the seeded school; one given up for the test
+// school, which is not counted) and no check-up job for the week. The section shows the states and the counts, and
+// names no school.
+const SCHOOL_CHECKS_NIGHT = `((now() at time zone 'Asia/Kolkata')::date - 1)::text`;
+let schoolChecksSeen = null;
+const monitoringSchoolChecks = async (page) => {
+  await db.pg.exec(`set session_replication_role = replica; delete from jobs where type in ('early_warning.nightly', 'auditor.weekly');
+    insert into jobs (type, payload, idempotency_key, school_id, status, attempts, max_attempts, completed_at, last_error) values
+      ('early_warning.nightly', '{}', 'early_warning.nightly:${SCHOOL}:' || ${SCHOOL_CHECKS_NIGHT}, '${SCHOOL}', 'succeeded', 1, 5, now() - interval '9 hours', null),
+      ('early_warning.nightly', '{}', 'early_warning.nightly:b0000000-0000-4000-8000-000000000002:' || ${SCHOOL_CHECKS_NIGHT}, 'b0000000-0000-4000-8000-000000000002', 'dead', 5, 5, now() - interval '8 hours', 'early_warning.nightly: the check was refused (not_allowed)');
+    set session_replication_role = origin;`);
+  await page.reload({ waitUntil: 'networkidle' });
+  const block = page.locator('[data-monitoring-school-checks]');
+  await block.waitFor({ timeout: 20000 });
+  await block.scrollIntoViewIfNeeded();
+  schoolChecksSeen = {
+    states: Object.fromEntries(await block.locator('[data-monitoring-school-check]').evaluateAll((els) => els.map((e) => [e.getAttribute('data-monitoring-school-check'), e.getAttribute('data-monitoring-school-check-state')]))),
+    counts: await block.locator('[data-monitoring-school-check="earlyWarning"] [data-monitoring-school-check-counts]').getAttribute('data-monitoring-school-check-counts'),
+    text: await block.innerText(),
+  };
+};
+const monitoringSchoolChecksDone = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from jobs where type in ('early_warning.nightly', 'auditor.weekly'); set session_replication_role = origin;`);
+  const seen = schoolChecksSeen ?? {};
+  // The week yesterday was in has no check-up job here: not queued, though the seeded school has the auditor on.
+  if (JSON.stringify(seen.states) !== JSON.stringify({ earlyWarning: 'ran', auditor: 'not_queued' }) || seen.counts !== '1/1') throw new Error(`the schools' own checks on Monitoring: ${JSON.stringify({ states: seen.states, counts: seen.counts })}`);
+  const named = ['Illustrative Public School', 'Illustrative Test School'].filter((n) => (seen.text ?? '').includes(n));
+  if (named.length || !/Schools with a job: 1\. Finished: 1\. Last finished: 9 hours ago\./.test(seen.text ?? '')) throw new Error(`the schools' own checks, the words: ${JSON.stringify({ named, text: seen.text })}`);
+};
 // c210-jobs end
 // c210-ui begin
 // c210-ui end
@@ -2946,6 +3123,12 @@ const SCREENS = [
   // c210-leave begin
   // c210-leave end
   // c210-jobs begin
+  // The schools' own checks, run by the job runner as the scheduler calls it: Early Warning's nightly check, the
+  // auditor's weekly check-up, this week's check-up on the school admin's My Day, and both on Monitoring.
+  ['principal', 'app-early-warning-nightly', '/app/early-warning', earlyWarningNightly, earlyWarningNightlyDone],
+  ['principal', 'app-school-auditor-weekly', '/app/school-auditor', auditorWeekly, auditorWeeklyDone],
+  ['office', 'office-my-day-checkup', '/app/my-day', myDayCheckup, myDayCheckupDone],
+  ['founder', 'control-monitoring-school-checks', '/control/monitoring', monitoringSchoolChecks, monitoringSchoolChecksDone],
   // c210-jobs end
   // c210-ui begin
   // c210-ui end
