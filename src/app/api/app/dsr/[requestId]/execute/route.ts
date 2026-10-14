@@ -29,7 +29,7 @@ export async function POST(req: NextRequest, { params }: { params: { requestId: 
         eventAction: 'dsr.deletion_executed',
         targetType: 'students',
         targetId: outcome.result.studentId,
-        afterState: { fieldsScrubbed: ['name', 'dob', 'gender'], documentsScrubbed: outcome.result.documentsScrubbed, dataCheckRowsErased: outcome.result.dataCheckRowsErased, rteEvidenceRemoved: outcome.result.rteEvidenceRemoved, admissionEnquiriesErased: outcome.result.admissionEnquiriesErased, admissionStepsErased: outcome.result.admissionStepsErased },
+        afterState: { fieldsScrubbed: ['name', 'dob', 'gender'], documentsScrubbed: outcome.result.documentsScrubbed, dataCheckRowsErased: outcome.result.dataCheckRowsErased, rteEvidenceRemoved: outcome.result.rteEvidenceRemoved, admissionEnquiriesErased: outcome.result.admissionEnquiriesErased, admissionStepsErased: outcome.result.admissionStepsErased, admissionFamilyEnquiriesDeleted: outcome.result.admissionFamilyEnquiriesDeleted, attendanceRowsErased: outcome.result.attendanceRowsErased },
       });
       return outcome;
     });

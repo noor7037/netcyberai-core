@@ -437,8 +437,14 @@ describe('on the real schema, as the app’s own role', () => {
     expect(asked.message).toBe('queued');
     const log = (await requestsOf(NEEL)).find((r: { field: string }) => r.field === 'name').message_log_id;
     expect(await logOf(log)).toMatchObject({ status: 'queued', template_params: { child: 'Neel Das' } });
-    // The printed row and Neel's two requests (the date of birth, held earlier for the budget, and this name).
-    expect(await as(principal, async (c) => (await c.query(`select public.erase_student_data_check($1) as n`, [NEEL])).rows[0].n)).toBe(3);
+    // Review of C224: a second message the sender has already taken (sending_at set) may have gone out.
+    ok(await as(admin, (c) => savePrinted(c, actor(admin), NEEL, { name: 'Neel Kumar Das', dob: '', gender: 'male' })));
+    ok(await as(admin, (c) => askParent(c, queue, actor(admin), NEEL, { parentId: G_NEEL, fields: ['gender'] })));
+    const taken = (await requestsOf(NEEL)).find((r: { field: string }) => r.field === 'gender').message_log_id;
+    await db.pg.query(`update communication_log set sending_at = now() where log_id = $1`, [taken]);
+    // The printed row and Neel's three requests (the date of birth, held earlier for the budget, the name and the gender).
+    expect(await as(principal, async (c) => (await c.query(`select public.erase_student_data_check($1) as n`, [NEEL])).rows[0].n)).toBe(4);
+    expect((await db.pg.query(`select status::text as status, failure_code, template_params from communication_log where log_id = $1`, [taken])).rows[0]).toEqual({ status: 'uncertain', failure_code: null, template_params: null });
     expect(await logOf(log)).toMatchObject({ status: 'failed', template_params: null });
     expect((await db.pg.query(`select failure_code, failed_at is not null as failed from communication_log where log_id = $1`, [log])).rows[0]).toEqual({ failure_code: 'erased', failed: true });
   });

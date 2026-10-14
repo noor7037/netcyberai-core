@@ -65,3 +65,37 @@ export async function writeEntitlementAudit(client: Pick<PoolClient, 'query'>, e
     ]
   );
 }
+
+// An attendance change with the words the person gave for it (review of C224): the office's reason for entering or
+// correcting a past day, or a late correction's note. The words are kept beside the audit row, in
+// attendance_change_reasons (read by the office and the person who wrote them, removed by a data request's erasure),
+// never in the row itself (C56). One statement, so both are written or neither. No words: the audit row alone.
+export async function writeAttendanceAudit(
+  client: Pick<PoolClient, 'query'>,
+  entry: AuditEntry & { schoolId: string; actorUserId: string },
+  words: { studentId: string; reason: string } | null
+): Promise<void> {
+  if (!words) return writeAuditLog(client, entry);
+  await client.query(
+    `with a as (
+       insert into audit_log
+         (school_id, actor_user_id, actor_role, event_action, target_type, target_id, before_state, after_state)
+       values ($1, $2, $3, $4, $5, $6, $7, $8)
+       returning audit_id
+     )
+     insert into attendance_change_reasons (audit_id, school_id, student_id, reason, written_by)
+     select audit_id, $1, $9, $10, $2 from a`,
+    [
+      entry.schoolId,
+      entry.actorUserId,
+      entry.actorRole,
+      entry.eventAction,
+      entry.targetType ?? null,
+      entry.targetId ?? null,
+      entry.beforeState ? JSON.stringify(entry.beforeState) : null,
+      entry.afterState ? JSON.stringify(entry.afterState) : null,
+      words.studentId,
+      words.reason,
+    ]
+  );
+}

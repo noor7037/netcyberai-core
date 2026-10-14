@@ -213,6 +213,7 @@ const APP_USER: Record<string, string> = {
   // p7-10g begin
   // p7-10g end
   // c224 begin
+  attendance_change_reasons: 'DELETE,INSERT,SELECT', // the words given for an attendance change, beside the audit row; deleted only by an erasure (review of C224)
   // c224 end
   // c225 begin
   // c225 end
@@ -344,6 +345,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // p7-10g begin
   // p7-10g end
   // c224 begin
+  attendance_change_reasons: '', // the school's own: the platform role reads nothing here
   // c224 end
   // c225 begin
   // c225 end

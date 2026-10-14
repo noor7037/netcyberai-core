@@ -229,7 +229,8 @@ export async function endTerm(db: Sql, by: By, schoolId: string, input: { termId
 
 export type PeriodResult = { ok: true; period: BillingPeriod } | { ok: false; reason: 'not_found' | 'no_plan' | 'billing_period' | 'reason' };
 
-// The period the school pays for: a month or a year. Audited with the reason, in the platform's own rows.
+// The period the school pays for: a month or a year. Audited; the reason is kept where only the founder reads it
+// (entitlement_change_reasons, C124), never in the audit row (C224).
 export async function setBillingPeriod(db: Sql, by: By, schoolId: string, input: { period: unknown; reason: unknown }): Promise<PeriodResult> {
   if (!isUuid(schoolId)) return { ok: false, reason: 'not_found' };
   if (!isBillingPeriod(input.period)) return { ok: false, reason: 'billing_period' };
@@ -242,7 +243,7 @@ export async function setBillingPeriod(db: Sql, by: By, schoolId: string, input:
   if (!sub) return { ok: false, reason: 'no_plan' };
   if (sub.billing_period !== input.period) {
     await db.query(`update school_subscriptions set billing_period = $2, updated_by = $3, updated_at = now() where school_id = $1`, [schoolId, input.period, by.userId]);
-    await writeAuditLog(db, {
+    await writeEntitlementAudit(db, {
       schoolId,
       actorUserId: by.userId,
       actorRole: 'super_admin',
@@ -251,7 +252,7 @@ export async function setBillingPeriod(db: Sql, by: By, schoolId: string, input:
       targetId: schoolId,
       beforeState: { billing_period: sub.billing_period ?? null },
       afterState: { billing_period: input.period, reasoned: true },
-    });
+    }, reason);
   }
   return { ok: true, period: input.period };
 }

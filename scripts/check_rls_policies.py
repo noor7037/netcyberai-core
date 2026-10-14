@@ -394,6 +394,7 @@ ALLOWED_PERMISSIVE = (
         # p7-10g begin
         # p7-10g end
         # c224 begin
+        ("attendance_change_reasons", "attendance_change_reasons_tenant_isolation"),  # review of C224: narrowed by the RESTRICTIVE policies below
         # c224 end
         # c225 begin
         # c225 end
@@ -706,6 +707,10 @@ REQUIRED_RESTRICTIVE = {
     # p7-10g begin
     # p7-10g end
     # c224 begin
+    # review of C224: the words for an attendance change: the office and the writer read; written as self; the erasure deletes.
+    ("attendance_change_reasons", "attendance_change_reasons_readers"),
+    ("attendance_change_reasons", "attendance_change_reasons_written_as_self"),
+    ("attendance_change_reasons", "attendance_change_reasons_erased_by_office"),
     # c224 end
     # c225 begin
     # c225 end

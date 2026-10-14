@@ -109,6 +109,8 @@ export interface PseudonymizationResult {
   rteEvidenceRemoved: number;
   admissionEnquiriesErased: number;
   admissionStepsErased: number;
+  admissionFamilyEnquiriesDeleted: number;
+  attendanceRowsErased: number;
 }
 
 // The mechanical answer Task 3 asks for: scrub the student's own PII
@@ -194,10 +196,12 @@ export async function pseudonymizeStudent(client: PoolClient, schoolId: string, 
   // The child's admission enquiry (C224): the record Admit made the child from. It is kept, with its stage and steps,
   // and the child's name, the guardian's name, the phone and every note and next step on it are blanked, through the
   // database's own function (an admitted enquiry never changes otherwise).
-  const { rows: admission } = await client.query(`select enquiries, steps from public.erase_admission_enquiries($1)`, [studentId]);
+  const { rows: admission } = await client.query(`select enquiries, steps, family_enquiries from public.erase_admission_enquiries($1)`, [studentId]);
   // The RTE evidence file (C223): its typed notes (an income or category proof) go too. The claims are money the
   // state owes the school, and are kept, as the child's fees are.
   const { rowCount: rteEvidenceRemoved } = await client.query(`delete from rte_evidence where school_id = $1 and student_id = $2`, [schoolId, studentId]);
+  // The words given for changing the child's attendance (review of C224): kept beside their audit rows, removed here.
+  const { rowCount: attendanceRowsErased } = await client.query(`delete from attendance_change_reasons where school_id = $1 and student_id = $2`, [schoolId, studentId]);
 
   return {
     studentId,
@@ -212,6 +216,8 @@ export async function pseudonymizeStudent(client: PoolClient, schoolId: string, 
     rteEvidenceRemoved: rteEvidenceRemoved ?? 0,
     admissionEnquiriesErased: Number(admission[0]?.enquiries ?? 0),
     admissionStepsErased: Number(admission[0]?.steps ?? 0),
+    admissionFamilyEnquiriesDeleted: Number(admission[0]?.family_enquiries ?? 0),
+    attendanceRowsErased: attendanceRowsErased ?? 0,
   };
 }
 

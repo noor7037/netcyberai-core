@@ -162,17 +162,38 @@ describe('on the real schema, as the app’s own role', () => {
       await expect(as(admin, (c) => c.query(`delete from admission_enquiries where enquiry_id = $1`, [ishaan]))).rejects.toThrow(/permission denied/);
       for (const who of [tara, accountant, coordinator]) {
         await expect(as(who, (c) => c.query(`select public.delete_admission_enquiry($1)`, [ishaan])), who.role).rejects.toThrow(/principal or the school admin/);
-        await expect(as(who, (c) => c.query(`select * from public.delete_family_enquiries('+919800000305')`)), who.role).rejects.toThrow(/principal or the school admin/);
+        await expect(as(who, (c) => c.query(`select * from public.delete_family_enquiries('+919800000305', '{}')`)), who.role).rejects.toThrow(/principal or the school admin/);
       }
       // Another school's principal: no such enquiry there, and none of school A's found by its phone.
       expect((await as<Rows>(principalB, (c) => c.query(`select public.delete_admission_enquiry($1) as n`, [ishaan]))).rows[0].n).toBeNull();
-      expect((await as<Rows>(principalB, (c) => c.query(`select * from public.delete_family_enquiries('+919800000305')`))).rows).toEqual([]);
+      expect((await as<Rows>(principalB, (c) => c.query(`select * from public.delete_family_enquiries('+919800000305', '{}')`))).rows).toEqual([]);
       await expect(platform((c) => c.query(`select public.delete_admission_enquiry($1)`, [ishaan]))).rejects.toThrow(/permission denied/);
-      await expect(platform((c) => c.query(`select * from public.delete_family_enquiries('+919800000305')`))).rejects.toThrow(/permission denied/);
+      await expect(platform((c) => c.query(`select * from public.delete_family_enquiries('+919800000305', '{}')`))).rejects.toThrow(/permission denied/);
       // The phone as the enquiries keep it, nothing else.
-      await expect(as(admin, (c) => c.query(`select * from public.delete_family_enquiries('98000 00305')`))).rejects.toThrow(/\+ and digits/);
+      await expect(as(admin, (c) => c.query(`select * from public.delete_family_enquiries('98000 00305', '{}')`))).rejects.toThrow(/\+ and digits/);
       expect((await owner(`select count(*)::int as n from admission_enquiries where enquiry_id = $1`, [ishaan]))[0].n).toBe(1);
       ok(await as(admin, (c) => deleteEnquiry(c, actor(admin), ishaan)));
+    });
+  });
+
+  describe('review of C224: the erasure of a child also deletes the family’s other enquiries that were not admitted', () => {
+    it('by the admitted enquiry’s phone; a sibling who was admitted and another family are kept', async () => {
+      const meera = await record({ childName: 'Meera Example', guardianName: 'Lata Example', phone: '98000 00330' });
+      const meeraStudent = ok(await as(admin, (c) => admit(c, actor(admin), meera, { admissionNo: null, dob: null }))).studentId;
+      const sister = await record({ childName: 'Neha Example', guardianName: 'Lata Example', phone: '9800000330', note: 'Lata asked about class 6 for Neha.' });
+      const brother = await record({ childName: 'Om Example', guardianName: 'Lata Example', phone: '+91 98000 00330' });
+      const brotherStudent = ok(await as(admin, (c) => admit(c, actor(admin), brother, { admissionNo: null, dob: null }))).studentId;
+      const other = await record({ childName: 'Pia Example', guardianName: 'Rina Example', phone: '9800000331' });
+      const got = (await as(principal, async (c) => (await c.query(`select enquiries, steps, family_enquiries from public.erase_admission_enquiries($1)`, [meeraStudent])).rows[0]));
+      expect(got).toMatchObject({ enquiries: 1, family_enquiries: 1 });
+      const left = await owner(`select enquiry_id, child_name, erased_at is not null as erased from admission_enquiries where enquiry_id = any($1::uuid[]) order by created_at`, [[meera, sister, brother, other]]);
+      expect(left).toEqual([
+        { enquiry_id: meera, child_name: null, erased: true },
+        { enquiry_id: brother, child_name: 'Om Example', erased: false },
+        { enquiry_id: other, child_name: 'Pia Example', erased: false },
+      ]);
+      expect((await owner(`select count(*)::int as n from admission_events where enquiry_id = $1`, [sister]))[0].n).toBe(0);
+      expect(brotherStudent).toBeTruthy();
     });
   });
 
@@ -198,6 +219,12 @@ describe('on the real schema, as the app’s own role', () => {
 
       // The list confirmed is the list deleted, or nothing is.
       expect(await as(admin, (c) => deleteFamilyEnquiries(c, actor(admin), '9800000310', [first]))).toEqual({ ok: false, reason: 'changed' });
+      // Review of C224: the database itself deletes only the list it is given, under a lock, and only if it is still
+      // exactly the family's: a shorter list, or one with an id that is not the family's, deletes nothing.
+      for (const ids of [[first], [first, second, neighbour], [first, second, joined]]) {
+        expect((await as<Rows>(admin, (c) => c.query(`select * from public.delete_family_enquiries('+919800000310', $1::uuid[])`, [ids]))).rows, ids.join()).toEqual([]);
+      }
+      expect((await owner(`select count(*)::int as n from admission_enquiries where enquiry_id = any($1::uuid[])`, [[first, second, joined, neighbour]]))[0].n).toBe(4);
       expect(await as(admin, (c) => deleteFamilyEnquiries(c, actor(admin), '9800000310', 'all'))).toEqual({ ok: false, reason: 'changed' });
       expect(await as(tara, (c) => deleteFamilyEnquiries(c, actor(tara), '9800000310', [first, second]))).toEqual({ ok: false, reason: 'not_allowed' });
       const steps = (await owner(`select count(*)::int as n from admission_events where enquiry_id = any($1::uuid[])`, [[first, second]]))[0].n;
