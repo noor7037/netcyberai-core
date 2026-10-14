@@ -504,6 +504,27 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // c212-pricing begin
   // c212-pricing end
   // p7-10a begin
+  {
+    // Admissions (C221): when an enquiry has "gone quiet". The default is the website tracker's QUIET_DAYS_DEFAULT
+    // (src/lib/free-tools/admissions-tracker.ts); test/admissions/admissions.test.ts holds the two together.
+    moduleId: 'admissions',
+    version: 1,
+    fields: [
+      {
+        key: 'quiet_days',
+        label: 'Gone quiet after this many days without contact',
+        help: 'An open enquiry with no contact for this many days or more is listed under “Gone quiet”, from 1 to 90. A contact is the enquiry being recorded, a note of what happened, or a move of stage.',
+        section: 'Follow-ups',
+        type: 'number',
+        default: 14,
+        min: 1,
+        max: 90,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+    ],
+  },
   // p7-10a end
   // p7-10b begin
   // p7-10b end

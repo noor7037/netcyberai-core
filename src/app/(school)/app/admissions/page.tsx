@@ -1,27 +1,30 @@
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
-import { moduleOffReason } from '@/lib/frameworks/page-access';
+import { AdmissionsView } from '@/components/admissions/AdmissionsView';
+import { AdmissionsWaiting } from '@/components/admissions/AdmissionsWaiting';
 import { StudentsView } from '@/components/students/StudentsView';
+import { ADMISSIONS_OFFICE } from '@/lib/admissions/admissions';
+import { getServerSession } from '@/lib/auth/server-session';
+import { moduleOffReason } from '@/lib/frameworks/page-access';
+import { t } from '@/lib/i18n';
+import { getLang } from '@/lib/i18n/server';
 
-// [GAP] vs PRD §3.1's full admissions pipeline (Enquiry -> Application
-// -> Document Verification -> Interview/Assessment -> Offer ->
-// Confirmation -> Enrolled): only the LAST state that pipeline produces
-// has ever had a schema column (students.status), and Prompt A never
-// added enquiry/application/offer tables for the earlier stages. This
-// page is honestly what the schema actually supports today -- the
-// enrolment queue (status = pending_consent) -- not a fabricated
-// multi-stage pipeline UI with nothing behind it. Building the earlier
-// stages is real, scoped work for a future prompt, not something to
-// silently invent here.
+// The admissions pipeline (docs/28 slice 10a, C221): the office's enquiries, "Follow up today", "Gone quiet" and
+// Admit. Under it, the children waiting for consent: where Admit leaves a child, and the list the dashboard's
+// number and the School Health Auditor's consent check open. Their full list, with "+ Add student" and
+// "Import CSV", is /app/admissions/waiting.
+// The children waiting for consent are the Students module's own: a school whose plan has no Admissions keeps
+// them here, with "+ Add student" and "Import CSV", as before the pipeline (lead, at integration of C221).
 export default async function AdmissionsPage() {
-  // The enrolment queue is the Students module's own data (new students waiting for
-  // consent); Admissions as a module of its own is not built or in any plan yet.
   const off = await moduleOffReason('students');
   if (off) return <ModuleOffPage moduleId="students" reason={off} />;
+  const session = await getServerSession();
+  if (await moduleOffReason('admissions')) {
+    const { lang } = getLang(session?.sub ?? '');
+    return <StudentsView title={t(lang, 'adm.waitingPage.title')} description={t(lang, 'adm.waitingPage.purpose')} statusFilter="pending_consent" />;
+  }
   return (
-    <StudentsView
-      title="Admissions"
-      description="Newly enrolled students awaiting parent/guardian consent. (Earlier pipeline stages — enquiry, application, offer — aren't built yet; see this page's own source comment.)"
-      statusFilter="pending_consent"
-    />
+    <AdmissionsView office={ADMISSIONS_OFFICE.includes(session?.role ?? '')}>
+      <AdmissionsWaiting />
+    </AdmissionsView>
   );
 }

@@ -607,3 +607,36 @@ language sql stable security definer set search_path = public, pg_temp as $$
                     and x.exam_id = p_exam_id and x.class_id = p_class_id and x.reopened_at is null)
 $$;
 grant execute on function public.exam_class_published(uuid, uuid) to app_user;
+
+-- Admission enquiries and their steps, as My Day counts the follow-ups due (C221): the office's enquiries, their
+-- class and owner, and the steps that say when the family was last in contact.
+create table admission_enquiries (
+  enquiry_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  child_name text not null,
+  guardian_name text not null,
+  phone text not null,
+  class_id uuid not null,
+  source text not null default 'walk_in',
+  stage text not null default 'enquiry',
+  owner_id uuid not null,
+  next_follow_up date,
+  next_step text,
+  closed_reason text,
+  student_id uuid,
+  created_at timestamptz not null default now()
+);
+alter table admission_enquiries enable row level security;
+create policy admission_enquiries_tenant_isolation on admission_enquiries using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy admission_enquiries_office on admission_enquiries as restrictive for all using (current_setting('app.current_role', true) in ('principal', 'school_admin'));
+grant select, insert, update on admission_enquiries to app_user;
+create table admission_events (
+  event_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  enquiry_id uuid not null,
+  kind text not null,
+  at timestamptz not null default now()
+);
+alter table admission_events enable row level security;
+create policy admission_events_tenant_isolation on admission_events using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert on admission_events to app_user;

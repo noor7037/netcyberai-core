@@ -371,6 +371,8 @@ ALLOWED_PERMISSIVE = (
         ("school_billing_terms", "school_billing_terms_tenant_isolation"),
         # c212-pricing end
         # p7-10a begin
+        ("admission_enquiries", "admission_enquiries_tenant_isolation"),  # C221: narrowed by the RESTRICTIVE policies below
+        ("admission_events", "admission_events_tenant_isolation"),
         # p7-10a end
         # p7-10b begin
         # p7-10b end
@@ -651,6 +653,13 @@ REQUIRED_RESTRICTIVE = {
     ("audit_log", "audit_billing_terms_platform_only"),
     # c212-pricing end
     # p7-10a begin
+    # C221: enquiries and their steps are the office's (principal and school admin) alone; recorded in one's own name;
+    # a step is written in one's own name, and only a note by hand (the others by the trigger). Audit rows likewise.
+    ("admission_enquiries", "admission_enquiries_office"),
+    ("admission_enquiries", "admission_enquiries_recorded_as_self"),
+    ("admission_events", "admission_events_office"),
+    ("admission_events", "admission_events_as_self"),
+    ("audit_log", "audit_admissions_rows_office"),
     # p7-10a end
     # p7-10b begin
     # p7-10b end

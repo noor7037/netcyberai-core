@@ -103,6 +103,9 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // c212-pricing begin
   // c212-pricing end
   // p7-10a begin
+  // Admissions (C221): switched off, nobody records an enquiry, moves it, gives it to someone or admits a child.
+  ['admissions/**', 'admissions'],
+  ['admissions', 'admissions'],
   // p7-10a end
   // p7-10b begin
   // p7-10b end
@@ -250,6 +253,9 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // c212-pricing begin
   // c212-pricing end
   // p7-10a begin
+  // The office's enquiries, follow-ups and gone-quiet list, and one enquiry's steps (C221).
+  ['admissions/*', 'admissions'],
+  ['admissions', 'admissions'],
   // p7-10a end
   // p7-10b begin
   // p7-10b end

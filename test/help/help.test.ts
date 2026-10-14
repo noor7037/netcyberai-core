@@ -77,6 +77,7 @@ describe('the guides', () => {
       // c212-pricing begin
       // c212-pricing end
       // p7-10a begin
+      'admissions-enquiries',
       // p7-10a end
       // p7-10b begin
       // p7-10b end

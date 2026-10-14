@@ -100,7 +100,7 @@ const ROWS: readonly Row[] = [
 
   { id: 'setup', label: 'Setup', group: 'school-people', icon: 'school', roles: OFFICE, phase: 'P7', phaseNote: 'Parts live', status: 'partial',
     capabilities: ['Academic sessions', 'Classes and sections', 'Subjects', 'Teacher assignment', 'School profile', 'Branding', 'Grading schemes', 'Calendar defaults', 'Onboarding checklist', 'Promotion rules and one-click promote'] },
-  { id: 'admissions', label: 'Admissions', group: 'school-people', icon: 'admissions', roles: OFFICE, phase: 'P7', status: 'planned',
+  { id: 'admissions', label: 'Admissions', group: 'school-people', icon: 'admissions', roles: OFFICE, phase: 'P7', phaseNote: 'Enquiries with an owner, a follow-up date and a stage, “Follow up today”, “Gone quiet”, and Admit, which makes the student record on the class’s fee structure, are live; the online form and conversion analytics later', status: 'partial',
     capabilities: ['Enquiry → visit → application → test/interview → offer → enrol pipeline', 'Sources', 'Follow-up tasks', 'Conversion analytics', 'Converts to Student', 'Kanban board', 'Online admission form', 'Sibling linking'] },
   { id: 'students', label: 'Students', group: 'school-people', icon: 'student', roles: OFFICE, phase: 'P7', phaseNote: 'Live; Student 360 search in P1', status: 'live',
     capabilities: ['Profile', 'CSV import', 'Document scan with OCR autofill', 'QR ID cards', 'Siblings', 'Promotions', 'Transfers', 'History', 'Student 360 search'] },
