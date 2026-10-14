@@ -60,6 +60,7 @@ describe('the guides', () => {
       'set-up-grading-scheme',
       // p6-9a end
       // p6-9b begin
+      'enter-exam-marks',
       // p6-9b end
       // p6-9c begin
       // p6-9c end

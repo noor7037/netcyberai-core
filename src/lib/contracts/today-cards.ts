@@ -50,6 +50,7 @@ export const TODAY_CARD_TYPES = [
   'grading-scheme',
   // p6-9a end
   // p6-9b begin
+  'marks-to-enter',
   // p6-9b end
   // p6-9c begin
   // p6-9c end

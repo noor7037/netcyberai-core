@@ -82,6 +82,9 @@ export const TOURS = {
   'grading-scheme': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // p6-9a end
   // p6-9b begin
+  exams: { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
+  'marks-entry': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
+  'class-result': { steps: [{ slot: 'body' }, { slot: 'body' }] },
   // p6-9b end
   // p6-9c begin
   // p6-9c end

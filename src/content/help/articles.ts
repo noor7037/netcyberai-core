@@ -1176,6 +1176,32 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p6-9a end
   // p6-9b begin
+  {
+    slug: 'enter-exam-marks',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Make an exam and enter its marks', hi: 'परीक्षा बनाएँ और उसके अंक भरें' },
+    summary: {
+      en: 'The office makes an exam with a paper for each class and subject. Teachers enter each child’s marks on a phone, in roll order. The class result shows each child’s percent and grade by the grading scheme.',
+      hi: 'ऑफ़िस हर कक्षा और विषय के पेपर के साथ परीक्षा बनाता है। शिक्षक हर बच्चे के अंक फ़ोन पर, रोल क्रम में भरते हैं। कक्षा का परिणाम हर बच्चे का प्रतिशत और ग्रेड ग्रेडिंग योजना से दिखाता है।',
+    },
+    steps: [
+      { en: 'Office: open Exams. Under “Make an exam”, write the name and choose the term. For each paper choose the class, the subject and the date, and give each part its maximum marks. Press “Add a paper” for the next one, then “Make the exam”.', hi: 'ऑफ़िस: Exams खोलें। “Make an exam” में नाम लिखें और टर्म चुनें। हर पेपर के लिए कक्षा, विषय और तारीख़ चुनें, और हर भाग के अधिकतम अंक दें। अगले के लिए “Add a paper” दबाएँ, फिर “Make the exam”।' },
+      { en: 'Office: open a paper, then “Date and chapters”. Tick the chapters it assesses from the class’s syllabus map and press “Save the paper”.', hi: 'ऑफ़िस: कोई पेपर खोलें, फिर “Date and chapters”। कक्षा के सिलेबस मैप से वे अध्याय चुनें जिन्हें यह जाँचता है और “Save the paper” दबाएँ।' },
+      { en: 'Teachers: on My Day or under “Papers waiting for your marks”, press “Enter marks”. The children of the class are listed in roll order.', hi: 'शिक्षक: “मेरा दिन” में या “Papers waiting for your marks” में “Enter marks” दबाएँ। कक्षा के बच्चे रोल क्रम में दिखते हैं।' },
+      { en: 'Type each child’s mark for each part, out of its maximum. For a child who missed it, press “Absent”; for one who does not take it, press “Exempt”. Neither is a zero.', hi: 'हर बच्चे का हर भाग का अंक, उसके अधिकतम में से, लिखें। जो बच्चा नहीं आया उसके लिए “Absent” दबाएँ; जो यह पेपर नहीं देता उसके लिए “Exempt”। दोनों में से कोई शून्य नहीं है।' },
+      { en: 'Press “Save marks” as you go. When every child has a mark, absent or exempt for every part, the paper says “Entered”.', hi: 'साथ-साथ “Save marks” दबाते रहें। जब हर बच्चे का हर भाग का अंक, अनुपस्थित या छूट दर्ज हो जाए, पेपर पर “Entered” दिखता है।' },
+      { en: 'Press “Class result” for a class to see each child’s marks, percent and grade, in roll order, by the grading scheme in force.', hi: 'किसी कक्षा के लिए “Class result” दबाएँ और हर बच्चे के अंक, प्रतिशत और ग्रेड देखें, रोल क्रम में, लागू ग्रेडिंग योजना से।' },
+    ],
+    tips: [
+      { en: 'A teacher enters marks only for their own subject in a class, or for their class as class teacher. The office and the academic coordinator enter any. The accountant sees no marks.', hi: 'शिक्षक सिर्फ़ किसी कक्षा में अपने विषय के, या कक्षा अध्यापक के रूप में अपनी कक्षा के अंक भरते हैं। ऑफ़िस और एकेडमिक कोऑर्डिनेटर कोई भी भर सकते हैं। अकाउंटेंट को कोई अंक नहीं दिखता।' },
+      { en: 'A mark above the part’s maximum, below zero, or with more than one decimal place is not saved. Absent and exempt are left out of the percent.', hi: 'भाग के अधिकतम से ज़्यादा, शून्य से कम, या एक से ज़्यादा दशमलव वाला अंक सहेजा नहीं जाता। अनुपस्थित और छूट प्रतिशत से बाहर रहते हैं।' },
+      { en: 'Children are never ranked: the class result is in roll order, and no one is compared with another child.', hi: 'बच्चों की कभी रैंक नहीं बनती: कक्षा का परिणाम रोल क्रम में है, और किसी की तुलना दूसरे बच्चे से नहीं होती।' },
+    ],
+    start: { href: '/app/exams', label: { en: 'Exams', hi: 'परीक्षाएँ (Exams)' } },
+    related: ['set-up-grading-scheme', 'use-my-day'],
+    keywords: ['exam', 'exams', 'marks', 'marks entry', 'enter marks', 'paper', 'absent', 'exempt', 'result', 'class result', 'grade', 'percent', 'pariksha', 'ank', 'परीक्षा', 'अंक', 'पेपर', 'परिणाम', 'अनुपस्थित'],
+  },
   // p6-9b end
   // p6-9c begin
   // p6-9c end

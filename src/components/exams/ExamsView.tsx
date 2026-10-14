@@ -1,0 +1,347 @@
+'use client';
+
+import { useCallback, useEffect, useState } from 'react';
+import { useT } from '@/components/app-shell/LangContext';
+import { EmptyState } from '@/components/ui/EmptyState';
+import { Badge } from '@/components/ui/Badge';
+import type { ExamsScreen, ExamSummary, PaperSummary } from '@/lib/exams/exams';
+import type { MessageKey } from '@/lib/i18n';
+import { Field, FIELD, PRIMARY, SECTION, TAP } from './SchemeParts';
+import { dayWords } from './exam-format';
+
+// Exams (docs/27 row 9b, C214). The papers that wait for this person's marks come first. The principal, the school
+// admin and the academic coordinator make an exam for a term, with a paper for each class and subject (its date and
+// each part's maximum, from the grading scheme), and see how far each paper's entry has come. A teacher sees the
+// exams of their own classes, and enters the papers of their own subject, or of their class as class teacher. The
+// class result of each class is one tap away. The server and the database decide who may do what.
+
+type PaperForm = { classId: string; subjectId: string; date: string; maxima: Record<string, string> };
+const ERRORS = ['name', 'name_taken', 'session', 'term', 'papers', 'class', 'subject', 'date', 'maxima', 'units', 'paper_twice', 'has_marks'];
+const emptyPaper = (): PaperForm => ({ classId: '', subjectId: '', date: '', maxima: {} });
+const toNumber = (text: string): number | null => (text.trim() === '' ? null : Number(text.trim().replace(',', '.')));
+
+export function ExamsView() {
+  const { t, lang } = useT();
+  const [data, setData] = useState<ExamsScreen | null>(null);
+  const [failed, setFailed] = useState(false);
+  const [denied, setDenied] = useState(false);
+  const [session, setSession] = useState<string | null>(null);
+  const [name, setName] = useState('');
+  const [term, setTerm] = useState('');
+  const [papers, setPapers] = useState<PaperForm[]>([emptyPaper()]);
+  const [adding, setAdding] = useState<{ examId: string; paper: PaperForm } | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
+
+  const load = useCallback(async (asked: string | null) => {
+    const res = await fetch(`/api/app/exams${asked ? `?session=${encodeURIComponent(asked)}` : ''}`, { cache: 'no-store' }).catch(() => null);
+    const got = res?.ok ? ((await res.json().catch(() => null)) as ExamsScreen | null) : null;
+    setDenied(res?.status === 403);
+    setFailed(!got);
+    if (got) setData(got);
+  }, []);
+  useEffect(() => {
+    void load(session);
+  }, [load, session]);
+
+  const post = async (url: string, payload: unknown): Promise<{ ok: boolean; body: Record<string, unknown> | null }> => {
+    setBusy(true);
+    setNote(null);
+    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => null);
+    const body = res ? ((await res.json().catch(() => null)) as Record<string, unknown> | null) : null;
+    setBusy(false);
+    return { ok: !!res?.ok, body };
+  };
+  const errorWords = (body: Record<string, unknown> | null) => {
+    const code = typeof body?.code === 'string' ? body.code : '';
+    const at = typeof body?.at === 'number' ? body.at + 1 : 1;
+    return ERRORS.includes(code) ? t(`ex.err.${code}` as MessageKey, { n: at }) : t('ex.err.other');
+  };
+  const paperPayload = (p: PaperForm) => ({
+    classId: p.classId,
+    subjectId: p.subjectId,
+    date: p.date || null,
+    unitIds: [],
+    maxima: Object.fromEntries(Object.entries(p.maxima).map(([k, v]) => [k, toNumber(v)]).filter(([, v]) => v !== null)),
+  });
+
+  const make = async () => {
+    if (!data) return;
+    const r = await post('/api/app/exams', { name, sessionId: data.session, term: term || null, papers: papers.map(paperPayload) });
+    if (!r.ok) return setNote({ ok: false, text: errorWords(r.body) });
+    setNote({ ok: true, text: t('ex.make.done', { name: name.trim() }) });
+    setName('');
+    setTerm('');
+    setPapers([emptyPaper()]);
+    await load(session);
+  };
+  const change = async (examId: string, payload: Record<string, unknown>, done: MessageKey) => {
+    const r = await post(`/api/app/exams/${examId}`, payload);
+    if (!r.ok) return setNote({ ok: false, text: errorWords(r.body) });
+    setNote({ ok: true, text: t(done) });
+    setAdding(null);
+    await load(session);
+  };
+
+  if (denied) return <p role="alert" className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('ex.denied')}</p>;
+  if (failed) return <p role="alert" className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('ex.failed')}</p>;
+  if (!data) return null;
+  const parts = data.scheme?.parts ?? [{ key: 'marks', name: t('ex.part.marks'), share: null }];
+  const sessionLabel = data.sessions.find((s) => s.sessionId === data.session)?.label ?? null;
+
+  return (
+    <div lang={lang} data-exams className="flex flex-col gap-4 text-sm text-slate">
+      {note && (
+        <p role="status" data-exams-note={note.ok ? 'ok' : 'error'} className={`rounded-md px-3 py-2 font-semibold ${note.ok ? 'bg-off-white text-slate' : 'border border-red-800/30 text-red-800'}`}>
+          {note.text}
+        </p>
+      )}
+
+      <section data-exams-to-enter className={SECTION}>
+        <div>
+          <h2 className="text-base font-bold">{t('ex.toEnter.title')}</h2>
+          <p className="text-slate/70">{t('ex.toEnter.how')}</p>
+        </div>
+        {data.toEnter.length ? (
+          <ul className="flex flex-col gap-2">
+            {data.toEnter.map((p) => (
+              <li key={p.paperId} data-to-enter={p.paperId} className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-slate/10 p-3">
+                <div className="min-w-0">
+                  <p className="font-semibold">{p.className} · {p.subjectName}</p>
+                  <p className="text-slate/70">
+                    {p.examName} · {p.date ? dayWords(p.date, lang) : t('ex.paper.noDate')} · {t('ex.progress', { entered: p.entered, roll: p.roll })}
+                  </p>
+                </div>
+                <a href={`/app/exams/papers/${p.paperId}`} data-enter-marks className={PRIMARY}>
+                  {t('ex.enterMarks')}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p data-exams-none-waiting className="text-slate/70">{t('ex.toEnter.none')}</p>
+        )}
+      </section>
+
+      {data.sessions.length > 1 && (
+        <div className="flex max-w-xs flex-col gap-1">
+          <label htmlFor="exams-session" className="text-xs font-semibold">{t('ex.session')}</label>
+          <select id="exams-session" className={FIELD} value={data.session ?? 'none'} onChange={(e) => setSession(e.target.value)}>
+            {data.sessions.map((s) => (
+              <option key={s.sessionId} value={s.sessionId}>{s.label}</option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {data.mayRun && (
+        <section data-exam-make className={SECTION}>
+          <div>
+            <h2 className="text-base font-bold">{t('ex.make.title')}</h2>
+            <p className="text-slate/70">{t('ex.make.how')}</p>
+          </div>
+          {!data.scheme && (
+            <div data-exam-no-scheme className="flex flex-col items-start gap-2 rounded-md bg-off-white px-3 py-2">
+              <p>{t('ex.make.noScheme')}</p>
+              <a href="/app/exams/scheme" className={TAP}>{t('ex.make.openScheme')}</a>
+            </div>
+          )}
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field id="exam-name" label={t('ex.make.name')}>
+              <input id="exam-name" className={FIELD} maxLength={120} value={name} onChange={(e) => setName(e.target.value)} />
+            </Field>
+            <Field id="exam-term" label={t('ex.make.term')}>
+              <select id="exam-term" className={FIELD} value={term} onChange={(e) => setTerm(e.target.value)}>
+                <option value="">{t('ex.make.noTerm')}</option>
+                {(data.scheme?.terms ?? []).map((x) => (
+                  <option key={x} value={x}>{x}</option>
+                ))}
+              </select>
+            </Field>
+          </div>
+          {sessionLabel && <p className="text-slate/70">{t('ex.make.inSession', { session: sessionLabel })}</p>}
+          <h3 className="font-bold">{t('ex.make.papers')}</h3>
+          {papers.map((p, i) => (
+            <PaperRow key={i} index={i} idPrefix="exam-paper" paper={p} parts={parts} data={data} onChange={(v) => setPapers(papers.map((x, j) => (j === i ? v : x)))} onRemove={papers.length > 1 ? () => setPapers(papers.filter((_, j) => j !== i)) : undefined} />
+          ))}
+          <div className="flex flex-wrap gap-2">
+            <button type="button" data-exam-add-paper className={TAP} onClick={() => setPapers([...papers, { ...emptyPaper(), date: papers[papers.length - 1]?.date ?? '', maxima: { ...(papers[papers.length - 1]?.maxima ?? {}) } }])}>
+              {t('ex.make.addPaper')}
+            </button>
+            <button type="button" data-exam-make-save className={PRIMARY} disabled={busy || !name.trim()} onClick={() => void make()}>
+              {t('ex.make.save')}
+            </button>
+          </div>
+        </section>
+      )}
+
+      <section data-exams-list className="flex flex-col gap-3">
+        <h2 className="text-base font-bold">{sessionLabel ? t('ex.list.title', { session: sessionLabel }) : t('ex.list.titleNoSession')}</h2>
+        {!data.exams.length && (
+          <div className="rounded-lg border border-slate/10 bg-white">
+            <EmptyState title={t('ex.list.empty')} description={t(data.mayRun ? 'ex.list.emptyHowOffice' : 'ex.list.emptyHowTeacher')} />
+          </div>
+        )}
+        {data.exams.map((exam) => (
+          <ExamCard
+            key={exam.examId}
+            exam={exam}
+            data={data}
+            parts={parts}
+            busy={busy}
+            adding={adding?.examId === exam.examId ? adding.paper : null}
+            onAdding={(paper) => setAdding(paper ? { examId: exam.examId, paper } : null)}
+            onAdd={(paper) => void change(exam.examId, { action: 'add_paper', paper: paperPayload(paper) }, 'ex.exam.paperAdded')}
+            onRemovePaper={(paperId) => void change(exam.examId, { action: 'remove_paper', paperId }, 'ex.exam.paperRemoved')}
+            onRemove={() => void change(exam.examId, { action: 'remove' }, 'ex.exam.removed')}
+          />
+        ))}
+      </section>
+    </div>
+  );
+}
+
+function ExamCard({
+  exam,
+  data,
+  parts,
+  busy,
+  adding,
+  onAdding,
+  onAdd,
+  onRemovePaper,
+  onRemove,
+}: {
+  exam: ExamSummary;
+  data: ExamsScreen;
+  parts: { key: string; name: string }[];
+  busy: boolean;
+  adding: PaperForm | null;
+  onAdding: (paper: PaperForm | null) => void;
+  onAdd: (paper: PaperForm) => void;
+  onRemovePaper: (paperId: string) => void;
+  onRemove: () => void;
+}) {
+  const { t, lang } = useT();
+  const classes = [...new Map(exam.papers.map((p) => [p.classId, p.className])).entries()];
+  const anyMarks = exam.papers.some((p) => p.hasMarks);
+  return (
+    <article data-exam={exam.examId} className={SECTION}>
+      <div className="flex flex-wrap items-start justify-between gap-2">
+        <div className="min-w-0">
+          <h3 className="text-base font-bold">{exam.name}</h3>
+          <p className="text-slate/70">
+            {exam.term ? t('ex.exam.term', { term: exam.term }) : t('ex.exam.noTerm')}
+            {exam.madeBy ? ` · ${t('ex.exam.madeBy', { name: exam.madeBy })}` : ''}
+          </p>
+        </div>
+        <Badge variant={exam.status === 'open' ? 'neutral' : 'success'}>{t(exam.status === 'open' ? 'ex.exam.open' : 'ex.exam.published')}</Badge>
+      </div>
+      <ul className="flex flex-col gap-2">
+        {exam.papers.map((p) => (
+          <PaperLine key={p.paperId} paper={p} open={exam.status === 'open'} mayRun={data.mayRun} busy={busy} onRemove={() => onRemovePaper(p.paperId)} />
+        ))}
+      </ul>
+      {classes.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2">
+          {classes.map(([classId, className]) => (
+            <a key={classId} href={`/app/exams/${exam.examId}/classes/${classId}`} data-class-result={classId} className={TAP}>
+              {t('ex.exam.resultOf', { className })}
+            </a>
+          ))}
+        </div>
+      )}
+      {data.mayRun && (
+        <div className="flex flex-col gap-2">
+          {adding ? (
+            <>
+              <PaperRow index={0} idPrefix={`exam-${exam.examId.slice(0, 8)}-paper`} paper={adding} parts={parts} data={data} onChange={(v) => onAdding(v)} />
+              <div className="flex flex-wrap gap-2">
+                <button type="button" className={PRIMARY} disabled={busy} onClick={() => onAdd(adding)}>{t('ex.exam.addPaperSave')}</button>
+                <button type="button" className={TAP} onClick={() => onAdding(null)}>{t('ex.cancel')}</button>
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-wrap gap-2">
+              <button type="button" className={TAP} onClick={() => onAdding(emptyPaper())}>{t('ex.exam.addPaper')}</button>
+              {!anyMarks && (
+                <button type="button" data-exam-remove className={TAP} disabled={busy} onClick={onRemove}>{t('ex.exam.remove')}</button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+      <p className="text-xs text-slate/70" lang={lang}>{t('ex.exam.noRank')}</p>
+    </article>
+  );
+}
+
+function PaperLine({ paper, open, mayRun, busy, onRemove }: { paper: PaperSummary; open: boolean; mayRun: boolean; busy: boolean; onRemove: () => void }) {
+  const { t, lang } = useT();
+  const complete = paper.roll > 0 && paper.entered >= paper.roll;
+  return (
+    <li data-paper={paper.paperId} data-paper-entered={complete ? 'yes' : 'no'} className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-slate/10 p-3">
+      <div className="min-w-0">
+        <p className="font-semibold">{paper.className} · {paper.subjectName}</p>
+        <p className="text-slate/70">
+          {paper.date ? dayWords(paper.date, lang) : t('ex.paper.noDate')} · {paper.components.map((c) => t('ex.paper.partMax', { part: c.name, max: c.max })).join(' · ')}
+        </p>
+        <p className="flex flex-wrap items-center gap-2">
+          <Badge variant={complete ? 'success' : 'warning'}>{complete ? t('ex.paper.entered') : t('ex.paper.waiting')}</Badge>
+          <span>{t('ex.progress', { entered: paper.entered, roll: paper.roll })}</span>
+          {complete && paper.enteredBy && <span className="text-slate/70">{t('ex.paper.enteredBy', { name: paper.enteredBy })}</span>}
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        <a href={`/app/exams/papers/${paper.paperId}`} className={paper.mayEnter && open ? PRIMARY : TAP}>
+          {paper.mayEnter && open ? t('ex.enterMarks') : t('ex.paper.open')}
+        </a>
+        {mayRun && !paper.hasMarks && (
+          <button type="button" data-paper-remove className={TAP} disabled={busy} onClick={onRemove}>{t('ex.paper.remove')}</button>
+        )}
+      </div>
+    </li>
+  );
+}
+
+function PaperRow({ index, idPrefix, paper, parts, data, onChange, onRemove }: { index: number; idPrefix: string; paper: PaperForm; parts: { key: string; name: string }[]; data: ExamsScreen; onChange: (p: PaperForm) => void; onRemove?: () => void }) {
+  const { t } = useT();
+  const id = (what: string) => `${idPrefix}-${index}-${what}`;
+  return (
+    <fieldset data-paper-row={index} className="flex flex-col gap-3 rounded-md border border-slate/10 p-3">
+      <legend className="px-1 font-semibold">{t('ex.make.paperN', { n: index + 1 })}</legend>
+      <div className="grid gap-3 sm:grid-cols-3">
+        <Field id={id('class')} label={t('ex.make.class')}>
+          <select id={id('class')} className={FIELD} value={paper.classId} onChange={(e) => onChange({ ...paper, classId: e.target.value })}>
+            <option value="">{t('ex.make.choose')}</option>
+            {data.classes.map((c) => (
+              <option key={c.classId} value={c.classId}>{c.name}</option>
+            ))}
+          </select>
+        </Field>
+        <Field id={id('subject')} label={t('ex.make.subject')}>
+          <select id={id('subject')} className={FIELD} value={paper.subjectId} onChange={(e) => onChange({ ...paper, subjectId: e.target.value })}>
+            <option value="">{t('ex.make.choose')}</option>
+            {data.subjects.map((s) => (
+              <option key={s.subjectId} value={s.subjectId}>{s.name}</option>
+            ))}
+          </select>
+        </Field>
+        <Field id={id('date')} label={t('ex.make.date')}>
+          <input id={id('date')} type="date" className={FIELD} value={paper.date} onChange={(e) => onChange({ ...paper, date: e.target.value })} />
+        </Field>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-3">
+        {parts.map((part) => (
+          <Field key={part.key} id={id(`max-${part.key}`)} label={t('ex.make.max', { part: part.name })}>
+            <input id={id(`max-${part.key}`)} inputMode="decimal" className={FIELD} value={paper.maxima[part.key] ?? ''} onChange={(e) => onChange({ ...paper, maxima: { ...paper.maxima, [part.key]: e.target.value } })} />
+          </Field>
+        ))}
+      </div>
+      <p className="text-xs text-slate/70">{t('ex.make.maxHow')}</p>
+      {onRemove && (
+        <button type="button" className={`${TAP} self-start`} onClick={onRemove}>{t('ex.make.removePaper')}</button>
+      )}
+    </fieldset>
+  );
+}

@@ -354,6 +354,7 @@ ALLOWED_PERMISSIVE = (
         ("grading_schemes", "grading_schemes_tenant_isolation"),  # C213: narrowed by the RESTRICTIVE policies below
         # p6-9a end
         # p6-9b begin
+        ("exam_papers", "exam_papers_tenant_isolation"),  # C214: narrowed by the RESTRICTIVE policies below
         # p6-9b end
         # p6-9c begin
         # p6-9c end
@@ -586,6 +587,24 @@ REQUIRED_RESTRICTIVE = {
     ("grading_schemes", "grading_schemes_saved_by_office"),
     # p6-9a end
     # p6-9b begin
+    # C214: exams, papers and marks are read by the office and the academic coordinator, and by a teacher for their
+    # own classes; made by the three roles in their own name; a mark entered only by whoever may enter that paper's
+    # marks (may_enter_marks). The accountant reads nothing. The audit rows of exams follow the same three roles, or
+    # the person who acted.
+    ("exams", "exams_readers"),
+    ("exams", "exams_made_by_office"),
+    ("exams", "exams_changed_by_office"),
+    ("exams", "exams_removed_by_office"),
+    ("exam_papers", "exam_papers_readers"),
+    ("exam_papers", "exam_papers_made_by_office"),
+    ("exam_papers", "exam_papers_changed_by_who_may"),
+    ("exam_papers", "exam_papers_removed_by_office"),
+    ("marks", "marks_readers"),
+    ("marks", "marks_entered_by_who_may"),
+    ("marks", "marks_changed_by_who_may"),
+    ("marks", "marks_cleared_by_who_may"),
+    ("marks", "parent_scope_marks"),
+    ("audit_log", "audit_exam_rows_office_or_actor"),
     # p6-9b end
     # p6-9c begin
     # p6-9c end

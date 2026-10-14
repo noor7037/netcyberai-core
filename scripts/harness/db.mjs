@@ -58,7 +58,9 @@ const SKIPPED = new Set(['20260930064005_b2_jobs_scheduler.sql', '20260930064359
 // Runtime marker: scripts/check_harness_isolation.py fails a build that contains it.
 export const HARNESS_MARKER = 'NCA_SCREENSHOT_HARNESS';
 
-export async function startHarnessDb({ port = 54329, seedSql = '' } = {}) {
+// `before`: SQL run just before the migration whose file name ends with `migration`, for a test of what that
+// migration does to rows that were already there (as test/db/pglite-harness.ts allows).
+export async function startHarnessDb({ port = 54329, seedSql = '', before = null } = {}) {
   const pg = new PGlite({ extensions: { pgcrypto, pg_trgm, uuid_ossp } });
   await pg.exec(SUPABASE_STAND_INS);
   const applied = [];
@@ -68,6 +70,7 @@ export async function startHarnessDb({ port = 54329, seedSql = '' } = {}) {
       skipped.push(file);
       continue;
     }
+    if (before && file.endsWith(before.migration)) await pg.exec(before.sql);
     try {
       await pg.exec(readFileSync(path.join(MIGRATIONS, file), 'utf8'));
       applied.push(file);
