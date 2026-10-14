@@ -15,7 +15,7 @@ import { schemeInForce } from './schemes';
 // with the publication, so a later change of the scheme never rewrites a report card. Only the principal reopens a
 // publication, with a reason; it is then published again as the next version. Every one of these is audited.
 // Everything runs in the caller's own tenant transaction: row level security and the triggers hold the same rules
-// (20261121090200_p6_report_cards.sql).
+// (the migration ending _p6_report_cards.sql).
 
 export const REPORT_CARD_OFFICE: readonly Actor['role'][] = EXAM_RUNNERS;
 export const REOPEN_ROLE: Actor['role'] = 'principal';
