@@ -72,6 +72,7 @@ describe('the guides', () => {
       'read-a-learning-genome',
       // p6-9e end
       // p6-9f begin
+      'early-warning-marks',
       // p6-9f end
       // c212-pricing begin
       // c212-pricing end

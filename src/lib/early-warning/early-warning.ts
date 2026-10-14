@@ -7,6 +7,7 @@ import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
 import { findCandidates } from '@/lib/recovery/recovery';
 import { indiaDate } from '@/lib/time/india';
+import { findMarks } from './marks';
 import {
   ACTION_TEXT_MAX,
   CHECK_ROLES,
@@ -19,6 +20,7 @@ import {
   isActionKind,
   reasonsOf,
   type AttendanceEvidence,
+  type AttendanceSettings,
   type ClassCount,
   type EarlyWarningSettings,
   type Evidence,
@@ -27,8 +29,8 @@ import {
   type NeedsHelpKind,
 } from './rules';
 
-// Early Warning v1 (docs/26 slice 8j, C209): flags for staff, by rules, from attendance, homework and the
-// needs-help queue.
+// Early Warning (v1: docs/26 slice 8j, C209; v2: docs/27 row 9f, C218): flags for staff, by rules, from
+// attendance, homework, the needs-help queue and, from rule version 2, marks.
 //
 //   - runCheck is ONE PERSON'S TAP ("Check now"), in that person's own session: the principal, the school admin
 //     or the academic coordinator; or THE NIGHTLY CHECK (C210, src/lib/jobs/school-checks.ts), the same function run in the school's
@@ -47,6 +49,9 @@ import {
 //     is no second rule here. A student whose catch-up plan has been decided is no longer on that list, so the
 //     signal clears with the teacher's decision.
 //   - NEEDS HELP: an open follow-up of kind "did not understand" or "homework help".
+//   - MARKS (rule version 2, C218): the child's own percent in their latest exam with every paper entered fell by
+//     at least the school's points against their own exam before, or is below the pass mark in at least the
+//     school's number of subjects (findMarks, ./marks.ts). Both the nightly check and "Check now" run this.
 //   - FEES ARE NEVER A SIGNAL, and a student waiting for consent is not flagged.
 //   - NOTHING REACHES A PARENT. This file queues no message and no job, reads no template and never reads the
 //     school's parent-dispatch switch. The database holds notified_parent at false (the migration).
@@ -83,7 +88,7 @@ export function windowFrom(today: string, days: number): string {
 //     every 100, though it rounds to 72.0. The rate kept for the words is then cut to the decimal under the line.
 type Marks = { present: number; late: number; absent: number; leave: number; absentDates: readonly string[] };
 export type AttendanceReading = { is: 'below'; evidence: AttendanceEvidence } | { is: 'not_below' } | { is: 'too_few'; counted: number };
-export function readAttendance(marks: Marks, window: { from: string; to: string }, settings: EarlyWarningSettings): AttendanceReading {
+export function readAttendance(marks: Marks, window: { from: string; to: string }, settings: AttendanceSettings): AttendanceReading {
   const counted = marks.present + marks.late + marks.absent;
   if (counted < settings.minMarkedDays || counted === 0) return { is: 'too_few', counted };
   const inSchool = marks.present + marks.late;
@@ -108,12 +113,12 @@ export function readAttendance(marks: Marks, window: { from: string; to: string 
 }
 
 // The attendance signal alone: the evidence when it is there, null when it is not or cannot be judged.
-export function attendanceSignal(marks: Marks, window: { from: string; to: string }, settings: EarlyWarningSettings): AttendanceEvidence | null {
+export function attendanceSignal(marks: Marks, window: { from: string; to: string }, settings: AttendanceSettings): AttendanceEvidence | null {
   const read = readAttendance(marks, window, settings);
   return read.is === 'below' ? read.evidence : null;
 }
 
-// The school's thresholds: its own settings, or the defaults of docs/26 section 5.
+// The school's thresholds: its own settings, or the defaults (docs/26 section 5; the marks numbers C218's).
 export async function earlyWarningSettings(db: PoolClient, schoolId: string): Promise<EarlyWarningSettings> {
   const schema = SETTINGS_SCHEMAS.find((s) => s.moduleId === 'early-warning');
   const set = schema ? (await readSettings(db, schoolId, schema)).effective : {};
@@ -122,6 +127,8 @@ export async function earlyWarningSettings(db: PoolClient, schoolId: string): Pr
     attendanceBelow: num(set.attendance_below, DEFAULT_SETTINGS.attendanceBelow, 1, 100),
     windowDays: num(set.window_days, DEFAULT_SETTINGS.windowDays, 7, 90),
     minMarkedDays: num(set.min_marked_days, DEFAULT_SETTINGS.minMarkedDays, 1, 60),
+    marksDropPoints: num(set.marks_drop_points, DEFAULT_SETTINGS.marksDropPoints, 1, 100),
+    marksBelowPassSubjects: num(set.marks_below_pass_subjects, DEFAULT_SETTINGS.marksBelowPassSubjects, 1, 12),
   };
 }
 
@@ -192,6 +199,9 @@ export async function findSignals(db: PoolClient, schoolId: string, today: strin
     const e = of(r.student_id);
     e.needs_help = { open: [...(e.needs_help?.open ?? []), { kind: r.kind, since: r.since, source: r.source }] };
   }
+
+  // Marks (rule version 2): each child's own latest exam against their own exam before it, and the pass mark.
+  for (const [studentId, m] of await findMarks(db, schoolId, [...active.keys()], settings)) of(studentId).marks = m;
 
   const signals = new Map<string, Signal>();
   for (const [studentId, e] of evidence) if (reasonsOf(e).length > 0) signals.set(studentId, { studentId, classId: active.get(studentId)!, evidence: e });

@@ -314,9 +314,11 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // the next check: a flag already open is worked out again then, and closes if its reason is gone.
   // The days that must be marked cannot be more than the days looked back: with such numbers attendance could
   // never be a reason for any child, and the school would not be told. Refused, whichever of the two is changed.
+  // Version 2 (C218, rule version 2): the two numbers of the marks reason, each comparing a child only with
+  // themselves and the grading scheme's pass mark.
   {
     moduleId: 'early-warning',
-    version: 1,
+    version: 2,
     check: (v) => (Number(v.min_marked_days) > Number(v.window_days) ? [{ key: 'min_marked_days', message: 'cannot be more than the days looked back' }] : []),
     fields: [
       {
@@ -354,6 +356,32 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         default: 10,
         min: 1,
         max: 60,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: true,
+      },
+      {
+        key: 'marks_drop_points',
+        label: 'A fall of at least this many points in an exam',
+        help: 'Marks become a reason to look when a child’s percent in their latest exam with every paper entered fell by at least this many points from their own exam before it, from 1 to 100. A child is compared only with themselves.',
+        section: 'Marks',
+        type: 'number',
+        default: 15,
+        min: 1,
+        max: 100,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: true,
+      },
+      {
+        key: 'marks_below_pass_subjects',
+        label: 'Or below the pass mark in at least this many subjects',
+        help: 'Marks are also a reason to look when, in that exam, a child is below the grading scheme’s pass mark in at least this many subjects, from 1 to 12. Absent and exempt are not marks and are left out.',
+        section: 'Marks',
+        type: 'number',
+        default: 2,
+        min: 1,
+        max: 12,
         required: true,
         editableBy: OFFICE,
         affectsExistingRecords: true,

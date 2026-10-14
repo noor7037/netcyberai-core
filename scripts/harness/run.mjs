@@ -2344,7 +2344,7 @@ const earlyWarningScreen = async (page) => {
     reasons: await flag.getAttribute('data-ew-reasons'),
     line: await flag.locator('[data-ew-line="attendance"]').count(),
     whyHasEvidence: await flag.locator('[data-ew-evidence="attendance"]').count(),
-    whySaysRule: why.includes('rule version 1') && why.includes('no AI model'),
+    whySaysRule: why.includes('rule version 2') && why.includes('no AI model'),
     whySaysLeave: why.includes('Days on recorded leave, left out of the count: 2.'),
     saveNeedsAKind,
     logged: await flag.locator('[data-ew-action]').count(),
@@ -2358,7 +2358,7 @@ const earlyWarningScreen = async (page) => {
 const earlyWarningScreenDone = async () => {
   const { rows } = await db.pg.query(
     `select (select count(*)::int from early_warning_flags where school_id = $1 and resolved_at is null) as open,
-            (select count(*)::int from early_warning_flags where school_id = $1 and student_id = $2 and class_id = $4 and resolved_at is null and reasons = '{attendance}' and rule_version = 1 and opened_by = $3 and not notified_parent) as flag,
+            (select count(*)::int from early_warning_flags where school_id = $1 and student_id = $2 and class_id = $4 and resolved_at is null and reasons = '{attendance}' and rule_version = 2 and opened_by = $3 and not notified_parent) as flag,
             (select (evidence -> 'attendance') - 'absentDates' - 'from' - 'to' from early_warning_flags where school_id = $1 and student_id = $2 and resolved_at is null) as evidence,
             (select jsonb_build_object('present', count(*) filter (where status = 'present'), 'late', count(*) filter (where status = 'late'), 'absent', count(*) filter (where status = 'absent'), 'leave', count(*) filter (where status = 'leave'))
                from attendance where school_id = $1 and student_id = $2 and date between ${TODAY_SQL} - 29 and ${TODAY_SQL}) as marks,
@@ -3674,6 +3674,147 @@ const genomeTeacherDone = async () => {
 };
 // p6-9e end
 // p6-9f begin
+// Early Warning v2, the marks reason (C218). Two exams of 5-A, each with a Mathematics and an English paper of 50 for
+// every child on the roll, all entered: "Unit test 1 (harness 9f)" made a month ago and "Half-yearly (harness 9f)"
+// two days ago, with a grading scheme (made up: whole percents, a pass mark of 33). Aarav (roll 1) has 42 and 42
+// (84) then 14 and 15 (29): a fall of 55 points, and below the pass mark in both subjects. Meera (roll 2) has 40 and
+// 40 (80) then 33 and 33 (66): a fall of 14, under the line of 15. Everyone else has 35 and 35, then 34 and 34. Every
+// row is taken away after each screen; audit rows stay (the log is never cut).
+const EWM_UT = '00000000-0000-4000-8000-00000009f001';
+const EWM_HY = '00000000-0000-4000-8000-00000009f002';
+const EWM_PAPERS = { utM: '00000000-0000-4000-8000-00000009f011', utE: '00000000-0000-4000-8000-00000009f012', hyM: '00000000-0000-4000-8000-00000009f021', hyE: '00000000-0000-4000-8000-00000009f022' };
+const EWM_MATHS = '00000000-0000-4000-8000-0000000d0001';
+const EWM_ENGLISH = '00000000-0000-4000-8000-0000000d0002';
+const EWM_KIDS = [1, 4, 7, 10, 13, 16, 19, 22, 25]; // 5-A in the seed: Aarav is 1, Meera 4; the last waits for consent
+const ewmKid = (g) => `00000000-0000-4000-8000-0000005${String(g).padStart(5, '0')}`;
+const EWM_MEERA = ewmKid(4);
+const ewmMark = (g, paper) => {
+  const hy = paper === 'hyM' || paper === 'hyE';
+  if (g === 1) return hy ? (paper === 'hyM' ? 14 : 15) : 42;
+  if (g === 4) return hy ? 33 : 40;
+  return hy ? 34 : 35;
+};
+const clearEarlyWarningMarks = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from marks where school_id = '${SCHOOL}' and exam_id in ('${EWM_UT}', '${EWM_HY}');
+    delete from exam_papers where school_id = '${SCHOOL}' and exam_id in ('${EWM_UT}', '${EWM_HY}');
+    delete from exams where school_id = '${SCHOOL}' and exam_id in ('${EWM_UT}', '${EWM_HY}');
+    delete from grading_schemes where school_id = '${SCHOOL}';
+    set session_replication_role = origin;`);
+  await clearEarlyWarning();
+};
+const earlyWarningMarksFixture = async () => {
+  await clearEarlyWarningMarks();
+  const scheme = {
+    bands: [{ from: 75, to: 100, grade: 'A', meaning: null }, { from: 50, to: 74, grade: 'B', meaning: null }, { from: 33, to: 49, grade: 'C', meaning: null }, { from: 0, to: 32, grade: 'D', meaning: null }],
+    decimals: 0, passMark: 33, components: [], terms: [],
+    layout: { components: true, total: true, percent: true, grade: true, attendance: true, remarks: true, coScholastic: false },
+    coScholastic: null,
+  };
+  const parts = JSON.stringify([{ key: 'marks', name: 'Marks', max: 50, share: null }]);
+  const papers = [['utM', EWM_UT, EWM_MATHS, 30], ['utE', EWM_UT, EWM_ENGLISH, 30], ['hyM', EWM_HY, EWM_MATHS, 2], ['hyE', EWM_HY, EWM_ENGLISH, 2]];
+  const marks = papers.flatMap(([key, exam, subject]) => EWM_KIDS.map((g) => `('${SCHOOL}', '${exam}', '${subject}', '${EWM_PAPERS[key]}', 'marks', '${ewmKid(g)}', 'score', ${ewmMark(g, key)}, 50, '${PEOPLE.teacher.sub}')`));
+  await db.pg.query(`insert into grading_schemes (school_id, version, scheme, made_by) values ($1, 1, $2::jsonb, $3)`, [SCHOOL, JSON.stringify(scheme), PEOPLE.principal.sub]);
+  await db.pg.exec(`set session_replication_role = replica;
+    insert into exams (exam_id, school_id, name, status, created_by, created_at) values
+      ('${EWM_UT}', '${SCHOOL}', 'Unit test 1 (harness 9f)', 'open', '${PEOPLE.principal.sub}', now() - interval '30 days'),
+      ('${EWM_HY}', '${SCHOOL}', 'Half-yearly (harness 9f)', 'open', '${PEOPLE.principal.sub}', now() - interval '2 days');
+    insert into exam_papers (paper_id, school_id, exam_id, class_id, subject_id, components, created_by, entered_by, entered_at) values
+      ${papers.map(([key, exam, subject, back]) => `('${EWM_PAPERS[key]}', '${SCHOOL}', '${exam}', '${CLASS_5A}', '${subject}', '${parts}'::jsonb, '${PEOPLE.principal.sub}', '${PEOPLE.teacher.sub}', now() - interval '${back - 1} days')`).join(',\n      ')};
+    insert into marks (school_id, exam_id, subject_id, paper_id, component, student_id, kind, score, max_score, entered_by) values
+      ${marks.join(',\n      ')};
+    set session_replication_role = origin;`);
+};
+// What Aarav's marks reason must say, by hand from the marks above.
+const ewmEvidence = () => ({
+  exam: { examId: EWM_HY, name: 'Half-yearly (harness 9f)', className: '5-A', percent: 29, papers: [{ paperId: EWM_PAPERS.hyE, subject: 'English', percent: 30 }, { paperId: EWM_PAPERS.hyM, subject: 'Mathematics', percent: 28 }] },
+  previous: { examId: EWM_UT, name: 'Unit test 1 (harness 9f)', className: '5-A', percent: 84, papers: [{ paperId: EWM_PAPERS.utE, subject: 'English', percent: 84 }, { paperId: EWM_PAPERS.utM, subject: 'Mathematics', percent: 84 }] },
+  fell: { by: 55, points: 15 },
+  belowPass: { subjects: [{ paperId: EWM_PAPERS.hyE, subject: 'English', part: null, percent: 30, passMark: 33 }, { paperId: EWM_PAPERS.hyM, subject: 'Mathematics', part: null, percent: 28, passMark: 33 }], atLeast: 2 },
+  scheme: 1,
+});
+// The same object whatever order its keys are in.
+const ewmSame = (a, b) => {
+  const norm = (v) => (Array.isArray(v) ? v.map(norm) : v && typeof v === 'object' ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, norm(v[k])])) : v);
+  return JSON.stringify(norm(a)) === JSON.stringify(norm(b));
+};
+// The principal presses "Check now": Aarav's flag opens for marks, with the exams, papers and percents; Meera, who
+// fell 14, is not flagged. Nothing is written for a parent.
+let ewmBefore = null;
+let ewmSeen = null;
+const earlyWarningMarks = async (page) => {
+  await earlyWarningMarksFixture();
+  ewmBefore = { sending: await sendingRows() };
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-ew-check-now]').waitFor({ timeout: 20000 });
+  await page.locator('[data-ew-check-now]').click();
+  const flag = page.locator('[data-ew-flag="open"]', { hasText: 'Aarav Example A' });
+  await flag.waitFor({ timeout: 20000 });
+  await flag.locator('[data-ew-why] summary').click();
+  await page.locator('[data-ew-rule-now] summary').click();
+  const why = await flag.locator('[data-ew-evidence="marks"]').innerText();
+  ewmSeen = {
+    reasons: await flag.getAttribute('data-ew-reasons'),
+    lines: await flag.locator('[data-ew-line="marks-fell"], [data-ew-line="marks-below"]').count(),
+    fellLine: (await flag.locator('[data-ew-line="marks-fell"]').innerText()).includes('Half-yearly (harness 9f): 29 percent, down 55 points from 84 in Unit test 1 (harness 9f).'),
+    fell: await flag.locator('[data-ew-marks-fell]').getAttribute('data-ew-marks-fell'),
+    below: await flag.locator('[data-ew-marks-below]').getAttribute('data-ew-marks-below'),
+    papers: await flag.locator('[data-ew-marks-paper]').count(),
+    whySays: why.includes('Mathematics: 28 percent, pass mark 33') && why.includes('version 1') && why.includes('compared only with themselves'),
+    ruleNow: (await page.locator('[data-ew-rule-marks]').innerText()).includes('fell by 15 points or more'),
+    meera: await page.locator('[data-ew-flag="open"]', { hasText: 'Meera Example A' }).count(),
+  };
+};
+const earlyWarningMarksDone = async () => {
+  const { rows } = await db.pg.query(
+    `select f.student_id, f.reasons, f.evidence, f.rule_version, f.opened_by, f.notified_parent from early_warning_flags f where f.school_id = $1 and f.resolved_at is null and 'marks' = any (f.reasons)`,
+    [SCHOOL]
+  );
+  const after = { sending: await sendingRows() };
+  await clearEarlyWarningMarks();
+  const aarav = rows.find((r) => r.student_id === STUDENT);
+  if (rows.length !== 1 || !aarav || JSON.stringify(aarav.reasons) !== '["marks"]' || aarav.rule_version !== 2 || aarav.opened_by !== PEOPLE.principal.sub || aarav.notified_parent) throw new Error(`the marks flags in the database: ${JSON.stringify(rows.map((r) => ({ ...r, evidence: undefined })))}`);
+  if (!ewmSame(aarav.evidence.marks, ewmEvidence())) throw new Error(`Aarav's marks evidence: ${JSON.stringify(aarav.evidence.marks)}`);
+  if (after.sending !== ewmBefore.sending) throw new Error(`a message was written or a job queued: ${ewmBefore.sending} then ${after.sending}`);
+  const seen = { reasons: 'marks', lines: 2, fellLine: true, fell: '55', below: '2', papers: 4, whySays: true, ruleNow: true, meera: 0 };
+  if (JSON.stringify(ewmSeen) !== JSON.stringify(seen)) throw new Error(`the marks flag on the screen: ${JSON.stringify(ewmSeen)}, wanted ${JSON.stringify(seen)}`);
+};
+// Tara, the class teacher of 5-A: the nightly check (the real job runner, as C210's screens run it) opens the flag
+// with no person; she reads it and why. She cannot run the check.
+let ewmTeacherSeen = null;
+let ewmRound = null;
+const earlyWarningMarksTeacher = async (page) => {
+  await earlyWarningMarksFixture();
+  ewmRound = await runSchoolCheck('early_warning_nightly_enqueue');
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-early-warning="teacher"]').waitFor({ timeout: 20000 });
+  const flag = page.locator('[data-ew-flag="open"]', { hasText: 'Aarav Example A' });
+  await flag.waitFor({ timeout: 20000 });
+  await flag.locator('[data-ew-why] summary').click();
+  const why = await flag.locator('[data-ew-why]').innerText();
+  ewmTeacherSeen = {
+    reasons: await flag.getAttribute('data-ew-reasons'),
+    evidence: await flag.locator('[data-ew-evidence="marks"]').count(),
+    byNightly: why.includes(', by the nightly check.'),
+    checkNow: await page.locator('[data-ew-check-now]').count(),
+    meera: await page.locator('[data-ew-flag="open"]', { hasText: 'Meera Example A' }).count(),
+  };
+};
+const earlyWarningMarksTeacherDone = async () => {
+  const { rows } = await db.pg.query(
+    `select f.student_id, f.reasons, f.evidence, f.opened_by, f.opened_by_job from early_warning_flags f where f.school_id = $1 and f.resolved_at is null and 'marks' = any (f.reasons)`,
+    [SCHOOL]
+  );
+  await clearEarlyWarningMarks();
+  await schoolJobsClose();
+  // The seeded school and the test school both have Early Warning on: two jobs, both done.
+  if (ewmRound?.claimed !== 2 || ewmRound?.succeeded !== 2) throw new Error(`the runner's round: ${JSON.stringify(ewmRound)}`);
+  const aarav = rows.find((r) => r.student_id === STUDENT);
+  if (rows.length !== 1 || !aarav || aarav.opened_by !== null || aarav.opened_by_job !== 'early_warning.nightly' || !ewmSame(aarav.evidence.marks, ewmEvidence())) throw new Error(`the nightly check's marks flags: ${JSON.stringify(rows)}`);
+  if (rows.some((r) => r.student_id === EWM_MEERA)) throw new Error('Meera, who fell 14 points, was flagged');
+  const seen = { reasons: 'marks', evidence: 1, byNightly: true, checkNow: 0, meera: 0 };
+  if (JSON.stringify(ewmTeacherSeen) !== JSON.stringify(seen)) throw new Error(`the marks flag on Tara's screen: ${JSON.stringify(ewmTeacherSeen)}, wanted ${JSON.stringify(seen)}`);
+};
 // p6-9f end
 // c212-pricing begin
 // Control → Billing & Plans, priced per active student (C212). Two screens.
@@ -4328,6 +4469,8 @@ const SCREENS = [
   ['teacher', 'app-genome-teacher', '/app/learning-genome', genomeTeacher, genomeTeacherDone],
   // p6-9e end
   // p6-9f begin
+  ['principal', 'app-early-warning-marks', '/app/early-warning', earlyWarningMarks, earlyWarningMarksDone],
+  ['teacher', 'teacher-early-warning-marks', '/app/early-warning', earlyWarningMarksTeacher, earlyWarningMarksTeacherDone],
   // p6-9f end
   // c212-pricing begin
   ['founder', 'control-billing-plan-form', '/control/billing-plans', pricingForm, pricingFormDone],
