@@ -305,7 +305,8 @@ describe('the real routes, on real Postgres', () => {
     state.db = db;
     state.claims = { sub: principal, role: 'principal', schoolId: A, membershipId: randomUUID(), tokenVersion: 0, aal: 'aal1', sessionId: randomUUID() };
     await db.platform(async (q) => {
-      await q.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'A', 'IN-HR')`, [A]);
+      // A test school: the plan with every module is for test schools only (C219).
+      await q.query(`insert into schools (school_id, name, jurisdiction, is_test_fixture) values ($1, 'A', 'IN-HR', true)`, [A]);
       await q.query(`insert into users (user_id, school_id, role, display_name) values ($1, $2, 'principal', 'P')`, [principal, A]);
       await q.query(`insert into classes (class_id, school_id, name, section) values ($1, $2, '5', 'A')`, [classId, A]);
       await q.query(`insert into students (student_id, school_id, admission_no, name, class_id, status) values ($1, $2, 'E-1', 'Existing Child', $3, 'active')`, [existing, A, classId]);

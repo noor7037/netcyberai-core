@@ -21,7 +21,8 @@ const actor = { userId: founder, role: 'super_admin' as const };
 beforeAll(async () => {
   db = await createTestDb();
   await db.platform(async (q) => {
-    await q.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'A', 'IN-HR'), ($2, 'B', 'IN-DL')`, [A, B]);
+    // Test schools: the plan with every module is for test schools only (C219).
+    await q.query(`insert into schools (school_id, name, jurisdiction, is_test_fixture) values ($1, 'A', 'IN-HR', true), ($2, 'B', 'IN-DL', true)`, [A, B]);
     await q.query(`insert into users (user_id, role, display_name) values ($1, 'super_admin', 'Noor')`, [founder]);
     await applyPlan(q, A, DEFAULT_PLAN_ID, { userId: null, role: null }, 'school created from application');
     await changeModuleEntitlement(q, { schoolId: A, moduleId: 'payroll', enabled: true, reason: 'pilot of payroll' }, actor);

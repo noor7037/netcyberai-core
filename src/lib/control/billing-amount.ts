@@ -7,7 +7,7 @@ import { indiaDate } from '@/lib/time/india';
 // The amount a school owes for one period (founder, C212), worked out here and nowhere else: every screen that
 // shows it calls amountDue below.
 //
-//   amount due = max(active students, minimum billed students)
+//   amount due = max(enrolled students, minimum billed students)
 //                × the price per student for the period the school chose
 //                  (its negotiated price while one is in force, else its plan's)
 //                − the discount in force (rounded half up to the paisa)
@@ -42,12 +42,12 @@ export const bpToPercent = (bp: number): string => `${Math.trunc(bp / 100)}.${St
 export type AmountParts = { billedStudents: number; grossMinor: number; discountMinor: number; amountMinor: number };
 
 // The rule itself, on numbers already read. Every input is a whole number of at least 0.
-export function computeAmountDue(input: { activeStudents: number; minimumStudents: number | null; pricePerStudentMinor: number; discountBp: number | null }): AmountParts {
+export function computeAmountDue(input: { enrolledStudents: number; minimumStudents: number | null; pricePerStudentMinor: number; discountBp: number | null }): AmountParts {
   const whole = (n: number) => Number.isSafeInteger(n) && n >= 0;
-  if (!whole(input.activeStudents) || !(input.minimumStudents === null || whole(input.minimumStudents)) || !whole(input.pricePerStudentMinor) || !(input.discountBp === null || (whole(input.discountBp) && input.discountBp <= BP_IN_WHOLE))) {
+  if (!whole(input.enrolledStudents) || !(input.minimumStudents === null || whole(input.minimumStudents)) || !whole(input.pricePerStudentMinor) || !(input.discountBp === null || (whole(input.discountBp) && input.discountBp <= BP_IN_WHOLE))) {
     throw new Error('billing-amount: every input is a whole number of at least 0');
   }
-  const billedStudents = Math.max(input.activeStudents, input.minimumStudents ?? 0);
+  const billedStudents = Math.max(input.enrolledStudents, input.minimumStudents ?? 0);
   const gross = BigInt(billedStudents) * BigInt(input.pricePerStudentMinor);
   // Half up: add half of the divisor before dividing (all values are at least 0, so division rounds down).
   const scale = BigInt(BP_IN_WHOLE);
@@ -64,7 +64,7 @@ export type AmountDue = {
   planId: string | null;
   planName: string | null;
   period: BillingPeriod | null;
-  activeStudents: number;
+  enrolledStudents: number;
   minimumStudents: number | null; // the minimum in force, if any
   billedStudents: number;
   priceSource: 'negotiated' | 'plan' | null;
@@ -79,12 +79,12 @@ export type AmountDue = {
 
 // The students module's own rule for who counts: a student whose status is 'active' (not waiting for consent, not
 // left, not moved to another school).
-export async function activeStudentCount(db: Sql, schoolId: string): Promise<number> {
+export async function enrolledStudentCount(db: Sql, schoolId: string): Promise<number> {
   const { rows } = await db.query(`select count(*)::int as n from students where school_id = $1 and status = 'active'`, [schoolId]);
   return Number(rows[0]?.n ?? 0);
 }
 
-// The amount due for one period, as of `onDay` (India's date): the terms in force that day, the students active now.
+// The amount due for one period, as of `onDay` (India's date): the terms in force that day, the students enrolled now.
 // Runs as the platform role (plans and terms are the platform's). Null: no such school.
 export async function amountDue(db: Sql, schoolId: string, onDay: string = indiaDate()): Promise<AmountDue | null> {
   const school = (await db.query(
@@ -104,7 +104,7 @@ export async function amountDue(db: Sql, schoolId: string, onDay: string = india
   const term = (kind: string) => terms.find((t) => t.kind === kind);
   const plan = await loadPlan(db, school.plan_id);
   const period: BillingPeriod | null = isBillingPeriod(school.billing_period) ? school.billing_period : null;
-  const activeStudents = await activeStudentCount(db, schoolId);
+  const enrolledStudents = await enrolledStudentCount(db, schoolId);
   const minimumStudents = term('minimum') ? Number(term('minimum').minimum_students) : null;
   const discountBp = term('discount') ? Number(term('discount').discount_bp) : null;
   const negotiated = term('price');
@@ -113,15 +113,15 @@ export async function amountDue(db: Sql, schoolId: string, onDay: string = india
   const planPrice = plan ? priceOf({ month: plan.priceMonthMinor, year: plan.priceYearMinor }) : null;
   const pricePerStudentMinor = negotiatedPrice ?? planPrice;
   const missing: AmountMissing | null = !plan ? 'no_plan' : !period ? 'no_period' : pricePerStudentMinor === null ? 'no_price' : null;
-  const parts = missing === null && pricePerStudentMinor !== null ? computeAmountDue({ activeStudents, minimumStudents, pricePerStudentMinor, discountBp }) : null;
+  const parts = missing === null && pricePerStudentMinor !== null ? computeAmountDue({ enrolledStudents, minimumStudents, pricePerStudentMinor, discountBp }) : null;
   return {
     onDay,
     planId: plan?.planId ?? null,
     planName: plan?.name ?? null,
     period,
-    activeStudents,
+    enrolledStudents,
     minimumStudents,
-    billedStudents: Math.max(activeStudents, minimumStudents ?? 0),
+    billedStudents: Math.max(enrolledStudents, minimumStudents ?? 0),
     priceSource: missing !== null ? null : negotiatedPrice !== null ? 'negotiated' : 'plan',
     pricePerStudentMinor: missing !== null ? null : pricePerStudentMinor,
     discountBp,

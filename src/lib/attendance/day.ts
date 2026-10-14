@@ -29,7 +29,10 @@ export type ClassDay = { class_id: string; class_name: string; students: number;
 const n = (v: unknown) => Number(v ?? 0);
 const ON_ROLL = `s.status in ('active', 'pending_consent')`;
 
-// Every class with a student on its roll, in the order of its name. Never sorted by a rate.
+// Every class with a student on its roll, in the order of its name. Never sorted by a rate. Answered only to the roles
+// that read a whole class's day of attendance, by the database's own rule (reads_attendance_days(), C219): an
+// accountant reads the classes and the roll for fees, and no mark, so every class would look "not marked"; they get
+// no class here instead.
 export async function classesOnDay(db: Sql, schoolId: string, date: string): Promise<ClassDay[]> {
   const { rows } = await db.query(
     `select c.class_id, c.name, c.section, count(*)::int as students, count(a.attendance_id)::int as marked,
@@ -38,7 +41,7 @@ export async function classesOnDay(db: Sql, schoolId: string, date: string): Pro
        from classes c
        join students s on s.school_id = c.school_id and s.class_id = c.class_id and ${ON_ROLL}
        left join attendance a on a.school_id = s.school_id and a.student_id = s.student_id and a.date = $2::date
-      where c.school_id = $1
+      where c.school_id = $1 and public.reads_attendance_days()
       group by c.class_id, c.name, c.section
       order by c.name, c.section, c.class_id`,
     [schoolId, date]

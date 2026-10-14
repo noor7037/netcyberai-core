@@ -21,7 +21,7 @@ function wholeFromBody(value: unknown): number | null | undefined {
   return /^\d{1,9}$/.test(text) ? Number(text) : undefined;
 }
 
-// Prices are per active student: priceMonthRupees and priceYearRupees (C212).
+// Prices are per enrolled student: priceMonthRupees and priceYearRupees (C212).
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function planInputFromBody(b: any): { ok: true; value: PlanInput } | { ok: false; reason: PlanProblem } {
   const priceMonthMinor = rupeesFromBody(b.priceMonthRupees);

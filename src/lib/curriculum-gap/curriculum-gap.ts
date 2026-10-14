@@ -2,6 +2,7 @@ import type { SchoolRole } from '@/lib/contracts/modules';
 import { classLabel } from '@/lib/frameworks/class-label';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { Sql } from '@/lib/jobs/types';
+import { indiaDate } from '@/lib/time/india';
 import { gapStates, type GapCounts, type GapPaper, type UnitFacts, type UnitGap } from './rules';
 
 // The Curriculum Gap Detector's screen (docs/27 row 9d, C216): for one class and one subject, every unit of the
@@ -13,13 +14,21 @@ import { gapStates, type GapCounts, type GapPaper, type UnitFacts, type UnitGap 
 // as class teacher), every subject of it. Nobody else. The database holds the same rule in the reader
 // public.curriculum_gap_units, which this calls in the person's own tenant transaction. A class with no map for the
 // subject is "not set up", never a row of zeros.
+//
+// ONE SESSION AT A TIME (C219): the screen is for one academic session of the school, the current one unless another
+// is chosen. Lessons count when they were marked "Taught" on the session's days, and papers when their exam belongs to
+// the session (exams.session_id). A school with no session, or a session with no lesson of the class and subject yet,
+// is "not set up" too, and says which.
 
 export const GAP_READERS: readonly SchoolRole[] = ['principal', 'school_admin', 'academic_coordinator', 'teacher'];
 const WHOLE_SCHOOL: readonly SchoolRole[] = ['principal', 'school_admin', 'academic_coordinator'];
 
 export type Actor = { schoolId: string; userId: string; role: SchoolRole };
 
-export type GapView = { setUp: false } | { setUp: true; units: UnitGap[]; counts: GapCounts; total: number };
+// Why a class and subject is not set up: no syllabus map, no lesson of it marked in the session, or no session at all.
+export type NotSetUp = 'no_map' | 'no_lessons' | 'no_session';
+export type GapView = { setUp: false; why: NotSetUp } | { setUp: true; units: UnitGap[]; counts: GapCounts; total: number };
+export type GapSession = { sessionId: string; label: string; startDate: string; endDate: string; current: boolean };
 
 export type GapScreen = {
   wholeSchool: boolean; // the office and the coordinator: every class; a teacher: their own
@@ -28,6 +37,9 @@ export type GapScreen = {
   subjects: { subjectId: string; name: string; mapped: boolean }[];
   classId: string | null;
   subjectId: string | null;
+  // The school's sessions, newest first, and the one shown (null: the school has none).
+  sessions: GapSession[];
+  sessionId: string | null;
   // null when there is no class or no subject to show.
   gap: GapView | null;
 };
@@ -36,13 +48,13 @@ export type GapAnswer = { ok: true; screen: GapScreen } | { ok: false; reason: '
 
 const given = (v: unknown) => v !== null && v !== undefined && v !== '';
 
-// The facts of one class and subject's units, from the database's own reader, in the map's order.
-export async function unitFacts(db: Sql, classId: string, subjectId: string): Promise<UnitFacts[]> {
+// The facts of one class and subject's units in one session, from the database's own reader, in the map's order.
+export async function unitFacts(db: Sql, classId: string, subjectId: string, sessionId: string): Promise<UnitFacts[]> {
   const { rows } = await db.query(
     `select unit_id, place, chapter, topic, to_char(added_at at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS.US') as added_at,
             taught_first::text as taught_first, taught_last::text as taught_last, lessons, papers
-       from public.curriculum_gap_units($1, $2)`,
-    [classId, subjectId]
+       from public.curriculum_gap_units($1, $2, $3)`,
+    [classId, subjectId, sessionId]
   );
   return rows.map((r) => ({
     unitId: r.unit_id as string,
@@ -59,17 +71,33 @@ export async function unitFacts(db: Sql, classId: string, subjectId: string): Pr
   }));
 }
 
-// One class and subject's gaps: "not set up" without a map, otherwise every unit with its state and the counts.
-export async function classGap(db: Sql, classId: string, subjectId: string): Promise<GapView> {
-  const facts = await unitFacts(db, classId, subjectId);
-  if (facts.length === 0) return { setUp: false };
+// One class and subject's gaps in a session: "not set up" without a map or without a lesson of it marked in the
+// session, otherwise every unit with its state and the counts.
+export async function classGap(db: Sql, classId: string, subjectId: string, sessionId: string): Promise<GapView> {
+  const facts = await unitFacts(db, classId, subjectId, sessionId);
+  if (facts.length === 0) return { setUp: false, why: 'no_map' };
+  if (!facts.some((f) => f.lessons > 0)) return { setUp: false, why: 'no_lessons' };
   const { units, counts } = gapStates(facts);
   return { setUp: true, units, counts, total: units.length };
 }
 
+// The school's sessions, newest first, and the one shown by default: the one marked current, else the one India's
+// today falls in, else the newest.
+export async function gapSessions(db: Sql, schoolId: string, today: string = indiaDate()): Promise<{ sessions: GapSession[]; current: string | null }> {
+  const sessions = (
+    await db.query(
+      `select session_id, label, start_date::text as start_date, end_date::text as end_date, is_current
+         from academic_sessions where school_id = $1 order by start_date desc, session_id`,
+      [schoolId]
+    )
+  ).rows.map((r): GapSession => ({ sessionId: r.session_id, label: r.label, startDate: r.start_date, endDate: r.end_date, current: r.is_current === true }));
+  const current = sessions.find((s) => s.current) ?? sessions.find((s) => s.startDate <= today && today <= s.endDate) ?? sessions[0] ?? null;
+  return { sessions, current: current?.sessionId ?? null };
+}
+
 // The screen: the person's classes, the school's subjects, and the chosen class and subject's gaps. A class or a
 // subject asked for that is not this person's to read is "not found", so it says nothing about what exists.
-export async function gapScreen(db: Sql, actor: Actor, ask: { classId?: unknown; subjectId?: unknown }): Promise<GapAnswer> {
+export async function gapScreen(db: Sql, actor: Actor, ask: { classId?: unknown; subjectId?: unknown; sessionId?: unknown }, today: string = indiaDate()): Promise<GapAnswer> {
   if (!GAP_READERS.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   const wholeSchool = WHOLE_SCHOOL.includes(actor.role);
   const classes = (
@@ -99,6 +127,10 @@ export async function gapScreen(db: Sql, actor: Actor, ask: { classId?: unknown;
   // Asked for, or the first subject the class has a map for, or the first subject.
   const subjectId = given(ask.subjectId) ? (ask.subjectId as string) : ((subjects.find((s) => s.mapped) ?? subjects[0])?.subjectId ?? null);
 
-  const gap = classId && subjectId ? await classGap(db, classId, subjectId) : null;
-  return { ok: true, screen: { wholeSchool, classes, subjects, classId, subjectId, gap } };
+  const { sessions, current } = await gapSessions(db, actor.schoolId, today);
+  if (given(ask.sessionId) && !(isUuid(ask.sessionId) && sessions.some((s) => s.sessionId === ask.sessionId))) return { ok: false, reason: 'not_found' };
+  const sessionId = given(ask.sessionId) ? (ask.sessionId as string) : current;
+
+  const gap: GapView | null = classId && subjectId ? (sessionId ? await classGap(db, classId, subjectId, sessionId) : { setUp: false, why: 'no_session' }) : null;
+  return { ok: true, screen: { wholeSchool, classes, subjects, classId, subjectId, sessions, sessionId, gap } };
 }

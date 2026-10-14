@@ -13,7 +13,8 @@ import type { ModuleId } from '@/lib/contracts/modules';
 // PUT { accessMode, graceEndsAt?, reason } sets the access mode by hand.
 // PUT { applyPlan, reason } puts the school on a plan: exactly that plan's
 // modules (C114, C204). The plans are rows of the plans table; a retired one
-// is offered only to a school already on it.
+// is offered only to a school already on it, and one for test schools only
+// only to a test school (C219).
 // Every change is audited with its reason.
 export async function GET(req: NextRequest, { params }: { params: { schoolId: string } }) {
   const guard = await requireSuperAdmin(req);
@@ -24,7 +25,10 @@ export async function GET(req: NextRequest, { params }: { params: { schoolId: st
     const withHistory = req.nextUrl.searchParams.get('history') === '1';
     const data = await withTenantContext(guard.claims, async (db) => {
       const entitlements = await loadEntitlements(db, params.schoolId);
-      const plans: PlanSummary[] = (await listPlans(db)).filter((p) => !p.retired || p.planId === entitlements.plan).map((p) => ({ planId: p.planId, label: p.name, moduleIds: p.moduleIds }));
+      const testSchool = (await db.query(`select is_test_fixture from schools where school_id = $1`, [params.schoolId])).rows[0]?.is_test_fixture === true;
+      const plans: PlanSummary[] = (await listPlans(db))
+        .filter((p) => (!p.retired || p.planId === entitlements.plan) && (!p.testSchoolsOnly || testSchool))
+        .map((p) => ({ planId: p.planId, label: p.name, moduleIds: p.moduleIds }));
       return { entitlements, plans, ...(withHistory ? { history: await entitlementHistory(db, params.schoolId) } : {}) };
     });
     return NextResponse.json(data);

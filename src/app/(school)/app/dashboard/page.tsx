@@ -18,7 +18,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: { 
   const session = await getServerSession();
   const shell = session ? shellForRole(session.role) : null;
 
-  // The office's dashboard is a part of the plan (C212: 'principal-dashboard', Growth and Premium); without it the
+  // The office's dashboard is a part of the plan (C212: 'principal-dashboard', Growth and Compass); without it the
   // office's home is My Day, as every other role's is.
   if (shell === 'office' && session && !(await featureOff('principal-dashboard'))) {
     return <OfficeDashboard session={session} rangeId={isRangeId(searchParams.range) ? searchParams.range : DEFAULT_RANGE} lang={getLang(session.sub).lang} />;

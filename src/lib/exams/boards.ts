@@ -144,9 +144,9 @@ export async function addPreset(db: Sql, by: By, raw: Record<string, unknown>): 
   return { ok: true, presetId };
 }
 
-// The board a school records: NetCyberAI in Control (the platform role), or the school's principal or school admin
-// on the scheme screen (their own school, by the session). The database refuses anyone else.
-export async function setSchoolBoard(db: Sql, by: { userId: string; role: 'principal' | 'school_admin' | 'super_admin' }, schoolId: string, boardId: string | null): Promise<{ ok: true; changed: boolean } | { ok: false; reason: 'no_board' | 'not_found' }> {
+// The board a school records: NetCyberAI in Control (the platform role) only (C219). The database refuses anyone else:
+// the app's role holds no right on the column, and the schools row's trigger refuses it too.
+export async function setSchoolBoard(db: Sql, by: { userId: string; role: 'super_admin' }, schoolId: string, boardId: string | null): Promise<{ ok: true; changed: boolean } | { ok: false; reason: 'no_board' | 'not_found' }> {
   if (boardId !== null && !(await db.query(`select 1 from boards where board_id = $1`, [boardId])).rows[0]) return { ok: false, reason: 'no_board' };
   const before = (await db.query(`select board_id from schools where school_id = $1 for update`, [schoolId])).rows[0];
   if (!before) return { ok: false, reason: 'not_found' };

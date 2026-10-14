@@ -8,7 +8,7 @@ computed from real marks.
 **Founder decisions, 2026-10-14:** schools record their board, and grading
 is a scheme builder with presets for CBSE and CISCE only, each from the
 board's official document (sections 3 and 5). Plans are priced per student,
-and Personal Best is a Premium feature (C212, its own slice before P6). P6
+and Personal Best is a Compass feature (C212, its own slice before P6; the plans are Starter, Growth and Compass, C219). P6
 does not touch the public website.
 **Every screen** follows `19` §5: `ModulePage`, today cards, English and
 Hindi, a tour, a "Show me how" guide, teaching empty states, logo tokens, AA

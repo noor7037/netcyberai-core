@@ -46,6 +46,9 @@ const [MATHS, ENGLISH, B_MATHS] = [u(41), u(42), u(43)];
 // 5-A Mathematics: six units. 5-B Mathematics: two. School B: one. 5-A English and 6-A: no map.
 const [U1, U2, U3, U4, U5, U6, V1, V2, W1] = [u(61), u(62), u(63), u(64), u(65), u(66), u(71), u(72), u(81)];
 const MAP_5A = [U1, U2, U3, U4, U5, U6];
+// School A's academic sessions (C219: the screen is for one session at a time): this one, current, and the one before.
+// School B has none.
+const [S_NOW, S_OLD] = [u(51), u(52)];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let db: any;
@@ -78,9 +81,9 @@ const platform = <T>(fn: (client: any) => Promise<T>): Promise<T> =>
   });
 const actor = (who: Who) => ({ schoolId: who.school, userId: who.user, role: who.role as never });
 const owner = async (sql: string, params: unknown[] = []) => (await db.pg.query(sql, params)).rows;
-// The reader, called straight in the database as the person.
-const direct = (who: Who, classId: string, subjectId: string) =>
-  as(who, async (c) => (await c.query(`select unit_id, taught_first::text as taught_first, lessons, papers from public.curriculum_gap_units($1, $2)`, [classId, subjectId])).rows);
+// The reader of one session, called straight in the database as the person.
+const direct = (who: Who, classId: string, subjectId: string, sessionId = S_NOW) =>
+  as(who, async (c) => (await c.query(`select unit_id, taught_first::text as taught_first, lessons, papers from public.curriculum_gap_units($1, $2, $3)`, [classId, subjectId, sessionId])).rows);
 
 // "Taught today", as the teacher taps it.
 const teach = async (who: Who, unitId: string | null, date: string, status: 'taught' | 'partial' | 'delayed' | 'not_taught' = 'taught') => {
@@ -138,22 +141,26 @@ beforeAll(async () => {
       ('${W1}', '${B}', '${CB}', '${B_MATHS}', 1, 'Fractions', 'Halves and quarters');
     insert into school_module_entitlements (school_id, module_id, enabled, source) select s, 'curriculum-gap', true, 'plan' from unnest(array['${A}', '${B}']::uuid[]) s
       on conflict (school_id, module_id) do update set enabled = true;
+    insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current) values
+      ('${S_NOW}', '${A}', '2026-27', '2026-04-01', '2027-03-31', true), ('${S_OLD}', '${A}', '2025-26', '2025-04-01', '2026-03-31', false);
   `);
 }, 120_000);
 afterAll(async () => db?.stop());
 
 describe('a class and subject with a map: every unit once, in the right state, with its dates', () => {
-  it('nothing taught and nothing assessed: every unit, once and in the map’s order, is not taught yet', async () => {
+  it('nothing taught yet in the session: "not set up", saying no lesson is marked in it, never a row of zeros', async () => {
     const got = await call(principal, maths5A);
     expect(got.status).toBe(200);
-    expect(got.body).toMatchObject({ wholeSchool: true, classId: C5A, subjectId: MATHS, gap: { setUp: true, total: 6 } });
-    expect(statesOf(got.body)).toEqual(MAP_5A.map((id) => [id, 'not-yet-taught']));
-    expect(got.body.gap.counts).toEqual({ 'assessed-before-taught': 0, 'taught-assessed': 0, 'taught-not-assessed': 0, skipped: 0, 'not-yet-taught': 6 });
+    expect(got.body).toMatchObject({ wholeSchool: true, classId: C5A, subjectId: MATHS, sessionId: S_NOW, gap: { setUp: false, why: 'no_lessons' } });
+    expect(JSON.stringify(got.body.gap)).not.toMatch(/counts|units|total/);
+    // The reader still has every unit of the map; none has a lesson in this session.
+    expect((await direct(principal, C5A, MATHS)).map((r: { unit_id: string; lessons: number }) => [r.unit_id, r.lessons])).toEqual(MAP_5A.map((id) => [id, 0]));
   });
 
   it('teaching a unit moves it: taught, and the units before it that were not taught are skipped, with the day the later one was taught', async () => {
     await teach(tMaths, U1, '2026-07-01');
     let got = await call(principal, maths5A);
+    expect(got.body.gap).toMatchObject({ setUp: true, total: 6 });
     expect(statesOf(got.body)).toEqual([[U1, 'taught-not-assessed'], [U2, 'not-yet-taught'], [U3, 'not-yet-taught'], [U4, 'not-yet-taught'], [U5, 'not-yet-taught'], [U6, 'not-yet-taught']]);
     expect(got.body.gap.units[0]).toMatchObject({ taughtFirst: '2026-07-01', taughtLast: '2026-07-01', lessons: 1, papers: [] });
 
@@ -175,7 +182,7 @@ describe('a class and subject with a map: every unit once, in the right state, w
 
   it('adding a unit to a paper moves it: taught before the paper is taught and assessed; on a paper and not taught is assessed before it was taught', async () => {
     const made = await as(principal, (c) =>
-      makeExam(c, actor(principal), { name: 'Unit test 1', sessionId: null, term: null, papers: [{ classId: C5A, subjectId: MATHS, date: PAPER_DAY, unitIds: [U1, U4], maxima: { marks: 50 } }] })
+      makeExam(c, actor(principal), { name: 'Unit test 1', sessionId: S_NOW, term: null, papers: [{ classId: C5A, subjectId: MATHS, date: PAPER_DAY, unitIds: [U1, U4], maxima: { marks: 50 } }] })
     );
     expect(made.ok).toBe(true);
     examId = made.ok ? made.examId : '';
@@ -202,7 +209,7 @@ describe('a class and subject with a map: every unit once, in the right state, w
     await teach(tSub, U5, '2026-08-02');
     // A second exam, with no date yet, assesses unit 3 too: a paper with no date is not before a lesson.
     const second = await as(coordinator, (c) =>
-      makeExam(c, actor(coordinator), { name: 'Unit test 2', sessionId: null, term: null, papers: [{ classId: C5A, subjectId: MATHS, date: null, unitIds: [U3], maxima: { marks: 25 } }] })
+      makeExam(c, actor(coordinator), { name: 'Unit test 2', sessionId: S_NOW, term: null, papers: [{ classId: C5A, subjectId: MATHS, date: null, unitIds: [U3], maxima: { marks: 25 } }] })
     );
     expect(second.ok).toBe(true);
     const got = await call(principal, maths5A);
@@ -236,7 +243,7 @@ describe('a class and subject with a map: every unit once, in the right state, w
   });
 
   it('the reader gives units, days and exam names only: no child, no mark, no lesson note, no teacher', async () => {
-    const row = await as(principal, async (c) => (await c.query(`select * from public.curriculum_gap_units($1, $2) limit 1`, [C5A, MATHS])).rows[0]);
+    const row = await as(principal, async (c) => (await c.query(`select * from public.curriculum_gap_units($1, $2, $3) limit 1`, [C5A, MATHS, S_NOW])).rows[0]);
     expect(Object.keys(row).sort()).toEqual(['added_at', 'chapter', 'lessons', 'papers', 'place', 'taught_first', 'taught_last', 'topic', 'unit_id']);
     expect(Object.keys(row.papers[0]).sort()).toEqual(['date', 'examId', 'examName', 'paperId']);
   });
@@ -246,17 +253,17 @@ describe('a class with no map says "not set up", never zero', () => {
   it('5-A English and 6-A: not set up, with no count and no unit', async () => {
     const english = await call(principal, `?classId=${C5A}&subjectId=${ENGLISH}`);
     expect(english.status).toBe(200);
-    expect(english.body.gap).toEqual({ setUp: false });
+    expect(english.body.gap).toEqual({ setUp: false, why: 'no_map' });
     expect(JSON.stringify(english.body.gap)).not.toMatch(/counts|units|total/);
     const sixA = await call(principal, `?classId=${C6A}`);
-    expect(sixA.body).toMatchObject({ classId: C6A, gap: { setUp: false } });
+    expect(sixA.body).toMatchObject({ classId: C6A, gap: { setUp: false, why: 'no_map' } });
     expect(sixA.body.subjects).toEqual([{ subjectId: ENGLISH, name: 'English', mapped: false }, { subjectId: MATHS, name: 'Mathematics', mapped: false }]);
     // The subject shown first is one the class has a map for.
     const fiveA = await call(principal, `?classId=${C5A}`);
     expect(fiveA.body).toMatchObject({ subjectId: MATHS, gap: { setUp: true } });
     expect(fiveA.body.subjects).toEqual([{ subjectId: ENGLISH, name: 'English', mapped: false }, { subjectId: MATHS, name: 'Mathematics', mapped: true }]);
     // The same through the code the screen uses.
-    expect(await as(coordinator, (c) => classGap(c, C6A, MATHS))).toEqual({ setUp: false });
+    expect(await as(coordinator, (c) => classGap(c, C6A, MATHS, S_NOW))).toEqual({ setUp: false, why: 'no_map' });
   });
 });
 
@@ -267,7 +274,8 @@ describe('a teacher sees only their classes', () => {
     expect(await classesOf(tMaths)).toEqual([[C5A, '5-A']]);
     expect(await classesOf(tClass)).toEqual([[C5A, '5-A'], [C5B, '5-B']]);
     expect(await classesOf(tOther)).toEqual([[C5B, '5-B']]);
-    expect((await call(tOther)).body).toMatchObject({ wholeSchool: false, classId: C5B, subjectId: MATHS, gap: { setUp: true, total: 2 } });
+    // 5-B has a map for Mathematics and no lesson marked in this session yet.
+    expect((await call(tOther)).body).toMatchObject({ wholeSchool: false, classId: C5B, subjectId: MATHS, sessionId: S_NOW, gap: { setUp: false, why: 'no_lessons' } });
   });
 
   it('a class that is not theirs is refused by the app, and the database gives nothing for it', async () => {
@@ -292,7 +300,19 @@ describe('a teacher sees only their classes', () => {
   it('a teacher with no class sees no class, and nothing else', async () => {
     await owner(`insert into users (user_id, school_id, email, role, display_name, is_active) values ($1, $2, 'new@school-a.example', 'teacher', 'Nina New', true)`, [u(20), A]);
     const nina: Who = { role: 'teacher', user: u(20), school: A };
-    expect((await call(nina)).body).toEqual({ wholeSchool: false, classes: [], subjects: [{ subjectId: ENGLISH, name: 'English', mapped: false }, { subjectId: MATHS, name: 'Mathematics', mapped: false }], classId: null, subjectId: ENGLISH, gap: null });
+    expect((await call(nina)).body).toEqual({
+      wholeSchool: false,
+      classes: [],
+      subjects: [{ subjectId: ENGLISH, name: 'English', mapped: false }, { subjectId: MATHS, name: 'Mathematics', mapped: false }],
+      classId: null,
+      subjectId: ENGLISH,
+      sessions: [
+        { sessionId: S_NOW, label: '2026-27', startDate: '2026-04-01', endDate: '2027-03-31', current: true },
+        { sessionId: S_OLD, label: '2025-26', startDate: '2025-04-01', endDate: '2026-03-31', current: false },
+      ],
+      sessionId: S_NOW,
+      gap: null,
+    });
     expect(await direct(nina, C5A, MATHS)).toEqual([]);
   });
 
@@ -304,8 +324,44 @@ describe('a teacher sees only their classes', () => {
     expect(await direct(bPrincipal, C5A, MATHS)).toEqual([]);
     const own = await call(bPrincipal);
     expect(own.body.classes).toEqual([{ classId: CB, name: '5-A' }]);
-    expect(statesOf(own.body)).toEqual([[W1, 'not-yet-taught']]);
+    // School B records no session: its own map is there, and the screen says there is no session to show it for.
+    expect(own.body).toMatchObject({ sessions: [], sessionId: null, gap: { setUp: false, why: 'no_session' } });
+    expect((await as(bPrincipal, async (c) => (await c.query(`select unit_id from public.curriculum_gap_units($1, $2)`, [CB, B_MATHS])).rows)).map((r: { unit_id: string }) => r.unit_id)).toEqual([W1]);
     await expect(platform((c) => c.query(`select * from public.curriculum_gap_units($1, $2)`, [C5A, MATHS]))).rejects.toThrow(/permission denied/);
+    await expect(platform((c) => c.query(`select * from public.curriculum_gap_units($1, $2, $3)`, [C5A, MATHS, S_NOW]))).rejects.toThrow(/permission denied/);
+  });
+});
+
+describe('one session at a time (C219)', () => {
+  it('the current session by default; another session counts its own lessons and its own exams’ papers only', async () => {
+    const now = statesOf((await call(principal, maths5A)).body);
+    // Unit 6 was taught last session, and last session's exam assessed unit 2.
+    await teach(tMaths, U6, '2026-03-10');
+    const old = await as(principal, (c) =>
+      makeExam(c, actor(principal), { name: 'Annual 2025-26', sessionId: S_OLD, term: null, papers: [{ classId: C5A, subjectId: MATHS, date: '2026-03-12', unitIds: [U2], maxima: { marks: 50 } }] })
+    );
+    expect(old.ok).toBe(true);
+    // This session is as it was: neither the old lesson nor the old paper moves a unit.
+    expect(statesOf((await call(principal, maths5A)).body)).toEqual(now);
+    expect(statesOf((await call(principal, `${maths5A}&sessionId=${S_NOW}`)).body)).toEqual(now);
+    // Last session: unit 6 taught there (every unit before it not taught there, so skipped), unit 2 on its paper.
+    const before = await call(principal, `${maths5A}&sessionId=${S_OLD}`);
+    expect(before.body).toMatchObject({ sessionId: S_OLD, gap: { setUp: true, total: 6 } });
+    expect(statesOf(before.body)).toEqual([[U1, 'skipped'], [U2, 'assessed-before-taught'], [U3, 'skipped'], [U4, 'skipped'], [U5, 'skipped'], [U6, 'taught-not-assessed']]);
+    expect(before.body.gap.units[1].papers.map((p: { examName: string }) => p.examName)).toEqual(['Annual 2025-26']);
+    expect(before.body.gap.units[5]).toMatchObject({ taughtFirst: '2026-03-10', lessons: 1 });
+    // The same through the database's reader, as a teacher of the class.
+    expect((await direct(tMaths, C5A, MATHS, S_OLD)).map((r: { unit_id: string; lessons: number }) => [r.unit_id, r.lessons])).toEqual([[U1, 0], [U2, 0], [U3, 0], [U4, 0], [U5, 0], [U6, 1]]);
+  });
+
+  it('a session that is not the school’s is not found, and the database gives nothing for it', async () => {
+    const S_B = u(53);
+    await owner(`insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current) values ($1, $2, '2026-27', '2026-04-01', '2027-03-31', true)`, [S_B, B]);
+    expect(await call(principal, `${maths5A}&sessionId=${S_B}`)).toMatchObject({ status: 404, body: { code: 'not_found' } });
+    expect(await call(principal, `${maths5A}&sessionId=not-an-id`)).toMatchObject({ status: 404 });
+    expect(await direct(principal, C5A, MATHS, S_B)).toEqual([]);
+    // School B's own session now shows its own map, with no lesson marked in it.
+    expect((await call(bPrincipal)).body).toMatchObject({ sessionId: S_B, gap: { setUp: false, why: 'no_lessons' } });
   });
 });
 

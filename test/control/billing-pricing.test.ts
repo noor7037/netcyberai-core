@@ -15,19 +15,21 @@ import { applyPlan, listPlans, loadPlan, planHasFeature, workingModules } from '
 import { indiaDate } from '@/lib/time/india';
 import { TODAY_PROVIDERS } from '@/lib/today/cards';
 
-// C212 (founder, 2026-10-14): plans priced per active student, a school's own terms, the amount due. The acceptance
+// C212 (founder, 2026-10-14): plans priced per enrolled student (C219: the website's word), a school's own terms, the amount due. The acceptance
 // test:
 //   "The three plans exist with their per-student monthly and yearly prices and modules, editable in Control; a
 //    school's subscription records its period; a negotiated price, complimentary modules with an end date, a discount
-//    and a minimum each carry a reason, dates and an audit row; the amount due equals max(active students, minimum)
+//    and a minimum each carry a reason, dates and an audit row; the amount due equals max(enrolled students, minimum)
 //    x the price for the period - the discount, to the rupee, monthly and yearly; complimentary modules are on until
 //    their end date; no price is written in src."
 // On every migration, as the app's own database roles. Every school, person and term here is made up; the three
-// plans and their prices are the migration's seed, read from the database.
+// plans and their prices are the migration's seed, read from the database. C219 renamed the seed's Essential and
+// Premium to the founder's Starter and Compass (C198-A), put Teacher Copilot in Compass and made the first plan,
+// 'standard', a plan for test schools only.
 
 const ROOT = path.resolve(__dirname, '../..');
 const s = (n: number) => `c2120000-0000-4000-8000-0000000000${String(n).padStart(2, '0')}`;
-// P: Premium. G: Growth, the school whose amount is worked out. E: Essential. S: the first plan, no price. N: on no plan.
+// P: Compass. G: Growth, the school whose amount is worked out. E: Starter. S: the first plan, no price (a test school). N: on no plan.
 // C and D: complimentary modules (D's terms are added only after C's nightly runs, so the two do not meet).
 const [P, G, E, S, N, C, D] = [s(1), s(2), s(3), s(4), s(5), s(6), s(7)];
 const FOUNDER = s(90);
@@ -67,17 +69,17 @@ const due = (school: string, onDay = TODAY) => platform((c) => amountDue(c, scho
 
 // The founder's mapping (the migration's header table, and the PR).
 const ALWAYS = ['setup', 'compliance', 'help-center', 'raise-ticket'];
-const ESSENTIAL = ['students', 'attendance', 'fees', 'communication', 'pulse', 'dashboard', 'academics', 'homework', 'timetable', 'recovery', 'staff', ...ALWAYS];
+const STARTER = ['students', 'attendance', 'fees', 'communication', 'pulse', 'dashboard', 'academics', 'homework', 'timetable', 'recovery', 'staff', ...ALWAYS];
 const GROWTH_ADDS = ['exams', 'ptm', 'events', 'complaints', 'parents', 'proxy', 'reports', 'documents'];
-const PREMIUM_ADDS = ['parent-ai', 'early-warning', 'school-auditor', 'learning-genome', 'curriculum-gap'];
-const IN_NO_PLAN = ['admissions', 'payroll', 'teacher-copilot', 'career', 'twin', 'automation'];
+const COMPASS_ADDS = ['parent-ai', 'early-warning', 'school-auditor', 'learning-genome', 'curriculum-gap', 'teacher-copilot'];
+const IN_NO_PLAN = ['admissions', 'payroll', 'career', 'twin', 'automation'];
 
 beforeAll(async () => {
   db = await startHarnessDb({ port: 0 });
   await db.pg.exec(`
     insert into schools (school_id, name, jurisdiction, is_test_fixture) values
-      ('${P}', 'Premium School', 'IN-HR', false), ('${G}', 'Growth School', 'IN-DL', false), ('${E}', 'Essential School', 'IN-UP', false),
-      ('${S}', 'First Plan School', 'IN-MH', false), ('${N}', 'No Plan School', 'IN-RJ', false), ('${C}', 'Complimentary School', 'IN-KA', false),
+      ('${P}', 'Compass School', 'IN-HR', false), ('${G}', 'Growth School', 'IN-DL', false), ('${E}', 'Starter School', 'IN-UP', false),
+      ('${S}', 'First Plan School', 'IN-MH', true), ('${N}', 'No Plan School', 'IN-RJ', false), ('${C}', 'Complimentary School', 'IN-KA', false),
       ('${D}', 'Second Complimentary School', 'IN-TN', false);
     insert into users (user_id, school_id, email, role, display_name) values
       ('${FOUNDER}', null, 'founder@netcyber.example', 'super_admin', 'Farid Founder'),
@@ -85,13 +87,13 @@ beforeAll(async () => {
       ('${ADMIN_G}', '${G}', 'admin@growth.example', 'school_admin', 'Asha Admin'),
       ('${ACCOUNTANT_G}', '${G}', 'accounts@growth.example', 'accountant', 'Arun Accountant'),
       ('${TEACHER_G}', '${G}', 'teacher@growth.example', 'teacher', 'Tara Teacher'),
-      ('${PRINCIPAL_P}', '${P}', 'principal@premium.example', 'principal', 'Pooja Principal');
-    -- G: 37 active students, and 6 who do not count (waiting for consent, inactive, moved to another school).
+      ('${PRINCIPAL_P}', '${P}', 'principal@compass.example', 'principal', 'Pooja Principal');
+    -- G: 37 enrolled students (status active), and 6 who do not count (waiting for consent, inactive, moved to another school).
     insert into students (school_id, admission_no, name, status)
       select '${G}', 'G-' || g, 'Made-up Student ' || g, (case when g <= 37 then 'active' when g <= 40 then 'pending_consent' when g <= 42 then 'inactive' else 'transferred' end)::student_status
         from generate_series(1, 43) g;
   `);
-  for (const [school, plan] of [[P, 'premium'], [G, 'growth'], [E, 'essential'], [S, 'standard'], [C, 'growth'], [D, 'growth']]) {
+  for (const [school, plan] of [[P, 'compass'], [G, 'growth'], [E, 'starter'], [S, 'standard'], [C, 'growth'], [D, 'growth']]) {
     const r = await platform((c) => applyPlan(c, school, plan, founder, 'put on its plan for the test'));
     if (!r.ok) throw new Error(r.error);
   }
@@ -99,43 +101,56 @@ beforeAll(async () => {
 afterAll(async () => db?.stop());
 
 describe('the three plans are data: per-student prices a month and a year, and the founder’s modules', () => {
-  it('the migration seeds Essential, Growth and Premium with their prices in paise per active student, a year being ten months', async () => {
-    const seeded = await rows(`select plan_id, name, price_month_minor, price_year_minor, grace_days, all_working_modules, whatsapp_messages_per_student_month, retired_at from plans where plan_id in ('essential', 'growth', 'premium') order by price_month_minor`);
+  it('the migrations seed Starter, Growth and Compass with their prices in paise per enrolled student, a year being ten months', async () => {
+    const seeded = await rows(`select plan_id, name, price_month_minor, price_year_minor, grace_days, all_working_modules, whatsapp_messages_per_student_month, retired_at, test_schools_only from plans where plan_id in ('starter', 'growth', 'compass') order by price_month_minor`);
     expect(seeded).toEqual([
-      { plan_id: 'essential', name: 'Essential', price_month_minor: 1500, price_year_minor: 15000, grace_days: 15, all_working_modules: false, whatsapp_messages_per_student_month: null, retired_at: null },
-      { plan_id: 'growth', name: 'Growth', price_month_minor: 3000, price_year_minor: 30000, grace_days: 15, all_working_modules: false, whatsapp_messages_per_student_month: null, retired_at: null },
-      { plan_id: 'premium', name: 'Premium', price_month_minor: 5000, price_year_minor: 50000, grace_days: 15, all_working_modules: false, whatsapp_messages_per_student_month: null, retired_at: null },
+      { plan_id: 'starter', name: 'Starter', price_month_minor: 1500, price_year_minor: 15000, grace_days: 15, all_working_modules: false, whatsapp_messages_per_student_month: null, retired_at: null, test_schools_only: false },
+      { plan_id: 'growth', name: 'Growth', price_month_minor: 3000, price_year_minor: 30000, grace_days: 15, all_working_modules: false, whatsapp_messages_per_student_month: null, retired_at: null, test_schools_only: false },
+      { plan_id: 'compass', name: 'Compass', price_month_minor: 5000, price_year_minor: 50000, grace_days: 15, all_working_modules: false, whatsapp_messages_per_student_month: null, retired_at: null, test_schools_only: false },
     ]);
+    // No plan keeps the names C212 gave by mistake.
+    expect(await rows(`select plan_id from plans where plan_id in ('essential', 'premium') or lower(name) in ('essential', 'premium')`)).toEqual([]);
     // To the rupee: 15 and 150, 30 and 300, 50 and 500.
     expect(seeded.map((p: { price_month_minor: number; price_year_minor: number }) => [p.price_month_minor / 100, p.price_year_minor / 100])).toEqual([[15, 150], [30, 300], [50, 500]]);
     for (const p of seeded) expect(p.price_year_minor).toBe(proposeYearMinor(p.price_month_minor));
-    // Each was audited as made by the migration, with its prices.
+    // Each was audited as made by the C212 migration, with its prices (under the id it was made with), and the two
+    // renamed by C219 say so: one 'billing.plan_renamed' row each, from the old id and name to the new.
     expect(await rows(`select target_id, actor_user_id, (after_state ->> 'price_month_minor')::int as month from audit_log where event_action = 'billing.plan_created' and target_id in ('essential', 'growth', 'premium') order by target_id`)).toEqual([
       { target_id: 'essential', actor_user_id: null, month: 1500 },
       { target_id: 'growth', actor_user_id: null, month: 3000 },
       { target_id: 'premium', actor_user_id: null, month: 5000 },
     ]);
+    expect(await rows(`select target_id, actor_user_id, before_state, after_state ->> 'plan_id' as plan_id, after_state ->> 'name' as name from audit_log where event_action = 'billing.plan_renamed' order by target_id`)).toEqual([
+      { target_id: 'compass', actor_user_id: null, before_state: { plan_id: 'premium', name: 'Premium' }, plan_id: 'compass', name: 'Compass' },
+      { target_id: 'starter', actor_user_id: null, before_state: { plan_id: 'essential', name: 'Essential' }, plan_id: 'starter', name: 'Starter' },
+    ]);
   });
 
-  it('their modules are the founder’s words mapped to the registry: each plan the one before it and more; Personal Best a feature of Premium', async () => {
-    const listed = Object.fromEntries((await rows(`select plan_id, module_ids, features from plans where plan_id in ('essential', 'growth', 'premium')`)).map((r: { plan_id: string; module_ids: string[]; features: string[] }) => [r.plan_id, r]));
-    expect(listed.essential.module_ids).toEqual(ESSENTIAL);
-    expect([...listed.growth.module_ids].sort()).toEqual([...ESSENTIAL, ...GROWTH_ADDS].sort());
-    expect([...listed.premium.module_ids].sort()).toEqual([...ESSENTIAL, ...GROWTH_ADDS, ...PREMIUM_ADDS].sort());
+  it('their modules are the founder’s words mapped to the registry: each plan the one before it and more; Personal Best a feature of Compass; Teacher Copilot in Compass; Documents in Growth', async () => {
+    const listed = Object.fromEntries((await rows(`select plan_id, module_ids, features from plans where plan_id in ('starter', 'growth', 'compass')`)).map((r: { plan_id: string; module_ids: string[]; features: string[] }) => [r.plan_id, r]));
+    expect(listed.starter.module_ids).toEqual(STARTER);
+    expect([...listed.growth.module_ids].sort()).toEqual([...STARTER, ...GROWTH_ADDS].sort());
+    expect([...listed.compass.module_ids].sort()).toEqual([...STARTER, ...GROWTH_ADDS, ...COMPASS_ADDS].sort());
+    expect([listed.starter.module_ids.includes('teacher-copilot'), listed.growth.module_ids.includes('teacher-copilot'), listed.compass.module_ids.includes('teacher-copilot')]).toEqual([false, false, true]);
+    expect([listed.starter.module_ids.includes('documents'), listed.growth.module_ids.includes('documents')]).toEqual([false, true]);
+    // Adding Teacher Copilot to Compass is audited.
+    expect(await rows(`select actor_user_id, after_state -> 'module_ids' ? 'teacher-copilot' as added, before_state -> 'module_ids' ? 'teacher-copilot' as was from audit_log where event_action = 'billing.plan_changed' and target_id = 'compass'`)).toEqual([{ actor_user_id: null, added: true, was: false }]);
     for (const p of Object.values(listed) as { module_ids: string[] }[]) {
       for (const m of p.module_ids) expect(isModuleId(m), m).toBe(true);
       for (const m of ALWAYS) expect(p.module_ids).toContain(m); // help and the DPDP duties, whatever the plan
       for (const m of IN_NO_PLAN) expect(p.module_ids).not.toContain(m);
     }
-    expect([listed.essential.features, listed.growth.features, listed.premium.features]).toEqual([[], ['principal-dashboard', 'staff-leave'], ['principal-dashboard', 'staff-leave', 'personal-best']]);
-    // Modules a plan sells that are not built yet wait: applying Premium switches on only what works today.
-    const premium = (await platform((c) => loadPlan(c, 'premium')))!;
-    expect(premium.waitingModuleIds.sort()).toEqual([]); // Exams (C213), Curriculum Gap (C216) and Learning Genome (C217) work now
+    expect([listed.starter.features, listed.growth.features, listed.compass.features]).toEqual([[], ['principal-dashboard', 'staff-leave'], ['principal-dashboard', 'staff-leave', 'personal-best']]);
+    // Modules a plan sells that are not built yet wait: applying Compass switches on only what works today. Exams
+    // (C213), Curriculum Gap (C216) and Learning Genome (C217) work now; Teacher Copilot waits.
+    const compass = (await platform((c) => loadPlan(c, 'compass')))!;
+    expect(compass.waitingModuleIds.sort()).toEqual(['teacher-copilot']);
     const on = (await rows(`select module_id from school_module_entitlements where school_id = $1 and enabled order by 1`, [P])).map((r: { module_id: string }) => r.module_id);
-    expect(on).toEqual([...ESSENTIAL, ...GROWTH_ADDS, ...PREMIUM_ADDS].filter((m) => workingModules().includes(m as never)).sort());
+    expect(on).toEqual([...STARTER, ...GROWTH_ADDS, ...COMPASS_ADDS].filter((m) => workingModules().includes(m as never)).sort());
+    expect(on).not.toContain('teacher-copilot');
   });
 
-  it('a plan’s own feature is read for the school’s own plan only: yes on Premium, no on Growth, nothing about another school', async () => {
+  it('a plan’s own feature is read for the school’s own plan only: yes on Compass, no on Growth, nothing about another school', async () => {
     expect(await as({ school: P, role: 'principal', user: PRINCIPAL_P }, (c) => planHasFeature(c, P, 'personal-best'))).toBe(true);
     expect(await as(principalG, (c) => planHasFeature(c, G, 'personal-best'))).toBe(false);
     expect(await as(principalG, (c) => planHasFeature(c, G, 'staff-leave'))).toBe(true);
@@ -155,19 +170,19 @@ describe('the three plans are data: per-student prices a month and a year, and t
     }
   });
 
-  it('the features gate the parts of a module: Essential has no staff leave and no principal dashboard; a plan with every module, or no subscription (the plan for new schools), has them all', async () => {
+  it('the features gate the parts of a module: Starter has no staff leave and no principal dashboard; a plan with every module (a test school’s), or no subscription, has them all', async () => {
     const asPrincipal = (school: string) => ({ school, role: 'principal', user: PRINCIPAL_G });
     for (const feature of ['staff-leave', 'principal-dashboard', 'personal-best'] as const) {
-      expect(await as(asPrincipal(E), (c) => planHasFeature(c, E, feature)), `essential ${feature}`).toBe(false);
+      expect(await as(asPrincipal(E), (c) => planHasFeature(c, E, feature)), `starter ${feature}`).toBe(false);
       expect(await as(asPrincipal(S), (c) => planHasFeature(c, S, feature)), `standard ${feature}`).toBe(true);
       expect(await as(asPrincipal(N), (c) => planHasFeature(c, N, feature)), `no subscription ${feature}`).toBe(true);
     }
     expect(await as(principalG, (c) => planHasFeature(c, G, 'principal-dashboard'))).toBe(true);
-    // My Day's "leave waiting" card is a part of staff leave: a waiting request counts on Growth, not on Essential.
+    // My Day's "leave waiting" card is a part of staff leave: a waiting request counts on Growth, not on Starter.
     const [TEACHER_E, PRINCIPAL_E] = [s(96), s(97)];
     await db.pg.exec(`
       insert into users (user_id, school_id, email, role, display_name) values
-        ('${TEACHER_E}', '${E}', 'teacher@essential.example', 'teacher', 'Esha Teacher'), ('${PRINCIPAL_E}', '${E}', 'principal@essential.example', 'principal', 'Eshan Principal');
+        ('${TEACHER_E}', '${E}', 'teacher@starter.example', 'teacher', 'Esha Teacher'), ('${PRINCIPAL_E}', '${E}', 'principal@starter.example', 'principal', 'Eshan Principal');
       insert into staff_leave (school_id, user_id, from_date, to_date, kind, reason, status, recorded_by) values
         ('${E}', '${TEACHER_E}', '${day(5)}', '${day(5)}', 'casual', 'A family function.', 'waiting', '${TEACHER_E}'),
         ('${G}', '${TEACHER_G}', '${day(5)}', '${day(5)}', 'casual', 'A family function.', 'waiting', '${TEACHER_G}');
@@ -197,9 +212,11 @@ describe('the three plans are data: per-student prices a month and a year, and t
       { plan_id: 'standard', price_month_minor: null, price_year_minor: null },
     ]);
     expect((await small.query(`select before_state from audit_log where event_action = 'billing.plan_changed' and target_id = 'old-priced'`)).rows).toEqual([{ before_state: { price_minor: 1200000, period: 'year' } }]);
-    // The old columns are retired, not dropped yet: the code before C212 still reads them until this code is live.
+    // The old columns were retired by C212, not dropped, while the code before C212 still read them (this small
+    // database stops at C212); the C219 cleanup drops them once that code was gone.
     expect((await small.query(`select col_description('plans'::regclass, attnum) as said from pg_attribute where attrelid = 'plans'::regclass and attname = 'price_minor'`)).rows[0].said).toMatch(/^Retired by C212/);
     await small.pg.close();
+    expect(await rows(`select column_name from information_schema.columns where table_schema = 'public' and table_name = 'plans' and column_name in ('price_minor', 'period')`)).toEqual([]);
   });
 });
 
@@ -218,17 +235,17 @@ describe('a school’s subscription records its period', () => {
   });
 });
 
-describe('the amount due: max(active students, minimum) × the price for the period − the discount', () => {
+describe('the amount due: max(enrolled students, minimum) × the price for the period − the discount', () => {
   it('the rule on its own, to the paisa, the discount rounded half up', () => {
-    expect(computeAmountDue({ activeStudents: 37, minimumStudents: null, pricePerStudentMinor: 3000, discountBp: null })).toEqual({ billedStudents: 37, grossMinor: 111000, discountMinor: 0, amountMinor: 111000 });
-    expect(computeAmountDue({ activeStudents: 37, minimumStudents: 50, pricePerStudentMinor: 3000, discountBp: null })).toEqual({ billedStudents: 50, grossMinor: 150000, discountMinor: 0, amountMinor: 150000 });
-    expect(computeAmountDue({ activeStudents: 37, minimumStudents: 30, pricePerStudentMinor: 30000, discountBp: 1250 })).toEqual({ billedStudents: 37, grossMinor: 1110000, discountMinor: 138750, amountMinor: 971250 });
+    expect(computeAmountDue({ enrolledStudents: 37, minimumStudents: null, pricePerStudentMinor: 3000, discountBp: null })).toEqual({ billedStudents: 37, grossMinor: 111000, discountMinor: 0, amountMinor: 111000 });
+    expect(computeAmountDue({ enrolledStudents: 37, minimumStudents: 50, pricePerStudentMinor: 3000, discountBp: null })).toEqual({ billedStudents: 50, grossMinor: 150000, discountMinor: 0, amountMinor: 150000 });
+    expect(computeAmountDue({ enrolledStudents: 37, minimumStudents: 30, pricePerStudentMinor: 30000, discountBp: 1250 })).toEqual({ billedStudents: 37, grossMinor: 1110000, discountMinor: 138750, amountMinor: 971250 });
     // 101 paise less 50%: 50.5 paise of discount is 51.
-    expect(computeAmountDue({ activeStudents: 1, minimumStudents: null, pricePerStudentMinor: 101, discountBp: 5000 })).toEqual({ billedStudents: 1, grossMinor: 101, discountMinor: 51, amountMinor: 50 });
+    expect(computeAmountDue({ enrolledStudents: 1, minimumStudents: null, pricePerStudentMinor: 101, discountBp: 5000 })).toEqual({ billedStudents: 1, grossMinor: 101, discountMinor: 51, amountMinor: 50 });
     // A whole discount leaves nothing; none leaves everything.
-    expect(computeAmountDue({ activeStudents: 9, minimumStudents: null, pricePerStudentMinor: 777, discountBp: 10000 }).amountMinor).toBe(0);
-    expect(computeAmountDue({ activeStudents: 0, minimumStudents: null, pricePerStudentMinor: 777, discountBp: null }).amountMinor).toBe(0);
-    expect(() => computeAmountDue({ activeStudents: 1.5, minimumStudents: null, pricePerStudentMinor: 1, discountBp: null })).toThrow();
+    expect(computeAmountDue({ enrolledStudents: 9, minimumStudents: null, pricePerStudentMinor: 777, discountBp: 10000 }).amountMinor).toBe(0);
+    expect(computeAmountDue({ enrolledStudents: 0, minimumStudents: null, pricePerStudentMinor: 777, discountBp: null }).amountMinor).toBe(0);
+    expect(() => computeAmountDue({ enrolledStudents: 1.5, minimumStudents: null, pricePerStudentMinor: 1, discountBp: null })).toThrow();
     expect([percentToBp('12.5'), percentToBp('12.50'), percentToBp(100), percentToBp('0'), percentToBp('100.01'), percentToBp('12.345'), percentToBp('-1'), percentToBp('ten')]).toEqual([1250, 1250, 10000, 0, null, null, null, null]);
     expect([bpToPercent(1250), bpToPercent(5), bpToPercent(10000)]).toEqual(['12.50', '0.05', '100.00']);
   });
@@ -245,9 +262,9 @@ describe('the amount due: max(active students, minimum) × the price for the per
       const year = await rupees();
       return [month, year];
     };
-    // 37 active students counted (the 6 waiting, inactive or moved are not), Growth's ₹30 a month and ₹300 a year.
+    // 37 enrolled students counted (the 6 waiting, inactive or moved are not), Growth's ₹30 a month and ₹300 a year.
     const a = (await due(G))!;
-    expect(a).toMatchObject({ activeStudents: 37, minimumStudents: null, billedStudents: 37, priceSource: 'plan', discountBp: null, missing: null });
+    expect(a).toMatchObject({ enrolledStudents: 37, minimumStudents: null, billedStudents: 37, priceSource: 'plan', discountBp: null, missing: null });
     expect(await both()).toEqual([1110, 11100]);
 
     // A minimum above the students counted: billed for the minimum.
@@ -263,7 +280,7 @@ describe('the amount due: max(active students, minimum) × the price for the per
     expect(await term(G, { kind: 'complimentary', moduleId: 'parent-ai', endsOn: day(30) })).toMatchObject({ ok: true });
     expect(await both()).toEqual([1093.75, 10500]);
     const year = (await due(G))!;
-    expect(year).toMatchObject({ period: 'year', activeStudents: 37, minimumStudents: 50, billedStudents: 50, priceSource: 'negotiated', pricePerStudentMinor: 24000, grossMinor: 1200000, discountBp: 1250, discountMinor: 150000, amountMinor: 1050000, complimentary: [{ moduleId: 'parent-ai', endsOn: day(30) }] });
+    expect(year).toMatchObject({ period: 'year', enrolledStudents: 37, minimumStudents: 50, billedStudents: 50, priceSource: 'negotiated', pricePerStudentMinor: 24000, grossMinor: 1200000, discountBp: 1250, discountMinor: 150000, amountMinor: 1050000, complimentary: [{ moduleId: 'parent-ai', endsOn: day(30) }] });
     // A minimum below the students counted: billed for the students. A discount that rounds: 33.33% of 1,110,000 paise.
     expect(await term(G, { kind: 'minimum', minimumStudents: 30, startsOn: TODAY })).toMatchObject({ ok: true, replaced: [expect.any(String)] });
     expect(await term(G, { kind: 'discount', discountBp: 3333, startsOn: TODAY })).toMatchObject({ ok: true });
@@ -273,12 +290,12 @@ describe('the amount due: max(active students, minimum) × the price for the per
 
   it('what is missing is said, never a zero: no plan, no period chosen, no price for the period', async () => {
     expect(await due(N)).toMatchObject({ planId: null, amountMinor: null, missing: 'no_plan' });
-    expect(await due(E)).toMatchObject({ planId: 'essential', period: null, amountMinor: null, missing: 'no_period' });
+    expect(await due(E)).toMatchObject({ planId: 'starter', period: null, amountMinor: null, missing: 'no_period' });
     await platform((c) => setBillingPeriod(c, by, S, { period: 'year', reason: 'the first plan has no price' }));
     expect(await due(S)).toMatchObject({ period: 'year', amountMinor: null, missing: 'no_price', priceSource: null });
     // A negotiated price makes an amount even on a plan with none.
     expect(await term(S, { kind: 'price', priceMonthMinor: 1000, priceYearMinor: 10000 })).toMatchObject({ ok: true });
-    expect(await due(S)).toMatchObject({ amountMinor: 0, missing: null, priceSource: 'negotiated' }); // no active student yet
+    expect(await due(S)).toMatchObject({ amountMinor: 0, missing: null, priceSource: 'negotiated' }); // no enrolled student yet
     expect(await due(s(77))).toBeNull();
   });
 
@@ -289,7 +306,7 @@ describe('the amount due: max(active students, minimum) × the price for the per
     // The screens show the server's numbers: no amount is multiplied on the page.
     for (const f of ['src/components/control/BillingTerms.tsx', 'src/components/control/BillingSchools.tsx']) {
       const text = readFileSync(path.join(ROOT, f), 'utf8');
-      expect(text, f).not.toMatch(/(activeStudents|billedStudents|minimumStudents)\s*\*/);
+      expect(text, f).not.toMatch(/(enrolledStudents|billedStudents|minimumStudents)\s*\*/);
       expect(text, f).toMatch(/amount/);
     }
   });
@@ -422,10 +439,10 @@ describe('complimentary modules are on until their last day, whatever the plan, 
     expect(await moduleRow(D, 'events')).toEqual({ enabled: true, source: 'complimentary' });
     expect(await term(D, { kind: 'complimentary', moduleId: 'school-auditor', startsOn: day(14), endsOn: day(16) })).toMatchObject({ ok: true, switchedOn: [] });
     expect(await moduleRow(D, 'school-auditor')).toBeNull();
-    // Moved to Essential (no Events) while Events is complimentary: it stays on.
-    expect((await platform((c) => applyPlan(c, D, 'essential', founder, 'a smaller plan'))).ok).toBe(true);
+    // Moved to Starter (no Events) while Events is complimentary: it stays on.
+    expect((await platform((c) => applyPlan(c, D, 'starter', founder, 'a smaller plan'))).ok).toBe(true);
     expect(await moduleRow(D, 'events')).toEqual({ enabled: true, source: 'complimentary' });
-    expect(await moduleRow(D, 'ptm')).toEqual({ enabled: false, source: 'plan' }); // what Essential does not give is off
+    expect(await moduleRow(D, 'ptm')).toEqual({ enabled: false, source: 'plan' }); // what Starter does not give is off
     expect(await platform((c) => applyPlan(c, D, 'growth', founder, 'back on Growth'))).toMatchObject({ ok: true });
     await nightly(day(13)); // Events' last day: still complimentary; the auditor's not begun
     expect([await moduleRow(D, 'events'), await moduleRow(D, 'school-auditor')]).toEqual([{ enabled: true, source: 'complimentary' }, null]);
@@ -479,6 +496,8 @@ describe('no price is written in src', () => {
 
   it('the plans on the screen are the table’s: names and prices come from the rows', async () => {
     const plans = await platform((c) => listPlans(c));
-    expect(plans.map((p) => p.planId)).toEqual(expect.arrayContaining(['essential', 'growth', 'premium', 'standard']));
+    expect(plans.map((p) => p.planId)).toEqual(expect.arrayContaining(['starter', 'growth', 'compass', 'standard']));
+    expect(plans.map((p) => p.planId)).not.toEqual(expect.arrayContaining(['essential']));
+    expect(plans.find((p) => p.planId === 'standard')).toMatchObject({ testSchoolsOnly: true });
   });
 });

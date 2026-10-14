@@ -27,7 +27,10 @@ const s = (n: number) => `be000000-0000-4000-8000-0000000000${String(n).padStart
 const [A, B, C, D, E, F, G, T] = [s(1), s(2), s(3), s(4), s(5), s(6), s(7), s(8)];
 const FOUNDER = s(90);
 const [PRINCIPAL_A, TEACHER_A, PRINCIPAL_B] = [s(91), s(92), s(93)];
-const SEEDED = 'standard'; // the id the migration gives the first plan; no file under src names it
+const SEEDED = 'standard'; // the id the migration gives the first plan; no file under src names it. For test schools only (C219).
+// A plan with every working module for the real schools of this test, made as Control would make it: the seeded first
+// plan is for test schools only (C219), so a real school is never put on it.
+const EVERY = 'every-made-up';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let db: any;
@@ -68,7 +71,7 @@ const stored = async (school: string) => (await rows(`select e.access_mode, e.gr
 const accessAudits = async (school: string) => (await rows(`select a.actor_user_id, a.before_state ->> 'access_mode' as was, a.after_state ->> 'access_mode' as now, a.after_state ->> 'by' as by, r.reason from audit_log a left join entitlement_change_reasons r on r.audit_id = a.audit_id where a.school_id = $1 and a.event_action = 'entitlement.access_changed' order by a.audit_id`, [school]));
 const planInput = (over: Record<string, unknown> = {}) => ({ name: 'Made-up Plan', priceMonthMinor: null, priceYearMinor: null, graceDays: 5, allWorkingModules: true, moduleIds: [], limits: {}, ...over });
 // The three plans the C212 migration seeds as data (test/control/billing-pricing.test.ts proves their prices and modules).
-const C212_SEEDS = ['essential', 'growth', 'premium'];
+const C212_SEEDS = ['starter', 'growth', 'compass']; // C219 renamed C212's essential and premium to the founder's names
 // A school billed until `paidUntil`: a payment recorded on a day in the past, when it still covered the school.
 const billed = async (school: string, paidUntil: string) => {
   const r = await platform((c) => recordPayment(c, by, school, { amountMinor: 50_000_00, paidOn: day(-60), coversUntil: paidUntil, reference: `made-up-ref-${school.slice(-2)}` }, day(-60)));
@@ -87,27 +90,32 @@ beforeAll(async () => {
       ('${TEACHER_A}', '${A}', 'teacher@school-a.example', 'teacher', 'Tara Teacher'),
       ('${PRINCIPAL_B}', '${B}', 'principal@school-b.example', 'principal', 'Bina Principal');
   `);
+  // A plan with every working module, made the plan for new schools, as the founder would in Control.
+  await db.pg.exec(`insert into plans (plan_id, name, grace_days, all_working_modules) values ('${EVERY}', 'Every Made-up', 15, true);
+                    update platform_settings set value = '"${EVERY}"'::jsonb where key = 'billing.default_plan';`);
   // Every school starts as a new school does: on the plan the platform setting names.
   for (const school of [A, B, C, D, E, F, G, T]) await platform((c) => applyDefaultPlan(c, school, { userId: null, role: null }, 'school created for the test'));
 }, 120_000);
 afterAll(async () => db?.stop());
 
 describe('plans are rows, not code', () => {
-  it('the migration seeds one plan from what the constant was: every working module, a name, and no price', async () => {
+  it('the migration seeds one plan from what the constant was: every working module, a name, and no price; for test schools only (C219)', async () => {
     // C212 seeds three more, priced per student; this one keeps no price.
-    expect(await rows(`select plan_id, price_month_minor, price_year_minor, all_working_modules, module_ids, retired_at from plans where plan_id <> all($1::text[])`, [C212_SEEDS])).toEqual([{ plan_id: SEEDED, price_month_minor: null, price_year_minor: null, all_working_modules: true, module_ids: [], retired_at: null }]);
+    expect(await rows(`select plan_id, price_month_minor, price_year_minor, all_working_modules, module_ids, retired_at, test_schools_only from plans where plan_id <> all($1::text[]) and plan_id <> $2`, [C212_SEEDS, EVERY])).toEqual([{ plan_id: SEEDED, price_month_minor: null, price_year_minor: null, all_working_modules: true, module_ids: [], retired_at: null, test_schools_only: true }]);
     expect((await rows(`select name from plans where plan_id = $1`, [SEEDED]))[0].name).toMatch(/\S/);
     const plan = (await platform((c) => listPlans(c))).find((p) => p.planId === SEEDED)!;
     expect(plan.moduleIds).toEqual(workingModules());
     expect([plan.priceMonthMinor, plan.priceYearMinor]).toEqual([null, null]);
-    // Which plan a new school gets is a platform setting, not a constant.
-    expect(await platform((c) => defaultPlanId(c))).toBe(SEEDED);
-    expect(await rows(`select value from platform_settings where key = 'billing.default_plan'`)).toEqual([{ value: SEEDED }]);
+    // Which plan a new school gets is a platform setting, not a constant. The migrations moved it from the first plan
+    // to Starter (C219: a new school is a real school), audited; this test's setup then chose its own plan.
+    expect(await rows(`select actor_user_id, before_state ->> 'value' as was, after_state ->> 'value' as now from audit_log where event_action = 'platform_setting.update' and target_id = 'billing.default_plan'`)).toEqual([{ actor_user_id: null, was: SEEDED, now: 'starter' }]);
+    expect(await platform((c) => defaultPlanId(c))).toBe(EVERY);
+    expect(await rows(`select value from platform_settings where key = 'billing.default_plan'`)).toEqual([{ value: EVERY }]);
   });
 
   it('a new school gets the plan the setting names: its modules, its subscription row, not billed yet', async () => {
-    expect(await rows(`select plan from school_entitlements where school_id = $1`, [C])).toEqual([{ plan: SEEDED }]);
-    expect(await rows(`select plan_id, paid_until, billing_access from school_subscriptions where school_id = $1`, [C])).toEqual([{ plan_id: SEEDED, paid_until: null, billing_access: null }]);
+    expect(await rows(`select plan from school_entitlements where school_id = $1`, [C])).toEqual([{ plan: EVERY }]);
+    expect(await rows(`select plan_id, paid_until, billing_access from school_subscriptions where school_id = $1`, [C])).toEqual([{ plan_id: EVERY, paid_until: null, billing_access: null }]);
     const on = (await rows(`select module_id from school_module_entitlements where school_id = $1 and enabled and source = 'plan' order by 1`, [C])).map((r: { module_id: string }) => r.module_id);
     expect(on).toEqual([...workingModules()].sort());
   });
@@ -192,12 +200,13 @@ describe('plans are rows, not code', () => {
   it('the list on the screen comes from the table: a row added is listed with its name, price and how many schools are on it', async () => {
     const o = await platform((c) => billingOverview(c));
     expect(o.plans.filter((p) => !C212_SEEDS.includes(p.planId)).map((p) => [p.planId, p.name, p.priceMonthMinor, p.priceYearMinor, p.schools])).toEqual([
-      [SEEDED, (await rows(`select name from plans where plan_id = $1`, [SEEDED]))[0].name, null, null, 8],
+      [EVERY, 'Every Made-up', null, null, 8],
+      [SEEDED, (await rows(`select name from plans where plan_id = $1`, [SEEDED]))[0].name, null, null, 0],
       ['zebra-quartz', 'Zebra Quartz', 4_321_00, 43_210_00, 0],
     ]);
     // The seeded plans are rows too, listed by name, with no school on them: nothing was moved.
-    expect(o.plans.filter((p) => C212_SEEDS.includes(p.planId)).map((p) => [p.planId, p.schools])).toEqual(C212_SEEDS.map((id) => [id, 0]));
-    expect(o.defaultPlanId).toBe(SEEDED);
+    expect(o.plans.filter((p) => C212_SEEDS.includes(p.planId)).map((p) => [p.planId, p.schools])).toEqual([...C212_SEEDS].sort().map((id) => [id, 0])); // listed by name: Compass, Growth, Starter
+    expect(o.defaultPlanId).toBe(EVERY);
     expect(o.workingModules).toEqual(workingModules());
   });
 
@@ -231,7 +240,7 @@ describe('plans are rows, not code', () => {
     await expect(db.pg.query(`insert into plans (plan_id, name, grace_days, price_month_minor) values ('no-year', 'No year', 0, 100)`)).rejects.toThrow(/check constraint/);
     await expect(db.pg.query(`insert into plans (plan_id, name, grace_days, all_working_modules, module_ids) values ('both', 'Both', 0, true, '{students}')`)).rejects.toThrow(/check constraint/);
     await expect(db.pg.query(`insert into plans (plan_id, name, grace_days) values ('same-name', 'ZEBRA QUARTZ', 0)`)).rejects.toThrow(/unique/);
-    expect(await rows(`select count(*)::int as n from plans`)).toEqual([{ n: 2 + C212_SEEDS.length }]);
+    expect(await rows(`select count(*)::int as n from plans`)).toEqual([{ n: 3 + C212_SEEDS.length }]);
     // Each plan made or changed is audited as the platform's own event, which no school can read.
     expect(await rows(`select event_action, target_id, school_id, actor_user_id, after_state ->> 'price_month_minor' as price from audit_log where event_action like 'billing.plan%' and actor_user_id is not null order by audit_id`)).toEqual([{ event_action: 'billing.plan_created', target_id: 'zebra-quartz', school_id: null, actor_user_id: FOUNDER, price: '432100' }]);
     expect((await read(principalA, `select 1 from audit_log where event_action like 'billing.plan%'`))).toEqual([]);
@@ -282,7 +291,7 @@ describe('applying a plan switches on exactly its modules', () => {
     expect(await rows(`select limits from school_module_entitlements where school_id = $1 and module_id = 'students'`, [G])).toEqual([{ limits: {} }]);
 
     // Back on the plan that gives every working module: all of them, but still not the module the founder switched off.
-    expect((await platform((c) => applyPlan(c, G, SEEDED, founder, 'back to everything'))).ok).toBe(true);
+    expect((await platform((c) => applyPlan(c, G, EVERY, founder, 'back to everything'))).ok).toBe(true);
     expect(await onFor(G)).toEqual([...workingModules().filter((m) => m !== 'attendance'), 'payroll'].sort());
   });
 
@@ -290,19 +299,25 @@ describe('applying a plan switches on exactly its modules', () => {
     expect(await platform((c) => applyPlan(c, G, 'no-such-plan', founder, 'x y z'))).toEqual({ ok: false, error: 'unknown plan' });
     const history = (await platform((c) => entitlementHistory(c, G))).filter((h) => h.kind === 'plan_applied');
     expect(history.map((h) => [h.plan, h.actorName, h.reason])).toEqual([
-      [SEEDED, 'Farid Founder', 'back to everything'],
+      [EVERY, 'Farid Founder', 'back to everything'],
       ['other-made-up', 'Farid Founder', 'moved again'],
       ['small-made-up', 'Farid Founder', 'again'],
       ['small-made-up', 'Farid Founder', 'moved to the small plan'],
-      [SEEDED, null, 'school created for the test'],
+      [EVERY, null, 'school created for the test'],
     ]);
   });
 
   it('a retired plan is not given to a school that is not on it; a school on it keeps it; the plan new schools get cannot be retired', async () => {
     expect((await platform((c) => applyPlan(c, F, 'other-made-up', founder, 'on the plan before it is retired'))).ok).toBe(true);
     const kept = await planRows(F);
-    expect(await platform((c) => setPlanRetired(c, by, SEEDED, true))).toEqual({ ok: false, reason: 'is_default' });
+    expect(await platform((c) => setPlanRetired(c, by, EVERY, true))).toEqual({ ok: false, reason: 'is_default' });
     expect(await platform((c) => setPlanRetired(c, by, 'no-such-plan', true))).toEqual({ ok: false, reason: 'not_found' });
+    // The first plan is for test schools only (C219): never the plan for new schools, and never a real school's.
+    expect(await platform((c) => setDefaultPlan(c, by, SEEDED))).toEqual({ ok: false, reason: 'test_only' });
+    expect(await platform((c) => applyPlan(c, G, SEEDED, founder, 'to the test schools plan'))).toEqual({ ok: false, error: 'test schools only' });
+    expect(await rows(`select plan_id from school_subscriptions where school_id = $1`, [T])).toEqual([{ plan_id: EVERY }]);
+    expect((await platform((c) => applyPlan(c, T, SEEDED, founder, 'a test school may be on it'))).ok).toBe(true);
+    expect((await platform((c) => applyPlan(c, T, EVERY, founder, 'back for the next tests'))).ok).toBe(true);
     expect((await platform((c) => setPlanRetired(c, by, 'other-made-up', true))).ok).toBe(true);
     expect(await rows(`select retired_by, retired_at is not null as retired from plans where plan_id = 'other-made-up'`)).toEqual([{ retired_by: FOUNDER, retired: true }]);
 
@@ -314,7 +329,7 @@ describe('applying a plan switches on exactly its modules', () => {
     expect((await platform((c) => applyPlan(c, F, 'other-made-up', founder, 'the same plan again'))).ok).toBe(true);
     const o = await platform((c) => billingOverview(c));
     expect(o.plans.find((p) => p.planId === 'other-made-up')).toMatchObject({ retired: true, schools: 1 });
-    expect((await platform((c) => applyPlan(c, F, SEEDED, founder, 'back for the next tests'))).ok).toBe(true);
+    expect((await platform((c) => applyPlan(c, F, EVERY, founder, 'back for the next tests'))).ok).toBe(true);
   });
 
   it('the plan new schools get is changed in Control, and the next new school starts on it', async () => {
@@ -323,8 +338,8 @@ describe('applying a plan switches on exactly its modules', () => {
     const fresh = s(60);
     await db.pg.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'Fresh School', 'IN-HR')`, [fresh]);
     expect(await platform((c) => applyDefaultPlan(c, fresh, founder, 'a new school'))).toEqual({ planId: 'small-made-up', modules: ['attendance', 'fees', 'students'] });
-    expect(await rows(`select event_action, target_id, before_state ->> 'value' as was, after_state ->> 'value' as now from audit_log where event_action = 'platform_setting.update' and target_id = 'billing.default_plan'`)).toEqual([{ event_action: 'platform_setting.update', target_id: 'billing.default_plan', was: SEEDED, now: 'small-made-up' }]);
-    expect((await platform((c) => setDefaultPlan(c, by, SEEDED))).ok).toBe(true);
+    expect(await rows(`select event_action, target_id, before_state ->> 'value' as was, after_state ->> 'value' as now from audit_log where event_action = 'platform_setting.update' and target_id = 'billing.default_plan' and actor_user_id is not null`)).toEqual([{ event_action: 'platform_setting.update', target_id: 'billing.default_plan', was: EVERY, now: 'small-made-up' }]);
+    expect((await platform((c) => setDefaultPlan(c, by, EVERY))).ok).toBe(true);
     await db.pg.exec(`set session_replication_role = replica; delete from school_module_entitlements where school_id = '${fresh}'; delete from school_subscriptions where school_id = '${fresh}'; delete from school_entitlements where school_id = '${fresh}'; delete from schools where school_id = '${fresh}'; set session_replication_role = origin;`);
   });
 
@@ -334,9 +349,9 @@ describe('applying a plan switches on exactly its modules', () => {
     const r = await platform((c) => updatePlan(c, by, 'small-made-up', planInput({ name: 'Small Made-up', priceMonthMinor: 900_00, priceYearMinor: 9_000_00, graceDays: 3, allWorkingModules: false, moduleIds: ['students', 'homework'] })));
     expect(r).toMatchObject({ ok: true, plan: { priceMonthMinor: 900_00, priceYearMinor: 9_000_00, graceDays: 3, moduleIds: ['students', 'homework'] } });
     expect(await planRows(E)).toEqual(before);
-    expect(await rows(`select before_state -> 'module_ids' as was, after_state -> 'module_ids' as now, after_state ->> 'price_year_minor' as price from audit_log where event_action = 'billing.plan_changed'`)).toEqual([{ was: ['students', 'attendance', 'fees'], now: ['students', 'homework'], price: '900000' }]);
+    expect(await rows(`select before_state -> 'module_ids' as was, after_state -> 'module_ids' as now, after_state ->> 'price_year_minor' as price from audit_log where event_action = 'billing.plan_changed' and actor_user_id is not null`)).toEqual([{ was: ['students', 'attendance', 'fees'], now: ['students', 'homework'], price: '900000' }]);
     expect(await platform((c) => updatePlan(c, by, 'no-such-plan', planInput()))).toEqual({ ok: false, reason: 'not_found' });
-    expect((await platform((c) => applyPlan(c, E, SEEDED, founder, 'back for the next tests'))).ok).toBe(true);
+    expect((await platform((c) => applyPlan(c, E, EVERY, founder, 'back for the next tests'))).ok).toBe(true);
   });
 });
 
@@ -604,7 +619,7 @@ describe('recording a payment', () => {
     expect(o.schools).toHaveLength(8);
     expect(of(A)).toMatchObject({ schoolName: 'School A', planId: 'five-days', planName: 'Five Days Made-up', paidUntil: day(300), accessMode: 'full', state: 'paid', graceEndsAt: null, byBilling: false, isTest: false });
     expect(of(B)).toMatchObject({ state: 'suspended', accessMode: 'suspended', byBilling: false });
-    expect(of(C)).toMatchObject({ planId: SEEDED, paidUntil: null, state: 'not_billed', accessMode: 'full' });
+    expect(of(C)).toMatchObject({ planId: EVERY, paidUntil: null, state: 'not_billed', accessMode: 'full' });
     expect(of(D)).toMatchObject({ state: 'read_only', byBilling: false });
     expect(of(E)).toMatchObject({ state: 'grace', accessMode: 'grace', graceEndsAt: midnightStarting(day(4)), byBilling: true });
     expect(of(F)).toMatchObject({ state: 'grace', byBilling: false });
@@ -632,7 +647,7 @@ describe('the check’s own work, and a person’s, are told apart by what is st
     expect((await accessAudits(E)).at(-1)).toEqual({ actor_user_id: FOUNDER, was: 'grace', now: 'full', by: 'billing.payment', reason: `Payment recorded: paid until ${day(250)}. The grace period set by hand, to the end of ${day(60)}, is over.` });
     // A correction is for the plan of the row it corrects, even after the school has moved to another plan.
     const [{ payment_id: last }] = await rows(`select payment_id from subscription_payments where school_id = $1 and reference = 'bank made-up 12'`, [E]);
-    expect((await platform((c) => applyPlan(c, E, SEEDED, founder, 'moved after paying'))).ok).toBe(true);
+    expect((await platform((c) => applyPlan(c, E, EVERY, founder, 'moved after paying'))).ok).toBe(true);
     expect(await platform((c) => recordPayment(c, by, E, { amountMinor: 20_000_00, paidOn: TODAY, coversUntil: day(249), reference: 'bank made-up 12', note: 'a day too far', correctsPaymentId: last }))).toMatchObject({ ok: true, paidUntil: day(249) });
     expect(await rows(`select plan_id from subscription_payments where corrects_payment_id = $1`, [last])).toEqual([{ plan_id: 'five-days' }]);
   });

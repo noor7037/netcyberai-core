@@ -66,7 +66,7 @@ export async function POST(req: NextRequest, { params }: { params: { schoolId: s
     if ('refused' in run) return run.refused;
     const r = run.value;
     if (r.ok) return NextResponse.json({ ok: true, modules: r.modules.length, switchedOff: r.switchedOff.length });
-    return NextResponse.json({ error: 'the plan was not changed', code: r.error === 'not_found' ? 'not_found' : r.error === 'plan retired' ? 'retired' : 'plan' }, { status: r.error === 'not_found' ? 404 : 400 });
+    return NextResponse.json({ error: 'the plan was not changed', code: r.error === 'not_found' ? 'not_found' : r.error === 'plan retired' ? 'retired' : r.error === 'test schools only' ? 'test_only' : 'plan' }, { status: r.error === 'not_found' ? 404 : 400 });
   }
 
   if (b.action === 'period') {

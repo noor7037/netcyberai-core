@@ -130,14 +130,16 @@ const SPEND_FROM = `from m cross join schools s left join communication_log l on
 
 // One school's month: this month when none is given. In the caller's own transaction: the school's office reads its
 // own; the platform, any. The limit is the one set now: a limit is not kept month by month. (Control's list for a
-// month that is over reads the limit in force at that month's end from the audit log: messaging-cost.ts.)
+// month that is over reads the limit in force at that month's end from the audit log: messaging-cost.ts.) The
+// database answers it only to the people who read the school's whole message log (reads_school_message_totals(),
+// C219): anyone else gets no row, so no spend and no limit.
 export async function schoolSpend(db: Sql, schoolId: string, month?: string): Promise<Spend> {
   const r = (await db.query(
     `with ${monthCte('$2')}
      select to_char(m.first, 'YYYY-MM') as month, s.monthly_budget_paise as budget,
             ${SPEND_FIGURES}
        ${SPEND_FROM}
-      where s.school_id = $1 group by m.first, s.school_id, s.monthly_budget_paise`,
+      where s.school_id = $1 and public.reads_school_message_totals() group by m.first, s.school_id, s.monthly_budget_paise`,
     [schoolId, firstDay(month)]
   )).rows[0];
   return spendOf(r, month);

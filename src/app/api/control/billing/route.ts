@@ -7,7 +7,7 @@ import { asLiveStaff } from '@/lib/control/billing-route';
 // Control → Billing & Plans (docs/26 slice 8e, C204). NetCyberAI staff only.
 //   GET   the plans, which one a new school gets, and every school's plan, paid-until day, access and amount due
 //   POST  { planId, name, priceMonthRupees, priceYearRupees, graceDays, allWorkingModules, moduleIds, limits, features,
-//           messagesPerStudentMonth }  a new plan; both prices are per active student (C212)
+//           messagesPerStudentMonth }  a new plan; both prices are per enrolled student (C212)
 // A plan is changed or retired at /api/control/billing/plans/[planId]; a school's payments and plan at
 // /api/control/schools/[schoolId]/subscription.
 export const dynamic = 'force-dynamic';

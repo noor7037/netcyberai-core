@@ -70,8 +70,9 @@ import { inviteUserToSchool } from '@/lib/auth/admin-actions';
 import type { ClaimedJob } from '@/lib/jobs/types';
 import { workingModules } from '@/lib/frameworks/plans';
 
-// The id of the plan the migration seeds; the code itself names no plan (C204).
-const DEFAULT_PLAN_ID = 'standard';
+// The id of the plan new schools get, as the migrations leave it (C219: Starter; the first plan, 'standard', is for
+// test schools only); the code itself names no plan (C204).
+const DEFAULT_PLAN_ID = 'starter';
 
 const FOUNDER_ID = randomUUID();
 const APPLICANT = {
@@ -205,9 +206,11 @@ describe('approve: idempotent', () => {
     ]);
     expect(await count(`select count(*) n from audit_log where event_action = 'school.create'`)).toBe(1);
 
-    // The school starts on the default plan, written once with the school (C114).
+    // The school starts on the default plan, written once with the school (C114): a real school, so a plan for schools.
     const ent = await q(`select module_id, enabled, source from school_module_entitlements order by module_id`);
-    expect(ent).toEqual([...workingModules()].sort().map((module_id) => ({ module_id, enabled: true, source: 'plan' })));
+    const planModules: string[] = (await q(`select module_ids from plans where plan_id = $1 and not test_schools_only`, [DEFAULT_PLAN_ID]))[0].module_ids;
+    expect(ent).toEqual(planModules.filter((m) => workingModules().includes(m as never)).sort().map((module_id) => ({ module_id, enabled: true, source: 'plan' })));
+    expect(await q(`select plan_id from school_subscriptions`)).toEqual([{ plan_id: DEFAULT_PLAN_ID }]);
     expect(await q(`select plan, access_mode from school_entitlements`)).toEqual([{ plan: DEFAULT_PLAN_ID, access_mode: 'full' }]);
     expect(await count(`select count(*) n from audit_log where event_action = 'entitlement.plan_applied'`)).toBe(1);
   });

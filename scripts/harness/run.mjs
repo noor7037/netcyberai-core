@@ -1753,6 +1753,9 @@ const clearBilling = async () => {
 };
 const billingPlans = async (page) => {
   await clearBilling();
+  // The seed's school is recorded on the first plan, which is for test schools only (C219): Control has put this real
+  // school on a plan for schools, so a payment has a plan to be for.
+  await db.pg.query(`insert into school_subscriptions (school_id, plan_id) values ($1, 'growth')`, [SCHOOL]);
   // Grace set by hand, to the end of the day three days from now in India (Control stores 23:59:59 of that day).
   await db.pg.exec(`update school_entitlements set access_mode = 'grace', grace_ends_at = (((now() at time zone 'Asia/Kolkata')::date + 4)::timestamp at time zone 'Asia/Kolkata') - interval '1 second' where school_id = '${SCHOOL}';`);
   await page.reload({ waitUntil: 'networkidle' });
@@ -1810,7 +1813,7 @@ const schoolInGrace = async (page) => {
   await clearBilling();
   await db.pg.exec(`
     insert into school_subscriptions (school_id, plan_id, paid_until, billing_access, billing_grace_ends_at, billing_access_since)
-    values ('${SCHOOL}', 'standard', (now() at time zone 'Asia/Kolkata')::date - 1, 'grace', (((now() at time zone 'Asia/Kolkata')::date + 15)::timestamp at time zone 'Asia/Kolkata'), (now() at time zone 'Asia/Kolkata')::date);
+    values ('${SCHOOL}', 'compass', (now() at time zone 'Asia/Kolkata')::date - 1, 'grace', (((now() at time zone 'Asia/Kolkata')::date + 15)::timestamp at time zone 'Asia/Kolkata'), (now() at time zone 'Asia/Kolkata')::date);
     update school_entitlements e set access_mode = 'grace', grace_ends_at = s.billing_grace_ends_at from school_subscriptions s where s.school_id = e.school_id and e.school_id = '${SCHOOL}';`);
   await page.reload({ waitUntil: 'networkidle' });
   const line = page.locator('[data-access-notice="grace"]');
@@ -2938,17 +2941,19 @@ const clearGrading = async () => {
   if (examsEntitlementBefore === null) await db.pg.query(`delete from school_module_entitlements where school_id = $1 and module_id = 'exams'`, [SCHOOL]);
   else await db.pg.query(`update school_module_entitlements set enabled = $2, source = $3 where school_id = $1 and module_id = 'exams'`, [SCHOOL, examsEntitlementBefore.enabled, examsEntitlementBefore.source]);
 };
-// The principal records CBSE, starts from its preset and sees its source and the gap the document prints (41 to 44,
-// as printed); moves C2 down to 41, which closes it; tries 42 (now C2) and saves version 1.
+// NetCyberAI has recorded CBSE in Control (C219: the board is changed in Control only); the principal sees it, read
+// only, with the words that say who records it; starts from its preset and sees its source and the gap the document
+// prints (41 to 44, as printed); moves C2 down to 41, which closes it; tries 42 (now C2) and saves version 1.
 let gradingSeen = null;
 const gradingScheme = async (page) => {
   await clearGrading();
   await examsOn();
+  await db.pg.query(`update schools set board_id = 'cbse' where school_id = $1`, [SCHOOL]); // as Control records it
   await page.reload({ waitUntil: 'networkidle' });
   await page.locator('[data-scheme-empty]').waitFor({ timeout: 20000 });
-  await page.locator('#scheme-board').selectOption('cbse');
-  await page.locator('[data-scheme-board-save]').click();
-  await page.locator('[data-scheme-note="ok"]').waitFor({ timeout: 20000 });
+  const boardName = await page.locator('[data-scheme-board-name]').textContent();
+  const boardControl = await page.locator('[data-scheme-board-control]').textContent();
+  const boardPickers = await page.locator('#scheme-board, [data-scheme-board-save]').count();
   await page.locator('[data-scheme-start-preset="Classes IX-X"]').click();
   await page.locator('[data-scheme-editor]').waitFor({ timeout: 20000 });
   const printed = await page.locator('[data-gap="41-44"][data-as-printed="yes"]').count();
@@ -2963,7 +2968,7 @@ const gradingScheme = async (page) => {
   const tried = await page.locator('[data-scheme-try-line="grade"]').textContent();
   const passLine = await page.locator('[data-scheme-try-line="pass"]').textContent();
   await page.evaluate(() => window.scrollTo(0, 0));
-  gradingSeen = { printed, documentSays, source, gapsAfter, tried, passLine };
+  gradingSeen = { printed, documentSays, source, gapsAfter, tried, passLine, boardName, boardControl, boardPickers };
 };
 const gradingSchemeDone = async () => {
   const { rows } = await db.pg.query(
@@ -2974,10 +2979,12 @@ const gradingSchemeDone = async () => {
     [SCHOOL]
   );
   await clearGrading();
-  const want = [{ version: 1, made_by: PEOPLE.principal.sub, from_cbse: true, c2_from: '41', board_id: 'cbse', board_set_by: PEOPLE.principal.sub, audits: 2 }];
+  // The board is the one Control recorded (no school person's name on it); the principal saved the scheme only.
+  const want = [{ version: 1, made_by: PEOPLE.principal.sub, from_cbse: true, c2_from: '41', board_id: 'cbse', board_set_by: null, audits: 1 }];
   if (JSON.stringify(rows) !== JSON.stringify(want)) throw new Error(`the grading scheme in the database: ${JSON.stringify(rows)}`);
   const seen = gradingSeen ?? {};
   if (seen.printed !== 1 || seen.documentSays < 1 || seen.source !== CBSE_DOC || seen.gapsAfter !== '0-32' || !/is rounded to 42: grade C2\./.test(seen.tried ?? '') || !/pass mark of 33: passed/.test(seen.passLine ?? '')) throw new Error(`the grading scheme on the screen: ${JSON.stringify(seen)}`);
+  if (!/CBSE/.test(seen.boardName ?? '') || !/NetCyberAI records your school’s board, in Control/.test(seen.boardControl ?? '') || seen.boardPickers !== 0) throw new Error(`the board on the screen: ${JSON.stringify(seen)}`);
 };
 // A CISCE school starts from the ICSE preset: the grades and pass mark of the Regulations, and it is asked for the
 // mark ranges they do not give. Nothing is saved.
@@ -3268,8 +3275,9 @@ let rcHadFixture;
 const clearReportCards = async () => {
   await db.pg.exec(`set session_replication_role = replica;
     delete from report_remarks where school_id = '${SCHOOL}';
+    delete from co_scholastic_grades where school_id = '${SCHOOL}';
     delete from exam_publications where school_id = '${SCHOOL}';
-    delete from audit_log where school_id = '${SCHOOL}' and event_action in ('exam.published', 'exam.reopened', 'exam.remarks_saved');
+    delete from audit_log where school_id = '${SCHOOL}' and event_action in ('exam.published', 'exam.reopened', 'exam.remarks_saved', 'exam.co_scholastic_saved');
     set session_replication_role = origin;`);
 };
 const rcFixture = async ({ earlier }) => {
@@ -3290,7 +3298,7 @@ const rcFixture = async ({ earlier }) => {
   }
   await db.pg.query(`update exam_papers set entered_by = $2 where paper_id = $1`, [X_MATHS, PEOPLE.teacher.sub]);
   if (rcSubscriptionBefore === undefined) rcSubscriptionBefore = (await db.pg.query(`select plan_id from school_subscriptions where school_id = $1`, [SCHOOL])).rows[0] ?? null;
-  await db.pg.query(`insert into school_subscriptions (school_id, plan_id) values ($1, 'premium') on conflict (school_id) do update set plan_id = 'premium'`, [SCHOOL]);
+  await db.pg.query(`insert into school_subscriptions (school_id, plan_id) values ($1, 'compass') on conflict (school_id) do update set plan_id = 'compass'`, [SCHOOL]);
   if (!earlier) return;
   // An earlier exam, "Unit test 0 (harness)", forty days ago: every child Mathematics 16 and 4 (40 percent) and English
   // 20 and 5 (50). Published through the app as the principal, so each child's own history is real.
@@ -3357,7 +3365,7 @@ const rcPublishDone = async () => {
 // Tara, the class teacher, writes roll 1's remark and the principal publishes, both through the app (so each child's
 // own progress is kept). The school admin shows roll 1's card and downloads it as a PDF: Unit test 0 had Mathematics
 // 40 and English 50; now 60 and 54. Personal Best in Mathematics (60 against her own 40); English's 4 points are under
-// the floor; Most Improved, Mathematics. The plan is Premium for these screens.
+// the floor; Most Improved, Mathematics. The plan is Compass for these screens.
 const RC_REMARK = 'Reads aloud with confidence and helps her group with sums.';
 // The database keeps a record's keys in its own order: compared with the keys sorted.
 const rcCanon = (v) => JSON.stringify(v, (_, x) => (x && typeof x === 'object' && !Array.isArray(x) ? Object.fromEntries(Object.entries(x).sort(([a], [b]) => (a < b ? -1 : 1))) : x));
@@ -3407,8 +3415,11 @@ const rcCardDone = async () => {
 // lessons marked "Taught" for unit 1 (30 and 25 days ago) and unit 3 (20 days ago), and the exam "Unit test (harness
 // 9d)" whose 5-A Mathematics paper, 15 days ago, assesses units 1 and 4. So: 1 taught and assessed, 2 skipped, 3 taught
 // not assessed, 4 assessed before it was taught, 5 not taught yet. The module is switched on for the school (the seed
-// predates it). Each screen's check takes every row away and puts the switch back as it was.
+// predates it). Each screen's check takes every row away and puts the switch back as it was. The screen is for one
+// academic session (C219): the exam belongs to the school's current session (one is made for the fixture when the
+// school has none), and the lessons fall on its days.
 const G_EXAM = '00000000-0000-4000-8000-00000009de01';
+const G_SESSION = '00000000-0000-4000-8000-00000009dc01';
 const G_PAPER = '00000000-0000-4000-8000-00000009df01';
 const G_LESSONS = ['00000000-0000-4000-8000-00000009dd01', '00000000-0000-4000-8000-00000009dd02', '00000000-0000-4000-8000-00000009dd03'];
 const G_5A = '00000000-0000-4000-8000-0000000c0051';
@@ -3419,6 +3430,7 @@ const gapClear = async () => {
   await db.pg.query(`delete from exam_papers where paper_id = $1`, [G_PAPER]);
   await db.pg.query(`delete from exams where exam_id = $1`, [G_EXAM]);
   await db.pg.query(`delete from syllabus_progress where progress_id = any ($1::uuid[])`, [G_LESSONS]);
+  await db.pg.query(`delete from academic_sessions where session_id = $1`, [G_SESSION]);
 };
 const gapUnit = async (topic) => (await db.pg.query(`select unit_id from syllabus_units where school_id = $1 and class_id = $2 and subject_id = $3 and topic = $4`, [SCHOOL, G_5A, G_MATHS, topic])).rows[0].unit_id;
 const gapFixture = async () => {
@@ -3432,7 +3444,9 @@ const gapFixture = async () => {
       [id, SCHOOL, G_TARA, G_5A, G_MATHS, indiaDay(back), unit]
     );
   }
-  await db.pg.query(`insert into exams (exam_id, school_id, name, created_by) values ($1, $2, 'Unit test (harness 9d)', $3)`, [G_EXAM, SCHOOL, PEOPLE.principal.sub]);
+  const current = (await db.pg.query(`select session_id from academic_sessions where school_id = $1 and is_current`, [SCHOOL])).rows[0]?.session_id ?? null;
+  if (!current) await db.pg.query(`insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current) values ($1, $2, 'Harness session 9d', $3::date, $4::date, true)`, [G_SESSION, SCHOOL, indiaDay(60), indiaDayFromNow(300)]);
+  await db.pg.query(`insert into exams (exam_id, school_id, name, created_by, session_id) values ($1, $2, 'Unit test (harness 9d)', $3, $4)`, [G_EXAM, SCHOOL, PEOPLE.principal.sub, current ?? G_SESSION]);
   await db.pg.query(
     `insert into exam_papers (paper_id, school_id, exam_id, class_id, subject_id, paper_date, unit_ids, components, created_by)
      values ($1, $2, $3, $4, $5, $6::date, $7::uuid[], $8::jsonb, $9)`,
@@ -3466,6 +3480,7 @@ const gapPrincipal = async (page) => {
     counts: await page.locator('[data-gap-count]').evaluateAll((els) => els.map((e) => `${e.getAttribute('data-gap-count')}:${e.querySelector('span')?.textContent}`)),
     classes: await page.locator('#gap-class option').evaluateAll((els) => els.map((e) => e.textContent)),
     skipped: (await page.locator('[data-gap-state="skipped"] [data-gap-later]').textContent()) ?? '',
+    session: (await page.locator('#gap-session').evaluate((e) => e.options[e.selectedIndex]?.textContent ?? '')) ?? '',
   };
 };
 const gapPrincipalDone = async () => {
@@ -3477,9 +3492,10 @@ const gapPrincipalDone = async () => {
     counts: ['assessed-before-taught:1', 'taught-assessed:1', 'taught-not-assessed:1', 'skipped:1', 'not-yet-taught:1'],
     classes: ['5-A', '5-B', '6-A'],
   };
-  const { skipped, ...rest } = gapSeen ?? {};
+  const { skipped, session, ...rest } = gapSeen ?? {};
   if (JSON.stringify(rest) !== JSON.stringify(want)) throw new Error(`the gaps on the screen: ${JSON.stringify(gapSeen)}`);
   if (!/Fractions on the number line/.test(skipped)) throw new Error(`the skipped unit does not say which later unit was taught: ${skipped}`);
+  if (!/\(current\)$/.test(session ?? '')) throw new Error(`the session shown is not the current one: ${session}`);
 };
 // Tara, a teacher: only her own class is offered; English has no map in 5-A, so it says "Not set up", never zeros.
 let gapTeacherSeen = null;
@@ -3530,6 +3546,7 @@ const clearGenome = async () => {
     delete from homework_status where target_id in (select target_id from homework_targets where title like 'Genome worksheet %');
     delete from homework_targets where title like 'Genome worksheet %';
     delete from homework where title like 'Genome worksheet %';
+    delete from exam_publications where exam_id in ('${GN(1)}', '${GN(2)}');
     delete from marks where paper_id in (select paper_id from exam_papers where exam_id in ('${GN(1)}', '${GN(2)}'));
     delete from exam_papers where exam_id in ('${GN(1)}', '${GN(2)}');
     delete from exams where exam_id in ('${GN(1)}', '${GN(2)}');
@@ -3562,6 +3579,14 @@ const genomeFixture = async () => {
     }
   }
   await db.pg.query(`update exam_papers set entered_by = $2 where exam_id = any ($1::uuid[])`, [[GN(1), GN(2)], PEOPLE.teacher.sub]);
+  // Both exams are published for 5-A (C219: an exam counts once it is published), by the scheme in force.
+  for (const examId of [GN(1), GN(2)]) {
+    await db.pg.query(
+      `insert into exam_publications (school_id, exam_id, class_id, version, scheme_version, scheme, published_by)
+       select $1, $2, $3, 1, g.version, g.scheme, $4 from grading_schemes g where g.school_id = $1 order by g.version desc limit 1`,
+      [SCHOOL, examId, GN_5A, PEOPLE.principal.sub]
+    );
+  }
   // Homework: Mathematics due 25 to 30 days ago (he did the first two), English 6 to 8 days ago (he did all three).
   const work = [...[0, 1, 2, 3, 4, 5].map((i) => [GN_MATHS, 25 + i, i < 2]), ...[0, 1, 2].map((i) => [GN_ENGLISH, 6 + i, true])];
   for (const [i, [subjectId, back, done]] of work.entries()) {
@@ -3608,7 +3633,8 @@ const genomeSeen = async (page) => {
 const genomeFromRows = async () => {
   const percents = (await db.pg.query(
     `select round(100.0 * m.score / m.max_score)::int as pct from marks m join exam_papers p on p.paper_id = m.paper_id
-      where m.student_id = $1 and p.subject_id = $2 and p.entered_by is not null and p.exam_id in ($3, $4) order by p.paper_date`,
+      where m.student_id = $1 and p.subject_id = $2 and p.exam_id in ($3, $4)
+        and exists (select 1 from exam_publications x where x.exam_id = p.exam_id and x.class_id = p.class_id and x.reopened_at is null) order by p.paper_date`,
     [GN_CHILD, GN_MATHS, GN(1), GN(2)]
   )).rows.map((r) => r.pct);
   const hw = (await db.pg.query(
@@ -3669,7 +3695,9 @@ const genomeTeacherDone = async () => {
   await genomePutBack();
   const seen = genomeTeacherSeen ?? {};
   if (JSON.stringify(seen.classes) !== JSON.stringify(['5-A']) || JSON.stringify(seen.refused) !== JSON.stringify([404, 404])) throw new Error(`the teacher's genome: ${JSON.stringify(seen)}`);
-  if (seen.remembered !== `?class=${GN_5A}&child=${GN_CHILD}` || !/lessons you taught yourself/.test(seen.ownLessons ?? '') || seen.ranked !== false) throw new Error(`the teacher's genome: ${JSON.stringify(seen)}`);
+  // A teacher of the child's class reads every chapter's replies, as the office does (C217, at integration): the
+  // chapters are checked against the rows below; the screen no longer says "lessons you taught yourself".
+  if (seen.remembered !== `?class=${GN_5A}&child=${GN_CHILD}` || !/Chapters/.test(seen.ownLessons ?? '') || seen.ranked !== false) throw new Error(`the teacher's genome: ${JSON.stringify(seen)}`);
   if (JSON.stringify(seen.chapters) !== JSON.stringify(rows.chapters) || JSON.stringify(seen.mathsPercents) !== JSON.stringify(rows.percents.map((p) => `${p}% · Grade B`))) throw new Error(`the teacher's genome: ${JSON.stringify(seen)} against ${JSON.stringify(rows)}`);
 };
 // p6-9e end
@@ -3696,6 +3724,7 @@ const ewmMark = (g, paper) => {
 };
 const clearEarlyWarningMarks = async () => {
   await db.pg.exec(`set session_replication_role = replica;
+    delete from exam_publications where school_id = '${SCHOOL}' and exam_id in ('${EWM_UT}', '${EWM_HY}');
     delete from marks where school_id = '${SCHOOL}' and exam_id in ('${EWM_UT}', '${EWM_HY}');
     delete from exam_papers where school_id = '${SCHOOL}' and exam_id in ('${EWM_UT}', '${EWM_HY}');
     delete from exams where school_id = '${SCHOOL}' and exam_id in ('${EWM_UT}', '${EWM_HY}');
@@ -3723,6 +3752,10 @@ const earlyWarningMarksFixture = async () => {
       ${papers.map(([key, exam, subject, back]) => `('${EWM_PAPERS[key]}', '${SCHOOL}', '${exam}', '${CLASS_5A}', '${subject}', '${parts}'::jsonb, '${PEOPLE.principal.sub}', '${PEOPLE.teacher.sub}', now() - interval '${back - 1} days')`).join(',\n      ')};
     insert into marks (school_id, exam_id, subject_id, paper_id, component, student_id, kind, score, max_score, entered_by) values
       ${marks.join(',\n      ')};
+    -- Both published for 5-A (C219: an exam counts for Early Warning once it is published).
+    insert into exam_publications (school_id, exam_id, class_id, version, scheme_version, scheme, published_by) values
+      ('${SCHOOL}', '${EWM_UT}', '${CLASS_5A}', 1, 1, '${JSON.stringify(scheme)}'::jsonb, '${PEOPLE.principal.sub}'),
+      ('${SCHOOL}', '${EWM_HY}', '${CLASS_5A}', 1, 1, '${JSON.stringify(scheme)}'::jsonb, '${PEOPLE.principal.sub}');
     set session_replication_role = origin;`);
 };
 // What Aarav's marks reason must say, by hand from the marks above.
@@ -3817,13 +3850,13 @@ const earlyWarningMarksTeacherDone = async () => {
 };
 // p6-9f end
 // c212-pricing begin
-// Control → Billing & Plans, priced per active student (C212). Two screens.
+// Control → Billing & Plans, priced per enrolled student (C212, C219). Two screens.
 // 1. The plan form: the founder opens Growth (a plan the migration seeds as data) and types a new price a month per
 //    student; the yearly price is filled in as ten months. Nothing is saved: the check finds the plan as it was.
 // 2. A school's terms and its amount due: the seeded school is billed on Growth for this screen (a subscription row
 //    only; its modules stay as the seed left them). The founder chooses a year, adds a minimum of 30 students, a
 //    discount of 10 percent and Parent AI complimentary for 30 days, each with a reason. The check works the amount
-//    out again from the rows (max(active students, minimum) x the yearly price, less the discount rounded half up),
+//    out again from the rows (max(enrolled students, minimum) x the yearly price, less the discount rounded half up),
 //    compares it with the screen, and puts everything back.
 const PRICING_REASON = 'harness-c212 agreed with the school';
 const PRICING_FREE_DAYS = 30;
@@ -3856,7 +3889,7 @@ const pricingFormDone = async () => {
   if (JSON.stringify(after) !== JSON.stringify(pricingGrowthBefore)) throw new Error(`the Growth plan changed though nothing was saved: ${JSON.stringify(after)}`);
   const seen = pricingFormSeen ?? {};
   // The form opens on the stored prices, and the yearly one follows the monthly one as ten months.
-  if (seen.yearBefore !== '300' || seen.year !== '320' || !/₹30\.00 a month or ₹300\.00 a year, per active student/.test(seen.price ?? '')) throw new Error(`the plan form's prices: ${JSON.stringify(seen)}`);
+  if (seen.yearBefore !== '300' || seen.year !== '320' || !/₹30\.00 a month or ₹300\.00 a year, per enrolled student/.test(seen.price ?? '')) throw new Error(`the plan form's prices: ${JSON.stringify(seen)}`);
   // The messages included are left empty by the seed; the features and a module not built yet are listed as stored.
   if (seen.messages !== '' || !/not set yet/.test(seen.messagesLine ?? '') || seen.features !== 'principal-dashboard,staff-leave' || seen.examsListed !== true) throw new Error(`the plan form's other fields: ${JSON.stringify(seen)}`);
 };
@@ -3904,7 +3937,7 @@ const pricingTerms = async (page) => {
     before,
     period: await school.locator('[data-billing-period]').textContent(),
     schoolAmount: await school.locator('[data-billing-amount]').textContent(),
-    active: await school.locator('[data-billing-active]').textContent(),
+    enrolled: await school.locator('[data-billing-enrolled]').textContent(),
     amountDue: await school.locator('[data-billing-amount-due]').textContent(),
     working: await school.locator('[data-billing-working]').textContent(),
     terms: await school.locator('[data-billing-term]').evaluateAll((els) => els.map((e) => `${e.getAttribute('data-billing-term')}:${e.getAttribute('data-billing-term-state')}`).sort().join()),
@@ -3913,7 +3946,7 @@ const pricingTerms = async (page) => {
 };
 const pricingTermsDone = async () => {
   const { rows } = await db.pg.query(
-    `select (select count(*)::int from students where school_id = $1 and status = 'active') as active,
+    `select (select count(*)::int from students where school_id = $1 and status = 'active') as enrolled,
             (select price_year_minor from plans where plan_id = 'growth') as year_price,
             (select billing_period from school_subscriptions where school_id = $1) as period,
             (select count(*)::int from school_billing_terms where school_id = $1 and created_by = $2 and reason = $3 and starts_on = $4::date) as terms,
@@ -3931,7 +3964,7 @@ const pricingTermsDone = async () => {
   if (JSON.stringify(back) !== JSON.stringify(pricingParentAiBefore)) throw new Error(`Parent AI was not put back: ${JSON.stringify(back)}`);
   if (r.period !== 'year' || r.terms !== 3 || r.minimum !== 30 || r.discount !== 1000 || r.free_until !== indiaDayFromNow(PRICING_FREE_DAYS) || r.term_audits !== 3 || r.period_audits !== 1 || r.parent_ai !== 'true complimentary') throw new Error(`a school's terms, in the database: ${JSON.stringify(r)}`);
   // The amount, worked out here again from the rows, to the paisa.
-  const billed = Math.max(r.active, r.minimum);
+  const billed = Math.max(r.enrolled, r.minimum);
   const gross = billed * Number(r.year_price);
   const amount = gross - Math.floor((gross * r.discount + 5000) / 10000);
   const seen = pricingTermsSeen ?? {};
@@ -3939,7 +3972,7 @@ const pricingTermsDone = async () => {
     before: 'Choose a month or a year first',
     period: 'A year',
     schoolAmount: `${pricingMoney(amount)} for a year`,
-    active: `Active students: ${r.active}`,
+    enrolled: `Enrolled students: ${r.enrolled}`,
     amountDue: `Amount due for a year: ${pricingMoney(amount)}`,
     terms: 'complimentary:in_force,discount:in_force,minimum:in_force',
   };
@@ -3951,6 +3984,61 @@ const pricingTermsDone = async () => {
   }
 };
 // c212-pricing end
+// c219 begin
+// Co-scholastic grades (C219), on C215's fixture. The school saves a scheme version with two co-scholastic areas (made
+// up) graded A to C, shown on the report card. Tara, the class teacher of 5-A, chooses roll 1's grades on the report
+// cards screen and saves them through the app. The check reads them back, then takes away the grades, the scheme
+// version and the audit row, and puts C215's fixture back.
+const RC_CO = { areas: ['Work Education', 'Art Education'], grades: [{ grade: 'A', meaning: 'Outstanding', pass: true }, { grade: 'B', meaning: null, pass: true }, { grade: 'C', meaning: null, pass: true }] };
+let rcCoSchemeBefore;
+let rcCoSeen = null;
+const rcCoScholastic = async (page) => {
+  await rcFixture({ earlier: false });
+  rcCoSchemeBefore = Number((await db.pg.query(`select coalesce(max(version), 0) as v from grading_schemes where school_id = $1`, [SCHOOL])).rows[0].v);
+  await db.pg.query(
+    `insert into grading_schemes (school_id, version, scheme, made_by)
+     select school_id, version + 1, jsonb_set(jsonb_set(scheme, '{coScholastic}', $2::jsonb), '{layout,coScholastic}', 'true'::jsonb), $3
+       from grading_schemes where school_id = $1 order by version desc limit 1`,
+    [SCHOOL, JSON.stringify(RC_CO), PEOPLE.principal.sub]
+  );
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-rc-co-child]').first().waitFor({ timeout: 20000 });
+  const first = page.locator(`[data-rc-child="${xKid(1)}"]`);
+  await first.locator('[data-rc-co="Work Education"]').selectOption('A');
+  await first.locator('[data-rc-co="Art Education"]').selectOption('B');
+  await page.locator('[data-rc-co-save]').click();
+  await page.locator('[data-rc-note="ok"]').waitFor({ timeout: 20000 });
+  rcCoSeen = {
+    note: await page.locator('[data-rc-note="ok"]').textContent(),
+    how: await page.locator('[data-rc-co-how]').textContent(),
+    options: await first.locator('[data-rc-co="Work Education"] option').evaluateAll((els) => els.map((e) => e.textContent)),
+    chosen: await first.locator('[data-rc-co]').evaluateAll((els) => els.map((e) => e.value)),
+    saveNow: await page.locator('[data-rc-co-save]').textContent(),
+  };
+  await first.scrollIntoViewIfNeeded();
+};
+const rcCoScholasticDone = async () => {
+  const { rows } = await db.pg.query(
+    `select g.student_id, g.area, g.grade, g.written_by,
+            (select count(*)::int from audit_log a where a.school_id = g.school_id and a.event_action = 'exam.co_scholastic_saved' and a.actor_user_id = g.written_by and (a.after_state ->> 'saved')::int = 2) as audits
+       from co_scholastic_grades g where g.school_id = $1 and g.exam_id = $2 order by g.area`,
+    [SCHOOL, X_EXAM]
+  );
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from co_scholastic_grades where school_id = '${SCHOOL}';
+    delete from grading_schemes where school_id = '${SCHOOL}' and version > ${Number(rcCoSchemeBefore ?? 0)};
+    set session_replication_role = origin;`);
+  rcCoSchemeBefore = undefined;
+  await rcPutBack();
+  const t = PEOPLE.teacher.sub;
+  const want = [{ student_id: xKid(1), area: 'Art Education', grade: 'B', written_by: t, audits: 1 }, { student_id: xKid(1), area: 'Work Education', grade: 'A', written_by: t, audits: 1 }];
+  if (JSON.stringify(rows) !== JSON.stringify(want)) throw new Error(`the co-scholastic grades in the database: ${JSON.stringify(rows)}`);
+  const seen = rcCoSeen ?? {};
+  const wantSeen = { note: 'Co-scholastic grades saved.', options: ['Not graded', 'A (Outstanding)', 'B', 'C'], chosen: ['A', 'B'], saveNow: 'No co-scholastic grade has changed.' };
+  const { how, ...rest } = seen;
+  if (JSON.stringify(rest) !== JSON.stringify(wantSeen) || !/frozen with the marks/.test(how ?? '')) throw new Error(`the co-scholastic grades on the screen: ${JSON.stringify(seen)}`);
+};
+// c219 end
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -4476,6 +4564,9 @@ const SCREENS = [
   ['founder', 'control-billing-plan-form', '/control/billing-plans', pricingForm, pricingFormDone],
   ['founder', 'control-billing-terms', '/control/billing-plans', pricingTerms, pricingTermsDone],
   // c212-pricing end
+  // c219 begin
+  ['teacher', 'app-exams-co-scholastic', `/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`, rcCoScholastic, rcCoScholasticDone],
+  // c219 end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed

@@ -84,7 +84,7 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['classes/*', 'setup'],
   // c210-ui end
   // p6-9a begin
-  // The grading scheme and the school's board (C213): switched off, nobody saves a version or records the board.
+  // The grading scheme (C213): switched off, nobody saves a version. The board is recorded in Control only (C219).
   ['exams/scheme', 'exams'],
   // p6-9a end
   // p6-9b begin

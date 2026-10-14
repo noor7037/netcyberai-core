@@ -370,6 +370,10 @@ ALLOWED_PERMISSIVE = (
         # C212: a school's own terms. Tenant isolation, and a restrictive policy below lets no role it applies to read them.
         ("school_billing_terms", "school_billing_terms_tenant_isolation"),
         # c212-pricing end
+        # c219 begin
+        # C219: co-scholastic grades. Tenant isolation, narrowed by the RESTRICTIVE policies required below.
+        ("co_scholastic_grades", "co_scholastic_grades_tenant_isolation"),
+        # c219 end
     }
 )
 
@@ -632,6 +636,16 @@ REQUIRED_RESTRICTIVE = {
     ("school_billing_terms", "school_billing_terms_nobody"),
     ("audit_log", "audit_billing_terms_platform_only"),
     # c212-pricing end
+    # c219 begin
+    # C219: only the principal and the school admin update their own school's row (and only its profile columns, by
+    # column grants and a trigger). A co-scholastic grade is read by the three roles that run exams and a teacher of
+    # the class; written, changed and cleared by those three or the class teacher, in their own name.
+    ("schools", "schools_profile_by_office"),
+    ("co_scholastic_grades", "co_scholastic_grades_readers"),
+    ("co_scholastic_grades", "co_scholastic_grades_written"),
+    ("co_scholastic_grades", "co_scholastic_grades_changed"),
+    ("co_scholastic_grades", "co_scholastic_grades_cleared"),
+    # c219 end
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)

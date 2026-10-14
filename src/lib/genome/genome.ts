@@ -16,9 +16,8 @@ import { DEFAULT_GENOME_SETTINGS, findings, GENOME_READERS, type ChapterGenome, 
 //
 //   - EXAMS: per subject, the child's own percent in each exam, by percent() and grade() through the class result's
 //     own shown() (src/lib/exams/results.ts), so the genome and the class result never disagree about a paper.
-//     Which exams count: those whose paper of the child's class and subject is recorded as entered (COUNTED_PAPER).
-//     Report cards and publishing (slice 9c, C215) change this to the published exams; until then an entered paper
-//     is the nearest thing to a result, and the screen says "marks entered".
+//     Which exams count: those published for the paper's class, while the publication is in force (COUNTED_PAPER:
+//     docs/27, C219). A class the principal has reopened to correct a mark is left out until it is published again.
 //   - HOMEWORK: per subject, the child's homework_status rows (done or not) for homework due in the days looked back.
 //   - CHAPTERS: per chapter of a class's syllabus map, the parents' Daily Pulse replies about this child, "needs help"
 //     (tier 2) and "understood" (tier 1), to the lessons of its taught units: pulse_response_log →
@@ -35,9 +34,9 @@ import { DEFAULT_GENOME_SETTINGS, findings, GENOME_READERS, type ChapterGenome, 
 
 export type Actor = { schoolId: string; userId: string; role: SchoolRole };
 
-// The papers that count, as SQL on exam_papers p. Slice 9c (C215) replaces this with the exam's publication for the
-// class; the genome reads nothing else about it.
-export const COUNTED_PAPER = `p.entered_by is not null`;
+// The papers that count, as SQL on exam_papers p: their exam is published for their class, and the publication is in
+// force (not reopened). Read under the reader's own row level security, as the papers are.
+export const COUNTED_PAPER = `exists (select 1 from exam_publications x where x.school_id = p.school_id and x.exam_id = p.exam_id and x.class_id = p.class_id and x.reopened_at is null)`;
 
 // The school's lines: its own settings, or the schema's defaults. The settings engine takes any number between a
 // field's minimum and maximum: points and "in every 100" keep a decimal a school typed; a count of replies, of

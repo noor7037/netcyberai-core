@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
-import { saveScheme, schemeScreen, setOwnBoard } from '@/lib/exams/schemes';
+import { saveScheme, schemeScreen } from '@/lib/exams/schemes';
 
 // The school's grading scheme (docs/27 row 9a, C213).
 //   GET   the school's board, the boards and their presets, the scheme in force and its versions
 //         (principal, school admin, academic coordinator)
 //   POST  { action: 'save', scheme, fromPresetId | null, basedOn }  a new version (principal, school admin)
-//   POST  { action: 'board', boardId | null }                         record the school's board (principal, school admin)
+// The school's board is recorded by NetCyberAI in Control only (C219): this route does not change it.
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
@@ -21,12 +21,6 @@ export async function POST(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
     const b = await readJson(req);
     const actor = { schoolId: claims.schoolId, userId: claims.sub, role: claims.role };
-    if (b?.action === 'board') {
-      const r = await setOwnBoard(db, actor, b.boardId);
-      if (r.ok) return NextResponse.json({ ok: true, changed: r.changed });
-      if (r.reason === 'not_allowed') return ruleError(403, 'not_allowed');
-      return jsonError(400, 'the board was not recorded', { code: r.reason });
-    }
     if (b?.action === 'save') {
       const r = await saveScheme(db, actor, { scheme: b.scheme, fromPresetId: b.fromPresetId, basedOn: b.basedOn });
       if (r.ok) return NextResponse.json({ ok: true, version: r.version }, { status: 201 });

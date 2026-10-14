@@ -2,12 +2,13 @@ import { writeAuditLog } from '@/lib/audit/log';
 import type { SchoolRole } from '@/lib/contracts/modules';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { Sql } from '@/lib/jobs/types';
-import { listBoards, loadPreset, schoolBoard, setSchoolBoard, type Board } from './boards';
+import { listBoards, loadPreset, schoolBoard, type Board } from './boards';
 import { validateScheme, type BoardPreset, type GradingScheme, type Problem } from './scheme';
 
 // The school's grading scheme (docs/27 row 9a, C213). Saving makes a new version; the latest version is in force;
-// nothing is overwritten. The principal and the school admin save it and record the school's board; the academic
-// coordinator reads it. Runs in the caller's own tenant transaction: row level security holds the same rules.
+// nothing is overwritten. The principal and the school admin save it; the academic coordinator reads it. The school's
+// board is shown here and recorded by NetCyberAI in Control only (C219: a school changes only its own name and address
+// on its schools row). Runs in the caller's own tenant transaction: row level security holds the same rules.
 
 export const SCHEME_EDITORS: readonly SchoolRole[] = ['principal', 'school_admin'];
 export const SCHEME_READERS: readonly SchoolRole[] = ['principal', 'school_admin', 'academic_coordinator'];
@@ -104,11 +105,4 @@ export async function saveScheme(db: Sql, actor: Actor, input: { scheme: unknown
     if (e.code === '23505' || (e.code === '23514' && /right after the latest one/.test(e.message ?? ''))) return { ok: false, reason: 'newer_version' };
     throw err;
   }
-}
-
-// The principal or the school admin records the school's board from the scheme screen.
-export async function setOwnBoard(db: Sql, actor: Actor, boardId: unknown) {
-  if (actor.role !== 'principal' && actor.role !== 'school_admin') return { ok: false as const, reason: 'not_allowed' as const };
-  if (boardId !== null && (typeof boardId !== 'string' || !/^[a-z][a-z0-9-]{1,39}$/.test(boardId))) return { ok: false as const, reason: 'no_board' as const };
-  return setSchoolBoard(db, { userId: actor.userId, role: actor.role }, actor.schoolId, boardId);
 }

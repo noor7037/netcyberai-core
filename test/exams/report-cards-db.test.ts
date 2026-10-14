@@ -133,7 +133,7 @@ beforeAll(async () => {
       ('${A}', '${K1}', '${C5A}', '2026-08-06', 'present'), ('${A}', '${K1}', '${C5A}', '2026-03-20', 'present');
     insert into school_module_entitlements (school_id, module_id, enabled, source) select s, 'exams', true, 'plan' from unnest(array['${A}', '${B}']::uuid[]) s
       on conflict (school_id, module_id) do update set enabled = true;
-    insert into school_subscriptions (school_id, plan_id) values ('${A}', 'premium');
+    insert into school_subscriptions (school_id, plan_id) values ('${A}', 'compass');
   `);
   await owner(`insert into grading_schemes (school_id, version, scheme, made_by) values ($1, 1, $2::jsonb, $3)`, [A, JSON.stringify(V1), PRINCIPAL]);
   // Unit test 1: 5-A Mathematics (Theory 40, Internal 10) and English (Theory 50); 5-B Mathematics.
@@ -402,7 +402,7 @@ describe('“with the feature, their own Personal Best and Most Improved, and wi
       }
       expect((await as(principal, (c) => reportCardsScreen(c, actor(principal), E2.id, C5A)))!.recognitionOn).toBe(false);
     } finally {
-      await owner(`update school_subscriptions set plan_id = 'premium' where school_id = $1`, [A]);
+      await owner(`update school_subscriptions set plan_id = 'compass' where school_id = $1`, [A]);
     }
   });
 

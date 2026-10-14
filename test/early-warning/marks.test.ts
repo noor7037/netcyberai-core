@@ -10,6 +10,7 @@ import { readMarks, type ChildExam } from '@/lib/early-warning/marks';
 import { DEFAULT_SETTINGS, EARLY_WARNING_RULE_VERSION, NIGHTLY_CHECK_JOB, REASONS, type MarksEvidence } from '@/lib/early-warning/rules';
 import { makeExam } from '@/lib/exams/exams';
 import { saveMarks } from '@/lib/exams/marks';
+import { publishClass, reopenClass } from '@/lib/exams/publish';
 import type { Mark } from '@/lib/exams/papers';
 import { classResult } from '@/lib/exams/results';
 import { settingsSchemaFor } from '@/lib/frameworks/settings-schemas';
@@ -24,11 +25,12 @@ import { indiaDate } from '@/lib/time/india';
 
 // Early Warning v2, the marks signal (docs/27 row 9f, C218). The acceptance test: "After a publish, the next check
 // opens or updates a flag with the marks reason and its evidence for a child whose own marks fell past the line. A
-// child above it is not flagged. Fees are never a signal. Nothing reaches a parent." Until the report-card slice
-// adds publishing (C215), an exam counts for a class once every paper of it for that class is entered: "after a
-// publish" is proven here as "after the last paper is entered". Proven on the whole schema as the app's own database
-// role, through the app's own code (makeExam, saveMarks, "Check now", the nightly check, the route) and by going to
-// the database directly. Every name and mark is made up.
+// child above it is not flagged. Fees are never a signal. Nothing reaches a parent." An exam counts for a class
+// once it is published for that class, and only while that publication is in force (docs/27, C219): entered is not
+// enough, and a class the principal reopens to correct a mark is left out until it is published again. Proven on the
+// whole schema as the app's own database role, through the app's own code (makeExam, saveMarks, publishClass,
+// reopenClass, "Check now", the nightly check, the route) and by going to the database directly. Every name and mark
+// is made up.
 
 const state = vi.hoisted(() => ({ claims: null as unknown, tenant: null as unknown }));
 vi.mock('@/lib/auth/require-session', () => ({ requireSession: async () => state.claims }));
@@ -127,7 +129,7 @@ const CLASS_5A = [ASHA, BELA, CHIRAG, DEV, ESHA, FARAH];
 const CLASS_6B = [GOPAL, HINA];
 
 type Exam = { examId: string; papers: { m5a: string; e5a: string; s5a: string; m6b: string } };
-const exams: { unitTest?: Exam; halfYearly?: Exam } = {};
+const exams: { unitTest?: Exam; halfYearly?: Exam; practice?: Exam } = {};
 const entry = (studentId: string, cell: Cell) => (cell === 'A' ? { studentId, component: 'marks', kind: 'absent', score: null } : cell === 'X' ? { studentId, component: 'marks', kind: 'exempt', score: null } : { studentId, component: 'marks', kind: 'score', score: cell });
 // The office makes an exam with a paper of 50 for each subject of 5-A and for Mathematics in 6-B (makeExam).
 const make = async (name: string): Promise<Exam> => {
@@ -158,6 +160,16 @@ const enter = async (exam: Exam, which: keyof Exam['papers'], marks: Record<stri
   const who = which === 'm6b' ? tarun : tara;
   const saved = await as(who, (c) => saveMarks(c, actor(who), exam.papers[which], children.map((s) => entry(s, marks[s][index]))));
   expect(saved, which).toMatchObject({ ok: true, complete: true });
+};
+
+// The office publishes an exam for a class (every paper of it entered, and the school's scheme saved).
+const publish = async (exam: Exam, classId: string, who: Who = principal) => expect(await as(who, (c) => publishClass(c, actor(who), exam.examId, classId)), `publish ${classId}`).toMatchObject({ ok: true });
+// The principal reopens it, with a reason, to correct a mark; it is then published again.
+const reopen = async (exam: Exam, classId: string) => expect(await as(principal, (c) => reopenClass(c, actor(principal), exam.examId, classId, 'a mark was entered wrongly'))).toMatchObject({ ok: true });
+const correct = async (exam: Exam, classId: string, change: () => Promise<unknown>) => {
+  await reopen(exam, classId);
+  await change();
+  await publish(exam, classId);
 };
 
 type Row = { flag_id: string; name: string; reasons: string[]; evidence: { marks?: MarksEvidence } & Record<string, unknown>; rule_version: number; opened_by: string | null; opened_by_job: string | null; closed: boolean; closed_reason: string | null; notified_parent: boolean };
@@ -349,9 +361,11 @@ describe('on the real schema', () => {
   afterAll(async () => db?.stop());
 
   describe('“After a publish, the next check opens or updates a flag with the marks reason and its evidence for a child whose own marks fell past the line.”', () => {
-    it('before an exam’s papers for a class are all entered, it is not counted: only Asha’s follow-up gives a flag', async () => {
+    it('before an exam is published for a class, it is not counted: only Asha’s follow-up gives a flag', async () => {
       exams.unitTest = await make('Unit test 1');
       for (const p of ['m5a', 'e5a', 's5a', 'm6b'] as const) await enter(exams.unitTest, p, UNIT_TEST);
+      await publish(exams.unitTest, C5A);
+      await publish(exams.unitTest, C6B, coordinator);
       exams.halfYearly = await make('Half-yearly');
       // The half-yearly's Mathematics paper of 5-A is entered, with Chirag's low mark; English, Science and 6-B are not yet.
       await enter(exams.halfYearly, 'm5a', HALF_YEARLY);
@@ -361,11 +375,15 @@ describe('on the real schema', () => {
       expect((await open()).map((f) => [f.name, f.reasons, f.rule_version])).toEqual([['Asha', ['needs_help'], 2]]);
     });
 
-    it('once the last paper is entered, the next check opens flags for marks and adds the reason to an open flag', async () => {
+    it('every paper entered is not yet a result: once the class is published, the next check opens flags for marks and adds the reason to an open flag', async () => {
       const asha = (await openOf('Asha'))!;
       await enter(exams.halfYearly!, 'e5a', HALF_YEARLY);
       await enter(exams.halfYearly!, 's5a', HALF_YEARLY);
       await enter(exams.halfYearly!, 'm6b', HALF_YEARLY);
+      // Every paper entered, nothing published: still only Asha's follow-up.
+      expect(await check(principal, 5)).toMatchObject({ opened: 0, changed: 0, kept: 1, closed: 0, open: 1 });
+      await publish(exams.halfYearly!, C5A);
+      await publish(exams.halfYearly!, C6B);
       const before = await sentOrQueued();
       expect(await check(coordinator, 10)).toEqual({ ok: true, students: 8, attendanceUsed: 0, opened: 3, changed: 1, kept: 0, closed: 0, open: 4 });
       const rows = await open();
@@ -412,9 +430,11 @@ describe('on the real schema', () => {
 
     it('running it again changes nothing; a correction to an earlier exam brings the evidence up to date without making that exam the latest', async () => {
       expect(await check(principal, 11)).toMatchObject({ opened: 0, changed: 0, kept: 4, closed: 0, open: 4 });
-      // The coordinator corrects Asha's Unit test 1 Mathematics mark from 40 to 41.5: that paper is recorded as
-      // entered again, in her name, now: after every paper of the half-yearly.
-      expect(await as(coordinator, (c) => saveMarks(c, actor(coordinator), exams.unitTest!.papers.m5a, [entry(ASHA, 41.5)]))).toMatchObject({ ok: true, complete: true });
+      // A published class's marks are frozen: the correction waits for the principal to reopen it.
+      expect(await as(coordinator, (c) => saveMarks(c, actor(coordinator), exams.unitTest!.papers.m5a, [entry(ASHA, 41.5)]))).toMatchObject({ ok: false });
+      // Reopened, the coordinator corrects Asha's Unit test 1 Mathematics mark from 40 to 41.5: that paper is recorded
+      // as entered again, in her name, now: after every paper of the half-yearly. Then it is published again.
+      await correct(exams.unitTest!, C5A, async () => expect(await as(coordinator, (c) => saveMarks(c, actor(coordinator), exams.unitTest!.papers.m5a, [entry(ASHA, 41.5)]))).toMatchObject({ ok: true, complete: true }));
       const entered = (await db.pg.query(`select exam_id, max(entered_at) as last from exam_papers where school_id = $1 group by exam_id`, [A])).rows;
       const last = (id: string) => new Date(entered.find((r: { exam_id: string }) => r.exam_id === id).last).getTime();
       expect(last(exams.unitTest!.examId)).toBeGreaterThan(last(exams.halfYearly!.examId));
@@ -449,11 +469,11 @@ describe('on the real schema', () => {
     });
 
     it('a mark corrected above the line takes the reason away at the next check, and the flag closes', async () => {
-      // Farah's Mathematics 37.5 becomes 40: 115 of 150 is 77, a fall of 13.
-      expect(await as(tara, (c) => saveMarks(c, actor(tara), exams.halfYearly!.papers.m5a, [entry(FARAH, 40)]))).toMatchObject({ ok: true, complete: true });
+      // Farah's Mathematics 37.5 becomes 40: 115 of 150 is 77, a fall of 13. Reopened, corrected, published again.
+      await correct(exams.halfYearly!, C5A, async () => expect(await as(tara, (c) => saveMarks(c, actor(tara), exams.halfYearly!.papers.m5a, [entry(FARAH, 40)]))).toMatchObject({ ok: true, complete: true }));
       expect(await check(admin, 30)).toMatchObject({ opened: 0, closed: 1, open: 3 });
       expect((await stored()).find((f) => f.name === 'Farah')).toMatchObject({ closed: true, closed_reason: 'signals_cleared', reasons: ['marks'] });
-      await as(tara, (c) => saveMarks(c, actor(tara), exams.halfYearly!.papers.m5a, [entry(FARAH, 37.5)]));
+      await correct(exams.halfYearly!, C5A, () => as(tara, (c) => saveMarks(c, actor(tara), exams.halfYearly!.papers.m5a, [entry(FARAH, 37.5)])));
     });
 
     it('the lines are the school’s settings: stricter lines flag fewer, looser more, and each flag says the numbers it used', async () => {
@@ -571,6 +591,8 @@ describe('on the real schema', () => {
       const practice: Exam = { examId, papers: { m5a: of(C5A, MATHS), e5a: of(C5A, ENGLISH), s5a: of(C5A, SCIENCE), m6b: of(C6B, MATHS) } };
       const full = Object.fromEntries([...CLASS_5A.map((s) => [s, [50, 50, 50]]), ...CLASS_6B.map((s) => [s, [50]])]) as Record<string, Cell[]>;
       for (const p of ['m5a', 'e5a', 's5a', 'm6b'] as const) await enter(practice, p, full);
+      await publish(practice, C5A);
+      await publish(practice, C6B);
       await clearFlags();
       await check(principal, 50);
       // Sat a month ago: the half-yearly and the unit test (no paper dated: the day each was made, today) are later.
@@ -579,9 +601,30 @@ describe('on the real schema', () => {
       expect((await open()).map((f) => [f.name, f.reasons])).toEqual([['Asha', ['needs_help', 'marks']], ['Chirag', ['marks']], ['Dev', ['marks']], ['Farah', ['marks']], ['Gopal', ['marks']]]);
       expect((await openOf('Asha'))!.evidence.marks).toMatchObject({ exam: { name: 'Half-yearly' }, previous: { name: 'Unit test 1' }, fell: { by: 21 } });
       expect((await openOf('Dev'))!.evidence.marks).toMatchObject({ exam: { name: 'Half-yearly', percent: 47 }, previous: { name: 'Practice test', percent: 100 }, fell: { by: 53, points: 15 } });
-      // The office moves its papers to tomorrow: now it is the latest, full marks everywhere, and no marks reason is left.
+      // The office moves its papers to tomorrow (reopened, moved, published again): now it is the latest, full marks
+      // everywhere, and no marks reason is left.
+      await reopen(practice, C5A);
+      await reopen(practice, C6B);
       expect((await run(principal, `update exam_papers set paper_date = $2 where exam_id = $1`, [examId, day(-1)])).rowCount).toBe(4);
+      await publish(practice, C5A);
+      await publish(practice, C6B);
       expect(await check(principal, 51)).toMatchObject({ opened: 0, changed: 1, closed: 4, open: 1 });
+      expect((await open()).map((f) => [f.name, f.reasons])).toEqual([['Asha', ['needs_help']]]);
+      exams.practice = practice;
+    });
+
+    it('an exam reopened for a class is not counted for it until it is published again', async () => {
+      const practice = exams.practice!;
+      // The practice test, the latest exam, is reopened for 5-A: for 5-A's children the half-yearly is their latest
+      // again, and its falls come back (Dev has no earlier result again, and one subject below is not a reason); 6-B's
+      // practice test still counts, so Gopal has none.
+      await reopen(practice, C5A);
+      expect(await check(principal, 52)).toMatchObject({ opened: 2, changed: 1, closed: 0, open: 3 });
+      expect((await open()).map((f) => [f.name, f.reasons])).toEqual([['Asha', ['needs_help', 'marks']], ['Chirag', ['marks']], ['Farah', ['marks']]]);
+      expect((await openOf('Asha'))!.evidence.marks).toMatchObject({ exam: { name: 'Half-yearly' }, previous: { name: 'Unit test 1' } });
+      // Published again, it counts again.
+      await publish(practice, C5A);
+      expect(await check(principal, 53)).toMatchObject({ opened: 0, changed: 1, closed: 2, open: 1 });
       expect((await open()).map((f) => [f.name, f.reasons])).toEqual([['Asha', ['needs_help']]]);
     });
   });

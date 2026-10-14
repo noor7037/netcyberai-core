@@ -416,13 +416,14 @@ describe('who gets which report', () => {
     expect(still).toBe(7);
   });
 
-  // The pairs the database alone would answer: a teacher's own classes' attendance, homework, Daily Pulse and
-  // messages, which are theirs to read on their own screens (role policies on attendance, pulse_messages,
-  // pulse_response_log and communication_log since C210 refuse the accountant and the coordinator). For these the
-  // report's own role list is what refuses, before any query runs (the test above). Every other pair is refused by
-  // the database itself, which the test below proves pair by pair.
+  // The pairs the database alone would answer: a teacher's own classes' attendance, homework and Daily Pulse, which
+  // are theirs to read on their own screens (role policies on attendance, pulse_messages, pulse_response_log and
+  // communication_log since C210 refuse the accountant and the coordinator). For these the report's own role list is
+  // what refuses, before any query runs (the test above). Every other pair is refused by the database itself, which
+  // the test below proves pair by pair. Since C219 that includes a teacher's messages-by-state: the school's message
+  // totals are answered only to those who read its whole log (reads_school_message_totals()).
   const HELD_BY_THE_LIST_ONLY: Record<string, ReportId[]> = {
-    teacher: ['attendance-by-class', 'absentees', 'homework-coverage', 'pulse-coverage', 'messages-by-state'],
+    teacher: ['attendance-by-class', 'absentees', 'homework-coverage', 'pulse-coverage'],
   };
 
   it('and the database itself: the report’s own query, run in the role’s session with no check in code, gives nothing', async () => {

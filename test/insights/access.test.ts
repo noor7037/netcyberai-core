@@ -40,16 +40,11 @@ const GIVEN: Record<SchoolRole, FactId[]> = {
 };
 
 // attendance, pulse_messages, pulse_response_log and communication_log carry role policies (C210), so the database
-// itself refuses every pair but these, which the fact's own role list keeps from the role (loadFact, proven above):
-//   - an accountant's "classes not marked today" is every class with a student on its roll: the accountant reads
-//     the classes and the roll, and no mark, so no class looks marked. Nothing of attendance is read.
-//   - a teacher's message numbers count the messages about their own classes, which the teacher's own screens read
-//     (the Daily Pulse counts, a guardian's card, the thread with a guardian), not the school's.
-// The test then fails if a pair ever comes back.
-const HELD_BY_THE_REGISTRY_ONLY: Partial<Record<SchoolRole, FactId[]>> = {
-  accountant: ['attendance.classes_unmarked'],
-  teacher: inOrder(MESSAGES),
-};
+// itself refuses every pair. C210 left five to the fact's own role list (an accountant's "classes not marked today",
+// every class with a student on its roll; a teacher's message totals and spend, their own classes' messages); C219
+// gives them database rules too (reads_attendance_days(), reads_school_message_totals()), so none is left. The test
+// fails if a pair ever comes back.
+const HELD_BY_THE_REGISTRY_ONLY: Partial<Record<SchoolRole, FactId[]>> = {};
 
 describe('who gets which fact, on the whole schema', () => {
   beforeAll(async () => {
@@ -119,7 +114,7 @@ describe('who gets which fact, on the whole schema', () => {
         pairs += 1;
       }
     }
-    // Every pair the database alone would let through is among them.
+    // Every pair is refused by the library too (the database refuses them all as well: the next test).
     expect(pairs).toBeGreaterThan(Object.values(HELD_BY_THE_REGISTRY_ONLY).flat().length);
     // In the role's real session too: nothing is read, and the transaction goes on.
     const still = await asWho(db, accountant, async (c) => {
@@ -158,6 +153,42 @@ describe('who gets which fact, on the whole schema', () => {
       }
     }
     expect(notRefused).toEqual(HELD_BY_THE_REGISTRY_ONLY);
+    expect(notRefused).toEqual({});
+  });
+
+  it('the five pairs C210 left to the role list get nothing from the database itself (C219), and the roles that are given them still are', async () => {
+    const range = rangeFor(TODAY, '30d');
+    const direct = (w: Who, id: FactId) =>
+      asWho(db, w, async (c) => {
+        await c.query('savepoint direct');
+        try {
+          return await FACTS.find((f) => f.id === id)!.load(c, factContext(who(w), TODAY, range));
+        } catch {
+          await c.query('rollback to savepoint direct');
+          return null;
+        }
+      });
+    // An accountant's "classes not marked": the day's list of classes is answered no class at all, so the fact is
+    // "not set up", where C210 counted every class with a student on its roll.
+    expect(await direct(accountant, 'attendance.classes_unmarked')).toMatchObject({ state: 'not_set_up', value: null });
+    expect(await asWho(db, accountant, async (c) => (await c.query(`select public.reads_attendance_days() as yes`)).rows[0].yes)).toBe(false);
+    // The accountant keeps the classes and the students the fees need.
+    expect(await asWho(db, accountant, async (c) => (await c.query(`select (select count(*)::int from classes) as classes, (select count(*)::int from students) as students`)).rows[0])).toEqual({ classes: expect.any(Number), students: 9 });
+    expect((await asWho(db, accountant, async (c) => (await c.query(`select count(*)::int as n from classes`)).rows[0].n)) > 0).toBe(true);
+    // A teacher's message totals and spend: nothing at all, where C210 counted their own classes' messages.
+    for (const id of MESSAGES) {
+      const got = await direct(tara, id);
+      expect(got === null || got.state === 'not_set_up' || got.value === 0, id).toBe(true);
+    }
+    expect(await direct(tara, 'whatsapp.spend')).toMatchObject({ state: 'not_set_up', value: null });
+    expect(await asWho(db, tara, async (c) => (await c.query(`select public.reads_school_message_totals() as yes`)).rows[0].yes)).toBe(false);
+    // The roles the facts are for are answered as before.
+    const office = byId(await ids(principal));
+    expect(office['attendance.classes_unmarked'].state ?? 'ok').toBe('ok');
+    expect(office['messages.total'].value).toBeGreaterThan(0);
+    expect((await direct(tara, 'attendance.classes_unmarked'))!.state ?? 'ok').toBe('ok');
+    expect(await asWho(db, coordinator, async (c) => (await c.query(`select public.reads_attendance_days() as yes`)).rows[0].yes)).toBe(true);
+    expect(await asWho(db, admin, async (c) => (await c.query(`select public.reads_school_message_totals() as yes`)).rows[0].yes)).toBe(true);
   });
 
   it('leave and covers: the database itself keeps other people’s leave to the office, and who is away to the people who arrange cover', async () => {

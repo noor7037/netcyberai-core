@@ -35,7 +35,8 @@ const names = (rows: { displayName: string }[]) => rows.map((r) => r.displayName
 beforeAll(async () => {
   db = await createTestDb();
   await db.platform(async (q) => {
-    await q.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'A', 'IN-HR'), ($2, 'B', 'IN-DL')`, [A, B]);
+    // Test schools: the plan with every module is for test schools only (C219).
+    await q.query(`insert into schools (school_id, name, jurisdiction, is_test_fixture) values ($1, 'A', 'IN-HR', true), ($2, 'B', 'IN-DL', true)`, [A, B]);
     await q.query(
       `insert into classes (class_id, school_id, name, section) values ($1, $4, '8-A', 'A'), ($2, $4, '8-B', 'B'), ($3, $5, '8-A', 'A')`,
       [classA1, classA2, classB1, A, B]
@@ -269,7 +270,7 @@ describe('entitlements', () => {
 describe('plans', () => {
   it('applying a plan switches its modules on, keeps the founder’s own switches, and is idempotent', async () => {
     const C = randomUUID();
-    await db.platform((q) => q.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'C', 'IN-HR')`, [C]));
+    await db.platform((q) => q.query(`insert into schools (school_id, name, jurisdiction, is_test_fixture) values ($1, 'C', 'IN-HR', true)`, [C]));
     const founderActor = { userId: founder, role: 'super_admin' as const };
     await db.platform((q) => changeModuleEntitlement(q, { schoolId: C, moduleId: 'attendance', enabled: false, reason: 'not yet' }, founderActor));
     const first = await db.platform((q) => applyPlan(q, C, DEFAULT_PLAN_ID, founderActor, 'backfill'));
