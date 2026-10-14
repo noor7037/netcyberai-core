@@ -76,11 +76,11 @@ export const PILOT_FAQS: FaqItem[] = [
 export const FREE_TOOLS_FAQS: FaqItem[] = [
   {
     question: 'Are the free tools really free?',
-    answer: 'Yes. Every tool and certificate generator is free and unlimited, with no login and no watermark.',
+    answer: 'Yes. Every tool and certificate generator is free and unlimited, with no login and no watermark, including certificates for a whole class from one CSV file.',
   },
   {
     question: 'Is anything I type sent to NetCyberAI?',
-    answer: 'No. The tools run in your browser. Certificates are made on your device and cleared when you close the tab. Nothing is uploaded or saved on our side.',
+    answer: 'No. The tools run in your browser and nothing is uploaded or saved on our side. Your school’s own details can be saved in this browser so every tool fills them in; student details stay in the tab unless you save them to a file.',
   },
   {
     question: 'Can I print or share the results?',

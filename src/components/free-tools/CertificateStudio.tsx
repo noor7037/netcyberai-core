@@ -18,21 +18,44 @@ import {
   type CertValues,
   type TemplateId,
 } from '@/lib/certificates/definitions';
+import {
+  BATCH_TABLES,
+  BULK_LIMIT,
+  BULK_MAX_BYTES,
+  SCHOOL_IDS,
+  buildBatch,
+  issuedFrom,
+  nextNumber,
+  numbersInSequence,
+  readCsv,
+  registerRows,
+  selectDefaults,
+  templateCsv,
+  type Issued,
+} from '@/lib/certificates/bulk';
+import { EMPTY_SETTINGS, fillFromProfile, mergeIntoProfile, profileLogo, readSettings, writeSettings, type StudioSettings } from '@/lib/certificates/studio-settings';
 import { FONTS, renderCertificateSvg, type Measure } from '@/lib/certificates/render';
-import { A4_300DPI } from '@/lib/pdf/jpeg-pdf';
+import { formatDate } from '@/lib/certificates/words';
+import { A4_300DPI, type JpegPage } from '@/lib/pdf/jpeg-pdf';
 import { canvasToJpeg, downloadBlob, pdfBlob, safeFilename, shareFile, svgToCanvas } from '@/lib/pdf/browser';
 import { toCsv } from '@/lib/free-tools/report';
+import { hasProfile } from '@/lib/free-tools/school-profile';
 import { ImagePicker } from './ImagePicker';
 import { usePrint } from './PrintPortal';
 import { LockedFeatures } from './LockedFeatures';
+import { SchoolProfilePanel } from './SchoolProfilePanel';
+import { shrinkLogoForProfile } from './profile-logo';
+import { useSchoolProfile } from './useSchoolProfile';
 
-// The free certificate studio. Every value typed and every image chosen
-// lives only in this component's memory: no storage, no upload, no
-// server rendering. Closing, refreshing or pressing "Clear everything"
-// removes all of it. Free and unlimited, with no login (founder, C79).
-// Bulk generation and auto-send are shown as NetCyberAI features.
+// The free certificate studio. Student details, signatures and stamps live
+// only in this component's memory: no upload, no server rendering, never
+// written to storage. Closing, refreshing or pressing "Clear everything"
+// removes them. Free and unlimited, with no login (founder, C79).
+// The school's own details and logo are filled in from, and can be saved
+// to, the school profile kept in this browser (C198-B); the design, the
+// next certificate number and the academic year are remembered too. Many
+// certificates can be made at once from a CSV, as one PDF.
 
-const SCHOOL_IDS = new Set([...SCHOOL_FIELDS.map((f) => f.id), 'signName', 'signTitle']);
 const inputCls =
   'min-h-[44px] w-full rounded-md border border-slate/20 bg-white px-3 text-base text-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire';
 const btn =
@@ -40,22 +63,7 @@ const btn =
 const solid = `${btn} bg-sapphire text-white hover:bg-sapphire/90`;
 const action = `${btn} bg-tangerine text-slate hover:bg-tangerine/90`;
 const quiet = `${btn} border border-slate/20 bg-white text-slate hover:bg-off-white`;
-
-interface Issued {
-  no: string;
-  type: string;
-  name: string;
-  admissionNo: string;
-  date: string;
-}
-
-// "SPS/TC/2026/041" -> "SPS/TC/2026/042", keeping leading zeros.
-export function nextNumber(no: string): string {
-  const m = no.match(/^(.*?)(\d+)(\D*)$/);
-  if (!m) return no;
-  const n = String(Number(m[2]) + 1).padStart(m[2].length, '0');
-  return `${m[1]}${n}${m[3]}`;
-}
+const BOM = String.fromCharCode(0xfeff); // so Excel opens the CSV as UTF-8
 
 function useMeasure(): Measure {
   const ctx = useRef<CanvasRenderingContext2D | null>(null);
@@ -72,10 +80,22 @@ function blankRows(def: CertDef): CertRows {
   return Object.fromEntries((def.tables ?? []).map((t) => [t.id, [Object.fromEntries(t.columns.map((c) => [c.id, '']))]]));
 }
 
-function defaultsFor(def: CertDef): CertValues {
-  const out: CertValues = {};
-  for (const f of def.fields) if (f.kind === 'select' && f.options?.length) out[f.id] = f.options[0];
-  return out;
+// One A4 page as JPEG bytes. The canvas is released straight away, so a
+// batch holds only the compressed pages, never hundreds of canvases.
+async function svgToJpeg(svg: string, quality: number): Promise<JpegPage> {
+  const sized = svg.replace('width="210mm" height="297mm"', `width="${A4_300DPI.w}" height="${A4_300DPI.h}"`);
+  const canvas = await svgToCanvas(sized);
+  try {
+    return await canvasToJpeg(canvas, quality);
+  } finally {
+    canvas.width = canvas.height = 0;
+  }
+}
+
+const yieldToBrowser = () => new Promise<void>((resolve) => window.setTimeout(resolve, 0));
+
+function downloadCsv(rows: string[][], filename: string) {
+  downloadBlob(new Blob([BOM + toCsv(rows)], { type: 'text/csv;charset=utf-8' }), filename);
 }
 
 function FieldInput({ f, value, onChange, idPrefix }: { f: CertField; value: string; onChange: (v: string) => void; idPrefix: string }) {
@@ -132,7 +152,7 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
   const def = findCertDef(type) as CertDef;
   const [template, setTemplate] = useState<TemplateId>(def.templates[0]);
   const [school, setSchool] = useState<CertValues>({});
-  const [values, setValues] = useState<CertValues>(() => defaultsFor(def));
+  const [values, setValues] = useState<CertValues>(() => selectDefaults(def));
   const [rows, setRows] = useState<CertRows>(() => blankRows(def));
   const [images, setImages] = useState<CertDoc['images']>({});
   const [options, setOptions] = useState({ stampBox: true, qr: false });
@@ -141,10 +161,30 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
   const [problems, setProblems] = useState<string[]>([]);
   const [status, setStatus] = useState('');
   const [busy, setBusy] = useState(false);
+  const [schoolMsg, setSchoolMsg] = useState('');
+  const [savingSchool, setSavingSchool] = useState(false);
   const measure = useMeasure();
   const { print, portal } = usePrint();
   const profileRef = useRef<HTMLInputElement>(null);
+  const { profile, loaded, save: saveSchool } = useSchoolProfile();
+  // School fields typed in this session keep what was typed when the saved
+  // profile changes; every other field follows the profile.
+  const edited = useRef(new Set<string>());
+  const logoEdited = useRef(false);
+  const settings = useRef<StudioSettings>(EMPTY_SETTINGS);
+  // While the example's fictional numbers are on screen they are never
+  // remembered as the school's next number.
+  const fromExample = useRef(false);
 
+  // ---- many at once --------------------------------------------------------------
+  const [coarse, setCoarse] = useState(false);
+  const [bulkFile, setBulkFile] = useState<{ name: string; table: string[][] } | null>(null);
+  const [bulkMsg, setBulkMsg] = useState('');
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
+  const [bulkOut, setBulkOut] = useState<{ blob: Blob; filename: string; title: string; list: Issued[] } | null>(null);
+  const cancelRef = useRef(false);
+  const bulkFileRef = useRef<HTMLInputElement>(null);
+  const limit = coarse ? BULK_LIMIT.phone : BULK_LIMIT.desktop;
 
   const doc: CertDoc = useMemo(() => ({ def, template, values: { ...values, ...school }, rows, images, options }), [def, template, values, school, rows, images, options]);
   const deferred = useDeferredValue(doc);
@@ -157,59 +197,160 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
   const number = (doc.values[def.numberField] ?? '').trim();
   const key = `${type}|${number}|${person}`;
   const generated = generatedKey === key;
+  const batch = useMemo(() => (bulkFile ? buildBatch(bulkFile.table, doc, limit, issued.map((i) => i.no)) : null), [bulkFile, doc, limit, issued]);
 
   const say = (m: string) => setStatus(m);
+
+  // ---- remembered settings (design, next number, academic year) -------------------
+  function remember(change: (s: StudioSettings) => StudioSettings) {
+    settings.current = change(settings.current);
+    writeSettings(settings.current);
+  }
+  const rememberNext = (t: CertType, no: string) => remember((s) => ({ ...s, next: { ...s.next, [t]: no } }));
+
+  // A new certificate's starting values: the select defaults, the next
+  // number and the academic year remembered in this browser.
+  function startValues(d: CertDef): CertValues {
+    const out = selectDefaults(d);
+    const s = settings.current;
+    if (numbersInSequence(d) && s.next[d.type]) out[d.numberField] = s.next[d.type] as string;
+    if (s.year && d.fields.some((f) => f.id === 'year')) out.year = s.year;
+    return out;
+  }
+
+  useEffect(() => {
+    settings.current = readSettings();
+    const t = settings.current.templates[initialType];
+    if (t) setTemplate(t);
+    const start = startValues(findCertDef(initialType) as CertDef);
+    setValues((v) => ({ ...start, ...Object.fromEntries(Object.entries(v).filter(([, x]) => x.trim())) }));
+    setCoarse(window.matchMedia('(pointer: coarse)').matches);
+    // Runs once on mount: the settings belong to this browser, not the server.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // ---- the school profile saved in this browser -----------------------------------
+  useEffect(() => {
+    if (!loaded) return;
+    setSchool((s) => fillFromProfile(s, profile, edited.current));
+    const logo = profileLogo(profile);
+    if (logo && !logoEdited.current) setImages((i) => ({ ...i, logo }));
+  }, [loaded, profile]);
+
+  async function saveSchoolHere() {
+    if (!(school.schoolName ?? '').trim()) return setSchoolMsg('Type the school name first, then save.');
+    setSavingSchool(true);
+    try {
+      let logo: CertImage | null | undefined;
+      let note = '';
+      if (images.logo && images.logo.src !== profile.logo) {
+        const small = await shrinkLogoForProfile(images.logo.src);
+        if (small) logo = small;
+        else note = ' The logo was too large to keep in the browser, so it was not saved.';
+      } else if (!images.logo && logoEdited.current) logo = null;
+      if (saveSchool(mergeIntoProfile(profile, school, logo))) {
+        edited.current.clear();
+        setSchoolMsg(`School details saved in this browser. Every free tool will fill them in.${note}`);
+      } else setSchoolMsg('This browser does not allow saving. The details work on this page only.');
+    } catch {
+      setSchoolMsg('The logo could not be read. Try a PNG or JPG file.');
+    } finally {
+      setSavingSchool(false);
+    }
+  }
+
+  function resetBulk() {
+    cancelRef.current = true;
+    setBulkFile(null);
+    setBulkOut(null);
+    setBulkMsg('');
+  }
 
   function switchType(next: CertType) {
     const d = findCertDef(next) as CertDef;
     setType(next);
-    setTemplate(d.templates[0]);
-    setValues(defaultsFor(d));
+    setTemplate(settings.current.templates[next] ?? d.templates[0]);
+    setValues(startValues(d));
     setRows(blankRows(d));
     setGeneratedKey(null);
     setProblems([]);
+    resetBulk();
+    fromExample.current = false;
     say('');
   }
 
+  function chooseTemplate(t: TemplateId) {
+    setTemplate(t);
+    remember((s) => ({ ...s, templates: { ...s.templates, [type]: t } }));
+  }
+
   function setField(id: string, v: string) {
-    if (SCHOOL_IDS.has(id)) setSchool((s) => ({ ...s, [id]: v }));
-    else setValues((s) => ({ ...s, [id]: v }));
+    if (SCHOOL_IDS.has(id)) {
+      edited.current.add(id);
+      setSchool((s) => ({ ...s, [id]: v }));
+      return;
+    }
+    setValues((s) => ({ ...s, [id]: v }));
+    if (id === def.numberField && numbersInSequence(def)) {
+      fromExample.current = false;
+      rememberNext(type, v.trim());
+    }
+    if (id === 'year') remember((s) => ({ ...s, year: v.trim() }));
+  }
+
+  function setLogo(img: CertImage | undefined) {
+    logoEdited.current = true;
+    setImages((s) => ({ ...s, logo: img }));
   }
 
   function loadExample() {
     const ex = CERT_EXAMPLES[type];
-    setSchool({ ...CERT_SCHOOL_EXAMPLE, ...Object.fromEntries(Object.entries(ex.values).filter(([k]) => SCHOOL_IDS.has(k))) });
-    setValues({ ...defaultsFor(def), ...Object.fromEntries(Object.entries(ex.values).filter(([k]) => !SCHOOL_IDS.has(k))) });
+    // A school with saved details sees the example student on its own
+    // letterhead; otherwise the fictional example school is filled in.
+    edited.current.clear();
+    if (hasProfile(profile)) setSchool((s) => fillFromProfile(s, profile, edited.current));
+    else setSchool({ ...CERT_SCHOOL_EXAMPLE, ...Object.fromEntries(Object.entries(ex.values).filter(([k]) => SCHOOL_IDS.has(k))) });
+    setValues({ ...selectDefaults(def), ...Object.fromEntries(Object.entries(ex.values).filter(([k]) => !SCHOOL_IDS.has(k))) });
     setRows(ex.rows ? JSON.parse(JSON.stringify(ex.rows)) : blankRows(def));
     setGeneratedKey(null);
     setProblems([]);
+    fromExample.current = true;
     say('Example values are filled in.');
   }
 
   function clearAll() {
-    setSchool({});
-    setValues(defaultsFor(def));
+    edited.current.clear();
+    logoEdited.current = false;
+    fromExample.current = false;
+    setSchool(fillFromProfile({}, profile, edited.current));
+    setValues(startValues(def));
     setRows(blankRows(def));
-    setImages({});
+    setImages({ logo: profileLogo(profile) });
     setOptions({ stampBox: true, qr: false });
     setGeneratedKey(null);
     setIssued([]);
     setProblems([]);
-    say('Everything is cleared from this page.');
+    resetBulk();
+    say(hasProfile(profile) ? 'Everything is cleared from this page. The school details saved in this browser are filled in again.' : 'Everything is cleared from this page.');
   }
 
   function startNew() {
     // Keeps school details, logo and signature; clears the student and
     // moves the certificate number on by one.
-    const next = defaultsFor(def);
-    if (number && def.numberField !== 'rollNo') next[def.numberField] = nextNumber(number);
+    const next = selectDefaults(def);
+    if (number && numbersInSequence(def)) {
+      next[def.numberField] = nextNumber(number);
+      if (!fromExample.current) rememberNext(type, next[def.numberField]);
+    }
     if (values.issueDate) next.issueDate = values.issueDate;
+    if (values.year) next.year = values.year;
     setValues(next);
     setRows(blankRows(def));
     setGeneratedKey(null);
     setProblems([]);
     say('Ready for the next certificate. School details are kept; the number has moved on by one.');
-    document.getElementById('cert-doc-fields')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.getElementById('cert-doc-fields')?.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
   }
 
   function generate() {
@@ -226,25 +367,19 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
       return;
     }
     setProblems([]);
-    {
-      setGeneratedKey(key);
-      setIssued((l) => [...l.filter((i) => !(i.no === number && i.name === person)), { no: number, type: def.docTitle, name: person, admissionNo: doc.values.admissionNo ?? '', date: doc.values.issueDate || doc.values.paymentDate || '' }]);
-      say('Certificate generated. Download the PDF or print it.');
-    }
+    setGeneratedKey(key);
+    setIssued((l) => [...l.filter((i) => !(i.no === number && i.name === person)), issuedFrom(doc)]);
+    if (number && numbersInSequence(def) && !fromExample.current) rememberNext(type, nextNumber(number));
+    say('Certificate generated. Download the PDF or print it.');
   }
 
   async function exportSvgs(svgs: string[], filename: string, title: string) {
     setBusy(true);
     try {
       const pages = [];
-      for (const s of svgs) {
-        const sized = s.replace('width="210mm" height="297mm"', `width="${A4_300DPI.w}" height="${A4_300DPI.h}"`);
-        const canvas = await svgToCanvas(sized);
-        pages.push(await canvasToJpeg(canvas, 0.93));
-        canvas.width = canvas.height = 0; // release the page's memory
-      }
+      for (const s of svgs) pages.push(await svgToJpeg(s, 0.93));
       const blob = pdfBlob(pages, title);
-      const shared = window.matchMedia('(pointer: coarse)').matches && (await shareFile(blob, filename, title));
+      const shared = coarse && (await shareFile(blob, filename, title));
       if (!shared) downloadBlob(blob, filename);
       say(`PDF ready: ${svgs.length} page${svgs.length > 1 ? 's' : ''}, A4 at 300 DPI.`);
     } catch (e) {
@@ -257,14 +392,14 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
   const fileBase = `${def.docTitle} ${number}`.trim();
 
   // ---- school profile file (saved by the visitor, never by us) -------------
-  function saveProfile() {
+  function saveProfileFile() {
     const data = { kind: 'netcyberai-school-profile', version: 1, school, logo: images.logo, signature: images.signature, stamp: images.stamp };
     downloadBlob(new Blob([JSON.stringify(data)], { type: 'application/json' }), safeFilename(`${school.schoolName || 'school'} profile`, 'json'));
-    say('School profile saved as a file on your device. Load it next time to skip typing.');
+    setSchoolMsg('School profile saved as a file on your device. Load it next time to skip typing.');
   }
 
-  async function loadProfile(file: File) {
-    if (file.size > 8 * 1024 * 1024) return say('That profile file is too large.');
+  async function loadProfileFile(file: File) {
+    if (file.size > 8 * 1024 * 1024) return setSchoolMsg('That profile file is too large.');
     try {
       const data = JSON.parse(await file.text());
       if (data?.kind !== 'netcyberai-school-profile') throw new Error('bad');
@@ -274,29 +409,94 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
         x && typeof x === 'object' && typeof (x as CertImage).src === 'string' && /^data:image\/(png|jpeg|webp);base64,/.test((x as CertImage).src) && Number((x as CertImage).aspect) > 0
           ? { src: (x as CertImage).src, aspect: Number((x as CertImage).aspect) }
           : undefined;
+      // What the visitor loads is theirs: the saved profile does not refill it.
+      for (const id of SCHOOL_IDS) edited.current.add(id);
+      logoEdited.current = true;
       setSchool(clean);
       setImages({ logo: img(data.logo), signature: img(data.signature), stamp: img(data.stamp) });
-      say('School profile loaded.');
+      setSchoolMsg('School profile loaded.');
     } catch {
-      say('That is not a school profile file made by this tool.');
+      setSchoolMsg('That is not a school profile file made by this tool.');
     }
   }
 
-  function registerCsv() {
-    const out = [['Certificate', 'Number', 'Name', 'Admission No.', 'Date'], ...issued.map((i) => [i.type, i.no, i.name, i.admissionNo, i.date])];
-    downloadBlob(new Blob(['﻿' + toCsv(out)], { type: 'text/csv;charset=utf-8' }), 'issue-register.csv');
+  // ---- many at once ----------------------------------------------------------------
+  async function openBulk(file: File) {
+    setBulkOut(null);
+    setBulkFile(null);
+    if (file.size > BULK_MAX_BYTES) return setBulkMsg('That file is over 1 MB. Split it into smaller files and open each in turn.');
+    try {
+      setBulkFile({ name: file.name, table: readCsv(await file.text()) });
+      setBulkMsg('');
+    } catch {
+      setBulkMsg('That file could not be read. Save it from your spreadsheet as CSV (comma separated) and open it again.');
+    }
+  }
+
+  async function makeBatch() {
+    if (!batch || batch.error || batch.batchProblems.length || !batch.ready.length || progress) return;
+    const ready = batch.ready;
+    const title = `${def.docTitle}s`;
+    cancelRef.current = false;
+    setBulkOut(null);
+    setBulkMsg('');
+    const pages: JpegPage[] = [];
+    try {
+      for (let i = 0; i < ready.length; i++) {
+        if (cancelRef.current) break;
+        setProgress({ done: i + 1, total: ready.length });
+        pages.push(await svgToJpeg(renderCertificateSvg(ready[i].doc, measure), 0.9));
+        await yieldToBrowser();
+      }
+      if (cancelRef.current) {
+        setBulkMsg('Stopped. No PDF was made and no numbers were used.');
+        return;
+      }
+      const list = ready.map((r) => issuedFrom(r.doc));
+      const blob = pdfBlob(pages, title);
+      setIssued((l) => [...l, ...list]);
+      const last = list[list.length - 1].no;
+      if (numbersInSequence(def) && last) {
+        setValues((v) => ({ ...v, [def.numberField]: nextNumber(last) }));
+        if (!fromExample.current) rememberNext(type, nextNumber(last));
+      }
+      setBulkOut({ blob, filename: safeFilename(`${def.docTitle}s ${list.length}`, 'pdf'), title, list });
+      setBulkFile(null);
+    } catch (e) {
+      setBulkMsg((e as Error).message || 'The PDF could not be made in this browser. Try a smaller file.');
+    } finally {
+      setProgress(null);
+    }
+  }
+
+  async function downloadBatch() {
+    if (!bulkOut) return;
+    const shared = coarse && (await shareFile(bulkOut.blob, bulkOut.filename, bulkOut.title));
+    if (!shared) downloadBlob(bulkOut.blob, bulkOut.filename);
   }
 
   const schoolFields = [...SCHOOL_FIELDS];
   const docFields = def.fields.filter((f) => !SCHOOL_IDS.has(f.id));
+  const numberDef = def.fields.find((f) => f.id === def.numberField);
+  const badRows = batch ? batch.rows.filter((r) => r.problems.length) : [];
+  const batchNos = batch && numbersInSequence(def) ? batch.ready.map((r) => r.doc.values[def.numberField]).filter(Boolean) : [];
+  const canMake = Boolean(batch && !batch.error && !batch.batchProblems.length && batch.ready.length && !progress);
+  const showValue = (id: string) => {
+    const f = def.fields.find((x) => x.id === id);
+    const v = (doc.values[id] ?? '').trim();
+    return f?.kind === 'date' ? formatDate(v) || v : v;
+  };
 
   return (
     <div className="flex flex-col gap-6">
+      <SchoolProfilePanel compact />
+
       <div className="flex flex-col gap-2 rounded-2xl border-2 border-emerald bg-white p-4 sm:flex-row sm:items-center sm:gap-4">
         <Icon name="lock" className="h-6 w-6 shrink-0 text-emerald-text" />
         <p className="text-sm text-slate">
-          <strong>Nothing is uploaded or saved.</strong> Your form, logo and certificate stay in this browser tab and are never sent to NetCyberAI. Close or refresh the
-          tab, or press “Clear everything”, and they are gone. The PDF is made on your device.
+          <strong>Nothing is uploaded.</strong> Student details, signatures and stamps stay in this browser tab only: they are not stored in the browser and are
+          never sent to NetCyberAI. Close or refresh the tab, or press “Clear everything”, and they are gone. Only your school’s own details and logo are kept in
+          this browser, if you save them, with the design and the next certificate number. The PDF is made on your device.
         </p>
       </div>
 
@@ -323,7 +523,7 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
                 {def.templates.map((t) => (
                   <label key={t} className={`flex cursor-pointer flex-col rounded-xl border-2 p-3 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-royal ${template === t ? 'border-royal bg-royal/5' : 'border-slate/15 bg-white'}`}>
-                    <input type="radio" name="cert-template" value={t} checked={template === t} onChange={() => setTemplate(t)} className="sr-only" />
+                    <input type="radio" name="cert-template" value={t} checked={template === t} onChange={() => chooseTemplate(t)} className="sr-only" />
                     <span className="text-sm font-bold text-slate">{TEMPLATE_NAMES[t].name}</span>
                     <span className="text-xs text-slate/70">{TEMPLATE_NAMES[t].note}</span>
                   </label>
@@ -344,19 +544,17 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
             <h2 id="cert-step-2" className="text-lg font-extrabold text-sapphire">
               2. School details
             </h2>
-            <ImagePicker
-              label="School logo"
-              help="From your gallery or files. It is fitted to each template automatically."
-              value={images.logo}
-              onChange={(img) => setImages((s) => ({ ...s, logo: img }))}
-            />
+            <ImagePicker label="School logo" help="From your gallery or files. It is fitted to each template automatically." value={images.logo} onChange={setLogo} />
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {schoolFields.map((f) => (
                 <FieldInput key={f.id} f={f} idPrefix="cs" value={school[f.id] ?? ''} onChange={(v) => setField(f.id, v)} />
               ))}
             </div>
             <div className="flex flex-wrap gap-2">
-              <button type="button" className={quiet} onClick={saveProfile}>
+              <button type="button" className={solid} disabled={savingSchool} onClick={() => void saveSchoolHere()}>
+                <Icon name="check" className="h-4 w-4" /> {savingSchool ? 'Saving…' : 'Save school details in this browser'}
+              </button>
+              <button type="button" className={quiet} onClick={saveProfileFile}>
                 <Icon name="download" className="h-4 w-4" /> Save school profile file
               </button>
               <button type="button" className={quiet} onClick={() => profileRef.current?.click()}>
@@ -371,18 +569,32 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
                 aria-hidden="true"
                 onChange={(e) => {
                   const f = e.target.files?.[0];
-                  if (f) void loadProfile(f);
+                  if (f) void loadProfileFile(f);
                   e.target.value = '';
                 }}
               />
             </div>
-            <p className="text-xs text-slate/70">The profile file is saved on your device by you. We keep no copy.</p>
+            <p role="status" className="text-sm font-semibold text-emerald-text empty:hidden">
+              {schoolMsg}
+            </p>
+            <p className="text-xs text-slate/70">
+              Saving in this browser keeps the school’s details, the signatory’s name and the logo on this device, and every free tool fills them in. Signatures and
+              stamps are never saved in the browser: they stay in this tab only. The profile file is saved on your device by you, with the signature and stamp if you
+              added them. We keep no copy of either.
+            </p>
           </section>
 
           <section id="cert-doc-fields" className="flex scroll-mt-24 flex-col gap-4 rounded-3xl border border-slate/10 bg-white p-5" aria-labelledby="cert-step-3">
             <h2 id="cert-step-3" className="text-lg font-extrabold text-sapphire">
               3. {def.name} details
             </h2>
+            <p className="text-sm text-slate/70">
+              One student at a time, with a live preview. For a whole list, see{' '}
+              <a href="#cert-bulk" className="font-semibold text-royal-deep underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal">
+                Make many at once
+              </a>
+              .
+            </p>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {docFields.map((f) => (
                 <FieldInput key={`${type}-${f.id}`} f={f} idPrefix="cd" value={values[f.id] ?? ''} onChange={(v) => setField(f.id, v)} />
@@ -463,8 +675,8 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
               <FieldInput f={{ id: 'signTitle', label: 'Signatory designation', kind: 'text', max: 40 }} idPrefix="ss" value={school.signTitle ?? ''} onChange={(v) => setField('signTitle', v)} />
             </div>
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-              <ImagePicker label="Signature (optional)" help="A photo of a signature on white paper works best." value={images.signature} whiteDefault onChange={(img) => setImages((s) => ({ ...s, signature: img }))} />
-              <ImagePicker label="School stamp (optional)" value={images.stamp} whiteDefault onChange={(img) => setImages((s) => ({ ...s, stamp: img }))} />
+              <ImagePicker label="Signature (optional)" help="A photo of a signature on white paper works best. Never saved in the browser; kept in this tab only." value={images.signature} whiteDefault onChange={(img) => setImages((s) => ({ ...s, signature: img }))} />
+              <ImagePicker label="School stamp (optional)" help="Never saved in the browser; kept in this tab only." value={images.stamp} whiteDefault onChange={(img) => setImages((s) => ({ ...s, stamp: img }))} />
             </div>
             <label className="flex items-center gap-2 text-sm text-slate">
               <input type="checkbox" className="h-5 w-5 accent-royal" checked={options.stampBox} onChange={(e) => setOptions((o) => ({ ...o, stampBox: e.target.checked }))} />
@@ -477,6 +689,176 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
                 online check, because nothing is stored.
               </span>
             </label>
+          </section>
+
+          <section id="cert-bulk" className="flex scroll-mt-24 flex-col gap-4 rounded-3xl border border-slate/10 bg-white p-5" aria-labelledby="cert-step-5">
+            <h2 id="cert-step-5" className="text-lg font-extrabold text-sapphire">
+              5. Make many at once
+            </h2>
+            <p className="text-sm text-slate">
+              Open a CSV of up to {BULK_LIMIT.desktop} students to make them all at once: one PDF with a page for each,{' '}
+              {numbersInSequence(def) ? 'numbered in sequence' : 'in the order of your list'}. The school details, logo, signature, stamp and design above go on
+              every page.
+            </p>
+            {coarse && (
+              <p className="rounded-xl border border-amber bg-white p-3 text-sm font-semibold text-amber-text">
+                On a phone, up to {BULK_LIMIT.phone} students at a time, so the phone does not run out of memory. Split a longer list, or use a computer for up to{' '}
+                {BULK_LIMIT.desktop}.
+              </p>
+            )}
+            <div className="flex flex-col gap-2">
+              <p className="text-sm font-bold text-slate">a. Get the template</p>
+              <p className="text-xs text-slate/70">
+                One column for each {def.name} field, with one fictional example row to replace with your students. Write dates as DD/MM/YYYY.
+                {(def.tables ?? []).map(
+                  (t) =>
+                    ` ${t.label} go in numbered columns (${t.columns.map((c) => `${c.id}_1`).join(', ')}, then _2 and so on, up to ${t.maxRows}).${BATCH_TABLES.has(t.id) ? ` Leave them out to use the ${t.label.toLowerCase()} in step 3 for everyone.` : ''}`
+                )}{' '}
+                Columns you leave out are left blank, except the ones shared by the whole batch, which come from step 3.
+              </p>
+              <button type="button" className={`${quiet} w-fit`} onClick={() => downloadCsv(templateCsv(def, CERT_EXAMPLES[type]), safeFilename(`${def.docTitle} list template`, 'csv'))}>
+                <Icon name="download" className="h-4 w-4" /> Download CSV template
+              </button>
+            </div>
+            {numbersInSequence(def) && numberDef && (
+              <div className="max-w-sm">
+                <FieldInput
+                  f={{
+                    id: def.numberField,
+                    label: 'First number in the batch',
+                    kind: 'text',
+                    max: 30,
+                    required: numberDef.required,
+                    help: numberDef.required ? 'Each certificate takes the next number, counting up from this one.' : 'Each certificate takes the next number, counting up from this one. Leave it blank for no numbers.',
+                  }}
+                  idPrefix="cb"
+                  value={values[def.numberField] ?? ''}
+                  onChange={(v) => setField(def.numberField, v)}
+                />
+              </div>
+            )}
+            <div className="flex flex-col gap-2">
+              <p className="text-sm font-bold text-slate">b. Open your list</p>
+              <p className="text-xs text-slate/70">A CSV file up to 1 MB, saved from Excel or Google Sheets. It is read in this browser only.</p>
+              <button type="button" className={`${quiet} w-fit`} disabled={Boolean(progress)} onClick={() => bulkFileRef.current?.click()}>
+                <Icon name="download" className="h-4 w-4 rotate-180" /> Open CSV
+              </button>
+              <input
+                ref={bulkFileRef}
+                type="file"
+                accept=".csv,text/csv"
+                className="sr-only"
+                tabIndex={-1}
+                aria-hidden="true"
+                onChange={(e) => {
+                  const f = e.target.files?.[0];
+                  if (f) void openBulk(f);
+                  e.target.value = '';
+                }}
+              />
+            </div>
+
+            <div className="flex min-w-0 flex-col gap-3">
+              {batch?.error && (
+                <p role="alert" className="rounded-xl border-2 border-red-600 bg-white p-3 text-sm font-semibold text-red-800">
+                  {batch.error}
+                </p>
+              )}
+              {batch && !batch.error && (
+                <>
+                  <p role="status" className="break-words text-sm text-slate">
+                    <strong>{bulkFile?.name}</strong>: {batch.total} {batch.total === 1 ? 'row' : 'rows'} read. {batch.ready.length} ready
+                    {badRows.length > 0 && `, ${badRows.length} with problems, left out until fixed in the file`}.
+                  </p>
+                  {batchNos.length > 0 && (
+                    <p className="text-sm text-slate">
+                      Numbers {batchNos[0]} to {batchNos[batchNos.length - 1]}.
+                    </p>
+                  )}
+                  {batch.fromForm.length > 0 && (
+                    <div className="rounded-xl bg-off-white p-3 text-sm text-slate">
+                      <p className="font-semibold">Not in your file, so taken from step 3 for every certificate:</p>
+                      <ul className="mt-1 list-disc pl-5">
+                        {batch.fromForm.map((id) => (
+                          <li key={id}>
+                            {def.fields.find((f) => f.id === id)?.label}: {showValue(id)}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {batch.unknown.length > 0 && <p className="text-xs text-slate/70">Columns not used: {batch.unknown.join(', ')}. Check their names against the template.</p>}
+                  {batch.batchProblems.length > 0 && (
+                    <div role="alert" className="rounded-xl border-2 border-red-600 bg-white p-3">
+                      <p className="text-sm font-bold text-red-800">Fix these first:</p>
+                      <ul className="mt-1 list-disc pl-5 text-sm text-red-800">
+                        {batch.batchProblems.map((p) => (
+                          <li key={p}>{p}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {badRows.length > 0 && (
+                    <div className="nca-scroll relative overflow-x-auto rounded-xl border border-slate/10 bg-white" role="region" aria-label="Rows with problems" tabIndex={0}>
+                      <table className="w-full min-w-[28rem] border-collapse text-sm">
+                        <thead>
+                          <tr className="bg-off-white">
+                            <th scope="col" className="px-3 py-2 text-left font-bold text-slate">
+                              Row
+                            </th>
+                            <th scope="col" className="px-3 py-2 text-left font-bold text-slate">
+                              Name
+                            </th>
+                            <th scope="col" className="px-3 py-2 text-left font-bold text-slate">
+                              Missing or to fix
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {badRows.map((r) => (
+                            <tr key={r.line} className="border-b border-slate/10">
+                              <td className="px-3 py-2 tabular-nums text-slate">{r.line}</td>
+                              <td className="px-3 py-2 text-slate">{r.person || '—'}</td>
+                              <td className="px-3 py-2 text-red-800">{r.problems.join('; ')}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                  <div className="flex flex-wrap gap-2">
+                    <button type="button" className={action} disabled={!canMake} onClick={() => void makeBatch()}>
+                      {`Make ${batch.ready.length} certificate${batch.ready.length === 1 ? '' : 's'}`}
+                    </button>
+                    {progress && (
+                      <button type="button" className={quiet} onClick={() => (cancelRef.current = true)}>
+                        Cancel
+                      </button>
+                    )}
+                  </div>
+                </>
+              )}
+              <p role="status" className="text-sm font-semibold text-emerald-text empty:hidden">
+                {progress ? `Making ${progress.done} of ${progress.total}…` : bulkMsg}
+              </p>
+              {bulkOut && (
+                <div className="flex flex-col gap-2 rounded-2xl border-2 border-emerald bg-white p-4">
+                  <p className="text-sm font-bold text-slate">
+                    {`${bulkOut.list.length} certificate${bulkOut.list.length === 1 ? '' : 's'} made: one PDF, a page for each, A4 at 300 DPI.`}
+                    {numbersInSequence(def) && bulkOut.list[0].no && ` Numbers ${bulkOut.list[0].no} to ${bulkOut.list[bulkOut.list.length - 1].no}.`}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <button type="button" className={solid} onClick={() => void downloadBatch()}>
+                      <Icon name="download" className="h-4 w-4" /> Download PDF
+                    </button>
+                    <button type="button" className={quiet} onClick={() => downloadCsv(registerRows(bulkOut.list), 'issue-register-batch.csv')}>
+                      <Icon name="download" className="h-4 w-4" /> Download issue register for this batch (CSV)
+                    </button>
+                  </div>
+                  <p className="text-xs text-slate/70">Check the pages against school records before signing. The list you opened is not kept.</p>
+                </div>
+              )}
+            </div>
           </section>
 
           <LockedFeatures kind="certificate" compact />
@@ -506,9 +888,7 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
                 </button>
               </li>
             </ol>
-            <p className="text-xs text-slate/70">
-              Free and unlimited. No login, no watermark.
-            </p>
+            <p className="text-xs text-slate/70">Free and unlimited. No login, no watermark.</p>
             <div id="cert-problems" tabIndex={-1} className="outline-none">
               {problems.length > 0 && (
                 <div role="alert" className="rounded-xl border-2 border-red-600 p-3">
@@ -531,7 +911,7 @@ export function CertificateStudio({ initialType }: { initialType: CertType }) {
             <div className="flex flex-col gap-2 rounded-2xl border border-slate/10 bg-white p-4">
               <p className="text-sm font-bold text-slate">Issued in this session: {issued.length}</p>
               <p className="text-xs text-slate/70">This register lives only in this tab. Download it to keep it with your school records.</p>
-              <button type="button" className={`${quiet} w-fit`} onClick={registerCsv}>
+              <button type="button" className={`${quiet} w-fit`} onClick={() => downloadCsv(registerRows(issued), 'issue-register.csv')}>
                 <Icon name="download" className="h-4 w-4" /> Download issue register (CSV)
               </button>
             </div>

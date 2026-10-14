@@ -5,8 +5,11 @@ import { Icon } from '@/components/visual/Icons';
 import { parseCsv } from '@/lib/import/csv';
 import { UI, decodeShare, encodeShare, type FieldDef, type Lang, type Row, type ToolSpec, type Values } from '@/lib/free-tools/engine';
 import { findToolSpec } from '@/lib/free-tools/specs';
+import { withSchool } from '@/lib/free-tools/report';
 import { ReportActions, btnQuiet, useToday } from './ReportActions';
 import { ReportView } from './ReportView';
+import { SchoolProfilePanel } from './SchoolProfilePanel';
+import { useSchoolProfile } from './useSchoolProfile';
 
 const SUFFIX: Record<string, { en: string; hi: string }> = {
   money: { en: '₹', hi: '₹' },
@@ -239,6 +242,8 @@ export function ToolShell({ slug, example, name, path, children }: { slug: strin
   };
 
   const result = useMemo(() => spec.compute(values, lang), [spec, values, lang]);
+  const { profile } = useSchoolProfile();
+  const report = useMemo(() => withSchool(result.report, profile), [result.report, profile]);
 
   function save() {
     try {
@@ -263,63 +268,66 @@ export function ToolShell({ slug, example, name, path, children }: { slug: strin
   const shareUrl = () => `${window.location.origin}${path}#s=${encodeShare(spec, values)}`;
 
   return (
-    <div className="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,26rem)_minmax(0,1fr)]">
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-wrap items-center gap-2">
-          <LangToggle lang={lang} setLang={setLang} />
-          <button type="button" className={btnQuiet} onClick={() => (setValues(example), setIsExample(true))}>
-            <Icon name="sparkle" className="h-4 w-4" /> {UI.example[lang]}
-          </button>
-          <button type="button" className={btnQuiet} onClick={() => (setValues(spec.defaults), setIsExample(false))}>
-            {UI.reset[lang]}
-          </button>
-        </div>
-        {isExample && <p className="rounded-xl border border-amber bg-white p-3 text-sm font-semibold text-amber-text">{UI.exampleBanner[lang]}</p>}
-        <form id={formId} className="flex flex-col gap-6 rounded-3xl border border-slate/10 bg-white p-5" onSubmit={(e) => e.preventDefault()} noValidate>
-          {spec.groups.map((g) => (
-            <fieldset key={g.title.en} className="flex flex-col gap-4">
-              <legend className="mb-2 text-base font-extrabold text-sapphire">{g.title[lang]}</legend>
-              {g.fields.map((f) => (
-                <Field key={f.id} f={f} values={values} lang={lang} set={set} />
-              ))}
-            </fieldset>
-          ))}
-        </form>
-        <div className="flex flex-wrap items-center gap-2">
-          <button type="button" className={btnQuiet} onClick={save}>
-            <Icon name="check" className="h-4 w-4" /> {UI.save[lang]}
-          </button>
-          {hasSaved && (
-            <button type="button" className={btnQuiet} onClick={forget}>
-              {UI.clearSaved[lang]}
+    <div className="flex flex-col gap-6">
+      <SchoolProfilePanel compact />
+      <div className="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,26rem)_minmax(0,1fr)]">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <LangToggle lang={lang} setLang={setLang} />
+            <button type="button" className={btnQuiet} onClick={() => (setValues(example), setIsExample(true))}>
+              <Icon name="sparkle" className="h-4 w-4" /> {UI.example[lang]}
             </button>
-          )}
-          <span role="status" className="text-sm font-semibold text-emerald-text">
-            {savedNote}
-          </span>
-        </div>
-        <p className="flex items-start gap-2 text-sm text-slate/70">
-          <Icon name="lock" className="mt-0.5 h-4 w-4 shrink-0" /> {UI.privacy[lang]}
-        </p>
-      </div>
-
-      <div className="flex min-w-0 flex-col gap-4" aria-live="polite">
-        {result.errors.length > 0 ? (
-          <div role="alert" className="rounded-3xl border-2 border-red-600 bg-white p-6">
-            <p className="font-bold text-red-800">{UI.fixFirst[lang]}</p>
-            <ul className="mt-2 list-disc pl-5 text-red-800">
-              {result.errors.map((e) => (
-                <li key={e}>{e}</li>
-              ))}
-            </ul>
+            <button type="button" className={btnQuiet} onClick={() => (setValues(spec.defaults), setIsExample(false))}>
+              {UI.reset[lang]}
+            </button>
           </div>
-        ) : (
-          <>
-            <ReportActions report={result.report} lang={lang} fileBase={name} rulesUpdated={spec.rulesUpdated} sourcePath={path} shareUrl={shareUrl} />
-            <ReportView report={result.report} meta={{ generatedOn: today, rulesUpdated: spec.rulesUpdated, rulesLabel: UI.lastUpdated[lang], assumptionsLabel: UI.assumptions[lang] }} />
-          </>
-        )}
-        {children}
+          {isExample && <p className="rounded-xl border border-amber bg-white p-3 text-sm font-semibold text-amber-text">{UI.exampleBanner[lang]}</p>}
+          <form id={formId} className="flex flex-col gap-6 rounded-3xl border border-slate/10 bg-white p-5" onSubmit={(e) => e.preventDefault()} noValidate>
+            {spec.groups.map((g) => (
+              <fieldset key={g.title.en} className="flex flex-col gap-4">
+                <legend className="mb-2 text-base font-extrabold text-sapphire">{g.title[lang]}</legend>
+                {g.fields.map((f) => (
+                  <Field key={f.id} f={f} values={values} lang={lang} set={set} />
+                ))}
+              </fieldset>
+            ))}
+          </form>
+          <div className="flex flex-wrap items-center gap-2">
+            <button type="button" className={btnQuiet} onClick={save}>
+              <Icon name="check" className="h-4 w-4" /> {UI.save[lang]}
+            </button>
+            {hasSaved && (
+              <button type="button" className={btnQuiet} onClick={forget}>
+                {UI.clearSaved[lang]}
+              </button>
+            )}
+            <span role="status" className="text-sm font-semibold text-emerald-text">
+              {savedNote}
+            </span>
+          </div>
+          <p className="flex items-start gap-2 text-sm text-slate/70">
+            <Icon name="lock" className="mt-0.5 h-4 w-4 shrink-0" /> {UI.privacy[lang]}
+          </p>
+        </div>
+
+        <div className="flex min-w-0 flex-col gap-4" aria-live="polite">
+          {result.errors.length > 0 ? (
+            <div role="alert" className="rounded-3xl border-2 border-red-600 bg-white p-6">
+              <p className="font-bold text-red-800">{UI.fixFirst[lang]}</p>
+              <ul className="mt-2 list-disc pl-5 text-red-800">
+                {result.errors.map((e) => (
+                  <li key={e}>{e}</li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <>
+              <ReportActions report={report} lang={lang} fileBase={name} rulesUpdated={spec.rulesUpdated} sourcePath={path} shareUrl={shareUrl} />
+              <ReportView report={report} meta={{ generatedOn: today, rulesUpdated: spec.rulesUpdated, rulesLabel: UI.lastUpdated[lang], assumptionsLabel: UI.assumptions[lang] }} />
+            </>
+          )}
+          {children}
+        </div>
       </div>
     </div>
   );

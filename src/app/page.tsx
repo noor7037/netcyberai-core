@@ -1,6 +1,7 @@
 import { Hero } from '@/components/home/Hero';
 import { PrincipalSection, AppsSection } from '@/components/showcase/Sections';
 import { WhyChoose } from '@/components/home/WhyChoose';
+import { BeyondErp } from '@/components/home/BeyondErp';
 import { TrustSecurity } from '@/components/home/TrustSecurity';
 import { CTASection } from '@/components/home/CTASection';
 import { Container } from '@/components/ui/Container';
@@ -46,6 +47,7 @@ export default function HomePage() {
     <>
       <Hero />
       <WhyChoose />
+      <BeyondErp />
       <PrincipalSection />
       <AppsSection withParent={false} />
       <TrustSecurity />

@@ -1,6 +1,6 @@
 'use client';
 
-import type { ReportTone, ToolReport } from '@/lib/free-tools/report';
+import type { ReportSchool, ReportTone, ToolReport } from '@/lib/free-tools/report';
 import { A4_300DPI } from './jpeg-pdf';
 import { canvasToJpeg, pdfBlob } from './browser';
 
@@ -206,12 +206,39 @@ function drawTable(p: Pager, columns: string[], rows: string[][], numeric: boole
   p.y += 4 * MM;
 }
 
+// The saved school's logo, name and lines at the top of the first page.
+async function drawSchool(p: Pager, school: ReportSchool) {
+  const top = p.y;
+  const logoH = 16 * MM;
+  let indent = 0;
+  if (school.logo && school.logoAspect) {
+    try {
+      const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+        const i = new Image();
+        i.onload = () => resolve(i);
+        i.onerror = reject;
+        i.src = school.logo as string;
+      });
+      const w = Math.min(logoH * school.logoAspect, 40 * MM);
+      p.ctx.drawImage(img, MARGIN, top, w, w / school.logoAspect);
+      indent = w + 4 * MM;
+    } catch {
+      // A logo that will not load is left out; the name still prints.
+    }
+  }
+  const at = { x: MARGIN + indent, width: p.width - indent };
+  p.text(school.name, 13, { ...at, bold: true, gapAfter: 0.8 * MM });
+  for (const l of school.lines) p.text(l, 8.5, { ...at, color: MUTED, gapAfter: 0.3 * MM });
+  p.y = Math.max(p.y, top + (indent ? logoH : 0)) + 3 * MM;
+}
+
 export async function reportPdf(report: ToolReport, meta: Meta): Promise<Blob> {
   const p = new Pager(meta, report.title);
   // Header band.
   p.ctx.fillStyle = BRAND;
   p.ctx.fillRect(MARGIN, p.y, p.width, 1.2 * MM);
   p.y += 5 * MM;
+  if (report.school) await drawSchool(p, report.school);
   p.text(report.title, 18, { bold: true, color: BRAND, gapAfter: 1 * MM });
   if (report.subtitle) p.text(report.subtitle, 10, { color: MUTED, gapAfter: 1 * MM });
   p.text(`Prepared on ${meta.generatedOn} · Rules last updated ${meta.rulesUpdated}`, 8, { color: MUTED, gapAfter: 3 * MM });
