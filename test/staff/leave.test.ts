@@ -11,7 +11,7 @@ import { moduleById } from '@/lib/contracts/modules';
 import { workingModules } from '@/lib/frameworks/plans';
 import { readModuleFor, writeModuleFor } from '@/lib/frameworks/write-guard';
 import { t } from '@/lib/i18n';
-import { addDays, askLeave, decideLeave, isLeaveDate, leaveByToday, leaveCalendar, leaveStaff, leaveWaiting, myLeave, officeAlone, onLeave, recordLeave, withdrawLeave, LEAVE_BACK_DAYS, LEAVE_KINDS, LEAVE_LIST_MAX, LEAVE_MAX_DAYS } from '@/lib/staff/leave';
+import { addDays, askLeave, decideLeave, isLeaveDate, leaveByToday, leaveCalendar, leaveStaff, leaveWaiting, myLeave, officeAlone, onLeave, recordLeave, recordOwnLeave, selfRecordAllowed, withdrawLeave, LEAVE_BACK_DAYS, LEAVE_KINDS, LEAVE_LIST_MAX, LEAVE_MAX_DAYS } from '@/lib/staff/leave';
 import { indiaDate } from '@/lib/time/india';
 import { TODAY_PROVIDERS } from '@/lib/today/cards';
 
@@ -150,7 +150,7 @@ describe('the day and the words', () => {
   it('a request is drawn with its answer: who decided and when, the note, and a cancellation by the office', () => {
     const base: LeaveRow = {
       leave_id: 'l', user_id: 'u', name: 'Tara Teacher', role: 'teacher', from_date: '2026-11-16', to_date: '2026-11-17', days: 2, kind: 'sick', reason: 'A small operation.', status: 'waiting',
-      asked_at: '2026-11-10T04:00:00.000Z', byOffice: false, recorded_by: 'Tara Teacher', decided_by: null, decided_at: null, decision_note: null, withdrawn_at: null, withdrawnByOffice: false, withdrawn_note: null,
+      asked_at: '2026-11-10T04:00:00.000Z', byOffice: false, selfRecorded: false, recorded_by: 'Tara Teacher', decided_by: null, decided_at: null, decision_note: null, withdrawn_at: null, withdrawnByOffice: false, withdrawn_note: null,
       mine: true, mayDecide: false, mayWithdraw: true, mayCancel: false,
     };
     const draw = (r: LeaveRow, lang: 'en' | 'hi' = 'en', showName = false) => renderToStaticMarkup(h(LangProvider, { lang, children: h(LeaveSummary, { r, showName }) }));
@@ -171,6 +171,16 @@ describe('the day and the words', () => {
     const cancelled = draw({ ...base, status: 'withdrawn', decided_by: 'Priya Principal', decided_at: '2026-11-11T05:00:00.000Z', withdrawn_at: '2026-11-16T05:00:00.000Z', withdrawnByOffice: true, withdrawn_note: 'She came in after all.' });
     expect(cancelled).toContain('Cancelled by the office on 16 Nov. Note: She came in after all.');
     expect(draw({ ...base, status: 'withdrawn', withdrawn_at: '2026-11-12T05:00:00.000Z' })).toContain('Withdrawn on 12 Nov.');
+    // Leave a principal recorded for themself, in a school with no school admin (C210), says so: to that principal
+    // and on the office's lists. It is not drawn as an answer someone else gave.
+    const self: LeaveRow = { ...base, status: 'approved', selfRecorded: true, recorded_by: 'Priya Principal', decided_by: 'Priya Principal', decided_at: '2026-11-10T04:00:00.000Z', mayWithdraw: false };
+    const ownSelf = draw(self);
+    expect(ownSelf).toContain('You recorded this leave yourself on 10 Nov. It was approved at once, because this school has no school admin to decide it.');
+    expect(ownSelf).toContain('data-leave-self');
+    expect(ownSelf).not.toMatch(/Approved by|Asked on|Recorded by/);
+    expect(draw({ ...self, mine: false }, 'en', true)).toContain('Priya Principal recorded this leave for themself on 10 Nov.');
+    expect(draw(self, 'hi')).toContain('ख़ुद दर्ज की');
+    expect(draw(base)).not.toContain('data-leave-self');
     // One day is said as one day, and Hindi is Hindi.
     expect(draw({ ...base, to_date: '2026-11-16', days: 1 })).toContain('1 day · Sick');
     const hindi = draw({ ...base, status: 'refused', decided_by: 'Asif Admin', decided_at: '2026-11-11T05:00:00.000Z', decision_note: 'Exams that week.' }, 'hi');
@@ -208,7 +218,7 @@ describe('the day and the words', () => {
     const keys = [
       ...LEAVE_KINDS.map((k) => `leave.kind.${k}`),
       ...['waiting', 'approved', 'refused', 'withdrawn'].map((s) => `leave.status.${s}`),
-      ...['dates', 'past', 'too_far', 'too_long', 'kind', 'reason', 'overlap', 'person', 'elsewhere', 'own', 'decided', 'note', 'begun', 'not_approved', 'closed', 'other'].map((e) => `leave.err.${e}`),
+      ...['dates', 'past', 'too_far', 'too_long', 'kind', 'reason', 'overlap', 'person', 'elsewhere', 'own', 'decided', 'note', 'begun', 'not_approved', 'closed', 'has_admin', 'other'].map((e) => `leave.err.${e}`),
     ];
     for (const key of keys) {
       expect(t('en', key as never), key).not.toBe(undefined);
@@ -360,7 +370,7 @@ describe('on the real schema', () => {
         // So what the person reads never names a decider who did not decide.
         expect((await as(who, (c) => myLeave(c, actor(who))))[0], who.role).toMatchObject({ status: 'waiting', decided_by: null, decided_at: null, decision_note: null });
         // The honest withdrawal still goes through, with no answer on it.
-        expect(await as(who, (c) => withdrawLeave(c, actor(who), own, '')), who.role).toEqual({ ok: true });
+        expect(await as(who, (c) => withdrawLeave(c, actor(who), own, '')), who.role).toEqual({ ok: true, coversReleased: 0 });
         expect(await row(own), who.role).toMatchObject({ status: 'withdrawn', decided_by: null, decision_note: null, withdrawn_by: who.user });
       }
       // Nor is a real answer rewritten on the way out: by the person withdrawing approved leave, or the office cancelling it.
@@ -374,7 +384,7 @@ describe('on the real schema', () => {
       await expect(leaving(principal, `decided_by = null, decided_at = null, decision_note = null`)).rejects.toThrow(/decision is written only/);
       expect(await row(hers)).toMatchObject({ status: 'approved', decided_by: ADMIN, decision_note: 'Enjoy.' });
       // The office's own cancellation keeps the answer as it was given.
-      expect(await as(principal, (c) => withdrawLeave(c, actor(principal), hers, 'The trip was called off.'))).toEqual({ ok: true });
+      expect(await as(principal, (c) => withdrawLeave(c, actor(principal), hers, 'The trip was called off.'))).toEqual({ ok: true, coversReleased: 0 });
       expect(await row(hers)).toMatchObject({ status: 'withdrawn', decided_by: ADMIN, decision_note: 'Enjoy.', withdrawn_by: PRINCIPAL });
     });
 
@@ -495,13 +505,13 @@ describe('on the real schema', () => {
       await as(admin, (c) => decideLeave(c, actor(admin), hers, 'approve', ''));
       expect(await away(principal, day(4))).toEqual(['Tara Teacher']);
       expect((await as(tara, (c) => myLeave(c, actor(tara))))[0]).toMatchObject({ status: 'approved', mayWithdraw: true });
-      expect(await as(tara, (c) => withdrawLeave(c, actor(tara), hers, ''))).toEqual({ ok: true });
+      expect(await as(tara, (c) => withdrawLeave(c, actor(tara), hers, ''))).toEqual({ ok: true, coversReleased: 0 });
       expect(await row(hers)).toMatchObject({ status: 'withdrawn', withdrawn_by: TARA, withdrawn_note: null, decided_by: ADMIN });
       for (const d of [3, 4, 5]) expect(await away(principal, day(d)), `day ${d}`).toEqual([]);
       expect(await as(tara, (c) => withdrawLeave(c, actor(tara), hers, ''))).toEqual({ ok: false, reason: 'closed' });
       // A waiting request is withdrawn too, and was never on leave.
       const again = await ask(tara, 3, 5);
-      expect(await as(tara, (c) => withdrawLeave(c, actor(tara), again, ''))).toEqual({ ok: true });
+      expect(await as(tara, (c) => withdrawLeave(c, actor(tara), again, ''))).toEqual({ ok: true, coversReleased: 0 });
       expect(await row(again)).toMatchObject({ status: 'withdrawn', decided_by: null });
       expect((await as(tara, (c) => myLeave(c, actor(tara)))).map((r) => [r.status, r.withdrawnByOffice, r.mayWithdraw])).toEqual([['withdrawn', false, false], ['withdrawn', false, false]]);
     });
@@ -525,8 +535,8 @@ describe('on the real schema', () => {
       const later = (await as(admin, (c) => recordLeave(c, actor(admin), { userId: TARA, ...wants(20, 20) }))) as { leaveId: string };
       await expect(as(principal, (c) => c.query(`update staff_leave set status = 'withdrawn', withdrawn_by = $2, withdrawn_at = now() where leave_id = $1`, [later.leaveId, TARA]))).rejects.toThrow(/row-level security/);
       await expect(as(tara, (c) => c.query(`update staff_leave set status = 'withdrawn', withdrawn_by = $2, withdrawn_at = now(), withdrawn_note = 'x' where leave_id = $1`, [later.leaveId, PRINCIPAL]))).rejects.toThrow(/row-level security/);
-      expect(await as(tara, (c) => withdrawLeave(c, actor(tara), later.leaveId, ''))).toEqual({ ok: true });
-      expect(await as(principal, (c) => withdrawLeave(c, actor(principal), id, 'She came in after all.'))).toEqual({ ok: true });
+      expect(await as(tara, (c) => withdrawLeave(c, actor(tara), later.leaveId, ''))).toEqual({ ok: true, coversReleased: 0 });
+      expect(await as(principal, (c) => withdrawLeave(c, actor(principal), id, 'She came in after all.'))).toEqual({ ok: true, coversReleased: 0 });
       expect(await row(id)).toMatchObject({ status: 'withdrawn', withdrawn_by: PRINCIPAL, withdrawn_note: 'She came in after all.' });
       expect(await away(principal, today)).toEqual([]);
       expect((await as(tara, (c) => myLeave(c, actor(tara)))).find((r) => r.leave_id === id)).toMatchObject({ status: 'withdrawn', withdrawnByOffice: true, withdrawn_note: 'She came in after all.' });
@@ -594,8 +604,8 @@ describe('on the real schema', () => {
       expect(await office(principal, day(5), day(4))).toEqual([]);
       expect(await office(principal, 'soon')).toEqual([]);
       // The wrong teacher's leave is cancelled after its days, and the far one before them: neither is "on leave" any more.
-      expect(await as(principal, (c) => withdrawLeave(c, actor(principal), late.leaveId, 'Recorded for the wrong teacher.'))).toEqual({ ok: true });
-      expect(await as(principal, (c) => withdrawLeave(c, actor(principal), far, 'The training was moved.'))).toEqual({ ok: true });
+      expect(await as(principal, (c) => withdrawLeave(c, actor(principal), late.leaveId, 'Recorded for the wrong teacher.'))).toEqual({ ok: true, coversReleased: 0 });
+      expect(await as(principal, (c) => withdrawLeave(c, actor(principal), far, 'The training was moved.'))).toEqual({ ok: true, coversReleased: 0 });
       expect(await away(admin, day(-4))).toEqual([]);
       expect(await away(admin, day(45))).toEqual([]);
       expect((await office(principal, start)).map((r) => r.leave_id)).toEqual([oldest.leaveId, year]);
@@ -607,7 +617,7 @@ describe('on the real schema', () => {
       expect(await office(admin, day(-LEAVE_BACK_DAYS))).toEqual([]);
       const found = await office(admin, day(-120));
       expect(found.map((r) => [r.name, r.from_date, r.mayCancel])).toEqual([['Tara Teacher', day(-90), true]]);
-      expect(await as(admin, (c) => withdrawLeave(c, actor(admin), found[0].leave_id, 'She was in school those days.'))).toEqual({ ok: true });
+      expect(await as(admin, (c) => withdrawLeave(c, actor(admin), found[0].leave_id, 'She was in school those days.'))).toEqual({ ok: true, coversReleased: 0 });
       expect(await away(admin, day(-89))).toEqual([]);
     });
 
@@ -668,6 +678,172 @@ describe('on the real schema', () => {
       } finally {
         await wipe();
         await db.pg.query(`delete from users where user_id = $1`, [B_ADMIN]);
+      }
+    });
+  });
+
+  describe('a school with no school admin (C210)', () => {
+    // School B has its principal; a teacher and a school admin join it where a test says so.
+    const [B_ADMIN, B_TEACHER] = [u(22), u(23)];
+    const bAdmin: Who = { role: 'school_admin', user: B_ADMIN, school: B };
+    const bTeacher: Who = { role: 'teacher', user: B_TEACHER, school: B };
+    const addBAdmin = () => db.pg.query(`insert into users (user_id, school_id, email, role, display_name, is_active) values ($1, $2, 'admin@school-b.example', 'school_admin', 'Bina Admin', true)`, [B_ADMIN, B]);
+    const dropB = async () => {
+      await wipe();
+      await db.pg.query(`delete from users where user_id = any($1::uuid[])`, [[B_ADMIN, B_TEACHER]]);
+    };
+    // Self-recorded leave put straight into the table from a session, past the app: what the database itself holds.
+    const putSelf = (who: Who, more: Partial<{ status: string; decidedBy: string | null; from: number }> = {}) =>
+      as(who, (c) =>
+        c.query(
+          `insert into staff_leave (school_id, user_id, from_date, to_date, kind, reason, status, recorded_by, decided_by, decided_at, self_recorded)
+           values ($1, $2, $3::date, $3::date, 'casual', 'x', $4, $2, $5::uuid, case when $5::uuid is not null then now() end, true)`,
+          [who.school ?? A, who.user, day(more.from ?? 50), more.status ?? 'approved', more.decidedBy === undefined ? who.user : more.decidedBy]
+        )
+      );
+    const selfRow = async (id: string) => (await db.pg.query(`select status, user_id, recorded_by, decided_by, decided_at is not null as decided, self_recorded from staff_leave where leave_id = $1`, [id])).rows[0];
+
+    it('the principal records their own leave: approved at once, in their own name, and marked so on the row and in the audit log', async () => {
+      await wipe();
+      expect(await as(elsewhere, (c) => selfRecordAllowed(c, actor(elsewhere)))).toBe(true);
+      const made = await as(elsewhere, (c) => recordOwnLeave(c, actor(elsewhere), wants(-2, 1, { kind: 'sick', reason: 'A small operation, and rest after it.' })));
+      expect(made).toMatchObject({ ok: true });
+      const id = (made as { leaveId: string }).leaveId;
+      expect(await selfRow(id)).toEqual({ status: 'approved', user_id: B_PRINCIPAL, recorded_by: B_PRINCIPAL, decided_by: B_PRINCIPAL, decided: true, self_recorded: true });
+      // Its days are "on leave", by the one rule.
+      expect((await as(elsewhere, (c) => onLeave(c, B, today))).map((p) => p.name)).toEqual(['Bela Principal']);
+      // The audit row says it was self-recorded, in the principal's name, without the kind or the reason.
+      const audit = (await db.pg.query(`select event_action, actor_user_id, actor_role::text as actor_role, after_state from audit_log where target_id = $1`, [id])).rows;
+      expect(audit).toEqual([{ event_action: 'leave.self_recorded', actor_user_id: B_PRINCIPAL, actor_role: 'principal', after_state: { userId: B_PRINCIPAL, fromDate: day(-2), toDate: day(1), status: 'approved', selfRecorded: true } }]);
+      expect(JSON.stringify(audit)).not.toMatch(/operation|sick/);
+      // What the principal reads: their own, marked, and begun (so cancelled by an office, not withdrawn by them).
+      const [mine] = await as(elsewhere, (c) => myLeave(c, actor(elsewhere)));
+      expect(mine).toMatchObject({ leave_id: id, status: 'approved', selfRecorded: true, byOffice: false, mine: true, mayWithdraw: false, decided_by: 'Bela Principal' });
+      // What is asked is checked as the office's recording is: up to LEAVE_BACK_DAYS back, and never overlapping.
+      expect(await as(elsewhere, (c) => recordOwnLeave(c, actor(elsewhere), wants(-40, -39)))).toEqual({ ok: false, reason: 'past' });
+      expect(await as(elsewhere, (c) => recordOwnLeave(c, actor(elsewhere), wants(1, 2)))).toEqual({ ok: false, reason: 'overlap' });
+      expect(await as(elsewhere, (c) => recordOwnLeave(c, actor(elsewhere), wants(5, 5, { kind: 'holiday' })))).toEqual({ ok: false, reason: 'kind' });
+      // Ahead of its first day it is withdrawn like any own leave.
+      const later = (await as(elsewhere, (c) => recordOwnLeave(c, actor(elsewhere), wants(20, 21)))) as { leaveId: string };
+      expect(await as(elsewhere, (c) => withdrawLeave(c, actor(elsewhere), later.leaveId, ''))).toEqual({ ok: true, coversReleased: 0 });
+      expect(await selfRow(later.leaveId)).toMatchObject({ status: 'withdrawn', self_recorded: true, decided_by: B_PRINCIPAL });
+    });
+
+    it('nobody else records their own leave, and a principal no longer does once the school has a school admin: in the app and in the database', async () => {
+      await wipe();
+      await db.pg.query(`insert into users (user_id, school_id, email, role, display_name, is_active) values ($1, $2, 'teacher@school-b.example', 'teacher', 'Bhanu Teacher', true)`, [B_TEACHER, B]);
+      try {
+        // Through the app: every other role is not allowed, even in school B with no school admin; school A's
+        // principal has a school admin to decide it; an account made at another school is told so.
+        for (const who of [tara, accountant, coordinator, admin, bTeacher]) {
+          expect(await as(who, (c) => recordOwnLeave(c, actor(who), wants(5, 5))), who.role).toEqual({ ok: false, reason: 'not_allowed' });
+          expect(await as(who, (c) => selfRecordAllowed(c, actor(who))), who.role).toBe(false);
+        }
+        expect(await as(principal, (c) => recordOwnLeave(c, actor(principal), wants(5, 5)))).toEqual({ ok: false, reason: 'has_admin' });
+        expect(await as(principal, (c) => selfRecordAllowed(c, actor(principal)))).toBe(false);
+        expect(await as(visitingPrincipal, (c) => recordOwnLeave(c, actor(visitingPrincipal), wants(5, 5)))).toEqual({ ok: false, reason: 'elsewhere' });
+        // In the database, past the app: a principal with a school admin, and any other role (the trigger asks the
+        // person's own row; the policy staff_leave_asked_as_self would refuse the other roles after it too).
+        await expect(putSelf(principal)).rejects.toThrow(/has a school admin/);
+        for (const who of [admin, tara, coordinator, accountant, bTeacher]) await expect(putSelf(who), who.role).rejects.toThrow(/only the principal records their own leave/);
+        // The policy on its own: a session that is not the principal's, for the principal's own row.
+        await expect(as({ role: 'school_admin', user: B_PRINCIPAL, school: B }, (c) => c.query(`insert into staff_leave (school_id, user_id, from_date, to_date, kind, reason, status, recorded_by, decided_by, decided_at, self_recorded) values ($1, $2, $3, $3, 'casual', 'x', 'approved', $2, $2, now(), true)`, [B, B_PRINCIPAL, day(50)]))).rejects.toThrow(/row-level security/);
+        // The rule holds whoever writes: the owner of the database, past every policy, still cannot mark anyone
+        // else's leave self-recorded, or a principal's while the school has a school admin.
+        for (const user of [TARA, ADMIN, PRINCIPAL]) {
+          await expect(db.pg.query(`insert into staff_leave (school_id, user_id, from_date, to_date, kind, reason, status, recorded_by, decided_by, decided_at, self_recorded) values ($1, $2, $3, $3, 'casual', 'x', 'approved', $2, $2, now(), true)`, [A, user, day(50)]), user).rejects.toThrow(/only the principal records|has a school admin/);
+        }
+        // Self-recorded is approved at once, in its own person's name: never waiting, never decided by another.
+        await expect(putSelf(elsewhere, { status: 'waiting', decidedBy: null })).rejects.toThrow(/approved at once/);
+        await expect(putSelf(elsewhere, { decidedBy: B_TEACHER })).rejects.toThrow(/row-level security/);
+        await expect(db.pg.query(`insert into staff_leave (school_id, user_id, from_date, to_date, kind, reason, status, recorded_by, decided_by, decided_at, self_recorded) values ($1, $2, $3, $3, 'casual', 'x', 'approved', $2, $4, now(), true)`, [B, B_PRINCIPAL, day(50), B_TEACHER])).rejects.toThrow(/staff_leave_self_recorded/);
+        expect((await db.pg.query(`select count(*)::int as n from staff_leave where self_recorded`)).rows[0].n).toBe(0);
+        // The principal of school B, with no school admin: the database takes it.
+        await putSelf(elsewhere);
+        expect((await db.pg.query(`select count(*)::int as n from staff_leave where self_recorded and user_id = $1 and decided_by = $1`, [B_PRINCIPAL])).rows[0].n).toBe(1);
+        // A school admin joins school B: from then on the database refuses it, and the app says why.
+        await addBAdmin();
+        await expect(putSelf(elsewhere, { from: 60 })).rejects.toThrow(/has a school admin/);
+        expect(await as(elsewhere, (c) => recordOwnLeave(c, actor(elsewhere), wants(60, 60)))).toEqual({ ok: false, reason: 'has_admin' });
+        expect(await as(elsewhere, (c) => selfRecordAllowed(c, actor(elsewhere)))).toBe(false);
+        // A school admin whose account is switched off is not there to decide.
+        await db.pg.query(`update users set is_active = false where user_id = $1`, [B_ADMIN]);
+        expect(await as(elsewhere, (c) => selfRecordAllowed(c, actor(elsewhere)))).toBe(true);
+        await putSelf(elsewhere, { from: 60 });
+        await db.pg.query(`update users set is_active = true where user_id = $1`, [B_ADMIN]);
+        // A request that was asked is never turned into a self-recorded one, or approved by its own person.
+        const asked = await ask(elsewhere, 70, 70);
+        await expect(as(elsewhere, (c) => c.query(`update staff_leave set status = 'approved', decided_by = user_id, decided_at = now() where leave_id = $1`, [asked]))).rejects.toThrow(/staff_leave_not_own_decision/);
+        await expect(as(elsewhere, (c) => c.query(`update staff_leave set self_recorded = true, status = 'approved', decided_by = user_id, decided_at = now() where leave_id = $1`, [asked]))).rejects.toThrow(/never changed/);
+        await expect(db.pg.query(`update staff_leave set self_recorded = true, status = 'approved', decided_by = user_id, decided_at = now() where leave_id = $1`, [asked])).rejects.toThrow(/never changed/);
+        // Nor is a self-recorded row turned back into an ordinary one.
+        const selfId = (await db.pg.query(`select leave_id from staff_leave where self_recorded and from_date = $1`, [day(50)])).rows[0].leave_id;
+        await expect(as(elsewhere, (c) => c.query(`update staff_leave set self_recorded = false where leave_id = $1`, [selfId]))).rejects.toThrow(/never changed/);
+        expect(await selfRow(asked)).toMatchObject({ status: 'waiting', decided_by: null, self_recorded: false });
+      } finally {
+        await dropB();
+      }
+    });
+
+    it('with a school admin, the principal’s own request waits for the school admin, and the school admin’s is decided by the principal, the only two in the office', async () => {
+      await wipe();
+      await addBAdmin();
+      try {
+        for (const who of [elsewhere, bAdmin]) expect(await as(who, (c) => officeAlone(c, actor(who))), who.role).toBe(false);
+        const hers = await ask(elsewhere, 5, 5);
+        const his = await ask(bAdmin, 6, 6);
+        expect(await row(hers)).toMatchObject({ status: 'waiting', decided_by: null });
+        // Neither decides their own.
+        expect(await as(elsewhere, (c) => decideLeave(c, actor(elsewhere), hers, 'approve', ''))).toEqual({ ok: false, reason: 'own' });
+        expect(await as(bAdmin, (c) => decideLeave(c, actor(bAdmin), his, 'approve', ''))).toEqual({ ok: false, reason: 'own' });
+        // Each is told on My Day of the other's request, and only of that one.
+        const card = TODAY_PROVIDERS.find((p) => p.type === 'leave-waiting')!;
+        for (const who of [elsewhere, bAdmin]) expect(await as(who, (c) => card.load(c, { schoolId: B, userId: who.user, role: who.role as never, sunday: false })), who.role).toMatchObject([{ count: 1 }]);
+        expect(await as(bAdmin, (c) => decideLeave(c, actor(bAdmin), hers, 'approve', ''))).toEqual({ ok: true });
+        expect(await as(elsewhere, (c) => decideLeave(c, actor(elsewhere), his, 'refuse', 'Inspection that day.'))).toEqual({ ok: true });
+        expect(await selfRow(hers)).toMatchObject({ status: 'approved', decided_by: B_ADMIN, self_recorded: false });
+        expect(await selfRow(his)).toMatchObject({ status: 'refused', decided_by: B_PRINCIPAL, self_recorded: false });
+      } finally {
+        await dropB();
+      }
+    });
+
+    it('the routes: "My leave" says when the principal may record their own, and the server records it only then', async () => {
+      await wipe();
+      const claims = (who: Who) => ({ sub: who.user, role: who.role, schoolId: who.school ?? A, membershipId: u(90), tokenVersion: 0, aal: 'aal1', sessionId: u(91) });
+      const call = async (who: Who, fn: () => Promise<Response>) => {
+        state.claims = claims(who);
+        const res = await fn();
+        return { status: res.status, body: await res.json() };
+      };
+      const post = (who: Who, body: unknown) => call(who, () => postLeave(new NextRequest('http://localhost/api/app/staff/leave', { method: 'POST', body: JSON.stringify(body) })));
+      const mine = (who: Who) => call(who, () => listLeave(new NextRequest('http://localhost/api/app/staff/leave')));
+      for (const school of [A, B]) await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'staff', true, 'plan') on conflict (school_id, module_id) do update set enabled = true`, [school]);
+      try {
+        expect((await mine(elsewhere)).body).toMatchObject({ office: true, alone: true, mayRecordOwn: true });
+        for (const who of [principal, admin, tara]) expect((await mine(who)).body.mayRecordOwn, who.role).toBe(false);
+        for (const bad of [{ ...wants(5, 5), self: 'yes' }, { ...wants(5, 5), self: true, userId: TARA }, { ...wants(5, 5), self: false }]) expect(await post(elsewhere, bad), JSON.stringify(bad)).toMatchObject({ status: 400, body: { code: 'not_sent_properly' } });
+        expect(await post(tara, { ...wants(5, 5), self: true })).toMatchObject({ status: 403, body: { code: 'not_allowed' } });
+        expect(await post(principal, { ...wants(5, 5), self: true })).toMatchObject({ status: 400, body: { code: 'has_admin' } });
+        const made = await post(elsewhere, { ...wants(5, 6), self: true });
+        expect(made.status).toBe(201);
+        expect(await row(made.body.leaveId)).toMatchObject({ status: 'approved', decided_by: B_PRINCIPAL, recorded_by: B_PRINCIPAL });
+        expect((await mine(elsewhere)).body.mine).toMatchObject([{ leave_id: made.body.leaveId, selfRecorded: true, status: 'approved', mayWithdraw: true }]);
+        // The words: why, the button, and the refusal once a school admin has joined, in both languages.
+        expect(t('en', 'leave.my.selfWhy')).toContain(`“${t('en', 'leave.my.self')}”`);
+        expect(t('hi', 'leave.my.selfWhy')).toContain(`“${t('hi', 'leave.my.self')}”`);
+        expect(t('en', 'leave.err.has_admin')).toContain(`“${t('en', 'leave.my.ask')}”`);
+        expect(t('hi', 'leave.err.has_admin')).toContain(`“${t('hi', 'leave.my.ask')}”`);
+        const panel = readFileSync(path.join(__dirname, '../../src/components/account/MyLeavePanel.tsx'), 'utf8');
+        expect(panel).toMatch(/data\.mayRecordOwn && \(\s*<button[^>]*data-my-leave-self/);
+        expect(panel).toContain('{ ...form, self: true }');
+        // Self-recorded leave that has begun, with no school admin yet: the line does not send the principal to themself.
+        expect(panel).toContain("r.selfRecorded && data.mayRecordOwn ? 'leave.my.begunSelf' : 'leave.my.begun'");
+        expect(t('en', 'leave.my.begunSelf')).not.toMatch(/ask the principal/);
+      } finally {
+        // School B had no row for Staff before this test: it is taken away again, as the tests after expect.
+        await db.pg.query(`delete from school_module_entitlements where school_id = $1 and module_id = 'staff'`, [B]);
+        await wipe();
       }
     });
   });
@@ -756,7 +932,7 @@ describe('on the real schema', () => {
       const mine = await call(tara, () => listLeave(req('GET', '/api/app/staff/leave')));
       expect(mine.body).toMatchObject({ me: TARA, office: false, today });
       expect(mine.body.mine.map((r: { leave_id: string }) => r.leave_id)).toEqual([id]);
-      expect(Object.keys(mine.body).sort()).toEqual(['alone', 'me', 'mine', 'office', 'today']);
+      expect(Object.keys(mine.body).sort()).toEqual(['alone', 'mayRecordOwn', 'me', 'mine', 'office', 'today']);
       expect((await call(tarun, () => listLeave(req('GET', '/api/app/staff/leave')))).body.mine).toEqual([]);
       for (const who of [tara, accountant, coordinator]) expect(await call(who, () => listLeave(req('GET', '/api/app/staff/leave?view=office'))), who.role).toMatchObject({ status: 403, body: { code: 'not_allowed' } });
       expect(await step(tara, id, { action: 'approve' })).toMatchObject({ status: 403, body: { code: 'not_allowed' } });

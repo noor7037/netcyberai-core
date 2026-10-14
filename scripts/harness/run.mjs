@@ -2509,6 +2509,118 @@ const ptmSubjectTeacherDone = async () => {
 };
 // c210-rls end
 // c210-leave begin
+// Leave in a small office, and cancelled leave releasing its covers (C210). Four screens:
+//   - the principal of a school with no active school admin (the school admin's account is switched off for the
+//     run) records their own leave on "My leave": approved at once and marked as recorded by them, with the words
+//     saying why. The account is switched back on after, whatever happened.
+//   - the principal cancels a teacher's approved leave on Staff: the two covers assigned for today and tomorrow are
+//     released by that tap, in the principal's name, and the line under "Cancelled" says so; the cover of
+//     yesterday stays as it was.
+//   - the covering teacher is told: a card on My Day, and "Covers released" on Proxy Auto. Never whose leave it was.
+// Every row put in is taken away after; the audit rows stay (the log is never cut) and are counted from where they
+// stood.
+const countWhere = async (sql, params = []) => (await db.pg.query(`select count(*)::int as n from ${sql}`, params)).rows[0].n;
+let ownLeaveSeen = null;
+let ownLeaveAuditBefore = 0;
+const accountLeaveSelf = async (page) => {
+  await clearLeave();
+  ownLeaveAuditBefore = await countWhere(`audit_log where event_action = 'leave.self_recorded'`);
+  await db.pg.query(`update users set is_active = false where user_id = $1`, [PEOPLE.office.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  const button = page.locator('[data-my-leave-self]');
+  await button.waitFor({ timeout: 20000 });
+  const why = await page.locator('[data-my-leave-self-why]').innerText();
+  const disabledAtFirst = await button.isDisabled();
+  await page.locator('#my-leave-from').fill(await leaveDay(0));
+  await page.locator('#my-leave-to').fill(await leaveDay(1));
+  await page.selectOption('#my-leave-kind', 'other');
+  await page.locator('#my-leave-reason').fill('A meeting at the district education office.');
+  await button.click();
+  await page.locator('[data-my-leave-row="approved"] [data-leave-self]').waitFor({ timeout: 20000 });
+  ownLeaveSeen = {
+    disabledAtFirst,
+    saysWhy: why.includes('no school admin') && why.includes('“Record my own leave”'),
+    note: await page.locator('[data-leave-note]').getAttribute('data-leave-note'),
+    how: await page.locator('[data-my-leave-how]').getAttribute('data-my-leave-how'),
+    askToo: await page.locator('[data-my-leave-send]').count(),
+    marked: (await page.locator('[data-leave-self]').innerText()).includes('You recorded this leave yourself'),
+    // It has begun, and there is nobody yet to cancel it: the line says so, and does not send them to themself.
+    begun: await page.locator('[data-my-leave-row="approved"]').innerText().then((w) => w.includes('Once the school has a school admin') && !w.includes('ask the principal')),
+  };
+};
+const accountLeaveSelfDone = async () => {
+  await db.pg.query(`update users set is_active = true where user_id = $1`, [PEOPLE.office.sub]);
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from staff_leave where school_id = $1 and user_id = $2 and recorded_by = $2 and decided_by = $2 and status = 'approved' and self_recorded
+               and from_date = ${TODAY_SQL} and to_date = ${TODAY_SQL} + 1 and kind = 'other') as recorded,
+            (select count(*)::int from staff_leave) as in_all`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  const audited = (await countWhere(`audit_log where event_action = 'leave.self_recorded' and actor_user_id = $1`, [PEOPLE.principal.sub])) - ownLeaveAuditBefore;
+  await clearLeave();
+  if (JSON.stringify(rows[0]) !== JSON.stringify({ recorded: 1, in_all: 1 }) || audited !== 1) throw new Error(`the principal's own leave in the database: ${JSON.stringify(rows[0])}, ${audited} audit rows`);
+  const seen = { disabledAtFirst: true, saysWhy: true, note: 'ok', how: 'alone', askToo: 1, marked: true, begun: true };
+  if (JSON.stringify(ownLeaveSeen) !== JSON.stringify(seen)) throw new Error(`"Record my own leave": ${JSON.stringify(ownLeaveSeen)}`);
+};
+let releaseSeen = null;
+let releaseAuditBefore = 0;
+const staffLeaveReleases = async (page) => {
+  await clearProxy();
+  releaseAuditBefore = await countWhere(`audit_log where event_action = 'cover.released'`);
+  await db.pg.query(`insert into users (user_id, school_id, email, role, display_name) values ($1, $2, 'tejas@example.invalid', 'teacher', 'Tejas Example')`, [PROXY_TEACHERS.tejas, SCHOOL]);
+  // Tara has been away since yesterday, until the day after tomorrow. Tejas covers her first period yesterday, today
+  // and tomorrow: rows, as the office's taps on Proxy Auto would have made them.
+  await putLeave(PEOPLE.teacher.sub, -1, 2, 'sick', 'Unwell, phoned in.', PEOPLE.principal.sub);
+  await db.pg.exec(`set session_replication_role = replica;
+    insert into substitutions (school_id, on_date, period, class_id, subject_id, absent_user_id, substitute_user_id, assigned_by)
+      select '${SCHOOL}', ${TODAY_SQL} + d, 1, '${CLASS_5A}', '${PROXY_MATHS}', '${PEOPLE.teacher.sub}', '${PROXY_TEACHERS.tejas}', '${PEOPLE.principal.sub}' from generate_series(-1, 1) d;
+    set session_replication_role = origin;`);
+  await page.reload({ waitUntil: 'networkidle' });
+  const row = page.locator('[data-leave-ahead] [data-leave-calendar-row]').first();
+  await row.waitFor({ timeout: 20000 });
+  await row.locator('[data-leave-cancel-open]').click();
+  await row.locator('input').fill('She came in after all.');
+  await row.locator('[data-leave-cancel]').click();
+  await page.waitForFunction(() => /released/.test(document.querySelector('[data-leave-note]')?.textContent ?? ''), null, { timeout: 20000 });
+  releaseSeen = { says: (await page.locator('[data-leave-note]').innerText()).includes('2 covers assigned for those days were released, and their teachers are told on My Day.') };
+};
+const staffLeaveReleasesDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from substitutions where status = 'undone' and undone_reason = 'leave_cancelled' and undone_by = $1 and on_date >= ${TODAY_SQL}) as released,
+            (select count(*)::int from substitutions where status = 'assigned' and on_date < ${TODAY_SQL}) as yesterday_stands,
+            (select count(*)::int from substitutions where status = 'assigned') as still_assigned,
+            (select count(*)::int from staff_leave where status = 'withdrawn' and withdrawn_by = $1 and withdrawn_note = 'She came in after all.') as cancelled`,
+    [PEOPLE.principal.sub]
+  );
+  const audited = (await countWhere(`audit_log where event_action = 'cover.released'`)) - releaseAuditBefore;
+  await clearProxy();
+  if (JSON.stringify(rows[0]) !== JSON.stringify({ released: 2, yesterday_stands: 1, still_assigned: 1, cancelled: 1 }) || audited !== 2) throw new Error(`cancelled leave and its covers: ${JSON.stringify(rows[0])}, ${audited} audit rows`);
+  if (!releaseSeen?.says) throw new Error(`the line under "Cancelled": ${JSON.stringify(releaseSeen)}`);
+};
+// Two covers the teacher had, today and tomorrow, for Tanvi, released when her leave was cancelled: rows.
+const putReleasedCovers = () =>
+  db.pg.exec(`set session_replication_role = replica;
+    insert into substitutions (school_id, on_date, period, class_id, subject_id, absent_user_id, substitute_user_id, assigned_by, status, undone_by, undone_at, undone_reason) values
+      ('${SCHOOL}', ${TODAY_SQL}, 4, '${PROXY_CLASS_6A}', '${PROXY_ENGLISH}', '${LEAVE_OTHER_TEACHER}', '${PEOPLE.teacher.sub}', '${PEOPLE.office.sub}', 'undone', '${PEOPLE.office.sub}', now(), 'leave_cancelled'),
+      ('${SCHOOL}', ${TODAY_SQL} + 1, 5, '${PROXY_CLASS_6A}', '${PROXY_MATHS}', '${LEAVE_OTHER_TEACHER}', '${PEOPLE.teacher.sub}', '${PEOPLE.office.sub}', 'undone', '${PEOPLE.office.sub}', now(), 'leave_cancelled');
+    set session_replication_role = origin;`);
+let releasedSeen = null;
+const releasedShownAt = (selector, wanted) => async (page) => {
+  await clearProxy();
+  await proxyWorkAllWeek();
+  await putReleasedCovers();
+  await page.reload({ waitUntil: 'networkidle' });
+  const block = page.locator(selector);
+  await block.waitFor({ timeout: 20000 });
+  const words = await block.innerText();
+  // The day, the period, the class and the subject; never whose leave it was or why.
+  releasedSeen = { selector, says: wanted.every((w) => words.includes(w)) && !words.includes('Tanvi') && !words.includes('Unwell'), words: words.replace(/\s+/g, ' ').slice(0, 240) };
+};
+const releasedShownDone = (selector) => async () => {
+  const left = await countWhere(`substitutions where status = 'undone' and undone_reason = 'leave_cancelled' and substitute_user_id = $1`, [PEOPLE.teacher.sub]);
+  await clearProxy();
+  if (left !== 2 || releasedSeen?.selector !== selector || !releasedSeen.says) throw new Error(`a teacher's released covers at ${selector}: ${JSON.stringify(releasedSeen)}, ${left} rows`);
+};
 // c210-leave end
 // c210-jobs begin
 // The schools' own scheduled checks (C210), run for real: the job runner of the running app is called the way the
@@ -3175,6 +3287,10 @@ const SCREENS = [
   ['teacher', 'teacher-ptm-subject', '/app/ptm', ptmSubjectTeacher, ptmSubjectTeacherDone],
   // c210-rls end
   // c210-leave begin
+  ['principal', 'app-account-leave-self', '/app/account', accountLeaveSelf, accountLeaveSelfDone],
+  ['principal', 'app-staff-leave-releases', '/app/staff', staffLeaveReleases, staffLeaveReleasesDone],
+  ['teacher', 'teacher-my-day-released', '/app/my-day', releasedShownAt('[data-today-card="covers-released"]', ['2 covers you had were released: the teacher is back', 'See your covers']), releasedShownDone('[data-today-card="covers-released"]')],
+  ['teacher', 'teacher-proxy-released', '/app/proxy', releasedShownAt('[data-proxy-released]', ['Covers released', 'Period 4 · 6-A · English: released', 'Period 5 · 6-A · Mathematics: released']), releasedShownDone('[data-proxy-released]')],
   // c210-leave end
   // c210-jobs begin
   // The schools' own checks, run by the job runner as the scheduler calls it: Early Warning's nightly check, the

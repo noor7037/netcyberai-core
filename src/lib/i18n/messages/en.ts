@@ -3061,6 +3061,25 @@ export const en = {
   // c210-rls begin
   // c210-rls end
   // c210-leave begin
+  // C210: a principal with no school admin records their own leave; cancelled leave releases its covers.
+  'leave.self.mine': 'You recorded this leave yourself on {date}. It was approved at once, because this school has no school admin to decide it.',
+  'leave.self.theirs': '{name} recorded this leave for themself on {date}. It was approved at once, because the school had no school admin to decide it.',
+  'leave.my.selfWhy': 'This school has no school admin, so nobody else can decide your leave. You can record it yourself with “Record my own leave”: it is approved at once, and marked as recorded by you.',
+  'leave.my.self': 'Record my own leave',
+  'leave.my.selfRecorded': 'Recorded and approved, and marked as recorded by you.',
+  'leave.my.begunSelf': 'This leave has begun. Once the school has a school admin, they can cancel it if it is wrong.',
+  'leave.my.coversReleased.one': '{count} cover arranged for those days was released, and its teacher is told on My Day.',
+  'leave.my.coversReleased.other': '{count} covers arranged for those days were released, and their teachers are told on My Day.',
+  'leave.office.coversReleased.one': '{count} cover assigned for those days was released, and its teacher is told on My Day.',
+  'leave.office.coversReleased.other': '{count} covers assigned for those days were released, and their teachers are told on My Day.',
+  'leave.err.has_admin': 'This school has a school admin now, who decides your leave. Press “Ask for leave” instead.',
+  'today.covers-released.todo.one': 'A cover you had was released: the teacher is back',
+  'today.covers-released.todo.other': '{count} covers you had were released: the teacher is back',
+  'today.covers-released.action': 'See your covers',
+  'today.covers-released.why': 'The leave of the teacher you were to cover was cancelled, so those periods are theirs again. Do not go to those classes in their place.',
+  'px.released.title': 'Covers released',
+  'px.released.how': 'The teacher you were to cover is back: their leave was cancelled. These periods are theirs again, so you do not go to these classes in their place.',
+  'px.released.line': 'Period {period} · {class} · {subject}: released',
   // c210-leave end
   // c210-jobs begin
   // The nightly Early Warning check and the weekly check-up (C210).

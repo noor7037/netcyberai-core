@@ -374,6 +374,23 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   // c210-rls begin
   // c210-rls end
   // c210-leave begin
+  {
+    // A teacher's covers that were released because the leave behind them was cancelled (C210): the person who
+    // withdrew or cancelled that leave undid them by that one tap, so the teacher must not go to those classes.
+    // Counted from today on, as "Covers released" on Proxy Auto lists them (the same function). Row level security
+    // gives a teacher their own covers only, and the card says nothing about whose leave it was or why.
+    type: 'covers-released',
+    moduleId: 'proxy',
+    roles: ['teacher'],
+    async load(db, ctx) {
+      const { coversReleasedBetween, PROXY_AHEAD_DAYS } = await import('@/lib/proxy/proxy');
+      const { addDays } = await import('@/lib/staff/leave-rules');
+      const { indiaDate } = await import('@/lib/time/india');
+      const today = indiaDate();
+      const released = await coversReleasedBetween(db as never, ctx.schoolId, ctx.userId, today, addDays(today, PROXY_AHEAD_DAYS));
+      return waiting('covers-released', 'proxy', released.length, '/app/proxy');
+    },
+  },
   // c210-leave end
   // c210-jobs begin
   {

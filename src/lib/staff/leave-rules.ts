@@ -6,6 +6,8 @@ export type LeaveKind = (typeof LEAVE_KINDS)[number];
 export type LeaveStatus = 'waiting' | 'approved' | 'refused' | 'withdrawn';
 // Who decides, and who may put in a request.
 export const LEAVE_OFFICE: readonly string[] = ['principal', 'school_admin'];
+// Who records their own leave, and only while the school has no active school admin to decide it (C210).
+export const LEAVE_SELF_RECORDER = 'principal';
 export const LEAVE_ROLES: readonly string[] = ['principal', 'school_admin', 'teacher', 'accountant', 'academic_coordinator'];
 // The longest one request may be, in days (the database holds the same limit: staff_leave_dates).
 export const LEAVE_MAX_DAYS = 60;
@@ -35,7 +37,8 @@ export function leaveByToday<R extends { to_date: string }>(rows: R[], today: st
 // One request as a screen is given it: the person's own, or one of the office's lists.
 export type LeaveRow = {
   leave_id: string; user_id: string; name: string; role: string; from_date: string; to_date: string; days: number; kind: LeaveKind; reason: string; status: LeaveStatus;
-  asked_at: string; byOffice: boolean; recorded_by: string; decided_by: string | null; decided_at: string | null; decision_note: string | null;
+  // `selfRecorded`: the principal of a school with no school admin recorded it for themself, approved at once (C210).
+  asked_at: string; byOffice: boolean; selfRecorded: boolean; recorded_by: string; decided_by: string | null; decided_at: string | null; decision_note: string | null;
   withdrawn_at: string | null; withdrawnByOffice: boolean; withdrawn_note: string | null;
   // What this person may do to it now: the same rules as the server's own steps.
   mine: boolean; mayDecide: boolean; mayWithdraw: boolean; mayCancel: boolean;

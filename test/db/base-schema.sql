@@ -303,6 +303,9 @@ create table substitutions (
   assigned_by uuid not null,
   assigned_at timestamptz not null default now()
 );
+-- Why a cover was undone: 'leave_cancelled' when its leave was withdrawn (C210), as My Day counts a teacher's
+-- released covers (the c210_leave_rules migration).
+alter table substitutions add column undone_reason text;
 alter table substitutions enable row level security;
 create policy substitutions_tenant_isolation on substitutions using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert, update on substitutions to app_user;
