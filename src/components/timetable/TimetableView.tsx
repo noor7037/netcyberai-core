@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
@@ -18,11 +19,13 @@ import { CSV_HEADER, WEEKDAYS, type ImportProblem } from '@/lib/timetable/plan';
 type Entry = { entry_id: string; class_id: string; class_name: string; weekday: number; period: number; subject_id: string; subject_name: string; teacher_user_id: string; teacher_name: string };
 type Choices = { classes: { class_id: string; name: string }[]; subjects: { subject_id: string; name: string }[]; teachers: { user_id: string; name: string }[] };
 type Editing = { weekday: number; period: number; subjectId: string; teacherUserId: string; saved: boolean };
+// A period this teacher covers today for a teacher on leave (Proxy Auto, C202): the period, class and subject.
+type CoverToday = { substitution_id: string; on_date: string; period: number; class_name: string; subject_name: string };
 
 const TAP = 'min-h-[48px] rounded-md border px-3 text-left text-sm';
 const dayKey = (weekday: number) => `tt.day.${WEEKDAYS[weekday - 1]}` as MessageKey;
 
-export function TimetableView({ office, teacher }: { office: boolean; teacher: boolean }) {
+export function TimetableView({ office, teacher, covers: showCovers = false }: { office: boolean; teacher: boolean; covers?: boolean }) {
   const { t, tCount, lang } = useT();
   const toast = useToast();
   const [choices, setChoices] = useState<Choices>({ classes: [], subjects: [], teachers: [] });
@@ -37,6 +40,17 @@ export function TimetableView({ office, teacher }: { office: boolean; teacher: b
   const [busy, setBusy] = useState(false);
   // A teacher sees their own week; everyone else picks a class.
   const mine = teacher;
+  // A teacher's covers today sit above their week. Read from Proxy Auto, which answers a teacher with their own
+  // covers only. The page asks for them only when the school has that module on; with nothing to cover, nothing
+  // is drawn.
+  const [covers, setCovers] = useState<CoverToday[]>([]);
+  useEffect(() => {
+    if (!mine || !showCovers) return;
+    fetch('/api/app/proxy')
+      .then(async (res) => (res.ok ? ((await res.json()) as { today: string; mine?: CoverToday[] }) : null))
+      .then((body) => setCovers(body?.mine?.filter((c) => c.on_date === body.today) ?? []))
+      .catch(() => setCovers([]));
+  }, [mine, showCovers]);
 
   const load = useCallback(
     async (id: string) => {
@@ -145,6 +159,22 @@ export function TimetableView({ office, teacher }: { office: boolean; teacher: b
               </option>
             ))}
           </Select>
+        </div>
+      )}
+
+      {mine && covers.length > 0 && (
+        <div data-timetable-covers className="flex flex-col gap-2 rounded-xl border border-slate/20 bg-white p-3">
+          <h2 className="text-sm font-bold text-slate">{t('px.tt.title')}</h2>
+          <ul className="flex flex-col gap-1">
+            {covers.map((c) => (
+              <li key={c.substitution_id} className="rounded-md bg-off-white px-3 py-2 text-sm font-semibold text-slate">
+                {t('px.tt.line', { period: c.period, class: c.class_name, subject: c.subject_name })}
+              </li>
+            ))}
+          </ul>
+          <Link href="/app/proxy" className="inline-flex min-h-[48px] items-center self-start text-sm font-semibold text-sapphire underline">
+            {t('px.tt.open')}
+          </Link>
         </div>
       )}
 

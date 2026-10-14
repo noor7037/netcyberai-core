@@ -13,8 +13,9 @@ export * from './leave-rules';
 //     decide, and the other way round.
 //   - The office can record leave for someone who phoned in. It is approved at once, in that office person's name.
 //   - What was asked never changes. To change the dates, withdraw the request and put in a new one.
-//   - A DAY IS "ON LEAVE" ONLY WHILE A REQUEST COVERING IT IS APPROVED: onLeave() below is the one place that says
-//     who is away, and it reads nothing but approved rows.
+//   - A DAY IS "ON LEAVE" ONLY WHILE A REQUEST COVERING IT IS APPROVED. That rule is written once, in the database
+//     (staff_on_leave, with Proxy Auto's migration, C202), and it reads nothing but approved rows. onLeave() below
+//     asks it; so do Proxy Auto's list of who is away and the database's guard on a new cover.
 //   - Only the person and the office read a request. That is the database's rule (the staff_leave policies); this
 //     file never works around it, and every query here runs in the caller's own session.
 //   - Leave is for running the day. Nothing here counts leave by person, orders people by it or compares them, and
@@ -176,13 +177,16 @@ export async function leaveCalendar(db: Sql, actor: Actor, from: string, to: str
 }
 
 // Who is on leave on a date: the people whose APPROVED leave covers it, and nobody else. A waiting, refused or
-// withdrawn request never makes a day "on leave". Read in the caller's own session, so row level security decides
-// what comes back (the office: everyone; a member of staff: themself). Proxy Auto reads this.
+// withdrawn request never makes a day "on leave". THE RULE IS WRITTEN ONCE, in the database: staff_on_leave()
+// (the p5_substitutions migration). This function, Proxy Auto's list of who is away (teachers_away_on) and the
+// database's own guard on a new cover all ask it, so they cannot come to mean different things. It answers with
+// the caller's own rights, so row level security still decides what comes back here (the office: everyone; a
+// member of staff: themself; anyone else: nobody).
 export async function onLeave(db: Sql, schoolId: string, date: string): Promise<{ user_id: string; name: string }[]> {
   if (!isLeaveDate(date)) return [];
   const { rows } = await db.query(
-    `select distinct l.user_id, u.display_name as name from staff_leave l join users u on u.user_id = l.user_id
-      where l.school_id = $1 and l.status = 'approved' and $2::date between l.from_date and l.to_date order by u.display_name, l.user_id`,
+    `select u.user_id, u.display_name as name from users u
+      where u.school_id = $1 and public.staff_on_leave(u.school_id, u.user_id, $2::date) order by u.display_name, u.user_id`,
     [schoolId, date]
   );
   return rows as { user_id: string; name: string }[];

@@ -1210,6 +1210,138 @@ const accountLeaveAloneDone = async () => {
 };
 // p5-8b end
 // p5-8c begin
+// Proxy Auto (C202). Tara is on approved leave today and tomorrow. The seeded two teachers teach each other's
+// classes in every period, so two more who are free are added for the run: Tejas, who teaches Mathematics in 6-A
+// in period 4, and Tripti, who has no period. The principal opens the day, reads the free teachers of each
+// period and the reason beside each name, and gives the first period to the first suggestion with one tap. On a
+// Sunday the school is closed, so the day worked on is tomorrow. Nothing is sent and no job is added. Everything
+// put in is taken away after; the audit rows stay (the log is never cut) and are counted from where they stood.
+const PROXY_TEACHERS = { tejas: '00000000-0000-4000-8000-00000000a0c1', tripti: '00000000-0000-4000-8000-00000000a0c2' };
+const PROXY_CLASS_6A = '00000000-0000-4000-8000-0000000c0061';
+const PROXY_MATHS = '00000000-0000-4000-8000-0000000d0001';
+const PROXY_ENGLISH = '00000000-0000-4000-8000-0000000d0002';
+// A cover on a day the school is closed is not shown to its teacher, and the seeded school does not work on a
+// Sunday. So that a teacher's three screens below mean the same thing on every day of the week, the school works
+// all seven days while they are drawn; the setting is put in only if the school has none, and taken away after.
+let proxyWorksAllWeek = false;
+const proxyWorkAllWeek = async () => {
+  const put = await db.pg.query(
+    `insert into school_settings (school_id, module_id, schema_version, setting_values, revision) values ($1, 'setup', 2, '{"working_days": ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]}', 1)
+     on conflict (school_id, module_id) do nothing returning module_id`,
+    [SCHOOL]
+  );
+  proxyWorksAllWeek = put.rows.length > 0;
+};
+const clearProxy = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from substitutions; delete from staff_leave; delete from timetable_entries where period > 3; delete from users where user_id in ('${PROXY_TEACHERS.tejas}', '${PROXY_TEACHERS.tripti}'); set session_replication_role = origin;`);
+  if (proxyWorksAllWeek) await db.pg.query(`delete from school_settings where school_id = $1 and module_id = 'setup'`, [SCHOOL]);
+  proxyWorksAllWeek = false;
+};
+const proxyAudit = async () => (await db.pg.query(`select count(*)::int as n from audit_log where event_action like 'cover.%'`)).rows[0].n;
+const proxySentOrQueued = async () => (await db.pg.query(`select (select count(*)::int from jobs) as jobs, (select count(*)::int from communication_log) as messages`)).rows[0];
+let proxyBefore = null;
+let proxyDate = '';
+let proxySeen = null;
+const proxyScreen = async (page) => {
+  await clearProxy();
+  proxyBefore = { audit: await proxyAudit(), ...(await proxySentOrQueued()) };
+  const sunday = (await db.pg.query(`select extract(isodow from ${TODAY_SQL})::int as dow`)).rows[0].dow === 7;
+  proxyDate = await leaveDay(sunday ? 1 : 0);
+  await db.pg.query(`insert into users (user_id, school_id, email, role, display_name) values ($1, $3, 'tejas@example.invalid', 'teacher', 'Tejas Example'), ($2, $3, 'tripti@example.invalid', 'teacher', 'Tripti Example')`, [PROXY_TEACHERS.tejas, PROXY_TEACHERS.tripti, SCHOOL]);
+  await db.pg.query(`insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) select $1, $2, d, 4, $3, $4 from generate_series(1, 6) d`, [SCHOOL, PROXY_CLASS_6A, PROXY_MATHS, PROXY_TEACHERS.tejas]);
+  await putLeave(PEOPLE.teacher.sub, 0, 1, 'sick', 'Unwell, phoned in this morning.', PEOPLE.principal.sub);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-proxy="arranger"]').waitFor({ timeout: 20000 });
+  if (sunday) await page.locator('[data-proxy-day="tomorrow"]').click();
+  const periods = page.locator(`[data-proxy-date="${proxyDate}"] [data-proxy-period]`);
+  await periods.first().waitFor({ timeout: 20000 });
+  const atFirst = { periods: await periods.count(), covered: await page.locator('[data-proxy-period][data-covered="yes"]').count(), away: (await page.locator('[data-proxy-away]').innerText()).includes('Tara Example') };
+  const first = periods.first();
+  const title = await first.locator('h3').innerText();
+  const offered = await first.locator('[data-proxy-suggestion] p:first-child').allInnerTexts();
+  const why = await first.locator('[data-proxy-why]').allInnerTexts();
+  // Tanvi teaches the other class in every period, and Tara is the one away: neither is ever offered.
+  const offersSomeoneBusy = (await page.locator(`[data-proxy-suggestion="${LEAVE_OTHER_TEACHER}"], [data-proxy-suggestion="${PEOPLE.teacher.sub}"]`).count()) > 0;
+  await first.locator('[data-proxy-assign]').first().click();
+  await page.locator('[data-proxy-period][data-covered="yes"]').waitFor({ timeout: 20000 });
+  proxySeen = {
+    atFirst, title, offered: offered.join(), why: why.join(' | '), offersSomeoneBusy,
+    note: await page.locator('[data-proxy-note]').getAttribute('data-proxy-note'),
+    covered: await page.locator('[data-proxy-period][data-covered="yes"]').count(),
+    cover: (await page.locator('[data-proxy-cover]').innerText()).includes('Tejas Example covers this period'),
+    undo: await page.locator('[data-proxy-undo]').count(),
+    assignButtonsOnTheCovered: await page.locator('[data-proxy-period][data-covered="yes"] [data-proxy-assign]').count(),
+  };
+};
+const proxyScreenDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from substitutions) as in_all,
+            (select count(*)::int from substitutions where school_id = $1 and on_date = $2::date and period = 1 and class_id = $3 and subject_id = $4 and absent_user_id = $5 and substitute_user_id = $6
+                and status = 'assigned' and assigned_by = $7 and undone_by is null) as assigned`,
+    [SCHOOL, proxyDate, CLASS_5A, PROXY_MATHS, PEOPLE.teacher.sub, PROXY_TEACHERS.tejas, PEOPLE.principal.sub]
+  );
+  const audited = (await proxyAudit()) - proxyBefore.audit;
+  const after = await proxySentOrQueued();
+  await clearProxy();
+  if (JSON.stringify(rows[0]) !== JSON.stringify({ in_all: 1, assigned: 1 }) || audited !== 1) throw new Error(`the cover in the database: ${JSON.stringify(rows[0])}, ${audited} audit rows`);
+  if (after.jobs !== proxyBefore.jobs || after.messages !== proxyBefore.messages) throw new Error(`a cover must add no job and no message: ${JSON.stringify(after)} after ${JSON.stringify(proxyBefore)}`);
+  const seen = {
+    atFirst: { periods: 3, covered: 0, away: true }, title: 'Period 1 · 5-A · Mathematics', offered: 'Tejas Example,Tripti Example',
+    why: 'Free this period · Teaches Mathematics · 1 period that day · No cover that week | Free this period · No period that day · No cover that week',
+    offersSomeoneBusy: false, note: 'ok', covered: 1, cover: true, undo: 1, assignButtonsOnTheCovered: 0,
+  };
+  if (JSON.stringify(proxySeen) !== JSON.stringify(seen)) throw new Error(`Proxy Auto on the screen: ${JSON.stringify(proxySeen)}`);
+};
+// A teacher's own covers (C202): Tara holds a cover today, one tomorrow and one later in the week, for Tanvi. They
+// are put in as rows, because assigning is the office's tap (the screen above). "Your covers" shows the three, each
+// as its period, class and subject and never whose class it was, and has nothing to press. The rows are taken
+// away after.
+let proxyMineSeen = null;
+const proxyMine = async (page) => {
+  await clearProxy();
+  await proxyWorkAllWeek();
+  await db.pg.exec(`set session_replication_role = replica;
+    insert into substitutions (school_id, on_date, period, class_id, subject_id, absent_user_id, substitute_user_id, assigned_by) values
+      ('${SCHOOL}', ${TODAY_SQL}, 4, '${PROXY_CLASS_6A}', '${PROXY_ENGLISH}', '${LEAVE_OTHER_TEACHER}', '${PEOPLE.teacher.sub}', '${PEOPLE.office.sub}'),
+      ('${SCHOOL}', ${TODAY_SQL} + 1, 5, '${PROXY_CLASS_6A}', '${PROXY_MATHS}', '${LEAVE_OTHER_TEACHER}', '${PEOPLE.teacher.sub}', '${PEOPLE.office.sub}'),
+      ('${SCHOOL}', ${TODAY_SQL} + case when extract(isodow from ${TODAY_SQL} + 3) = 7 then 4 else 3 end, 4, '${PROXY_CLASS_6A}', '${PROXY_ENGLISH}', '${LEAVE_OTHER_TEACHER}', '${PEOPLE.teacher.sub}', '${PEOPLE.office.sub}');
+    set session_replication_role = origin;`);
+  await page.reload({ waitUntil: 'networkidle' });
+  const mine = page.locator('[data-proxy="teacher"]');
+  await mine.waitFor({ timeout: 20000 });
+  await page.locator('[data-proxy-mine]').first().waitFor({ timeout: 20000 });
+  const words = await mine.innerText();
+  proxyMineSeen = { rows: await page.locator('[data-proxy-mine]').count(), none: await page.locator('[data-proxy-mine-none]').count(), buttons: await mine.locator('button').count(), today: words.includes('Period 4 · 6-A · English'), namesWhoIsAway: words.includes('Tanvi') || words.includes('In place of'), later: words.includes('The days after') };
+};
+const proxyMineDone = async () => {
+  const left = (await db.pg.query(`select count(*)::int as n from substitutions where status = 'assigned' and substitute_user_id = $1`, [PEOPLE.teacher.sub])).rows[0].n;
+  await clearProxy();
+  if (left !== 3 || JSON.stringify(proxyMineSeen) !== JSON.stringify({ rows: 3, none: 0, buttons: 0, today: true, namesWhoIsAway: false, later: true })) throw new Error(`a teacher's covers: ${JSON.stringify(proxyMineSeen)}, ${left} rows`);
+};
+// The same cover where a teacher already looks (C202): above their week on Timetable, and as a card on My Day.
+// One cover today is put in as a row, and taken away after.
+const proxyCoverToday = () =>
+  db.pg.exec(`set session_replication_role = replica;
+    insert into substitutions (school_id, on_date, period, class_id, subject_id, absent_user_id, substitute_user_id, assigned_by) values
+      ('${SCHOOL}', ${TODAY_SQL}, 4, '${PROXY_CLASS_6A}', '${PROXY_ENGLISH}', '${LEAVE_OTHER_TEACHER}', '${PEOPLE.teacher.sub}', '${PEOPLE.office.sub}');
+    set session_replication_role = origin;`);
+let proxyCoverSeen = null;
+const proxyCoverShownAt = (selector, wanted) => async (page) => {
+  await clearProxy();
+  await proxyWorkAllWeek();
+  await proxyCoverToday();
+  await page.reload({ waitUntil: 'networkidle' });
+  const block = page.locator(selector);
+  await block.waitFor({ timeout: 20000 });
+  const words = await block.innerText();
+  // The period, the class and the subject; never whose class it was.
+  proxyCoverSeen = { selector, says: wanted.every((w) => words.includes(w)) && !words.includes('Tanvi') && !words.includes('in place of'), words: words.replace(/\s+/g, ' ').slice(0, 200) };
+};
+const proxyCoverShownDone = (selector) => async () => {
+  const left = (await db.pg.query(`select count(*)::int as n from substitutions`)).rows[0].n;
+  await clearProxy();
+  if (left !== 1 || proxyCoverSeen?.selector !== selector || !proxyCoverSeen.says) throw new Error(`a teacher's cover at ${selector}: ${JSON.stringify(proxyCoverSeen)}, ${left} rows`);
+};
 // p5-8c end
 // p5-8d begin
 // p5-8d end
@@ -1638,6 +1770,10 @@ const SCREENS = [
   ['principal', 'app-account-leave-alone', '/app/account', accountLeaveAlone, accountLeaveAloneDone],
   // p5-8b end
   // p5-8c begin
+  ['principal', 'app-proxy', '/app/proxy', proxyScreen, proxyScreenDone],
+  ['teacher', 'teacher-proxy', '/app/proxy', proxyMine, proxyMineDone],
+  ['teacher', 'teacher-timetable-covers', '/app/timetable', proxyCoverShownAt('[data-timetable-covers]', ['You cover today', 'Period 4 · 6-A · English', 'See your covers']), proxyCoverShownDone('[data-timetable-covers]')],
+  ['teacher', 'teacher-my-day-cover', '/app/my-day', proxyCoverShownAt('[data-today-card="covers-today"]', ['You cover 1 period today', '4. 6-A English', 'See your covers']), proxyCoverShownDone('[data-today-card="covers-today"]')],
   // p5-8c end
   // p5-8d begin
   // p5-8d end

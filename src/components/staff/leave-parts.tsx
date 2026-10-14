@@ -63,6 +63,13 @@ export function LeaveGuideLink() {
   );
 }
 
+// How many covers the server says still stand for the days of a leave that was just cancelled (Proxy Auto,
+// C202). Cancelling leave undoes no cover: a person does that, on Proxy Auto. 0 when the answer says nothing.
+export const coversLeftIn = (answer: unknown): number => {
+  const n = (answer as { coversLeft?: unknown } | null)?.coversLeft;
+  return typeof n === 'number' && Number.isInteger(n) && n > 0 ? n : 0;
+};
+
 export function LeaveNoteLine({ note }: { note: LeaveNote }) {
   if (!note) return null;
   return (

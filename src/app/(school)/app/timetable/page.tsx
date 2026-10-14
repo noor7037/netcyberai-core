@@ -15,9 +15,11 @@ export default async function TimetablePage() {
   const { lang } = getLang(session?.sub ?? '');
   // The office and the academic coordinator fill it (C146).
   const office = session?.role === 'school_admin' || session?.role === 'principal' || session?.role === 'academic_coordinator';
+  // A teacher's covers for today sit above their week, when the school has Proxy Auto on (C202).
+  const covers = session?.role === 'teacher' && !(await moduleOffReason('proxy'));
   return (
     <ModulePage moduleId="timetable" help="timetable" tour="timetable" title={t(lang, 'tt.title')} purpose={t(lang, office ? 'tt.purpose.office' : 'tt.purpose.teacher')}>
-      <TimetableView office={office} teacher={session?.role === 'teacher'} />
+      <TimetableView office={office} teacher={session?.role === 'teacher'} covers={covers} />
     </ModulePage>
   );
 }

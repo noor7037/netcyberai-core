@@ -277,6 +277,48 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   },
   // p5-8b end
   // p5-8c begin
+  {
+    // A teacher's covers today (C202): the periods the office has given them for a teacher on leave, in order.
+    // Row level security gives a teacher their own covers and nobody else's. It is work for today, so it waits.
+    // On a day the school is closed there is no period to take, so there is no card.
+    type: 'covers-today',
+    moduleId: 'proxy',
+    roles: ['teacher'],
+    async load(db, ctx) {
+      const { coversFor } = await import('@/lib/proxy/proxy');
+      const covers = await coversFor(db as never, ctx.schoolId, ctx.userId);
+      if (covers.length === 0) return [];
+      return [{ id: 'covers-today', type: 'covers-today', moduleId: 'proxy', state: 'todo', count: covers.length, subject: covers.map((c) => `${c.period}. ${c.class_name} ${c.subject_name}`).join(' · '), href: '/app/proxy' }];
+    },
+  },
+  {
+    // Today's periods of teachers on leave that have no teacher (C202), for the people who arrange cover: no cover
+    // yet, or a cover whose teacher cannot take it any more (now on leave, no longer an active teacher, or given
+    // a class of their own then). Counted by the reading the Proxy Auto screen draws from, with the rule its
+    // "Needs cover" badge uses, so the card and the screen cannot disagree.
+    type: 'periods-uncovered',
+    moduleId: 'proxy',
+    roles: ['principal', 'school_admin', 'academic_coordinator'],
+    async load(db, ctx) {
+      const { coverWork } = await import('@/lib/proxy/proxy');
+      const { open } = await coverWork(db as never, { schoolId: ctx.schoolId, userId: ctx.userId, role: ctx.role as never });
+      return waiting('periods-uncovered', 'proxy', open.length, '/app/proxy');
+    },
+  },
+  {
+    // Today's covers that nothing needs any more (C202): the leave was cancelled, the timetable changed, or today
+    // became a holiday after the tap. The app undoes nothing by itself, so on a working day the teacher is still
+    // shown the cover: this card is what tells the people who arrange cover to undo it. Its number is the length of
+    // the screen's own "Covers no longer needed" list.
+    type: 'covers-not-needed',
+    moduleId: 'proxy',
+    roles: ['principal', 'school_admin', 'academic_coordinator'],
+    async load(db, ctx) {
+      const { coverWork } = await import('@/lib/proxy/proxy');
+      const { noLongerNeeded } = await coverWork(db as never, { schoolId: ctx.schoolId, userId: ctx.userId, role: ctx.role as never });
+      return waiting('covers-not-needed', 'proxy', noLongerNeeded.length, '/app/proxy');
+    },
+  },
   // p5-8c end
   // p5-8d begin
   // p5-8d end

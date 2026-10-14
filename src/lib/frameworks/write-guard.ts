@@ -50,6 +50,9 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['staff/leave', 'staff'],
   // p5-8b end
   // p5-8c begin
+  // Proxy Auto (C202): switched off, nobody assigns or undoes a cover.
+  ['proxy/**', 'proxy'],
+  ['proxy', 'proxy'],
   // p5-8c end
   // p5-8d begin
   // p5-8d end
@@ -139,6 +142,8 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['staff/leave', 'staff'],
   // p5-8b end
   // p5-8c begin
+  // The periods to cover for the people who arrange it, and a teacher's own covers (C202).
+  ['proxy', 'proxy'],
   // p5-8c end
   // p5-8d begin
   // p5-8d end
