@@ -170,6 +170,27 @@ describe('role policies on the four tables, as the app’s role, each role', () 
       for (const w of [coordinator, accountant]) expect(await about(w), w.role).toEqual([]);
     });
 
+    it('the bridge for the code deployed before C210: open only where it was set, and closed once the new runner records its job types', async () => {
+      const all = await superCount(`select count(*) as n from communication_log where school_id = $1`, [A]);
+      const handlers = (await db.pg.query(`select value from platform_settings where key = 'jobs.handlers'`)).rows[0]?.value ?? null;
+      // A fresh database (every test, production today) never opens it.
+      expect(await count(accountant, `select count(*) as n from communication_log`)).toBe(0);
+      try {
+        // Set on a database that already held messages, before the new code runs: every school role reads, as before C210.
+        await db.pg.query(`insert into platform_settings (key, value) values ('rollout.message_log_bridge', 'true'::jsonb) on conflict (key) do update set value = excluded.value`);
+        await db.pg.query(`insert into platform_settings (key, value) values ('jobs.handlers', '[]'::jsonb) on conflict (key) do update set value = excluded.value`);
+        for (const w of [coordinator, accountant]) expect(await count(w, `select count(*) as n from communication_log`), w.role).toBe(all);
+        // The new runner records its job types: the bridge closes by itself.
+        await db.pg.query(`update platform_settings set value = '["early_warning.nightly", "auditor.weekly"]'::jsonb where key = 'jobs.handlers'`);
+        for (const w of [coordinator, accountant]) expect(await count(w, `select count(*) as n from communication_log`), w.role).toBe(0);
+        expect(await count(principal, `select count(*) as n from communication_log`)).toBe(all);
+      } finally {
+        await db.pg.query(`delete from platform_settings where key = 'rollout.message_log_bridge'`);
+        if (handlers === null) await db.pg.query(`delete from platform_settings where key = 'jobs.handlers'`);
+        else await db.pg.query(`update platform_settings set value = $1::jsonb where key = 'jobs.handlers'`, [JSON.stringify(handlers)]);
+      }
+    });
+
     it('a message is written by every role whose work sets one off (through the send-gate); a reply only in one’s own name; no school role changes a message', async () => {
       const write = (w: Who, sql: string) => asWho(db, w, (c) => c.query(sql).then(() => 'written', (e: Error) => e.message));
       for (const w of ROLES) expect(await write(w, `insert into communication_log (school_id, channel, status, student_id, parent_id) values ('${A}', 'whatsapp', 'queued', '${FARAH}', '${G_FARAH}')`), w.role).toBe('written');
