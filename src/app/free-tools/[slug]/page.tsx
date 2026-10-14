@@ -74,7 +74,7 @@ function appJsonLd(t: FreeTool) {
     operatingSystem: 'Any (runs in a web browser)',
     isAccessibleForFree: true,
     inLanguage: ['en-IN', 'hi-Latn'],
-    dateModified: '2026-09-27',
+    dateModified: '2026-10-14',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
     publisher: { '@type': 'Organization', name: companyName },
   };

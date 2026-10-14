@@ -39,7 +39,7 @@ export interface FreeTool {
   product: { text: string; href: string; cta: string };
 }
 
-export const FREE_TOOLS_UPDATED = '27 September 2026';
+export const FREE_TOOLS_UPDATED = '14 October 2026';
 
 export const TRIAL_CTA = {
   text: 'NetCyberAI can automate all these types of requests. Book your free 1-month trial session instantly to streamline your workflows.',
