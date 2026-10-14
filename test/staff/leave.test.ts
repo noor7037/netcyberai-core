@@ -731,7 +731,9 @@ describe('on the real schema', () => {
     const parts = (page: any) => Children.toArray(page.props.children).map((k: any) => k.type);
 
     it('the migration switches Staff on for every school there is', async () => {
-      const sql = readFileSync(path.join(__dirname, '../../supabase/migrations/20261115090000_p5_staff_leave.sql'), 'utf8');
+      // The file is found by its name's end: its first part is the version the database recorded.
+      const dir = path.join(__dirname, '../../supabase/migrations');
+      const sql = readFileSync(path.join(dir, readdirSync(dir).find((f) => f.endsWith('_p5_staff_leave.sql'))!), 'utf8');
       const last = sql.slice(sql.lastIndexOf('insert into school_module_entitlements'));
       expect(last).toContain(`'staff', true, 'plan'`);
       await db.pg.exec(last);
