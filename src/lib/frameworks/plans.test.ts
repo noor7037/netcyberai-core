@@ -39,10 +39,10 @@ describe('plans', () => {
   });
 
   it('a chosen list is kept as chosen; a module the registry no longer has is dropped; one not built yet waits', () => {
-    const plan = planFromRow(row({ module_ids: ['students', 'a-module-that-was-removed', 'fees', 'learning-genome'] }));
+    const plan = planFromRow(row({ module_ids: ['students', 'a-module-that-was-removed', 'fees', 'payroll'] }));
     expect(plan.moduleIds).toEqual(['students', 'fees']);
-    expect(plan.waitingModuleIds).toEqual(['learning-genome']);
-    expect(MODULE_REGISTRY.find((m) => m.id === 'learning-genome')!.status).not.toMatch(/^(live|partial)$/);
+    expect(plan.waitingModuleIds).toEqual(['payroll']);
+    expect(MODULE_REGISTRY.find((m) => m.id === 'payroll')!.status).not.toMatch(/^(live|partial)$/);
     expect(plan.allWorkingModules).toBe(false);
   });
 
