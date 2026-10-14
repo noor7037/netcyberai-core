@@ -79,6 +79,27 @@ describe('settings engine: values and roles', () => {
     expect(applySettingsUpdate(schema, {}, {}, 'principal').ok).toBe(false);
     expect(applySettingsUpdate(schema, {}, { set: { accent_color: 'grape' }, resetToDefault: ['accent_color'] }, 'principal').ok).toBe(false);
   });
+
+  it('a rule between fields is held on the values that would be in force, whichever field is touched (C209)', () => {
+    const num = (key: string, def: number) => ({ key, label: key, section: 'S', type: 'number' as const, default: def, min: 1, max: 100, editableBy: ['principal'] as const });
+    const pair: ModuleSettingsSchema = {
+      moduleId: 'setup',
+      version: 1,
+      fields: [num('low', 10), num('high', 30)],
+      check: (v) => (Number(v.low) > Number(v.high) ? [{ key: 'low', message: 'cannot be more than high' }] : []),
+    };
+    expect(schemaProblems(pair)).toEqual([]);
+    // Setting either field, or putting one back to its default, is judged with the other as it stands.
+    expect(applySettingsUpdate(pair, {}, { set: { low: 31 } }, 'principal')).toEqual({ ok: false, reason: 'invalid', errors: [{ key: 'low', message: 'cannot be more than high' }] });
+    expect(applySettingsUpdate(pair, {}, { set: { high: 9 } }, 'principal')).toMatchObject({ ok: false, reason: 'invalid' });
+    expect(applySettingsUpdate(pair, { low: 40, high: 50 }, { resetToDefault: ['high'] }, 'principal')).toMatchObject({ ok: false, reason: 'invalid' });
+    expect(applySettingsUpdate(pair, {}, { set: { low: 30 } }, 'principal')).toMatchObject({ ok: true, values: { low: 30 } });
+    expect(applySettingsUpdate(pair, {}, { set: { low: 40, high: 50 } }, 'principal')).toMatchObject({ ok: true, values: { low: 40, high: 50 } });
+    expect(applySettingsUpdate(pair, { low: 40, high: 50 }, { resetToDefault: ['low', 'high'] }, 'principal')).toMatchObject({ ok: true, values: {} });
+    // A field's own range is still refused first, and a schema whose defaults break its own rule is reported.
+    expect(applySettingsUpdate(pair, {}, { set: { low: 0 } }, 'principal')).toMatchObject({ ok: false, errors: [{ key: 'low', message: 'must be at least 1' }] });
+    expect(schemaProblems({ ...pair, fields: [num('low', 40), num('high', 30)] })).toEqual(['low: the defaults cannot stand together (cannot be more than high)']);
+  });
 });
 
 describe('registered schemas', () => {

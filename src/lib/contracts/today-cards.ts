@@ -34,6 +34,7 @@ export const TODAY_CARD_TYPES = [
   // p5-8i begin
   // p5-8i end
   // p5-8j begin
+  'flags-no-action', 'flags-own-classes',
   // p5-8j end
 ] as const;
 export type TodayCardType = (typeof TODAY_CARD_TYPES)[number];

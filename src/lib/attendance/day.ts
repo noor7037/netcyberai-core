@@ -98,6 +98,15 @@ export function presentRate(d: { present: number; absent: number; late: number; 
   return marked === 0 ? null : Math.round(((d.present + d.late) / marked) * 1000) / 10;
 }
 
+// In school out of the days not on leave (Early Warning, docs/26 slice 8j, C209): present or late, out of
+// present, late and absent. A day on recorded leave is left out of both sides, so a child on leave is never
+// counted as away. One decimal; null when no such day is marked. This is not the present rate above, which keeps
+// a leave day among the marked days: that one says how a school's day went, this one whether a child is missing school.
+export function inSchoolRate(d: { present: number; absent: number; late: number }): number | null {
+  const counted = d.present + d.absent + d.late;
+  return counted === 0 ? null : Math.round(((d.present + d.late) / counted) * 1000) / 10;
+}
+
 // The days of a range added up: the marks by kind, how many there are, and the present rate over all of them.
 // The dashboard's number and the list /app/attendance?show=days&from=…&to=… both say this one total, over the
 // same days' rows (marksByDay), so the rate on the tile is the rate in that list's title.

@@ -53,7 +53,7 @@ describe('module registry', () => {
     expect(modulesOf('principal')).toHaveLength(34);
     expect(modulesOf('school_admin')).toHaveLength(34);
     expect([...groupsOf('teacher')].sort()).toEqual(['ai-intelligence', 'help', 'home', 'parent-engagement', 'teaching-learning']);
-    expect(modulesOf('teacher').filter((id) => moduleById(id).group === 'ai-intelligence')).toEqual(['teacher-copilot', 'parent-ai']);
+    expect(modulesOf('teacher').filter((id) => moduleById(id).group === 'ai-intelligence')).toEqual(['early-warning', 'teacher-copilot', 'parent-ai']);
     expect(moduleById('parent-ai').teacherScope).toBe('ownClassesOnly');
     expect(modulesOf('accountant').sort()).toEqual(['dashboard', 'fees', 'help-center', 'payroll', 'raise-ticket', 'reports']);
     const coordinator = modulesOf('academic_coordinator');

@@ -333,6 +333,41 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   // p5-8i begin
   // p5-8i end
   // p5-8j begin
+  {
+    // Early Warning (C209): open flags nobody has written a step for yet, for the people who run the check. A flag
+    // is a reason to look at how a child is getting on; the card goes when someone has added what was done. Both
+    // cards count through the child's own row, as the screen's list does, so a card and its screen always agree.
+    type: 'flags-no-action',
+    moduleId: 'early-warning',
+    roles: ['principal', 'school_admin', 'academic_coordinator'],
+    async load(db, ctx) {
+      const { rows } = await db.query(
+        `select count(*) as c from early_warning_flags f
+           join students s on s.school_id = f.school_id and s.student_id = f.student_id
+          where f.school_id = $1 and f.resolved_at is null
+            and not exists (select 1 from early_warning_actions a where a.school_id = f.school_id and a.flag_id = f.flag_id)`,
+        [ctx.schoolId]
+      );
+      return waiting('flags-no-action', 'early-warning', n(rows[0]?.c), '/app/early-warning');
+    },
+  },
+  {
+    // A teacher: the open flags of the children who are in their own classes now. Row level security gives a
+    // teacher those and no others, from the child's own row: a child moved to another class leaves this count
+    // and joins the new teacher's at once, as on the screen.
+    type: 'flags-own-classes',
+    moduleId: 'early-warning',
+    roles: ['teacher'],
+    async load(db, ctx) {
+      const { rows } = await db.query(
+        `select count(*) as c from early_warning_flags f
+           join students s on s.school_id = f.school_id and s.student_id = f.student_id
+          where f.school_id = $1 and f.resolved_at is null`,
+        [ctx.schoolId]
+      );
+      return waiting('flags-own-classes', 'early-warning', n(rows[0]?.c), '/app/early-warning');
+    },
+  },
   // p5-8j end
 ];
 

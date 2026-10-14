@@ -24,7 +24,6 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 const APP_USER: Record<string, string> = {
   academic_sessions: 'DELETE,INSERT,SELECT,UPDATE',
   ai_usage: 'INSERT,SELECT',
-  at_risk_flags: 'DELETE,INSERT,SELECT,UPDATE',
   attendance: 'DELETE,INSERT,SELECT,UPDATE',
   attendance_correction_requests: 'INSERT,SELECT,UPDATE',
   audit_log: 'INSERT,SELECT',
@@ -159,6 +158,8 @@ const APP_USER: Record<string, string> = {
   // p5-8i begin
   // p5-8i end
   // p5-8j begin
+  early_warning_flags: 'INSERT,SELECT,UPDATE', // never deleted: a flag closes (C209); the table was at_risk_flags
+  early_warning_actions: 'INSERT,SELECT', // append-only: a later outcome is a new row
   // p5-8j end
 };
 
@@ -226,6 +227,8 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // p5-8i begin
   // p5-8i end
   // p5-8j begin
+  early_warning_flags: '', // nothing is sent or scheduled for a flag, so the platform role has no business in it
+  early_warning_actions: '',
   // p5-8j end
 };
 // Every other role that holds anything on a table.

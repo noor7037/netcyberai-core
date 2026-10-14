@@ -485,3 +485,23 @@ create policy homework_targets_tenant_isolation on homework_targets using (schoo
 create policy homework_status_tenant_isolation on homework_status using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert, update on homework_targets, homework_status to app_user, nca_super;
 
+
+-- Early Warning, as My Day counts the open flags and those with nothing written yet (C209).
+create table early_warning_flags (
+  flag_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  student_id uuid not null,
+  class_id uuid not null,
+  resolved_at timestamptz
+);
+create table early_warning_actions (
+  action_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  flag_id uuid not null
+);
+alter table early_warning_flags enable row level security;
+alter table early_warning_actions enable row level security;
+create policy early_warning_flags_tenant_isolation on early_warning_flags using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy early_warning_actions_tenant_isolation on early_warning_actions using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update on early_warning_flags to app_user;
+grant select, insert on early_warning_actions to app_user;

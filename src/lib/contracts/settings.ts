@@ -49,6 +49,10 @@ export type ModuleSettingsSchema = {
   moduleId: ModuleId;
   version: number; // bumped when fields are added or change meaning
   fields: readonly SettingDefinition[];
+  // A rule that holds between fields (C209): given the values that would be in force after a change, the ones
+  // that cannot stand together, or none. A change that leaves any is refused as invalid, whichever field it
+  // touched (a reset to the default too). Each field's own sentence says the rule.
+  check?: (effective: Readonly<Record<string, SettingValue>>) => readonly SettingsValidationError[];
 };
 
 // A school's current values: only what differs from the defaults is stored.

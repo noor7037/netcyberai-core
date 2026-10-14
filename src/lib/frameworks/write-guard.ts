@@ -67,6 +67,9 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // p5-8i begin
   // p5-8i end
   // p5-8j begin
+  // Early Warning (C209): switched off, nobody runs the check or adds what was done about a flag.
+  ['early-warning/**', 'early-warning'],
+  ['early-warning', 'early-warning'],
   // p5-8j end
   // What is recorded about a guardian sits with Parents (17 §3: guardians,
   // verification, consent, data requests), wherever its button is drawn.
@@ -164,6 +167,8 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // p5-8i begin
   // p5-8i end
   // p5-8j begin
+  // The flags a person may read, with their reasons, evidence and what was done (C209).
+  ['early-warning', 'early-warning'],
   // p5-8j end
   ['students/*/consent', 'parents'],
   ['students/*/guardians', 'parents'],
