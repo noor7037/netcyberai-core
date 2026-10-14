@@ -1346,20 +1346,45 @@ const proxyCoverShownDone = (selector) => async () => {
 // p5-8d begin
 // The principal's dashboard on school facts (docs/26 slice 8d, C203). The dashboard is opened on 30 days after a
 // few rows the seed does not have are added (a homework due today with one student not done, a receipt, a
-// complaint past its time, a notice waiting, an event to come, a draft answer, a monthly budget). Then EVERY tile
-// that is a link is followed in the same browser and what its screen lists is counted: the number on the tile
-// must be the rows of the screen it opens (or, for a sum or a figure, what those rows or that screen say). A tile
-// with no link must be one of the two whose screen has no such list yet. Afterwards some tiles are compared with
-// the database, and every added row is taken away.
+// complaint past its time, a notice waiting, an event to come, a draft answer, a monthly budget; and for slice
+// 8d-2 a meeting to come, a leave request waiting, and a teacher on approved leave today whose one period nobody
+// covers). Then EVERY tile is followed in the same browser and what its screen lists is counted: the number on
+// the tile must be the rows of the screen it opens (or, for a sum or a figure, what those rows or that screen
+// say). No tile is without a link any more: complaints, meetings, leave and covers open their rows like the rest,
+// and the cover tile opens Proxy Auto on the periods that still need cover, counted like any other list.
+// Afterwards some tiles are compared with the database, and every added row is taken away.
 const indiaDay = (back = 0) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date(Date.now() - back * 86400000));
 const H8D = '00000000-0000-4000-8000-0000008d000';
 const clearDashboardRows = async () => {
+  // The complaint may have been closed on the screen (the check of "app-complaints-rows" does it): what closing
+  // wrote goes with it, the message to the parent that the gate held or queued and its job included.
   await db.pg.exec(`set session_replication_role = replica;
     delete from homework_status where target_id = '${H8D}2'; delete from homework_targets where target_id = '${H8D}2'; delete from homework where homework_id = '${H8D}1';
+    delete from jobs where type = 'whatsapp.send' and payload->>'logId' in (select log_id::text from communication_log where dedupe_key like 'complaint:${H8D}3:%');
+    delete from communication_log where dedupe_key like 'complaint:${H8D}3:%'; delete from complaint_events where complaint_id = '${H8D}3';
     delete from receipts where receipt_no = 'H8D-1'; delete from complaints where complaint_id = '${H8D}3';
     delete from class_notices where notice_id = '${H8D}4'; delete from school_events where event_id = '${H8D}5'; delete from parent_ai_answers where answer_id = '${H8D}6';
+    delete from ptm_events where ptm_id = '${H8D}7';
     set session_replication_role = origin;`);
 };
+// Slice 8d-2. A complaint whose due time passed two hours ago, and a meeting in five days: a row for each of
+// the lists /app/complaints?show=… and /app/ptm?show=coming open on.
+const addComplaint = async () => {
+  const guardian = (await db.pg.query(`select parent_id from parent_student_map where school_id = $1 and student_id = $2 limit 1`, [SCHOOL, STUDENT])).rows[0].parent_id;
+  await db.pg.query(`insert into complaints (complaint_id, school_id, parent_id, student_id, source, summary, status, owner_id, due_at, created_by) values ($1, $2, $3, $4, 'office', 'Harness 8d: the gate opens late.', 'open', $5, now() - interval '2 hours', $5)`, [`${H8D}3`, SCHOOL, guardian, STUDENT, PEOPLE.principal.sub]);
+};
+const addMeeting = () => db.pg.query(`insert into ptm_events (ptm_id, school_id, title, held_on, starts_at, ends_at, slot_minutes, class_ids, created_by) values ($1, $2, 'Harness 8d term meeting', ${TODAY_SQL} + 5, '10:00', '11:00', 30, array[$3]::uuid[], $4)`, [`${H8D}7`, SCHOOL, CLASS_5A, PEOPLE.principal.sub]);
+// Leave and covers: Tanvi's request for later in the week waits for the office; Tejas, a teacher added for the
+// run with one period a day (as Proxy Auto's own screen adds him), is on approved leave today, and nobody covers
+// his period. clearProxy() takes all of it away. On a Sunday the school is closed and no period needs cover.
+const addLeaveAndCover = async () => {
+  await clearProxy();
+  await db.pg.query(`insert into users (user_id, school_id, email, role, display_name) values ($1, $2, 'tejas@example.invalid', 'teacher', 'Tejas Example')`, [PROXY_TEACHERS.tejas, SCHOOL]);
+  await db.pg.query(`insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) select $1, $2, d, 4, $3, $4 from generate_series(1, 6) d`, [SCHOOL, PROXY_CLASS_6A, PROXY_MATHS, PROXY_TEACHERS.tejas]);
+  await putLeave(PROXY_TEACHERS.tejas, 0, 0, 'sick', 'Harness 8d: unwell this morning.', PEOPLE.principal.sub);
+  await putLeave(LEAVE_OTHER_TEACHER, 3, 4, 'casual', 'Harness 8d: a family function.');
+};
+const isSundayInIndia = async () => (await db.pg.query(`select extract(isodow from ${TODAY_SQL})::int as dow`)).rows[0].dow === 7;
 // A notice waiting for approval, an event in three days and a draft answer: the rows of three of the lists.
 const addParentsRows = async () => {
   const guardian = (await db.pg.query(`select parent_id from parent_student_map where school_id = $1 and student_id = $2 limit 1`, [SCHOOL, STUDENT])).rows[0].parent_id;
@@ -1373,13 +1398,14 @@ let dashboardSeen = null;
 const dashboardRows = async (page) => {
   await clearDashboardRows();
   const subject = (await db.pg.query(`select subject_id from subjects where school_id = $1 order by name limit 1`, [SCHOOL])).rows[0].subject_id;
-  const guardian = (await db.pg.query(`select parent_id from parent_student_map where school_id = $1 and student_id = $2 limit 1`, [SCHOOL, STUDENT])).rows[0].parent_id;
   const two = (await db.pg.query(`select student_id from students where school_id = $1 and class_id = $2 and status = 'active' order by student_id limit 2`, [SCHOOL, CLASS_5A])).rows.map((r) => r.student_id);
   await db.pg.query(`insert into homework (homework_id, school_id, subject_id, title, due_date, created_by) values ($1, $2, $3, 'Harness 8d sums', ${TODAY_SQL}, $4)`, [`${H8D}1`, SCHOOL, subject, PEOPLE.teacher.sub]);
   await db.pg.query(`insert into homework_targets (target_id, school_id, homework_id, class_id, title, due_date) values ($1, $2, $3, $4, 'Harness 8d sums', ${TODAY_SQL})`, [`${H8D}2`, SCHOOL, `${H8D}1`, CLASS_5A]);
   await db.pg.query(`insert into homework_status (school_id, target_id, class_id, student_id, done, checked_by) values ($1, $2, $3, $4, true, $6), ($1, $2, $3, $5, false, $6)`, [SCHOOL, `${H8D}2`, CLASS_5A, two[0], two[1], PEOPLE.teacher.sub]);
   await db.pg.query(`insert into receipts (school_id, receipt_no, student_id, total_minor, method, issued_by) values ($1, 'H8D-1', $2, 150000, 'cash', $3)`, [SCHOOL, STUDENT, PEOPLE.principal.sub]);
-  await db.pg.query(`insert into complaints (complaint_id, school_id, parent_id, student_id, source, summary, status, owner_id, due_at, created_by) values ($1, $2, $3, $4, 'office', 'Harness 8d: the gate opens late.', 'open', $5, now() - interval '2 hours', $5)`, [`${H8D}3`, SCHOOL, guardian, STUDENT, PEOPLE.principal.sub]);
+  await addComplaint();
+  await addMeeting();
+  await addLeaveAndCover();
   await addParentsRows();
   dashboardBudget = (await db.pg.query(`select monthly_budget_paise from schools where school_id = $1`, [SCHOOL])).rows[0].monthly_budget_paise;
   await db.pg.query(`update schools set monthly_budget_paise = 500000 where school_id = $1`, [SCHOOL]);
@@ -1390,6 +1416,8 @@ const dashboardRows = async (page) => {
   await open();
   const tiles = await page.locator('[data-fact]').evaluateAll((els) => els.map((e) => ({ id: e.getAttribute('data-fact'), state: e.getAttribute('data-state'), value: e.querySelector('[data-fact-value]')?.textContent.trim(), href: e.querySelector('a')?.getAttribute('href') })));
   const attention = await page.locator('[data-attention]').evaluateAll((els) => els.map((e) => e.getAttribute('data-attention')));
+  // Where each attention item's one button goes (some numbers are an attention item and not a tile).
+  const attentionLinks = Object.fromEntries(await page.locator('[data-attention]').evaluateAll((els) => els.map((e) => [e.getAttribute('data-attention'), e.querySelector('a')?.getAttribute('href')])));
   const needsYou = Number(await page.locator('[data-needs-you]').getAttribute('data-needs-you'));
   const why = await page.locator('[data-why]').count();
   const charts = await page.locator('[data-chart]').evaluateAll((els) => els.map((e) => e.getAttribute('data-chart')));
@@ -1428,6 +1456,9 @@ const dashboardRows = async (page) => {
       await heading.waitFor({ timeout: 30000 });
       rows[id] = { kind: 'rows', tile: tile.value, said: firstNumber(await heading.textContent()), listed: await page.locator('[data-followup]').count() };
     } else {
+      // Every other tile opens a list of exactly its rows, in one frame: a title that says how many, and the rows.
+      // Proxy Auto too (/app/proxy?show=needs-cover): it lists the periods that still need cover and no others,
+      // so its rows are counted here like any list, with no filter of this harness's own.
       await page.locator('[data-shown]').waitFor({ timeout: 30000 });
       const title = (await page.locator('[data-shown-title]').textContent()).trim();
       const texts = await page.locator('[data-shown-row]').allTextContents();
@@ -1440,7 +1471,7 @@ const dashboardRows = async (page) => {
   await page.locator('[data-chart-view="table"]').first().click();
   await page.evaluate(() => window.scrollTo(0, 0));
   const tableLinks = await page.locator('[data-chart="attendance-today"] tbody a').count();
-  dashboardSeen = { tiles, attention, needsYou, why, charts, exportHref, rows, tableLinks, feeBars, feesTitle };
+  dashboardSeen = { tiles, attention, attentionLinks, needsYou, why, charts, exportHref, rows, tableLinks, feeBars, feesTitle };
 };
 // What each row of a list carries, for the tiles that are a sum of it; and the tiles that say a rate.
 const SUM_IN_ROWS = { 'pulse.understood': /Answers: (\d+) understood/, 'pulse.needs_help': /understood, (\d+) needs help/, 'homework.not_done': /not done (\d+)\./ };
@@ -1456,15 +1487,17 @@ const dashboardRowsDone = async () => {
   )).rows[0];
   await clearDashboardRows();
   await db.pg.query(`update schools set monthly_budget_paise = $2 where school_id = $1`, [SCHOOL, dashboardBudget]);
+  const sunday = await isSundayInIndia();
+  await clearProxy();
   const s = dashboardSeen;
   const problems = [];
   const tile = (id) => s.tiles.find((t) => t.id === id);
-  // Every tile that was counted was followed; the only tiles with no link are the two whose screen has no list
-  // of exactly their rows yet (Complaints and PTM).
+  // Every tile that was counted was followed, and none is without a link: complaints, meetings, leave and covers
+  // open their rows like the rest (slice 8d-2).
   const followed = Object.keys(s.rows).length;
-  if (followed < 24) problems.push(`only ${followed} tiles were followed`);
+  if (followed < 30) problems.push(`only ${followed} tiles were followed`);
   const noLink = Object.entries(s.rows).filter(([, r]) => r.kind === 'no-link').map(([id]) => id);
-  if (noLink.join() !== 'complaints.open,ptm.coming') problems.push(`tiles with no link: ${noLink.join() || 'none'}`);
+  if (noLink.length) problems.push(`tiles with no link: ${noLink.join()}`);
   // Each tile is what its screen lists or says.
   for (const [id, r] of Object.entries(s.rows)) {
     const tileSays = String(r.tile ?? '');
@@ -1494,6 +1527,23 @@ const dashboardRowsDone = async () => {
   // (A draft's words are not repeated in its list: the row names the child and who drafted it.)
   for (const id of ['notices.waiting', 'events.coming', 'parent_ai.drafts']) if (s.rows[id]?.listed !== 1 || s.rows[id].text.includes('Harness 8d') !== (id !== 'parent_ai.drafts')) problems.push(`${id}: its screen lists ${s.rows[id]?.listed}: "${String(s.rows[id]?.text).slice(0, 120)}"`);
   if ((s.rows['tickets.open']?.listed ?? 0) < 1) problems.push(`tickets.open: its screen lists ${s.rows['tickets.open']?.listed}`);
+  // Slice 8d-2, the rows this run wrote. The complaint is open and past its time: it is the one row of the open
+  // list, badged "Overdue"; its words are read in the list below, not in this one. (The list of the ones past
+  // their time is the "app-complaints-rows" screen; on the dashboard that number is an attention item, whose
+  // button must go to that list.) The meeting in five days is the one meeting to come.
+  if (s.rows['complaints.open']?.listed !== 1 || !/Overdue/.test(s.rows['complaints.open'].text) || s.rows['complaints.open'].text.includes('Harness 8d')) problems.push(`complaints.open: its screen lists ${s.rows['complaints.open']?.listed}: "${String(s.rows['complaints.open']?.text).slice(0, 120)}"`);
+  for (const [id, href] of Object.entries({ 'complaints.overdue': '/app/complaints?show=overdue', 'staff.leave_waiting': '/app/staff?show=leave-waiting', ...(sunday ? {} : { 'proxy.uncovered_today': '/app/proxy?show=needs-cover' }) })) if (s.attentionLinks[id] !== href) problems.push(`${id}: its attention button opens ${s.attentionLinks[id]}`);
+  if (s.rows['ptm.coming']?.listed !== 1 || !s.rows['ptm.coming'].text.includes('Harness 8d term meeting')) problems.push(`ptm.coming: its screen lists ${s.rows['ptm.coming']?.listed}: "${String(s.rows['ptm.coming']?.text).slice(0, 120)}"`);
+  // One leave request waits (its reason is not repeated in the list); one teacher is on leave today.
+  if (s.rows['staff.leave_waiting']?.listed !== 1 || !s.rows['staff.leave_waiting'].text.includes('Tanvi Example') || s.rows['staff.leave_waiting'].text.includes('Harness 8d')) problems.push(`staff.leave_waiting: its screen lists ${s.rows['staff.leave_waiting']?.listed}: "${String(s.rows['staff.leave_waiting']?.text).slice(0, 120)}"`);
+  if (s.rows['staff.on_leave_today']?.listed !== 1 || !s.rows['staff.on_leave_today'].text.includes('Tejas Example')) problems.push(`staff.on_leave_today: its screen lists ${s.rows['staff.on_leave_today']?.listed}: "${String(s.rows['staff.on_leave_today']?.text).slice(0, 120)}"`);
+  // His one period today has no cover: "1 of 1" on the tile. The tile opens Proxy Auto on the periods that still
+  // need cover: one period listed, under a title that ends with the tile's own words. On a Sunday the school is
+  // closed: nothing to cover, the tile says a plain 0, and so does the list.
+  const cover = s.rows['proxy.uncovered_today'];
+  const coverSays = sunday ? '0' : '1 of 1';
+  if (tile('proxy.uncovered_today')?.href !== '/app/proxy?show=needs-cover' || tile('proxy.uncovered_today')?.value !== coverSays || cover?.listed !== (sunday ? 0 : 1) || cover?.title !== `Periods that still need cover: ${coverSays}`) problems.push(`proxy.uncovered_today: the tile says ${tile('proxy.uncovered_today')?.value} and opens ${tile('proxy.uncovered_today')?.href}, its screen says "${cover?.title}" and lists ${cover?.listed}`);
+  for (const id of ['staff.leave_waiting', ...(sunday ? [] : ['proxy.uncovered_today'])]) if (!s.attention.includes(id)) problems.push(`not on the attention list: ${id}`);
   if (s.feeBars.join() !== '/app/fees?show=owed,/app/fees?show=overdue') problems.push(`the fees chart's bars open: ${s.feeBars.join() || 'nothing'}`);
   if (s.feesTitle.plain < 1 || s.feesTitle.withTotal > 0) problems.push(`the fees chart's title: ${JSON.stringify(s.feesTitle)}`);
   // And the tiles are the database's own counts.
@@ -1543,6 +1593,127 @@ const shownAfterAdding = (words) => async (page) => {
   const text = (await page.locator('[data-shown]').textContent()) ?? '';
   const listed = await page.locator('[data-shown-row]').count();
   if (listed !== 1 || text.includes('Harness 8d') !== words) throw new Error(`the list holds ${listed} rows: "${text.slice(0, 120)}"`);
+};
+// Slice 8d-2: the same for complaints, meetings and leave. `add` writes the rows, the page is opened again, and
+// the list must hold exactly `rows` rows, say each of `words` and none of `never`.
+const shownWith = (add, { rows, words = [], never = [] }) => async (page) => {
+  await clearDashboardRows();
+  await add();
+  await page.reload({ waitUntil: 'networkidle', timeout: 90000 });
+  await shownRows(page);
+  const text = (await page.locator('[data-shown]').textContent()) ?? '';
+  const listed = await page.locator('[data-shown-row]').count();
+  if (listed !== rows || !words.every((w) => text.includes(w)) || never.some((w) => text.includes(w))) throw new Error(`the list holds ${listed} rows: "${text.slice(0, 160)}"`);
+};
+// The rows above are drawn on the server and the list below is the browser's. After a change made in the list
+// below, the rows above must say what is true NOW, with no reload: a complaint just closed is not "past its due
+// time", a request just approved does not wait (C203, fixes from the check). `act` does one change the way a
+// person does it; the title above must then say `words` over an empty list, in the page that was already open.
+const changeBelow = async (page, act, words) => {
+  await page.evaluate(() => (window.h8dStays = true));
+  await act();
+  try {
+    await page.waitForFunction((want) => document.querySelector('[data-shown-title]')?.textContent?.trim() === want && document.querySelectorAll('[data-shown-row]').length === 0, words, { timeout: 20000 });
+  } catch {
+    throw new Error(`after the change below, the list above still says "${((await page.locator('[data-shown-title]').textContent()) ?? '').trim()}" with ${await page.locator('[data-shown-row]').count()} rows; it should say "${words}"`);
+  }
+  if (!(await page.evaluate(() => window.h8dStays === true))) throw new Error('the page was loaded again: the list above must be read again without that');
+};
+// Opening the filtered Complaints screen is the principal really looking: the screen's own list, loaded by the
+// browser below the rows, marks the complaint as seen. (The dashboard's number, and the rows above, never do.)
+// Then the principal closes the complaint in the list below, with what was done: the list above says none is past
+// its due time any more.
+const complaintShownDone = async (page) => {
+  try {
+    const seen = (await db.pg.query(`select principal_seen_at is not null as seen from complaints where complaint_id = $1`, [`${H8D}3`])).rows[0]?.seen;
+    if (seen !== true) throw new Error(`the complaint the principal opened is marked seen: ${seen}`);
+    await changeBelow(page, async () => {
+      await page.locator(`#complaint-text-${H8D}3`).fill('The gate now opens at seven.');
+      await page.locator('li[data-complaint="open"]', { has: page.locator(`#complaint-text-${H8D}3`) }).locator('[data-complaint-close]').click();
+    }, 'Complaints past their due time: 0');
+    const status = (await db.pg.query(`select status from complaints where complaint_id = $1`, [`${H8D}3`])).rows[0]?.status;
+    if (status !== 'closed') throw new Error(`the complaint closed on the screen is ${status} in the database`);
+  } finally {
+    await clearDashboardRows();
+  }
+};
+// The office calls the meeting off in the list below: the list above says no meeting is coming.
+const ptmShownDone = async (page) => {
+  try {
+    await changeBelow(page, async () => {
+      await page.locator('[data-ptm-meeting]', { hasText: 'Harness 8d term meeting' }).click();
+      await page.locator('[data-ptm-cancel]').click();
+    }, 'Meetings coming: 0');
+  } finally {
+    await clearDashboardRows();
+  }
+};
+const clearDashboardAndProxy = async () => {
+  await clearDashboardRows();
+  await clearProxy();
+};
+// Leave. On "on leave today": the principal cancels Tejas's leave under "Approved leave" below (with the note a
+// cancelled leave needs), and the list above says nobody is on leave today. Then the other list, "requests
+// waiting": the principal approves Tanvi's request in the list below, and the list above says none waits.
+const staffLeaveShownDone = async (page) => {
+  try {
+    await changeBelow(page, async () => {
+      const row = page.locator('[data-leave-calendar-row]', { hasText: 'Tejas Example' });
+      await row.locator('[data-leave-cancel-open]').click();
+      await row.locator('input').fill('Recorded for the wrong day.');
+      await row.locator('[data-leave-cancel]').click();
+    }, 'Staff on leave today: 0');
+    await page.goto(`${base}/app/staff?show=leave-waiting`, { waitUntil: 'networkidle', timeout: 90000 });
+    await shownRows(page);
+    if (((await page.locator('[data-shown]').textContent()) ?? '').includes('Tanvi Example') !== true) throw new Error('the request waiting is not on the list above');
+    await changeBelow(page, () => page.locator('[data-leave-waiting-row="theirs"] [data-leave-approve]').first().click(), 'Leave requests waiting: 0');
+  } finally {
+    await clearDashboardAndProxy();
+  }
+};
+// Proxy Auto opened on the periods that still need cover (/app/proxy?show=needs-cover; C203, fixes from the
+// check). The scene is Proxy Auto's own: Tara is on approved leave today with her three periods, and Tejas and
+// Tripti, added for the run, are free. The list holds the three periods and its title says "3 of 3"; no covered
+// period, no day picker. The principal gives the first period to the first name offered: the period leaves the
+// list at once and the title says "2 of 3", in the page that was already open, because the list is the screen's
+// own reading. The picture is taken then. On a Sunday the school is closed: the list says 0 and holds nothing.
+let proxyRowsSeen = null;
+const proxyRows = async (page) => {
+  await clearProxy();
+  const sunday = await isSundayInIndia();
+  await db.pg.query(`insert into users (user_id, school_id, email, role, display_name) values ($1, $3, 'tejas@example.invalid', 'teacher', 'Tejas Example'), ($2, $3, 'tripti@example.invalid', 'teacher', 'Tripti Example')`, [PROXY_TEACHERS.tejas, PROXY_TEACHERS.tripti, SCHOOL]);
+  await db.pg.query(`insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) select $1, $2, d, 4, $3, $4 from generate_series(1, 6) d`, [SCHOOL, PROXY_CLASS_6A, PROXY_MATHS, PROXY_TEACHERS.tejas]);
+  await putLeave(PEOPLE.teacher.sub, 0, 1, 'sick', 'Unwell, phoned in this morning.', PEOPLE.principal.sub);
+  await page.reload({ waitUntil: 'networkidle', timeout: 90000 });
+  await page.locator('[data-shown="proxy-needs-cover"]').waitFor({ timeout: 30000 });
+  const read = async () => ({
+    title: ((await page.locator('[data-shown-title]').textContent()) ?? '').trim(),
+    rows: await page.locator('[data-shown-row]').count(),
+    periods: await page.locator('[data-proxy-period]').count(),
+    covered: await page.locator('[data-proxy-period][data-covered="yes"]').count(),
+    dayPicker: await page.locator('[data-proxy-days]').count(),
+    back: await page.locator('[data-shown-back]').getAttribute('href'),
+  });
+  const atFirst = await read();
+  let after = null;
+  if (!sunday) {
+    await page.evaluate(() => (window.h8dStays = true));
+    await page.locator('[data-shown-row] [data-proxy-assign]').first().click();
+    await page.waitForFunction(() => document.querySelectorAll('[data-shown-row]').length === 2 && document.querySelector('[data-proxy-note]'), null, { timeout: 20000 });
+    after = { ...(await read()), note: await page.locator('[data-proxy-note]').getAttribute('data-proxy-note'), stayed: await page.evaluate(() => window.h8dStays === true) };
+  }
+  // Back to the top for the picture: the tap scrolled the page to the period.
+  await page.evaluate(() => window.scrollTo(0, 0));
+  proxyRowsSeen = { sunday, atFirst, after };
+};
+const proxyRowsDone = async () => {
+  const assigned = (await db.pg.query(`select count(*)::int as n from substitutions where school_id = $1 and on_date = ${TODAY_SQL} and status = 'assigned'`, [SCHOOL])).rows[0].n;
+  await clearProxy();
+  const list = (title, rows) => ({ title: `Periods that still need cover: ${title}`, rows, periods: rows, covered: 0, dayPicker: 0, back: '/app/proxy' });
+  const want = proxyRowsSeen?.sunday
+    ? { sunday: true, atFirst: list('0', 0), after: null }
+    : { sunday: false, atFirst: list('3 of 3', 3), after: { ...list('2 of 3', 2), note: 'ok', stayed: true } };
+  if (JSON.stringify(proxyRowsSeen) !== JSON.stringify(want) || assigned !== (want.sunday ? 0 : 1)) throw new Error(`Proxy Auto on the periods that need cover: ${JSON.stringify(proxyRowsSeen)}, ${assigned} covers assigned today`);
 };
 // The days behind the present rate: the title's count is the rows, and the line above them says the rate.
 const attendanceDays = async (page) => {
@@ -2652,6 +2823,13 @@ const SCREENS = [
   ['principal', 'app-events-rows', '/app/events?show=coming', shownAfterAdding(true), clearDashboardRows],
   ['principal', 'app-answers-rows', '/app/parent-ai?show=drafts', shownAfterAdding(false), clearDashboardRows],
   ['principal', 'app-tickets-rows', '/app/help/ticket?show=open', shownRows],
+  // Slice 8d-2 (C203): complaints, meetings and leave each open on a dashboard number's filter. After the
+  // picture, each check makes one change in the list below and the rows above must follow it with no reload.
+  ['principal', 'app-complaints-rows', '/app/complaints?show=overdue', shownWith(addComplaint, { rows: 1, words: ['Complaints past their due time: 1', 'Overdue'], never: ['Harness 8d'] }), complaintShownDone],
+  ['principal', 'app-ptm-rows', '/app/ptm?show=coming', shownWith(addMeeting, { rows: 1, words: ['Meetings coming: 1', 'Harness 8d term meeting'] }), ptmShownDone],
+  ['principal', 'app-staff-leave-rows', '/app/staff?show=on-leave-today', shownWith(addLeaveAndCover, { rows: 1, words: ['Staff on leave today: 1', 'Tejas Example'], never: ['Tanvi Example ·', 'Harness 8d'] }), staffLeaveShownDone],
+  // Proxy Auto opened on the periods that still need cover: those periods and no others, and one tap takes one away.
+  ['principal', 'app-proxy-rows', '/app/proxy?show=needs-cover', proxyRows, proxyRowsDone],
   // p5-8d end
   // p5-8e begin
   ['founder', 'control-billing-plans', '/control/billing-plans', billingPlans, billingPlansDone],

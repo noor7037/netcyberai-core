@@ -160,10 +160,12 @@ export async function myLeave(db: Sql, actor: Actor, today: string = indiaDate()
   return rows.map((r) => shape(r, actor, today));
 }
 
-// The office: requests waiting for a decision, in the order they came in.
+// The office: requests waiting for a decision, in the order they came in. At most LEAVE_WAITING_MAX rows: the
+// dashboard's number counts this list, and /app/staff?show=leave-waiting says when it stops there (C203).
+export const LEAVE_WAITING_MAX = 200;
 export async function leaveWaiting(db: Sql, actor: Actor, today: string = indiaDate()): Promise<LeaveRow[]> {
   if (!LEAVE_OFFICE.includes(actor.role)) return [];
-  const { rows } = await db.query(`${ROWS} where l.school_id = $1 and l.status = 'waiting' order by l.asked_at, l.leave_id limit 200`, [actor.schoolId]);
+  const { rows } = await db.query(`${ROWS} where l.school_id = $1 and l.status = 'waiting' order by l.asked_at, l.leave_id limit ${LEAVE_WAITING_MAX}`, [actor.schoolId]);
   return rows.map((r) => shape(r, actor, today));
 }
 

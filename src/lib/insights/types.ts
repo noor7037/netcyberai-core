@@ -30,8 +30,8 @@ export const FACT_IDS = [
   'messages.total', 'messages.failed', 'messages.held', 'whatsapp.spend',
   'complaints.open', 'complaints.overdue', 'notices.waiting', 'ptm.coming', 'events.coming', 'parent_ai.drafts',
   'tickets.open', 'tickets.waiting',
-  // Staff leave and covers (slices 8b and 8c) are added here by the lead, with their definitions in facts.ts:
-  // 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today'.
+  // Staff leave and covers (slices 8b and 8c): for running the day, counts only (docs/26 §3 rule 4).
+  'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today',
 ] as const;
 export type FactId = (typeof FACT_IDS)[number];
 export const isFactId = (v: unknown): v is FactId => typeof v === 'string' && (FACT_IDS as readonly string[]).includes(v);
@@ -52,7 +52,8 @@ export type FactUnit = 'count' | 'inr_paise' | 'percent';
 //   sum     it is the sum of one figure the rows there carry (answers, "not done")
 //   figure  the screen says this figure itself (the month's spend; the present rate, above the days it is worked out from)
 // A fact has an address only when its screen lists exactly its rows for that address; without one (`href` null)
-// the number is shown and opens nothing.
+// the number is shown and opens nothing. "Exactly" is meant: a screen that also draws rows the number does not
+// count (Proxy Auto with its covered periods) is given a filter in the address, and draws only the counted rows.
 export type FactDrill = 'rows' | 'sum' | 'figure';
 
 export type FactPart = { key: string; value: number; unit?: FactUnit; href?: string };
@@ -84,6 +85,11 @@ export type FactNumbers = {
   series?: FactPoint[];
   // Needs a person now: it joins the attention list.
   attention?: boolean;
+  // How many of the rows ask for THIS reader, where that is not all of them: a leave request the reader made is
+  // on the list the tile opens and is counted in `value`, and is somebody else's to decide. The sentence under
+  // "Needs your attention" says this number, never one that includes what the reader cannot act on. Left out, the
+  // sentence says the value (or `count`, the rows behind an amount).
+  attentionCount?: number;
 };
 
 export type FactDefinition = {
@@ -122,6 +128,8 @@ export type FactResult = {
   parts?: FactPart[];
   series?: FactPoint[];
   attention: boolean;
+  // Only where the number that asks for this reader is not the value itself (see FactNumbers).
+  attentionCount?: number;
 };
 
 export type LoadedFacts = { facts: FactResult[]; failed: FactId[]; today: string; range: FactRange };

@@ -4,7 +4,7 @@ import { ShowMeHow } from '@/components/app-shell/ShowMeHow';
 import { moduleById } from '@/lib/contracts/modules';
 import type { TourId } from '@/lib/contracts/tours';
 import { t, tCount, type Lang, type MessageKey } from '@/lib/i18n';
-import { chartRowLabel, chartTitle, dashboardModel, say, sayNumber, type DashboardChart } from '@/lib/insights/dashboard';
+import { attentionNumber, chartRowLabel, chartTitle, dashboardModel, say, sayNumber, type DashboardChart } from '@/lib/insights/dashboard';
 import { RANGE_IDS, type FactRange, type FactResult, type RangeId } from '@/lib/insights/types';
 import { FactAttention, FactTile, QuickActions, WhyThis } from './dashboard-parts';
 import { FactChart, type FactChartRow } from './FactChart';
@@ -53,7 +53,7 @@ function Hero({ data, attention, lang, now }: { data: OfficeDashboardData; atten
           {attention.map((f) => (
             <li key={f.id}>
               <Link href={f.href ?? moduleById(f.moduleId).href} className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-white px-4 text-sm font-bold text-sapphire shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-                <span className="rounded-full bg-sapphire px-2 py-0.5 text-xs tabular-nums text-white">{(f.count ?? f.value ?? 0).toLocaleString('en-IN')}</span>
+                <span className="rounded-full bg-sapphire px-2 py-0.5 text-xs tabular-nums text-white">{attentionNumber(f).toLocaleString('en-IN')}</span>
                 {say(lang, `fact.${f.id}.action`)}
                 <span aria-hidden="true">→</span>
               </Link>

@@ -169,15 +169,21 @@ async function bookedParents(db: Sql, schoolId: string, ptmId: string, onlyUnrem
 }
 
 export type PtmRow = { ptm_id: string; title: string; held_on: string; starts_at: string; ends_at: string; slot_minutes: number; status: 'draft' | 'invited' | 'cancelled'; classes: string; slots: number; booked: number; attended: number };
-export async function listPtms(db: PoolClient, schoolId: string): Promise<PtmRow[]> {
+// `comingFrom` (India's date; docs/26 slice 8d, C203): only the meetings dated that day or later that are not
+// cancelled, the nearest first. It is what /app/ptm?show=coming lists and what the dashboard's number counts.
+export const PTM_ROWS_MAX = 500;
+export async function listPtms(db: PoolClient, schoolId: string, comingFrom?: string): Promise<PtmRow[]> {
+  const which = comingFrom
+    ? `where e.school_id = $1 and e.status <> 'cancelled' and e.held_on >= $2::date order by e.held_on, e.created_at, e.ptm_id limit ${PTM_ROWS_MAX}`
+    : `where e.school_id = $1 order by e.held_on desc, e.created_at desc limit 50`;
   const { rows } = await db.query(
     `select e.ptm_id, e.title, e.held_on, e.starts_at, e.ends_at, e.slot_minutes, e.status,
             coalesce((select string_agg(c.name, ', ' order by c.name) from classes c where c.school_id = e.school_id and c.class_id = any(e.class_ids)), '') as classes,
             (select count(*)::int from ptm_slots s where s.ptm_id = e.ptm_id) as slots,
             (select count(*)::int from ptm_bookings b where b.ptm_id = e.ptm_id) as booked,
             (select count(*)::int from ptm_bookings b where b.ptm_id = e.ptm_id and b.attended) as attended
-       from ptm_events e where e.school_id = $1 order by e.held_on desc, e.created_at desc limit 50`,
-    [schoolId]
+       from ptm_events e ${which}`,
+    comingFrom ? [schoolId, comingFrom] : [schoolId]
   );
   return rows.map((r) => ({ ...r, held_on: isoDay(r.held_on), starts_at: hhmm(r.starts_at), ends_at: hhmm(r.ends_at) }));
 }

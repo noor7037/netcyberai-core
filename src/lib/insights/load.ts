@@ -68,6 +68,7 @@ export async function loadFact(db: InsightsSql, def: FactDefinition, ctx: FactCo
     ...(got.parts ? { parts: got.parts } : {}),
     ...(got.series ? { series: got.series } : {}),
     attention: state === 'ok' && got.attention === true,
+    ...(state === 'ok' && got.attentionCount !== undefined ? { attentionCount: got.attentionCount } : {}),
   };
 }
 

@@ -1192,7 +1192,7 @@ describe('on the real schema', () => {
         expect((await row(first)).status).toBe('assigned');
         state.claims = claims(principal);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const off: any = await ProxyPage();
+        const off: any = await ProxyPage({});
         expect(off.type).toBe(ModuleOffPage);
         expect(off.props).toMatchObject({ moduleId: 'proxy', reason: 'module_off' });
       } finally {
@@ -1205,18 +1205,18 @@ describe('on the real schema', () => {
       for (const who of [principal, admin, coordinator]) {
         state.claims = claims(who);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const page: any = await ProxyPage();
+        const page: any = await ProxyPage({});
         expect(page.type, who.role).toBe(ModulePage);
         expect(page.props).toMatchObject({ moduleId: 'proxy', help: 'cover-a-class', tour: 'proxy', title: 'Proxy Auto', purpose: t('en', 'px.page.purpose.arranger') });
         expect(page.props.children.type).toBe(ProxyView);
       }
       state.claims = claims(dev);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const mine: any = await ProxyPage();
+      const mine: any = await ProxyPage({});
       expect(mine.props).toMatchObject({ moduleId: 'proxy', help: 'cover-a-class', tour: 'proxy-covers', purpose: t('en', 'px.page.purpose.teacher') });
       state.claims = claims(accountant);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const none: any = await ProxyPage();
+      const none: any = await ProxyPage({});
       expect(none.type).toBe(ModuleComingPage);
     });
 

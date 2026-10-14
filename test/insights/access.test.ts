@@ -3,7 +3,7 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { SCHOOL_ROLES, moduleById, type SchoolRole } from '@/lib/contracts/modules';
 import { FACTS, FACT_IDS, NotThisRolesFact, factContext, factsFor, loadFact, loadFacts, rangeFor, type FactId, type FactResult } from '@/lib/insights';
-import { A, PRINCIPAL, TODAY, accountant, admin, asWho, coordinator, ents, principal, startSchool, tara, type Db, type Who } from './seed';
+import { A, ACCOUNTANT, COORDINATOR, PRINCIPAL, TARA, TARUN, TODAY, accountant, admin, asWho, coordinator, ents, principal, startSchool, tara, type Db, type Who } from './seed';
 
 // The acceptance sentence, second and third parts (docs/26 slice 8d, C203):
 //   "No file under the dashboard imports the demo fixture."
@@ -24,15 +24,19 @@ const HOMEWORK: FactId[] = ['homework.set', 'homework.checked', 'homework.not_do
 const MESSAGES: FactId[] = ['messages.total', 'messages.failed', 'messages.held', 'whatsapp.spend'];
 const PARENTS: FactId[] = ['complaints.open', 'complaints.overdue', 'notices.waiting', 'ptm.coming', 'events.coming', 'parent_ai.drafts'];
 const TICKETS: FactId[] = ['tickets.open', 'tickets.waiting'];
+// Staff leave: the office alone. Covers: the people who arrange them (the office and the academic coordinator).
+const LEAVE: FactId[] = ['staff.leave_waiting', 'staff.on_leave_today'];
+const COVERS: FactId[] = ['proxy.uncovered_today'];
 const inOrder = (list: FactId[]) => FACT_IDS.filter((id) => list.includes(id));
 
 // What each role is given. Fees: the finance roles. Learning: the roles that can read the learning tables.
+// Leave: the principal and the school admin, nobody else. Covers: those two and the academic coordinator.
 const GIVEN: Record<SchoolRole, FactId[]> = {
   principal: [...FACT_IDS],
   school_admin: [...FACT_IDS],
   accountant: inOrder(['students.active', ...FEES, ...TICKETS]),
   teacher: inOrder([...ATTENDANCE, 'students.active', 'students.waiting_consent', ...PULSE, 'followups.open', ...HOMEWORK, ...PARENTS, ...TICKETS]),
-  academic_coordinator: inOrder([...ATTENDANCE, 'students.active', 'followups.open', ...HOMEWORK, ...TICKETS]),
+  academic_coordinator: inOrder([...ATTENDANCE, 'students.active', 'followups.open', ...HOMEWORK, ...TICKETS, ...COVERS]),
 };
 
 // Facts whose tables have NO role policy (attendance, pulse_messages, pulse_response_log, communication_log,
@@ -61,8 +65,13 @@ describe('who gets which fact, on the whole schema', () => {
       expect(factsFor(w.role as SchoolRole, ents()).map((f) => f.id), w.role).toEqual(GIVEN[w.role as SchoolRole]);
     }
     const forAccountant = (await ids(accountant)).map((f) => f.id);
-    expect(forAccountant.filter((id) => /^(attendance|homework|pulse|followups|complaints|notices|parent_ai)\./.test(id))).toEqual([]);
+    expect(forAccountant.filter((id) => /^(attendance|homework|pulse|followups|complaints|notices|parent_ai|staff|proxy)\./.test(id))).toEqual([]);
     for (const w of [tara, coordinator]) expect((await ids(w)).filter((f) => f.id.startsWith('fees.') || f.unit === 'inr_paise'), w.role).toEqual([]);
+    // Leave is the office's: a teacher, an accountant and an academic coordinator get neither leave number. Covers
+    // are for the people who arrange them: the coordinator gets that one number, a teacher and an accountant do not.
+    for (const w of [tara, accountant, coordinator]) expect((await ids(w)).filter((f) => LEAVE.includes(f.id)), w.role).toEqual([]);
+    expect([principal, admin, coordinator, tara, accountant].map((w) => factsFor(w.role as SchoolRole, ents()).some((f) => f.id === 'proxy.uncovered_today'))).toEqual([true, true, true, false, false]);
+    for (const f of FACTS.filter((x) => LEAVE.includes(x.id))) expect([...f.roles], f.id).toEqual(['principal', 'school_admin']);
   });
 
   it('a fact is offered only to roles its module is for', () => {
@@ -134,7 +143,8 @@ describe('who gets which fact, on the whole schema', () => {
         // The principal sees something for every fact in the seeded school, so "nothing" below is the database's doing.
         expect(all[def.id].value, def.id).toBeGreaterThan(0);
         // def.load is the fact's query with nothing in front of it: only row level security stands between
-        // this role and the number.
+        // this role and the number. (One exception, proven apart in the next test: 'staff.leave_waiting' reads
+        // through leaveWaiting, which itself answers nobody outside the office before the database is asked.)
         const got = await asWho(db, w, async (c) => {
           await c.query('savepoint direct');
           try {
@@ -149,6 +159,36 @@ describe('who gets which fact, on the whole schema', () => {
       }
     }
     expect(notRefused).toEqual(HELD_BY_THE_REGISTRY_ONLY);
+  });
+
+  it('leave and covers: the database itself keeps other people’s leave to the office, and who is away to the people who arrange cover', async () => {
+    // One of the leave facts reads through a library function that also checks the role in code (leaveWaiting),
+    // so the test above does not prove the database's part for it. Here the same rows are asked for in plain SQL,
+    // in each role's own session, with nothing in front of the database.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const rows = (w: Who, sql: string, params: unknown[] = []): Promise<Record<string, any>[]> => asWho(db, w, async (c) => (await c.query(sql, params)).rows);
+    // staff_leave: the office reads every request of the school; anyone else their own, and no one else's.
+    const leaveOf = async (w: Who) => (await rows(w, `select user_id, status from staff_leave order by leave_id`)).map((r) => `${r.user_id === w.user ? 'own' : 'another'}:${r.status}`);
+    for (const w of [principal, admin]) expect(await leaveOf(w), w.role).toHaveLength(7);
+    expect(await leaveOf(tara)).toEqual(['own:waiting']);
+    expect(await leaveOf(accountant)).toEqual(['own:refused']);
+    expect(await leaveOf(coordinator)).toEqual(['own:approved']);
+    // The "waiting" list's own rows (what 'staff.leave_waiting' counts): nothing of anyone else's outside the office.
+    const waitingOfOthers = async (w: Who) => (await rows(w, `select count(*)::int as n from staff_leave where school_id = $1 and status = 'waiting' and user_id <> $2`, [A, w.user]))[0].n;
+    expect([await waitingOfOthers(principal), await waitingOfOthers(admin), await waitingOfOthers(tara), await waitingOfOthers(accountant), await waitingOfOthers(coordinator)]).toEqual([2, 1, 0, 0, 0]);
+    // "On leave on a day" (staff_on_leave, with the caller's own rights; what 'staff.on_leave_today' counts): Tarun
+    // is away today, and only the office is told.
+    const away = async (w: Who) => (await rows(w, `select u.user_id from users u where u.school_id = $1 and public.staff_on_leave(u.school_id, u.user_id, $2::date)`, [A, TODAY])).map((r) => r.user_id);
+    expect([await away(principal), await away(admin), await away(tara), await away(accountant), await away(coordinator)]).toEqual([[TARUN], [TARUN], [], [], []]);
+    // Which teachers are away, for arranging cover (teachers_away_on; what 'proxy.uncovered_today' starts from):
+    // the three roles that arrange cover, and nobody else. The coordinator is given that one fact, not the leave.
+    const awayTeachers = async (w: Who) => (await rows(w, `select user_id from teachers_away_on($1::date)`, [TODAY])).map((r) => r.user_id);
+    expect([await awayTeachers(principal), await awayTeachers(admin), await awayTeachers(coordinator), await awayTeachers(tara), await awayTeachers(accountant)]).toEqual([[TARUN], [TARUN], [TARUN], [], []]);
+    // substitutions: the people who arrange cover read every row; a teacher the covers they hold or that are for
+    // their own periods (Tara holds one); an accountant none.
+    const covers = async (w: Who) => (await rows(w, `select count(*)::int as n from substitutions`))[0].n;
+    expect([await covers(principal), await covers(admin), await covers(coordinator), await covers(tara), await covers(accountant)]).toEqual([4, 4, 4, 1, 0]);
+    expect([TARA, ACCOUNTANT, COORDINATOR].every(Boolean)).toBe(true);
   });
 
   it('and the tables themselves refuse: fees to a teacher and a coordinator, learning to an accountant', async () => {
@@ -183,8 +223,21 @@ describe('the dashboard reads the school’s own rows, never the demo fixture', 
   });
 
   it('nor does anything the facts are counted from', () => {
-    for (const f of ['src/lib/attendance/day.ts', 'src/lib/fees/overdue.ts', 'src/lib/fees/payments.ts', 'src/lib/fees/recovery.ts', 'src/lib/homework/homework.ts', 'src/lib/pulse/drafts.ts', 'src/lib/whatsapp/delivery.ts', 'src/lib/whatsapp/cost.ts']) {
+    for (const f of ['src/lib/attendance/day.ts', 'src/lib/fees/overdue.ts', 'src/lib/fees/payments.ts', 'src/lib/fees/recovery.ts', 'src/lib/homework/homework.ts', 'src/lib/pulse/drafts.ts', 'src/lib/whatsapp/delivery.ts', 'src/lib/whatsapp/cost.ts', 'src/lib/complaints/complaints.ts', 'src/lib/ptm/ptm.ts', 'src/lib/staff/leave.ts', 'src/lib/staff/leave-rules.ts', 'src/lib/proxy/proxy.ts', 'src/lib/proxy/rules.ts']) {
       expect(readFileSync(path.join(root, f), 'utf8'), f).not.toMatch(/demo-fixture/);
+    }
+  });
+
+  it('nor do the lists a number opens: each reads in the reader’s own tenant transaction, never as the platform', () => {
+    // Every "…Shown" list of rows behind a number, wherever its module keeps it.
+    const lists = files('src/components').filter((f) => /Shown\.tsx$/.test(f));
+    expect(lists).toEqual(expect.arrayContaining(['src/components/complaints/ComplaintsShown.tsx', 'src/components/ptm/PtmShown.tsx', 'src/components/staff/StaffLeaveShown.tsx']));
+    expect(lists.length).toBeGreaterThanOrEqual(11);
+    for (const f of lists) {
+      const text = readFileSync(path.join(root, f), 'utf8');
+      expect(text, f).not.toMatch(/demo-fixture/);
+      expect(text, f).not.toMatch(/withPlatformService|withSuperAdminBypass|nca_super/);
+      expect(text, f).toMatch(/withTenantContext\(session/);
     }
   });
 

@@ -1,5 +1,6 @@
 import { PRESENT_RATE_RULE_VERSION, classesOnDay, dayTotals, marksByDay, marksTotal, presentRate } from '@/lib/attendance/day';
 import { listNotices } from '@/lib/communication/notices';
+import { complaintsShown } from '@/lib/complaints/complaints';
 import { SCHOOL_ROLES, type SchoolRole } from '@/lib/contracts/modules';
 import type { TicketShow } from '@/lib/contracts/tickets';
 import { listEvents } from '@/lib/events/events';
@@ -9,9 +10,11 @@ import { promisesDue } from '@/lib/fees/recovery';
 import { countAssignmentsIn } from '@/lib/homework/homework';
 import { listAnswers } from '@/lib/parent-ai/answers';
 import { waitingReports } from '@/lib/payments/upi';
+import { PROXY_ARRANGERS, needsCover, periodsToCover } from '@/lib/proxy/proxy';
 import { listPtms } from '@/lib/ptm/ptm';
 import { sentTotals } from '@/lib/pulse/drafts';
 import { listFollowups } from '@/lib/pulse/followups';
+import { leaveWaiting, onLeave } from '@/lib/staff/leave';
 import { TICKET_ROWS_MAX, listTickets } from '@/lib/support/tickets';
 import { schoolSpend } from '@/lib/whatsapp/cost';
 import { MESSAGE_STATES, countMessages, messagesInAll } from '@/lib/whatsapp/delivery';
@@ -32,12 +35,14 @@ import type { FactContext, FactDefinition, FactId, FactNumbers, InsightsSql } fr
 // list, built from the same query, so a busy school's number is never cut
 // short at the list's row limit; the screen says when its rows are. The
 // short lists (notices waiting, events coming, draft answers, open tickets,
-// promises) are counted as listed: above their own limit the number is the
-// rows on that screen.
+// promises, open complaints, meetings coming, leave requests waiting) are
+// counted as listed: above their own limit the number is the rows on that
+// screen.
 //
 // A fact has an address (`href`) only when that screen lists exactly its
 // rows for that address. NO_LIST_YET names the facts whose screen has no
-// such list yet: they are counted and shown, without a link.
+// such list yet (none today): such a fact is counted and shown, without a
+// link.
 //
 // Every query names the school (`ctx.schoolId`): row level security narrows
 // a school session further (a role, a teacher's own classes), but a fact
@@ -50,6 +55,9 @@ import type { FactContext, FactDefinition, FactId, FactNumbers, InsightsSql } fr
 //   fees_ledger, payments, receipts, fee_followups, payment_reports   principal, school admin, accountant
 //   homework, homework_targets, homework_status, pulse_followups      principal, school admin, coordinator, teacher (own classes)
 //   complaints, class_notices, ptm_*, school_events, parent_ai_answers  principal, school admin, teacher (own)
+//   staff_leave                                                        principal, school admin (anyone else: their own request, no one else's)
+//   substitutions, teachers_away_on()                                  principal, school admin, coordinator (a teacher: their own covers,
+//                                                                      and never who is away)
 //   students waiting for consent                                       principal, school admin, teacher (own classes)
 //   support_tickets                                                    the office all, anyone else their own
 //   attendance, pulse_messages, communication_log, schools            no role policy: every role of the school (a
@@ -62,6 +70,9 @@ const OFFICE: readonly SchoolRole[] = ['principal', 'school_admin'];
 const TEACHING: readonly SchoolRole[] = ['principal', 'school_admin', 'academic_coordinator', 'teacher'];
 const ENGAGEMENT: readonly SchoolRole[] = ['principal', 'school_admin', 'teacher'];
 const FINANCE: readonly SchoolRole[] = ['principal', 'school_admin', 'accountant'];
+// The people who arrange cover: Proxy Auto's own list (src/lib/proxy/rules.ts), not a copy of it. If the roles
+// that arrange cover change there, the screen, its route and this number change together.
+const ARRANGERS = PROXY_ARRANGERS as readonly SchoolRole[];
 
 const n = (v: unknown) => Number(v ?? 0);
 const NOT_SET_UP: FactNumbers = { state: 'not_set_up', value: null };
@@ -79,12 +90,13 @@ const feeSummary = (db: InsightsSql, ctx: FactContext) =>
 const pulseSent = (db: InsightsSql, ctx: FactContext) => ctx.once('pulse.sent', () => sentTotals(db as never, ctx.schoolId, ctx.range.from, ctx.range.to));
 const homework = (db: InsightsSql, ctx: FactContext) => ctx.once('homework', () => countAssignmentsIn(db as never, ctx.schoolId, ctx.range.from, ctx.range.to));
 const messageCounts = (db: InsightsSql, ctx: FactContext) => ctx.once('messages', () => countMessages(db as never, ctx.schoolId, ctx.range));
+// The open complaints, read once: the rows /app/complaints?show=open lists, and (those past their due time) the
+// rows of ?show=overdue. complaintsShown reads and marks nothing: the Complaints screen's own list marks every
+// complaint as seen when the principal opens it, and a number on a dashboard must not do that.
 const complaintCounts = (db: InsightsSql, ctx: FactContext) =>
   ctx.once('complaints', async () => {
-    // Counted, not listed: the Complaints screen's own list marks every complaint as seen when the principal opens
-    // it, and a number on a dashboard must not do that.
-    const r = (await db.query(`select count(*) filter (where status = 'open') as open, count(*) filter (where status = 'open' and due_at <= now()) as overdue from complaints where school_id = $1`, [ctx.schoolId])).rows[0];
-    return { open: n(r?.open), overdue: n(r?.overdue) };
+    const open = await complaintsShown(db as never, ctx.schoolId, 'open');
+    return { open: open.length, overdue: open.filter((c) => c.overdue).length };
   });
 // The tickets of one of the two lists the Raise Ticket screen opens on (/app/help/ticket?show=…), this school's.
 const tickets = (db: InsightsSql, ctx: FactContext, show: TicketShow) =>
@@ -94,12 +106,13 @@ const tickets = (db: InsightsSql, ctx: FactContext, show: TicketShow) =>
     return listed.value;
   });
 
-// Facts whose screen cannot yet list exactly their rows, so they carry no address: the Complaints and PTM
-// screens (not this slice's files) show every complaint and every meeting, with no filter in the address. Each
-// gets its `href` when its screen can open on the filter that lists these rows and no others
-// (/app/complaints?show=open | overdue, /app/ptm?show=coming), and leaves this list then.
-// test/insights/facts.test.ts holds the list to exactly the facts that have no address.
-export const NO_LIST_YET: readonly FactId[] = ['complaints.open', 'complaints.overdue', 'ptm.coming'];
+// Facts whose screen cannot yet list exactly their rows, so they carry no address. None today: complaints and
+// meetings have their lists (/app/complaints?show=open | overdue, /app/ptm?show=coming), and Proxy Auto opens on
+// the periods that still need cover (/app/proxy?show=needs-cover). A fact added before its
+// screen can open on the filter that lists its rows and no others is named here, is drawn without a link, and
+// leaves this list when it gets its `href`. test/insights/facts.test.ts holds the list to exactly the facts that
+// have no address.
+export const NO_LIST_YET: readonly FactId[] = [];
 
 // A count of today's attendance, or "not set up" while no class has a student.
 const attendanceCount = (pick: (t: Awaited<ReturnType<typeof attendanceToday>>) => FactNumbers) => async (db: InsightsSql, ctx: FactContext) => {
@@ -267,13 +280,14 @@ export const FACTS: readonly FactDefinition[] = [
   },
 
   // ---- Parents: complaints, notices, meetings, events, answers -----------------
-  // No address yet (NO_LIST_YET): the Complaints screen lists every complaint, closed ones too.
-  { id: 'complaints.open', moduleId: 'complaints', roles: ENGAGEMENT, unit: 'count', period: 'now', drill: 'rows', version: 1, sources: ['complaints'], load: async (db, ctx) => ({ value: (await complaintCounts(db, ctx)).open }) },
+  // The complaints not yet closed, and those of them past their due time: the lists /app/complaints?show=open
+  // and ?show=overdue show, counted.
+  { id: 'complaints.open', moduleId: 'complaints', roles: ENGAGEMENT, unit: 'count', period: 'now', drill: 'rows', version: 1, sources: ['complaints'], load: async (db, ctx) => ({ value: (await complaintCounts(db, ctx)).open, href: screenFor.complaints('open') }) },
   {
     id: 'complaints.overdue', moduleId: 'complaints', roles: ENGAGEMENT, unit: 'count', period: 'now', drill: 'rows', version: 1, sources: ['complaints'],
     load: async (db, ctx) => {
       const overdue = (await complaintCounts(db, ctx)).overdue;
-      return { value: overdue, attention: overdue > 0 };
+      return { value: overdue, href: screenFor.complaints('overdue'), attention: overdue > 0 };
     },
   },
   {
@@ -286,11 +300,11 @@ export const FACTS: readonly FactDefinition[] = [
     },
   },
   {
-    // No address yet (NO_LIST_YET): the PTM screen lists every meeting, past and cancelled ones too.
+    // The meetings dated today or later and not cancelled: the list /app/ptm?show=coming shows, counted.
     id: 'ptm.coming', moduleId: 'ptm', roles: ENGAGEMENT, unit: 'count', period: 'coming', drill: 'rows', version: 1, sources: ['ptm_events', 'ptm_slots', 'ptm_bookings'],
     load: async (db, ctx) => {
-      const coming = (await listPtms(db as never, ctx.schoolId)).filter((m) => m.status !== 'cancelled' && m.held_on >= ctx.today);
-      return { value: coming.length, parts: [{ key: 'slots', value: coming.reduce((a, m) => a + m.slots, 0) }, { key: 'booked', value: coming.reduce((a, m) => a + m.booked, 0) }] };
+      const coming = await listPtms(db as never, ctx.schoolId, ctx.today);
+      return { value: coming.length, href: screenFor.ptmComing(), parts: [{ key: 'slots', value: coming.reduce((a, m) => a + m.slots, 0) }, { key: 'booked', value: coming.reduce((a, m) => a + m.booked, 0) }] };
     },
   },
   {
@@ -322,10 +336,40 @@ export const FACTS: readonly FactDefinition[] = [
   },
 
   // ---- Staff leave and covers (slices 8b and 8c) ---------------------------------
-  // The lead adds these once `staff_leave` and `substitutions` exist, each counting the list its screen shows:
-  //   'staff.leave_waiting'     leave requests waiting for the office to decide        → /app/staff
-  //   'staff.on_leave_today'    staff whose approved leave covers today                → /app/staff
-  //   'proxy.uncovered_today'   periods of an absent teacher today with no cover yet   → /app/proxy
-  // Add the ids to FACT_IDS (types.ts), the words `fact.<id>.label` / `.rule` to the message files, and the ids
-  // to the "running" group in dashboard.ts.
+  // For running the day (docs/26 §3 rule 4): each is a count of a list the office already reads, in the order of
+  // the days. Nothing here counts by person, compares people or keeps a history of who was away or who covered.
+  {
+    // The Staff screen's "waiting" list (leaveWaiting), counted: the list /app/staff?show=leave-waiting shows.
+    // The reader's own request is on that list and is counted in the tile's number, but nobody decides their
+    // own. So what asks for this person is the requests they MAY decide (`mayDecide`, the list's own word for
+    // it): that count is the number the sentence under "Needs your attention" says, and it is the number My
+    // Day's card says. The tile and the sentence differ only for a person whose own request waits.
+    id: 'staff.leave_waiting', moduleId: 'staff', roles: OFFICE, unit: 'count', period: 'now', drill: 'rows', version: 1, sources: ['staff_leave'],
+    load: async (db, ctx) => {
+      const waiting = await leaveWaiting(db as never, { schoolId: ctx.schoolId, userId: ctx.userId, role: ctx.role as never }, ctx.today);
+      const toDecide = waiting.filter((r) => r.mayDecide).length;
+      return { value: waiting.length, href: screenFor.staffLeave('leave-waiting'), attention: toDecide > 0, attentionCount: toDecide };
+    },
+  },
+  {
+    // The people whose approved leave covers India's today: onLeave, which asks the database's one rule
+    // (staff_on_leave). The list /app/staff?show=on-leave-today shows, counted.
+    id: 'staff.on_leave_today', moduleId: 'staff', roles: OFFICE, unit: 'count', period: 'today', drill: 'rows', version: 1, sources: ['staff_leave'],
+    load: async (db, ctx) => ({ value: (await onLeave(db as never, ctx.schoolId, ctx.today)).length, href: screenFor.staffLeave('on-leave-today') }),
+  },
+  {
+    // Today's periods of teachers on approved leave that have no teacher, out of all of today's periods of
+    // teachers on leave: Proxy Auto's own reading of today (periodsToCover) with its own "Needs cover" rule
+    // (needsCover), so the tile, the screen's badges and My Day's card cannot disagree. A holiday or a day the
+    // school does not work has nothing to cover. With no timetable there is no period to count from: not set up.
+    // It opens Proxy Auto on those periods alone (/app/proxy?show=needs-cover): the screen lists the periods
+    // needsCover is true for, under a title that says the same "x of y".
+    id: 'proxy.uncovered_today', moduleId: 'proxy', roles: ARRANGERS, unit: 'count', period: 'today', drill: 'rows', version: 1, sources: ['timetable_entries', 'staff_leave', 'substitutions'],
+    load: async (db, ctx) => {
+      if ((await db.query(`select exists (select 1 from timetable_entries where school_id = $1) as any`, [ctx.schoolId])).rows[0]?.any !== true) return NOT_SET_UP;
+      const periods = await periodsToCover(db as never, ctx.schoolId, ctx.today);
+      const open = periods.filter(needsCover).length;
+      return { value: open, total: periods.length, href: screenFor.coverToday(), attention: open > 0 };
+    },
+  },
 ];

@@ -7,7 +7,7 @@ import type { IconName } from '@/components/visual/Icons';
 import type { Trend } from '@/lib/contracts/charts';
 import { moduleById, type ColorToken } from '@/lib/contracts/modules';
 import { t, tCount, type Lang } from '@/lib/i18n';
-import { say, sayDetail, sayNotSetUp, sayPeriod, saySources, sayTime, sayValue } from '@/lib/insights/dashboard';
+import { attentionNumber, say, sayDetail, sayNotSetUp, sayPeriod, saySources, sayTime, sayValue } from '@/lib/insights/dashboard';
 import type { FactResult } from '@/lib/insights/types';
 
 // Blocks every role dashboard shares (docs/19 §3.3): the attention list
@@ -137,7 +137,7 @@ export function FactAttention({ facts, lang, incomplete = false }: { facts: read
               <li key={f.id} data-attention={f.id} className="rounded-xl border border-slate/10 bg-white p-3">
                 <div className="flex flex-wrap items-center gap-3">
                   <ModuleIcon name={mod.icon} tone={mod.tone[0]} size="md" />
-                  <p className="min-w-0 flex-1 text-sm font-semibold text-slate">{tCount(lang, `fact.${f.id}.todo`, f.count ?? f.value ?? 0)}</p>
+                  <p className="min-w-0 flex-1 text-sm font-semibold text-slate">{tCount(lang, `fact.${f.id}.todo`, attentionNumber(f))}</p>
                   <Link href={f.href ?? mod.href} className="inline-flex min-h-[44px] items-center rounded-md bg-sapphire px-4 text-sm font-semibold text-white">
                     {say(lang, `fact.${f.id}.action`)}
                   </Link>
