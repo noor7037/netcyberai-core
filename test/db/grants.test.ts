@@ -183,6 +183,7 @@ const APP_USER: Record<string, string> = {
   // p6-9f begin
   // p6-9f end
   // c212-pricing begin
+  school_billing_terms: '', // a school's own terms (C212): read and written in Control only, never by a school
   // c212-pricing end
 };
 
@@ -275,6 +276,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // p6-9f begin
   // p6-9f end
   // c212-pricing begin
+  school_billing_terms: 'INSERT,SELECT,UPDATE', // never deleted; an UPDATE may only bring a last day forward (a trigger)
   // c212-pricing end
 };
 // Every other role that holds anything on a table.

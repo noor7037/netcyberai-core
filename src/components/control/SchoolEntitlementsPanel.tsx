@@ -236,7 +236,7 @@ export function SchoolEntitlementsPanel({
                       <div className="min-w-0">
                         <p className="text-sm font-semibold text-slate">{m.label}</p>
                         <p className="text-xs text-slate/70">
-                          {always ? 'Always on for every school' : !e ? 'Not switched on' : e.source === 'founder_override' ? 'Set by hand' : e.source === 'trial' ? 'Trial' : e.enabled ? 'From the plan' : 'Off in the plan'}
+                          {always ? 'Always on for every school' : !e ? 'Not switched on' : e.source === 'founder_override' ? 'Set by hand' : e.source === 'trial' ? 'Trial' : e.source === 'complimentary' ? t('billing.source.complimentary') : e.enabled ? 'From the plan' : 'Off in the plan'}
                         </p>
                         {/* What "off" changes for the school's people, in one sentence (docs/19 rule 7). */}
                         <p lang={lang} data-module-off={m.id} className="mt-0.5 max-w-prose text-xs text-slate">

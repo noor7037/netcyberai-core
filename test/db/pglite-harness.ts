@@ -30,6 +30,8 @@ export const B2_MIGRATIONS = [
   '20261011080039_users_tours_seen.sql',
   // P5 8e (C204): plans are rows, so anything that applies a plan needs the table. Found by its name's ending, whatever its timestamp.
   ...readdirSync(path.join(ROOT, 'supabase/migrations')).filter((f) => f.endsWith('_p5_billing_plans.sql')),
+  // C212: plans are priced per student and a school has terms; the code that reads a plan needs the new columns.
+  ...readdirSync(path.join(ROOT, 'supabase/migrations')).filter((f) => f.endsWith('_c212_pricing.sql')),
 ].map((f) => ({ file: f, sql: readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8') }));
 const NIL_UUID = '00000000-0000-0000-0000-000000000000';
 

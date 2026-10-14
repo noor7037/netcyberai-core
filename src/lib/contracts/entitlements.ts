@@ -8,7 +8,7 @@ import type { ModuleId } from './modules';
 
 export type PlanId = string;
 
-export type EntitlementSource = 'plan' | 'founder_override' | 'trial';
+export type EntitlementSource = 'plan' | 'founder_override' | 'trial' | 'complimentary'; // complimentary: a school's term (C212)
 
 export type ModuleEntitlement = {
   enabled: boolean;

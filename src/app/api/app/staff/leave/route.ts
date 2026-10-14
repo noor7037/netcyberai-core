@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isUuid } from '@/lib/frameworks/custom-fields';
+import { planHasFeature } from '@/lib/frameworks/plans';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 import { addDays, askLeave, isLeaveDate, LEAVE_BACK_DAYS, LEAVE_LIST_MAX, LEAVE_OFFICE, LEAVE_ROLES, leaveCalendar, leaveStaff, leaveWaiting, myLeave, officeAlone, recordLeave, recordOwnLeave, selfRecordAllowed } from '@/lib/staff/leave';
 import { indiaDate } from '@/lib/time/india';
@@ -18,6 +19,7 @@ import { indiaDate } from '@/lib/time/india';
 //                                                     own leave: approved at once, marked self-recorded (C210)
 export async function GET(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
+    if (!(await planHasFeature(db, claims.schoolId, 'staff-leave'))) return ruleError(403, 'not_allowed'); // a part of the plan (C212)
     if (!LEAVE_ROLES.includes(claims.role)) return ruleError(403, 'not_allowed');
     const actor = { schoolId: claims.schoolId, userId: claims.sub, role: claims.role };
     const office = LEAVE_OFFICE.includes(claims.role);
@@ -37,6 +39,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
+    if (!(await planHasFeature(db, claims.schoolId, 'staff-leave'))) return ruleError(403, 'not_allowed'); // a part of the plan (C212)
     const b = await readJson(req);
     if (!b || typeof b.fromDate !== 'string' || typeof b.toDate !== 'string' || typeof b.kind !== 'string' || typeof b.reason !== 'string' || b.reason.length > 2000 || (b.userId !== undefined && !isUuid(b.userId))) return ruleError(400, 'not_sent_properly');
     // `self` is true or absent, and never beside a person: one's own leave is one's own.

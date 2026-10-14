@@ -88,7 +88,7 @@ beforeAll(async () => {
     insert into schools (school_id, name, jurisdiction, is_test_fixture) values ${SCHOOLS.map((id, i) => `('${id}', 'Made-up School ${i + 1}', 'IN-HR', false)`).join(', ')};
     insert into users (user_id, school_id, email, role, display_name) values ('${FOUNDER}', null, 'founder@netcyber.example', 'super_admin', 'Farid Founder');
   `);
-  const made = await platform((c) => createPlan(c, by, { planId: 'five-days', name: 'Five Days Made-up', priceMinor: null, period: null, graceDays: 5, allWorkingModules: true, moduleIds: [], limits: {} }));
+  const made = await platform((c) => createPlan(c, by, { planId: 'five-days', name: 'Five Days Made-up', priceMonthMinor: null, priceYearMinor: null, graceDays: 5, allWorkingModules: true, moduleIds: [], limits: {} }));
   if (!made.ok) throw new Error(made.reason);
   for (const school of SCHOOLS) await platform((c) => applyPlan(c, school, 'five-days', founder, 'the plan with five days of grace'));
 }, 120_000);

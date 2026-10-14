@@ -1,5 +1,5 @@
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
-import { moduleOffReason } from '@/lib/frameworks/page-access';
+import { featureOff, moduleOffReason } from '@/lib/frameworks/page-access';
 import { getServerSession } from '@/lib/auth/server-session';
 import { shellForRole } from '@/lib/auth/guards';
 import { OfficeDashboard } from '@/components/shell/OfficeDashboard';
@@ -18,7 +18,9 @@ export default async function DashboardPage({ searchParams }: { searchParams: { 
   const session = await getServerSession();
   const shell = session ? shellForRole(session.role) : null;
 
-  if (shell === 'office' && session) {
+  // The office's dashboard is a part of the plan (C212: 'principal-dashboard', Growth and Premium); without it the
+  // office's home is My Day, as every other role's is.
+  if (shell === 'office' && session && !(await featureOff('principal-dashboard'))) {
     return <OfficeDashboard session={session} rangeId={isRangeId(searchParams.range) ? searchParams.range : DEFAULT_RANGE} lang={getLang(session.sub).lang} />;
   }
   redirect('/app/my-day');

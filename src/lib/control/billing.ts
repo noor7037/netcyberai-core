@@ -1,12 +1,13 @@
 import { writeAuditLog, writeEntitlementAudit } from '@/lib/audit/log';
 import type { AccessMode } from '@/lib/contracts/entitlements';
-import { isModuleId, type ModuleId } from '@/lib/contracts/modules';
+import { isModuleId, MODULE_IDS, type ModuleId } from '@/lib/contracts/modules';
 import { LIMIT_KEY } from '@/lib/copilot/copilot';
 import { MAX_MINOR } from '@/lib/fees/money';
 import { isUuid } from '@/lib/frameworks/custom-fields';
-import { DEFAULT_PLAN_SETTING, defaultPlanId, listPlans, loadPlan, PLAN_PERIODS, workingModules, type Plan, type PlanLimits, type PlanPeriod } from '@/lib/frameworks/plans';
+import { DEFAULT_PLAN_SETTING, defaultPlanId, isBillingPeriod, isPlanFeature, listPlans, loadPlan, PLAN_FEATURES, workingModules, type BillingPeriod, type Plan, type PlanFeature, type PlanLimits } from '@/lib/frameworks/plans';
 import type { Sql } from '@/lib/jobs/types';
 import { indiaDate, isIsoDate } from '@/lib/time/india';
+import { amountDue, MAX_STUDENT_MONTH_PAISE, MAX_STUDENT_YEAR_PAISE, type AmountDue } from './billing-amount';
 import { billingFacts, billingOwnSql, graceDaysInWords, writeBillingAccess } from './billing-nightly';
 import { lastGraceDay } from './grace-day';
 
@@ -27,26 +28,45 @@ const LIMIT_KEY_RE = /^[a-z][a-z0-9_]{0,39}$/;
 
 // ---- plans ------------------------------------------------------------------------------------
 
-export type PlanInput = { planId?: unknown; name: unknown; priceMinor: unknown; period: unknown; graceDays: unknown; allWorkingModules: unknown; moduleIds: unknown; limits: unknown };
-export type PlanProblem = 'plan_id' | 'name' | 'price' | 'period' | 'grace_days' | 'modules' | 'limits' | 'id_taken' | 'name_taken' | 'not_found' | 'is_default' | 'retired';
+// Prices are per active student, in paise (C212), up to MAX_STUDENT_MONTH_PAISE and MAX_STUDENT_YEAR_PAISE.
+export const MAX_MESSAGES_PER_STUDENT = 100_000;
+// The module a feature is part of: a plan gives a feature only with its module.
+export const FEATURE_MODULE: Record<PlanFeature, ModuleId> = { 'personal-best': 'exams', 'principal-dashboard': 'dashboard', 'staff-leave': 'staff' };
+
+export type PlanInput = {
+  planId?: unknown;
+  name: unknown;
+  priceMonthMinor: unknown;
+  priceYearMinor: unknown;
+  graceDays: unknown;
+  allWorkingModules: unknown;
+  moduleIds: unknown;
+  limits: unknown;
+  features?: unknown;
+  messagesPerStudentMonth?: unknown;
+};
+export type PlanProblem = 'plan_id' | 'name' | 'price' | 'prices' | 'grace_days' | 'modules' | 'limits' | 'features' | 'messages' | 'id_taken' | 'name_taken' | 'not_found' | 'is_default' | 'retired';
 export type PlanResult = { ok: true; plan: Plan } | { ok: false; reason: PlanProblem };
-type CleanPlan = { name: string; priceMinor: number | null; period: PlanPeriod | null; graceDays: number; allWorkingModules: boolean; moduleIds: ModuleId[]; limits: PlanLimits };
+type CleanPlan = { name: string; priceMonthMinor: number | null; priceYearMinor: number | null; graceDays: number; allWorkingModules: boolean; moduleIds: ModuleId[]; limits: PlanLimits; features: PlanFeature[]; messagesPerStudentMonth: number | null };
+
+const wholeUpTo = (v: unknown, max: number): v is number => typeof v === 'number' && Number.isInteger(v) && v >= 0 && v <= max;
+const emptyToNull = (v: unknown) => (v === null || v === undefined || v === '' ? null : v);
 
 function cleanPlan(input: PlanInput): CleanPlan | PlanProblem {
   const name = typeof input.name === 'string' ? input.name.trim().replace(/\s+/g, ' ') : '';
   if (name.length < 1 || name.length > 60) return 'name';
-  const priceMinor = input.priceMinor === null || input.priceMinor === undefined ? null : input.priceMinor;
-  if (priceMinor !== null && (typeof priceMinor !== 'number' || !Number.isInteger(priceMinor) || priceMinor < 0 || priceMinor > MAX_MINOR)) return 'price';
-  const period = input.period === null || input.period === undefined || input.period === '' ? null : input.period;
-  if (period !== null && !(PLAN_PERIODS as readonly unknown[]).includes(period)) return 'period';
-  if (priceMinor !== null && period === null) return 'period'; // a price is always for a period
+  const month = emptyToNull(input.priceMonthMinor);
+  const year = emptyToNull(input.priceYearMinor);
+  if ((month !== null && !wholeUpTo(month, MAX_STUDENT_MONTH_PAISE)) || (year !== null && !wholeUpTo(year, MAX_STUDENT_YEAR_PAISE))) return 'price';
+  if ((month === null) !== (year === null)) return 'prices'; // a school pays for a month or a year: both, or neither yet
   const graceDays = input.graceDays;
   if (typeof graceDays !== 'number' || !Number.isInteger(graceDays) || graceDays < 0 || graceDays > MAX_GRACE_DAYS) return 'grace_days';
   const allWorkingModules = input.allWorkingModules === true;
   const working = workingModules();
   const chosen = Array.isArray(input.moduleIds) ? input.moduleIds : [];
-  // A chosen list holds modules that work today, each once, and at least one.
-  if (!allWorkingModules && (chosen.length < 1 || new Set(chosen).size !== chosen.length || !chosen.every((m) => isModuleId(m) && working.includes(m)))) return 'modules';
+  // A chosen list holds modules of the registry, each once, and at least one that works today. A module not built
+  // yet may be listed: the plan sells it, and it is switched on once it works.
+  if (!allWorkingModules && (new Set(chosen).size !== chosen.length || !chosen.every((m) => isModuleId(m)) || !chosen.some((m) => working.includes(m as ModuleId)))) return 'modules';
   const moduleIds = allWorkingModules ? [] : (chosen as ModuleId[]);
   const given = allWorkingModules ? working : moduleIds;
   const raw = input.limits ?? {};
@@ -58,12 +78,28 @@ function cleanPlan(input: PlanInput): CleanPlan | PlanProblem {
     if (entries.length > 20 || !entries.every(([k, v]) => LIMIT_KEY_RE.test(k) && typeof v === 'number' && Number.isInteger(v) && v >= 0 && v <= 2_000_000_000)) return 'limits';
     if (entries.length > 0) limits[moduleId] = Object.fromEntries(entries) as Record<string, number>;
   }
-  return { name, priceMinor: priceMinor as number | null, period: period as PlanPeriod | null, graceDays, allWorkingModules, moduleIds, limits };
+  const features = input.features === undefined || input.features === null ? [] : input.features;
+  if (!Array.isArray(features) || new Set(features).size !== features.length || !features.every((f) => isPlanFeature(f) && given.includes(FEATURE_MODULE[f]))) return 'features';
+  const messages = emptyToNull(input.messagesPerStudentMonth);
+  if (messages !== null && !wholeUpTo(messages, MAX_MESSAGES_PER_STUDENT)) return 'messages';
+  return { name, priceMonthMinor: month as number | null, priceYearMinor: year as number | null, graceDays, allWorkingModules, moduleIds, limits, features: features as PlanFeature[], messagesPerStudentMonth: messages as number | null };
 }
 
-const planState = (p: Plan) => ({ name: p.name, price_minor: p.priceMinor, period: p.period, grace_days: p.graceDays, all_working_modules: p.allWorkingModules, module_ids: p.allWorkingModules ? [] : p.moduleIds, limits: p.limits, retired: p.retired });
+const planState = (p: Plan) => ({
+  name: p.name,
+  price_month_minor: p.priceMonthMinor,
+  price_year_minor: p.priceYearMinor,
+  grace_days: p.graceDays,
+  all_working_modules: p.allWorkingModules,
+  module_ids: p.allWorkingModules ? [] : [...p.moduleIds, ...p.waitingModuleIds],
+  features: p.features,
+  whatsapp_messages_per_student_month: p.messagesPerStudentMonth,
+  limits: p.limits,
+  retired: p.retired,
+});
 const nameTaken = async (db: Sql, name: string, exceptPlanId: string | null) =>
   (await db.query(`select 1 from plans where lower(btrim(name)) = lower($1) and plan_id is distinct from $2`, [name, exceptPlanId])).rows.length > 0;
+const planValues = (c: CleanPlan) => [c.name, c.priceMonthMinor, c.priceYearMinor, c.graceDays, c.allWorkingModules, c.moduleIds, JSON.stringify(c.limits), c.features, c.messagesPerStudentMonth];
 
 export async function createPlan(db: Sql, by: By, input: PlanInput): Promise<PlanResult> {
   const planId = typeof input.planId === 'string' ? input.planId.trim() : '';
@@ -73,16 +109,17 @@ export async function createPlan(db: Sql, by: By, input: PlanInput): Promise<Pla
   if ((await db.query(`select 1 from plans where plan_id = $1`, [planId])).rows[0]) return { ok: false, reason: 'id_taken' };
   if (await nameTaken(db, clean.name, null)) return { ok: false, reason: 'name_taken' };
   await db.query(
-    `insert into plans (plan_id, name, price_minor, period, grace_days, all_working_modules, module_ids, limits, created_by, updated_by)
-     values ($1, $2, $3, $4, $5, $6, $7::text[], $8::jsonb, $9, $9)`,
-    [planId, clean.name, clean.priceMinor, clean.period, clean.graceDays, clean.allWorkingModules, clean.moduleIds, JSON.stringify(clean.limits), by.userId]
+    `insert into plans (plan_id, name, price_month_minor, price_year_minor, grace_days, all_working_modules, module_ids, limits, features, whatsapp_messages_per_student_month, created_by, updated_by)
+     values ($1, $2, $3, $4, $5, $6, $7::text[], $8::jsonb, $9::text[], $10, $11, $11)`,
+    [planId, ...planValues(clean), by.userId]
   );
   const plan = (await loadPlan(db, planId))!;
   await writeAuditLog(db, { schoolId: null, actorUserId: by.userId, actorRole: 'super_admin', eventAction: 'billing.plan_created', targetType: 'plans', targetId: planId, afterState: planState(plan) });
   return { ok: true, plan };
 }
 
-// A plan's id never changes. Schools already on the plan keep the modules they have until the plan is applied to them again.
+// A plan's id never changes. Schools already on the plan keep the modules they have until the plan is applied to them
+// again; a changed price counts the next time an amount is worked out.
 export async function updatePlan(db: Sql, by: By, planId: string, input: PlanInput): Promise<PlanResult> {
   const clean = cleanPlan(input);
   if (typeof clean === 'string') return { ok: false, reason: clean };
@@ -91,9 +128,10 @@ export async function updatePlan(db: Sql, by: By, planId: string, input: PlanInp
   const before = (await loadPlan(db, planId))!;
   if (await nameTaken(db, clean.name, planId)) return { ok: false, reason: 'name_taken' };
   await db.query(
-    `update plans set name = $2, price_minor = $3, period = $4, grace_days = $5, all_working_modules = $6, module_ids = $7::text[], limits = $8::jsonb, updated_by = $9, updated_at = now()
+    `update plans set name = $2, price_month_minor = $3, price_year_minor = $4, grace_days = $5, all_working_modules = $6, module_ids = $7::text[], limits = $8::jsonb,
+            features = $9::text[], whatsapp_messages_per_student_month = $10, updated_by = $11, updated_at = now()
       where plan_id = $1`,
-    [planId, clean.name, clean.priceMinor, clean.period, clean.graceDays, clean.allWorkingModules, clean.moduleIds, JSON.stringify(clean.limits), by.userId]
+    [planId, ...planValues(clean), by.userId]
   );
   const plan = (await loadPlan(db, planId))!;
   await writeAuditLog(db, { schoolId: null, actorUserId: by.userId, actorRole: 'super_admin', eventAction: 'billing.plan_changed', targetType: 'plans', targetId: planId, beforeState: planState(before), afterState: planState(plan) });
@@ -135,7 +173,7 @@ export type SchoolBilling = {
   isTest: boolean;
   planId: string | null; // null: not on a plan of the table
   planName: string | null;
-  planPeriod: PlanPeriod | null;
+  period: BillingPeriod | null; // the period the school pays for (C212); null: not chosen yet
   paidUntil: string | null;
   accessMode: AccessMode;
   graceEndsAt: string | null;
@@ -145,9 +183,21 @@ export type SchoolBilling = {
   // until a payment moves that day. The school's card says so, since nothing else would.
   checkOff: boolean;
 };
-export type BillingOverview = { today: string; plans: (Plan & { schools: number })[]; defaultPlanId: string | null; workingModules: ModuleId[]; limitChoices: typeof PLAN_LIMIT_CHOICES; maxGraceDays: number; schools: SchoolBilling[] };
+export type BillingOverview = {
+  today: string;
+  plans: (Plan & { schools: number })[];
+  defaultPlanId: string | null;
+  workingModules: ModuleId[];
+  // Every module of the registry, for a plan's chosen list: one not built yet may be listed (it waits until it works).
+  allModules: ModuleId[];
+  features: readonly PlanFeature[];
+  limitChoices: typeof PLAN_LIMIT_CHOICES;
+  maxGraceDays: number;
+  // Each school with the amount it owes for one period, from the one rule (billing-amount.ts).
+  schools: (SchoolBilling & { amount: AmountDue | null })[];
+};
 
-const SCHOOL_BILLING_SQL = `select s.school_id, s.name, s.is_test_fixture, p.plan_id, p.name as plan_name, p.period, sub.paid_until::text as paid_until,
+const SCHOOL_BILLING_SQL = `select s.school_id, s.name, s.is_test_fixture, p.plan_id, p.name as plan_name, sub.billing_period, sub.paid_until::text as paid_until,
             coalesce(e.access_mode, 'full') as access_mode, e.grace_ends_at,
             coalesce(e.access_mode = 'grace' and e.grace_ends_at <= now(), false) as grace_over,
             coalesce(${billingOwnSql('sub', 'e')}, false) as own,
@@ -169,7 +219,7 @@ function schoolBillingFromRow(r: any): SchoolBilling {
     isTest: r.is_test_fixture === true,
     planId: (r.plan_id as string | null) ?? null,
     planName: (r.plan_name as string | null) ?? null,
-    planPeriod: (r.period as PlanPeriod | null) ?? null,
+    period: isBillingPeriod(r.billing_period) ? r.billing_period : null,
     paidUntil: (r.paid_until as string | null) ?? null,
     accessMode,
     graceEndsAt: r.grace_ends_at ? new Date(r.grace_ends_at).toISOString() : null,
@@ -187,12 +237,15 @@ export async function schoolBilling(db: Sql, schoolId: string, today: string = i
 export async function billingOverview(db: Sql, today: string = indiaDate()): Promise<BillingOverview> {
   const plans = await listPlans(db);
   const { rows } = await db.query(`${SCHOOL_BILLING_SQL} order by lower(coalesce(p.name, '')), lower(s.name), s.school_id`, [today]);
-  const schools = rows.map(schoolBillingFromRow);
+  const schools: BillingOverview['schools'] = [];
+  for (const school of rows.map(schoolBillingFromRow)) schools.push({ ...school, amount: await amountDue(db, school.schoolId, today) });
   return {
     today,
     plans: plans.map((p) => ({ ...p, schools: schools.filter((s) => s.planId === p.planId).length })),
     defaultPlanId: await defaultPlanId(db),
     workingModules: workingModules(),
+    allModules: [...MODULE_IDS],
+    features: PLAN_FEATURES,
     limitChoices: PLAN_LIMIT_CHOICES,
     maxGraceDays: MAX_GRACE_DAYS,
     schools,

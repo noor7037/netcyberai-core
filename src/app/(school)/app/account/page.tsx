@@ -4,7 +4,7 @@ import { MyLeavePanel } from '@/components/account/MyLeavePanel';
 import { SecurityPanel } from '@/components/account/SecurityPanel';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { getServerSession } from '@/lib/auth/server-session';
-import { moduleOffReason } from '@/lib/frameworks/page-access';
+import { featureOff, moduleOffReason } from '@/lib/frameworks/page-access';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 
@@ -18,7 +18,7 @@ import { getLang } from '@/lib/i18n/server';
 export default async function AccountPage() {
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
-  const leaveOff = await moduleOffReason('staff');
+  const leaveOff = (await moduleOffReason('staff')) ?? ((await featureOff('staff-leave')) ? 'not_in_plan' : null);
   return (
     <ModulePage help="set-up-authenticator" title={t(lang, 'account.page.title')} purpose={t(lang, leaveOff ? 'account.page.purpose' : 'account.page.purposeLeave')} icon="lock" tone="sapphire" eyebrow={t(lang, 'shell.account')}>
       {!leaveOff && <MyLeavePanel />}

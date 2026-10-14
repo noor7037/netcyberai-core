@@ -1758,8 +1758,7 @@ const billingPlans = async (page) => {
   await page.reload({ waitUntil: 'networkidle' });
   await page.locator('[data-billing-plan-add]').click();
   await page.locator('#plan-name').fill('Harness Made-up Plan');
-  await page.locator('#plan-price').fill('12,500');
-  await page.locator('#plan-period').selectOption('year');
+  await page.locator('#plan-price-month').fill('1,250'); // C212: per student; the yearly price is filled in as ten months
   await page.locator('#plan-grace').fill('10');
   await page.locator('[data-billing-plan-save]').click();
   await page.waitForFunction(() => /plan is added/.test(document.querySelector('[data-billing-note]')?.textContent ?? ''), null, { timeout: 20000 });
@@ -1784,7 +1783,7 @@ const billingPlans = async (page) => {
 };
 const billingPlansDone = async () => {
   const { rows } = await db.pg.query(
-    `select (select count(*)::int from plans where plan_id = $2 and name = 'Harness Made-up Plan' and price_minor = 1250000 and period = 'year' and grace_days = 10 and all_working_modules and retired_at is null) as plans,
+    `select (select count(*)::int from plans where plan_id = $2 and name = 'Harness Made-up Plan' and price_month_minor = 125000 and price_year_minor = 1250000 and grace_days = 10 and all_working_modules and retired_at is null) as plans,
             (select count(*)::int from subscription_payments where school_id = $1 and amount_minor = 1250000 and reference = 'harness-8e cheque 000118' and covers_until = $3::date and recorded_by = $4) as payments,
             (select count(*)::int from school_subscriptions where school_id = $1 and paid_until = $3::date and billing_access is null) as subscriptions,
             (select access_mode from school_entitlements where school_id = $1) as access,
@@ -2931,6 +2930,139 @@ const monitoringMaskedDone = async () => {
 // p6-9f begin
 // p6-9f end
 // c212-pricing begin
+// Control → Billing & Plans, priced per active student (C212). Two screens.
+// 1. The plan form: the founder opens Growth (a plan the migration seeds as data) and types a new price a month per
+//    student; the yearly price is filled in as ten months. Nothing is saved: the check finds the plan as it was.
+// 2. A school's terms and its amount due: the seeded school is billed on Growth for this screen (a subscription row
+//    only; its modules stay as the seed left them). The founder chooses a year, adds a minimum of 30 students, a
+//    discount of 10 percent and Parent AI complimentary for 30 days, each with a reason. The check works the amount
+//    out again from the rows (max(active students, minimum) x the yearly price, less the discount rounded half up),
+//    compares it with the screen, and puts everything back.
+const PRICING_REASON = 'harness-c212 agreed with the school';
+const PRICING_FREE_DAYS = 30;
+let pricingFormSeen = null;
+let pricingGrowthBefore = null;
+let pricingTermsSeen = null;
+let pricingParentAiBefore = null;
+const growthPlanRow = async () => (await db.pg.query(`select name, price_month_minor, price_year_minor, features, module_ids, whatsapp_messages_per_student_month, updated_by, updated_at from plans where plan_id = 'growth'`)).rows[0];
+const pricingMoney = (paise) => `₹${(paise / 100).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+const pricingForm = async (page) => {
+  pricingGrowthBefore = await growthPlanRow();
+  const plan = page.locator('[data-billing-plan="growth"]');
+  await plan.locator('[data-billing-plan-edit]').click();
+  await page.locator('[data-billing-plan-form]').waitFor({ timeout: 20000 });
+  const yearBefore = await page.locator('#plan-price-year').inputValue();
+  await page.locator('#plan-price-month').fill('32');
+  pricingFormSeen = {
+    yearBefore,
+    year: await page.locator('#plan-price-year').inputValue(),
+    price: await plan.locator('[data-billing-price]').textContent(),
+    messages: await page.locator('#plan-messages').inputValue(),
+    messagesLine: await plan.locator('[data-billing-messages]').textContent(),
+    features: await page.locator('[data-billing-feature]').evaluateAll((els) => els.filter((e) => e.checked).map((e) => e.getAttribute('data-billing-feature')).join()),
+    examsListed: await page.locator('[data-billing-module="exams"]').evaluate((e) => e.checked),
+  };
+  await page.locator('[data-billing-plan-form]').scrollIntoViewIfNeeded();
+};
+const pricingFormDone = async () => {
+  const after = await growthPlanRow();
+  if (JSON.stringify(after) !== JSON.stringify(pricingGrowthBefore)) throw new Error(`the Growth plan changed though nothing was saved: ${JSON.stringify(after)}`);
+  const seen = pricingFormSeen ?? {};
+  // The form opens on the stored prices, and the yearly one follows the monthly one as ten months.
+  if (seen.yearBefore !== '300' || seen.year !== '320' || !/₹30\.00 a month or ₹300\.00 a year, per active student/.test(seen.price ?? '')) throw new Error(`the plan form's prices: ${JSON.stringify(seen)}`);
+  // The messages included are left empty by the seed; the features and a module not built yet are listed as stored.
+  if (seen.messages !== '' || !/not set yet/.test(seen.messagesLine ?? '') || seen.features !== 'principal-dashboard,staff-leave' || seen.examsListed !== true) throw new Error(`the plan form's other fields: ${JSON.stringify(seen)}`);
+};
+const clearPricing = async () => {
+  const freeAudits = `select audit_id from audit_log where school_id = '${SCHOOL}' and event_action = 'entitlement.module_changed' and target_id = 'parent-ai' and (after_state ->> 'source' = 'complimentary' or before_state ->> 'source' = 'complimentary')`;
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from entitlement_change_reasons where audit_id in (${freeAudits});
+    delete from audit_log where audit_id in (${freeAudits});
+    delete from audit_log where school_id = '${SCHOOL}' and event_action like 'billing.terms.%';
+    delete from school_billing_terms where school_id = '${SCHOOL}';
+    delete from school_subscriptions where school_id = '${SCHOOL}';
+    set session_replication_role = origin;`);
+  // Parent AI back as the seed left it: on, from the plan.
+  await db.pg.query(`update school_module_entitlements set enabled = true, source = 'plan', updated_at = now() where school_id = $1 and module_id = 'parent-ai' and source = 'complimentary'`, [SCHOOL]);
+};
+const pricingTerms = async (page) => {
+  await clearPricing();
+  pricingParentAiBefore = (await db.pg.query(`select enabled, source from school_module_entitlements where school_id = $1 and module_id = 'parent-ai'`, [SCHOOL])).rows[0] ?? null;
+  await db.pg.query(`insert into school_subscriptions (school_id, plan_id) values ($1, 'growth')`, [SCHOOL]);
+  await page.reload({ waitUntil: 'networkidle' });
+  const school = page.locator(`[data-billing-school="${SCHOOL}"]`);
+  await school.locator('[data-billing-terms]').click();
+  await school.locator('[data-billing-working]').waitFor({ timeout: 20000 });
+  const before = await school.locator('[data-billing-amount-due]').textContent();
+  await page.locator(`#period-${SCHOOL}`).selectOption('year');
+  await page.locator(`#period-why-${SCHOOL}`).fill(PRICING_REASON);
+  await school.locator('[data-billing-period-save]').click();
+  await page.waitForFunction(() => /period is saved/.test(document.querySelector('[data-billing-note]')?.textContent ?? ''), null, { timeout: 20000 });
+  const addTerm = async (kind, fill, count) => {
+    await school.locator('[data-billing-term-add]').click();
+    await page.locator(`#term-kind-${SCHOOL}`).selectOption(kind);
+    await fill();
+    await page.locator(`#term-why-${SCHOOL}`).fill(PRICING_REASON);
+    await school.locator('[data-billing-term-save]').click();
+    await page.waitForFunction((n) => document.querySelectorAll('[data-billing-term]').length === n && !document.querySelector('[data-billing-term-form]'), count, { timeout: 20000 });
+  };
+  await addTerm('minimum', () => page.locator(`#term-minimum-${SCHOOL}`).fill('30'), 1);
+  await addTerm('discount', () => page.locator(`#term-percent-${SCHOOL}`).fill('10'), 2);
+  await addTerm('complimentary', async () => {
+    await page.locator(`#term-module-${SCHOOL}`).selectOption('parent-ai');
+    await page.locator(`#term-to-${SCHOOL}`).fill(indiaDayFromNow(PRICING_FREE_DAYS));
+  }, 3);
+  await school.locator('[data-billing-complimentary="parent-ai"]').waitFor({ timeout: 20000 });
+  pricingTermsSeen = {
+    before,
+    period: await school.locator('[data-billing-period]').textContent(),
+    schoolAmount: await school.locator('[data-billing-amount]').textContent(),
+    active: await school.locator('[data-billing-active]').textContent(),
+    amountDue: await school.locator('[data-billing-amount-due]').textContent(),
+    working: await school.locator('[data-billing-working]').textContent(),
+    terms: await school.locator('[data-billing-term]').evaluateAll((els) => els.map((e) => `${e.getAttribute('data-billing-term')}:${e.getAttribute('data-billing-term-state')}`).sort().join()),
+  };
+  await school.locator('[data-billing-terms-panel]').scrollIntoViewIfNeeded();
+};
+const pricingTermsDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from students where school_id = $1 and status = 'active') as active,
+            (select price_year_minor from plans where plan_id = 'growth') as year_price,
+            (select billing_period from school_subscriptions where school_id = $1) as period,
+            (select count(*)::int from school_billing_terms where school_id = $1 and created_by = $2 and reason = $3 and starts_on = $4::date) as terms,
+            (select minimum_students from school_billing_terms where school_id = $1 and kind = 'minimum') as minimum,
+            (select discount_bp from school_billing_terms where school_id = $1 and kind = 'discount') as discount,
+            (select ends_on::text from school_billing_terms where school_id = $1 and kind = 'complimentary' and module_id = 'parent-ai') as free_until,
+            (select count(*)::int from audit_log where school_id = $1 and event_action = 'billing.terms.added' and actor_user_id = $2 and after_state ->> 'reason' = $3) as term_audits,
+            (select count(*)::int from audit_log where school_id = $1 and event_action = 'billing.terms.period_changed' and actor_user_id = $2) as period_audits,
+            (select enabled::text || ' ' || source from school_module_entitlements where school_id = $1 and module_id = 'parent-ai') as parent_ai`,
+    [SCHOOL, PEOPLE.founder.sub, PRICING_REASON, indiaDayFromNow(0)]
+  );
+  await clearPricing();
+  const back = (await db.pg.query(`select enabled, source from school_module_entitlements where school_id = $1 and module_id = 'parent-ai'`, [SCHOOL])).rows[0] ?? null;
+  const r = rows[0];
+  if (JSON.stringify(back) !== JSON.stringify(pricingParentAiBefore)) throw new Error(`Parent AI was not put back: ${JSON.stringify(back)}`);
+  if (r.period !== 'year' || r.terms !== 3 || r.minimum !== 30 || r.discount !== 1000 || r.free_until !== indiaDayFromNow(PRICING_FREE_DAYS) || r.term_audits !== 3 || r.period_audits !== 1 || r.parent_ai !== 'true complimentary') throw new Error(`a school's terms, in the database: ${JSON.stringify(r)}`);
+  // The amount, worked out here again from the rows, to the paisa.
+  const billed = Math.max(r.active, r.minimum);
+  const gross = billed * Number(r.year_price);
+  const amount = gross - Math.floor((gross * r.discount + 5000) / 10000);
+  const seen = pricingTermsSeen ?? {};
+  const want = {
+    before: 'Choose a month or a year first',
+    period: 'A year',
+    schoolAmount: `${pricingMoney(amount)} for a year`,
+    active: `Active students: ${r.active}`,
+    amountDue: `Amount due for a year: ${pricingMoney(amount)}`,
+    terms: 'complimentary:in_force,discount:in_force,minimum:in_force',
+  };
+  const wrong = Object.entries(want).filter(([k, v]) => (seen[k] ?? '').trim() !== v);
+  if (wrong.length) throw new Error(`a school's amount due, on the screen: ${JSON.stringify(wrong.map(([k, v]) => [k, seen[k], v]))}`);
+  // The working shows each part: the minimum, the students billed, the plan's yearly price, the discount, and the free module.
+  for (const words of [`Minimum billed students: ${r.minimum}`, `Billed for ${billed} students`, `${pricingMoney(Number(r.year_price))} a year, from the plan`, 'Discount of 10.00%', 'Complimentary, not charged']) {
+    if (!(seen.working ?? '').includes(words)) throw new Error(`a school's amount due, the working lacks "${words}": ${seen.working}`);
+  }
+};
 // c212-pricing end
 let upiSeen = null;
 const payByUpi = async (page) => {
@@ -3438,6 +3570,8 @@ const SCREENS = [
   // p6-9f begin
   // p6-9f end
   // c212-pricing begin
+  ['founder', 'control-billing-plan-form', '/control/billing-plans', pricingForm, pricingFormDone],
+  ['founder', 'control-billing-terms', '/control/billing-plans', pricingTerms, pricingTermsDone],
   // c212-pricing end
 ];
 

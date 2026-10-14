@@ -1,4 +1,5 @@
 import { isModuleEnabled, type SchoolEntitlements } from '@/lib/contracts/entitlements';
+import { planHasFeature } from '@/lib/frameworks/plans';
 import { arrangeMyDay, type MyDay, type TodayCard, type TodayContext, type TodayProvider, type TodaySql } from '@/lib/contracts/today-cards';
 import { feeIsOverdueSql } from '@/lib/fees/overdue';
 import { classLabel } from '@/lib/frameworks/class-label';
@@ -273,6 +274,7 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     moduleId: 'staff',
     roles: OFFICE,
     async load(db, ctx) {
+      if (!(await planHasFeature(db as never, ctx.schoolId, 'staff-leave'))) return []; // a part of the plan (C212)
       const { rows } = await db.query(`select count(*) as c from staff_leave where school_id = $1 and status = 'waiting' and user_id <> $2`, [ctx.schoolId, ctx.userId]);
       return waiting('leave-waiting', 'staff', n(rows[0]?.c), '/app/staff');
     },

@@ -361,6 +361,8 @@ ALLOWED_PERMISSIVE = (
         # p6-9f begin
         # p6-9f end
         # c212-pricing begin
+        # C212: a school's own terms. Tenant isolation, and a restrictive policy below lets no role it applies to read them.
+        ("school_billing_terms", "school_billing_terms_tenant_isolation"),
         # c212-pricing end
     }
 )
@@ -589,6 +591,9 @@ REQUIRED_RESTRICTIVE = {
     # p6-9f begin
     # p6-9f end
     # c212-pricing begin
+    # C212: a school's terms are the platform's alone (it bypasses row level security), and so are the audit rows about them.
+    ("school_billing_terms", "school_billing_terms_nobody"),
+    ("audit_log", "audit_billing_terms_platform_only"),
     # c212-pricing end
 }
 
