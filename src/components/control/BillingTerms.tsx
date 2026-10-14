@@ -111,7 +111,7 @@ export function BillingTerms({ school, data, busy, send }: { school: School; dat
           <h4 className="font-bold">{t('billing.work.title')}</h4>
           {a && (
             <>
-              <p data-billing-active>{t('billing.work.active', { count: a.activeStudents.toLocaleString('en-IN') })}</p>
+              <p data-billing-enrolled>{t('billing.work.enrolled', { count: a.enrolledStudents.toLocaleString('en-IN') })}</p>
               <p>{a.minimumStudents === null ? t('billing.work.noMinimum') : t('billing.work.minimum', { count: a.minimumStudents.toLocaleString('en-IN') })}</p>
               <p>{t('billing.work.billed', { count: a.billedStudents.toLocaleString('en-IN') })}</p>
               {a.pricePerStudentMinor !== null && a.period && a.priceSource && <p>{t(`billing.work.price.${a.priceSource}.${a.period}` as MessageKey, { price: rupees(a.pricePerStudentMinor) })}</p>}

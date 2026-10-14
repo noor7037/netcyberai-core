@@ -170,25 +170,24 @@ describe('role policies on the four tables, as the app’s role, each role', () 
       for (const w of [coordinator, accountant]) expect(await about(w), w.role).toEqual([]);
     });
 
-    it('the bridge for the code deployed before C210: open only where it was set, and closed once the new runner records its job types', async () => {
+    it('the bridge for the code deployed before C210 is gone (C219 cleanup): no function, no setting, and the read policy no longer asks it', async () => {
       const all = await superCount(`select count(*) as n from communication_log where school_id = $1`, [A]);
-      const handlers = (await db.pg.query(`select value from platform_settings where key = 'jobs.handlers'`)).rows[0]?.value ?? null;
-      // A fresh database (every test, production today) never opens it.
-      expect(await count(accountant, `select count(*) as n from communication_log`)).toBe(0);
+      expect(await superCount(`select count(*) as n from pg_proc where proname = 'c210_message_log_bridge_open'`)).toBe(0);
+      expect(await superCount(`select count(*) as n from platform_settings where key = 'rollout.message_log_bridge'`)).toBe(0);
+      const policy = (await db.pg.query(`select qual from pg_policies where tablename = 'communication_log' and policyname = 'communication_log_role_read'`)).rows[0].qual as string;
+      expect(policy).not.toMatch(/bridge/);
+      expect(policy).toMatch(/principal/);
+      // Setting the old flag now opens nothing: the coordinator and an accountant still read no message.
       try {
-        // Set on a database that already held messages, before the new code runs: every school role reads, as before C210.
         await db.pg.query(`insert into platform_settings (key, value) values ('rollout.message_log_bridge', 'true'::jsonb) on conflict (key) do update set value = excluded.value`);
-        await db.pg.query(`insert into platform_settings (key, value) values ('jobs.handlers', '[]'::jsonb) on conflict (key) do update set value = excluded.value`);
-        for (const w of [coordinator, accountant]) expect(await count(w, `select count(*) as n from communication_log`), w.role).toBe(all);
-        // The new runner records its job types: the bridge closes by itself.
-        await db.pg.query(`update platform_settings set value = '["early_warning.nightly", "auditor.weekly"]'::jsonb where key = 'jobs.handlers'`);
         for (const w of [coordinator, accountant]) expect(await count(w, `select count(*) as n from communication_log`), w.role).toBe(0);
         expect(await count(principal, `select count(*) as n from communication_log`)).toBe(all);
       } finally {
         await db.pg.query(`delete from platform_settings where key = 'rollout.message_log_bridge'`);
-        if (handlers === null) await db.pg.query(`delete from platform_settings where key = 'jobs.handlers'`);
-        else await db.pg.query(`update platform_settings set value = $1::jsonb where key = 'jobs.handlers'`, [JSON.stringify(handlers)]);
       }
+      const dir = path.resolve(__dirname, '../../supabase/migrations');
+      const cleanup = readFileSync(path.join(dir, readdirSync(dir).find((f) => f.endsWith('_c219_cleanup.sql'))!), 'utf8');
+      expect(cleanup).toMatch(/drop function public\.c210_message_log_bridge_open\(\);/);
     });
 
     it('a message is written by every role whose work sets one off (through the send-gate); a reply only in one’s own name; no school role changes a message', async () => {
@@ -304,21 +303,26 @@ describe('role policies on the four tables, as the app’s role, each role', () 
       });
     const nothing = (got: FactNumbers | null) => got === null || (got.state ?? 'ok') !== 'ok' || got.value === 0;
 
-    it('26 pairs: the database now gives nothing for 21; the other five read no row the role may not read', async () => {
+    it('26 pairs: the database gives nothing for any of them (21 since C210, the last five since C219)', async () => {
       expect(PAIRS.reduce((a, [, ids]) => a + ids.length, 0)).toBe(26);
       const answered: string[] = [];
       for (const [w, ids] of PAIRS) for (const id of ids) if (!nothing(await load(w, id))) answered.push(`${w.role} ${id}`);
-      expect(answered).toEqual(['accountant attendance.classes_unmarked', ...MESSAGES.map((id) => `teacher ${id}`)]);
-      // The accountant's "not marked": every class with a student on its roll, because no mark is read at all.
+      expect(answered).toEqual([]);
+      // The accountant's "not marked": no class at all (C210 counted every class with a student on its roll).
+      expect(await load(accountant, 'attendance.classes_unmarked')).toMatchObject({ state: 'not_set_up', value: null });
+      expect(await load(accountant, 'attendance.students_marked')).toMatchObject({ state: 'not_set_up' });
+      // ...while the accountant keeps the classes and the roll the fees need.
       const onRoll = await superCount(`select count(distinct class_id) as n from students where school_id = $1 and class_id is not null and status in ('active', 'pending_consent')`, [A]);
-      expect(await load(accountant, 'attendance.classes_unmarked')).toMatchObject({ value: onRoll, total: onRoll });
-      expect(await load(accountant, 'attendance.students_marked')).toMatchObject({ value: 0 });
-      // A teacher's message numbers are their own classes' messages, never the school's.
+      expect(await count(accountant, `select count(distinct s.class_id) as n from students s join classes c on c.class_id = s.class_id where s.status in ('active', 'pending_consent')`)).toBe(onRoll);
+      // A teacher's message totals and spend: nothing (C210 counted their own classes' three messages).
       const school = await load(principal, 'messages.total');
-      const hers = await load(tara, 'messages.total');
-      expect(hers!.value).toBe(3);
-      expect(school!.value).toBeGreaterThan(hers!.value as number);
-      expect((await load(tara, 'whatsapp.spend'))!.value).toBeLessThanOrEqual((await load(principal, 'whatsapp.spend'))!.value as number);
+      expect(school!.value).toBeGreaterThan(3);
+      expect(await load(tara, 'messages.total')).toMatchObject({ value: 0 });
+      expect(await load(tara, 'whatsapp.spend')).toMatchObject({ state: 'not_set_up', value: null });
+      // ...while her own screens still read her own classes' messages, row by row, as the table's policy allows.
+      expect(await count(tara, `select count(*) as n from communication_log`)).toBe(3);
+      // And the office's numbers are what they were.
+      expect(await load(principal, 'attendance.classes_unmarked')).toMatchObject({ total: onRoll });
     });
   });
 });

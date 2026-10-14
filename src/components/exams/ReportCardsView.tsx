@@ -15,11 +15,13 @@ import { FIELD, PRIMARY, SECTION, TAP } from './SchemeParts';
 // Publish and report cards (docs/27 row 9c, C215). The office (the principal, the school admin, the academic
 // coordinator) publishes a class's result once every paper is entered: its marks, papers and remarks are then
 // frozen, and the grading scheme in force is kept with it. Only the principal reopens it, with a reason. The class
-// teacher writes each child's remark before it is published. The office and the class teacher show and download
+// teacher writes each child's remark before it is published; the class teacher or the office records the
+// co-scholastic grades of the scheme's areas (C219), frozen with it too. The office and the class teacher show and download
 // report cards, one child or the whole class, drawn as a PDF on this device. Children are listed in roll order; each
 // card holds one child's own marks. The server and the database decide who may do what.
 
-const ERRORS = ['not_found', 'not_entered', 'no_scheme', 'published', 'not_published', 'reason', 'remarks', 'child', 'remark', 'not_allowed'];
+const ERRORS = ['not_found', 'not_entered', 'no_scheme', 'published', 'not_published', 'reason', 'remarks', 'child', 'remark', 'not_allowed', 'no_co_scholastic', 'co_entries', 'co_grade'];
+const coKey = (studentId: string, area: string) => `${studentId}|${area}`;
 
 export function ReportCardsView({ examId, classId }: { examId: string; classId: string }) {
   const { t, lang } = useT();
@@ -29,6 +31,7 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
   const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
   const [reason, setReason] = useState('');
   const [remarks, setRemarks] = useState<Record<string, string>>({});
+  const [co, setCo] = useState<Record<string, string>>({});
   const [shown, setShown] = useState<{ studentId: string; blocks: CardBlock[] } | null>(null);
   const base = `/api/app/exams/${examId}/classes/${classId}/report-cards`;
 
@@ -39,6 +42,7 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
     if (got) {
       setData(got);
       setRemarks(Object.fromEntries(got.children.map((c) => [c.studentId, c.remark ?? ''])));
+      setCo(Object.fromEntries(got.children.flatMap((c) => (got.coScholastic?.areas ?? []).map((a) => [coKey(c.studentId, a), c.coScholastic[a] ?? '']))));
     }
   }, [base]);
   useEffect(() => {
@@ -95,6 +99,12 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
   const pub = data.inForce;
   const reopened = !pub ? data.history.find((h) => h.reopenedAt !== null) ?? null : null;
   const changedRemarks = data.children.filter((c) => (remarks[c.studentId] ?? '').trim() !== (c.remark ?? ''));
+  const areas = data.coScholastic?.areas ?? [];
+  const changedCo = data.children.flatMap((c) => areas.filter((a) => (co[coKey(c.studentId, a)] ?? '') !== (c.coScholastic[a] ?? '')).map((a) => ({ studentId: c.studentId, area: a, grade: co[coKey(c.studentId, a)] ?? '' })));
+  const gradeWords = (grade: string) => {
+    const g = data.coScholastic?.grades.find((x) => x.grade === grade);
+    return g?.meaning ? t('rc.cell.gradeMeaning', { grade: g.grade, meaning: g.meaning }) : grade;
+  };
   const who = (c: ReportCardsScreen['children'][number]) => (c.rollNo ? t('ex.entry.child', { roll: c.rollNo, name: c.name }) : c.name);
 
   return (
@@ -176,6 +186,11 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
           <p className="text-slate/70">{pub ? (data.mayDownload ? t('rc.download.how') : t('rc.download.who')) : t('rc.download.notYet')}</p>
           {data.mayWriteRemarks && <p className="text-slate/70">{t('rc.remarks.how')}</p>}
           {!data.mayWriteRemarks && !pub && (data.classTeacher ? <p className="text-slate/70">{t('rc.remarks.byTeacher', { name: data.classTeacher })}</p> : <p className="text-slate/70">{t('rc.remarks.noTeacher')}</p>)}
+          {areas.length > 0 && (
+            <p data-rc-co-how className="text-slate/70">
+              {t('rc.co.title')}: {data.mayWriteCoScholastic ? t('rc.co.how') : t('rc.co.who')}
+            </p>
+          )}
         </div>
         {pub && data.mayDownload && (
           <button type="button" data-rc-download-all className={`${PRIMARY} self-start`} disabled={busy} onClick={() => void download(null)}>
@@ -208,6 +223,32 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
               ) : (
                 c.remark && <p className="text-slate/70">{c.remark}</p>
               )}
+              {areas.length > 0 && data.mayWriteCoScholastic && (
+                <div data-rc-co-child className="grid gap-2 sm:grid-cols-2">
+                  {areas.map((a) => (
+                    <div key={a} className="flex min-w-0 flex-col gap-1">
+                      <label htmlFor={`rc-co-${c.studentId}-${areas.indexOf(a)}`} className="text-xs font-semibold">{t('rc.co.label', { area: a, name: c.name })}</label>
+                      <select
+                        id={`rc-co-${c.studentId}-${areas.indexOf(a)}`}
+                        data-rc-co={a}
+                        className={FIELD}
+                        value={co[coKey(c.studentId, a)] ?? ''}
+                        onChange={(e) => setCo({ ...co, [coKey(c.studentId, a)]: e.target.value })}
+                      >
+                        <option value="">{t('rc.co.none')}</option>
+                        {data.coScholastic!.grades.map((g) => (
+                          <option key={g.grade} value={g.grade}>
+                            {gradeWords(g.grade)}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {areas.length > 0 && !data.mayWriteCoScholastic && areas.some((a) => c.coScholastic[a]) && (
+                <p data-rc-co-shown className="text-slate/70">{areas.filter((a) => c.coScholastic[a]).map((a) => t('rc.co.shown', { area: a, grade: gradeWords(c.coScholastic[a]) })).join(' · ')}</p>
+              )}
               {shown?.studentId === c.studentId && <CardPreview blocks={shown.blocks} />}
             </li>
           ))}
@@ -221,6 +262,17 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
             onClick={() => void post({ action: 'remarks', remarks: changedRemarks.map((c) => ({ studentId: c.studentId, remark: (remarks[c.studentId] ?? '').trim() })) }, () => t('rc.remarks.saved'))}
           >
             {changedRemarks.length ? t('rc.remarks.save') : t('rc.remarks.nothing')}
+          </button>
+        )}
+        {areas.length > 0 && data.mayWriteCoScholastic && (
+          <button
+            type="button"
+            data-rc-co-save
+            className={`${PRIMARY} self-start`}
+            disabled={busy || !changedCo.length}
+            onClick={() => void post({ action: 'co_scholastic', grades: changedCo }, () => t('rc.co.saved'))}
+          >
+            {changedCo.length ? t('rc.co.save') : t('rc.co.nothing')}
           </button>
         )}
       </section>

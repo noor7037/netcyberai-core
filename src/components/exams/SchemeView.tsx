@@ -26,7 +26,6 @@ export function SchemeView() {
   const [data, setData] = useState<SchemeScreen | null>(null);
   const [failed, setFailed] = useState(false);
   const [denied, setDenied] = useState(false);
-  const [board, setBoard] = useState('');
   const [draft, setDraft] = useState<Draft | null>(null);
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
@@ -42,7 +41,6 @@ export function SchemeView() {
     setFailed(!got);
     if (got) {
       setData(got);
-      setBoard(got.board.boardId ?? '');
     }
   }, []);
   useEffect(() => {
@@ -62,14 +60,8 @@ export function SchemeView() {
     const code = typeof body?.code === 'string' ? body.code : '';
     const at = typeof body?.at === 'number' ? body.at + 1 : 1;
     if (PROBLEMS.includes(code)) return t(`gs.problem.${code}` as MessageKey, { n: at });
-    if (['newer_version', 'preset', 'no_board'].includes(code)) return t(`gs.err.${code}` as MessageKey);
+    if (['newer_version', 'preset'].includes(code)) return t(`gs.err.${code}` as MessageKey);
     return t('gs.err.other');
-  };
-
-  const saveBoard = async () => {
-    const r = await post({ action: 'board', boardId: board || null });
-    setNote(r.ok ? { ok: true, text: t('gs.board.saved') } : { ok: false, text: errorWords(r.body) });
-    if (r.ok) await load();
   };
 
   const presetById = (id: string | null): Preset | null => {
@@ -137,29 +129,9 @@ export function SchemeView() {
       <section data-scheme-board className={SECTION}>
         <h2 className="text-base font-bold">{t('gs.board.title')}</h2>
         <p className="text-slate/70">{t('gs.board.how')}</p>
-        {data.mayEdit ? (
-          <div className="flex flex-wrap items-end gap-2">
-            <div className="min-w-0 flex-1 sm:max-w-md">
-              <Field id="scheme-board" label={t('gs.board.label')}>
-                <select id="scheme-board" className={FIELD} value={board} onChange={(e) => setBoard(e.target.value)}>
-                  <option value="">{t('gs.board.none')}</option>
-                  {data.boards.map((b) => (
-                    <option key={b.boardId} value={b.boardId}>
-                      {b.name}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-            </div>
-            <button type="button" data-scheme-board-save className={PRIMARY} disabled={busy || board === (data.board.boardId ?? '')} onClick={() => void saveBoard()}>
-              {t('gs.board.save')}
-            </button>
-          </div>
-        ) : (
-          <p className="font-semibold">{data.board.name ?? t('gs.board.unset')}</p>
-        )}
+        <p data-scheme-board-name className="font-semibold">{data.board.name ?? t('gs.board.unset')}</p>
         {data.board.setAt && <p className="text-slate/70">{data.board.setBy ? t('gs.board.setBy', { name: data.board.setBy, date: when(data.board.setAt) }) : t('gs.board.setOn', { date: when(data.board.setAt) })}</p>}
-        {!data.mayEdit && <p className="text-slate/70">{t('gs.board.readOnly')}</p>}
+        <p data-scheme-board-control className="text-slate/70">{t('gs.board.readOnly')}</p>
       </section>
 
       {!data.current && !draft && (

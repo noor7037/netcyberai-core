@@ -76,6 +76,16 @@ export function reportCardBlocks(set: ReportCardSet, card: ReportCard, lang: Lan
     else if (!card.attendance || card.attendance.days === 0) blocks.push({ kind: 'line', text: t(lang, 'rc.card.noAttendance') });
     else blocks.push({ kind: 'line', text: t(lang, 'rc.card.attendance', { present: num(card.attendance.present, lang), days: num(card.attendance.days, lang) }) });
   }
+  if (l.coScholastic && card.coScholastic.length) {
+    blocks.push({ kind: 'heading', text: t(lang, 'rc.card.coTitle') });
+    blocks.push({
+      kind: 'table',
+      columns: [t(lang, 'rc.col.area'), t(lang, 'rc.col.grade')],
+      numeric: [false, false],
+      rows: card.coScholastic.map((c) => [c.area, c.grade === null ? t(lang, 'rc.cell.notEntered') : c.meaning ? t(lang, 'rc.cell.gradeMeaning', { grade: c.grade, meaning: c.meaning }) : c.grade]),
+      totalRow: false,
+    });
+  }
   if (l.remarks) {
     blocks.push({ kind: 'heading', text: t(lang, 'rc.card.remarkTitle') });
     blocks.push({ kind: 'line', text: card.remark ?? t(lang, 'rc.card.noRemark') });

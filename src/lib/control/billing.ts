@@ -4,7 +4,7 @@ import { isModuleId, MODULE_IDS, type ModuleId } from '@/lib/contracts/modules';
 import { LIMIT_KEY } from '@/lib/copilot/copilot';
 import { MAX_MINOR } from '@/lib/fees/money';
 import { isUuid } from '@/lib/frameworks/custom-fields';
-import { DEFAULT_PLAN_SETTING, defaultPlanId, isBillingPeriod, isPlanFeature, listPlans, loadPlan, PLAN_FEATURES, workingModules, type BillingPeriod, type Plan, type PlanFeature, type PlanLimits } from '@/lib/frameworks/plans';
+import { DEFAULT_PLAN_SETTING, defaultPlanId, addLegacySubscription, isBillingPeriod, isPlanFeature, listPlans, loadPlan, PLAN_FEATURES, workingModules, type BillingPeriod, type Plan, type PlanFeature, type PlanLimits } from '@/lib/frameworks/plans';
 import type { Sql } from '@/lib/jobs/types';
 import { indiaDate, isIsoDate } from '@/lib/time/india';
 import { amountDue, MAX_STUDENT_MONTH_PAISE, MAX_STUDENT_YEAR_PAISE, type AmountDue } from './billing-amount';
@@ -28,7 +28,7 @@ const LIMIT_KEY_RE = /^[a-z][a-z0-9_]{0,39}$/;
 
 // ---- plans ------------------------------------------------------------------------------------
 
-// Prices are per active student, in paise (C212), up to MAX_STUDENT_MONTH_PAISE and MAX_STUDENT_YEAR_PAISE.
+// Prices are per enrolled student, in paise (C212), up to MAX_STUDENT_MONTH_PAISE and MAX_STUDENT_YEAR_PAISE.
 export const MAX_MESSAGES_PER_STUDENT = 100_000;
 // The module a feature is part of: a plan gives a feature only with its module.
 export const FEATURE_MODULE: Record<PlanFeature, ModuleId> = { 'personal-best': 'exams', 'principal-dashboard': 'dashboard', 'staff-leave': 'staff' };
@@ -45,7 +45,7 @@ export type PlanInput = {
   features?: unknown;
   messagesPerStudentMonth?: unknown;
 };
-export type PlanProblem = 'plan_id' | 'name' | 'price' | 'prices' | 'grace_days' | 'modules' | 'limits' | 'features' | 'messages' | 'id_taken' | 'name_taken' | 'not_found' | 'is_default' | 'retired';
+export type PlanProblem = 'plan_id' | 'name' | 'price' | 'prices' | 'grace_days' | 'modules' | 'limits' | 'features' | 'messages' | 'id_taken' | 'name_taken' | 'not_found' | 'is_default' | 'retired' | 'test_only';
 export type PlanResult = { ok: true; plan: Plan } | { ok: false; reason: PlanProblem };
 type CleanPlan = { name: string; priceMonthMinor: number | null; priceYearMinor: number | null; graceDays: number; allWorkingModules: boolean; moduleIds: ModuleId[]; limits: PlanLimits; features: PlanFeature[]; messagesPerStudentMonth: number | null };
 
@@ -150,11 +150,13 @@ export async function setPlanRetired(db: Sql, by: By, planId: string, retired: b
   return { ok: true, plan: (await loadPlan(db, planId))! };
 }
 
-// Which plan a new school starts on (a platform setting, so no plan is named in code).
+// Which plan a new school starts on (a platform setting, so no plan is named in code). A new school is a real school:
+// a plan for test schools only is never the plan for new schools (C219).
 export async function setDefaultPlan(db: Sql, by: By, planId: string): Promise<PlanResult> {
   const plan = await loadPlan(db, planId);
   if (!plan) return { ok: false, reason: 'not_found' };
   if (plan.retired) return { ok: false, reason: 'retired' };
+  if (plan.testSchoolsOnly) return { ok: false, reason: 'test_only' };
   const before = await defaultPlanId(db);
   if (before !== planId) {
     await db.query(`update platform_settings set value = $2::jsonb, updated_by = $3, updated_at = now() where key = $1`, [DEFAULT_PLAN_SETTING, JSON.stringify(planId), by.userId]);
@@ -397,13 +399,8 @@ export async function recordPayment(db: Sql, by: By, schoolId: string, input: Pa
   if (!isUuid(schoolId)) return { ok: false, reason: 'not_found' };
   await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`billing:${schoolId}`]);
   if (!(await db.query(`select 1 from schools where school_id = $1`, [schoolId])).rows[0]) return { ok: false, reason: 'not_found' };
-  // A school put on a plan before subscriptions existed gets its row now.
-  await db.query(
-    `insert into school_subscriptions (school_id, plan_id, updated_by)
-     select e.school_id, e.plan, $2 from school_entitlements e where e.school_id = $1 and e.plan in (select plan_id from plans)
-     on conflict (school_id) do nothing`,
-    [schoolId, by.userId]
-  );
+  // A school put on a plan before subscriptions existed gets its row now (never a test schools' plan for a real school, C219).
+  await addLegacySubscription(db, schoolId, by.userId);
   const sub = (await db.query(
     `select sub.plan_id, sub.paid_until::text as paid_until, sub.billing_access_since::text as since, coalesce(${billingOwnSql('sub', 'e')}, false) as own, coalesce(e.access_mode, 'full') as access_mode, e.grace_ends_at
        from school_subscriptions sub left join school_entitlements e on e.school_id = sub.school_id where sub.school_id = $1 for update of sub`,

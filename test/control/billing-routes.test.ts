@@ -57,7 +57,7 @@ let founder = '';
 let principal = '';
 const plan = (over: Record<string, unknown> = {}) => ({ planId: 'made-up-yearly', name: 'Made-up Yearly', priceMonthRupees: '4,500', priceYearRupees: '45,000', graceDays: 10, allWorkingModules: false, moduleIds: ['students', 'attendance'], limits: {}, ...over });
 // The plans the C212 migration seeds as data: rows like any other, left out where a test counts its own.
-const SEEDS = ['essential', 'growth', 'premium'];
+const SEEDS = ['starter', 'growth', 'compass']; // C212's three plans, under the founder's names (C219)
 const at = (schoolId: string) => ({ params: { schoolId } });
 
 beforeAll(async () => {
@@ -134,8 +134,12 @@ describe('plans through Control', () => {
     expect((await on('made-up-yearly', { action: 'edit', ...plan({ priceMonthRupees: '', priceYearRupees: '', graceDays: 12 }) })).status).toBe(200);
     expect(await q(`select price_month_minor, price_year_minor, grace_days, updated_by from plans where plan_id = 'made-up-yearly'`)).toEqual([{ price_month_minor: null, price_year_minor: null, grace_days: 12, updated_by: FOUNDER }]);
 
-    const kept = await on('standard', { action: 'retire' });
+    // The plan for new schools (Starter, as the migrations leave it, C219) cannot be retired; the first plan, for test
+    // schools only, is never the plan for new schools.
+    const kept = await on('starter', { action: 'retire' });
     expect([kept.status, (await kept.json()).code]).toEqual([400, 'is_default']);
+    const testOnly = await on('standard', { action: 'default' });
+    expect([testOnly.status, (await testOnly.json()).code]).toEqual([400, 'test_only']);
     expect((await on('made-up-yearly', { action: 'retire' })).status).toBe(200);
     const asDefault = await on('made-up-yearly', { action: 'default' });
     expect([asDefault.status, (await asDefault.json()).code]).toEqual([400, 'retired']);
@@ -152,10 +156,15 @@ describe('plans through Control', () => {
     expect((await q(`select module_id from school_module_entitlements where school_id = $1 and enabled order by 1`, [id])).map((r) => r.module_id)).toEqual(['attendance', 'students']);
     // The plans a school's page offers are the table's rows too.
     const offered = (await (await entitlementsRoute(req(`/api/control/schools/${id}/entitlements`, undefined, founder), at(id))).json()).plans;
+    // A real school is not offered the plan for test schools only (C219).
     expect(offered.filter((p: { planId: string }) => !SEEDS.includes(p.planId)).map((p: { planId: string; label: string; moduleIds: string[] }) => [p.planId, p.label, p.moduleIds.length > 0])).toEqual([
       ['made-up-yearly', 'Made-up Yearly', true],
-      ['standard', (await q(`select name from plans where plan_id = 'standard'`))[0].name, true],
     ]);
+    // Put on it all the same, through either door, it is refused, and the database refuses it too.
+    const viaSubscription = await subscriptionPost(req(`/api/control/schools/${id}/subscription`, { action: 'plan', planId: 'standard', reason: 'a test schools plan' }, founder), at(id));
+    expect([viaSubscription.status, (await viaSubscription.json()).code]).toEqual([400, 'test_only']);
+    await expect(h.db.platform((db) => db.query(`update school_subscriptions set plan_id = 'standard' where school_id = $1`, [id]))).rejects.toThrow(/test schools only/);
+    expect(await q(`select plan_id from school_subscriptions where school_id = $1`, [id])).toEqual([{ plan_id: 'made-up-yearly' }]);
   });
 });
 
@@ -245,9 +254,9 @@ describe('a school’s terms and the amount due through Control (C212)', () => {
       { school_id: SCHOOL, kind: 'price', price_month_minor: 2500, price_year_minor: 24000, discount_bp: null, minimum_students: null, created_by: FOUNDER },
     ]);
 
-    // No active student, a minimum of 10: 10 × 240 rupees = 2,400, less 12.5% = 2,100 rupees for the year.
+    // No enrolled student, a minimum of 10: 10 × 240 rupees = 2,400, less 12.5% = 2,100 rupees for the year.
     const got = await read();
-    expect(got.amount).toMatchObject({ period: 'year', activeStudents: 0, minimumStudents: 10, billedStudents: 10, priceSource: 'negotiated', pricePerStudentMinor: 24000, grossMinor: 240000, discountBp: 1250, discountMinor: 30000, amountMinor: 210000, missing: null });
+    expect(got.amount).toMatchObject({ period: 'year', enrolledStudents: 0, minimumStudents: 10, billedStudents: 10, priceSource: 'negotiated', pricePerStudentMinor: 24000, grossMinor: 240000, discountBp: 1250, discountMinor: 30000, amountMinor: 210000, missing: null });
     expect(got.amount.amountMinor / 100).toBe(2100);
     expect(got.terms.map((t: { kind: string; state: string; reason: string; createdBy: string }) => [t.kind, t.state, t.reason, t.createdBy]).sort()).toEqual([
       ['discount', 'in_force', 'agreed with the made-up school', 'Farid Founder'],

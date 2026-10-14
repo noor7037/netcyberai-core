@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { publishClass, reopenClass, reportCardsScreen, saveRemarks, type PublishProblem } from '@/lib/exams/publish';
+import { saveCoScholastic } from '@/lib/exams/co-scholastic';
+import { publishClass, reopenClass, reportCardsScreen, saveRemarks } from '@/lib/exams/publish';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 
@@ -9,6 +10,8 @@ import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route
 //   POST  { action: 'publish' }                         the principal, the school admin, the academic coordinator
 //         { action: 'reopen', reason }                  the principal only
 //         { action: 'remarks', remarks: [{ studentId, remark }] }   the class teacher only, while not published
+//         { action: 'co_scholastic', grades: [{ studentId, area, grade }] }   the class teacher or the office, while not
+//                                                                           published (C219; an empty grade clears it)
 export const dynamic = 'force-dynamic';
 
 type Params = { params: { examId: string; classId: string } };
@@ -23,7 +26,7 @@ export async function GET(req: NextRequest, { params }: Params) {
   });
 }
 
-const STATUS: Partial<Record<PublishProblem, number>> = { not_found: 404, published: 409, not_published: 409, not_entered: 409, no_scheme: 409 };
+const STATUS: Partial<Record<string, number>> = { not_found: 404, published: 409, not_published: 409, not_entered: 409, no_scheme: 409, no_co_scholastic: 409 };
 
 export async function POST(req: NextRequest, { params }: Params) {
   return appRoute(req, async ({ claims, db }) => {
@@ -34,6 +37,7 @@ export async function POST(req: NextRequest, { params }: Params) {
       b.action === 'publish' ? await publishClass(db, actor, params.examId, params.classId)
       : b.action === 'reopen' ? await reopenClass(db, actor, params.examId, params.classId, b.reason)
       : b.action === 'remarks' ? await saveRemarks(db, actor, params.examId, params.classId, b.remarks)
+      : b.action === 'co_scholastic' ? await saveCoScholastic(db, actor, params.examId, params.classId, b.grades)
       : null;
     if (!r) return ruleError(400, 'not_sent_properly');
     if (r.ok) return NextResponse.json(r);

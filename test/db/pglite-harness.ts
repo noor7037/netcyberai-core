@@ -32,7 +32,18 @@ export const B2_MIGRATIONS = [
   ...readdirSync(path.join(ROOT, 'supabase/migrations')).filter((f) => f.endsWith('_p5_billing_plans.sql')),
   // C212: plans are priced per student and a school has terms; the code that reads a plan needs the new columns.
   ...readdirSync(path.join(ROOT, 'supabase/migrations')).filter((f) => f.endsWith('_c212_pricing.sql')),
-].map((f) => ({ file: f, sql: readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8') }));
+  // C219: the plan names, Teacher Copilot in Compass and the plan for test schools only. The close-out migration's plan
+  // parts only (its sections 1 to 3, which touch the billing tables alone, verbatim): its other parts need the tables
+  // of later phases, which this small database does not have.
+  ...readdirSync(path.join(ROOT, 'supabase/migrations')).filter((f) => f.endsWith('_c219_p6_closeout.sql')),
+].map((f) => {
+  const sql = readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8');
+  if (!f.endsWith('_c219_p6_closeout.sql')) return { file: f, sql };
+  const from = sql.indexOf('-- ---- 1. Plan names');
+  const to = sql.indexOf('-- ---- 4. The schools row');
+  if (from < 0 || to < from) throw new Error('pglite-harness: the C219 plan sections were not found');
+  return { file: f, sql: sql.slice(from, to) };
+});
 const NIL_UUID = '00000000-0000-0000-0000-000000000000';
 
 type QueryResult = { rows: any[]; rowCount: number };

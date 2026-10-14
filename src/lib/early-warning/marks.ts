@@ -9,9 +9,10 @@ import type { BelowPass, MarksEvidence, MarksExam, MarksSettings } from './rules
 
 // Early Warning v2: the marks signal (docs/27 row 9f, C218). Rules only: no language model.
 //
-//   - WHICH EXAMS COUNT. An exam counts for a class once every paper of it for that class is entered (a mark, absent
-//     or exempt for every child on the roll: exam_papers.entered_by, which the database sets only then). That is the
-//     stand-in for "published" until the report-card slice (C215) adds publishing; then this one query changes.
+//   - WHICH EXAMS COUNT. An exam counts for a class once it is published for that class, and only while a
+//     publication of it is in force (exam_publications, not reopened: docs/27, C219). A class is published only when
+//     every paper of it is entered, and its marks are frozen while it stays published; a class the principal has
+//     reopened to correct a mark is left out until it is published again.
 //   - A CHILD'S EXAMS are those counted exams in which they have at least one mark that is a score: an exam they
 //     were absent or exempt from throughout gives them no percent, and is not a result. Their LATEST is the one sat
 //     last: the latest date of its papers for that class, or, where no paper is dated, India's day the office made
@@ -100,9 +101,9 @@ export async function findMarks(db: Pick<PoolClient, 'query'>, schoolId: string,
     `with counted as (
        select p.exam_id, p.class_id, max(p.paper_date) as held
          from exam_papers p
+         join exam_publications x on x.school_id = p.school_id and x.exam_id = p.exam_id and x.class_id = p.class_id and x.reopened_at is null
         where p.school_id = $1
         group by p.exam_id, p.class_id
-       having bool_and(p.entered_by is not null)
      ), sat as (
        select distinct on (m.student_id, c.exam_id) m.student_id, c.exam_id, c.class_id, e.created_at,
               coalesce(c.held, (e.created_at at time zone 'Asia/Kolkata')::date) as held

@@ -32,7 +32,7 @@ beforeAll(async () => {
     before: {
       migration: 'c124_founder_reasons',
       sql: `
-        insert into schools (school_id, name, jurisdiction) values ('${A}', 'A', 'IN-HR'), ('${B}', 'B', 'IN-DL');
+        insert into schools (school_id, name, jurisdiction, is_test_fixture) values ('${A}', 'A', 'IN-HR', true), ('${B}', 'B', 'IN-DL', true); -- test schools: the plan with every module is theirs alone (C219)
         insert into audit_log (school_id, event_action, target_type, target_id, after_state) values
           ('${A}', 'entitlement.plan_applied', 'school_entitlements', '${A}', '{"plan":"standard","modules":["fees"],"reason":"${OLD_REASON}"}'),
           ('${A}', 'student.updated', 'students', 'x', '{"reason":"a school''s own note"}');`,

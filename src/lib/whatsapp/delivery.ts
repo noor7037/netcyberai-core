@@ -115,8 +115,10 @@ const RECENT_DAYS = 14;
 const nextDay = (iso: string) => new Date(Date.parse(`${iso}T00:00:00Z`) + 86_400_000).toISOString().slice(0, 10);
 const between = (range?: MessageRange): (string | null)[] => (range ? [`${range.from}T00:00:00+05:30`, `${nextDay(range.to)}T00:00:00+05:30`] : [null, null]);
 // Which messages: this school's WhatsApp messages of those days. The counts and the list both ask with this one
-// condition, so they are about the same messages.
-const OF_THE_DAYS = (alias = '') => `where ${alias}school_id = $1 and ${alias}channel = 'whatsapp' and ${alias}created_at >= coalesce($2::timestamptz, now() - make_interval(days => ${RECENT_DAYS})) and ($3::timestamptz is null or ${alias}created_at < $3::timestamptz)`;
+// condition, so they are about the same messages. They are the school's whole log, so the database answers them only
+// to the people who read the whole log (reads_school_message_totals(), C219: the principal and the school admin); a
+// teacher's own screens read their own classes' messages by other queries, and get nothing here.
+const OF_THE_DAYS = (alias = '') => `where ${alias}school_id = $1 and ${alias}channel = 'whatsapp' and ${alias}created_at >= coalesce($2::timestamptz, now() - make_interval(days => ${RECENT_DAYS})) and ($3::timestamptz is null or ${alias}created_at < $3::timestamptz) and public.reads_school_message_totals()`;
 
 // How many of the school's WhatsApp messages are in each state over those days: the numbers on the list's own
 // buttons, and the numbers the school facts say (src/lib/insights). Whole, never cut at a list's limit.

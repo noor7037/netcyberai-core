@@ -8,7 +8,7 @@ import type { Sql } from '@/lib/jobs/types';
 // of the `plans` table, typed in Control. Nothing here names a plan or a
 // price. Which plan a new school gets is a platform setting.
 //
-// Priced per active student (founder, C212): a price a month and a price a
+// Priced per enrolled student (founder, C212): a price a month and a price a
 // year, each per student, in paise; the school's subscription says which of
 // the two it pays. The amount due is worked out in one place,
 // src/lib/control/billing-amount.ts.
@@ -19,6 +19,9 @@ import type { Sql } from '@/lib/jobs/types';
 // sells it, and it is switched on once it works. The rows a school gets are
 // fixed when the plan is applied; a module that goes live later reaches a
 // school when the plan is applied again.
+//
+// A plan may be for test schools only (C219: the first plan, with every module): no real school is put on it, here
+// or by the database (school_subscriptions_real_plan), and it is never the plan for new schools.
 
 // The two periods a school can pay for.
 export const BILLING_PERIODS = ['month', 'year'] as const;
@@ -35,7 +38,7 @@ export type PlanLimits = Partial<Record<ModuleId, Record<string, number>>>;
 export type Plan = {
   planId: string;
   name: string;
-  // Per active student, in paise. Both null: no price set yet (never zero by default).
+  // Per enrolled student, in paise. Both null: no price set yet (never zero by default).
   priceMonthMinor: number | null;
   priceYearMinor: number | null;
   currency: string;
@@ -47,11 +50,25 @@ export type Plan = {
   messagesPerStudentMonth: number | null; // WhatsApp messages included per student a month; null: not set yet
   limits: PlanLimits;
   retired: boolean;
+  testSchoolsOnly: boolean; // only a test-fixture school may be on it (C219)
 };
 
 // The platform setting that holds the id of the plan a new school starts on.
 export const DEFAULT_PLAN_SETTING = 'billing.default_plan';
-const PLAN_COLUMNS = `plan_id, name, price_month_minor, price_year_minor, currency, grace_days, all_working_modules, module_ids, features, whatsapp_messages_per_student_month, limits, retired_at`;
+const PLAN_COLUMNS = `plan_id, name, price_month_minor, price_year_minor, currency, grace_days, all_working_modules, module_ids, features, whatsapp_messages_per_student_month, limits, retired_at, test_schools_only`;
+
+// A school put on a plan before subscriptions existed (school_entitlements.plan) gets its subscription row: a plan of
+// the table, and never one for test schools only for a real school (C219: such a school has no plan until Control
+// puts it on a plan for schools). Runs as nca_super.
+export async function addLegacySubscription(db: Sql, schoolId: string, userId: string): Promise<void> {
+  await db.query(
+    `insert into school_subscriptions (school_id, plan_id, updated_by)
+     select e.school_id, e.plan, $2 from school_entitlements e join schools s on s.school_id = e.school_id
+      where e.school_id = $1 and e.plan in (select p.plan_id from plans p where not p.test_schools_only or s.is_test_fixture)
+     on conflict (school_id) do nothing`,
+    [schoolId, userId]
+  );
+}
 
 // Every module that works today: status live or partial.
 export function workingModules(): ModuleId[] {
@@ -83,6 +100,7 @@ export function planFromRow(r: any): Plan {
     messagesPerStudentMonth: r.whatsapp_messages_per_student_month === null || r.whatsapp_messages_per_student_month === undefined ? null : Number(r.whatsapp_messages_per_student_month),
     limits,
     retired: r.retired_at !== null && r.retired_at !== undefined,
+    testSchoolsOnly: r.test_schools_only === true,
   };
 }
 
@@ -112,7 +130,10 @@ export async function defaultPlanId(db: Sql): Promise<string | null> {
 }
 
 type Actor = { userId: string | null; role: StaffRole | null };
-export type ApplyPlanResult = { ok: true; modules: ModuleId[]; switchedOff: ModuleId[] } | { ok: false; error: 'unknown plan' | 'plan retired' };
+
+const isTestSchool = async (db: Sql, schoolId: string): Promise<boolean> =>
+  (await db.query(`select is_test_fixture from schools where school_id = $1`, [schoolId])).rows[0]?.is_test_fixture === true;
+export type ApplyPlanResult = { ok: true; modules: ModuleId[]; switchedOff: ModuleId[] } | { ok: false; error: 'unknown plan' | 'plan retired' | 'test schools only' };
 
 // Puts a school on a plan: exactly the plan's modules are on. A module the
 // plan gives is switched on with the plan's limits; a module an earlier plan
@@ -120,8 +141,9 @@ export type ApplyPlanResult = { ok: true; modules: ModuleId[]; switchedOff: Modu
 // hand (source founder_override) keeps the founder's choice, and a trial and
 // a complimentary module (C212) are left alone; Help is never switched off. Access mode and the paid-until day
 // are left as they are. A retired plan is not given to a school that is not
-// already on it. Idempotent. Runs as nca_super (only the platform writes
-// entitlements and subscriptions).
+// already on it. A plan for test schools only is not given to a real school
+// (the database refuses it too). Idempotent. Runs as nca_super (only the
+// platform writes entitlements and subscriptions).
 export async function applyPlan(db: Sql, schoolId: string, planId: string, actor: Actor, reason: string): Promise<ApplyPlanResult> {
   const plan = await loadPlan(db, planId);
   if (!plan) return { ok: false, error: 'unknown plan' };
@@ -129,6 +151,7 @@ export async function applyPlan(db: Sql, schoolId: string, planId: string, actor
   const { rows: ent } = await db.query(`select plan from school_entitlements where school_id = $1`, [schoolId]);
   const before = ((sub[0]?.plan_id ?? ent[0]?.plan) as string | undefined) ?? null;
   if (plan.retired && before !== plan.planId) return { ok: false, error: 'plan retired' };
+  if (plan.testSchoolsOnly && !(await isTestSchool(db, schoolId))) return { ok: false, error: 'test schools only' };
 
   await db.query(
     `insert into school_entitlements (school_id, plan, updated_by) values ($1, $2, $3)
@@ -173,10 +196,12 @@ export async function applyPlan(db: Sql, schoolId: string, planId: string, actor
 // A new school starts on the plan the platform setting names, in the same
 // transaction that creates it, so it never exists without its modules
 // (C114). No usable plan is a fault to be seen at once, not a school left
-// with nothing switched on.
+// with nothing switched on. A new school is a real school, so the plan for
+// new schools is never one for test schools only (C219: Control refuses
+// it, and the database refuses the subscription).
 export async function applyDefaultPlan(db: Sql, schoolId: string, actor: Actor, reason: string): Promise<{ planId: string; modules: ModuleId[] }> {
   const planId = await defaultPlanId(db);
   const applied = planId ? await applyPlan(db, schoolId, planId, actor, reason) : null;
-  if (!planId || !applied?.ok) throw new Error('plans: the plan for new schools is not set, or is retired (Control → Billing & Plans)');
+  if (!planId || !applied?.ok) throw new Error('plans: the plan for new schools is not set, is retired, or is for test schools only (Control → Billing & Plans)');
   return { planId, modules: applied.modules };
 }

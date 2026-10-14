@@ -11,6 +11,7 @@ import { helpArticle } from '@/content/help/articles';
 import { moduleById } from '@/lib/contracts/modules';
 import { TOURS } from '@/lib/contracts/tours';
 import { percent } from '@/lib/exams/grading';
+import { publishClass, reopenClass } from '@/lib/exams/publish';
 import { classResult } from '@/lib/exams/results';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { saveSettings } from '@/lib/frameworks/settings-store';
@@ -214,8 +215,11 @@ describe('on the whole schema, as the app’s own database role', () => {
     await paper(P_M2, E2, C5A, MATHS, day(10), TWO_PARTS, [[ASHA, 'written', 'score', 27], [ASHA, 'oral', 'score', 6], [BELA, 'written', 'score', 36], [BELA, 'oral', 'score', 8]], true);
     await paper(P_E2, E2, C5A, ENGLISH, day(10), MARKS, [[ASHA, 'marks', 'score', 20], [BELA, 'marks', 'score', 41]], true);
     await paper(P_S2, E2, C5A, SCIENCE, day(9), MARKS, [[ASHA, 'marks', 'absent', null], [BELA, 'marks', 'score', 30]], true);
-    // Unit test 2: Asha has a mark, but the paper is not entered yet (Bela has none): it does not count.
+    // Unit test 2: Asha has a mark, but the paper is not entered yet (Bela has none), so it cannot be published: it
+    // does not count.
     await paper(P_M3, E3, C5A, MATHS, day(2), MARKS, [[ASHA, 'marks', 'score', 49]], false);
+    // An exam counts once it is published for the class (docs/27, C219): the office publishes the two finished ones.
+    for (const [examId, classId] of [[E1, C5A], [E1, C6B], [E2, C5A]]) expect(await as(principal, (c) => publishClass(c, actor(principal), examId, classId)), `${examId} ${classId}`).toMatchObject({ ok: true });
     // Homework: Mathematics, six due 25 to 30 days ago, Asha did two (Bela all); one long ago, not done. English: three done.
     for (let i = 0; i < 6; i++) await homework(MATHS, 25 + i, { [ASHA]: i < 2, [BELA]: true });
     await homework(MATHS, 100, { [ASHA]: false });
@@ -253,7 +257,8 @@ describe('on the whole schema, as the app’s own database role', () => {
     expect(g.settings).toEqual(DEFAULT_GENOME_SETTINGS);
     expect(g.scheme).toEqual({ version: 1 });
 
-    // Exams: in date order; the paper not entered is left out. Each percent is percent() of the child's own mark rows.
+    // Exams: in date order; the exam not published (its paper not entered) is left out. Each percent is percent() of
+    // the child's own mark rows.
     const exams = Object.fromEntries(g.subjects.map((s) => [s.subjectName, s.exams.map((e) => [e.examName, e.shown.rounded, e.shown.grade.kind === 'grade' ? e.shown.grade.grade : e.shown.grade.reason])]));
     expect(exams).toEqual({
       English: [['Unit test 1', 60, 'B'], ['Half-yearly', 40, 'C']],
@@ -326,6 +331,20 @@ describe('on the whole schema, as the app’s own database role', () => {
 
     // The office, the school admin and the academic coordinator read the same genome.
     for (const who of [admin, coordinator]) expect(await genomeOf(who), who.role).toEqual(g);
+  });
+
+  it('an exam counts only while it is published for the class: entered is not enough, and a reopened class is left out until it is published again', async () => {
+    const examsOf = async () => Object.fromEntries((await genomeOf(principal))!.subjects.map((s) => [s.subjectName, s.exams.map((e) => e.examName)]));
+    const before = await examsOf();
+    expect(before).toEqual({ English: ['Unit test 1', 'Half-yearly'], Mathematics: ['Unit test 1', 'Half-yearly'], Science: ['Half-yearly'] });
+    // Every paper of the half-yearly is entered, and it is published; the principal reopens it, with a reason.
+    expect(await as(principal, (c) => reopenClass(c, actor(principal), E2, C5A, 'an English mark was entered wrongly'))).toMatchObject({ ok: true });
+    expect(await examsOf()).toEqual({ English: ['Unit test 1'], Mathematics: ['Unit test 1'] });
+    // Published again (version 2), it counts again; the reader's own database rule says the same.
+    expect(await as(principal, (c) => publishClass(c, actor(principal), E2, C5A))).toEqual({ ok: true, version: 2 });
+    expect(await examsOf()).toEqual(before);
+    // The entered, unpublished Unit test 2 never counted.
+    expect(JSON.stringify(await genomeOf(principal))).not.toContain(P_M3);
   });
 
   it('no other child’s data appears: not their marks, homework, replies or name', async () => {

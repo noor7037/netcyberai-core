@@ -7,7 +7,7 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { addBoard, addPreset, controlBoards, listBoards, setSchoolBoard } from '@/lib/exams/boards';
 import { bandProblems, gapsAsInPreset, grade, passed } from '@/lib/exams/grading';
 import { emptyScheme, schemeFromPreset, type Band, type BoardPreset, type GradingScheme } from '@/lib/exams/scheme';
-import { saveScheme, schemeInForce, schemeScreen, setOwnBoard } from '@/lib/exams/schemes';
+import { saveScheme, schemeInForce, schemeScreen } from '@/lib/exams/schemes';
 import { workingModules } from '@/lib/frameworks/plans';
 import { readModuleFor, writeModuleFor } from '@/lib/frameworks/write-guard';
 import { TODAY_PROVIDERS } from '@/lib/today/cards';
@@ -144,22 +144,22 @@ describe('a school records its board', () => {
     expect((await as(sPrincipal, (c) => schemeScreen(c, actor(sPrincipal))))!.board).toEqual({ boardId: null, name: null, setBy: null, setAt: null });
   });
 
-  it('the principal and the school admin record it, in their own name; nobody else can, in the app or the database', async () => {
-    expect(await as(admin, (c) => setOwnBoard(c, actor(admin), 'cisce'))).toEqual({ ok: true, changed: true });
-    expect((await as(principal, (c) => schemeScreen(c, actor(principal))))!.board).toMatchObject({ boardId: 'cisce', setBy: 'Asif Admin' });
-    expect(await as(principal, (c) => setOwnBoard(c, actor(principal), 'cbse'))).toEqual({ ok: true, changed: true });
-    expect(await as(principal, (c) => setOwnBoard(c, actor(principal), 'no-such-board'))).toEqual({ ok: false, reason: 'no_board' });
-    for (const who of [coordinator, teacher, accountant]) expect(await as(who, (c) => setOwnBoard(c, actor(who), 'cisce')), who.role).toEqual({ ok: false, reason: 'not_allowed' });
-    for (const who of [teacher, accountant, coordinator]) await expect(run(who, `update schools set board_id = 'cisce' where school_id = $1`, [A]), who.role).rejects.toThrow(/only the principal, the school admin or NetCyberAI/);
-    await expect(run(principal, `update schools set board_id = 'made-up' where school_id = $1`, [A])).rejects.toThrow(/foreign key/);
-    // Who set it and when are the trigger's to write.
-    await run(principal, `update schools set board_set_by = $2, board_set_at = now() - interval '9 days' where school_id = $1`, [A, ADMIN]);
+  it('NetCyberAI records it in Control, in its own name; no school role can, in the app or the database (C219)', async () => {
+    expect(await platform((c) => setSchoolBoard(c, { userId: FOUNDER, role: 'super_admin' }, A, 'cisce'))).toEqual({ ok: true, changed: true });
+    // The school's screen shows it; who recorded it is NetCyberAI's account, which a school does not read: the day only.
+    expect((await as(principal, (c) => schemeScreen(c, actor(principal))))!.board).toMatchObject({ boardId: 'cisce', setBy: null, setAt: expect.any(String) });
+    expect(await platform((c) => setSchoolBoard(c, { userId: FOUNDER, role: 'super_admin' }, A, 'cbse'))).toEqual({ ok: true, changed: true });
+    expect(await platform((c) => setSchoolBoard(c, { userId: FOUNDER, role: 'super_admin' }, A, 'no-such-board'))).toEqual({ ok: false, reason: 'no_board' });
+    // Every school role is refused by the database: no right on the column (and the trigger refuses it too).
+    for (const who of [principal, admin, coordinator, teacher, accountant]) await expect(run(who, `update schools set board_id = 'cisce' where school_id = $1`, [A]), who.role).rejects.toThrow(/permission denied/);
+    // Who set it and when are the trigger's to write, never a school's.
+    for (const who of [principal, admin]) await expect(run(who, `update schools set board_set_by = $2, board_set_at = now() - interval '9 days' where school_id = $1`, [A, ADMIN]), who.role).rejects.toThrow(/permission denied/);
+    // The platform role without a NetCyberAI staff session is refused by the trigger.
+    await expect(platform((c) => c.query(`update schools set board_id = 'cisce' where school_id = $1`, [A]), false)).rejects.toThrow(/NetCyberAI records the school's board, in Control/);
     const row = (await db.pg.query(`select board_id, board_set_by, board_set_at > now() - interval '1 hour' as recent from schools where school_id = $1`, [A])).rows[0];
-    expect(row).toEqual({ board_id: 'cbse', board_set_by: PRINCIPAL, recent: true });
-    // Another school's row is not this principal's to change.
-    expect((await run(principal, `update schools set board_id = 'cbse' where school_id = $1`, [C])).rowCount).toBe(0);
-    const audit = (await db.pg.query(`select actor_user_id, after_state ->> 'board_id' as board from audit_log where event_action = 'school.board_set' and school_id = $1 order by audit_id`, [A])).rows;
-    expect(audit).toEqual([{ actor_user_id: ADMIN, board: 'cisce' }, { actor_user_id: PRINCIPAL, board: 'cbse' }]);
+    expect(row).toEqual({ board_id: 'cbse', board_set_by: FOUNDER, recent: true });
+    const audit = (await db.pg.query(`select actor_user_id, actor_role, after_state ->> 'board_id' as board from audit_log where event_action = 'school.board_set' and school_id = $1 order by audit_id`, [A])).rows;
+    expect(audit).toEqual([{ actor_user_id: FOUNDER, actor_role: 'super_admin', board: 'cisce' }, { actor_user_id: FOUNDER, actor_role: 'super_admin', board: 'cbse' }]);
   });
 });
 
@@ -354,7 +354,7 @@ describe('the database refuses what the app does not do', () => {
     await expect(insert(`${base} values ('cbse', 'X', 'T', 'https://example.invalid/a.pdf', '2026-10-14', '[{"from": 0, "to": 50, "grade": "P", "meaning": null}, {"from": 50, "to": 100, "grade": "Q", "meaning": null}]', 33, '${FOUNDER}')`)).rejects.toThrow(/share a percent/);
     await expect(insert(`${base} values ('cbse', 'X', 'T', 'https://example.invalid/a.pdf', '2026-10-14', '[{"from": 0, "to": 50, "grade": "P", "meaning": null}]', 101, '${FOUNDER}')`)).rejects.toThrow(/check constraint/);
     // The board of a school is set by the platform only for a NetCyberAI staff session.
-    await expect(platform((c) => c.query(`update schools set board_id = 'cbse' where school_id = $1`, [S]), false)).rejects.toThrow(/only the principal, the school admin or NetCyberAI/);
+    await expect(platform((c) => c.query(`update schools set board_id = 'cbse' where school_id = $1`, [S]), false)).rejects.toThrow(/NetCyberAI records the school's board, in Control/);
   });
 
   it('a saved version is never changed or removed, and only the next version is written, by the office in its own name', async () => {
@@ -414,7 +414,7 @@ describe('the routes', () => {
     expect(workingModules()).toContain('exams');
     await db.pg.query(`update school_module_entitlements set enabled = false where school_id = $1 and module_id = 'exams'`, [A]);
     expect(await call(claims(principal), () => getScheme(req('GET', '/api/app/exams/scheme')))).toMatchObject({ status: 403, body: { code: 'module_off' } });
-    expect(await call(claims(principal), () => postScheme(req('POST', '/api/app/exams/scheme', { action: 'board', boardId: 'cisce' })))).toMatchObject({ status: 403, body: { code: 'module_off' } });
+    expect(await call(claims(principal), () => postScheme(req('POST', '/api/app/exams/scheme', { action: 'save', scheme: {}, fromPresetId: null, basedOn: 0 })))).toMatchObject({ status: 403, body: { code: 'module_off' } });
     await db.pg.query(`update school_module_entitlements set enabled = true where school_id = $1 and module_id = 'exams'`, [A]);
   });
 
@@ -428,7 +428,9 @@ describe('the routes', () => {
     expect(await call(claims(principal), () => postScheme(req('POST', '/api/app/exams/scheme', { action: 'save', scheme, fromPresetId: null, basedOn: 2 })))).toMatchObject({ status: 409, body: { code: 'newer_version' } });
     expect(await call(claims(principal), () => postScheme(req('POST', '/api/app/exams/scheme', { action: 'save', scheme: { ...scheme, decimals: 3 }, fromPresetId: null, basedOn: 3 })))).toMatchObject({ status: 400, body: { code: 'decimals' } });
     expect(await call(claims(principal), () => postScheme(req('POST', '/api/app/exams/scheme', { action: 'save', scheme, fromPresetId: null, basedOn: 3 })))).toEqual({ status: 201, body: { ok: true, version: 4 } });
-    expect(await call(claims(admin), () => postScheme(req('POST', '/api/app/exams/scheme', { action: 'board', boardId: 'cbse' })))).toEqual({ status: 200, body: { ok: true, changed: false } });
+    // The board is not recorded here any more (C219: Control only): the route does not know the action.
+    expect(await call(claims(admin), () => postScheme(req('POST', '/api/app/exams/scheme', { action: 'board', boardId: 'cisce' })))).toMatchObject({ status: 400 });
+    expect((await db.pg.query(`select board_id from schools where school_id = $1`, [A])).rows).toEqual([{ board_id: 'cbse' }]);
     expect(await call(claims(admin), () => postScheme(req('POST', '/api/app/exams/scheme', { action: 'something' })))).toMatchObject({ status: 400 });
   });
 

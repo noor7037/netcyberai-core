@@ -2,11 +2,12 @@ import { writeAuditLog } from '@/lib/audit/log';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { planHasFeature } from '@/lib/frameworks/plans';
 import type { Sql } from '@/lib/jobs/types';
+import { coAreasOf, coScholasticOf, CO_SCHOLASTIC_OFFICE } from './co-scholastic';
 import { EXAM_READERS, EXAM_RUNNERS, papersOf, type Actor, type PaperSummary } from './exams';
 import { roundPercent } from './grading';
 import { ownRecognition, paperPercent, type EarlierExam, type OwnRecognition } from './own-progress';
 import { ON_ROLL, ROLL_ORDER, type Mark, type MarkKind, type PaperComponent } from './papers';
-import type { GradingScheme } from './scheme';
+import type { CoScholastic, GradingScheme } from './scheme';
 import { schemeInForce } from './schemes';
 
 // Publishing an exam for a class, reopening it, and the class teacher's remarks (docs/27 row 9c and section 3 rule
@@ -32,14 +33,17 @@ export type Publication = {
   reopenedAt: string | null;
   reason: string | null;
 };
-export type KeptPublication = Publication & { publicationId: string; scheme: GradingScheme; recognition: Record<string, OwnRecognition> };
+// Attendance kept with a publication (C219): each child on the roll when it was published, their days marked in the
+// exam's session up to that day and how many of them they were in school. Null: the exam has no session.
+export type KeptAttendance = Record<string, { present: number; days: number }>;
+export type KeptPublication = Publication & { publicationId: string; scheme: GradingScheme; recognition: Record<string, OwnRecognition>; attendance: KeptAttendance | null };
 
 const iso = (v: unknown): string | null => (v === null || v === undefined ? null : v instanceof Date ? v.toISOString() : String(v));
 
 // The publications of an exam for a class, newest first, with who published and reopened them.
 export async function publicationsOf(db: Sql, schoolId: string, examId: string, classId: string): Promise<KeptPublication[]> {
   const { rows } = await db.query(
-    `select x.publication_id, x.version, x.scheme_version, x.scheme, x.recognition, x.published_at, x.reopened_at, x.reopen_reason,
+    `select x.publication_id, x.version, x.scheme_version, x.scheme, x.recognition, x.attendance, x.published_at, x.reopened_at, x.reopen_reason,
             pu.display_name as published_by, ru.display_name as reopened_by
        from exam_publications x
        left join users pu on pu.school_id = x.school_id and pu.user_id = x.published_by
@@ -54,6 +58,7 @@ export async function publicationsOf(db: Sql, schoolId: string, examId: string, 
     schemeVersion: Number(r.scheme_version),
     scheme: r.scheme as GradingScheme,
     recognition: (r.recognition ?? {}) as Record<string, OwnRecognition>,
+    attendance: (r.attendance ?? null) as KeptAttendance | null,
     publishedBy: r.published_by ?? null,
     publishedAt: iso(r.published_at) as string,
     reopenedBy: r.reopened_by ?? null,
@@ -80,13 +85,17 @@ export type ReportCardsScreen = {
   scheme: { version: number } | null; // in force now
   inForce: Publication | null;
   history: Publication[];
-  children: { studentId: string; name: string; rollNo: string | null; remark: string | null }[];
+  children: { studentId: string; name: string; rollNo: string | null; remark: string | null; coScholastic: Record<string, string> }[];
+  // The co-scholastic areas and grades: of the scheme kept with the publication, or (not published) of the scheme in
+  // force. Null: the scheme has none.
+  coScholastic: CoScholastic | null;
   notShown: number;
   mayPublish: boolean; // the person's role publishes
   ready: boolean; // every paper entered, a scheme saved, and not published
   mayReopen: boolean;
   mayDownload: boolean;
   mayWriteRemarks: boolean;
+  mayWriteCoScholastic: boolean; // not published, the scheme has areas, and the class teacher or the office
   recognitionOn: boolean; // the school's plan has Personal Best and Most Improved
 };
 
@@ -114,6 +123,8 @@ export async function reportCardsScreen(db: Sql, actor: Actor, examId: string, c
   const scheme = await schemeInForce(db, actor.schoolId);
   const classTeacher = await isClassTeacher(db, classId);
   const mayPublish = REPORT_CARD_OFFICE.includes(actor.role);
+  const coScholastic = coAreasOf(inForce ? inForce.scheme.coScholastic : scheme?.scheme.coScholastic);
+  const coGrades = coScholastic ? await coScholasticOf(db, actor.schoolId, examId, classId) : new Map<string, Record<string, string>>();
   return {
     exam: { examId: exam.exam_id, name: exam.name, term: exam.term ?? null },
     classId,
@@ -123,13 +134,15 @@ export async function reportCardsScreen(db: Sql, actor: Actor, examId: string, c
     scheme: scheme ? { version: scheme.version } : null,
     inForce: inForce ? bare(inForce) : null,
     history: history.map(bare),
-    children: roll.map((s) => ({ studentId: s.student_id, name: s.name, rollNo: s.roll_no ?? null, remark: remarks.get(s.student_id) ?? null })),
+    children: roll.map((s) => ({ studentId: s.student_id, name: s.name, rollNo: s.roll_no ?? null, remark: remarks.get(s.student_id) ?? null, coScholastic: coGrades.get(s.student_id) ?? {} })),
+    coScholastic,
     notShown: Math.max(0, papers[0].roll - roll.length),
     mayPublish,
     ready: !inForce && scheme !== null && papers.every((p) => p.enteredAt !== null),
     mayReopen: actor.role === REOPEN_ROLE && inForce !== null,
     mayDownload: inForce !== null && (REPORT_CARD_OFFICE.includes(actor.role) || classTeacher),
     mayWriteRemarks: inForce === null && classTeacher,
+    mayWriteCoScholastic: inForce === null && coScholastic !== null && (CO_SCHOLASTIC_OFFICE.includes(actor.role) || classTeacher),
     recognitionOn: await planHasFeature(db, actor.schoolId, 'personal-best'),
   };
 }

@@ -12,8 +12,8 @@ import type { PlanFeature } from '@/lib/frameworks/plans';
 import type { MessageKey } from '@/lib/i18n';
 import { BillingSchools } from './BillingSchools';
 
-// Control → Billing & Plans (docs/26 slice 8e, C204; per active student, C212). The plans, typed here and kept in the
-// database (no name and no price is written in code): a price a month and a price a year per active student (the
+// Control → Billing & Plans (docs/26 slice 8e, C204; per enrolled student, C212). The plans, typed here and kept in the
+// database (no name and no price is written in code): a price a month and a price a year per enrolled student (the
 // yearly one is filled in as ten months, two free, and can be changed), the parts of modules a plan gives, and the
 // WhatsApp messages included per student. Which plan a new school gets; and below, every school by plan and state,
 // with its amount due. Each change is one person's tap, sent to the Control API, which checks the session and
@@ -36,7 +36,7 @@ type Draft = {
   limits: Record<string, string>;
 };
 const ERRORS = [
-  'plan_id', 'name', 'price', 'prices', 'period', 'grace_days', 'modules', 'limits', 'features', 'messages', 'id_taken', 'name_taken', 'not_found', 'is_default', 'retired',
+  'plan_id', 'name', 'price', 'prices', 'period', 'grace_days', 'modules', 'limits', 'features', 'messages', 'id_taken', 'name_taken', 'not_found', 'is_default', 'retired', 'test_only',
   'no_plan', 'amount', 'paid_on', 'covers_until', 'reference', 'note', 'corrects', 'reason', 'plan',
   'billing_period', 'kind', 'module', 'percent', 'minimum', 'starts_on', 'ends_on', 'term',
 ];
@@ -148,6 +148,7 @@ export function BillingPlansView({ initial }: { initial: BillingOverview }) {
                 <p className="text-base font-bold">{p.name}</p>
                 {data.defaultPlanId === p.planId && <Badge variant="success">{t('billing.plan.default')}</Badge>}
                 {p.retired && <Badge>{t('billing.plan.retired')}</Badge>}
+                {p.testSchoolsOnly && <Badge data-billing-test-only>{t('billing.plan.testOnly')}</Badge>}
               </div>
               <p className="text-slate/70">{t('billing.plan.id', { id: p.planId })}</p>
               <p data-billing-price>
@@ -171,7 +172,7 @@ export function BillingPlansView({ initial }: { initial: BillingOverview }) {
                 <button type="button" data-billing-plan-edit disabled={busy} className={TAP} onClick={() => startEdit(p)}>
                   {t('billing.plan.edit')}
                 </button>
-                {!p.retired && data.defaultPlanId !== p.planId && (
+                {!p.retired && !p.testSchoolsOnly && data.defaultPlanId !== p.planId && (
                   <button type="button" disabled={busy} className={TAP} onClick={() => void send(`/api/control/billing/plans/${p.planId}`, { action: 'default' }, 'billing.plan.madeDefault')}>
                     {t('billing.plan.makeDefault')}
                   </button>

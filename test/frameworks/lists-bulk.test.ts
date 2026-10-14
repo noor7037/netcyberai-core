@@ -44,7 +44,8 @@ async function list(query: unknown) {
 beforeAll(async () => {
   db = await createTestDb();
   await db.platform(async (q) => {
-    await q.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'A', 'IN-HR')`, [A]);
+    // A test school: the plan with every module is for test schools only (C219).
+    await q.query(`insert into schools (school_id, name, jurisdiction, is_test_fixture) values ($1, 'A', 'IN-HR', true)`, [A]);
     // The school has its plan's modules, as every real school does: a queued bulk run checks them again when it runs (C137).
     await applyPlan(q, A, DEFAULT_PLAN_ID, { userId: null, role: null }, 'test setup');
     await q.query(`insert into classes (class_id, school_id, name, section) values ($1, $4, '8-A', 'A'), ($2, $4, '8-B', 'B'), ($3, $4, '9-A', 'A')`, [c8a, c8b, c9a, A]);

@@ -216,7 +216,7 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
                       <select id={`change-plan-${s.schoolId}`} required className={FIELD} value={plan.planId} onChange={(e) => setPlan({ ...plan, planId: e.target.value })}>
                         <option value="">{t('billing.change.choose')}</option>
                         {data.plans
-                          .filter((p) => !p.retired || p.planId === s.planId)
+                          .filter((p) => (!p.retired || p.planId === s.planId) && (!p.testSchoolsOnly || s.isTest))
                           .map((p) => (
                             <option key={p.planId} value={p.planId}>
                               {p.name}

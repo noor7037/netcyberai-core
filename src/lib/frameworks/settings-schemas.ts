@@ -363,7 +363,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
       {
         key: 'marks_drop_points',
         label: 'A fall of at least this many points in an exam',
-        help: 'Marks become a reason to look when a child’s percent in their latest exam with every paper entered fell by at least this many points from their own exam before it, from 1 to 100. A child is compared only with themselves.',
+        help: 'Marks become a reason to look when a child’s percent in their latest published exam fell by at least this many points from their own exam before it, from 1 to 100. A child is compared only with themselves.',
         section: 'Marks',
         type: 'number',
         default: 15,
@@ -486,7 +486,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
       {
         key: 'window_days',
         label: 'Homework and replies over this many days back',
-        help: 'How many days back homework and Daily Pulse replies are counted, today included, from 7 to 366. Exams are counted from the first one entered.',
+        help: 'How many days back homework and Daily Pulse replies are counted, today included, from 7 to 366. Exams are counted from the first one published.',
         section: 'Period',
         type: 'number',
         default: 90,

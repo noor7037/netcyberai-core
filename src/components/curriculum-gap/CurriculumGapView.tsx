@@ -12,7 +12,8 @@ import type { MessageKey } from '@/lib/i18n';
 // listed once, in the map's order, with its state and the days the state rests on: when it was taught, and the exam
 // papers that assess it. A count of each state sits above the list. A class with no map for the subject says it is
 // not set up, never a row of zeros. The states are worked out on the server (src/lib/curriculum-gap/rules.ts) each
-// time the page is read; this screen only says them.
+// time the page is read; this screen only says them. One academic session at a time, the current one unless another
+// is chosen (C219): its lessons and its exams' papers.
 
 const BOX = 'flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4';
 const SOFT = 'rounded-md bg-off-white px-3 py-2';
@@ -34,11 +35,12 @@ export function CurriculumGapView() {
   const [failed, setFailed] = useState(false);
   const [busy, setBusy] = useState(false);
 
-  const load = useCallback(async (classId: string | null, subjectId: string | null) => {
+  const load = useCallback(async (classId: string | null, subjectId: string | null, sessionId: string | null) => {
     setBusy(true);
     const q = new URLSearchParams();
     if (classId) q.set('classId', classId);
     if (subjectId) q.set('subjectId', subjectId);
+    if (sessionId) q.set('sessionId', sessionId);
     const query = q.toString();
     const res = await fetch(`/api/app/curriculum-gap${query ? `?${query}` : ''}`, { cache: 'no-store' }).catch(() => null);
     const got = res?.ok ? ((await res.json().catch(() => null)) as GapScreen | null) : null;
@@ -47,7 +49,7 @@ export function CurriculumGapView() {
     if (got) setData(got);
   }, []);
   useEffect(() => {
-    void load(null, null);
+    void load(null, null, null);
   }, [load]);
 
   if (failed && !data) return <p role="alert" className={`${SOFT} text-sm text-slate`}>{t('cg.failed')}</p>;
@@ -59,6 +61,7 @@ export function CurriculumGapView() {
   const className = data.classes.find((c) => c.classId === data.classId)?.name ?? '';
   const subject = data.subjects.find((s) => s.subjectId === data.subjectId);
   const unitName = (u: Pick<UnitGap, 'chapter' | 'topic'>) => (u.chapter === u.topic ? u.topic : `${u.chapter}: ${u.topic}`);
+  const session = data.sessions.find((s) => s.sessionId === data.sessionId) ?? null;
 
   const taughtLine = (u: UnitGap) =>
     u.taughtFirst === null ? t('cg.notTaught')
@@ -68,10 +71,10 @@ export function CurriculumGapView() {
   return (
     <div lang={lang} data-curriculum-gap className="flex flex-col gap-4 text-sm text-slate">
       <section className={BOX} data-gap-pick>
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col gap-1">
             <label htmlFor="gap-class" className="font-semibold">{t('cg.class')}</label>
-            <select id="gap-class" className={FIELD} value={data.classId ?? ''} disabled={busy || data.classes.length === 0} onChange={(e) => void load(e.target.value, data.subjectId)}>
+            <select id="gap-class" className={FIELD} value={data.classId ?? ''} disabled={busy || data.classes.length === 0} onChange={(e) => void load(e.target.value, data.subjectId, data.sessionId)}>
               {data.classes.map((c) => (
                 <option key={c.classId} value={c.classId}>{c.name}</option>
               ))}
@@ -79,13 +82,22 @@ export function CurriculumGapView() {
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="gap-subject" className="font-semibold">{t('cg.subject')}</label>
-            <select id="gap-subject" className={FIELD} value={data.subjectId ?? ''} disabled={busy || data.subjects.length === 0} onChange={(e) => void load(data.classId, e.target.value)}>
+            <select id="gap-subject" className={FIELD} value={data.subjectId ?? ''} disabled={busy || data.subjects.length === 0} onChange={(e) => void load(data.classId, e.target.value, data.sessionId)}>
               {data.subjects.map((s) => (
                 <option key={s.subjectId} value={s.subjectId}>{s.mapped ? s.name : t('cg.subjectNoMap', { subject: s.name })}</option>
               ))}
             </select>
           </div>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="gap-session" className="font-semibold">{t('cg.session')}</label>
+            <select id="gap-session" data-gap-session className={FIELD} value={data.sessionId ?? ''} disabled={busy || data.sessions.length === 0} onChange={(e) => void load(data.classId, data.subjectId, e.target.value)}>
+              {data.sessions.map((s) => (
+                <option key={s.sessionId} value={s.sessionId}>{s.current ? t('cg.sessionCurrent', { label: s.label }) : s.label}</option>
+              ))}
+            </select>
+          </div>
         </div>
+        {session && <p data-gap-session-days className="text-slate/70">{t('cg.sessionDays', { label: session.label, from: day(session.startDate), to: day(session.endDate) })}</p>}
         <p className="text-slate/70">{t(data.wholeSchool ? 'cg.whoOffice' : 'cg.whoTeacher')}</p>
         {failed && <p role="alert" className={SOFT}>{t('cg.failed')}</p>}
       </section>
@@ -106,8 +118,14 @@ export function CurriculumGapView() {
       {data.gap && !data.gap.setUp && (
         <div data-gap-not-set-up className="flex flex-col items-start gap-2 rounded-xl border border-dashed border-slate/20 bg-white p-4">
           <p className="text-base font-bold">{t('cg.notSetUp.title')}</p>
-          <p className="max-w-prose">{t('cg.notSetUp.text', { class: className, subject: subject?.name ?? '' })}</p>
-          <Link href="/app/syllabus" className={LINK}>{t('cg.notSetUp.action')}</Link>
+          <p data-gap-not-set-up-why={data.gap.why} className="max-w-prose">
+            {data.gap.why === 'no_map'
+              ? t('cg.notSetUp.text', { class: className, subject: subject?.name ?? '' })
+              : data.gap.why === 'no_lessons'
+                ? t('cg.notSetUp.noLessons', { class: className, subject: subject?.name ?? '', session: session?.label ?? '' })
+                : t('cg.notSetUp.noSession')}
+          </p>
+          {data.gap.why !== 'no_session' && <Link href="/app/syllabus" className={LINK}>{t('cg.notSetUp.action')}</Link>}
         </div>
       )}
 

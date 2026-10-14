@@ -112,7 +112,7 @@ const APP_USER: Record<string, string> = {
   school_setting_changes: 'INSERT,SELECT',
   school_settings: 'INSERT,SELECT,UPDATE',
   school_whatsapp_configs: 'DELETE,INSERT,SELECT,UPDATE',
-  schools: 'DELETE,INSERT,SELECT,UPDATE',
+  schools: 'SELECT', // C219: UPDATE of the profile columns only (name, address), a column grant; no INSERT or DELETE
   sessions: '',
   staff_invitations: 'INSERT,SELECT,UPDATE',
   student_qr_tokens: 'DELETE,INSERT,SELECT,UPDATE',
@@ -191,6 +191,9 @@ const APP_USER: Record<string, string> = {
   // c212-pricing begin
   school_billing_terms: '', // a school's own terms (C212): read and written in Control only, never by a school
   // c212-pricing end
+  // c219 begin
+  co_scholastic_grades: 'DELETE,INSERT,SELECT,UPDATE', // frozen with the class's publication (trigger); cleared while not published
+  // c219 end
 };
 
 // The platform role (nca_super) holds what the app's role holds, except here.
@@ -292,6 +295,10 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // c212-pricing begin
   school_billing_terms: 'INSERT,SELECT,UPDATE', // never deleted; an UPDATE may only bring a last day forward (a trigger)
   // c212-pricing end
+  // c219 begin
+  schools: 'DELETE,INSERT,SELECT,UPDATE', // Control makes schools and sets plan, billing, pilot, test, budget and board (C219)
+  co_scholastic_grades: '', // a school's results are its own: the platform role reads nothing here
+  // c219 end
 };
 // Every other role that holds anything on a table.
 const OTHER_ROLES: Record<string, Record<string, string>> = {

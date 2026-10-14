@@ -2,7 +2,7 @@ import { writeAuditLog, writeEntitlementAudit } from '@/lib/audit/log';
 import { isAlwaysOn } from '@/lib/contracts/entitlements';
 import { isModuleId, type ModuleId } from '@/lib/contracts/modules';
 import { isUuid } from '@/lib/frameworks/custom-fields';
-import { isBillingPeriod, loadPlan, workingModules, type BillingPeriod } from '@/lib/frameworks/plans';
+import { addLegacySubscription, isBillingPeriod, loadPlan, workingModules, type BillingPeriod } from '@/lib/frameworks/plans';
 import type { Sql } from '@/lib/jobs/types';
 import { indiaDate, isIsoDate } from '@/lib/time/india';
 import { BP_IN_WHOLE, MAX_STUDENT_MONTH_PAISE, MAX_STUDENT_YEAR_PAISE } from './billing-amount';
@@ -236,13 +236,8 @@ export async function setBillingPeriod(db: Sql, by: By, schoolId: string, input:
   const reason = cleanReason(input.reason);
   if (reason.length < 3 || reason.length > 500) return { ok: false, reason: 'reason' };
   if (!(await db.query(`select 1 from schools where school_id = $1`, [schoolId])).rows[0]) return { ok: false, reason: 'not_found' };
-  // A school put on a plan before subscriptions existed gets its row now (as recordPayment does).
-  await db.query(
-    `insert into school_subscriptions (school_id, plan_id, updated_by)
-     select e.school_id, e.plan, $2 from school_entitlements e where e.school_id = $1 and e.plan in (select plan_id from plans)
-     on conflict (school_id) do nothing`,
-    [schoolId, by.userId]
-  );
+  // A school put on a plan before subscriptions existed gets its row now (as recordPayment does, by the same rule).
+  await addLegacySubscription(db, schoolId, by.userId);
   const sub = (await db.query(`select billing_period from school_subscriptions where school_id = $1 for update`, [schoolId])).rows[0];
   if (!sub) return { ok: false, reason: 'no_plan' };
   if (sub.billing_period !== input.period) {

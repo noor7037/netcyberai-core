@@ -1,6 +1,7 @@
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { planHasFeature } from '@/lib/frameworks/plans';
 import type { Sql } from '@/lib/jobs/types';
+import { coAreasOf, coScholasticOf } from './co-scholastic';
 import { papersOf, type Actor } from './exams';
 import { ON_ROLL, ROLL_ORDER, type Mark, type MarkKind, type PaperComponent } from './papers';
 import { publicationInForce, REPORT_CARD_OFFICE } from './publish';
@@ -9,9 +10,11 @@ import type { Layout } from './scheme';
 
 // A report card (docs/27 row 9c, C215): one child's marks in an exam as published for their class, laid out as the
 // grading scheme kept with the publication says (its layout: components, total, percent, grade, attendance,
-// remarks). Every percent and grade is percent() and grade() by that kept scheme (childResult in results.ts), so a
-// later change of the scheme never rewrites a card. Attendance is counted for the exam's session up to the day it
-// was published. Personal Best and Most Improved are those kept with the publication (each child compared only
+// remarks, co-scholastic areas). Every percent and grade is percent() and grade() by that kept scheme (childResult in
+// results.ts), so a later change of the scheme never rewrites a card. Attendance is the one kept with the publication
+// (C219): each child's days in the exam's session up to the day it was published, worked out by the database when it
+// was published, so a later correction of attendance never changes a card. Co-scholastic grades are the class's own,
+// frozen with its publication. Personal Best and Most Improved are those kept with the publication (each child compared only
 // with themselves, own-progress.ts), shown only while the school's plan has the 'personal-best' feature.
 // Downloaded by the office (the principal, the school admin, the academic coordinator) and the class teacher, only
 // while the class is published. Nothing here names another child on a child's card.
@@ -29,6 +32,7 @@ export type ReportCard = {
   overall: Shown & { total: { score: number; max: number } | null };
   attendance: { present: number; days: number } | null;
   remark: string | null;
+  coScholastic: { area: string; grade: string | null; meaning: string | null }[]; // each area of the kept scheme, in its order
   recognition: CardRecognition | null; // null: the plan does not have the feature, or nothing was kept for this child
 };
 export type ReportCardSet = {
@@ -92,19 +96,10 @@ export async function reportCards(db: Sql, actor: Actor, examId: string, classId
   const remarks = new Map(
     (await db.query(`select student_id, remark from report_remarks where school_id = $1 and exam_id = $2 and class_id = $3 and student_id = any ($4::uuid[])`, [actor.schoolId, examId, classId, ids])).rows.map((r) => [r.student_id as string, r.remark as string])
   );
-  // Attendance for the exam's session, up to the day the class was published (in India).
-  const attendance = new Map<string, { present: number; days: number }>();
-  if (exam.session_start) {
-    const { rows } = await db.query(
-      `select a.student_id, count(*) filter (where a.status in ('present', 'late'))::int as present, count(*)::int as days
-         from attendance a
-        where a.school_id = $1 and a.student_id = any ($2::uuid[]) and a.date >= $3::date
-          and a.date <= least($4::date, ($5::timestamptz at time zone 'Asia/Kolkata')::date)
-        group by a.student_id`,
-      [actor.schoolId, ids, exam.session_start, exam.session_end, kept.publishedAt]
-    );
-    for (const r of rows) attendance.set(r.student_id, { present: Number(r.present), days: Number(r.days) });
-  }
+  // Attendance as kept with the publication (null: the exam had no session when it was published).
+  const keptAttendance = kept.attendance;
+  const co = coAreasOf(kept.scheme.coScholastic);
+  const coGrades = co ? await coScholasticOf(db, actor.schoolId, examId, classId, ids) : new Map<string, Record<string, string>>();
   const recognitionOn = await planHasFeature(db, actor.schoolId, 'personal-best');
   const subjectName = new Map(papers.map((p) => [p.subjectId, p.subjectName]));
   const exams = new Map<string, string>();
@@ -145,8 +140,14 @@ export async function reportCards(db: Sql, actor: Actor, examId: string, classId
       admissionNo: s.admission_no ?? null,
       subjects,
       overall: { ...result.overall, total: overallTotal },
-      attendance: exam.session_start ? (attendance.get(s.student_id) ?? { present: 0, days: 0 }) : null,
+      attendance: keptAttendance === null ? null : (keptAttendance[s.student_id] ?? { present: 0, days: 0 }),
       remark: remarks.get(s.student_id) ?? null,
+      coScholastic: co
+        ? co.areas.map((area) => {
+            const grade = coGrades.get(s.student_id)?.[area] ?? null;
+            return { area, grade, meaning: grade === null ? null : (co.grades.find((g) => g.grade === grade)?.meaning ?? null) };
+          })
+        : [],
       recognition,
     };
   });
@@ -160,7 +161,7 @@ export async function reportCards(db: Sql, actor: Actor, examId: string, classId
       publication: { version: kept.version, schemeVersion: kept.schemeVersion, publishedAt: kept.publishedAt, publishedBy: kept.publishedBy },
       layout: scheme.layout,
       decimals: scheme.decimals,
-      hasSession: Boolean(exam.session_start),
+      hasSession: keptAttendance !== null,
       columns,
       recognitionOn,
       cards,
