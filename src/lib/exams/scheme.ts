@@ -4,7 +4,7 @@
 // No grade table is written here, or anywhere in the code: a board's bands are rows of board_presets, copied from
 // its official document by the migration (CBSE, CISCE) or by NetCyberAI in Control (a state board). A school's
 // scheme is rows of grading_schemes. The database holds the same rules for the bands and the shape
-// (grading_bands_problem, grading_scheme_problem in 20261121090000_p6_boards_grading.sql).
+// (grading_bands_problem, grading_scheme_problem in the migration ending _p6_boards_grading.sql).
 
 export type Band = { from: number | null; to: number | null; grade: string; meaning: string | null };
 
