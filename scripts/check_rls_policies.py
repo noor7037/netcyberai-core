@@ -370,6 +370,20 @@ ALLOWED_PERMISSIVE = (
         # C212: a school's own terms. Tenant isolation, and a restrictive policy below lets no role it applies to read them.
         ("school_billing_terms", "school_billing_terms_tenant_isolation"),
         # c212-pricing end
+        # p7-10a begin
+        # p7-10a end
+        # p7-10b begin
+        # p7-10b end
+        # p7-10c begin
+        # p7-10c end
+        # p7-10d begin
+        # p7-10d end
+        # p7-10e begin
+        # p7-10e end
+        # p7-10f begin
+        # p7-10f end
+        # p7-10g begin
+        # p7-10g end
         # c219 begin
         # C219: co-scholastic grades. Tenant isolation, narrowed by the RESTRICTIVE policies required below.
         ("co_scholastic_grades", "co_scholastic_grades_tenant_isolation"),
@@ -636,6 +650,20 @@ REQUIRED_RESTRICTIVE = {
     ("school_billing_terms", "school_billing_terms_nobody"),
     ("audit_log", "audit_billing_terms_platform_only"),
     # c212-pricing end
+    # p7-10a begin
+    # p7-10a end
+    # p7-10b begin
+    # p7-10b end
+    # p7-10c begin
+    # p7-10c end
+    # p7-10d begin
+    # p7-10d end
+    # p7-10e begin
+    # p7-10e end
+    # p7-10f begin
+    # p7-10f end
+    # p7-10g begin
+    # p7-10g end
     # c219 begin
     # C219: only the principal and the school admin update their own school's row (and only its profile columns, by
     # column grants and a trigger). A co-scholastic grade is read by the three roles that run exams and a teacher of

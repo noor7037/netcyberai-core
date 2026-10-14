@@ -3984,6 +3984,20 @@ const pricingTermsDone = async () => {
   }
 };
 // c212-pricing end
+// p7-10a begin
+// p7-10a end
+// p7-10b begin
+// p7-10b end
+// p7-10c begin
+// p7-10c end
+// p7-10d begin
+// p7-10d end
+// p7-10e begin
+// p7-10e end
+// p7-10f begin
+// p7-10f end
+// p7-10g begin
+// p7-10g end
 // c219 begin
 // Co-scholastic grades (C219), on C215's fixture. The school saves a scheme version with two co-scholastic areas (made
 // up) graded A to C, shown on the report card. Tara, the class teacher of 5-A, chooses roll 1's grades on the report
@@ -4564,6 +4578,20 @@ const SCREENS = [
   ['founder', 'control-billing-plan-form', '/control/billing-plans', pricingForm, pricingFormDone],
   ['founder', 'control-billing-terms', '/control/billing-plans', pricingTerms, pricingTermsDone],
   // c212-pricing end
+  // p7-10a begin
+  // p7-10a end
+  // p7-10b begin
+  // p7-10b end
+  // p7-10c begin
+  // p7-10c end
+  // p7-10d begin
+  // p7-10d end
+  // p7-10e begin
+  // p7-10e end
+  // p7-10f begin
+  // p7-10f end
+  // p7-10g begin
+  // p7-10g end
   // c219 begin
   ['teacher', 'app-exams-co-scholastic', `/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`, rcCoScholastic, rcCoScholasticDone],
   // c219 end
