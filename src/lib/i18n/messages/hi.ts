@@ -3805,6 +3805,9 @@ export const hi: Record<keyof typeof en, string> = {
   'billing.feature.personal-best': 'पर्सनल बेस्ट, परीक्षा और रिपोर्ट कार्ड में',
   'billing.feature.principal-dashboard': 'प्रधानाचार्य का डैशबोर्ड, डैशबोर्ड में',
   'billing.feature.staff-leave': 'स्टाफ़ की छुट्टी, स्टाफ़ में',
+  'billing.feature.rte-claim-desk': 'आरटीई दावा डेस्क, फ़ीस में',
+  'billing.feature.compliance-desk': 'अनुपालन डेस्क, अनुपालन में',
+  'billing.feature.timetable-generator': 'समय-सारणी जनरेटर, समय-सारणी में',
   'billing.col.period': 'भुगतान की अवधि',
   'billing.col.amount': 'देय रक़म',
   'billing.period.none': 'अभी चुनी नहीं',
@@ -4304,6 +4307,12 @@ export const hi: Record<keyof typeof en, string> = {
   // p7-10f end
   // p7-10g begin
   // p7-10g end
+  // c224 begin
+  // c224 end
+  // c225 begin
+  // c225 end
+  // c226 begin
+  // c226 end
   'sync.saved': 'सब सेव है',
   'sync.offline': 'ऑफ़लाइन: पिछली बार जो खुला था वही दिख रहा है',
   'sync.sending.one': '{count} बदलाव भेजा जा रहा है…',

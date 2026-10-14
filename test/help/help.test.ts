@@ -93,6 +93,12 @@ describe('the guides', () => {
       // p7-10f end
       // p7-10g begin
       // p7-10g end
+      // c224 begin
+      // c224 end
+      // c225 begin
+      // c225 end
+      // c226 begin
+      // c226 end
     ]);
     expect(new Set(HELP_ARTICLES.map((a) => a.slug)).size).toBe(HELP_ARTICLES.length);
     expect(HELP_ARTICLES.every((a) => /^[a-z][a-z0-9-]+$/.test(a.slug) && a.slug !== 'ticket')).toBe(true); // /app/help/ticket is Raise Ticket

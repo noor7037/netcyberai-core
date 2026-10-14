@@ -28,8 +28,9 @@ export const BILLING_PERIODS = ['month', 'year'] as const;
 export type BillingPeriod = (typeof BILLING_PERIODS)[number];
 export const isBillingPeriod = (v: unknown): v is BillingPeriod => (BILLING_PERIODS as readonly unknown[]).includes(v);
 // Parts of a module that a plan gives or holds back. Only the module that owns a feature reads it, through
-// planHasFeature (personal-best: Exams, from P6; principal-dashboard: Dashboard; staff-leave: Staff).
-export const PLAN_FEATURES = ['personal-best', 'principal-dashboard', 'staff-leave'] as const;
+// planHasFeature (personal-best: Exams, from P6; principal-dashboard: Dashboard; staff-leave: Staff; rte-claim-desk:
+// Fees; compliance-desk: Compliance; timetable-generator: Timetable; the last three placed by C223-A).
+export const PLAN_FEATURES = ['personal-best', 'principal-dashboard', 'staff-leave', 'rte-claim-desk', 'compliance-desk', 'timetable-generator'] as const;
 export type PlanFeature = (typeof PLAN_FEATURES)[number];
 export const isPlanFeature = (v: unknown): v is PlanFeature => (PLAN_FEATURES as readonly unknown[]).includes(v);
 // Named whole-number limits a module, as school_module_entitlements.limits holds them.

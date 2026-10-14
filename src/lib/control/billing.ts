@@ -31,7 +31,14 @@ const LIMIT_KEY_RE = /^[a-z][a-z0-9_]{0,39}$/;
 // Prices are per enrolled student, in paise (C212), up to MAX_STUDENT_MONTH_PAISE and MAX_STUDENT_YEAR_PAISE.
 export const MAX_MESSAGES_PER_STUDENT = 100_000;
 // The module a feature is part of: a plan gives a feature only with its module.
-export const FEATURE_MODULE: Record<PlanFeature, ModuleId> = { 'personal-best': 'exams', 'principal-dashboard': 'dashboard', 'staff-leave': 'staff' };
+export const FEATURE_MODULE: Record<PlanFeature, ModuleId> = {
+  'personal-best': 'exams',
+  'principal-dashboard': 'dashboard',
+  'staff-leave': 'staff',
+  'rte-claim-desk': 'fees',
+  'compliance-desk': 'compliance',
+  'timetable-generator': 'timetable',
+};
 
 export type PlanInput = {
   planId?: unknown;

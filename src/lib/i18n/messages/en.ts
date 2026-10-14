@@ -3809,6 +3809,9 @@ export const en = {
   'billing.feature.personal-best': 'Personal Best, in Exams & Report Card',
   'billing.feature.principal-dashboard': 'The principal’s dashboard, in Dashboard',
   'billing.feature.staff-leave': 'Staff leave, in Staff',
+  'billing.feature.rte-claim-desk': 'The RTE claim desk, in Fees',
+  'billing.feature.compliance-desk': 'The compliance desk, in Compliance',
+  'billing.feature.timetable-generator': 'The timetable generator, in Timetable',
   'billing.col.period': 'Pays for',
   'billing.col.amount': 'Amount due',
   'billing.period.none': 'Not chosen yet',
@@ -4308,6 +4311,12 @@ export const en = {
   // p7-10f end
   // p7-10g begin
   // p7-10g end
+  // c224 begin
+  // c224 end
+  // c225 begin
+  // c225 end
+  // c226 begin
+  // c226 end
   'sync.saved': 'All saved',
   'sync.offline': 'Offline: showing what was last loaded',
   'sync.sending.one': 'Sending {count} change…',

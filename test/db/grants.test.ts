@@ -212,6 +212,12 @@ const APP_USER: Record<string, string> = {
   // p7-10f end
   // p7-10g begin
   // p7-10g end
+  // c224 begin
+  // c224 end
+  // c225 begin
+  // c225 end
+  // c226 begin
+  // c226 end
   // c219 begin
   co_scholastic_grades: 'DELETE,INSERT,SELECT,UPDATE', // frozen with the class's publication (trigger); cleared while not published
   // c219 end
@@ -337,6 +343,12 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // p7-10f end
   // p7-10g begin
   // p7-10g end
+  // c224 begin
+  // c224 end
+  // c225 begin
+  // c225 end
+  // c226 begin
+  // c226 end
   // c219 begin
   schools: 'DELETE,INSERT,SELECT,UPDATE', // Control makes schools and sets plan, billing, pilot, test, budget and board (C219)
   co_scholastic_grades: '', // a school's results are its own: the platform role reads nothing here
