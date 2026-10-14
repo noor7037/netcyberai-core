@@ -3891,7 +3891,7 @@ const pricingFormDone = async () => {
   // The form opens on the stored prices, and the yearly one follows the monthly one as ten months.
   if (seen.yearBefore !== '300' || seen.year !== '320' || !/₹30\.00 a month or ₹300\.00 a year, per enrolled student/.test(seen.price ?? '')) throw new Error(`the plan form's prices: ${JSON.stringify(seen)}`);
   // The messages included are left empty by the seed; the features and a module not built yet are listed as stored.
-  if (seen.messages !== '' || !/not set yet/.test(seen.messagesLine ?? '') || seen.features !== 'principal-dashboard,staff-leave' || seen.examsListed !== true) throw new Error(`the plan form's other fields: ${JSON.stringify(seen)}`);
+  if (seen.messages !== '' || !/not set yet/.test(seen.messagesLine ?? '') || seen.features !== 'principal-dashboard,staff-leave,rte-claim-desk,compliance-desk,timetable-generator' || seen.examsListed !== true) throw new Error(`the plan form's other fields: ${JSON.stringify(seen)}`);
 };
 const clearPricing = async () => {
   const freeAudits = `select audit_id from audit_log where school_id = '${SCHOOL}' and event_action = 'entitlement.module_changed' and target_id = 'parent-ai' and (after_state ->> 'source' = 'complimentary' or before_state ->> 'source' = 'complimentary')`;
@@ -4529,6 +4529,120 @@ const rtePlanDone = async () => {
 };
 // c225 end
 // c226 begin
+// The free month (C226, docs/30). Control: the founder opens the school's "Free month", starts it with Growth as the
+// plan after it (the last day comes prefilled as day 30), then extends it to day 40 with a reason; the list above the
+// schools and the school's card show it, and the history shows each reason. Growth's card shows C226's placement
+// (Admissions; the RTE claim desk, the compliance desk and the timetable generator). The database is checked and
+// everything is put back as it was: the school's switches, its plan, its subscription and the audit rows.
+const TRIAL_REASON = 'harness-c226 agreed at the demo';
+const TRIAL_EXTEND_REASON = 'harness-c226 the trust meets next week';
+let trialBefore = null;
+let trialSeen = null;
+const trialSnapshot = async () => {
+  const { rows } = await db.pg.query(
+    `select (select coalesce(max(audit_id), 0) from audit_log) as audit_from,
+            (select coalesce(jsonb_agg(to_jsonb(m)), '[]'::jsonb) from school_module_entitlements m where m.school_id = $1) as switches,
+            (select to_jsonb(s) from school_subscriptions s where s.school_id = $1) as subscription,
+            (select plan from school_entitlements where school_id = $1) as plan`,
+    [SCHOOL]
+  );
+  return rows[0];
+};
+const trialPutBack = async (before) => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from entitlement_change_reasons where audit_id in (select audit_id from audit_log where audit_id > ${Number(before.audit_from)} and school_id = '${SCHOOL}' and event_action like 'entitlement.%');
+    delete from audit_log where audit_id > ${Number(before.audit_from)} and school_id = '${SCHOOL}' and event_action like 'entitlement.%';
+    delete from school_trials where school_id = '${SCHOOL}';
+    delete from school_subscriptions where school_id = '${SCHOOL}';
+    delete from school_module_entitlements where school_id = '${SCHOOL}';
+    set session_replication_role = origin;`);
+  await db.pg.query(`set session_replication_role = replica`);
+  try {
+    await db.pg.query(`insert into school_module_entitlements select * from jsonb_populate_recordset(null::school_module_entitlements, $1::jsonb)`, [JSON.stringify(before.switches)]);
+    if (before.subscription) await db.pg.query(`insert into school_subscriptions select * from jsonb_populate_record(null::school_subscriptions, $1::jsonb)`, [JSON.stringify(before.subscription)]);
+    await db.pg.query(`update school_entitlements set plan = $2 where school_id = $1`, [SCHOOL, before.plan]);
+  } finally {
+    await db.pg.query(`set session_replication_role = origin`);
+  }
+};
+const trialControl = async (page) => {
+  trialBefore = await trialSnapshot();
+  await db.pg.exec(`set session_replication_role = replica; delete from school_trials where school_id = '${SCHOOL}'; set session_replication_role = origin;`);
+  await page.reload({ waitUntil: 'networkidle' });
+  const school = page.locator(`[data-billing-school="${SCHOOL}"]`);
+  await school.locator('[data-billing-trial-open]').click();
+  await school.locator('[data-billing-trial-start]').waitFor({ timeout: 20000 });
+  const prefilled = await page.locator(`#trial-ends-${SCHOOL}`).inputValue();
+  await page.selectOption(`#trial-plan-${SCHOOL}`, 'growth');
+  await page.locator(`#trial-why-${SCHOOL}`).fill(TRIAL_REASON);
+  await school.locator('[data-billing-trial-start-save]').click();
+  await page.waitForFunction(() => /free month has started/.test(document.querySelector('[data-billing-note]')?.textContent ?? ''), null, { timeout: 20000 });
+  await school.locator('[data-billing-trial-extend]').waitFor({ timeout: 20000 });
+  await page.locator(`#trial-extend-${SCHOOL}`).fill(indiaDayFromNow(40));
+  await page.locator(`#trial-extend-why-${SCHOOL}`).fill(TRIAL_EXTEND_REASON);
+  await school.locator('[data-billing-trial-extend-save]').click();
+  await page.waitForFunction(() => /free month is extended/.test(document.querySelector('[data-billing-note]')?.textContent ?? ''), null, { timeout: 20000 });
+  await school.locator('[data-billing-trial-event="extended"]').waitFor({ timeout: 20000 });
+  const growth = page.locator('[data-billing-plan="growth"]');
+  trialSeen = {
+    prefilled,
+    listLine: await page.locator(`[data-billing-trial="${SCHOOL}"] [data-billing-trial-line]`).textContent(),
+    cardLine: await school.locator('[data-billing-school-trial]').textContent(),
+    events: await school.locator('[data-billing-trial-event]').evaluateAll((els) => els.map((e) => e.getAttribute('data-billing-trial-event')).join()),
+    panel: await school.locator('[data-billing-trial-panel]').textContent(),
+    growthFeatures: await growth.locator('[data-billing-features]').textContent(),
+    growthCard: await growth.textContent(),
+  };
+  await school.locator('[data-billing-trial-panel]').scrollIntoViewIfNeeded();
+};
+const trialControlDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from school_trials where school_id = $1 and starts_on = ${TODAY_SQL} and ends_on = $2::date and started_by = $3 and ended_at is null) as trials,
+            (select plan_id from school_subscriptions where school_id = $1) as plan_after,
+            (select count(*)::int from school_module_entitlements where school_id = $1 and source = 'trial' and enabled) as trial_switches,
+            (select count(*)::int from school_module_entitlements where school_id = $1 and module_id = 'early-warning' and source = 'trial' and enabled) as early_warning,
+            (select count(*)::int from audit_log where school_id = $1 and event_action in ('entitlement.trial_started', 'entitlement.trial_extended') and actor_user_id = $3
+               and (coalesce(before_state::text, '') || after_state::text) not ilike '%harness-c226%') as audits,
+            (select count(*)::int from entitlement_change_reasons r join audit_log a on a.audit_id = r.audit_id
+              where a.school_id = $1 and a.event_action in ('entitlement.trial_started', 'entitlement.trial_extended') and r.reason in ($4, $5)) as reasons`,
+    [SCHOOL, indiaDayFromNow(40), PEOPLE.founder.sub, TRIAL_REASON, TRIAL_EXTEND_REASON]
+  );
+  await trialPutBack(trialBefore);
+  const r = rows[0];
+  if (r.trials !== 1 || r.plan_after !== 'growth' || r.trial_switches < 20 || r.early_warning !== 1 || r.audits !== 2 || r.reasons !== 2) throw new Error(`the free month, in the database: ${JSON.stringify(r)}`);
+  const seen = trialSeen ?? {};
+  if (seen.prefilled !== indiaDayFromNow(30) || !/\(40 days left\), then Growth/.test(seen.listLine ?? '') || !/\(40 days left\), then Growth/.test(seen.cardLine ?? '')) throw new Error(`the free month, on the screen: ${JSON.stringify(seen)}`);
+  if (seen.events !== 'extended,started' || !seen.panel?.includes(TRIAL_REASON) || !seen.panel?.includes(TRIAL_EXTEND_REASON)) throw new Error(`the free month's history: ${JSON.stringify(seen)}`);
+  // C226's placement, shown plainly on Growth's card.
+  if (!/RTE claim desk/.test(seen.growthFeatures ?? '') || !/compliance desk/.test(seen.growthFeatures ?? '') || !/timetable generator/.test(seen.growthFeatures ?? '') || !/Admissions/.test(seen.growthCard ?? '')) throw new Error(`Growth's placement: ${JSON.stringify(seen)}`);
+};
+// The school's office in its free month (the state put in place as Control leaves it; the move itself is proven in
+// test/billing/trial.test.ts): the quiet line with the days left, then from 7 days before the end the notice naming the
+// plan; a teacher of the same school sees neither. Never an amount. Put back afterwards.
+let trialLineSeen = null;
+const putTrial = async (daysLeft) => {
+  trialBefore = await trialSnapshot();
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from school_trials where school_id = '${SCHOOL}';
+    delete from school_subscriptions where school_id = '${SCHOOL}';
+    insert into school_subscriptions (school_id, plan_id) values ('${SCHOOL}', 'growth');
+    insert into school_trials (school_id, starts_on, ends_on, started_by) values ('${SCHOOL}', ${TODAY_SQL} - ${30 - daysLeft}, ${TODAY_SQL} + ${daysLeft}, '${PEOPLE.founder.sub}');
+    set session_replication_role = origin;`);
+};
+const trialLine = (daysLeft) => async (page) => {
+  await putTrial(daysLeft);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForTimeout(300);
+  const line = page.locator('[data-trial-notice]');
+  trialLineSeen = (await line.count()) ? { kind: await line.getAttribute('data-trial-notice'), text: await line.textContent() } : { kind: null, text: null };
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(300);
+};
+const trialLineDone = (expected) => async () => {
+  await trialPutBack(trialBefore);
+  const seen = trialLineSeen ?? {};
+  if (seen.kind !== expected.kind || (expected.text && !expected.text.test(seen.text ?? '')) || /₹|rupee/i.test(seen.text ?? '')) throw new Error(`the free month's line: ${JSON.stringify(seen)}`);
+};
 // c226 end
 // c219 begin
 // Co-scholastic grades (C219), on C215's fixture. The school saves a scheme version with two co-scholastic areas (made
@@ -5138,6 +5252,10 @@ const SCREENS = [
   ['office', 'app-fees-rte-plan', '/app/fees/rte', rtePlan, rtePlanDone],
   // c225 end
   // c226 begin
+  ['founder', 'control-billing-trial', '/control/billing-plans', trialControl, trialControlDone],
+  ['principal', 'app-trial-days-left', '/app/my-day', trialLine(20), trialLineDone({ kind: 'days_left', text: /^Free month: 20 days left, to the end of \d{1,2} \w+ \d{4}\.$/ })],
+  ['principal', 'app-trial-ending', '/app/dashboard', trialLine(5), trialLineDone({ kind: 'ending', text: /^Your free month ends with \d{1,2} \w+ \d{4}: 5 days left\. From \d{1,2} \w+ \d{4} the school is on the Growth plan, and modules that plan does not include switch off\. To talk about your plan, raise a ticket\.$/ })],
+  ['teacher', 'teacher-trial-no-line', '/app/my-day', trialLine(5), trialLineDone({ kind: null })],
   // c226 end
   // c219 begin
   ['teacher', 'app-exams-co-scholastic', `/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`, rcCoScholastic, rcCoScholasticDone],

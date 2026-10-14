@@ -70,9 +70,15 @@ const due = (school: string, onDay = TODAY) => platform((c) => amountDue(c, scho
 // The founder's mapping (the migration's header table, and the PR).
 const ALWAYS = ['setup', 'compliance', 'help-center', 'raise-ticket'];
 const STARTER = ['students', 'attendance', 'fees', 'communication', 'pulse', 'dashboard', 'academics', 'homework', 'timetable', 'recovery', 'staff', ...ALWAYS];
-const GROWTH_ADDS = ['exams', 'ptm', 'events', 'complaints', 'parents', 'proxy', 'reports', 'documents'];
+// C226 (C223-A answer 1): Admissions is in Growth, and so in Compass. The student data check stays in Starter (it is
+// part of Students and Compliance); the RTE claim desk, the compliance desk and the timetable generator are features.
+const GROWTH_ADDS = ['exams', 'ptm', 'events', 'complaints', 'parents', 'proxy', 'reports', 'documents', 'admissions'];
 const COMPASS_ADDS = ['parent-ai', 'early-warning', 'school-auditor', 'learning-genome', 'curriculum-gap', 'teacher-copilot'];
-const IN_NO_PLAN = ['admissions', 'payroll', 'career', 'twin', 'automation'];
+const IN_NO_PLAN = ['payroll', 'career', 'twin', 'automation'];
+// The features C226 places in Growth and Compass, each a part of a module both plans give (FEATURE_MODULE).
+const P7_FEATURES = ['rte-claim-desk', 'compliance-desk', 'timetable-generator'];
+const GROWTH_FEATURES = ['principal-dashboard', 'staff-leave', ...P7_FEATURES];
+const COMPASS_FEATURES = ['principal-dashboard', 'staff-leave', 'personal-best', ...P7_FEATURES];
 
 beforeAll(async () => {
   db = await startHarnessDb({ port: 0 });
@@ -134,13 +140,22 @@ describe('the three plans are data: per-student prices a month and a year, and t
     expect([listed.starter.module_ids.includes('teacher-copilot'), listed.growth.module_ids.includes('teacher-copilot'), listed.compass.module_ids.includes('teacher-copilot')]).toEqual([false, false, true]);
     expect([listed.starter.module_ids.includes('documents'), listed.growth.module_ids.includes('documents')]).toEqual([false, true]);
     // Adding Teacher Copilot to Compass is audited.
-    expect(await rows(`select actor_user_id, after_state -> 'module_ids' ? 'teacher-copilot' as added, before_state -> 'module_ids' ? 'teacher-copilot' as was from audit_log where event_action = 'billing.plan_changed' and target_id = 'compass'`)).toEqual([{ actor_user_id: null, added: true, was: false }]);
+    expect(await rows(`select actor_user_id, after_state -> 'module_ids' ? 'teacher-copilot' as added, before_state -> 'module_ids' ? 'teacher-copilot' as was from audit_log where event_action = 'billing.plan_changed' and target_id = 'compass' and after_state ->> 'by' like 'c219:%'`)).toEqual([{ actor_user_id: null, added: true, was: false }]);
     for (const p of Object.values(listed) as { module_ids: string[] }[]) {
       for (const m of p.module_ids) expect(isModuleId(m), m).toBe(true);
       for (const m of ALWAYS) expect(p.module_ids).toContain(m); // help and the DPDP duties, whatever the plan
       for (const m of IN_NO_PLAN) expect(p.module_ids).not.toContain(m);
     }
-    expect([listed.starter.features, listed.growth.features, listed.compass.features]).toEqual([[], ['principal-dashboard', 'staff-leave'], ['principal-dashboard', 'staff-leave', 'personal-best']]);
+    expect([listed.starter.features, listed.growth.features, listed.compass.features]).toEqual([[], GROWTH_FEATURES, COMPASS_FEATURES]);
+    // C226's placement is audited as C219's was: one row a plan, by the migration, before and after.
+    expect(await rows(`select target_id, actor_user_id, before_state -> 'module_ids' ? 'admissions' as had, after_state -> 'module_ids' ? 'admissions' as has, before_state -> 'features' as was, after_state -> 'features' as now
+                         from audit_log where event_action = 'billing.plan_changed' and after_state ->> 'by' like 'c226:%' order by target_id`)).toEqual([
+      { target_id: 'compass', actor_user_id: null, had: false, has: true, was: ['principal-dashboard', 'staff-leave', 'personal-best'], now: COMPASS_FEATURES },
+      { target_id: 'growth', actor_user_id: null, had: false, has: true, was: ['principal-dashboard', 'staff-leave'], now: GROWTH_FEATURES },
+    ]);
+    // Starter keeps the student data check (Students and Compliance) and gains nothing.
+    expect(listed.starter.module_ids).toEqual(expect.arrayContaining(['students', 'compliance']));
+    expect(listed.starter.module_ids).not.toContain('admissions');
     // Modules a plan sells that are not built yet wait: applying Compass switches on only what works today. Exams
     // (C213), Curriculum Gap (C216) and Learning Genome (C217) work now; Teacher Copilot waits.
     const compass = (await platform((c) => loadPlan(c, 'compass')))!;
@@ -178,6 +193,12 @@ describe('the three plans are data: per-student prices a month and a year, and t
       expect(await as(asPrincipal(N), (c) => planHasFeature(c, N, feature)), `no subscription ${feature}`).toBe(true);
     }
     expect(await as(principalG, (c) => planHasFeature(c, G, 'principal-dashboard'))).toBe(true);
+    // C226: the RTE claim desk, the compliance desk and the timetable generator are Growth's and Compass's, not Starter's.
+    for (const feature of P7_FEATURES as ('rte-claim-desk' | 'compliance-desk' | 'timetable-generator')[]) {
+      expect(await as(asPrincipal(E), (c) => planHasFeature(c, E, feature)), `starter ${feature}`).toBe(false);
+      expect(await as(principalG, (c) => planHasFeature(c, G, feature)), `growth ${feature}`).toBe(true);
+      expect(await as({ school: P, role: 'principal', user: PRINCIPAL_P }, (c) => planHasFeature(c, P, feature)), `compass ${feature}`).toBe(true);
+    }
     // My Day's "leave waiting" card is a part of staff leave: a waiting request counts on Growth, not on Starter.
     const [TEACHER_E, PRINCIPAL_E] = [s(96), s(97)];
     await db.pg.exec(`
@@ -198,9 +219,17 @@ describe('the three plans are data: per-student prices a month and a year, and t
     const input = { name: growth.name, priceMonthMinor: 3200, priceYearMinor: proposeYearMinor(3200), graceDays: 10, allWorkingModules: false, moduleIds: [...growth.moduleIds, ...growth.waitingModuleIds], limits: {}, features: ['staff-leave'], messagesPerStudentMonth: 20 };
     const r = await platform((c) => updatePlan(c, by, 'growth', input));
     expect(r).toMatchObject({ ok: true, plan: { priceMonthMinor: 3200, priceYearMinor: 32000, graceDays: 10, features: ['staff-leave'], messagesPerStudentMonth: 20 } });
-    expect(await rows(`select (before_state ->> 'price_month_minor')::int as was, (after_state ->> 'price_month_minor')::int as now, after_state -> 'whatsapp_messages_per_student_month' as messages, actor_user_id from audit_log where event_action = 'billing.plan_changed' and target_id = 'growth'`)).toEqual([{ was: 3000, now: 3200, messages: 20, actor_user_id: FOUNDER }]);
-    // Put back as the founder decided, for the amounts below.
-    expect((await platform((c) => updatePlan(c, by, 'growth', { ...input, priceMonthMinor: 3000, priceYearMinor: 30000, graceDays: 15, features: ['principal-dashboard', 'staff-leave'], messagesPerStudentMonth: null }))).ok).toBe(true);
+    expect(await rows(`select (before_state ->> 'price_month_minor')::int as was, (after_state ->> 'price_month_minor')::int as now, after_state -> 'whatsapp_messages_per_student_month' as messages, actor_user_id from audit_log where event_action = 'billing.plan_changed' and target_id = 'growth' and actor_user_id is not null`)).toEqual([{ was: 3000, now: 3200, messages: 20, actor_user_id: FOUNDER }]);
+    // Put back as the founder decided, for the amounts below: Control's form carries C226's three features too.
+    const back = await platform((c) => updatePlan(c, by, 'growth', { ...input, priceMonthMinor: 3000, priceYearMinor: 30000, graceDays: 15, features: GROWTH_FEATURES, messagesPerStudentMonth: null }));
+    expect(back).toMatchObject({ ok: true, plan: { features: GROWTH_FEATURES } });
+    // A feature only with its module: the timetable generator is refused on a plan without Timetable, the RTE claim
+    // desk without Fees, the compliance desk without Compliance.
+    for (const [feature, module] of [['timetable-generator', 'timetable'], ['rte-claim-desk', 'fees'], ['compliance-desk', 'compliance']]) {
+      const without = { ...input, moduleIds: [...growth.moduleIds, ...growth.waitingModuleIds].filter((m) => m !== module), features: [feature] };
+      expect(await platform((c) => updatePlan(c, by, 'growth', without)), feature).toEqual({ ok: false, reason: 'features' });
+    }
+    expect((await platform((c) => loadPlan(c, 'growth')))!.features).toEqual(GROWTH_FEATURES);
   });
 
   it('a plan that had a price for the whole school keeps it in the audit log; its prices per student start empty; the first plan keeps none', async () => {

@@ -10,6 +10,8 @@ import { lastGraceDay } from '@/lib/control/grace-day';
 import { minorToRupees } from '@/lib/fees/money';
 import type { MessageKey } from '@/lib/i18n';
 import { BillingTerms } from './BillingTerms';
+import { BillingTrial } from './BillingTrial';
+import { trialLine } from './BillingTrials';
 
 // Control → Billing & Plans, the schools (docs/26 slice 8e, C204): each school's plan, the period it pays for, the
 // amount due for that period (C212), the day it has paid until, its access and when grace ends; "Record a payment",
@@ -17,7 +19,7 @@ import { BillingTerms } from './BillingTerms';
 // entry" adds a new row that names the wrong one. Amounts are typed in rupees and shown from the stored paise.
 
 export type Send = (url: string, payload: unknown, done: MessageKey | ((answer: Record<string, unknown>) => MessageKey)) => Promise<boolean>;
-type Panel = 'payment' | 'plan' | 'history' | 'terms';
+type Panel = 'payment' | 'plan' | 'history' | 'terms' | 'trial';
 type PayDraft = { amountRupees: string; paidOn: string; coversUntil: string; reference: string; note: string; corrects: PaymentRow | null; nothingPaid: boolean };
 const STATE_VARIANT: Record<BillingState, 'neutral' | 'success' | 'warning' | 'danger'> = { not_billed: 'neutral', paid: 'success', due: 'warning', grace: 'warning', read_only: 'danger', suspended: 'danger' };
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
@@ -48,7 +50,7 @@ function suggestCoversUntil(school: SchoolBilling, paidOn: string): string {
 }
 
 export function BillingSchools({ data, busy, send }: { data: BillingOverview; busy: boolean; send: Send }) {
-  const { t, lang } = useT();
+  const { t, tCount, lang } = useT();
   const [open, setOpen] = useState<{ schoolId: string; panel: Panel } | null>(null);
   const [pay, setPay] = useState<PayDraft | null>(null);
   const [plan, setPlan] = useState({ planId: '', reason: '' });
@@ -101,13 +103,16 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
       <ul className="flex flex-col gap-3">
         {data.schools.map((s) => {
           const mine = open?.schoolId === s.schoolId ? open.panel : null;
+          // C226: the school's free month, if it has had one (docs/30).
+          const trial = data.trials.find((x) => x.schoolId === s.schoolId) ?? null;
           return (
-            <li key={s.schoolId} data-billing-school={s.schoolId} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
+            <li key={s.schoolId} id={`billing-school-${s.schoolId}`} data-billing-school={s.schoolId} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
               <div className="flex flex-wrap items-center gap-2">
                 <p className="text-base font-bold">{s.schoolName}</p>
                 <Badge variant={STATE_VARIANT[s.state]} data-billing-state={s.state}>
                   {t(`billing.state.${s.state}` as MessageKey)}
                 </Badge>
+                {trial?.inForce && <Badge variant="success">{t('billing.trial.badge')}</Badge>}
                 {s.isTest && <Badge>{t('billing.school.test')}</Badge>}
               </div>
               <dl className="grid gap-x-4 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -143,6 +148,12 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
                   <dt className="text-slate/70">{t('billing.col.graceEnds')}</dt>
                   <dd className="font-semibold">{s.graceEndsAt ? day(lastGraceDay(s.graceEndsAt)) : '—'}</dd>
                 </div>
+                <div>
+                  <dt className="text-slate/70">{t('billing.col.trial')}</dt>
+                  <dd data-billing-school-trial className="font-semibold">
+                    {trial ? trialLine(t, tCount, day, trial) : t('billing.trial.none')}
+                  </dd>
+                </div>
               </dl>
               {s.isTest && <p className="max-w-prose text-slate/70">{t('billing.school.testHow')}</p>}
               <div className="flex flex-wrap gap-2">
@@ -157,6 +168,9 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
                 </button>
                 <button type="button" data-billing-terms disabled={busy} className={TAP} aria-expanded={mine === 'terms'} onClick={() => show(s, 'terms')}>
                   {t('billing.terms.open')}
+                </button>
+                <button type="button" data-billing-trial-open disabled={busy} className={TAP} aria-expanded={mine === 'trial'} onClick={() => show(s, 'trial')}>
+                  {t('billing.trial.open')}
                 </button>
               </div>
               {!s.planId && <p className="max-w-prose text-slate/70">{t('billing.school.noPlanHow')}</p>}
@@ -233,6 +247,7 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
               )}
 
               {mine === 'terms' && <BillingTerms school={s} data={data} busy={busy} send={send} />}
+              {mine === 'trial' && <BillingTrial school={s} data={data} busy={busy} send={send} />}
 
               {mine === 'history' && (
                 <div data-billing-history-list className="flex flex-col gap-2 rounded-md bg-off-white p-3">

@@ -2,6 +2,7 @@ import { writeEntitlementAudit } from '@/lib/audit/log';
 import { PermanentJobError, type JobHandler, type Sql } from '@/lib/jobs/types';
 import { indiaDate, isIsoDate } from '@/lib/time/india';
 import { schoolsWithComplimentary, syncComplimentaryModules } from './billing-terms';
+import { endTrialIfOver, topUpTrialModules, trialsInForce } from './trial';
 
 // The nightly billing check (docs/26 slice 8e, C204). Just after midnight in
 // India, for every school that is not a test school and has a paid-until day:
@@ -53,9 +54,10 @@ export type BillingStep = { from: 'full' | 'grace'; to: 'grace' | 'read_only'; p
 
 // What the check works from: one billed school's paid-until day against
 // `today` (India's date), with its plan's days of grace and the access it
-// has now. Undefined: no paid-until day yet, or a test school. Locks the
-// school's subscription row, inside the caller's transaction as the platform
-// role.
+// has now. Undefined: no paid-until day yet, a test school, or a school in
+// its free month (C226: nothing is owed then; the check resumes the night
+// the school is moved to its plan). Locks the school's subscription row,
+// inside the caller's transaction as the platform role.
 export type BillingFacts = {
   planId: string;
   paidUntil: string;
@@ -89,6 +91,7 @@ export async function billingFacts(db: Sql, schoolId: string, today: string): Pr
        join schools s on s.school_id = sub.school_id
        left join school_entitlements e on e.school_id = sub.school_id
       where sub.school_id = $1 and sub.paid_until is not null and not s.is_test_fixture
+        and not exists (select 1 from school_trials t where t.school_id = sub.school_id and t.ended_at is null)
         for update of sub`,
     [schoolId, today]
   )).rows[0];
@@ -169,9 +172,13 @@ export async function runBillingCheckForSchool(db: Sql, schoolId: string, today:
 
 type Platform = <T>(fn: (db: Sql) => Promise<T>) => Promise<T>;
 
-// The job: every billed school past its paid-until day, each in its own
-// transaction, so one school's failure does not undo another's. A failure
-// is retried by the queue; a school already moved is left as it is.
+// The job: first (C226) every school in its free month, each in its own
+// transaction: one whose last day is before today is moved to its plan
+// (endTrialIfOver), and one still in it gets any module that has started
+// working since (topUpTrialModules). So a school moved tonight is checked for
+// payment tonight. Then every billed school past its paid-until day, each in
+// its own transaction, so one school's failure does not undo another's. A
+// failure is retried by the queue; a school already moved is left as it is.
 // Then (C212) every school with a complimentary module to look after: a
 // complimentary term that begins today is switched on, and one whose last
 // day has passed goes back to what the plan gives (syncComplimentaryModules).
@@ -183,14 +190,24 @@ export function billingNightlyHandler(deps: { platform: Platform; now?: () => Da
     if (asked !== undefined && !isIsoDate(asked)) throw new PermanentJobError('billing.nightly: bad date');
     // A job that waited in the queue checks for the day it is now, never for a day still to come.
     if (typeof asked === 'string' && asked > today) throw new Error('billing.nightly: that day has not begun in India');
+    const failed: string[] = [];
+    for (const trial of await deps.platform((db) => trialsInForce(db))) {
+      try {
+        if (trial.endsOn < today) await deps.platform((db) => endTrialIfOver(db, trial.schoolId, today, BILLING_NIGHTLY_JOB));
+        else await deps.platform((db) => topUpTrialModules(db, trial.schoolId));
+      } catch {
+        failed.push(trial.schoolId);
+      }
+    }
     const schools = await deps.platform(async (db) =>
       (await db.query(
         `select sub.school_id from school_subscriptions sub join schools s on s.school_id = sub.school_id
-          where not s.is_test_fixture and sub.paid_until is not null and sub.paid_until < $1::date order by sub.school_id`,
+          where not s.is_test_fixture and sub.paid_until is not null and sub.paid_until < $1::date
+            and not exists (select 1 from school_trials t where t.school_id = sub.school_id and t.ended_at is null)
+          order by sub.school_id`,
         [today]
       )).rows.map((r) => r.school_id as string)
     );
-    const failed: string[] = [];
     for (const schoolId of schools) {
       try {
         await deps.platform((db) => runBillingCheckForSchool(db, schoolId, today));
