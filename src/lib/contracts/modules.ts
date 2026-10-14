@@ -95,7 +95,7 @@ const REPORTS: readonly SchoolRole[] = ['principal', 'school_admin', 'accountant
 type Row = Omit<ModuleDefinition, 'tone' | 'href'> & { href?: string };
 
 const ROWS: readonly Row[] = [
-  { id: 'dashboard', mobilePriority: 1, label: 'Dashboard', group: 'home', icon: 'dashboard', roles: ALL, phase: 'P5', phaseNote: 'Shell in P1', status: 'partial',
+  { id: 'dashboard', mobilePriority: 1, label: 'Dashboard', group: 'home', icon: 'dashboard', roles: ALL, phase: 'P5', phaseNote: 'The office’s dashboard is live on the school’s own records for today, 7 or 30 days: every number opens the rows it counts, and what is on screen exports as a CSV; every other role opens My Day', status: 'partial',
     capabilities: ['Role dashboards: principal, office, finance, academic, teacher', 'Every tile real and drill-down', 'Date range', 'Alerts feed', 'Export'] },
 
   { id: 'setup', label: 'Setup', group: 'school-people', icon: 'school', roles: OFFICE, phase: 'P7', phaseNote: 'Parts live', status: 'partial',
@@ -149,7 +149,7 @@ const ROWS: readonly Row[] = [
 
   // A teacher reads the flags of their own classes, which the database decides (C209).
   { id: 'early-warning', label: 'Early Warning', group: 'ai-intelligence', icon: 'earlyWarning', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P6', phaseNote: 'v1 is live for staff only: flags by rules from attendance, homework and needs-help follow-ups, each with its reasons, evidence and rule version, and a log of what was done; marks join in P6; nothing is sent to parents', status: 'partial',
-    capabilities: ['Attendance, marks, homework and Pulse signals', 'At-risk score with reasons', 'Action log', 'Parent dispatch gated by legal basis'] },
+    capabilities: ['Attendance, marks, homework and Pulse signals', 'Flags with their reasons and evidence, never a score', 'Action log', 'Parent dispatch gated by legal basis'] },
   { id: 'learning-genome', label: 'Learning Genome', group: 'ai-intelligence', icon: 'genome', roles: LEARNING_AI, phase: 'P6', status: 'spec-v0',
     capabilities: ['Per-student skill map by subject and chapter', 'Strengths and gaps', 'Shown to teachers, summarised to parents'] },
   { id: 'curriculum-gap', label: 'Curriculum Gap Detector', group: 'ai-intelligence', icon: 'curriculumGap', roles: LEARNING_AI, phase: 'P6', status: 'spec-v0',

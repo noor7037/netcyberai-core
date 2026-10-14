@@ -1081,11 +1081,15 @@ const LEAVE_OTHER_TEACHER = '00000000-0000-4000-8000-00000000a004';
 const clearLeave = () => db.pg.exec(`set session_replication_role = replica; delete from staff_leave; set session_replication_role = origin;`);
 const leaveAudit = async () => (await db.pg.query(`select count(*)::int as n from audit_log where event_action like 'leave.%'`)).rows[0].n;
 const leaveDay = async (n) => (await db.pg.query(`select (${TODAY_SQL} + $1::int)::text as d`, [n])).rows[0].d;
+// Each row gets its own asked_at, a second after the one before: the lists are ordered by it, and rows put in
+// within the same millisecond would otherwise fall back to the order of their random ids.
+let leaveRows = 0;
 const putLeave = (user, from, to, kind, reason, decidedBy = null) =>
   db.pg.query(
-    `insert into staff_leave (school_id, user_id, from_date, to_date, kind, reason, status, recorded_by, decided_by, decided_at)
-     values ($1, $2, ${TODAY_SQL} + $3::int, ${TODAY_SQL} + $4::int, $5, $6, case when $7::uuid is null then 'waiting' else 'approved' end, $2, $7::uuid, case when $7::uuid is not null then now() end)`,
-    [SCHOOL, user, from, to, kind, reason, decidedBy]
+    `insert into staff_leave (school_id, user_id, from_date, to_date, kind, reason, status, recorded_by, decided_by, decided_at, asked_at)
+     values ($1, $2, ${TODAY_SQL} + $3::int, ${TODAY_SQL} + $4::int, $5, $6, case when $7::uuid is null then 'waiting' else 'approved' end, $2, $7::uuid, case when $7::uuid is not null then now() end,
+             now() - interval '1 hour' + make_interval(secs => $8::int))`,
+    [SCHOOL, user, from, to, kind, reason, decidedBy, (leaveRows += 1) % 3000]
   );
 let leaveAuditBefore = 0;
 let staffLeaveSeen = null;

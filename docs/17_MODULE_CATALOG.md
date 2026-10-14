@@ -85,34 +85,34 @@ page until the module is built.
 
 | # | Module (id) | Full capabilities to build | Phase | Now |
 |---|---|---|---|---|
-| 1 | Dashboard (`dashboard`) | Role dashboards (principal, office, finance, academic, teacher); every tile real and drill-down; date range; alerts feed; export | P5 (P1 shell) | Partial |
+| 1 | Dashboard (`dashboard`) | Role dashboards (principal, office, finance, academic, teacher); every tile real and drill-down; date range; alerts feed; export | P5 (P1 shell) | Partial (office dashboard on real data, every number opens its rows: C203) |
 | 2 | Setup (`setup`) | Academic sessions, classes/sections, subjects, teacher assignment, school profile, branding, grading schemes, calendar defaults, onboarding checklist | P7 (parts live) | Partial |
 | 3 | Admissions (`admissions`) | Enquiry → visit → application → test/interview → offer → enrol pipeline; sources; follow-up tasks; conversion analytics; converts to Student | P7 | Planned |
 | 4 | Students (`students`) | Profile, CSV import, document scan + OCR autofill, QR ID cards, **sibling mapping** (families with numbered codes, suggestions from guardian phone/email confirmed by the office, link/move/remove, guardian merge without data loss, sibling order by age, Siblings and family panel, list filters and "Link as siblings" bulk action, C116), promotions, transfers, history | done + P7 | Live |
 | 5 | Parents (`parents`) | Guardians, verification, DPDP consent, data requests, contact preferences, WhatsApp linkage | P4 | Live |
-| 6 | Staff (`staff`) | Staff records, roles, documents, leave requests/approvals, workload, attendance | P5 | Foundation |
+| 6 | Staff (`staff`) | Staff records, roles, documents, leave requests/approvals, workload, attendance | P5 | Partial (invitations, accounts, leave: C201) |
 | 7 | Academics (`academics`) | Syllabus map, "taught today", lesson plans, coverage %, objectives met | P2 | Partial |
 | 8 | Attendance (`attendance`) | Class marking (teacher app), late/leave codes, staff attendance, absence alerts, trends, chronic-absence signal | P2 | Live |
 | 9 | Timetable (`timetable`) | Periods, generator with constraints, teacher/class views, clash checker, changes history | P2 view · P7 generator | Planned |
-| 10 | Proxy Auto (`proxy`) | Leave-driven substitution suggestions by free period + subject fit; one-tap assign; notify substitute | P5 | Planned |
+| 10 | Proxy Auto (`proxy`) | Leave-driven substitution suggestions by free period + subject fit; one-tap assign; notify substitute | P5 | Partial (C202; the substitute is told in the app) |
 | 11 | Homework (`homework`) | Set with photo/attachment, due dates, completion by parent reply, class completion stats | P2 | Planned |
 | 12 | Homework Recovery (`recovery`) | Spec v0: detects students missing ≥N homework in a window, suggests a catch-up plan, teacher approves, parent informed via Pulse | P2 | Spec v0 |
 | 13 | Exams & Report Card (`exams`) | Exam setup, marks entry with validation, grading, report card PDF (templates), publish, Personal Best / Most Improved | P6 | Foundation |
 | 14 | Daily Pulse (`pulse`) | Compose from "taught today", Hinglish/Hindi/English, send on WhatsApp, 3–4 understanding replies, teacher follow-up queue, response-rate North Star | P2 compose · P4 send | Foundation |
 | 15 | Communication (`communication`) | Notices (school/class), templates, send-gate (consent, quiet hours, budget), delivery states, failure retry, cost view | P4 | Partial |
-| 16 | PTM Scheduler (`ptm`) | Slots per teacher, parent booking over WhatsApp, reminders, attendance, notes | P4 | Planned |
-| 17 | Events (`events`) | School calendar, holidays, events, RSVPs, reminders | P4 | Planned |
-| 18 | Complaints (`complaints`) | Spec v0: parent/staff complaint intake (WhatsApp + web), category, owner, SLA timer, status machine, resolution note, escalation to principal | P4 | Spec v0 |
+| 16 | PTM Scheduler (`ptm`) | Slots per teacher, parent booking over WhatsApp, reminders, attendance, notes | P4 | Partial (P4) |
+| 17 | Events (`events`) | School calendar, holidays, events, RSVPs, reminders | P4 | Partial (P4) |
+| 18 | Complaints (`complaints`) | Spec v0: parent/staff complaint intake (WhatsApp + web), category, owner, SLA timer, status machine, resolution note, escalation to principal | P4 | Partial (P4) |
 | 19 | Fees (`fees`) | Heads, structures, concessions (incl. sibling concession), ledger, combined family dues, payment collection (`24`: direct UPI with bank-statement proof; Razorpay dormant until a school's keys are entered), receipts, reminders (email with a payment link in P3; WhatsApp reminders switch on in P4), reconciliation, clearance gate | P3 | Foundation |
 | 20 | Payroll (`payroll`) | Spec v0: salary structures (basic, allowances, deductions), PF/ESI/PT/TDS rules as config, monthly run state machine, payslip PDF, bank export; founder supplies statutory rules | P7 | Spec v0 |
 | 21 | Documents & Certificates (`documents`) | ID cards, 7 certificate types (studio exists), request → fee-clearance/waiver → PDF → WhatsApp delivery → audit | P7 | Partial |
 | 22 | Compliance Pro · APAAR (`compliance`) | Consent ledger, audit trail, DSR (live); APAAR ID capture/validation, UDISE+ data readiness report, Form 6 fee-regulation advisory | P7 | Partial |
-| 23 | Reports (`reports`) | Report builder across modules, scheduled reports by email/WhatsApp, CSV/PDF export | P5 | Planned |
-| 24 | Early Warning (`early-warning`) | Attendance + marks + homework + Pulse signals → at-risk score with reasons; teacher/principal action log; parent dispatch gated by legal basis | P5 v1 · P6 v2 | Foundation |
+| 23 | Reports (`reports`) | Report builder across modules, scheduled reports by email/WhatsApp, CSV/PDF export | P5 | Partial (fixed reports by role with CSV: C207) |
+| 24 | Early Warning (`early-warning`) | Attendance + marks + homework + Pulse signals → flags with their reasons and evidence (never a score); teacher/principal action log; parent dispatch gated by legal basis | P5 v1 · P6 v2 | Partial (v1, staff only, table `early_warning_flags`: C209) |
 | 25 | Learning Genome (`learning-genome`) | Spec v0: per-student skill map by subject/chapter from marks, Pulse replies and homework; strengths/gaps; shown to teachers, summarised to parents | P6 | Spec v0 |
 | 26 | Curriculum Gap Detector (`curriculum-gap`) | Spec v0: planned syllabus vs "taught today" vs assessed topics → flags untaught or unassessed chapters per class | P6 | Spec v0 |
 | 27 | Teacher Copilot (`teacher-copilot`) | Spec v0: AI drafts lesson plans, worksheets, Pulse messages and remarks from the syllabus; teacher edits and approves; usage metered | P2 | Spec v0 |
-| 28 | Parent AI · What to Do? (`parent-ai`) | Spec v0: weekly "what to do at home" suggestions per child from the Pulse and marks, in the family's language; teacher-reviewed templates | P4 | Spec v0 |
+| 28 | Parent AI · What to Do? (`parent-ai`) | Spec v0: weekly "what to do at home" suggestions per child from the Pulse and marks, in the family's language; teacher-reviewed templates | P4 | Partial (P4) |
 | 29 | School Health Auditor (`school-auditor`) | Spec v0: weekly score across attendance, coverage, fees, communication, compliance with explained deductions and a fix list | P5 | Spec v0 |
 | 30 | Career Graph (`career`) | Spec v0: from class 9, interests + subject performance → career clusters and stream guidance; counsellor notes | P7 | Spec v0 |
 | 31 | Digital Twin (`twin`) | Spec v0: what-if simulator on the school's own data (fee change, teacher hiring, attendance target) with stated assumptions | P7 | Spec v0 |
