@@ -3886,6 +3886,20 @@ export const hi: Record<keyof typeof en, string> = {
   'billing.err.term': 'यह शर्त उस दिन या उससे पहले ही ख़त्म हो रही है।',
   'billing.source.complimentary': 'मुफ़्त: बिल और प्लान की एक शर्त',
   // c212-pricing end
+  // p7-10a begin
+  // p7-10a end
+  // p7-10b begin
+  // p7-10b end
+  // p7-10c begin
+  // p7-10c end
+  // p7-10d begin
+  // p7-10d end
+  // p7-10e begin
+  // p7-10e end
+  // p7-10f begin
+  // p7-10f end
+  // p7-10g begin
+  // p7-10g end
   'sync.saved': 'सब सेव है',
   'sync.offline': 'ऑफ़लाइन: पिछली बार जो खुला था वही दिख रहा है',
   'sync.sending.one': '{count} बदलाव भेजा जा रहा है…',

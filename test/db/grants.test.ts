@@ -191,6 +191,20 @@ const APP_USER: Record<string, string> = {
   // c212-pricing begin
   school_billing_terms: '', // a school's own terms (C212): read and written in Control only, never by a school
   // c212-pricing end
+  // p7-10a begin
+  // p7-10a end
+  // p7-10b begin
+  // p7-10b end
+  // p7-10c begin
+  // p7-10c end
+  // p7-10d begin
+  // p7-10d end
+  // p7-10e begin
+  // p7-10e end
+  // p7-10f begin
+  // p7-10f end
+  // p7-10g begin
+  // p7-10g end
   // c219 begin
   co_scholastic_grades: 'DELETE,INSERT,SELECT,UPDATE', // frozen with the class's publication (trigger); cleared while not published
   // c219 end
@@ -295,6 +309,20 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // c212-pricing begin
   school_billing_terms: 'INSERT,SELECT,UPDATE', // never deleted; an UPDATE may only bring a last day forward (a trigger)
   // c212-pricing end
+  // p7-10a begin
+  // p7-10a end
+  // p7-10b begin
+  // p7-10b end
+  // p7-10c begin
+  // p7-10c end
+  // p7-10d begin
+  // p7-10d end
+  // p7-10e begin
+  // p7-10e end
+  // p7-10f begin
+  // p7-10f end
+  // p7-10g begin
+  // p7-10g end
   // c219 begin
   schools: 'DELETE,INSERT,SELECT,UPDATE', // Control makes schools and sets plan, billing, pilot, test, budget and board (C219)
   co_scholastic_grades: '', // a school's results are its own: the platform role reads nothing here

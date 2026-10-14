@@ -76,6 +76,20 @@ describe('the guides', () => {
       // p6-9f end
       // c212-pricing begin
       // c212-pricing end
+      // p7-10a begin
+      // p7-10a end
+      // p7-10b begin
+      // p7-10b end
+      // p7-10c begin
+      // p7-10c end
+      // p7-10d begin
+      // p7-10d end
+      // p7-10e begin
+      // p7-10e end
+      // p7-10f begin
+      // p7-10f end
+      // p7-10g begin
+      // p7-10g end
     ]);
     expect(new Set(HELP_ARTICLES.map((a) => a.slug)).size).toBe(HELP_ARTICLES.length);
     expect(HELP_ARTICLES.every((a) => /^[a-z][a-z0-9-]+$/.test(a.slug) && a.slug !== 'ticket')).toBe(true); // /app/help/ticket is Raise Ticket

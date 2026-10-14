@@ -483,6 +483,20 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   // p6-9f end
   // c212-pricing begin
   // c212-pricing end
+  // p7-10a begin
+  // p7-10a end
+  // p7-10b begin
+  // p7-10b end
+  // p7-10c begin
+  // p7-10c end
+  // p7-10d begin
+  // p7-10d end
+  // p7-10e begin
+  // p7-10e end
+  // p7-10f begin
+  // p7-10f end
+  // p7-10g begin
+  // p7-10g end
 ];
 
 // Which providers are this person's: their role, and a module the school has on.

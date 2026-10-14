@@ -3890,6 +3890,20 @@ export const en = {
   'billing.err.term': 'That term already ends on or before that day.',
   'billing.source.complimentary': 'Complimentary: a term in Billing & Plans',
   // c212-pricing end
+  // p7-10a begin
+  // p7-10a end
+  // p7-10b begin
+  // p7-10b end
+  // p7-10c begin
+  // p7-10c end
+  // p7-10d begin
+  // p7-10d end
+  // p7-10e begin
+  // p7-10e end
+  // p7-10f begin
+  // p7-10f end
+  // p7-10g begin
+  // p7-10g end
   'sync.saved': 'All saved',
   'sync.offline': 'Offline: showing what was last loaded',
   'sync.sending.one': 'Sending {count} change…',
