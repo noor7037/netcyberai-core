@@ -1019,6 +1019,32 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p5-8c end
   // p5-8d begin
+  {
+    slug: 'read-the-dashboard',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Read the dashboard and open the rows behind a number', hi: 'डैशबोर्ड पढ़ें और किसी संख्या के पीछे की पंक्तियाँ खोलें' },
+    summary: {
+      en: 'The dashboard shows the school’s numbers for today, 7 days or 30 days, counted from the school’s own records. A number opens the rows behind it, and every number says how it is counted.',
+      hi: 'डैशबोर्ड आज, 7 दिन या 30 दिन की स्कूल की संख्याएँ दिखाता है, जो स्कूल के अपने रिकॉर्ड से गिनी जाती हैं। संख्या अपने पीछे की पंक्तियाँ खोलती है, और हर संख्या बताती है कि वह कैसे गिनी जाती है।',
+    },
+    steps: [
+      { en: 'Open “Dashboard” from the menu. The dark band at the top says how many things need you today; tap one to go straight to it.', hi: 'मेनू से “Dashboard” खोलें। ऊपर की गहरी पट्टी बताती है कि आज कितने काम आपका इंतज़ार कर रहे हैं; किसी पर टैप करें और सीधे वहाँ पहुँचें।' },
+      { en: 'Read “Needs your attention”. Each line has one button that opens the place to deal with it.', hi: '“Needs your attention” पढ़ें। हर पंक्ति में एक बटन है जो उस काम की जगह खोलता है।' },
+      { en: 'Choose the days: “Today”, “7 days” or “30 days”. Numbers about a span of days change; each number says which days it is about.', hi: 'दिन चुनें: “Today”, “7 days” या “30 days”। कई दिनों वाली संख्याएँ बदलती हैं; हर संख्या बताती है कि वह किन दिनों की है।' },
+      { en: 'Tap a number to open the rows behind it: the classes not marked, the fee entries overdue, the messages held back. The list’s title says how many rows it has; a number that is not a link has no such list yet.', hi: 'किसी संख्या पर टैप करके उसके पीछे की पंक्तियाँ खोलें: बिना हाज़िरी की कक्षाएँ, तारीख़ निकली फ़ीस, रोके गए संदेश। सूची का शीर्षक बताता है कि उसमें कितनी पंक्तियाँ हैं; जो संख्या लिंक नहीं है, उसकी ऐसी सूची अभी नहीं है।' },
+      { en: 'Open “Why this?” under a number to read how it is counted, what it is counted from, and when.', hi: 'किसी संख्या के नीचे “Why this?” खोलें और पढ़ें कि वह कैसे, किससे और कब गिनी गई।' },
+      { en: 'On a chart, press “Table” to read the same numbers as a list. “Download as a spreadsheet (CSV)” saves what is on the screen.', hi: 'किसी चार्ट पर “Table” दबाएँ और वही संख्याएँ सूची के रूप में पढ़ें। “Download as a spreadsheet (CSV)” स्क्रीन पर जो है उसे सेव करता है।' },
+    ],
+    tips: [
+      { en: 'A number you do not see is one your role cannot read, or its module is switched off. It is never shown as zero.', hi: 'जो संख्या आपको नहीं दिखती, उसे आपकी भूमिका पढ़ नहीं सकती या उसका मॉड्यूल बंद है। उसे कभी शून्य के रूप में नहीं दिखाया जाता।' },
+      { en: '“Not set up yet” means the thing it counts has not been started: for example, no fee raised or no monthly budget.', hi: '“Not set up yet” का मतलब है कि जो चीज़ गिनी जाती है वह अभी शुरू नहीं हुई: जैसे कोई फ़ीस नहीं लगाई गई या मासिक बजट तय नहीं है।' },
+      { en: 'The dashboard is for the principal and the school admin. Everyone else starts from My Day.', hi: 'डैशबोर्ड प्रिंसिपल और स्कूल एडमिन के लिए है। बाक़ी सब मेरा दिन से शुरू करते हैं।' },
+    ],
+    start: { href: '/app/dashboard', label: { en: 'Dashboard', hi: 'Dashboard' } },
+    related: ['use-my-day', 'message-states'],
+    keywords: ['dashboard', 'numbers', 'tiles', 'attention', 'export', 'csv', 'spreadsheet', 'why this', 'range', 'डैशबोर्ड', 'संख्या', 'रिपोर्ट'],
+  },
   // p5-8d end
   // p5-8e begin
   // p5-8e end

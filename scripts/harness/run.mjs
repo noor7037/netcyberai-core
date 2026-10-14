@@ -1344,6 +1344,220 @@ const proxyCoverShownDone = (selector) => async () => {
 };
 // p5-8c end
 // p5-8d begin
+// The principal's dashboard on school facts (docs/26 slice 8d, C203). The dashboard is opened on 30 days after a
+// few rows the seed does not have are added (a homework due today with one student not done, a receipt, a
+// complaint past its time, a notice waiting, an event to come, a draft answer, a monthly budget). Then EVERY tile
+// that is a link is followed in the same browser and what its screen lists is counted: the number on the tile
+// must be the rows of the screen it opens (or, for a sum or a figure, what those rows or that screen say). A tile
+// with no link must be one of the two whose screen has no such list yet. Afterwards some tiles are compared with
+// the database, and every added row is taken away.
+const indiaDay = (back = 0) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date(Date.now() - back * 86400000));
+const H8D = '00000000-0000-4000-8000-0000008d000';
+const clearDashboardRows = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from homework_status where target_id = '${H8D}2'; delete from homework_targets where target_id = '${H8D}2'; delete from homework where homework_id = '${H8D}1';
+    delete from receipts where receipt_no = 'H8D-1'; delete from complaints where complaint_id = '${H8D}3';
+    delete from class_notices where notice_id = '${H8D}4'; delete from school_events where event_id = '${H8D}5'; delete from parent_ai_answers where answer_id = '${H8D}6';
+    set session_replication_role = origin;`);
+};
+// A notice waiting for approval, an event in three days and a draft answer: the rows of three of the lists.
+const addParentsRows = async () => {
+  const guardian = (await db.pg.query(`select parent_id from parent_student_map where school_id = $1 and student_id = $2 limit 1`, [SCHOOL, STUDENT])).rows[0].parent_id;
+  await db.pg.query(`insert into class_notices (notice_id, school_id, class_id, body, written_by) values ($1, $2, $3, 'Harness 8d: bring a water bottle on Friday.', $4)`, [`${H8D}4`, SCHOOL, CLASS_5A, PEOPLE.teacher.sub]);
+  await db.pg.query(`insert into school_events (event_id, school_id, title, held_on, details, created_by) values ($1, $2, 'Harness 8d science fair', ${TODAY_SQL} + 3, 'In the school hall.', $3)`, [`${H8D}5`, SCHOOL, PEOPLE.principal.sub]);
+  await db.pg.query(`insert into parent_ai_answers (answer_id, school_id, student_id, parent_id, body, sources, ai_assisted, drafted_by) values ($1, $2, $3, $4, 'Harness 8d: read together for ten minutes.', '[{"kind":"followup"}]', false, $5)`, [`${H8D}6`, SCHOOL, STUDENT, guardian, PEOPLE.teacher.sub]);
+};
+const firstNumber = (text) => Number(String(text ?? '').replace(/,/g, '').match(/\d+/)?.[0] ?? NaN);
+let dashboardBudget = null;
+let dashboardSeen = null;
+const dashboardRows = async (page) => {
+  await clearDashboardRows();
+  const subject = (await db.pg.query(`select subject_id from subjects where school_id = $1 order by name limit 1`, [SCHOOL])).rows[0].subject_id;
+  const guardian = (await db.pg.query(`select parent_id from parent_student_map where school_id = $1 and student_id = $2 limit 1`, [SCHOOL, STUDENT])).rows[0].parent_id;
+  const two = (await db.pg.query(`select student_id from students where school_id = $1 and class_id = $2 and status = 'active' order by student_id limit 2`, [SCHOOL, CLASS_5A])).rows.map((r) => r.student_id);
+  await db.pg.query(`insert into homework (homework_id, school_id, subject_id, title, due_date, created_by) values ($1, $2, $3, 'Harness 8d sums', ${TODAY_SQL}, $4)`, [`${H8D}1`, SCHOOL, subject, PEOPLE.teacher.sub]);
+  await db.pg.query(`insert into homework_targets (target_id, school_id, homework_id, class_id, title, due_date) values ($1, $2, $3, $4, 'Harness 8d sums', ${TODAY_SQL})`, [`${H8D}2`, SCHOOL, `${H8D}1`, CLASS_5A]);
+  await db.pg.query(`insert into homework_status (school_id, target_id, class_id, student_id, done, checked_by) values ($1, $2, $3, $4, true, $6), ($1, $2, $3, $5, false, $6)`, [SCHOOL, `${H8D}2`, CLASS_5A, two[0], two[1], PEOPLE.teacher.sub]);
+  await db.pg.query(`insert into receipts (school_id, receipt_no, student_id, total_minor, method, issued_by) values ($1, 'H8D-1', $2, 150000, 'cash', $3)`, [SCHOOL, STUDENT, PEOPLE.principal.sub]);
+  await db.pg.query(`insert into complaints (complaint_id, school_id, parent_id, student_id, source, summary, status, owner_id, due_at, created_by) values ($1, $2, $3, $4, 'office', 'Harness 8d: the gate opens late.', 'open', $5, now() - interval '2 hours', $5)`, [`${H8D}3`, SCHOOL, guardian, STUDENT, PEOPLE.principal.sub]);
+  await addParentsRows();
+  dashboardBudget = (await db.pg.query(`select monthly_budget_paise from schools where school_id = $1`, [SCHOOL])).rows[0].monthly_budget_paise;
+  await db.pg.query(`update schools set monthly_budget_paise = 500000 where school_id = $1`, [SCHOOL]);
+  const open = async () => {
+    await page.goto(`${base}/app/dashboard?range=30d`, { waitUntil: 'networkidle', timeout: 90000 });
+    await page.locator('[data-dashboard="30d"] [data-fact]').first().waitFor({ timeout: 30000 });
+  };
+  await open();
+  const tiles = await page.locator('[data-fact]').evaluateAll((els) => els.map((e) => ({ id: e.getAttribute('data-fact'), state: e.getAttribute('data-state'), value: e.querySelector('[data-fact-value]')?.textContent.trim(), href: e.querySelector('a')?.getAttribute('href') })));
+  const attention = await page.locator('[data-attention]').evaluateAll((els) => els.map((e) => e.getAttribute('data-attention')));
+  const needsYou = Number(await page.locator('[data-needs-you]').getAttribute('data-needs-you'));
+  const why = await page.locator('[data-why]').count();
+  const charts = await page.locator('[data-chart]').evaluateAll((els) => els.map((e) => e.getAttribute('data-chart')));
+  const exportHref = await page.locator('[data-dashboard-export]').getAttribute('href');
+  // In the fees chart each bar's name opens that bar's own rows.
+  const feeBars = await page.locator('[data-chart="fees-owed"] [data-chart-row-open]').evaluateAll((els) => els.map((e) => e.getAttribute('href')));
+  // Its title says no total: the two bars added together would be a number with no rule and no list of its own.
+  const feesTitle = { plain: await page.getByText('Fees still to come in', { exact: true }).count(), withTotal: await page.getByText(/Fees still to come in:/).count() };
+  // Tile by tile, every one: follow the tile's link and count what is listed there.
+  const rows = {};
+  for (const tile of tiles) {
+    const id = tile.id;
+    if (tile.state === 'not_set_up') continue;
+    if (!tile.href) {
+      rows[id] = { kind: 'no-link', tile: tile.value };
+      continue;
+    }
+    const url = new URL(base + tile.href);
+    const q = url.searchParams;
+    await page.goto(url.href, { waitUntil: 'networkidle', timeout: 90000 });
+    if (url.pathname === '/app/students' || url.pathname === '/app/admissions') {
+      // Nobody waiting for consent: the screen says so with its own empty state and no count line.
+      await page.locator('[data-students-count], [data-empty]').first().waitFor({ timeout: 30000 });
+      const counted = await page.locator('[data-students-count]').count();
+      rows[id] = { kind: 'rows', tile: tile.value, said: counted ? Number(await page.locator('[data-students-count]').getAttribute('data-students-count')) : 0, listed: counted ? await page.locator('tbody tr').count() : 0 };
+    } else if (url.pathname === '/app/communication' && (q.has('from') || q.has('state'))) {
+      await page.locator('[data-messages]:not([data-messages-range="last"])').waitFor({ timeout: 30000 });
+      rows[id] = { kind: 'rows', tile: tile.value, said: firstNumber(await page.locator('[data-state-all]').textContent()), listed: await page.locator('[data-message]').count() };
+    } else if (url.pathname === '/app/communication' && !q.has('show')) {
+      // The month's spend: the screen says the figure itself.
+      await page.locator('[data-budget]').waitFor({ timeout: 30000 });
+      rows[id] = { kind: 'figure', tile: tile.value, text: (await page.locator('[data-budget]').textContent()) ?? '' };
+    } else if (url.pathname === '/app/pulse' && !q.has('show')) {
+      // The needs-help queue is the screen's own list: its heading says how many, and that many are listed.
+      const heading = page.locator('h2', { hasText: /needs? help$/ }).first();
+      await heading.waitFor({ timeout: 30000 });
+      rows[id] = { kind: 'rows', tile: tile.value, said: firstNumber(await heading.textContent()), listed: await page.locator('[data-followup]').count() };
+    } else {
+      await page.locator('[data-shown]').waitFor({ timeout: 30000 });
+      const title = (await page.locator('[data-shown-title]').textContent()).trim();
+      const texts = await page.locator('[data-shown-row]').allTextContents();
+      rows[id] = { kind: 'rows', tile: tile.value, title, said: firstNumber(title.split(':').pop()), listed: texts.length, texts, text: (await page.locator('[data-shown]').textContent()) ?? '' };
+    }
+    rows[id].state = tile.state;
+  }
+  // Back on the dashboard for the picture, with one chart shown as its table.
+  await open();
+  await page.locator('[data-chart-view="table"]').first().click();
+  await page.evaluate(() => window.scrollTo(0, 0));
+  const tableLinks = await page.locator('[data-chart="attendance-today"] tbody a').count();
+  dashboardSeen = { tiles, attention, needsYou, why, charts, exportHref, rows, tableLinks, feeBars, feesTitle };
+};
+// What each row of a list carries, for the tiles that are a sum of it; and the tiles that say a rate.
+const SUM_IN_ROWS = { 'pulse.understood': /Answers: (\d+) understood/, 'pulse.needs_help': /understood, (\d+) needs help/, 'homework.not_done': /not done (\d+)\./ };
+const amountsIn = (text) => [...String(text ?? '').matchAll(/₹([\d,]+(?:\.\d+)?)/g)].map((m) => Number(m[1].replace(/,/g, '')));
+const dashboardRowsDone = async () => {
+  const truth = (await db.pg.query(
+    `select (select count(*)::int from students where school_id = $1 and status = 'active') as active,
+            (select count(*)::int from students where school_id = $1 and status = 'pending_consent') as waiting,
+            (select count(*)::int from communication_log where school_id = $1 and channel = 'whatsapp' and created_at >= ((${TODAY_SQL} - 29)::timestamp at time zone 'Asia/Kolkata')) as messages,
+            (select count(*)::int from attendance a join students s on s.student_id = a.student_id where a.school_id = $1 and a.date = ${TODAY_SQL} and a.status = 'present' and s.status in ('active', 'pending_consent') and s.class_id is not null) as present,
+            (select count(*)::int from fees_ledger l where l.school_id = $1 and (l.status::text = 'overdue' or (l.status::text in ('pending', 'partial') and l.due_date < ${TODAY_SQL})) and l.amount_minor > coalesce((select sum(p.amount_minor) from payments p where p.fee_id = l.fee_id), 0)) as overdue`,
+    [SCHOOL]
+  )).rows[0];
+  await clearDashboardRows();
+  await db.pg.query(`update schools set monthly_budget_paise = $2 where school_id = $1`, [SCHOOL, dashboardBudget]);
+  const s = dashboardSeen;
+  const problems = [];
+  const tile = (id) => s.tiles.find((t) => t.id === id);
+  // Every tile that was counted was followed; the only tiles with no link are the two whose screen has no list
+  // of exactly their rows yet (Complaints and PTM).
+  const followed = Object.keys(s.rows).length;
+  if (followed < 24) problems.push(`only ${followed} tiles were followed`);
+  const noLink = Object.entries(s.rows).filter(([, r]) => r.kind === 'no-link').map(([id]) => id);
+  if (noLink.join() !== 'complaints.open,ptm.coming') problems.push(`tiles with no link: ${noLink.join() || 'none'}`);
+  // Each tile is what its screen lists or says.
+  for (const [id, r] of Object.entries(s.rows)) {
+    const tileSays = String(r.tile ?? '');
+    if (r.kind === 'no-link') continue;
+    if (r.kind === 'figure') {
+      // The month's spend and its budget: the amounts on the tile are amounts the screen says.
+      const there = amountsIn(r.text);
+      const missing = amountsIn(tileSays).filter((a) => !there.includes(a));
+      if (!amountsIn(tileSays).length || missing.length) problems.push(`${id}: the tile says ${tileSays}, its screen says "${r.text.slice(0, 80)}"`);
+      continue;
+    }
+    if (r.said !== r.listed) problems.push(`${id}: its screen says ${r.said} and lists ${r.listed}`);
+    else if (r.state === 'no_data') {
+      // Nothing recorded in the days: the tile says so, and its list is empty.
+      if (r.listed !== 0) problems.push(`${id}: the tile says nothing was recorded, its screen lists ${r.listed}`);
+    } else if (id === 'attendance.present_rate') {
+      // A rate: the list's own line says the same rate, above the days it is worked out from.
+      if (!r.text.includes(`In school (present or late): ${tileSays} of`)) problems.push(`${id}: the tile says ${tileSays}, its screen lists ${r.listed} days and says "${r.text.slice(0, 120)}"`);
+    } else if (SUM_IN_ROWS[id]) {
+      // A sum: what the rows carry adds up to the tile.
+      const sum = r.texts.reduce((a, text) => a + Number(SUM_IN_ROWS[id].exec(text)?.[1] ?? NaN), 0);
+      if (sum !== firstNumber(tileSays)) problems.push(`${id}: the tile says ${tileSays}, its rows add up to ${sum}`);
+    } else if (/^\d/.test(tileSays) && firstNumber(tileSays) !== r.listed) problems.push(`${id}: the tile says ${tileSays}, its screen lists ${r.listed}`);
+    else if (!/^\d/.test(tileSays) && !String(r.title ?? '').includes(tileSays)) problems.push(`${id}: the tile says ${tileSays}, its screen says "${r.title}"`);
+  }
+  // The three lists added for the rows this run wrote: one notice waiting, one event to come, one draft answer.
+  // (A draft's words are not repeated in its list: the row names the child and who drafted it.)
+  for (const id of ['notices.waiting', 'events.coming', 'parent_ai.drafts']) if (s.rows[id]?.listed !== 1 || s.rows[id].text.includes('Harness 8d') !== (id !== 'parent_ai.drafts')) problems.push(`${id}: its screen lists ${s.rows[id]?.listed}: "${String(s.rows[id]?.text).slice(0, 120)}"`);
+  if ((s.rows['tickets.open']?.listed ?? 0) < 1) problems.push(`tickets.open: its screen lists ${s.rows['tickets.open']?.listed}`);
+  if (s.feeBars.join() !== '/app/fees?show=owed,/app/fees?show=overdue') problems.push(`the fees chart's bars open: ${s.feeBars.join() || 'nothing'}`);
+  if (s.feesTitle.plain < 1 || s.feesTitle.withTotal > 0) problems.push(`the fees chart's title: ${JSON.stringify(s.feesTitle)}`);
+  // And the tiles are the database's own counts.
+  const want = { 'students.active': truth.active, 'students.waiting_consent': truth.waiting, 'messages.total': truth.messages, 'attendance.present': truth.present };
+  for (const [id, n] of Object.entries(want)) if (firstNumber(tile(id)?.value) !== n) problems.push(`${id}: the tile says ${tile(id)?.value}, the database has ${n}`);
+  if (s.rows['fees.overdue']?.listed !== truth.overdue) problems.push(`fees.overdue: its screen lists ${s.rows['fees.overdue']?.listed} entries, the database has ${truth.overdue}`);
+  if (tile('attendance.classes_marked')?.value !== '1 of 3') problems.push(`classes marked: ${tile('attendance.classes_marked')?.value}`);
+  if (!/1,500/.test(tile('fees.collected')?.value ?? '')) problems.push(`fees received: ${tile('fees.collected')?.value}`);
+  if (tile('homework.checked')?.value !== '0 of 1' || tile('homework.not_done')?.value !== '1') problems.push(`homework: ${tile('homework.checked')?.value}, not done ${tile('homework.not_done')?.value}`);
+  if (tile('whatsapp.spend')?.state !== 'ok') problems.push(`the budget tile is ${tile('whatsapp.spend')?.state}`);
+  for (const id of ['attendance.classes_unmarked', 'complaints.overdue', 'fees.overdue', 'students.waiting_consent', 'messages.held']) if (!s.attention.includes(id)) problems.push(`not on the attention list: ${id}`);
+  if (s.needsYou !== s.attention.length) problems.push(`the band says ${s.needsYou} things, the list has ${s.attention.length}`);
+  if (s.why !== s.tiles.length + s.attention.length + s.charts.length) problems.push(`"Why this?" ${s.why} times for ${s.tiles.length} tiles, ${s.attention.length} attention items and ${s.charts.length} charts`);
+  if (s.charts.join() !== 'attendance-today,present-rate,fees-owed,messages-by-state,homework-checked') problems.push(`charts: ${s.charts.join()}`);
+  if (s.exportHref !== '/api/app/dashboard/export?range=30d') problems.push(`export link: ${s.exportHref}`);
+  if (s.tableLinks < 4) problems.push(`the chart's table has ${s.tableLinks} links to rows`);
+  if (problems.length) throw new Error(`dashboard: ${problems.join('; ')}`);
+};
+// The CSV over HTTP, as the signed-in principal: a file with the tiles in it, and one audit row for it.
+const dashboardExport = async (page) => {
+  await page.locator('[data-dashboard="7d"] [data-fact]').first().waitFor({ timeout: 30000 });
+  const before = Number((await db.pg.query(`select count(*)::int as n from audit_log where school_id = $1 and event_action = 'dashboard.exported'`, [SCHOOL])).rows[0].n);
+  const res = await page.request.get(`${base}/api/app/dashboard/export?range=7d`);
+  const text = await res.text();
+  const after = Number((await db.pg.query(`select count(*)::int as n from audit_log where school_id = $1 and event_action = 'dashboard.exported'`, [SCHOOL])).rows[0].n);
+  const tiles = await page.locator('[data-fact]').count();
+  if (res.status() !== 200 || !/text\/csv/.test(res.headers()['content-type'] ?? '')) throw new Error(`the export answered ${res.status()} ${res.headers()['content-type']}`);
+  if (!text.includes('Active students') || text.trim().split('\r\n').length <= tiles) throw new Error(`the export has ${text.trim().split('\r\n').length} lines for ${tiles} tiles`);
+  if (after !== before + 1) throw new Error(`${after - before} audit rows for one export`);
+};
+// A screen opened on a dashboard number's filter: its title says how many rows, and that many are listed.
+const shownRows = async (page) => {
+  await page.locator('[data-shown]').waitFor({ timeout: 30000 });
+  const title = (await page.locator('[data-shown-title]').textContent()).trim();
+  const listed = await page.locator('[data-shown-row]').count();
+  const said = firstNumber(title.split(':').pop());
+  if (said !== listed || listed === 0) throw new Error(`"${title}" lists ${listed} rows`);
+};
+// The same, for a list whose rows this run writes first (a notice waiting, an event to come, a draft answer):
+// the rows go in, the page is opened again, and the list must hold exactly the one row. `words`: whether the
+// row's own words are in the list (a notice's and an event's are; a draft answer's are not repeated there).
+const shownAfterAdding = (words) => async (page) => {
+  await clearDashboardRows();
+  await addParentsRows();
+  await page.reload({ waitUntil: 'networkidle', timeout: 90000 });
+  await shownRows(page);
+  const text = (await page.locator('[data-shown]').textContent()) ?? '';
+  const listed = await page.locator('[data-shown-row]').count();
+  if (listed !== 1 || text.includes('Harness 8d') !== words) throw new Error(`the list holds ${listed} rows: "${text.slice(0, 120)}"`);
+};
+// The days behind the present rate: the title's count is the rows, and the line above them says the rate.
+const attendanceDays = async (page) => {
+  await shownRows(page);
+  const text = (await page.locator('[data-shown]').textContent()) ?? '';
+  if (!/In school \(present or late\): [\d.]+% of the \d+ marks saved in these days\./.test(text)) throw new Error(`no rate above the days: "${text.slice(0, 160)}"`);
+};
+const heldMessages = async (page) => {
+  await page.locator('[data-messages]:not([data-messages-range="last"])').waitFor({ timeout: 30000 });
+  await page.waitForFunction(() => document.querySelector('[data-state="held"]')?.getAttribute('aria-pressed') === 'true' && document.querySelectorAll('[data-message]').length > 0, null, { timeout: 20000 });
+  const states = await page.locator('[data-message]').evaluateAll((els) => [...new Set(els.map((e) => e.getAttribute('data-message')))].join());
+  const said = firstNumber((await page.locator('[data-state="held"]').textContent()).split('·').pop());
+  const listed = await page.locator('[data-message]').count();
+  if (states !== 'held' || said !== listed) throw new Error(`held messages: the button says ${said}, ${listed} are listed, states ${states}`);
+};
 // p5-8d end
 // p5-8e begin
 // p5-8e end
@@ -1776,6 +1990,20 @@ const SCREENS = [
   ['teacher', 'teacher-my-day-cover', '/app/my-day', proxyCoverShownAt('[data-today-card="covers-today"]', ['You cover 1 period today', '4. 6-A English', 'See your covers']), proxyCoverShownDone('[data-today-card="covers-today"]')],
   // p5-8c end
   // p5-8d begin
+  // The principal's dashboard on school facts (C203): 30 days with every tile's link followed and its rows counted;
+  // the CSV; Hindi; the first-visit tour; and the screens a dashboard number opens, each on that number's filter.
+  ['principal', 'app-dashboard-30-days', '/app/dashboard?range=30d', dashboardRows, dashboardRowsDone],
+  ['principal', 'app-dashboard-export', '/app/dashboard?range=7d', dashboardExport],
+  ['principal', 'app-dashboard-hindi', '/app/dashboard?range=7d', speak('हिन्दी'), backToEnglish],
+  ['principal', 'app-dashboard-first-visit', '/app/dashboard', firstVisit, skipAndCheck('principal')],
+  ['principal', 'app-attendance-rows', '/app/attendance?show=unmarked', shownRows],
+  ['principal', 'app-attendance-days', `/app/attendance?show=days&from=${indiaDay(29)}&to=${indiaDay(0)}`, attendanceDays],
+  ['principal', 'app-fees-rows', '/app/fees?show=overdue', shownRows],
+  ['principal', 'app-communication-rows', `/app/communication?state=held&from=${indiaDay(29)}&to=${indiaDay(0)}`, heldMessages],
+  ['principal', 'app-notices-rows', '/app/communication?show=notices', shownAfterAdding(true), clearDashboardRows],
+  ['principal', 'app-events-rows', '/app/events?show=coming', shownAfterAdding(true), clearDashboardRows],
+  ['principal', 'app-answers-rows', '/app/parent-ai?show=drafts', shownAfterAdding(false), clearDashboardRows],
+  ['principal', 'app-tickets-rows', '/app/help/ticket?show=open', shownRows],
   // p5-8d end
   // p5-8e begin
   // p5-8e end

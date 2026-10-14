@@ -119,15 +119,21 @@ export async function cancelEvent(db: PoolClient, queue: Queue, actor: Actor, ev
 
 export type EventRow = { event_id: string; title: string; held_on: string; starts_at: string | null; details: string; status: 'draft' | 'invited' | 'cancelled'; classes: string | null; invited: number; yes: number; no: number };
 // Row level security decides which events a teacher gets, and which answers are counted for them.
-export async function listEvents(db: PoolClient, schoolId: string): Promise<EventRow[]> {
+// `comingFrom` (India's date; docs/26 slice 8d, C203): only the events dated that day or later that are not
+// cancelled, the nearest first. It is what /app/events?show=coming lists and what the dashboard's number counts.
+export const EVENT_ROWS_MAX = 500;
+export async function listEvents(db: PoolClient, schoolId: string, comingFrom?: string): Promise<EventRow[]> {
+  const which = comingFrom
+    ? `where e.school_id = $1 and e.status <> 'cancelled' and e.held_on >= $2::date order by e.held_on, e.created_at, e.event_id limit ${EVENT_ROWS_MAX}`
+    : `where e.school_id = $1 order by e.held_on desc, e.created_at desc limit 50`;
   const { rows } = await db.query(
     `select e.event_id, e.title, e.held_on, e.starts_at, e.details, e.status,
             case when cardinality(e.class_ids) = 0 then null else (select string_agg(c.name, ', ' order by c.name) from classes c where c.school_id = e.school_id and c.class_id = any(e.class_ids)) end as classes,
             (select count(*)::int from communication_log l where l.school_id = e.school_id and l.dedupe_key like 'event:' || e.event_id || ':inv:%' and l.status::text in ('queued', 'uncertain', 'sent', 'delivered', 'read')) as invited,
             (select count(*)::int from event_replies r where r.event_id = e.event_id and r.answer = 'yes') as yes,
             (select count(*)::int from event_replies r where r.event_id = e.event_id and r.answer = 'no') as no
-       from school_events e where e.school_id = $1 order by e.held_on desc, e.created_at desc limit 50`,
-    [schoolId]
+       from school_events e ${which}`,
+    comingFrom ? [schoolId, comingFrom] : [schoolId]
   );
   return rows.map((r) => ({ ...r, held_on: isoDay(r.held_on), starts_at: r.starts_at ? String(r.starts_at).slice(0, 5) : null }));
 }

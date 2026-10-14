@@ -146,6 +146,8 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['proxy', 'proxy'],
   // p5-8c end
   // p5-8d begin
+  // The dashboard as a spreadsheet: a read that also writes its own audit row.
+  ['dashboard/export', 'dashboard'],
   // p5-8d end
   // p5-8e begin
   // p5-8e end

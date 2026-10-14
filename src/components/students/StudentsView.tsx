@@ -7,6 +7,7 @@ import { Table, type TableColumn } from '@/components/ui/Table';
 import { Badge } from '@/components/ui/Badge';
 import { Modal } from '@/components/ui/Modal';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
+import { useT } from '@/components/app-shell/LangContext';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
@@ -56,7 +57,10 @@ type Props = {
 
 export function StudentsView({ title, description, statusFilter, openNew = false }: Props) {
   const router = useRouter();
+  const { t, tCount } = useT();
   const [students, setStudents] = useState<Student[] | null>(null);
+  // How many students the list has in all: the number a dashboard tile opened this screen for (C203).
+  const [total, setTotal] = useState(0);
   const [classes, setClasses] = useState<ClassRow[]>([]);
   const [classesLoaded, setClassesLoaded] = useState(false);
   const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
@@ -82,6 +86,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
     try {
       const qs = new URLSearchParams();
       if (statusFilter) qs.set('status', statusFilter);
+      qs.set('limit', '200');
       if (search) qs.set('search', search);
       const [studentsRes, classesRes] = await Promise.all([
         fetch(`/api/app/students?${qs.toString()}`),
@@ -91,6 +96,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
       const studentsBody = await studentsRes.json();
       const classesBody = classesRes.ok ? await classesRes.json() : { classes: [] };
       setStudents(studentsBody.students);
+      setTotal(Number(studentsBody.total ?? studentsBody.students.length));
       setClasses(classesBody.classes);
       setClassesLoaded(classesRes.ok);
       setState('ready');
@@ -270,6 +276,12 @@ export function StudentsView({ title, description, statusFilter, openNew = false
       }
     >
 
+      {state === 'ready' && students && students.length > 0 && (
+        <p data-students-count={total} className="text-sm text-slate">
+          {tCount('students.list.count', total)}
+          {total > students.length && ` ${t('students.list.more', { shown: students.length })}`}
+        </p>
+      )}
       <Table
         columns={columns}
         rows={students ?? []}

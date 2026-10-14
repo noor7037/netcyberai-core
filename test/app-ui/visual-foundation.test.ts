@@ -5,9 +5,11 @@ import { AreaTrend, CalendarHeat, DonutChart, GaugeChart, greetingFor, HeroBand,
 import { controlShellGroups } from '@/components/app-shell/shell-nav';
 import { ControlDashboardView } from '@/components/dashboards/ControlDashboardView';
 import { indiaToday, lastDays, plural, trendFromSeries } from '@/components/dashboards/dashboard-parts';
+import { FactChart } from '@/components/dashboards/FactChart';
 import { OfficeDashboardView } from '@/components/dashboards/OfficeDashboardView';
 import { controlDashboardFixture, heatDaysFixture, officeDashboardEmptyFixture, officeDashboardFixture } from '@/demo-fixture/visual-foundation';
 import { MODULE_GROUPS, MODULE_REGISTRY } from '@/lib/contracts/modules';
+import { chartRowLabel, chartTitle, dashboardModel } from '@/lib/insights/dashboard';
 import { chartOther, chartSeries, colors, sequentialRoyal, seriesColor } from '@/lib/design-tokens';
 import { controlNav } from '@/lib/nav/nav-items';
 
@@ -194,48 +196,76 @@ describe('hero band', () => {
 });
 
 describe('the live dashboards', () => {
-  it('office: hero, four KPI tiles, the attention list with its reasons, charts and quick actions, from the given numbers only', () => {
+  it('office: hero, the tiles in their groups, the attention list with its reasons, charts with a table and quick actions, from the given facts only', () => {
     const html = render(h(OfficeDashboardView, { data: officeDashboardFixture, now: NOW }));
+    const model = dashboardModel(officeDashboardFixture.facts);
     expect(html).toContain('Illustrative Public School');
-    expect(html).toContain('4 things need you today'); // unmarked students, overdue fees, consent, held messages
-    for (const label of ['Attendance today', 'Active students', 'Teaching staff', 'Fees overdue']) expect(html).toContain(label);
-    expect(html).toContain('94.5%'); // 378 of 400 present
-    expect(html).toContain('12</span> active students have no attendance saved today');
-    expect(html).toContain('17</span> fee entries are overdue');
-    expect((html.match(/Why this\?/g) ?? []).length).toBe(4);
-    expect(html).toContain('400 of 412 active students marked');
-    expect(html).toContain('Fees: received and owed');
-    expect(html).toContain('Owed and overdue');
-    expect(html).toContain('412 of 430 students are active with consent recorded');
+    expect(html).toContain('4 things need you today'); // classes not marked, overdue fees, consent, held messages
+    for (const label of ['Classes marked today', 'Active students', 'Fees overdue', 'Homework checked', 'WhatsApp messages']) expect(html).toContain(label);
+    for (const group of ['Today', 'Money', 'Learning', 'Parents', 'Running the school']) expect(html).toContain(`>${group}</h2>`);
+    expect(html).toContain('14 of 16'); // classes marked today
+    expect(html).toContain('₹21,500');
+    expect(html).toContain('2 classes have no attendance saved today');
+    expect(html).toContain('17 fee entries are overdue');
+    // "Why this?" on every tile, every attention item and every chart.
+    expect((html.match(/Why this\?/g) ?? []).length).toBe(model.groups.reduce((n, g) => n + g.tiles.length, 0) + model.attention.length + model.charts.length);
+    expect([model.groups.reduce((n, g) => n + g.tiles.length, 0), model.attention.length, model.charts.length]).toEqual([18, 4, 5]);
+    expect(html).toContain('Attendance today: 400 of 412 students marked');
+    // The fees chart is two facts side by side (not yet due, overdue): its title adds nothing up.
+    expect(html).toContain('>Fees still to come in</');
+    expect(html).toContain('₹52,000');
+    expect(html).not.toContain('₹73,500');
+    expect(html).toContain('1 day has no mark saved and is left as a gap.');
     expect(html).toContain('href="/app/help/ticket/new"');
+    expect(html).toContain('href="/api/app/dashboard/export?range=7d"');
   });
 
-  it('office: the tile, its trend and the chart title agree, and the trend names what it compares with', () => {
-    const data = { ...officeDashboardFixture, activeStudents: 412, presentToday: 389, absentToday: 23, markedToday: 412, attendanceTrend: [{ date: '2026-09-14', pct: 94.2 }, { date: '2026-09-25', pct: 94.4 }] };
-    const html = render(h(OfficeDashboardView, { data, now: NOW }));
-    expect(html).toContain('aria-label="Attendance today: 94.4%"');
-    expect(html).toContain('0.2 points vs the previous marked day'); // 94.2 → 94.4, eleven days apart: not "the day before"
-    expect(html).toContain('Attendance: 94.4% on the last marked day');
-    expect(html).toContain('12 days have no data and are left as a gap.');
-    expect(html).not.toContain('active students have no attendance'); // everyone is marked
+  it('office: one of something reads as one; a fact that was not given is not drawn, and is never a zero', () => {
+    const one = officeDashboardFixture.facts.map((f) => (f.attention ? { ...f, value: 1, count: f.count === undefined ? undefined : 1 } : f));
+    const html = render(h(OfficeDashboardView, { data: { ...officeDashboardFixture, facts: one }, now: NOW }));
+    for (const text of ['1 fee entry is overdue', '1 student is waiting for consent', '1 message was held back', '1 class has no attendance saved today']) expect(html).toContain(text);
+    const withoutFees = render(h(OfficeDashboardView, { data: { ...officeDashboardFixture, facts: officeDashboardFixture.facts.filter((f) => f.moduleId !== 'fees') }, now: NOW }));
+    expect(withoutFees).not.toContain('Fees');
+    expect(withoutFees).not.toContain('₹');
+    expect(withoutFees).not.toContain('>Money</h2>');
+    expect(withoutFees).toContain('3 things need you today');
   });
 
-  it('office: one of something reads as one; a Sunday raises no attendance reminder; marked can exceed active without a broken sentence', () => {
-    const one = render(h(OfficeDashboardView, { data: { ...officeDashboardFixture, overdueCount: 1, consentPending: 1, blockedThisWeek: 1, markedToday: 411, presentToday: 400 }, now: NOW }));
-    for (const text of ['1</span> fee entry is overdue', '1</span> student is waiting for consent', '1</span> message was held back', '1</span> active student has no attendance saved today']) expect(one).toContain(text);
-    const sunday = render(h(OfficeDashboardView, { data: { ...officeDashboardFixture, markedToday: 0, presentToday: 0, absentToday: 0 }, now: new Date('2026-09-27T04:00:00Z') }));
-    expect(sunday).not.toContain('no attendance saved today');
-    const over = render(h(OfficeDashboardView, { data: { ...officeDashboardFixture, markedToday: 420, presentToday: 400 }, now: NOW }));
-    expect(over).toContain('420 of 420 active students marked');
+  it('office, the table view of a chart: every row is said in words and links to its rows', () => {
+    const marked = { ...officeDashboardFixture.facts.find((f) => f.id === 'attendance.students_marked')!, parts: [{ key: 'marked', value: 400 }, { key: 'not_marked', value: 12, href: '/app/attendance?show=not-marked' }] };
+    const absent = { ...officeDashboardFixture.facts.find((f) => f.id === 'attendance.absent')!, href: '/app/attendance?show=absent' };
+    const model = dashboardModel(officeDashboardFixture.facts.map((f) => (f.id === marked.id ? marked : f.id === absent.id ? absent : f)));
+    const chart = model.charts.find((c) => c.id === 'attendance-today')!;
+    expect(chart.rows.map((r) => [r.key, r.value])).toEqual([['present', 371], ['absent', 22], ['late', 5], ['leave', 2], ['not_marked', 12]]);
+    const rows = chart.rows.map((r) => ({ label: chartRowLabel('en', chart, r), value: r.value, text: String(r.value), href: r.href }));
+    const words = { showAs: 'Show as', chart: 'Chart', table: 'Table', what: 'What', value: 'Number', none: 'No data yet', open: 'Open the rows' };
+    const table = render(h(FactChart, { id: chart.id, title: chartTitle('en', chart), kind: chart.kind, tone: chart.tone, rows, words, href: chart.href, initialView: 'table' }));
+    expect(table).toContain('<caption class="sr-only">Attendance today: 400 of 412 students marked</caption>');
+    expect(table).toContain('href="/app/attendance?show=absent"');
+    expect(table).toContain('href="/app/attendance?show=not-marked"');
+    expect(table).toContain('Not marked yet');
+    expect(table).toContain('aria-pressed="true"');
   });
 
-  it('office, nothing recorded yet: honest empty states and no made-up number', () => {
+  it('office, nothing set up yet: it says what is missing, and no number is made up', () => {
     const html = render(h(OfficeDashboardView, { data: officeDashboardEmptyFixture, now: NOW }));
     expect(html).toContain('Nothing needs you right now.');
-    expect((html.match(/No data yet/g) ?? []).length).toBe(5); // the attendance tile and the four charts
-    expect(html).toContain('Nothing has been recorded yet.');
-    expect(html).not.toContain('%');
-    expect(html).not.toContain('<polyline');
+    expect(html).toContain('Nothing needs attention right now.');
+    expect((html.match(/Not set up yet/g) ?? []).length).toBe(5); // classes, students, two fee tiles, the budget
+    expect(html).toContain('No fee has been raised yet.');
+    expect(html).toContain('No monthly budget is set yet');
+    expect(html).toContain('Nothing recorded in these days');
+    expect(html).not.toMatch(/\d%/);
+    expect(html).not.toContain('data-chart-kind="line"');
+  });
+
+  it('office in Hindi: the same screen, every word from the message files', () => {
+    const html = render(h(OfficeDashboardView, { data: officeDashboardFixture, lang: 'hi', now: NOW }));
+    expect(html).toContain('आज 4 काम आपका इंतज़ार कर रहे हैं');
+    expect(html).toContain('इन पर ध्यान दें');
+    expect(html).toContain('16 में से 14');
+    expect(html).toContain('17 फ़ीस प्रविष्टियों की तारीख़ निकल चुकी है');
+    for (const english of ['Why this?', 'Needs your attention', 'things need you today', 'Not set up yet', 'Classes marked today', 'Quick actions', 'Chart', 'Download']) expect(html, english).not.toContain(english);
   });
 
   it('control: tickets waiting come first; totals count live schools and say that test schools are left out', () => {
@@ -260,13 +290,6 @@ describe('the live dashboards', () => {
     expect(html).toContain('href="/control/tickets"');
     expect(html).not.toContain('messages logged in the last 30 days');
     expect(html).not.toContain('₹');
-  });
-
-  it('school dashboard: the students tile counts active students and says how many records there are', () => {
-    const html = render(h(OfficeDashboardView, { data: officeDashboardFixture, now: NOW }));
-    expect(html).toContain('Active students (of 430 records)');
-    expect(html).toContain('aria-label="Active students (of 430 records): 412"');
-    expect(render(h(OfficeDashboardView, { data: { ...officeDashboardFixture, totalStudents: 412 }, now: NOW }))).toContain('aria-label="Active students: 412"');
   });
 
   it('a trend is computed from the last two real values, or not shown', () => {

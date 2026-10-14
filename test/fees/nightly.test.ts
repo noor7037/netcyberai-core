@@ -113,7 +113,7 @@ describe('the nightly job', () => {
   });
 
   it('a fee of 1,000 with 400 paid, past its date, counts 600 overdue: the screens read the balance', async () => {
-    const f = await as(principal, (c) => loadFeesSummary(c));
+    const f = await as(principal, (c) => loadFeesSummary(c, A));
     // Asha 600 left of 1,000; Bilal 2,000; Bilal's old fee 600 left of 700.
     expect(f).toMatchObject({ overdueCount: 3, overdueMinor: 60000 + 200000 + 60000, pendingMinor: 50000, collectedMinor: 40000 + 150000 + 10000 });
     expect((await as(accountant, (c) => openDues(c, A, S.asha, 'student'))).map((d: { balance_minor: number; overdue: boolean }) => [d.balance_minor, d.overdue])).toEqual([[60000, true], [50000, false]]);

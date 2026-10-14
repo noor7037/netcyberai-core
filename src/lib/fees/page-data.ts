@@ -27,7 +27,7 @@ export const FEES_PARTS = {
     return { waiting: await waitingReports(db, who.schoolId), notFound: await recentNotFound(db, who.schoolId), mayReopen: who.role === 'principal' || who.role === 'accountant', mayVerify: upi.verifiers.includes(who.role), isPrincipal: who.role === 'principal', limitMinor: upi.principalLimitMinor };
   },
   async payments(db: PoolClient, who: Who) {
-    const summary = await loadFeesSummary(db);
+    const summary = await loadFeesSummary(db, who.schoolId);
     return { totals: await reconcile(db, who.schoolId), overdue: { minor: summary.overdueMinor, count: summary.overdueCount }, lastRun: await lastNightlyRun(db, who.schoolId), receipts: await recentReceipts(db, who.schoolId), mayReverse: office(who.role) };
   },
   async setup(db: PoolClient, who: Who) {

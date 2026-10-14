@@ -68,6 +68,24 @@ export async function followUpList(db: PoolClient, schoolId: string): Promise<Fo
   return rows.map((r) => ({ ...r, overdue_minor: Number(r.overdue_minor) })) as FollowUpRow[];
 }
 
+// The promises to pay whose date is today or has gone by and that nobody has closed (docs/26 slice 8d, C203): the
+// rule of My Day's card, as rows, for /app/fees?show=promises. The oldest promise first.
+export type PromiseDueRow = { followup_id: string; student_id: string; payer: string; promise_date: string; note: string | null; made_by: string | null; made_on: string };
+export async function promisesDue(db: PoolClient, schoolId: string): Promise<PromiseDueRow[]> {
+  const { rows } = await db.query(
+    `select w.followup_id, w.student_id, coalesce(f.family_code || ' · ', '') || st.name as payer, w.promise_date::text as promise_date, w.note, u.display_name as made_by,
+            (w.created_at at time zone 'Asia/Kolkata')::date::text as made_on
+       from fee_followups w
+       join fee_billing_students() st on st.school_id = w.school_id and st.student_id = w.student_id
+       left join families f on f.school_id = w.school_id and f.family_id = w.family_id
+       left join users u on u.user_id = w.created_by
+      where w.school_id = $1 and w.kind = 'promise' and w.status = 'open' and w.promise_date <= (now() at time zone 'Asia/Kolkata')::date
+      order by w.promise_date, w.created_at, w.followup_id limit 500`,
+    [schoolId]
+  );
+  return rows as PromiseDueRow[];
+}
+
 export type FollowUpInput =
   | { kind: 'call'; studentId: string; note: string }
   | { kind: 'promise'; studentId: string; note: string; promiseDate: string }

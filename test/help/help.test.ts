@@ -31,6 +31,7 @@ describe('the guides', () => {
       'cover-a-class',
       // p5-8c end
       // p5-8d begin
+      'read-the-dashboard',
       // p5-8d end
       // p5-8e begin
       // p5-8e end

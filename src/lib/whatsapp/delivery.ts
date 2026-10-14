@@ -96,28 +96,54 @@ export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody:
 }
 
 export type MessageRow = { log_id: string; created_at: string; child: string | null; guardian: string | null; phone_last4: string | null; template_name: string | null; status: string; reason: string | null; provider: string | null; delivered_at: string | null; read_at: string | null; failed_at: string | null };
-export type MessageList = { messages: MessageRow[]; counts: Record<string, number>; days: number };
+export type MessageRange = { from: string; to: string };
+// `inState`: how many messages the chosen state holds over the same days (every state when none is chosen). It
+// is never cut short. When it is more than `messages` has rows, the list was cut at its limit and the screen says so.
+export type MessageList = { messages: MessageRow[]; counts: Record<string, number>; days: number; range?: MessageRange; inState: number };
 export const MESSAGE_STATES = ['queued', 'uncertain', 'sent', 'delivered', 'read', 'failed', 'held'] as const;
+export type MessageState = (typeof MESSAGE_STATES)[number];
+export const isMessageState = (v: unknown): v is MessageState => typeof v === 'string' && (MESSAGE_STATES as readonly string[]).includes(v);
 const HELD = `status::text like 'blocked_%'`;
+// The most rows one list shows. The last-14-days list keeps a short page. A list opened on a range of days (a
+// dashboard number's rows) shows as many as the other "rows behind a number" lists do.
+export const MESSAGE_ROWS_RECENT = 200;
+export const MESSAGE_ROWS_MAX = 2000;
 
-// The school's own messages of the last 14 days, newest first: who, what, and where each got to. The caller's
-// own tenant transaction; row level security keeps it to this school.
-export async function listMessages(db: Sql, schoolId: string, state: string | null): Promise<MessageList> {
-  const days = 14;
-  const counts = Object.fromEntries(
-    (await db.query(`select case when ${HELD} then 'held' else status::text end as state, count(*)::int as n from communication_log where school_id = $1 and channel = 'whatsapp' and created_at > now() - make_interval(days => $2) group by 1`, [schoolId, days])).rows.map((r) => [r.state as string, r.n as number])
-  );
-  const want = state && (MESSAGE_STATES as readonly string[]).includes(state) ? state : null;
+const RECENT_DAYS = 14;
+// The range's first midnight and the midnight after its last day, in India (no summer time: always +05:30).
+// With no range both are empty and the database's own clock decides: the last 14 days.
+const nextDay = (iso: string) => new Date(Date.parse(`${iso}T00:00:00Z`) + 86_400_000).toISOString().slice(0, 10);
+const between = (range?: MessageRange): (string | null)[] => (range ? [`${range.from}T00:00:00+05:30`, `${nextDay(range.to)}T00:00:00+05:30`] : [null, null]);
+// Which messages: this school's WhatsApp messages of those days. The counts and the list both ask with this one
+// condition, so they are about the same messages.
+const OF_THE_DAYS = (alias = '') => `where ${alias}school_id = $1 and ${alias}channel = 'whatsapp' and ${alias}created_at >= coalesce($2::timestamptz, now() - make_interval(days => ${RECENT_DAYS})) and ($3::timestamptz is null or ${alias}created_at < $3::timestamptz)`;
+
+// How many of the school's WhatsApp messages are in each state over those days: the numbers on the list's own
+// buttons, and the numbers the school facts say (src/lib/insights). Whole, never cut at a list's limit.
+export async function countMessages(db: Sql, schoolId: string, range?: MessageRange): Promise<Record<string, number>> {
+  const { rows } = await db.query(`select case when ${HELD} then 'held' else status::text end as state, count(*)::int as n from communication_log ${OF_THE_DAYS()} group by 1`, [schoolId, ...between(range)]);
+  return Object.fromEntries(rows.map((r) => [r.state as string, r.n as number]));
+}
+export const messagesInAll = (counts: Record<string, number>): number => MESSAGE_STATES.reduce((a, s) => a + (counts[s] ?? 0), 0);
+
+// The school's own messages, newest first: who, what, and where each got to. Without a range, the last 14 days.
+// With one (docs/26 slice 8d, C203: /app/communication?state=…&from=…&to=…), the messages written on those days
+// by India's date. `counts` says how many are in each state over the same days, so a number and the rows under
+// it are the same messages; the counts are whole, the rows stop at `limit` and `inState` says how many there are.
+// The caller's own tenant transaction; row level security keeps it to this school.
+export async function listMessages(db: Sql, schoolId: string, state: string | null, range?: MessageRange, limit: number = range ? MESSAGE_ROWS_MAX : MESSAGE_ROWS_RECENT): Promise<MessageList> {
+  const counts = await countMessages(db, schoolId, range);
+  const want = isMessageState(state) ? state : null;
   const { rows } = await db.query(
     `select l.log_id, l.created_at, s.name as child, p.name as guardian, right(l.to_phone, 4) as phone_last4, l.template_name, l.status::text as status, l.reason, l.provider, l.delivered_at, l.read_at, l.failed_at
        from communication_log l
        left join students s on s.school_id = l.school_id and s.student_id = l.student_id
        left join parents p on p.school_id = l.school_id and p.parent_id = l.parent_id
-      where l.school_id = $1 and l.channel = 'whatsapp' and l.created_at > now() - make_interval(days => $2)
-        and ($3::text is null or case when ${HELD.replace('status', 'l.status')} then 'held' else l.status::text end = $3)
-      order by l.created_at desc, l.log_id limit 200`,
-    [schoolId, days, want]
+      ${OF_THE_DAYS('l.')}
+        and ($4::text is null or case when ${HELD.replace('status', 'l.status')} then 'held' else l.status::text end = $4)
+      order by l.created_at desc, l.log_id limit $5`,
+    [schoolId, ...between(range), want, limit]
   );
   const iso = (v: unknown) => (v ? new Date(v as string).toISOString() : null);
-  return { messages: rows.map((r) => ({ ...r, created_at: iso(r.created_at), delivered_at: iso(r.delivered_at), read_at: iso(r.read_at), failed_at: iso(r.failed_at) })) as MessageRow[], counts, days };
+  return { messages: rows.map((r) => ({ ...r, created_at: iso(r.created_at), delivered_at: iso(r.delivered_at), read_at: iso(r.read_at), failed_at: iso(r.failed_at) })) as MessageRow[], counts, days: RECENT_DAYS, ...(range ? { range } : {}), inState: want ? (counts[want] ?? 0) : messagesInAll(counts) };
 }
