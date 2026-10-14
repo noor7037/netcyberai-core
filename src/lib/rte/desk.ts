@@ -162,12 +162,14 @@ async function countingOf(db: Db, schoolId: string): Promise<{ choice: RteClaimH
   const schema = settingsSchemaFor('fees');
   const value = schema ? (await readSettings(db as never, schoolId, schema)).effective.rte_claim_heads : undefined;
   const choice: RteClaimHeads = isRteClaimHeads(value) ? value : 'rte_covered';
-  const heads = (await db.query(`select head_id, name, rte_covered, is_mandatory from fee_heads where school_id = $1 and is_active order by lower(name), head_id`, [schoolId])).rows as (HeadFacts & { name: string })[];
+  // Every head, retired ones too: a head retired since still counts in the months a year's structure charged it
+  // (review of C225). Only the heads in use are named on screen.
+  const heads = (await db.query(`select head_id, name, rte_covered, is_mandatory, is_active from fee_heads where school_id = $1 order by lower(name), head_id`, [schoolId])).rows as (HeadFacts & { name: string; is_active: boolean })[];
   const counted = headsCounted(heads, choice);
   // The names shown are the counted heads the school charges as a recurring fee somewhere: a head only ever charged
   // once (an admission fee) never counts, so it is not named.
   const recurring = new Set(((await db.query(`select distinct head_id from fee_structure_items where school_id = $1 and frequency <> 'one_time'`, [schoolId])).rows as { head_id: string }[]).map((r) => r.head_id));
-  return { choice, counted, names: heads.filter((h) => counted.has(h.head_id) && recurring.has(h.head_id)).map((h) => h.name) };
+  return { choice, counted, names: heads.filter((h) => h.is_active && counted.has(h.head_id) && recurring.has(h.head_id)).map((h) => h.name) };
 }
 
 // The year's fee for each class with a fee structure in that year, in the heads that count.

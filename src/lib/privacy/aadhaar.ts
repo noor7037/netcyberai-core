@@ -10,15 +10,18 @@
 //     joins two groups; anything else (a letter, a slash, a point, a comma) ends the number.
 //
 // A text is refused when one of its numbers
-//   (1) has twelve digits in all, or
+//   (1) has twelve digits in all, in groups of at least three digits each, or
 //   (2) has a group of exactly twelve digits, or
 //   (3) has three groups of exactly four digits in a row (the way Aadhaar prints its number).
-// A number written with a "+" straight before it is a phone number with its country code ("+91 98765 43210",
-// "+919876543210"): (1) and (2) do not apply to it, (3) still does.
+// (1) leaves out a number with a group of one or two digits: dates and school years ("2025-26 - 2026-27",
+// "01-04-25 - 31-03-26") and a phone with its country code ("91 98765 43210") are not Aadhaar's shapes (review of C225).
+// A number written with a "+" straight before it, of at most fifteen digits (the most a phone number has, E.164), is a
+// phone number with its country code ("+91 98765 43210", "+919876543210"): (1) and (2) do not apply to it, (3) still
+// does. A longer "+" number is not a phone alone, and every rule applies ("+91 98765 43210 123456789012" is refused).
 //
 // So a longer number passes ("1234567890123456", a bank's UTR), and a twelve-digit number standing alone is refused
-// wherever it stands in a sentence. A separator next to a further digit group JOINS that group to the number: for
-// (1) "98765 43210 12" is twelve digits and refused, "01-04-2026 - 31-03-2027" is sixteen and passes. The printed
+// wherever it stands in a sentence. A separator next to a further digit group JOINS that group to the number:
+// "01-04-2026 - 31-03-2027" is one number of sixteen digits and passes. The printed
 // form (3) and a twelve-digit group (2) are refused even inside a longer number, so "1234 5678 9012 3456" and
 // "Aadhaar 1234 5678 9012 2 copies" are refused: rule 1 is never to keep an Aadhaar number, and a number that holds
 // Aadhaar's printed shape is refused rather than let through. A twelve-digit IMPS or UPI reference is refused too.
@@ -53,7 +56,8 @@ function numbersOf(text: string): Found[] {
     const total = groups.reduce((a, b) => a + b, 0);
     let printed = false;
     for (let i = 0; i + 2 < groups.length; i++) if (groups[i] === 4 && groups[i + 1] === 4 && groups[i + 2] === 4) printed = true;
-    const refused = printed || (!plus && (total === 12 || groups.includes(12)));
+    const phone = plus && total <= 15;
+    const refused = printed || (!phone && (groups.includes(12) || (total === 12 && groups.every((g) => g >= 3))));
     const start = (m.index ?? 0) + m[1].length;
     out.push({ start, end: start + m[2].length, refused });
   }
