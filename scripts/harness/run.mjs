@@ -1775,6 +1775,99 @@ const costMonthDone = async () => {
 };
 // p5-8f end
 // p5-8g begin
+// Control → Monitoring (C206): the page is read as it stands; then one of each thing that can stop is put in for the
+// seeded school (a dead job whose error carries the guardian's address and number and quotes a message, a stuck
+// job, a job due 25 minutes ago, a refused notice, an uncertain send, a failed one whose reason carries the number,
+// a message held for want of a template, a reply held past its day, and a due on record for six days with no fee
+// run yesterday) and it is read again: each must be on the page, by count, by school and by reason, with no name,
+// number, address or message words anywhere on it. The founder then retries the dead job on the screen. The check
+// reads the database, compares, and takes every row out again.
+let monitoringSeen = null;
+const MONITORING_KEY = 'harness-8g';
+const MONITORING_OTHER_SCHOOL = 'b0000000-0000-4000-8000-000000000002';
+const MONITORING_GUARDIAN = '00000000-0000-4000-8000-0000000e0001';
+const clearMonitoring = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from audit_log where event_action = 'job.retry' and target_id::text in (select job_id::text from jobs where idempotency_key like '${MONITORING_KEY}-%');
+    delete from jobs where idempotency_key like '${MONITORING_KEY}-%';
+    delete from webhook_events where payload_hash like '${MONITORING_KEY}-%';
+    delete from communication_log where dedupe_key like '${MONITORING_KEY}-%';
+    delete from held_inbound where provider_message_id like '${MONITORING_KEY}-%';
+    delete from fees_ledger where gateway_order_id = '${MONITORING_KEY}-due';
+    set session_replication_role = origin;`);
+};
+const readMonitoring = async (page) => ({
+  facts: Object.fromEntries(await page.locator('[data-monitoring-fact]').evaluateAll((els) => els.map((e) => [e.getAttribute('data-monitoring-fact'), Number(e.querySelector('dd').textContent.replace(/,/g, ''))]))),
+  states: Object.fromEntries(await page.locator('[data-monitoring-section]').evaluateAll((els) => els.map((e) => [e.getAttribute('data-monitoring-section'), e.getAttribute('data-monitoring-state')]))),
+  groups: Object.fromEntries(await page.locator('[data-monitoring-group]').evaluateAll((els) => els.map((e) => [e.getAttribute('data-monitoring-group'), e.textContent]))),
+  missing: await page.locator('[data-monitoring-missing-school]').allTextContents(),
+  todo: await page.locator('[data-monitoring-do]').evaluateAll((els) => els.map((e) => e.getAttribute('data-monitoring-do'))),
+  text: await page.locator('[data-monitoring]').innerText(),
+});
+const monitoringProblems = async (page) => {
+  await clearMonitoring();
+  monitoringSeen = null;
+  await page.reload({ waitUntil: 'networkidle' });
+  const before = await readMonitoring(page);
+  const message = (n, status, code, reason, ago) =>
+    `('${SCHOOL}', '+919800000001', 'whatsapp', 'class_notice', 'utility', false, 0, 0, 'not_billable', '${status}', '${MONITORING_KEY}-${n}', 'platform_default', 'operational_communication', 'meta', '${STUDENT}', '${MONITORING_GUARDIAN}',
+      '{"guardian": "Rajesh Example", "child": "Aarav Example A", "note": "harness-8g words: please bring the notebook"}', ${code}, '${reason}', now() - interval '${ago}')`;
+  await db.pg.exec(`
+    insert into jobs (type, idempotency_key, status, attempts, max_attempts, last_error, completed_at, updated_at) values
+      ('harness.probe', '${MONITORING_KEY}-dead', 'dead', 8, 8, 'Mailbox rajesh@example.invalid rejected "Aarav was absent"; try +91 98000 00001', now() - interval '2 hours', now() - interval '2 hours');
+    insert into jobs (type, idempotency_key, status, attempts, locked_until, updated_at) values ('harness.probe', '${MONITORING_KEY}-stuck', 'running', 1, now() - interval '20 minutes', now() - interval '25 minutes');
+    insert into jobs (type, idempotency_key, status, next_run_at) values ('harness.probe', '${MONITORING_KEY}-late', 'pending', now() - interval '25 minutes');
+    insert into webhook_events (provider, payload_hash, payload, signature_ok, outcome, processed_at, created_at) values
+      ('whatsapp', '${MONITORING_KEY}-refused', '{"provider": "meta", "bytes": 412}', false, 'refused: bad signature', now(), now() - interval '3 hours');
+    insert into communication_log (school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, provider_used, purpose, provider, student_id, parent_id,
+                                   template_params, failure_code, reason, created_at) values
+      ${message(1, 'uncertain', 'null', 'the send was interrupted and nobody knows whether it went; it is not sent again, so that a parent is never messaged twice', '1 hour')},
+      ${message(2, 'failed', `'131026'`, 'Recipient +91 98000 00001 (rajesh@example.invalid) is not on WhatsApp', '2 hours')},
+      ${message(3, 'blocked_no_template', 'null', 'template "class_notice" is not an approved template for this school', '3 hours')};
+    insert into held_inbound (provider, provider_message_id, phone_digest, school_ids, ciphertext, iv, tag, key_version, received_at, expires_at, status) values
+      ('meta', '${MONITORING_KEY}-held', repeat('a', 64), array['${SCHOOL}', '${MONITORING_OTHER_SCHOOL}']::uuid[], 'aGFybmVzcy04Zy1zZWFsZWQ=', repeat('A', 16), repeat('B', 24), 1, now() - interval '30 hours', now() - interval '6 hours', 'held');
+    insert into fees_ledger (school_id, student_id, gross_minor, concession_minor, amount_minor, due_date, gateway_order_id, created_at) values
+      ('${SCHOOL}', '${STUDENT}', 100000, 0, 100000, (now() at time zone 'Asia/Kolkata')::date + 30, '${MONITORING_KEY}-due', now() - interval '6 days');`);
+  await page.reload({ waitUntil: 'networkidle' });
+  const after = await readMonitoring(page);
+  const dead = (await db.pg.query(`select job_id from jobs where idempotency_key = $1`, [`${MONITORING_KEY}-dead`])).rows[0].job_id;
+  const line = page.locator(`[data-monitoring-job="${dead}"]`);
+  const errorShown = await line.locator('[data-monitoring-job-error]').textContent();
+  // Retry: the job runs again at once. Nothing handles this made-up type, so it is dead again, one attempt later.
+  await line.locator('[data-job-retry]').click();
+  await page.waitForFunction((id) => /9 of 9/.test(document.querySelector(`[data-monitoring-job="${id}"]`)?.textContent ?? ''), dead, { timeout: 20000 });
+  monitoringSeen = { before, after, dead, errorShown, afterRetry: await line.textContent() };
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+const monitoringProblemsDone = async () => {
+  const seen = monitoringSeen ?? {};
+  const { rows } = await db.pg.query(
+    `select (select status || ':' || attempts || ':' || max_attempts from jobs where idempotency_key = $1) as dead_job,
+            (select count(*)::int from audit_log where event_action = 'job.retry' and target_id::text = $2 and actor_user_id = $3) as retried`,
+    [`${MONITORING_KEY}-dead`, seen.dead ?? '', PEOPLE.founder.sub]
+  );
+  await clearMonitoring();
+  const r = rows[0];
+  const { before = { facts: {}, missing: [] }, after = { facts: {}, states: {}, groups: {}, missing: [], todo: [], text: '' } } = seen;
+  // Each thing put in is on the page: one more than before, whatever other screens left behind.
+  const more = Object.fromEntries(['jobs.dead', 'jobs.stuck', 'jobs.due', 'notices.received', 'notices.refused', 'replies.held', 'replies.past'].map((k) => [k, after.facts[k] - before.facts[k]]));
+  if (Object.values(more).some((d) => d !== 1)) throw new Error(`monitoring, the counts on the screen: ${JSON.stringify({ more, before: before.facts, after: after.facts })}`);
+  const school = 'Illustrative Public School';
+  const bySchool = new RegExp(`${school}: \\d+ message`);
+  if (!bySchool.test(after.groups.uncertain ?? '') || !after.groups['failed:131026']?.includes('Recipient <phone> (<email>) is not on WhatsApp') || !bySchool.test(after.groups['held:blocked_no_template'] ?? ''))
+    throw new Error(`monitoring, the messages that did not go: ${JSON.stringify(after.groups)}`);
+  if (before.missing.includes(school) || !after.missing.includes(school)) throw new Error(`monitoring, the school with no fee run yesterday: ${JSON.stringify({ before: before.missing, after: after.missing })}`);
+  const flagged = ['health', 'jobs', 'notices', 'sends', 'replies', 'nightly'].filter((s) => after.states[s] !== 'look');
+  const told = ['health', 'jobs.dead', 'jobs.stuck', 'notices.refused', 'sends.uncertain', 'sends.failed', 'sends.blocked_no_template', 'replies.past', 'nightly.missing'].filter((d) => !after.todo.includes(d));
+  if (flagged.length || told.length) throw new Error(`monitoring, sections not flagged: ${JSON.stringify(flagged)}; no line on what to do for: ${JSON.stringify(told)}`);
+  // The error is shown only after the address, the number and the quoted words are cut out of it.
+  if (seen.errorShown !== 'Mailbox <email> rejected "<value>"; try <phone>') throw new Error(`monitoring, the dead job's error: ${JSON.stringify(seen.errorShown)}`);
+  // Nothing of the family is anywhere on the page: not the names, the number, the address, the words, the sealed reply.
+  const shown = ['Rajesh', 'Aarav', '9800000001', '98000 00001', 'example.invalid', 'please bring', 'harness-8g words', 'aGFybmVzcy04Zy1zZWFsZWQ='].filter((s) => after.text.includes(s));
+  if (shown.length || !after.text.includes(school)) throw new Error(`monitoring, on the page: ${JSON.stringify(shown)}`);
+  // The founder's Retry ran the job again (it died again: no handler for a made-up type) and was audited.
+  if (r.dead_job !== 'dead:9:9' || r.retried !== 1 || !/9 of 9/.test(seen.afterRetry ?? '')) throw new Error(`monitoring, the retry: ${JSON.stringify({ ...r, afterRetry: seen.afterRetry })}`);
+};
 // p5-8g end
 // p5-8h begin
 // p5-8h end
@@ -2180,7 +2273,6 @@ const SCREENS = [
   ['founder', 'control-users', '/control/users'],
   ['founder', 'control-onboarding', '/control/onboarding'],
   ['founder', 'control-applications', '/control/onboarding/applications'],
-  ['founder', 'control-pipeline', '/control/monitoring'],
   ['founder', 'control-tickets', '/control/tickets'],
   ['founder', 'control-ticket', `/control/tickets/${TICKET}`],
   ['founder', 'control-account', '/control/account'],
@@ -2224,6 +2316,7 @@ const SCREENS = [
   ['founder', 'control-cost-month', '/control/messaging-cost', costMonth, costMonthDone],
   // p5-8f end
   // p5-8g begin
+  ['founder', 'control-monitoring', '/control/monitoring', monitoringProblems, monitoringProblemsDone],
   // p5-8g end
   // p5-8h begin
   // p5-8h end
