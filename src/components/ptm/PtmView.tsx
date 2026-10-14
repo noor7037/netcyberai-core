@@ -169,7 +169,7 @@ export function PtmView({ shownAbove = false }: { shownAbove?: boolean }) {
                       <span className="font-bold">{sayTime(s.time)}</span>
                       {s.booking ? (
                         <>
-                          <span>{s.booking.children ? t('ptm.slot.with', { guardian: s.booking.guardian, children: s.booking.children }) : s.booking.guardian}</span>
+                          <span>{!s.booking.guardian ? t('ptm.slot.guardianHidden') : s.booking.children ? t('ptm.slot.with', { guardian: s.booking.guardian, children: s.booking.children }) : s.booking.guardian}</span>
                           <span className="text-slate/70">{t(s.booking.via === 'reply' ? 'ptm.slot.byReply' : 'ptm.slot.byStaff')}</span>
                           {s.booking.attended !== null && <Badge variant={s.booking.attended ? 'success' : 'warning'}>{t(s.booking.attended ? 'ptm.came' : 'ptm.didNotCome')}</Badge>}
                         </>

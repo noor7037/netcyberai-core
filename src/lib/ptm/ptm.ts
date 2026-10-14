@@ -212,7 +212,7 @@ export async function ptmDetail(db: PoolClient, actor: Actor, ptmId: string, tod
     let t = teachers.find((x) => x.teacher_id === s.teacher_id);
     if (!t) teachers.push((t = { teacher_id: s.teacher_id, teacher: s.teacher, slots: [], guardians: people.filter((g) => g.teacher_id === s.teacher_id).map((g) => ({ parent_id: g.parent_id, guardian: g.guardian, children: g.children })) }));
     const who = s.booking_id ? t.guardians.find((g) => g.parent_id === s.parent_id) : undefined;
-    t.slots.push({ slot_id: s.slot_id, time: hhmm(s.starts_at), booking: s.booking_id ? { booking_id: s.booking_id, parent_id: s.parent_id, guardian: s.guardian, children: who?.children ?? '', via: s.booked_via, attended: s.attended, note: s.note } : null });
+    t.slots.push({ slot_id: s.slot_id, time: hhmm(s.starts_at), booking: s.booking_id ? { booking_id: s.booking_id, parent_id: s.parent_id, guardian: s.guardian ?? '', children: who?.children ?? '', via: s.booked_via, attended: s.attended, note: s.note } : null });
   }
   return { ptm, teachers, mayManage: OFFICE.includes(actor.role), hasBegun: ptm.held_on <= today, isOver: ptm.held_on < today };
 }

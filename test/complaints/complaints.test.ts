@@ -247,4 +247,35 @@ describe('on the real schema', () => {
     expect((await told(id2)).map((r: { t: string }) => r.t)).toEqual(['complaint_received']);
     expect((await db.pg.query(`select owner_id, escalated_at is not null as escalated from complaints where complaint_id = $1`, [id2])).rows[0]).toEqual({ owner_id: ADMIN, escalated: true });
   });
+
+  it('review of 8a: with another school admin it stays where it is; with nobody to pass it to it stays on its owner’s day, and no step says it was passed on', async () => {
+    const card = (who: Who) => as(who, (c) => TODAY_PROVIDERS.find((p) => p.type === 'complaints-overdue')!.load(c, { schoolId: A, userId: who.user, role: who.role as never, sunday: false })).then((cards) => cards.reduce((sum, x) => sum + (x.count ?? 0), 0));
+    const ADMIN_2 = u(16);
+    await db.pg.query(`insert into users (user_id, school_id, email, role, display_name, created_at) values ($1, $2, 'admin2@school-a.example', 'school_admin', 'Bela Admin', now() + interval '1 day')`, [ADMIN_2, A]);
+    const admin2: Who = { role: 'school_admin', user: ADMIN_2 };
+    // About the principal, already with the second school admin: it does not move to the first one, and the
+    // parent is not told it was passed on.
+    const made = await as(admin, (c) => openComplaint(c, queue, actor(admin), { parentId: G_ASHA, studentId: ASHA, aboutUserId: PRINCIPAL, ownerId: ADMIN_2, summary: 'A third matter about the principal.', dueHours: 24, source: 'office' }));
+    const id = (made as { complaintId: string }).complaintId;
+    await escalate(id, new Date(Date.now() + 25 * 3600_000));
+    expect((await db.pg.query(`select owner_id from complaints where complaint_id = $1`, [id])).rows[0].owner_id).toBe(ADMIN_2);
+    expect((await told(id)).map((r: { t: string }) => r.t)).toEqual(['complaint_received']);
+    const row = (await as(admin2, (c) => listComplaints(c, actor(admin2)))).find((r) => r.complaint_id === id)!;
+    expect(row.events.find((e) => e.kind === 'escalated')).toMatchObject({ note: null });
+    // No school admin at all, and the principal is the one it is about: it stays with the teacher who has it,
+    // no step says it was passed on, and it is on that teacher's My Day (the card is now a teacher's too).
+    const made2 = await as(admin, (c) => openComplaint(c, queue, actor(admin), { parentId: G_ASHA, studentId: ASHA, aboutUserId: PRINCIPAL, ownerId: TARA, summary: 'The principal did not answer my letter.', dueHours: 24, source: 'office' }));
+    const id3 = (made2 as { complaintId: string }).complaintId;
+    await db.pg.query(`update users set is_active = false where role = 'school_admin' and school_id = $1`, [A]);
+    try {
+      const before = await card(tara);
+      await escalate(id3, new Date(Date.now() + 25 * 3600_000));
+      expect((await db.pg.query(`select owner_id, escalated_at is not null as escalated from complaints where complaint_id = $1`, [id3])).rows[0]).toEqual({ owner_id: TARA, escalated: true });
+      expect((await told(id3)).map((r: { t: string }) => r.t)).toEqual(['complaint_received']);
+      await db.pg.exec(`set session_replication_role = replica; update complaints set due_at = now() - interval '1 hour' where complaint_id = '${id3}'; set session_replication_role = origin;`);
+      expect(await card(tara)).toBe(before + 1);
+    } finally {
+      await db.pg.query(`update users set is_active = true where role = 'school_admin' and school_id = $1`, [A]);
+    }
+  });
 });

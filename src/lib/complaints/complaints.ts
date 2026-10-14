@@ -224,7 +224,10 @@ export function complaintEscalateHandler(deps: { platform: Platform; queue: Queu
       const aboutPrincipal = c.about_user_id ? (await db.query(`select 1 from users where school_id = $1 and user_id = $2 and role = 'principal'`, [schoolId, c.about_user_id])).rows.length === 1 : false;
       const order = aboutPrincipal ? ['school_admin', 'principal'] : ['principal'];
       const next = order.map((role) => staff.find((s) => s.role === role)).find(Boolean);
-      const passes = Boolean(next) && next!.user_id !== c.owner_id;
+      // Already with someone of that role (another school admin, say): it stays where it is. Only a change of level
+      // is a passing on, and only that is told to the parent.
+      const ownerRole = staff.find((s) => s.user_id === c.owner_id)?.role;
+      const passes = Boolean(next) && next!.user_id !== c.owner_id && ownerRole !== next!.role;
       await db.query(`update complaints set escalated_at = $3, owner_id = coalesce($4, owner_id) where school_id = $1 and complaint_id = $2`, [schoolId, complaintId, now, passes ? next!.user_id : null]);
       // The parent is told only when it really changes hands, in words that say to whom.
       const parentTold = passes ? await tellParent(db, deps.queue, { schoolId, complaintId, parentId: c.parent_id, studentId: c.student_id }, next!.role === 'principal' ? 'escalated' : 'escalated_office', {}) : false;
