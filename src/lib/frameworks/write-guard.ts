@@ -227,6 +227,9 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['curriculum-gap', 'curriculum-gap'],
   // p6-9d end
   // p6-9e begin
+  // The Learning Genome's classes and children, and one child's genome (C217). Switched off, neither answers.
+  ['learning-genome/*', 'learning-genome'],
+  ['learning-genome', 'learning-genome'],
   // p6-9e end
   // p6-9f begin
   // p6-9f end

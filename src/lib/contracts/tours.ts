@@ -92,6 +92,7 @@ export const TOURS = {
   'curriculum-gap': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // p6-9d end
   // p6-9e begin
+  'learning-genome': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // p6-9e end
   // p6-9f begin
   // p6-9f end

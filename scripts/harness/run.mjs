@@ -3357,6 +3357,174 @@ const gapTeacherDone = async () => {
 };
 // p6-9d end
 // p6-9e begin
+// Learning Genome v1 (C217). A fixture for Aarav (5-A, roll 1), made up: two exams with their 5-A Mathematics and
+// English papers entered (Mathematics 27 then 33 of 50, English 30 then 20 of 50), six Mathematics homeworks of which
+// he did two and three English ones he did, and Tara's Fractions and Decimals lessons with his parent's Daily Pulse
+// replies ("needs help" twice and "understood" once to Fractions; "understood" three times to Decimals). The module
+// and a grading scheme are switched on for the school if it has none. Every row is taken away by each screen's check.
+const GN = (n) => `00000000-0000-4000-8000-0000009e${n.toString(16).padStart(4, '0')}`;
+const GN_5A = '00000000-0000-4000-8000-0000000c0051';
+const GN_5B_KID = '00000000-0000-4000-8000-000000500002'; // Diya Example A, 5-B: not one of Tara's
+const GN_5B = '00000000-0000-4000-8000-0000000c0052';
+const GN_MATHS = '00000000-0000-4000-8000-0000000d0001';
+const GN_ENGLISH = '00000000-0000-4000-8000-0000000d0002';
+const GN_TARA = '00000000-0000-4000-8000-0000000a2003'; // her teachers row
+const GN_PARENT = '00000000-0000-4000-8000-0000000e0001'; // Aarav's guardian in the seed
+const GN_KIDS = [1, 4, 7, 10, 13, 16, 19, 22, 25]; // 5-A in the seed, roll 1 to 9
+const gnKid = (g) => `00000000-0000-4000-8000-0000005${String(g).padStart(5, '0')}`;
+const GN_CHILD = gnKid(1);
+const GN_TOPIC = 'Genome (harness)';
+let gnEntitlementBefore;
+const clearGenome = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from pulse_response_log where pulse_id in (select pulse_id from pulse_messages where topic = '${GN_TOPIC}');
+    delete from pulse_messages where topic = '${GN_TOPIC}';
+    delete from syllabus_progress where topic = '${GN_TOPIC}';
+    delete from homework_status where target_id in (select target_id from homework_targets where title like 'Genome worksheet %');
+    delete from homework_targets where title like 'Genome worksheet %';
+    delete from homework where title like 'Genome worksheet %';
+    delete from marks where paper_id in (select paper_id from exam_papers where exam_id in ('${GN(1)}', '${GN(2)}'));
+    delete from exam_papers where exam_id in ('${GN(1)}', '${GN(2)}');
+    delete from exams where exam_id in ('${GN(1)}', '${GN(2)}');
+    delete from grading_schemes where scheme_id = '${GN(9)}';
+    set session_replication_role = origin;`);
+};
+const genomeFixture = async () => {
+  await clearGenome();
+  if (gnEntitlementBefore === undefined) gnEntitlementBefore = (await db.pg.query(`select enabled, source from school_module_entitlements where school_id = $1 and module_id = 'learning-genome'`, [SCHOOL])).rows[0] ?? null;
+  await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'learning-genome', true, 'plan') on conflict (school_id, module_id) do update set enabled = true`, [SCHOOL]);
+  if (!(await db.pg.query(`select 1 from grading_schemes where school_id = $1`, [SCHOOL])).rows.length) {
+    const scheme = {
+      bands: [{ from: 75, to: 100, grade: 'A', meaning: null }, { from: 50, to: 74, grade: 'B', meaning: null }, { from: 33, to: 49, grade: 'C', meaning: null }, { from: 0, to: 32, grade: 'D', meaning: null }],
+      decimals: 0, passMark: 33, components: [], terms: [{ name: 'Term 1' }],
+      layout: { components: true, total: true, percent: true, grade: true, attendance: true, remarks: true, coScholastic: false }, coScholastic: null,
+    };
+    await db.pg.query(`insert into grading_schemes (scheme_id, school_id, version, scheme, made_by) values ($1, $2, 1, $3::jsonb, $4)`, [GN(9), SCHOOL, JSON.stringify(scheme), PEOPLE.principal.sub]);
+  }
+  await db.pg.query(`insert into exams (exam_id, school_id, name, created_by) values ($1, $3, 'Unit test 1 (genome)', $4), ($2, $3, 'Half-yearly (genome)', $4)`, [GN(1), GN(2), SCHOOL, PEOPLE.principal.sub]);
+  const parts = JSON.stringify([{ key: 'marks', name: 'Marks', max: 50, share: null }]);
+  // [paper, exam, subject, days back, Aarav's mark]; the other children's marks are made up from their number.
+  const papers = [[GN(11), GN(1), GN_MATHS, 60, 27], [GN(12), GN(1), GN_ENGLISH, 59, 30], [GN(13), GN(2), GN_MATHS, 10, 33], [GN(14), GN(2), GN_ENGLISH, 10, 20]];
+  for (const [paperId, examId, subjectId, back, his] of papers) {
+    await db.pg.query(`insert into exam_papers (paper_id, school_id, exam_id, class_id, subject_id, paper_date, components, created_by) values ($1, $2, $3, $4, $5, $6::date, $7::jsonb, $8)`, [paperId, SCHOOL, examId, GN_5A, subjectId, indiaDay(back), parts, PEOPLE.principal.sub]);
+    for (const g of GN_KIDS) {
+      await db.pg.query(
+        `insert into marks (school_id, exam_id, subject_id, paper_id, component, student_id, kind, score, max_score, entered_by) values ($1, $2, $3, $4, 'marks', $5, 'score', $6, 50, $7)`,
+        [SCHOOL, examId, subjectId, paperId, gnKid(g), g === 1 ? his : 20 + ((g * 7 + back) % 25), PEOPLE.teacher.sub]
+      );
+    }
+  }
+  await db.pg.query(`update exam_papers set entered_by = $2 where exam_id = any ($1::uuid[])`, [[GN(1), GN(2)], PEOPLE.teacher.sub]);
+  // Homework: Mathematics due 25 to 30 days ago (he did the first two), English 6 to 8 days ago (he did all three).
+  const work = [...[0, 1, 2, 3, 4, 5].map((i) => [GN_MATHS, 25 + i, i < 2]), ...[0, 1, 2].map((i) => [GN_ENGLISH, 6 + i, true])];
+  for (const [i, [subjectId, back, done]] of work.entries()) {
+    const [homeworkId, targetId] = [GN(100 + i), GN(200 + i)];
+    await db.pg.query(`insert into homework (homework_id, school_id, subject_id, title, due_date, created_by) values ($1, $2, $3, $4, $5::date, $6)`, [homeworkId, SCHOOL, subjectId, `Genome worksheet ${i + 1}`, indiaDay(back), PEOPLE.teacher.sub]);
+    await db.pg.query(`insert into homework_targets (target_id, school_id, homework_id, class_id, title, due_date) values ($1, $2, $3, $4, $5, $6::date)`, [targetId, SCHOOL, homeworkId, GN_5A, `Genome worksheet ${i + 1}`, indiaDay(back)]);
+    for (const g of GN_KIDS) await db.pg.query(`insert into homework_status (school_id, target_id, class_id, student_id, done, checked_by) values ($1, $2, $3, $4, $5, $6)`, [SCHOOL, targetId, GN_5A, gnKid(g), g === 1 ? done : true, PEOPLE.teacher.sub]);
+  }
+  // Tara's lessons of the seed's syllabus map (Mathematics, 5-A) and the parent's replies (1 understood, 2 needs help).
+  const lessons = [[1, 20, [2]], [2, 19, [2, 1]], [4, 5, [1, 1, 1]]];
+  for (const [i, [position, back, tiers]] of lessons.entries()) {
+    const [progressId, pulseId] = [GN(300 + i), GN(400 + i)];
+    await db.pg.query(
+      `insert into syllabus_progress (progress_id, school_id, teacher_id, class_id, subject_id, topic, status, date, unit_id)
+       select $1, $2, $3, $4, $5, $6, 'taught', $7::date, u.unit_id from syllabus_units u where u.school_id = $2 and u.class_id = $4 and u.subject_id = $5 and u.position = $8`,
+      [progressId, SCHOOL, GN_TARA, GN_5A, GN_MATHS, GN_TOPIC, indiaDay(back), position]
+    );
+    await db.pg.query(`insert into pulse_messages (pulse_id, school_id, class_id, subject_id, topic, exception_state, sent_on, status, source_progress_id) values ($1, $2, $3, $4, $5, 'taught', $6::date, 'draft', $7)`, [pulseId, SCHOOL, GN_5A, GN_MATHS, GN_TOPIC, indiaDay(back), progressId]);
+    for (const tier of tiers) await db.pg.query(`insert into pulse_response_log (school_id, pulse_id, student_id, parent_id, tier, responded_at) values ($1, $2, $3, $4, $5, now() - $6::int * interval '1 day')`, [SCHOOL, pulseId, GN_CHILD, GN_PARENT, tier, back]);
+  }
+};
+const genomePutBack = async () => {
+  await clearGenome();
+  if (gnEntitlementBefore === null) await db.pg.query(`delete from school_module_entitlements where school_id = $1 and module_id = 'learning-genome'`, [SCHOOL]);
+  else if (gnEntitlementBefore) await db.pg.query(`update school_module_entitlements set enabled = $2, source = $3 where school_id = $1 and module_id = 'learning-genome'`, [SCHOOL, gnEntitlementBefore.enabled, gnEntitlementBefore.source]);
+  gnEntitlementBefore = undefined;
+};
+// What the screen shows of a genome, read from the page.
+const genomeSeen = async (page) => {
+  const texts = (sel) => page.locator(sel).evaluateAll((els) => els.map((e) => e.textContent.replace(/\s+/g, ' ').trim()));
+  return {
+    strengths: await page.locator('[data-genome-findings="strengths"] [data-genome-finding]').evaluateAll((els) => els.map((e) => e.getAttribute('data-genome-finding'))),
+    gaps: await page.locator('[data-genome-findings="gaps"] [data-genome-finding]').evaluateAll((els) => els.map((e) => e.getAttribute('data-genome-finding'))),
+    mathsPercents: await texts(`[data-genome-subject="${GN_MATHS}"] [data-genome-percent]`),
+    mathsHomework: (await texts(`[data-genome-subject="${GN_MATHS}"] [data-genome-homework]`))[0] ?? '',
+    chapters: await page.locator('[data-genome-chapter]').evaluateAll((els) => els.map((e) => `${e.getAttribute('data-genome-chapter')}: ${e.querySelector('[data-genome-replies]').textContent}`)),
+    overall: (await texts('[data-genome-overall]'))[0] ?? '',
+    // The screen's own sentence that no child is ranked is not a ranking.
+    ranked: /\brank|position|topper|percentile/i.test((await page.locator('[data-module-page]').innerText()).replace(/never ranked/g, '')),
+  };
+};
+// The same numbers, from the rows themselves: each paper's percent, his homework in Mathematics in the last 90 days,
+// and the replies to each chapter's lessons.
+const genomeFromRows = async () => {
+  const percents = (await db.pg.query(
+    `select round(100.0 * m.score / m.max_score)::int as pct from marks m join exam_papers p on p.paper_id = m.paper_id
+      where m.student_id = $1 and p.subject_id = $2 and p.entered_by is not null and p.exam_id in ($3, $4) order by p.paper_date`,
+    [GN_CHILD, GN_MATHS, GN(1), GN(2)]
+  )).rows.map((r) => r.pct);
+  const hw = (await db.pg.query(
+    `select count(*)::int as checked, (count(*) filter (where st.done))::int as done from homework_status st join homework_targets t on t.target_id = st.target_id join homework h on h.homework_id = t.homework_id
+      where st.student_id = $1 and h.subject_id = $2 and t.due_date > (now() at time zone 'Asia/Kolkata')::date - 90`,
+    [GN_CHILD, GN_MATHS]
+  )).rows[0];
+  const chapters = (await db.pg.query(
+    `select u.chapter, (count(*) filter (where r.tier = 2))::int as help, (count(*) filter (where r.tier = 1))::int as ok from pulse_response_log r join pulse_messages pm on pm.pulse_id = r.pulse_id
+       join syllabus_progress sp on sp.progress_id = pm.source_progress_id join syllabus_units u on u.unit_id = sp.unit_id where r.student_id = $1 group by u.chapter order by min(u.position)`,
+    [GN_CHILD]
+  )).rows.map((r) => `${r.chapter}: Needs help: ${r.help} · Understood: ${r.ok}`);
+  return { percents, hw, chapters };
+};
+// The principal opens Aarav's genome from a link: the strengths and gaps, each paper's percent from his marks, his
+// homework and the replies to each chapter, all equal to the rows they come from.
+let genomeOfficeSeen = null;
+const genomeOffice = async (page) => {
+  await genomeFixture();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator(`[data-genome="${GN_CHILD}"]`).waitFor({ timeout: 20000 });
+  genomeOfficeSeen = await genomeSeen(page);
+};
+const genomeOfficeDone = async () => {
+  const rows = await genomeFromRows();
+  await genomePutBack();
+  const seen = genomeOfficeSeen ?? {};
+  const want = {
+    strengths: ['rising', 'above_own', 'understood'],
+    gaps: ['falling', 'below_own', 'needs_help', 'homework'],
+    mathsPercents: rows.percents.map((p) => `${p}% · Grade B`),
+    homework: `Homework: ${rows.hw.done} done of ${rows.hw.checked} checked`,
+    chapters: rows.chapters,
+  };
+  if (JSON.stringify(rows.percents) !== '[54,66]' || rows.hw.done !== 2 || rows.hw.checked !== 6) throw new Error(`the fixture: ${JSON.stringify(rows)}`);
+  if (JSON.stringify([seen.strengths, seen.gaps, seen.mathsPercents, seen.chapters]) !== JSON.stringify([want.strengths, want.gaps, want.mathsPercents, want.chapters])) throw new Error(`the genome on the screen: ${JSON.stringify(seen)} against ${JSON.stringify(want)}`);
+  if (!seen.mathsHomework?.startsWith(want.homework) || !/Half-yearly \(genome\): 53%/.test(seen.overall ?? '') || seen.ranked !== false) throw new Error(`the genome on the screen: ${JSON.stringify(seen)}`);
+};
+// Tara picks her class, then Aarav, on her phone: only her own class is offered; a 5-B child and 5-B itself are
+// "not found" for her (asked straight of the API); she sees the replies to the lessons she taught.
+let genomeTeacherSeen = null;
+const genomeTeacher = async (page) => {
+  await genomeFixture();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-genome-picker]').waitFor({ timeout: 20000 });
+  const classes = await page.locator('#genome-class option').evaluateAll((els) => els.filter((e) => e.value).map((e) => e.textContent));
+  await page.selectOption('#genome-class', GN_5A);
+  await page.locator('#genome-child').waitFor({ timeout: 20000 });
+  await page.selectOption('#genome-child', GN_CHILD);
+  await page.locator(`[data-genome="${GN_CHILD}"]`).waitFor({ timeout: 20000 });
+  const origin = new URL(page.url()).origin;
+  const refused = [(await page.request.get(`${origin}/api/app/learning-genome/${GN_5B_KID}`)).status(), (await page.request.get(`${origin}/api/app/learning-genome?class=${GN_5B}`)).status()];
+  genomeTeacherSeen = { classes, refused, remembered: new URL(page.url()).search, ownLessons: await page.locator('[data-genome-chapters]').innerText(), ...(await genomeSeen(page)) };
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+const genomeTeacherDone = async () => {
+  const rows = await genomeFromRows();
+  await genomePutBack();
+  const seen = genomeTeacherSeen ?? {};
+  if (JSON.stringify(seen.classes) !== JSON.stringify(['5-A']) || JSON.stringify(seen.refused) !== JSON.stringify([404, 404])) throw new Error(`the teacher's genome: ${JSON.stringify(seen)}`);
+  if (seen.remembered !== `?class=${GN_5A}&child=${GN_CHILD}` || !/lessons you taught yourself/.test(seen.ownLessons ?? '') || seen.ranked !== false) throw new Error(`the teacher's genome: ${JSON.stringify(seen)}`);
+  if (JSON.stringify(seen.chapters) !== JSON.stringify(rows.chapters) || JSON.stringify(seen.mathsPercents) !== JSON.stringify(rows.percents.map((p) => `${p}% · Grade B`))) throw new Error(`the teacher's genome: ${JSON.stringify(seen)} against ${JSON.stringify(rows)}`);
+};
 // p6-9e end
 // p6-9f begin
 // p6-9f end
@@ -4007,6 +4175,8 @@ const SCREENS = [
   ['teacher', 'app-curriculum-gap-teacher', '/app/curriculum-gap', gapTeacher, gapTeacherDone],
   // p6-9d end
   // p6-9e begin
+  ['principal', 'app-genome', `/app/learning-genome?class=${GN_5A}&child=${GN_CHILD}`, genomeOffice, genomeOfficeDone],
+  ['teacher', 'app-genome-teacher', '/app/learning-genome', genomeTeacher, genomeTeacherDone],
   // p6-9e end
   // p6-9f begin
   // p6-9f end

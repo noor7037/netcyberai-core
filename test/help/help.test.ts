@@ -68,6 +68,7 @@ describe('the guides', () => {
       'find-curriculum-gaps',
       // p6-9d end
       // p6-9e begin
+      'read-a-learning-genome',
       // p6-9e end
       // p6-9f begin
       // p6-9f end
