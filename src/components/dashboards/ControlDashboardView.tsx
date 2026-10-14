@@ -39,7 +39,8 @@ export function ControlDashboardView({ data, schoolsTable, now = new Date() }: {
         <KpiTile tone="royal" icon="school" tile={{ kind: 'kpi', id: 'schools', label: 'Live schools', value: data.liveSchools, unit: 'count', drillHref: '/control/schools' }} />
         <KpiTile tone="turquoise" icon="student" tile={{ kind: 'kpi', id: 'students', label: 'Students', value: total(data.totalStudents), unit: 'count', drillHref: '/control/schools' }} />
         <KpiTile tone="grape" icon="staff" tile={{ kind: 'kpi', id: 'staff', label: 'Teaching staff', value: total(data.totalStaff), unit: 'count', drillHref: '/control/users' }} />
-        <KpiTile tone="tangerine" icon="fees" tile={{ kind: 'kpi', id: 'fees', label: 'Fees marked paid', value: total(data.feesCollectedMinor), unit: 'inr_paise', drillHref: '/control/billing-plans' }} />
+        {/* Parents' fees across live schools. No link: Control has no screen that lists them, and Billing & Plans is NetCyberAI's own subscription money, a different thing (C204). */}
+        <KpiTile tone="tangerine" icon="fees" tile={{ kind: 'kpi', id: 'fees', label: 'Fees marked paid', value: total(data.feesCollectedMinor), unit: 'inr_paise' }} />
       </section>
 
       <AttentionList items={attention} allClear={fromTest > 0 ? 'No ticket from a live school is open or in progress.' : 'No support ticket is open or in progress.'} />

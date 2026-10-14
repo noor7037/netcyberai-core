@@ -8,7 +8,7 @@ import { NextRequest } from 'next/server';
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { helpArticle } from '@/content/help/articles';
 import { moduleById } from '@/lib/contracts/modules';
-import { planById, DEFAULT_PLAN_ID } from '@/lib/frameworks/plans';
+import { workingModules } from '@/lib/frameworks/plans';
 import { readModuleFor, writeModuleFor } from '@/lib/frameworks/write-guard';
 import { t } from '@/lib/i18n';
 import { addDays, askLeave, decideLeave, isLeaveDate, leaveByToday, leaveCalendar, leaveStaff, leaveWaiting, myLeave, officeAlone, onLeave, recordLeave, withdrawLeave, LEAVE_BACK_DAYS, LEAVE_KINDS, LEAVE_LIST_MAX, LEAVE_MAX_DAYS } from '@/lib/staff/leave';
@@ -106,7 +106,7 @@ describe('the day and the words', () => {
   it('Staff is partly live, in the standard plan, and says what goes when it is switched off', () => {
     expect(moduleById('staff')).toMatchObject({ status: 'partial', phase: 'P5' });
     expect(moduleById('staff').phaseNote).toContain('leave');
-    expect(planById(DEFAULT_PLAN_ID)!.modules).toContain('staff');
+    expect(workingModules()).toContain('staff'); // what a plan of "every module that works" gives (plans are rows now, C204)
     for (const lang of ['en', 'hi'] as const) expect(t(lang, 'moduleOff.staff').length, lang).toBeLessThanOrEqual(200);
     expect(t('en', 'moduleOff.staff')).toContain('leave');
     expect(t('hi', 'moduleOff.staff')).toMatch(/[ऀ-ॿ]/);

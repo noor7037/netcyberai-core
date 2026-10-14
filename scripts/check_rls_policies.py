@@ -317,6 +317,14 @@ ALLOWED_PERMISSIVE = (
         # p5-8d begin
         # p5-8d end
         # p5-8e begin
+        # C204: plans is the platform's alone (each policy is "to nca_super"; the app role has no grant).
+        ("plans", "plans_platform_read"),
+        ("plans", "plans_platform_insert"),
+        ("plans", "plans_platform_update"),
+        # C204: tenant isolation only. The app role holds SELECT on school_subscriptions and nothing on subscription_payments;
+        # both are narrowed by the RESTRICTIVE policies required below.
+        ("school_subscriptions", "school_subscriptions_tenant_isolation"),
+        ("subscription_payments", "subscription_payments_tenant_isolation"),
         # p5-8e end
         # p5-8f begin
         # p5-8f end
@@ -483,6 +491,9 @@ REQUIRED_RESTRICTIVE = {
     # p5-8d begin
     # p5-8d end
     # p5-8e begin
+    # C204: a school's staff read their own subscription row; payments are nobody's but the platform role's.
+    ("school_subscriptions", "school_subscriptions_staff"),
+    ("subscription_payments", "subscription_payments_nobody"),
     # p5-8e end
     # p5-8f begin
     # p5-8f end

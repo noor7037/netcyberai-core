@@ -5,8 +5,11 @@ import { changeModuleEntitlement, changeSchoolAccess, checkModuleAccess, loadEnt
 import { createDefinition, readValues, writeValues } from '@/lib/frameworks/custom-fields';
 import { readSettings, saveSettings, settingsHistory } from '@/lib/frameworks/settings-store';
 import { settingsSchemaFor } from '@/lib/frameworks/settings-schemas';
-import { applyPlan, DEFAULT_PLAN_ID, planById } from '@/lib/frameworks/plans';
+import { applyPlan, workingModules } from '@/lib/frameworks/plans';
 import { fullPhone, parseStudentSearch, searchStudents } from '@/lib/frameworks/student-search';
+
+// The id of the plan the migration seeds; the code itself names no plan (C204).
+const DEFAULT_PLAN_ID = 'standard';
 
 // P1-b frameworks on real Postgres (PGlite) with the migration applied
 // verbatim (C112): Student 360 search and the teacher own-classes rule,
@@ -279,7 +282,7 @@ describe('plans', () => {
     expect(e.modules.fees).toMatchObject({ enabled: true, source: 'plan' }); // partly live since C157, so in the plan
     expect(e.modules.exams).toBeUndefined(); // not in the plan: off
     const n = await db.platform((q) => q.query(`select count(*)::int n from school_module_entitlements where school_id = $1`, [C]));
-    expect(n.rows[0].n).toBe(planById(DEFAULT_PLAN_ID)!.modules.length);
+    expect(n.rows[0].n).toBe(workingModules().length);
     expect(await db.platform((q) => applyPlan(q, C, 'gold', founderActor, 'x y z'))).toEqual({ ok: false, error: 'unknown plan' });
   });
 });

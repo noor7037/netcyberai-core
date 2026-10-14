@@ -10,7 +10,7 @@ import { helpArticle } from '@/content/help/articles';
 import { moduleById } from '@/lib/contracts/modules';
 import { TOURS } from '@/lib/contracts/tours';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
-import { planById, DEFAULT_PLAN_ID } from '@/lib/frameworks/plans';
+import { workingModules } from '@/lib/frameworks/plans';
 import { readModuleFor, writeModuleFor } from '@/lib/frameworks/write-guard';
 import { t, tCount } from '@/lib/i18n';
 import { assignCover, coversBetween, coversFor, coversLeftFor, coverWork, dayOff, isoWeek, isoWeekday, needsCover, periodsToCover, PROXY_AHEAD_DAYS, PROXY_ARRANGERS, PROXY_ROLES, proxyDay, suggest, suggestFor, undoCover, type DayFacts, type ProxyDay } from '@/lib/proxy/proxy';
@@ -217,7 +217,7 @@ describe('the module and its words', () => {
   it('Proxy Auto is partly live, in the standard plan, and says what goes when it is switched off', () => {
     expect(moduleById('proxy')).toMatchObject({ status: 'partial', phase: 'P5', roles: ['principal', 'school_admin', 'teacher', 'academic_coordinator'] });
     expect(moduleById('proxy').phaseNote).toContain('not by a message');
-    expect(planById(DEFAULT_PLAN_ID)!.modules).toContain('proxy');
+    expect(workingModules()).toContain('proxy'); // what a plan of "every module that works" gives (plans are rows now, C204)
     for (const lang of ['en', 'hi'] as const) expect(t(lang, 'moduleOff.proxy').length, lang).toBeLessThanOrEqual(200);
     for (const words of ['assign or undo a cover', 'My Day', 'Covers on record are kept']) expect(t('en', 'moduleOff.proxy')).toContain(words);
     expect(t('hi', 'moduleOff.proxy')).toMatch(/[ऀ-ॿ]/);

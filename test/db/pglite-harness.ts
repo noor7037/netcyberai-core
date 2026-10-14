@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { readdirSync, readFileSync } from 'fs';
 import path from 'path';
 import { PGlite } from '@electric-sql/pglite';
 import { pgcrypto } from '@electric-sql/pglite/contrib/pgcrypto';
@@ -28,6 +28,8 @@ export const B2_MIGRATIONS = [
   '20261006005858_ticket_notify_enqueue.sql',
   '20261008025513_users_ui_language.sql',
   '20261011080039_users_tours_seen.sql',
+  // P5 8e (C204): plans are rows, so anything that applies a plan needs the table. Found by its name's ending, whatever its timestamp.
+  ...readdirSync(path.join(ROOT, 'supabase/migrations')).filter((f) => f.endsWith('_p5_billing_plans.sql')),
 ].map((f) => ({ file: f, sql: readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8') }));
 const NIL_UUID = '00000000-0000-0000-0000-000000000000';
 

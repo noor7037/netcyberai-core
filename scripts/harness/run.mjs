@@ -1560,6 +1560,96 @@ const heldMessages = async (page) => {
 };
 // p5-8d end
 // p5-8e begin
+// Control → Billing & Plans (C204): the founder adds a plan with a made-up name and price, records a payment for the
+// seeded school and opens its payments. The rows are checked, then everything is put back as the seed left it (the
+// seeded school has no subscription row: recording a payment makes it). The school starts in a grace period set by
+// hand, as the founder would have set it for a late payment: the payment brings it up to date, so it must end that
+// grace period and say so on the screen.
+let billingSeen = null;
+const BILLING_PLAN = 'harness-made-up-plan';
+const indiaDayFromNow = (days) => new Date(Date.now() + 5.5 * 3600_000 + days * 86_400_000).toISOString().slice(0, 10);
+const clearBilling = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from subscription_payments where school_id = '${SCHOOL}';
+    delete from school_subscriptions where school_id = '${SCHOOL}';
+    delete from plans where plan_id = '${BILLING_PLAN}';
+    update school_entitlements set access_mode = 'full', grace_ends_at = null where school_id = '${SCHOOL}';
+    set session_replication_role = origin;`);
+};
+const billingPlans = async (page) => {
+  await clearBilling();
+  // Grace set by hand, to the end of the day three days from now in India (Control stores 23:59:59 of that day).
+  await db.pg.exec(`update school_entitlements set access_mode = 'grace', grace_ends_at = (((now() at time zone 'Asia/Kolkata')::date + 4)::timestamp at time zone 'Asia/Kolkata') - interval '1 second' where school_id = '${SCHOOL}';`);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-billing-plan-add]').click();
+  await page.locator('#plan-name').fill('Harness Made-up Plan');
+  await page.locator('#plan-price').fill('12,500');
+  await page.locator('#plan-period').selectOption('year');
+  await page.locator('#plan-grace').fill('10');
+  await page.locator('[data-billing-plan-save]').click();
+  await page.waitForFunction(() => /plan is added/.test(document.querySelector('[data-billing-note]')?.textContent ?? ''), null, { timeout: 20000 });
+  const school = page.locator(`[data-billing-school="${SCHOOL}"]`);
+  await school.locator('[data-billing-pay]').click();
+  await page.locator(`#pay-amount-${SCHOOL}`).fill('12500');
+  await page.locator(`#pay-until-${SCHOOL}`).fill(indiaDayFromNow(365));
+  await page.locator(`#pay-ref-${SCHOOL}`).fill('harness-8e cheque 000118');
+  await school.locator('[data-billing-pay-save]').click();
+  await page.waitForFunction(() => /payment is recorded/.test(document.querySelector('[data-billing-note]')?.textContent ?? ''), null, { timeout: 20000 });
+  const paidNote = await page.locator('[data-billing-note]').textContent();
+  await school.locator('[data-billing-history]').click();
+  await school.locator('[data-billing-payment]').first().waitFor({ timeout: 20000 });
+  billingSeen = {
+    paidNote,
+    access: await school.locator('dd', { hasText: /^Full access$/ }).count(),
+    price: await page.locator(`[data-billing-plan="${BILLING_PLAN}"] [data-billing-price]`).textContent(),
+    state: await school.locator('[data-billing-state]').getAttribute('data-billing-state'),
+    payments: await school.locator('[data-billing-payment]').count(),
+    payment: await school.locator('[data-billing-payment]').first().textContent(),
+  };
+};
+const billingPlansDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from plans where plan_id = $2 and name = 'Harness Made-up Plan' and price_minor = 1250000 and period = 'year' and grace_days = 10 and all_working_modules and retired_at is null) as plans,
+            (select count(*)::int from subscription_payments where school_id = $1 and amount_minor = 1250000 and reference = 'harness-8e cheque 000118' and covers_until = $3::date and recorded_by = $4) as payments,
+            (select count(*)::int from school_subscriptions where school_id = $1 and paid_until = $3::date and billing_access is null) as subscriptions,
+            (select access_mode from school_entitlements where school_id = $1) as access,
+            (select grace_ends_at is null from school_entitlements where school_id = $1) as grace_gone,
+            (select count(*)::int from audit_log where event_action = 'entitlement.access_changed' and school_id = $1 and actor_user_id = $4 and before_state ->> 'access_mode' = 'grace' and after_state ->> 'access_mode' = 'full' and after_state ->> 'by' = 'billing.payment') as grace_audits,
+            (select count(*)::int from audit_log where event_action = 'billing.plan_created' and target_id = $2) as plan_audits,
+            (select count(*)::int from audit_log where event_action = 'billing.payment_recorded' and school_id = $1 and (after_state ? 'amount_minor' or after_state ? 'reference') = false) as payment_audits`,
+    [SCHOOL, BILLING_PLAN, indiaDayFromNow(365), PEOPLE.founder.sub]
+  );
+  await clearBilling();
+  const r = rows[0];
+  const seen = billingSeen ?? {};
+  // The payment brought the school up to date, so the grace period set by hand is gone, audited as the payment's doing by the founder.
+  if (r.plans !== 1 || r.payments !== 1 || r.subscriptions !== 1 || r.access !== 'full' || r.grace_gone !== true || r.grace_audits < 1 || r.plan_audits < 1 || r.payment_audits < 1) throw new Error(`billing plans, in the database: ${JSON.stringify(r)}`);
+  // The price and the amount on the screen come from the stored paise.
+  if (!/12,500\.00 a year/.test(seen.price ?? '') || seen.state !== 'paid' || seen.payments !== 1 || !/12,500\.00/.test(seen.payment ?? '') || !/harness-8e cheque 000118/.test(seen.payment ?? '')) throw new Error(`billing plans, on the screen: ${JSON.stringify(seen)}`);
+  // And the screen said what the payment did to the grace period, and shows full access.
+  if (!/grace period set by hand: that has ended/.test(seen.paidNote ?? '') || seen.access !== 1) throw new Error(`billing plans, the grace period set by hand: ${JSON.stringify(seen)}`);
+};
+// The school's own screen while it is in grace for billing (C204): the dated line, with no amount. The state is
+// put in place as the nightly check leaves it (the check itself is proven in test/control/billing-plans.test.ts).
+let paidUntilSeen = null;
+const schoolInGrace = async (page) => {
+  await clearBilling();
+  await db.pg.exec(`
+    insert into school_subscriptions (school_id, plan_id, paid_until, billing_access, billing_grace_ends_at, billing_access_since)
+    values ('${SCHOOL}', 'standard', (now() at time zone 'Asia/Kolkata')::date - 1, 'grace', (((now() at time zone 'Asia/Kolkata')::date + 15)::timestamp at time zone 'Asia/Kolkata'), (now() at time zone 'Asia/Kolkata')::date);
+    update school_entitlements e set access_mode = 'grace', grace_ends_at = s.billing_grace_ends_at from school_subscriptions s where s.school_id = e.school_id and e.school_id = '${SCHOOL}';`);
+  await page.reload({ waitUntil: 'networkidle' });
+  const line = page.locator('[data-access-notice="grace"]');
+  await line.waitFor({ timeout: 20000 });
+  paidUntilSeen = await line.textContent();
+  // The line sits just under the search bar, which stays at the top of the window: photographed from the top of the page.
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(300);
+};
+const schoolInGraceDone = async () => {
+  await clearBilling();
+  if (!/subscription was paid until \d{1,2} \w+ \d{4}\. Everything keeps working until the end of \d{1,2} \w+ \d{4}\./.test(paidUntilSeen ?? '') || /₹|rupee/i.test(paidUntilSeen ?? '')) throw new Error(`the school's paid-until line: ${JSON.stringify(paidUntilSeen)}`);
+};
 // p5-8e end
 // p5-8f begin
 // p5-8f end
@@ -2006,6 +2096,8 @@ const SCREENS = [
   ['principal', 'app-tickets-rows', '/app/help/ticket?show=open', shownRows],
   // p5-8d end
   // p5-8e begin
+  ['founder', 'control-billing-plans', '/control/billing-plans', billingPlans, billingPlansDone],
+  ['principal', 'app-paid-until', '/app/my-day', schoolInGrace, schoolInGraceDone],
   // p5-8e end
   // p5-8f begin
   // p5-8f end

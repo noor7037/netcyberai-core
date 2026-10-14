@@ -16,7 +16,7 @@ import {
   type ApplicationInput,
 } from './intake';
 import { createInvitation } from './invitations';
-import { applyPlan, DEFAULT_PLAN_ID } from '@/lib/frameworks/plans';
+import { applyDefaultPlan } from '@/lib/frameworks/plans';
 
 // School applications in the database (C98). Every function runs inside
 // the caller's transaction (withPlatformService for the public form and
@@ -272,9 +272,9 @@ export async function approveApplication(
     targetId: schoolId,
     afterState: { fromApplication: applicationId },
   });
-  // The school starts on the default plan, in this same transaction, so it
-  // never exists without its modules (C114).
-  await applyPlan(db, schoolId, DEFAULT_PLAN_ID, actor, `school created from application ${applicationId}`);
+  // The school starts on the plan new schools get (a platform setting, C204),
+  // in this same transaction, so it never exists without its modules (C114).
+  await applyDefaultPlan(db, schoolId, actor, `school created from application ${applicationId}`);
   const invitation = await createInvitation(db, queue, {
     schoolId,
     email: row.email,
