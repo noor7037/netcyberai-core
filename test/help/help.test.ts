@@ -92,6 +92,7 @@ describe('the guides', () => {
       'issue-certificates',
       // p7-10e end
       // p7-10f begin
+      'make-a-timetable',
       // p7-10f end
       // p7-10g begin
       // p7-10g end

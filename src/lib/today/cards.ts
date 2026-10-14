@@ -545,6 +545,20 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   // p7-10e begin
   // p7-10e end
   // p7-10f begin
+  {
+    // A proposed timetable waiting for a person to review it, publish it or discard it (C229), for the roles that plan
+    // the timetable. A school has one at most. Counted first and only then checked against the plan, so a school with
+    // nothing waiting asks nothing more; a plan without the generator shows no card.
+    type: 'timetable-draft',
+    moduleId: 'timetable',
+    roles: ['principal', 'school_admin', 'academic_coordinator'],
+    async load(db, ctx) {
+      const { draftsWaiting, generatorInPlan } = await import('@/lib/timetable/generator-store');
+      const count = await draftsWaiting(db as never, ctx.schoolId);
+      if (count === 0 || !(await generatorInPlan(db as never, ctx.schoolId))) return [];
+      return waiting('timetable-draft', 'timetable', count, '/app/timetable/generator');
+    },
+  },
   // p7-10f end
   // p7-10g begin
   // p7-10g end

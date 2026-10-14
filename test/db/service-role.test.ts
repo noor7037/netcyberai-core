@@ -103,7 +103,7 @@ describe('no table or function is reached through supabase-js anywhere in src/',
       text.split('\n').forEach((line, i) => {
         if (/^\s*(\/\/|\*)/.test(line)) return;
         // Any .from( at all that is not a bucket or a built-in (Array.from and the like): a table named by a variable counts too.
-        const tableCall = /\.from\(/.test(line.replace(/\b(Array|Buffer|Object|Uint8Array|Set|Map)\.from\(/g, '').replace(/\.storage\s*\.from\(/g, ''));
+        const tableCall = /\.from\(/.test(line.replace(/\b(Array|Buffer|Object|Set|Map|(?:Big)?(?:Int|Uint|Float)(?:8|16|32|64)(?:Clamped)?Array)\.from\(/g, '').replace(/\.storage\s*\.from\(/g, ''));
         if (tableCall || /\.(rpc|schema)\(/.test(line)) offenders.push(`${path.relative(path.resolve(__dirname, '../..'), f)}:${i + 1}`);
       });
     }

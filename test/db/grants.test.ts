@@ -216,6 +216,10 @@ const APP_USER: Record<string, string> = {
   certificate_marks: 'DELETE,INSERT,SELECT,UPDATE', // the seal and the signature: the principal replaces or removes them
   // p7-10e end
   // p7-10f begin
+  timetable_loads: 'DELETE,INSERT,SELECT,UPDATE', // a class's subject periods and teacher, edited by the office (C229)
+  timetable_unavailable: 'DELETE,INSERT,SELECT', // a teacher's unavailable periods are replaced as a set
+  timetable_proposals: 'INSERT,SELECT,UPDATE', // never deleted: a draft is published or discarded, for good (trigger)
+  timetable_versions: 'INSERT,SELECT', // append-only: each publish kept
   // p7-10f end
   // p7-10g begin
   // p7-10g end
@@ -357,6 +361,10 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   certificate_marks: '',
   // p7-10e end
   // p7-10f begin
+  timetable_loads: '', // a school's timetable plans are its own: the platform role reads nothing here (C229)
+  timetable_unavailable: '',
+  timetable_proposals: '',
+  timetable_versions: '',
   // p7-10f end
   // p7-10g begin
   // p7-10g end

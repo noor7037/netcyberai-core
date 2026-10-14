@@ -284,6 +284,10 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['documents/certificates', 'documents'],
   // p7-10e end
   // p7-10f begin
+  // The timetable generator's constraints and draft, and the timetable's change history (C229). Switched off with
+  // Timetable. (Its writes are under 'timetable/**' in WRITE_ROUTES.)
+  ['timetable/generator', 'timetable'],
+  ['timetable/history', 'timetable'],
   // p7-10f end
   // p7-10g begin
   // p7-10g end

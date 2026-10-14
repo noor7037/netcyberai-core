@@ -399,6 +399,11 @@ ALLOWED_PERMISSIVE = (
         ("certificate_marks", "certificate_marks_tenant_isolation"),
         # p7-10e end
         # p7-10f begin
+        # C229: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("timetable_loads", "timetable_loads_tenant_isolation"),
+        ("timetable_unavailable", "timetable_unavailable_tenant_isolation"),
+        ("timetable_proposals", "timetable_proposals_tenant_isolation"),
+        ("timetable_versions", "timetable_versions_tenant_isolation"),
         # p7-10f end
         # p7-10g begin
         # p7-10g end
@@ -739,6 +744,19 @@ REQUIRED_RESTRICTIVE = {
     ("audit_log", "audit_certificate_rows_office"),
     # p7-10e end
     # p7-10f begin
+    # C229: the timetable generator's constraints, drafts and versions are read and written by the office (principal,
+    # school admin, academic coordinator) only, in their own name; its audit rows by the office or the person who acted.
+    ("timetable_loads", "timetable_loads_office"),
+    ("timetable_loads", "timetable_loads_as_self"),
+    ("timetable_loads", "timetable_loads_updated_as_self"),
+    ("timetable_unavailable", "timetable_unavailable_office"),
+    ("timetable_unavailable", "timetable_unavailable_as_self"),
+    ("timetable_proposals", "timetable_proposals_office"),
+    ("timetable_proposals", "timetable_proposals_as_self"),
+    ("timetable_proposals", "timetable_proposals_decided_as_self"),
+    ("timetable_versions", "timetable_versions_office"),
+    ("timetable_versions", "timetable_versions_as_self"),
+    ("audit_log", "audit_timetable_plan_rows_office_or_actor"),
     # p7-10f end
     # p7-10g begin
     # p7-10g end

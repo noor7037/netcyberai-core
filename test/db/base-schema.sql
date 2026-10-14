@@ -695,3 +695,14 @@ alter table staff_qualifications enable row level security;
 create policy staff_qualifications_tenant_isolation on staff_qualifications using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 create policy staff_qualifications_office on staff_qualifications as restrictive for all using (current_setting('app.current_role', true) in ('principal', 'school_admin'));
 grant select on staff_qualifications to app_user;
+-- The timetable generator's proposals (C229), as My Day counts a draft waiting for review (the
+-- p7_timetable_generator migration): the office only.
+create table timetable_proposals (
+  proposal_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  state text not null default 'draft'
+);
+alter table timetable_proposals enable row level security;
+create policy timetable_proposals_tenant_isolation on timetable_proposals using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy timetable_proposals_office on timetable_proposals as restrictive for all using (current_setting('app.current_role', true) in ('principal', 'school_admin', 'academic_coordinator'));
+grant select on timetable_proposals to app_user;
