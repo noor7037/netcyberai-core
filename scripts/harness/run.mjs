@@ -1870,6 +1870,183 @@ const monitoringProblemsDone = async () => {
 };
 // p5-8g end
 // p5-8h begin
+// Reports (docs/26 slice 8h, C207). The principal opens Reports on the seeded school after four receipts are
+// added (the seed has none): the list must hold all eight reports; "Daily collection" is opened and its CSV asked
+// for over HTTP; then "Attendance by class" for 30 days, which is the picture. What the screen said is kept and
+// the check compares it with the database: the totals of both reports, the file's lines against the rows on the
+// screen, and one audit row for the one download. The receipts and the audit row are then taken out again.
+// "Days marked" in the total row must be the days the school has a mark on, not the classes' days added up.
+// The harness has no accountant, so the second screen adds one for its own run: an accountant's account is put
+// in, the same browser is signed in as that person, and the list must hold the two fee reports and nothing about
+// learning; a learning report asked for by its address must be refused. Then the account is removed and the
+// principal's session put back.
+const R8H = '00000000-0000-4000-8000-00000081800';
+const reportNumber = (text) => Number(String(text ?? '').replace(/[^\d.]/g, ''));
+const reportTotals = (page) => page.locator('[data-report-total] [data-total-cell]').evaluateAll((els) => Object.fromEntries(els.map((e) => [e.getAttribute('data-total-cell'), (e.querySelector('span:last-child') ?? e).textContent.trim()])));
+const reportOpen = async (page, id) => {
+  await page.locator(`[data-report-item="${id}"]`).click();
+  await page.locator(`[data-report="${id}"][data-report-state="shown"]`).waitFor({ timeout: 30000 });
+};
+const clearReportRows = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from receipts where receipt_no like 'H8H-%';
+    delete from audit_log where event_action = 'report.exported';
+    delete from memberships where membership_id = '${R8H}2'; delete from users where user_id = '${R8H}1';
+    set session_replication_role = origin;`);
+};
+let reportsSeen = null;
+const reportsScreen = async (page) => {
+  await clearReportRows();
+  // Today 1,200.50 in cash; two days ago 800 by UPI; five days ago 2,500 by cheque; three days ago 300 in cash, reversed since.
+  const receipt = (no, minor, method, back, reversed) => db.pg.query(
+    `insert into receipts (school_id, receipt_no, student_id, total_minor, method, issued_by, issued_at, reversed_at, reversed_by, reversal_reason)
+     values ($1, $2, $3, $4, $5, $6, now() - $7 * interval '1 day', ${reversed ? `now(), $6, 'Harness 8h: entered twice.'` : 'null, null, null'})`,
+    [SCHOOL, no, STUDENT, minor, method, PEOPLE.principal.sub, back]
+  );
+  await receipt('H8H-1', 120050, 'cash', 0, false);
+  await receipt('H8H-2', 80000, 'upi', 2, false);
+  await receipt('H8H-3', 250000, 'cheque', 5, false);
+  await receipt('H8H-4', 30000, 'cash', 3, true);
+  await page.reload({ waitUntil: 'networkidle', timeout: 90000 });
+  await page.locator('[data-report-list] [data-report-item]').first().waitFor({ timeout: 30000 });
+  const listed = await page.locator('[data-report-item]').evaluateAll((els) => els.map((e) => e.getAttribute('data-report-item')));
+  const groups = await page.locator('[data-report-group]').evaluateAll((els) => els.map((e) => e.getAttribute('data-report-group')));
+  const choose = await page.locator('[data-report-choose]').count();
+  // The collection report, for 30 days (the range the screen opens on), and its file.
+  await reportOpen(page, 'daily-collection');
+  const collection = { range: await page.locator('[data-report-range-id="30d"]').getAttribute('aria-pressed'), days: await page.locator('[data-report-days]').getAttribute('data-report-days'), rows: await page.locator('[data-report-row]').count(), said: Number(await page.locator('[data-report-row-count]').getAttribute('data-report-row-count')), total: await reportTotals(page), href: await page.locator('[data-report-export]').getAttribute('href') };
+  const before = Number((await db.pg.query(`select count(*)::int as n from audit_log where school_id = $1 and event_action = 'report.exported'`, [SCHOOL])).rows[0].n);
+  const res = await page.request.get(base + collection.href);
+  const file = { status: res.status(), type: res.headers()['content-type'] ?? '', lines: (await res.text()).trim().split('\r\n') };
+  const audit = (await db.pg.query(`select actor_role::text as role, after_state from audit_log where school_id = $1 and event_action = 'report.exported' order by audit_id`, [SCHOOL])).rows;
+  // Seven days, by its button: the table is worked out again and the address says so.
+  const daysShown = (same) => page.waitForFunction(([month, want]) => document.querySelector('[data-report="daily-collection"]')?.getAttribute('data-report-state') === 'shown' && (document.querySelector('[data-report-days]')?.getAttribute('data-report-days') === month) === want, [collection.days, same], { timeout: 30000 });
+  await page.locator('[data-report-range-id="7d"]').click();
+  await daysShown(false);
+  const week = { pressed: await page.locator('[data-report-range-id="7d"]').getAttribute('aria-pressed'), address: page.url().replace(base, ''), rows: await page.locator('[data-report-row]').count(), total: await reportTotals(page) };
+  // Attendance by class, back on 30 days: the picture.
+  await page.locator('[data-report-range-id="30d"]').click();
+  await daysShown(true);
+  await reportOpen(page, 'attendance-by-class');
+  const attendance = { days: await page.locator('[data-report-days]').getAttribute('data-report-days'), classes: await page.locator('[data-report-row] th').allTextContents(), total: await reportTotals(page), address: page.url().replace(base, '') };
+  await page.locator('[data-report-why] summary').click();
+  const why = (await page.locator('[data-report-why]').textContent()) ?? '';
+  reportsSeen = { listed, groups, choose, collection, file, audits: audit.length - before, audit: audit[audit.length - 1], week, attendance, why };
+};
+const reportsScreenDone = async () => {
+  const s = reportsSeen;
+  const days = (back) => `(issued_at at time zone 'Asia/Kolkata')::date between ${TODAY_SQL} - ${back} and ${TODAY_SQL}`;
+  const money = async (back) => (await db.pg.query(`select count(*) filter (where reversed_at is null)::int as receipts, coalesce(sum(total_minor) filter (where reversed_at is null), 0)::bigint as minor, count(*) filter (where reversed_at is not null)::int as reversed, count(distinct (issued_at at time zone 'Asia/Kolkata')::date)::int as days from receipts where school_id = $1 and ${days(back)}`, [SCHOOL])).rows[0];
+  const [month, week] = [await money(29), await money(6)];
+  const marks = (await db.pg.query(`select count(*) filter (where status = 'present')::int as present, count(*) filter (where status = 'late')::int as late, count(*) filter (where status = 'absent')::int as absent, count(*) filter (where status = 'leave')::int as leave, count(*)::int as marks, count(distinct class_id)::int as classes, count(distinct date)::int as days, (select coalesce(sum(d), 0)::int from (select count(distinct date) as d from attendance where school_id = $1 and date between ${TODAY_SQL} - 29 and ${TODAY_SQL} group by class_id) x) as class_days from attendance where school_id = $1 and date between ${TODAY_SQL} - 29 and ${TODAY_SQL}`, [SCHOOL])).rows[0];
+  await clearReportRows();
+  if (!s) throw new Error('the reports screen was not read');
+  const problems = [];
+  if (s.listed.join() !== 'daily-collection,dues,attendance-by-class,absentees,homework-coverage,pulse-coverage,messages-by-state,staff-leave') problems.push(`the principal's list: ${s.listed.join()}`);
+  if (s.groups.join() !== 'money,learning,parents,staff' || s.choose !== 1) problems.push(`groups ${s.groups.join()}, "choose a report" shown ${s.choose} times`);
+  // Daily collection against the receipts table: 4,500.50 in three receipts over three days, and one reversed (a day of its own).
+  const c = s.collection;
+  if (c.range !== 'true' || c.rows !== c.said || c.rows !== Number(month.days)) problems.push(`collection: ${c.rows} rows on screen, ${c.said} said, ${month.days} days with a receipt (30 days pressed: ${c.range})`);
+  if (reportNumber(c.total.receipts) !== month.receipts || Math.round(reportNumber(c.total.amount) * 100) !== Number(month.minor) || reportNumber(c.total.reversed) !== month.reversed) problems.push(`collection total on screen ${c.total.receipts} receipts, ${c.total.amount}, ${c.total.reversed} reversed; the database has ${month.receipts}, ${month.minor} paise, ${month.reversed}`);
+  if (month.receipts !== 3 || Number(month.minor) !== 450050 || month.reversed !== 1) problems.push(`the receipts added are not the ones counted: ${JSON.stringify(month)}`);
+  if (Math.round((reportNumber(c.total.cash) + reportNumber(c.total.upi) + reportNumber(c.total.cheque) + reportNumber(c.total.card) + reportNumber(c.total.netbanking) + reportNumber(c.total.online)) * 100) !== Number(month.minor)) problems.push(`the methods do not add up to the amount: ${JSON.stringify(c.total)}`);
+  // The file: the heading, one line a row on the screen, the total; asked for with the very days on the screen.
+  if (s.file.status !== 200 || !/text\/csv/.test(s.file.type) || s.file.lines.length !== c.rows + 2) problems.push(`the file answered ${s.file.status} ${s.file.type} with ${s.file.lines.length} lines for ${c.rows} rows`);
+  if (!s.file.lines[s.file.lines.length - 1]?.startsWith(`Total,${month.receipts},${Number(month.minor) / 100},`)) problems.push(`the file's total line: ${s.file.lines[s.file.lines.length - 1]}`);
+  if (c.href !== `/api/app/reports/daily-collection/export?from=${c.days.split('/')[0]}&to=${c.days.split('/')[1]}`) problems.push(`export link ${c.href} for the days ${c.days}`);
+  if (s.audits !== 1 || s.audit?.role !== 'principal' || s.audit?.after_state?.report !== 'daily-collection' || s.audit?.after_state?.rows !== c.rows || Object.keys(s.audit?.after_state ?? {}).sort().join() !== 'from,language,period,report,rows,to') problems.push(`${s.audits} audit rows for one download: ${JSON.stringify(s.audit?.after_state)}`);
+  if (s.week.pressed !== 'true' || s.week.address !== '/app/reports?report=daily-collection&range=7d') problems.push(`7 days pressed: ${s.week.pressed}, the address is ${s.week.address}`);
+  if (s.week.rows !== Number(week.days) || Math.round(reportNumber(s.week.total.amount) * 100) !== Number(week.minor)) problems.push(`7 days: ${s.week.rows} rows and ${s.week.total.amount} on screen; the database has ${week.days} days and ${week.minor} paise`);
+  // Attendance by class against the attendance table.
+  const a = s.attendance;
+  const rate = Math.round(((marks.present + marks.late) / marks.marks) * 1000) / 10;
+  if (a.classes.join() !== '5-A,5-B,6-A' || a.classes.length !== marks.classes) problems.push(`classes on screen: ${a.classes.join()} (${marks.classes} have marks)`);
+  for (const k of ['present', 'late', 'absent', 'leave']) if (reportNumber(a.total[k]) !== marks[k]) problems.push(`${k}: ${a.total[k]} on screen, ${marks[k]} in the database`);
+  if (reportNumber(a.total.rate) !== rate) problems.push(`in school ${a.total.rate} on screen, ${rate} by the rule`);
+  // "Days marked" in the total row is the days the school has a mark on (a day three classes were marked on is one
+  // day), never the classes' days added up. The seed marks its classes on the same days, so the two differ.
+  if (reportNumber(a.total.days) !== marks.days || marks.days === 0 || marks.class_days <= marks.days) problems.push(`days marked: ${a.total.days} in the total row; the school has marks on ${marks.days} days (the classes' days add up to ${marks.class_days})`);
+  if (!/“Days marked” in the total row is not the classes added up/.test(s.why)) problems.push(`"Why this?" does not say how the days are counted: ${s.why.slice(0, 300)}`);
+  if (!a.address.startsWith('/app/reports?report=attendance-by-class&range=30d')) problems.push(`the address is ${a.address}`);
+  if (!/Rule version 1\./.test(s.why) || !/Read from: attendance marks, classes\./.test(s.why)) problems.push(`"Why this?" says: ${s.why.slice(0, 200)}`);
+  reportsSeen = null;
+  if (problems.length) throw new Error(`reports: ${problems.join('; ')}`);
+};
+let accountantSeen = null;
+let principalCookies = [];
+const reportsAsAccountant = async (page) => {
+  await clearReportRows();
+  await db.pg.query(`insert into users (user_id, school_id, email, role, display_name) values ($1, $2, 'accounts@example.invalid', 'accountant', 'Anil Example')`, [`${R8H}1`, SCHOOL]);
+  await db.pg.query(`insert into memberships (membership_id, user_id, school_id, role) values ($1, $2, $3, 'accountant')`, [`${R8H}2`, `${R8H}1`, SCHOOL]);
+  principalCookies = (await page.context().cookies()).filter((c) => c.name === 'nca_access' || c.name === 'nca_tours');
+  const cookie = await cookieFor({ sub: `${R8H}1`, role: 'accountant', schoolId: SCHOOL, membershipId: `${R8H}2` }, secret);
+  await page.context().addCookies([
+    { name: 'nca_access', value: cookie, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' },
+    { name: 'nca_tours', value: `${R8H}1.${TOUR_IDS.join(',')}`, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' },
+  ]);
+  await page.goto(`${base}/app/reports`, { waitUntil: 'networkidle', timeout: 90000 });
+  await page.locator('[data-report-list] [data-report-item]').first().waitFor({ timeout: 30000 });
+  const listed = await page.locator('[data-report-item]').evaluateAll((els) => els.map((e) => e.getAttribute('data-report-item')));
+  const groups = await page.locator('[data-report-group]').evaluateAll((els) => els.map((e) => e.getAttribute('data-report-group')));
+  // By their addresses: a learning report's rows and its file are refused; a fee report is answered.
+  const asked = {};
+  for (const address of ['absentees', 'attendance-by-class', 'homework-coverage', 'staff-leave', 'absentees/export', 'dues']) asked[address] = (await page.request.get(`${base}/api/app/reports/${address}`)).status();
+  await reportOpen(page, 'dues');
+  const dues = { rows: await page.locator('[data-report-row]').count(), total: await reportTotals(page), now: await page.locator('[data-report-now]').count(), range: await page.locator('[data-report-range]').count(), text: (await page.locator('[data-report="dues"]').textContent()) ?? '' };
+  accountantSeen = { listed, groups, asked, dues };
+};
+const reportsAsAccountantDone = async (page) => {
+  const s = accountantSeen;
+  // Overdue by the rule (its date has passed in India and something is still owed), counted here by hand: the seed keeps no payments.
+  const owed = (await db.pg.query(`select count(*)::int as entries, coalesce(sum(amount_minor), 0)::bigint as minor, count(distinct student_id)::int as students from fees_ledger where school_id = $1 and (status::text = 'overdue' or (status::text in ('pending', 'partial') and due_date < ${TODAY_SQL}))`, [SCHOOL])).rows[0];
+  const exported = Number((await db.pg.query(`select count(*)::int as n from audit_log where school_id = $1 and event_action = 'report.exported'`, [SCHOOL])).rows[0].n);
+  // The principal is signed in again, and the accountant's account is removed.
+  await page.context().addCookies(principalCookies.map((c) => ({ name: c.name, value: c.value, domain: c.domain, path: c.path, httpOnly: c.httpOnly, sameSite: c.sameSite })));
+  await clearReportRows();
+  if (!s) throw new Error('the accountant’s reports screen was not read');
+  const problems = [];
+  if (s.listed.join() !== 'daily-collection,dues' || s.groups.join() !== 'money') problems.push(`the accountant's list: ${s.listed.join()} in ${s.groups.join()}`);
+  if (s.asked.absentees !== 403 || s.asked['attendance-by-class'] !== 403 || s.asked['homework-coverage'] !== 403 || s.asked['staff-leave'] !== 403 || s.asked['absentees/export'] !== 403 || s.asked.dues !== 200) problems.push(`asked by address: ${JSON.stringify(s.asked)}`);
+  if (exported !== 0) problems.push(`${exported} audit rows though no file was given`);
+  if (s.dues.rows !== owed.students || reportNumber(s.dues.total.entries) !== owed.entries || Math.round(reportNumber(s.dues.total.owed) * 100) !== Number(owed.minor) || owed.entries === 0) problems.push(`dues on screen: ${s.dues.rows} rows, ${s.dues.total.entries} entries, ${s.dues.total.owed}; the database has ${owed.students} students, ${owed.entries} entries, ${owed.minor} paise`);
+  if (s.dues.now !== 1 || s.dues.range !== 0) problems.push(`a report about now shows its days chooser ${s.dues.range} times`);
+  if (/attendance|homework|present|absent/i.test(s.dues.text)) problems.push('the dues report says something about learning');
+  accountantSeen = null;
+  if (problems.length) throw new Error(`reports as the accountant: ${problems.join('; ')}`);
+};
+// The same screen in Hindi, opened straight on a report by its address (a report can be bookmarked): the absentees
+// of 30 days. The rows on the screen must be the students marked absent, in the order of class and name, with
+// the days of each; never in the order of the days.
+let absenteesSeen = null;
+const reportsHindi = async (page) => {
+  await speak('हिन्दी')(page);
+  await page.locator('[data-report="absentees"][data-report-state="shown"] [data-report-total]').waitFor({ timeout: 30000 });
+  absenteesSeen = {
+    title: ((await page.locator('[data-report="absentees"] h2').textContent()) ?? '').trim(),
+    download: ((await page.locator('[data-report-export]').textContent()) ?? '').trim(),
+    pressed: await page.locator('[data-report-item="absentees"]').getAttribute('aria-pressed'),
+    total: await reportTotals(page),
+    rows: await page.locator('[data-report-row]').evaluateAll((els) => els.map((e) => [e.querySelector('th').textContent.trim(), e.querySelector('[data-cell="student"] span:last-child').textContent.trim(), Number(e.querySelector('[data-cell="days"] span:last-child').textContent)])),
+  };
+};
+const reportsHindiDone = async (page) => {
+  const s = absenteesSeen;
+  const absent = (await db.pg.query(
+    `select c.name as class, st.name as student, count(*)::int as days
+       from attendance a join students st on st.student_id = a.student_id join classes c on c.class_id = a.class_id
+      where a.school_id = $1 and a.status = 'absent' and a.date between ${TODAY_SQL} - 29 and ${TODAY_SQL}
+      group by c.name, c.section, a.class_id, st.name, a.student_id order by c.name, c.section, a.class_id, st.name, a.student_id`,
+    [SCHOOL]
+  )).rows.map((r) => [r.class, r.student, r.days]);
+  await backToEnglish(page);
+  if (!s) throw new Error('the Hindi reports screen was not read');
+  const problems = [];
+  if (s.title !== 'अनुपस्थित विद्यार्थी' || s.download !== 'CSV डाउनलोड करें' || s.pressed !== 'true') problems.push(`in Hindi the report is "${s.title}", its button "${s.download}", chosen in the list: ${s.pressed}`);
+  if (JSON.stringify(s.rows) !== JSON.stringify(absent) || absent.length === 0) problems.push(`absentees on screen ${JSON.stringify(s.rows).slice(0, 200)}; the database, by class and name, has ${JSON.stringify(absent).slice(0, 200)}`);
+  if (reportNumber(s.total.days) !== absent.reduce((n, r) => n + r[2], 0)) problems.push(`the total says ${s.total.days} days absent; the rows add up to ${absent.reduce((n, r) => n + r[2], 0)}`);
+  absenteesSeen = null;
+  if (problems.length) throw new Error(`reports in Hindi: ${problems.join('; ')}`);
+};
 // p5-8h end
 // p5-8i begin
 // p5-8i end
@@ -2319,6 +2496,12 @@ const SCREENS = [
   ['founder', 'control-monitoring', '/control/monitoring', monitoringProblems, monitoringProblemsDone],
   // p5-8g end
   // p5-8h begin
+  // Reports (C207): the principal's eight reports, the collection report with its CSV and audit row, and attendance
+  // by class for 30 days checked against the database; the same screen as an accountant the screen adds; and in
+  // Hindi, opened on the absentees report by its address.
+  ['principal', 'app-reports', '/app/reports', reportsScreen, reportsScreenDone],
+  ['principal', 'app-reports-accountant', '/app/reports', reportsAsAccountant, reportsAsAccountantDone],
+  ['principal', 'app-reports-hindi', '/app/reports?report=absentees&range=30d', reportsHindi, reportsHindiDone],
   // p5-8h end
   // p5-8i begin
   // p5-8i end

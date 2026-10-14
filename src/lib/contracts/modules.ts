@@ -144,7 +144,7 @@ const ROWS: readonly Row[] = [
     capabilities: ['ID cards', 'Certificate types', 'Request → fee clearance or waiver → PDF → WhatsApp delivery → audit'] },
   { id: 'compliance', label: 'Compliance Pro · APAAR', group: 'records-compliance', icon: 'shield', roles: OFFICE, phase: 'P7', status: 'partial',
     capabilities: ['Consent ledger', 'Audit trail', 'Data requests', 'APAAR ID capture and validation', 'UDISE+ readiness report', 'Fee-regulation advisory'] },
-  { id: 'reports', label: 'Reports', group: 'records-compliance', icon: 'reports', roles: REPORTS, phase: 'P5', status: 'planned',
+  { id: 'reports', label: 'Reports', group: 'records-compliance', icon: 'reports', roles: REPORTS, phase: 'P5', phaseNote: 'A fixed list of reports by role (collection, dues, attendance, absentees, homework, Daily Pulse, messages, staff leave), each with a date range, a total and a CSV of the same rows, is live; a report builder, scheduled reports and PDF later', status: 'partial',
     capabilities: ['Report builder across modules', 'Scheduled reports by email or WhatsApp', 'CSV and PDF export'] },
 
   { id: 'early-warning', label: 'Early Warning', group: 'ai-intelligence', icon: 'earlyWarning', roles: LEARNING_AI, phase: 'P6', phaseNote: 'v1 in P5', status: 'foundation',

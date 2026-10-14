@@ -1053,6 +1053,32 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   // p5-8g begin
   // p5-8g end
   // p5-8h begin
+  {
+    slug: 'run-a-report',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Run a report and download it as a CSV file', hi: 'रिपोर्ट निकालें और उसे CSV फ़ाइल के रूप में डाउनलोड करें' },
+    summary: {
+      en: 'A report is one table about your school for the days you choose, with a total row. The CSV file has exactly the rows on the screen.',
+      hi: 'रिपोर्ट आपके चुने दिनों के लिए स्कूल की एक तालिका है, कुल की पंक्ति के साथ। CSV फ़ाइल में ठीक वही पंक्तियाँ होती हैं जो स्क्रीन पर हैं।',
+    },
+    steps: [
+      { en: 'Open “Reports” from the menu. Under “Your reports” you see the reports your role may read.', hi: 'मेनू से “Reports” खोलें। “Your reports” के नीचे वे रिपोर्ट दिखती हैं जो आपकी भूमिका पढ़ सकती है।' },
+      { en: 'Choose a report, for example “Daily collection” or “Attendance by class”. It opens below the list.', hi: 'कोई रिपोर्ट चुनें, जैसे “Daily collection” या “Attendance by class”। वह सूची के नीचे खुलती है।' },
+      { en: 'Choose the days: “Today”, “7 days” or “30 days”. For any other days, type them under “Two dates” and press “Show these days”.', hi: 'दिन चुनें: “Today”, “7 days” या “30 days”। किसी और दिनों के लिए उन्हें “Two dates” के नीचे लिखें और “Show these days” दबाएँ।' },
+      { en: 'Read the table. The last row, “Total”, adds up the rows above it.', hi: 'तालिका पढ़ें। आख़िरी पंक्ति “Total” ऊपर की पंक्तियों का जोड़ है।' },
+      { en: 'Open “Why this?” under the table to read what a row is and how it is counted.', hi: 'तालिका के नीचे “Why this?” खोलें और पढ़ें कि एक पंक्ति क्या है और वह कैसे गिनी जाती है।' },
+      { en: 'Press “Download CSV” to save the same rows and total as a file that opens in any spreadsheet.', hi: '“Download CSV” दबाएँ और वही पंक्तियाँ और कुल एक फ़ाइल में सेव करें जो किसी भी स्प्रेडशीट में खुलती है।' },
+    ],
+    tips: [
+      { en: 'The accountant sees the fee reports, the academic coordinator the attendance and homework reports, and the principal and school admin all of them.', hi: 'अकाउंटेंट को फ़ीस की रिपोर्ट दिखती हैं, एकेडमिक कोऑर्डिनेटर को हाज़िरी और होमवर्क की, और प्रिंसिपल व स्कूल एडमिन को सभी।' },
+      { en: 'Each download is written to the audit trail: who, which report and which days. The rows themselves are not copied there.', hi: 'हर डाउनलोड ऑडिट रिकॉर्ड में लिखा जाता है: किसने, कौन-सी रिपोर्ट और कौन-से दिन। पंक्तियाँ वहाँ कॉपी नहीं होतीं।' },
+      { en: 'A report covers at most 366 days at a time. Rows come in the order of a date or a name, never from most to least.', hi: 'एक रिपोर्ट एक बार में ज़्यादा से ज़्यादा 366 दिन की होती है। पंक्तियाँ तारीख़ या नाम के क्रम में आती हैं, ज़्यादा से कम के क्रम में कभी नहीं।' },
+    ],
+    start: { href: '/app/reports', label: { en: 'Reports', hi: 'Reports' } },
+    related: ['read-the-dashboard', 'follow-up-unpaid-fees', 'mark-attendance'],
+    keywords: ['report', 'reports', 'csv', 'export', 'download', 'collection', 'defaulters', 'dues', 'absentees', 'attendance report', 'total', 'रिपोर्ट', 'वसूली', 'बकाया', 'अनुपस्थित'],
+  },
   // p5-8h end
   // p5-8i begin
   // p5-8i end

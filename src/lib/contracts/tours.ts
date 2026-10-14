@@ -62,6 +62,7 @@ export const TOURS = {
   // p5-8g begin
   // p5-8g end
   // p5-8h begin
+  reports: { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // p5-8h end
   // p5-8i begin
   // p5-8i end

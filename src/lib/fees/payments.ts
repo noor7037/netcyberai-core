@@ -183,13 +183,22 @@ export async function recentReceipts(db: PoolClient, schoolId: string, limit = 2
 // are is said. `collectedBetween` is the total, never cut short; `receiptsBetween` is the same receipts as rows,
 // newest first, for /app/fees?show=collected&from=…&to=… (the first RECEIPT_ROWS_MAX of them).
 export const RECEIPT_ROWS_MAX = 2000;
+// What is counted of the receipts of the days, and which receipts those are: written once, for the total and for
+// the same total a day at a time, so the days cannot add up to anything but the total.
+const COLLECTED = `count(*) filter (where r.reversed_at is null) as count, coalesce(sum(r.total_minor) filter (where r.reversed_at is null), 0) as minor, count(*) filter (where r.reversed_at is not null) as reversed`;
+const ISSUED_ON = `(r.issued_at at time zone 'Asia/Kolkata')::date`;
+const ISSUED_BETWEEN = `from receipts r where r.school_id = $1 and ${ISSUED_ON} between $2::date and $3::date`;
 export async function collectedBetween(db: PoolClient, schoolId: string, from: string, to: string): Promise<{ count: number; minor: number; reversed: number }> {
-  const r = (await db.query(
-    `select count(*) filter (where r.reversed_at is null) as count, coalesce(sum(r.total_minor) filter (where r.reversed_at is null), 0) as minor, count(*) filter (where r.reversed_at is not null) as reversed
-       from receipts r where r.school_id = $1 and (r.issued_at at time zone 'Asia/Kolkata')::date between $2::date and $3::date`,
-    [schoolId, from, to]
-  )).rows[0];
+  const r = (await db.query(`select ${COLLECTED} ${ISSUED_BETWEEN}`, [schoolId, from, to])).rows[0];
   return { count: Number(r.count), minor: Number(r.minor), reversed: Number(r.reversed) };
+}
+// The same, by the day a receipt was issued (India's date) and the way it was paid (docs/26 slice 8h, C207): the
+// rows of the daily collection report, counted in the database, so a busy year is never cut short. A day and a
+// method with no receipt has no row; one with only reversed receipts has a row that says so.
+export type CollectedDay = { day: string; method: string; count: number; minor: number; reversed: number };
+export async function collectedByDay(db: PoolClient, schoolId: string, from: string, to: string): Promise<CollectedDay[]> {
+  const { rows } = await db.query(`select ${ISSUED_ON}::text as day, r.method, ${COLLECTED} ${ISSUED_BETWEEN} group by 1, 2 order by 1, 2`, [schoolId, from, to]);
+  return rows.map((r) => ({ day: r.day as string, method: r.method as string, count: Number(r.count), minor: Number(r.minor), reversed: Number(r.reversed) }));
 }
 export async function receiptsBetween(db: PoolClient, schoolId: string, from: string, to: string, limit: number = RECEIPT_ROWS_MAX): Promise<ReceiptView[]> {
   return (await db.query(`${RECEIPT} where r.school_id = $1 and (r.issued_at at time zone 'Asia/Kolkata')::date between $2::date and $3::date and r.reversed_at is null order by r.issued_at desc, r.receipt_id limit $4`, [schoolId, from, to, limit])).rows.map(asReceipt);

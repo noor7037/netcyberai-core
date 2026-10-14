@@ -40,6 +40,7 @@ describe('the guides', () => {
       // p5-8g begin
       // p5-8g end
       // p5-8h begin
+      'run-a-report',
       // p5-8h end
       // p5-8i begin
       // p5-8i end
