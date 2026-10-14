@@ -152,7 +152,7 @@ export function EarlyWarningView() {
             {t('ew.why.rule', { version: f.rule_version })}
           </p>
           <p className="text-slate/70">
-            {f.opened_by ? t('ew.why.opened', { when: when(f.detected_at), name: f.opened_by }) : t('ew.why.openedNoName', { when: when(f.detected_at) })} {t('ew.why.checked', { when: when(f.checked_at) })}
+            {f.opened_by_nightly ? t('ew.why.openedNightly', { when: when(f.detected_at) }) : f.opened_by ? t('ew.why.opened', { when: when(f.detected_at), name: f.opened_by }) : t('ew.why.openedNoName', { when: when(f.detected_at) })} {t('ew.why.checked', { when: when(f.checked_at) })}
           </p>
         </div>
       </details>
@@ -245,8 +245,9 @@ export function EarlyWarningView() {
         ))}
       </div>
       {f.resolved_at && f.closed_reason && (
-        <p data-ew-closed={f.closed_reason} className="font-semibold">
+        <p data-ew-closed={f.closed_reason} data-ew-closed-by={f.closed_by_nightly ? 'nightly' : 'person'} className="font-semibold">
           {t(`ew.closed.${f.closed_reason}` as MessageKey, { when: when(f.resolved_at) })}
+          {f.closed_by_nightly && <> {t('ew.closed.byNightly')}</>}
         </p>
       )}
       {lines(f)}
@@ -284,9 +285,9 @@ export function EarlyWarningView() {
             <p className="max-w-prose text-slate/70">{t('ew.check.how')}</p>
           </div>
           {d.lastCheck ? (
-            <div data-ew-last-check="yes" className={`${SOFT} flex flex-col gap-1`}>
+            <div data-ew-last-check="yes" data-ew-last-check-by={d.lastCheck.nightly ? 'nightly' : 'person'} className={`${SOFT} flex flex-col gap-1`}>
               <p>
-                {d.lastCheck.by ? t('ew.check.last', { when: when(d.lastCheck.at), name: d.lastCheck.by }) : t('ew.check.lastNoName', { when: when(d.lastCheck.at) })} {t('ew.check.lastCounts', { students: d.lastCheck.students, open: d.lastCheck.open })}
+                {d.lastCheck.nightly ? t('ew.check.lastNightly', { when: when(d.lastCheck.at) }) : d.lastCheck.by ? t('ew.check.last', { when: when(d.lastCheck.at), name: d.lastCheck.by }) : t('ew.check.lastNoName', { when: when(d.lastCheck.at) })} {t('ew.check.lastCounts', { students: d.lastCheck.students, open: d.lastCheck.open })}
               </p>
               {attendanceUsed && (
                 <p data-ew-attendance-used={`${attendanceUsed.used}/${attendanceUsed.students}`} className={attendanceUsed.used < attendanceUsed.students ? 'font-semibold' : undefined}>

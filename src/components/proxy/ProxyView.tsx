@@ -17,8 +17,8 @@ import { isLeaveDate } from '@/lib/staff/leave-rules';
 // another is chosen), every period of a teacher on approved leave, and for each the free teachers in the order
 // of the rule, with the reason beside every name. "Assign" is one person's tap and "Undo" takes it back; the
 // screen assigns nothing by itself and sends no message. For a teacher (ProxyMine): the covers they hold, today,
-// tomorrow and the days after, each as its period, class and subject. Not whose class it was: who is on leave is
-// for the person and the office.
+// tomorrow and the days after, each as its period, class and subject, and the covers released because the leave
+// behind them was cancelled (C210). Not whose class it was: who is on leave is for the person and the office.
 //
 // A period whose cover cannot be taken any more (its teacher is now on leave, has left, or was given a class of
 // their own then) is badged "Needs cover" again and says why, with the cover's own "Undo".
@@ -43,7 +43,9 @@ const FIRST = 3;
 
 type Days = { today: string; tomorrow: string; last: string };
 export type ProxyArrangerData = Days & { arranger: true; mayRecordLeave: boolean; day: ProxyDay };
-export type ProxyMineData = Days & { arranger: false; mine: MyCover[] };
+// `released`: covers the teacher had from today on that were released because the leave behind them was cancelled
+// (C210). Each is the day, the period, the class and the subject, like `mine`; never whose leave it was or why.
+export type ProxyMineData = Days & { arranger: false; mine: MyCover[]; released: MyCover[] };
 type Data = ProxyArrangerData | ProxyMineData;
 export type ProxyNote = { ok: boolean; text: string } | null;
 export type AssignTap = { date: string; period: number; classId: string; substituteUserId: string; name: string };
@@ -100,6 +102,24 @@ export function ProxyMine({ data }: { data: ProxyMineData }) {
         )}
         <p className="max-w-prose text-slate/70">{t('px.mine.scope')}</p>
       </section>
+      {/* Covers released because the leave behind them was cancelled (C210): the periods this teacher no longer
+          takes, from today on. What My Day's "covers-released" card counts. */}
+      {data.released.length > 0 && (
+        <section data-proxy-released className={BOX}>
+          <div>
+            <h2 className="text-base font-bold">{t('px.released.title')}</h2>
+            <p className="max-w-prose text-slate/70">{t('px.released.how')}</p>
+          </div>
+          <ul className="flex flex-col gap-2">
+            {data.released.map((c) => (
+              <li key={c.substitution_id} data-proxy-released-row={c.on_date} className="flex flex-col gap-1 rounded-md border border-slate/10 p-3">
+                <p className="text-slate/70">{day(c.on_date)}</p>
+                <p className="font-bold">{t('px.released.line', { period: c.period, class: c.class_name, subject: c.subject_name })}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 }

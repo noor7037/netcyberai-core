@@ -13,7 +13,7 @@ import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { workingModules } from '@/lib/frameworks/plans';
 import { readModuleFor, writeModuleFor } from '@/lib/frameworks/write-guard';
 import { t, tCount } from '@/lib/i18n';
-import { assignCover, coversBetween, coversFor, coversLeftFor, coverWork, dayOff, isoWeek, isoWeekday, needsCover, periodsToCover, PROXY_AHEAD_DAYS, PROXY_ARRANGERS, PROXY_ROLES, proxyDay, suggest, suggestFor, undoCover, type DayFacts, type ProxyDay } from '@/lib/proxy/proxy';
+import { assignCover, coversBetween, coversFor, coversReleasedBetween, coverWork, dayOff, isoWeek, isoWeekday, needsCover, periodsToCover, PROXY_AHEAD_DAYS, PROXY_ARRANGERS, PROXY_ROLES, proxyDay, suggest, suggestFor, undoCover, type DayFacts, type ProxyDay } from '@/lib/proxy/proxy';
 import { addDays, askLeave, decideLeave, onLeave, recordLeave, withdrawLeave } from '@/lib/staff/leave';
 import { indiaDate } from '@/lib/time/india';
 import { TODAY_PROVIDERS } from '@/lib/today/cards';
@@ -36,6 +36,7 @@ vi.mock('@/lib/i18n/server', () => ({ getLang: () => ({ lang: 'en' }) }));
 import { GET as getProxy, POST as postProxy } from '@/app/api/app/proxy/route';
 import { POST as stepProxy } from '@/app/api/app/proxy/[substitutionId]/route';
 import { POST as stepLeave } from '@/app/api/app/staff/leave/[leaveId]/route';
+import { GET as listLeave } from '@/app/api/app/staff/leave/route';
 import ProxyPage from '@/app/(school)/app/proxy/page';
 import TimetablePage from '@/app/(school)/app/timetable/page';
 import { LangProvider } from '@/components/app-shell/LangContext';
@@ -43,7 +44,7 @@ import { ModuleComingPage } from '@/components/app-shell/ModuleComingPage';
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { ProxyArranger, ProxyMine, ProxyView } from '@/components/proxy/ProxyView';
-import { coversLeftIn } from '@/components/staff/leave-parts';
+import { coversReleasedIn } from '@/components/staff/leave-parts';
 import { TimetableView } from '@/components/timetable/TimetableView';
 
 const A = 'cf000000-0000-4000-8000-000000000001';
@@ -70,6 +71,7 @@ const asha: Who = { role: 'teacher', user: ASHA };
 const bina: Who = { role: 'teacher', user: BINA };
 const chand: Who = { role: 'teacher', user: CHAND };
 const dev: Who = { role: 'teacher', user: DEV };
+const falak: Who = { role: 'teacher', user: FALAK };
 const gita: Who = { role: 'teacher', user: GITA };
 const hari: Who = { role: 'teacher', user: HARI };
 const elsewhere: Who = { role: 'principal', user: B_PRINCIPAL, school: B };
@@ -260,7 +262,11 @@ describe('the module and its words', () => {
     const lib = read(path.join(src, 'lib/proxy/proxy.ts'));
     expect(lib).not.toMatch(/group by|count\(|sum\(|rank\(|\bdesc\b/i);
     const orders = [...lib.matchAll(/order by ([^`]+?)`/g)].map((m) => m[1].trim());
-    expect(orders).toEqual(['u.display_name, a.user_id', 'x.period, c.name, c.section, x.class_id', 'e.period, c.name, c.section, e.class_id', 'x.on_date, x.period, c.name, c.section, x.class_id']);
+    expect(orders).toEqual([
+      'u.display_name, a.user_id', 'x.period, c.name, c.section, x.class_id', 'e.period, c.name, c.section, e.class_id', 'x.on_date, x.period, c.name, c.section, x.class_id',
+      // C210: the covers one withdrawal released, and a teacher's released covers.
+      'x.on_date, x.period, x.class_id', 'x.on_date, x.period, c.name, c.section, x.substitution_id',
+    ]);
     // The number of covers a person holds exists in one place only: as a fact beside a suggestion, for one week.
     const mentions = files(src).filter((f) => /\.(ts|tsx)$/.test(f) && /coversThatWeek/.test(read(f))).map((f) => path.relative(src, f)).sort();
     expect(mentions).toEqual(['components/proxy/ProxyView.tsx', 'lib/proxy/proxy.ts', 'lib/proxy/rules.ts']);
@@ -804,35 +810,98 @@ describe('on the real schema', () => {
   describe('when leave or the timetable changes after a cover was assigned', () => {
     const waitingFor = async (who: Who) => ({ open: (await load('periods-uncovered', who))[0]?.count ?? 0, notNeeded: (await load('covers-not-needed', who))[0]?.count ?? 0 });
 
-    it('a cancelled leave leaves its cover standing: the office is told on My Day and on the screen, and a person undoes it', async () => {
+    // A cover as the database holds it, with why it was undone (C210).
+    const undoneRow = async (substitutionId: string) => (await db.pg.query(`select status, undone_by, undone_reason, undone_at is not null as undone_at from substitutions where substitution_id = $1`, [substitutionId])).rows[0];
+
+    it('cancelled leave releases its covers from today on, in the canceller’s name; the covering teacher sees it on My Day, and the office’s card does not count it again', async () => {
+      await wipe();
+      // Asha is away from three days ago to a week ahead; Gita is away today. Dev covers Asha's first period today,
+      // Falak the same period a week ahead, and a cover of three days ago is on record. Hari covers Gita's period.
+      const next = addDays(D, 7);
+      const leave = await onLeaveFor(asha, addDays(D, -3), next);
+      await onLeaveFor(gita);
+      await seedCover(addDays(D, -3), 1, C5A, MATHS, ASHA, DEV);
+      const past = (await db.pg.query(`select substitution_id from substitutions where on_date < $1::date`, [D])).rows[0].substitution_id as string;
+      const todays = await assigned(principal, 1, C5A, DEV);
+      const later = await assign(principal, 1, C5A, FALAK, next);
+      if (!later.ok) throw new Error(later.reason);
+      const gitas = await assigned(admin, 1, C6A, HARI);
+      const sent = { jobs: await count('jobs'), messages: await count('communication_log') };
+      for (const who of [principal, admin, coordinator]) expect(await waitingFor(who), who.role).toEqual({ open: 2, notNeeded: 0 });
+      // The office cancels Asha's leave. By that one tap both covers from today on are undone, in its name.
+      expect(await as(admin, (c) => withdrawLeave(c, actor(admin), leave, 'She came in after all.'))).toEqual({ ok: true, coversReleased: 2 });
+      for (const x of [todays, later.substitutionId]) expect(await undoneRow(x), x).toEqual({ status: 'undone', undone_by: ADMIN, undone_reason: 'leave_cancelled', undone_at: true });
+      // A day gone by stays as it was, and another teacher's cover is untouched.
+      expect(await undoneRow(past)).toEqual({ status: 'assigned', undone_by: null, undone_reason: null, undone_at: false });
+      expect((await row(gitas)).status).toBe('assigned');
+      // One audit row a cover, in the canceller's name, saying why; never the kind or the reason of the leave.
+      const audit = (await db.pg.query(`select actor_user_id, target_id, after_state from audit_log where event_action = 'cover.released'`)).rows as { actor_user_id: string; target_id: string; after_state: Record<string, unknown> }[];
+      expect(audit.map((a) => a.target_id).sort()).toEqual([todays, later.substitutionId].sort());
+      for (const a of audit) expect(a).toMatchObject({ actor_user_id: ADMIN, after_state: { absentUserId: ASHA, status: 'undone', undoneReason: 'leave_cancelled', leaveId: leave } });
+      expect(JSON.stringify(audit)).not.toMatch(/Unwell|sick|came in/);
+      // The covering teachers are told in the app, from today on: Dev of today's, Falak of next week's.
+      expect(card('covers-released')).toMatchObject({ moduleId: 'proxy', roles: ['teacher'] });
+      expect(await load('covers-today', dev)).toEqual([]);
+      expect(await load('covers-released', dev)).toEqual([{ id: 'covers-released', type: 'covers-released', moduleId: 'proxy', state: 'todo', count: 1, href: '/app/proxy' }]);
+      expect((await load('covers-released', falak))[0]).toMatchObject({ count: 1 });
+      expect(await as(dev, (c) => coversReleasedBetween(c, A, DEV, D, addDays(D, PROXY_AHEAD_DAYS)))).toEqual([{ substitution_id: todays, on_date: D, period: 1, class_id: C5A, class_name: '5-A', subject_name: 'Maths' }]);
+      // Nobody else: not Hari, whose cover stands; not the absent teacher; not a colleague asking for Dev's.
+      for (const who of [hari, asha, bina]) expect(await load('covers-released', who), who.role).toEqual([]);
+      expect(await as(bina, (c) => coversReleasedBetween(c, A, DEV, D, next))).toEqual([]);
+      // The office's own card does not count them again: they are undone, not "no longer needed".
+      for (const who of [principal, admin, coordinator]) expect(await waitingFor(who), who.role).toEqual({ open: 0, notNeeded: 0 });
+      expect((await dayFor(coordinator)).noLongerNeeded).toEqual([]);
+      expect((await dayFor(principal, next)).noLongerNeeded).toEqual([]);
+      // Told in the app only: no job and no message.
+      expect({ jobs: await count('jobs'), messages: await count('communication_log') }).toEqual(sent);
+      // Asha is away again today after all, and Dev is given the same period again: the release is no longer said.
+      await onLeaveFor(asha);
+      await assigned(coordinator, 1, C5A, DEV);
+      expect(await load('covers-released', dev)).toEqual([]);
+      expect((await load('covers-released', falak))[0]).toMatchObject({ count: 1 });
+      expect(t('en', 'today.covers-released.todo.one')).toBe('A cover you had was released: the teacher is back');
+      for (const lang of ['en', 'hi'] as const) for (const part of ['todo.one', 'todo.other', 'action', 'why']) expect(t(lang, `today.covers-released.${part}` as never), `${lang} ${part}`).not.toMatch(/today\.covers|^$/);
+    });
+
+    it('the database holds it: the person’s own withdrawal and a cancellation past the app release the covers too, and a release is never marked while the leave stands', async () => {
+      await wipe();
+      // Bina asks for a day next week and the principal approves it; the coordinator gives her period 3 to Dev.
+      const next = addDays(D, 7);
+      const asked = await as(bina, (c) => askLeave(c, actor(bina), { fromDate: next, toDate: next, kind: 'casual', reason: 'A family function.' }));
+      if (!asked.ok) throw new Error(asked.reason);
+      await as(principal, (c) => decideLeave(c, actor(principal), asked.leaveId, 'approve', ''));
+      const forBina = await assign(coordinator, 3, C5A, DEV, next);
+      if (!forBina.ok) throw new Error(forBina.reason);
+      // A teacher changes no cover row herself...
+      const tried = await as<{ affectedRows?: number }>(bina, (c) => c.query(`update substitutions set status = 'undone', undone_by = $2, undone_at = now(), undone_reason = 'leave_cancelled' where substitution_id = $1`, [forBina.substitutionId, BINA]));
+      expect(tried.affectedRows ?? 0).toBe(0);
+      expect((await row(forBina.substitutionId)).status).toBe('assigned');
+      // ...but withdrawing her own leave before its day releases it, in her own name.
+      expect(await as(bina, (c) => withdrawLeave(c, actor(bina), asked.leaveId, ''))).toEqual({ ok: true, coversReleased: 1 });
+      expect(await undoneRow(forBina.substitutionId)).toEqual({ status: 'undone', undone_by: BINA, undone_reason: 'leave_cancelled', undone_at: true });
+      expect((await db.pg.query(`select actor_user_id from audit_log where event_action = 'cover.released' and target_id = $1`, [forBina.substitutionId])).rows).toEqual([{ actor_user_id: BINA }]);
+      expect((await load('covers-released', dev))[0]).toMatchObject({ count: 1 });
+      // Past the app: the office cancels approved leave with a plain update, and the database releases the cover.
       await wipe();
       const leave = await onLeaveFor(asha);
       const first = await assigned(principal, 1, C5A, DEV);
-      for (const who of [principal, admin, coordinator]) expect(await waitingFor(who), who.role).toEqual({ open: 2, notNeeded: 0 });
-      await as(admin, (c) => withdrawLeave(c, actor(admin), leave, 'She came in after all.'));
-      const day = await dayFor(coordinator);
-      expect(day.periods).toEqual([]);
-      expect(day.away).toEqual([]);
-      expect(day.noLongerNeeded.map((x) => `${x.period} ${x.class_name} ${x.substitute_name} for ${x.absent_name}`)).toEqual(['1 5-A Dev for Asha']);
-      // The app took nothing back by itself: the cover stands, and its teacher is still shown it...
-      expect((await row(first)).status).toBe('assigned');
-      expect((await load('covers-today', dev))[0]).toMatchObject({ count: 1, subject: '1. 5-A Maths' });
-      // ...so each person who arranges cover is told on My Day: the number of covers the screen lists to undo.
-      expect(card('covers-not-needed')).toMatchObject({ moduleId: 'proxy', roles: ['principal', 'school_admin', 'academic_coordinator'] });
-      for (const who of [principal, admin, coordinator]) {
-        expect(await load('covers-not-needed', who), who.role).toEqual([{ id: 'covers-not-needed', type: 'covers-not-needed', moduleId: 'proxy', state: 'todo', count: (await dayFor(who)).noLongerNeeded.length, href: '/app/proxy' }]);
-        expect(await waitingFor(who), who.role).toEqual({ open: 0, notNeeded: 1 });
-      }
-      expect(drawDay('en', day)).toContain('Covers no longer needed');
-      // Nobody else is told: a teacher's own covers are not "no longer needed" for want of a list they cannot read.
-      for (const who of [dev, asha, accountant]) expect(await as(who, (c) => coverWork(c, actor(who))), who.role).toEqual({ open: [], noLongerNeeded: [] });
-      expect(await load('covers-not-needed', elsewhere)).toEqual([]);
-      // A person undoes it: the card goes, and the teacher is no longer told.
-      expect(await as(coordinator, (c) => undoCover(c, actor(coordinator), first))).toEqual({ ok: true });
-      expect((await dayFor(coordinator)).noLongerNeeded).toEqual([]);
-      for (const who of [principal, admin, coordinator]) expect(await waitingFor(who), who.role).toEqual({ open: 0, notNeeded: 0 });
-      expect(await load('covers-today', dev)).toEqual([]);
-      for (const lang of ['en', 'hi'] as const) for (const part of ['todo.one', 'todo.other', 'action', 'why']) expect(t(lang, `today.covers-not-needed.${part}` as never), `${lang} ${part}`).not.toMatch(/today\.covers|^$/);
+      await as(principal, (c) => c.query(`update staff_leave set status = 'withdrawn', withdrawn_by = $2, withdrawn_at = now(), withdrawn_note = 'Back after all.' where leave_id = $1`, [leave, PRINCIPAL]));
+      expect(await undoneRow(first)).toEqual({ status: 'undone', undone_by: PRINCIPAL, undone_reason: 'leave_cancelled', undone_at: true });
+      // A cover is never marked released for cancelled leave while its leave stands, and that is the one reason.
+      await onLeaveFor(gita);
+      const gitas = await assigned(principal, 1, C6A, HARI);
+      const mark = (set: string) => as(principal, (c) => c.query(`update substitutions set ${set} where substitution_id = $1`, [gitas, PRINCIPAL]));
+      await expect(mark(`status = 'undone', undone_by = $2, undone_at = now(), undone_reason = 'leave_cancelled'`)).rejects.toThrow(/released for cancelled leave only/);
+      await expect(mark(`status = 'undone', undone_by = $2, undone_at = now(), undone_reason = 'changed_mind'`)).rejects.toThrow(/substitutions_undone_reason/);
+      await expect(as(principal, (c) => c.query(`update substitutions set undone_reason = 'leave_cancelled' where substitution_id = $1`, [gitas]))).rejects.toThrow(/released for cancelled leave only|substitutions_undone_reason/);
+      // A person's own undo stays a plain undo, with no reason written; and a released cover stays as it is.
+      expect(await as(principal, (c) => undoCover(c, actor(principal), gitas))).toEqual({ ok: true });
+      expect(await undoneRow(gitas)).toEqual({ status: 'undone', undone_by: PRINCIPAL, undone_reason: null, undone_at: true });
+      await expect(as(admin, (c) => c.query(`update substitutions set undone_reason = null where substitution_id = $1`, [first]))).rejects.toThrow(/an undone cover stays undone/);
+      // The migration: its two functions run with the owner's rights, and it adds no job and sends nothing.
+      const sql = readFileSync(path.join(MIGRATIONS_DIR, readdirSync(MIGRATIONS_DIR).find((f) => f.endsWith('_c210_leave_rules.sql'))!), 'utf8');
+      expect(sql).not.toMatch(/jobs_enqueue|insert into jobs|communication_log/);
+      expect(sql.match(/staff_leave:' \|\| new\.school_id::text \|\| ':' \|\| new\.(absent_)?user_id::text/g)).toHaveLength(3);
     });
 
     it('a holiday entered after the tap: the teacher is no longer told to cover on a day the school is closed, and the office is told to undo it', async () => {
@@ -962,6 +1031,65 @@ describe('on the real schema', () => {
       } finally {
         await db.pg.query(`update timetable_entries set teacher_user_id = $4 where school_id = $1 and class_id = $2 and weekday = $3 and period = 4`, [A, C6A, W, ASHA]);
       }
+    });
+  });
+
+  describe('the academic coordinator: away or present, and nothing more (docs/26 section 3 rule 4, C210)', () => {
+    it('reads who is away and never a leave kind or reason: in the database, through the routes and cards, and on the screen', async () => {
+      await scene();
+      // Chand is away today and tomorrow, with a kind and a reason easy to look for. The office cancels Gita's
+      // leave after Hari was given her period, so the coordinator can read cover audit rows of every kind too.
+      const PRIVATE = 'A private matter, Zephyr forty-one';
+      const chands = await as(admin, (c) => recordLeave(c, actor(admin), { userId: CHAND, fromDate: D, toDate: addDays(D, 1), kind: 'other', reason: PRIVATE }));
+      if (!chands.ok) throw new Error(chands.reason);
+      const gitaLeave = (await db.pg.query(`select leave_id from staff_leave where user_id = $1 and status = 'approved'`, [GITA])).rows[0].leave_id as string;
+      await assigned(coordinator, 1, C6A, HARI);
+      await as(admin, (c) => withdrawLeave(c, actor(admin), gitaLeave, 'Back after all.'));
+      await assigned(coordinator, 1, C5A, DEV);
+      const secret = new RegExp(`Zephyr|${PRIVATE}|Unwell|family function|Back after all|"(sick|casual|other)"|"reason"|"kind"`);
+      // In the database, as the app's own role: there are leave rows and leave audit rows, and the coordinator reads none.
+      expect(await count(`staff_leave where status = 'approved'`)).toBe(2);
+      expect(await count(`audit_log where event_action like 'leave.%'`)).toBeGreaterThan(3);
+      expect((await as<Count>(coordinator, (c) => c.query(`select count(*)::int as n from staff_leave`))).rows[0].n).toBe(0);
+      expect((await as<{ rows: unknown[] }>(coordinator, (c) => c.query(`select kind, reason, decision_note, withdrawn_note from staff_leave`))).rows).toEqual([]);
+      expect((await as<Count>(coordinator, (c) => c.query(`select count(*)::int as n from audit_log where event_action like 'leave.%'`))).rows[0].n).toBe(0);
+      // The one fact they are given: who is away, as ids and nothing else.
+      const away = await as<{ fields: { name: string }[]; rows: { user_id: string }[] }>(coordinator, (c) => c.query(`select * from teachers_away_on($1::date)`, [D]));
+      expect(away.fields.map((f) => f.name)).toEqual(['user_id']);
+      expect(away.rows.map((r) => r.user_id).sort()).toEqual([ASHA, CHAND].sort());
+      // "On leave on a day" answers them from the rows they read, which are none: no way round to the leave itself.
+      expect((await as<{ rows: { on: boolean }[] }>(coordinator, (c) => c.query(`select public.staff_on_leave($1, $2, $3::date) as on`, [A, CHAND, D]))).rows[0].on).toBe(false);
+      // The cover audit rows they do read (assigned, undone, released) say who was away, and nothing of why.
+      const coverAudit = (await as<{ rows: { event_action: string }[] }>(coordinator, (c) => c.query(`select event_action, after_state, before_state from audit_log where event_action like 'cover.%'`))).rows;
+      expect(coverAudit.map((a) => a.event_action).sort()).toEqual(['cover.assigned', 'cover.assigned', 'cover.released']);
+      expect(JSON.stringify(coverAudit)).not.toMatch(secret);
+      // Through the app: the day's reading, a suggestion list, My Day's cards and the leave route.
+      expect(JSON.stringify(await dayFor(coordinator))).not.toMatch(secret);
+      expect((await dayFor(coordinator)).away.map((p) => p.name)).toEqual(['Asha', 'Chand']);
+      expect(JSON.stringify(await as(coordinator, (c) => suggest(c, actor(coordinator), D, { period: 2, subjectId: MATHS })))).not.toMatch(secret);
+      for (const provider of TODAY_PROVIDERS.filter((p) => p.roles.includes('academic_coordinator'))) {
+        expect(JSON.stringify(await as(coordinator, (c) => provider.load(c, { schoolId: A, userId: COORDINATOR, role: 'academic_coordinator', sunday: false }))), provider.type).not.toMatch(secret);
+      }
+      const claims = { sub: COORDINATOR, role: 'academic_coordinator', schoolId: A, membershipId: id(90), tokenVersion: 0, aal: 'aal1', sessionId: id(91) };
+      const read = async (fn: () => Promise<Response>) => {
+        state.claims = claims;
+        const res = await fn();
+        return { status: res.status, body: await res.json() };
+      };
+      for (const date of [D, addDays(D, 1)]) {
+        const got = await read(() => getProxy(new NextRequest(`http://localhost/api/app/proxy?date=${date}`)));
+        expect(got.status, date).toBe(200);
+        expect(JSON.stringify(got.body), date).not.toMatch(secret);
+        expect(got.body.day.away.map((p: { name: string }) => p.name), date).toContain('Chand');
+        // And on the screen the coordinator is shown.
+        expect(drawDay('en', got.body.day, false), date).not.toMatch(/Zephyr|Unwell|Sick|Casual|Kind of leave|Reason/);
+      }
+      const ownLeave = await read(() => listLeave(new NextRequest('http://localhost/api/app/staff/leave')));
+      expect(ownLeave).toMatchObject({ status: 200, body: { mine: [] } });
+      expect(JSON.stringify(ownLeave.body)).not.toMatch(secret);
+      expect(await read(() => listLeave(new NextRequest('http://localhost/api/app/staff/leave?view=office')))).toMatchObject({ status: 403, body: { code: 'not_allowed' } });
+      // The office, for comparison, reads both: the rule is about who reads, not about what is kept.
+      expect((await as<{ rows: { reason: string }[] }>(admin, (c) => c.query(`select reason from staff_leave where user_id = $1`, [CHAND]))).rows).toEqual([{ reason: PRIVATE }]);
     });
   });
 
@@ -1096,7 +1224,8 @@ describe('on the real schema', () => {
       // A teacher: their own covers and the days, and not a word about who is on leave or who is free.
       const mine = await get(dev, `?date=${D}`);
       expect(mine).toMatchObject({ status: 200, body: { arranger: false, today: D, tomorrow: addDays(D, 1) } });
-      expect(Object.keys(mine.body).sort()).toEqual(['arranger', 'last', 'mine', 'today', 'tomorrow']);
+      expect(Object.keys(mine.body).sort()).toEqual(['arranger', 'last', 'mine', 'released', 'today', 'tomorrow']);
+      expect(mine.body.released).toEqual([]);
       // Dev's cover on another day of the week shows if that day is still ahead.
       expect(mine.body.mine.map((x: { on_date: string }) => x.on_date)).toEqual(SAME_WEEK > D ? [SAME_WEEK] : []);
       // One tap by the coordinator; the same tap again is answered plainly; then Dev sees it.
@@ -1126,56 +1255,68 @@ describe('on the real schema', () => {
       expect((await get(dev)).body.mine.filter((x: { on_date: string }) => x.on_date === D)).toEqual([]);
     });
 
-    it('cancelling approved leave on Staff says how many covers still stand for those days, and undoes none', async () => {
+    it('cancelling approved leave on Staff releases its covers and says how many; each teacher finds theirs under "Covers released"', async () => {
       await wipe();
       await proxyModule(true);
       const leaveStep = (who: Who, leaveId: string, body: unknown) => call(who, () => stepLeave(req('POST', `/api/app/staff/leave/${leaveId}`, body), { params: { leaveId } }));
       // Asha is away today and through the same weekday next week. Dev covers a period today, Falak one next
-      // week, and a third cover was assigned and undone.
+      // week, and a third cover was assigned and undone by a person before.
       const next = addDays(D, 7);
       const leave = await onLeaveFor(asha, D, next);
-      await assigned(principal, 1, C5A, DEV);
+      const todays = await assigned(principal, 1, C5A, DEV);
       const later = await assign(principal, 1, C5A, FALAK, next);
       if (!later.ok) throw new Error(later.reason);
       const undone = await assigned(principal, 2, C5B, DEV);
       await as(principal, (c) => undoCover(c, actor(principal), undone));
-      expect(await as(admin, (c) => coversLeftFor(c, A, leave))).toBe(2);
       const cancelled = await leaveStep(admin, leave, { action: 'withdraw', note: 'She came in after all.' });
-      expect(cancelled).toEqual({ status: 200, body: { ok: true, coversLeft: 2 } });
-      // Nothing was undone by that: both covers stand, and both teachers are still told.
-      expect(await count(`substitutions where status = 'assigned'`)).toBe(2);
-      expect((await as(dev, (c) => coversFor(c, A, DEV))).length).toBe(1);
-      // What the office reads under "Cancelled": how many, and where to undo them.
-      expect(coversLeftIn(cancelled.body)).toBe(2);
-      expect([coversLeftIn({ ok: true }), coversLeftIn({ ok: true, coversLeft: 0 }), coversLeftIn({ coversLeft: '2' }), coversLeftIn(null)]).toEqual([0, 0, 0, 0]);
-      expect(tCount('en', 'px.leave.coversLeft', 1)).toBe('1 cover was assigned for those days and still stands. Undo it on “Proxy Auto”, or that teacher will still go to the class.');
-      expect(tCount('en', 'px.leave.coversLeft', 2)).toContain('2 covers were assigned for those days and still stand. Undo them on “Proxy Auto”');
-      expect(tCount('hi', 'px.leave.coversLeft', 2)).toMatch(/2[^{}]*[ऀ-ॿ]/);
-      expect(t('en', 'module.proxy')).toBe('Proxy Auto');
+      expect(cancelled).toEqual({ status: 200, body: { ok: true, coversReleased: 2 } });
+      // Both covers were undone by that tap, in the canceller's name; the one a person undid before keeps its own undo.
+      expect(await count(`substitutions where status = 'assigned'`)).toBe(0);
+      expect(await count(`substitutions where undone_reason = 'leave_cancelled' and undone_by = $1`, [ADMIN])).toBe(2);
+      expect(await count(`substitutions where substitution_id = $1 and undone_reason is null and undone_by = $2`, [undone, PRINCIPAL])).toBe(1);
+      // What the office reads under "Cancelled": how many were released, and that their teachers are told.
+      expect(coversReleasedIn(cancelled.body)).toBe(2);
+      expect([coversReleasedIn({ ok: true }), coversReleasedIn({ ok: true, coversReleased: 0 }), coversReleasedIn({ coversReleased: '2' }), coversReleasedIn(null)]).toEqual([0, 0, 0, 0]);
+      expect(tCount('en', 'leave.office.coversReleased', 1)).toBe('1 cover assigned for those days was released, and its teacher is told on My Day.');
+      expect(tCount('en', 'leave.office.coversReleased', 2)).toContain('2 covers assigned for those days were released');
+      expect(tCount('hi', 'leave.office.coversReleased', 2)).toMatch(/2[^{}]*[ऀ-ॿ]/);
+      expect(tCount('en', 'leave.my.coversReleased', 1)).toContain('was released');
       const office = readFileSync(path.join(__dirname, '../../src/components/staff/StaffLeaveOffice.tsx'), 'utf8');
-      expect(office).toContain(`tCount('px.leave.coversLeft', left)`);
-      expect(office).toContain('coversLeftIn(answer)');
-      // A cover of a day gone by is not counted: only what can still be undone.
+      expect(office).toContain(`tCount('leave.office.coversReleased', released)`);
+      expect(office).toContain('coversReleasedIn(answer)');
+      expect(readFileSync(path.join(__dirname, '../../src/components/account/MyLeavePanel.tsx'), 'utf8')).toContain(`tCount('leave.my.coversReleased', released)`);
+      // The teachers: Dev's cover today is gone from his covers and is under "Covers released"; Falak's next week's
+      // likewise. Each is the day, the period, the class and the subject; nothing says whose leave or why.
+      const devs = await get(dev);
+      expect(devs.body.mine.filter((x: { on_date: string }) => x.on_date === D)).toEqual([]);
+      expect(devs.body.released).toEqual([{ substitution_id: todays, on_date: D, period: 1, class_id: C5A, class_name: '5-A', subject_name: 'Maths' }]);
+      expect(JSON.stringify(devs.body)).not.toMatch(new RegExp(`Asha|${ASHA}|absent|Unwell|sick|came in`));
+      expect((await get(falak)).body.released.map((x: { on_date: string }) => x.on_date)).toEqual([next]);
+      expect((await get(bina)).body.released).toEqual([]);
+      // A cover of a day gone by is neither released nor counted.
       await wipe();
       const ran = await onLeaveFor(asha, addDays(D, -7), D);
       await seedCover(addDays(D, -7), 1, C5A, MATHS, ASHA, DEV);
       await assigned(principal, 1, C5A, DEV);
-      expect((await leaveStep(principal, ran, { action: 'withdraw', note: 'Recorded for the wrong week.' })).body).toEqual({ ok: true, coversLeft: 1 });
-      // The person's own withdrawal counts the covers of their own periods, in their own session; a decision
-      // carries no count; and with Proxy Auto off nothing is counted.
+      expect((await leaveStep(principal, ran, { action: 'withdraw', note: 'Recorded for the wrong week.' })).body).toEqual({ ok: true, coversReleased: 1 });
+      expect(await count(`substitutions where status = 'assigned' and on_date < $1::date`, [D])).toBe(1);
+      // The person's own withdrawal releases the covers of their own periods, in their own session; a decision
+      // carries no count.
       await wipe();
       const asked = await as(bina, (c) => askLeave(c, actor(bina), { fromDate: next, toDate: next, kind: 'casual', reason: 'A family function.' }));
       if (!asked.ok) throw new Error(asked.reason);
       expect(await leaveStep(principal, asked.leaveId, { action: 'approve' })).toEqual({ status: 200, body: { ok: true } });
       const forBina = await assign(coordinator, 3, C5A, DEV, next);
       expect(forBina).toMatchObject({ ok: true });
-      expect(await leaveStep(bina, asked.leaveId, { action: 'withdraw' })).toEqual({ status: 200, body: { ok: true, coversLeft: 1 } });
+      expect(await leaveStep(bina, asked.leaveId, { action: 'withdraw' })).toEqual({ status: 200, body: { ok: true, coversReleased: 1 } });
+      // With Proxy Auto switched off the covers are released all the same: no teacher keeps a class whose own
+      // teacher is back.
       await wipe();
       const gitas = await onLeaveFor(gita);
       await assigned(admin, 1, C6A, FALAK);
       await proxyModule(false);
       try {
-        expect(await leaveStep(admin, gitas, { action: 'withdraw', note: 'She came in after all.' })).toEqual({ status: 200, body: { ok: true, coversLeft: 0 } });
+        expect(await leaveStep(admin, gitas, { action: 'withdraw', note: 'She came in after all.' })).toEqual({ status: 200, body: { ok: true, coversReleased: 1 } });
       } finally {
         await proxyModule(true);
       }
@@ -1311,11 +1452,21 @@ describe('on the real schema', () => {
       await wipe();
       const base = { arranger: false as const, today: D, tomorrow: addDays(D, 1), last: addDays(D, PROXY_AHEAD_DAYS) };
       const cover = (on_date: string, period: number) => ({ substitution_id: `${on_date}-${period}`, on_date, period, class_id: C5A, class_name: '5-A', subject_name: 'Maths' });
-      const draw = (lang: 'en' | 'hi', mine: ReturnType<typeof cover>[]) => renderToStaticMarkup(h(LangProvider, { lang, children: h(ProxyMine, { data: { ...base, mine } }) }));
+      const draw = (lang: 'en' | 'hi', mine: ReturnType<typeof cover>[], released: ReturnType<typeof cover>[] = []) => renderToStaticMarkup(h(LangProvider, { lang, children: h(ProxyMine, { data: { ...base, mine, released } }) }));
       const none = draw('en', []);
       expect(none).toContain('You have no cover today. Your own periods are on “Timetable”.');
       expect(none).toContain('Nothing for tomorrow yet');
       expect(none).not.toContain('The days after');
+      // Covers released because the leave behind them was cancelled (C210): listed under their own heading, each
+      // with its day, and never whose leave it was or why. Nothing at all when there is none.
+      expect(none).not.toContain('data-proxy-released');
+      const released = draw('en', [], [cover(D, 3), cover(addDays(D, 2), 1)]);
+      expect(released.match(/data-proxy-released-row="/g)).toHaveLength(2);
+      expect(released).toContain('Covers released');
+      expect(released).toContain('Period 3 · 5-A · Maths: released');
+      expect(released).toContain('The teacher you were to cover is back');
+      expect(released).not.toMatch(/Asha|sick|casual|<button|\{\w+\}|px\./);
+      expect(draw('hi', [], [cover(D, 3)])).toContain('हटाई गई');
       const some = draw('en', [cover(D, 2), cover(addDays(D, 1), 1), cover(addDays(D, 3), 4)]);
       expect(some.match(/data-proxy-mine="/g)).toHaveLength(3);
       expect(some).toContain('Period 2 · 5-A · Maths');

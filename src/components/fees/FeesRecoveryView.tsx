@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
-import { useFeesPart } from './FeesFirstLoad';
+import { useFeesChanged, useFeesPart } from './FeesFirstLoad';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
@@ -22,6 +22,7 @@ export function FeesRecoveryView() {
   const { t, lang } = useT();
   const toast = useToast();
   const getRecovery = useFeesPart('recovery', '/api/app/fees/recovery');
+  const feesChanged = useFeesChanged();
   const [rows, setRows] = useState<Row[] | null>(null);
   const [refunds, setRefunds] = useState<Refund[]>([]);
   const [mayRefund, setMayRefund] = useState(false);
@@ -58,6 +59,7 @@ export function FeesRecoveryView() {
     if (body.action === 'hardship') toast.show(t('frec.hardship.done', { count: Number(answer.proposed ?? 0) }), 'success');
     setOpen(null);
     void load();
+    feesChanged();
   }
 
   if (rows === null) return null;

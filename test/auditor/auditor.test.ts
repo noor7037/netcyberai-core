@@ -314,8 +314,10 @@ describe('on the whole schema', () => {
 
   describe('each failing check names its count and its screen, and passes once the data is fixed', () => {
     it('every class has a class teacher: one with none and one whose teacher has left', async () => {
-      await db.pg.query(`update classes set class_teacher_id = $2 where class_id = $1`, [C6B, LATA]);
-      expect(await check('class_teacher')).toEqual({ id: 'class_teacher', state: 'needs_attention', count: 2, href: '/app/help/ticket/new' });
+      // Lata was 6-B's class teacher and has left: her account is switched off after she was chosen (a class teacher
+      // is chosen only while an active teacher, C210).
+      await db.pg.exec(`update users set is_active = true where user_id = '${LATA}'; update classes set class_teacher_id = '${LATA}' where class_id = '${C6B}'; update users set is_active = false where user_id = '${LATA}';`);
+      expect(await check('class_teacher')).toEqual({ id: 'class_teacher', state: 'needs_attention', count: 2, href: '/app/students?classes=1' });
       // The office sets them (through the office's own session).
       await as(principal, (c) => c.query(`update classes set class_teacher_id = case class_id when $1::uuid then $3::uuid else $4::uuid end where class_id in ($1, $2)`, [C6B, C7C, TARUN, TEJAS]));
       expect(await check('class_teacher')).toEqual({ id: 'class_teacher', state: 'passes', count: null, href: null });
@@ -487,7 +489,7 @@ describe('on the whole schema', () => {
       await db.pg.query(`update classes set class_teacher_id = null where class_id = $1`, [C7C]);
       const again = await post(admin);
       expect(again.body.latest).toMatchObject({ date: D, passed: 11, applicable: 12, recordedBy: 'Asif Admin' });
-      expect(again.body.latest.results.find((r: { id: string }) => r.id === 'class_teacher')).toEqual({ id: 'class_teacher', state: 'needs_attention', count: 1, href: '/app/help/ticket/new' });
+      expect(again.body.latest.results.find((r: { id: string }) => r.id === 'class_teacher')).toEqual({ id: 'class_teacher', state: 'needs_attention', count: 1, href: '/app/students?classes=1' });
       expect(await rows()).toBe(1);
       expect(await get(principal)).toMatchObject({ status: 200, body: { latest: { passed: 11, recordedBy: 'Asif Admin' }, history: [{ date: D, passed: 11, applicable: 12 }] } });
       const audit = (await db.pg.query(`select actor_user_id, after_state from audit_log where event_action = 'school_health.checked' order by created_at`)).rows;
@@ -621,8 +623,8 @@ describe('on the whole schema', () => {
       expect(at('data-auditor-section="attention"')).toBeLessThan(at('data-auditor-section="passes"'));
       expect(at('data-auditor-section="passes"')).toBeLessThan(at('data-auditor-section="not-set-up"'));
       expect(en).toContain('1 class has no class teacher');
-      expect(en).toMatch(/data-check-fix="class_teacher"[^>]*>Raise a ticket</);
-      expect(en).toContain('href="/app/help/ticket/new"');
+      expect(en).toMatch(/data-check-fix="class_teacher"[^>]*>Choose class teachers</);
+      expect(en).toContain('href="/app/students?classes=1"');
       expect(en).toContain(t('en', 'myDay.why'));
       expect(en).toContain(t('en', 'aud.why.rule', { rule: t('en', 'aud.check.class_teacher.rule') }));
       expect(en).toContain(t('en', 'aud.check.message_budget.setup'));

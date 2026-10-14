@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
@@ -9,6 +10,9 @@ import type { MessageKey } from '@/lib/i18n';
 // Parent AI v1 (docs/25 slice 7n, C196): "What can I do at home?". Choose a guardian and their child; a draft is put
 // together from what the child's class was taught and the child's own homework, and shows what it used. A person
 // reads it, changes the words if need be, and approves: that is what sends it.
+//
+// `shownAbove` (C210): the page was opened from the dashboard's "Draft answers waiting for approval", and those
+// drafts are drawn above this list. After a change made here, that list is read again too.
 
 type Source = { kind: 'taught'; subject: string | null; topic: string; on: string } | { kind: 'homework'; subject: string; title: string; due: string } | { kind: 'followup' };
 type Answer = { answer_id: string; child: string; guardian: string; body: string; sources: Source[]; ai_assisted: boolean; status: 'draft' | 'sent'; drafted_by: string | null; drafted_at: string; approved_by: string | null; message: string | null };
@@ -19,8 +23,9 @@ const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-se
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 const MAX = 700;
 
-export function ParentAiView() {
+export function ParentAiView({ shownAbove = false }: { shownAbove?: boolean }) {
   const { t, lang } = useT();
+  const refreshShown = useShownRefresh(shownAbove);
   const [answers, setAnswers] = useState<Answer[] | null>(null);
   const [failed, setFailed] = useState(false);
   const [q, setQ] = useState('');
@@ -64,6 +69,8 @@ export function ParentAiView() {
     if (!res?.ok) return setNote({ ok: false, text: ERRORS.includes(got?.code) ? t(`pai.err.${got.code}` as MessageKey) : t('pai.err.other') });
     setNote({ ok: true, text: done(got ?? {}) });
     await load();
+    // The drafts waiting, drawn above this list, are read again too: one just approved or discarded waits no more.
+    refreshShown();
   };
 
   if (failed) return <p role="alert" className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('pai.failed')}</p>;

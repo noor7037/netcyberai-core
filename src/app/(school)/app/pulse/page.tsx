@@ -13,18 +13,21 @@ import { readRange } from '@/lib/insights/screens';
 // from "taught today" and the day's homework in three languages (C151), and
 // the "needs help" queue (D6, C148). Sending starts with WhatsApp in P4, and
 // the page says so.
-// ?show=sent&from=&to= comes from a dashboard number and lists the messages sent for those days (C203).
+// ?show=sent&from=&to= comes from a dashboard number and lists the messages sent for those days (C203). The
+// messages list below is told so, and a message sent there has that list read again (C210). The needs-help queue
+// changes nothing that list counts.
 export default async function PulsePage({ searchParams = {} }: { searchParams?: { show?: string; from?: string; to?: string } }) {
   const off = await moduleOffReason('pulse');
   if (off) return <ModuleOffPage moduleId="pulse" reason={off} />;
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
   const range = readRange(searchParams);
+  const sent = searchParams.show === 'sent' ? range : null;
   return (
     <ModulePage moduleId="pulse" help="needs-help-queue" tour="pulse" title={t(lang, 'help2.title')} purpose={t(lang, 'help2.purpose')}>
       <div className="flex flex-col gap-8">
-        {searchParams.show === 'sent' && range && <PulseShown range={range} />}
-        <PulseDraftsView />
+        {sent && <PulseShown range={sent} />}
+        <PulseDraftsView shownAbove={sent !== null} />
         <NeedsHelpView />
       </div>
     </ModulePage>

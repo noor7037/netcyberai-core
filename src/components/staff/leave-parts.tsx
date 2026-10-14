@@ -10,7 +10,7 @@ import { LEAVE_BACK_DAYS, LEAVE_KINDS, LEAVE_MAX_DAYS, LEAVE_TEXT_MAX, type Leav
 // The parts "My leave" (the account page) and the office's leave lists (Staff) share (C201): how a day and a
 // request are said, and one request drawn the same way on both screens.
 
-const REFUSALS = ['dates', 'past', 'too_far', 'too_long', 'kind', 'reason', 'overlap', 'person', 'elsewhere', 'own', 'decided', 'note', 'begun', 'not_approved', 'closed'];
+const REFUSALS = ['dates', 'past', 'too_far', 'too_long', 'kind', 'reason', 'overlap', 'person', 'elsewhere', 'own', 'decided', 'note', 'begun', 'not_approved', 'closed', 'has_admin'];
 export const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 export const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 export const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
@@ -63,10 +63,10 @@ export function LeaveGuideLink() {
   );
 }
 
-// How many covers the server says still stand for the days of a leave that was just cancelled (Proxy Auto,
-// C202). Cancelling leave undoes no cover: a person does that, on Proxy Auto. 0 when the answer says nothing.
-export const coversLeftIn = (answer: unknown): number => {
-  const n = (answer as { coversLeft?: unknown } | null)?.coversLeft;
+// How many covers the server says withdrawing approved leave released (C210): the covers assigned for those days
+// from today on, undone by that same tap, whose teachers are told on My Day. 0 when the answer says nothing.
+export const coversReleasedIn = (answer: unknown): number => {
+  const n = (answer as { coversReleased?: unknown } | null)?.coversReleased;
   return typeof n === 'number' && Number.isInteger(n) && n > 0 ? n : 0;
 };
 
@@ -106,9 +106,14 @@ export function LeaveSummary({ r, showName }: { r: LeaveRow; showName: boolean }
         <span className="text-slate/70">{`${tCount('leave.days', r.days)} · ${t(`leave.kind.${r.kind}` as MessageKey)}`}</span>
       </div>
       <p className="whitespace-pre-wrap break-words">{r.reason}</p>
-      <p className="text-slate/70">{r.byOffice ? t('leave.byOffice', { name: r.recorded_by }) : t('leave.askedOn', { date: stamp(r.asked_at) })}</p>
+      {/* Leave a principal recorded for themself, in a school with no school admin, says so wherever it is shown. */}
+      {r.selfRecorded ? (
+        <p data-leave-self className="font-semibold">{r.mine ? t('leave.self.mine', { date: stamp(r.asked_at) }) : t('leave.self.theirs', { name: r.recorded_by, date: stamp(r.asked_at) })}</p>
+      ) : (
+        <p className="text-slate/70">{r.byOffice ? t('leave.byOffice', { name: r.recorded_by }) : t('leave.askedOn', { date: stamp(r.asked_at) })}</p>
+      )}
       {r.status === 'waiting' && <p className="text-slate/70">{t('leave.answer.waiting')}</p>}
-      {r.decided_at && !r.byOffice && <p data-leave-answer className="font-semibold">{t(r.status === 'refused' ? 'leave.answer.refused' : 'leave.answer.approved', { name: r.decided_by ?? '', date: stamp(r.decided_at) })}</p>}
+      {r.decided_at && !r.byOffice && !r.selfRecorded && <p data-leave-answer className="font-semibold">{t(r.status === 'refused' ? 'leave.answer.refused' : 'leave.answer.approved', { name: r.decided_by ?? '', date: stamp(r.decided_at) })}</p>}
       {r.decision_note && <p className="whitespace-pre-wrap break-words">{t('leave.answer.note', { note: r.decision_note })}</p>}
       {r.withdrawn_at && <p className="font-semibold">{r.withdrawnByOffice ? t('leave.answer.cancelled', { date: stamp(r.withdrawn_at), note: r.withdrawn_note ?? '' }) : t('leave.answer.withdrawn', { date: stamp(r.withdrawn_at) })}</p>}
     </>

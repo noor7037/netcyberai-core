@@ -279,6 +279,57 @@ export async function withSelfContext<T>(userId: string, fn: (client: PoolClient
   }
 }
 
+// ---- a school's own scheduled checks (C210) ---------------------------------
+// Early Warning each night and the School Health Auditor each week run AS THE
+// SCHOOL'S OFFICE SEES IT, never as the platform: app_user, the school's own
+// tenant, the role 'principal', NO person, and app.current_job naming the job.
+// Row level security then decides every read exactly as for the principal, and
+// the database admits a write with no person only while app.current_job is set
+// (the c210_schedules migration). The school id comes only from a job row the
+// database queued (src/lib/jobs/school-context.ts); this is never reachable
+// from a request, and the job's name is checked against this fixed list.
+//
+// "No person" is the nil uuid in app.current_user_id, as the nil uuid stands in
+// for "no tenant" elsewhere in this file: no account has it, so every "in one's
+// own name" policy matches nothing, and the older policies that cast the
+// setting straight to a uuid (without nullif) still read a valid uuid, where an
+// empty string would make them fail.
+export const SCHOOL_JOBS = ['early_warning.nightly', 'auditor.weekly'] as const;
+export type SchoolJob = (typeof SCHOOL_JOBS)[number];
+export const NO_PERSON = NIL_UUID;
+const SCHOOL_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+// The statements, as data, so a test runs the same SQL (as tenantContextStatements).
+export function schoolJobContextStatements(schoolId: string, job: SchoolJob): { sql: string; params?: string[] }[] {
+  if (!SCHOOL_ID.test(schoolId) || schoolId === NIL_UUID) throw new Error('school job: not a school id');
+  if (!(SCHOOL_JOBS as readonly string[]).includes(job)) throw new Error('school job: not a school job');
+  return [
+    { sql: 'set local role app_user' }, // see withTenantContext's comment on why LOCAL, not plain SET
+    { sql: `select set_config('app.current_tenant_id', $1, true)`, params: [schoolId] },
+    { sql: `select set_config('app.current_role', 'principal', true)` },
+    { sql: `select set_config('app.current_user_id', $1, true)`, params: [NO_PERSON] },
+    { sql: `select set_config('app.current_job', $1, true)`, params: [job] },
+  ];
+}
+
+export async function withSchoolJobContext<T>(schoolId: string, job: SchoolJob, fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  const stmts = schoolJobContextStatements(schoolId, job);
+  const client = await getPool().connect();
+  try {
+    await client.query('begin');
+    for (const s of stmts) await client.query(s.sql, s.params);
+    const result = await fn(client);
+    await client.query('commit');
+    return result;
+  } catch (err) {
+    await client.query('rollback').catch(() => {});
+    throw err;
+  } finally {
+    await client.query('reset role').catch(() => {});
+    client.release();
+  }
+}
+
 // ---- account security helpers (C90) ----------------------------------------
 // Fixed statements, parameterized input, no request-chosen role. They run as
 // nca_super because users.token_version and users.phone are otherwise only

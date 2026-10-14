@@ -11,7 +11,8 @@ import { ATTENDANCE_DAYS_SHOW, readRange } from '@/lib/insights/screens';
 // ?class=<id> comes from a My Day card and opens that class directly.
 // ?show=<filter> comes from a dashboard number and lists the rows behind it (C203): the classes marked or not
 // marked today, or the students with a mark; ?show=days&from=&to= lists the marks of each day of those days,
-// with the present rate over them.
+// with the present rate over them. The screen below is told that a list is drawn above it, so a change made there
+// has that list read again (C210).
 export default async function AttendancePage({ searchParams }: { searchParams: { class?: string; show?: string; from?: string; to?: string } }) {
   const off = await moduleOffReason('attendance');
   if (off) return <ModuleOffPage moduleId="attendance" reason={off} />;
@@ -22,12 +23,14 @@ export default async function AttendancePage({ searchParams }: { searchParams: {
     session?.role === 'teacher' ||
     session?.role === 'academic_coordinator';
   const range = readRange(searchParams);
+  const shown = isAttendanceShow(searchParams.show) ? searchParams.show : null;
+  const days = searchParams.show === ATTENDANCE_DAYS_SHOW ? range : null;
 
   return (
     <ModulePage moduleId="attendance" help="mark-attendance" tour="attendance" title="Attendance" purpose="Choose a class. Everyone starts as present: tap only who is absent or late, then submit.">
-      {isAttendanceShow(searchParams.show) && <AttendanceShown show={searchParams.show} />}
-      {searchParams.show === ATTENDANCE_DAYS_SHOW && range && <AttendanceDays range={range} />}
-      <AttendanceView canManage={canManage} office={session?.role === 'school_admin' || session?.role === 'principal'} initialClassId={isUuid(searchParams.class) ? searchParams.class : undefined} />
+      {shown && <AttendanceShown show={shown} />}
+      {days && <AttendanceDays range={days} />}
+      <AttendanceView canManage={canManage} office={session?.role === 'school_admin' || session?.role === 'principal'} initialClassId={isUuid(searchParams.class) ? searchParams.class : undefined} shownAbove={shown !== null || days !== null} />
     </ModulePage>
   );
 }

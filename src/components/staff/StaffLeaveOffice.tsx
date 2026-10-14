@@ -5,7 +5,7 @@ import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
 import { addDays, isLeaveDate, LEAVE_AHEAD_DAYS, LEAVE_BACK_DAYS, LEAVE_LIST_MAX, LEAVE_TEXT_MAX, leaveByToday, type LeaveRow } from '@/lib/staff/leave-rules';
-import { BOX, coversLeftIn, FIELD, LeaveGuideLink, LeaveKindSelect, LeaveNoteLine, LeaveSummary, ownRequestLine, PRIMARY, TAP, useLeaveWords, type LeaveNote } from './leave-parts';
+import { BOX, coversReleasedIn, FIELD, LeaveGuideLink, LeaveKindSelect, LeaveNoteLine, LeaveSummary, ownRequestLine, PRIMARY, TAP, useLeaveWords, type LeaveNote } from './leave-parts';
 
 // Leave, for the principal and the school admin, on Staff (docs/26 slice 8b, C201): the requests waiting for a
 // decision, the approved leave, and recording leave for someone who phoned in. Nobody decides their own request:
@@ -70,11 +70,11 @@ export function StaffLeaveOffice({ shownAbove = false }: { shownAbove?: boolean 
     // no longer waits, and leave just cancelled no longer covers today.
     refreshShown();
   };
-  // Cancelling approved leave undoes no cover (a person undoes a cover, on Proxy Auto): when covers were assigned
-  // for those days, the line that says "Cancelled" also says how many still stand and where to undo them.
+  // Cancelling approved leave releases the covers assigned for its days from today on, by that same tap (C210): the
+  // line that says "Cancelled" also says how many were released, and that their teachers are told on My Day.
   const doneWords = (done: MessageKey, name: string) => (answer: unknown) => {
-    const left = coversLeftIn(answer);
-    return left > 0 ? `${t(done, { name })} ${tCount('px.leave.coversLeft', left)}` : t(done, { name });
+    const released = coversReleasedIn(answer);
+    return released > 0 ? `${t(done, { name })} ${tCount('leave.office.coversReleased', released)}` : t(done, { name });
   };
   const step = (r: LeaveRow, action: 'approve' | 'refuse' | 'withdraw', done: MessageKey) =>
     send(`/api/app/staff/leave/${r.leave_id}`, { action, note: texts[r.leave_id] ?? '' }, doneWords(done, r.name), () => {

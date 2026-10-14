@@ -20,6 +20,15 @@ import type { ModuleId } from '@/lib/contracts/modules';
 export const AUDITOR_RULE_VERSION = 1;
 // Who runs and reads a check-up. The database holds the same two roles (the school_health_runs policies).
 export const AUDITOR_ROLES: readonly string[] = ['principal', 'school_admin'];
+// The weekly check-up (C210): the same check-up, queued early each Monday in India for every school with the auditor
+// on, run in the school's own session as its office sees it, with no person. The day's record says so.
+export const WEEKLY_CHECK_UP_JOB = 'auditor.weekly';
+
+// The Monday of the week a date is in (weeks begin on Monday, as the weekly check-up's are queued).
+export function weekStart(isoDate: string): string {
+  const d = new Date(`${isoDate}T00:00:00Z`);
+  return new Date(d.getTime() - ((d.getUTCDay() + 6) % 7) * 86_400_000).toISOString().slice(0, 10);
+}
 
 // The twelve checks of rule version 1 (docs/26 section 5, "Auditor v1 checks"), in the order they are listed there.
 export const CHECK_IDS = [
@@ -44,11 +53,11 @@ export const LEAVE_WAITED_MORE_THAN_DAYS = 2;
 // screen where the thing is set up. A check that needs attention carries its own address, which may be this
 // screen or a narrower list of exactly the rows it counted.
 //
-// class_teacher opens Raise Ticket: no screen of the app changes the class teacher of a class that already
-// exists, so that is where the fix starts today. It moves to the screen that does, once there is one.
+// class_teacher opens the list of classes (Students, "Manage classes", opened by ?classes=1), where the principal
+// and the school admin choose each class's class teacher (C210).
 export type CheckMeta = { moduleId: ModuleId; screen: string };
 export const CHECK_META: Record<CheckId, CheckMeta> = {
-  class_teacher: { moduleId: 'students', screen: '/app/help/ticket/new' },
+  class_teacher: { moduleId: 'students', screen: '/app/students?classes=1' },
   student_guardian: { moduleId: 'students', screen: '/app/students' },
   guardian_phone: { moduleId: 'parents', screen: '/app/parents' },
   consent: { moduleId: 'students', screen: '/app/students' },
@@ -75,8 +84,8 @@ export function summarise(results: readonly Pick<CheckResult, 'state'>[]): Check
 
 // One check-up: India's date, the version of the rules, what each check said, and the result in two numbers.
 export type CheckUp = { date: string; ruleVersion: number; results: CheckResult[]; passed: number; applicable: number };
-// A check-up as it is kept and read back: with when it was recorded and by whom.
-export type StoredCheckUp = CheckUp & { recordedAt: string; recordedBy: string | null };
+// A check-up as it is kept and read back: with when it was recorded and by whom (a person, or the weekly check-up).
+export type StoredCheckUp = CheckUp & { recordedAt: string; recordedBy: string | null; byWeeklyCheckUp?: boolean };
 // One line of the trend.
 export type CheckUpLine = { date: string; ruleVersion: number; passed: number; applicable: number };
 

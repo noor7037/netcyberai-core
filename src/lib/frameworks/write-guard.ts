@@ -73,6 +73,30 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['early-warning/**', 'early-warning'],
   ['early-warning', 'early-warning'],
   // p5-8j end
+  // c210-rls begin
+  // c210-rls end
+  // c210-leave begin
+  // c210-leave end
+  // c210-jobs begin
+  // c210-jobs end
+  // c210-ui begin
+  // Setting or clearing the class teacher of one class (C210) is the school's Setup, as adding a class is.
+  ['classes/*', 'setup'],
+  // c210-ui end
+  // p6-9a begin
+  // p6-9a end
+  // p6-9b begin
+  // p6-9b end
+  // p6-9c begin
+  // p6-9c end
+  // p6-9d begin
+  // p6-9d end
+  // p6-9e begin
+  // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
   // What is recorded about a guardian sits with Parents (17 §3: guardians,
   // verification, consent, data requests), wherever its button is drawn.
   ['students/*/consent', 'parents'],
@@ -174,6 +198,28 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // The flags a person may read, with their reasons, evidence and what was done (C209).
   ['early-warning', 'early-warning'],
   // p5-8j end
+  // c210-rls begin
+  // c210-rls end
+  // c210-leave begin
+  // c210-leave end
+  // c210-jobs begin
+  // c210-jobs end
+  // c210-ui begin
+  // c210-ui end
+  // p6-9a begin
+  // p6-9a end
+  // p6-9b begin
+  // p6-9b end
+  // p6-9c begin
+  // p6-9c end
+  // p6-9d begin
+  // p6-9d end
+  // p6-9e begin
+  // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
   ['students/*/consent', 'parents'],
   ['students/*/guardians', 'parents'],
   ['students/*/dsr', 'parents'],

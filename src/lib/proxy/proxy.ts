@@ -26,10 +26,15 @@ export * from './rules';
 //   - A teacher is a user, as in the timetable. A cover does not widen what the substitute can read: for the
 //     covered period they are given the class and the subject (MyCover), on Proxy Auto, My Day and Timetable, and
 //     nothing else changes. They are not given who is away.
-//   - A COVER CAN STOP BEING GOOD AFTER THE TAP: the leave is cancelled, the day becomes a holiday, the timetable
-//     changes, or the substitute goes on leave, leaves, or is given a class of their own then. The app undoes
-//     nothing by itself (a person decides). It says so instead: such a period counts as needing cover again, such
-//     a cover is listed as no longer needed, and My Day tells the people who arrange cover about both.
+//   - CANCELLED LEAVE RELEASES ITS COVERS (C210). The person who withdraws or cancels approved leave undoes, by that
+//     one tap, every cover still assigned for that leave from India's today on: the database does it in the same
+//     transaction, in that person's name, marked 'leave_cancelled' (staff_leave_releases_covers). Covers of days gone
+//     by stay. The covering teacher is told in the app: My Day's 'covers-released' card and "Covers released" on this
+//     screen (coversReleasedBetween). A released cover is undone, so it is never also "no longer needed".
+//   - A COVER CAN STILL STOP BEING GOOD AFTER THE TAP: the day becomes a holiday, the timetable changes, or the
+//     substitute goes on leave, leaves, or is given a class of their own then. The app undoes nothing of that by
+//     itself (a person decides). It says so instead: such a period counts as needing cover again, such a cover is
+//     listed as no longer needed, and My Day tells the people who arrange cover about both.
 //   - Nobody is told by a message, and no job is added: the substitute sees the cover in the app.
 //   - Covers are for running the day. Nothing here adds up a person's covers over time or puts staff in an order
 //     of who covers most; the two small numbers beside a suggestion belong to that one decision.
@@ -306,16 +311,53 @@ export async function coversBetween(db: Sql, schoolId: string, userId: string, f
 // The covers one teacher holds on one date (India's today unless given), in the order of the periods.
 export const coversFor = (db: Sql, schoolId: string, userId: string, date: string = indiaDate()): Promise<MyCover[]> => coversBetween(db, schoolId, userId, date, date);
 
-// How many covers are still assigned for the days of one leave request, from `today` on: what the office is told
-// when it cancels approved leave, so that each can be undone on Proxy Auto. Read in the caller's own session (the
-// people who arrange cover: every cover; the person whose leave it is: the covers of their own periods).
-export async function coversLeftFor(db: Sql, schoolId: string, leaveId: string, today: string = indiaDate()): Promise<number> {
+// The covers that withdrawing one approved leave released, in this transaction (C210). The database released them
+// when the leave stopped being approved (staff_leave_releases_covers): every cover still assigned for that person in
+// the leave's days from today on, undone in the name of `by`, the person who withdrew it, at this transaction's own
+// time. Read in the caller's own session: the people who arrange cover read every cover; a teacher withdrawing their
+// own leave reads the covers of their own periods. Each is what its audit row needs: the day, the period, the class
+// and who was to cover it.
+export type ReleasedCover = Pick<Cover, 'substitution_id' | 'on_date' | 'period' | 'class_id' | 'substitute_user_id'>;
+export async function coversReleasedBy(db: Sql, schoolId: string, leave: { absentUserId: string; fromDate: string; toDate: string; by: string }): Promise<ReleasedCover[]> {
   const { rows } = await db.query(
-    `select x.substitution_id
-       from staff_leave l
-       join substitutions x on x.school_id = l.school_id and x.absent_user_id = l.user_id and x.on_date between l.from_date and l.to_date
-      where l.school_id = $1 and l.leave_id = $2 and x.status = 'assigned' and x.on_date >= $3::date`,
-    [schoolId, leaveId, today]
+    `select x.substitution_id, x.on_date::text as on_date, x.period::int as period, x.class_id, x.substitute_user_id
+       from substitutions x
+      where x.school_id = $1 and x.absent_user_id = $2 and x.on_date between $3::date and $4::date
+        and x.status = 'undone' and x.undone_reason = 'leave_cancelled' and x.undone_by = $5 and x.undone_at = now()
+      order by x.on_date, x.period, x.class_id`,
+    [schoolId, leave.absentUserId, leave.fromDate, leave.toDate, leave.by]
   );
-  return rows.length;
+  return rows as ReleasedCover[];
+}
+
+// The covers one teacher HAD from one date to another (both included) that were released because the leave behind
+// them was cancelled: what My Day's 'covers-released' card counts and what "Covers released" lists, so the teacher
+// does not go to those classes. In the order of the days and periods. Read in the caller's own session: a teacher is
+// given their own, and nobody else's. Like coversBetween() it reads no name and no leave: the day, the period, the
+// class and the subject. Left out: a period the teacher covers again (the same class, day and period assigned to
+// them once more), and a day the school is closed.
+export async function coversReleasedBetween(db: Sql, schoolId: string, userId: string, from: string, to: string): Promise<MyCover[]> {
+  if (!isLeaveDate(from) || !isLeaveDate(to) || to < from) return [];
+  const { rows } = await db.query(
+    `select x.substitution_id, x.on_date::text as on_date, x.period::int as period, x.class_id, c.name as class, c.section, s.name as subject_name
+       from substitutions x
+       join classes c on c.school_id = x.school_id and c.class_id = x.class_id
+       join subjects s on s.school_id = x.school_id and s.subject_id = x.subject_id
+      where x.school_id = $1 and x.substitute_user_id = $2 and x.on_date between $3::date and $4::date and x.status = 'undone' and x.undone_reason = 'leave_cancelled'
+        and not exists (select 1 from substitutions again where again.school_id = x.school_id and again.substitute_user_id = x.substitute_user_id and again.on_date = x.on_date
+                           and again.period = x.period and again.class_id = x.class_id and again.status = 'assigned')
+      order by x.on_date, x.period, c.name, c.section, x.substitution_id`,
+    [schoolId, userId, from, to]
+  );
+  if (rows.length === 0) return [];
+  const calendar = await schoolCalendar(db, schoolId);
+  // One line a period: a cover released, given to the same teacher again and released again is said once.
+  const seen = new Set<string>();
+  return rows
+    .filter((r) => !closedOn(calendar, r.on_date))
+    .filter((r) => {
+      const key = `${r.on_date}:${r.period}:${r.class_id}`;
+      return seen.has(key) ? false : (seen.add(key), true);
+    })
+    .map((r): MyCover => ({ substitution_id: r.substitution_id, on_date: r.on_date, period: r.period, class_id: r.class_id, class_name: classLabel(r.class, r.section) ?? '', subject_name: r.subject_name }));
 }

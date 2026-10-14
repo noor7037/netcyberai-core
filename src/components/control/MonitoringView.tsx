@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { QUIET_ACTION } from '@/components/app-ui/ModulePage';
 import { RetryJobButton } from '@/components/control/RetryJobButton';
 import { Badge } from '@/components/ui/Badge';
-import { HELD_FOR_US, MONITORING_SECTIONS, needsALook, type InvitationWaiting, type Monitoring, type NightlyJob, type SchoolCount, type SendGroup } from '@/lib/control/monitoring';
+import { HELD_FOR_US, MONITORING_SECTIONS, needsALook, type InvitationWaiting, type Monitoring, type NightlyJob, type NightlyJobState, type SchoolCheckRun, type SchoolCount, type SendGroup } from '@/lib/control/monitoring';
 import { t, tCount, tOr, type Lang, type MessageKey } from '@/lib/i18n';
 import { JOB_STATUSES } from '@/lib/jobs/types';
 import { APPLICATION_STATES } from '@/lib/onboarding/application-machine';
@@ -15,8 +15,8 @@ import { APPLICATION_STATES } from '@/lib/onboarding/application-machine';
 //
 // No parent's or child's name, no phone number and no words of a message are on this page: the loader reads none.
 // The error and reason texts it shows were cut by cutContacts before they got here. Below the monitoring sections
-// are the two onboarding lists the page has always had; the invitations list is the one place a person is named
-// (a member of staff a school invited), and it says so.
+// are the two onboarding lists the page has always had; the invitations list is the one place about a person (a
+// member of staff a school invited), and it shows only the first letter and the domain of their email (C210).
 
 const TH = 'px-3 py-2 text-left text-xs font-bold uppercase tracking-wider text-slate/70';
 const TD = 'px-3 py-2 text-sm text-slate tabular-nums';
@@ -101,6 +101,9 @@ function Group({ lang, id, title, group, children }: { lang: Lang; id: string; t
   );
 }
 
+// The colour of a scheduled run's state: done, nothing to do, a fault, or on its way.
+const stateBadge = (state: NightlyJobState) => (state === 'ran' ? 'success' : state === 'not_needed' ? 'neutral' : state === 'failed' || state === 'not_queued' ? 'danger' : 'warning');
+
 export function MonitoringView({ data: m, invitations, applications, lang }: { data: Monitoring; invitations: InvitationWaiting[]; applications: Record<string, number>; lang: Lang }) {
   const look = needsALook(m);
   const looking = MONITORING_SECTIONS.filter((s) => look[s]).length + (invitations.length > 0 ? 1 : 0);
@@ -109,6 +112,9 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
   const night = dayInWords(lang, m.nightly.date);
   const nightJobs: [string, NightlyJob][] = [['fees', m.nightly.feesJob], ['billing', m.nightly.billingJob]];
   const nightStates = [...new Set(nightJobs.map(([, job]) => job.state))].filter((s) => s !== 'ran' && s !== 'not_needed');
+  // The schools' own checks (C210): one job a school, for the night and for the week.
+  const schoolChecks: [string, SchoolCheckRun][] = [['earlyWarning', m.schoolChecks.earlyWarning], ['auditor', m.schoolChecks.auditor]];
+  const schoolCheckStates = [...new Set(schoolChecks.map(([, run]) => run.state))].filter((s) => s !== 'ran' && s !== 'not_needed');
   const nothingSent = m.sends.uncertain.count === 0 && m.sends.failed.length === 0 && m.sends.held.length === 0;
   const tp = m.templates;
   // Counted on record, and asking for nothing any more: a newer version took its place, or we rejected it ourselves.
@@ -308,7 +314,7 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
             <li key={id} data-monitoring-night={id} data-monitoring-night-state={job.state} className="flex flex-wrap items-center gap-2 text-sm text-slate">
               <span className="font-bold">{t(lang, `monitoring.nightly.${id}` as MessageKey)}</span>
               <code className="text-slate/70">{job.type}</code>
-              <Badge variant={job.state === 'ran' ? 'success' : job.state === 'not_needed' ? 'neutral' : job.state === 'failed' || job.state === 'not_queued' ? 'danger' : 'warning'}>{t(lang, `monitoring.nightly.state.${job.state}` as MessageKey)}</Badge>
+              <Badge variant={stateBadge(job.state)}>{t(lang, `monitoring.nightly.state.${job.state}` as MessageKey)}</Badge>
             </li>
           ))}
         </ul>
@@ -318,6 +324,28 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
           </Do>
         ))}
         <p className={NOTE}>{t(lang, 'monitoring.nightly.billing.how')}</p>
+
+        <div data-monitoring-school-checks className="flex flex-col gap-2">
+          <h3 className={SUB}>{t(lang, 'monitoring.schoolChecks.title')}</h3>
+          <p className={NOTE}>{t(lang, 'monitoring.schoolChecks.how', { night, week: dayInWords(lang, m.schoolChecks.auditor.forDate) })}</p>
+          <ul className="flex flex-col gap-2">
+            {schoolChecks.map(([id, run]) => (
+              <li key={id} data-monitoring-school-check={id} data-monitoring-school-check-state={run.state} className="flex min-w-0 flex-wrap items-center gap-2 text-sm text-slate">
+                <span className="font-bold">{t(lang, `monitoring.schoolChecks.${id}` as MessageKey)}</span>
+                <code className="text-slate/70">{run.type}</code>
+                <Badge variant={stateBadge(run.state)}>{t(lang, `monitoring.nightly.state.${run.state}` as MessageKey)}</Badge>
+                <span data-monitoring-school-check-counts={`${run.ran}/${run.queued}`} className="basis-full text-slate/70">
+                  {t(lang, 'monitoring.schoolChecks.line', { ran: count(run.ran), queued: count(run.queued), last: ago(run.lastRanSeconds) })}
+                </span>
+              </li>
+            ))}
+          </ul>
+          {schoolCheckStates.map((state) => (
+            <Do key={state} lang={lang} id={`schoolChecks.${state}`}>
+              {t(lang, `monitoring.schoolChecks.${state}.do` as MessageKey, { attempts: Math.max(...schoolChecks.filter(([, run]) => run.state === state).map(([, run]) => run.attempts)) })}
+            </Do>
+          ))}
+        </div>
 
         <div data-monitoring-missing={m.nightly.feeRunMissing.length} className="flex flex-col gap-2">
           <h3 className={SUB}>
@@ -428,7 +456,7 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
           <ul className="flex flex-col gap-2 text-sm">
             {invitations.map((i) => (
               <li key={i.invitationId} data-monitoring-invitation className="break-words rounded-md border border-slate/10 bg-off-white p-3 text-slate">
-                {t(lang, 'monitoring.invites.line', { school: i.schoolName, email: i.email, role: tOr(lang, `role.${i.role}`, i.role) })} <span className="text-slate/70">{t(lang, 'monitoring.invites.since', { when: whenInIndia(lang, i.createdAt) })}</span>
+                {t(lang, 'monitoring.invites.line', { school: i.schoolName, email: i.maskedEmail, role: tOr(lang, `role.${i.role}`, i.role) })} <span className="text-slate/70">{t(lang, 'monitoring.invites.since', { when: whenInIndia(lang, i.createdAt) })}</span>
               </li>
             ))}
           </ul>

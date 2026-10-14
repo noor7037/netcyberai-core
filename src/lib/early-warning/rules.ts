@@ -11,6 +11,10 @@
 
 export const EARLY_WARNING_RULE_VERSION = 1;
 
+// The nightly check (C210): the same check as "Check now", queued for every school with Early Warning on, run in
+// the school's own session as its office sees it, with no person. The flags it opens or closes say so.
+export const NIGHTLY_CHECK_JOB = 'early_warning.nightly';
+
 export const REASONS = ['attendance', 'homework', 'needs_help'] as const;
 export type Reason = (typeof REASONS)[number];
 
@@ -100,6 +104,9 @@ export type Flag = {
   detected_at: string;
   checked_at: string;
   opened_by: string | null;
+  // Opened, or closed, by the nightly check rather than by a person's "Check now" (C210).
+  opened_by_nightly?: boolean;
+  closed_by_nightly?: boolean;
   resolved_at: string | null;
   closed_reason: ClosedReason | null;
   actions: FlagAction[];
@@ -108,7 +115,8 @@ export type ClassCount = { class_id: string; class_name: string; open: number };
 // The last check, as its own record says it. `attendanceUsed`: for how many of the students looked at attendance
 // could be judged at all (enough days marked), with the two numbers that decided it. Null on a record that does
 // not carry them: then nothing is said, never a zero.
-export type LastCheck = { at: string; by: string | null; ruleVersion: number; students: number; attendanceUsed: number | null; minDays: number | null; windowDays: number | null; opened: number; closed: number; open: number };
+// `nightly`: the last check was the nightly one (C210), run with no person.
+export type LastCheck = { at: string; by: string | null; nightly?: boolean; ruleVersion: number; students: number; attendanceUsed: number | null; minDays: number | null; windowDays: number | null; opened: number; closed: number; open: number };
 
 // What the list of open flags says when it is empty. An empty list is an all-clear ('none') only when the last
 // check could judge attendance for every student it looked at. Where it could for some ('partial') or for nobody

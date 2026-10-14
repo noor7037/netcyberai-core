@@ -340,6 +340,28 @@ ALLOWED_PERMISSIVE = (
         ("early_warning_flags", "early_warning_flags_tenant_isolation"),
         ("early_warning_actions", "early_warning_actions_tenant_isolation"),
         # p5-8j end
+        # c210-rls begin
+        # c210-rls end
+        # c210-leave begin
+        # c210-leave end
+        # c210-jobs begin
+        # c210-jobs end
+        # c210-ui begin
+        # c210-ui end
+        # p6-9a begin
+        # p6-9a end
+        # p6-9b begin
+        # p6-9b end
+        # p6-9c begin
+        # p6-9c end
+        # p6-9d begin
+        # p6-9d end
+        # p6-9e begin
+        # p6-9e end
+        # p6-9f begin
+        # p6-9f end
+        # c212-pricing begin
+        # c212-pricing end
     }
 )
 
@@ -525,6 +547,49 @@ REQUIRED_RESTRICTIVE = {
     ("early_warning_actions", "early_warning_actions_as_self"),
     ("audit_log", "audit_early_warning_rows_office_or_actor"),
     # p5-8j end
+    # c210-rls begin
+    # C210: the four tables the dashboard's registry alone held by role now carry role policies of their own: each
+    # role reads and writes them exactly as the app does (the access map is in the migration's header).
+    ("attendance", "attendance_role_read"),
+    ("attendance", "attendance_role_insert"),
+    ("attendance", "attendance_role_update"),
+    ("attendance", "attendance_not_deleted"),
+    ("pulse_messages", "pulse_messages_role_read"),
+    ("pulse_messages", "pulse_messages_role_insert"),
+    ("pulse_messages", "pulse_messages_role_update"),
+    ("pulse_messages", "pulse_messages_role_delete"),
+    ("pulse_response_log", "pulse_response_log_role_read"),
+    ("pulse_response_log", "pulse_response_log_not_inserted"),
+    ("pulse_response_log", "pulse_response_log_not_updated"),
+    ("pulse_response_log", "pulse_response_log_not_deleted"),
+    ("communication_log", "communication_log_role_read"),
+    ("communication_log", "communication_log_role_insert"),
+    ("communication_log", "communication_log_not_updated"),
+    # c210-rls end
+    # c210-leave begin
+    # c210-leave end
+    # c210-jobs begin
+    # c210-jobs end
+    # c210-ui begin
+    # C210: adding, changing and removing a class is the principal's and the school admin's; reading is unchanged.
+    ("classes", "classes_added_by_office"),
+    ("classes", "classes_changed_by_office"),
+    ("classes", "classes_removed_by_office"),
+    # c210-ui end
+    # p6-9a begin
+    # p6-9a end
+    # p6-9b begin
+    # p6-9b end
+    # p6-9c begin
+    # p6-9c end
+    # p6-9d begin
+    # p6-9d end
+    # p6-9e begin
+    # p6-9e end
+    # p6-9f begin
+    # p6-9f end
+    # c212-pricing begin
+    # c212-pricing end
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
-import { useFeesPart } from './FeesFirstLoad';
+import { useFeesChanged, useFeesPart } from './FeesFirstLoad';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
@@ -30,6 +30,7 @@ export function FeesDuesView() {
   const toast = useToast();
   const getConcessions = useFeesPart('concessions', '/api/app/fees/concessions');
   const getSetup = useFeesPart('setup', '/api/app/fees/setup');
+  const feesChanged = useFeesChanged();
   const [setup, setSetup] = useState<Setup | null>(null);
   const [failed, setFailed] = useState(false);
   const [classId, setClassId] = useState('');
@@ -101,6 +102,7 @@ export function FeesDuesView() {
     }
     toast.show(t('due.raised', { raised: Number(r.body.raised), already: Number(r.body.alreadyThere), net: minorToRupees(Number(r.body.netMinor)) }), 'success');
     void loadLines();
+    feesChanged();
   }
 
   async function propose() {
@@ -142,6 +144,7 @@ export function FeesDuesView() {
     toast.show(t(on ? 'rte.tagged' : 'rte.untagged'), 'success');
     setRte({ studentId: '', entryClass: '', admittedOn: '' });
     void loadLines();
+    feesChanged();
   }
 
   if (failed) return <TeachEmpty id="not-loaded" />;

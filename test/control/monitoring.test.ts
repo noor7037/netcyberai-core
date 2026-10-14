@@ -23,7 +23,7 @@ vi.mock('next/navigation', () => ({ useRouter: () => ({ refresh: () => undefined
 import { GET as healthEndpoint } from '@/app/api/health/route';
 import { LangProvider } from '@/components/app-shell/LangContext';
 import { ageWords, MonitoringView } from '@/components/control/MonitoringView';
-import { cutContacts, FAILED_JOBS_LISTED, invitationsWaiting, loadMonitoring, MONITORING_DAYS, needsALook, type Monitoring } from '@/lib/control/monitoring';
+import { cutContacts, FAILED_JOBS_LISTED, invitationsWaiting, loadMonitoring, maskStaffEmail, MONITORING_DAYS, needsALook, type Monitoring } from '@/lib/control/monitoring';
 import { feesNightlyHandler } from '@/lib/fees/nightly';
 import { createPgJobQueue, retryDeadJob } from '@/lib/jobs/pg-queue';
 import { runJobs } from '@/lib/jobs/runner';
@@ -131,6 +131,7 @@ const NAMES = { sunrise: 'Sunrise Made-up School', hilltop: 'Hilltop Made-up Sch
 const PHONE = '9812345678';
 const PRIVATE = ['Meenakshi', 'Iyer', 'Kabir', 'Farhan', 'Qureshi', PHONE, '98123 45678', '9812345679', 'family.example', 'blue notebook', 'call the office', 'U0VBTEVELVdPUkRTLW9mLWEtcGFyZW50', 'wamid.', 'HBgMOTE5ODEyMzQ1Njc4', 'Kabir was absent'];
 const STAFF_EMAIL = 'new.teacher@staff.example';
+const STAFF_MASKED = 'n…@staff.example';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let db: any;
@@ -656,19 +657,39 @@ describe('on the real schema', () => {
     for (const words of ['Needs a look', 'What to do:', 'Background jobs', 'Retry', 'Held:', 'All clear']) expect(html, words).not.toContain(words);
   });
 
-  it('the invitations list is the one place a person is named: a member of staff, never in the loader’s answer', async () => {
+  it('the invitations list is the one place about a person: a member of staff, masked, and never in the loader’s answer', async () => {
     await db.pg.query(`insert into staff_invitations (school_id, email, email_key, display_name, role, status, source, invited_by) values ($1, $2, $2, 'New Teacher', 'teacher', 'needs_founder', 'staff', $3)`, [SUNRISE, STAFF_EMAIL, PRINCIPAL]);
     const waiting = await platform((c) => invitationsWaiting(c));
-    expect(waiting).toMatchObject([{ schoolName: NAMES.sunrise, email: STAFF_EMAIL, role: 'teacher' }]);
+    // The full address never leaves the loader (C210): its first letter, dots and the domain.
+    expect(waiting).toMatchObject([{ schoolName: NAMES.sunrise, maskedEmail: STAFF_MASKED, role: 'teacher' }]);
+    expect(JSON.stringify(waiting)).not.toContain(STAFF_EMAIL);
+    expect(JSON.stringify(waiting)).not.toContain('new.teacher');
     const m = await read();
     expect(JSON.stringify(m)).not.toContain('staff.example');
     const html = page(m, 'en', waiting);
-    expect(html).toContain(`${NAMES.sunrise} invited ${STAFF_EMAIL} as Teacher.`);
+    expect(html).toContain(`${NAMES.sunrise} invited ${STAFF_MASKED} as Teacher.`);
+    expect(html).not.toContain(STAFF_EMAIL);
+    expect(html).not.toContain('new.teacher');
     // Only inside its own section, which says what it is.
-    expect(html.split(STAFF_EMAIL)).toHaveLength(2);
-    expect(html.indexOf(STAFF_EMAIL)).toBeGreaterThan(html.indexOf('data-monitoring-section="invitations" data-monitoring-state="look"'));
-    expect(html).toContain('The one list on this page that names a person: a member of staff a school invited, never a parent or a child.');
+    expect(html.split(STAFF_MASKED)).toHaveLength(2);
+    expect(html.indexOf(STAFF_MASKED)).toBeGreaterThan(html.indexOf('data-monitoring-section="invitations" data-monitoring-state="look"'));
+    expect(html).toContain('The one list on this page about a person: a member of staff a school invited, never a parent or a child. Only the first letter of their email and its domain are shown here.');
     for (const secret of PRIVATE) expect(html, secret).not.toContain(secret);
+  });
+
+  it('an email is masked to its first letter, three dots and its domain, whatever is typed', () => {
+    expect(maskStaffEmail('anita.rao@school.in')).toBe('a…@school.in');
+    expect(maskStaffEmail('  Kabir@Example.org ')).toBe('K…@Example.org');
+    expect(maskStaffEmail('x@y.in')).toBe('x…@y.in');
+    // The last @ is where the domain starts; nothing after the first letter of the name is kept.
+    expect(maskStaffEmail('"odd@name"@school.in')).toBe('"…@school.in');
+    // No @, nothing typed, or no name: no domain to show, and nothing of the rest.
+    expect(maskStaffEmail('not-an-email')).toBe('n…');
+    expect(maskStaffEmail('')).toBe('…');
+    expect(maskStaffEmail(null)).toBe('…');
+    expect(maskStaffEmail('@school.in')).toBe('…@school.in');
+    // A name that starts with a letter outside ASCII keeps that one letter whole.
+    expect(maskStaffEmail('अनीता@school.in')).toBe('अ…@school.in');
   });
 
   it('the list of failed jobs stops at its limit and says so; last night’s own jobs come first, then dead jobs; the counts are of all of them', async () => {

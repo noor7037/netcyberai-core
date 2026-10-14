@@ -39,17 +39,16 @@ const GIVEN: Record<SchoolRole, FactId[]> = {
   academic_coordinator: inOrder([...ATTENDANCE, 'students.active', 'followups.open', ...HOMEWORK, ...TICKETS, ...COVERS]),
 };
 
-// Facts whose tables have NO role policy (attendance, pulse_messages, pulse_response_log, communication_log,
-// schools): row level security keeps them to the school (and a teacher to their own classes), but not to a role.
-// For these pairs the database would answer; what keeps the number from the role is the fact's own role list,
-// which loadFact enforces before any query runs (proven below), and each screen's own route.
-// Everything not listed here is refused by the database itself, which the test below proves pair by pair.
-// Closing this list needs a migration (a restrictive role policy on each table), which is the lead's to write and
-// apply; when it lands, this list is emptied, and the test then fails if a pair ever comes back.
+// attendance, pulse_messages, pulse_response_log and communication_log carry role policies (C210), so the database
+// itself refuses every pair but these, which the fact's own role list keeps from the role (loadFact, proven above):
+//   - an accountant's "classes not marked today" is every class with a student on its roll: the accountant reads
+//     the classes and the roll, and no mark, so no class looks marked. Nothing of attendance is read.
+//   - a teacher's message numbers count the messages about their own classes, which the teacher's own screens read
+//     (the Daily Pulse counts, a guardian's card, the thread with a guardian), not the school's.
+// The test then fails if a pair ever comes back.
 const HELD_BY_THE_REGISTRY_ONLY: Partial<Record<SchoolRole, FactId[]>> = {
-  accountant: inOrder([...ATTENDANCE, ...PULSE, ...MESSAGES]),
+  accountant: ['attendance.classes_unmarked'],
   teacher: inOrder(MESSAGES),
-  academic_coordinator: inOrder([...PULSE, ...MESSAGES]),
 };
 
 describe('who gets which fact, on the whole schema', () => {

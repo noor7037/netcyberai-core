@@ -2453,6 +2453,485 @@ const earlyWarningTeacherDone = async () => {
   if (JSON.stringify(earlyWarningTeacherSeen) !== JSON.stringify(seen)) throw new Error(`Early Warning on a teacher's screen: ${JSON.stringify(earlyWarningTeacherSeen)}`);
 };
 // p5-8j end
+// c210-rls begin
+// A subject teacher's meeting (C210): Tara teaches 5-B in the timetable but is not its class teacher and has no
+// subject of 5-B in her record, so 5-B's guardians are not hers to read. A meeting for 5-B that includes subject
+// teachers gives her times; the office has booked a 5-B guardian with her. Her slot shows that guardian's name and
+// the child's (ptm_booked_with_me), not "a guardian outside your classes' records"; she still reads no guardian's
+// row. Everything is put back.
+const C210_PTM = '00000000-0000-4000-8000-0000002100e1';
+const C210_GUARDIAN = '00000000-0000-4000-8000-0000002100a1';
+const C210_CLASS_5B = '00000000-0000-4000-8000-0000000c0052';
+const C210_TANVI = '00000000-0000-4000-8000-00000000a004';
+const clearSubjectPtm = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from ptm_bookings where ptm_id = '${C210_PTM}'; delete from ptm_slots where ptm_id = '${C210_PTM}'; delete from ptm_events where ptm_id = '${C210_PTM}'; delete from parent_student_map where parent_id = '${C210_GUARDIAN}'; delete from parents where parent_id = '${C210_GUARDIAN}'; set session_replication_role = origin;`);
+};
+let subjectPtmSeen = null;
+const ptmSubjectTeacher = async (page) => {
+  await clearSubjectPtm();
+  const heldOn = new Date(Date.now() + 5.5 * 3600000 + 3 * 86400000).toISOString().slice(0, 10);
+  await db.pg.query(`insert into parents (parent_id, school_id, name, phone, relation) values ($1, $2, 'Kavita Example', '9800000021', 'Mother')`, [C210_GUARDIAN, SCHOOL]);
+  await db.pg.query(`insert into parent_student_map (school_id, parent_id, student_id) values ($1, $2, $3)`, [SCHOOL, C210_GUARDIAN, STUDENT_NO_GUARDIAN]);
+  await db.pg.query(
+    `insert into ptm_events (ptm_id, school_id, title, held_on, starts_at, ends_at, slot_minutes, class_ids, status, created_by, invited_by, invited_at, with_subject_teachers)
+     values ($1, $2, 'Term meeting, 5-B', $3, '10:00', '10:30', 15, array[$4::uuid], 'invited', $5, $5, now(), true)`,
+    [C210_PTM, SCHOOL, heldOn, C210_CLASS_5B, PEOPLE.principal.sub]
+  );
+  await db.pg.query(`insert into ptm_slots (school_id, ptm_id, teacher_id, starts_at) select $1, $2, t, s::time from unnest(array[$3::uuid, $4::uuid]) t cross join unnest(array['10:00', '10:15']) s`, [SCHOOL, C210_PTM, PEOPLE.teacher.sub, C210_TANVI]);
+  await db.pg.query(
+    `insert into ptm_bookings (school_id, ptm_id, slot_id, teacher_id, parent_id, booked_via, booked_by)
+     select $1, $2, s.slot_id, s.teacher_id, $3, 'staff', $4 from ptm_slots s where s.ptm_id = $2 and s.teacher_id = $5 and s.starts_at = '10:00'`,
+    [SCHOOL, C210_PTM, C210_GUARDIAN, PEOPLE.principal.sub, PEOPLE.teacher.sub]
+  );
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-ptm-meeting]').first().click();
+  await page.locator('[data-ptm-slot="booked"]').waitFor({ timeout: 20000 });
+  const booked = (await page.locator('[data-ptm-slot="booked"]').textContent()) ?? '';
+  subjectPtmSeen = {
+    teachers: await page.locator('[data-ptm-teacher]').count(),
+    slots: await page.locator('[data-ptm-slot]').count(),
+    named: booked.includes('Kavita Example') && booked.includes('Diya Example A'),
+    hidden: booked.includes('outside your classes'),
+    number: /[0-9]{7,}/.test(booked.replace(/\s/g, '')),
+  };
+};
+const ptmSubjectTeacherDone = async () => {
+  // In the teacher's own database session: the guardian's row is still not hers to read.
+  const readable = await db.pg.transaction(async (tx) => {
+    await tx.query('set local role app_user');
+    for (const [k, v] of [['app.current_tenant_id', SCHOOL], ['app.current_role', 'teacher'], ['app.current_user_id', PEOPLE.teacher.sub]]) await tx.query(`select set_config($1, $2, true)`, [k, v]);
+    return (await tx.query(`select count(*)::int as n from parents where parent_id = $1`, [C210_GUARDIAN])).rows[0].n;
+  });
+  const { rows } = await db.pg.query(`select count(*)::int as bookings, (count(*) filter (where attended is not null))::int as marked from ptm_bookings where ptm_id = $1`, [C210_PTM]);
+  await clearSubjectPtm();
+  if (readable !== 0 || rows[0].bookings !== 1 || rows[0].marked !== 0) throw new Error(`the subject teacher's meeting in the database: guardian rows she reads ${readable}, ${JSON.stringify(rows[0])}`);
+  if (JSON.stringify(subjectPtmSeen) !== JSON.stringify({ teachers: 1, slots: 2, named: true, hidden: false, number: false })) throw new Error(`the subject teacher's meeting on the screen: ${JSON.stringify(subjectPtmSeen)}`);
+};
+// c210-rls end
+// c210-leave begin
+// Leave in a small office, and cancelled leave releasing its covers (C210). Four screens:
+//   - the principal of a school with no active school admin (the school admin's account is switched off for the
+//     run) records their own leave on "My leave": approved at once and marked as recorded by them, with the words
+//     saying why. The account is switched back on after, whatever happened.
+//   - the principal cancels a teacher's approved leave on Staff: the two covers assigned for today and tomorrow are
+//     released by that tap, in the principal's name, and the line under "Cancelled" says so; the cover of
+//     yesterday stays as it was.
+//   - the covering teacher is told: a card on My Day, and "Covers released" on Proxy Auto. Never whose leave it was.
+// Every row put in is taken away after; the audit rows stay (the log is never cut) and are counted from where they
+// stood.
+const countWhere = async (sql, params = []) => (await db.pg.query(`select count(*)::int as n from ${sql}`, params)).rows[0].n;
+let ownLeaveSeen = null;
+let ownLeaveAuditBefore = 0;
+const accountLeaveSelf = async (page) => {
+  await clearLeave();
+  ownLeaveAuditBefore = await countWhere(`audit_log where event_action = 'leave.self_recorded'`);
+  await db.pg.query(`update users set is_active = false where user_id = $1`, [PEOPLE.office.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  const button = page.locator('[data-my-leave-self]');
+  await button.waitFor({ timeout: 20000 });
+  const why = await page.locator('[data-my-leave-self-why]').innerText();
+  const disabledAtFirst = await button.isDisabled();
+  await page.locator('#my-leave-from').fill(await leaveDay(0));
+  await page.locator('#my-leave-to').fill(await leaveDay(1));
+  await page.selectOption('#my-leave-kind', 'other');
+  await page.locator('#my-leave-reason').fill('A meeting at the district education office.');
+  await button.click();
+  await page.locator('[data-my-leave-row="approved"] [data-leave-self]').waitFor({ timeout: 20000 });
+  ownLeaveSeen = {
+    disabledAtFirst,
+    saysWhy: why.includes('no school admin') && why.includes('“Record my own leave”'),
+    note: await page.locator('[data-leave-note]').getAttribute('data-leave-note'),
+    how: await page.locator('[data-my-leave-how]').getAttribute('data-my-leave-how'),
+    askToo: await page.locator('[data-my-leave-send]').count(),
+    marked: (await page.locator('[data-leave-self]').innerText()).includes('You recorded this leave yourself'),
+    // It has begun, and there is nobody yet to cancel it: the line says so, and does not send them to themself.
+    begun: await page.locator('[data-my-leave-row="approved"]').innerText().then((w) => w.includes('Once the school has a school admin') && !w.includes('ask the principal')),
+  };
+};
+const accountLeaveSelfDone = async () => {
+  await db.pg.query(`update users set is_active = true where user_id = $1`, [PEOPLE.office.sub]);
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from staff_leave where school_id = $1 and user_id = $2 and recorded_by = $2 and decided_by = $2 and status = 'approved' and self_recorded
+               and from_date = ${TODAY_SQL} and to_date = ${TODAY_SQL} + 1 and kind = 'other') as recorded,
+            (select count(*)::int from staff_leave) as in_all`,
+    [SCHOOL, PEOPLE.principal.sub]
+  );
+  const audited = (await countWhere(`audit_log where event_action = 'leave.self_recorded' and actor_user_id = $1`, [PEOPLE.principal.sub])) - ownLeaveAuditBefore;
+  await clearLeave();
+  if (JSON.stringify(rows[0]) !== JSON.stringify({ recorded: 1, in_all: 1 }) || audited !== 1) throw new Error(`the principal's own leave in the database: ${JSON.stringify(rows[0])}, ${audited} audit rows`);
+  const seen = { disabledAtFirst: true, saysWhy: true, note: 'ok', how: 'alone', askToo: 1, marked: true, begun: true };
+  if (JSON.stringify(ownLeaveSeen) !== JSON.stringify(seen)) throw new Error(`"Record my own leave": ${JSON.stringify(ownLeaveSeen)}`);
+};
+let releaseSeen = null;
+let releaseAuditBefore = 0;
+const staffLeaveReleases = async (page) => {
+  await clearProxy();
+  releaseAuditBefore = await countWhere(`audit_log where event_action = 'cover.released'`);
+  await db.pg.query(`insert into users (user_id, school_id, email, role, display_name) values ($1, $2, 'tejas@example.invalid', 'teacher', 'Tejas Example')`, [PROXY_TEACHERS.tejas, SCHOOL]);
+  // Tara has been away since yesterday, until the day after tomorrow. Tejas covers her first period yesterday, today
+  // and tomorrow: rows, as the office's taps on Proxy Auto would have made them.
+  await putLeave(PEOPLE.teacher.sub, -1, 2, 'sick', 'Unwell, phoned in.', PEOPLE.principal.sub);
+  await db.pg.exec(`set session_replication_role = replica;
+    insert into substitutions (school_id, on_date, period, class_id, subject_id, absent_user_id, substitute_user_id, assigned_by)
+      select '${SCHOOL}', ${TODAY_SQL} + d, 1, '${CLASS_5A}', '${PROXY_MATHS}', '${PEOPLE.teacher.sub}', '${PROXY_TEACHERS.tejas}', '${PEOPLE.principal.sub}' from generate_series(-1, 1) d;
+    set session_replication_role = origin;`);
+  await page.reload({ waitUntil: 'networkidle' });
+  const row = page.locator('[data-leave-ahead] [data-leave-calendar-row]').first();
+  await row.waitFor({ timeout: 20000 });
+  await row.locator('[data-leave-cancel-open]').click();
+  await row.locator('input').fill('She came in after all.');
+  await row.locator('[data-leave-cancel]').click();
+  await page.waitForFunction(() => /released/.test(document.querySelector('[data-leave-note]')?.textContent ?? ''), null, { timeout: 20000 });
+  releaseSeen = { says: (await page.locator('[data-leave-note]').innerText()).includes('2 covers assigned for those days were released, and their teachers are told on My Day.') };
+};
+const staffLeaveReleasesDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from substitutions where status = 'undone' and undone_reason = 'leave_cancelled' and undone_by = $1 and on_date >= ${TODAY_SQL}) as released,
+            (select count(*)::int from substitutions where status = 'assigned' and on_date < ${TODAY_SQL}) as yesterday_stands,
+            (select count(*)::int from substitutions where status = 'assigned') as still_assigned,
+            (select count(*)::int from staff_leave where status = 'withdrawn' and withdrawn_by = $1 and withdrawn_note = 'She came in after all.') as cancelled`,
+    [PEOPLE.principal.sub]
+  );
+  const audited = (await countWhere(`audit_log where event_action = 'cover.released'`)) - releaseAuditBefore;
+  await clearProxy();
+  if (JSON.stringify(rows[0]) !== JSON.stringify({ released: 2, yesterday_stands: 1, still_assigned: 1, cancelled: 1 }) || audited !== 2) throw new Error(`cancelled leave and its covers: ${JSON.stringify(rows[0])}, ${audited} audit rows`);
+  if (!releaseSeen?.says) throw new Error(`the line under "Cancelled": ${JSON.stringify(releaseSeen)}`);
+};
+// Two covers the teacher had, today and tomorrow, for Tanvi, released when her leave was cancelled: rows.
+const putReleasedCovers = () =>
+  db.pg.exec(`set session_replication_role = replica;
+    insert into substitutions (school_id, on_date, period, class_id, subject_id, absent_user_id, substitute_user_id, assigned_by, status, undone_by, undone_at, undone_reason) values
+      ('${SCHOOL}', ${TODAY_SQL}, 4, '${PROXY_CLASS_6A}', '${PROXY_ENGLISH}', '${LEAVE_OTHER_TEACHER}', '${PEOPLE.teacher.sub}', '${PEOPLE.office.sub}', 'undone', '${PEOPLE.office.sub}', now(), 'leave_cancelled'),
+      ('${SCHOOL}', ${TODAY_SQL} + 1, 5, '${PROXY_CLASS_6A}', '${PROXY_MATHS}', '${LEAVE_OTHER_TEACHER}', '${PEOPLE.teacher.sub}', '${PEOPLE.office.sub}', 'undone', '${PEOPLE.office.sub}', now(), 'leave_cancelled');
+    set session_replication_role = origin;`);
+let releasedSeen = null;
+const releasedShownAt = (selector, wanted) => async (page) => {
+  await clearProxy();
+  await proxyWorkAllWeek();
+  await putReleasedCovers();
+  await page.reload({ waitUntil: 'networkidle' });
+  const block = page.locator(selector);
+  await block.waitFor({ timeout: 20000 });
+  const words = await block.innerText();
+  // The day, the period, the class and the subject; never whose leave it was or why.
+  releasedSeen = { selector, says: wanted.every((w) => words.includes(w)) && !words.includes('Tanvi') && !words.includes('Unwell'), words: words.replace(/\s+/g, ' ').slice(0, 240) };
+};
+const releasedShownDone = (selector) => async () => {
+  const left = await countWhere(`substitutions where status = 'undone' and undone_reason = 'leave_cancelled' and substitute_user_id = $1`, [PEOPLE.teacher.sub]);
+  await clearProxy();
+  if (left !== 2 || releasedSeen?.selector !== selector || !releasedSeen.says) throw new Error(`a teacher's released covers at ${selector}: ${JSON.stringify(releasedSeen)}, ${left} rows`);
+};
+// c210-leave end
+// c210-jobs begin
+// The schools' own scheduled checks (C210), run for real: the job runner of the running app is called the way the
+// scheduler calls it (POST /api/jobs/run with the runner's credential; the harness skips the migration that keeps
+// that credential in Vault, so a screen puts in the same function and a secret for this run, and takes both away).
+// The first call is the deployed code saying which job types it runs; then the database's own enqueue function
+// queues one job a school with the module on; the second call runs them, each in its school's own session with no
+// person. Other jobs waiting in the queue are held back meanwhile and put back after. Everything is taken away
+// after each screen; audit rows stay (the log is never cut).
+const SCHOOL_JOB_TYPES = ['early_warning.nightly', 'auditor.weekly'];
+const RUNNER_TOKEN = randomBytes(32).toString('hex');
+let schoolJobsHeld = [];
+let schoolJobsHandlersBefore = null;
+const schoolJobsOpen = async () => {
+  schoolJobsHandlersBefore = (await db.pg.query(`select value from platform_settings where key = 'jobs.handlers'`)).rows[0]?.value ?? null;
+  schoolJobsHeld = (await db.pg.query(`update jobs set next_run_at = next_run_at + interval '1000 years' where status = 'pending' and type <> all($1::text[]) returning job_id`, [SCHOOL_JOB_TYPES])).rows.map((r) => r.job_id);
+  await db.pg.exec(readFileSync(path.join(ROOT, 'supabase/migrations/20260930064359_b2_jobs_runner_secret_digest.sql'), 'utf8'));
+  await db.pg.query(`delete from vault.secrets where name = 'jobs_runner_secret'`);
+  await db.pg.query(`insert into vault.secrets (name, secret) values ('jobs_runner_secret', $1)`, [RUNNER_TOKEN]);
+};
+const schoolJobsClose = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from jobs where type in ('early_warning.nightly', 'auditor.weekly'); set session_replication_role = origin;`);
+  if (schoolJobsHeld.length) await db.pg.query(`update jobs set next_run_at = next_run_at - interval '1000 years' where job_id = any($1::uuid[])`, [schoolJobsHeld]);
+  schoolJobsHeld = [];
+  await db.pg.exec(`delete from vault.secrets where name = 'jobs_runner_secret'; drop function if exists public.jobs_runner_secret_digest();`);
+  await db.pg.query(`update platform_settings set value = coalesce($1::jsonb, '[]'::jsonb) where key = 'jobs.handlers'`, [schoolJobsHandlersBefore === null ? null : JSON.stringify(schoolJobsHandlersBefore)]);
+};
+// One round of the runner, as the scheduler calls it every minute.
+const runnerRound = async () => {
+  const res = await fetch(`${base}/api/jobs/run`, { method: 'POST', headers: { authorization: `Bearer ${RUNNER_TOKEN}` } });
+  if (res.status !== 200) throw new Error(`the job runner answered ${res.status}`);
+  return res.json();
+};
+// The night's (or the week's) check for every school with the module on: the runner says what it runs, the database
+// queues, the runner runs. Returns what the second round did.
+const runSchoolCheck = async (enqueue) => {
+  await schoolJobsOpen();
+  const first = await runnerRound();
+  const handled = (await db.pg.query(`select value from platform_settings where key = 'jobs.handlers'`)).rows[0]?.value ?? [];
+  if (!SCHOOL_JOB_TYPES.every((t) => handled.includes(t)) || first.claimed !== 0) throw new Error(`the runner's first round: ${JSON.stringify({ first, handled })}`);
+  await db.pg.query(`select public.${enqueue}()`);
+  return runnerRound();
+};
+
+// Early Warning, by the nightly check. Aarav (5-A) was away on most days three weeks ago, as on the screen of
+// "Check now" (C209). Nobody presses anything: the nightly job opens his flag, and the screen says the nightly check
+// opened it and was the last check. The flag is compared with the database: no person, the nightly check's name.
+let ewNightlySeen = null;
+let ewNightlyRound = null;
+const earlyWarningNightly = async (page) => {
+  await clearEarlyWarning();
+  await db.pg.exec(`set session_replication_role = replica;
+    insert into attendance (school_id, student_id, class_id, date, status, marked_by, leave_code)
+      select '${SCHOOL}', '${STUDENT}', '${CLASS_5A}', ${TODAY_SQL} - g, case when g in (11, 22) then 'present' else 'absent' end, '${PEOPLE.teacher.sub}', null
+        from generate_series(11, 22) g;
+    set session_replication_role = origin;`);
+  ewNightlyRound = await runSchoolCheck('early_warning_nightly_enqueue');
+  await page.reload({ waitUntil: 'networkidle' });
+  const flag = page.locator('[data-ew-flag="open"]', { hasText: 'Aarav Example A' });
+  await flag.waitFor({ timeout: 20000 });
+  await flag.locator('[data-ew-why] summary').click();
+  ewNightlySeen = {
+    lastCheckBy: await page.locator('[data-ew-last-check]').getAttribute('data-ew-last-check-by'),
+    lastCheckSays: /Last checked .+, by the nightly check\./.test(await page.locator('[data-ew-last-check]').innerText()),
+    whySays: (await flag.locator('[data-ew-why]').innerText()).includes(', by the nightly check.'),
+    howSays: (await page.locator('[data-ew-check]').innerText()).includes('It runs by itself each night just after midnight'),
+    open: await page.locator('[data-ew-flag="open"]').count(),
+  };
+};
+const earlyWarningNightlyDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from early_warning_flags where school_id = $1 and resolved_at is null) as open,
+            (select count(*)::int from early_warning_flags where school_id = $1 and student_id = $2 and resolved_at is null and opened_by is null and opened_by_job = 'early_warning.nightly' and reasons = '{attendance}') as by_nightly,
+            (select count(*)::int from early_warning_flags where opened_by is not null) as by_a_person,
+            (select string_agg(status, ',' order by status) from jobs where type = 'early_warning.nightly' and school_id = $1) as job,
+            (select count(*)::int from audit_log where school_id = $1 and event_action = 'early_warning.checked' and actor_user_id is null and after_state ->> 'by' = 'early_warning.nightly' and occurred_at > now() - interval '10 minutes') as audited`,
+    [SCHOOL, STUDENT]
+  );
+  await clearEarlyWarning();
+  await schoolJobsClose();
+  const r = rows[0];
+  // The seeded school and the test school both have Early Warning on: two jobs, both done.
+  if (ewNightlyRound?.claimed !== 2 || ewNightlyRound?.succeeded !== 2) throw new Error(`the runner's second round: ${JSON.stringify(ewNightlyRound)}`);
+  if (r.by_nightly !== 1 || r.by_a_person !== 0 || r.job !== 'succeeded' || r.audited < 1) throw new Error(`the nightly check in the database: ${JSON.stringify(r)}`);
+  const seen = { lastCheckBy: 'nightly', lastCheckSays: true, whySays: true, howSays: true, open: r.open };
+  if (JSON.stringify(ewNightlySeen) !== JSON.stringify(seen)) throw new Error(`the nightly check on the screen: ${JSON.stringify(ewNightlySeen)}, wanted ${JSON.stringify(seen)}`);
+};
+
+// The School Health Auditor, by the weekly check-up: nobody presses anything; the week's check-up is on the screen,
+// recorded by the weekly check-up, with the same "N of M" and the same checks needing attention as the row the job
+// kept.
+let auditorWeeklySeen = null;
+let auditorWeeklyRound = null;
+const clearAllHealthRuns = () => db.pg.exec(`set session_replication_role = replica; delete from school_health_runs; set session_replication_role = origin;`);
+const auditorWeekly = async (page) => {
+  await clearAllHealthRuns();
+  auditorWeeklyRound = await runSchoolCheck('auditor_weekly_enqueue');
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-auditor="run"] [data-auditor-result]').waitFor({ timeout: 30000 });
+  auditorWeeklySeen = {
+    result: (await page.locator('[data-auditor-result]').textContent()).trim(),
+    by: await page.locator('[data-auditor-recorded-by]').getAttribute('data-auditor-recorded-by'),
+    says: /run at .+ by the weekly check-up\.$/.test((await page.locator('[data-auditor-recorded-by]').innerText()).trim()),
+    weeklyNote: await page.locator('[data-auditor="run"] [data-auditor-weekly]').count(),
+    attention: await page.locator('[data-auditor-section="attention"] [data-check]').evaluateAll((els) => els.map((e) => [e.getAttribute('data-check'), Number(e.getAttribute('data-count'))])),
+  };
+};
+const auditorWeeklyDone = async () => {
+  const { rows } = await db.pg.query(`select school_id, run_date = ${TODAY_SQL} as today, passed, applicable, results, recorded_by, recorded_by_job from school_health_runs order by school_id`);
+  const audited = (await db.pg.query(`select count(*)::int as n from audit_log where event_action = 'school_health.checked' and actor_user_id is null and after_state ->> 'by' = 'auditor.weekly' and occurred_at > now() - interval '10 minutes'`)).rows[0].n;
+  await clearAllHealthRuns();
+  await schoolJobsClose();
+  const mine = rows.find((r) => r.school_id === SCHOOL);
+  if (auditorWeeklyRound?.claimed !== 2 || auditorWeeklyRound?.succeeded !== 2 || rows.length !== 2 || audited < 2) throw new Error(`the weekly check-ups: ${JSON.stringify({ round: auditorWeeklyRound, rows: rows.length, audited })}`);
+  if (!mine?.today || mine.recorded_by !== null || mine.recorded_by_job !== 'auditor.weekly') throw new Error(`the weekly check-up in the database: ${JSON.stringify(mine)}`);
+  const attention = mine.results.filter((x) => x.state === 'needs_attention').map((x) => [x.id, x.count]);
+  const seen = { result: `${mine.passed} of ${mine.applicable} checks pass`, by: 'weekly', says: true, weeklyNote: 1, attention };
+  if (JSON.stringify(auditorWeeklySeen) !== JSON.stringify(seen)) throw new Error(`the weekly check-up on the screen: ${JSON.stringify(auditorWeeklySeen)}, wanted ${JSON.stringify(seen)}`);
+};
+
+// My Day of the school admin: before the week's check-up, a prompt to run one; after the weekly job, the number of
+// checks that need attention, as the kept check-up counts them.
+let myDayCheckupSeen = null;
+const myDayCheckup = async (page) => {
+  await clearAllHealthRuns();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-today-card="checkup-not-run"]').waitFor({ timeout: 20000 });
+  const prompt = (await page.locator('[data-today-card="checkup-not-run"]').innerText()).includes('No check-up has been run this week');
+  await runSchoolCheck('auditor_weekly_enqueue');
+  await page.reload({ waitUntil: 'networkidle' });
+  const card = page.locator('[data-today-card="checkup-attention"]');
+  await card.waitFor({ timeout: 20000 });
+  const words = await card.innerText();
+  myDayCheckupSeen = {
+    prompt,
+    promptGone: await page.locator('[data-today-card="checkup-not-run"]').count(),
+    state: await card.getAttribute('data-state'),
+    count: Number(/(\d+) checks? needs? attention in this week’s check-up/.exec(words)?.[1] ?? -1),
+    href: await card.locator('a').getAttribute('href'),
+  };
+};
+const myDayCheckupDone = async () => {
+  const { rows } = await db.pg.query(`select results from school_health_runs where school_id = $1 and run_date = ${TODAY_SQL} and recorded_by_job = 'auditor.weekly'`, [SCHOOL]);
+  await clearAllHealthRuns();
+  await schoolJobsClose();
+  const attention = rows[0]?.results.filter((x) => x.state === 'needs_attention').length ?? 0;
+  const seen = { prompt: true, promptGone: 0, state: 'todo', count: attention, href: '/app/school-auditor' };
+  if (rows.length !== 1 || attention < 1 || JSON.stringify(myDayCheckupSeen) !== JSON.stringify(seen)) throw new Error(`the check-up on My Day: ${JSON.stringify(myDayCheckupSeen)}, wanted ${JSON.stringify(seen)}`);
+};
+
+// Control → Monitoring: last night's Early Warning jobs (one done for the seeded school; one given up for the test
+// school, which is not counted) and no check-up job for the week. The section shows the states and the counts, and
+// names no school.
+const SCHOOL_CHECKS_NIGHT = `((now() at time zone 'Asia/Kolkata')::date - 1)::text`;
+let schoolChecksSeen = null;
+const monitoringSchoolChecks = async (page) => {
+  await db.pg.exec(`set session_replication_role = replica; delete from jobs where type in ('early_warning.nightly', 'auditor.weekly');
+    insert into jobs (type, payload, idempotency_key, school_id, status, attempts, max_attempts, completed_at, last_error) values
+      ('early_warning.nightly', '{}', 'early_warning.nightly:${SCHOOL}:' || ${SCHOOL_CHECKS_NIGHT}, '${SCHOOL}', 'succeeded', 1, 5, now() - interval '9 hours', null),
+      ('early_warning.nightly', '{}', 'early_warning.nightly:b0000000-0000-4000-8000-000000000002:' || ${SCHOOL_CHECKS_NIGHT}, 'b0000000-0000-4000-8000-000000000002', 'dead', 5, 5, now() - interval '8 hours', 'early_warning.nightly: the check was refused (not_allowed)');
+    set session_replication_role = origin;`);
+  await page.reload({ waitUntil: 'networkidle' });
+  const block = page.locator('[data-monitoring-school-checks]');
+  await block.waitFor({ timeout: 20000 });
+  await block.scrollIntoViewIfNeeded();
+  schoolChecksSeen = {
+    states: Object.fromEntries(await block.locator('[data-monitoring-school-check]').evaluateAll((els) => els.map((e) => [e.getAttribute('data-monitoring-school-check'), e.getAttribute('data-monitoring-school-check-state')]))),
+    counts: await block.locator('[data-monitoring-school-check="earlyWarning"] [data-monitoring-school-check-counts]').getAttribute('data-monitoring-school-check-counts'),
+    text: await block.innerText(),
+  };
+};
+const monitoringSchoolChecksDone = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from jobs where type in ('early_warning.nightly', 'auditor.weekly'); set session_replication_role = origin;`);
+  const seen = schoolChecksSeen ?? {};
+  // The week yesterday was in has no check-up job here: not queued, though the seeded school has the auditor on.
+  if (JSON.stringify(seen.states) !== JSON.stringify({ earlyWarning: 'ran', auditor: 'not_queued' }) || seen.counts !== '1/1') throw new Error(`the schools' own checks on Monitoring: ${JSON.stringify({ states: seen.states, counts: seen.counts })}`);
+  const named = ['Illustrative Public School', 'Illustrative Test School'].filter((n) => (seen.text ?? '').includes(n));
+  if (named.length || !/Schools with a job: 1\. Finished: 1\. Last finished: 9 hours ago\./.test(seen.text ?? '')) throw new Error(`the schools' own checks, the words: ${JSON.stringify({ named, text: seen.text })}`);
+};
+// c210-jobs end
+// c210-ui begin
+// The class teacher of a class (C210). The principal runs a check-up on the School Health Auditor: 6-A has no class
+// teacher, and the check's button opens the list of classes on Students (/app/students?classes=1). There the
+// principal chooses Tanvi for 6-A; the picture shows the list. The check reads the database (the class teacher and
+// an audit row in the principal's name), then clears 6-A's class teacher on the same list and reads it again. 6-A
+// ends as the seed has it, with no class teacher; the check-up is taken away (its audit rows stay: the log is never
+// cut).
+const CLASS_6A = '00000000-0000-4000-8000-0000000c0061';
+const TANVI = '00000000-0000-4000-8000-00000000a004';
+let classTeacherSeen = null;
+const classTeacherAudits = async () => (await db.pg.query(`select count(*)::int as n from audit_log where event_action = 'class.class_teacher' and target_id = $1 and actor_user_id = $2`, [CLASS_6A, PEOPLE.principal.sub])).rows[0].n;
+const classTeacherOf6A = async () => (await db.pg.query(`select class_teacher_id from classes where class_id = $1`, [CLASS_6A])).rows[0].class_teacher_id;
+const classTeacherSaved = (page, want) =>
+  page.waitForFunction(([id, value]) => {
+    const select = document.querySelector(`[data-class-teacher="${id}"]`);
+    return select && !select.disabled && select.value === value;
+  }, [CLASS_6A, want], { timeout: 20000 });
+const classTeacherFromAuditor = async (page) => {
+  await clearHealthRuns();
+  await db.pg.query(`update classes set class_teacher_id = null where class_id = $1`, [CLASS_6A]);
+  classTeacherSeen = { auditsBefore: await classTeacherAudits() };
+  await page.goto(`${base}/app/school-auditor`, { waitUntil: 'networkidle', timeout: 90000 });
+  await page.locator('[data-auditor="empty"] [data-auditor-run]').click();
+  const fix = page.locator('[data-check-fix="class_teacher"]');
+  await fix.waitFor({ timeout: 30000 });
+  classTeacherSeen.href = await fix.getAttribute('href');
+  classTeacherSeen.button = ((await fix.textContent()) ?? '').trim();
+  await fix.click();
+  await page.waitForURL('**/app/students?classes=1', { timeout: 90000 });
+  const select = page.locator(`[data-class-teacher="${CLASS_6A}"]`);
+  await select.waitFor({ timeout: 30000 });
+  classTeacherSeen.options = await select.locator('option').allTextContents();
+  await select.selectOption(TANVI);
+  await classTeacherSaved(page, TANVI);
+  classTeacherSeen.saved = await classTeacherOf6A();
+  classTeacherSeen.auditsAfterSet = await classTeacherAudits();
+};
+const classTeacherFromAuditorDone = async (page) => {
+  try {
+    const seen = classTeacherSeen;
+    if (seen?.href !== '/app/students?classes=1' || seen.button !== 'Choose class teachers') throw new Error(`the auditor's check opens ${seen?.href} with "${seen?.button}"`);
+    // Active teachers of the school, and "no class teacher": never the principal or the office.
+    if (!seen.options.includes('No class teacher') || !seen.options.includes('Tanvi Example') || !seen.options.includes('Tara Example') || seen.options.some((o) => /Priya|Arjun|Bela/.test(o))) throw new Error(`the choices for 6-A: ${JSON.stringify(seen.options)}`);
+    if (seen.saved !== TANVI || seen.auditsAfterSet !== seen.auditsBefore + 1) throw new Error(`6-A after choosing Tanvi: ${JSON.stringify(seen)}`);
+    // Cleared on the same list, with no reload.
+    await page.locator(`[data-class-teacher="${CLASS_6A}"]`).selectOption('');
+    await classTeacherSaved(page, '');
+    const cleared = await classTeacherOf6A();
+    const audits = await classTeacherAudits();
+    if (cleared !== null || audits !== seen.auditsBefore + 2) throw new Error(`6-A after clearing: ${cleared}, ${audits - seen.auditsBefore} audit rows`);
+  } finally {
+    await db.pg.query(`update classes set class_teacher_id = null where class_id = $1`, [CLASS_6A]);
+    await clearHealthRuns();
+  }
+};
+// Dashboard lists that follow a change below them (C210), on three more screens: the screen is opened from the
+// dashboard number with one row behind it (shownAfterAdding), the picture is taken, then the principal changes that
+// row in the list below the way a person does, and the list above must say 0 in the page that was already open
+// (changeBelow: no reload). The database is read after, and every added row is taken away.
+const shownRowStatus = async (sql, id) => (await db.pg.query(sql, [id])).rows[0]?.status;
+const noticeShownChange = async (page) => {
+  try {
+    await changeBelow(page, async () => {
+      const notice = page.locator('[data-notice="waiting"]', { hasText: 'Harness 8d' });
+      await notice.locator('[data-notice-reject]').click();
+      await notice.locator('#notice-reject-reason').fill('Harness 8d: the date is wrong.');
+      await notice.locator('[data-notice-reject-save]').click();
+    }, 'Notices waiting for approval: 0');
+    const status = await shownRowStatus(`select status::text as status from class_notices where notice_id = $1`, `${H8D}4`);
+    if (status !== 'rejected') throw new Error(`the notice rejected on the screen is ${status} in the database`);
+  } finally {
+    await clearDashboardRows();
+  }
+};
+const eventShownChange = async (page) => {
+  try {
+    await changeBelow(page, () => page.locator('[data-event="draft"]', { hasText: 'Harness 8d science fair' }).locator('[data-event-cancel]').click(), 'Events coming: 0');
+    const status = await shownRowStatus(`select status::text as status from school_events where event_id = $1`, `${H8D}5`);
+    if (status !== 'cancelled') throw new Error(`the event cancelled on the screen is ${status} in the database`);
+  } finally {
+    await clearDashboardRows();
+  }
+};
+const answerShownChange = async (page) => {
+  try {
+    await changeBelow(page, () => page.locator('[data-answer="draft"]').first().locator('[data-answer-discard]').click(), 'Draft answers waiting for approval: 0');
+    const status = await shownRowStatus(`select status::text as status from parent_ai_answers where answer_id = $1`, `${H8D}6`);
+    if (status !== 'discarded') throw new Error(`the draft discarded on the screen is ${status} in the database`);
+  } finally {
+    await clearDashboardRows();
+  }
+};
+// Control → Monitoring never sends a member of staff's full email to the browser (C210). An invitation that waits
+// for NetCyberAI is put in; the page is opened again, and both what the server sent and the page drawn are read:
+// the invitation shows "h…@staff.example" and the full address is in neither. The invitation is taken away after.
+const MASKED_INVITE = '00000000-0000-4000-8000-0000000c2101';
+const MASKED_EMAIL = 'harness.staff.c210@staff.example';
+let maskedSeen = null;
+const removeMaskedInvite = () => db.pg.exec(`set session_replication_role = replica; delete from staff_invitations where invitation_id = '${MASKED_INVITE}'; set session_replication_role = origin;`);
+const monitoringMasked = async (page) => {
+  await removeMaskedInvite();
+  await db.pg.query(`insert into staff_invitations (invitation_id, school_id, email, email_key, display_name, role, status, source, invited_by) values ($1, $2, $3, $3, 'Harness Staff', 'teacher', 'needs_founder', 'staff', $4)`, [MASKED_INVITE, SCHOOL, MASKED_EMAIL, PEOPLE.principal.sub]);
+  const res = await page.reload({ waitUntil: 'networkidle', timeout: 90000 });
+  const sent = res ? await res.text() : '';
+  const line = page.locator('[data-monitoring-invitation]', { hasText: 'h…@staff.example' });
+  await line.first().waitFor({ timeout: 30000 });
+  await line.first().scrollIntoViewIfNeeded();
+  maskedSeen = { line: ((await line.first().textContent()) ?? '').trim(), inSent: sent.includes('harness.staff'), inPage: (await page.content()).includes('harness.staff'), sentBytes: sent.length };
+};
+const monitoringMaskedDone = async () => {
+  try {
+    if (!maskedSeen?.line.includes('invited h…@staff.example as Teacher') || maskedSeen.inSent || maskedSeen.inPage || maskedSeen.sentBytes === 0) throw new Error(`the invitation on Monitoring: ${JSON.stringify(maskedSeen)}`);
+  } finally {
+    await removeMaskedInvite();
+  }
+};
+// c210-ui end
+// p6-9a begin
+// p6-9a end
+// p6-9b begin
+// p6-9b end
+// p6-9c begin
+// p6-9c end
+// p6-9d begin
+// p6-9d end
+// p6-9e begin
+// p6-9e end
+// p6-9f begin
+// p6-9f end
+// c212-pricing begin
+// c212-pricing end
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -2919,6 +3398,47 @@ const SCREENS = [
   ['principal', 'app-early-warning', '/app/early-warning', earlyWarningScreen, earlyWarningScreenDone],
   ['teacher', 'teacher-early-warning', '/app/early-warning', earlyWarningTeacher, earlyWarningTeacherDone],
   // p5-8j end
+  // c210-rls begin
+  ['teacher', 'teacher-ptm-subject', '/app/ptm', ptmSubjectTeacher, ptmSubjectTeacherDone],
+  // c210-rls end
+  // c210-leave begin
+  ['principal', 'app-account-leave-self', '/app/account', accountLeaveSelf, accountLeaveSelfDone],
+  ['principal', 'app-staff-leave-releases', '/app/staff', staffLeaveReleases, staffLeaveReleasesDone],
+  ['teacher', 'teacher-my-day-released', '/app/my-day', releasedShownAt('[data-today-card="covers-released"]', ['2 covers you had were released: the teacher is back', 'See your covers']), releasedShownDone('[data-today-card="covers-released"]')],
+  ['teacher', 'teacher-proxy-released', '/app/proxy', releasedShownAt('[data-proxy-released]', ['Covers released', 'Period 4 · 6-A · English: released', 'Period 5 · 6-A · Mathematics: released']), releasedShownDone('[data-proxy-released]')],
+  // c210-leave end
+  // c210-jobs begin
+  // The schools' own checks, run by the job runner as the scheduler calls it: Early Warning's nightly check, the
+  // auditor's weekly check-up, this week's check-up on the school admin's My Day, and both on Monitoring.
+  ['principal', 'app-early-warning-nightly', '/app/early-warning', earlyWarningNightly, earlyWarningNightlyDone],
+  ['principal', 'app-school-auditor-weekly', '/app/school-auditor', auditorWeekly, auditorWeeklyDone],
+  ['office', 'office-my-day-checkup', '/app/my-day', myDayCheckup, myDayCheckupDone],
+  ['founder', 'control-monitoring-school-checks', '/control/monitoring', monitoringSchoolChecks, monitoringSchoolChecksDone],
+  // c210-jobs end
+  // c210-ui begin
+  // C210: the class teacher chosen and cleared on the list of classes the auditor's check opens; three more screens
+  // opened from a dashboard number whose list above follows a change below with no reload; Monitoring's invitations
+  // with the staff email masked.
+  ['principal', 'app-classes-class-teacher', '/app/students?classes=1', classTeacherFromAuditor, classTeacherFromAuditorDone],
+  ['principal', 'app-notices-rows-change', '/app/communication?show=notices', shownAfterAdding(true), noticeShownChange],
+  ['principal', 'app-events-rows-change', '/app/events?show=coming', shownAfterAdding(true), eventShownChange],
+  ['principal', 'app-answers-rows-change', '/app/parent-ai?show=drafts', shownAfterAdding(false), answerShownChange],
+  ['founder', 'control-monitoring-masked', '/control/monitoring', monitoringMasked, monitoringMaskedDone],
+  // c210-ui end
+  // p6-9a begin
+  // p6-9a end
+  // p6-9b begin
+  // p6-9b end
+  // p6-9c begin
+  // p6-9c end
+  // p6-9d begin
+  // p6-9d end
+  // p6-9e begin
+  // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed

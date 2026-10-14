@@ -1011,7 +1011,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'An empty list means no teacher’s leave is approved for that day. The principal or the school admin approves leave, or records it for someone who phoned in, on “Staff”.', hi: 'सूची खाली होने का मतलब है कि उस दिन के लिए किसी शिक्षक की छुट्टी मंज़ूर नहीं है। प्रिंसिपल या स्कूल एडमिन “Staff” पर छुट्टी मंज़ूर करते हैं, या फ़ोन करके बताने वाले की छुट्टी वहीं दर्ज करते हैं।' },
       { en: 'The order is: teaches the subject, then the fewest periods that day, then the fewest covers that week. You may choose any free teacher on the list.', hi: 'क्रम यह है: जो वह विषय पढ़ाते हैं, फिर जिनके उस दिन सबसे कम पीरियड हैं, फिर जिनकी उस हफ़्ते सबसे कम एवज़ी है। आप सूची के किसी भी खाली शिक्षक को चुन सकते हैं।' },
       { en: 'A period is covered once, and a teacher covers one class in a period. A second tap for the same period or the same teacher is refused.', hi: 'एक पीरियड की एवज़ी एक ही बार तय होती है, और एक शिक्षक एक पीरियड में एक ही कक्षा लेते हैं। उसी पीरियड या उसी शिक्षक के लिए दूसरा टैप नहीं माना जाता।' },
-      { en: 'If leave is cancelled after a cover was assigned, the cover moves to “Covers no longer needed”. Undo it there.', hi: 'अगर एवज़ी सौंपने के बाद छुट्टी रद्द हो जाए, तो वह एवज़ी “Covers no longer needed” में चली जाती है। उसे वहीं वापस लें।' },
+      { en: 'If approved leave is cancelled, its covers from today on are undone with it, and each covering teacher is told on My Day.', hi: 'अगर मंज़ूर छुट्टी रद्द हो जाए, तो आज से आगे की उसकी एवज़ी उसी के साथ हट जाती है, और हर एवज़ी शिक्षक को उसके दिन की सूची में बताया जाता है।' },
     ],
     start: { href: '/app/proxy', label: { en: 'Proxy Auto', hi: 'एवज़ी शिक्षक (Proxy Auto)' } },
     related: ['staff-leave', 'timetable'],
@@ -1139,6 +1139,28 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['early warning', 'flag', 'at risk', 'attendance', 'absent', 'homework', 'needs help', 'check now', 'chetavni', 'चेतावनी', 'संकेत', 'अनुपस्थित'],
   },
   // p5-8j end
+  // c210-rls begin
+  // c210-rls end
+  // c210-leave begin
+  // c210-leave end
+  // c210-jobs begin
+  // c210-jobs end
+  // c210-ui begin
+  // c210-ui end
+  // p6-9a begin
+  // p6-9a end
+  // p6-9b begin
+  // p6-9b end
+  // p6-9c begin
+  // p6-9c end
+  // p6-9d begin
+  // p6-9d end
+  // p6-9e begin
+  // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
 ];
 
 export function helpArticle(slug: string): HelpArticle | null {

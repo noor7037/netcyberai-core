@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
-import { assignCover, coversBetween, PROXY_AHEAD_DAYS, PROXY_ARRANGERS, PROXY_ROLES, proxyDay } from '@/lib/proxy/proxy';
+import { assignCover, coversBetween, coversReleasedBetween, PROXY_AHEAD_DAYS, PROXY_ARRANGERS, PROXY_ROLES, proxyDay } from '@/lib/proxy/proxy';
 import { addDays, isLeaveDate, LEAVE_OFFICE } from '@/lib/staff/leave-rules';
 import { indiaDate } from '@/lib/time/india';
 
@@ -9,7 +9,10 @@ import { indiaDate } from '@/lib/time/india';
 //   GET ?date=   the principal, the school admin and the academic coordinator: one date (today unless given) with
 //                the teachers away, every period to cover, the free teachers for each in the order of the rule,
 //                and the covers nothing needs any more. `mayRecordLeave`: this person records leave on Staff.
-//   GET          a teacher: the covers they hold from today on. Nobody else's, and nothing about anyone's leave.
+//   GET          a teacher: the covers they hold from today on, and the ones they had that were released because
+//                the leave behind them was cancelled (C210). Nobody else's, and nothing about anyone's leave.
+//   Nothing here gives anyone the kind or the reason of a leave: the people who arrange cover, the academic
+//   coordinator among them, are told who is away (teachers_away_on) and no more (docs/26 section 3 rule 4).
 //   POST { date, period, classId, substituteUserId }   one person's tap: that teacher covers that period.
 //                Nothing is assigned any other way, and no message is sent.
 export async function GET(req: NextRequest) {
@@ -19,7 +22,10 @@ export async function GET(req: NextRequest) {
     const days = { today, tomorrow: addDays(today, 1), last: addDays(today, PROXY_AHEAD_DAYS) };
     const headers = { 'Cache-Control': 'no-store' };
     if (!PROXY_ARRANGERS.includes(claims.role)) {
-      return NextResponse.json({ arranger: false, ...days, mine: await coversBetween(db, claims.schoolId, claims.sub, today, days.last) }, { headers });
+      return NextResponse.json(
+        { arranger: false, ...days, mine: await coversBetween(db, claims.schoolId, claims.sub, today, days.last), released: await coversReleasedBetween(db, claims.schoolId, claims.sub, today, days.last) },
+        { headers }
+      );
     }
     const date = new URL(req.url).searchParams.get('date') ?? today;
     if (!isLeaveDate(date)) return ruleError(400, 'not_sent_properly');

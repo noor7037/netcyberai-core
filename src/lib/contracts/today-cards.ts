@@ -36,6 +36,30 @@ export const TODAY_CARD_TYPES = [
   // p5-8j begin
   'flags-no-action', 'flags-own-classes',
   // p5-8j end
+  // c210-rls begin
+  // c210-rls end
+  // c210-leave begin
+  'covers-released',
+  // c210-leave end
+  // c210-jobs begin
+  'checkup-attention', 'checkup-not-run',
+  // c210-jobs end
+  // c210-ui begin
+  // c210-ui end
+  // p6-9a begin
+  // p6-9a end
+  // p6-9b begin
+  // p6-9b end
+  // p6-9c begin
+  // p6-9c end
+  // p6-9d begin
+  // p6-9d end
+  // p6-9e begin
+  // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
 ] as const;
 export type TodayCardType = (typeof TODAY_CARD_TYPES)[number];
 

@@ -83,7 +83,9 @@ contrast, 44 px targets, no invented numbers. Every flag and number follows
 4. **Staff data is never a ranking.** Leave, covers and "not marked" lists
    are for running the day. They never feed the Teacher Impact Card, are
    never sorted into best and worst, and are read only by the person
-   themself and the office (`01`, `04` §4.4).
+   themself and the office (`01`, `04` §4.4). The academic coordinator,
+   who arranges cover, sees only whether a teacher is away or present on a
+   day, never the kind or the reason of their leave (C210).
 5. **Children are never ranked or compared, and fees are never a learning
    signal.** Early Warning uses attendance, homework and Pulse only. No fee
    figure sits beside a child's learning on any tile or report (`12`).

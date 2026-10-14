@@ -1432,7 +1432,7 @@ export const en = {
   'ntc.title': 'Notices to parents',
   'ntc.how': 'Write a notice for a class. It waits for the principal, and goes to the parents on WhatsApp only when the principal approves it.',
   'ntc.how.principal': 'Staff write notices here. Nothing goes to a parent until you approve it. A notice you approve goes to every guardian of that class on WhatsApp.',
-  'ntc.noClass': 'You have no class of your own yet, so there is no class to write a notice for. The school admin sets class teachers in Classes.',
+  'ntc.noClass': 'You have no class of your own yet, so there is no class to write a notice for. The principal or the school admin chooses class teachers under Students, in “Manage classes”.',
   'ntc.for': 'Notice for',
   'ntc.allClasses': 'All classes',
   'ntc.words': 'The notice, as parents will read it',
@@ -1530,7 +1530,7 @@ export const en = {
   'ptm.new.minutes': 'Time for each parent',
   'ptm.new.minutesEach': '{count} minutes',
   'ptm.new.classes': 'Classes',
-  'ptm.new.noClasses': 'There are no classes yet. Add classes in Setup first.',
+  'ptm.new.noClasses': 'There are no classes yet. Add them under Students, in “Manage classes”, first.',
   'ptm.new.noTeacher': 'no class teacher',
   'ptm.new.make': 'Make the meeting',
   'ptm.made': 'Made: {slots} times for {teachers} teachers. Check it below, then invite the parents.',
@@ -1567,7 +1567,7 @@ export const en = {
   'ptm.err.date': 'Choose a date that is today or later.',
   'ptm.err.times': 'Check the times: the meeting must end after it starts, with room for at least one parent.',
   'ptm.err.classes': 'Choose at least one class.',
-  'ptm.err.no_teacher': 'These classes have no class teacher: {classes}. Set one in Setup, or leave the class out.',
+  'ptm.err.no_teacher': 'These classes have no class teacher: {classes}. Choose one under Students, in “Manage classes”, or leave the class out.',
   'ptm.err.too_many_slots': 'That is more than 60 times for one teacher. Choose a shorter day or more minutes for each parent.',
   'ptm.err.not_draft': 'The parents of this meeting have already been invited.',
   'ptm.err.past': 'The date of this meeting has passed.',
@@ -2648,9 +2648,9 @@ export const en = {
   'monitoring.templates.withMeta.note': 'Nothing to do while a version is with Meta, other than to record Meta’s answer when it comes.',
   'monitoring.templates.open': 'Open Message templates',
   'monitoring.invites.title': 'Invitations that need you',
-  'monitoring.invites.how': 'The one list on this page that names a person: a member of staff a school invited, never a parent or a child.',
+  'monitoring.invites.how': 'The one list on this page about a person: a member of staff a school invited, never a parent or a child. Only the first letter of their email and its domain are shown here.',
   'monitoring.invites.none': 'None. A school’s invitation to an email that already has a NetCyberAI account would wait here.',
-  'monitoring.invites.line': '{school} invited {email} as {role}. That email already has an account, so nothing was attached. Confirm with the account’s owner before adding them.',
+  'monitoring.invites.line': '{school} invited {email} as {role}. That email already has an account, so nothing was attached. Ask the school for the full address, and confirm with the account’s owner before adding them.',
   'monitoring.invites.since': 'Waiting since {when}.',
   'monitoring.applications.title': 'School applications',
   'monitoring.applications.how': 'How many applications are in each state. Choose one to open its list.',
@@ -2846,8 +2846,8 @@ export const en = {
   'aud.check.class_teacher.where': 'the school’s classes and staff accounts.',
   'aud.check.class_teacher.todo.one': '{count} class has no class teacher',
   'aud.check.class_teacher.todo.other': '{count} classes have no class teacher',
-  'aud.check.class_teacher.do': 'No screen changes the class teacher of a class yet. Raise a ticket and NetCyberAI will set them with you.',
-  'aud.check.class_teacher.open': 'Raise a ticket',
+  'aud.check.class_teacher.do': 'Open the list of classes and choose a class teacher for each class that has none, or whose class teacher’s account is switched off.',
+  'aud.check.class_teacher.open': 'Choose class teachers',
   'aud.check.class_teacher.setup': 'No class has been made yet. Add classes under Students, in “Manage classes”.',
   'aud.check.student_guardian.title': 'Every active student has a guardian',
   'aud.check.student_guardian.rule': 'An active student is counted when no guardian is linked to them. A guardian merged into another one does not count.',
@@ -2979,7 +2979,7 @@ export const en = {
   'ew.what.staffOnly': 'Flags are for staff. Nothing on this page is sent to a parent.',
   'ew.what.order': 'Every list here is in the order of class and name. None of them is a ranking.',
   'ew.check.title': 'The school’s check',
-  'ew.check.how': 'A check looks at every active student. It opens a flag where it finds a reason, brings open flags up to date, and closes a flag when its reasons are gone. Nothing runs by itself: a person presses the button.',
+  'ew.check.how': 'A check looks at every active student. It opens a flag where it finds a reason, brings open flags up to date, and closes a flag when its reasons are gone. It runs by itself each night just after midnight, and whenever a person presses the button.',
   'ew.check.never': 'No check has been run yet.',
   'ew.check.last': 'Last checked {when} by {name}.',
   'ew.check.lastNoName': 'Last checked {when}.',
@@ -3058,6 +3058,83 @@ export const en = {
   'ew.closed.not_active': 'Closed {when}: the child is no longer an active student of a class.',
   'ew.closed.how': 'A flag closes by itself at a check when its reasons are gone. If a reason comes back, a new flag opens. An attendance reason stays on its flag, and says so, while too few days are marked to check it again.',
   // p5-8j end
+  // c210-rls begin
+  // c210-rls end
+  // c210-leave begin
+  // C210: a principal with no school admin records their own leave; cancelled leave releases its covers.
+  'leave.self.mine': 'You recorded this leave yourself on {date}. It was approved at once, because this school has no school admin to decide it.',
+  'leave.self.theirs': '{name} recorded this leave for themself on {date}. It was approved at once, because the school had no school admin to decide it.',
+  'leave.my.selfWhy': 'This school has no school admin, so nobody else can decide your leave. You can record it yourself with “Record my own leave”: it is approved at once, and marked as recorded by you.',
+  'leave.my.self': 'Record my own leave',
+  'leave.my.selfRecorded': 'Recorded and approved, and marked as recorded by you.',
+  'leave.my.begunSelf': 'This leave has begun. Once the school has a school admin, they can cancel it if it is wrong.',
+  'leave.my.coversReleased.one': '{count} cover arranged for those days was released, and its teacher is told on My Day.',
+  'leave.my.coversReleased.other': '{count} covers arranged for those days were released, and their teachers are told on My Day.',
+  'leave.office.coversReleased.one': '{count} cover assigned for those days was released, and its teacher is told on My Day.',
+  'leave.office.coversReleased.other': '{count} covers assigned for those days were released, and their teachers are told on My Day.',
+  'leave.err.has_admin': 'This school has a school admin now, who decides your leave. Press “Ask for leave” instead.',
+  'today.covers-released.todo.one': 'A cover you had was released: the teacher is back',
+  'today.covers-released.todo.other': '{count} covers you had were released: the teacher is back',
+  'today.covers-released.action': 'See your covers',
+  'today.covers-released.why': 'The leave of the teacher you were to cover was cancelled, so those periods are theirs again. Do not go to those classes in their place.',
+  'px.released.title': 'Covers released',
+  'px.released.how': 'The teacher you were to cover is back: their leave was cancelled. These periods are theirs again, so you do not go to these classes in their place.',
+  'px.released.line': 'Period {period} · {class} · {subject}: released',
+  // c210-leave end
+  // c210-jobs begin
+  // The nightly Early Warning check and the weekly check-up (C210).
+  'ew.why.openedNightly': 'Flag opened {when}, by the nightly check.',
+  'ew.check.lastNightly': 'Last checked {when}, by the nightly check.',
+  'ew.closed.byNightly': 'The nightly check closed it.',
+  'aud.checkedOn.weekly': 'Check-up of {date}, run at {time} by the weekly check-up.',
+  'aud.weekly.how': 'A check-up also runs by itself early each Monday, the weekly check-up, and you can run one whenever you like. A day keeps one check-up.',
+  'today.checkup-attention.todo.one': '{count} check needs attention in this week’s check-up',
+  'today.checkup-attention.todo.other': '{count} checks need attention in this week’s check-up',
+  'today.checkup-attention.done': 'This week’s check-up: {count} of {total} checks pass',
+  'today.checkup-attention.action': 'Open the check-up',
+  'today.checkup-attention.why': 'The School Health Auditor checks your school’s own records by fixed rules, by itself early each Monday and whenever you run it. Each check that needs attention opens the screen that fixes it.',
+  'today.checkup-not-run.todo': 'No check-up has been run this week',
+  'today.checkup-not-run.action': 'Run a check-up',
+  'today.checkup-not-run.why': 'The weekly check-up runs by itself early each Monday. None is on record for this week yet, so run one now to see what needs attention.',
+  'monitoring.schoolChecks.title': 'Each school’s own checks',
+  'monitoring.schoolChecks.how': 'Just after midnight in India, each school with Early Warning on gets its nightly check; early each Monday, each school with the School Health Auditor on gets its weekly check-up. One job for each school. This reads the jobs for the night of {night} and for the week from {week}. Live schools only; no school is named.',
+  'monitoring.schoolChecks.earlyWarning': 'Early Warning, each night',
+  'monitoring.schoolChecks.auditor': 'School Health Auditor, each week',
+  'monitoring.schoolChecks.line': 'Schools with a job: {queued}. Finished: {ran}. Last finished: {last}.',
+  'monitoring.schoolChecks.queued.do': 'Some of these jobs were queued and no worker has started them, so they have no error to read. The job runner is behind or has stopped: look at the Health check above.',
+  'monitoring.schoolChecks.running.do': 'Some of these jobs are with a worker now (attempt {attempts}). Reload this page in a few minutes. If they have not moved, the worker stopped part-way: they are then counted under Stuck while running above, and the job runner takes them up again.',
+  'monitoring.schoolChecks.retrying.do': 'Some of these jobs failed and wait for another try (tries so far: {attempts}). Their errors are in the failed jobs above.',
+  'monitoring.schoolChecks.failed.do': 'Some of these jobs gave up. Find them in the failed jobs above, read the error and choose Retry. A check that runs late checks the school as it is then.',
+  'monitoring.schoolChecks.not_queued.do': 'No job was queued, though a live school has the module on. Either the scheduler did not fire, or the job runner has not yet said that it runs these checks (it says so on its first round after a deploy). Check the scheduler’s entries and the Health check above. On a database with no scheduler, such as a test copy, this is expected.',
+  // c210-jobs end
+  // c210-ui begin
+  // The class teacher of each class, on the Classes list (Students, “Manage classes”) (C210).
+  'cls.teacher.how': 'Choose the class teacher of each class. Only an active teacher of the school can be chosen.',
+  'cls.teacher.label': 'Class teacher of {class}',
+  'cls.teacher.none': 'No class teacher',
+  'cls.teacher.off': '{name} (not an active teacher now)',
+  'cls.teacher.set': '{name} is now the class teacher of {class}.',
+  'cls.teacher.cleared': '{class} has no class teacher now.',
+  'cls.teacher.notTeacher': 'Only an active teacher of this school can be a class teacher.',
+  'cls.teacher.failed': 'The class teacher was not changed. Try again.',
+  'cls.teacher.noTeachers': 'There is no active teacher to choose yet. Invite teachers under Staff first.',
+  'cls.teacher.is': 'Class teacher: {name}',
+  'cls.teacher.isNone': 'No class teacher yet',
+  // c210-ui end
+  // p6-9a begin
+  // p6-9a end
+  // p6-9b begin
+  // p6-9b end
+  // p6-9c begin
+  // p6-9c end
+  // p6-9d begin
+  // p6-9d end
+  // p6-9e begin
+  // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
   'sync.saved': 'All saved',
   'sync.offline': 'Offline: showing what was last loaded',
   'sync.sending.one': 'Sending {count} change…',

@@ -44,17 +44,24 @@ import PulsePage from '@/app/(school)/app/pulse/page';
 import StaffPage from '@/app/(school)/app/staff/page';
 import StudentsPage from '@/app/(school)/app/students/page';
 import { AttendanceDays, AttendanceShown } from '@/components/attendance/AttendanceShown';
+import { AttendanceView } from '@/components/attendance/AttendanceView';
 import { MessagesView } from '@/components/communication/MessagesView';
 import { NoticesShown } from '@/components/communication/NoticesShown';
+import { NoticesView } from '@/components/communication/NoticesView';
 import { ComplaintsShown } from '@/components/complaints/ComplaintsShown';
 import { ComplaintsView } from '@/components/complaints/ComplaintsView';
 import { EventsShown } from '@/components/events/EventsShown';
+import { EventsView } from '@/components/events/EventsView';
+import { FeesFirstLoad } from '@/components/fees/FeesFirstLoad';
 import { FeesShown } from '@/components/fees/FeesShown';
 import { HomeworkShown } from '@/components/homework/HomeworkShown';
+import { HomeworkView } from '@/components/homework/HomeworkView';
 import { ParentAiShown } from '@/components/parent-ai/ParentAiShown';
+import { ParentAiView } from '@/components/parent-ai/ParentAiView';
 import { ProxyView } from '@/components/proxy/ProxyView';
 import { PtmShown } from '@/components/ptm/PtmShown';
 import { PtmView } from '@/components/ptm/PtmView';
+import { PulseDraftsView } from '@/components/pulse/PulseDraftsView';
 import { PulseShown } from '@/components/pulse/PulseShown';
 import { StaffLeaveOffice } from '@/components/staff/StaffLeaveOffice';
 import { StaffLeaveShown } from '@/components/staff/StaffLeaveShown';
@@ -568,6 +575,18 @@ describe('the dashboard on the whole schema', () => {
     expect([has(staff, StaffLeaveOffice)?.props, has(await StaffPage({ searchParams: { show: 'on-leave-today' } }), StaffLeaveOffice)?.props, has(await StaffPage({ searchParams: { show: 'everyone' } }), StaffLeaveOffice)?.props, has(await StaffPage({}), StaffLeaveOffice)?.props]).toEqual([{ shownAbove: true }, { shownAbove: true }, { shownAbove: false }, { shownAbove: false }]);
     // Proxy Auto is handed its one filter, and draws the filtered periods itself (it has no list above it).
     expect([has(await ProxyPage({ searchParams: { show: 'needs-cover' } }), ProxyView)?.props, has(await ProxyPage({ searchParams: { show: 'covered' } }), ProxyView)?.props, has(await ProxyPage({}), ProxyView)?.props]).toEqual([{ show: 'needs-cover' }, {}, {}]);
+    // C210: every other screen a dashboard number opens is told the same, with the filter and only with it, so a
+    // change made below (attendance saved, a notice decided, an event cancelled, a payment taken, homework checked, a
+    // draft answer approved, a Pulse message sent) has the list above read again. test/insights/shown-refresh.test.ts
+    // holds what each screen does with it.
+    const above = async (page: Promise<unknown> | unknown, View: unknown) => has(await page, View)?.props.shownAbove;
+    expect([await above(AttendancePage({ searchParams: { show: 'unmarked' } }), AttendanceView), await above(AttendancePage({ searchParams: { show: 'days', ...days } }), AttendanceView), await above(AttendancePage({ searchParams: { show: 'days' } }), AttendanceView), await above(AttendancePage({ searchParams: {} }), AttendanceView)]).toEqual([true, true, false, false]);
+    expect([await above(CommunicationPage({ searchParams: { show: 'notices' } }), NoticesView), await above(CommunicationPage({ searchParams: { state: 'held', ...days } }), NoticesView), await above(CommunicationPage({}), NoticesView)]).toEqual([true, false, false]);
+    expect([await above(EventsPage({ searchParams: { show: 'coming' } }), EventsView), await above(EventsPage({ searchParams: { show: 'past' } }), EventsView), await above(EventsPage({}), EventsView)]).toEqual([true, false, false]);
+    expect([await above(FeesPage({ searchParams: { show: 'verify' } }), FeesFirstLoad), await above(FeesPage({ searchParams: { show: 'collected', ...days } }), FeesFirstLoad), await above(FeesPage({ searchParams: { show: 'all' } }), FeesFirstLoad), await above(FeesPage({}), FeesFirstLoad)]).toEqual([true, true, false, false]);
+    expect([await above(HomeworkPage({ searchParams: { show: 'due', ...days } }), HomeworkView), await above(HomeworkPage({ searchParams: { show: 'due' } }), HomeworkView), await above(HomeworkPage({}), HomeworkView)]).toEqual([true, false, false]);
+    expect([await above(ParentAiPage({ searchParams: { show: 'drafts' } }), ParentAiView), await above(ParentAiPage({ searchParams: { show: 'sent' } }), ParentAiView), await above(ParentAiPage({}), ParentAiView)]).toEqual([true, false, false]);
+    expect([await above(PulsePage({ searchParams: { show: 'sent', ...days } }), PulseDraftsView), await above(PulsePage({ searchParams: { show: 'drafts', ...days } }), PulseDraftsView), await above(PulsePage({}), PulseDraftsView)]).toEqual([true, false, false]);
     // Staff switched off for the school: leave is left out of the screen, and its list with it.
     await db.pg.query(`update school_module_entitlements set enabled = false where school_id = $1 and module_id = 'staff'`, [A]);
     try {

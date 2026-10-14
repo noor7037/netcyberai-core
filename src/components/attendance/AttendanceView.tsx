@@ -9,6 +9,7 @@ import { useToast } from '@/components/ui/Toast';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
 import { useOffline } from '@/components/app-shell/OfflineContext';
+import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import type { Operation } from '@/lib/offline/outbox';
 import { ATTENDANCE_MARK, CLASSES_KEY, SENT_TO_OFFICE_KEY, differencesKey, rosterKey, type AttendanceMark, type Difference, type KeptRoster, type KeptRosterRow, type MarkStatus, type SentToOffice } from '@/lib/offline/attendance-sender';
 import { indiaDate } from '@/lib/time/india';
@@ -41,8 +42,11 @@ const TAP = 'min-h-[48px] rounded-md border px-3 text-sm font-semibold';
 // A saved mark is changed through a correction (PATCH), which needs the
 // network.
 // `office`: the principal or school admin, who can add students and record consent.
-export function AttendanceView({ canManage, initialClassId, office = false }: { canManage: boolean; initialClassId?: string; office?: boolean }) {
+// `shownAbove` (C210): the page was opened from a dashboard number, and the classes, students or days behind it
+// are drawn above this screen. After a change the server now holds, that list is read again too.
+export function AttendanceView({ canManage, initialClassId, office = false, shownAbove = false }: { canManage: boolean; initialClassId?: string; office?: boolean; shownAbove?: boolean }) {
   const { t, tCount, lang } = useT();
+  const refreshShown = useShownRefresh(shownAbove);
   const { ready, online, store, sync, queue, operations, retry, remove } = useOffline();
   const toast = useToast();
   const [classes, setClasses] = useState<ClassOption[]>([]);
@@ -166,6 +170,13 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
     void loadRequests();
   }, [loadRequests]);
 
+  // After a change the server now holds (marks saved, a mark corrected, a request decided): this screen reads the
+  // class and the requests again, and then the list drawn above it, which counts the same marks.
+  const afterChange = async () => {
+    await Promise.all([classId ? loadRoster(classId) : null, loadRequests()]);
+    refreshShown();
+  };
+
   async function officeCorrect(row: KeptRosterRow, status: MarkStatus) {
     if (!reason.trim()) {
       toast.show(t('att.past.reasonFirst'), 'danger');
@@ -177,7 +188,7 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
       return;
     }
     toast.show(t('att.corrected'), 'success');
-    void loadRoster(classId);
+    void afterChange();
   }
 
   async function decide(requestId: string, action: 'apply' | 'dismiss') {
@@ -193,8 +204,7 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
       return;
     }
     toast.show(action === 'apply' ? t('att.requests.applied', { applied: body.applied, kept: body.kept }) : t('att.requests.dismissed'), 'success');
-    void loadRequests();
-    if (classId) void loadRoster(classId);
+    void afterChange();
   }
 
   async function forgetSent(s: SentToOffice) {
@@ -212,7 +222,7 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
     if (!classId || !ready) return;
     if (sync.state === 'saved' && reloadWhenSaved.current) {
       reloadWhenSaved.current = false;
-      void loadRoster(classId);
+      void afterChange();
     } else if (sync.state !== 'saved') {
       reloadWhenSaved.current = true;
       void loadPhoneState(classId, rosterDate || indiaDate());
@@ -243,7 +253,7 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
         return;
       }
       toast.show(tCount('att.submitted', mark.entries.length), 'success');
-      void loadRoster(classId);
+      void afterChange();
       return;
     }
     await loadPhoneState(classId, rosterDate || indiaDate());
@@ -274,7 +284,7 @@ export function AttendanceView({ canManage, initialClassId, office = false }: { 
     toast.show(t('att.corrected'), 'success');
     setCorrectTarget(null);
     await settleDifference(row.student_id);
-    void loadRoster(classId);
+    void afterChange();
   }
 
   async function settleDifference(studentId: string) {

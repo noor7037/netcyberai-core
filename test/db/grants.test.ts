@@ -162,6 +162,28 @@ const APP_USER: Record<string, string> = {
   early_warning_flags: 'INSERT,SELECT,UPDATE', // never deleted: a flag closes (C209); the table was at_risk_flags
   early_warning_actions: 'INSERT,SELECT', // append-only: a later outcome is a new row
   // p5-8j end
+  // c210-rls begin
+  // c210-rls end
+  // c210-leave begin
+  // c210-leave end
+  // c210-jobs begin
+  // c210-jobs end
+  // c210-ui begin
+  // c210-ui end
+  // p6-9a begin
+  // p6-9a end
+  // p6-9b begin
+  // p6-9b end
+  // p6-9c begin
+  // p6-9c end
+  // p6-9d begin
+  // p6-9d end
+  // p6-9e begin
+  // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
 };
 
 // The platform role (nca_super) holds what the app's role holds, except here.
@@ -232,6 +254,28 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   early_warning_flags: '', // nothing is sent or scheduled for a flag, so the platform role has no business in it
   early_warning_actions: '',
   // p5-8j end
+  // c210-rls begin
+  // c210-rls end
+  // c210-leave begin
+  // c210-leave end
+  // c210-jobs begin
+  // c210-jobs end
+  // c210-ui begin
+  // c210-ui end
+  // p6-9a begin
+  // p6-9a end
+  // p6-9b begin
+  // p6-9b end
+  // p6-9c begin
+  // p6-9c end
+  // p6-9d begin
+  // p6-9d end
+  // p6-9e begin
+  // p6-9e end
+  // p6-9f begin
+  // p6-9f end
+  // c212-pricing begin
+  // c212-pricing end
 };
 // Every other role that holds anything on a table.
 const OTHER_ROLES: Record<string, Record<string, string>> = {

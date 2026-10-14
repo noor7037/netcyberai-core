@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 import { RaiseTicketForm } from './RaiseTicketForm';
 import { TicketDetail } from './TicketDetail';
@@ -21,9 +22,13 @@ export function SchoolRaiseTicket() {
   return <RaiseTicketForm api={api} routes={SCHOOL_TICKET_ROUTES} />;
 }
 
+// After a change to the ticket the router reads this page again, which also drops what it kept of the pages opened
+// before (C210): going back to the tickets a dashboard number listed (/app/help/ticket?show=open | waiting) shows
+// them as they are now, with no reload. That list has nothing to change below it; a ticket changes here.
 export function SchoolTicketDetail({ ticketId }: { ticketId: string }) {
   const api = useMemo(() => httpTicketsApi('school'), []);
-  return <TicketDetail api={api} routes={SCHOOL_TICKET_ROUTES} ticketId={ticketId} />;
+  const router = useRouter();
+  return <TicketDetail api={api} routes={SCHOOL_TICKET_ROUTES} ticketId={ticketId} onChanged={() => router.refresh()} />;
 }
 
 export function ControlTicketQueue() {

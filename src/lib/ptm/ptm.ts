@@ -196,6 +196,10 @@ export type PtmDetail = {
   isOver: boolean;
 };
 // Row level security decides what a teacher gets back: their own slots, bookings and guardians.
+// A subject teacher from the timetable (C200) is not in teacher_own_class_ids(), so the guardian's own row is not
+// theirs to read. The names of the bookings on their OWN slots come from ptm_booked_with_me (C210), which answers
+// nothing else and never a number. The screen's words for a hidden guardian (ptm.slot.guardianHidden) are left for
+// any other case.
 export async function ptmDetail(db: PoolClient, actor: Actor, ptmId: string, today: string = indiaDate()): Promise<PtmDetail | null> {
   if (!PTM_ROLES.includes(actor.role)) return null;
   const ptm = (await listPtms(db, actor.schoolId)).find((p) => p.ptm_id === ptmId);
@@ -207,14 +211,22 @@ export async function ptmDetail(db: PoolClient, actor: Actor, ptmId: string, tod
     [actor.schoolId, ptmId]
   )).rows;
   const people = await invitees(db, actor.schoolId, ptmId, true);
+  const mine = actor.role === 'teacher' ? await bookedWithMe(db, ptmId) : new Map<string, { guardian: string; children: string }>();
   const teachers: PtmDetail['teachers'] = [];
   for (const s of slots) {
     let t = teachers.find((x) => x.teacher_id === s.teacher_id);
     if (!t) teachers.push((t = { teacher_id: s.teacher_id, teacher: s.teacher, slots: [], guardians: people.filter((g) => g.teacher_id === s.teacher_id).map((g) => ({ parent_id: g.parent_id, guardian: g.guardian, children: g.children })) }));
     const who = s.booking_id ? t.guardians.find((g) => g.parent_id === s.parent_id) : undefined;
-    t.slots.push({ slot_id: s.slot_id, time: hhmm(s.starts_at), booking: s.booking_id ? { booking_id: s.booking_id, parent_id: s.parent_id, guardian: s.guardian ?? '', children: who?.children ?? '', via: s.booked_via, attended: s.attended, note: s.note } : null });
+    const named = s.booking_id ? mine.get(s.booking_id) : undefined;
+    t.slots.push({ slot_id: s.slot_id, time: hhmm(s.starts_at), booking: s.booking_id ? { booking_id: s.booking_id, parent_id: s.parent_id, guardian: s.guardian ?? named?.guardian ?? '', children: who?.children ?? named?.children ?? '', via: s.booked_via, attended: s.attended, note: s.note } : null });
   }
   return { ptm, teachers, mayManage: OFFICE.includes(actor.role), hasBegun: ptm.held_on <= today, isOver: ptm.held_on < today };
+}
+
+// The guardian's name and the children's for each booking on the calling teacher's own slots of a meeting.
+async function bookedWithMe(db: Sql, ptmId: string): Promise<Map<string, { guardian: string; children: string }>> {
+  const { rows } = await db.query(`select booking_id, guardian, children from public.ptm_booked_with_me($1)`, [ptmId]);
+  return new Map(rows.map((r) => [r.booking_id as string, { guardian: (r.guardian as string | null) ?? '', children: (r.children as string | null) ?? '' }]));
 }
 
 export type BookResult = { ok: true; bookingId: string; moved: boolean } | { ok: false; reason: 'not_allowed' | 'not_found' | 'not_open' | 'not_invited' | 'taken' };

@@ -173,7 +173,8 @@ describe('delivery states, on the real schema', () => {
   it('the database: a state never moves back, a held message never becomes sent, and what a message was never changes', async () => {
     const m = await send();
     await tell([status(m.id, 'delivered', 55)]);
-    const set = (sql: string) => asSchool(A, (c) => c.query(`update communication_log set ${sql} where log_id = '${m.logId}'`)).then(() => 'allowed', (e: Error) => e.message);
+    // As the platform: the job runner and the provider's notices are who change a message's row; a school's own session changes none (C210).
+    const set = (sql: string) => platform((c) => c.query(`update communication_log set ${sql} where log_id = '${m.logId}'`)).then(() => 'allowed', (e: Error) => e.message);
     expect(await set(`status = 'sent'`)).toMatch(/only moves forward/);
     expect(await set(`status = 'failed'`)).toMatch(/only moves forward/);
     expect(await set(`status = 'queued'`)).toMatch(/only moves forward/);
@@ -182,7 +183,7 @@ describe('delivery states, on the real schema', () => {
     expect(await set(`template_name = 'other'`)).toMatch(/never changes/);
     expect(await set(`status = 'read'`)).toBe('allowed');
     const heldId = (await db.pg.query(`select log_id from communication_log where school_id = $1 and status = 'blocked_no_template' limit 1`, [A])).rows[0].log_id;
-    expect(await asSchool(A, (c) => c.query(`update communication_log set status = 'sent' where log_id = $1`, [heldId])).then(() => 'allowed', (e: Error) => e.message)).toMatch(/only moves forward/);
+    expect(await platform((c) => c.query(`update communication_log set status = 'sent' where log_id = $1`, [heldId])).then(() => 'allowed', (e: Error) => e.message)).toMatch(/only moves forward/);
     // No role of the app removes a message from the log (C190); erasure will have its own audited function.
     expect(await asSchool(A, (c) => c.query(`delete from communication_log where log_id = $1`, [m.logId])).then(() => 'allowed', (e: Error) => e.message)).toMatch(/permission denied/);
     expect(await platform((c) => c.query(`delete from communication_log where log_id = $1`, [m.logId])).then(() => 'allowed', (e: Error) => e.message)).toMatch(/permission denied/);

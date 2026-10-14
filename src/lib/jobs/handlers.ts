@@ -13,8 +13,11 @@ import { bulkRunHandler } from '@/lib/frameworks/bulk-engine';
 import { ticketNotifyHandler } from '@/lib/support/tickets';
 import { whatsappSendHandler, WHATSAPP_SEND_JOB } from '@/lib/whatsapp/gate';
 import { emailSendHandler } from './email-handler';
+import { recordHandledTypes } from './handled-types';
 import { jobQueue } from './pg-queue';
 import { runJobs, KICK_BUDGET_MS, RUN_BATCH_CAP, type RunSummary } from './runner';
+import { NIGHTLY_CHECK_JOB, WEEKLY_CHECK_UP_JOB, auditorWeeklyHandler, earlyWarningNightlyHandler } from './school-checks';
+import { asSchool } from './school-context';
 import type { JobHandler, Sql } from './types';
 
 // Every job type and its handler, wired to production services (C97).
@@ -50,11 +53,25 @@ export function productionHandlers(): Record<string, JobHandler> {
     [COMPLAINT_ESCALATE_JOB]: complaintEscalateHandler({ platform: withPlatformService, queue: jobQueue }),
     // Each night after midnight in India: a school past its paid-until day goes into grace, then read-only (C204).
     [BILLING_NIGHTLY_JOB]: billingNightlyHandler({ platform }),
+    // Each night after midnight in India, one job a school with Early Warning on: the check "Check now" runs, in the
+    // school's own session as its office sees it, with no person (C210).
+    [NIGHTLY_CHECK_JOB]: earlyWarningNightlyHandler({ asSchool }),
+    // Early each Monday in India, one job a school with the auditor on: the week's check-up, the same way (C210).
+    [WEEKLY_CHECK_UP_JOB]: auditorWeeklyHandler({ asSchool }),
   };
 }
 
-export function runDueJobs(): Promise<RunSummary> {
-  return runJobs({ handlers: productionHandlers(), limit: RUN_BATCH_CAP });
+// The sweeper. First it writes down the job types this deployed code can run (C210, ./handled-types.ts): the
+// database queues a scheduled school check only once its type is on that list, so nothing is queued before the code
+// that runs it is deployed. A write is made only when the list changed. If it fails, the jobs still run.
+export async function runDueJobs(): Promise<RunSummary> {
+  const handlers = productionHandlers();
+  try {
+    await recordHandledTypes(platform, Object.keys(handlers));
+  } catch (err) {
+    console.error('[jobs] could not record the job types this code runs', err instanceof Error ? err.name : 'error');
+  }
+  return runJobs({ handlers, limit: RUN_BATCH_CAP });
 }
 
 // Right after a request commits: run the jobs it just enqueued, within a

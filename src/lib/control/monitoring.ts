@@ -5,6 +5,8 @@ import { BACKLOG_AFTER_MINUTES, healthStatus, jobsHealth } from '@/lib/observabi
 import { redactText } from '@/lib/observability/redact';
 import { MAX_REFUSED_KEPT_PER_HOUR } from '@/lib/whatsapp/delivery';
 import { HOLD_HOURS } from '@/lib/whatsapp/held';
+import { WEEKLY_CHECK_UP_JOB, weekStart } from '@/lib/auditor/rules';
+import { NIGHTLY_CHECK_JOB } from '@/lib/early-warning/rules';
 import { BILLING_NIGHTLY_JOB } from './billing-nightly';
 
 // Control → Monitoring (docs/26 slice 8g, C206): everything that can stop without anyone noticing, read in one
@@ -110,6 +112,34 @@ export type SendGroup = { key: string; count: number; schools: SchoolCount[]; la
 //               school has a paid-until day (C204). This is not a fault.
 export type NightlyJobState = 'ran' | 'queued' | 'running' | 'retrying' | 'failed' | 'not_queued' | 'not_needed';
 export type NightlyJob = { type: string; state: NightlyJobState; attempts: number };
+// A school's own scheduled check (C210): Early Warning each night, the School Health Auditor each week, queued as ONE
+// JOB A SCHOOL whose module is on (the c210_schedules migration). Read for the night (or the week) that must already
+// have been queued: yesterday in India, or the week yesterday was in. Live schools only.
+//   state      the jobs of that night (or week) taken together, the worst first: failed if any gave up, then running,
+//              retrying, queued; ran when every one finished; not_queued when none was queued though a live school
+//              that the scheduler queues for has the module on; not_needed when none has.
+//   attempts   the most tries of the jobs in that state.
+//   queued     how many schools had a job for it; ran: how many of those finished.
+//   lastRanSeconds  how long ago a job of this kind last finished, for any night or week (null: never, or not in
+//              the 30 days the queue keeps finished jobs).
+export type SchoolCheckRun = { type: string; forDate: string; state: NightlyJobState; attempts: number; queued: number; ran: number; lastRanSeconds: number | null };
+export type SchoolCheckRows = { status: JobStatus; attempts: number }[];
+// The state of a night's (or a week's) jobs taken together. Pure, so it is tested on its own.
+export function schoolCheckState(rows: SchoolCheckRows, moduleOnSomewhere: boolean): { state: NightlyJobState; attempts: number } {
+  if (rows.length === 0) return { state: moduleOnSomewhere ? 'not_queued' : 'not_needed', attempts: 0 };
+  const of = (match: (r: SchoolCheckRows[number]) => boolean) => rows.filter(match);
+  const order: [NightlyJobState, (r: SchoolCheckRows[number]) => boolean][] = [
+    ['failed', (r) => r.status === 'dead'],
+    ['running', (r) => r.status === 'running'],
+    ['retrying', (r) => r.status === 'pending' && r.attempts > 0],
+    ['queued', (r) => r.status === 'pending'],
+  ];
+  for (const [state, match] of order) {
+    const found = of(match);
+    if (found.length > 0) return { state, attempts: Math.max(...found.map((r) => r.attempts)) };
+  }
+  return { state: 'ran', attempts: Math.max(...rows.map((r) => r.attempts)) };
+}
 export type FailedJob = { jobId: string; type: string; state: 'dead' | 'retrying'; attempts: number; maxAttempts: number; error: string | null; forSeconds: number };
 
 export type Monitoring = {
@@ -143,6 +173,8 @@ export type Monitoring = {
     feeRunCaughtUp: { schoolName: string; runDate: string }[]; // of those, the schools with none for that day whose first run since brought them up to date
     runsWithProblems: { schoolName: string; runDate: string; problems: number }[]; // each live school's latest run, when its books did not add up
   };
+  // Shown in the nightly section, with the fee run and the billing check (C210).
+  schoolChecks: { earlyWarning: SchoolCheckRun; auditor: SchoolCheckRun };
   templates: {
     // Every version on record.
     total: number;
@@ -171,6 +203,8 @@ export async function loadMonitoring(db: Sql): Promise<Monitoring> {
   const clock = (await db.query(`select now() as at, (((now() at time zone 'Asia/Kolkata')::date) - 1)::text as yesterday`)).rows[0];
   const at = new Date(clock.at as string).getTime();
   const yesterday = clock.yesterday as string;
+  // The weekly check-up's week that must already have been queued: the week yesterday was in (on a Monday, last week).
+  const lastWeek = weekStart(yesterday);
   const since = (v: unknown): number | null => (v ? Math.max(0, Math.floor((at - new Date(v as string).getTime()) / 1000)) : null);
 
   // --- Jobs.
@@ -197,12 +231,16 @@ export async function loadMonitoring(db: Sql): Promise<Monitoring> {
   // for their error and their Retry, so however long the list they are on it. Then dead ones, so that many jobs
   // waiting for another try (a provider that is down for an hour) never push a dead one off the list; then newest
   // first. The payload is not read.
+  // The schools' own checks of that night and that week (C210) count as last night's own jobs.
   const failed: FailedJob[] = (await db.query(
     `select job_id, type, status, attempts, max_attempts, last_error, updated_at
        from jobs
       where status = 'dead' or (status = 'pending' and attempts > 0)
-      order by (idempotency_key = any($2::text[])) desc, (status = 'dead') desc, updated_at desc, job_id limit $1`,
-    [FAILED_JOBS_LISTED, nightKeys]
+      order by coalesce(idempotency_key = any($2::text[])
+                or (type = $3 and idempotency_key = type || ':' || school_id::text || ':' || $4)
+                or (type = $5 and idempotency_key = type || ':' || school_id::text || ':' || $6), false) desc,
+               (status = 'dead') desc, updated_at desc, job_id limit $1`,
+    [FAILED_JOBS_LISTED, nightKeys, NIGHTLY_CHECK_JOB, yesterday, WEEKLY_CHECK_UP_JOB, lastWeek]
   )).rows.map((p) => ({
     jobId: p.job_id as string,
     type: p.type as string,
@@ -316,6 +354,27 @@ export async function loadMonitoring(db: Sql): Promise<Monitoring> {
     return { type, state, attempts: num(row?.attempts) };
   };
 
+  // --- The schools' own checks (C210): one job a live school for the night (or the week), keyed by school and day.
+  // Counts and ages only: no school is named here.
+  const schoolCheck = async (type: string, moduleId: string, forDate: string): Promise<SchoolCheckRun> => {
+    const rows = (await db.query(
+      `select j.status, j.attempts from jobs j join schools s on s.school_id = j.school_id
+        where not s.is_test_fixture and j.type = $1 and j.idempotency_key = j.type || ':' || j.school_id::text || ':' || $2`,
+      [type, forDate]
+    )).rows.map((r) => ({ status: r.status as JobStatus, attempts: num(r.attempts) }));
+    // A live school the scheduler queues for: the module on, and full use or a grace period that has not ended (the
+    // enqueue functions' own rule, the c210_schedules migration). A read-only school with the module on is not owed a job.
+    const more = (await db.query(
+      `select exists (select 1 from school_module_entitlements m join schools s on s.school_id = m.school_id left join school_entitlements e on e.school_id = m.school_id
+                       where not s.is_test_fixture and m.module_id = $2 and m.enabled
+                         and (coalesce(e.access_mode, 'full') = 'full' or (e.access_mode = 'grace' and (e.grace_ends_at is null or e.grace_ends_at > now())))) as module_on,
+              (select max(j.completed_at) from jobs j join schools s on s.school_id = j.school_id where not s.is_test_fixture and j.type = $1 and j.status = 'succeeded') as last_ran`,
+      [type, moduleId]
+    )).rows[0];
+    return { type, forDate, ...schoolCheckState(rows, more?.module_on === true), queued: rows.length, ran: rows.filter((r) => r.status === 'succeeded').length, lastRanSeconds: since(more?.last_ran) };
+  };
+  const schoolChecks = { earlyWarning: await schoolCheck(NIGHTLY_CHECK_JOB, 'early-warning', yesterday), auditor: await schoolCheck(WEEKLY_CHECK_UP_JOB, 'school-auditor', lastWeek) };
+
   // --- Templates: every version on record for all schools, as Control → Message templates lists them.
   // A version's words never change: new words are a new version, and the old one stays on record for ever. So the
   // plain counts are of every version, and what asks for a person is counted apart, as the sender chooses
@@ -375,6 +434,7 @@ export async function loadMonitoring(db: Sql): Promise<Monitoring> {
       feeRunCaughtUp: expected.filter((r) => r.ran !== true && r.caught_up_on).map((r) => ({ schoolName: r.name as string, runDate: r.caught_up_on as string })),
       runsWithProblems: problemRuns.map((r) => ({ schoolName: r.name as string, runDate: r.run_date as string, problems: num(r.problems) })),
     },
+    schoolChecks,
     templates: {
       total: num(tpl.total),
       approvedByUs: num(tpl.approved),
@@ -408,23 +468,36 @@ export function needsALook(m: Monitoring): Record<MonitoringSection, boolean> {
     notices: m.notices.refused > 0,
     sends: m.sends.uncertain.count > 0 || m.sends.failed.length > 0 || m.sends.held.some((g) => HELD_FOR_US.includes(g.key)),
     replies: m.replies.pastTheirTime > 0,
-    nightly: nightOff(m.nightly.feesJob) || nightOff(m.nightly.billingJob) || m.nightly.feeRunMissing.length > 0 || m.nightly.runsWithProblems.length > 0,
+    nightly: nightOff(m.nightly.feesJob) || nightOff(m.nightly.billingJob) || nightOff(m.schoolChecks.earlyWarning) || nightOff(m.schoolChecks.auditor) || m.nightly.feeRunMissing.length > 0 || m.nightly.runsWithProblems.length > 0,
     templates: m.templates.inTheWay.waitingForUs > 0 || m.templates.inTheWay.refusedByMeta > 0 || m.templates.inTheWay.pausedByMeta > 0,
   };
 }
 
-// --- The one list on the page that names a person ------------------------------------------------------------
+// --- The one list on the page about a person ---------------------------------------------------------------
 
 // A school invited an email that already has a NetCyberAI account (C98): the invitation waits for NetCyberAI to
-// confirm with the account's owner. To do that the founder must see which email, so this list, and only this one,
-// shows it: a member of staff, as the school typed it. It is kept apart from loadMonitoring, whose answer holds no
-// person at all.
-export type InvitationWaiting = { invitationId: string; schoolName: string; email: string; role: string; createdAt: string };
+// confirm with the account's owner. This list says which school, which role and enough of the email to tell one
+// invitation from another: its first letter and its domain, "a…@school.in" (C210). The full address never leaves
+// this function, so it is never sent to the browser; the school that typed it has it. It is kept apart from
+// loadMonitoring, whose answer holds no person at all.
+export type InvitationWaiting = { invitationId: string; schoolName: string; maskedEmail: string; role: string; createdAt: string };
+
+// The first letter of the name, three dots and the domain. Nothing of the name after its first letter, and no
+// domain when the address has none ("…" alone when there is nothing to show at all).
+export function maskStaffEmail(email: string | null | undefined): string {
+  const text = typeof email === 'string' ? email.trim() : '';
+  const at = text.lastIndexOf('@');
+  const name = at >= 0 ? text.slice(0, at) : text;
+  const domain = at >= 0 ? text.slice(at + 1) : '';
+  const first = [...name][0] ?? '';
+  return domain ? `${first}…@${domain}` : `${first}…`;
+}
+
 export async function invitationsWaiting(db: Sql): Promise<InvitationWaiting[]> {
   const { rows } = await db.query(
     `select i.invitation_id, s.name as school_name, i.email, i.role::text as role, i.created_at
        from staff_invitations i join schools s on s.school_id = i.school_id
       where i.status = 'needs_founder' order by i.created_at desc limit 50`
   );
-  return rows.map((r) => ({ invitationId: r.invitation_id as string, schoolName: r.school_name as string, email: r.email as string, role: r.role as string, createdAt: new Date(r.created_at as string).toISOString() }));
+  return rows.map((r) => ({ invitationId: r.invitation_id as string, schoolName: r.school_name as string, maskedEmail: maskStaffEmail(r.email as string), role: r.role as string, createdAt: new Date(r.created_at as string).toISOString() }));
 }
