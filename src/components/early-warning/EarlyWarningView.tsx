@@ -4,11 +4,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
-import { ACTION_KINDS, ACTION_TEXT_MAX, CLOSED_SHOWN_DAYS, openEmptyState, type ClassCount, type EarlyWarningSettings, type Flag, type LastCheck } from '@/lib/early-warning/rules';
+import { ACTION_KINDS, ACTION_TEXT_MAX, CLOSED_SHOWN_DAYS, openEmptyState, type ClassCount, type EarlyWarningSettings, type Flag, type LastCheck, type MarksExam } from '@/lib/early-warning/rules';
 import { explainError } from '@/lib/errors/catalogue';
 import type { MessageKey } from '@/lib/i18n';
 
-// Early Warning v1 (docs/26 slice 8j, C209).
+// Early Warning (v1: docs/26 slice 8j, C209; v2, the marks reason: docs/27 row 9f, C218).
 //
 // For the principal, the school admin and the academic coordinator: when the school was last checked and "Check
 // now"; how many flags are open in each class; every open flag with its reasons, the evidence behind each, the
@@ -21,6 +21,10 @@ import type { MessageKey } from '@/lib/i18n';
 // What the check could not look at is said, never passed over: the last check's line says for how many students
 // attendance could be used, an empty list is an all-clear only when it could be used for all of them, and an
 // attendance reason that a later check could not work out again says so on its flag.
+//
+// A marks reason names the child's latest exam with every paper entered and their own exam before it, each paper's
+// percent, by how much the percent fell and the school's line, and the subjects below the pass mark: the child is
+// compared only with themselves.
 
 type Data = { mayCheck: boolean; ruleVersion: number; settings: EarlyWarningSettings | null; lastCheck: LastCheck | null; summary: ClassCount[]; open: Flag[]; closed: Flag[]; truncated: boolean };
 type Draft = { kind: string; note: string; outcome: string };
@@ -91,6 +95,19 @@ export function EarlyWarningView() {
   }
   if (!data) return null;
 
+  // How many subjects a marks reason found below the pass mark (a subject below in two parts is one subject).
+  const belowCount = (f: Flag) => new Set(f.evidence.marks?.belowPass?.subjects.map((b) => b.paperId) ?? []).size;
+  // One exam's papers and their percents, as the class result shows them.
+  const papers = (exam: MarksExam) => (
+    <ul className="flex flex-col gap-1 text-slate/70">
+      {exam.papers.map((p) => (
+        <li key={p.paperId} data-ew-marks-paper={exam.examId} className="break-words">
+          {p.percent === null ? t('ew.why.marks.paper.none', { subject: p.subject }) : t('ew.why.marks.paper', { subject: p.subject, percent: p.percent })}
+        </li>
+      ))}
+    </ul>
+  );
+
   // One line a reason, in plain words: what was counted, never a judgement of the child.
   const lines = (f: Flag) => {
     const e = f.evidence;
@@ -105,6 +122,10 @@ export function EarlyWarningView() {
         )}
         {e.homework && <li data-ew-line="homework">{t(e.homework.notDone === 1 ? 'ew.line.homework.one' : 'ew.line.homework.other', { count: e.homework.notDone, from: day(e.homework.from) })}</li>}
         {e.needs_help && <li data-ew-line="needs_help">{t(e.needs_help.open.length === 1 ? 'ew.line.needs_help.one' : 'ew.line.needs_help.other', { count: e.needs_help.open.length })}</li>}
+        {e.marks?.fell && e.marks.previous && (
+          <li data-ew-line="marks-fell">{t('ew.line.marks.fell', { exam: e.marks.exam.name, now: e.marks.exam.percent, by: e.marks.fell.by, before: e.marks.previous.percent, previous: e.marks.previous.name })}</li>
+        )}
+        {e.marks?.belowPass && <li data-ew-line="marks-below">{t(belowCount(f) === 1 ? 'ew.line.marks.below.one' : 'ew.line.marks.below.other', { exam: e.marks.exam.name, count: belowCount(f) })}</li>}
       </ul>
     );
   };
@@ -146,6 +167,36 @@ export function EarlyWarningView() {
                   <li key={i}>{t(o.source === 'parent_reply' ? 'ew.why.needs_help.parent_reply' : 'ew.why.needs_help.staff', { kind: t(`help2.kind.${o.kind}` as MessageKey), date: day(o.since) })}</li>
                 ))}
               </ul>
+            </div>
+          )}
+          {e.marks && (
+            <div data-ew-evidence="marks" className="flex flex-col gap-1">
+              <p className="font-semibold">{t('ew.reason.marks')}</p>
+              <p className="break-words">{t('ew.why.marks.exam', { exam: e.marks.exam.name, class: e.marks.exam.className, percent: e.marks.exam.percent })}</p>
+              {papers(e.marks.exam)}
+              {e.marks.previous ? (
+                <>
+                  <p className="break-words">{t('ew.why.marks.previous', { exam: e.marks.previous.name, class: e.marks.previous.className, percent: e.marks.previous.percent })}</p>
+                  {papers(e.marks.previous)}
+                </>
+              ) : (
+                <p>{t('ew.why.marks.first')}</p>
+              )}
+              {e.marks.fell && <p data-ew-marks-fell={e.marks.fell.by}>{t('ew.why.marks.fell', { by: e.marks.fell.by, points: e.marks.fell.points })}</p>}
+              {e.marks.belowPass && (
+                <>
+                  <p data-ew-marks-below={belowCount(f)}>{t(belowCount(f) === 1 ? 'ew.why.marks.below.one' : 'ew.why.marks.below.other', { count: belowCount(f), atLeast: e.marks.belowPass.atLeast })}</p>
+                  <ul className="flex flex-col gap-1 text-slate/70">
+                    {e.marks.belowPass.subjects.map((b, i) => (
+                      <li key={i} className="break-words">
+                        {b.part ? t('ew.why.marks.below.part', { subject: b.subject, part: b.part, percent: b.percent, passMark: b.passMark }) : t('ew.why.marks.below.item', { subject: b.subject, percent: b.percent, passMark: b.passMark })}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              <p className="text-slate/70">{e.marks.scheme === null ? t('ew.why.marks.noScheme') : t('ew.why.marks.scheme', { version: e.marks.scheme })}</p>
+              <p className="text-slate/70">{t('ew.why.marks.self')}</p>
             </div>
           )}
           <p data-ew-rule className="text-slate/70">
@@ -310,6 +361,7 @@ export function EarlyWarningView() {
                 <p>{t('ew.rule.attendance', { below: d.settings.attendanceBelow, days: d.settings.windowDays, min: d.settings.minMarkedDays })}</p>
                 <p>{t('ew.rule.homework')}</p>
                 <p>{t('ew.rule.needs_help')}</p>
+                <p data-ew-rule-marks>{t('ew.rule.marks', { points: d.settings.marksDropPoints, subjects: d.settings.marksBelowPassSubjects })}</p>
                 <p className="text-slate/70">{t('ew.rule.version', { version: d.ruleVersion })}</p>
                 <p className="text-slate/70">{t('ew.rule.settings')}</p>
               </div>

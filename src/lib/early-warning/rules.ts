@@ -1,21 +1,24 @@
-// Early Warning v1: what a flag is made of (docs/26 slice 8j, C209). No database and no session: the screen and
-// the server both read this file, so the words a screen says about a flag are about the numbers the server stored.
+// Early Warning: what a flag is made of (v1: docs/26 slice 8j, C209; v2: docs/27 row 9f, C218). No database and no
+// session: the screen and the server both read this file, so the words a screen says about a flag are about the
+// numbers the server stored.
 //
 //   - A flag is a reason to look at how a child is getting on, not a verdict about the child.
 //   - It is made by rules only. No language model is called. Each rule has a version, stored with what it produced.
-//   - Three signals in rule version 1: attendance, homework, an open needs-help follow-up. Fees are never a
-//     signal, and no marks are recorded before P6.
+//   - Rule version 1: attendance, homework, an open needs-help follow-up. Rule version 2 adds marks (./marks.ts):
+//     a child's own percent fell past the school's line against their own exam before, or is below the pass mark
+//     in the school's number of subjects. A flag of version 1 stays as it was. Fees are never a signal.
 //   - Children, classes and teachers are never ranked or compared: every list is in the order of the class's
 //     name and then the child's name.
 //   - Nothing here reaches a parent.
 
-export const EARLY_WARNING_RULE_VERSION = 1;
+export const EARLY_WARNING_RULE_VERSION = 2;
 
 // The nightly check (C210): the same check as "Check now", queued for every school with Early Warning on, run in
 // the school's own session as its office sees it, with no person. The flags it opens or closes say so.
 export const NIGHTLY_CHECK_JOB = 'early_warning.nightly';
 
-export const REASONS = ['attendance', 'homework', 'needs_help'] as const;
+// In the one order they are always written in. 'marks' is last, so a flag of version 1 keeps its order.
+export const REASONS = ['attendance', 'homework', 'needs_help', 'marks'] as const;
 export type Reason = (typeof REASONS)[number];
 
 // What a person did. Each is something done in the school by that person: none is a message from the app.
@@ -45,9 +48,13 @@ export const CLOSED_SHOWN_DAYS = 30;
 
 // The school's own settings (src/lib/frameworks/settings-schemas.ts, module 'early-warning'), with the defaults
 // of docs/26 section 5: in school on fewer than 75 of every 100 days over the last 30 days, counted only when at
-// least ten days were marked.
-export type EarlyWarningSettings = { attendanceBelow: number; windowDays: number; minMarkedDays: number };
-export const DEFAULT_SETTINGS: EarlyWarningSettings = { attendanceBelow: 75, windowDays: 30, minMarkedDays: 10 };
+// least ten days were marked. Rule version 2 (C218) adds the two numbers of the marks signal: a fall of 15 points
+// or more against the child's own exam before, or below the pass mark in 2 subjects or more (C218's defaults; the
+// school changes them).
+export type AttendanceSettings = { attendanceBelow: number; windowDays: number; minMarkedDays: number };
+export type MarksSettings = { marksDropPoints: number; marksBelowPassSubjects: number };
+export type EarlyWarningSettings = AttendanceSettings & MarksSettings;
+export const DEFAULT_SETTINGS: EarlyWarningSettings = { attendanceBelow: 75, windowDays: 30, minMarkedDays: 10, marksDropPoints: 15, marksBelowPassSubjects: 2 };
 
 // What each reason rests on: the numbers and the dates, as they were at the check. Stored on the flag.
 export type AttendanceEvidence = {
@@ -83,7 +90,26 @@ export type HomeworkEvidence = {
   missed: { title: string; subject: string; dueDate: string }[];
 };
 export type NeedsHelpEvidence = { open: { kind: NeedsHelpKind; since: string; source: 'staff' | 'parent_reply' }[] };
-export type Evidence = { attendance?: AttendanceEvidence; homework?: HomeworkEvidence; needs_help?: NeedsHelpEvidence };
+
+// Marks (rule version 2, C218). An exam counts for a class once every paper of it for that class is entered (the
+// report-card slice will make that "published"). The exams named are the child's latest such exam (the one sat
+// last: its papers' latest date, or the day it was made) and their own exam before it; the percents are the class result's own (percent() and the grading scheme's rounding), never
+// worked out a second way. A child is compared only with themselves.
+export type MarksPaper = { paperId: string; subject: string; percent: number | null };
+export type MarksExam = { examId: string; name: string; className: string; percent: number; papers: MarksPaper[] };
+export type BelowPass = { paperId: string; subject: string; part: string | null; percent: number; passMark: number };
+export type MarksEvidence = {
+  exam: MarksExam;
+  // Their own exam before it; null for a child's first.
+  previous: MarksExam | null;
+  // The fall, when it is at least the school's line: by how many points, and the line at the check.
+  fell: { by: number; points: number } | null;
+  // The subjects (or their parts) below the scheme's pass mark, when there are at least the school's number.
+  belowPass: { subjects: BelowPass[]; atLeast: number } | null;
+  // The grading scheme version whose rounding and pass marks were used; null for a school with none yet.
+  scheme: number | null;
+};
+export type Evidence = { attendance?: AttendanceEvidence; homework?: HomeworkEvidence; needs_help?: NeedsHelpEvidence; marks?: MarksEvidence };
 
 // The reasons a set of evidence holds, in the one order they are always written in.
 export function reasonsOf(evidence: Evidence): Reason[] {

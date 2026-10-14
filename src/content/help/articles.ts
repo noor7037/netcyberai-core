@@ -1116,12 +1116,12 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     audience: 'office_and_teachers',
     title: { en: 'Look at the children Early Warning has flagged', hi: 'उन बच्चों को देखें जिनके लिए Early Warning ने संकेत दिया है' },
     summary: {
-      en: 'A flag is a reason to look at a child’s attendance, homework or a needs-help follow-up. It says why, a person writes what was done, and it closes by itself when its reasons are gone. Nothing is sent to parents.',
-      hi: 'संकेत किसी बच्चे की हाज़िरी, होमवर्क या मदद के फ़ॉलो-अप को देखने का एक कारण है। वह अपना कारण बताता है, कोई व्यक्ति लिखता है कि क्या किया गया, और कारण न रहने पर वह अपने आप बंद हो जाता है। अभिभावकों को कुछ नहीं भेजा जाता।',
+      en: 'A flag is a reason to look at a child’s attendance, homework, a needs-help follow-up or exam marks. It says why, a person writes what was done, and it closes by itself when its reasons are gone. Nothing is sent to parents.',
+      hi: 'संकेत किसी बच्चे की हाज़िरी, होमवर्क, मदद के फ़ॉलो-अप या परीक्षा के अंकों को देखने का एक कारण है। वह अपना कारण बताता है, कोई व्यक्ति लिखता है कि क्या किया गया, और कारण न रहने पर वह अपने आप बंद हो जाता है। अभिभावकों को कुछ नहीं भेजा जाता।',
     },
     steps: [
       { en: 'Open “Early Warning” from the menu. A teacher sees the children of their own classes; the principal, the school admin and the academic coordinator see the whole school.', hi: 'मेनू से “Early Warning” खोलें। शिक्षक को अपनी कक्षाओं के बच्चे दिखते हैं; प्रिंसिपल, स्कूल एडमिन और एकेडमिक कोऑर्डिनेटर को पूरा स्कूल।' },
-      { en: 'The principal, the school admin or the academic coordinator presses “Check now”. The check reads the attendance, homework and needs-help follow-ups already on record.', hi: 'प्रिंसिपल, स्कूल एडमिन या एकेडमिक कोऑर्डिनेटर “Check now” दबाते हैं। जाँच पहले से दर्ज हाज़िरी, होमवर्क और मदद के फ़ॉलो-अप पढ़ती है।' },
+      { en: 'The principal, the school admin or the academic coordinator presses “Check now”. The check reads the attendance, homework, needs-help follow-ups and exam marks already on record.', hi: 'प्रिंसिपल, स्कूल एडमिन या एकेडमिक कोऑर्डिनेटर “Check now” दबाते हैं। जाँच पहले से दर्ज हाज़िरी, होमवर्क, मदद के फ़ॉलो-अप और परीक्षा के अंक पढ़ती है।' },
       { en: 'Under “Open flags”, each child has one flag with its reasons. Open “Why this?” to read the days and homeworks it rests on, the rule and its version, and when it was last checked.', hi: '“Open flags” में हर बच्चे का एक संकेत उसके कारणों के साथ होता है। “Why this?” खोलकर पढ़ें कि वह किन दिनों और होमवर्क पर टिका है, नियम और उसका संस्करण क्या है, और पिछली जाँच कब हुई।' },
       { en: 'Talk to the child or the family, or give extra help. Then press “Add what was done”, choose what you did, write a note, and press “Save what was done”.', hi: 'बच्चे या परिवार से बात करें, या अलग से मदद दें। फिर “Add what was done” दबाएँ, चुनें कि आपने क्या किया, टिप्पणी लिखें, और “Save what was done” दबाएँ।' },
       { en: 'If you learn later what came of it, add it as a new entry in the same way. Nothing already written is changed.', hi: 'अगर बाद में पता चले कि इससे क्या हुआ, तो उसे उसी तरह नई प्रविष्टि के रूप में जोड़ें। पहले से लिखा कुछ नहीं बदलता।' },
@@ -1286,6 +1286,31 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p6-9e end
   // p6-9f begin
+  {
+    slug: 'early-warning-marks',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'See why exam marks raised an early-warning flag', hi: 'देखें कि परीक्षा के अंकों से Early Warning का संकेत क्यों बना' },
+    summary: {
+      en: 'Early Warning also looks at exam marks: a child whose own percent fell by the school’s number of points from their own exam before, or who is below the pass mark in the school’s number of subjects. A child is compared only with themselves. Fees are never used, and nothing is sent to parents.',
+      hi: 'Early Warning परीक्षा के अंक भी देखता है: वह बच्चा जिसका अपना प्रतिशत उसकी अपनी पिछली परीक्षा से स्कूल के तय अंकों जितना गिरा, या जो स्कूल की तय संख्या के विषयों में पास अंक से नीचे है। बच्चे की तुलना सिर्फ़ उसी से होती है। फ़ीस कभी इस्तेमाल नहीं होती, और अभिभावकों को कुछ नहीं भेजा जाता।',
+    },
+    steps: [
+      { en: 'Enter every paper of the exam for the class. An exam counts for Early Warning only once every paper of it for that class is entered.', hi: 'कक्षा के लिए परीक्षा का हर पेपर भरें। कोई परीक्षा Early Warning में तभी गिनी जाती है जब उस कक्षा के लिए उसका हर पेपर भर दिया गया हो।' },
+      { en: 'The check runs by itself each night. To look now, the principal, the school admin or the academic coordinator opens “Early Warning” and presses “Check now”.', hi: 'जाँच हर रात अपने आप चलती है। अभी देखने के लिए प्रिंसिपल, स्कूल एडमिन या एकेडमिक कोऑर्डिनेटर “Early Warning” खोलें और “Check now” दबाएँ।' },
+      { en: 'A flag for marks shows “Marks”. Open “Why this?” to see the exam, each paper’s percent, the child’s own exam before it, and by how many points the percent fell or which subjects are below the pass mark.', hi: 'अंकों का संकेत “Marks” दिखाता है। “Why this?” खोलें: परीक्षा, हर पेपर का प्रतिशत, बच्चे की अपनी पिछली परीक्षा, और प्रतिशत कितने अंक गिरा या कौन से विषय पास अंक से नीचे हैं, यह दिखेगा।' },
+      { en: 'Talk to the child or the family, or give extra help. Then press “Add what was done” and write what you did.', hi: 'बच्चे या परिवार से बात करें, या अलग से मदद दें। फिर “Add what was done” दबाएँ और जो आपने किया वह लिखें।' },
+      { en: 'To change the two numbers, the principal or the school admin opens Settings, changes “A fall of at least this many points in an exam” or “Or below the pass mark in at least this many subjects”, and saves. The next check uses them.', hi: 'दोनों संख्याएँ बदलने के लिए प्रिंसिपल या स्कूल एडमिन सेटिंग खोलें, “A fall of at least this many points in an exam” या “Or below the pass mark in at least this many subjects” बदलें, और सहेजें। अगली जाँच इन्हें इस्तेमाल करती है।' },
+    ],
+    tips: [
+      { en: 'Absent and exempt are not marks: they are left out of the percent, never counted as zero.', hi: 'अनुपस्थित और छूट अंक नहीं हैं: उन्हें प्रतिशत में नहीं गिना जाता, कभी शून्य नहीं माना जाता।' },
+      { en: 'A child’s first exam has nothing before it to compare with, so only the pass mark is used. Without a grading scheme there is no pass mark, so only the fall is used.', hi: 'बच्चे की पहली परीक्षा से पहले तुलना के लिए कुछ नहीं होता, इसलिए सिर्फ़ पास अंक देखा जाता है। ग्रेडिंग योजना के बिना कोई पास अंक नहीं होता, इसलिए सिर्फ़ गिरावट देखी जाती है।' },
+      { en: 'A child is never compared with another child: there is no rank, average or position anywhere in Early Warning.', hi: 'बच्चे की तुलना कभी किसी और बच्चे से नहीं होती: Early Warning में कहीं कोई रैंक, औसत या स्थान नहीं है।' },
+    ],
+    start: { href: '/app/early-warning', label: { en: 'Early Warning', hi: 'समय रहते चेतावनी (Early Warning)' } },
+    related: ['early-warning-flags', 'enter-exam-marks'],
+    keywords: ['early warning', 'marks', 'exam', 'percent', 'pass mark', 'fall', 'drop', 'flag', 'ank', 'pariksha', 'अंक', 'परीक्षा', 'चेतावनी', 'संकेत'],
+  },
   // p6-9f end
   // c212-pricing begin
   // c212-pricing end

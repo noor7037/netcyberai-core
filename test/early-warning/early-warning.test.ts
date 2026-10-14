@@ -202,7 +202,7 @@ describe('the rule, with no database', () => {
   it('attendance is a reason below the school’s line, only from enough days, with leave left out of both sides', () => {
     const window = { from: '2026-09-15', to: '2026-10-14' };
     const of = (present: number, late: number, absent: number, leave = 0) => attendanceSignal({ present, late, absent, leave, absentDates: [] }, window, DEFAULT_SETTINGS);
-    expect(DEFAULT_SETTINGS).toEqual({ attendanceBelow: 75, windowDays: 30, minMarkedDays: 10 });
+    expect(DEFAULT_SETTINGS).toEqual({ attendanceBelow: 75, windowDays: 30, minMarkedDays: 10, marksDropPoints: 15, marksBelowPassSubjects: 2 });
     expect(of(7, 0, 3)).toMatchObject({ rate: 70, counted: 10, below: 75, minDays: 10, from: '2026-09-15', to: '2026-10-14' });
     // Late is in school.
     expect(of(5, 2, 3)).toMatchObject({ rate: 70, present: 5, late: 2 });
@@ -285,9 +285,9 @@ describe('the rule, with no database', () => {
     expect(windowFrom('2026-03-05', 7)).toBe('2026-02-27');
   });
 
-  it('three reasons and no other: fees and marks are not among them', () => {
-    expect(REASONS).toEqual(['attendance', 'homework', 'needs_help']);
-    expect(EARLY_WARNING_RULE_VERSION).toBe(1);
+  it('four reasons and no other: fees are not among them (marks joined in rule version 2, C218)', () => {
+    expect(REASONS).toEqual(['attendance', 'homework', 'needs_help', 'marks']);
+    expect(EARLY_WARNING_RULE_VERSION).toBe(2);
     expect(ACTION_KINDS).toEqual(['talked_to_student', 'spoke_to_guardian', 'extra_help', 'other']);
   });
 });
@@ -296,7 +296,7 @@ describe('the registry and the words', () => {
   it('Early Warning is partly live for those who teach or run the school, never for the accountant', () => {
     const m = moduleById('early-warning');
     expect(m).toMatchObject({ status: 'partial', teacherScope: 'ownClassesOnly' });
-    for (const part of ['staff only', 'marks join in P6', 'nothing is sent to parents']) expect(m.phaseNote, part).toContain(part);
+    for (const part of ['staff only', 'exam marks', 'nothing is sent to parents']) expect(m.phaseNote, part).toContain(part);
     expect(workingModules()).toContain('early-warning');
     for (const role of ['principal', 'school_admin', 'academic_coordinator', 'teacher'] as const) expect(modulesOf(role), role).toContain('early-warning');
     expect(modulesOf('accountant')).not.toContain('early-warning');
@@ -318,6 +318,8 @@ describe('the registry and the words', () => {
       ['attendance_below', 75, ['principal', 'school_admin']],
       ['window_days', 30, ['principal', 'school_admin']],
       ['min_marked_days', 10, ['principal', 'school_admin']],
+      ['marks_drop_points', 15, ['principal', 'school_admin']],
+      ['marks_below_pass_subjects', 2, ['principal', 'school_admin']],
     ]);
     for (const f of schema.fields) for (const part of ['label', 'help'] as const) for (const lang of ['en', 'hi'] as const) expect(t(lang, `set.early-warning.${f.key}.${part}` as never), `${lang} ${f.key} ${part}`).toBeTruthy();
   });
@@ -425,7 +427,7 @@ describe('on the real schema', () => {
       // The check is a person's act, on the record without any child's name.
       const audit = (await db.pg.query(`select actor_user_id, actor_role, after_state from audit_log where school_id = $1 and event_action = 'early_warning.checked'`, [A])).rows;
       expect(audit).toHaveLength(1);
-      expect(audit[0]).toMatchObject({ actor_user_id: PRINCIPAL, actor_role: 'principal', after_state: { date: TODAY, ruleVersion: 1, students: 7, attendanceUsed: 5, opened: 4, closed: 0, open: 4, settings: DEFAULT_SETTINGS } });
+      expect(audit[0]).toMatchObject({ actor_user_id: PRINCIPAL, actor_role: 'principal', after_state: { date: TODAY, ruleVersion: EARLY_WARNING_RULE_VERSION, students: 7, attendanceUsed: 5, opened: 4, closed: 0, open: 4, settings: DEFAULT_SETTINGS } });
       expect(JSON.stringify(audit[0].after_state)).not.toMatch(/Asha|Bela|Farah|Gopal/);
     });
 
@@ -500,7 +502,7 @@ describe('on the real schema', () => {
       await mark(ASHA, C5A, 12, 'present');
       expect(await check(admin, 20)).toEqual({ ok: true, students: 7, attendanceUsed: 5, opened: 0, changed: 0, kept: 3, closed: 1, open: 3 });
       const closed = (await stored()).find((f) => f.flag_id === first.flag_id)!;
-      expect(closed).toMatchObject({ closed: true, closed_reason: 'signals_cleared', closed_by: ADMIN, opened_by: PRINCIPAL, reasons: ['attendance'], rule_version: 1 });
+      expect(closed).toMatchObject({ closed: true, closed_reason: 'signals_cleared', closed_by: ADMIN, opened_by: PRINCIPAL, reasons: ['attendance'], rule_version: EARLY_WARNING_RULE_VERSION });
       // What it rested on stays on the record.
       expect(closed.evidence).toEqual(EVIDENCE.asha);
       expect(new Date((await db.pg.query(`select resolved_at from early_warning_flags where flag_id = $1`, [first.flag_id])).rows[0].resolved_at).toISOString()).toBe(at(20).toISOString());
@@ -518,7 +520,7 @@ describe('on the real schema', () => {
       // The screen's lists: open by class then name, and what closed lately with why.
       const lists = await as(principal, (c) => listFlags(c, actor(principal), at(23)));
       expect(lists.open.map((f) => [f.class_name, f.student_name])).toEqual([['5-A', 'Asha'], ['5-A', 'Bela'], ['6-B', 'Farah'], ['6-B', 'Gopal']]);
-      expect(lists.closed.map((f) => [f.student_name, f.closed_reason, f.rule_version])).toEqual([['Asha', 'signals_cleared', 1]]);
+      expect(lists.closed.map((f) => [f.student_name, f.closed_reason, f.rule_version])).toEqual([['Asha', 'signals_cleared', EARLY_WARNING_RULE_VERSION]]);
       // A flag that closed longer ago than the screen looks back is no longer listed.
       expect((await as(principal, (c) => listFlags(c, actor(principal), new Date(at(23).getTime() + 31 * 86_400_000)))).closed).toEqual([]);
     });
@@ -539,7 +541,7 @@ describe('on the real schema', () => {
       await expect(as(principal, (c) => c.query(PUT_FLAG, [A, ASHA, C5A, ['needs_help'], NEEDS_HELP, PRINCIPAL]))).rejects.toThrow(/early_warning_flags_one_open/);
       // Only the three reasons, at least one, each with its evidence and nothing else. Fees are never one.
       await expect(as(principal, (c) => c.query(PUT_FLAG, [A, DEV, C5A, ['fees'], JSON.stringify({ fees: {} }), PRINCIPAL]))).rejects.toThrow(/early_warning_flags_reasons/);
-      await expect(as(principal, (c) => c.query(PUT_FLAG, [A, DEV, C5A, ['marks'], JSON.stringify({ marks: {} }), PRINCIPAL]))).rejects.toThrow(/early_warning_flags_reasons/);
+      await expect(as(principal, (c) => c.query(PUT_FLAG, [A, DEV, C5A, ['marks'], JSON.stringify({ marks: { exam: {} } }), PRINCIPAL]))).rejects.toThrow(/early_warning_flags_reasons/); // not on a flag of rule version 1 (C218)
       await expect(as(principal, (c) => c.query(PUT_FLAG, [A, DEV, C5A, [], '{}', PRINCIPAL]))).rejects.toThrow(/early_warning_flags_reasons/);
       await expect(as(principal, (c) => c.query(PUT_FLAG, [A, DEV, C5A, ['needs_help'], '{}', PRINCIPAL]))).rejects.toThrow(/evidence for each of its reasons/);
       await expect(as(principal, (c) => c.query(PUT_FLAG, [A, DEV, C5A, ['needs_help'], JSON.stringify({ needs_help: { open: [] }, attendance: {} }), PRINCIPAL]))).rejects.toThrow(/evidence for each of its reasons/);
@@ -905,7 +907,7 @@ describe('on the real schema', () => {
 
     it('the defaults hold until the principal or the school admin changes them; a teacher and a coordinator cannot', async () => {
       await seedRows();
-      expect(await as(principal, (c) => earlyWarningSettings(c, A))).toEqual({ attendanceBelow: 75, windowDays: 30, minMarkedDays: 10 });
+      expect(await as(principal, (c) => earlyWarningSettings(c, A))).toEqual(DEFAULT_SETTINGS);
       for (const who of [tara, coordinator]) expect(await save(who, 0, { attendance_below: 100 }), who.role).toMatchObject({ ok: false });
       const outOfRange: Record<string, number>[] = [{ attendance_below: 0 }, { attendance_below: 101 }, { window_days: 6 }, { window_days: 91 }, { min_marked_days: 0 }, { min_marked_days: 61 }];
       for (const bad of outOfRange) expect(await save(principal, 0, bad), JSON.stringify(bad)).toMatchObject({ ok: false });
@@ -932,7 +934,7 @@ describe('on the real schema', () => {
       expect((await stored()).map((f) => f.name)).toEqual(['Asha', 'Bela', 'Farah', 'Gopal']);
       // Below 80 from nine days: Chirag (75) joins, Bela's 4 of 9 becomes a second reason, Dev (80) is on the line.
       expect(await save(principal, 0, { attendance_below: 80, min_marked_days: 9 })).toMatchObject({ ok: true });
-      expect(await as(coordinator, (c) => earlyWarningSettings(c, A))).toEqual({ attendanceBelow: 80, windowDays: 30, minMarkedDays: 9 });
+      expect(await as(coordinator, (c) => earlyWarningSettings(c, A))).toEqual({ ...DEFAULT_SETTINGS, attendanceBelow: 80, windowDays: 30, minMarkedDays: 9 });
       expect(await check(principal, 1)).toEqual({ ok: true, students: 7, attendanceUsed: 6, opened: 1, changed: 3, kept: 1, closed: 0, open: 5 });
       const rows = await stored();
       expect(rows.map((f) => [f.name, f.reasons])).toEqual([['Asha', ['attendance']], ['Bela', ['attendance', 'homework']], ['Chirag', ['attendance']], ['Farah', ['needs_help']], ['Gopal', ['attendance', 'needs_help']]]);
@@ -946,7 +948,7 @@ describe('on the real schema', () => {
       expect((await stored()).map((f) => [f.name, f.reasons, f.closed_reason])).toEqual([['Asha', ['attendance'], 'signals_cleared'], ['Bela', ['attendance', 'homework'], null], ['Chirag', ['attendance'], 'signals_cleared'], ['Farah', ['needs_help'], null], ['Gopal', ['needs_help'], null]]);
       // Seven days back cannot hold the nine marked days the school asks for: refused, and nothing changes.
       expect(await save(admin, 2, { window_days: 7 })).toMatchObject({ ok: false, reason: 'invalid' });
-      expect(await as(admin, (c) => earlyWarningSettings(c, A))).toEqual({ attendanceBelow: 70, windowDays: 30, minMarkedDays: 9 });
+      expect(await as(admin, (c) => earlyWarningSettings(c, A))).toEqual({ ...DEFAULT_SETTINGS, attendanceBelow: 70, windowDays: 30, minMarkedDays: 9 });
       // Nine days back: allowed, but today has no mark yet, so nobody has nine counted days in them. Attendance
       // cannot be judged for anyone. Bela's attendance reason is HELD with the numbers it last rested on, and says
       // so; it is not called cleared. Nothing closes.
@@ -1041,7 +1043,7 @@ describe('on the real schema', () => {
       await moduleOn(true);
       const empty = await screen(principal);
       expect(empty.status).toBe(200);
-      expect(empty.body).toMatchObject({ mayCheck: true, ruleVersion: 1, settings: DEFAULT_SETTINGS, lastCheck: null, summary: [], open: [], closed: [], truncated: false });
+      expect(empty.body).toMatchObject({ mayCheck: true, ruleVersion: EARLY_WARNING_RULE_VERSION, settings: DEFAULT_SETTINGS, lastCheck: null, summary: [], open: [], closed: [], truncated: false });
       for (const who of [tara, accountant]) expect(await checkNow(who), who.role).toMatchObject({ status: 403, body: { code: 'not_allowed' } });
       expect(await stored()).toEqual([]);
       const before = await sentOrQueued();
@@ -1049,11 +1051,11 @@ describe('on the real schema', () => {
       const office = (await screen(coordinator)).body;
       expect(office.open.map((f: { class_name: string; student_name: string; reasons: string[] }) => [f.class_name, f.student_name, f.reasons])).toEqual([['5-A', 'Asha', ['attendance']], ['5-A', 'Bela', ['homework']], ['6-B', 'Farah', ['needs_help']], ['6-B', 'Gopal', ['attendance', 'needs_help']]]);
       expect(office.summary.map((c: { class_name: string; open: number }) => [c.class_name, c.open])).toEqual([['5-A', 2], ['6-B', 2]]);
-      expect(office.lastCheck).toMatchObject({ by: 'Priya Principal', ruleVersion: 1, students: 7, attendanceUsed: 5, minDays: 10, windowDays: 30, opened: 4, closed: 0, open: 4 });
+      expect(office.lastCheck).toMatchObject({ by: 'Priya Principal', ruleVersion: EARLY_WARNING_RULE_VERSION, students: 7, attendanceUsed: 5, minDays: 10, windowDays: 30, opened: 4, closed: 0, open: 4 });
       // Why this: every flag the screen is given carries its evidence, the rule's version, who opened it and when it was last checked.
       for (const f of office.open) {
         expect(Object.keys(f.evidence).sort(), f.student_name).toEqual([...f.reasons].sort());
-        expect(f, f.student_name).toMatchObject({ rule_version: 1, opened_by: 'Priya Principal', resolved_at: null, actions: [] });
+        expect(f, f.student_name).toMatchObject({ rule_version: EARLY_WARNING_RULE_VERSION, opened_by: 'Priya Principal', resolved_at: null, actions: [] });
         expect(Date.parse(f.checked_at), f.student_name).toBeGreaterThan(0);
       }
       expect(office.open[0].evidence).toEqual(EVIDENCE.asha);
