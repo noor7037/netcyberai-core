@@ -133,7 +133,7 @@ describe('the day and the words', () => {
     const lib = readFileSync(path.join(src, 'lib/staff/leave.ts'), 'utf8');
     expect(lib).not.toMatch(/group by|count\(|sum\(|rank\(/i);
     const orders = [...lib.matchAll(/order by ([^`]+?)(?: limit|`)/g)].map((m) => m[1].trim());
-    expect(orders).toEqual(['l.from_date desc, l.asked_at desc', 'l.asked_at, l.leave_id', 'l.from_date, u.display_name, l.leave_id', 'u.display_name, l.user_id', 'display_name, user_id']);
+    expect(orders).toEqual(['l.from_date desc, l.asked_at desc', 'l.asked_at, l.leave_id', 'l.from_date, u.display_name, l.leave_id', 'u.display_name, u.user_id', 'display_name, user_id']);
     // My Day's card counts the requests waiting in the whole school, not anyone's leave.
     const card = readFileSync(path.join(src, 'lib/today/cards.ts'), 'utf8');
     expect(card.match(/from staff_leave[^`]*`/g)).toEqual(["from staff_leave where school_id = $1 and status = 'waiting' and user_id <> $2`"]);

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
 import { addDays, isLeaveDate, LEAVE_AHEAD_DAYS, LEAVE_BACK_DAYS, LEAVE_LIST_MAX, LEAVE_TEXT_MAX, leaveByToday, type LeaveRow } from '@/lib/staff/leave-rules';
-import { BOX, FIELD, LeaveGuideLink, LeaveKindSelect, LeaveNoteLine, LeaveSummary, ownRequestLine, PRIMARY, TAP, useLeaveWords, type LeaveNote } from './leave-parts';
+import { BOX, coversLeftIn, FIELD, LeaveGuideLink, LeaveKindSelect, LeaveNoteLine, LeaveSummary, ownRequestLine, PRIMARY, TAP, useLeaveWords, type LeaveNote } from './leave-parts';
 
 // Leave, for the principal and the school admin, on Staff (docs/26 slice 8b, C201): the requests waiting for a
 // decision, the approved leave, and recording leave for someone who phoned in. Nobody decides their own request:
@@ -20,7 +20,7 @@ type Office = { me: string; alone: boolean; today: string; from: string; to: str
 const EMPTY = { userId: '', fromDate: '', toDate: '', kind: 'sick', reason: '' };
 
 export function StaffLeaveOffice() {
-  const { t, lang, day, refusal } = useLeaveWords();
+  const { t, tCount, lang, day, refusal } = useLeaveWords();
   const [data, setData] = useState<Office | null>(null);
   // What is in the "Show leave from" box once the office has typed there. null: the box shows the day the list on
   // the screen starts from. (A day half typed is empty here; the list is read again only for a whole, real day.)
@@ -50,19 +50,25 @@ export function StaffLeaveOffice() {
     void load('');
   }, [load]);
 
-  const send = async (url: string, payload: unknown, done: string, after?: () => void) => {
+  const send = async (url: string, payload: unknown, done: string | ((answer: unknown) => string), after?: () => void) => {
     setBusy(true);
     setNote(null);
     const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => null);
     const got = res ? await res.json().catch(() => null) : null;
     setBusy(false);
     if (!res?.ok) return setNote({ ok: false, text: refusal(got, res?.status) });
-    setNote({ ok: true, text: done });
+    setNote({ ok: true, text: typeof done === 'string' ? done : done(got) });
     after?.();
     await load(start.current);
   };
+  // Cancelling approved leave undoes no cover (a person undoes a cover, on Proxy Auto): when covers were assigned
+  // for those days, the line that says "Cancelled" also says how many still stand and where to undo them.
+  const doneWords = (done: MessageKey, name: string) => (answer: unknown) => {
+    const left = coversLeftIn(answer);
+    return left > 0 ? `${t(done, { name })} ${tCount('px.leave.coversLeft', left)}` : t(done, { name });
+  };
   const step = (r: LeaveRow, action: 'approve' | 'refuse' | 'withdraw', done: MessageKey) =>
-    send(`/api/app/staff/leave/${r.leave_id}`, { action, note: texts[r.leave_id] ?? '' }, t(done, { name: r.name }), () => {
+    send(`/api/app/staff/leave/${r.leave_id}`, { action, note: texts[r.leave_id] ?? '' }, doneWords(done, r.name), () => {
       setTexts({ ...texts, [r.leave_id]: '' });
       setCancelling('');
     });

@@ -311,6 +311,8 @@ ALLOWED_PERMISSIVE = (
         ("staff_leave", "staff_leave_tenant_isolation"),
         # p5-8b end
         # p5-8c begin
+        # C202: tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("substitutions", "substitutions_tenant_isolation"),
         # p5-8c end
         # p5-8d begin
         # p5-8d end
@@ -472,6 +474,11 @@ REQUIRED_RESTRICTIVE = {
     ("audit_log", "audit_leave_rows_own_or_office"),
     # p5-8b end
     # p5-8c begin
+    # C202: covers are read by the three roles that arrange them, and by a teacher their own; assigned and undone in one's own name.
+    ("substitutions", "substitutions_arrangers_or_own"),
+    ("substitutions", "substitutions_assigned_as_self"),
+    ("substitutions", "substitutions_undone_as_self"),
+    ("audit_log", "audit_cover_rows_arrangers_or_actor"),
     # p5-8c end
     # p5-8d begin
     # p5-8d end

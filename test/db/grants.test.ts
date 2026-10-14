@@ -141,6 +141,7 @@ const APP_USER: Record<string, string> = {
   staff_leave: 'INSERT,SELECT,UPDATE', // never deleted: withdrawn or cancelled (C201)
   // p5-8b end
   // p5-8c begin
+  substitutions: 'INSERT,SELECT,UPDATE', // never deleted: a cover is undone (C202)
   // p5-8c end
   // p5-8d begin
   // p5-8d end
@@ -204,6 +205,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   staff_leave: '', // the platform role has no business in a person's leave
   // p5-8b end
   // p5-8c begin
+  substitutions: '', // nothing is sent or scheduled for a cover, so the platform role has no business in it
   // p5-8c end
   // p5-8d begin
   // p5-8d end

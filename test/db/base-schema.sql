@@ -277,6 +277,52 @@ create table staff_leave (
 alter table staff_leave enable row level security;
 create policy staff_leave_tenant_isolation on staff_leave using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert, update on staff_leave to app_user;
+-- Proxy Auto, as My Day counts a teacher's covers and the periods still without one (C202): the days of a
+-- leave, the school's holidays, the covers, and the one fact about leave the people who arrange cover are given
+-- (the p5_substitutions migration).
+alter table staff_leave add column from_date date, add column to_date date;
+create table school_holidays (
+  school_id uuid not null references schools(school_id),
+  holiday_date date not null,
+  name text not null,
+  primary key (school_id, holiday_date)
+);
+alter table school_holidays enable row level security;
+create policy school_holidays_tenant_isolation on school_holidays using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select on school_holidays to app_user, nca_super;
+create table substitutions (
+  substitution_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  on_date date not null,
+  period smallint not null,
+  class_id uuid not null,
+  subject_id uuid not null,
+  absent_user_id uuid not null,
+  substitute_user_id uuid not null,
+  status text not null default 'assigned',
+  assigned_by uuid not null,
+  assigned_at timestamptz not null default now()
+);
+alter table substitutions enable row level security;
+create policy substitutions_tenant_isolation on substitutions using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update on substitutions to app_user;
+create function public.teachers_away_on(p_date date) returns table (user_id uuid)
+language sql stable security definer set search_path = public, pg_temp as $$
+  select distinct l.user_id
+    from staff_leave l
+    join users u on u.school_id = l.school_id and u.user_id = l.user_id and u.role::text = 'teacher'
+   where l.school_id = nullif(current_setting('app.current_tenant_id', true), '')::uuid
+     and (
+       current_setting('app.current_role', true) in ('principal', 'school_admin')
+       or (
+         current_setting('app.current_role', true) = 'academic_coordinator'
+         and p_date between (now() at time zone 'Asia/Kolkata')::date and (now() at time zone 'Asia/Kolkata')::date + 31
+       )
+     )
+     and l.status = 'approved'
+     and p_date between l.from_date and l.to_date
+$$;
+grant execute on function public.teachers_away_on(date) to app_user;
 -- Promises to pay, as My Day counts them (C180).
 create table fee_followups (
   followup_id uuid primary key default gen_random_uuid(),

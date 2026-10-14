@@ -19,6 +19,7 @@ export const TODAY_CARD_TYPES = [
   'leave-waiting',
   // p5-8b end
   // p5-8c begin
+  'covers-today', 'periods-uncovered', 'covers-not-needed',
   // p5-8c end
   // p5-8d begin
   // p5-8d end

@@ -28,6 +28,7 @@ describe('the guides', () => {
       'staff-leave',
       // p5-8b end
       // p5-8c begin
+      'cover-a-class',
       // p5-8c end
       // p5-8d begin
       // p5-8d end

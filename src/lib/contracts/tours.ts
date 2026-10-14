@@ -49,6 +49,8 @@ export const TOURS = {
   // p5-8b begin
   // p5-8b end
   // p5-8c begin
+  proxy: { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
+  'proxy-covers': { steps: [{ slot: 'body' }, { slot: 'body' }] },
   // p5-8c end
   // p5-8d begin
   // p5-8d end

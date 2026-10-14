@@ -991,6 +991,32 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p5-8b end
   // p5-8c begin
+  {
+    slug: 'cover-a-class',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Give a class a teacher when its own teacher is on leave', hi: 'जब कक्षा के शिक्षक छुट्टी पर हों, तो कक्षा को दूसरा शिक्षक दें' },
+    summary: {
+      en: 'Proxy Auto lists the periods of every teacher on approved leave, with the free teachers for each. A person assigns with one tap; nothing is assigned by itself.',
+      hi: 'Proxy Auto उन सभी शिक्षकों के पीरियड दिखाता है जिनकी छुट्टी मंज़ूर है, और हर पीरियड के लिए खाली शिक्षक। सौंपना एक व्यक्ति का एक टैप है; अपने आप कुछ नहीं सौंपा जाता।',
+    },
+    steps: [
+      { en: 'Open “Proxy Auto”. It opens on “Today”. To plan ahead, press “Tomorrow” or choose “Another day”.', hi: '“Proxy Auto” खोलें। यह “Today” पर खुलता है। आगे की तैयारी के लिए “Tomorrow” दबाएँ या “Another day” चुनें।' },
+      { en: 'Each period of a teacher on leave is marked “Needs cover”. Under “Free teachers”, every name says why it is offered.', hi: 'छुट्टी पर गए शिक्षक के हर पीरियड पर “Needs cover” लिखा होता है। “Free teachers” में हर नाम के साथ लिखा है कि वह क्यों सुझाया गया।' },
+      { en: 'Press “Assign” beside the teacher you choose. The period is now marked “Covered”.', hi: 'जिस शिक्षक को चुनें उसके सामने “Assign” दबाएँ। अब पीरियड पर “Covered” लिखा दिखेगा।' },
+      { en: 'To change it, press “Undo”, then assign another teacher.', hi: 'बदलने के लिए “Undo” दबाएँ, फिर किसी दूसरे शिक्षक को सौंपें।' },
+      { en: 'The teacher opens “Proxy Auto” and reads “Your covers”. The same periods show on My Day. No message is sent.', hi: 'शिक्षक “Proxy Auto” खोलकर “Your covers” पढ़ते हैं। वही पीरियड My Day पर भी दिखते हैं। कोई संदेश नहीं भेजा जाता।' },
+    ],
+    tips: [
+      { en: 'An empty list means no teacher’s leave is approved for that day. The principal or the school admin approves leave, or records it for someone who phoned in, on “Staff”.', hi: 'सूची खाली होने का मतलब है कि उस दिन के लिए किसी शिक्षक की छुट्टी मंज़ूर नहीं है। प्रिंसिपल या स्कूल एडमिन “Staff” पर छुट्टी मंज़ूर करते हैं, या फ़ोन करके बताने वाले की छुट्टी वहीं दर्ज करते हैं।' },
+      { en: 'The order is: teaches the subject, then the fewest periods that day, then the fewest covers that week. You may choose any free teacher on the list.', hi: 'क्रम यह है: जो वह विषय पढ़ाते हैं, फिर जिनके उस दिन सबसे कम पीरियड हैं, फिर जिनकी उस हफ़्ते सबसे कम एवज़ी है। आप सूची के किसी भी खाली शिक्षक को चुन सकते हैं।' },
+      { en: 'A period is covered once, and a teacher covers one class in a period. A second tap for the same period or the same teacher is refused.', hi: 'एक पीरियड की एवज़ी एक ही बार तय होती है, और एक शिक्षक एक पीरियड में एक ही कक्षा लेते हैं। उसी पीरियड या उसी शिक्षक के लिए दूसरा टैप नहीं माना जाता।' },
+      { en: 'If leave is cancelled after a cover was assigned, the cover moves to “Covers no longer needed”. Undo it there.', hi: 'अगर एवज़ी सौंपने के बाद छुट्टी रद्द हो जाए, तो वह एवज़ी “Covers no longer needed” में चली जाती है। उसे वहीं वापस लें।' },
+    ],
+    start: { href: '/app/proxy', label: { en: 'Proxy Auto', hi: 'एवज़ी शिक्षक (Proxy Auto)' } },
+    related: ['staff-leave', 'timetable'],
+    keywords: ['proxy', 'cover', 'substitute', 'substitution', 'arrangement', 'free period', 'absent teacher', 'evazi', 'एवज़ी', 'प्रॉक्सी', 'अनुपस्थित शिक्षक'],
+  },
   // p5-8c end
   // p5-8d begin
   // p5-8d end
