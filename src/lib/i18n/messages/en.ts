@@ -4312,6 +4312,34 @@ export const en = {
   // p7-10g begin
   // p7-10g end
   // c224 begin
+  'adm.delete.open': 'Delete this enquiry',
+  'adm.delete.how': 'Delete the enquiry for {child} and every step written about it? It cannot be brought back. Use this when the family asks, or when it was recorded by mistake.',
+  'adm.delete.confirm': 'Delete the enquiry',
+  'adm.deleted.one': 'The enquiry is deleted, with its {count} step.',
+  'adm.deleted.other': 'The enquiry is deleted, with its {count} steps.',
+  'adm.erased.title': 'Details erased, for {class}',
+  'adm.erased.how': 'The child’s and the family’s details were erased on {date}, when the school carried out a request to delete the child’s data. The stage and the steps are kept.',
+  'adm.step.erased': 'Details erased on a request to delete the child’s data',
+  'adm.step.noteErased': 'A note, erased with the child’s data',
+  'adm.err.changed': 'The family’s enquiries changed since you looked. Find them again.',
+  'adm.family.title': 'Delete a family’s enquiries',
+  'adm.family.how': 'When a parent asks the school to delete what it holds about a family that never joined. Type the phone number the enquiries were recorded with.',
+  'adm.family.phone': 'Phone number',
+  'adm.family.find': 'Find their enquiries',
+  'adm.family.found.one': '{count} enquiry with this number will be deleted, with its steps:',
+  'adm.family.found.other': '{count} enquiries with this number will be deleted, with their steps:',
+  'adm.family.none': 'No enquiry with this number can be deleted.',
+  'adm.family.admitted.one': '{count} admitted enquiry with this number stays: it is a child’s record. It is erased when that child’s data is deleted, on the student’s page.',
+  'adm.family.admitted.other': '{count} admitted enquiries with this number stay: each is a child’s record. Each is erased when that child’s data is deleted, on the student’s page.',
+  'adm.family.confirm.one': 'Delete this {count} enquiry',
+  'adm.family.confirm.other': 'Delete these {count} enquiries',
+  'adm.family.deleted.one': '{count} enquiry deleted, with its steps.',
+  'adm.family.deleted.other': '{count} enquiries deleted, with their steps.',
+  'adm.family.row': '{child}, for {class}: {stage}, recorded {date}',
+  'students.gender.label': 'Gender, as Aadhaar prints it',
+  'students.dataCheck.link': 'Student data check',
+  'students.dataCheck.how': 'Check each child’s name, date of birth and gender against Aadhaar as printed, for UDISE+ and APAAR.',
+  'students.import.columns': 'Columns: name (needed), admission_no, class_name (as a class is named here, exactly), roll_no, dob (as YYYY-MM-DD) and gender (male, female or transgender, as Aadhaar prints it; leave it empty if not known). Every child starts as waiting for consent. Uploading the same file again is safe: nobody is added twice. Optional guardian_phone and guardian_email columns only suggest brothers and sisters already here; nothing is linked until you confirm.',
   // c224 end
   // c225 begin
   // c225 end

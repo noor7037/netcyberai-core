@@ -107,7 +107,7 @@ export async function editHomework(db: PoolClient, actor: Actor, homeworkId: str
     for (const c of changed) await refreshDraftsForHomework(db, actor.schoolId, c.subject_id, [c.class_id], c.day);
   }
   const leftAsSent = copies.filter((c) => !applyTo.includes(c));
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'homework.edit', targetType: 'homework', targetId: homeworkId, beforeState: before, afterState: { title: input.title, details: input.details, due_date: input.dueDate, changedCopies: applyTo.length, leftAsSent: leftAsSent.length } });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'homework.edit', targetType: 'homework', targetId: homeworkId, beforeState: { due_date: before.due_date }, afterState: { titleChanged: input.title !== before.title, detailsChanged: input.details !== before.details, due_date: input.dueDate, changedCopies: applyTo.length, leftAsSent: leftAsSent.length } }); // never the words (C224)
   return { ok: true, changedTargets: applyTo, leftAsSent };
 }
 

@@ -282,6 +282,6 @@ describe('a school’s terms and the amount due through Control (C212)', () => {
     const ended = await post(SCHOOL, { action: 'end_term', termId: discount.termId, endsOn: day(-1), reason: 'the offer was withdrawn' });
     expect([ended.status, await ended.json()]).toEqual([200, { ok: true, termId: discount.termId, replaced: 0, switchedOn: [], switchedOff: [] }]);
     expect((await read()).amount).toMatchObject({ discountBp: null, discountMinor: 0, amountMinor: 25000 });
-    expect(await q(`select after_state ->> 'reason' as reason, actor_user_id from audit_log where event_action = 'billing.terms.ended'`)).toEqual([{ reason: 'the offer was withdrawn', actor_user_id: FOUNDER }]);
+    expect(await q(`select after_state ->> 'reasoned' as reasoned, actor_user_id from audit_log where event_action = 'billing.terms.ended'`)).toEqual([{ reasoned: 'true', actor_user_id: FOUNDER }]); // the words are on the term (C224)
   });
 });

@@ -345,7 +345,7 @@ export async function correctAttendance(
     targetType: 'attendance',
     targetId: params.attendanceId,
     beforeState: { status: before.status },
-    afterState: { status: params.newStatus, note: params.note?.trim() || null },
+    afterState: { status: params.newStatus, noted: Boolean(params.note?.trim()) }, // never the note's words (C224)
   });
 
   return result.rows[0];
@@ -356,7 +356,7 @@ export async function correctAttendance(
 // A principal or school admin may enter or correct attendance for a day
 // that has ended, with a reason, inside the school's correction window (a
 // setting, 7 days unless the school changes it). Every such change is in
-// the audit log with the reason. No message goes to a family about a past
+// the audit log, saying a reason was given (never its words: C224). No message goes to a family about a past
 // day: the absence notice is for the day itself.
 
 export const DEFAULT_CORRECTION_WINDOW_DAYS = 7;
@@ -409,7 +409,7 @@ export async function officeCorrectAttendance(
     targetType: 'attendance',
     targetId: attendanceId,
     beforeState: before ? { status: before.status, leaveCode: before.leave_code } : null,
-    afterState: { status: params.status, leaveCode, date: params.date, reason },
+    afterState: { status: params.status, leaveCode, date: params.date, reasoned: true }, // never the reason's words (C224)
   });
   return { ok: true, attendanceId, entered: !before };
 }
@@ -487,7 +487,7 @@ export async function decideCorrectionRequest(
     targetType: 'attendance_correction_requests',
     targetId: params.requestId,
     beforeState: { status: 'waiting', classId: request.class_id, date: request.for_date, requestedBy: request.requested_by },
-    afterState: { applied, kept, reason },
+    afterState: { applied, kept, reasoned: true }, // the reason is on the request (decision_reason), not here (C224)
   });
   return { ok: true, applied, kept };
 }

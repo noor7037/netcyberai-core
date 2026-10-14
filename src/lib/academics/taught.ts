@@ -68,8 +68,9 @@ export async function recordTaught(db: PoolClient, actor: Actor, input: TaughtIn
     eventAction: before[0] ? 'syllabus.update' : 'syllabus.record',
     targetType: 'syllabus_progress',
     targetId: entry.progress_id,
-    beforeState: before[0] ?? undefined,
-    afterState: entry,
+    // The lesson's ids, day and state; never the topic's or the note's words (C224).
+    beforeState: before[0] ? { status: before[0].status, unitId: before[0].unit_id, noted: before[0].note !== null } : undefined,
+    afterState: { date: entry.date, classId: entry.class_id, subjectId: entry.subject_id, teacherId: entry.teacher_id, status: entry.status, unitId: entry.unit_id, noted: entry.note !== null },
   });
   return { kind: 'ok', created: !before[0], entry, pulseId };
 }
@@ -135,7 +136,7 @@ export async function removeUnit(db: PoolClient, actor: Actor, unitId: string): 
   if (used.rows[0]) return 'in_use';
   const gone = await db.query(`delete from syllabus_units where school_id = $1 and unit_id = $2 returning class_id, subject_id, chapter, topic`, [actor.schoolId, unitId]);
   if (!gone.rows[0]) return 'not_found';
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'syllabus.unit_removed', targetType: 'syllabus_units', targetId: unitId, beforeState: gone.rows[0], afterState: undefined });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'syllabus.unit_removed', targetType: 'syllabus_units', targetId: unitId, beforeState: { classId: gone.rows[0].class_id, subjectId: gone.rows[0].subject_id }, afterState: undefined }); // never the words (C224)
   return 'removed';
 }
 

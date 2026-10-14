@@ -4296,6 +4296,137 @@ const rteDeskDone = async () => {
 // p7-10g begin
 // p7-10g end
 // c224 begin
+// C224 (C223-A answers 3 and 7). The principal deletes one enquiry after reading what goes, then a parent's erasure
+// request: every enquiry of a family that never joined, found by the phone as the office types it. An admitted
+// enquiry erased with the child's data shows no names, and its steps say it was erased. A number with only an
+// admitted enquiry finds nothing to delete. The check reads the database (the rows gone, the admitted and erased ones
+// kept, the audit rows with ids and counts only) and puts every row back (the audit rows stay: the log is never cut).
+const X_ENQ = (n) => `e0000000-0000-4000-8000-00000c224${String(n).padStart(3, '0')}`;
+const X_STUDENT = (n) => `e0000000-0000-4000-8000-00000c224${String(100 + n).padStart(3, '0')}`;
+const X_ROWS = [1, 2, 3, 4, 5].map(X_ENQ);
+let xSeen = null;
+const clearC224Admissions = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from admission_events where enquiry_id in (${X_ROWS.map((r) => `'${r}'`).join(', ')});
+    delete from admission_enquiries where enquiry_id in (${X_ROWS.map((r) => `'${r}'`).join(', ')});
+    delete from students where student_id in ('${X_STUDENT(1)}', '${X_STUDENT(2)}');
+    set session_replication_role = origin;`);
+};
+const admissionsErasure = async (page) => {
+  await clearC224Admissions();
+  const [o, p, c5, c6] = [PEOPLE.office.sub, PEOPLE.principal.sub, CLASS_5A, '00000000-0000-4000-8000-0000000c0061'];
+  await db.pg.exec(`set session_replication_role = replica;
+    insert into students (student_id, school_id, name, class_id, status) values
+      ('${X_STUDENT(1)}', '${SCHOOL}', 'Redacted Student ${X_STUDENT(1).slice(0, 8)}', '${c5}', 'pending_consent'),
+      ('${X_STUDENT(2)}', '${SCHOOL}', 'Ojas Example X', '${c6}', 'pending_consent');
+    insert into admission_enquiries (enquiry_id, school_id, child_name, guardian_name, phone, class_id, source, stage, owner_id, next_step, closed_reason, student_id, created_by, created_at, erased_at) values
+      ('${X_ENQ(1)}', '${SCHOOL}', 'Ira Example X', 'Lata Example X', '+919800000201', '${c5}', 'walk_in', 'enquiry', '${o}', 'Call back on Monday', null, null, '${o}', now() - interval '2 days', null),
+      ('${X_ENQ(2)}', '${SCHOOL}', 'Om Example X', 'Kavita Example X', '+919800000202', '${c5}', 'phone_call', 'visit_booked', '${p}', 'Visit on Saturday', null, null, '${p}', now() - interval '6 days', null),
+      ('${X_ENQ(3)}', '${SCHOOL}', 'Uma Example X', 'Kavita Example X', '+919800000202', '${c6}', 'whatsapp', 'not_joining', '${p}', null, 'Chose a school nearer home', null, '${p}', now() - interval '9 days', null),
+      ('${X_ENQ(4)}', '${SCHOOL}', null, null, null, '${c5}', 'referral', 'admitted', '${p}', null, null, '${X_STUDENT(1)}', '${p}', now() - interval '40 days', now() - interval '1 day'),
+      ('${X_ENQ(5)}', '${SCHOOL}', 'Ojas Example X', 'Ravi Example X', '+919800000203', '${c6}', 'walk_in', 'admitted', '${o}', null, null, '${X_STUDENT(2)}', '${o}', now() - interval '30 days', null);
+    insert into admission_events (school_id, enquiry_id, kind, stage_from, stage_to, note, owner_id, by_user, at, n, erased_at) values
+      ('${SCHOOL}', '${X_ENQ(1)}', 'recorded', null, 'enquiry', null, '${o}', '${o}', now() - interval '2 days', 1, null),
+      ('${SCHOOL}', '${X_ENQ(2)}', 'recorded', null, 'visit_booked', null, '${p}', '${p}', now() - interval '6 days', 1, null),
+      ('${SCHOOL}', '${X_ENQ(2)}', 'note', null, null, 'Kavita asked about the bus.', null, '${p}', now() - interval '5 days', 2, null),
+      ('${SCHOOL}', '${X_ENQ(3)}', 'recorded', null, 'enquiry', null, '${p}', '${p}', now() - interval '9 days', 1, null),
+      ('${SCHOOL}', '${X_ENQ(3)}', 'stage', 'enquiry', 'not_joining', 'Chose a school nearer home', null, '${p}', now() - interval '8 days', 2, null),
+      ('${SCHOOL}', '${X_ENQ(4)}', 'recorded', null, 'enquiry', null, '${p}', '${p}', now() - interval '40 days', 1, null),
+      ('${SCHOOL}', '${X_ENQ(4)}', 'note', null, null, null, null, '${p}', now() - interval '39 days', 2, now() - interval '1 day'),
+      ('${SCHOOL}', '${X_ENQ(4)}', 'erased', null, null, null, null, '${p}', now() - interval '1 day', 3, null),
+      ('${SCHOOL}', '${X_ENQ(5)}', 'recorded', null, 'enquiry', null, '${o}', '${o}', now() - interval '30 days', 1, null);
+    set session_replication_role = origin;`);
+  await db.pg.query(`update users set tours_seen = array_append(tours_seen, 'admissions') where user_id = $1 and not ('admissions' = any (tours_seen))`, [PEOPLE.principal.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  // One enquiry: the confirmation says what goes, then it is gone.
+  const ira = page.locator('[data-adm-open] [data-enquiry]', { hasText: 'Ira Example X' });
+  await ira.waitFor({ timeout: 20000 });
+  await ira.locator('[data-adm-delete]').click();
+  const asked = (await ira.locator('[data-adm-delete-confirm]').textContent()) ?? '';
+  await ira.locator('[data-adm-delete-yes]').click();
+  await page.locator('[data-adm-note]', { hasText: 'deleted' }).waitFor({ timeout: 20000 });
+  await ira.waitFor({ state: 'detached', timeout: 20000 });
+  // A family that never joined: found by the phone as typed, then deleted as shown.
+  await page.locator('[data-adm-family] > summary').click();
+  await page.locator('#adm-family-phone').fill('98000 00202');
+  await page.locator('[data-adm-family-find]').click();
+  const found = page.locator('[data-adm-family-found]');
+  await found.waitFor({ timeout: 20000 });
+  const familyCount = await found.getAttribute('data-count');
+  await page.locator('[data-adm-family-delete]').click();
+  await page.locator('[data-adm-note]', { hasText: 'enquiries deleted' }).waitFor({ timeout: 20000 });
+  // A number with only an admitted enquiry: nothing can be deleted, and the screen says why (left open for the picture).
+  await page.locator('#adm-family-phone').fill('9800000203');
+  await page.locator('[data-adm-family-find]').click();
+  await page.locator('[data-adm-family-found][data-count="0"]').waitFor({ timeout: 20000 });
+  const admittedOnly = (await page.locator('[data-adm-family-found]').textContent()) ?? '';
+  // The erased enquiry, with its steps open.
+  await page.locator('[data-adm-closed] > summary').click();
+  const erased = page.locator('[data-adm-closed] [data-enquiry][data-erased]');
+  await erased.locator('[data-adm-steps] summary').click();
+  await erased.locator('[data-adm-step="erased"]').waitFor({ timeout: 20000 });
+  xSeen = { asked, familyCount, admittedOnly, erasedCards: await erased.count(), erasedText: (await erased.textContent()) ?? '', deleteOnAdmitted: await page.locator('[data-adm-closed] [data-enquiry][data-stage="admitted"] [data-adm-delete]').count() };
+};
+const admissionsErasureDone = async () => {
+  const left = (await db.pg.query(`select enquiry_id, stage, child_name, phone, erased_at is not null as erased from admission_enquiries where enquiry_id = any($1::uuid[]) order by enquiry_id`, [X_ROWS])).rows;
+  const steps = (await db.pg.query(`select enquiry_id, count(*)::int as n from admission_events where enquiry_id = any($1::uuid[]) group by enquiry_id order by enquiry_id`, [X_ROWS])).rows;
+  const audit = (await db.pg.query(`select event_action, target_id, before_state, after_state from audit_log where school_id = $1 and event_action in ('admissions.deleted', 'admissions.family_deleted') and occurred_at > now() - interval '10 minutes' order by audit_id desc limit 2`, [SCHOOL])).rows;
+  const seen = xSeen;
+  await clearC224Admissions();
+  const kept = left.map((r) => r.enquiry_id).join();
+  if (kept !== [X_ENQ(4), X_ENQ(5)].join() || !left[0].erased || left[0].child_name !== null || left[1].child_name !== 'Ojas Example X') throw new Error(`the enquiries left: ${JSON.stringify(left)}`);
+  if (steps.map((s) => `${s.enquiry_id}:${s.n}`).join() !== `${X_ENQ(4)}:3,${X_ENQ(5)}:1`) throw new Error(`the steps left: ${JSON.stringify(steps)}`);
+  const family = audit.find((a) => a.event_action === 'admissions.family_deleted');
+  const one = audit.find((a) => a.event_action === 'admissions.deleted');
+  if (!family || [...family.after_state.enquiryIds].sort().join() !== [X_ENQ(2), X_ENQ(3)].join() || family.after_state.steps !== 4 || !one || one.target_id !== X_ENQ(1) || one.after_state.steps !== 1) throw new Error(`the audit rows: ${JSON.stringify(audit)}`);
+  if (/Example X|98000|\+91|Kavita|bus/.test(JSON.stringify(audit))) throw new Error(`an audit row holds a name or a phone: ${JSON.stringify(audit)}`);
+  // (The staff of the seed are "... Example"; the families here are "... Example X".)
+  if (!seen || !seen.asked.includes('Ira Example X') || seen.familyCount !== '2' || !seen.admittedOnly.includes('1 admitted enquiry') || seen.erasedCards !== 1 || !seen.erasedText.includes('Details erased') || !seen.erasedText.includes('A note, erased with the child’s data') || seen.erasedText.includes('Example X') || seen.deleteOnAdmitted !== 0) throw new Error(`the screen: ${JSON.stringify({ ...seen, asked: seen?.asked.slice(0, 30) })}`);
+};
+
+// C224: the Students screen offers the office a child's gender and the student data check; a teacher gets neither.
+const X_GENDER_CHILD = 'Gauri Example X';
+let xStudentsSeen = null;
+const clearC224Students = async () => {
+  await db.pg.exec(`set session_replication_role = replica; delete from students where school_id = '${SCHOOL}' and name = '${X_GENDER_CHILD}'; set session_replication_role = origin;`);
+};
+const studentsOffice = async (page) => {
+  await clearC224Students();
+  await db.pg.query(`update users set tours_seen = array_append(tours_seen, 'students') where user_id = $1 and not ('students' = any (tours_seen))`, [PEOPLE.principal.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  const link = page.locator('[data-students-data-check]');
+  await link.waitFor({ timeout: 20000 });
+  await page.locator('[data-slot="primary"] button, button', { hasText: '+ Add student' }).first().click();
+  await page.locator('#name').fill(X_GENDER_CHILD);
+  await page.selectOption('#classId', { label: '5-A' });
+  await page.selectOption('#gender', 'female');
+  await page.locator('form button[type="submit"]', { hasText: 'Save' }).first().click();
+  await page.locator('tbody tr', { hasText: X_GENDER_CHILD }).waitFor({ state: 'attached', timeout: 20000 }); // the table is drawn as cards on a phone
+  // The form again, open for the picture, with the gender the office records.
+  await page.locator('[data-slot="primary"] button, button', { hasText: '+ Add student' }).first().click();
+  await page.locator('#gender').waitFor({ timeout: 20000 });
+  xStudentsSeen = { href: await link.getAttribute('href'), options: await page.locator('#gender option').evaluateAll((els) => els.map((e) => e.getAttribute('value')).join()) };
+};
+const studentsOfficeDone = async () => {
+  const made = (await db.pg.query(`select student_id, gender, status::text as status from students where school_id = $1 and name = $2`, [SCHOOL, X_GENDER_CHILD])).rows;
+  const audit = made[0] ? (await db.pg.query(`select after_state from audit_log where event_action = 'student.create' and target_id = $1`, [made[0].student_id])).rows : [];
+  const seen = xStudentsSeen;
+  await clearC224Students();
+  if (made.length !== 1 || made[0].gender !== 'female' || made[0].status !== 'pending_consent') throw new Error(`the student made: ${JSON.stringify(made)}`);
+  if (audit.length !== 1 || JSON.stringify(audit).includes('Gauri') || audit[0].after_state.withGender !== true) throw new Error(`the audit row: ${JSON.stringify(audit)}`);
+  if (!seen || seen.href !== '/app/students/data-check' || seen.options !== 'not_given,female,male,transgender') throw new Error(`the screen: ${JSON.stringify(seen)}`);
+};
+const studentsTeacher = async (page) => {
+  await page.locator('[data-students-count], table').first().waitFor({ timeout: 20000 });
+  await page.waitForLoadState('networkidle');
+  await page.locator('button', { hasText: '+ Add student' }).first().click();
+  await page.locator('#name').waitFor({ timeout: 20000 });
+  xStudentsSeen = { link: await page.locator('[data-students-data-check]').count(), gender: await page.locator('#gender').count() };
+};
+const studentsTeacherDone = async () => {
+  const seen = xStudentsSeen;
+  if (!seen || seen.link !== 0 || seen.gender !== 0) throw new Error(`a teacher was offered the office's own: ${JSON.stringify(seen)}`);
+};
 // c224 end
 // c225 begin
 // c225 end
@@ -4900,6 +5031,9 @@ const SCREENS = [
   // p7-10g begin
   // p7-10g end
   // c224 begin
+  ['principal', 'app-admissions-erasure', '/app/admissions', admissionsErasure, admissionsErasureDone],
+  ['principal', 'app-students-office', '/app/students', studentsOffice, studentsOfficeDone],
+  ['teacher', 'app-students-teacher', '/app/students', studentsTeacher, studentsTeacherDone],
   // c224 end
   // c225 begin
   // c225 end

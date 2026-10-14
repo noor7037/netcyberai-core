@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
+import { Select } from '@/components/ui/Select';
+import { useT } from '@/components/app-shell/LangContext';
+import type { MessageKey } from '@/lib/i18n';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useToast } from '@/components/ui/Toast';
 import { DocumentCapture } from './DocumentCapture';
@@ -24,8 +27,11 @@ type Student = {
   class_name: string | null;
   roll_no: string | null;
   dob: string | null;
+  // The school record's gender (C222): Aadhaar's set or not_given. Recorded by the office only (C224).
+  gender?: string;
   status: 'pending_consent' | 'active' | 'inactive' | 'transferred';
 };
+const GENDERS = ['not_given', 'female', 'male', 'transgender'] as const;
 
 type Guardian = { parent_id: string; name: string; phone: string; email: string | null; relation: string | null };
 
@@ -46,6 +52,8 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
   const [suggestions, setSuggestions] = useState<SiblingSuggestion[]>([]);
   const [confirming, setConfirming] = useState<string | null>(null);
   const toast = useToast();
+  const { t } = useT();
+  const genderWord = (g: string | undefined) => t(`sdc.gender.${GENDERS.find((x) => x === g) ?? 'not_given'}` as MessageKey);
 
   // Sibling suggestions (C116): when the phone or email typed for a new
   // guardian matches a guardian already on record, offer to link to them
@@ -107,6 +115,8 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
       admissionNo: String(form.get('admissionNo') ?? ''),
       rollNo: String(form.get('rollNo') ?? ''),
       dob: String(form.get('dob') ?? '') || null,
+      // Only the office edits a record at all; gender is sent only from its form (C224).
+      ...(canEdit ? { gender: String(form.get('gender') ?? '') || null } : {}),
     };
     const res = await fetch(`/api/app/students/${student.student_id}`, {
       method: 'PATCH',
@@ -191,6 +201,15 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
             <Input id="admissionNo" name="admissionNo" label="Admission number" defaultValue={student.admission_no ?? ''} />
             <Input id="rollNo" name="rollNo" label="Roll number" defaultValue={student.roll_no ?? ''} />
             <Input id="dob" name="dob" label="Date of birth" type="date" defaultValue={student.dob ?? ''} />
+            {canEdit && (
+              <Select id="gender" name="gender" label={t('students.gender.label')} defaultValue={student.gender ?? 'not_given'} data-student-gender>
+                {GENDERS.map((g) => (
+                  <option key={g} value={g}>
+                    {t(`sdc.gender.${g}` as MessageKey)}
+                  </option>
+                ))}
+              </Select>
+            )}
             <div className="flex gap-2">
               <button type="submit" className="min-h-[44px] rounded-md bg-sapphire px-4 text-sm font-semibold text-white">
                 Save
@@ -210,6 +229,8 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
             <dd className="text-slate">{student.roll_no ?? '—'}</dd>
             <dt className="text-slate/70">Date of birth</dt>
             <dd className="text-slate">{student.dob ?? '—'}</dd>
+            <dt className="text-slate/70">{t('students.gender.label')}</dt>
+            <dd data-student-gender-shown className="text-slate">{genderWord(student.gender)}</dd>
           </dl>
         )}
       </section>

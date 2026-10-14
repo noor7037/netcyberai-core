@@ -275,7 +275,7 @@ describe('marking with no network', () => {
     await as(principal, (c) => correctAttendance(c, { schoolId: A, attendanceId: bilal.attendanceId, newStatus: bilal.yours, today: DAY, note: 'He left before the first period', actorUserId: PRINCIPAL, actorRole: 'principal' }));
     expect((await marks()).find((m: { student_id: string }) => m.student_id === S.bilal)).toMatchObject({ status: 'absent' });
     const audit = await rows(`select before_state, after_state from audit_log where event_action = 'attendance.correct' and target_id = $1`, [bilal.attendanceId]);
-    expect(audit).toEqual([{ before_state: { status: 'present' }, after_state: { status: 'absent', note: 'He left before the first period' } }]);
+    expect(audit).toEqual([{ before_state: { status: 'present' }, after_state: { status: 'absent', noted: true } }]); // never the note's words (C224)
   });
 
   it('after it is sent, the roster kept on the phone shows the marks as saved', async () => {

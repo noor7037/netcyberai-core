@@ -87,8 +87,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { parentId: 
         eventAction: 'guardian.update',
         targetType: 'parents',
         targetId: row.parent_id,
-        beforeState: before.rows[0],
-        afterState: row,
+        afterState: { changed: EDITABLE_FIELDS.filter((f) => f in body) }, // which details, never their values (C224)
       });
       return row;
     });

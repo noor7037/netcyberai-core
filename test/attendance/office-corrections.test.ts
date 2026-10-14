@@ -96,8 +96,9 @@ describe('the office enters or corrects a past day', () => {
     expect(await marks(YESTERDAY)).toEqual([{ student_id: S.asha, status: 'leave', leave_code: 'sick', marked_by: PRINCIPAL }]);
     const audit = await rows(`select event_action, actor_user_id, before_state, after_state from audit_log where school_id = $1 and event_action like 'attendance.office_%' and after_state->>'date' = $2 order by audit_id`, [A, YESTERDAY]);
     expect(audit).toEqual([
-      { event_action: 'attendance.office_enter', actor_user_id: PRINCIPAL, before_state: null, after_state: { status: 'absent', leaveCode: null, date: YESTERDAY, reason: 'The class teacher was on leave; taken from the paper register' } },
-      { event_action: 'attendance.office_correct', actor_user_id: ADMIN, before_state: { status: 'absent', leaveCode: null }, after_state: { status: 'leave', leaveCode: 'sick', date: YESTERDAY, reason: 'Parent brought a medical note' } },
+      // That a reason was given, never its words (C224).
+      { event_action: 'attendance.office_enter', actor_user_id: PRINCIPAL, before_state: null, after_state: { status: 'absent', leaveCode: null, date: YESTERDAY, reasoned: true } },
+      { event_action: 'attendance.office_correct', actor_user_id: ADMIN, before_state: { status: 'absent', leaveCode: null }, after_state: { status: 'leave', leaveCode: 'sick', date: YESTERDAY, reasoned: true } },
     ]);
     // No message goes to a family about a past day.
     expect(await rows(`select 1 from communication_log where school_id = $1`, [A])).toEqual([]);
@@ -164,7 +165,7 @@ describe('a phone’s marks that arrive after their day ended', () => {
     expect(await as(principal, (c) => waitingCorrectionRequests(c, A, TODAY))).toEqual([]);
     expect(await decide(admin, request.request_id, 'apply', 'again')).toEqual({ ok: false, reason: 'not_found' });
     const audit = await rows(`select actor_user_id, after_state from audit_log where school_id = $1 and event_action = 'attendance.request_applied'`, [A]);
-    expect(audit).toEqual([{ actor_user_id: ADMIN, after_state: { applied: 2, kept: 1, reason: 'The teacher had no network at the camp' } }]);
+    expect(audit).toEqual([{ actor_user_id: ADMIN, after_state: { applied: 2, kept: 1, reasoned: true } }]); // the words stay on the request (C224)
     expect(await rows(`select 1 from communication_log where school_id = $1`, [A])).toEqual([]);
   });
 

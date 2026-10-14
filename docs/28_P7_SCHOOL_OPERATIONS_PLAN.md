@@ -229,3 +229,47 @@ production, in PR order, by the lead only.
     modules need;
   - C231: 10g.
 - One full `ci_local.sh` on the top of the stack.
+
+## 10. What the audit history still holds (C224)
+
+From C224, audit rows hold no names, phones, dates of birth, addresses or free
+text (C56, C223-A answer 7). A call-site test (`test/audit/audit-pii.test.ts`)
+keeps it so.
+
+Rows written before C224 are append-only and stay as they were. Their
+before_state and after_state still hold, by event_action:
+
+- **student.create:** the student row: name, admission number, date of
+  birth, class, roll and status.
+- **student.update:** the name, admission number, date of birth and roll,
+  before and after.
+- **guardian.update:** the name, phone, email, relation and language, before
+  and after.
+- **student.data_check_corrected:** the corrected value, before and after: a
+  name, a date of birth or a gender.
+- **The typed reason:**
+  - attendance.office_enter, attendance.office_correct,
+    attendance.request_applied and attendance.request_dismissed;
+  - bank.row_matched_by_hand and bank.row_not_a_fee;
+  - exam.reopened, fees.clearance_overridden, fees.receipt_reversed and
+    fees.upi_reopened;
+  - payments.credentials_saved (from Control) and
+    payments.gateway_access_changed;
+  - whatsapp.budget_set and whatsapp.stop_lifted;
+  - qr_token.revoke.
+- **attendance.correct:** the late-correction note.
+- **billing.terms.added, billing.terms.ended and
+  billing.terms.period_changed:** the founder's reason.
+- **followup.done and followup.not_needed:** the outcome text.
+- **homework.edit:** the title and details, before and after.
+- **payments.direct_upi_changed:** the UPI ID, payee name, bank name, the
+  account's last four digits and the IFSC, before and after.
+- **syllabus.record and syllabus.update:** the topic and the note.
+- **syllabus.unit_removed:** the chapter and the topic.
+- **rte.claim_written_off:** the write-off note.
+- **rte.claim_paid:** the state's payment reference.
+- **rte.rate_typed:** the source sentence.
+
+These rows are not reached by a data request's erasure. Whether to scrub
+them, and how without breaking the audit hash chain, waits for the lawyer
+(P8), together with the retention periods.

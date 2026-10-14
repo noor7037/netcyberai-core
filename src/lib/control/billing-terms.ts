@@ -15,7 +15,7 @@ import { BP_IN_WHOLE, MAX_STUDENT_MONTH_PAISE, MAX_STUDENT_YEAR_PAISE } from './
 // past is never rewritten, so what was in force on any day stays on record. The database holds the same rules
 // (the school_billing_terms_guard trigger). The amount these give is worked out in billing-amount.ts.
 //
-// The audit rows ('billing.terms.%') carry the values and the reason; the database hides them from every school
+// The audit rows ('billing.terms.%') carry the values, never a reason's words (C224); the database hides them from every school
 // role. Everything here runs as the platform role.
 //
 // COMPLIMENTARY MODULES are switched on and off by stored rows, not worked out when a screen is read: the
@@ -192,7 +192,7 @@ export async function addTerm(db: Sql, by: By, schoolId: string, input: TermInpu
     eventAction: 'billing.terms.added',
     targetType: 'school_billing_terms',
     targetId: termId,
-    afterState: { ...termValues(t), starts_on: t.startsOn, ends_on: t.endsOn, reason: t.reason, replaced: replaced.map((r) => ({ term_id: r.term_id, ends_on: { from: r.was ?? null, to: r.now } })) },
+    afterState: { ...termValues(t), starts_on: t.startsOn, ends_on: t.endsOn, reasoned: true, replaced: replaced.map((r) => ({ term_id: r.term_id, ends_on: { from: r.was ?? null, to: r.now } })) },
   });
   const synced = t.kind === 'complimentary' ? await syncComplimentaryModules(db, schoolId, today, by.userId) : { on: [], off: [] };
   return { ok: true, termId, replaced: replaced.map((r) => r.term_id as string), switchedOn: synced.on, switchedOff: synced.off };
@@ -221,7 +221,7 @@ export async function endTerm(db: Sql, by: By, schoolId: string, input: { termId
     targetType: 'school_billing_terms',
     targetId: input.termId as string,
     beforeState: { ends_on: row.ends_on },
-    afterState: { kind: row.kind, ends_on: endsOn, reason },
+    afterState: { kind: row.kind, ends_on: endsOn, reasoned: true },
   });
   const synced = row.kind === 'complimentary' ? await syncComplimentaryModules(db, schoolId, today, by.userId) : { on: [], off: [] };
   return { ok: true, termId: input.termId as string, replaced: [], switchedOn: synced.on, switchedOff: synced.off };
@@ -250,7 +250,7 @@ export async function setBillingPeriod(db: Sql, by: By, schoolId: string, input:
       targetType: 'school_subscriptions',
       targetId: schoolId,
       beforeState: { billing_period: sub.billing_period ?? null },
-      afterState: { billing_period: input.period, reason },
+      afterState: { billing_period: input.period, reasoned: true },
     });
   }
   return { ok: true, period: input.period };

@@ -218,7 +218,7 @@ describe('on the real schema', () => {
     expect(await platform((c) => reportUtr(c, token, '500000000006'))).toEqual({ ok: false, reason: 'utr_used' }); // not by the parent
     expect(await as(accountant, (c) => reopenReport(c, actor(accountant), id, 'The credit showed in the bank the next morning'))).toEqual({ ok: true });
     expect((await db.pg.query(`select status, reopened_by, reopen_reason, decided_by from payment_reports where report_id = $1`, [id])).rows).toEqual([{ status: 'reported', reopened_by: ACCOUNTANT, reopen_reason: 'The credit showed in the bank the next morning', decided_by: null }]);
-    expect((await db.pg.query(`select actor_user_id, after_state->>'reason' as reason from audit_log where school_id = $1 and event_action = 'fees.upi_reopened'`, [A])).rows).toEqual([{ actor_user_id: ACCOUNTANT, reason: 'The credit showed in the bank the next morning' }]);
+    expect((await db.pg.query(`select actor_user_id, after_state from audit_log where school_id = $1 and event_action = 'fees.upi_reopened'`, [A])).rows).toEqual([{ actor_user_id: ACCOUNTANT, after_state: { status: 'reported', reasoned: true } }]); // the words are on the report (C224)
     expect(await as(accountant, (c) => reopenReport(c, actor(accountant), id, 'again'))).toEqual({ ok: false, reason: 'not_reopenable' }); // it is waiting now
     // Reopening credits nothing: a person still has to find it in the bank.
     expect((await db.pg.query(`select count(*)::int as n from receipts where school_id = $1`, [A])).rows[0].n).toBe(0);

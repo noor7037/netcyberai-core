@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ADMISSIONS_OFFICE, admit, correctDetails, enquirySteps, giveEnquiry, recordOutcome } from '@/lib/admissions/admissions';
+import { ADMISSIONS_OFFICE, admit, correctDetails, deleteEnquiry, enquirySteps, giveEnquiry, recordOutcome } from '@/lib/admissions/admissions';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 
@@ -9,6 +9,8 @@ import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route
 //         { action: 'give', ownerId }                                      give it to someone else in the office
 //         { action: 'details', childName, guardianName, phone, classId, source }   correct what was written down
 //         { action: 'admit', admissionNo | null, dob | null }              make the child's student record
+//   DELETE                                                                 delete it, with its steps (not an admitted one:
+//                                                                          that is the child's record) (C224)
 export async function GET(req: NextRequest, { params }: { params: { enquiryId: string } }) {
   return appRoute(req, async ({ claims, db }) => {
     if (!ADMISSIONS_OFFICE.includes(claims.role)) return ruleError(403, 'not_allowed');
@@ -37,6 +39,14 @@ export async function POST(req: NextRequest, { params }: { params: { enquiryId: 
       : null;
     if (!done) return ruleError(400, 'not_sent_properly');
     return done.ok ? NextResponse.json({ enquiryId: done.enquiryId }) : refused(done.reason);
+  });
+}
+
+export async function DELETE(req: NextRequest, { params }: { params: { enquiryId: string } }) {
+  return appRoute(req, async ({ claims, db }) => {
+    if (!isUuid(params.enquiryId)) return ruleError(400, 'not_sent_properly');
+    const done = await deleteEnquiry(db, { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, params.enquiryId);
+    return done.ok ? NextResponse.json({ deleted: done.enquiryId, steps: done.steps }) : refused(done.reason);
   });
 }
 

@@ -4308,6 +4308,34 @@ export const hi: Record<keyof typeof en, string> = {
   // p7-10g begin
   // p7-10g end
   // c224 begin
+  'adm.delete.open': 'यह पूछताछ हटाएँ',
+  'adm.delete.how': '{child} की पूछताछ और उसके बारे में लिखा हर कदम हटाएँ? यह वापस नहीं आ सकता। इसका उपयोग तब करें जब परिवार कहे, या जब यह ग़लती से दर्ज हुई हो।',
+  'adm.delete.confirm': 'पूछताछ हटाएँ',
+  'adm.deleted.one': 'पूछताछ हटा दी गई, अपने {count} कदम के साथ।',
+  'adm.deleted.other': 'पूछताछ हटा दी गई, अपने {count} कदमों के साथ।',
+  'adm.erased.title': 'जानकारी मिटाई गई, {class} के लिए',
+  'adm.erased.how': 'बच्चे और परिवार की जानकारी {date} को मिटाई गई, जब स्कूल ने बच्चे का डेटा हटाने का अनुरोध पूरा किया। चरण और कदम रखे गए हैं।',
+  'adm.step.erased': 'बच्चे का डेटा हटाने के अनुरोध पर जानकारी मिटाई गई',
+  'adm.step.noteErased': 'एक नोट, बच्चे के डेटा के साथ मिटाया गया',
+  'adm.err.changed': 'आपके देखने के बाद परिवार की पूछताछ बदल गई। उन्हें फिर से खोजें।',
+  'adm.family.title': 'किसी परिवार की पूछताछ हटाएँ',
+  'adm.family.how': 'जब कोई अभिभावक कहे कि स्कूल ऐसे परिवार के बारे में रखी जानकारी हटा दे जिसने कभी दाखिला नहीं लिया। वह फ़ोन नंबर लिखें जिससे पूछताछ दर्ज हुई थी।',
+  'adm.family.phone': 'फ़ोन नंबर',
+  'adm.family.find': 'उनकी पूछताछ खोजें',
+  'adm.family.found.one': 'इस नंबर की {count} पूछताछ हटाई जाएगी, उसके कदमों के साथ:',
+  'adm.family.found.other': 'इस नंबर की {count} पूछताछ हटाई जाएँगी, उनके कदमों के साथ:',
+  'adm.family.none': 'इस नंबर की कोई पूछताछ हटाई नहीं जा सकती।',
+  'adm.family.admitted.one': 'इस नंबर की {count} दाखिल पूछताछ रहेगी: वह एक बच्चे का रिकॉर्ड है। वह तब मिटती है जब उस बच्चे का डेटा विद्यार्थी के पेज पर हटाया जाता है।',
+  'adm.family.admitted.other': 'इस नंबर की {count} दाखिल पूछताछ रहेंगी: हर एक किसी बच्चे का रिकॉर्ड है। हर एक तब मिटती है जब उस बच्चे का डेटा विद्यार्थी के पेज पर हटाया जाता है।',
+  'adm.family.confirm.one': 'यह {count} पूछताछ हटाएँ',
+  'adm.family.confirm.other': 'ये {count} पूछताछ हटाएँ',
+  'adm.family.deleted.one': '{count} पूछताछ हटाई गई, उसके कदमों के साथ।',
+  'adm.family.deleted.other': '{count} पूछताछ हटाई गईं, उनके कदमों के साथ।',
+  'adm.family.row': '{child}, {class} के लिए: {stage}, {date} को दर्ज',
+  'students.gender.label': 'लिंग, जैसा आधार पर छपा है',
+  'students.dataCheck.link': 'विद्यार्थी डेटा जाँच',
+  'students.dataCheck.how': 'UDISE+ और APAAR के लिए हर बच्चे का नाम, जन्म तिथि और लिंग आधार पर छपी जानकारी से मिलाएँ।',
+  'students.import.columns': 'Columns: name (ज़रूरी), admission_no, class_name (जैसा यहाँ कक्षा का नाम है, ठीक वैसा), roll_no, dob (YYYY-MM-DD रूप में) और gender (male, female या transgender, जैसा आधार पर छपा है; पता न हो तो खाली छोड़ें)। हर बच्चा सहमति की प्रतीक्षा से शुरू होता है। वही फ़ाइल दोबारा upload करना सुरक्षित है: कोई दो बार नहीं जुड़ता। वैकल्पिक guardian_phone और guardian_email columns केवल यहाँ पहले से मौजूद भाई-बहन सुझाते हैं; आपकी पुष्टि के बिना कुछ नहीं जुड़ता।',
   // c224 end
   // c225 begin
   // c225 end

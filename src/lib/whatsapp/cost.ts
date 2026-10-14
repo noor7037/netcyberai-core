@@ -184,6 +184,6 @@ export async function setSchoolBudget(db: PoolClient, by: { userId: string }, sc
   const before = (await db.query(`select monthly_budget_paise from schools where school_id = $1 for update`, [schoolId])).rows[0];
   if (!before) return { ok: false, reason: 'not_found' };
   await db.query(`update schools set monthly_budget_paise = $2 where school_id = $1`, [schoolId, budgetPaise]);
-  await writeAuditLog(db, { schoolId, actorUserId: by.userId, actorRole: 'super_admin', eventAction: 'whatsapp.budget_set', targetType: 'schools', targetId: schoolId, beforeState: { budgetPaise: before.monthly_budget_paise === null ? null : Number(before.monthly_budget_paise) }, afterState: { budgetPaise, reason } });
+  await writeAuditLog(db, { schoolId, actorUserId: by.userId, actorRole: 'super_admin', eventAction: 'whatsapp.budget_set', targetType: 'schools', targetId: schoolId, beforeState: { budgetPaise: before.monthly_budget_paise === null ? null : Number(before.monthly_budget_paise) }, afterState: { budgetPaise, reasoned: true } }); // never a reason's words (C224)
   return { ok: true };
 }

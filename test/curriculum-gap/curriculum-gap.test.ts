@@ -326,9 +326,10 @@ describe('a teacher sees only their classes', () => {
     expect(own.body.classes).toEqual([{ classId: CB, name: '5-A' }]);
     // School B records no session: its own map is there, and the screen says there is no session to show it for.
     expect(own.body).toMatchObject({ sessions: [], sessionId: null, gap: { setUp: false, why: 'no_session' } });
-    expect((await as(bPrincipal, async (c) => (await c.query(`select unit_id from public.curriculum_gap_units($1, $2)`, [CB, B_MATHS])).rows)).map((r: { unit_id: string }) => r.unit_id)).toEqual([W1]);
-    await expect(platform((c) => c.query(`select * from public.curriculum_gap_units($1, $2)`, [C5A, MATHS]))).rejects.toThrow(/permission denied/);
+    expect((await as(bPrincipal, async (c) => (await c.query(`select unit_id from syllabus_units where class_id = $1 and subject_id = $2`, [CB, B_MATHS])).rows)).map((r: { unit_id: string }) => r.unit_id)).toEqual([W1]);
     await expect(platform((c) => c.query(`select * from public.curriculum_gap_units($1, $2, $3)`, [C5A, MATHS, S_NOW]))).rejects.toThrow(/permission denied/);
+    // The two-argument form (C216) is gone (C224): only the session's own is read.
+    await expect(as(bPrincipal, (c) => c.query(`select * from public.curriculum_gap_units($1, $2)`, [CB, B_MATHS]))).rejects.toThrow(/does not exist/);
   });
 });
 

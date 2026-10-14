@@ -118,7 +118,7 @@ describe('on the real schema', () => {
     expect(await platform((c) => setSchoolBudget(c, { userId: FOUNDER }, FOUNDER, 100, 'x'))).toEqual({ ok: false, reason: 'not_found' });
     expect(await platform((c) => setSchoolBudget(c, { userId: FOUNDER }, A, 250000, 'Agreed with the principal on the phone.'))).toEqual({ ok: true });
     expect(await asPrincipal((c) => schoolSpend(c, A))).toMatchObject({ budgetPaise: 250000, spentPaise: 2596 });
-    expect((await db.pg.query(`select before_state, after_state from audit_log where event_action = 'whatsapp.budget_set'`)).rows).toEqual([{ before_state: { budgetPaise: null }, after_state: { budgetPaise: 250000, reason: 'Agreed with the principal on the phone.' } }]);
+    expect((await db.pg.query(`select before_state, after_state from audit_log where event_action = 'whatsapp.budget_set'`)).rows).toEqual([{ before_state: { budgetPaise: null }, after_state: { budgetPaise: 250000, reasoned: true } }]); // never a reason's words (C224)
     // Taken away again: nothing sends for the school.
     expect(await platform((c) => setSchoolBudget(c, { userId: FOUNDER }, A, null, 'The school asked to pause.'))).toEqual({ ok: true });
     expect((await asPrincipal((c) => schoolSpend(c, A))).budgetPaise).toBeNull();
