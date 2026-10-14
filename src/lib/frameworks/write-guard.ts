@@ -223,6 +223,8 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // p6-9c begin
   // p6-9c end
   // p6-9d begin
+  // The Curriculum Gap Detector (C216): one class and subject's units and their states. Read only.
+  ['curriculum-gap', 'curriculum-gap'],
   // p6-9d end
   // p6-9e begin
   // p6-9e end

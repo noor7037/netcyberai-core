@@ -3256,6 +3256,105 @@ const examsEntryDone = async () => {
 // p6-9c begin
 // p6-9c end
 // p6-9d begin
+// The Curriculum Gap Detector (C216). A fixture on the seed's syllabus map of 5-A Mathematics (five units, none taught):
+// lessons marked "Taught" for unit 1 (30 and 25 days ago) and unit 3 (20 days ago), and the exam "Unit test (harness
+// 9d)" whose 5-A Mathematics paper, 15 days ago, assesses units 1 and 4. So: 1 taught and assessed, 2 skipped, 3 taught
+// not assessed, 4 assessed before it was taught, 5 not taught yet. The module is switched on for the school (the seed
+// predates it). Each screen's check takes every row away and puts the switch back as it was.
+const G_EXAM = '00000000-0000-4000-8000-00000009de01';
+const G_PAPER = '00000000-0000-4000-8000-00000009df01';
+const G_LESSONS = ['00000000-0000-4000-8000-00000009dd01', '00000000-0000-4000-8000-00000009dd02', '00000000-0000-4000-8000-00000009dd03'];
+const G_5A = '00000000-0000-4000-8000-0000000c0051';
+const G_MATHS = '00000000-0000-4000-8000-0000000d0001';
+const G_TARA = '00000000-0000-4000-8000-0000000a2003';
+let gEntitlementBefore;
+const gapClear = async () => {
+  await db.pg.query(`delete from exam_papers where paper_id = $1`, [G_PAPER]);
+  await db.pg.query(`delete from exams where exam_id = $1`, [G_EXAM]);
+  await db.pg.query(`delete from syllabus_progress where progress_id = any ($1::uuid[])`, [G_LESSONS]);
+};
+const gapUnit = async (topic) => (await db.pg.query(`select unit_id from syllabus_units where school_id = $1 and class_id = $2 and subject_id = $3 and topic = $4`, [SCHOOL, G_5A, G_MATHS, topic])).rows[0].unit_id;
+const gapFixture = async () => {
+  await gapClear();
+  if (gEntitlementBefore === undefined) gEntitlementBefore = (await db.pg.query(`select enabled, source from school_module_entitlements where school_id = $1 and module_id = 'curriculum-gap'`, [SCHOOL])).rows[0] ?? null;
+  await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'curriculum-gap', true, 'plan') on conflict (school_id, module_id) do update set enabled = true`, [SCHOOL]);
+  const [u1, u3, u4] = [await gapUnit('Halves and quarters'), await gapUnit('Fractions on the number line'), await gapUnit('Tenths')];
+  for (const [id, unit, back] of [[G_LESSONS[0], u1, 30], [G_LESSONS[1], u1, 25], [G_LESSONS[2], u3, 20]]) {
+    await db.pg.query(
+      `insert into syllabus_progress (progress_id, school_id, teacher_id, class_id, subject_id, topic, status, date, unit_id) values ($1, $2, $3, $4, $5, 'Fractions (harness 9d)', 'taught', $6::date, $7)`,
+      [id, SCHOOL, G_TARA, G_5A, G_MATHS, indiaDay(back), unit]
+    );
+  }
+  await db.pg.query(`insert into exams (exam_id, school_id, name, created_by) values ($1, $2, 'Unit test (harness 9d)', $3)`, [G_EXAM, SCHOOL, PEOPLE.principal.sub]);
+  await db.pg.query(
+    `insert into exam_papers (paper_id, school_id, exam_id, class_id, subject_id, paper_date, unit_ids, components, created_by)
+     values ($1, $2, $3, $4, $5, $6::date, $7::uuid[], $8::jsonb, $9)`,
+    [G_PAPER, SCHOOL, G_EXAM, G_5A, G_MATHS, indiaDay(15), [u1, u4], JSON.stringify([{ key: 'marks', name: 'Marks', max: 25, share: null }]), PEOPLE.principal.sub]
+  );
+};
+const gapPutBack = async () => {
+  await gapClear();
+  if (gEntitlementBefore === null) await db.pg.query(`delete from school_module_entitlements where school_id = $1 and module_id = 'curriculum-gap'`, [SCHOOL]);
+  else if (gEntitlementBefore) await db.pg.query(`update school_module_entitlements set enabled = $2, source = $3 where school_id = $1 and module_id = 'curriculum-gap'`, [SCHOOL, gEntitlementBefore.enabled, gEntitlementBefore.source]);
+  gEntitlementBefore = undefined;
+};
+// The rows the screen read are still exactly the fixture's: a read changes nothing.
+const gapUntouched = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from syllabus_progress where school_id = $1 and progress_id = any ($5::uuid[]) and unit_id is not null and status = 'taught') as lessons,
+            (select count(*)::int from exam_papers where paper_id = $2 and cardinality(unit_ids) = 2) as papers,
+            (select count(*)::int from syllabus_units where school_id = $1 and class_id = $3 and subject_id = $4) as units`,
+    [SCHOOL, G_PAPER, G_5A, G_MATHS, G_LESSONS]
+  );
+  return rows[0];
+};
+// The principal: 5-A Mathematics, every unit once in the map's order, one in each state, and a count of each.
+let gapSeen = null;
+const gapPrincipal = async (page) => {
+  await gapFixture();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-gap-units]').waitFor({ timeout: 20000 });
+  gapSeen = {
+    states: await page.locator('[data-gap-state]').evaluateAll((els) => els.map((e) => e.getAttribute('data-gap-state'))),
+    counts: await page.locator('[data-gap-count]').evaluateAll((els) => els.map((e) => `${e.getAttribute('data-gap-count')}:${e.querySelector('span')?.textContent}`)),
+    classes: await page.locator('#gap-class option').evaluateAll((els) => els.map((e) => e.textContent)),
+    skipped: (await page.locator('[data-gap-state="skipped"] [data-gap-later]').textContent()) ?? '',
+  };
+};
+const gapPrincipalDone = async () => {
+  const untouched = await gapUntouched();
+  await gapPutBack();
+  if (JSON.stringify(untouched) !== JSON.stringify({ lessons: 3, papers: 1, units: 5 })) throw new Error(`the fixture in the database: ${JSON.stringify(untouched)}`);
+  const want = {
+    states: ['taught-assessed', 'skipped', 'taught-not-assessed', 'assessed-before-taught', 'not-yet-taught'],
+    counts: ['assessed-before-taught:1', 'taught-assessed:1', 'taught-not-assessed:1', 'skipped:1', 'not-yet-taught:1'],
+    classes: ['5-A', '5-B', '6-A'],
+  };
+  const { skipped, ...rest } = gapSeen ?? {};
+  if (JSON.stringify(rest) !== JSON.stringify(want)) throw new Error(`the gaps on the screen: ${JSON.stringify(gapSeen)}`);
+  if (!/Fractions on the number line/.test(skipped)) throw new Error(`the skipped unit does not say which later unit was taught: ${skipped}`);
+};
+// Tara, a teacher: only her own class is offered; English has no map in 5-A, so it says "Not set up", never zeros.
+let gapTeacherSeen = null;
+const gapTeacher = async (page) => {
+  await gapFixture();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-gap-units]').waitFor({ timeout: 20000 });
+  const states = await page.locator('[data-gap-state]').evaluateAll((els) => els.map((e) => e.getAttribute('data-gap-state')));
+  await page.locator('#gap-subject').selectOption({ label: 'English (no syllabus map yet)' });
+  await page.locator('[data-gap-not-set-up]').waitFor({ timeout: 20000 });
+  gapTeacherSeen = {
+    classes: await page.locator('#gap-class option').evaluateAll((els) => els.map((e) => e.textContent)),
+    states,
+    counts: await page.locator('[data-gap-count]').count(),
+    notSetUp: (await page.locator('[data-gap-not-set-up]').innerText()).includes('Not set up'),
+  };
+};
+const gapTeacherDone = async () => {
+  await gapPutBack();
+  const want = { classes: ['5-A'], states: ['taught-assessed', 'skipped', 'taught-not-assessed', 'assessed-before-taught', 'not-yet-taught'], counts: 0, notSetUp: true };
+  if (JSON.stringify(gapTeacherSeen) !== JSON.stringify(want)) throw new Error(`the teacher's gaps on the screen: ${JSON.stringify(gapTeacherSeen)}`);
+};
 // p6-9d end
 // p6-9e begin
 // p6-9e end
@@ -3904,6 +4003,8 @@ const SCREENS = [
   // p6-9c begin
   // p6-9c end
   // p6-9d begin
+  ['principal', 'app-curriculum-gap', '/app/curriculum-gap', gapPrincipal, gapPrincipalDone],
+  ['teacher', 'app-curriculum-gap-teacher', '/app/curriculum-gap', gapTeacher, gapTeacherDone],
   // p6-9d end
   // p6-9e begin
   // p6-9e end
