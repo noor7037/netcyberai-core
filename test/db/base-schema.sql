@@ -670,3 +670,28 @@ alter table rte_claims enable row level security;
 create policy rte_claims_tenant_isolation on rte_claims using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 create policy rte_claims_finance on rte_claims as restrictive for all using (current_setting('app.current_role', true) in ('principal', 'school_admin', 'accountant'));
 grant select on rte_claims to app_user;
+-- Teacher qualifications (C227), as My Day counts the certificates and approvals ending within the school's window
+-- (the p7_compliance_desk migration): the office only.
+create table staff_qualifications (
+  qualification_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  user_id uuid not null,
+  stage text,
+  subjects text,
+  degree text,
+  postgraduate_degree text,
+  professional_qualification text,
+  tet_type text,
+  tet_paper text,
+  tet_certificate_date date,
+  tet_valid_until date,
+  other_approval text,
+  other_valid_until date,
+  updated_by uuid not null,
+  updated_at timestamptz not null default now(),
+  unique (school_id, user_id)
+);
+alter table staff_qualifications enable row level security;
+create policy staff_qualifications_tenant_isolation on staff_qualifications using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy staff_qualifications_office on staff_qualifications as restrictive for all using (current_setting('app.current_role', true) in ('principal', 'school_admin'));
+grant select on staff_qualifications to app_user;

@@ -109,6 +109,8 @@ export const TOURS = {
   'fees-rte': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // p7-10c end
   // p7-10d begin
+  'compliance-desk': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
+  'compliance-disclosure': { steps: [{ slot: 'primary' }] },
   // p7-10d end
   // p7-10e begin
   // p7-10e end

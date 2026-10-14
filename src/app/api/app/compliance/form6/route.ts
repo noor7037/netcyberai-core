@@ -10,9 +10,18 @@ import { computeForm6Advisory, muteForm6Advisory, unmuteForm6Advisory } from '@/
 // jurisdictionApplies so the UI can honor that gate; a non-Haryana
 // school gets a real, correct "does not apply" rather than the advisory
 // silently showing anyway.
+//
+// Read by the principal and the school admin (the Compliance page and the compliance desk, C227) and by the
+// accountant: Form 6 is fee data, worked out from the fee structures the accountant keeps. A teacher and the academic
+// coordinator are refused (C227; before, any staff account of the school could read it).
+const FORM6_READERS: readonly string[] = ['principal', 'school_admin', 'accountant'];
+
 export async function GET(req: NextRequest) {
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
+  if (!FORM6_READERS.includes(guard.claims.role)) {
+    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+  }
 
   try {
     const advisory = await withTenantContext(guard.claims, async (client) => {

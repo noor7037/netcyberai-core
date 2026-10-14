@@ -205,6 +205,10 @@ const APP_USER: Record<string, string> = {
   rte_evidence: 'DELETE,INSERT,SELECT', // a wrong piece of evidence is removed, audited; never changed
   // p7-10c end
   // p7-10d begin
+  staff_qualifications: 'INSERT,SELECT,UPDATE', // a staff member's row, changed in place by the office; never removed (C227)
+  disclosure_entries: 'INSERT,SELECT', // every change is a new entry; none is changed or removed
+  sqaaf_standards: 'SELECT', // CBSE's standards as data: read only; a new edition comes by a migration
+  sqaaf_evidence: 'DELETE,INSERT,SELECT', // a wrong piece of evidence is removed, audited; never changed
   // p7-10d end
   // p7-10e begin
   // p7-10e end
@@ -339,6 +343,10 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   rte_evidence: '',
   // p7-10c end
   // p7-10d begin
+  staff_qualifications: '', // the school's staff records and its compliance desk are its own: the platform role reads nothing here (C227)
+  disclosure_entries: '',
+  sqaaf_standards: '',
+  sqaaf_evidence: '',
   // p7-10d end
   // p7-10e begin
   // p7-10e end

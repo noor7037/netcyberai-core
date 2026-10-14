@@ -72,6 +72,7 @@ export const TODAY_CARD_TYPES = [
   'rte-claims-unpaid',
   // p7-10c end
   // p7-10d begin
+  'qualifications-ending',
   // p7-10d end
   // p7-10e begin
   // p7-10e end

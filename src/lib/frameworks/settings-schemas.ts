@@ -548,6 +548,60 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // p7-10c begin
   // p7-10c end
   // p7-10d begin
+  {
+    // The compliance desk's teacher register (C227): the rules of the website's Teacher qualification and TET register
+    // (src/lib/free-tools/teacher-register.ts). The defaults are the tool's defaultRegisterSettings() and the window
+    // options its WINDOWS; test/compliance/register.test.ts holds them together. Read with the tool's own
+    // cleanRegisterSettings (src/lib/compliance/register-rules.ts registerSettingsOf).
+    moduleId: 'compliance',
+    version: 1,
+    fields: [
+      {
+        key: 'expiry_window',
+        label: 'Show certificates ending within',
+        help: 'A TET certificate or another approval with a valid-until date within this many days, or already passed, is listed on the compliance desk and on My Day. A blank valid-until date is no end date.',
+        section: 'Teacher qualifications',
+        type: 'select',
+        default: '90',
+        options: [
+          { value: '30', label: '30 days' },
+          { value: '60', label: '60 days' },
+          { value: '90', label: '90 days' },
+        ],
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      // Each stage's requirements, one on/off setting each (the generated Settings screen has an editor for on/off).
+      ...(
+        [
+          ['pre', 'Pre-primary'],
+          ['primary', 'Primary (I–V)'],
+          ['upper', 'Upper primary (VI–VIII)'],
+          ['secondary', 'Secondary (IX–X)'],
+          ['senior', 'Senior secondary (XI–XII)'],
+        ] as const
+      ).flatMap(([stage, stageLabel]) =>
+        (
+          [
+            ['degree', 'Degree', 'A degree'],
+            ['professional', 'Professional qualification (B.Ed, D.El.Ed or other)', 'A professional qualification (B.Ed, D.El.Ed or other)'],
+            ['tet', 'TET', 'A TET'],
+            ['pg', 'Postgraduate degree', 'A postgraduate degree'],
+          ] as const
+        ).map(([rule, ruleLabel, what]) => ({
+          key: `${stage}_${rule}`,
+          label: `${stageLabel}: ${ruleLabel}`,
+          help: `${what} is needed to teach this stage: a teacher of the stage with none recorded is listed as a gap on the compliance desk. TET starts on for classes I to VIII, as the NCTE requires under the RTE Act; check your board’s and state’s rules for the rest.`,
+          section: 'Teacher qualifications',
+          type: 'boolean' as const,
+          default: rule === 'tet' && (stage === 'primary' || stage === 'upper'),
+          editableBy: OFFICE,
+          affectsExistingRecords: false,
+        }))
+      ),
+    ],
+  },
   // p7-10d end
   // p7-10e begin
   // p7-10e end
