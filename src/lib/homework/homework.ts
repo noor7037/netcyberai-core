@@ -147,14 +147,26 @@ export async function listAssignmentsIn(db: PoolClient, schoolId: string, show: 
 // The same assignments, counted (never cut short): how many each list above holds, and how many times a student
 // was marked "not done" on the ones due. One query shape with the lists, so a count and its rows cannot differ.
 export type AssignmentCounts = Record<HomeworkShow, number> & { notDoneMarks: number };
+// What is counted, and of which assignments: written once, for the school's counts and for the same counts a
+// class at a time, so the classes cannot add up to anything but the school's numbers.
+const SET_IN = `from (${ASSIGNMENTS} where t.school_id = $1 and ${SET_ON} between $2::date and $3::date) a`;
+const DUE_IN = `from (${ASSIGNMENTS} where t.school_id = $1 and t.due_date between $2::date and $3::date) a`;
+const DUE_COUNTS = `count(*) filter (where ${SHOWN.due}) as due, count(*) filter (where ${SHOWN.checked}) as checked, count(*) filter (where ${SHOWN.unchecked}) as unchecked, count(*) filter (where ${SHOWN.not_done}) as not_done, coalesce(sum(a.checked - a.done), 0) as marks`;
+const dueCounts = (due: Record<string, unknown> | undefined) => ({ due: Number(due?.due ?? 0), checked: Number(due?.checked ?? 0), unchecked: Number(due?.unchecked ?? 0), not_done: Number(due?.not_done ?? 0), notDoneMarks: Number(due?.marks ?? 0) });
 export async function countAssignmentsIn(db: PoolClient, schoolId: string, from: string, to: string): Promise<AssignmentCounts> {
-  const set = (await db.query(`select count(*) as n from (${ASSIGNMENTS} where t.school_id = $1 and ${SET_ON} between $2::date and $3::date) a`, [schoolId, from, to])).rows[0];
-  const due = (await db.query(
-    `select count(*) filter (where ${SHOWN.due}) as due, count(*) filter (where ${SHOWN.checked}) as checked, count(*) filter (where ${SHOWN.unchecked}) as unchecked, count(*) filter (where ${SHOWN.not_done}) as not_done, coalesce(sum(a.checked - a.done), 0) as marks
-       from (${ASSIGNMENTS} where t.school_id = $1 and t.due_date between $2::date and $3::date) a`,
-    [schoolId, from, to]
-  )).rows[0];
-  return { set: Number(set.n), due: Number(due.due), checked: Number(due.checked), unchecked: Number(due.unchecked), not_done: Number(due.not_done), notDoneMarks: Number(due.marks) };
+  const set = (await db.query(`select count(*) as n ${SET_IN}`, [schoolId, from, to])).rows[0];
+  const due = (await db.query(`select ${DUE_COUNTS} ${DUE_IN}`, [schoolId, from, to])).rows[0];
+  return { set: Number(set.n), ...dueCounts(due) };
+}
+// The same counts, a class at a time (docs/26 slice 8h, C207): the rows of the homework coverage report, counted
+// in the database, so a busy year is never cut short. A class with no homework given out or due in the days has
+// no row.
+export async function countAssignmentsByClass(db: PoolClient, schoolId: string, from: string, to: string): Promise<(AssignmentCounts & { class_id: string })[]> {
+  const set = (await db.query(`select a.class_id, count(*) as n ${SET_IN} group by a.class_id`, [schoolId, from, to])).rows;
+  const due = (await db.query(`select a.class_id, ${DUE_COUNTS} ${DUE_IN} group by a.class_id`, [schoolId, from, to])).rows;
+  const setIn = new Map(set.map((r) => [r.class_id as string, Number(r.n)]));
+  const dueIn = new Map(due.map((r) => [r.class_id as string, r]));
+  return [...new Set([...setIn.keys(), ...dueIn.keys()])].sort().map((class_id) => ({ class_id, set: setIn.get(class_id) ?? 0, ...dueCounts(dueIn.get(class_id)) }));
 }
 
 export type CheckRow = { student_id: string; name: string; roll_no: string | null; done: boolean | null };

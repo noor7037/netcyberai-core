@@ -156,6 +156,10 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // p5-8g begin
   // p5-8g end
   // p5-8h begin
+  // Reports (C207): the list for the role, one report's rows, and its CSV (a read that also writes its own audit
+  // row). Switched off, none of them answers. Which report a role may read is the route's own check.
+  ['reports/**', 'reports'],
+  ['reports', 'reports'],
   // p5-8h end
   // p5-8i begin
   // p5-8i end

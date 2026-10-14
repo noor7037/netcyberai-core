@@ -57,13 +57,19 @@ export async function listSent(db: PoolClient, schoolId: string, from: string, t
 // The same messages, added up (never cut short): how many were sent, how many went out to parents or were held,
 // and what parents answered. One query shape with the list, so a total and its rows cannot differ.
 export type SentTotals = { sent: number; queued: number; held: number; understood: number; needs_help: number };
+// What is added up, and of which messages: written once, for the school's totals and for the same totals a class
+// at a time, so the classes cannot add up to anything but the school's numbers.
+const SENT_SUMS = `count(*) as sent, coalesce(sum(x.queued), 0) as queued, coalesce(sum(x.held), 0) as held, coalesce(sum(x.understood), 0) as understood, coalesce(sum(x.needs_help), 0) as needs_help`;
+const SENT_IN = `from (${SELECT} where m.school_id = $1 and m.status = 'sent' and m.sent_on between $2::date and $3::date) x`;
+const sentSums = (r: Record<string, unknown>): SentTotals => ({ sent: Number(r.sent), queued: Number(r.queued), held: Number(r.held), understood: Number(r.understood), needs_help: Number(r.needs_help) });
 export async function sentTotals(db: PoolClient, schoolId: string, from: string, to: string): Promise<SentTotals> {
-  const r = (await db.query(
-    `select count(*) as sent, coalesce(sum(x.queued), 0) as queued, coalesce(sum(x.held), 0) as held, coalesce(sum(x.understood), 0) as understood, coalesce(sum(x.needs_help), 0) as needs_help
-       from (${SELECT} where m.school_id = $1 and m.status = 'sent' and m.sent_on between $2::date and $3::date) x`,
-    [schoolId, from, to]
-  )).rows[0];
-  return { sent: Number(r.sent), queued: Number(r.queued), held: Number(r.held), understood: Number(r.understood), needs_help: Number(r.needs_help) };
+  return sentSums((await db.query(`select ${SENT_SUMS} ${SENT_IN}`, [schoolId, from, to])).rows[0]);
+}
+// The same totals, a class at a time (docs/26 slice 8h, C207): the rows of the Daily Pulse coverage report,
+// counted in the database, so a busy year is never cut short. A class with no message sent for the days has no row.
+export async function sentTotalsByClass(db: PoolClient, schoolId: string, from: string, to: string): Promise<(SentTotals & { class_id: string })[]> {
+  const { rows } = await db.query(`select x.class_id, ${SENT_SUMS} ${SENT_IN} group by x.class_id order by x.class_id`, [schoolId, from, to]);
+  return rows.map((r) => ({ class_id: r.class_id as string, ...sentSums(r) }));
 }
 
 // The words for one lesson, from the classwork log row and the homework
