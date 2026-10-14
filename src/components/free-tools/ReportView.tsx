@@ -32,6 +32,22 @@ export function ReportView({
   return (
     <article className="nca-report flex flex-col gap-6 rounded-3xl border border-slate/10 bg-white p-5 sm:p-8" aria-label={report.title}>
       <header className="flex flex-col gap-1 border-b border-slate/10 pb-4">
+        {report.school && (
+          <div className="mb-3 flex items-center gap-3">
+            {report.school.logo && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={report.school.logo} alt="" className="h-14 w-auto max-w-[7rem] object-contain" />
+            )}
+            <div className="min-w-0">
+              <p className="text-lg font-extrabold text-slate">{report.school.name}</p>
+              {report.school.lines.map((l) => (
+                <p key={l} className="text-xs text-slate/70">
+                  {l}
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
         <H className="text-2xl font-extrabold text-sapphire">{report.title}</H>
         {report.subtitle && <p className="text-slate/70">{report.subtitle}</p>}
         <p className="text-xs text-slate/70">

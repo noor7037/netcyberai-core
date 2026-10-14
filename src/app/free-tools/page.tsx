@@ -6,13 +6,12 @@ import { EyebrowOnDark } from '@/components/visual/Primitives';
 import { SpotlightCard } from '@/components/visual/SpotlightCard';
 import { Icon } from '@/components/visual/Icons';
 import { TrialCta } from '@/components/free-tools/TrialCta';
-import { FREE_TOOLS_UPDATED, KIND_LABELS, toolsOfKind, type FreeToolKind } from '@/content/free-tools';
+import { SchoolProfilePanel } from '@/components/free-tools/SchoolProfilePanel';
+import { FREE_TOOLS_UPDATED, KIND_LABELS, KIND_ORDER, toolsOfKind } from '@/content/free-tools';
 import { tones } from '@/lib/semantic';
 import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd } from '@/lib/seo';
 
 export const metadata = buildMetadata(pageMeta.freeTools);
-
-const ORDER: FreeToolKind[] = ['decision', 'certificate', 'data'];
 
 export default function FreeToolsPage() {
   return (
@@ -26,9 +25,9 @@ export default function FreeToolsPage() {
             Free tools for the decisions schools make every term
           </h1>
           <p className="max-w-3xl text-lg opacity-90">
-            Plan fees and collections, rescue attendance before exams, size classrooms and sections, check timetables, analyse marks, budget payroll and
-            running costs, and print transfer, bonafide and character certificates, report cards and fee receipts. Every tool runs in your browser, needs
-            no login and ends in a printable PDF.
+            Plan fees and attendance, print certificates for a whole class at once, check student data before UDISE+ and APAAR, build RTE claims, follow up
+            admission enquiries and fee promises, and draft report card remarks. Save your school’s details once and every tool fills them in. Every tool
+            runs in your browser, needs no login and ends in a printable PDF.
           </p>
           <ul className="flex flex-wrap gap-2 text-sm font-semibold">
             <li className="inline-flex items-center gap-2 rounded-full border border-white/25 px-3 py-1">
@@ -42,7 +41,13 @@ export default function FreeToolsPage() {
         </Container>
       </section>
 
-      {ORDER.map((kind, i) => (
+      <section aria-label="Your school’s details" className="bg-white">
+        <Container wide className="py-10">
+          <SchoolProfilePanel />
+        </Container>
+      </section>
+
+      {KIND_ORDER.map((kind, i) => (
         <section key={kind} aria-labelledby={`kind-${kind}`} className={i % 2 ? 'bg-white' : 'bg-off-white'}>
           <Container wide className="flex flex-col gap-6 py-14">
             <div className="flex flex-col gap-1">

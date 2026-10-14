@@ -168,7 +168,7 @@ export const pageMeta = {
     path: '/free-tools',
     title: 'Free Tools for Schools',
     description:
-      'Free school tools: fee planner, attendance recovery, capacity, timetable and marks checks, payroll, and TC, bonafide and report card generators with PDF.',
+      'Free school tools: fee and attendance planners, bulk TC and certificate maker, APAAR data check, RTE claim sheet, admission and fee trackers and remarks.',
   },
   productTour: {
     path: '/product-tour',

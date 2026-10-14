@@ -5,9 +5,12 @@ import { Icon } from '@/components/visual/Icons';
 import { parseCsv } from '@/lib/import/csv';
 import { UI, type Lang } from '@/lib/free-tools/engine';
 import { analyseMarks, type MarksInput, type StudentMarks, type Subject } from '@/lib/free-tools/marks';
+import { withSchool } from '@/lib/free-tools/report';
 import { LangToggle } from './ToolShell';
 import { ReportActions, btnQuiet, useToday } from './ReportActions';
 import { ReportView } from './ReportView';
+import { SchoolProfilePanel } from './SchoolProfilePanel';
+import { useSchoolProfile } from './useSchoolProfile';
 
 const RULES_UPDATED = '27 September 2026';
 const KEY = 'nca-free-tool:exam-marks-analyzer';
@@ -88,6 +91,8 @@ export function MarksAnalyzerTool({ example }: { example: MarksInput }) {
   const setStudent = (i: number, patch: Partial<StudentMarks>) => update({ ...data, students: data.students.map((s, j) => (j === i ? { ...s, ...patch } : s)) });
 
   const result = useMemo(() => analyseMarks(data, lang), [data, lang]);
+  const { profile } = useSchoolProfile();
+  const report = useMemo(() => withSchool(result.report, profile), [result.report, profile]);
   const names = data.subjects.map((s) => s.name).filter(Boolean);
 
   async function importCsv(file: File) {
@@ -127,6 +132,7 @@ export function MarksAnalyzerTool({ example }: { example: MarksInput }) {
 
   return (
     <div className="flex flex-col gap-8">
+      <SchoolProfilePanel compact />
       <div className="flex flex-wrap items-center gap-2">
         <LangToggle lang={lang} setLang={setLang} />
         <button type="button" className={btnQuiet} onClick={() => (setData(example), setIsExample(true))}>
@@ -325,8 +331,8 @@ export function MarksAnalyzerTool({ example }: { example: MarksInput }) {
           </div>
         ) : (
           <>
-            <ReportActions report={result.report} lang={lang} fileBase={`Marks analysis ${data.exam}`} rulesUpdated={RULES_UPDATED} sourcePath="/free-tools/exam-marks-analyzer" />
-            <ReportView report={result.report} meta={{ generatedOn: today, rulesUpdated: RULES_UPDATED, rulesLabel: UI.lastUpdated[lang], assumptionsLabel: UI.assumptions[lang] }} />
+            <ReportActions report={report} lang={lang} fileBase={`Marks analysis ${data.exam}`} rulesUpdated={RULES_UPDATED} sourcePath="/free-tools/exam-marks-analyzer" />
+            <ReportView report={report} meta={{ generatedOn: today, rulesUpdated: RULES_UPDATED, rulesLabel: UI.lastUpdated[lang], assumptionsLabel: UI.assumptions[lang] }} />
           </>
         )}
       </div>

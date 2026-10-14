@@ -8,6 +8,13 @@ import { FaqBlock } from '@/components/content/FaqBlock';
 import { CertificateStudio } from '@/components/free-tools/CertificateStudio';
 import { ImportCheckerTool } from '@/components/free-tools/ImportCheckerTool';
 import { MarksAnalyzerTool } from '@/components/free-tools/MarksAnalyzerTool';
+import { StudentDataCheckTool } from '@/components/free-tools/StudentDataCheckTool';
+import { RteClaimTool } from '@/components/free-tools/RteClaimTool';
+import { TeacherRegisterTool } from '@/components/free-tools/TeacherRegisterTool';
+import { AdmissionsTrackerTool } from '@/components/free-tools/AdmissionsTrackerTool';
+import { FeePromiseTool } from '@/components/free-tools/FeePromiseTool';
+import { RemarksBuilderTool } from '@/components/free-tools/RemarksBuilderTool';
+import { LessonPlanTool } from '@/components/free-tools/LessonPlanTool';
 import { ToolShell } from '@/components/free-tools/ToolShell';
 import { TrialCta } from '@/components/free-tools/TrialCta';
 import { LockedFeatures } from '@/components/free-tools/LockedFeatures';
@@ -30,6 +37,18 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   return buildMetadata({ path: `/free-tools/${t.slug}`, title: t.title, description: t.description });
 }
 
+// Tools with their own screen; every other calculator runs in ToolShell.
+const OWN_SCREEN: Record<string, () => JSX.Element> = {
+  'student-import-checker': ImportCheckerTool,
+  'student-data-check': StudentDataCheckTool,
+  'rte-claim-sheet-builder': RteClaimTool,
+  'teacher-qualification-register': TeacherRegisterTool,
+  'admissions-enquiry-tracker': AdmissionsTrackerTool,
+  'fee-promise-tracker': FeePromiseTool,
+  'report-card-remarks-builder': RemarksBuilderTool,
+  'lesson-plan-worksheet-maker': LessonPlanTool,
+};
+
 function Tool({ t }: { t: FreeTool }) {
   const path = `/free-tools/${t.slug}`;
   if (t.kind === 'certificate') {
@@ -37,7 +56,8 @@ function Tool({ t }: { t: FreeTool }) {
     return def ? <CertificateStudio initialType={def.type} /> : null;
   }
   if (t.slug === 'exam-marks-analyzer') return <MarksAnalyzerTool example={MARKS_EXAMPLE} />;
-  if (t.slug === 'student-import-checker') return <ImportCheckerTool />;
+  const Own = OWN_SCREEN[t.slug];
+  if (Own) return <Own />;
   return <ToolShell slug={t.slug} example={TOOL_EXAMPLES[t.slug]} name={t.name} path={path} />;
 }
 
@@ -92,7 +112,7 @@ export default function FreeToolPage({ params }: { params: { slug: string } }) {
               <Icon name="lock" className="h-4 w-4" /> Runs in your browser
             </li>
             <li className="inline-flex items-center gap-2 rounded-full border border-white/25 px-3 py-1">
-              <Icon name="chat" className="h-4 w-4" /> {t.kind === 'certificate' ? 'Print-ready A4 PDF' : 'English and Hinglish'}
+              <Icon name="chat" className="h-4 w-4" /> {t.kind === 'certificate' ? 'Print-ready A4 PDF' : t.kind === 'decision' ? 'English and Hinglish' : 'Print, PDF and CSV'}
             </li>
             <li className="inline-flex items-center gap-2 rounded-full border border-white/25 px-3 py-1">Last updated {FREE_TOOLS_UPDATED}</li>
           </ul>

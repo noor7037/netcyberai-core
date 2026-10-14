@@ -14,7 +14,10 @@ import type { Tone } from '@/lib/semantic';
 // decision; the feature page explains the real thing). next.config.js
 // redirects each old address.
 
-export type FreeToolKind = 'decision' | 'certificate' | 'data';
+export type FreeToolKind = 'decision' | 'certificate' | 'data' | 'compliance' | 'office' | 'teaching';
+
+// The order the groups appear in on /free-tools and in the menu.
+export const KIND_ORDER: FreeToolKind[] = ['decision', 'certificate', 'data', 'compliance', 'office', 'teaching'];
 
 export interface FreeTool {
   slug: string;
@@ -52,12 +55,12 @@ export const NETCYBERAI_UNLOCKS: Record<FreeToolKind, { title: string; items: { 
   certificate: {
     title: 'Unlocked with NetCyberAI',
     items: [
-      { title: 'Bulk certificates in one click', text: 'A whole class or batch from your student records, with numbers issued in sequence.' },
+      { title: 'Certificates straight from your records', text: 'A whole class made from the student record, with no list to prepare and numbers issued in sequence.' },
       { title: 'Auto-send to parents', text: 'The signed PDF goes to each family on WhatsApp the moment it is approved.' },
       { title: 'Online QR verification', text: 'Colleges and employers scan to confirm a certificate against the school’s record.' },
       { title: 'Request to signature workflow', text: 'Application, fee clearance, remarks and principal sign-off, with nothing lost on a desk.' },
       { title: 'Permanent issue register', text: 'Every certificate recorded, duplicates blocked, reprints in seconds.' },
-      { title: 'School details saved once', text: 'Logo, seal and signatures set up once for every authorised staff member.' },
+      { title: 'Signatures and seal set up once', text: 'Logo, seal and signatures kept securely for every authorised staff member.' },
     ],
   },
   decision: {
@@ -78,6 +81,39 @@ export const NETCYBERAI_UNLOCKS: Record<FreeToolKind, { title: string; items: { 
       { title: 'We load your data for you', text: 'Send your Excel sheet, or even paper registers, and our team does the upload free.' },
       { title: 'Consent recorded for every family', text: 'Guardian consent tracked before any message is sent.' },
       { title: 'One master record', text: 'Fees, attendance and certificates all read from the same student record.' },
+      { title: 'Mismatches caught on entry', text: 'Names and dates of birth checked as they are typed, before they reach UDISE+.' },
+      { title: 'Corrections asked on WhatsApp', text: 'Each family is asked to confirm the right spelling and date, with the reply kept on record.' },
+    ],
+  },
+  compliance: {
+    title: 'Unlocked with NetCyberAI',
+    items: [
+      { title: 'Evidence filed as you go', text: 'Each RTE child’s documents are attached to the student record from admission onward.' },
+      { title: 'Claims from your own records', text: 'Enrolment, attendance and fee records fill the claim sheet, so nothing is retyped.' },
+      { title: 'Unpaid claims followed up', text: 'Every claim tracked by age until it is paid, with the next step and an owner.' },
+      { title: 'Qualification alerts', text: 'The principal is told before a teacher’s certificate or approval runs out.' },
+      { title: 'Disclosures kept current', text: 'Mandatory disclosure and fee forms drawn from one up-to-date school record.' },
+      { title: 'Inspection evidence all year', text: 'Registers, photos and reports tagged to each quality standard as the work happens.' },
+    ],
+  },
+  office: {
+    title: 'Unlocked with NetCyberAI',
+    items: [
+      { title: 'Enquiries straight from WhatsApp', text: 'A parent’s message becomes an enquiry with an owner and a follow-up date.' },
+      { title: 'Reminders for every follow-up', text: 'Staff see the calls and visits due today without opening a register.' },
+      { title: 'Promises checked against payments', text: 'A promise to pay is matched to the payment when it reaches the school’s bank.' },
+      { title: 'Hardship handled by a person', text: 'Families who ask for help go to a named staff member and are never chased by automation.' },
+      { title: 'Admission to fee schedule in one step', text: 'A confirmed admission becomes a student record and the family’s fee plan.' },
+      { title: 'Free setup and staff training', text: 'We set it up with your team and train your staff at no cost.' },
+    ],
+  },
+  teaching: {
+    title: 'Unlocked with NetCyberAI',
+    items: [
+      { title: 'Drafts from the class record', text: 'Remarks drafted from marks and attendance already in the system, for the teacher to edit.' },
+      { title: 'Plans against the syllabus', text: 'Lesson plans laid out across the term, showing what is done and what is left.' },
+      { title: 'Worksheets for each class', text: 'Practice sheets drafted for the topic, reviewed by the teacher before students see them.' },
+      { title: 'Nothing goes out unchecked', text: 'Every draft waits for the teacher’s edit and approval before it is used.' },
     ],
   },
 };
@@ -85,20 +121,23 @@ export const NETCYBERAI_UNLOCKS: Record<FreeToolKind, { title: string; items: { 
 export const KIND_LABELS: Record<FreeToolKind, { title: string; blurb: string }> = {
   decision: { title: 'Planning and decision tools', blurb: 'Fees, attendance, capacity, timetables, marks, payroll and budgets.' },
   certificate: { title: 'Certificates and receipts', blurb: 'Print-ready A4 documents with your logo. Nothing is uploaded.' },
-  data: { title: 'Data checks', blurb: 'Check a list before it goes anywhere.' },
+  data: { title: 'Student data checks', blurb: 'Find the errors in a student list before they reach an import, UDISE+ or APAAR.' },
+  compliance: { title: 'Compliance and claims', blurb: 'RTE reimbursement claims and the teacher qualification register.' },
+  office: { title: 'Follow-up trackers', blurb: 'Admission enquiries and fee promises, followed up on the right day.' },
+  teaching: { title: 'Teacher help', blurb: 'Report card remarks, lesson plans and worksheets, ready for the teacher to edit.' },
 };
 
 const certSteps = (doc: string): FreeTool['steps'] => [
   { name: 'Choose the design', text: `Pick ${doc} and a template. Black-and-white templates suit official records; colour suits celebrations.` },
-  { name: 'Add your school details', text: 'Type the school name, affiliation number and address, and add your logo from the gallery. Save a school profile file to reuse next time.' },
-  { name: 'Fill in the student details', text: 'The live preview updates as you type. Required fields are marked with a star.' },
+  { name: 'Add your school details once', text: 'Type the school name, affiliation number, address and logo, and save them in this browser. Every certificate and tool fills them in from then on.' },
+  { name: 'Fill in one student, or a whole list', text: 'Type one student with a live preview, or open a CSV of up to 200 students to make them all at once. Required fields are marked with a star.' },
   { name: 'Generate, then download or print', text: 'Press Generate, then download the A4 PDF at 300 DPI or print it. Start new keeps the school details and moves the number on by one.' },
 ];
 
 const certFaqs = (doc: string): FreeTool['faqs'] => [
   {
     question: `Is my ${doc} data uploaded or stored anywhere?`,
-    answer: 'No. The form, the logo and the finished certificate stay in your browser tab and are never sent to NetCyberAI. Closing or refreshing the tab clears them. The PDF is made on your device.',
+    answer: 'No. Nothing is sent to NetCyberAI and the PDF is made on your device. Only your school’s own details and logo are saved, in this browser, if you choose. Student details stay in the tab and are cleared when you close it.',
   },
   {
     question: 'How many certificates can I make for free?',
@@ -564,7 +603,7 @@ export const freeTools: FreeTool[] = [
     steps: certSteps('an Achievement Certificate'),
     faqs: [
       certFaqs('achievement certificate')[0],
-      { question: 'Can I make certificates for a whole class at once?', answer: 'The free tool makes one certificate at a time. Bulk certificates for a whole class, and sending each one to the family on WhatsApp automatically, come with NetCyberAI. Book a free trial to see it with your own students.' },
+      { question: 'Can I make certificates for a whole class at once?', answer: 'Yes. Open a CSV of up to 200 names and the tool makes one PDF with a page for each, numbered in sequence. In NetCyberAI the list comes from your student records and each certificate reaches the family on WhatsApp.' },
       certFaqs('achievement certificate')[1],
       certFaqs('achievement certificate')[3],
     ],
@@ -603,6 +642,218 @@ export const freeTools: FreeTool[] = [
     keywords: ['student data import template', 'check duplicate admission numbers', 'student list excel format', 'school data migration'],
     blogSlug: 'onboarding-500-students-without-dpdp-problem',
     product: { text: 'In NetCyberAI the same checks run when a school imports its list: every valid row is saved in one step, and every problem row is reported back instead of silently dropped.', href: '/products/school-management', cta: 'See School Management' },
+  },
+  {
+    slug: 'student-data-check',
+    kind: 'data',
+    name: 'Student Data Check for UDISE+ and APAAR',
+    menuBlurb: 'Find name and date of birth mismatches before APAAR.',
+    icon: 'search',
+    tone: 'success',
+    title: 'Free Student Data Check for UDISE+ and APAAR',
+    description:
+      'Compare your school register with Aadhaar details to find the name, date of birth and gender mismatches that stop APAAR IDs and print parent correction letters.',
+    heroLead:
+      'Open your student list with each name, date of birth and gender as the school records them and as printed on Aadhaar. The check lists every mismatch that can stop an APAAR ID being created, sorts them by what to fix first, and prints a correction request for each family to sign.',
+    problem:
+      'APAAR IDs are created only when the school’s UDISE+ record matches Aadhaar, so one spelling or date difference leaves a child without an ID and the office chasing families at the last minute.',
+    steps: [
+      { name: 'Open your list', text: 'Paste a CSV or open the file, with the school’s and Aadhaar’s name, date of birth and gender for each student. Download the template to start.' },
+      { name: 'Read the mismatches', text: 'Every difference is listed by type: exact match, spacing or capitals only, a likely spelling slip, names in another order, or a real difference.' },
+      { name: 'Print the correction letters', text: 'One letter per family shows both versions side by side and asks which is right, with space to sign. Your school’s details fill the letterhead.' },
+      { name: 'Correct and check again', text: 'Fix the school record or ask the family to correct Aadhaar, then run the check again until every row matches.' },
+    ],
+    faqs: [
+      { question: 'Is the student list uploaded?', answer: 'No. The file is read in your browser and nothing is sent to NetCyberAI. Closing the tab clears it. Save your corrected list as a CSV on your own computer.' },
+      { question: 'Why do mismatches stop APAAR IDs?', answer: 'APAAR ID creation checks the name, date of birth and gender in the school’s UDISE+ record against Aadhaar. When they differ, the ID is not created until one of the two records is corrected.' },
+      { question: 'Which record should be corrected?', answer: 'The one that is wrong. A school record error is corrected in UDISE+, which may need approval from the block or district office. An Aadhaar error is corrected by the family with UIDAI.' },
+      { question: 'Does it catch small spelling differences?', answer: 'Yes. It separates differences of spacing or capitals, a single changed letter, and names written in another order from real differences, so a person can decide each one quickly.' },
+      { question: 'What does the parent letter say?', answer: 'It names the student and class, shows the school’s and Aadhaar’s versions side by side, and asks the family to confirm the right one and bring proof. You print or share each letter yourself.' },
+    ],
+    keywords: ['apaar id name mismatch', 'udise plus student data correction', 'aadhaar name mismatch in school records', 'apaar id not generated'],
+    product: { text: 'NetCyberAI is built to check each student record as it is entered, list mismatches for the office with an owner, and ask families on WhatsApp to confirm corrections. Ask us which parts are live for your school today.', href: '/products/school-management', cta: 'See School Management' },
+  },
+
+  // ---- compliance and claims ------------------------------------------------------
+  {
+    slug: 'rte-claim-sheet-builder',
+    kind: 'compliance',
+    name: 'RTE Reimbursement Claim Sheet Builder',
+    menuBlurb: 'Claim per child, a document checklist and unpaid dues.',
+    icon: 'compliance',
+    tone: 'trust',
+    title: 'Free RTE Reimbursement Claim Sheet Builder',
+    description:
+      'Build an RTE section 12(1)(c) reimbursement claim per child at the lower of the state rate and your fee, check each child’s documents, and track unpaid dues.',
+    heroLead:
+      'List the children admitted under RTE section 12(1)(c), the state’s per-child rate for the year and the fee your school charges. The builder claims the lower of the two for each child, as section 12(2) of the Act sets, checks every child’s documents, and shows how long each year’s claim has stayed unpaid.',
+    problem:
+      'RTE reimbursement claims are rebuilt from registers every year, one missing document holds up the whole claim, and dues from earlier years are forgotten once the new session starts.',
+    steps: [
+      { name: 'Enter the year’s rates', text: 'The state’s per-child rate from your state’s notification for the year, and the fee your school charges, by class if it differs.' },
+      { name: 'Add the children', text: 'Type each child or open a CSV with the name, class and admission date. Download the template to start.' },
+      { name: 'Tick the documents', text: 'Mark each document you hold for every child. Rename or add items to match your state’s portal.' },
+      { name: 'Record claims and payments', text: 'For each year, the date the claim was filed and what has been received, so the oldest dues show first.' },
+      { name: 'Print the claim sheet', text: 'Download the claim sheet and the missing-document list as a PDF or CSV, with your school’s details at the top.' },
+    ],
+    faqs: [
+      { question: 'How is the amount per child worked out?', answer: 'Section 12(2) of the RTE Act reimburses the lower of the state’s per-child expenditure and the amount the school actually charges. The builder applies that rule to the two figures you enter for each child.' },
+      { question: 'Where do I find the state rate?', answer: 'In your state’s RTE reimbursement notification for the year, or from the block or district education office. Rates differ by state and change each year, so the builder never fills one in for you.' },
+      { question: 'Does it file the claim on the state portal?', answer: 'No. It prepares the figures, the document checklist and a printable claim sheet. Filing is done on your state’s RTE portal or with the education office.' },
+      { question: 'What does the ageing show?', answer: 'For each academic year, the amount claimed, the amount received, what is still due and the days since the claim was filed, so the oldest dues are followed up first.' },
+      { question: 'Is any child’s data stored?', answer: 'No. The children’s details stay in this browser tab only. Save the list as a CSV file on your computer to continue later. The rates and document list you set are remembered in this browser.' },
+    ],
+    keywords: ['rte reimbursement claim format', 'rte 12(1)(c) reimbursement calculation', 'rte fee reimbursement for private schools', 'rte claim documents checklist'],
+    product: { text: 'NetCyberAI is built to keep each RTE child’s documents on the student record, fill the claim from enrolment and fee records, and track every unpaid claim by age. Ask us which parts are live for your school today.', href: '/products/fees-billing', cta: 'See Fees & Billing' },
+  },
+  {
+    slug: 'teacher-qualification-register',
+    kind: 'compliance',
+    name: 'Teacher Qualification and TET Register',
+    menuBlurb: 'Degrees, training, TET status and expiry dates, in one list.',
+    icon: 'staff',
+    tone: 'product',
+    title: 'Free Teacher Qualification and TET Register',
+    description:
+      'Keep every teacher’s degree, B.Ed or D.El.Ed, TET or CTET status and certificate dates in one register, see gaps and expiries early and print it for inspection.',
+    heroLead:
+      'Add each teacher with the stage they teach, their degree, professional training and TET or CTET result. The register flags anything missing against the rules you set for each stage, lists certificates and approvals running out soon, and prints a clean register for inspections and affiliation visits.',
+    problem:
+      'Qualification records sit in personal files, so a missing TET result or an expired approval is found by the inspector instead of by the school.',
+    steps: [
+      { name: 'Set the rules for each stage', text: 'Choose what each stage needs, from a degree and professional training to a TET. TET starts marked as needed for classes I to VIII.' },
+      { name: 'Add your teachers', text: 'Type each teacher or open a CSV. Download the template to see the columns.' },
+      { name: 'Read the gaps and expiries', text: 'Missing qualifications and certificates ending within the window you choose are listed first, teacher by teacher.' },
+      { name: 'Print the register', text: 'Download the register as a PDF or CSV with your school’s details at the top, ready for an inspection.' },
+    ],
+    faqs: [
+      { question: 'Does the register know the official rules?', answer: 'It starts with TET marked as needed for classes I to VIII, as the NCTE requires under the RTE Act, and lets you set what else each stage needs. Rules differ by board and state, so check them against your affiliation bye-laws.' },
+      { question: 'How are TET certificate dates handled?', answer: 'In 2021 the NCTE made TET qualifying certificates valid for life. If a certificate or approval still shows an end date, enter it and the register warns you before it passes.' },
+      { question: 'Is teacher data stored?', answer: 'Not unless you choose. The list stays in this tab, and you can save it as a CSV file. On a school computer used only by staff, tick Keep on this device to find it here next time.' },
+      { question: 'Can I print it for an inspection?', answer: 'Yes. The register prints on A4 with your school’s name and codes at the top, one row per teacher, with gaps and expiry dates shown clearly.' },
+    ],
+    keywords: ['teacher qualification register format', 'tet and ctet status of teachers', 'staff qualification record for school', 'teacher eligibility test record'],
+    product: { text: 'NetCyberAI is built to keep each teacher’s qualifications on the staff record and tell the principal before a certificate or approval runs out. Ask us which parts are live for your school today.', href: '/solutions/principal', cta: 'See NetCyberAI for principals' },
+  },
+
+  // ---- follow-up trackers -----------------------------------------------------------
+  {
+    slug: 'admissions-enquiry-tracker',
+    kind: 'office',
+    name: 'Admissions Enquiry Tracker',
+    menuBlurb: 'Every enquiry with a next step and a follow-up date.',
+    icon: 'admissions',
+    tone: 'action',
+    title: 'Free Admissions Enquiry Tracker for Schools',
+    description:
+      'Track every admission enquiry from first call to confirmed seat, with a next step and follow-up date for each family, conversion by stage and source, and a CSV.',
+    heroLead:
+      'Add each enquiry with the class wanted, where the family heard of you and the next step. The tracker lists who to call today, who is overdue and who has gone quiet, shows how many enquiries reach a visit, a form and a confirmed seat, and opens a ready WhatsApp follow-up on your own phone.',
+    problem:
+      'Enquiries arrive by phone, WhatsApp and walk-in, are noted on paper or in one person’s phone, and the families nobody called back join another school.',
+    steps: [
+      { name: 'Add each enquiry', text: 'The parent’s name and phone, the class wanted, the source and the next step with a date. Open a CSV to bring in an existing list.' },
+      { name: 'Work today’s list', text: 'Follow-ups due today and overdue ones come first. Record what happened and set the next date in one step.' },
+      { name: 'Move each family on', text: 'From enquiry to visit, form, admission or not joining, with the reason kept for later.' },
+      { name: 'Read the numbers', text: 'Enquiries by stage and by source, and how many became admissions, as a PDF or CSV.' },
+    ],
+    faqs: [
+      { question: 'Where is the enquiry list kept?', answer: 'In this tab, and only on this device if you tick Keep on this device, which suits a computer used only by school staff. Nothing is sent to NetCyberAI. Save the list as a CSV at any time.' },
+      { question: 'Which stages does it use?', answer: 'Enquiry, visit booked, visited, form taken, form submitted, admitted and not joining. The not joining reason is kept so you can see why families chose elsewhere.' },
+      { question: 'Does it send messages to parents?', answer: 'No. It opens WhatsApp on your own phone or computer with a short follow-up message you can edit before sending. Nothing is sent automatically.' },
+      { question: 'How is conversion worked out?', answer: 'Admitted families divided by all enquiries in the list, and the same for each source, so you can see which sources bring families who actually join.' },
+    ],
+    keywords: ['school admission enquiry register', 'admission enquiry follow up format', 'school admission tracker', 'admission conversion rate for schools'],
+    product: { text: 'NetCyberAI is built to turn each WhatsApp enquiry into a record with an owner and a follow-up date, and a confirmed admission into a student and a fee plan. Ask us which parts are live for your school today.', href: '/solutions/admissions', cta: 'See NetCyberAI for admissions' },
+  },
+  {
+    slug: 'fee-promise-tracker',
+    kind: 'office',
+    name: 'Fee Promise-to-Pay Tracker',
+    menuBlurb: 'Promises to pay, kept and broken, and hardship cases.',
+    icon: 'fees',
+    tone: 'alert',
+    title: 'Free Fee Promise-to-Pay Tracker for Schools',
+    description:
+      'Record each family’s promise to pay overdue fees, see the promises due today and the broken ones, keep hardship requests with a named person and print the list.',
+    heroLead:
+      'Note each family that owes fees, the amount, the date they promised to pay and who is following up. The tracker shows promises due today, kept and broken, and the amount promised against the amount received, and keeps families who ask for help apart with a named staff member, never a reminder.',
+    problem:
+      'Promises made at the fee counter live in someone’s memory or on loose paper, so nobody follows up on the day, and families in genuine difficulty get the same reminders as everyone else.',
+    steps: [
+      { name: 'Add each promise', text: 'The student, class, amount due, the amount and date promised, and who is following up.' },
+      { name: 'Work today’s list', text: 'Promises due today and broken ones come first. Record a payment, a new date or a request for help.' },
+      { name: 'Handle hardship with care', text: 'Mark a family as needing help and name the person who will speak to them. They are kept off every reminder list.' },
+      { name: 'Print the follow-up list', text: 'Download the list as a PDF or CSV with your school’s details, for the fee desk or the principal.' },
+    ],
+    faqs: [
+      { question: 'When is a promise kept or broken?', answer: 'Kept when the amount promised is recorded as paid by the promised date. Broken when the date passes without it. A part payment shows as partly kept, with the balance still due.' },
+      { question: 'How are hardship cases handled?', answer: 'They are kept apart, with a named staff member, and never appear in the reminder list. A person decides on extra time, instalments or a concession, as your school’s policy allows.' },
+      { question: 'Does it send fee reminders?', answer: 'No. It opens WhatsApp on your own phone with a short, polite message you can edit before sending, and never for a family marked as needing help.' },
+      { question: 'Is the list stored anywhere?', answer: 'Only in this tab, or on this device if you tick Keep on this device on a computer used only by staff. Nothing is sent to NetCyberAI. Save the list as a CSV at any time.' },
+    ],
+    keywords: ['school fee follow up register', 'fee defaulter list format', 'promise to pay tracker', 'school fee recovery follow up'],
+    product: { text: 'In NetCyberAI a promise to pay is matched to the payment when it reaches the school’s bank, reminders go one family at a time, and hardship requests go to a named person.', href: '/features/whatsapp-fee-recovery-upi', cta: 'See WhatsApp fee recovery' },
+  },
+
+  // ---- teacher help -------------------------------------------------------------------
+  {
+    slug: 'report-card-remarks-builder',
+    kind: 'teaching',
+    name: 'Report Card Remarks Builder',
+    menuBlurb: 'Specific, kind remarks drafted for the teacher to edit.',
+    icon: 'academics',
+    tone: 'achievement',
+    title: 'Free Report Card Remarks Builder',
+    description:
+      'Draft specific, kind report card remarks for a whole class from marks, attendance and one strength and one next step per child, then edit each before you print.',
+    heroLead:
+      'Add each student’s overall percentage, attendance, one strength and one thing to work on. The builder drafts a specific, encouraging remark for every child from a bank of teacher-written phrases, varies the wording across the class, and leaves every draft for you to edit before you copy or print it.',
+    problem:
+      'Writing forty different remarks at the end of term takes teachers whole evenings, and tired remarks turn vague or repeated, which parents notice.',
+    steps: [
+      { name: 'Add the class', text: 'Each student’s name, overall percentage and attendance, typed or opened from a CSV.' },
+      { name: 'Pick a strength and a next step', text: 'Choose one of each per child from the lists, such as neat work or reading aloud, or type your own.' },
+      { name: 'Edit the drafts', text: 'Every remark is a draft. Change any word, or draft one again for different wording.' },
+      { name: 'Copy or print', text: 'Copy the remarks into your report cards, download a CSV, or print the class list with your school’s details.' },
+    ],
+    faqs: [
+      { question: 'Is this written by AI?', answer: 'No. Remarks are built from a fixed bank of phrases written for teachers, chosen by the student’s marks, attendance and the strength and next step you pick. The same inputs always give the same choices.' },
+      { question: 'Will two students get the same remark?', answer: 'The builder varies the opening and the phrasing across the class, so remarks do not repeat word for word. Read each one and edit it so it sounds like you.' },
+      { question: 'Does it label children?', answer: 'No. Phrases describe effort, habits and the next step, never fixed labels such as weak or slow. Low marks lead to a specific, encouraging next step.' },
+      { question: 'Is student data saved?', answer: 'No. The class stays in this tab and is cleared when you close it. Download a CSV to keep your remarks on your own computer.' },
+    ],
+    keywords: ['report card remarks for students', 'teacher remarks for report card', 'positive remarks for students', 'progress report comments for teachers'],
+    product: { text: 'NetCyberAI is built to draft remarks from the marks and attendance already in the system, for the teacher to edit and approve. Ask us which parts are live for your school today.', href: '/solutions/teacher', cta: 'See NetCyberAI for teachers' },
+  },
+  {
+    slug: 'lesson-plan-worksheet-maker',
+    kind: 'teaching',
+    name: 'Lesson Plan and Worksheet Maker',
+    menuBlurb: 'A timed lesson plan and a printable worksheet, together.',
+    icon: 'homework',
+    tone: 'intelligence',
+    title: 'Free Lesson Plan and Worksheet Maker',
+    description:
+      'Lay out a timed lesson plan with objectives, activities and checks for understanding and turn your questions into a printable worksheet with your school header.',
+    heroLead:
+      'Enter the class, subject, topic, period length and what students should learn. The maker splits the period into warm-up, teaching, practice and review with timings, adds your activities and questions, and prints the plan and a matching worksheet with your school’s name, lines for the student’s name and an answer key.',
+    problem:
+      'Lesson plans are rewritten into registers to satisfy inspections, and worksheets are typed from scratch every week, time that should go into teaching.',
+    steps: [
+      { name: 'Describe the lesson', text: 'Class, subject, topic, period length and two or three learning objectives.' },
+      { name: 'Set the timings', text: 'Adjust how the period is split between warm-up, teaching, practice and review. The minutes always add up to the period.' },
+      { name: 'Add the questions', text: 'Short answer, fill in the blank, multiple choice or true or false, each with its answer for the key.' },
+      { name: 'Print both', text: 'Print or download the lesson plan and the worksheet, with the answer key on a separate page.' },
+    ],
+    faqs: [
+      { question: 'Does it write the lesson for me?', answer: 'No. It lays out what you type into a clear, timed plan and a clean worksheet. Drafting plans and worksheets from your syllabus is what NetCyberAI’s teacher tools are built for.' },
+      { question: 'Which question types can I use?', answer: 'Short answer, fill in the blank, multiple choice with up to four options, and true or false. Each question carries its answer for the key.' },
+      { question: 'Is the answer key printed with the worksheet?', answer: 'It prints on its own page after the worksheet, so you can hand out the questions and keep the answers.' },
+      { question: 'Is my lesson saved?', answer: 'Yes, if you choose. A lesson plan holds no student’s details, so you can keep it in this browser and open it again. Nothing is sent to NetCyberAI.' },
+    ],
+    keywords: ['lesson plan format for teachers', 'worksheet maker for school', 'daily lesson plan template', 'printable worksheet generator'],
+    product: { text: 'NetCyberAI is built to lay lesson plans out across the term against your syllabus and draft worksheets for the teacher to review. Ask us which parts are live for your school today.', href: '/solutions/teacher', cta: 'See NetCyberAI for teachers' },
   },
 ];
 
