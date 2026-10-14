@@ -1,4 +1,5 @@
 import { parseCsv } from '@/lib/import/csv';
+import { hasAadhaarNumber } from '@/lib/privacy/aadhaar';
 import { toCsv, type ReportStat, type ReportTone, type ToolReport } from './report';
 
 // Student Data Check for UDISE+ and APAAR: the school's record of each
@@ -243,9 +244,10 @@ export interface ParsedList {
   truncated: boolean;
 }
 
-// Twelve digits, with or without spaces or dashes between groups.
+// The app's one Aadhaar-number rule (src/lib/privacy/aadhaar.ts): twelve digits, with or without spaces or dashes
+// between groups, standing alone.
 export function looksLikeAadhaarNumber(v: string): boolean {
-  return /^\d{12}$/.test(v.replace(/[\s-]/g, ''));
+  return hasAadhaarNumber(v);
 }
 
 // Our own saved CSV guards formula-looking cells with an apostrophe

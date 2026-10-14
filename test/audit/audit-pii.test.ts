@@ -53,8 +53,8 @@ const ALLOWED: Record<string, Record<string, string>> = {
   'src/lib/parent-ai/answers.ts': { 'key:message': 'the send-gate’s state of the message (queued, sent, blocked_consent): a code' },
   'src/lib/students/data-check.ts': { 'key:message': 'the send-gate’s state of the message, or no_number: a code' },
   'src/lib/rte/desk.ts': {
-    'key:reference': 'NOT CHANGED HERE: agent Y’s file (C225). The state’s payment reference for a claim (a bank or treasury number for money paid to the school), not a person’s; listed in the C224 report for the lead',
     'key:withNote': 'a boolean (with_note), never the note',
+    'value:reversalCode': 'a code from the fixed list typed_wrong, recorded_twice, not_received (isReversalReason checks it before it is written), never typed words',
   },
 };
 

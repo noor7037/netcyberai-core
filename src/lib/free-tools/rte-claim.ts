@@ -1,4 +1,5 @@
 import { parseCsv } from '@/lib/import/csv';
+import { lowerOfRateAndFee } from '@/lib/rte/rules';
 import { money, toCsv, type ReportSection, type ReportStat, type ReportTone, type ToolReport } from './report';
 import { browserStore, type KeyValueStore } from './school-profile';
 import { daysBetween, dayNumber, readDate, showDate, toIso, type DayDate } from './student-data-check';
@@ -227,8 +228,8 @@ export function buildClaim(s: RteSettings, children: RteChild[], today: DayDate)
     claims.push({
       child: c,
       fee,
-      claim: Math.min(rate, fee),
-      applied: rate < fee ? 'rate' : fee < rate ? 'fee' : 'equal',
+      // The app's one claim rule, RTE Act s.12(2): the lower of the two, and which it was (C223-A answer 6).
+      ...lowerOfRateAndFee(rate, fee),
       missing: docs.filter((d) => !c.docs[d.j]).map((d) => d.label),
     });
   }

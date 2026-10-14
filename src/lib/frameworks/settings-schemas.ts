@@ -127,7 +127,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // Fees (C159): the day of the month a due falls on unless the office picks another.
   {
     moduleId: 'fees',
-    version: 6,
+    version: 7,
     fields: [
       {
         key: 'due_day',
@@ -282,6 +282,23 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         default: 0,
         min: 0,
         max: 90,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      // c225: the RTE claim desk's setting (fees.rte_claim_heads, C223-A answer 4). A field of the fees schema, since a
+      // module has one schema; its words are in the c225 blocks of en.ts and hi.ts. Read by src/lib/rte/desk.ts.
+      {
+        key: 'rte_claim_heads',
+        label: 'Fee heads counted in an RTE claim',
+        help: 'Which of the school’s fees make up the fee an RTE claim is compared with. A one-time fee, such as an admission fee, is never counted. Check your state’s notification. Claims already raised keep their fee.',
+        section: 'RTE claims',
+        type: 'select',
+        default: 'rte_covered',
+        options: [
+          { value: 'rte_covered', label: 'Every recurring head an RTE child does not pay' },
+          { value: 'rte_covered_mandatory', label: 'Only those of them every child pays' },
+        ],
         required: true,
         editableBy: OFFICE,
         affectsExistingRecords: false,

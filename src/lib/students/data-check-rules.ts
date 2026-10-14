@@ -1,13 +1,13 @@
-import { SEVERITY, compareDob, compareGender, compareName, looksLikeAadhaarNumber, readDate, showDate, type Finding } from '@/lib/free-tools/student-data-check';
+import { SEVERITY, compareDob, compareGender, compareName, readDate, showDate, type Finding } from '@/lib/free-tools/student-data-check';
+import * as aadhaar from '@/lib/privacy/aadhaar';
 
 // The student data check's pure rules (docs/28 row 10b, C222): what the screen and the server both need, and nothing
 // that reads a database. The comparison is the website free tool's own (src/lib/free-tools/student-data-check.ts),
 // imported, never copied: one rule in one place (docs/28 section 3 rule 2).
 //
-// NO AADHAAR NUMBER, EVER (rule 1): hasAadhaarNumber() is the app's refusal. It asks the free tool's
-// looksLikeAadhaarNumber (a value that IS twelve digits), and also refuses a value that CONTAINS a run of twelve
-// digits, which is the database's own check (public.no_aadhaar_number), so the app refuses first whatever the
-// database would refuse. Devanagari digits are read as digits by both.
+// NO AADHAAR NUMBER, EVER (rule 1): hasAadhaarNumber() is the app's refusal, the one rule of
+// src/lib/privacy/aadhaar.ts (C225), so the app refuses first exactly what the database's public.no_aadhaar_number
+// refuses. Devanagari digits are read as digits by both.
 
 export const DATA_CHECK_FIELDS = ['name', 'dob', 'gender'] as const;
 export type DataCheckField = (typeof DATA_CHECK_FIELDS)[number];
@@ -26,17 +26,15 @@ export const MAX_NAME = 120;
 export const MAX_NOTE = 600;
 export const MAX_CLOSING_NOTE = 300;
 
-const asciiDigits = (v: string) => v.replace(/[०-९]/g, (d) => String(d.charCodeAt(0) - 0x0966));
-
+// The one rule (C225): src/lib/privacy/aadhaar.ts, the twin of the database's public.no_aadhaar_number.
 export function hasAadhaarNumber(v: string): boolean {
-  const ascii = asciiDigits(v);
-  return looksLikeAadhaarNumber(ascii) || /\d{12}/.test(ascii.replace(/[\s-]/g, ''));
+  return aadhaar.hasAadhaarNumber(v);
 }
 
 // A parent may write their child's Aadhaar number in a WhatsApp reply. It is never stored by the data check, and
-// it is never shown on its screen either: a run of twelve digits (spaces and dashes between groups) is replaced.
+// it is never shown on its screen either: whatever the one rule refuses is replaced, separators included.
 export function hideAadhaarNumbers(text: string, hidden: string): string {
-  return text.replace(/(?:[0-9०-९][\s-]?){11}[0-9०-९]/g, hidden);
+  return aadhaar.hideAadhaarNumbers(text, hidden);
 }
 
 // The record and the printed values as the free tool reads them: a date as yyyy-mm-dd (its readDate reads it), a

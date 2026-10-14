@@ -215,6 +215,7 @@ const APP_USER: Record<string, string> = {
   // c224 begin
   // c224 end
   // c225 begin
+  rte_claim_receipts: 'INSERT,SELECT', // the state's payments: recorded, never changed or removed; a mistake is a reversing row (C225)
   // c225 end
   // c226 begin
   // c226 end
@@ -346,6 +347,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // c224 begin
   // c224 end
   // c225 begin
+  rte_claim_receipts: '', // the platform role reads nothing of a school's RTE claims (C225)
   // c225 end
   // c226 begin
   // c226 end
