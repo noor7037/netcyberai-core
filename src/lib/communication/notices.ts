@@ -37,7 +37,12 @@ const SELECT = `select n.notice_id, n.class_id, c.name as class_name, n.body, n.
                  from communication_log l where l.dedupe_key like 'notice:%' group by 1, 2) k on k.school_id = n.school_id and k.notice_id = n.notice_id::text`;
 const shape = (r: Record<string, unknown>): Notice => ({ ...(r as unknown as Notice), written_at: new Date(r.written_at as string).toISOString() });
 
-export async function listNotices(db: PoolClient, schoolId: string): Promise<Notice[]> {
+// `only: 'waiting'` (docs/26 slice 8d, C203): the notices that still wait for the principal, the oldest first.
+// It is what /app/communication?show=notices lists and what the dashboard's number counts, so the two are the
+// same rows.
+export const NOTICE_ROWS_MAX = 500;
+export async function listNotices(db: PoolClient, schoolId: string, only?: 'waiting'): Promise<Notice[]> {
+  if (only === 'waiting') return (await db.query(`${SELECT} where n.school_id = $1 and n.status = 'waiting' order by n.written_at, n.notice_id limit ${NOTICE_ROWS_MAX}`, [schoolId])).rows.map(shape);
   return (await db.query(`${SELECT} where n.school_id = $1 order by (n.status = 'waiting') desc, n.written_at desc limit 100`, [schoolId])).rows.map(shape);
 }
 

@@ -7,6 +7,8 @@ import { OfficeDashboardView, type OfficeDashboardData } from '@/components/dash
 import type { SchoolEntitlements } from '@/lib/contracts/entitlements';
 import { MODULE_REGISTRY } from '@/lib/contracts/modules';
 import { loadFeesSummary } from '@/lib/fees/overdue';
+import { factContext, factDefinition, loadFact, rangeFor, type FactResult } from '@/lib/insights';
+import { indiaDate } from '@/lib/time/india';
 import { loadMyDay } from '@/lib/today/cards';
 
 // "Fees overdue" (C137, C163): an entry is overdue when its due date has
@@ -48,31 +50,38 @@ beforeAll(async () => {
 
 describe('the rule, counted in the school’s own rows', () => {
   it('overdue = past its date with money still owed, part paid or not, counted on the balance', async () => {
-    const f = await db.tenant(as(A), (q) => loadFeesSummary(q));
+    const f = await db.tenant(as(A), (q) => loadFeesSummary(q, A));
     expect(f.overdueCount).toBe(4);
     expect(f.overdueMinor).toBe(100000 + 200000 + 400000 + (12800000 - 2800000));
   });
 
   it('due today is not overdue yet; paid and waived never are; received is the money that came in', async () => {
-    const f = await db.tenant(as(A), (q) => loadFeesSummary(q));
+    const f = await db.tenant(as(A), (q) => loadFeesSummary(q, A));
     expect(f.pendingMinor).toBe(800000 + 1600000 + (500000 - 100000)); // still owed and not past its date
     expect(f.collectedMinor).toBe(3200000 + 2800000 + 100000);
     expect(f.waivedMinor).toBe(6400000);
   });
 
   it('nothing is counted twice: the parts add up to everything the school billed', async () => {
-    const f = await db.tenant(as(A), (q) => loadFeesSummary(q));
+    const f = await db.tenant(as(A), (q) => loadFeesSummary(q, A));
     const total = Number((await db.query(`select sum(amount_minor) as s from fees_ledger where school_id = $1`, [A])).rows[0].s);
     expect(f.collectedMinor + f.pendingMinor + f.overdueMinor + f.waivedMinor).toBe(total);
   });
 
   it('another school’s fees are never counted', async () => {
-    const f = await db.tenant(as(B), (q) => loadFeesSummary(q));
+    const f = await db.tenant(as(B), (q) => loadFeesSummary(q, B));
     expect(f).toMatchObject({ overdueCount: 1, overdueMinor: 99900000, collectedMinor: 0 });
   });
 
+  it('the school is asked for by its id: the platform role, which row level security does not narrow, still gets one school’s', async () => {
+    const [a, b] = await db.platform(async (q) => [await loadFeesSummary(q, A), await loadFeesSummary(q, B)]);
+    expect(a).toMatchObject({ overdueCount: 4, overdueMinor: 100000 + 200000 + 400000 + (12800000 - 2800000) });
+    expect(b).toMatchObject({ overdueCount: 1, overdueMinor: 99900000, collectedMinor: 0 });
+  });
+
   it('a school with no fees has zeros, not an error', async () => {
-    const f = await db.tenant(as(randomUUID()), (q) => loadFeesSummary(q));
+    const none = randomUUID();
+    const f = await db.tenant(as(none), (q) => loadFeesSummary(q, none));
     expect(f).toEqual({ collectedMinor: 0, pendingMinor: 0, overdueMinor: 0, overdueCount: 0, waivedMinor: 0 });
   });
 });
@@ -84,27 +93,30 @@ describe('every place that says "overdue" agrees', () => {
     expect(day.cards.find((c) => c.type === 'fees-overdue')).toMatchObject({ count: 4 });
   });
 
+  // The dashboard draws school facts (src/lib/insights, C203); the two fee facts are the summary above, read in
+  // the same session. So the tile, the attention item, the hero chip and the chart cannot say another number.
+  const feeFacts = () =>
+    db.tenant(as(A), async (q) => {
+      const ctx = factContext({ schoolId: A, userId: principal, role: 'principal' }, indiaDate(), rangeFor(indiaDate(), 'today'));
+      return [await loadFact(q, factDefinition('fees.overdue'), ctx), await loadFact(q, factDefinition('fees.owed'), ctx)];
+    });
+  const dashboard = (facts: FactResult[]) => renderToStaticMarkup(h(OfficeDashboardView, { data: { schoolName: 'A', rangeId: 'today', range: rangeFor(indiaDate(), 'today'), facts, failed: 0 } satisfies OfficeDashboardData }));
+
   it('the dashboard’s tile, attention item, hero chip and chart all show the worked-out numbers', async () => {
-    const f = await db.tenant(as(A), (q) => loadFeesSummary(q));
-    const data: OfficeDashboardData = {
-      schoolName: 'A', activeStudents: 10, totalStudents: 10, totalStaff: 1, presentToday: 0, absentToday: 0, markedToday: 0, attendanceTrend: [],
-      feesCollectedMinor: f.collectedMinor, feesPendingMinor: f.pendingMinor, feesOverdueMinor: f.overdueMinor, feesWaivedMinor: f.waivedMinor, overdueCount: f.overdueCount,
-      consentPending: 0, consentTotal: 10, blockedThisWeek: 0, recentActivity: [],
-    };
-    const html = renderToStaticMarkup(h(OfficeDashboardView, { data }));
+    const f = await db.tenant(as(A), (q) => loadFeesSummary(q, A));
+    const [overdue, owed] = await feeFacts();
+    expect([overdue.value, overdue.count, owed.value]).toEqual([f.overdueMinor, f.overdueCount, f.pendingMinor]);
+    const html = dashboard([overdue, owed]);
     expect(html).toContain('₹1,07,000'); // the tile: 1,000 + 2,000 + 4,000 + the 1,00,000 left on the part-paid fee
-    expect(html).toMatch(/<span[^>]*>4<\/span> fee entries are overdue/);
-    expect(html).toContain('their due date has passed and money is still owed');
-    expect(html).toContain('Owed, not yet due');
+    expect(html).toContain('4 fee entries are overdue');
+    expect(html).toContain('due date has passed');
+    expect(html).toContain('Not yet due');
+    expect(html).toContain('href="/app/fees?show=overdue"');
     expect(html).not.toContain('Part paid (full amount billed)');
   });
 
-  it('with nothing overdue the dashboard does not raise it', () => {
-    const data: OfficeDashboardData = {
-      schoolName: 'A', activeStudents: 10, totalStudents: 10, totalStaff: 1, presentToday: 0, absentToday: 0, markedToday: 0, attendanceTrend: [],
-      feesCollectedMinor: 0, feesPendingMinor: 500000, feesOverdueMinor: 0, feesWaivedMinor: 0, overdueCount: 0,
-      consentPending: 0, consentTotal: 10, blockedThisWeek: 0, recentActivity: [],
-    };
-    expect(renderToStaticMarkup(h(OfficeDashboardView, { data }))).not.toMatch(/fee entr(y is|ies are) overdue/);
+  it('with nothing overdue the dashboard does not raise it', async () => {
+    const [overdue, owed] = await feeFacts();
+    expect(dashboard([{ ...overdue, value: 0, count: 0, attention: false }, owed])).not.toMatch(/fee entr(y is|ies are) overdue/);
   });
 });

@@ -9,11 +9,13 @@ import {
   ticketRef,
   TICKET_CATEGORY_LABEL,
   TICKET_LIMITS,
+  TICKET_SHOW_STATUSES,
   TICKET_SCREENSHOT_MAX_BYTES,
   TICKET_SCREENSHOTS_PER_TICKET,
   type TicketAttachment,
   type TicketDetail,
   type TicketMessage,
+  type TicketShow,
   type TicketSide,
   type TicketStatus,
   type TicketSummary,
@@ -110,7 +112,9 @@ export async function createTicket(
 
 // The tickets this session can see: for a school role, row level security
 // has already narrowed them (own school; own tickets unless office).
-export async function listTickets(db: Sql, opts: { status?: unknown; schoolId?: unknown; allSchools?: boolean; limit?: number } = {}): Promise<TicketResult<TicketSummary[]>> {
+// `show` (docs/26 slice 8d, C203): one of the two lists a dashboard number opens, by the statuses it names.
+export const TICKET_ROWS_MAX = 200;
+export async function listTickets(db: Sql, opts: { status?: unknown; show?: TicketShow; schoolId?: unknown; allSchools?: boolean; limit?: number } = {}): Promise<TicketResult<TicketSummary[]>> {
   const where: string[] = [];
   const params: unknown[] = [];
   const given = (v: unknown) => v !== undefined && v !== null && v !== '';
@@ -118,11 +122,12 @@ export async function listTickets(db: Sql, opts: { status?: unknown; schoolId?: 
     if (!isTicketStatus(opts.status)) return fail(400, 'unknown status');
     where.push(`t.status = $${params.push(opts.status)}`);
   }
+  if (opts.show) where.push(`t.status::text = any($${params.push([...TICKET_SHOW_STATUSES[opts.show]])}::text[])`);
   if (given(opts.schoolId)) {
     if (!isUuid(opts.schoolId)) return fail(400, 'unknown school');
     where.push(`t.school_id = $${params.push(opts.schoolId)}`);
   }
-  params.push(Math.min(Math.max(opts.limit ?? 100, 1), 200));
+  params.push(Math.min(Math.max(opts.limit ?? 100, 1), TICKET_ROWS_MAX));
   const { rows } = await db.query(
     `select ${SUMMARY_COLUMNS}${opts.allSchools ? ', s.name as school_name' : ''}
      from support_tickets t

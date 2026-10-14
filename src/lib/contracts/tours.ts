@@ -53,6 +53,7 @@ export const TOURS = {
   'proxy-covers': { steps: [{ slot: 'body' }, { slot: 'body' }] },
   // p5-8c end
   // p5-8d begin
+  dashboard: { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'more' }] },
   // p5-8d end
   // p5-8e begin
   // p5-8e end

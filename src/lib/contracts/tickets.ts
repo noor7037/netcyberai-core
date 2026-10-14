@@ -45,6 +45,13 @@ export function isTicketStatus(v: unknown): v is TicketStatus {
   return typeof v === 'string' && (TICKET_STATUSES as readonly string[]).includes(v);
 }
 
+// The two lists a dashboard number opens (docs/26 slice 8d, C203): /app/help/ticket?show=open is every ticket not
+// yet resolved or closed; ?show=waiting is the ones NetCyberAI has answered and that wait for the school's reply.
+export const TICKET_SHOWS = ['open', 'waiting'] as const;
+export type TicketShow = (typeof TICKET_SHOWS)[number];
+export const TICKET_SHOW_STATUSES: Record<TicketShow, readonly TicketStatus[]> = { open: ['open', 'in_progress', 'waiting_on_school'], waiting: ['waiting_on_school'] };
+export const isTicketShow = (v: unknown): v is TicketShow => typeof v === 'string' && (TICKET_SHOWS as readonly string[]).includes(v);
+
 export function isTicketCategory(v: unknown): v is TicketCategory {
   return typeof v === 'string' && (TICKET_CATEGORIES as readonly string[]).includes(v);
 }

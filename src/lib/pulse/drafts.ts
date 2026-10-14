@@ -48,6 +48,24 @@ export async function listDrafts(db: PoolClient, schoolId: string, date: string)
   return (await db.query(`${SELECT} where m.school_id = $1 and m.sent_on = $2 order by c.name, s.name`, [schoolId, date])).rows;
 }
 
+// The messages a person sent for the lessons of from..to (docs/26 slice 8d, C203): what the Daily Pulse screen
+// lists on /app/pulse?show=sent&from=…&to=…, each with how many went out and what parents answered.
+export const SENT_ROWS_MAX = 1000;
+export async function listSent(db: PoolClient, schoolId: string, from: string, to: string, limit: number = SENT_ROWS_MAX): Promise<Draft[]> {
+  return (await db.query(`${SELECT} where m.school_id = $1 and m.status = 'sent' and m.sent_on between $2::date and $3::date order by m.sent_on desc, c.name, s.name, m.pulse_id limit $4`, [schoolId, from, to, limit])).rows;
+}
+// The same messages, added up (never cut short): how many were sent, how many went out to parents or were held,
+// and what parents answered. One query shape with the list, so a total and its rows cannot differ.
+export type SentTotals = { sent: number; queued: number; held: number; understood: number; needs_help: number };
+export async function sentTotals(db: PoolClient, schoolId: string, from: string, to: string): Promise<SentTotals> {
+  const r = (await db.query(
+    `select count(*) as sent, coalesce(sum(x.queued), 0) as queued, coalesce(sum(x.held), 0) as held, coalesce(sum(x.understood), 0) as understood, coalesce(sum(x.needs_help), 0) as needs_help
+       from (${SELECT} where m.school_id = $1 and m.status = 'sent' and m.sent_on between $2::date and $3::date) x`,
+    [schoolId, from, to]
+  )).rows[0];
+  return { sent: Number(r.sent), queued: Number(r.queued), held: Number(r.held), understood: Number(r.understood), needs_help: Number(r.needs_help) };
+}
+
 // The words for one lesson, from the classwork log row and the homework
 // given that day to the same class in the same subject.
 async function wordsFor(db: PoolClient, schoolId: string, progressId: string): Promise<{ bodies: PulseBodies | null; classId: string; subjectId: string; date: string; topic: string; status: string } | null> {

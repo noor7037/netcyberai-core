@@ -178,6 +178,23 @@ export async function recentReceipts(db: PoolClient, schoolId: string, limit = 2
   return (await db.query(`${RECEIPT} where r.school_id = $1 order by r.issued_at desc limit $2`, [schoolId, limit])).rows.map(asReceipt);
 }
 
+// "Collected" from..to, by India's date (docs/26 slice 8d, C203): the receipts issued in those days that still
+// stand, how many and how much. A receipt of those days that was reversed counts for nothing; how many there
+// are is said. `collectedBetween` is the total, never cut short; `receiptsBetween` is the same receipts as rows,
+// newest first, for /app/fees?show=collected&from=…&to=… (the first RECEIPT_ROWS_MAX of them).
+export const RECEIPT_ROWS_MAX = 2000;
+export async function collectedBetween(db: PoolClient, schoolId: string, from: string, to: string): Promise<{ count: number; minor: number; reversed: number }> {
+  const r = (await db.query(
+    `select count(*) filter (where r.reversed_at is null) as count, coalesce(sum(r.total_minor) filter (where r.reversed_at is null), 0) as minor, count(*) filter (where r.reversed_at is not null) as reversed
+       from receipts r where r.school_id = $1 and (r.issued_at at time zone 'Asia/Kolkata')::date between $2::date and $3::date`,
+    [schoolId, from, to]
+  )).rows[0];
+  return { count: Number(r.count), minor: Number(r.minor), reversed: Number(r.reversed) };
+}
+export async function receiptsBetween(db: PoolClient, schoolId: string, from: string, to: string, limit: number = RECEIPT_ROWS_MAX): Promise<ReceiptView[]> {
+  return (await db.query(`${RECEIPT} where r.school_id = $1 and (r.issued_at at time zone 'Asia/Kolkata')::date between $2::date and $3::date and r.reversed_at is null order by r.issued_at desc, r.receipt_id limit $4`, [schoolId, from, to, limit])).rows.map(asReceipt);
+}
+
 // The reconciliation rule for the whole school, as one query. `problems`
 // must be empty: a due paid beyond its net, or below zero; a line that does
 // not add up; a receipt whose payments do not sum to its total (or, once

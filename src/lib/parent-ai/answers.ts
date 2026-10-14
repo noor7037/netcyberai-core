@@ -132,12 +132,15 @@ export async function discardAnswer(db: PoolClient, actor: Actor, answerId: stri
 
 export type AnswerRow = { answer_id: string; child: string; guardian: string; body: string; sources: Source[]; ai_assisted: boolean; status: 'draft' | 'sent' | 'discarded'; drafted_by: string | null; drafted_at: string; approved_by: string | null; message: string | null };
 // Row level security decides which answers a teacher gets: those for children of their own classes.
-export async function listAnswers(db: PoolClient, schoolId: string): Promise<AnswerRow[]> {
+// `only: 'draft'` (docs/26 slice 8d, C203): the drafts no person has yet approved or discarded, the oldest first.
+// It is what /app/parent-ai?show=drafts lists and what the dashboard's number counts.
+export const ANSWER_ROWS_MAX = 500;
+export async function listAnswers(db: PoolClient, schoolId: string, only?: 'draft'): Promise<AnswerRow[]> {
   const { rows } = await db.query(
     `select a.answer_id, s.name as child, p.name as guardian, a.body, a.sources, a.ai_assisted, a.status, d.display_name as drafted_by, a.drafted_at, ap.display_name as approved_by,
             (select l.status::text from communication_log l where l.school_id = a.school_id and l.dedupe_key = 'parent-ai:' || a.answer_id) as message
        from parent_ai_answers a join students s on s.student_id = a.student_id join parents p on p.parent_id = a.parent_id left join users d on d.user_id = a.drafted_by left join users ap on ap.user_id = a.approved_by
-      where a.school_id = $1 and a.status <> 'discarded' order by (a.status = 'draft') desc, a.drafted_at desc limit 50`,
+      where a.school_id = $1 and ${only === 'draft' ? `a.status = 'draft' order by a.drafted_at, a.answer_id limit ${ANSWER_ROWS_MAX}` : `a.status <> 'discarded' order by (a.status = 'draft') desc, a.drafted_at desc limit 50`}`,
     [schoolId]
   );
   return rows.map((r) => ({ ...r, drafted_at: new Date(r.drafted_at).toISOString() })) as AnswerRow[];

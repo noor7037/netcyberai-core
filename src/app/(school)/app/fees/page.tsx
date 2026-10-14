@@ -7,6 +7,8 @@ import { FeesFirstLoad } from '@/components/fees/FeesFirstLoad';
 import { FeesVerifyView } from '@/components/fees/FeesVerifyView';
 import { FeesRecoveryView } from '@/components/fees/FeesRecoveryView';
 import { FeesSetupView } from '@/components/fees/FeesSetupView';
+import { FeesShown } from '@/components/fees/FeesShown';
+import { isFeesShow, readRange } from '@/lib/insights/screens';
 import { getServerSession } from '@/lib/auth/server-session';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { t } from '@/lib/i18n';
@@ -15,7 +17,8 @@ import { getLang } from '@/lib/i18n/server';
 // Fees (docs/23, P3). Live so far: fee heads and each class's versioned fee
 // structure (6a, C157); raising a month's dues, concessions and RTE marks
 // (6b, C159). Payments and receipts follow; the page says what is not there yet.
-export default async function FeesPage() {
+// ?show=<filter> (with ?from=&to= for receipts) comes from a dashboard number and lists the rows behind it (C203).
+export default async function FeesPage({ searchParams = {} }: { searchParams?: { show?: string; from?: string; to?: string } }) {
   const off = await moduleOffReason('fees');
   if (off) return <ModuleOffPage moduleId="fees" reason={off} />;
   const session = await getServerSession();
@@ -24,6 +27,7 @@ export default async function FeesPage() {
     <ModulePage moduleId="fees" help="fee-structures" tour="fees" title={t(lang, 'fee.title')} purpose={t(lang, 'fee.purpose')}>
       <FeesFirstLoad>
       <div className="flex flex-col gap-6">
+        {isFeesShow(searchParams.show) && <FeesShown show={searchParams.show} range={readRange(searchParams)} />}
         <FeesVerifyView />
         <FeesCollectView />
         <FeesBankView />

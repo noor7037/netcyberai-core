@@ -129,6 +129,34 @@ export async function listAssignments(db: PoolClient, schoolId: string, today: s
   return (await db.query(`${ASSIGNMENTS} where t.school_id = $1 and t.due_date >= $2::date - 14 order by t.due_date, c.name, t.assigned_at`, [schoolId, today])).rows;
 }
 
+// The assignments behind a number (docs/26 slice 8d, C203): what the Homework screen lists when it is opened on
+// /app/homework?show=…&from=…&to=…, by India's dates. 'set': given out in those days. The others are about the
+// assignments DUE in those days for a section that has a student on its roll: all of them, the ones checked for
+// every student of the section, the ones not yet, and the ones with a student marked "not done". Homework given
+// to a section with nobody on its roll is 'set' and nothing else: there is no one to check, so it is neither
+// "due" nor "checked for everyone" (0 of 0 is not a check). Nearest due date first; never ordered by a count.
+export const HOMEWORK_SHOWS = ['set', 'due', 'checked', 'unchecked', 'not_done'] as const;
+export type HomeworkShow = (typeof HOMEWORK_SHOWS)[number];
+export const isHomeworkShow = (v: unknown): v is HomeworkShow => typeof v === 'string' && (HOMEWORK_SHOWS as readonly string[]).includes(v);
+const SHOWN: Record<HomeworkShow, string> = { set: 'true', due: 'a.students > 0', checked: 'a.students > 0 and a.students <= a.checked', unchecked: 'a.students > a.checked', not_done: 'a.checked > a.done' };
+const SET_ON = `(t.assigned_at at time zone 'Asia/Kolkata')::date`;
+export const ASSIGNMENT_ROWS_MAX = 1000;
+export async function listAssignmentsIn(db: PoolClient, schoolId: string, show: HomeworkShow, from: string, to: string, limit: number = ASSIGNMENT_ROWS_MAX): Promise<Assignment[]> {
+  return (await db.query(`select a.* from (${ASSIGNMENTS} where t.school_id = $1 and ${show === 'set' ? SET_ON : 't.due_date'} between $2::date and $3::date) a where ${SHOWN[show]} order by a.due_date, a.class_name, a.target_id limit $4`, [schoolId, from, to, limit])).rows;
+}
+// The same assignments, counted (never cut short): how many each list above holds, and how many times a student
+// was marked "not done" on the ones due. One query shape with the lists, so a count and its rows cannot differ.
+export type AssignmentCounts = Record<HomeworkShow, number> & { notDoneMarks: number };
+export async function countAssignmentsIn(db: PoolClient, schoolId: string, from: string, to: string): Promise<AssignmentCounts> {
+  const set = (await db.query(`select count(*) as n from (${ASSIGNMENTS} where t.school_id = $1 and ${SET_ON} between $2::date and $3::date) a`, [schoolId, from, to])).rows[0];
+  const due = (await db.query(
+    `select count(*) filter (where ${SHOWN.due}) as due, count(*) filter (where ${SHOWN.checked}) as checked, count(*) filter (where ${SHOWN.unchecked}) as unchecked, count(*) filter (where ${SHOWN.not_done}) as not_done, coalesce(sum(a.checked - a.done), 0) as marks
+       from (${ASSIGNMENTS} where t.school_id = $1 and t.due_date between $2::date and $3::date) a`,
+    [schoolId, from, to]
+  )).rows[0];
+  return { set: Number(set.n), due: Number(due.due), checked: Number(due.checked), unchecked: Number(due.unchecked), not_done: Number(due.not_done), notDoneMarks: Number(due.marks) };
+}
+
 export type CheckRow = { student_id: string; name: string; roll_no: string | null; done: boolean | null };
 export async function assignmentRoster(db: PoolClient, schoolId: string, targetId: string): Promise<{ assignment: Assignment; roster: CheckRow[]; files: { attachment_id: string; file_name: string; mime_type: string }[] } | null> {
   const assignment = (await db.query(`${ASSIGNMENTS} where t.school_id = $1 and t.target_id = $2`, [schoolId, targetId])).rows[0] as Assignment | undefined;
