@@ -4,7 +4,7 @@ import type { MarkPart } from './grading';
 // An exam paper's parts (docs/27 row 9b, C214), shared by the server and the screens. A paper has the grading
 // scheme's components, each with the maximum the office gives it on this paper and its share of the subject, as
 // the scheme says; a scheme with no components gives a paper one component, "Marks". The database holds the same
-// rules (exam_paper_components_problem, marks_rules in 20261121090100_p6_exams_marks.sql).
+// rules (exam_paper_components_problem, marks_rules in the migration ending _p6_exams_marks.sql).
 
 export type PaperComponent = { key: string; name: string; max: number; share: number | null };
 export type MarkKind = 'score' | 'absent' | 'exempt';
