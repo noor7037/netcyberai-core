@@ -219,22 +219,22 @@ export const products: CatalogPage[] = [
       'Fees and billing for Indian schools: fee structures, scheduled WhatsApp reminders with a UPI link, automatic receipts and a collection dashboard, no chasing.',
     heroTitle: 'Fees collected on schedule, not from memory',
     heroLead:
-      'NetCyberAI turns each fee structure into dues, sends polite WhatsApp reminders with a UPI payment link on a fixed schedule, matches payments to students, and sends receipts as PDFs. Accounts sees who has paid, who is due this week and who needs a call, without keeping a separate register or chasing families by phone.',
+      'NetCyberAI turns each fee structure into dues, with concessions, sibling rules and RTE admissions applied, and sends reminders with a UPI payment link. Parents pay straight into the school’s own bank account, the office confirms each payment against its bank, and a numbered receipt follows. Accounts sees who has paid, who is due and who needs a call.',
     problem: [
       'Accounts staff chase families by phone from a paper list.',
       'Payments arrive with no reference and take hours to match.',
       'Families never receive a receipt they can find later.',
     ],
     solution: [
-      'Dues generated from the fee structure, including concessions.',
-      'Reminders on a fixed D-3 to D+7 sequence, each with a UPI link.',
-      'Payments matched to students, receipts sent on WhatsApp.',
+      'Dues generated from the fee structure, with concessions, a sibling rule and RTE admissions.',
+      'Reminders on a fixed D-3 to D+7 sequence, each with a UPI link, and one link for the whole family.',
+      'UPI payments go straight to the school’s own account and are confirmed against its bank before the receipt.',
     ],
     workflow: [
       { title: 'Fee falls due', detail: 'From the structure and concessions' },
       { title: 'Reminder', detail: 'WhatsApp with a UPI link, inside quiet hours' },
-      { title: 'Payment', detail: 'Matched to the right student' },
-      { title: 'Receipt', detail: 'PDF sent to the verified guardian' },
+      { title: 'Payment', detail: 'UPI straight to the school’s own account' },
+      { title: 'Receipt', detail: 'Confirmed against the bank, then a numbered receipt' },
       { title: 'Dashboard', detail: 'Collected, due and overdue at a glance' },
     ],
     benefits: ['Follow-ups that happen on schedule', 'Receipts families can find', 'Less manual reconciliation', 'Overdue families visible early'],
@@ -249,10 +249,11 @@ export const products: CatalogPage[] = [
     outcomes: ['Fewer missed follow-ups', 'Clearer records for every family', 'Collection visible to the principal'],
     related: ['school-management', 'communication', 'reports-analytics'],
     faqs: [
-      { question: 'Can we set concessions and sibling discounts?', answer: 'Yes. Concessions are part of the fee structure and dues are generated from it.' },
+      { question: 'Can we set concessions and sibling discounts?', answer: 'Yes. Concessions, a sibling rule and RTE admissions are applied when dues are raised, and each concession is approved by a person before it counts.' },
       { question: 'How often are reminders sent?', answer: 'On a fixed sequence from three days before the due date to a week after, inside quiet hours and only with consent.' },
       { question: 'Does it replace our accounting software?', answer: 'It manages fee dues, reminders and receipts. It can run alongside the accounting system your school already uses.' },
-      { question: 'Are receipts sent automatically?', answer: 'Yes. When a payment is recorded, a PDF receipt goes to the verified guardian number.' },
+      { question: 'Are receipts sent automatically?', answer: 'Yes, once the school has confirmed the payment in its own bank, one by one or by uploading its bank statement. A screenshot or a typed transaction number alone never marks a fee paid.' },
+      { question: 'Does fee money pass through NetCyberAI?', answer: 'No. Parents pay by UPI straight into the school’s own bank account. NetCyberAI never holds the money and takes no cut of it.' },
     ],
   },
   {
@@ -629,12 +630,12 @@ export const solutions: CatalogPage[] = [
     heroLead:
       'Finance teams should not spend their mornings calling families from a paper list. NetCyberAI generates dues from the fee structure, sends reminders with a UPI link on a fixed schedule, matches payments to students and sends PDF receipts, while the dashboard shows what is collected, due this week and overdue.',
     problem: ['Chasing families by phone.', 'Payments with no reference.', 'Receipts lost or never sent.'],
-    solution: ['Scheduled reminders with UPI links.', 'Payments matched to students.', 'Receipts sent on WhatsApp.'],
+    solution: ['Scheduled reminders with UPI links.', 'UPI payments straight to the school’s own account, confirmed against its bank.', 'Numbered receipts once confirmed.'],
     workflow: [
       { title: 'Structure', detail: 'Heads, frequency, concessions' },
       { title: 'Dues', detail: 'Generated per student' },
       { title: 'Reminders', detail: 'D-3 to D+7' },
-      { title: 'Payments', detail: 'Matched automatically' },
+      { title: 'Payments', detail: 'Confirmed against your bank' },
       { title: 'Receipts', detail: 'PDF on WhatsApp' },
     ],
     benefits: ['Less manual chasing', 'Cleaner reconciliation', 'Families with receipts', 'Early view of overdue accounts'],
@@ -649,8 +650,8 @@ export const solutions: CatalogPage[] = [
     outcomes: ['Fewer missed follow-ups', 'Clear records', 'Less time on the phone'],
     related: ['principal', 'admissions', 'budget-private-schools'],
     faqs: [
-      { question: 'Can we set late fees?', answer: 'Fee structures are configured per school during onboarding; talk to us about your rules.' },
-      { question: 'Which payment methods work?', answer: 'Reminders carry a UPI payment link; other recorded payments are matched in the same view.' },
+      { question: 'Can we set late fees?', answer: 'Yes. A late fee is a school setting, off until you switch it on, with an amount and days of grace; it is added as a new due, never by changing an old one.' },
+      { question: 'Which payment methods work?', answer: 'UPI to the school’s own account from the reminder link, and cash, UPI or cheque at the counter. Counter UPI and cheques are checked against the bank statement too.' },
       { question: 'Does it replace our accounts software?', answer: 'It runs alongside it, handling dues, reminders and receipts.' },
       { question: 'Can a certificate be issued with dues pending?', answer: 'Only with a formal waiver recorded by an authorised person.' },
     ],

@@ -8,7 +8,8 @@ import { Icon } from '@/components/visual/Icons';
 import { QuoteForm } from '@/components/marketing/QuoteForm';
 import { HowItWorks } from '@/components/home/HowItWorks';
 import { PRICING_SETUP_FAQ } from '@/content/faqs';
-import { moduleRows, plans, publishedClaims } from '@/content/pricing';
+import { AVAILABILITY_LABEL, moduleRows, plans, publishedClaims, type ModuleAvailability } from '@/content/pricing';
+import { PlanCards } from '@/components/marketing/PlanCards';
 import { tones } from '@/lib/semantic';
 import { whatsappLink } from '@/lib/site-config';
 import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd, softwareApplicationJsonLd } from '@/lib/seo';
@@ -24,7 +25,7 @@ const faqs = [
   {
     question: 'How is NetCyberAI pricing structured?',
     answer:
-      'There are four plans. Free is a set of browser tools any school can use today without an account. Starter, Growth and Compass each add more of the product on top of the last, and each school receives a custom quote based on its size and the modules it needs, confirmed by a real person.',
+      'There are four plans. Free is a set of browser tools any school can use today without an account. Starter, Growth and Compass are priced per enrolled student, monthly or yearly, and each adds more of the product on top of the last. Yearly billing charges ten months for twelve.',
   },
   {
     question: 'Is there a free plan?',
@@ -37,6 +38,16 @@ const faqs = [
       'WhatsApp Business messaging is billed by Meta per message, separately from NetCyberAI’s own pricing. The rate depends on the message category and changes on Meta’s schedule, so we show you the current rate card when we quote rather than a fixed figure that could already be out of date.',
   },
   {
+    question: 'Can the price be adjusted for our school?',
+    answer:
+      'Yes. Larger schools and school groups can agree a per-student price with us, add a module at no charge, or receive a discount. Whatever is agreed is recorded and written into your school’s agreement, so it never depends on anyone remembering a conversation.',
+  },
+  {
+    question: 'Do fees paid by parents go through NetCyberAI?',
+    answer:
+      'No. Parents pay by UPI straight into your school’s own bank account, and the school confirms each payment against its bank before a receipt is issued. NetCyberAI never holds your fee money and takes no cut of it.',
+  },
+  {
     question: 'Is there a pilot for new schools?',
     answer:
       'Yes. Every new school starts in pilot mode with outbound WhatsApp messaging switched off, so nothing reaches a real parent until the school explicitly turns it on. That lets you, your staff and us confirm the data and messages look right first.',
@@ -44,9 +55,15 @@ const faqs = [
   {
     question: 'Which modules can we use today?',
     answer:
-      'The comparison table marks each module as available now or in development. Student records, imports, consent, attendance with absence alerts, document scanning and QR ID cards are available now; the Daily Learning Pulse, fees and receipts, exams and recognition are in development.',
+      'The table marks every module as available now, ready to start once your school’s WhatsApp is switched on, or in development. Available now: student records, imports, consent, attendance, homework, fees with UPI collection and receipts, staff leave with automatic cover, the principal dashboard and reports, complaints, Early Warning and the School Health Auditor. Ready with WhatsApp: parent messages, notices, the Daily Learning Pulse, meetings and events. In development: exams and report cards, Parent AI and the learning insights.',
   },
 ];
+
+const BADGE: Record<ModuleAvailability, string> = {
+  now: tones.success.soft,
+  whatsapp: tones.communication.soft,
+  building: tones.achievement.soft,
+};
 
 function Mark({ on }: { on: boolean }) {
   return on ? (
@@ -74,13 +91,13 @@ export default function PricingPage() {
             Pricing that grows with your school
           </h1>
           <p className="max-w-3xl text-lg opacity-90">
-            NetCyberAI has four plans: Free tools any school can use today, and Starter, Growth and Compass for schools
-            that want the full platform. Each school gets a custom quote based on its size and the modules it needs, and
-            every school starts in pilot mode, so nothing reaches a parent before you are ready.
+            Free tools any school can use today, and Starter, Growth and Compass for the full platform, priced per
+            enrolled student, monthly or yearly with two months free. Your first month is free, and every school starts
+            in pilot mode, so nothing reaches a parent before you are ready.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Button href="#quote" variant="secondary">
-              Get a custom quote
+            <Button href="#plans-title" variant="secondary">
+              See the plans
             </Button>
             <Button href="/book-demo" variant="outlineLight">
               Book a demo
@@ -115,44 +132,20 @@ export default function PricingPage() {
             eyebrow="Plans"
             tone="product"
             title="Pick the plan that fits your school"
-            lead="Each plan lists what it includes. The table below shows which modules are available now and which are in development."
+            lead="Prices are per enrolled student. Each plan includes everything in the one before it, and the table below shows which modules you can use today."
           />
-          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {plans.map((p) => (
-              <li key={p.id} className="relative">
-                {p.recommended && (
-                  <span className="absolute -top-3 left-5 z-10 rounded-full bg-tangerine px-3 py-1 text-xs font-bold text-slate">Most schools start here</span>
-                )}
-                <div
-                  className={`flex h-full flex-col gap-4 rounded-3xl border bg-white p-6 ${p.recommended ? 'border-2 border-royal shadow-xl shadow-royal/10' : 'border-slate/10'}`}
-                >
-                  <div>
-                    <h3 className="text-2xl font-extrabold text-slate">{p.name}</h3>
-                    <p className="mt-1 text-sm text-slate/70">{p.forWhom}</p>
-                  </div>
-                  <p className="text-lg font-extrabold text-slate">{p.id === 'free' ? 'Free, no account needed' : 'Custom quote'}</p>
-                  <ul className="flex flex-col gap-2">
-                    {p.highlights.map((h) => (
-                      <li key={h} className="flex items-start gap-2 text-sm text-slate">
-                        <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-emerald" />
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-auto text-sm text-slate/70">{`Support: ${p.support}`}</p>
-                  <Button href={p.cta.href} variant={p.recommended ? 'secondary' : 'outline'} className="w-full">
-                    {p.cta.label}
-                  </Button>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <PlanCards plans={plans} />
           <p className="text-sm text-slate/70">
             Running several schools or campuses?{' '}
             <Link href="/solutions/multi-school" className="font-semibold text-royal underline">
               See multi-school groups
             </Link>{' '}
-            for a plan scoped to your group.
+            for a plan scoped to your group. Larger schools and groups can agree a price, complimentary modules or a
+            discount;{' '}
+            <a href="#quote" className="font-semibold text-royal underline">
+              ask for a quote
+            </a>
+            . WhatsApp messages are billed by Meta at its own rate, shown openly when we set you up.
           </p>
         </Container>
       </section>
@@ -164,7 +157,7 @@ export default function PricingPage() {
           <SectionHeading id="compare-title" eyebrow="Compare" tone="intelligence" title="Module by module" />
           <div className="relative min-w-0 max-w-full overflow-x-auto rounded-3xl border border-slate/10 bg-white" tabIndex={0} role="region" aria-labelledby="compare-title">
             <table className="w-full min-w-[40rem] text-left text-sm">
-              <caption className="sr-only">Which modules each plan includes, and whether each module is available now</caption>
+              <caption className="sr-only">Which modules each plan includes, and whether each module is available now, ready to start with WhatsApp, or in development</caption>
               <thead>
                 <tr className="border-b border-slate/10">
                   <th scope="col" className="sticky left-0 bg-white px-4 py-3 font-bold text-slate">
@@ -182,8 +175,8 @@ export default function PricingPage() {
                   <tr key={r.module} className="border-b border-slate/10 last:border-0">
                     <th scope="row" className="sticky left-0 bg-white px-4 py-3 font-semibold text-slate">
                       {r.module}
-                      <span className={`ml-2 whitespace-nowrap rounded-full px-2 py-0.5 text-[11px] font-bold ${r.live ? tones.success.soft : tones.achievement.soft}`}>
-                        {r.live ? 'Available now' : 'In development'}
+                      <span className={`ml-2 whitespace-nowrap rounded-full px-2 py-0.5 text-[11px] font-bold ${BADGE[r.status]}`}>
+                        {AVAILABILITY_LABEL[r.status]}
                       </span>
                     </th>
                     {plans.map((p) => (
@@ -204,13 +197,13 @@ export default function PricingPage() {
           <div className="flex flex-col gap-4 lg:col-span-2">
             <SectionHeading
               id="quote-title"
-              eyebrow="Custom quote"
+              eyebrow="Larger schools and groups"
               tone="action"
-              title="Get a quote for your school"
-              lead="Tell us your size and the modules you want. A real person prepares the quote and contacts you the way you choose."
+              title="Talk to us about your price"
+              lead="Tell us your size and the modules you want. A real person replies with a price for your school and contacts you the way you choose."
             />
             <ul className="flex flex-col gap-2 text-sm text-slate">
-              {['Priced for your number of students', 'Only the modules you need', 'WhatsApp costs shown at Meta’s current rate'].map((t) => (
+              {['Priced for your number of students', 'Complimentary modules and discounts can be agreed', 'WhatsApp costs shown at Meta’s current rate'].map((t) => (
                 <li key={t} className="flex items-center gap-2">
                   <Icon name="check" className="h-4 w-4 text-emerald" /> {t}
                 </li>
