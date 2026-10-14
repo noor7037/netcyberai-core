@@ -96,6 +96,7 @@ begin
       union all select 'rte_claims', 'reference', count(*) from rte_claims where not public.no_aadhaar_number(reference)
       union all select 'rte_claims', 'write_off_note', count(*) from rte_claims where not public.no_aadhaar_number(write_off_note)
       union all select 'rte_evidence', 'note', count(*) from rte_evidence where not public.no_aadhaar_number(note)
+      union all select 'attendance_change_reasons', 'reason', count(*) from attendance_change_reasons where not public.no_aadhaar_number(reason)
     ) counted
    where n > 0;
   if found is not null then

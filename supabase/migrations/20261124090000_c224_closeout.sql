@@ -4,8 +4,9 @@
 --    (Admit made the student from it) and is never deleted: public.erase_admission_enquiries(student) blanks the
 --    child's name, the guardian's name, the phone, the next step and the reason on it (erased_at says when), and the
 --    note and next step of each of its steps. Its stage, class, source, owner, dates and the steps themselves are
---    kept, and a step 'erased' says who carried the erasure out and when. Called by pseudonymizeStudent
---    (src/lib/consent/dsr.ts), in the transaction of the rest of the erasure.
+--    kept, and a step 'erased' says who carried the erasure out and when. The family's other enquiries that were not
+--    admitted (the same phone as the child's admitted enquiry) are deleted with their steps (C223-A answer 7; review
+--    of C224). Called by pseudonymizeStudent (src/lib/consent/dsr.ts), in the transaction of the rest of the erasure.
 --      - child_name, guardian_name and phone are empty exactly when the enquiry is erased (a check);
 --      - the rules trigger lets the erasure through from the database's own function only (it runs as the owner),
 --        never from the app's or the platform's role, and changes nothing else; an erased enquiry never changes;
@@ -206,18 +207,29 @@ revoke all on function public.admission_enquiries_kept() from public, anon, auth
 -- ---- 1: the erasure --------------------------------------------------------------------------------------------------
 -- The child's enquiry is the one Admit made the child's record from (admission_enquiries_one_student: at most one).
 -- In the caller's own school, for the principal and the school admin only (the roles that carry out an erasure).
-create function public.erase_admission_enquiries(p_student_id uuid) returns table (enquiries integer, steps integer)
+create function public.erase_admission_enquiries(p_student_id uuid) returns table (enquiries integer, steps integer, family_enquiries integer)
 language plpgsql security definer set search_path = public, pg_temp as $$
 declare
   school uuid := nullif(current_setting('app.current_tenant_id', true), '')::uuid;
   ids uuid[];
+  phones text[];
+  others uuid[];
 begin
   if school is null or coalesce(current_setting('app.current_role', true), '') not in ('principal', 'school_admin') then
     raise exception 'an erasure is carried out by the principal or the school admin of the child''s school' using errcode = '42501';
   end if;
-  select coalesce(array_agg(e.enquiry_id), '{}'::uuid[]) into ids
+  select coalesce(array_agg(e.enquiry_id), '{}'::uuid[]), coalesce(array_agg(distinct e.phone) filter (where e.phone is not null), '{}'::text[])
+    into ids, phones
     from admission_enquiries e
    where e.school_id = school and e.student_id = p_student_id and e.erased_at is null;
+  -- The family's other enquiries, by the admitted enquiry's phone, read before it is blanked: those not admitted go
+  -- with their steps (an admitted one is a sibling's record, and stays).
+  select coalesce(array_agg(e.enquiry_id), '{}'::uuid[]) into others
+    from admission_enquiries e
+   where e.school_id = school and e.phone = any (phones) and e.stage <> 'admitted';
+  delete from admission_events v where v.school_id = school and v.enquiry_id = any (others);
+  delete from admission_enquiries e where e.school_id = school and e.enquiry_id = any (others);
+  get diagnostics family_enquiries = row_count;
   update admission_events v set note = null, next_step = null, erased_at = now()
    where v.school_id = school and v.enquiry_id = any (ids) and (v.note is not null or v.next_step is not null);
   get diagnostics steps = row_count;
@@ -261,11 +273,15 @@ grant execute on function public.delete_admission_enquiry(uuid) to app_user;
 
 -- A parent's erasure request about a family that never joined: every enquiry with that phone, as the enquiries keep
 -- it (+ and digits), that was not admitted, with its steps. One row for each enquiry deleted. An admitted enquiry
--- with the same phone is a child's record and stays (an erasure of that child's data blanks it).
-create function public.delete_family_enquiries(p_phone text) returns table (deleted_enquiry uuid, deleted_steps integer)
+-- with the same phone is a child's record and stays (an erasure of that child's data blanks it). p_ids are the
+-- enquiries the office was shown and confirmed: under a lock, they must be exactly the family's enquiries that were
+-- not admitted, or nothing is deleted (no rows: the app says the list changed). So the list confirmed is the list
+-- deleted, or nothing is (review of C224).
+create function public.delete_family_enquiries(p_phone text, p_ids uuid[]) returns table (deleted_enquiry uuid, deleted_steps integer)
 language plpgsql security definer set search_path = public, pg_temp as $$
 declare
   school uuid := nullif(current_setting('app.current_tenant_id', true), '')::uuid;
+  locked uuid[];
   r record;
 begin
   if school is null or coalesce(current_setting('app.current_role', true), '') not in ('principal', 'school_admin') then
@@ -274,11 +290,18 @@ begin
   if p_phone is null or p_phone !~ '^\+[1-9][0-9]{7,14}$' then
     raise exception 'a phone number as the enquiries keep it: + and digits' using errcode = 'check_violation';
   end if;
+  select coalesce(array_agg(x.enquiry_id order by x.enquiry_id), '{}'::uuid[]) into locked
+    from (select e.enquiry_id from admission_enquiries e
+           where e.school_id = school and e.phone = p_phone and e.stage <> 'admitted'
+           order by e.enquiry_id
+             for update) x;
+  if locked is distinct from (select coalesce(array_agg(distinct i order by i), '{}'::uuid[]) from unnest(coalesce(p_ids, '{}'::uuid[])) as i) then
+    return;
+  end if;
   for r in
     select e.enquiry_id from admission_enquiries e
-     where e.school_id = school and e.phone = p_phone and e.stage <> 'admitted'
+     where e.school_id = school and e.enquiry_id = any (locked)
      order by e.created_at, e.enquiry_id
-       for update
   loop
     delete from admission_events v where v.school_id = school and v.enquiry_id = r.enquiry_id;
     get diagnostics deleted_steps = row_count;
@@ -287,9 +310,9 @@ begin
     return next;
   end loop;
 end $$;
-revoke all on function public.delete_family_enquiries(text) from public, anon, authenticated, service_role;
-revoke all on function public.delete_family_enquiries(text) from app_user, nca_super;
-grant execute on function public.delete_family_enquiries(text) to app_user;
+revoke all on function public.delete_family_enquiries(text, uuid[]) from public, anon, authenticated, service_role;
+revoke all on function public.delete_family_enquiries(text, uuid[]) from app_user, nca_super;
+grant execute on function public.delete_family_enquiries(text, uuid[]) to app_user;
 
 -- ---- 2: a sent message's words, blanked by the erasure only ---------------------------------------------------------
 -- As C190's, with one exception: template_params set to nothing by the database's owner (the erasure functions run as
@@ -328,7 +351,9 @@ end $$;
 revoke all on function public.communication_log_forward_only() from public, anon, authenticated, service_role;
 
 -- As C222's, and the words of the messages that asked about these details go too (C223-A answer 7). A message still
--- queued is failed ('erased') in the same step, so it is never sent with its words gone (lead, at integration).
+-- queued is failed ('erased') in the same step, so it is never sent with its words gone (lead, at integration); one
+-- the sender has already taken (sending_at set) may have gone out, so it is 'uncertain', as C190 says of a send that
+-- cannot be told (review of C224).
 create or replace function public.erase_student_data_check(p_student_id uuid) returns integer
 language plpgsql security definer set search_path = public, pg_temp as $$
 declare
@@ -341,9 +366,11 @@ begin
   end if;
   update communication_log l
      set template_params = null,
-         status = case when l.status::text = 'queued' then 'failed'::comm_status else l.status end,
-         failed_at = case when l.status::text = 'queued' then now() else l.failed_at end,
-         failure_code = case when l.status::text = 'queued' then 'erased' else l.failure_code end
+         status = case when l.status::text = 'queued' and l.sending_at is null then 'failed'::comm_status
+                       when l.status::text = 'queued' then 'uncertain'::comm_status
+                       else l.status end,
+         failed_at = case when l.status::text = 'queued' and l.sending_at is null then now() else l.failed_at end,
+         failure_code = case when l.status::text = 'queued' and l.sending_at is null then 'erased' else l.failure_code end
    where l.school_id = school and (l.template_params is not null or l.status::text = 'queued')
      and l.log_id in (
        select r.message_log_id from data_check_requests r
@@ -361,3 +388,39 @@ grant execute on function public.erase_student_data_check(uuid) to app_user;
 
 -- ---- 5 ----------------------------------------------------------------------------------------------------------------
 drop function public.curriculum_gap_units(uuid, uuid);
+
+-- ---- 6. The words given for an attendance change (review of C224) -----------------------------------------------------
+-- Taking the words out of the audit rows left two reasons the app requires kept nowhere: the office's reason for
+-- entering or correcting a past day (attendance.office_enter, attendance.office_correct) and a late correction's note
+-- (attendance.correct). They are kept here, beside the audit row they explain (src/lib/audit/log.ts,
+-- writeAttendanceAudit, one statement with the row). Read by the principal, the school admin and the academic
+-- coordinator, and by the person who wrote them; written in one's own name; removed with the child's data by a data
+-- request's erasure (pseudonymizeStudent, the principal or the school admin). Never an Aadhaar number. The platform
+-- role holds nothing here.
+create table attendance_change_reasons (
+  audit_id bigint primary key references audit_log (audit_id),
+  school_id uuid not null references schools (school_id),
+  student_id uuid not null,
+  reason text not null check (char_length(btrim(reason)) between 1 and 500 and public.no_aadhaar_number(reason)),
+  written_by uuid not null,
+  created_at timestamptz not null default now(),
+  foreign key (school_id, student_id) references students (school_id, student_id),
+  foreign key (school_id, written_by) references users (school_id, user_id)
+);
+create index idx_attendance_change_reasons_student on attendance_change_reasons (school_id, student_id);
+revoke all on attendance_change_reasons from public, anon, authenticated, service_role;
+revoke all on attendance_change_reasons from app_user, nca_super;
+grant select, insert, delete on attendance_change_reasons to app_user;
+alter table attendance_change_reasons enable row level security;
+alter table attendance_change_reasons force row level security;
+create policy attendance_change_reasons_tenant_isolation on attendance_change_reasons using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy attendance_change_reasons_readers on attendance_change_reasons as restrictive for select using (
+  current_setting('app.current_role', true) in ('principal', 'school_admin', 'academic_coordinator')
+  or written_by = nullif(current_setting('app.current_user_id', true), '')::uuid
+);
+create policy attendance_change_reasons_written_as_self on attendance_change_reasons as restrictive for insert with check (
+  written_by = nullif(current_setting('app.current_user_id', true), '')::uuid
+);
+create policy attendance_change_reasons_erased_by_office on attendance_change_reasons as restrictive for delete using (
+  current_setting('app.current_role', true) in ('principal', 'school_admin')
+);

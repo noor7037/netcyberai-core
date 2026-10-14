@@ -1,5 +1,5 @@
 import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
-import { writeAuditLog } from '@/lib/audit/log';
+import { writeAuditLog, writeEntitlementAudit } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
 
 // A school's payment-provider keys (docs/24 §3.8, C171).
@@ -91,7 +91,14 @@ export async function saveCredentials(db: Sql, by: Saver, input: { provider: str
     [by.schoolId, provider, mode, sealed.ciphertext, sealed.iv, sealed.tag, sealed.keyVersion, last4, by.userId, by.from]
   );
   // What was saved, never the keys: the provider, the mode, the last four characters of the key id.
-  await writeAuditLog(db, { schoolId: by.schoolId, actorUserId: by.userId, actorRole: null, eventAction: 'payments.credentials_saved', targetType: 'payment_credentials', targetId: saved.rows[0].config_id, beforeState: undefined, afterState: { provider, mode, keyLast4: last4, from: by.from, ...(reason ? { reasoned: true } : {}) } }); // never a reason's words (C224)
+  // From Control, the founder's reason is kept where only the founder reads it (entitlement_change_reasons, C124), never in
+  // the audit row (C224); a school saving its own keys gives none.
+  const configId = saved.rows[0].config_id as string;
+  if (by.from === 'control') {
+    await writeEntitlementAudit(db, { schoolId: by.schoolId, actorUserId: by.userId, actorRole: null, eventAction: 'payments.credentials_saved', targetType: 'payment_credentials', targetId: configId, afterState: { provider, mode, keyLast4: last4, from: by.from, reasoned: true } }, reason);
+  } else {
+    await writeAuditLog(db, { schoolId: by.schoolId, actorUserId: by.userId, actorRole: null, eventAction: 'payments.credentials_saved', targetType: 'payment_credentials', targetId: configId, afterState: { provider, mode, keyLast4: last4, from: by.from } });
+  }
   return { ok: true, meta: (await credentialsMeta(db, by.schoolId)).find((m) => m.provider === provider && m.mode === mode) as CredentialsMeta };
 }
 
