@@ -640,6 +640,10 @@ create table admission_events (
 alter table admission_events enable row level security;
 create policy admission_events_tenant_isolation on admission_events using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert on admission_events to app_user;
+-- C224: an enquiry erased with the child's data (My Day reads its date), and the school record's gender (C222), which
+-- the Students routes now write.
+alter table admission_enquiries add column erased_at timestamptz;
+alter table students add column gender text not null default 'not_given';
 -- The student data check (C222), as My Day counts the requests a guardian has answered and the office has not yet
 -- corrected or closed.
 create table data_check_requests (

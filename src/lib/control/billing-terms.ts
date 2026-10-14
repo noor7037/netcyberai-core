@@ -15,7 +15,7 @@ import { BP_IN_WHOLE, MAX_STUDENT_MONTH_PAISE, MAX_STUDENT_YEAR_PAISE } from './
 // past is never rewritten, so what was in force on any day stays on record. The database holds the same rules
 // (the school_billing_terms_guard trigger). The amount these give is worked out in billing-amount.ts.
 //
-// The audit rows ('billing.terms.%') carry the values and the reason; the database hides them from every school
+// The audit rows ('billing.terms.%') carry the values, never a reason's words (C224); the database hides them from every school
 // role. Everything here runs as the platform role.
 //
 // COMPLIMENTARY MODULES are switched on and off by stored rows, not worked out when a screen is read: the
@@ -192,7 +192,7 @@ export async function addTerm(db: Sql, by: By, schoolId: string, input: TermInpu
     eventAction: 'billing.terms.added',
     targetType: 'school_billing_terms',
     targetId: termId,
-    afterState: { ...termValues(t), starts_on: t.startsOn, ends_on: t.endsOn, reason: t.reason, replaced: replaced.map((r) => ({ term_id: r.term_id, ends_on: { from: r.was ?? null, to: r.now } })) },
+    afterState: { ...termValues(t), starts_on: t.startsOn, ends_on: t.endsOn, reasoned: true, replaced: replaced.map((r) => ({ term_id: r.term_id, ends_on: { from: r.was ?? null, to: r.now } })) },
   });
   const synced = t.kind === 'complimentary' ? await syncComplimentaryModules(db, schoolId, today, by.userId) : { on: [], off: [] };
   return { ok: true, termId, replaced: replaced.map((r) => r.term_id as string), switchedOn: synced.on, switchedOff: synced.off };
@@ -221,7 +221,7 @@ export async function endTerm(db: Sql, by: By, schoolId: string, input: { termId
     targetType: 'school_billing_terms',
     targetId: input.termId as string,
     beforeState: { ends_on: row.ends_on },
-    afterState: { kind: row.kind, ends_on: endsOn, reason },
+    afterState: { kind: row.kind, ends_on: endsOn, reasoned: true },
   });
   const synced = row.kind === 'complimentary' ? await syncComplimentaryModules(db, schoolId, today, by.userId) : { on: [], off: [] };
   return { ok: true, termId: input.termId as string, replaced: [], switchedOn: synced.on, switchedOff: synced.off };
@@ -229,7 +229,8 @@ export async function endTerm(db: Sql, by: By, schoolId: string, input: { termId
 
 export type PeriodResult = { ok: true; period: BillingPeriod } | { ok: false; reason: 'not_found' | 'no_plan' | 'billing_period' | 'reason' };
 
-// The period the school pays for: a month or a year. Audited with the reason, in the platform's own rows.
+// The period the school pays for: a month or a year. Audited; the reason is kept where only the founder reads it
+// (entitlement_change_reasons, C124), never in the audit row (C224).
 export async function setBillingPeriod(db: Sql, by: By, schoolId: string, input: { period: unknown; reason: unknown }): Promise<PeriodResult> {
   if (!isUuid(schoolId)) return { ok: false, reason: 'not_found' };
   if (!isBillingPeriod(input.period)) return { ok: false, reason: 'billing_period' };
@@ -242,7 +243,7 @@ export async function setBillingPeriod(db: Sql, by: By, schoolId: string, input:
   if (!sub) return { ok: false, reason: 'no_plan' };
   if (sub.billing_period !== input.period) {
     await db.query(`update school_subscriptions set billing_period = $2, updated_by = $3, updated_at = now() where school_id = $1`, [schoolId, input.period, by.userId]);
-    await writeAuditLog(db, {
+    await writeEntitlementAudit(db, {
       schoolId,
       actorUserId: by.userId,
       actorRole: 'super_admin',
@@ -250,8 +251,8 @@ export async function setBillingPeriod(db: Sql, by: By, schoolId: string, input:
       targetType: 'school_subscriptions',
       targetId: schoolId,
       beforeState: { billing_period: sub.billing_period ?? null },
-      afterState: { billing_period: input.period, reason },
-    });
+      afterState: { billing_period: input.period, reasoned: true },
+    }, reason);
   }
   return { ok: true, period: input.period };
 }

@@ -393,6 +393,13 @@ ALLOWED_PERMISSIVE = (
         # p7-10f end
         # p7-10g begin
         # p7-10g end
+        # c224 begin
+        ("attendance_change_reasons", "attendance_change_reasons_tenant_isolation"),  # review of C224: narrowed by the RESTRICTIVE policies below
+        # c224 end
+        # c225 begin
+        # c225 end
+        # c226 begin
+        # c226 end
         # c219 begin
         # C219: co-scholastic grades. Tenant isolation, narrowed by the RESTRICTIVE policies required below.
         ("co_scholastic_grades", "co_scholastic_grades_tenant_isolation"),
@@ -699,6 +706,16 @@ REQUIRED_RESTRICTIVE = {
     # p7-10f end
     # p7-10g begin
     # p7-10g end
+    # c224 begin
+    # review of C224: the words for an attendance change: the office and the writer read; written as self; the erasure deletes.
+    ("attendance_change_reasons", "attendance_change_reasons_readers"),
+    ("attendance_change_reasons", "attendance_change_reasons_written_as_self"),
+    ("attendance_change_reasons", "attendance_change_reasons_erased_by_office"),
+    # c224 end
+    # c225 begin
+    # c225 end
+    # c226 begin
+    # c226 end
     # c219 begin
     # C219: only the principal and the school admin update their own school's row (and only its profile columns, by
     # column grants and a trigger). A co-scholastic grade is read by the three roles that run exams and a teacher of

@@ -1,6 +1,6 @@
 import type { PoolClient } from 'pg';
 import type { StaffRole } from '@/lib/auth/types';
-import { writeAuditLog } from '@/lib/audit/log';
+import { writeAttendanceAudit, writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected } from '@/lib/db/rows';
 import { jobQueue } from '@/lib/jobs/pg-queue';
 import { queueWhatsAppMessage } from '@/lib/whatsapp/gate';
@@ -337,7 +337,9 @@ export async function correctAttendance(
     await notifyGuardiansOfAbsence(client, { schoolId: params.schoolId, attendanceId: params.attendanceId, studentId: before.student_id });
   }
 
-  await writeAuditLog(client, {
+  // The note's words go beside the audit row (attendance_change_reasons), never into it (C224).
+  const note = params.note?.trim() ?? '';
+  await writeAttendanceAudit(client, {
     schoolId: params.schoolId,
     actorUserId: params.actorUserId,
     actorRole: params.actorRole,
@@ -345,8 +347,8 @@ export async function correctAttendance(
     targetType: 'attendance',
     targetId: params.attendanceId,
     beforeState: { status: before.status },
-    afterState: { status: params.newStatus, note: params.note?.trim() || null },
-  });
+    afterState: { status: params.newStatus, noted: Boolean(params.note?.trim()) }, // never the note's words (C224)
+  }, note ? { studentId: before.student_id, reason: note } : null);
 
   return result.rows[0];
 }
@@ -356,7 +358,7 @@ export async function correctAttendance(
 // A principal or school admin may enter or correct attendance for a day
 // that has ended, with a reason, inside the school's correction window (a
 // setting, 7 days unless the school changes it). Every such change is in
-// the audit log with the reason. No message goes to a family about a past
+// the audit log, saying a reason was given (never its words: C224). No message goes to a family about a past
 // day: the absence notice is for the day itself.
 
 export const DEFAULT_CORRECTION_WINDOW_DAYS = 7;
@@ -401,7 +403,8 @@ export async function officeCorrectAttendance(
     : await client.query(`insert into attendance (school_id, class_id, date, student_id, status, leave_code, marked_by) values ($1, $2, $3, $4, $5, $6, $7) returning attendance_id`, [actor.schoolId, student.class_id, params.date, params.studentId, params.status, leaveCode, actor.userId]);
   assertRowsAffected(saved, 'office attendance correction affected 0 rows -- RLS likely denied it silently');
   const attendanceId = saved.rows[0].attendance_id as string;
-  await writeAuditLog(client, {
+  // The reason's words go beside the audit row (attendance_change_reasons), never into it (C224).
+  await writeAttendanceAudit(client, {
     schoolId: actor.schoolId,
     actorUserId: actor.userId,
     actorRole: actor.role,
@@ -409,8 +412,8 @@ export async function officeCorrectAttendance(
     targetType: 'attendance',
     targetId: attendanceId,
     beforeState: before ? { status: before.status, leaveCode: before.leave_code } : null,
-    afterState: { status: params.status, leaveCode, date: params.date, reason },
-  });
+    afterState: { status: params.status, leaveCode, date: params.date, reasoned: true },
+  }, { studentId: params.studentId, reason });
   return { ok: true, attendanceId, entered: !before };
 }
 
@@ -487,7 +490,7 @@ export async function decideCorrectionRequest(
     targetType: 'attendance_correction_requests',
     targetId: params.requestId,
     beforeState: { status: 'waiting', classId: request.class_id, date: request.for_date, requestedBy: request.requested_by },
-    afterState: { applied, kept, reason },
+    afterState: { applied, kept, reasoned: true }, // the reason is on the request (decision_reason), not here (C224)
   });
   return { ok: true, applied, kept };
 }

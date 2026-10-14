@@ -5,6 +5,8 @@ import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { isForeignKeyViolation } from '@/lib/db/pg-errors';
 import { checkDate, checkText, validationError } from '@/lib/errors/catalogue';
+import { ruleError } from '@/lib/frameworks/route';
+import { mayRecordGender, readGender } from '@/lib/students/gender';
 
 const STUDENT_STATUSES = ['pending_consent', 'active', 'inactive', 'transferred'] as const;
 const LIST_LIMIT_DEFAULT = 50;
@@ -61,7 +63,9 @@ export async function GET(req: NextRequest) {
       );
       return { students: rows, total: countRows[0].n as number };
     });
-    return NextResponse.json({ students, total, limit, offset });
+    // `office`: whether this person records a gender and opens the student data check (the principal and the school
+    // admin), so the screen offers them only to the office (C224).
+    return NextResponse.json({ students, total, limit, offset, office: mayRecordGender(guard.claims.role) });
   } catch (err) {
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
@@ -94,16 +98,21 @@ export async function POST(req: NextRequest) {
   if (!nameCheck.ok) return NextResponse.json(nameCheck.error, { status: 400 });
   const dobProblem = dob ? checkDate(dob, 'dob', { notAfter: new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date()) }) : null;
   if (dobProblem) return NextResponse.json(dobProblem, { status: 400 });
+  // Gender: the office only, Aadhaar's set or "not given" (C222, C224).
+  const gender = readGender(body?.gender, guard.claims.role);
+  if (!gender.ok) return gender.reason === 'not_allowed' ? ruleError(403, 'not_allowed') : ruleError(400, 'not_sent_properly');
 
   try {
     const student = await withTenantContext(guard.claims, async (client) => {
       const { rows } = await client.query(
-        `insert into students (school_id, admission_no, name, class_id, roll_no, dob, status)
-         values ($1, $2, $3, $4, $5, $6, 'pending_consent')
-         returning student_id, admission_no, name, class_id, roll_no, dob::text as dob, status, created_at`,
-        [guard.claims.schoolId, admissionNo, name, classId, rollNo, dob]
+        `insert into students (school_id, admission_no, name, class_id, roll_no, dob, gender, status)
+         values ($1, $2, $3, $4, $5, $6, $7, 'pending_consent')
+         returning student_id, admission_no, name, class_id, roll_no, dob::text as dob, gender, status, created_at`,
+        [guard.claims.schoolId, admissionNo, name, classId, rollNo, dob, gender.value ?? 'not_given']
       );
       const row = rows[0];
+      // The record made, never the child's name, date of birth or gender (C224): its class and state, and which
+      // details it has.
       await writeAuditLog(client, {
         schoolId: guard.claims.schoolId,
         actorUserId: guard.claims.sub,
@@ -111,7 +120,7 @@ export async function POST(req: NextRequest) {
         eventAction: 'student.create',
         targetType: 'students',
         targetId: row.student_id,
-        afterState: row,
+        afterState: { classId: row.class_id, status: row.status, withAdmissionNo: row.admission_no !== null, withDob: row.dob !== null, withGender: row.gender !== 'not_given' },
       });
       return row;
     });

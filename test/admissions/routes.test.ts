@@ -23,7 +23,11 @@ vi.mock('@/lib/auth/db', async (original) => ({
 import AdmissionsPage from '@/app/(school)/app/admissions/page';
 import AdmissionsWaitingPage from '@/app/(school)/app/admissions/waiting/page';
 import { GET as listRoute, POST as recordRoute } from '@/app/api/app/admissions/route';
-import { GET as stepsRoute, POST as stepRoute } from '@/app/api/app/admissions/[enquiryId]/route';
+import { DELETE as deleteRoute, GET as stepsRoute, POST as stepRoute } from '@/app/api/app/admissions/[enquiryId]/route';
+import { POST as familyRoute } from '@/app/api/app/admissions/family/route';
+import { POST as logDsrRoute } from '@/app/api/app/students/[studentId]/dsr/route';
+import { POST as authorizeRoute } from '@/app/api/app/dsr/[requestId]/authorize/route';
+import { POST as executeRoute } from '@/app/api/app/dsr/[requestId]/execute/route';
 import { AdmissionsView } from '@/components/admissions/AdmissionsView';
 import { AdmissionsWaiting } from '@/components/admissions/AdmissionsWaiting';
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
@@ -102,6 +106,44 @@ describe('the routes', () => {
     expect((await call(principal, stepRoute, `/api/app/admissions/not-an-id`, { action: 'give', ownerId: PRINCIPAL }, 'not-an-id')).status).toBe(400);
   });
 
+  it('C224: the office deletes an enquiry and a family’s enquiries; a teacher and an accountant are refused; an admitted one is never deleted', async () => {
+    const del = async (w: Who, id: string) => {
+      signIn(w);
+      const res = await deleteRoute(new NextRequest(`http://school.example/api/app/admissions/${id}`, { method: 'DELETE' }), { params: { enquiryId: id } });
+      return { status: res.status, body: await res.json() };
+    };
+    const made = await call(principal, recordRoute, '/api/app/admissions', { ...enquiry, childName: 'Ira Example', phone: '9800000210' });
+    const IRA = made.body.enquiryId as string;
+    for (const w of [tara, accountant]) expect((await del(w, IRA)).status, w.role).toBe(403);
+    expect((await del(principal, 'not-an-id')).status).toBe(400);
+    expect((await del(principal, u(98))).status).toBe(404);
+    expect(await del(principal, IRA)).toMatchObject({ status: 200, body: { deleted: IRA, steps: 2 } }); // recorded, and its note
+    expect((await del(principal, IRA)).status).toBe(404);
+    // Zoya was admitted above: her enquiry is the child's record.
+    const zoya = (await call(principal, listRoute, '/api/app/admissions')).body.enquiries.find((e: { child_name: string }) => e.child_name === 'Zoya Example');
+    expect(await del(principal, zoya.enquiry_id)).toMatchObject({ status: 409, body: { code: 'admitted' } });
+
+    // A family that never joined: found by the phone in the body (never in the address), deleted as shown.
+    const family = (action: string, extra: Record<string, unknown>) => ({ action, ...extra });
+    const one = (await call(principal, recordRoute, '/api/app/admissions', { ...enquiry, childName: 'Om Example', phone: '9800000211' })).body.enquiryId;
+    const two = (await call(principal, recordRoute, '/api/app/admissions', { ...enquiry, childName: 'Uma Example', phone: '+91 98000 00211', classId: C6A })).body.enquiryId;
+    for (const w of [tara, accountant]) {
+      expect((await call(w, familyRoute, '/api/app/admissions/family', family('find', { phone: '9800000211' }))).status, w.role).toBe(403);
+      expect((await call(w, familyRoute, '/api/app/admissions/family', family('delete', { phone: '9800000211', enquiryIds: [one, two] }))).status, w.role).toBe(403);
+    }
+    expect((await call(principal, familyRoute, '/api/app/admissions/family', { action: 'everything' })).status).toBe(400);
+    expect(await call(principal, familyRoute, '/api/app/admissions/family', family('find', { phone: '123' }))).toMatchObject({ status: 400, body: { code: 'phone' } });
+    const found = await call(principal, familyRoute, '/api/app/admissions/family', family('find', { phone: '98000 00211' }));
+    expect(found.status).toBe(200);
+    expect(found.body.phone).toBe('+919800000211');
+    expect(found.body.enquiries.map((e: { child_name: string }) => e.child_name).sort()).toEqual(['Om Example', 'Uma Example']);
+    expect(await call(principal, familyRoute, '/api/app/admissions/family', family('delete', { phone: '98000 00211', enquiryIds: [one] }))).toMatchObject({ status: 409, body: { code: 'changed' } });
+    expect(await call(principal, familyRoute, '/api/app/admissions/family', family('delete', { phone: '98000 00211', enquiryIds: [one, two] }))).toMatchObject({ status: 200, body: { deleted: 2 } });
+    expect((await db.pg.query(`select count(*)::int as n from admission_enquiries where phone = '+919800000211'`)).rows[0].n).toBe(0);
+    const audit = JSON.stringify((await db.pg.query(`select before_state, after_state from audit_log where event_action in ('admissions.deleted', 'admissions.family_deleted')`)).rows);
+    for (const word of ['Example', '98000', '+91']) expect(audit, word).not.toContain(word);
+  });
+
   it('switched off, Admissions answers nobody; its page keeps the children waiting for consent, a Students screen, until Students is off too', async () => {
     const turn = (module: string, enabled: boolean) =>
       db.pg.query(
@@ -148,5 +190,30 @@ describe('the page', () => {
     signIn(principal);
     const page = (await AdmissionsWaitingPage()) as { type: unknown; props: { statusFilter: string; title: string } };
     expect([page.type, page.props.statusFilter, page.props.title]).toEqual([StudentsView, 'pending_consent', 'Waiting for consent']);
+  });
+});
+
+// Last: it erases a child the page tests above still list by name.
+describe('the erasure of a data request', () => {
+  it('C224: the erasure of a data request blanks the admitted child’s enquiry, and its audit row holds counts only', async () => {
+    const zoya = (await call(principal, listRoute, '/api/app/admissions')).body.enquiries.find((e: { child_name: string }) => e.child_name === 'Zoya Example');
+    signIn(principal);
+    await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'parents', true, 'plan') on conflict (school_id, module_id) do update set enabled = true`, [A]);
+    const post = async (route: (req: NextRequest, ctx: { params: Record<string, string> }) => Promise<Response>, path: string, params: Record<string, string>, body: unknown) => {
+      const res = await route(new NextRequest(`http://school.example${path}`, { method: 'POST', body: JSON.stringify(body), headers: { 'Content-Type': 'application/json' } }), { params });
+      return { status: res.status, body: await res.json() };
+    };
+    const logged = await post(logDsrRoute as never, `/api/app/students/${zoya.student_id}/dsr`, { studentId: zoya.student_id }, { requestType: 'deletion', requestedByDescription: 'The mother, in person' });
+    expect(logged.status).toBe(201);
+    const id = logged.body.request_id as string;
+    expect((await post(authorizeRoute as never, `/api/app/dsr/${id}/authorize`, { requestId: id }, {})).status).toBe(200);
+    const done = await post(executeRoute as never, `/api/app/dsr/${id}/execute`, { requestId: id }, {});
+    expect(done.status).toBe(200);
+    expect(done.body.result).toMatchObject({ admissionEnquiriesErased: 1 });
+    const after = (await call(principal, listRoute, '/api/app/admissions')).body.enquiries.find((e: { enquiry_id: string }) => e.enquiry_id === zoya.enquiry_id);
+    expect([after.child_name, after.guardian_name, after.phone, after.stage]).toEqual([null, null, null, 'admitted']);
+    const [row] = (await db.pg.query(`select after_state from audit_log where event_action = 'dsr.deletion_executed' and target_id = $1`, [zoya.student_id])).rows;
+    expect(row.after_state).toMatchObject({ admissionEnquiriesErased: 1, admissionStepsErased: expect.any(Number) });
+    expect(JSON.stringify(row.after_state)).not.toMatch(/Zoya|Nadia|98000/);
   });
 });

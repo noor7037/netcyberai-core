@@ -153,11 +153,11 @@ export async function matchByHand(db: PoolClient, actor: Actor, rowId: string, l
     // bank's line for it (the amounts differ, which is why a person is looking), with the person's reason.
     const tied = await db.query(`update bank_credit_rows b set match_status = 'matched', evidence_id = $3, decided_by = $4, decided_at = now(), decision_reason = $5 where b.school_id = $1 and b.row_id = $2 and not exists (select 1 from bank_credit_rows o where o.school_id = b.school_id and o.evidence_id = $3)`, [actor.schoolId, rowId, report.evidence_id, actor.userId, reason]);
     if (tied.rowCount !== 1) return { ok: false, reason: 'already_credited' };
-    await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'bank.row_matched_by_hand', targetType: 'bank_credit_rows', targetId: rowId, beforeState: { status: row.match_status }, afterState: { status: 'matched', linkId, reason, outcome: 'seen_not_credited' } });
+    await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'bank.row_matched_by_hand', targetType: 'bank_credit_rows', targetId: rowId, beforeState: { status: row.match_status }, afterState: { status: 'matched', linkId, reasoned: true, outcome: 'seen_not_credited' } });
     return { ok: true };
   }
   const result = await credit(db, actor, { ...row, amount_minor: Number(row.amount_minor) }, link, 'manual', reason);
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'bank.row_matched_by_hand', targetType: 'bank_credit_rows', targetId: rowId, beforeState: { status: row.match_status }, afterState: { status: 'matched', linkId, reason, outcome: result.outcome, unappliedMinor: result.unappliedMinor } });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'bank.row_matched_by_hand', targetType: 'bank_credit_rows', targetId: rowId, beforeState: { status: row.match_status }, afterState: { status: 'matched', linkId, reasoned: true, outcome: result.outcome, unappliedMinor: result.unappliedMinor } });
   return { ok: true, credit: result };
 }
 
@@ -168,7 +168,7 @@ export async function markNotAFee(db: PoolClient, actor: Actor, rowId: string, r
   if (!reason) return { ok: false, reason: 'reason' };
   const done = await db.query(`update bank_credit_rows set match_status = 'not_a_fee', decided_by = $3, decided_at = now(), decision_reason = $4 where school_id = $1 and row_id = $2 and match_status in ('unmatched', 'needs_person')`, [actor.schoolId, rowId, actor.userId, reason]);
   if (done.rowCount !== 1) return { ok: false, reason: (await db.query(`select 1 from bank_credit_rows where school_id = $1 and row_id = $2`, [actor.schoolId, rowId])).rows[0] ? 'already_decided' : 'no_row' };
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'bank.row_not_a_fee', targetType: 'bank_credit_rows', targetId: rowId, beforeState: undefined, afterState: { status: 'not_a_fee', reason } });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'bank.row_not_a_fee', targetType: 'bank_credit_rows', targetId: rowId, beforeState: undefined, afterState: { status: 'not_a_fee', reasoned: true } }); // the reason is on the row (decision_reason) (C224)
   return { ok: true };
 }
 

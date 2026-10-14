@@ -5,6 +5,7 @@ import { structureInForce } from '@/lib/fees/structures';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
 import { CLOSED_STAGES, ENQUIRY_MAX, QUIET_DAYS_DEFAULT, SOURCES, STAGES, followUps, isIsoDate, type Enquiry, type Source, type Stage } from '@/lib/free-tools/admissions-tracker';
+import { hasAadhaarNumber } from '@/lib/students/data-check-rules';
 import { indiaDate } from '@/lib/time/india';
 import { normalizePhone } from '@/lib/whatsapp/phone';
 
@@ -25,8 +26,13 @@ import { normalizePhone } from '@/lib/whatsapp/phone';
 //     the class IS on the class's fee structure: the structure in force today is named on the admission and kept.
 //   - THE OFFICE ONLY. Every function runs in the caller's own tenant transaction; row level security lets only
 //     the principal and the school admin read or write an enquiry or its steps.
-//   - Never an Aadhaar number: a field holding twelve digits written the way Aadhaar prints its number is refused,
-//     here and by the database.
+//   - Never an Aadhaar number: a field holding a run of twelve digits is refused, here by the app's one rule
+//     (hasAadhaarNumber, src/lib/students/data-check-rules.ts) and in the database by its twin
+//     (public.no_aadhaar_number), as everywhere in P7 (C223-A answer 6, C224).
+//   - Deleted only by the office, and never an admitted one (C223-A answer 3, C224): an enquiry, or every enquiry of
+//     a family that never joined (a parent's erasure request, found by the phone as the enquiries keep it), with its
+//     steps, through the database's own functions; audited with ids and counts, never a name or a phone. An admitted
+//     enquiry is the child's record: the erasure of the child's data blanks it (src/lib/consent/dsr.ts).
 
 type Sql = Pick<PoolClient, 'query'>;
 type Actor = { schoolId: string; userId: string; role: StaffRole };
@@ -69,11 +75,6 @@ export const isSourceCode = (v: unknown): v is SourceCode => typeof v === 'strin
 export const isStageCode = (v: unknown): v is StageCode => typeof v === 'string' && (STAGE_IDS as readonly string[]).includes(v);
 export const isOpenStage = (s: string) => !(CLOSED_STAGE_IDS as readonly string[]).includes(s);
 
-// Twelve digits written the way Aadhaar prints its number (4-4-4, with or without a space or hyphen), standing on
-// their own. The database holds the same pattern in a check on every free-text field.
-export const AADHAAR_LIKE = /(^|[^0-9])[0-9]{4}[ -]?[0-9]{4}[ -]?[0-9]{4}([^0-9]|$)/;
-export const looksLikeItHoldsAadhaar = (text: string) => AADHAAR_LIKE.test(text);
-
 export const NOTE_MAX = 500;
 export const ADMISSION_NO_MAX = 40;
 // A follow-up is today or later, within a year.
@@ -89,11 +90,13 @@ export async function quietDays(db: Sql, schoolId: string): Promise<number> {
 
 // ---- Reading ---------------------------------------------------------------------------------------------------
 
+// An erased enquiry (the erasure of the child's data, C224) has no child's name, guardian's name or phone: they are
+// null, and `erased_on` says when.
 export type EnquiryRow = {
   enquiry_id: string;
-  child_name: string;
-  guardian_name: string;
-  phone: string;
+  child_name: string | null;
+  guardian_name: string | null;
+  phone: string | null;
   class_id: string;
   class_name: string;
   source: SourceCode;
@@ -106,12 +109,14 @@ export type EnquiryRow = {
   student_id: string | null;
   created_on: string; // India's date
   last_contact_on: string; // India's date of the last contact: recorded, a note, or a move of stage
+  erased_on: string | null; // India's date of the erasure, or null
 };
 
 const ENQUIRIES = `
   select e.enquiry_id, e.child_name, e.guardian_name, e.phone, e.class_id, c.name as class_name, e.source, e.stage,
          e.owner_id, u.display_name as owner, e.next_follow_up::text as next_follow_up, e.next_step, e.closed_reason, e.student_id,
          (e.created_at at time zone 'Asia/Kolkata')::date::text as created_on,
+         (e.erased_at at time zone 'Asia/Kolkata')::date::text as erased_on,
          coalesce((select (max(v.at) at time zone 'Asia/Kolkata')::date::text from admission_events v
                     where v.school_id = e.school_id and v.enquiry_id = e.enquiry_id and v.kind in ('recorded', 'note', 'stage')),
                   (e.created_at at time zone 'Asia/Kolkata')::date::text) as last_contact_on
@@ -127,9 +132,9 @@ export async function listEnquiries(db: Sql, schoolId: string): Promise<EnquiryR
 export function asTrackerEnquiry(r: EnquiryRow): Enquiry {
   return {
     id: r.enquiry_id,
-    parentName: r.guardian_name,
-    phone: r.phone,
-    childName: r.child_name,
+    parentName: r.guardian_name ?? '',
+    phone: r.phone ?? '',
+    childName: r.child_name ?? '',
     classWanted: r.class_name,
     source: sourceLabel(r.source),
     stage: stageLabel(r.stage),
@@ -208,7 +213,7 @@ export async function waitingForConsent(db: Sql, schoolId: string): Promise<{ to
 
 // ---- Checking what a person typed ------------------------------------------------------------------------------
 
-export type Problem = 'not_allowed' | 'not_found' | 'child_name' | 'guardian_name' | 'phone' | 'class' | 'source' | 'owner' | 'stage' | 'follow_up' | 'next_step' | 'reason' | 'note' | 'nothing' | 'aadhaar' | 'closed' | 'admitted' | 'admission_no' | 'admission_no_taken' | 'dob';
+export type Problem = 'not_allowed' | 'not_found' | 'child_name' | 'guardian_name' | 'phone' | 'class' | 'source' | 'owner' | 'stage' | 'follow_up' | 'next_step' | 'reason' | 'note' | 'nothing' | 'aadhaar' | 'closed' | 'admitted' | 'admission_no' | 'admission_no_taken' | 'dob' | 'changed';
 type Checked<T> = { ok: true; value: T } | { ok: false; reason: Problem };
 
 const oneLine = (v: string) => v.replace(/\s+/g, ' ').trim();
@@ -217,7 +222,7 @@ function text(v: unknown, max: number, problem: Problem, required: boolean): Che
   if (typeof v !== 'string') return { ok: false, reason: problem };
   const t = oneLine(v);
   if (t.length > max) return { ok: false, reason: problem };
-  if (looksLikeItHoldsAadhaar(t)) return { ok: false, reason: 'aadhaar' };
+  if (hasAadhaarNumber(t)) return { ok: false, reason: 'aadhaar' };
   return { ok: true, value: t };
 }
 
@@ -370,7 +375,7 @@ export type AdmitResult =
 export async function admit(db: Sql, actor: Actor, enquiryId: string, input: AdmitInput, today: string = indiaDate()): Promise<AdmitResult> {
   if (!ADMISSIONS_OFFICE.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   const admissionNo = input.admissionNo === null || input.admissionNo === undefined || (typeof input.admissionNo === 'string' && !input.admissionNo.trim()) ? null : input.admissionNo;
-  if (admissionNo !== null && (typeof admissionNo !== 'string' || admissionNo.trim().length > ADMISSION_NO_MAX || looksLikeItHoldsAadhaar(admissionNo))) return { ok: false, reason: 'admission_no' };
+  if (admissionNo !== null && (typeof admissionNo !== 'string' || admissionNo.trim().length > ADMISSION_NO_MAX || hasAadhaarNumber(admissionNo))) return { ok: false, reason: 'admission_no' };
   const dob = input.dob === null || input.dob === undefined || input.dob === '' ? null : input.dob;
   if (dob !== null && (typeof dob !== 'string' || !isIsoDate(dob) || dob > today)) return { ok: false, reason: 'dob' };
   // Every check before the first write: a refusal leaves nothing behind. The row lock makes a second press wait,
@@ -386,10 +391,11 @@ export async function admit(db: Sql, actor: Actor, enquiryId: string, input: Adm
   const student = (await db.query(
     `insert into students (school_id, admission_no, name, class_id, dob, status)
      values ($1, $2, $3, $4, $5, 'pending_consent')
-     returning student_id, admission_no, name, class_id, roll_no, dob::text as dob, status, created_at`,
+     returning student_id, class_id, status`,
     [actor.schoolId, no, e.child_name, e.class_id, dob]
   )).rows[0];
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'student.create', targetType: 'students', targetId: student.student_id, afterState: student });
+  // The record made, never the child's name or date of birth (C224): its class and state, and which details it has.
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'student.create', targetType: 'students', targetId: student.student_id, afterState: { classId: student.class_id, status: student.status, withAdmissionNo: no !== null, withDob: dob !== null, fromEnquiry: enquiryId } });
 
   // The class's fee structure in force today, in the session running today (the fees library's own "in force").
   const session = (await db.query(
@@ -414,4 +420,66 @@ export async function admit(db: Sql, actor: Actor, enquiryId: string, input: Adm
   await audit(db, actor, 'admitted', enquiryId, { studentId: student.student_id, classId: e.class_id, feeStructureId: fees?.structure_id ?? null }, { stage: e.stage });
   const className = (await db.query(`select name from classes where school_id = $1 and class_id = $2`, [actor.schoolId, e.class_id])).rows[0]?.name ?? '';
   return { ok: true, enquiryId, studentId: student.student_id, className, fees, monthRaised };
+}
+
+// ---- Deleting (C223-A answer 3, C224) ------------------------------------------------------------------------------
+//
+// The principal and the school admin delete an enquiry that was not admitted, with its steps; and, for a parent's
+// erasure request about a family that never joined, every such enquiry with the family's phone. An admitted enquiry
+// is the child's record and is never deleted (the erasure of the child's data blanks it). The database does the
+// deleting (public.delete_admission_enquiry, public.delete_family_enquiries: the office only, the caller's school
+// only); the app's role holds no DELETE. Audited with ids and counts, never a name or a phone. Nothing is deleted
+// automatically: the retention period is the lawyer's (P8).
+
+export type DeleteResult = { ok: true; enquiryId: string; steps: number } | { ok: false; reason: Problem };
+
+export async function deleteEnquiry(db: Sql, actor: Actor, enquiryId: string): Promise<DeleteResult> {
+  if (!ADMISSIONS_OFFICE.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
+  const before = await lockEnquiry(db, actor.schoolId, enquiryId);
+  if (!before) return { ok: false, reason: 'not_found' };
+  if (before.stage === 'admitted') return { ok: false, reason: 'admitted' };
+  const steps = Number((await db.query(`select public.delete_admission_enquiry($1) as n`, [enquiryId])).rows[0]?.n ?? 0);
+  await audit(db, actor, 'deleted', enquiryId, { steps }, { stage: before.stage, classId: before.class_id });
+  return { ok: true, enquiryId, steps };
+}
+
+// The enquiries a family's phone finds, as the office reads them before deleting: those that would go (not admitted)
+// and how many admitted ones stay (a child's record each).
+export type FamilyEnquiries = { phone: string; enquiries: { enquiry_id: string; child_name: string; class_name: string; stage: StageCode; created_on: string }[]; admitted: number };
+export type FamilyResult = { ok: true; family: FamilyEnquiries } | { ok: false; reason: Problem };
+
+export async function familyEnquiries(db: Sql, actor: Actor, phoneRaw: unknown): Promise<FamilyResult> {
+  if (!ADMISSIONS_OFFICE.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
+  // What the office types, read as the enquiries keep it (+ and digits), as recordEnquiry reads it.
+  const phone = typeof phoneRaw === 'string' && phoneRaw.length <= ENQUIRY_MAX.phone ? normalizePhone(phoneRaw) : null;
+  if (!phone) return { ok: false, reason: 'phone' };
+  const rows = (await db.query(
+    `select e.enquiry_id, e.child_name, c.name as class_name, e.stage, (e.created_at at time zone 'Asia/Kolkata')::date::text as created_on
+       from admission_enquiries e join classes c on c.school_id = e.school_id and c.class_id = e.class_id
+      where e.school_id = $1 and e.phone = $2
+      order by e.created_at, e.enquiry_id`,
+    [actor.schoolId, phone]
+  )).rows as FamilyEnquiries['enquiries'];
+  return { ok: true, family: { phone, enquiries: rows.filter((r) => r.stage !== 'admitted'), admitted: rows.filter((r) => r.stage === 'admitted').length } };
+}
+
+export type FamilyDeleteResult = { ok: true; enquiryIds: string[]; steps: number } | { ok: false; reason: Problem };
+
+// `expected`: the enquiries the office was shown and confirmed. If the family's list has changed since (an enquiry
+// recorded, moved or deleted meanwhile), nothing is deleted and the office looks again.
+export async function deleteFamilyEnquiries(db: Sql, actor: Actor, phoneRaw: unknown, expected: unknown): Promise<FamilyDeleteResult> {
+  const found = await familyEnquiries(db, actor, phoneRaw);
+  if (!found.ok) return found;
+  const now = found.family.enquiries.map((e) => e.enquiry_id).sort();
+  if (!Array.isArray(expected) || !expected.every((x) => typeof x === 'string')) return { ok: false, reason: 'changed' };
+  if ([...new Set(expected as string[])].sort().join(',') !== now.join(',')) return { ok: false, reason: 'changed' };
+  if (now.length === 0) return { ok: false, reason: 'nothing' };
+  // The database deletes exactly the list confirmed, under a lock, or nothing (the list changed in the meantime).
+  const gone = (await db.query(`select deleted_enquiry, deleted_steps from public.delete_family_enquiries($1, $2::uuid[])`, [found.family.phone, now])).rows as { deleted_enquiry: string; deleted_steps: number }[];
+  if (gone.length === 0) return { ok: false, reason: 'changed' };
+  const enquiryIds = gone.map((g) => g.deleted_enquiry);
+  const steps = gone.reduce((n, g) => n + Number(g.deleted_steps), 0);
+  // Ids and counts only: never the phone, never a name.
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'admissions.family_deleted', targetType: 'admission_enquiries', afterState: { enquiryIds, enquiries: enquiryIds.length, steps, admittedKept: found.family.admitted } });
+  return { ok: true, enquiryIds, steps };
 }

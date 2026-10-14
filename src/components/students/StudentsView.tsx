@@ -42,6 +42,9 @@ type ImportResult = {
   siblingSuggestions: { row: number; studentId: string | null; name: string; matches: SiblingSuggestion[] }[];
 };
 
+// The school record's gender (C222): Aadhaar's set or "not given", in this order on the form.
+const GENDERS = ['not_given', 'female', 'male', 'transgender'] as const;
+
 const STATUS_VARIANT: Record<Student['status'], 'neutral' | 'success' | 'warning' | 'danger'> = {
   pending_consent: 'warning',
   active: 'success',
@@ -95,6 +98,9 @@ export function StudentsView({ title, description, statusFilter, openNew = false
   const [importResult, setImportResult] = useState<ImportResult | null>(null);
   const [importing, setImporting] = useState(false);
   const [search, setSearch] = useState('');
+  // The principal or the school admin (the list says so): they record a child's gender and open the student data
+  // check (C222, C224). Anyone else is offered neither.
+  const [office, setOffice] = useState(false);
   const toast = useToast();
 
   async function load() {
@@ -112,6 +118,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
       const studentsBody = await studentsRes.json();
       const classesBody = classesRes.ok ? await classesRes.json() : { classes: [] };
       setStudents(studentsBody.students);
+      setOffice(studentsBody.office === true);
       setTotal(Number(studentsBody.total ?? studentsBody.students.length));
       setClasses(classesBody.classes);
       setTeachers(classesBody.teachers ?? []);
@@ -138,6 +145,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
       classId: String(form.get('classId') ?? '') || null,
       rollNo: String(form.get('rollNo') ?? ''),
       dob: String(form.get('dob') ?? '') || null,
+      ...(office ? { gender: String(form.get('gender') ?? '') || null } : {}),
     };
     const res = await fetch('/api/app/students', {
       method: 'POST',
@@ -291,6 +299,11 @@ export function StudentsView({ title, description, statusFilter, openNew = false
               Import CSV
             </button>
           )}
+          {office && (
+            <Link href="/app/students/data-check" data-students-data-check title={t('students.dataCheck.how')} className={QUIET_ACTION}>
+              {t('students.dataCheck.link')}
+            </Link>
+          )}
         </>
       }
       search={
@@ -356,6 +369,15 @@ export function StudentsView({ title, description, statusFilter, openNew = false
           </Select>
           <Input id="rollNo" name="rollNo" label="Roll number" />
           <Input id="dob" name="dob" label="Date of birth" type="date" />
+          {office && (
+            <Select id="gender" name="gender" label={t('students.gender.label')} defaultValue="not_given" data-student-gender>
+              {GENDERS.map((g) => (
+                <option key={g} value={g}>
+                  {t(`sdc.gender.${g}`)}
+                </option>
+              ))}
+            </Select>
+          )}
           <p className="text-sm text-slate/70">
             New students start as <strong>pending consent</strong> until a verified guardian grants both required consents.
           </p>
@@ -422,13 +444,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
         title="Import students from CSV"
       >
         <form onSubmit={handleImport} className="flex flex-col gap-4">
-          <p className="text-sm text-slate/70">
-            Columns: <code>name</code> (required), <code>admission_no</code>, <code>class_name</code> (must match an
-            existing class exactly), <code>roll_no</code>, <code>dob</code> (YYYY-MM-DD). Every row lands in{' '}
-            <strong>pending consent</strong>. Re-uploading the exact same file is safe — it won&apos;t create
-            duplicates. Optional <code>guardian_phone</code> / <code>guardian_email</code> columns are used only to
-            suggest siblings already on record; nothing is linked until you confirm.
-          </p>
+          <p data-import-columns className="text-sm text-slate/70">{t('students.import.columns')}</p>
           <label htmlFor="csv-file" className="text-sm font-medium text-slate">
             CSV file
           </label>

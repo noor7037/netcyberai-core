@@ -1,5 +1,5 @@
 import type { PoolClient } from 'pg';
-import { writeAuditLog } from '@/lib/audit/log';
+import { writeAuditLog, writeEntitlementAudit } from '@/lib/audit/log';
 import { indiaDate, isIsoDate } from '@/lib/time/india';
 
 // What WhatsApp costs, and the limit on it (docs/25 slice 7o, C197).
@@ -184,6 +184,7 @@ export async function setSchoolBudget(db: PoolClient, by: { userId: string }, sc
   const before = (await db.query(`select monthly_budget_paise from schools where school_id = $1 for update`, [schoolId])).rows[0];
   if (!before) return { ok: false, reason: 'not_found' };
   await db.query(`update schools set monthly_budget_paise = $2 where school_id = $1`, [schoolId, budgetPaise]);
-  await writeAuditLog(db, { schoolId, actorUserId: by.userId, actorRole: 'super_admin', eventAction: 'whatsapp.budget_set', targetType: 'schools', targetId: schoolId, beforeState: { budgetPaise: before.monthly_budget_paise === null ? null : Number(before.monthly_budget_paise) }, afterState: { budgetPaise, reason } });
+  // The reason is kept where only the founder reads it (entitlement_change_reasons, C124), never in the audit row (C224).
+  await writeEntitlementAudit(db, { schoolId, actorUserId: by.userId, actorRole: 'super_admin', eventAction: 'whatsapp.budget_set', targetType: 'schools', targetId: schoolId, beforeState: { budgetPaise: before.monthly_budget_paise === null ? null : Number(before.monthly_budget_paise) }, afterState: { budgetPaise, reasoned: true } }, reason);
   return { ok: true };
 }

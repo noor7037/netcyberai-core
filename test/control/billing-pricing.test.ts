@@ -227,7 +227,9 @@ describe('a school’s subscription records its period', () => {
     expect(await platform((c) => setBillingPeriod(c, by, N, { period: 'month', reason: 'no plan yet' }))).toEqual({ ok: false, reason: 'no_plan' });
     expect(await platform((c) => setBillingPeriod(c, by, G, { period: 'month', reason: 'the school pays each month' }))).toEqual({ ok: true, period: 'month' });
     expect(await rows(`select billing_period from school_subscriptions where school_id = $1`, [G])).toEqual([{ billing_period: 'month' }]);
-    expect(await rows(`select before_state, after_state, actor_user_id from audit_log where school_id = $1 and event_action = 'billing.terms.period_changed'`, [G])).toEqual([{ before_state: { billing_period: null }, after_state: { billing_period: 'month', reason: 'the school pays each month' }, actor_user_id: FOUNDER }]);
+    expect(await rows(`select before_state, after_state, actor_user_id from audit_log where school_id = $1 and event_action = 'billing.terms.period_changed'`, [G])).toEqual([{ before_state: { billing_period: null }, after_state: { billing_period: 'month', reasoned: true }, actor_user_id: FOUNDER }]); // never a reason's words (C224)
+    // Review of C224: the founder's words are kept where only the founder reads them (C124).
+    expect(await rows(`select r.reason from entitlement_change_reasons r join audit_log a on a.audit_id = r.audit_id where a.school_id = $1 and a.event_action = 'billing.terms.period_changed'`, [G])).toEqual([{ reason: 'the school pays each month' }]);
     await expect(db.pg.query(`update school_subscriptions set billing_period = 'quarter' where school_id = $1`, [G])).rejects.toThrow(/check constraint/);
     // The school's own session reads its own row (8e), and so its period; it cannot change it.
     expect(await as(principalG, async (c) => (await c.query(`select billing_period from school_subscriptions`)).rows)).toEqual([{ billing_period: 'month' }]);
@@ -324,7 +326,7 @@ describe('each term carries a reason, dates and an audit row, is never edited, a
     expect(minimums[1].replacedBy).toBe(minimums[0].termId);
     const audits = await rows(`select event_action, target_id, after_state, actor_user_id from audit_log where school_id = $1 and event_action = 'billing.terms.added' order by audit_id`, [G]);
     expect(audits.map((r: { after_state: { kind: string } }) => r.after_state.kind)).toEqual(['minimum', 'price', 'discount', 'complimentary', 'minimum', 'discount']);
-    for (const r of audits) expect(r).toMatchObject({ actor_user_id: FOUNDER, after_state: { starts_on: TODAY, reason: 'agreed with the made-up school' } });
+    for (const r of audits) expect(r).toMatchObject({ actor_user_id: FOUNDER, after_state: { starts_on: TODAY, reasoned: true } }); // the words are on the term (C224)
     expect(audits[0].after_state).toMatchObject({ minimum_students: 50, ends_on: null, replaced: [] });
     expect(audits[1].after_state).toMatchObject({ price_month_minor: 2500, price_year_minor: 24000 });
     expect(audits[3].after_state).toMatchObject({ module_id: 'parent-ai', ends_on: day(30) });
@@ -346,7 +348,7 @@ describe('each term carries a reason, dates and an audit row, is never edited, a
     expect(await platform((c) => endTerm(c, by, P, { termId: id, endsOn: day(20), reason: 'another school’s term' }))).toEqual({ ok: false, reason: 'not_found' });
     expect(await end({ endsOn: day(20) })).toMatchObject({ ok: true });
     expect((await platform((c) => listTerms(c, G))).find((t) => t.termId === id)).toMatchObject({ endsOn: day(20), endedBy: 'Farid Founder', endReason: 'the school asked to stop early', state: 'later', replacedBy: null });
-    expect(await rows(`select before_state, after_state from audit_log where event_action = 'billing.terms.ended' and target_id = $1`, [id])).toEqual([{ before_state: { ends_on: day(40) }, after_state: { kind: 'price', ends_on: day(20), reason: 'the school asked to stop early' } }]);
+    expect(await rows(`select before_state, after_state from audit_log where event_action = 'billing.terms.ended' and target_id = $1`, [id])).toEqual([{ before_state: { ends_on: day(40) }, after_state: { kind: 'price', ends_on: day(20), reasoned: true } }]); // the words are on the term (C224)
   });
 
   it('what is not a term is refused in plain codes and writes nothing', async () => {

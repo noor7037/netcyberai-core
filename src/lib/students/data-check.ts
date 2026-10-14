@@ -20,7 +20,8 @@ import { MAX_CLOSING_NOTE, MAX_NOTE, compareDetails, hideAadhaarNumbers, isDataC
 //     (queueWhatsAppMessage: consent, quiet hours, budget and approved words, read again when it goes).
 //   - The guardian's reply in that WhatsApp conversation is kept with the request by the database
 //     (data_check_link_reply); an answer that came another way is attached by the office.
-//   - The office corrects the school record (audited, before and after) or closes the request with why.
+//   - The office corrects the school record (audited by the detail and the request, never a value: C224) or closes
+//     the request with why.
 //   - Who sees what is the database's rule: the office every child, a teacher the children of the class they are
 //     class teacher of (read only), the accountant nothing. This file asks the same roles first.
 
@@ -302,8 +303,8 @@ const COLUMN: Record<DataCheckField, { column: 'name' | 'dob' | 'gender'; cast: 
   gender: { column: 'gender', cast: 'text', read: 'gender' },
 };
 
-// The school record is corrected: the child's detail is set, the request says to what, and the change is audited
-// with the value before and after.
+// The school record is corrected: the child's detail is set, the request says to what, and the change is audited by
+// the detail and the request, never its value (C224): the value is on the request, which the erasure removes.
 export async function correctRecord(db: Sql, actor: DataCheckActor, requestId: string, raw: string): Promise<StepResult> {
   if (!isOffice(actor.role)) return { ok: false, reason: 'not_allowed' };
   const r = await openRequest(db, actor, requestId);
@@ -315,7 +316,7 @@ export async function correctRecord(db: Sql, actor: DataCheckActor, requestId: s
   if (!before) return { ok: false, reason: 'not_found' };
   await db.query(`update students set ${col.column} = $3::${col.cast}, updated_at = now() where school_id = $1 and student_id = $2`, [actor.schoolId, r.student_id, read.value]);
   await db.query(`update data_check_requests set outcome = 'corrected', corrected_to = $3, decided_by = $4, decided_at = now() where school_id = $1 and request_id = $2`, [actor.schoolId, requestId, read.value, actor.userId]);
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'student.data_check_corrected', targetType: 'students', targetId: r.student_id, beforeState: { [r.field]: before.v ?? null }, afterState: { [r.field]: read.value, requestId } });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'student.data_check_corrected', targetType: 'students', targetId: r.student_id, beforeState: undefined, afterState: { field: r.field, requestId } });
   return { ok: true };
 }
 

@@ -4,6 +4,8 @@ import type { SessionClaims } from '@/lib/auth/types';
 import type { SiblingSuggestion } from '@/lib/contracts/families';
 import { emailKey, phoneKey, suggestSiblingsFor } from '@/lib/families/families';
 import type { Sql } from '@/lib/jobs/types';
+import type { RecordGender } from '@/lib/students/data-check-rules';
+import { mayRecordGender, readImportGender } from '@/lib/students/gender';
 import { parseCsv, rowsToRecords } from './csv';
 import { basicRowErrors } from './rules';
 
@@ -13,6 +15,12 @@ import { basicRowErrors } from './rules';
 // them; the office confirms each suggestion on the student's page. Kept out
 // of IMPORT_COLUMNS (rules.ts), which the public import checker also shows.
 export const SIBLING_HINT_COLUMNS = ['guardian_phone', 'guardian_email'] as const;
+
+// Optional column 'gender' (C222, C224): Aadhaar's values as Aadhaar prints them (male, female, transgender, any
+// case) or empty for "not given". Only the office records a gender (the database's students_gender_office_only),
+// so a row with a gender from anyone else is refused, never written. Also kept out of IMPORT_COLUMNS: the public
+// import checker shows those, and the website is not changed here.
+export const GENDER_COLUMN = 'gender';
 
 export type ImportSiblingSuggestion = { row: number; studentId: string | null; name: string; matches: SiblingSuggestion[] };
 
@@ -33,6 +41,7 @@ interface ValidRow {
   classId: string | null;
   rollNo: string | null;
   dob: string | null;
+  gender: RecordGender;
 }
 
 export interface ImportResult {
@@ -83,7 +92,7 @@ export async function runCsvImport(
 // siblings, write nothing.
 export async function importStudentRecords(
   client: Sql,
-  claims: { schoolId: string; sub: string },
+  claims: { schoolId: string; sub: string; role?: string },
   records: Record<string, string | undefined>[],
   fileHash: string,
   fileName: string,
@@ -136,6 +145,9 @@ export async function importStudentRecords(
     const rollNo = rec.roll_no?.trim() || null;
     const dob = rec.dob?.trim() || null;
     const rowErrors: string[] = basicRowErrors(rec);
+    const gender = readImportGender(rec[GENDER_COLUMN]);
+    if (!gender.ok) rowErrors.push('gender must be male, female or transgender, as Aadhaar prints it, or left empty');
+    else if (gender.value !== 'not_given' && !mayRecordGender(claims.role ?? '')) rowErrors.push('only the principal or the school admin records a gender');
 
     let classId: string | null = null;
     if (className) {
@@ -151,7 +163,7 @@ export async function importStudentRecords(
       errors.push({ row, name, admissionNo, errors: rowErrors });
     } else {
       // The id is chosen here so a suggestion can name the new student.
-      valid.push({ row, studentId: randomUUID(), phone: phoneKey(rec.guardian_phone), email: emailKey(rec.guardian_email), name, admissionNo, classId, rollNo, dob });
+      valid.push({ row, studentId: randomUUID(), phone: phoneKey(rec.guardian_phone), email: emailKey(rec.guardian_email), name, admissionNo, classId, rollNo, dob, gender: gender.ok ? gender.value : 'not_given' });
     }
   });
 
@@ -194,11 +206,11 @@ export async function importStudentRecords(
     const params: unknown[] = [];
     valid.forEach((v) => {
       const base = params.length;
-      params.push(v.studentId, claims.schoolId, v.admissionNo, v.name, v.classId, v.rollNo, v.dob);
-      values.push(`($${base + 1}, $${base + 2}, $${base + 3}, $${base + 4}, $${base + 5}, $${base + 6}, $${base + 7}, 'pending_consent')`);
+      params.push(v.studentId, claims.schoolId, v.admissionNo, v.name, v.classId, v.rollNo, v.dob, v.gender);
+      values.push(`($${base + 1}, $${base + 2}, $${base + 3}, $${base + 4}, $${base + 5}, $${base + 6}, $${base + 7}, $${base + 8}, 'pending_consent')`);
     });
     const insertResult = await client.query(
-      `insert into students (student_id, school_id, admission_no, name, class_id, roll_no, dob, status)
+      `insert into students (student_id, school_id, admission_no, name, class_id, roll_no, dob, gender, status)
        values ${values.join(', ')}`,
       params
     );

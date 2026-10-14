@@ -134,10 +134,10 @@ production, in PR order, by the lead only.
 | **10a. Admissions pipeline** (C221) | `/app/admissions`:<br>• record an enquiry (child, class sought, guardian, phone, source: WhatsApp, walk-in or phone), with an owner and a follow-up date;<br>• stages from `admissions-tracker.ts` (enquiry, visit, application, test or interview, offer, admitted, closed);<br>• "follow up today";<br>• "gone quiet" (no contact for the setting's number of days).<br>"Admit" creates the student record (waiting for consent, as today) and puts the child on the class's fee structure. A My Day card shows follow-ups due. | `admission_enquiries` (stage, owner, next follow-up, source, closed reason) and `admission_events` (each contact or stage change, append-only). The office reads and writes; a teacher sees none. | An enquiry moves through the stages with each step kept. One with no contact for the setting's days is on "gone quiet". "Admit" makes exactly one student record, on the class's fee structure, and the enquiry says admitted. A teacher and an accountant are refused by the app and the database. |
 | **10b. Student data check** (C222) | `/app/students/data-check`:<br>• the school types, for each child, the name, date of birth and gender **as printed on Aadhaar** (never the number);<br>• `student-data-check.ts` compares them with the school record and lists mismatches by severity;<br>• "Ask the parent" drafts a correction request (an approved template, through the send-gate), and the guardian's reply is kept with it;<br>• the office corrects the record (audited) or closes the request.<br>The record gains gender (male, female, transgender, not given). | `students.gender`. `student_id_as_printed` (name, date of birth, gender, typed by and when). `data_check_requests` (the mismatch, the message, the reply, the outcome). A check refuses any 12-digit run in these fields. | A mismatch in name, date of birth or gender is found by the free tool's own rule. A request is sent only through the send-gate and its reply is kept. A 12-digit number is refused by the app and the database. The class teacher sees their own classes, the accountant none. |
 | **10c. RTE claim desk** (C223) | `/app/fees/rte`:<br>• each RTE child (`rte_admission`) with an evidence file (documents attached since admission);<br>• the year's claim per child as the lower of the state rate (typed by the school, with its source) and the child's fee (`rte-claim.ts`, RTE Act s.12(2));<br>• claims raised, paid and unpaid, aged year by year;<br>• a CSV of the claim sheet. | `rte_rates` (year, rate, source, typed by), `rte_claims` (child, year, amount, state, paid on, reference) and `rte_evidence` (child, document, kind). The office and accountant read and write; a teacher sees none. | The claim equals min(rate, fee) to the rupee for each child and year. A paid claim leaves the unpaid list; an unpaid one moves to the next age bucket each year. No claim is raised without the state rate. Roles are held by the database. |
-| **10d. Compliance desk** (C224) | `/app/compliance/desk`:<br>• teacher qualifications and TET (`teacher-register.ts` stages and expiry windows), on staff records, with expiry alerts on My Day;<br>• the mandatory public disclosure data, kept and exported;<br>• Form 6 fee data from the fee structures (`form6.ts`);<br>• SQAAF evidence: a document or note tagged to a standard. | `staff_qualifications` (kind, subject, valid from and to, evidence); `disclosure_items`; `sqaaf_evidence` (standard code, document, note). The standards list is data with its source. | A qualification expiring within the window shows on My Day and on the desk. Disclosure data exports exactly what is kept. Form 6 reads the fee structures, never a typed copy. Each evidence row names its standard. Only the office reads staff qualifications. |
-| **10e. Documents and certificates** (C225) | Certificates in bulk from the school's records (the studio's templates), each behind the fee-clearance check (or a recorded waiver). A QR code on each certificate opens a public verification page that shows only the certificate's number, type, the school and "valid" or "withdrawn". An issue register, numbered in sequence. | `certificates_issued` (number, type, child, issued by and on, QR token, withdrawn by, when and why). | A child with dues gets no certificate without a recorded waiver. Numbers are unbroken and never reused. The QR page shows no personal data beyond what the certificate prints and says "withdrawn" once withdrawn. |
-| **10f. Timetable generator** (C226) | The constraints: periods per subject per class, teachers' subjects and classes, unavailable periods, and the rules of `plan.ts`. The generator proposes a week; a person reviews it, swaps periods, and accepts it into `timetable_entries`, replacing a week only when told to. | `timetable_constraints`, `timetable_proposals` (proposed week, by, when, accepted by and when). | A proposal never puts a teacher in two classes at once or a class in two subjects in one period, and meets each subject's periods or says which it could not. Nothing reaches `timetable_entries` until a person accepts. |
-| **10g. Setup (complete)** (C227) | Office screens for academic sessions (current session, dates) and subjects (per class), and the onboarding checklist computed from what is set up. | None (backends exist), or small columns. | The office makes a session current and adds subjects. The checklist counts only what exists. |
+| **10d. Compliance desk** (C227) | `/app/compliance/desk`:<br>• teacher qualifications and TET (`teacher-register.ts` stages and expiry windows), on staff records, with expiry alerts on My Day;<br>• the mandatory public disclosure data, kept and exported;<br>• Form 6 fee data from the fee structures (`form6.ts`);<br>• SQAAF evidence: a document or note tagged to a standard. | `staff_qualifications` (kind, subject, valid from and to, evidence); `disclosure_items`; `sqaaf_evidence` (standard code, document, note). The standards list is data with its source. | A qualification expiring within the window shows on My Day and on the desk. Disclosure data exports exactly what is kept. Form 6 reads the fee structures, never a typed copy. Each evidence row names its standard. Only the office reads staff qualifications. |
+| **10e. Documents and certificates** (C228) | Certificates in bulk from the school's records (the studio's templates), each behind the fee-clearance check (or a recorded waiver). A QR code on each certificate opens a public verification page that shows only the certificate's number, type, the school and "valid" or "withdrawn". An issue register, numbered in sequence. | `certificates_issued` (number, type, child, issued by and on, QR token, withdrawn by, when and why). | A child with dues gets no certificate without a recorded waiver. Numbers are unbroken and never reused. The QR page shows no personal data beyond what the certificate prints and says "withdrawn" once withdrawn. |
+| **10f. Timetable generator** (C229) | The constraints: periods per subject per class, teachers' subjects and classes, unavailable periods, and the rules of `plan.ts`. The generator proposes a week; a person reviews it, swaps periods, and accepts it into `timetable_entries`, replacing a week only when told to. | `timetable_constraints`, `timetable_proposals` (proposed week, by, when, accepted by and when). | A proposal never puts a teacher in two classes at once or a class in two subjects in one period, and meets each subject's periods or says which it could not. Nothing reaches `timetable_entries` until a person accepts. |
+| **10g. Setup (complete)** (C231) | Office screens for academic sessions (current session, dates) and subjects (per class), and the onboarding checklist computed from what is set up. | None (backends exist), or small columns. | The office makes a session current and adds subjects. The checklist counts only what exists. |
 
 ## 5. Decisions the plan makes, unless told otherwise
 
@@ -214,6 +214,62 @@ production, in PR order, by the lead only.
 - **Wave 2:** 10d, 10e and 10f.
 - **Then:** 10g.
 - The lead keeps the migrations serial, edits `docs/10`, `16`, `17` and
-  this file, and keeps the PR order. Decision Log numbers C221 onward are
-  reserved for the slices, in the order above.
+  this file, and keeps the PR order. Decision Log numbers C221 to C223
+  went to wave 1.
+- **Wave 1 close-out (C223-A), before wave 2, in parallel and split by
+  tables:**
+  - C224: admissions, the data check, erasure and the audit rows;
+  - C225: the RTE desk's close-out, and the one Aadhaar-number rule;
+  - C226: plan placement and the free first month.
+- **Reserved:**
+  - C227: 10d;
+  - C228: 10e;
+  - C229: 10f;
+  - C230: docs/29, the payroll specification proposal and what the blocked
+    modules need;
+  - C231: 10g.
 - One full `ci_local.sh` on the top of the stack.
+
+## 10. What the audit history still holds (C224)
+
+From C224, audit rows hold no names, phones, dates of birth, addresses or free
+text (C56, C223-A answer 7). A call-site test (`test/audit/audit-pii.test.ts`)
+keeps it so.
+
+Rows written before C224 are append-only and stay as they were. Their
+before_state and after_state still hold, by event_action:
+
+- **student.create:** the student row: name, admission number, date of
+  birth, class, roll and status.
+- **student.update:** the name, admission number, date of birth and roll,
+  before and after.
+- **guardian.update:** the name, phone, email, relation and language, before
+  and after.
+- **student.data_check_corrected:** the corrected value, before and after: a
+  name, a date of birth or a gender.
+- **The typed reason:**
+  - attendance.office_enter, attendance.office_correct,
+    attendance.request_applied and attendance.request_dismissed;
+  - bank.row_matched_by_hand and bank.row_not_a_fee;
+  - exam.reopened, fees.clearance_overridden, fees.receipt_reversed and
+    fees.upi_reopened;
+  - payments.credentials_saved (from Control) and
+    payments.gateway_access_changed;
+  - whatsapp.budget_set and whatsapp.stop_lifted;
+  - qr_token.revoke.
+- **attendance.correct:** the late-correction note.
+- **billing.terms.added, billing.terms.ended and
+  billing.terms.period_changed:** the founder's reason.
+- **followup.done and followup.not_needed:** the outcome text.
+- **homework.edit:** the title and details, before and after.
+- **payments.direct_upi_changed:** the UPI ID, payee name, bank name, the
+  account's last four digits and the IFSC, before and after.
+- **syllabus.record and syllabus.update:** the topic and the note.
+- **syllabus.unit_removed:** the chapter and the topic.
+- **rte.claim_written_off:** the write-off note.
+- **rte.claim_paid:** the state's payment reference.
+- **rte.rate_typed:** the source sentence.
+
+These rows are not reached by a data request's erasure. Whether to scrub
+them, and how without breaking the audit hash chain, waits for the lawyer
+(P8), together with the retention periods.

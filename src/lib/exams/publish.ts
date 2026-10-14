@@ -302,7 +302,7 @@ export async function reopenClass(db: Sql, actor: Actor, examId: string, classId
     eventAction: 'exam.reopened',
     targetType: 'exam_publications',
     targetId: kept.publicationId,
-    afterState: { exam_id: examId, class_id: classId, version: kept.version, reason },
+    afterState: { exam_id: examId, class_id: classId, version: kept.version, reasoned: true }, // the reason is on the publication (reopen_reason) (C224)
   });
   return { ok: true, version: kept.version };
 }

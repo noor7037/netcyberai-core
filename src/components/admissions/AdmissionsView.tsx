@@ -14,14 +14,18 @@ import type { MessageKey } from '@/lib/i18n';
 // moves the stage; and "Admit", which makes the child's student record in the class sought, waiting for consent,
 // on the class's fee structure. The office only: `office` is false for anyone else, who is told so and is shown
 // only the children waiting for consent (`children`, drawn on the server).
+// The office also deletes an enquiry that was not admitted, and every such enquiry of a family that never joined
+// (a parent's erasure request, found by phone), each after a confirmation (C223-A answer 3, C224). An admitted
+// enquiry is the child's record: it is never deleted, and after the erasure of the child's data it shows no names.
 
 type SourceCode = 'walk_in' | 'phone_call' | 'whatsapp' | 'website' | 'referral' | 'newspaper' | 'other';
 type StageCode = 'enquiry' | 'visit_booked' | 'visited' | 'form_taken' | 'form_submitted' | 'admitted' | 'not_joining';
-type Row = { enquiry_id: string; child_name: string; guardian_name: string; phone: string; class_id: string; class_name: string; source: SourceCode; stage: StageCode; owner_id: string; owner: string; next_follow_up: string | null; next_step: string | null; closed_reason: string | null; student_id: string | null; created_on: string; last_contact_on: string };
+type Row = { enquiry_id: string; child_name: string | null; guardian_name: string | null; phone: string | null; class_id: string; class_name: string; source: SourceCode; stage: StageCode; owner_id: string; owner: string; next_follow_up: string | null; next_step: string | null; closed_reason: string | null; student_id: string | null; created_on: string; last_contact_on: string; erased_on: string | null };
 type Data = { today: string; quietDays: number; enquiries: Row[]; lists: { due: { enquiryId: string; overdueDays: number }[]; quiet: { enquiryId: string; quietDays: number }[] }; classes: { class_id: string; name: string }[]; owners: { user_id: string; name: string }[]; me: string };
 type Step = { kind: string; note: string | null; stage_from: StageCode | null; stage_to: StageCode | null; follow_up: string | null; next_step: string | null; owner: string | null; student_id: string | null; changed: string[] | null; by: string; at: string };
 type Admitted = { studentId: string; className: string; fees: { academic_year: string; effective_from: string } | null; monthRaised: boolean };
-type Send = (url: string, payload: unknown, done: (got: Record<string, unknown>) => string, after?: () => void) => Promise<boolean>;
+type Family = { phone: string; enquiries: { enquiry_id: string; child_name: string; class_name: string; stage: StageCode; created_on: string }[]; admitted: number };
+type Send = (url: string, payload: unknown, done: (got: Record<string, unknown>) => string, after?: () => void, method?: 'POST' | 'DELETE') => Promise<boolean>;
 type Words = ReturnType<typeof useT>;
 
 // The tool's lists, in its order (src/lib/free-tools/admissions-tracker.ts; the tests hold these to it).
@@ -29,8 +33,9 @@ const SOURCES: SourceCode[] = ['walk_in', 'phone_call', 'whatsapp', 'website', '
 const STAGES: StageCode[] = ['enquiry', 'visit_booked', 'visited', 'form_taken', 'form_submitted', 'admitted', 'not_joining'];
 const MOVABLE = STAGES.filter((s) => s !== 'admitted');
 const isOpen = (s: StageCode) => s !== 'admitted' && s !== 'not_joining';
-const ERRORS = ['child_name', 'guardian_name', 'phone', 'class', 'source', 'owner', 'stage', 'follow_up', 'next_step', 'reason', 'note', 'nothing', 'aadhaar', 'closed', 'admitted', 'admission_no', 'admission_no_taken', 'dob'];
+const ERRORS = ['child_name', 'guardian_name', 'phone', 'class', 'source', 'owner', 'stage', 'follow_up', 'next_step', 'reason', 'note', 'nothing', 'aadhaar', 'closed', 'admitted', 'admission_no', 'admission_no_taken', 'dob', 'changed'];
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-4 text-sm font-semibold text-slate disabled:opacity-60';
+const DANGER = 'min-h-[44px] rounded-md border border-red-800/30 bg-white px-4 text-sm font-semibold text-red-800 disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 const FIELD = 'min-h-[44px] w-full rounded-md border border-slate/20 bg-white px-3 text-sm font-normal text-slate';
 const LINK = 'inline-flex min-h-[44px] items-center font-semibold text-sapphire underline';
@@ -67,10 +72,10 @@ export function AdmissionsView({ office, children }: { office: boolean; children
     if (office) void load();
   }, [office, load]);
 
-  const send: Send = async (url, payload, done, after) => {
+  const send: Send = async (url, payload, done, after, method = 'POST') => {
     setBusy(true);
     setNote(null);
-    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => null);
+    const res = await fetch(url, method === 'DELETE' ? { method } : { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => null);
     const got = res ? ((await res.json().catch(() => null)) as Record<string, unknown> | null) : null;
     setBusy(false);
     if (!res?.ok) {
@@ -235,6 +240,7 @@ export function AdmissionsView({ office, children }: { office: boolean; children
             )}
           </>
         )}
+        {office && data && <FamilyDelete busy={busy} send={send} words={words} />}
         {children}
       </div>
     </ModulePage>
@@ -247,7 +253,7 @@ function ListedRow({ kind, r, words, line }: { kind: 'due' | 'quiet'; r: Row; wo
   return (
     <li data-adm-row={kind} data-enquiry-row={r.enquiry_id} className="flex min-w-0 flex-col gap-0.5 rounded-md border border-slate/10 p-3">
       <a href={`#enquiry-${r.enquiry_id}`} className={LINK}>
-        {t('adm.childFor', { child: r.child_name, class: r.class_name })}
+        {t('adm.childFor', { child: r.child_name ?? '', class: r.class_name })}
       </a>
       <span className="break-words">{[r.guardian_name, r.phone].join(' · ')}</span>
       <span className="text-slate/70">{[line, t(`adm.stage.${r.stage}` as MessageKey), t('adm.with', { owner: r.owner })].join(' · ')}</span>
@@ -257,12 +263,13 @@ function ListedRow({ kind, r, words, line }: { kind: 'due' | 'quiet'; r: Row; wo
 
 // One enquiry: what is known, "Record what happened", "Admit", give it to someone, and its steps.
 function EnquiryCard({ r, data, busy, send, words }: { r: Row; data: Data; busy: boolean; send: Send; words: Words }) {
-  const { t, lang } = words;
+  const { t, tCount, lang } = words;
   const fresh = { note: '', stage: r.stage === 'admitted' ? ('enquiry' as StageCode) : r.stage, nextStep: r.next_step ?? '', followUp: r.next_follow_up ?? '', reason: r.closed_reason ?? '' };
   const [o, setO] = useState(fresh);
   const [admitting, setAdmitting] = useState<{ admissionNo: string; dob: string } | null>(null);
+  const [deleting, setDeleting] = useState(false);
   const [steps, setSteps] = useState<Step[] | null>(null);
-  const [fix, setFix] = useState({ childName: r.child_name, guardianName: r.guardian_name, phone: r.phone, classId: r.class_id, source: r.source });
+  const [fix, setFix] = useState({ childName: r.child_name ?? '', guardianName: r.guardian_name ?? '', phone: r.phone ?? '', classId: r.class_id, source: r.source });
   const stageWord = (s: StageCode | null) => t(`adm.stage.${s ?? 'enquiry'}` as MessageKey);
   const when = new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' });
   const loadSteps = async () => {
@@ -272,26 +279,31 @@ function EnquiryCard({ r, data, busy, send, words }: { r: Row; data: Data; busy:
   };
   const stepWords = (s: Step) =>
     s.kind === 'recorded' ? t('adm.step.recorded', { stage: stageWord(s.stage_to) })
-    : s.kind === 'note' ? t('adm.step.note', { note: s.note ?? '' })
-    : s.kind === 'stage' && s.stage_to === 'not_joining' ? t('adm.step.notJoining', { reason: s.note ?? '' })
+    : s.kind === 'note' ? (s.note === null ? t('adm.step.noteErased') : t('adm.step.note', { note: s.note }))
+    : s.kind === 'stage' && s.stage_to === 'not_joining' && s.note !== null ? t('adm.step.notJoining', { reason: s.note })
     : s.kind === 'stage' ? t('adm.step.stage', { from: stageWord(s.stage_from), to: stageWord(s.stage_to) })
     : s.kind === 'follow_up' ? (s.follow_up ? t('adm.step.followUp', { date: dayIn(lang, s.follow_up) }) : t('adm.step.noFollowUp'))
     : s.kind === 'owner' ? t('adm.step.owner', { owner: s.owner ?? '' })
+    : s.kind === 'erased' ? t('adm.step.erased')
     : t('adm.step.details', { fields: (s.changed ?? []).map((f) => t(`adm.field.${f}` as MessageKey)).join(', ') });
   const admitted = (a: Admitted) =>
     [
-      t('adm.admitted', { child: r.child_name, class: a.className }),
+      t('adm.admitted', { child: r.child_name ?? '', class: a.className }),
       a.fees ? t('adm.fees.on', { class: a.className, year: a.fees.academic_year, from: dayIn(lang, a.fees.effective_from) }) : t('adm.fees.none', { class: a.className }),
       a.fees ? t(a.monthRaised ? 'adm.fees.raiseAgain' : 'adm.fees.next', { class: a.className }) : '',
     ].filter(Boolean).join(' ');
 
   return (
-    <li id={`enquiry-${r.enquiry_id}`} data-enquiry={r.enquiry_id} data-stage={r.stage} className="flex min-w-0 scroll-mt-4 flex-col gap-2 rounded-md border border-slate/10 p-3">
+    <li id={`enquiry-${r.enquiry_id}`} data-enquiry={r.enquiry_id} data-stage={r.stage} data-erased={r.erased_on ? '' : undefined} className="flex min-w-0 scroll-mt-4 flex-col gap-2 rounded-md border border-slate/10 p-3">
       <div className="flex flex-wrap items-center gap-2">
         <Badge variant={r.stage === 'admitted' ? 'success' : r.stage === 'not_joining' ? 'neutral' : 'warning'}>{stageWord(r.stage)}</Badge>
-        <span className="font-bold">{t('adm.childFor', { child: r.child_name, class: r.class_name })}</span>
+        <span className="font-bold">{r.erased_on ? t('adm.erased.title', { class: r.class_name }) : t('adm.childFor', { child: r.child_name ?? '', class: r.class_name })}</span>
       </div>
-      <p className="break-words">{[r.guardian_name, r.phone, t(`adm.source.${r.source}` as MessageKey)].join(' · ')}</p>
+      {r.erased_on ? (
+        <p className="break-words text-slate/70">{t('adm.erased.how', { date: dayIn(lang, r.erased_on) })}</p>
+      ) : (
+        <p className="break-words">{[r.guardian_name, r.phone, t(`adm.source.${r.source}` as MessageKey)].join(' · ')}</p>
+      )}
       <p className="break-words text-slate/70">{[followUpLine(words, r, data.today), r.next_step, t('adm.with', { owner: r.owner })].filter(Boolean).join(' · ')}</p>
       {r.stage === 'not_joining' && r.closed_reason && <p className="break-words">{t('adm.whyNot', { reason: r.closed_reason })}</p>}
       {r.stage === 'admitted' && r.student_id && (
@@ -348,7 +360,7 @@ function EnquiryCard({ r, data, busy, send, words }: { r: Row; data: Data; busy:
             </button>
           ) : (
             <div data-adm-admit-form className="flex flex-col gap-3 rounded-md border border-slate/10 p-3">
-              <p>{t('adm.admit.how', { child: r.child_name, class: r.class_name })}</p>
+              <p>{t('adm.admit.how', { child: r.child_name ?? '', class: r.class_name })}</p>
               <div className="grid gap-3 sm:grid-cols-2">
                 <Input id={`adm-no-${r.enquiry_id}`} label={t('adm.admit.no')} maxLength={40} value={admitting.admissionNo} onChange={(e) => setAdmitting({ ...admitting, admissionNo: e.target.value })} />
                 <Input id={`adm-dob-${r.enquiry_id}`} type="date" label={t('adm.admit.dob')} max={data.today} value={admitting.dob} onChange={(e) => setAdmitting({ ...admitting, dob: e.target.value })} />
@@ -407,6 +419,32 @@ function EnquiryCard({ r, data, busy, send, words }: { r: Row; data: Data; busy:
         </details>
       )}
 
+      {/* Deleted only after the office reads what goes; an admitted enquiry is the child's record and is never deleted. */}
+      {r.stage !== 'admitted' &&
+        (!deleting ? (
+          <button type="button" data-adm-delete disabled={busy} className={`${DANGER} self-start`} onClick={() => setDeleting(true)}>
+            {t('adm.delete.open')}
+          </button>
+        ) : (
+          <div data-adm-delete-confirm className="flex flex-col gap-2 rounded-md border border-red-800/30 p-3">
+            <p className="break-words">{t('adm.delete.how', { child: r.child_name ?? '' })}</p>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                data-adm-delete-yes
+                disabled={busy}
+                className={DANGER}
+                onClick={() => void send(`/api/app/admissions/${r.enquiry_id}`, null, (got) => tCount('adm.deleted', Number(got.steps ?? 0)), () => setDeleting(false), 'DELETE')}
+              >
+                {t('adm.delete.confirm')}
+              </button>
+              <button type="button" className={TAP} onClick={() => setDeleting(false)}>
+                {t('adm.cancel')}
+              </button>
+            </div>
+          </div>
+        ))}
+
       <details data-adm-steps onToggle={(e) => { if ((e.currentTarget as HTMLDetailsElement).open) void loadSteps(); }}>
         <summary className="flex min-h-[44px] cursor-pointer items-center font-semibold">{t('adm.steps')}</summary>
         <ul className="flex flex-col gap-1 border-l-2 border-slate/10 pl-3">
@@ -418,5 +456,76 @@ function EnquiryCard({ r, data, busy, send, words }: { r: Row; data: Data; busy:
         </ul>
       </details>
     </li>
+  );
+}
+
+// A parent's erasure request about a family that never joined (C223-A answer 3): the office types the phone the
+// enquiries were recorded with, reads which would go (and how many admitted ones stay), and confirms. The phone is
+// sent in the body, never in the address; the list confirmed is the list deleted, or nothing is.
+function FamilyDelete({ busy, send, words }: { busy: boolean; send: Send; words: Words }) {
+  const { t, tCount, lang } = words;
+  const [phone, setPhone] = useState('');
+  const [found, setFound] = useState<Family | null>(null);
+  const [problem, setProblem] = useState<string | null>(null);
+  const [finding, setFinding] = useState(false);
+  const find = async () => {
+    setFinding(true);
+    setProblem(null);
+    setFound(null);
+    const res = await fetch('/api/app/admissions/family', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'find', phone }) }).catch(() => null);
+    const got = res ? ((await res.json().catch(() => null)) as (Family & { code?: string }) | null) : null;
+    setFinding(false);
+    if (!res?.ok || !got) return setProblem(got?.code === 'phone' ? t('adm.err.phone') : t('adm.err.other'));
+    setFound(got);
+  };
+  return (
+    <details data-adm-family className="rounded-lg border border-slate/10 bg-white p-4">
+      <summary className="flex min-h-[44px] cursor-pointer items-center text-base font-bold">{t('adm.family.title')}</summary>
+      <div className="mt-2 flex flex-col gap-3">
+        <p className="text-slate/70">{t('adm.family.how')}</p>
+        <div className="flex flex-wrap items-end gap-2">
+          <Input id="adm-family-phone" type="tel" inputMode="tel" autoComplete="off" label={t('adm.family.phone')} maxLength={20} value={phone} onChange={(e) => { setPhone(e.target.value); setFound(null); }} className="min-w-0 flex-1" />
+          <button type="button" data-adm-family-find disabled={busy || finding || !phone.trim()} className={TAP} onClick={() => void find()}>
+            {t('adm.family.find')}
+          </button>
+        </div>
+        {problem && <p role="alert" className="rounded-md border border-red-800/30 px-3 py-2 text-red-800">{problem}</p>}
+        {found && (
+          <div data-adm-family-found data-count={found.enquiries.length} className="flex flex-col gap-2">
+            {found.enquiries.length === 0 ? (
+              <p className="rounded-md bg-off-white px-3 py-2">{t('adm.family.none')}</p>
+            ) : (
+              <>
+                <p className="font-semibold">{tCount('adm.family.found', found.enquiries.length)}</p>
+                <ul className="flex flex-col gap-1">
+                  {found.enquiries.map((e) => (
+                    <li key={e.enquiry_id} className="break-words rounded-md border border-slate/10 px-3 py-2">
+                      {t('adm.family.row', { child: e.child_name, class: e.class_name, stage: t(`adm.stage.${e.stage}` as MessageKey), date: dayIn(lang, e.created_on) })}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+            {found.admitted > 0 && <p className="text-slate/70">{tCount('adm.family.admitted', found.admitted)}</p>}
+            {found.enquiries.length > 0 && (
+              <button
+                type="button"
+                data-adm-family-delete
+                disabled={busy}
+                className={`${DANGER} self-start`}
+                onClick={() =>
+                  void send('/api/app/admissions/family', { action: 'delete', phone, enquiryIds: found.enquiries.map((e) => e.enquiry_id) }, (got) => tCount('adm.family.deleted', Number(got.deleted ?? 0)), () => {
+                    setFound(null);
+                    setPhone('');
+                  })
+                }
+              >
+                {tCount('adm.family.confirm', found.enquiries.length)}
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+    </details>
   );
 }

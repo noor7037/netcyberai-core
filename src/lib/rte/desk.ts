@@ -408,7 +408,7 @@ export async function settleClaim(db: Db, actor: Actor, claimId: string, input: 
   if (!note || note.length > 300) return { ok: false, reason: 'note' };
   if (hasTwelveDigitRun(note)) return { ok: false, reason: 'aadhaar' };
   await db.query(`update rte_claims set state = 'written_off', write_off_note = $3, settled_by = $4 where school_id = $1 and claim_id = $2`, [actor.schoolId, claimId, note, actor.userId]);
-  await writeAuditLog(db, { ...common, eventAction: 'rte.claim_written_off', afterState: { state: 'written_off', studentId: before.student_id, amountMinor: n(before.amount_minor), note } });
+  await writeAuditLog(db, { ...common, eventAction: 'rte.claim_written_off', afterState: { state: 'written_off', studentId: before.student_id, amountMinor: n(before.amount_minor), noted: true } });
   return { ok: true };
 }
 

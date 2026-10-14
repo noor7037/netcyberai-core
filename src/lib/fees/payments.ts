@@ -153,7 +153,7 @@ export async function reverseReceipt(db: PoolClient, actor: Actor, receiptId: st
     [actor.schoolId, receiptId, actor.userId]
   );
   await db.query(`update receipts set reversed_at = now(), reversed_by = $3, reversal_reason = $4 where school_id = $1 and receipt_id = $2`, [actor.schoolId, receiptId, actor.userId, why]);
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.receipt_reversed', targetType: 'receipts', targetId: receiptId, beforeState: { receiptNo: receipt.receipt_no }, afterState: { reason: why, payments: undone.rows.length } });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.receipt_reversed', targetType: 'receipts', targetId: receiptId, beforeState: { receiptNo: receipt.receipt_no }, afterState: { reasoned: true, payments: undone.rows.length } }); // the reason is on the receipt (reversal_reason) (C224)
   return { ok: true, reversed: undone.rows.length };
 }
 

@@ -34,7 +34,7 @@ export async function POST(req: NextRequest, { params }: { params: { tokenId: st
         eventAction: 'qr_token.revoke',
         targetType: 'student_qr_tokens',
         targetId: params.tokenId,
-        afterState: { reason },
+        afterState: { lost: reason === 'lost' }, // the reason stays on the token (revoke_reason), not here (C224)
       });
     });
     return NextResponse.json({ status: 'revoked' });

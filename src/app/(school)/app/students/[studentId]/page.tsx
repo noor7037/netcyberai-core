@@ -12,7 +12,7 @@ async function fetchStudent(schoolId: string, studentId: string, claims: Paramet
   return withTenantContext(claims, async (client) => {
     const { rows } = await client.query(
       `select s.student_id, s.admission_no, s.name, s.class_id, c.name as class_name,
-              s.roll_no, s.dob::text as dob, s.status
+              s.roll_no, s.dob::text as dob, s.gender, s.status
        from students s
        left join classes c on c.school_id = s.school_id and c.class_id = s.class_id
        where s.school_id = $1 and s.student_id = $2`,

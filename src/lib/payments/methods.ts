@@ -64,6 +64,6 @@ export async function setDirectUpi(db: PoolClient, actor: Actor, input: { enable
      on conflict (school_id, method) do update set enabled = excluded.enabled, settings = excluded.settings, updated_by = excluded.updated_by, updated_at = now()`,
     [actor.schoolId, input.enabled, JSON.stringify(settings), actor.userId]
   );
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'payments.direct_upi_changed', targetType: 'payment_methods', targetId: 'direct_upi', beforeState: before ? { enabled: before.enabled, ...readUpiSettings(before.settings) } : undefined, afterState: { enabled: input.enabled, ...settings } });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'payments.direct_upi_changed', targetType: 'payment_methods', targetId: 'direct_upi', beforeState: before ? { enabled: before.enabled } : undefined, afterState: { enabled: input.enabled, changed: (Object.keys(settings) as (keyof UpiSettings)[]).filter((k) => !before || JSON.stringify(settings[k]) !== JSON.stringify(readUpiSettings(before.settings)[k])), verifiers: settings.verifiers, principalLimitMinor: settings.principalLimitMinor, notify: settings.notify } }); // which parts changed, never the UPI ID or payee name (C224)
   return { ok: true };
 }

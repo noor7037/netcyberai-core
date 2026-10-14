@@ -35,7 +35,7 @@ export async function overrideClearance(db: PoolClient, actor: Actor, studentId:
   if (!now) return { ok: false, reason: 'unknown_student' };
   if (now.owedMinor <= 0) return { ok: false, reason: 'nothing_owed' };
   const made = await db.query(`insert into fee_clearance_overrides (school_id, student_id, owed_minor, reason, decided_by) values ($1, $2, $3, $4, $5) returning override_id`, [actor.schoolId, studentId, now.owedMinor, reason, actor.userId]);
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.clearance_overridden', targetType: 'fee_clearance_overrides', targetId: made.rows[0].override_id, beforeState: undefined, afterState: { studentId, owedMinor: now.owedMinor, reason } });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.clearance_overridden', targetType: 'fee_clearance_overrides', targetId: made.rows[0].override_id, beforeState: undefined, afterState: { studentId, owedMinor: now.owedMinor, reasoned: true } }); // the reason is on the override row (C224)
   return { ok: true };
 }
 export const mayReadClearance = (role: StaffRole) => FINANCE.includes(role);

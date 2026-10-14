@@ -1,5 +1,5 @@
 import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
-import { writeAuditLog } from '@/lib/audit/log';
+import { writeAuditLog, writeEntitlementAudit } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
 
 // A school's payment-provider keys (docs/24 §3.8, C171).
@@ -91,7 +91,14 @@ export async function saveCredentials(db: Sql, by: Saver, input: { provider: str
     [by.schoolId, provider, mode, sealed.ciphertext, sealed.iv, sealed.tag, sealed.keyVersion, last4, by.userId, by.from]
   );
   // What was saved, never the keys: the provider, the mode, the last four characters of the key id.
-  await writeAuditLog(db, { schoolId: by.schoolId, actorUserId: by.userId, actorRole: null, eventAction: 'payments.credentials_saved', targetType: 'payment_credentials', targetId: saved.rows[0].config_id, beforeState: undefined, afterState: { provider, mode, keyLast4: last4, from: by.from, ...(reason ? { reason } : {}) } });
+  // From Control, the founder's reason is kept where only the founder reads it (entitlement_change_reasons, C124), never in
+  // the audit row (C224); a school saving its own keys gives none.
+  const configId = saved.rows[0].config_id as string;
+  if (by.from === 'control') {
+    await writeEntitlementAudit(db, { schoolId: by.schoolId, actorUserId: by.userId, actorRole: null, eventAction: 'payments.credentials_saved', targetType: 'payment_credentials', targetId: configId, afterState: { provider, mode, keyLast4: last4, from: by.from, reasoned: true } }, reason);
+  } else {
+    await writeAuditLog(db, { schoolId: by.schoolId, actorUserId: by.userId, actorRole: null, eventAction: 'payments.credentials_saved', targetType: 'payment_credentials', targetId: configId, afterState: { provider, mode, keyLast4: last4, from: by.from } });
+  }
   return { ok: true, meta: (await credentialsMeta(db, by.schoolId)).find((m) => m.provider === provider && m.mode === mode) as CredentialsMeta };
 }
 
@@ -132,6 +139,6 @@ export async function setGatewayAccess(db: Sql, by: { userId: string }, schoolId
      on conflict (school_id, provider) do update set allowed = excluded.allowed, reason = excluded.reason, changed_by = excluded.changed_by, changed_at = now()`,
     [schoolId, provider, allowed, why, by.userId]
   );
-  await writeAuditLog(db, { schoolId, actorUserId: by.userId, actorRole: 'super_admin', eventAction: 'payments.gateway_access_changed', targetType: 'payment_gateway_access', targetId: provider, beforeState: undefined, afterState: { provider, allowed, reason: why } });
+  await writeAuditLog(db, { schoolId, actorUserId: by.userId, actorRole: 'super_admin', eventAction: 'payments.gateway_access_changed', targetType: 'payment_gateway_access', targetId: provider, beforeState: undefined, afterState: { provider, allowed, reasoned: true } }); // the reason is on payment_gateway_access (C224)
   return true;
 }

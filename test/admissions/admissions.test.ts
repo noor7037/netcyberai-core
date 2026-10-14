@@ -2,7 +2,6 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import {
-  AADHAAR_LIKE,
   CLOSED_STAGE_IDS,
   SOURCE_CODES,
   SOURCE_IDS,
@@ -25,6 +24,7 @@ import { raiseDues } from '@/lib/fees/dues';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { CLOSED_STAGES, QUIET_DAYS_DEFAULT, SOURCES, STAGES } from '@/lib/free-tools/admissions-tracker';
 import { looksLikeAadhaarNumber } from '@/lib/free-tools/student-data-check';
+import { hasAadhaarNumber } from '@/lib/students/data-check-rules';
 import { indiaDate } from '@/lib/time/india';
 import { TODAY_PROVIDERS } from '@/lib/today/cards';
 
@@ -47,11 +47,11 @@ describe('one rule in one place: the website tracker’s', () => {
     expect(schema.fields.map((f) => [f.key, f.default])).toEqual([['quiet_days', QUIET_DAYS_DEFAULT]]);
   });
 
-  it('an Aadhaar number as it is printed is found in any text; a phone number or a date is not', () => {
-    for (const s of ['1234 5678 9012', 'called, number 2345-6789-0123', '234567890123', 'Aadhaar:234567890123.']) expect(AADHAAR_LIKE.test(s), s).toBe(true);
-    for (const s of ['98765 43210', '+91 98765 43210', 'Visit on 14/10/2026', 'Class 5-A, roll 12', '1234567890123']) expect(AADHAAR_LIKE.test(s), s).toBe(false);
+  it('an Aadhaar number is found in any text by the one rule of P7 (C224); a ten-digit phone number or a date is not', () => {
+    for (const s of ['1234 5678 9012', 'called, number 2345-6789-0123', '234567890123', 'Aadhaar:234567890123.']) expect(hasAadhaarNumber(s), s).toBe(true);
+    for (const s of ['98765 43210', 'Visit on 14/10/2026', 'Class 5-A, roll 12']) expect(hasAadhaarNumber(s), s).toBe(false);
     // Whatever the website's own check calls an Aadhaar number, this finds too.
-    for (const s of ['1234 5678 9012', '1234-5678-9012', '123456789012']) expect(looksLikeAadhaarNumber(s) && AADHAAR_LIKE.test(s), s).toBe(true);
+    for (const s of ['1234 5678 9012', '1234-5678-9012', '123456789012']) expect(looksLikeAadhaarNumber(s) && hasAadhaarNumber(s), s).toBe(true);
   });
 });
 

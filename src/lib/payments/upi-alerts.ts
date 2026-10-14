@@ -104,6 +104,6 @@ export async function reopenReport(db: Sql, actor: { schoolId: string; userId: s
   // The parent may have entered a corrected UTR meanwhile: one waiting report per link.
   if ((await db.query(`select 1 from payment_reports where link_id = $1 and status in ('reported', 'awaiting_principal')`, [report.link_id])).rows[0]) return { ok: false, reason: 'another_waiting' };
   await db.query(`update payment_reports set status = 'reported', decided_by = null, decided_at = null, reopened_by = $3, reopened_at = now(), reopen_reason = $4 where school_id = $1 and report_id = $2`, [actor.schoolId, reportId, actor.userId, reason]);
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.upi_reopened', targetType: 'payment_reports', targetId: reportId, beforeState: { status: 'not_found' }, afterState: { status: 'reported', reason } });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'fees.upi_reopened', targetType: 'payment_reports', targetId: reportId, beforeState: { status: 'not_found' }, afterState: { status: 'reported', reasoned: true } }); // the reason is on the report (reopen_reason) (C224)
   return { ok: true };
 }

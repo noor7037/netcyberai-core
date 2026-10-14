@@ -79,6 +79,6 @@ export async function decideFollowup(db: PoolClient, actor: Actor, followupId: s
     [actor.schoolId, followupId, input.status, outcome.slice(0, MAX_OUTCOME), actor.userId]
   );
   if (!moved.rows[0]) return { ok: false, reason: 'not_found' };
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: `followup.${input.status}`, targetType: 'pulse_followups', targetId: followupId, beforeState: { status: 'open' }, afterState: { status: input.status, outcome, studentId: moved.rows[0].student_id, kind: moved.rows[0].kind } });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: `followup.${input.status}`, targetType: 'pulse_followups', targetId: followupId, beforeState: { status: 'open' }, afterState: { status: input.status, outcomeWritten: true, studentId: moved.rows[0].student_id, kind: moved.rows[0].kind } }); // the words are on the follow-up (C224)
   return { ok: true, followup: (await db.query(`${SELECT} where f.school_id = $1 and f.followup_id = $2`, [actor.schoolId, followupId])).rows[0] };
 }

@@ -182,7 +182,7 @@ export async function liftOptOut(db: Sql, actor: { schoolId: string; userId: str
   if (!reason) return { ok: false, reason: 'reason' };
   const done = await db.query(`update whatsapp_opt_outs o set lifted_at = now(), lifted_by = $3, lift_reason = $4 from message_threads t where t.school_id = $1 and t.thread_id = $2 and o.school_id = t.school_id and o.phone = t.phone and o.lifted_at is null`, [actor.schoolId, threadId, actor.userId, reason]);
   if (done.rowCount !== 1) return { ok: false, reason: 'not_found' };
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'whatsapp.stop_lifted', targetType: 'message_threads', targetId: threadId, beforeState: undefined, afterState: { reason } });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'whatsapp.stop_lifted', targetType: 'message_threads', targetId: threadId, beforeState: undefined, afterState: { reasoned: true } }); // the reason is on the opt-out (lift_reason) (C224)
   return { ok: true };
 }
 

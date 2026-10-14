@@ -373,10 +373,12 @@ describe('on the real schema, as the app’s own role', () => {
     expect((await db.pg.query(`select name, gender, dob::text as dob from students where student_id = $1`, [ARIF])).rows[0]).toEqual({ name: 'Mohammad Arif Khan', gender: 'male', dob: '2015-03-05' });
     expect((await requestsOf(ARIF)).map((r: { field: string; outcome: string; corrected_to: string | null }) => [r.field, r.outcome, r.corrected_to])).toEqual([['dob', 'closed', null], ['gender', 'corrected', 'male'], ['name', 'corrected', 'Mohammad Arif Khan']]);
     const audit = (await db.pg.query(`select actor_user_id, before_state, after_state from audit_log where event_action = 'student.data_check_corrected' and target_id = $1 order by created_at, audit_id`, [ARIF])).rows;
+    // The detail and the request, never a value (C224): the values are on the request, which the erasure removes.
     expect(audit).toEqual([
-      { actor_user_id: ADMIN, before_state: { name: 'Md Arif Khan' }, after_state: { name: 'Mohammad Arif Khan', requestId: arif.name } },
-      { actor_user_id: PRINCIPAL, before_state: { gender: 'not_given' }, after_state: { gender: 'male', requestId: arif.gender } },
+      { actor_user_id: ADMIN, before_state: null, after_state: { field: 'name', requestId: arif.name } },
+      { actor_user_id: PRINCIPAL, before_state: null, after_state: { field: 'gender', requestId: arif.gender } },
     ]);
+    expect(JSON.stringify(audit)).not.toMatch(/Arif|male/);
     expect((await db.pg.query(`select count(*)::int as n from audit_log where event_action = 'student.data_check_closed' and target_id = $1`, [arif.dob])).rows[0].n).toBe(1);
     // Now the name and gender match; the date of birth still differs, and can be asked about again.
     const now = (await list(admin))!.children.find((c) => c.student_id === ARIF)!;
@@ -411,5 +413,39 @@ describe('on the real schema, as the app’s own role', () => {
     expect((await db.pg.query(`select gender, dob from students where student_id = $1`, [ARIF])).rows[0]).toEqual({ gender: 'not_given', dob: null });
     // Another child's are kept.
     expect(await count('data_check_requests', DIYA)).toBeGreaterThan(0);
+  });
+
+  it('C224: the erasure also blanks the words of the messages that asked (the child’s name and details), and only those; nobody else can', async () => {
+    // Arif's message was sent (above): its words are gone; the row (to whom, when, its state) is kept.
+    expect(await logOf(ARIF_LOG)).toMatchObject({ template_name: 'data_check_request', status: 'sent', to_phone: '+919000000001', student_id: ARIF, template_params: null });
+    // Farah's requests were not erased: the message sent about her keeps its words.
+    const farahLog = (await requestsOf(FARAH)).find((r: { field: string }) => r.field === 'gender').message_log_id;
+    expect(await logOf(farahLog)).toMatchObject({ status: 'sent', template_params: { child: 'Farah Ali' } });
+    // What a sent message was still never changes for the app's role or the platform role.
+    expect((await as<{ rowCount: number }>(principal, (c) => c.query(`update communication_log set template_params = null where log_id = $1`, [farahLog]))).rowCount).toBe(0);
+    await expect(platform((c) => c.query(`update communication_log set template_params = null where log_id = $1`, [farahLog]))).rejects.toThrow(/what a message was never changes/);
+    await expect(platform((c) => c.query(`update communication_log set template_params = '{"child": "Someone"}' where log_id = $1`, [ARIF_LOG]))).rejects.toThrow(/what a message was never changes/);
+    // Another school's principal reaches none of school A's messages.
+    expect(await as(otherSchool, async (c) => (await c.query(`select public.erase_student_data_check($1) as n`, [FARAH])).rows[0].n)).toBe(0);
+    expect((await logOf(farahLog)).template_params).toMatchObject({ child: 'Farah Ali' });
+  });
+  it('lead, at integration: a message still queued when its request is erased is failed, so it never goes out with its words gone', async () => {
+    // An earlier test spent the month's budget and moved quiet hours: give the school room to queue again.
+    await db.pg.query(`update schools set monthly_budget_paise = 100000000, quiet_hours_start = '00:00', quiet_hours_end = '00:00' where school_id = $1`, [A]);
+    ok(await as(admin, (c) => savePrinted(c, actor(admin), NEEL, { name: 'Neel Kumar Das', dob: '', gender: '' })));
+    const asked = ok(await as(admin, (c) => askParent(c, queue, actor(admin), NEEL, { parentId: G_NEEL, fields: ['name'] })));
+    expect(asked.message).toBe('queued');
+    const log = (await requestsOf(NEEL)).find((r: { field: string }) => r.field === 'name').message_log_id;
+    expect(await logOf(log)).toMatchObject({ status: 'queued', template_params: { child: 'Neel Das' } });
+    // Review of C224: a second message the sender has already taken (sending_at set) may have gone out.
+    ok(await as(admin, (c) => savePrinted(c, actor(admin), NEEL, { name: 'Neel Kumar Das', dob: '', gender: 'male' })));
+    ok(await as(admin, (c) => askParent(c, queue, actor(admin), NEEL, { parentId: G_NEEL, fields: ['gender'] })));
+    const taken = (await requestsOf(NEEL)).find((r: { field: string }) => r.field === 'gender').message_log_id;
+    await db.pg.query(`update communication_log set sending_at = now() where log_id = $1`, [taken]);
+    // The printed row and Neel's three requests (the date of birth, held earlier for the budget, the name and the gender).
+    expect(await as(principal, async (c) => (await c.query(`select public.erase_student_data_check($1) as n`, [NEEL])).rows[0].n)).toBe(4);
+    expect((await db.pg.query(`select status::text as status, failure_code, template_params from communication_log where log_id = $1`, [taken])).rows[0]).toEqual({ status: 'uncertain', failure_code: null, template_params: null });
+    expect(await logOf(log)).toMatchObject({ status: 'failed', template_params: null });
+    expect((await db.pg.query(`select failure_code, failed_at is not null as failed from communication_log where log_id = $1`, [log])).rows[0]).toEqual({ failure_code: 'erased', failed: true });
   });
 });

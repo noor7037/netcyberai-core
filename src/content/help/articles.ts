@@ -170,7 +170,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     summary: { en: 'Add a whole class or school at once from a spreadsheet saved as CSV.', hi: 'CSV के रूप में सेव की गई spreadsheet से पूरी कक्षा या पूरा स्कूल एक साथ जोड़ें।' },
     steps: [
       { en: 'Create the classes first: “Students” → “Manage classes”. A row’s class must match an existing class name exactly.', hi: 'पहले कक्षाएँ बनाएँ: “Students” → “Manage classes”। हर row की कक्षा का नाम किसी मौजूदा कक्षा से ठीक-ठीक मिलना चाहिए।' },
-      { en: 'Prepare the file with these column names: name (required), admission_no, class_name, roll_no, dob (as YYYY-MM-DD). Save it as CSV.', hi: 'फ़ाइल इन column नामों के साथ तैयार करें: name (ज़रूरी), admission_no, class_name, roll_no, dob (YYYY-MM-DD रूप में)। इसे CSV के रूप में सेव करें।' },
+      { en: 'Prepare the file with these column names: name (required), admission_no, class_name, roll_no, dob (as YYYY-MM-DD) and gender (male, female or transgender, as Aadhaar prints it, or empty). Save it as CSV.', hi: 'फ़ाइल इन column नामों के साथ तैयार करें: name (ज़रूरी), admission_no, class_name, roll_no, dob (YYYY-MM-DD रूप में) और gender (male, female या transgender, जैसा आधार पर छपा है, या खाली)। इसे CSV के रूप में सेव करें।' },
       { en: 'In “Students”, press “Import CSV” and choose the file.', hi: '“Students” में “Import CSV” दबाएँ और फ़ाइल चुनें।' },
       { en: 'Press “Check file” first. It lists every row with a problem and imports nothing.', hi: 'पहले “Check file” दबाएँ। यह गड़बड़ी वाली हर row दिखाता है और कुछ भी import नहीं करता।' },
       { en: 'Fix the rows in your file, choose it again, and press “Import”.', hi: 'अपनी फ़ाइल में वे rows ठीक करें, फ़ाइल फिर चुनें और “Import” दबाएँ।' },
@@ -179,6 +179,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     tips: [
       { en: 'Uploading the exact same file again is safe: it does not create duplicates.', hi: 'वही फ़ाइल दोबारा upload करना सुरक्षित है: इससे duplicate नहीं बनते।' },
       { en: 'Optional columns guardian_phone and guardian_email are used only to suggest possible siblings; you confirm each one.', hi: 'वैकल्पिक columns guardian_phone और guardian_email केवल संभावित भाई-बहन सुझाने के लिए हैं; हर एक की पुष्टि आप करते हैं।' },
+      { en: 'Leave gender empty when you do not know it: the child is “Not given”, and the student data check lists them for you to fill in.', hi: 'लिंग पता न हो तो खाली छोड़ें: बच्चा “Not given” रहता है, और विद्यार्थी डेटा जाँच उसे भरने के लिए दिखाती है।' },
     ],
     start: { href: '/app/students', label: { en: 'Students', hi: 'Students' } },
     related: ['add-a-student', 'link-siblings'],
@@ -1336,6 +1337,8 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'To pass an enquiry to a colleague in the office, choose them under “Give it to”.', hi: 'पूछताछ दफ़्तर के किसी साथी को देने के लिए उन्हें “Give it to” में चुनें।' },
       { en: 'Never write an Aadhaar number in an enquiry: a number of twelve digits like one is refused.', hi: 'पूछताछ में कभी आधार नंबर न लिखें: उसके जैसा बारह अंकों का नंबर नहीं लिया जाता।' },
       { en: 'Only the principal and the school admin see enquiries. Teachers and the accountant do not.', hi: 'पूछताछ सिर्फ़ प्रिंसिपल और स्कूल एडमिन देखते हैं। शिक्षक और अकाउंटेंट नहीं।' },
+      { en: 'Recorded by mistake, or the family asks? Press “Delete this enquiry” on it and confirm: it goes with its steps. An admitted enquiry is the child’s record and is never deleted.', hi: 'ग़लती से दर्ज हुई, या परिवार कहे? उस पर “Delete this enquiry” दबाएँ और पक्का करें: वह अपने कदमों के साथ हट जाती है। दाख़िल पूछताछ बच्चे का रिकॉर्ड है और कभी हटाई नहीं जाती।' },
+      { en: 'A parent of a family that never joined asks you to delete what you hold: open “Delete a family’s enquiries”, type their phone number, press “Find their enquiries”, read the list, and confirm.', hi: 'जिस परिवार ने कभी दाख़िला नहीं लिया उसके अभिभावक कहें कि आप उनकी जानकारी हटा दें: “Delete a family’s enquiries” खोलें, उनका फ़ोन नंबर लिखें, “Find their enquiries” दबाएँ, सूची पढ़ें, और पक्का करें।' },
     ],
     start: { href: '/app/admissions', label: { en: 'Admissions', hi: 'दाख़िले (Admissions)' } },
     related: ['add-a-student', 'import-students-csv'],
@@ -1405,6 +1408,12 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   // p7-10f end
   // p7-10g begin
   // p7-10g end
+  // c224 begin
+  // c224 end
+  // c225 begin
+  // c225 end
+  // c226 begin
+  // c226 end
 ];
 
 export function helpArticle(slug: string): HelpArticle | null {

@@ -239,7 +239,7 @@ describe('“After publish, no mark of that class and exam can change (app and d
     expect(row).toMatchObject({ reopened_by: PRINCIPAL, reopen_reason: reason.trim() });
     expect(row.reopened_at).not.toBeNull();
     expect(await owner(`select actor_user_id, after_state from audit_log where event_action = 'exam.reopened'`)).toEqual([
-      { actor_user_id: PRINCIPAL, after_state: { exam_id: E1.id, class_id: C5A, version: 1, reason: reason.trim() } },
+      { actor_user_id: PRINCIPAL, after_state: { exam_id: E1.id, class_id: C5A, version: 1, reasoned: true } }, // the words are on the publication (C224)
     ]);
     // Reopened: the mark is corrected (Mathematics 21 and 5: 52 percent).
     expect(await as(tMaths, (c) => saveMarks(c, actor(tMaths), E1.m5a, [score(K1, 'theory', 21)]))).toMatchObject({ ok: true, saved: 1 });

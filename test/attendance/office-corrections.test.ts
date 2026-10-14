@@ -1,4 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { pseudonymizeStudent } from '@/lib/consent/dsr';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { correctionWindowDays, decideCorrectionRequest, officeCorrectAttendance, submitAttendance, waitingCorrectionRequests, withinCorrectionWindow, type AttendanceEntry } from '@/lib/attendance/attendance';
@@ -96,11 +97,32 @@ describe('the office enters or corrects a past day', () => {
     expect(await marks(YESTERDAY)).toEqual([{ student_id: S.asha, status: 'leave', leave_code: 'sick', marked_by: PRINCIPAL }]);
     const audit = await rows(`select event_action, actor_user_id, before_state, after_state from audit_log where school_id = $1 and event_action like 'attendance.office_%' and after_state->>'date' = $2 order by audit_id`, [A, YESTERDAY]);
     expect(audit).toEqual([
-      { event_action: 'attendance.office_enter', actor_user_id: PRINCIPAL, before_state: null, after_state: { status: 'absent', leaveCode: null, date: YESTERDAY, reason: 'The class teacher was on leave; taken from the paper register' } },
-      { event_action: 'attendance.office_correct', actor_user_id: ADMIN, before_state: { status: 'absent', leaveCode: null }, after_state: { status: 'leave', leaveCode: 'sick', date: YESTERDAY, reason: 'Parent brought a medical note' } },
+      // That a reason was given, never its words (C224).
+      { event_action: 'attendance.office_enter', actor_user_id: PRINCIPAL, before_state: null, after_state: { status: 'absent', leaveCode: null, date: YESTERDAY, reasoned: true } },
+      { event_action: 'attendance.office_correct', actor_user_id: ADMIN, before_state: { status: 'absent', leaveCode: null }, after_state: { status: 'leave', leaveCode: 'sick', date: YESTERDAY, reasoned: true } },
     ]);
     // No message goes to a family about a past day.
     expect(await rows(`select 1 from communication_log where school_id = $1`, [A])).toEqual([]);
+  });
+
+  it('review of C224: the words are kept beside the audit row, read by the office and their writer, and go with the child’s erasure', async () => {
+    const words = await rows(`select r.reason, r.written_by, a.event_action from attendance_change_reasons r join audit_log a on a.audit_id = r.audit_id where r.school_id = $1 and r.student_id = $2 order by r.audit_id`, [A, S.asha]);
+    expect(words.slice(-2)).toEqual([
+      { reason: 'The class teacher was on leave; taken from the paper register', written_by: PRINCIPAL, event_action: 'attendance.office_enter' },
+      { reason: 'Parent brought a medical note', written_by: ADMIN, event_action: 'attendance.office_correct' },
+    ]);
+    const n = words.length;
+    const read = (who: Who) => as(who, async (c) => (await c.query(`select reason from attendance_change_reasons where student_id = $1 order by audit_id`, [S.asha])).rows.length);
+    expect([await read(principal), await read(coord), await read(teacher), await read(principalB)]).toEqual([n, n, 0, 0]);
+    // Written in one's own name only; a teacher deletes nothing.
+    await expect(as(teacher, (c) => c.query(`insert into attendance_change_reasons (audit_id, school_id, student_id, reason, written_by) select max(audit_id), $1::uuid, $2::uuid, 'x', $3::uuid from audit_log where school_id = $1`, [A, S.asha, PRINCIPAL]))).rejects.toThrow(/row-level security|violates/);
+    expect(await as(teacher, async (c) => (await c.query(`delete from attendance_change_reasons where student_id = $1`, [S.asha])).rowCount)).toBe(0);
+    // A data request's erasure of a child takes the words about that child, and only those.
+    await correct(principal, S.chitra, YESTERDAY, 'present', 'Marked present from the paper register');
+    const done = await as(principal, (c) => pseudonymizeStudent(c, A, S.chitra));
+    expect(done.attendanceRowsErased).toBe(1);
+    expect(await rows(`select count(*)::int as n from attendance_change_reasons where school_id = $1 and student_id = $2`, [A, S.chitra])).toEqual([{ n: 0 }]);
+    expect(await rows(`select count(*)::int as n from attendance_change_reasons where school_id = $1 and student_id = $2`, [A, S.asha])).toEqual([{ n }]);
   });
 
   it('is refused without a reason, for today or a day to come, past the window, for an unknown student, and for anyone but the principal or school admin', async () => {
@@ -164,7 +186,7 @@ describe('a phone’s marks that arrive after their day ended', () => {
     expect(await as(principal, (c) => waitingCorrectionRequests(c, A, TODAY))).toEqual([]);
     expect(await decide(admin, request.request_id, 'apply', 'again')).toEqual({ ok: false, reason: 'not_found' });
     const audit = await rows(`select actor_user_id, after_state from audit_log where school_id = $1 and event_action = 'attendance.request_applied'`, [A]);
-    expect(audit).toEqual([{ actor_user_id: ADMIN, after_state: { applied: 2, kept: 1, reason: 'The teacher had no network at the camp' } }]);
+    expect(audit).toEqual([{ actor_user_id: ADMIN, after_state: { applied: 2, kept: 1, reasoned: true } }]); // the words stay on the request (C224)
     expect(await rows(`select 1 from communication_log where school_id = $1`, [A])).toEqual([]);
   });
 
