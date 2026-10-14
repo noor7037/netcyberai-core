@@ -10,6 +10,7 @@ import { FACTS, FACT_IDS, NO_LIST_YET, loadFacts, type FactId, type FactResult }
 import { DASHBOARD_ATTENTION, DASHBOARD_CSV_HEADER, DASHBOARD_GROUPS, chartRowLabel, chartTitle, dashboardCsvRows, dashboardModel, sayDetail, sayNumber, sayPeriod, sayValue } from '@/lib/insights/dashboard';
 import { READ_ROUTES, readModuleFor } from '@/lib/frameworks/write-guard';
 import { A, ACCOUNTANT, C6B, PRINCIPAL, TARA, TODAY, accountant, admin, asWho, asWhoKept, coordinator, day, ents, principal, startSchool, tara, type Db, type Who } from './seed';
+import { ModuleComingPage } from '@/components/app-shell/ModuleComingPage';
 
 // The office's dashboard (docs/26 slice 8d, C203): the screen and its CSV are drawn from the school facts, in
 // English and Hindi, on the whole schema. The export route is run for real: the caller's own session, an audit
@@ -31,21 +32,32 @@ import { OfficeDashboardView } from '@/components/dashboards/OfficeDashboardView
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import AttendancePage from '@/app/(school)/app/attendance/page';
 import CommunicationPage from '@/app/(school)/app/communication/page';
+import ComplaintsPage from '@/app/(school)/app/complaints/page';
 import EventsPage from '@/app/(school)/app/events/page';
 import FeesPage from '@/app/(school)/app/fees/page';
 import TicketsPage from '@/app/(school)/app/help/ticket/page';
 import HomeworkPage from '@/app/(school)/app/homework/page';
 import ParentAiPage from '@/app/(school)/app/parent-ai/page';
+import ProxyPage from '@/app/(school)/app/proxy/page';
+import PtmPage from '@/app/(school)/app/ptm/page';
 import PulsePage from '@/app/(school)/app/pulse/page';
+import StaffPage from '@/app/(school)/app/staff/page';
 import StudentsPage from '@/app/(school)/app/students/page';
 import { AttendanceDays, AttendanceShown } from '@/components/attendance/AttendanceShown';
 import { MessagesView } from '@/components/communication/MessagesView';
 import { NoticesShown } from '@/components/communication/NoticesShown';
+import { ComplaintsShown } from '@/components/complaints/ComplaintsShown';
+import { ComplaintsView } from '@/components/complaints/ComplaintsView';
 import { EventsShown } from '@/components/events/EventsShown';
 import { FeesShown } from '@/components/fees/FeesShown';
 import { HomeworkShown } from '@/components/homework/HomeworkShown';
 import { ParentAiShown } from '@/components/parent-ai/ParentAiShown';
+import { ProxyView } from '@/components/proxy/ProxyView';
+import { PtmShown } from '@/components/ptm/PtmShown';
+import { PtmView } from '@/components/ptm/PtmView';
 import { PulseShown } from '@/components/pulse/PulseShown';
+import { StaffLeaveOffice } from '@/components/staff/StaffLeaveOffice';
+import { StaffLeaveShown } from '@/components/staff/StaffLeaveShown';
 import { TicketsShown } from '@/components/tickets/TicketsShown';
 
 let db: Db;
@@ -108,6 +120,10 @@ describe('the words of every fact', () => {
     expect(sayValue('hi', { ...base, state: 'no_data', value: null })).toBe('इन दिनों में कुछ दर्ज नहीं हुआ');
     expect(sayValue('en', { ...base, id: 'attendance.classes_marked', unit: 'count', value: 4, total: 6 })).toBe('4 of 6');
     expect(sayValue('hi', { ...base, id: 'attendance.classes_marked', unit: 'count', value: 4, total: 6 })).toBe('6 में से 4');
+    // Periods without cover: "x of y" while there is a period to cover; on a day with none, a plain 0, not "0 of 0".
+    expect([sayValue('en', { ...base, id: 'proxy.uncovered_today', unit: 'count', value: 2, total: 3 }), sayValue('en', { ...base, id: 'proxy.uncovered_today', unit: 'count', value: 0, total: 3 }), sayValue('en', { ...base, id: 'proxy.uncovered_today', unit: 'count', value: 0, total: 0 })]).toEqual(['2 of 3', '0 of 3', '0']);
+    // A budget of nothing is still said as the whole it is.
+    expect(sayValue('en', { ...base, id: 'whatsapp.spend', value: 0, total: 0 })).toBe('₹0 of ₹0');
     expect(sayPeriod('en', { period: 'range', range: { from: '2026-10-08', to: '2026-10-14' } })).toBe('8 Oct to 14 Oct');
     expect([sayPeriod('en', { period: 'now' }), sayPeriod('en', { period: 'month' }), sayPeriod('en', { period: 'coming' }), sayPeriod('en', { period: 'today', range: { from: TODAY, to: TODAY } })]).toEqual(['As of now', 'This month', 'From today', 'Today']);
   });
@@ -126,7 +142,9 @@ describe('the dashboard on the whole schema', () => {
     const html = renderToStaticMarkup(h(OfficeDashboardView, { data: { schoolName: 'School A', rangeId: '7d', range, facts, failed: 0 } }));
     const model = dashboardModel(facts);
     // Each tile shows the fact's own value and opens the fact's own address. A fact whose screen cannot yet
-    // list exactly its rows has no address: its tile is drawn with the number and no link at all.
+    // list exactly its rows has no address: its tile is drawn with the number and no link at all. (No fact is
+    // in that state today: complaints, meetings, leave and covers each open their rows.)
+    expect(model.groups.flatMap((g) => g.tiles).filter((f) => f.href === null)).toEqual([]);
     for (const g of model.groups) {
       for (const f of g.tiles) {
         const tile = new RegExp(`<li data-fact="${f.id.replace('.', '\\.')}"[^>]*>(.*?)</li>`, 's').exec(html)?.[1] ?? '';
@@ -143,12 +161,38 @@ describe('the dashboard on the whole schema', () => {
       }
     }
     expect(model.groups.map((g) => g.id)).toEqual(['today', 'money', 'learning', 'parents', 'running']);
-    expect(model.groups.reduce((n, g) => n + g.tiles.length, 0)).toBe(28);
+    expect(model.groups.reduce((n, g) => n + g.tiles.length, 0)).toBe(31);
+    // Leave and covers sit with running the school, as three counts: who is away is never listed on the dashboard.
+    expect(model.groups.find((g) => g.id === 'running')!.tiles.map((f) => f.id)).toEqual(['students.active', 'students.waiting_consent', 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today', 'whatsapp.spend', 'tickets.open']);
+    for (const name of ['Tarun', 'Tara Teacher', 'Tina', 'Asif Admin']) expect(html, name).not.toContain(name);
+    const tileOf = (id: string) => new RegExp(`<li data-fact="${id.replace('.', '\\.')}"[^>]*>(.*?)</li>`, 's').exec(html)?.[1] ?? '';
+    expect([tileOf('staff.leave_waiting').includes('>2<'), tileOf('staff.on_leave_today').includes('>1<'), tileOf('proxy.uncovered_today').includes('>2 of 3<')]).toEqual([true, true, true]);
+    expect([tileOf('complaints.open').includes('href="/app/complaints?show=open"'), tileOf('ptm.coming').includes('href="/app/ptm?show=coming"'), tileOf('proxy.uncovered_today').includes('href="/app/proxy?show=needs-cover"')]).toEqual([true, true, true]);
     // The attention list is the facts that ask for a person, in the day's order.
-    expect(model.attention.map((f) => f.id).filter((id) => id !== 'attendance.classes_unmarked')).toEqual(['complaints.overdue', 'notices.waiting', 'fees.upi_to_verify', 'fees.promises_due', 'fees.overdue', 'followups.open', 'parent_ai.drafts', 'students.waiting_consent', 'messages.failed', 'messages.held', 'tickets.waiting']);
+    expect(model.attention.map((f) => f.id).filter((id) => id !== 'attendance.classes_unmarked')).toEqual(['proxy.uncovered_today', 'complaints.overdue', 'notices.waiting', 'staff.leave_waiting', 'fees.upi_to_verify', 'fees.promises_due', 'fees.overdue', 'followups.open', 'parent_ai.drafts', 'students.waiting_consent', 'messages.failed', 'messages.held', 'tickets.waiting']);
     for (const f of facts) if (f.attention) expect(DASHBOARD_ATTENTION, f.id).toContain(f.id);
     expect(html).toContain('2 fee entries are overdue');
     expect(html).toContain('1 complaint is past its due time');
+    expect(html).toContain('2 periods have no teacher today');
+    // The principal may decide both leave requests that wait.
+    expect(html).toContain('2 leave requests are waiting for your decision');
+    // Each attention item's button goes to the fact's own list.
+    for (const [id, href] of [['complaints.overdue', '/app/complaints?show=overdue'], ['staff.leave_waiting', '/app/staff?show=leave-waiting'], ['proxy.uncovered_today', '/app/proxy?show=needs-cover']]) {
+      expect(new RegExp(`<li data-attention="${id.replace('.', '\\.')}"[^>]*>(.*?)</li>`, 's').exec(html)?.[1] ?? '', id).toContain(`href="${href}"`);
+    }
+    // The school admin's own request waits too, and nobody decides their own: the sentence says the one request
+    // that is theirs to decide (My Day says the same), while the tile says the two on the list it opens.
+    const office = await load(admin, '7d');
+    const officeHtml = renderToStaticMarkup(h(OfficeDashboardView, { data: { schoolName: 'School A', rangeId: '7d', range: office.range, facts: office.facts, failed: 0 } }));
+    const attentionOf = (page: string, id: string) => new RegExp(`<li data-attention="${id.replace('.', '\\.')}"[^>]*>(.*?)</li>`, 's').exec(page)?.[1] ?? '';
+    expect([attentionOf(officeHtml, 'staff.leave_waiting').includes('1 leave request is waiting for your decision'), officeHtml.includes('leave requests are waiting')]).toEqual([true, false]);
+    // The chip in the band at the top says the same 1 beside its button (for the principal, 2).
+    const chip = (page: string) => /href="\/app\/staff\?show=leave-waiting"[^>]*><span[^>]*>(\d+)<\/span>See the requests/.exec(page)?.[1];
+    expect([chip(officeHtml), chip(html)]).toEqual(['1', '2']);
+    expect(new RegExp(`<li data-fact="staff\\.leave_waiting"[^>]*>(.*?)</li>`, 's').exec(officeHtml)?.[1] ?? '').toContain('>2<');
+    // The file says what the screen says: 1 under "Needs your attention", 2 on the tile's row.
+    const officeRows = dashboardCsvRows('en', dashboardModel(office.facts), office.range);
+    expect(officeRows.filter((r) => r[1] === 'Leave requests waiting').map((r) => [r[0], r[2], r[4]])).toEqual([['Needs your attention', 1, 'count'], ['Running the school', 2, 'count']]);
     expect(html).toContain(`data-needs-you="${model.attention.length}"`);
     // Charts: one message each, and a table whose rows are the facts' own parts.
     expect(model.charts.map((c) => c.id)).toEqual(['attendance-today', 'present-rate', 'fees-owed', 'messages-by-state', 'homework-checked']);
@@ -242,7 +286,10 @@ describe('the dashboard on the whole schema', () => {
     const tiles = model.groups.flatMap((g) => g.tiles);
     const tileRows = expected.slice(model.attention.length, model.attention.length + tiles.length);
     tiles.forEach((f, i) => expect(tileRows[i][3] !== null, f.id).toBe(/ of /.test(sayValue('en', f))));
-    expect(tiles.filter((_, i) => tileRows[i][3] !== null).map((f) => f.id)).toEqual(['attendance.classes_marked', 'homework.checked', 'whatsapp.spend']);
+    expect(tiles.filter((_, i) => tileRows[i][3] !== null).map((f) => f.id)).toEqual(['attendance.classes_marked', 'homework.checked', 'proxy.uncovered_today', 'whatsapp.spend']);
+    expect(lines.find((l) => l[0] === 'Running the school' && l[1] === 'Periods without cover today')!.slice(2, 10)).toEqual(['2', '3', 'count', `${TODAY} / ${TODAY}`, expect.any(String), expect.stringContaining('have no teacher'), 'timetable_entries staff_leave substitutions', '/app/proxy?show=needs-cover']);
+    expect(lines.find((l) => l[0] === 'Running the school' && l[1] === 'Staff on leave today')!.slice(2, 5)).toEqual(['1', '', 'count']);
+    expect(lines.find((l) => l[0] === 'Needs your attention' && l[1] === 'Leave requests waiting')!.slice(2, 4)).toEqual(['2', '']);
     // The present rate is a share, not "61.5 out of 3": its days are not put in that column.
     expect(lines.find((l) => l[0] === 'Learning' && l[1] === 'In school, of those marked')!.slice(2, 5)).toEqual(['61.5', '', 'percent']);
     expect(lines.find((l) => l[0] === 'Running the school' && l[1] === 'Active students')!.slice(2, 5)).toEqual(['8', '', 'count']);
@@ -254,8 +301,10 @@ describe('the dashboard on the whole schema', () => {
     expect(chartRow('Fees still to come in', 'Overdue').slice(7, 10)).toEqual([expect.stringContaining('due date has passed'), 'fees_ledger payments', '/app/fees?show=overdue']);
     expect(chartRow('Attendance today', 'Absent')[7]).toContain('marked absent today');
     expect(chartRow('Attendance today', 'Not marked yet')[7]).toContain('with a mark saved today');
-    // A fact with no address opens nothing in the file either.
-    expect(lines.find((l) => l[0] === 'Parents' && l[1] === 'Complaints open')![9]).toBe('');
+    // Every tile's address is in the file: complaints and meetings open their own lists now.
+    expect(lines.find((l) => l[0] === 'Parents' && l[1] === 'Complaints open')![9]).toBe('/app/complaints?show=open');
+    expect(lines.find((l) => l[0] === 'Parents' && l[1] === 'Meetings coming')![9]).toBe('/app/ptm?show=coming');
+    expect(lines.slice(1 + model.attention.length, 1 + model.attention.length + tiles.length).filter((l) => l[9] === '')).toEqual([]);
     expect(lines.some((l) => l[0] === 'Note')).toBe(false);
     // The audit row: who, which days, how many rows. No number of the school is copied into it.
     const trail = await audits();
@@ -423,6 +472,45 @@ describe('the dashboard on the whole schema', () => {
     expect([await NoticesShown(), await EventsShown(), await ParentAiShown(), await TicketsShown({ show: 'open' }), await AttendanceDays({ range: week })]).toEqual([null, null, null, null, null]);
   });
 
+  it('the lists added for complaints, meetings and leave keep to the same rule: the reader’s own session, and leave for the office alone', async () => {
+    signIn(principal);
+    expect([rowsIn(await drawn(ComplaintsShown({ show: 'open' }))), rowsIn(await drawn(ComplaintsShown({ show: 'overdue' }))), rowsIn(await drawn(PtmShown())), rowsIn(await drawn(StaffLeaveShown({ show: 'leave-waiting' }))), rowsIn(await drawn(StaffLeaveShown({ show: 'on-leave-today' })))]).toEqual([3, 1, 2, 2, 1]);
+    const complaints = await drawn(ComplaintsShown({ show: 'open' }));
+    expect(complaints).toContain('Complaints open: 3');
+    expect(complaints).toContain('Read each complaint, add a note or close it in the list below.');
+    expect(complaints).toContain('Reference AD000000');
+    expect(await drawn(PtmShown())).toContain('Open a meeting in the list below to see its times and to book one.');
+    expect(await drawn(StaffLeaveShown({ show: 'on-leave-today' }))).toContain('Each leave is under “Approved leave” below, where it can be cancelled if it is wrong.');
+    // Drawing these lists wrote nothing: no complaint was marked as seen by the principal (this file's reads are kept).
+    expect((await db.pg.query(`select count(*)::int as n from complaints where principal_seen_at is not null`)).rows[0].n).toBe(0);
+    // In Hindi for a person whose language is Hindi.
+    state.cookies[LANG_COOKIE] = langCookieValue(PRINCIPAL, 'hi');
+    expect(await drawn(ComplaintsShown({ show: 'overdue' }))).toContain('समय निकली शिकायतें: 1');
+    expect(await drawn(PtmShown())).toContain('आने वाली बैठकें: 2');
+    expect(await drawn(StaffLeaveShown({ show: 'leave-waiting' }))).toContain('इंतज़ार में छुट्टी की माँगें: 2');
+    expect(await drawn(StaffLeaveShown({ show: 'on-leave-today' }))).toContain('आज छुट्टी पर स्टाफ़: 1');
+    state.cookies = {};
+
+    // The school admin: the same lists as the principal (the office).
+    signIn(admin);
+    expect([rowsIn(await drawn(ComplaintsShown({ show: 'open' }))), rowsIn(await drawn(StaffLeaveShown({ show: 'leave-waiting' }))), rowsIn(await drawn(StaffLeaveShown({ show: 'on-leave-today' })))]).toEqual([3, 2, 1]);
+    // Tara, the class teacher of 5-A: the two complaints she may see (not the one about her), her class's meeting,
+    // and no list of leave at all, though a request of her own waits.
+    signIn(tara);
+    const hers = await drawn(ComplaintsShown({ show: 'open' }));
+    expect([rowsIn(hers), hers!.includes('Fatima Ali')]).toEqual([2, false]);
+    expect(rowsIn(await drawn(PtmShown()))).toBe(1);
+    expect([await StaffLeaveShown({ show: 'leave-waiting' }), await StaffLeaveShown({ show: 'on-leave-today' })]).toEqual([null, null]);
+    // The accountant and the academic coordinator: none of the five. (The coordinator arranges cover on Proxy Auto,
+    // which tells them who is away that day and nothing else about anyone's leave.)
+    for (const w of [accountant, coordinator]) {
+      signIn(w);
+      expect([await ComplaintsShown({ show: 'open' }), await ComplaintsShown({ show: 'overdue' }), await PtmShown(), await StaffLeaveShown({ show: 'leave-waiting' }), await StaffLeaveShown({ show: 'on-leave-today' })], w.role).toEqual([null, null, null, null, null]);
+    }
+    signIn(null);
+    expect([await ComplaintsShown({ show: 'open' }), await PtmShown(), await StaffLeaveShown({ show: 'on-leave-today' })]).toEqual([null, null, null]);
+  });
+
   it('a screen opens on a filter only when the filter is one of its own; without one it is the screen as before', async () => {
     signIn(principal);
     const days = { from: day(6), to: TODAY };
@@ -460,6 +548,39 @@ describe('the dashboard on the whole schema', () => {
     for (const show of ['open', 'waiting']) expect(has(TicketsPage({ searchParams: { show } }), TicketsShown)?.props, show).toEqual({ show });
     for (const show of [undefined, 'closed', 'resolved', 'OPEN']) expect(has(TicketsPage({ searchParams: { show } }), TicketsShown), String(show)).toBeNull();
     expect(has(TicketsPage({}), TicketsShown)).toBeNull();
+    // Complaints open on their two lists, meetings and leave on theirs; anything else is the screen as before.
+    for (const show of ['open', 'overdue']) expect(has(await ComplaintsPage({ searchParams: { show } }), ComplaintsShown)?.props, show).toEqual({ show });
+    for (const show of [undefined, 'closed', 'all', 'OPEN']) expect(has(await ComplaintsPage({ searchParams: { show } }), ComplaintsShown), String(show)).toBeNull();
+    expect(has(await ComplaintsPage({}), ComplaintsShown)).toBeNull();
+    expect(has(await PtmPage({ searchParams: { show: 'coming' } }), PtmShown)).toBeTruthy();
+    for (const show of [undefined, 'past', 'cancelled', 'COMING']) expect(has(await PtmPage({ searchParams: { show } }), PtmShown), String(show)).toBeNull();
+    expect(has(await PtmPage({}), PtmShown)).toBeNull();
+    for (const show of ['leave-waiting', 'on-leave-today']) expect(has(await StaffPage({ searchParams: { show } }), StaffLeaveShown)?.props, show).toEqual({ show });
+    for (const show of [undefined, 'waiting', 'on-leave', 'everyone']) expect(has(await StaffPage({ searchParams: { show } }), StaffLeaveShown), String(show)).toBeNull();
+    expect(has(await StaffPage({}), StaffLeaveShown)).toBeNull();
+    // The list comes first on its screen, above the screen's own content.
+    const staff: any = await StaffPage({ searchParams: { show: 'leave-waiting' } });
+    expect(([] as any[]).concat(staff.props.children).filter(Boolean).slice(0, 2).map((el: any) => el.type)).toEqual([StaffLeaveShown, StaffLeaveOffice]);
+    // The screen below is told when a list is drawn above it, so that a change made below (a complaint closed, a
+    // leave request decided, a meeting cancelled) has the list above read again; with no list above, it is not.
+    expect([has(await ComplaintsPage({ searchParams: { show: 'overdue' } }), ComplaintsView)?.props, has(await ComplaintsPage({ searchParams: { show: 'closed' } }), ComplaintsView)?.props, has(await ComplaintsPage({}), ComplaintsView)?.props]).toEqual([{ shownAbove: true }, { shownAbove: false }, { shownAbove: false }]);
+    expect([has(await PtmPage({ searchParams: { show: 'coming' } }), PtmView)?.props, has(await PtmPage({ searchParams: { show: 'past' } }), PtmView)?.props, has(await PtmPage({}), PtmView)?.props]).toEqual([{ shownAbove: true }, { shownAbove: false }, { shownAbove: false }]);
+    expect([has(staff, StaffLeaveOffice)?.props, has(await StaffPage({ searchParams: { show: 'on-leave-today' } }), StaffLeaveOffice)?.props, has(await StaffPage({ searchParams: { show: 'everyone' } }), StaffLeaveOffice)?.props, has(await StaffPage({}), StaffLeaveOffice)?.props]).toEqual([{ shownAbove: true }, { shownAbove: true }, { shownAbove: false }, { shownAbove: false }]);
+    // Proxy Auto is handed its one filter, and draws the filtered periods itself (it has no list above it).
+    expect([has(await ProxyPage({ searchParams: { show: 'needs-cover' } }), ProxyView)?.props, has(await ProxyPage({ searchParams: { show: 'covered' } }), ProxyView)?.props, has(await ProxyPage({}), ProxyView)?.props]).toEqual([{ show: 'needs-cover' }, {}, {}]);
+    // Staff switched off for the school: leave is left out of the screen, and its list with it.
+    await db.pg.query(`update school_module_entitlements set enabled = false where school_id = $1 and module_id = 'staff'`, [A]);
+    try {
+      const off: any = await StaffPage({ searchParams: { show: 'leave-waiting' } });
+      expect([has(off, StaffLeaveShown), has(off, StaffLeaveOffice)]).toEqual([null, null]);
+    } finally {
+      await db.pg.query(`update school_module_entitlements set enabled = true where school_id = $1 and module_id = 'staff'`, [A]);
+    }
+    // Nobody but the office opens Staff at all: a teacher is shown the "not for your role" page, with no list.
+    signIn(tara);
+    const notHers: any = await StaffPage({ searchParams: { show: 'on-leave-today' } });
+    expect([notHers.type, has(notHers, StaffLeaveShown)]).toEqual([ModuleComingPage, null]);
+    signIn(principal);
     // Students: a status in the address; the students waiting for consent are the Admissions screen's.
     expect(((await StudentsPage({ searchParams: { status: 'active' } })) as any).props.statusFilter).toBe('active');
     for (const status of [undefined, 'pending_consent', 'everyone']) expect(((await StudentsPage({ searchParams: { status } })) as any).props.statusFilter, String(status)).toBeUndefined();

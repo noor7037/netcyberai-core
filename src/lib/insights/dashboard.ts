@@ -18,13 +18,13 @@ export const DASHBOARD_GROUPS: readonly { id: 'today' | 'money' | 'learning' | '
   { id: 'money', tone: 'tangerine', facts: ['fees.collected', 'fees.overdue', 'fees.owed', 'fees.promises_due', 'fees.upi_to_verify'] },
   { id: 'learning', tone: 'azure', facts: ['attendance.present_rate', 'homework.set', 'homework.checked', 'homework.not_done', 'followups.open'] },
   { id: 'parents', tone: 'cyan', facts: ['pulse.sent', 'pulse.understood', 'pulse.needs_help', 'messages.total', 'complaints.open', 'notices.waiting', 'ptm.coming', 'events.coming', 'parent_ai.drafts'] },
-  // Staff leave and covers (8b, 8c) join this group: 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today'.
-  { id: 'running', tone: 'sapphire', facts: ['students.active', 'students.waiting_consent', 'whatsapp.spend', 'tickets.open'] },
+  // Staff leave and covers (8b, 8c) are here as counts for running the day: never a list of who, never an order of people.
+  { id: 'running', tone: 'sapphire', facts: ['students.active', 'students.waiting_consent', 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today', 'whatsapp.spend', 'tickets.open'] },
 ];
 export type DashboardGroupId = (typeof DASHBOARD_GROUPS)[number]['id'];
 
 // The attention list, in this order: what the day cannot go on without first.
-export const DASHBOARD_ATTENTION: readonly FactId[] = ['attendance.classes_unmarked', 'complaints.overdue', 'notices.waiting', 'fees.upi_to_verify', 'fees.promises_due', 'fees.overdue', 'followups.open', 'parent_ai.drafts', 'students.waiting_consent', 'messages.failed', 'messages.held', 'tickets.waiting'];
+export const DASHBOARD_ATTENTION: readonly FactId[] = ['attendance.classes_unmarked', 'proxy.uncovered_today', 'complaints.overdue', 'notices.waiting', 'staff.leave_waiting', 'fees.upi_to_verify', 'fees.promises_due', 'fees.overdue', 'followups.open', 'parent_ai.drafts', 'students.waiting_consent', 'messages.failed', 'messages.held', 'tickets.waiting'];
 
 // `fact`: the fact a row's number IS, where the row is a fact of its own (today's "Present", the fees "Not yet
 // due"). Its rule, source and time are that fact's. A row without one is a part of the chart's own fact.
@@ -85,6 +85,12 @@ export function dashboardModel(facts: readonly FactResult[]): DashboardModel {
   };
 }
 
+// The number an attention item's sentence says ("2 fee entries are overdue"): how many things ask for THIS
+// reader. Where a fact says that itself (`attentionCount`: the leave requests the reader may decide, not their
+// own), it is that; otherwise the rows behind an amount (`count`), otherwise the value. The screen and the CSV's
+// attention rows both ask here, so the file says the number the screen says.
+export const attentionNumber = (fact: Pick<FactResult, 'attentionCount' | 'count' | 'value'>): number => fact.attentionCount ?? fact.count ?? fact.value ?? 0;
+
 // ---- Words and numbers ---------------------------------------------------------
 
 const grouped = (value: number, fraction = 0) => value.toLocaleString('en-IN', { maximumFractionDigits: fraction });
@@ -115,9 +121,10 @@ export function sayValue(lang: Lang, fact: FactResult): string {
   // "x of y" where the whole is part of the number's meaning; a rate's total is its days, said under the number.
   return saysWhole(fact) ? t(lang, 'dash.of', { value: sayNumber(fact.value, fact.unit), total: sayNumber(fact.total as number, fact.unit) }) : sayNumber(fact.value, fact.unit);
 }
-const WITH_WHOLE: readonly FactId[] = ['attendance.classes_marked', 'attendance.classes_unmarked', 'attendance.students_marked', 'homework.checked', 'whatsapp.spend'];
+const WITH_WHOLE: readonly FactId[] = ['attendance.classes_marked', 'attendance.classes_unmarked', 'attendance.students_marked', 'homework.checked', 'whatsapp.spend', 'proxy.uncovered_today'];
 // Whether the tile says this fact as "x of y". The screen and the CSV's "Out of" column both ask here.
-const saysWhole = (fact: FactResult): boolean => fact.state === 'ok' && fact.total !== undefined && fact.unit !== 'percent' && WITH_WHOLE.includes(fact.id);
+// A count out of nothing is said as the count alone: on a day with no period to cover the tile says "0", not "0 of 0".
+const saysWhole = (fact: FactResult): boolean => fact.state === 'ok' && fact.total !== undefined && fact.unit !== 'percent' && WITH_WHOLE.includes(fact.id) && !(fact.unit === 'count' && fact.total === 0);
 
 export const sayTime = (lang: Lang, iso: string) => new Date(iso).toLocaleTimeString(lang === 'hi' ? 'hi-IN' : 'en-IN', { hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Kolkata' });
 export const saySources = (lang: Lang, sources: readonly string[]) => sources.map((s) => say(lang, `dash.source.${s}`)).join(', ');
@@ -167,7 +174,9 @@ export function dashboardCsvRows(lang: Lang, model: DashboardModel, range: FactR
   ];
   const out: CsvValue[][] = [];
   if (leftOut > 0) out.push([t(lang, 'dash.csv.note'), tCount(lang, 'dash.csv.leftOut', leftOut), leftOut, null, unit('count'), null, null, null, null, null]);
-  for (const f of model.attention) out.push(row(t(lang, 'dash.attention.title'), say(lang, `fact.${f.id}.label`), f, f.count ?? f.value, undefined, f.count === undefined ? f.unit : 'count', f.href));
+  // An attention row says the number its sentence says on the screen (attentionNumber): a count of things, unless
+  // the fact has neither `attentionCount` nor `count` and its value is the number.
+  for (const f of model.attention) out.push(row(t(lang, 'dash.attention.title'), say(lang, `fact.${f.id}.label`), f, attentionNumber(f), undefined, f.attentionCount === undefined && f.count === undefined ? f.unit : 'count', f.href));
   for (const g of model.groups) for (const f of g.tiles) out.push(row(t(lang, `dash.group.${g.id}` as MessageKey), say(lang, `fact.${f.id}.label`), f, f.value, saysWhole(f) ? f.total : undefined, f.unit, f.href));
   for (const c of model.charts) {
     for (const r of c.rows) {

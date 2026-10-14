@@ -128,15 +128,28 @@ export async function closeComplaint(db: PoolClient, queue: Queue, actor: Actor,
   return { ok: true, parentTold };
 }
 
+// `guardian` and `child` are null when this session may not read that guardian or child: a teacher is given a
+// complaint she owns whatever class the child is in, and the guardians and children of her own classes only.
 export type ComplaintRow = {
-  complaint_id: string; ref: string; guardian: string; child: string | null; about: string | null; owner_id: string; owner: string; source: 'thread' | 'office'; summary: string; status: 'open' | 'closed';
+  complaint_id: string; ref: string; guardian: string | null; child: string | null; about: string | null; owner_id: string; owner: string; source: 'thread' | 'office'; summary: string; status: 'open' | 'closed';
   due_at: string; overdue: boolean; escalated: boolean; created_at: string; closing_note: string | null; mayChange: boolean; aboutYou: boolean;
   events: { kind: string; note: string | null; by: string | null; parent_told: boolean; at: string }[];
 };
 const iso = (v: unknown) => new Date(v as string).toISOString();
 
+// "Past its due time", for a complaint that is still open: its due time has come. SAID ONCE, HERE, for the two
+// lists below: the Complaints screen's own list (listComplaints) and the rows a dashboard number opens
+// (complaintsShown), which are drawn one above the other on the same screen and so must badge the same
+// complaints. (My Day's card in src/lib/today/cards.ts counts with the same rule, written in SQL: due_at <= now().)
+export const isOverdue = (dueAt: unknown, now: Date): boolean => new Date(dueAt as string) <= now;
+
 // Row level security decides what comes back. When it is the principal who looks, every complaint not yet seen by
 // the principal is marked seen: from then on the person it is about may see it too.
+//
+// The guardian is joined loosely, like the child (C203): a complaint this session may see is listed even when
+// the guardian's name is not this session's to read. Joined strictly, a complaint the office gave a teacher about
+// a child of another class dropped out of her list, and she could not read, note or close what she owns (the
+// database lets her; mine() below lets her). The screen says "a guardian from another class" for the name.
 export async function listComplaints(db: PoolClient, actor: Actor, now: Date = new Date()): Promise<ComplaintRow[]> {
   if (!COMPLAINT_ROLES.includes(actor.role)) return [];
   if (actor.role === 'principal') await db.query(`update complaints set principal_seen_at = $2 where school_id = $1 and principal_seen_at is null`, [actor.schoolId, now]);
@@ -144,17 +157,47 @@ export async function listComplaints(db: PoolClient, actor: Actor, now: Date = n
     `select c.complaint_id, p.name as guardian, s.name as child, a.display_name as about, c.about_user_id, c.owner_id, o.display_name as owner, c.source, c.summary, c.status, c.due_at, c.escalated_at, c.created_at, c.closing_note,
             coalesce((select json_agg(json_build_object('kind', e.kind, 'note', e.note, 'by', u.display_name, 'parent_told', e.parent_told, 'at', e.at) order by e.at, e.event_id)
                         from complaint_events e left join users u on u.user_id = e.by_user where e.complaint_id = c.complaint_id), '[]'::json) as events
-       from complaints c join parents p on p.parent_id = c.parent_id left join students s on s.student_id = c.student_id
+       from complaints c left join parents p on p.parent_id = c.parent_id left join students s on s.student_id = c.student_id
        left join users a on a.user_id = c.about_user_id join users o on o.user_id = c.owner_id
       where c.school_id = $1 order by (c.status = 'open') desc, c.due_at limit 100`,
     [actor.schoolId]
   );
   return rows.map((r) => ({
     complaint_id: r.complaint_id, ref: reference(r.complaint_id), guardian: r.guardian, child: r.child, about: r.about, owner_id: r.owner_id, owner: r.owner, source: r.source, summary: r.summary, status: r.status,
-    due_at: iso(r.due_at), overdue: r.status === 'open' && new Date(r.due_at) <= now, escalated: Boolean(r.escalated_at), created_at: iso(r.created_at), closing_note: r.closing_note,
+    due_at: iso(r.due_at), overdue: r.status === 'open' && isOverdue(r.due_at, now), escalated: Boolean(r.escalated_at), created_at: iso(r.created_at), closing_note: r.closing_note,
     mayChange: r.status === 'open' && r.about_user_id !== actor.userId && (OFFICE.includes(actor.role) || r.owner_id === actor.userId), aboutYou: r.about_user_id === actor.userId,
     events: (r.events as { kind: string; note: string | null; by: string | null; parent_told: boolean; at: string }[]).map((e) => ({ ...e, at: iso(e.at) })),
   }));
+}
+
+// The two lists a dashboard number opens (docs/26 slice 8d, C203): /app/complaints?show=open | overdue.
+export const COMPLAINT_SHOWS = ['open', 'overdue'] as const;
+export type ComplaintShow = (typeof COMPLAINT_SHOWS)[number];
+export const isComplaintShow = (v: unknown): v is ComplaintShow => typeof v === 'string' && (COMPLAINT_SHOWS as readonly string[]).includes(v);
+export const COMPLAINT_ROWS_MAX = 500;
+export type ComplaintShown = { complaint_id: string; ref: string; guardian: string | null; child: string | null; owner: string | null; due_at: string; overdue: boolean; escalated: boolean };
+
+// The complaints not yet closed ('open'), or those of them whose due time has passed ('overdue'), as this session
+// may see them (row level security: the complaints_staff policy), the one due soonest first. It is what
+// /app/complaints?show=… lists and what the dashboard's two numbers count, so the number is the rows.
+//
+// READ ONLY: NOTHING IS MARKED AS SEEN BY THE PRINCIPAL HERE. A number on a dashboard, and the short list a number
+// opens, are not the principal reading a complaint. The Complaints screen's own list (listComplaints above) is
+// what marks them, when the principal's browser loads it. Not the complaint's words either: those are read there.
+//
+// The open list and the overdue list are one reading, the second a part of the first, by the one rule for "past
+// its due time" (isOverdue above, which the Complaints screen's own list badges by too). The guardian and the
+// child are joined loosely, as they are in listComplaints, so a complaint this session may see is never dropped
+// because a name is not this session's to read: an open complaint listed here is in that list too.
+export async function complaintsShown(db: Sql, schoolId: string, show: ComplaintShow, now: Date = new Date()): Promise<ComplaintShown[]> {
+  const { rows } = await db.query(
+    `select c.complaint_id, p.name as guardian, s.name as child, o.display_name as owner, c.due_at, c.escalated_at
+       from complaints c left join parents p on p.parent_id = c.parent_id left join students s on s.student_id = c.student_id left join users o on o.user_id = c.owner_id
+      where c.school_id = $1 and c.status = 'open' order by c.due_at, c.complaint_id limit ${COMPLAINT_ROWS_MAX}`,
+    [schoolId]
+  );
+  const open = rows.map((r): ComplaintShown => ({ complaint_id: r.complaint_id, ref: reference(r.complaint_id), guardian: r.guardian, child: r.child, owner: r.owner, due_at: iso(r.due_at), overdue: isOverdue(r.due_at, now), escalated: Boolean(r.escalated_at) }));
+  return show === 'overdue' ? open.filter((c) => c.overdue) : open;
 }
 
 // The staff a complaint can be given to, or be about: for the office's form.

@@ -2,12 +2,17 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
 
 // Parent-teacher meetings (docs/25 slice 7k, C193). The office makes a meeting day and invites; parents book by
 // replying with a time; staff can book for a parent who phoned; after the meeting the teacher marks who came.
+//
+// `shownAbove` (C203): the page was opened from the dashboard's "Meetings coming", and those meetings are drawn
+// above this list with their booked times. After a change made here (a meeting made, cancelled or invited, a
+// time booked), that list is read again too.
 
 type Meeting = { ptm_id: string; title: string; held_on: string; starts_at: string; ends_at: string; slot_minutes: number; status: 'draft' | 'invited' | 'cancelled'; classes: string; slots: number; booked: number; attended: number };
 type Booking = { booking_id: string; parent_id: string; guardian: string; children: string; via: 'reply' | 'staff'; attended: boolean | null; note: string | null };
@@ -20,8 +25,9 @@ const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold 
 const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 const sayTime = (t: string) => `${((Number(t.slice(0, 2)) + 11) % 12) + 1}:${t.slice(3, 5)} ${Number(t.slice(0, 2)) < 12 ? 'am' : 'pm'}`;
 
-export function PtmView() {
+export function PtmView({ shownAbove = false }: { shownAbove?: boolean }) {
   const { t, lang } = useT();
+  const refreshShown = useShownRefresh(shownAbove);
   const [data, setData] = useState<Data | null>(null);
   const [failed, setFailed] = useState(false);
   const [open, setOpen] = useState<Detail | null>(null);
@@ -57,6 +63,9 @@ export function PtmView() {
     await load();
     const id = (got?.ptmId as string | undefined) ?? open?.ptm.ptm_id;
     if (id) await show(id);
+    // The meetings behind the dashboard's number, drawn above this list, are read again too: a meeting just
+    // cancelled is no longer among them, and a time just booked is counted.
+    refreshShown();
   };
 
   if (failed) return <p role="alert" className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('ptm.failed')}</p>;

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
 import { addDays, isLeaveDate, LEAVE_AHEAD_DAYS, LEAVE_BACK_DAYS, LEAVE_LIST_MAX, LEAVE_TEXT_MAX, leaveByToday, type LeaveRow } from '@/lib/staff/leave-rules';
@@ -15,12 +16,17 @@ import { BOX, coversLeftIn, FIELD, LeaveGuideLink, LeaveKindSelect, LeaveNoteLin
 // the wrong person, is still wrong after its days). The list starts as far back as the office may record leave;
 // "Show leave from" moves that first day earlier or later, so no approved leave is out of reach.
 // The lists are in the order of the days. Nothing here counts or compares people.
+//
+// `shownAbove` (C203): the page was opened from a dashboard number, and the requests waiting (or the people on
+// leave today) behind that number are drawn above these lists. After a change made here (a request approved or
+// refused, leave cancelled or recorded), that list is read again too.
 
 type Office = { me: string; alone: boolean; today: string; from: string; to: string | null; waiting: LeaveRow[]; calendar: LeaveRow[]; calendarMore: boolean; staff: { user_id: string; name: string; role: string }[] };
 const EMPTY = { userId: '', fromDate: '', toDate: '', kind: 'sick', reason: '' };
 
-export function StaffLeaveOffice() {
+export function StaffLeaveOffice({ shownAbove = false }: { shownAbove?: boolean }) {
   const { t, tCount, lang, day, refusal } = useLeaveWords();
+  const refreshShown = useShownRefresh(shownAbove);
   const [data, setData] = useState<Office | null>(null);
   // What is in the "Show leave from" box once the office has typed there. null: the box shows the day the list on
   // the screen starts from. (A day half typed is empty here; the list is read again only for a whole, real day.)
@@ -60,6 +66,9 @@ export function StaffLeaveOffice() {
     setNote({ ok: true, text: typeof done === 'string' ? done : done(got) });
     after?.();
     await load(start.current);
+    // The leave behind the dashboard's number, drawn above these lists, is read again too: a request just decided
+    // no longer waits, and leave just cancelled no longer covers today.
+    refreshShown();
   };
   // Cancelling approved leave undoes no cover (a person undoes a cover, on Proxy Auto): when covers were assigned
   // for those days, the line that says "Cancelled" also says how many still stand and where to undo them.

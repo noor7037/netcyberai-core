@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { explainError } from '@/lib/errors/catalogue';
 import type { MessageKey } from '@/lib/i18n';
+import { PROXY_SHOW, type ProxyShow } from '@/lib/insights/screens';
 import { needsCover, PROXY_AHEAD_DAYS, type Cover, type MyCover, type ProxyDay, type Suggestion } from '@/lib/proxy/rules';
 import { isLeaveDate } from '@/lib/staff/leave-rules';
 
@@ -23,6 +24,13 @@ import { isLeaveDate } from '@/lib/staff/leave-rules';
 // their own then) is badged "Needs cover" again and says why, with the cover's own "Undo".
 //
 // The order of the names belongs to that one period. Nothing here adds up covers by person or sorts staff by them.
+//
+// OPENED FROM A DASHBOARD NUMBER (/app/proxy?show=needs-cover; docs/26 slice 8d, C203), the same screen lists
+// today's periods that still need cover and no others: the periods needsCover() is true for, each with its free
+// teachers and "Assign" as always, under a title that says how many of the day's periods they are. So the number
+// on the dashboard is the rows a person then reads, and with 26 of 28 periods covered nobody hunts for the two.
+// The list is this screen's own reading: a period leaves it the moment a teacher is assigned. The covered
+// periods, the covers nothing needs any more and the other days are one tap away, under "Show everything".
 
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
@@ -97,13 +105,20 @@ export function ProxyMine({ data }: { data: ProxyMineData }) {
 }
 
 // The people who arrange cover: one date, its periods, the free teachers for each, and the two taps.
-export function ProxyArranger({ data, busy, note, onPick, onAssign, onUndo }: { data: ProxyArrangerData; busy: boolean; note: ProxyNote; onPick: (date: string) => void; onAssign: (tap: AssignTap) => void; onUndo: (cover: Cover) => void }) {
+// `show`: the filter of the address. 'needs-cover' lists only the periods that still need cover (see the top).
+export function ProxyArranger({ data, show, busy, note, onPick, onAssign, onUndo }: { data: ProxyArrangerData; show?: ProxyShow; busy: boolean; note: ProxyNote; onPick: (date: string) => void; onAssign: (tap: AssignTap) => void; onUndo: (cover: Cover) => void }) {
   const { t, tCount, lang } = useT();
   const { day, stamp } = useDayWords();
   // What is in the "Another day" box while it is being typed; null: the box shows the day on the screen.
   const [typed, setTyped] = useState<string | null>(null);
   const [open, setOpen] = useState<Record<string, boolean>>({});
   const d = data.day;
+  // The periods with no teacher: the rule of the badges, of My Day's card and of the dashboard's number.
+  const needing = d.periods.filter(needsCover);
+  const onlyNeeding = show === PROXY_SHOW;
+  const listed = onlyNeeding ? needing : d.periods;
+  // "x of y" while the day has a period to cover; on a day with none, the plain 0 the dashboard's tile says.
+  const countWords = d.periods.length > 0 ? t('px.count', { open: needing.length, all: d.periods.length }) : t('px.count.only', { open: 0 });
   const pick = (date: string) => {
     setTyped(null);
     onPick(date);
@@ -130,33 +145,58 @@ export function ProxyArranger({ data, busy, note, onPick, onAssign, onUndo }: { 
         </p>
       )}
 
-      <section data-proxy-days className={BOX}>
-        <p className="max-w-prose text-slate/70">{t('px.how')}</p>
-        <div role="group" aria-label={t('px.day.label')} className="flex flex-wrap items-end gap-2">
-          <button type="button" data-proxy-day="today" aria-pressed={d.date === data.today} disabled={busy} className={d.date === data.today ? PRIMARY : TAP} onClick={() => pick(data.today)}>
-            {t('px.day.today')}
-          </button>
-          <button type="button" data-proxy-day="tomorrow" aria-pressed={d.date === data.tomorrow} disabled={busy} className={d.date === data.tomorrow ? PRIMARY : TAP} onClick={() => pick(data.tomorrow)}>
-            {t('px.day.tomorrow')}
-          </button>
-          <div className="w-full sm:w-52">
-            <Input
-              id="proxy-date"
-              type="date"
-              label={t('px.day.other')}
-              min={data.today}
-              max={data.last}
-              value={typed ?? d.date}
-              onChange={(e) => {
-                setTyped(e.target.value);
-                // Only a whole, real day is asked for: a year still being typed would be refused by the server.
-                if (isLeaveDate(e.target.value)) onPick(e.target.value);
-              }}
-              onBlur={() => setTyped(null)}
-            />
+      {/* Opened from the dashboard's number: what the rows below are and how many, in the frame every such list
+          has (ShownRows), and the way back to the whole screen. The day is today: the other days, like the covered
+          periods, are under "Show everything". */}
+      {onlyNeeding && (
+        <section data-shown="proxy-needs-cover" className={BOX}>
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wider">{t('shown.from')}</p>
+            <h2 data-shown-title data-proxy-count data-needs={needing.length} data-periods={d.periods.length} className="text-base font-bold">
+              {countWords}
+            </h2>
+            <p className="max-w-prose">{t('px.shown.how')}</p>
           </div>
-        </div>
-      </section>
+          {needing.length === 0 && (
+            <p data-shown-none className={SOFT}>
+              {t('shown.none')}
+            </p>
+          )}
+          <Link href="/app/proxy" data-shown-back className="inline-flex min-h-[44px] items-center self-start font-semibold text-sapphire underline">
+            {t('shown.back')}
+          </Link>
+        </section>
+      )}
+
+      {!onlyNeeding && (
+        <section data-proxy-days className={BOX}>
+          <p className="max-w-prose text-slate/70">{t('px.how')}</p>
+          <div role="group" aria-label={t('px.day.label')} className="flex flex-wrap items-end gap-2">
+            <button type="button" data-proxy-day="today" aria-pressed={d.date === data.today} disabled={busy} className={d.date === data.today ? PRIMARY : TAP} onClick={() => pick(data.today)}>
+              {t('px.day.today')}
+            </button>
+            <button type="button" data-proxy-day="tomorrow" aria-pressed={d.date === data.tomorrow} disabled={busy} className={d.date === data.tomorrow ? PRIMARY : TAP} onClick={() => pick(data.tomorrow)}>
+              {t('px.day.tomorrow')}
+            </button>
+            <div className="w-full sm:w-52">
+              <Input
+                id="proxy-date"
+                type="date"
+                label={t('px.day.other')}
+                min={data.today}
+                max={data.last}
+                value={typed ?? d.date}
+                onChange={(e) => {
+                  setTyped(e.target.value);
+                  // Only a whole, real day is asked for: a year still being typed would be refused by the server.
+                  if (isLeaveDate(e.target.value)) onPick(e.target.value);
+                }}
+                onBlur={() => setTyped(null)}
+              />
+            </div>
+          </div>
+        </section>
+      )}
 
       <section data-proxy-date={d.date} className="flex flex-col gap-3">
         <h2 className="text-base font-bold">{t('px.day.showing', { date: day(d.date) })}</h2>
@@ -193,15 +233,24 @@ export function ProxyArranger({ data, busy, note, onPick, onAssign, onUndo }: { 
           </p>
         )}
 
-        {d.periods.length > 0 && (
+        {/* How many of the day's periods still have no teacher: the rule of the badges below, counted. For today
+            it is the number the dashboard's tile and My Day's card say (C203). Opened on that number, the same
+            words are the title of the list, in the frame above. */}
+        {!onlyNeeding && d.periods.length > 0 && (
+          <p data-proxy-count data-needs={needing.length} data-periods={d.periods.length} className="font-semibold">
+            {countWords}
+          </p>
+        )}
+
+        {listed.length > 0 && (
           <ul className="grid items-start gap-3 lg:grid-cols-2">
-            {d.periods.map((p) => {
+            {listed.map((p) => {
               const key = `${p.period}:${p.class_id}`;
               const names = open[key] ? p.suggestions : p.suggestions.slice(0, FIRST);
               // The badge is the rule My Day counts by: no cover, or a cover that cannot be taken any more.
               const needs = needsCover(p);
               return (
-                <li key={key} data-proxy-period={key} data-covered={needs ? 'no' : 'yes'} className={BOX}>
+                <li key={key} data-proxy-period={key} data-covered={needs ? 'no' : 'yes'} data-shown-row={onlyNeeding || undefined} className={BOX}>
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div className="min-w-0">
                       <h3 className="break-words text-base font-bold">{t('px.period.title', { period: p.period, class: p.class_name, subject: p.subject_name })}</h3>
@@ -273,7 +322,7 @@ export function ProxyArranger({ data, busy, note, onPick, onAssign, onUndo }: { 
         )}
       </section>
 
-      {d.noLongerNeeded.length > 0 && (
+      {!onlyNeeding && d.noLongerNeeded.length > 0 && (
         <section data-proxy-stale className={BOX}>
           <div>
             <h2 className="text-base font-bold">{t('px.stale.title')}</h2>
@@ -294,7 +343,8 @@ export function ProxyArranger({ data, busy, note, onPick, onAssign, onUndo }: { 
 }
 
 // The screen: reads what this person is given (the day to arrange, or their own covers) and sends the two taps.
-export function ProxyView() {
+// `show`: the filter of the address, handed down by the page (only 'needs-cover' is one; see the top).
+export function ProxyView({ show }: { show?: ProxyShow }) {
   const { t, lang } = useT();
   const [data, setData] = useState<Data | null>(null);
   const [failed, setFailed] = useState(false);
@@ -313,9 +363,11 @@ export function ProxyView() {
     setFailed(!got);
     if (got) setData(got);
   }, []);
+  // The screen opens on today. The filter of the address is about today too, so when it is put on or taken off
+  // (a tap on "Show everything", the browser's Back) the day read is today's again, whatever day was chosen before.
   useEffect(() => {
     void load('');
-  }, [load]);
+  }, [load, show]);
 
   // What the server refused, in the person's language: this screen's own reasons from the message files; a
   // standard refusal (a read-only school, a role that may not) from the error catalogue.
@@ -342,7 +394,8 @@ export function ProxyView() {
       </p>
     );
   }
-  if (!data) {
+  // Under the filter only today is drawn: another day's reading still on the screen is waited out.
+  if (!data || (show === PROXY_SHOW && data.arranger && data.day.date !== data.today)) {
     return (
       <p role="status" data-proxy="loading" className="text-sm text-slate/70">
         {t('px.loading')}
@@ -353,6 +406,7 @@ export function ProxyView() {
   return (
     <ProxyArranger
       data={data}
+      show={show}
       busy={busy}
       note={note}
       onPick={(date) => {

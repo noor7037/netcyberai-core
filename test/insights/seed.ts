@@ -12,12 +12,17 @@ export const A = 'ad000000-0000-4000-8000-000000000001';
 export const B = 'ad000000-0000-4000-8000-000000000002'; // another school: never counted
 export const EMPTY = 'ad000000-0000-4000-8000-000000000003'; // a school with nothing set up
 const u = (n: number) => `ad000000-0000-4000-8000-${String(n).padStart(12, '0')}`;
-export const [PRINCIPAL, ADMIN, TARA, TARUN, ACCOUNTANT, COORDINATOR, NEW_PRINCIPAL] = [u(11), u(12), u(13), u(14), u(15), u(16), u(17)];
+export const [PRINCIPAL, ADMIN, TARA, TARUN, ACCOUNTANT, COORDINATOR, NEW_PRINCIPAL, TINA] = [u(11), u(12), u(13), u(14), u(15), u(16), u(17), u(18)];
+// Tara's leave request, which waits for the office.
+export const TARA_LEAVE = u(951);
 export const [C5A, C6B, C7C] = [u(51), u(52), u(53)];
 const MATHS = u(60);
 // 5-A: Asha, Bela, Chirag, Dev (active), Esha (waiting for consent), Ishan (inactive). 6-B: Farah, Gopal, Hina. Jaya: no class.
 const [ASHA, BELA, CHIRAG, DEV, ESHA, FARAH, GOPAL, HINA, ISHAN, JAYA] = [u(101), u(102), u(103), u(104), u(105), u(106), u(107), u(108), u(109), u(110)];
-const [G_ASHA, G_FARAH] = [u(201), u(206)];
+export { FARAH };
+export const [G_ASHA, G_FARAH] = [u(201), u(206)];
+// A complaint the office gives Tara to look into about Farah of 6-B, a class that is not hers (put in by one test).
+export const FARAH_COMPLAINT = u(805);
 
 export const TODAY = indiaDate();
 // India's date n days before today (negative: after).
@@ -25,6 +30,9 @@ export const day = (n: number) => new Date(Date.parse(`${TODAY}T00:00:00Z`) - n 
 // Ten in the morning in India on that day.
 const at = (n: number) => `${day(n)}T10:00:00+05:30`;
 export const isSundayToday = new Date(`${TODAY}T00:00:00Z`).getUTCDay() === 0;
+// Today as the timetable numbers its days (1 is Monday, 7 is Sunday), and the day after it.
+const WEEKDAY = new Date(`${TODAY}T00:00:00Z`).getUTCDay() || 7;
+const NEXT_WEEKDAY = (WEEKDAY % 7) + 1;
 
 export type Who = { role: string; user: string; school?: string };
 export const principal: Who = { role: 'principal', user: PRINCIPAL };
@@ -89,6 +97,7 @@ export async function startSchool(): Promise<Db> {
       ('${PRINCIPAL}', '${A}', 'principal@school-a.example', 'principal', 'Priya Principal'), ('${ADMIN}', '${A}', 'admin@school-a.example', 'school_admin', 'Asif Admin'),
       ('${TARA}', '${A}', 'tara@school-a.example', 'teacher', 'Tara Teacher'), ('${TARUN}', '${A}', 'tarun@school-a.example', 'teacher', 'Tarun Teacher'),
       ('${ACCOUNTANT}', '${A}', 'accounts@school-a.example', 'accountant', 'Anil Accountant'), ('${COORDINATOR}', '${A}', 'coordinator@school-a.example', 'academic_coordinator', 'Chitra Coordinator'),
+      ('${TINA}', '${A}', 'tina@school-a.example', 'teacher', 'Tina Teacher'),
       ('${NEW_PRINCIPAL}', '${EMPTY}', 'principal@school-new.example', 'principal', 'Nina New');
     insert into school_entitlements (school_id, plan) values ('${A}', 'standard'), ('${EMPTY}', 'standard');
     insert into school_module_entitlements (school_id, module_id, enabled, source) select s, m, true, 'plan' from unnest(array['${A}'::uuid, '${EMPTY}'::uuid]) s, unnest(array[${MODULE_REGISTRY.map((m) => `'${m.id}'`).join(', ')}]) m;
@@ -173,8 +182,11 @@ export async function startSchool(): Promise<Db> {
     insert into class_notices (school_id, class_id, body, status, written_by, decided_by, decided_at) values
       ('${A}', '${C5A}', 'Bring a water bottle.', 'waiting', '${TARA}', null, null), ('${A}', null, 'School closes early on Friday.', 'waiting', '${ADMIN}', null, null), ('${A}', '${C6B}', 'Sports day kit.', 'sent', '${TARUN}', '${PRINCIPAL}', '${at(1)}');
     -- Meetings: one in five days (two times, one booked); one ten days ago; one in eight days that was cancelled.
+    -- And one dated TODAY for 6-B, still a draft with no times yet: "today or later" starts at today, and a draft
+    -- that has not been sent out is a meeting to come like any other.
     insert into ptm_events (ptm_id, school_id, title, held_on, starts_at, ends_at, slot_minutes, class_ids, status, created_by, invited_by, invited_at, cancelled_by, cancelled_at) values
       ('${u(901)}', '${A}', 'Term meeting', '${day(-5)}', '09:00', '10:00', 30, array['${C5A}'::uuid], 'invited', '${ADMIN}', '${ADMIN}', '${at(1)}', null, null),
+      ('${u(904)}', '${A}', 'Class meeting', '${day(0)}', '14:00', '15:00', 30, array['${C6B}'::uuid], 'draft', '${ADMIN}', null, null, null, null),
       ('${u(902)}', '${A}', 'Old meeting', '${day(10)}', '09:00', '10:00', 30, array['${C5A}'::uuid], 'invited', '${ADMIN}', '${ADMIN}', '${at(15)}', null, null),
       ('${u(903)}', '${A}', 'Called off', '${day(-8)}', '09:00', '10:00', 30, array['${C6B}'::uuid], 'cancelled', '${ADMIN}', null, null, '${ADMIN}', '${at(1)}');
     insert into ptm_slots (slot_id, school_id, ptm_id, teacher_id, starts_at) values ('${u(911)}', '${A}', '${u(901)}', '${TARA}', '09:00'), ('${u(912)}', '${A}', '${u(901)}', '${TARA}', '09:30'), ('${u(913)}', '${A}', '${u(902)}', '${TARA}', '09:00');
@@ -190,6 +202,36 @@ export async function startSchool(): Promise<Db> {
     insert into support_tickets (school_id, raised_by, raised_role, category, subject, body, status) values
       ('${A}', '${TARA}', 'teacher', 'how_to', 'How do I mark leave?', 'I cannot find the leave button.', 'open'), ('${A}', '${PRINCIPAL}', 'principal', 'how_to', 'Fee heads', 'How do I add a new fee head?', 'waiting_on_school'), ('${A}', '${ACCOUNTANT}', 'accountant', 'billing', 'Receipt format', 'The receipt number format.', 'resolved'),
       ('${B}', '${u(192)}', 'principal', 'how_to', 'Another school', 'A ticket of another school.', 'open');
+    -- School A works every day of the week, so today's periods are periods to cover whatever day the tests run on.
+    insert into school_settings (school_id, module_id, schema_version, setting_values, revision) values ('${A}', 'setup', 2, '{"working_days": ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]}', 1);
+    -- Staff leave. Waiting for the office: Tara's (in three days) and the school admin's own (in six days).
+    -- Approved: Tarun's, yesterday to tomorrow, so he is on leave today; the coordinator's ended last week; Tina's
+    -- is for later. The accountant's request for today was refused and Tina's for today was withdrawn: neither is
+    -- leave. School B has a request waiting and a teacher away today: never counted.
+    insert into staff_leave (leave_id, school_id, user_id, from_date, to_date, kind, reason, status, asked_at, recorded_by, decided_by, decided_at, decision_note, withdrawn_by, withdrawn_at) values
+      ('${TARA_LEAVE}', '${A}', '${TARA}', '${day(-3)}', '${day(-4)}', 'casual', 'A family function in another town.', 'waiting', '${at(2)}', '${TARA}', null, null, null, null, null),
+      ('${u(952)}', '${A}', '${ADMIN}', '${day(-6)}', '${day(-6)}', 'other', 'A day at the district office.', 'waiting', '${at(1)}', '${ADMIN}', null, null, null, null, null),
+      ('${u(953)}', '${A}', '${TARUN}', '${day(1)}', '${day(-1)}', 'sick', 'Unwell, phoned in.', 'approved', '${at(2)}', '${TARUN}', '${PRINCIPAL}', '${at(2)}', null, null, null),
+      ('${u(954)}', '${A}', '${COORDINATOR}', '${day(10)}', '${day(8)}', 'casual', 'A wedding in the family.', 'approved', '${at(15)}', '${COORDINATOR}', '${PRINCIPAL}', '${at(14)}', null, null, null),
+      ('${u(955)}', '${A}', '${TINA}', '${day(-2)}', '${day(-3)}', 'casual', 'A visit home.', 'approved', '${at(3)}', '${TINA}', '${ADMIN}', '${at(2)}', null, null, null),
+      ('${u(956)}', '${A}', '${ACCOUNTANT}', '${day(0)}', '${day(0)}', 'casual', 'A day off.', 'refused', '${at(3)}', '${ACCOUNTANT}', '${ADMIN}', '${at(2)}', 'The month is closing.', null, null),
+      ('${u(957)}', '${A}', '${TINA}', '${day(0)}', '${day(0)}', 'other', 'A bank visit.', 'withdrawn', '${at(4)}', '${TINA}', null, null, null, '${TINA}', '${at(3)}'),
+      ('${u(958)}', '${B}', '${u(192)}', '${day(-1)}', '${day(-1)}', 'casual', 'Another school.', 'waiting', '${at(1)}', '${u(192)}', null, null, null, null, null),
+      ('${u(959)}', '${B}', '${u(193)}', '${day(0)}', '${day(0)}', 'sick', 'Another school.', 'approved', '${at(1)}', '${u(193)}', '${u(192)}', '${at(1)}', null, null, null);
+    -- The timetable of today's weekday: Tarun teaches 6-B in periods 1, 2 and 3; Tara teaches 5-A in periods 1 and 3.
+    -- Tomorrow's weekday has one more period of Tarun's, which is not today's.
+    insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) values
+      ('${A}', '${C6B}', ${WEEKDAY}, 1, '${MATHS}', '${TARUN}'), ('${A}', '${C6B}', ${WEEKDAY}, 2, '${MATHS}', '${TARUN}'), ('${A}', '${C6B}', ${WEEKDAY}, 3, '${MATHS}', '${TARUN}'),
+      ('${A}', '${C5A}', ${WEEKDAY}, 1, '${MATHS}', '${TARA}'), ('${A}', '${C5A}', ${WEEKDAY}, 3, '${MATHS}', '${TARA}'),
+      ('${A}', '${C6B}', ${NEXT_WEEKDAY}, 4, '${MATHS}', '${TARUN}');
+    -- Covers for Tarun's three periods today. Period 1: Tina covers it. Period 2: a cover was assigned and undone,
+    -- so nobody covers it. Period 3: given to Tara, who teaches her own class then, so she cannot take it.
+    -- Two of the three still need cover. Yesterday's cover is not today's.
+    insert into substitutions (school_id, on_date, period, class_id, subject_id, absent_user_id, substitute_user_id, status, assigned_by, assigned_at, undone_by, undone_at) values
+      ('${A}', '${day(0)}', 1, '${C6B}', '${MATHS}', '${TARUN}', '${TINA}', 'assigned', '${ADMIN}', '${at(0)}', null, null),
+      ('${A}', '${day(0)}', 2, '${C6B}', '${MATHS}', '${TARUN}', '${TINA}', 'undone', '${ADMIN}', '${at(0)}', '${ADMIN}', '${at(0)}'),
+      ('${A}', '${day(0)}', 3, '${C6B}', '${MATHS}', '${TARUN}', '${TARA}', 'assigned', '${ADMIN}', '${at(0)}', null, null),
+      ('${A}', '${day(1)}', 2, '${C6B}', '${MATHS}', '${TARUN}', '${TINA}', 'assigned', '${ADMIN}', '${at(1)}', null, null);
     set session_replication_role = origin;
   `);
   return db;

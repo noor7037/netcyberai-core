@@ -816,7 +816,7 @@ describe('on the real schema', () => {
         state.claims = claims(tara);
         expect(parts(await AccountPage())).not.toContain(MyLeavePanel);
         state.claims = claims(principal);
-        expect(parts(await StaffPage())).toEqual([StaffInvitations, StaffAccounts]);
+        expect(parts(await StaffPage({}))).toEqual([StaffInvitations, StaffAccounts]);
       } finally {
         await staffModule(true);
       }
@@ -825,13 +825,13 @@ describe('on the real schema', () => {
         expect(parts(await AccountPage())[0], who.role).toBe(MyLeavePanel);
       }
       state.claims = claims(principal);
-      expect(parts(await StaffPage())).toEqual([StaffLeaveOffice, StaffInvitations, StaffAccounts]);
+      expect(parts(await StaffPage({}))).toEqual([StaffLeaveOffice, StaffInvitations, StaffAccounts]);
       state.claims = claims(admin);
-      expect(parts(await StaffPage())[0]).toBe(StaffLeaveOffice);
+      expect(parts(await StaffPage({}))[0]).toBe(StaffLeaveOffice);
       // Staff stays the office's screen: a teacher is shown no part of it.
       state.claims = claims(tara);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const forTeacher: any = await StaffPage();
+      const forTeacher: any = await StaffPage({});
       expect(forTeacher.type).toBe(ModuleComingPage);
     });
   });

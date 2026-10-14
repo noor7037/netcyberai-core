@@ -1,4 +1,5 @@
 import type { AttendanceShow } from '@/lib/attendance/day';
+import type { ComplaintShow } from '@/lib/complaints/complaints';
 import type { TicketShow } from '@/lib/contracts/tickets';
 import type { DueList } from '@/lib/fees/overdue';
 import type { HomeworkShow } from '@/lib/homework/homework';
@@ -18,12 +19,15 @@ import { RANGE_IDS, type FactRange, type RangeId } from './types';
 //   /app/pulse?show=sent&from=…&to=…
 //   /app/communication?state=held&from=…&to=…        /app/communication?show=notices (waiting for approval)
 //   /app/events?show=coming       /app/parent-ai?show=drafts       /app/help/ticket?show=open | waiting
+//   /app/complaints?show=open | overdue       /app/ptm?show=coming
+//   /app/staff?show=leave-waiting | on-leave-today       /app/proxy?show=needs-cover (today's periods with no teacher)
 //
 // Dates are India's, both ends included.
 //
-// A number has an address only when that screen lists exactly its rows. Complaints and meetings have no such
-// list yet (facts.ts says which facts wait for one): their tiles are drawn without a link rather than open a page
-// that lists other rows too.
+// A number has an address only when that screen lists exactly its rows. A fact whose screen cannot do that yet is
+// named in facts.ts (NO_LIST_YET, empty today) and its tile is drawn without a link rather than open a page that
+// lists other rows too. Proxy Auto as it stands draws every period to cover, the covered ones among them, so its
+// number carries a filter like the rest.
 
 const DAY_MS = 86_400_000;
 const daysBefore = (iso: string, days: number) => new Date(Date.parse(`${iso}T00:00:00Z`) - days * DAY_MS).toISOString().slice(0, 10);
@@ -67,11 +71,21 @@ export const FEES_SHOWS = ['collected', 'owed', 'overdue', 'promises', 'verify']
 export type FeesShow = (typeof FEES_SHOWS)[number];
 export const isFeesShow = (v: unknown): v is FeesShow => typeof v === 'string' && (FEES_SHOWS as readonly string[]).includes(v);
 
-// What /app/communication?show=, /app/events?show= and /app/parent-ai?show= accept: one list each.
+// What /app/communication?show=, /app/events?show=, /app/parent-ai?show= and /app/ptm?show= accept: one list each.
 export const NOTICES_SHOW = 'notices';
 export const EVENTS_SHOW = 'coming';
 export const ANSWERS_SHOW = 'drafts';
+export const PTM_SHOW = 'coming';
 export const ATTENDANCE_DAYS_SHOW = 'days';
+
+// The two lists of leave /app/staff?show= opens on: the requests waiting for the office, and who is on leave today.
+export const STAFF_SHOWS = ['leave-waiting', 'on-leave-today'] as const;
+export type StaffShow = (typeof STAFF_SHOWS)[number];
+export const isStaffShow = (v: unknown): v is StaffShow => typeof v === 'string' && (STAFF_SHOWS as readonly string[]).includes(v);
+
+// The one filter /app/proxy?show= accepts: today's periods that still need cover, and no others.
+export const PROXY_SHOW = 'needs-cover';
+export type ProxyShow = typeof PROXY_SHOW;
 
 export const screenFor = {
   attendance: (show: AttendanceShow) => `/app/attendance?show=${show}`,
@@ -89,4 +103,10 @@ export const screenFor = {
   eventsComing: () => `/app/events?show=${EVENTS_SHOW}`,
   answerDrafts: () => `/app/parent-ai?show=${ANSWERS_SHOW}`,
   tickets: (show: TicketShow) => `/app/help/ticket?show=${show}`,
+  complaints: (show: ComplaintShow) => `/app/complaints?show=${show}`,
+  ptmComing: () => `/app/ptm?show=${PTM_SHOW}`,
+  staffLeave: (show: StaffShow) => `/app/staff?show=${show}`,
+  // Proxy Auto opened on today's periods that still need cover: it draws those periods and no others, under a
+  // title that says how many of the day's periods they are. (Without the filter it draws the covered periods too.)
+  coverToday: () => `/app/proxy?show=${PROXY_SHOW}`,
 } as const;

@@ -2,15 +2,22 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
+import { complaintFrom } from './complaint-words';
 
 // Complaints from parents (docs/25 slice 7m, C195). Record one for a guardian, with who will look into it and by
 // when; add notes; close it with what was done, which the parent is told. Overdue ones pass to the principal.
+//
+// `shownAbove` (C203): the page was opened from a dashboard number, and the open or overdue complaints behind
+// that number are drawn above this list. After a change made here, that list is read again too.
 
 type Step = { kind: string; note: string | null; by: string | null; parent_told: boolean; at: string };
-type Complaint = { complaint_id: string; ref: string; guardian: string; child: string | null; about: string | null; owner_id: string; owner: string; source: 'thread' | 'office'; summary: string; status: 'open' | 'closed'; due_at: string; overdue: boolean; escalated: boolean; created_at: string; closing_note: string | null; mayChange: boolean; aboutYou: boolean; events: Step[] };
+// `guardian` is null when the reader's own session may not read that guardian (a teacher, for a complaint she
+// owns about a child of another class): the complaint is still listed, and says so in plain words.
+type Complaint = { complaint_id: string; ref: string; guardian: string | null; child: string | null; about: string | null; owner_id: string; owner: string; source: 'thread' | 'office'; summary: string; status: 'open' | 'closed'; due_at: string; overdue: boolean; escalated: boolean; created_at: string; closing_note: string | null; mayChange: boolean; aboutYou: boolean; events: Step[] };
 type Data = { complaints: Complaint[]; staff: { user_id: string; name: string; role: string }[]; me: string; office: boolean };
 type Guardian = { parent_id: string; name: string; children: { student_id: string; name: string; class_name: string | null }[] };
 const ERRORS = ['summary', 'due', 'guardian', 'child', 'owner', 'about', 'owner_is_about', 'for_the_office', 'closed', 'note'];
@@ -18,8 +25,9 @@ const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-se
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 
-export function ComplaintsView() {
+export function ComplaintsView({ shownAbove = false }: { shownAbove?: boolean }) {
   const { t, lang } = useT();
+  const refreshShown = useShownRefresh(shownAbove);
   const [data, setData] = useState<Data | null>(null);
   const [failed, setFailed] = useState(false);
   const [q, setQ] = useState('');
@@ -67,6 +75,9 @@ export function ComplaintsView() {
     setNote({ ok: true, text: done(got ?? {}) });
     after?.();
     await load();
+    // The rows behind the dashboard's number, drawn above this list, are read again too: a complaint just closed
+    // is no longer among them.
+    refreshShown();
   };
 
   if (failed) return <p role="alert" className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('cmp.failed')}</p>;
@@ -163,7 +174,7 @@ export function ComplaintsView() {
               <li key={c.complaint_id} data-complaint={c.status} data-overdue={c.overdue ? 'yes' : 'no'} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
                 <div className="flex flex-wrap items-center gap-2">
                   <Badge variant={c.status === 'closed' ? 'success' : c.overdue ? 'danger' : 'warning'}>{t(c.status === 'closed' ? 'cmp.status.closed' : c.overdue ? 'cmp.status.overdue' : 'cmp.status.open')}</Badge>
-                  <span className="font-bold">{c.child ? t('cmp.fromAbout', { guardian: c.guardian, child: c.child }) : c.guardian}</span>
+                  <span className="font-bold">{complaintFrom(t, c)}</span>
                   <span className="text-slate/70">{t('cmp.ref', { ref: c.ref })}</span>
                 </div>
                 <p className="whitespace-pre-wrap break-words">{c.summary}</p>
