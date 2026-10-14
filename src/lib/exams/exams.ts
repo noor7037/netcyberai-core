@@ -34,8 +34,9 @@ export type PaperSummary = {
   entered: number; // of them, with a mark, absent or exempt for every component
   enteredBy: string | null;
   enteredAt: string | null;
-  mayEnter: boolean;
+  mayEnter: boolean; // false while the class is published (C215)
   hasMarks: boolean;
+  published: boolean; // the exam is published for this paper's class: its marks are frozen (C215)
 };
 export type ExamSummary = { examId: string; name: string; term: string | null; status: 'open' | 'published'; sessionId: string | null; madeBy: string | null; madeAt: string; papers: PaperSummary[] };
 export type ExamsScreen = {
@@ -61,7 +62,8 @@ export async function papersOf(db: Sql, schoolId: string, examIds: readonly stri
   const { rows } = await db.query(
     `select p.paper_id, p.exam_id, e.name as exam_name, p.class_id, c.name as class_name, c.section, p.subject_id, sb.name as subject_name,
             p.paper_date::text as paper_date, p.unit_ids, p.components, p.entered_at, eu.display_name as entered_by_name,
-            g.roll, g.entered, public.may_enter_marks(p.class_id, p.subject_id) as may_enter,
+            g.roll, g.entered, public.exam_class_published(p.exam_id, p.class_id) as published,
+            public.may_enter_marks(p.class_id, p.subject_id) and not public.exam_class_published(p.exam_id, p.class_id) as may_enter,
             exists (select 1 from marks m where m.school_id = p.school_id and m.paper_id = p.paper_id) as has_marks
        from exam_papers p
        join exams e on e.school_id = p.school_id and e.exam_id = p.exam_id
@@ -103,6 +105,7 @@ export async function papersOf(db: Sql, schoolId: string, examIds: readonly stri
       enteredAt: iso(r.entered_at),
       mayEnter: r.may_enter === true,
       hasMarks: r.has_marks === true,
+      published: r.published === true,
     };
   });
 }
@@ -157,7 +160,7 @@ export async function examsScreen(db: Sql, actor: Actor, sessionParam: string | 
   };
 }
 
-export type ExamProblem = 'not_allowed' | 'not_found' | 'name' | 'name_taken' | 'session' | 'term' | 'papers' | 'class' | 'subject' | 'date' | 'maxima' | 'units' | 'paper_twice' | 'has_marks';
+export type ExamProblem = 'not_allowed' | 'not_found' | 'name' | 'name_taken' | 'session' | 'term' | 'papers' | 'class' | 'subject' | 'date' | 'maxima' | 'units' | 'paper_twice' | 'has_marks' | 'published';
 export type ExamResult = { ok: true; examId: string; paperId?: string } | { ok: false; reason: ExamProblem; at?: number };
 
 type PaperInput = { classId: string; subjectId: string; date: string | null; unitIds: string[]; components: PaperComponent[] };
@@ -242,7 +245,8 @@ export async function changeExam(db: Sql, actor: Actor, examId: string, input: R
   const paperOf = async (paperId: unknown) =>
     isUuid(paperId)
       ? ((await db.query(
-          `select p.paper_id, p.class_id, p.subject_id, exists (select 1 from marks m where m.school_id = p.school_id and m.paper_id = p.paper_id) as has_marks
+          `select p.paper_id, p.class_id, p.subject_id, exists (select 1 from marks m where m.school_id = p.school_id and m.paper_id = p.paper_id) as has_marks,
+                  public.exam_class_published(p.exam_id, p.class_id) as published
              from exam_papers p where p.school_id = $1 and p.exam_id = $2 and p.paper_id = $3`,
           [actor.schoolId, examId, paperId]
         )).rows[0] ?? null)
@@ -251,6 +255,8 @@ export async function changeExam(db: Sql, actor: Actor, examId: string, input: R
   if (input.action === 'add_paper') {
     const checked = await checkPaper(db, actor.schoolId, input.paper, await schemeInForce(db, actor.schoolId));
     if (!checked.ok) return { ok: false, reason: checked.reason };
+    // A published class takes no new paper until the principal reopens it (C215).
+    if ((await db.query(`select public.exam_class_published($1, $2) as yes`, [examId, checked.paper.classId])).rows[0]?.yes === true) return { ok: false, reason: 'published' };
     await db.query('savepoint exam_paper_add');
     let paperId: string;
     try {
@@ -267,6 +273,7 @@ export async function changeExam(db: Sql, actor: Actor, examId: string, input: R
   if (input.action === 'paper') {
     const paper = await paperOf(input.paperId);
     if (!paper) return { ok: false, reason: 'not_found' };
+    if (paper.published) return { ok: false, reason: 'published' };
     const date = input.date === null || input.date === undefined || input.date === '' ? null : input.date;
     if (date !== null && !isIsoDate(date)) return { ok: false, reason: 'date' };
     const units = await checkUnits(db, actor.schoolId, paper.class_id, paper.subject_id, input.unitIds ?? []);
@@ -278,6 +285,7 @@ export async function changeExam(db: Sql, actor: Actor, examId: string, input: R
   if (input.action === 'remove_paper') {
     const paper = await paperOf(input.paperId);
     if (!paper) return { ok: false, reason: 'not_found' };
+    if (paper.published) return { ok: false, reason: 'published' };
     if (paper.has_marks) return { ok: false, reason: 'has_marks' };
     await db.query(`delete from exam_papers where school_id = $1 and paper_id = $2`, [actor.schoolId, paper.paper_id]);
     await audit('exam_paper.removed', 'exam_papers', paper.paper_id, { class_id: paper.class_id, subject_id: paper.subject_id });

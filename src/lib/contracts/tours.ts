@@ -87,6 +87,7 @@ export const TOURS = {
   'class-result': { steps: [{ slot: 'body' }, { slot: 'body' }] },
   // p6-9b end
   // p6-9c begin
+  'report-cards': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // p6-9c end
   // p6-9d begin
   'curriculum-gap': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },

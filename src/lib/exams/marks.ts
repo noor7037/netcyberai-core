@@ -49,7 +49,8 @@ export async function paperEntry(db: Sql, actor: Actor, paperId: string): Promis
   )).rows.map((u) => ({ unitId: u.unit_id as string, chapter: u.chapter as string, topic: u.topic as string, position: Number(u.position) }));
   return {
     paper,
-    exam: { examId: head.exam_id, name: head.name, term: head.term ?? null, status: head.status },
+    // A class the exam is published for is closed for entry, as an exam that is not open (C215).
+    exam: { examId: head.exam_id, name: head.name, term: head.term ?? null, status: paper.published ? 'published' : head.status },
     children,
     notShown: Math.max(0, paper.roll - children.length),
     map,
@@ -93,14 +94,15 @@ export function checkEntries(raw: unknown, components: readonly { key: string; m
 export async function saveMarks(db: Sql, actor: Actor, paperId: string, raw: unknown): Promise<SaveResult> {
   if (!EXAM_READERS.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   const paper = (await db.query(
-    `select p.paper_id, p.exam_id, p.class_id, p.subject_id, p.components, p.entered_by, e.status, public.may_enter_marks(p.class_id, p.subject_id) as may_enter
+    `select p.paper_id, p.exam_id, p.class_id, p.subject_id, p.components, p.entered_by, e.status, public.may_enter_marks(p.class_id, p.subject_id) as may_enter,
+            public.exam_class_published(p.exam_id, p.class_id) as published
        from exam_papers p join exams e on e.school_id = p.school_id and e.exam_id = p.exam_id
       where p.school_id = $1 and p.paper_id = $2`,
     [actor.schoolId, paperId]
   )).rows[0];
   if (!paper) return { ok: false, reason: 'not_found' };
   if (paper.may_enter !== true) return { ok: false, reason: 'not_allowed' };
-  if (paper.status !== 'open') return { ok: false, reason: 'closed' };
+  if (paper.status !== 'open' || paper.published === true) return { ok: false, reason: 'closed' };
   const components = paper.components as { key: string; max: number }[];
   const roll = new Set((await db.query(`select s.student_id from students s where s.school_id = $1 and s.class_id = $2 and ${ON_ROLL}`, [actor.schoolId, paper.class_id])).rows.map((r) => r.student_id as string));
   const checked = checkEntries(raw, components, roll);
@@ -136,6 +138,7 @@ export async function saveMarks(db: Sql, actor: Actor, paperId: string, raw: unk
     await db.query('rollback to savepoint marks_save');
     const code = (err as { code?: string }).code;
     if (code === '23514') return { ok: false, reason: 'score' };
+    if (code === '55000') return { ok: false, reason: 'closed' }; // published in the same moment (C215)
     if (code === '42501') return { ok: false, reason: 'not_allowed' };
     throw err;
   }

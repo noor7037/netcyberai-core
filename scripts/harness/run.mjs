@@ -3254,6 +3254,153 @@ const examsEntryDone = async () => {
 };
 // p6-9b end
 // p6-9c begin
+// Publish and report cards (C215), on C214's fixture: "Unit test 1 (harness)" for 5-A with every paper entered (the
+// fixture's last three children get their Mathematics marks here), in a session made for these screens so the card
+// counts attendance from the seed. Each screen's check takes away every row it made and puts C214's fixture back as
+// it was before the screen: there when C214's screens made it (they run first for the same person), gone otherwise.
+// The screen's address needs the fixture: a run of these screens alone starts with C214's app-exams-list, which
+// makes it.
+const RC_SESSION = '00000000-0000-4000-8000-00000009c5e1';
+const RC_EARLIER = '00000000-0000-4000-8000-00000009ce01';
+const rcRoute = `/api/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`;
+let rcSubscriptionBefore;
+let rcHadFixture;
+const clearReportCards = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from report_remarks where school_id = '${SCHOOL}';
+    delete from exam_publications where school_id = '${SCHOOL}';
+    delete from audit_log where school_id = '${SCHOOL}' and event_action in ('exam.published', 'exam.reopened', 'exam.remarks_saved');
+    set session_replication_role = origin;`);
+};
+const rcFixture = async ({ earlier }) => {
+  if (rcHadFixture === undefined) rcHadFixture = (await db.pg.query(`select 1 from exams where exam_id = $1`, [X_EXAM])).rows.length > 0;
+  await clearReportCards();
+  await examsFixture();
+  await db.pg.query(`delete from academic_sessions where session_id = $1`, [RC_SESSION]);
+  await db.pg.query(`insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current) values ($1, $2, '2026-27 (harness)', $3::date, $4::date, false)`, [RC_SESSION, SCHOOL, indiaDay(150), indiaDayFromNow(200)]);
+  await db.pg.query(`update exams set session_id = $2 where exam_id = $1`, [X_EXAM, RC_SESSION]);
+  for (const g of X_KIDS.filter((k) => k > 16)) {
+    for (const [component, score] of [['written', 20 + (g % 9)], ['oral', 5 + (g % 4)]]) {
+      await db.pg.query(
+        `insert into marks (school_id, exam_id, subject_id, paper_id, component, student_id, kind, score, max_score, entered_by)
+         select $1, p.exam_id, p.subject_id, p.paper_id, $3, $4, 'score', $5, 0, $6 from exam_papers p where p.paper_id = $2`,
+        [SCHOOL, X_MATHS, component, xKid(g), score, PEOPLE.teacher.sub]
+      );
+    }
+  }
+  await db.pg.query(`update exam_papers set entered_by = $2 where paper_id = $1`, [X_MATHS, PEOPLE.teacher.sub]);
+  if (rcSubscriptionBefore === undefined) rcSubscriptionBefore = (await db.pg.query(`select plan_id from school_subscriptions where school_id = $1`, [SCHOOL])).rows[0] ?? null;
+  await db.pg.query(`insert into school_subscriptions (school_id, plan_id) values ($1, 'premium') on conflict (school_id) do update set plan_id = 'premium'`, [SCHOOL]);
+  if (!earlier) return;
+  // An earlier exam, "Unit test 0 (harness)", forty days ago: every child Mathematics 16 and 4 (40 percent) and English
+  // 20 and 5 (50). Published through the app as the principal, so each child's own history is real.
+  await db.pg.query(`insert into exams (exam_id, school_id, name, term, session_id, created_by) values ($1, $2, 'Unit test 0 (harness)', 'Term 1', $3, $4)`, [RC_EARLIER, SCHOOL, RC_SESSION, PEOPLE.principal.sub]);
+  const parts = JSON.stringify([{ key: 'written', name: 'Written', max: 40, share: 80 }, { key: 'oral', name: 'Oral', max: 10, share: 20 }]);
+  for (const [subject, written, oral] of [['00000000-0000-4000-8000-0000000d0001', 16, 4], ['00000000-0000-4000-8000-0000000d0002', 20, 5]]) {
+    const paper = (await db.pg.query(`insert into exam_papers (school_id, exam_id, class_id, subject_id, paper_date, components, created_by) values ($1, $2, $3, $4, $5::date, $6::jsonb, $7) returning paper_id`, [SCHOOL, RC_EARLIER, X_5A, subject, indiaDay(40), parts, PEOPLE.principal.sub])).rows[0].paper_id;
+    for (const g of X_KIDS) {
+      for (const [component, score] of [['written', written], ['oral', oral]]) {
+        await db.pg.query(`insert into marks (school_id, exam_id, subject_id, paper_id, component, student_id, kind, score, max_score, entered_by) values ($1, $2, $3, $4, $5, $6, 'score', $7, 0, $8)`, [SCHOOL, RC_EARLIER, subject, paper, component, xKid(g), score, PEOPLE.teacher.sub]);
+      }
+    }
+    await db.pg.query(`update exam_papers set entered_by = $2 where paper_id = $1`, [paper, PEOPLE.teacher.sub]);
+  }
+  await rcAs(PEOPLE.principal, `/api/app/exams/${RC_EARLIER}/classes/${X_5A}/report-cards`, { action: 'publish' });
+};
+// A write through the app, as that person.
+const rcAs = async (person, route, body) => {
+  const res = await fetch(`${base}${route}`, { method: 'POST', headers: { 'Content-Type': 'application/json', cookie: `nca_access=${await cookieFor(person, secret)}` }, body: JSON.stringify(body) });
+  if (!res.ok) throw new Error(`${route} answered ${res.status}: ${await res.text()}`);
+};
+const rcPutBack = async () => {
+  await clearReportCards();
+  if (rcHadFixture) await examsFixture();
+  else await examsPutBack();
+  rcHadFixture = undefined;
+  await db.pg.query(`delete from academic_sessions where session_id = $1`, [RC_SESSION]);
+  if (rcSubscriptionBefore === null) await db.pg.query(`delete from school_subscriptions where school_id = $1`, [SCHOOL]);
+  else if (rcSubscriptionBefore) await db.pg.query(`update school_subscriptions set plan_id = $2 where school_id = $1`, [SCHOOL, rcSubscriptionBefore.plan_id]);
+  rcSubscriptionBefore = undefined;
+};
+// The principal publishes 5-A: the marks are then frozen, by the database too. She reopens it with a reason; the
+// picture shows the reopened result with its history, ready to be published again.
+const RC_REASON = 'Roll 3’s English oral was entered as 6; the paper says 8.';
+let rcPublishSeen = null;
+const rcPublish = async (page) => {
+  await rcFixture({ earlier: false });
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-report-cards]').waitFor({ timeout: 20000 });
+  await page.locator('[data-rc-publish-button]').click();
+  await page.locator('[data-report-cards][data-published="1"]').waitFor({ timeout: 20000 });
+  const downloadAll = await page.locator('[data-rc-download-all]').count();
+  const frozen = await db.pg.query(`update marks set score = 1 where paper_id = $1 and kind = 'score'`, [X_MATHS]).then(() => false, (e) => /frozen/.test(e.message));
+  await page.locator('#rc-reason').fill(RC_REASON);
+  await page.locator('[data-rc-reopen-button]').click();
+  await page.locator('[data-report-cards][data-published="no"] [data-rc-reopened]').waitFor({ timeout: 20000 });
+  rcPublishSeen = { downloadAll, frozen, publishReady: await page.locator('[data-rc-publish-button]').isEnabled(), history: await page.locator('[data-rc-history] li').count() };
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+const rcPublishDone = async () => {
+  const { rows } = await db.pg.query(
+    `select x.version, x.scheme_version, x.published_by, x.reopened_by, x.reopen_reason, x.reopened_at is not null as reopened,
+            (select count(*)::int from audit_log a where a.school_id = x.school_id and a.event_action = 'exam.published' and a.actor_user_id = x.published_by) as published_audits,
+            (select count(*)::int from audit_log a where a.school_id = x.school_id and a.event_action = 'exam.reopened' and a.actor_user_id = x.reopened_by and a.after_state ->> 'reason' = x.reopen_reason) as reopened_audits
+       from exam_publications x where x.school_id = $1 and x.exam_id = $2 and x.class_id = $3`,
+    [SCHOOL, X_EXAM, X_5A]
+  );
+  await rcPutBack();
+  const p = PEOPLE.principal.sub;
+  const want = [{ version: 1, scheme_version: 1, published_by: p, reopened_by: p, reopen_reason: RC_REASON, reopened: true, published_audits: 1, reopened_audits: 1 }];
+  if (JSON.stringify(rows) !== JSON.stringify(want)) throw new Error(`the publication in the database: ${JSON.stringify(rows)}`);
+  if (JSON.stringify(rcPublishSeen) !== JSON.stringify({ downloadAll: 1, frozen: true, publishReady: true, history: 1 })) throw new Error(`the publish screen: ${JSON.stringify(rcPublishSeen)}`);
+};
+// Tara, the class teacher, writes roll 1's remark and the principal publishes, both through the app (so each child's
+// own progress is kept). The school admin shows roll 1's card and downloads it as a PDF: Unit test 0 had Mathematics
+// 40 and English 50; now 60 and 54. Personal Best in Mathematics (60 against her own 40); English's 4 points are under
+// the floor; Most Improved, Mathematics. The plan is Premium for these screens.
+const RC_REMARK = 'Reads aloud with confidence and helps her group with sums.';
+// The database keeps a record's keys in its own order: compared with the keys sorted.
+const rcCanon = (v) => JSON.stringify(v, (_, x) => (x && typeof x === 'object' && !Array.isArray(x) ? Object.fromEntries(Object.entries(x).sort(([a], [b]) => (a < b ? -1 : 1))) : x));
+let rcCardSeen = null;
+const rcCard = async (page) => {
+  await rcFixture({ earlier: true });
+  await rcAs(PEOPLE.teacher, rcRoute, { action: 'remarks', remarks: [{ studentId: xKid(1), remark: RC_REMARK }] });
+  await rcAs(PEOPLE.principal, rcRoute, { action: 'publish' });
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-report-cards][data-published="1"]').waitFor({ timeout: 20000 });
+  const first = page.locator(`[data-rc-child="${xKid(1)}"]`);
+  const [download] = await Promise.all([page.waitForEvent('download', { timeout: 60000 }), first.locator('[data-rc-download]').click()]);
+  const bytes = readFileSync(await download.path());
+  await first.locator('[data-rc-show]').click();
+  await first.locator('[data-rc-card]').waitFor({ timeout: 20000 });
+  const card = (await first.locator('[data-rc-card]').innerText()).replace(/\s+/g, ' ');
+  rcCardSeen = {
+    pdf: bytes.subarray(0, 5).toString('latin1') === '%PDF-' && bytes.length > 20000,
+    file: download.suggestedFilename(),
+    remarkEditable: await page.locator('[data-rc-remark]').count(),
+    order: await page.locator('[data-rc-child]').evaluateAll((els) => els.map((e) => e.getAttribute('data-rc-child'))),
+    card,
+  };
+  await first.scrollIntoViewIfNeeded();
+};
+const rcCardDone = async () => {
+  const { rows } = await db.pg.query(
+    `select r.remark, r.written_by, x.recognition -> $3 as own
+       from report_remarks r join exam_publications x on x.school_id = r.school_id and x.exam_id = r.exam_id and x.class_id = r.class_id and x.reopened_at is null
+      where r.school_id = $1 and r.exam_id = $2`,
+    [SCHOOL, X_EXAM, xKid(1)]
+  );
+  await rcPutBack();
+  const seen = rcCardSeen ?? {};
+  const want = [{ remark: RC_REMARK, written_by: PEOPLE.teacher.sub, own: { first: false, personalBest: [{ subjectId: '00000000-0000-4000-8000-0000000d0001', now: 60, best: 40 }], mostImproved: { subjectId: '00000000-0000-4000-8000-0000000d0001', now: 60, before: 40, examId: RC_EARLIER } } }];
+  if (rcCanon(rows) !== rcCanon(want)) throw new Error(`the remark and the kept progress: ${JSON.stringify(rows[0]?.own ?? rows)}`);
+  if (!seen.pdf || !/^report-card_Unit_test_1_harness_5-A_1\.pdf$/.test(seen.file ?? '') || seen.remarkEditable !== 0) throw new Error(`the download: ${JSON.stringify({ pdf: seen.pdf, file: seen.file, remarkEditable: seen.remarkEditable })}`);
+  if (JSON.stringify(seen.order) !== JSON.stringify(X_KIDS.map(xKid))) throw new Error(`the children are not in roll order: ${JSON.stringify(seen.order)}`);
+  for (const words of ['Mathematics | ', 'Personal Best: Mathematics, 60%, above their own earlier best of 40%.', 'Most Improved: Mathematics, from 40% in Unit test 0 (harness) to 60%.', 'Reads aloud with confidence', 'Attendance this session: present on', 'Publication 1 of this result']) {
+    if (!(seen.card ?? '').includes(words.replace(' | ', ''))) throw new Error(`roll 1's card lacks "${words}": ${seen.card}`);
+  }
+  if (/\b(rank\w*|position\w*|topper\w*|merit\w*|percentile\w*)\b/i.test(seen.card ?? '')) throw new Error(`roll 1's card names a rank: ${seen.card}`);
+};
 // p6-9c end
 // p6-9d begin
 // The Curriculum Gap Detector (C216). A fixture on the seed's syllabus map of 5-A Mathematics (five units, none taught):
@@ -4169,6 +4316,8 @@ const SCREENS = [
   ['teacher', 'app-exams-entry', `/app/exams/papers/${X_MATHS}`, examsEntry, examsEntryDone],
   // p6-9b end
   // p6-9c begin
+  ['principal', 'app-exams-publish', `/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`, rcPublish, rcPublishDone],
+  ['office', 'app-exams-report-card', `/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`, rcCard, rcCardDone],
   // p6-9c end
   // p6-9d begin
   ['principal', 'app-curriculum-gap', '/app/curriculum-gap', gapPrincipal, gapPrincipalDone],

@@ -64,7 +64,8 @@ export const ON_ROLL = `s.status in ('active', 'pending_consent')`;
 // The papers that wait for marks from the person asking, in one place for My Day's "marks to enter" card and the
 // exams screen: a paper of an open exam, dated today in India or before (or not dated), whose marks this person may
 // enter (the database's may_enter_marks), with at least one child on the roll still without a mark, absent or
-// exempt for every component (exam_paper_progress, counted over the whole roll). The one parameter is the school.
+// exempt for every component (exam_paper_progress, counted over the whole roll), and whose class is not published
+// (exam_class_published, C215: its marks are frozen). The one parameter is the school.
 // Read under the person's own row level security: a teacher's papers are of their own classes.
 export const TO_ENTER_SQL = `select p.paper_id, p.exam_id
    from exam_papers p
@@ -73,4 +74,5 @@ export const TO_ENTER_SQL = `select p.paper_id, p.exam_id
   where p.school_id = $1 and e.status = 'open'
     and (p.paper_date is null or p.paper_date <= (now() at time zone 'Asia/Kolkata')::date)
     and public.may_enter_marks(p.class_id, p.subject_id)
+    and not public.exam_class_published(p.exam_id, p.class_id)
     and g.entered < g.roll`;

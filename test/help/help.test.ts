@@ -63,6 +63,7 @@ describe('the guides', () => {
       'enter-exam-marks',
       // p6-9b end
       // p6-9c begin
+      'publish-report-cards',
       // p6-9c end
       // p6-9d begin
       'find-curriculum-gaps',

@@ -16,7 +16,7 @@ import { dayWords } from './exam-format';
 // class result of each class is one tap away. The server and the database decide who may do what.
 
 type PaperForm = { classId: string; subjectId: string; date: string; maxima: Record<string, string> };
-const ERRORS = ['name', 'name_taken', 'session', 'term', 'papers', 'class', 'subject', 'date', 'maxima', 'units', 'paper_twice', 'has_marks'];
+const ERRORS = ['name', 'name_taken', 'session', 'term', 'papers', 'class', 'subject', 'date', 'maxima', 'units', 'paper_twice', 'has_marks', 'published'];
 const emptyPaper = (): PaperForm => ({ classId: '', subjectId: '', date: '', maxima: {} });
 const toNumber = (text: string): number | null => (text.trim() === '' ? null : Number(text.trim().replace(',', '.')));
 
@@ -225,6 +225,9 @@ function ExamCard({
   const { t, lang } = useT();
   const classes = [...new Map(exam.papers.map((p) => [p.classId, p.className])).entries()];
   const anyMarks = exam.papers.some((p) => p.hasMarks);
+  // Published for a class (C215): its marks are frozen. The exam reads as published once every class of it is.
+  const publishedClass = (classId: string) => exam.papers.some((p) => p.classId === classId && p.published);
+  const allPublished = classes.length > 0 && classes.every(([classId]) => publishedClass(classId));
   return (
     <article data-exam={exam.examId} className={SECTION}>
       <div className="flex flex-wrap items-start justify-between gap-2">
@@ -235,7 +238,7 @@ function ExamCard({
             {exam.madeBy ? ` · ${t('ex.exam.madeBy', { name: exam.madeBy })}` : ''}
           </p>
         </div>
-        <Badge variant={exam.status === 'open' ? 'neutral' : 'success'}>{t(exam.status === 'open' ? 'ex.exam.open' : 'ex.exam.published')}</Badge>
+        <Badge variant={exam.status === 'open' && !allPublished ? 'neutral' : 'success'}>{t(exam.status === 'open' && !allPublished ? 'ex.exam.open' : 'ex.exam.published')}</Badge>
       </div>
       <ul className="flex flex-col gap-2">
         {exam.papers.map((p) => (
@@ -247,6 +250,11 @@ function ExamCard({
           {classes.map(([classId, className]) => (
             <a key={classId} href={`/app/exams/${exam.examId}/classes/${classId}`} data-class-result={classId} className={TAP}>
               {t('ex.exam.resultOf', { className })}
+            </a>
+          ))}
+          {classes.map(([classId, className]) => (
+            <a key={`rc-${classId}`} href={`/app/exams/${exam.examId}/classes/${classId}/report-cards`} data-report-cards-link={classId} className={TAP}>
+              {publishedClass(classId) ? t('rc.exam.published', { className }) : t('rc.exam.reportCards', { className })}
             </a>
           ))}
         </div>
@@ -280,7 +288,7 @@ function PaperLine({ paper, open, mayRun, busy, onRemove }: { paper: PaperSummar
   const { t, lang } = useT();
   const complete = paper.roll > 0 && paper.entered >= paper.roll;
   return (
-    <li data-paper={paper.paperId} data-paper-entered={complete ? 'yes' : 'no'} className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-slate/10 p-3">
+    <li data-paper={paper.paperId} data-paper-entered={complete ? 'yes' : 'no'} data-paper-published={paper.published ? 'yes' : 'no'} className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-slate/10 p-3">
       <div className="min-w-0">
         <p className="font-semibold">{paper.className} · {paper.subjectName}</p>
         <p className="text-slate/70">
@@ -296,7 +304,7 @@ function PaperLine({ paper, open, mayRun, busy, onRemove }: { paper: PaperSummar
         <a href={`/app/exams/papers/${paper.paperId}`} className={paper.mayEnter && open ? PRIMARY : TAP}>
           {paper.mayEnter && open ? t('ex.enterMarks') : t('ex.paper.open')}
         </a>
-        {mayRun && !paper.hasMarks && (
+        {mayRun && !paper.hasMarks && !paper.published && (
           <button type="button" data-paper-remove className={TAP} disabled={busy} onClick={onRemove}>{t('ex.paper.remove')}</button>
         )}
       </div>
