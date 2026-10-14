@@ -44,6 +44,10 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // p5-8a begin
   // p5-8a end
   // p5-8b begin
+  // Staff leave (C201) belongs to Staff: switched off, nobody can ask for leave or decide it. The rest of
+  // staff/** (invitations) stays the account's own, below.
+  ['staff/leave/**', 'staff'],
+  ['staff/leave', 'staff'],
   // p5-8b end
   // p5-8c begin
   // p5-8c end
@@ -131,6 +135,8 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // p5-8a begin
   // p5-8a end
   // p5-8b begin
+  // A person's own leave, and the office's lists of it (C201).
+  ['staff/leave', 'staff'],
   // p5-8b end
   // p5-8c begin
   // p5-8c end

@@ -106,7 +106,7 @@ describe('the contract', () => {
     expect(providersFor('teacher', ents({ attendance: { enabled: false } })).map((p) => p.type).sort()).toEqual(['followups-open', 'homework-to-check', 'replies-waiting', 'tickets-waiting', 'timetable-today'].sort());
     expect(providersFor('teacher', ents({ attendance: { enabled: false }, timetable: { enabled: false }, pulse: { enabled: false }, homework: { enabled: false }, communication: { enabled: false } })).map((p) => p.type)).toEqual(['tickets-waiting']);
     expect(providersFor('accountant', ents({ fees: { enabled: false } })).map((p) => p.type)).toEqual(['tickets-waiting']);
-    expect(providersFor('principal', ents({ fees: { enabled: false }, communication: { enabled: false } })).map((p) => p.type)).toEqual(['attendance-school', 'attendance-requests', 'followups-open', 'consent-waiting', 'complaints-overdue', 'tickets-waiting']);
+    expect(providersFor('principal', ents({ fees: { enabled: false }, communication: { enabled: false } })).map((p) => p.type)).toEqual(['attendance-school', 'attendance-requests', 'followups-open', 'consent-waiting', 'complaints-overdue', 'tickets-waiting', 'leave-waiting']);
     expect(providersFor('principal', ents({}, 'suspended')).map((p) => p.type)).toEqual(['tickets-waiting']);
   });
 });

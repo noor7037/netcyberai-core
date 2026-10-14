@@ -963,6 +963,32 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   // p5-8a begin
   // p5-8a end
   // p5-8b begin
+  {
+    slug: 'staff-leave',
+    category: 'daily',
+    audience: 'everyone',
+    title: { en: 'Ask for leave, and decide a leave request', hi: 'छुट्टी माँगें, और छुट्टी की माँग तय करें' },
+    summary: {
+      en: 'A member of staff asks for whole days of leave on their own account page. The principal or the school admin decides, and nobody decides their own.',
+      hi: 'स्टाफ़ का सदस्य अपने खाते के पेज पर पूरे दिनों की छुट्टी माँगता है। प्रिंसिपल या स्कूल एडमिन तय करते हैं, और कोई अपनी माँग ख़ुद तय नहीं करता।',
+    },
+    steps: [
+      { en: 'Open “My account”. Under “My leave”, choose the “First day” and the “Last day”, then the “Kind of leave”, and write the “Reason”.', hi: '“My account” खोलें। “My leave” में “First day” और “Last day” चुनें, फिर “Kind of leave”, और “Reason” लिखें।' },
+      { en: 'Press “Ask for leave”. The request shows under “My requests” as “Waiting”.', hi: '“Ask for leave” दबाएँ। माँग “My requests” में “Waiting” के रूप में दिखती है।' },
+      { en: 'The principal or the school admin opens “Staff”. Under “Leave requests waiting” they press “Approve”, or write a note and press “Refuse”.', hi: 'प्रिंसिपल या स्कूल एडमिन “Staff” खोलते हैं। “Leave requests waiting” में वे “Approve” दबाते हैं, या टिप्पणी लिखकर “Refuse” दबाते हैं।' },
+      { en: 'Open “My account” again to read the answer. To take a request back, press “Withdraw”.', hi: 'जवाब पढ़ने के लिए “My account” फिर खोलें। माँग वापस लेने के लिए “Withdraw” दबाएँ।' },
+      { en: 'When someone phones in, the principal or the school admin fills in “Record leave for a member of staff” on “Staff” and presses “Record leave”.', hi: 'जब कोई फ़ोन करके बताए, तो प्रिंसिपल या स्कूल एडमिन “Staff” पर “Record leave for a member of staff” भरते हैं और “Record leave” दबाते हैं।' },
+    ],
+    tips: [
+      { en: 'Only you, the principal and the school admin can read a leave request and its reason.', hi: 'छुट्टी की माँग और उसका कारण सिर्फ़ आप, प्रिंसिपल और स्कूल एडमिन पढ़ सकते हैं।' },
+      { en: 'Nobody decides their own request: the principal’s is decided by the school admin, and the school admin’s by the principal.', hi: 'कोई अपनी माँग ख़ुद तय नहीं करता: प्रिंसिपल की माँग स्कूल एडमिन तय करते हैं, और स्कूल एडमिन की प्रिंसिपल।' },
+      { en: 'You can withdraw a request while it waits, or approved leave before its first day. After that, the principal or the school admin cancels it.', hi: 'माँग जब तक इंतज़ार में है, या मंज़ूर छुट्टी अपने पहले दिन से पहले, आप वापस ले सकते हैं। उसके बाद प्रिंसिपल या स्कूल एडमिन उसे रद्द करते हैं।' },
+      { en: 'To change the days, withdraw the request and ask again. Leave is for whole days.', hi: 'दिन बदलने के लिए माँग वापस लें और फिर माँगें। छुट्टी पूरे दिनों की होती है।' },
+    ],
+    start: { href: '/app/account', label: { en: 'My account', hi: 'मेरा खाता (My account)' } },
+    related: ['send-staff-reset-code', 'use-my-day'],
+    keywords: ['leave', 'day off', 'sick leave', 'casual leave', 'approve leave', 'refuse leave', 'withdraw leave', 'chutti', 'chhutti', 'छुट्टी', 'अवकाश'],
+  },
   // p5-8b end
   // p5-8c begin
   // p5-8c end

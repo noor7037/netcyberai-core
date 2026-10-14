@@ -264,6 +264,17 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   // p5-8a begin
   // p5-8a end
   // p5-8b begin
+  {
+    // Leave requests waiting for the office that are not the person's own (C201): nobody decides their own, so
+    // one's own request is the other office person's card. Row level security shows the office every request.
+    type: 'leave-waiting',
+    moduleId: 'staff',
+    roles: OFFICE,
+    async load(db, ctx) {
+      const { rows } = await db.query(`select count(*) as c from staff_leave where school_id = $1 and status = 'waiting' and user_id <> $2`, [ctx.schoolId, ctx.userId]);
+      return waiting('leave-waiting', 'staff', n(rows[0]?.c), '/app/staff');
+    },
+  },
   // p5-8b end
   // p5-8c begin
   // p5-8c end

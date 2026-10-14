@@ -267,6 +267,16 @@ create table complaints (
 alter table complaints enable row level security;
 create policy complaints_tenant_isolation on complaints using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 grant select, insert, update on complaints to app_user, nca_super;
+-- Staff leave, as My Day counts the requests waiting for the office (C201).
+create table staff_leave (
+  leave_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  user_id uuid not null,
+  status text not null default 'waiting'
+);
+alter table staff_leave enable row level security;
+create policy staff_leave_tenant_isolation on staff_leave using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select, insert, update on staff_leave to app_user;
 -- Promises to pay, as My Day counts them (C180).
 create table fee_followups (
   followup_id uuid primary key default gen_random_uuid(),
