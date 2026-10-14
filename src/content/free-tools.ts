@@ -137,7 +137,7 @@ const certSteps = (doc: string): FreeTool['steps'] => [
 const certFaqs = (doc: string): FreeTool['faqs'] => [
   {
     question: `Is my ${doc} data uploaded or stored anywhere?`,
-    answer: 'No. Nothing is sent to NetCyberAI and the PDF is made on your device. Only your school’s own details and logo are saved, in this browser, if you choose. Student details stay in the tab and are cleared when you close it.',
+    answer: 'No. Nothing is sent to NetCyberAI and the PDF is made on your device. Only your school’s own details and logo, the design and the next certificate number are saved, in this browser. Student details stay in the tab and are cleared when you close it.',
   },
   {
     question: 'How many certificates can I make for free?',
