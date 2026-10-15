@@ -4,6 +4,8 @@ import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { Select } from '@/components/ui/Select';
 import { Badge } from '@/components/ui/Badge';
 import { useToast } from '@/components/ui/Toast';
+import { useT } from '@/components/app-shell/LangContext';
+import { explainError } from '@/lib/errors/catalogue';
 
 const DOC_TYPES = [
   { value: 'birth_certificate', label: 'Birth certificate' },
@@ -45,6 +47,7 @@ export function DocumentCapture({ studentId, guardians }: { studentId: string; g
   const [outcome, setOutcome] = useState<CaptureOutcome | null>(null);
   const [decisions, setDecisions] = useState<Record<string, { accepted: boolean; correctedValue: string }>>({});
   const toast = useToast();
+  const { lang } = useT();
 
   async function handleUpload(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -66,7 +69,9 @@ export function DocumentCapture({ studentId, guardians }: { studentId: string; g
       const res = await fetch(`/api/app/students/${studentId}/documents`, { method: 'POST', body: form });
       const body = await res.json();
       if (!res.ok) {
-        toast.show(body.error ?? 'upload failed', 'danger');
+        // In the person's language when the route named a rule of the error catalogue (an Aadhaar card or number in
+        // the file, C232 part A, among them).
+        toast.show(explainError(body, body.error ?? 'upload failed', lang, res.status), 'danger');
         return;
       }
       setOutcome(body);

@@ -4396,6 +4396,8 @@ const VERIFY_TOKEN = 'harness-10e-verify-token-0000001';
 const clearCertificates = async () => {
   await db.pg.exec(`set session_replication_role = replica;
     delete from certificate_copies; delete from certificates_issued; delete from certificate_marks;
+    delete from certificate_signatures; delete from certificate_signatories; delete from certificate_numbering;
+    delete from school_setting_changes where module_id = 'documents'; delete from school_settings where module_id = 'documents';
     delete from fee_clearance_overrides where reason = 'Harness 10e: let through at the fee counter.';
     delete from audit_log where event_action like 'certificate.%';
     set session_replication_role = origin;`);
@@ -4422,6 +4424,9 @@ let certificatesSeen = null;
 const certificatesScreen = async (page) => {
   await clearCertificates();
   await db.pg.query(`insert into fee_clearance_overrides (school_id, student_id, owed_minor, reason, decided_by) values ($1, $2, 450000, 'Harness 10e: let through at the fee counter.', $3)`, [SCHOOL, CERT_AARAV, PEOPLE.principal.sub]);
+  // The school has switched the fee clearance on for the TC (off by default, C232 part A), so the screen shows the hold
+  // and the principal's waiver.
+  await db.pg.query(`insert into school_settings (school_id, module_id, schema_version, setting_values, revision) values ($1, 'documents', 1, '{"clearance_transfer": true}', 1)`, [SCHOOL]);
   await page.reload({ waitUntil: 'networkidle' });
   await page.locator('[data-certificates-issue]').waitFor({ timeout: 20000 });
   await page.selectOption('#crt-type', 'transfer');
@@ -4489,8 +4494,8 @@ const verifyScreen = async (page) => {
   await db.pg.exec('set session_replication_role = replica');
   try {
     await db.pg.query(
-      `insert into certificates_issued (school_id, cert_type, seq, student_id, class_id, issued_on, issued_by, printed, clearance, owed_minor, verify_token)
-       values ($1, 'transfer', 1, $2, $3, ${TODAY_SQL}, $4, '{"studentName": "Aarav Example A", "dob": "2015-04-18", "fatherName": "Rajesh Example", "lastClass": "5-A"}', 'nothing_owed', 0, $5)`,
+      `insert into certificates_issued (school_id, cert_type, seq, number, student_id, class_id, issued_on, issued_by, printed, clearance, owed_minor, verify_token)
+       values ($1, 'transfer', 1, 'TC/0001', $2, $3, ${TODAY_SQL}, $4, '{"studentName": "Aarav Example A", "dob": "2015-04-18", "fatherName": "Rajesh Example", "lastClass": "5-A"}', 'nothing_owed', 0, $5)`,
       [SCHOOL, CERT_AARAV, CLASS_5A, PEOPLE.principal.sub, VERIFY_TOKEN]
     );
   } finally {

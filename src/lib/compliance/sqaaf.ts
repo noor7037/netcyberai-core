@@ -2,6 +2,7 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { hasAadhaarNumber } from '@/lib/privacy/aadhaar';
+import { checkUpload, type UploadProblem, type UploadRead } from '@/lib/privacy/upload-check';
 import { FileStorageUnavailableError, sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
 import { DESK_ROLES } from './register-rules';
 
@@ -10,8 +11,9 @@ import { DESK_ROLES } from './register-rules';
 // see supabase/migrations/*_p7_compliance_desk.sql). The school tags evidence to ONE standard of that list: a typed
 // note, or a photo or PDF the office uploads (kept in the private bucket under "<school>/sqaaf/", handed out only as a
 // short-lived link after the row was read under row level security), or both. Never an Aadhaar number in a note or a
-// file's name (the one rule, C225); never a scan of an Aadhaar card (the screen says so; a picture's contents are not
-// read). A wrong piece is removed (audited); none is changed. The office only.
+// file's name (the one rule, C225); never a scan of an Aadhaar card: what a file says is read and checked before it is
+// stored (src/lib/privacy/upload-check.ts, C232 part A). A wrong piece is removed (audited); none is changed. The
+// office only.
 
 type Actor = { schoolId: string; userId: string; role: StaffRole };
 type Db = Pick<PoolClient, 'query'>;
@@ -59,7 +61,7 @@ export async function loadSqaaf(db: Db, actor: Actor): Promise<Sqaaf | null> {
   };
 }
 
-export type EvidenceProblem = 'unknown_standard' | 'note' | 'aadhaar' | 'nothing' | 'too_many' | 'not_a_photo_or_pdf' | 'too_large' | 'storage_unavailable';
+export type EvidenceProblem = 'unknown_standard' | 'note' | 'aadhaar' | 'nothing' | 'too_many' | 'not_a_photo_or_pdf' | 'too_large' | 'storage_unavailable' | UploadProblem;
 export type EvidenceResult = { ok: true; evidenceId: string } | { ok: false; reason: 'not_allowed' | 'not_found' | EvidenceProblem };
 
 // A note as typed: trimmed, at most NOTE_MAX characters, never an Aadhaar number; '' or null is no note.
@@ -78,8 +80,9 @@ async function checkStandard(db: Db, schoolId: string, code: unknown): Promise<E
 
 // The audit row: the evidence's id, its standard and what kind it is (a code), never the note or the file's name.
 type EvidenceKind = 'note' | 'file' | 'file_and_note';
-async function audited(db: Db, actor: Actor, evidenceId: string, standardCode: string, kind: EvidenceKind) {
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'compliance_desk.sqaaf_evidence_added', targetType: 'sqaaf_evidence', targetId: evidenceId, beforeState: undefined, afterState: { standardCode, kind } });
+// For a file, also how the Aadhaar check read it (a code: image_text, pdf_text or name_only).
+async function audited(db: Db, actor: Actor, evidenceId: string, standardCode: string, kind: EvidenceKind, read?: UploadRead) {
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'compliance_desk.sqaaf_evidence_added', targetType: 'sqaaf_evidence', targetId: evidenceId, beforeState: undefined, afterState: { standardCode, kind, ...(read ? { uploadCheck: read } : {}) } });
 }
 
 // A typed note tagged to a standard.
@@ -111,9 +114,10 @@ export function fileLabel(name: string, mime: keyof typeof EXT): string {
   return label && !hasAadhaarNumber(label) ? label : `evidence.${EXT[mime]}`;
 }
 
-// A photo or a PDF tagged to a standard, with a note or none. The file is stored first under the school's own folder
-// (the key starts with the school of the verified session; never anything the browser sent), then its row; a row that
-// cannot be written takes the file away again.
+// A photo or a PDF tagged to a standard, with a note or none. What the file says is checked first (an Aadhaar number or
+// card, or words that cannot be read, are refused and never stored); the file is then stored under the school's own
+// folder (the key starts with the school of the verified session; never anything the browser sent), then its row; a
+// row that cannot be written takes the file away again.
 export async function addSqaafFile(db: Db, storage: FileStorage, actor: Actor, input: { standardCode: unknown; note: unknown; name: string; bytes: Uint8Array }, newId: () => string = () => crypto.randomUUID()): Promise<EvidenceResult> {
   if (!DESK_ROLES.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   const problem = await checkStandard(db, actor.schoolId, input.standardCode);
@@ -123,6 +127,8 @@ export async function addSqaafFile(db: Db, storage: FileStorage, actor: Actor, i
   if (input.bytes.length === 0 || input.bytes.length > FILE_MAX_BYTES) return { ok: false, reason: 'too_large' };
   const mime = sniffEvidenceFile(input.bytes);
   if (!mime) return { ok: false, reason: 'not_a_photo_or_pdf' };
+  const screen = await checkUpload({ bytes: input.bytes, name: input.name });
+  if (!screen.ok) return { ok: false, reason: screen.reason };
   const key = `${actor.schoolId}/sqaaf/${newId()}.${EXT[mime]}`;
   try {
     await storage.put(key, input.bytes, mime);
@@ -136,7 +142,7 @@ export async function addSqaafFile(db: Db, storage: FileStorage, actor: Actor, i
       [actor.schoolId, input.standardCode, note.note, key, fileLabel(input.name, mime), mime, input.bytes.length, actor.userId]
     );
     const id = made.rows[0].evidence_id as string;
-    await audited(db, actor, id, input.standardCode as string, note.note === null ? 'file' : 'file_and_note');
+    await audited(db, actor, id, input.standardCode as string, note.note === null ? 'file' : 'file_and_note', screen.read);
     return { ok: true, evidenceId: id };
   } catch (err) {
     await storage.remove(key).catch(() => undefined);

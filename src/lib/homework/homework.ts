@@ -2,6 +2,7 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { refreshDraftsForHomework } from '@/lib/pulse/drafts';
+import { checkUpload, type UploadProblem } from '@/lib/privacy/upload-check';
 import { FileStorageUnavailableError, sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
 
 // Homework (docs/20 5e, C150). The teacher writes it once and copies it to
@@ -216,7 +217,7 @@ export function sniffHomeworkFile(bytes: Uint8Array): 'image/png' | 'image/jpeg'
 }
 
 const EXT = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp', 'application/pdf': 'pdf' } as const;
-export type FileResult = { ok: true; attachmentId: string } | { ok: false; reason: 'not_allowed' | 'not_found' | 'not_a_photo_or_pdf' | 'too_large' | 'too_many' | 'storage_unavailable' };
+export type FileResult = { ok: true; attachmentId: string } | { ok: false; reason: 'not_allowed' | 'not_found' | 'not_a_photo_or_pdf' | 'too_large' | 'too_many' | 'storage_unavailable' | UploadProblem };
 
 export async function addHomeworkFile(db: PoolClient, storage: FileStorage, actor: Actor, homeworkId: string, file: { name: string; bytes: Uint8Array }, newId: () => string = () => crypto.randomUUID()): Promise<FileResult> {
   if (!STAFF.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
@@ -226,6 +227,9 @@ export async function addHomeworkFile(db: PoolClient, storage: FileStorage, acto
   if (!mime) return { ok: false, reason: 'not_a_photo_or_pdf' };
   const count = (await db.query(`select count(*)::int as n from homework_attachments where school_id = $1 and homework_id = $2`, [actor.schoolId, homeworkId])).rows[0].n as number;
   if (count >= MAX_FILES) return { ok: false, reason: 'too_many' };
+  // What the file says is checked before it is stored (C232 part A): never an Aadhaar number or card.
+  const screen = await checkUpload({ bytes: file.bytes, name: file.name });
+  if (!screen.ok) return { ok: false, reason: screen.reason };
   // The key starts with the school of the verified session; the name the browser sent is kept only as a label.
   const key = `${actor.schoolId}/homework/${homeworkId}/${newId()}.${EXT[mime]}`;
   try {
@@ -237,7 +241,7 @@ export async function addHomeworkFile(db: PoolClient, storage: FileStorage, acto
   try {
     const label = file.name.replace(/[^\p{L}\p{N} ._-]/gu, '').trim().slice(0, 120) || `homework.${EXT[mime]}`;
     const made = await db.query(`insert into homework_attachments (school_id, homework_id, storage_key, file_name, mime_type, size_bytes, uploaded_by) values ($1, $2, $3, $4, $5, $6, $7) returning attachment_id`, [actor.schoolId, homeworkId, key, label, mime, file.bytes.length, actor.userId]);
-    await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'homework.file_added', targetType: 'homework', targetId: homeworkId, beforeState: undefined, afterState: { attachmentId: made.rows[0].attachment_id, mime, sizeBytes: file.bytes.length } });
+    await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'homework.file_added', targetType: 'homework', targetId: homeworkId, beforeState: undefined, afterState: { attachmentId: made.rows[0].attachment_id, mime, sizeBytes: file.bytes.length, uploadCheck: screen.read } });
     return { ok: true, attachmentId: made.rows[0].attachment_id };
   } catch (err) {
     await storage.remove(key).catch(() => undefined);

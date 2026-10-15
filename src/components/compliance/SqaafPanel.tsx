@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import type { Evidence, Sqaaf, Standard } from '@/lib/compliance/sqaaf';
+import { explainError } from '@/lib/errors/catalogue';
+import { isUploadProblem } from '@/lib/privacy/upload-problems';
 import { CARD, dayFormat, FIELD, LINK, PRIMARY, refusal, send, TAP, type Say } from './desk-client';
 
 // SQAAF evidence on the compliance desk (C227): CBSE's standards as the document prints them (with where they come
@@ -32,7 +34,8 @@ export function SqaafPanel({ sqaaf, reload, say }: { sqaaf: Sqaaf; reload: () =>
       reply = await send('/api/app/compliance/sqaaf', 'POST', { standardCode: form.code, note: form.note });
     }
     setBusy(false);
-    if (!reply.ok) return say(false, t(refusal(reply)));
+    // A file the Aadhaar check refused (C232 part A) is said in the error catalogue's own words, in this language.
+    if (!reply.ok) return say(false, isUploadProblem(reply.body.code) ? explainError(reply.body, t('cdk.err.other'), lang, reply.status) : t(refusal(reply)));
     say(true, t('cdk.sq.added', { code: form.code }));
     setForm(null);
     await reload();

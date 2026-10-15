@@ -286,7 +286,11 @@ describe('SQAAF evidence', () => {
   it('never an Aadhaar number in a note or a file’s name; never a file that is not a photo or a PDF; never another school’s folder', async () => {
     expect(await as(principal, (c) => addSqaafNote(c, actor(principal), { standardCode: '1.6.1', note: 'Child 1234 5678 9012 attended' }))).toEqual({ ok: false, reason: 'aadhaar' });
     await expect(as(principal, (c) => c.query(`insert into sqaaf_evidence (school_id, standard_code, note, added_by) values ($1, '1.6.1', 'id 123456789012', $2)`, [A, PRINCIPAL]))).rejects.toThrow(/check/);
-    const named = await as(principal, (c) => addSqaafFile(c, storage, actor(principal), { standardCode: '1.6.1', note: 'Attendance register', name: 'aadhaar 1234 5678 9012.pdf', bytes: PDF }, () => 'f2'));
+    // A file whose name holds an Aadhaar number is refused before anything is stored (C232 part A: the upload check).
+    expect(await as(principal, (c) => addSqaafFile(c, storage, actor(principal), { standardCode: '1.6.1', note: 'Attendance register', name: 'aadhaar 1234 5678 9012.pdf', bytes: PDF }, () => 'f9'))).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
+    expect(storage.files.has(`${A}/sqaaf/f9.pdf`)).toBe(false);
+    // A name with nothing usable in it becomes a plain one.
+    const named = await as(principal, (c) => addSqaafFile(c, storage, actor(principal), { standardCode: '1.6.1', note: 'Attendance register', name: '<>', bytes: PDF }, () => 'f2'));
     expect(named.ok).toBe(true);
     expect((await db.pg.query(`select file_name from sqaaf_evidence where storage_key = $1`, [`${A}/sqaaf/f2.pdf`])).rows[0].file_name).toBe('evidence.pdf');
     expect(await as(principal, (c) => addSqaafFile(c, storage, actor(principal), { standardCode: '1.6.1', note: null, name: 'x.exe', bytes: new Uint8Array([0x4d, 0x5a, 1, 2, 3]) }))).toEqual({ ok: false, reason: 'not_a_photo_or_pdf' });

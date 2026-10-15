@@ -40,8 +40,11 @@ export async function GET(req: NextRequest, { params }: { params: { studentId: s
 }
 
 // POST: capture (camera/gallery upload) -> compress happened client-side
-// already -> upload to school-scoped storage -> OCR -> candidate fields,
-// never committed directly (PRD Sec6.1's own hard constraint).
+// already -> the Aadhaar check of what the file says (C232 part A: refused,
+// and never stored, when it shows an Aadhaar number, reads as an Aadhaar
+// card, or cannot be read) -> upload to school-scoped storage -> OCR ->
+// candidate fields, never committed directly (PRD Sec6.1's own hard
+// constraint).
 export async function POST(req: NextRequest, { params }: { params: { studentId: string } }) {
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
@@ -73,9 +76,11 @@ export async function POST(req: NextRequest, { params }: { params: { studentId: 
       docType as DocType,
       bytes,
       file.type,
-      typeof parentId === 'string' ? parentId : null
+      typeof parentId === 'string' ? parentId : null,
+      file.name
     );
     if (!outcome) return ruleError(404, 'not_found', { field: 'student' });
+    if ('refused' in outcome) return ruleError(400, outcome.refused, { field: 'file' });
     return NextResponse.json(outcome, { status: 201 });
   } catch (err) {
     const resp = sessionErrorResponse(err);
