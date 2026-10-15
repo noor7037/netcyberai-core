@@ -12,6 +12,9 @@ import { CARD, dayFormat } from './desk-client';
 // again here and nothing is typed: the year's recurring fees of this year and the year before, the increase, and the
 // CPI and filing deadline with where they come from.
 
+// A percent as a person writes it: at most two places, no floating-point tail (4.31 + 5 shows 9.31).
+const pct = (x: number | null) => (x === null ? '' : String(Number(x.toFixed(2))));
+
 export function Form6Panel() {
   const { t, lang } = useT();
   const [data, setData] = useState<Form6Advisory | null>(null);
@@ -55,8 +58,11 @@ export function Form6Panel() {
             <Badge variant="warning" className="self-start">{t('cdk.f6.noCpi')}</Badge>
           ) : (
             <div className="flex flex-col gap-1">
-              <p className="break-words">{t('cdk.f6.cpi', { cpi: String(data.cpiPercent), limit: String(data.permissibleIncreasePercent), source: data.cpiSource ?? '' })}</p>
-              <Badge variant={data.cpiState === 'above_advisory' ? 'danger' : 'success'} className="self-start">{t(data.cpiState === 'above_advisory' ? 'cdk.f6.above' : 'cdk.f6.within')}</Badge>
+              <p className="break-words">{t('cdk.f6.cpi', { cpi: pct(data.cpiPercent), limit: pct(data.permissibleIncreasePercent), source: data.cpiSource ?? '' })}</p>
+              {/* A verdict only when there is an increase to judge (review of C227): one year of fees is no comparison. */}
+              {data.proposedIncreasePercent !== null && (
+                <Badge variant={data.cpiState === 'above_advisory' ? 'danger' : 'success'} className="self-start">{t(data.cpiState === 'above_advisory' ? 'cdk.f6.above' : 'cdk.f6.within')}</Badge>
+              )}
             </div>
           )}
           {data.deadlineState === 'unknown' || !data.filingDeadline ? (

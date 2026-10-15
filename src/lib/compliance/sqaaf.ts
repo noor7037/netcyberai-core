@@ -107,7 +107,7 @@ const EXT = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp', 'ap
 // The name the browser sent, kept only as a label: letters, digits, spaces, dots, dashes and underscores; a name that
 // holds an Aadhaar number (or nothing usable) becomes a plain one.
 export function fileLabel(name: string, mime: keyof typeof EXT): string {
-  const label = name.replace(/[^\p{L}\p{N} ._-]/gu, '').replace(/\s+/g, ' ').trim().slice(0, 120);
+  const label = name.replace(/[^\p{L}\p{M}\p{N} ._-]/gu, '').replace(/\s+/g, ' ').trim().slice(0, 120);
   return label && !hasAadhaarNumber(label) ? label : `evidence.${EXT[mime]}`;
 }
 

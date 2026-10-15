@@ -3,7 +3,8 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { disclosureCsv, loadDisclosure, removeDisclosure, saveDisclosure } from '@/lib/compliance/disclosure';
 import { deskInPlan, endingCount, importRegister, loadRegister, saveQualification } from '@/lib/compliance/qualifications';
-import { addSqaafFile, addSqaafNote, loadSqaaf, removeSqaafEvidence, sqaafFileUrl } from '@/lib/compliance/sqaaf';
+import { computeForm6Advisory } from '@/lib/compliance/form6';
+import { addSqaafFile, addSqaafNote, fileLabel, loadSqaaf, removeSqaafEvidence, sqaafFileUrl } from '@/lib/compliance/sqaaf';
 import { settingsSchemaFor } from '@/lib/frameworks/settings-schemas';
 import { saveSettings } from '@/lib/frameworks/settings-store';
 import { blankTeacher, teachersToCsv } from '@/lib/free-tools/teacher-register';
@@ -332,5 +333,32 @@ describe('the desk as a whole', () => {
     expect(await seen(principal)).toBe(rows.length);
     expect(await seen(teacher)).toBe(0);
     expect(await seen(accountant)).toBe(0);
+  });
+});
+
+describe('review of C227', () => {
+  it('a first row with nothing typed is saved and counted', async () => {
+    const csv = teachersToCsv([{ ...blankTeacher(), name: 'Kiran Coordinator' }]);
+    const done = await as(principal, (c) => importRegister(c, actor(principal), csv, true));
+    expect(done).toMatchObject({ ok: true, saved: 1 });
+  });
+
+  it('a Hindi file name keeps its vowel signs; an Aadhaar number in it is still refused', () => {
+    expect(fileLabel('प्रमाणपत्र सूची.pdf', 'application/pdf')).toBe('प्रमाणपत्र सूची.pdf');
+    expect(fileLabel('card 1234 5678 9012.pdf', 'application/pdf')).toBe('evidence.pdf');
+  });
+
+  it('Form 6: the filing deadline day itself is not past in India; the day after is', async () => {
+    const today = indiaDate();
+    const yesterday = indiaDate(new Date(Date.now() - 86_400_000));
+    const at = async (deadline: string) => {
+      await db.pg.query(
+        `insert into compliance_config (school_id, state, filing_deadline, filing_deadline_source) values ($1, 'HR', $2, 'test') on conflict (school_id) do update set filing_deadline = excluded.filing_deadline`,
+        [A, deadline]
+      );
+      return as(principal, (c) => computeForm6Advisory(c, A, 'IN-HR'));
+    };
+    expect(await at(today)).toMatchObject({ deadlineState: 'before_deadline', filingDeadline: today });
+    expect(await at(yesterday)).toMatchObject({ deadlineState: 'past_deadline', filingDeadline: yesterday });
   });
 });

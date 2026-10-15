@@ -138,4 +138,11 @@ describe('the CSV import, in the tool’s own columns', () => {
     const rows = matchImport([{ ...blankTeacher(), name: 'Bina Example', stage: 'pre', tetPaper: 'II', tetDate: '2022-03-01', tetValidUntil: '2030-01-01' }], staff, TODAY);
     expect(rows[0]).toMatchObject({ status: 'ready', value: q({ stage: 'pre' }) });
   });
+  it('review of C227: an approval with an end date but no name has no English label: the screen names it in the reader’s language', () => {
+    const s = registerSettingsOf({});
+    const unnamed = checkStaff('Asha', q({ stage: 'primary', other_valid_until: '2026-10-20' }), s, TODAY).endings;
+    expect(unnamed).toEqual([expect.objectContaining({ kind: 'other', label: '' })]);
+    const named = checkStaff('Asha', q({ stage: 'primary', other_approval: 'Fire safety NOC', other_valid_until: '2026-10-20' }), s, TODAY).endings;
+    expect(named[0].label).not.toBe('');
+  });
 });

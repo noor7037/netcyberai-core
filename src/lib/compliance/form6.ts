@@ -1,4 +1,5 @@
 import type { PoolClient } from 'pg';
+import { indiaDate } from '@/lib/time/india';
 
 // 05_BUSINESS_LOGIC.md Sec3: Haryana's Form 6 advisory. CPI and the
 // filing deadline are both admin-entered configuration with a recorded
@@ -67,7 +68,7 @@ export async function computeForm6Advisory(client: PoolClient, schoolId: string,
   const jurisdictionApplies = jurisdiction === 'IN-HR';
 
   const { rows } = await client.query<ComplianceConfigRow>(
-    `select cpi_percent, cpi_source, filing_deadline, filing_deadline_source, advisory_muted
+    `select cpi_percent, cpi_source, filing_deadline::text as filing_deadline, filing_deadline_source, advisory_muted
      from compliance_config where school_id = $1`,
     [schoolId]
   );
@@ -105,7 +106,8 @@ export async function computeForm6Advisory(client: PoolClient, schoolId: string,
   let deadlineState: DeadlineState;
   if (!config?.filing_deadline) {
     deadlineState = 'unknown'; // never assume 1 Feb
-  } else if (new Date() > new Date(config.filing_deadline)) {
+  } else if (indiaDate() > config.filing_deadline) {
+    // India's day against the date as typed (YYYY-MM-DD): the deadline day itself is not past (review of C227).
     deadlineState = 'past_deadline';
   } else {
     deadlineState = 'before_deadline';
