@@ -1,5 +1,5 @@
 import type { PoolClient } from 'pg';
-import { writeAuditLog } from '@/lib/audit/log';
+import { writeAuditLog, writeAuditLogs } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
@@ -7,7 +7,7 @@ import { planHasFeature } from '@/lib/frameworks/plans';
 import { schoolCalendar } from '@/lib/payments/upi';
 import { diffWeeks, generateTimetable, MAX_WEEK_PERIODS, swapInWeek, weekProblems, type Change, type Unavailable, type Unplaced, type WeekProblem } from './generator';
 import { MAX_PERIODS, type Slot } from './plan';
-import { clearEntry, periodsPerDay, putEntry, type PutResult } from './timetable';
+import { ENTRY_SELECT, periodsPerDay, planLockKey, type Entry } from './timetable';
 
 // The timetable generator in the database (docs/28 slice 10f, C229). Every function runs in the caller's own tenant
 // transaction, as the app's role: row level security decides that only the office (PLANNERS) reads or writes the
@@ -20,8 +20,10 @@ import { clearEntry, periodsPerDay, putEntry, type PutResult } from './timetable
 //     writes nothing to timetable_entries.
 //   - A person may SWAP two periods of a class in the draft; the swap is checked against the rules as they are now.
 //   - PUBLISH is a person's decision: in one transaction (a savepoint, so a refusal leaves nothing behind), every
-//     period that changes goes through the timetable's own entry path, clearEntry() and putEntry(), with their
-//     clash guard and their audit rows, and the database's unique constraints behind them. The version is kept
+//     period that changes is written as the timetable's own entry path writes it, with the checks of putEntry() (the
+//     class, subject and an active teacher are the school's; no teacher in two classes at once) and an audit row for
+//     each period as putEntry() and clearEntry() write them, and the database's unique constraints behind them; in
+//     a few statements for all the periods, not one at a time (review of C229). The version is kept
 //     (timetable_versions) with the whole timetable before and after. A draft made against a timetable that has
 //     changed since is refused: it would not be what the person reviewed.
 //   - Audit rows ('timetable.plan.%') hold ids, counts, codes and dates only.
@@ -41,13 +43,15 @@ export type Rules = { days: number[]; periods: number; maxConsecutive: number };
 export type LoadRow = { classId: string; subjectId: string; periods: number; teacherUserId: string };
 export type Names = { classes: { id: string; name: string }[]; subjects: { id: string; name: string }[]; teachers: { id: string; name: string; active: boolean }[] };
 
-// Two people planning at the same moment are taken one after the other.
-const lockPlan = (db: Sql, schoolId: string) => db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`timetable-plan:${schoolId}`]);
+// Two people planning at the same moment are taken one after the other; a period filled or emptied by hand (which
+// holds this lock shared, ./timetable.ts) waits too.
+const lockPlan = (db: Sql, schoolId: string) => db.query(`select pg_advisory_xact_lock(hashtext($1))`, [planLockKey(schoolId)]);
 
 export async function generatorRules(db: Sql, schoolId: string): Promise<Rules> {
   const schema = SETTINGS_SCHEMAS.find((s) => s.moduleId === 'timetable');
   const raw = schema ? (await readSettings(db, schoolId, schema)).effective.max_consecutive : undefined;
-  const maxConsecutive = typeof raw === 'number' && Number.isInteger(raw) && raw >= 1 && raw <= MAX_PERIODS ? raw : MAX_PERIODS;
+  // A whole number from 1 to 12; a fraction is taken down (3.5 is 3), never read as no limit.
+  const maxConsecutive = typeof raw === 'number' && Number.isFinite(raw) ? Math.min(MAX_PERIODS, Math.max(1, Math.floor(raw))) : MAX_PERIODS;
   // The one working calendar (Setup's working days), as attendance and Proxy Auto read it.
   const calendar = await schoolCalendar(db, schoolId);
   const days = [1, 2, 3, 4, 5, 6, 7].filter((d) => calendar.weekdays.has(d % 7));
@@ -212,6 +216,25 @@ export async function propose(db: Sql, actor: Actor): Promise<ProposeResult> {
   return { ok: true, proposalId, placed: result.entries.length, notPlaced };
 }
 
+// The periods a publish writes: those added or changed.
+const written = (changes: readonly Change[]): Slot[] => changes.flatMap((c) => (c.kind === 'removed' ? [] : [c.after!]));
+
+// What putEntry() asks of each period, asked once for all of them: the classes, subjects and teachers (active ones)
+// that are not, or no longer, the school's.
+async function goneFrom(db: Sql, schoolId: string, slots: readonly Slot[]): Promise<{ classes: string[]; subjects: string[]; teachers: string[] }> {
+  if (slots.length === 0) return { classes: [], subjects: [], teachers: [] };
+  const ids = (k: 'classId' | 'subjectId' | 'teacherUserId') => [...new Set(slots.map((s) => s[k]))].sort();
+  const r = (
+    await db.query(
+      `select array(select x from unnest($2::uuid[]) as x where not exists (select 1 from classes c where c.school_id = $1 and c.class_id = x) order by x)::text[] as classes,
+              array(select x from unnest($3::uuid[]) as x where not exists (select 1 from subjects s where s.school_id = $1 and s.subject_id = x) order by x)::text[] as subjects,
+              array(select x from unnest($4::uuid[]) as x where not exists (select 1 from users u where u.school_id = $1 and u.user_id = x and u.role = 'teacher' and u.is_active) order by x)::text[] as teachers`,
+      [schoolId, ids('classId'), ids('subjectId'), ids('teacherUserId')]
+    )
+  ).rows[0];
+  return { classes: r.classes, subjects: r.subjects, teachers: r.teachers };
+}
+
 export type DraftView = {
   proposalId: string;
   proposedBy: string;
@@ -231,6 +254,8 @@ export type DraftView = {
   rulesChanged: boolean;
   // What breaks a rule now (a teacher's unavailable periods changed since, say): publishing refuses it.
   problems: WeekProblem[];
+  // The teachers of periods it would write who are no longer active (they left after it was made): nor can it.
+  teachersGone: string[];
 };
 
 export async function draftView(db: Sql, schoolId: string): Promise<DraftView | null> {
@@ -239,6 +264,7 @@ export async function draftView(db: Sql, schoolId: string): Promise<DraftView | 
   const around = await rulesAround(db, schoolId, draft);
   const planned = new Set(draft.class_ids);
   const by = (await db.query(`select display_name from users where school_id = $1 and user_id = $2`, [schoolId, draft.proposed_by])).rows[0];
+  const changes = diffWeeks(around.current, draft.entries, draft.class_ids);
   return {
     proposalId: draft.proposal_id,
     proposedBy: draft.proposed_by,
@@ -250,10 +276,11 @@ export async function draftView(db: Sql, schoolId: string): Promise<DraftView | 
     unplaced: draft.unplaced,
     swaps: draft.swaps,
     current: around.current.filter((e) => planned.has(e.classId)),
-    changes: diffWeeks(around.current, draft.entries, draft.class_ids),
+    changes,
     stale: (await fingerprint(db, schoolId)) !== draft.based_on,
     rulesChanged: await rulesChanged(db, schoolId, draft),
     problems: weekProblems(draft.entries, around),
+    teachersGone: (await goneFrom(db, schoolId, written(changes))).teachers,
   };
 }
 
@@ -277,11 +304,12 @@ export async function swapInDraft(db: Sql, actor: Actor, proposalId: string, cla
 export type PublishResult =
   | { ok: true; versionId: string; added: number; removed: number; changed: number }
   | { ok: false; reason: 'not_found' | 'missing_not_accepted' | 'timetable_changed' | 'rules_changed' | 'week_problem'; problems?: WeekProblem[] }
-  | { ok: false; reason: Exclude<PutResult, { ok: true }>['reason']; clash?: unknown };
+  | { ok: false; reason: 'teacher_clash'; clash: Entry }
+  | { ok: false; reason: 'unknown_class' | 'unknown_subject' | 'unknown_teacher' };
 
-// A person publishes the draft. Every period that changes goes through the timetable's own entry path, in one
-// transaction: if any is refused, nothing of the draft is in the timetable and the answer says which rule refused it.
-// A draft that could not place every period is published only when the person says so (`withMissing`).
+// A person publishes the draft, in one transaction: if any period is refused, nothing of the draft is in the
+// timetable and the answer says which rule refused it. A draft that could not place every period is published only
+// when the person says so (`withMissing`).
 export async function publishDraft(db: Sql, actor: Actor, proposalId: string, opts: { withMissing: boolean }): Promise<PublishResult> {
   await lockPlan(db, actor.schoolId);
   const draft = await openDraft(db, actor.schoolId, true);
@@ -293,20 +321,71 @@ export async function publishDraft(db: Sql, actor: Actor, proposalId: string, op
   const problems = weekProblems(draft.entries, around);
   if (problems.length) return { ok: false, reason: 'week_problem', problems };
 
+  // Its periods are inside the school day: rulesChanged() and weekProblems() (outside_week) have asked that.
   const changes = diffWeeks(around.current, draft.entries, draft.class_ids);
-  const pg = db as PoolClient;
+  const puts = written(changes);
+  const clears = changes.filter((c) => c.kind !== 'added');
+  const gone = await goneFrom(db, actor.schoolId, puts);
+  if (gone.classes.length) return { ok: false, reason: 'unknown_class' };
+  if (gone.subjects.length) return { ok: false, reason: 'unknown_subject' };
+  if (gone.teachers.length) return { ok: false, reason: 'unknown_teacher' };
+
+  const of = (k: 'classId' | 'subjectId' | 'teacherUserId' | 'weekday' | 'period', xs: readonly { classId: string; weekday: number; period: number; subjectId?: string; teacherUserId?: string }[]) => xs.map((x) => x[k]);
   await db.query('savepoint timetable_publish');
   try {
     // Emptied first, then filled: a teacher who moves between two classes in one period never meets themselves.
-    for (const c of changes) if (c.kind !== 'added') await clearEntry(pg, actor, { classId: c.classId, weekday: c.weekday, period: c.period });
-    for (const c of changes) {
-      if (c.kind === 'removed') continue;
-      const put = await putEntry(pg, actor, c.after!);
-      if (!put.ok) {
-        await db.query('rollback to savepoint timetable_publish');
-        return put.reason === 'teacher_clash' ? { ok: false, reason: put.reason, clash: put.clash } : { ok: false, reason: put.reason };
-      }
+    const cleared = clears.length
+      ? (
+          await db.query(
+            `delete from timetable_entries e using unnest($2::uuid[], $3::int[], $4::int[]) as n(class_id, weekday, period)
+              where e.school_id = $1 and e.class_id = n.class_id and e.weekday = n.weekday and e.period = n.period
+             returning e.entry_id, e.class_id, e.weekday::int as weekday, e.period::int as period, e.subject_id, e.teacher_user_id`,
+            [actor.schoolId, of('classId', clears), of('weekday', clears), of('period', clears)]
+          )
+        ).rows
+      : [];
+    // putEntry()'s clash guard, for every period at once: the teacher already teaching another class then.
+    const clash = puts.length
+      ? ((
+          await db.query(
+            `${ENTRY_SELECT}
+               join unnest($2::uuid[], $3::int[], $4::int[], $5::uuid[]) as n(teacher_user_id, weekday, period, class_id)
+                 on e.teacher_user_id = n.teacher_user_id and e.weekday = n.weekday and e.period = n.period and e.class_id <> n.class_id
+              where e.school_id = $1 order by e.weekday, e.period, e.entry_id limit 1`,
+            [actor.schoolId, of('teacherUserId', puts), of('weekday', puts), of('period', puts), of('classId', puts)]
+          )
+        ).rows[0] as Entry | undefined)
+      : undefined;
+    if (clash) {
+      await db.query('rollback to savepoint timetable_publish');
+      return { ok: false, reason: 'teacher_clash', clash };
     }
+    const made = puts.length
+      ? (
+          await db.query(
+            `insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id)
+             select $1, n.class_id, n.weekday, n.period, n.subject_id, n.teacher_user_id
+               from unnest($2::uuid[], $3::int[], $4::int[], $5::uuid[], $6::uuid[]) as n(class_id, weekday, period, subject_id, teacher_user_id)
+             returning entry_id, class_id, weekday::int as weekday, period::int as period, subject_id, teacher_user_id`,
+            [actor.schoolId, of('classId', puts), of('weekday', puts), of('period', puts), of('subjectId', puts), of('teacherUserId', puts)]
+          )
+        ).rows
+      : [];
+    // One audit row for each period, as clearEntry() and putEntry() write them: ids only.
+    await writeAuditLogs(
+      db,
+      cleared.map((r) => ({
+        schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'timetable.clear', targetType: 'timetable_entries', targetId: r.entry_id,
+        beforeState: { classId: r.class_id, weekday: r.weekday, period: r.period, subjectId: r.subject_id, teacherUserId: r.teacher_user_id }, afterState: null,
+      }))
+    );
+    await writeAuditLogs(
+      db,
+      made.map((r) => ({
+        schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'timetable.set', targetType: 'timetable_entries', targetId: r.entry_id,
+        beforeState: null, afterState: { classId: r.class_id, weekday: r.weekday, period: r.period, subjectId: r.subject_id, teacherUserId: r.teacher_user_id },
+      }))
+    );
     const version = (
       await db.query(
         `insert into timetable_versions (school_id, proposal_id, class_ids, before_entries, published_by) values ($1, $2, $3::uuid[], $4::jsonb, $5) returning version_id, added, removed, changed`,
@@ -322,8 +401,11 @@ export async function publishDraft(db: Sql, actor: Actor, proposalId: string, op
     return { ok: true, versionId: version.version_id, added: version.added, removed: version.removed, changed: version.changed };
   } catch (err) {
     await db.query('rollback to savepoint timetable_publish');
-    // The database's own clash guard: someone filled a period at the same moment.
-    if ((err as { code?: string }).code === '23505') return { ok: false, reason: 'timetable_changed' };
+    // The database's own guards: a period filled at the same moment (a unique constraint), or the classes no longer
+    // holding exactly the proposal when it is marked published (the publish trigger). Either way the timetable
+    // changed under it.
+    const e = err as { code?: string; message?: string };
+    if (e.code === '23505' || (e.code === '23514' && /exactly what its classes hold/.test(e.message ?? ''))) return { ok: false, reason: 'timetable_changed' };
     throw err;
   }
 }

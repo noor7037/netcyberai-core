@@ -22,6 +22,7 @@ export type Draft = {
   stale: boolean;
   rulesChanged: boolean;
   problems: WeekProblem[];
+  teachersGone: string[];
 };
 export type GeneratorData = {
   rules: Rules;

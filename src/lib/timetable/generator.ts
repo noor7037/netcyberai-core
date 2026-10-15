@@ -55,18 +55,20 @@ const byId = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
 const validDay = (d: unknown): d is number => Number.isInteger(d) && (d as number) >= 1 && (d as number) <= 7;
 const clampInt = (v: number, lo: number, hi: number) => (Number.isInteger(v) ? Math.min(hi, Math.max(lo, v)) : hi);
 
-// The longest run of periods in a row in a day, for every day a teacher can have (one bit per period).
-const RUN = (() => {
-  const t = new Uint8Array(1 << MAX_PERIODS);
-  for (let m = 1; m < t.length; m++) {
-    let best = 0;
-    let run = 0;
-    for (let b = 0; b < MAX_PERIODS; b++) {
-      run = m & (1 << b) ? run + 1 : 0;
-      if (run > best) best = run;
+// The run of periods in a row that contains period `p`, for every day a teacher can have (one bit per period):
+// RUN_AT[m * MAX_PERIODS + p], 0 when `p` is not in `m`. Only that run counts: a lesson never lengthens another run,
+// so a longer run elsewhere in the day (periods kept in a class not planned) does not shut the rest of the day.
+const RUN_AT = (() => {
+  const t = new Uint8Array((1 << MAX_PERIODS) * MAX_PERIODS);
+  for (let m = 1; m < 1 << MAX_PERIODS; m++)
+    for (let p = 0; p < MAX_PERIODS; p++) {
+      if (!(m & (1 << p))) continue;
+      let lo = p;
+      let hi = p;
+      while (lo > 0 && m & (1 << (lo - 1))) lo -= 1;
+      while (hi < MAX_PERIODS - 1 && m & (1 << (hi + 1))) hi += 1;
+      t[m * MAX_PERIODS + p] = hi - lo + 1;
     }
-    t[m] = best;
-  }
   return t;
 })();
 const BITS = (() => {
@@ -192,7 +194,7 @@ export function generateTimetable(input: GeneratorInput, tries: number = GENERAT
     const i = gTeacher[g] * D + d;
     const tm = teacherMask[i];
     if (tm & b || block[i] & b) return false;
-    return RUN[tm | b] <= K;
+    return RUN_AT[(tm | b) * MAX_PERIODS + p] <= K;
   };
   const roomFor = (g: number) => {
     let n = 0;
@@ -210,7 +212,7 @@ export function generateTimetable(input: GeneratorInput, tries: number = GENERAT
       const base = gDay[g * D + d] * 1000 + BITS[teacherMask[t * D + d]] * 8 + BITS[classMask[c * D + d]] * 2;
       for (let p = 0; p < N; p++) {
         if (!feasible(g, d, p)) continue;
-        const score = base + RUN[teacherMask[t * D + d] | (1 << p)];
+        const score = base + RUN_AT[(teacherMask[t * D + d] | (1 << p)) * MAX_PERIODS + p];
         if (score < bestScore) {
           bestScore = score;
           best = [d, p];
@@ -237,9 +239,10 @@ export function generateTimetable(input: GeneratorInput, tries: number = GENERAT
         if (cOwner >= 0) blockers.push([cOwner, d, p]);
         if (tOwner >= 0 && !(tOwner === cOwner)) blockers.push([tOwner, d, p]);
         if (blockers.length === 0) {
-          // Free for both: only the limit of periods in a row is in the way. Moving one of the teacher's lessons in
-          // that run (one that is not a fixed period) breaks the run.
+          // Free for both: only the limit of periods in a row is in the way (the run through `p`, as feasible()
+          // counts it). Moving one of the teacher's lessons in that run (one that is not a fixed period) breaks it.
           const tm = teacherMask[t * D + d] | (1 << p);
+          if (RUN_AT[tm * MAX_PERIODS + p] <= K) continue;
           let lo = p;
           let hi = p;
           while (lo > 0 && tm & (1 << (lo - 1))) lo -= 1;

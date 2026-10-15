@@ -9,7 +9,7 @@ import { discardDraft, draftView, generatorInPlan, generatorNames, PLANNERS, pro
 //   GET                                               the constraints, the names, and the draft beside the timetable in force
 //   POST { action: 'propose' }                        run the generator; its week becomes the school's draft
 //   POST { action: 'swap', proposalId, classId, a, b } swap two periods of a class in the draft (a, b: { weekday, period })
-//   POST { action: 'publish', proposalId, withMissing } publish the draft into the timetable, through its entry path
+//   POST { action: 'publish', proposalId, withMissing } publish the draft into the timetable, in one transaction
 //   POST { action: 'discard', proposalId }            discard the draft
 
 const at = (v: unknown) => {

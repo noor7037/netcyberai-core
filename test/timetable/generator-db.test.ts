@@ -9,6 +9,7 @@ import {
   discardDraft,
   draftView,
   generatorInPlan,
+  generatorRules,
   history,
   propose,
   publishDraft,
@@ -251,13 +252,36 @@ describe('the proposal, the review and publishing', () => {
 
   it('a refusal on the entry path part way leaves nothing behind: the timetable, the draft and the history are as they were', async () => {
     const before = await timetable();
-    // T3 leaves after the draft was made: putEntry refuses T3's periods, and every change before them is undone.
+    // T3 leaves after the draft was made: the draft says so and cannot be published (the screen offers a new
+    // proposal), and nothing of it is written.
     await db.pg.query(`update users set is_active = false where user_id = $1`, [T3]);
+    expect((await as(principal, (c) => draftView(c, A)))!.teachersGone).toEqual([T3]);
     expect(await as(principal, (c) => publishDraft(c, actor(principal), proposalId, { withMissing: true }))).toEqual({ ok: false, reason: 'unknown_teacher' });
     await db.pg.query(`update users set is_active = true where user_id = $1`, [T3]);
+    expect((await as(principal, (c) => draftView(c, A)))!.teachersGone).toEqual([]);
     sameSlots(await timetable(), before);
     expect((await draftRow()).proposal_id).toBe(proposalId);
     expect((await db.pg.query(`select count(*)::int as n from timetable_versions`)).rows[0].n).toBe(0);
+    expect(await auditOf('timetable.plan.published')).toEqual([]);
+  });
+
+  it('a timetable changed under the publish, after its checks, is refused as changed, not as a server error', async () => {
+    // The publish trigger finds 5-A holding a period the proposal does not have (as a hand edit at that moment
+    // would leave it): the database refuses, and the answer is "the timetable changed", with nothing written.
+    const before = await timetable();
+    const draft = await draftRow();
+    const free = [1, 2, 3, 4, 5, 6, 7].flatMap((w) => [1, 2, 3, 4].map((p) => ({ weekday: w, period: p }))).find((at) => !draft.entries.some((e: Slot) => e.classId === C5A && e.weekday === at.weekday && e.period === at.period) && !draft.entries.some((e: Slot) => e.teacherUserId === T4 && e.weekday === at.weekday && e.period === at.period) && !before.some((e) => e.teacherUserId === T4 && e.weekday === at.weekday && e.period === at.period))!;
+    await db.pg.exec(`create function c229_meddle() returns trigger language plpgsql as $$ begin
+        insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) values ('${A}', '${C5A}', ${free.weekday}, ${free.period}, '${HINDI}', '${T4}');
+        return new; end $$;
+      create trigger c229_meddle after insert on timetable_versions for each row execute function c229_meddle();`);
+    try {
+      expect(await as(principal, (c) => publishDraft(c, actor(principal), proposalId, { withMissing: true }))).toEqual({ ok: false, reason: 'timetable_changed' });
+    } finally {
+      await db.pg.exec(`drop trigger c229_meddle on timetable_versions; drop function c229_meddle();`);
+    }
+    sameSlots(await timetable(), before);
+    expect((await draftRow()).proposal_id).toBe(proposalId);
     expect(await auditOf('timetable.plan.published')).toEqual([]);
   });
 
@@ -267,16 +291,22 @@ describe('the proposal, the review and publishing', () => {
     const before = await timetable();
     draftEntries = (await draftRow()).entries;
     const auditFrom = (await db.pg.query(`select coalesce(max(audit_id), 0) as n from audit_log`)).rows[0].n;
-    const r = await as(principal, (c) => publishDraft(c, actor(principal), proposalId, { withMissing: true }));
+    // Written in a few statements, whatever the number of periods (review of C229): not a round of queries for each
+    // (the entry path one period at a time took about ten each). The reads and checks before it are a fixed few.
+    let statements = 0;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const r = await as(principal, (c) => publishDraft({ query: (...a: [any, any?]) => ((statements += 1), c.query(...a)) }, actor(principal), proposalId, { withMissing: true }));
     expect(r.ok).toBe(true);
     if (!r.ok) return;
+    expect(r.added + r.changed + r.removed).toBeGreaterThan(15);
+    expect(statements).toBeLessThanOrEqual(30);
     published = r;
     const after = await timetable();
     sameSlots(after.filter((s) => s.classId !== C6A), draftEntries);
     sameSlots(after.filter((s) => s.classId === C6A), before.filter((s) => s.classId === C6A));
     const changes = diffWeeks(before, draftEntries, [C5A, C5B]);
     expect([r.added, r.removed, r.changed]).toEqual(['added', 'removed', 'changed'].map((k) => changes.filter((c) => c.kind === k).length));
-    // Every period that changed went through putEntry and clearEntry: their audit rows, in the person's name.
+    // An audit row for every period that changed, as putEntry and clearEntry write them, in the person's name.
     const steps = (await db.pg.query(`select event_action, count(*)::int as n from audit_log where audit_id > $1 and event_action like 'timetable.%' and actor_user_id = $2 group by event_action order by event_action`, [auditFrom, PRINCIPAL])).rows;
     expect(r.added + r.changed).toBeGreaterThan(0);
     expect(steps).toEqual(
@@ -286,6 +316,9 @@ describe('the proposal, the review and publishing', () => {
         { event_action: 'timetable.set', n: r.added + r.changed },
       ].filter((s) => s.n > 0)
     );
+    // Rows written many to a statement stay one hash chain: each links to the one before it.
+    const chain = (await db.pg.query(`select prev_hash, row_hash from audit_log where school_id = $1 and audit_id > $2 order by occurred_at, audit_id`, [A, auditFrom])).rows;
+    chain.slice(1).forEach((x: { prev_hash: string }, i: number) => expect(x.prev_hash).toBe(chain[i].row_hash));
     expect((await db.pg.query(`select state, decided_by from timetable_proposals where proposal_id = $1`, [proposalId])).rows[0]).toEqual({ state: 'published', decided_by: PRINCIPAL });
     // Published for good.
     await expect(as(principal, (c) => c.query(`update timetable_proposals set state = 'discarded' where proposal_id = $1`, [proposalId]))).rejects.toThrow(/stays as it is/);
@@ -342,6 +375,11 @@ describe('the proposal, the review and publishing', () => {
     expect(await as(admin, (c) => publishDraft(c, actor(admin), made.proposalId, { withMissing: true }))).toEqual({ ok: false, reason: 'rules_changed' });
     await setTt({ periods_per_day: 4, max_consecutive: 3 });
     expect(await as(admin, (c) => draftView(c, A))).toMatchObject({ stale: false, rulesChanged: false });
+    // A fraction is taken down, never read as no limit (3.5 is 3, the draft's own limit).
+    await setTt({ periods_per_day: 4, max_consecutive: 3.5 });
+    expect((await as(admin, (c) => generatorRules(c, A))).maxConsecutive).toBe(3);
+    expect(await as(admin, (c) => draftView(c, A))).toMatchObject({ rulesChanged: false });
+    await setTt({ periods_per_day: 4, max_consecutive: 3 });
     // Someone fills a free period of 6-A by hand.
     const free = [2, 3, 4].map((p) => ({ weekday: 1, period: p })).find((at) => !draftEntries.some((e) => e.teacherUserId === T3 && e.weekday === at.weekday && e.period === at.period))!;
     expect((await as(principal, (c) => putEntry(c, actor(principal), { classId: C6A, ...free, subjectId: HINDI, teacherUserId: T3 }))).ok).toBe(true);

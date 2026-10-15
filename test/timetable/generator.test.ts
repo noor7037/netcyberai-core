@@ -103,6 +103,28 @@ describe('the proposal', () => {
     expect(runThrough([1, 2, 4, 5, 6], 3)).toBe(0);
   });
 
+  it('a run kept in a class not planned that is already over the limit does not shut the rest of that day', () => {
+    // Periods 1 to 3 kept in a class not planned (three in a row, over the limit of two), and the only day: the two
+    // lessons go later that day, never in period 4 (that would make four in a row).
+    const input: GeneratorInput = {
+      days: [1],
+      periods: 8,
+      maxConsecutive: 2,
+      loads: [{ classId: id('c', 1), subjectId: id('d', 1), teacherUserId: id('a', 1), periods: 2 }],
+      unavailable: [],
+      fixed: [1, 2, 3].map((period) => ({ classId: id('c', 9), weekday: 1, period, subjectId: id('d', 9), teacherUserId: id('a', 1) })),
+    };
+    const { entries } = expectComplete(input);
+    expect(entries).toHaveLength(2);
+    expect(entries.every((e) => e.period >= 5)).toBe(true);
+    // Periods 5 to 8 hold three at most (5 6 _ 8), so of four lessons the fourth is said not to fit.
+    const four: GeneratorInput = { ...input, loads: [{ ...input.loads[0], periods: 4 }] };
+    const more = generateTimetable(four);
+    expectSound(four, more.entries);
+    expect(more.entries).toHaveLength(3);
+    expect(more.unplaced.map((u) => [u.reason, u.wanted - u.placed])).toEqual([['consecutive_limit', 1]]);
+  });
+
   it('a tight week is found: every class and every teacher busy in every period', () => {
     // Six classes and six teachers, one day of six periods, each class with each teacher once (a Latin square).
     const loads: Load[] = [];
