@@ -216,6 +216,26 @@ describe('checking a changed week', () => {
     expect(codes).toEqual(['class_clash', 'consecutive_limit', 'consecutive_limit', 'consecutive_limit', 'consecutive_limit', 'outside_week', 'teacher_clash', 'unavailable'].sort());
   });
 
+  it('a period kept past the periods a day (the setting lowered since) counts for nothing, as the generator counts it', () => {
+    // Periods a day were 8 and are now 6; 6-A (not planned) still has T1 in Monday's period 7. At most one period in a
+    // row, and T1 cannot teach Monday's periods 1 to 5: the generator puts 5-A's lesson in period 6, and neither the
+    // check nor a swap reads periods 6 and 7 as two in a row.
+    const kept = s(id('c', 9), 1, 7, T1);
+    const input: GeneratorInput = {
+      days: [1], periods: 6, maxConsecutive: 1,
+      loads: [{ classId: C1, subjectId: MATHS, teacherUserId: T1, periods: 1 }],
+      unavailable: [1, 2, 3, 4, 5].map((period) => ({ teacherUserId: T1, weekday: 1, period })),
+      fixed: [kept],
+    };
+    const { entries } = expectComplete(input);
+    expect(entries).toEqual([s(C1, 1, 6, T1)]);
+    const sixPeriods = { days: [1], periods: 6, maxConsecutive: 1, unavailable: [] as Unavailable[], fixed: [kept] };
+    expect(weekProblems(entries, sixPeriods)).toEqual([]);
+    expect(swapInWeek([s(C1, 1, 4, T1)], C1, { weekday: 1, period: 4 }, { weekday: 1, period: 6 }, sixPeriods).ok).toBe(true);
+    // Inside the week it does count.
+    expect(weekProblems(entries, { ...sixPeriods, periods: 8 }).map((p) => p.code)).toEqual(['consecutive_limit']);
+  });
+
   it('what changes: a period filled, emptied, or given another subject or teacher; the same period is no change', () => {
     const before = [s(C1, 1, 1, T1), s(C1, 1, 2, T2, HINDI), s(C2, 1, 1, T2, HINDI), s(id('c', 9), 1, 3, T1)];
     const after = [s(C1, 1, 1, T1), s(C1, 1, 2, T1, HINDI), s(C1, 2, 1, T2), s(C2, 1, 2, T2, HINDI)];

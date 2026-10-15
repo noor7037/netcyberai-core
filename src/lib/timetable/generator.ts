@@ -436,13 +436,17 @@ export type WeekProblem = { code: 'outside_week' | 'class_clash' | 'teacher_clas
 const cannotTeach = (rules: WeekRules, s: { teacherUserId: string; weekday: number; period: number }) =>
   rules.unavailable.some((u) => u.teacherUserId === s.teacherUserId && u.weekday === s.weekday && (u.period === null || u.period === s.period));
 const inWeek = (rules: WeekRules, s: { weekday: number; period: number }) => rules.days.includes(s.weekday) && Number.isInteger(s.period) && s.period >= 1 && s.period <= rules.periods;
+// The periods kept in the classes not planned, as the generator counts them: only those inside the school's week. A
+// period past the periods a day (left from before the setting was lowered) or on a day the school does not work is
+// not taught, so it neither clashes nor makes a run (review of C229).
+const keptInWeek = (rules: WeekRules, planned: ReadonlySet<string>) => rules.fixed.filter((f) => !planned.has(f.classId) && inWeek(rules, f));
 
 // Every way a proposed week (with the periods kept as they are) breaks a rule. The generator's own weeks have none;
 // a test holds that, and publishing asks it again of a week a person has changed.
 export function weekProblems(entries: readonly Slot[], rules: WeekRules): WeekProblem[] {
   const problems: WeekProblem[] = [];
   const planned = new Set(entries.map((e) => e.classId));
-  const all = [...entries, ...rules.fixed.filter((f) => !planned.has(f.classId))];
+  const all = [...entries, ...keptInWeek(rules, planned)];
   const classSlot = new Map<string, Slot>();
   const teacherSlot = new Map<string, Slot>();
   for (const e of entries) {
@@ -490,7 +494,7 @@ export function swapInWeek(entries: readonly Slot[], classId: string, a: At, b: 
   if (atB) moved.push({ ...atB, weekday: a.weekday, period: a.period });
   const next = [...entries.filter((e) => e !== atA && e !== atB), ...moved].sort((x, y) => byId(x.classId, y.classId) || x.weekday - y.weekday || x.period - y.period);
   const planned = new Set(next.map((e) => e.classId));
-  const all = [...next, ...rules.fixed.filter((f) => !planned.has(f.classId))];
+  const all = [...next, ...keptInWeek(rules, planned)];
   for (const m of moved) {
     // The class has one lesson a period after the swap, so another lesson of the teacher then is in another class.
     const clash = all.find((e) => e !== m && e.teacherUserId === m.teacherUserId && e.weekday === m.weekday && e.period === m.period);
