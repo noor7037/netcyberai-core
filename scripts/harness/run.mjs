@@ -1366,7 +1366,9 @@ const proxyCoverShownAt = (selector, wanted) => async (page) => {
   await page.reload({ waitUntil: 'networkidle' });
   const block = page.locator(selector);
   await block.waitFor({ timeout: 20000 });
-  const words = await block.innerText();
+  // On a phone My Day shows a row's action as a chevron (C230-D), so its words are in the text, not on screen. The
+  // "Why this?" answer is left out: it explains the rule, not this cover.
+  const words = `${await block.innerText()} ${await block.evaluate((el) => { const c = el.cloneNode(true); c.querySelectorAll('details').forEach((d) => d.remove()); return c.textContent; })}`;
   // The period, the class and the subject; never whose class it was.
   proxyCoverSeen = { selector, says: wanted.every((w) => words.includes(w)) && !words.includes('Tanvi') && !words.includes('in place of'), words: words.replace(/\s+/g, ' ').slice(0, 200) };
 };
@@ -2643,7 +2645,9 @@ const releasedShownAt = (selector, wanted) => async (page) => {
   await page.reload({ waitUntil: 'networkidle' });
   const block = page.locator(selector);
   await block.waitFor({ timeout: 20000 });
-  const words = await block.innerText();
+  // On a phone My Day shows a row's action as a chevron (C230-D), so its words are in the text, not on screen. The
+  // "Why this?" answer is left out: it explains the rule, not this cover.
+  const words = `${await block.innerText()} ${await block.evaluate((el) => { const c = el.cloneNode(true); c.querySelectorAll('details').forEach((d) => d.remove()); return c.textContent; })}`;
   // The day, the period, the class and the subject; never whose leave it was or why.
   releasedSeen = { selector, says: wanted.every((w) => words.includes(w)) && !words.includes('Tanvi') && !words.includes('Unwell'), words: words.replace(/\s+/g, ' ').slice(0, 240) };
 };
