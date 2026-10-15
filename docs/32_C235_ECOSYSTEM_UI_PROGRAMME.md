@@ -130,7 +130,7 @@ consent wording for parents' use (layer 3).
 Code: the account form strips spaces and line breaks from pasted values, checks each field as it is typed, makes the
 verify token, and shows the callback URL with a copy button (C230-B, C230-D); live since #172/#173.
 Data: the live database holds no saved WhatsApp account, no save attempt in the audit log and no event from Meta.
-So nothing has been saved since the fix. What is left is the founder's: save the account in Control → WhatsApp
+So nothing has been saved since the fix. Checked again later the same day: still no saved account, audit row or Meta event. The founder did add WhatsApp values to Vercel's production environment early on 15 October (a system-user token, the phone number id and the business account id), and the encryption key `MESSAGING_CREDENTIALS_KEY`. The key is what the app needs, and with it saving now works. The three WhatsApp values are not read by the app: credentials are only ever read from the account saved in Control, encrypted with that key (`src/lib/whatsapp/credentials.ts`). So the same three values have to be pasted into Control → WhatsApp account and saved; after that the three Vercel entries can be deleted, so the token lives in one place. What is left is the founder's: save the account in Control → WhatsApp
 account, paste the callback URL and verify token into Meta and verify, then test the connection; the long-lead Meta
 Business verification and rotating the token that was exposed earlier also stay with him.
 
