@@ -63,7 +63,7 @@ phone-first for teachers and parents; low-bandwidth and offline-tolerant for tea
 | C235-A | Standard classes LKG–12 × A–C in one action; one class order everywhere; consistency audit; bulk class upload/download; 10,000-row proof of the student bulk import | Merged (C235-A); the demo school has the 42 classes |
 | C235-B | Sticky branded header (school logo + name, person's name + role); school branding in Settings (principal, school admin only) and at onboarding in Control; safe logo upload; navigation: Home → Frequent work → All modules by category | Merged (C235-B); migration on both databases |
 | C235-C | Design system v5: floating-label inputs, custom checkbox/radio/segmented control, gradient page banner per module category, KPI icon chips; at least 30% fewer words on 11 key screens | Merged (C235-C): 59% fewer words (7,490 → 3,046) |
-| C235-D | Documents on staff and student profiles (PDF/JPG/PNG, 10 MB, versions kept, role-based access, every view audited); export of students, staff and classes as Excel (.xlsx) and CSV | Next, after A |
+| C235-D | Documents on staff and student profiles (PDF/JPG/PNG, 10 MB, versions kept, role-based access, every view audited); export of students, staff and classes as Excel (.xlsx) and CSV | Merged (C235-D); files over 4.5 MB wait on D2 (direct uploads to storage, building) |
 | C235-E | Feasibility: document storage (section 4) and the AI assistant (section 5) | This file |
 | C235-F | The redesign carried into every remaining module screen (each screen adopts the v5 components) | After C, module by module |
 
