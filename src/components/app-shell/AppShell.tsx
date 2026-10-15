@@ -9,7 +9,8 @@ import { TOKEN_TONES } from '@/components/app-ui/tones';
 import type { ColorToken } from '@/lib/contracts/modules';
 import type { NavBadge } from '@/lib/contracts/navigation';
 import type { QuickAddItem } from '@/lib/contracts/quick-add';
-import { t as translate, type Lang } from '@/lib/i18n';
+import { t as translate, type Lang, type MessageKey } from '@/lib/i18n';
+import { brandInitials } from '@/lib/school/logo-file';
 import { GlobalSearch } from './GlobalSearch';
 import { QuickAdd } from './QuickAdd';
 import type { TourId } from '@/lib/contracts/tours';
@@ -17,20 +18,28 @@ import { LangProvider, useT } from './LangContext';
 import { ToursProvider } from './ToursContext';
 import { LanguageSwitch } from './LanguageSwitch';
 import { OfflineProvider, useOffline } from './OfflineContext';
+import { SchoolLogo } from './SchoolLogo';
 import { SyncLine } from './SyncLine';
 import { activeHref, type ShellGroup, type ShellItem } from './shell-nav';
 
-// The app shell (17 §2, §4; C121): on wide screens a sidebar of
-// collapsible groups, each marked in its group's colour; on phones a top
-// bar whose menu opens the same groups as a drawer, plus, for the teacher
-// shell, a bottom bar with the day-to-day modules. The page's group opens
-// by itself. Unbuilt modules say "Soon"; badges are server numbers only.
-// Above every page sits one bar (C134, C135): search, "+ New" and the
-// language switch. Every
-// word of the shell comes from the message files. The shell's own parts
-// carry `lang`; the page inside does not, because a screen that has not
-// been moved to the message files yet is still in English and a screen
-// reader must read it as English.
+type Values = Record<string, string>;
+
+// The app shell (17 §2, §4; C121). One branded bar sits at the top of every
+// screen, on wide screens and on phones (C235-B): the school's logo (or its
+// initials) and its name, and the signed-in person's name and role. On wide
+// screens the bar also holds search, "+ New" and the language switch (C134,
+// C135), and a sidebar below it holds the menu; on phones the bar is compact
+// (logo, the name cut short, the person's name and role on a second line),
+// its menu opens the same menu as a drawer, the tools sit just below it, and
+// the teacher shell keeps its bottom bar of day-to-day modules.
+// The school app's menu reads like a school app's (C235-B): the Home items,
+// then "Frequent work", then "All modules", each module under its group, the
+// page's group open. Control passes one group and no Home or Frequent work.
+// Unbuilt modules say "Soon"; badges are server numbers only. Every word of
+// the shell comes from the message files. The shell's own parts carry `lang`;
+// the page inside does not, because a screen that has not been moved to the
+// message files yet is still in English and a screen reader must read it as
+// English.
 
 function Badge({ badge }: { badge: NavBadge }) {
   const { t } = useT();
@@ -62,9 +71,10 @@ function ItemLink({ item, active, tone, onNavigate }: { item: ShellItem; active:
   );
 }
 
-function Groups({ groups, active, onNavigate }: { groups: readonly ShellGroup[]; active: string | null; onNavigate?: () => void }) {
+// `openFirst`: with no group holding the page, the first group starts open (Control's single group, the old menu).
+function Groups({ groups, active, onNavigate, openFirst = true }: { groups: readonly ShellGroup[]; active: string | null; onNavigate?: () => void; openFirst?: boolean }) {
   const current = groups.find((g) => g.items.some((i) => i.href === active))?.id;
-  const [open, setOpen] = useState<Set<string>>(() => new Set(current ? [current] : groups.slice(0, 1).map((g) => g.id)));
+  const [open, setOpen] = useState<Set<string>>(() => new Set(current ? [current] : openFirst ? groups.slice(0, 1).map((g) => g.id) : []));
   useEffect(() => {
     if (current) setOpen((o) => new Set([...o, current]));
   }, [current]);
@@ -75,7 +85,7 @@ function Groups({ groups, active, onNavigate }: { groups: readonly ShellGroup[];
         const isOpen = open.has(g.id) || groups.length === 1;
         const listId = `nav-${g.id}`;
         return (
-          <div key={g.id}>
+          <div key={g.id} data-nav-group={g.id}>
             {groups.length > 1 && (
               <button
                 type="button"
@@ -86,7 +96,7 @@ function Groups({ groups, active, onNavigate }: { groups: readonly ShellGroup[];
               >
                 <span aria-hidden="true" className={`h-3 w-3 shrink-0 rounded ring-1 ring-white/50 ${TOKEN_TONES[g.tone[0]].bar}`} />
                 <span className="flex-1">{g.label}</span>
-                <span aria-hidden="true" className={`transition-transform ${isOpen ? 'rotate-90' : ''}`}>
+                <span aria-hidden="true" className={`motion-safe:transition-transform ${isOpen ? 'rotate-90' : ''}`}>
                   ›
                 </span>
               </button>
@@ -103,6 +113,48 @@ function Groups({ groups, active, onNavigate }: { groups: readonly ShellGroup[];
           </div>
         );
       })}
+    </div>
+  );
+}
+
+// A labelled part of the menu: Frequent work, All modules.
+function Part({ id, label, children }: { id: string; label: string; children: ReactNode }) {
+  return (
+    <div role="group" aria-labelledby={id} data-nav-part={id.replace(/^.*-/, '')}>
+      <p id={id} className="px-3 pb-1 pt-2 text-xs font-bold uppercase tracking-wider text-white/75">
+        {label}
+      </p>
+      {children}
+    </div>
+  );
+}
+
+function Menu({ home, frequent, groups, active, onNavigate }: { home?: readonly ShellItem[]; frequent?: readonly ShellItem[]; groups: readonly ShellGroup[]; active: string | null; onNavigate?: () => void }) {
+  const { t } = useT();
+  const id = useId();
+  if (!home && !frequent) return <Groups groups={groups} active={active} onNavigate={onNavigate} />;
+  const list = (items: readonly ShellItem[], tone: ColorToken) => (
+    <ul className="flex flex-col gap-0.5">
+      {items.map((i) => (
+        <li key={i.href}>
+          <ItemLink item={i} active={i.href === active} tone={tone} onNavigate={onNavigate} />
+        </li>
+      ))}
+    </ul>
+  );
+  return (
+    <div className="flex flex-col gap-2">
+      {home && home.length > 0 && <div data-nav-part="home">{list(home, 'royal')}</div>}
+      {frequent && frequent.length > 0 && (
+        <Part id={`${id}-frequent`} label={t('shell.nav.frequent')}>
+          {list(frequent, 'royal')}
+        </Part>
+      )}
+      {groups.length > 0 && (
+        <Part id={`${id}-all`} label={t('shell.nav.allModules')}>
+          <Groups groups={groups} active={active} onNavigate={onNavigate} openFirst={false} />
+        </Part>
+      )}
     </div>
   );
 }
@@ -137,10 +189,17 @@ function Footer({ accountHref }: { accountHref: string }) {
   );
 }
 
+// Who is signed in: their full name and role, or the role alone when the name is not known.
+export type ShellPerson = { name: string; role: string };
+
 export function AppShell({
   groups,
+  home,
+  frequent,
   bottomItems,
   brand,
+  logoSrc = null,
+  person = null,
   roleLabel,
   navLabel,
   accountHref,
@@ -153,9 +212,16 @@ export function AppShell({
   quickAdd = [],
   children,
 }: {
+  // The menu's groups: the school's module groups ("All modules" when `home` or `frequent` is given), or Control's one.
   groups: readonly ShellGroup[];
+  // The school app (C235-B): My Day and the office's Dashboard and Settings, then the role's Frequent work.
+  home?: readonly ShellItem[];
+  frequent?: readonly ShellItem[];
   bottomItems?: readonly ShellItem[];
+  // The school's name (or NetCyberAI Control's) and its logo's address; with no logo, its initials are shown.
   brand: string;
+  logoSrc?: string | null;
+  person?: ShellPerson | null;
   roleLabel: string;
   navLabel: string;
   accountHref: string;
@@ -173,13 +239,16 @@ export function AppShell({
   quickAdd?: readonly QuickAddItem[];
   children: ReactNode;
 }) {
-  const t = (key: Parameters<typeof translate>[1]) => translate(lang, key);
+  const t = (key: MessageKey, params?: Values) => translate(lang, key, params);
   const pathname = usePathname() ?? '';
-  const active = activeHref(groups, pathname);
+  const active = activeHref([{ items: [...(home ?? []), ...(frequent ?? [])] }, ...groups], pathname);
   const [drawer, setDrawer] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const drawerId = useId();
+  const who = person ?? { name: '', role: roleLabel };
+  // "Asha Verma · Principal", or the role alone.
+  const whoLine = who.name ? `${who.name} · ${who.role}` : who.role;
 
   useEffect(() => setDrawer(false), [pathname]);
   useEffect(() => {
@@ -195,69 +264,44 @@ export function AppShell({
     return () => document.removeEventListener('keydown', onKey);
   }, [drawer]);
 
-  const head = (
-    <div className="bg-midnight px-4 py-4">
-      <p className="truncate text-base font-extrabold text-white">{brand}</p>
-      <p className="text-xs text-white/75">{roleLabel}</p>
-    </div>
-  );
+  const menu = (onNavigate?: () => void) => <Menu home={home} frequent={frequent} groups={groups} active={active} onNavigate={onNavigate} />;
 
   return (
     <LangProvider lang={lang}>
       <ToursProvider initial={toursSeen}>
       <OfflineProvider schoolId={device?.schoolId ?? null} userId={device?.userId ?? null}>
       <div className="min-h-screen bg-off-white">
-      <aside lang={lang} className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col bg-midnight md:flex">
-        <span aria-hidden="true" className="nca-spectrum-bar block h-1" />
-        {head}
-        {action && (
-          <div lang="en" className="px-3 pb-2">
-            {action}
+      {/* The branded bar (C235-B). On wide screens: one sticky, translucent bar the width of the page. On phones its
+          parts stand on their own: the brand row sticks to the top, the tools below it scroll away. */}
+      <div lang={lang} data-shell-header className="contents md:sticky md:top-0 md:z-40 md:flex md:h-16 md:items-center md:border-b md:border-slate/10 md:bg-white/90 md:backdrop-blur print:hidden">
+        <div data-shell-brand className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b border-slate/10 bg-white/90 pl-3 pr-1 backdrop-blur md:static md:z-auto md:h-full md:w-64 md:shrink-0 md:border-b-0 md:border-r md:bg-transparent md:px-4 md:backdrop-blur-none">
+          <SchoolLogo src={logoSrc} name={brand} size="md" />
+          <div className="min-w-0 flex-1">
+            <p data-shell-school className="truncate text-sm font-extrabold leading-tight text-slate md:text-base" title={brand}>
+              {brand}
+            </p>
+            <p data-shell-person-line className="truncate text-xs text-slate/70 lg:hidden">
+              {whoLine}
+            </p>
           </div>
-        )}
-        <nav aria-label={navLabel} className="flex-1 overflow-y-auto px-2 pb-2">
-          <Groups groups={groups} active={active} />
-        </nav>
-        <Footer accountHref={accountHref} />
-      </aside>
-
-      <header lang={lang} className="sticky top-0 z-30 flex h-14 items-center justify-between bg-midnight px-4 md:hidden">
-        <p className="truncate text-base font-extrabold text-white">{brand}</p>
-        <div className="flex items-center gap-1">
-          {action && <span lang="en">{action}</span>}
-          <button
-            ref={toggleRef}
-            type="button"
-            aria-expanded={drawer}
-            aria-controls={drawerId}
-            aria-label={t(drawer ? 'shell.menu.close' : 'shell.menu.open')}
-            onClick={() => setDrawer((d) => !d)}
-            className="flex h-11 w-11 items-center justify-center rounded-md bg-midnight text-white hover:bg-white/10"
-          >
-            <span aria-hidden="true" className="text-2xl leading-none">
-              {drawer ? '×' : '☰'}
-            </span>
-          </button>
-        </div>
-      </header>
-
-      {drawer && (
-        <div id={drawerId} ref={panelRef} lang={lang} role="dialog" aria-modal="true" aria-label={navLabel} className="fixed inset-0 z-40 flex flex-col bg-midnight md:hidden">
-          <div className="flex items-center justify-between pr-2">
-            {head}
-            <button type="button" onClick={() => setDrawer(false)} aria-label={t('shell.menu.close')} className="flex h-11 w-11 items-center justify-center rounded-md bg-midnight text-2xl text-white">
-              ×
+          <div className="flex shrink-0 items-center gap-1 md:hidden">
+            {action && <span lang="en">{action}</span>}
+            <button
+              ref={toggleRef}
+              type="button"
+              aria-expanded={drawer}
+              aria-controls={drawerId}
+              aria-label={t(drawer ? 'shell.menu.close' : 'shell.menu.open')}
+              onClick={() => setDrawer((d) => !d)}
+              className="flex h-11 w-11 items-center justify-center rounded-md text-slate hover:bg-slate/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal"
+            >
+              <span aria-hidden="true" className="text-2xl leading-none">
+                {drawer ? '×' : '☰'}
+              </span>
             </button>
           </div>
-          <nav aria-label={navLabel} className="flex-1 overflow-y-auto px-2 pb-2">
-            <Groups groups={groups} active={active} onNavigate={() => setDrawer(false)} />
-          </nav>
-          <Footer accountHref={accountHref} />
         </div>
-      )}
-
-      <main className={`md:pl-64 ${bottomItems?.length ? 'pb-20 md:pb-0' : ''}`}>
-        <div lang={lang} data-shell-lang={lang} role="region" aria-label={t('shell.tools')} className="z-20 flex flex-wrap items-center gap-2 border-b border-slate/10 bg-white px-4 py-2 md:sticky md:top-0 md:px-6 print:hidden">
+        <div data-shell-lang={lang} role="region" aria-label={t('shell.tools')} className="flex flex-wrap items-center gap-2 border-b border-slate/10 bg-white px-4 py-2 md:h-full md:min-w-0 md:flex-1 md:flex-nowrap md:border-b-0 md:bg-transparent md:py-0">
           <GlobalSearch scope={scope} />
           <QuickAdd items={quickAdd} />
           {device && <SyncLine />}
@@ -265,8 +309,55 @@ export function AppShell({
             <LanguageSwitch known={langKnown} />
           </div>
         </div>
-        {children}
-      </main>
+        <Link
+          href={accountHref}
+          data-shell-person
+          aria-label={who.name ? t('shell.person.account', { name: who.name, role: who.role }) : t('shell.account')}
+          className="mr-3 hidden min-h-[44px] shrink-0 items-center gap-2 rounded-lg px-2 hover:bg-slate/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal lg:flex"
+        >
+          <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-royal text-sm font-bold text-white">
+            {brandInitials(who.name || who.role)}
+          </span>
+          <span className="flex min-w-0 max-w-[14rem] flex-col leading-tight">
+            {who.name && <span className="truncate text-sm font-semibold text-slate">{who.name}</span>}
+            <span className="truncate text-xs text-slate/70">{who.role}</span>
+          </span>
+        </Link>
+      </div>
+
+      <aside lang={lang} className="fixed bottom-0 left-0 top-16 z-30 hidden w-64 flex-col bg-midnight md:flex print:hidden">
+        <span aria-hidden="true" className="nca-spectrum-bar block h-1" />
+        {action && (
+          <div lang="en" className="px-3 pb-2 pt-3">
+            {action}
+          </div>
+        )}
+        <nav aria-label={navLabel} className="flex-1 overflow-y-auto px-2 pb-2 pt-2">
+          {menu()}
+        </nav>
+        <Footer accountHref={accountHref} />
+      </aside>
+
+      {drawer && (
+        <div id={drawerId} ref={panelRef} lang={lang} role="dialog" aria-modal="true" aria-label={navLabel} className="fixed inset-0 z-40 flex flex-col bg-midnight md:hidden">
+          <div className="flex items-center gap-2 py-3 pl-4 pr-2">
+            <SchoolLogo src={logoSrc} name={brand} size="md" />
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-base font-extrabold text-white">{brand}</p>
+              <p className="truncate text-xs text-white/75">{whoLine}</p>
+            </div>
+            <button type="button" onClick={() => setDrawer(false)} aria-label={t('shell.menu.close')} className="flex h-11 w-11 items-center justify-center rounded-md bg-midnight text-2xl text-white">
+              ×
+            </button>
+          </div>
+          <nav aria-label={navLabel} className="flex-1 overflow-y-auto px-2 pb-2">
+            {menu(() => setDrawer(false))}
+          </nav>
+          <Footer accountHref={accountHref} />
+        </div>
+      )}
+
+      <main className={`md:pl-64 ${bottomItems?.length ? 'pb-20 md:pb-0' : ''}`}>{children}</main>
 
       {bottomItems && bottomItems.length > 0 && (
         <nav lang={lang} aria-label={t('shell.nav.quick')} className="fixed inset-x-0 bottom-0 z-30 grid border-t border-white/10 bg-midnight md:hidden" style={{ gridTemplateColumns: `repeat(${bottomItems.length + 1}, minmax(0, 1fr))` }}>

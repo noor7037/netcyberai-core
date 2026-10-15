@@ -5,6 +5,8 @@ import type { Sql } from '@/lib/jobs/types';
 import { FileStorageUnavailableError, MemoryFileStorage, sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
 import { checkLogo, checkSchoolName, type LogoProblem, type LogoType } from './logo-file';
 
+export { logoAddress } from './logo-file';
+
 // THE SCHOOL'S PROFILE AND BRANDING (C235-B): its official name and its logo, shown at the top of every screen of the
 // school app and the family app.
 //
@@ -34,12 +36,6 @@ export const isSchoolId = (v: unknown): v is string => typeof v === 'string' && 
 
 // The version a logo's address carries: when it last changed, in milliseconds.
 const versionOf = (logoPath: unknown, updatedAt: unknown): string | null => (logoPath && updatedAt ? String(new Date(updatedAt as string).getTime()) : null);
-
-// Where the browser asks for the logo. A school's own session: its own school. Control: the school named.
-export function logoAddress(logoVersion: string | null, schoolId?: string): string | null {
-  if (!logoVersion) return null;
-  return schoolId ? `/api/branding/logo?school=${schoolId}&v=${logoVersion}` : `/api/branding/logo?v=${logoVersion}`;
-}
 
 export async function loadSchoolBrand(db: Sql, schoolId: string): Promise<SchoolBrand | null> {
   const row = (await db.query(`select name, logo_path, logo_updated_at from schools where school_id = $1`, [schoolId])).rows[0];

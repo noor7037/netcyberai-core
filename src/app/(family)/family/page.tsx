@@ -3,12 +3,16 @@ import { canAccessFamily } from '@/lib/auth/guards';
 import { withTenantContext } from '@/lib/auth/db';
 import { loadFamilyHome, rupeesFromMinor, type DayMark, type FamilyChild } from '@/lib/family/home';
 import { FamilySignOut } from '@/components/family/FamilySignOut';
+import { SchoolLogo } from '@/components/app-shell/SchoolLogo';
 import { t, tCount, type Lang, type MessageKey } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { loadSchoolBrand } from '@/lib/school/branding';
+import { logoAddress } from '@/lib/school/logo-file';
 import { indiaDate } from '@/lib/time/india';
 
 // The family app's home (C230-D): one card per child, phone first. Today's attendance, the last school days, and
 // what is owed, read in the parent's own session (own children only; see src/lib/family/home.ts). Read only.
+// At the top, the school's logo and name, as on every staff screen (C235-B).
 
 const MARK_STYLE: Record<DayMark, string> = {
   present: 'bg-emerald-text',
@@ -85,12 +89,19 @@ export default async function FamilyHomePage() {
   const session = await getServerSession();
   if (!canAccessFamily(session)) return null;
   const { lang } = getLang(session.sub);
-  const home = await withTenantContext(session, (db) => loadFamilyHome(db, { parentId: session.sub, schoolId: session.schoolId }, indiaDate()));
+  const { home, brand } = await withTenantContext(session, async (db) => ({
+    home: await loadFamilyHome(db, { parentId: session.sub, schoolId: session.schoolId }, indiaDate()),
+    brand: await loadSchoolBrand(db, session.schoolId),
+  }));
+  const schoolName = brand?.name ?? home.schoolName;
   return (
     <div lang={lang} className="mx-auto flex w-full max-w-xl flex-col">
       <header className="flex items-start justify-between gap-3 bg-gradient-to-br from-royal-deep to-royal px-4 pb-6 pt-5 text-white">
         <div className="min-w-0">
-          <p className="truncate text-sm font-semibold text-white/80">{home.schoolName}</p>
+          <div data-family-school className="mb-2 flex items-center gap-2">
+            <SchoolLogo src={logoAddress(brand?.logoVersion ?? null)} name={schoolName} size="sm" className="ring-1 ring-white/40" />
+            <p className="truncate text-sm font-bold text-white">{schoolName}</p>
+          </div>
           <h1 className="text-2xl font-extrabold">{t(lang, 'family.hello', { name: home.guardianName.split(' ')[0] || home.guardianName })}</h1>
           <p className="text-sm text-white/80">{tCount(lang, 'family.children', home.children.length)}</p>
         </div>

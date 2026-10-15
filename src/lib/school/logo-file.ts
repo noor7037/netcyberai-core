@@ -111,3 +111,11 @@ export function brandInitials(name: string): string {
   const letters = words.slice(0, 2).map((w) => [...w][0].toLocaleUpperCase());
   return letters.join('') || [...name.trim()][0]?.toLocaleUpperCase() || '·';
 }
+
+// Where the browser asks for the logo (GET /api/branding/logo): a school's own session gets its own school's; Control
+// names the school. The version is when the logo last changed, so the browser keeps it for a day and asks again only
+// when it changes. Null when the school has no logo.
+export function logoAddress(logoVersion: string | null, schoolId?: string): string | null {
+  if (!logoVersion) return null;
+  return schoolId ? `/api/branding/logo?school=${schoolId}&v=${logoVersion}` : `/api/branding/logo?v=${logoVersion}`;
+}

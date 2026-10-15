@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { moduleStatus } from '@/content/module-status';
 import * as fixtures from '@/demo-fixture/contracts';
-import { bottomNavItems, buildNavigation, chartAsTable, isModuleEnabled, MODULE_GROUPS, MODULE_IDS, MODULE_REGISTRY, moduleById, PHASES, type ModuleGroupId, type ModuleId, type SchoolEntitlements, type SchoolRole } from './index';
+import { schoolShellMenu } from '@/components/app-shell/shell-nav';
+import { bottomNavItems, buildNavigation, chartAsTable, FREQUENT_TASKS, FREQUENT_WORK, isModuleEnabled, MODULE_GROUPS, MODULE_IDS, MODULE_REGISTRY, moduleById, PHASES, SCHOOL_ROLES, type ModuleGroupId, type ModuleId, type SchoolEntitlements, type SchoolRole } from './index';
 
 // The registry against docs/17_MODULE_CATALOG.md (C110).
 
@@ -115,6 +116,65 @@ describe('navigation and entitlements', () => {
   it('badges are numbers from the server, never text', () => {
     const nav = buildNavigation('principal', on('complaints'), { complaints: { kind: 'count', value: 3, tone: 'alert' } });
     expect(nav.groups[0].items[0].badge).toEqual({ kind: 'count', value: 3, tone: 'alert' });
+  });
+});
+
+describe('the menu: Home, Frequent work, then All modules (C235-B)', () => {
+  const base: SchoolEntitlements = { schoolId: 's', plan: 'p', accessMode: 'full', modules: {} };
+  const full: SchoolEntitlements = { ...base, modules: Object.fromEntries(MODULE_REGISTRY.map((m) => [m.id, { enabled: true, source: 'plan' as const }])) };
+  const moduleOf = (w: (typeof FREQUENT_WORK)[SchoolRole][number]) => ('task' in w ? FREQUENT_TASKS[w.task].module : w.module);
+  const office = (role: SchoolRole) => role === 'principal' || role === 'school_admin';
+
+  it('every role has 4 to 6 frequent items, each a module the role already has, or a task inside one at its own address', () => {
+    for (const role of SCHOOL_ROLES) {
+      expect(FREQUENT_WORK[role].length, role).toBeGreaterThanOrEqual(4);
+      expect(FREQUENT_WORK[role].length, role).toBeLessThanOrEqual(6);
+      for (const w of FREQUENT_WORK[role]) expect(moduleById(moduleOf(w)).roles, `${role} ${moduleOf(w)}`).toContain(role);
+      expect(buildNavigation(role, full).frequent, role).toHaveLength(FREQUENT_WORK[role].length);
+    }
+    for (const task of Object.values(FREQUENT_TASKS)) expect(task.href.startsWith(moduleById(task.module).href), task.href).toBe(true);
+    // The founder's reference: the principal's frequent work.
+    expect(buildNavigation('principal', full).frequent.map((i) => i.label)).toEqual(['Students', 'Staff', 'Attendance', 'Fees', 'Leave approval']);
+    expect(buildNavigation('principal', full).frequent[4]).toMatchObject({ moduleId: 'staff', task: 'leave-approval', href: '/app/staff?show=leave-waiting' });
+    expect(buildNavigation('teacher', full).frequent.map((i) => i.moduleId)).toEqual(['attendance', 'homework', 'pulse', 'timetable', 'exams']);
+  });
+
+  it('a module the school does not have is left out of Frequent work, as it is from the groups', () => {
+    const someOff = { ...full, modules: { ...full.modules, staff: { enabled: false, source: 'founder_override' as const }, fees: { enabled: false, source: 'founder_override' as const } } };
+    expect(buildNavigation('principal', someOff).frequent.map((i) => i.moduleId)).toEqual(['students', 'attendance']);
+    expect(buildNavigation('accountant', { ...full, accessMode: 'suspended' }).frequent).toEqual([]);
+  });
+
+  it('no module was lost: each module is under its own group, for exactly the roles the registry gives it', () => {
+    for (const role of SCHOOL_ROLES) {
+      const nav = buildNavigation(role, full);
+      const inGroups = nav.groups.flatMap((g) => g.items.map((i) => i.moduleId));
+      expect([...inGroups].sort(), role).toEqual(MODULE_REGISTRY.filter((m) => m.roles.includes(role)).map((m) => m.id).sort());
+      for (const g of nav.groups) for (const i of g.items) expect(moduleById(i.moduleId).group, i.moduleId).toBe(g.id);
+      for (const f of nav.frequent) expect(inGroups, `${role} ${f.moduleId}`).toContain(f.moduleId);
+    }
+  });
+
+  it('the shell’s menu reaches every module for exactly the roles that reached it before: the Dashboard for the office only, as before', () => {
+    const reach = (role: SchoolRole) => {
+      const menu = schoolShellMenu(buildNavigation(role, full), role);
+      return new Set([...menu.home, ...menu.frequent, ...menu.groups.flatMap((g) => g.items)].map((i) => i.href));
+    };
+    const reached = Object.fromEntries(SCHOOL_ROLES.map((role) => [role, reach(role)])) as Record<SchoolRole, Set<string>>;
+    for (const m of MODULE_REGISTRY) {
+      const before = m.roles.filter((role) => m.id !== 'dashboard' || office(role));
+      expect(SCHOOL_ROLES.filter((role) => reached[role].has(m.href)), m.id).toEqual(SCHOOL_ROLES.filter((role) => before.includes(role)));
+    }
+    // Nothing else is offered but My Day, the office's Settings and the tasks of Frequent work.
+    const known = new Set([...MODULE_REGISTRY.map((m) => m.href), '/app/my-day', '/app/settings', ...Object.values(FREQUENT_TASKS).map((t) => t.href)]);
+    for (const role of SCHOOL_ROLES) for (const href of reached[role]) expect(known.has(href), `${role} ${href}`).toBe(true);
+    expect(SCHOOL_ROLES.filter((role) => reached[role].has('/app/settings'))).toEqual(['principal', 'school_admin']);
+    for (const role of SCHOOL_ROLES) expect(schoolShellMenu(buildNavigation(role, full), role).home[0].href).toBe('/app/my-day');
+    // All modules is the seven groups after Home, in order; the Home group's Dashboard sits with the Home items.
+    expect(schoolShellMenu(buildNavigation('principal', full), 'principal').groups.map((g) => g.id)).toEqual(['school-people', 'teaching-learning', 'parent-engagement', 'finance', 'records-compliance', 'ai-intelligence', 'help']);
+    // The teacher's phone bottom bar is unchanged: My Day and the day-to-day modules.
+    expect(schoolShellMenu(buildNavigation('teacher', full), 'teacher').bottom?.map((i) => i.href)).toEqual(['/app/my-day', '/app/attendance', '/app/homework', '/app/pulse']);
+    expect(schoolShellMenu(buildNavigation('principal', full), 'principal').bottom).toBeUndefined();
   });
 });
 

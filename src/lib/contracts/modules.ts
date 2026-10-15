@@ -184,6 +184,26 @@ export const MODULE_REGISTRY: readonly ModuleDefinition[] = ROWS.map((r) => ({
   href: r.href ?? `/app/${r.id}`,
 }));
 
+// FREQUENT WORK (C235-B): the links each role opens most, at the top of its menu under "Frequent work", in this order,
+// 4 to 6 a role. Each is a module of ROWS the role already has, or a task inside one with its own address and name,
+// so the list never gives a role a module the menu below does not; a module the school does not have is left out
+// (buildNavigation). Every module stays in "All modules" under its group as well.
+export const FREQUENT_TASKS = {
+  'leave-approval': { module: 'staff', label: 'Leave approval', href: '/app/staff?show=leave-waiting' },
+  'fees-overdue': { module: 'fees', label: 'Overdue fees', href: '/app/fees?show=overdue' },
+  'rte-claims': { module: 'fees', label: 'RTE claims', href: '/app/fees/rte' },
+} as const;
+export type FrequentTask = keyof typeof FREQUENT_TASKS;
+export type FrequentWork = { module: ModuleId } | { task: FrequentTask };
+
+export const FREQUENT_WORK: Readonly<Record<SchoolRole, readonly FrequentWork[]>> = {
+  principal: [{ module: 'students' }, { module: 'staff' }, { module: 'attendance' }, { module: 'fees' }, { task: 'leave-approval' }],
+  school_admin: [{ module: 'students' }, { module: 'admissions' }, { module: 'attendance' }, { module: 'fees' }, { module: 'communication' }, { task: 'leave-approval' }],
+  teacher: [{ module: 'attendance' }, { module: 'homework' }, { module: 'pulse' }, { module: 'timetable' }, { module: 'exams' }],
+  accountant: [{ module: 'fees' }, { task: 'fees-overdue' }, { task: 'rte-claims' }, { module: 'reports' }],
+  academic_coordinator: [{ module: 'academics' }, { module: 'exams' }, { module: 'timetable' }, { module: 'curriculum-gap' }, { module: 'early-warning' }, { module: 'reports' }],
+};
+
 export function moduleById(id: ModuleId): ModuleDefinition {
   const m = MODULE_REGISTRY.find((x) => x.id === id);
   if (!m) throw new Error(`unknown module ${id}`);

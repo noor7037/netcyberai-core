@@ -5,26 +5,30 @@ import { SessionRevokedError, withTenantContext } from '@/lib/auth/db';
 import { AppShell } from '@/components/app-shell/AppShell';
 import { ViewAsBanner } from '@/components/app-shell/ViewAsBanner';
 import { ScanButton } from '@/components/shell/ScanButton';
-import { toShellGroups, toShellItem } from '@/components/app-shell/shell-nav';
+import { schoolShellMenu } from '@/components/app-shell/shell-nav';
 import { ToastProvider } from '@/components/ui/Toast';
 import { accessNoticeText, schoolAccessNotice, schoolTrialNotice, trialNoticeText, type AccessNotice, type TrialNotice } from '@/lib/control/billing-notice';
 import type { SchoolEntitlements } from '@/lib/contracts/entitlements';
 import type { SchoolRole } from '@/lib/contracts/modules';
-import { bottomNavItems, buildNavigation } from '@/lib/contracts/navigation';
+import { buildNavigation } from '@/lib/contracts/navigation';
 import { buildQuickAdd } from '@/lib/contracts/quick-add';
 import { t } from '@/lib/i18n';
 import { getLang, getToursSeen } from '@/lib/i18n/server';
 import { loadEntitlements } from '@/lib/frameworks/entitlements';
+import { loadSchoolBrand } from '@/lib/school/branding';
+import { logoAddress } from '@/lib/school/logo-file';
 
 // Every page under this route group renders through THIS layout by
 // Next.js's own nesting rules. The guard below runs first and is checked
 // by scripts/check_route_guards.py; nothing after it can widen access.
 //
 // The menu is computed here, once (C121): the module registry × this role
-// × the school's entitlements (buildNavigation, 17 §2), in 8 groups; the
-// teacher shell also gets the phone bottom bar. It decides only what is
-// shown: every module API checks role and entitlement itself, and RLS
-// stays the backstop.
+// × the school's entitlements (buildNavigation, 17 §2): the Home items, the
+// role's Frequent work, then every module under its group (schoolShellMenu,
+// C235-B); the teacher shell also gets the phone bottom bar. It decides only
+// what is shown: every module API checks role and entitlement itself, and RLS
+// stays the backstop. The bar at the top shows the school's logo and name and
+// the signed-in person's name and role (C235-B).
 
 // Every word of the shell comes from the message files, in the language the
 // person chose (C134).
@@ -39,6 +43,9 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   const schoolId = session!.schoolId!;
   let entitlements: SchoolEntitlements = { schoolId, plan: 'unassigned', accessMode: 'full', modules: {} };
   let schoolName = 'NetCyberAI';
+  // The school's logo version (null: no logo, its initials are shown) and the signed-in person's name (C235-B).
+  let logoVersion: string | null = null;
+  let personName = '';
   let menuIncomplete = false;
   // While the founder is viewing as this person (C165): whose view it is and when it ends.
   let viewAs: { name: string; endsAt: string } | null = null;
@@ -47,15 +54,18 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   // In the free month, for the principal and the school admin: the days left, and the notice from 7 days before (C226).
   let trialNotice: TrialNotice | null = null;
   try {
-    ({ entitlements, schoolName, viewAs, accessNotice, trialNotice } = await withTenantContext(session!, async (db) => {
-      const { rows } = await db.query(`select name from schools where school_id = $1`, [schoolId]);
+    ({ entitlements, schoolName, logoVersion, personName, viewAs, accessNotice, trialNotice } = await withTenantContext(session!, async (db) => {
+      const brand = await loadSchoolBrand(db, schoolId);
+      const person = (await db.query(`select display_name from users where user_id = $1`, [session!.sub])).rows[0];
       const imp = session!.impersonation
         ? (await db.query(`select i.expires_at, u.display_name from impersonation_sessions i join users u on u.user_id = i.target_user_id where i.impersonation_id = $1`, [session!.impersonation.impersonationId])).rows[0]
         : null;
       const loaded = await loadEntitlements(db, schoolId);
       return {
         entitlements: loaded,
-        schoolName: (rows[0]?.name as string | undefined) ?? 'NetCyberAI',
+        schoolName: brand?.name ?? 'NetCyberAI',
+        logoVersion: brand?.logoVersion ?? null,
+        personName: (person?.display_name as string | null | undefined)?.trim() ?? '',
         viewAs: imp ? { name: imp.display_name as string, endsAt: new Date(imp.expires_at as string).toISOString() } : null,
         // The last reads of this transaction: if one fails, the menu above is still whole and its line is left out.
         accessNotice: await schoolAccessNotice(db, loaded).catch(() => null),
@@ -73,28 +83,22 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   const { lang, known } = getLang(session!.sub);
   // With the menu's data missing, nothing is offered that the school may not have.
   const quickAdd = menuIncomplete ? [] : buildQuickAdd(role, entitlements);
-  const nav = buildNavigation(role, entitlements);
   const isTeacher = shellForRole(role) === 'teacher';
-  const isOffice = shellForRole(role) === 'office';
-  const bottom = isTeacher ? bottomNavItems(nav).map((i) => toShellItem(i, lang)) : undefined;
-  // My Day is everyone's home (docs/19 rule 2): the first link of the menu,
-  // and of the teacher's bottom bar in place of the dashboard they do not have.
-  const myDay = { href: '/app/my-day', label: t(lang, 'myDay.title'), icon: 'check' as const };
-  const menu = toShellGroups(nav, lang);
-  const home = menu.find((g) => g.id === 'home');
-  // A school without the Dashboard module (or suspended) still has its home.
-  // Settings (what is switched on for the school, WhatsApp) is the office's, and is reached from here.
-  const settings = { href: '/app/settings', label: t(lang, 'shell.settings'), icon: 'operations' as const };
-  const homeGroup = { id: 'home', label: t(lang, 'group.home'), tone: ['royal', 'electric'] as const, items: [myDay, ...(home?.items ?? []).filter((i) => isOffice || i.href !== '/app/dashboard'), ...(isOffice ? [settings] : [])] };
-  const groups = [homeGroup, ...menu.filter((g) => g.id !== 'home')];
-  const bottomBar = bottom && [myDay, ...bottom.filter((i) => i.href !== '/app/dashboard')].slice(0, 4);
+  // My Day is everyone's home (docs/19 rule 2): the first link of the menu, and of the teacher's bottom bar in place
+  // of the dashboard they do not have. A school without the Dashboard module (or suspended) still has its home.
+  // Settings (what is switched on for the school, its name and logo, WhatsApp) is the office's, reached from here.
+  const menu = schoolShellMenu(buildNavigation(role, entitlements), role, lang);
 
   return (
     <ToastProvider>
       <AppShell
-        groups={groups}
-        bottomItems={bottomBar}
+        groups={menu.groups}
+        home={menu.home}
+        frequent={menu.frequent}
+        bottomItems={menu.bottom}
         brand={schoolName}
+        logoSrc={logoAddress(logoVersion)}
+        person={personName ? { name: personName, role: t(lang, `role.${role}`) } : null}
         roleLabel={t(lang, `role.${role}`)}
         navLabel={t(lang, 'shell.nav.school')}
         accountHref="/app/account"
