@@ -36,6 +36,35 @@ export async function writeAuditLog(client: Pick<PoolClient, 'query'>, entry: Au
   );
 }
 
+// Many rows in one statement, each as writeAuditLog writes it, in the order given (review of C229: a timetable
+// publish writes one row for each period it changes). The hash chain links them one after another: the trigger of
+// each row sees the rows before it in the same statement.
+export async function writeAuditLogs(client: Pick<PoolClient, 'query'>, entries: readonly AuditEntry[]): Promise<void> {
+  if (entries.length === 0) return;
+  await client.query(
+    `insert into audit_log
+       (school_id, actor_user_id, actor_role, event_action, target_type, target_id, before_state, after_state)
+     select (e->>'schoolId')::uuid, (e->>'actorUserId')::uuid, (e->>'actorRole')::user_role, e->>'eventAction', e->>'targetType', e->>'targetId',
+            nullif(e->'beforeState', 'null'::jsonb), nullif(e->'afterState', 'null'::jsonb)
+       from jsonb_array_elements($1::jsonb) with ordinality as x(e, n)
+      order by x.n`,
+    [
+      JSON.stringify(
+        entries.map((entry) => ({
+          schoolId: entry.schoolId,
+          actorUserId: entry.actorUserId,
+          actorRole: entry.actorRole,
+          eventAction: entry.eventAction,
+          targetType: entry.targetType ?? null,
+          targetId: entry.targetId ?? null,
+          beforeState: entry.beforeState || null,
+          afterState: entry.afterState || null,
+        }))
+      ),
+    ]
+  );
+}
+
 // An entitlement change (C124). The founder's reason is founder-only: it
 // goes to entitlement_change_reasons, which only nca_super can read or
 // write, never into audit_log (a school reads its own audit rows; the

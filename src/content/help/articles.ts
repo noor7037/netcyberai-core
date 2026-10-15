@@ -1459,6 +1459,33 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p7-10e end
   // p7-10f begin
+  {
+    slug: 'make-a-timetable',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Make a timetable with the generator', hi: 'जनरेटर से टाइमटेबल बनाएँ' },
+    summary: {
+      en: 'Say what each class needs and when teachers cannot teach. The generator proposes a week where no teacher is in two classes at once; you check it beside the timetable now, swap periods if you wish, and publish it. For the principal, the school admin and the academic coordinator.',
+      hi: 'बताएँ कि हर कक्षा को क्या चाहिए और शिक्षक कब नहीं पढ़ा सकते। जनरेटर ऐसे हफ़्ते का प्रस्ताव देता है जिसमें कोई शिक्षक एक साथ दो कक्षाओं में नहीं होता; आप उसे अभी के टाइमटेबल के साथ मिलाकर देखते हैं, चाहें तो पीरियड बदलते हैं, और प्रकाशित करते हैं। प्रिंसिपल, स्कूल एडमिन और एकेडमिक कोऑर्डिनेटर के लिए।',
+    },
+    steps: [
+      { en: 'Open “Timetable” and press “Make a timetable with the generator”. “The school day” shows the days, the periods a day and the most periods in a row for one teacher, from Settings.', hi: '“Timetable” खोलें और “Make a timetable with the generator” दबाएँ। “The school day” में दिन, एक दिन के पीरियड और एक शिक्षक के लगातार सबसे ज़्यादा पीरियड दिखते हैं, सेटिंग्स से।' },
+      { en: 'Under “Periods each class needs”, choose the class. Choose the “Subject”, type the “Periods a week”, choose the “Teacher” and press “Save the subject”. Do this for every subject of every class.', hi: '“Periods each class needs” में कक्षा चुनें। “Subject” चुनें, “Periods a week” लिखें, “Teacher” चुनें और “Save the subject” दबाएँ। हर कक्षा के हर विषय के लिए ऐसा करें।' },
+      { en: 'Under “When teachers cannot teach”, choose a teacher, tap the periods they cannot teach or “Whole day”, and press “Save these periods”.', hi: '“When teachers cannot teach” में शिक्षक चुनें, वे पीरियड टैप करें जिनमें वे नहीं पढ़ा सकते या “Whole day”, और “Save these periods” दबाएँ।' },
+      { en: 'Press “Make a proposal”. The timetable does not change yet. Anything that could not be placed is listed, with the reason.', hi: '“Make a proposal” दबाएँ। टाइमटेबल अभी नहीं बदलता। जो नहीं रखा जा सका, वह कारण के साथ लिखा आता है।' },
+      { en: 'Choose a class under “Class to look at”. “Now” and “Proposed” are side by side, and every period that is different is marked. To swap two periods, tap one under “Proposed”, then the other.', hi: '“Class to look at” में कक्षा चुनें। “Now” और “Proposed” साथ-साथ हैं, और हर अलग पीरियड चिह्नित है। दो पीरियड बदलने के लिए “Proposed” में एक पर टैप करें, फिर दूसरे पर।' },
+      { en: 'Press “Publish this timetable”, read what it replaces, and press “Publish”. Or press “Discard this proposal”.', hi: '“Publish this timetable” दबाएँ, पढ़ें कि यह क्या बदलता है, और “Publish” दबाएँ। या “Discard this proposal” दबाएँ।' },
+      { en: 'Under “Published timetables”, press “See before and after” to read an earlier timetable back.', hi: 'पहले का टाइमटेबल फिर से देखने के लिए “Published timetables” में “See before and after” दबाएँ।' },
+    ],
+    tips: [
+      { en: 'A proposal never puts a teacher in two classes at once, a class in two subjects in one period, or a teacher in a period they cannot teach.', hi: 'प्रस्ताव कभी किसी शिक्षक को एक साथ दो कक्षाओं में, किसी कक्षा को एक पीरियड में दो विषयों में, या किसी शिक्षक को ऐसे पीरियड में नहीं रखता जिसमें वे नहीं पढ़ा सकते।' },
+      { en: 'If the timetable is changed by hand after a proposal is made, that proposal cannot be published: make a new one.', hi: 'अगर प्रस्ताव बनने के बाद टाइमटेबल हाथ से बदला गया, तो वह प्रस्ताव प्रकाशित नहीं हो सकता: नया बनाएँ।' },
+      { en: 'Teachers see only the published timetable, as before. The proposal and what each class needs are the office’s.', hi: 'शिक्षक पहले की तरह सिर्फ़ प्रकाशित टाइमटेबल देखते हैं। प्रस्ताव और हर कक्षा की ज़रूरत दफ़्तर की है।' },
+    ],
+    start: { href: '/app/timetable/generator', label: { en: 'Timetable generator', hi: 'टाइमटेबल जनरेटर' } },
+    related: ['timetable', 'cover-a-class'],
+    keywords: ['timetable generator', 'generate timetable', 'auto timetable', 'propose', 'schedule', 'periods per week', 'teacher availability', 'clash', 'publish timetable', 'time table banao', 'समय-सारणी बनाएँ', 'टाइमटेबल जनरेटर'],
+  },
   // p7-10f end
   // p7-10g begin
   // p7-10g end

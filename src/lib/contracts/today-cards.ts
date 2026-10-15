@@ -77,6 +77,7 @@ export const TODAY_CARD_TYPES = [
   // p7-10e begin
   // p7-10e end
   // p7-10f begin
+  'timetable-draft',
   // p7-10f end
   // p7-10g begin
   // p7-10g end

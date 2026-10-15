@@ -25,7 +25,7 @@ type CoverToday = { substitution_id: string; on_date: string; period: number; cl
 const TAP = 'min-h-[48px] rounded-md border px-3 text-left text-sm';
 const dayKey = (weekday: number) => `tt.day.${WEEKDAYS[weekday - 1]}` as MessageKey;
 
-export function TimetableView({ office, teacher, covers: showCovers = false }: { office: boolean; teacher: boolean; covers?: boolean }) {
+export function TimetableView({ office, teacher, covers: showCovers = false, generator = false }: { office: boolean; teacher: boolean; covers?: boolean; generator?: boolean }) {
   const { t, tCount, lang } = useT();
   const toast = useToast();
   const [choices, setChoices] = useState<Choices>({ classes: [], subjects: [], teachers: [] });
@@ -149,6 +149,11 @@ export function TimetableView({ office, teacher, covers: showCovers = false }: {
 
   return (
     <section lang={lang} className="flex flex-col gap-4">
+      {office && generator && (
+        <Link href="/app/timetable/generator" data-timetable-generator className="inline-flex min-h-[44px] items-center self-start rounded-md border border-slate/20 bg-white px-4 text-sm font-semibold text-slate">
+          {t('ttg.open')}
+        </Link>
+      )}
       {!mine && (
         <div className="max-w-xs">
           <Select id="timetable-class" label={t('tt.class')} value={classId} onChange={(e) => setClassId(e.target.value)}>

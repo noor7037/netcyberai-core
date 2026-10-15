@@ -4509,6 +4509,136 @@ const verifyScreenDone = async () => {
 };
 // p7-10e end
 // p7-10f begin
+// The timetable generator (C229), as the principal uses it. Screen 1: the principal adds a subject to 5-A on the page
+// (Mathematics, 6 a week, Tara) and marks Tanvi unable to teach on Saturdays; the other three subjects are typed in
+// the database; then "Make a proposal", and one period of 5-A moved by two taps. The picture shows the proposal beside
+// the timetable now. The timetable itself must not have changed. Screen 2: the same constraints, proposed and
+// published on the page, then one publish read back. The two classes must hold exactly the proposal, kept as a
+// version. Everything is put back after each, the seeded timetable included.
+const TTG_5A = '00000000-0000-4000-8000-0000000c0051';
+const TTG_5B = '00000000-0000-4000-8000-0000000c0052';
+const TTG_MATHS = '00000000-0000-4000-8000-0000000d0001';
+const TTG_ENGLISH = '00000000-0000-4000-8000-0000000d0002';
+const TTG_TARA = '00000000-0000-4000-8000-00000000a003';
+const TTG_TANVI = '00000000-0000-4000-8000-00000000a004';
+let ttgTimetable = null;
+let ttgSeen = null;
+let ttgFrom = null;
+const ttgSlots = (rows) => rows.map((e) => `${e.classId}:${e.weekday}:${e.period}:${e.subjectId}:${e.teacherUserId}`).sort().join('|');
+const ttgEntries = async () =>
+  (await db.pg.query(`select class_id as "classId", weekday::int as weekday, period::int as period, subject_id as "subjectId", teacher_user_id as "teacherUserId" from timetable_entries where school_id = $1`, [SCHOOL])).rows;
+const clearTtgPlans = () =>
+  db.pg.exec(`set session_replication_role = replica;
+    delete from timetable_versions where school_id = '${SCHOOL}'; delete from timetable_proposals where school_id = '${SCHOOL}';
+    delete from timetable_loads where school_id = '${SCHOOL}'; delete from timetable_unavailable where school_id = '${SCHOOL}';
+    set session_replication_role = origin;`);
+const clearTtg = async () => {
+  await clearTtgPlans();
+  // The timetable as it was before the screen.
+  if (ttgTimetable) {
+    await db.pg.query(`delete from timetable_entries where school_id = $1`, [SCHOOL]);
+    for (const e of ttgTimetable) await db.pg.query(`insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) values ($1, $2, $3, $4, $5, $6)`, [SCHOOL, e.classId, e.weekday, e.period, e.subjectId, e.teacherUserId]);
+  }
+  ttgTimetable = null;
+};
+const ttgStart = async (page, { typedOnPage }) => {
+  await clearTtgPlans();
+  ttgTimetable = await ttgEntries();
+  ttgFrom = (await db.pg.query(`select coalesce(max(audit_id), 0)::bigint as id from audit_log`)).rows[0].id;
+  const typed = [[TTG_5A, TTG_ENGLISH, 5, TTG_TANVI], [TTG_5B, TTG_MATHS, 6, TTG_TARA], [TTG_5B, TTG_ENGLISH, 5, TTG_TANVI], ...(typedOnPage ? [] : [[TTG_5A, TTG_MATHS, 6, TTG_TARA]])];
+  for (const [c, s, n, t] of typed) await db.pg.query(`insert into timetable_loads (school_id, class_id, subject_id, periods_per_week, teacher_user_id, updated_by) values ($1, $2, $3, $4, $5, $6)`, [SCHOOL, c, s, n, t, PEOPLE.principal.sub]);
+  if (!typedOnPage) await db.pg.query(`insert into timetable_unavailable (school_id, teacher_user_id, weekday, period, updated_by) values ($1, $2, 6, null, $3)`, [SCHOOL, TTG_TANVI, PEOPLE.principal.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-ttg-loads]').waitFor({ timeout: 20000 });
+};
+const ttgPropose = async (page) => {
+  await page.locator('[data-ttg-propose-go]').click();
+  await page.locator('[data-ttg-draft]').waitFor({ timeout: 30000 });
+};
+const ttgReview = async (page) => {
+  await ttgStart(page, { typedOnPage: true });
+  await page.selectOption('#ttg-class', TTG_5A);
+  await page.selectOption('#ttg-subject', TTG_MATHS);
+  await page.locator('#ttg-periods').fill('6');
+  await page.selectOption('#ttg-teacher', TTG_TARA);
+  await page.locator('[data-ttg-load-save]').click();
+  await page.locator(`[data-ttg-load="${TTG_MATHS}"]`).waitFor({ timeout: 20000 });
+  await page.selectOption('#ttg-away-teacher', TTG_TANVI);
+  await page.locator('[data-ttg-away-whole="6"]').click();
+  const reloaded = page.waitForResponse((r) => r.url().endsWith('/api/app/timetable/generator') && r.request().method() === 'GET', { timeout: 20000 });
+  await page.locator('[data-ttg-away-save]').click();
+  await reloaded;
+  await ttgPropose(page);
+  // One period of 5-A moved to a free period of the same day where its teacher is free.
+  const draft = (await db.pg.query(`select entries from timetable_proposals where school_id = $1 and state = 'draft'`, [SCHOOL])).rows[0].entries;
+  let move = null;
+  for (const e of draft.filter((x) => x.classId === TTG_5A)) {
+    for (let p = 1; p <= 8 && !move; p++) {
+      const busy = draft.some((x) => (x.classId === TTG_5A || x.teacherUserId === e.teacherUserId) && x.weekday === e.weekday && x.period === p);
+      if (!busy) move = { from: e, to: { weekday: e.weekday, period: p } };
+    }
+    if (move) break;
+  }
+  await page.locator(`[data-ttg-week="${TTG_5A}"] [data-ttg-pick="${move.from.weekday}-${move.from.period}"]`).click();
+  await page.locator(`[data-ttg-week="${TTG_5A}"] [data-ttg-pick="${move.to.weekday}-${move.to.period}"]`).click();
+  await page.waitForFunction(() => document.querySelector('[data-ttg-draft]') && !document.querySelector('[aria-pressed="true"][data-ttg-pick]'), null, { timeout: 20000 });
+  await page.waitForTimeout(800);
+  ttgSeen = {
+    move,
+    placed: await page.locator('[data-ttg-placed]').getAttribute('data-ttg-placed'),
+    unplaced: await page.locator('[data-ttg-unplaced]').count(),
+    marked: await page.locator(`[data-ttg-week="${TTG_5A}"] [data-change]`).count(),
+    publishEnabled: await page.locator('[data-ttg-publish]').isEnabled(),
+  };
+};
+const ttgReviewDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from timetable_proposals where school_id = $1 and state = 'draft' and swaps = 1 and proposed_by = $2 and unplaced = '[]'::jsonb) as drafts,
+            (select count(*)::int from timetable_loads where school_id = $1) as loads,
+            (select count(*)::int from timetable_loads where school_id = $1 and class_id = $3 and subject_id = $4 and periods_per_week = 6 and teacher_user_id = $5) as typed,
+            (select count(*)::int from timetable_unavailable where school_id = $1 and teacher_user_id = $6 and weekday = 6 and period is null and updated_by = $2) as away,
+            (select string_agg(event_action, ',' order by audit_id) from audit_log where audit_id > $7 and event_action like 'timetable.%') as audited`,
+    [SCHOOL, PEOPLE.principal.sub, TTG_5A, TTG_MATHS, TTG_TARA, TTG_TANVI, ttgFrom]
+  );
+  const draft = (await db.pg.query(`select entries from timetable_proposals where school_id = $1 and state = 'draft'`, [SCHOOL])).rows[0]?.entries ?? [];
+  const moved = draft.find((e) => e.classId === TTG_5A && e.weekday === ttgSeen?.move?.to.weekday && e.period === ttgSeen?.move?.to.period);
+  // Nothing reaches the timetable until a person publishes.
+  const untouched = ttgSlots(await ttgEntries()) === ttgSlots(ttgTimetable);
+  await clearTtg();
+  const r = rows[0];
+  const want = { drafts: 1, loads: 4, typed: 1, away: 1, audited: 'timetable.plan.load_set,timetable.plan.unavailable_set,timetable.plan.proposed,timetable.plan.swapped' };
+  if (JSON.stringify(r) !== JSON.stringify(want)) throw new Error(`the generator in the database: ${JSON.stringify(r)}`);
+  if (!untouched) throw new Error('the timetable changed before anything was published');
+  if (moved?.subjectId !== ttgSeen.move.from.subjectId || moved?.teacherUserId !== ttgSeen.move.from.teacherUserId) throw new Error(`the swap: ${JSON.stringify({ moved, seen: ttgSeen })}`);
+  if (ttgSeen.placed !== '22' || ttgSeen.unplaced !== 0 || ttgSeen.marked < 1 || ttgSeen.publishEnabled !== true) throw new Error(`the proposal on the screen: ${JSON.stringify(ttgSeen)}`);
+};
+const ttgPublish = async (page) => {
+  await ttgStart(page, { typedOnPage: false });
+  await ttgPropose(page);
+  await page.locator('[data-ttg-publish]').click();
+  await page.locator('[data-ttg-publish-confirm]').click();
+  await page.locator('[data-ttg-version]').waitFor({ timeout: 30000 });
+  await page.locator('[data-ttg-version-open]').first().click();
+  await page.locator('[data-ttg-version-detail]').waitFor({ timeout: 20000 });
+  await page.waitForTimeout(600);
+  ttgSeen = { versions: await page.locator('[data-ttg-version]').count(), draftLeft: await page.locator('[data-ttg-draft]').count(), marked: await page.locator('[data-ttg-version-detail] [data-change]').count() };
+};
+const ttgPublishDone = async () => {
+  const proposal = (await db.pg.query(`select state, entries, decided_by from timetable_proposals where school_id = $1`, [SCHOOL])).rows;
+  const version = (await db.pg.query(`select published_by, before_entries, added, changed, removed from timetable_versions where school_id = $1`, [SCHOOL])).rows;
+  const now = await ttgEntries();
+  const audited = (await db.pg.query(`select count(*)::int as n from audit_log where audit_id > $1 and event_action = 'timetable.plan.published' and actor_user_id = $2`, [ttgFrom, PEOPLE.principal.sub])).rows[0].n;
+  const before = ttgTimetable;
+  await clearTtg();
+  const planned = new Set([TTG_5A, TTG_5B]);
+  const p = proposal[0];
+  const v = version[0];
+  const exact = p && ttgSlots(now.filter((e) => planned.has(e.classId))) === ttgSlots(p.entries) && ttgSlots(now.filter((e) => !planned.has(e.classId))) === ttgSlots(before.filter((e) => !planned.has(e.classId)));
+  const r = { proposals: proposal.length, state: p?.state, decidedBy: p?.decided_by === PEOPLE.principal.sub, versions: version.length, by: v?.published_by === PEOPLE.principal.sub, keptBefore: v ? ttgSlots(v.before_entries) === ttgSlots(before) : false, exact, audited };
+  const want = { proposals: 1, state: 'published', decidedBy: true, versions: 1, by: true, keptBefore: true, exact: true, audited: 1 };
+  if (JSON.stringify(r) !== JSON.stringify(want)) throw new Error(`the publish in the database: ${JSON.stringify(r)}`);
+  if (ttgSeen.versions !== 1 || ttgSeen.draftLeft !== 0 || ttgSeen.marked < 1) throw new Error(`the publish on the screen: ${JSON.stringify(ttgSeen)}`);
+};
 // p7-10f end
 // p7-10g begin
 // p7-10g end
@@ -5460,6 +5590,8 @@ const SCREENS = [
   ['principal', 'verify-certificate', `/verify/${VERIFY_TOKEN}`, verifyScreen, verifyScreenDone],
   // p7-10e end
   // p7-10f begin
+  ['principal', 'app-timetable-generator', '/app/timetable/generator', ttgReview, ttgReviewDone],
+  ['principal', 'app-timetable-generator-publish', '/app/timetable/generator', ttgPublish, ttgPublishDone],
   // p7-10f end
   // p7-10g begin
   // p7-10g end

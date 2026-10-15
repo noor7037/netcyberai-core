@@ -23,7 +23,7 @@ export type Entry = {
   teacher_name: string;
 };
 
-const ENTRY_SELECT = `select e.entry_id, e.class_id, c.name as class_name, e.weekday::int as weekday, e.period::int as period,
+export const ENTRY_SELECT = `select e.entry_id, e.class_id, c.name as class_name, e.weekday::int as weekday, e.period::int as period,
          e.subject_id, s.name as subject_name, e.teacher_user_id, u.display_name as teacher_name
     from timetable_entries e
     join classes c on c.school_id = e.school_id and c.class_id = e.class_id
@@ -60,6 +60,13 @@ export async function timetableChoices(db: PoolClient, schoolId: string) {
 }
 
 type Actor = { schoolId: string; userId: string; role: StaffRole };
+
+// The timetable generator's lock (C229): it proposes, swaps and publishes holding it alone, so a period filled or
+// emptied here, which holds it shared, waits for a publish to end, and a publish waits for this to end. A publish
+// then sees the timetable exactly as it checked it.
+export const planLockKey = (schoolId: string) => `timetable-plan:${schoolId}`;
+const sharePlanLock = (db: Pick<PoolClient, 'query'>, schoolId: string) => db.query(`select pg_advisory_xact_lock_shared(hashtext($1))`, [planLockKey(schoolId)]);
+
 export type PutResult = { ok: true; entry: Entry } | { ok: false; reason: 'teacher_clash'; clash: Entry } | { ok: false; reason: 'unknown_class' | 'unknown_subject' | 'unknown_teacher' | 'bad_period' };
 
 // Fills one period of one class. A teacher already teaching another class at
@@ -76,6 +83,7 @@ export async function putEntry(db: PoolClient, actor: Actor, slot: Slot): Promis
   if (!known.subject) return { ok: false, reason: 'unknown_subject' };
   if (!known.teacher) return { ok: false, reason: 'unknown_teacher' };
 
+  await sharePlanLock(db, actor.schoolId);
   // Held until this transaction ends: two people filling the same teacher's
   // slot at the same moment are taken one after the other.
   await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`timetable:${actor.schoolId}:${slot.teacherUserId}:${slot.weekday}:${slot.period}`]);
@@ -97,6 +105,7 @@ export async function putEntry(db: PoolClient, actor: Actor, slot: Slot): Promis
 }
 
 export async function clearEntry(db: PoolClient, actor: Actor, at: { classId: string; weekday: number; period: number }): Promise<boolean> {
+  await sharePlanLock(db, actor.schoolId);
   const gone = await db.query(`delete from timetable_entries where school_id = $1 and class_id = $2 and weekday = $3 and period = $4 returning entry_id, subject_id, teacher_user_id`, [actor.schoolId, at.classId, at.weekday, at.period]);
   if (!gone.rows[0]) return false;
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'timetable.clear', targetType: 'timetable_entries', targetId: gone.rows[0].entry_id, beforeState: { ...at, subjectId: gone.rows[0].subject_id, teacherUserId: gone.rows[0].teacher_user_id }, afterState: null });
@@ -110,6 +119,7 @@ export type ImportResult = { ok: true; imported: number } | { ok: false; problem
 export async function importTimetable(db: PoolClient, actor: Actor, csv: string): Promise<ImportResult> {
   const parsed = parseTimetableCsv(csv);
   if (parsed.problems.some((p) => p.code === 'header')) return { ok: false, problems: parsed.problems };
+  await sharePlanLock(db, actor.schoolId);
   const choices = await timetableChoices(db, actor.schoolId);
   const existing = (await db.query(`select class_id as "classId", weekday::int as weekday, period::int as period, subject_id as "subjectId", teacher_user_id as "teacherUserId" from timetable_entries where school_id = $1`, [actor.schoolId])).rows as Slot[];
   const plan = planImport(

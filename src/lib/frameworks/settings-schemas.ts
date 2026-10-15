@@ -309,7 +309,9 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // nothing: periods already entered beyond it stay until the office clears them.
   {
     moduleId: 'timetable',
-    version: 1,
+    // Version 2 (C229): the most periods in a row for one teacher, which the timetable generator keeps to. Its
+    // default is the most periods a day can have, so no limit holds until the school sets one.
+    version: 2,
     fields: [
       {
         key: 'periods_per_day',
@@ -318,6 +320,19 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         section: 'School day',
         type: 'number',
         default: 8,
+        min: 1,
+        max: 12,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      {
+        key: 'max_consecutive',
+        label: 'Most periods in a row for one teacher',
+        help: 'The timetable generator never gives a teacher more periods than this one after another, from 1 to 12. At 12 there is no limit. The timetable already published does not change.',
+        section: 'School day',
+        type: 'number',
+        default: 12,
         min: 1,
         max: 12,
         required: true,

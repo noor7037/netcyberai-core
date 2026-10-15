@@ -8,8 +8,8 @@ import { describe, expect, it } from 'vitest';
 // of the event and booleans (noted: true), never a name, a phone, a date of birth, an address, or free text a person
 // typed (a note, a reason, a reference): those stay on their own rows, which the erasure can reach.
 //
-// This reads every call of the audit writers in src (writeAuditLog, writeEntitlementAudit) and fails on a before or
-// after state that could carry such data:
+// This reads every call of the audit writers in src (writeAuditLog, writeAuditLogs, writeEntitlementAudit,
+// writeAttendanceAudit) and fails on a before or after state that could carry such data:
 //   - a key whose words say so (name, phone, dob, note, reason, text, message, ...), unless its value is plainly a
 //     code, a boolean or a count (a literal, a comparison, Boolean(...), .length);
 //   - a value read from something whose words say so (input.note, params.reason, body.text, ...);
@@ -19,7 +19,7 @@ import { describe, expect, it } from 'vitest';
 // so the list only ever shrinks.
 
 const ROOT = path.resolve(__dirname, '../..');
-const WRITERS = new Set(['writeAuditLog', 'writeEntitlementAudit', 'writeAttendanceAudit']);
+const WRITERS = new Set(['writeAuditLog', 'writeAuditLogs', 'writeEntitlementAudit', 'writeAttendanceAudit']);
 const PERSONAL = new Set(['name', 'names', 'phone', 'phones', 'mobile', 'email', 'dob', 'birth', 'address', 'note', 'notes', 'reason', 'reasons', 'why', 'text', 'message', 'body', 'details', 'title', 'reference', 'comment', 'description', 'summary', 'remark', 'remarks', 'outcome', 'narration', 'utr', 'aadhaar']);
 
 // file -> problem -> why it is not personal data. Problems are "key:<key>", "value:<key>" or "opaque:<expression>".
@@ -248,6 +248,17 @@ function localObject(sf: ts.SourceFile, id: ts.Identifier): ts.ObjectLiteralExpr
   return init && ts.isObjectLiteralExpression(init) ? init : null;
 }
 
+// The entry of a call: an object literal, or for writeAuditLogs the object each row of a map makes
+// (`rows.map((r) => ({ ... }))`), which is read the same way.
+function entryOf(arg: ts.Expression): ts.Expression {
+  const x = unwrap(arg);
+  if (ts.isCallExpression(x) && ts.isPropertyAccessExpression(x.expression) && x.expression.name.text === 'map') {
+    const fn = x.arguments[0];
+    if (fn && ts.isArrowFunction(fn) && !ts.isBlock(fn.body)) return unwrap(fn.body);
+  }
+  return x;
+}
+
 function auditCalls(): { problems: Problem[]; calls: number; files: Set<string> } {
   const problems: Problem[] = [];
   const files = new Set<string>();
@@ -261,7 +272,7 @@ function auditCalls(): { problems: Problem[]; calls: number; files: Set<string> 
       if (ts.isCallExpression(n) && ts.isIdentifier(n.expression) && WRITERS.has(n.expression.text)) {
         calls += 1;
         files.add(rel);
-        const entry = n.arguments[1] ? unwrap(n.arguments[1]) : null;
+        const entry = n.arguments[1] ? entryOf(n.arguments[1]) : null;
         const action = entry && ts.isObjectLiteralExpression(entry) ? entry.properties.find((p) => p.name?.getText(sf) === 'eventAction')?.getText(sf).replace(/^eventAction:\s*/, '') ?? '?' : '?';
         const report = (problem: string, at: ts.Node) => problems.push({ file: rel, line: sf.getLineAndCharacterOfPosition(at.getStart(sf)).line + 1, action, problem });
         if (!entry || !ts.isObjectLiteralExpression(entry)) report(`opaque:${n.arguments[1]?.getText(sf) ?? '(no entry)'}`, n);
