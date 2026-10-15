@@ -37,6 +37,7 @@ import { POST as studentAsk } from '@/app/api/app/students/[studentId]/record-do
 import { POST as studentConfirm } from '@/app/api/app/students/[studentId]/record-documents/confirm/route';
 import { POST as staffMultipart } from '@/app/api/app/staff/[staffId]/record-documents/route';
 import { sealTicket, openTicket } from '@/lib/documents/upload-ticket';
+import { checkBeforeSending, sendRecordFile } from '@/components/documents/send-record-file';
 import type { MemoryFileStorage } from '@/lib/storage/file-storage';
 
 const A = 'c235d200-0000-4000-8000-0000000000a1';
@@ -100,6 +101,7 @@ const TEXT = new TextEncoder().encode('<html><script>alert(1)</script></html>');
 // What the browser does with an ask's answer: sends the bytes to the link, with the type it was told to send.
 const send = (t: Record<string, unknown>, bytes: Uint8Array, type = String(t.contentType)) => store().receive(String(t.uploadUrl), bytes, type);
 const keyOf = (pendingId: unknown) => openTicket(pendingId)?.key as string;
+const pendingOf = (pendingId: unknown) => openTicket(pendingId)?.pendingKey as string;
 const count = async (sql: string, params: unknown[] = []) => (await db.pg.query(`select count(*)::int as n from ${sql}`, params)).rows[0].n as number;
 const audit = async (action: string) => (await db.pg.query(`select actor_user_id, target_id, after_state from audit_log where event_action = $1 order by audit_id`, [action])).rows;
 const newPaper = (extra: Record<string, unknown> = {}) => ({ kind: 'academic_certificate', title: 'Transfer certificate', fileName: 'tc.png', sizeBytes: 2000, mimeType: 'image/png', ...extra });
@@ -144,16 +146,21 @@ describe('a paper sent straight to the file store', () => {
     const minutes = (Date.parse(String(asked.body.expiresAt)) - Date.now()) / 60_000;
     expect(minutes).toBeGreaterThan(9);
     expect(minutes).toBeLessThanOrEqual(10);
-    // The server chose the key: the school's own prefix, the record, a new paper's id; the file's name never.
+    // The server chose the keys: the school's own pending folder, which the link writes; and the one the file is kept
+    // at, under the record and a new paper's id. The file's name in neither.
     const key = keyOf(asked.body.pendingId);
+    const pending = pendingOf(asked.body.pendingId);
+    expect(pending).toMatch(new RegExp(`^${A}/record-documents/pending/[0-9a-f-]{36}\\.png$`));
     expect(key).toMatch(new RegExp(`^${A}/record-documents/staff/${TEACHER}/[0-9a-f-]{36}/[0-9a-f-]{36}\\.png$`));
-    expect(key).not.toContain('tara');
+    expect(`${pending}${key}`).not.toContain('tara');
+    expect([...store().uploadLinks.values()].at(-1)).toBe(pending);
     // Nothing yet: no file, no rows, no audit.
-    expect(store().files.has(key)).toBe(false);
+    expect(store().files.has(pending) || store().files.has(key)).toBe(false);
     expect(await count('record_documents')).toBe(0);
     expect(await audit('record_document.added')).toHaveLength(0);
 
     await send(asked.body, png(size));
+    expect(store().files.has(pending)).toBe(true);
     const done = await confirmStaff(principal, asked.body.pendingId);
     expect(done.status).toBe(201);
     expect(done.body.versionNo).toBe(1);
@@ -161,7 +168,9 @@ describe('a paper sent straight to the file store', () => {
     expect(key.split('/')[4]).toBe(documentId);
     const rows = (await db.pg.query(`select v.storage_key, v.mime_type, v.size_bytes, v.uploaded_by, d.title, d.kind from record_document_versions v join record_documents d using (document_id) where d.document_id = $1`, [documentId])).rows;
     expect(rows).toEqual([{ storage_key: key, mime_type: 'image/png', size_bytes: size, uploaded_by: PRINCIPAL, title: 'B.Ed. degree certificate', kind: 'academic_certificate' }]);
-    expect(store().files.has(key)).toBe(true);
+    // Moved from the pending folder to the kept key.
+    expect([store().files.has(pending), store().files.has(key)]).toEqual([false, true]);
+    expect(store().files.get(key)?.contentType).toBe('image/png');
     const added = await audit('record_document.added');
     expect(added).toHaveLength(1);
     expect(added[0]).toMatchObject({ actor_user_id: PRINCIPAL, target_id: documentId, after_state: { record: 'staff', recordId: TEACHER, kind: 'academic_certificate', versionNo: 1, mime: 'image/png', sizeBytes: size, uploadCheck: 'image_text' } });
@@ -233,6 +242,22 @@ describe('the ask', () => {
     expect((await askStaff(bPrincipal, newPaper())).status).toBe(404);
     expect((await askStudent(parent, newPaper())).status).toBe(401);
   });
+
+  it('first removes the school’s files sent and never confirmed, once their tickets can no longer work', async () => {
+    const sent = async () => {
+      const asked = await askStudent(principal, newPaper());
+      await send(asked.body, png(2000));
+      return pendingOf(asked.body.pendingId);
+    };
+    const [old, fresh] = [await sent(), await sent()];
+    const otherSchool = `${B}/record-documents/pending/c235d200-0000-4000-8000-000000000999.png`;
+    await store().put(otherSchool, png(2000), 'image/png');
+    for (const k of [old, otherSchool]) store().storedAt.set(k, Date.now() - 16 * 60_000);
+    expect((await askStudent(principal, newPaper())).status).toBe(201);
+    expect([store().files.has(old), store().files.has(fresh), store().files.has(otherSchool)]).toEqual([false, true, true]);
+    await store().remove(fresh);
+    await store().remove(otherSchool);
+  });
 });
 
 describe('the confirmation', () => {
@@ -242,11 +267,11 @@ describe('the confirmation', () => {
     const before = { docs: await count('record_documents'), audits: await count(`audit_log where event_action like 'record_document.%'`) };
     const asked = await askStudent(principal, newPaper(ask));
     expect(asked.status).toBe(201);
-    const key = keyOf(asked.body.pendingId);
+    const pending = pendingOf(asked.body.pendingId);
     await send(asked.body, bytes, type);
-    expect(store().files.has(key)).toBe(true);
+    expect(store().files.has(pending)).toBe(true);
     const r = await confirmStudent(principal, asked.body.pendingId);
-    expect(store().files.has(key)).toBe(false);
+    expect(store().files.has(pending) || store().files.has(keyOf(asked.body.pendingId))).toBe(false);
     expect(await count('record_documents')).toBe(before.docs);
     expect(await count(`audit_log where event_action like 'record_document.%'`)).toBe(before.audits);
     return [r.status, r.body.code];
@@ -272,7 +297,7 @@ describe('the confirmation', () => {
 
   it('refuses a ticket after its ten minutes, and takes its file away', async () => {
     const asked = await askStudent(principal, newPaper());
-    const key = keyOf(asked.body.pendingId);
+    const key = pendingOf(asked.body.pendingId);
     await send(asked.body, png(2000));
     const later = Date.now() + 11 * 60_000;
     const clock = vi.spyOn(Date, 'now').mockReturnValue(later);
@@ -288,13 +313,17 @@ describe('the confirmation', () => {
 
   it('refuses another school’s, another person’s, another record’s, a changed or a made-up ticket, touching no file', async () => {
     const asked = await askStudent(principal, newPaper());
-    const key = keyOf(asked.body.pendingId);
+    const key = pendingOf(asked.body.pendingId);
     await send(asked.body, png(2000));
     const id = String(asked.body.pendingId);
     const [body, mac] = id.split('.');
     const ticket = openTicket(id)!;
     const changed = `${Buffer.from(JSON.stringify({ ...ticket, schoolId: B })).toString('base64url')}.${mac}`;
-    const madeUp = sealTicket({ ...ticket, userId: ADMIN }).replace(/.$/, (c) => (c === 'A' ? 'B' : 'A'));
+    // A ticket for the admin with one character of its seal changed; and the same seal spelled with base64url's spare
+    // bits set, which decodes to the right bytes but is not the spelling this server writes.
+    const [aBody, aMac] = sealTicket({ ...ticket, userId: ADMIN }).split('.');
+    const madeUp = `${aBody}.${aMac.slice(0, 10)}${aMac[10] === 'A' ? 'B' : 'A'}${aMac.slice(11)}`;
+    const respelled = `${aBody}.${aMac.slice(0, -1)}${String.fromCharCode(aMac.charCodeAt(aMac.length - 1) + 1)}`;
     const cases: [Who, unknown, string, number, string | undefined][] = [
       [bPrincipal, id, S5, 403, 'not_allowed'],
       [admin, id, S5, 403, 'not_allowed'],
@@ -302,6 +331,7 @@ describe('the confirmation', () => {
       [principal, changed, S5, 400, 'upload_unknown'],
       [principal, `${body}.${mac.slice(0, -2)}`, S5, 400, 'upload_unknown'],
       [admin, madeUp, S5, 400, 'upload_unknown'],
+      [admin, respelled, S5, 400, 'upload_unknown'],
       [principal, 'not a ticket', S5, 400, 'upload_unknown'],
       [principal, undefined, S5, 400, 'upload_unknown'],
     ];
@@ -340,5 +370,77 @@ describe('the multipart upload', () => {
     expect((await multipart(png(3 * MB))).status).toBe(201);
     const big = await multipart(png(4 * MB + 1));
     expect([big.status, big.body.code, (big.body.params as Record<string, unknown>)?.maxMb]).toEqual([413, 'file_too_large', 4]);
+  });
+});
+
+describe('the screen’s sender (src/components/documents/send-record-file.ts), against the real routes', () => {
+  // The browser's PUT: half the file, then all of it, then the store's answer (0: the connection failed).
+  class FakeXhr {
+    static answer = 200;
+    upload: { onprogress: ((e: { lengthComputable: boolean; loaded: number; total: number }) => void) | null } = { onprogress: null };
+    onload: (() => void) | null = null;
+    onerror: (() => void) | null = null;
+    onabort: (() => void) | null = null;
+    ontimeout: (() => void) | null = null;
+    status = 0;
+    private url = '';
+    private headers: Record<string, string> = {};
+    open(_method: string, url: string) {
+      this.url = url;
+    }
+    setRequestHeader(name: string, value: string) {
+      this.headers[name.toLowerCase()] = value;
+    }
+    async send(file: File) {
+      if (FakeXhr.answer === 0) return this.onerror?.();
+      this.upload.onprogress?.({ lengthComputable: true, loaded: file.size / 2, total: file.size });
+      this.upload.onprogress?.({ lengthComputable: true, loaded: file.size, total: file.size });
+      if (FakeXhr.answer === 200) await store().receive(this.url, new Uint8Array(await file.arrayBuffer()), this.headers['content-type']);
+      this.status = FakeXhr.answer;
+      this.onload?.();
+    }
+  }
+  beforeEach(() => {
+    signIn(principal);
+    FakeXhr.answer = 200;
+    const routes: Record<string, Route> = { [`${staffBase}/upload`]: staffAsk, [`${staffBase}/confirm`]: staffConfirm };
+    vi.stubGlobal('fetch', async (url: string, init: RequestInit) => routes[url](new NextRequest(`http://school.example${url}`, init as never), { params: { staffId: TEACHER } }));
+    vi.stubGlobal('XMLHttpRequest', FakeXhr);
+  });
+  afterAll(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('checks the file by its size and first bytes before anything is asked', async () => {
+    expect(await checkBeforeSending(null)).toEqual({ ok: false, problem: 'file_missing' });
+    expect(await checkBeforeSending(new File([], 'empty.pdf'))).toEqual({ ok: false, problem: 'file_empty' });
+    expect(await checkBeforeSending(new File([png(10 * MB + 1)], 'big.png'))).toEqual({ ok: false, problem: 'file_too_large' });
+    expect(await checkBeforeSending(new File([TEXT], 'page.pdf', { type: 'application/pdf' }))).toEqual({ ok: false, problem: 'file_type' });
+    // The type is the first bytes', never the name's.
+    expect(await checkBeforeSending(new File([png(100)], 'scan.pdf', { type: 'application/pdf' }))).toEqual({ ok: true, mime: 'image/png' });
+  });
+
+  it('sends a 6 MB file with its progress, then has it confirmed', async () => {
+    const seen: string[] = [];
+    const file = new File([png(6 * MB)], 'letter.png', { type: 'image/png' });
+    const r = await sendRecordFile(staffBase, file, 'image/png', { kind: 'experience_letter', title: 'Relieving letter' }, (p) => seen.push(p.phase === 'sending' ? `${p.percent}%` : p.phase));
+    expect(r).toMatchObject({ ok: true, versionNo: 1 });
+    expect(seen).toEqual(['0%', '50%', '100%', 'checking']);
+    const rows = (await db.pg.query(`select v.size_bytes from record_document_versions v join record_documents d using (document_id) where d.title = 'Relieving letter'`)).rows;
+    expect(rows).toEqual([{ size_bytes: 6 * MB }]);
+  });
+
+  it('says where it stopped: the ask refused, the store refused or unreachable, the confirmation refused', async () => {
+    const file = new File([png(2000)], 'letter.png');
+    const asked = await sendRecordFile(staffBase, file, 'image/png', { kind: 'passport', title: 'Letter' }, () => undefined);
+    expect(asked.ok === false && asked.step === 'ask' && asked.res?.status).toBe(400);
+    FakeXhr.answer = 413;
+    expect(await sendRecordFile(staffBase, file, 'image/png', { kind: 'other', title: 'Letter' }, () => undefined)).toEqual({ ok: false, step: 'send', tooLarge: true });
+    FakeXhr.answer = 0;
+    expect(await sendRecordFile(staffBase, file, 'image/png', { kind: 'other', title: 'Letter' }, () => undefined)).toEqual({ ok: false, step: 'send', tooLarge: false });
+    FakeXhr.answer = 200;
+    ocr.text = 'Government of India  Aadhaar  1234 5678 9012';
+    const refused = await sendRecordFile(staffBase, file, 'image/png', { kind: 'other', title: 'Letter' }, () => undefined);
+    expect(refused.ok === false && refused.step === 'confirm' && refused.res?.status).toBe(400);
   });
 });

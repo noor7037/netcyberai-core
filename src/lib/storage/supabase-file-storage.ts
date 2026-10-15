@@ -9,8 +9,10 @@ import { FileStorageUnavailableError, type DirectUploadStorage } from './file-st
 //
 // Direct uploads (C235-D2): an upload link is Supabase's signed upload URL
 // for one key, made without upsert, so it can never replace a file that is
-// already there. The bucket's own limits (size, and the four types it
-// takes) still apply to what the browser sends to it.
+// already there (Supabase keeps such a link valid for two hours, which the
+// app cannot shorten; the app's own ticket stops after ten minutes). The
+// bucket's own limits (size, and the four types it takes) still apply to
+// what the browser sends to it.
 
 const BUCKET = 'documents';
 
@@ -56,5 +58,20 @@ export const supabaseFileStorage: DirectUploadStorage = {
     const { data, error } = await client().storage.from(BUCKET).download(key);
     if (error || !data) return null;
     return new Uint8Array(await data.arrayBuffer());
+  },
+  // Inside the bucket, by the store itself: nothing is downloaded, and the type it recorded goes with the file.
+  async move(from, to) {
+    const { error } = await client().storage.from(BUCKET).move(from, to);
+    if (error) throw new FileStorageUnavailableError(`could not move a file: ${error.message}`);
+  },
+  // The oldest first, at most 100 a call: a sweep that runs again finds the rest.
+  async removeOlderThan(prefix, before) {
+    const { data, error } = await client().storage.from(BUCKET).list(prefix.replace(/\/$/, ''), { limit: 100, sortBy: { column: 'created_at', order: 'asc' } });
+    if (error) throw new FileStorageUnavailableError(`could not list files: ${error.message}`);
+    const old = (data ?? []).filter((f) => f.id && f.created_at && Date.parse(f.created_at) < before.getTime()).map((f) => `${prefix}${f.name}`);
+    if (!old.length) return 0;
+    const gone = await client().storage.from(BUCKET).remove(old);
+    if (gone.error) throw new FileStorageUnavailableError(`could not remove files: ${gone.error.message}`);
+    return old.length;
   },
 };

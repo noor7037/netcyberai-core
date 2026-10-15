@@ -5304,6 +5304,56 @@ const studentPapers = async (page) => {
   await page.evaluate(() => window.scrollTo(0, 0)); // the whole page is photographed from the top
   await page.waitForTimeout(300);
 };
+// C235-D2: a paper sent straight to the file store. The harness keeps no file store, so the browser's ask, its send
+// and the confirmation are stood in for in the page (the routes themselves: test/documents/record-direct-upload.test.ts),
+// and the confirmation is held, so the screen is photographed while the server "checks" a 6 MB file. The second screen
+// is the browser's own refusal of a file over 10 MB, before anything is sent.
+const pngOf = (size) => {
+  const b = Buffer.alloc(size);
+  Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]).copy(b);
+  return b;
+};
+let c235d2Seen = null;
+let c235d2Held = null;
+const openAddPaper = async (page) => {
+  await c235dGone();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.getByRole('button', { name: '+ Add a document' }).click();
+  await page.locator('[data-record-document-form] input[name="title"]').fill('Relieving letter from the previous school');
+};
+const directChecking = async (page) => {
+  await openAddPaper(page);
+  const ticket = { pendingId: 'harness.pending', uploadUrl: `${base}/__harness-store/letter.png`, contentType: 'image/png', maxBytes: 10485760, expiresAt: new Date(Date.now() + 600000).toISOString() };
+  await page.route('**/record-documents/upload', (r) => r.fulfill({ status: 201, contentType: 'application/json', body: JSON.stringify(ticket) }));
+  await page.route('**/__harness-store/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{}' }));
+  // Held: the screen stays on "Checking the file" (and the request is dropped after, never sent on to the server).
+  await page.route('**/record-documents/confirm', (r) => {
+    c235d2Held = r;
+  });
+  await page.locator('[data-record-document-form] input[type=file]').setInputFiles({ name: 'relieving-letter.png', mimeType: 'image/png', buffer: pngOf(6 * 1024 * 1024) });
+  await page.getByRole('button', { name: 'Upload', exact: true }).click();
+  await page.locator('[data-upload-progress="checking"]').waitFor({ timeout: 20000 });
+  c235d2Seen = { phase: await page.locator('[data-upload-progress]').getAttribute('data-upload-progress'), bar: await page.locator('[role=progressbar]').getAttribute('aria-valuenow'), busy: await page.getByRole('button', { name: 'Uploading…' }).isDisabled() };
+};
+const directCheckingDone = async (page) => {
+  await c235d2Held?.abort().catch(() => undefined);
+  c235d2Held = null;
+  await page.unrouteAll({ behavior: 'ignoreErrors' });
+  if (JSON.stringify(c235d2Seen) !== JSON.stringify({ phase: 'checking', bar: '100', busy: true })) throw new Error(`the upload on the screen: ${JSON.stringify(c235d2Seen)}`);
+};
+const directTooLarge = async (page) => {
+  await openAddPaper(page);
+  let asked = 0;
+  await page.route('**/record-documents/upload', (r) => ((asked += 1), r.abort()));
+  await page.locator('[data-record-document-form] input[type=file]').setInputFiles({ name: 'service-book.pdf', mimeType: 'application/pdf', buffer: Buffer.alloc(10 * 1024 * 1024 + 1, 0x25) });
+  await page.getByRole('button', { name: 'Upload', exact: true }).click();
+  await page.locator('[data-upload-failed]').waitFor({ timeout: 20000 });
+  c235d2Seen = { said: (await page.locator('[data-upload-failed]').textContent())?.trim(), asked };
+};
+const directTooLargeDone = async (page) => {
+  await page.unrouteAll({ behavior: 'ignoreErrors' });
+  if (JSON.stringify(c235d2Seen) !== JSON.stringify({ said: 'The file is larger than 10 MB. Choose a smaller one.', asked: 0 })) throw new Error(`the refusal on the screen: ${JSON.stringify(c235d2Seen)}`);
+};
 const listExportOpen = (list) => async (page) => {
   await page.locator('[data-list-export] summary').click();
   const asked = {};
@@ -6088,6 +6138,10 @@ const SCREENS = [
   ['principal', 'app-students-list-export', '/app/students', listExportOpen('students'), listExportDone('students')],
   ['principal', 'app-staff-list-export', '/app/staff', listExportOpen('staff'), listExportDone('staff')],
   // c235d end
+  // c235d2 begin
+  ['principal', 'app-staff-doc-direct-checking', `/app/staff/${PEOPLE.teacher.sub}?tab=documents`, directChecking, directCheckingDone],
+  ['principal', 'app-staff-doc-direct-too-large', `/app/staff/${PEOPLE.teacher.sub}?tab=documents`, directTooLarge, directTooLargeDone],
+  // c235d2 end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed

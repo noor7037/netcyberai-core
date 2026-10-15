@@ -3,13 +3,14 @@ import { appSessionSecret } from '@/lib/auth/env';
 import { isRecordFileType, type RecordFileType } from '@/lib/contracts/record-documents';
 
 // The pending upload of a paper on a record (C235-D2), kept in the ticket the browser holds rather than in a table:
-// who asked (school and person), for which record (and which paper, or a new one with its kind and name), the key the
-// server chose for the file, the file's declared name, size and type, and when the ticket stops working (ten minutes
-// after it is given). The browser cannot change any of it: the ticket is sealed with an HMAC-SHA256 keyed by the app's
-// session secret under its own purpose ("record-upload-ticket:v1"), the way the application form's digests are
-// (src/lib/onboarding/intake.ts), and is compared in constant time. It mints nothing: the purpose prefix (which no
-// session token's signing input can contain) keeps it apart from every session token. Only the person who asked
-// can confirm it (src/lib/documents/record-direct-upload.ts), once: a key a version row already uses is refused.
+// who asked (school and person), for which record (and which paper, or a new one with its kind and name), the keys the
+// server chose for the file (where the browser sends it, and where it is kept once confirmed), the file's declared
+// name, size and type, and when the ticket stops working (ten minutes after it is given). The browser cannot change
+// any of it: the ticket is sealed with an HMAC-SHA256 keyed by the app's session secret under its own purpose
+// ("record-upload-ticket:v1"), the way the application form's digests are (src/lib/onboarding/intake.ts), and is
+// compared in constant time. It mints nothing: the purpose prefix (which no session token's signing input can
+// contain) keeps it apart from every session token. Only the person who asked can confirm it
+// (src/lib/documents/record-direct-upload.ts), once: a key a version row already uses is refused.
 //
 // Not secret from the person who holds it (it carries what they sent, and nothing more), only unforgeable.
 
@@ -28,7 +29,8 @@ export type UploadTicket = {
   fileName: string;
   mime: RecordFileType;
   sizeBytes: number;
-  key: string;
+  pendingKey: string; // where the browser sends the file: "<school>/record-documents/pending/<uuid>.<ext>"
+  key: string; // where it is kept once confirmed, and what its version row names
   expiresAt: number; // seconds since 1970
 };
 
@@ -50,7 +52,8 @@ export function openTicket(raw: unknown): UploadTicket | null {
   const [body, mac] = parts;
   const given = Buffer.from(mac, 'base64url');
   const expected = seal(body);
-  if (given.length !== expected.length || !timingSafeEqual(given, expected)) return null;
+  // Only the one spelling this server writes: base64url's spare bits give a MAC more than one.
+  if (given.toString('base64url') !== mac || given.length !== expected.length || !timingSafeEqual(given, expected)) return null;
   let t: Record<string, unknown>;
   try {
     t = JSON.parse(Buffer.from(body, 'base64url').toString('utf8'));
@@ -70,6 +73,7 @@ export function openTicket(raw: unknown): UploadTicket | null {
     str(t.fileName, 400) &&
     isRecordFileType(t.mime) &&
     Number.isSafeInteger(t.sizeBytes) &&
+    str(t.pendingKey, 400) &&
     str(t.key, 400) &&
     Number.isSafeInteger(t.expiresAt);
   return ok ? (t as UploadTicket) : null;

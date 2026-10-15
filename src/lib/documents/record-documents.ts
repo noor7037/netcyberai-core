@@ -55,6 +55,10 @@ const EXT: Record<RecordFileType, string> = { 'application/pdf': 'pdf', 'image/j
 // Where a version's file is kept: under the school's own prefix, the record and the paper; the file's own name never.
 export const recordFileKey = (schoolId: string, subject: RecordSubject, documentId: string, fileId: string, mime: RecordFileType): string =>
   `${schoolId}/record-documents/${subject.kind}/${subject.id}/${documentId}/${fileId}.${EXT[mime]}`;
+// Where the browser sends a file before it is confirmed (C235-D2): one folder a school, so what was never confirmed is
+// found by its folder alone. No row ever names a pending key.
+export const recordPendingFolder = (schoolId: string): string => `${schoolId}/record-documents/pending/`;
+export const recordPendingKey = (schoolId: string, fileId: string, mime: RecordFileType): string => `${recordPendingFolder(schoolId)}${fileId}.${EXT[mime]}`;
 
 export type FileProblem = 'file_empty' | 'file_too_large' | 'file_type';
 // The size and the kind of a file, before anything else is read from it.

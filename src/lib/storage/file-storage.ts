@@ -15,13 +15,17 @@ export interface FileStorage {
 }
 
 // A file the browser sends straight to the store (C235-D2), never through the app's server. The server still decides
-// everything: it chooses the key, gives a link that takes one file at that key only (never overwriting one), and then
-// reads what arrived (its size and type first, then its bytes) before any row refers to it.
+// everything: it chooses a pending key, gives a link that takes one file at that key only (never overwriting one),
+// reads what arrived (its size and type first, then its bytes), and only then moves it to the key a row refers to.
+// What is left under a pending prefix was never confirmed, and is removed once old enough.
 export type StoredFileInfo = { sizeBytes: number; contentType: string | null };
 export interface DirectUploadStorage extends FileStorage {
   signedUploadUrl(key: string): Promise<string>;
   stat(key: string): Promise<StoredFileInfo | null>;
   get(key: string): Promise<Uint8Array | null>;
+  move(from: string, to: string): Promise<void>;
+  // Removes the files directly under `prefix` (a folder, ending in "/") stored before `before`; how many it removed.
+  removeOlderThan(prefix: string, before: Date): Promise<number>;
 }
 
 export class FileStorageUnavailableError extends Error {
@@ -34,11 +38,32 @@ export class FileStorageUnavailableError extends Error {
 // Keeps files in memory: for tests and previews without a bucket.
 export class MemoryFileStorage implements DirectUploadStorage {
   readonly files = new Map<string, { bytes: Uint8Array; contentType: string }>();
-  // An upload link's token → the one key it may write.
+  // When each file was stored (milliseconds), and an upload link's token → the one key it may write.
+  readonly storedAt = new Map<string, number>();
   readonly uploadLinks = new Map<string, string>();
   async put(key: string, bytes: Uint8Array, contentType: string) {
     if (this.files.has(key)) throw new Error('a file already exists at this key');
     this.files.set(key, { bytes, contentType });
+    this.storedAt.set(key, Date.now());
+  }
+  async move(from: string, to: string) {
+    const f = this.files.get(from);
+    if (!f) throw new Error('no file at this key');
+    if (this.files.has(to)) throw new Error('a file already exists at this key');
+    this.files.set(to, f);
+    this.storedAt.set(to, this.storedAt.get(from) ?? Date.now());
+    this.files.delete(from);
+    this.storedAt.delete(from);
+  }
+  async removeOlderThan(prefix: string, before: Date) {
+    let removed = 0;
+    for (const key of [...this.files.keys()]) {
+      if (key.startsWith(prefix) && !key.slice(prefix.length).includes('/') && (this.storedAt.get(key) ?? 0) < before.getTime()) {
+        await this.remove(key);
+        removed += 1;
+      }
+    }
+    return removed;
   }
   async signedUploadUrl(key: string) {
     const token = crypto.randomUUID();
@@ -64,6 +89,7 @@ export class MemoryFileStorage implements DirectUploadStorage {
   }
   async remove(key: string) {
     this.files.delete(key);
+    this.storedAt.delete(key);
   }
 }
 

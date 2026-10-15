@@ -11,6 +11,8 @@ import {
   mayUploadRecordDocuments,
   readTitle,
   recordFileKey,
+  recordPendingFolder,
+  recordPendingKey,
   sniffRecordFile,
   subjectExists,
   RECORD_FILE_MAX_BYTES,
@@ -27,23 +29,33 @@ import { openTicket, sealTicket, type UploadTicket } from './upload-ticket';
 //
 //   1. Ask (askRecordUpload): the same person and record checks as a multipart upload, and the file's declared size
 //      (at most 10 MB), type (PDF, JPEG or PNG) and name (no Aadhaar number or card words) refused up front. The server
-//      chooses the key, "<school>/record-documents/<record>/<id>/<paper>/<uuid>.<ext>" (a new paper's id is chosen
-//      here too), and gives an upload link for that one key, which never overwrites a file, with a sealed ticket
-//      (src/lib/documents/upload-ticket.ts) that holds the whole pending upload and stops working after ten minutes.
-//      Nothing is written to the database, and nothing is audited, at this step.
+//      chooses two keys: a pending one, "<school>/record-documents/pending/<uuid>.<ext>", where the browser sends the
+//      file, and the one it is kept at once confirmed, "<school>/record-documents/<record>/<id>/<paper>/<uuid>.<ext>"
+//      (a new paper's id is chosen here too). It gives an upload link for the pending key only, which never overwrites
+//      a file, and a sealed ticket (src/lib/documents/upload-ticket.ts) that holds the whole pending upload and stops
+//      working after ten minutes. Nothing is written to the database, and nothing is audited, at this step.
 //   2. The browser sends the file to the link.
 //   3. Confirm (readArrival before the transaction, finishRecordUpload inside it): only the person the ticket was given
 //      to, in the same school, for the same record, within its ten minutes, and only once. The server reads what
 //      arrived: its recorded size and type, then its bytes; the real size (at most 10 MB), the first bytes (PDF, JPEG
 //      or PNG, and the type that was declared) and the Aadhaar upload check (C232 part A), as a multipart upload is
-//      checked. Then the paper or version rows and the one audit row are written by the same code as a multipart
-//      upload (src/lib/documents/record-documents.ts). On any refusal of the person's own upload the file is taken
-//      away again and nothing is written; a file a version already uses is never taken away.
+//      checked. Then it moves the file to its kept key, and the paper or version rows and the one audit row are written
+//      by the same code as a multipart upload (src/lib/documents/record-documents.ts). On any refusal of the person's
+//      own upload the file is taken away again and nothing is written; a file a version uses is never taken away.
 //
 // A ticket that is not this server's, or is another person's or school's, is refused without touching any file.
+//
+// A file sent but never confirmed (the page was closed between sending and confirming, or the link was used after
+// the ticket's ten minutes: Supabase keeps a link valid for two hours) stays only under the pending folder, where no
+// row and no link ever reaches it. Each ask removes the school's pending files older than PENDING_DEAD_SECONDS, whose
+// tickets have all stopped working.
 
 export type DirectFailure = UploadFailure | 'not_sent_properly' | 'upload_unknown' | 'upload_expired' | 'upload_missing' | 'upload_done';
 export type AskResult = { ok: true; ticket: RecordUploadTicket } | { ok: false; reason: DirectFailure };
+
+// A pending file that arrived this long ago belongs to a ticket that has stopped working: it arrived after its ticket
+// was given, and the ticket works for ten minutes.
+export const PENDING_DEAD_SECONDS = RECORD_UPLOAD_TICKET_SECONDS + 5 * 60;
 
 const FILE_NAME_MAX = 255;
 // The file's own name: one line of at most 255 characters. Only read for the Aadhaar check; never kept.
@@ -85,24 +97,28 @@ export async function askRecordUpload(
   if (named) return { ok: false, reason: named };
   if (!(await subjectExists(db, actor, subject))) return { ok: false, reason: 'not_found' };
   if (!newPaper && !(await documentOnRecord(db, actor, subject, input.documentId as string))) return { ok: false, reason: 'not_found' };
+  // What was sent and never confirmed goes first (best effort: an ask is never refused for it).
+  await storage.removeOlderThan(recordPendingFolder(actor.schoolId), new Date(now() - PENDING_DEAD_SECONDS * 1000)).catch(() => 0);
   const documentId = newPaper ? newId() : (input.documentId as string);
-  const key = recordFileKey(actor.schoolId, subject, documentId, newId(), input.mimeType);
+  const fileId = newId();
+  const pendingKey = recordPendingKey(actor.schoolId, fileId, input.mimeType);
+  const key = recordFileKey(actor.schoolId, subject, documentId, fileId, input.mimeType);
   let uploadUrl: string;
   try {
-    uploadUrl = await storage.signedUploadUrl(key);
+    uploadUrl = await storage.signedUploadUrl(pendingKey);
   } catch (err) {
     if (err instanceof FileStorageUnavailableError) return { ok: false, reason: 'storage_unavailable' };
     throw err;
   }
   const expiresAt = Math.floor(now() / 1000) + RECORD_UPLOAD_TICKET_SECONDS;
-  const ticket: UploadTicket = { schoolId: actor.schoolId, userId: actor.userId, record: subject.kind, recordId: subject.id, documentId, newPaper, kind, title, fileName, mime: input.mimeType, sizeBytes: size, key, expiresAt };
+  const ticket: UploadTicket = { schoolId: actor.schoolId, userId: actor.userId, record: subject.kind, recordId: subject.id, documentId, newPaper, kind, title, fileName, mime: input.mimeType, sizeBytes: size, pendingKey, key, expiresAt };
   return { ok: true, ticket: { pendingId: sealTicket(ticket), uploadUrl, contentType: input.mimeType, maxBytes: RECORD_FILE_MAX_BYTES, expiresAt: new Date(expiresAt * 1000).toISOString() } };
 }
 
 // What arrived for a ticket, read before the transaction opens (the Aadhaar check's OCR takes seconds).
-//   ok:            the file, checked, ready to be written;
+//   ok:            the file, checked, ready to be kept;
 //   not ok:        refused; `ticket` is the person's own pending upload (null: none of theirs, so no file is touched),
-//                  and `discard` says its file is to be taken away.
+//                  and `discard` says its pending file is to be taken away.
 export type Arrival =
   | { ok: true; ticket: UploadTicket; file: { name: string; bytes: Uint8Array; storedKey: string }; checked: UploadCheck }
   | { ok: false; reason: DirectFailure; ticket: UploadTicket | null; discard: boolean };
@@ -113,13 +129,19 @@ export async function readArrival(storage: DirectUploadStorage, actor: RecordAct
   const t = openTicket(raw);
   if (!t) return none('upload_unknown');
   if (t.schoolId !== actor.schoolId || t.userId !== actor.userId) return none('not_allowed');
-  // A sealed ticket always names its own record and a key under it; anything else is not one of this server's.
-  if (t.record !== subject.kind || t.recordId !== subject.id || !t.key.startsWith(`${actor.schoolId}/record-documents/${subject.kind}/${subject.id}/${t.documentId}/`) || t.key.includes('..')) return none('upload_unknown');
+  // A sealed ticket always names its own record and keys under it; anything else is not one of this server's.
+  const own =
+    t.record === subject.kind &&
+    t.recordId === subject.id &&
+    t.pendingKey.startsWith(recordPendingFolder(actor.schoolId)) &&
+    t.key.startsWith(`${actor.schoolId}/record-documents/${subject.kind}/${subject.id}/${t.documentId}/`) &&
+    !`${t.pendingKey}${t.key}`.includes('..');
+  if (!own) return none('upload_unknown');
   const refuse = (reason: DirectFailure, discard = true): Arrival => ({ ok: false, reason, ticket: t, discard });
   if (Math.floor(now() / 1000) > t.expiresAt) return refuse('upload_expired');
   let info;
   try {
-    info = await storage.stat(t.key);
+    info = await storage.stat(t.pendingKey);
   } catch {
     return refuse('storage_unavailable', false); // the file may be there: the person may confirm again
   }
@@ -129,7 +151,7 @@ export async function readArrival(storage: DirectUploadStorage, actor: RecordAct
   if (info.contentType !== null && info.contentType !== t.mime) return refuse('file_type');
   let bytes: Uint8Array | null;
   try {
-    bytes = await storage.get(t.key);
+    bytes = await storage.get(t.pendingKey);
   } catch {
     return refuse('storage_unavailable', false);
   }
@@ -142,19 +164,24 @@ export async function readArrival(storage: DirectUploadStorage, actor: RecordAct
   return { ok: true, ticket: t, file: { name: t.fileName, bytes, storedKey: t.key }, checked };
 }
 
-// Inside the route's transaction: once per ticket, then the rows and the audit row exactly as a multipart upload
-// writes them. A refusal takes the person's own file away (unless a version already uses it) and writes nothing.
+// Inside the route's transaction: once per ticket; the file moved to its kept key; then the rows and the audit row
+// exactly as a multipart upload writes them. A refusal takes the person's own file away and writes nothing.
 export async function finishRecordUpload(db: PoolClient, storage: DirectUploadStorage, actor: RecordActor, subject: RecordSubject, arrival: Arrival): Promise<UploadResult | { ok: false; reason: DirectFailure }> {
   const t = arrival.ticket;
   if (!t) return { ok: false, reason: arrival.ok ? 'upload_unknown' : arrival.reason };
   // Two confirmations of one ticket wait for each other; the second finds the first one's version.
   await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`record-upload:${t.key}`]);
   if ((await db.query(`select 1 from record_document_versions where school_id = $1 and storage_key = $2`, [actor.schoolId, t.key])).rows[0]) return { ok: false, reason: 'upload_done' };
-  const discard = () => storage.remove(t.key).catch(() => undefined);
   if (!arrival.ok) {
-    if (arrival.discard) await discard();
+    if (arrival.discard) await storage.remove(t.pendingKey).catch(() => undefined);
     return { ok: false, reason: arrival.reason };
   }
+  try {
+    await storage.move(t.pendingKey, t.key);
+  } catch {
+    return { ok: false, reason: 'storage_unavailable' }; // still pending: the person may confirm again
+  }
+  const discard = () => storage.remove(t.key).catch(() => undefined);
   let result: UploadResult;
   try {
     result = t.newPaper
