@@ -501,7 +501,9 @@ describe('on the real schema', () => {
       expect((await db.pg.query(`select count(*)::int as n from fees_ledger where school_id = $1 and status = 'overdue'`, [A])).rows[0].n).toBe(2);
       const rows = await stored();
       expect(rows.map((f) => f.name)).not.toContain('Hina');
-      expect(JSON.stringify(rows.map((f) => f.evidence))).not.toMatch(/fee|amount|paise|minor|overdue/i);
+      // Ids are random hex and can spell "fee" by chance (one did, C230-B); the words are what must not be there.
+      const words = JSON.stringify(rows.map((f) => f.evidence)).replace(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi, 'id');
+      expect(words).not.toMatch(/fee|amount|paise|minor|overdue/i);
       // The database refuses fees as a reason, whatever the rule version.
       await expect(run(principal, `insert into early_warning_flags (school_id, student_id, class_id, reasons, evidence, rule_version, opened_by) values ($1, $2, $3, '{fees}', '{"fees": {}}', 2, $4)`, [A, BELA, C5A, PRINCIPAL])).rejects.toThrow(/early_warning_flags_reasons/);
     });
