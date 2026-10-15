@@ -295,7 +295,7 @@ describe('the confirmation', () => {
     expect(await refusedAndGone({}, png(2000))).toEqual([400, 'upload_aadhaar_card']);
   });
 
-  it('refuses a ticket after its ten minutes, and takes its file away', async () => {
+  it('refuses a ticket after its ten minutes, and leaves its file to the sweep', async () => {
     const asked = await askStudent(principal, newPaper());
     const key = pendingOf(asked.body.pendingId);
     await send(asked.body, png(2000));
@@ -307,8 +307,37 @@ describe('the confirmation', () => {
     } finally {
       clock.mockRestore();
     }
-    expect(store().files.has(key)).toBe(false);
+    // Not taken away here: another confirmation of the same ticket may be checking it (the ask's sweep removes it).
+    expect(store().files.has(key)).toBe(true);
     expect(await count('record_documents where student_id = $1', [S5])).toBe(0);
+  });
+
+  it('keeps only the bytes it checked: a file sent through the same link while the check ran is refused and taken away', async () => {
+    const before = { docs: await count('record_documents'), audits: await count(`audit_log where event_action like 'record_document.%'`) };
+    const asked = await askStudent(principal, newPaper());
+    const pending = pendingOf(asked.body.pendingId);
+    const key = keyOf(asked.body.pendingId);
+    await send(asked.body, png(2000));
+    const other = png(3000);
+    other[2000] = 7;
+    const read = store().get.bind(store());
+    // While the checked file is being read: it is taken away from the pending key and another is sent to the same link
+    // (which a real upload link allows for two hours once the key is empty).
+    const spy = vi.spyOn(store(), 'get').mockImplementationOnce(async (k: string) => {
+      const bytes = await read(k);
+      await store().remove(pending);
+      await send(asked.body, other);
+      return bytes;
+    });
+    try {
+      const r = await confirmStudent(principal, asked.body.pendingId);
+      expect([r.status, r.body.code]).toEqual([409, 'upload_changed']);
+    } finally {
+      spy.mockRestore();
+    }
+    expect(store().files.has(key)).toBe(false);
+    expect(await count('record_documents')).toBe(before.docs);
+    expect(await count(`audit_log where event_action like 'record_document.%'`)).toBe(before.audits);
   });
 
   it('refuses another school’s, another person’s, another record’s, a changed or a made-up ticket, touching no file', async () => {

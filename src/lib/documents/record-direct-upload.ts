@@ -39,9 +39,12 @@ import { openTicket, sealTicket, type UploadTicket } from './upload-ticket';
 //      to, in the same school, for the same record, within its ten minutes, and only once. The server reads what
 //      arrived: its recorded size and type, then its bytes; the real size (at most 10 MB), the first bytes (PDF, JPEG
 //      or PNG, and the type that was declared) and the Aadhaar upload check (C232 part A), as a multipart upload is
-//      checked. Then it moves the file to its kept key, and the paper or version rows and the one audit row are written
-//      by the same code as a multipart upload (src/lib/documents/record-documents.ts). On any refusal of the person's
-//      own upload the file is taken away again and nothing is written; a file a version uses is never taken away.
+//      checked. Then it moves the file to its kept key, which no upload link can write, and reads it back there: only
+//      the very bytes that were checked are kept (the link stays usable for two hours, so a file taken away from the
+//      pending key could be replaced by another while the check runs). The paper or version rows and the one audit row
+//      are written by the same code as a multipart upload (src/lib/documents/record-documents.ts). On any refusal of
+//      the person's own upload the file is taken away again and nothing is written; a file a version uses is never
+//      taken away, and a ticket past its ten minutes leaves its pending file to the sweep.
 //
 // A ticket that is not this server's, or is another person's or school's, is refused without touching any file.
 //
@@ -50,7 +53,7 @@ import { openTicket, sealTicket, type UploadTicket } from './upload-ticket';
 // row and no link ever reaches it. Each ask removes the school's pending files older than PENDING_DEAD_SECONDS, whose
 // tickets have all stopped working.
 
-export type DirectFailure = UploadFailure | 'not_sent_properly' | 'upload_unknown' | 'upload_expired' | 'upload_missing' | 'upload_done';
+export type DirectFailure = UploadFailure | 'not_sent_properly' | 'upload_unknown' | 'upload_expired' | 'upload_missing' | 'upload_done' | 'upload_changed';
 export type AskResult = { ok: true; ticket: RecordUploadTicket } | { ok: false; reason: DirectFailure };
 
 // A pending file that arrived this long ago belongs to a ticket that has stopped working: it arrived after its ticket
@@ -138,7 +141,9 @@ export async function readArrival(storage: DirectUploadStorage, actor: RecordAct
     !`${t.pendingKey}${t.key}`.includes('..');
   if (!own) return none('upload_unknown');
   const refuse = (reason: DirectFailure, discard = true): Arrival => ({ ok: false, reason, ticket: t, discard });
-  if (Math.floor(now() / 1000) > t.expiresAt) return refuse('upload_expired');
+  // Past its ten minutes the pending file is left for the sweep, not taken away here: another confirmation of the same
+  // ticket may be checking it, and an empty pending key could be written again through the link.
+  if (Math.floor(now() / 1000) > t.expiresAt) return refuse('upload_expired', false);
   let info;
   try {
     info = await storage.stat(t.pendingKey);
@@ -182,6 +187,17 @@ export async function finishRecordUpload(db: PoolClient, storage: DirectUploadSt
     return { ok: false, reason: 'storage_unavailable' }; // still pending: the person may confirm again
   }
   const discard = () => storage.remove(t.key).catch(() => undefined);
+  // What was moved is whatever sat at the pending key at that moment: it is kept only if it is the file that was checked.
+  let kept: Uint8Array | null;
+  try {
+    kept = await storage.get(t.key);
+  } catch {
+    kept = null;
+  }
+  if (!kept || !sameBytes(kept, arrival.file.bytes)) {
+    await discard();
+    return { ok: false, reason: 'upload_changed' };
+  }
   let result: UploadResult;
   try {
     result = t.newPaper
@@ -194,4 +210,8 @@ export async function finishRecordUpload(db: PoolClient, storage: DirectUploadSt
   }
   if (!result.ok) await discard();
   return result;
+}
+
+function sameBytes(a: Uint8Array, b: Uint8Array): boolean {
+  return a.length === b.length && Buffer.compare(Buffer.from(a.buffer, a.byteOffset, a.byteLength), Buffer.from(b.buffer, b.byteOffset, b.byteLength)) === 0;
 }

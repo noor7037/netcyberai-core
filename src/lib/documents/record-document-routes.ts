@@ -80,6 +80,8 @@ function refusal(reason: UploadFailure | DirectFailure, maxBytes = RECORD_FILE_M
       return jsonError(409, 'the file did not arrive; send it again', { code: reason });
     case 'upload_done':
       return jsonError(409, 'this file was already added', { code: reason });
+    case 'upload_changed':
+      return jsonError(409, 'the file changed while it was being checked; send it again', { code: reason });
     default:
       // An Aadhaar number or card, or words that could not be read (C232 part A): the catalogue's own sentence.
       return isUploadProblem(reason) ? ruleError(400, reason, { field: 'file' }) : ruleError(400, 'not_sent_properly');

@@ -68,7 +68,7 @@ export function RecordDocuments({ record, recordId }: { record: 'staff' | 'stude
     if (code === 'title_aadhaar') return t('rdoc.err.titleAadhaar');
     if (code === 'storage_unavailable') return t('rdoc.err.storage');
     if (code === 'upload_expired') return t('rdoc.err.expired');
-    if (code === 'upload_missing') return t('rdoc.err.notArrived');
+    if (code === 'upload_missing' || code === 'upload_changed') return t('rdoc.err.notArrived');
     if (code === 'upload_done') return t('rdoc.err.alreadyAdded');
     return explainError(body, t('rdoc.err.upload'), lang, res.status);
   }
