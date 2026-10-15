@@ -4,15 +4,16 @@ import { MODULE_GROUPS, moduleById, type ColorToken, type ModuleId } from '@/lib
 import { FirstVisitTour } from '@/components/app-shell/FirstVisitTour';
 import { ShowMeHow } from '@/components/app-shell/ShowMeHow';
 import type { TourId } from '@/lib/contracts/tours';
-import { ModuleIcon } from './ModuleIcon';
-import { TOKEN_TONES } from './tones';
+import { PageBanner } from './PageHeader';
 
 // The one layout every working screen shares (docs/19 rule 1): learn one
 // screen, know them all. Top to bottom, always in this order:
 //
-//   header   the module's icon tile, its title, one line on what the screen
-//            is for, "Show me how" (the guide for this screen's task), and
-//            ONE primary button
+//   header   the page banner (C235-C): a gradient in the group's tone with
+//            the module's icon, its title, ONE short line on what the screen
+//            is for and, when there is more to say, an ⓘ "About this page"
+//            (`about`); "Show me how" (the guide for this screen's task) and
+//            ONE primary button on the banner's white tray
 //   more     quieter actions, when a screen has them
 //   notice   a message about the whole screen
 //   search   the search box
@@ -29,6 +30,7 @@ export function ModulePage({
   moduleId,
   title,
   purpose,
+  about,
   eyebrow,
   tone,
   icon,
@@ -46,7 +48,8 @@ export function ModulePage({
 }: {
   moduleId?: ModuleId;
   title: string;
-  purpose: string; // one line, plain words
+  purpose: string; // one short line, plain words
+  about?: ReactNode; // the longer explanation, behind the ⓘ
   eyebrow?: string;
   tone?: ColorToken;
   icon?: IconName;
@@ -69,22 +72,24 @@ export function ModulePage({
   const over = eyebrow ?? group?.label;
   return (
     <div data-module-page={moduleId ?? 'page'} className="flex flex-col gap-4 p-4 md:p-6">
-      <header lang={headerLang} className={`flex flex-wrap items-center justify-between gap-3 ${hideHeaderInPrint ? 'print:hidden' : ''}`}>
-        <div className="flex min-w-0 items-center gap-3">
-          {glyph && <ModuleIcon name={glyph} tone={colour} size="lg" />}
-          <div className="min-w-0">
-            {over && <p className={`text-xs font-bold uppercase tracking-wider ${TOKEN_TONES[colour].fg}`}>{over}</p>}
-            <h1 className="text-2xl font-extrabold text-slate">{title}</h1>
-            <p className="mt-0.5 max-w-prose text-sm text-slate/70">{purpose}</p>
-          </div>
-        </div>
-        {(help || primary) && (
-          <div className="flex flex-wrap items-center gap-2">
-            {help && <ShowMeHow slug={help} />}
-            {primary && <div data-slot="primary">{primary}</div>}
-          </div>
-        )}
-      </header>
+      <PageBanner
+        lang={headerLang}
+        className={hideHeaderInPrint ? 'print:hidden' : ''}
+        tone={colour}
+        icon={glyph}
+        eyebrow={over}
+        title={title}
+        subtitle={purpose}
+        about={about}
+        actions={
+          (help || primary) && (
+            <>
+              {help && <ShowMeHow slug={help} />}
+              {primary && <div data-slot="primary">{primary}</div>}
+            </>
+          )
+        }
+      />
       {tour && <FirstVisitTour id={tour} />}
       {more && (
         <div data-slot="more" className="flex flex-wrap items-center gap-2">

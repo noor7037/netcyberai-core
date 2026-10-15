@@ -40,7 +40,7 @@ export default async function FeesPage({ searchParams = {} }: { searchParams?: {
         }).catch(() => null)
       : null;
   return (
-    <ModulePage moduleId="fees" help="fee-structures" tour="fees" title={t(lang, 'fee.title')} purpose={t(lang, 'fee.purpose')}>
+    <ModulePage moduleId="fees" help="fee-structures" tour="fees" title={t(lang, 'fee.title')} purpose={t(lang, 'fee.purpose')} about={<>{t(lang, 'fee.about')} {t(lang, 'fee.notYet')}</>}>
       <FeesFirstLoad shownAbove={shown !== null}>
       <div className="flex flex-col gap-6">
         {shown && <FeesShown show={shown} range={readRange(searchParams)} />}

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { ModuleIcon } from '@/components/app-ui/ModuleIcon';
 import { isAlwaysOn, isModuleEnabled, type SchoolEntitlements } from '@/lib/contracts/entitlements';
 import { MODULE_GROUPS, MODULE_REGISTRY, type ModuleDefinition } from '@/lib/contracts/modules';
@@ -10,6 +11,8 @@ import { moduleOffSentence, needsOwnSentence } from '@/lib/i18n/module-off';
 // for whom. The switches themselves are turned by NetCyberAI (the founder
 // rule of C112: a school's entitlements change only in Control, and every
 // change is audited), so this list shows the state and how to ask.
+// C235-C: each row shows the module and its state; what "off" changes is
+// behind the row's ⓘ, and the list's own explanation behind the title's.
 export function ModuleSwitchList({ entitlements, lang }: { entitlements: SchoolEntitlements; lang: Lang }) {
   const groups = [...MODULE_GROUPS].sort((a, b) => a.order - b.order);
   // What exists today comes first; what is not built yet is one tap away, so the page stays short.
@@ -23,16 +26,14 @@ export function ModuleSwitchList({ entitlements, lang }: { entitlements: SchoolE
     const always = isAlwaysOn(m.id);
     const on = isModuleEnabled(entitlements, m.id);
     return (
-      <li key={m.id} data-module={m.id} data-on={on} className="flex items-start gap-3 py-2">
+      <li key={m.id} data-module={m.id} data-on={on} className="flex flex-wrap items-center gap-x-3 gap-y-1 py-1.5">
         <ModuleIcon name={m.icon} tone={g.tone[0]} size="sm" />
-        <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-slate">{tOr(lang, `module.${m.id}`, m.label)}</p>
-          <p className="text-sm text-slate/70">
-            {!always && <span className="font-semibold text-slate">{t(lang, 'modules.whenOff')} </span>}
-            {moduleOffSentence(lang, m)}
-          </p>
-        </div>
+        <p className="min-w-0 flex-1 text-sm font-semibold text-slate">{tOr(lang, `module.${m.id}`, m.label)}</p>
         <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${on ? 'bg-emerald/10 text-slate' : 'bg-slate/10 text-slate'}`}>{t(lang, always ? 'modules.always' : on ? 'modules.on' : 'modules.off')}</span>
+        <InfoTip label={tOr(lang, `module.${m.id}`, m.label)}>
+          {!always && <span className="font-semibold">{t(lang, 'modules.whenOff')} </span>}
+          {moduleOffSentence(lang, m)}
+        </InfoTip>
       </li>
     );
   };
@@ -40,10 +41,14 @@ export function ModuleSwitchList({ entitlements, lang }: { entitlements: SchoolE
   return (
     <section lang={lang} aria-labelledby="modules-title" data-module-switches className="flex flex-col gap-3">
       <div>
-        <h2 id="modules-title" className="text-lg font-bold text-slate">
-          {t(lang, 'modules.title')}
-        </h2>
-        <p className="max-w-prose text-sm text-slate">{t(lang, 'modules.intro')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 id="modules-title" className="text-lg font-bold text-slate">
+            {t(lang, 'modules.title')}
+          </h2>
+          <InfoTip>
+            {t(lang, 'modules.intro')} {t(lang, 'modules.ask')}
+          </InfoTip>
+        </div>
         {entitlements.accessMode === 'suspended' && <p className="mt-2 max-w-prose rounded-md bg-tangerine/10 px-3 py-2 text-sm font-semibold text-slate">{t(lang, 'modules.paused')}</p>}
         {entitlements.accessMode === 'read_only' && <p className="mt-2 max-w-prose rounded-md bg-tangerine/10 px-3 py-2 text-sm font-semibold text-slate">{t(lang, 'modules.readOnly')}</p>}
       </div>
@@ -62,7 +67,6 @@ export function ModuleSwitchList({ entitlements, lang }: { entitlements: SchoolE
         </details>
       )}
       <p className="flex flex-wrap items-center gap-3 text-sm text-slate">
-        {t(lang, 'modules.ask')}
         <Link href="/app/help/ticket/new" className="inline-flex min-h-[44px] items-center rounded-md border border-sapphire bg-white px-4 text-sm font-semibold text-sapphire">
           {t(lang, 'modules.askAction')}
         </Link>

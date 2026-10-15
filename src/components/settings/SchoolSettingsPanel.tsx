@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
+import { Switch } from '@/components/ui/Switch';
 import { useToast } from '@/components/ui/Toast';
 import type { ModuleId } from '@/lib/contracts/modules';
 import type { SettingDefinition, SettingValue } from '@/lib/contracts/settings';
@@ -17,6 +19,9 @@ import type { MessageKey } from '@/lib/i18n';
 // a field added to a schema appears by itself. Saving goes through the
 // settings API, which checks the module, the role and the value, keeps the
 // history and writes the audit row.
+// C235-C: a field shows its control and its state (a "Default" mark, or the
+// default it differs from with "Reset to default"); its sentence and its
+// default are behind the field's ⓘ.
 
 // `value` is null for a field with no default that the school has not set yet (C231).
 export type SettingsModule = { moduleId: ModuleId; revision: number; fields: { def: SettingDefinition; value: SettingValue | null; isDefault: boolean; mayEdit: boolean }[] };
@@ -70,22 +75,18 @@ function ModuleCard({ module }: { module: SettingsModule }) {
     const v = values[f.key];
     const set = (next: SettingValue) => setValues((all) => ({ ...all, [f.key]: next }));
     const label = t(key(f, 'label'));
-    if (f.type === 'boolean')
-      return (
-        <label className="flex min-h-[44px] cursor-pointer items-center gap-3 text-sm font-semibold text-slate">
-          <input id={id} type="checkbox" role="switch" className="h-5 w-5" checked={v === true} disabled={!mayEdit || busy} onChange={(e) => set(e.target.checked)} />
-          {label}: {t(v === true ? 'set.on' : 'set.off')}
-        </label>
-      );
+    if (f.type === 'boolean') return <Switch id={id} label={label} stateText={t(v === true ? 'set.on' : 'set.off')} checked={v === true} disabled={!mayEdit || busy} onChange={(e) => set(e.target.checked)} />;
     if (f.type === 'weekdays')
       return (
         <fieldset className="flex flex-col gap-1">
           <legend className="text-sm font-semibold text-slate">{label}</legend>
-          <div className="flex flex-wrap gap-x-4">
+          <div className="flex flex-wrap gap-2">
             {DAYS.map((d) => (
-              <label key={d} className="flex min-h-[44px] cursor-pointer items-center gap-2 text-sm text-slate">
-                <input type="checkbox" className="h-5 w-5" checked={Array.isArray(v) && (v as string[]).includes(d)} disabled={!mayEdit || busy} onChange={(e) => set(DAYS.filter((x) => (x === d ? e.target.checked : Array.isArray(v) && (v as string[]).includes(x))))} />
-                {t(`tt.day.${d}` as MessageKey)}
+              <label key={d} className="relative cursor-pointer">
+                <input type="checkbox" className="peer sr-only" checked={Array.isArray(v) && (v as string[]).includes(d)} disabled={!mayEdit || busy} onChange={(e) => set(DAYS.filter((x) => (x === d ? e.target.checked : Array.isArray(v) && (v as string[]).includes(x))))} />
+                <span className="flex min-h-[44px] items-center rounded-full border border-slate/20 bg-white px-4 text-sm font-semibold text-slate peer-checked:border-royal peer-checked:bg-royal/10 peer-checked:text-royal-deep peer-checked:before:mr-1.5 peer-checked:before:content-['✓'] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-royal peer-disabled:opacity-70">
+                  {t(`tt.day.${d}` as MessageKey)}
+                </span>
               </label>
             ))}
           </div>
@@ -129,31 +130,39 @@ function ModuleCard({ module }: { module: SettingsModule }) {
   }
 
   return (
-    <section data-settings-module={module.moduleId} className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-4">
+    <section data-settings-module={module.moduleId} className="flex flex-col gap-3 rounded-2xl border border-slate/10 bg-white p-4 shadow-sm md:p-5">
       <h3 className="text-base font-bold text-slate">{t(`module.${module.moduleId}` as MessageKey)}</h3>
       {module.fields.map(({ def, isDefault, mayEdit }) => (
         <div key={def.key} data-setting={def.key} className="flex flex-col gap-1 border-t border-slate/10 pt-3">
-          {control(def, mayEdit)}
-          <p className="text-sm text-slate/70">{t(key(def, 'help'))}</p>
-          <p className="flex flex-wrap items-center gap-3 text-xs text-slate/70">
-            {/* A field with no default (C231): the school sets it, and it is never reset. */}
-            <span>{def.default === null ? t('set.noDefault') : t('set.default', { value: show(def, def.default) })}</span>
-            {def.default === null ? (
-              isDefault && (
-                <span data-not-set className="font-semibold text-slate">
-                  {t('set.notSet')}
-                </span>
-              )
-            ) : isDefault ? (
-              <span data-is-default>{t('set.isDefault')}</span>
-            ) : (
-              mayEdit && (
+          <div className="flex flex-wrap items-start gap-x-1">
+            <div className="min-w-0 flex-1">{control(def, mayEdit)}</div>
+            <InfoTip label={t(key(def, 'label'))} className="mt-1">
+              {t(key(def, 'help'))} {def.default === null ? t('set.noDefault') : t('set.default', { value: show(def, def.default) })}
+            </InfoTip>
+          </div>
+          {/* A field with no default (C231): the school sets it, and it is never reset. */}
+          {def.default === null ? (
+            isDefault && (
+              <p data-not-set className="text-xs font-semibold text-slate">
+                {t('set.notSet')}
+              </p>
+            )
+          ) : isDefault ? (
+            <p className="text-xs text-slate/70">
+              <span data-is-default className="rounded-full bg-slate/5 px-2 py-0.5 font-semibold">
+                {t('set.isDefault')}
+              </span>
+            </p>
+          ) : (
+            <p className="flex flex-wrap items-center gap-3 text-xs text-slate/70">
+              <span>{t('set.default', { value: show(def, def.default) })}</span>
+              {mayEdit && (
                 <button type="button" data-reset disabled={busy} className="min-h-[44px] font-semibold text-sapphire underline disabled:opacity-60" onClick={() => void send({ resetToDefault: [def.key] }, 'set.reset.done')}>
                   {t('set.reset')}
                 </button>
-              )
-            )}
-          </p>
+              )}
+            </p>
+          )}
         </div>
       ))}
       {mayEditAny ? (
@@ -192,9 +201,9 @@ export function SchoolSettingsPanel({ modules }: { modules: SettingsModule[] }) 
   if (modules.length === 0) return null;
   return (
     <section lang={lang} data-school-settings className="flex flex-col gap-4">
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-lg font-bold text-slate">{t('set.title')}</h2>
-        <p className="text-sm text-slate/70">{t('set.how')}</p>
+        <InfoTip>{t('set.how')}</InfoTip>
       </div>
       {/* The key holds the revision: after a save the card starts again from what is stored. */}
       {modules.map((m) => (

@@ -130,13 +130,46 @@ in each case checked against the alternative rather than assumed.
 |---|---|---|
 | `Input` | [`../src/components/ui/Input.tsx`](../src/components/ui/Input.tsx) | Full spec: `error`/`success`/`pending` states, `helperText`, `required` marking (visible asterisk + sr-only "(required)" text, `aria-required`), `aria-invalid`/`aria-describedby` wiring. Error text is `red-800` (8.31:1, AAA) — this project's own Floor Device Standard asks for AAA on critical states. |
 | `Select` | [`../src/components/ui/Select.tsx`](../src/components/ui/Select.tsx) | A native `<select>` styled to the tokens, not a custom listbox — real keyboard nav (arrow keys, typeahead, Home/End) is what the browser already gets right for every platform this project targets, at zero implementation/maintenance cost. |
-| `Checkbox` | [`../src/components/ui/Checkbox.tsx`](../src/components/ui/Checkbox.tsx) | Native `<input type="checkbox">` recolored via CSS `accent-color` (Chrome 93+/Firefox 92+/Safari 15.4+), not a hidden-input-plus-custom-box. 44px tap target comes from the wrapping `<label>`, not from inflating the visual checkbox. |
+| `Checkbox` | [`../src/components/ui/Checkbox.tsx`](../src/components/ui/Checkbox.tsx) | v5 (C235-C): the native `<input type="checkbox">` is itself the drawn box (`appearance: none`, rounded, sapphire fill, a decorative tick over it), so semantics, keyboard and forms stay native. 44px tap target comes from the wrapping `<label>`, not from inflating the visual checkbox. Was `accent-color` before v5. |
 | `Table` | [`../src/components/ui/Table.tsx`](../src/components/ui/Table.tsx) | **Mobile strategy, decided:** a card-per-row transform below `768px`, the real `<table>` at `768px` and up — see "Table's mobile strategy" below for the reasoning and the alternative this rejected. `loading`/`error`/`empty`/`ready` states via `LoadingState`/`ErrorState`/`EmptyState`. |
 | `Modal` | [`../src/components/ui/Modal.tsx`](../src/components/ui/Modal.tsx) | The native `<dialog>` element (`showModal()`) for the top-layer/backdrop and Escape-to-close. **Its native Tab-cycling focus containment was tested, not assumed, and found to leak** (Chromium 141: tabbing past the last focusable element reached `document.body` for one step before self-correcting) — a manual `keydown` handler now traps Tab/Shift+Tab strictly within the dialog's own focusable elements, re-verified after the fix. |
 | `Toast` | [`../src/components/ui/Toast.tsx`](../src/components/ui/Toast.tsx) | `ToastProvider` + `useToast()`. `aria-live="polite"` region; each toast auto-dismisses after 5s or on manual dismiss. `info`/`success`/`warning`/`danger` variants. |
 | `Badge` | [`../src/components/ui/Badge.tsx`](../src/components/ui/Badge.tsx) | `neutral`/`success`/`warning`/`danger` variants. Variant classes are written inline in the component's own className template (not a separate lookup object) specifically so `scripts/check_contrast.py` can see and verify them — see "A checker blind spot" below. |
 | `Tabs` | [`../src/components/ui/Tabs.tsx`](../src/components/ui/Tabs.tsx) | Hand-rolled per the WAI-ARIA Authoring Practices Tabs pattern: `role=tablist/tab/tabpanel`, `aria-selected`, a roving `tabindex`, Left/Right/Home/End keyboard nav with automatic activation. Verified with real keyboard events, not just code review. |
 | `EmptyState`, `LoadingState`, `ErrorState` | `../src/components/ui/` | The three states Constitution §9's no-silent-failures rule requires of any async-capable view. `LoadingState` uses Tailwind's `animate-spin` (functional, not decorative). `ErrorState` is `role="alert"`, `red-800` text (AAA). |
+
+### Design system v5 (C235-C): banners, floating labels, drawn controls, less text
+
+The founder asked for a premium, Apple-like, education-appropriate look with
+at least 30% less text on screen and no fact lost. What changed:
+
+| Piece | File | Notes |
+|---|---|---|
+| Page banner | [`PageHeader.tsx`](../src/components/app-ui/PageHeader.tsx) (`PageBanner`), [`BannerTitle.tsx`](../src/components/app-ui/BannerTitle.tsx) | Every `ModulePage` (and `PageHeader`) opens with a gradient in the module group's tone (`HERO_TONES` in `tones.ts`): the module icon in a frosted tile, the group, the title, ONE short line, and an ⓘ "About this page" (`about` prop) for the longer explanation. Actions sit on a white tray so buttons keep their own colours. Bright hues use their deep variants: every stop takes white text at 4.5:1 or more (computed in `test/app-ui/tones.test.ts`); `bg-grape` under the gradient is the worst stop, which is what `check_contrast.py` reads. Decorative circles only darken. |
+| `InfoTip` | [`InfoTip.tsx`](../src/components/app-ui/InfoTip.tsx) | The ⓘ beside a heading, row or field: a 44px button (`aria-expanded`, words for screen readers and as its tooltip) and the panel it opens under the row (`basis-full` in a `flex flex-wrap` row). Secondary explanation lives here instead of on the screen for every visit. |
+| `KpiTile` v4, dashboard `FactTile` | [`KpiTile.tsx`](../src/components/app-ui/KpiTile.tsx), [`dashboard-parts.tsx`](../src/components/dashboards/dashboard-parts.tsx) | Icon chip in the tone above the number, the number large, the label under it; the v3 top bar is gone. A tile no longer repeats the period the range switch already shows. |
+| `HeroBand` | [`HeroBand.tsx`](../src/components/app-ui/HeroBand.tsx) | `brand` is the royal-to-violet gradient; `needs` lets a dashboard say the count without repeating the attention list as chips. |
+| Floating labels | [`field.tsx`](../src/components/ui/field.tsx), `Input`, `Select`, [`Textarea`](../src/components/ui/Textarea.tsx) | The label is a real `<label for>` drawn inside the field and raised onto the top border on focus or value (pure CSS: the field is the label's `peer`, `:placeholder-shown` means empty). A caller's placeholder shows only under the raised label, never as the label (WCAG 1.3.1/3.3.2). Helper text and errors sit under the field in small text. A label over 34 characters would not fit a phone-width field, so it sits above instead: nothing is cut short. Field border slate/50 (3.1:1, WCAG 1.4.11). No API break; `floating={false}` asks for the label above. |
+| `Radio`, `RadioGroup` | [`Radio.tsx`](../src/components/ui/Radio.tsx) | Drawn over the native radio (`appearance: none`), a fieldset with its legend, controlled or not. |
+| `SegmentedControl` | [`SegmentedControl.tsx`](../src/components/ui/SegmentedControl.tsx) | For 2 to 4 short options: native radios (one tab stop, arrow keys), a quiet track with the chosen segment raised; full width on a phone, words wrap rather than scroll. |
+| `Switch` | [`Switch.tsx`](../src/components/ui/Switch.tsx) | A `role="switch"` checkbox drawn as a track and knob; the state is also said in words. Settings' on/off fields use it. |
+
+All motion added here (label rise, knob slide, tick) is off under
+`prefers-reduced-motion` (`motion-reduce:transition-none`). Every target is
+44px or more.
+
+**Less text, every fact kept.** `scripts/harness/visible-words.mjs` counts the
+words a reader can see in `<main>` (not the shell, screen-reader text or a
+closed disclosure); the harness records it per screen and
+`node scripts/harness/word-count.mjs <before> <after>` compares two runs. On
+the 11 screens of the C235-C set the count fell from 7,490 to about 3,000
+words at 1440 px (the PR has the per-screen table). The means: one short
+banner line plus ⓘ "About this page"; section explanations behind an ⓘ;
+Settings fields show their control and a "Default" mark, with the sentence
+and default behind the field's ⓘ, and each module's "When off" sentence behind
+its row's ⓘ; repeated lines dropped (hero chips that repeated the attention
+list, "Today" on every tile under a "Today" heading, "Change to" on every
+attendance button, kept for screen readers).
 
 ### Table's mobile strategy
 

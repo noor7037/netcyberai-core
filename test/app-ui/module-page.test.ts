@@ -4,7 +4,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { execFileSync } from 'child_process';
 import path from 'path';
 import { ModulePage } from '@/components/app-ui/ModulePage';
-import { TOKEN_TONES } from '@/components/app-ui/tones';
+import { HERO_TONES } from '@/components/app-ui/tones';
 
 // ModulePage (docs/19 rule 1, C132): one layout for every working screen,
 // with its slots always in the same order, and a CI check that every /app
@@ -39,17 +39,37 @@ describe('ModulePage', () => {
     expect(html).toContain('data-module-page="page"');
   });
 
-  it('takes the icon, colour and group name from the registry when given a module', () => {
+  it('takes the icon, colour and group name from the registry when given a module: the banner is a gradient in the group’s tone', () => {
     const fees = renderToStaticMarkup(h(ModulePage, { moduleId: 'fees', title: 'Fees', purpose: 'p', children: 'x' }));
     expect(fees).toContain('data-module-page="fees"');
-    expect(fees).toContain(TOKEN_TONES.tangerine.soft); // the Finance group's tile
+    expect(fees).toContain(`bg-gradient-to-br ${HERO_TONES.tangerine.cls}`); // the Finance group's banner
+    expect(fees).toContain('data-page-banner="tangerine"');
     expect(fees).toContain('Finance');
     const help = renderToStaticMarkup(h(ModulePage, { moduleId: 'raise-ticket', title: 'Support tickets', purpose: 'p', children: 'x' }));
-    expect(help).toContain(TOKEN_TONES.gold.soft);
+    expect(help).toContain(HERO_TONES.gold.cls);
     // A screen outside the registry (Control) names its own.
     const control = renderToStaticMarkup(h(ModulePage, { title: 'Users', purpose: 'p', icon: 'users', tone: 'azure', eyebrow: 'Control', children: 'x' }));
-    expect(control).toContain(TOKEN_TONES.azure.soft);
+    expect(control).toContain(HERO_TONES.azure.cls);
     expect(control).toContain('Control');
+  });
+
+  it('shows ONE short line, and the longer explanation behind an ⓘ that opens it', () => {
+    const html = renderToStaticMarkup(h(ModulePage, { moduleId: 'fees', title: 'Fees', purpose: 'What the school charges.', about: 'A change starts from a date.', children: 'x' }));
+    expect(html).toContain('What the school charges.');
+    expect(html).toMatch(/<button[^>]*aria-expanded="false"[^>]*aria-controls="([^"]+)"[^>]*data-page-about/);
+    const panel = /aria-controls="([^"]+)"/.exec(html)![1];
+    expect(html).toMatch(new RegExp(`<div id="${panel}" hidden=""[^>]*>A change starts from a date.</div>`));
+    expect(html).toContain('<span class="sr-only">About this page</span>');
+    // No about, no button.
+    expect(renderToStaticMarkup(h(ModulePage, { title: 'T', purpose: 'p', children: 'x' }))).not.toContain('data-page-about');
+  });
+
+  it('puts "Show me how" and the one primary action on the banner’s white tray', () => {
+    const html = renderToStaticMarkup(h(ModulePage, { title: 'Students', purpose: 'p', primary: h('button', null, 'Add'), children: 'x' }));
+    const tray = html.slice(html.indexOf('data-banner-actions'));
+    expect(tray).toMatch(/^data-banner-actions="true" class="[^"]*bg-white\/95/);
+    expect(tray).toContain('<div data-slot="primary"><button>Add</button></div>');
+    expect(renderToStaticMarkup(h(ModulePage, { title: 'T', purpose: 'p', children: 'x' }))).not.toContain('data-banner-actions');
   });
 
   it('the CI check passes on the repo, and its self-test catches a page with its own layout', () => {

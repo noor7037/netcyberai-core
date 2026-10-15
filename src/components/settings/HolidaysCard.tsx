@@ -1,5 +1,6 @@
 'use client';
 
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { Input } from '@/components/ui/Input';
@@ -43,9 +44,11 @@ export function HolidaysCard() {
 
   if (holidays === null) return null;
   return (
-    <section lang={lang} data-holidays className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
-      <h3 className="text-base font-bold text-slate">{t('hol.title')}</h3>
-      <p className="text-sm text-slate/70">{t('hol.how')}</p>
+    <section lang={lang} data-holidays className="flex flex-col gap-3 rounded-2xl border border-slate/10 bg-white p-4 shadow-sm md:p-5">
+      <div className="flex flex-wrap items-center gap-x-1">
+        <h3 className="text-base font-bold text-slate">{t('hol.title')}</h3>
+        <InfoTip>{t('hol.how')}</InfoTip>
+      </div>
       {holidays.length === 0 && <p className="text-sm text-slate">{t('hol.none')}</p>}
       <ul className="flex flex-col gap-1 text-sm text-slate">
         {holidays.map((h) => (

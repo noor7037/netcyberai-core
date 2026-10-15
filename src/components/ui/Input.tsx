@@ -1,4 +1,5 @@
-import type { InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes, ReactNode } from 'react';
+import { FIELD_BOX, FLOAT_MAX, FieldMessage, RequiredMark, STATIC_LABEL, fieldBorder, floatingLabelClass } from './field';
 
 // Full Phase 1 spec per docs/07_DESIGN_SYSTEM.md: validation states
 // (error/success/pending), helper text, required-field marking, all
@@ -10,66 +11,63 @@ import type { InputHTMLAttributes } from 'react';
 // (#047857) rather than the raw emerald brand color -- raw emerald is
 // 2.54:1 on white, which fails even the 3:1 non-text-contrast floor
 // for a border, let alone text.
+//
+// v5 (C235-C): a floating label by default (./field.tsx says how and why);
+// the helper text, the error and the success line sit under the field.
+// `floating={false}` puts the label above the field.
+// What the field parts say (Input, Select, Textarea, RadioGroup share them).
+export const FIELD_WORDS = { required: ' (required)', checking: 'Checking…' } as const;
+
 type Props = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   id: string;
   error?: string;
   success?: string;
   pending?: boolean;
-  helperText?: string;
+  helperText?: ReactNode;
+  floating?: boolean;
 };
 
-export function Input({
-  label,
-  id,
-  error,
-  success,
-  pending,
-  helperText,
-  required,
-  className = '',
-  ...props
-}: Props) {
+export function Input({ label, id, error, success, pending, helperText, required, floating, placeholder, className = '', ...props }: Props) {
   const messageId = `${id}-message`;
   const hasMessage = Boolean(error || success || pending || helperText);
-
-  const borderClass = error
-    ? 'border-red-600'
-    : success
-      ? 'border-emerald-text'
-      : 'border-slate/20';
-
+  const float = floating ?? label.length <= FLOAT_MAX;
+  const field = (
+    <input
+      id={id}
+      required={required}
+      aria-required={required || undefined}
+      aria-invalid={Boolean(error) || undefined}
+      aria-describedby={hasMessage ? messageId : undefined}
+      placeholder={float ? (placeholder ?? ' ') : placeholder}
+      className={`${FIELD_BOX} ${fieldBorder(error, success)} h-12 min-h-[48px] px-4 ${float ? 'peer placeholder:text-transparent focus:placeholder:text-slate/70' : 'placeholder:text-slate/70'} ${className}`}
+      {...props}
+    />
+  );
+  const text = (
+    <>
+      {label}
+      <RequiredMark required={required} words={FIELD_WORDS.required} />
+    </>
+  );
   return (
-    <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-sm font-medium text-slate">
-        {label}
-        {required && (
-          <>
-            <span aria-hidden="true" className="text-red-800">
-              {' '}
-              *
-            </span>
-            <span className="sr-only"> (required)</span>
-          </>
-        )}
-      </label>
-      <input
-        id={id}
-        required={required}
-        aria-required={required || undefined}
-        aria-invalid={Boolean(error) || undefined}
-        aria-describedby={hasMessage ? messageId : undefined}
-        className={`min-h-[44px] rounded-md border ${borderClass} bg-white px-4 text-base text-slate placeholder:text-slate/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire ${className}`}
-        {...props}
-      />
-      {hasMessage && (
-        <p id={messageId} aria-live="polite" className="text-sm">
-          {error && <span className="text-red-800">{error}</span>}
-          {!error && success && <span className="text-emerald-text">{success}</span>}
-          {!error && !success && pending && <span className="text-slate/70">Checking…</span>}
-          {!error && !success && !pending && helperText && <span className="text-slate/70">{helperText}</span>}
-        </p>
+    <div className="flex flex-col gap-1">
+      {float ? (
+        <div className="relative flex flex-col">
+          {field}
+          <label htmlFor={id} className={floatingLabelClass('middle')}>
+            {text}
+          </label>
+        </div>
+      ) : (
+        <>
+          <label htmlFor={id} className={STATIC_LABEL}>
+            {text}
+          </label>
+          {field}
+        </>
       )}
+      {hasMessage && <FieldMessage id={messageId} error={error} success={success} pending={pending} pendingWords={FIELD_WORDS.checking} helperText={helperText} />}
     </div>
   );
 }

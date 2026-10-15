@@ -55,19 +55,24 @@ describe('module icons', () => {
   });
 });
 
-describe('KPI tile v3 (C230-D)', () => {
+describe('KPI tile v4 (C235-C)', () => {
   const tile = { kind: 'kpi' as const, id: 'a', label: 'Attendance today', value: 94.5, unit: 'percent' as const, drillHref: '/app/attendance', trend: { direction: 'up' as const, delta: 1.5, unit: 'percent' as const, comparedTo: 'the day before', good: 'up' as const } };
 
-  it('is a white, linked card with a bar in its tone, an icon chip, a trend in words and a sparkline; the value stays slate', () => {
+  it('is a white, linked card: the icon chip in its tone above the value, the label under it, a trend in words and a sparkline; the value stays slate', () => {
     const html = render(h(KpiTile, { tile, tone: 'royal', icon: 'attendance', spark: [90, 92, null, 94.5] }));
     expect(html).toMatch(/^<a [^>]*href="\/app\/attendance"/);
     expect(html).toContain('bg-white');
-    expect(html).toContain(`top-0 h-1 ${TOKEN_TONES.royal.bar}`); // the bar in the tile's tone
+    expect(html).not.toContain(`top-0 h-1 ${TOKEN_TONES.royal.bar}`); // v3's bar is gone: the chip carries the tone
     expect(html).toContain(TOKEN_TONES.royal.solid); // the icon chip
-    expect(html).toContain('text-3xl font-extrabold tabular-nums text-slate');
+    // The chip comes before the value, and the label after it.
+    expect(html.indexOf(TOKEN_TONES.royal.solid)).toBeLessThan(html.indexOf('text-3xl font-extrabold tabular-nums'));
+    expect(html.indexOf('text-3xl font-extrabold tabular-nums')).toBeLessThan(html.indexOf('>Attendance today<'));
+    expect(html).toContain('text-3xl font-extrabold tabular-nums tracking-tight text-slate');
     expect(html).toContain('1.5 points vs the day before');
     expect(html).toContain('up 1.5 points since the day before'); // for screen readers
     expect(html).toContain('<polyline');
+    // Without an icon, a dot in the tone stands where the chip would be.
+    expect(render(h(KpiTile, { tile, tone: 'grape' }))).toContain(`rounded-full ${TOKEN_TONES.grape.bar}`);
   });
 
   it('says "No data yet" for null, with no trend and no sparkline; one point draws no line', () => {

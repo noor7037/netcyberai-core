@@ -1,5 +1,8 @@
 'use client';
 
+import { Checkbox } from '@/components/ui/Checkbox';
+import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -49,6 +52,7 @@ export function StaffAccounts({
   // The signed-in founder: their own row hides "Remove authenticator" (C95).
   currentUserId?: string;
 }) {
+  const { t } = useT();
   const [accounts, setAccounts] = useState<Account[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [query, setQuery] = useState('');
@@ -110,15 +114,15 @@ export function StaffAccounts({
   return (
     <div className="flex flex-col gap-4">
       <Card className="flex flex-col gap-3">
-        <p className="text-sm text-slate/80">
-          Someone forgot their password, or is signing in for the first time? Send them a reset code. It goes to the
-          email on their account; they set their own password on the login page. You never see it.
-        </p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-bold text-slate">{t('staff.reset.title')}</h2>
+          <InfoTip>
+            Someone forgot their password, or is signing in for the first time? Send them a reset code. It goes to the
+            email on their account; they set their own password on the login page. You never see it.
+          </InfoTip>
+        </div>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <label className="flex min-h-[44px] items-center gap-2 text-sm text-slate">
-            <input type="checkbox" className="h-5 w-5" checked={signOut} onChange={(e) => setSignOut(e.target.checked)} />
-            Also sign them out on every device
-          </label>
+          <Checkbox id="reset-sign-out" label="Also sign them out on every device" checked={signOut} onChange={(e) => setSignOut(e.target.checked)} />
           <label className="flex flex-col gap-1 text-sm text-slate sm:w-64">
             <span className="sr-only">Search accounts</span>
             <input

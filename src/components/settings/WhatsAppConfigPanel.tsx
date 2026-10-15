@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Modal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
@@ -74,12 +75,11 @@ export function WhatsAppConfigPanel({ canManage }: { canManage: boolean }) {
   }
 
   return (
-    <section className="rounded-lg border border-slate/10 p-4">
-      <h2 className="mb-1 text-base font-semibold text-slate">WhatsApp Business Account</h2>
-      <p className="mb-3 text-sm text-slate/70">
-        Optional. Every school sends via the platform's own number until this is completed -- nothing is ever
-        blocked waiting on it.
-      </p>
+    <section className="rounded-2xl border border-slate/10 bg-white p-4 shadow-sm md:p-5">
+      <div className="mb-2 flex flex-wrap items-center gap-x-1">
+        <h2 className="text-base font-semibold text-slate">WhatsApp Business Account</h2>
+        <InfoTip>Optional. Every school sends via the platform's own number until this is completed -- nothing is ever blocked waiting on it.</InfoTip>
+      </div>
 
       {loading ? (
         <p className="text-sm text-slate/70">Loading…</p>
@@ -96,9 +96,7 @@ export function WhatsAppConfigPanel({ canManage }: { canManage: boolean }) {
           )}
         </div>
       ) : (
-        <p className="text-sm text-slate/70">
-          Not configured -- this school currently sends via the platform's own WhatsApp number.
-        </p>
+        <p className="text-sm text-slate/70">Not connected: messages go from the platform's own number.</p>
       )}
 
       {canManage && !config && (

@@ -193,9 +193,11 @@ describe('the dashboard on the whole schema', () => {
     const officeHtml = renderToStaticMarkup(h(OfficeDashboardView, { data: { schoolName: 'School A', rangeId: '7d', range: office.range, facts: office.facts, failed: 0 } }));
     const attentionOf = (page: string, id: string) => new RegExp(`<li data-attention="${id.replace('.', '\\.')}"[^>]*>(.*?)</li>`, 's').exec(page)?.[1] ?? '';
     expect([attentionOf(officeHtml, 'staff.leave_waiting').includes('1 leave request is waiting for your decision'), officeHtml.includes('leave requests are waiting')]).toEqual([true, false]);
-    // The chip in the band at the top says the same 1 beside its button (for the principal, 2).
+    // The band at the top says how many things need you and no longer repeats them as chips (C235-C): the attention
+    // list says the 1 (for the principal, 2) beside its one button.
     const chip = (page: string) => /href="\/app\/staff\?show=leave-waiting"[^>]*><span[^>]*>(\d+)<\/span>See the requests/.exec(page)?.[1];
-    expect([chip(officeHtml), chip(html)]).toEqual(['1', '2']);
+    expect([chip(officeHtml), chip(html)]).toEqual([undefined, undefined]);
+    expect(attentionOf(html, 'staff.leave_waiting')).toContain('2 leave requests are waiting for your decision');
     expect(new RegExp(`<li data-fact="staff\\.leave_waiting"[^>]*>(.*?)</li>`, 's').exec(officeHtml)?.[1] ?? '').toContain('>2<');
     // The file says what the screen says: 1 under "Needs your attention", 2 on the tile's row.
     const officeRows = dashboardCsvRows('en', dashboardModel(office.facts), office.range);

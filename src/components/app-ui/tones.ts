@@ -57,3 +57,33 @@ export const STATUS_TONES: Record<StatusTone, ColorToken> = {
 export function toneTint(tone: ColorToken): string {
   return TOKEN_TONES[tone].soft.split(' ')[0];
 }
+
+// The page banner (C235-C): a gradient in the tone, title and subtitle in
+// white. Bright hues are drawn with their deep variants so that BOTH stops
+// take white text at 4.5:1 or more (test/app-ui/tones.test.ts computes each
+// stop). A gradient between two passing stops is never lighter than its
+// lighter stop, so the whole sweep passes. `stops` names the two colours for
+// that test; `cls` is the literal Tailwind classes.
+export type HeroTone = { cls: string; stops: readonly [string, string] };
+
+export const HERO_TONES: Record<ColorToken, HeroTone> = {
+  sapphire: { cls: 'from-sapphire to-royal', stops: ['sapphire', 'royal'] },
+  midnight: { cls: 'from-midnight to-sapphire', stops: ['midnight', 'sapphire'] },
+  azure: { cls: 'from-azure to-sapphire', stops: ['azure', 'sapphire'] },
+  royal: { cls: 'from-royal to-violet', stops: ['royal', 'violet'] },
+  electric: { cls: 'from-royal to-royal-deep', stops: ['royal', 'royal-deep'] },
+  cyan: { cls: 'from-azure to-royal', stops: ['azure', 'royal'] },
+  turquoise: { cls: 'from-emerald to-azure', stops: ['emerald', 'azure'] },
+  emerald: { cls: 'from-emerald to-azure', stops: ['emerald', 'azure'] },
+  leaf: { cls: 'from-emerald to-sapphire', stops: ['emerald', 'sapphire'] },
+  grape: { cls: 'from-grape to-violet', stops: ['grape', 'violet'] },
+  violet: { cls: 'from-violet to-grape-deep', stops: ['violet', 'grape-deep'] },
+  tangerine: { cls: 'from-tangerine-deep to-coral-deep', stops: ['tangerine-deep', 'coral-deep'] },
+  amber: { cls: 'from-tangerine-deep to-gold-deep', stops: ['tangerine-deep', 'gold-deep'] },
+  coral: { cls: 'from-coral-deep to-tangerine-deep', stops: ['coral-deep', 'tangerine-deep'] },
+  sunshine: { cls: 'from-gold-deep to-tangerine-deep', stops: ['gold-deep', 'tangerine-deep'] },
+  gold: { cls: 'from-gold-deep to-tangerine-deep', stops: ['gold-deep', 'tangerine-deep'] },
+  peach: { cls: 'from-tangerine-deep to-coral-deep', stops: ['tangerine-deep', 'coral-deep'] },
+  slate: { cls: 'from-slate to-sapphire', stops: ['slate', 'sapphire'] },
+  offWhite: { cls: 'from-slate to-sapphire', stops: ['slate', 'sapphire'] },
+};
