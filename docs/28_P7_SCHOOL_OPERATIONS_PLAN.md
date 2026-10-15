@@ -1,6 +1,8 @@
 # 28 — P7 plan: school operations
 
-**Status:** plan for review (Decision Log C220). No code in this PR.
+**Status:** built in part (section 11). 10a to 10f are merged (C221 to C229, with
+the wave 1 close-out C224 to C226); the wave 2 close-out (C232) and 10g (C231)
+are in review. The plan itself was C220.
 **Scope:** roadmap `16` §4 phase P7, together with the founder's
 differentiators (C198-B):
 - Setup (complete);
@@ -137,7 +139,7 @@ production, in PR order, by the lead only.
 | **10d. Compliance desk** (C227) | `/app/compliance/desk`:<br>• teacher qualifications and TET (`teacher-register.ts` stages and expiry windows), on staff records, with expiry alerts on My Day;<br>• the mandatory public disclosure data, kept and exported;<br>• Form 6 fee data from the fee structures (`form6.ts`);<br>• SQAAF evidence: a document or note tagged to a standard. | `staff_qualifications` (kind, subject, valid from and to, evidence); `disclosure_items`; `sqaaf_evidence` (standard code, document, note). The standards list is data with its source. | A qualification expiring within the window shows on My Day and on the desk. Disclosure data exports exactly what is kept. Form 6 reads the fee structures, never a typed copy. Each evidence row names its standard. Only the office reads staff qualifications. |
 | **10e. Documents and certificates** (C228) | Certificates in bulk from the school's records (the studio's templates), each behind the fee-clearance check (or a recorded waiver). A QR code on each certificate opens a public verification page that shows only the certificate's number, type, the school and "valid" or "withdrawn". An issue register, numbered in sequence. | `certificates_issued` (number, type, child, issued by and on, QR token, withdrawn by, when and why). | A child with dues gets no certificate without a recorded waiver. Numbers are unbroken and never reused. The QR page shows no personal data beyond what the certificate prints and says "withdrawn" once withdrawn. |
 | **10f. Timetable generator** (C229) | The constraints: periods per subject per class, teachers' subjects and classes, unavailable periods, and the rules of `plan.ts`. The generator proposes a week; a person reviews it, swaps periods, and accepts it into `timetable_entries`, replacing a week only when told to. | `timetable_constraints`, `timetable_proposals` (proposed week, by, when, accepted by and when). | A proposal never puts a teacher in two classes at once or a class in two subjects in one period, and meets each subject's periods or says which it could not. Nothing reaches `timetable_entries` until a person accepts. |
-| **10g. Setup (complete)** (C231) | Office screens for academic sessions (current session, dates) and subjects (per class), and the onboarding checklist computed from what is set up. | None (backends exist), or small columns. | The office makes a session current and adds subjects. The checklist counts only what exists. |
+| **10g. Setup: who teaches what** (C231, scoped by C230-A) | On Staff, the office (principal, school admin) keeps `teacher_subjects`: each teacher's subjects and classes. A teacher proposes one for themselves on their account page; the office confirms or declines. The timetable reads it: a class and subject with assignments take only those teachers, by hand, by CSV and in the generator. The periods-in-a-row limit has no default. The timetable page shows periods a week per teacher. Still to come from the first 10g row: office screens for academic sessions and subjects, and the onboarding checklist. | `teacher_subject_requests`; office-only writes on `teachers` and `teacher_subjects`; one `teachers` row per user. | The office gives a teacher a subject in a class, and the teacher reads and marks it; a teacher cannot write it or confirm their own proposal. No proposal is made until the school sets the limit. |
 
 ## 5. Decisions the plan makes, unless told otherwise
 
@@ -196,6 +198,9 @@ production, in PR order, by the lead only.
 
 - **Payroll:** approve or change the spec proposal in section 6.
 - **Career Graph, Digital Twin, Automation OS:** a specification each.
+- **Whether a TC may be held for unpaid fees** (C230-A): the founder decides
+  with the lawyer. Until then each school switches the fee clearance per
+  certificate type, off for the TC by default (C232).
 - Nothing else blocks P7. State RTE rates, CPI and deadlines are typed by
   each school with their source.
 
@@ -228,6 +233,10 @@ production, in PR order, by the lead only.
   - C230: docs/29, the payroll specification proposal and what the blocked
     modules need;
   - C231: 10g.
+- **Wave 2 close-out (C230-A), in parallel and split by tables:** C232 part
+  A (documents and certificates, and the upload check), C232 part B (the
+  compliance desk, and the founder's reason for viewing a school), and 10g
+  (C231).
 - One full `ci_local.sh` on the top of the stack.
 
 ## 10. What the audit history still holds (C224)
@@ -269,7 +278,28 @@ before_state and after_state still hold, by event_action:
 - **rte.claim_written_off:** the write-off note.
 - **rte.claim_paid:** the state's payment reference.
 - **rte.rate_typed:** the source sentence.
+- **ImpersonationStarted** (before C232): the founder's reason for viewing the
+  school. From C232 the reason is kept on the viewing's own row
+  (`impersonation_sessions`), which the school reads on its Compliance page.
 
 These rows are not reached by a data request's erasure. Whether to scrub
 them, and how without breaking the audit hash chain, waits for the lawyer
 (P8), together with the retention periods.
+
+## 11. What is built (2026-10-15)
+
+| Slice | Decision Log | State |
+|---|---|---|
+| 10a. Admissions pipeline | C221; close-out C224 | Merged |
+| 10b. Student data check | C222; close-out C224, C225 | Merged |
+| 10c. RTE claim desk | C223; close-out C225 | Merged |
+| Plan placement and the free first month | C226 | Merged |
+| 10d. Compliance desk | C227; close-out C232 part B | 10d merged; the close-out in review |
+| 10e. Documents and certificates | C228; close-out C232 part A | 10e merged; the close-out in review |
+| 10f. Timetable generator | C229 | Merged |
+| 10g. Who teaches what | C231 | In review |
+| Payroll, Career Graph, Digital Twin, Automation OS | C230 (`29`) | Blocked: waiting for the founder |
+
+Still to build in P7: the office screens for academic sessions and subjects,
+and the onboarding checklist (the rest of the first 10g row); APAAR capture
+(`17` row 22). The Family App (P7b) is planned in `31`.
