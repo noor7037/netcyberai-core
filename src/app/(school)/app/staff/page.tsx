@@ -3,6 +3,7 @@ import { ModuleComingPage } from '@/components/app-shell/ModuleComingPage';
 import { StaffAccounts } from '@/components/account/StaffAccounts';
 import { StaffInvitations } from '@/components/account/StaffInvitations';
 import { ModulePage } from '@/components/app-ui/ModulePage';
+import { ListExport } from '@/components/export/ListExport';
 import { StaffLeaveOffice } from '@/components/staff/StaffLeaveOffice';
 import { StaffLeaveShown } from '@/components/staff/StaffLeaveShown';
 import { TeacherSubjects } from '@/components/staff/TeacherSubjects';
@@ -33,12 +34,12 @@ export default async function StaffPage({ searchParams = {} }: { searchParams?: 
   const { lang } = getLang(session.sub);
   const shown = isStaffShow(searchParams.show) ? searchParams.show : null;
   return (
-    <ModulePage moduleId="staff" help="send-staff-reset-code" tour="staff" title={t(lang, 'staff.page.title')} purpose={t(lang, 'staff.page.purpose')}>
+    <ModulePage moduleId="staff" help="send-staff-reset-code" tour="staff" title={t(lang, 'staff.page.title')} purpose={t(lang, 'staff.page.purpose')} more={<ListExport lists={['staff']} />}>
       {!leaveOff && shown && <StaffLeaveShown show={shown} />}
       {!leaveOff && <StaffLeaveOffice shownAbove={shown !== null} />}
       <StaffInvitations />
       <TeacherSubjects />
-      <StaffAccounts endpoint="/api/app/users" />
+      <StaffAccounts endpoint="/api/app/users" profileBase="/app/staff" />
     </ModulePage>
   );
 }

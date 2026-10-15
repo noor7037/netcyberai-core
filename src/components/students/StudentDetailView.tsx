@@ -11,6 +11,7 @@ import type { MessageKey } from '@/lib/i18n';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useToast } from '@/components/ui/Toast';
 import { DocumentCapture } from './DocumentCapture';
+import { RecordDocuments } from '@/components/documents/RecordDocuments';
 import { ConsentPanel } from './ConsentPanel';
 import { DsrPanel } from './DsrPanel';
 import { FamilyPanel } from './FamilyPanel';
@@ -281,6 +282,7 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
           studentStatus={student.status}
           onStudentStatusChange={(status) => setStudent((s) => ({ ...s, status }))}
         />
+        <RecordDocuments record="student" recordId={student.student_id} />
         <DocumentCapture studentId={student.student_id} guardians={guardians ?? []} />
         <DsrPanel studentId={student.student_id} canManage={canEdit} />
       </div>

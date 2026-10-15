@@ -431,6 +431,12 @@ ALLOWED_PERMISSIVE = (
         ("certificate_signatories", "certificate_signatories_tenant_isolation"),
         ("certificate_signatures", "certificate_signatures_tenant_isolation"),
         # c232a end
+        # c235d begin
+        # C235-D: papers on a staff or student record, and their versions. Tenant isolation only; narrowed by the
+        # RESTRICTIVE policies required below.
+        ("record_documents", "record_documents_tenant_isolation"),
+        ("record_document_versions", "record_document_versions_tenant_isolation"),
+        # c235d end
     }
 )
 
@@ -834,6 +840,20 @@ REQUIRED_RESTRICTIVE = {
     ("certificate_signatures", "certificate_signatures_replaced_as_self"),
     ("certificate_signatures", "certificate_signatures_removed"),
     # c232a end
+    # c235d begin
+    # C235-D: a paper is read by the office, its own staff member, and (a student's) by the coordinator, the
+    # accountant and a teacher of the child's class; added and removed by the office in its own name; nothing for a
+    # parent; its audit rows and the list exports' by the office or the person who acted.
+    ("record_documents", "record_documents_readers"),
+    ("record_documents", "record_documents_added_by_office"),
+    ("record_documents", "record_documents_removed_by_office"),
+    ("record_documents", "record_documents_no_parent"),
+    ("record_document_versions", "record_document_versions_readers"),
+    ("record_document_versions", "record_document_versions_added_by_office"),
+    ("record_document_versions", "record_document_versions_removed_by_office"),
+    ("record_document_versions", "record_document_versions_no_parent"),
+    ("audit_log", "audit_record_document_rows_office_or_actor"),
+    # c235d end
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)
