@@ -24,7 +24,7 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
   const [target, setTarget] = useState<Person | null>(null);
   const [reason, setReason] = useState('');
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<'failed' | 'aadhaar' | null>(null);
 
   const load = useCallback(async () => {
     const res = await fetch(`/api/control/schools/${schoolId}/people`).catch(() => null);
@@ -39,7 +39,7 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
   function ask(p: Person) {
     setTarget(p);
     setReason(t('viewAs.reason.default'));
-    setError(false);
+    setError(null);
   }
 
   async function start(e: FormEvent) {
@@ -53,7 +53,9 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
       return;
     }
     setBusy(false);
-    setError(true);
+    // A reason with an Aadhaar number in it is refused (the one rule, C232 part B): said as such.
+    const got = res ? ((await res.json().catch(() => null)) as { code?: string } | null) : null;
+    setError(got?.code === 'aadhaar' ? 'aadhaar' : 'failed');
   }
 
   return (
@@ -83,7 +85,7 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
           <form onSubmit={start} className="flex flex-col gap-3">
             <p className="text-sm text-slate">{t('viewAs.dialog.how', { role: t(`role.${target.role}` as MessageKey) })}</p>
             <Input id="view-as-reason" label={t('viewAs.reason')} maxLength={300} value={reason} onChange={(e) => setReason(e.target.value)} required />
-            {error && <p role="alert" className="text-sm font-semibold text-red-800">{t('viewAs.dialog.failed')}</p>}
+            {error && <p role="alert" className="text-sm font-semibold text-red-800">{t(error === 'aadhaar' ? 'viewAs.dialog.aadhaar' : 'viewAs.dialog.failed')}</p>}
             <div className="flex flex-wrap gap-2">
               <button type="submit" data-view-as-start disabled={busy || !reason.trim()} className={PRIMARY}>
                 {t('viewAs.dialog.start')}

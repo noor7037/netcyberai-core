@@ -726,7 +726,6 @@ REQUIRED_RESTRICTIVE = {
     # p7-10d begin
     # C227: the compliance desk is read and written by the principal and the school admin only, in their own name; its
     # audit rows by those two roles, or the person who acted.
-    ("staff_qualifications", "staff_qualifications_office"),
     ("staff_qualifications", "staff_qualifications_saved_as_self"),
     ("staff_qualifications", "staff_qualifications_changed_as_self"),
     ("disclosure_entries", "disclosure_entries_office"),
@@ -735,6 +734,19 @@ REQUIRED_RESTRICTIVE = {
     ("sqaaf_evidence", "sqaaf_evidence_added_as_self"),
     ("audit_log", "audit_compliance_desk_rows_office_or_actor"),
     # p7-10d end
+    # c232b begin
+    # C232 part B: staff_qualifications_office is split by command: the office reads every row and any staff member
+    # their own; adding, changing and erasing stay the office's. The Form 6 figures (compliance_config) are written by
+    # the principal and the school admin, and read by them and the accountant.
+    ("staff_qualifications", "staff_qualifications_readers"),
+    ("staff_qualifications", "staff_qualifications_added_by_office"),
+    ("staff_qualifications", "staff_qualifications_changed_by_office"),
+    ("staff_qualifications", "staff_qualifications_erased_by_office"),
+    ("compliance_config", "compliance_config_readers"),
+    ("compliance_config", "compliance_config_set_by_office"),
+    ("compliance_config", "compliance_config_changed_by_office"),
+    ("compliance_config", "compliance_config_removed_by_office"),
+    # c232b end
     # p7-10e begin
     # C228: the register, the family copies and the seal and signature are the office's (principal and school admin),
     # in their own name; only the principal withdraws a certificate or keeps the seal and the signature. The register's

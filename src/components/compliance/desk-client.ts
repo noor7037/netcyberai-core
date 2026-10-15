@@ -25,7 +25,7 @@ export async function send(url: string, method: 'POST' | 'DELETE', payload?: unk
 }
 
 // The codes the desk's routes answer with, each with its own words; anything else is said plainly.
-const CODES = ['stage', 'length', 'aadhaar', 'tet_type', 'tet_paper', 'date', 'tet_needed', 'future', 'order', 'heading', 'value', 'source', 'unchanged', 'too_many', 'unknown_standard', 'note', 'nothing', 'not_a_photo_or_pdf', 'too_large', 'storage_unavailable', 'empty', 'no_name_column'];
+const CODES = ['stage', 'length', 'aadhaar', 'tet_type', 'tet_paper', 'date', 'tet_needed', 'future', 'order', 'heading', 'value', 'source', 'unchanged', 'too_many', 'unknown_standard', 'note', 'nothing', 'not_a_photo_or_pdf', 'too_large', 'storage_unavailable', 'empty', 'no_name_column', 'on_register'];
 export function refusal(reply: Reply): MessageKey {
   if (reply.status === 403) return 'cdk.notYours';
   if (reply.status === 404) return 'cdk.err.not_found';

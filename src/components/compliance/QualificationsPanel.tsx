@@ -25,6 +25,7 @@ export function QualificationsPanel({ register, reload, say }: { register: Regis
   const [busy, setBusy] = useState(false);
   const [csv, setCsv] = useState<string | null>(null);
   const [preview, setPreview] = useState<Preview | null>(null);
+  const [erasing, setErasing] = useState<string | null>(null);
   const date = dayFormat(lang);
   // CTET and the papers' numerals are names, the same in every language; a State TET is said in the person's language.
   const tetName = (type: string) => (type === 'CTET' ? type : t('cdk.tet.state'));
@@ -42,6 +43,17 @@ export function QualificationsPanel({ register, reload, say }: { register: Regis
     if (!reply.ok) return say(false, t(refusal(reply)));
     setEditing(null);
     say(true, t('cdk.q.saved'));
+    await reload();
+  };
+
+  // A person who has left: their row is erased for good, by the database's own function (C232 part B).
+  const erase = async (userId: string) => {
+    setBusy(true);
+    const reply = await send(`/api/app/compliance/qualifications/${userId}`, 'DELETE');
+    setBusy(false);
+    setErasing(null);
+    if (!reply.ok) return say(false, t(refusal(reply)));
+    say(true, t('cdk.q.erased'));
     await reload();
   };
 
@@ -200,6 +212,37 @@ export function QualificationsPanel({ register, reload, say }: { register: Regis
         <p data-cdk-no-staff className="rounded-md bg-off-white px-3 py-2">{t('cdk.q.noStaff')}</p>
       ) : (
         <ul className="flex flex-col gap-3">{register.staff.map(staffCard)}</ul>
+      )}
+
+      {register.former.length > 0 && (
+        <div data-cdk-former className="flex flex-col gap-2">
+          <h3 className="font-bold">{t('cdk.q.formerTitle')}</h3>
+          <p className="text-slate/70">{t('cdk.q.formerHow')}</p>
+          <ul className="flex flex-col gap-2">
+            {register.former.map((f) => (
+              <li key={f.user_id} data-cdk-former-row={f.user_id} className="flex flex-col gap-2 rounded-md border border-slate/10 px-3 py-2">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="min-w-0">
+                    <p className="break-words font-semibold">{f.name}</p>
+                    <p className="text-slate/70">{t(f.active ? 'cdk.q.formerRole' : 'cdk.q.formerLeft')} · {t('cdk.q.formerChanged', { date: date(f.updated_at) })}</p>
+                  </div>
+                  {erasing !== f.user_id && (
+                    <button type="button" data-cdk-erase={f.user_id} disabled={busy} className={TAP} onClick={() => setErasing(f.user_id)}>{t('cdk.q.erase')}</button>
+                  )}
+                </div>
+                {erasing === f.user_id && (
+                  <div data-cdk-erase-confirm className="flex flex-col gap-2 rounded-md bg-off-white p-3">
+                    <p className="font-semibold">{t('cdk.q.eraseConfirm', { name: f.name })}</p>
+                    <div className="flex flex-wrap gap-2">
+                      <button type="button" data-cdk-erase-yes={f.user_id} disabled={busy} className={PRIMARY} onClick={() => void erase(f.user_id)}>{t('cdk.q.eraseYes')}</button>
+                      <button type="button" className={TAP} onClick={() => setErasing(null)}>{t('cdk.cancel')}</button>
+                    </div>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
 
       <div className="flex flex-col gap-1 rounded-md border border-slate/10 px-3 py-2">

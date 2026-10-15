@@ -1,4 +1,7 @@
 import type { PoolClient } from 'pg';
+import { writeAuditLog } from '@/lib/audit/log';
+import type { StaffRole } from '@/lib/auth/types';
+import { hasAadhaarNumber } from '@/lib/privacy/aadhaar';
 import { indiaDate } from '@/lib/time/india';
 
 // 05_BUSINESS_LOGIC.md Sec3: Haryana's Form 6 advisory. CPI and the
@@ -22,15 +25,30 @@ export interface Form6Advisory {
   filingDeadline: string | null;
   filingDeadlineSource: string | null;
   advisoryMuted: boolean;
+  // Who entered each figure, when, and the day its source was read (C232 part B); null for a figure typed before the
+  // desk could enter one.
+  cpiReadOn: string | null;
+  cpiRecordedBy: string | null;
+  cpiRecordedAt: string | null;
+  filingDeadlineReadOn: string | null;
+  filingDeadlineRecordedBy: string | null;
+  filingDeadlineRecordedAt: string | null;
 }
 
 interface ComplianceConfigRow {
   cpi_percent: string | null;
   cpi_source: string | null;
+  cpi_read_on: string | null;
+  cpi_recorded_by: string | null;
+  cpi_recorded_at: Date | string | null;
   filing_deadline: string | null;
   filing_deadline_source: string | null;
+  filing_deadline_read_on: string | null;
+  filing_deadline_recorded_by: string | null;
+  filing_deadline_recorded_at: Date | string | null;
   advisory_muted: boolean;
 }
+const iso = (at: Date | string | null | undefined) => (at ? new Date(at).toISOString() : null);
 
 // Normalizes every fee_structure_items row to an annual minor-unit
 // figure (amount_minor -- Pre-F Architecture Hardening's provider-
@@ -67,9 +85,15 @@ async function annualTotalForYear(client: PoolClient, schoolId: string, academic
 export async function computeForm6Advisory(client: PoolClient, schoolId: string, jurisdiction: string): Promise<Form6Advisory> {
   const jurisdictionApplies = jurisdiction === 'IN-HR';
 
+  // Who entered a figure is read by name; a name the reader cannot see is left out, never guessed.
   const { rows } = await client.query<ComplianceConfigRow>(
-    `select cpi_percent, cpi_source, filing_deadline::text as filing_deadline, filing_deadline_source, advisory_muted
-     from compliance_config where school_id = $1`,
+    `select c.cpi_percent, c.cpi_source, c.cpi_read_on::text as cpi_read_on, cu.display_name as cpi_recorded_by, c.cpi_recorded_at,
+            c.filing_deadline::text as filing_deadline, c.filing_deadline_source, c.filing_deadline_read_on::text as filing_deadline_read_on,
+            du.display_name as filing_deadline_recorded_by, c.filing_deadline_recorded_at, c.advisory_muted
+       from compliance_config c
+       left join users cu on cu.school_id = c.school_id and cu.user_id = c.cpi_recorded_by
+       left join users du on du.school_id = c.school_id and du.user_id = c.filing_deadline_recorded_by
+      where c.school_id = $1`,
     [schoolId]
   );
   const config = rows[0];
@@ -126,6 +150,12 @@ export async function computeForm6Advisory(client: PoolClient, schoolId: string,
     filingDeadline: config?.filing_deadline ?? null,
     filingDeadlineSource: config?.filing_deadline_source ?? null,
     advisoryMuted,
+    cpiReadOn: config?.cpi_read_on ?? null,
+    cpiRecordedBy: config?.cpi_recorded_by ?? null,
+    cpiRecordedAt: iso(config?.cpi_recorded_at),
+    filingDeadlineReadOn: config?.filing_deadline_read_on ?? null,
+    filingDeadlineRecordedBy: config?.filing_deadline_recorded_by ?? null,
+    filingDeadlineRecordedAt: iso(config?.filing_deadline_recorded_at),
   };
 }
 
@@ -161,4 +191,110 @@ export async function unmuteForm6Advisory(client: PoolClient, schoolId: string, 
      on conflict (school_id) do update set advisory_muted = false, muted_by = $2, muted_at = now(), updated_at = now()`,
     [schoolId, actorUserId, stateFromJurisdiction(jurisdiction)]
   );
+}
+
+// ---- entering the CPI and the filing deadline (C230-A, C232 part B) -------------------------------------------------
+// On the compliance desk, by the principal or the school admin: each figure with the https address of its source and
+// the day that source was read, as the Form 6 feature page promises. Never a default number: a figure is empty (the
+// advisory says "not set") until a person enters it, and the office may clear it again. The database holds the same
+// rules (compliance_config_figures) and records who entered it and when. Audited with the figure and the day read,
+// never the address (C56: typed text stays off the audit row).
+
+export const FIGURE_ROLES: readonly string[] = ['principal', 'school_admin'];
+export const SOURCE_MAX = 500;
+export type Figure = 'cpi' | 'deadline';
+export type FigureValue =
+  | { figure: 'cpi'; clear: false; percent: number; source: string; readOn: string }
+  | { figure: 'deadline'; clear: false; deadline: string; source: string; readOn: string }
+  | { figure: Figure; clear: true };
+export type FigureProblem = 'figure' | 'percent' | 'deadline' | 'source' | 'aadhaar' | 'read_on' | 'future';
+
+const realDate = (v: unknown): string | null => {
+  if (typeof v !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(v)) return null;
+  const d = new Date(`${v}T00:00:00Z`);
+  return Number.isNaN(d.getTime()) || d.toISOString().slice(0, 10) !== v ? null : v;
+};
+
+// An https address with a host, at most SOURCE_MAX characters, never an Aadhaar number.
+export function readSource(v: unknown): { ok: true; source: string } | { ok: false; reason: 'source' | 'aadhaar' } {
+  const typed = typeof v === 'string' ? v.trim() : '';
+  // A phone may type "Https://": the scheme is kept in small letters, as the database's rule reads it.
+  const s = typed.toLowerCase().startsWith('https://') ? `https://${typed.slice(8)}` : typed;
+  if (!s || s.length > SOURCE_MAX || /\s/.test(s) || !s.startsWith('https://')) return { ok: false, reason: 'source' };
+  let host = '';
+  try {
+    const u = new URL(s);
+    host = u.protocol === 'https:' ? u.hostname : '';
+  } catch {
+    host = '';
+  }
+  if (!host.includes('.')) return { ok: false, reason: 'source' };
+  if (hasAadhaarNumber(s)) return { ok: false, reason: 'aadhaar' };
+  return { ok: true, source: s };
+}
+
+// What the office sent, read: { figure: 'cpi', percent, source, readOn }, { figure: 'deadline', deadline, source,
+// readOn }, or { figure, clear: true }. The CPI is a percent above -100 and below 100 with at most two decimal places.
+export function readFigure(input: Readonly<Record<string, unknown>>, today: string): { ok: true; value: FigureValue } | { ok: false; reason: FigureProblem } {
+  const figure = input.figure;
+  if (figure !== 'cpi' && figure !== 'deadline') return { ok: false, reason: 'figure' };
+  if (input.clear === true) return { ok: true, value: { figure, clear: true } };
+  let percent = 0;
+  let deadline = '';
+  if (figure === 'cpi') {
+    const raw = typeof input.percent === 'number' ? String(input.percent) : typeof input.percent === 'string' ? input.percent.trim() : '';
+    if (!/^-?\d{1,2}(\.\d{1,2})?$/.test(raw)) return { ok: false, reason: 'percent' };
+    percent = Number(raw);
+  } else {
+    const d = realDate(input.deadline);
+    if (!d) return { ok: false, reason: 'deadline' };
+    deadline = d;
+  }
+  const source = readSource(input.source);
+  if (!source.ok) return source;
+  const readOn = realDate(input.readOn);
+  if (!readOn) return { ok: false, reason: 'read_on' };
+  if (readOn > today) return { ok: false, reason: 'future' };
+  return { ok: true, value: figure === 'cpi' ? { figure, clear: false, percent, source: source.source, readOn } : { figure, clear: false, deadline, source: source.source, readOn } };
+}
+
+export type FigureResult = { ok: true; figure: Figure; cleared: boolean } | { ok: false; reason: 'not_allowed' | 'not_haryana' | 'unchanged' | FigureProblem };
+type FigureActor = { schoolId: string; userId: string; role: StaffRole };
+
+export async function saveForm6Figure(client: Pick<PoolClient, 'query'>, actor: FigureActor, jurisdiction: string, input: Readonly<Record<string, unknown>>): Promise<FigureResult> {
+  if (!FIGURE_ROLES.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
+  // Form 6 is Haryana's: a school elsewhere has no figure to enter.
+  if (jurisdiction !== 'IN-HR') return { ok: false, reason: 'not_haryana' };
+  const read = readFigure(input, indiaDate());
+  if (!read.ok) return read;
+  const v = read.value;
+  const cols = v.figure === 'cpi' ? ['cpi_percent', 'cpi_source', 'cpi_read_on'] : ['filing_deadline', 'filing_deadline_source', 'filing_deadline_read_on'];
+  const values = v.clear ? [null, null, null] : v.figure === 'cpi' ? [v.percent, v.source, v.readOn] : [v.deadline, v.source, v.readOn];
+  const before = (await client.query(`select ${cols[0]}::text as a, ${cols[1]} as b, ${cols[2]}::text as c from compliance_config where school_id = $1`, [actor.schoolId])).rows[0];
+  const same = before
+    ? (v.figure === 'cpi' ? (before.a === null ? null : Number(before.a)) : before.a) === values[0] && before.b === values[1] && before.c === values[2]
+    : v.clear;
+  if (same) return { ok: false, reason: 'unchanged' };
+  await client.query(
+    `insert into compliance_config (school_id, state, ${cols.join(', ')})
+     values ($1, $2, $3, $4, $5)
+     on conflict (school_id) do update set ${cols.map((c) => `${c} = excluded.${c}`).join(', ')}, updated_at = now()`,
+    [actor.schoolId, stateFromJurisdiction(jurisdiction), ...values]
+  );
+  await writeAuditLog(client, {
+    schoolId: actor.schoolId,
+    actorUserId: actor.userId,
+    actorRole: actor.role,
+    eventAction: 'compliance_desk.form6_figure_saved',
+    targetType: 'compliance_config',
+    targetId: actor.schoolId,
+    afterState: {
+      figure: v.figure,
+      cleared: v.clear,
+      percent: v.clear || v.figure !== 'cpi' ? null : v.percent,
+      deadline: v.clear || v.figure !== 'deadline' ? null : v.deadline,
+      readOn: v.clear ? null : v.readOn,
+    },
+  });
+  return { ok: true, figure: v.figure, cleared: v.clear };
 }
