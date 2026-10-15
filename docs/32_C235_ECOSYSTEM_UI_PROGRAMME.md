@@ -60,8 +60,8 @@ phone-first for teachers and parents; low-bandwidth and offline-tolerant for tea
 
 | Slice | Scope | Status |
 | --- | --- | --- |
-| C235-A | Standard classes LKG–12 × A–C in one action; one class order everywhere; consistency audit; bulk class upload/download; 10,000-row proof of the student bulk import | Building |
-| C235-B | Sticky branded header (school logo + name, person's name + role); school branding in Settings (principal, school admin only) and at onboarding in Control; safe logo upload; navigation: Home → Frequent work → All modules by category | Building |
+| C235-A | Standard classes LKG–12 × A–C in one action; one class order everywhere; consistency audit; bulk class upload/download; 10,000-row proof of the student bulk import | Merged (C235-A); the demo school has the 42 classes |
+| C235-B | Sticky branded header (school logo + name, person's name + role); school branding in Settings (principal, school admin only) and at onboarding in Control; safe logo upload; navigation: Home → Frequent work → All modules by category | Merged (C235-B); migration on both databases |
 | C235-C | Design system v5: floating-label inputs, custom checkbox/radio/segmented control, gradient page banner per module category, KPI icon chips; at least 30% fewer words on 11 key screens | Building |
 | C235-D | Documents on staff and student profiles (PDF/JPG/PNG, 10 MB, versions kept, role-based access, every view audited); export of students, staff and classes as Excel (.xlsx) and CSV | Next, after A |
 | C235-E | Feasibility: document storage (section 4) and the AI assistant (section 5) | This file |
@@ -135,3 +135,4 @@ Business verification and rotating the token that was exposed earlier also stay 
 
 ## 7. Change log
 - 2026-10-15: written (lead). Slices A–C started in parallel worktrees (C198 model); D queued after A.
+- 2026-10-15: A and B merged together after the full gate on their stack (two tests updated to the slices' intended changes).
