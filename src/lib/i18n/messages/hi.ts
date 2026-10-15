@@ -4325,7 +4325,7 @@ export const hi: Record<keyof typeof en, string> = {
   'cdk.err.source': 'यह कहाँ से आता है, लिखें (300 अक्षरों तक)।',
   'cdk.err.unchanged': 'कुछ भी नहीं बदला गया।',
   'cdk.err.too_many': 'यहाँ और जगह नहीं है।',
-  'cdk.err.standard': 'सूची से कोई मानक चुनें।',
+  'cdk.err.unknown_standard': 'सूची से कोई मानक चुनें।',
   'cdk.err.note': 'नोट बहुत लंबा है (600 अक्षरों तक)।',
   'cdk.err.nothing': 'नोट लिखें या कोई फ़ाइल चुनें।',
   'cdk.err.not_a_photo_or_pdf': 'कोई फ़ोटो (JPEG, PNG या WebP) या PDF चुनें।',
