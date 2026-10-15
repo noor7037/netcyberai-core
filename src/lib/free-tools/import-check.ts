@@ -1,5 +1,6 @@
 import { parseCsv, rowsToRecords } from '@/lib/import/csv';
 import { IMPORT_COLUMNS, basicRowErrors } from '@/lib/import/rules';
+import { indiaDate } from '@/lib/time/india';
 
 // Browser-side preview of the real student import (run-import.ts): same
 // parser, same row rules. It cannot know which classes a school has set
@@ -16,7 +17,7 @@ export interface ImportCheckResult {
   okRows: number;
 }
 
-export function checkImportCsv(text: string): ImportCheckResult {
+export function checkImportCsv(text: string, today: string = indiaDate()): ImportCheckResult {
   const rows = parseCsv(text);
   const columns = rows.length ? rows[0].map((h) => h.trim().toLowerCase().replace(/\s+/g, '_')).filter(Boolean) : [];
   const known = new Set<string>(IMPORT_COLUMNS.map((c) => c.key));
@@ -27,7 +28,7 @@ export function checkImportCsv(text: string): ImportCheckResult {
 
   records.forEach((rec, i) => {
     const row = i + 1;
-    const errors = basicRowErrors(rec);
+    const errors = basicRowErrors(rec, today);
     if (errors.length) rowIssues.push({ row, name: rec.name?.trim() || '(no name)', errors });
     const adm = rec.admission_no?.trim();
     if (adm) byAdmission.set(adm, [...(byAdmission.get(adm) ?? []), row]);

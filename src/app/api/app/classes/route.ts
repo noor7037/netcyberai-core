@@ -4,6 +4,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { isForeignKeyViolation } from '@/lib/db/pg-errors';
+import { classOrderSql } from '@/lib/classes/class-order';
 import { classTeacherOptions, maySetClassTeacher } from '@/lib/classes/class-teacher';
 import { deriveGradeSection } from '@/lib/classes/grade-section';
 import { validationError } from '@/lib/errors/catalogue';
@@ -25,12 +26,13 @@ export async function GET(req: NextRequest) {
          from classes c
          left join users u on u.school_id = c.school_id and u.user_id = c.class_teacher_id
          where c.school_id = $1
-         order by c.name asc`,
+         order by ${classOrderSql('c')}, c.class_id`,
         [guard.claims.schoolId]
       );
       return { classes: rows, teachers: mayChangeClassTeacher ? await classTeacherOptions(client, guard.claims.schoolId) : [] };
     });
-    return NextResponse.json({ classes, teachers, mayChangeClassTeacher });
+    // The principal and the school admin also add the standard classes and classes from a CSV file (C235-A).
+    return NextResponse.json({ classes, teachers, mayChangeClassTeacher, mayManageClasses: canWriteMasterData(guard.claims.role) });
   } catch (err) {
     const resp = sessionErrorResponse(err);
     if (resp) return resp;

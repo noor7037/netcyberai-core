@@ -74,9 +74,19 @@ export async function suggestSiblingsFor(
     if (r.family_id) entry.families.set(r.family_id, r.family_code);
     byParent.set(r.parent_id, entry);
   }
+  // Each input looks up only the guardians with its phone or email, in the order above: a file of 10,000 students
+  // against a school of thousands of guardians stays one pass (C235-A), not every input against every guardian.
+  const entries = [...byParent.values()];
+  const byPhone = new Map<string, number[]>();
+  const byEmail = new Map<string, number[]>();
+  entries.forEach((e, i) => {
+    if (e.row.phone_key) byPhone.set(e.row.phone_key, [...(byPhone.get(e.row.phone_key) ?? []), i]);
+    if (e.row.email) byEmail.set(e.row.email, [...(byEmail.get(e.row.email) ?? []), i]);
+  });
   for (const input of inputs) {
     const list: SiblingSuggestion[] = [];
-    for (const { row, students, families } of byParent.values()) {
+    const at = [...new Set([...((input.phone && byPhone.get(input.phone)) || []), ...((input.email && byEmail.get(input.email)) || [])])].sort((a, b) => a - b);
+    for (const { row, students, families } of at.map((i) => entries[i])) {
       const matchedOn = input.phone && row.phone_key === input.phone ? 'phone' : input.email && row.email === input.email ? 'email' : null;
       if (!matchedOn) continue;
       const [fam] = [...families.entries()];
