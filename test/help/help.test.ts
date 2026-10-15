@@ -89,6 +89,7 @@ describe('the guides', () => {
       'keep-the-compliance-desk',
       // p7-10d end
       // p7-10e begin
+      'issue-certificates',
       // p7-10e end
       // p7-10f begin
       // p7-10f end

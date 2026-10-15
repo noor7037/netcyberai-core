@@ -1,5 +1,6 @@
 import type { PoolClient } from 'pg';
 import { deleteDocument } from '@/lib/capture/storage';
+import { eraseCertificatesOf } from '@/lib/documents/certificates';
 import { tombstoneVerificationsForStudent } from './guardian-verification';
 
 // Task 3: staff-initiated data subject requests -- no parent portal
@@ -203,6 +204,7 @@ export async function pseudonymizeStudent(client: PoolClient, schoolId: string, 
   const { rows: rteNotes } = await client.query(`select public.erase_student_rte_notes($1) as n`, [studentId]);
   // The words given for changing the child's attendance (review of C224): kept beside their audit rows, removed here.
   const { rowCount: attendanceRowsErased } = await client.query(`delete from attendance_change_reasons where school_id = $1 and student_id = $2`, [schoolId, studentId]);
+  await eraseCertificatesOf(client, studentId); // Certificates (C228): the register keeps each number and state; what was printed, the words typed and the family copies go.
 
   return {
     studentId,

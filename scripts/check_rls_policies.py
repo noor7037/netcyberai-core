@@ -393,6 +393,10 @@ ALLOWED_PERMISSIVE = (
         ("sqaaf_standards", "sqaaf_standards_read"),  # C227: CBSE's standards, read by the office of any school; nobody writes
         # p7-10d end
         # p7-10e begin
+        # C228: tenant isolation only; narrowed by the RESTRICTIVE policies required below (the office only).
+        ("certificates_issued", "certificates_issued_tenant_isolation"),
+        ("certificate_copies", "certificate_copies_tenant_isolation"),
+        ("certificate_marks", "certificate_marks_tenant_isolation"),
         # p7-10e end
         # p7-10f begin
         # p7-10f end
@@ -720,6 +724,19 @@ REQUIRED_RESTRICTIVE = {
     ("audit_log", "audit_compliance_desk_rows_office_or_actor"),
     # p7-10d end
     # p7-10e begin
+    # C228: the register, the family copies and the seal and signature are the office's (principal and school admin),
+    # in their own name; only the principal withdraws a certificate or keeps the seal and the signature. The register's
+    # audit rows are read by the office only.
+    ("certificates_issued", "certificates_issued_office"),
+    ("certificates_issued", "certificates_issued_as_self"),
+    ("certificates_issued", "certificates_issued_withdrawn_by_principal"),
+    ("certificate_copies", "certificate_copies_office"),
+    ("certificate_copies", "certificate_copies_as_self"),
+    ("certificate_marks", "certificate_marks_office"),
+    ("certificate_marks", "certificate_marks_kept_by_principal"),
+    ("certificate_marks", "certificate_marks_replaced_by_principal"),
+    ("certificate_marks", "certificate_marks_removed_by_principal"),
+    ("audit_log", "audit_certificate_rows_office"),
     # p7-10e end
     # p7-10f begin
     # p7-10f end
