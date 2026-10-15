@@ -3890,7 +3890,8 @@ const earlyWarningMarksTeacherDone = async () => {
 //    only; its modules stay as the seed left them). The founder chooses a year, adds a minimum of 30 students, a
 //    discount of 10 percent and Parent AI complimentary for 30 days, each with a reason. The check works the amount
 //    out again from the rows (max(enrolled students, minimum) x the yearly price, less the discount rounded half up),
-//    compares it with the screen, and puts everything back.
+//    compares it with the screen, and puts everything back. A reason's words are never in an audit row (C224): a
+//    term's are on the term itself, the period's in the founder-only entitlement_change_reasons (C124).
 const PRICING_REASON = 'harness-c212 agreed with the school';
 const PRICING_FREE_DAYS = 30;
 let pricingFormSeen = null;
@@ -3928,10 +3929,11 @@ const pricingFormDone = async () => {
 };
 const clearPricing = async () => {
   const freeAudits = `select audit_id from audit_log where school_id = '${SCHOOL}' and event_action = 'entitlement.module_changed' and target_id = 'parent-ai' and (after_state ->> 'source' = 'complimentary' or before_state ->> 'source' = 'complimentary')`;
+  const termAudits = `select audit_id from audit_log where school_id = '${SCHOOL}' and event_action like 'billing.terms.%'`;
   await db.pg.exec(`set session_replication_role = replica;
-    delete from entitlement_change_reasons where audit_id in (${freeAudits});
+    delete from entitlement_change_reasons where audit_id in (${freeAudits}) or audit_id in (${termAudits});
     delete from audit_log where audit_id in (${freeAudits});
-    delete from audit_log where school_id = '${SCHOOL}' and event_action like 'billing.terms.%';
+    delete from audit_log where audit_id in (${termAudits});
     delete from school_billing_terms where school_id = '${SCHOOL}';
     delete from school_subscriptions where school_id = '${SCHOOL}';
     set session_replication_role = origin;`);
@@ -3986,8 +3988,8 @@ const pricingTermsDone = async () => {
             (select minimum_students from school_billing_terms where school_id = $1 and kind = 'minimum') as minimum,
             (select discount_bp from school_billing_terms where school_id = $1 and kind = 'discount') as discount,
             (select ends_on::text from school_billing_terms where school_id = $1 and kind = 'complimentary' and module_id = 'parent-ai') as free_until,
-            (select count(*)::int from audit_log where school_id = $1 and event_action = 'billing.terms.added' and actor_user_id = $2 and after_state ->> 'reason' = $3) as term_audits,
-            (select count(*)::int from audit_log where school_id = $1 and event_action = 'billing.terms.period_changed' and actor_user_id = $2) as period_audits,
+            (select count(*)::int from audit_log where school_id = $1 and event_action = 'billing.terms.added' and actor_user_id = $2 and after_state ->> 'reasoned' = 'true' and strpos(after_state::text, $3) = 0) as term_audits,
+            (select count(*)::int from audit_log a join entitlement_change_reasons w on w.audit_id = a.audit_id where a.school_id = $1 and a.event_action = 'billing.terms.period_changed' and a.actor_user_id = $2 and w.reason = $3 and strpos(a.after_state::text, $3) = 0) as period_audits,
             (select enabled::text || ' ' || source from school_module_entitlements where school_id = $1 and module_id = 'parent-ai') as parent_ai`,
     [SCHOOL, PEOPLE.founder.sub, PRICING_REASON, indiaDayFromNow(0)]
   );
@@ -3995,7 +3997,10 @@ const pricingTermsDone = async () => {
   const back = (await db.pg.query(`select enabled, source from school_module_entitlements where school_id = $1 and module_id = 'parent-ai'`, [SCHOOL])).rows[0] ?? null;
   const r = rows[0];
   if (JSON.stringify(back) !== JSON.stringify(pricingParentAiBefore)) throw new Error(`Parent AI was not put back: ${JSON.stringify(back)}`);
-  if (r.period !== 'year' || r.terms !== 3 || r.minimum !== 30 || r.discount !== 1000 || r.free_until !== indiaDayFromNow(PRICING_FREE_DAYS) || r.term_audits !== 3 || r.period_audits !== 1 || r.parent_ai !== 'true complimentary') throw new Error(`a school's terms, in the database: ${JSON.stringify(r)}`);
+  // Only the wrong fields are named: the report keeps the first 160 characters of a message.
+  const stored = { period: 'year', terms: 3, minimum: 30, discount: 1000, free_until: indiaDayFromNow(PRICING_FREE_DAYS), term_audits: 3, period_audits: 1, parent_ai: 'true complimentary' };
+  const off = Object.entries(stored).filter(([k, v]) => r[k] !== v);
+  if (off.length) throw new Error(`a school's terms, in the database: ${JSON.stringify(off.map(([k, v]) => [k, r[k], v]))}`);
   // The amount, worked out here again from the rows, to the paisa.
   const billed = Math.max(r.enrolled, r.minimum);
   const gross = billed * Number(r.year_price);
