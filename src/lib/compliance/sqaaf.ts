@@ -59,7 +59,7 @@ export async function loadSqaaf(db: Db, actor: Actor): Promise<Sqaaf | null> {
   };
 }
 
-export type EvidenceProblem = 'standard' | 'note' | 'aadhaar' | 'nothing' | 'too_many' | 'not_a_photo_or_pdf' | 'too_large' | 'storage_unavailable';
+export type EvidenceProblem = 'unknown_standard' | 'note' | 'aadhaar' | 'nothing' | 'too_many' | 'not_a_photo_or_pdf' | 'too_large' | 'storage_unavailable';
 export type EvidenceResult = { ok: true; evidenceId: string } | { ok: false; reason: 'not_allowed' | 'not_found' | EvidenceProblem };
 
 // A note as typed: trimmed, at most NOTE_MAX characters, never an Aadhaar number; '' or null is no note.
@@ -71,7 +71,7 @@ function readNote(note: unknown): { ok: true; note: string | null } | { ok: fals
 }
 
 async function checkStandard(db: Db, schoolId: string, code: unknown): Promise<EvidenceProblem | null> {
-  if (typeof code !== 'string' || !/^[1-7]\.[0-9]{1,2}\.[0-9]{1,2}$/.test(code) || !(await db.query(`select 1 from sqaaf_standards where code = $1`, [code])).rows[0]) return 'standard';
+  if (typeof code !== 'string' || !/^[1-7]\.[0-9]{1,2}\.[0-9]{1,2}$/.test(code) || !(await db.query(`select 1 from sqaaf_standards where code = $1`, [code])).rows[0]) return 'unknown_standard';
   const { rows } = await db.query(`select count(*)::int as n from sqaaf_evidence where school_id = $1 and standard_code = $2`, [schoolId, code]);
   return rows[0].n >= PER_STANDARD_MAX ? 'too_many' : null;
 }
