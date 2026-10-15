@@ -368,8 +368,9 @@ describe('the registry and the words', () => {
 
   it('the lists are by class and name, and the code holds no score or order of children, classes or teachers', () => {
     const source = readFileSync(path.join(ROOT, 'src/lib/early-warning/early-warning.ts'), 'utf8');
-    expect(source).toContain('order by (f.resolved_at is not null), c.name, c.section, c.class_id, s.name, s.student_id');
-    expect(source).toContain('order by c.name, c.section, c.class_id');
+    // By class in the class order (C235-A: Nursery, LKG, UKG, 1 … 12, then section), then by name.
+    expect(source).toContain("order by (f.resolved_at is not null), ${classOrderSql('c')}, c.class_id, s.name, s.student_id");
+    expect(source).toContain("order by ${classOrderSql('c')}, c.class_id");
     for (const file of ['src/lib/early-warning/early-warning.ts', 'src/lib/early-warning/rules.ts', 'src/components/early-warning/EarlyWarningView.tsx']) expect(readFileSync(path.join(ROOT, file), 'utf8'), file).not.toMatch(/\bscore\b|\bleaderboard\b|\btop \d|\bworst\b/i);
   });
 });

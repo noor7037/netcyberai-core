@@ -6,6 +6,7 @@ import type { Sql } from '@/lib/jobs/types';
 import { indiaDate, isIsoDate } from '@/lib/time/india';
 import { paperComponents, schemeParts, TO_ENTER_SQL, type PaperComponent } from './papers';
 import { schemeInForce } from './schemes';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // Exams of a session and their papers (docs/27 row 9b, C214). The principal, the school admin and the academic
 // coordinator make an exam for a term, with a paper for each class and subject (its date, the chapters it assesses,
@@ -72,7 +73,7 @@ export async function papersOf(db: Sql, schoolId: string, examIds: readonly stri
        left join users eu on eu.school_id = p.school_id and eu.user_id = p.entered_by
        cross join lateral public.exam_paper_progress(p.paper_id) g
       where p.school_id = $1 and p.exam_id = any ($2::uuid[])
-      order by c.name, c.section nulls first, c.class_id, sb.name, p.paper_id`,
+      order by ${classOrderSql('c')}, c.class_id, sb.name, p.paper_id`,
     [schoolId, examIds]
   );
   const unitIds = [...new Set(rows.flatMap((r) => r.unit_ids as string[]))];
@@ -154,7 +155,7 @@ export async function examsScreen(db: Sql, actor: Actor, sessionParam: string | 
     session,
     exams: list,
     toEnter,
-    classes: mayRun ? (await db.query(`select class_id, name, section from classes where school_id = $1 order by name, section nulls first, class_id`, [actor.schoolId])).rows.map((r) => ({ classId: r.class_id as string, name: classLabel(r.name, r.section) ?? '' })) : [],
+    classes: mayRun ? (await db.query(`select class_id, name, grade, section from classes where school_id = $1 order by ${classOrderSql('')}, class_id`, [actor.schoolId])).rows.map((r) => ({ classId: r.class_id as string, name: classLabel(r.name, r.section) ?? '' })) : [],
     subjects: mayRun ? (await db.query(`select subject_id, name from subjects where school_id = $1 order by name, subject_id`, [actor.schoolId])).rows.map((r) => ({ subjectId: r.subject_id as string, name: r.name as string })) : [],
     scheme: current ? { version: current.version, parts: schemeParts(current.scheme), terms: current.scheme.terms.map((x) => x.name) } : null,
   };

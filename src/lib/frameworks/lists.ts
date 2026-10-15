@@ -1,5 +1,6 @@
 import type { ListDefinition } from '@/lib/contracts/filters';
 import type { ListSpec } from './filter-engine';
+import { classSortKeySql } from '@/lib/classes/class-order';
 
 // Every list served by the filter engine (C112). A module adds its list
 // here when it is built; saved views, exports and bulk actions all refer
@@ -72,7 +73,8 @@ const STUDENTS: ListSpec = {
   fields: {
     name: { expr: 's.name', sortExpr: 'lower(s.name)' },
     admission_no: { expr: 's.admission_no', sortExpr: 'lower(s.admission_no)' },
-    class: { expr: 's.class_id::text', sortExpr: 'lower(c.name)' },
+    // By class means the class order (C235-A): Nursery, LKG, UKG, 1 … 12, then section; "10-A" after "2-A".
+    class: { expr: 's.class_id::text', sortExpr: classSortKeySql('c') },
     section: { expr: 'c.section', sortExpr: 'lower(c.section)' },
     session: { expr: 'c.session_id::text' },
     status: { expr: 's.status::text' },

@@ -11,6 +11,7 @@ import { loadFeesSummary } from './overdue';
 import { recentReceipts, reconcile } from './payments';
 import { followUpList, refundList } from './recovery';
 import { listHeads, listStructures } from './structures';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // What each part of the Fees page reads when it opens (C180). Every part has
 // its own GET for reading again after an action; the page itself asks for
@@ -31,7 +32,7 @@ export const FEES_PARTS = {
     return { totals: await reconcile(db, who.schoolId), overdue: { minor: summary.overdueMinor, count: summary.overdueCount }, lastRun: await lastNightlyRun(db, who.schoolId), receipts: await recentReceipts(db, who.schoolId), mayReverse: office(who.role) };
   },
   async setup(db: PoolClient, who: Who) {
-    const classes = (await db.query(`select class_id, name from classes where school_id = $1 order by name`, [who.schoolId])).rows;
+    const classes = (await db.query(`select class_id, name from classes where school_id = $1 order by ${classOrderSql('')}, class_id`, [who.schoolId])).rows;
     const sessions = (await db.query(`select session_id, label, start_date::text as start_date, end_date::text as end_date, is_current from academic_sessions where school_id = $1 order by start_date desc`, [who.schoolId])).rows;
     return { today: indiaDate(), heads: await listHeads(db, who.schoolId), structures: await listStructures(db, who.schoolId), classes, sessions };
   },

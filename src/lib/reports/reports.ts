@@ -10,6 +10,7 @@ import { sentTotalsByClass } from '@/lib/pulse/drafts';
 import { leaveCalendar } from '@/lib/staff/leave';
 import { MESSAGE_STATES, countMessages, messagesInAll } from '@/lib/whatsapp/delivery';
 import { REPORT_SOURCE_ROWS_MAX, ReportTooLarge, type ReportContext, type ReportDefinition, type ReportId, type ReportNote, type ReportRow, type ReportSql } from './types';
+import { classOrderSql, classRank, sectionKey } from '@/lib/classes/class-order';
 
 // The reports of v1 (docs/26 slice 8h, C207). Read types.ts first.
 //
@@ -58,10 +59,19 @@ const ASK = REPORT_SOURCE_ROWS_MAX + 1;
 // report rather than leave money out of a row.
 export const RECEIPT_METHODS = ['cash', 'upi', 'cheque', 'card', 'netbanking', 'online'] as const;
 
-// Every class of the school by its id, as the screens write it ("5-A").
+// Every class of the school by its id, as the screens write it ("5-A"), with its place in the class order (C235-A:
+// Nursery, LKG, UKG, 1 … 12, then section; "2-A" before "10-A").
 async function classLabels(db: ReportSql, schoolId: string): Promise<Map<string, { label: string; order: string }>> {
-  const { rows } = await db.query(`select class_id, name, section from classes where school_id = $1`, [schoolId]);
-  return new Map(rows.map((r) => [r.class_id as string, { label: classLabel(r.name as string | null, r.section as string | null) ?? '', order: `${r.name ?? ''}\u0000${r.section ?? ''}\u0000${r.class_id}` }]));
+  const { rows } = await db.query(`select class_id, name, grade, section from classes where school_id = $1`, [schoolId]);
+  return new Map(
+    rows.map((r) => [
+      r.class_id as string,
+      {
+        label: classLabel(r.name as string | null, r.section as string | null) ?? '',
+        order: `${String(classRank(r.grade as string | null, r.name as string | null)).padStart(4, '0')}\u0000${sectionKey(r.section as string | null, r.name as string | null)}\u0000${r.name ?? ''}\u0000${r.class_id}`,
+      },
+    ])
+  );
 }
 const byOrder = <T extends { order: string }>(a: T, b: T) => (a.order < b.order ? -1 : a.order > b.order ? 1 : 0);
 
@@ -148,8 +158,8 @@ async function attendanceByClass(db: ReportSql, ctx: ReportContext): Promise<{ r
        from attendance a
        left join classes c on c.school_id = a.school_id and c.class_id = a.class_id
       where a.school_id = $1 and a.date between $2::date and $3::date
-      group by a.class_id, c.name, c.section
-      order by c.name, c.section, a.class_id`,
+      group by a.class_id, c.name, c.grade, c.section
+      order by (a.class_id is null), ${classOrderSql('c')}, a.class_id`,
     [ctx.schoolId, ctx.range.from, ctx.range.to]
   );
   const school = marksTotal(await marksByDay(db, ctx.schoolId, ctx.range.from, ctx.range.to));
@@ -166,8 +176,8 @@ async function absentees(db: ReportSql, ctx: ReportContext): Promise<{ rows: Rep
        left join students s on s.school_id = a.school_id and s.student_id = a.student_id
        left join classes c on c.school_id = a.school_id and c.class_id = a.class_id
       where a.school_id = $1 and a.date between $2::date and $3::date and a.status = 'absent'
-      group by a.class_id, c.name, c.section, a.student_id, s.name, s.roll_no
-      order by c.name, c.section, a.class_id, s.name, a.student_id
+      group by a.class_id, c.name, c.grade, c.section, a.student_id, s.name, s.roll_no
+      order by (a.class_id is null), ${classOrderSql('c')}, a.class_id, s.name, a.student_id
       limit $4`,
     [ctx.schoolId, ctx.range.from, ctx.range.to, ASK]
   );

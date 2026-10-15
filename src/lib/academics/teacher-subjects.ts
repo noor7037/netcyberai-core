@@ -1,6 +1,7 @@
 import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // Who teaches which subject in which class (teacher_subjects), kept by the office in Setup, on the Staff screen
 // (docs/28 slice 10g, C231). Every function runs in the caller's own tenant transaction, as the app's role.
@@ -69,7 +70,7 @@ export async function assignmentChoices(db: Sql, schoolId: string): Promise<{ te
         order by u.is_active desc, u.display_name, u.user_id`,
       [schoolId]
     ),
-    db.query(`select class_id as id, name from classes where school_id = $1 order by name, class_id`, [schoolId]),
+    db.query(`select class_id as id, name from classes where school_id = $1 order by ${classOrderSql('')}, class_id`, [schoolId]),
     db.query(`select subject_id as id, name from subjects where school_id = $1 order by name, subject_id`, [schoolId]),
   ]);
   return { teachers: teachers.rows, classes: classes.rows, subjects: subjects.rows };

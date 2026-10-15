@@ -6,6 +6,7 @@ import { readSettings } from '@/lib/frameworks/settings-store';
 import { INDIA_TODAY_SQL } from '@/lib/time/india';
 import { activeAssignments, assignedTeachers } from '@/lib/academics/teacher-subjects';
 import { assignedMap, lookupKey, notAssigned, parseTimetableCsv, periodsFromSetting, planImport, type ImportProblem, type Slot } from './plan';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // The timetable in the database (docs/20 5c, C145). Every function runs in
 // the caller's own tenant transaction; RLS decides who reads what (a
@@ -53,7 +54,7 @@ export async function periodsToday(db: { query: PoolClient['query'] }, schoolId:
 // What the office chooses from when filling a period.
 export async function timetableChoices(db: PoolClient, schoolId: string) {
   const [classes, subjects, teachers] = await Promise.all([
-    db.query(`select class_id, name from classes where school_id = $1 order by name`, [schoolId]),
+    db.query(`select class_id, name from classes where school_id = $1 order by ${classOrderSql('')}, class_id`, [schoolId]),
     db.query(`select subject_id, name from subjects where school_id = $1 order by name`, [schoolId]),
     db.query(`select user_id, display_name as name, email from users where school_id = $1 and role = 'teacher' and is_active order by display_name`, [schoolId]),
   ]);

@@ -15,6 +15,8 @@ import { SiblingSuggestions } from './SiblingSuggestions';
 import type { SiblingSuggestion } from '@/lib/contracts/families';
 import { ModulePage, PRIMARY_ACTION, QUIET_ACTION } from '@/components/app-ui/ModulePage';
 import { explainError } from '@/lib/errors/catalogue';
+import { sortClasses } from '@/lib/classes/class-order';
+import type { MessageKey } from '@/lib/i18n';
 
 type Student = {
   student_id: string;
@@ -27,14 +29,20 @@ type Student = {
   status: 'pending_consent' | 'active' | 'inactive' | 'transferred';
 };
 
-// A class as GET /api/app/classes gives it. `class_teacher_active`: its class teacher is still an active teacher.
-type ClassRow = { class_id: string; name: string; class_teacher_id?: string | null; class_teacher_name?: string | null; class_teacher_active?: boolean };
+// A class as GET /api/app/classes gives it, in the class order (Nursery, LKG, UKG, 1 … 12, then section; C235-A).
+// `class_teacher_active`: its class teacher is still an active teacher.
+type ClassRow = { class_id: string; name: string; grade?: string | null; section?: string | null; class_teacher_id?: string | null; class_teacher_name?: string | null; class_teacher_active?: boolean };
+// A problem with one line of a classes CSV file (C235-A).
+type ClassCsvProblem = { line: number; code: string; value?: string; with?: number };
+type ClassCsvResult = { preview: boolean; committed: boolean; rowCount: number; problems: ClassCsvProblem[]; created: { class_id: string; name: string }[] };
 type TeacherOption = { user_id: string; name: string };
 
 type ImportRowError = { row: number; name: string; admissionNo: string | null; errors: string[] };
 type ImportResult = {
   alreadyImported: boolean;
   preview: boolean;
+  // All or nothing (C235-A): a row had a problem, so nothing was imported.
+  refused?: boolean;
   rowCount: number;
   importedCount: number;
   skippedCount: number;
@@ -94,6 +102,11 @@ export function StudentsView({ title, description, statusFilter, openNew = false
   const [teachers, setTeachers] = useState<TeacherOption[]>([]);
   const [mayChangeClassTeacher, setMayChangeClassTeacher] = useState(false);
   const [savingClass, setSavingClass] = useState<string | null>(null);
+  // The standard classes in one step, and classes from a CSV file (C235-A): the principal and the school admin.
+  const [mayManageClasses, setMayManageClasses] = useState(false);
+  const [classesBusy, setClassesBusy] = useState(false);
+  const [classCsv, setClassCsv] = useState('');
+  const [classCsvResult, setClassCsvResult] = useState<ClassCsvResult | null>(null);
   const [importModalOpen, setImportModalOpen] = useState(false);
   const [importResult, setImportResult] = useState<ImportResult | null>(null);
   const [importing, setImporting] = useState(false);
@@ -123,6 +136,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
       setClasses(classesBody.classes);
       setTeachers(classesBody.teachers ?? []);
       setMayChangeClassTeacher(classesBody.mayChangeClassTeacher === true);
+      setMayManageClasses(classesBody.mayManageClasses === true);
       setClassesLoaded(classesRes.ok);
       setState('ready');
     } catch {
@@ -176,10 +190,56 @@ export function StudentsView({ title, description, statusFilter, openNew = false
       return;
     }
     const { class: created } = await res.json();
-    setClasses((prev) => [...prev, created].sort((a, b) => a.name.localeCompare(b.name)));
+    setClasses((prev) => sortClasses([...prev, created]));
     (e.target as HTMLFormElement).reset();
     toast.show(`Class "${created.name}" added`, 'success');
   }
+
+  // Read the classes again after classes were added in bulk: the server's list, in the class order.
+  async function reloadClasses() {
+    const res = await fetch('/api/app/classes').catch(() => null);
+    const body = res?.ok ? await res.json().catch(() => null) : null;
+    if (body?.classes) setClasses(body.classes);
+  }
+
+  // Every standard class the school does not have yet: LKG, UKG, 1 to 12, sections A to C (C235-A).
+  async function addStandardClasses() {
+    setClassesBusy(true);
+    const res = await fetch('/api/app/classes/standard', { method: 'POST' }).catch(() => null);
+    const body = res ? await res.json().catch(() => null) : null;
+    setClassesBusy(false);
+    if (!res?.ok || !body) {
+      toast.show(t('cls.standard.failed'), 'danger');
+      return;
+    }
+    toast.show(body.createdCount > 0 ? tCount('cls.standard.added', body.createdCount) : t('cls.standard.none'), 'success');
+    await reloadClasses();
+  }
+
+  // Classes from a CSV file: `preview` checks every line and writes nothing; otherwise all or nothing (C235-A).
+  async function sendClassCsv(preview: boolean) {
+    if (!classCsv.trim()) {
+      toast.show(t('cls.csv.chooseFirst'), 'danger');
+      return;
+    }
+    setClassesBusy(true);
+    setClassCsvResult(null);
+    const res = await fetch('/api/app/classes/import', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ csv: classCsv, preview }) }).catch(() => null);
+    const body = res ? await res.json().catch(() => null) : null;
+    setClassesBusy(false);
+    if (!body || !Array.isArray(body.problems)) {
+      toast.show(t('cls.csv.failed'), 'danger');
+      return;
+    }
+    setClassCsvResult(body as ClassCsvResult);
+    if (body.committed) {
+      toast.show(tCount('cls.csv.added', body.created.length), 'success');
+      setClassCsv('');
+      await reloadClasses();
+    }
+  }
+
+  const classCsvProblem = (p: ClassCsvProblem) => t(`cls.csv.problem.${p.code}` as MessageKey, { value: p.value ?? '', with: p.with ?? '' });
 
   // Set or clear one class's class teacher. The list shows what the server now holds, or stays as it was.
   async function chooseClassTeacher(c: ClassRow, teacherId: string | null) {
@@ -204,33 +264,32 @@ export function StudentsView({ title, description, statusFilter, openNew = false
   async function runImport(formEl: HTMLFormElement, preview: boolean) {
     const form = new FormData(formEl);
     if (!(form.get('file') instanceof File) || (form.get('file') as File).size === 0) {
-      toast.show('Choose a CSV file first', 'danger');
+      toast.show(t('students.import.chooseFirst'), 'danger');
       return;
     }
     setImporting(true);
     setImportResult(null);
     try {
       const res = await fetch(`/api/app/students/import${preview ? '?preview=1' : ''}`, { method: 'POST', body: form });
-      const body = await res.json();
-      if (!res.ok) {
-        toast.show(body.error ?? 'import failed', 'danger');
+      const body = await res.json().catch(() => null);
+      // A refused import (any row with a problem, C235-A) answers 422 with every row to correct.
+      if (!res.ok && !body?.refused) {
+        toast.show(body?.error ?? t('students.import.failed'), 'danger');
         return;
       }
       setImportResult(body);
-      if (preview) {
-        toast.show(`Checked ${body.rowCount} rows: ${body.rowCount - body.skippedCount} ready, ${body.skippedCount} with errors`, body.skippedCount > 0 ? 'warning' : 'success');
-        return;
-      }
-      toast.show(
-        body.alreadyImported
-          ? 'This exact file was already imported — showing the original result'
-          : `Imported ${body.importedCount} of ${body.rowCount} rows`,
-        body.skippedCount > 0 ? 'warning' : 'success'
-      );
-      load();
+      toast.show(importSummary(body), body.skippedCount > 0 ? 'warning' : 'success');
+      if (!preview && !body.refused) load();
     } finally {
       setImporting(false);
     }
+  }
+
+  // What a check or an import did, in one sentence.
+  function importSummary(r: ImportResult): string {
+    if (r.preview) return t('students.import.checked', { ready: r.rowCount - r.skippedCount, rows: r.rowCount });
+    if (r.refused) return tCount('students.import.refused', r.skippedCount);
+    return t(r.alreadyImported ? 'students.import.again' : 'students.import.done', { imported: r.importedCount, rows: r.rowCount });
   }
 
   function handleImport(e: FormEvent<HTMLFormElement>) {
@@ -390,22 +449,80 @@ export function StudentsView({ title, description, statusFilter, openNew = false
         </form>
       </Modal>
 
-      <Modal open={classModalOpen} onClose={closeClassModal} title="Manage classes">
+      <Modal open={classModalOpen} onClose={closeClassModal} title="Manage classes" wide>
         <form onSubmit={handleCreateClass} className="mb-4 flex items-end gap-2">
           <Input id="className" name="className" label="New class (e.g. 8-A)" required className="flex-1" />
           <button type="submit" className="min-h-[44px] rounded-md bg-sapphire px-4 text-sm font-semibold text-white">
             Add
           </button>
         </form>
+        {mayManageClasses && (
+          <div data-classes-tools className="mb-4 flex flex-col gap-3 rounded-md border border-slate/10 p-3">
+            <p className="text-sm text-slate">{t('cls.standard.how')}</p>
+            <button type="button" data-classes-standard disabled={classesBusy} onClick={() => void addStandardClasses()} className={`${PRIMARY_ACTION} self-start`}>
+              {classesBusy ? t('cls.standard.adding') : t('cls.standard.add')}
+            </button>
+            <details data-classes-csv>
+              <summary className="min-h-[44px] cursor-pointer py-3 text-sm font-semibold text-sapphire">{t('cls.csv.title')}</summary>
+              <div className="flex flex-col gap-3 pt-1">
+                <a href="/api/app/classes/export" download data-classes-download className={`${QUIET_ACTION} self-start`}>
+                  {t('cls.csv.download')}
+                </a>
+                <p className="text-sm text-slate">{t('cls.csv.how')}</p>
+                <input
+                  type="file"
+                  accept=".csv,text/csv"
+                  aria-label={t('cls.csv.file')}
+                  data-classes-csv-file
+                  className="min-h-[44px] text-sm text-slate"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    setClassCsvResult(null);
+                    setClassCsv(file ? await file.text() : '');
+                  }}
+                />
+                <div className="flex flex-wrap gap-2">
+                  <button type="button" data-classes-csv-check disabled={classesBusy} onClick={() => void sendClassCsv(true)} className={QUIET_ACTION}>
+                    {t('cls.csv.check')}
+                  </button>
+                  <button type="button" data-classes-csv-add disabled={classesBusy} onClick={() => void sendClassCsv(false)} className={PRIMARY_ACTION}>
+                    {t('cls.csv.add')}
+                  </button>
+                </div>
+                {classCsvResult && (
+                  <div role="status" data-classes-csv-result className="text-sm text-slate">
+                    {classCsvResult.problems.length === 0 ? (
+                      <p>{classCsvResult.committed ? tCount('cls.csv.added', classCsvResult.created.length) : tCount('cls.csv.ready', classCsvResult.rowCount)}</p>
+                    ) : (
+                      <div className="rounded-md border border-red-800/30 p-3">
+                        <p className="font-semibold text-red-800">{t(classCsvResult.preview ? 'cls.csv.problems' : 'cls.csv.nothing')}</p>
+                        <ul className="mt-1 list-disc pl-5">
+                          {classCsvResult.problems.map((p, i) => (
+                            <li key={`${p.line}-${p.code}-${i}`}>
+                              {t('cls.csv.line', { line: p.line })}: {classCsvProblem(p)}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </details>
+          </div>
+        )}
         {classes.length === 0 ? (
           classesLoaded ? <TeachEmpty id="classes" compact onAction={() => document.getElementById('className')?.focus()} /> : <TeachEmpty id="not-loaded" compact />
         ) : (
           <div className="flex flex-col gap-2">
+            <p data-classes-count={classes.length} className="text-sm font-semibold text-slate">
+              {tCount('cls.list.count', classes.length)}
+            </p>
             {mayChangeClassTeacher && <p className="text-sm text-slate">{t(teachers.length > 0 ? 'cls.teacher.how' : 'cls.teacher.noTeachers')}</p>}
-            <ul data-classes className="flex flex-col gap-2">
+            <ul data-classes className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
               {classes.map((c) => (
                 <li key={c.class_id} data-class={c.class_id} className="flex flex-col gap-2 rounded-md border border-slate/10 px-3 py-2 text-sm text-slate">
-                  <span className="font-semibold">{c.name}</span>
+                  <span data-class-name className="font-semibold">{c.name}</span>
                   {mayChangeClassTeacher ? (
                     <Select
                       id={`class-teacher-${c.class_id}`}
@@ -477,10 +594,8 @@ export function StudentsView({ title, description, statusFilter, openNew = false
 
         {importResult && (
           <div className="mt-4 border-t border-slate/10 pt-4">
-            <p className="mb-2 text-sm font-semibold text-slate">
-              {importResult.preview
-                ? `Check only, nothing saved: ${importResult.rowCount - importResult.skippedCount} of ${importResult.rowCount} rows ready`
-                : `${importResult.importedCount} imported, ${importResult.skippedCount} skipped of ${importResult.rowCount} rows${importResult.alreadyImported ? ' (previously imported)' : ''}`}
+            <p data-import-summary className={`mb-2 text-sm font-semibold ${importResult.refused ? 'text-red-800' : 'text-slate'}`}>
+              {importSummary(importResult)}
             </p>
             {importResult.siblingSuggestions.length > 0 && (
               <div className="mb-3 flex flex-col gap-2">
@@ -502,7 +617,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
               <ul className="flex max-h-64 flex-col gap-1 overflow-y-auto text-sm">
                 {importResult.errors.map((e) => (
                   <li key={e.row} className="rounded-md border border-red-600/20 p-2 text-red-800">
-                    Row {e.row} ({e.name || e.admissionNo || 'unnamed'}): {e.errors.join('; ')}
+                    {t('students.import.row', { row: e.row, name: e.name || e.admissionNo || t('students.import.unnamed'), errors: e.errors.join('; ') })}
                   </li>
                 ))}
               </ul>

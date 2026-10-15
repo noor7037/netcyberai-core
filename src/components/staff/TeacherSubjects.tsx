@@ -72,10 +72,12 @@ export function TeacherSubjects() {
     );
   if (!data) return null;
 
+  // Classes in the order the server lists them, the class order (C235-A): "2-A" before "10-A".
+  const classAt = (id: string) => data.classes.findIndex((c) => c.id === id);
   const byTeacher = (id: string) =>
     data.assignments
       .filter((a) => a.teacherUserId === id)
-      .sort((a, b) => name(data.classes, a.classId).localeCompare(name(data.classes, b.classId)) || name(data.subjects, a.subjectId).localeCompare(name(data.subjects, b.subjectId)));
+      .sort((a, b) => classAt(a.classId) - classAt(b.classId) || name(data.subjects, a.subjectId).localeCompare(name(data.subjects, b.subjectId)));
 
   return (
     <section lang={lang} id="teacher-subjects" data-teacher-subjects className={`${BOX} text-sm text-slate`} aria-labelledby="ts-title">

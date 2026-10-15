@@ -4,6 +4,7 @@ import type { StaffRole } from '@/lib/auth/types';
 import { refreshDraftsForHomework } from '@/lib/pulse/drafts';
 import { checkUpload, type UploadCheck, type UploadProblem } from '@/lib/privacy/upload-check';
 import { FileStorageUnavailableError, sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
+import { classOrderSql, classSortKeySql } from '@/lib/classes/class-order';
 
 // Homework (docs/20 5e, C150). The teacher writes it once and copies it to
 // the sections it is for. Each copy is an assignment of its own: its own
@@ -117,7 +118,7 @@ const ASSIGNMENTS = `select t.target_id, t.homework_id, t.class_id, c.name as cl
          (select count(*)::int from homework_status hs join students st on st.school_id = hs.school_id and st.student_id = hs.student_id and st.class_id = t.class_id and st.status in ('active', 'pending_consent') where hs.target_id = t.target_id) as checked,
          (select count(*)::int from homework_status hs join students st on st.school_id = hs.school_id and st.student_id = hs.student_id and st.class_id = t.class_id and st.status in ('active', 'pending_consent') where hs.target_id = t.target_id and hs.done) as done,
          (select count(*)::int from homework_attachments a where a.school_id = t.school_id and a.homework_id = t.homework_id) as files,
-         coalesce((select jsonb_agg(jsonb_build_object('target_id', o.target_id, 'class_name', oc.name) order by oc.name)
+         coalesce((select jsonb_agg(jsonb_build_object('target_id', o.target_id, 'class_name', oc.name) order by ${classOrderSql('oc')})
                      from homework_targets o join classes oc on oc.school_id = o.school_id and oc.class_id = o.class_id
                     where o.school_id = t.school_id and o.homework_id = t.homework_id and o.target_id <> t.target_id), '[]'::jsonb) as siblings
     from homework_targets t
@@ -127,7 +128,7 @@ const ASSIGNMENTS = `select t.target_id, t.homework_id, t.class_id, c.name as cl
 
 // The assignments due from two weeks back onward, the nearest due date first.
 export async function listAssignments(db: PoolClient, schoolId: string, today: string): Promise<Assignment[]> {
-  return (await db.query(`${ASSIGNMENTS} where t.school_id = $1 and t.due_date >= $2::date - 14 order by t.due_date, c.name, t.assigned_at`, [schoolId, today])).rows;
+  return (await db.query(`${ASSIGNMENTS} where t.school_id = $1 and t.due_date >= $2::date - 14 order by t.due_date, ${classOrderSql('c')}, t.assigned_at`, [schoolId, today])).rows;
 }
 
 // The assignments behind a number (docs/26 slice 8d, C203): what the Homework screen lists when it is opened on
@@ -143,7 +144,7 @@ const SHOWN: Record<HomeworkShow, string> = { set: 'true', due: 'a.students > 0'
 const SET_ON = `(t.assigned_at at time zone 'Asia/Kolkata')::date`;
 export const ASSIGNMENT_ROWS_MAX = 1000;
 export async function listAssignmentsIn(db: PoolClient, schoolId: string, show: HomeworkShow, from: string, to: string, limit: number = ASSIGNMENT_ROWS_MAX): Promise<Assignment[]> {
-  return (await db.query(`select a.* from (${ASSIGNMENTS} where t.school_id = $1 and ${show === 'set' ? SET_ON : 't.due_date'} between $2::date and $3::date) a where ${SHOWN[show]} order by a.due_date, a.class_name, a.target_id limit $4`, [schoolId, from, to, limit])).rows;
+  return (await db.query(`select a.* from (${ASSIGNMENTS} where t.school_id = $1 and ${show === 'set' ? SET_ON : 't.due_date'} between $2::date and $3::date) a where ${SHOWN[show]} order by a.due_date, (select ${classSortKeySql('k')} from classes k where k.school_id = $1 and k.class_id = a.class_id), a.target_id limit $4`, [schoolId, from, to, limit])).rows;
 }
 // The same assignments, counted (never cut short): how many each list above holds, and how many times a student
 // was marked "not done" on the ones due. One query shape with the lists, so a count and its rows cannot differ.

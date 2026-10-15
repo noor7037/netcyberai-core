@@ -5,13 +5,22 @@
 // general CSV library, and one more dependency is one more thing to
 // audit for a feature this narrow.
 export function parseCsv(text: string): string[][] {
+  return parseCsvChecked(text).rows;
+}
+
+// The same, saying also whether the file ended inside a quoted field (a
+// quote opened and never closed): the rest of the file was read as one
+// value, so an import refuses such a file rather than guess (C235-A).
+// A byte order mark at the start (Excel's "CSV UTF-8" writes one, and so
+// does this app's own export) is not part of the first column's name.
+export function parseCsvChecked(text: string): { rows: string[][]; unclosedQuote: boolean } {
   const rows: string[][] = [];
   let row: string[] = [];
   let field = '';
   let inQuotes = false;
   // Normalize line endings up front so \r\n and \r alone behave the
   // same as \n inside the state machine below.
-  const src = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  const src = text.replace(/^\uFEFF/, '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
   for (let i = 0; i < src.length; i++) {
     const ch = src[i];
@@ -51,7 +60,7 @@ export function parseCsv(text: string): string[][] {
   while (rows.length > 0 && rows[rows.length - 1].every((c) => c.trim() === '')) {
     rows.pop();
   }
-  return rows;
+  return { rows, unclosedQuote: inQuotes };
 }
 
 // Header row -> lowercased, trimmed column name, so "Admission No",

@@ -3,6 +3,7 @@ import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { prepareDraft } from '@/lib/pulse/drafts';
 import type { SyllabusInput } from './syllabus';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // One tap "taught today" (D5, docs/20 5d, C147). The tap writes the
 // classwork log (one row per class, subject and day in syllabus_progress),
@@ -153,7 +154,7 @@ export async function taughtTapCoverage(db: PoolClient, schoolId: string, from: 
        join classes c on c.school_id = e.school_id and c.class_id = e.class_id
        left join syllabus_progress p on p.school_id = e.school_id and p.class_id = e.class_id and p.subject_id = e.subject_id and p.date = d.day
       group by c.class_id, c.name, d.day
-      order by d.day, c.name`,
+      order by d.day, ${classOrderSql('c')}, c.class_id`,
     [schoolId, from, to]
   );
   return rows;

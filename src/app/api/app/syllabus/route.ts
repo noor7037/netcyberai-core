@@ -6,6 +6,7 @@ import { isForeignKeyViolation, isRlsViolation } from '@/lib/db/pg-errors';
 import { isRealIsoDate } from '@/lib/import/rules';
 import { isUuid, parseSyllabusInput, todayInIndia } from '@/lib/academics/syllabus';
 import { MAX_NOTE, coverage, recordTaught, taughtTapCoverage, unitsFor } from '@/lib/academics/taught';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // "Taught today": the one thing a teacher records for the Daily Learning
 // Pulse. One record per class + subject + day (unique index); recording
@@ -32,7 +33,7 @@ export async function GET(req: NextRequest) {
          join subjects s on s.school_id = p.school_id and s.subject_id = p.subject_id
          join teachers t on t.school_id = p.school_id and t.teacher_id = p.teacher_id
          where p.school_id = $1 and p.date = $2 and ($3::uuid is null or p.class_id = $3::uuid)
-         order by c.name, s.name`,
+         order by ${classOrderSql('c')}, s.name`,
         [guard.claims.schoolId, date, classId]
       );
       // What the caller can record: a teacher's own class+subject pairs,
@@ -44,7 +45,7 @@ export async function GET(req: NextRequest) {
          join classes c on c.school_id = ts.school_id and c.class_id = ts.class_id
          join subjects s on s.school_id = ts.school_id and s.subject_id = ts.subject_id
          where ts.school_id = $1 and ($2::text <> 'teacher' or t.user_id = $3::uuid)
-         order by c.name, s.name, t.name`,
+         order by ${classOrderSql('c')}, s.name, t.name`,
         [guard.claims.schoolId, guard.claims.role, guard.claims.sub]
       );
       // The syllabus map of those pairs, and (for the office) this week's

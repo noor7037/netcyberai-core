@@ -9,6 +9,7 @@ import { activeAssignments, assignedTeachers } from '@/lib/academics/teacher-sub
 import { diffWeeks, generateTimetable, MAX_WEEK_PERIODS, swapInWeek, weekProblems, type Change, type Unavailable, type Unplaced, type WeekProblem } from './generator';
 import { assignedMap, MAX_PERIODS, notAssigned, notAssignedIn, type Slot } from './plan';
 import { ENTRY_SELECT, periodsPerDay, planLockKey, type Entry } from './timetable';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // The timetable generator in the database (docs/28 slice 10f, C229). Every function runs in the caller's own tenant
 // transaction, as the app's role: row level security decides that only the office (PLANNERS) reads or writes the
@@ -76,7 +77,7 @@ export async function generatorRules(db: Sql, schoolId: string): Promise<Rules> 
 // active too, as an earlier timetable may name them).
 export async function generatorNames(db: Sql, schoolId: string): Promise<Names> {
   const [classes, subjects, teachers] = await Promise.all([
-    db.query(`select class_id as id, name from classes where school_id = $1 order by name, class_id`, [schoolId]),
+    db.query(`select class_id as id, name from classes where school_id = $1 order by ${classOrderSql('')}, class_id`, [schoolId]),
     db.query(`select subject_id as id, name from subjects where school_id = $1 order by name, subject_id`, [schoolId]),
     db.query(`select user_id as id, display_name as name, is_active as active from users where school_id = $1 and role = 'teacher' order by display_name, user_id`, [schoolId]),
   ]);

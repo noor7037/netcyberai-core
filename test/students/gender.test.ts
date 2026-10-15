@@ -139,9 +139,13 @@ describe('on the real schema, as each person’s own session', () => {
       { name: 'Hari Example', class_name: '5A', gender: 'M' },
       { name: 'Indu Example', class_name: '5A' },
     ];
-    const done = await as(principal, (c) => importStudentRecords(c, { schoolId: A, sub: PRINCIPAL, role: 'principal' }, records, 'hash-gender-1', 'g.csv'));
-    expect([done.importedCount, done.skippedCount]).toEqual([4, 1]);
-    expect(done.errors).toEqual([{ row: 4, name: 'Hari Example', admissionNo: null, errors: ['gender must be male, female or transgender, as Aadhaar prints it, or left empty'] }]);
+    // All or nothing (C235-A): the file with Hari's row is refused whole and names the row; without it, all four land.
+    const refused = await as(principal, (c) => importStudentRecords(c, { schoolId: A, sub: PRINCIPAL, role: 'principal' }, records, 'hash-gender-1', 'g.csv'));
+    expect([refused.refused, refused.importedCount, refused.skippedCount]).toEqual([true, 0, 1]);
+    expect(refused.errors).toEqual([{ row: 4, name: 'Hari Example', admissionNo: null, errors: ['gender must be male, female or transgender, as Aadhaar prints it, or left empty'] }]);
+    expect(await genderOf('Esha Example')).toEqual([]);
+    const done = await as(principal, (c) => importStudentRecords(c, { schoolId: A, sub: PRINCIPAL, role: 'principal' }, records.filter((r) => r.name !== 'Hari Example'), 'hash-gender-1b', 'g.csv'));
+    expect([done.refused, done.importedCount, done.skippedCount]).toEqual([false, 4, 0]);
     for (const [name, gender] of [['Esha Example', 'female'], ['Farid Example', 'not_given'], ['Gauri Example', 'transgender'], ['Indu Example', 'not_given']]) expect(await genderOf(name), name).toEqual([gender]);
     expect(await genderOf('Hari Example')).toEqual([]);
   });
