@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { withTenantContext } from '@/lib/auth/db';
 import { newAuthAdminClient } from '@/lib/auth/supabase';
+import { SERVICE_ROLE_SETTING_NAME, hasServiceRoleKey } from '@/lib/auth/env';
+import { INVITE_FAILURE_TEXT, inviteFailure } from '@/lib/auth/invite-failure';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
@@ -30,14 +32,21 @@ export async function POST(req: NextRequest, { params }: { params: { schoolId: s
     );
   }
 
+  // Without the service key nothing can be invited: say which setting, rather than failing inside the client.
+  if (!hasServiceRoleKey()) return NextResponse.json({ error: INVITE_FAILURE_TEXT.service_key, code: 'service_key', setting: SERVICE_ROLE_SETTING_NAME }, { status: 503 });
   const admin = newAuthAdminClient();
   const { data: invited, error: inviteError } = await admin.auth.admin.inviteUserByEmail(email);
   if (inviteError || !invited?.user) {
     // Supabase's own error text (e.g. "user already registered") is safe
     // to relay -- it never contains a credential, only account-existence
     // information the caller (a super_admin doing onboarding) already
-    // has a legitimate reason to see.
-    return NextResponse.json({ error: inviteError?.message ?? 'invite failed' }, { status: 502 });
+    // has a legitimate reason to see. The known refusals get a code and
+    // plain words (src/lib/auth/invite-failure.ts): a wrong service key
+    // is a deployment setting, not the caller's slip, and the screen says so.
+    const code = inviteFailure(inviteError);
+    const error = code === 'other' ? (inviteError?.message ?? 'invite failed') : INVITE_FAILURE_TEXT[code];
+    // The screen names the setting from here, so the message files never carry the credential's name.
+    return NextResponse.json(code === 'service_key' ? { error, code, setting: SERVICE_ROLE_SETTING_NAME } : { error, code }, { status: code === 'service_key' ? 503 : 502 });
   }
   const authUserId = invited.user.id;
 

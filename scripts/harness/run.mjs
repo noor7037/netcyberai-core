@@ -746,15 +746,21 @@ const whatsappAccount = async (page) => {
   await page.locator('#wa-appSecret').fill('madeupappsecret0123456789abcdef');
   await page.locator('#wa-verifyToken').fill('made-up-verify-token-0123456789');
   const saveDisabled = await page.locator('[data-wa-save]').isDisabled();
-  const secretsHidden = await page.locator('#wa-accessToken, #wa-appSecret, #wa-verifyToken').evaluateAll((els) => els.every((e) => e.type === 'password'));
+  // The two secrets are hidden; the verify token is not a secret and is shown (C230-B).
+  const secretsHidden = await page.locator('#wa-accessToken, #wa-appSecret').evaluateAll((els) => els.every((e) => e.type === 'password'));
+  const verifyShown = await page.locator('#wa-verifyToken').evaluate((e) => e.type === 'text');
+  // Each field says it looks right while typed, and a made verify token passes the same rule.
+  await page.locator('[data-wa-make-token]').click();
+  const madeTokenOk = /^[A-Za-z0-9_-]{32}$/.test(await page.locator('#wa-verifyToken').inputValue());
+  const rightFields = await page.locator('[data-whatsapp-account] [id^="wa-"][id$="-message"] .text-emerald-text').count();
   const hook = `${base}/api/public/whatsapp/webhook/meta`;
   const get = (await fetch(`${hook}?hub.mode=subscribe&hub.verify_token=anything&hub.challenge=1`)).status;
   const post = (await fetch(hook, { method: 'POST', headers: { 'x-hub-signature-256': 'sha256=00' }, body: '{}' })).status;
-  whatsappSeen = { noKey, saveDisabled, secretsHidden, get, post };
+  whatsappSeen = { noKey, saveDisabled, secretsHidden, verifyShown, madeTokenOk, rightFields, get, post };
 };
 const whatsappAccountDone = async () => {
   const saved = (await db.pg.query(`select count(*)::int as n from whatsapp_credentials`)).rows[0].n;
-  const want = { noKey: 1, saveDisabled: true, secretsHidden: true, get: 404, post: 404 };
+  const want = { noKey: 1, saveDisabled: true, secretsHidden: true, verifyShown: true, madeTokenOk: true, rightFields: 5, get: 404, post: 404 };
   if (JSON.stringify(whatsappSeen) !== JSON.stringify(want) || saved !== 0) throw new Error(`the WhatsApp account screen without a key: ${JSON.stringify(whatsappSeen)}, ${saved} saved`);
 };
 // Parents' replies (C187): a guardian of the fixture school writes to the platform number (the stand-in's signed

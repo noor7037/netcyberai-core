@@ -1,6 +1,7 @@
 import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
+import { accountProblem, type AccountProblem } from './account-shape';
 
 // The platform's WhatsApp credentials (docs/25 slice 7e, §3 rule 8, C186).
 // The payment_credentials pattern, with its own key:
@@ -53,16 +54,9 @@ export function unsealMeta(k: EncryptionKey, phoneNumberId: string, row: { ciphe
   return JSON.parse(Buffer.concat([decipher.update(Buffer.from(row.ciphertext, 'base64')), decipher.final()]).toString('utf8')) as MetaSecrets;
 }
 
-export type AccountProblem = 'phone_number_id' | 'waba_id' | 'access_token' | 'app_secret' | 'verify_token';
-export function accountProblem(a: MetaAccount): AccountProblem | null {
-  if (!/^[0-9]{5,30}$/.test(a.phoneNumberId)) return 'phone_number_id';
-  if (!/^[0-9]{5,30}$/.test(a.wabaId)) return 'waba_id';
-  if (!/^[A-Za-z0-9_\-|.]{20,600}$/.test(a.accessToken)) return 'access_token';
-  if (!/^[A-Za-z0-9]{16,128}$/.test(a.appSecret)) return 'app_secret';
-  // Ours to choose: what Meta sends back when it first checks the webhook address.
-  if (!/^[A-Za-z0-9_\-]{16,128}$/.test(a.verifyToken)) return 'verify_token';
-  return null;
-}
+// The shape of each field lives in ./account-shape, shared with the Control screen so the same rule names a
+// slip while the founder types and refuses it here.
+export { accountProblem, type AccountProblem } from './account-shape';
 
 export type SaveAccountResult = { ok: true } | { ok: false; reason: 'no_encryption_key' | AccountProblem };
 // Save, or replace. Always switched off: a new account is tested before it is used.
