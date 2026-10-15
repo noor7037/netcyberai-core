@@ -4692,6 +4692,7 @@ export const en = {
   'crt.err.not_found': 'That is no longer there. The page has been read again.',
   'crt.err.other': 'That did not work. Try again.',
   'crt.verify.title': 'Certificate check',
+  'crt.verify.unavailable': 'We could not check this certificate just now. Please try again in a few minutes.',
   'crt.verify.unknown': 'No certificate matches this code. Check that the whole address was scanned or typed.',
   'crt.verify.valid': 'Valid: the school issued this certificate and it stands.',
   'crt.verify.withdrawn': 'Withdrawn: the school has withdrawn this certificate. It is no longer valid.',

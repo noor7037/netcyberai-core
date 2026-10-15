@@ -277,7 +277,7 @@ export async function certificateRegister(db: Sql, actor: CertActor, filter: { t
     `select c.certificate_id, c.number, c.cert_type, c.student_id, c.printed ->> 'studentName' as child, c.printed ->> 'admissionNo' as admission_no, k.name as class_name,
             c.purpose, c.issued_on::text as issued_on, i.display_name as issued_by, c.clearance, c.owed_minor, c.waiver_reason, w.display_name as waived_by,
             c.withdrawn_at, x.display_name as withdrawn_by, c.withdraw_reason, c.erased_at is not null as erased,
-            (select l.status::text from communication_log l where l.school_id = c.school_id and l.dedupe_key like 'certificate:' || c.certificate_id::text || ':%'
+            (select l.status::text from communication_log l where l.school_id = c.school_id and l.student_id = c.student_id and l.dedupe_key like 'certificate:' || c.certificate_id::text || ':%'
               order by l.created_at desc limit 1) as sent
        from certificates_issued c
        left join classes k on k.school_id = c.school_id and k.class_id = c.class_id

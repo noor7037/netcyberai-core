@@ -21,7 +21,12 @@ function issuedOn(lang: Lang, iso: string): string {
 }
 
 export default async function VerifyCertificatePage({ params }: { params: { token: string } }) {
-  const found: VerifyView | null = await platform((db) => verifyCertificate(db, params.token)).catch(() => null);
+  // A lookup that fails is not a certificate that does not exist (review of C228): the page says to try again.
+  const lookup = await platform((db) => verifyCertificate(db, params.token)).then(
+    (view: VerifyView | null) => ({ failed: false as const, view }),
+    () => ({ failed: true as const, view: null })
+  );
+  const found = lookup.view;
   const both = (render: (lang: Lang) => string) =>
     LANGS.map((lang) => (
       <p key={lang} lang={lang}>
@@ -33,7 +38,11 @@ export default async function VerifyCertificatePage({ params }: { params: { toke
       <h1 className="text-xl font-bold">
         {t('en', 'crt.verify.title')} · <span lang="hi">{t('hi', 'crt.verify.title')}</span>
       </h1>
-      {!found ? (
+      {lookup.failed ? (
+        <div data-verify-state="unavailable" className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4 text-sm">
+          {both((lang) => t(lang, 'crt.verify.unavailable'))}
+        </div>
+      ) : !found ? (
         <div data-verify-state="unknown" className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4 text-sm">
           {both((lang) => t(lang, 'crt.verify.unknown'))}
         </div>

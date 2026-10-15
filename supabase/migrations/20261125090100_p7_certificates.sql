@@ -47,7 +47,7 @@ create table certificates_issued (
   cert_type text not null check (cert_type in ('transfer', 'bonafide', 'character', 'study')),
   seq integer not null check (seq >= 1),
   number text generated always as (
-    (case cert_type when 'transfer' then 'TC' when 'bonafide' then 'BC' when 'character' then 'CC' else 'SC' end) || '/' || lpad(seq::text, 4, '0')
+    (case cert_type when 'transfer' then 'TC' when 'bonafide' then 'BC' when 'character' then 'CC' else 'SC' end) || '/' || lpad(seq::text, greatest(4, length(seq::text)), '0')
   ) stored,
   student_id uuid not null,
   class_id uuid,
@@ -86,6 +86,8 @@ create table certificates_issued (
   check (withdrawn_at is null or withdraw_reason is not null or erased_at is not null),
   check (erased_at is null or (printed = '{}'::jsonb and purpose is null and waiver_reason is null and withdraw_reason is null))
 );
+-- A number is printed once in a school: lpad never cuts a long number (TC/10000 after TC/9999), and this backs it.
+create unique index certificates_one_number on certificates_issued (school_id, number);
 create unique index certificates_one_live_tc on certificates_issued (school_id, student_id)
   where cert_type = 'transfer' and withdrawn_at is null and erased_at is null;
 create unique index certificates_one_live_per_purpose_and_day on certificates_issued (school_id, student_id, cert_type, lower(btrim(coalesce(purpose, ''))), issued_on)
