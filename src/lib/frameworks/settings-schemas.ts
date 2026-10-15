@@ -309,9 +309,11 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // nothing: periods already entered beyond it stay until the office clears them.
   {
     moduleId: 'timetable',
-    // Version 2 (C229): the most periods in a row for one teacher, which the timetable generator keeps to. Its
-    // default is the most periods a day can have, so no limit holds until the school sets one.
-    version: 2,
+    // Version 2 (C229): the most periods in a row for one teacher, which the timetable generator keeps to.
+    // Version 3 (C231): that limit has no default. The school sets it before the first proposal; until then the
+    // generator makes none, and nothing stands in for the number. A school that kept the old default (12, no limit)
+    // stored nothing, so it now has no limit set and is asked for one; a number a school chose is kept.
+    version: 3,
     fields: [
       {
         key: 'periods_per_day',
@@ -329,10 +331,10 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
       {
         key: 'max_consecutive',
         label: 'Most periods in a row for one teacher',
-        help: 'The timetable generator never gives a teacher more periods than this one after another, from 1 to 12. At 12 there is no limit. The timetable already published does not change.',
+        help: 'The timetable generator never gives a teacher more periods than this one after another, from 1 to 12. At 12 there is no limit. There is no default: set it before the first proposal. The timetable already published does not change.',
         section: 'School day',
         type: 'number',
-        default: 12,
+        default: null,
         min: 1,
         max: 12,
         required: true,
@@ -619,6 +621,35 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   },
   // p7-10d end
   // p7-10e begin
+  {
+    // Documents and certificates (C232 part A, C230-A): whether a certificate of each type waits for the fee clearance.
+    // Off for the transfer certificate: the rule for holding a TC for fees differs by state, and the founder decides
+    // with the lawyer; on for the other three. The school switches each knowingly. The defaults are CLEARANCE_DEFAULTS
+    // (src/lib/documents/certificate-rules.ts) and public.certificate_needs_clearance(), which the issuing trigger
+    // reads; test/documents/closeout.test.ts holds the three together.
+    moduleId: 'documents',
+    version: 1,
+    fields: (
+      [
+        ['transfer', 'Transfer certificate', false],
+        ['bonafide', 'Bonafide certificate', true],
+        ['character', 'Character certificate', true],
+        ['study', 'Study certificate', true],
+      ] as const
+    ).map(([type, name, on]) => ({
+      key: `clearance_${type}`,
+      label: `${name}: fee clearance`,
+      help:
+        type === 'transfer'
+          ? 'When on, a transfer certificate waits until nothing is owed, the fee counter clears it, or the principal waives it with a reason. The rule for holding a TC for fees differs from state to state: switch this on only if your state’s rules allow it, and knowingly.'
+          : 'When on, this certificate waits until nothing is owed, the fee counter clears it, or the principal waives it with a reason. When off, it is issued whatever is owed, and the register says the clearance was not asked.',
+      section: 'Fee clearance',
+      type: 'boolean' as const,
+      default: on,
+      editableBy: OFFICE,
+      affectsExistingRecords: false,
+    })),
+  },
   // p7-10e end
   // p7-10f begin
   // p7-10f end

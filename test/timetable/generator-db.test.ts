@@ -165,7 +165,7 @@ describe('the proposal, the review and publishing', () => {
     // Every rule, checked again from scratch, with 6-A's periods kept as they are.
     const fixed = before.filter((s) => s.classId === C6A);
     const constraints = await as(principal, (c) => readConstraints(c, A));
-    expect(weekProblems(view.entries, { ...constraints.rules, unavailable: constraints.unavailable, fixed })).toEqual([]);
+    expect(weekProblems(view.entries, { ...view.rules, unavailable: constraints.unavailable, fixed })).toEqual([]);
     expect(view.problems).toEqual([]);
     const count = (classId: string, subjectId: string) => view.entries.filter((e) => e.classId === classId && e.subjectId === subjectId).length;
     expect([count(C5A, MATHS), count(C5A, ENGLISH), count(C5B, MATHS), count(C5B, HINDI)]).toEqual([5, 4, 4, 3]);

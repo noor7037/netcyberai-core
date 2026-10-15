@@ -4402,6 +4402,8 @@ const VERIFY_TOKEN = 'harness-10e-verify-token-0000001';
 const clearCertificates = async () => {
   await db.pg.exec(`set session_replication_role = replica;
     delete from certificate_copies; delete from certificates_issued; delete from certificate_marks;
+    delete from certificate_signatures; delete from certificate_signatories; delete from certificate_numbering;
+    delete from school_setting_changes where module_id = 'documents'; delete from school_settings where module_id = 'documents';
     delete from fee_clearance_overrides where reason = 'Harness 10e: let through at the fee counter.';
     delete from audit_log where event_action like 'certificate.%';
     set session_replication_role = origin;`);
@@ -4425,9 +4427,17 @@ const verifyAsAStranger = async (page, token) => {
   }
 };
 let certificatesSeen = null;
+let aaravFeeStatus = [];
 const certificatesScreen = async (page) => {
   await clearCertificates();
+  // Aarav owes his fee: the seed marks it paid, and since C232 part A a fee stored as paid owes nothing (the fees
+  // summary's own rule), so it is made unpaid for this screen and put back after it.
+  aaravFeeStatus = (await db.pg.query(`select fee_id, status::text as status from fees_ledger where school_id = $1 and student_id = $2`, [SCHOOL, CERT_AARAV])).rows;
+  await db.pg.query(`update fees_ledger set status = 'pending' where school_id = $1 and student_id = $2`, [SCHOOL, CERT_AARAV]);
   await db.pg.query(`insert into fee_clearance_overrides (school_id, student_id, owed_minor, reason, decided_by) values ($1, $2, 450000, 'Harness 10e: let through at the fee counter.', $3)`, [SCHOOL, CERT_AARAV, PEOPLE.principal.sub]);
+  // The school has switched the fee clearance on for the TC (off by default, C232 part A), so the screen shows the hold
+  // and the principal's waiver.
+  await db.pg.query(`insert into school_settings (school_id, module_id, schema_version, setting_values, revision) values ($1, 'documents', 1, '{"clearance_transfer": true}', 1)`, [SCHOOL]);
   await page.reload({ waitUntil: 'networkidle' });
   await page.locator('[data-certificates-issue]').waitFor({ timeout: 20000 });
   await page.selectOption('#crt-type', 'transfer');
@@ -4470,6 +4480,7 @@ const certificatesScreenDone = async () => {
   );
   const audited = (await db.pg.query(`select string_agg(event_action, ',' order by audit_id) as a from audit_log where event_action like 'certificate.%'`)).rows[0].a;
   await clearCertificates();
+  for (const f of aaravFeeStatus) await db.pg.query(`update fees_ledger set status = $3::fee_status where school_id = $1 and fee_id = $2`, [SCHOOL, f.fee_id, f.status]);
   const p = PEOPLE.principal.sub;
   const want = [
     { number: 'TC/0001', student_id: CERT_AARAV, clearance: 'fee_override', owed: 450000, waived_by: null, waiver_reason: null, withdrawn_by: p, withdraw_reason: CERT_WITHDRAW, issued_by: p, name: 'Aarav Example A' },
@@ -4478,8 +4489,12 @@ const certificatesScreenDone = async () => {
   if (JSON.stringify(rows) !== JSON.stringify(want)) throw new Error(`the certificates in the database: ${JSON.stringify(rows)}`);
   if (audited !== 'certificate.issued,certificate.issued,certificate.withdrawn') throw new Error(`the certificates' audit rows: ${audited}`);
   const s = certificatesSeen;
-  if (s.button !== 'Issue 3 certificates') throw new Error(`the issue button said: ${s.button}`);
-  if (s.incomplete.length !== 1 || !s.incomplete[0].startsWith('Kiara Example B: the record has no father’s or guardian’s name.')) throw new Error(`the incomplete child: ${JSON.stringify(s.incomplete)}`);
+  // Since C232 part A a fee the seed stores as paid owes nothing, so five children of 5-A are clear (Aarav is let
+  // through, Meera waived): seven can be issued, and the five whose record has no father's or guardian's name are listed
+  // as incomplete, not issued.
+  if (s.button !== 'Issue 7 certificates') throw new Error(`the issue button said: ${s.button}`);
+  const incompleteNames = ['Vihaan Example A', 'Anaya Example A', 'Kabir Example B', 'Ishaan Example B', 'Kiara Example B'];
+  if (s.incomplete.length !== 5 || !s.incomplete.every((line, i) => line.startsWith(`${incompleteNames[i]}: the record has no father’s or guardian’s name.`))) throw new Error(`the incomplete children: ${JSON.stringify(s.incomplete)}`);
   if (JSON.stringify(s.pdf) !== JSON.stringify({ name: 'certificates.pdf', head: '%PDF-', pages: 2 })) throw new Error(`the batch PDF: ${JSON.stringify(s.pdf)}`);
   if (s.rows !== 'TC/0002:valid,TC/0001:withdrawn') throw new Error(`the register on the screen: ${s.rows}`);
   for (const [seen, state, name] of [[s.valid, 'valid', 'Meera A.'], [s.withdrawn, 'withdrawn', 'Aarav A.']]) {
@@ -4495,8 +4510,8 @@ const verifyScreen = async (page) => {
   await db.pg.exec('set session_replication_role = replica');
   try {
     await db.pg.query(
-      `insert into certificates_issued (school_id, cert_type, seq, student_id, class_id, issued_on, issued_by, printed, clearance, owed_minor, verify_token)
-       values ($1, 'transfer', 1, $2, $3, ${TODAY_SQL}, $4, '{"studentName": "Aarav Example A", "dob": "2015-04-18", "fatherName": "Rajesh Example", "lastClass": "5-A"}', 'nothing_owed', 0, $5)`,
+      `insert into certificates_issued (school_id, cert_type, seq, number, student_id, class_id, issued_on, issued_by, printed, clearance, owed_minor, verify_token)
+       values ($1, 'transfer', 1, 'TC/0001', $2, $3, ${TODAY_SQL}, $4, '{"studentName": "Aarav Example A", "dob": "2015-04-18", "fatherName": "Rajesh Example", "lastClass": "5-A"}', 'nothing_owed', 0, $5)`,
       [SCHOOL, CERT_AARAV, CLASS_5A, PEOPLE.principal.sub, VERIFY_TOKEN]
     );
   } finally {
@@ -4527,6 +4542,9 @@ const TTG_MATHS = '00000000-0000-4000-8000-0000000d0001';
 const TTG_ENGLISH = '00000000-0000-4000-8000-0000000d0002';
 const TTG_TARA = '00000000-0000-4000-8000-00000000a003';
 const TTG_TANVI = '00000000-0000-4000-8000-00000000a004';
+// Their teachers rows (the seed's), for who teaches what (C231).
+const TTG_TARA_T = '00000000-0000-4000-8000-0000000a2003';
+const TTG_TANVI_T = '00000000-0000-4000-8000-0000000a2004';
 let ttgTimetable = null;
 let ttgSeen = null;
 let ttgFrom = null;
@@ -4537,6 +4555,8 @@ const clearTtgPlans = () =>
   db.pg.exec(`set session_replication_role = replica;
     delete from timetable_versions where school_id = '${SCHOOL}'; delete from timetable_proposals where school_id = '${SCHOOL}';
     delete from timetable_loads where school_id = '${SCHOOL}'; delete from timetable_unavailable where school_id = '${SCHOOL}';
+    delete from school_settings where school_id = '${SCHOOL}' and module_id = 'timetable';
+    delete from teacher_subjects where school_id = '${SCHOOL}' and ((teacher_id = '${TTG_TANVI_T}' and subject_id = '${TTG_ENGLISH}' and class_id = '${TTG_5A}') or (teacher_id = '${TTG_TARA_T}' and subject_id = '${TTG_MATHS}' and class_id = '${TTG_5B}'));
     set session_replication_role = origin;`);
 const clearTtg = async () => {
   await clearTtgPlans();
@@ -4549,6 +4569,11 @@ const clearTtg = async () => {
 };
 const ttgStart = async (page, { typedOnPage }) => {
   await clearTtgPlans();
+  // C231: the most periods in a row has no default; for these screens the school has set it to 12 (no limit, as they
+  // were made). Who teaches what: the loads below give 5-A English to Tanvi and 5-B Mathematics to Tara, which Setup
+  // gives them for these screens (the seed gives those two to the other teacher), so the generator takes them.
+  await db.pg.query(`insert into school_settings (school_id, module_id, schema_version, setting_values, revision) values ($1, 'timetable', 3, '{"max_consecutive": 12}', 1)`, [SCHOOL]);
+  await db.pg.query(`insert into teacher_subjects (school_id, teacher_id, subject_id, class_id) values ($1, $2, $3, $4), ($1, $5, $6, $7) on conflict do nothing`, [SCHOOL, TTG_TANVI_T, TTG_ENGLISH, TTG_5A, TTG_TARA_T, TTG_MATHS, TTG_5B]);
   ttgTimetable = await ttgEntries();
   ttgFrom = (await db.pg.query(`select coalesce(max(audit_id), 0)::bigint as id from audit_log`)).rows[0].id;
   const typed = [[TTG_5A, TTG_ENGLISH, 5, TTG_TANVI], [TTG_5B, TTG_MATHS, 6, TTG_TARA], [TTG_5B, TTG_ENGLISH, 5, TTG_TANVI], ...(typedOnPage ? [] : [[TTG_5A, TTG_MATHS, 6, TTG_TARA]])];
@@ -4647,6 +4672,129 @@ const ttgPublishDone = async () => {
 };
 // p7-10f end
 // p7-10g begin
+// Who teaches what (C231), on Staff: a proposal from Tara waits (Mathematics in 6-A); the principal gives Tanvi English
+// in 6-A with the form. The check reads the database: the assignment written in the principal's name, the proposal
+// still waiting, the audit rows with ids only. Then a teacher's own page: Tara proposes English in 6-A, which waits for
+// the office. Both put back after (6-A has no assignment in the seed).
+const TS_6A = '00000000-0000-4000-8000-0000000c0061';
+const TS_REQUEST = '00000000-0000-4000-8000-0000000c2311';
+const TS_IDS = ['teacherId', 'teacherUserId', 'subjectId', 'classId'];
+let tsSeen = null;
+let tsFrom = null;
+const clearTeacherSubjects = () =>
+  db.pg.exec(`delete from teacher_subject_requests where school_id = '${SCHOOL}'; delete from teacher_subjects where school_id = '${SCHOOL}' and class_id = '${TS_6A}';`);
+const tsAudit = async () =>
+  (
+    await db.pg.query(
+      `select string_agg(event_action, ',' order by audit_id) as actions,
+              count(*) filter (where exists (select 1 from jsonb_object_keys(coalesce(after_state, '{}'::jsonb) || coalesce(before_state, '{}'::jsonb)) k where k <> all ($2::text[])))::int as wordy
+         from audit_log where audit_id > $1 and event_action like 'teacher%'`,
+      [tsFrom, TS_IDS]
+    )
+  ).rows[0];
+const staffSubjects = async (page) => {
+  await clearTeacherSubjects();
+  tsFrom = (await db.pg.query(`select coalesce(max(audit_id), 0)::bigint as id from audit_log`)).rows[0].id;
+  await db.pg.query(`insert into teacher_subject_requests (request_id, school_id, teacher_user_id, class_id, subject_id) values ($1, $2, $3, $4, $5)`, [TS_REQUEST, SCHOOL, TTG_TARA, TS_6A, TTG_MATHS]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator(`[data-subject-request="${TS_REQUEST}"]`).waitFor({ timeout: 20000 });
+  await page.selectOption('#ts-teacher', TTG_TANVI);
+  await page.selectOption('#ts-class', TS_6A);
+  await page.selectOption('#ts-subject', TTG_ENGLISH);
+  await page.locator('[data-assign-save]').click();
+  await page.locator(`[data-teacher-line="${TTG_TANVI}"] [data-assignment="${TS_6A}:${TTG_ENGLISH}"]`).waitFor({ timeout: 20000 });
+  await page.locator('#teacher-subjects').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(600);
+  tsSeen = { waiting: await page.locator('[data-subject-request]').count(), teachers: await page.locator('[data-teacher-line]').count() };
+};
+const staffSubjectsDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select state from teacher_subject_requests where request_id = $2) as request,
+            (select count(*)::int from teacher_subjects ts join teachers t on t.school_id = ts.school_id and t.teacher_id = ts.teacher_id
+              where ts.school_id = $1 and t.user_id = $3 and ts.class_id = $4 and ts.subject_id = $5) as assigned,
+            (select count(*)::int from audit_log where audit_id > $6 and event_action = 'teacher_subject.assign' and actor_user_id = $7) as byPrincipal`,
+    [SCHOOL, TS_REQUEST, TTG_TANVI, TS_6A, TTG_ENGLISH, tsFrom, PEOPLE.principal.sub]
+  );
+  const audit = await tsAudit();
+  await clearTeacherSubjects();
+  const r = { ...rows[0], actions: audit.actions, wordy: audit.wordy };
+  const want = { request: 'pending', assigned: 1, byprincipal: 1, actions: 'teacher_subject.assign', wordy: 0 };
+  if (JSON.stringify(r) !== JSON.stringify(want)) throw new Error(`who teaches what in the database: ${JSON.stringify(r)}`);
+  if (tsSeen.waiting !== 1 || tsSeen.teachers < 2) throw new Error(`who teaches what on the screen: ${JSON.stringify(tsSeen)}`);
+};
+const mySubjects = async (page) => {
+  await clearTeacherSubjects();
+  tsFrom = (await db.pg.query(`select coalesce(max(audit_id), 0)::bigint as id from audit_log`)).rows[0].id;
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-my-subjects-form]').waitFor({ timeout: 20000 });
+  await page.selectOption('#ms-class', TS_6A);
+  await page.selectOption('#ms-subject', TTG_ENGLISH);
+  await page.locator('[data-my-subjects-send]').click();
+  await page.locator('[data-my-request="pending"]').waitFor({ timeout: 20000 });
+  await page.locator('[data-my-subjects]').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(600);
+  tsSeen = { mine: await page.locator('[data-my-subject]').count(), waiting: await page.locator('[data-my-request="pending"]').count() };
+};
+const mySubjectsDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from teacher_subject_requests where school_id = $1 and teacher_user_id = $2 and class_id = $3 and subject_id = $4 and state = 'pending') as waiting,
+            (select count(*)::int from teacher_subjects where school_id = $1 and class_id = $3) as assigned`,
+    [SCHOOL, PEOPLE.teacher.sub, TS_6A, TTG_ENGLISH]
+  );
+  const audit = await tsAudit();
+  await clearTeacherSubjects();
+  const r = { ...rows[0], actions: audit.actions, wordy: audit.wordy };
+  const want = { waiting: 1, assigned: 0, actions: 'teacher_subject.requested', wordy: 0 };
+  if (JSON.stringify(r) !== JSON.stringify(want)) throw new Error(`a teacher's proposal in the database: ${JSON.stringify(r)}`);
+  // Tara teaches Mathematics and English in 5-A (the seed).
+  if (tsSeen.mine !== 2 || tsSeen.waiting !== 1) throw new Error(`a teacher's proposal on the screen: ${JSON.stringify(tsSeen)}`);
+};
+// Periods a week per teacher (C231), from the published timetable: every teacher for the principal, the most first;
+// a teacher's own count for the teacher. The numbers on the screen must be the database's own count of the periods
+// on the school's working days (Monday to Saturday here) within its periods a day (8).
+let wlSeen = null;
+const wlCounts = async () =>
+  (
+    await db.pg.query(
+      `select u.user_id, count(e.entry_id)::int as n from users u left join timetable_entries e on e.school_id = u.school_id and e.teacher_user_id = u.user_id and e.weekday between 1 and 6 and e.period <= 8
+        where u.school_id = $1 and u.role = 'teacher' group by u.user_id, u.is_active having u.is_active or count(e.entry_id) > 0 order by count(e.entry_id) desc`,
+      [SCHOOL]
+    )
+  ).rows;
+const workloadOffice = async (page) => {
+  await page.locator('[data-workload="office"] [data-workload-line]').first().waitFor({ timeout: 20000 });
+  await page.locator('[data-workload="office"]').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(600);
+  wlSeen = await page.locator('[data-workload-line]').evaluateAll((els) => els.map((e) => Number(e.getAttribute('data-workload-line'))));
+};
+const workloadOfficeDone = async () => {
+  const want = (await wlCounts()).map((r) => r.n);
+  if (JSON.stringify(wlSeen) !== JSON.stringify(want)) throw new Error(`periods a week per teacher: ${JSON.stringify({ seen: wlSeen, want })}`);
+};
+const workloadTeacher = async (page) => {
+  await page.locator('[data-workload="mine"]').waitFor({ timeout: 20000 });
+  await page.locator('[data-workload="mine"]').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(600);
+  wlSeen = { mine: Number(await page.locator('[data-workload-mine]').getAttribute('data-workload-mine')), others: await page.locator('[data-workload-line]').count() };
+};
+const workloadTeacherDone = async () => {
+  const mine = (await wlCounts()).find((r) => r.user_id === PEOPLE.teacher.sub)?.n ?? 0;
+  if (wlSeen.mine !== mine || wlSeen.others !== 0) throw new Error(`a teacher's periods a week: ${JSON.stringify({ seen: wlSeen, mine })}`);
+};
+// The generator with no limit of periods in a row set (C231): the screen says so before the button, links to the
+// setting, and makes no proposal.
+const ttgLimit = async (page) => {
+  await clearTtgPlans();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-ttg-limit-unset]').waitFor({ timeout: 20000 });
+  await page.locator('[data-ttg-propose]').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(600);
+  ttgSeen = { disabled: await page.locator('[data-ttg-propose-go]').isDisabled(), link: await page.locator('[data-ttg-limit-link]').getAttribute('href'), rule: await page.locator('[data-ttg-limit]').getAttribute('data-ttg-limit') };
+};
+const ttgLimitDone = async () => {
+  const proposals = (await db.pg.query(`select count(*)::int as n from timetable_proposals where school_id = $1`, [SCHOOL])).rows[0].n;
+  if (proposals !== 0 || JSON.stringify(ttgSeen) !== JSON.stringify({ disabled: true, link: '/app/settings#set-timetable-max_consecutive', rule: 'unset' })) throw new Error(`the generator with no limit set: ${JSON.stringify({ proposals, seen: ttgSeen })}`);
+};
 // p7-10g end
 // c224 begin
 // C224 (C223-A answers 3 and 7). The principal deletes one enquiry after reading what goes, then a parent's erasure
@@ -5600,6 +5748,11 @@ const SCREENS = [
   ['principal', 'app-timetable-generator-publish', '/app/timetable/generator', ttgPublish, ttgPublishDone],
   // p7-10f end
   // p7-10g begin
+  ['principal', 'app-staff-teacher-subjects', '/app/staff', staffSubjects, staffSubjectsDone],
+  ['teacher', 'app-account-my-subjects', '/app/account', mySubjects, mySubjectsDone],
+  ['principal', 'app-timetable-workload', '/app/timetable', workloadOffice, workloadOfficeDone],
+  ['teacher', 'teacher-timetable-workload', '/app/timetable', workloadTeacher, workloadTeacherDone],
+  ['principal', 'app-timetable-generator-limit', '/app/timetable/generator', ttgLimit, ttgLimitDone],
   // p7-10g end
   // c224 begin
   ['principal', 'app-admissions-erasure', '/app/admissions', admissionsErasure, admissionsErasureDone],

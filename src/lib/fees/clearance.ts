@@ -3,14 +3,18 @@ import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { FINANCE } from './structures';
 
-// The fee clearance gate (docs/23 6g, C179). A transfer or leaving
-// certificate is held while the student has fees unpaid, unless a named
-// person (the principal or the school admin) lets it through with a reason.
+// The fee clearance gate (docs/23 6g, C179). A certificate is held while
+// the student has fees unpaid, unless a named person (the principal or the
+// school admin) lets it through with a reason.
 //
-// feeClearance() is the gate: whatever issues such a certificate asks it
-// first. Certificates inside the app are not built yet (the free tool on
-// the website is separate and knows no student), so today the answer is
-// shown at the fee counter, and nothing else calls it.
+// feeClearance() is the gate: the fee counter shows it, and Documents and
+// certificates (src/lib/documents/certificates.ts, C228) asks it for each
+// certificate type whose clearance the school asks for (C232 part A).
+//
+// What is owed is public.student_owed_minor(), the ONE sum the certificate
+// trigger also reads, in the fees summary's own shape: a waived fee owes
+// nothing, and nor does a fee stored as paid (C232 part A: waived fees were
+// counted as owed before).
 //
 // An override covers what was owed when it was made. If more falls due
 // afterwards, the student is held again.
@@ -20,7 +24,7 @@ export type Clearance = { owedMinor: number; cleared: boolean; override: { reaso
 
 export async function feeClearance(db: PoolClient, schoolId: string, studentId: string): Promise<Clearance | null> {
   if (!(await db.query(`select 1 from fee_billing_students() where school_id = $1 and student_id = $2`, [schoolId, studentId])).rows[0]) return null;
-  const owedMinor = Number((await db.query(`select coalesce(sum(l.amount_minor - coalesce((select sum(p.amount_minor) from payments p where p.fee_id = l.fee_id), 0)), 0) as owed from fees_ledger l where l.school_id = $1 and l.student_id = $2`, [schoolId, studentId])).rows[0].owed);
+  const owedMinor = Number((await db.query(`select public.student_owed_minor($1, $2) as owed`, [schoolId, studentId])).rows[0].owed);
   const o = (await db.query(`select o.reason, u.display_name as by, (o.decided_at at time zone 'Asia/Kolkata')::date::text as on, o.owed_minor from fee_clearance_overrides o left join users u on u.user_id = o.decided_by where o.school_id = $1 and o.student_id = $2 order by o.decided_at desc limit 1`, [schoolId, studentId])).rows[0];
   const override = o ? { reason: o.reason as string, by: (o.by as string | null) ?? null, on: o.on as string, owedMinor: Number(o.owed_minor) } : null;
   return { owedMinor, cleared: owedMinor <= 0 || (override !== null && override.owedMinor >= owedMinor), override };

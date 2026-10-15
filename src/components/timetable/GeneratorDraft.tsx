@@ -27,6 +27,8 @@ const PUBLISH_REFUSED: Record<string, MessageKey> = {
   unknown_teacher: 'ttg.publish.remake',
   unknown_class: 'ttg.publish.remake',
   unknown_subject: 'ttg.publish.remake',
+  // Setup gives a class's subject to other teachers now (C231).
+  not_assigned: 'ttg.publish.not_assigned',
 };
 
 export function GeneratorDraft({ draft, data, onChanged }: { draft: Draft; data: GeneratorData; onChanged: () => void }) {
@@ -41,7 +43,7 @@ export function GeneratorDraft({ draft, data, onChanged }: { draft: Draft; data:
   const [withMissing, setWithMissing] = useState(false);
   const notPlaced = draft.unplaced.reduce((n, u) => n + u.wanted - u.placed, 0);
   const count = (kind: string) => draft.changes.filter((c) => c.kind === kind).length;
-  const blocked = draft.stale || draft.rulesChanged || draft.problems.length > 0 || draft.teachersGone.length > 0;
+  const blocked = draft.stale || draft.rulesChanged || draft.problems.length > 0 || draft.teachersGone.length > 0 || draft.notAssigned.length > 0;
 
   async function pick(at: At) {
     setRefused(null);
@@ -131,6 +133,16 @@ export function GeneratorDraft({ draft, data, onChanged }: { draft: Draft; data:
         <p role="alert" data-ttg-teachers-gone className="rounded-md border border-red-800/30 p-3 text-sm text-red-800">
           {t('ttg.draft.teachersGone', { names: draft.teachersGone.map((id) => names.teacher(id)).join(', ') })}
         </p>
+      )}
+      {draft.notAssigned.length > 0 && (
+        <div role="alert" data-ttg-not-assigned className="rounded-md border border-red-800/30 p-3 text-sm text-slate">
+          <p className="font-semibold text-red-800">{t('ttg.draft.notAssignedTitle')}</p>
+          <ul className="mt-1 list-disc pl-5">
+            {draft.notAssigned.map((n) => (
+              <li key={`${n.classId}:${n.subjectId}:${n.teacherUserId}`}>{t('ttg.draft.notAssignedLine', { class: names.cls(n.classId), subject: names.subject(n.subjectId), teacher: names.teacher(n.teacherUserId) })}</li>
+            ))}
+          </ul>
+        </div>
       )}
       {draft.problems.length > 0 && (
         <div role="alert" data-ttg-problems className="rounded-md border border-red-800/30 p-3 text-sm text-slate">

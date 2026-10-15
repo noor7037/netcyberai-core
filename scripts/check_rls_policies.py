@@ -406,6 +406,8 @@ ALLOWED_PERMISSIVE = (
         ("timetable_versions", "timetable_versions_tenant_isolation"),
         # p7-10f end
         # p7-10g begin
+        # C231: a teacher's proposal of a subject and class. Tenant isolation, narrowed by the RESTRICTIVE policies below.
+        ("teacher_subject_requests", "teacher_subject_requests_tenant_isolation"),
         # p7-10g end
         # c224 begin
         ("attendance_change_reasons", "attendance_change_reasons_tenant_isolation"),  # review of C224: narrowed by the RESTRICTIVE policies below
@@ -422,6 +424,13 @@ ALLOWED_PERMISSIVE = (
         # C219: co-scholastic grades. Tenant isolation, narrowed by the RESTRICTIVE policies required below.
         ("co_scholastic_grades", "co_scholastic_grades_tenant_isolation"),
         # c219 end
+        # c232a begin
+        # C232 part A: the school's certificate numbering, the school admins the principal names to sign, and each
+        # signer's own signature. Tenant isolation only; narrowed to the office by the RESTRICTIVE policies below.
+        ("certificate_numbering", "certificate_numbering_tenant_isolation"),
+        ("certificate_signatories", "certificate_signatories_tenant_isolation"),
+        ("certificate_signatures", "certificate_signatures_tenant_isolation"),
+        # c232a end
     }
 )
 
@@ -719,7 +728,6 @@ REQUIRED_RESTRICTIVE = {
     # p7-10d begin
     # C227: the compliance desk is read and written by the principal and the school admin only, in their own name; its
     # audit rows by those two roles, or the person who acted.
-    ("staff_qualifications", "staff_qualifications_office"),
     ("staff_qualifications", "staff_qualifications_saved_as_self"),
     ("staff_qualifications", "staff_qualifications_changed_as_self"),
     ("disclosure_entries", "disclosure_entries_office"),
@@ -728,6 +736,19 @@ REQUIRED_RESTRICTIVE = {
     ("sqaaf_evidence", "sqaaf_evidence_added_as_self"),
     ("audit_log", "audit_compliance_desk_rows_office_or_actor"),
     # p7-10d end
+    # c232b begin
+    # C232 part B: staff_qualifications_office is split by command: the office reads every row and any staff member
+    # their own; adding, changing and erasing stay the office's. The Form 6 figures (compliance_config) are written by
+    # the principal and the school admin, and read by them and the accountant.
+    ("staff_qualifications", "staff_qualifications_readers"),
+    ("staff_qualifications", "staff_qualifications_added_by_office"),
+    ("staff_qualifications", "staff_qualifications_changed_by_office"),
+    ("staff_qualifications", "staff_qualifications_erased_by_office"),
+    ("compliance_config", "compliance_config_readers"),
+    ("compliance_config", "compliance_config_set_by_office"),
+    ("compliance_config", "compliance_config_changed_by_office"),
+    ("compliance_config", "compliance_config_removed_by_office"),
+    # c232b end
     # p7-10e begin
     # C228: the register, the family copies and the seal and signature are the office's (principal and school admin),
     # in their own name; only the principal withdraws a certificate or keeps the seal and the signature. The register's
@@ -759,6 +780,19 @@ REQUIRED_RESTRICTIVE = {
     ("audit_log", "audit_timetable_plan_rows_office_or_actor"),
     # p7-10f end
     # p7-10g begin
+    # C231: who teaches what (teacher_subjects, and the teachers row behind it) is written by the principal or the school
+    # admin only, and a teachers row only for a teacher; a teacher proposes for themselves, read by the office and
+    # themselves, decided by the office and never by the teacher who asked.
+    ("teachers", "teachers_office_insert"),
+    ("teachers", "teachers_office_update"),
+    ("teachers", "teachers_office_delete"),
+    ("teacher_subjects", "teacher_subjects_office_insert"),
+    ("teacher_subjects", "teacher_subjects_office_update"),
+    ("teacher_subjects", "teacher_subjects_office_delete"),
+    ("teacher_subject_requests", "teacher_subject_requests_readers"),
+    ("teacher_subject_requests", "teacher_subject_requests_made_by_self"),
+    ("teacher_subject_requests", "teacher_subject_requests_office_decides"),
+    ("audit_log", "audit_teacher_subject_request_rows_office_or_actor"),
     # p7-10g end
     # c224 begin
     # review of C224: the words for an attendance change: the office and the writer read; written as self; the erasure deletes.
@@ -785,6 +819,21 @@ REQUIRED_RESTRICTIVE = {
     ("co_scholastic_grades", "co_scholastic_grades_changed"),
     ("co_scholastic_grades", "co_scholastic_grades_cleared"),
     # c219 end
+    # c232a begin
+    # C232 part A: the numbering is set by the office in its own name; only the principal names or un-names a
+    # signatory; a signature is kept, replaced and removed by its own person (the principal's un-naming takes an
+    # admin's with it).
+    ("certificate_numbering", "certificate_numbering_office"),
+    ("certificate_numbering", "certificate_numbering_set_as_self"),
+    ("certificate_numbering", "certificate_numbering_changed_as_self"),
+    ("certificate_signatories", "certificate_signatories_office"),
+    ("certificate_signatories", "certificate_signatories_named_by_principal"),
+    ("certificate_signatories", "certificate_signatories_unnamed_by_principal"),
+    ("certificate_signatures", "certificate_signatures_office"),
+    ("certificate_signatures", "certificate_signatures_kept_as_self"),
+    ("certificate_signatures", "certificate_signatures_replaced_as_self"),
+    ("certificate_signatures", "certificate_signatures_removed"),
+    # c232a end
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)

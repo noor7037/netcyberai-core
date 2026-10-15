@@ -1,8 +1,8 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
-import { writeAuditLog } from '@/lib/audit/log';
-import { listSchoolPeople, membershipToViewAs } from '@/lib/control/people';
+import { writeAuditLog, writeImpersonationAudit } from '@/lib/audit/log';
+import { listSchoolPeople, membershipToViewAs, viewAsReason } from '@/lib/control/people';
 
 // The founder's "View as" (C165): which membership it opens, who is listed,
 // and that the audit trail says who was really acting.
@@ -21,6 +21,20 @@ describe('which membership a "View as" opens', () => {
   it('with none named: the only membership, or nothing when there are several', () => {
     expect(membershipToViewAs([inA], null)).toBe(inA);
     expect(membershipToViewAs([inA, inB], null)).toBeNull();
+  });
+});
+
+describe('the reason for a "View as" (C232 part B)', () => {
+  it('is 1 to 300 characters once trimmed, and never holds an Aadhaar number', () => {
+    expect(viewAsReason('  Founder review  ')).toEqual({ ok: true, reason: 'Founder review' });
+    expect(viewAsReason('')).toEqual({ ok: false, code: 'reason' });
+    expect(viewAsReason('   ')).toEqual({ ok: false, code: 'reason' });
+    expect(viewAsReason(undefined)).toEqual({ ok: false, code: 'reason' });
+    expect(viewAsReason('x'.repeat(301))).toEqual({ ok: false, code: 'reason' });
+    expect(viewAsReason('x'.repeat(300))).toMatchObject({ ok: true });
+    expect(viewAsReason('Checking the card 1234 5678 9012')).toEqual({ ok: false, code: 'aadhaar' });
+    expect(viewAsReason('Ticket about payment 412345678901')).toEqual({ ok: false, code: 'aadhaar' });
+    expect(viewAsReason('Call from +91 98765 43210 about fees')).toMatchObject({ ok: true });
   });
 });
 
@@ -92,5 +106,58 @@ describe('on the real schema', () => {
     ]);
     // The audit trail stays append-only: the mark cannot be removed afterwards.
     await expect(tx('app_user', asPrincipal, (c) => c.query(`update audit_log set impersonated_by = null where event_action = 'test.viewed_action'`))).rejects.toThrow();
+  });
+
+  // C232 part B: the founder's reason for viewing a school is kept beside its audit row, on the viewing's own row, and
+  // never in the audit row; the school reads it there; what was recorded never changes.
+  describe('the reason beside its audit row (C232 part B)', () => {
+    const V = 'c1000000-0000-4000-8000-0000000000e2';
+    const start = (id: string, reason: string) =>
+      tx('nca_super', {}, (c) =>
+        writeImpersonationAudit(
+          c,
+          { schoolId: A, actorUserId: FOUNDER, actorRole: 'super_admin', eventAction: 'ImpersonationStarted', targetType: 'users', targetId: TEACHER, afterState: { impersonationId: id, expiresAt: '2030-01-01T00:15:00Z', targetRole: 'teacher' } },
+          { impersonationId: id, targetUserId: TEACHER, reason, expiresAt: new Date(Date.now() + 15 * 60_000) }
+        )
+      );
+
+    it('one statement writes the viewing with its reason and the audit row that names it; the audit row holds no reason', async () => {
+      await start(V, 'Helping with the fee import');
+      const audit = (await db.pg.query(`select target_id, after_state from audit_log where event_action = 'ImpersonationStarted' and after_state ->> 'impersonationId' = $1`, [V])).rows;
+      expect(audit).toEqual([{ target_id: TEACHER, after_state: { impersonationId: V, expiresAt: '2030-01-01T00:15:00Z', targetRole: 'teacher' } }]);
+      expect(JSON.stringify(audit)).not.toMatch(/reason|fee import/i);
+      const kept = (await db.pg.query(`select actor_user_id, target_user_id, target_school_id, reason from impersonation_sessions where impersonation_id = $1`, [V])).rows;
+      expect(kept).toEqual([{ actor_user_id: FOUNDER, target_user_id: TEACHER, target_school_id: A, reason: 'Helping with the fee import' }]);
+    });
+
+    it('both or neither: a viewing the database refuses leaves no audit row either', async () => {
+      const W = 'c1000000-0000-4000-8000-0000000000e3';
+      await expect(start(W, 'Card 1234 5678 9012')).rejects.toThrow(/check/);
+      await expect(start(W, '   ')).rejects.toThrow(/check/);
+      expect((await db.pg.query(`select count(*)::int as n from audit_log where after_state ->> 'impersonationId' = $1`, [W])).rows[0].n).toBe(0);
+      expect((await db.pg.query(`select count(*)::int as n from impersonation_sessions where impersonation_id = $1`, [W])).rows[0].n).toBe(0);
+    });
+
+    it('the school viewed reads the reason of each viewing; another school reads none', async () => {
+      const ours = (await tx('app_user', asPrincipal, (c) => c.query(`select reason from impersonation_sessions where impersonation_id = $1`, [V]))).rows;
+      expect(ours).toEqual([{ reason: 'Helping with the fee import' }]);
+      const other = await tx('app_user', { 'app.current_tenant_id': B, 'app.current_role': 'principal', 'app.current_user_id': OTHER }, (c) => c.query(`select reason from impersonation_sessions`));
+      expect(other.rows).toEqual([]);
+      // Only the founder's path adds a viewing.
+      await expect(tx('app_user', asPrincipal, (c) => c.query(`insert into impersonation_sessions (actor_user_id, target_user_id, target_school_id, reason, expires_at) values ($1, $2, $3, 'x', now())`, [FOUNDER, PRINCIPAL, A]))).rejects.toThrow(/row-level security|policy/);
+    });
+
+    it('what was recorded about a viewing never changes: only its end is set, once', async () => {
+      const asTeacher = { 'app.current_tenant_id': A, 'app.current_role': 'teacher', 'app.current_user_id': TEACHER };
+      // The viewed person's own session may end the view (the end route), but never rewrite why it began.
+      await expect(tx('app_user', asTeacher, (c) => c.query(`update impersonation_sessions set reason = 'nothing to see' where impersonation_id = $1`, [V]))).rejects.toThrow(/stays as recorded/);
+      await expect(tx('nca_super', {}, (c) => c.query(`update impersonation_sessions set reason = 'changed later' where impersonation_id = $1`, [V]))).rejects.toThrow(/stays as recorded/);
+      await expect(tx('nca_super', {}, (c) => c.query(`update impersonation_sessions set expires_at = expires_at + interval '1 day' where impersonation_id = $1`, [V]))).rejects.toThrow(/stays as recorded/);
+      const ended = await tx('app_user', asTeacher, (c) => c.query(`update impersonation_sessions set ended_at = now() where impersonation_id = $1`, [V]));
+      expect(ended.affectedRows).toBe(1);
+      await expect(tx('nca_super', {}, (c) => c.query(`update impersonation_sessions set ended_at = now() + interval '1 hour' where impersonation_id = $1`, [V]))).rejects.toThrow(/ends once/);
+      await expect(tx('nca_super', {}, (c) => c.query(`update impersonation_sessions set ended_at = null where impersonation_id = $1`, [V]))).rejects.toThrow(/ends once/);
+      expect((await db.pg.query(`select reason from impersonation_sessions where impersonation_id = $1`, [V])).rows[0].reason).toBe('Helping with the fee import');
+    });
   });
 });

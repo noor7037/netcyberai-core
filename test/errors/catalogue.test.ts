@@ -175,9 +175,21 @@ describe('each rule says what is wrong and how to fix it, in English and Hindi',
     expect(en('too_fast')).toBe('That is a lot in a short time. Wait a few minutes, then try again.');
     expect(hi('too_fast')).toMatch(DEVANAGARI);
   });
+  it('upload_aadhaar_number (C232 part A)', () => {
+    expect(en('upload_aadhaar_number')).toBe('This file shows a number written like an Aadhaar number, and NetCyberAI never keeps one. Cover the number, or choose a copy without it, then upload again.');
+    expect(hi('upload_aadhaar_number')).toMatch(DEVANAGARI);
+  });
+  it('upload_aadhaar_card (C232 part A)', () => {
+    expect(en('upload_aadhaar_card')).toBe('This file reads as an Aadhaar card, and NetCyberAI never keeps one. Upload a different document instead.');
+    expect(hi('upload_aadhaar_card')).toMatch(DEVANAGARI);
+  });
+  it('upload_unreadable (C232 part A)', () => {
+    expect(en('upload_unreadable')).toBe('The words in this file could not be read, so it could not be checked for an Aadhaar number. Upload a clearer photo, or a PDF without a password.');
+    expect(hi('upload_unreadable')).toMatch(DEVANAGARI);
+  });
 
   it('every rule has a test above, both languages, and no technical word', () => {
-    const tested = ['required', 'choose_one', 'too_short', 'too_long', 'phone_digits', 'phone_characters', 'ticket_limit', 'not_allowed', 'signed_out', 'phone_start', 'email_format', 'date_format', 'date_not_real', 'date_in_future', 'class_not_in_school', 'already_exists', 'nothing_to_save', 'file_missing', 'file_too_large', 'file_type', 'too_many', 'too_fast', 'not_saved', 'not_found', 'already_linked', 'two_step_delete', 'not_sent_properly', 'module_off', 'read_only', 'guardian_not_linked', 'file_empty', 'step_out_of_order', 'code_expired', 'code_wrong', 'code_too_many_tries', 'guardian_not_verified', 'only_for_deletion', 'approve_first', 'already_done', 'account_paused'];
+    const tested = ['required', 'choose_one', 'too_short', 'too_long', 'phone_digits', 'phone_characters', 'ticket_limit', 'not_allowed', 'signed_out', 'phone_start', 'email_format', 'date_format', 'date_not_real', 'date_in_future', 'class_not_in_school', 'already_exists', 'nothing_to_save', 'file_missing', 'file_too_large', 'file_type', 'too_many', 'too_fast', 'not_saved', 'not_found', 'already_linked', 'two_step_delete', 'not_sent_properly', 'module_off', 'read_only', 'guardian_not_linked', 'file_empty', 'step_out_of_order', 'code_expired', 'code_wrong', 'code_too_many_tries', 'guardian_not_verified', 'only_for_deletion', 'approve_first', 'already_done', 'account_paused', 'upload_aadhaar_number', 'upload_aadhaar_card', 'upload_unreadable'];
     expect(Object.keys(ERROR_RULES).sort()).toEqual([...tested].sort());
     const sample = { field: 'phone', have: 2, min: 3, max: 9, need: 10, value: 'x', maxMb: 4, allowed: 'PNG' };
     for (const rule of Object.keys(ERROR_RULES) as ErrorRule[]) {

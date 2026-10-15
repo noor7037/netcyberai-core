@@ -28,7 +28,8 @@ export async function readSettings(db: Sql, schoolId: string, schema: ModuleSett
   const effective = effectiveValues(schema, row?.setting_values ?? {});
   const values: Record<string, SettingValue> = {};
   for (const f of schema.fields) {
-    if (JSON.stringify(effective[f.key]) !== JSON.stringify(f.default)) values[f.key] = effective[f.key];
+    // A field with no default that is not set is absent from both (C231).
+    if (f.key in effective && JSON.stringify(effective[f.key]) !== JSON.stringify(f.default)) values[f.key] = effective[f.key];
   }
   return {
     schema,
@@ -48,7 +49,8 @@ export async function readSettings(db: Sql, schoolId: string, schema: ModuleSett
 // screen (17 §1a, C166): the schema, the values in force, which of them the
 // school has set, and whether this person may change each field. A module
 // the school does not have, or this role may not open, is left out.
-export type ModuleSettingsForScreen = { moduleId: ModuleId; revision: number; fields: { def: SettingDefinition; value: SettingValue; isDefault: boolean; mayEdit: boolean }[] };
+// `value` is null for a field with no default that the school has not set yet (C231).
+export type ModuleSettingsForScreen = { moduleId: ModuleId; revision: number; fields: { def: SettingDefinition; value: SettingValue | null; isDefault: boolean; mayEdit: boolean }[] };
 export async function readAllSettings(db: Sql, claims: { schoolId: string; role: StaffRole }): Promise<ModuleSettingsForScreen[]> {
   const out: ModuleSettingsForScreen[] = [];
   for (const schema of SETTINGS_SCHEMAS) {
@@ -57,7 +59,7 @@ export async function readAllSettings(db: Sql, claims: { schoolId: string; role:
     out.push({
       moduleId: schema.moduleId,
       revision: view.settings.revision,
-      fields: schema.fields.map((def) => ({ def, value: view.effective[def.key], isDefault: !(def.key in view.settings.values), mayEdit: (def.editableBy as readonly string[]).includes(claims.role) })),
+      fields: schema.fields.map((def) => ({ def, value: def.key in view.effective ? view.effective[def.key] : null, isDefault: !(def.key in view.settings.values), mayEdit: (def.editableBy as readonly string[]).includes(claims.role) })),
     });
   }
   return out;

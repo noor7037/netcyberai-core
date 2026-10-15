@@ -9,6 +9,7 @@ const RULE: Record<string, ErrorRule> = {
   too_large: 'file_too_large',
   not_a_pdf: 'file_type',
   not_a_png: 'file_type',
+  unchanged: 'nothing_to_save',
 };
 const PARAMS: Record<string, Record<string, string | number>> = {
   too_large: { field: 'file', maxMb: 3 },

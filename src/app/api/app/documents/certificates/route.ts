@@ -8,8 +8,10 @@ import { supabaseFileStorage } from '@/lib/storage/supabase-file-storage';
 import { indiaDate } from '@/lib/time/india';
 
 // Certificates from the student record (docs/28 row 10e, C228). The principal and the school admin only.
-//   GET                               the classes, the school year printed, whether a seal and a signature are kept,
-//                                     and what this person may do (waive, withdraw, keep the marks)
+//   GET                               the classes, the school year printed, whether a seal is kept, whether this person
+//                                     signs and keeps a signature (the principal: the school admins to name), which
+//                                     types ask the fee clearance, the numbering and the next numbers, and what this
+//                                     person may do (waive, withdraw, keep the seal)
 //   GET ?view=roster&type=&classId=   the class's children for a type: owed, cleared, and any live certificate of it
 //   GET ?view=register[&type=][&classId=]   the issue register, newest first
 //   GET ?view=print&ids=a,b,c         the certificates as they print (in the order asked) with the seal and signature
@@ -42,7 +44,8 @@ export async function GET(req: NextRequest) {
       if (ids.length === 0 || ids.length > BATCH_MAX || !ids.every(isUuid)) return ruleError(400, 'not_sent_properly');
       const list = await certificatesToPrint(db, actor, ids);
       if (!list) return ruleError(403, 'not_allowed');
-      return NextResponse.json({ list, marks: await markImages(db, claims.schoolId, storedReader(supabaseFileStorage)) }, { headers });
+      // The seal, and on each certificate the signature the database chooses for it (its own signer's, or none).
+      return NextResponse.json({ list, marks: await markImages(db, claims.schoolId, storedReader(supabaseFileStorage), list.map((c) => c.certificateId)) }, { headers });
     }
     if (view !== null) return ruleError(400, 'not_sent_properly');
     const home = await certificateHome(db, actor, indiaDate());

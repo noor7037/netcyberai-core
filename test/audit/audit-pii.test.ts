@@ -9,7 +9,7 @@ import { describe, expect, it } from 'vitest';
 // typed (a note, a reason, a reference): those stay on their own rows, which the erasure can reach.
 //
 // This reads every call of the audit writers in src (writeAuditLog, writeAuditLogs, writeEntitlementAudit,
-// writeAttendanceAudit) and fails on a before or after state that could carry such data:
+// writeAttendanceAudit, writeImpersonationAudit) and fails on a before or after state that could carry such data:
 //   - a key whose words say so (name, phone, dob, note, reason, text, message, ...), unless its value is plainly a
 //     code, a boolean or a count (a literal, a comparison, Boolean(...), .length);
 //   - a value read from something whose words say so (input.note, params.reason, body.text, ...);
@@ -19,7 +19,7 @@ import { describe, expect, it } from 'vitest';
 // so the list only ever shrinks.
 
 const ROOT = path.resolve(__dirname, '../..');
-const WRITERS = new Set(['writeAuditLog', 'writeAuditLogs', 'writeEntitlementAudit', 'writeAttendanceAudit']);
+const WRITERS = new Set(['writeAuditLog', 'writeAuditLogs', 'writeEntitlementAudit', 'writeAttendanceAudit', 'writeImpersonationAudit']);
 const PERSONAL = new Set(['name', 'names', 'phone', 'phones', 'mobile', 'email', 'dob', 'birth', 'address', 'note', 'notes', 'reason', 'reasons', 'why', 'text', 'message', 'body', 'details', 'title', 'reference', 'comment', 'description', 'summary', 'remark', 'remarks', 'outcome', 'narration', 'utr', 'aadhaar']);
 
 // file -> problem -> why it is not personal data. Problems are "key:<key>", "value:<key>" or "opaque:<expression>".
@@ -29,13 +29,9 @@ const ALLOWED: Record<string, Record<string, string>> = {
   },
   'src/app/api/app/classes/route.ts': { 'opaque:row': 'a class as made: its id, name (5-A), grade, section, session and class teacher’s id' },
   'src/app/api/app/subjects/route.ts': { 'opaque:row': 'a subject as made: its id and name (Mathematics)' },
-  'src/app/api/app/subjects/assignments/route.ts': { 'opaque:a': 'three ids: the teacher, the subject and the class' },
   'src/app/api/app/settings/holidays/route.ts': { 'key:name': 'a holiday’s name (Diwali), from the school’s calendar' },
   'src/app/api/control/schools/route.ts': { 'opaque:row': 'a school as Control makes it: its id, name, board, type, jurisdiction, stage and flags' },
   'src/app/api/control/schools/[schoolId]/features/route.ts': { 'opaque:beforeFeatures': 'the school’s feature flags: codes', 'opaque:rows[0].enabled_features': 'the school’s feature flags: codes' },
-  'src/app/api/control/impersonate/start/route.ts': {
-    'key:reason': 'OPEN DECISION (C224 report): the founder’s stated reason for viewing a school’s data, shown to that school on its Compliance page as C165/C180 want; it is also kept on impersonation_sessions',
-  },
   'src/lib/bank/match.ts': { 'key:outcome': 'a code: credited, seen_not_credited or needs_person' },
   'src/lib/payments/upi.ts': { 'key:outcome': 'a code: credited or seen_not_credited' },
   'src/lib/payments/apply.ts': { 'opaque:e.audit': 'the provider and its payment id, or nothing', 'key:reason': 'a code the provider check returns (fetch_status_404, status_failed)' },

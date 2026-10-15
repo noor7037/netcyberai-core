@@ -95,6 +95,42 @@ export async function writeEntitlementAudit(client: Pick<PoolClient, 'query'>, e
   );
 }
 
+// The founder's "View as" starting (C165, C232 part B): the viewing's own row, with the reason the founder gave, and
+// the ImpersonationStarted audit row that names it by its id, in one statement, so both are written or neither. The
+// reason is kept beside the audit row, on impersonation_sessions, never in it (C224's rule, C230-A): that row is
+// where the school viewed reads it (its Compliance page), and what it records never changes (a trigger). Runs as
+// nca_super, the only role that may add a viewing.
+export async function writeImpersonationAudit(
+  client: Pick<PoolClient, 'query'>,
+  entry: AuditEntry & { schoolId: string; actorUserId: string },
+  viewing: { impersonationId: string; targetUserId: string; reason: string; expiresAt: Date }
+): Promise<void> {
+  await client.query(
+    `with s as (
+       insert into impersonation_sessions (impersonation_id, actor_user_id, target_user_id, target_school_id, reason, expires_at)
+       values ($9, $2, $12, $1, $10, $11)
+       returning impersonation_id
+     )
+     insert into audit_log
+       (school_id, actor_user_id, actor_role, event_action, target_type, target_id, before_state, after_state)
+     select $1, $2, $3, $4, $5, $6, $7, $8 from s`,
+    [
+      entry.schoolId,
+      entry.actorUserId,
+      entry.actorRole,
+      entry.eventAction,
+      entry.targetType ?? null,
+      entry.targetId ?? null,
+      entry.beforeState ? JSON.stringify(entry.beforeState) : null,
+      entry.afterState ? JSON.stringify(entry.afterState) : null,
+      viewing.impersonationId,
+      viewing.reason,
+      viewing.expiresAt,
+      viewing.targetUserId,
+    ]
+  );
+}
+
 // An attendance change with the words the person gave for it (review of C224): the office's reason for entering or
 // correcting a past day, or a late correction's note. The words are kept beside the audit row, in
 // attendance_change_reasons (read by the office and the person who wrote them, removed by a data request's erasure),

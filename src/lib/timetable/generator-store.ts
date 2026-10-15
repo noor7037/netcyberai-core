@@ -5,8 +5,9 @@ import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
 import { planHasFeature } from '@/lib/frameworks/plans';
 import { schoolCalendar } from '@/lib/payments/upi';
+import { activeAssignments, assignedTeachers } from '@/lib/academics/teacher-subjects';
 import { diffWeeks, generateTimetable, MAX_WEEK_PERIODS, swapInWeek, weekProblems, type Change, type Unavailable, type Unplaced, type WeekProblem } from './generator';
-import { MAX_PERIODS, type Slot } from './plan';
+import { assignedMap, MAX_PERIODS, notAssigned, notAssignedIn, type Slot } from './plan';
 import { ENTRY_SELECT, periodsPerDay, planLockKey, type Entry } from './timetable';
 
 // The timetable generator in the database (docs/28 slice 10f, C229). Every function runs in the caller's own tenant
@@ -27,6 +28,11 @@ import { ENTRY_SELECT, periodsPerDay, planLockKey, type Entry } from './timetabl
 //     (timetable_versions) with the whole timetable before and after. A draft made against a timetable that has
 //     changed since is refused: it would not be what the person reviewed.
 //   - Audit rows ('timetable.plan.%') hold ids, counts, codes and dates only.
+//   - Who teaches what (Setup's teacher_subjects, C231): when a class and subject have assignments, a load takes one
+//     of those teachers (setLoad refuses another, 'not_assigned'); a load saved before the assignments changed is
+//     not placed (unplaced, 'not_assigned'), and publishing refuses a period whose teacher is no longer assigned.
+//   - The most periods in a row for one teacher has no default (C231): until the school sets it, no proposal is made
+//     ('no_consecutive_limit'), and no number is invented for it.
 //
 // The generator is a part of the plan (C223-A answer 1, C226: 'timetable-generator', Growth and Compass). Entering
 // the timetable by hand and its CSV import are not.
@@ -39,7 +45,9 @@ export const GENERATOR_FEATURE = 'timetable-generator' as const;
 export const PLANNERS: readonly string[] = ['principal', 'school_admin', 'academic_coordinator'];
 export const generatorInPlan = (db: Sql, schoolId: string): Promise<boolean> => planHasFeature(db as never, schoolId, GENERATOR_FEATURE);
 
-export type Rules = { days: number[]; periods: number; maxConsecutive: number };
+// maxConsecutive: null while the school has not set it (C231). A draft keeps the number it was made under.
+export type Rules = { days: number[]; periods: number; maxConsecutive: number | null };
+export type DraftRules = { days: number[]; periods: number; maxConsecutive: number };
 export type LoadRow = { classId: string; subjectId: string; periods: number; teacherUserId: string };
 export type Names = { classes: { id: string; name: string }[]; subjects: { id: string; name: string }[]; teachers: { id: string; name: string; active: boolean }[] };
 
@@ -47,15 +55,21 @@ export type Names = { classes: { id: string; name: string }[]; subjects: { id: s
 // holds this lock shared, ./timetable.ts) waits too.
 const lockPlan = (db: Sql, schoolId: string) => db.query(`select pg_advisory_xact_lock(hashtext($1))`, [planLockKey(schoolId)]);
 
+// The school's week: its working days (Setup's, the one working calendar, as attendance and Proxy Auto read it) as ISO
+// weekdays, and its periods a day.
+export async function schoolWeek(db: Sql, schoolId: string): Promise<{ days: number[]; periods: number }> {
+  const calendar = await schoolCalendar(db, schoolId);
+  const days = [1, 2, 3, 4, 5, 6, 7].filter((d) => calendar.weekdays.has(d % 7));
+  return { days, periods: await periodsPerDay(db as PoolClient, schoolId) };
+}
+
 export async function generatorRules(db: Sql, schoolId: string): Promise<Rules> {
   const schema = SETTINGS_SCHEMAS.find((s) => s.moduleId === 'timetable');
   const raw = schema ? (await readSettings(db, schoolId, schema)).effective.max_consecutive : undefined;
-  // A whole number from 1 to 12; a fraction is taken down (3.5 is 3), never read as no limit.
-  const maxConsecutive = typeof raw === 'number' && Number.isFinite(raw) ? Math.min(MAX_PERIODS, Math.max(1, Math.floor(raw))) : MAX_PERIODS;
-  // The one working calendar (Setup's working days), as attendance and Proxy Auto read it.
-  const calendar = await schoolCalendar(db, schoolId);
-  const days = [1, 2, 3, 4, 5, 6, 7].filter((d) => calendar.weekdays.has(d % 7));
-  return { days, periods: await periodsPerDay(db as PoolClient, schoolId), maxConsecutive };
+  // A whole number from 1 to 12; a fraction is taken down (3.5 is 3), never read as no limit. Not set: null, never a
+  // number made up here (C231).
+  const maxConsecutive = typeof raw === 'number' && Number.isFinite(raw) ? Math.min(MAX_PERIODS, Math.max(1, Math.floor(raw))) : null;
+  return { ...(await schoolWeek(db, schoolId)), maxConsecutive };
 }
 
 // The names a screen shows beside the ids: the school's classes and subjects, and its teachers (those no longer
@@ -73,7 +87,8 @@ export type Constraints = {
   rules: Rules;
   loads: LoadRow[];
   unavailable: Unavailable[];
-  // Who teaches which subject in which class, as Setup keeps it (teacher_subjects): offered first for a load.
+  // Who teaches which subject in which class, as Setup keeps it (teacher_subjects), for the active teachers: when a
+  // class and subject have any, only those teachers take its load (C231).
   assigned: { classId: string; subjectId: string; teacherUserId: string }[];
 };
 
@@ -84,6 +99,7 @@ export async function readConstraints(db: Sql, schoolId: string): Promise<Constr
     db.query(
       `select distinct ts.class_id as "classId", ts.subject_id as "subjectId", t.user_id as "teacherUserId"
          from teacher_subjects ts join teachers t on t.school_id = ts.school_id and t.teacher_id = ts.teacher_id
+         join users u on u.school_id = t.school_id and u.user_id = t.user_id and u.role = 'teacher' and u.is_active
         where ts.school_id = $1 order by 1, 2, 3`,
       [schoolId]
     ),
@@ -94,7 +110,7 @@ export async function readConstraints(db: Sql, schoolId: string): Promise<Constr
 // ---- The constraints --------------------------------------------------------------------------------------------
 
 export type LoadInput = { classId: string; subjectId: string; periods: number; teacherUserId: string };
-export type LoadResult = { ok: true } | { ok: false; reason: 'unknown_class' | 'unknown_subject' | 'unknown_teacher' | 'bad_periods' };
+export type LoadResult = { ok: true } | { ok: false; reason: 'unknown_class' | 'unknown_subject' | 'unknown_teacher' | 'bad_periods' | 'not_assigned' };
 
 export async function setLoad(db: Sql, actor: Actor, input: LoadInput): Promise<LoadResult> {
   if (!Number.isInteger(input.periods) || input.periods < 1 || input.periods > MAX_WEEK_PERIODS) return { ok: false, reason: 'bad_periods' };
@@ -109,6 +125,7 @@ export async function setLoad(db: Sql, actor: Actor, input: LoadInput): Promise<
   if (!known.class) return { ok: false, reason: 'unknown_class' };
   if (!known.subject) return { ok: false, reason: 'unknown_subject' };
   if (!known.teacher) return { ok: false, reason: 'unknown_teacher' };
+  if (notAssigned(await assignedTeachers(db, actor.schoolId, input.classId, input.subjectId), input.teacherUserId)) return { ok: false, reason: 'not_assigned' };
   const before = (await db.query(`select periods_per_week::int as periods, teacher_user_id as "teacherUserId" from timetable_loads where school_id = $1 and class_id = $2 and subject_id = $3`, [actor.schoolId, input.classId, input.subjectId])).rows[0] ?? null;
   await db.query(
     `insert into timetable_loads (school_id, class_id, subject_id, periods_per_week, teacher_user_id, updated_by) values ($1, $2, $3, $4, $5, $6)
@@ -175,36 +192,50 @@ async function rulesAround(db: Sql, schoolId: string, draft: DraftRow) {
 }
 
 // The school day a draft was made for is no longer the school's: its working days, periods a day or most periods in
-// a row were changed in Settings since.
+// a row were changed in Settings since. While the school has no limit of periods in a row set (C231: the setting has
+// no default any more), the limit is not counted as changed: a draft keeps the limit it was made under, which it
+// records, and is checked against that. So a draft made under the old default (12, no limit) still works until it
+// is published or discarded; once the school sets a limit, a draft made under another one is refused, as before.
 async function rulesChanged(db: Sql, schoolId: string, draft: DraftRow): Promise<boolean> {
   const now = await generatorRules(db, schoolId);
-  return now.periods !== draft.periods || now.maxConsecutive !== draft.max_consecutive || now.days.join() !== [...draft.days].sort((a, b) => a - b).join();
+  const limitChanged = now.maxConsecutive !== null && now.maxConsecutive !== draft.max_consecutive;
+  return now.periods !== draft.periods || limitChanged || now.days.join() !== [...draft.days].sort((a, b) => a - b).join();
 }
 
-export type ProposeResult = { ok: true; proposalId: string; placed: number; notPlaced: number } | { ok: false; reason: 'nothing_to_plan' | 'no_working_days' };
+export type ProposeResult = { ok: true; proposalId: string; placed: number; notPlaced: number } | { ok: false; reason: 'no_consecutive_limit' | 'nothing_to_plan' | 'no_working_days' };
 
 // Runs the generator on the school's constraints and keeps its week as the school's draft, in place of any draft
 // before it. Nothing is written to the timetable.
 export async function propose(db: Sql, actor: Actor): Promise<ProposeResult> {
   await lockPlan(db, actor.schoolId);
   const constraints = await readConstraints(db, actor.schoolId);
+  const maxConsecutive = constraints.rules.maxConsecutive;
+  // The school sets the limit before the first proposal (C231): nothing stands in for it.
+  if (maxConsecutive === null) return { ok: false, reason: 'no_consecutive_limit' };
   if (constraints.loads.length === 0) return { ok: false, reason: 'nothing_to_plan' };
   if (constraints.rules.days.length === 0) return { ok: false, reason: 'no_working_days' };
   const active = new Set(((await db.query(`select user_id from users where school_id = $1 and role = 'teacher' and is_active`, [actor.schoolId])).rows as { user_id: string }[]).map((r) => r.user_id));
   const current = await snapshot(db, actor.schoolId);
+  // A load whose teacher Setup no longer assigns to its class and subject (the assignments changed after it was
+  // saved) is not given to the generator: it is listed as not placed, with that reason.
+  const assigned = assignedMap(constraints.assigned);
+  const refused = constraints.loads.filter((l) => notAssignedIn(assigned, l));
   const result = generateTimetable({
     ...constraints.rules,
+    maxConsecutive,
     // A teacher no longer active teaches nothing: the load is said to have no teacher.
-    loads: constraints.loads.map((l) => ({ ...l, teacherUserId: active.has(l.teacherUserId) ? l.teacherUserId : null })),
+    loads: constraints.loads.filter((l) => !refused.includes(l)).map((l) => ({ ...l, teacherUserId: active.has(l.teacherUserId) ? l.teacherUserId : null })),
     unavailable: constraints.unavailable,
     fixed: current,
   });
+  result.unplaced.push(...refused.map((l): Unplaced => ({ classId: l.classId, subjectId: l.subjectId, teacherUserId: l.teacherUserId, wanted: Math.min(l.periods, MAX_WEEK_PERIODS), placed: 0, reason: 'not_assigned' })));
+  result.unplaced.sort((a, b) => (a.classId < b.classId ? -1 : a.classId > b.classId ? 1 : a.subjectId < b.subjectId ? -1 : a.subjectId > b.subjectId ? 1 : 0));
   const classIds = [...new Set(constraints.loads.map((l) => l.classId))].sort();
   const replaced = await db.query(`update timetable_proposals set state = 'discarded', decided_by = $2 where school_id = $1 and state = 'draft' returning proposal_id`, [actor.schoolId, actor.userId]);
   const made = await db.query(
     `insert into timetable_proposals (school_id, days, periods, max_consecutive, class_ids, entries, unplaced, based_on, proposed_by)
      values ($1, $2::smallint[], $3, $4, $5::uuid[], $6::jsonb, $7::jsonb, md5(timetable_snapshot($1)::text), $8) returning proposal_id`,
-    [actor.schoolId, constraints.rules.days, constraints.rules.periods, constraints.rules.maxConsecutive, classIds, JSON.stringify(result.entries), JSON.stringify(result.unplaced), actor.userId]
+    [actor.schoolId, constraints.rules.days, constraints.rules.periods, maxConsecutive, classIds, JSON.stringify(result.entries), JSON.stringify(result.unplaced), actor.userId]
   );
   const proposalId = made.rows[0].proposal_id as string;
   const notPlaced = result.unplaced.reduce((n, u) => n + u.wanted - u.placed, 0);
@@ -240,7 +271,7 @@ export type DraftView = {
   proposedBy: string;
   proposedByName: string;
   proposedAt: string;
-  rules: Rules;
+  rules: DraftRules;
   classIds: string[];
   entries: Slot[];
   unplaced: Unplaced[];
@@ -256,6 +287,9 @@ export type DraftView = {
   problems: WeekProblem[];
   // The teachers of periods it would write who are no longer active (they left after it was made): nor can it.
   teachersGone: string[];
+  // The periods it would write whose teacher Setup no longer assigns to that class and subject (C231): nor can it.
+  // One line per class, subject and teacher.
+  notAssigned: { classId: string; subjectId: string; teacherUserId: string }[];
 };
 
 export async function draftView(db: Sql, schoolId: string): Promise<DraftView | null> {
@@ -281,7 +315,18 @@ export async function draftView(db: Sql, schoolId: string): Promise<DraftView | 
     rulesChanged: await rulesChanged(db, schoolId, draft),
     problems: weekProblems(draft.entries, around),
     teachersGone: (await goneFrom(db, schoolId, written(changes))).teachers,
+    notAssigned: await notAssignedPeriods(db, schoolId, written(changes)),
   };
+}
+
+// The periods to be written whose teacher is not one Setup assigns to that class and subject, when it assigns any: one
+// line per class, subject and teacher (C231).
+async function notAssignedPeriods(db: Sql, schoolId: string, slots: readonly Slot[]): Promise<{ classId: string; subjectId: string; teacherUserId: string }[]> {
+  if (slots.length === 0) return [];
+  const assigned = assignedMap(await activeAssignments(db, schoolId)); // one statement: publishing stays a few (review of C229)
+  const seen = new Map<string, { classId: string; subjectId: string; teacherUserId: string }>();
+  for (const s of slots) if (notAssignedIn(assigned, s)) seen.set(`${s.classId}:${s.subjectId}:${s.teacherUserId}`, { classId: s.classId, subjectId: s.subjectId, teacherUserId: s.teacherUserId });
+  return [...seen.values()];
 }
 
 type At = { weekday: number; period: number };
@@ -305,7 +350,7 @@ export type PublishResult =
   | { ok: true; versionId: string; added: number; removed: number; changed: number }
   | { ok: false; reason: 'not_found' | 'missing_not_accepted' | 'timetable_changed' | 'rules_changed' | 'week_problem'; problems?: WeekProblem[] }
   | { ok: false; reason: 'teacher_clash'; clash: Entry }
-  | { ok: false; reason: 'unknown_class' | 'unknown_subject' | 'unknown_teacher' };
+  | { ok: false; reason: 'unknown_class' | 'unknown_subject' | 'unknown_teacher' | 'not_assigned' };
 
 // A person publishes the draft, in one transaction: if any period is refused, nothing of the draft is in the
 // timetable and the answer says which rule refused it. A draft that could not place every period is published only
@@ -329,6 +374,8 @@ export async function publishDraft(db: Sql, actor: Actor, proposalId: string, op
   if (gone.classes.length) return { ok: false, reason: 'unknown_class' };
   if (gone.subjects.length) return { ok: false, reason: 'unknown_subject' };
   if (gone.teachers.length) return { ok: false, reason: 'unknown_teacher' };
+  // putEntry()'s assignment rule, for every period at once (C231).
+  if ((await notAssignedPeriods(db, actor.schoolId, puts)).length) return { ok: false, reason: 'not_assigned' };
 
   const of = (k: 'classId' | 'subjectId' | 'teacherUserId' | 'weekday' | 'period', xs: readonly { classId: string; weekday: number; period: number; subjectId?: string; teacherUserId?: string }[]) => xs.map((x) => x[k]);
   await db.query('savepoint timetable_publish');

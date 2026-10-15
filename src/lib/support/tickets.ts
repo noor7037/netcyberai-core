@@ -24,6 +24,7 @@ import { isModuleId } from '@/lib/contracts/modules';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { checkText, validationError, type ErrorRule, type ValidationError } from '@/lib/errors/catalogue';
 import { PermanentJobError, type JobHandler, type JobQueue, type Sql } from '@/lib/jobs/types';
+import { checkUpload } from '@/lib/privacy/upload-check';
 import { siteUrl } from '@/lib/site-config';
 import { sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
 
@@ -324,6 +325,10 @@ export async function addTicketScreenshot(
 ): Promise<TicketResult<TicketAttachment>> {
   const plan = await tx((db) => planTicketScreenshot(db, ticketId, file));
   if (!plan.ok) return plan;
+  // What the screenshot says is checked before it is stored, outside any transaction (C232 part A): never an Aadhaar
+  // number or card (the founder reads a ticket's screenshots).
+  const screen = await checkUpload({ bytes: file.bytes, name: file.name });
+  if (!screen.ok) return refuse(400, validationError(screen.reason));
   await storage.put(plan.value.key, file.bytes, plan.value.mimeType);
   try {
     const recorded = await tx((db) => recordTicketScreenshot(db, plan.value, actor));

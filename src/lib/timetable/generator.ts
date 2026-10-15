@@ -41,7 +41,10 @@ export type GeneratorInput = {
 //   consecutive_limit  the only periods where the class and the teacher are both free would put the teacher over
 //                      the limit of periods in a row;
 //   no_common_period   no period is left where the class and the teacher are both free.
-export const UNPLACED_REASONS = ['no_teacher', 'class_week_full', 'teacher_week_full', 'consecutive_limit', 'no_common_period'] as const;
+// And one the store gives before the generator runs (C231):
+//   not_assigned       Setup assigns the class's subject to other teachers (teacher_subjects): the load is not given
+//                      to the generator at all.
+export const UNPLACED_REASONS = ['no_teacher', 'class_week_full', 'teacher_week_full', 'consecutive_limit', 'no_common_period', 'not_assigned'] as const;
 export type UnplacedReason = (typeof UNPLACED_REASONS)[number];
 export type Unplaced = { classId: string; subjectId: string; teacherUserId: string | null; wanted: number; placed: number; reason: UnplacedReason };
 export type GeneratorResult = { entries: Slot[]; unplaced: Unplaced[] };

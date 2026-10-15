@@ -18,7 +18,8 @@ import type { MessageKey } from '@/lib/i18n';
 // settings API, which checks the module, the role and the value, keeps the
 // history and writes the audit row.
 
-export type SettingsModule = { moduleId: ModuleId; revision: number; fields: { def: SettingDefinition; value: SettingValue; isDefault: boolean; mayEdit: boolean }[] };
+// `value` is null for a field with no default that the school has not set yet (C231).
+export type SettingsModule = { moduleId: ModuleId; revision: number; fields: { def: SettingDefinition; value: SettingValue | null; isDefault: boolean; mayEdit: boolean }[] };
 
 const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'] as const;
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
@@ -29,11 +30,12 @@ function ModuleCard({ module }: { module: SettingsModule }) {
   const { t, lang } = useT();
   const toast = useToast();
   const router = useRouter();
-  const [values, setValues] = useState<Record<string, SettingValue>>(() => Object.fromEntries(module.fields.map((f) => [f.def.key, f.value])));
+  // A field not set yet starts empty (C231): nothing is filled in for the school.
+  const [values, setValues] = useState<Record<string, SettingValue>>(() => Object.fromEntries(module.fields.map((f) => [f.def.key, f.value ?? ''])));
   const [busy, setBusy] = useState(false);
   const key = (f: SettingDefinition, part: 'label' | 'help') => `set.${module.moduleId}.${f.key}.${part}` as MessageKey;
   const mayEditAny = module.fields.some((f) => f.mayEdit);
-  const changed = module.fields.filter((f) => f.mayEdit && !same(values[f.def.key], f.value));
+  const changed = module.fields.filter((f) => f.mayEdit && !same(values[f.def.key], f.value ?? ''));
 
   async function send(body: Record<string, unknown>, done: MessageKey) {
     setBusy(true);
@@ -134,8 +136,15 @@ function ModuleCard({ module }: { module: SettingsModule }) {
           {control(def, mayEdit)}
           <p className="text-sm text-slate/70">{t(key(def, 'help'))}</p>
           <p className="flex flex-wrap items-center gap-3 text-xs text-slate/70">
-            <span>{t('set.default', { value: show(def, def.default) })}</span>
-            {isDefault ? (
+            {/* A field with no default (C231): the school sets it, and it is never reset. */}
+            <span>{def.default === null ? t('set.noDefault') : t('set.default', { value: show(def, def.default) })}</span>
+            {def.default === null ? (
+              isDefault && (
+                <span data-not-set className="font-semibold text-slate">
+                  {t('set.notSet')}
+                </span>
+              )
+            ) : isDefault ? (
               <span data-is-default>{t('set.isDefault')}</span>
             ) : (
               mayEdit && (

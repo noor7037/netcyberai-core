@@ -2,6 +2,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import type { SessionClaims } from '@/lib/auth/types';
 import { writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected } from '@/lib/db/rows';
+import { checkUpload, type UploadProblem } from '@/lib/privacy/upload-check';
 import { buildObjectPath, uploadDocument, signedDocumentUrl } from './storage';
 import { runOcr, extractCandidateFields, extractAadhaarLast4AndNameMatch } from './ocr';
 
@@ -33,20 +34,32 @@ export interface CaptureOutcome {
   extractions: CapturedExtraction[];
   signedUrl: string | null;
 }
+// A document the upload check refused (C232 part A): an Aadhaar number or card, or words that could not be read.
+// Nothing was stored and nothing was written.
+export type CaptureRefusal = { refused: UploadProblem };
 
-// PRD Sec6.1's capture flow: upload -> OCR -> candidate fields, never
-// committed directly. Extracted from the API route (same reasoning as
+// PRD Sec6.1's capture flow: check -> upload -> OCR -> candidate fields,
+// never committed directly. Extracted from the API route (same reasoning as
 // runCsvImport/resolveQrScan) so a verification route can exercise this
 // exact logic with fixture claims -- never duplicated, never a
 // paraphrase of what production runs.
+//
+// The upload check (C232 part A, src/lib/privacy/upload-check.ts) runs
+// first, before any connection is taken or anything is stored: a document
+// that shows an Aadhaar number, reads as an Aadhaar card, or whose words
+// could not be read is refused and never kept. Its OCR is the one the
+// candidate fields are read from. The guardian ID keeps its own path below.
 export async function captureDocument(
   claims: SessionClaims & { schoolId: string },
   studentId: string,
   docType: DocType,
   bytes: Buffer,
   mimeType: string,
-  parentId: string | null
-): Promise<CaptureOutcome | null> {
+  parentId: string | null,
+  fileName = ''
+): Promise<CaptureOutcome | CaptureRefusal | null> {
+  const screen = docType === 'guardian_id' ? null : await checkUpload({ bytes, name: fileName });
+  if (screen && !screen.ok) return { refused: screen.reason };
   return withTenantContext(claims, async (client) => {
     const studentCheck = await client.query(`select student_id, name from students where school_id = $1 and student_id = $2`, [
       claims.schoolId,
@@ -112,18 +125,13 @@ export async function captureDocument(
       return { document, extractions, signedUrl: null };
     }
 
-    // Every other doc type: real upload, source image kept and linked.
+    // Every other doc type: checked above, then a real upload, source image kept and linked.
     const path = buildObjectPath(claims.schoolId, studentId, docType, extensionFor(mimeType));
     await uploadDocument(path, bytes, mimeType);
 
-    let ocrStatus: 'done' | 'failed' = 'done';
-    let candidateFields: { fieldName: string; extractedValue: string; confidence: number }[] = [];
-    try {
-      const ocrResult = await runOcr(bytes);
-      candidateFields = extractCandidateFields(ocrResult);
-    } catch {
-      ocrStatus = 'failed';
-    }
+    // The candidate fields come from the check's own OCR of a photo; a PDF has none (its text layer is only checked).
+    const ocrStatus: 'done' | 'failed' = screen?.ok && screen.ocr ? 'done' : 'failed';
+    const candidateFields: { fieldName: string; extractedValue: string; confidence: number }[] = screen?.ok && screen.ocr ? extractCandidateFields(screen.ocr) : [];
 
     const { rows: docRows } = await client.query(
       `insert into captured_documents
@@ -152,7 +160,7 @@ export async function captureDocument(
       eventAction: 'document.capture',
       targetType: 'captured_documents',
       targetId: document.document_id,
-      afterState: { docType, ocrStatus, fieldsExtracted: candidateFields.length },
+      afterState: { docType, ocrStatus, fieldsExtracted: candidateFields.length, uploadCheck: screen?.ok ? screen.read : null },
     });
 
     return { document, extractions, signedUrl: await signedDocumentUrl(path) };

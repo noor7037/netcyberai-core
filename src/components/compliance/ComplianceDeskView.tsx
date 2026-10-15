@@ -41,7 +41,8 @@ export function ComplianceDeskView() {
       {note && <p role="status" data-cdk-note={note.ok ? 'ok' : 'refused'} className={`rounded-md px-3 py-2 font-semibold ${note.ok ? 'bg-off-white text-slate' : 'border border-red-800/30 text-red-800'}`}>{note.text}</p>}
       <QualificationsPanel register={data.register} reload={load} say={say} />
       <DisclosurePanel items={data.disclosure} reload={load} say={say} />
-      <Form6Panel />
+      {/* The office enters the CPI and the filing deadline here, each with its source and the day read (C232 part B). */}
+      <Form6Panel canEnter />
       <SqaafPanel sqaaf={data.sqaaf} reload={load} say={say} />
     </div>
   );

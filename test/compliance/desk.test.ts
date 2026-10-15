@@ -127,16 +127,16 @@ describe('teacher qualifications and TET', () => {
     expect(await as(principal, (c) => saveSettings(c, actor(principal) as never, schema, { moduleId: 'compliance', baseRevision: 1, resetToDefault: ['expiry_window', 'secondary_degree'] }))).toMatchObject({ ok: true });
   });
 
-  it('only the office reads staff qualifications: a teacher, the coordinator, the accountant, another school and the platform role read nothing and write nothing', async () => {
+  it('only the office reads staff qualifications: a teacher, the coordinator and the accountant read no one else’s row (their own only, C232 part B), another school and the platform role read nothing, and none of them writes', async () => {
     for (const who of OUTSIDE) {
       expect(await as(who, (c) => loadRegister(c, actor(who))), who.role).toBeNull();
       expect(await as(who, (c) => saveQualification(c, actor(who), TEACHER, row({ stage: 'pre' }))), who.role).toEqual({ ok: false, reason: 'not_allowed' });
-      expect((await as(who, (c) => c.query(`select * from staff_qualifications`))).rows, who.role).toEqual([]);
+      expect((await as(who, (c) => c.query(`select user_id from staff_qualifications where user_id <> $1`, [who.user]))).rows, who.role).toEqual([]);
       await expect(as(who, (c) => c.query(`insert into staff_qualifications (school_id, user_id, updated_by, stage) values ($1, $2, $3, 'pre')`, [A, COORDINATOR, who.user])), who.role).rejects.toThrow(/row-level security|policy/);
       expect((await as(who, (c) => c.query(`update staff_qualifications set stage = 'pre'`))).affectedRows ?? 0, who.role).toBe(0);
     }
-    // A teacher's own row is the office's too: the teacher reads not even their own.
-    expect((await as(teacher, (c) => c.query(`select * from staff_qualifications where user_id = $1`, [TEACHER]))).rows).toEqual([]);
+    // A teacher reads their own row, and only that one (C230-A, C232 part B); the office keeps it.
+    expect((await as(teacher, (c) => c.query(`select user_id from staff_qualifications`))).rows).toEqual([{ user_id: TEACHER }]);
     expect((await as(principalB, (c) => c.query(`select * from staff_qualifications`))).rows).toEqual([]);
     expect(await as(principalB, (c) => saveQualification(c, actor(principalB), TEACHER, row({ stage: 'pre' })))).toEqual({ ok: false, reason: 'not_staff' });
     await expect(platform((c) => c.query(`select * from staff_qualifications`))).rejects.toThrow(/permission denied/);
@@ -286,7 +286,11 @@ describe('SQAAF evidence', () => {
   it('never an Aadhaar number in a note or a file’s name; never a file that is not a photo or a PDF; never another school’s folder', async () => {
     expect(await as(principal, (c) => addSqaafNote(c, actor(principal), { standardCode: '1.6.1', note: 'Child 1234 5678 9012 attended' }))).toEqual({ ok: false, reason: 'aadhaar' });
     await expect(as(principal, (c) => c.query(`insert into sqaaf_evidence (school_id, standard_code, note, added_by) values ($1, '1.6.1', 'id 123456789012', $2)`, [A, PRINCIPAL]))).rejects.toThrow(/check/);
-    const named = await as(principal, (c) => addSqaafFile(c, storage, actor(principal), { standardCode: '1.6.1', note: 'Attendance register', name: 'aadhaar 1234 5678 9012.pdf', bytes: PDF }, () => 'f2'));
+    // A file whose name holds an Aadhaar number is refused before anything is stored (C232 part A: the upload check).
+    expect(await as(principal, (c) => addSqaafFile(c, storage, actor(principal), { standardCode: '1.6.1', note: 'Attendance register', name: 'aadhaar 1234 5678 9012.pdf', bytes: PDF }, () => 'f9'))).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
+    expect(storage.files.has(`${A}/sqaaf/f9.pdf`)).toBe(false);
+    // A name with nothing usable in it becomes a plain one.
+    const named = await as(principal, (c) => addSqaafFile(c, storage, actor(principal), { standardCode: '1.6.1', note: 'Attendance register', name: '<>', bytes: PDF }, () => 'f2'));
     expect(named.ok).toBe(true);
     expect((await db.pg.query(`select file_name from sqaaf_evidence where storage_key = $1`, [`${A}/sqaaf/f2.pdf`])).rows[0].file_name).toBe('evidence.pdf');
     expect(await as(principal, (c) => addSqaafFile(c, storage, actor(principal), { standardCode: '1.6.1', note: null, name: 'x.exe', bytes: new Uint8Array([0x4d, 0x5a, 1, 2, 3]) }))).toEqual({ ok: false, reason: 'not_a_photo_or_pdf' });
@@ -351,10 +355,14 @@ describe('review of C227', () => {
   it('Form 6: the filing deadline day itself is not past in India; the day after is', async () => {
     const today = indiaDate();
     const yesterday = indiaDate(new Date(Date.now() - 86_400_000));
+    // Entered by the office with its source and the day read (C232 part B): the database records who.
     const at = async (deadline: string) => {
-      await db.pg.query(
-        `insert into compliance_config (school_id, state, filing_deadline, filing_deadline_source) values ($1, 'HR', $2, 'test') on conflict (school_id) do update set filing_deadline = excluded.filing_deadline`,
-        [A, deadline]
+      await as(principal, (c) =>
+        c.query(
+          `insert into compliance_config (school_id, state, filing_deadline, filing_deadline_source, filing_deadline_read_on) values ($1, 'HR', $2, 'https://example.invalid/notice', $3)
+           on conflict (school_id) do update set filing_deadline = excluded.filing_deadline`,
+          [A, deadline, yesterday]
+        )
       );
       return as(principal, (c) => computeForm6Advisory(c, A, 'IN-HR'));
     };
