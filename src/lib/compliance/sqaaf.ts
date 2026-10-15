@@ -2,7 +2,7 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { hasAadhaarNumber } from '@/lib/privacy/aadhaar';
-import { checkUpload, type UploadProblem, type UploadRead } from '@/lib/privacy/upload-check';
+import { checkUpload, type UploadCheck, type UploadProblem, type UploadRead } from '@/lib/privacy/upload-check';
 import { FileStorageUnavailableError, sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
 import { DESK_ROLES } from './register-rules';
 
@@ -118,7 +118,9 @@ export function fileLabel(name: string, mime: keyof typeof EXT): string {
 // card, or words that cannot be read, are refused and never stored); the file is then stored under the school's own
 // folder (the key starts with the school of the verified session; never anything the browser sent), then its row; a
 // row that cannot be written takes the file away again.
-export async function addSqaafFile(db: Db, storage: FileStorage, actor: Actor, input: { standardCode: unknown; note: unknown; name: string; bytes: Uint8Array }, newId: () => string = () => crypto.randomUUID()): Promise<EvidenceResult> {
+// `checked`: the upload check already run on these bytes before the transaction opened (the route does); without it,
+// it is run here.
+export async function addSqaafFile(db: Db, storage: FileStorage, actor: Actor, input: { standardCode: unknown; note: unknown; name: string; bytes: Uint8Array }, newId: () => string = () => crypto.randomUUID(), checked?: UploadCheck): Promise<EvidenceResult> {
   if (!DESK_ROLES.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   const problem = await checkStandard(db, actor.schoolId, input.standardCode);
   if (problem) return { ok: false, reason: problem };
@@ -127,7 +129,7 @@ export async function addSqaafFile(db: Db, storage: FileStorage, actor: Actor, i
   if (input.bytes.length === 0 || input.bytes.length > FILE_MAX_BYTES) return { ok: false, reason: 'too_large' };
   const mime = sniffEvidenceFile(input.bytes);
   if (!mime) return { ok: false, reason: 'not_a_photo_or_pdf' };
-  const screen = await checkUpload({ bytes: input.bytes, name: input.name });
+  const screen = checked ?? (await checkUpload({ bytes: input.bytes, name: input.name }));
   if (!screen.ok) return { ok: false, reason: screen.reason };
   const key = `${actor.schoolId}/sqaaf/${newId()}.${EXT[mime]}`;
   try {

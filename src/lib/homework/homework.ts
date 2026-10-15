@@ -2,7 +2,7 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { refreshDraftsForHomework } from '@/lib/pulse/drafts';
-import { checkUpload, type UploadProblem } from '@/lib/privacy/upload-check';
+import { checkUpload, type UploadCheck, type UploadProblem } from '@/lib/privacy/upload-check';
 import { FileStorageUnavailableError, sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
 
 // Homework (docs/20 5e, C150). The teacher writes it once and copies it to
@@ -219,7 +219,9 @@ export function sniffHomeworkFile(bytes: Uint8Array): 'image/png' | 'image/jpeg'
 const EXT = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp', 'application/pdf': 'pdf' } as const;
 export type FileResult = { ok: true; attachmentId: string } | { ok: false; reason: 'not_allowed' | 'not_found' | 'not_a_photo_or_pdf' | 'too_large' | 'too_many' | 'storage_unavailable' | UploadProblem };
 
-export async function addHomeworkFile(db: PoolClient, storage: FileStorage, actor: Actor, homeworkId: string, file: { name: string; bytes: Uint8Array }, newId: () => string = () => crypto.randomUUID()): Promise<FileResult> {
+// `checked`: the upload check already run on these bytes before the transaction opened (the route does, so no
+// connection is held while the OCR reads the file); without it, it is run here.
+export async function addHomeworkFile(db: PoolClient, storage: FileStorage, actor: Actor, homeworkId: string, file: { name: string; bytes: Uint8Array }, newId: () => string = () => crypto.randomUUID(), checked?: UploadCheck): Promise<FileResult> {
   if (!STAFF.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   if (!(await db.query(`select 1 from homework where school_id = $1 and homework_id = $2`, [actor.schoolId, homeworkId])).rows[0]) return { ok: false, reason: 'not_found' };
   if (file.bytes.length === 0 || file.bytes.length > HOMEWORK_FILE_MAX_BYTES) return { ok: false, reason: 'too_large' };
@@ -228,7 +230,7 @@ export async function addHomeworkFile(db: PoolClient, storage: FileStorage, acto
   const count = (await db.query(`select count(*)::int as n from homework_attachments where school_id = $1 and homework_id = $2`, [actor.schoolId, homeworkId])).rows[0].n as number;
   if (count >= MAX_FILES) return { ok: false, reason: 'too_many' };
   // What the file says is checked before it is stored (C232 part A): never an Aadhaar number or card.
-  const screen = await checkUpload({ bytes: file.bytes, name: file.name });
+  const screen = checked ?? (await checkUpload({ bytes: file.bytes, name: file.name }));
   if (!screen.ok) return { ok: false, reason: screen.reason };
   // The key starts with the school of the verified session; the name the browser sent is kept only as a label.
   const key = `${actor.schoolId}/homework/${homeworkId}/${newId()}.${EXT[mime]}`;
