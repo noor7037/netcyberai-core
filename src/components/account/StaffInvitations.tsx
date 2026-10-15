@@ -1,5 +1,6 @@
 'use client';
 
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -95,9 +96,9 @@ export function StaffInvitations() {
 
   return (
     <Card className="flex w-full max-w-2xl flex-col gap-4">
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-base font-bold text-slate">Invite staff</h2>
-        <p className="text-sm text-slate/80">They get an email to set a password, then sign in to this school with the role you choose.</p>
+        <InfoTip>They get an email to set a password, then sign in to this school with the role you choose.</InfoTip>
       </div>
       <form onSubmit={invite} className="flex flex-col gap-3">
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

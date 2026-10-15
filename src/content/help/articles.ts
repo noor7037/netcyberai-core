@@ -1035,7 +1035,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'Choose the days: “Today”, “7 days” or “30 days”. Numbers about a span of days change; each number says which days it is about.', hi: 'दिन चुनें: “Today”, “7 days” या “30 days”। कई दिनों वाली संख्याएँ बदलती हैं; हर संख्या बताती है कि वह किन दिनों की है।' },
       { en: 'Tap a number to open the rows behind it: the classes not marked, the fee entries overdue, the messages held back. The list’s title says how many rows it has; a number that is not a link has no such list yet.', hi: 'किसी संख्या पर टैप करके उसके पीछे की पंक्तियाँ खोलें: बिना हाज़िरी की कक्षाएँ, तारीख़ निकली फ़ीस, रोके गए संदेश। सूची का शीर्षक बताता है कि उसमें कितनी पंक्तियाँ हैं; जो संख्या लिंक नहीं है, उसकी ऐसी सूची अभी नहीं है।' },
       { en: 'Open “Why this?” under a number to read how it is counted, what it is counted from, and when.', hi: 'किसी संख्या के नीचे “Why this?” खोलें और पढ़ें कि वह कैसे, किससे और कब गिनी गई।' },
-      { en: 'On a chart, press “Table” to read the same numbers as a list. “Download as a spreadsheet (CSV)” saves what is on the screen.', hi: 'किसी चार्ट पर “Table” दबाएँ और वही संख्याएँ सूची के रूप में पढ़ें। “Download as a spreadsheet (CSV)” स्क्रीन पर जो है उसे सेव करता है।' },
+      { en: 'On a chart, press “Table” to read the same numbers as a list. “Download CSV” saves what is on the screen.', hi: 'किसी चार्ट पर “Table” दबाएँ और वही संख्याएँ सूची के रूप में पढ़ें। “Download CSV” स्क्रीन पर जो है उसे सेव करता है।' },
     ],
     tips: [
       { en: 'A number you do not see is one your role cannot read, or its module is switched off. It is never shown as zero.', hi: 'जो संख्या आपको नहीं दिखती, उसे आपकी भूमिका पढ़ नहीं सकती या उसका मॉड्यूल बंद है। उसे कभी शून्य के रूप में नहीं दिखाया जाता।' },
@@ -1498,6 +1498,32 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   // c225 end
   // c226 begin
   // c226 end
+  // c235d begin
+  {
+    slug: 'attach-documents',
+    category: 'students',
+    audience: 'office',
+    title: { en: 'Keep scanned documents on a staff or student record', hi: 'स्टाफ़ या विद्यार्थी के रिकॉर्ड पर स्कैन किए गए दस्तावेज़ रखें' },
+    summary: {
+      en: 'The principal or the school admin keeps scanned papers (IDs, certificates, transcripts, letters) on a staff member’s or a student’s record. A new upload keeps the earlier versions.',
+      hi: 'प्रिंसिपल या स्कूल एडमिन स्टाफ़ या विद्यार्थी के रिकॉर्ड पर स्कैन किए गए काग़ज़ (पहचान पत्र, प्रमाणपत्र, अंकपत्र, पत्र) रखते हैं। नया अपलोड पुराने संस्करण भी रखता है।',
+    },
+    steps: [
+      { en: 'Open “Staff” and press a person’s name, then “Documents”. For a student, open the student’s record from “Students”.', hi: '“Staff” खोलें और किसी व्यक्ति का नाम दबाएँ, फिर “Documents”। विद्यार्थी के लिए “Students” से उसका रिकॉर्ड खोलें।' },
+      { en: 'Press “+ Add a document”. Choose the “Kind of document”, write the “Name of the document” and choose the “File”: PDF, JPG or PNG.', hi: '“+ Add a document” दबाएँ। “Kind of document” चुनें, “Name of the document” लिखें और “File” चुनें: PDF, JPG या PNG।' },
+      { en: 'Press “Upload”. The document shows with its version, who uploaded it and when.', hi: '“Upload” दबाएँ। दस्तावेज़ अपने संस्करण, अपलोड करने वाले और समय के साथ दिखता है।' },
+      { en: 'For a newer copy, press “Upload a new version”. The earlier versions stay and can still be opened with “Open”.', hi: 'नई प्रति के लिए “Upload a new version” दबाएँ। पुराने संस्करण बने रहते हैं और “Open” से खुलते हैं।' },
+    ],
+    tips: [
+      { en: 'Do not write an ID number in the name. An Aadhaar card or number is never kept.', hi: 'नाम में कोई पहचान संख्या न लिखें। आधार कार्ड या नंबर कभी नहीं रखा जाता।' },
+      { en: 'A member of staff can open their own documents. A teacher can open the documents of students in their own classes. Parents cannot see documents.', hi: 'स्टाफ़ का सदस्य अपने दस्तावेज़ खोल सकता है। शिक्षक अपनी कक्षाओं के विद्यार्थियों के दस्तावेज़ खोल सकते हैं। अभिभावक दस्तावेज़ नहीं देख सकते।' },
+      { en: '“Remove” deletes the document and all its versions. Every upload, opening and removal is written to the school’s audit trail.', hi: '“Remove” दस्तावेज़ और उसके सभी संस्करण मिटा देता है। हर अपलोड, खोलना और हटाना स्कूल के ऑडिट रिकॉर्ड में लिखा जाता है।' },
+    ],
+    start: { href: '/app/staff', label: { en: 'Staff', hi: 'स्टाफ़ (Staff)' } },
+    related: ['send-staff-reset-code', 'add-a-student'],
+    keywords: ['documents', 'papers', 'scan', 'certificate', 'transcript', 'id proof', 'upload', 'version', 'दस्तावेज़', 'प्रमाणपत्र', 'काग़ज़'],
+  },
+  // c235d end
 ];
 
 export function helpArticle(slug: string): HelpArticle | null {

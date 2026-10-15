@@ -126,6 +126,10 @@ export const TOURS = {
   // c225 end
   // c226 begin
   // c226 end
+  // c235d begin
+  // A member of staff's profile (C235-D): what the record holds, and the papers on it.
+  'staff-profile': { steps: [{ slot: 'body' }, { slot: 'primary' }] },
+  // c235d end
 } as const satisfies Record<string, TourDefinition>;
 
 export type TourId = keyof typeof TOURS;

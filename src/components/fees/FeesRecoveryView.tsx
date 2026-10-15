@@ -1,5 +1,6 @@
 'use client';
 
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { useFeesChanged, useFeesPart } from './FeesFirstLoad';
@@ -65,9 +66,9 @@ export function FeesRecoveryView() {
   if (rows === null) return null;
   return (
     <section lang={lang} data-recovery className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-4">
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-base font-bold text-slate">{t('frec.title')}</h2>
-        <p className="text-sm text-slate/70">{t('frec.how')}</p>
+        <InfoTip>{t('frec.how')}</InfoTip>
       </div>
       {rows.length === 0 && <p data-recovery-empty className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('frec.none')}</p>}
       <ul className="flex flex-col gap-2">
@@ -121,8 +122,10 @@ export function FeesRecoveryView() {
       </ul>
 
       <div data-refunds className="flex flex-col gap-2 border-t border-slate/10 pt-3 text-sm text-slate">
-        <h3 className="text-base font-bold">{t('frec.refund.title')}</h3>
-        <p className="text-slate/70">{t('frec.refund.how')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h3 className="text-base font-bold">{t('frec.refund.title')}</h3>
+          <InfoTip>{t('frec.refund.how')}</InfoTip>
+        </div>
         {refunds.length === 0 && <p className="rounded-md bg-off-white px-3 py-2">{t('frec.refund.none')}</p>}
         <ul className="flex flex-col gap-2">
           {refunds.map((f) => (

@@ -1,5 +1,6 @@
 'use client';
 
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { Badge } from '@/components/ui/Badge';
@@ -159,7 +160,7 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
           <Input id="login-sign-in" label={t('login.field.signIn')} helperText={t('login.field.signIn.hint')} autoComplete="off" autoCapitalize="none" spellCheck={false} maxLength={254} value={form.signIn} onChange={(e) => setForm({ ...form, signIn: e.target.value })} required />
           <div className="flex flex-col gap-1">
             <Input id="login-password" label={t('login.field.password')} autoComplete="new-password" spellCheck={false} maxLength={72} value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
-            <button type="button" data-login-new-password className="self-start text-sm font-semibold text-sapphire underline-offset-4 hover:underline" onClick={() => setForm({ ...form, password: newPassword() })}>
+            <button type="button" data-login-new-password className="inline-flex min-h-[44px] items-center self-start text-sm font-semibold text-sapphire underline-offset-4 hover:underline" onClick={() => setForm({ ...form, password: newPassword() })}>
               {t('login.newPassword')}
             </button>
           </div>
@@ -187,7 +188,10 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
         </div>
       )}
 
-      <p className="text-sm text-slate/70">{t('viewAs.people.how')}</p>
+      <div className="flex flex-wrap items-center gap-x-1">
+        <p className="text-sm text-slate/70">{t('viewAs.people.how')}</p>
+        <InfoTip>{t('viewAs.people.rules')}</InfoTip>
+      </div>
       {failed && <p role="alert" className="text-sm font-semibold text-red-800">{t('viewAs.people.failed')}</p>}
       {people && people.length === 0 && <p className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('viewAs.people.none')}</p>}
       {people && people.length > 0 && (

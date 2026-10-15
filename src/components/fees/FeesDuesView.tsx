@@ -1,5 +1,6 @@
 'use client';
 
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
@@ -157,8 +158,10 @@ export function FeesDuesView() {
   return (
     <section lang={lang} className="flex flex-col gap-6">
       <div data-dues className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
-        <h2 className="text-base font-bold text-slate">{t('due.title')}</h2>
-        <p className="text-sm text-slate/70">{t('due.how')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-bold text-slate">{t('due.title')}</h2>
+          <InfoTip>{t('due.how')}</InfoTip>
+        </div>
         <a href="/app/fees/rte" data-rte-desk-link className="inline-flex min-h-[44px] items-center self-start text-sm font-semibold text-sapphire underline">{t('rtd.fromFees')}</a>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Select id="due-class" label={t('fee.class')} value={classId} onChange={(e) => setClassId(e.target.value)}>
@@ -286,10 +289,12 @@ export function FeesDuesView() {
       )}
 
       <div data-sibling-rule className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4">
-        <p className="text-sm text-slate/70">{t('con.sibling.how')}</p>
-        <button type="button" data-sibling-check disabled={busy} className={`${TAP} self-start`} onClick={() => void checkSiblings()}>
-          {t('con.sibling.check')}
-        </button>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <button type="button" data-sibling-check disabled={busy} className={TAP} onClick={() => void checkSiblings()}>
+            {t('con.sibling.check')}
+          </button>
+          <InfoTip>{t('con.sibling.how')}</InfoTip>
+        </div>
       </div>
 
       {concessions.length > 0 && (

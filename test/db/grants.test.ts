@@ -239,6 +239,10 @@ const APP_USER: Record<string, string> = {
   // c219 begin
   co_scholastic_grades: 'DELETE,INSERT,SELECT,UPDATE', // frozen with the class's publication (trigger); cleared while not published
   // c219 end
+  // c235d begin
+  record_documents: 'DELETE,INSERT,SELECT', // a paper on a staff or student record: added or removed by the office, never changed (C235-D)
+  record_document_versions: 'DELETE,INSERT,SELECT', // each upload kept as a version; removed only with its paper or by an erasure
+  // c235d end
 };
 
 // The platform role (nca_super) holds what the app's role holds, except here.
@@ -389,6 +393,10 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   schools: 'DELETE,INSERT,SELECT,UPDATE', // Control makes schools and sets plan, billing, pilot, test, budget and board (C219)
   co_scholastic_grades: '', // a school's results are its own: the platform role reads nothing here
   // c219 end
+  // c235d begin
+  record_documents: '', // a school's papers on its people are its own: the platform role reads nothing here (C235-D)
+  record_document_versions: '',
+  // c235d end
 };
 // Every other role that holds anything on a table.
 const OTHER_ROLES: Record<string, Record<string, string>> = {

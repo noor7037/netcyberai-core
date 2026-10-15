@@ -1,6 +1,10 @@
 'use client';
 
+import { Checkbox } from '@/components/ui/Checkbox';
+import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useState } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { FounderAccountTools } from './FounderAccountTools';
@@ -42,13 +46,18 @@ export function StaffAccounts({
   showSchools = false,
   founderTools = false,
   currentUserId,
+  profileBase,
 }: {
   endpoint: string;
   showSchools?: boolean;
   founderTools?: boolean;
   // The signed-in founder: their own row hides "Remove authenticator" (C95).
   currentUserId?: string;
+  // The school's staff list (C235-D): each member of staff's name opens their profile at `${profileBase}/${userId}`
+  // (a parent's login, listed here for its reset code, has no staff profile).
+  profileBase?: string;
 }) {
+  const { t } = useT();
   const [accounts, setAccounts] = useState<Account[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [query, setQuery] = useState('');
@@ -110,15 +119,15 @@ export function StaffAccounts({
   return (
     <div className="flex flex-col gap-4">
       <Card className="flex flex-col gap-3">
-        <p className="text-sm text-slate/80">
-          Someone forgot their password, or is signing in for the first time? Send them a reset code. It goes to the
-          email on their account; they set their own password on the login page. You never see it.
-        </p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-bold text-slate">{t('staff.reset.title')}</h2>
+          <InfoTip>
+            Someone forgot their password, or is signing in for the first time? Send them a reset code. It goes to the
+            email on their account; they set their own password on the login page. You never see it.
+          </InfoTip>
+        </div>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <label className="flex min-h-[44px] items-center gap-2 text-sm text-slate">
-            <input type="checkbox" className="h-5 w-5" checked={signOut} onChange={(e) => setSignOut(e.target.checked)} />
-            Also sign them out on every device
-          </label>
+          <Checkbox id="reset-sign-out" label="Also sign them out on every device" checked={signOut} onChange={(e) => setSignOut(e.target.checked)} />
           <label className="flex flex-col gap-1 text-sm text-slate sm:w-64">
             <span className="sr-only">Search accounts</span>
             <input
@@ -146,7 +155,13 @@ export function StaffAccounts({
             <Card className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
               <div className="min-w-0">
                 <p className="font-semibold text-slate">
-                  {a.displayName}
+                  {profileBase && a.role !== 'parent' ? (
+                    <Link href={`${profileBase}/${a.userId}`} data-staff-profile-link={a.userId} aria-label={t('sprof.open', { name: a.displayName })} className="inline-flex min-h-[44px] items-center text-sapphire underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal">
+                      {a.displayName}
+                    </Link>
+                  ) : (
+                    a.displayName
+                  )}
                   {!a.isActive && <span className="ml-2 text-xs font-medium text-slate/70">(switched off)</span>}
                 </p>
                 <p className="break-all text-sm text-slate/70">{a.email ?? 'No email on file'}</p>

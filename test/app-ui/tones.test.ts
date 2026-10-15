@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { accessibleTextColors, colors, deepColors, onAccentColors } from '@/lib/design-tokens';
-import { STATUS_TONES, TOKEN_TONES } from '@/components/app-ui/tones';
+import { HERO_TONES, STATUS_TONES, TOKEN_TONES } from '@/components/app-ui/tones';
 import { MODULE_GROUPS } from '@/lib/contracts/modules';
 
 // check_contrast.py reads className attributes only, so it cannot see the
@@ -54,5 +54,28 @@ describe('tone table contrast', () => {
   it('every group tone and status tone has classes', () => {
     for (const g of MODULE_GROUPS) for (const tok of g.tone) expect(TOKEN_TONES[tok]).toBeDefined();
     for (const tok of Object.values(STATUS_TONES)) expect(TOKEN_TONES[tok]).toBeDefined();
+  });
+});
+
+// The page banner (C235-C): white text on a gradient. Every stop of every
+// banner takes white at 4.5:1 or more (a gradient between two passing stops
+// is never lighter than its lighter stop); the frosted icon tile (white at
+// 15% over a stop) keeps its white glyph at 3:1, the floor for a graphic.
+describe('banner gradients', () => {
+  const blend = (a: number, over: number[]) => over.map((v) => Math.round(255 * a + v * (1 - a)));
+  for (const [token, hero] of Object.entries(HERO_TONES)) {
+    it(`${token}: both stops take white text; the glass tile keeps 3:1`, () => {
+      expect(hero.cls).toBe(`from-${hero.stops[0]} to-${hero.stops[1]}`);
+      for (const stop of hero.stops) {
+        expect(HEX[stop], stop).toBeDefined();
+        expect(ratio(rgb('#FFFFFF'), rgb(HEX[stop])), stop).toBeGreaterThanOrEqual(4.5);
+        expect(ratio(rgb('#FFFFFF'), blend(0.15, rgb(HEX[stop]))), stop).toBeGreaterThanOrEqual(3);
+      }
+    });
+  }
+
+  it('the base under every banner (bg-grape, what check_contrast.py reads) is the lowest-contrast stop any banner uses', () => {
+    const lowest = Math.min(...Object.values(HERO_TONES).flatMap((h) => h.stops.map((s) => ratio(rgb('#FFFFFF'), rgb(HEX[s])))));
+    expect(ratio(rgb('#FFFFFF'), rgb(HEX.grape))).toBeCloseTo(lowest, 5);
   });
 });

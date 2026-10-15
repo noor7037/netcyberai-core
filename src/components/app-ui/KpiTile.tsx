@@ -10,12 +10,12 @@ import { ModuleIcon } from './ModuleIcon';
 import { useCountUp } from './motion';
 import { TOKEN_TONES } from './tones';
 
-// KPI tile v3 (C230-D redesign, after Stripe's and Vercel's metric cards): a white card with a thin bar in the
-// tile's tone, its icon
-// chip, the value computed by the server (counted up, always in slate,
-// never in a series colour), the trend as a pill with an arrow AND words,
-// a small sparkline in the tone, and the whole tile as the drill-down
-// link. null means no data yet and says so.
+// KPI tile v4 (C235-C, design system v5; v3 was C230-D): a white, rounded
+// card with a soft shadow; the icon chip in the tile's tone ABOVE the value,
+// the trend pill beside the chip (an arrow AND words); the value computed
+// by the server (counted up, always in slate, never in a series colour);
+// the label under it; a small sparkline in the tone; the whole tile is the
+// drill-down link. null means no data yet and says so.
 
 const TREND_PILL = { good: 'bg-off-white text-emerald', bad: 'bg-off-white text-coral-deep', neutral: 'bg-off-white text-slate' } as const;
 
@@ -41,28 +41,24 @@ export function KpiTile({ tile, tone = 'royal', icon, spark }: { tile: KpiTileDa
   const value = formatValue(shown === null ? null : tile.unit === 'count' ? Math.round(shown) : shown, tile.unit);
   const body = (
     <>
-      <span aria-hidden="true" className={`absolute inset-x-0 top-0 h-1 ${TOKEN_TONES[tone].bar}`} />
-      <div className="flex items-center gap-2">
-        {icon && <ModuleIcon name={icon} tone={tone} size="sm" variant="solid" />}
-        <p className="min-w-0 text-xs font-semibold uppercase tracking-wide text-slate/70">{tile.label}</p>
-      </div>
-      <p className="text-3xl font-extrabold tabular-nums text-slate" aria-label={`${tile.label}: ${formatValue(tile.value, tile.unit)}`}>
-        {value}
-      </p>
-      {tile.value === null ? (
-        <p className="text-sm text-slate">No data yet</p>
-      ) : (
-        trend && (
-          <p className={`self-start rounded-full px-2 py-0.5 text-xs font-bold ${TREND_PILL[trend.tone]}`}>
+      <div className="flex min-h-[40px] items-start justify-between gap-2">
+        {icon ? <ModuleIcon name={icon} tone={tone} size="md" variant="solid" /> : <span aria-hidden="true" className={`mt-1 h-2.5 w-2.5 rounded-full ${TOKEN_TONES[tone].bar}`} />}
+        {tile.value !== null && trend && (
+          <p className={`rounded-full px-2 py-0.5 text-xs font-bold ${TREND_PILL[trend.tone]}`}>
             <span aria-hidden="true">{trend.short}</span>
             <span className="sr-only">{trend.spoken}</span>
           </p>
-        )
-      )}
+        )}
+      </div>
+      <p className="mt-2 text-3xl font-extrabold tabular-nums tracking-tight text-slate" aria-label={`${tile.label}: ${formatValue(tile.value, tile.unit)}`}>
+        {value}
+      </p>
+      <p className="min-w-0 text-sm font-medium text-slate/70">{tile.label}</p>
+      {tile.value === null && <p className="text-sm text-slate">No data yet</p>}
       {spark && tile.value !== null && <Sparkline values={spark} tone={tone} />}
     </>
   );
-  const cls = 'nca-lift relative flex min-h-[124px] min-w-0 flex-col gap-1.5 overflow-hidden rounded-2xl border border-slate/10 bg-white p-4 shadow-sm';
+  const cls = 'nca-lift relative flex min-h-[132px] min-w-0 flex-col gap-0.5 overflow-hidden rounded-2xl border border-slate/10 bg-white p-4 shadow-sm';
   return tile.drillHref ? (
     <Link href={tile.drillHref} className={`${cls} focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal`}>
       {body}

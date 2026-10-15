@@ -1,11 +1,13 @@
 'use client';
 
+import { Select } from '@/components/ui/Select';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
 import { addDays, isLeaveDate, LEAVE_AHEAD_DAYS, LEAVE_BACK_DAYS, LEAVE_LIST_MAX, LEAVE_TEXT_MAX, leaveByToday, type LeaveRow } from '@/lib/staff/leave-rules';
-import { BOX, coversReleasedIn, FIELD, LeaveGuideLink, LeaveKindSelect, LeaveNoteLine, LeaveSummary, ownRequestLine, PRIMARY, TAP, useLeaveWords, type LeaveNote } from './leave-parts';
+import { BOX, coversReleasedIn, LeaveGuideLink, LeaveKindSelect, LeaveNoteLine, LeaveSummary, ownRequestLine, PRIMARY, TAP, useLeaveWords, type LeaveNote } from './leave-parts';
 
 // Leave, for the principal and the school admin, on Staff (docs/26 slice 8b, C201): the requests waiting for a
 // decision, the approved leave, and recording leave for someone who phoned in. Nobody decides their own request:
@@ -125,9 +127,9 @@ export function StaffLeaveOffice({ shownAbove = false }: { shownAbove?: boolean 
 
       <section data-leave-waiting className={BOX}>
         <div className="flex flex-wrap items-start justify-between gap-2">
-          <div className="min-w-0">
+          <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-1">
             <h2 className="text-base font-bold">{t('leave.office.waiting')}</h2>
-            <p className="text-slate/70">{t('leave.office.waitingHow')}</p>
+            <InfoTip>{t('leave.office.waitingHow')}</InfoTip>
           </div>
           <LeaveGuideLink />
         </div>
@@ -159,9 +161,9 @@ export function StaffLeaveOffice({ shownAbove = false }: { shownAbove?: boolean 
       </section>
 
       <section data-leave-calendar className={BOX}>
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('leave.office.calendar')}</h2>
-          <p className="text-slate/70">{t('leave.office.calendarHow')}</p>
+          <InfoTip>{t('leave.office.calendarHow')}</InfoTip>
         </div>
         <div className="sm:max-w-xs">
           <Input
@@ -201,24 +203,21 @@ export function StaffLeaveOffice({ shownAbove = false }: { shownAbove?: boolean 
       </section>
 
       <section data-leave-record className={BOX}>
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('leave.office.record')}</h2>
-          <p className="text-slate/70">{t('leave.office.recordHow')}</p>
+          <InfoTip>{t('leave.office.recordHow')}</InfoTip>
         </div>
         {data.staff.length === 0 ? (
           <p className="rounded-md bg-off-white px-3 py-2">{t('leave.office.noStaff')}</p>
         ) : (
           <>
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="leave-record-who" className="text-sm font-medium text-slate">{t('leave.office.who')}</label>
-                <select id="leave-record-who" className={FIELD} value={form.userId} onChange={(e) => setForm({ ...form, userId: e.target.value })}>
-                  <option value="">{t('leave.office.choose')}</option>
-                  {data.staff.map((s) => (
-                    <option key={s.user_id} value={s.user_id}>{`${s.name} · ${t(`role.${s.role}` as MessageKey)}`}</option>
-                  ))}
-                </select>
-              </div>
+              <Select id="leave-record-who" label={t('leave.office.who')} value={form.userId} onChange={(e) => setForm({ ...form, userId: e.target.value })}>
+                <option value="">{t('leave.office.choose')}</option>
+                {data.staff.map((s) => (
+                  <option key={s.user_id} value={s.user_id}>{`${s.name} · ${t(`role.${s.role}` as MessageKey)}`}</option>
+                ))}
+              </Select>
               <LeaveKindSelect id="leave-record-kind" value={form.kind} onChange={(kind) => setForm({ ...form, kind })} />
               <Input id="leave-record-from" type="date" label={t('leave.from')} min={addDays(data.today, -LEAVE_BACK_DAYS)} max={addDays(data.today, LEAVE_AHEAD_DAYS)} value={form.fromDate} onChange={(e) => setForm({ ...form, fromDate: e.target.value, toDate: !form.toDate || form.toDate < e.target.value ? e.target.value : form.toDate })} />
               <Input id="leave-record-to" type="date" label={t('leave.to')} min={form.fromDate || addDays(data.today, -LEAVE_BACK_DAYS)} value={form.toDate} onChange={(e) => setForm({ ...form, toDate: e.target.value })} />
