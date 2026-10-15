@@ -195,12 +195,16 @@ describe('every write route is covered', () => {
   it('every write route goes through the shared session guard, which is where the write guard runs', () => {
     expect(writeHandlers.length).toBeGreaterThanOrEqual(49);
     for (const h of writeHandlers) {
-      // requireAppSession itself, or a wrapper that calls it (appRoute; schoolTickets wraps appRoute), in THIS handler.
-      expect(/\b(requireAppSession|appRoute|schoolTickets)\(\s*req\b/.test(h.body), `${h.method} ${h.rel}`).toBe(true);
+      // requireAppSession itself, or a wrapper that calls it (appRoute and appRouteAfter; schoolTickets wraps appRoute),
+      // in THIS handler.
+      expect(/\b(requireAppSession|appRoute|appRouteAfter|schoolTickets)\(\s*req\b/.test(h.body), `${h.method} ${h.rel}`).toBe(true);
     }
     const guard = readFileSync(path.join(__dirname, '../../src/lib/auth/require-app-session.ts'), 'utf8');
     expect(guard).toMatch(/WRITE_METHODS\.includes\(req\.method\)[\s\S]{0,120}guardWrite\(/);
-    expect(readFileSync(path.join(__dirname, '../../src/lib/frameworks/route.ts'), 'utf8')).toMatch(/export async function appRoute[\s\S]{0,400}requireAppSession\(req\b/);
+    const route = readFileSync(path.join(__dirname, '../../src/lib/frameworks/route.ts'), 'utf8');
+    expect(route).toMatch(/export async function appRoute\([\s\S]{0,400}requireAppSession\(req\b/);
+    // appRouteAfter (C232 part A): the session and its write guard first, then the step before the transaction.
+    expect(route).toMatch(/export async function appRouteAfter<P>\([\s\S]{0,400}requireAppSession\(req\b[\s\S]{0,200}prepare\(claims\)/);
     expect(readFileSync(path.join(__dirname, '../../src/lib/support/ticket-routes.ts'), 'utf8')).toMatch(/export function schoolTickets[\s\S]{0,200}appRoute\(req/);
   });
 
