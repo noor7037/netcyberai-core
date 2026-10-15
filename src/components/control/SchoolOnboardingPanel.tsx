@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { PaymentRailsPanel } from '@/components/payments/PaymentRailsPanel';
 import { SchoolPeoplePanel } from './SchoolPeoplePanel';
+import { SchoolBrandingCard } from '@/components/settings/SchoolBrandingCard';
 
 // The onboarding stages in order; their names are in the message files (onb.stage.<id>).
 const STAGE_ORDER = ['tenant_created', 'admin_invited', 'data_imported', 'data_validated', 'consent_collection', 'configuration', 'training', 'pilot_outbound_approved', 'go_live'];
@@ -147,6 +148,8 @@ export function SchoolOnboardingPanel({
 
   return (
     <div className="flex flex-col gap-8">
+      {/* The school's official name and logo (C235-B): set here while onboarding, shown in its screens at once. */}
+      <SchoolBrandingCard scope="control" schoolId={schoolId} />
       {/* Onboarding at a glance (C230-D redesign): the nine stages as one stepper, the pilot state as two badges, and
           consent as one bar; the long notes moved to one quiet line each. */}
       <section data-onb-stage className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">

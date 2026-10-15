@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getServerSession } from '@/lib/auth/server-session';
 import { canAccessControl } from '@/lib/auth/guards';
+import { withTenantContext } from '@/lib/auth/db';
 import { AppShell } from '@/components/app-shell/AppShell';
 import { controlShellGroups } from '@/components/app-shell/shell-nav';
 import { t } from '@/lib/i18n';
@@ -19,7 +20,9 @@ import { controlNav } from '@/lib/nav/nav-items';
 // that resolves to a /control/... URL without living under this folder.
 //
 // The Control plane uses the same app shell as the school app (C121),
-// with its own single group, its own search and no "+ New".
+// with its own single group, its own search and no "+ New". Its bar shows
+// NetCyberAI's mark and name, and the signed-in founder's name and role
+// (C235-B); if the name cannot be read, the role alone.
 
 export default async function ControlLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession();
@@ -27,8 +30,10 @@ export default async function ControlLayout({ children }: { children: React.Reac
     redirect('/login');
   }
   const { lang, known } = getLang(session!.sub);
+  const name = await withTenantContext(session!, async (db) => ((await db.query(`select display_name from users where user_id = $1`, [session!.sub])).rows[0]?.display_name as string | undefined)?.trim() ?? '').catch(() => '');
+  const role = t(lang, 'role.super_admin');
   return (
-    <AppShell groups={controlShellGroups(controlNav, undefined, lang)} brand={t(lang, 'shell.brand.control')} roleLabel={t(lang, 'role.super_admin')} navLabel={t(lang, 'shell.nav.control')} accountHref="/control/account" lang={lang} langKnown={known} toursSeen={getToursSeen(session!.sub)} scope="control">
+    <AppShell groups={controlShellGroups(controlNav, undefined, lang)} brand={t(lang, 'shell.brand.control')} logoSrc="/brand/logo-mark.svg" person={name ? { name, role } : null} roleLabel={role} navLabel={t(lang, 'shell.nav.control')} accountHref="/control/account" lang={lang} langKnown={known} toursSeen={getToursSeen(session!.sub)} scope="control">
       {children}
     </AppShell>
   );

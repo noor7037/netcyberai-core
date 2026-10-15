@@ -169,12 +169,12 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     title: { en: 'Import students from a CSV file', hi: 'CSV फ़ाइल से विद्यार्थी import करें' },
     summary: { en: 'Add a whole class or school at once from a spreadsheet saved as CSV.', hi: 'CSV के रूप में सेव की गई spreadsheet से पूरी कक्षा या पूरा स्कूल एक साथ जोड़ें।' },
     steps: [
-      { en: 'Create the classes first: “Students” → “Manage classes”. A row’s class must match an existing class name exactly.', hi: 'पहले कक्षाएँ बनाएँ: “Students” → “Manage classes”। हर row की कक्षा का नाम किसी मौजूदा कक्षा से ठीक-ठीक मिलना चाहिए।' },
+      { en: 'Create the classes first: “Students” → “Manage classes” (“Add the standard classes” adds LKG to 12, sections A to C, in one step). A row’s class must match an existing class name exactly.', hi: 'पहले कक्षाएँ बनाएँ: “Students” → “Manage classes” (“Add the standard classes” एक बार में LKG से 12 तक, सेक्शन A से C, जोड़ देता है)। हर row की कक्षा का नाम किसी मौजूदा कक्षा से ठीक-ठीक मिलना चाहिए।' },
       { en: 'Prepare the file with these column names: name (required), admission_no, class_name, roll_no, dob (as YYYY-MM-DD) and gender (male, female or transgender, as Aadhaar prints it, or empty). Save it as CSV.', hi: 'फ़ाइल इन column नामों के साथ तैयार करें: name (ज़रूरी), admission_no, class_name, roll_no, dob (YYYY-MM-DD रूप में) और gender (male, female या transgender, जैसा आधार पर छपा है, या खाली)। इसे CSV के रूप में सेव करें।' },
       { en: 'In “Students”, press “Import CSV” and choose the file.', hi: '“Students” में “Import CSV” दबाएँ और फ़ाइल चुनें।' },
       { en: 'Press “Check file” first. It lists every row with a problem and imports nothing.', hi: 'पहले “Check file” दबाएँ। यह गड़बड़ी वाली हर row दिखाता है और कुछ भी import नहीं करता।' },
       { en: 'Fix the rows in your file, choose it again, and press “Import”.', hi: 'अपनी फ़ाइल में वे rows ठीक करें, फ़ाइल फिर चुनें और “Import” दबाएँ।' },
-      { en: 'Read the result: how many were imported and skipped, and why. Every imported student starts as “pending consent”.', hi: 'नतीजा पढ़ें: कितने import हुए, कितने छूटे, और क्यों। हर import किया गया विद्यार्थी “pending consent” से शुरू होता है।' },
+      { en: 'Read the result. If any row has a problem, nothing is imported and every row to correct is listed; correct them and import the file again. Every imported student starts as “pending consent”.', hi: 'नतीजा पढ़ें। किसी भी row में गड़बड़ी हो तो कुछ भी import नहीं होता और ठीक करने वाली हर row दिखाई जाती है; उन्हें ठीक करके फ़ाइल फिर से import करें। हर import किया गया विद्यार्थी “pending consent” से शुरू होता है।' },
     ],
     tips: [
       { en: 'Uploading the exact same file again is safe: it does not create duplicates.', hi: 'वही फ़ाइल दोबारा upload करना सुरक्षित है: इससे duplicate नहीं बनते।' },

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 import { PTM_ROLES, createPtm, listPtms } from '@/lib/ptm/ptm';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // Parent-teacher meetings (docs/25 slice 7k, C193).
 //   GET   the meetings this person may see (a teacher: those of their own classes), and for the office the classes to choose from
@@ -10,7 +11,7 @@ export async function GET(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
     if (!PTM_ROLES.includes(claims.role)) return ruleError(403, 'not_allowed');
     const mayManage = claims.role === 'principal' || claims.role === 'school_admin';
-    const classes = mayManage ? (await db.query(`select c.class_id, c.name, u.display_name as teacher from classes c left join users u on u.user_id = c.class_teacher_id where c.school_id = $1 order by c.name`, [claims.schoolId])).rows : [];
+    const classes = mayManage ? (await db.query(`select c.class_id, c.name, u.display_name as teacher from classes c left join users u on u.user_id = c.class_teacher_id where c.school_id = $1 order by ${classOrderSql('c')}, c.class_id`, [claims.schoolId])).rows : [];
     return NextResponse.json({ meetings: await listPtms(db, claims.schoolId), classes, mayManage }, { headers: { 'Cache-Control': 'no-store' } });
   });
 }

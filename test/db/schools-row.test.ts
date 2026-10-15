@@ -18,8 +18,8 @@ const ROOT = path.resolve(__dirname, '../..');
 const u = (n: number) => `c2190000-0000-4000-8000-${String(n).padStart(12, '0')}`;
 const [A, B, T] = [u(1), u(2), u(3)];
 const [PRINCIPAL, ADMIN, COORDINATOR, TEACHER, ACCOUNTANT, PARENT, B_PRINCIPAL, FOUNDER] = [u(11), u(12), u(13), u(14), u(15), u(16), u(21), u(91)];
-// The profile columns: the school's own name and address (the migration's header lists them).
-const PROFILE = ['address', 'name'];
+// The profile columns: the school's own name and address (the migration's header lists them), and its logo (C235-B).
+const PROFILE = ['address', 'logo_path', 'name'];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let db: any;
@@ -135,7 +135,7 @@ describe('the schools row: only the principal and the school admin, and only the
       await tx.rollback();
       return [refused, allowed];
     });
-    expect(got).toEqual([expect.stringMatching(/a school changes only its own name and address/), 'changed 1']);
+    expect(got).toEqual([expect.stringMatching(/a school changes only its own name, address and logo/), 'changed 1']);
     expect((await db.pg.query(`select count(*)::int as n from information_schema.table_privileges where table_name = 'schools' and grantee = 'app_user' and privilege_type = 'UPDATE'`)).rows[0].n).toBe(0);
   });
 

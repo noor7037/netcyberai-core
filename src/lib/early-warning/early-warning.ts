@@ -28,6 +28,7 @@ import {
   type LastCheck,
   type NeedsHelpKind,
 } from './rules';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // Early Warning (v1: docs/26 slice 8j, C209; v2: docs/27 row 9f, C218): flags for staff, by rules, from
 // attendance, homework, the needs-help queue and, from rule version 2, marks.
@@ -315,7 +316,7 @@ export async function listFlags(db: PoolClient, actor: Actor, now: Date = new Da
        join classes c on c.school_id = f.school_id and c.class_id = coalesce(s.class_id, f.class_id)
        left join users o on o.school_id = f.school_id and o.user_id = f.opened_by
       where f.school_id = $1 and (f.resolved_at is null or f.resolved_at >= $2)
-      order by (f.resolved_at is not null), c.name, c.section, c.class_id, s.name, s.student_id, f.detected_at desc, f.flag_id
+      order by (f.resolved_at is not null), ${classOrderSql('c')}, c.class_id, s.name, s.student_id, f.detected_at desc, f.flag_id
       limit $3`,
     [actor.schoolId, since, FLAG_ROWS_MAX + 1]
   );
@@ -352,7 +353,7 @@ export async function classSummary(db: PoolClient, actor: Actor): Promise<ClassC
        join classes c on c.school_id = f.school_id and c.class_id = coalesce(s.class_id, f.class_id)
       where f.school_id = $1 and f.resolved_at is null
       group by c.class_id, c.name, c.section
-      order by c.name, c.section, c.class_id`,
+      order by ${classOrderSql('c')}, c.class_id`,
     [actor.schoolId]
   );
   return rows.map((r) => ({ class_id: r.class_id, class_name: classLabel(r.name, r.section) ?? '', open: Number(r.open) }));

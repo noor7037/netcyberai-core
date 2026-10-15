@@ -7,7 +7,9 @@ import { LangProvider } from '@/components/app-shell/LangContext';
 import { EMPTY_IDS, TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { ModuleSwitchList } from '@/components/settings/ModuleSwitchList';
 import { ALWAYS_ON_MODULES, type SchoolEntitlements } from '@/lib/contracts/entitlements';
-import { MODULE_REGISTRY } from '@/lib/contracts/modules';
+import { MODULE_REGISTRY, type SchoolRole } from '@/lib/contracts/modules';
+import { buildNavigation } from '@/lib/contracts/navigation';
+import { schoolShellMenu } from '@/components/app-shell/shell-nav';
 import { isMessageKey, t } from '@/lib/i18n';
 import { moduleOffSentence, needsOwnSentence } from '@/lib/i18n/module-off';
 
@@ -188,10 +190,12 @@ describe('the school’s Settings list', () => {
     expect(folded).toContain('data-module="payroll"');
   });
 
-  it('Settings is reachable: the office’s menu links to it', () => {
-    const layout = src('app/(school)/app/layout.tsx');
-    expect(layout).toContain("href: '/app/settings'");
-    expect(layout).toMatch(/isOffice \? \[settings\] : \[\]/);
+  it('Settings is reachable: the office’s menu links to it (its Home items, C235-B)', () => {
+    const nav = (role: SchoolRole) => schoolShellMenu(buildNavigation(role, ents('full', [])), role).home.map((i) => i.href);
+    expect(nav('principal')).toContain('/app/settings');
+    expect(nav('school_admin')).toContain('/app/settings');
+    expect(nav('teacher')).not.toContain('/app/settings');
+    expect(src('app/(school)/app/layout.tsx')).toContain('home={menu.home}');
     expect(t('hi', 'shell.settings')).toMatch(DEVANAGARI);
   });
 

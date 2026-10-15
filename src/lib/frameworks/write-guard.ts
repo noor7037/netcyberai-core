@@ -132,6 +132,17 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // c225 end
   // c226 begin
   // c226 end
+  // c235-a begin
+  // The standard classes in one step and classes from a CSV file (C235-A) are the school's Setup, as adding one is.
+  ['classes/standard', 'setup'],
+  ['classes/import', 'setup'],
+  // c235-a end
+  // c235-b begin
+  // The school's own name and logo (C235-B) are running the account itself, as inviting colleagues is: tied to no
+  // module's switch, refused when the account is paused or read-only. The route admits the principal and the school
+  // admin only, and the database holds the same line.
+  ['school/branding', 'any-module'],
+  // c235-b end
   // What is recorded about a guardian sits with Parents (17 §3: guardians,
   // verification, consent, data requests), wherever its button is drawn.
   ['students/*/consent', 'parents'],
@@ -300,6 +311,10 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // c225 end
   // c226 begin
   // c226 end
+  // c235-a begin
+  // The school's classes as a spreadsheet (C235-A), with the Setup screens that manage them.
+  ['classes/export', 'setup'],
+  // c235-a end
   ['students/*/consent', 'parents'],
   ['students/*/guardians', 'parents'],
   ['students/*/dsr', 'parents'],

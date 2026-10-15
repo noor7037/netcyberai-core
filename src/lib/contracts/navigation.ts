@@ -1,6 +1,6 @@
 import type { IconName } from '@/components/visual/Icons';
 import { isModuleEnabled, type SchoolEntitlements } from './entitlements';
-import { MODULE_GROUPS, MODULE_REGISTRY, type ColorToken, type ModuleGroupId, type ModuleId, type ModuleStatus, type Phase, type SchoolRole } from './modules';
+import { FREQUENT_TASKS, FREQUENT_WORK, MODULE_GROUPS, MODULE_REGISTRY, moduleById, type ColorToken, type FrequentTask, type ModuleGroupId, type ModuleId, type ModuleStatus, type Phase, type SchoolRole } from './modules';
 
 // Navigation (Decision Log C110): the school app's sidebar is computed from
 // the registry, the signed-in role and the school's entitlements. The
@@ -23,6 +23,8 @@ export type NavItem = {
   phase: Phase;
   badge?: NavBadge;
   mobilePriority?: number;
+  // A task inside the module (C235-B, Frequent work): its own address and name.
+  task?: FrequentTask;
 };
 
 export type NavGroup = {
@@ -32,7 +34,9 @@ export type NavGroup = {
   items: NavItem[];
 };
 
-export type Navigation = { groups: NavGroup[] };
+// `frequent`: the role's Frequent work (C235-B), the modules and tasks of FREQUENT_WORK the role has and the school
+// has switched on, in that order. Each is also in `groups`, under its own group.
+export type Navigation = { groups: NavGroup[]; frequent: NavItem[] };
 
 // Groups keep the 17 §2 order; empty groups are left out.
 export function buildNavigation(
@@ -58,7 +62,23 @@ export function buildNavigation(
       })),
     }))
     .filter((g) => g.items.length > 0);
-  return { groups };
+  const frequent = FREQUENT_WORK[role].flatMap((w): NavItem[] => {
+    const task = 'task' in w ? FREQUENT_TASKS[w.task] : null;
+    const m = moduleById('task' in w ? FREQUENT_TASKS[w.task].module : w.module);
+    if (!m.roles.includes(role) || !isModuleEnabled(entitlements, m.id)) return [];
+    return [
+      {
+        moduleId: m.id,
+        label: task ? task.label : m.label,
+        href: task ? task.href : m.href,
+        icon: m.icon,
+        status: m.status,
+        phase: m.phase,
+        ...('task' in w ? { task: w.task } : badges[m.id] ? { badge: badges[m.id] } : {}),
+      },
+    ];
+  });
+  return { groups, frequent };
 }
 
 // The phone bottom bar (C121): the navigation's items that carry a mobile

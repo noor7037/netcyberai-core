@@ -7,6 +7,7 @@ import { feeIsOverdueSql } from '@/lib/fees/overdue';
 import { classLabel } from '@/lib/frameworks/class-label';
 import { INDIA_TODAY_SQL } from '@/lib/time/india';
 import { periodsToday } from '@/lib/timetable/timetable';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // The "today" cards of the modules that are live (docs/19 rule 2, C136).
 // Each provider runs inside the caller's own tenant context, so row-level
@@ -61,7 +62,7 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
                 or exists (select 1 from teacher_subjects ts
                              join teachers t on t.school_id = ts.school_id and t.teacher_id = ts.teacher_id
                             where ts.school_id = c.school_id and ts.class_id = c.class_id and t.user_id = $2))
-         order by c.name, c.section, c.class_id`,
+         order by ${classOrderSql('c')}, c.class_id`,
         [ctx.schoolId, ctx.userId]
       );
       return rows

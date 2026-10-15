@@ -11,6 +11,7 @@ import { indiaDate, isIsoDate } from '@/lib/time/india';
 import { ageOf, UNPAID_BUCKETS, type AgeBucket } from './ageing';
 import { claimFor, dueOf, headsCounted, isEvidenceKind, isReversalReason, isRteClaimHeads, NOTE_MAX, REFERENCE_MAX, SOURCE_MAX, SOURCE_MIN, typedText, type ClaimApplied, type EvidenceKind, type HeadFacts, type ReversalReason, type RteClaimHeads } from './rules';
 import { yearFeeMinor, type FeeVersion } from './year-fee';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // The RTE claim desk (docs/28 slice 10c, C223; close-out C225): the state's rate for each school year, each RTE
 // child's evidence file, the year's claim sheet, raising a claim, the state's payments in parts, writing off what is
@@ -197,7 +198,7 @@ async function duesClassesOf(db: Db, schoolId: string, sessionId: string): Promi
 }
 
 async function classesOf(db: Db, schoolId: string): Promise<{ class_id: string; name: string }[]> {
-  const { rows } = await db.query(`select class_id, name, section from classes where school_id = $1 order by name, section nulls first, class_id`, [schoolId]);
+  const { rows } = await db.query(`select class_id, name, section from classes where school_id = $1 order by ${classOrderSql('')}, class_id`, [schoolId]);
   return rows.map((r) => ({ class_id: r.class_id, name: classLabel(r.name, r.section) ?? r.name }));
 }
 
@@ -208,7 +209,7 @@ async function childrenOf(db: Db, schoolId: string): Promise<ChildRow[]> {
     `select c.student_id, c.name, c.admission_no, c.class_id, k.name as k_name, k.section as k_section, c.status, c.rte_admission, c.rte_entry_class, c.rte_admitted_on::text as rte_admitted_on
        from public.rte_claim_children() c
        left join classes k on k.school_id = $1 and k.class_id = c.class_id
-      order by k.name nulls last, k.section nulls last, c.name, c.student_id`,
+      order by (k.class_id is null), ${classOrderSql('k')}, c.name, c.student_id`,
     [schoolId]
   );
   return rows.map((r) => ({ ...r, class_name: classLabel(r.k_name, r.k_section) }));

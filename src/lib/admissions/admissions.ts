@@ -8,6 +8,7 @@ import { CLOSED_STAGES, ENQUIRY_MAX, QUIET_DAYS_DEFAULT, SOURCES, STAGES, follow
 import { hasAadhaarNumber } from '@/lib/students/data-check-rules';
 import { indiaDate } from '@/lib/time/india';
 import { normalizePhone } from '@/lib/whatsapp/phone';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // The admissions pipeline (docs/28 slice 10a, C221).
 //
@@ -168,7 +169,7 @@ export type Pipeline = {
 export async function loadPipeline(db: Sql, schoolId: string, today: string = indiaDate()): Promise<Pipeline> {
   const enquiries = await listEnquiries(db, schoolId);
   const days = await quietDays(db, schoolId);
-  const classes = (await db.query(`select class_id, name from classes where school_id = $1 order by name`, [schoolId])).rows as Pipeline['classes'];
+  const classes = (await db.query(`select class_id, name from classes where school_id = $1 order by ${classOrderSql('')}, class_id`, [schoolId])).rows as Pipeline['classes'];
   const owners = (await db.query(`select user_id, display_name as name from users where school_id = $1 and is_active and role::text = any($2::text[]) order by display_name, user_id`, [schoolId, ADMISSIONS_OFFICE])).rows as Pipeline['owners'];
   return { today, quietDays: days, enquiries, lists: followUpLists(enquiries, today, days), classes, owners };
 }

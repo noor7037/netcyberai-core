@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAppSession, canWriteMasterData } from '@/lib/auth/require-app-session';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
-import { runCsvImport } from '@/lib/import/run-import';
+import { ImportFileError, runCsvImport } from '@/lib/import/run-import';
 import { isForeignKeyViolation, isUniqueViolation } from '@/lib/db/pg-errors';
 
 export async function POST(req: NextRequest) {
@@ -22,7 +22,8 @@ export async function POST(req: NextRequest) {
     // ?preview=1: check every row and suggest siblings, write nothing (C116).
     const preview = req.nextUrl.searchParams.get('preview') === '1';
     const result = await runCsvImport(guard.claims, buffer, file.name, { preview });
-    return NextResponse.json(result, { status: result.alreadyImported || preview ? 200 : 201 });
+    // All or nothing (C235-A): a refused import wrote nothing; the answer lists every row to fix.
+    return NextResponse.json(result, { status: result.refused ? 422 : result.alreadyImported || preview ? 200 : 201 });
   } catch (err) {
     if (isUniqueViolation(err)) {
       // Lost a race against an identical concurrent upload -- the other
@@ -38,7 +39,8 @@ export async function POST(req: NextRequest) {
     }
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
-    if (err instanceof Error && err.message.startsWith('no data rows found')) {
+    // A file that cannot be read as rows of students (C235-A): no data rows, no "name" column, a quote never closed.
+    if (err instanceof ImportFileError) {
       return NextResponse.json({ error: err.message }, { status: 400 });
     }
     throw err;

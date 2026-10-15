@@ -1,4 +1,5 @@
 import { classLabel } from '@/lib/frameworks/class-label';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // One day's attendance across the school (docs/26 slice 8d, C203): which
 // classes have been marked, and which students hold which mark. The
@@ -43,7 +44,7 @@ export async function classesOnDay(db: Sql, schoolId: string, date: string): Pro
        left join attendance a on a.school_id = s.school_id and a.student_id = s.student_id and a.date = $2::date
       where c.school_id = $1 and public.reads_attendance_days()
       group by c.class_id, c.name, c.section
-      order by c.name, c.section, c.class_id`,
+      order by ${classOrderSql('c')}, c.class_id`,
     [schoolId, date]
   );
   return rows.map((r) => ({ class_id: r.class_id as string, class_name: classLabel(r.name as string | null, r.section as string | null) ?? '', students: n(r.students), marked: n(r.marked), present: n(r.present), absent: n(r.absent), late: n(r.late), leave: n(r.leave) }));
@@ -62,7 +63,7 @@ export async function studentsOnDay(db: Sql, schoolId: string, date: string, whi
        left join attendance a on a.school_id = s.school_id and a.student_id = s.student_id and a.date = $2::date
       where s.school_id = $1 and ${ON_ROLL}
         and (($3 = 'not-marked' and a.attendance_id is null) or ($3 = 'with-mark' and a.attendance_id is not null) or a.status = $3)
-      order by c.name, c.section, c.class_id, s.name, s.student_id
+      order by ${classOrderSql('c')}, c.class_id, s.name, s.student_id
       limit $4`,
     [schoolId, date, which, limit]
   );

@@ -111,8 +111,14 @@ describe('detection only suggests', () => {
     expect(await count(`select count(*) n from students`)).toBe(studentsBefore);
     expect(await count(`select count(*) n from csv_imports`)).toBe(0);
 
-    const real = await asOffice((q) => importStudentRecords(q, { schoolId: A, sub: principal }, records, 'hash-1', 'kids.csv'));
-    expect(real).toMatchObject({ preview: false, importedCount: 2 });
+    // All or nothing (C235-A): with the nameless row the import writes nothing; without it, both land.
+    const refused = await asOffice((q) => importStudentRecords(q, { schoolId: A, sub: principal }, records, 'hash-1', 'kids.csv'));
+    expect(refused).toMatchObject({ preview: false, refused: true, importedCount: 0, skippedCount: 1, errors: [{ row: 3, errors: ['name is required'] }] });
+    expect(refused.siblingSuggestions[0]).toMatchObject({ row: 1, studentId: null });
+    expect(await count(`select count(*) n from students`)).toBe(studentsBefore);
+    expect(await count(`select count(*) n from csv_imports`)).toBe(0);
+    const real = await asOffice((q) => importStudentRecords(q, { schoolId: A, sub: principal }, records.slice(0, 2), 'hash-2', 'kids.csv'));
+    expect(real).toMatchObject({ preview: false, refused: false, importedCount: 2 });
     const tara = real.siblingSuggestions[0].studentId!;
     expect(await count(`select count(*) n from students where student_id = $1 and family_id is null`, [tara])).toBe(1);
     expect(await count(`select count(*) n from parent_student_map where student_id = $1`, [tara])).toBe(0);

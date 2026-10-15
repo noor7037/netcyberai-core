@@ -263,9 +263,10 @@ describe('the module and its words', () => {
     expect(lib).not.toMatch(/group by|count\(|sum\(|rank\(|\bdesc\b/i);
     const orders = [...lib.matchAll(/order by ([^`]+?)`/g)].map((m) => m[1].trim());
     expect(orders).toEqual([
-      'u.display_name, a.user_id', 'x.period, c.name, c.section, x.class_id', 'e.period, c.name, c.section, e.class_id', 'x.on_date, x.period, c.name, c.section, x.class_id',
+      // The class order (C235-A): Nursery, LKG, UKG, 1 … 12, then section.
+      'u.display_name, a.user_id', "x.period, ${classOrderSql('c')}, x.class_id", "e.period, ${classOrderSql('c')}, e.class_id", "x.on_date, x.period, ${classOrderSql('c')}, x.class_id",
       // C210: the covers one withdrawal released, and a teacher's released covers.
-      'x.on_date, x.period, x.class_id', 'x.on_date, x.period, c.name, c.section, x.substitution_id',
+      'x.on_date, x.period, x.class_id', "x.on_date, x.period, ${classOrderSql('c')}, x.substitution_id",
     ]);
     // The number of covers a person holds exists in one place only: as a fact beside a suggestion, for one week.
     const mentions = files(src).filter((f) => /\.(ts|tsx)$/.test(f) && /coversThatWeek/.test(read(f))).map((f) => path.relative(src, f)).sort();

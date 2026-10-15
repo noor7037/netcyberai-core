@@ -6,6 +6,7 @@ import { sayDate, sayTime } from '@/lib/ptm/ptm';
 import { indiaDate, isIsoDate } from '@/lib/time/india';
 import { queueWhatsAppMessage } from '@/lib/whatsapp/gate';
 import { normalizePhone, writtenForms } from '@/lib/whatsapp/phone';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // School events (docs/25 slice 7l, C194).
 //
@@ -128,7 +129,7 @@ export async function listEvents(db: PoolClient, schoolId: string, comingFrom?: 
     : `where e.school_id = $1 order by e.held_on desc, e.created_at desc limit 50`;
   const { rows } = await db.query(
     `select e.event_id, e.title, e.held_on, e.starts_at, e.details, e.status,
-            case when cardinality(e.class_ids) = 0 then null else (select string_agg(c.name, ', ' order by c.name) from classes c where c.school_id = e.school_id and c.class_id = any(e.class_ids)) end as classes,
+            case when cardinality(e.class_ids) = 0 then null else (select string_agg(c.name, ', ' order by ${classOrderSql('c')}) from classes c where c.school_id = e.school_id and c.class_id = any(e.class_ids)) end as classes,
             (select count(*)::int from communication_log l where l.school_id = e.school_id and l.dedupe_key like 'event:' || e.event_id || ':inv:%' and l.status::text in ('queued', 'uncertain', 'sent', 'delivered', 'read')) as invited,
             (select count(*)::int from event_replies r where r.event_id = e.event_id and r.answer = 'yes') as yes,
             (select count(*)::int from event_replies r where r.event_id = e.event_id and r.answer = 'no') as no

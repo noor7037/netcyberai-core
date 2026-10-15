@@ -7,7 +7,7 @@
 export const IMPORT_COLUMNS = [
   { key: 'name', required: true, hint: 'Full name of the student' },
   { key: 'admission_no', required: false, hint: 'Your school’s admission number' },
-  { key: 'class_name', required: false, hint: 'Must match a class name set up in NetCyberAI, e.g. 5A' },
+  { key: 'class_name', required: false, hint: 'Must match a class name set up in NetCyberAI exactly, e.g. 5-A' },
   { key: 'roll_no', required: false, hint: 'Roll number within the class' },
   { key: 'dob', required: false, hint: 'Date of birth as YYYY-MM-DD, e.g. 2015-04-23' },
 ] as const;
@@ -23,13 +23,16 @@ export function isRealIsoDate(value: string): boolean {
 }
 
 // Row errors that need no school context. The class-exists check needs
-// the school's classes and stays in run-import.ts.
-export function basicRowErrors(rec: Record<string, string | undefined>): string[] {
+// the school's classes and stays in run-import.ts. `today` (YYYY-MM-DD,
+// India's date): a date of birth after it is out of range (C235-A), as the
+// Add student form already refuses.
+export function basicRowErrors(rec: Record<string, string | undefined>, today?: string): string[] {
   const errors: string[] = [];
   const name = rec.name?.trim() ?? '';
   const dob = rec.dob?.trim() || null;
   if (!name) errors.push('name is required');
   if (dob && !DATE_RE.test(dob)) errors.push('dob must be in YYYY-MM-DD format');
   else if (dob && !isRealIsoDate(dob)) errors.push('dob is not a real calendar date');
+  else if (dob && today && dob > today) errors.push('dob is after today');
   return errors;
 }
