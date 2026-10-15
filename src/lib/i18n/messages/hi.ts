@@ -5336,6 +5336,6 @@ export const hi: Record<keyof typeof en, string> = {
   'students.import.refused.other': 'कुछ भी import नहीं हुआ: {count} rows में गड़बड़ी है। उन्हें ठीक करके फ़ाइल फिर से import करें।',
   'students.import.done': '{rows} में से {imported} rows import हुईं।',
   'students.import.again': 'यही फ़ाइल पहले import हो चुकी है। तब: {rows} में से {imported} rows import हुई थीं।',
-  'students.import.row': 'Row {row} ({name}): {errors}',
+  'students.import.row': 'पंक्ति {row} ({name}): {errors}',
   'students.import.unnamed': 'कोई नाम नहीं',
 };
