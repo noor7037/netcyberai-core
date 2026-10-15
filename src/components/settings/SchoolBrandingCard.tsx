@@ -16,7 +16,7 @@ import { LOGO_EDGE_PX, LOGO_MAX_ASPECT, LOGO_MAX_BYTES, LOGO_MIN_SIDE_PX, LOGO_P
 // 512 pixels on its long side and sent as that drawing, a PNG. An SVG is only ever drawn, never sent, so nothing in it
 // can run anywhere. The server checks the PNG again by its own bytes.
 
-type Scope = { scope: 'school' } | { scope: 'control'; schoolId: string };
+// `school`: Settings, the session's own school (its id names the logo's address). `control`: the school named.
 type Brand = { name: string; logoVersion: string | null };
 type Note = { tone: 'ok' | 'bad'; key: MessageKey };
 const PICKED = /\.(jpe?g|png|svg)$/i;
@@ -61,13 +61,14 @@ async function drawLogo(file: File): Promise<{ blob: Blob } | { problem: Message
   }
 }
 
-export function SchoolBrandingCard(props: Scope & { initial?: Brand }) {
+export function SchoolBrandingCard(props: { scope: 'school' | 'control'; schoolId: string; initial?: Brand }) {
   const { t, lang } = useT();
   const router = useRouter();
   const ids = useId();
   const fileRef = useRef<HTMLInputElement>(null);
-  const schoolId = props.scope === 'control' ? props.schoolId : undefined;
-  const endpoint = schoolId ? `/api/control/schools/${schoolId}/branding` : '/api/app/school/branding';
+  const { schoolId } = props;
+  const control = props.scope === 'control';
+  const endpoint = control ? `/api/control/schools/${schoolId}/branding` : '/api/app/school/branding';
   const [brand, setBrand] = useState<Brand | null>(props.initial ?? null);
   const [name, setName] = useState(props.initial?.name ?? '');
   const [logo, setLogo] = useState<{ blob: Blob; preview: string } | null>(null);
@@ -77,7 +78,7 @@ export function SchoolBrandingCard(props: Scope & { initial?: Brand }) {
 
   // Control reads the school's name and logo itself; Settings is given them by the page.
   useEffect(() => {
-    if (props.initial || !schoolId) return;
+    if (props.initial || !control) return;
     let live = true;
     fetch(endpoint)
       .then((res) => (res.ok ? res.json() : null))
@@ -90,7 +91,7 @@ export function SchoolBrandingCard(props: Scope & { initial?: Brand }) {
     return () => {
       live = false;
     };
-  }, [endpoint, props.initial, schoolId]);
+  }, [endpoint, props.initial, control]);
   useEffect(() => () => (logo ? URL.revokeObjectURL(logo.preview) : undefined), [logo]);
 
   async function choose(file: File | undefined) {
@@ -146,7 +147,7 @@ export function SchoolBrandingCard(props: Scope & { initial?: Brand }) {
         <h3 id={`${ids}-title`} className="text-base font-bold text-slate">
           {t('branding.title')}
         </h3>
-        <p className="text-sm text-slate/70">{t(schoolId ? 'branding.how.control' : 'branding.how')}</p>
+        <p className="text-sm text-slate/70">{t(control ? 'branding.how.control' : 'branding.how')}</p>
       </div>
       {!brand ? (
         <p className="text-sm text-slate/70">{t('branding.loading')}</p>
@@ -156,14 +157,16 @@ export function SchoolBrandingCard(props: Scope & { initial?: Brand }) {
             <SchoolLogo src={shownLogo} name={shownName} size="lg" />
             <div className="min-w-0">
               <p className="text-xs font-semibold uppercase tracking-wider text-slate/70">{t('branding.preview')}</p>
-              <p className="truncate text-lg font-extrabold text-slate" title={shownName}>
+              <p className="line-clamp-2 break-words text-lg font-extrabold leading-snug text-slate" title={shownName}>
                 {shownName}
               </p>
               {!hasLogo && !logo && <p className="text-sm text-slate/70">{t('branding.logo.none')}</p>}
               {removing && <p className="text-sm text-slate">{t('branding.logo.willRemove')}</p>}
             </div>
           </div>
-          <Input id={`${ids}-name`} label={t('branding.name')} helperText={t('branding.name.hint')} value={name} maxLength={SCHOOL_NAME_MAX} autoComplete="organization" required onChange={(e) => setName(e.target.value)} />
+          <div className="max-w-xl">
+            <Input id={`${ids}-name`} label={t('branding.name')} helperText={t('branding.name.hint')} value={name} maxLength={SCHOOL_NAME_MAX} autoComplete="organization" required onChange={(e) => setName(e.target.value)} />
+          </div>
           <div className="flex flex-col gap-2">
             <p className="text-sm font-medium text-slate">{t('branding.logo')}</p>
             <div className="flex flex-wrap gap-2">

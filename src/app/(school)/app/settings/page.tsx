@@ -52,7 +52,7 @@ export default async function SettingsPage() {
 
   return (
     <ModulePage moduleId="setup" help="whatsapp-settings" tour="settings" title="Settings" purpose="What is switched on for your school, how each part is set up, and its WhatsApp messages.">
-      {canManage && brand && <SchoolBrandingCard scope="school" initial={brand} />}
+      {canManage && brand && session?.schoolId && <SchoolBrandingCard scope="school" schoolId={session.schoolId} initial={brand} />}
       {entitlements && <ModuleSwitchList entitlements={entitlements} lang={lang} />}
       <SchoolSettingsPanel modules={settings} />
       {settings.some((m) => m.moduleId === 'setup') && <HolidaysCard />}

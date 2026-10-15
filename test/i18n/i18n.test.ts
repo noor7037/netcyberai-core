@@ -166,7 +166,8 @@ describe('the shell in Hindi', () => {
     const before = html.slice(0, html.indexOf('id="page-body"'));
     const main = before.slice(before.lastIndexOf('<main'));
     expect(main).not.toMatch(/<main[^>]*lang=/);
-    expect(html.slice(0, html.indexOf('<aside'))).not.toContain('lang="hi"');
+    // The shell's first part is its branded bar (C235-B): the wrapper around everything carries no language.
+    expect(html.slice(0, html.indexOf('<header'))).not.toContain('lang="hi"');
   });
 
   it('in English nothing is marked Hindi except the switch’s own Hindi name', () => {

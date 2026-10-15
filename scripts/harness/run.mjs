@@ -5544,6 +5544,182 @@ const hindiThenSearch = async (page) => {
   await typeInSearch('aar')(page);
 };
 // [who, name, route, prepare (before the picture), after (put things back)]
+// C235-B: the branded bar, the school's menu, and the school's own name and logo. The harness has no storage, so a
+// logo is shown by giving the school a logo key (as the app would after an upload) and answering the logo's address
+// in the browser with a picture drawn here; everything else is the app's own.
+const BRAND_KEY = `${SCHOOL}/branding/logo-00000000-0000-4000-8000-00000000b235.png`;
+const BRAND_NAME = 'Illustrative Public School';
+const drawnLogo = (page) =>
+  page.evaluate(() => {
+    const c = document.createElement('canvas');
+    c.width = 256;
+    c.height = 256;
+    const g = c.getContext('2d');
+    const fill = g.createLinearGradient(0, 0, 256, 256);
+    fill.addColorStop(0, '#002357');
+    fill.addColorStop(1, '#1D4ED8');
+    g.fillStyle = fill;
+    g.beginPath();
+    g.moveTo(128, 10);
+    g.lineTo(236, 50);
+    g.lineTo(236, 132);
+    g.quadraticCurveTo(228, 212, 128, 246);
+    g.quadraticCurveTo(28, 212, 20, 132);
+    g.lineTo(20, 50);
+    g.closePath();
+    g.fill();
+    g.fillStyle = '#F5B90A';
+    g.fillRect(70, 150, 116, 14);
+    g.beginPath();
+    g.moveTo(128, 58);
+    g.lineTo(186, 136);
+    g.lineTo(70, 136);
+    g.closePath();
+    g.fill();
+    return c.toDataURL('image/png').split(',')[1];
+  });
+const showLogo = async (page) => {
+  const body = Buffer.from(await drawnLogo(page), 'base64');
+  await page.route('**/api/branding/logo**', (route) => route.fulfill({ status: 200, contentType: 'image/png', headers: { 'cache-control': 'private, max-age=86400' }, body }));
+  await db.pg.query(`update schools set logo_path = $2 where school_id = $1`, [SCHOOL, BRAND_KEY]);
+  await page.reload({ waitUntil: 'networkidle' });
+};
+const hideLogo = async (page) => {
+  await page.unroute('**/api/branding/logo**');
+  await db.pg.query(`update schools set logo_path = null, name = $2 where school_id = $1`, [SCHOOL, BRAND_NAME]);
+};
+// The bar: the logo (loaded), the school's name, the person's name and role; still at the top after scrolling.
+const brandBar = async (page, { name, role }) => {
+  const phone = page.viewportSize().width < 768;
+  const seen = await page.evaluate(() => {
+    const logo = document.querySelector('[data-shell-brand] [data-school-logo]');
+    return {
+      logo: logo?.getAttribute('data-school-logo') ?? null,
+      loaded: logo instanceof HTMLImageElement ? logo.complete && logo.naturalWidth > 0 : null,
+      school: document.querySelector('[data-shell-school]')?.textContent?.trim() ?? null,
+      line: document.querySelector('[data-shell-person-line]')?.textContent?.trim() ?? null,
+      person: document.querySelector('[data-shell-person]')?.getAttribute('aria-label') ?? null,
+    };
+  });
+  await page.mouse.wheel(0, 1500);
+  await page.waitForTimeout(300);
+  const top = await page.locator(phone ? '[data-shell-brand]' : '[data-shell-header]').evaluate((e) => Math.round(e.getBoundingClientRect().top));
+  await page.mouse.wheel(0, -3000);
+  await page.waitForTimeout(300);
+  return { ...seen, top, phone, want: { name, role } };
+};
+const checkBar = (seen, { school = BRAND_NAME, logo = 'picture' } = {}) => {
+  const { name, role } = seen.want;
+  if (seen.logo !== logo || (logo === 'picture' && seen.loaded !== true)) throw new Error(`the bar does not show the school's ${logo}: ${JSON.stringify(seen)}`);
+  if (seen.school !== school) throw new Error(`the bar does not show the school's name: ${seen.school}`);
+  if (seen.phone ? seen.line !== `${name} · ${role}` : seen.person !== `My account: ${name}, ${role}`) throw new Error(`the bar does not show who is signed in: ${JSON.stringify(seen)}`);
+  if (seen.top !== 0) throw new Error(`the bar did not stay at the top when the page scrolled: ${seen.top}`);
+};
+let brandSeen = null;
+const brandedShell = async (page) => {
+  await showLogo(page);
+  brandSeen = await brandBar(page, { name: 'Priya Example', role: 'Principal' });
+  brandSeen.parts = page.viewportSize().width < 768 ? [] : await page.locator('aside nav').evaluate((nav) => [...nav.querySelectorAll('[data-nav-part]')].map((e) => e.getAttribute('data-nav-part')));
+};
+const brandedShellDone = async (page) => {
+  await hideLogo(page);
+  checkBar(brandSeen);
+  if (page.viewportSize().width >= 768 && brandSeen.parts.join() !== 'home,frequent,all') throw new Error(`the menu is not Home, Frequent work, All modules: ${brandSeen.parts}`);
+};
+// The menu, as a phone opens it: Home, Frequent work, then All modules with the page's group open.
+let menuSeen = null;
+const brandedMenu = async (page) => {
+  if (page.viewportSize().width < 768) await page.getByRole('button', { name: 'Open menu' }).first().click();
+  const nav = page.locator(page.viewportSize().width < 768 ? '[role="dialog"] nav' : 'aside nav');
+  await nav.locator('[data-nav-part="all"]').waitFor({ timeout: 15000 });
+  menuSeen = await nav.evaluate((n) => ({
+    parts: [...n.querySelectorAll('[data-nav-part]')].map((e) => e.getAttribute('data-nav-part')),
+    frequent: [...n.querySelectorAll('[data-nav-part="frequent"] a')].map((a) => a.textContent.trim()),
+    open: [...n.querySelectorAll('[data-nav-group] button[aria-expanded="true"]')].map((b) => b.textContent.trim()),
+    groups: n.querySelectorAll('[data-nav-group]').length,
+    current: [...n.querySelectorAll('a[aria-current="page"]')].map((a) => a.textContent.trim()),
+  }));
+};
+const brandedMenuDone = async (page) => {
+  if (page.viewportSize().width < 768) await page.keyboard.press('Escape');
+  const want = { parts: ['home', 'frequent', 'all'], frequent: ['Students', 'Staff', 'Attendance', 'Fees', 'Leave approval'], open: ['Teaching & Learning›'], groups: 7 };
+  const got = { parts: menuSeen.parts, frequent: menuSeen.frequent, open: menuSeen.open, groups: menuSeen.groups };
+  if (JSON.stringify(got) !== JSON.stringify(want)) throw new Error(`the menu: ${JSON.stringify(menuSeen)}`);
+  if (!menuSeen.current.includes('Attendance')) throw new Error(`the page is not marked in the menu: ${menuSeen.current}`);
+};
+// Settings, as the principal: the school's name changed and saved (the bar follows with no reload, one audit row by
+// ids only), and an SVG chosen as the logo: drawn on this device and shown, waiting to be saved.
+const BRAND_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60"><rect width="120" height="60" rx="10" fill="#0F766E"/><circle cx="30" cy="30" r="16" fill="#FFD23F"/><rect x="56" y="20" width="50" height="8" rx="4" fill="#fff"/><rect x="56" y="34" width="36" height="8" rx="4" fill="#fff"/></svg>';
+let brandingSeen = null;
+const settingsBranding = async (page) => {
+  await hideLogo(page).catch(() => undefined);
+  await page.reload({ waitUntil: 'networkidle' });
+  const card = page.locator('[data-branding]');
+  await card.waitFor({ timeout: 15000 });
+  await card.getByLabel('School’s official name').fill('Illustrative Public School, Sector 5');
+  await card.locator('[data-branding-save]').click();
+  await card.locator('[data-branding-note="ok"]').waitFor({ timeout: 20000 });
+  await page.waitForFunction(() => document.querySelector('[data-shell-school]')?.textContent?.trim() === 'Illustrative Public School, Sector 5', null, { timeout: 20000 });
+  await card.locator('[data-branding-file]').setInputFiles({ name: 'school-logo.svg', mimeType: 'image/svg+xml', buffer: Buffer.from(BRAND_SVG) });
+  await card.locator('[data-branding-preview] img[data-school-logo="picture"]').waitFor({ timeout: 15000 });
+  brandingSeen = {
+    note: (await card.locator('[data-branding-note]').textContent()).trim(),
+    preview: await card.locator('[data-branding-preview] img').evaluate((img) => ({ blob: img.src.startsWith('blob:'), w: img.naturalWidth, h: img.naturalHeight })),
+    row: (await db.pg.query(`select name, logo_path from schools where school_id = $1`, [SCHOOL])).rows[0],
+    audit: (await db.pg.query(`select actor_role::text as role, target_id, after_state from audit_log where school_id = $1 and event_action = 'school.branding_updated' order by audit_id desc limit 1`, [SCHOOL])).rows[0],
+  };
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+const settingsBrandingDone = async (page) => {
+  await hideLogo(page);
+  const s = brandingSeen ?? {};
+  if (s.row?.name !== 'Illustrative Public School, Sector 5' || s.row?.logo_path !== null) throw new Error(`the name was not saved: ${JSON.stringify(s.row)}`);
+  if (s.audit?.role !== 'principal' || s.audit?.target_id !== SCHOOL || JSON.stringify(s.audit?.after_state) !== JSON.stringify({ logo: 'kept', nameChanged: true })) throw new Error(`the change is not audited by ids only: ${JSON.stringify(s.audit)}`);
+  // The SVG never leaves the device as an SVG: it is drawn, 512 pixels on its long side.
+  if (!s.preview?.blob || s.preview.w !== 512 || s.preview.h !== 256 || s.note !== 'New logo chosen. Save to use it.') throw new Error(`the chosen SVG was not drawn as a 512-pixel picture: ${JSON.stringify(s)}`);
+};
+// A teacher's Settings: no branding card; the bar shows the teacher.
+let teacherBrandSeen = null;
+const teacherNoBranding = async (page) => {
+  await page.locator('[data-settings-module]').first().waitFor({ timeout: 15000 });
+  teacherBrandSeen = { cards: await page.locator('[data-branding]').count(), bar: await brandBar(page, { name: 'Tara Example', role: 'Teacher' }) };
+};
+const teacherNoBrandingDone = async () => {
+  if (teacherBrandSeen.cards !== 0) throw new Error('a teacher is shown the school profile and branding card');
+  checkBar(teacherBrandSeen.bar, { logo: 'initials' });
+};
+// Control: the founder's bar, and the school's name and logo while onboarding it.
+let controlBrandSeen = null;
+const controlBranding = async (page) => {
+  await showLogo(page);
+  const card = page.locator('[data-branding]');
+  await card.locator('[data-branding-preview] img[data-school-logo="picture"]').waitFor({ timeout: 20000 });
+  controlBrandSeen = {
+    name: await card.getByLabel('School’s official name').inputValue(),
+    logo: await card.locator('[data-branding-preview] img').evaluate((img) => ({ src: new URL(img.src).search, w: img.naturalWidth })),
+    remove: await card.locator('[data-branding-remove]').count(),
+    bar: await brandBar(page, { name: 'Illustrative Founder', role: 'Platform admin' }),
+  };
+};
+const controlBrandingDone = async (page) => {
+  await hideLogo(page);
+  const s = controlBrandSeen;
+  if (s.name !== BRAND_NAME || !s.logo.src.startsWith(`?school=${SCHOOL}&v=`) || s.logo.w !== 256 || s.remove !== 1) throw new Error(`Control's branding card: ${JSON.stringify(s)}`);
+  checkBar(s.bar, { school: 'NetCyberAI Control' });
+};
+// The family app: the school's logo and name at the top.
+let familyBrandSeen = null;
+const familyBranded = async (page) => {
+  await showLogo(page);
+  const top = page.locator('[data-family-school]');
+  await top.locator('img[data-school-logo="picture"]').waitFor({ timeout: 15000 });
+  familyBrandSeen = { name: (await top.textContent()).trim(), loaded: await top.locator('img').evaluate((img) => img.complete && img.naturalWidth > 0) };
+};
+const familyBrandedDone = async (page) => {
+  await hideLogo(page);
+  if (familyBrandSeen.name !== BRAND_NAME || !familyBrandSeen.loaded) throw new Error(`the family app's top: ${JSON.stringify(familyBrandSeen)}`);
+};
+
 const SCREENS = [
   ['principal', 'app-my-day', '/app/my-day'],
   ['principal', 'app-my-day-hindi', '/app/my-day', speak('हिन्दी'), backToEnglish],
@@ -5805,6 +5981,14 @@ const SCREENS = [
   // c219 begin
   ['teacher', 'app-exams-co-scholastic', `/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`, rcCoScholastic, rcCoScholasticDone],
   // c219 end
+  // c235-b begin
+  ['principal', 'brand-app-header', '/app/students', brandedShell, brandedShellDone],
+  ['principal', 'brand-app-menu', '/app/attendance', brandedMenu, brandedMenuDone],
+  ['principal', 'brand-app-settings', '/app/settings', settingsBranding, settingsBrandingDone],
+  ['teacher', 'brand-teacher-settings', '/app/settings', teacherNoBranding, teacherNoBrandingDone],
+  ['founder', 'brand-control-school', `/control/schools/${SCHOOL}`, controlBranding, controlBrandingDone],
+  ['parent', 'brand-family', '/family', familyBranded, familyBrandedDone],
+  // c235-b end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed

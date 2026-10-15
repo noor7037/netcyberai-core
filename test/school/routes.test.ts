@@ -125,8 +125,10 @@ describe('the school’s branding routes (C235-B)', () => {
       expect(got.headers.get('x-content-type-options')).toBe('nosniff');
       expect(got.bytes).toEqual(png(256, 128));
     }
-    // Another school's session gets its own school's (none), never A's; nobody signed in gets nothing.
-    expect((await getLogo(bPrincipal, `?v=1&school=${A}`)).status).toBe(404);
+    // Another school's session asking for A's is refused, and gets its own school's (none yet); nobody signed in gets nothing.
+    expect((await getLogo(bPrincipal, `?school=${A}&v=1`)).status).toBe(403);
+    expect((await getLogo(parent, `?school=${B}&v=1`)).status).toBe(403);
+    expect((await getLogo(bPrincipal, `?school=${B}&v=1`)).status).toBe(404);
     expect((await getLogo(null)).status).toBe(401);
   });
 

@@ -100,8 +100,8 @@ describe('the branded bar and the menu (C235-B)', () => {
   };
 
   it('shows the school’s logo and name, and the person’s name and role, on every screen', () => {
-    const html = shell('principal', { logoSrc: '/api/branding/logo?v=1700000000000' });
-    expect(html).toContain('src="/api/branding/logo?v=1700000000000"');
+    const html = shell('principal', { logoSrc: '/api/branding/logo?school=s&v=1700000000000' });
+    expect(html).toContain('src="/api/branding/logo?school=s&amp;v=1700000000000"');
     expect(html).toMatch(/data-shell-school[^>]*>Made-up Public School</);
     expect(html).toContain('Asha Example · Principal'); // the phone's second line
     expect(html).toMatch(/data-shell-person[^>]*aria-label="My account: Asha Example, Principal"/);

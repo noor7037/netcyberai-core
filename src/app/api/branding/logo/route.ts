@@ -6,8 +6,9 @@ import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { isSchoolId, readSchoolLogo } from '@/lib/school/branding';
 import { supabaseFileStorage } from '@/lib/storage/supabase-file-storage';
 
-// GET /api/branding/logo?v=<version>: the school's logo, for the top of every screen (C235-B).
-//   - a school's own staff session, or a parent's session: its own school's logo, the school taken from the session;
+// GET /api/branding/logo?school=<id>&v=<version>: the school's logo, for the top of every screen (C235-B).
+//   - a school's own staff session, or a parent's session: its own school's logo, the school taken from the session
+//     (a request naming another school is refused);
 //   - NetCyberAI's platform session (Control): the school named by ?school=<id>.
 // Anyone else is refused. The address carries the logo's version (when it last changed), so the browser keeps the
 // answer for a day (private: never a shared cache) and asks again only when the logo changes; no signed link is
@@ -17,12 +18,10 @@ export const dynamic = 'force-dynamic';
 export async function GET(req: NextRequest) {
   const claims = await requireSession(req);
   if (!claims) return NextResponse.json({ error: 'not authenticated' }, { status: 401 });
+  const asked = req.nextUrl.searchParams.get('school');
   let schoolId: string | null = null;
-  if (canAccessApp(claims) || canAccessFamily(claims)) schoolId = claims.schoolId;
-  else if (canAccessControl(claims)) {
-    const asked = req.nextUrl.searchParams.get('school');
-    schoolId = isSchoolId(asked) ? asked : null;
-  }
+  if (canAccessApp(claims) || canAccessFamily(claims)) schoolId = asked === null || asked === claims.schoolId ? claims.schoolId : null;
+  else if (canAccessControl(claims)) schoolId = isSchoolId(asked) ? asked : null;
   if (!schoolId) return NextResponse.json({ error: 'not allowed' }, { status: claims.role === 'super_admin' ? 400 : 403 });
   const school = schoolId;
 

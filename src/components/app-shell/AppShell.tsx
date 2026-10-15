@@ -121,7 +121,7 @@ function Groups({ groups, active, onNavigate, openFirst = true }: { groups: read
 function Part({ id, label, children }: { id: string; label: string; children: ReactNode }) {
   return (
     <div role="group" aria-labelledby={id} data-nav-part={id.replace(/^.*-/, '')}>
-      <p id={id} className="px-3 pb-1 pt-2 text-xs font-bold uppercase tracking-wider text-white/75">
+      <p id={id} className="bg-midnight px-3 pb-1 pt-2 text-xs font-bold uppercase tracking-wider text-white/75">
         {label}
       </p>
       {children}
@@ -273,11 +273,11 @@ export function AppShell({
       <div className="min-h-screen bg-off-white">
       {/* The branded bar (C235-B). On wide screens: one sticky, translucent bar the width of the page. On phones its
           parts stand on their own: the brand row sticks to the top, the tools below it scroll away. */}
-      <div lang={lang} data-shell-header className="contents md:sticky md:top-0 md:z-40 md:flex md:h-16 md:items-center md:border-b md:border-slate/10 md:bg-white/90 md:backdrop-blur print:hidden">
+      <header lang={lang} data-shell-header className="contents md:sticky md:top-0 md:z-40 md:flex md:h-16 md:items-center md:border-b md:border-slate/10 md:bg-white/90 md:backdrop-blur print:hidden">
         <div data-shell-brand className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b border-slate/10 bg-white/90 pl-3 pr-1 backdrop-blur md:static md:z-auto md:h-full md:w-64 md:shrink-0 md:border-b-0 md:border-r md:bg-transparent md:px-4 md:backdrop-blur-none">
           <SchoolLogo src={logoSrc} name={brand} size="md" />
           <div className="min-w-0 flex-1">
-            <p data-shell-school className="truncate text-sm font-extrabold leading-tight text-slate md:text-base" title={brand}>
+            <p data-shell-school className="truncate text-sm font-extrabold leading-tight text-slate lg:line-clamp-2 lg:whitespace-normal" title={brand}>
               {brand}
             </p>
             <p data-shell-person-line className="truncate text-xs text-slate/70 lg:hidden">
@@ -323,7 +323,7 @@ export function AppShell({
             <span className="truncate text-xs text-slate/70">{who.role}</span>
           </span>
         </Link>
-      </div>
+      </header>
 
       <aside lang={lang} className="fixed bottom-0 left-0 top-16 z-30 hidden w-64 flex-col bg-midnight md:flex print:hidden">
         <span aria-hidden="true" className="nca-spectrum-bar block h-1" />
@@ -341,7 +341,7 @@ export function AppShell({
       {drawer && (
         <div id={drawerId} ref={panelRef} lang={lang} role="dialog" aria-modal="true" aria-label={navLabel} className="fixed inset-0 z-40 flex flex-col bg-midnight md:hidden">
           <div className="flex items-center gap-2 py-3 pl-4 pr-2">
-            <SchoolLogo src={logoSrc} name={brand} size="md" />
+            <SchoolLogo src={logoSrc} name={brand} size="md" className="ring-1 ring-white/40" />
             <div className="min-w-0 flex-1">
               <p className="truncate text-base font-extrabold text-white">{brand}</p>
               <p className="truncate text-xs text-white/75">{whoLine}</p>

@@ -97,7 +97,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         frequent={menu.frequent}
         bottomItems={menu.bottom}
         brand={schoolName}
-        logoSrc={logoAddress(logoVersion)}
+        logoSrc={logoAddress(logoVersion, schoolId)}
         person={personName ? { name: personName, role: t(lang, `role.${role}`) } : null}
         roleLabel={t(lang, `role.${role}`)}
         navLabel={t(lang, 'shell.nav.school')}

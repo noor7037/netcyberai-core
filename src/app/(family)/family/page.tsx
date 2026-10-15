@@ -99,7 +99,7 @@ export default async function FamilyHomePage() {
       <header className="flex items-start justify-between gap-3 bg-gradient-to-br from-royal-deep to-royal px-4 pb-6 pt-5 text-white">
         <div className="min-w-0">
           <div data-family-school className="mb-2 flex items-center gap-2">
-            <SchoolLogo src={logoAddress(brand?.logoVersion ?? null)} name={schoolName} size="sm" className="ring-1 ring-white/40" />
+            <SchoolLogo src={logoAddress(brand?.logoVersion ?? null, session.schoolId)} name={schoolName} size="sm" className="ring-1 ring-white/40" />
             <p className="truncate text-sm font-bold text-white">{schoolName}</p>
           </div>
           <h1 className="text-2xl font-extrabold">{t(lang, 'family.hello', { name: home.guardianName.split(' ')[0] || home.guardianName })}</h1>
