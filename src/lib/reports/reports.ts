@@ -10,7 +10,7 @@ import { sentTotalsByClass } from '@/lib/pulse/drafts';
 import { leaveCalendar } from '@/lib/staff/leave';
 import { MESSAGE_STATES, countMessages, messagesInAll } from '@/lib/whatsapp/delivery';
 import { REPORT_SOURCE_ROWS_MAX, ReportTooLarge, type ReportContext, type ReportDefinition, type ReportId, type ReportNote, type ReportRow, type ReportSql } from './types';
-import { classOrderSql } from '@/lib/classes/class-order';
+import { classOrderSql, classRank, sectionKey } from '@/lib/classes/class-order';
 
 // The reports of v1 (docs/26 slice 8h, C207). Read types.ts first.
 //
@@ -59,10 +59,19 @@ const ASK = REPORT_SOURCE_ROWS_MAX + 1;
 // report rather than leave money out of a row.
 export const RECEIPT_METHODS = ['cash', 'upi', 'cheque', 'card', 'netbanking', 'online'] as const;
 
-// Every class of the school by its id, as the screens write it ("5-A").
+// Every class of the school by its id, as the screens write it ("5-A"), with its place in the class order (C235-A:
+// Nursery, LKG, UKG, 1 … 12, then section; "2-A" before "10-A").
 async function classLabels(db: ReportSql, schoolId: string): Promise<Map<string, { label: string; order: string }>> {
-  const { rows } = await db.query(`select class_id, name, section from classes where school_id = $1`, [schoolId]);
-  return new Map(rows.map((r) => [r.class_id as string, { label: classLabel(r.name as string | null, r.section as string | null) ?? '', order: `${r.name ?? ''}\u0000${r.section ?? ''}\u0000${r.class_id}` }]));
+  const { rows } = await db.query(`select class_id, name, grade, section from classes where school_id = $1`, [schoolId]);
+  return new Map(
+    rows.map((r) => [
+      r.class_id as string,
+      {
+        label: classLabel(r.name as string | null, r.section as string | null) ?? '',
+        order: `${String(classRank(r.grade as string | null, r.name as string | null)).padStart(4, '0')}\u0000${sectionKey(r.section as string | null, r.name as string | null)}\u0000${r.name ?? ''}\u0000${r.class_id}`,
+      },
+    ])
+  );
 }
 const byOrder = <T extends { order: string }>(a: T, b: T) => (a.order < b.order ? -1 : a.order > b.order ? 1 : 0);
 
