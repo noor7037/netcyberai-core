@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { addHomeworkFile, assignmentRoster, createHomework, editHomework, homeworkFileUrl, listAssignments, parseHomeworkText, setCompletion, sniffHomeworkFile } from '@/lib/homework/homework';
@@ -8,6 +8,11 @@ import { HOMEWORK_CHECK, sendHomeworkCheck, type HomeworkCheck } from '@/lib/off
 import { createOutbox, type Sender } from '@/lib/offline/outbox';
 import { memoryStore } from '@/lib/offline/store';
 import { FileStorageUnavailableError, MemoryFileStorage } from '@/lib/storage/file-storage';
+
+// The upload check (C232 part A) reads a picture with the capture OCR; tesseract is never run in a test. What it
+// "reads" is set here: a page without words unless a test says otherwise.
+const ocr = vi.hoisted(() => ({ text: '' }));
+vi.mock('@/lib/capture/ocr', async (original) => ({ ...(await original<typeof import('@/lib/capture/ocr')>()), runOcr: async () => ({ rawText: ocr.text, words: [] }) }));
 
 // Homework (docs/20 5e, C150), on the whole real schema as app_user.
 
@@ -197,6 +202,12 @@ describe('a photo or a file', () => {
     expect((await db.pg.query(`select file_name, mime_type, size_bytes, uploaded_by from homework_attachments`)).rows).toEqual([{ file_name: '....etcpasswdscript.png', mime_type: 'image/png', size_bytes: PNG.length, uploaded_by: T1 }]);
     expect(await as(t1, (c) => addHomeworkFile(c, storage, actor(t1), hw, { name: 'page.exe', bytes: new TextEncoder().encode('MZ not a photo') }))).toEqual({ ok: false, reason: 'not_a_photo_or_pdf' });
     expect(await as(t1, (c) => addHomeworkFile(c, storage, actor(t1), hw, { name: 'big.pdf', bytes: new Uint8Array(4 * 1024 * 1024 + 1) }))).toEqual({ ok: false, reason: 'too_large' });
+    // A picture that reads as an Aadhaar card, or shows an Aadhaar number, is refused and never stored (C232 part A).
+    ocr.text = 'Government of India\nAadhaar';
+    expect(await as(t1, (c) => addHomeworkFile(c, storage, actor(t1), hw, { name: 'page.png', bytes: PNG }))).toEqual({ ok: false, reason: 'upload_aadhaar_card' });
+    ocr.text = 'Roll 7: 1234 5678 9012';
+    expect(await as(t1, (c) => addHomeworkFile(c, storage, actor(t1), hw, { name: 'page.png', bytes: PNG }))).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
+    ocr.text = '';
     expect(storage.files.size).toBe(1);
     if (!photo.ok) throw new Error('unreachable');
     expect(await as(t1, (c) => homeworkFileUrl(c, storage, A, hw, photo.attachmentId))).toBe(`memory://${A}/homework/${hw}/file-1.png?ttl=300`);

@@ -13,10 +13,35 @@ export type CertificateType = (typeof CERT_TYPES)[number];
 export const isCertificateType = (v: unknown): v is CertificateType => (CERT_TYPES as readonly unknown[]).includes(v);
 export const certDef = (type: CertificateType): CertDef => findCertDef(type) as CertDef;
 
-// The number the register gives: per school and per type, in sequence. The twin of the generated column
-// certificates_issued.number (supabase/migrations/*_p7_certificates.sql).
+// The number the register gives: per school and per type, in sequence, after the school's own prefix when it has set
+// one (C232 part A): "SVM/TC/0346". The twin of public.certificate_number(), which writes it on the row when the
+// certificate is issued (supabase/migrations/*_c232a_documents_closeout.sql); a number already given never changes.
 export const NUMBER_PREFIX: Record<CertificateType, string> = { transfer: 'TC', bonafide: 'BC', character: 'CC', study: 'SC' };
-export const certificateNumber = (type: CertificateType, seq: number): string => `${NUMBER_PREFIX[type]}/${String(seq).padStart(4, '0')}`;
+export const certificateNumber = (type: CertificateType, seq: number, prefix: string | null = null): string => `${prefix ? `${prefix}/` : ''}${NUMBER_PREFIX[type]}/${String(seq).padStart(4, '0')}`;
+
+// The school's numbering (C232 part A, C230-A): a prefix of up to 12 letters, digits or hyphens (or none) and the
+// number a series starts at. Set once: it can be changed until the first certificate is issued under it, then the
+// database refuses a change. The next number of a type is the starting number, or one more than the last certificate
+// of the type, whichever is higher: numbers never go back, and the ones already given are never reused.
+export const PREFIX_FORMAT = /^[A-Za-z0-9-]{1,12}$/;
+export const START_MAX = 999_999;
+export type Numbering = { prefix: string | null; startAt: number };
+export type NumberingProblem = 'prefix' | 'start' | 'aadhaar';
+export function readNumbering(raw: { prefix?: unknown; startAt?: unknown }): { ok: true; value: Numbering } | { ok: false; reason: NumberingProblem } {
+  const prefix = typeof raw.prefix === 'string' ? raw.prefix.trim() : raw.prefix === null || raw.prefix === undefined ? '' : null;
+  if (prefix === null || (prefix !== '' && !PREFIX_FORMAT.test(prefix))) return { ok: false, reason: 'prefix' };
+  if (hasAadhaarNumber(prefix)) return { ok: false, reason: 'aadhaar' };
+  const start = typeof raw.startAt === 'string' && /^\d+$/.test(raw.startAt.trim()) ? Number(raw.startAt.trim()) : raw.startAt;
+  if (typeof start !== 'number' || !Number.isInteger(start) || start < 1 || start > START_MAX) return { ok: false, reason: 'start' };
+  return { ok: true, value: { prefix: prefix || null, startAt: start } };
+}
+export const nextSeq = (lastSeq: number, numbering: Numbering | null): number => Math.max(lastSeq + 1, numbering?.startAt ?? 1);
+
+// Fee clearance per certificate type (C232 part A, C230-A): the Documents settings, off for the transfer certificate
+// (the rule for holding a TC for fees differs by state; the founder decides with the lawyer) and on for the other
+// three, each school switching it knowingly. The defaults are also public.certificate_needs_clearance()'s.
+export const CLEARANCE_DEFAULTS: Record<CertificateType, boolean> = { transfer: false, bonafide: true, character: true, study: true };
+export const clearanceKey = (type: CertificateType): string => `clearance_${type}`;
 // A file name with the number only: never a child's name.
 export const certificateFileName = (number: string): string => `certificate-${number.replace(/[^A-Za-z0-9]+/g, '-')}.pdf`;
 export const BATCH_PDF_NAME = 'certificates.pdf';
@@ -98,7 +123,11 @@ export type ChildRecord = {
   className: string | null;
   guardians: readonly { name: string; relation: string | null }[];
 };
-export type IssueContext = { schoolName: string; address: string | null; year: string | null; signName: string | null; owesNothing: boolean };
+// Who signs (C232 part A): the principal who issues it, or a school admin the principal named as a signatory; null for
+// anyone else: the certificate carries a line for the principal's hand signature. The database decides the same and
+// writes the name and title itself (certificates_issued_insert), so what is printed always matches who signed.
+export type Signer = { name: string; title: 'Principal' | 'School Administrator' };
+export type IssueContext = { schoolName: string; address: string | null; year: string | null; signer: Signer | null; owesNothing: boolean };
 
 const GENDER: Record<string, string> = { male: 'Male', female: 'Female', transgender: 'Transgender' };
 const RELATION: Record<string, string> = { male: 'son', female: 'daughter' };
@@ -124,8 +153,8 @@ export function composePrinted(type: CertificateType, child: ChildRecord, typed:
     address: ctx.address ?? '',
     studentName: child.name,
     admissionNo: child.admissionNo ?? '',
-    signName: ctx.signName ?? '',
-    signTitle: 'Principal',
+    signName: ctx.signer?.name ?? '',
+    signTitle: ctx.signer?.title ?? 'Principal',
   };
   let values: CertValues;
   if (type === 'transfer') {

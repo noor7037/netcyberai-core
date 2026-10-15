@@ -5,11 +5,13 @@ import { siteUrl } from '@/lib/site-config';
 import { certDef, type CertificateType } from './certificate-rules';
 
 // A certificate of the register drawn as the studio draws it (render.ts, imported), with the school's seal and the
-// principal's signature, and a QR code of the public verification page in the corner the studio keeps for its own QR.
+// signature of the person who signed it (C232 part A: the database chooses it per certificate; none means a line for
+// the principal's hand), and a QR code of the public verification page in the corner the studio keeps for its own QR.
 // Pure: the browser turns the SVG into the PDF (pdf.ts); the tests read the SVG.
 
 export type IssuedForPrint = { certificateId: string; type: CertificateType; number: string; issuedOn: string; token: string; printed: Record<string, string> };
-export type Marks = { seal?: CertImage; signature?: CertImage };
+// signatures: by certificate id, as public.certificate_signature_for() answered.
+export type Marks = { seal?: CertImage; signatures?: Record<string, CertImage> };
 
 // The address the QR code opens: the token only, never the number or an id.
 export const verifyUrl = (token: string): string => `${siteUrl}/verify/${encodeURIComponent(token)}`;
@@ -21,7 +23,7 @@ export function certDocFor(c: IssuedForPrint, marks: Marks): CertDoc {
     template: def.templates[0],
     values: { ...c.printed, [def.numberField]: c.number, issueDate: c.issuedOn },
     rows: {},
-    images: { signature: marks.signature, stamp: marks.seal },
+    images: { signature: marks.signatures?.[c.certificateId], stamp: marks.seal },
     // The studio's own QR holds the words of the certificate; ours is drawn below and holds the address instead.
     options: { stampBox: !marks.seal, qr: false },
   };

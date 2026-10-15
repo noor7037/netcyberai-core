@@ -4,30 +4,56 @@ import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import type { CertImage } from '@/lib/certificates/definitions';
 import { feeClearance } from '@/lib/fees/clearance';
+import { settingsSchemaFor } from '@/lib/frameworks/settings-schemas';
+import { readSettings } from '@/lib/frameworks/settings-store';
 import { t, type MessageKey } from '@/lib/i18n';
-import { siteUrl } from '@/lib/site-config';
 import { FileStorageUnavailableError, MemoryFileStorage, sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
 import { supabaseFileStorage } from '@/lib/storage/supabase-file-storage';
 import { languageFor, queueWhatsAppMessage } from '@/lib/whatsapp/gate';
 import { normalizePhone } from '@/lib/whatsapp/phone';
 import { templateToSend } from '@/lib/whatsapp/templates';
 import type { IssuedForPrint, Marks } from './cert-doc';
-import { BATCH_MAX, composePrinted, isCertificateType, readReason, readTyped, type CertificateType, type ChildRecord, type TypedProblem } from './certificate-rules';
+import {
+  BATCH_MAX,
+  CERT_TYPES,
+  CLEARANCE_DEFAULTS,
+  certificateNumber,
+  clearanceKey,
+  composePrinted,
+  isCertificateType,
+  nextSeq,
+  readNumbering,
+  readReason,
+  readTyped,
+  type CertificateType,
+  type ChildRecord,
+  type NumberingProblem,
+  type Signer,
+  type TypedProblem,
+} from './certificate-rules';
+import { copyLinkUrl } from './copy-link';
 
 // Documents and certificates (docs/28 row 10e, C228): certificates issued from the student record, one by one or for
 // a class, into the school's issue register.
 //
 //   - The FEE CLEARANCE is feeClearance() (src/lib/fees/clearance.ts, C179): a child who owes nothing, or whom the
 //     fee counter's override covers, is cleared. A child who owes is held; only the principal waives it, for that
-//     certificate, with a reason. The database holds the same rule (certificates_issued_insert).
+//     certificate, with a reason. The database holds the same rule (certificates_issued_insert). It is asked only for
+//     the types the school's Documents settings ask it for (C232 part A): off for the TC, on for the other three, by
+//     default; a certificate issued without it records 'not_required' and what was owed then.
 //   - The NUMBER, the day and the QR token are the database's, never the caller's. Numbers run per school and per
-//     type with no gap; a withdrawn certificate keeps its number; nothing is deleted.
+//     type with no gap, after the school's own prefix and from its starting number when it set them (once: the
+//     database refuses a change after the first certificate under them); a withdrawn certificate keeps its number;
+//     nothing is deleted.
+//   - WHO SIGNS (C232 part A): the principal who issues it, or a school admin the principal named as a signatory;
+//     each signer keeps their own signature image. Anyone else's certificate carries a line for the principal's hand
+//     signature. The database decides and records it (signed_by), and chooses the image drawn on each certificate.
 //   - NO DUPLICATE: one live TC per child; one live bonafide, character or study certificate per child, purpose and
 //     day. A second is refused; a copy of the first is printed from the register instead.
 //   - The principal WITHDRAWS a certificate with a reason. The public QR page then says "withdrawn".
 //   - The PDF goes to the family through the send-gate only: the office's device draws it, it is kept in the app's
 //     storage, and the message carries a link to it. The template waits for approval in Control and by Meta.
-//   - The seal and the signature: PNG files the principal uploads, in the app's storage.
+//   - The seal: a PNG file the principal uploads, in the app's storage. A signature: the signer's own PNG.
 //   - Audit rows hold ids, codes, numbers, counts and booleans; never a name or the words of a reason (C224).
 //   - Who: the principal and the school admin; the database says the same (row level security).
 
@@ -50,25 +76,95 @@ const day = (v: unknown) => String(v).slice(0, 10);
 
 // ---- The screen --------------------------------------------------------------------------------------------------
 
+export type NumberingView = {
+  prefix: string | null;
+  startAt: number;
+  set: boolean; // the school has chosen it (otherwise: no prefix, from 1)
+  fixed: boolean; // a certificate has been issued under it: the database refuses a change
+  setBy: string | null;
+  setOn: string | null;
+  next: Record<CertificateType, string>; // the number the next certificate of each type gets
+};
+export type SignerRow = { user_id: string; name: string; named: boolean; hasSignature: boolean };
 export type CertificateHome = {
   classes: { class_id: string; name: string }[];
   year: string | null;
-  marks: { seal: boolean; signature: boolean; signedBy: string | null };
+  marks: { seal: boolean };
+  signing: { iSign: boolean; mySignature: boolean; principal: boolean; signers: SignerRow[] | null };
+  clearance: Record<CertificateType, boolean>;
+  numbering: NumberingView;
   mayWaive: boolean;
   mayWithdraw: boolean;
   mayKeepMarks: boolean;
   today: string;
 };
+
+// Which types wait for the fee clearance: the school's Documents settings, with the defaults (off for the TC).
+export async function clearanceAsked(db: Sql, schoolId: string): Promise<Record<CertificateType, boolean>> {
+  const schema = settingsSchemaFor('documents');
+  const values = schema ? (await readSettings(db, schoolId, schema)).effective : {};
+  return Object.fromEntries(
+    CERT_TYPES.map((ty) => {
+      const v = values[clearanceKey(ty)];
+      return [ty, typeof v === 'boolean' ? v : CLEARANCE_DEFAULTS[ty]];
+    })
+  ) as Record<CertificateType, boolean>;
+}
+
+// Whether this person signs the certificates they issue: the principal, or a school admin the principal named.
+async function signs(db: Sql, actor: CertActor): Promise<boolean> {
+  if (actor.role === 'principal') return true;
+  if (actor.role !== 'school_admin') return false;
+  return Boolean((await db.query(`select 1 from certificate_signatories where school_id = $1 and user_id = $2`, [actor.schoolId, actor.userId])).rows[0]);
+}
+
+// The school's numbering, whether it is fixed, and the number the next certificate of each type gets.
+export async function numberingOf(db: Sql, schoolId: string): Promise<NumberingView> {
+  const n = (await db.query(
+    `select n.prefix, n.start_at, u.display_name as set_by, (n.set_at at time zone 'Asia/Kolkata')::date::text as set_on,
+            exists (select 1 from certificates_issued c where c.school_id = n.school_id and c.numbering_revision = n.revision) as fixed
+       from certificate_numbering n left join users u on u.school_id = n.school_id and u.user_id = n.set_by where n.school_id = $1`,
+    [schoolId]
+  )).rows[0];
+  const last = new Map(((await db.query(`select cert_type, max(seq)::int as seq from certificates_issued where school_id = $1 group by cert_type`, [schoolId])).rows as { cert_type: CertificateType; seq: number }[]).map((r) => [r.cert_type, r.seq]));
+  const numbering = n ? { prefix: (n.prefix as string | null) ?? null, startAt: Number(n.start_at) } : null;
+  return {
+    prefix: numbering?.prefix ?? null,
+    startAt: numbering?.startAt ?? 1,
+    set: Boolean(n),
+    fixed: Boolean(n?.fixed),
+    setBy: n?.set_by ?? null,
+    setOn: n?.set_on ?? null,
+    next: Object.fromEntries(CERT_TYPES.map((ty) => [ty, certificateNumber(ty, nextSeq(last.get(ty) ?? 0, numbering), numbering?.prefix ?? null)])) as Record<CertificateType, string>,
+  };
+}
+
 export async function certificateHome(db: Sql, actor: CertActor, today: string): Promise<CertificateHome | null> {
   if (!isOffice(actor.role)) return null;
   const classes = (await db.query(`select class_id, name from classes where school_id = $1 order by name, class_id`, [actor.schoolId])).rows;
   const year = (await db.query(`select label from academic_sessions where school_id = $1 and is_current order by start_date desc limit 1`, [actor.schoolId])).rows[0]?.label ?? null;
-  const marks = (await db.query(`select m.kind, u.display_name from certificate_marks m left join users u on u.user_id = m.uploaded_by where m.school_id = $1`, [actor.schoolId])).rows as { kind: MarkKind; display_name: string | null }[];
-  const signature = marks.find((m) => m.kind === 'signature');
+  const seal = Boolean((await db.query(`select 1 from certificate_marks where school_id = $1 and kind = 'seal'`, [actor.schoolId])).rows[0]);
+  const mySignature = Boolean((await db.query(`select 1 from certificate_signatures where school_id = $1 and user_id = $2`, [actor.schoolId, actor.userId])).rows[0]);
+  // The principal names the school admins who sign; each is listed with whether they are named and keep a signature.
+  const signers =
+    actor.role === 'principal'
+      ? ((await db.query(
+          `select u.user_id, u.display_name as name, g.user_id is not null as named, s.user_id is not null as "hasSignature"
+             from users u
+             left join certificate_signatories g on g.school_id = u.school_id and g.user_id = u.user_id
+             left join certificate_signatures s on s.school_id = u.school_id and s.user_id = u.user_id
+            where u.school_id = $1 and u.role::text = 'school_admin' and u.is_active
+            order by u.display_name, u.user_id`,
+          [actor.schoolId]
+        )).rows as SignerRow[])
+      : null;
   return {
     classes,
     year,
-    marks: { seal: marks.some((m) => m.kind === 'seal'), signature: Boolean(signature), signedBy: signature?.display_name ?? null },
+    marks: { seal },
+    signing: { iSign: await signs(db, actor), mySignature, principal: actor.role === 'principal', signers },
+    clearance: await clearanceAsked(db, actor.schoolId),
+    numbering: await numberingOf(db, actor.schoolId),
     mayWaive: actor.role === 'principal',
     mayWithdraw: actor.role === 'principal',
     mayKeepMarks: actor.role === 'principal',
@@ -84,14 +180,15 @@ export type RosterChild = {
   status: string;
   owed_minor: number;
   cleared: boolean;
-  cleared_by: 'nothing_owed' | 'fee_override' | null;
+  cleared_by: 'nothing_owed' | 'fee_override' | 'not_required' | null; // not_required: the school does not ask it for this type
   latest: { certificate_id: string; number: string; issued_on: string } | null; // the newest live certificate of the type
 };
 
-// The children of a class for a type: what each owes and whether they are cleared (feeClearance, the one rule), and
-// the newest live certificate of that type each already has. Roll order.
+// The children of a class for a type: what each owes and whether they are cleared (feeClearance, the one rule, when the
+// school asks the clearance for the type), and the newest live certificate of that type each already has. Roll order.
 export async function certificateRoster(db: PoolClient, actor: CertActor, classId: string, type: CertificateType): Promise<RosterChild[] | null> {
   if (!isOffice(actor.role)) return null;
+  const asked = (await clearanceAsked(db, actor.schoolId))[type];
   const kids = (await db.query(
     `select s.student_id, s.name, s.admission_no, s.roll_no, s.status::text as status,
             (select json_build_object('certificate_id', c.certificate_id, 'number', c.number, 'issued_on', c.issued_on)
@@ -112,8 +209,8 @@ export async function certificateRoster(db: PoolClient, actor: CertActor, classI
       roll_no: k.roll_no,
       status: k.status,
       owed_minor: Math.max(owed, 0),
-      cleared: c?.cleared ?? false,
-      cleared_by: !c?.cleared ? null : owed <= 0 ? 'nothing_owed' : 'fee_override',
+      cleared: !asked || (c?.cleared ?? false),
+      cleared_by: !asked ? 'not_required' : !c?.cleared ? null : owed <= 0 ? 'nothing_owed' : 'fee_override',
       latest: k.latest ? { certificate_id: k.latest.certificate_id, number: k.latest.number, issued_on: day(k.latest.issued_on) } : null,
     });
   }
@@ -183,7 +280,10 @@ export async function issueCertificates(db: PoolClient, actor: CertActor, input:
 
   const school = (await db.query(`select name, address from schools where school_id = $1`, [actor.schoolId])).rows[0];
   const year = (await db.query(`select label from academic_sessions where school_id = $1 and is_current order by start_date desc limit 1`, [actor.schoolId])).rows[0]?.label ?? null;
-  const signName = (await db.query(`select u.display_name from certificate_marks m join users u on u.user_id = m.uploaded_by where m.school_id = $1 and m.kind = 'signature'`, [actor.schoolId])).rows[0]?.display_name ?? null;
+  // Who signs: this person when they may (the database decides the same and writes the name and title itself).
+  const myName = String((await db.query(`select display_name from users where school_id = $1 and user_id = $2`, [actor.schoolId, actor.userId])).rows[0]?.display_name ?? '').trim().slice(0, 60);
+  const signer: Signer | null = (await signs(db, actor)) ? { name: myName, title: actor.role === 'principal' ? 'Principal' : 'School Administrator' } : null;
+  const asked = (await clearanceAsked(db, actor.schoolId))[input.type];
   const purpose = typed.values.purpose ?? null;
   const out: IssueOutcome = { issued: [], held: [], duplicates: [], incomplete: [], aadhaar: [], notFound: [] };
 
@@ -194,9 +294,11 @@ export async function issueCertificates(db: PoolClient, actor: CertActor, input:
       out.notFound.push(studentId);
       continue;
     }
-    // A waiver is for a child who is held; one the clearance no longer needs is not recorded.
-    const waiver = clearance.cleared ? null : (waivers[studentId] ?? null);
-    if (!clearance.cleared && !waiver) {
+    // A waiver is for a child who is held; one the clearance no longer needs (or the school does not ask for this
+    // type) is not recorded.
+    const cleared = !asked || clearance.cleared;
+    const waiver = cleared ? null : (waivers[studentId] ?? null);
+    if (!cleared && !waiver) {
       out.held.push({ studentId, owedMinor: clearance.owedMinor });
       continue;
     }
@@ -205,7 +307,7 @@ export async function issueCertificates(db: PoolClient, actor: CertActor, input:
       out.duplicates.push({ studentId, number: dup.number });
       continue;
     }
-    const composed = composePrinted(input.type, child, typed.values, { schoolName: school.name, address: school.address, year, signName, owesNothing: clearance.owedMinor <= 0 });
+    const composed = composePrinted(input.type, child, typed.values, { schoolName: school.name, address: school.address, year, signer, owesNothing: clearance.owedMinor <= 0 });
     if (!composed.ok) {
       // Reported per child, like the rest: the children issued before this one in the batch stay issued.
       if (composed.reason === 'aadhaar') out.aadhaar.push(studentId);
@@ -260,7 +362,8 @@ export type RegisterRow = {
   purpose: string | null;
   issued_on: string;
   issued_by: string | null;
-  clearance: 'nothing_owed' | 'fee_override' | 'waived';
+  signed_by: string | null; // who signed it; null: a line for the principal's hand signature
+  clearance: 'nothing_owed' | 'fee_override' | 'waived' | 'not_required';
   owed_minor: number;
   waiver_reason: string | null;
   waived_by: string | null;
@@ -275,13 +378,14 @@ export async function certificateRegister(db: Sql, actor: CertActor, filter: { t
   if (!isOffice(actor.role)) return null;
   const { rows } = await db.query(
     `select c.certificate_id, c.number, c.cert_type, c.student_id, c.printed ->> 'studentName' as child, c.printed ->> 'admissionNo' as admission_no, k.name as class_name,
-            c.purpose, c.issued_on::text as issued_on, i.display_name as issued_by, c.clearance, c.owed_minor, c.waiver_reason, w.display_name as waived_by,
+            c.purpose, c.issued_on::text as issued_on, i.display_name as issued_by, g.display_name as signed_by, c.clearance, c.owed_minor, c.waiver_reason, w.display_name as waived_by,
             c.withdrawn_at, x.display_name as withdrawn_by, c.withdraw_reason, c.erased_at is not null as erased,
             (select l.status::text from communication_log l where l.school_id = c.school_id and l.student_id = c.student_id and l.dedupe_key like 'certificate:' || c.certificate_id::text || ':%'
               order by l.created_at desc limit 1) as sent
        from certificates_issued c
        left join classes k on k.school_id = c.school_id and k.class_id = c.class_id
        left join users i on i.user_id = c.issued_by
+       left join users g on g.user_id = c.signed_by
        left join users w on w.user_id = c.waived_by
        left join users x on x.user_id = c.withdrawn_by
       where c.school_id = $1 and ($2::text is null or c.cert_type = $2) and ($3::uuid is null or c.class_id = $3)
@@ -326,19 +430,33 @@ export function storedReader(storage: FileStorage): ReadStored {
   };
 }
 
+// A stored PNG as the studio draws it, or null when it cannot be read now or is not a PNG.
+async function pngImage(read: ReadStored, key: string, aspect: unknown): Promise<CertImage | null> {
+  const bytes = await read(key);
+  if (!bytes || sniffImageType(bytes) !== 'image/png') return null;
+  return { src: `data:image/png;base64,${Buffer.from(bytes).toString('base64')}`, aspect: Number(aspect) };
+}
+
+// The school's seal, and the signature drawn on each certificate asked for: the one the database chooses
+// (public.certificate_signature_for: the certificate's own signer's, or none). A file the storage cannot give now
+// leaves the certificate drawn without it, and says so.
 export type MarkImages = Marks & { unavailable: MarkKind[] };
-export async function markImages(db: Sql, schoolId: string, read: ReadStored): Promise<MarkImages> {
-  const rows = (await db.query(`select kind, storage_key, aspect from certificate_marks where school_id = $1`, [schoolId])).rows as { kind: MarkKind; storage_key: string; aspect: string }[];
-  const out: MarkImages = { unavailable: [] };
-  for (const r of rows) {
-    const bytes = await read(r.storage_key);
-    if (!bytes || sniffImageType(bytes) !== 'image/png') {
-      out.unavailable.push(r.kind);
-      continue;
-    }
-    const image: CertImage = { src: `data:image/png;base64,${Buffer.from(bytes).toString('base64')}`, aspect: Number(r.aspect) };
-    if (r.kind === 'seal') out.seal = image;
-    else out.signature = image;
+export async function markImages(db: Sql, schoolId: string, read: ReadStored, certificateIds: readonly string[] = []): Promise<MarkImages> {
+  const out: MarkImages = { signatures: {}, unavailable: [] };
+  const seal = (await db.query(`select storage_key, aspect from certificate_marks where school_id = $1 and kind = 'seal'`, [schoolId])).rows[0];
+  if (seal) {
+    const image = await pngImage(read, seal.storage_key, seal.aspect);
+    if (image) out.seal = image;
+    else out.unavailable.push('seal');
+  }
+  if (certificateIds.length === 0) return out;
+  const chosen = (await db.query(`select certificate_id, storage_key, aspect from public.certificate_signature_for($1::uuid[])`, [certificateIds])).rows as { certificate_id: string; storage_key: string; aspect: string }[];
+  const byKey = new Map<string, CertImage | null>();
+  for (const c of chosen) {
+    if (!byKey.has(c.storage_key)) byKey.set(c.storage_key, await pngImage(read, c.storage_key, c.aspect));
+    const image = byKey.get(c.storage_key);
+    if (image) out.signatures![c.certificate_id] = image;
+    else if (!out.unavailable.includes('signature')) out.unavailable.push('signature');
   }
   return out;
 }
@@ -368,10 +486,12 @@ export function pngAspect(bytes: Uint8Array): number | null {
   return w > 0 && h > 0 ? w / h : null;
 }
 
+// The seal is the school's, kept by the principal (certificate_marks). A signature is its own person's
+// (certificate_signatures): the principal's, or a school admin's the principal named; nobody keeps another's.
 export type MarkResult = { ok: true } | { ok: false; reason: 'not_allowed' | 'kind' | 'not_a_png' | 'too_large' | 'shape' | 'storage_unavailable' | 'not_found' };
 export async function saveMark(db: Sql, storage: FileStorage, actor: CertActor, kind: unknown, bytes: Uint8Array, newId: () => string = () => randomUUID()): Promise<MarkResult> {
-  if (actor.role !== 'principal') return { ok: false, reason: 'not_allowed' };
-  if (!isMarkKind(kind)) return { ok: false, reason: 'kind' };
+  if (!isMarkKind(kind)) return { ok: false, reason: isOffice(actor.role) ? 'kind' : 'not_allowed' };
+  if (kind === 'seal' ? actor.role !== 'principal' : !(await signs(db, actor))) return { ok: false, reason: 'not_allowed' };
   if (bytes.length === 0 || bytes.length > MARK_MAX_BYTES) return { ok: false, reason: 'too_large' };
   const aspect = pngAspect(bytes);
   if (aspect === null) return { ok: false, reason: 'not_a_png' };
@@ -385,14 +505,27 @@ export async function saveMark(db: Sql, storage: FileStorage, actor: CertActor, 
     throw err;
   }
   try {
-    const before = (await db.query(`select storage_key from certificate_marks where school_id = $1 and kind = $2`, [actor.schoolId, kind])).rows[0]?.storage_key as string | undefined;
-    await db.query(
-      `insert into certificate_marks (school_id, kind, storage_key, size_bytes, aspect, uploaded_by) values ($1, $2, $3, $4, $5, $6)
-       on conflict (school_id, kind) do update set storage_key = excluded.storage_key, size_bytes = excluded.size_bytes, aspect = excluded.aspect, uploaded_by = excluded.uploaded_by`,
-      [actor.schoolId, kind, key, bytes.length, aspect, actor.userId]
-    );
-    await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'certificate.mark_saved', targetType: 'certificate_marks', targetId: kind, beforeState: undefined, afterState: { kind, sizeBytes: bytes.length, replaced: Boolean(before) } });
-    if (before) await storage.remove(before).catch(() => undefined);
+    const old: string[] = [];
+    if (kind === 'seal') {
+      const before = (await db.query(`select storage_key from certificate_marks where school_id = $1 and kind = 'seal'`, [actor.schoolId])).rows[0]?.storage_key as string | undefined;
+      if (before) old.push(before);
+      await db.query(
+        `insert into certificate_marks (school_id, kind, storage_key, size_bytes, aspect, uploaded_by) values ($1, 'seal', $2, $3, $4, $5)
+         on conflict (school_id, kind) do update set storage_key = excluded.storage_key, size_bytes = excluded.size_bytes, aspect = excluded.aspect, uploaded_by = excluded.uploaded_by`,
+        [actor.schoolId, key, bytes.length, aspect, actor.userId]
+      );
+    } else {
+      const before = (await db.query(`select storage_key from certificate_signatures where school_id = $1 and user_id = $2`, [actor.schoolId, actor.userId])).rows[0]?.storage_key as string | undefined;
+      if (before) old.push(before);
+      await db.query(
+        `insert into certificate_signatures (school_id, user_id, storage_key, size_bytes, aspect) values ($1, $2, $3, $4, $5)
+         on conflict (school_id, user_id) do update set storage_key = excluded.storage_key, size_bytes = excluded.size_bytes, aspect = excluded.aspect`,
+        [actor.schoolId, actor.userId, key, bytes.length, aspect]
+      );
+      old.push(...(await legacySignatureGone(db, actor)));
+    }
+    await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'certificate.mark_saved', targetType: kind === 'seal' ? 'certificate_marks' : 'certificate_signatures', targetId: kind, beforeState: undefined, afterState: { kind, sizeBytes: bytes.length, replaced: old.length > 0 } });
+    for (const k of new Set(old)) if (k !== key) await storage.remove(k).catch(() => undefined);
     return { ok: true };
   } catch (err) {
     await storage.remove(key).catch(() => undefined);
@@ -400,14 +533,78 @@ export async function saveMark(db: Sql, storage: FileStorage, actor: CertActor, 
   }
 }
 
+// The principal's signature as C228 kept it (one per school, in certificate_marks; copied to certificate_signatures by
+// the C232 migration): gone with the principal's first change of their own signature. Returns its file's key.
+async function legacySignatureGone(db: Sql, actor: CertActor): Promise<string[]> {
+  if (actor.role !== 'principal') return [];
+  return ((await db.query(`delete from certificate_marks where school_id = $1 and kind = 'signature' returning storage_key`, [actor.schoolId])).rows as { storage_key: string }[]).map((r) => r.storage_key);
+}
+
 export async function removeMark(db: Sql, storage: FileStorage, actor: CertActor, kind: unknown): Promise<MarkResult> {
-  if (actor.role !== 'principal') return { ok: false, reason: 'not_allowed' };
-  if (!isMarkKind(kind)) return { ok: false, reason: 'kind' };
-  const gone = (await db.query(`delete from certificate_marks where school_id = $1 and kind = $2 returning storage_key`, [actor.schoolId, kind])).rows[0];
-  if (!gone) return { ok: false, reason: 'not_found' };
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'certificate.mark_removed', targetType: 'certificate_marks', targetId: kind, beforeState: undefined, afterState: { kind } });
-  await storage.remove(gone.storage_key).catch(() => undefined);
+  if (!isMarkKind(kind)) return { ok: false, reason: isOffice(actor.role) ? 'kind' : 'not_allowed' };
+  if (kind === 'seal' ? actor.role !== 'principal' : !isOffice(actor.role)) return { ok: false, reason: 'not_allowed' };
+  const gone =
+    kind === 'seal'
+      ? ((await db.query(`delete from certificate_marks where school_id = $1 and kind = 'seal' returning storage_key`, [actor.schoolId])).rows as { storage_key: string }[])
+      : ((await db.query(`delete from certificate_signatures where school_id = $1 and user_id = $2 returning storage_key`, [actor.schoolId, actor.userId])).rows as { storage_key: string }[]);
+  const keys = [...gone.map((r) => r.storage_key), ...(kind === 'signature' ? await legacySignatureGone(db, actor) : [])];
+  if (keys.length === 0) return { ok: false, reason: 'not_found' };
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'certificate.mark_removed', targetType: kind === 'seal' ? 'certificate_marks' : 'certificate_signatures', targetId: kind, beforeState: undefined, afterState: { kind } });
+  for (const k of new Set(keys)) await storage.remove(k).catch(() => undefined);
   return { ok: true };
+}
+
+// The principal names a school admin who signs the certificates they issue, or un-names them (their signature goes
+// with it: the database deletes the row, and its file is removed here). Audited by ids only.
+export type SignatoryResult = { ok: true } | { ok: false; reason: 'not_allowed' | 'not_found' | 'not_admin' };
+export async function nameSignatory(db: Sql, storage: FileStorage, actor: CertActor, userId: string, named: boolean): Promise<SignatoryResult> {
+  if (actor.role !== 'principal') return { ok: false, reason: 'not_allowed' };
+  if (named) {
+    const admin = (await db.query(`select 1 from users where school_id = $1 and user_id = $2 and role::text = 'school_admin' and is_active`, [actor.schoolId, userId])).rows[0];
+    if (!admin) return { ok: false, reason: 'not_admin' };
+    const made = await db.query(`insert into certificate_signatories (school_id, user_id, named_by) values ($1, $2, $3) on conflict (school_id, user_id) do nothing`, [actor.schoolId, userId, actor.userId]);
+    if (made.rowCount) await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'certificate.signatory_named', targetType: 'certificate_signatories', targetId: userId, beforeState: undefined, afterState: { userId } });
+    return { ok: true };
+  }
+  const key = (await db.query(`select storage_key from certificate_signatures where school_id = $1 and user_id = $2`, [actor.schoolId, userId])).rows[0]?.storage_key as string | undefined;
+  const gone = (await db.query(`delete from certificate_signatories where school_id = $1 and user_id = $2 returning user_id`, [actor.schoolId, userId])).rows[0];
+  if (!gone) return { ok: false, reason: 'not_found' };
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'certificate.signatory_unnamed', targetType: 'certificate_signatories', targetId: userId, beforeState: undefined, afterState: { userId, signatureRemoved: Boolean(key) } });
+  if (key) await storage.remove(key).catch(() => undefined);
+  return { ok: true };
+}
+
+// ---- Numbering ---------------------------------------------------------------------------------------------------
+
+// The school's prefix and starting number, set by the principal or the school admin. A change after the first
+// certificate issued under the numbering is refused here and by the database (certificate_numbering_set).
+export type NumberingResult = { ok: true; numbering: NumberingView } | { ok: false; reason: 'not_allowed' | 'fixed' | 'unchanged' | NumberingProblem };
+export async function setNumbering(db: Sql, actor: CertActor, raw: { prefix?: unknown; startAt?: unknown }): Promise<NumberingResult> {
+  if (!isOffice(actor.role)) return { ok: false, reason: 'not_allowed' };
+  const r = readNumbering(raw);
+  if (!r.ok) return r;
+  const before = await numberingOf(db, actor.schoolId);
+  if (before.fixed) return { ok: false, reason: 'fixed' };
+  if (before.set && before.prefix === r.value.prefix && before.startAt === r.value.startAt) return { ok: false, reason: 'unchanged' };
+  await db.query('savepoint certificate_numbering');
+  let revision: number;
+  try {
+    revision = Number((await db.query(
+      `insert into certificate_numbering (school_id, prefix, start_at, set_by) values ($1, $2, $3, $4)
+       on conflict (school_id) do update set prefix = excluded.prefix, start_at = excluded.start_at, set_by = excluded.set_by
+       returning revision`,
+      [actor.schoolId, r.value.prefix, r.value.startAt, actor.userId]
+    )).rows[0].revision);
+    await db.query('release savepoint certificate_numbering');
+  } catch (err) {
+    await db.query('rollback to savepoint certificate_numbering');
+    // A certificate issued under it at the same moment: the database's own rule decides.
+    if ((err as { code?: string }).code === '23514' && /numbering is fixed/.test(String((err as Error).message))) return { ok: false, reason: 'fixed' };
+    throw err;
+  }
+  // The prefix is the school's own words: the audit row says only that there is one.
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'certificate.numbering_set', targetType: 'certificate_numbering', targetId: actor.schoolId, beforeState: undefined, afterState: { revision, startAt: r.value.startAt, withPrefix: r.value.prefix !== null } });
+  return { ok: true, numbering: await numberingOf(db, actor.schoolId) };
 }
 
 // ---- Sending to the family -----------------------------------------------------------------------------------------
@@ -457,7 +654,7 @@ export async function sendCertificate(db: PoolClient, queue: Queue, storage: Fil
       purpose: 'operational_communication',
       toPhone: guardian.phone,
       templateName: CERTIFICATE_TEMPLATE,
-      templateParams: { child: c.child ?? '', certificate: t(lang, `crt.type.${c.cert_type}` as MessageKey), number: c.number, link: `${siteUrl}/api/public/certificates/copy/${copy.copy_key}` },
+      templateParams: { child: c.child ?? '', certificate: t(lang, `crt.type.${c.cert_type}` as MessageKey), number: c.number, link: copyLinkUrl(copy.copy_key) },
       dedupeKey: `certificate:${certificateId}:${id}`,
       language: lang,
     });

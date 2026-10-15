@@ -619,6 +619,35 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   },
   // p7-10d end
   // p7-10e begin
+  {
+    // Documents and certificates (C232 part A, C230-A): whether a certificate of each type waits for the fee clearance.
+    // Off for the transfer certificate: the rule for holding a TC for fees differs by state, and the founder decides
+    // with the lawyer; on for the other three. The school switches each knowingly. The defaults are CLEARANCE_DEFAULTS
+    // (src/lib/documents/certificate-rules.ts) and public.certificate_needs_clearance(), which the issuing trigger
+    // reads; test/documents/closeout.test.ts holds the three together.
+    moduleId: 'documents',
+    version: 1,
+    fields: (
+      [
+        ['transfer', 'Transfer certificate', false],
+        ['bonafide', 'Bonafide certificate', true],
+        ['character', 'Character certificate', true],
+        ['study', 'Study certificate', true],
+      ] as const
+    ).map(([type, name, on]) => ({
+      key: `clearance_${type}`,
+      label: `${name}: fee clearance`,
+      help:
+        type === 'transfer'
+          ? 'When on, a transfer certificate waits until nothing is owed, the fee counter clears it, or the principal waives it with a reason. The rule for holding a TC for fees differs from state to state: switch this on only if your state’s rules allow it, and knowingly.'
+          : 'When on, this certificate waits until nothing is owed, the fee counter clears it, or the principal waives it with a reason. When off, it is issued whatever is owed, and the register says the clearance was not asked.',
+      section: 'Fee clearance',
+      type: 'boolean' as const,
+      default: on,
+      editableBy: OFFICE,
+      affectsExistingRecords: false,
+    })),
+  },
   // p7-10e end
   // p7-10f begin
   // p7-10f end

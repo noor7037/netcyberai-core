@@ -11,6 +11,8 @@ import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import { HOMEWORK_CHECK, HOMEWORK_KEY, homeworkRosterKey, type HomeworkCheck } from '@/lib/offline/homework-sender';
 import type { Operation } from '@/lib/offline/outbox';
+import { explainError } from '@/lib/errors/catalogue';
+import { isUploadProblem } from '@/lib/privacy/upload-problems';
 
 // The homework screen (docs/20 5e, C150). Set a homework once and tick the
 // sections it is for: each section gets its own assignment, checked on its
@@ -118,7 +120,8 @@ export function HomeworkView({ shownAbove = false }: { shownAbove?: boolean }) {
       const up = await fetch(`/api/app/homework/${body.homeworkId}/attachments`, { method: 'POST', body: send }).catch(() => null);
       if (!up?.ok) {
         const why = (await up?.json().catch(() => null))?.code;
-        fileNote = ` ${t(why === 'not_a_photo_or_pdf' ? 'hw.file.wrongType' : why === 'too_large' ? 'hw.file.tooLarge' : 'hw.file.notKept')}`;
+        // A file the Aadhaar check refused (C232 part A) is said in the error catalogue's own words.
+        fileNote = ` ${isUploadProblem(why) ? explainError({ code: why }, t('hw.file.notKept'), lang) : t(why === 'not_a_photo_or_pdf' ? 'hw.file.wrongType' : why === 'too_large' ? 'hw.file.tooLarge' : 'hw.file.notKept')}`;
       }
     }
     setBusy(false);

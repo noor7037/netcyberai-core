@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { Badge } from '@/components/ui/Badge';
@@ -14,11 +15,13 @@ import type { MessageKey } from '@/lib/i18n';
 import { downloadBlob } from '@/lib/pdf/browser';
 
 // Documents and certificates (docs/28 row 10e, C228). Issue a certificate from the record for one child or a class,
-// behind the fee clearance or the principal's waiver with a reason; the issue register, newest first, where each
-// certificate is downloaded, sent to its family, or withdrawn with a reason (the principal); and the school's seal and
-// the principal's signature. Every rule is the server's and the database's: this screen only asks and shows.
+// behind the fee clearance (for the types the school's Documents settings ask it for, C232 part A) or the principal's
+// waiver with a reason; the issue register, newest first, where each certificate is downloaded, sent to its family, or
+// withdrawn with a reason (the principal); the school's numbering, set once; the school's seal and each signer's own
+// signature, and the school admins the principal names to sign. Every rule is the server's and the database's: this
+// screen only asks and shows.
 
-const ERRORS = ['missing', 'too_long', 'option', 'date', 'aadhaar', 'no_children', 'too_many', 'waiver_not_principal', 'waiver_reason', 'reason', 'withdrawn', 'no_number', 'not_a_pdf', 'too_large', 'storage_unavailable', 'not_a_png', 'shape', 'type'];
+const ERRORS = ['missing', 'too_long', 'option', 'date', 'aadhaar', 'no_children', 'too_many', 'waiver_not_principal', 'waiver_reason', 'reason', 'withdrawn', 'no_number', 'not_a_pdf', 'too_large', 'storage_unavailable', 'not_a_png', 'shape', 'type', 'fixed', 'unchanged', 'prefix', 'start', 'not_admin'];
 const NEEDS = ['admissionNo', 'studentName', 'fatherName', 'parentName', 'dob', 'lastClass', 'className', 'year', 'schoolName'];
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
@@ -45,6 +48,7 @@ export function CertificatesView() {
   const [regClass, setRegClass] = useState('');
   const [withdraw, setWithdraw] = useState<{ id: string; reason: string } | null>(null);
   const [clearWhite, setClearWhite] = useState(true);
+  const [numbering, setNumbering] = useState<{ prefix: string; startAt: string } | null>(null);
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<Note | null>(null);
 
@@ -119,6 +123,10 @@ export function CertificatesView() {
   const canIssue = (c: RosterChild) => !blockedByTc(c) && (c.cleared || (home.mayWaive && (waivers[c.student_id] ?? '').trim() !== ''));
   const chosen = (roster ?? []).filter((c) => selected.includes(c.student_id) && canIssue(c));
   const nameOf = (id: string) => roster?.find((c) => c.student_id === id)?.name ?? '';
+  const asked = CERT_TYPES.filter((ty) => home.clearance[ty]);
+  const notAsked = CERT_TYPES.filter((ty) => !home.clearance[ty]);
+  const num = home.numbering;
+  const numForm = numbering ?? { prefix: num.prefix ?? '', startAt: String(num.startAt) };
 
   const busyWith = async (fn: () => Promise<void>) => {
     setBusy(true);
@@ -212,8 +220,25 @@ export function CertificatesView() {
       }
     });
 
+  const saveNumbering = () =>
+    busyWith(async () => {
+      const body = await call('/api/app/documents/certificates/numbering', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prefix: numForm.prefix.trim() || null, startAt: numForm.startAt.trim() }) });
+      if (!body) return;
+      setNumbering(null);
+      setNote({ ok: true, text: t('crt.num.saved') });
+      await loadHome();
+    });
+  const nameSigner = (userId: string, named: boolean) =>
+    busyWith(async () => {
+      if (!(await call('/api/app/documents/certificates/signers', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId, named }) }))) return;
+      setNote({ ok: true, text: t('crt.signers.done') });
+      await loadHome();
+    });
+
   const clearanceBadge = (c: RosterChild) =>
-    c.cleared ? (
+    c.cleared_by === 'not_required' ? (
+      <Badge data-certificate-clearance="not_required">{t('crt.clear.notRequired')}</Badge>
+    ) : c.cleared ? (
       <Badge variant="success" data-certificate-clearance={c.cleared_by ?? ''}>{t(c.cleared_by === 'fee_override' ? 'crt.clear.override' : 'crt.clear.nothing')}</Badge>
     ) : (
       <Badge variant="warning" data-certificate-clearance="held">{t('crt.clear.owes', { amount: money(c.owed_minor) })}</Badge>
@@ -270,7 +295,16 @@ export function CertificatesView() {
           })}
         </div>
         {(type === 'bonafide' || type === 'study') && <p data-certificates-year className="rounded-md bg-off-white px-3 py-2">{home.year ? t('crt.year.printed', { year: home.year }) : t('crt.year.none')}</p>}
-        <p className="text-slate/70">{t(home.marks.signature ? 'crt.issue.signed' : 'crt.issue.unsigned', { name: home.marks.signedBy ?? '' })}</p>
+        <p data-certificates-signing={home.signing.iSign ? (home.signing.mySignature ? 'signed' : 'by-hand') : 'principal-by-hand'} className="text-slate/70">
+          {t(!home.signing.iSign ? 'crt.issue.unsigned' : home.signing.mySignature ? 'crt.issue.signed' : 'crt.issue.noSignatureYet')}
+        </p>
+        <div data-certificates-clearance className="flex flex-col gap-1 rounded-md bg-off-white px-3 py-2">
+          <p className="font-semibold">{t('crt.clearance.title')}</p>
+          {asked.length > 0 && <p>{t('crt.clearance.asked', { types: asked.map(typeName).join(', ') })}</p>}
+          {notAsked.length > 0 && <p>{t('crt.clearance.notAsked', { types: notAsked.map(typeName).join(', ') })}</p>}
+          {!home.clearance.transfer && <p className="text-slate/70">{t('crt.clearance.tcNote')}</p>}
+          <Link href="/app/settings" className="inline-flex min-h-[44px] items-center self-start text-sapphire underline">{t('crt.clearance.change')}</Link>
+        </div>
 
         {!classId ? (
           <p data-certificates-choose className="rounded-md bg-off-white px-3 py-2">{t('crt.roster.choose')}</p>
@@ -380,8 +414,15 @@ export function CertificatesView() {
                   <p className="text-slate/70">{t('crt.row.issued', { date: date(r.issued_on), name: r.issued_by ?? '' })}</p>
                   {r.purpose && <p className="break-words">{t('crt.row.purpose', { purpose: r.purpose })}</p>}
                   <p data-certificate-row-clearance={r.clearance} className="break-words">
-                    {r.clearance === 'waived' ? t('crt.row.waived', { amount: money(r.owed_minor), name: r.waived_by ?? '', reason: r.waiver_reason ?? '' }) : t(r.clearance === 'fee_override' ? 'crt.row.override' : 'crt.row.nothing')}
+                    {r.clearance === 'waived'
+                      ? t('crt.row.waived', { amount: money(r.owed_minor), name: r.waived_by ?? '', reason: r.waiver_reason ?? '' })
+                      : r.clearance === 'not_required'
+                        ? r.owed_minor > 0
+                          ? t('crt.row.notRequiredOwed', { amount: money(r.owed_minor) })
+                          : t('crt.row.notRequired')
+                        : t(r.clearance === 'fee_override' ? 'crt.row.override' : 'crt.row.nothing')}
                   </p>
+                  <p data-certificate-row-signed={r.signed_by ? 'signed' : 'by-hand'} className="text-slate/70">{r.signed_by ? t('crt.row.signed', { name: r.signed_by }) : t('crt.row.unsigned')}</p>
                   {r.withdrawn_at && <p data-certificate-withdrawn className="break-words font-semibold text-red-800">{t('crt.row.withdrawn', { date: date(r.withdrawn_at), name: r.withdrawn_by ?? '', reason: r.withdraw_reason ?? '' })}</p>}
                   {r.sent && <p data-certificate-sent={r.sent} className="text-slate/70">{r.sent === 'queued' || r.sent === 'sent' || r.sent === 'delivered' || r.sent === 'read' ? t('crt.row.sent') : HELD.includes(r.sent) ? t(`msg.held.${r.sent}` as MessageKey) : t('crt.row.sentOther')}</p>}
                   {!r.withdrawn_at && (live || home.mayWithdraw) && (
@@ -407,36 +448,90 @@ export function CertificatesView() {
         )}
       </section>
 
+      <section data-certificates-numbering={num.fixed ? 'fixed' : num.set ? 'open' : 'default'} className={CARD}>
+        <div>
+          <h2 className="text-base font-bold">{t('crt.num.title')}</h2>
+          <p className="text-slate/70">{t('crt.num.how')}</p>
+        </div>
+        <p className="rounded-md bg-off-white px-3 py-2">
+          {!num.set ? t('crt.num.default') : t(num.fixed ? 'crt.num.fixed' : 'crt.num.open', { name: num.setBy ?? '', date: num.setOn ? date(num.setOn) : '' })}
+        </p>
+        <p data-certificates-next-numbers className="break-words">{t('crt.num.next', { list: CERT_TYPES.map((ty) => `${typeName(ty)} ${num.next[ty]}`).join(' · ') })}</p>
+        {!num.fixed && (
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Input id="crt-num-prefix" label={t('crt.num.prefix')} helperText={t('crt.num.prefixHelp')} maxLength={12} autoCapitalize="characters" value={numForm.prefix} onChange={(e) => setNumbering({ ...numForm, prefix: e.target.value })} />
+            <Input id="crt-num-start" label={t('crt.num.start')} helperText={t('crt.num.startHelp')} type="number" inputMode="numeric" min={1} max={999999} value={numForm.startAt} onChange={(e) => setNumbering({ ...numForm, startAt: e.target.value })} />
+            <button type="button" data-certificates-numbering-save disabled={busy || numForm.startAt.trim() === ''} className={`${PRIMARY} self-start`} onClick={() => void saveNumbering()}>
+              {t('crt.num.save')}
+            </button>
+          </div>
+        )}
+      </section>
+
       <section data-certificates-marks className={CARD}>
         <div>
           <h2 className="text-base font-bold">{t('crt.marks.title')}</h2>
           <p className="text-slate/70">{t('crt.marks.how')}</p>
         </div>
-        {(['seal', 'signature'] as const).map((kind) => {
-          const have = kind === 'seal' ? home.marks.seal : home.marks.signature;
-          return (
-            <div key={kind} data-certificate-mark={kind} data-certificate-mark-kept={have ? 'yes' : 'no'} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
-              <p className="font-semibold">{t(`crt.marks.${kind}` as MessageKey)}</p>
-              <p className="text-slate/70">{have ? (kind === 'signature' ? t('crt.marks.signedBy', { name: home.marks.signedBy ?? '' }) : t('crt.marks.added')) : t(kind === 'seal' ? 'crt.marks.noSeal' : 'crt.marks.noSignature')}</p>
-              {home.mayKeepMarks && (
-                <div className="flex flex-wrap items-center gap-2">
-                  <label htmlFor={`crt-mark-${kind}`} className={`${TAP} inline-flex cursor-pointer items-center`}>{t(have ? 'crt.marks.replace' : 'crt.marks.upload')}</label>
-                  <input id={`crt-mark-${kind}`} type="file" accept="image/png,image/jpeg,image/webp" className="sr-only" disabled={busy} onChange={(e) => { void uploadMark(kind, e.target.files?.[0]); e.target.value = ''; }} />
-                  {have && <button type="button" data-certificate-mark-remove className={TAP} disabled={busy} onClick={() => void removeMark(kind)}>{t('crt.marks.remove')}</button>}
-                </div>
-              )}
+        <div data-certificate-mark="seal" data-certificate-mark-kept={home.marks.seal ? 'yes' : 'no'} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
+          <p className="font-semibold">{t('crt.marks.seal')}</p>
+          <p className="text-slate/70">{t(home.marks.seal ? 'crt.marks.added' : 'crt.marks.noSeal')}</p>
+          {home.mayKeepMarks ? (
+            <div className="flex flex-wrap items-center gap-2">
+              <label htmlFor="crt-mark-seal" className={`${TAP} inline-flex cursor-pointer items-center`}>{t(home.marks.seal ? 'crt.marks.replace' : 'crt.marks.upload')}</label>
+              <input id="crt-mark-seal" type="file" accept="image/png,image/jpeg,image/webp" className="sr-only" disabled={busy} onChange={(e) => { void uploadMark('seal', e.target.files?.[0]); e.target.value = ''; }} />
+              {home.marks.seal && <button type="button" data-certificate-mark-remove className={TAP} disabled={busy} onClick={() => void removeMark('seal')}>{t('crt.marks.remove')}</button>}
             </div>
-          );
-        })}
-        {home.mayKeepMarks ? (
+          ) : (
+            <p className="text-slate/70">{t('crt.marks.principalOnly')}</p>
+          )}
+        </div>
+        <div data-certificate-mark="signature" data-certificate-mark-kept={home.signing.mySignature ? 'yes' : 'no'} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
+          <p className="font-semibold">{t('crt.marks.signature')}</p>
+          {home.signing.iSign ? (
+            <>
+              <p className="text-slate/70">{t(home.signing.mySignature ? 'crt.marks.signedBy' : 'crt.marks.noSignature')}</p>
+              <div className="flex flex-wrap items-center gap-2">
+                <label htmlFor="crt-mark-signature" className={`${TAP} inline-flex cursor-pointer items-center`}>{t(home.signing.mySignature ? 'crt.marks.replace' : 'crt.marks.upload')}</label>
+                <input id="crt-mark-signature" type="file" accept="image/png,image/jpeg,image/webp" className="sr-only" disabled={busy} onChange={(e) => { void uploadMark('signature', e.target.files?.[0]); e.target.value = ''; }} />
+                {home.signing.mySignature && <button type="button" data-certificate-mark-remove className={TAP} disabled={busy} onClick={() => void removeMark('signature')}>{t('crt.marks.remove')}</button>}
+              </div>
+            </>
+          ) : (
+            <p data-certificate-not-signer className="text-slate/70">{t('crt.marks.notSigner')}</p>
+          )}
+        </div>
+        {(home.mayKeepMarks || home.signing.iSign) && (
           <label className="flex min-h-[44px] items-center gap-3">
             <input type="checkbox" className="h-6 w-6" checked={clearWhite} onChange={(e) => setClearWhite(e.target.checked)} />
             <span>{t('crt.marks.clearWhite')}</span>
           </label>
-        ) : (
-          <p className="text-slate/70">{t('crt.marks.principalOnly')}</p>
         )}
       </section>
+
+      {home.signing.signers && (
+        <section data-certificates-signers className={CARD}>
+          <div>
+            <h2 className="text-base font-bold">{t('crt.signers.title')}</h2>
+            <p className="text-slate/70">{t('crt.signers.how')}</p>
+          </div>
+          {home.signing.signers.length === 0 ? (
+            <p className="rounded-md bg-off-white px-3 py-2">{t('crt.signers.none')}</p>
+          ) : (
+            <ul className="flex flex-col gap-2">
+              {home.signing.signers.map((g) => (
+                <li key={g.user_id} data-certificate-signer={g.named ? 'named' : 'not-named'} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
+                  <p className="break-words font-semibold">{g.name}</p>
+                  <p className="text-slate/70">{[t(g.named ? 'crt.signers.named' : 'crt.signers.notNamed'), g.named ? t(g.hasSignature ? 'crt.signers.hasSignature' : 'crt.signers.noSignature') : ''].filter(Boolean).join(' · ')}</p>
+                  <button type="button" data-certificate-signer-toggle className={`${TAP} self-start`} disabled={busy} onClick={() => void nameSigner(g.user_id, !g.named)}>
+                    {t(g.named ? 'crt.signers.unname' : 'crt.signers.name', { name: g.name })}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      )}
     </div>
   );
 }

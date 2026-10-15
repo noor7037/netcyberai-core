@@ -209,6 +209,19 @@ export const ERROR_RULES = {
     en: () => 'That is a lot in a short time. Wait a few minutes, then try again.',
     hi: () => 'कम समय में बहुत बार हो गया। कुछ मिनट रुकें, फिर दोबारा कोशिश करें।',
   },
+  // C232 part A: the upload check (src/lib/privacy/upload-check.ts). Never an Aadhaar card or number in a stored file.
+  upload_aadhaar_number: {
+    en: () => 'This file shows a number written like an Aadhaar number, and NetCyberAI never keeps one. Cover the number, or choose a copy without it, then upload again.',
+    hi: () => 'इस फ़ाइल में आधार नंबर जैसा नंबर दिख रहा है, और NetCyberAI कभी आधार नंबर नहीं रखता। नंबर ढक दें, या बिना नंबर वाली प्रति चुनें, फिर दोबारा अपलोड करें।',
+  },
+  upload_aadhaar_card: {
+    en: () => 'This file reads as an Aadhaar card, and NetCyberAI never keeps one. Upload a different document instead.',
+    hi: () => 'यह फ़ाइल आधार कार्ड लगती है, और NetCyberAI कभी आधार कार्ड नहीं रखता। इसकी जगह कोई दूसरा दस्तावेज़ अपलोड करें।',
+  },
+  upload_unreadable: {
+    en: () => 'The words in this file could not be read, so it could not be checked for an Aadhaar number. Upload a clearer photo, or a PDF without a password.',
+    hi: () => 'इस फ़ाइल के शब्द पढ़े नहीं जा सके, इसलिए इसमें आधार नंबर की जाँच नहीं हो पाई। साफ़ फ़ोटो अपलोड करें, या बिना पासवर्ड वाली PDF।',
+  },
 } as const;
 export type ErrorRule = keyof typeof ERROR_RULES;
 

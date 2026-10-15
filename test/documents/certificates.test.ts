@@ -59,7 +59,7 @@ describe('the words and the rules', () => {
 
   it('what a certificate prints comes from the record; a field the studio requires and the record lacks stops it', () => {
     const child: ChildRecord = { name: 'Riya Sharma', admissionNo: 'A-7', dob: '2015-06-02', gender: 'female', status: 'active', className: '5-A', guardians: [{ name: 'Sunita Sharma', relation: 'Mother' }, { name: 'Raj Sharma', relation: 'Father' }] };
-    const ctx = { schoolName: 'School A', address: null, year: '2026-27', signName: 'Priya Principal', owesNothing: false };
+    const ctx = { schoolName: 'School A', address: null, year: '2026-27', signer: { name: 'Priya Principal', title: 'Principal' as const }, owesNothing: false };
     const tc = composePrinted('transfer', child, { reason: 'Moving to Pune' }, ctx);
     expect(tc).toEqual({ ok: true, printed: { schoolName: 'School A', studentName: 'Riya Sharma', admissionNo: 'A-7', signName: 'Priya Principal', signTitle: 'Principal', fatherName: 'Raj Sharma', motherName: 'Sunita Sharma', dob: '2015-06-02', gender: 'Female', lastClass: '5-A', dues: 'No', reason: 'Moving to Pune' } });
     const bona = composePrinted('bonafide', { ...child, status: 'transferred' }, { purpose: 'Opening a bank account' }, ctx);
@@ -154,6 +154,9 @@ describe('on the real schema', () => {
       insert into parent_student_map (school_id, parent_id, student_id) values ('${A}', '${G_ASHA}', '${ASHA}'), ('${A}', '${G_BINA}', '${BINA}'), ('${A}', '${G_ASHA}', '${CHETAN}'), ('${A}', '${G_ASHA}', '${DEV}'), ('${A}', '${G_ASHA}', '${EKTA}'), ('${A}', '${G_ASHA}', '${FARAH}'), ('${B}', '${G_B}', '${B_KID}');
       insert into fees_ledger (school_id, student_id, amount_minor, due_date, status) values ('${A}', '${BINA}', 450000, '2026-07-10', 'overdue'), ('${A}', '${CHETAN}', 300000, '2026-07-10', 'overdue'), ('${A}', '${DEV}', 200000, '2026-07-10', 'partial'), ('${A}', '${FARAH}', 100000, '2026-07-10', 'paid');
       insert into fee_clearance_overrides (school_id, student_id, owed_minor, reason, decided_by) values ('${A}', '${CHETAN}', 300000, 'Leaving for another state; the family will pay later.', '${PRINCIPAL}');
+      -- School A has switched the fee clearance on for the transfer certificate (off by default, C232 part A), so the
+      -- C228 rules below are proven on the TC; test/documents/closeout.test.ts proves the setting itself.
+      insert into school_settings (school_id, module_id, schema_version, setting_values, revision) values ('${A}', 'documents', 1, '{"clearance_transfer": true}', 1);
     `);
     // Dev has paid part; Farah has paid all.
     const fee = async (s: string) => (await db.pg.query(`select fee_id from fees_ledger where student_id = $1`, [s])).rows[0].fee_id;
@@ -233,7 +236,7 @@ describe('on the real schema', () => {
     // Nobody changes a number, the child or the words, and nothing is ever deleted.
     await expect(as(principal, (c) => c.query(`update certificates_issued set seq = 9 where certificate_id = $1`, [ids.chetanTc]))).rejects.toThrow(/never changes/);
     await expect(as(principal, (c) => c.query(`update certificates_issued set printed = '{"studentName":"Someone Else"}' where certificate_id = $1`, [ids.chetanTc]))).rejects.toThrow(/never changes/);
-    await expect(as(principal, (c) => c.query(`update certificates_issued set number = 'TC/0099' where certificate_id = $1`, [ids.chetanTc]))).rejects.toThrow(/can only be updated to DEFAULT/);
+    await expect(as(principal, (c) => c.query(`update certificates_issued set number = 'TC/0099' where certificate_id = $1`, [ids.chetanTc]))).rejects.toThrow(/never changes/); // stored as given since C232 part A
     await expect(as(principal, (c) => c.query(`delete from certificates_issued where certificate_id = $1`, [ids.chetanTc]))).rejects.toThrow(/permission denied/);
     // (That the caller never chooses the number is proven in 'review of C228' below.)
   });
@@ -343,9 +346,11 @@ describe('on the real schema', () => {
     (globalThis as { files?: MemoryFileStorage }).files = files;
   });
 
-  it('the seal and the signature: kept by the principal, read by the office to draw, nobody else', async () => {
+  it('the seal is the principal’s; a signature is its own person’s, drawn only on what that person signed (C232 part A)', async () => {
     const files = new MemoryFileStorage();
     expect(await as(admin, (c) => saveMark(c, files, actor(admin), 'seal', png(300, 300)))).toEqual({ ok: false, reason: 'not_allowed' });
+    // The school admin is not named to sign: no signature of theirs is kept.
+    expect(await as(admin, (c) => saveMark(c, files, actor(admin), 'signature', png(400, 100)))).toEqual({ ok: false, reason: 'not_allowed' });
     expect(await as(principal, (c) => saveMark(c, files, actor(principal), 'seal', PDF))).toEqual({ ok: false, reason: 'not_a_png' });
     expect(await as(principal, (c) => saveMark(c, files, actor(principal), 'stamp', png(3, 3)))).toEqual({ ok: false, reason: 'kind' });
     expect(await as(principal, (c) => saveMark(c, files, actor(principal), 'signature', png(2000, 10)))).toEqual({ ok: false, reason: 'shape' });
@@ -355,20 +360,34 @@ describe('on the real schema', () => {
     expect(files.files.size).toBe(2); // the old signature's file is gone
     await expect(as(admin, (c) => c.query(`insert into certificate_marks (school_id, kind, storage_key, size_bytes, aspect, uploaded_by) values ($1, 'seal', $2, 10, 1, $3) on conflict (school_id, kind) do update set uploaded_by = excluded.uploaded_by`, [A, `${A}/certificate-marks/seal/x.png`, ADMIN]))).rejects.toThrow(/row-level security/);
     await expect(as(principal, (c) => c.query(`insert into certificate_marks (school_id, kind, storage_key, size_bytes, aspect, uploaded_by) values ($1, 'seal', $2, 10, 1, $3) on conflict (school_id, kind) do update set storage_key = excluded.storage_key`, [A, `${B}/certificate-marks/seal/x.png`, PRINCIPAL]))).rejects.toThrow(/check constraint/);
-    const marks = await as(admin, (c) => markImages(c, A, storedReader(files)));
-    expect(marks.unavailable).toEqual([]);
-    expect(marks.seal?.aspect).toBe(1);
-    expect(marks.signature?.aspect).toBe(5);
-    expect(marks.seal?.src.startsWith('data:image/png;base64,')).toBe(true);
-    expect((await as(admin, (c) => certificateHome(c, actor(admin), TODAY)))?.marks).toEqual({ seal: true, signature: true, signedBy: 'Priya Principal' });
-    // A certificate issued now prints the signer's name under the signature.
-    const study = await issue(admin, 'study', [ASHA], { purpose: 'A library card' });
-    expect(study.ok && (await row(study.issued[0].certificateId)).printed).toMatchObject({ signName: 'Priya Principal', status: 'is studying', year: '2026-27' });
+    // Nobody keeps another person's signature, in the database either.
+    await expect(as(admin, (c) => c.query(`insert into certificate_signatures (school_id, user_id, storage_key, size_bytes, aspect) values ($1, $2, $3, 10, 1)`, [A, PRINCIPAL, `${A}/certificate-marks/signature/x.png`]))).rejects.toThrow(/row-level security|its own person/);
+    await expect(as(admin, (c) => c.query(`insert into certificate_signatures (school_id, user_id, storage_key, size_bytes, aspect) values ($1, $2, $3, 10, 1)`, [A, ADMIN, `${A}/certificate-marks/signature/y.png`]))).rejects.toThrow(/names, signs certificates/);
+    const sealOnly = await as(admin, (c) => markImages(c, A, storedReader(files)));
+    expect(sealOnly).toMatchObject({ unavailable: [], signatures: {} });
+    expect(sealOnly.seal?.aspect).toBe(1);
+    expect(sealOnly.seal?.src.startsWith('data:image/png;base64,')).toBe(true);
+    expect(await as(admin, (c) => certificateHome(c, actor(admin), TODAY))).toMatchObject({ marks: { seal: true }, signing: { iSign: false, mySignature: false, principal: false, signers: null } });
+    expect((await as(principal, (c) => certificateHome(c, actor(principal), TODAY)))?.signing).toEqual({ iSign: true, mySignature: true, principal: true, signers: [{ user_id: ADMIN, name: 'Asif Admin', named: false, hasSignature: false }] });
+    // The school admin's certificate is unsigned: a line for the principal's hand, the title under it, no name.
+    const byAdmin = await issue(admin, 'study', [ASHA], { purpose: 'A library card' });
+    if (!byAdmin.ok) throw new Error(byAdmin.reason);
+    const adminRow = await row(byAdmin.issued[0].certificateId);
+    expect(adminRow).toMatchObject({ signed_by: null, printed: { signTitle: 'Principal', status: 'is studying', year: '2026-27' } });
+    expect(adminRow.printed.signName).toBeUndefined();
+    // The principal's own carries the principal's signature and name.
+    const byPrincipal = await issue(principal, 'study', [FARAH], { purpose: 'A bus pass' });
+    if (!byPrincipal.ok) throw new Error(byPrincipal.reason);
+    expect(await row(byPrincipal.issued[0].certificateId)).toMatchObject({ signed_by: PRINCIPAL, printed: { signName: 'Priya Principal', signTitle: 'Principal' } });
+    // The database chooses the signature drawn on each: the principal's on the principal's only.
+    const drawn = await as(admin, (c) => markImages(c, A, storedReader(files), [byAdmin.issued[0].certificateId, byPrincipal.issued[0].certificateId]));
+    expect(Object.keys(drawn.signatures ?? {})).toEqual([byPrincipal.issued[0].certificateId]);
+    expect(drawn.signatures?.[byPrincipal.issued[0].certificateId]?.aspect).toBe(5);
     expect(await as(admin, (c) => removeMark(c, files, actor(admin), 'seal'))).toEqual({ ok: false, reason: 'not_allowed' });
     expect(await as(principal, (c) => removeMark(c, files, actor(principal), 'seal'))).toEqual({ ok: true });
     expect(files.files.size).toBe(1);
     // A file the storage cannot give now leaves the certificate drawn without it, and says so.
-    expect((await as(admin, (c) => markImages(c, A, async () => null))).unavailable).toEqual(['signature']);
+    expect((await as(admin, (c) => markImages(c, A, async () => null, [byPrincipal.issued[0].certificateId]))).unavailable).toEqual(['signature']);
   });
 
   it('a batch for a class prints as one file in roll order; a withdrawn certificate is not printed again', async () => {
@@ -459,8 +478,8 @@ describe('on the real schema', () => {
   it('review of C228: after 9999 comes 10000: lpad never cuts a number into one already printed', async () => {
     // The school's bonafide series is put at 9999 by one setup row (the trigger held off for it), withdrawn so it is no duplicate.
     await db.pg.exec(`set session_replication_role = replica;
-      insert into certificates_issued (school_id, cert_type, seq, student_id, issued_on, issued_by, purpose, printed, clearance, verify_token, withdrawn_at, withdrawn_by, withdraw_reason)
-      values ('${B}', 'bonafide', 9999, '${B_KID}', '2026-01-01', '${B_PRINCIPAL}', 'Setup row', '{}', 'nothing_owed', '${'x'.repeat(32)}', now(), '${B_PRINCIPAL}', 'Setup row');
+      insert into certificates_issued (school_id, cert_type, seq, number, student_id, issued_on, issued_by, purpose, printed, clearance, verify_token, withdrawn_at, withdrawn_by, withdraw_reason)
+      values ('${B}', 'bonafide', 9999, 'BC/9999', '${B_KID}', '2026-01-01', '${B_PRINCIPAL}', 'Setup row', '{}', 'nothing_owed', '${'x'.repeat(32)}', now(), '${B_PRINCIPAL}', 'Setup row');
       set session_replication_role = origin;`);
     const made = await as<{ rows: { number: string }[] }>(bPrincipal, (c) => c.query(`insert into certificates_issued (school_id, cert_type, seq, student_id, issued_by, purpose, printed) values ($1, 'bonafide', 1, $2, $3, 'Bank account', '{}') returning number`, [B, B_KID, B_PRINCIPAL]));
     expect(made.rows[0].number).toBe('BC/10000');

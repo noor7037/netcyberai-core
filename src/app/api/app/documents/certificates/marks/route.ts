@@ -4,7 +4,8 @@ import { MARK_MAX_BYTES, removeMark, saveMark } from '@/lib/documents/certificat
 import { certificateRefusal } from '@/lib/documents/refusal';
 import { supabaseFileStorage } from '@/lib/storage/supabase-file-storage';
 
-// The school's seal and the principal's signature, drawn on every certificate (C228). The principal only.
+// The school's seal (the principal keeps it, C228) and this person's own signature (C232 part A: the principal, or a
+// school admin the principal named as a signatory; drawn only on the certificates they sign).
 //   POST (multipart: "kind" seal | signature, "file" a PNG prepared on this device)   keep it, replacing the old one
 //   DELETE ?kind=seal | signature                                                     remove it
 export async function POST(req: NextRequest) {

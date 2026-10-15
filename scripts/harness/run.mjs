@@ -4396,6 +4396,8 @@ const VERIFY_TOKEN = 'harness-10e-verify-token-0000001';
 const clearCertificates = async () => {
   await db.pg.exec(`set session_replication_role = replica;
     delete from certificate_copies; delete from certificates_issued; delete from certificate_marks;
+    delete from certificate_signatures; delete from certificate_signatories; delete from certificate_numbering;
+    delete from school_setting_changes where module_id = 'documents'; delete from school_settings where module_id = 'documents';
     delete from fee_clearance_overrides where reason = 'Harness 10e: let through at the fee counter.';
     delete from audit_log where event_action like 'certificate.%';
     set session_replication_role = origin;`);
@@ -4419,9 +4421,17 @@ const verifyAsAStranger = async (page, token) => {
   }
 };
 let certificatesSeen = null;
+let aaravFeeStatus = [];
 const certificatesScreen = async (page) => {
   await clearCertificates();
+  // Aarav owes his fee: the seed marks it paid, and since C232 part A a fee stored as paid owes nothing (the fees
+  // summary's own rule), so it is made unpaid for this screen and put back after it.
+  aaravFeeStatus = (await db.pg.query(`select fee_id, status::text as status from fees_ledger where school_id = $1 and student_id = $2`, [SCHOOL, CERT_AARAV])).rows;
+  await db.pg.query(`update fees_ledger set status = 'pending' where school_id = $1 and student_id = $2`, [SCHOOL, CERT_AARAV]);
   await db.pg.query(`insert into fee_clearance_overrides (school_id, student_id, owed_minor, reason, decided_by) values ($1, $2, 450000, 'Harness 10e: let through at the fee counter.', $3)`, [SCHOOL, CERT_AARAV, PEOPLE.principal.sub]);
+  // The school has switched the fee clearance on for the TC (off by default, C232 part A), so the screen shows the hold
+  // and the principal's waiver.
+  await db.pg.query(`insert into school_settings (school_id, module_id, schema_version, setting_values, revision) values ($1, 'documents', 1, '{"clearance_transfer": true}', 1)`, [SCHOOL]);
   await page.reload({ waitUntil: 'networkidle' });
   await page.locator('[data-certificates-issue]').waitFor({ timeout: 20000 });
   await page.selectOption('#crt-type', 'transfer');
@@ -4464,6 +4474,7 @@ const certificatesScreenDone = async () => {
   );
   const audited = (await db.pg.query(`select string_agg(event_action, ',' order by audit_id) as a from audit_log where event_action like 'certificate.%'`)).rows[0].a;
   await clearCertificates();
+  for (const f of aaravFeeStatus) await db.pg.query(`update fees_ledger set status = $3::fee_status where school_id = $1 and fee_id = $2`, [SCHOOL, f.fee_id, f.status]);
   const p = PEOPLE.principal.sub;
   const want = [
     { number: 'TC/0001', student_id: CERT_AARAV, clearance: 'fee_override', owed: 450000, waived_by: null, waiver_reason: null, withdrawn_by: p, withdraw_reason: CERT_WITHDRAW, issued_by: p, name: 'Aarav Example A' },
@@ -4472,8 +4483,12 @@ const certificatesScreenDone = async () => {
   if (JSON.stringify(rows) !== JSON.stringify(want)) throw new Error(`the certificates in the database: ${JSON.stringify(rows)}`);
   if (audited !== 'certificate.issued,certificate.issued,certificate.withdrawn') throw new Error(`the certificates' audit rows: ${audited}`);
   const s = certificatesSeen;
-  if (s.button !== 'Issue 3 certificates') throw new Error(`the issue button said: ${s.button}`);
-  if (s.incomplete.length !== 1 || !s.incomplete[0].startsWith('Kiara Example B: the record has no father’s or guardian’s name.')) throw new Error(`the incomplete child: ${JSON.stringify(s.incomplete)}`);
+  // Since C232 part A a fee the seed stores as paid owes nothing, so five children of 5-A are clear (Aarav is let
+  // through, Meera waived): seven can be issued, and the five whose record has no father's or guardian's name are listed
+  // as incomplete, not issued.
+  if (s.button !== 'Issue 7 certificates') throw new Error(`the issue button said: ${s.button}`);
+  const incompleteNames = ['Vihaan Example A', 'Anaya Example A', 'Kabir Example B', 'Ishaan Example B', 'Kiara Example B'];
+  if (s.incomplete.length !== 5 || !s.incomplete.every((line, i) => line.startsWith(`${incompleteNames[i]}: the record has no father’s or guardian’s name.`))) throw new Error(`the incomplete children: ${JSON.stringify(s.incomplete)}`);
   if (JSON.stringify(s.pdf) !== JSON.stringify({ name: 'certificates.pdf', head: '%PDF-', pages: 2 })) throw new Error(`the batch PDF: ${JSON.stringify(s.pdf)}`);
   if (s.rows !== 'TC/0002:valid,TC/0001:withdrawn') throw new Error(`the register on the screen: ${s.rows}`);
   for (const [seen, state, name] of [[s.valid, 'valid', 'Meera A.'], [s.withdrawn, 'withdrawn', 'Aarav A.']]) {
@@ -4489,8 +4504,8 @@ const verifyScreen = async (page) => {
   await db.pg.exec('set session_replication_role = replica');
   try {
     await db.pg.query(
-      `insert into certificates_issued (school_id, cert_type, seq, student_id, class_id, issued_on, issued_by, printed, clearance, owed_minor, verify_token)
-       values ($1, 'transfer', 1, $2, $3, ${TODAY_SQL}, $4, '{"studentName": "Aarav Example A", "dob": "2015-04-18", "fatherName": "Rajesh Example", "lastClass": "5-A"}', 'nothing_owed', 0, $5)`,
+      `insert into certificates_issued (school_id, cert_type, seq, number, student_id, class_id, issued_on, issued_by, printed, clearance, owed_minor, verify_token)
+       values ($1, 'transfer', 1, 'TC/0001', $2, $3, ${TODAY_SQL}, $4, '{"studentName": "Aarav Example A", "dob": "2015-04-18", "fatherName": "Rajesh Example", "lastClass": "5-A"}', 'nothing_owed', 0, $5)`,
       [SCHOOL, CERT_AARAV, CLASS_5A, PEOPLE.principal.sub, VERIFY_TOKEN]
     );
   } finally {

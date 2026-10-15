@@ -422,6 +422,13 @@ ALLOWED_PERMISSIVE = (
         # C219: co-scholastic grades. Tenant isolation, narrowed by the RESTRICTIVE policies required below.
         ("co_scholastic_grades", "co_scholastic_grades_tenant_isolation"),
         # c219 end
+        # c232a begin
+        # C232 part A: the school's certificate numbering, the school admins the principal names to sign, and each
+        # signer's own signature. Tenant isolation only; narrowed to the office by the RESTRICTIVE policies below.
+        ("certificate_numbering", "certificate_numbering_tenant_isolation"),
+        ("certificate_signatories", "certificate_signatories_tenant_isolation"),
+        ("certificate_signatures", "certificate_signatures_tenant_isolation"),
+        # c232a end
     }
 )
 
@@ -785,6 +792,21 @@ REQUIRED_RESTRICTIVE = {
     ("co_scholastic_grades", "co_scholastic_grades_changed"),
     ("co_scholastic_grades", "co_scholastic_grades_cleared"),
     # c219 end
+    # c232a begin
+    # C232 part A: the numbering is set by the office in its own name; only the principal names or un-names a
+    # signatory; a signature is kept, replaced and removed by its own person (the principal's un-naming takes an
+    # admin's with it).
+    ("certificate_numbering", "certificate_numbering_office"),
+    ("certificate_numbering", "certificate_numbering_set_as_self"),
+    ("certificate_numbering", "certificate_numbering_changed_as_self"),
+    ("certificate_signatories", "certificate_signatories_office"),
+    ("certificate_signatories", "certificate_signatories_named_by_principal"),
+    ("certificate_signatories", "certificate_signatories_unnamed_by_principal"),
+    ("certificate_signatures", "certificate_signatures_office"),
+    ("certificate_signatures", "certificate_signatures_kept_as_self"),
+    ("certificate_signatures", "certificate_signatures_replaced_as_self"),
+    ("certificate_signatures", "certificate_signatures_removed"),
+    # c232a end
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)

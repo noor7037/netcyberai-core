@@ -1,4 +1,5 @@
 import type { PoolClient } from 'pg';
+import { maskLinks } from '@/lib/documents/copy-link';
 import { pipelineCounts } from '@/lib/jobs/pg-queue';
 import { JOB_STATUSES, type JobStatus } from '@/lib/jobs/types';
 import { BACKLOG_AFTER_MINUTES, healthStatus, jobsHealth } from '@/lib/observability/health';
@@ -71,14 +72,16 @@ const quoted = (whole: string, open?: string, inside?: string, close?: string) =
 //     looks like, however it is spaced, so a long amount or an address made of numbers goes with it;
 //   - whatever stands in quotation marks goes ("…", “…”, '…', ‘…’ or `…`), unless it is a name in code with an
 //     underscore in it ("class_notice", a constraint): an error that quotes what it choked on is quoting
-//     somebody's data. A table or a column named in one word is cut with the rest.
+//     somebody's data. A table or a column named in one word is cut with the rest;
+//   - a web address keeps its domain only, then "…" (maskLinks, C232 part A): a provider that quotes a message's
+//     values quotes the family's certificate link with them, and its key opens the certificate.
 // Cutting too much is the safe side. What it cannot do is tell a name written without quotation marks from any
 // other word, or a value somebody typed in exactly the shape of a name in code. Names are kept out one step
 // earlier: the loader reads no column that holds one, and these texts are written by code and by providers, not
 // typed by a family.
 export function cutContacts(text: string | null | undefined): string | null {
   if (typeof text !== 'string') return null;
-  const line = QUOTATIONS.reduce((soFar, marks) => soFar.replace(marks, quoted), redactText(text.split('\n')[0].trim()));
+  const line = QUOTATIONS.reduce((soFar, marks) => soFar.replace(marks, quoted), maskLinks(redactText(text.split('\n')[0].trim())));
   const cut = line
     .split(KEEP)
     .map((part, i) => (i % 2 === 1 ? part : part.replace(MESSAGE_ID, '<message id>').replace(PHONE_LIKE, '<number>')))

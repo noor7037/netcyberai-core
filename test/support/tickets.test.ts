@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, it } from 'vitest';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { randomUUID } from 'crypto';
 import { createTestDb, type TestDb } from '../db/pglite-harness';
 import { NextRequest } from 'next/server';
@@ -12,6 +12,11 @@ import { createPgJobQueue } from '@/lib/jobs/pg-queue';
 import { runJobs } from '@/lib/jobs/runner';
 import { POST as uploadRoute } from '@/app/api/app/tickets/[ticketId]/attachments/route';
 import { GET as queueRoute } from '@/app/api/control/tickets/route';
+
+// The upload check (C232 part A) reads a picture with the capture OCR; tesseract is never run in a test. What it
+// "reads" is set here: a page without words unless a test says otherwise.
+const ocr = vi.hoisted(() => ({ text: '' }));
+vi.mock('@/lib/capture/ocr', async (original) => ({ ...(await original<typeof import('@/lib/capture/ocr')>()), runOcr: async () => ({ rawText: ocr.text, words: [] }) }));
 
 // Raise Ticket (C126) on real Postgres (PGlite): the status machine, who
 // sees which ticket, the audit trail and screenshots. School-side calls run
@@ -309,6 +314,11 @@ describe('screenshots', () => {
     const add = (bytes: Uint8Array, s = own, tx = as(teacher)) => addTicketScreenshot(tx, s, id, { name: 'a.png', bytes }, actor);
     const rows = async () => (await db.query(`select count(*)::int n from support_ticket_attachments where ticket_id = $1`, [id])).rows[0].n;
     expect(await add(new TextEncoder().encode('<svg xmlns="http://www.w3.org/2000/svg"/>'))).toMatchObject({ ok: false, status: 400 });
+    // A screenshot that shows an Aadhaar number is refused before it is stored (C232 part A: the founder reads these).
+    ocr.text = 'Student 1234 5678 9012';
+    expect(await add(PNG)).toMatchObject({ ok: false, status: 400, code: 'upload_aadhaar_number' });
+    ocr.text = '';
+    expect(own.files.size).toBe(0);
     expect(await add(new Uint8Array(0))).toMatchObject({ ok: false, status: 400 });
     const big = new Uint8Array(4 * 1024 * 1024 + 1);
     big.set(PNG);
