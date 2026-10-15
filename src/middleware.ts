@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyAccessToken } from '@/lib/auth/jwt';
-import { canAccessControl, canAccessApp } from '@/lib/auth/guards';
+import { canAccessControl, canAccessApp, canAccessFamily } from '@/lib/auth/guards';
 import { ACCESS_COOKIE, REFRESH_COOKIE } from '@/lib/auth/cookies';
-import type { StaffRole } from '@/lib/auth/types';
+import type { SessionRole } from '@/lib/auth/types';
 import { REQUEST_ID_HEADER, requestIdFrom } from '@/lib/observability/request-id';
 
 // Edge-runtime gate: verifies the signed access-token JWT (jose is
@@ -15,7 +15,7 @@ import { REQUEST_ID_HEADER, requestIdFrom } from '@/lib/observability/request-id
 // A request whose access token is merely expired is retried once
 // through /api/auth/refresh (a real Node route, real DB check) before
 // this falls back to redirecting to /login.
-type GateClaims = { role: StaffRole; schoolId: string | null };
+type GateClaims = { role: SessionRole; schoolId: string | null };
 
 // Every request through here also gets a request id (C111): passed to the
 // route as x-request-id and returned in the response.
@@ -36,7 +36,9 @@ async function gate(req: NextRequest, requestId: string): Promise<NextResponse> 
   const { pathname } = req.nextUrl;
   const isControl = pathname.startsWith('/control');
   const isApp = pathname.startsWith('/app');
-  if (!isControl && !isApp) return next(req, requestId);
+  // The family app (C230-D): a parent's session only.
+  const isFamily = pathname === '/family' || pathname.startsWith('/family/');
+  if (!isControl && !isApp && !isFamily) return next(req, requestId);
 
   const accessToken = req.cookies.get(ACCESS_COOKIE)?.value;
   let claims: GateClaims | null = accessToken ? await verifyAccessToken(accessToken) : null;
@@ -48,7 +50,7 @@ async function gate(req: NextRequest, requestId: string): Promise<NextResponse> 
       headers: { cookie: req.headers.get('cookie') ?? '' },
     });
     if (refreshRes.ok) {
-      const body = (await refreshRes.json()) as { role: StaffRole; schoolId: string | null };
+      const body = (await refreshRes.json()) as { role: SessionRole; schoolId: string | null };
       refreshedSetCookie = refreshRes.headers.get('set-cookie');
       claims = { role: body.role, schoolId: body.schoolId };
     }
@@ -58,8 +60,11 @@ async function gate(req: NextRequest, requestId: string): Promise<NextResponse> 
     return NextResponse.redirect(new URL('/login', req.url));
   }
 
-  const allowed = isControl ? canAccessControl(claims) : canAccessApp(claims);
+  const allowed = isControl ? canAccessControl(claims) : isApp ? canAccessApp(claims) : canAccessFamily(claims);
   if (!allowed) {
+    // A parent who opens a staff address is taken to the family app; staff who open the family app, to their own.
+    if (claims.role === 'parent') return NextResponse.redirect(new URL('/family', req.url));
+    if (isFamily) return NextResponse.redirect(new URL(claims.role === 'super_admin' ? '/control' : '/app', req.url));
     return NextResponse.json({ error: 'forbidden' }, { status: 403 });
   }
 
@@ -73,5 +78,5 @@ async function gate(req: NextRequest, requestId: string): Promise<NextResponse> 
 export const config = {
   // The gated shells, plus API routes and sign-in for request ids. Public
   // marketing pages are not matched: they stay static and untouched.
-  matcher: ['/control/:path*', '/app/:path*', '/api/:path*', '/login'],
+  matcher: ['/control/:path*', '/app/:path*', '/family/:path*', '/api/:path*', '/login'],
 };

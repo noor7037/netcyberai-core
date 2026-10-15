@@ -55,13 +55,14 @@ describe('module icons', () => {
   });
 });
 
-describe('KPI tile v2', () => {
+describe('KPI tile v3 (C230-D)', () => {
   const tile = { kind: 'kpi' as const, id: 'a', label: 'Attendance today', value: 94.5, unit: 'percent' as const, drillHref: '/app/attendance', trend: { direction: 'up' as const, delta: 1.5, unit: 'percent' as const, comparedTo: 'the day before', good: 'up' as const } };
 
-  it('is a tinted, linked tile with an icon chip, a trend in words and a sparkline; the value stays slate', () => {
+  it('is a white, linked card with a bar in its tone, an icon chip, a trend in words and a sparkline; the value stays slate', () => {
     const html = render(h(KpiTile, { tile, tone: 'royal', icon: 'attendance', spark: [90, 92, null, 94.5] }));
     expect(html).toMatch(/^<a [^>]*href="\/app\/attendance"/);
-    expect(html).toContain('bg-royal/10');
+    expect(html).toContain('bg-white');
+    expect(html).toContain(`top-0 h-1 ${TOKEN_TONES.royal.bar}`); // the bar in the tile's tone
     expect(html).toContain(TOKEN_TONES.royal.solid); // the icon chip
     expect(html).toContain('text-3xl font-extrabold tabular-nums text-slate');
     expect(html).toContain('1.5 points vs the day before');
@@ -207,8 +208,8 @@ describe('the live dashboards', () => {
     expect(html).toContain('₹21,500');
     expect(html).toContain('2 classes have no attendance saved today');
     expect(html).toContain('17 fee entries are overdue');
-    // "Why this?" on every tile, every attention item and every chart.
-    expect((html.match(/Why this\?/g) ?? []).length).toBe(model.groups.reduce((n, g) => n + g.tiles.length, 0) + model.attention.length + model.charts.length);
+    // "Why this?" on every tile, every attention item and every chart: an info button whose words stay for screen readers (C230-D).
+    expect((html.match(/class="sr-only">Why this\?</g) ?? []).length).toBe(model.groups.reduce((n, g) => n + g.tiles.length, 0) + model.attention.length + model.charts.length);
     expect([model.groups.reduce((n, g) => n + g.tiles.length, 0), model.attention.length, model.charts.length]).toEqual([18, 4, 5]);
     expect(html).toContain('Attendance today: 400 of 412 students marked');
     // The fees chart is two facts side by side (not yet due, overdue): its title adds nothing up.

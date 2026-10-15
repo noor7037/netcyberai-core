@@ -9,7 +9,7 @@ import { outcomeResponse, authErrorResponse, rememberDevice } from '@/lib/auth/o
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const code = normalizeCode(body?.code);
-  const email = await resolveIdentifier(body?.identifier ?? body?.email);
+  const email = await resolveIdentifier(body?.identifier ?? body?.email, { forEmail: true });
   if (!email || !code) {
     return NextResponse.json({ error: 'code_invalid' }, { status: 400 });
   }

@@ -5,7 +5,7 @@ import { newRefreshToken, hashToken } from './hash';
 import { AuthError } from './errors';
 import { AUTHENTICATOR_SETUP_TTL_SECONDS } from './cookies';
 import { authenticatorStepAtSignIn, newestVerifiedTotp } from './authenticator-rules';
-import type { LoginOutcome, MembershipRow, SessionClaims, StaffRole } from './types';
+import type { LoginOutcome, MembershipRow, SessionClaims, SessionRole } from './types';
 
 const REFRESH_TOKEN_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days; not specified numerically by PRD Sec2.3, a stated operational default
 
@@ -42,7 +42,7 @@ async function fetchActiveMemberships(userId: string): Promise<MembershipRow[]> 
       membershipId: r.membership_id,
       schoolId: r.school_id,
       schoolName: r.school_name,
-      role: r.role as StaffRole,
+      role: r.role as SessionRole,
       isActive: r.is_active,
     }));
   });
@@ -66,7 +66,7 @@ async function fetchOwnedActiveMembership(userId: string, membershipId: string):
       membershipId: rows[0].membership_id,
       schoolId: rows[0].school_id,
       schoolName: rows[0].school_name,
-      role: rows[0].role as StaffRole,
+      role: rows[0].role as SessionRole,
       isActive: rows[0].is_active,
     };
   });
@@ -74,7 +74,7 @@ async function fetchOwnedActiveMembership(userId: string, membershipId: string):
 
 async function mintSession(
   userId: string,
-  role: StaffRole,
+  role: SessionRole,
   schoolId: string | null,
   membershipId: string | null,
   tokenVersion: number,

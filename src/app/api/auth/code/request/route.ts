@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'an email or mobile number and a purpose (login or reset) are required' }, { status: 400 });
   }
   try {
-    const email = await resolveIdentifier(raw);
+    const email = await resolveIdentifier(raw, { forEmail: true });
     if (email) await requestEmailCode(email, purpose, `${req.nextUrl.origin}/login`);
     return NextResponse.json({ status: 'sent' });
   } catch (err) {

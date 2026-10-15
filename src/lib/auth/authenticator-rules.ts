@@ -97,9 +97,12 @@ export function stepAfterPassword(input: {
   hasVerifiedAuthenticator: boolean;
   deviceTrusted: boolean;
   emailStepEnabled: boolean;
+  // False for a username account (C230-D): its hidden address receives no mail, so it has no emailed step.
+  emailReachable?: boolean;
 }): AfterPassword {
   if (input.hasVerifiedAuthenticator) return 'authenticator';
   if (!input.emailStepEnabled) return 'none';
+  if (input.emailReachable === false && !authenticatorRequired(input.role)) return 'none';
   if (authenticatorRequired(input.role)) return 'email_code';
   return input.deviceTrusted ? 'none' : 'email_code';
 }

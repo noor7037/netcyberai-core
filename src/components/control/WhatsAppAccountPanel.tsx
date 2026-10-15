@@ -136,7 +136,8 @@ export function WhatsAppAccountPanel() {
         success={fault === null && !error ? t('wa.fault.ok', { n }) : undefined}
         helperText={fault === 'empty' ? t(`wa.hint.${key}` as MessageKey) : undefined}
         onChange={(e) => {
-          setForm({ ...form, [key]: e.target.value });
+          // No id, token or secret Meta gives has a space or a line break in it: a pasted one loses them here (C230-D).
+          setForm({ ...form, [key]: e.target.value.replace(/\s+/g, '') });
           if (refused === key) setRefused(null);
         }}
       />

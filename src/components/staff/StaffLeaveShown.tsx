@@ -1,6 +1,7 @@
 import { SHOWN_ROW, ShownRows, shownDay } from '@/components/dashboards/ShownRows';
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
+import { canAccessApp } from '@/lib/auth/guards';
 import { t, tCount, type Lang, type MessageKey } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 import type { StaffShow } from '@/lib/insights/screens';
@@ -21,7 +22,7 @@ const days = (lang: Lang, r: Pick<LeaveRow, 'from_date' | 'to_date'>) => (r.from
 
 export async function StaffLeaveShown({ show }: { show: StaffShow }) {
   const session = await getServerSession();
-  if (!session?.schoolId || !LEAVE_OFFICE.includes(session.role)) return null;
+  if (!canAccessApp(session) || !LEAVE_OFFICE.includes(session.role)) return null;
   const schoolId = session.schoolId;
   const actor = { schoolId, userId: session.sub, role: session.role };
   const { lang } = getLang(session.sub);

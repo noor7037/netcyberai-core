@@ -28,6 +28,7 @@ const paths: Record<string, string> = {
   bell: 'M6 8a6 6 0 1112 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4',
   check: 'M5 12l4 4 10-10',
   alert: 'M12 3l10 18H2zM12 10v4M12 17v.01',
+  info: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 16v-5M12 8v.01',
   arrow: 'M5 12h14M13 6l6 6-6 6',
   play: 'M8 5l11 7-11 7z',
   pause: 'M8 5h3v14H8zM13 5h3v14h-3z',

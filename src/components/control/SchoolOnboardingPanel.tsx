@@ -11,18 +11,8 @@ import { Badge } from '@/components/ui/Badge';
 import { PaymentRailsPanel } from '@/components/payments/PaymentRailsPanel';
 import { SchoolPeoplePanel } from './SchoolPeoplePanel';
 
-const STAGE_LABELS: Record<string, string> = {
-  tenant_created: 'Tenant Created',
-  admin_invited: 'Admin Invited',
-  data_imported: 'Data Imported',
-  data_validated: 'Data Validated',
-  consent_collection: 'Consent Collection',
-  configuration: 'Configuration',
-  training: 'Training',
-  pilot_outbound_approved: 'Pilot Outbound Approved',
-  go_live: 'Go-Live',
-};
-const STAGE_ORDER = Object.keys(STAGE_LABELS);
+// The onboarding stages in order; their names are in the message files (onb.stage.<id>).
+const STAGE_ORDER = ['tenant_created', 'admin_invited', 'data_imported', 'data_validated', 'consent_collection', 'configuration', 'training', 'pilot_outbound_approved', 'go_live'];
 const REQUIRED_PURPOSES = ['core_records', 'operational_communication'];
 const INVITABLE_ROLES = ['school_admin', 'principal', 'teacher', 'accountant', 'academic_coordinator'] as const;
 // The flags the app reads from system_config.enabled_features today (src/app/api/app/pulse/today/route.ts). The
@@ -157,66 +147,65 @@ export function SchoolOnboardingPanel({
 
   return (
     <div className="flex flex-col gap-8">
-      <section>
-        <h3 className="mb-2 text-base font-bold text-slate">Onboarding stage</h3>
-        <div className="flex items-center gap-3">
-          <Badge variant="neutral">{STAGE_LABELS[stage] ?? stage}</Badge>
+      {/* Onboarding at a glance (C230-D redesign): the nine stages as one stepper, the pilot state as two badges, and
+          consent as one bar; the long notes moved to one quiet line each. */}
+      <section data-onb-stage className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h3 className="text-base font-bold text-slate">{t('onb.stage.title')}</h3>
           {nextStage && (
             <Button variant="outline" onClick={advanceStage}>
-              Advance to {STAGE_LABELS[nextStage]}
+              {t('onb.stage.advance', { stage: t(`onb.stage.${nextStage}` as MessageKey) })}
             </Button>
           )}
         </div>
-        {stage === 'training' && (
-          <p className="mt-2 text-sm text-amber-text">
-            The next step, Pilot Outbound Approved, is specified as a principal's own approval (PRD §7.2), not a
-            platform-admin action. [GAP] this wizard records the transition but does not yet route the actual
-            approval to the school's own principal in Platform 3 -- flagged, not silently assumed.
-          </p>
-        )}
-        {stageError && <p className="mt-2 text-sm text-red-800">{stageError}</p>}
+        <ol aria-label={t('onb.stage.title')} className="grid grid-cols-3 gap-1 sm:grid-cols-9">
+          {STAGE_ORDER.map((id, i) => {
+            const at = STAGE_ORDER.indexOf(stage);
+            const state = i < at ? 'done' : i === at ? 'now' : 'next';
+            return (
+              <li key={id} data-stage={id} data-stage-state={state} aria-current={state === 'now' ? 'step' : undefined} className="flex flex-col gap-1">
+                <span aria-hidden="true" className={`h-1.5 rounded-full ${state === 'next' ? 'bg-slate/15' : state === 'now' ? 'bg-sapphire' : 'bg-emerald-text'}`} />
+                <span className={`text-xs ${state === 'now' ? 'font-bold text-slate' : 'text-slate/70'}`}>{t(`onb.stage.${id}` as MessageKey)}</span>
+              </li>
+            );
+          })}
+        </ol>
+        {stage === 'training' && <p className="text-sm text-slate/70">{t('onb.stage.trainingNote')}</p>}
+        {stageError && <p role="alert" className="text-sm font-semibold text-red-800">{stageError}</p>}
       </section>
 
-      <section>
-        <h3 className="mb-2 text-base font-bold text-slate">Pilot status</h3>
-        <p className="text-sm text-slate">
-          is_pilot: <strong>{String(isPilot)}</strong> · pilot_allow_outbound: <strong>{String(pilotAllowOutbound)}</strong>
-        </p>
-        <p className="mt-1 text-sm text-slate/70">
-          No control here sets either flag. Disabling pilot mode is a separate, deliberate, logged action outside
-          onboarding (Task 3) -- there is intentionally nothing to click.
-        </p>
-      </section>
+      <div className="grid gap-3 md:grid-cols-2">
+        <section data-onb-pilot className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4">
+          <h3 className="text-base font-bold text-slate">{t('onb.pilot.title')}</h3>
+          <div className="flex flex-wrap gap-2">
+            <Badge variant={isPilot ? 'warning' : 'success'}>{t(isPilot ? 'onb.pilot.pilot' : 'onb.pilot.live')}</Badge>
+            <Badge variant={pilotAllowOutbound ? 'success' : 'neutral'}>{t(pilotAllowOutbound ? 'onb.pilot.outboundOn' : 'onb.pilot.outboundOff')}</Badge>
+          </div>
+          <p className="text-sm text-slate/70">{t('onb.pilot.how')}</p>
+        </section>
 
-      <section>
-        <h3 className="mb-2 text-base font-bold text-slate">Consent completion</h3>
-        {!consent ? (
-          <p className="text-sm text-slate/70">Loading...</p>
-        ) : (
-          <>
-            <div className="mb-2 h-3 w-full overflow-hidden rounded-full bg-slate/10">
-              <div
-                className={`h-full ${consent.requiredComplete ? 'bg-emerald-text' : 'bg-sapphire'}`}
-                style={{ width: `${consent.percentComplete}%` }}
-              />
-            </div>
-            <p className="text-sm text-slate">
-              {consent.percentComplete}% complete across {consent.totalStudents} student(s), required purposes only.
-            </p>
-            <ul className="mt-1 text-sm text-slate/70">
-              {REQUIRED_PURPOSES.map((p) => (
-                <li key={p}>
-                  {p}: {consent.grantedByPurpose[p] ?? 0} / {consent.totalStudents}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-2 text-sm text-red-800">
-              There is no bulk-mark-consent action anywhere in this product. Staff clearing this meter by marking
-              consent that was never actually collected creates worse exposure than an honest incomplete state.
-            </p>
-          </>
-        )}
-      </section>
+        <section data-onb-consent className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4">
+          <div className="flex items-baseline justify-between gap-2">
+            <h3 className="text-base font-bold text-slate">{t('onb.consent.title')}</h3>
+            {consent && <span className="text-2xl font-extrabold tabular-nums text-slate">{consent.percentComplete}%</span>}
+          </div>
+          {!consent ? (
+            <p className="text-sm text-slate/70">{t('onb.consent.loading')}</p>
+          ) : (
+            <>
+              <div className="h-2 w-full overflow-hidden rounded-full bg-slate/10">
+                <div className={`h-full ${consent.requiredComplete ? 'bg-emerald-text' : 'bg-sapphire'}`} style={{ width: `${consent.percentComplete}%` }} />
+              </div>
+              <ul className="flex flex-wrap gap-x-4 text-sm text-slate/70">
+                {REQUIRED_PURPOSES.map((p) => (
+                  <li key={p}>{t(`onb.consent.${p}` as MessageKey, { n: consent.grantedByPurpose[p] ?? 0, total: consent.totalStudents })}</li>
+                ))}
+              </ul>
+              <p className="text-sm text-slate/70">{t('onb.consent.honest')}</p>
+            </>
+          )}
+        </section>
+      </div>
 
       <section data-onb-flags>
         <h3 className="mb-2 text-base font-bold text-slate">{t('onb.flags.title')}</h3>

@@ -8,15 +8,16 @@ import type { ColorToken } from '@/lib/contracts/modules';
 import { formatTrend, formatValue } from './format';
 import { ModuleIcon } from './ModuleIcon';
 import { useCountUp } from './motion';
-import { toneTint } from './tones';
+import { TOKEN_TONES } from './tones';
 
-// KPI tile v2 (docs/19 §3.3): a tinted surface in the tile's tone, its icon
+// KPI tile v3 (C230-D redesign, after Stripe's and Vercel's metric cards): a white card with a thin bar in the
+// tile's tone, its icon
 // chip, the value computed by the server (counted up, always in slate,
 // never in a series colour), the trend as a pill with an arrow AND words,
 // a small sparkline in the tone, and the whole tile as the drill-down
 // link. null means no data yet and says so.
 
-const TREND_PILL = { good: 'bg-white text-emerald', bad: 'bg-white text-coral-deep', neutral: 'bg-white text-slate' } as const;
+const TREND_PILL = { good: 'bg-off-white text-emerald', bad: 'bg-off-white text-coral-deep', neutral: 'bg-off-white text-slate' } as const;
 
 // The last values as a thin line. Decorative: the value and the trend pill
 // carry the meaning, and the dashboard's chart has the table view.
@@ -40,9 +41,10 @@ export function KpiTile({ tile, tone = 'royal', icon, spark }: { tile: KpiTileDa
   const value = formatValue(shown === null ? null : tile.unit === 'count' ? Math.round(shown) : shown, tile.unit);
   const body = (
     <>
+      <span aria-hidden="true" className={`absolute inset-x-0 top-0 h-1 ${TOKEN_TONES[tone].bar}`} />
       <div className="flex items-center gap-2">
         {icon && <ModuleIcon name={icon} tone={tone} size="sm" variant="solid" />}
-        <p className="min-w-0 text-sm font-semibold text-slate">{tile.label}</p>
+        <p className="min-w-0 text-xs font-semibold uppercase tracking-wide text-slate/70">{tile.label}</p>
       </div>
       <p className="text-3xl font-extrabold tabular-nums text-slate" aria-label={`${tile.label}: ${formatValue(tile.value, tile.unit)}`}>
         {value}
@@ -60,7 +62,7 @@ export function KpiTile({ tile, tone = 'royal', icon, spark }: { tile: KpiTileDa
       {spark && tile.value !== null && <Sparkline values={spark} tone={tone} />}
     </>
   );
-  const cls = `nca-lift flex min-h-[132px] min-w-0 flex-col gap-1.5 rounded-2xl border border-slate/10 p-4 ${toneTint(tone)}`;
+  const cls = 'nca-lift relative flex min-h-[124px] min-w-0 flex-col gap-1.5 overflow-hidden rounded-2xl border border-slate/10 bg-white p-4 shadow-sm';
   return tile.drillHref ? (
     <Link href={tile.drillHref} className={`${cls} focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal`}>
       {body}

@@ -68,7 +68,7 @@ function Hero({ data, attention, lang, now }: { data: OfficeDashboardData; atten
 // Today, 7 days, 30 days: links, so the choice is in the address and can be shared or bookmarked.
 function RangeSwitch({ rangeId, lang }: { rangeId: RangeId; lang: Lang }) {
   return (
-    <nav aria-label={t(lang, 'dash.range.label')} data-range={rangeId} className="flex rounded-md border border-slate/10 bg-white p-0.5">
+    <nav aria-label={t(lang, 'dash.range.label')} title={t(lang, 'dash.range.note')} data-range={rangeId} className="flex rounded-md border border-slate/10 bg-white p-0.5">
       {RANGE_IDS.map((id) =>
         id === rangeId ? (
           <Link key={id} href={`/app/dashboard?range=${id}`} aria-current="page" className="inline-flex min-h-[44px] items-center rounded bg-sapphire px-3 text-sm font-semibold text-white">
@@ -107,7 +107,7 @@ export function OfficeDashboardView({ data, lang = 'en', tour, help, now = new D
   const [first, ...rest] = model.groups;
   const group = (g: (typeof model.groups)[number]) => (
     <section key={g.id} data-group={g.id} aria-labelledby={`dash-group-${g.id}`} className="flex flex-col gap-2">
-      <h2 id={`dash-group-${g.id}`} className="text-lg font-extrabold text-slate">
+      <h2 id={`dash-group-${g.id}`} className="text-xs font-bold uppercase tracking-wider text-slate/70">
         {t(lang, `dash.group.${g.id}` as MessageKey)}
       </h2>
       <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
@@ -130,7 +130,6 @@ export function OfficeDashboardView({ data, lang = 'en', tour, help, now = new D
           </a>
         </div>
       </div>
-      <p className="text-sm text-slate">{t(lang, 'dash.range.note')}</p>
       {tour && <FirstVisitTour id={tour} />}
 
       {data.failed > 0 && (

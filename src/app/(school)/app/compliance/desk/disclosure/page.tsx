@@ -3,6 +3,7 @@ import { ModulePage } from '@/components/app-ui/ModulePage';
 import { PrintButton } from '@/components/fees/PrintButton';
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
+import { canAccessApp } from '@/lib/auth/guards';
 import { loadDisclosure, type DisclosureItem } from '@/lib/compliance/disclosure';
 import { COMPLIANCE_DESK_FEATURE, deskInPlan } from '@/lib/compliance/qualifications';
 import { featureOff, moduleOffReason } from '@/lib/frameworks/page-access';
@@ -21,10 +22,10 @@ export default async function DisclosurePrintPage() {
   const { lang } = getLang(session?.sub ?? '');
   const notInPlan = await featureOff(COMPLIANCE_DESK_FEATURE);
   const read =
-    session?.schoolId && !notInPlan
+    canAccessApp(session) && !notInPlan
       ? await withTenantContext(session, async (db) => {
-          if (!(await deskInPlan(db, session.schoolId as string))) return null;
-          const items = await loadDisclosure(db, { schoolId: session.schoolId as string, userId: session.sub, role: session.role });
+          if (!(await deskInPlan(db, session.schoolId))) return null;
+          const items = await loadDisclosure(db, { schoolId: session.schoolId, userId: session.sub, role: session.role });
           const school = (await db.query(`select name from schools where school_id = $1`, [session.schoolId])).rows[0]?.name as string | undefined;
           return items ? { items, school: school ?? '' } : null;
         })

@@ -53,6 +53,8 @@ APP_ROOT = REPO_ROOT / "src" / "app"
 
 CONTROL_GROUP = "(admin)/control"
 APP_GROUP = "(school)/app"
+# The family app (C230-D): a parent's session only, guarded by canAccessFamily.
+FAMILY_GROUP = "(family)/family"
 
 GROUP_SEGMENT_RE = re.compile(r"^\([^)]*\)$")
 
@@ -87,6 +89,12 @@ def check_no_leaking_routes(app_root: Path, rel_root: Path) -> list[str]:
                     f"{rel_str}: resolves to {url} but is not under {APP_GROUP}/ -- "
                     "bypasses the membership guard layout entirely"
                 )
+        if url == "/family" or url.startswith("/family/"):
+            if not rel_str.startswith(FAMILY_GROUP + "/"):
+                violations.append(
+                    f"{rel_str}: resolves to {url} but is not under {FAMILY_GROUP}/ -- "
+                    "bypasses the parent guard layout entirely"
+                )
     return violations
 
 
@@ -110,6 +118,7 @@ def run(app_root: Path, rel_root: Path | None = None) -> int:
     violations = check_no_leaking_routes(app_root, rel_root)
     violations += check_guard_layout_content(app_root, rel_root, CONTROL_GROUP, "canAccessControl")
     violations += check_guard_layout_content(app_root, rel_root, APP_GROUP, "canAccessApp")
+    violations += check_guard_layout_content(app_root, rel_root, FAMILY_GROUP, "canAccessFamily")
 
     if violations:
         print("FAIL: route-guard coverage violated:")
@@ -149,6 +158,11 @@ def self_test() -> int:
             "import { redirect } from 'next/navigation';\n"
             "export default function L({children}) { if (!canAccessApp(s)) { redirect('/login'); } return children; }\n"
         )
+        (good / FAMILY_GROUP).mkdir(parents=True)
+        (good / FAMILY_GROUP / "layout.tsx").write_text(
+            "import { redirect } from 'next/navigation';\n"
+            "export default function L({children}) { if (!canAccessFamily(s)) { redirect('/login'); } return children; }\n"
+        )
         rc_good = run(good)
         if rc_good != 0:
             print("SELF-TEST FAILED: the known-clean fixture was flagged as a violation")
@@ -164,6 +178,11 @@ def self_test() -> int:
         (bad / APP_GROUP / "layout.tsx").write_text(
             "import { redirect } from 'next/navigation';\n"
             "export default function L({children}) { if (!canAccessApp(s)) { redirect('/login'); } return children; }\n"
+        )
+        (bad / FAMILY_GROUP).mkdir(parents=True)
+        (bad / FAMILY_GROUP / "layout.tsx").write_text(
+            "import { redirect } from 'next/navigation';\n"
+            "export default function L({children}) { if (!canAccessFamily(s)) { redirect('/login'); } return children; }\n"
         )
         # The planted violation: a page resolving to /control/leak from
         # a DIFFERENT route group, never passing through the real guard.
