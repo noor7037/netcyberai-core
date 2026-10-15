@@ -1,7 +1,8 @@
 import type { IconName } from '@/components/visual/Icons';
-import type { ColorToken, ModuleStatus, Phase } from '@/lib/contracts/modules';
-import type { NavBadge, Navigation, NavItem } from '@/lib/contracts/navigation';
-import { tOr, type Lang } from '@/lib/i18n';
+import { shellForRole } from '@/lib/auth/guards';
+import { moduleById, type ColorToken, type ModuleStatus, type Phase, type SchoolRole } from '@/lib/contracts/modules';
+import { bottomNavItems, type NavBadge, type Navigation, type NavItem } from '@/lib/contracts/navigation';
+import { t, tOr, type Lang } from '@/lib/i18n';
 
 // What the shell draws (C121): groups of links. The school app's groups
 // come from buildNavigation (registry × role × entitlements, 17 §2); the
@@ -14,12 +15,12 @@ export type ShellGroup = { id: string; label: string; tone: readonly [ColorToken
 
 const NOT_BUILT: readonly ModuleStatus[] = ['planned', 'foundation', 'spec-v0'];
 
-// Labels are looked up in the message files (`module.<id>`, `group.<id>`,
-// `control.nav.<page>`); the registry's English label is the fallback.
+// Labels are looked up in the message files (`module.<id>`, `nav.task.<task>`,
+// `group.<id>`, `control.nav.<page>`); the registry's English label is the fallback.
 export function toShellItem(i: NavItem, lang: Lang = 'en'): ShellItem {
   return {
     href: i.href,
-    label: tOr(lang, `module.${i.moduleId}`, i.label),
+    label: i.task ? tOr(lang, `nav.task.${i.task}`, i.label) : tOr(lang, `module.${i.moduleId}`, i.label),
     icon: i.icon,
     ...(i.badge ? { badge: i.badge } : {}),
     ...(NOT_BUILT.includes(i.status) ? { comingIn: i.phase } : {}),
@@ -30,10 +31,33 @@ export function toShellGroups(nav: Navigation, lang: Lang = 'en'): ShellGroup[] 
   return nav.groups.map((g) => ({ id: g.id, label: tOr(lang, `group.${g.id}`, g.label), tone: g.tone, items: g.items.map((i) => toShellItem(i, lang)) }));
 }
 
-// The link that matches the page: exact, or the closest parent route.
-export function activeHref(groups: readonly ShellGroup[], pathname: string): string | null {
+// The link that matches the page: exact, or the closest parent route. A link
+// with a query (a task of Frequent work) is never the page itself.
+export function activeHref(groups: readonly Pick<ShellGroup, 'items'>[], pathname: string): string | null {
   const hrefs = groups.flatMap((g) => g.items.map((i) => i.href)).filter((h) => pathname === h || pathname.startsWith(`${h}/`));
   return hrefs.sort((a, b) => b.length - a.length)[0] ?? null;
+}
+
+// The school app's menu (C235-B), like a school app's menu is read: the Home
+// items (My Day, everyone's home, docs/19 rule 2; the Dashboard and Settings
+// for the office, who alone open them from here), then the role's Frequent
+// work, then All modules: every module of the role under its group. The
+// teacher's phone keeps its bottom bar: My Day and the day-to-day modules.
+export type SchoolShellMenu = { home: ShellItem[]; frequent: ShellItem[]; groups: ShellGroup[]; bottom?: ShellItem[] };
+export function schoolShellMenu(nav: Navigation, role: SchoolRole, lang: Lang = 'en'): SchoolShellMenu {
+  const office = shellForRole(role) === 'office';
+  const myDay: ShellItem = { href: '/app/my-day', label: t(lang, 'myDay.title'), icon: 'check' };
+  const settings: ShellItem = { href: '/app/settings', label: t(lang, 'shell.settings'), icon: 'operations' };
+  const groups = toShellGroups(nav, lang);
+  const homeModules = groups.find((g) => g.id === 'home')?.items ?? [];
+  const home = [myDay, ...homeModules.filter((i) => office || i.href !== '/app/dashboard'), ...(office ? [settings] : [])];
+  const bottom =
+    shellForRole(role) === 'teacher'
+      ? [myDay, ...bottomNavItems(nav).map((i) => toShellItem(i, lang)).filter((i) => i.href !== '/app/dashboard')].slice(0, 4)
+      : undefined;
+  // A frequent item keeps its group's colour, as it has under All modules.
+  const frequent = nav.frequent.map((i) => ({ ...toShellItem(i, lang), tone: moduleById(i.moduleId).tone[0] }));
+  return { home, frequent, groups: groups.filter((g) => g.id !== 'home'), ...(bottom ? { bottom } : {}) };
 }
 
 // The Control plane's menu (docs/19 §3.2): one icon and one colour per item,

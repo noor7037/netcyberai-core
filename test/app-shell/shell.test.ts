@@ -6,7 +6,7 @@ vi.mock('next/navigation', () => ({ usePathname: () => '/app/attendance', useRou
 
 import { AppShell } from '@/components/app-shell/AppShell';
 import { comingState, moduleForSegment } from '@/components/app-shell/coming';
-import { activeHref, toShellGroups, toShellItem } from '@/components/app-shell/shell-nav';
+import { activeHref, schoolShellMenu, toShellGroups, toShellItem } from '@/components/app-shell/shell-nav';
 import { MODULE_REGISTRY } from '@/lib/contracts/modules';
 import { bottomNavItems, buildNavigation } from '@/lib/contracts/navigation';
 import type { SchoolEntitlements } from '@/lib/contracts/entitlements';
@@ -78,3 +78,64 @@ describe('app shell render', () => {
     expect(html).not.toContain('Payroll'); // not a teacher module
   });
 });
+
+describe('the branded bar and the menu (C235-B)', () => {
+  const shell = (role: 'principal' | 'teacher', extra: Record<string, unknown> = {}) => {
+    const menu = schoolShellMenu(buildNavigation(role, ent), role);
+    return renderToStaticMarkup(
+      h(AppShell, {
+        groups: menu.groups,
+        home: menu.home,
+        frequent: menu.frequent,
+        bottomItems: menu.bottom,
+        brand: 'Made-up Public School',
+        person: { name: 'Asha Example', role: role === 'principal' ? 'Principal' : 'Teacher' },
+        roleLabel: role,
+        navLabel: 'School menu',
+        accountHref: '/app/account',
+        children: h('p', null, 'page'),
+        ...extra,
+      })
+    );
+  };
+
+  it('shows the school’s logo and name, and the person’s name and role, on every screen', () => {
+    const html = shell('principal', { logoSrc: '/api/branding/logo?school=s&v=1700000000000' });
+    expect(html).toContain('src="/api/branding/logo?school=s&amp;v=1700000000000"');
+    expect(html).toMatch(/data-shell-school[^>]*>Made-up Public School</);
+    expect(html).toContain('Asha Example · Principal'); // the phone's second line
+    expect(html).toMatch(/data-shell-person[^>]*aria-label="My account: Asha Example, Principal"/);
+    // The bar is not printed; the person's link goes to their account.
+    expect(html).toMatch(/data-shell-header[^>]*print:hidden/);
+    expect(/<a[^>]*data-shell-person[^>]*>/.exec(html)?.[0]).toContain('href="/app/account"');
+  });
+
+  it('a school with no logo is shown by its initials; with no name known, the role alone', () => {
+    const html = shell('principal', { person: null, roleLabel: 'Principal' });
+    expect(html).toContain('data-school-logo="initials"');
+    expect(html).toMatch(/data-school-logo="initials"[^>]*>MP</);
+    expect(html).not.toContain('<img');
+    expect(html).toMatch(/data-shell-person-line[^>]*>Principal</);
+  });
+
+  it('the menu: Home items, then Frequent work, then All modules with only the page’s group open', () => {
+    const html = shell('principal');
+    const at = (s: string) => html.indexOf(s);
+    expect(at('data-nav-part="home"')).toBeGreaterThan(-1);
+    expect(at('data-nav-part="home"')).toBeLessThan(at('Frequent work'));
+    expect(at('Frequent work')).toBeLessThan(at('All modules'));
+    for (const label of ['My Day', 'Dashboard', 'Settings', 'Leave approval']) expect(html, label).toContain(label);
+    // The page is /app/attendance: Teaching & Learning is open, the other groups are closed.
+    expect(html).toMatch(/aria-expanded="true"[^>]*>.*?Teaching &amp; Learning/);
+    expect((html.match(/aria-expanded="true"/g) ?? []).length).toBe(1);
+    expect((html.match(/aria-expanded="false"/g) ?? []).length).toBeGreaterThanOrEqual(6);
+  });
+
+  it('the teacher keeps the phone bottom bar and has no Settings or Dashboard in the menu', () => {
+    const html = shell('teacher');
+    expect(html).toContain('aria-label="Quick menu"');
+    expect(html).not.toContain('href="/app/settings"');
+    expect(html).not.toContain('href="/app/dashboard"');
+  });
+});
+
