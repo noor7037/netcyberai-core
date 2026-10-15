@@ -32,6 +32,7 @@ const ALLOWED: Record<string, Record<string, string>> = {
   'src/app/api/app/settings/holidays/route.ts': { 'key:name': 'a holiday’s name (Diwali), from the school’s calendar' },
   'src/app/api/control/schools/route.ts': { 'opaque:row': 'a school as Control makes it: its id, name, board, type, jurisdiction, stage and flags' },
   'src/app/api/control/schools/[schoolId]/features/route.ts': { 'opaque:beforeFeatures': 'the school’s feature flags: codes', 'opaque:rows[0].enabled_features': 'the school’s feature flags: codes' },
+  'src/lib/school/branding.ts': { 'key:nameChanged': 'true or false: whether the school’s name changed, never the name' },
   'src/lib/bank/match.ts': { 'key:outcome': 'a code: credited, seen_not_credited or needs_person' },
   'src/lib/payments/upi.ts': { 'key:outcome': 'a code: credited or seen_not_credited' },
   'src/lib/payments/apply.ts': { 'opaque:e.audit': 'the provider and its payment id, or nothing', 'key:reason': 'a code the provider check returns (fetch_status_404, status_failed)' },

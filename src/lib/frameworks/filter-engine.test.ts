@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { decodeListQuery, encodeListQuery, type ListQuery } from '@/lib/contracts/filters';
 import { compileListQuery, decodeCursor, encodeCursor, listFields } from './filter-engine';
 import { listSpec } from './lists';
+import { classSortKeySql } from '@/lib/classes/class-order';
 
 const spec = listSpec('students')!;
 const school = '11111111-1111-1111-1111-111111111111';
@@ -28,7 +29,8 @@ describe('filter engine', () => {
     expect(params).toEqual([school, ['active'], "o'brien\\%", 30, field.fieldId, ['Red'], 'aar']);
     expect(where).toContain('s.school_id = $1');
     expect(where).toContain(' or ');
-    expect(orderBy).toBe('lower(c.name) desc nulls last, s.student_id asc');
+    // By class means the class order (C235-A: Nursery < LKG < UKG < 1 … 12, then section), not the name's letters.
+    expect(orderBy).toBe(`${classSortKeySql('c')} desc nulls last, s.student_id asc`);
   });
 
   it('refuses unknown fields, wrong operators, bad values and unknown keys', () => {
