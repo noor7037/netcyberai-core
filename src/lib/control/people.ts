@@ -1,4 +1,5 @@
 import type { PoolClient } from 'pg';
+import { hasAadhaarNumber } from '@/lib/privacy/aadhaar';
 
 // The people of one school, for the founder's school page (C165): who they
 // are, what they do there, and whether they can be viewed as. Read inside
@@ -24,4 +25,15 @@ export async function listSchoolPeople(db: Pick<PoolClient, 'query'>, schoolId: 
 export function membershipToViewAs<M extends { membershipId: string }>(memberships: readonly M[], membershipId: string | null): M | null {
   if (membershipId) return memberships.find((m) => m.membershipId === membershipId) ?? null;
   return memberships.length === 1 ? memberships[0] : null;
+}
+
+// The reason the founder gives for a "View as" (C165), read: 1 to 300 characters once trimmed, and never an Aadhaar
+// number (the one rule; the database refuses one too). It is kept on the viewing's own row and shown to the school
+// viewed, never in the audit row (C232 part B).
+export const VIEW_REASON_MAX = 300;
+export function viewAsReason(raw: unknown): { ok: true; reason: string } | { ok: false; code: 'reason' | 'aadhaar' } {
+  const reason = typeof raw === 'string' ? raw.trim() : '';
+  if (!reason || reason.length > VIEW_REASON_MAX) return { ok: false, code: 'reason' };
+  if (hasAadhaarNumber(reason)) return { ok: false, code: 'aadhaar' };
+  return { ok: true, reason };
 }

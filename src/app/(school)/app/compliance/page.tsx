@@ -10,24 +10,27 @@ import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 
 // Task 5, PRD §2.3: impersonation must be "visible to the impersonated
-// school" -- this is that visibility. audit_log's own
-// audit_read_own_school RLS policy already scopes this correctly to
-// the caller's own tenant; nothing here widens that.
+// school" -- this is that visibility. Each viewing is read from its own row,
+// impersonation_sessions, which keeps the founder's reason beside the
+// ImpersonationStarted audit row and never in it (C224's rule, C230-A,
+// C232 part B): when it started, as whom, when it ended (or its time limit),
+// and why. Row level security lets a school read only the viewings of its
+// own school (impersonation_visible_to_target_school); nothing here widens it.
 export default async function CompliancePage() {
   const off = await moduleOffReason('compliance');
   if (off) return <ModuleOffPage moduleId="compliance" reason={off} />;
   const session = await getServerSession();
-  const events = session
+  const viewings = session
     ? await withTenantContext(session, async (client) => {
         const { rows } = await client.query(
-          `select occurred_at, event_action, target_id, after_state
-           from audit_log
-           where school_id = $1 and event_action in ('ImpersonationStarted', 'ImpersonationEnded')
-           order by occurred_at desc
-           limit 50`,
+          `select i.impersonation_id, i.started_at, i.ended_at, i.expires_at, i.reason, u.display_name as as_name
+             from impersonation_sessions i left join users u on u.user_id = i.target_user_id
+            where i.target_school_id = $1
+            order by i.started_at desc
+            limit 50`,
           [session.schoolId]
         );
-        return rows;
+        return rows as { impersonation_id: string; started_at: string; ended_at: string | null; expires_at: string; reason: string; as_name: string | null }[];
       })
     : [];
   // What was done in this school's app while NetCyberAI was viewing it as one of its people (C165, C180). Each
@@ -62,20 +65,20 @@ export default async function CompliancePage() {
       }
     >
       <ComplianceView canManage={session?.role === 'school_admin' || session?.role === 'principal'} />
-      <section>
-        <h2 className="mb-2 text-lg font-bold text-slate">Support access to this school</h2>
-        <p className="mb-3 text-sm text-slate/70">
-          Every time NetCyberAI staff view your school's data on your behalf, it appears here -- time-boxed, with the
-          reason recorded before access was granted. Support access you cannot see is not support.
-        </p>
-        {events.length === 0 ? (
+      <section lang={lang} data-support-access>
+        <h2 className="mb-2 text-lg font-bold text-slate">{t(lang, 'supportAccess.title')}</h2>
+        <p className="mb-3 text-sm text-slate/70">{t(lang, 'supportAccess.how')}</p>
+        {viewings.length === 0 ? (
           <TeachEmpty id="support-access" />
         ) : (
           <ul className="flex flex-col gap-2">
-            {events.map((e, i) => (
-              <li key={i} className="rounded-md border border-slate/10 p-3 text-sm text-slate">
-                <span className="font-medium">{e.event_action}</span> — {new Date(e.occurred_at).toLocaleString()}
-                {e.after_state?.reason && <p className="text-slate/70">Reason: {e.after_state.reason}</p>}
+            {viewings.map((v) => (
+              <li key={v.impersonation_id} data-support-viewing className="flex flex-col gap-1 rounded-md border border-slate/10 p-3 text-sm text-slate">
+                <span className="font-semibold">{t(lang, 'supportAccess.row', { name: v.as_name ?? '', when: when.format(new Date(v.started_at)) })}</span>
+                <span className="text-slate/70">
+                  {v.ended_at ? t(lang, 'supportAccess.ended', { when: when.format(new Date(v.ended_at)) }) : t(lang, 'supportAccess.until', { when: when.format(new Date(v.expires_at)) })}
+                </span>
+                <p data-support-reason className="break-words">{t(lang, 'supportAccess.reason', { reason: v.reason })}</p>
               </li>
             ))}
           </ul>

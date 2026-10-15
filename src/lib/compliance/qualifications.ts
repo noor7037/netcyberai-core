@@ -13,8 +13,9 @@ import { changedFields, checkStaff, DESK_ROLES, matchImport, QUALIFICATION_FIELD
 // ends within the school's window; saving a row; the CSV import in the tool's own columns; and the count My Day shows.
 //
 // Every function runs in the caller's own tenant transaction. Row level security lets only the principal and the
-// school admin read or write staff_qualifications; every function also refuses anyone else itself. Each change is
-// audited with the staff member's id and the NAMES of the fields that changed, never their values (C56).
+// school admin read or write staff_qualifications, and any other staff member read their own row only (C232 part B);
+// every function also refuses anyone else itself. Each change is audited with the staff member's id and the NAMES of
+// the fields that changed, never their values (C56). A row of a person who has left is erased by the office (C232).
 
 type Actor = { schoolId: string; userId: string; role: StaffRole };
 type Db = Pick<PoolClient, 'query'>;
@@ -43,10 +44,14 @@ export type StaffEntry = {
   gaps: GapCode[];
   endings: Ending[];
 };
+// A person of the school who is no longer on the register (their account is inactive, or no longer a teaching role)
+// and still has a qualification row: the office may erase it (C232 part B). Their name, and when the row last changed.
+export type FormerEntry = { user_id: string; name: string; active: boolean; updated_at: string };
 export type Register = {
   today: string;
   settings: RegisterSettings;
   staff: StaffEntry[];
+  former: FormerEntry[];
   totals: { staff: number; recorded: number; withGaps: number; ending: number; passed: number };
   // Every certificate or approval ending within the window or passed, soonest first: the alert list.
   endings: (Ending & { user_id: string; name: string })[];
@@ -71,10 +76,24 @@ async function staffRows(db: Db, schoolId: string) {
   return rows as (Record<string, unknown> & { user_id: string; name: string; role: string; has_row: boolean; updated_by: string | null; updated_at: Date | null })[];
 }
 
+// The people of the school with a qualification row who are no longer on the register, in name order.
+async function formerRows(db: Db, schoolId: string): Promise<FormerEntry[]> {
+  const { rows } = await db.query(
+    `select u.user_id, u.display_name as name, u.is_active as active, q.updated_at
+       from staff_qualifications q
+       join users u on u.school_id = q.school_id and u.user_id = q.user_id
+      where q.school_id = $1 and not (u.is_active and u.role::text = any($2::text[]))
+      order by lower(u.display_name), u.user_id`,
+    [schoolId, [...REGISTER_ROLES]]
+  );
+  return rows.map((r) => ({ user_id: r.user_id as string, name: r.name as string, active: Boolean(r.active), updated_at: new Date(r.updated_at as string).toISOString() }));
+}
+
 export async function loadRegister(db: Db, actor: Actor): Promise<Register | null> {
   if (!isDeskRole(actor.role)) return null;
   const today = indiaDate();
   const settings = await registerSettings(db, actor.schoolId);
+  const former = await formerRows(db, actor.schoolId);
   const staff: StaffEntry[] = (await staffRows(db, actor.schoolId)).map((r) => {
     const qualification = r.has_row ? rowOf(r) : null;
     const check = checkStaff(r.name, qualification, settings, today);
@@ -85,6 +104,7 @@ export async function loadRegister(db: Db, actor: Actor): Promise<Register | nul
     today,
     settings,
     staff,
+    former,
     endings,
     totals: {
       staff: staff.length,
@@ -143,6 +163,54 @@ export async function saveQualification(db: Db, actor: Actor, userId: string, in
   const read = readQualification(input, indiaDate());
   if (!read.ok) return { ok: false, reason: read.reason, field: read.field };
   return { ok: true, changed: await writeRow(db, actor, userId, read.value, 'form') };
+}
+
+// ---- a staff member's own row (C232 part B) -------------------------------------------------------------------------
+
+// A member of the teaching staff reads their own row, read-only, on their account page: row level security lets them
+// read that row and nothing else of the desk (staff_qualifications_readers). `applies` is false for a role with no
+// row on the register (the accountant), and when the school's plan has no desk and nothing was ever kept for them.
+export type OwnQualification = { applies: boolean; qualification: Qualification | null; updated_by: string | null; updated_at: string | null };
+
+export async function loadOwnQualification(db: Db, actor: Actor): Promise<OwnQualification> {
+  const none: OwnQualification = { applies: false, qualification: null, updated_by: null, updated_at: null };
+  if (!REGISTER_ROLES.includes(actor.role)) return none;
+  const r = (
+    await db.query(
+      `select ${SELECT_ROW}, b.display_name as updated_by, q.updated_at
+         from staff_qualifications q
+         left join users b on b.school_id = q.school_id and b.user_id = q.updated_by
+        where q.school_id = $1 and q.user_id = $2`,
+      [actor.schoolId, actor.userId]
+    )
+  ).rows[0];
+  if (!r) return { ...none, applies: await deskInPlan(db, actor.schoolId) };
+  return { applies: true, qualification: rowOf(r), updated_by: (r.updated_by as string | null) ?? null, updated_at: r.updated_at ? new Date(r.updated_at as string).toISOString() : null };
+}
+
+// ---- erasing an ex-staff member's row (C232 part B) -----------------------------------------------------------------
+
+export type EraseResult = { ok: true; erased: number } | { ok: false; reason: 'not_allowed' | 'not_found' | 'on_register' };
+
+// The office erases the qualification row of a person who is no longer on the register, through the database's own
+// function (public.erase_staff_qualification: the app's role holds no DELETE). A member of the teaching staff keeps
+// theirs; a person of another school, or with no row, is not found. Audited with the person's id and a count.
+export async function eraseQualification(db: Db, actor: Actor, userId: string): Promise<EraseResult> {
+  if (!isDeskRole(actor.role)) return { ok: false, reason: 'not_allowed' };
+  if (await isRegisterStaff(db, actor.schoolId, userId)) return { ok: false, reason: 'on_register' };
+  const n = (await db.query(`select public.erase_staff_qualification($1) as n`, [userId])).rows[0]?.n as number | null | undefined;
+  if (!n) return { ok: false, reason: 'not_found' };
+  await writeAuditLog(db, {
+    schoolId: actor.schoolId,
+    actorUserId: actor.userId,
+    actorRole: actor.role,
+    eventAction: 'compliance_desk.qualification_erased',
+    targetType: 'users',
+    targetId: userId,
+    beforeState: undefined,
+    afterState: { rows: Number(n) },
+  });
+  return { ok: true, erased: Number(n) };
 }
 
 // ---- the CSV import -------------------------------------------------------------------------------------------------

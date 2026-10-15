@@ -107,7 +107,11 @@ insert into support_ticket_messages (school_id, ticket_id, author_user_id, autho
 insert into audit_log (school_id, actor_user_id, actor_role, event_action, target_type, target_id, after_state) values
   ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-00000000a002', 'school_admin', 'student.create', 'students', '00000000-0000-4000-8000-000000500026', null),
   ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-00000000a003', 'teacher', 'attendance.submitted', 'classes', '00000000-0000-4000-8000-0000000c0051', null),
-  ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-00000000f001', 'super_admin', 'ImpersonationStarted', 'schools', 'a0000000-0000-4000-8000-000000000001', '{"reason":"Helping the office with a class import"}');
+  ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-00000000f001', 'super_admin', 'ImpersonationStarted', 'users', '00000000-0000-4000-8000-00000000a001', '{"impersonationId":"00000000-0000-4000-8000-0000000ee001","targetRole":"principal"}');
+-- The founder's earlier view of School A as its principal: the reason is kept on the viewing's own row, beside the audit
+-- row above, and shown to the school on its Compliance page (C232 part B).
+insert into impersonation_sessions (impersonation_id, actor_user_id, target_user_id, target_school_id, reason, started_at, expires_at, ended_at) values
+  ('00000000-0000-4000-8000-0000000ee001', '00000000-0000-4000-8000-00000000f001', '00000000-0000-4000-8000-00000000a001', 'a0000000-0000-4000-8000-000000000001', 'Helping the office with a class import', now() - interval '2 days', now() - interval '2 days' + interval '15 minutes', now() - interval '2 days' + interval '9 minutes');
 
 -- The timetable (C145): Tara's and Tanvi's week in 5-A and 5-B, Monday to Saturday.
 insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id)

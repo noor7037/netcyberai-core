@@ -1,11 +1,12 @@
+import { randomUUID } from 'node:crypto';
 import { NextRequest, NextResponse } from 'next/server';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { withTenantContext } from '@/lib/auth/db';
 import { fetchActiveMemberships, fetchLiveUser } from '@/lib/auth/resolve';
 import { signAccessToken } from '@/lib/auth/jwt';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
-import { writeAuditLog } from '@/lib/audit/log';
-import { membershipToViewAs } from '@/lib/control/people';
+import { writeImpersonationAudit } from '@/lib/audit/log';
+import { membershipToViewAs, viewAsReason } from '@/lib/control/people';
 import { ACCESS_COOKIE, IMPERSONATION_RETURN_COOKIE, IMPERSONATION_TTL_SECONDS, cookieOptions } from '@/lib/auth/cookies';
 
 // Task 5: impersonation resolves to the target's REAL membership row and
@@ -19,11 +20,16 @@ export async function POST(req: NextRequest) {
 
   const body = await req.json().catch(() => null);
   const targetUserId = typeof body?.targetUserId === 'string' ? body.targetUserId : '';
-  const reason = typeof body?.reason === 'string' ? body.reason.trim() : '';
+  const read = viewAsReason(body?.reason);
   const membershipId = typeof body?.membershipId === 'string' && body.membershipId ? body.membershipId : null;
-  if (!targetUserId || !reason || reason.length > 300) {
-    return NextResponse.json({ error: 'targetUserId and a reason of at most 300 characters are required' }, { status: 400 });
+  if (!targetUserId || !read.ok) {
+    const aadhaar = !read.ok && read.code === 'aadhaar';
+    return NextResponse.json(
+      { error: aadhaar ? 'the reason looks like it holds an Aadhaar number: never type one' : 'targetUserId and a reason of at most 300 characters are required', code: aadhaar ? 'aadhaar' : 'reason' },
+      { status: 400 }
+    );
   }
+  const reason = read.reason;
 
   // The membership the founder chose on that school's page (C165), never
   // simply the person's first. Only its id comes from the request: the row
@@ -41,25 +47,24 @@ export async function POST(req: NextRequest) {
   }
   const expiresAt = new Date(Date.now() + IMPERSONATION_TTL_SECONDS * 1000);
 
-  let impersonationId: string;
+  // The viewing's row keeps the reason; the audit row names the viewing by its id and never holds the reason
+  // (C224's rule, C230-A): one statement writes both (writeImpersonationAudit).
+  const impersonationId = randomUUID();
   try {
-    impersonationId = await withTenantContext(guard.claims, async (client) => {
-      const { rows } = await client.query(
-        `insert into impersonation_sessions (actor_user_id, target_user_id, target_school_id, reason, expires_at)
-         values ($1, $2, $3, $4, $5)
-         returning impersonation_id`,
-        [guard.claims.sub, targetUserId, membership.schoolId, reason, expiresAt]
+    await withTenantContext(guard.claims, async (client) => {
+      await writeImpersonationAudit(
+        client,
+        {
+          schoolId: membership.schoolId,
+          actorUserId: guard.claims.sub,
+          actorRole: guard.claims.role,
+          eventAction: 'ImpersonationStarted',
+          targetType: 'users',
+          targetId: targetUserId,
+          afterState: { impersonationId, expiresAt, targetRole: membership.role },
+        },
+        { impersonationId, targetUserId, reason, expiresAt }
       );
-      await writeAuditLog(client, {
-        schoolId: membership.schoolId,
-        actorUserId: guard.claims.sub,
-        actorRole: guard.claims.role,
-        eventAction: 'ImpersonationStarted',
-        targetType: 'users',
-        targetId: targetUserId,
-        afterState: { reason, expiresAt, targetRole: membership.role },
-      });
-      return rows[0].impersonation_id as string;
     });
   } catch (err) {
     const resp = sessionErrorResponse(err);
