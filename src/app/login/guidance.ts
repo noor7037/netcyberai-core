@@ -72,8 +72,8 @@ export function guidanceFor(kind: StepKind, ctx: GuidanceContext = {}): Guidance
         position: 'Step 1 of 2',
         title: 'Sign in',
         doNow: 'Enter your email, mobile number or username, and your password.',
-        next: 'If your account has an authenticator app, you type its 6-digit code next. Otherwise we email you a 6-digit code.',
-        stuck: [FORGOT, 'First time here? Use “Set your password” with the email your school registered.'],
+        next: 'If your account has an authenticator app, you type its 6-digit code next. Otherwise, if you signed in with an email address, we email you a 6-digit code.',
+        stuck: [FORGOT, 'First time here? Use “Set your password” with the email your school registered, or the username and password your school gave you.'],
       };
     case 'mfa':
       return {
