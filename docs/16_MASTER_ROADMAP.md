@@ -110,11 +110,17 @@ numbers: supervisor C100–C109, Claude Code from C110.
 5. Before P8: written permission for the real data used in the rehearsal.
 7. AI assistant (C235, `32` §5): choose Vertex AI in asia-south1 (recommended) or a Google AI Studio key, set it in
    Vercel yourself, and set a monthly spend limit. A Gemini app subscription is not an API key.
+8. **Server key for the live site (blocks logins, invites and every file upload):** the live site runs on the test
+   project `unodnyyfqhxrbusbkite`, but Vercel's Production `SUPABASE_SERVICE_ROLE_KEY` still holds the production
+   project's key from the paused cutover (last changed 7 Oct). Paste the `service_role` key of `unodnyyfqhxrbusbkite`
+   (Supabase → Project Settings → API) into that variable and redeploy. Only the founder can see that key; no tool
+   available to the build can read it. Until then: no new logins or reset codes, no logo, document or capture upload.
 6. Classroom kit (C106): test one projector in a real classroom at 11 am and
    get quotes for a safe power option; this is the founder's offline work.
 
 ## 6. Change log
 
+- **2026-10-15** — C235-C/D/D2 merged (#178, #179): design system v5 (59% fewer words), staff profile, versioned documents on records sent straight to storage up to 10 MB, Excel/CSV exports; `documents` bucket at 10 MiB on both databases. Founder action 8 added (live server key).
 - **2026-10-15** — C235: ecosystem UI programme (`32`): design system v5, the full class range LKG–12 × A–C, branded header and school branding, navigation by category, profile documents and exports; Google storage and Gemini assistant assessed (recommendations and the founder's inputs in `32` §4–5).
 - **2026-10-12** — C170: payment collection per `24` (direct UPI with bank-statement proof; Razorpay dormant behind credentials); Razorpay KYC no longer a founder blocker.
 - **2026-10-07** — C104–C106 (founder): build everything first reaffirmed;

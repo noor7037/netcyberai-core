@@ -64,7 +64,7 @@ phone-first for teachers and parents; low-bandwidth and offline-tolerant for tea
 | C235-B | Sticky branded header (school logo + name, person's name + role); school branding in Settings (principal, school admin only) and at onboarding in Control; safe logo upload; navigation: Home → Frequent work → All modules by category | Merged (C235-B); migration on both databases |
 | C235-C | Design system v5: floating-label inputs, custom checkbox/radio/segmented control, gradient page banner per module category, KPI icon chips; at least 30% fewer words on 11 key screens | Merged (C235-C, #178): 59% fewer words (7,490 → 3,046) |
 | C235-D | Documents on staff and student profiles (PDF/JPG/PNG, 10 MB, versions kept, role-based access, every view audited); export of students, staff and classes as Excel (.xlsx) and CSV | Merged (C235-D, #178); migration on both databases |
-| C235-D2 | Papers up to 10 MB sent straight from the browser to storage (ask, send, confirm), checked on arrival; bucket raised to 10 MiB | Built; bucket migration on both databases; in review |
+| C235-D2 | Papers up to 10 MB sent straight from the browser to storage (ask, send, confirm), checked on arrival; bucket raised to 10 MiB | Merged (C235-D2, #179) after a security review (one medium finding fixed: only the checked bytes are kept); bucket migration on both databases. Live uploads wait on founder action 8 (`16` §5) |
 | C235-E | Feasibility: document storage (section 4) and the AI assistant (section 5) | This file |
 | C235-F | The redesign carried into every remaining module screen (each screen adopts the v5 components) | After C, module by module |
 
@@ -138,3 +138,4 @@ Business verification and rotating the token that was exposed earlier also stay 
 - 2026-10-15: written (lead). Slices A–C started in parallel worktrees (C198 model); D queued after A.
 - 2026-10-15: A and B merged together after the full gate on their stack (two tests updated to the slices' intended changes).
 - 2026-10-15: C and D merged together (#178) after the full gate and a security review of D (no high or medium finding; the erasure audit row now counts removed documents). D2 built; the `documents` bucket raised to 10 MiB on both databases.
+- 2026-10-15: D2 merged (#179). Found while checking it: the live site's server key belongs to the production project, so logins, invites and every upload fail live until the founder replaces it (`16` §5 action 8).
