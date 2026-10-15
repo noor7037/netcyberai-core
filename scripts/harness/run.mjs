@@ -4288,6 +4288,97 @@ const rteDeskDone = async () => {
 };
 // p7-10c end
 // p7-10d begin
+// The compliance desk (C227). Tanvi's State TET is put to end in 20 days: the alert. On the page the principal records
+// Tara's qualifications on the form (primary, CTET paper I, certificate 2022: no end date, so nothing ends), adds a
+// disclosure item with where it comes from, and tags a typed note to SQAAF standard 2.8.1. The database must hold each,
+// in the principal's name, audited (ids and codes only). The printable disclosure shows exactly the items in force.
+// Put back after (the audit rows stay: the audit log is append-only).
+const CDK_TARA = '00000000-0000-4000-8000-00000000a003';
+const CDK_TANVI = '00000000-0000-4000-8000-00000000a004';
+let cdkFrom = null;
+let cdkSeen = null;
+const clearComplianceDesk = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from sqaaf_evidence where school_id = '${SCHOOL}'; delete from disclosure_entries where school_id = '${SCHOOL}'; delete from staff_qualifications where school_id = '${SCHOOL}';
+    set session_replication_role = origin;`);
+};
+const complianceDesk = async (page) => {
+  await clearComplianceDesk();
+  cdkFrom = (await db.pg.query(`select coalesce(max(audit_id), 0)::bigint as id from audit_log`)).rows[0].id;
+  await db.pg.query(`insert into staff_qualifications (school_id, user_id, stage, degree, professional_qualification, tet_type, tet_paper, tet_certificate_date, tet_valid_until, updated_by) values ($1, $2, 'upper', 'B.Sc.', 'B.Ed', 'State TET', 'II', ${TODAY_SQL} - 700, ${TODAY_SQL} + 20, $3)`, [SCHOOL, CDK_TANVI, PEOPLE.principal.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-compliance-desk]').waitFor({ timeout: 20000 });
+  const tara = page.locator(`[data-cdk-staff="${CDK_TARA}"]`);
+  await tara.locator('[data-cdk-edit]').click();
+  await page.locator('#cdk-q-stage').selectOption('primary');
+  await page.locator('#cdk-q-degree').fill('B.A.');
+  await page.locator('#cdk-q-professional_qualification').fill('D.El.Ed');
+  await page.locator('#cdk-q-tet_type').selectOption('CTET');
+  await page.locator('#cdk-q-tet_paper').selectOption('I');
+  await page.locator('#cdk-q-tet_certificate_date').fill('2022-06-01');
+  await tara.locator('[data-cdk-save]').click();
+  await page.locator(`[data-cdk-staff="${CDK_TARA}"][data-cdk-gaps="0"]`).waitFor({ timeout: 20000 });
+  await page.locator('#cdk-dis-heading').fill('Affiliation number');
+  await page.locator('#cdk-dis-value').fill('530000, valid until 31-03-2029');
+  await page.locator('#cdk-dis-source').fill('Board affiliation letter on the office file');
+  await page.locator('[data-cdk-dis-save]').click();
+  await page.locator('[data-cdk-item]').first().waitFor({ timeout: 20000 });
+  await page.locator('[data-cdk-domain="2"] summary').click();
+  const std = page.locator('[data-cdk-standard="2.8.1"]');
+  await std.locator('[data-cdk-sq-add]').click();
+  await std.locator('textarea').fill('Fire drill held each term; the register is in the office.');
+  await std.locator('[data-cdk-sq-save]').click();
+  await page.locator('[data-cdk-standard="2.8.1"][data-cdk-pieces="1"]').waitFor({ timeout: 20000 });
+  await page.locator('[data-cdk-domain="2"] summary').click();
+  await page.locator('[data-cdk-form6-state]').waitFor({ timeout: 20000 });
+  cdkSeen = {
+    endings: await page.locator('[data-cdk-ending-row="ending"]').count(),
+    items: await page.locator('[data-cdk-item]').count(),
+    withEvidence: (await page.locator('[data-cdk-sq-total]').textContent()).trim(),
+    form6: await page.locator('[data-cdk-form6-state]').getAttribute('data-cdk-form6-state'),
+  };
+};
+const complianceDeskDone = async () => {
+  const { rows } = await db.pg.query(
+    `select (select count(*)::int from staff_qualifications where school_id = $1 and user_id = $2 and stage = 'primary' and tet_type = 'CTET' and tet_paper = 'I'
+               and tet_certificate_date = '2022-06-01' and tet_valid_until is null and degree = 'B.A.' and updated_by = $3) as tara,
+            (select count(*)::int from disclosure_entries where school_id = $1 and heading = 'Affiliation number' and source = 'Board affiliation letter on the office file' and changed_by = $3) as disclosure,
+            (select count(*)::int from sqaaf_evidence where school_id = $1 and standard_code = '2.8.1' and storage_key is null and added_by = $3) as evidence,
+            (select string_agg(event_action, ',' order by audit_id) from audit_log where audit_id > $4 and event_action like 'compliance_desk.%') as audited,
+            (select count(*)::int from audit_log where audit_id > $4 and event_action like 'compliance_desk.%' and (after_state::text like '%B.A.%' or after_state::text like '%Fire drill%' or after_state::text like '%530000%')) as words_in_audit`,
+    [SCHOOL, CDK_TARA, PEOPLE.principal.sub, cdkFrom]
+  );
+  await clearComplianceDesk();
+  const want = { tara: 1, disclosure: 1, evidence: 1, audited: 'compliance_desk.qualification_saved,compliance_desk.disclosure_saved,compliance_desk.sqaaf_evidence_added', words_in_audit: 0 };
+  if (JSON.stringify(rows[0]) !== JSON.stringify(want)) throw new Error(`the compliance desk in the database: ${JSON.stringify(rows[0])}`);
+  if (JSON.stringify(cdkSeen) !== JSON.stringify({ endings: 1, items: 1, withEvidence: '1 of 84 standards have evidence', form6: 'haryana' })) throw new Error(`the compliance desk on the screen: ${JSON.stringify(cdkSeen)}`);
+};
+// The printable disclosure: two items, one changed once and one removed; the page must show the two in force, the newer
+// version of the changed one, and nothing of the removed one.
+const disclosurePrint = async (page) => {
+  await clearComplianceDesk();
+  const by = PEOPLE.office.sub;
+  const [a, b, c] = [randomUUID(), randomUUID(), randomUUID()];
+  for (const [item, heading, value, source] of [
+    [a, 'Name of the school', 'Illustrative Public School', 'Registration certificate'],
+    [b, 'Number of teachers', '24', 'Staff register, April'],
+    [c, 'Withdrawn item', 'Not in force', 'Old letter'],
+    [b, 'Number of teachers', '26', 'Staff register, October'],
+  ]) await db.pg.query(`insert into disclosure_entries (school_id, item_id, heading, value, source, changed_by) values ($1, $2, $3, $4, $5, $6)`, [SCHOOL, item, heading, value, source, by]);
+  await db.pg.query(`insert into disclosure_entries (school_id, item_id, heading, removed, changed_by) values ($1, $2, 'Withdrawn item', true, $3)`, [SCHOOL, c, by]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-cdk-print-page]').waitFor({ timeout: 20000 });
+  cdkSeen = {
+    items: await page.locator('[data-cdk-print-item]').count(),
+    newest: (await page.locator('[data-cdk-print-page]').textContent()).includes('Staff register, October'),
+    older: (await page.locator('[data-cdk-print-page]').textContent()).includes('Staff register, April'),
+    removed: (await page.locator('[data-cdk-print-page]').textContent()).includes('Withdrawn item'),
+  };
+};
+const disclosurePrintDone = async () => {
+  await clearComplianceDesk();
+  if (JSON.stringify(cdkSeen) !== JSON.stringify({ items: 2, newest: true, older: false, removed: false })) throw new Error(`the printable disclosure: ${JSON.stringify(cdkSeen)}`);
+};
 // p7-10d end
 // p7-10e begin
 // p7-10e end
@@ -5235,6 +5326,8 @@ const SCREENS = [
   ['principal', 'app-fees-rte', '/app/fees/rte', rteDesk, rteDeskDone],
   // p7-10c end
   // p7-10d begin
+  ['principal', 'app-compliance-desk', '/app/compliance/desk', complianceDesk, complianceDeskDone],
+  ['principal', 'app-compliance-disclosure', '/app/compliance/desk/disclosure', disclosurePrint, disclosurePrintDone],
   // p7-10d end
   // p7-10e begin
   // p7-10e end

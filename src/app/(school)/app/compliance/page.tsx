@@ -48,7 +48,19 @@ export default async function CompliancePage() {
   const when = new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' });
 
   return (
-    <ModulePage moduleId="compliance" help="compliance-screen" tour="compliance" title="Compliance" purpose="Fee notice rules for your state, how long records are kept, and every time NetCyberAI staff looked at your school’s data.">
+    <ModulePage
+      moduleId="compliance"
+      help="compliance-screen"
+      tour="compliance"
+      title="Compliance"
+      purpose="Fee notice rules for your state, how long records are kept, and every time NetCyberAI staff looked at your school’s data."
+      primary={
+        // The compliance desk (C227): teacher qualifications and TET, the public disclosure, Form 6 and SQAAF.
+        <a href="/app/compliance/desk" data-compliance-desk-link className="inline-flex min-h-[44px] items-center rounded-md bg-sapphire px-5 text-sm font-semibold text-white">
+          {t(lang, 'cdk.link')}
+        </a>
+      }
+    >
       <ComplianceView canManage={session?.role === 'school_admin' || session?.role === 'principal'} />
       <section>
         <h2 className="mb-2 text-lg font-bold text-slate">Support access to this school</h2>

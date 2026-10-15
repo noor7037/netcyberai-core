@@ -142,7 +142,7 @@ const ROWS: readonly Row[] = [
 
   { id: 'documents', label: 'Documents & Certificates', group: 'records-compliance', icon: 'certificate', roles: OFFICE, phase: 'P7', status: 'partial', href: '/app/documents-id-cards',
     capabilities: ['ID cards', 'Certificate types', 'Request → fee clearance or waiver → PDF → WhatsApp delivery → audit'] },
-  { id: 'compliance', label: 'Compliance Pro · APAAR', group: 'records-compliance', icon: 'shield', roles: OFFICE, phase: 'P7', status: 'partial',
+  { id: 'compliance', label: 'Compliance Pro · APAAR', group: 'records-compliance', icon: 'shield', roles: OFFICE, phase: 'P7', phaseNote: 'The consent ledger, audit trail, data requests, the student data check and the compliance desk (teacher qualifications and TET with expiry alerts, the mandatory public disclosure, Form 6 fee data, SQAAF evidence tagged to CBSE’s standards) are live; APAAR ID capture and the UDISE+ report later', status: 'partial',
     capabilities: ['Consent ledger', 'Audit trail', 'Data requests', 'APAAR ID capture and validation', 'UDISE+ readiness report', 'Fee-regulation advisory'] },
   { id: 'reports', label: 'Reports', group: 'records-compliance', icon: 'reports', roles: REPORTS, phase: 'P5', phaseNote: 'A fixed list of reports by role (collection, dues, attendance, absentees, homework, Daily Pulse, messages, staff leave), each with a date range, a total and a CSV of the same rows, is live; a report builder, scheduled reports and PDF later', status: 'partial',
     capabilities: ['Report builder across modules', 'Scheduled reports by email or WhatsApp', 'CSV and PDF export'] },

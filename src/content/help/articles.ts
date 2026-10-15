@@ -1402,6 +1402,32 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p7-10c end
   // p7-10d begin
+  {
+    slug: 'keep-the-compliance-desk',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Keep the compliance desk: teacher qualifications, disclosure, Form 6 and SQAAF', hi: 'अनुपालन डेस्क रखें: शिक्षकों की योग्यताएँ, सार्वजनिक जानकारी, फ़ॉर्म 6 और SQAAF' },
+    summary: {
+      en: 'Record each teacher’s qualifications and TET and see what is missing and what ends soon; keep the public disclosure your board asks for, with where each item comes from; read Form 6 fee data from your fee structures; and tag SQAAF evidence to CBSE’s standards. For the principal and the school admin.',
+      hi: 'हर शिक्षक की योग्यताएँ और TET दर्ज करें और देखें कि क्या दर्ज नहीं है और क्या जल्द ख़त्म होता है; बोर्ड जो सार्वजनिक जानकारी माँगता है उसे रखें, हर मद कहाँ से आता है इसके साथ; अपने फ़ीस ढाँचों से फ़ॉर्म 6 का फ़ीस डेटा पढ़ें; और SQAAF के सबूत CBSE के मानकों से जोड़ें। प्रिंसिपल और स्कूल एडमिन के लिए।',
+    },
+    steps: [
+      { en: 'Open the Compliance page and press “Open the compliance desk”.', hi: 'अनुपालन पेज खोलें और “Open the compliance desk” दबाएँ।' },
+      { en: 'Under “Teacher qualifications and TET”, press “Record qualifications” beside a teacher. Choose the “Stage taught”, type the degrees, choose the “TET” and its “TET paper”, and the “TET certificate date”. Fill “TET valid until” only if the certificate has an end date. Press “Save qualifications”.', hi: '“Teacher qualifications and TET” में किसी शिक्षक के पास “Record qualifications” दबाएँ। “Stage taught” चुनें, डिग्रियाँ लिखें, “TET” और उसका “TET paper” चुनें, और “TET certificate date”। “TET valid until” तभी भरें जब प्रमाणपत्र की कोई अंतिम तारीख़ हो। “Save qualifications” दबाएँ।' },
+      { en: 'To bring in many teachers at once, open “Import from a spreadsheet (CSV)”, press “Download the template (CSV)”, fill it in, choose it, press “Check the file”, then save the rows that are ready.', hi: 'एक साथ कई शिक्षक लाने के लिए “Import from a spreadsheet (CSV)” खोलें, “Download the template (CSV)” दबाएँ, उसे भरें, चुनें, “Check the file” दबाएँ, फिर तैयार पंक्तियाँ सहेजें।' },
+      { en: 'Certificates and approvals ending soon, or already passed, are listed first and also show on My Day. Press “Change what each stage needs in Settings” to change what each stage needs and how many days ahead to look.', hi: 'जल्द ख़त्म होने वाले या ख़त्म हो चुके प्रमाणपत्र और मंज़ूरियाँ सबसे पहले दिखते हैं और “मेरा दिन” पर भी। हर स्तर की ज़रूरतें और कितने दिन आगे देखना है, बदलने के लिए “Change what each stage needs in Settings” दबाएँ।' },
+      { en: 'Under “Mandatory public disclosure”, type each item your board asks for under “Item, as your board names it”, then “What the school discloses” and “Where it comes from”, and press “Add the item”. Press “Open the page to print” to print it, or “Download the disclosure (CSV)”.', hi: '“Mandatory public disclosure” में बोर्ड जो-जो माँगता है, हर मद “Item, as your board names it” में लिखें, फिर “What the school discloses” और “Where it comes from”, और “Add the item” दबाएँ। प्रिंट के लिए “Open the page to print” दबाएँ, या “Download the disclosure (CSV)”।' },
+      { en: '“Form 6 fee data” is worked out from your fee structures: nothing to type there.', hi: '“Form 6 fee data” आपके फ़ीस ढाँचों से निकलता है: वहाँ कुछ लिखना नहीं है।' },
+      { en: 'Under “SQAAF evidence”, open a domain, press “Add evidence” under a standard, type a note or choose a photo or PDF, and press “Add the evidence”. Never an Aadhaar number, and never a scan of an Aadhaar card.', hi: '“SQAAF evidence” में कोई क्षेत्र खोलें, किसी मानक के नीचे “Add evidence” दबाएँ, नोट लिखें या फ़ोटो या PDF चुनें, और “Add the evidence” दबाएँ। कभी आधार नंबर नहीं, और कभी आधार कार्ड का स्कैन नहीं।' },
+    ],
+    tips: [
+      { en: 'A TET certificate with no valid-until date has no end date: the NCTE made TET certificates valid for life in 2021. The desk never works an end date out for you.', hi: 'जिस TET प्रमाणपत्र की मान्य-तक तारीख़ नहीं है, उसकी कोई अंतिम तारीख़ नहीं: NCTE ने 2021 में TET प्रमाणपत्रों को आजीवन मान्य कर दिया। डेस्क आपके लिए कभी अंतिम तारीख़ नहीं निकालता।' },
+      { en: 'Nothing on the desk is put on a website. Every change to a disclosure item is kept, with who made it and when.', hi: 'डेस्क से कुछ भी वेबसाइट पर नहीं जाता। सार्वजनिक जानकारी के हर मद का हर बदलाव रखा जाता है, किसने और कब किया, इसके साथ।' },
+    ],
+    start: { href: '/app/compliance/desk', label: { en: 'Compliance desk', hi: 'अनुपालन डेस्क' } },
+    related: ['compliance-screen', 'fee-structures'],
+    keywords: ['compliance', 'tet', 'ctet', 'teacher qualification', 'b.ed', 'd.el.ed', 'expiry', 'disclosure', 'mandatory public disclosure', 'form 6', 'sqaaf', 'sqaa', 'cbse', 'evidence', 'anupalan', 'अनुपालन', 'योग्यता', 'सबूत'],
+  },
   // p7-10d end
   // p7-10e begin
   // p7-10e end

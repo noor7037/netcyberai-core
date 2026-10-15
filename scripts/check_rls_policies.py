@@ -386,6 +386,11 @@ ALLOWED_PERMISSIVE = (
         ("rte_evidence", "rte_evidence_tenant_isolation"),
         # p7-10c end
         # p7-10d begin
+        # C227: tenant isolation only; narrowed by the RESTRICTIVE policies required below (the office only).
+        ("staff_qualifications", "staff_qualifications_tenant_isolation"),
+        ("disclosure_entries", "disclosure_entries_tenant_isolation"),
+        ("sqaaf_evidence", "sqaaf_evidence_tenant_isolation"),
+        ("sqaaf_standards", "sqaaf_standards_read"),  # C227: CBSE's standards, read by the office of any school; nobody writes
         # p7-10d end
         # p7-10e begin
         # p7-10e end
@@ -703,6 +708,16 @@ REQUIRED_RESTRICTIVE = {
     ("audit_log", "audit_rte_rows_finance_or_actor"),
     # p7-10c end
     # p7-10d begin
+    # C227: the compliance desk is read and written by the principal and the school admin only, in their own name; its
+    # audit rows by those two roles, or the person who acted.
+    ("staff_qualifications", "staff_qualifications_office"),
+    ("staff_qualifications", "staff_qualifications_saved_as_self"),
+    ("staff_qualifications", "staff_qualifications_changed_as_self"),
+    ("disclosure_entries", "disclosure_entries_office"),
+    ("disclosure_entries", "disclosure_entries_changed_as_self"),
+    ("sqaaf_evidence", "sqaaf_evidence_office"),
+    ("sqaaf_evidence", "sqaaf_evidence_added_as_self"),
+    ("audit_log", "audit_compliance_desk_rows_office_or_actor"),
     # p7-10d end
     # p7-10e begin
     # p7-10e end

@@ -86,6 +86,7 @@ describe('the guides', () => {
       'claim-rte-reimbursement',
       // p7-10c end
       // p7-10d begin
+      'keep-the-compliance-desk',
       // p7-10d end
       // p7-10e begin
       // p7-10e end

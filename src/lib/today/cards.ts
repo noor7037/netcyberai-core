@@ -527,6 +527,20 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   },
   // p7-10c end
   // p7-10d begin
+  {
+    // Teacher certificates and approvals (TET, or another approval with a valid-until date) ending within the school's
+    // window or already passed (C227), for the principal and the school admin, who keep the compliance desk. Counted
+    // with the desk's own rule (the website tool's checkTeacher), so the card and the desk agree. Never a message: it
+    // is an alert in the app only. Gone once each date is moved on or the school's window no longer reaches it.
+    type: 'qualifications-ending',
+    moduleId: 'compliance',
+    roles: ['principal', 'school_admin'],
+    async load(db, ctx) {
+      const { deskInPlan, endingCount } = await import('@/lib/compliance/qualifications');
+      if (!(await deskInPlan(db as never, ctx.schoolId))) return []; // a part of the plan (C226)
+      return waiting('qualifications-ending', 'compliance', await endingCount(db as never, ctx.schoolId), '/app/compliance/desk');
+    },
+  },
   // p7-10d end
   // p7-10e begin
   // p7-10e end
