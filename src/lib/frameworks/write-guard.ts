@@ -132,6 +132,12 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // c225 end
   // c226 begin
   // c226 end
+  // c235-b begin
+  // The school's own name and logo (C235-B) are running the account itself, as inviting colleagues is: tied to no
+  // module's switch, refused when the account is paused or read-only. The route admits the principal and the school
+  // admin only, and the database holds the same line.
+  ['school/branding', 'any-module'],
+  // c235-b end
   // What is recorded about a guardian sits with Parents (17 §3: guardians,
   // verification, consent, data requests), wherever its button is drawn.
   ['students/*/consent', 'parents'],
