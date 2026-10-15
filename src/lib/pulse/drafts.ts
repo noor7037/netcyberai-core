@@ -2,6 +2,7 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { MAX_PULSE_BODY, pulseBodies, type PulseBodies } from './text';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // The day's Pulse drafts (docs/20 5f, C151). A draft is prepared by one tap
 // "taught today" (src/lib/academics/taught.ts) and holds the lesson and the
@@ -45,14 +46,14 @@ const SELECT = `select m.pulse_id, m.class_id, c.name as class_name, m.subject_i
     left join subjects s on s.school_id = m.school_id and s.subject_id = m.subject_id`;
 
 export async function listDrafts(db: PoolClient, schoolId: string, date: string): Promise<Draft[]> {
-  return (await db.query(`${SELECT} where m.school_id = $1 and m.sent_on = $2 order by c.name, s.name`, [schoolId, date])).rows;
+  return (await db.query(`${SELECT} where m.school_id = $1 and m.sent_on = $2 order by ${classOrderSql('c')}, s.name`, [schoolId, date])).rows;
 }
 
 // The messages a person sent for the lessons of from..to (docs/26 slice 8d, C203): what the Daily Pulse screen
 // lists on /app/pulse?show=sent&from=…&to=…, each with how many went out and what parents answered.
 export const SENT_ROWS_MAX = 1000;
 export async function listSent(db: PoolClient, schoolId: string, from: string, to: string, limit: number = SENT_ROWS_MAX): Promise<Draft[]> {
-  return (await db.query(`${SELECT} where m.school_id = $1 and m.status = 'sent' and m.sent_on between $2::date and $3::date order by m.sent_on desc, c.name, s.name, m.pulse_id limit $4`, [schoolId, from, to, limit])).rows;
+  return (await db.query(`${SELECT} where m.school_id = $1 and m.status = 'sent' and m.sent_on between $2::date and $3::date order by m.sent_on desc, ${classOrderSql('c')}, s.name, m.pulse_id limit $4`, [schoolId, from, to, limit])).rows;
 }
 // The same messages, added up (never cut short): how many were sent, how many went out to parents or were held,
 // and what parents answered. One query shape with the list, so a total and its rows cannot differ.

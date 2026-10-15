@@ -9,6 +9,7 @@ import { languageFor, queueWhatsAppMessage } from '@/lib/whatsapp/gate';
 import { normalizePhone } from '@/lib/whatsapp/phone';
 import { renderTemplate, templateToSend } from '@/lib/whatsapp/templates';
 import { MAX_CLOSING_NOTE, MAX_NOTE, compareDetails, hideAadhaarNumbers, isDataCheckField, readCorrection, readNote, readPrinted, sayDob, worstSeverity, type DataCheckField, type Details, type FieldFinding, type PrintedInput, type PrintedProblem } from './data-check-rules';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // The student data check (docs/28 section 2.2 and row 10b, C222): each child's name, date of birth and gender in the
 // school record against the same details as printed on Aadhaar, typed by the office. For UDISE+ and APAAR; there is
@@ -85,7 +86,7 @@ export async function listDataCheck(db: Sql, actor: DataCheckActor, opts: { clas
   if (!DATA_CHECK_READERS.includes(actor.role)) return null;
   const office = isOffice(actor.role);
   const classes = (await db.query(
-    `select c.class_id, c.name, c.section from classes c where c.school_id = $1 and ($2::boolean or public.is_class_teacher_of(c.class_id)) order by c.name, c.class_id`,
+    `select c.class_id, c.name, c.section from classes c where c.school_id = $1 and ($2::boolean or public.is_class_teacher_of(c.class_id)) order by ${classOrderSql('c')}, c.class_id`,
     [actor.schoolId, office]
   )).rows.map((c) => ({ class_id: c.class_id as string, name: classLabel(c.name, c.section) ?? '' }));
   const students = (await db.query(
@@ -97,7 +98,7 @@ export async function listDataCheck(db: Sql, actor: DataCheckActor, opts: { clas
        left join users u on u.school_id = p.school_id and u.user_id = p.typed_by
       where s.school_id = $1 and s.status = 'active' and ($2::uuid is null or s.class_id = $2)
         and ($3::boolean or public.is_class_teacher_of(s.class_id))
-      order by c.name nulls last, s.name, s.student_id`,
+      order by (c.class_id is null), ${classOrderSql('c')}, s.name, s.student_id`,
     [actor.schoolId, opts.classId, office]
   )).rows;
   const ids = students.map((s) => s.student_id as string);

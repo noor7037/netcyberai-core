@@ -522,7 +522,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
             <ul data-classes className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
               {classes.map((c) => (
                 <li key={c.class_id} data-class={c.class_id} className="flex flex-col gap-2 rounded-md border border-slate/10 px-3 py-2 text-sm text-slate">
-                  <span className="font-semibold">{c.name}</span>
+                  <span data-class-name className="font-semibold">{c.name}</span>
                   {mayChangeClassTeacher ? (
                     <Select
                       id={`class-teacher-${c.class_id}`}

@@ -5166,7 +5166,7 @@ export const hi: Record<keyof typeof en, string> = {
   'students.gender.label': 'लिंग, जैसा आधार पर छपा है',
   'students.dataCheck.link': 'विद्यार्थी डेटा जाँच',
   'students.dataCheck.how': 'UDISE+ और APAAR के लिए हर बच्चे का नाम, जन्म तिथि और लिंग आधार पर छपी जानकारी से मिलाएँ।',
-  'students.import.columns': 'Columns: name (ज़रूरी), admission_no, class_name (जैसा यहाँ कक्षा का नाम है, ठीक वैसा), roll_no, dob (YYYY-MM-DD रूप में) और gender (male, female या transgender, जैसा आधार पर छपा है; पता न हो तो खाली छोड़ें)। हर बच्चा सहमति की प्रतीक्षा से शुरू होता है। वही फ़ाइल दोबारा upload करना सुरक्षित है: कोई दो बार नहीं जुड़ता। वैकल्पिक guardian_phone और guardian_email columns केवल यहाँ पहले से मौजूद भाई-बहन सुझाते हैं; आपकी पुष्टि के बिना कुछ नहीं जुड़ता।',
+  'students.import.columns': 'Columns: name (ज़रूरी), admission_no, class_name (जैसा यहाँ कक्षा का नाम है, ठीक वैसा), roll_no, dob (YYYY-MM-DD रूप में) और gender (male, female या transgender, जैसा आधार पर छपा है; पता न हो तो खाली छोड़ें)। हर बच्चा सहमति की प्रतीक्षा से शुरू होता है। किसी भी row में गड़बड़ी हो तो कुछ भी import नहीं होता: ठीक करने वाली हर row दिखाई जाती है। वही फ़ाइल दोबारा upload करना सुरक्षित है: कोई दो बार नहीं जुड़ता। वैकल्पिक guardian_phone और guardian_email columns केवल यहाँ पहले से मौजूद भाई-बहन सुझाते हैं; आपकी पुष्टि के बिना कुछ नहीं जुड़ता।',
   // c224 end
   // c225 begin
   'rtd.csv.writtenOff': 'बट्टे खाते में (₹)',

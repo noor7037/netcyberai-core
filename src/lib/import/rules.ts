@@ -7,7 +7,7 @@
 export const IMPORT_COLUMNS = [
   { key: 'name', required: true, hint: 'Full name of the student' },
   { key: 'admission_no', required: false, hint: 'Your school’s admission number' },
-  { key: 'class_name', required: false, hint: 'Must match a class name set up in NetCyberAI, e.g. 5A' },
+  { key: 'class_name', required: false, hint: 'Must match a class name set up in NetCyberAI exactly, e.g. 5-A' },
   { key: 'roll_no', required: false, hint: 'Roll number within the class' },
   { key: 'dob', required: false, hint: 'Date of birth as YYYY-MM-DD, e.g. 2015-04-23' },
 ] as const;

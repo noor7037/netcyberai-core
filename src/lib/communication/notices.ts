@@ -4,6 +4,7 @@ import type { StaffRole } from '@/lib/auth/types';
 import type { JobQueue } from '@/lib/jobs/types';
 import { queueWhatsAppMessage } from '@/lib/whatsapp/gate';
 import { normalizePhone } from '@/lib/whatsapp/phone';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // Notices to parents (docs/25 slice 7i, C191).
 //
@@ -49,7 +50,7 @@ export async function listNotices(db: PoolClient, schoolId: string, only?: 'wait
 // The classes a person may write a notice for: a teacher's own; for the office, all.
 export async function noticeClasses(db: PoolClient, actor: Actor): Promise<{ class_id: string; name: string }[]> {
   if (!STAFF.includes(actor.role)) return [];
-  return (await db.query(`select class_id, name from classes where school_id = $1 and ($2 <> 'teacher' or class_id in (select unnest(public.teacher_own_class_ids()))) order by name`, [actor.schoolId, actor.role])).rows;
+  return (await db.query(`select class_id, name from classes where school_id = $1 and ($2 <> 'teacher' or class_id in (select unnest(public.teacher_own_class_ids()))) order by ${classOrderSql('')}, class_id`, [actor.schoolId, actor.role])).rows;
 }
 
 export type WriteResult = { ok: true; noticeId: string } | { ok: false; reason: 'not_allowed' | 'words' | 'class' | 'whole_school' };

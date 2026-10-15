@@ -43,12 +43,28 @@ export function sortClasses<T extends OrderableClass>(rows: readonly T[]): T[] {
   return [...rows].sort(compareClasses);
 }
 
+function orderParts(alias: string): { rank: string; section: string; name: string } {
+  const p = alias ? `${alias}.` : '';
+  const key = `substring(upper(btrim(coalesce(nullif(btrim(${p}grade), ''), ${p}name, ''))) from '^(NURSERY|LKG|UKG|[0-9]{1,2})')`;
+  return {
+    // coalesce evaluates left to right and stops at the first value: the cast runs only for a number (or nothing).
+    rank: `coalesce(array_position(array['NURSERY', 'LKG', 'UKG'], ${key}) - 1, 2 + ${key}::int, ${UNKNOWN_RANK})`,
+    section: `coalesce(nullif(upper(btrim(${p}section)), ''), regexp_replace(regexp_replace(upper(btrim(coalesce(${p}name, ''))), '^(NURSERY|LKG|UKG|[0-9]{1,2})', ''), '[^A-Z0-9]', '', 'g'))`,
+    name: `coalesce(${p}name, '')`,
+  };
+}
+
 // The same order as an SQL `order by` list, for a classes row under `alias` (empty for none). Put the class id or
 // the row's own columns after it when two rows of one class must keep a fixed order.
 export function classOrderSql(alias = 'c'): string {
-  const p = alias ? `${alias}.` : '';
-  const key = `substring(upper(btrim(coalesce(nullif(btrim(${p}grade), ''), ${p}name, ''))) from '^(NURSERY|LKG|UKG|[0-9]{1,2})')`;
-  // coalesce evaluates left to right and stops at the first value: the cast runs only for a number (or nothing).
-  const section = `coalesce(nullif(upper(btrim(${p}section)), ''), regexp_replace(regexp_replace(upper(btrim(coalesce(${p}name, ''))), '^(NURSERY|LKG|UKG|[0-9]{1,2})', ''), '[^A-Z0-9]', '', 'g'))`;
-  return `coalesce(array_position(array['NURSERY', 'LKG', 'UKG'], ${key}) - 1, 2 + ${key}::int, ${UNKNOWN_RANK}), ${section} collate "C", ${p}name collate "C"`;
+  const o = orderParts(alias);
+  return `${o.rank}, ${o.section} collate "C", ${o.name} collate "C"`;
+}
+
+// The same order as ONE text value, for a place that takes a single expression and adds its own direction (the
+// students list's "sort by class"): the rank as four digits, then the section and the name, each ended by chr(1),
+// which sorts before every character a name has.
+export function classSortKeySql(alias = 'c'): string {
+  const o = orderParts(alias);
+  return `(lpad(${o.rank}::text, 4, '0') || chr(1) || ${o.section} || chr(1) || ${o.name}) collate "C"`;
 }

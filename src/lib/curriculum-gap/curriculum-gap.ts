@@ -4,6 +4,7 @@ import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { Sql } from '@/lib/jobs/types';
 import { indiaDate } from '@/lib/time/india';
 import { gapStates, type GapCounts, type GapPaper, type UnitFacts, type UnitGap } from './rules';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // The Curriculum Gap Detector's screen (docs/27 row 9d, C216): for one class and one subject, every unit of the
 // syllabus map once, in the map's order, with its state and the days it rests on, and a count of each state. The
@@ -105,7 +106,7 @@ export async function gapScreen(db: Sql, actor: Actor, ask: { classId?: unknown;
     await db.query(
       `select class_id, name, section from classes
         where school_id = $1 and ($2::boolean or class_id = any (public.teacher_own_class_ids()))
-        order by name, section nulls first, class_id`,
+        order by ${classOrderSql('')}, class_id`,
       [actor.schoolId, wholeSchool]
     )
   ).rows.map((r) => ({ classId: r.class_id as string, name: classLabel(r.name, r.section) ?? '' }));

@@ -10,6 +10,7 @@ import { readSettings } from '@/lib/frameworks/settings-store';
 import type { Sql } from '@/lib/jobs/types';
 import { indiaDate } from '@/lib/time/india';
 import { DEFAULT_GENOME_SETTINGS, findings, GENOME_READERS, type ChapterGenome, type ExamOverall, type ExamPoint, type Genome, type GenomeSettings, type SubjectGenome } from './rules';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // Learning Genome v1 (docs/27 row 9e, C217): one child's genome, worked out when it is read, from the rows the
 // person reading may see. Nothing is stored and nothing is written.
@@ -83,7 +84,7 @@ export async function genomePicker(db: Sql, actor: Actor, classId: string | null
   if (!GENOME_READERS.includes(actor.role)) return null;
   const own = actor.role === 'teacher';
   const classes = (await db.query(
-    `select c.class_id, c.name, c.section from classes c where c.school_id = $1 and ${OWN_CLASS('c.class_id', 2)} order by c.name, c.section nulls first, c.class_id`,
+    `select c.class_id, c.name, c.section from classes c where c.school_id = $1 and ${OWN_CLASS('c.class_id', 2)} order by ${classOrderSql('c')}, c.class_id`,
     [actor.schoolId, own]
   )).rows.map((r) => ({ classId: r.class_id as string, name: classLabel(r.name, r.section) ?? '' }));
   if (classId === null) return { role: actor.role, classes, classId: null, children: null };

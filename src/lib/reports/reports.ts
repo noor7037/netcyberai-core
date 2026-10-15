@@ -10,6 +10,7 @@ import { sentTotalsByClass } from '@/lib/pulse/drafts';
 import { leaveCalendar } from '@/lib/staff/leave';
 import { MESSAGE_STATES, countMessages, messagesInAll } from '@/lib/whatsapp/delivery';
 import { REPORT_SOURCE_ROWS_MAX, ReportTooLarge, type ReportContext, type ReportDefinition, type ReportId, type ReportNote, type ReportRow, type ReportSql } from './types';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // The reports of v1 (docs/26 slice 8h, C207). Read types.ts first.
 //
@@ -148,8 +149,8 @@ async function attendanceByClass(db: ReportSql, ctx: ReportContext): Promise<{ r
        from attendance a
        left join classes c on c.school_id = a.school_id and c.class_id = a.class_id
       where a.school_id = $1 and a.date between $2::date and $3::date
-      group by a.class_id, c.name, c.section
-      order by c.name, c.section, a.class_id`,
+      group by a.class_id, c.name, c.grade, c.section
+      order by (a.class_id is null), ${classOrderSql('c')}, a.class_id`,
     [ctx.schoolId, ctx.range.from, ctx.range.to]
   );
   const school = marksTotal(await marksByDay(db, ctx.schoolId, ctx.range.from, ctx.range.to));
@@ -166,8 +167,8 @@ async function absentees(db: ReportSql, ctx: ReportContext): Promise<{ rows: Rep
        left join students s on s.school_id = a.school_id and s.student_id = a.student_id
        left join classes c on c.school_id = a.school_id and c.class_id = a.class_id
       where a.school_id = $1 and a.date between $2::date and $3::date and a.status = 'absent'
-      group by a.class_id, c.name, c.section, a.student_id, s.name, s.roll_no
-      order by c.name, c.section, a.class_id, s.name, a.student_id
+      group by a.class_id, c.name, c.grade, c.section, a.student_id, s.name, s.roll_no
+      order by (a.class_id is null), ${classOrderSql('c')}, a.class_id, s.name, a.student_id
       limit $4`,
     [ctx.schoolId, ctx.range.from, ctx.range.to, ASK]
   );

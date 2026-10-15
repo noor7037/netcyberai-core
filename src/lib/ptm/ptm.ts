@@ -5,6 +5,7 @@ import { PermanentJobError, type JobHandler, type JobSpec } from '@/lib/jobs/typ
 import { indiaDate, isIsoDate } from '@/lib/time/india';
 import { queueWhatsAppMessage } from '@/lib/whatsapp/gate';
 import { normalizePhone, writtenForms } from '@/lib/whatsapp/phone';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // Parent-teacher meetings (docs/25 slice 7k, C193).
 //
@@ -61,7 +62,7 @@ export async function createPtm(db: PoolClient, actor: Actor, input: PtmInput, t
   for (let m = minutes(input.startsAt); m + input.slotMinutes <= minutes(input.endsAt); m += input.slotMinutes) starts.push(clock(m));
   if (starts.length > MAX_SLOTS_A_TEACHER) return { ok: false, reason: 'too_many_slots' };
   const ids = [...new Set(input.classIds)];
-  const classes = ids.length ? ((await db.query(`select class_id, name, class_teacher_id from classes where school_id = $1 and class_id = any($2::uuid[]) order by name`, [actor.schoolId, ids])).rows as { class_id: string; name: string; class_teacher_id: string | null }[]) : [];
+  const classes = ids.length ? ((await db.query(`select class_id, name, class_teacher_id from classes where school_id = $1 and class_id = any($2::uuid[]) order by ${classOrderSql('')}, class_id`, [actor.schoolId, ids])).rows as { class_id: string; name: string; class_teacher_id: string | null }[]) : [];
   if (!ids.length || classes.length !== ids.length) return { ok: false, reason: 'classes' };
   const without = classes.filter((c) => !c.class_teacher_id).map((c) => c.name);
   if (without.length) return { ok: false, reason: 'no_teacher', classes: without };
@@ -178,7 +179,7 @@ export async function listPtms(db: PoolClient, schoolId: string, comingFrom?: st
     : `where e.school_id = $1 order by e.held_on desc, e.created_at desc limit 50`;
   const { rows } = await db.query(
     `select e.ptm_id, e.title, e.held_on, e.starts_at, e.ends_at, e.slot_minutes, e.status,
-            coalesce((select string_agg(c.name, ', ' order by c.name) from classes c where c.school_id = e.school_id and c.class_id = any(e.class_ids)), '') as classes,
+            coalesce((select string_agg(c.name, ', ' order by ${classOrderSql('c')}) from classes c where c.school_id = e.school_id and c.class_id = any(e.class_ids)), '') as classes,
             (select count(*)::int from ptm_slots s where s.ptm_id = e.ptm_id) as slots,
             (select count(*)::int from ptm_bookings b where b.ptm_id = e.ptm_id) as booked,
             (select count(*)::int from ptm_bookings b where b.ptm_id = e.ptm_id and b.attended) as attended

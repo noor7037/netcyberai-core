@@ -48,4 +48,4 @@ export function checkImportCsv(text: string, today: string = indiaDate()): Impor
   };
 }
 
-export const IMPORT_TEMPLATE_CSV = `${IMPORT_COLUMNS.map((c) => c.key).join(',')}\nAarav Sharma,A-1001,5A,12,2015-04-23\n`;
+export const IMPORT_TEMPLATE_CSV = `${IMPORT_COLUMNS.map((c) => c.key).join(',')}\nAarav Sharma,A-1001,5-A,12,2015-04-23\n`;

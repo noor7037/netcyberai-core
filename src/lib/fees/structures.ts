@@ -2,6 +2,7 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { FREQUENCIES, MAX_MINOR, type Frequency } from './money';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // Fee heads and structures (docs/23 6a, C157). A fee rule is never
 // overwritten: a head is added or retired, and a structure gets a new
@@ -72,7 +73,7 @@ const STRUCTURES = `select f.structure_id, f.class_id, c.name as class_name, f.s
 
 // Every version, the newest first within a class and session.
 export async function listStructures(db: PoolClient, schoolId: string): Promise<Structure[]> {
-  const { rows } = await db.query(`${STRUCTURES} where f.school_id = $1 order by c.name, f.academic_year desc, f.effective_from desc`, [schoolId]);
+  const { rows } = await db.query(`${STRUCTURES} where f.school_id = $1 order by ${classOrderSql('c')}, f.academic_year desc, f.effective_from desc`, [schoolId]);
   return rows.map((r) => ({ ...r, items: (r.items as StructureItem[]).map((i) => ({ ...i, amount_minor: Number(i.amount_minor) })) }));
 }
 

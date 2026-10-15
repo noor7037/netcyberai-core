@@ -297,11 +297,13 @@ describe('the real routes, on real Postgres', () => {
   const req = (method: string, url: string, body?: unknown) => new NextRequest(`http://localhost${url}`, { method, ...(body ? { body: JSON.stringify(body) } : {}) });
   const count = async (table: string) => Number((await db.query(`select count(*) as c from ${table} where school_id = $1`, [A])).rows[0].c);
   const said = async (res: Response) => ({ status: res.status, code: (await res.json()).code });
+  let classNo = 0;
   const tryEverything = async () => ({
     addStudent: await said(await addStudent(req('POST', '/api/app/students', { name: 'New Child', admissionNo: `N-${randomUUID().slice(0, 6)}` }))),
     editStudent: await said(await editStudent(req('PATCH', `/api/app/students/${existing}`, { name: 'Changed Name' }), { params: { studentId: existing } })),
     markAttendance: await said(await markAttendance(req('POST', '/api/app/attendance', { classId, entries: [{ studentId: existing, status: 'present' }] }))),
-    addClass: await said(await addClass(req('POST', '/api/app/classes', { name: '9', section: 'A' }))),
+    // A new class each time: a class the school already has is not made twice (C235-A).
+    addClass: await said(await addClass(req('POST', '/api/app/classes', { name: String(++classNo), section: 'A' }))),
   });
 
   beforeAll(async () => {

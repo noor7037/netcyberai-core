@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { PGlite } from '@electric-sql/pglite';
-import { classOrderSql, classRank, compareClasses, SCHOOL_GRADES, sortClasses } from '@/lib/classes/class-order';
+import { classOrderSql, classRank, classSortKeySql, compareClasses, SCHOOL_GRADES, sortClasses } from '@/lib/classes/class-order';
 import { STANDARD_CLASSES } from '@/lib/classes/standard-classes';
 
 // One class order everywhere (C235-A): Nursery < LKG < UKG < 1 < … < 12, then section, then name. The TypeScript
@@ -60,6 +60,9 @@ describe('the class order in SQL is the same as in TypeScript', () => {
     const want = sortClasses(rows).map((r) => r.name);
     expect((await pg.query<{ name: string }>(`select c.name from classes c order by ${classOrderSql('c')}`)).rows.map((r) => r.name)).toEqual(want);
     expect((await pg.query<{ name: string }>(`select name from classes order by ${classOrderSql('')}`)).rows.map((r) => r.name)).toEqual(want);
+    // As one value, for the students list's "sort by class", both ways.
+    expect((await pg.query<{ name: string }>(`select c.name from classes c order by ${classSortKeySql('c')} asc nulls last`)).rows.map((r) => r.name)).toEqual(want);
+    expect((await pg.query<{ name: string }>(`select c.name from classes c order by ${classSortKeySql('c')} desc nulls last`)).rows.map((r) => r.name)).toEqual([...want].reverse());
     expect(want.slice(0, 6)).toEqual(['Nursery', 'lkg-c', 'UKG-A', '1-A', '1-B', '2-A']);
     expect(want.slice(-2)).toEqual(['Arts', 'Toddlers']);
   });

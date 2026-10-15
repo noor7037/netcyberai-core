@@ -7,6 +7,8 @@ import { isForeignKeyViolation } from '@/lib/db/pg-errors';
 import { classOrderSql } from '@/lib/classes/class-order';
 import { classTeacherOptions, maySetClassTeacher } from '@/lib/classes/class-teacher';
 import { deriveGradeSection } from '@/lib/classes/grade-section';
+import { classKey, existingClassKeys, lockSchoolClasses } from '@/lib/classes/standard-classes';
+import { classLabel } from '@/lib/frameworks/class-label';
 import { validationError } from '@/lib/errors/catalogue';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 
@@ -62,6 +64,9 @@ export async function POST(req: NextRequest) {
   const derived = deriveGradeSection(name);
   const grade = typeof body?.grade === 'string' && body.grade.trim() ? body.grade.trim() : derived.grade;
   const section = typeof body?.section === 'string' && body.section.trim() ? body.section.trim() : derived.section;
+  // A class's name carries its section, so every screen and file shows the same label (C235-A): "9" with section A
+  // is saved as "9-A", as classLabel shows it.
+  const label = classLabel(name, section) ?? name;
 
   if (classTeacherId !== null && !isUuid(classTeacherId)) {
     return NextResponse.json(validationError('not_sent_properly'), { status: 400 });
@@ -75,11 +80,15 @@ export async function POST(req: NextRequest) {
         const teacher = await client.query(`select 1 from users where school_id = $1 and user_id = $2 and role = 'teacher' and is_active`, [guard.claims.schoolId, classTeacherId]);
         if (teacher.rowCount === 0) return null;
       }
+      // A class the school already has is not made twice (C235-A): "5-A", "5A" and grade 5 section A are one class.
+      await lockSchoolClasses(client, guard.claims.schoolId);
+      const existing = existingClassKeys((await client.query(`select name, grade, section from classes where school_id = $1`, [guard.claims.schoolId])).rows);
+      if (existing.has(classKey(label))) return 'exists' as const;
       const { rows } = await client.query(
         `insert into classes (school_id, name, grade, section, session_id, class_teacher_id)
          values ($1, $2, $3, $4, $5, $6)
          returning class_id, name, grade, section, session_id, class_teacher_id`,
-        [guard.claims.schoolId, name, grade, section, sessionId, classTeacherId]
+        [guard.claims.schoolId, label, grade, section, sessionId, classTeacherId]
       );
       const row = rows[0];
       await writeAuditLog(client, {
@@ -94,6 +103,7 @@ export async function POST(req: NextRequest) {
       return row;
     });
     if (!created) return NextResponse.json({ error: 'only an active teacher of this school can be a class teacher', code: 'not_a_teacher' }, { status: 400 });
+    if (created === 'exists') return NextResponse.json(validationError('already_exists', { field: 'class_name', value: label }), { status: 409 });
     return NextResponse.json({ class: created }, { status: 201 });
   } catch (err) {
     if (isForeignKeyViolation(err)) {

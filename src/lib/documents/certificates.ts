@@ -32,6 +32,7 @@ import {
   type TypedProblem,
 } from './certificate-rules';
 import { copyLinkUrl } from './copy-link';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // Documents and certificates (docs/28 row 10e, C228): certificates issued from the student record, one by one or for
 // a class, into the school's issue register.
@@ -141,7 +142,7 @@ export async function numberingOf(db: Sql, schoolId: string): Promise<NumberingV
 
 export async function certificateHome(db: Sql, actor: CertActor, today: string): Promise<CertificateHome | null> {
   if (!isOffice(actor.role)) return null;
-  const classes = (await db.query(`select class_id, name from classes where school_id = $1 order by name, class_id`, [actor.schoolId])).rows;
+  const classes = (await db.query(`select class_id, name from classes where school_id = $1 order by ${classOrderSql('')}, class_id`, [actor.schoolId])).rows;
   const year = (await db.query(`select label from academic_sessions where school_id = $1 and is_current order by start_date desc limit 1`, [actor.schoolId])).rows[0]?.label ?? null;
   const seal = Boolean((await db.query(`select 1 from certificate_marks where school_id = $1 and kind = 'seal'`, [actor.schoolId])).rows[0]);
   const mySignature = Boolean((await db.query(`select 1 from certificate_signatures where school_id = $1 and user_id = $2`, [actor.schoolId, actor.userId])).rows[0]);

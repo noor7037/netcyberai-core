@@ -2953,6 +2953,35 @@ const monitoringMaskedDone = async () => {
   }
 };
 // c210-ui end
+// c235-a begin
+// The standard classes (C235-A). The principal opens "Manage classes" and presses "Add the standard classes": the
+// seed's classes stay as they are, every other class of LKG to 12 with sections A, B and C is added, and the list
+// shows the 42 in the class order (LKG, UKG, 1 … 12; 2-A before 10-A). The picture is the whole list: the dialog is
+// drawn at its full height for it. The check reads the database; then the added classes are taken away (the audit
+// row of the press stays: the log is never cut).
+const STANDARD_NAMES = ['LKG', 'UKG', ...Array.from({ length: 12 }, (_, i) => String(i + 1))].flatMap((g) => ['A', 'B', 'C'].map((s) => `${g}-${s}`));
+let standardSeen = null;
+const classesStandard = async (page) => {
+  standardSeen = { before: (await db.pg.query(`select class_id from classes where school_id = $1`, [SCHOOL])).rows.map((r) => r.class_id) };
+  await page.locator('[data-classes-standard]').click();
+  await page.waitForFunction((n) => Number(document.querySelector('[data-classes-count]')?.getAttribute('data-classes-count')) >= n, standardSeen.before.length + 39, { timeout: 30000 });
+  standardSeen.names = await page.locator('[data-classes] [data-class-name]').allTextContents();
+  standardSeen.saved = (await db.pg.query(`select count(*)::int as n from classes where school_id = $1 and name = any($2::text[])`, [SCHOOL, STANDARD_NAMES])).rows[0].n;
+  await page.evaluate(() => {
+    const dialog = document.querySelector('dialog[open]');
+    if (dialog) Object.assign(dialog.style, { maxHeight: 'none', position: 'absolute', top: '0', marginTop: '16px' });
+  });
+};
+const classesStandardDone = async () => {
+  try {
+    const shown = (standardSeen?.names ?? []).filter((n) => STANDARD_NAMES.includes(n));
+    if (JSON.stringify(shown) !== JSON.stringify(STANDARD_NAMES)) throw new Error(`the list after "Add the standard classes": ${JSON.stringify(standardSeen?.names)}`);
+    if (standardSeen.saved !== 42) throw new Error(`${standardSeen.saved} standard classes saved, expected 42`);
+  } finally {
+    if (standardSeen?.before) await db.pg.query(`delete from classes where school_id = $1 and not (class_id = any($2::uuid[]))`, [SCHOOL, standardSeen.before]);
+  }
+};
+// c235-a end
 // p6-9a begin
 // Boards and the grading scheme builder (C213). The seeded school records no board and has no scheme; Exams is
 // switched on for it here (the seed predates the module), and every row made is taken away afterwards.
@@ -5721,6 +5750,7 @@ const SCREENS = [
   // opened from a dashboard number whose list above follows a change below with no reload; Monitoring's invitations
   // with the staff email masked.
   ['principal', 'app-classes-class-teacher', '/app/students?classes=1', classTeacherFromAuditor, classTeacherFromAuditorDone],
+  ['principal', 'app-classes-standard', '/app/students?classes=1', classesStandard, classesStandardDone],
   ['principal', 'app-notices-rows-change', '/app/communication?show=notices', shownAfterAdding(true), noticeShownChange],
   ['principal', 'app-events-rows-change', '/app/events?show=coming', shownAfterAdding(true), eventShownChange],
   ['principal', 'app-answers-rows-change', '/app/parent-ai?show=drafts', shownAfterAdding(false), answerShownChange],

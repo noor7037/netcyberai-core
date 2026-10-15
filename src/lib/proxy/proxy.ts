@@ -6,6 +6,7 @@ import { schoolCalendar, type WorkingCalendar } from '@/lib/payments/upi';
 import { addDays, isLeaveDate } from '@/lib/staff/leave-rules';
 import { indiaDate } from '@/lib/time/india';
 import { isoWeek, isoWeekday, needsCover, PROXY_AHEAD_DAYS, PROXY_ARRANGERS, suggestFor, type Cover, type CoverProblem, type DayFacts, type DayOff, type MyCover, type PeriodToCover, type ProxyDay, type Suggestion } from './rules';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 export * from './rules';
 
@@ -101,7 +102,7 @@ const problemOf = (x: Held, away: ReadonlySet<string>): CoverProblem | null => (
 
 // The covers assigned on a date, as this session may read them (the arranging roles: all of them).
 async function coversOn(db: Sql, schoolId: string, date: string): Promise<Held[]> {
-  const { rows } = await db.query(`${COVERS} where x.school_id = $1 and x.on_date = $2::date and x.status = 'assigned' order by x.period, c.name, c.section, x.class_id`, [schoolId, date]);
+  const { rows } = await db.query(`${COVERS} where x.school_id = $1 and x.on_date = $2::date and x.status = 'assigned' order by x.period, ${classOrderSql('c')}, x.class_id`, [schoolId, date]);
   return rows.map(held);
 }
 
@@ -116,7 +117,7 @@ async function periodsOf(db: Sql, schoolId: string, date: string, away: readonly
        join subjects s on s.school_id = e.school_id and s.subject_id = e.subject_id
        join users u on u.school_id = e.school_id and u.user_id = e.teacher_user_id
       where e.school_id = $1 and e.weekday = $2 and e.teacher_user_id = any($3::uuid[])
-      order by e.period, c.name, c.section, e.class_id`,
+      order by e.period, ${classOrderSql('c')}, e.class_id`,
     [schoolId, isoWeekday(date), away.map((p) => p.user_id)]
   );
   const gone = new Set(away.map((p) => p.user_id));
@@ -298,7 +299,7 @@ export async function coversBetween(db: Sql, schoolId: string, userId: string, f
        join classes c on c.school_id = x.school_id and c.class_id = x.class_id
        join subjects s on s.school_id = x.school_id and s.subject_id = x.subject_id
       where x.school_id = $1 and x.substitute_user_id = $2 and x.on_date between $3::date and $4::date and x.status = 'assigned'
-      order by x.on_date, x.period, c.name, c.section, x.class_id`,
+      order by x.on_date, x.period, ${classOrderSql('c')}, x.class_id`,
     [schoolId, userId, from, to]
   );
   if (rows.length === 0) return [];
@@ -346,7 +347,7 @@ export async function coversReleasedBetween(db: Sql, schoolId: string, userId: s
       where x.school_id = $1 and x.substitute_user_id = $2 and x.on_date between $3::date and $4::date and x.status = 'undone' and x.undone_reason = 'leave_cancelled'
         and not exists (select 1 from substitutions again where again.school_id = x.school_id and again.substitute_user_id = x.substitute_user_id and again.on_date = x.on_date
                            and again.period = x.period and again.class_id = x.class_id and again.status = 'assigned')
-      order by x.on_date, x.period, c.name, c.section, x.substitution_id`,
+      order by x.on_date, x.period, ${classOrderSql('c')}, x.substitution_id`,
     [schoolId, userId, from, to]
   );
   if (rows.length === 0) return [];

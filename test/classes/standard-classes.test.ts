@@ -22,7 +22,7 @@ vi.mock('@/lib/auth/db', async (original) => ({
 }));
 vi.mock('@/lib/frameworks/page-access', () => ({ moduleOffReason: async () => null }));
 
-import { GET as listClasses } from '@/app/api/app/classes/route';
+import { GET as listClasses, POST as addClass } from '@/app/api/app/classes/route';
 import { POST as addStandard } from '@/app/api/app/classes/standard/route';
 import { POST as importClasses } from '@/app/api/app/classes/import/route';
 import { GET as exportClasses } from '@/app/api/app/classes/export/route';
@@ -229,5 +229,12 @@ describe('the standard classes and classes by CSV, on the whole schema', () => {
       expect(await call(tara, () => exportClasses(new NextRequest('http://localhost/api/app/classes/export')))).toMatchObject({ status: 403 });
       expect((await audits('class.exported')).map((a: { after_state: unknown }) => a.after_state)).toEqual([{ rows: 45 }]);
     });
+  });
+
+  it('one class added by name is not made twice, and its name carries its section', async () => {
+    const add = (body: unknown) => call(principal, () => addClass(new NextRequest('http://localhost/api/app/classes', { method: 'POST', body: JSON.stringify(body) })));
+    for (const body of [{ name: '5-A' }, { name: '5a' }, { name: '6-B' }, { name: '10', section: 'C' }]) expect(await add(body), JSON.stringify(body)).toMatchObject({ status: 409, body: { code: 'already_exists' } });
+    expect(await add({ name: 'Nursery', section: 'C' })).toMatchObject({ status: 201, body: { class: { name: 'Nursery-C', grade: 'Nursery', section: 'C' } } });
+    expect(await count(`select count(*)::int as n from classes where school_id = $1`, [A])).toBe(46);
   });
 });

@@ -5,6 +5,7 @@ import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { isUniqueViolation } from '@/lib/db/pg-errors';
 import { parseSubjectName } from '@/lib/academics/syllabus';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // Subjects and who teaches them. GET is open to every signed-in school
 // role (RLS scopes it to the school); creating a subject is a master-data
@@ -19,7 +20,7 @@ export async function GET(req: NextRequest) {
         `select s.subject_id, s.name,
                 coalesce(json_agg(json_build_object(
                   'teacherId', t.teacher_id, 'teacherName', t.name, 'classId', c.class_id, 'className', c.name
-                ) order by c.name, t.name) filter (where ts.teacher_id is not null), '[]') as assignments
+                ) order by ${classOrderSql('c')}, t.name) filter (where ts.teacher_id is not null), '[]') as assignments
          from subjects s
          left join teacher_subjects ts on ts.school_id = s.school_id and ts.subject_id = s.subject_id
          left join teachers t on t.school_id = ts.school_id and t.teacher_id = ts.teacher_id

@@ -49,17 +49,15 @@ export async function addStandardClasses(db: Sql, actor: { schoolId: string; use
   const sessionId = await currentSessionId(db, actor.schoolId);
   let created: AddedClass[] = [];
   if (missing.length > 0) {
-    const params: unknown[] = [actor.schoolId, sessionId];
-    const values = missing.map((c) => {
-      params.push(c.name, c.grade, c.section);
-      return `($1, $${params.length - 2}, $${params.length - 1}, $${params.length}, $2::uuid)`;
-    });
     // `returning` keeps no order of its own: the rows are put in the class order here.
     created = (
       await db.query(
-        `with added as (insert into classes (school_id, name, grade, section, session_id) values ${values.join(', ')} returning class_id, name, grade, section, session_id)
+        `with added as (
+           insert into classes (school_id, name, grade, section, session_id)
+           select $1, n.name, n.grade, n.section, $2::uuid from unnest($3::text[], $4::text[], $5::text[]) as n(name, grade, section)
+           returning class_id, name, grade, section, session_id)
          select * from added c order by ${classOrderSql('c')}`,
-        params
+        [actor.schoolId, sessionId, missing.map((c) => c.name), missing.map((c) => c.grade), missing.map((c) => c.section)]
       )
     ).rows as AddedClass[];
   }

@@ -3,6 +3,7 @@ import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 import { createHomework, listAssignments, parseHomeworkText } from '@/lib/homework/homework';
 import { indiaDate } from '@/lib/time/india';
+import { classOrderSql } from '@/lib/classes/class-order';
 
 // Homework (docs/20 5e, C150).
 //   GET   the assignments the caller may see, and what they may set homework for
@@ -14,7 +15,7 @@ export async function GET(req: NextRequest) {
     if (!STAFF.includes(claims.role)) return ruleError(403, 'not_allowed');
     const today = indiaDate();
     // A teacher sets homework for their own classes; the office for any.
-    const classes = (await db.query(`select class_id, name from classes where school_id = $1 and ($2::text <> 'teacher' or class_id = any (public.teacher_own_class_ids())) order by name`, [claims.schoolId, claims.role])).rows;
+    const classes = (await db.query(`select class_id, name from classes where school_id = $1 and ($2::text <> 'teacher' or class_id = any (public.teacher_own_class_ids())) order by ${classOrderSql('')}, class_id`, [claims.schoolId, claims.role])).rows;
     const subjects = (await db.query(`select subject_id, name from subjects where school_id = $1 order by name`, [claims.schoolId])).rows;
     return NextResponse.json({ today, assignments: await listAssignments(db, claims.schoolId, today), classes, subjects });
   });
