@@ -44,6 +44,7 @@ SECRET_READERS = {
     "src/lib/auth/jwt.ts",  # signs and verifies with it
     "src/lib/auth/env.ts",  # reads it from the environment
     "src/lib/onboarding/intake.ts",  # keys the application-form digest; mints nothing
+    "src/lib/documents/upload-ticket.ts",  # seals a pending record-document upload (C235-D2); mints nothing
 }
 SIGNER_USERS = {
     "src/lib/auth/jwt.ts",  # defines the three signers

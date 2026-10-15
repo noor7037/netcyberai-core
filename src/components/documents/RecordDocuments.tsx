@@ -10,11 +10,15 @@ import { useToast } from '@/components/ui/Toast';
 import { RECORD_DOCUMENT_KINDS, type RecordDocument } from '@/lib/contracts/record-documents';
 import { explainError } from '@/lib/errors/catalogue';
 import type { MessageKey } from '@/lib/i18n';
+import { checkBeforeSending, sendRecordFile, type FileCheckProblem, type SendProgress, type SendResult } from './send-record-file';
 
 // The papers on a record (C235-D), on a member of staff's profile and a student's page: each paper with its kind and
 // name, its latest version first and the earlier ones under it (who uploaded each, and when). The office adds papers,
 // uploads new versions and removes papers; everyone who may read the record's papers opens them. A file opens in a new
 // tab through a link that works for five minutes, asked for at the moment it is opened (each one is audited).
+// A file is sent straight to the file store (C235-D2, ./send-record-file.ts): checked here first (size and first
+// bytes), its progress shown while it is sent, then checked by the server; each refusal is said plainly where it
+// happened: in the form for a new paper, on the paper's row for a new version.
 
 const BUTTON =
   'inline-flex min-h-[44px] items-center justify-center rounded-md px-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal disabled:opacity-60';
@@ -30,6 +34,9 @@ export function RecordDocuments({ record, recordId }: { record: 'staff' | 'stude
   const [adding, setAdding] = useState(false);
   const [busy, setBusy] = useState<string | null>(null);
   const [removing, setRemoving] = useState<RecordDocument | null>(null);
+  // The upload under way ('new' or the paper a version is for), and the last refusal, where it happened.
+  const [progress, setProgress] = useState<{ target: string; p: SendProgress } | null>(null);
+  const [failed, setFailed] = useState<{ target: string; message: string } | null>(null);
   const versionInput = useRef<HTMLInputElement>(null);
   const versionFor = useRef<string | null>(null);
 
@@ -60,45 +67,90 @@ export function RecordDocuments({ record, recordId }: { record: 'staff' | 'stude
     if (code === 'title_too_long') return t('rdoc.err.titleLong');
     if (code === 'title_aadhaar') return t('rdoc.err.titleAadhaar');
     if (code === 'storage_unavailable') return t('rdoc.err.storage');
+    if (code === 'upload_expired') return t('rdoc.err.expired');
+    if (code === 'upload_missing' || code === 'upload_changed') return t('rdoc.err.notArrived');
+    if (code === 'upload_done') return t('rdoc.err.alreadyAdded');
     return explainError(body, t('rdoc.err.upload'), lang, res.status);
+  }
+
+  // What is wrong with a file before it is sent, in the catalogue's own words.
+  const fileProblemText = (problem: FileCheckProblem) =>
+    explainError(
+      problem === 'file_too_large' ? { code: problem, params: { field: 'file', maxMb: 10 } } : problem === 'file_type' ? { code: problem, params: { field: 'file', allowed: 'PDF, JPG, PNG' } } : { code: problem },
+      t('rdoc.err.upload'),
+      lang
+    );
+  async function failureText(result: Exclude<SendResult, { ok: true }>): Promise<string> {
+    if (result.step === 'send') return result.tooLarge ? fileProblemText('file_too_large') : t('rdoc.err.sendFailed');
+    return result.res ? refusal(result.res) : t('rdoc.err.sendFailed');
+  }
+
+  // Checks the file, sends it, and says how it went where it was asked for. True when it was added.
+  async function send(target: string, file: File | null | undefined, paper: { kind: string; title: string } | { documentId: string }): Promise<boolean> {
+    setFailed(null);
+    const checked = await checkBeforeSending(file);
+    if (!checked.ok || !file) {
+      setFailed({ target, message: fileProblemText(checked.ok ? 'file_missing' : checked.problem) });
+      return false;
+    }
+    setBusy(target);
+    try {
+      const result = await sendRecordFile(base, file, checked.mime, paper, (p) => setProgress({ target, p }));
+      if (!result.ok) {
+        setFailed({ target, message: await failureText(result) });
+        return false;
+      }
+      await load();
+      return true;
+    } finally {
+      setBusy(null);
+      setProgress(null);
+    }
   }
 
   async function addDocument(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const file = form.get('file');
-    if (!(file instanceof File) || file.size === 0) {
-      toast.show(explainError({ code: 'file_missing' }, t('rdoc.err.upload'), lang), 'danger');
-      return;
-    }
-    setBusy('new');
-    try {
-      const res = await fetch(base, { method: 'POST', body: form });
-      if (!res.ok) return toast.show(await refusal(res), 'danger');
+    const added = await send('new', file instanceof File && file.name ? file : null, { kind: String(form.get('kind') ?? ''), title: String(form.get('title') ?? '') });
+    if (added) {
       setAdding(false);
       toast.show(t('rdoc.added'), 'success');
-      await load();
-    } finally {
-      setBusy(null);
     }
   }
 
   async function addVersion(file: File | undefined) {
     const documentId = versionFor.current;
     if (!file || !documentId) return;
-    const form = new FormData();
-    form.append('file', file, file.name);
-    setBusy(documentId);
     try {
-      const res = await fetch(`${base}/${documentId}`, { method: 'POST', body: form });
-      if (!res.ok) return toast.show(await refusal(res), 'danger');
-      toast.show(t('rdoc.versionAdded'), 'success');
-      await load();
+      if (await send(documentId, file, { documentId })) toast.show(t('rdoc.versionAdded'), 'success');
     } finally {
-      setBusy(null);
       if (versionInput.current) versionInput.current.value = '';
     }
   }
+
+  // The upload under way for this target: what is happening, and how much of the file has been sent.
+  const progressFor = (target: string) => {
+    if (progress?.target !== target) return null;
+    const percent = progress.p.phase === 'sending' ? progress.p.percent : 100;
+    return (
+      <div data-upload-progress={progress.p.phase} className="flex flex-col gap-1">
+        <p aria-live="polite" className="text-sm font-medium text-slate">
+          {progress.p.phase === 'sending' ? t('rdoc.up.sending') : t('rdoc.up.checking')}
+          {progress.p.phase === 'sending' && <span aria-hidden="true">{` ${percent}%`}</span>}
+        </p>
+        <div role="progressbar" aria-label={t('rdoc.up.progressLabel')} aria-valuemin={0} aria-valuemax={100} aria-valuenow={percent} className="h-2 w-full overflow-hidden rounded-full bg-slate/10">
+          <div className="h-full bg-sapphire" style={{ width: `${percent}%` }} />
+        </div>
+      </div>
+    );
+  };
+  const failureFor = (target: string) =>
+    failed?.target === target ? (
+      <p role="alert" data-upload-failed className="text-sm font-medium text-red-800">
+        {failed.message}
+      </p>
+    ) : null;
 
   async function remove(doc: RecordDocument) {
     setBusy(doc.documentId);
@@ -158,16 +210,26 @@ export function RecordDocuments({ record, recordId }: { record: 'staff' | 'stude
             <label htmlFor={`rdoc-file-${record}`} className="text-sm font-medium text-slate">
               {t('rdoc.form.file')}
             </label>
-            <input id={`rdoc-file-${record}`} name="file" type="file" accept={ACCEPT} required aria-describedby={`rdoc-file-${record}-help`} className="min-h-[44px] text-sm text-slate file:mr-3 file:min-h-[44px] file:rounded-md file:border-0 file:bg-sapphire/10 file:px-3 file:font-semibold file:text-sapphire" />
+            <input id={`rdoc-file-${record}`} name="file" type="file" accept={ACCEPT} required aria-describedby={`rdoc-file-${record}-help`} onChange={() => setFailed(null)} className="min-h-[44px] text-sm text-slate file:mr-3 file:min-h-[44px] file:rounded-md file:border-0 file:bg-sapphire/10 file:px-3 file:font-semibold file:text-sapphire" />
             <p id={`rdoc-file-${record}-help`} className="text-sm text-slate/70">
               {t('rdoc.form.fileHelp')}
             </p>
           </div>
+          {progressFor('new')}
+          {failureFor('new')}
           <div className="flex flex-wrap gap-2">
             <button type="submit" disabled={busy === 'new'} className={`${BUTTON} bg-sapphire text-white`}>
               {busy === 'new' ? t('rdoc.form.saving') : t('rdoc.form.save')}
             </button>
-            <button type="button" onClick={() => setAdding(false)} className={`${BUTTON} text-slate/70`}>
+            <button
+              type="button"
+              disabled={busy === 'new'}
+              onClick={() => {
+                setAdding(false);
+                setFailed(null);
+              }}
+              className={`${BUTTON} text-slate/70`}
+            >
               {t('rdoc.form.cancel')}
             </button>
           </div>
@@ -224,6 +286,8 @@ export function RecordDocuments({ record, recordId }: { record: 'staff' | 'stude
                     )}
                   </div>
                 </div>
+                {progressFor(doc.documentId)}
+                {failureFor(doc.documentId)}
                 {earlier.length > 0 && (
                   <details data-earlier-versions={earlier.length} className="rounded-md bg-slate/5 px-3">
                     <summary className="flex min-h-[44px] cursor-pointer items-center text-sm font-semibold text-slate">{tCount('rdoc.earlier', earlier.length)}</summary>

@@ -62,8 +62,9 @@ phone-first for teachers and parents; low-bandwidth and offline-tolerant for tea
 | --- | --- | --- |
 | C235-A | Standard classes LKG–12 × A–C in one action; one class order everywhere; consistency audit; bulk class upload/download; 10,000-row proof of the student bulk import | Merged (C235-A); the demo school has the 42 classes |
 | C235-B | Sticky branded header (school logo + name, person's name + role); school branding in Settings (principal, school admin only) and at onboarding in Control; safe logo upload; navigation: Home → Frequent work → All modules by category | Merged (C235-B); migration on both databases |
-| C235-C | Design system v5: floating-label inputs, custom checkbox/radio/segmented control, gradient page banner per module category, KPI icon chips; at least 30% fewer words on 11 key screens | Merged (C235-C): 59% fewer words (7,490 → 3,046) |
-| C235-D | Documents on staff and student profiles (PDF/JPG/PNG, 10 MB, versions kept, role-based access, every view audited); export of students, staff and classes as Excel (.xlsx) and CSV | Merged (C235-D); files over 4.5 MB wait on D2 (direct uploads to storage, building) |
+| C235-C | Design system v5: floating-label inputs, custom checkbox/radio/segmented control, gradient page banner per module category, KPI icon chips; at least 30% fewer words on 11 key screens | Merged (C235-C, #178): 59% fewer words (7,490 → 3,046) |
+| C235-D | Documents on staff and student profiles (PDF/JPG/PNG, 10 MB, versions kept, role-based access, every view audited); export of students, staff and classes as Excel (.xlsx) and CSV | Merged (C235-D, #178); migration on both databases |
+| C235-D2 | Papers up to 10 MB sent straight from the browser to storage (ask, send, confirm), checked on arrival; bucket raised to 10 MiB | Merged (C235-D2, #179) after a security review (one medium finding fixed: only the checked bytes are kept); bucket migration on both databases. Live uploads wait on founder action 8 (`16` §5) |
 | C235-E | Feasibility: document storage (section 4) and the AI assistant (section 5) | This file |
 | C235-F | The redesign carried into every remaining module screen (each screen adopts the v5 components) | After C, module by module |
 
@@ -129,10 +130,12 @@ consent wording for parents' use (layer 3).
 Code: the account form strips spaces and line breaks from pasted values, checks each field as it is typed, makes the
 verify token, and shows the callback URL with a copy button (C230-B, C230-D); live since #172/#173.
 Data: the live database holds no saved WhatsApp account, no save attempt in the audit log and no event from Meta.
-So nothing has been saved since the fix. What is left is the founder's: save the account in Control → WhatsApp
+So nothing has been saved since the fix. Checked again later the same day: still no saved account, audit row or Meta event. The founder did add WhatsApp values to Vercel's production environment early on 15 October (a system-user token, the phone number id and the business account id), and the encryption key `MESSAGING_CREDENTIALS_KEY`. The key is what the app needs, and with it saving now works. The three WhatsApp values are not read by the app: credentials are only ever read from the account saved in Control, encrypted with that key (`src/lib/whatsapp/credentials.ts`). So the same three values have to be pasted into Control → WhatsApp account and saved; after that the three Vercel entries can be deleted, so the token lives in one place. What is left is the founder's: save the account in Control → WhatsApp
 account, paste the callback URL and verify token into Meta and verify, then test the connection; the long-lead Meta
 Business verification and rotating the token that was exposed earlier also stay with him.
 
 ## 7. Change log
 - 2026-10-15: written (lead). Slices A–C started in parallel worktrees (C198 model); D queued after A.
 - 2026-10-15: A and B merged together after the full gate on their stack (two tests updated to the slices' intended changes).
+- 2026-10-15: C and D merged together (#178) after the full gate and a security review of D (no high or medium finding; the erasure audit row now counts removed documents). D2 built; the `documents` bucket raised to 10 MiB on both databases.
+- 2026-10-15: D2 merged (#179). Found while checking it: the live site's server key belongs to the production project, so logins, invites and every upload fail live until the founder replaces it (`16` §5 action 8).
