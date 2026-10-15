@@ -184,7 +184,7 @@ describe('the desk’s routes, as each person', () => {
     const note = await call(principal, noteRoute, '/api/app/compliance/sqaaf', 'POST', { standardCode: '5.7.1', note: 'Admission register and fee ledger kept in the app.' });
     expect(note.status).toBe(201);
     expect(await call(principal, noteRoute, '/api/app/compliance/sqaaf', 'POST', { standardCode: '5.7.1', note: 'Aadhaar 1234 5678 9012' })).toMatchObject({ status: 400, body: { code: 'aadhaar' } });
-    expect(await call(principal, noteRoute, '/api/app/compliance/sqaaf', 'POST', { standardCode: '8.1.1', note: 'x' })).toMatchObject({ status: 400, body: { code: 'standard' } });
+    expect(await call(principal, noteRoute, '/api/app/compliance/sqaaf', 'POST', { standardCode: '8.1.1', note: 'x' })).toMatchObject({ status: 400, body: { code: 'unknown_standard' } });
     const form = new FormData();
     form.set('file', new File([new Uint8Array([0x25, 0x50, 0x44, 0x46, 0x2d, 0x31])], 'record policy.pdf', { type: 'application/pdf' }));
     form.set('standardCode', '5.7.1');

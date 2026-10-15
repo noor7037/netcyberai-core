@@ -4329,7 +4329,7 @@ export const en = {
   'cdk.err.source': 'Type where it comes from (up to 300 characters).',
   'cdk.err.unchanged': 'Nothing was changed.',
   'cdk.err.too_many': 'There is no room for more here.',
-  'cdk.err.standard': 'Choose a standard from the list.',
+  'cdk.err.unknown_standard': 'Choose a standard from the list.',
   'cdk.err.note': 'The note is too long (up to 600 characters).',
   'cdk.err.nothing': 'Type a note or choose a file.',
   'cdk.err.not_a_photo_or_pdf': 'Choose a photo (JPEG, PNG or WebP) or a PDF.',

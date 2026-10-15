@@ -277,7 +277,7 @@ describe('SQAAF evidence', () => {
     expect(sq.totals).toEqual({ standards: 84, withEvidence: 1, pieces: 2 });
     expect(await as(principal, (c) => sqaafFileUrl(c, storage, actor(principal), file.ok ? file.evidenceId : ''))).toBe(`memory://${A}/sqaaf/f1.pdf?ttl=300`);
     // Every row names a standard of the list, by the app and by the database.
-    expect(await as(principal, (c) => addSqaafNote(c, actor(principal), { standardCode: '9.9.9', note: 'x' }))).toEqual({ ok: false, reason: 'standard' });
+    expect(await as(principal, (c) => addSqaafNote(c, actor(principal), { standardCode: '9.9.9', note: 'x' }))).toEqual({ ok: false, reason: 'unknown_standard' });
     await expect(as(principal, (c) => c.query(`insert into sqaaf_evidence (school_id, standard_code, note, added_by) values ($1, '1.1.9', 'x', $2)`, [A, PRINCIPAL]))).rejects.toThrow(/foreign key/);
     await expect(as(principal, (c) => c.query(`insert into sqaaf_evidence (school_id, standard_code, note, added_by) values ($1, null, 'x', $2)`, [A, PRINCIPAL]))).rejects.toThrow(/null/);
     expect((await db.pg.query(`select count(*)::int as n from sqaaf_evidence e where not exists (select 1 from sqaaf_standards s where s.code = e.standard_code)`)).rows[0].n).toBe(0);
