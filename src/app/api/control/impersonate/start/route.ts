@@ -41,6 +41,11 @@ export async function POST(req: NextRequest) {
     const unclear = !membershipId && memberships.length > 1;
     return NextResponse.json({ error: unclear ? 'this person belongs to more than one school: say which membership' : 'this person has no such active membership' }, { status: unclear ? 400 : 404 });
   }
+  // A parent's view is not opened from Control (C230-D): the parent rules refuse a parent's session the viewing
+  // record, so the founder signs in with the parent's own login to see the family app.
+  if (membership.role === 'parent') {
+    return NextResponse.json({ error: 'a parent is not viewed as; sign in with the parent login instead', code: 'parent' }, { status: 409 });
+  }
   const targetLive = await fetchLiveUser(targetUserId).catch(() => null);
   if (!targetLive || !targetLive.is_active) {
     return NextResponse.json({ error: 'target user is not active' }, { status: 409 });

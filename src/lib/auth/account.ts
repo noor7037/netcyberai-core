@@ -5,6 +5,7 @@ import { fetchLiveUser, resolveAfterCredentials, type AuthenticatorContext } fro
 import { signPendingToken, verifyDeviceToken, verifyPendingToken } from './jwt';
 import { EMAIL_STEP_TTL_SECONDS } from './cookies';
 import { AuthError } from './errors';
+import { emailForUsername, isUsernameEmail, normalizeUsername } from './usernames';
 import type { LoginOutcome } from './types';
 import {
   authenticatorRequired,
@@ -54,11 +55,18 @@ export function normalizePhone(raw: unknown): string | null {
 
 // Email or mobile number -> the account's email. A mobile number resolves
 // only when exactly one active account has it.
-export async function resolveIdentifier(raw: unknown): Promise<string | null> {
+// An email, a mobile number, or a username (C230-D). `forEmail`: the caller is about to send mail to the account
+// (a sign-in or reset code), which a username account cannot receive, so none is found for one.
+export async function resolveIdentifier(raw: unknown, opts: { forEmail?: boolean } = {}): Promise<string | null> {
   if (typeof raw !== 'string') return null;
-  if (raw.includes('@')) return normalizeEmail(raw);
+  if (raw.includes('@')) {
+    const email = normalizeEmail(raw);
+    return email && opts.forEmail && isUsernameEmail(email) ? null : email;
+  }
   const phone = normalizePhone(raw);
-  return phone ? emailForPhone(phone) : null;
+  if (phone) return emailForPhone(phone);
+  const username = normalizeUsername(raw);
+  return username && !opts.forEmail ? emailForUsername(username) : null;
 }
 
 // n•••m@gmail.com (C96): enough to recognise the address, and the same
@@ -261,6 +269,7 @@ export async function passwordLogin(identifier: string, password: string, device
     hasVerifiedAuthenticator: aal?.nextLevel === 'aal2',
     deviceTrusted: await deviceTrusted(deviceToken, data.user.id),
     emailStepEnabled: emailStepEnabled(),
+    emailReachable: !isUsernameEmail(email),
   });
   if (next === 'email_code') {
     await sendSignInCode(email, redirectTo);

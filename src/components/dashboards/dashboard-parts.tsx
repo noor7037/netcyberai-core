@@ -2,8 +2,8 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { ModuleIcon } from '@/components/app-ui/ModuleIcon';
 import { AppCard } from '@/components/app-ui/Card';
-import { toneTint } from '@/components/app-ui/tones';
-import type { IconName } from '@/components/visual/Icons';
+import { TOKEN_TONES } from '@/components/app-ui/tones';
+import { Icon, type IconName } from '@/components/visual/Icons';
 import type { Trend } from '@/lib/contracts/charts';
 import { moduleById, type ColorToken } from '@/lib/contracts/modules';
 import { t, tCount, type Lang } from '@/lib/i18n';
@@ -18,7 +18,37 @@ import type { FactResult } from '@/lib/insights/types';
 
 export type AttentionItem = { id: string; label: string; count: number; href: string; action: string; why: string; icon: IconName; tone: ColorToken };
 
-const WHY = 'inline-flex min-h-[44px] cursor-pointer items-center font-semibold text-sapphire underline';
+// "Why this?" (C230-D redesign): a small info button beside the number or the item, not a line of its own; the
+// answer opens under it. The words stay for screen readers. Reference: Stripe's dashboard keeps definitions
+// behind an info icon so the numbers lead.
+const WHY_BUTTON = 'flex h-11 w-11 shrink-0 cursor-pointer list-none items-center justify-center rounded-full text-slate/70 hover:bg-slate/5 hover:text-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal [&::-webkit-details-marker]:hidden';
+const WHY_BODY = 'mt-1 flex flex-col gap-1 rounded-lg bg-off-white p-3 text-sm text-slate';
+function WhySummary({ lang }: { lang: Lang }) {
+  return (
+    <summary className={WHY_BUTTON} title={t(lang, 'myDay.why')}>
+      <Icon name="info" className="h-5 w-5" />
+      <span className="sr-only">{t(lang, 'myDay.why')}</span>
+    </summary>
+  );
+}
+
+// One line of an attention list (Linear's inbox): the module's mark, the sentence with its count, one action, and
+// the info button. `children` is the answer to "Why this?".
+function AttentionRow({ id, icon, tone, text, href, action, why }: { id?: string; icon: IconName; tone: ColorToken; text: ReactNode; href: string; action: string; why: ReactNode }) {
+  return (
+    <li data-attention={id} className="flex flex-col px-3 py-2">
+      <div className="flex flex-wrap items-center gap-3">
+        <ModuleIcon name={icon} tone={tone} size="md" />
+        <p className="min-w-0 flex-1 text-sm font-semibold text-slate">{text}</p>
+        <Link href={href} className="inline-flex min-h-[44px] items-center gap-1 rounded-md border border-sapphire/30 px-3 text-sm font-semibold text-sapphire hover:bg-sapphire/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal">
+          {action}
+          <Icon name="arrow" className="h-4 w-4" />
+        </Link>
+        {why}
+      </div>
+    </li>
+  );
+}
 
 // The exceptions, most urgent first as given. "Why this?" says the rule
 // that put the item here (C104), in plain words.
@@ -28,23 +58,26 @@ export function AttentionList({ items, allClear, lang = 'en' }: { items: readonl
       {items.length === 0 ? (
         <p className="text-sm text-slate">{allClear}</p>
       ) : (
-        <ul className="flex flex-col gap-2">
+        <ul className="-mx-1 flex flex-col divide-y divide-slate/10">
           {items.map((i) => (
-            <li key={i.id} className="rounded-xl border border-slate/10 bg-white p-3">
-              <div className="flex flex-wrap items-center gap-3">
-                <ModuleIcon name={i.icon} tone={i.tone} size="md" />
-                <p className="min-w-0 flex-1 text-sm font-semibold text-slate">
+            <AttentionRow
+              key={i.id}
+              icon={i.icon}
+              tone={i.tone}
+              href={i.href}
+              action={i.action}
+              text={
+                <>
                   <span className="tabular-nums">{i.count.toLocaleString('en-IN')}</span> {i.label}
-                </p>
-                <Link href={i.href} className="inline-flex min-h-[44px] items-center rounded-md bg-sapphire px-4 text-sm font-semibold text-white">
-                  {i.action}
-                </Link>
-              </div>
-              <details className="mt-1 text-sm text-slate">
-                <summary className={WHY}>{t(lang, 'myDay.why')}</summary>
-                <p className="pb-1">{i.why}</p>
-              </details>
-            </li>
+                </>
+              }
+              why={
+                <details className="sm:w-auto [&[open]]:w-full">
+                  <WhySummary lang={lang} />
+                  <p className={WHY_BODY}>{i.why}</p>
+                </details>
+              }
+            />
           ))}
         </ul>
       )}
@@ -76,40 +109,45 @@ export function QuickActions({ actions, lang = 'en' }: { actions: readonly Quick
 // "Why this?" (docs/21): the rule in one sentence, what it was counted from, when, and the rule's version.
 // `others`: a chart that draws more than one fact says each one's rule under that fact's own name, so no
 // number is explained by another number's rule.
-export function WhyThis({ fact, lang, others = [] }: { fact: FactResult; lang: Lang; others?: readonly FactResult[] }) {
+export function WhyThis({ fact, lang, others = [], className = '' }: { fact: FactResult; lang: Lang; others?: readonly FactResult[]; className?: string }) {
   const all = [fact, ...others];
   return (
-    <details data-why={all.map((f) => f.id).join(' ')} className="text-sm text-slate">
-      <summary className={WHY}>{t(lang, 'myDay.why')}</summary>
-      {all.map((f) => (
-        <div key={f.id} data-why-fact={f.id} className="flex flex-col gap-1 pb-2">
-          {all.length > 1 && <p className="font-semibold">{say(lang, `fact.${f.id}.label`)}</p>}
-          <p>{t(lang, 'dash.why.rule', { rule: say(lang, f.rule.key) })}</p>
-          <p className="text-slate/70">{t(lang, 'dash.why.source', { sources: saySources(lang, f.sources) })}</p>
-          <p className="text-slate/70">{t(lang, 'dash.why.at', { time: sayTime(lang, f.countedAt), version: f.rule.version })}</p>
-        </div>
-      ))}
+    <details data-why={all.map((f) => f.id).join(' ')} className={`text-sm text-slate ${className}`}>
+      <WhySummary lang={lang} />
+      <div className={WHY_BODY}>
+        {all.map((f) => (
+          <div key={f.id} data-why-fact={f.id} className="flex flex-col gap-1">
+            {all.length > 1 && <p className="font-semibold">{say(lang, `fact.${f.id}.label`)}</p>}
+            <p>{t(lang, 'dash.why.rule', { rule: say(lang, f.rule.key) })}</p>
+            <p className="text-slate/70">{t(lang, 'dash.why.source', { sources: saySources(lang, f.sources) })}</p>
+            <p className="text-slate/70">{t(lang, 'dash.why.at', { time: sayTime(lang, f.countedAt), version: f.rule.version })}</p>
+          </div>
+        ))}
+      </div>
     </details>
   );
 }
 
 // One number: what it is, the value, the days it is about, and the whole tile as the link to its rows.
 // Value text is slate, never a series colour (docs/19 §3.3). Not set up, it says what is missing.
+// The C230-D redesign (Stripe's and Vercel's metric cards): a white card with a thin bar in the group's colour,
+// the label quiet, the number large, one muted line for the detail and the days, the info button in the corner.
 export function FactTile({ fact, tone, lang }: { fact: FactResult; tone: ColorToken; lang: Lang }) {
   const detail = fact.state === 'not_set_up' ? sayNotSetUp(lang, fact) : sayDetail(lang, fact);
+  const period = sayPeriod(lang, fact);
   const body: ReactNode = (
     <>
-      <span className="text-sm font-semibold text-slate">{say(lang, `fact.${fact.id}.label`)}</span>
-      <span data-fact-value className={`font-extrabold tabular-nums text-slate ${fact.state === 'ok' ? 'text-2xl' : 'text-base'}`}>
+      <span className="pr-9 text-xs font-semibold uppercase tracking-wide text-slate/70">{say(lang, `fact.${fact.id}.label`)}</span>
+      <span data-fact-value className={`font-extrabold tabular-nums text-slate ${fact.state === 'ok' ? 'text-3xl' : 'text-base'}`}>
         {sayValue(lang, fact)}
       </span>
-      {detail && <span className="text-xs text-slate">{detail}</span>}
-      <span className="mt-auto text-xs text-slate">{sayPeriod(lang, fact)}</span>
+      <span className="mt-auto text-xs text-slate/70">{[detail, period].filter(Boolean).join(' · ')}</span>
     </>
   );
-  const link = 'flex min-h-[96px] flex-1 flex-col gap-1 rounded-xl p-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal';
+  const link = 'flex min-h-[88px] flex-1 flex-col gap-1 rounded-xl p-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal';
   return (
-    <li data-fact={fact.id} data-state={fact.state} className={`nca-lift flex min-w-0 flex-col rounded-2xl border border-slate/10 p-3 ${toneTint(tone)}`}>
+    <li data-fact={fact.id} data-state={fact.state} className="nca-lift relative flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate/10 bg-white p-3 shadow-sm">
+      <span aria-hidden="true" className={`absolute inset-x-0 top-0 h-1 ${TOKEN_TONES[tone].bar}`} />
       {fact.href ? (
         <Link href={fact.href} className={link}>
           {body}
@@ -117,7 +155,7 @@ export function FactTile({ fact, tone, lang }: { fact: FactResult; tone: ColorTo
       ) : (
         <div className={link}>{body}</div>
       )}
-      <WhyThis fact={fact} lang={lang} />
+      <WhyThis fact={fact} lang={lang} className="[&>summary]:absolute [&>summary]:right-1 [&>summary]:top-2" />
     </li>
   );
 }
@@ -130,20 +168,20 @@ export function FactAttention({ facts, lang, incomplete = false }: { facts: read
       {facts.length === 0 ? (
         <p data-attention-none className="text-sm text-slate">{t(lang, incomplete ? 'dash.incomplete' : 'dash.attention.none')}</p>
       ) : (
-        <ul className="flex flex-col gap-2">
+        <ul className="-mx-1 flex flex-col divide-y divide-slate/10">
           {facts.map((f) => {
             const mod = moduleById(f.moduleId);
             return (
-              <li key={f.id} data-attention={f.id} className="rounded-xl border border-slate/10 bg-white p-3">
-                <div className="flex flex-wrap items-center gap-3">
-                  <ModuleIcon name={mod.icon} tone={mod.tone[0]} size="md" />
-                  <p className="min-w-0 flex-1 text-sm font-semibold text-slate">{tCount(lang, `fact.${f.id}.todo`, attentionNumber(f))}</p>
-                  <Link href={f.href ?? mod.href} className="inline-flex min-h-[44px] items-center rounded-md bg-sapphire px-4 text-sm font-semibold text-white">
-                    {say(lang, `fact.${f.id}.action`)}
-                  </Link>
-                </div>
-                <WhyThis fact={f} lang={lang} />
-              </li>
+              <AttentionRow
+                key={f.id}
+                id={f.id}
+                icon={mod.icon}
+                tone={mod.tone[0]}
+                href={f.href ?? mod.href}
+                action={say(lang, `fact.${f.id}.action`)}
+                text={tCount(lang, `fact.${f.id}.todo`, attentionNumber(f))}
+                why={<WhyThis fact={f} lang={lang} className="sm:w-auto [&[open]]:w-full" />}
+              />
             );
           })}
         </ul>

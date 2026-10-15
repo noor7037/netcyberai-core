@@ -1,10 +1,10 @@
 import type { PoolClient } from 'pg';
-import type { StaffRole } from '@/lib/auth/types';
+import type { SessionRole } from '@/lib/auth/types';
 
 interface AuditEntry {
   schoolId: string | null; // null = platform-level event
   actorUserId: string | null;
-  actorRole: StaffRole | null;
+  actorRole: SessionRole | null;
   eventAction: string;
   targetType?: string;
   targetId?: string;

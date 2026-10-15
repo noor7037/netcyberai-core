@@ -1,6 +1,6 @@
 import { SignJWT, jwtVerify, errors as joseErrors } from 'jose';
 import { appSessionSecret } from './env';
-import type { SessionClaims, StaffRole } from './types';
+import type { SessionClaims, SessionRole } from './types';
 
 const ACCESS_TOKEN_TTL_SECONDS = 15 * 60; // PRD 04_SYSTEM_DESIGN_PRD.md §2.3
 const PENDING_TOKEN_TTL_SECONDS = 2 * 60; // login -> mfa/select-school hop only
@@ -34,7 +34,7 @@ export async function verifyAccessToken(token: string): Promise<SessionClaims | 
     const imp = payload.imp as { impersonationId: string; actorUserId: string } | undefined;
     return {
       sub: String(payload.sub),
-      role: payload.role as StaffRole,
+      role: payload.role as SessionRole,
       schoolId: (payload.schoolId as string | null) ?? null,
       membershipId: (payload.membershipId as string | null) ?? null,
       tokenVersion: Number(payload.tv),

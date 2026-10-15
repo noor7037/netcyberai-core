@@ -1,4 +1,5 @@
 import { getServerSession } from '@/lib/auth/server-session';
+import { canAccessApp } from '@/lib/auth/guards';
 import { withTenantContext } from '@/lib/auth/db';
 import { WhatsAppConfigPanel } from '@/components/settings/WhatsAppConfigPanel';
 import { HolidaysCard } from '@/components/settings/HolidaysCard';
@@ -32,7 +33,7 @@ export default async function SettingsPage() {
 
   // Every module's settings this person may open; who may change a field is decided per field, and again by the API.
   let settings: ModuleSettingsForScreen[] = [];
-  if (session?.schoolId) {
+  if (canAccessApp(session)) {
     const claims = { schoolId: session.schoolId, role: session.role };
     settings = await withTenantContext(session, (db) => readAllSettings(db, claims)).catch((err) => {
       console.error('[settings] the module settings could not be loaded', err instanceof Error ? err.name : 'error');

@@ -26,7 +26,8 @@ export async function POST(req: NextRequest) {
   const guard = await requireSuperAdmin(req);
   if ('error' in guard) return guard.error;
   const body = await req.json().catch(() => null);
-  const text = (v: unknown, max: number) => (typeof v === 'string' && v.length <= max ? v.trim() : '');
+  // Spaces and line breaks are never part of these values: a paste slip loses them here too (C230-D).
+  const text = (v: unknown, max: number) => (typeof v === 'string' && v.length <= max ? v.replace(/\s+/g, '') : '');
   const by = { userId: guard.claims.sub };
   if (body?.action === 'save') {
     const result = await platform((db) => saveMetaAccount(db, by, { phoneNumberId: text(body.phoneNumberId, 40), wabaId: text(body.wabaId, 40), accessToken: text(body.accessToken, 700), appSecret: text(body.appSecret, 200), verifyToken: text(body.verifyToken, 200) }));

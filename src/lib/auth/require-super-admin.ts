@@ -11,7 +11,7 @@ import type { SessionClaims } from './types';
 // the route itself.
 export async function requireSuperAdmin(
   req: NextRequest
-): Promise<{ claims: SessionClaims } | { error: NextResponse }> {
+): Promise<{ claims: SessionClaims & { role: 'super_admin' } } | { error: NextResponse }> {
   const claims = await requireSession(req);
   if (!claims) {
     return { error: NextResponse.json({ error: 'not authenticated' }, { status: 401 }) };
@@ -19,5 +19,5 @@ export async function requireSuperAdmin(
   if (claims.role !== 'super_admin') {
     return { error: NextResponse.json({ error: 'forbidden' }, { status: 403 }) };
   }
-  return { claims };
+  return { claims: claims as SessionClaims & { role: 'super_admin' } };
 }

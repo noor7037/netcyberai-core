@@ -64,6 +64,8 @@ const PEOPLE = {
   office: { sub: '00000000-0000-4000-8000-00000000a002', role: 'school_admin', schoolId: SCHOOL, membershipId: '00000000-0000-4000-8000-0000000a1002' },
   teacher: { sub: '00000000-0000-4000-8000-00000000a003', role: 'teacher', schoolId: SCHOOL, membershipId: '00000000-0000-4000-8000-0000000a1003' },
   founder: { sub: '00000000-0000-4000-8000-00000000f001', role: 'super_admin', schoolId: null, membershipId: null },
+  // A parent (C230-D): the family app only.
+  parent: { sub: '00000000-0000-4000-8000-0000000e0001', role: 'parent', schoolId: SCHOOL, membershipId: '00000000-0000-4000-8000-0000000e1001' },
 };
 
 // Every screen moved onto ModulePage in P1c-2, plus the two dashboards.
@@ -762,6 +764,27 @@ const whatsappAccountDone = async () => {
   const saved = (await db.pg.query(`select count(*)::int as n from whatsapp_credentials`)).rows[0].n;
   const want = { noKey: 1, saveDisabled: true, secretsHidden: true, verifyShown: true, madeTokenOk: true, rightFields: 5, get: 404, post: 404 };
   if (JSON.stringify(whatsappSeen) !== JSON.stringify(want) || saved !== 0) throw new Error(`the WhatsApp account screen without a key: ${JSON.stringify(whatsappSeen)}, ${saved} saved`);
+};
+// The family app (C230-D): Rajesh's two children, each with today's mark and what is owed; a parent opening the staff
+// app is sent to the family app, and a staff API refuses a parent's session.
+let familySeen = null;
+const familyHome = async (page) => {
+  await page.locator('[data-family-child]').first().waitFor({ timeout: 20000 });
+  const children = await page.locator('[data-family-child] h2').allInnerTexts();
+  const ownChildren = (await db.pg.query(`select s.name from parent_student_map m join students s on s.student_id = m.student_id where m.parent_id = $1 order by s.name`, [PEOPLE.parent.sub])).rows.map((r) => r.name);
+  const cookie = (await page.context().cookies()).map((c) => `${c.name}=${c.value}`).join('; ');
+  const staffApi = (await fetch(`${base}/api/app/students`, { headers: { cookie } })).status;
+  // Next.js writes 127.0.0.1 as "localhost" in the address it redirects to, so the session goes to both names here.
+  const sameSession = (await page.context().cookies()).filter((c) => c.domain === '127.0.0.1');
+  await page.context().addCookies(sameSession.map(({ name, value, path: p, expires, httpOnly, secure, sameSite }) => ({ name, value, domain: 'localhost', path: p, expires, httpOnly, secure, sameSite })));
+  const toApp = await page.context().newPage();
+  await toApp.goto(`${base}/app/my-day`);
+  const landed = new URL(toApp.url()).pathname;
+  await toApp.close();
+  familySeen = { children: [...children].sort().join(','), own: ownChildren.join(','), staffApi, landed };
+};
+const familyHomeDone = async () => {
+  if (!familySeen || familySeen.children !== familySeen.own || familySeen.staffApi !== 401 || familySeen.landed !== '/family') throw new Error(`the family app: ${JSON.stringify(familySeen)}`);
 };
 // Parents' replies (C187): a guardian of the fixture school writes to the platform number (the stand-in's signed
 // notice at the public webhook). The principal sees the conversation, answers in their own words, and the reply
@@ -5592,6 +5615,7 @@ const SCREENS = [
   ['teacher', 'teacher-taught-one-tap', '/app/syllabus', oneTapTaught, oneTapTaughtDone],
   ['teacher', 'teacher-tickets', '/app/help/ticket'],
   ['founder', 'control-dashboard', '/control'],
+  ['parent', 'family-home', '/family', familyHome, familyHomeDone],
   ['founder', 'control-schools', '/control/schools'],
   ['founder', 'control-school', `/control/schools/${SCHOOL}`],
   ['founder', 'control-view-as', `/control/schools/${SCHOOL}`, viewAs, viewAsDone],

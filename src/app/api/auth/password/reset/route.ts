@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
       return remember && res.ok ? rememberDevice(res, userId) : res;
     }
 
-    const email = await resolveIdentifier(body?.identifier ?? body?.email);
+    const email = await resolveIdentifier(body?.identifier ?? body?.email, { forEmail: true });
     const code = normalizeCode(body?.code);
     if (!email || !code) return NextResponse.json({ error: 'code_invalid' }, { status: 400 });
     const result = await resetPasswordWithCode(email, code, newPassword, mfaCode);

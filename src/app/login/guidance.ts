@@ -71,7 +71,7 @@ export function guidanceFor(kind: StepKind, ctx: GuidanceContext = {}): Guidance
       return {
         position: 'Step 1 of 2',
         title: 'Sign in',
-        doNow: 'Enter your email or mobile number and your password.',
+        doNow: 'Enter your email, mobile number or username, and your password.',
         next: 'If your account has an authenticator app, you type its 6-digit code next. Otherwise we email you a 6-digit code.',
         stuck: [FORGOT, 'First time here? Use “Set your password” with the email your school registered.'],
       };
@@ -123,7 +123,7 @@ export function guidanceFor(kind: StepKind, ctx: GuidanceContext = {}): Guidance
         title: 'Get a password code by email',
         doNow: 'Enter the email or mobile number your school registered. We email you a 6-digit code.',
         next: 'You type that code and choose a new password on the next screen.',
-        stuck: ['Only accounts your school created get an email. Still stuck? Ask your school admin.'],
+        stuck: ['Only accounts your school created get an email. Still stuck? Ask your school admin.', 'Signed in with a username? A username gets no email: ask your school office or NetCyberAI for a new password.'],
       };
     case 'reset_verify':
       return {

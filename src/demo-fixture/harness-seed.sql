@@ -70,6 +70,16 @@ insert into parent_student_map (school_id, parent_id, student_id) values
   ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-0000000e0002', '00000000-0000-4000-8000-000000500001'),
   ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-0000000e0001', '00000000-0000-4000-8000-000000500004');
 
+-- A parent's login (C230-D): Rajesh Example, whose account id is his guardian record's id, and the school's consent
+-- for his two children's records, so the family app shows them.
+insert into users (user_id, school_id, email, role, display_name) values
+  ('00000000-0000-4000-8000-0000000e0001', 'a0000000-0000-4000-8000-000000000001', 'rajesh.example@login.netcyberai.com', 'parent', 'Rajesh Example');
+insert into memberships (membership_id, user_id, school_id, role) values
+  ('00000000-0000-4000-8000-0000000e1001', '00000000-0000-4000-8000-0000000e0001', 'a0000000-0000-4000-8000-000000000001', 'parent');
+insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version) values
+  ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000500001', 'core_records', true, 'school_attested', 'harness'),
+  ('a0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000500004', 'core_records', true, 'school_attested', 'harness');
+
 -- Attendance for the last 10 India days (weekdays), a few absent or late; today is marked for 5-A only.
 insert into attendance (school_id, student_id, class_id, date, status, marked_by)
 select s.school_id, s.student_id, s.class_id, d::date,

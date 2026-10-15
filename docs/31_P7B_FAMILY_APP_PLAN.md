@@ -1,7 +1,9 @@
 # 31 — P7b plan: the Family App
 
 **Status:** plan for review, drafted after the supervisor's answers in C230-A.
-Nothing in it is built, and no Decision Log row decides it yet.
+**Built so far (C230-D, at the founder's request):** a parent's login made by the founder in Control (username
+and password, not the WhatsApp code of §2.1), the parent rules in the database for every table, and a read-only
+home with each child's attendance and dues. Everything else below is still a plan.
 **Scope:** roadmap `16` §4 phase P7b and the Family App group in `17` §3a:
 dues and Pay Now, the attendance calendar, reports, receipts, notices, PTM
 booking, homework submission and study material, for a parent and the

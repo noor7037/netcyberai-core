@@ -1,7 +1,7 @@
 import { withBackendConnection, withSelfContext } from './db';
 import { signAccessToken } from './jwt';
 import { newRefreshToken, hashToken } from './hash';
-import type { SessionClaims, StaffRole } from './types';
+import type { SessionClaims, SessionRole } from './types';
 
 const REFRESH_TOKEN_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
@@ -62,7 +62,7 @@ export async function refreshSession(refreshTokenPlaintext: string): Promise<Ref
     return { ok: false, reason: 'account_disabled' };
   }
 
-  let role: StaffRole;
+  let role: SessionRole;
   let schoolId: string | null;
   let membershipId: string | null;
 
@@ -86,7 +86,7 @@ export async function refreshSession(refreshTokenPlaintext: string): Promise<Ref
       await revoke();
       return { ok: false, reason: 'membership_revoked' };
     }
-    role = membership.role as StaffRole;
+    role = membership.role as SessionRole;
     schoolId = row.selected_school_id;
     membershipId = membership.membership_id;
   }

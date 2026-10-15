@@ -1,8 +1,6 @@
-// Phase 1 roles that can actually reach a login path. `student` and
-// `parent` stay in the DB's user_role enum but are never issued a
-// session by this module — see Decision Log C13 (no parent login) and
-// C24 (no student login). Enforced here, not just by convention: no
-// function in this module can produce a session claiming either role.
+// The roles that reach a login path. `student` stays in the DB's user_role enum and is never issued a session (C24).
+// `parent` was kept out too (C13) until the founder asked for parent logins (2026-10-15, C230-D): a parent's session
+// carries the role `parent` and reaches only the family app; canAccessApp and every staff guard refuse it.
 export type StaffRole =
   | 'super_admin'
   | 'school_admin'
@@ -11,9 +9,17 @@ export type StaffRole =
   | 'accountant'
   | 'academic_coordinator';
 
+// A parent's session (founder, 2026-10-15, C230-D): only the family app, never /app, /control or a staff API.
+export type SessionRole = StaffRole | 'parent';
+
+// What a session is once the staff gate (canAccessApp) has passed it: a staff role and a school.
+export type AppSessionClaims = SessionClaims & { role: Exclude<StaffRole, 'super_admin'>; schoolId: string };
+// What a session is once the family gate (canAccessFamily) has passed it.
+export type FamilySessionClaims = SessionClaims & { role: 'parent'; schoolId: string; membershipId: string };
+
 export interface SessionClaims {
   sub: string; // users.user_id
-  role: StaffRole;
+  role: SessionRole;
   schoolId: string | null; // null only for super_admin (platform-scoped)
   membershipId: string | null; // null only for super_admin
   tokenVersion: number; // snapshot at issuance, checked live on every DB-touching request
@@ -33,7 +39,7 @@ export interface MembershipRow {
   membershipId: string;
   schoolId: string;
   schoolName: string;
-  role: StaffRole;
+  role: SessionRole;
   isActive: boolean;
 }
 

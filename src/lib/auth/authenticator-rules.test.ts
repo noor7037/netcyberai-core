@@ -68,6 +68,10 @@ describe('authenticatorStepAtSignIn', () => {
     expect(stepAfterPassword({ ...base, role: 'teacher', hasVerifiedAuthenticator: false, deviceTrusted: true })).toBe('none');
     expect(stepAfterPassword({ ...base, role: 'super_admin', hasVerifiedAuthenticator: false, deviceTrusted: true })).toBe('email_code');
     expect(stepAfterPassword({ ...base, role: 'teacher', hasVerifiedAuthenticator: false, emailStepEnabled: false })).toBe('none');
+    // A username account has no mailbox, so no emailed step (C230-D); a platform admin is never one.
+    expect(stepAfterPassword({ ...base, role: 'teacher', hasVerifiedAuthenticator: false, emailReachable: false })).toBe('none');
+    expect(stepAfterPassword({ ...base, role: 'principal', hasVerifiedAuthenticator: false, emailReachable: false })).toBe('none');
+    expect(stepAfterPassword({ ...base, role: 'super_admin', hasVerifiedAuthenticator: false, emailReachable: false })).toBe('email_code');
   });
 
   it('does not require one of anyone else', () => {

@@ -18,9 +18,10 @@ export const dynamic = 'force-static';
 // B2's login page), not public marketing content. Listing them in a
 // public sitemap would also hand an anonymous crawler the full route
 // shape of the internal admin panel.
+// (family) is the parent's app (C230-D), signed-in only like the other two.
 // (dev) holds development-only pages such as the /design-system gallery
 // (PR-3a), which answer 404 in production and are never public.
-const INTERNAL_ROOTS = new Set(['(admin)', '(school)', '(dev)', 'login']);
+const INTERNAL_ROOTS = new Set(['(admin)', '(school)', '(family)', '(dev)', 'login']);
 
 function staticRoutes(dir: string, route: string): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true });

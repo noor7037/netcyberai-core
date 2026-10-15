@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireSession } from './require-session';
 import { canAccessApp } from './guards';
-import type { SessionClaims, StaffRole } from './types';
+import type { AppSessionClaims, SessionClaims, StaffRole } from './types';
 import type { PoolClient } from 'pg';
 import { checkRead, guardRead, guardWrite, WRITE_METHODS } from '@/lib/frameworks/write-guard';
 
@@ -24,12 +24,12 @@ import { checkRead, guardRead, guardWrite, WRITE_METHODS } from '@/lib/framework
 export async function requireAppSession(
   req: NextRequest,
   opts: { readGuard?: 'now' | 'in-transaction' } = {}
-): Promise<{ claims: SessionClaims & { schoolId: string }; readCheck?: (db: PoolClient) => Promise<NextResponse | null> } | { error: NextResponse }> {
+): Promise<{ claims: AppSessionClaims; readCheck?: (db: PoolClient) => Promise<NextResponse | null> } | { error: NextResponse }> {
   const claims = await requireSession(req);
   if (!claims || !canAccessApp(claims)) {
     return { error: NextResponse.json({ error: 'not authenticated' }, { status: 401 }) };
   }
-  const app = claims as SessionClaims & { schoolId: string };
+  const app: AppSessionClaims = claims;
   if (WRITE_METHODS.includes(req.method)) {
     const refused = await guardWrite(app, req.nextUrl.pathname);
     if (refused) return { error: refused };

@@ -74,6 +74,8 @@ _BASE_FILE_FOR_SELF_TEST: Path | None = None
 ROOTS = [
     "src/app/(school)/app",
     "src/app/(admin)/control",
+    "src/app/(family)/family",
+    "src/components/family",
     "src/components/app-shell",
     "src/components/app-ui",
     "src/components/account",

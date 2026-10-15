@@ -26,7 +26,7 @@ export function schoolTickets(req: NextRequest, handler: (ctx: TicketCtx & { cla
 }
 
 export function platformTickets(req: NextRequest, handler: (ctx: TicketCtx & { claims: SessionClaims }) => Promise<NextResponse>) {
-  return controlRoute(req, ({ claims, db }) => handler({ db, claims, actor: { userId: claims.sub, role: claims.role, side: 'platform' }, schoolId: null, allSchools: true }));
+  return controlRoute(req, ({ claims, db }) => handler({ db, claims, actor: { userId: claims.sub, role: 'super_admin', side: 'platform' }, schoolId: null, allSchools: true }));
 }
 
 export function respond<T>(r: TicketResult<T>, key: string, okStatus = 200): NextResponse {

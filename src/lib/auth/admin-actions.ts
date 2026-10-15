@@ -2,6 +2,7 @@ import { newAuthAdminClient } from './supabase';
 import { hasServiceRoleKey } from './env';
 import { AuthError } from './errors';
 import { passwordProblem, signOutEverywhere } from './account';
+import { inviteFailure, type InviteFailure } from './invite-failure';
 
 // Founder console account tools (C91), super_admin only (the routes check).
 // They work without any email being delivered: the founder can create a
@@ -34,6 +35,7 @@ export async function setTemporaryPassword(userId: string, password: string): Pr
   const problem = passwordProblem(password);
   if (problem) throw new AuthError('password_invalid', problem);
   const { error } = await admin().auth.admin.updateUserById(userId, { password });
+  if (error && inviteFailure(error) === 'service_key') throw new AuthError('setup_required', 'the service role key was refused');
   if (error) throw new AuthError('password_rejected', error.message);
   await signOutEverywhere(userId);
 }
@@ -80,4 +82,23 @@ export async function inviteUserToSchool(
   const code = (error as { code?: string } | null)?.code;
   if (code === 'email_exists' || /already (been )?registered/i.test(error?.message ?? '')) return { exists: true };
   throw new Error(`invite failed: ${error?.status ?? 'no status'} ${code ?? ''}`.trim());
+}
+
+// A sign-in account the founder makes from Control with a password he hands over (C230-D): confirmed at once, so no
+// email is sent and none is needed. `id` makes the account's id a given one (a parent's account is their guardian
+// record's id, so the parent rules already written in the database apply to it). A refusal comes back as the same
+// codes an invite uses, so the screen says the same plain words.
+export type CreatedLogin = { ok: true; userId: string } | { ok: false; failure: InviteFailure };
+export async function createLoginAccount(email: string, password: string, id?: string): Promise<CreatedLogin> {
+  if (passwordProblem(password)) throw new AuthError('password_invalid', 'password does not meet the rule');
+  if (!hasServiceRoleKey()) return { ok: false, failure: 'service_key' };
+  const { data, error } = await newAuthAdminClient().auth.admin.createUser({ email, password, email_confirm: true, ...(id ? { id } : {}) });
+  if (error || !data?.user) return { ok: false, failure: inviteFailure(error) };
+  return { ok: true, userId: data.user.id };
+}
+
+// Undoes createLoginAccount when the school's own rows could not be written, so no account is left with no school.
+export async function deleteLoginAccount(userId: string): Promise<void> {
+  if (!hasServiceRoleKey()) return;
+  await newAuthAdminClient().auth.admin.deleteUser(userId).catch(() => undefined);
 }
