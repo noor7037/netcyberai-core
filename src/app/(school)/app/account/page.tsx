@@ -2,6 +2,7 @@ import { AuthenticatorPanel } from '@/components/account/AuthenticatorPanel';
 import { ChangePasswordForm } from '@/components/account/ChangePasswordForm';
 import { MyLeavePanel } from '@/components/account/MyLeavePanel';
 import { MyQualificationsPanel } from '@/components/account/MyQualificationsPanel';
+import { MySubjectsPanel } from '@/components/account/MySubjectsPanel';
 import { SecurityPanel } from '@/components/account/SecurityPanel';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { getServerSession } from '@/lib/auth/server-session';
@@ -20,6 +21,8 @@ import { getLang } from '@/lib/i18n/server';
 //
 // "My qualifications" (C230-A, C232 part B): a member of the teaching staff reads their own qualification row as the
 // office keeps it on the compliance desk, read-only.
+// "What I teach" (C231), for a teacher: the subjects and classes the office has given them, and a proposal of one
+// that is missing, for the office to confirm.
 export default async function AccountPage() {
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
@@ -28,6 +31,7 @@ export default async function AccountPage() {
     <ModulePage help="set-up-authenticator" title={t(lang, 'account.page.title')} purpose={t(lang, leaveOff ? 'account.page.purpose' : 'account.page.purposeLeave')} icon="lock" tone="sapphire" eyebrow={t(lang, 'shell.account')}>
       {!leaveOff && <MyLeavePanel />}
       {session && REGISTER_ROLES.includes(session.role) && <MyQualificationsPanel />}
+      {session?.role === 'teacher' && <MySubjectsPanel />}
       <ChangePasswordForm />
       <AuthenticatorPanel />
       <SecurityPanel />

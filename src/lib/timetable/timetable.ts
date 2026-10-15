@@ -4,7 +4,8 @@ import type { StaffRole } from '@/lib/auth/types';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
 import { INDIA_TODAY_SQL } from '@/lib/time/india';
-import { lookupKey, parseTimetableCsv, periodsFromSetting, planImport, type ImportProblem, type Slot } from './plan';
+import { activeAssignments, assignedTeachers } from '@/lib/academics/teacher-subjects';
+import { assignedMap, lookupKey, notAssigned, parseTimetableCsv, periodsFromSetting, planImport, type ImportProblem, type Slot } from './plan';
 
 // The timetable in the database (docs/20 5c, C145). Every function runs in
 // the caller's own tenant transaction; RLS decides who reads what (a
@@ -67,10 +68,16 @@ type Actor = { schoolId: string; userId: string; role: StaffRole };
 export const planLockKey = (schoolId: string) => `timetable-plan:${schoolId}`;
 const sharePlanLock = (db: Pick<PoolClient, 'query'>, schoolId: string) => db.query(`select pg_advisory_xact_lock_shared(hashtext($1))`, [planLockKey(schoolId)]);
 
-export type PutResult = { ok: true; entry: Entry } | { ok: false; reason: 'teacher_clash'; clash: Entry } | { ok: false; reason: 'unknown_class' | 'unknown_subject' | 'unknown_teacher' | 'bad_period' };
+export type PutResult =
+  | { ok: true; entry: Entry }
+  | { ok: false; reason: 'teacher_clash'; clash: Entry }
+  | { ok: false; reason: 'unknown_class' | 'unknown_subject' | 'unknown_teacher' | 'bad_period' | 'not_assigned' };
 
 // Fills one period of one class. A teacher already teaching another class at
-// that time is refused, and the answer names that entry.
+// that time is refused, and the answer names that entry. When Setup assigns
+// the class's subject to teachers (teacher_subjects, C231), a teacher who is
+// not one of them is refused too ('not_assigned'); with no assignment for that
+// class and subject, any active teacher may take it, as before.
 export async function putEntry(db: PoolClient, actor: Actor, slot: Slot): Promise<PutResult> {
   if (slot.period > (await periodsPerDay(db, actor.schoolId))) return { ok: false, reason: 'bad_period' };
   const known = (await db.query(
@@ -89,6 +96,7 @@ export async function putEntry(db: PoolClient, actor: Actor, slot: Slot): Promis
   await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`timetable:${actor.schoolId}:${slot.teacherUserId}:${slot.weekday}:${slot.period}`]);
   const clash = (await db.query(`${ENTRY_SELECT} where e.school_id = $1 and e.teacher_user_id = $2 and e.weekday = $3 and e.period = $4 and e.class_id <> $5`, [actor.schoolId, slot.teacherUserId, slot.weekday, slot.period, slot.classId])).rows[0] as Entry | undefined;
   if (clash) return { ok: false, reason: 'teacher_clash', clash };
+  if (notAssigned(await assignedTeachers(db, actor.schoolId, slot.classId, slot.subjectId), slot.teacherUserId)) return { ok: false, reason: 'not_assigned' };
 
   const before = (await db.query(`select subject_id, teacher_user_id from timetable_entries where school_id = $1 and class_id = $2 and weekday = $3 and period = $4`, [actor.schoolId, slot.classId, slot.weekday, slot.period])).rows[0] ?? null;
   const saved = await db.query(
@@ -130,7 +138,8 @@ export async function importTimetable(db: PoolClient, actor: Actor, csv: string)
       subjects: new Map(choices.subjects.map((s) => [lookupKey(s.name), s.subject_id])),
       teachers: new Map(choices.teachers.filter((t) => t.email).map((t) => [lookupKey(t.email!), t.user_id])),
     },
-    await periodsPerDay(db, actor.schoolId)
+    await periodsPerDay(db, actor.schoolId),
+    assignedMap(await activeAssignments(db, actor.schoolId))
   );
   const problems = [...parsed.problems, ...(plan.ok ? [] : plan.problems)].sort((a, b) => a.line - b.line);
   if (!plan.ok || problems.length) return { ok: false, problems };
@@ -151,4 +160,27 @@ export async function importTimetable(db: PoolClient, actor: Actor, csv: string)
   );
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'timetable.import', targetType: 'timetable_entries', beforeState: null, afterState: { periods: plan.slots.length } });
   return { ok: true, imported: plan.slots.length };
+}
+
+// ---- Teacher workload (C231) -------------------------------------------------------------------------------------
+
+export type WorkloadLine = { teacherUserId: string; name: string; active: boolean; periods: number };
+
+// Periods a week per teacher, counted from the published timetable (timetable_entries): only the periods inside the
+// school's week (its working days and its periods a day), the ones a teacher actually teaches; a period left from
+// before the setting was lowered is not taught, as the generator counts it (review of C229). The most loaded first,
+// then by name. Every active teacher is listed, with 0 when they have no period; a teacher no longer active is listed
+// only while the timetable still gives them periods. `teacherUserId`: one teacher's own line only.
+export async function teacherWorkload(db: Pick<PoolClient, 'query'>, schoolId: string, opts: { days: readonly number[]; periods: number; teacherUserId?: string }): Promise<WorkloadLine[]> {
+  const { rows } = await db.query(
+    `select u.user_id, u.display_name, u.is_active, count(e.entry_id)::int as periods
+       from users u
+       left join timetable_entries e on e.school_id = u.school_id and e.teacher_user_id = u.user_id and e.weekday = any ($2::int[]) and e.period <= $3
+      where u.school_id = $1 and u.role = 'teacher' and ($4::uuid is null or u.user_id = $4)
+      group by u.user_id, u.display_name, u.is_active
+     having u.is_active or count(e.entry_id) > 0
+      order by count(e.entry_id) desc, u.display_name, u.user_id`,
+    [schoolId, [...opts.days], opts.periods, opts.teacherUserId ?? null]
+  );
+  return rows.map((r) => ({ teacherUserId: r.user_id, name: r.display_name, active: r.is_active, periods: r.periods }));
 }

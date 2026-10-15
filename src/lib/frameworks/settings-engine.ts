@@ -130,13 +130,16 @@ function sameValue(a: unknown, b: unknown): boolean {
 }
 
 // Reads the stored values of a school, keeping only keys the schema knows
-// (a field removed from the schema is ignored, not served).
+// (a field removed from the schema is ignored, not served). A field with no
+// default (C231) that the school has not set is left out: its key is absent,
+// and nothing stands in for it.
 export function effectiveValues(schema: ModuleSettingsSchema, stored: unknown): Record<string, SettingValue> {
   const out: Record<string, SettingValue> = Object.create(null);
   const src = isPlainObject(stored) ? stored : {};
   for (const def of schema.fields) {
     const v = own(src, def.key) ? src[def.key] : undefined;
-    out[def.key] = v !== undefined && validateValue(def, v) === null ? (v as SettingValue) : def.default;
+    if (v !== undefined && validateValue(def, v) === null) out[def.key] = v as SettingValue;
+    else if (def.default !== null) out[def.key] = def.default;
   }
   return out;
 }
@@ -166,6 +169,8 @@ export function applySettingsUpdate(
     else if (!defs.has(key)) errors.push({ key, message: 'is not a setting of this module' });
   }
   for (const key of resets) if (own(set, key)) errors.push({ key, message: 'cannot be set and reset together' });
+  // A field with no default (C231) is changed, never reset: there is nothing to go back to.
+  for (const key of resets) if (defs.has(key) && defs.get(key)!.default === null) errors.push({ key, message: 'has no default: choose another value instead' });
   if (errors.length) return { ok: false, reason: 'invalid', errors };
 
   // Who may change it (the whole update is refused if any field is not theirs).
@@ -189,7 +194,7 @@ export function applySettingsUpdate(
   for (const [key, value] of Object.entries(set)) {
     const def = defs.get(key)!;
     const from = next.get(key) ?? null;
-    const to = sameValue(value, def.default) ? null : (value as SettingValue);
+    const to = def.default !== null && sameValue(value, def.default) ? null : (value as SettingValue);
     if (sameValue(from, to)) continue;
     if (to === null) next.delete(key);
     else next.set(key, to);
@@ -205,7 +210,10 @@ export function applySettingsUpdate(
   // A rule between fields (C209), on the values that would now be in force: what is stored, the defaults for the rest.
   if (schema.check && changes.length > 0) {
     const inForce: Record<string, SettingValue> = Object.create(null);
-    for (const def of schema.fields) inForce[def.key] = next.get(def.key) ?? def.default;
+    for (const def of schema.fields) {
+      const v = next.get(def.key) ?? def.default;
+      if (v !== null) inForce[def.key] = v; // a field with no default, not set: absent, as effectiveValues() serves it
+    }
     const together = schema.check(inForce);
     if (together.length) return { ok: false, reason: 'invalid', errors: [...together] };
   }
@@ -221,10 +229,10 @@ export function schemaProblems(schema: ModuleSettingsSchema): string[] {
     if (!/^[a-z][a-z0-9_]{0,63}$/.test(f.key) || FORBIDDEN_KEYS.has(f.key)) problems.push(`${f.key}: bad key`);
     if (seen.has(f.key)) problems.push(`${f.key}: duplicate`);
     seen.add(f.key);
-    if (validateValue(f, f.default) !== null) problems.push(`${f.key}: default is not valid (${validateValue(f, f.default)})`);
+    if (f.default !== null && validateValue(f, f.default) !== null) problems.push(`${f.key}: default is not valid (${validateValue(f, f.default)})`);
     if (f.editableBy.length === 0) problems.push(`${f.key}: nobody can edit it`);
   }
   // The defaults themselves must pass the module's own rule between fields.
-  for (const e of schema.check?.(Object.fromEntries(schema.fields.map((f) => [f.key, f.default]))) ?? []) problems.push(`${e.key}: the defaults cannot stand together (${e.message})`);
+  for (const e of schema.check?.(Object.fromEntries(schema.fields.flatMap((f) => (f.default === null ? [] : [[f.key, f.default]])))) ?? []) problems.push(`${e.key}: the defaults cannot stand together (${e.message})`);
   return problems;
 }

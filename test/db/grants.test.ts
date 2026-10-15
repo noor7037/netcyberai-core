@@ -225,6 +225,7 @@ const APP_USER: Record<string, string> = {
   timetable_versions: 'INSERT,SELECT', // append-only: each publish kept
   // p7-10f end
   // p7-10g begin
+  teacher_subject_requests: 'INSERT,SELECT,UPDATE', // a teacher's proposal: decided once by the office (trigger), never deleted (C231)
   // p7-10g end
   // c224 begin
   attendance_change_reasons: 'DELETE,INSERT,SELECT', // the words given for an attendance change, beside the audit row; deleted only by an erasure (review of C224)
@@ -373,6 +374,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   timetable_versions: '',
   // p7-10f end
   // p7-10g begin
+  teacher_subject_requests: '', // a school's own: the platform role reads nothing here (C231)
   // p7-10g end
   // c224 begin
   attendance_change_reasons: '', // the school's own: the platform role reads nothing here

@@ -26,6 +26,7 @@ import { DELETE as constraintsDelete, PUT as constraintsPut } from '@/app/api/ap
 import { GET as generatorGet, POST as generatorPost } from '@/app/api/app/timetable/generator/route';
 import { GET as historyGet } from '@/app/api/app/timetable/history/route';
 import { GeneratorView } from '@/components/timetable/GeneratorView';
+import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readModuleFor, writeModuleFor } from '@/lib/frameworks/write-guard';
 
 const A = 'c2290000-0000-4000-8000-0000000003a1';
@@ -98,6 +99,12 @@ describe('every route of the generator, by role', () => {
   });
 
   it('POST propose with nothing to plan says so; PUT constraints: refused bodies and people, then the loads', async () => {
+    // The most periods in a row for one teacher has no default (C231): no proposal until the school sets it, and the
+    // screen is told it is not set (null, never a number made up).
+    expect(await call(principal, generatorPost, GEN, 'POST', { action: 'propose' })).toMatchObject({ status: 400, body: { code: 'no_consecutive_limit' } });
+    expect((await call(principal, generatorGet, GEN)).body.rules).toMatchObject({ maxConsecutive: null });
+    const tt = SETTINGS_SCHEMAS.find((x) => x.moduleId === 'timetable')!;
+    await db.pg.query(`insert into school_settings (school_id, module_id, schema_version, setting_values, revision) values ($1, 'timetable', $2, '{"max_consecutive": 12}', 1)`, [A, tt.version]);
     expect(await call(principal, generatorPost, GEN, 'POST', { action: 'propose' })).toMatchObject({ status: 400, body: { code: 'nothing_to_plan' } });
     const load = { kind: 'load', classId: C5A, subjectId: MATHS, periods: 3, teacherUserId: TEACHER };
     for (const w of OUTSIDE) expect((await call(w, constraintsPut, CONS, 'PUT', load)).status, w.role).toBe(403);

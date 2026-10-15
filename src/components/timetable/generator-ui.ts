@@ -5,14 +5,16 @@ import { WEEKDAYS, type Slot } from '@/lib/timetable/plan';
 // What the timetable generator's screen reads (GET /api/app/timetable/generator and /api/app/timetable/history),
 // and the small helpers its parts share (C229).
 
-export type Rules = { days: number[]; periods: number; maxConsecutive: number };
+// maxConsecutive: null while the school has not set it (C231): no proposal is made until it does.
+export type Rules = { days: number[]; periods: number; maxConsecutive: number | null };
+export type DraftRules = { days: number[]; periods: number; maxConsecutive: number };
 export type Names = { classes: { id: string; name: string }[]; subjects: { id: string; name: string }[]; teachers: { id: string; name: string; active: boolean }[] };
 export type Draft = {
   proposalId: string;
   proposedBy: string;
   proposedByName: string;
   proposedAt: string;
-  rules: Rules;
+  rules: DraftRules;
   classIds: string[];
   entries: Slot[];
   unplaced: Unplaced[];
@@ -23,6 +25,7 @@ export type Draft = {
   rulesChanged: boolean;
   problems: WeekProblem[];
   teachersGone: string[];
+  notAssigned: { classId: string; subjectId: string; teacherUserId: string }[];
 };
 export type GeneratorData = {
   rules: Rules;
@@ -57,3 +60,7 @@ export async function send(url: string, method: 'POST' | 'PUT' | 'DELETE', body:
 export function when(iso: string, lang: string): string {
   return new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Kolkata' }).format(new Date(iso));
 }
+
+// Where the most periods in a row for one teacher is set: the timetable's card on the Settings page, at that field
+// (C231). The field's own id, as the settings screen gives it.
+export const CONSECUTIVE_SETTING_HREF = '/app/settings#set-timetable-max_consecutive';

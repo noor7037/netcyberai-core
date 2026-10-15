@@ -9,12 +9,16 @@ import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import type { MessageKey } from '@/lib/i18n';
 import { CSV_HEADER, WEEKDAYS, type ImportProblem } from '@/lib/timetable/plan';
+import { TeacherWorkload } from './TeacherWorkload';
 
 // The timetable screen (docs/20 5c, C145). The office picks a class and
 // fills its week one period at a time, or imports a CSV; a clash (a teacher
 // in two places at once) is refused and the two entries are named. A
 // teacher sees their own week. Each day is its own block, so the same
-// layout reads on a phone and fills a wide screen.
+// layout reads on a phone and fills a wide screen. Below the week, the
+// periods a week per teacher (C231): every teacher for the office, their own
+// count for a teacher. A teacher Setup does not give the class's subject to is
+// refused, and the screen says so (C231).
 
 type Entry = { entry_id: string; class_id: string; class_name: string; weekday: number; period: number; subject_id: string; subject_name: string; teacher_user_id: string; teacher_name: string };
 type Choices = { classes: { class_id: string; name: string }[]; subjects: { subject_id: string; name: string }[]; teachers: { user_id: string; name: string }[] };
@@ -35,6 +39,7 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
   const [state, setState] = useState<'loading' | 'ready' | 'failed'>('loading');
   const [editing, setEditing] = useState<Editing | null>(null);
   const [clash, setClash] = useState<Entry | null>(null);
+  const [notAssigned, setNotAssigned] = useState(false);
   const [csv, setCsv] = useState('');
   const [problems, setProblems] = useState<ImportProblem[]>([]);
   const [busy, setBusy] = useState(false);
@@ -99,6 +104,7 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
     if (!editing || !editing.subjectId || !editing.teacherUserId) return;
     setBusy(true);
     setClash(null);
+    setNotAssigned(false);
     const res = await fetch('/api/app/timetable', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ classId, weekday: editing.weekday, period: editing.period, subjectId: editing.subjectId, teacherUserId: editing.teacherUserId }) }).catch(() => null);
     const body = (await res?.json().catch(() => null)) ?? {};
     setBusy(false);
@@ -108,6 +114,8 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
       void load(classId);
     } else if (body.code === 'teacher_clash') {
       setClash(body.clash as Entry);
+    } else if (body.code === 'not_assigned') {
+      setNotAssigned(true);
     } else {
       toast.show(t('tt.save.failed'), 'danger');
     }
@@ -209,6 +217,7 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
                     data-slot={`${d}-${p}`}
                     onClick={() => {
                       setClash(null);
+                      setNotAssigned(false);
                       setEditing({ weekday: d, period: p, subjectId: here[0]?.subject_id ?? '', teacherUserId: here[0]?.teacher_user_id ?? '', saved: here.length > 0 });
                     }}
                     className={`${TAP} ${here.length ? 'border-slate/20 font-semibold text-slate' : 'border-dashed border-slate/20 text-slate/70'} hover:bg-slate/5`}
@@ -228,6 +237,8 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
           ))}
         </div>
       )}
+
+      {(office || mine) && state !== 'failed' && <TeacherWorkload mine={mine} />}
 
       {office && state !== 'failed' && (
         <details data-timetable-import className="rounded-xl border border-slate/10 bg-white p-3">
@@ -293,6 +304,11 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
             {clash && (
               <p role="alert" data-clash className="rounded-md border border-red-800/30 p-3 text-sm text-red-800">
                 {t('tt.clash', { teacher: clash.teacher_name, class: clash.class_name, subject: clash.subject_name, day: t(dayKey(clash.weekday)), period: clash.period })}
+              </p>
+            )}
+            {notAssigned && (
+              <p role="alert" data-not-assigned className="rounded-md border border-red-800/30 p-3 text-sm text-red-800">
+                {t('tt.notAssigned')}
               </p>
             )}
             <div className="flex flex-wrap gap-2">

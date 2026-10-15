@@ -32,7 +32,10 @@ export type SettingDefinition = {
   help?: string;
   section: string; // groups fields on the generated screen
   type: SettingType;
-  default: SettingValue;
+  // null: the field has no default; the school sets it (C231: the most periods in a row for one teacher). Until then
+  // it is not set: it is left out of the values in force, the screen says "not set yet", and nothing invents a value
+  // for it. Once set it is changed, never reset (there is no default to go back to).
+  default: SettingValue | null;
   required?: boolean;
   options?: readonly SettingOption[]; // select, multiselect
   min?: number; // number; minimum rows for 'list'
