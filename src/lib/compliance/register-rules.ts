@@ -1,4 +1,4 @@
-import { checkTeacher, cleanRegisterSettings, STAGES, WINDOWS, type ExpiryWindow, type RegisterSettings, type RuleId, type StageId, type Teacher, type TetPaper, type TetType } from '@/lib/free-tools/teacher-register';
+import { checkTeacher, cleanRegisterSettings, type ExpiryWindow, has, type RegisterSettings, type RuleId, type StageId, STAGES, type Teacher, type TetPaper, type TetType, WINDOWS } from '@/lib/free-tools/teacher-register';
 import { isoDate, readDate } from '@/lib/free-tools/student-data-check';
 import { hasAadhaarNumber } from '@/lib/privacy/aadhaar';
 
@@ -94,7 +94,8 @@ export function checkStaff(name: string, q: Qualification | null, settings: Regi
   const tetItem = teacher.tetType ? `${teacher.tetType} certificate` : null;
   return {
     gaps: check.gaps.map(gapCode),
-    endings: check.expiries.map((e) => ({ kind: e.item === tetItem ? 'tet' : 'other', label: e.item === tetItem ? teacher.tetType : e.item, until: isoDate(e.until), days: e.days })),
+    // An approval with no name typed has an empty label: the screen says it in the reader's language (review of C227).
+    endings: check.expiries.map((e) => ({ kind: e.item === tetItem ? 'tet' : 'other', label: e.item === tetItem ? teacher.tetType : has(teacher.other) ? e.item : '', until: isoDate(e.until), days: e.days })),
   };
 }
 
