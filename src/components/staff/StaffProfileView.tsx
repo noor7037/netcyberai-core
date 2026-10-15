@@ -79,6 +79,7 @@ export function StaffProfileView({ profile, tab, office }: { profile: StaffProfi
   return (
     <ModulePage
       moduleId="staff"
+      help="attach-documents"
       tour="staff-profile"
       title={profile.name}
       purpose={t(office ? 'sprof.purpose' : 'sprof.purposeSelf')}
