@@ -235,7 +235,7 @@ describe('on the real schema', () => {
     await expect(as(principal, (c) => c.query(`update certificates_issued set printed = '{"studentName":"Someone Else"}' where certificate_id = $1`, [ids.chetanTc]))).rejects.toThrow(/never changes/);
     await expect(as(principal, (c) => c.query(`update certificates_issued set number = 'TC/0099' where certificate_id = $1`, [ids.chetanTc]))).rejects.toThrow(/can only be updated to DEFAULT/);
     await expect(as(principal, (c) => c.query(`delete from certificates_issued where certificate_id = $1`, [ids.chetanTc]))).rejects.toThrow(/permission denied/);
-    await expect(as(admin, (c) => c.query(`insert into certificates_issued (school_id, cert_type, seq, student_id, issued_by, printed) values ($1, 'study', 1, $2, $3, '{}')`, [A, DEV, ADMIN]))).rejects.toThrow();
+    // (That the caller never chooses the number is proven in 'review of C228' below.)
   });
 
   it('no duplicate: one live TC per child; one live bonafide per purpose and day', async () => {
@@ -449,5 +449,20 @@ describe('on the real schema', () => {
     // A copy of another school's certificate, or one stored outside this school's own place, is never made.
     await expect(as(principal, (c) => c.query(`insert into certificate_copies (school_id, certificate_id, storage_key, size_bytes, made_by) values ($1, $2, $3, 10, $4)`, [A, ids.farahTc, `${B}/certificates/x.pdf`, PRINCIPAL]))).rejects.toThrow(/check constraint/);
     await expect(as(bPrincipal, (c) => c.query(`insert into certificate_copies (school_id, certificate_id, storage_key, size_bytes, made_by) values ($1, $2, $3, 10, $4)`, [B, ids.farahTc, `${B}/certificates/x.pdf`, B_PRINCIPAL]))).rejects.toThrow();
+  });
+  it('review of C228: the caller never chooses the number: a seq given is replaced by the next of the series', async () => {
+    const next = Number((await db.pg.query(`select coalesce(max(seq), 0) + 1 as n from certificates_issued where school_id = $1 and cert_type = 'character'`, [B])).rows[0].n);
+    const made = await as<{ rows: { seq: number; number: string }[] }>(bPrincipal, (c) => c.query(`insert into certificates_issued (school_id, cert_type, seq, student_id, issued_by, printed) values ($1, 'character', 999, $2, $3, '{}') returning seq, number`, [B, B_KID, B_PRINCIPAL]));
+    expect(made.rows[0]).toEqual({ seq: next, number: `CC/${String(next).padStart(4, '0')}` });
+  });
+
+  it('review of C228: after 9999 comes 10000: lpad never cuts a number into one already printed', async () => {
+    // The school's bonafide series is put at 9999 by one setup row (the trigger held off for it), withdrawn so it is no duplicate.
+    await db.pg.exec(`set session_replication_role = replica;
+      insert into certificates_issued (school_id, cert_type, seq, student_id, issued_on, issued_by, purpose, printed, clearance, verify_token, withdrawn_at, withdrawn_by, withdraw_reason)
+      values ('${B}', 'bonafide', 9999, '${B_KID}', '2026-01-01', '${B_PRINCIPAL}', 'Setup row', '{}', 'nothing_owed', '${'x'.repeat(32)}', now(), '${B_PRINCIPAL}', 'Setup row');
+      set session_replication_role = origin;`);
+    const made = await as<{ rows: { number: string }[] }>(bPrincipal, (c) => c.query(`insert into certificates_issued (school_id, cert_type, seq, student_id, issued_by, purpose, printed) values ($1, 'bonafide', 1, $2, $3, 'Bank account', '{}') returning number`, [B, B_KID, B_PRINCIPAL]));
+    expect(made.rows[0].number).toBe('BC/10000');
   });
 });

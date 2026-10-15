@@ -32,7 +32,7 @@ export function QualificationsPanel({ register, reload, say }: { register: Regis
   const days = register.settings.window;
 
   const left = (e: Ending) => (e.days < 0 ? tCount('cdk.q.passed', -e.days) : e.days === 0 ? t('cdk.q.endsToday') : tCount('cdk.q.daysLeft', e.days));
-  const what = (e: Ending) => (e.kind === 'tet' ? t('cdk.q.tetCertificate', { type: tetName(e.label) }) : e.label);
+  const what = (e: Ending) => (e.kind === 'tet' ? t('cdk.q.tetCertificate', { type: tetName(e.label) }) : e.label || t('cdk.q.otherApproval'));
 
   const save = async () => {
     if (!editing) return;

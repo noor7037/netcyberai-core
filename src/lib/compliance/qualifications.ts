@@ -164,7 +164,12 @@ export async function importRegister(db: Db, actor: Actor, csv: string, apply: b
   let saved: number | null = null;
   if (apply) {
     saved = 0;
-    for (const r of rows) if (r.status === 'ready' && r.userId && r.value) saved += (await writeRow(db, actor, r.userId, r.value, 'import')).length > 0 ? 1 : 0;
+    for (const r of rows) {
+      if (r.status !== 'ready' || !r.userId || !r.value) continue;
+      // A row is saved when it changed something, or is the staff member's first row (review of C227).
+      const changed = await writeRow(db, actor, r.userId, r.value, 'import');
+      if (changed.length > 0 || !r.replaces) saved += 1;
+    }
   }
   return { ok: true, rows: rows.map(({ value: _value, ...rest }) => rest), unreadableDates: read.unreadableDates, unknownStages: read.unknownStages, saved };
 }

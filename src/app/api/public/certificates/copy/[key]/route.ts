@@ -12,11 +12,23 @@ export const dynamic = 'force-dynamic';
 
 const platform = withPlatformService as <T>(fn: (db: Sql) => Promise<T>) => Promise<T>;
 const NOT_FOUND = () => new NextResponse('Not found', { status: 404, headers: { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow', 'Referrer-Policy': 'no-referrer' } });
+// A lookup or a file read that fails is not a link that does not exist (review of C228): try again later.
+const UNAVAILABLE = () => new NextResponse('Try again in a few minutes', { status: 503, headers: { 'Cache-Control': 'no-store', 'Retry-After': '60', 'X-Robots-Tag': 'noindex, nofollow', 'Referrer-Policy': 'no-referrer' } });
 
 export async function GET(_req: Request, { params }: { params: { key: string } }) {
-  const copy = await platform((db) => familyCopy(db, params.key)).catch(() => null);
+  let copy: Awaited<ReturnType<typeof familyCopy>>;
+  try {
+    copy = await platform((db) => familyCopy(db, params.key));
+  } catch {
+    return UNAVAILABLE();
+  }
   if (!copy) return NOT_FOUND();
-  const bytes = await storedReader(supabaseFileStorage)(copy.storageKey);
+  let bytes: Awaited<ReturnType<ReturnType<typeof storedReader>>>;
+  try {
+    bytes = await storedReader(supabaseFileStorage)(copy.storageKey);
+  } catch {
+    return UNAVAILABLE();
+  }
   if (!bytes) return NOT_FOUND();
   return new NextResponse(Buffer.from(bytes), {
     status: 200,
