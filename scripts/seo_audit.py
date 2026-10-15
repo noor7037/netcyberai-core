@@ -52,12 +52,13 @@ NON_PAGE_ROUTE_SUFFIXES = ("/opengraph-image",)
 NON_PAGE_ROUTES = {"/robots.txt", "/sitemap.xml", "/llms.txt", "/icon.svg", "/manifest.webmanifest", "/icons/192", "/icons/512", "/icons/maskable"}
 
 # Authenticated-only internal shells (src/app/sitemap.ts's own INTERNAL_ROOTS
-# exclusion: the /control admin panel, the /app tenant app, and /login) are
+# exclusion: the /control admin panel, the /app tenant app, the /family
+# parent app (C230-D), and /login) are
 # intentionally absent from the public sitemap -- so they must not be
 # flagged by the sitemap<->build cross-check below as "uncrawlable". Public
 # marketing metadata requirements (meta description, hreflang, breadcrumbs,
 # an answer-block paragraph) don't apply to an auth-gated app shell either.
-INTERNAL_ROUTE_PREFIXES = ("/control", "/app")
+INTERNAL_ROUTE_PREFIXES = ("/control", "/app", "/family")
 INTERNAL_ROUTES = {"/login"}
 
 
