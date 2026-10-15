@@ -5508,4 +5508,12 @@ export const en = {
   'tour.staff-profile.1.text': 'Overview shows what the school has on record for them. Documents holds their papers: IDs, certificates, transcripts and letters.',
   'tour.staff-profile.2.title': 'Their documents',
   'tour.staff-profile.2.text': 'Opens the papers on their record. A new upload of a paper keeps the earlier versions, with who uploaded each and when.',
+  // C235-D2 direct uploads
+  'rdoc.up.sending': 'Sending the file…',
+  'rdoc.up.checking': 'Checking the file. This can take a few seconds.',
+  'rdoc.up.progressLabel': 'How much of the file has been sent',
+  'rdoc.err.sendFailed': 'The file could not be sent. Check the internet connection and try again.',
+  'rdoc.err.expired': 'The upload took longer than 10 minutes and was stopped. Try again.',
+  'rdoc.err.notArrived': 'The file did not arrive. Try again.',
+  'rdoc.err.alreadyAdded': 'This file was already added. Refresh the page to see it.',
 } as const;
