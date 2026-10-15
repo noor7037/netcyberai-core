@@ -259,7 +259,7 @@ describe('the screen', () => {
     const html = render('en');
     expect(html).toContain('2 things need you today');
     expect(html).toContain('Mark attendance: 5-A');
-    expect(html).toContain('2 of 24 students not marked yet');
+    expect(html).toContain('2 students out of 24 not marked yet');
     expect(html).toContain('1 ticket is waiting for your reply');
     expect(html).toContain('Attendance saved: 6-B');
     expect(html).toContain('30 students marked');
@@ -271,7 +271,7 @@ describe('the screen', () => {
   it('Hindi counts with the right form: one student left out of many', () => {
     const one: TodayCard = { ...cards[0], count: 1 };
     expect(render('hi', [one])).toContain('24 में से 1 विद्यार्थी की हाज़िरी बाकी है');
-    expect(render('en', [one])).toContain('1 of 24 student not marked yet');
+    expect(render('en', [one])).toContain('1 student out of 24 not marked yet');
   });
 
   it('Hindi: the same day in Hindi, marked as Hindi', () => {

@@ -454,7 +454,7 @@ export default function LoginPage() {
           <div className="nca-glass flex max-w-md flex-col gap-4 rounded-2xl p-5" aria-live="polite">
             <GuideBody guide={guide} />
           </div>
-          <p className="max-w-md text-sm opacity-80">For school staff. Parents do not need an account: they receive updates on WhatsApp.</p>
+          <p className="max-w-md text-sm opacity-80">For school staff, and for parents whose school has given them a login.</p>
         </div>
       </section>
 
@@ -685,7 +685,7 @@ export default function LoginPage() {
           <summary className="min-h-[44px] cursor-pointer py-2 font-semibold text-royal">How sign-in works</summary>
           <div className="mt-2 flex flex-col gap-4" aria-live="polite">
             <GuideBody guide={guide} />
-            <p className="text-sm text-slate/80">For school staff. Parents do not need an account: they receive updates on WhatsApp.</p>
+            <p className="text-sm text-slate/80">For school staff, and for parents whose school has given them a login.</p>
           </div>
         </details>
       </div>
