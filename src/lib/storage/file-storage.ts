@@ -14,6 +14,16 @@ export interface FileStorage {
   remove(key: string): Promise<void>;
 }
 
+// A file the browser sends straight to the store (C235-D2), never through the app's server. The server still decides
+// everything: it chooses the key, gives a link that takes one file at that key only (never overwriting one), and then
+// reads what arrived (its size and type first, then its bytes) before any row refers to it.
+export type StoredFileInfo = { sizeBytes: number; contentType: string | null };
+export interface DirectUploadStorage extends FileStorage {
+  signedUploadUrl(key: string): Promise<string>;
+  stat(key: string): Promise<StoredFileInfo | null>;
+  get(key: string): Promise<Uint8Array | null>;
+}
+
 export class FileStorageUnavailableError extends Error {
   constructor(message = 'file storage is not available') {
     super(message);
@@ -22,11 +32,31 @@ export class FileStorageUnavailableError extends Error {
 }
 
 // Keeps files in memory: for tests and previews without a bucket.
-export class MemoryFileStorage implements FileStorage {
+export class MemoryFileStorage implements DirectUploadStorage {
   readonly files = new Map<string, { bytes: Uint8Array; contentType: string }>();
+  // An upload link's token → the one key it may write.
+  readonly uploadLinks = new Map<string, string>();
   async put(key: string, bytes: Uint8Array, contentType: string) {
     if (this.files.has(key)) throw new Error('a file already exists at this key');
     this.files.set(key, { bytes, contentType });
+  }
+  async signedUploadUrl(key: string) {
+    const token = crypto.randomUUID();
+    this.uploadLinks.set(token, key);
+    return `memory-upload://${key}?token=${token}`;
+  }
+  // What a browser's PUT to an upload link does: the file lands at the link's own key, once, never over another.
+  async receive(url: string, bytes: Uint8Array, contentType: string) {
+    const key = this.uploadLinks.get(new URL(url).searchParams.get('token') ?? '');
+    if (!key) throw new Error('not an upload link');
+    await this.put(key, bytes, contentType);
+  }
+  async stat(key: string) {
+    const f = this.files.get(key);
+    return f ? { sizeBytes: f.bytes.length, contentType: f.contentType } : null;
+  }
+  async get(key: string) {
+    return this.files.get(key)?.bytes ?? null;
   }
   async signedUrl(key: string, ttlSeconds: number) {
     if (!this.files.has(key)) throw new Error('no file at this key');

@@ -5,6 +5,7 @@ import {
   RECORD_DOCUMENT_KINDS,
   RECORD_FILE_MAX_BYTES,
   RECORD_TITLE_MAX,
+  recordFileTypeOf,
   type RecordDocument,
   type RecordDocumentKind,
   type RecordFileType,
@@ -12,7 +13,7 @@ import {
 } from '@/lib/contracts/record-documents';
 import { hasAadhaarNumber } from '@/lib/privacy/aadhaar';
 import { checkUpload, type UploadCheck, type UploadProblem } from '@/lib/privacy/upload-check';
-import { FileStorageUnavailableError, sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
+import { FileStorageUnavailableError, type FileStorage } from '@/lib/storage/file-storage';
 
 // Papers on a person's record (C235-D): scanned government IDs, academic certificates, transcripts, experience
 // letters and other official papers, on a member of staff's record (teachers included) or a student's. One model for
@@ -23,7 +24,9 @@ import { FileStorageUnavailableError, sniffImageType, type FileStorage } from '@
 // most 10 MB, and it passes the Aadhaar upload check before it is stored (C232 part A: no Aadhaar card or number is
 // ever kept, so a guardian's Aadhaar is never stored here either). It is stored through the FileStorage choke point
 // under the school's own prefix, and handed out only as a link that works for five minutes, after the paper was read
-// under row level security. The file's own name is never kept; the paper's name may hold no Aadhaar number.
+// under row level security. The file's own name is never kept; the paper's name may hold no Aadhaar number. The
+// screen sends a file straight to the store (C235-D2, src/lib/documents/record-direct-upload.ts), which reads it back
+// and passes it through these same checks and writes before any row refers to it.
 //
 // Who (the app's check here; row level security says the same in the database):
 //   - the principal and the school admin add papers and new versions, remove papers, and open every paper;
@@ -47,13 +50,11 @@ const OFFICE: readonly SchoolRole[] = ['principal', 'school_admin'];
 export const mayUploadRecordDocuments = (role: SchoolRole): boolean => OFFICE.includes(role);
 
 // What a file really is, from its first bytes: a PDF, a JPEG or a PNG; anything else (WebP included) is null.
-export function sniffRecordFile(bytes: Uint8Array): RecordFileType | null {
-  const image = sniffImageType(bytes);
-  if (image === 'image/png' || image === 'image/jpeg') return image;
-  if (image) return null;
-  return bytes.length >= 5 && bytes[0] === 0x25 && bytes[1] === 0x50 && bytes[2] === 0x44 && bytes[3] === 0x46 && bytes[4] === 0x2d ? 'application/pdf' : null;
-}
+export const sniffRecordFile = recordFileTypeOf;
 const EXT: Record<RecordFileType, string> = { 'application/pdf': 'pdf', 'image/jpeg': 'jpg', 'image/png': 'png' };
+// Where a version's file is kept: under the school's own prefix, the record and the paper; the file's own name never.
+export const recordFileKey = (schoolId: string, subject: RecordSubject, documentId: string, fileId: string, mime: RecordFileType): string =>
+  `${schoolId}/record-documents/${subject.kind}/${subject.id}/${documentId}/${fileId}.${EXT[mime]}`;
 
 export type FileProblem = 'file_empty' | 'file_too_large' | 'file_type';
 // The size and the kind of a file, before anything else is read from it.
@@ -77,7 +78,7 @@ export function readTitle(raw: unknown): { ok: true; value: string } | { ok: fal
 const column = (subject: RecordSubject) => (subject.kind === 'student' ? 'student_id' : 'staff_user_id');
 
 // Whether the record exists in this school (and, for a student, can be read by this person at all).
-async function subjectExists(db: PoolClient, actor: RecordActor, subject: RecordSubject): Promise<boolean> {
+export async function subjectExists(db: PoolClient, actor: RecordActor, subject: RecordSubject): Promise<boolean> {
   if (subject.kind === 'student') return !!(await db.query(`select 1 from students where school_id = $1 and student_id = $2`, [actor.schoolId, subject.id])).rows[0];
   return !!(
     await db.query(
@@ -129,16 +130,25 @@ export async function listRecordDocuments(db: PoolClient, actor: RecordActor, su
 
 export type UploadFailure = AccessRefusal | FileProblem | TitleProblem | 'kind' | 'storage_unavailable' | UploadProblem;
 export type UploadResult = { ok: true; documentId: string; versionId: string; versionNo: number } | { ok: false; reason: UploadFailure };
-type NewFile = { name: string; bytes: Uint8Array };
+// `storedKey`: the file is already in the store at this key (a direct upload, C235-D2), read back by the caller.
+type NewFile = { name: string; bytes: Uint8Array; storedKey?: string };
 
-// Store the file under the school's prefix, then its version row; a row that fails takes its file away again.
+// Whether a paper is on this record.
+export async function documentOnRecord(db: PoolClient, actor: RecordActor, subject: RecordSubject, documentId: string): Promise<boolean> {
+  return !!(await db.query(`select 1 from record_documents where school_id = $1 and document_id = $2 and ${column(subject)} = $3`, [actor.schoolId, documentId, subject.id])).rows[0];
+}
+
+// Store the file under the school's prefix (unless it is there already), then its version row; a row that fails takes
+// its file away again.
 async function storeVersion(db: PoolClient, storage: FileStorage, actor: RecordActor, subject: RecordSubject, documentId: string, file: NewFile, mime: RecordFileType, newId: () => string): Promise<{ versionId: string; versionNo: number } | 'storage_unavailable'> {
-  const key = `${actor.schoolId}/record-documents/${subject.kind}/${subject.id}/${documentId}/${newId()}.${EXT[mime]}`;
-  try {
-    await storage.put(key, file.bytes, mime);
-  } catch (err) {
-    if (err instanceof FileStorageUnavailableError) return 'storage_unavailable';
-    throw err;
+  const key = file.storedKey ?? recordFileKey(actor.schoolId, subject, documentId, newId(), mime);
+  if (!file.storedKey) {
+    try {
+      await storage.put(key, file.bytes, mime);
+    } catch (err) {
+      if (err instanceof FileStorageUnavailableError) return 'storage_unavailable';
+      throw err;
+    }
   }
   try {
     const { rows } = await db.query(
@@ -148,7 +158,8 @@ async function storeVersion(db: PoolClient, storage: FileStorage, actor: RecordA
     );
     return { versionId: rows[0].version_id, versionNo: rows[0].version_no };
   } catch (err) {
-    await storage.remove(key).catch(() => undefined);
+    // A file this call stored goes again; a direct upload's file is its caller's to take away (record-direct-upload.ts).
+    if (!file.storedKey) await storage.remove(key).catch(() => undefined);
     throw err;
   }
 }
@@ -170,7 +181,7 @@ export async function addRecordDocument(
   storage: FileStorage,
   actor: RecordActor,
   subject: RecordSubject,
-  input: { kind: unknown; title: unknown; file: NewFile },
+  input: { kind: unknown; title: unknown; file: NewFile; documentId?: string },
   checked?: UploadCheck,
   newId: () => string = () => crypto.randomUUID()
 ): Promise<UploadResult> {
@@ -180,9 +191,10 @@ export async function addRecordDocument(
   if (!title.ok) return { ok: false, reason: title.reason };
   const file = await checkNewFile(db, actor, subject, input.file, checked);
   if (!file.ok) return file;
+  // A direct upload chose the paper's id when it was asked for (its file's key holds it); otherwise the database does.
   const made = await db.query(
-    `insert into record_documents (school_id, ${column(subject)}, kind, title, created_by) values ($1, $2, $3, $4, $5) returning document_id`,
-    [actor.schoolId, subject.id, input.kind, title.value, actor.userId]
+    `insert into record_documents (document_id, school_id, ${column(subject)}, kind, title, created_by) values (coalesce($6::uuid, gen_random_uuid()), $1, $2, $3, $4, $5) returning document_id`,
+    [actor.schoolId, subject.id, input.kind, title.value, actor.userId, input.documentId ?? null]
   );
   const documentId: string = made.rows[0].document_id;
   const version = await storeVersion(db, storage, actor, subject, documentId, input.file, file.mime, newId);
@@ -214,8 +226,7 @@ export async function addRecordVersion(
   newId: () => string = () => crypto.randomUUID()
 ): Promise<UploadResult> {
   if (!mayUploadRecordDocuments(actor.role)) return { ok: false, reason: 'not_allowed' };
-  const found = await db.query(`select 1 from record_documents where school_id = $1 and document_id = $2 and ${column(subject)} = $3`, [actor.schoolId, documentId, subject.id]);
-  if (!found.rows[0]) return { ok: false, reason: 'not_found' };
+  if (!(await documentOnRecord(db, actor, subject, documentId))) return { ok: false, reason: 'not_found' };
   const checkedFile = await checkNewFile(db, actor, subject, file, checked);
   if (!checkedFile.ok) return checkedFile;
   const version = await storeVersion(db, storage, actor, subject, documentId, file, checkedFile.mime, newId);
