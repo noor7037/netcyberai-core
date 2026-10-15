@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import { SiblingSuggestions } from './SiblingSuggestions';
+import { ListExport } from '@/components/export/ListExport';
 import type { SiblingSuggestion } from '@/lib/contracts/families';
 import { ModulePage, PRIMARY_ACTION, QUIET_ACTION } from '@/components/app-ui/ModulePage';
 import { explainError } from '@/lib/errors/catalogue';
@@ -304,6 +305,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
               {t('students.dataCheck.link')}
             </Link>
           )}
+          {office && statusFilter !== 'pending_consent' && <ListExport lists={['students', 'classes']} status={statusFilter} />}
         </>
       }
       search={

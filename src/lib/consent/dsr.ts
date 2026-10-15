@@ -112,6 +112,7 @@ export interface PseudonymizationResult {
   admissionStepsErased: number;
   admissionFamilyEnquiriesDeleted: number;
   attendanceRowsErased: number;
+  recordDocumentsRemoved: number;
 }
 
 // The mechanical answer Task 3 asks for: scrub the student's own PII
@@ -205,6 +206,23 @@ export async function pseudonymizeStudent(client: PoolClient, schoolId: string, 
   // The words given for changing the child's attendance (review of C224): kept beside their audit rows, removed here.
   const { rowCount: attendanceRowsErased } = await client.query(`delete from attendance_change_reasons where school_id = $1 and student_id = $2`, [schoolId, studentId]);
   await eraseCertificatesOf(client, studentId); // Certificates (C228): the register keeps each number and state; what was printed, the words typed and the family copies go.
+  // The papers on the child's record (C235-D): every version's row and file, and the papers themselves, go. The files
+  // are removed as the captured documents' are above: as far as the storage allows, each failure kept in the result.
+  const { rows: recordFiles } = await client.query(
+    `delete from record_document_versions v using record_documents d
+      where d.school_id = v.school_id and d.document_id = v.document_id and d.school_id = $1 and d.student_id = $2
+      returning v.storage_key`,
+    [schoolId, studentId]
+  );
+  const { rowCount: recordDocumentsRemoved } = await client.query(`delete from record_documents where school_id = $1 and student_id = $2`, [schoolId, studentId]);
+  for (const r of recordFiles) {
+    try {
+      await deleteDocument(r.storage_key);
+      storageObjectsDeleted++;
+    } catch (err) {
+      storageDeleteFailures.push(err instanceof Error ? err.message : String(err));
+    }
+  }
 
   return {
     studentId,
@@ -221,6 +239,7 @@ export async function pseudonymizeStudent(client: PoolClient, schoolId: string, 
     admissionStepsErased: Number(admission[0]?.steps ?? 0),
     admissionFamilyEnquiriesDeleted: Number(admission[0]?.family_enquiries ?? 0),
     attendanceRowsErased: attendanceRowsErased ?? 0,
+    recordDocumentsRemoved: recordDocumentsRemoved ?? 0,
   };
 }
 
