@@ -311,10 +311,11 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // c225 end
   // c226 begin
   // c226 end
-  // c235-a begin
-  // The school's classes as a spreadsheet (C235-A), with the Setup screens that manage them.
-  ['classes/export', 'setup'],
-  // c235-a end
+  // c235-a/c235d begin
+  // The school's classes as a spreadsheet (C235-A's CSV, C235-D's Excel), read as the classes list is: tied to no
+  // module's switch. (The students and staff exports, and the papers on a record, fall under students/** and staff/**.)
+  ['classes/export', 'any-module'],
+  // c235-a/c235d end
   ['students/*/consent', 'parents'],
   ['students/*/guardians', 'parents'],
   ['students/*/dsr', 'parents'],
