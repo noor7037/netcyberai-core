@@ -53,6 +53,28 @@ export async function appRoute(
   }
 }
 
+// The same, with a step between the session check and the transaction (C232 part A): slow work that needs no
+// database, such as reading an uploaded file for the Aadhaar check (its OCR takes seconds), runs before a connection
+// is taken, so none is held open while it runs. The step answers at once (a refusal) or hands its result on.
+export async function appRouteAfter<P>(
+  req: NextRequest,
+  prepare: (claims: AppClaims) => Promise<P | NextResponse>,
+  handler: (ctx: { claims: AppClaims; db: PoolClient; prepared: P }) => Promise<NextResponse>
+): Promise<NextResponse> {
+  const guard = await requireAppSession(req, { readGuard: 'in-transaction' });
+  if ('error' in guard) return guard.error;
+  const claims = guard.claims as AppClaims;
+  const prepared = await prepare(claims);
+  if (prepared instanceof NextResponse) return prepared;
+  try {
+    return await withTenantContext(claims, async (db) => (await guard.readCheck?.(db)) ?? handler({ claims, db, prepared }));
+  } catch (err) {
+    const resp = sessionErrorResponse(err);
+    if (resp) return resp;
+    throw err;
+  }
+}
+
 // The same for /api/control/**: a platform admin's session, one transaction
 // as nca_super.
 export async function controlRoute(
