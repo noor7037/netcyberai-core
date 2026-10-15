@@ -290,6 +290,9 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['timetable/history', 'timetable'],
   // p7-10f end
   // p7-10g begin
+  // Who teaches what, and the teachers' proposals (C231): read by the Staff screen and a teacher's account page,
+  // tied to no module's switch, as the subjects list is. (Its writes are under 'subjects/**': Setup.)
+  ['subjects/assignments', 'any-module'],
   // p7-10g end
   // c224 begin
   // c224 end

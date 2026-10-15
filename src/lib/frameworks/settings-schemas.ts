@@ -309,9 +309,11 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // nothing: periods already entered beyond it stay until the office clears them.
   {
     moduleId: 'timetable',
-    // Version 2 (C229): the most periods in a row for one teacher, which the timetable generator keeps to. Its
-    // default is the most periods a day can have, so no limit holds until the school sets one.
-    version: 2,
+    // Version 2 (C229): the most periods in a row for one teacher, which the timetable generator keeps to.
+    // Version 3 (C231): that limit has no default. The school sets it before the first proposal; until then the
+    // generator makes none, and nothing stands in for the number. A school that kept the old default (12, no limit)
+    // stored nothing, so it now has no limit set and is asked for one; a number a school chose is kept.
+    version: 3,
     fields: [
       {
         key: 'periods_per_day',
@@ -329,10 +331,10 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
       {
         key: 'max_consecutive',
         label: 'Most periods in a row for one teacher',
-        help: 'The timetable generator never gives a teacher more periods than this one after another, from 1 to 12. At 12 there is no limit. The timetable already published does not change.',
+        help: 'The timetable generator never gives a teacher more periods than this one after another, from 1 to 12. At 12 there is no limit. There is no default: set it before the first proposal. The timetable already published does not change.',
         section: 'School day',
         type: 'number',
-        default: 12,
+        default: null,
         min: 1,
         max: 12,
         required: true,

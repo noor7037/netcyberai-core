@@ -6,9 +6,10 @@ import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import { CARD, namer, PRIMARY, SECONDARY, send, type GeneratorData } from './generator-ui';
 
-// The periods each class needs (C229): for a class, each subject with its periods a week and its teacher. The
-// teacher Setup already has for that subject in that class (who teaches what) is offered first. The class's total is
-// shown against its week, so a class that asks for more than its week has is seen before a proposal is made.
+// The periods each class needs (C229): for a class, each subject with its periods a week and its teacher. When Setup
+// gives that subject in that class to teachers (who teaches what, on the Staff screen, C231), only they are offered,
+// and the server refuses another; with none, every active teacher is. The class's total is shown against its week,
+// so a class that asks for more than its week has is seen before a proposal is made.
 
 type Form = { subjectId: string; periods: string; teacherUserId: string };
 const EMPTY: Form = { subjectId: '', periods: '', teacherUserId: '' };
@@ -24,7 +25,7 @@ export function GeneratorLoads({ data, onChanged }: { data: GeneratorData; onCha
   const used = (id: string) => data.loads.filter((l) => l.classId === id).reduce((n, l) => n + l.periods, 0);
   const mine = data.loads.filter((l) => l.classId === classId).sort((a, b) => names.subject(a.subjectId).localeCompare(names.subject(b.subjectId)));
   const assigned = new Set(data.assigned.filter((a) => a.classId === classId && a.subjectId === form.subjectId).map((a) => a.teacherUserId));
-  const teachers = data.names.teachers.filter((p) => p.active).sort((a, b) => Number(assigned.has(b.id)) - Number(assigned.has(a.id)));
+  const teachers = data.names.teachers.filter((p) => p.active && (assigned.size === 0 || assigned.has(p.id)));
 
   const pickSubject = (subjectId: string) => {
     const saved = data.loads.find((l) => l.classId === classId && l.subjectId === subjectId);
@@ -39,7 +40,7 @@ export function GeneratorLoads({ data, onChanged }: { data: GeneratorData; onCha
     const r = await send('/api/app/timetable/generator/constraints', 'PUT', { kind: 'load', classId, subjectId: form.subjectId, periods, teacherUserId: form.teacherUserId });
     setBusy(false);
     if (!r.ok) {
-      toast.show(t('ttg.loads.failed'), 'danger');
+      toast.show(t(r.body.code === 'not_assigned' ? 'ttg.loads.notAssigned' : 'ttg.loads.failed'), 'danger');
       return;
     }
     toast.show(t('ttg.loads.saved'), 'success');
@@ -154,6 +155,16 @@ export function GeneratorLoads({ data, onChanged }: { data: GeneratorData; onCha
                   {t('ttg.loads.save')}
                 </button>
               </form>
+              {form.subjectId && assigned.size > 0 && (
+                <p data-ttg-assigned-only className="text-sm text-slate/70">
+                  {t('ttg.loads.assignedOnly')}{' '}
+                  {data.mayEditSettings && (
+                    <a href="/app/staff#teacher-subjects" className="inline-flex min-h-[44px] items-center font-semibold text-sapphire underline">
+                      {t('ttg.loads.assignedWhere')}
+                    </a>
+                  )}
+                </p>
+              )}
             </>
           )}
         </>

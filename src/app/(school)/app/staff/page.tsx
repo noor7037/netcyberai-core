@@ -5,13 +5,15 @@ import { StaffInvitations } from '@/components/account/StaffInvitations';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { StaffLeaveOffice } from '@/components/staff/StaffLeaveOffice';
 import { StaffLeaveShown } from '@/components/staff/StaffLeaveShown';
+import { TeacherSubjects } from '@/components/staff/TeacherSubjects';
 import { featureOff, moduleOffReason } from '@/lib/frameworks/page-access';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 import { isStaffShow } from '@/lib/insights/screens';
 
 // Staff, for the principal and the school admin: leave (the requests waiting, who is away, recording leave for
-// someone who phoned in; C201), inviting staff (C98) and the school's staff accounts (C89).
+// someone who phoned in; C201), inviting staff (C98), who teaches what with the teachers' proposals (Setup, C231)
+// and the school's staff accounts (C89).
 //
 // Leave is the Staff module's own part: it is left out when the school has Staff switched off or its account is
 // paused, and its API refuses in the same way. Inviting colleagues and sending a reset code is running the
@@ -35,6 +37,7 @@ export default async function StaffPage({ searchParams = {} }: { searchParams?: 
       {!leaveOff && shown && <StaffLeaveShown show={shown} />}
       {!leaveOff && <StaffLeaveOffice shownAbove={shown !== null} />}
       <StaffInvitations />
+      <TeacherSubjects />
       <StaffAccounts endpoint="/api/app/users" />
     </ModulePage>
   );

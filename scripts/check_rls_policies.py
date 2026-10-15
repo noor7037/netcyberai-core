@@ -406,6 +406,8 @@ ALLOWED_PERMISSIVE = (
         ("timetable_versions", "timetable_versions_tenant_isolation"),
         # p7-10f end
         # p7-10g begin
+        # C231: a teacher's proposal of a subject and class. Tenant isolation, narrowed by the RESTRICTIVE policies below.
+        ("teacher_subject_requests", "teacher_subject_requests_tenant_isolation"),
         # p7-10g end
         # c224 begin
         ("attendance_change_reasons", "attendance_change_reasons_tenant_isolation"),  # review of C224: narrowed by the RESTRICTIVE policies below
@@ -778,6 +780,19 @@ REQUIRED_RESTRICTIVE = {
     ("audit_log", "audit_timetable_plan_rows_office_or_actor"),
     # p7-10f end
     # p7-10g begin
+    # C231: who teaches what (teacher_subjects, and the teachers row behind it) is written by the principal or the school
+    # admin only, and a teachers row only for a teacher; a teacher proposes for themselves, read by the office and
+    # themselves, decided by the office and never by the teacher who asked.
+    ("teachers", "teachers_office_insert"),
+    ("teachers", "teachers_office_update"),
+    ("teachers", "teachers_office_delete"),
+    ("teacher_subjects", "teacher_subjects_office_insert"),
+    ("teacher_subjects", "teacher_subjects_office_update"),
+    ("teacher_subjects", "teacher_subjects_office_delete"),
+    ("teacher_subject_requests", "teacher_subject_requests_readers"),
+    ("teacher_subject_requests", "teacher_subject_requests_made_by_self"),
+    ("teacher_subject_requests", "teacher_subject_requests_office_decides"),
+    ("audit_log", "audit_teacher_subject_request_rows_office_or_actor"),
     # p7-10g end
     # c224 begin
     # review of C224: the words for an attendance change: the office and the writer read; written as self; the erasure deletes.

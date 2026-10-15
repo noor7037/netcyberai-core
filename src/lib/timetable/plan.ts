@@ -18,6 +18,22 @@ export function teacherClash<T extends Slot>(existing: readonly T[], next: Slot)
   return existing.find((e) => e.teacherUserId === next.teacherUserId && at(e) === at(next) && e.classId !== next.classId) ?? null;
 }
 
+// Who teaches what (Setup's teacher_subjects, C231): when a class and subject have assignments, only one of those
+// teachers takes a period of it, by hand, by a CSV line or in the generator's loads. With no assignment for that
+// class and subject, any active teacher may, as before. `assigned`: the users assigned to that class and subject.
+export function notAssigned(assigned: readonly string[], teacherUserId: string): boolean {
+  return assigned.length > 0 && !assigned.includes(teacherUserId);
+}
+// The assigned teachers of each class and subject, keyed `${classId}:${subjectId}`.
+export type AssignedMap = ReadonlyMap<string, readonly string[]>;
+export const assignedKey = (classId: string, subjectId: string) => `${classId}:${subjectId}`;
+export function assignedMap(rows: readonly { classId: string; subjectId: string; teacherUserId: string }[]): AssignedMap {
+  const out = new Map<string, string[]>();
+  for (const r of rows) out.set(assignedKey(r.classId, r.subjectId), [...(out.get(assignedKey(r.classId, r.subjectId)) ?? []), r.teacherUserId]);
+  return out;
+}
+export const notAssignedIn = (assigned: AssignedMap, s: { classId: string; subjectId: string; teacherUserId: string }) => notAssigned(assigned.get(assignedKey(s.classId, s.subjectId)) ?? [], s.teacherUserId);
+
 export function periodsFromSetting(value: unknown): number {
   const n = typeof value === 'number' ? Math.floor(value) : DEFAULT_PERIODS;
   return n >= 1 && n <= MAX_PERIODS ? n : DEFAULT_PERIODS;
@@ -29,7 +45,7 @@ export const CSV_HEADER = ['class', 'day', 'period', 'subject', 'teacher'] as co
 export type CsvRow = { line: number; class: string; day: string; period: string; subject: string; teacher: string };
 export type ImportProblem = {
   line: number;
-  code: 'header' | 'columns' | 'unknown_class' | 'unknown_subject' | 'unknown_teacher' | 'bad_day' | 'bad_period' | 'class_clash' | 'teacher_clash';
+  code: 'header' | 'columns' | 'unknown_class' | 'unknown_subject' | 'unknown_teacher' | 'not_assigned' | 'bad_day' | 'bad_period' | 'class_clash' | 'teacher_clash';
   // The other line of the file it clashes with, or 'saved' for an entry already in the timetable.
   with?: number | 'saved';
   value?: string;
@@ -63,7 +79,9 @@ export const lookupKey = (s: string) => s.trim().toLowerCase().replace(/\s+/g, '
 // All or nothing: with any problem, nothing is imported and every problem
 // is listed by its line. A line replaces what is saved in its own class
 // slot; the clash guard is run on the timetable as it would be afterwards.
-export function planImport(existing: readonly Slot[], rows: readonly CsvRow[], lookups: Lookups, periods: number): { ok: true; slots: (Slot & { line: number })[] } | { ok: false; problems: ImportProblem[] } {
+// A line whose teacher is not one Setup assigns to its class and subject is
+// refused too (C231), when that class and subject have assignments.
+export function planImport(existing: readonly Slot[], rows: readonly CsvRow[], lookups: Lookups, periods: number, assigned: AssignedMap = new Map()): { ok: true; slots: (Slot & { line: number })[] } | { ok: false; problems: ImportProblem[] } {
   const problems: ImportProblem[] = [];
   const slots: (Slot & { line: number })[] = [];
   for (const r of rows) {
@@ -78,6 +96,7 @@ export function planImport(existing: readonly Slot[], rows: readonly CsvRow[], l
     if (!teacherUserId) problems.push({ line: r.line, code: 'unknown_teacher', value: r.teacher });
     if (!weekday) problems.push({ line: r.line, code: 'bad_day', value: r.day });
     if (!(period >= 1 && period <= periods)) problems.push({ line: r.line, code: 'bad_period', value: r.period });
+    if (classId && subjectId && teacherUserId && notAssignedIn(assigned, { classId, subjectId, teacherUserId })) problems.push({ line: r.line, code: 'not_assigned', value: r.teacher });
     if (problems.length === before) slots.push({ line: r.line, classId: classId!, subjectId: subjectId!, teacherUserId: teacherUserId!, weekday: weekday!, period });
   }
 

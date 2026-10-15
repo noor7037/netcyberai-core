@@ -37,6 +37,7 @@ import StaffPage from '@/app/(school)/app/staff/page';
 import { MyLeavePanel } from '@/components/account/MyLeavePanel';
 import { StaffAccounts } from '@/components/account/StaffAccounts';
 import { StaffInvitations } from '@/components/account/StaffInvitations';
+import { TeacherSubjects } from '@/components/staff/TeacherSubjects';
 import { ModuleComingPage } from '@/components/app-shell/ModuleComingPage';
 import { LangProvider } from '@/components/app-shell/LangContext';
 import { LeaveSummary, myLeaveHow, ownRequestLine } from '@/components/staff/leave-parts';
@@ -988,11 +989,12 @@ describe('on the real schema', () => {
         expect(await step(principal, id, { action: 'approve' })).toMatchObject({ status: 403, body: { code: 'module_off' } });
         expect((await row(id)).status).toBe('waiting');
         expect(await sees(tarun)).toBe(0);
-        // The screens: "My leave" is hidden, and the Staff page keeps accounts and invitations without leave.
+        // The screens: "My leave" is hidden, and the Staff page keeps accounts, invitations and who teaches what (Setup,
+        // C231) without leave.
         state.claims = claims(tara);
         expect(parts(await AccountPage())).not.toContain(MyLeavePanel);
         state.claims = claims(principal);
-        expect(parts(await StaffPage({}))).toEqual([StaffInvitations, StaffAccounts]);
+        expect(parts(await StaffPage({}))).toEqual([StaffInvitations, TeacherSubjects, StaffAccounts]);
       } finally {
         await staffModule(true);
       }
@@ -1001,7 +1003,7 @@ describe('on the real schema', () => {
         expect(parts(await AccountPage())[0], who.role).toBe(MyLeavePanel);
       }
       state.claims = claims(principal);
-      expect(parts(await StaffPage({}))).toEqual([StaffLeaveOffice, StaffInvitations, StaffAccounts]);
+      expect(parts(await StaffPage({}))).toEqual([StaffLeaveOffice, StaffInvitations, TeacherSubjects, StaffAccounts]);
       state.claims = claims(admin);
       expect(parts(await StaffPage({}))[0]).toBe(StaffLeaveOffice);
       // Staff stays the office's screen: a teacher is shown no part of it.
