@@ -48,6 +48,18 @@ export async function suggestSiblingsFor(
   const emails = [...new Set(inputs.map((i) => i.email).filter((e): e is string => !!e))];
   if (!phones.length && !emails.length) return out;
 
+  // The matching guardians first, then their children (C235-A). With thousands of phones from one CSV file and no
+  // guardian matching, the second query is never planned: right after a big import, planning a join over thousands of
+  // freshly written students costs seconds until the database has caught up with them.
+  const matched = (
+    await db.query(
+      `select p.parent_id from parents p
+        where p.school_id = $1 and p.merged_into is null
+          and (right(regexp_replace(p.phone, '[^0-9]', '', 'g'), 10) = any($2::text[]) or lower(p.email) = any($3::text[]))`,
+      [schoolId, phones, emails]
+    )
+  ).rows.map((r: { parent_id: string }) => r.parent_id);
+  if (!matched.length) return out;
   const { rows } = await db.query(
     `select p.parent_id, p.name, p.relation, p.phone, lower(p.email) as email,
             right(regexp_replace(p.phone, '[^0-9]', '', 'g'), 10) as phone_key,
@@ -58,12 +70,10 @@ export async function suggestSiblingsFor(
      join students s on s.school_id = m.school_id and s.student_id = m.student_id
      left join classes c on c.school_id = s.school_id and c.class_id = s.class_id
      left join families f on f.school_id = s.school_id and f.family_id = s.family_id
-     where p.school_id = $1 and p.merged_into is null
-       and not (s.student_id = any($4::uuid[]))
-       and (right(regexp_replace(p.phone, '[^0-9]', '', 'g'), 10) = any($2::text[])
-            or lower(p.email) = any($3::text[]))
+     where p.school_id = $1 and p.parent_id = any($2::uuid[])
+       and not (s.student_id = any($3::uuid[]))
      order by p.name, s.name`,
-    [schoolId, phones, emails, excludeStudentIds]
+    [schoolId, matched, excludeStudentIds]
   );
 
   type Entry = { row: Record<string, any>; students: SiblingSuggestion['students'][number][]; families: Map<string, string> };

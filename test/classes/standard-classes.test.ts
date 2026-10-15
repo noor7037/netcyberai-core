@@ -137,7 +137,7 @@ describe('the standard classes and classes by CSV, on the whole schema', () => {
     expect(order.slice(-4)).toEqual(['12-A', '12-B', '12-C', 'Toddlers']);
     // "6B" sits with grade 6, before 6-C.
     expect(order.slice(order.indexOf('6-A'), order.indexOf('6-A') + 3)).toEqual(['6-A', '6B', '6-C']);
-    expect(order).toEqual(sortClasses(listed.body.classes).map((c: { name: string }) => c.name));
+    expect(order).toEqual(sortClasses(listed.body.classes as { name: string; grade: string | null; section: string | null }[]).map((c) => c.name));
     expect([listed.body.mayManageClasses, (await call(tara, () => listClasses(new NextRequest('http://localhost/api/app/classes')))).body.mayManageClasses]).toEqual([true, false]);
   });
 
