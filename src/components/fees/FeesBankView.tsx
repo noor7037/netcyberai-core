@@ -1,5 +1,6 @@
 'use client';
 
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { useFeesChanged, useFeesPart } from './FeesFirstLoad';
@@ -102,9 +103,9 @@ export function FeesBankView() {
 
   return (
     <section lang={lang} data-bank className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-4">
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-base font-bold text-slate">{t('bank.title')}</h2>
-        <p className="text-sm text-slate/70">{t('bank.how')}</p>
+        <InfoTip>{t('bank.how')}</InfoTip>
       </div>
 
       {accounts.length === 0 && <p data-bank-empty className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t(mayAdd ? 'bank.none.office' : 'bank.none.other')}</p>}
@@ -112,7 +113,7 @@ export function FeesBankView() {
         <details className="text-sm text-slate" open={accounts.length === 0}>
           <summary className="min-h-[44px] cursor-pointer font-semibold text-sapphire">{t('bank.account.add')}</summary>
           <div className="grid gap-3 pt-2 sm:grid-cols-2">
-            <Input id="bank-label" label={t('bank.account.label')} maxLength={60} value={account.label} onChange={(e) => setAccount({ ...account, label: e.target.value })} />
+            <Input id="bank-label" label={t('bank.account.label')} helperText={t('bank.account.hint')} maxLength={60} value={account.label} onChange={(e) => setAccount({ ...account, label: e.target.value })} />
             <Input id="bank-name" label={t('rails.upi.bank')} maxLength={60} value={account.bankName} onChange={(e) => setAccount({ ...account, bankName: e.target.value })} />
             <Input id="bank-last4" label={t('rails.upi.last4')} inputMode="numeric" maxLength={4} value={account.accountLast4} onChange={(e) => setAccount({ ...account, accountLast4: e.target.value })} />
             <Input id="bank-ifsc" label={t('rails.upi.ifsc')} maxLength={11} value={account.ifsc} onChange={(e) => setAccount({ ...account, ifsc: e.target.value.toUpperCase() })} />

@@ -33,7 +33,7 @@ export default async function StaffPage({ searchParams = {} }: { searchParams?: 
   const { lang } = getLang(session.sub);
   const shown = isStaffShow(searchParams.show) ? searchParams.show : null;
   return (
-    <ModulePage moduleId="staff" help="send-staff-reset-code" tour="staff" title={t(lang, 'staff.page.title')} purpose={t(lang, 'staff.page.purpose')}>
+    <ModulePage moduleId="staff" help="send-staff-reset-code" tour="staff" title={t(lang, 'staff.page.title')} purpose={t(lang, 'staff.page.purpose')} about={t(lang, 'staff.page.about')}>
       {!leaveOff && shown && <StaffLeaveShown show={shown} />}
       {!leaveOff && <StaffLeaveOffice shownAbove={shown !== null} />}
       <StaffInvitations />

@@ -2,7 +2,6 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { ModuleIcon } from '@/components/app-ui/ModuleIcon';
 import { AppCard } from '@/components/app-ui/Card';
-import { TOKEN_TONES } from '@/components/app-ui/tones';
 import { Icon, type IconName } from '@/components/visual/Icons';
 import type { Trend } from '@/lib/contracts/charts';
 import { moduleById, type ColorToken } from '@/lib/contracts/modules';
@@ -39,7 +38,7 @@ function AttentionRow({ id, icon, tone, text, href, action, why }: { id?: string
     <li data-attention={id} className="flex flex-col px-3 py-2">
       <div className="flex flex-wrap items-center gap-3">
         <ModuleIcon name={icon} tone={tone} size="md" />
-        <p className="min-w-0 flex-1 text-sm font-semibold text-slate">{text}</p>
+        <p className="min-w-[10rem] flex-1 text-sm font-semibold text-slate">{text}</p>
         <Link href={href} className="inline-flex min-h-[44px] items-center gap-1 rounded-md border border-sapphire/30 px-3 text-sm font-semibold text-sapphire hover:bg-sapphire/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal">
           {action}
           <Icon name="arrow" className="h-4 w-4" />
@@ -130,24 +129,27 @@ export function WhyThis({ fact, lang, others = [], className = '' }: { fact: Fac
 
 // One number: what it is, the value, the days it is about, and the whole tile as the link to its rows.
 // Value text is slate, never a series colour (docs/19 §3.3). Not set up, it says what is missing.
-// The C230-D redesign (Stripe's and Vercel's metric cards): a white card with a thin bar in the group's colour,
-// the label quiet, the number large, one muted line for the detail and the days, the info button in the corner.
-export function FactTile({ fact, tone, lang }: { fact: FactResult; tone: ColorToken; lang: Lang }) {
+// v5 (C235-C, after the C230-D redesign): a white rounded card with a soft shadow, the module's icon chip in the
+// group's colour ABOVE the number, the number large, the label under it, one muted line for the detail and the
+// days, the info button in the corner.
+// `todayShown`: the dashboard shows today, so a fact about today does not say "Today" again on its tile.
+export function FactTile({ fact, tone, lang, todayShown = false }: { fact: FactResult; tone: ColorToken; lang: Lang; todayShown?: boolean }) {
   const detail = fact.state === 'not_set_up' ? sayNotSetUp(lang, fact) : sayDetail(lang, fact);
-  const period = sayPeriod(lang, fact);
+  // The days of the range the dashboard shows are said once, by the range switch (C235-C), not on every tile.
+  const period = fact.period === 'range' || (todayShown && fact.period === 'today') ? '' : sayPeriod(lang, fact);
   const body: ReactNode = (
     <>
-      <span className="pr-9 text-xs font-semibold uppercase tracking-wide text-slate/70">{say(lang, `fact.${fact.id}.label`)}</span>
-      <span data-fact-value className={`font-extrabold tabular-nums text-slate ${fact.state === 'ok' ? 'text-3xl' : 'text-base'}`}>
+      <ModuleIcon name={moduleById(fact.moduleId).icon} tone={tone} size="sm" variant="solid" />
+      <span data-fact-value className={`mt-2 font-extrabold tabular-nums tracking-tight text-slate ${fact.state === 'ok' ? 'text-3xl' : 'text-base'}`}>
         {sayValue(lang, fact)}
       </span>
-      <span className="mt-auto text-xs text-slate/70">{[detail, period].filter(Boolean).join(' · ')}</span>
+      <span className="text-sm font-medium text-slate/70">{say(lang, `fact.${fact.id}.label`)}</span>
+      <span className="mt-auto pt-1 text-xs text-slate/70">{[detail, period].filter(Boolean).join(' · ')}</span>
     </>
   );
-  const link = 'flex min-h-[88px] flex-1 flex-col gap-1 rounded-xl p-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal';
+  const link = 'flex min-h-[88px] flex-1 flex-col rounded-xl p-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal';
   return (
     <li data-fact={fact.id} data-state={fact.state} className="nca-lift relative flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate/10 bg-white p-3 shadow-sm">
-      <span aria-hidden="true" className={`absolute inset-x-0 top-0 h-1 ${TOKEN_TONES[tone].bar}`} />
       {fact.href ? (
         <Link href={fact.href} className={link}>
           {body}
@@ -155,7 +157,7 @@ export function FactTile({ fact, tone, lang }: { fact: FactResult; tone: ColorTo
       ) : (
         <div className={link}>{body}</div>
       )}
-      <WhyThis fact={fact} lang={lang} className="[&>summary]:absolute [&>summary]:right-1 [&>summary]:top-2" />
+      <WhyThis fact={fact} lang={lang} className="[&>summary]:absolute [&>summary]:right-1 [&>summary]:top-1" />
     </li>
   );
 }

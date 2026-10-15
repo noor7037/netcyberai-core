@@ -1,5 +1,6 @@
 'use client';
 
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { Select } from '@/components/ui/Select';
@@ -79,10 +80,12 @@ export function TeacherSubjects() {
 
   return (
     <section lang={lang} id="teacher-subjects" data-teacher-subjects className={`${BOX} text-sm text-slate`} aria-labelledby="ts-title">
-      <h2 id="ts-title" className="text-base font-bold">
-        {t('ts.title')}
-      </h2>
-      <p className="text-slate/70">{t('ts.how')}</p>
+      <div className="flex flex-wrap items-center gap-x-1">
+        <h2 id="ts-title" className="text-base font-bold">
+          {t('ts.title')}
+        </h2>
+        <InfoTip>{t('ts.how')}</InfoTip>
+      </div>
 
       {data.requests.length > 0 && (
         <div data-subject-requests={data.requests.length} className="flex flex-col gap-2 rounded-md border border-amber/40 bg-amber/10 p-3">

@@ -26,7 +26,7 @@ export function ControlDashboardView({ data, schoolsTable, now = new Date() }: {
   ];
   return (
     <div className="flex flex-col gap-5 p-4 md:p-6">
-      <HeroBand variant="cinematic" greeting={greetingFor(indiaHour(now))} date={indiaDate(now)} title="NetCyberAI Control" chips={attention.map((a) => ({ label: a.action, href: a.href, count: a.count }))} allClear={fromTest > 0 ? 'No ticket from a live school is waiting for you.' : 'No ticket is waiting for you.'} />
+      <HeroBand variant="cinematic" greeting={greetingFor(indiaHour(now))} date={indiaDate(now)} title="NetCyberAI Control" chips={[]} needs={attention.length} allClear={fromTest > 0 ? 'No ticket from a live school is waiting for you.' : 'No ticket is waiting for you.'} />
       {fixtures > 0 && (
         <p role="note" className="rounded-md border border-tangerine/40 bg-tangerine/10 p-3 text-sm text-slate">
           {live

@@ -42,7 +42,7 @@ export default async function SettingsPage() {
   }
 
   return (
-    <ModulePage moduleId="setup" help="whatsapp-settings" tour="settings" title="Settings" purpose="What is switched on for your school, how each part is set up, and its WhatsApp messages.">
+    <ModulePage moduleId="setup" help="whatsapp-settings" tour="settings" title="Settings" purpose="What is on for your school, how each part is set up, and WhatsApp.">
       {entitlements && <ModuleSwitchList entitlements={entitlements} lang={lang} />}
       <SchoolSettingsPanel modules={settings} />
       {settings.some((m) => m.moduleId === 'setup') && <HolidaysCard />}

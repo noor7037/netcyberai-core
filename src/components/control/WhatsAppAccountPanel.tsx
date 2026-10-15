@@ -1,5 +1,6 @@
 'use client';
 
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { Badge } from '@/components/ui/Badge';
@@ -151,10 +152,12 @@ export function WhatsAppAccountPanel() {
           {note.text}
         </p>
       )}
-      <div className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4 text-sm text-slate">
-        <p>{t('wa.how')}</p>
+      <div className="flex flex-col gap-2 rounded-2xl border border-slate/10 bg-white p-4 text-sm text-slate shadow-sm">
         {!state.keyAvailable && <p role="alert" data-wa-no-key className="rounded-md border border-tangerine/40 bg-off-white px-3 py-2 font-semibold">{t('wa.noKey')}</p>}
-        <p data-wa-unknown className="text-slate/80">{t('wa.unknown', { count: state.unknownSenders ?? 0 })}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <p data-wa-unknown className="text-slate/80">{t('wa.unknown', { count: state.unknownSenders ?? 0 })}</p>
+          <InfoTip>{t('wa.unknown.how')}</InfoTip>
+        </div>
       </div>
 
       <div data-wa-current className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4 text-sm text-slate">
@@ -180,18 +183,24 @@ export function WhatsAppAccountPanel() {
           </>
         )}
         <div data-wa-webhook className="mt-2 flex flex-col gap-2 rounded-md bg-off-white p-3">
-          <p className="font-semibold">{t('wa.webhook.url')}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <p className="font-semibold">{t('wa.webhook.url')}</p>
+            <InfoTip tone="white">
+              {t('wa.webhook.where')} {t('wa.webhook.when')}
+            </InfoTip>
+          </div>
           <div className="flex flex-wrap items-center gap-2">
             <code className="break-all rounded bg-white px-2 py-1 text-sm">{webhookUrl}</code>
             <button type="button" data-wa-copy className={TAP} onClick={() => copy(webhookUrl)}>{t(copied ? 'wa.copied' : 'wa.copy')}</button>
           </div>
-          <p className="text-slate/80">{t('wa.webhook.when')}</p>
         </div>
       </div>
 
       <div className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4 text-sm text-slate">
-        <h2 className="text-base font-bold">{t(a ? 'wa.replace' : 'wa.enter')}</h2>
-        <p className="text-slate/70">{t('wa.enter.how')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-bold">{t(a ? 'wa.replace' : 'wa.enter')}</h2>
+          <InfoTip>{t('wa.enter.how')}</InfoTip>
+        </div>
         <div className="grid gap-3 sm:grid-cols-2">
           {field('phoneNumberId')}
           {field('wabaId')}

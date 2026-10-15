@@ -1,5 +1,6 @@
 'use client';
 
+import { Select } from '@/components/ui/Select';
 import Link from 'next/link';
 import { useT } from '@/components/app-shell/LangContext';
 import { Badge } from '@/components/ui/Badge';
@@ -82,14 +83,11 @@ export function LeaveNoteLine({ note }: { note: LeaveNote }) {
 export function LeaveKindSelect({ id, value, onChange }: { id: string; value: string; onChange: (kind: string) => void }) {
   const { t } = useT();
   return (
-    <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-sm font-medium text-slate">{t('leave.kind')}</label>
-      <select id={id} className={FIELD} value={value} onChange={(e) => onChange(e.target.value)}>
-        {LEAVE_KINDS.map((k) => (
-          <option key={k} value={k}>{t(`leave.kind.${k}` as MessageKey)}</option>
-        ))}
-      </select>
-    </div>
+    <Select id={id} label={t('leave.kind')} value={value} onChange={(e) => onChange(e.target.value)}>
+      {LEAVE_KINDS.map((k) => (
+        <option key={k} value={k}>{t(`leave.kind.${k}` as MessageKey)}</option>
+      ))}
+    </Select>
   );
 }
 

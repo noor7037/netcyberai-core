@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import { FirstVisitTour } from '@/components/app-shell/FirstVisitTour';
 import { ShowMeHow } from '@/components/app-shell/ShowMeHow';
-import { moduleById } from '@/lib/contracts/modules';
 import type { TourId } from '@/lib/contracts/tours';
 import { t, tCount, type Lang, type MessageKey } from '@/lib/i18n';
-import { attentionNumber, chartRowLabel, chartTitle, dashboardModel, say, sayNumber, type DashboardChart } from '@/lib/insights/dashboard';
+import { chartRowLabel, chartTitle, dashboardModel, sayNumber, sayPeriod, type DashboardChart } from '@/lib/insights/dashboard';
 import { RANGE_IDS, type FactRange, type FactResult, type RangeId } from '@/lib/insights/types';
 import { FactAttention, FactTile, QuickActions, WhyThis } from './dashboard-parts';
 import { FactChart, type FactChartRow } from './FactChart';
@@ -37,7 +36,8 @@ const greeting = (lang: Lang, now: Date): string => {
   return `${t(lang, hour < 12 ? 'myDay.morning' : hour < 17 ? 'myDay.afternoon' : 'myDay.evening')} · ${date}`;
 };
 
-// The midnight band: where you are, and what needs you as chips that go straight to the work.
+// The midnight band: where you are, and how many things need you. The things themselves, each with its one tap,
+// are the attention list below (C235-C: the band no longer repeats them as chips).
 // With a number missing, an empty list is not "all clear": the band says the numbers are incomplete instead.
 function Hero({ data, attention, lang, now }: { data: OfficeDashboardData; attention: readonly FactResult[]; lang: Lang; now: Date }) {
   return (
@@ -48,19 +48,6 @@ function Hero({ data, attention, lang, now }: { data: OfficeDashboardData; atten
       <p data-needs-you={attention.length} className="mt-3 text-base font-semibold">
         {attention.length > 0 ? tCount(lang, 'dash.needs', attention.length) : t(lang, data.failed > 0 ? 'dash.incomplete' : 'dash.allClear')}
       </p>
-      {attention.length > 0 && (
-        <ul className="mt-3 flex flex-wrap gap-2">
-          {attention.map((f) => (
-            <li key={f.id}>
-              <Link href={f.href ?? moduleById(f.moduleId).href} className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-white px-4 text-sm font-bold text-sapphire shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-                <span className="rounded-full bg-sapphire px-2 py-0.5 text-xs tabular-nums text-white">{attentionNumber(f).toLocaleString('en-IN')}</span>
-                {say(lang, `fact.${f.id}.action`)}
-                <span aria-hidden="true">→</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
     </section>
   );
 }
@@ -68,14 +55,14 @@ function Hero({ data, attention, lang, now }: { data: OfficeDashboardData; atten
 // Today, 7 days, 30 days: links, so the choice is in the address and can be shared or bookmarked.
 function RangeSwitch({ rangeId, lang }: { rangeId: RangeId; lang: Lang }) {
   return (
-    <nav aria-label={t(lang, 'dash.range.label')} title={t(lang, 'dash.range.note')} data-range={rangeId} className="flex rounded-md border border-slate/10 bg-white p-0.5">
+    <nav aria-label={t(lang, 'dash.range.label')} title={t(lang, 'dash.range.note')} data-range={rangeId} className="flex gap-1 rounded-xl bg-slate/5 p-1 ring-1 ring-inset ring-slate/10">
       {RANGE_IDS.map((id) =>
         id === rangeId ? (
-          <Link key={id} href={`/app/dashboard?range=${id}`} aria-current="page" className="inline-flex min-h-[44px] items-center rounded bg-sapphire px-3 text-sm font-semibold text-white">
+          <Link key={id} href={`/app/dashboard?range=${id}`} aria-current="page" className="inline-flex min-h-[44px] items-center rounded-lg bg-white px-4 text-sm font-semibold text-slate shadow-sm">
             {t(lang, `dash.range.${id}` as MessageKey)}
           </Link>
         ) : (
-          <Link key={id} href={`/app/dashboard?range=${id}`} className="inline-flex min-h-[44px] items-center rounded bg-white px-3 text-sm font-semibold text-slate">
+          <Link key={id} href={`/app/dashboard?range=${id}`} className="inline-flex min-h-[44px] items-center rounded-lg px-4 text-sm font-semibold text-slate/70 hover:text-slate">
             {t(lang, `dash.range.${id}` as MessageKey)}
           </Link>
         )
@@ -112,7 +99,7 @@ export function OfficeDashboardView({ data, lang = 'en', tour, help, now = new D
       </h2>
       <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
         {g.tiles.map((f) => (
-          <FactTile key={f.id} fact={f} tone={g.tone} lang={lang} />
+          <FactTile key={f.id} fact={f} tone={g.tone} lang={lang} todayShown={data.rangeId === 'today'} />
         ))}
       </ul>
     </section>
@@ -122,10 +109,17 @@ export function OfficeDashboardView({ data, lang = 'en', tour, help, now = new D
       <Hero data={data} attention={model.attention} lang={lang} now={now} />
 
       <div data-slot="more" className="flex flex-wrap items-center justify-between gap-3">
-        <RangeSwitch rangeId={data.rangeId} lang={lang} />
+        <div className="flex flex-wrap items-center gap-3">
+          <RangeSwitch rangeId={data.rangeId} lang={lang} />
+          {data.rangeId !== 'today' && (
+            <span data-range-days className="text-sm font-semibold text-slate/70">
+              {sayPeriod(lang, { period: 'range', range: data.range })}
+            </span>
+          )}
+        </div>
         <div className="flex flex-wrap items-center gap-2">
           {help && <ShowMeHow slug={help} />}
-          <a href={`/api/app/dashboard/export?range=${data.rangeId}`} data-dashboard-export className="inline-flex min-h-[44px] items-center rounded-md border border-slate/10 bg-white px-4 text-sm font-semibold text-slate">
+          <a href={`/api/app/dashboard/export?range=${data.rangeId}`} data-dashboard-export className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-slate/10 bg-white px-4 text-sm font-semibold text-slate shadow-sm">
             {t(lang, 'dash.export')}
           </a>
         </div>

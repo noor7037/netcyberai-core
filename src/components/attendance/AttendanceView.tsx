@@ -44,6 +44,17 @@ const TAP = 'min-h-[48px] rounded-md border px-3 text-sm font-semibold';
 // `office`: the principal or school admin, who can add students and record consent.
 // `shownAbove` (C210): the page was opened from a dashboard number, and the classes, students or days behind it
 // are drawn above this screen. After a change the server now holds, that list is read again too.
+// A correction button (C235-C): the screen shows the status it changes to ("Absent"), beside the badge with the
+// status now; a screen reader hears the whole action ("Change to Absent"), which still contains the word shown.
+function ChangeTo({ word, said }: { word: string; said: string }) {
+  return (
+    <>
+      <span aria-hidden="true">{word}</span>
+      <span className="sr-only">{said}</span>
+    </>
+  );
+}
+
 export function AttendanceView({ canManage, initialClassId, office = false, shownAbove = false }: { canManage: boolean; initialClassId?: string; office?: boolean; shownAbove?: boolean }) {
   const { t, tCount, lang } = useT();
   const refreshShown = useShownRefresh(shownAbove);
@@ -465,7 +476,7 @@ export function AttendanceView({ canManage, initialClassId, office = false, show
                       <div className="flex flex-wrap gap-1" role="group" aria-label={row.name}>
                         {STATUSES.filter((s) => s !== row.status).map((s) => (
                           <button key={s} type="button" onClick={() => void officeCorrect(row, s)} className={`${TAP} border-slate/10 text-slate hover:bg-slate/5`}>
-                            {row.status ? t('att.change', { status: statusWord(s) }) : statusWord(s)}
+                            {row.status ? <ChangeTo word={statusWord(s)} said={t('att.change', { status: statusWord(s) })} /> : statusWord(s)}
                           </button>
                         ))}
                       </div>
@@ -501,10 +512,10 @@ export function AttendanceView({ canManage, initialClassId, office = false, show
                     )}
                     {!past?.allowed && canManage && row.status && row.locked && <span className="text-xs text-slate/70">{t('att.locked')}</span>}
                     {canManage && row.status && !row.locked && row.attendance_id && (
-                      <div className="flex flex-wrap gap-1">
+                      <div className="flex flex-wrap gap-1" role="group" aria-label={row.name}>
                         {STATUSES.filter((s) => s !== current).map((s) => (
                           <button key={s} type="button" onClick={() => handleCorrect(row, s, s === 'leave' ? 'other' : null)} className={`${TAP} border-slate/10 text-slate hover:bg-slate/5`}>
-                            {t('att.change', { status: statusWord(s) })}
+                            <ChangeTo word={statusWord(s)} said={t('att.change', { status: statusWord(s) })} />
                           </button>
                         ))}
                       </div>

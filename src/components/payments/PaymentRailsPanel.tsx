@@ -2,7 +2,9 @@
 
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import type { MessageKey } from '@/lib/i18n';
@@ -12,6 +14,7 @@ import type { MessageKey } from '@/lib/i18n';
 // Settings (principal or school admin) and Control (NetCyberAI staff, with a
 // reason). Keys are typed here and never shown again: the server answers
 // with the last four characters of the key id, who saved it and when.
+// C235-C: each part's explanation is behind the ⓘ beside its title.
 
 type Method = { method: string; enabled: boolean; sortOrder: number; settings?: Record<string, unknown> };
 const VERIFIERS = ['accountant', 'principal', 'school_admin'] as const;
@@ -97,20 +100,17 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
   const date = (iso: string) => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(iso));
 
   return (
-    <section lang={lang} data-payment-rails className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-4">
-      <div>
+    <section lang={lang} data-payment-rails className="flex flex-col gap-4 rounded-2xl border border-slate/10 bg-white p-4 shadow-sm md:p-5">
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-lg font-bold text-slate">{t('rails.title')}</h2>
-        <p className="text-sm text-slate/70">{t('rails.how')}</p>
+        <InfoTip>{t('rails.how')}</InfoTip>
       </div>
 
       {scope === 'school' && (
         <ul className="flex flex-col gap-2">
           {methods.map((m) => (
-            <li key={m.method} data-method={m.method} className="flex flex-wrap items-center justify-between gap-2 border-t border-slate/10 pt-2 text-sm text-slate">
-              <span className="min-w-0">
-                <span className="font-semibold">{t(`rails.method.${m.method}` as MessageKey)}</span>
-                <span className="block text-slate/70">{t(`rails.method.${m.method}.what` as MessageKey)}</span>
-              </span>
+            <li key={m.method} data-method={m.method} className="flex flex-wrap items-center gap-2 border-t border-slate/10 pt-2 text-sm text-slate">
+              <span className="min-w-0 flex-1 font-semibold">{t(`rails.method.${m.method}` as MessageKey)}</span>
               <span className="flex items-center gap-2">
                 <Badge variant={m.enabled ? 'success' : 'neutral'}>{t(m.enabled ? 'set.on' : 'set.off')}</Badge>
                 {mayEdit && m.method !== 'counter' && m.method !== 'direct_upi' && (
@@ -119,6 +119,7 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
                   </button>
                 )}
               </span>
+              <InfoTip label={t(`rails.method.${m.method}` as MessageKey)}>{t(`rails.method.${m.method}.what` as MessageKey)}</InfoTip>
             </li>
           ))}
         </ul>
@@ -132,22 +133,21 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
 
       {scope === 'school' && (
         <div data-upi-setup className="flex flex-col gap-3 border-t border-slate/10 pt-3">
-          <h3 className="text-base font-bold text-slate">{t('rails.upi.title')}</h3>
-          <p className="text-sm text-slate/70">{t('rails.upi.how')}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <h3 className="text-base font-bold text-slate">{t('rails.upi.title')}</h3>
+            <InfoTip>{t('rails.upi.how')}</InfoTip>
+          </div>
           <fieldset disabled={!mayEdit || busy} className="grid gap-3 sm:grid-cols-2">
-            <Input id="upi-id" label={t('rails.upi.upiId')} autoComplete="off" value={upi.upiId} onChange={(e) => setUpi({ ...upi, upiId: e.target.value })} />
+            <Input id="upi-id" label={t('rails.upi.upiId')} helperText={t('rails.upi.upiId.hint')} autoComplete="off" value={upi.upiId} onChange={(e) => setUpi({ ...upi, upiId: e.target.value })} />
             <Input id="upi-payee" label={t('rails.upi.payee')} maxLength={80} value={upi.payeeName} onChange={(e) => setUpi({ ...upi, payeeName: e.target.value })} />
             <Input id="upi-bank" label={t('rails.upi.bank')} maxLength={60} value={upi.bankName} onChange={(e) => setUpi({ ...upi, bankName: e.target.value })} />
             <Input id="upi-last4" label={t('rails.upi.last4')} inputMode="numeric" maxLength={4} value={upi.accountLast4} onChange={(e) => setUpi({ ...upi, accountLast4: e.target.value })} />
             <Input id="upi-ifsc" label={t('rails.upi.ifsc')} maxLength={11} value={upi.ifsc} onChange={(e) => setUpi({ ...upi, ifsc: e.target.value.toUpperCase() })} />
-            <Input id="upi-limit" label={t('rails.upi.limit')} inputMode="numeric" value={upi.limitRupees} onChange={(e) => setUpi({ ...upi, limitRupees: e.target.value })} />
+            <Input id="upi-limit" label={t('rails.upi.limit')} helperText={t('rails.upi.limit.hint')} inputMode="numeric" value={upi.limitRupees} onChange={(e) => setUpi({ ...upi, limitRupees: e.target.value })} />
             <div className="flex flex-col gap-1 text-sm text-slate">
               <span className="font-semibold">{t('rails.upi.verifiers')}</span>
               {VERIFIERS.map((role) => (
-                <label key={role} className="flex min-h-[44px] cursor-pointer items-center gap-2">
-                  <input type="checkbox" className="h-5 w-5" checked={upi.verifiers.includes(role)} onChange={(e) => setUpi({ ...upi, verifiers: e.target.checked ? [...upi.verifiers, role] : upi.verifiers.filter((v) => v !== role) })} />
-                  {t(`role.${role}` as MessageKey)}
-                </label>
+                <Checkbox key={role} id={`upi-verifier-${role}`} label={t(`role.${role}` as MessageKey)} checked={upi.verifiers.includes(role)} onChange={(e) => setUpi({ ...upi, verifiers: e.target.checked ? [...upi.verifiers, role] : upi.verifiers.filter((v) => v !== role) })} />
               ))}
             </div>
             <Select id="upi-notify" label={t('rails.upi.notify')} value={upi.notify} onChange={(e) => setUpi({ ...upi, notify: e.target.value })}>
@@ -169,8 +169,12 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
       )}
 
       <div data-gateway className="flex flex-col gap-3 border-t border-slate/10 pt-3">
-        <h3 className="text-base font-bold text-slate">{t('rails.gateway.title')}</h3>
-        <p className="text-sm text-slate/70">{t('rails.gateway.how')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h3 className="text-base font-bold text-slate">{t('rails.gateway.title')}</h3>
+          <InfoTip>
+            {t('rails.gateway.how')} {!gateway.testSchool && <span data-test-keys-note>{t('rails.keys.testOnly')}</span>} {mayEdit && t('rails.keys.writeOnly')}
+          </InfoTip>
+        </div>
         <p data-gateway-allowed className="text-sm font-semibold text-slate">{t(gateway.allowed ? 'rails.gateway.allowed' : 'rails.gateway.notAllowed')}</p>
         {gateway.credentials.map((c) => (
           <div key={c.configId} data-saved-keys={c.mode} className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">
@@ -186,7 +190,6 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
             <p className="break-all text-xs text-slate/70">{t('rails.keys.webhook', { url: `${typeof window === 'undefined' ? '' : window.location.origin}${c.webhookPath}` })}</p>
           </div>
         ))}
-        {!gateway.testSchool && <p data-test-keys-note className="text-sm text-slate/70">{t('rails.keys.testOnly')}</p>}
         {!gateway.canSave && <p role="status" data-no-key className="rounded-md bg-tangerine/10 px-3 py-2 text-sm font-semibold text-slate">{t('rails.keys.error.no_encryption_key')}</p>}
         {mayEdit && (
           <form onSubmit={saveKeys} className="grid gap-3 sm:grid-cols-2" autoComplete="off">
@@ -208,7 +211,6 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
                 </button>
               )}
             </div>
-            <p className="text-xs text-slate/70 sm:col-span-2">{t('rails.keys.writeOnly')}</p>
           </form>
         )}
       </div>

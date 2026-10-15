@@ -11,7 +11,7 @@ export default async function WhatsAppAccountPage() {
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
   return (
-    <ModulePage title={t(lang, 'wa.title')} purpose={t(lang, 'wa.purpose')} icon="chat" tone="cyan" eyebrow={t(lang, 'group.control')} headerLang={lang}>
+    <ModulePage title={t(lang, 'wa.title')} purpose={t(lang, 'wa.purpose')} about={t(lang, 'wa.how')} icon="chat" tone="cyan" eyebrow={t(lang, 'group.control')} headerLang={lang}>
       <WhatsAppAccountPanel />
     </ModulePage>
   );

@@ -1,5 +1,6 @@
 'use client';
 
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useT } from '@/components/app-shell/LangContext';
@@ -176,17 +177,22 @@ export function SchoolOnboardingPanel({
 
       <div className="grid gap-3 md:grid-cols-2">
         <section data-onb-pilot className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4">
-          <h3 className="text-base font-bold text-slate">{t('onb.pilot.title')}</h3>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <h3 className="text-base font-bold text-slate">{t('onb.pilot.title')}</h3>
+            <InfoTip>{t('onb.pilot.how')}</InfoTip>
+          </div>
           <div className="flex flex-wrap gap-2">
             <Badge variant={isPilot ? 'warning' : 'success'}>{t(isPilot ? 'onb.pilot.pilot' : 'onb.pilot.live')}</Badge>
             <Badge variant={pilotAllowOutbound ? 'success' : 'neutral'}>{t(pilotAllowOutbound ? 'onb.pilot.outboundOn' : 'onb.pilot.outboundOff')}</Badge>
           </div>
-          <p className="text-sm text-slate/70">{t('onb.pilot.how')}</p>
         </section>
 
         <section data-onb-consent className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4">
           <div className="flex items-baseline justify-between gap-2">
-            <h3 className="text-base font-bold text-slate">{t('onb.consent.title')}</h3>
+            <div className="flex flex-wrap items-center gap-x-1">
+              <h3 className="text-base font-bold text-slate">{t('onb.consent.title')}</h3>
+              <InfoTip>{t('onb.consent.honest')}</InfoTip>
+            </div>
             {consent && <span className="text-2xl font-extrabold tabular-nums text-slate">{consent.percentComplete}%</span>}
           </div>
           {!consent ? (
@@ -201,15 +207,16 @@ export function SchoolOnboardingPanel({
                   <li key={p}>{t(`onb.consent.${p}` as MessageKey, { n: consent.grantedByPurpose[p] ?? 0, total: consent.totalStudents })}</li>
                 ))}
               </ul>
-              <p className="text-sm text-slate/70">{t('onb.consent.honest')}</p>
             </>
           )}
         </section>
       </div>
 
       <section data-onb-flags>
-        <h3 className="mb-2 text-base font-bold text-slate">{t('onb.flags.title')}</h3>
-        <p className="mb-2 text-sm text-slate/70">{t('onb.flags.how')}</p>
+        <div className="mb-2 flex flex-wrap items-center gap-x-1">
+          <h3 className="text-base font-bold text-slate">{t('onb.flags.title')}</h3>
+          <InfoTip>{t('onb.flags.how')}</InfoTip>
+        </div>
         <p className="mb-2 text-sm text-slate">
           {t('onb.flags.current')}{' '}
           {Object.keys(features).length === 0 ? (
@@ -249,8 +256,10 @@ export function SchoolOnboardingPanel({
       </section>
 
       <section data-onb-invite>
-        <h3 className="mb-2 text-base font-bold text-slate">{t('onb.invite.title')}</h3>
-        <p className="mb-2 text-sm text-slate/70">{t('onb.invite.how')}</p>
+        <div className="mb-2 flex flex-wrap items-center gap-x-1">
+          <h3 className="text-base font-bold text-slate">{t('onb.invite.title')}</h3>
+          <InfoTip>{t('onb.invite.how')}</InfoTip>
+        </div>
         <form onSubmit={submitInvite} className="flex flex-col gap-3 md:flex-row md:items-start md:gap-3">
           <Input id="invite-email" label={t('onb.invite.email')} helperText={t('onb.invite.email.hint')} type="email" autoComplete="off" value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} required />
           <Input id="invite-name" label={t('onb.invite.name')} helperText={t('onb.invite.name.hint')} autoComplete="off" maxLength={80} value={inviteName} onChange={(e) => setInviteName(e.target.value)} required />

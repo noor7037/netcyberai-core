@@ -29,6 +29,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SignJWT } from 'jose';
 import { HARNESS_MARKER, startHarnessDb } from './db.mjs';
+import { visibleWords } from './visible-words.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const arg = (name) => (process.argv.includes(name) ? process.argv[process.argv.indexOf(name) + 1] : undefined);
@@ -5978,6 +5979,8 @@ try {
         await page.waitForTimeout(600);
         const prepared = prepare ? await prepare(page).then(() => null, (e) => e.message.split('\n')[0].slice(0, 160)) : null;
         if (prepared) errors.push(`could not prepare the screen: ${prepared}`);
+        // A part still loading is photographed (and its words counted) once it has loaded, five seconds at most (C235-C).
+        await page.waitForFunction(() => !/Loading…/.test(document.querySelector('main')?.innerText ?? ''), null, { timeout: 5000 }).catch(() => undefined);
         const seen = await page.evaluate(() => {
           const main = document.querySelector('main') ?? document.body;
           const small = [...main.querySelectorAll('a, button, select, input:not([type=checkbox]):not([type=radio]):not([type=file]), textarea, summary')]
@@ -5995,6 +5998,9 @@ try {
           };
         });
         await page.screenshot({ path: path.join(OUT, `${name}-${width}.png`), fullPage: true });
+        // The words on the screen (C235-C): scripts/harness/word-count.mjs compares two runs.
+        const words = await page.evaluate(visibleWords).catch(() => []);
+        writeFileSync(path.join(OUT, `${name}-${width}.words.txt`), words.join(' '));
         // Put things back (the language), and say so if that failed: the
         // screens after this one would otherwise be photographed wrongly.
         const undone = after ? await after(page).then(() => null, (e) => e.message.split('\n')[0].slice(0, 160)) : null;
@@ -6002,7 +6008,7 @@ try {
         // A server error: keep what the app printed, so the report says why.
         const failedOnServer = response.status() >= 500 || errors.some((e) => / answered 5\d\d$/.test(e));
         const serverSaid = failedOnServer ? appLog.slice(logFrom).split('\n').filter((l) => /error|Error|⨯/.test(l)).slice(-4).map((l) => l.trim().slice(0, 300)) : [];
-        const row = { name, width, route, status: response.status(), serverSaid, landedOn: seen.path, h1: seen.h1, modulePage: seen.modulePage, horizontalScroll: seen.horizontalScroll, smallTargets: seen.smallTargets, pageErrors: [...errors] };
+        const row = { name, width, route, status: response.status(), serverSaid, landedOn: seen.path, h1: seen.h1, modulePage: seen.modulePage, horizontalScroll: seen.horizontalScroll, smallTargets: seen.smallTargets, words: words.length, pageErrors: [...errors] };
         errors.length = 0;
         return row;
         };
