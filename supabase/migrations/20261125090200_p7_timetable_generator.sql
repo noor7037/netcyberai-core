@@ -1,9 +1,10 @@
 -- P7 slice 10f (C229): the timetable generator.
 --
 -- The generator PROPOSES a week; a person reviews it beside the timetable in force, may swap periods, and publishes
--- it. Nothing reaches timetable_entries until a person publishes, and publishing goes through the app's own entry
--- path (putEntry, clearEntry: their clash guard and audit rows) in one transaction, with the two unique constraints
--- of timetable_entries as the last guard. No language model and no randomness (src/lib/timetable/generator.ts).
+-- it. Nothing reaches timetable_entries until a person publishes, and publishing applies the app's own entry path's
+-- checks (putEntry's clash guard; an audit row for each period as putEntry and clearEntry write them) in a few
+-- statements and one transaction, with the two unique constraints of timetable_entries as the last guard. No
+-- language model and no randomness (src/lib/timetable/generator.ts).
 --
 -- 1. timetable_loads: for each class, the periods a week each subject needs and the teacher who teaches it. The
 --    teacher is an active teacher of the school when the row is written (a trigger), as timetable_entries'
