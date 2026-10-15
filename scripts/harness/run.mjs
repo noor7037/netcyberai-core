@@ -774,6 +774,9 @@ const familyHome = async (page) => {
   const ownChildren = (await db.pg.query(`select s.name from parent_student_map m join students s on s.student_id = m.student_id where m.parent_id = $1 order by s.name`, [PEOPLE.parent.sub])).rows.map((r) => r.name);
   const cookie = (await page.context().cookies()).map((c) => `${c.name}=${c.value}`).join('; ');
   const staffApi = (await fetch(`${base}/api/app/students`, { headers: { cookie } })).status;
+  // Next.js writes 127.0.0.1 as "localhost" in the address it redirects to, so the session goes to both names here.
+  const sameSession = (await page.context().cookies()).filter((c) => c.domain === '127.0.0.1');
+  await page.context().addCookies(sameSession.map(({ name, value, path: p, expires, httpOnly, secure, sameSite }) => ({ name, value, domain: 'localhost', path: p, expires, httpOnly, secure, sameSite })));
   const toApp = await page.context().newPage();
   await toApp.goto(`${base}/app/my-day`);
   const landed = new URL(toApp.url()).pathname;
