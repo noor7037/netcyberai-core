@@ -100,7 +100,7 @@ export async function loadFamilyHome(db: Pick<PoolClient, 'query'>, who: { paren
   return { schoolName: school?.name ?? '', guardianName: guardian?.name ?? '', children, awaitingConsent: linked.length - allowed.length };
 }
 
-// ₹4,500 or ₹4,500.50, in the Indian grouping.
+// Rupees from paise, with the Indian grouping of digits, and paise shown only when there are some.
 export function rupeesFromMinor(minor: number): string {
   const rupees = minor / 100;
   return `₹${rupees.toLocaleString('en-IN', { minimumFractionDigits: Number.isInteger(rupees) ? 0 : 2, maximumFractionDigits: 2 })}`;
