@@ -67,8 +67,8 @@ type Actor = { schoolId: string; userId: string; role: StaffRole };
 // class and subject with assigned teachers takes one of them. The app checks first; this answers the moment between
 // (Setup changed by someone else after the check) with the app's own reason, 'not_assigned'.
 export function isNotAssignedRefusal(err: unknown): boolean {
-  const e = err as { code?: string; message?: string } | null;
-  return e?.code === '23514' && /one of the teachers assigned to its class and subject/.test(e.message ?? '');
+  const e = err as { code?: string; constraint?: string; message?: string } | null;
+  return e?.code === '23514' && (e.constraint === 'timetable_entries_assigned_teacher' || /one of the teachers assigned to its class and subject/.test(e.message ?? ''));
 }
 
 // The timetable generator's lock (C229): it proposes, swaps and publishes holding it alone, so a period filled or
