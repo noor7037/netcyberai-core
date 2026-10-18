@@ -4457,6 +4457,8 @@ const formerStaffErase = async (page) => {
   await page.locator(`[data-cdk-former-row="${C241}3"]`).waitFor({ timeout: 30000 });
   await page.locator(`[data-cdk-erase="${C241}3"]`).click();
   await page.locator('[data-cdk-erase-confirm]').waitFor({ timeout: 10000 });
+  // A full-page picture taken while scrolled draws the sticky menu half way down: back to the top first.
+  await page.evaluate(() => window.scrollTo(0, 0));
 };
 const formerStaffEraseDone = async () => {
   // Nothing was erased: the confirmation was only opened.
@@ -4469,7 +4471,7 @@ const settingsDocuments = async (page) => {
   await documents.waitFor({ timeout: 20000 });
   // The transfer certificate's legal note is on the screen, never folded (C230-A, C240).
   if (!(await documents.locator('[data-setting-legal]').first().isVisible())) throw new Error('the TC fee note is not on the screen');
-  await documents.scrollIntoViewIfNeeded();
+  await page.evaluate(() => window.scrollTo(0, 0));
 };
 
 // The printable disclosure: two items, one changed once and one removed; the page must show the two in force, the newer
