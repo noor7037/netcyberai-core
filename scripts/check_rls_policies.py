@@ -858,6 +858,16 @@ REQUIRED_RESTRICTIVE = {
     ("record_document_versions", "record_document_versions_no_parent"),
     ("audit_log", "audit_record_document_rows_office_or_actor"),
     # c235d end
+    # c244 begin
+    # C244: subjects and academic sessions are written by the principal or the school admin only; a session is never
+    # deleted through the app; a subject is retired (retired_at), never deleted.
+    ("subjects", "subjects_office_insert"),
+    ("subjects", "subjects_office_update"),
+    ("subjects", "subjects_office_delete"),
+    ("academic_sessions", "academic_sessions_office_insert"),
+    ("academic_sessions", "academic_sessions_office_update"),
+    ("academic_sessions", "academic_sessions_no_delete"),
+    # c244 end
     # c238 begin
     # C238: a staff profile is read by the office and by the person themself; added and changed by the office in its
     # own name; nothing for a parent; its audit rows by the office or the person who acted.

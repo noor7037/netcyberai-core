@@ -95,6 +95,7 @@ describe('the guides', () => {
       'make-a-timetable',
       // p7-10f end
       // p7-10g begin
+      'set-up-your-school',
       // p7-10g end
       // c224 begin
       // c224 end

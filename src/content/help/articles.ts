@@ -1492,6 +1492,31 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
   },
   // p7-10f end
   // p7-10g begin
+  {
+    slug: 'set-up-your-school',
+    category: 'support',
+    audience: 'office',
+    title: { en: 'Set up your school: the checklist, sessions and subjects', hi: 'अपना स्कूल सेट अप करें: सूची, सत्र और विषय' },
+    summary: {
+      en: 'Setup lists what the school still needs, counted from what it has now. Add the academic session and make it current, add the subjects you teach, and retire one the school no longer teaches without losing its marks or timetable. For the principal and the school admin.',
+      hi: 'सेटअप बताता है कि स्कूल में अभी क्या बाक़ी है, जो स्कूल के अभी के रिकॉर्ड से गिना जाता है। शैक्षणिक सत्र जोड़कर उसे चालू करें, अपने पढ़ाए जाने वाले विषय जोड़ें, और जो विषय स्कूल अब नहीं पढ़ाता उसे बंद करें, उसके अंक या टाइमटेबल खोए बिना। प्रिंसिपल और स्कूल एडमिन के लिए।',
+    },
+    steps: [
+      { en: 'Open “Setup”. The checklist shows each step of getting the school ready and how many are done. Tap a step to open the screen where it is done.', hi: '“Setup” खोलें। सूची में स्कूल को तैयार करने का हर कदम और कितने पूरे हुए, यह दिखता है। किसी कदम पर टैप करके वह स्क्रीन खोलें जहाँ वह काम होता है।' },
+      { en: 'Under “Keep these up to date”, open “Academic sessions”. Under “Add a session” write the name, like 2026-27, choose the “First day” and the “Last day”, and press “Add session”.', hi: '“Keep these up to date” में “Academic sessions” खोलें। “Add a session” में नाम लिखें, जैसे 2026-27, “First day” और “Last day” चुनें, और “Add session” दबाएँ।' },
+      { en: 'Press “Make current” beside the session. Read what follows the current session, then press “Make current” again. Only one session is current at a time.', hi: 'सत्र के पास “Make current” दबाएँ। पढ़ें कि चालू सत्र के हिसाब से क्या-क्या चलता है, फिर दोबारा “Make current” दबाएँ। एक समय में एक ही सत्र चालू रहता है।' },
+      { en: 'Open “Subjects”. Under “Add a subject” type the “Subject name” and press “Add subject”. Press “Rename” to change a name.', hi: '“Subjects” खोलें। “Add a subject” में “Subject name” लिखें और “Add subject” दबाएँ। नाम बदलने के लिए “Rename” दबाएँ।' },
+      { en: 'A subject the school no longer teaches: press “Retire”, read what stays, and press “Retire” again. Its marks, homework and timetable periods stay as they are. To undo it, press “Bring back”.', hi: 'जो विषय स्कूल अब नहीं पढ़ाता: “Retire” दबाएँ, पढ़ें कि क्या वैसा ही रहेगा, और फिर “Retire” दबाएँ। उसके अंक, होमवर्क और टाइमटेबल के पीरियड वैसे ही रहते हैं। वापस लाने के लिए “Bring back” दबाएँ।' },
+      { en: 'Give each class its subjects on Staff, under “Who teaches what”. The step “Subjects, taught in every class” is done when every class has a subject taught in it.', hi: 'स्टाफ़ में “Who teaches what” के नीचे हर कक्षा को उसके विषय दें। जब हर कक्षा में कोई विषय पढ़ाया जाने लगे, तब “Subjects, taught in every class” वाला कदम पूरा हो जाता है।' },
+    ],
+    tips: [
+      { en: 'The checklist is never ticked by hand. A step opens again if what it needs is removed, for example when the last student is made inactive.', hi: 'सूची पर हाथ से निशान नहीं लगता। जिस चीज़ पर कदम टिका है वह हट जाए, जैसे आख़िरी विद्यार्थी चालू न रहे, तो वह कदम फिर खुल जाता है।' },
+      { en: 'A session is never deleted, because classes, exams and fee structures refer to it. Making another session current changes nothing already saved.', hi: 'सत्र कभी हटाया नहीं जाता, क्योंकि कक्षाएँ, परीक्षाएँ और फ़ीस ढाँचे उससे जुड़े हैं। दूसरा सत्र चालू करने से पहले से सेव कुछ नहीं बदलता।' },
+    ],
+    start: { href: '/app/setup', label: { en: 'Setup', hi: 'सेटअप' } },
+    related: ['send-staff-reset-code', 'fee-structures', 'make-a-timetable'],
+    keywords: ['setup', 'checklist', 'onboarding', 'academic session', 'current session', 'session', 'subject', 'subjects', 'retire subject', 'add subject', 'set up school', 'सेटअप', 'सत्र', 'शैक्षणिक सत्र', 'विषय', 'विषय जोड़ें', 'चालू सत्र'],
+  },
   // p7-10g end
   // c224 begin
   // c224 end

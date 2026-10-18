@@ -125,6 +125,9 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // p7-10f begin
   // p7-10f end
   // p7-10g begin
+  // The school's sessions and subjects, kept by the office in Setup (C244): switched off, nobody adds a session, makes
+  // one current, renames a subject or retires it. (Adding a subject is 'subjects', below: Setup too.)
+  ['setup/**', 'setup'],
   // p7-10g end
   // c224 begin
   // c224 end
@@ -304,6 +307,11 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // Who teaches what, and the teachers' proposals (C231): read by the Staff screen and a teacher's account page,
   // tied to no module's switch, as the subjects list is. (Its writes are under 'subjects/**': Setup.)
   ['subjects/assignments', 'any-module'],
+  // The onboarding checklist, the sessions and the subjects with what still refers to them, for the Setup screens
+  // (C244). Switched off with Setup. (Their writes are under 'setup/**' in WRITE_ROUTES.)
+  ['setup/checklist', 'setup'],
+  ['setup/sessions', 'setup'],
+  ['setup/subjects', 'setup'],
   // p7-10g end
   // c224 begin
   // c224 end

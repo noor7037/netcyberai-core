@@ -562,6 +562,21 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
   },
   // p7-10f end
   // p7-10g begin
+  {
+    // What the school still has to set up (C244): one card for the principal and the school admin while any step of the
+    // onboarding checklist is open, counting the steps done out of all of them. The checklist is counted from the rows
+    // that exist now (src/lib/setup/checklist.ts, the same function the Setup screen and Control use), so the card and
+    // the screen agree; it is gone once every step is done, and back if a row is removed.
+    type: 'setup-checklist',
+    moduleId: 'setup',
+    roles: OFFICE,
+    async load(db, ctx) {
+      const { onboardingChecklist, checklistProgress } = await import('@/lib/setup/checklist');
+      const { done, total, complete } = checklistProgress(await onboardingChecklist(db as never, ctx.schoolId));
+      if (total === 0 || complete) return []; // a school this person cannot see has no checklist; a finished one needs no card
+      return [{ id: 'setup-checklist', type: 'setup-checklist', moduleId: 'setup', state: 'todo', count: done, total, href: '/app/setup' }];
+    },
+  },
   // p7-10g end
   // c224 begin
   // c224 end
