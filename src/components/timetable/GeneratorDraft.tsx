@@ -2,18 +2,22 @@
 
 import { useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
+import { StatTile } from '@/components/app-ui/StatTile';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Modal } from '@/components/ui/Modal';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import type { MessageKey } from '@/lib/i18n';
 import type { WeekProblem } from '@/lib/timetable/generator';
-import { CARD, dayKey, namer, PRIMARY, SECONDARY, send, when, type Draft, type GeneratorData } from './generator-ui';
+import { CARD, dayKey, HEAD_ROW, namer, PRIMARY, SECONDARY, send, when, type Draft, type GeneratorData } from './generator-ui';
 import { WeekCompare } from './WeekCompare';
 
 // The proposal (C229): what was placed and what could not be, and why; one class at a time beside the timetable in
 // force, with every changed period highlighted; two taps swap two periods of the class; then a person publishes it
 // (after reading what it replaces) or discards it. A proposal made before the timetable changed, or one that breaks
-// a rule now, cannot be published, and says so.
+// a rule now, cannot be published, and says so. Design system v5 (C243): the counts are figure tiles; how to swap
+// sits behind the ⓘ; every reason it cannot be placed or published stays on the screen.
 
 type At = { weekday: number; period: number };
 const SWAP_REFUSED: Record<string, MessageKey> = { teacher_clash: 'ttg.swap.teacher_clash', unavailable: 'ttg.swap.unavailable', consecutive_limit: 'ttg.swap.consecutive_limit' };
@@ -98,11 +102,11 @@ export function GeneratorDraft({ draft, data, onChanged }: { draft: Draft; data:
         {t('ttg.draft.title')}
       </h2>
       <p className="text-sm text-slate/70">{t('ttg.draft.by', { date: when(draft.proposedAt, lang), name: draft.proposedByName })}</p>
-      <ul className="flex flex-col gap-1 text-sm text-slate">
-        <li data-ttg-placed={draft.entries.length}>{tCount('ttg.draft.placed', draft.entries.length)}</li>
-        <li data-ttg-changes={draft.changes.length}>{tCount('ttg.draft.changes', draft.changes.length)}</li>
-        {draft.unplaced.length === 0 && <li className="font-semibold">{t('ttg.draft.allPlaced')}</li>}
-      </ul>
+      <div className="grid grid-cols-3 gap-2">
+        <StatTile icon="check" tone="emerald" label={t('ttg.draft.placedLabel')} value={draft.entries.length} attrs={{ 'data-ttg-placed': draft.entries.length }} />
+        <StatTile icon="timetable" label={t('ttg.draft.changesLabel')} value={draft.changes.length} attrs={{ 'data-ttg-changes': draft.changes.length }} />
+        <StatTile icon={notPlaced > 0 ? 'alert' : 'check'} tone={notPlaced > 0 ? 'coral' : 'emerald'} label={t('ttg.draft.notPlacedLabel')} value={notPlaced} />
+      </div>
 
       {draft.unplaced.length > 0 && (
         <div data-ttg-unplaced={notPlaced} className="flex flex-col gap-2 rounded-md border border-amber/40 bg-amber/10 p-3">
@@ -155,26 +159,29 @@ export function GeneratorDraft({ draft, data, onChanged }: { draft: Draft; data:
         </div>
       )}
 
-      <div className="max-w-sm">
-        <Select
-          id="ttg-draft-class"
-          label={t('ttg.draft.class')}
-          value={classId}
-          onChange={(e) => {
-            setClassId(e.target.value);
-            setPicked(null);
-            setRefused(null);
-          }}
-        >
-          {draft.classIds.map((id) => (
-            <option key={id} value={id}>
-              {names.cls(id)}
-            </option>
-          ))}
-        </Select>
+      <div className={HEAD_ROW}>
+        <div className="min-w-0 max-w-sm flex-1">
+          <Select
+            id="ttg-draft-class"
+            label={t('tt.class')}
+            value={classId}
+            onChange={(e) => {
+              setClassId(e.target.value);
+              setPicked(null);
+              setRefused(null);
+            }}
+          >
+            {draft.classIds.map((id) => (
+              <option key={id} value={id}>
+                {names.cls(id)}
+              </option>
+            ))}
+          </Select>
+        </div>
+        <InfoTip>{t('ttg.draft.swapHow')}</InfoTip>
       </div>
-      <p className="text-sm text-slate" aria-live="polite">
-        {t(picked ? 'ttg.draft.swapPicked' : 'ttg.draft.swapHow')}
+      <p className="text-sm font-semibold text-slate" aria-live="polite">
+        {picked ? t('ttg.draft.swapPicked') : ''}
       </p>
       {refused && (
         <p role="alert" data-ttg-refused className="rounded-md border border-red-800/30 p-3 text-sm text-red-800">
@@ -219,10 +226,7 @@ export function GeneratorDraft({ draft, data, onChanged }: { draft: Draft; data:
             {t('ttg.publish.what', { classes: draft.classIds.length, added: count('added'), changed: count('changed'), removed: count('removed') })}
           </p>
           {draft.unplaced.length > 0 && (
-            <label className="flex min-h-[44px] items-center gap-3 text-sm text-slate">
-              <input type="checkbox" data-ttg-with-missing checked={withMissing} onChange={(e) => setWithMissing(e.target.checked)} className="h-5 w-5" required />
-              {tCount('ttg.publish.missing', notPlaced)}
-            </label>
+            <Checkbox id="ttg-with-missing" data-ttg-with-missing label={tCount('ttg.publish.missing', notPlaced)} checked={withMissing} onChange={(e) => setWithMissing(e.target.checked)} required />
           )}
           <div className="flex flex-wrap gap-2">
             <button type="submit" data-ttg-publish-confirm disabled={busy || (draft.unplaced.length > 0 && !withMissing)} className={PRIMARY}>

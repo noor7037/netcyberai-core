@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useToast } from '@/components/ui/Toast';
 import { MAX_PERIODS } from '@/lib/timetable/plan';
-import { CARD, CONSECUTIVE_SETTING_HREF, dayKey, PRIMARY, send, type GeneratorData } from './generator-ui';
+import { CARD, CONSECUTIVE_SETTING_HREF, dayList, HEAD_ROW, PILL, PRIMARY, send, type GeneratorData } from './generator-ui';
 import { GeneratorDraft } from './GeneratorDraft';
 import { GeneratorHistory } from './GeneratorHistory';
 import { GeneratorLoads } from './GeneratorLoads';
@@ -14,6 +15,8 @@ import { GeneratorUnavailable } from './GeneratorUnavailable';
 // The timetable generator's screen (docs/28 slice 10f, C229), for the office: the school day it plans for, what each
 // class needs, when teachers cannot teach, the proposal, and the history of what was published. Every change reads
 // the whole screen again from the server, so the proposal, its changes and the history always agree.
+// Design system v5 (C243): each part's explanation sits behind its ⓘ; the limit of periods in a row, and every reason
+// a proposal cannot be made, stay on the screen.
 
 export function GeneratorView() {
   const { t } = useT();
@@ -74,10 +77,10 @@ export function GeneratorView() {
         <h2 id="ttg-rules-title" className="text-base font-bold text-slate">
           {t('ttg.rules.title')}
         </h2>
-        <ul className="flex flex-col gap-1 text-sm text-slate">
-          <li>{t('ttg.rules.days', { days: rules.days.map((d) => t(dayKey(d))).join(', ') })}</li>
-          <li>{t('ttg.rules.periods', { periods: rules.periods })}</li>
-          <li data-ttg-limit={limitUnset ? 'unset' : rules.maxConsecutive}>
+        <ul className="flex flex-wrap gap-2 text-sm text-slate">
+          <li className={PILL}>{t('ttg.rules.days', { days: dayList(rules.days, t) })}</li>
+          <li className={PILL}>{t('ttg.rules.periods', { periods: rules.periods })}</li>
+          <li data-ttg-limit={limitUnset ? 'unset' : rules.maxConsecutive} className={limitUnset ? 'rounded-xl border border-amber/40 bg-amber/10 px-3 py-1.5 font-semibold' : PILL}>
             {rules.maxConsecutive === null ? t('ttg.rules.limitUnset') : rules.maxConsecutive >= Math.min(rules.periods, MAX_PERIODS) ? t('ttg.rules.noLimit') : t('ttg.rules.consecutive', { count: rules.maxConsecutive })}
           </li>
         </ul>
@@ -94,10 +97,15 @@ export function GeneratorView() {
       <GeneratorUnavailable data={data} onChanged={load} />
 
       <section data-ttg-propose className={CARD} aria-labelledby="ttg-propose-title">
-        <h2 id="ttg-propose-title" className="text-base font-bold text-slate">
-          {t('ttg.propose.title')}
-        </h2>
-        <p className="text-sm text-slate">{t('ttg.propose.how')}</p>
+        <div className={HEAD_ROW}>
+          <h2 id="ttg-propose-title" className="text-base font-bold text-slate">
+            {t('ttg.propose.title')}
+          </h2>
+          <InfoTip>
+            <p>{t('ttg.propose.how')}</p>
+            {data.draft && <p className="mt-2">{t('ttg.propose.replaces')}</p>}
+          </InfoTip>
+        </div>
         {limitUnset && (
           <div role="status" data-ttg-limit-unset className="flex flex-col items-start gap-1 rounded-md border border-amber/40 bg-amber/10 p-3 text-sm text-slate">
             <p className="font-semibold">{t('ttg.limit.unsetTitle')}</p>
@@ -111,7 +119,6 @@ export function GeneratorView() {
             )}
           </div>
         )}
-        {data.draft && <p className="text-sm text-slate/70">{t('ttg.propose.replaces')}</p>}
         <button type="button" data-ttg-propose-go disabled={busy || limitUnset} onClick={proposeWeek} className={`${PRIMARY} self-start`}>
           {busy ? t('ttg.propose.working') : t(data.draft ? 'ttg.propose.again' : 'ttg.propose.go')}
         </button>

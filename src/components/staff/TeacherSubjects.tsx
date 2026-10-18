@@ -7,10 +7,13 @@ import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import type { MessageKey } from '@/lib/i18n';
 
-// Who teaches what, on Staff, for the principal and the school admin (docs/28 slice 10g, C231): for each teacher,
-// the subjects they teach and in which classes, added and taken away here; and the teachers' own proposals, confirmed
-// or declined here. What a teacher may read and mark follows these lines (the teacher_scope_* policies), and the
-// timetable offers only these teachers for a subject in a class. Every change is saved at once and audited with ids.
+// Who teaches what, on Staff for the principal and the school admin, and on its own page of the Timetable module
+// (/app/timetable/teachers, `standalone`: the page's own title and ⓘ say what it is) for them and the academic
+// coordinator (docs/28 slice 10g, C231; C230-C, C243): for each teacher, the subjects they teach and in which
+// classes, added and taken away here; and the teachers' own proposals, confirmed or declined here. What a teacher may
+// read and mark follows these lines (the teacher_scope_* policies), and the timetable offers only these teachers for
+// a subject in a class. Every change is saved at once and audited with ids.
+// Design system v5 (C243): a subject is removed with the × on its chip (its name says what it removes).
 
 type Named = { id: string; name: string };
 // A teacher who left but still has subjects here is listed too, marked, so the office can take them away.
@@ -30,7 +33,7 @@ const REFUSED: Record<string, MessageKey> = {
   unknown_subject: 'ts.refused.place',
 };
 
-export function TeacherSubjects() {
+export function TeacherSubjects({ standalone = false }: { standalone?: boolean }) {
   const { t, tCount, lang } = useT();
   const toast = useToast();
   const [data, setData] = useState<Data | null>(null);
@@ -81,13 +84,15 @@ export function TeacherSubjects() {
       .sort((a, b) => classAt(a.classId) - classAt(b.classId) || name(data.subjects, a.subjectId).localeCompare(name(data.subjects, b.subjectId)));
 
   return (
-    <section lang={lang} id="teacher-subjects" data-teacher-subjects className={`${BOX} text-sm text-slate`} aria-labelledby="ts-title">
-      <div className="flex flex-wrap items-center gap-x-1">
-        <h2 id="ts-title" className="text-base font-bold">
-          {t('ts.title')}
-        </h2>
-        <InfoTip>{t('ts.how')}</InfoTip>
-      </div>
+    <section lang={lang} id="teacher-subjects" data-teacher-subjects className={`${BOX} text-sm text-slate`} aria-labelledby={standalone ? undefined : 'ts-title'} aria-label={standalone ? t('ts.title') : undefined}>
+      {!standalone && (
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 id="ts-title" className="text-base font-bold">
+            {t('ts.title')}
+          </h2>
+          <InfoTip>{t('ts.how')}</InfoTip>
+        </div>
+      )}
 
       {data.requests.length > 0 && (
         <div data-subject-requests={data.requests.length} className="flex flex-col gap-2 rounded-md border border-amber/40 bg-amber/10 p-3">
@@ -117,7 +122,7 @@ export function TeacherSubjects() {
           {data.teachers.map((p) => {
             const mine = byTeacher(p.id);
             return (
-              <li key={p.id} data-teacher-line={p.id} className="flex flex-col gap-2 border-t border-slate/10 pt-3">
+              <li key={p.id} data-teacher-line={p.id} className={`flex flex-col gap-2 border-t border-slate/10 pt-3 ${standalone ? 'first:border-t-0 first:pt-0' : ''}`}>
                 <p className="font-semibold">{p.active ? p.name : t('ts.gone', { name: p.name })}</p>
                 {mine.length === 0 ? (
                   <p className="text-slate/70">{t('ts.none')}</p>
@@ -131,10 +136,11 @@ export function TeacherSubjects() {
                           data-assignment-remove
                           disabled={busy}
                           aria-label={t('ts.removeLabel', { teacher: p.name, subject: name(data.subjects, a.subjectId), class: name(data.classes, a.classId) })}
-                          className="min-h-[44px] min-w-[44px] rounded-md px-2 font-semibold text-sapphire underline disabled:opacity-60"
+                          title={t('ts.removeLabel', { teacher: p.name, subject: name(data.subjects, a.subjectId), class: name(data.classes, a.classId) })}
+                          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-lg font-bold text-sapphire hover:bg-slate/5 disabled:opacity-60"
                           onClick={() => void send('/api/app/subjects/assignments', 'DELETE', a, 'ts.removed')}
                         >
-                          {t('ts.remove')}
+                          <span aria-hidden="true">×</span>
                         </button>
                       </li>
                     ))}
@@ -157,7 +163,7 @@ export function TeacherSubjects() {
           }}
         >
           <Select id="ts-teacher" label={t('ts.teacher')} value={form.teacherUserId} required onChange={(e) => setForm({ ...form, teacherUserId: e.target.value })}>
-            <option value="">{t('ts.teacher.choose')}</option>
+            <option value="">—</option>
             {data.teachers
               .filter((p) => p.active)
               .map((p) => (
@@ -167,7 +173,7 @@ export function TeacherSubjects() {
               ))}
           </Select>
           <Select id="ts-class" label={t('ts.class')} value={form.classId} required onChange={(e) => setForm({ ...form, classId: e.target.value })}>
-            <option value="">{t('ts.class.choose')}</option>
+            <option value="">—</option>
             {data.classes.map((c) => (
               <option key={c.id} value={c.id}>
                 {c.name}
@@ -175,7 +181,7 @@ export function TeacherSubjects() {
             ))}
           </Select>
           <Select id="ts-subject" label={t('ts.subject')} value={form.subjectId} required onChange={(e) => setForm({ ...form, subjectId: e.target.value })}>
-            <option value="">{t('ts.subject.choose')}</option>
+            <option value="">—</option>
             {data.subjects.map((s) => (
               <option key={s.id} value={s.id}>
                 {s.name}

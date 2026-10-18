@@ -5,10 +5,11 @@ import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route
 
 // A teacher's proposal of a subject they teach in a class (docs/28 slice 10g, C231). Nothing is assigned until the
 // office confirms it; only a confirmed proposal is written to teacher_subjects. Row level security says the same: a
-// teacher makes a proposal only for themselves, and only the principal or the school admin decides one, never the
-// teacher who made it. (The proposals are read with the assignments: GET /api/app/subjects/assignments.)
+// teacher makes a proposal only for themselves, and only the principal, the school admin or the academic coordinator
+// (ASSIGNERS, C230-C) decides one, never the teacher who made it. (The proposals are read with the assignments:
+// GET /api/app/subjects/assignments.)
 //   POST  { classId, subjectId }                         a teacher proposes, for themselves
-//   PUT   { requestId, decision: 'confirm' | 'decline' } the office decides, once
+//   PUT   { requestId, decision: 'confirm' | 'decline' } those three decide, once
 
 export async function POST(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {

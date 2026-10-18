@@ -2,15 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Select } from '@/components/ui/Select';
 import type { Change } from '@/lib/timetable/generator';
 import type { Slot } from '@/lib/timetable/plan';
-import { CARD, namer, SECONDARY, when, type Names } from './generator-ui';
+import { CARD, HEAD_ROW, namer, SECONDARY, when, type Names } from './generator-ui';
 import { WeekCompare } from './WeekCompare';
 
 // The timetable's change history (C229): each publish of a proposal, newest first: who, when, and how many periods it
 // filled, changed and emptied. One publish opens to the timetable before it beside the timetable after it, class by
-// class: the earlier timetable read back.
+// class: the earlier timetable read back. Design system v5 (C243): what the list is sits behind the ⓘ.
 
 type Line = { versionId: string; publishedAt: string; publishedByName: string; classes: number; added: number; removed: number; changed: number };
 type Detail = Line & { classIds: string[]; before: Slot[]; after: Slot[]; changes: Change[] };
@@ -45,10 +46,12 @@ export function GeneratorHistory({ refreshKey, days, periods }: { refreshKey: nu
 
   return (
     <section data-ttg-history className={CARD} aria-labelledby="ttg-history-title">
-      <h2 id="ttg-history-title" className="text-base font-bold text-slate">
-        {t('ttg.history.title')}
-      </h2>
-      <p className="text-sm text-slate">{t('ttg.history.how')}</p>
+      <div className={HEAD_ROW}>
+        <h2 id="ttg-history-title" className="text-base font-bold text-slate">
+          {t('ttg.history.title')}
+        </h2>
+        <InfoTip>{t('ttg.history.how')}</InfoTip>
+      </div>
       {failed && (
         <p role="alert" className="text-sm text-slate">
           {t('ttg.history.failed')}

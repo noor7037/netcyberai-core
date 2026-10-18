@@ -2,14 +2,17 @@
 
 import { useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
+import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
-import { CARD, namer, PRIMARY, SECONDARY, send, type GeneratorData } from './generator-ui';
+import { CARD, HEAD_ROW, namer, PRIMARY, SECONDARY, send, type GeneratorData } from './generator-ui';
 
 // The periods each class needs (C229): for a class, each subject with its periods a week and its teacher. When Setup
-// gives that subject in that class to teachers (who teaches what, on the Staff screen, C231), only they are offered,
-// and the server refuses another; with none, every active teacher is. The class's total is shown against its week,
-// so a class that asks for more than its week has is seen before a proposal is made.
+// gives that subject in that class to teachers (who teaches what, C231; its page is /app/timetable/teachers), only they are offered,
+// and the server refuses another; with none, every active teacher is. The class's total is shown against its week
+// (in the class's own choice), and a class that asks for more than its week has is said in words before a proposal is
+// made. Design system v5 (C243): the explanation sits behind the ⓘ; the fields have floating labels.
 
 type Form = { subjectId: string; periods: string; teacherUserId: string };
 const EMPTY: Form = { subjectId: '', periods: '', teacherUserId: '' };
@@ -58,10 +61,12 @@ export function GeneratorLoads({ data, onChanged }: { data: GeneratorData; onCha
 
   return (
     <section data-ttg-loads className={CARD} aria-labelledby="ttg-loads-title">
-      <h2 id="ttg-loads-title" className="text-base font-bold text-slate">
-        {t('ttg.loads.title')}
-      </h2>
-      <p className="text-sm text-slate">{t('ttg.loads.how')}</p>
+      <div className={HEAD_ROW}>
+        <h2 id="ttg-loads-title" className="text-base font-bold text-slate">
+          {t('ttg.loads.title')}
+        </h2>
+        <InfoTip>{t('ttg.loads.how')}</InfoTip>
+      </div>
       {data.names.classes.length === 0 || data.names.subjects.length === 0 ? (
         <p className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('ttg.loads.noClasses')}</p>
       ) : (
@@ -86,9 +91,11 @@ export function GeneratorLoads({ data, onChanged }: { data: GeneratorData; onCha
           </div>
           {classId && (
             <>
-              <p data-ttg-class-total className={`text-sm ${used(classId) > week ? 'font-semibold text-red-800' : 'text-slate'}`}>
-                {t(used(classId) > week ? 'ttg.loads.over' : 'ttg.loads.total', { used: used(classId), week })}
-              </p>
+              {used(classId) > week && (
+                <p role="alert" data-ttg-class-total className="rounded-md border border-red-800/30 p-3 text-sm font-semibold text-red-800">
+                  {t('ttg.loads.over', { used: used(classId), week })}
+                </p>
+              )}
               {mine.length === 0 ? (
                 <p className="text-sm text-slate/70">{t('ttg.loads.none')}</p>
               ) : (
@@ -120,31 +127,16 @@ export function GeneratorLoads({ data, onChanged }: { data: GeneratorData; onCha
                 }}
               >
                 <Select id="ttg-subject" label={t('tt.subject')} value={form.subjectId} onChange={(e) => pickSubject(e.target.value)} required>
-                  <option value="">{t('tt.subject.choose')}</option>
+                  <option value="">—</option>
                   {data.names.subjects.map((s) => (
                     <option key={s.id} value={s.id}>
                       {s.name}
                     </option>
                   ))}
                 </Select>
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="ttg-periods" className="text-sm font-medium text-slate">
-                    {t('ttg.loads.periods')}
-                  </label>
-                  <input
-                    id="ttg-periods"
-                    type="number"
-                    inputMode="numeric"
-                    min={1}
-                    max={week || 1}
-                    required
-                    value={form.periods}
-                    onChange={(e) => setForm({ ...form, periods: e.target.value })}
-                    className="min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate"
-                  />
-                </div>
+                <Input id="ttg-periods" label={t('ttg.loads.periods')} type="number" inputMode="numeric" min={1} max={week || 1} required value={form.periods} onChange={(e) => setForm({ ...form, periods: e.target.value })} />
                 <Select id="ttg-teacher" label={t('tt.teacher')} value={form.teacherUserId} onChange={(e) => setForm({ ...form, teacherUserId: e.target.value })} required>
-                  <option value="">{t('tt.teacher.choose')}</option>
+                  <option value="">—</option>
                   {teachers.map((p) => (
                     <option key={p.id} value={p.id}>
                       {assigned.has(p.id) ? t('ttg.loads.assigned', { name: p.name }) : p.name}
@@ -158,11 +150,9 @@ export function GeneratorLoads({ data, onChanged }: { data: GeneratorData; onCha
               {form.subjectId && assigned.size > 0 && (
                 <p data-ttg-assigned-only className="text-sm text-slate/70">
                   {t('ttg.loads.assignedOnly')}{' '}
-                  {data.mayEditSettings && (
-                    <a href="/app/staff#teacher-subjects" className="inline-flex min-h-[44px] items-center font-semibold text-sapphire underline">
-                      {t('ttg.loads.assignedWhere')}
-                    </a>
-                  )}
+                  <a href="/app/timetable/teachers" className="inline-flex min-h-[44px] items-center font-semibold text-sapphire underline">
+                    {t('ttg.loads.assignedWhere')}
+                  </a>
                 </p>
               )}
             </>

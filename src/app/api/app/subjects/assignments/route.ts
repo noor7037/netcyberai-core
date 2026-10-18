@@ -4,13 +4,13 @@ import { assign, ASSIGNERS, assignmentChoices, listAssignments, myRequests, unas
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 
 // Who teaches which subject to which class (teacher_subjects), kept by the office on the Staff screen (docs/28 slice
-// 10g, C231). This table is what the teacher_scope_* RLS policies read, so it decides what each teacher can mark: an
-// office-only write (the principal and the school admin; row level security says the same), audited both ways with
-// ids only. src/lib/academics/teacher-subjects.ts does the work.
-//   GET     the office: every teacher's subjects and classes, the proposals waiting, and what to choose from;
+// 10g, C231). This table is what the teacher_scope_* RLS policies read, so it decides what each teacher can mark:
+// written by the principal, the school admin and the academic coordinator only (ASSIGNERS, C230-C; row level security
+// says the same), audited both ways with ids only. src/lib/academics/teacher-subjects.ts does the work.
+//   GET     those three: every teacher's subjects and classes, the proposals waiting, and what to choose from;
 //           a teacher: their own subjects and classes, their own proposals, and the classes and subjects
-//   POST    { teacherUserId, subjectId, classId }  give a teacher a subject in a class (the office)
-//   DELETE  { teacherUserId, subjectId, classId }  take it away (the office)
+//   POST    { teacherUserId, subjectId, classId }  give a teacher a subject in a class
+//   DELETE  { teacherUserId, subjectId, classId }  take it away
 
 function parseAssignment(body: Record<string, unknown> | null): Assignment | null {
   if (!isUuid(body?.teacherUserId) || !isUuid(body?.subjectId) || !isUuid(body?.classId)) return null;

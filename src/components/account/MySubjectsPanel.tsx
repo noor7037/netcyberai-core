@@ -97,7 +97,7 @@ export function MySubjectsPanel() {
         }}
       >
         <Select id="ms-class" label={t('ts.class')} value={form.classId} required onChange={(e) => setForm({ ...form, classId: e.target.value })}>
-          <option value="">{t('ts.class.choose')}</option>
+          <option value="">—</option>
           {data.classes.map((c) => (
             <option key={c.id} value={c.id}>
               {c.name}
@@ -105,7 +105,7 @@ export function MySubjectsPanel() {
           ))}
         </Select>
         <Select id="ms-subject" label={t('ts.subject')} value={form.subjectId} required onChange={(e) => setForm({ ...form, subjectId: e.target.value })}>
-          <option value="">{t('ts.subject.choose')}</option>
+          <option value="">—</option>
           {data.subjects.map((s) => (
             <option key={s.id} value={s.id}>
               {s.name}

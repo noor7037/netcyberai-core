@@ -117,6 +117,8 @@ export const TOURS = {
   // p7-10e end
   // p7-10f begin
   'timetable-generator': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
+  // Who teaches what, in the Timetable module (C243).
+  'timetable-teachers': { steps: [{ slot: 'body' }, { slot: 'body' }] },
   // p7-10f end
   // p7-10g begin
   // p7-10g end

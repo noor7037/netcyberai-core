@@ -4696,10 +4696,15 @@ const clearTtgPlans = () =>
     set session_replication_role = origin;`);
 const clearTtg = async () => {
   await clearTtgPlans();
-  // The timetable as it was before the screen.
+  // The timetable as it was before the screen (the seed's period made before C243's rule included, so put back as such).
   if (ttgTimetable) {
-    await db.pg.query(`delete from timetable_entries where school_id = $1`, [SCHOOL]);
-    for (const e of ttgTimetable) await db.pg.query(`insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) values ($1, $2, $3, $4, $5, $6)`, [SCHOOL, e.classId, e.weekday, e.period, e.subjectId, e.teacherUserId]);
+    await db.pg.query(`set session_replication_role = replica`);
+    try {
+      await db.pg.query(`delete from timetable_entries where school_id = $1`, [SCHOOL]);
+      for (const e of ttgTimetable) await db.pg.query(`insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) values ($1, $2, $3, $4, $5, $6)`, [SCHOOL, e.classId, e.weekday, e.period, e.subjectId, e.teacherUserId]);
+    } finally {
+      await db.pg.query(`set session_replication_role = origin`);
+    }
   }
   ttgTimetable = null;
 };
@@ -4930,6 +4935,19 @@ const ttgLimit = async (page) => {
 const ttgLimitDone = async () => {
   const proposals = (await db.pg.query(`select count(*)::int as n from timetable_proposals where school_id = $1`, [SCHOOL])).rows[0].n;
   if (proposals !== 0 || JSON.stringify(ttgSeen) !== JSON.stringify({ disabled: true, link: '/app/settings#set-timetable-max_consecutive', rule: 'unset' })) throw new Error(`the generator with no limit set: ${JSON.stringify({ proposals, seen: ttgSeen })}`);
+};
+// Who teaches what in the Timetable module (C243), as the principal opens it (the academic coordinator has the same
+// page): one line per teacher with their subjects, the form to add one, no heading of the panel's own (the page's).
+// The chips on the screen must be the database's own assignments.
+let ttTeachersSeen = null;
+const timetableTeachers = async (page) => {
+  await page.locator('[data-teacher-subjects] [data-teacher-line]').first().waitFor({ timeout: 20000 });
+  await page.waitForTimeout(600);
+  ttTeachersSeen = { chips: await page.locator('[data-assignment]').count(), form: await page.locator('[data-assign-form]').count(), ownHeading: await page.locator('#ts-title').count() };
+};
+const timetableTeachersDone = async () => {
+  const chips = (await db.pg.query(`select count(*)::int as n from teacher_subjects where school_id = $1`, [SCHOOL])).rows[0].n;
+  if (JSON.stringify(ttTeachersSeen) !== JSON.stringify({ chips, form: 1, ownHeading: 0 })) throw new Error(`who teaches what in the timetable: ${JSON.stringify({ seen: ttTeachersSeen, chips })}`);
 };
 // p7-10g end
 // c224 begin
@@ -6013,6 +6031,7 @@ const SCREENS = [
   ['principal', 'app-attendance-corrections', '/app/attendance', officeCorrections, officeCorrectionsDone],
   ['principal', 'app-timetable', '/app/timetable', chooseClass],
   ['principal', 'app-timetable-clash', '/app/timetable', timetableClash],
+  ['principal', 'app-timetable-teachers', '/app/timetable/teachers', timetableTeachers, timetableTeachersDone],
   ['principal', 'app-staff', '/app/staff'],
   ['principal', 'app-compliance', '/app/compliance'],
   ['principal', 'app-communication', '/app/communication', messageStates, messageStatesDone],

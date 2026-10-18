@@ -38,10 +38,25 @@ export type GeneratorData = {
 };
 
 export const dayKey = (weekday: number) => `tt.day.${WEEKDAYS[weekday - 1]}` as MessageKey;
+type Translate = (key: MessageKey, params?: Record<string, string | number>) => string;
+// The school's days in words, three or more in a row said as one ("Monday to Saturday"), the others listed (C243).
+export function dayList(days: readonly number[], t: Translate): string {
+  const runs: number[][] = [];
+  for (const d of [...days].sort((a, b) => a - b)) {
+    const last = runs[runs.length - 1];
+    if (last && d === last[last.length - 1] + 1) last.push(d);
+    else runs.push([d]);
+  }
+  return runs.map((r) => (r.length >= 3 ? t('ttg.rules.dayRange', { from: t(dayKey(r[0])), to: t(dayKey(r[r.length - 1])) }) : r.map((d) => t(dayKey(d))).join(', '))).join(', ');
+}
 export const TAP = 'min-h-[44px] rounded-md border px-3 text-sm font-semibold';
 export const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 export const SECONDARY = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-4 text-sm font-semibold text-slate disabled:opacity-60';
 export const CARD = 'flex flex-col gap-3 rounded-xl border border-slate/10 bg-white p-3 sm:p-4';
+// A heading with its ⓘ beside it (design system v5, C243): the explanation is one tap away.
+export const HEAD_ROW = 'flex flex-wrap items-center gap-x-1';
+// One fact of the school day, as a quiet pill.
+export const PILL = 'rounded-xl bg-off-white px-3 py-1.5';
 
 // Names for ids, from what the screen was given. An id with no name (removed since) shows as nothing.
 export function namer(names: Names) {
