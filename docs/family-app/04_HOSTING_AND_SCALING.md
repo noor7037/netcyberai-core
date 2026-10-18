@@ -72,8 +72,8 @@ Phase 6 (`05` §5).
 
 ## 6. Reliability
 
-- **Backups:** Supabase's daily backups on the paid plan; point-in-time recovery is an add-on for the founder to
-  decide before public launch.
+- **Backups:** Supabase keeps daily backups on its paid plans, and point-in-time recovery is an add-on; the founder
+  confirms the plan and the add-on before public launch.
 - **Health:** the family app's own check (`/api/family/health`: database, content readable, AI provider reachable) is
   shown in Control → Monitoring.
 - **Degrades safely:**
