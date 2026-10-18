@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { useToast } from '@/components/ui/Toast';
 
@@ -75,8 +76,10 @@ export function RecoveryView() {
 
   return (
     <section lang={lang} className="flex flex-col gap-4">
-      <p className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('rec.rule', { threshold: data.threshold, days: data.windowDays, from: data.from })}</p>
-      <h2 className="text-base font-bold text-slate">{tCount('rec.count', data.candidates.length)}</h2>
+      <div className="flex flex-wrap items-center gap-x-1">
+        <h2 className="text-base font-bold text-slate">{tCount('rec.count', data.candidates.length)}</h2>
+        <InfoTip>{t('rec.rule', { threshold: data.threshold, days: data.windowDays, from: data.from })}</InfoTip>
+      </div>
       {data.candidates.length === 0 && <TeachEmpty id="recovery" />}
       <ul className="flex flex-col gap-3">
         {data.candidates.map((c) => (

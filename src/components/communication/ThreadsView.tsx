@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
@@ -61,9 +62,9 @@ export function ThreadsView() {
   const when = new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' });
   return (
     <section lang={lang} data-threads className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-4">
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-base font-bold text-slate">{t('thr.title')}</h2>
-        <p className="text-sm text-slate/70">{t('thr.how')}</p>
+        <InfoTip>{t('thr.how')}</InfoTip>
       </div>
       {threads.length === 0 && <p data-threads-empty className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('thr.none')}</p>}
       <ul className="flex flex-col gap-2">

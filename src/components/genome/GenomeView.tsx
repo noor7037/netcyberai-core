@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
-import { FIELD, SECTION } from '@/components/exams/SchemeParts';
+import { SECTION } from '@/components/exams/SchemeParts';
+import { Select } from '@/components/ui/Select';
 import type { GenomePicker } from '@/lib/genome/genome';
 import type { Genome } from '@/lib/genome/rules';
 import { GenomeChild } from './GenomeChild';
@@ -103,25 +104,19 @@ export function GenomeView({ initialClass, initialChild }: { initialClass: strin
           <p className="rounded-md bg-off-white px-3 py-2" data-genome-no-classes>{t('gn.pick.noClasses')}</p>
         ) : (
           <div className="grid gap-3 md:grid-cols-2">
-            <div className="flex min-w-0 flex-col gap-1">
-              <label htmlFor="genome-class" className="text-xs font-semibold">{t('gn.pick.class')}</label>
-              <select id="genome-class" className={FIELD} value={classId ?? ''} onChange={(e) => chooseClass(e.target.value)}>
-                <option value="">{t('gn.pick.classNone')}</option>
-                {picker.classes.map((c) => (
-                  <option key={c.classId} value={c.classId}>{c.name}</option>
-                ))}
-              </select>
-            </div>
+            <Select id="genome-class" label={t('gn.pick.class')} value={classId ?? ''} onChange={(e) => chooseClass(e.target.value)}>
+              <option value="">—</option>
+              {picker.classes.map((c) => (
+                <option key={c.classId} value={c.classId}>{c.name}</option>
+              ))}
+            </Select>
             {children && children.length > 0 && (
-              <div className="flex min-w-0 flex-col gap-1">
-                <label htmlFor="genome-child" className="text-xs font-semibold">{t('gn.pick.child')}</label>
-                <select id="genome-child" className={FIELD} value={childId ?? ''} onChange={(e) => chooseChild(e.target.value)}>
-                  <option value="">{t('gn.pick.childNone')}</option>
-                  {children.map((c) => (
-                    <option key={c.studentId} value={c.studentId}>{c.rollNo ? t('ex.entry.child', { roll: c.rollNo, name: c.name }) : c.name}</option>
-                  ))}
-                </select>
-              </div>
+              <Select id="genome-child" label={t('gn.pick.child')} value={childId ?? ''} onChange={(e) => chooseChild(e.target.value)}>
+                <option value="">—</option>
+                {children.map((c) => (
+                  <option key={c.studentId} value={c.studentId}>{c.rollNo ? t('ex.entry.child', { roll: c.rollNo, name: c.name }) : c.name}</option>
+                ))}
+              </Select>
             )}
           </div>
         )}

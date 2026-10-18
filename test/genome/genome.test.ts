@@ -477,10 +477,10 @@ describe('on the whole schema, as the app’s own database role', () => {
       'Mathematics, Fractions (5-A): parents replied “needs help” 2 times.',
       'Mathematics: homework done 2 of 6 checked.',
       'The line: fewer than 60 done in every 100 checked, once 5 were checked.',
-      'From the marks: Written 27 of 40 · Oral 6 of 10',
+      'From the marks: Written 27/40 · Oral 6/10',
       'From the marks: Marks: absent',
       'Needs help: 2 · Understood: 1',
-      'From the parents’ replies to 2 lessons taught from',
+      'From the parents’ replies to 2 lessons,',
       'Their own overall in Half-yearly: 53%',
     ]) expect(html).toContain(words);
     expect(html).not.toMatch(/\brank|position|topper|percentile|class average/i);

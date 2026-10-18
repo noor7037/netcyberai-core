@@ -8,7 +8,8 @@ import { t, type Lang } from '@/lib/i18n';
 // content, with the count in the title, so the number on the dashboard and
 // the rows a person then reads are the same rows. "Show everything" takes
 // the filter away. The rows are read by the module's own function, in the
-// reader's own session: this file only draws the frame.
+// reader's own session: this file only draws the frame. The title says what the rows are and how many; "Show
+// everything" is the way back (C239: no "opened from the dashboard" line above the title).
 export function ShownRows({
   id,
   title,
@@ -33,7 +34,6 @@ export function ShownRows({
   return (
     <section lang={lang} data-shown={id} className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
       <div>
-        <p className="text-xs font-bold uppercase tracking-wider text-slate">{t(lang, 'shown.from')}</p>
         <h2 data-shown-title className="text-base font-bold text-slate">
           {title}
         </h2>

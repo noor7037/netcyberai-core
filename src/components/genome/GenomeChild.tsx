@@ -2,6 +2,7 @@
 
 import { useT } from '@/components/app-shell/LangContext';
 import { dayWords, gradeWords, markWords, numberWords, percentWords } from '@/components/exams/exam-format';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { SECTION } from '@/components/exams/SchemeParts';
 import { Badge } from '@/components/ui/Badge';
 import type { Finding, Genome } from '@/lib/genome/rules';
@@ -26,10 +27,14 @@ export function GenomeChild({ genome }: { genome: Genome }) {
   return (
     <div className="flex flex-col gap-4" data-genome={g.child.studentId}>
       <section className={SECTION}>
-        <h2 className="text-base font-bold">{g.child.name}</h2>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-bold">{g.child.name}</h2>
+          <InfoTip label={t('gn.child.source')}>
+            <p data-genome-period>{t('gn.child.period', { from: day(g.window.from), to: day(g.window.to) })}</p>
+            <p className="mt-2">{g.scheme ? t('gn.child.scheme', { version: g.scheme.version }) : t('gn.child.noScheme')}</p>
+          </InfoTip>
+        </div>
         <p>{placed}</p>
-        <p className="text-slate/70" data-genome-period>{t('gn.child.period', { from: day(g.window.from), to: day(g.window.to) })}</p>
-        <p className="text-slate/70">{g.scheme ? t('gn.child.scheme', { version: g.scheme.version }) : t('gn.child.noScheme')}</p>
         {g.latestOverall && (
           <p data-genome-overall>{t('gn.child.overall', { exam: g.latestOverall.examName, percent: percentWords(t, lang, g.latestOverall.shown) })}</p>
         )}
@@ -96,8 +101,10 @@ function FindingList({ kind, list }: { kind: 'strengths' | 'gaps'; list: readonl
           const words = findingWords(t, lang, f);
           return (
             <li key={`${f.rule}|${f.subjectId}|${i}`} data-genome-finding={f.rule} className="rounded-md bg-off-white px-3 py-2">
-              <p>{words.text}</p>
-              <p className="text-slate/70">{words.line}</p>
+              <div className="flex flex-wrap items-center gap-x-1">
+                <p className="min-w-0 flex-1 basis-48">{words.text}</p>
+                <InfoTip label={t('gn.line.why')} tone="white">{words.line}</InfoTip>
+              </div>
             </li>
           );
         })}

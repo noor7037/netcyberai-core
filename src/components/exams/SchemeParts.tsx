@@ -2,6 +2,8 @@
 
 import type { ReactNode } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import { Icon } from '@/components/visual/Icons';
 import { COMPONENT_KINDS, componentKey, type ComponentKind } from '@/lib/exams/scheme';
 import type { MessageKey } from '@/lib/i18n';
@@ -47,19 +49,11 @@ export function BandsEditor({ bands, onChange, idPrefix }: { bands: BandForm[]; 
         {bands.map((b, i) => {
           const id = `${idPrefix}-band-${i}`;
           return (
-            <li key={i} data-band={i} className="grid grid-cols-2 items-end gap-2 border-b border-slate/10 pb-3 sm:grid-cols-[minmax(0,7rem)_minmax(0,7rem)_minmax(0,7rem)_minmax(0,1fr)_auto]">
-              <Field id={`${id}-from`} label={t('gs.bands.from')}>
-                <input id={`${id}-from`} inputMode="decimal" className={FIELD} value={b.from} onChange={(e) => onChange(set(bands, i, { ...b, from: e.target.value }))} />
-              </Field>
-              <Field id={`${id}-to`} label={t('gs.bands.to')}>
-                <input id={`${id}-to`} inputMode="decimal" className={FIELD} value={b.to} onChange={(e) => onChange(set(bands, i, { ...b, to: e.target.value }))} />
-              </Field>
-              <Field id={`${id}-grade`} label={t('gs.bands.grade')}>
-                <input id={`${id}-grade`} maxLength={20} className={FIELD} value={b.grade} onChange={(e) => onChange(set(bands, i, { ...b, grade: e.target.value }))} />
-              </Field>
-              <Field id={`${id}-meaning`} label={t('gs.bands.meaning')}>
-                <input id={`${id}-meaning`} maxLength={120} className={FIELD} value={b.meaning} onChange={(e) => onChange(set(bands, i, { ...b, meaning: e.target.value }))} />
-              </Field>
+            <li key={i} data-band={i} className="grid grid-cols-2 items-start gap-2 border-b border-slate/10 pb-3 sm:grid-cols-[minmax(0,7rem)_minmax(0,7rem)_minmax(0,7rem)_minmax(0,1fr)_auto]">
+              <Input id={`${id}-from`} label={t('gs.bands.from')} inputMode="decimal" value={b.from} onChange={(e) => onChange(set(bands, i, { ...b, from: e.target.value }))} />
+              <Input id={`${id}-to`} label={t('gs.bands.to')} inputMode="decimal" value={b.to} onChange={(e) => onChange(set(bands, i, { ...b, to: e.target.value }))} />
+              <Input id={`${id}-grade`} label={t('gs.bands.grade')} maxLength={20} value={b.grade} onChange={(e) => onChange(set(bands, i, { ...b, grade: e.target.value }))} />
+              <Input id={`${id}-meaning`} label={t('gs.bands.meaning')} maxLength={120} value={b.meaning} onChange={(e) => onChange(set(bands, i, { ...b, meaning: e.target.value }))} />
               <button type="button" className={`${TAP} col-span-2 sm:col-span-1`} onClick={() => onChange(without(bands, i))}>
                 {t('gs.bands.remove', { n: i + 1 })}
               </button>
@@ -86,35 +80,23 @@ export function ComponentsEditor({ components, onChange, idPrefix }: { component
             const put = (v: Partial<ComponentForm>) => onChange(set(components, i, { ...c, ...v }));
             return (
               <li key={c.key} data-component={c.key} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
-                <div className="grid grid-cols-2 items-end gap-2 sm:grid-cols-[minmax(0,12rem)_minmax(0,1fr)_minmax(0,8rem)_minmax(0,10rem)]">
-                  <Field id={`${id}-kind`} label={t('gs.comp.kind')}>
-                    <select id={`${id}-kind`} className={FIELD} value={c.kind} onChange={(e) => put({ kind: e.target.value as ComponentKind })}>
-                      {COMPONENT_KINDS.map((k) => (
-                        <option key={k} value={k}>
-                          {t(`gs.comp.kind.${k}` as MessageKey)}
-                        </option>
-                      ))}
-                    </select>
-                  </Field>
-                  <Field id={`${id}-name`} label={t('gs.comp.name')}>
-                    <input id={`${id}-name`} maxLength={60} className={FIELD} value={c.name} onChange={(e) => put({ name: e.target.value })} />
-                  </Field>
-                  <Field id={`${id}-share`} label={t('gs.comp.share')}>
-                    <input id={`${id}-share`} inputMode="decimal" className={FIELD} value={c.share} onChange={(e) => put({ share: e.target.value })} />
-                  </Field>
-                  <Field id={`${id}-pass`} label={t('gs.comp.passMark')}>
-                    <input id={`${id}-pass`} inputMode="decimal" className={FIELD} value={c.passMark} onChange={(e) => put({ passMark: e.target.value })} />
-                  </Field>
+                <div className="grid grid-cols-2 items-start gap-2 sm:grid-cols-[minmax(0,12rem)_minmax(0,1fr)_minmax(0,8rem)_minmax(0,10rem)]">
+                  <Select id={`${id}-kind`} label={t('gs.comp.kind')} value={c.kind} onChange={(e) => put({ kind: e.target.value as ComponentKind })}>
+                    {COMPONENT_KINDS.map((k) => (
+                      <option key={k} value={k}>
+                        {t(`gs.comp.kind.${k}` as MessageKey)}
+                      </option>
+                    ))}
+                  </Select>
+                  <Input id={`${id}-name`} label={t('gs.comp.name')} maxLength={60} value={c.name} onChange={(e) => put({ name: e.target.value })} />
+                  <Input id={`${id}-share`} label={t('gs.comp.share')} inputMode="decimal" value={c.share} onChange={(e) => put({ share: e.target.value })} />
+                  <Input id={`${id}-pass`} label={t('gs.comp.passMark')} inputMode="decimal" value={c.passMark} onChange={(e) => put({ passMark: e.target.value })} />
                 </div>
                 {c.parts.length > 0 && <p className="text-xs font-semibold text-slate">{t('gs.comp.parts')}</p>}
                 {c.parts.map((p, j) => (
-                  <div key={j} className="grid grid-cols-2 items-end gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(0,8rem)_auto] sm:pl-4">
-                    <Field id={`${id}-part-${j}-name`} label={t('gs.comp.partName')}>
-                      <input id={`${id}-part-${j}-name`} maxLength={60} className={FIELD} value={p.name} onChange={(e) => put({ parts: set(c.parts, j, { ...p, name: e.target.value }) })} />
-                    </Field>
-                    <Field id={`${id}-part-${j}-share`} label={t('gs.comp.partShare')}>
-                      <input id={`${id}-part-${j}-share`} inputMode="decimal" className={FIELD} value={p.share} onChange={(e) => put({ parts: set(c.parts, j, { ...p, share: e.target.value }) })} />
-                    </Field>
+                  <div key={j} className="grid grid-cols-2 items-start gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(0,8rem)_auto] sm:pl-4">
+                    <Input id={`${id}-part-${j}-name`} label={t('gs.comp.partName')} maxLength={60} value={p.name} onChange={(e) => put({ parts: set(c.parts, j, { ...p, name: e.target.value }) })} />
+                    <Input id={`${id}-part-${j}-share`} label={t('gs.comp.partShare')} inputMode="decimal" value={p.share} onChange={(e) => put({ parts: set(c.parts, j, { ...p, share: e.target.value }) })} />
                     <button type="button" className={`${TAP} col-span-2 sm:col-span-1`} onClick={() => put({ parts: without(c.parts, j) })}>
                       {t('gs.comp.removePart', { n: j + 1 })}
                     </button>

@@ -2,9 +2,12 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
+import { Textarea } from '@/components/ui/Textarea';
 import type { MessageKey } from '@/lib/i18n';
 import { complaintFrom } from './complaint-words';
 
@@ -23,7 +26,6 @@ type Guardian = { parent_id: string; name: string; children: { student_id: strin
 const ERRORS = ['summary', 'due', 'guardian', 'child', 'owner', 'about', 'owner_is_about', 'for_the_office', 'closed', 'note'];
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
-const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 
 export function ComplaintsView({ shownAbove = false }: { shownAbove?: boolean }) {
   const { t, lang } = useT();
@@ -91,9 +93,9 @@ export function ComplaintsView({ shownAbove = false }: { shownAbove?: boolean })
       {note && <p role="status" data-complaints-note className={`rounded-md px-3 py-2 font-semibold ${note.ok ? 'bg-off-white text-slate' : 'border border-red-800/30 text-red-800'}`}>{note.text}</p>}
 
       <section data-complaint-new className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('cmp.new.title')}</h2>
-          <p className="text-slate/70">{t(data.office ? 'cmp.new.how' : 'cmp.new.howTeacher')}</p>
+          <InfoTip>{t(data.office ? 'cmp.new.how' : 'cmp.new.howTeacher')}</InfoTip>
         </div>
         {!who ? (
           <>
@@ -115,48 +117,35 @@ export function ComplaintsView({ shownAbove = false }: { shownAbove?: boolean })
               <button type="button" className={TAP} onClick={() => { setWho(null); setFromThread(false); setForm({ ...form, studentId: '' }); }}>{t('cmp.new.other')}</button>
             </p>
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="flex flex-col gap-1">
-                <label htmlFor="complaint-child" className="font-semibold">{t('cmp.new.child')}</label>
-                <select id="complaint-child" className={FIELD} value={form.studentId} onChange={(e) => setForm({ ...form, studentId: e.target.value })}>
-                  <option value="">{t('cmp.new.noChild')}</option>
-                  {who.children.map((c) => (
-                    <option key={c.student_id} value={c.student_id}>{c.name}{c.class_name ? ` (${c.class_name})` : ''}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="flex flex-col gap-1">
-                <label htmlFor="complaint-due" className="font-semibold">{t('cmp.new.due')}</label>
-                <select id="complaint-due" className={FIELD} value={form.dueHours} onChange={(e) => setForm({ ...form, dueHours: Number(e.target.value) })}>
-                  {[24, 48, 72].map((h) => (
-                    <option key={h} value={h}>{t('cmp.new.dueIn', { count: h / 24 })}</option>
-                  ))}
-                </select>
-              </div>
+              <Select id="complaint-child" label={t('cmp.new.child')} value={form.studentId} onChange={(e) => setForm({ ...form, studentId: e.target.value })}>
+                <option value="">{t('cmp.new.noChild')}</option>
+                {who.children.map((c) => (
+                  <option key={c.student_id} value={c.student_id}>{c.name}{c.class_name ? ` (${c.class_name})` : ''}</option>
+                ))}
+              </Select>
+              <Select id="complaint-due" label={t('cmp.new.due')} value={form.dueHours} onChange={(e) => setForm({ ...form, dueHours: Number(e.target.value) })}>
+                {[24, 48, 72].map((h) => (
+                  <option key={h} value={h}>{t('cmp.new.dueIn', { count: h / 24 })}</option>
+                ))}
+              </Select>
               {data.office && (
                 <>
-                  <div className="flex flex-col gap-1">
-                    <label htmlFor="complaint-owner" className="font-semibold">{t('cmp.new.owner')}</label>
-                    <select id="complaint-owner" className={FIELD} value={form.ownerId} onChange={(e) => setForm({ ...form, ownerId: e.target.value })}>
-                      <option value="">{t('cmp.new.choose')}</option>
-                      {data.staff.filter((s) => s.user_id !== form.aboutUserId).map((s) => (
-                        <option key={s.user_id} value={s.user_id}>{s.name}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <label htmlFor="complaint-about" className="font-semibold">{t('cmp.new.about')}</label>
-                    <select id="complaint-about" className={FIELD} value={form.aboutUserId} onChange={(e) => setForm({ ...form, aboutUserId: e.target.value, ownerId: form.ownerId === e.target.value ? '' : form.ownerId })}>
-                      <option value="">{t('cmp.new.aboutNobody')}</option>
-                      {data.staff.filter((s) => s.user_id !== data.me).map((s) => (
-                        <option key={s.user_id} value={s.user_id}>{s.name}</option>
-                      ))}
-                    </select>
-                  </div>
+                  <Select id="complaint-owner" label={t('cmp.new.owner')} value={form.ownerId} onChange={(e) => setForm({ ...form, ownerId: e.target.value })}>
+                    <option value="">{t('cmp.new.choose')}</option>
+                    {data.staff.filter((s) => s.user_id !== form.aboutUserId).map((s) => (
+                      <option key={s.user_id} value={s.user_id}>{s.name}</option>
+                    ))}
+                  </Select>
+                  <Select id="complaint-about" label={t('cmp.new.about')} value={form.aboutUserId} onChange={(e) => setForm({ ...form, aboutUserId: e.target.value, ownerId: form.ownerId === e.target.value ? '' : form.ownerId })}>
+                    <option value="">{t('cmp.new.aboutNobody')}</option>
+                    {data.staff.filter((s) => s.user_id !== data.me).map((s) => (
+                      <option key={s.user_id} value={s.user_id}>{s.name}</option>
+                    ))}
+                  </Select>
                 </>
               )}
             </div>
-            <label htmlFor="complaint-summary" className="font-semibold">{t('cmp.new.summary')}</label>
-            <textarea id="complaint-summary" rows={3} maxLength={600} className="rounded-md border border-slate/20 px-3 py-2" value={form.summary} onChange={(e) => setForm({ ...form, summary: e.target.value })} />
+            <Textarea id="complaint-summary" label={t('cmp.new.summary')} rows={3} maxLength={600} value={form.summary} onChange={(e) => setForm({ ...form, summary: e.target.value })} />
             <button type="button" data-complaint-open disabled={busy || !form.summary.trim() || !owner} className={`${PRIMARY} self-start`} onClick={() => void send('/api/app/complaints', { parentId: who.parent_id, studentId: form.studentId || null, aboutUserId: form.aboutUserId || null, ownerId: owner, summary: form.summary, dueHours: form.dueHours, source: fromThread ? 'thread' : 'office' }, (r) => `${t('cmp.opened')} ${toldWords(r)}`, () => { setWho(null); setFromThread(false); setForm({ studentId: '', aboutUserId: '', ownerId: '', summary: '', dueHours: 48 }); })}>
               {t('cmp.new.open')}
             </button>
@@ -204,15 +193,12 @@ export function ComplaintsView({ shownAbove = false }: { shownAbove?: boolean })
                     <p className="text-xs text-slate/70">{t('cmp.closeHow')}</p>
                     {data.office && (
                       <div className="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-end">
-                        <div className="flex flex-col gap-1">
-                          <label htmlFor={`complaint-give-${c.complaint_id}`} className="font-semibold">{t('cmp.give')}</label>
-                          <select id={`complaint-give-${c.complaint_id}`} className={FIELD} value="" disabled={busy} onChange={(e) => e.target.value && void send(`/api/app/complaints/${c.complaint_id}`, { action: 'assign', ownerId: e.target.value }, () => t('cmp.given'))}>
-                            <option value="">{t('cmp.new.choose')}</option>
-                            {data.staff.filter((s) => s.user_id !== c.owner_id && s.name !== c.about).map((s) => (
-                              <option key={s.user_id} value={s.user_id}>{s.name}</option>
-                            ))}
-                          </select>
-                        </div>
+                        <Select id={`complaint-give-${c.complaint_id}`} label={t('cmp.give')} value="" disabled={busy} onChange={(e) => e.target.value && void send(`/api/app/complaints/${c.complaint_id}`, { action: 'assign', ownerId: e.target.value }, () => t('cmp.given'))}>
+                          <option value="">—</option>
+                          {data.staff.filter((s) => s.user_id !== c.owner_id && s.name !== c.about).map((s) => (
+                            <option key={s.user_id} value={s.user_id}>{s.name}</option>
+                          ))}
+                        </Select>
                       </div>
                     )}
                   </div>

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { explainError } from '@/lib/errors/catalogue';
@@ -74,9 +75,12 @@ export function ProxyMine({ data }: { data: ProxyMineData }) {
   return (
     <div lang={lang} data-proxy="teacher" className="flex flex-col gap-4 text-sm text-slate">
       <section className={BOX}>
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('px.mine.title')}</h2>
-          <p className="max-w-prose text-slate/70">{t('px.mine.how')}</p>
+          <InfoTip>
+            <p>{t('px.mine.how')}</p>
+            <p className="mt-2">{t('px.mine.scope')}</p>
+          </InfoTip>
         </div>
         <h3 className="font-bold">{t('px.mine.today', { date: day(data.today) })}</h3>
         {on(data.today).length === 0 ? (
@@ -100,15 +104,14 @@ export function ProxyMine({ data }: { data: ProxyMineData }) {
             <ul className="flex flex-col gap-2">{later.map((c) => line(c, true))}</ul>
           </>
         )}
-        <p className="max-w-prose text-slate/70">{t('px.mine.scope')}</p>
       </section>
       {/* Covers released because the leave behind them was cancelled (C210): the periods this teacher no longer
           takes, from today on. What My Day's "covers-released" card counts. */}
       {data.released.length > 0 && (
         <section data-proxy-released className={BOX}>
-          <div>
+          <div className="flex flex-wrap items-center gap-x-1">
             <h2 className="text-base font-bold">{t('px.released.title')}</h2>
-            <p className="max-w-prose text-slate/70">{t('px.released.how')}</p>
+            <InfoTip>{t('px.released.how')}</InfoTip>
           </div>
           <ul className="flex flex-col gap-2">
             {data.released.map((c) => (
@@ -170,12 +173,11 @@ export function ProxyArranger({ data, show, busy, note, onPick, onAssign, onUndo
           periods, are under "Show everything". */}
       {onlyNeeding && (
         <section data-shown="proxy-needs-cover" className={BOX}>
-          <div>
-            <p className="text-xs font-bold uppercase tracking-wider">{t('shown.from')}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
             <h2 data-shown-title data-proxy-count data-needs={needing.length} data-periods={d.periods.length} className="text-base font-bold">
               {countWords}
             </h2>
-            <p className="max-w-prose">{t('px.shown.how')}</p>
+            <InfoTip>{t('px.shown.how')}</InfoTip>
           </div>
           {needing.length === 0 && (
             <p data-shown-none className={SOFT}>
@@ -190,7 +192,6 @@ export function ProxyArranger({ data, show, busy, note, onPick, onAssign, onUndo
 
       {!onlyNeeding && (
         <section data-proxy-days className={BOX}>
-          <p className="max-w-prose text-slate/70">{t('px.how')}</p>
           <div role="group" aria-label={t('px.day.label')} className="flex flex-wrap items-end gap-2">
             <button type="button" data-proxy-day="today" aria-pressed={d.date === data.today} disabled={busy} className={d.date === data.today ? PRIMARY : TAP} onClick={() => pick(data.today)}>
               {t('px.day.today')}
@@ -214,6 +215,7 @@ export function ProxyArranger({ data, show, busy, note, onPick, onAssign, onUndo
                 onBlur={() => setTyped(null)}
               />
             </div>
+            <InfoTip>{t('px.how')}</InfoTip>
           </div>
         </section>
       )}
@@ -302,9 +304,9 @@ export function ProxyArranger({ data, show, busy, note, onPick, onAssign, onUndo
 
                   {!p.cover && p.suggestions.length > 0 && (
                     <>
-                      <div>
+                      <div className="flex flex-wrap items-center gap-x-1">
                         <p className="font-bold">{t('px.suggestions')}</p>
-                        <p className="text-slate/70">{t('px.order')}</p>
+                        <InfoTip>{t('px.order')}</InfoTip>
                       </div>
                       <ol className="flex flex-col gap-2">
                         {names.map((s) => (
@@ -344,9 +346,9 @@ export function ProxyArranger({ data, show, busy, note, onPick, onAssign, onUndo
 
       {!onlyNeeding && d.noLongerNeeded.length > 0 && (
         <section data-proxy-stale className={BOX}>
-          <div>
+          <div className="flex flex-wrap items-center gap-x-1">
             <h2 className="text-base font-bold">{t('px.stale.title')}</h2>
-            <p className="max-w-prose text-slate/70">{t('px.stale.how')}</p>
+            <InfoTip>{t('px.stale.how')}</InfoTip>
           </div>
           <ul className="flex flex-col gap-2">
             {d.noLongerNeeded.map((c) => (

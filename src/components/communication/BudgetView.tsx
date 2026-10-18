@@ -29,7 +29,7 @@ export function BudgetView() {
         </>
       )}
       {data.heldForBudget > 0 && <p className="font-semibold">{t('bud.held', { count: data.heldForBudget })}</p>}
-      <p className="text-xs text-slate/70">{t('bud.how')}</p>
+      {data.budgetPaise !== null && <p className="text-xs text-slate/70">{t('bud.how')}</p>}
       <a className="inline-flex min-h-[44px] items-center self-start font-semibold text-sapphire underline" href="/app/help/ticket">{t('bud.ask')}</a>
     </section>
   );

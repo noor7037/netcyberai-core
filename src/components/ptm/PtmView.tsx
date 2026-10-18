@@ -2,9 +2,12 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import type { MessageKey } from '@/lib/i18n';
 
 // Parent-teacher meetings (docs/25 slice 7k, C193). The office makes a meeting day and invites; parents book by
@@ -22,7 +25,6 @@ const ERRORS = ['title', 'date', 'times', 'classes', 'no_teacher', 'too_many_slo
 const VARIANT = { draft: 'neutral', invited: 'success', cancelled: 'danger' } as const;
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
-const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 const sayTime = (t: string) => `${((Number(t.slice(0, 2)) + 11) % 12) + 1}:${t.slice(3, 5)} ${Number(t.slice(0, 2)) < 12 ? 'am' : 'pm'}`;
 
 export function PtmView({ shownAbove = false }: { shownAbove?: boolean }) {
@@ -80,9 +82,9 @@ export function PtmView({ shownAbove = false }: { shownAbove?: boolean }) {
 
       {data.mayManage && (
         <section data-ptm-new className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
-          <div>
+          <div className="flex flex-wrap items-center gap-x-1">
             <h2 className="text-base font-bold">{t('ptm.new.title')}</h2>
-            <p className="text-slate/70">{t('ptm.new.how')}</p>
+            <InfoTip>{t('ptm.new.how')}</InfoTip>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             <div className="lg:col-span-2"><Input id="ptm-title" label={t('ptm.new.name')} maxLength={120} value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} /></div>
@@ -90,31 +92,26 @@ export function PtmView({ shownAbove = false }: { shownAbove?: boolean }) {
             <Input id="ptm-from" type="time" label={t('ptm.new.from')} value={form.startsAt} onChange={(e) => setForm({ ...form, startsAt: e.target.value })} />
             <Input id="ptm-to" type="time" label={t('ptm.new.to')} value={form.endsAt} onChange={(e) => setForm({ ...form, endsAt: e.target.value })} />
           </div>
-          <div className="flex flex-col gap-1 sm:max-w-xs">
-            <label htmlFor="ptm-minutes" className="font-semibold">{t('ptm.new.minutes')}</label>
-            <select id="ptm-minutes" className={FIELD} value={form.slotMinutes} onChange={(e) => setForm({ ...form, slotMinutes: Number(e.target.value) })}>
+          <div className="sm:max-w-xs">
+            <Select id="ptm-minutes" label={t('ptm.new.minutes')} value={form.slotMinutes} onChange={(e) => setForm({ ...form, slotMinutes: Number(e.target.value) })}>
               {[10, 15, 20, 30].map((n) => (
                 <option key={n} value={n}>{t('ptm.new.minutesEach', { count: n })}</option>
               ))}
-            </select>
+            </Select>
           </div>
           <fieldset className="flex flex-col gap-2">
             <legend className="font-semibold">{t('ptm.new.classes')}</legend>
             {data.classes.length === 0 && <p className="rounded-md bg-off-white px-3 py-2">{t('ptm.new.noClasses')}</p>}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-x-4">
               {data.classes.map((c) => (
-                <label key={c.class_id} className={`flex min-h-[44px] items-center gap-2 rounded-md border px-3 ${form.classIds.includes(c.class_id) ? 'border-midnight' : 'border-slate/20'}`}>
-                  <input type="checkbox" data-ptm-class className="h-5 w-5" checked={form.classIds.includes(c.class_id)} onChange={(e) => setForm({ ...form, classIds: e.target.checked ? [...form.classIds, c.class_id] : form.classIds.filter((x) => x !== c.class_id) })} />
-                  <span>{c.name} · {c.teacher ?? t('ptm.new.noTeacher')}</span>
-                </label>
+                <Checkbox key={c.class_id} id={`ptm-class-${c.class_id}`} data-ptm-class label={`${c.name} · ${c.teacher ?? t('ptm.new.noTeacher')}`} checked={form.classIds.includes(c.class_id)} onChange={(e) => setForm({ ...form, classIds: e.target.checked ? [...form.classIds, c.class_id] : form.classIds.filter((x) => x !== c.class_id) })} />
               ))}
             </div>
           </fieldset>
-          <label className="flex min-h-[44px] items-center gap-2">
-            <input type="checkbox" data-ptm-subject-teachers className="h-5 w-5" checked={form.withSubjectTeachers} onChange={(e) => setForm({ ...form, withSubjectTeachers: e.target.checked })} />
-            <span>{t('ptm.new.subjectTeachers')}</span>
-          </label>
-          <p className="text-xs text-slate/70">{t('ptm.new.subjectTeachersHow')}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <Checkbox id="ptm-subject-teachers" data-ptm-subject-teachers label={t('ptm.new.subjectTeachers')} checked={form.withSubjectTeachers} onChange={(e) => setForm({ ...form, withSubjectTeachers: e.target.checked })} />
+            <InfoTip>{t('ptm.new.subjectTeachersHow')}</InfoTip>
+          </div>
           <button type="button" data-ptm-make disabled={busy || !form.title.trim() || !form.heldOn || form.classIds.length === 0} className={`${PRIMARY} self-start`} onClick={() => void send('/api/app/ptm', form, (r) => t('ptm.made', { slots: r.slots ?? 0, teachers: r.teachers ?? 0 }))}>
             {t('ptm.new.make')}
           </button>
@@ -180,12 +177,12 @@ export function PtmView({ shownAbove = false }: { shownAbove?: boolean }) {
                     {s.booking?.note && <p>{s.booking.note}</p>}
                     {!s.booking && m.status !== 'cancelled' && !open.isOver && tr.guardians.length > 0 && (
                       <div className="grid gap-2 sm:grid-cols-[1fr_auto]">
-                        <select aria-label={t('ptm.slot.choose')} className={FIELD} value={pick[s.slot_id] ?? ''} onChange={(e) => setPick({ ...pick, [s.slot_id]: e.target.value })}>
-                          <option value="">{t('ptm.slot.choose')}</option>
+                        <Select id={`ptm-pick-${s.slot_id}`} label={t('ptm.slot.choose')} value={pick[s.slot_id] ?? ''} onChange={(e) => setPick({ ...pick, [s.slot_id]: e.target.value })}>
+                          <option value="">—</option>
                           {tr.guardians.map((g) => (
                             <option key={g.parent_id} value={g.parent_id}>{g.guardian} ({g.children})</option>
                           ))}
-                        </select>
+                        </Select>
                         <button type="button" data-ptm-book disabled={busy || !pick[s.slot_id]} className={TAP} onClick={() => void send(`/api/app/ptm/${m.ptm_id}`, { action: 'book', slotId: s.slot_id, parentId: pick[s.slot_id] }, (r) => t(r.moved ? 'ptm.moved' : 'ptm.booked'))}>
                           {t('ptm.slot.book')}
                         </button>

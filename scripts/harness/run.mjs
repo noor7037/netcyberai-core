@@ -1345,7 +1345,7 @@ const proxyMine = async (page) => {
   await mine.waitFor({ timeout: 20000 });
   await page.locator('[data-proxy-mine]').first().waitFor({ timeout: 20000 });
   const words = await mine.innerText();
-  proxyMineSeen = { rows: await page.locator('[data-proxy-mine]').count(), none: await page.locator('[data-proxy-mine-none]').count(), buttons: await mine.locator('button').count(), today: words.includes('Period 4 · 6-A · English'), namesWhoIsAway: words.includes('Tanvi') || words.includes('In place of'), later: words.includes('The days after') };
+  proxyMineSeen = { rows: await page.locator('[data-proxy-mine]').count(), none: await page.locator('[data-proxy-mine-none]').count(), buttons: await mine.locator('button:not([data-info-tip])').count(), today: words.includes('Period 4 · 6-A · English'), namesWhoIsAway: words.includes('Tanvi') || words.includes('In place of'), later: words.includes('The days after') };
 };
 const proxyMineDone = async () => {
   const left = (await db.pg.query(`select count(*)::int as n from substitutions where status = 'assigned' and substitute_user_id = $1`, [PEOPLE.teacher.sub])).rows[0].n;

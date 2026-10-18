@@ -313,7 +313,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     },
     steps: [
       { en: 'Open Academics. Each row is one class and subject you teach.', hi: 'Academics खोलें। हर पंक्ति एक कक्षा और विषय है जो आप पढ़ाते हैं।' },
-      { en: 'If the row shows “Next on the syllabus:”, one tap on “Taught today” records that topic as taught.', hi: 'अगर पंक्ति में “Next on the syllabus:” दिखे, तो “Taught today” पर एक टैप उस विषय-बिंदु को पढ़ाया हुआ दर्ज कर देता है।' },
+      { en: 'If the row shows “Next:”, one tap on “Taught today” records that topic as taught.', hi: 'अगर पंक्ति में “Next:” दिखे, तो “Taught today” पर एक टैप उस विषय-बिंदु को पढ़ाया हुआ दर्ज कर देता है।' },
       { en: 'Or type the “Topic taught” and tap what happened: “Taught”, “Partly taught”, “Delayed” or “Not taught”. It is saved at once.', hi: 'या “Topic taught” लिखें और जो हुआ उस पर टैप करें: “Taught”, “Partly taught”, “Delayed” या “Not taught”। यह तुरंत सेव हो जाता है।' },
       { en: 'A row that shows “Not recorded” has nothing saved for today yet.', hi: 'जिस पंक्ति में “Not recorded” लिखा है, उसमें आज के लिए अभी कुछ सेव नहीं है।' },
       { en: 'Made a mistake? Tap the right one; the newest choice replaces the earlier one for today.', hi: 'ग़लती हो गई? सही विकल्प पर टैप करें; आज के लिए नया चुनाव पुराने की जगह ले लेता है।' },
@@ -389,7 +389,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       hi: 'Daily Pulse उन विद्यार्थियों की सूची दिखाता है जिन्हें आपके फ़ॉलो-अप की ज़रूरत है, एक सुझाव के साथ। काम करने के बाद दर्ज करें कि क्या हुआ।',
     },
     steps: [
-      { en: 'Open “Daily Pulse”. Each card is one student, why they need help, and a “Suggested follow-up:”.', hi: '“Daily Pulse” खोलें। हर कार्ड एक विद्यार्थी है, उसे मदद क्यों चाहिए, और एक “Suggested follow-up:”।' },
+      { en: 'Open “Daily Pulse”. Each card is one student, why they need help, and a “Suggested follow-up”.', hi: '“Daily Pulse” खोलें। हर कार्ड एक विद्यार्थी है, उसे मदद क्यों चाहिए, और एक “Suggested follow-up”।' },
       { en: 'Help the student in the way that fits. The suggestion is only a starting point.', hi: 'जो तरीक़ा ठीक लगे, उससे विद्यार्थी की मदद करें। सुझाव सिर्फ़ शुरुआत के लिए है।' },
       { en: 'Write a line under “What happened”, then tap “Done”. If no follow-up was needed after all, tap “Not needed”.', hi: '“What happened” के नीचे एक पंक्ति लिखें, फिर “Done” टैप करें। अगर फ़ॉलो-अप की ज़रूरत ही नहीं थी, तो “Not needed” टैप करें।' },
       { en: 'To note a student yourself, use “Add a student who needs help”: choose the class and the student, say what is needed, and press “Add to the queue”.', hi: 'विद्यार्थी को ख़ुद जोड़ने के लिए “Add a student who needs help” इस्तेमाल करें: कक्षा और विद्यार्थी चुनें, बताएँ क्या चाहिए, और “Add to the queue” दबाएँ।' },
@@ -1218,7 +1218,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'Open Exams. Under an exam, press “Publish and report cards” for a class.', hi: 'Exams खोलें। किसी परीक्षा में किसी कक्षा के लिए “Publish and report cards” दबाएँ।' },
       { en: 'Class teacher: write a remark for each child, then press “Save remarks”. Remarks are frozen with the marks once the result is published.', hi: 'कक्षा अध्यापक: हर बच्चे के लिए टिप्पणी लिखें, फिर “Save remarks” दबाएँ। परिणाम प्रकाशित होते ही टिप्पणियाँ अंकों के साथ जम जाती हैं।' },
       { en: 'Office: when every paper says “Entered”, press “Publish the result”. The marks of the class are frozen, and the grading scheme in force is kept with them.', hi: 'ऑफ़िस: जब हर पेपर पर “Entered” दिखे, “Publish the result” दबाएँ। कक्षा के अंक जम जाते हैं, और लागू ग्रेडिंग योजना उनके साथ रखी जाती है।' },
-      { en: 'Press “Show the card” to see a child’s report card, “Download PDF” for that child, or “Download every report card” for the whole class in one PDF.', hi: 'किसी बच्चे का रिपोर्ट कार्ड देखने के लिए “Show the card”, उसी बच्चे के लिए “Download PDF”, या पूरी कक्षा की एक PDF के लिए “Download every report card” दबाएँ।' },
+      { en: 'Press “Show card” to see a child’s report card, “Download PDF” for that child, or “Download every report card” for the whole class in one PDF.', hi: 'किसी बच्चे का रिपोर्ट कार्ड देखने के लिए “Show card”, उसी बच्चे के लिए “Download PDF”, या पूरी कक्षा की एक PDF के लिए “Download every report card” दबाएँ।' },
       { en: 'Principal: to correct a mark after publishing, write why under “Reopen for corrections” and press “Reopen with this reason”. Correct the marks, then publish again: the card says which publication it is.', hi: 'प्रिंसिपल: प्रकाशन के बाद कोई अंक सुधारना हो तो “Reopen for corrections” में कारण लिखें और “Reopen with this reason” दबाएँ। अंक सुधारें, फिर दोबारा प्रकाशित करें: कार्ड बताता है कि यह कौन सा प्रकाशन है।' },
     ],
     tips: [
