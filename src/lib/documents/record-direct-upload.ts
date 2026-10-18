@@ -1,5 +1,5 @@
 import type { PoolClient } from 'pg';
-import { RECORD_UPLOAD_TICKET_SECONDS, isRecordFileType, type RecordUploadTicket } from '@/lib/contracts/record-documents';
+import { PENDING_DEAD_SECONDS, RECORD_UPLOAD_TICKET_SECONDS, isRecordFileType, type RecordUploadTicket } from '@/lib/contracts/record-documents';
 import { checkUpload, textProblem, type OcrImage, type UploadCheck } from '@/lib/privacy/upload-check';
 import { FileStorageUnavailableError, type DirectUploadStorage } from '@/lib/storage/file-storage';
 import {
@@ -51,14 +51,13 @@ import { openTicket, sealTicket, type UploadTicket } from './upload-ticket';
 // A file sent but never confirmed (the page was closed between sending and confirming, or the link was used after
 // the ticket's ten minutes: Supabase keeps a link valid for two hours) stays only under the pending folder, where no
 // row and no link ever reaches it. Each ask removes the school's pending files older than PENDING_DEAD_SECONDS, whose
-// tickets have all stopped working.
+// tickets have all stopped working, and so does the hourly sweep for every school (C237, src/lib/jobs/pending-sweep.ts).
 
 export type DirectFailure = UploadFailure | 'not_sent_properly' | 'upload_unknown' | 'upload_expired' | 'upload_missing' | 'upload_done' | 'upload_changed';
 export type AskResult = { ok: true; ticket: RecordUploadTicket } | { ok: false; reason: DirectFailure };
 
-// A pending file that arrived this long ago belongs to a ticket that has stopped working: it arrived after its ticket
-// was given, and the ticket works for ten minutes.
-export const PENDING_DEAD_SECONDS = RECORD_UPLOAD_TICKET_SECONDS + 5 * 60;
+// How old a pending file must be before it goes (15 minutes): written once, in the contracts (C237).
+export { PENDING_DEAD_SECONDS };
 
 const FILE_NAME_MAX = 255;
 // The file's own name: one line of at most 255 characters. Only read for the Aadhaar check; never kept.
