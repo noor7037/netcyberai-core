@@ -90,7 +90,7 @@ page until the module is built.
 | 3 | Admissions (`admissions`) | Enquiry → visit → application → test/interview → offer → enrol pipeline; sources; follow-up tasks; conversion analytics; converts to Student | P7 | Partial (enquiries with an owner, a follow-up date and a stage, "gone quiet", Admit: C221; erasure: C224; the online form and conversion analytics later) |
 | 4 | Students (`students`) | Profile, CSV import, document scan + OCR autofill, QR ID cards, **sibling mapping** (families with numbered codes, suggestions from guardian phone/email confirmed by the office, link/move/remove, guardian merge without data loss, sibling order by age, Siblings and family panel, list filters and "Link as siblings" bulk action, C116), promotions, transfers, history | done + P7 | Live |
 | 5 | Parents (`parents`) | Guardians, verification, DPDP consent, data requests, contact preferences, WhatsApp linkage | P4 | Live |
-| 6 | Staff (`staff`) | Staff records, roles, documents, leave requests/approvals, workload, attendance | P5 | Partial (invitations, accounts, leave: C201; who teaches what: C231; periods a week per teacher on Timetable: C231) |
+| 6 | Staff (`staff`) | Staff records, roles, documents, leave requests/approvals, workload, attendance | P5 | Partial (invitations, accounts, leave: C201; who teaches what: C231; periods a week per teacher on Timetable: C231; the staff profile with staff code, designation, employment, contact, a photo, leave, teaching, qualifications, documents, an ID card and a printable biodata: C235-D, C238; staff list export: C235-D. Not yet: staff daily attendance, skills and experience, payroll) |
 | 7 | Academics (`academics`) | Syllabus map, "taught today", lesson plans, coverage %, objectives met | P2 | Partial |
 | 8 | Attendance (`attendance`) | Class marking (teacher app), late/leave codes, staff attendance, absence alerts, trends, chronic-absence signal | P2 | Live |
 | 9 | Timetable (`timetable`) | Periods, generator with constraints, teacher/class views, clash checker, changes history | P2 view · P7 generator | Partial (entry, CSV import and the clash guard: C145–C146; the generator, a person reviews and publishes, every publish kept: C229; a class and subject's assigned teachers only, periods a week per teacher, no default for periods in a row: C231) |
@@ -204,6 +204,12 @@ already a permanent ban (C23).
   pills, KPI tiles, chart cards with table view, responsive lists, loading /
   empty / error / no-access states, tone classes for every logo token);
   gallery at `/design-system` in development.
+- **v5 on every working screen (C235-C, C239, C240):** a gradient banner with one
+  short line and an ⓘ for the rest; floating-label fields; drawn checkboxes,
+  radios, switches and segmented controls; KPI icon chips (`KpiTile`, and
+  `StatTile` for a figure a screen works out itself). Consent and privacy
+  notices, send-gate refusals, money amounts with their source lines and legal
+  notes always stay on the screen.
 - **Colours:** only the logo token set in `src/lib/design-tokens.ts`. Group
   tones: School & People = sapphire/royal · Teaching & Learning = royal/azure ·
   Parent Engagement = cyan/turquoise · Finance = tangerine/amber · Records &
@@ -238,6 +244,10 @@ already a permanent ban (C23).
 
 ## 6. Change log
 
+- **2026-10-18** — C236–C240: the staff profile (row 6); design system v5
+  carried onto the teaching, office and Control screens (§4, 32–34% fewer
+  words); file storage reported by `/api/health` and a red line when the server
+  key is wrong (C236); unconfirmed uploads swept hourly (C237).
 - **2026-10-07** — C104–C106: Strengthening Brief adopted in full as §3b
   (every item mapped to a module and phase; nothing removed); ease-of-use and
   colour standard `19` made binding (§4); classroom kit recorded as a

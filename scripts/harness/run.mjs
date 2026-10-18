@@ -4421,6 +4421,59 @@ const complianceDeskDone = async () => {
   if (JSON.stringify(rows[0]) !== JSON.stringify(want)) throw new Error(`the compliance desk in the database: ${JSON.stringify(rows[0])}`);
   if (JSON.stringify(cdkSeen) !== JSON.stringify({ endings: 1, items: 1, withEvidence: '1 of 84 standards have evidence', form6: 'haryana' })) throw new Error(`the compliance desk on the screen: ${JSON.stringify(cdkSeen)}`);
 };
+// The three screens C232 left unphotographed (wave C236, C241): the accountant's Form 6 card on Fees, the line that
+// erases a former member of staff's qualification row, and Settings → Documents. Each puts back what it added.
+const C241 = '00000000-0000-4000-8000-00000024100';
+let c241Cookies = [];
+const clearC241 = () => db.pg.exec(`set session_replication_role = replica;
+    delete from staff_qualifications where user_id in ('${C241}3');
+    delete from memberships where membership_id in ('${C241}2'); delete from users where user_id in ('${C241}1', '${C241}3');
+    set session_replication_role = origin;`);
+const form6AsAccountant = async (page) => {
+  await clearC241();
+  await db.pg.query(`insert into users (user_id, school_id, email, role, display_name) values ($1, $2, 'accounts.c241@example.invalid', 'accountant', 'Anil Example')`, [`${C241}1`, SCHOOL]);
+  await db.pg.query(`insert into memberships (membership_id, user_id, school_id, role) values ($1, $2, $3, 'accountant')`, [`${C241}2`, `${C241}1`, SCHOOL]);
+  c241Cookies = (await page.context().cookies()).filter((c) => c.name === 'nca_access' || c.name === 'nca_tours');
+  const cookie = await cookieFor({ sub: `${C241}1`, role: 'accountant', schoolId: SCHOOL, membershipId: `${C241}2` }, secret);
+  await page.context().addCookies([
+    { name: 'nca_access', value: cookie, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' },
+    { name: 'nca_tours', value: `${C241}1.${TOUR_IDS.join(',')}`, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' },
+  ]);
+  await page.goto(`${base}/app/fees`, { waitUntil: 'networkidle', timeout: 90000 });
+  // Read-only for the accountant: the card is there, with no "enter" button.
+  await page.locator('[data-cdk-form6="fees"]').waitFor({ timeout: 30000 });
+  if (await page.locator('[data-cdk-form6="fees"] [data-cdk-f6-enter]').count()) throw new Error('the accountant is offered to enter a Form 6 figure');
+};
+const form6AsAccountantDone = async (page) => {
+  await page.context().addCookies(c241Cookies.map((c) => ({ name: c.name, value: c.value, domain: c.domain, path: c.path, httpOnly: c.httpOnly, sameSite: c.sameSite })));
+  await clearC241();
+};
+const formerStaffErase = async (page) => {
+  await clearC241();
+  // A teacher who has left (the account is switched off), whose qualification row is still kept.
+  await db.pg.query(`insert into users (user_id, school_id, email, role, display_name, is_active) values ($1, $2, 'leela.c241@example.invalid', 'teacher', 'Leela Example', false)`, [`${C241}3`, SCHOOL]);
+  await db.pg.query(`insert into staff_qualifications (school_id, user_id, stage, degree, professional_qualification, updated_by) values ($1, $2, 'primary', 'B.A.', 'D.El.Ed', $3)`, [SCHOOL, `${C241}3`, PEOPLE.principal.sub]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator(`[data-cdk-former-row="${C241}3"]`).waitFor({ timeout: 30000 });
+  await page.locator(`[data-cdk-erase="${C241}3"]`).click();
+  await page.locator('[data-cdk-erase-confirm]').waitFor({ timeout: 10000 });
+  // A full-page picture taken while scrolled draws the sticky menu half way down: back to the top first.
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+const formerStaffEraseDone = async () => {
+  // Nothing was erased: the confirmation was only opened.
+  const { rows } = await db.pg.query(`select count(*)::int as n from staff_qualifications where user_id = $1`, [`${C241}3`]);
+  await clearC241();
+  if (rows[0].n !== 1) throw new Error(`the former teacher's row: ${rows[0].n}`);
+};
+const settingsDocuments = async (page) => {
+  const documents = page.locator('[data-settings-module="documents"]');
+  await documents.waitFor({ timeout: 20000 });
+  // The transfer certificate's legal note is on the screen, never folded (C230-A, C240).
+  if (!(await documents.locator('[data-setting-legal]').first().isVisible())) throw new Error('the TC fee note is not on the screen');
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+
 // The printable disclosure: two items, one changed once and one removed; the page must show the two in force, the newer
 // version of the changed one, and nothing of the removed one.
 const disclosurePrint = async (page) => {
@@ -6127,6 +6180,10 @@ const SCREENS = [
   // p7-10c end
   // p7-10d begin
   ['principal', 'app-compliance-desk', '/app/compliance/desk', complianceDesk, complianceDeskDone],
+  // C232's three, photographed in the C236 wave (C241).
+  ['principal', 'app-fees-form6-accountant', '/app/fees', form6AsAccountant, form6AsAccountantDone],
+  ['principal', 'app-compliance-former-staff', '/app/compliance/desk', formerStaffErase, formerStaffEraseDone],
+  ['principal', 'app-settings-documents', '/app/settings', settingsDocuments],
   ['principal', 'app-compliance-disclosure', '/app/compliance/desk/disclosure', disclosurePrint, disclosurePrintDone],
   // p7-10d end
   // p7-10e begin
