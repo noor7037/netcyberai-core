@@ -106,7 +106,7 @@ page until the module is built.
 | 19 | Fees (`fees`) | Heads, structures, concessions (incl. sibling concession), ledger, combined family dues, payment collection (`24`: direct UPI with bank-statement proof; Razorpay dormant until a school's keys are entered), receipts, reminders (email with a payment link in P3; WhatsApp reminders switch on in P4), reconciliation, clearance gate | P3 | Foundation |
 | 20 | Payroll (`payroll`) | Spec v0: salary structures (basic, allowances, deductions), PF/ESI/PT/TDS rules as config, monthly run state machine, payslip PDF, bank export; founder supplies statutory rules | P7 | Spec v0 |
 | 21 | Documents & Certificates (`documents`) | ID cards, 7 certificate types (studio exists), request → fee-clearance/waiver → PDF → WhatsApp delivery → audit | P7 | Partial (TC, bonafide, character and study certificates from the record, fee clearance per type, numbering with a school prefix, the approver's signature, a public QR check, a 30-day family copy through the send-gate: C228, C232; every stored upload checked for an Aadhaar number or card: C232) |
-| 22 | Compliance Pro · APAAR (`compliance`) | Consent ledger, audit trail, DSR (live); APAAR ID capture/validation, UDISE+ data readiness report, Form 6 fee-regulation advisory | P7 | Partial (the student data check: C222; the compliance desk with qualifications and TET, the disclosure, SQAAF evidence and Form 6, the CPI and the deadline entered with their source: C227, C232; APAAR capture later) |
+| 22 | Compliance Pro · APAAR (`compliance`) | Consent ledger, audit trail, DSR (live); APAAR ID capture/validation, UDISE+ data readiness report, Form 6 fee-regulation advisory | P7 | Partial (the student data check: C222; the compliance desk with qualifications and TET, the disclosure, SQAAF evidence and Form 6, the CPI and the deadline entered with their source: C227, C232; APAAR capture stopped on 2026-10-18 (C245): the official source states only "a unique 12-digit code", which the Aadhaar rule cannot tell from an Aadhaar number; the founder chooses between a has-APAAR flag, an exempt column, or waiting for a specification) |
 | 23 | Reports (`reports`) | Report builder across modules, scheduled reports by email/WhatsApp, CSV/PDF export | P5 | Partial (fixed reports by role with CSV: C207) |
 | 24 | Early Warning (`early-warning`) | Attendance + marks + homework + Pulse signals → flags with their reasons and evidence (never a score); teacher/principal action log; parent dispatch gated by legal basis | P5 v1 · P6 v2 | Partial (v2: marks join, rule version 2: C218; nightly: C210) |
 | 25 | Learning Genome (`learning-genome`) | Spec v0: per-student skill map by subject/chapter from marks, Pulse replies and homework; strengths/gaps; shown to teachers, summarised to parents | P6 | Partial (v1, staff only: C217) |
@@ -244,6 +244,10 @@ already a permanent ban (C23).
 
 ## 6. Change log
 
+- **2026-10-18** — C242–C245: P7 Setup complete (sessions, subjects, the
+  onboarding checklist: C244); the coordinator assigns teachers and the
+  database enforces the assigned-teacher rule (C243); the timetable on v5;
+  APAAR capture stopped on the official format (row 22, C245).
 - **2026-10-18** — C236–C240: the staff profile (row 6); design system v5
   carried onto the teaching, office and Control screens (§4, 32–34% fewer
   words); file storage reported by `/api/health` and a red line when the server
