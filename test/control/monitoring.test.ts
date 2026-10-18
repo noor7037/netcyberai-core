@@ -11,11 +11,16 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 // Every school, person, number, address and message below is made up.
 
 // Only the connection is replaced: the health endpoint's own platform helper runs on the test database as nca_super.
-const h = vi.hoisted(() => ({ platform: null as null | ((fn: (db: unknown) => Promise<unknown>) => Promise<unknown>) }));
+const h = vi.hoisted(() => ({ platform: null as null | ((fn: (db: unknown) => Promise<unknown>) => Promise<unknown>), storage: 'ok' as 'ok' | 'missing' | 'other_project' | 'refused' }));
 vi.mock('@/lib/auth/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/auth/db')>()),
   withBackendConnection: (fn: never) => h.platform!(fn),
   withPlatformService: (fn: never) => h.platform!(fn),
+}));
+// File storage's answer (C236), set by each test: the endpoint and the page read the same one.
+vi.mock('@/lib/observability/storage-health', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/observability/storage-health')>()),
+  storageHealth: async () => h.storage,
 }));
 // The Retry button asks the router to read the page again; there is no router in a test.
 vi.mock('next/navigation', () => ({ useRouter: () => ({ refresh: () => undefined }) }));
@@ -204,7 +209,7 @@ describe('on the real schema', () => {
     const m = await read();
     templatesAtStart = m.templates;
     expect(m.days).toBe(MONITORING_DAYS);
-    expect(m.health).toEqual({ status: 'ok', jobs: 'ok', backlogAfterMinutes: BACKLOG_AFTER_MINUTES });
+    expect(m.health).toEqual({ status: 'ok', jobs: 'ok', storage: 'ok', backlogAfterMinutes: BACKLOG_AFTER_MINUTES });
     expect(m.jobs).toEqual({ byType: [], dead: 0, stuck: 0, stuckLongestSeconds: null, retrying: 0, due: 0, oldestDueSeconds: null, lastDoneSeconds: null, failed: [] });
     expect(m.notices).toMatchObject({ received: 0, refused: 0, refusedByOutcome: [], lastSeconds: null });
     expect(m.sends).toEqual({ uncertain: { key: '', count: 0, schools: [], latestReason: null }, failed: [], held: [] });
@@ -280,12 +285,33 @@ describe('on the real schema', () => {
 
   it('the health check on the page is the one the health endpoint runs', async () => {
     const answer = async () => (await healthEndpoint(new NextRequest('https://www.netcyberai.test/api/health'))).json();
-    expect((await answer()).checks).toEqual({ database: 'ok', jobs: 'backlog' });
+    expect((await answer()).checks).toEqual({ database: 'ok', jobs: 'backlog', storage: 'ok' });
     expect((await answer()).status).toBe((await read()).health.status);
     // The late job runs: both say fine again.
     await db.pg.exec(`update jobs set status = 'succeeded', completed_at = now() where idempotency_key = 'late-1';`);
-    expect(await answer()).toMatchObject({ status: 'ok', checks: { database: 'ok', jobs: 'ok' } });
-    expect((await read()).health).toMatchObject({ status: 'ok', jobs: 'ok' });
+    expect(await answer()).toMatchObject({ status: 'ok', checks: { database: 'ok', jobs: 'ok', storage: 'ok' } });
+    expect((await read()).health).toMatchObject({ status: 'ok', jobs: 'ok', storage: 'ok' });
+  });
+
+  it('file storage that does not work (C236): both say degraded, and the page names the setting and what to do', async () => {
+    const answer = async () => (await healthEndpoint(new NextRequest('https://www.netcyberai.test/api/health'))).json();
+    try {
+      for (const state of ['missing', 'other_project', 'refused'] as const) {
+        h.storage = state;
+        expect(await answer(), state).toMatchObject({ status: 'degraded', checks: { database: 'ok', jobs: 'ok', storage: state } });
+        const m = await read();
+        expect(m.health, state).toMatchObject({ status: 'degraded', jobs: 'ok', storage: state });
+        expect(needsALook(m).health, state).toBe(true);
+        const html = page(m);
+        expect(html, state).toContain(`data-monitoring-storage="${state}"`);
+        expect(html, state).toContain('data-monitoring-do="health.storage"');
+        expect(html, state).toContain('SUPABASE_SERVICE_ROLE_KEY');
+        // The jobs are fine, so the page does not say they are late.
+        expect(html, state).not.toContain('data-monitoring-do="health"');
+      }
+    } finally {
+      h.storage = 'ok';
+    }
   });
 
   it('a refused notice appears, by what was wrong, and never with what it carried', async () => {

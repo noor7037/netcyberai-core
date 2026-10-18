@@ -248,8 +248,10 @@ describe('two seconds (docs/19 rule 6)', () => {
     // Each search's own time: one run first, not timed (Postgres plans the query), then the middle of three timed runs,
     // and the 95th percentile over the searches. The full suite runs many PGlite databases at once on one machine; when
     // it is saturated a whole round can stall behind other files' work (the lead measured 2.7 to 4.4 s that way, and
-    // 0.37 s alone, on main and on this stack alike). So a round over the budget is measured again, up to three rounds a
-    // few seconds apart, and the best round counts: a search that is really slow is slow in every round and still fails.
+    // 0.37 s alone, on main and on this stack alike). So `npm test` runs this file on its own, after the rest (C241:
+    // GitHub's runners had put it at 2.0 to 2.1 s inside the full suite), and a round over the budget is still measured
+    // again, up to three rounds a few seconds apart, the best round counting: a search that is really slow is slow in
+    // every round and still fails.
     const round = async () => {
       const times: number[] = [];
       for (const q of ['student 4a', 'S02200', '9000002242', 'zzzz', 'kav', 'T-1a2b', 'stu', 'ab', '0000', 'student e']) {

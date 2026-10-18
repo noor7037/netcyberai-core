@@ -3,6 +3,7 @@ import { maskLinks } from '@/lib/documents/copy-link';
 import { pipelineCounts } from '@/lib/jobs/pg-queue';
 import { JOB_STATUSES, type JobStatus } from '@/lib/jobs/types';
 import { BACKLOG_AFTER_MINUTES, healthStatus, jobsHealth } from '@/lib/observability/health';
+import { storageHealth, type StorageHealth } from '@/lib/observability/storage-health';
 import { redactText } from '@/lib/observability/redact';
 import { MAX_REFUSED_KEPT_PER_HOUR } from '@/lib/whatsapp/delivery';
 import { HOLD_HOURS } from '@/lib/whatsapp/held';
@@ -150,7 +151,7 @@ export type Monitoring = {
   days: number;
   // The same check /api/health runs (src/lib/observability/health.ts). The database answered, or there would be
   // no page at all.
-  health: { status: 'ok' | 'degraded'; jobs: 'ok' | 'backlog'; backlogAfterMinutes: number };
+  health: { status: 'ok' | 'degraded'; jobs: 'ok' | 'backlog'; storage: StorageHealth; backlogAfterMinutes: number };
   jobs: {
     byType: { type: string; counts: Record<JobStatus, number>; retrying: number }[];
     dead: number;
@@ -201,7 +202,9 @@ export const HELD_FOR_US: readonly string[] = ['blocked_pilot', 'blocked_budget'
 
 const num = (v: unknown) => Number(v ?? 0);
 
-export async function loadMonitoring(db: Sql): Promise<Monitoring> {
+// `storage`: file storage's answer (C236), asked by the page before its transaction opens, so a slow store never holds
+// a database connection; asked here when not given.
+export async function loadMonitoring(db: Sql, storageAnswer?: StorageHealth): Promise<Monitoring> {
   // One clock for every age: the database's, as this transaction sees it.
   const clock = (await db.query(`select now() as at, (((now() at time zone 'Asia/Kolkata')::date) - 1)::text as yesterday`)).rows[0];
   const at = new Date(clock.at as string).getTime();
@@ -409,11 +412,13 @@ export async function loadMonitoring(db: Sql): Promise<Monitoring> {
   )).rows[0];
 
   const jobsOk = await jobsHealth(db);
+  // The same answer /api/health gives (C236), kept 5 minutes per server instance.
+  const storage = storageAnswer ?? (await storageHealth());
 
   return {
     readAt: new Date(at).toISOString(),
     days: MONITORING_DAYS,
-    health: { status: healthStatus('ok', jobsOk) === 'ok' ? 'ok' : 'degraded', jobs: jobsOk, backlogAfterMinutes: BACKLOG_AFTER_MINUTES },
+    health: { status: healthStatus('ok', jobsOk, storage) === 'ok' ? 'ok' : 'degraded', jobs: jobsOk, storage, backlogAfterMinutes: BACKLOG_AFTER_MINUTES },
     jobs: {
       byType,
       dead: num(j.dead),

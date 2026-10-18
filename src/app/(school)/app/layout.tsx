@@ -17,6 +17,8 @@ import { getLang, getToursSeen } from '@/lib/i18n/server';
 import { loadEntitlements } from '@/lib/frameworks/entitlements';
 import { loadSchoolBrand } from '@/lib/school/branding';
 import { logoAddress } from '@/lib/school/logo-file';
+import { storageHealth, type StorageHealth } from '@/lib/observability/storage-health';
+import { showsStorageAlert, StorageAlert } from '@/components/app-shell/StorageAlert';
 
 // Every page under this route group renders through THIS layout by
 // Next.js's own nesting rules. The guard below runs first and is checked
@@ -28,7 +30,9 @@ import { logoAddress } from '@/lib/school/logo-file';
 // C235-B); the teacher shell also gets the phone bottom bar. It decides only
 // what is shown: every module API checks role and entitlement itself, and RLS
 // stays the backstop. The bar at the top shows the school's logo and name and
-// the signed-in person's name and role (C235-B).
+// the signed-in person's name and role (C235-B). For the principal and the
+// school admin, a red line on every page while file storage does not work
+// (C236): uploads and login invites fail until NetCyberAI fixes its setting.
 
 // Every word of the shell comes from the message files, in the language the
 // person chose (C134).
@@ -41,6 +45,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   const role = session!.role as SchoolRole;
   const schoolId = session!.schoolId!;
+  // Asked while the menu loads (kept 5 minutes per server instance); only the office is shown it.
+  const storageAnswer: Promise<StorageHealth> = showsStorageAlert(role) ? storageHealth() : Promise.resolve('ok');
   let entitlements: SchoolEntitlements = { schoolId, plan: 'unassigned', accessMode: 'full', modules: {} };
   let schoolName = 'NetCyberAI';
   // The school's logo version (null: no logo, its initials are shown) and the signed-in person's name (C235-B).
@@ -81,6 +87,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   }
 
   const { lang, known } = getLang(session!.sub);
+  const storage = await storageAnswer;
   // With the menu's data missing, nothing is offered that the school may not have.
   const quickAdd = menuIncomplete ? [] : buildQuickAdd(role, entitlements);
   const isTeacher = shellForRole(role) === 'teacher';
@@ -110,6 +117,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         scope="school"
         quickAdd={quickAdd}
       >
+        {storage !== 'ok' && <StorageAlert state={storage} scope="school" lang={lang} />}
         {viewAs && <ViewAsBanner name={viewAs.name} role={role} endsAt={viewAs.endsAt} schoolId={schoolId} />}
         {entitlements.accessMode === 'suspended' && (
           <p role="status" lang={lang} data-account-paused className="bg-tangerine/10 px-4 py-2 text-sm font-semibold text-slate">

@@ -3,12 +3,15 @@ import { NextRequest } from 'next/server';
 
 // /api/health on real Postgres (PGlite with the B2 migrations): ok, degraded
 // on a stuck job, down (503) when the database does not answer (C111).
-const h = vi.hoisted(() => ({ db: null as unknown as import('../db/pglite-harness').TestDb, dbDown: false }));
+const h = vi.hoisted(() => ({ db: null as unknown as import('../db/pglite-harness').TestDb, dbDown: false, storage: 'ok' as string }));
 vi.mock('@/lib/auth/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/auth/db')>()),
   withBackendConnection: (fn: (db: unknown) => Promise<unknown>) => (h.dbDown ? Promise.reject(new Error('connect ECONNREFUSED')) : h.db.platform(fn as never)),
   withPlatformService: (fn: (db: unknown) => Promise<unknown>) => (h.dbDown ? Promise.reject(new Error('connect ECONNREFUSED')) : h.db.platform(fn as never)),
 }));
+
+// File storage's own check is tested in storage-health.test.ts; here only how the endpoint reports its answer (C236).
+vi.mock('@/lib/observability/storage-health', () => ({ storageHealth: async () => h.storage }));
 
 import { createTestDb } from '../db/pglite-harness';
 import { GET } from '@/app/api/health/route';
@@ -27,7 +30,7 @@ describe('/api/health', () => {
     const r = await call();
     expect(r.status).toBe(200);
     expect(r.cache).toBe('no-store');
-    expect(r.body).toMatchObject({ status: 'ok', checks: { database: 'ok', jobs: 'ok' } });
+    expect(r.body).toMatchObject({ status: 'ok', checks: { database: 'ok', jobs: 'ok', storage: 'ok' } });
     expect(Object.keys(r.body).sort()).toEqual(['checks', 'commit', 'status', 'time']);
   });
 
@@ -36,6 +39,17 @@ describe('/api/health', () => {
     const r = await call();
     expect(r.status).toBe(200);
     expect(r.body).toMatchObject({ status: 'degraded', checks: { database: 'ok', jobs: 'backlog' } });
+  });
+
+  it('degraded but still 200 when file storage does not work, naming only the state (C236)', async () => {
+    await h.db.platform((db) => db.query(`delete from jobs where idempotency_key = 'stuck'`));
+    for (const state of ['missing', 'other_project', 'refused']) {
+      h.storage = state;
+      const r = await call();
+      expect(r.status, state).toBe(200);
+      expect(r.body, state).toMatchObject({ status: 'degraded', checks: { database: 'ok', jobs: 'ok', storage: state } });
+    }
+    h.storage = 'ok';
   });
 
   it('down (503) when the database does not answer', async () => {

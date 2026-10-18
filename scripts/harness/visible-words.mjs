@@ -4,14 +4,15 @@
 // Counted: every rendered text node in <main> (headings, labels, buttons,
 // chart labels), the chosen option of each <select>, and a placeholder while
 // it is showing. Not counted: the shell around the screen (the menu, the
-// search-and-language bar, a header or menu bar fixed to the window), text a
+// search-and-language bar, a header or menu bar fixed to the window, the
+// shell's own alert line such as the storage line of C236), text a
 // reader cannot see -- screen-reader-only text, a closed disclosure,
 // display:none, visibility:hidden, opacity 0 -- and tokens with no letter or
 // digit ("·", "→").
 export function visibleWords() {
   const main = document.querySelector('main') ?? document.body;
   const shell = (el) => {
-    if (el.closest('aside, [data-shell-lang]')) return true;
+    if (el.closest('aside, [data-shell-lang], [data-shell-alert]')) return true;
     const bar = el.closest('header, nav');
     if (!bar) return false;
     const p = getComputedStyle(bar).position;

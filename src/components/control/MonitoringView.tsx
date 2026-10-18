@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { QUIET_ACTION } from '@/components/app-ui/ModulePage';
 import { RetryJobButton } from '@/components/control/RetryJobButton';
 import { Badge } from '@/components/ui/Badge';
+import { SERVICE_ROLE_SETTING_NAME } from '@/lib/auth/env';
 import { HELD_FOR_US, MONITORING_SECTIONS, needsALook, type InvitationWaiting, type Monitoring, type NightlyJob, type NightlyJobState, type SchoolCheckRun, type SchoolCount, type SendGroup } from '@/lib/control/monitoring';
 import { t, tCount, tOr, type Lang, type MessageKey } from '@/lib/i18n';
 import { JOB_STATUSES } from '@/lib/jobs/types';
@@ -128,12 +129,22 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
 
       <Section id="health" title={t(lang, 'monitoring.health.title')} look={look.health} lang={lang}>
         <p data-monitoring-health={m.health.status} className="max-w-prose text-sm text-slate">
-          {t(lang, m.health.status === 'ok' ? 'monitoring.health.ok' : 'monitoring.health.backlog', { minutes: m.health.backlogAfterMinutes })}
+          {t(lang, m.health.jobs === 'ok' ? 'monitoring.health.ok' : 'monitoring.health.backlog', { minutes: m.health.backlogAfterMinutes })}
         </p>
+        {m.health.storage !== 'ok' && (
+          <p data-monitoring-storage={m.health.storage} className="max-w-prose text-sm font-semibold text-coral-deep">
+            {t(lang, 'monitoring.health.storage', { setting: SERVICE_ROLE_SETTING_NAME, reason: t(lang, `shell.storage.reason.${m.health.storage}`) })}
+          </p>
+        )}
         <p className={NOTE}>{t(lang, 'monitoring.health.how')}</p>
-        {look.health && (
+        {m.health.jobs !== 'ok' && (
           <Do lang={lang} id="health">
             {t(lang, 'monitoring.health.backlog.do')}
+          </Do>
+        )}
+        {m.health.storage !== 'ok' && (
+          <Do lang={lang} id="health.storage">
+            {t(lang, 'monitoring.health.storage.do', { setting: SERVICE_ROLE_SETTING_NAME })}
           </Do>
         )}
       </Section>

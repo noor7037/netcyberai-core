@@ -1,4 +1,5 @@
 import type { PoolClient } from 'pg';
+import type { StorageHealth } from './storage-health';
 
 // What "healthy" means, written once (C111). /api/health answers the uptime
 // check with it, and Control's Monitoring page shows the same answer
@@ -21,6 +22,8 @@ export async function jobsHealth(db: Sql): Promise<'ok' | 'backlog'> {
   return rows[0]?.stuck ? 'backlog' : 'ok';
 }
 
-export function healthStatus(database: DatabaseHealth, jobs: JobsHealth): HealthStatus {
-  return database === 'fail' ? 'down' : jobs === 'ok' ? 'ok' : 'degraded';
+// File storage that does not work (C236) is degraded, not down: the database answers, and only uploads and login
+// invites fail.
+export function healthStatus(database: DatabaseHealth, jobs: JobsHealth, storage: StorageHealth = 'ok'): HealthStatus {
+  return database === 'fail' ? 'down' : jobs === 'ok' && storage === 'ok' ? 'ok' : 'degraded';
 }
