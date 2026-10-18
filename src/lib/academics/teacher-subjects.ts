@@ -12,10 +12,10 @@ import { classOrderSql } from '@/lib/classes/class-order';
 // PROPOSE a subject and class for themselves (teacher_subject_requests); those three confirm or decline it, never the
 // teacher who asked; only a confirmed proposal is written.
 //
-// The teachers row behind an assignment (teacher_subjects names teachers.teacher_id) is made here, by the principal or
-// the school admin (not the coordinator: C243 left teachers' writes as they were), the first time a teacher is given a
-// subject: one per user, only for a teacher (a unique index and a policy), with the user's display name, nothing
-// typed. The coordinator giving a teacher their first subject is told so ('needs_office') before anything is written.
+// The teachers row behind an assignment (teacher_subjects names teachers.teacher_id) is made here, by whoever assigns
+// (the coordinator too since C243, who only makes it: changing or removing one stays the office's), the first time a
+// teacher is given a subject: one per user, only for a teacher (a unique index and a policy), with the user's display
+// name, nothing typed.
 //
 // The timetable reads it too: when a class and subject have assignments, a period or a generator load for them
 // takes one of those teachers (src/lib/timetable/plan.ts notAssigned()); since C243 the database refuses any other
@@ -27,9 +27,6 @@ type Actor = { schoolId: string; userId: string; role: StaffRole };
 // Who assigns, and decides a teacher's proposal: the principal, the school admin and the academic coordinator
 // (C230-C), as the database says.
 export const ASSIGNERS: readonly string[] = ['principal', 'school_admin', 'academic_coordinator'];
-// Who makes a teacher's teachers row, the first time they are given a subject: the master-data roles, as the database
-// says (teachers_office_insert, unchanged by C243).
-const MAKES_TEACHER_ROW: readonly string[] = ['principal', 'school_admin'];
 
 export type Assignment = { teacherUserId: string; classId: string; subjectId: string };
 export type Named = { id: string; name: string };
@@ -93,17 +90,14 @@ async function classAndSubject(db: Sql, schoolId: string, classId: string, subje
   return !known.class ? 'unknown_class' : !known.subject ? 'unknown_subject' : null;
 }
 
-// The teachers row of an active teacher of the school, made the first time it is needed (by the principal or the
-// school admin). 'unknown_teacher' when the user is not an active teacher of the school: never a row for anyone else.
-// 'needs_office' when the row is still to be made and the actor may not make it (the coordinator).
-type TeacherRow = { teacherId: string } | { reason: 'unknown_teacher' | 'needs_office' };
+// The teachers row of an active teacher of the school, made the first time it is needed (by an assigner).
+// 'unknown_teacher' when the user is not an active teacher of the school: never a row for anyone else.
+type TeacherRow = { teacherId: string } | { reason: 'unknown_teacher' };
 async function teacherRowFor(db: Sql, actor: Actor, teacherUserId: string): Promise<TeacherRow> {
   const teacher = (await db.query(`select 1 from users where school_id = $1 and user_id = $2 and role = 'teacher' and is_active`, [actor.schoolId, teacherUserId])).rows[0];
   if (!teacher) return { reason: 'unknown_teacher' };
   const found = (await db.query(`select teacher_id from teachers where school_id = $1 and user_id = $2`, [actor.schoolId, teacherUserId])).rows[0];
   if (found) return { teacherId: found.teacher_id as string };
-  // The coordinator: said before anything is written. Anyone else who is no assigner is refused by the database.
-  if (ASSIGNERS.includes(actor.role) && !MAKES_TEACHER_ROW.includes(actor.role)) return { reason: 'needs_office' };
   const made = (
     await db.query(
       `insert into teachers (school_id, user_id, name)
@@ -137,7 +131,7 @@ async function writeAssignment(db: Sql, actor: Actor, teacherId: string, a: Assi
   return true;
 }
 
-export type AssignResult = { ok: true; created: boolean } | { ok: false; reason: 'unknown_teacher' | 'unknown_class' | 'unknown_subject' | 'needs_office' };
+export type AssignResult = { ok: true; created: boolean } | { ok: false; reason: 'unknown_teacher' | 'unknown_class' | 'unknown_subject' };
 
 // The office (or the coordinator) gives a teacher a subject in a class. A proposal of the same, waiting, is confirmed
 // with it.
@@ -202,11 +196,11 @@ export async function proposeAssignment(db: Sql, actor: Actor, at: { classId: st
   return { ok: true, requestId: made.request_id as string };
 }
 
-export type DecideResult = { ok: true; state: 'confirmed' | 'declined' } | { ok: false; reason: 'not_found' | 'unknown_teacher' | 'needs_office' };
+export type DecideResult = { ok: true; state: 'confirmed' | 'declined' } | { ok: false; reason: 'not_found' | 'unknown_teacher' };
 
 // The office (or the coordinator) confirms (the assignment is written) or declines a teacher's proposal, once. A
 // teacher no longer active cannot be given a subject: confirming is refused (unknown_teacher), and the office declines
-// it. The coordinator cannot confirm a teacher's first subject ('needs_office'), and may decline it.
+// it.
 export async function decideRequest(db: Sql, actor: Actor, requestId: string, decision: 'confirm' | 'decline'): Promise<DecideResult> {
   const r = (
     await db.query(`select teacher_user_id, class_id, subject_id from teacher_subject_requests where school_id = $1 and request_id = $2 and state = 'pending' for update`, [actor.schoolId, requestId])

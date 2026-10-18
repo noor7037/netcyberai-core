@@ -9,7 +9,7 @@ import { useToast } from '@/components/ui/Toast';
 import { CARD, HEAD_ROW, namer, PRIMARY, SECONDARY, send, type GeneratorData } from './generator-ui';
 
 // The periods each class needs (C229): for a class, each subject with its periods a week and its teacher. When Setup
-// gives that subject in that class to teachers (who teaches what, on the Staff screen, C231), only they are offered,
+// gives that subject in that class to teachers (who teaches what, C231; its page is /app/timetable/teachers), only they are offered,
 // and the server refuses another; with none, every active teacher is. The class's total is shown against its week
 // (in the class's own choice), and a class that asks for more than its week has is said in words before a proposal is
 // made. Design system v5 (C243): the explanation sits behind the ⓘ; the fields have floating labels.
@@ -150,11 +150,9 @@ export function GeneratorLoads({ data, onChanged }: { data: GeneratorData; onCha
               {form.subjectId && assigned.size > 0 && (
                 <p data-ttg-assigned-only className="text-sm text-slate/70">
                   {t('ttg.loads.assignedOnly')}{' '}
-                  {data.mayEditSettings && (
-                    <a href="/app/staff#teacher-subjects" className="inline-flex min-h-[44px] items-center font-semibold text-sapphire underline">
-                      {t('ttg.loads.assignedWhere')}
-                    </a>
-                  )}
+                  <a href="/app/timetable/teachers" className="inline-flex min-h-[44px] items-center font-semibold text-sapphire underline">
+                    {t('ttg.loads.assignedWhere')}
+                  </a>
                 </p>
               )}
             </>

@@ -17,8 +17,8 @@ import { clearEntry, entriesForClass, importTimetable, putEntry } from '@/lib/ti
 // C243 (C230-C) on the whole schema, every migration replayed, as the app's own database role with each person's
 // role. The acceptance sentences:
 //   1  the academic coordinator assigns, and confirms or declines a teacher's proposal, beside the principal and the
-//      school admin; a teacher can do neither; another school sees nothing. A teacher's first subject (the teachers
-//      row behind it) stays the principal's or the school admin's.
+//      school admin, a teacher's first subject too (the coordinator makes the teachers row behind it, and never
+//      changes or removes one); a teacher can do neither; another school sees nothing.
 //   2  the database refuses a period whose class and subject have assigned teachers and whose teacher is not one of
 //      them, on insert and on update, whoever writes it; the app's paths answer with their own 'not_assigned' when the
 //      database refuses first. A class and subject with no assignment takes anyone.
@@ -110,16 +110,23 @@ describe('1: the academic coordinator assigns and decides (C230-C)', () => {
     await expect(as(t2, (c) => assign(c, actor(t2), { teacherUserId: T1, classId: C5B, subjectId: MATHS }))).rejects.toThrow(/row-level security/);
   });
 
-  it('a teacher’s first subject is still the principal’s or the school admin’s: the coordinator is told so, and the database agrees', async () => {
+  it('the coordinator gives a teacher with no teachers row their first subject: the row is made once, for a teacher only; changing or removing one stays the office’s', async () => {
     // T2 has no teachers row yet.
-    expect(await as(coord, (c) => assign(c, actor(coord), { teacherUserId: T2, classId: C5B, subjectId: ENGLISH }))).toEqual({ ok: false, reason: 'needs_office' });
-    await expect(as(coord, (c) => c.query(`insert into teachers (school_id, user_id, name) values ($1, $2, 'Tushar Teacher')`, [A, T2]))).rejects.toThrow(/row-level security/);
     expect((await db.pg.query(`select count(*)::int as n from teachers where user_id = $1`, [T2])).rows[0].n).toBe(0);
-    // Once the office has given T2 a subject, the coordinator gives the next.
-    expect(await as(admin, (c) => assign(c, actor(admin), { teacherUserId: T2, classId: C5B, subjectId: ENGLISH }))).toEqual({ ok: true, created: true });
+    expect(await as(coord, (c) => assign(c, actor(coord), { teacherUserId: T2, classId: C5B, subjectId: ENGLISH }))).toEqual({ ok: true, created: true });
     expect(await as(coord, (c) => assign(c, actor(coord), { teacherUserId: T2, classId: C6A, subjectId: MATHS }))).toEqual({ ok: true, created: true });
+    const made = (await db.pg.query(`select t.name, (select count(*)::int from teachers x where x.user_id = $1) as n from teachers t where t.user_id = $1`, [T2])).rows;
+    expect(made).toEqual([{ name: 'Tushar Teacher', n: 1 }]);
+    const profile = (await db.pg.query(`select actor_user_id, actor_role, after_state from audit_log where school_id = $1 and event_action = 'teacher.profile_made' order by audit_id`, [A])).rows;
+    expect(profile).toEqual([{ actor_user_id: COORD, actor_role: 'academic_coordinator', after_state: { teacherUserId: T2 } }]);
+    // Never for anyone who is not a teacher, by the app or the database; never a change or a removal.
+    expect(await as(coord, (c) => assign(c, actor(coord), { teacherUserId: ACCOUNTANT, classId: C5B, subjectId: ENGLISH }))).toEqual({ ok: false, reason: 'unknown_teacher' });
+    await expect(as(coord, (c) => c.query(`insert into teachers (school_id, user_id, name) values ($1, $2, 'Arun Accountant')`, [A, ACCOUNTANT]))).rejects.toThrow(/row-level security/);
+    expect(await rows(coord, `update teachers set name = 'Someone else' returning 1`)).toEqual([]);
+    expect(await rows(coord, `delete from teachers where user_id = $1 returning 1`, [T_GONE])).toEqual([]);
+    for (const who of [t2, accountant]) await expect(as(who, (c) => c.query(`insert into teachers (school_id, user_id, name) values ($1, $2, 'Tilak Teacher')`, [A, T4]))).rejects.toThrow(/row-level security/);
     expect(await as(coord, (c) => unassign(c, actor(coord), { teacherUserId: T2, classId: C6A, subjectId: MATHS }))).toBe(true);
-    expect(await as(admin, (c) => unassign(c, actor(admin), { teacherUserId: T2, classId: C5B, subjectId: ENGLISH }))).toBe(true);
+    expect(await as(coord, (c) => unassign(c, actor(coord), { teacherUserId: T2, classId: C5B, subjectId: ENGLISH }))).toBe(true);
   });
 
   it('the coordinator reads the proposals, confirms one and declines one, never their own; a teacher decides none', async () => {
@@ -132,10 +139,10 @@ describe('1: the academic coordinator assigns and decides (C230-C)', () => {
       expect(await rows(who, `update teacher_subject_requests set state = 'declined', decided_by = $1 returning 1`, [who.user]), who.user).toEqual([]);
       expect(await as(who, (c) => decideRequest(c, actor(who), first.requestId, 'confirm')), who.user).toEqual({ ok: false, reason: 'not_found' });
     }
-    // T3's first subject: the coordinator may decline it, but confirming it is the office's.
-    expect(await as(coord, (c) => decideRequest(c, actor(coord), first.requestId, 'confirm'))).toEqual({ ok: false, reason: 'needs_office' });
-    expect(await as(admin, (c) => assign(c, actor(admin), { teacherUserId: T3, classId: C6A, subjectId: MATHS }))).toEqual({ ok: true, created: true });
+    // T3 has no teachers row: confirming their proposal makes it, as the office's confirming does.
+    expect((await db.pg.query(`select count(*)::int as n from teachers where user_id = $1`, [T3])).rows[0].n).toBe(0);
     expect(await as(coord, (c) => decideRequest(c, actor(coord), first.requestId, 'confirm'))).toEqual({ ok: true, state: 'confirmed' });
+    expect((await db.pg.query(`select count(*)::int as n from teachers where user_id = $1`, [T3])).rows[0].n).toBe(1);
     expect(await as(coord, (c) => decideRequest(c, actor(coord), second.requestId, 'decline'))).toEqual({ ok: true, state: 'declined' });
     expect((await db.pg.query(`select state, decided_by from teacher_subject_requests where request_id = any ($1::uuid[]) order by state`, [[first.requestId, second.requestId]])).rows).toEqual([
       { state: 'confirmed', decided_by: COORD },
@@ -150,9 +157,8 @@ describe('1: the academic coordinator assigns and decides (C230-C)', () => {
     // The proposals' audit rows follow the proposals: the coordinator reads them.
     expect((await rows(coord, `select 1 from audit_log where event_action like 'teacher_subject.request%'`)).length).toBeGreaterThan(0);
     expect(await rows(accountant, `select 1 from audit_log where event_action like 'teacher_subject.request%'`)).toEqual([]);
-    // Put back: 5-B English and 6-A Maths have no assignment again.
+    // Put back: 5-B English has no assignment again.
     expect(await as(coord, (c) => unassign(c, actor(coord), { teacherUserId: T3, classId: C5B, subjectId: ENGLISH }))).toBe(true);
-    expect(await as(coord, (c) => unassign(c, actor(coord), { teacherUserId: T3, classId: C6A, subjectId: MATHS }))).toBe(true);
   });
 
   it('another school sees nothing and writes nothing of this one', async () => {

@@ -7,12 +7,12 @@ import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import type { MessageKey } from '@/lib/i18n';
 
-// Who teaches what, on Staff, for the principal and the school admin, and for the academic coordinator wherever the
-// panel is shown to them (docs/28 slice 10g, C231; C230-C): for each teacher, the subjects they teach and in which
+// Who teaches what, on Staff for the principal and the school admin, and on its own page of the Timetable module
+// (/app/timetable/teachers, `standalone`: the page's own title and ⓘ say what it is) for them and the academic
+// coordinator (docs/28 slice 10g, C231; C230-C, C243): for each teacher, the subjects they teach and in which
 // classes, added and taken away here; and the teachers' own proposals, confirmed or declined here. What a teacher may
 // read and mark follows these lines (the teacher_scope_* policies), and the timetable offers only these teachers for
-// a subject in a class. Every change is saved at once and audited with ids. A teacher's first subject is the
-// principal's or the school admin's to give (it makes the teacher's record): the coordinator is told so.
+// a subject in a class. Every change is saved at once and audited with ids.
 // Design system v5 (C243): a subject is removed with the × on its chip (its name says what it removes).
 
 type Named = { id: string; name: string };
@@ -31,10 +31,9 @@ const REFUSED: Record<string, MessageKey> = {
   unknown_teacher: 'ts.refused.teacher',
   unknown_class: 'ts.refused.place',
   unknown_subject: 'ts.refused.place',
-  needs_office: 'ts.refused.needsOffice',
 };
 
-export function TeacherSubjects() {
+export function TeacherSubjects({ standalone = false }: { standalone?: boolean }) {
   const { t, tCount, lang } = useT();
   const toast = useToast();
   const [data, setData] = useState<Data | null>(null);
@@ -85,13 +84,15 @@ export function TeacherSubjects() {
       .sort((a, b) => classAt(a.classId) - classAt(b.classId) || name(data.subjects, a.subjectId).localeCompare(name(data.subjects, b.subjectId)));
 
   return (
-    <section lang={lang} id="teacher-subjects" data-teacher-subjects className={`${BOX} text-sm text-slate`} aria-labelledby="ts-title">
-      <div className="flex flex-wrap items-center gap-x-1">
-        <h2 id="ts-title" className="text-base font-bold">
-          {t('ts.title')}
-        </h2>
-        <InfoTip>{t('ts.how')}</InfoTip>
-      </div>
+    <section lang={lang} id="teacher-subjects" data-teacher-subjects className={`${BOX} text-sm text-slate`} aria-labelledby={standalone ? undefined : 'ts-title'} aria-label={standalone ? t('ts.title') : undefined}>
+      {!standalone && (
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 id="ts-title" className="text-base font-bold">
+            {t('ts.title')}
+          </h2>
+          <InfoTip>{t('ts.how')}</InfoTip>
+        </div>
+      )}
 
       {data.requests.length > 0 && (
         <div data-subject-requests={data.requests.length} className="flex flex-col gap-2 rounded-md border border-amber/40 bg-amber/10 p-3">
@@ -121,7 +122,7 @@ export function TeacherSubjects() {
           {data.teachers.map((p) => {
             const mine = byTeacher(p.id);
             return (
-              <li key={p.id} data-teacher-line={p.id} className="flex flex-col gap-2 border-t border-slate/10 pt-3">
+              <li key={p.id} data-teacher-line={p.id} className={`flex flex-col gap-2 border-t border-slate/10 pt-3 ${standalone ? 'first:border-t-0 first:pt-0' : ''}`}>
                 <p className="font-semibold">{p.active ? p.name : t('ts.gone', { name: p.name })}</p>
                 {mine.length === 0 ? (
                   <p className="text-slate/70">{t('ts.none')}</p>

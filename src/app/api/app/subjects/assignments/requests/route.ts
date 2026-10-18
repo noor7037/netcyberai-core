@@ -31,7 +31,6 @@ export async function PUT(req: NextRequest) {
     const done = await decideRequest(db, { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, body!.requestId as string, body!.decision);
     if (done.ok) return NextResponse.json(done);
     if (done.reason === 'not_found') return ruleError(404, 'not_found');
-    if (done.reason === 'needs_office') return jsonError(409, 'the principal or the school admin gives a teacher their first subject', { code: done.reason });
     return jsonError(409, 'this teacher is no longer an active teacher of the school: decline the proposal', { code: done.reason });
   });
 }

@@ -4,18 +4,21 @@
 --
 -- 1. The academic coordinator assigns and decides, beside the principal and the school admin. The coordinator
 --    already writes the timetable and plans it with the generator (C146, C229); who teaches what is the list those
---    screens keep to. The C231 policies that name the office on teacher_subjects and teacher_subject_requests, and
---    the one on the proposals' audit rows, are altered in place (same names, same commands, same shape) to name the
---    coordinator too:
+--    screens keep to, and the coordinator keeps it from the Timetable module ("Who teaches what"). The C231 policies
+--    that name the office on teacher_subjects and teacher_subject_requests, and the one on the proposals' audit rows,
+--    are altered in place (same names, same commands, same shape) to name the coordinator too:
 --      teacher_subjects_office_insert / _update / _delete: the principal, the school admin, the coordinator; an
 --        assignment is still for a teacher of the school;
 --      teacher_subject_requests_readers: the same three read every proposal; a teacher still reads only their own;
 --      teacher_subject_requests_office_decides: the same three decide, in their own name, never the teacher who asked
 --        (decided_by <> teacher_user_id, as the trigger teacher_subject_requests_rules also says);
 --      audit_teacher_subject_request_rows_office_or_actor: the proposals' audit rows follow the proposals.
---    teachers (the row behind an assignment) is NOT changed: the principal and the school admin still make it, the
---    first time a teacher is given a subject. The app (src/lib/academics/teacher-subjects.ts) says so to the
---    coordinator before it tries.
+--    teachers_office_insert names the coordinator too, and it is the only policy of teachers that changes: an
+--    assignment names the teacher's teachers row, which the app makes the first time a teacher is given a subject
+--    (or a proposal of theirs is confirmed), with the user's display name, for a teacher of the school only (the
+--    policy's own check, unchanged) and once (the unique index of C231). Without it the coordinator could not give a
+--    teacher their first subject, nor confirm a new teacher's proposal. Changing or removing a teachers row stays the
+--    principal's and the school admin's (teachers_office_update and teachers_office_delete, unchanged).
 --
 -- 2. The database keeps the assigned-teacher rule: a period (timetable_entries) of a class and subject that has
 --    assigned teachers (teacher_subjects) is taught by one of them. A class and subject with no assignment takes any
@@ -33,10 +36,14 @@
 -- Who: the supervisor's answer (C230-C), built in C243.
 -- Deploy safety: the code on main already refuses 'not_assigned' in the app before it writes a period (putEntry, the
 -- CSV import, the generator's loads and its publish, all since C231), with the same rule (active teachers'
--- assignments), so nothing main does is refused by the trigger; the policy changes only widen who may write the two
+-- assignments), so nothing main does is refused by the trigger; the policy changes only widen who may write the three
 -- tables to a role main's routes do not let in yet. No row is changed or checked by this migration.
 
 -- ---- 1. The academic coordinator assigns and decides -----------------------------------------------------------
+alter policy teachers_office_insert on teachers with check (
+  current_setting('app.current_role', true) = any (array['principal', 'school_admin', 'academic_coordinator'])
+  and exists (select 1 from users u where u.school_id = teachers.school_id and u.user_id = teachers.user_id and u.role::text = 'teacher')
+);
 alter policy teacher_subjects_office_insert on teacher_subjects with check (
   current_setting('app.current_role', true) = any (array['principal', 'school_admin', 'academic_coordinator'])
   and exists (

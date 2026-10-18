@@ -331,9 +331,14 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
               </p>
             )}
             {notAssigned && (
-              <p role="alert" data-not-assigned className="rounded-md border border-red-800/30 p-3 text-sm text-red-800">
-                {t('tt.notAssigned')}
-              </p>
+              <div role="alert" data-not-assigned className="flex flex-col items-start gap-1 rounded-md border border-red-800/30 p-3 text-sm text-red-800">
+                <p>{t('tt.notAssigned')}</p>
+                {office && (
+                  <Link href="/app/timetable/teachers" className="inline-flex min-h-[44px] items-center font-semibold text-sapphire underline">
+                    {t('ts.title')}
+                  </Link>
+                )}
+              </div>
             )}
             <div className="flex flex-wrap gap-2">
               <button type="submit" disabled={busy} className="min-h-[48px] rounded-md bg-sapphire px-6 text-sm font-semibold text-white disabled:opacity-60">

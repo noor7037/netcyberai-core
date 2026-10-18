@@ -103,9 +103,9 @@ describe('who teaches what, by role', () => {
     expect(await call(admin, assignmentsPost, AS, 'POST', { ...a, classId: C5B })).toMatchObject({ status: 201 });
     expect((await call(admin, assignmentsDelete, AS, 'DELETE', { ...a, classId: C5B })).status).toBe(200);
     expect((await call(admin, assignmentsDelete, AS, 'DELETE', { ...a, classId: C5B })).status).toBe(404);
-    // The academic coordinator (C230-C): adds and takes away; a teacher's first subject (their teachers row) is the
-    // principal's or the school admin's, and the answer says so.
-    expect(await call(coord, assignmentsPost, AS, 'POST', { ...a, teacherUserId: TEACHER_2 })).toMatchObject({ status: 409, body: { code: 'needs_office' } });
+    // The academic coordinator (C230-C): adds and takes away, a teacher's first subject too (their teachers row).
+    expect(await call(coord, assignmentsPost, AS, 'POST', { ...a, teacherUserId: TEACHER_2, classId: C5B })).toMatchObject({ status: 201, body: { created: true } });
+    expect((await call(coord, assignmentsDelete, AS, 'DELETE', { ...a, teacherUserId: TEACHER_2, classId: C5B })).status).toBe(200);
     expect(await call(coord, assignmentsPost, AS, 'POST', { ...a, classId: C5B })).toMatchObject({ status: 201, body: { created: true } });
     expect((await call(coord, assignmentsDelete, AS, 'DELETE', { ...a, classId: C5B })).status).toBe(200);
   });

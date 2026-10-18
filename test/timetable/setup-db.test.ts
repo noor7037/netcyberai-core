@@ -89,11 +89,11 @@ beforeAll(async () => {
 afterAll(async () => db?.stop());
 
 describe('C1: who teaches what, written by the office only', () => {
-  // C243 (C230-C): the academic coordinator writes teacher_subjects too (test/timetable/assigned-teacher-db.test.ts), not
-  // teachers.
-  it('a teacher, the coordinator and the accountant cannot write teachers; a teacher and the accountant cannot write teacher_subjects; the office can, and a teachers row only for a teacher, once', async () => {
+  // C243 (C230-C): the academic coordinator writes teacher_subjects too, and makes a teacher's teachers row
+  // (test/timetable/assigned-teacher-db.test.ts); changing or removing one stays the office's.
+  it('a teacher and the accountant cannot write teachers or teacher_subjects; the office can, and a teachers row only for a teacher, once', async () => {
     await clearAll();
-    for (const who of [t1, coord, accountant])
+    for (const who of [t1, accountant])
       await expect(as(who, (c) => c.query(`insert into teachers (school_id, user_id, name) values ($1, $2, 'Tara Teacher')`, [A, T1]))).rejects.toThrow(/row-level security/);
     // Never for a user who is not a teacher, whoever asks.
     for (const target of [PRINCIPAL, ACCOUNTANT])
