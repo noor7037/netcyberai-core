@@ -1,6 +1,6 @@
 # 28 — P7 plan: school operations
 
-**Status:** built in part (section 11). 10a to 10g are merged (C221 to C231, with
+**Status:** built (section 11); APAAR capture waits on the founder (C245). 10a to 10g are merged (C221 to C231, with
 the close-outs C224 to C226 and C232, merged in C230-C). The plan itself was C220.
 **Scope:** roadmap `16` §4 phase P7, together with the founder's
 differentiators (C198-B):
@@ -297,9 +297,9 @@ them, and how without breaking the audit hash chain, waits for the lawyer
 | 10e. Documents and certificates | C228; close-out C232 part A | Merged (close-out #168) |
 | 10f. Timetable generator | C229 | Merged |
 | 10g. Who teaches what | C231 | Merged (#170) |
+| 10g. Setup complete: sessions, subjects, the checklist | C244 | Built, awaiting merge (#190) |
+| 10g. The coordinator assigns; the assigned-teacher rule in the database | C243 | Built, awaiting merge (#189) |
+| APAAR capture (`17` row 22) | C245 | Stopped: no official format separates an APAAR ID from an Aadhaar number; the founder decides (three ways in C245) |
 | Payroll, Career Graph, Digital Twin, Automation OS | C230 (`29`) | Blocked: waiting for the founder |
 
-Still to build in P7: the office screens for academic sessions and subjects,
-and the onboarding checklist (the rest of the first 10g row), with the academic
-coordinator also assigning teachers and the database enforcing the
-assigned-teacher rule (both answered in C230-C); APAAR capture (`17` row 22). The Family App (P7b) is planned in `31`.
+Still to build in P7:nothing of the first 10g row. APAAR capture waits on the founder's choice (C245). Payroll, Career Graph, the Digital Twin and Automation OS wait on the founder (C230). The Family App (P7b) is planned in `31`.
