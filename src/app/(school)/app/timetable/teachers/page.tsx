@@ -20,7 +20,7 @@ export default async function TimetableTeachersPage() {
   if (!session || !ASSIGNERS.includes(session.role)) redirect('/app/timetable');
   const { lang } = getLang(session.sub);
   return (
-    <ModulePage moduleId="timetable" help="timetable" title={t(lang, 'ts.title')} purpose={t(lang, 'ts.page.purpose')} about={t(lang, 'ts.how')}>
+    <ModulePage moduleId="timetable" help="timetable" tour="timetable-teachers" title={t(lang, 'ts.title')} purpose={t(lang, 'ts.page.purpose')} about={t(lang, 'ts.how')}>
       <TeacherSubjects standalone />
     </ModulePage>
   );
