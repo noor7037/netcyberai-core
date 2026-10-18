@@ -7,6 +7,8 @@ import { controlShellGroups } from '@/components/app-shell/shell-nav';
 import { t } from '@/lib/i18n';
 import { getLang, getToursSeen } from '@/lib/i18n/server';
 import { controlNav } from '@/lib/nav/nav-items';
+import { storageHealth } from '@/lib/observability/storage-health';
+import { StorageAlert } from '@/components/app-shell/StorageAlert';
 
 // Redundant with middleware.ts's edge gate on purpose -- defense in
 // depth, same principle as RLS remaining the backstop under the app
@@ -22,7 +24,8 @@ import { controlNav } from '@/lib/nav/nav-items';
 // The Control plane uses the same app shell as the school app (C121),
 // with its own single group, its own search and no "+ New". Its bar shows
 // NetCyberAI's mark and name, and the signed-in founder's name and role
-// (C235-B); if the name cannot be read, the role alone.
+// (C235-B); if the name cannot be read, the role alone. While file storage
+// does not work, a red line on every page says which setting is wrong (C236).
 
 export default async function ControlLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession();
@@ -30,10 +33,13 @@ export default async function ControlLayout({ children }: { children: React.Reac
     redirect('/login');
   }
   const { lang, known } = getLang(session!.sub);
+  const storage = storageHealth();
   const name = await withTenantContext(session!, async (db) => ((await db.query(`select display_name from users where user_id = $1`, [session!.sub])).rows[0]?.display_name as string | undefined)?.trim() ?? '').catch(() => '');
   const role = t(lang, 'role.super_admin');
+  const storageState = await storage;
   return (
     <AppShell groups={controlShellGroups(controlNav, undefined, lang)} brand={t(lang, 'shell.brand.control')} logoSrc="/brand/logo-mark.svg" person={name ? { name, role } : null} roleLabel={role} navLabel={t(lang, 'shell.nav.control')} accountHref="/control/account" lang={lang} langKnown={known} toursSeen={getToursSeen(session!.sub)} scope="control">
+      {storageState !== 'ok' && <StorageAlert state={storageState} scope="control" lang={lang} />}
       {children}
     </AppShell>
   );

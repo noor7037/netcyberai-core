@@ -22,6 +22,18 @@ function client() {
   return newAuthAdminClient();
 }
 
+// Whether the store takes this deployment's key (C236): one listing of at most one item at the bucket's root. Throws
+// when it does not. What the store said is never passed on: an error can describe the key.
+export async function probeFileStorage(): Promise<void> {
+  let refused: boolean;
+  try {
+    refused = !!(await client().storage.from(BUCKET).list('', { limit: 1 })).error;
+  } catch {
+    refused = true;
+  }
+  if (refused) throw new FileStorageUnavailableError('the file store refused the listing');
+}
+
 export const supabaseFileStorage: DirectUploadStorage = {
   async put(key, bytes, contentType) {
     const { error } = await client().storage.from(BUCKET).upload(key, Buffer.from(bytes), { contentType, upsert: false });
