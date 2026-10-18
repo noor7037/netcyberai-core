@@ -5,7 +5,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { useFeesChanged, useFeesPart } from './FeesFirstLoad';
 import { FeeClearance } from './FeeClearance';
+import { InfoTip } from '@/components/app-ui/InfoTip';
+import { StatTile } from '@/components/app-ui/StatTile';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
@@ -193,29 +196,36 @@ export function FeesCollectView() {
   return (
     <section lang={lang} className="flex flex-col gap-6">
       {totals && (
-        <div data-fee-totals className="grid gap-3 rounded-lg border border-slate/10 bg-white p-4 text-sm text-slate sm:grid-cols-4">
-          <p>
-            <span className="block text-slate/70">{t('pay.totals.net')}</span>
-            <span className="text-lg font-bold">{`₹${minorToRupees(totals.netMinor)}`}</span>
-          </p>
-          <p>
-            <span className="block text-slate/70">{t('pay.totals.paid')}</span>
-            <span className="text-lg font-bold">{`₹${minorToRupees(totals.paidMinor)}`}</span>
-          </p>
-          <p>
-            <span className="block text-slate/70">{t('pay.totals.balance')}</span>
-            <span data-fee-balance className="text-lg font-bold">{`₹${minorToRupees(totals.balanceMinor)}`}</span>
-          </p>
-          <p>
-            <span className="block text-slate/70">{t('pay.totals.overdue')}</span>
-            <span data-fee-overdue className="text-lg font-bold">{`₹${minorToRupees(overdue?.minor ?? 0)}`}</span>
-            <span className="block text-xs text-slate/70">{t('pay.totals.overdueCount', { count: overdue?.count ?? 0 })}</span>
-          </p>
-          <p data-fee-nightly className="text-xs text-slate/70 sm:col-span-4">
-            {lastRun ? t(lastRun.problems === 0 ? 'pay.nightly' : 'pay.nightly.problem', { date: lastRun.runDate, count: lastRun.markedOverdue, late: lastRun.lateFeesRaised }) : t('pay.nightly.none')}
-          </p>
+        <div data-fee-totals className="flex flex-col gap-3">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <StatTile icon="fees" tone="royal" label={t('pay.totals.net')} value={`₹${minorToRupees(totals.netMinor)}`} />
+            <StatTile icon="check" tone="emerald" label={t('pay.totals.paid')} value={`₹${minorToRupees(totals.paidMinor)}`} />
+            <StatTile icon="chart" tone="amber" label={t('pay.totals.balance')} value={`₹${minorToRupees(totals.balanceMinor)}`} valueAttrs={{ 'data-fee-balance': '' }} />
+            <StatTile
+              icon="alert"
+              tone="coral"
+              label={t('pay.totals.overdue')}
+              value={`₹${minorToRupees(overdue?.minor ?? 0)}`}
+              valueAttrs={{ 'data-fee-overdue': '' }}
+              note={
+                <span className="flex flex-wrap items-center gap-x-1">
+                  {t('pay.totals.overdueCount', { count: overdue?.count ?? 0 })}
+                  {(!lastRun || lastRun.problems === 0) && (
+                    <InfoTip>
+                      <p data-fee-nightly>{lastRun ? t('pay.nightly', { date: lastRun.runDate, count: lastRun.markedOverdue, late: lastRun.lateFeesRaised }) : t('pay.nightly.none')}</p>
+                    </InfoTip>
+                  )}
+                </span>
+              }
+            />
+          </div>
+          {lastRun && lastRun.problems > 0 && (
+            <p data-fee-nightly className="text-sm font-semibold text-red-800">
+              {t('pay.nightly.problem', { date: lastRun.runDate, count: lastRun.markedOverdue, late: lastRun.lateFeesRaised })}
+            </p>
+          )}
           {totals.problems.length > 0 && (
-            <p role="alert" className="font-semibold text-red-800 sm:col-span-4">
+            <p role="alert" className="text-sm font-semibold text-red-800">
               {t('pay.totals.problem', { count: totals.problems.length })}
             </p>
           )}
@@ -243,18 +253,16 @@ export function FeesCollectView() {
           </Select>
         </div>
         {studentId && inFamily && (
-          <label className="flex min-h-[44px] cursor-pointer items-center gap-2 text-sm text-slate">
-            <input type="checkbox" data-family-scope className="h-5 w-5" checked={scope === 'family'} onChange={(e) => setScope(e.target.checked ? 'family' : 'student')} />
-            {t('pay.family')}
-          </label>
+          <Checkbox id="pay-family-scope" data-family-scope label={t('pay.family')} checked={scope === 'family'} onChange={(e) => setScope(e.target.checked ? 'family' : 'student')} />
         )}
 
         {studentId && <FeeClearance studentId={studentId} refreshKey={dues} />}
 
         {dues !== null && dues.length === 0 && (
-          <p role="status" data-nothing-owed className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">
+          <div role="status" data-nothing-owed className="flex flex-wrap items-center gap-x-1 rounded-md bg-off-white px-3 py-1 text-sm text-slate">
             {t('pay.nothingOwed')}
-          </p>
+            <InfoTip tone="white">{t('pay.nothingOwed.hint')}</InfoTip>
+          </div>
         )}
         {dues !== null && dues.length > 0 && (
           <>
@@ -292,11 +300,13 @@ export function FeesCollectView() {
               {t('pay.owed', { amount: minorToRupees(owed) })}
             </p>
             <div data-pay-link className="flex flex-col gap-2 rounded-md border border-slate/10 px-3 py-2 text-sm text-slate">
-              <p className="font-semibold">{t('link.title')}</p>
+              <div className="flex flex-wrap items-center gap-x-1">
+                <p className="font-semibold">{t('link.title')}</p>
+                {online && !link && <InfoTip tone="white">{t('link.how')}</InfoTip>}
+              </div>
               {!online && <p className="text-slate/70">{t('link.notOn')}</p>}
               {online && !link && (
                 <>
-                  <p className="text-slate/70">{t('link.how')}</p>
                   <button type="button" data-make-link disabled={busy} className={`${TAP} self-start`} onClick={() => void makeLink()}>
                     {t('link.make', { amount: minorToRupees(familyOwed ?? owed) })}
                   </button>
@@ -317,10 +327,7 @@ export function FeesCollectView() {
                 </>
               )}
             </div>
-            <label className="flex min-h-[44px] cursor-pointer items-center gap-2 text-sm text-slate">
-              <input type="checkbox" data-choose className="h-5 w-5" checked={choose} onChange={(e) => setChoose(e.target.checked)} />
-              {t('pay.pick')}
-            </label>
+            <Checkbox id="pay-choose" data-choose label={t('pay.pick')} checked={choose} onChange={(e) => setChoose(e.target.checked)} />
             <div className="grid gap-3 sm:grid-cols-3">
               {choose ? (
                 <p className="self-end text-sm font-semibold text-slate">{t('pay.pick.total', { amount: minorToRupees(pickedTotal) })}</p>

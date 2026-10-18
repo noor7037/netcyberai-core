@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { BOX, coversReleasedIn, LeaveGuideLink, LeaveKindSelect, LeaveNoteLine, LeaveSummary, myLeaveHow, PRIMARY, TAP, useLeaveWords, type LeaveNote } from '@/components/staff/leave-parts';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Input } from '@/components/ui/Input';
 import { addDays, LEAVE_AHEAD_DAYS, LEAVE_BACK_DAYS, LEAVE_TEXT_MAX, type LeaveRow } from '@/lib/staff/leave-rules';
 
@@ -69,9 +70,12 @@ export function MyLeavePanel() {
   return (
     <section lang={lang} data-my-leave className={`${BOX} w-full max-w-2xl text-sm text-slate`}>
       <div className="flex flex-wrap items-start justify-between gap-2">
-        <div className="min-w-0">
+        <div className="flex min-w-0 flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('leave.my.title')}</h2>
-          <p data-my-leave-how={data.alone ? 'alone' : 'decided'} className="text-slate/70">{t(myLeaveHow(data))}</p>
+          <InfoTip>
+            <p data-my-leave-how={data.alone ? 'alone' : 'decided'}>{t(myLeaveHow(data))}</p>
+            <p>{t('leave.reasonHelp', { max: LEAVE_TEXT_MAX })}</p>
+          </InfoTip>
         </div>
         <LeaveGuideLink />
       </div>
@@ -82,7 +86,7 @@ export function MyLeavePanel() {
         <Input id="my-leave-to" type="date" label={t('leave.to')} min={form.fromDate || earliest} value={form.toDate} onChange={(e) => setForm({ ...form, toDate: e.target.value })} />
         <LeaveKindSelect id="my-leave-kind" value={form.kind} onChange={(kind) => setForm({ ...form, kind })} />
       </div>
-      <Input id="my-leave-reason" label={t('leave.reason')} helperText={t('leave.reasonHelp', { max: LEAVE_TEXT_MAX })} maxLength={LEAVE_TEXT_MAX} value={form.reason} onChange={(e) => setForm({ ...form, reason: e.target.value })} />
+      <Input id="my-leave-reason" label={t('leave.reason')} maxLength={LEAVE_TEXT_MAX} value={form.reason} onChange={(e) => setForm({ ...form, reason: e.target.value })} />
       {data.mayRecordOwn && (
         <p data-my-leave-self-why className="rounded-md bg-off-white px-3 py-2 font-semibold">
           {t('leave.my.selfWhy')}

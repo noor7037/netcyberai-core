@@ -13,7 +13,7 @@ export default async function EarlyWarningPage() {
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
   return (
-    <ModulePage moduleId="early-warning" help="early-warning-flags" tour="early-warning" title={t(lang, 'ew.page.title')} purpose={t(lang, 'ew.page.purpose')}>
+    <ModulePage moduleId="early-warning" help="early-warning-flags" tour="early-warning" title={t(lang, 'ew.page.title')} purpose={t(lang, 'ew.page.purpose')} about={t(lang, 'ew.page.about')}>
       <EarlyWarningView />
     </ModulePage>
   );

@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Input } from '@/components/ui/Input';
+import { Textarea } from '@/components/ui/Textarea';
 import type { DisclosureItem } from '@/lib/compliance/disclosure';
-import { CARD, dayFormat, FIELD, PRIMARY, refusal, send, TAP, type Say } from './desk-client';
+import { CARD, dayFormat, PRIMARY, refusal, send, TAP, type Say } from './desk-client';
 
 // The mandatory public disclosure data of the compliance desk (C227): each item as the school's board names it, what
 // the school discloses, and where it comes from. Every change is kept as a new version, with who and when; the earlier
@@ -42,9 +44,9 @@ export function DisclosurePanel({ items, reload, say }: { items: DisclosureItem[
 
   return (
     <section data-cdk-disclosure className={CARD}>
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-base font-bold">{t('cdk.dis.title')}</h2>
-        <p className="text-slate/70">{t('cdk.dis.how')}</p>
+        <InfoTip>{t('cdk.dis.how')}</InfoTip>
       </div>
       <div className="flex flex-wrap gap-2">
         <a href="/app/compliance/desk/disclosure" data-cdk-print className={TAP}>{t('cdk.dis.print')}</a>
@@ -91,13 +93,16 @@ export function DisclosurePanel({ items, reload, say }: { items: DisclosureItem[
         </ol>
       )}
       <div data-cdk-dis-form className="flex flex-col gap-3 rounded-md bg-off-white p-3">
-        <p className="font-semibold">{t(form.itemId ? 'cdk.dis.changeTitle' : 'cdk.dis.addTitle')}</p>
-        <Input id="cdk-dis-heading" label={t('cdk.dis.heading')} helperText={t('cdk.dis.headingHelp')} maxLength={160} value={form.heading} onChange={(e) => setForm({ ...form, heading: e.target.value })} />
-        <div className="flex flex-col gap-1">
-          <label htmlFor="cdk-dis-value" className="text-sm font-medium">{t('cdk.dis.value')}</label>
-          <textarea id="cdk-dis-value" rows={3} maxLength={2000} className={`${FIELD} py-2`} value={form.value} onChange={(e) => setForm({ ...form, value: e.target.value })} />
+        <div className="flex flex-wrap items-center gap-x-1">
+          <p className="font-semibold">{t(form.itemId ? 'cdk.dis.changeTitle' : 'cdk.dis.addTitle')}</p>
+          <InfoTip tone="white">
+            <p>{t('cdk.dis.headingHelp')}</p>
+            <p>{t('cdk.dis.sourceHelp')}</p>
+          </InfoTip>
         </div>
-        <Input id="cdk-dis-source" label={t('cdk.dis.source')} helperText={t('cdk.dis.sourceHelp')} maxLength={300} value={form.source} onChange={(e) => setForm({ ...form, source: e.target.value })} />
+        <Input id="cdk-dis-heading" label={t('cdk.dis.heading')} maxLength={160} value={form.heading} onChange={(e) => setForm({ ...form, heading: e.target.value })} />
+        <Textarea id="cdk-dis-value" label={t('cdk.dis.value')} rows={3} maxLength={2000} value={form.value} onChange={(e) => setForm({ ...form, value: e.target.value })} />
+        <Input id="cdk-dis-source" label={t('cdk.dis.source')} maxLength={300} value={form.source} onChange={(e) => setForm({ ...form, source: e.target.value })} />
         <div className="flex flex-wrap gap-2">
           <button type="button" data-cdk-dis-save disabled={busy || !form.heading.trim() || !form.value.trim() || !form.source.trim()} className={PRIMARY} onClick={() => void save()}>
             {t(form.itemId ? 'cdk.dis.saveChange' : 'cdk.dis.add')}

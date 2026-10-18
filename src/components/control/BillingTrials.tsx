@@ -1,6 +1,7 @@
 'use client';
 
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import type { BillingOverview } from '@/lib/control/billing';
 import type { Trial } from '@/lib/control/trial';
@@ -30,9 +31,9 @@ export function BillingTrials({ data }: { data: BillingOverview }) {
   const day = (isoDate: string) => new Intl.DateTimeFormat(locale, { timeZone: 'UTC', day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(`${isoDate}T00:00:00Z`));
   return (
     <section data-billing-trials className="flex flex-col gap-3 rounded-xl border border-slate/10 bg-white p-4">
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-lg font-bold">{t('billing.trials.title')}</h2>
-        <p className="max-w-prose text-slate/70">{t('billing.trials.how')}</p>
+        <InfoTip>{t('billing.trials.how')}</InfoTip>
       </div>
       {data.trials.length === 0 && <p className="rounded-md bg-off-white px-3 py-2">{t('billing.trials.none')}</p>}
       <ul className="flex flex-col gap-2">

@@ -3,6 +3,8 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { Select } from '@/components/ui/Select';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
+import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
 import { useT } from '@/components/app-shell/LangContext';
 import { explainError } from '@/lib/errors/catalogue';
@@ -158,26 +160,25 @@ export function DocumentCapture({ studentId, guardians }: { studentId: string; g
                       <span className="text-sm font-semibold text-slate">{ex.field_name.replace('_', ' ')}</span>
                       {low && <Badge variant="warning">Low confidence — check this</Badge>}
                     </div>
-                    <label className="flex items-center gap-2 text-sm text-slate">
-                      <input
-                        type="checkbox"
-                        checked={decision?.accepted ?? true}
-                        onChange={(e) =>
-                          setDecisions((prev) => ({ ...prev, [ex.extraction_id]: { ...prev[ex.extraction_id], accepted: e.target.checked } }))
-                        }
-                      />
-                      Accept &quot;{ex.extracted_value}&quot;
-                    </label>
+                    <Checkbox
+                      id={`accept-${ex.extraction_id}`}
+                      label={<>Accept &quot;{ex.extracted_value}&quot;</>}
+                      checked={decision?.accepted ?? true}
+                      onChange={(e) =>
+                        setDecisions((prev) => ({ ...prev, [ex.extraction_id]: { ...prev[ex.extraction_id], accepted: e.target.checked } }))
+                      }
+                    />
                     {!decision?.accepted && (
-                      <input
-                        type="text"
-                        value={decision?.correctedValue ?? ''}
-                        onChange={(e) =>
-                          setDecisions((prev) => ({ ...prev, [ex.extraction_id]: { ...prev[ex.extraction_id], correctedValue: e.target.value } }))
-                        }
-                        placeholder="Correct value"
-                        className="mt-2 min-h-[44px] w-full rounded-md border border-slate/20 px-3 text-sm"
-                      />
+                      <div className="mt-2">
+                        <Input
+                          id={`correct-${ex.extraction_id}`}
+                          label="Correct value"
+                          value={decision?.correctedValue ?? ''}
+                          onChange={(e) =>
+                            setDecisions((prev) => ({ ...prev, [ex.extraction_id]: { ...prev[ex.extraction_id], correctedValue: e.target.value } }))
+                          }
+                        />
+                      </div>
                     )}
                   </li>
                 );

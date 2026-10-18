@@ -32,13 +32,13 @@ export default async function SchoolsPage() {
     : [];
 
   return (
-    <ModulePage title="Schools" purpose="Every school on NetCyberAI. Open one to see its onboarding, modules and access." icon="school" tone="sapphire" eyebrow="Control">
+    <ModulePage title="Schools" purpose="Every school. Open one for its onboarding, modules and access." icon="school" tone="sapphire" eyebrow="Control">
       <Table<SchoolRow>
         columns={columns}
         rows={rows}
         getRowId={(s) => s.id}
         emptyTitle="No schools onboarded yet"
-        emptyDescription="Schools created through the onboarding pipeline will appear here."
+        emptyDescription="Schools created in onboarding appear here."
         emptyAction={
           <Button href="/control/onboarding" variant="outline">
             Start onboarding a school

@@ -8,7 +8,7 @@ import { ModulePage } from '@/components/app-ui/ModulePage';
 export default async function UsersPage() {
   const session = await getServerSession();
   return (
-    <ModulePage title="Users" purpose="Every account on the platform: send a reset code, or help someone who cannot receive email." icon="users" tone="azure" eyebrow="Control">
+    <ModulePage title="Users" purpose="Every account: send a reset code or help someone sign in." icon="users" tone="azure" eyebrow="Control">
       <SignInSetupPanel />
       <StaffAccounts endpoint="/api/control/users" showSchools founderTools currentUserId={session?.sub} />
     </ModulePage>

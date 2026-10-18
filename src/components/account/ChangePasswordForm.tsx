@@ -78,7 +78,7 @@ export function ChangePasswordForm() {
           label="New password"
           type="password"
           autoComplete="new-password"
-          helperText="8 to 72 characters. A short sentence is easy to remember and hard to guess."
+          helperText="8 to 72 characters."
           value={next}
           onChange={(e) => setNext(e.target.value)}
           required

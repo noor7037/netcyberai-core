@@ -19,7 +19,7 @@ export default async function BillingPlansPage() {
   // The layout has already refused anyone but the founder; this runs as nca_super.
   const data = session ? await withTenantContext(session, (db) => billingOverview(db)) : null;
   return (
-    <ModulePage title={t(lang, 'billing.title')} purpose={t(lang, 'billing.purpose')} icon="fees" tone="tangerine" eyebrow={t(lang, 'group.control')} headerLang={lang}>
+    <ModulePage title={t(lang, 'billing.title')} purpose={t(lang, 'billing.purpose')} about={t(lang, 'billing.about')} icon="fees" tone="tangerine" eyebrow={t(lang, 'group.control')} headerLang={lang}>
       {data && <BillingPlansView initial={data} />}
     </ModulePage>
   );

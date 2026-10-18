@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataList, type DataColumn } from '@/components/app-ui/DataList';
+import { Select } from '@/components/ui/Select';
 import { StatusPill } from '@/components/app-ui/StatusPill';
 import { TICKET_CATEGORY_LABEL, TICKET_STATUSES, TICKET_STATUS_LABEL, type TicketStatus, type TicketSummary } from '@/lib/contracts/tickets';
-import { FIELD, PRIMARY, TICKET_STATUS_TONE, when } from './ticket-ui';
+import { PRIMARY, TICKET_STATUS_TONE, when } from './ticket-ui';
 import type { TicketRoutes, TicketsApi } from './tickets-api';
 
 // The tickets this person can see (C126): for a school, its own (the office
@@ -66,21 +67,19 @@ export function TicketList({ api, routes, initial, raiseInHeader = false }: { ap
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-wrap items-end gap-3">
-        <label className="text-sm font-semibold text-slate">
-          Status
-          <select value={status} onChange={(e) => setStatus(e.target.value as TicketStatus | '')} className={`${FIELD} min-w-[11rem]`}>
+        <div className="min-w-[11rem]">
+          <Select id="ticket-status" label="Status" value={status} onChange={(e) => setStatus(e.target.value as TicketStatus | '')}>
             <option value="">All statuses</option>
             {TICKET_STATUSES.map((s) => (
               <option key={s} value={s}>
                 {TICKET_STATUS_LABEL[s]}
               </option>
             ))}
-          </select>
-        </label>
+          </Select>
+        </div>
         {platform && (
-          <label className="text-sm font-semibold text-slate">
-            School
-            <select value={schoolId} onChange={(e) => setSchoolId(e.target.value)} className={`${FIELD} min-w-[11rem]`}>
+          <div className="min-w-[11rem]">
+            <Select id="ticket-school" label="School" value={schoolId} onChange={(e) => setSchoolId(e.target.value)}>
               <option value="">All schools</option>
               {Object.entries(schools)
                 .sort((a, b) => a[1].localeCompare(b[1]))
@@ -89,8 +88,8 @@ export function TicketList({ api, routes, initial, raiseInHeader = false }: { ap
                     {name}
                   </option>
                 ))}
-            </select>
-          </label>
+            </Select>
+          </div>
         )}
         {raise && !raiseInHeader && <div className="ml-auto">{raise}</div>}
       </div>
@@ -104,10 +103,10 @@ export function TicketList({ api, routes, initial, raiseInHeader = false }: { ap
         onRetry={load}
         empty={
           filtered
-            ? { title: 'No tickets match', whatToDo: 'Change the status or school above to see more.' }
+            ? { title: 'No tickets match', whatToDo: 'Change the filters above.' }
             : platform
-              ? { title: 'No tickets yet', whatToDo: 'When a school raises a ticket it appears here, and you get an email.' }
-              : { title: 'No tickets yet', whatToDo: 'If something is not working or you need help, raise a ticket and NetCyberAI will answer here.', action: raise }
+              ? { title: 'No tickets yet', whatToDo: 'A school’s ticket appears here, and you get an email.' }
+              : { title: 'No tickets yet', whatToDo: 'If you need help, raise a ticket and NetCyberAI will answer here.', action: raise }
         }
       />
     </div>

@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/Badge';
+import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
+import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import type { FamilyView } from '@/lib/contracts/families';
 import type { StudentSearchResult } from '@/lib/contracts/student-search';
@@ -210,17 +212,9 @@ function LinkSiblingModal({ open, studentId, onClose, onLinked }: { open: boolea
 
   return (
     <Modal open={open} onClose={onClose} title="Link a sibling">
-      <label htmlFor="sibling-search" className="mb-1 block text-sm font-semibold text-slate">
-        Find the brother or sister
-      </label>
-      <input
-        id="sibling-search"
-        value={q}
-        onChange={(e) => setQ(e.target.value)}
-        placeholder="Name, admission no. or guardian phone"
-        className="mb-3 min-h-[44px] w-full rounded-md border border-slate/20 px-3 text-sm"
-        autoComplete="off"
-      />
+      <div className="mb-3">
+        <Input id="sibling-search" label="Find the brother or sister" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Name, admission no. or guardian phone" autoComplete="off" />
+      </div>
       <ul className="flex flex-col gap-2">
         {results.map((r) => (
           <li key={r.studentId} className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-slate/10 p-3 text-sm">
@@ -284,10 +278,7 @@ function MergeGuardiansModal({
 
   const select = (id: string, label: string, value: string, set: (v: string) => void) => (
     <div className="mb-3">
-      <label htmlFor={id} className="mb-1 block text-sm font-semibold text-slate">
-        {label}
-      </label>
-      <select id={id} value={value} onChange={(e) => set(e.target.value)} className="min-h-[44px] w-full rounded-md border border-slate/20 px-3 text-sm">
+      <Select id={id} label={label} value={value} onChange={(e) => set(e.target.value)}>
         <option value="">Choose…</option>
         {guardians.map((g) => (
           <option key={g.parentId} value={g.parentId}>
@@ -296,7 +287,7 @@ function MergeGuardiansModal({
             {g.phoneLast4 ? ` · ends ${g.phoneLast4}` : ''}
           </option>
         ))}
-      </select>
+      </Select>
     </div>
   );
 

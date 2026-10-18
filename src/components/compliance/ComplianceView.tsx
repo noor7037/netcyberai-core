@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
+import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
 
 interface Advisory {
@@ -150,26 +152,29 @@ export function ComplianceView({ canManage }: { canManage: boolean }) {
         ) : (
           <ul className="flex flex-col gap-2 text-sm">
             {policies.map((p) => (
-              <li key={p.policy_id} className="flex items-center justify-between rounded-md border border-slate/10 p-3">
-                <div>
-                  <p className="font-medium text-slate">{CATEGORY_LABELS[p.category] ?? p.category}</p>
-                  {p.notes && <p className="text-xs text-slate/70">{p.notes}</p>}
-                </div>
+              <li key={p.policy_id} className="flex flex-wrap items-center gap-x-1 gap-y-2 rounded-md border border-slate/10 p-3">
                 {canManage ? (
-                  <input
-                    type="number"
-                    min={1}
-                    defaultValue={p.retention_years ?? ''}
-                    placeholder="Indefinite"
-                    className="w-24 rounded-md border border-slate/20 px-2 py-1 text-right text-sm"
-                    onBlur={(e) => {
-                      const val = e.currentTarget.value.trim();
-                      updateRetention(p.category, val === '' ? null : Number(val));
-                    }}
-                  />
+                  <div className="w-full max-w-xs">
+                    <Input
+                      id={`retention-${p.category}`}
+                      type="number"
+                      min={1}
+                      label={CATEGORY_LABELS[p.category] ?? p.category}
+                      defaultValue={p.retention_years ?? ''}
+                      placeholder="Indefinite"
+                      onBlur={(e) => {
+                        const val = e.currentTarget.value.trim();
+                        updateRetention(p.category, val === '' ? null : Number(val));
+                      }}
+                    />
+                  </div>
                 ) : (
-                  <span className="text-slate">{p.retention_years == null ? 'Indefinite' : `${p.retention_years}y`}</span>
+                  <>
+                    <p className="font-medium text-slate">{CATEGORY_LABELS[p.category] ?? p.category}</p>
+                    <span className="ml-auto text-slate">{p.retention_years == null ? 'Indefinite' : `${p.retention_years}y`}</span>
+                  </>
                 )}
+                {p.notes && <InfoTip label={CATEGORY_LABELS[p.category] ?? p.category}>{p.notes}</InfoTip>}
               </li>
             ))}
           </ul>

@@ -2,8 +2,11 @@
 
 import { useCallback, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
+import { Radio } from '@/components/ui/Radio';
 import type { BillingOverview } from '@/lib/control/billing';
 import { proposeYearMinor } from '@/lib/control/billing-amount';
 import type { ModuleId } from '@/lib/contracts/modules';
@@ -44,7 +47,6 @@ const ERRORS = [
 ];
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
-const CHOICE = 'flex min-h-[44px] items-center gap-2 text-sm text-slate';
 const rupees = (paise: number) => `₹${(paise / 100).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 const limitId = (moduleId: string, key: string) => `${moduleId}.${key}`;
 // The typed name in lower case with dashes: a suggestion for the short id, which the person can change before saving.
@@ -138,9 +140,9 @@ export function BillingPlansView({ initial }: { initial: BillingOverview }) {
       )}
 
       <section data-billing-plans className="flex flex-col gap-3 rounded-xl border border-slate/10 bg-white p-4">
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-lg font-bold">{t('billing.plans.title')}</h2>
-          <p className="max-w-prose text-slate/70">{t('billing.plans.how')}</p>
+          <InfoTip>{t('billing.plans.how')}</InfoTip>
         </div>
         {data.plans.length === 0 && <p className="rounded-md bg-off-white px-3 py-2">{t('billing.plans.none')}</p>}
         <ul className="flex flex-col gap-3">
@@ -157,7 +159,14 @@ export function BillingPlansView({ initial }: { initial: BillingOverview }) {
                 {p.priceMonthMinor === null || p.priceYearMinor === null ? t('billing.price.none') : t('billing.pricing.perStudent', { month: rupees(p.priceMonthMinor), year: rupees(p.priceYearMinor) })}
               </p>
               <p>{tCount('billing.plan.grace', p.graceDays)}</p>
-              <p className="break-words">{p.allWorkingModules ? tCount('billing.plan.modules.all', p.moduleIds.length) : t('billing.plan.modules.chosen', { modules: p.moduleIds.map(moduleLabel).join(', ') })}</p>
+              {p.allWorkingModules ? (
+                <p>{tCount('billing.plan.modules.all', p.moduleIds.length)}</p>
+              ) : (
+                <details className="break-words">
+                  <summary className="flex min-h-[44px] cursor-pointer items-center font-semibold text-sapphire">{t('billing.plan.modules.summary', { count: p.moduleIds.length })}</summary>
+                  <p>{t('billing.plan.modules.chosen', { modules: p.moduleIds.map(moduleLabel).join(', ') })}</p>
+                </details>
+              )}
               {p.waitingModuleIds.length > 0 && <p className="break-words text-slate/70">{t('billing.pricing.waiting', { modules: p.waitingModuleIds.map(moduleLabel).join(', ') })}</p>}
               {p.features.length > 0 && <p data-billing-features>{t('billing.pricing.featuresLine', { features: p.features.map((f) => t(`billing.feature.${f}` as MessageKey)).join('; ') })}</p>}
               <p data-billing-messages>{p.messagesPerStudentMonth === null ? t('billing.pricing.messagesNone') : t('billing.pricing.messages', { count: p.messagesPerStudentMonth.toLocaleString('en-IN') })}</p>
@@ -201,15 +210,26 @@ export function BillingPlansView({ initial }: { initial: BillingOverview }) {
               void save(draft);
             }}
           >
-            <h3 className="text-base font-bold">{draft.editing ? t('billing.form.editTitle', { name: draft.name }) : t('billing.form.newTitle')}</h3>
+            <div className="flex flex-wrap items-center gap-x-1">
+              <h3 className="text-base font-bold">{draft.editing ? t('billing.form.editTitle', { name: draft.name }) : t('billing.form.newTitle')}</h3>
+              <InfoTip tone="white">
+                {!draft.editing && <p>{t('billing.form.idHelp')}</p>}
+                <p>{t('billing.pricing.priceHelp')}</p>
+                <p>{t('billing.pricing.yearProposed')}</p>
+                <p>{t('billing.form.graceHelp', { max: data.maxGraceDays })}</p>
+                <p>{t('billing.pricing.messagesHelp')}</p>
+                <p>{t('billing.form.modulesHelp')}</p>
+                <p>{t('billing.pricing.featuresHelp')}</p>
+                <p>{t('billing.form.limitHelp')}</p>
+              </InfoTip>
+            </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <Input id="plan-name" label={t('billing.form.name')} maxLength={60} required value={draft.name} onChange={(e) => setDraft({ ...draft, name: e.target.value, planId: draft.idTyped ? draft.planId : suggestId(e.target.value) })} />
-              {!draft.editing && <Input id="plan-id" label={t('billing.form.id')} helperText={t('billing.form.idHelp')} maxLength={40} required value={draft.planId} onChange={(e) => setDraft({ ...draft, planId: e.target.value, idTyped: true })} />}
+              {!draft.editing && <Input id="plan-id" label={t('billing.form.id')} maxLength={40} required value={draft.planId} onChange={(e) => setDraft({ ...draft, planId: e.target.value, idTyped: true })} />}
               <Input
                 id="plan-price-month"
                 inputMode="decimal"
                 label={t('billing.pricing.monthLabel')}
-                helperText={t('billing.pricing.priceHelp')}
                 value={draft.priceMonth}
                 onChange={(e) => setDraft({ ...draft, priceMonth: e.target.value, priceYear: draft.yearTyped ? draft.priceYear : proposedYear(e.target.value) })}
               />
@@ -217,46 +237,45 @@ export function BillingPlansView({ initial }: { initial: BillingOverview }) {
                 id="plan-price-year"
                 inputMode="decimal"
                 label={t('billing.pricing.yearLabel')}
-                helperText={t('billing.pricing.yearProposed')}
                 value={draft.priceYear}
                 onChange={(e) => setDraft({ ...draft, priceYear: e.target.value, yearTyped: e.target.value.trim() !== '' })}
               />
-              <Input id="plan-grace" inputMode="numeric" label={t('billing.form.grace')} helperText={t('billing.form.graceHelp', { max: data.maxGraceDays })} required value={draft.graceDays} onChange={(e) => setDraft({ ...draft, graceDays: e.target.value })} />
-              <Input id="plan-messages" inputMode="numeric" label={t('billing.pricing.messagesLabel')} helperText={t('billing.pricing.messagesHelp')} value={draft.messages} onChange={(e) => setDraft({ ...draft, messages: e.target.value })} />
+              <Input id="plan-grace" inputMode="numeric" label={t('billing.form.grace')} required value={draft.graceDays} onChange={(e) => setDraft({ ...draft, graceDays: e.target.value })} />
+              <Input id="plan-messages" inputMode="numeric" label={t('billing.pricing.messagesLabel')} value={draft.messages} onChange={(e) => setDraft({ ...draft, messages: e.target.value })} />
             </div>
 
             <fieldset className="flex flex-col gap-1">
               <legend className="text-sm font-medium text-slate">{t('billing.form.modules')}</legend>
-              <label className={CHOICE}>
-                <input type="radio" name="plan-modules" checked={draft.allWorking} onChange={() => setDraft({ ...draft, allWorking: true })} />
-                {tCount('billing.form.modulesAll', data.workingModules.length)}
-              </label>
-              <label className={CHOICE}>
-                <input type="radio" name="plan-modules" data-billing-modules-chosen checked={!draft.allWorking} onChange={() => setDraft({ ...draft, allWorking: false })} />
-                {t('billing.form.modulesChosen')}
-              </label>
+              <Radio id="plan-modules-all" name="plan-modules" label={tCount('billing.form.modulesAll', data.workingModules.length)} checked={draft.allWorking} onChange={() => setDraft({ ...draft, allWorking: true })} />
+              <Radio id="plan-modules-chosen" name="plan-modules" data-billing-modules-chosen label={t('billing.form.modulesChosen')} checked={!draft.allWorking} onChange={() => setDraft({ ...draft, allWorking: false })} />
               {!draft.allWorking && (
                 <div className="grid gap-x-4 sm:grid-cols-2 lg:grid-cols-3">
                   {data.allModules.map((m) => (
-                    <label key={m} className={CHOICE}>
-                      <input type="checkbox" data-billing-module={m} checked={draft.moduleIds.includes(m)} onChange={(e) => setDraft({ ...draft, moduleIds: e.target.checked ? [...draft.moduleIds, m] : draft.moduleIds.filter((x) => x !== m) })} />
-                      {data.workingModules.includes(m) ? moduleLabel(m) : t('billing.pricing.notBuilt', { module: moduleLabel(m) })}
-                    </label>
+                    <Checkbox
+                      key={m}
+                      id={`plan-module-${m}`}
+                      data-billing-module={m}
+                      label={data.workingModules.includes(m) ? moduleLabel(m) : t('billing.pricing.notBuilt', { module: moduleLabel(m) })}
+                      checked={draft.moduleIds.includes(m)}
+                      onChange={(e) => setDraft({ ...draft, moduleIds: e.target.checked ? [...draft.moduleIds, m] : draft.moduleIds.filter((x) => x !== m) })}
+                    />
                   ))}
                 </div>
               )}
-              <p className="max-w-prose text-slate/70">{t('billing.form.modulesHelp')}</p>
             </fieldset>
 
             <fieldset className="flex flex-col gap-1">
               <legend className="text-sm font-medium text-slate">{t('billing.pricing.features')}</legend>
               {data.features.map((f) => (
-                <label key={f} className={CHOICE}>
-                  <input type="checkbox" data-billing-feature={f} checked={draft.features.includes(f)} onChange={(e) => setDraft({ ...draft, features: e.target.checked ? [...draft.features, f] : draft.features.filter((x) => x !== f) })} />
-                  {t(`billing.feature.${f}` as MessageKey)}
-                </label>
+                <Checkbox
+                  key={f}
+                  id={`plan-feature-${f}`}
+                  data-billing-feature={f}
+                  label={t(`billing.feature.${f}` as MessageKey)}
+                  checked={draft.features.includes(f)}
+                  onChange={(e) => setDraft({ ...draft, features: e.target.checked ? [...draft.features, f] : draft.features.filter((x) => x !== f) })}
+                />
               ))}
-              <p className="max-w-prose text-slate/70">{t('billing.pricing.featuresHelp')}</p>
             </fieldset>
 
             {data.limitChoices.filter((c) => given(draft).includes(c.moduleId)).length > 0 && (
@@ -269,7 +288,6 @@ export function BillingPlansView({ initial }: { initial: BillingOverview }) {
                       id={`plan-limit-${c.moduleId}-${c.key}`}
                       inputMode="numeric"
                       label={t(`billing.limit.${c.moduleId}.${c.key}` as MessageKey)}
-                      helperText={t('billing.form.limitHelp')}
                       value={draft.limits[limitId(c.moduleId, c.key)] ?? ''}
                       onChange={(e) => setDraft({ ...draft, limits: { ...draft.limits, [limitId(c.moduleId, c.key)]: e.target.value } })}
                     />

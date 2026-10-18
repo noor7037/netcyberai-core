@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { Select } from '@/components/ui/Select';
 import type { MessageKey } from '@/lib/i18n';
 import type { DataCheckList } from '@/lib/students/data-check';
 import { DataCheckChild, type Post } from './DataCheckChild';
@@ -13,7 +14,6 @@ import { DataCheckChild, type Post } from './DataCheckChild';
 
 type Show = 'attention' | 'untyped' | 'all';
 const PAGE = 25;
-const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const KNOWN = ['aadhaar_number', 'name', 'dob', 'gender', 'empty', 'not_typed', 'fields', 'nothing_to_ask', 'already_open', 'guardian', 'decided', 'noted_already'];
 
@@ -66,23 +66,17 @@ export function DataCheckView() {
       <p data-dc-never className="rounded-md border border-slate/10 bg-white px-3 py-2 font-semibold">{t('sdc.never')}</p>
       {!data.office && <p data-dc-teacher className="rounded-md bg-off-white px-3 py-2">{t('sdc.teacherView')}</p>}
       <div className="grid gap-3 sm:grid-cols-2">
-        <div className="flex flex-col gap-1">
-          <label htmlFor="dc-class" className="font-semibold">{t('sdc.filter.class')}</label>
-          <select id="dc-class" className={FIELD} value={classId} onChange={(e) => { setClassId(e.target.value); setShown(PAGE); }}>
-            <option value="">{t('sdc.filter.allClasses')}</option>
-            {data.classes.map((c) => (
-              <option key={c.class_id} value={c.class_id}>{c.name}</option>
-            ))}
-          </select>
-        </div>
-        <div className="flex flex-col gap-1">
-          <label htmlFor="dc-show" className="font-semibold">{t('sdc.filter.show')}</label>
-          <select id="dc-show" className={FIELD} value={show} onChange={(e) => { setShow(e.target.value as Show); setShown(PAGE); }}>
-            <option value="attention">{t('sdc.show.attention')}</option>
-            <option value="untyped">{t('sdc.show.untyped')}</option>
-            <option value="all">{t('sdc.show.all')}</option>
-          </select>
-        </div>
+        <Select id="dc-class" label={t('sdc.filter.class')} value={classId} onChange={(e) => { setClassId(e.target.value); setShown(PAGE); }}>
+          <option value="">{t('sdc.filter.allClasses')}</option>
+          {data.classes.map((c) => (
+            <option key={c.class_id} value={c.class_id}>{c.name}</option>
+          ))}
+        </Select>
+        <Select id="dc-show" label={t('sdc.filter.show')} value={show} onChange={(e) => { setShow(e.target.value as Show); setShown(PAGE); }}>
+          <option value="attention">{t('sdc.show.attention')}</option>
+          <option value="untyped">{t('sdc.show.untyped')}</option>
+          <option value="all">{t('sdc.show.all')}</option>
+        </Select>
       </div>
       <p data-dc-counts className="text-slate/70">{t('sdc.counts', { typed: data.counts.typed, total: data.counts.total, attention: data.counts.attention, open: data.counts.open, answered: data.counts.answered })}</p>
       {list.length === 0 ? (

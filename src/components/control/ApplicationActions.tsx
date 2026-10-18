@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useT } from '@/components/app-shell/LangContext';
 import { Button } from '@/components/ui/Button';
+import { Textarea } from '@/components/ui/Textarea';
 
 // Approve / reject / start review / resend invite on one application (C98).
 // Each is one POST; the server's state machine decides, and a repeat does
@@ -11,6 +13,7 @@ type Action = 'start_review' | 'approve' | 'reject' | 'resend_invite';
 
 export function ApplicationActions({ applicationId, actions, canResend }: { applicationId: string; actions: Action[]; canResend: boolean }) {
   const router = useRouter();
+  const { t } = useT();
   const [busy, setBusy] = useState(false);
   const [rejecting, setRejecting] = useState(false);
   const [reason, setReason] = useState('');
@@ -28,7 +31,7 @@ export function ApplicationActions({ applicationId, actions, canResend }: { appl
       const data = await res.json().catch(() => ({}));
       if (!res.ok) return setMessage(data.message ?? data.error ?? 'That did not work.');
       setRejecting(false);
-      setMessage(action === 'resend_invite' ? 'Invite queued again.' : 'Done.');
+      setMessage(action === 'resend_invite' ? 'Invite queued again.' : t('onb.apps.done'));
       router.refresh();
     } catch {
       setMessage('We could not reach the server.');
@@ -63,17 +66,7 @@ export function ApplicationActions({ applicationId, actions, canResend }: { appl
       </div>
       {rejecting && (
         <div className="flex flex-col gap-2 rounded-md border border-slate/15 p-3">
-          <label htmlFor="reject-reason" className="text-sm font-medium text-slate">
-            Reason (kept with the application; not emailed)
-          </label>
-          <textarea
-            id="reject-reason"
-            rows={3}
-            maxLength={1000}
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-            className="rounded-md border border-slate/20 px-3 py-2 text-slate"
-          />
+          <Textarea id="reject-reason" label="Reason (kept with the application; not emailed)" rows={3} maxLength={1000} value={reason} onChange={(e) => setReason(e.target.value)} />
           <Button type="button" variant="outline" disabled={busy || reason.trim().length < 3} onClick={() => act('reject')}>
             Reject application
           </Button>

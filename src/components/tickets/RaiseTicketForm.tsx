@@ -3,9 +3,13 @@
 import Link from 'next/link';
 import { useState, type FormEvent } from 'react';
 import { AppCard } from '@/components/app-ui/Card';
+import { InfoTip } from '@/components/app-ui/InfoTip';
+import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
+import { Textarea } from '@/components/ui/Textarea';
 import { MODULE_REGISTRY } from '@/lib/contracts/modules';
 import { isTicketCategory, TICKET_CATEGORIES, TICKET_CATEGORY_LABEL, TICKET_LIMITS, TICKET_SCREENSHOTS_PER_TICKET, type TicketSummary } from '@/lib/contracts/tickets';
-import { ALERT, AREA, FIELD, NOTE, PRIMARY, SECONDARY, screenshotProblem, size } from './ticket-ui';
+import { ALERT, NOTE, PRIMARY, SECONDARY, screenshotProblem, size } from './ticket-ui';
 import type { TicketRoutes, TicketsApi } from './tickets-api';
 
 // Only parts of the app that exist today can be the subject of a ticket.
@@ -89,7 +93,7 @@ export function RaiseTicketForm({ api, routes, initialRaised }: { api: TicketsAp
   }
 
   return (
-    <AppCard title="Raise a ticket" description="Tell NetCyberAI what you need. Do not include passwords or one-time codes." tone="sapphire">
+    <AppCard title="Raise a ticket" description="Do not include passwords or one-time codes." tone="sapphire">
       <form onSubmit={submit} className="flex flex-col gap-4" noValidate>
         {error && (
           <p role="alert" className={ALERT}>
@@ -97,49 +101,44 @@ export function RaiseTicketForm({ api, routes, initialRaised }: { api: TicketsAp
           </p>
         )}
         <div className="grid gap-4 md:grid-cols-2">
-          <label className="text-sm font-semibold text-slate">
-            What is it about?
-            <select required value={category} onChange={(e) => setCategory(e.target.value)} className={FIELD}>
-              <option value="">Choose…</option>
-              {TICKET_CATEGORIES.map((c) => (
-                <option key={c} value={c}>
-                  {TICKET_CATEGORY_LABEL[c]}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="text-sm font-semibold text-slate">
-            Which part of the app? (optional)
-            <select value={moduleId} onChange={(e) => setModuleId(e.target.value)} className={FIELD}>
-              <option value="">Not sure / general</option>
-              {BUILT_MODULES.map((m) => (
-                <option key={m.id} value={m.id}>
-                  {m.label}
-                </option>
-              ))}
-            </select>
-          </label>
+          <Select id="ticket-category" label="What is it about?" required value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="">Choose…</option>
+            {TICKET_CATEGORIES.map((c) => (
+              <option key={c} value={c}>
+                {TICKET_CATEGORY_LABEL[c]}
+              </option>
+            ))}
+          </Select>
+          <Select id="ticket-module" label="Which part of the app? (optional)" value={moduleId} onChange={(e) => setModuleId(e.target.value)}>
+            <option value="">Not sure / general</option>
+            {BUILT_MODULES.map((m) => (
+              <option key={m.id} value={m.id}>
+                {m.label}
+              </option>
+            ))}
+          </Select>
         </div>
-        <label className="text-sm font-semibold text-slate">
-          Subject
-          <input required value={subject} onChange={(e) => setSubject(e.target.value)} maxLength={TICKET_LIMITS.subject[1]} aria-describedby="ticket-subject-help" className={FIELD} />
-          <span id="ticket-subject-help" className="mt-1 block text-xs font-normal text-slate/70">
-            A short line, for example “Attendance for 5A will not save”.
-          </span>
-        </label>
-        <label className="text-sm font-semibold text-slate">
-          What happened?
-          <textarea required rows={6} value={body} onChange={(e) => setBody(e.target.value)} maxLength={TICKET_LIMITS.body[1]} aria-describedby="ticket-body-help" className={AREA} />
-          <span id="ticket-body-help" className="mt-1 block text-xs font-normal text-slate/70">
-            What you were doing, what you expected and what you saw. At least {TICKET_LIMITS.body[0]} characters.
-          </span>
-        </label>
+        <Input id="ticket-subject" label="Subject" required value={subject} onChange={(e) => setSubject(e.target.value)} maxLength={TICKET_LIMITS.subject[1]} />
+        <Textarea
+          id="ticket-body"
+          label="What happened?"
+          required
+          rows={6}
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+          maxLength={TICKET_LIMITS.body[1]}
+          placeholder="What you were doing, what you expected and what you saw"
+          helperText={`At least ${TICKET_LIMITS.body[0]} characters.`}
+        />
         <div className="text-sm font-semibold text-slate">
-          <label htmlFor="ticket-files">Screenshots (optional)</label>
-          <input id="ticket-files" type="file" accept="image/png,image/jpeg,image/webp" multiple onChange={(e) => (choose(e.target.files), (e.target.value = ''))} aria-describedby="ticket-files-help" className="mt-1 block min-h-[44px] w-full text-sm font-normal text-slate" />
-          <span id="ticket-files-help" className="mt-1 block text-xs font-normal text-slate/70">
-            Up to {TICKET_SCREENSHOTS_PER_TICKET} images (PNG, JPEG or WebP), 4 MB each. Hide anything private before you take the screenshot.
-          </span>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <label htmlFor="ticket-files">Screenshots (optional)</label>
+            <InfoTip>
+              Up to {TICKET_SCREENSHOTS_PER_TICKET} images (PNG, JPEG or WebP), 4 MB each.
+            </InfoTip>
+          </div>
+          <input id="ticket-files" type="file" accept="image/png,image/jpeg,image/webp" multiple onChange={(e) => (choose(e.target.files), (e.target.value = ''))} className="mt-1 block min-h-[44px] w-full text-sm font-normal text-slate" />
+          <p className="mt-1 text-xs font-normal text-slate/70">Hide anything private first.</p>
           {fileNote && (
             <p role="alert" className={`${NOTE} mt-2 font-normal`}>
               {fileNote}

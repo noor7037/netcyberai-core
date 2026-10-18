@@ -4556,7 +4556,7 @@ const certificatesScreenDone = async () => {
   // as incomplete, not issued.
   if (s.button !== 'Issue 7 certificates') throw new Error(`the issue button said: ${s.button}`);
   const incompleteNames = ['Vihaan Example A', 'Anaya Example A', 'Kabir Example B', 'Ishaan Example B', 'Kiara Example B'];
-  if (s.incomplete.length !== 5 || !s.incomplete.every((line, i) => line.startsWith(`${incompleteNames[i]}: the record has no father’s or guardian’s name.`))) throw new Error(`the incomplete children: ${JSON.stringify(s.incomplete)}`);
+  if (s.incomplete.length !== 5 || !s.incomplete.every((line, i) => line.startsWith(`${incompleteNames[i]}: no father’s or guardian’s name on the record.`))) throw new Error(`the incomplete children: ${JSON.stringify(s.incomplete)}`);
   if (JSON.stringify(s.pdf) !== JSON.stringify({ name: 'certificates.pdf', head: '%PDF-', pages: 2 })) throw new Error(`the batch PDF: ${JSON.stringify(s.pdf)}`);
   if (s.rows !== 'TC/0002:valid,TC/0001:withdrawn') throw new Error(`the register on the screen: ${s.rows}`);
   for (const [seen, state, name] of [[s.valid, 'valid', 'Meera A.'], [s.withdrawn, 'withdrawn', 'Aarav A.']]) {
@@ -5699,7 +5699,7 @@ const skipAndCheck = (who, thenEnglish = false) => async (page) => {
 };
 const openModulesTab = async (page) => {
   await page.getByRole('tab', { name: 'Modules & access' }).click();
-  await page.locator('[data-module-off]').first().waitFor({ timeout: 15000 });
+  await page.locator('[data-module-off]').first().waitFor({ state: 'attached', timeout: 15000 });
 };
 // A module switched off for the school (C140): its page shows the "module off" state.
 const attendanceOff = async (page) => {

@@ -514,7 +514,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'Press “Raise dues”. The page lists every line, with what was billed, what was conceded and what is to pay.', hi: '“Raise dues” दबाएँ। पेज हर पंक्ति दिखाता है: कितना बिल बना, कितनी रियायत, कितना देना है।' },
       { en: 'To give a concession, go to “Concessions”: choose the “Student”, the “Kind of concession”, a percentage or an amount, write the “Reason” and press “Propose concession”.', hi: 'रियायत देने के लिए “Concessions” में जाएँ: “Student”, “Kind of concession”, प्रतिशत या राशि चुनें, “Reason” लिखें और “Propose concession” दबाएँ।' },
       { en: 'The principal or the school admin presses “Approve” in “Concessions of the school”. Until then the concession applies to nothing.', hi: 'प्रिंसिपल या स्कूल एडमिन “Concessions of the school” में “Approve” दबाते हैं। तब तक रियायत किसी पर लागू नहीं होती।' },
-      { en: 'For a child admitted under RTE, press “Mark as RTE”, give the “Class at admission” and “Admitted on”, then “Save RTE mark”.', hi: 'RTE के तहत दाख़िल बच्चे के लिए “Mark as RTE” दबाएँ, “Class at admission” और “Admitted on” दें, फिर “Save RTE mark”।' },
+      { en: 'For a child admitted under RTE, tick the child in the list, give the “Class at admission” and “Admitted on”, then “Save RTE mark”.', hi: 'RTE के तहत दाख़िल बच्चे के लिए सूची में बच्चे पर निशान लगाएँ, “Class at admission” और “Admitted on” दें, फिर “Save RTE mark”।' },
     ],
     tips: [
       { en: 'For brothers and sisters: switch on “Sibling concession” in “Settings” under “Fees”, then press “Check sibling concessions” here. It proposes one for each child the rule covers, only in families the office has linked; each waits for “Approve”.', hi: 'भाई-बहनों के लिए: “Settings” में “Fees” के नीचे “Sibling concession” चालू करें, फिर यहाँ “Check sibling concessions” दबाएँ। नियम में आने वाले हर बच्चे के लिए एक रियायत प्रस्तावित होती है, सिर्फ़ उन परिवारों में जिन्हें दफ़्तर ने जोड़ा है; हर एक “Approve” का इंतज़ार करती है।' },
@@ -587,7 +587,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     steps: [
       { en: 'Open “Fees”. The box at the top shows “Overdue”: the money still owed on fees past their due date.', hi: '“Fees” खोलें। ऊपर के बॉक्स में “Overdue” दिखता है: जमा तारीख़ निकल चुकी फ़ीस पर बाकी पैसा।' },
       { en: 'Under “Take a payment”, choose the student. A due past its date is marked “Overdue”.', hi: '“Take a payment” के नीचे विद्यार्थी चुनें। जिस देय राशि की तारीख़ निकल चुकी है, उस पर “Overdue” लिखा होता है।' },
-      { en: 'To charge a late fee, the principal or the school admin opens “Settings”, and under “Fees” switches on “Charge a late fee”, types the “Late fee, in rupees” and the “Days of grace before a late fee”, and presses “Save these settings”.', hi: 'विलंब शुल्क लगाने के लिए प्रिंसिपल या स्कूल एडमिन “Settings” खोलते हैं, “Fees” के नीचे “Charge a late fee” चालू करते हैं, “Late fee, in rupees” और “Days of grace before a late fee” लिखते हैं, और “Save these settings” दबाते हैं।' },
+      { en: 'To charge a late fee, the principal or the school admin opens “Settings”, and under “Fees” switches on “Charge a late fee”, types the “Late fee, in rupees” and the “Days of grace before a late fee”, and presses “Save”.', hi: 'विलंब शुल्क लगाने के लिए प्रिंसिपल या स्कूल एडमिन “Settings” खोलते हैं, “Fees” के नीचे “Charge a late fee” चालू करते हैं, “Late fee, in rupees” और “Days of grace before a late fee” लिखते हैं, और “Save” दबाते हैं।' },
     ],
     tips: [
       { en: 'A part-paid fee past its date counts as overdue on what is left, not on the full amount.', hi: 'कुछ हिस्सा जमा हो चुकी फ़ीस की तारीख़ निकलने पर सिर्फ़ बाकी रकम बकाया गिनी जाती है, पूरी रकम नहीं।' },
@@ -661,8 +661,8 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     },
     steps: [
       { en: 'Open “Fees” and go to “Follow up unpaid fees”. The family that has waited longest is first.', hi: '“Fees” खोलें और “Follow up unpaid fees” पर जाएँ। सबसे लंबे समय से बाक़ी परिवार सबसे पहले है।' },
-      { en: 'After speaking to a family, press “Note a call” and write what was said.', hi: 'परिवार से बात करने के बाद “Note a call” दबाएँ और जो बात हुई वह लिखें।' },
-      { en: 'If they give a date, press “Promise to pay” and fill “They will pay by”.', hi: 'अगर वे तारीख़ दें, तो “Promise to pay” दबाएँ और “They will pay by” भरें।' },
+      { en: 'After speaking to a family, press “Log call” and write what was said.', hi: 'परिवार से बात करने के बाद “Log call” दबाएँ और जो बात हुई वह लिखें।' },
+      { en: 'If they give a date, press “Promise” and fill “They will pay by”.', hi: 'अगर वे तारीख़ दें, तो “Promise” दबाएँ और “They will pay by” भरें।' },
       { en: 'If the family cannot pay, press “Hardship”, write what they told you and the concession to request. The principal or school admin then decides it under concessions.', hi: 'अगर परिवार भुगतान नहीं कर सकता, तो “Hardship” दबाएँ, उन्होंने जो बताया वह और माँगी जाने वाली रियायत लिखें। फिर प्रिंसिपल या स्कूल एडमिन रियायतों में उस पर फ़ैसला करते हैं।' },
     ],
     tips: [
@@ -875,7 +875,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     steps: [
       { en: 'Open Settings from the menu.', hi: 'मेनू से Settings खोलें।' },
       { en: 'The first list shows each part, whether it is on, and what changes when it is off. To change one, raise a ticket.', hi: 'पहली सूची में हर हिस्सा है: वह चालू है या नहीं, और बंद होने पर क्या बदलता है। बदलने के लिए टिकट भेजें।' },
-      { en: 'Under “How each part is set up”, each part of the app has its own settings, each with a sentence on what it changes. Change a value and press “Save these settings”; “Reset to default” puts back the starting value.', hi: '“How each part is set up” के नीचे ऐप के हर हिस्से की अपनी सेटिंग हैं, हर एक के साथ एक वाक्य कि वह क्या बदलती है। मान बदलें और “Save these settings” दबाएँ; “Reset to default” शुरुआती मान वापस रख देता है।' },
+      { en: 'Under “How each part is set up”, each part of the app has its own settings, each with a sentence on what it changes. Change a value and press “Save”; “Reset to default” puts back the starting value.', hi: '“How each part is set up” के नीचे ऐप के हर हिस्से की अपनी सेटिंग हैं, हर एक के साथ एक वाक्य कि वह क्या बदलती है। मान बदलें और “Save” दबाएँ; “Reset to default” शुरुआती मान वापस रख देता है।' },
       { en: 'Under “WhatsApp Business Account”, press “Connect your own WhatsApp Business Account”.', hi: '“WhatsApp Business Account” के नीचे “Connect your own WhatsApp Business Account” दबाएँ।' },
       { en: 'Enter the “WABA ID”, the “Phone number ID (Meta)”, the “Access token” and the “Webhook verify token” from your Meta Business account, then save.', hi: 'अपने Meta Business खाते से “WABA ID”, “Phone number ID (Meta)”, “Access token” और “Webhook verify token” भरें, फिर सेव करें।' },
     ],
@@ -1384,7 +1384,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       hi: 'RTE के तहत दाख़िल हर बच्चे के लिए साल का दावा राज्य की प्रति बच्चा दर और बच्चे की कक्षा की स्कूल फ़ीस में से जो कम हो, वह है। हर बच्चे के सबूत रखें, दावे बनाएँ, राज्य जो दे वह दर्ज करें, किस्तों में दे तो किस्तों में, और देखें कि क्या अभी बकाया है। प्रिंसिपल, स्कूल एडमिन और अकाउंटेंट के लिए।',
     },
     steps: [
-      { en: 'First mark each child admitted under RTE: on the Fees page, under “RTE admissions”, press “Mark as RTE”. Then open the RTE claim desk from the Fees page.', hi: 'पहले RTE के तहत दाख़िल हर बच्चे को दर्ज करें: फ़ीस पेज पर “RTE admissions” में “Mark as RTE” दबाएँ। फिर फ़ीस पेज से RTE दावा डेस्क खोलें।' },
+      { en: 'First mark each child admitted under RTE: on the Fees page, under “RTE admissions”, tick the child. Then open the RTE claim desk from the Fees page.', hi: 'पहले RTE के तहत दाख़िल हर बच्चे को दर्ज करें: फ़ीस पेज पर “RTE admissions” में बच्चे पर निशान लगाएँ। फिर फ़ीस पेज से RTE दावा डेस्क खोलें।' },
       { en: 'Choose the “School year”. Type the “State rate per child (₹)” from your state’s notification and, under “Where this rate comes from”, its number, date or link. Press “Save the rate”. A new rate later replaces it; claims already raised keep theirs.', hi: '“School year” चुनें। अपने राज्य की अधिसूचना से “State rate per child (₹)” लिखें और “Where this rate comes from” में उसका नंबर, तारीख़ या लिंक। “Save the rate” दबाएँ। बाद की नई दर इसकी जगह लेती है; पहले से बने दावे अपनी दर रखते हैं।' },
       { en: 'Each child shows the school fee for the year (the heads listed under “Fee heads counted in a claim”, from the class’s fee structure), the state rate, and the claim, which is the lower of the two. Check your state’s notification for which fees count. Choose the day under “Raised on”, then press “Raise the claim” for a child, or “Raise every ready claim”.', hi: 'हर बच्चे के लिए साल की स्कूल फ़ीस (कक्षा के फ़ीस ढाँचे से, “Fee heads counted in a claim” में लिखे मद), राज्य की दर, और दावा दिखता है, जो दोनों में से कम है। कौन-सी फ़ीस गिनी जाती है, यह अपने राज्य की अधिसूचना में देखें। “Raised on” में दिन चुनें, फिर किसी बच्चे के लिए “Raise the claim” या “Raise every ready claim” दबाएँ।' },
       { en: 'For a year that is over, the claim takes the class the child was in that year, from that year’s fee dues. If there are none, the principal or the school admin chooses it under “Class in” the year, then presses “Raise with this class”.', hi: 'जो साल बीत गया, उसका दावा उस साल बच्चे की कक्षा लेता है, उस साल के फ़ीस बकाया से। अगर वे नहीं हैं, तो प्रिंसिपल या स्कूल एडमिन साल की “Class in” में कक्षा चुनें, फिर “Raise with this class” दबाएँ।' },
@@ -1537,7 +1537,7 @@ export function isHelpLang(v: unknown): v is HelpLang {
 // Words of the Help Center's own screens.
 export const HELP_TEXT = {
   title: { en: 'Help Center', hi: 'सहायता केंद्र' },
-  intro: { en: 'Step-by-step guides for what you can do in NetCyberAI today.', hi: 'NetCyberAI में आज जो काम हो सकते हैं, उनकी क़दम-दर-क़दम गाइड।' },
+  intro: { en: 'Step-by-step guides.', hi: 'क़दम-दर-क़दम गाइड।' },
   search: { en: 'Search the guides', hi: 'गाइड खोजें' },
   searchHint: { en: 'For example: password, attendance, CSV', hi: 'जैसे: पासवर्ड, हाज़िरी, CSV' },
   results: { en: 'guides found', hi: 'गाइड मिलीं' },

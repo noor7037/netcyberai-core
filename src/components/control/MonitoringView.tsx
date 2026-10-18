@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { QUIET_ACTION } from '@/components/app-ui/ModulePage';
 import { RetryJobButton } from '@/components/control/RetryJobButton';
 import { Badge } from '@/components/ui/Badge';
@@ -40,14 +41,15 @@ export function ageWords(lang: Lang, seconds: number): string {
   return tCount(lang, 'monitoring.age.day', Math.floor(hours / 24));
 }
 
-function Section({ id, title, look, lang, children }: { id: string; title: string; look?: boolean; lang: Lang; children: ReactNode }) {
+function Section({ id, title, look, lang, info, children }: { id: string; title: string; look?: boolean; lang: Lang; info?: ReactNode; children: ReactNode }) {
   return (
     <section aria-labelledby={`monitoring-${id}`} data-monitoring-section={id} data-monitoring-state={look === undefined ? undefined : look ? 'look' : 'clear'} className="flex min-w-0 flex-col gap-3 rounded-xl border border-slate/10 bg-white p-4">
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center gap-x-2">
         <h2 id={`monitoring-${id}`} className="text-lg font-bold text-slate">
           {title}
         </h2>
         {look !== undefined && <Badge variant={look ? 'danger' : 'success'}>{t(lang, look ? 'monitoring.state.look' : 'monitoring.state.clear')}</Badge>}
+        {info && <InfoTip>{info}</InfoTip>}
       </div>
       {children}
     </section>
@@ -64,6 +66,15 @@ function Facts({ items }: { items: { id: string; name: string; value: string }[]
         </div>
       ))}
     </dl>
+  );
+}
+
+// A note that explains a figure above it: one tap away behind an ⓘ (C240).
+function More({ label, children }: { label?: string; children: ReactNode }) {
+  return (
+    <div className="flex flex-wrap items-center">
+      <InfoTip label={label}>{children}</InfoTip>
+    </div>
   );
 }
 
@@ -127,7 +138,7 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
         <strong>{looking === 0 ? t(lang, 'monitoring.summary.clear') : tCount(lang, 'monitoring.summary.look', looking)}</strong> {t(lang, 'monitoring.privacy')} {t(lang, 'monitoring.readAt', { when: whenInIndia(lang, m.readAt) })}
       </p>
 
-      <Section id="health" title={t(lang, 'monitoring.health.title')} look={look.health} lang={lang}>
+      <Section id="health" title={t(lang, 'monitoring.health.title')} look={look.health} lang={lang} info={t(lang, 'monitoring.health.how')}>
         <p data-monitoring-health={m.health.status} className="max-w-prose text-sm text-slate">
           {t(lang, m.health.jobs === 'ok' ? 'monitoring.health.ok' : 'monitoring.health.backlog', { minutes: m.health.backlogAfterMinutes })}
         </p>
@@ -136,7 +147,6 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
             {t(lang, 'monitoring.health.storage', { setting: SERVICE_ROLE_SETTING_NAME, reason: t(lang, `shell.storage.reason.${m.health.storage}`) })}
           </p>
         )}
-        <p className={NOTE}>{t(lang, 'monitoring.health.how')}</p>
         {m.health.jobs !== 'ok' && (
           <Do lang={lang} id="health">
             {t(lang, 'monitoring.health.backlog.do')}
@@ -149,8 +159,7 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
         )}
       </Section>
 
-      <Section id="jobs" title={t(lang, 'monitoring.jobs.title')} look={look.jobs} lang={lang}>
-        <p className={NOTE}>{t(lang, 'monitoring.jobs.how')}</p>
+      <Section id="jobs" title={t(lang, 'monitoring.jobs.title')} look={look.jobs} lang={lang} info={t(lang, 'monitoring.jobs.how')}>
         <Facts
           items={[
             { id: 'jobs.dead', name: t(lang, 'monitoring.jobs.dead'), value: count(m.jobs.dead) },
@@ -234,8 +243,7 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
         )}
       </Section>
 
-      <Section id="notices" title={t(lang, 'monitoring.notices.title', { days: m.days })} look={look.notices} lang={lang}>
-        <p className={NOTE}>{t(lang, 'monitoring.notices.how')}</p>
+      <Section id="notices" title={t(lang, 'monitoring.notices.title', { days: m.days })} look={look.notices} lang={lang} info={t(lang, 'monitoring.notices.how')}>
         <Facts
           items={[
             { id: 'notices.received', name: t(lang, 'monitoring.notices.received'), value: count(m.notices.received) },
@@ -257,17 +265,16 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
             <Do lang={lang} id="notices.refused">
               {t(lang, 'monitoring.notices.refused.do')}
             </Do>
-            <p className={NOTE}>{t(lang, 'monitoring.notices.cap', { max: m.notices.refusedKeptPerHour })}</p>
+            <More>{t(lang, 'monitoring.notices.cap', { max: m.notices.refusedKeptPerHour })}</More>
           </>
         )}
       </Section>
 
-      <Section id="sends" title={t(lang, 'monitoring.sends.title', { days: m.days })} look={look.sends} lang={lang}>
-        <p className={NOTE}>{t(lang, 'monitoring.sends.how')}</p>
+      <Section id="sends" title={t(lang, 'monitoring.sends.title', { days: m.days })} look={look.sends} lang={lang} info={t(lang, 'monitoring.sends.how')}>
         {nothingSent && <p className="max-w-prose text-sm text-slate">{t(lang, 'monitoring.sends.none')}</p>}
         {m.sends.uncertain.count > 0 && (
           <Group lang={lang} id="uncertain" title={t(lang, 'monitoring.sends.uncertain')} group={m.sends.uncertain}>
-            <p className={NOTE}>{t(lang, 'monitoring.sends.uncertain.how')}</p>
+            <More>{t(lang, 'monitoring.sends.uncertain.how')}</More>
             <Do lang={lang} id="sends.uncertain">
               {t(lang, 'monitoring.sends.uncertain.do')}
             </Do>
@@ -298,8 +305,7 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
         })}
       </Section>
 
-      <Section id="replies" title={t(lang, 'monitoring.replies.title')} look={look.replies} lang={lang}>
-        <p className={NOTE}>{t(lang, 'monitoring.replies.how', { hours: m.replies.holdHours })}</p>
+      <Section id="replies" title={t(lang, 'monitoring.replies.title')} look={look.replies} lang={lang} info={t(lang, 'monitoring.replies.how', { hours: m.replies.holdHours })}>
         <Facts
           items={[
             { id: 'replies.held', name: t(lang, 'monitoring.replies.held'), value: count(m.replies.heldNow) },
@@ -314,12 +320,26 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
             {t(lang, 'monitoring.replies.past.do')}
           </Do>
         )}
-        {m.replies.heldNow > m.replies.pastTheirTime && <p className={NOTE}>{t(lang, 'monitoring.replies.held.note')}</p>}
-        {m.replies.dropped > 0 && <p className={NOTE}>{t(lang, 'monitoring.replies.dropped.note')}</p>}
+        {(m.replies.heldNow > m.replies.pastTheirTime || m.replies.dropped > 0) && (
+          <More>
+            {m.replies.heldNow > m.replies.pastTheirTime && <p>{t(lang, 'monitoring.replies.held.note')}</p>}
+            {m.replies.dropped > 0 && <p>{t(lang, 'monitoring.replies.dropped.note')}</p>}
+          </More>
+        )}
       </Section>
 
-      <Section id="nightly" title={t(lang, 'monitoring.nightly.title', { date: night })} look={look.nightly} lang={lang}>
-        <p className={NOTE}>{t(lang, 'monitoring.nightly.how')}</p>
+      <Section
+        id="nightly"
+        title={t(lang, 'monitoring.nightly.title', { date: night })}
+        look={look.nightly}
+        lang={lang}
+        info={
+          <>
+            <p>{t(lang, 'monitoring.nightly.how')}</p>
+            <p>{t(lang, 'monitoring.nightly.billing.how')}</p>
+          </>
+        }
+      >
         <ul className="flex flex-col gap-2">
           {nightJobs.map(([id, job]) => (
             <li key={id} data-monitoring-night={id} data-monitoring-night-state={job.state} className="flex flex-wrap items-center gap-2 text-sm text-slate">
@@ -334,11 +354,12 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
             {t(lang, `monitoring.nightly.${state}.do` as MessageKey, { attempts: Math.max(...nightJobs.filter(([, job]) => job.state === state).map(([, job]) => job.attempts)) })}
           </Do>
         ))}
-        <p className={NOTE}>{t(lang, 'monitoring.nightly.billing.how')}</p>
 
         <div data-monitoring-school-checks className="flex flex-col gap-2">
-          <h3 className={SUB}>{t(lang, 'monitoring.schoolChecks.title')}</h3>
-          <p className={NOTE}>{t(lang, 'monitoring.schoolChecks.how', { night, week: dayInWords(lang, m.schoolChecks.auditor.forDate) })}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <h3 className={SUB}>{t(lang, 'monitoring.schoolChecks.title')}</h3>
+            <InfoTip>{t(lang, 'monitoring.schoolChecks.how', { night, week: dayInWords(lang, m.schoolChecks.auditor.forDate) })}</InfoTip>
+          </div>
           <ul className="flex flex-col gap-2">
             {schoolChecks.map(([id, run]) => (
               <li key={id} data-monitoring-school-check={id} data-monitoring-school-check-state={run.state} className="flex min-w-0 flex-wrap items-center gap-2 text-sm text-slate">
@@ -397,7 +418,7 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
                 </li>
               ))}
             </ul>
-            <p className={NOTE}>{t(lang, 'monitoring.nightly.caughtUp.note')}</p>
+            <More>{t(lang, 'monitoring.nightly.caughtUp.note')}</More>
           </div>
         )}
 
@@ -418,8 +439,7 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
         )}
       </Section>
 
-      <Section id="templates" title={t(lang, 'monitoring.templates.title')} look={look.templates} lang={lang}>
-        <p className={NOTE}>{t(lang, 'monitoring.templates.how')}</p>
+      <Section id="templates" title={t(lang, 'monitoring.templates.title')} look={look.templates} lang={lang} info={t(lang, 'monitoring.templates.how')}>
         {tp.total === 0 && <p className="max-w-prose text-sm text-slate">{t(lang, 'monitoring.templates.none')}</p>}
         {tp.total > 0 && (
           <Facts
@@ -451,8 +471,12 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
             {tCount(lang, 'monitoring.templates.settled', settled)}
           </p>
         )}
-        {tp.withMeta > 0 && <p className={NOTE}>{t(lang, 'monitoring.templates.withMeta.note')}</p>}
-        {tp.hindiNotReviewed > 0 && <p className={NOTE}>{t(lang, 'monitoring.templates.hindiNotReviewed.note')}</p>}
+        {(tp.withMeta > 0 || tp.hindiNotReviewed > 0) && (
+          <More>
+            {tp.withMeta > 0 && <p>{t(lang, 'monitoring.templates.withMeta.note')}</p>}
+            {tp.hindiNotReviewed > 0 && <p>{t(lang, 'monitoring.templates.hindiNotReviewed.note')}</p>}
+          </More>
+        )}
         <div>
           <Link href="/control/templates" className={QUIET_ACTION}>
             {t(lang, 'monitoring.templates.open')}
@@ -460,8 +484,7 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
         </div>
       </Section>
 
-      <Section id="invitations" title={t(lang, 'monitoring.invites.title')} look={invitations.length > 0} lang={lang}>
-        <p className={NOTE}>{t(lang, 'monitoring.invites.how')}</p>
+      <Section id="invitations" title={t(lang, 'monitoring.invites.title')} look={invitations.length > 0} lang={lang} info={t(lang, 'monitoring.invites.how')}>
         {invitations.length === 0 && <p className="max-w-prose text-sm text-slate">{t(lang, 'monitoring.invites.none')}</p>}
         {invitations.length > 0 && (
           <ul className="flex flex-col gap-2 text-sm">
@@ -474,8 +497,7 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
         )}
       </Section>
 
-      <Section id="applications" title={t(lang, 'monitoring.applications.title')} lang={lang}>
-        <p className={NOTE}>{t(lang, 'monitoring.applications.how')}</p>
+      <Section id="applications" title={t(lang, 'monitoring.applications.title')} lang={lang} info={t(lang, 'monitoring.applications.how')}>
         <ul className="flex flex-wrap gap-2 text-sm">
           {APPLICATION_STATES.map((s) => (
             <li key={s}>

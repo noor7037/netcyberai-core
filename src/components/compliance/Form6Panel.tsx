@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import type { Figure, Form6Advisory } from '@/lib/compliance/form6';
@@ -156,10 +157,13 @@ export function Form6Panel({ initial, canEnter = false, place = 'desk' }: { init
 
   return (
     <section data-cdk-form6={place} className={CARD}>
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-base font-bold">{t('cdk.f6.title')}</h2>
-        <p className="text-slate/70">{t('cdk.f6.how')}</p>
-        {place === 'fees' && <p className="text-slate/70">{t('cdk.f6.feesHow')}</p>}
+        <InfoTip>
+          <p>{t('cdk.f6.how')}</p>
+          {place === 'fees' && <p>{t('cdk.f6.feesHow')}</p>}
+          {canEnter && <p>{t('cdk.f6.howEnter')}</p>}
+        </InfoTip>
       </div>
       {note && <p role="status" data-cdk-f6-note={note.ok ? 'ok' : 'refused'} className={`rounded-md px-3 py-2 font-semibold ${note.ok ? 'bg-off-white text-slate' : 'border border-red-800/30 text-red-800'}`}>{note.text}</p>}
       {failed && !data ? (
@@ -182,7 +186,6 @@ export function Form6Panel({ initial, canEnter = false, place = 'desk' }: { init
               <dd data-cdk-f6="increase" className="text-base font-bold">{data.proposedIncreasePercent === null ? t('cdk.f6.none') : `${data.proposedIncreasePercent.toFixed(1)}%`}</dd>
             </div>
           </dl>
-          {canEnter && <p className="text-slate/70">{t('cdk.f6.howEnter')}</p>}
           <div data-cdk-f6-figure="cpi" className="flex flex-col gap-2">
             {data.cpiState === 'unknown' ? (
               <Badge variant="warning" className="self-start">{t('cdk.f6.noCpi')}</Badge>

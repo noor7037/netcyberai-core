@@ -15,7 +15,7 @@ export default async function ReportsPage() {
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
   return (
-    <ModulePage moduleId="reports" help="run-a-report" tour="reports" title={t(lang, 'rpt.page.title')} purpose={t(lang, 'rpt.page.purpose')}>
+    <ModulePage moduleId="reports" help="run-a-report" tour="reports" title={t(lang, 'rpt.page.title')} purpose={t(lang, 'rpt.page.purpose')} about={t(lang, 'rpt.page.info')}>
       <ReportsView />
     </ModulePage>
   );

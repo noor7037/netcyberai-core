@@ -179,7 +179,7 @@ export function StudentDetailView({ student: initial, canEdit }: { student: Stud
       help="student-page"
       tour="student-profile"
       title={student.name}
-      purpose="This student’s details, guardians, family, consent and documents."
+      purpose="Details, guardians, family, consent and documents."
       primary={
         <Link href={`/app/students/${student.student_id}/id-card`} className={PRIMARY_ACTION}>
           ID card

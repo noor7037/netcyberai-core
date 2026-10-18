@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useT } from '@/components/app-shell/LangContext';
 import { SchoolLogo } from '@/components/app-shell/SchoolLogo';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
 import { LOGO_EDGE_PX, LOGO_MAX_ASPECT, LOGO_MAX_BYTES, LOGO_MIN_SIDE_PX, LOGO_PICKER_ACCEPT, logoAddress, SCHOOL_NAME_MAX } from '@/lib/school/logo-file';
@@ -143,11 +144,14 @@ export function SchoolBrandingCard(props: { scope: 'school' | 'control'; schoolI
 
   return (
     <section lang={lang} data-branding aria-labelledby={`${ids}-title`} className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-4">
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-wrap items-center gap-x-1">
         <h3 id={`${ids}-title`} className="text-base font-bold text-slate">
           {t('branding.title')}
         </h3>
-        <p className="text-sm text-slate/70">{t(control ? 'branding.how.control' : 'branding.how')}</p>
+        <InfoTip>
+          <p>{t(control ? 'branding.how.control' : 'branding.how')}</p>
+          <p>{t('branding.name.hint')}</p>
+        </InfoTip>
       </div>
       {!brand ? (
         <p className="text-sm text-slate/70">{t('branding.loading')}</p>
@@ -165,10 +169,13 @@ export function SchoolBrandingCard(props: { scope: 'school' | 'control'; schoolI
             </div>
           </div>
           <div className="max-w-xl">
-            <Input id={`${ids}-name`} label={t('branding.name')} helperText={t('branding.name.hint')} value={name} maxLength={SCHOOL_NAME_MAX} autoComplete="organization" required onChange={(e) => setName(e.target.value)} />
+            <Input id={`${ids}-name`} label={t('branding.name')} value={name} maxLength={SCHOOL_NAME_MAX} autoComplete="organization" required onChange={(e) => setName(e.target.value)} />
           </div>
           <div className="flex flex-col gap-2">
-            <p className="text-sm font-medium text-slate">{t('branding.logo')}</p>
+            <div className="flex flex-wrap items-center gap-x-1">
+              <p className="text-sm font-medium text-slate">{t('branding.logo')}</p>
+              <InfoTip>{t('branding.logo.hint')}</InfoTip>
+            </div>
             <div className="flex flex-wrap gap-2">
               <button type="button" data-branding-choose className={TAP} disabled={busy} onClick={() => fileRef.current?.click()}>
                 {t(hasLogo || logo ? 'branding.logo.change' : 'branding.logo.choose')}
@@ -180,7 +187,6 @@ export function SchoolBrandingCard(props: { scope: 'school' | 'control'; schoolI
               )}
             </div>
             <input ref={fileRef} id={`${ids}-logo`} data-branding-file type="file" accept={LOGO_PICKER_ACCEPT} hidden onChange={(e) => void choose(e.target.files?.[0])} />
-            <p className="text-sm text-slate/70">{t('branding.logo.hint')}</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <button type="submit" data-branding-save disabled={busy} className="inline-flex min-h-[44px] items-center justify-center rounded-md bg-sapphire px-5 text-sm font-semibold text-white hover:bg-sapphire/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal disabled:opacity-60">

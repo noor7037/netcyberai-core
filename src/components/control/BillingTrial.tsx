@@ -2,7 +2,9 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import type { BillingOverview } from '@/lib/control/billing';
 import type { Trial, TrialEvent } from '@/lib/control/trial';
 import type { Send } from './BillingSchools';
@@ -20,7 +22,6 @@ import { trialLine } from './BillingTrials';
 type School = BillingOverview['schools'][number];
 type Loaded = { trial: Trial | null; history: TrialEvent[] };
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
-const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 const shiftDay = (isoDay: string, n: number) => new Date(Date.parse(`${isoDay}T00:00:00Z`) + n * 86_400_000).toISOString().slice(0, 10);
 const validReason = (r: string) => r.trim().length >= 3 && r.trim().length <= 500;
 
@@ -70,9 +71,12 @@ export function BillingTrial({ school, data, busy, send }: { school: School; dat
 
   return (
     <div data-billing-trial-panel className="flex flex-col gap-3 rounded-md bg-off-white p-3">
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h3 className="text-base font-bold">{t('billing.trial.title')}</h3>
-        <p className="max-w-prose text-slate/70">{t('billing.trial.how')}</p>
+        <InfoTip tone="white">
+          <p>{t('billing.trial.how')}</p>
+          <p>{t('billing.trial.endsOnHelp', { days: data.trialDays, max: data.maxTrialDays })}</p>
+        </InfoTip>
       </div>
       {!loaded && <p className="text-slate/70">{t('billing.trial.historyLoading')}</p>}
       {trial && (
@@ -100,23 +104,17 @@ export function BillingTrial({ school, data, busy, send }: { school: School; dat
               min={shiftDay(data.today, 1)}
               max={shiftDay(data.today, data.maxTrialDays)}
               label={t('billing.trial.endsOn')}
-              helperText={t('billing.trial.endsOnHelp', { days: data.trialDays, max: data.maxTrialDays })}
               value={start.endsOn}
               onChange={(e) => setStart({ ...start, endsOn: e.target.value })}
             />
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor={`trial-plan-${school.schoolId}`} className="text-sm font-medium text-slate">
-                {t('billing.trial.planAfter')}
-              </label>
-              <select id={`trial-plan-${school.schoolId}`} required className={FIELD} value={start.planId} onChange={(e) => setStart({ ...start, planId: e.target.value })}>
-                <option value="">{t('billing.change.choose')}</option>
-                {plans.map((p) => (
-                  <option key={p.planId} value={p.planId}>
-                    {p.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <Select id={`trial-plan-${school.schoolId}`} required label={t('billing.trial.planAfter')} value={start.planId} onChange={(e) => setStart({ ...start, planId: e.target.value })}>
+              <option value="">{t('billing.change.choose')}</option>
+              {plans.map((p) => (
+                <option key={p.planId} value={p.planId}>
+                  {p.name}
+                </option>
+              ))}
+            </Select>
             <Input id={`trial-why-${school.schoolId}`} required maxLength={500} label={t('billing.trial.reason')} value={start.reason} onChange={(e) => setStart({ ...start, reason: e.target.value })} />
           </div>
           <button type="submit" data-billing-trial-start-save disabled={busy || !start.endsOn || !start.planId || !validReason(start.reason)} className={`${PRIMARY} self-start`}>
@@ -143,7 +141,6 @@ export function BillingTrial({ school, data, busy, send }: { school: School; dat
               min={shiftDay(trial.endsOn, 1) > data.today ? shiftDay(trial.endsOn, 1) : data.today}
               max={shiftDay(trial.startsOn, data.maxTrialDays)}
               label={t('billing.trial.extend.newLast')}
-              helperText={t('billing.trial.endsOnHelp', { days: data.trialDays, max: data.maxTrialDays })}
               value={extend.endsOn}
               onChange={(e) => setExtend({ ...extend, endsOn: e.target.value })}
             />

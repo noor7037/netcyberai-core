@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
@@ -81,13 +82,15 @@ export function SecurityPanel() {
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            helperText="Optional. Lets you type your mobile number instead of your email when you sign in. Codes still go to your email."
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
-          <Button type="submit" variant="outline" disabled={busy}>
-            Save number
-          </Button>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <Button type="submit" variant="outline" disabled={busy}>
+              Save number
+            </Button>
+            <InfoTip>Optional. Lets you type your mobile number instead of your email when you sign in. Codes still go to your email.</InfoTip>
+          </div>
         </form>
         {phoneMsg && (
           <p role={phoneMsg.ok ? 'status' : 'alert'} className={`mt-3 text-sm font-medium ${phoneMsg.ok ? 'text-emerald-text' : 'text-red-800'}`}>
@@ -97,10 +100,10 @@ export function SecurityPanel() {
       </Card>
 
       <Card className="flex flex-col gap-3">
-        <h2 className="text-base font-bold text-slate">Devices and sessions</h2>
-        <p className="text-sm text-slate/80">
-          You stay signed in on each device until you log out. A remembered device skips the email code for 30 days.
-        </p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-bold text-slate">Devices and sessions</h2>
+          <InfoTip>You stay signed in on each device until you log out. A remembered device skips the email code for 30 days.</InfoTip>
+        </div>
         <Button type="button" variant="outline" disabled={busy} onClick={forgetDevice}>
           Forget this device
         </Button>

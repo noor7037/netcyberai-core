@@ -50,7 +50,7 @@ export default async function ApplicationPage({ params }: { params: { applicatio
   return (
     <ModulePage
       title={app.school_name}
-      purpose="A school’s application: its details, your decision, and what has happened so far."
+      purpose="Details, your decision and what has happened."
       icon="admissions"
       tone="turquoise"
       eyebrow="School application"

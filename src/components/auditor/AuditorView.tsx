@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { ModuleIcon } from '@/components/app-ui/ModuleIcon';
 import { Badge } from '@/components/ui/Badge';
 import { AUDITOR_RULE_VERSION, CHECK_META, checkKey, summarise, type CheckResult, type CheckState, type CheckUpLine, type StoredCheckUp } from '@/lib/auditor/rules';
@@ -89,9 +90,13 @@ export function AuditorScreen({ data, busy, note, onRun }: { data: AuditorData; 
         <div data-empty="school-auditor" className="flex flex-col items-start gap-2 rounded-xl border border-dashed border-slate/20 bg-white p-5">
           <p className="text-base font-bold text-slate">{t('aud.empty.title')}</p>
           <p className="max-w-prose text-sm text-slate">{t('aud.empty.do')}</p>
-          <p className="max-w-prose text-sm text-slate/70">{t('aud.how')}</p>
-          <p data-auditor-weekly className="max-w-prose text-sm text-slate/70">{t('aud.weekly.how')}</p>
-          {runButton}
+          <div className="flex flex-wrap items-center gap-x-1">
+            {runButton}
+            <InfoTip>
+              <p>{t('aud.how')}</p>
+              <p data-auditor-weekly>{t('aud.weekly.how')}</p>
+            </InfoTip>
+          </div>
         </div>
       </div>
     );
@@ -116,9 +121,13 @@ export function AuditorScreen({ data, busy, note, onRun }: { data: AuditorData; 
               : t('aud.checkedOn.noName', { date: dayWords(lang, latest.date), time: timeWords(lang, latest.recordedAt) })}
         </p>
         {latest.date !== data.today && <p data-auditor-older className="rounded-md bg-off-white px-3 py-2">{t('aud.older')}</p>}
-        <p className="max-w-prose text-slate/70">{t('aud.how')}</p>
-        <p data-auditor-weekly className="max-w-prose text-slate/70">{t('aud.weekly.how')}</p>
-        <div>{runButton}</div>
+        <div className="flex flex-wrap items-center gap-x-1">
+          {runButton}
+          <InfoTip>
+            <p>{t('aud.how')}</p>
+            <p data-auditor-weekly>{t('aud.weekly.how')}</p>
+          </InfoTip>
+        </div>
       </section>
 
       <Group id="attention" title={t('aud.attention.title')} results={of('needs_attention')} ruleVersion={latest.ruleVersion}
@@ -128,8 +137,10 @@ export function AuditorScreen({ data, busy, note, onRun }: { data: AuditorData; 
       <Group id="not-set-up" title={t('aud.notSetUp.title')} how={t('aud.notSetUp.how')} results={of('not_set_up')} ruleVersion={latest.ruleVersion} />
 
       <section data-auditor-history className={BOX}>
-        <h2 className="text-base font-bold text-slate">{t('aud.history.title')}</h2>
-        <p className="text-slate/70">{t(data.history.length > 1 ? 'aud.history.how' : 'aud.history.one')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-bold text-slate">{t('aud.history.title')}</h2>
+          <InfoTip>{t(data.history.length > 1 ? 'aud.history.how' : 'aud.history.one')}</InfoTip>
+        </div>
         <ul className="flex flex-col divide-y divide-slate/10">
           {data.history.map((line) => (
             <li key={line.date} data-auditor-day={line.date} className="flex flex-wrap items-center justify-between gap-2 py-2">
@@ -149,8 +160,10 @@ function Group({ id, title, how, none = null, results, ruleVersion }: { id: stri
   if (results.length === 0 && !none) return null;
   return (
     <section data-auditor-section={id} className={BOX}>
-      <h2 className="text-base font-bold text-slate">{title}</h2>
-      {how && <p className="text-slate/70">{how}</p>}
+      <div className="flex flex-wrap items-center gap-x-1">
+        <h2 className="text-base font-bold text-slate">{title}</h2>
+        {how && <InfoTip>{how}</InfoTip>}
+      </div>
       {results.length === 0 ? (
         <p data-auditor-none>{none}</p>
       ) : (
@@ -176,7 +189,10 @@ function CheckRow({ result: r, ruleVersion, lang }: { result: CheckResult; ruleV
           {r.state === 'needs_attention' && r.count !== null ? (
             <>
               <p className="font-bold text-slate">{countWords(lang, `aud.check.${r.id}.todo`, r.count)}</p>
-              <p className="text-slate/70">{t(k('title'))}</p>
+              <div className="flex flex-wrap items-center gap-x-1">
+                <p className="text-slate/70">{t(k('title'))}</p>
+                <InfoTip>{t(k('do'))}</InfoTip>
+              </div>
             </>
           ) : (
             <p className="font-semibold text-slate">{t(k('title'))}</p>
@@ -186,7 +202,6 @@ function CheckRow({ result: r, ruleVersion, lang }: { result: CheckResult; ruleV
               <Badge variant="success">{t('aud.state.passes')}</Badge>
             </span>
           )}
-          {r.state === 'needs_attention' && <p>{t(k('do'))}</p>}
           {r.state === 'not_set_up' && <p>{r.off ? t('aud.moduleOff', { module: t(`module.${mod.id}` as MessageKey) }) : t(k('setup'))}</p>}
           {r.state === 'could_not_check' && <p>{t('aud.notChecked.do')}</p>}
         </div>
