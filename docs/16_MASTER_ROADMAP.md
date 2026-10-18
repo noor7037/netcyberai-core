@@ -120,6 +120,7 @@ numbers: supervisor C100–C109, Claude Code from C110.
 
 ## 6. Change log
 
+- **2026-10-18** — C242–C246 merged (#188–#191): P7 Setup complete (sessions, subjects retired never deleted, the onboarding checklist), the coordinator assigns teachers and the database enforces the assigned-teacher rule, the timetable on v5 (41% fewer words); APAAR not built, option 1 (yes/no only) chosen for now (C230-G). Left in P7: APAAR yes/no (C247's first PR) and the blocked items (payroll and the three spec-v0 modules).
 - **2026-10-18** — C236–C241 merged (#181–#186): storage health and the red line, the hourly sweep of unconfirmed uploads, the staff profile (nine tabs, photo, staff code, ID card, biodata), and v5 with 33% fewer words on 103 more screens. C230-F answers its open decisions. Founder action 8 still open: once this deploys, `/api/health` reports the wrong key as `storage: other_project` and the red line shows.
 - **2026-10-18** — C230-E: `28` status brought up to date (10a–10g merged); C233 and C234 unused, Claude Code rows from C236; the attribution rule (no co-author trailer, no model name) and the C230-C gate written into `CLAUDE.md`. Founder action 8 still open (live server key unchanged since 7 Oct).
 - **2026-10-15** — C235-C/D/D2 merged (#178, #179): design system v5 (59% fewer words), staff profile, versioned documents on records sent straight to storage up to 10 MB, Excel/CSV exports; `documents` bucket at 10 MiB on both databases. Founder action 8 added (live server key).
