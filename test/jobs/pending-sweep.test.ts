@@ -139,6 +139,29 @@ describe('the hourly sweep of papers sent and never confirmed (C237)', () => {
     expect(await sweepRows()).toHaveLength(audited + 1);
   });
 
+  it('files removed are recorded even when the audit insert fails: tried twice, then the count goes to the log', async () => {
+    const s = new MemoryFileStorage();
+    await putAged(s, pending(A, 'x'), 20 * MIN);
+    await putAged(s, pending(A, 'y'), 20 * MIN);
+    let tries = 0;
+    const noAudit = (async (fn: (c: Sql) => Promise<unknown>) =>
+      platform((c) =>
+        fn({ query: (text: string, params?: unknown[]) => (/insert into audit_log/.test(text) ? (tries++, Promise.reject(new Error('audit down'))) : c.query(text, params)) } as Sql)
+      )) as typeof platform;
+    const lines: string[] = [];
+    const spy = vi.spyOn(console, 'error').mockImplementation((line: unknown) => void lines.push(String(line)));
+    try {
+      await expect(pendingSweepHandler({ platform: noAudit, storage: s })(job)).rejects.toThrow(`${PENDING_SWEEP_JOB}: 1 school(s) not done`);
+    } finally {
+      spy.mockRestore();
+    }
+    expect(s.files.size).toBe(0);
+    expect(tries).toBe(2);
+    const said = lines.find((l) => l.includes('record_documents.pending_sweep.not_audited'));
+    expect(JSON.parse(said!)).toMatchObject({ level: 'error', schoolId: A, removed: 2 });
+    expect(said).not.toMatch(/pending\/|\.pdf/);
+  });
+
   it('one school the store fails for does not stop the others, and the job is retried', async () => {
     const s = new MemoryFileStorage();
     await putAged(s, pending(A, 'a'), 20 * MIN);
