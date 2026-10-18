@@ -1,6 +1,7 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import { PENDING_DEAD_SECONDS } from '@/lib/contracts/record-documents';
 import { recordPendingFolder } from '@/lib/documents/record-documents';
+import { log } from '@/lib/observability/log';
 import type { DirectUploadStorage } from '@/lib/storage/file-storage';
 import type { JobHandler, Sql } from './types';
 
@@ -33,20 +34,38 @@ export function pendingSweepHandler(deps: { platform: Platform; storage: DirectU
     const schools = await deps.platform(async (db) => (await db.query(`select school_id from schools order by school_id`)).rows.map((r) => r.school_id as string));
     let failed = 0;
     for (const schoolId of schools) {
+      let removed = 0;
+      let done = true;
       try {
-        let removed = 0;
         for (let round = 0; round < SWEEP_ROUNDS; round++) {
           const gone = await deps.storage.removeOlderThan(recordPendingFolder(schoolId), before);
           removed += gone;
           if (gone === 0) break;
         }
-        if (removed > 0)
-          await deps.platform((db) =>
-            writeAuditLog(db, { schoolId, actorUserId: null, actorRole: null, eventAction: 'record_document.pending_swept', targetType: 'record_documents', targetId: undefined, beforeState: undefined, afterState: { removed, by: PENDING_SWEEP_JOB } })
-          );
       } catch {
-        failed += 1;
+        done = false;
       }
+      // What went is recorded even when the store failed part way or the audit insert fails: the files cannot come
+      // back, so a retry would find nothing to count. The insert is tried twice; then the count goes to the log, with
+      // the school's id only.
+      if (removed > 0) {
+        let audited = false;
+        for (let attempt = 0; attempt < 2 && !audited; attempt++) {
+          try {
+            await deps.platform((db) =>
+              writeAuditLog(db, { schoolId, actorUserId: null, actorRole: null, eventAction: 'record_document.pending_swept', targetType: 'record_documents', targetId: undefined, beforeState: undefined, afterState: { removed, by: PENDING_SWEEP_JOB } })
+            );
+            audited = true;
+          } catch {
+            // tried again below, then logged
+          }
+        }
+        if (!audited) {
+          log('error', 'record_documents.pending_sweep.not_audited', { schoolId, removed });
+          done = false;
+        }
+      }
+      if (!done) failed += 1;
     }
     if (failed > 0) throw new Error(`${PENDING_SWEEP_JOB}: ${failed} school(s) not done`);
   };
