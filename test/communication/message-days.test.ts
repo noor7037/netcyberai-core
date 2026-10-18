@@ -32,7 +32,7 @@ describe('day headings of the message list', () => {
       row('b', '2026-10-17T06:00:00Z', 'delivered', { delivered_at: '2026-10-17T06:01:00Z' }),
       row('c', '2026-10-17T05:00:00Z', 'read', { read_at: '2026-10-18T04:00:00Z' }),
     ];
-    const html = renderToStaticMarkup(h(LangProvider, { lang: 'en' }, h(MessagesView, { mayRead: true, initial: { messages, counts: { delivered: 2, read: 1 }, days: 14 } })));
+    const html = renderToStaticMarkup(h(LangProvider, { lang: 'en', children: h(MessagesView, { mayRead: true, initial: { messages, counts: { delivered: 2, read: 1 }, days: 14 } }) }));
     const headings = [...html.matchAll(/data-message-day[^>]*>([^<]+)</g)].map((m) => m[1]);
     expect(headings).toEqual(['18 Oct', '17 Oct']);
     // C sits under 17 Oct and says it was read on 18 Oct; A and B show their time alone.
