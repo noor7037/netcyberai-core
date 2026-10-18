@@ -81,7 +81,11 @@ export function StaffProfileEdit({ profile, onClose }: { profile: StaffProfile; 
         const form = new FormData();
         if (photo !== 'remove') form.set('photo', photo.blob, 'photo.jpg');
         const sent = await fetch(`/api/app/staff/${profile.userId}/photo`, photo === 'remove' ? { method: 'DELETE' } : { method: 'POST', body: form });
-        if (!sent.ok) return setNote(said((await sent.json().catch(() => null))?.code));
+        if (!sent.ok) {
+          // The fields above were saved: the page shows them, and the note says what happened to the photo.
+          router.refresh();
+          return setNote(said((await sent.json().catch(() => null))?.code));
+        }
       }
       router.refresh();
       onClose();

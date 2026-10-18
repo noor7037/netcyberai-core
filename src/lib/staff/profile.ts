@@ -86,9 +86,11 @@ export async function loadStaffProfile(db: PoolClient, schoolId: string, userId:
     [schoolId, userId]
   );
   let periodsAWeek: number | null = null;
-  if (person.role === 'teacher' && (await db.query(`select 1 from timetable_entries where school_id = $1 limit 1`, [schoolId])).rows[0]) {
+  // Anyone with periods in the published timetable (a principal or coordinator may teach too), not only teachers.
+  if ((await db.query(`select 1 from timetable_entries where school_id = $1 limit 1`, [schoolId])).rows[0]) {
     const week = await schoolWeek(db, schoolId);
-    periodsAWeek = (await teacherWorkload(db, schoolId, { ...week, teacherUserId: userId }))[0]?.periods ?? 0;
+    const periods = (await teacherWorkload(db, schoolId, { ...week, teacherUserId: userId }))[0]?.periods ?? 0;
+    periodsAWeek = person.role === 'teacher' || periods > 0 ? periods : null;
   }
   // Approved days that have come, from the start of the current school year (or all on record), and what waits.
   const leaveTotals = (
