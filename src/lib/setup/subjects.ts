@@ -12,7 +12,7 @@ import type { StaffRole } from '@/lib/auth/types';
 // (POST /api/app/subjects); this file has the rest.
 //
 // Who may: the principal and the school admin. The route says so (canWriteMasterData) and the database does too (the
-// office-only policies of migration 20261018130000). Audit rows hold ids only (C56): the subject's id.
+// office-only policies of migration c244_setup_complete). Audit rows hold ids only (C56): the subject's id.
 
 type Sql = Pick<PoolClient, 'query'>;
 export type SetupActor = { schoolId: string; userId: string; role: StaffRole };

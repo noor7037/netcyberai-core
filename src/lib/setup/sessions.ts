@@ -6,7 +6,7 @@ import { parseSessionInput, type SessionInput, type SessionRefusal, type Session
 // Academic sessions, kept by the office in Setup (docs/28 slice 10g, C244): the school's years, and which one is
 // current. Every function runs in the caller's own tenant transaction, as the app's role. Who may change a session
 // is the principal and the school admin: the route says so (canWriteMasterData) and so does the database (the
-// office-only policies of migration 20261018130000); a session is never deleted, since classes, exams, fee structures
+// office-only policies of migration c244_setup_complete); a session is never deleted, since classes, exams, fee structures
 // and RTE claims refer to it.
 //
 // "Current" is one session at a time, held by the partial unique index idx_academic_sessions_one_current. Making one
