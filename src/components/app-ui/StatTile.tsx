@@ -4,7 +4,7 @@ import type { IconName } from '@/components/visual/Icons';
 import type { ColorToken } from '@/lib/contracts/modules';
 
 // A figure with its icon chip above it and its label under it (design system
-// v5, C235-C; C240 for the office and Control screens): the same look as the
+// v5, C235-C; C240, kept with the shared parts by the lead): the same look as the
 // KPI tile of the dashboards, for a figure a screen computes itself (a total
 // of rupees, a count of rows) where the dashboard's tile contract does not
 // fit. The value and the label are plain text, so a screen keeps its own data

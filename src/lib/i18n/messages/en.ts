@@ -4333,7 +4333,7 @@ export const en = {
   'rtd.rate.replaces': 'A new rate replaces this one for the claims raised after it. Claims already raised keep their rate.',
   'rtd.rate.saved': 'The rate is saved.',
   'rtd.sheet.title': 'Claim sheet, {year}',
-  'rtd.sheet.how': 'Each child is claimed at the lower of the state rate and the school’s fee for the child’s class that year (RTE Act, section 12(2)).',
+  'rtd.sheet.how': 'Each child is claimed at the lower of the state rate and the school’s fee for the child’s class that year (RTE Act, section 12(2)). The fee is the year’s total of the fee heads that count, from the class’s fee structure; a one-time fee is not counted.',
   'rtd.sheet.fee': 'The fee is the year’s total of the fee heads that count, from the class’s fee structure; a one-time fee is not counted.',
   'rtd.totals.children': 'Children on the sheet',
   'rtd.totals.toRaise': 'Ready to raise',

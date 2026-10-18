@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { InfoTip } from '@/components/app-ui/InfoTip';
-import { StatTile } from '@/components/stats/StatTile';
+import { StatTile } from '@/components/app-ui/StatTile';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
