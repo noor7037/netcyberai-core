@@ -814,7 +814,7 @@ export const hi: Record<keyof typeof en, string> = {
   'due.refused.due_date': 'तारीख़ उस महीने में या उसके बाद की हो, और तीन महीने से ज़्यादा बाद की नहीं।',
   'due.refused.month_outside_session': 'वह महीना सत्र के बाहर है।',
   'due.total': 'बिल ₹{gross} · रियायत ₹{concession} · वसूलना है ₹{net}',
-  'due.net': '₹{net}',
+  'due.net': '₹{net} देय',
   'due.breakdown': '₹{gross} में से ₹{concession} कम',
   'empty.fee-dues.title': 'इस कक्षा और महीने की कोई देय राशि नहीं बनी है',
   'empty.fee-dues.do': 'दफ़्तर ऊपर तारीख़ चुनकर “Raise dues” दबाता है।',

@@ -587,7 +587,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     steps: [
       { en: 'Open “Fees”. The box at the top shows “Overdue”: the money still owed on fees past their due date.', hi: '“Fees” खोलें। ऊपर के बॉक्स में “Overdue” दिखता है: जमा तारीख़ निकल चुकी फ़ीस पर बाकी पैसा।' },
       { en: 'Under “Take a payment”, choose the student. A due past its date is marked “Overdue”.', hi: '“Take a payment” के नीचे विद्यार्थी चुनें। जिस देय राशि की तारीख़ निकल चुकी है, उस पर “Overdue” लिखा होता है।' },
-      { en: 'To charge a late fee, the principal or the school admin opens “Settings”, and under “Fees” switches on “Charge a late fee”, types the “Late fee, in rupees” and the “Days of grace before a late fee”, and presses “Save these settings”.', hi: 'विलंब शुल्क लगाने के लिए प्रिंसिपल या स्कूल एडमिन “Settings” खोलते हैं, “Fees” के नीचे “Charge a late fee” चालू करते हैं, “Late fee, in rupees” और “Days of grace before a late fee” लिखते हैं, और “Save these settings” दबाते हैं।' },
+      { en: 'To charge a late fee, the principal or the school admin opens “Settings”, and under “Fees” switches on “Charge a late fee”, types the “Late fee, in rupees” and the “Days of grace before a late fee”, and presses “Save”.', hi: 'विलंब शुल्क लगाने के लिए प्रिंसिपल या स्कूल एडमिन “Settings” खोलते हैं, “Fees” के नीचे “Charge a late fee” चालू करते हैं, “Late fee, in rupees” और “Days of grace before a late fee” लिखते हैं, और “Save” दबाते हैं।' },
     ],
     tips: [
       { en: 'A part-paid fee past its date counts as overdue on what is left, not on the full amount.', hi: 'कुछ हिस्सा जमा हो चुकी फ़ीस की तारीख़ निकलने पर सिर्फ़ बाकी रकम बकाया गिनी जाती है, पूरी रकम नहीं।' },
@@ -875,7 +875,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     steps: [
       { en: 'Open Settings from the menu.', hi: 'मेनू से Settings खोलें।' },
       { en: 'The first list shows each part, whether it is on, and what changes when it is off. To change one, raise a ticket.', hi: 'पहली सूची में हर हिस्सा है: वह चालू है या नहीं, और बंद होने पर क्या बदलता है। बदलने के लिए टिकट भेजें।' },
-      { en: 'Under “How each part is set up”, each part of the app has its own settings, each with a sentence on what it changes. Change a value and press “Save these settings”; “Reset to default” puts back the starting value.', hi: '“How each part is set up” के नीचे ऐप के हर हिस्से की अपनी सेटिंग हैं, हर एक के साथ एक वाक्य कि वह क्या बदलती है। मान बदलें और “Save these settings” दबाएँ; “Reset to default” शुरुआती मान वापस रख देता है।' },
+      { en: 'Under “How each part is set up”, each part of the app has its own settings, each with a sentence on what it changes. Change a value and press “Save”; “Reset to default” puts back the starting value.', hi: '“How each part is set up” के नीचे ऐप के हर हिस्से की अपनी सेटिंग हैं, हर एक के साथ एक वाक्य कि वह क्या बदलती है। मान बदलें और “Save” दबाएँ; “Reset to default” शुरुआती मान वापस रख देता है।' },
       { en: 'Under “WhatsApp Business Account”, press “Connect your own WhatsApp Business Account”.', hi: '“WhatsApp Business Account” के नीचे “Connect your own WhatsApp Business Account” दबाएँ।' },
       { en: 'Enter the “WABA ID”, the “Phone number ID (Meta)”, the “Access token” and the “Webhook verify token” from your Meta Business account, then save.', hi: 'अपने Meta Business खाते से “WABA ID”, “Phone number ID (Meta)”, “Access token” और “Webhook verify token” भरें, फिर सेव करें।' },
     ],

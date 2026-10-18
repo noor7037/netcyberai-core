@@ -819,7 +819,7 @@ export const en = {
   'due.refused.due_date': 'The due date must be in or after the month, and not more than three months later.',
   'due.refused.month_outside_session': 'That month is outside the session.',
   'due.total': 'Billed ₹{gross} · conceded ₹{concession} · to collect ₹{net}',
-  'due.net': '₹{net}',
+  'due.net': '₹{net} due',
   'due.breakdown': '₹{gross} less ₹{concession}',
   'empty.fee-dues.title': 'No dues are raised for this class and month',
   'empty.fee-dues.do': 'The office chooses the due date above and presses “Raise dues”.',
