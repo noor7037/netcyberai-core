@@ -12,7 +12,7 @@ export default async function TemplatesPage() {
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
   return (
-    <ModulePage title={t(lang, 'tpl.title')} purpose={t(lang, 'tpl.purpose')} icon="chat" tone="cyan" eyebrow={t(lang, 'group.control')} headerLang={lang}>
+    <ModulePage title={t(lang, 'tpl.title')} purpose={t(lang, 'tpl.purpose')} about={t(lang, 'tpl.about')} icon="chat" tone="cyan" eyebrow={t(lang, 'group.control')} headerLang={lang}>
       <TemplatesPanel />
     </ModulePage>
   );

@@ -2,8 +2,11 @@
 
 import { useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import type { BillingOverview, BillingState, PaymentRow, SchoolBilling } from '@/lib/control/billing';
 import type { AmountDue } from '@/lib/control/billing-amount';
 import { lastGraceDay } from '@/lib/control/grace-day';
@@ -24,7 +27,6 @@ type PayDraft = { amountRupees: string; paidOn: string; coversUntil: string; ref
 const STATE_VARIANT: Record<BillingState, 'neutral' | 'success' | 'warning' | 'danger'> = { not_billed: 'neutral', paid: 'success', due: 'warning', grace: 'warning', read_only: 'danger', suspended: 'danger' };
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
-const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 const rupees = (paise: number) => `₹${(paise / 100).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 const MONTHS: Record<string, number> = { month: 1, year: 12 };
 const iso = (d: Date) => d.toISOString().slice(0, 10);
@@ -95,9 +97,9 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
 
   return (
     <section data-billing-schools className="flex flex-col gap-3 rounded-xl border border-slate/10 bg-white p-4">
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-lg font-bold">{t('billing.schools.title')}</h2>
-        <p className="max-w-prose text-slate/70">{t('billing.schools.how')}</p>
+        <InfoTip>{t('billing.schools.how')}</InfoTip>
       </div>
       {data.schools.length === 0 && <p className="rounded-md bg-off-white px-3 py-2">{t('billing.schools.none')}</p>}
       <ul className="flex flex-col gap-3">
@@ -114,6 +116,8 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
                 </Badge>
                 {trial?.inForce && <Badge variant="success">{t('billing.trial.badge')}</Badge>}
                 {s.isTest && <Badge>{t('billing.school.test')}</Badge>}
+                {s.isTest && <InfoTip>{t('billing.school.testHow')}</InfoTip>}
+                {!s.planId && <InfoTip>{t('billing.school.noPlanHow')}</InfoTip>}
               </div>
               <dl className="grid gap-x-4 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
                 <div>
@@ -155,7 +159,6 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
                   </dd>
                 </div>
               </dl>
-              {s.isTest && <p className="max-w-prose text-slate/70">{t('billing.school.testHow')}</p>}
               <div className="flex flex-wrap gap-2">
                 <button type="button" data-billing-pay disabled={busy || !s.planId} className={TAP} aria-expanded={mine === 'payment'} onClick={() => show(s, 'payment')}>
                   {t('billing.pay.open')}
@@ -173,7 +176,6 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
                   {t('billing.trial.open')}
                 </button>
               </div>
-              {!s.planId && <p className="max-w-prose text-slate/70">{t('billing.school.noPlanHow')}</p>}
 
               {mine === 'payment' && pay && (
                 <form
@@ -184,21 +186,19 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
                     void savePayment(s, pay);
                   }}
                 >
-                  <div>
+                  <div className="flex flex-wrap items-center gap-x-1">
                     <h3 className="text-base font-bold">{t(pay.corrects ? 'billing.pay.correctTitle' : 'billing.pay.title')}</h3>
-                    <p className="max-w-prose text-slate/70">{pay.corrects ? t('billing.pay.correctHow', { paidOn: day(pay.corrects.paidOn), amount: rupees(pay.corrects.amountMinor) }) : t('billing.pay.how')}</p>
+                    <InfoTip tone="white">
+                      <p>{pay.corrects ? t('billing.pay.correctHow', { paidOn: day(pay.corrects.paidOn), amount: rupees(pay.corrects.amountMinor) }) : t('billing.pay.how')}</p>
+                      {s.paidUntil && !pay.nothingPaid && <p>{t('billing.pay.coversHelp', { paidUntil: day(s.paidUntil) })}</p>}
+                    </InfoTip>
                   </div>
-                  {pay.corrects && (
-                    <label className="flex min-h-[44px] items-center gap-2">
-                      <input type="checkbox" checked={pay.nothingPaid} onChange={(e) => setPay({ ...pay, nothingPaid: e.target.checked })} />
-                      {t('billing.pay.nothingPaid')}
-                    </label>
-                  )}
+                  {pay.corrects && <Checkbox id={`pay-nothing-${s.schoolId}`} label={t('billing.pay.nothingPaid')} checked={pay.nothingPaid} onChange={(e) => setPay({ ...pay, nothingPaid: e.target.checked })} />}
                   <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {!pay.nothingPaid && <Input id={`pay-amount-${s.schoolId}`} inputMode="decimal" required label={t('billing.pay.amount')} value={pay.amountRupees} onChange={(e) => setPay({ ...pay, amountRupees: e.target.value })} />}
                     <Input id={`pay-on-${s.schoolId}`} type="date" required max={data.today} label={t('billing.pay.paidOn')} value={pay.paidOn} onChange={(e) => setPay({ ...pay, paidOn: e.target.value })} />
                     {!pay.nothingPaid && (
-                      <Input id={`pay-until-${s.schoolId}`} type="date" required label={t('billing.pay.coversUntil')} helperText={s.paidUntil ? t('billing.pay.coversHelp', { paidUntil: day(s.paidUntil) }) : undefined} value={pay.coversUntil} onChange={(e) => setPay({ ...pay, coversUntil: e.target.value })} />
+                      <Input id={`pay-until-${s.schoolId}`} type="date" required label={t('billing.pay.coversUntil')} value={pay.coversUntil} onChange={(e) => setPay({ ...pay, coversUntil: e.target.value })} />
                     )}
                     <Input id={`pay-ref-${s.schoolId}`} required maxLength={120} label={t('billing.pay.reference')} value={pay.reference} onChange={(e) => setPay({ ...pay, reference: e.target.value })} />
                   </div>
@@ -218,26 +218,21 @@ export function BillingSchools({ data, busy, send }: { data: BillingOverview; bu
                     void savePlan(s);
                   }}
                 >
-                  <div>
+                  <div className="flex flex-wrap items-center gap-x-1">
                     <h3 className="text-base font-bold">{t('billing.change.title')}</h3>
-                    <p className="max-w-prose text-slate/70">{t('billing.change.how')}</p>
+                    <InfoTip tone="white">{t('billing.change.how')}</InfoTip>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="flex flex-col gap-1.5">
-                      <label htmlFor={`change-plan-${s.schoolId}`} className="text-sm font-medium text-slate">
-                        {t('billing.change.plan')}
-                      </label>
-                      <select id={`change-plan-${s.schoolId}`} required className={FIELD} value={plan.planId} onChange={(e) => setPlan({ ...plan, planId: e.target.value })}>
-                        <option value="">{t('billing.change.choose')}</option>
-                        {data.plans
-                          .filter((p) => (!p.retired || p.planId === s.planId) && (!p.testSchoolsOnly || s.isTest))
-                          .map((p) => (
-                            <option key={p.planId} value={p.planId}>
-                              {p.name}
-                            </option>
-                          ))}
-                      </select>
-                    </div>
+                    <Select id={`change-plan-${s.schoolId}`} required label={t('billing.change.plan')} value={plan.planId} onChange={(e) => setPlan({ ...plan, planId: e.target.value })}>
+                      <option value="">{t('billing.change.choose')}</option>
+                      {data.plans
+                        .filter((p) => (!p.retired || p.planId === s.planId) && (!p.testSchoolsOnly || s.isTest))
+                        .map((p) => (
+                          <option key={p.planId} value={p.planId}>
+                            {p.name}
+                          </option>
+                        ))}
+                    </Select>
                     <Input id={`change-why-${s.schoolId}`} required maxLength={500} label={t('billing.change.reason')} value={plan.reason} onChange={(e) => setPlan({ ...plan, reason: e.target.value })} />
                   </div>
                   <button type="submit" data-billing-change-save disabled={busy || !plan.planId || plan.reason.trim().length < 3} className={`${PRIMARY} self-start`}>

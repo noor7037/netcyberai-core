@@ -29,7 +29,9 @@ export function ModuleSwitchList({ entitlements, lang }: { entitlements: SchoolE
       <li key={m.id} data-module={m.id} data-on={on} className="flex flex-wrap items-center gap-x-3 gap-y-1 py-1.5">
         <ModuleIcon name={m.icon} tone={g.tone[0]} size="sm" />
         <p className="min-w-0 flex-1 text-sm font-semibold text-slate">{tOr(lang, `module.${m.id}`, m.label)}</p>
-        <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${on ? 'bg-emerald/10 text-slate' : 'bg-slate/10 text-slate'}`}>{t(lang, always ? 'modules.always' : on ? 'modules.on' : 'modules.off')}</span>
+        <span role="img" aria-label={t(lang, always ? 'modules.always' : on ? 'modules.on' : 'modules.off')} title={t(lang, always ? 'modules.always' : on ? 'modules.on' : 'modules.off')} className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold ${on ? 'bg-emerald/10 text-slate' : 'bg-slate/10 text-slate'}`}>
+          <span aria-hidden="true">{on ? '✓' : '–'}</span>
+        </span>
         <InfoTip label={tOr(lang, `module.${m.id}`, m.label)}>
           {!always && <span className="font-semibold">{t(lang, 'modules.whenOff')} </span>}
           {moduleOffSentence(lang, m)}

@@ -2,8 +2,10 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import type { BillingOverview } from '@/lib/control/billing';
 import { bpToPercent, proposeYearMinor, type AmountDue } from '@/lib/control/billing-amount';
 import type { BillingTerm, TermKind, TermState } from '@/lib/control/billing-terms';
@@ -29,7 +31,6 @@ const KINDS: readonly TermKind[] = ['price', 'complimentary', 'discount', 'minim
 const STATE_VARIANT: Record<TermState, 'neutral' | 'success' | 'warning'> = { in_force: 'success', later: 'warning', ended: 'neutral', never: 'neutral' };
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
-const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 const rupees = (paise: number) => `₹${(paise / 100).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 const shiftDay = (isoDay: string, n: number) => new Date(Date.parse(`${isoDay}T00:00:00Z`) + n * 86_400_000).toISOString().slice(0, 10);
 const proposedYear = (month: string) => {
@@ -100,9 +101,9 @@ export function BillingTerms({ school, data, busy, send }: { school: School; dat
 
   return (
     <div data-billing-terms-panel className="flex flex-col gap-3 rounded-md bg-off-white p-3">
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h3 className="text-base font-bold">{t('billing.terms.title')}</h3>
-        <p className="max-w-prose text-slate/70">{t('billing.terms.how')}</p>
+        <InfoTip tone="white">{t('billing.terms.how')}</InfoTip>
       </div>
       {!loaded && <p className="text-slate/70">{t('billing.terms.loading')}</p>}
 
@@ -140,16 +141,11 @@ export function BillingTerms({ school, data, busy, send }: { school: School; dat
       >
         <h4 className="font-bold">{t('billing.period.title')}</h4>
         <div className="grid gap-3 sm:grid-cols-2">
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor={`period-${school.schoolId}`} className="text-sm font-medium text-slate">
-              {t('billing.period.label')}
-            </label>
-            <select id={`period-${school.schoolId}`} required className={FIELD} value={period.period} onChange={(e) => setPeriod({ ...period, period: e.target.value })}>
-              <option value="">{t('billing.period.choose')}</option>
-              <option value="month">{t('billing.period.month')}</option>
-              <option value="year">{t('billing.period.year')}</option>
-            </select>
-          </div>
+          <Select id={`period-${school.schoolId}`} required label={t('billing.period.label')} value={period.period} onChange={(e) => setPeriod({ ...period, period: e.target.value })}>
+            <option value="">{t('billing.period.choose')}</option>
+            <option value="month">{t('billing.period.month')}</option>
+            <option value="year">{t('billing.period.year')}</option>
+          </Select>
           <Input id={`period-why-${school.schoolId}`} required maxLength={500} label={t('billing.change.reason')} value={period.reason} onChange={(e) => setPeriod({ ...period, reason: e.target.value })} />
         </div>
         <button type="submit" data-billing-period-save disabled={busy || !period.period || !validReason(period.reason)} className={`${PRIMARY} self-start`}>
@@ -186,7 +182,9 @@ export function BillingTerms({ school, data, busy, send }: { school: School; dat
                     void saveEnd(ending);
                   }}
                 >
-                  <p className="max-w-prose text-slate/70">{t('billing.term.endHow')}</p>
+                  <div className="flex flex-wrap items-center gap-x-1">
+                    <InfoTip tone="white">{t('billing.term.endHow')}</InfoTip>
+                  </div>
                   <div className="grid gap-3 sm:grid-cols-2">
                     <Input id={`end-on-${term.termId}`} type="date" required min={earliestEnd(term)} label={t('billing.term.endsOnRequired')} value={ending.endsOn} onChange={(e) => setEnding({ ...ending, endsOn: e.target.value })} />
                     <Input id={`end-why-${term.termId}`} required maxLength={500} label={t('billing.change.reason')} value={ending.reason} onChange={(e) => setEnding({ ...ending, reason: e.target.value })} />
@@ -226,20 +224,18 @@ export function BillingTerms({ school, data, busy, send }: { school: School; dat
             void saveTerm(draft);
           }}
         >
-          <h4 className="font-bold">{t('billing.term.addTitle')}</h4>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <h4 className="font-bold">{t('billing.term.addTitle')}</h4>
+            {draft.kind === 'price' && <InfoTip tone="white">{t('billing.pricing.yearProposed')}</InfoTip>}
+          </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor={`term-kind-${school.schoolId}`} className="text-sm font-medium text-slate">
-                {t('billing.term.kind')}
-              </label>
-              <select id={`term-kind-${school.schoolId}`} className={FIELD} value={draft.kind} onChange={(e) => setDraft({ ...draft, kind: e.target.value as TermKind })}>
-                {KINDS.map((k) => (
-                  <option key={k} value={k}>
-                    {t(`billing.term.kind.${k}` as MessageKey)}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <Select id={`term-kind-${school.schoolId}`} label={t('billing.term.kind')} value={draft.kind} onChange={(e) => setDraft({ ...draft, kind: e.target.value as TermKind })}>
+              {KINDS.map((k) => (
+                <option key={k} value={k}>
+                  {t(`billing.term.kind.${k}` as MessageKey)}
+                </option>
+              ))}
+            </Select>
             {draft.kind === 'price' && (
               <>
                 <Input
@@ -255,26 +251,20 @@ export function BillingTerms({ school, data, busy, send }: { school: School; dat
                   inputMode="decimal"
                   required
                   label={t('billing.pricing.yearLabel')}
-                  helperText={t('billing.pricing.yearProposed')}
                   value={draft.priceYear}
                   onChange={(e) => setDraft({ ...draft, priceYear: e.target.value, yearTyped: e.target.value.trim() !== '' })}
                 />
               </>
             )}
             {draft.kind === 'complimentary' && (
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor={`term-module-${school.schoolId}`} className="text-sm font-medium text-slate">
-                  {t('billing.term.module')}
-                </label>
-                <select id={`term-module-${school.schoolId}`} required className={FIELD} value={draft.moduleId} onChange={(e) => setDraft({ ...draft, moduleId: e.target.value })}>
-                  <option value="">{t('billing.term.chooseModule')}</option>
-                  {complimentaryChoices.map((m) => (
-                    <option key={m} value={m}>
-                      {moduleLabel(m)}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <Select id={`term-module-${school.schoolId}`} required label={t('billing.term.module')} value={draft.moduleId} onChange={(e) => setDraft({ ...draft, moduleId: e.target.value })}>
+                <option value="">{t('billing.term.chooseModule')}</option>
+                {complimentaryChoices.map((m) => (
+                  <option key={m} value={m}>
+                    {moduleLabel(m)}
+                  </option>
+                ))}
+              </Select>
             )}
             {draft.kind === 'discount' && <Input id={`term-percent-${school.schoolId}`} inputMode="decimal" required label={t('billing.term.percent')} value={draft.percent} onChange={(e) => setDraft({ ...draft, percent: e.target.value })} />}
             {draft.kind === 'minimum' && <Input id={`term-minimum-${school.schoolId}`} inputMode="numeric" required label={t('billing.term.minimum')} value={draft.minimum} onChange={(e) => setDraft({ ...draft, minimum: e.target.value })} />}

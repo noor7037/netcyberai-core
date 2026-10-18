@@ -167,7 +167,7 @@ describe('the school’s Settings list', () => {
     expect(state(html, 'fees')).toBe('false');
     expect(state(html, 'raise-ticket')).toBe('true');
     expect(html).toContain('Nobody can add or change a student');
-    expect(html).toContain('>Always on<');
+    expect(html).toContain('aria-label="Always on"');
     expect(html).toMatch(/href="\/app\/help\/ticket\/new"[^>]*>Raise a ticket</);
   });
 

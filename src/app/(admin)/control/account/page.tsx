@@ -7,7 +7,7 @@ import { ModulePage } from '@/components/app-ui/ModulePage';
 // number and devices here (C89, C90, C95).
 export default function AccountPage() {
   return (
-    <ModulePage title="Account and security" purpose="Change your password, authenticator, sign-in number and devices. Your authenticator code is needed too." icon="lock" tone="sapphire" eyebrow="My account">
+    <ModulePage title="Account and security" purpose="Password, authenticator, sign-in number and devices." icon="lock" tone="sapphire" eyebrow="My account">
       <AuthenticatorPanel />
       <ChangePasswordForm />
       <SecurityPanel />

@@ -2,8 +2,11 @@
 
 import { useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
+import { StatTile } from '@/components/app-ui/StatTile';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import type { Register, StaffEntry } from '@/lib/compliance/qualifications';
 import { RULE_IDS, STAGES, TET_PAPERS, TET_TYPES, type Ending, type ImportStatus, type Qualification } from '@/lib/compliance/register-rules';
 import type { MessageKey } from '@/lib/i18n';
@@ -120,15 +123,12 @@ export function QualificationsPanel({ register, reload, say }: { register: Regis
         )}
         {open && editing && (
           <div data-cdk-form className="flex flex-col gap-3 rounded-md bg-off-white p-3">
-            <div className="flex flex-col gap-1">
-              <label htmlFor="cdk-q-stage" className="text-sm font-medium">{t('cdk.f.stage')}</label>
-              <select id="cdk-q-stage" className={FIELD} value={editing.form.stage} onChange={(e) => setEditing({ ...editing, form: { ...editing.form, stage: e.target.value } })}>
-                <option value="">{t('cdk.stage.none')}</option>
-                {STAGES.map((st) => (
-                  <option key={st.id} value={st.id}>{t(`cdk.stage.${st.id}` as MessageKey)}</option>
-                ))}
-              </select>
-            </div>
+            <Select id="cdk-q-stage" label={t('cdk.f.stage')} value={editing.form.stage} onChange={(e) => setEditing({ ...editing, form: { ...editing.form, stage: e.target.value } })}>
+              <option value="">{t('cdk.stage.none')}</option>
+              {STAGES.map((st) => (
+                <option key={st.id} value={st.id}>{t(`cdk.stage.${st.id}` as MessageKey)}</option>
+              ))}
+            </Select>
             <div className="grid gap-3 sm:grid-cols-2">
               {field('subjects', 'cdk.f.subjects', 80)}
               {field('degree', 'cdk.f.degree', 60)}
@@ -136,24 +136,18 @@ export function QualificationsPanel({ register, reload, say }: { register: Regis
               {field('professional_qualification', 'cdk.f.professional', 60)}
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="flex flex-col gap-1">
-                <label htmlFor="cdk-q-tet_type" className="text-sm font-medium">{t('cdk.f.tetType')}</label>
-                <select id="cdk-q-tet_type" className={FIELD} value={editing.form.tet_type} onChange={(e) => setEditing({ ...editing, form: e.target.value ? { ...editing.form, tet_type: e.target.value } : { ...editing.form, tet_type: '', tet_paper: '', tet_certificate_date: '', tet_valid_until: '' } })}>
-                  <option value="">{t('cdk.tet.none')}</option>
-                  {TET_TYPES.map((x) => (
-                    <option key={x} value={x}>{tetName(x)}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="flex flex-col gap-1">
-                <label htmlFor="cdk-q-tet_paper" className="text-sm font-medium">{t('cdk.f.tetPaper')}</label>
-                <select id="cdk-q-tet_paper" className={FIELD} disabled={!editing.form.tet_type} value={editing.form.tet_paper} onChange={(e) => setEditing({ ...editing, form: { ...editing.form, tet_paper: e.target.value } })}>
-                  <option value="">{t('cdk.paper.none')}</option>
-                  {TET_PAPERS.map((p) => (
-                    <option key={p} value={p}>{paperName(p)}</option>
-                  ))}
-                </select>
-              </div>
+              <Select id="cdk-q-tet_type" label={t('cdk.f.tetType')} value={editing.form.tet_type} onChange={(e) => setEditing({ ...editing, form: e.target.value ? { ...editing.form, tet_type: e.target.value } : { ...editing.form, tet_type: '', tet_paper: '', tet_certificate_date: '', tet_valid_until: '' } })}>
+                <option value="">{t('cdk.tet.none')}</option>
+                {TET_TYPES.map((x) => (
+                  <option key={x} value={x}>{tetName(x)}</option>
+                ))}
+              </Select>
+              <Select id="cdk-q-tet_paper" label={t('cdk.f.tetPaper')} disabled={!editing.form.tet_type} value={editing.form.tet_paper} onChange={(e) => setEditing({ ...editing, form: { ...editing.form, tet_paper: e.target.value } })}>
+                <option value="">{t('cdk.paper.none')}</option>
+                {TET_PAPERS.map((p) => (
+                  <option key={p} value={p}>{paperName(p)}</option>
+                ))}
+              </Select>
               {editing.form.tet_type && dateField('tet_certificate_date', 'cdk.f.tetDate')}
               {editing.form.tet_type && dateField('tet_valid_until', 'cdk.f.tetUntil', 'cdk.f.tetUntilHelp')}
               {field('other_approval', 'cdk.f.other', 80)}
@@ -172,23 +166,20 @@ export function QualificationsPanel({ register, reload, say }: { register: Regis
 
   return (
     <section data-cdk-register className={CARD}>
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-base font-bold">{t('cdk.q.title')}</h2>
-        <p className="text-slate/70">{t('cdk.q.how')}</p>
+        <InfoTip>{t('cdk.q.how')}</InfoTip>
       </div>
-      <dl className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {([
-          ['cdk.q.totalStaff', register.totals.staff, 'staff'],
-          ['cdk.q.totalGaps', register.totals.withGaps, 'gaps'],
-          ['cdk.q.totalEnding', register.totals.ending, 'ending'],
-          ['cdk.q.totalPassed', register.totals.passed, 'passed'],
-        ] as const).map(([k, v, id]) => (
-          <div key={k} className="rounded-md bg-off-white px-3 py-2">
-            <dt className="text-slate/70">{t(k, { days })}</dt>
-            <dd data-cdk-total={id} className="text-base font-bold">{v}</dd>
-          </div>
+          ['cdk.q.totalStaff', register.totals.staff, 'staff', 'users', 'royal'],
+          ['cdk.q.totalGaps', register.totals.withGaps, 'gaps', 'alert', 'tangerine'],
+          ['cdk.q.totalEnding', register.totals.ending, 'ending', 'bell', 'amber'],
+          ['cdk.q.totalPassed', register.totals.passed, 'passed', 'alert', 'coral'],
+        ] as const).map(([k, v, id, icon, tone]) => (
+          <StatTile key={k} icon={icon} tone={tone} label={t(k, { days })} value={v} valueAttrs={{ 'data-cdk-total': id }} />
         ))}
-      </dl>
+      </div>
 
       <div data-cdk-endings className="flex flex-col gap-2">
         <h3 className="font-bold">{t('cdk.q.endingTitle', { days })}</h3>
@@ -216,8 +207,10 @@ export function QualificationsPanel({ register, reload, say }: { register: Regis
 
       {register.former.length > 0 && (
         <div data-cdk-former className="flex flex-col gap-2">
-          <h3 className="font-bold">{t('cdk.q.formerTitle')}</h3>
-          <p className="text-slate/70">{t('cdk.q.formerHow')}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <h3 className="font-bold">{t('cdk.q.formerTitle')}</h3>
+            <InfoTip>{t('cdk.q.formerHow')}</InfoTip>
+          </div>
           <ul className="flex flex-col gap-2">
             {register.former.map((f) => (
               <li key={f.user_id} data-cdk-former-row={f.user_id} className="flex flex-col gap-2 rounded-md border border-slate/10 px-3 py-2">
@@ -245,20 +238,22 @@ export function QualificationsPanel({ register, reload, say }: { register: Regis
         </div>
       )}
 
-      <div className="flex flex-col gap-1 rounded-md border border-slate/10 px-3 py-2">
-        <p className="font-semibold">{t('cdk.q.rules')}</p>
-        <ul className="flex flex-col gap-1">
-          {STAGES.map((st) => {
-            const needs = RULE_IDS.filter((r) => register.settings.rules[st.id][r]);
-            return (
-              <li key={st.id}>
-                {t(`cdk.stage.${st.id}` as MessageKey)}: {needs.length ? needs.map((r) => t(`cdk.rule.${r}` as MessageKey)).join(', ') : t('cdk.rule.nothing')}
-              </li>
-            );
-          })}
-        </ul>
-        <a href="/app/settings" className={`${LINK} self-start`}>{t('cdk.q.openSettings')}</a>
-      </div>
+      <details data-cdk-rules className="rounded-md border border-slate/10 px-3">
+        <summary className="flex min-h-[44px] cursor-pointer items-center font-semibold">{t('cdk.q.rules')}</summary>
+        <div className="flex flex-col gap-1 pb-3">
+          <ul className="flex flex-col gap-1">
+            {STAGES.map((st) => {
+              const needs = RULE_IDS.filter((r) => register.settings.rules[st.id][r]);
+              return (
+                <li key={st.id}>
+                  {t(`cdk.stage.${st.id}` as MessageKey)}: {needs.length ? needs.map((r) => t(`cdk.rule.${r}` as MessageKey)).join(', ') : t('cdk.rule.nothing')}
+                </li>
+              );
+            })}
+          </ul>
+          <a href="/app/settings" className={`${LINK} self-start`}>{t('cdk.q.openSettings')}</a>
+        </div>
+      </details>
 
       <details data-cdk-import className="rounded-md border border-slate/10 px-3">
         <summary className="flex min-h-[44px] cursor-pointer items-center font-semibold">{t('cdk.imp.title')}</summary>

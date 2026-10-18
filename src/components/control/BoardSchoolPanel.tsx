@@ -2,7 +2,9 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
-import { Field, FIELD, PRIMARY, SECTION } from '@/components/exams/SchemeParts';
+import { InfoTip } from '@/components/app-ui/InfoTip';
+import { PRIMARY, SECTION } from '@/components/exams/SchemeParts';
+import { Select } from '@/components/ui/Select';
 import type { MessageKey } from '@/lib/i18n';
 
 // Control → a school → Exams: the board the school records (docs/27 row 9a, C213). NetCyberAI sets it here; the
@@ -47,21 +49,21 @@ export function BoardSchoolPanel({ schoolId }: { schoolId: string }) {
   if (!data) return null;
   return (
     <section lang={lang} data-school-board className={`${SECTION} text-sm text-slate`}>
-      <h2 className="text-base font-bold">{t('boards.school.title')}</h2>
-      <p className="text-slate/70">{t('boards.school.how')}</p>
+      <div className="flex flex-wrap items-center gap-x-1">
+        <h2 className="text-base font-bold">{t('boards.school.title')}</h2>
+        <InfoTip>{t('boards.school.how')}</InfoTip>
+      </div>
       {note && <p role="status" className={`rounded-md px-3 py-2 font-semibold ${note.ok ? 'bg-off-white text-slate' : 'border border-red-800/30 text-red-800'}`}>{note.text}</p>}
       <div className="flex flex-wrap items-end gap-2">
         <div className="min-w-0 flex-1 sm:max-w-md">
-          <Field id="school-board" label={t('gs.board.label')}>
-            <select id="school-board" className={FIELD} value={choice} onChange={(e) => setChoice(e.target.value)}>
-              <option value="">{t('gs.board.none')}</option>
-              {data.boards.map((b) => (
-                <option key={b.boardId} value={b.boardId}>
-                  {b.name}
-                </option>
-              ))}
-            </select>
-          </Field>
+          <Select id="school-board" label={t('gs.board.label')} value={choice} onChange={(e) => setChoice(e.target.value)}>
+            <option value="">{t('gs.board.none')}</option>
+            {data.boards.map((b) => (
+              <option key={b.boardId} value={b.boardId}>
+                {b.name}
+              </option>
+            ))}
+          </Select>
         </div>
         <button type="button" data-school-board-save className={PRIMARY} disabled={busy || choice === (data.board.boardId ?? '')} onClick={() => void save()}>
           {t('gs.board.save')}

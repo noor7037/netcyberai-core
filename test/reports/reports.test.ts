@@ -759,7 +759,7 @@ describe('switched off', () => {
     // Switched on: the one layout every screen shares, with the guide, the tour and the reports screen inside.
     const on: any = await ReportsPage();
     expect(on.type).toBe(ModulePage);
-    expect(on.props).toMatchObject({ moduleId: 'reports', help: 'run-a-report', tour: 'reports', title: 'Reports', purpose: expect.stringContaining('a total row and a CSV file') });
+    expect(on.props).toMatchObject({ moduleId: 'reports', help: 'run-a-report', tour: 'reports', title: 'Reports', purpose: 'Tables for the days you choose, with totals and a CSV.', about: expect.stringContaining('a total row and a CSV file') });
     expect(on.props.children.type).toBe(ReportsView);
     state.cookies[LANG_COOKIE] = langCookieValue(PRINCIPAL, 'hi');
     try {

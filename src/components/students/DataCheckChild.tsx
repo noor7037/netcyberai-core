@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import type { MessageKey } from '@/lib/i18n';
 import type { DataCheckChild as Child, DataCheckRequest } from '@/lib/students/data-check';
 import { PRINTED_GENDERS, hasAadhaarNumber, sayDob, type DataCheckField } from '@/lib/students/data-check-rules';
@@ -19,7 +21,6 @@ type Body = Record<string, unknown>;
 type Said = { ok: boolean; text: string } | null;
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
-const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 const tone = (severity: number) => (severity <= 0 ? 'success' : severity < 4 ? 'warning' : 'danger');
 
 export function DataCheckChild({ child, office, busy, post }: { child: Child; office: boolean; busy: boolean; post: Post }) {
@@ -91,15 +92,12 @@ export function DataCheckChild({ child, office, busy, post }: { child: Child; of
           <Input id={`dc-name-${id}`} label={t('sdc.type.name')} maxLength={120} autoComplete="off" value={typing.name} error={typedNumber ? t('sdc.err.aadhaar_number') : undefined} onChange={(e) => setTyping({ ...typing, name: e.target.value })} />
           <div className="grid gap-3 sm:grid-cols-2">
             <Input id={`dc-dob-${id}`} type="date" label={t('sdc.type.dob')} max={today} value={typing.dob} onChange={(e) => setTyping({ ...typing, dob: e.target.value })} />
-            <div className="flex flex-col gap-1">
-              <label htmlFor={`dc-gender-${id}`} className="font-semibold">{t('sdc.type.gender')}</label>
-              <select id={`dc-gender-${id}`} className={FIELD} value={typing.gender} onChange={(e) => setTyping({ ...typing, gender: e.target.value })}>
-                <option value="">{t('sdc.type.choose')}</option>
-                {PRINTED_GENDERS.map((g) => (
-                  <option key={g} value={g}>{t(`sdc.gender.${g}` as MessageKey)}</option>
-                ))}
-              </select>
-            </div>
+            <Select id={`dc-gender-${id}`} label={t('sdc.type.gender')} value={typing.gender} onChange={(e) => setTyping({ ...typing, gender: e.target.value })}>
+              <option value="">{t('sdc.type.choose')}</option>
+              {PRINTED_GENDERS.map((g) => (
+                <option key={g} value={g}>{t(`sdc.gender.${g}` as MessageKey)}</option>
+              ))}
+            </Select>
           </div>
           <div className="flex flex-wrap gap-2">
             <button type="button" data-dc-save disabled={busy || typedNumber || (!typing.name.trim() && !typing.dob && !typing.gender)} className={PRIMARY} onClick={() => void run(`/api/app/students/data-check/${id}`, { action: 'printed', ...typing }, 'printed', () => t('sdc.type.saved'), () => setTyping(null))}>
@@ -117,21 +115,22 @@ export function DataCheckChild({ child, office, busy, post }: { child: Child; of
             <p>{t('sdc.ask.noGuardian')}</p>
           ) : (
             <>
-              <div className="flex flex-col gap-1">
-                <label htmlFor={`dc-guardian-${id}`} className="font-semibold">{t('sdc.ask.guardian')}</label>
-                <select id={`dc-guardian-${id}`} className={FIELD} value={asking.parentId} onChange={(e) => setAsking({ ...asking, parentId: e.target.value, draft: null })}>
-                  {child.guardians.map((g) => (
-                    <option key={g.parent_id} value={g.parent_id}>{g.last4 ? t('sdc.ask.withNumber', { name: g.name, last4: g.last4 }) : t('sdc.ask.noNumber', { name: g.name })}</option>
-                  ))}
-                </select>
-              </div>
+              <Select id={`dc-guardian-${id}`} label={t('sdc.ask.guardian')} value={asking.parentId} onChange={(e) => setAsking({ ...asking, parentId: e.target.value, draft: null })}>
+                {child.guardians.map((g) => (
+                  <option key={g.parent_id} value={g.parent_id}>{g.last4 ? t('sdc.ask.withNumber', { name: g.name, last4: g.last4 }) : t('sdc.ask.noNumber', { name: g.name })}</option>
+                ))}
+              </Select>
               <fieldset className="flex flex-col gap-1">
                 <legend className="font-semibold">{t('sdc.ask.fields')}</legend>
                 {askable.map((f) => (
-                  <label key={f.field} className="flex min-h-[44px] items-center gap-2">
-                    <input type="checkbox" data-dc-ask-field={f.field} className="h-5 w-5" checked={asking.fields.includes(f.field)} onChange={(e) => setAsking({ ...asking, draft: null, fields: e.target.checked ? [...asking.fields, f.field] : asking.fields.filter((x) => x !== f.field) })} />
-                    <span>{t(`sdc.field.${f.field}` as MessageKey)} · {t(`sdc.finding.${f.finding}` as MessageKey)}</span>
-                  </label>
+                  <Checkbox
+                    key={f.field}
+                    id={`dc-ask-${id}-${f.field}`}
+                    data-dc-ask-field={f.field}
+                    label={`${t(`sdc.field.${f.field}` as MessageKey)} · ${t(`sdc.finding.${f.finding}` as MessageKey)}`}
+                    checked={asking.fields.includes(f.field)}
+                    onChange={(e) => setAsking({ ...asking, draft: null, fields: e.target.checked ? [...asking.fields, f.field] : asking.fields.filter((x) => x !== f.field) })}
+                  />
                 ))}
               </fieldset>
               {asking.draft && (
@@ -227,15 +226,12 @@ function Request({ r, office, busy, show, at, today, run }: { r: DataCheckReques
           )}
           <div className="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-end">
             {f === 'gender' ? (
-              <div className="flex flex-col gap-1">
-                <label htmlFor={`dc-value-${r.request_id}`} className="font-semibold">{t('sdc.req.correctLabel')}</label>
-                <select id={`dc-value-${r.request_id}`} className={FIELD} value={value} onChange={(e) => setValue(e.target.value)}>
-                  <option value="">{t('sdc.type.choose')}</option>
-                  {PRINTED_GENDERS.map((g) => (
-                    <option key={g} value={g}>{t(`sdc.gender.${g}` as MessageKey)}</option>
-                  ))}
-                </select>
-              </div>
+              <Select id={`dc-value-${r.request_id}`} label={t('sdc.req.correctLabel')} value={value} onChange={(e) => setValue(e.target.value)}>
+                <option value="">{t('sdc.type.choose')}</option>
+                {PRINTED_GENDERS.map((g) => (
+                  <option key={g} value={g}>{t(`sdc.gender.${g}` as MessageKey)}</option>
+                ))}
+              </Select>
             ) : (
               <Input id={`dc-value-${r.request_id}`} type={f === 'dob' ? 'date' : 'text'} max={f === 'dob' ? today : undefined} maxLength={f === 'name' ? 120 : undefined} autoComplete="off" label={t('sdc.req.correctLabel')} value={value} error={hasAadhaarNumber(value) ? t('sdc.err.aadhaar_number') : undefined} onChange={(e) => setValue(e.target.value)} />
             )}

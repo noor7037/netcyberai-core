@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
@@ -186,14 +187,16 @@ export function RecordDocuments({ record, recordId }: { record: 'staff' | 'stude
   return (
     <section data-record-documents={record} className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-base font-semibold text-slate">{t('rdoc.title')}</h2>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-semibold text-slate">{t('rdoc.title')}</h2>
+          <InfoTip>{t('rdoc.purpose')}</InfoTip>
+        </div>
         {mayUpload && !adding && (
           <button type="button" onClick={() => setAdding(true)} className={`${BUTTON} bg-sapphire text-white`}>
             {t('rdoc.add')}
           </button>
         )}
       </div>
-      <p className="max-w-prose text-sm text-slate/70">{t('rdoc.purpose')}</p>
 
       {adding && (
         <form onSubmit={addDocument} data-record-document-form className="flex flex-col gap-4 rounded-md border border-slate/10 p-3">

@@ -18,7 +18,7 @@ export default async function BoardsPage() {
   // The layout has already refused anyone but NetCyberAI staff; this runs as the platform role.
   const data = session ? await withTenantContext(session, (db) => controlBoards(db)) : null;
   return (
-    <ModulePage title={t(lang, 'boards.title')} purpose={t(lang, 'boards.purpose')} icon="exams" tone="royal" eyebrow={t(lang, 'group.control')} headerLang={lang}>
+    <ModulePage title={t(lang, 'boards.title')} purpose={t(lang, 'boards.purpose')} about={t(lang, 'boards.about')} icon="exams" tone="royal" eyebrow={t(lang, 'group.control')} headerLang={lang}>
       {data && <BoardsView initial={data} />}
     </ModulePage>
   );

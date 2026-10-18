@@ -40,6 +40,7 @@ function ModuleCard({ module }: { module: SettingsModule }) {
   const [busy, setBusy] = useState(false);
   const key = (f: SettingDefinition, part: 'label' | 'help') => `set.${module.moduleId}.${f.key}.${part}` as MessageKey;
   const mayEditAny = module.fields.some((f) => f.mayEdit);
+  const legal = (f: SettingDefinition) => module.moduleId === 'documents' && f.key === 'clearance_transfer';
   const changed = module.fields.filter((f) => f.mayEdit && !same(values[f.def.key], f.value ?? ''));
 
   async function send(body: Record<string, unknown>, done: MessageKey) {
@@ -99,10 +100,10 @@ function ModuleCard({ module }: { module: SettingsModule }) {
           <legend className="text-sm font-semibold text-slate">{label}</legend>
           <div className="flex flex-wrap gap-2">
             {(Object.keys(colors) as (keyof typeof colors)[]).map((name) => (
-              <label key={name} data-swatch={name} className={`flex min-h-[44px] min-w-[72px] cursor-pointer flex-col items-center gap-1 rounded-md border-2 p-1 text-xs text-slate ${v === name ? 'border-midnight font-bold' : 'border-transparent'} ${!mayEdit || busy ? 'cursor-default opacity-70' : ''}`}>
+              <label key={name} data-swatch={name} title={name} className={`flex min-h-[44px] min-w-[72px] cursor-pointer flex-col items-center gap-1 rounded-md border-2 p-1 text-xs text-slate ${v === name ? 'border-midnight font-bold' : 'border-transparent'} ${!mayEdit || busy ? 'cursor-default opacity-70' : ''}`}>
                 <input type="radio" name={id} value={name} className="sr-only" checked={v === name} disabled={!mayEdit || busy} onChange={() => set(name)} />
                 <span aria-hidden className="h-8 w-full rounded border border-slate/20" style={{ backgroundColor: colors[name] }} />
-                {name}
+                <span className={v === name ? '' : 'sr-only'}>{name}</span>
               </label>
             ))}
           </div>
@@ -137,9 +138,12 @@ function ModuleCard({ module }: { module: SettingsModule }) {
           <div className="flex flex-wrap items-start gap-x-1">
             <div className="min-w-0 flex-1">{control(def, mayEdit)}</div>
             <InfoTip label={t(key(def, 'label'))} className="mt-1">
-              {t(key(def, 'help'))} {def.default === null ? t('set.noDefault') : t('set.default', { value: show(def, def.default) })}
+              {!legal(def) && <>{t(key(def, 'help'))} </>}
+              {def.default === null ? t('set.noDefault') : t('set.default', { value: show(def, def.default) })}
             </InfoTip>
           </div>
+          {/* The legal note on holding a transfer certificate for fees is always on the screen, never folded (C240). */}
+          {legal(def) && <p data-setting-legal className="text-sm text-slate">{t(key(def, 'help'))}</p>}
           {/* A field with no default (C231): the school sets it, and it is never reset. */}
           {def.default === null ? (
             isDefault && (
@@ -149,7 +153,7 @@ function ModuleCard({ module }: { module: SettingsModule }) {
             )
           ) : isDefault ? (
             <p className="text-xs text-slate/70">
-              <span data-is-default className="rounded-full bg-slate/5 px-2 py-0.5 font-semibold">
+              <span data-is-default className="sr-only">
                 {t('set.isDefault')}
               </span>
             </p>

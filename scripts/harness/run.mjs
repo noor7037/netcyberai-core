@@ -4556,7 +4556,7 @@ const certificatesScreenDone = async () => {
   // as incomplete, not issued.
   if (s.button !== 'Issue 7 certificates') throw new Error(`the issue button said: ${s.button}`);
   const incompleteNames = ['Vihaan Example A', 'Anaya Example A', 'Kabir Example B', 'Ishaan Example B', 'Kiara Example B'];
-  if (s.incomplete.length !== 5 || !s.incomplete.every((line, i) => line.startsWith(`${incompleteNames[i]}: the record has no father’s or guardian’s name.`))) throw new Error(`the incomplete children: ${JSON.stringify(s.incomplete)}`);
+  if (s.incomplete.length !== 5 || !s.incomplete.every((line, i) => line.startsWith(`${incompleteNames[i]}: no father’s or guardian’s name on the record.`))) throw new Error(`the incomplete children: ${JSON.stringify(s.incomplete)}`);
   if (JSON.stringify(s.pdf) !== JSON.stringify({ name: 'certificates.pdf', head: '%PDF-', pages: 2 })) throw new Error(`the batch PDF: ${JSON.stringify(s.pdf)}`);
   if (s.rows !== 'TC/0002:valid,TC/0001:withdrawn') throw new Error(`the register on the screen: ${s.rows}`);
   for (const [seen, state, name] of [[s.valid, 'valid', 'Meera A.'], [s.withdrawn, 'withdrawn', 'Aarav A.']]) {
@@ -5373,6 +5373,45 @@ const listExportDone = (list) => async () => {
   if (!xlsxOk || !csvOk || s.links !== wantLinks || (list === 'staff' && !(s.profiles > 0))) throw new Error(`the ${list} export: ${JSON.stringify(s)}`);
 };
 // c235d end
+// c238 begin
+// C238: the staff profile's tabs, with a profile the office has filled in for the harness's teacher (no photo: the
+// harness keeps no file store, so the header shows the initials). Put back after each picture.
+const c238Gone = () => db.pg.query(`delete from staff_profiles where school_id = $1 and user_id = $2`, [SCHOOL, PEOPLE.teacher.sub]);
+const c238Profile = async () => {
+  await c238Gone();
+  await db.pg.query(
+    `insert into staff_profiles (school_id, user_id, staff_code, designation, employment_type, joining_date, date_of_birth, address, emergency_contact, updated_by)
+     values ($1, $2, 'T-0007', 'TGT Science', 'permanent', '2021-06-01', '1988-04-12', $3, 'Meena Example +91 90000 22222', $4)`,
+    [SCHOOL, PEOPLE.teacher.sub, '14 Example Road\nExample Nagar', PEOPLE.principal.sub]
+  );
+};
+let c238Seen = null;
+const c238Tab = (tab) => async (page) => {
+  await c238Profile();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator(`#staff-profile-tabpanel-${tab}`).waitFor({ timeout: 20000 });
+  c238Seen = {
+    ok: (await page.locator(`#staff-profile-tab-${tab}`).getAttribute('aria-selected')) === 'true' && (await page.locator(`#staff-profile-tabpanel-${tab}`).isVisible()),
+    code: (await page.locator('[data-staff-code]').textContent())?.trim(),
+  };
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(300);
+};
+const c238Edit = async (page) => {
+  await c238Profile();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-staff-edit]').click();
+  const form = page.locator('[data-staff-profile-form]');
+  await form.waitFor({ timeout: 20000 });
+  c238Seen = { ok: (await form.locator('input[name=staff_code]').inputValue()) === 'T-0007', code: (await page.locator('[data-staff-code]').textContent())?.trim() };
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(300);
+};
+const c238Done = async () => {
+  await c238Gone();
+  if (!c238Seen?.ok || c238Seen.code !== 'T-0007') throw new Error(`the staff profile on the screen: ${JSON.stringify(c238Seen)}`);
+};
+// c238 end
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -5660,7 +5699,7 @@ const skipAndCheck = (who, thenEnglish = false) => async (page) => {
 };
 const openModulesTab = async (page) => {
   await page.getByRole('tab', { name: 'Modules & access' }).click();
-  await page.locator('[data-module-off]').first().waitFor({ timeout: 15000 });
+  await page.locator('[data-module-off]').first().waitFor({ state: 'attached', timeout: 15000 });
 };
 // A module switched off for the school (C140): its page shows the "module off" state.
 const attendanceOff = async (page) => {
@@ -6143,6 +6182,13 @@ const SCREENS = [
   ['principal', 'app-staff-doc-direct-checking', `/app/staff/${PEOPLE.teacher.sub}?tab=documents`, directChecking, directCheckingDone],
   ['principal', 'app-staff-doc-direct-too-large', `/app/staff/${PEOPLE.teacher.sub}?tab=documents`, directTooLarge, directTooLargeDone],
   // c235d2 end
+  // c238 begin
+  ['principal', 'app-staff-profile-employment', `/app/staff/${PEOPLE.teacher.sub}?tab=employment`, c238Tab('employment'), c238Done],
+  ['principal', 'app-staff-profile-id-card', `/app/staff/${PEOPLE.teacher.sub}?tab=id-card`, c238Tab('id-card'), c238Done],
+  ['principal', 'app-staff-profile-biodata', `/app/staff/${PEOPLE.teacher.sub}?tab=biodata`, c238Tab('biodata'), c238Done],
+  ['principal', 'app-staff-profile-edit', `/app/staff/${PEOPLE.teacher.sub}`, c238Edit, c238Done],
+  ['teacher', 'teacher-staff-profile-attendance', `/app/staff/${PEOPLE.teacher.sub}?tab=attendance`, c238Tab('attendance'), c238Done],
+  // c238 end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed

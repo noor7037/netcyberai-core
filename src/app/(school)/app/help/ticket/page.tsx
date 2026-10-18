@@ -15,7 +15,7 @@ export default function TicketsPage({ searchParams = {} }: { searchParams?: { sh
       help="raise-a-ticket"
       tour="tickets"
       title="Support tickets"
-      purpose="Ask NetCyberAI for help and follow the answers here."
+      purpose="Ask for help and follow the answers."
       primary={
         <Link href="/app/help/ticket/new" className={PRIMARY_ACTION}>
           Raise a ticket

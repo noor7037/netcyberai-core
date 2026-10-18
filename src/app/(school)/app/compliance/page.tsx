@@ -56,7 +56,8 @@ export default async function CompliancePage() {
       help="compliance-screen"
       tour="compliance"
       title="Compliance"
-      purpose="Fee notice rules for your state, how long records are kept, and every time NetCyberAI staff looked at your school’s data."
+      purpose={t(lang, 'compliance.page.purpose')}
+      about={t(lang, 'compliance.page.about')}
       primary={
         // The compliance desk (C227): teacher qualifications and TET, the public disclosure, Form 6 and SQAAF.
         <a href="/app/compliance/desk" data-compliance-desk-link className="inline-flex min-h-[44px] items-center rounded-md bg-sapphire px-5 text-sm font-semibold text-white">

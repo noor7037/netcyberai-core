@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { QUIET_ACTION } from '@/components/app-ui/ModulePage';
 import { Badge } from '@/components/ui/Badge';
+import { Select } from '@/components/ui/Select';
 import { COST_LIST_COLUMNS, costListCells, LIMIT_STATE_KEY, type CostMonth, type MonthLine } from '@/lib/control/messaging-cost';
 import { t, tOr, type Lang } from '@/lib/i18n';
 import { shiftMonth } from '@/lib/whatsapp/cost';
@@ -31,17 +33,14 @@ export function monthName(lang: Lang, month: string, short = false): string {
 export function CostMonthPicker({ data, lang }: { data: CostMonth; lang: Lang }) {
   return (
     <form method="get" action={PATH} data-cost-month-picker lang={lang} className="flex flex-wrap items-end gap-2">
-      <div className="flex flex-col gap-1">
-        <label htmlFor="cost-month" className="text-sm font-semibold text-slate">
-          {t(lang, 'cost.month.month')}
-        </label>
-        <select key={data.month} id="cost-month" name="month" defaultValue={data.month} className="min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate">
+      <div key={data.month} className="min-w-[12rem]">
+        <Select id="cost-month" name="month" label={t(lang, 'cost.month.month')} defaultValue={data.month}>
           {data.months.map((m) => (
             <option key={m} value={m}>
               {m === data.thisMonth ? `${monthName(lang, m)} (${t(lang, 'cost.month.thisMonth')})` : monthName(lang, m)}
             </option>
           ))}
-        </select>
+        </Select>
       </div>
       <button type="submit" data-cost-month-show className={QUIET_ACTION}>
         {t(lang, 'cost.month.show')}
@@ -94,9 +93,15 @@ export function CostMonthView({ data, lang }: { data: CostMonth; lang: Lang }) {
       </p>
 
       <section aria-labelledby="cost-flagged" data-cost-flagged className="flex flex-col gap-2">
-        <h2 id="cost-flagged" className="text-lg font-bold text-slate">
-          {t(lang, 'cost.month.flagged.title')}
-        </h2>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 id="cost-flagged" className="text-lg font-bold text-slate">
+            {t(lang, 'cost.month.flagged.title')}
+          </h2>
+          <InfoTip>
+            <p>{t(lang, 'cost.month.flagged.rule')}</p>
+            {data.month < data.thisMonth && <p data-cost-limit-then>{t(lang, 'cost.month.limitThen')}</p>}
+          </InfoTip>
+        </div>
         {flagged.length === 0 && <p className="max-w-prose text-sm text-slate">{t(lang, 'cost.month.flagged.none', { month })}</p>}
         {flagged.length > 0 && (
           <ul className="flex flex-col gap-2">
@@ -108,12 +113,6 @@ export function CostMonthView({ data, lang }: { data: CostMonth; lang: Lang }) {
               </li>
             ))}
           </ul>
-        )}
-        <p className="max-w-prose text-sm text-slate/70">{t(lang, 'cost.month.flagged.rule')}</p>
-        {data.month < data.thisMonth && (
-          <p data-cost-limit-then className="max-w-prose text-sm text-slate/70">
-            {t(lang, 'cost.month.limitThen')}
-          </p>
         )}
       </section>
 
@@ -209,11 +208,11 @@ export function CostMonthView({ data, lang }: { data: CostMonth; lang: Lang }) {
 
       {data.history.schools.length > 0 && (
         <section aria-labelledby="cost-history" className="flex flex-col gap-2">
-          <div>
+          <div className="flex flex-wrap items-center gap-x-1">
             <h2 id="cost-history" className="text-lg font-bold text-slate">
               {t(lang, 'cost.month.history.title', { month })}
             </h2>
-            <p className="max-w-prose text-sm text-slate/70">{t(lang, 'cost.month.history.how')}</p>
+            <InfoTip>{t(lang, 'cost.month.history.how')}</InfoTip>
           </div>
           <div className="overflow-x-auto rounded-xl border border-slate/10 bg-white">
             <table data-cost-history className="w-full min-w-[720px] border-collapse">

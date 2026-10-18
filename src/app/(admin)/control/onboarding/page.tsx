@@ -4,6 +4,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { CreateSchoolForm } from '@/components/control/CreateSchoolForm';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { Badge } from '@/components/ui/Badge';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 
 const STAGE_LABELS: Record<string, string> = {
@@ -57,12 +58,7 @@ export default async function OnboardingPage() {
     : { inProgress: [], leads: [] };
 
   return (
-    <ModulePage title="Onboarding" purpose="Bring a school on, step by step: lead, approval, data, consent, training, go-live." icon="admissions" tone="turquoise" eyebrow="Control">
-      <p className="text-sm text-slate/70">
-        Lead → Approved → Tenant Created → Admin Invited → Data Imported → Data Validated →{' '}
-        <strong className="text-slate">Consent Collection (a gate, not a checkbox)</strong> → Configuration → Training → Pilot Outbound
-        Approved → Go-Live.
-      </p>
+    <ModulePage title="Onboarding" purpose="Bring a school on, step by step." icon="admissions" tone="turquoise" eyebrow="Control">
 
       <Link
         href="/control/onboarding/applications"
@@ -70,7 +66,7 @@ export default async function OnboardingPage() {
       >
         <span>
           <span className="block font-semibold">School applications</span>
-          <span className="block text-sm text-slate/70">From the public “Register your school” form: review, approve or reject.</span>
+          <span className="block text-sm text-slate/70">Review, approve or reject.</span>
         </span>
         <span className="text-sm font-medium text-sapphire underline">Open →</span>
       </Link>
@@ -78,7 +74,13 @@ export default async function OnboardingPage() {
       <CreateSchoolForm />
 
       <div>
-        <h2 className="mb-3 text-lg font-bold text-slate">In the pipeline</h2>
+        <div className="mb-3 flex flex-wrap items-center gap-x-1">
+          <h2 className="text-lg font-bold text-slate">In the pipeline</h2>
+          <InfoTip>
+            Lead → Approved → Tenant Created → Admin Invited → Data Imported → Data Validated →{' '}
+            <strong className="text-slate">Consent Collection (a gate, not a checkbox)</strong> → Configuration → Training → Pilot Outbound Approved → Go-Live.
+          </InfoTip>
+        </div>
         {inProgress.length === 0 ? (
           <EmptyState title="Nothing in the pipeline" description="Create a school above to start onboarding." />
         ) : (
@@ -99,10 +101,10 @@ export default async function OnboardingPage() {
       </div>
 
       <div>
-        <h2 className="mb-3 text-lg font-bold text-slate">Recent leads</h2>
-        <p className="mb-3 text-sm text-slate/70">
-          Real submissions from the public Get Started and Book Demo forms.
-        </p>
+        <div className="mb-3 flex flex-wrap items-center gap-x-1">
+          <h2 className="text-lg font-bold text-slate">Recent leads</h2>
+          <InfoTip>Real submissions from the public Get Started and Book Demo forms.</InfoTip>
+        </div>
         {leads.length === 0 ? (
           <EmptyState title="No leads yet" description="Submissions from Get Started / Book Demo will appear here." />
         ) : (

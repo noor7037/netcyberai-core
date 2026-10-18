@@ -202,7 +202,9 @@ export const HELD_FOR_US: readonly string[] = ['blocked_pilot', 'blocked_budget'
 
 const num = (v: unknown) => Number(v ?? 0);
 
-export async function loadMonitoring(db: Sql): Promise<Monitoring> {
+// `storage`: file storage's answer (C236), asked by the page before its transaction opens, so a slow store never holds
+// a database connection; asked here when not given.
+export async function loadMonitoring(db: Sql, storageAnswer?: StorageHealth): Promise<Monitoring> {
   // One clock for every age: the database's, as this transaction sees it.
   const clock = (await db.query(`select now() as at, (((now() at time zone 'Asia/Kolkata')::date) - 1)::text as yesterday`)).rows[0];
   const at = new Date(clock.at as string).getTime();
@@ -411,7 +413,7 @@ export async function loadMonitoring(db: Sql): Promise<Monitoring> {
 
   const jobsOk = await jobsHealth(db);
   // The same answer /api/health gives (C236), kept 5 minutes per server instance.
-  const storage = await storageHealth();
+  const storage = storageAnswer ?? (await storageHealth());
 
   return {
     readAt: new Date(at).toISOString(),

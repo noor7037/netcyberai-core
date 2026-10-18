@@ -4,9 +4,12 @@ import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { ModulePage, PRIMARY_ACTION } from '@/components/app-ui/ModulePage';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
+import { Textarea } from '@/components/ui/Textarea';
 import type { MessageKey } from '@/lib/i18n';
 
 // The admissions pipeline (docs/28 slice 10a, C221): record an enquiry with who follows it up and when; "Follow up
@@ -37,7 +40,6 @@ const ERRORS = ['child_name', 'guardian_name', 'phone', 'class', 'source', 'owne
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const DANGER = 'min-h-[44px] rounded-md border border-red-800/30 bg-white px-4 text-sm font-semibold text-red-800 disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
-const FIELD = 'min-h-[44px] w-full rounded-md border border-slate/20 bg-white px-3 text-sm font-normal text-slate';
 const LINK = 'inline-flex min-h-[44px] items-center font-semibold text-sapphire underline';
 const BLANK = { childName: '', classId: '', guardianName: '', phone: '', source: 'walk_in' as SourceCode, ownerId: '', followUp: '', nextStep: '', note: '' };
 
@@ -105,6 +107,7 @@ export function AdmissionsView({ office, children }: { office: boolean; children
       help="admissions-enquiries"
       title={t('adm.page.title')}
       purpose={t('adm.page.purpose')}
+      about={t('adm.page.about')}
       primary={
         office ? (
           <button type="button" data-adm-new-open className={PRIMARY_ACTION} onClick={() => setAdding(true)}>
@@ -120,51 +123,37 @@ export function AdmissionsView({ office, children }: { office: boolean; children
 
         {showForm && data && (
           <section data-adm-new className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
-            <div>
+            <div className="flex flex-wrap items-center gap-x-1">
               <h2 className="text-base font-bold">{t('adm.new.title')}</h2>
-              <p className="text-slate/70">{t(data.enquiries.length === 0 ? 'adm.new.first' : 'adm.new.how')}</p>
+              <InfoTip>{t(data.enquiries.length === 0 ? 'adm.new.first' : 'adm.new.how')}</InfoTip>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <Input id="adm-child" label={t('adm.form.child')} maxLength={60} value={form.childName} onChange={(e) => setForm({ ...form, childName: e.target.value })} />
-              <label htmlFor="adm-class" className="flex flex-col gap-1 font-semibold">
-                {t('adm.form.class')}
-                <select id="adm-class" className={FIELD} value={form.classId} onChange={(e) => setForm({ ...form, classId: e.target.value })}>
-                  <option value="">{t('adm.choose')}</option>
-                  {data.classes.map((c) => (
-                    <option key={c.class_id} value={c.class_id}>{c.name}</option>
-                  ))}
-                </select>
-              </label>
+              <Select id="adm-class" label={t('adm.form.class')} value={form.classId} onChange={(e) => setForm({ ...form, classId: e.target.value })}>
+                <option value="">{t('adm.choose')}</option>
+                {data.classes.map((c) => (
+                  <option key={c.class_id} value={c.class_id}>{c.name}</option>
+                ))}
+              </Select>
               <Input id="adm-guardian" label={t('adm.form.guardian')} maxLength={60} value={form.guardianName} onChange={(e) => setForm({ ...form, guardianName: e.target.value })} />
               <Input id="adm-phone" type="tel" inputMode="tel" label={t('adm.form.phone')} maxLength={20} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-              <label htmlFor="adm-source" className="flex flex-col gap-1 font-semibold">
-                {t('adm.form.source')}
-                <select id="adm-source" className={FIELD} value={form.source} onChange={(e) => setForm({ ...form, source: e.target.value as SourceCode })}>
-                  {SOURCES.map((s) => (
-                    <option key={s} value={s}>{t(`adm.source.${s}` as MessageKey)}</option>
-                  ))}
-                </select>
-              </label>
-              <label htmlFor="adm-owner" className="flex flex-col gap-1 font-semibold">
-                {t('adm.form.owner')}
-                <select id="adm-owner" className={FIELD} value={owner} onChange={(e) => setForm({ ...form, ownerId: e.target.value })}>
-                  <option value="">{t('adm.choose')}</option>
-                  {data.owners.map((p) => (
-                    <option key={p.user_id} value={p.user_id}>{p.name}</option>
-                  ))}
-                </select>
-              </label>
-              <label htmlFor="adm-follow-up" className="flex flex-col gap-1 font-semibold">
-                {t('adm.form.followUp')}
-                <input id="adm-follow-up" type="date" className={FIELD} min={data.today} value={form.followUp} onChange={(e) => setForm({ ...form, followUp: e.target.value })} />
-              </label>
+              <Select id="adm-source" label={t('adm.form.source')} value={form.source} onChange={(e) => setForm({ ...form, source: e.target.value as SourceCode })}>
+                {SOURCES.map((s) => (
+                  <option key={s} value={s}>{t(`adm.source.${s}` as MessageKey)}</option>
+                ))}
+              </Select>
+              <Select id="adm-owner" label={t('adm.form.owner')} value={owner} onChange={(e) => setForm({ ...form, ownerId: e.target.value })}>
+                <option value="">{t('adm.choose')}</option>
+                {data.owners.map((p) => (
+                  <option key={p.user_id} value={p.user_id}>{p.name}</option>
+                ))}
+              </Select>
+              <Input id="adm-follow-up" type="date" label={t('adm.form.followUp')} min={data.today} value={form.followUp} onChange={(e) => setForm({ ...form, followUp: e.target.value })} />
               <Input id="adm-next-step" label={t('adm.form.nextStep')} maxLength={120} value={form.nextStep} onChange={(e) => setForm({ ...form, nextStep: e.target.value })} />
-              <label htmlFor="adm-note" className="flex flex-col gap-1 font-semibold sm:col-span-2">
-                {t('adm.form.note')}
-                <textarea id="adm-note" rows={2} maxLength={500} className="rounded-md border border-slate/20 bg-white px-3 py-2 font-normal" value={form.note} onChange={(e) => setForm({ ...form, note: e.target.value })} />
-              </label>
+              <div className="sm:col-span-2">
+                <Textarea id="adm-note" label={t('adm.form.note')} helperText={t('adm.form.noAadhaar')} rows={2} maxLength={500} value={form.note} onChange={(e) => setForm({ ...form, note: e.target.value })} />
+              </div>
             </div>
-            <p className="text-slate/70">{t('adm.form.noAadhaar')}</p>
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
@@ -199,9 +188,9 @@ export function AdmissionsView({ office, children }: { office: boolean; children
               )}
             </section>
             <section data-adm-quiet data-count={quiet.length} className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
-              <div>
+              <div className="flex flex-wrap items-center gap-x-1">
                 <h2 className="text-base font-bold">{t('adm.quiet.title', { count: quiet.length })}</h2>
-                <p className="text-slate/70">{tCount('adm.quiet.how', data.quietDays)}</p>
+                <InfoTip>{tCount('adm.quiet.how', data.quietDays)}</InfoTip>
               </div>
               {quiet.length === 0 ? (
                 <p className="rounded-md bg-off-white px-3 py-2">{t('adm.quiet.none')}</p>
@@ -316,33 +305,22 @@ function EnquiryCard({ r, data, busy, send, words }: { r: Row; data: Data; busy:
         <details data-adm-act className="rounded-md bg-off-white p-2">
           <summary className="flex min-h-[44px] cursor-pointer items-center font-semibold">{t('adm.act.title')}</summary>
           <div className="mt-2 grid gap-3 sm:grid-cols-2">
-            <label className="flex flex-col gap-1 font-semibold sm:col-span-2">
-              {t('adm.act.note')}
-              <textarea data-adm-act-note rows={2} maxLength={500} className="rounded-md border border-slate/20 bg-white px-3 py-2 font-normal" value={o.note} onChange={(e) => setO({ ...o, note: e.target.value })} />
-            </label>
-            <label className="flex flex-col gap-1 font-semibold">
-              {t('adm.act.stage')}
-              <select data-adm-stage className={FIELD} value={o.stage} onChange={(e) => setO({ ...o, stage: e.target.value as StageCode })}>
-                {MOVABLE.map((s) => (
-                  <option key={s} value={s}>{stageWord(s)}</option>
-                ))}
-              </select>
-            </label>
+            <div className="sm:col-span-2">
+              <Textarea id={`adm-act-note-${r.enquiry_id}`} data-adm-act-note label={t('adm.act.note')} rows={2} maxLength={500} value={o.note} onChange={(e) => setO({ ...o, note: e.target.value })} />
+            </div>
+            <Select id={`adm-act-stage-${r.enquiry_id}`} data-adm-stage label={t('adm.act.stage')} value={o.stage} onChange={(e) => setO({ ...o, stage: e.target.value as StageCode })}>
+              {MOVABLE.map((s) => (
+                <option key={s} value={s}>{stageWord(s)}</option>
+              ))}
+            </Select>
             {o.stage === 'not_joining' ? (
-              <label className="flex flex-col gap-1 font-semibold">
-                {t('adm.act.reason')}
-                <input data-adm-reason className={FIELD} maxLength={120} value={o.reason} onChange={(e) => setO({ ...o, reason: e.target.value })} />
-              </label>
+              <Input id={`adm-act-reason-${r.enquiry_id}`} data-adm-reason label={t('adm.act.reason')} maxLength={120} value={o.reason} onChange={(e) => setO({ ...o, reason: e.target.value })} />
             ) : (
               <>
-                <label className="flex flex-col gap-1 font-semibold">
-                  {t('adm.form.followUp')}
-                  <input type="date" data-adm-act-follow-up className={FIELD} min={data.today} value={o.followUp} onChange={(e) => setO({ ...o, followUp: e.target.value })} />
-                </label>
-                <label className="flex flex-col gap-1 font-semibold sm:col-span-2">
-                  {t('adm.form.nextStep')}
-                  <input data-adm-act-next-step className={FIELD} maxLength={120} value={o.nextStep} onChange={(e) => setO({ ...o, nextStep: e.target.value })} />
-                </label>
+                <Input id={`adm-act-follow-${r.enquiry_id}`} type="date" data-adm-act-follow-up label={t('adm.form.followUp')} min={data.today} value={o.followUp} onChange={(e) => setO({ ...o, followUp: e.target.value })} />
+                <div className="sm:col-span-2">
+                  <Input id={`adm-act-next-${r.enquiry_id}`} data-adm-act-next-step label={t('adm.form.nextStep')} maxLength={120} value={o.nextStep} onChange={(e) => setO({ ...o, nextStep: e.target.value })} />
+                </div>
               </>
             )}
           </div>
@@ -376,15 +354,14 @@ function EnquiryCard({ r, data, busy, send, words }: { r: Row; data: Data; busy:
             </div>
           )}
           {data.owners.some((p) => p.user_id !== r.owner_id) && (
-            <label className="flex flex-col gap-1 font-semibold sm:max-w-xs">
-              {t('adm.give')}
-              <select data-adm-give className={FIELD} value="" disabled={busy} onChange={(e) => e.target.value && void send(`/api/app/admissions/${r.enquiry_id}`, { action: 'give', ownerId: e.target.value }, () => t('adm.given'))}>
+            <div className="sm:max-w-xs">
+              <Select id={`adm-give-${r.enquiry_id}`} data-adm-give label={t('adm.give')} value="" disabled={busy} onChange={(e) => e.target.value && void send(`/api/app/admissions/${r.enquiry_id}`, { action: 'give', ownerId: e.target.value }, () => t('adm.given'))}>
                 <option value="">{t('adm.choose')}</option>
                 {data.owners.filter((p) => p.user_id !== r.owner_id).map((p) => (
                   <option key={p.user_id} value={p.user_id}>{p.name}</option>
                 ))}
-              </select>
-            </label>
+              </Select>
+            </div>
           )}
         </div>
       )}
@@ -394,24 +371,18 @@ function EnquiryCard({ r, data, busy, send, words }: { r: Row; data: Data; busy:
           <summary className="flex min-h-[44px] cursor-pointer items-center font-semibold">{t('adm.fix.title')}</summary>
           <div className="mt-2 grid gap-3 sm:grid-cols-2">
             <Input id={`adm-fix-child-${r.enquiry_id}`} label={t('adm.form.child')} maxLength={60} value={fix.childName} onChange={(e) => setFix({ ...fix, childName: e.target.value })} />
-            <label className="flex flex-col gap-1 font-semibold">
-              {t('adm.form.class')}
-              <select className={FIELD} value={fix.classId} onChange={(e) => setFix({ ...fix, classId: e.target.value })}>
-                {data.classes.map((c) => (
-                  <option key={c.class_id} value={c.class_id}>{c.name}</option>
-                ))}
-              </select>
-            </label>
+            <Select id={`adm-fix-class-${r.enquiry_id}`} label={t('adm.form.class')} value={fix.classId} onChange={(e) => setFix({ ...fix, classId: e.target.value })}>
+              {data.classes.map((c) => (
+                <option key={c.class_id} value={c.class_id}>{c.name}</option>
+              ))}
+            </Select>
             <Input id={`adm-fix-guardian-${r.enquiry_id}`} label={t('adm.form.guardian')} maxLength={60} value={fix.guardianName} onChange={(e) => setFix({ ...fix, guardianName: e.target.value })} />
             <Input id={`adm-fix-phone-${r.enquiry_id}`} type="tel" inputMode="tel" label={t('adm.form.phone')} maxLength={20} value={fix.phone} onChange={(e) => setFix({ ...fix, phone: e.target.value })} />
-            <label className="flex flex-col gap-1 font-semibold">
-              {t('adm.form.source')}
-              <select className={FIELD} value={fix.source} onChange={(e) => setFix({ ...fix, source: e.target.value as SourceCode })}>
-                {SOURCES.map((s) => (
-                  <option key={s} value={s}>{t(`adm.source.${s}` as MessageKey)}</option>
-                ))}
-              </select>
-            </label>
+            <Select id={`adm-fix-source-${r.enquiry_id}`} label={t('adm.form.source')} value={fix.source} onChange={(e) => setFix({ ...fix, source: e.target.value as SourceCode })}>
+              {SOURCES.map((s) => (
+                <option key={s} value={s}>{t(`adm.source.${s}` as MessageKey)}</option>
+              ))}
+            </Select>
           </div>
           <button type="button" data-adm-fix-save disabled={busy} className={`${TAP} mt-3`} onClick={() => void send(`/api/app/admissions/${r.enquiry_id}`, { action: 'details', ...fix }, () => t('adm.fixed'))}>
             {t('adm.fix.save')}

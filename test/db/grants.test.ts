@@ -243,6 +243,9 @@ const APP_USER: Record<string, string> = {
   record_documents: 'DELETE,INSERT,SELECT', // a paper on a staff or student record: added or removed by the office, never changed (C235-D)
   record_document_versions: 'DELETE,INSERT,SELECT', // each upload kept as a version; removed only with its paper or by an erasure
   // c235d end
+  // c238 begin
+  staff_profiles: 'INSERT,SELECT,UPDATE', // a staff member's profile, changed in place by the office; never removed (C238)
+  // c238 end
 };
 
 // The platform role (nca_super) holds what the app's role holds, except here.
@@ -397,6 +400,9 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   record_documents: '', // a school's papers on its people are its own: the platform role reads nothing here (C235-D)
   record_document_versions: '',
   // c235d end
+  // c238 begin
+  staff_profiles: '', // a school's staff records are its own: the platform role reads nothing here (C238)
+  // c238 end
 };
 // Every other role that holds anything on a table.
 const OTHER_ROLES: Record<string, Record<string, string>> = {

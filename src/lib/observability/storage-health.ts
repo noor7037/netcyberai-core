@@ -47,14 +47,15 @@ export async function checkStorage(probe: StorageProbe): Promise<StorageHealth> 
   }
 }
 
-// The kept answer (a promise, so callers at the same moment share one listing). checkStorage never rejects.
-let kept: { at: number; answer: Promise<StorageHealth> } | null = null;
+// The kept answer (a promise, so callers at the same moment share one listing), and the probe that gave it: another
+// probe asks for itself. checkStorage never rejects.
+let kept: { probe: StorageProbe; at: number; answer: Promise<StorageHealth> } | null = null;
 
 export function storageHealth(probe: StorageProbe = production): Promise<StorageHealth> {
   const now = probe.now();
-  if (kept && now >= kept.at && now - kept.at < STORAGE_CHECK_KEEP_MS) return kept.answer;
+  if (kept && kept.probe === probe && now >= kept.at && now - kept.at < STORAGE_CHECK_KEEP_MS) return kept.answer;
   const answer = checkStorage(probe);
-  kept = { at: now, answer };
+  kept = { probe, at: now, answer };
   return answer;
 }
 
