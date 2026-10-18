@@ -120,6 +120,7 @@ numbers: supervisor C100–C109, Claude Code from C110.
 
 ## 6. Change log
 
+- **2026-10-18** — C230-E: `28` status brought up to date (10a–10g merged); C233 and C234 unused, Claude Code rows from C236; the attribution rule (no co-author trailer, no model name) and the C230-C gate written into `CLAUDE.md`. Founder action 8 still open (live server key unchanged since 7 Oct).
 - **2026-10-15** — C235-C/D/D2 merged (#178, #179): design system v5 (59% fewer words), staff profile, versioned documents on records sent straight to storage up to 10 MB, Excel/CSV exports; `documents` bucket at 10 MiB on both databases. Founder action 8 added (live server key).
 - **2026-10-15** — C235: ecosystem UI programme (`32`): design system v5, the full class range LKG–12 × A–C, branded header and school branding, navigation by category, profile documents and exports; Google storage and Gemini assistant assessed (recommendations and the founder's inputs in `32` §4–5).
 - **2026-10-12** — C170: payment collection per `24` (direct UPI with bank-statement proof; Razorpay dormant behind credentials); Razorpay KYC no longer a founder blocker.
