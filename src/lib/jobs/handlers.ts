@@ -18,6 +18,9 @@ import { jobQueue } from './pg-queue';
 import { runJobs, KICK_BUDGET_MS, RUN_BATCH_CAP, type RunSummary } from './runner';
 import { NIGHTLY_CHECK_JOB, WEEKLY_CHECK_UP_JOB, auditorWeeklyHandler, earlyWarningNightlyHandler } from './school-checks';
 import { asSchool } from './school-context';
+import { PENDING_SWEEP_JOB, pendingSweepHandler } from './pending-sweep';
+import { supabaseFileStorage } from '@/lib/storage/supabase-file-storage';
+import { storageHealth } from '@/lib/observability/storage-health';
 import type { JobHandler, Sql } from './types';
 
 // Every job type and its handler, wired to production services (C97).
@@ -58,6 +61,8 @@ export function productionHandlers(): Record<string, JobHandler> {
     [NIGHTLY_CHECK_JOB]: earlyWarningNightlyHandler({ asSchool }),
     // Early each Monday in India, one job a school with the auditor on: the week's check-up, the same way (C210).
     [WEEKLY_CHECK_UP_JOB]: auditorWeeklyHandler({ asSchool }),
+    // Each hour: every school's record documents sent and never confirmed, older than 15 minutes, are removed (C237).
+    [PENDING_SWEEP_JOB]: pendingSweepHandler({ platform, storage: supabaseFileStorage, storageWorks: async () => (await storageHealth()) === 'ok' }),
   };
 }
 
