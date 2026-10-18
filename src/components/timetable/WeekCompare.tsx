@@ -11,6 +11,8 @@ import { dayKey, type namer } from './generator-ui';
 // timetable before a publish beside the one after it (C229). A period that differs is highlighted and says how
 // (new, changed, emptied). Each day is its own block, so a phone reads it day by day and a wide screen shows several.
 // With `onPick`, the right-hand periods are buttons: a person taps two of them to swap them.
+// Design system v5 (C243): a period shows its number, a free one a dash; "Period 4", "Free" are what a screen reader
+// hears, so the two weeks are read at a glance.
 
 type At = { weekday: number; period: number };
 const CHANGE_WORD: Record<Change['kind'], MessageKey> = { added: 'ttg.change.added', changed: 'ttg.change.changed', removed: 'ttg.change.removed' };
@@ -46,17 +48,24 @@ export function WeekCompare({
   const mine = (list: readonly Slot[]) => list.filter((s) => s.classId === classId);
   const l = mine(left);
   const r = mine(right);
-  const shown = [...new Set([...days, ...l.map((s) => s.weekday), ...r.map((s) => s.weekday)])].sort((a, b) => a - b);
+  const weekdays = [...new Set([...days, ...l.map((s) => s.weekday), ...r.map((s) => s.weekday)])].sort((a, b) => a - b);
   const rows = Math.max(periods, ...l.map((s) => s.period), ...r.map((s) => s.period));
   const words = (list: Slot[], d: number, p: number) => {
     const s = list.find((x) => x.weekday === d && x.period === p);
-    return s ? `${names.subject(s.subjectId)} · ${names.teacher(s.teacherUserId)}` : t('tt.free');
+    return s ? `${names.subject(s.subjectId)} · ${names.teacher(s.teacherUserId)}` : null;
   };
+  const shown = (text: string | null) =>
+    text ?? (
+      <>
+        <span aria-hidden="true">—</span>
+        <span className="sr-only">{t('tt.free')}</span>
+      </>
+    );
   const changeAt = (d: number, p: number) => changes.find((c) => c.classId === classId && c.weekday === d && c.period === p)?.kind ?? null;
 
   return (
     <div data-ttg-week={classId} className="grid gap-3 lg:grid-cols-2 2xl:grid-cols-3">
-      {shown.map((d) => (
+      {weekdays.map((d) => (
         <div key={d} data-day={d} className="flex flex-col gap-1 rounded-xl border border-slate/10 bg-white p-2 sm:p-3">
           <h3 className="text-sm font-bold text-slate">{t(dayKey(d))}</h3>
           <div className="grid grid-cols-[auto_1fr_1fr] gap-2 px-2 text-xs font-semibold text-slate">
@@ -70,23 +79,27 @@ export function WeekCompare({
             const after = words(r, d, p);
             return (
               <div key={p} data-ttg-row={`${d}-${p}`} data-change={kind ?? undefined} className={`grid grid-cols-[auto_1fr_1fr] items-center gap-2 rounded-md px-2 py-1 ${kind ? 'bg-amber/10' : ''}`}>
-                <span className="text-xs font-semibold text-slate">{t('tt.period', { period: p })}</span>
-                <span className="break-words text-sm text-slate">{words(l, d, p)}</span>
+                <span className="inline-flex h-6 min-w-[1.5rem] items-center justify-center rounded-full bg-white px-1 text-xs font-bold tabular-nums text-slate ring-1 ring-slate/10">
+                  <span aria-hidden="true">{p}</span>
+                  <span className="sr-only">{t('tt.period', { period: p })}</span>
+                </span>
+                <span className="break-words text-sm text-slate">{shown(words(l, d, p))}</span>
                 {onPick ? (
                   <button
                     type="button"
                     data-ttg-pick={`${d}-${p}`}
                     aria-pressed={isPicked}
+                    aria-label={`${t(dayKey(d))}, ${t('tt.period', { period: p })}: ${after ?? t('tt.free')}${kind ? ` (${t(CHANGE_WORD[kind])})` : ''}`}
                     disabled={busy}
                     onClick={() => onPick({ weekday: d, period: p })}
                     className={`flex min-h-[44px] flex-col items-start justify-center gap-1 rounded-md border px-2 text-left text-sm text-slate ${isPicked ? 'border-sapphire bg-white font-semibold ring-2 ring-sapphire' : 'border-slate/20 bg-white'}`}
                   >
-                    <span className="break-words">{after}</span>
+                    <span className="break-words">{shown(after)}</span>
                     {kind && <Badge variant="warning">{t(CHANGE_WORD[kind])}</Badge>}
                   </button>
                 ) : (
                   <span className="flex flex-col items-start gap-1 break-words text-sm text-slate">
-                    <span>{after}</span>
+                    <span>{shown(after)}</span>
                     {kind && <Badge variant="warning">{t(CHANGE_WORD[kind])}</Badge>}
                   </span>
                 )}
