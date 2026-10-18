@@ -2,12 +2,14 @@
 
 import { useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
-import { CARD, dayKey, PRIMARY, send, type GeneratorData } from './generator-ui';
+import { CARD, dayKey, HEAD_ROW, PRIMARY, send, type GeneratorData } from './generator-ui';
 
 // When a teacher cannot teach (C229): for one teacher, a whole day or single periods of the school's days. Saved as a
-// set; the generator never puts the teacher there, and a swap that would is refused.
+// set; the generator never puts the teacher there, and a swap that would is refused. Design system v5 (C243): how it
+// works sits behind the ⓘ; a marked period or day is drawn filled (and is pressed for a screen reader).
 
 type Marks = Record<number, 'all' | number[]>;
 
@@ -50,10 +52,12 @@ export function GeneratorUnavailable({ data, onChanged }: { data: GeneratorData;
   const active = data.names.teachers.filter((p) => p.active);
   return (
     <section data-ttg-unavailable className={CARD} aria-labelledby="ttg-away-title">
-      <h2 id="ttg-away-title" className="text-base font-bold text-slate">
-        {t('ttg.away.title')}
-      </h2>
-      <p className="text-sm text-slate">{t('ttg.away.how')}</p>
+      <div className={HEAD_ROW}>
+        <h2 id="ttg-away-title" className="text-base font-bold text-slate">
+          {t('ttg.away.title')}
+        </h2>
+        <InfoTip>{t('ttg.away.how')}</InfoTip>
+      </div>
       <div className="max-w-sm">
         <Select id="ttg-away-teacher" label={t('tt.teacher')} value={teacherId} onChange={(e) => choose(e.target.value)}>
           <option value="">{t('tt.teacher.choose')}</option>
@@ -101,7 +105,6 @@ export function GeneratorUnavailable({ data, onChanged }: { data: GeneratorData;
               </fieldset>
             ))}
           </div>
-          <p className="text-sm text-slate/70">{slots.length === 0 ? t('ttg.away.none') : t('ttg.away.marked')}</p>
           <button type="button" data-ttg-away-save disabled={busy} onClick={save} className={`${PRIMARY} self-start`}>
             {t('ttg.away.save')}
           </button>

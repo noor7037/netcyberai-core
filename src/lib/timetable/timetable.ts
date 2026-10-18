@@ -5,7 +5,7 @@ import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
 import { INDIA_TODAY_SQL } from '@/lib/time/india';
 import { activeAssignments, assignedTeachers } from '@/lib/academics/teacher-subjects';
-import { assignedMap, lookupKey, notAssigned, parseTimetableCsv, periodsFromSetting, planImport, type ImportProblem, type Slot } from './plan';
+import { assignedMap, lookupKey, notAssigned, notAssignedIn, parseTimetableCsv, periodsFromSetting, planImport, type ImportProblem, type Slot } from './plan';
 import { classOrderSql } from '@/lib/classes/class-order';
 
 // The timetable in the database (docs/20 5c, C145). Every function runs in
@@ -63,6 +63,14 @@ export async function timetableChoices(db: PoolClient, schoolId: string) {
 
 type Actor = { schoolId: string; userId: string; role: StaffRole };
 
+// The database's own guard of who teaches what (C243, the trigger timetable_entries_assigned_teacher): a period of a
+// class and subject with assigned teachers takes one of them. The app checks first; this answers the moment between
+// (Setup changed by someone else after the check) with the app's own reason, 'not_assigned'.
+export function isNotAssignedRefusal(err: unknown): boolean {
+  const e = err as { code?: string; message?: string } | null;
+  return e?.code === '23514' && /one of the teachers assigned to its class and subject/.test(e.message ?? '');
+}
+
 // The timetable generator's lock (C229): it proposes, swaps and publishes holding it alone, so a period filled or
 // emptied here, which holds it shared, waits for a publish to end, and a publish waits for this to end. A publish
 // then sees the timetable exactly as it checked it.
@@ -100,14 +108,23 @@ export async function putEntry(db: PoolClient, actor: Actor, slot: Slot): Promis
   if (notAssigned(await assignedTeachers(db, actor.schoolId, slot.classId, slot.subjectId), slot.teacherUserId)) return { ok: false, reason: 'not_assigned' };
 
   const before = (await db.query(`select subject_id, teacher_user_id from timetable_entries where school_id = $1 and class_id = $2 and weekday = $3 and period = $4`, [actor.schoolId, slot.classId, slot.weekday, slot.period])).rows[0] ?? null;
-  const saved = await db.query(
-    `insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id)
-     values ($1, $2, $3, $4, $5, $6)
-     on conflict on constraint timetable_class_slot do update set subject_id = excluded.subject_id, teacher_user_id = excluded.teacher_user_id, updated_at = now()
-     returning entry_id`,
-    [actor.schoolId, slot.classId, slot.weekday, slot.period, slot.subjectId, slot.teacherUserId]
-  );
-  const entryId = saved.rows[0].entry_id as string;
+  await db.query('savepoint timetable_put');
+  let entryId: string;
+  try {
+    const saved = await db.query(
+      `insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id)
+       values ($1, $2, $3, $4, $5, $6)
+       on conflict on constraint timetable_class_slot do update set subject_id = excluded.subject_id, teacher_user_id = excluded.teacher_user_id, updated_at = now()
+       returning entry_id`,
+      [actor.schoolId, slot.classId, slot.weekday, slot.period, slot.subjectId, slot.teacherUserId]
+    );
+    entryId = saved.rows[0].entry_id as string;
+    await db.query('release savepoint timetable_put');
+  } catch (err) {
+    await db.query('rollback to savepoint timetable_put');
+    if (isNotAssignedRefusal(err)) return { ok: false, reason: 'not_assigned' };
+    throw err;
+  }
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'timetable.set', targetType: 'timetable_entries', targetId: entryId, beforeState: before, afterState: { classId: slot.classId, weekday: slot.weekday, period: slot.period, subjectId: slot.subjectId, teacherUserId: slot.teacherUserId } });
   const entry = (await db.query(`${ENTRY_SELECT} where e.school_id = $1 and e.entry_id = $2`, [actor.schoolId, entryId])).rows[0] as Entry;
   return { ok: true, entry };
@@ -148,17 +165,31 @@ export async function importTimetable(db: PoolClient, actor: Actor, csv: string)
 
   // The lines' own class slots are emptied first, then filled: a teacher
   // swapped between two classes in one file never trips the unique constraint.
-  await db.query(
-    `delete from timetable_entries e using unnest($2::uuid[], $3::int[], $4::int[]) as n(class_id, weekday, period)
-      where e.school_id = $1 and e.class_id = n.class_id and e.weekday = n.weekday and e.period = n.period`,
-    [actor.schoolId, plan.slots.map((s) => s.classId), plan.slots.map((s) => s.weekday), plan.slots.map((s) => s.period)]
-  );
-  await db.query(
-    `insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id)
-     select $1, n.class_id, n.weekday, n.period, n.subject_id, n.teacher_user_id
-       from unnest($2::uuid[], $3::int[], $4::int[], $5::uuid[], $6::uuid[]) as n(class_id, weekday, period, subject_id, teacher_user_id)`,
-    [actor.schoolId, plan.slots.map((s) => s.classId), plan.slots.map((s) => s.weekday), plan.slots.map((s) => s.period), plan.slots.map((s) => s.subjectId), plan.slots.map((s) => s.teacherUserId)]
-  );
+  await db.query('savepoint timetable_import');
+  try {
+    await db.query(
+      `delete from timetable_entries e using unnest($2::uuid[], $3::int[], $4::int[]) as n(class_id, weekday, period)
+        where e.school_id = $1 and e.class_id = n.class_id and e.weekday = n.weekday and e.period = n.period`,
+      [actor.schoolId, plan.slots.map((s) => s.classId), plan.slots.map((s) => s.weekday), plan.slots.map((s) => s.period)]
+    );
+    await db.query(
+      `insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id)
+       select $1, n.class_id, n.weekday, n.period, n.subject_id, n.teacher_user_id
+         from unnest($2::uuid[], $3::int[], $4::int[], $5::uuid[], $6::uuid[]) as n(class_id, weekday, period, subject_id, teacher_user_id)`,
+      [actor.schoolId, plan.slots.map((s) => s.classId), plan.slots.map((s) => s.weekday), plan.slots.map((s) => s.period), plan.slots.map((s) => s.subjectId), plan.slots.map((s) => s.teacherUserId)]
+    );
+    await db.query('release savepoint timetable_import');
+  } catch (err) {
+    await db.query('rollback to savepoint timetable_import');
+    if (!isNotAssignedRefusal(err)) throw err;
+    // Setup changed who teaches what between the check and the write (C243): nothing is imported, and the lines the
+    // database refused are named by the same rule, as the check names them.
+    const now = assignedMap(await activeAssignments(db, actor.schoolId));
+    const teacherOf = new Map(parsed.rows.map((r) => [r.line, r.teacher]));
+    const refused = plan.slots.filter((s) => notAssignedIn(now, s)).map((s): ImportProblem => ({ line: s.line, code: 'not_assigned', value: teacherOf.get(s.line) }));
+    if (!refused.length) throw err;
+    return { ok: false, problems: refused };
+  }
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'timetable.import', targetType: 'timetable_entries', beforeState: null, afterState: { periods: plan.slots.length } });
   return { ok: true, imported: plan.slots.length };
 }

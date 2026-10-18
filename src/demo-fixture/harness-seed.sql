@@ -123,12 +123,16 @@ insert into audit_log (school_id, actor_user_id, actor_role, event_action, targe
 insert into impersonation_sessions (impersonation_id, actor_user_id, target_user_id, target_school_id, reason, started_at, expires_at, ended_at) values
   ('00000000-0000-4000-8000-0000000ee001', '00000000-0000-4000-8000-00000000f001', '00000000-0000-4000-8000-00000000a001', 'a0000000-0000-4000-8000-000000000001', 'Helping the office with a class import', now() - interval '2 days', now() - interval '2 days' + interval '15 minutes', now() - interval '2 days' + interval '9 minutes');
 
--- The timetable (C145): Tara's and Tanvi's week in 5-A and 5-B, Monday to Saturday.
+-- The timetable (C145): Tara's and Tanvi's week in 5-A and 5-B, Monday to Saturday. Tanvi's English in 5-A is a
+-- period made before Setup gave 5-A English to Tara: it stays (C230-C), so it is written as such a period was, before
+-- the database kept to who teaches what (C243).
+set session_replication_role = replica;
 insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id)
 select 'a0000000-0000-4000-8000-000000000001', c.class_id, d, p.period, p.subject_id, case when (c.name = '5-A') = (p.period % 2 = 1) then '00000000-0000-4000-8000-00000000a003'::uuid else '00000000-0000-4000-8000-00000000a004'::uuid end
 from (values ('00000000-0000-4000-8000-0000000c0051'::uuid, '5-A'), ('00000000-0000-4000-8000-0000000c0052'::uuid, '5-B')) c(class_id, name)
 cross join generate_series(1, 6) d
 cross join (values (1, '00000000-0000-4000-8000-0000000d0001'::uuid), (2, '00000000-0000-4000-8000-0000000d0002'::uuid), (3, '00000000-0000-4000-8000-0000000d0001'::uuid)) p(period, subject_id);
+set session_replication_role = origin;
 
 -- The syllabus map (C147): Mathematics in 5-A, five topics, none taught yet.
 insert into syllabus_units (school_id, class_id, subject_id, position, chapter, topic) values

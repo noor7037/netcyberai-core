@@ -22,7 +22,7 @@ export default async function TimetableGeneratorPage() {
   const { lang } = getLang(session.sub);
   const notInPlan = await featureOff(GENERATOR_FEATURE);
   return (
-    <ModulePage moduleId="timetable" help="make-a-timetable" tour="timetable-generator" title={t(lang, 'ttg.page.title')} purpose={t(lang, 'ttg.page.purpose')}>
+    <ModulePage moduleId="timetable" help="make-a-timetable" tour="timetable-generator" title={t(lang, 'ttg.page.title')} purpose={t(lang, 'ttg.page.purpose')} about={t(lang, 'ttg.page.about')}>
       {notInPlan ? (
         <div data-ttg-not-in-plan className="flex flex-col items-start gap-2 rounded-md bg-off-white px-3 py-2 text-sm text-slate">
           <p className="font-semibold">{t(lang, 'ttg.notInPlan')}</p>
