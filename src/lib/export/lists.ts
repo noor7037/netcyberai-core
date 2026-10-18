@@ -61,11 +61,13 @@ async function readList(db: PoolClient, schoolId: string, list: ExportList, lang
     };
   }
   if (list === 'staff') {
-    // The staff list screen's accounts (src/lib/auth/staff-accounts.ts): this school's members, platform admins never.
+    // The staff list screen's accounts (src/lib/auth/staff-accounts.ts): this school's members, platform admins never;
+    // with each one's staff code and designation from their profile (C238), blank when none is kept.
     const { rows } = await db.query(
-      `select u.display_name, m.role, u.email, u.phone, (m.is_active and u.is_active) as is_active, m.created_at
+      `select u.display_name, p.staff_code, p.designation, m.role, u.email, u.phone, (m.is_active and u.is_active) as is_active, m.created_at
          from memberships m
          join users u on u.user_id = m.user_id
+         left join staff_profiles p on p.school_id = m.school_id and p.user_id = m.user_id
         where m.school_id = $1 and u.role <> 'super_admin' and m.role::text <> 'parent'
         order by m.role, u.display_name
         limit $2`,
@@ -73,9 +75,11 @@ async function readList(db: PoolClient, schoolId: string, list: ExportList, lang
     );
     return {
       title: 'xport.list.staff',
-      header: ['xport.col.name', 'xport.col.role', 'xport.col.email', 'xport.col.mobile', 'xport.col.account', 'xport.col.since'],
+      header: ['xport.col.name', 'sprof.staffCode', 'sprof.designation', 'xport.col.role', 'xport.col.email', 'xport.col.mobile', 'xport.col.account', 'xport.col.since'],
       rows: rows.map((r) => [
         r.display_name,
+        r.staff_code ?? null,
+        r.designation ?? null,
         ROLES.some((x) => x === r.role) ? t(lang, `role.${r.role}` as MessageKey) : r.role,
         r.email,
         r.phone,
