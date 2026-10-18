@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
+import { Textarea } from '@/components/ui/Textarea';
 import type { Evidence, Sqaaf, Standard } from '@/lib/compliance/sqaaf';
 import { explainError } from '@/lib/errors/catalogue';
 import { isUploadProblem } from '@/lib/privacy/upload-problems';
@@ -84,10 +86,7 @@ export function SqaafPanel({ sqaaf, reload, say }: { sqaaf: Sqaaf; reload: () =>
       {s.evidence.length > 0 && <ul className="flex flex-col gap-2">{s.evidence.map(piece)}</ul>}
       {form?.code === s.code ? (
         <div data-cdk-sq-form className="flex flex-col gap-3 rounded-md border border-slate/10 p-3">
-          <div className="flex flex-col gap-1">
-            <label htmlFor={`cdk-sq-note-${s.code}`} className="text-sm font-medium">{t('cdk.sq.note')}</label>
-            <textarea id={`cdk-sq-note-${s.code}`} rows={3} maxLength={600} className={`${FIELD} py-2`} value={form.note} onChange={(e) => setForm({ ...form, note: e.target.value })} />
-          </div>
+          <Textarea id={`cdk-sq-note-${s.code}`} label={t('cdk.sq.note')} rows={3} maxLength={600} value={form.note} onChange={(e) => setForm({ ...form, note: e.target.value })} />
           <div className="flex flex-col gap-1">
             <label htmlFor={`cdk-sq-file-${s.code}`} className="text-sm font-medium">{t('cdk.sq.file')}</label>
             <input id={`cdk-sq-file-${s.code}`} type="file" accept="image/png,image/jpeg,image/webp,application/pdf" className={FIELD} onChange={(e) => setForm({ ...form, file: e.target.files?.[0] ?? null })} />
@@ -106,16 +105,18 @@ export function SqaafPanel({ sqaaf, reload, say }: { sqaaf: Sqaaf; reload: () =>
 
   return (
     <section data-cdk-sqaaf className={CARD}>
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-base font-bold">{t('cdk.sq.title')}</h2>
-        <p className="text-slate/70">{t('cdk.sq.how')}</p>
+        <InfoTip>
+          <p>{t('cdk.sq.how')}</p>
+          {sqaaf.source && (
+            <div data-cdk-sq-source className="mt-2 flex flex-col items-start">
+              <p className="break-words">{t('cdk.sq.source', { title: sqaaf.source.title, date: date(sqaaf.source.readOn) })}</p>
+              <a href={sqaaf.source.url} target="_blank" rel="noopener noreferrer" className={LINK}>{t('cdk.sq.document')}</a>
+            </div>
+          )}
+        </InfoTip>
       </div>
-      {sqaaf.source && (
-        <div data-cdk-sq-source className="flex flex-col items-start">
-          <p className="break-words text-slate/70">{t('cdk.sq.source', { title: sqaaf.source.title, date: date(sqaaf.source.readOn) })}</p>
-          <a href={sqaaf.source.url} target="_blank" rel="noopener noreferrer" className={LINK}>{t('cdk.sq.document')}</a>
-        </div>
-      )}
       <p data-cdk-sq-total className="font-semibold">{t('cdk.sq.total', { with: sqaaf.totals.withEvidence, standards: sqaaf.totals.standards })}</p>
       <ul className="flex flex-col gap-2">
         {sqaaf.domains.map((d) => (

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import type { MessageKey } from '@/lib/i18n';
@@ -67,10 +68,12 @@ export function MySubjectsPanel() {
 
   return (
     <section lang={lang} data-my-subjects className={`${BOX} w-full max-w-2xl text-sm text-slate`} aria-labelledby="ms-title">
-      <h2 id="ms-title" className="text-base font-bold">
-        {t('ms.title')}
-      </h2>
-      <p className="text-slate/70">{t('ms.how')}</p>
+      <div className="flex flex-wrap items-center gap-x-1">
+        <h2 id="ms-title" className="text-base font-bold">
+          {t('ms.title')}
+        </h2>
+        <InfoTip>{t('ms.how')}</InfoTip>
+      </div>
       {data.assignments.length === 0 ? (
         <p data-my-subjects-none className="rounded-md bg-off-white px-3 py-2">
           {t('ms.none')}

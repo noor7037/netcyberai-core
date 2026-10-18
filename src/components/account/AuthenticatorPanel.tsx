@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
@@ -111,12 +112,14 @@ export function AuthenticatorPanel() {
   return (
     <Card className="flex w-full max-w-md flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <h2 className="text-base font-bold text-slate">Authenticator app</h2>
-        <p className="text-sm text-slate/80">
-          {status.required
-            ? 'Required for platform admins: every sign-in asks for a 6-digit code from the app on your phone.'
-            : 'Optional. Once added, every sign-in also asks for a 6-digit code from the app on your phone.'}
-        </p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-bold text-slate">Authenticator app</h2>
+          <InfoTip>
+            {status.required
+              ? 'Required for platform admins: every sign-in asks for a 6-digit code from the app on your phone.'
+              : 'Optional. Once added, every sign-in also asks for a 6-digit code from the app on your phone.'}
+          </InfoTip>
+        </div>
         <p className="text-sm font-semibold text-slate" role="status">
           {enrolled === true ? 'On: an authenticator app is set up.' : enrolled === false ? 'Off: no authenticator app yet.' : ''}
         </p>
@@ -130,14 +133,12 @@ export function AuthenticatorPanel() {
             </Button>
           )}
           {enrolled !== false && (
-            <Button type="button" variant="outline" onClick={() => begin(true)}>
-              Replace authenticator
-            </Button>
-          )}
-          {enrolled === true && (
-            <p className="text-sm text-slate/80">
-              Lost your phone, or think someone else has the key? Replace it here; the old one stops working at once.
-            </p>
+            <div className="flex flex-wrap items-center gap-x-1">
+              <Button type="button" variant="outline" onClick={() => begin(true)}>
+                Replace authenticator
+              </Button>
+              {enrolled === true && <InfoTip>Lost your phone, or think someone else has the key? Replace it here; the old one stops working at once.</InfoTip>}
+            </div>
           )}
         </div>
       )}

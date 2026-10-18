@@ -82,7 +82,7 @@ export function FeesRecoveryView() {
               {r.hardship_id && <Badge variant="warning">{t('frec.badge.hardship')}</Badge>}
               {r.promise_id && <Badge variant={r.promise_passed ? 'danger' : 'neutral'}>{t(r.promise_passed ? 'frec.badge.promisePassed' : 'frec.badge.promise', { date: r.promise_date ?? '' })}</Badge>}
             </div>
-            <p className="text-slate/80">{r.last_kind ? t('frec.last', { what: t(`frec.kind.${r.last_kind}` as MessageKey), date: r.last_on ?? '', by: r.last_by ?? '', note: r.last_note ?? '' }) : t('frec.last.none')}</p>
+            {r.last_kind && <p className="text-slate/80">{t('frec.last', { what: t(`frec.kind.${r.last_kind}` as MessageKey), date: r.last_on ?? '', by: r.last_by ?? '', note: r.last_note ?? '' })}</p>}
             {(r.promise_id || r.hardship_id) && <p className="text-xs text-slate/70">{t('frec.held')}</p>}
             {open?.key === r.student_id ? (
               <div className="grid gap-2 sm:grid-cols-2">

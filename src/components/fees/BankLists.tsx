@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
@@ -67,8 +68,10 @@ export function BankLists({ lists, onChanged }: { lists: Lists; onChanged: () =>
       {done && <p role="status" data-bank-row-done className="rounded-md bg-emerald/10 px-3 py-2 text-sm font-semibold text-slate">{done}</p>}
       {lists.rows.length > 0 && (
         <div data-bank-rows className="flex flex-col gap-2 border-t border-slate/10 pt-3 text-sm text-slate">
-          <p className="text-base font-bold">{t('bank.rows.title')}</p>
-          <p className="text-slate/70">{t('bank.rows.how')}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <p className="text-base font-bold">{t('bank.rows.title')}</p>
+            <InfoTip>{t('bank.rows.how')}</InfoTip>
+          </div>
           {lists.unmatchedCount > 0 && <p>{t('bank.rows.left', { count: lists.unmatchedCount, amount: minorToRupees(lists.unmatchedMinor) })}</p>}
           {lists.links.length === 0 && <p className="rounded-md bg-off-white px-3 py-2">{t('bank.row.noLinks')}</p>}
           <ul className="flex flex-col gap-2">
@@ -123,8 +126,10 @@ export function BankLists({ lists, onChanged }: { lists: Lists; onChanged: () =>
       )}
       {lists.counterUnseen.length > 0 && (
         <div data-bank-counter className="flex flex-col gap-1 border-t border-slate/10 pt-3 text-sm text-slate">
-          <p className="text-base font-bold">{t('bank.counter.title')}</p>
-          <p className="text-slate/70">{t('bank.counter.how', { days: lists.unseenAfterDays })}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <p className="text-base font-bold">{t('bank.counter.title')}</p>
+            <InfoTip>{t('bank.counter.how', { days: lists.unseenAfterDays })}</InfoTip>
+          </div>
           <ul className="list-disc pl-5">
             {lists.counterUnseen.map((c) => (
               <li key={c.receipt_no}>{t('bank.counter.row', { receipt: c.receipt_no, method: c.method.toUpperCase(), amount: minorToRupees(c.total_minor), date: c.issued_on, days: c.days })}</li>

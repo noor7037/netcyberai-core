@@ -2,9 +2,13 @@
 
 import { useCallback, useMemo, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
-import { AddButton, BandsEditor, ComponentsEditor, Field, FIELD, PRIMARY, SECTION, TAP } from '@/components/exams/SchemeParts';
+import { InfoTip } from '@/components/app-ui/InfoTip';
+import { AddButton, BandsEditor, ComponentsEditor, PRIMARY, SECTION, TAP } from '@/components/exams/SchemeParts';
 import { formToScheme, schemeToForm, type BandForm, type ComponentForm } from '@/components/exams/scheme-form';
 import { Badge } from '@/components/ui/Badge';
+import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
+import { Textarea } from '@/components/ui/Textarea';
 import type { ControlBoard, ControlPreset } from '@/lib/exams/boards';
 import { NOTE_TOPICS, validatePreset, type CoScholastic, type NoteTopic, type PresetNote } from '@/lib/exams/scheme';
 import type { MessageKey } from '@/lib/i18n';
@@ -149,15 +153,13 @@ export function BoardsView({ initial }: { initial: ControlBoard[] }) {
       </section>
 
       <section data-board-new className={SECTION}>
-        <h2 className="text-base font-bold">{t('boards.addBoard.title')}</h2>
-        <p className="text-slate/70">{t('boards.addBoard.how')}</p>
-        <div className="grid gap-2 sm:grid-cols-[minmax(0,14rem)_minmax(0,1fr)]">
-          <Field id="board-id" label={t('boards.addBoard.id')}>
-            <input id="board-id" maxLength={40} className={FIELD} value={newBoard.boardId} onChange={(e) => setNewBoard({ ...newBoard, boardId: e.target.value.trim().toLowerCase() })} />
-          </Field>
-          <Field id="board-name" label={t('boards.addBoard.name')}>
-            <input id="board-name" maxLength={80} className={FIELD} value={newBoard.name} onChange={(e) => setNewBoard({ ...newBoard, name: e.target.value })} />
-          </Field>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-bold">{t('boards.addBoard.title')}</h2>
+          <InfoTip>{t('boards.addBoard.how')}</InfoTip>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-[minmax(0,14rem)_minmax(0,1fr)]">
+          <Input id="board-id" label={t('boards.addBoard.id')} maxLength={40} value={newBoard.boardId} onChange={(e) => setNewBoard({ ...newBoard, boardId: e.target.value.trim().toLowerCase() })} />
+          <Input id="board-name" label={t('boards.addBoard.name')} maxLength={80} value={newBoard.name} onChange={(e) => setNewBoard({ ...newBoard, name: e.target.value })} />
         </div>
         <button type="button" data-board-add className={`${PRIMARY} self-start`} disabled={busy || !newBoard.boardId || !newBoard.name.trim()} onClick={() => void send({ action: 'board', ...newBoard }, 'boards.addBoard.done').then((ok) => ok && setNewBoard({ boardId: '', name: '' }))}>
           {t('boards.addBoard.save')}
@@ -165,42 +167,34 @@ export function BoardsView({ initial }: { initial: ControlBoard[] }) {
       </section>
 
       <section data-preset-form className={SECTION}>
-        <h2 className="text-base font-bold">{t('boards.addPreset.title')}</h2>
-        <p className="text-slate/70">{t('boards.addPreset.how')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-bold">{t('boards.addPreset.title')}</h2>
+          <InfoTip>{t('boards.addPreset.how')}</InfoTip>
+        </div>
         {!draft ? (
           <AddButton data="preset" label={t('boards.addPreset.open')} onClick={() => setDraft(fresh())} />
         ) : (
           <div className="flex flex-col gap-3">
             {draft.replaces && <p className="rounded-md bg-off-white px-3 py-2 font-semibold">{t('boards.addPreset.replacing', { level: draft.replaces.level, board: draft.replaces.board })}</p>}
-            <div className="grid gap-2 sm:grid-cols-2">
-              <Field id="preset-board" label={t('boards.addPreset.board')}>
-                <select id="preset-board" className={FIELD} value={draft.boardId} disabled={!!draft.replaces} onChange={(e) => setDraft({ ...draft, boardId: e.target.value })}>
-                  <option value="">{t('boards.addPreset.choose')}</option>
-                  {boards.map((b) => (
-                    <option key={b.boardId} value={b.boardId}>
-                      {b.name}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-              <Field id="preset-level" label={t('boards.addPreset.level')}>
-                <input id="preset-level" maxLength={80} className={FIELD} value={draft.level} onChange={(e) => setDraft({ ...draft, level: e.target.value })} />
-              </Field>
-              <Field id="preset-title" label={t('boards.addPreset.sourceTitle')}>
-                <input id="preset-title" maxLength={200} className={FIELD} value={draft.sourceTitle} onChange={(e) => setDraft({ ...draft, sourceTitle: e.target.value })} />
-              </Field>
-              <Field id="preset-url" label={t('boards.addPreset.sourceUrl')}>
-                <input id="preset-url" type="url" maxLength={500} className={FIELD} value={draft.sourceUrl} onChange={(e) => setDraft({ ...draft, sourceUrl: e.target.value })} />
-              </Field>
-              <Field id="preset-read-on" label={t('boards.addPreset.readOn')}>
-                <input id="preset-read-on" type="date" className={FIELD} value={draft.sourceReadOn} onChange={(e) => setDraft({ ...draft, sourceReadOn: e.target.value })} />
-              </Field>
-              <Field id="preset-pass" label={t('boards.addPreset.passMark')}>
-                <input id="preset-pass" inputMode="decimal" className={FIELD} value={draft.passMark} onChange={(e) => setDraft({ ...draft, passMark: e.target.value })} />
-              </Field>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Select id="preset-board" label={t('boards.addPreset.board')} value={draft.boardId} disabled={!!draft.replaces} onChange={(e) => setDraft({ ...draft, boardId: e.target.value })}>
+                <option value="">{t('boards.addPreset.choose')}</option>
+                {boards.map((b) => (
+                  <option key={b.boardId} value={b.boardId}>
+                    {b.name}
+                  </option>
+                ))}
+              </Select>
+              <Input id="preset-level" label={t('boards.addPreset.level')} maxLength={80} value={draft.level} onChange={(e) => setDraft({ ...draft, level: e.target.value })} />
+              <Input id="preset-title" label={t('boards.addPreset.sourceTitle')} maxLength={200} value={draft.sourceTitle} onChange={(e) => setDraft({ ...draft, sourceTitle: e.target.value })} />
+              <Input id="preset-url" type="url" label={t('boards.addPreset.sourceUrl')} maxLength={500} value={draft.sourceUrl} onChange={(e) => setDraft({ ...draft, sourceUrl: e.target.value })} />
+              <Input id="preset-read-on" type="date" label={t('boards.addPreset.readOn')} value={draft.sourceReadOn} onChange={(e) => setDraft({ ...draft, sourceReadOn: e.target.value })} />
+              <Input id="preset-pass" inputMode="decimal" label={t('boards.addPreset.passMark')} value={draft.passMark} onChange={(e) => setDraft({ ...draft, passMark: e.target.value })} />
             </div>
-            <h3 className="font-bold">{t('gs.bands.title')}</h3>
-            <p className="text-slate/70">{t('boards.addPreset.bandsHow')}</p>
+            <div className="flex flex-wrap items-center gap-x-1">
+              <h3 className="font-bold">{t('gs.bands.title')}</h3>
+              <InfoTip>{t('boards.addPreset.bandsHow')}</InfoTip>
+            </div>
             <BandsEditor idPrefix="preset" bands={draft.bands} onChange={(bands) => setDraft({ ...draft, bands })} />
             <h3 className="font-bold">{t('gs.comp.title')}</h3>
             <ComponentsEditor idPrefix="preset" components={draft.components} onChange={(components) => setDraft({ ...draft, components })} />
@@ -208,18 +202,14 @@ export function BoardsView({ initial }: { initial: ControlBoard[] }) {
             <h3 className="font-bold">{t('boards.addPreset.notes')}</h3>
             {draft.notes.map((n, i) => (
               <div key={i} className="grid grid-cols-1 items-end gap-2 sm:grid-cols-[minmax(0,12rem)_minmax(0,1fr)_auto]">
-                <Field id={`preset-note-${i}-about`} label={t('boards.addPreset.noteAbout')}>
-                  <select id={`preset-note-${i}-about`} className={FIELD} value={n.about} onChange={(e) => setDraft({ ...draft, notes: draft.notes.map((x, j) => (j === i ? { ...x, about: e.target.value as NoteTopic } : x)) })}>
-                    {NOTE_TOPICS.map((k) => (
-                      <option key={k} value={k}>
-                        {t(`boards.note.${k}` as MessageKey)}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-                <Field id={`preset-note-${i}`} label={t('boards.addPreset.noteText', { n: i + 1 })}>
-                  <textarea id={`preset-note-${i}`} rows={2} maxLength={600} className="min-h-[44px] w-full min-w-0 rounded-md border border-slate/20 bg-white px-3 py-2 text-sm text-slate" value={n.text} onChange={(e) => setDraft({ ...draft, notes: draft.notes.map((x, j) => (j === i ? { ...x, text: e.target.value } : x)) })} />
-                </Field>
+                <Select id={`preset-note-${i}-about`} label={t('boards.addPreset.noteAbout')} value={n.about} onChange={(e) => setDraft({ ...draft, notes: draft.notes.map((x, j) => (j === i ? { ...x, about: e.target.value as NoteTopic } : x)) })}>
+                  {NOTE_TOPICS.map((k) => (
+                    <option key={k} value={k}>
+                      {t(`boards.note.${k}` as MessageKey)}
+                    </option>
+                  ))}
+                </Select>
+                <Textarea id={`preset-note-${i}`} label={t('boards.addPreset.noteText', { n: i + 1 })} rows={2} maxLength={600} value={n.text} onChange={(e) => setDraft({ ...draft, notes: draft.notes.map((x, j) => (j === i ? { ...x, text: e.target.value } : x)) })} />
                 <button type="button" className={TAP} onClick={() => setDraft({ ...draft, notes: draft.notes.filter((_, j) => j !== i) })}>
                   {t('boards.addPreset.removeNote', { n: i + 1 })}
                 </button>

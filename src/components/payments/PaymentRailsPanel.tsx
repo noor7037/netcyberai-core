@@ -135,15 +135,19 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
         <div data-upi-setup className="flex flex-col gap-3 border-t border-slate/10 pt-3">
           <div className="flex flex-wrap items-center gap-x-1">
             <h3 className="text-base font-bold text-slate">{t('rails.upi.title')}</h3>
-            <InfoTip>{t('rails.upi.how')}</InfoTip>
+            <InfoTip>
+              <p>{t('rails.upi.how')}</p>
+              <p>{t('rails.upi.upiId.hint')}</p>
+              <p>{t('rails.upi.limit.hint')}</p>
+            </InfoTip>
           </div>
           <fieldset disabled={!mayEdit || busy} className="grid gap-3 sm:grid-cols-2">
-            <Input id="upi-id" label={t('rails.upi.upiId')} helperText={t('rails.upi.upiId.hint')} autoComplete="off" value={upi.upiId} onChange={(e) => setUpi({ ...upi, upiId: e.target.value })} />
+            <Input id="upi-id" label={t('rails.upi.upiId')} autoComplete="off" value={upi.upiId} onChange={(e) => setUpi({ ...upi, upiId: e.target.value })} />
             <Input id="upi-payee" label={t('rails.upi.payee')} maxLength={80} value={upi.payeeName} onChange={(e) => setUpi({ ...upi, payeeName: e.target.value })} />
             <Input id="upi-bank" label={t('rails.upi.bank')} maxLength={60} value={upi.bankName} onChange={(e) => setUpi({ ...upi, bankName: e.target.value })} />
             <Input id="upi-last4" label={t('rails.upi.last4')} inputMode="numeric" maxLength={4} value={upi.accountLast4} onChange={(e) => setUpi({ ...upi, accountLast4: e.target.value })} />
             <Input id="upi-ifsc" label={t('rails.upi.ifsc')} maxLength={11} value={upi.ifsc} onChange={(e) => setUpi({ ...upi, ifsc: e.target.value.toUpperCase() })} />
-            <Input id="upi-limit" label={t('rails.upi.limit')} helperText={t('rails.upi.limit.hint')} inputMode="numeric" value={upi.limitRupees} onChange={(e) => setUpi({ ...upi, limitRupees: e.target.value })} />
+            <Input id="upi-limit" label={t('rails.upi.limit')} inputMode="numeric" value={upi.limitRupees} onChange={(e) => setUpi({ ...upi, limitRupees: e.target.value })} />
             <div className="flex flex-col gap-1 text-sm text-slate">
               <span className="font-semibold">{t('rails.upi.verifiers')}</span>
               {VERIFIERS.map((role) => (

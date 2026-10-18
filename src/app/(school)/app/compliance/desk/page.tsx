@@ -17,7 +17,7 @@ export default async function ComplianceDeskPage() {
   const { lang } = getLang(session?.sub ?? '');
   const notInPlan = await featureOff(COMPLIANCE_DESK_FEATURE);
   return (
-    <ModulePage moduleId="compliance" help="keep-the-compliance-desk" tour="compliance-desk" title={t(lang, 'cdk.page.title')} purpose={t(lang, 'cdk.page.purpose')}>
+    <ModulePage moduleId="compliance" help="keep-the-compliance-desk" tour="compliance-desk" title={t(lang, 'cdk.page.title')} purpose={t(lang, 'cdk.page.purpose')} about={t(lang, 'cdk.page.about')}>
       {notInPlan ? (
         <div data-cdk-not-in-plan className="flex flex-col items-start gap-2 rounded-md bg-off-white px-3 py-2 text-sm text-slate">
           <p className="font-semibold">{t(lang, 'cdk.notInPlan')}</p>

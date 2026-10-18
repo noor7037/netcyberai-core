@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { dayFormat } from '@/components/compliance/desk-client';
 import type { OwnQualification } from '@/lib/compliance/qualifications';
 import type { Qualification } from '@/lib/compliance/register-rules';
@@ -59,9 +60,9 @@ export function MyQualificationsPanel() {
 
   return (
     <section lang={lang} data-my-qualifications={q ? 'kept' : 'none'} className={BOX}>
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-base font-bold">{t('myq.title')}</h2>
-        <p className="text-slate/70">{t('myq.how')}</p>
+        <InfoTip>{t('myq.how')}</InfoTip>
       </div>
       {!q ? (
         <p className="rounded-md bg-off-white px-3 py-2">{t('myq.none')}</p>

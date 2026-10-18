@@ -6,7 +6,9 @@ import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
 import { useFeesChanged, useFeesPart } from './FeesFirstLoad';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
+import { SegmentedControl } from '@/components/ui/SegmentedControl';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import type { MessageKey } from '@/lib/i18n';
@@ -216,8 +218,10 @@ export function FeesDuesView() {
 
       {classId && students.length > 0 && (
         <div data-concessions-form className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
-          <h2 className="text-base font-bold text-slate">{t('con.title')}</h2>
-          <p className="text-sm text-slate/70">{t('con.how')}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <h2 className="text-base font-bold text-slate">{t('con.title')}</h2>
+            <InfoTip>{t('con.how')}</InfoTip>
+          </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             <Select id="con-student" label={t('con.student')} value={form.studentId} onChange={(e) => setForm({ ...form, studentId: e.target.value })}>
               <option value="">{t('con.student.choose')}</option>
@@ -242,10 +246,16 @@ export function FeesDuesView() {
                 </option>
               ))}
             </Select>
-            <Select id="con-measure" label={t('con.measure')} value={form.measure} onChange={(e) => setForm({ ...form, measure: e.target.value as 'percent' | 'amount', value: '' })}>
-              <option value="percent">{t('con.measure.percent')}</option>
-              <option value="amount">{t('con.measure.amount')}</option>
-            </Select>
+            <SegmentedControl
+              id="con-measure"
+              label={t('con.measure')}
+              value={form.measure}
+              onChange={(measure) => setForm({ ...form, measure, value: '' })}
+              options={[
+                { value: 'percent', label: t('con.measure.percent') },
+                { value: 'amount', label: t('con.measure.amount') },
+              ]}
+            />
             <Input id="con-value" label={t(form.measure === 'percent' ? 'con.value.percent' : 'fee.rupees')} inputMode="decimal" value={form.value} onChange={(e) => setForm({ ...form, value: e.target.value })} />
             <Input id="con-reason" label={t('con.reason')} maxLength={300} value={form.reason} onChange={(e) => setForm({ ...form, reason: e.target.value })} />
           </div>
@@ -253,26 +263,25 @@ export function FeesDuesView() {
             {t('con.propose')}
           </button>
 
-          <h3 className="pt-2 text-sm font-bold text-slate">{t('rte.title')}</h3>
-          <p className="text-sm text-slate/70">{t('rte.how')}</p>
+          <div className="flex flex-wrap items-center gap-x-1 pt-2">
+            <h3 className="text-sm font-bold text-slate">{t('rte.title')}</h3>
+            <InfoTip>{t('rte.how')}</InfoTip>
+          </div>
           <ul className="flex flex-col gap-2">
             {students.map((s) => (
               <li key={s.student_id} data-rte-row className="flex flex-col gap-2 text-sm text-slate">
-                <span className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="flex items-center gap-2 font-semibold">
-                    {s.name}
-                    {s.rte_admission && <Badge variant="success">{t('con.kind.rte')}</Badge>}
-                  </span>
-                  {s.rte_admission ? (
-                    <button type="button" disabled={busy} className={TAP} onClick={() => void tagRte(s, false)}>
-                      {t('rte.remove')}
-                    </button>
-                  ) : (
-                    <button type="button" disabled={busy} className={TAP} onClick={() => setRte({ studentId: rte.studentId === s.student_id ? '' : s.student_id, entryClass: '', admittedOn: '' })}>
-                      {t('rte.mark')}
-                    </button>
-                  )}
-                </span>
+                <Checkbox
+                  id={`rte-mark-${s.student_id}`}
+                  label={
+                    <span className="flex flex-wrap items-center gap-2 font-semibold">
+                      {s.name}
+                      {s.rte_admission && <Badge variant="success">{t('con.kind.rte')}</Badge>}
+                    </span>
+                  }
+                  checked={s.rte_admission || rte.studentId === s.student_id}
+                  disabled={busy}
+                  onChange={() => (s.rte_admission ? void tagRte(s, false) : setRte({ studentId: rte.studentId === s.student_id ? '' : s.student_id, entryClass: '', admittedOn: '' }))}
+                />
                 {rte.studentId === s.student_id && (
                   <span className="grid items-end gap-2 sm:grid-cols-3">
                     <Input id={`rte-class-${s.student_id}`} label={t('rte.entryClass')} maxLength={40} value={rte.entryClass} onChange={(e) => setRte({ ...rte, entryClass: e.target.value })} />

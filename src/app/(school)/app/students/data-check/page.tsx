@@ -15,7 +15,7 @@ export default async function StudentDataCheckPage() {
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
   return (
-    <ModulePage moduleId="students" help="student-data-check" tour="data-check" title={t(lang, 'sdc.page.title')} purpose={t(lang, 'sdc.page.purpose')}>
+    <ModulePage moduleId="students" help="student-data-check" tour="data-check" title={t(lang, 'sdc.page.title')} purpose={t(lang, 'sdc.page.purpose')} about={t(lang, 'sdc.page.about')}>
       <DataCheckView />
     </ModulePage>
   );

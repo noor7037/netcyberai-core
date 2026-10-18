@@ -2,8 +2,10 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import { ACTION_KINDS, ACTION_TEXT_MAX, CLOSED_SHOWN_DAYS, openEmptyState, type ClassCount, type EarlyWarningSettings, type Flag, type LastCheck, type MarksExam } from '@/lib/early-warning/rules';
 import { explainError } from '@/lib/errors/catalogue';
 import type { MessageKey } from '@/lib/i18n';
@@ -31,7 +33,6 @@ type Draft = { kind: string; note: string; outcome: string };
 const REFUSALS = ['kind', 'note', 'outcome', 'say_what', 'elsewhere'];
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
-const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 const BOX = 'flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4';
 const SOFT = 'rounded-md bg-off-white px-3 py-2';
 const WHY = 'inline-flex min-h-[44px] cursor-pointer items-center font-semibold text-sapphire underline';
@@ -231,23 +232,18 @@ export function EarlyWarningView() {
       )}
       {adding === f.flag_id ? (
         <div data-ew-add className="flex flex-col gap-3 rounded-md border border-slate/10 p-3">
-          <div className="flex flex-col gap-1">
-            <label htmlFor={`ew-kind-${f.flag_id}`} className="font-semibold">
-              {t('ew.add.kind')}
-            </label>
-            <select id={`ew-kind-${f.flag_id}`} data-ew-kind className={FIELD} value={draft.kind} onChange={(e) => setDraft({ ...draft, kind: e.target.value })}>
-              <option value="">{t('ew.add.choose')}</option>
-              {ACTION_KINDS.map((k) => (
-                <option key={k} value={k}>
-                  {t(`ew.kind.${k}` as MessageKey)}
-                </option>
-              ))}
-            </select>
-          </div>
+          <Select id={`ew-kind-${f.flag_id}`} data-ew-kind label={t('ew.add.kind')} value={draft.kind} onChange={(e) => setDraft({ ...draft, kind: e.target.value })}>
+            <option value="">{t('ew.add.choose')}</option>
+            {ACTION_KINDS.map((k) => (
+              <option key={k} value={k}>
+                {t(`ew.kind.${k}` as MessageKey)}
+              </option>
+            ))}
+          </Select>
           <Input id={`ew-note-${f.flag_id}`} label={t('ew.add.note')} maxLength={ACTION_TEXT_MAX} value={draft.note} onChange={(e) => setDraft({ ...draft, note: e.target.value })} />
           <Input id={`ew-outcome-${f.flag_id}`} label={t('ew.add.outcome')} maxLength={ACTION_TEXT_MAX} value={draft.outcome} onChange={(e) => setDraft({ ...draft, outcome: e.target.value })} />
-          <p className="max-w-prose text-xs text-slate/70">{t('ew.add.how')}</p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <InfoTip tone="white">{t('ew.add.how')}</InfoTip>
             <button
               type="button"
               data-ew-save
@@ -323,17 +319,21 @@ export function EarlyWarningView() {
       )}
 
       <section data-ew-what className={BOX}>
-        <h2 className="text-base font-bold">{t('ew.what.title')}</h2>
-        <p className="max-w-prose">{t('ew.what.text')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-bold">{t('ew.what.title')}</h2>
+          <InfoTip>
+            <p>{t('ew.what.text')}</p>
+            <p>{t('ew.what.order')}</p>
+          </InfoTip>
+        </div>
         <p className="max-w-prose font-semibold">{t('ew.what.staffOnly')}</p>
-        <p className="max-w-prose text-slate/70">{t('ew.what.order')}</p>
       </section>
 
       {d.mayCheck && (
         <section data-ew-check className={BOX}>
-          <div>
+          <div className="flex flex-wrap items-center gap-x-1">
             <h2 className="text-base font-bold">{t('ew.check.title')}</h2>
-            <p className="max-w-prose text-slate/70">{t('ew.check.how')}</p>
+            <InfoTip>{t('ew.check.how')}</InfoTip>
           </div>
           {d.lastCheck ? (
             <div data-ew-last-check="yes" data-ew-last-check-by={d.lastCheck.nightly ? 'nightly' : 'person'} className={`${SOFT} flex flex-col gap-1`}>
@@ -372,7 +372,10 @@ export function EarlyWarningView() {
 
       {d.summary.length > 0 && (
         <section data-ew-summary className={BOX}>
-          <h2 className="text-base font-bold">{t('ew.summary.title')}</h2>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <h2 className="text-base font-bold">{t('ew.summary.title')}</h2>
+            <InfoTip>{t('ew.summary.note')}</InfoTip>
+          </div>
           <ul className="flex flex-wrap gap-2">
             {d.summary.map((c) => (
               <li key={c.class_id} data-ew-class-count={c.open} className={SOFT}>
@@ -380,7 +383,6 @@ export function EarlyWarningView() {
               </li>
             ))}
           </ul>
-          <p className="max-w-prose text-slate/70">{t('ew.summary.note')}</p>
         </section>
       )}
 
@@ -398,9 +400,9 @@ export function EarlyWarningView() {
       </section>
 
       <section data-ew-closed className={BOX}>
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('ew.closed.title', { days: CLOSED_SHOWN_DAYS })}</h2>
-          <p className="max-w-prose text-slate/70">{t('ew.closed.how')}</p>
+          <InfoTip>{t('ew.closed.how')}</InfoTip>
         </div>
         {d.closed.length === 0 ? <p className={SOFT}>{t('ew.closed.none', { days: CLOSED_SHOWN_DAYS })}</p> : <ul className="flex flex-col gap-3">{d.closed.map(card)}</ul>}
       </section>

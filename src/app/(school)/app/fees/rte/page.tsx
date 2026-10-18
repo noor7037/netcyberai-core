@@ -18,7 +18,7 @@ export default async function RteDeskPage() {
   const { lang } = getLang(session?.sub ?? '');
   const notInPlan = await featureOff(RTE_DESK_FEATURE);
   return (
-    <ModulePage moduleId="fees" help="claim-rte-reimbursement" tour="fees-rte" title={t(lang, 'rtd.page.title')} purpose={t(lang, 'rtd.page.purpose')}>
+    <ModulePage moduleId="fees" help="claim-rte-reimbursement" tour="fees-rte" title={t(lang, 'rtd.page.title')} purpose={t(lang, 'rtd.page.purpose')} about={t(lang, 'rtd.page.about')}>
       {notInPlan ? (
         <div data-rte-not-in-plan className="flex flex-col items-start gap-2 rounded-md bg-off-white px-3 py-2 text-sm text-slate">
           <p className="font-semibold">{t(lang, 'rtd.notInPlan')}</p>

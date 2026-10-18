@@ -23,7 +23,7 @@ export default async function MonitoringPage() {
     ? await withTenantContext(session, async (db) => ({ data: await loadMonitoring(db), invitations: await invitationsWaiting(db), applications: await applicationCounts(db) }))
     : null;
   return (
-    <ModulePage title={t(lang, 'monitoring.title')} purpose={t(lang, 'monitoring.purpose')} icon="pulse" tone="emerald" eyebrow={t(lang, 'group.control')} headerLang={lang}>
+    <ModulePage title={t(lang, 'monitoring.title')} purpose={t(lang, 'monitoring.purpose')} about={t(lang, 'monitoring.about')} icon="pulse" tone="emerald" eyebrow={t(lang, 'group.control')} headerLang={lang}>
       {read && <MonitoringView data={read.data} invitations={read.invitations} applications={read.applications} lang={lang} />}
     </ModulePage>
   );

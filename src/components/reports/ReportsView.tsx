@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
+import { Input } from '@/components/ui/Input';
 import { explainError } from '@/lib/errors/catalogue';
 import { isMessageKey, type MessageKey } from '@/lib/i18n';
 import type { RangeId } from '@/lib/insights/types';
@@ -20,7 +22,6 @@ type Listing = { reports: ReportListed[]; today: string };
 
 const TAP = 'inline-flex min-h-[44px] items-center justify-center rounded-md border border-slate/20 bg-white px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'inline-flex min-h-[44px] items-center justify-center rounded-md bg-sapphire px-5 text-sm font-semibold text-white';
-const FIELD = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 const WHY = 'inline-flex min-h-[44px] cursor-pointer items-center font-semibold text-sapphire underline';
 const NUMBERS: readonly string[] = ['count', 'inr_paise', 'percent'];
 
@@ -128,9 +129,9 @@ export function ReportsView() {
   return (
     <div lang={lang} data-reports className="flex flex-col gap-4 text-sm text-slate">
       <section data-report-list className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('rpt.list.title')}</h2>
-          <p className="text-slate/70">{t('rpt.list.how')}</p>
+          <InfoTip>{t('rpt.list.how')}</InfoTip>
         </div>
         {REPORT_GROUPS.filter((g) => listing.reports.some((r) => r.group === g)).map((g) => (
           <div key={g} data-report-group={g} className="flex flex-col gap-2">
@@ -145,7 +146,7 @@ export function ReportsView() {
                     }}
                   >
                     <span className="font-bold text-slate">{t(`rpt.${r.id}.title` as MessageKey)}</span>
-                    <span className="text-slate/70">{t(`rpt.${r.id}.about` as MessageKey)}</span>
+                    <span className="sr-only">{t(`rpt.${r.id}.about` as MessageKey)}</span>
                   </button>
                 </li>
               ))}
@@ -185,14 +186,8 @@ export function ReportsView() {
                 }}
               >
                 <p className="w-full font-semibold">{t('rpt.range.dates')}</p>
-                <label className="flex flex-col gap-1">
-                  <span className="text-slate/70">{t('rpt.range.from')}</span>
-                  <input type="date" data-report-from className={FIELD} value={dates.from} onChange={(e) => setDates({ ...dates, from: e.target.value })} />
-                </label>
-                <label className="flex flex-col gap-1">
-                  <span className="text-slate/70">{t('rpt.range.to')}</span>
-                  <input type="date" data-report-to className={FIELD} value={dates.to} onChange={(e) => setDates({ ...dates, to: e.target.value })} />
-                </label>
+                <Input id="rpt-from" type="date" data-report-from label={t('rpt.range.from')} value={dates.from} onChange={(e) => setDates({ ...dates, from: e.target.value })} />
+                <Input id="rpt-to" type="date" data-report-to label={t('rpt.range.to')} value={dates.to} onChange={(e) => setDates({ ...dates, to: e.target.value })} />
                 <button type="submit" data-report-show disabled={!twoDates} className={'from' in asked ? PRIMARY : TAP}>
                   {t('rpt.range.show')}
                 </button>
@@ -269,12 +264,12 @@ export function ReportsView() {
                   {shown.notes.map((n) => (
                     <p key={n.key} data-report-note className="rounded-md bg-off-white px-3 py-2">{t(n.key, n.params)}</p>
                   ))}
-                  <div className="flex flex-col items-start gap-1">
+                  <div className="flex flex-wrap items-center gap-x-1">
                     {/* The file is asked for with the very days on the screen, so it has these rows even after midnight. */}
                     <a href={`/api/app/reports/${shown.id}/export${shown.range ? `?${rangeQuery(shown.range)}` : ''}`} data-report-export className={PRIMARY}>
                       {t('rpt.download')}
                     </a>
-                    <p className="text-slate/70">{t('rpt.download.how')}</p>
+                    <InfoTip>{t('rpt.download.how')}</InfoTip>
                   </div>
                 </>
               )}

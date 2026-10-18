@@ -28,6 +28,7 @@ export default async function MessagingCostPage({ searchParams }: { searchParams
     <ModulePage
       title={t(lang, 'cost.title')}
       purpose={t(lang, 'cost.month.purpose')}
+      about={t(lang, 'cost.month.about')}
       icon="chat"
       tone="cyan"
       eyebrow={t(lang, 'group.control')}

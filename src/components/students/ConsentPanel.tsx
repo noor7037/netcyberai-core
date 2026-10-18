@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/Badge';
 import { Modal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
+import { Switch } from '@/components/ui/Switch';
 import { useToast } from '@/components/ui/Toast';
 import { useT } from '@/components/app-shell/LangContext';
 
@@ -216,23 +217,15 @@ export function ConsentPanel({
         ) : (
           <ul className="flex flex-col gap-2">
             {PURPOSES.map((p) => (
-              <li key={p.key} className="flex items-center justify-between rounded-md border border-slate/10 p-3 text-sm">
-                <div>
-                  <p className="font-medium text-slate">
-                    {p.label} {p.required && <span className="text-slate/70">(required for service)</span>}
-                  </p>
-                  <Badge variant={eligibility[p.key] ? 'success' : 'neutral'}>{eligibility[p.key] ? 'Granted' : 'Not granted'}</Badge>
-                </div>
-                {canManage && guardians.length > 0 && (
-                  <div className="flex gap-2">
-                    <button type="button" className="min-h-[44px] px-2 text-sapphire" onClick={() => setGrantOpen({ purpose: p.key, granted: true })}>
-                      Grant
-                    </button>
-                    <button type="button" className="min-h-[44px] px-2 text-red-800" onClick={() => setGrantOpen({ purpose: p.key, granted: false })}>
-                      Withdraw
-                    </button>
-                  </div>
-                )}
+              <li key={p.key} className="rounded-md border border-slate/10 px-3 text-sm">
+                <Switch
+                  id={`consent-${p.key}`}
+                  label={p.required ? `${p.label} (required)` : p.label}
+                  stateText={eligibility[p.key] ? 'Granted' : 'Not granted'}
+                  checked={Boolean(eligibility[p.key])}
+                  disabled={!canManage || guardians.length === 0}
+                  onChange={() => setGrantOpen({ purpose: p.key, granted: !eligibility[p.key] })}
+                />
               </li>
             ))}
           </ul>

@@ -3,11 +3,15 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react';
 import { AppCard } from '@/components/app-ui/Card';
 import { DataList, type DataColumn } from '@/components/app-ui/DataList';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { ErrorState, Skeleton } from '@/components/app-ui/States';
 import { StatusPill } from '@/components/app-ui/StatusPill';
 import type { StatusTone } from '@/components/app-ui/tones';
 import { useT } from '@/components/app-shell/LangContext';
+import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
+import { Select } from '@/components/ui/Select';
+import { Switch } from '@/components/ui/Switch';
 import { lastGraceDay } from '@/lib/control/grace-day';
 import { moduleOffSentence } from '@/lib/i18n/module-off';
 import {
@@ -54,7 +58,6 @@ const ACCESS_HELP: Record<AccessMode, string> = {
   read_only: 'People can view and export, but not change anything.',
   suspended: 'Only Help Center and Raise Ticket stay open.',
 };
-const field = 'mt-1 min-h-[44px] w-full rounded-md border border-slate/20 bg-white px-3 text-sm font-normal text-slate';
 const button = 'min-h-[44px] rounded-md bg-sapphire px-4 text-sm font-semibold text-white disabled:opacity-60';
 const when = (iso: string) => new Date(iso).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
 // The last day of a grace period, from the instant it ends: India's day, whatever zone the browser is in, and the
@@ -63,12 +66,7 @@ const graceDay = (endsAt: string) => new Date(`${lastGraceDay(endsAt)}T00:00:00Z
 const validReason = (r: string) => r.trim().length >= 3 && r.trim().length <= 500;
 
 function Reason({ value, onChange, id }: { value: string; onChange: (v: string) => void; id: string }) {
-  return (
-    <label htmlFor={id} className="text-sm font-semibold text-slate">
-      Reason (only you can read it; the school never sees it)
-      <input id={id} value={value} onChange={(e) => onChange(e.target.value)} maxLength={500} required className={field} />
-    </label>
-  );
+  return <Input id={id} label="Reason (only you can read it; the school never sees it)" value={value} onChange={(e) => onChange(e.target.value)} maxLength={500} required />;
 }
 
 export function SchoolEntitlementsPanel({
@@ -174,23 +172,19 @@ export function SchoolEntitlementsPanel({
         </div>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <form onSubmit={setAccess} className="flex flex-col gap-3 rounded-lg border border-slate/10 p-3">
-            <label htmlFor="access-mode" className="text-sm font-semibold text-slate">
-              Access mode
-              <select id="access-mode" value={mode} onChange={(e) => setMode(e.target.value as AccessMode)} className={field}>
-                {ACCESS_MODES.map((m) => (
-                  <option key={m} value={m}>
-                    {accessModeLabel(m)}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <p className="text-sm text-slate/70">{ACCESS_HELP[mode]}</p>
-            {mode === 'grace' && (
-              <label htmlFor="grace-date" className="text-sm font-semibold text-slate">
-                Grace ends on (end of that day)
-                <input id="grace-date" type="date" required min={tomorrow} value={graceDate} onChange={(e) => setGraceDate(e.target.value)} className={field} />
-              </label>
-            )}
+            <div className="flex flex-wrap items-start gap-x-1">
+              <div className="min-w-0 flex-1">
+                <Select id="access-mode" label="Access mode" value={mode} onChange={(e) => setMode(e.target.value as AccessMode)}>
+                  {ACCESS_MODES.map((m) => (
+                    <option key={m} value={m}>
+                      {accessModeLabel(m)}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+              <InfoTip className="mt-1">{ACCESS_HELP[mode]}</InfoTip>
+            </div>
+            {mode === 'grace' && <Input id="grace-date" type="date" label="Grace ends on (end of that day)" required min={tomorrow} value={graceDate} onChange={(e) => setGraceDate(e.target.value)} />}
             <Reason id="access-reason" value={accessReason} onChange={setAccessReason} />
             <button type="submit" disabled={busy || !validReason(accessReason) || (mode === 'grace' && !graceDate)} className={`${button} self-start`}>
               Set access
@@ -198,21 +192,22 @@ export function SchoolEntitlementsPanel({
           </form>
 
           <form onSubmit={applyPlan} className="flex flex-col gap-3 rounded-lg border border-slate/10 p-3">
-            <label htmlFor="plan" className="text-sm font-semibold text-slate">
-              Apply a plan
-              <select id="plan" value={planId} onChange={(e) => setPlanId(e.target.value)} required className={field}>
-                <option value="">Choose…</option>
-                {plans.map((p) => (
-                  <option key={p.planId} value={p.planId}>
-                    {p.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <p className="text-sm text-slate/70">
-              {plan ? `Gives exactly these ${plan.moduleIds.length} modules: ${plan.moduleIds.map(label).join(', ')}. A module an earlier plan gave and this one does not is switched off. ` : ''}
-              Modules you switched by hand keep your choice.
-            </p>
+            <div className="flex flex-wrap items-start gap-x-1">
+              <div className="min-w-0 flex-1">
+                <Select id="plan" label="Apply a plan" value={planId} onChange={(e) => setPlanId(e.target.value)} required>
+                  <option value="">Choose…</option>
+                  {plans.map((p) => (
+                    <option key={p.planId} value={p.planId}>
+                      {p.label}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+              <InfoTip className="mt-1">
+                {plan ? `Gives exactly these ${plan.moduleIds.length} modules: ${plan.moduleIds.map(label).join(', ')}. A module an earlier plan gave and this one does not is switched off. ` : ''}
+                Modules you switched by hand keep your choice.
+              </InfoTip>
+            </div>
             <Reason id="plan-reason" value={planReason} onChange={setPlanReason} />
             <button type="submit" disabled={busy || !planId || !validReason(planReason)} className={`${button} self-start`}>
               Apply plan
@@ -233,35 +228,37 @@ export function SchoolEntitlementsPanel({
                   const always = isAlwaysOn(m.id);
                   return (
                     <li key={m.id} className="flex flex-wrap items-center justify-between gap-2 py-2">
-                      <div className="min-w-0">
-                        <p className="text-sm font-semibold text-slate">{m.label}</p>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-x-1">
+                          <p className="text-sm font-semibold text-slate">{m.label}</p>
+                          {/* What "off" changes for the school's people, in one sentence (docs/19 rule 7), behind the ⓘ. */}
+                          <InfoTip label={m.label}>
+                            <p lang={lang} data-module-off={m.id}>
+                              {!always && <span className="font-semibold">{t('modules.whenOff')} </span>}
+                              {moduleOffSentence(lang, m)}
+                            </p>
+                          </InfoTip>
+                        </div>
                         <p className="text-xs text-slate/70">
                           {always ? 'Always on for every school' : !e ? 'Not switched on' : e.source === 'founder_override' ? 'Set by hand' : e.source === 'trial' ? 'Trial' : e.source === 'complimentary' ? t('billing.source.complimentary') : e.enabled ? 'From the plan' : 'Off in the plan'}
                         </p>
-                        {/* What "off" changes for the school's people, in one sentence (docs/19 rule 7). */}
-                        <p lang={lang} data-module-off={m.id} className="mt-0.5 max-w-prose text-xs text-slate">
-                          {!always && <span className="font-semibold">{t('modules.whenOff')} </span>}
-                          {moduleOffSentence(lang, m)}
-                        </p>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <StatusPill tone={on ? 'success' : 'neutral'}>{on ? 'On' : 'Off'}</StatusPill>
-                        {!always && (
-                          <button
-                            type="button"
-                            disabled={busy}
-                            onClick={() => {
-                              setToggleReason('');
-                              setError(null);
-                              setToggle(m);
-                            }}
-                            aria-label={`Switch ${on ? 'off' : 'on'} ${m.label}`}
-                            className="min-h-[44px] rounded-md border border-sapphire bg-white px-3 text-sm font-semibold text-sapphire disabled:opacity-60"
-                          >
-                            Switch {on ? 'off' : 'on'}
-                          </button>
-                        )}
-                      </div>
+                      {always ? (
+                        <StatusPill tone="success">On</StatusPill>
+                      ) : (
+                        <Switch
+                          id={`module-switch-${m.id}`}
+                          label={on ? 'On' : 'Off'}
+                          checked={on}
+                          disabled={busy}
+                          aria-label={`Switch ${on ? 'off' : 'on'} ${m.label}`}
+                          onChange={() => {
+                            setToggleReason('');
+                            setError(null);
+                            setToggle(m);
+                          }}
+                        />
+                      )}
                     </li>
                   );
                 })}
@@ -304,7 +301,7 @@ export function SchoolEntitlementsPanel({
                 {busy ? 'Saving…' : `Switch ${isOn(toggle) ? 'off' : 'on'}`}
               </button>
               <button type="button" onClick={closeToggle} className="min-h-[44px] px-4 text-sm font-semibold text-slate">
-                Cancel
+                {t('billing.form.cancel')}
               </button>
             </div>
           </form>

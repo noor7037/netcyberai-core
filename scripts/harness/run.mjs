@@ -5660,7 +5660,7 @@ const skipAndCheck = (who, thenEnglish = false) => async (page) => {
 };
 const openModulesTab = async (page) => {
   await page.getByRole('tab', { name: 'Modules & access' }).click();
-  await page.locator('[data-module-off]').first().waitFor({ timeout: 15000 });
+  await page.locator('[data-module-off]').first().waitFor({ state: 'attached', timeout: 15000 });
 };
 // A module switched off for the school (C140): its page shows the "module off" state.
 const attendanceOff = async (page) => {

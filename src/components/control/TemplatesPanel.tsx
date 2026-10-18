@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
@@ -49,10 +50,12 @@ export function TemplatesPanel() {
   return (
     <section lang={lang} data-templates className="flex flex-col gap-4">
       <div className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4 text-sm text-slate">
-        <p>{t('tpl.how')}</p>
-        <button type="button" data-templates-sync disabled={busy} className={`${PRIMARY} self-start`} onClick={() => void post({ action: 'sync' }, (a) => t('tpl.synced', { added: Number(a.added ?? 0), filled: Number(a.filled ?? 0) }))}>
-          {t('tpl.sync')}
-        </button>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <button type="button" data-templates-sync disabled={busy} className={PRIMARY} onClick={() => void post({ action: 'sync' }, (a) => t('tpl.synced', { added: Number(a.added ?? 0), filled: Number(a.filled ?? 0) }))}>
+            {t('tpl.sync')}
+          </button>
+          <InfoTip>{t('tpl.how')}</InfoTip>
+        </div>
         {note && <p role="status" data-templates-note className="rounded-md bg-off-white px-3 py-2 font-semibold">{note}</p>}
       </div>
       {rows.length === 0 && <p className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('tpl.none')}</p>}

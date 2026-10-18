@@ -350,9 +350,9 @@ describe('on the real schema', () => {
     // the month without loading the page afresh, and a select that was kept would go on naming the month shown
     // before (the real-browser run clicks the links and reads the select: scripts/harness/run.mjs, costMonth).
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const find = (node: any, type: string): any => (!node || typeof node !== 'object' ? null : Array.isArray(node) ? (node.map((x) => find(x, type)).find(Boolean) ?? null) : node.type === type ? node : find(node.props?.children, type));
+    const find = (node: any, id: string): any => (!node || typeof node !== 'object' ? null : Array.isArray(node) ? (node.map((x) => find(x, id)).find(Boolean) ?? null) : node.props?.id === id ? node : find(node.props?.children, id));
     for (const data of [shown, early]) {
-      const select = find(CostMonthPicker({ data, lang: 'en' }), 'select');
+      const select = find(CostMonthPicker({ data, lang: 'en' }), 'cost-month');
       expect([select.key, select.props.defaultValue]).toEqual([data.month, data.month]);
     }
   });

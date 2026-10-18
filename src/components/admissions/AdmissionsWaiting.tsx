@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { ADMISSIONS_OFFICE, WAITING_ROWS_MAX, waitingForConsent, type WaitingStudent } from '@/lib/admissions/admissions';
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
@@ -25,10 +26,13 @@ export async function AdmissionsWaiting() {
   return (
     <section lang={lang} data-adm-waiting data-students-count={got.total} className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4 text-sm text-slate">
       <div>
-        <h2 data-shown-title className="text-base font-bold text-slate">
-          {t(lang, 'adm.waiting.title', { count: got.total })}
-        </h2>
-        <p className="text-slate/70">{t(lang, 'adm.waiting.how')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 data-shown-title className="text-base font-bold text-slate">
+            {t(lang, 'adm.waiting.title', { count: got.total })}
+          </h2>
+          <InfoTip>{t(lang, 'adm.waiting.how')}</InfoTip>
+        </div>
+        <p className="text-slate/70">{t(lang, 'adm.waiting.gate')}</p>
         {got.total > got.rows.length && <p className="text-slate/70">{t(lang, 'shown.capped', { count: WAITING_ROWS_MAX })}</p>}
       </div>
       {got.rows.length === 0 ? (

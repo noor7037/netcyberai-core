@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { useFeesChanged, useFeesPart } from './FeesFirstLoad';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
 import { minorToRupees, rupeesToMinor } from '@/lib/fees/money';
@@ -86,7 +88,10 @@ export function FeesVerifyView() {
 
   return (
     <section lang={lang} data-verify className="flex flex-col gap-3 rounded-lg border-2 border-tangerine/40 bg-white p-4">
-      <h2 className="text-base font-bold text-slate">{t('ver.title', { count: waiting.length })}</h2>
+      <div className="flex flex-wrap items-center gap-x-1">
+        <h2 className="text-base font-bold text-slate">{t('ver.title', { count: waiting.length })}</h2>
+        <InfoTip>{t('ver.help')}</InfoTip>
+      </div>
       <p className="text-sm text-slate/70">{t('ver.how')}</p>
       {limitMinor > 0 && <p className="text-sm text-slate/70">{t('ver.limit', { amount: minorToRupees(limitMinor) })}</p>}
       <ul className="flex flex-col gap-2">
@@ -123,10 +128,7 @@ export function FeesVerifyView() {
               {mine && open === r.report_id && (
                 <span className="flex flex-col gap-2">
                   <Input id={`seen-${r.report_id}`} label={t('ver.amountSeen')} inputMode="decimal" value={seen} onChange={(e) => setSeen(e.target.value)} error={rupeesToMinor(seen) === null || rupeesToMinor(seen) === 0 ? t('fee.amount.bad') : undefined} />
-                  <label className="flex min-h-[44px] cursor-pointer items-start gap-2">
-                    <input type="checkbox" data-checked className="mt-1 h-5 w-5" checked={checked} onChange={(e) => setChecked(e.target.checked)} />
-                    <span>{t('ver.iChecked', { utr: r.utr, amount: seen })}</span>
-                  </label>
+                  <Checkbox id={`checked-${r.report_id}`} data-checked label={t('ver.iChecked', { utr: r.utr, amount: seen })} checked={checked} onChange={(e) => setChecked(e.target.checked)} />
                   <span className="flex flex-wrap gap-2">
                     <button type="button" data-found-confirm disabled={busy || !checked || !rupeesToMinor(seen)} className={PRIMARY} onClick={() => void decide(r, 'found')}>
                       {t('ver.confirm')}
@@ -143,8 +145,10 @@ export function FeesVerifyView() {
       </ul>
       {notFound.length > 0 && (
         <div data-not-found-list className="flex flex-col gap-2 border-t border-slate/10 pt-3">
-          <h3 className="text-sm font-bold text-slate">{t('ver.notFound.title')}</h3>
-          <p className="text-sm text-slate/70">{t('ver.notFound.how')}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <h3 className="text-sm font-bold text-slate">{t('ver.notFound.title')}</h3>
+            <InfoTip>{t('ver.notFound.how')}</InfoTip>
+          </div>
           {notFound.map((r) => (
             <div key={r.report_id} data-not-found-report className="flex flex-col gap-2 rounded-md bg-off-white px-3 py-2 text-sm text-slate">
               <span>

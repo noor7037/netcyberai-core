@@ -19,7 +19,7 @@ export default async function SchoolAuditorPage() {
   if (!session || !AUDITOR_ROLES.includes(session.role)) return <ModuleComingPage moduleId="school-auditor" />;
   const { lang } = getLang(session.sub);
   return (
-    <ModulePage moduleId="school-auditor" help="school-check-up" tour="school-auditor" title={t(lang, 'aud.page.title')} purpose={t(lang, 'aud.page.purpose')}>
+    <ModulePage moduleId="school-auditor" help="school-check-up" tour="school-auditor" title={t(lang, 'aud.page.title')} purpose={t(lang, 'aud.page.purpose')} about={t(lang, 'aud.page.about')}>
       <AuditorView />
     </ModulePage>
   );

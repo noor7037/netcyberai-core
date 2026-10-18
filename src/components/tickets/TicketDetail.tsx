@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
 import { AppCard } from '@/components/app-ui/Card';
+import { InfoTip } from '@/components/app-ui/InfoTip';
+import { Select } from '@/components/ui/Select';
+import { Textarea } from '@/components/ui/Textarea';
 import { ErrorState, Skeleton } from '@/components/app-ui/States';
 import { StatusPill } from '@/components/app-ui/StatusPill';
 import { moduleById, isModuleId } from '@/lib/contracts/modules';
@@ -16,7 +19,7 @@ import {
   type TicketDetail as Ticket,
   type TicketStatus,
 } from '@/lib/contracts/tickets';
-import { ALERT, AREA, FIELD, moveLabel, NOTE, PRIMARY, SECONDARY, screenshotProblem, size, TICKET_STATUS_HELP, TICKET_STATUS_TONE, when } from './ticket-ui';
+import { ALERT, moveLabel, NOTE, PRIMARY, SECONDARY, screenshotProblem, size, TICKET_STATUS_HELP, TICKET_STATUS_TONE, when } from './ticket-ui';
 import type { TicketRoutes, TicketsApi } from './tickets-api';
 
 // One ticket (C126): what was asked, the screenshots, the replies in order,
@@ -95,8 +98,18 @@ export function TicketDetail({ api, routes, ticketId, initial, onChanged }: { ap
         </p>
       )}
 
-      <AppCard title={ticket.subject} description={`${ticket.ref} · ${TICKET_CATEGORY_LABEL[ticket.category]}${ticket.moduleId && isModuleId(ticket.moduleId) ? ` · ${moduleById(ticket.moduleId).label}` : ''}`} tone="sapphire" actions={<StatusPill tone={TICKET_STATUS_TONE[ticket.status]}>{TICKET_STATUS_LABEL[ticket.status]}</StatusPill>}>
-        <p className={ticket.status === 'waiting_on_school' && side === 'school' ? NOTE : 'text-sm text-slate/70'}>{TICKET_STATUS_HELP[side][ticket.status]}</p>
+      <AppCard title={ticket.subject} description={`${ticket.ref} · ${TICKET_CATEGORY_LABEL[ticket.category]}${ticket.moduleId && isModuleId(ticket.moduleId) ? ` · ${moduleById(ticket.moduleId).label}` : ''}`} tone="sapphire">
+        {ticket.status === 'waiting_on_school' && side === 'school' ? (
+          <>
+            <StatusPill tone={TICKET_STATUS_TONE[ticket.status]}>{TICKET_STATUS_LABEL[ticket.status]}</StatusPill>
+            <p className={NOTE}>{TICKET_STATUS_HELP[side][ticket.status]}</p>
+          </>
+        ) : (
+          <div className="flex flex-wrap items-center gap-x-1">
+            <StatusPill tone={TICKET_STATUS_TONE[ticket.status]}>{TICKET_STATUS_LABEL[ticket.status]}</StatusPill>
+            <InfoTip label={TICKET_STATUS_LABEL[ticket.status]}>{TICKET_STATUS_HELP[side][ticket.status]}</InfoTip>
+          </div>
+        )}
         <dl className="grid gap-x-6 gap-y-1 text-sm text-slate sm:grid-cols-2">
           {ticket.schoolName && (
             <div>
@@ -154,17 +167,19 @@ export function TicketDetail({ api, routes, ticketId, initial, onChanged }: { ap
           </ul>
         )}
         {canAdd && (
-          <label className="text-sm font-semibold text-slate">
-            Add a screenshot
-            <input type="file" accept="image/png,image/jpeg,image/webp" disabled={busy} onChange={(e) => (add(e.target.files?.[0]), (e.target.value = ''))} className="mt-1 block min-h-[44px] w-full text-sm font-normal text-slate" />
-            <span className="mt-1 block text-xs font-normal text-slate/70">PNG, JPEG or WebP, up to 4 MB. Links to screenshots work for five minutes.</span>
-          </label>
+          <div className="text-sm font-semibold text-slate">
+            <div className="flex flex-wrap items-center gap-x-1">
+              <label htmlFor="ticket-add-file">Add a screenshot</label>
+              <InfoTip>PNG, JPEG or WebP, up to 4 MB. Links to screenshots work for five minutes.</InfoTip>
+            </div>
+            <input id="ticket-add-file" type="file" accept="image/png,image/jpeg,image/webp" disabled={busy} onChange={(e) => (add(e.target.files?.[0]), (e.target.value = ''))} className="mt-1 block min-h-[44px] w-full text-sm font-normal text-slate" />
+          </div>
         )}
       </AppCard>
 
       <AppCard title={`Replies (${ticket.messages.length})`} tone="royal">
         {ticket.messages.length === 0 ? (
-          <p className="text-sm text-slate/70">{side === 'school' ? 'No reply yet. NetCyberAI will answer here.' : 'No reply yet.'}</p>
+          <p className="text-sm text-slate/70">{side === 'school' ? 'No reply yet.' : 'No reply yet.'}</p>
         ) : (
           <ol className="flex flex-col gap-3">
             {ticket.messages.map((m) => (
@@ -179,22 +194,18 @@ export function TicketDetail({ api, routes, ticketId, initial, onChanged }: { ap
         )}
         {replyOpen ? (
           <form onSubmit={sendReply} className="flex flex-col gap-3 border-t border-slate/10 pt-3">
-            <label className="text-sm font-semibold text-slate">
-              {side === 'school' ? 'Your reply' : 'Reply to the school'}
-              <textarea rows={4} value={reply} onChange={(e) => setReply(e.target.value)} maxLength={TICKET_LIMITS.message[1]} className={AREA} />
-            </label>
+            <Textarea id="ticket-reply" label={side === 'school' ? 'Your reply' : 'Reply to the school'} rows={4} value={reply} onChange={(e) => setReply(e.target.value)} maxLength={TICKET_LIMITS.message[1]} />
             {side === 'platform' && moves.length > 0 && (
-              <label className="text-sm font-semibold text-slate">
-                After sending, set the status to
-                <select value={then} onChange={(e) => setThen(e.target.value as TicketStatus | '')} className={`${FIELD} block md:max-w-xs`}>
+              <div className="md:max-w-xs">
+                <Select id="ticket-then" label="After sending, set the status to" value={then} onChange={(e) => setThen(e.target.value as TicketStatus | '')}>
                   <option value="">No change</option>
                   {moves.map((to) => (
                     <option key={to} value={to}>
                       {TICKET_STATUS_LABEL[to]}
                     </option>
                   ))}
-                </select>
-              </label>
+                </Select>
+              </div>
             )}
             <button type="submit" disabled={busy || !replyOk} className={`${PRIMARY} self-start`}>
               {busy ? 'Sending…' : 'Send reply'}

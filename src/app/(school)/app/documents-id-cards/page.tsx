@@ -16,7 +16,7 @@ export default async function DocumentsIdCardsPage() {
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
   return (
-    <ModulePage moduleId="documents" help="issue-certificates" tour="certificates" title={t(lang, 'crt.page.title')} purpose={t(lang, 'crt.page.purpose')}>
+    <ModulePage moduleId="documents" help="issue-certificates" tour="certificates" title={t(lang, 'crt.page.title')} purpose={t(lang, 'crt.page.purpose')} about={t(lang, 'crt.page.about')}>
       <CertificatesView />
     </ModulePage>
   );

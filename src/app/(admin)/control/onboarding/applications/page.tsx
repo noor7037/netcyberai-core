@@ -39,7 +39,7 @@ export default async function ApplicationsPage({ searchParams }: { searchParams:
   return (
     <ModulePage
       title="School applications"
-      purpose="From the public “Register your school” form: submitted, email confirmed, under review, approved, invite sent, active (the principal’s first sign-in)."
+      purpose="From the public “Register your school” form."
       icon="admissions"
       tone="turquoise"
       eyebrow="Onboarding"
@@ -55,7 +55,7 @@ export default async function ApplicationsPage({ searchParams }: { searchParams:
         {APPLICATION_STATES.map((s) => tab(s, STATE_LABELS[s], data.counts[s] ?? 0))}
       </nav>
       {data.apps.length === 0 ? (
-        <EmptyState title="No applications here" description="Applications from /register-school appear here." />
+        <EmptyState title="No applications here" description="Applications appear here." />
       ) : (
         <ul className="flex flex-col gap-2">
           {data.apps.map((a) => (

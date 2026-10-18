@@ -56,7 +56,7 @@ export function IdCardView({ studentId, studentName, schoolName, className }: { 
       help="student-id-cards"
       tour="id-card"
       title={`ID card: ${studentName}`}
-      purpose="Issue the card, print it, and revoke it at once if it is lost."
+      purpose="Issue, print, and revoke if lost."
       hideHeaderInPrint
       primary={
         <button type="button" onClick={handleIssue} disabled={loading} className={`${PRIMARY_ACTION} print:hidden`}>
@@ -81,7 +81,7 @@ export function IdCardView({ studentId, studentName, schoolName, className }: { 
           Loading…
         </p>
       ) : !token ? (
-        <p className="text-sm text-slate/70">No active ID card. Issue one to generate a QR code.</p>
+        <p className="text-sm text-slate/70">No active ID card.</p>
       ) : (
         <div className="mx-auto flex w-72 flex-col items-center gap-2 rounded-lg border border-slate/20 p-4 text-center">
           <p className="text-xs font-semibold uppercase tracking-wide text-slate/70">{schoolName}</p>

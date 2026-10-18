@@ -3,8 +3,11 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import { DEFAULT_ADJUST, decodeImage, processImage, validateImageFile } from '@/lib/certificates/image';
 import type { IssuedForPrint, Marks } from '@/lib/documents/cert-doc';
 import { BATCH_PDF_NAME, CERT_TYPES, TYPED_FIELDS, certDef, certificateFileName, fieldOptions, type CertificateType } from '@/lib/documents/certificate-rules';
@@ -25,7 +28,6 @@ const ERRORS = ['missing', 'too_long', 'option', 'date', 'aadhaar', 'no_children
 const NEEDS = ['admissionNo', 'studentName', 'fatherName', 'parentName', 'dob', 'lastClass', 'className', 'year', 'schoolName'];
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 bg-white px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
-const FIELD = 'min-h-[44px] w-full rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 const CARD = 'flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4';
 const HELD = ['blocked_pilot', 'blocked_consent', 'blocked_budget', 'blocked_quiet_hours', 'blocked_no_template'];
 
@@ -249,28 +251,22 @@ export function CertificatesView() {
       {note && <p role="status" data-certificates-note={note.ok ? 'ok' : 'refused'} className={`rounded-md px-3 py-2 font-semibold ${note.ok ? 'bg-off-white text-slate' : 'border border-red-800/30 text-red-800'}`}>{note.text}</p>}
 
       <section data-certificates-issue className={CARD}>
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('crt.issue.title')}</h2>
-          <p className="text-slate/70">{t('crt.issue.how')}</p>
+          <InfoTip>{t('crt.issue.how')}</InfoTip>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <div className="flex flex-col gap-1">
-            <label htmlFor="crt-type" className="font-semibold">{t('crt.type.label')}</label>
-            <select id="crt-type" className={FIELD} value={type} onChange={(e) => { const ty = e.target.value as CertificateType; setType(ty); setTyped({}); setOutcome(null); void loadRoster(ty, classId); }}>
-              {CERT_TYPES.map((ty) => (
-                <option key={ty} value={ty}>{typeName(ty)}</option>
-              ))}
-            </select>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="crt-class" className="font-semibold">{t('crt.class.label')}</label>
-            <select id="crt-class" className={FIELD} value={classId} onChange={(e) => { setClassId(e.target.value); setOutcome(null); void loadRoster(type, e.target.value); }}>
-              <option value="">{t('crt.class.choose')}</option>
-              {home.classes.map((c) => (
-                <option key={c.class_id} value={c.class_id}>{c.name}</option>
-              ))}
-            </select>
-          </div>
+          <Select id="crt-type" label={t('crt.type.label')} value={type} onChange={(e) => { const ty = e.target.value as CertificateType; setType(ty); setTyped({}); setOutcome(null); void loadRoster(ty, classId); }}>
+            {CERT_TYPES.map((ty) => (
+              <option key={ty} value={ty}>{typeName(ty)}</option>
+            ))}
+          </Select>
+          <Select id="crt-class" label={t('crt.class.label')} value={classId} onChange={(e) => { setClassId(e.target.value); setOutcome(null); void loadRoster(type, e.target.value); }}>
+            <option value="">{t('crt.class.choose')}</option>
+            {home.classes.map((c) => (
+              <option key={c.class_id} value={c.class_id}>{c.name}</option>
+            ))}
+          </Select>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           {fields.map((f) => {
@@ -278,15 +274,12 @@ export function CertificatesView() {
             const label = `${t(`crt.field.${f.id}` as MessageKey)}${f.required ? '' : ` ${t('crt.field.optional')}`}`;
             if (kind === 'select') {
               return (
-                <div key={f.id} className="flex flex-col gap-1">
-                  <label htmlFor={`crt-${f.id}`} className="font-semibold">{label}</label>
-                  <select id={`crt-${f.id}`} className={FIELD} value={typed[f.id] ?? ''} onChange={(e) => setTyped({ ...typed, [f.id]: e.target.value })}>
-                    <option value="">{t('crt.field.choose')}</option>
-                    {fieldOptions(type, f.id).map((o) => (
-                      <option key={o} value={o}>{o}</option>
-                    ))}
-                  </select>
-                </div>
+                <Select key={f.id} id={`crt-${f.id}`} label={label} value={typed[f.id] ?? ''} onChange={(e) => setTyped({ ...typed, [f.id]: e.target.value })}>
+                  <option value="">{t('crt.field.choose')}</option>
+                  {fieldOptions(type, f.id).map((o) => (
+                    <option key={o} value={o}>{o}</option>
+                  ))}
+                </Select>
               );
             }
             return (
@@ -299,9 +292,13 @@ export function CertificatesView() {
           {t(!home.signing.iSign ? 'crt.issue.unsigned' : home.signing.mySignature ? 'crt.issue.signed' : 'crt.issue.noSignatureYet')}
         </p>
         <div data-certificates-clearance className="flex flex-col gap-1 rounded-md bg-off-white px-3 py-2">
-          <p className="font-semibold">{t('crt.clearance.title')}</p>
-          {asked.length > 0 && <p>{t('crt.clearance.asked', { types: asked.map(typeName).join(', ') })}</p>}
-          {notAsked.length > 0 && <p>{t('crt.clearance.notAsked', { types: notAsked.map(typeName).join(', ') })}</p>}
+          <div className="flex flex-wrap items-center gap-x-1">
+            <p className="font-semibold">{t('crt.clearance.title')}</p>
+            <InfoTip tone="white">
+              {asked.length > 0 && <p>{t('crt.clearance.asked', { types: asked.map(typeName).join(', ') })}</p>}
+              {notAsked.length > 0 && <p>{t('crt.clearance.notAsked', { types: notAsked.map(typeName).join(', ') })}</p>}
+            </InfoTip>
+          </div>
           {!home.clearance.transfer && <p className="text-slate/70">{t('crt.clearance.tcNote')}</p>}
           <Link href="/app/settings" className="inline-flex min-h-[44px] items-center self-start text-sapphire underline">{t('crt.clearance.change')}</Link>
         </div>
@@ -321,20 +318,28 @@ export function CertificatesView() {
                 const open = waivers[c.student_id] !== undefined;
                 return (
                   <li key={c.student_id} data-certificate-child={c.cleared ? 'cleared' : 'held'} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
-                    <div className="flex items-start gap-3">
-                      <input id={`crt-child-${c.student_id}`} type="checkbox" className="mt-2.5 h-6 w-6 shrink-0" disabled={!canIssue(c)} checked={selected.includes(c.student_id) && canIssue(c)} onChange={(e) => setSelected(e.target.checked ? [...selected, c.student_id] : selected.filter((s) => s !== c.student_id))} />
-                      <label htmlFor={`crt-child-${c.student_id}`} className="flex min-h-[44px] min-w-0 flex-1 flex-col justify-center gap-1">
-                        <span className="break-words font-semibold">{c.name}</span>
-                        <span className="text-slate/70">{[c.roll_no ? t('crt.child.roll', { roll: c.roll_no }) : '', c.admission_no ? t('crt.child.adm', { no: c.admission_no }) : ''].filter(Boolean).join(' · ')}</span>
-                        <span>{clearanceBadge(c)}</span>
-                      </label>
-                    </div>
+                    <Checkbox
+                      id={`crt-child-${c.student_id}`}
+                      disabled={!canIssue(c)}
+                      checked={selected.includes(c.student_id) && canIssue(c)}
+                      onChange={(e) => setSelected(e.target.checked ? [...selected, c.student_id] : selected.filter((s) => s !== c.student_id))}
+                      label={
+                        <span className="flex min-w-0 flex-col gap-1">
+                          <span className="break-words font-semibold">{c.name}</span>
+                          <span className="text-sm text-slate/70">{[c.roll_no ? t('crt.child.roll', { roll: c.roll_no }) : '', c.admission_no ? t('crt.child.adm', { no: c.admission_no }) : ''].filter(Boolean).join(' · ')}</span>
+                          <span>{clearanceBadge(c)}</span>
+                        </span>
+                      }
+                    />
                     {c.latest && <p data-certificate-has className="text-slate/70">{t(blockedByTc(c) ? 'crt.child.hasTc' : 'crt.child.has', { number: c.latest.number, date: date(c.latest.issued_on) })}</p>}
                     {!c.cleared && !blockedByTc(c) && (home.mayWaive ? (
                       open ? (
                         <div className="flex flex-col gap-2">
-                          <Input id={`crt-waive-${c.student_id}`} label={t('crt.waive.reason')} helperText={t('crt.waive.help')} maxLength={300} value={waivers[c.student_id]} onChange={(e) => setWaivers({ ...waivers, [c.student_id]: e.target.value })} />
-                          <button type="button" className={`${TAP} self-start`} onClick={() => { const next = { ...waivers }; delete next[c.student_id]; setWaivers(next); setSelected(selected.filter((s) => s !== c.student_id)); }}>{t('crt.cancel')}</button>
+                          <Input id={`crt-waive-${c.student_id}`} label={t('crt.waive.reason')} maxLength={300} value={waivers[c.student_id]} onChange={(e) => setWaivers({ ...waivers, [c.student_id]: e.target.value })} />
+                          <div className="flex flex-wrap items-center gap-x-1">
+                            <button type="button" className={TAP} onClick={() => { const next = { ...waivers }; delete next[c.student_id]; setWaivers(next); setSelected(selected.filter((s) => s !== c.student_id)); }}>{t('crt.cancel')}</button>
+                            <InfoTip>{t('crt.waive.help')}</InfoTip>
+                          </div>
                         </div>
                       ) : (
                         <button type="button" data-certificate-waive className={`${TAP} self-start`} onClick={() => { setWaivers({ ...waivers, [c.student_id]: '' }); setSelected([...selected, c.student_id]); }}>{t('crt.waive.open')}</button>
@@ -362,10 +367,12 @@ export function CertificatesView() {
             ))}
             {outcome.issued.length > 0 && (
               <>
-                <p className="text-slate/70">{t('crt.issue.pdfNote')}</p>
-                <button type="button" data-certificates-batch-pdf disabled={busy} className={`${PRIMARY} self-start`} onClick={() => void download((roster ?? []).flatMap((c) => outcome.issued.filter((x) => x.studentId === c.student_id).map((x) => x.certificateId)), typeName(type))}>
-                  {t('crt.issue.download')}
-                </button>
+                <div className="flex flex-wrap items-center gap-x-1">
+                  <button type="button" data-certificates-batch-pdf disabled={busy} className={PRIMARY} onClick={() => void download((roster ?? []).flatMap((c) => outcome.issued.filter((x) => x.studentId === c.student_id).map((x) => x.certificateId)), typeName(type))}>
+                    {t('crt.issue.download')}
+                  </button>
+                  <InfoTip tone="white">{t('crt.issue.pdfNote')}</InfoTip>
+                </div>
               </>
             )}
           </div>
@@ -373,29 +380,23 @@ export function CertificatesView() {
       </section>
 
       <section data-certificates-register className={CARD}>
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('crt.register.title')}</h2>
-          <p className="text-slate/70">{t('crt.register.how')}</p>
+          <InfoTip>{t('crt.register.how')}</InfoTip>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <div className="flex flex-col gap-1">
-            <label htmlFor="crt-reg-type" className="font-semibold">{t('crt.type.label')}</label>
-            <select id="crt-reg-type" className={FIELD} value={regType} onChange={(e) => { setRegType(e.target.value); void loadRegister(e.target.value, regClass); }}>
-              <option value="">{t('crt.register.allTypes')}</option>
-              {CERT_TYPES.map((ty) => (
-                <option key={ty} value={ty}>{typeName(ty)}</option>
-              ))}
-            </select>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="crt-reg-class" className="font-semibold">{t('crt.class.label')}</label>
-            <select id="crt-reg-class" className={FIELD} value={regClass} onChange={(e) => { setRegClass(e.target.value); void loadRegister(regType, e.target.value); }}>
-              <option value="">{t('crt.register.allClasses')}</option>
-              {home.classes.map((c) => (
-                <option key={c.class_id} value={c.class_id}>{c.name}</option>
-              ))}
-            </select>
-          </div>
+          <Select id="crt-reg-type" label={t('crt.type.label')} value={regType} onChange={(e) => { setRegType(e.target.value); void loadRegister(e.target.value, regClass); }}>
+            <option value="">{t('crt.register.allTypes')}</option>
+            {CERT_TYPES.map((ty) => (
+              <option key={ty} value={ty}>{typeName(ty)}</option>
+            ))}
+          </Select>
+          <Select id="crt-reg-class" label={t('crt.class.label')} value={regClass} onChange={(e) => { setRegClass(e.target.value); void loadRegister(regType, e.target.value); }}>
+            <option value="">{t('crt.register.allClasses')}</option>
+            {home.classes.map((c) => (
+              <option key={c.class_id} value={c.class_id}>{c.name}</option>
+            ))}
+          </Select>
         </div>
         {register.length === 0 ? (
           <p data-certificates-register-empty className="rounded-md bg-off-white px-3 py-2">{t('crt.register.empty')}</p>
@@ -434,8 +435,9 @@ export function CertificatesView() {
                   )}
                   {withdraw?.id === r.certificate_id && (
                     <div data-certificate-withdraw-form className="flex flex-col gap-2 rounded-md bg-off-white p-3">
-                      <Input id={`crt-withdraw-${r.certificate_id}`} label={t('crt.withdraw.reason')} helperText={t('crt.withdraw.help')} maxLength={300} value={withdraw.reason} onChange={(e) => setWithdraw({ ...withdraw, reason: e.target.value })} />
-                      <div className="flex flex-wrap gap-2">
+                      <Input id={`crt-withdraw-${r.certificate_id}`} label={t('crt.withdraw.reason')} maxLength={300} value={withdraw.reason} onChange={(e) => setWithdraw({ ...withdraw, reason: e.target.value })} />
+                      <div className="flex flex-wrap items-center gap-2">
+                        <InfoTip tone="white">{t('crt.withdraw.help')}</InfoTip>
                         <button type="button" data-certificate-withdraw-confirm disabled={busy || !withdraw.reason.trim()} className={PRIMARY} onClick={() => void confirmWithdraw()}>{t('crt.withdraw.confirm')}</button>
                         <button type="button" className={TAP} onClick={() => setWithdraw(null)}>{t('crt.cancel')}</button>
                       </div>
@@ -449,9 +451,13 @@ export function CertificatesView() {
       </section>
 
       <section data-certificates-numbering={num.fixed ? 'fixed' : num.set ? 'open' : 'default'} className={CARD}>
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('crt.num.title')}</h2>
-          <p className="text-slate/70">{t('crt.num.how')}</p>
+          <InfoTip>
+            <p>{t('crt.num.how')}</p>
+            <p>{t('crt.num.prefixHelp')}</p>
+            <p>{t('crt.num.startHelp')}</p>
+          </InfoTip>
         </div>
         <p className="rounded-md bg-off-white px-3 py-2">
           {!num.set ? t('crt.num.default') : t(num.fixed ? 'crt.num.fixed' : 'crt.num.open', { name: num.setBy ?? '', date: num.setOn ? date(num.setOn) : '' })}
@@ -459,8 +465,8 @@ export function CertificatesView() {
         <p data-certificates-next-numbers className="break-words">{t('crt.num.next', { list: CERT_TYPES.map((ty) => `${typeName(ty)} ${num.next[ty]}`).join(' · ') })}</p>
         {!num.fixed && (
           <div className="grid gap-3 sm:grid-cols-2">
-            <Input id="crt-num-prefix" label={t('crt.num.prefix')} helperText={t('crt.num.prefixHelp')} maxLength={12} autoCapitalize="characters" value={numForm.prefix} onChange={(e) => setNumbering({ ...numForm, prefix: e.target.value })} />
-            <Input id="crt-num-start" label={t('crt.num.start')} helperText={t('crt.num.startHelp')} type="number" inputMode="numeric" min={1} max={999999} value={numForm.startAt} onChange={(e) => setNumbering({ ...numForm, startAt: e.target.value })} />
+            <Input id="crt-num-prefix" label={t('crt.num.prefix')} maxLength={12} autoCapitalize="characters" value={numForm.prefix} onChange={(e) => setNumbering({ ...numForm, prefix: e.target.value })} />
+            <Input id="crt-num-start" label={t('crt.num.start')} type="number" inputMode="numeric" min={1} max={999999} value={numForm.startAt} onChange={(e) => setNumbering({ ...numForm, startAt: e.target.value })} />
             <button type="button" data-certificates-numbering-save disabled={busy || numForm.startAt.trim() === ''} className={`${PRIMARY} self-start`} onClick={() => void saveNumbering()}>
               {t('crt.num.save')}
             </button>
@@ -469,9 +475,9 @@ export function CertificatesView() {
       </section>
 
       <section data-certificates-marks className={CARD}>
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('crt.marks.title')}</h2>
-          <p className="text-slate/70">{t('crt.marks.how')}</p>
+          <InfoTip>{t('crt.marks.how')}</InfoTip>
         </div>
         <div data-certificate-mark="seal" data-certificate-mark-kept={home.marks.seal ? 'yes' : 'no'} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
           <p className="font-semibold">{t('crt.marks.seal')}</p>
@@ -502,18 +508,15 @@ export function CertificatesView() {
           )}
         </div>
         {(home.mayKeepMarks || home.signing.iSign) && (
-          <label className="flex min-h-[44px] items-center gap-3">
-            <input type="checkbox" className="h-6 w-6" checked={clearWhite} onChange={(e) => setClearWhite(e.target.checked)} />
-            <span>{t('crt.marks.clearWhite')}</span>
-          </label>
+          <Checkbox id="crt-clear-white" label={t('crt.marks.clearWhite')} checked={clearWhite} onChange={(e) => setClearWhite(e.target.checked)} />
         )}
       </section>
 
       {home.signing.signers && (
         <section data-certificates-signers className={CARD}>
-          <div>
+          <div className="flex flex-wrap items-center gap-x-1">
             <h2 className="text-base font-bold">{t('crt.signers.title')}</h2>
-            <p className="text-slate/70">{t('crt.signers.how')}</p>
+            <InfoTip>{t('crt.signers.how')}</InfoTip>
           </div>
           {home.signing.signers.length === 0 ? (
             <p className="rounded-md bg-off-white px-3 py-2">{t('crt.signers.none')}</p>
