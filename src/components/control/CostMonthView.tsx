@@ -33,8 +33,8 @@ export function monthName(lang: Lang, month: string, short = false): string {
 export function CostMonthPicker({ data, lang }: { data: CostMonth; lang: Lang }) {
   return (
     <form method="get" action={PATH} data-cost-month-picker lang={lang} className="flex flex-wrap items-end gap-2">
-      <div className="min-w-[12rem]">
-        <Select key={data.month} id="cost-month" name="month" label={t(lang, 'cost.month.month')} defaultValue={data.month}>
+      <div key={data.month} className="min-w-[12rem]">
+        <Select id="cost-month" name="month" label={t(lang, 'cost.month.month')} defaultValue={data.month}>
           {data.months.map((m) => (
             <option key={m} value={m}>
               {m === data.thisMonth ? `${monthName(lang, m)} (${t(lang, 'cost.month.thisMonth')})` : monthName(lang, m)}
