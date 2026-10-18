@@ -90,8 +90,8 @@ export function checkStaffPhoto(bytes: Uint8Array): PhotoCheck {
   return { ok: true, type, extension: PHOTO_EXTENSION[type], width, height };
 }
 
-// Where the browser asks for the photo: the app's own address, never a storage link, with the row's last change as
-// its version, so the browser keeps the picture and asks again once it changes.
+// Where the browser asks for the photo: the app's own address, never a storage link, with a version that changes only
+// when the photo does (src/lib/staff/profile.ts photoVersionOf), so the browser keeps the picture until then.
 export const photoAddress = (userId: string, version: string | null): string | null => (version ? `/api/app/staff/${userId}/photo?v=${version}` : null);
 
 // The initials a person without a photo is shown by.

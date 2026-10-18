@@ -1,3 +1,4 @@
+import { createHash } from 'crypto';
 import type { PoolClient } from 'pg';
 import type { SchoolRole } from '@/lib/contracts/modules';
 import { schoolWeek } from '@/lib/timetable/generator-store';
@@ -53,6 +54,9 @@ export const mayOpenStaffProfile = (viewer: { role: string; sub: string }, staff
 
 const day = (v: Date | string) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date(v));
 export const LEAVE_LINES_SHOWN = 20;
+// The photo address's version: a short hash of the stored key, which is new with each upload, so the browser asks
+// again only when the photo itself changes (an edit to another field keeps it). The key never leaves the server.
+export const photoVersionOf = (photoPath: string): string => createHash('sha256').update(photoPath).digest('hex').slice(0, 16);
 
 export async function loadStaffProfile(db: PoolClient, schoolId: string, userId: string): Promise<StaffProfile | null> {
   const person = (
@@ -68,7 +72,7 @@ export async function loadStaffProfile(db: PoolClient, schoolId: string, userId:
   const record = (
     await db.query(
       `select staff_code, designation, employment_type, joining_date::text as joining_date, date_of_birth::text as date_of_birth, address,
-              emergency_contact, photo_path is not null as has_photo, updated_at
+              emergency_contact, photo_path
          from staff_profiles where school_id = $1 and user_id = $2`,
       [schoolId, userId]
     )
@@ -135,7 +139,7 @@ export async function loadStaffProfile(db: PoolClient, schoolId: string, userId:
     address: record?.address ?? null,
     emergencyContact: record?.emergency_contact ?? null,
     profileJoiningDate: record?.joining_date ?? null,
-    photoVersion: record?.has_photo ? String(new Date(record.updated_at).getTime()) : null,
+    photoVersion: record?.photo_path ? photoVersionOf(record.photo_path) : null,
     classTeacherOf: classTeacher.rows.map((r) => r.name),
     teaches: teaches.rows.map((r) => ({ subject: r.subject, className: r.class_name })),
     periodsAWeek,

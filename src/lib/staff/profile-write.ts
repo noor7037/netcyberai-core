@@ -4,6 +4,7 @@ import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { FileStorageUnavailableError, sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
 import { indiaDate } from '@/lib/time/india';
+import { photoVersionOf } from './profile';
 import { checkProfileInput, checkStaffPhoto, PROFILE_FIELDS, type PhotoProblem, type PhotoType, type ProfileField, type ProfileProblem } from './profile-rules';
 
 // Changing a member of staff's profile (C238): its fields, and its photo. The principal and the school admin of the
@@ -37,7 +38,6 @@ async function isStaffHere(db: Sql, schoolId: string, userId: string): Promise<b
   return rows.length > 0;
 }
 
-const versionOf = (updatedAt: unknown): string => String(new Date(updatedAt as string).getTime());
 
 export type SaveResult =
   | { ok: true; created: boolean; changed: ProfileField[] }
@@ -110,14 +110,11 @@ export async function setStaffPhoto(db: Sql, storage: FileStorage, actor: Profil
     throw err;
   }
   try {
-    const row = (
-      await db.query(
-        `insert into staff_profiles (school_id, user_id, photo_path, updated_by) values ($1, $2, $3, $4)
-         on conflict (school_id, user_id) do update set photo_path = excluded.photo_path, updated_by = excluded.updated_by
-         returning updated_at`,
-        [actor.schoolId, staffId, key, actor.userId]
-      )
-    ).rows[0];
+    await db.query(
+      `insert into staff_profiles (school_id, user_id, photo_path, updated_by) values ($1, $2, $3, $4)
+       on conflict (school_id, user_id) do update set photo_path = excluded.photo_path, updated_by = excluded.updated_by`,
+      [actor.schoolId, staffId, key, actor.userId]
+    );
     await writeAuditLog(db, {
       schoolId: actor.schoolId,
       actorUserId: actor.userId,
@@ -128,7 +125,7 @@ export async function setStaffPhoto(db: Sql, storage: FileStorage, actor: Profil
       afterState: { created: !before, replaced: Boolean(before?.photo_path), photoType: photo.type, photoBytes: bytes.length, width: photo.width, height: photo.height },
     });
     if (before?.photo_path && before.photo_path !== key) await storage.remove(before.photo_path).catch(() => undefined);
-    return { ok: true, photoVersion: versionOf(row.updated_at) };
+    return { ok: true, photoVersion: photoVersionOf(key) };
   } catch (err) {
     await storage.remove(key).catch(() => undefined);
     throw err;
