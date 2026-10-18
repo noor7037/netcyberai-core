@@ -1378,6 +1378,12 @@ export const en = {
   'msg.held.blocked_budget': 'Held back: the school’s message budget is not set, or is used up for this month.',
   'msg.held.blocked_quiet_hours': 'Held back: it was during the school’s quiet hours.',
   'msg.held.blocked_no_template': 'Held back: the wording of this message has not been approved yet.',
+  // In the message list, under the row's own "Held back" badge (C239): the reason alone. msg.held.* keep "Held back:" for where a reason stands alone.
+  'msg.why.blocked_pilot': 'Sending to parents has not been switched on for your school yet.',
+  'msg.why.blocked_consent': 'The parent has not agreed to this kind of message.',
+  'msg.why.blocked_budget': 'The school’s message budget is not set, or is used up for this month.',
+  'msg.why.blocked_quiet_hours': 'It was during the school’s quiet hours.',
+  'msg.why.blocked_no_template': 'The wording of this message has not been approved yet.',
   'tour.communication.1.title': 'Every message, and where it got to',
   'tour.communication.1.text': 'Each line is one message to one guardian: sent, delivered, read, failed, or held back with the reason.',
   'tour.communication.2.title': 'Look at one state',
