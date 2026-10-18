@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, type KeyboardEvent } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 
 export type TabItem = {
   id: string;
@@ -38,6 +38,19 @@ type Props = {
 export function Tabs({ items, defaultActiveId, orientation = 'horizontal', idPrefix = '', label = 'Tabs' }: Props) {
   const [activeId, setActiveId] = useState(defaultActiveId ?? items[0]?.id);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const listRef = useRef<HTMLDivElement | null>(null);
+
+  // A tab opened by the page's address (?tab=…) can sit past the edge of a scrolling tab row on a phone (C238): the
+  // row is scrolled sideways to it once, when the tabs first show. Only the row moves, never the page.
+  useEffect(() => {
+    const list = listRef.current;
+    const tab = activeId ? tabRefs.current[activeId] : null;
+    if (!list || !tab || list.scrollWidth <= list.clientWidth) return;
+    const row = list.getBoundingClientRect();
+    const at = tab.getBoundingClientRect();
+    if (at.left < row.left || at.right > row.right) list.scrollLeft += at.left - row.left - (row.width - at.width) / 2;
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- once, for the tab the page opened with
+  }, []);
 
   function activate(id: string) {
     setActiveId(id);
@@ -64,6 +77,7 @@ export function Tabs({ items, defaultActiveId, orientation = 'horizontal', idPre
 
   const tabList = (
     <div
+      ref={listRef}
       role="tablist"
       aria-label={label}
       aria-orientation={isVertical ? 'vertical' : undefined}
