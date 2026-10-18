@@ -89,7 +89,8 @@ begin
    where ts.school_id = new.school_id and ts.class_id = new.class_id and ts.subject_id = new.subject_id
      and exists (select 1 from users u where u.school_id = t.school_id and u.user_id = t.user_id and u.role::text = 'teacher' and u.is_active);
   if assigned is not null and not (new.teacher_user_id = any (assigned)) then
-    raise exception 'a period takes one of the teachers assigned to its class and subject' using errcode = 'check_violation';
+    -- Named like a constraint, so the app recognises this refusal by its name, not its words.
+    raise exception 'a period takes one of the teachers assigned to its class and subject' using errcode = 'check_violation', constraint = 'timetable_entries_assigned_teacher';
   end if;
   return new;
 end $$;
