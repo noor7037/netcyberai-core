@@ -4787,6 +4787,191 @@ const ttgPublishDone = async () => {
 };
 // p7-10f end
 // p7-10g begin
+// Setup (C244): the onboarding checklist, academic sessions and subjects. The checklist is counted from the rows that
+// exist, so each check works out what it must say from the database with its own SQL (not the app's function) and
+// compares it with what the screen drew; the screens that change things are put back after.
+const SET_IDS = ['session', 'classes', 'subjects', 'staff', 'teachers', 'students', 'fees', 'timetable', 'logo'];
+const setupExpected = async () => {
+  const n = async (sql) => Number((await db.pg.query(sql, [SCHOOL])).rows[0].n);
+  const classes = await n(`select count(*) as n from classes where school_id = $1`);
+  const bare = await n(`select count(*) as n from classes c where c.school_id = $1 and not exists (select 1 from teacher_subjects t join subjects b on b.school_id = t.school_id and b.subject_id = t.subject_id and b.retired_at is null where t.school_id = c.school_id and t.class_id = c.class_id)`);
+  const subjects = await n(`select count(*) as n from subjects where school_id = $1 and retired_at is null`);
+  const done = {
+    session: (await n(`select count(*) as n from academic_sessions where school_id = $1 and is_current`)) > 0,
+    classes: classes > 0,
+    subjects: subjects > 0 && classes > 0 && bare === 0,
+    staff: (await n(`select count(*) as n from memberships m join users u on u.user_id = m.user_id where m.school_id = $1 and m.is_active and u.is_active and m.role::text in ('school_admin', 'teacher', 'accountant', 'academic_coordinator')`)) > 0,
+    teachers: (await n(`select count(*) as n from teacher_subjects where school_id = $1`)) > 0,
+    students: (await n(`select count(*) as n from students where school_id = $1 and status = 'active'`)) > 0,
+    fees: (await n(`select count(*) as n from fee_structures where school_id = $1`)) > 0,
+    timetable: (await n(`select count(*) as n from timetable_entries where school_id = $1`)) > 0,
+    logo: (await n(`select count(*) as n from schools where school_id = $1 and logo_path is not null`)) > 0,
+  };
+  return { done, count: Object.values(done).filter(Boolean).length, total: SET_IDS.length };
+};
+const setupShown = (page, scope = '[data-setup-checklist]') =>
+  page.locator(`${scope} [data-check]`).evaluateAll((els) => Object.fromEntries(els.map((e) => [e.getAttribute('data-check'), e.getAttribute('data-check-done') === 'yes'])));
+const sameJson = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const setupAudit = async (from, like) =>
+  (
+    await db.pg.query(
+      `select string_agg(event_action, ',' order by audit_id) as actions,
+              count(*) filter (where exists (select 1 from jsonb_object_keys(coalesce(after_state, '{}'::jsonb) || coalesce(before_state, '{}'::jsonb)) k where k <> all (array['session_id', 'subject_id'])))::int as wordy
+         from audit_log where audit_id > $1 and school_id = $2 and event_action like $3`,
+      [from, SCHOOL, like]
+    )
+  ).rows[0];
+const auditTop = async () => (await db.pg.query(`select coalesce(max(audit_id), 0)::bigint as id from audit_log`)).rows[0].id;
+
+// The Setup page (principal): every step drawn is the step the database says is done, in order, with the count of
+// steps done; the two lists the office keeps are linked.
+let setupSeen = null;
+const setupPage = async (page) => {
+  await page.locator('[data-setup-checklist]').waitFor({ timeout: 20000 });
+  await page.waitForTimeout(400);
+  setupSeen = {
+    shown: await setupShown(page),
+    counts: await page.locator('[data-setup-checklist]').evaluate((e) => ({ done: Number(e.getAttribute('data-done')), total: Number(e.getAttribute('data-total')) })),
+    links: await page.locator('[data-check]').evaluateAll((els) => els.map((e) => e.querySelector('a')?.getAttribute('href') ?? null)),
+    keep: await page.locator('[data-setup-link]').evaluateAll((els) => els.map((e) => e.getAttribute('href'))),
+  };
+};
+const setupPageDone = async () => {
+  const want = await setupExpected();
+  if (!sameJson(setupSeen.shown, want.done) || setupSeen.counts.done !== want.count || setupSeen.counts.total !== want.total) throw new Error(`the checklist on the screen: ${JSON.stringify({ seen: setupSeen, want })}`);
+  const hrefs = ['/app/setup/sessions', '/app/students?classes=1', '/app/setup/subjects', '/app/staff', '/app/staff', '/app/students', '/app/fees', '/app/timetable', '/app/settings'];
+  if (!sameJson(setupSeen.links, hrefs) || !sameJson(setupSeen.keep, ['/app/setup/sessions', '/app/setup/subjects'])) throw new Error(`the links of the checklist: ${JSON.stringify(setupSeen)}`);
+};
+
+// My Day (principal): one card while any step is open, "N of 9 setup steps done", counted from the same rows.
+let setupCard = null;
+const setupMyDay = async (page) => {
+  const card = page.locator('[data-today-card="setup-checklist"]');
+  setupCard = { cards: await card.count(), text: (await card.count()) ? (await card.first().innerText()).replace(/\s+/g, ' ') : '', href: (await card.count()) ? await card.first().locator('a').first().getAttribute('href') : null };
+};
+const setupMyDayDone = async () => {
+  const want = await setupExpected();
+  const open = want.count < want.total;
+  const ok = open ? setupCard.cards === 1 && setupCard.text.includes(`${want.count} of ${want.total} setup steps done`) && setupCard.href === '/app/setup' : setupCard.cards === 0;
+  if (!ok) throw new Error(`the setup card on My Day: ${JSON.stringify({ seen: setupCard, want })}`);
+};
+
+// Control, the school's Overview tab: the same list, not linked, the same steps done.
+let setupControl = null;
+const setupInControl = async (page) => {
+  await page.locator('[data-school-checklist] [data-check]').first().waitFor({ timeout: 20000 });
+  setupControl = { shown: await setupShown(page, '[data-school-checklist]'), links: await page.locator('[data-school-checklist] a').count() };
+};
+const setupInControlDone = async () => {
+  const want = await setupExpected();
+  if (!sameJson(setupControl.shown, want.done) || setupControl.links !== 0) throw new Error(`the checklist in Control: ${JSON.stringify({ seen: setupControl, want })}`);
+};
+
+// Academic sessions (principal). A past session is already there; the principal adds 2026-27 with the form and
+// presses "Make current": the screen asks first and lists what follows the current session (the picture is taken
+// there). The check then confirms and reads the database: exactly one session current, the new one, two audit rows
+// with ids only. Everything made is taken away and the sessions are put back as they were.
+const SET_OLD = '00000000-0000-4000-8000-0000000c2441';
+const SET_NEW_LABEL = '2026-27 (harness C244)';
+let sessionsBefore = null;
+let sessionsFrom = null;
+let sessionsSeen = null;
+const setupSessionsScreen = async (page) => {
+  sessionsBefore = (await db.pg.query(`select session_id, is_current from academic_sessions where school_id = $1`, [SCHOOL])).rows;
+  sessionsFrom = await auditTop();
+  await db.pg.query(`insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current) values ($1, $2, '2025-26 (harness C244)', '2025-04-01', '2026-03-31', false) on conflict (session_id) do nothing`, [SET_OLD, SCHOOL]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator(`[data-session="${SET_OLD}"]`).waitFor({ timeout: 20000 });
+  await page.fill('#session-label', SET_NEW_LABEL);
+  await page.fill('#session-start', '2026-04-01');
+  await page.fill('#session-end', '2027-03-31');
+  await page.locator('[data-session-save]').click();
+  const row = page.locator('[data-session]', { hasText: SET_NEW_LABEL });
+  await row.waitFor({ timeout: 20000 });
+  await row.locator('[data-session-make-current]').click();
+  await page.locator('[data-session-confirm]').waitFor({ timeout: 10000 });
+  await page.locator('[data-session-confirm]').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(5500); // the "Session added." message goes away before the picture
+  sessionsSeen = { follows: await page.locator('[data-session-confirm] li').count(), currentBefore: await page.locator('[data-session-current="yes"]').count() };
+};
+const setupSessionsDone = async (page) => {
+  try {
+    const row = page.locator('[data-session]', { hasText: SET_NEW_LABEL });
+    await row.locator('[data-session-confirm-yes]').click();
+    await page.locator(`[data-session][data-session-current="yes"]`, { hasText: SET_NEW_LABEL }).waitFor({ timeout: 20000 });
+    const after = (await db.pg.query(`select label, is_current from academic_sessions where school_id = $1 and is_current`, [SCHOOL])).rows;
+    const audit = await setupAudit(sessionsFrom, 'setup.session%');
+    const r = { current: after.map((x) => x.label), actions: audit.actions, wordy: audit.wordy, follows: sessionsSeen.follows, shownCurrent: await page.locator('[data-session-current="yes"]').count() };
+    const want = { current: [SET_NEW_LABEL], actions: 'setup.session_added,setup.session_made_current', wordy: 0, follows: 6, shownCurrent: 1 };
+    if (!sameJson(r, want)) throw new Error(`the sessions in the database: ${JSON.stringify(r)}`);
+  } finally {
+    await db.pg.query(`delete from academic_sessions where school_id = $1 and session_id <> all($2::uuid[])`, [SCHOOL, sessionsBefore.map((x) => x.session_id)]);
+    await db.pg.query(`update academic_sessions set is_current = false where school_id = $1 and is_current`, [SCHOOL]);
+    await db.pg.query(`update academic_sessions set is_current = true where school_id = $1 and session_id = any($2::uuid[])`, [SCHOOL, sessionsBefore.filter((x) => x.is_current).map((x) => x.session_id)]);
+  }
+};
+
+// Subjects (principal). The principal adds a subject with the form, renames it, retires it; then opens the retire
+// question for English, which the timetable and the teachers already use (the picture is taken there:
+// it shows what stays). The check retires English and brings it back, and reads the database: the rows that refer to
+// it are untouched all the way, and the audit rows hold ids only. The subject made is taken away.
+const SET_ENGLISH = '00000000-0000-4000-8000-0000000d0002';
+let subjectsFrom = null;
+let subjectsSeen = null;
+let subjectsMade = null;
+const setupUses = async () =>
+  (
+    await db.pg.query(
+      `select (select count(*)::int from teacher_subjects where school_id = $1 and subject_id = $2) as teaching,
+              (select count(*)::int from timetable_entries where school_id = $1 and subject_id = $2) as periods,
+              (select count(*)::int from homework where school_id = $1 and subject_id = $2) as homework,
+              (select count(*)::int from marks where school_id = $1 and subject_id = $2) as marks`,
+      [SCHOOL, SET_ENGLISH]
+    )
+  ).rows[0];
+const setupSubjectsScreen = async (page) => {
+  subjectsFrom = await auditTop();
+  await page.locator('[data-subject]').first().waitFor({ timeout: 20000 });
+  await page.fill('#subject-name', 'Art (harness C244)');
+  await page.locator('[data-subject-save]').click();
+  const made = page.locator('[data-subject]', { hasText: 'Art (harness C244)' });
+  await made.waitFor({ timeout: 20000 });
+  subjectsMade = await made.getAttribute('data-subject');
+  await made.locator('[data-subject-rename]').click();
+  await page.fill(`#subject-name-${subjectsMade}`, 'Drawing (harness C244)');
+  await page.locator('[data-subject-rename-form] button[type=submit]').click();
+  const renamed = page.locator('[data-subject]', { hasText: 'Drawing (harness C244)' });
+  await renamed.waitFor({ timeout: 20000 });
+  await renamed.locator('[data-subject-retire]').click();
+  await renamed.locator('[data-subject-confirm-yes]').click();
+  await page.locator('[data-subject-retired="yes"]', { hasText: 'Drawing (harness C244)' }).waitFor({ timeout: 20000 });
+  const english = page.locator(`[data-subject="${SET_ENGLISH}"]`);
+  await english.locator('[data-subject-retire]').click();
+  await english.locator('[data-subject-confirm]').waitFor({ timeout: 10000 });
+  await english.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(5500); // the three messages ("Subject added.", "Renamed.", "Retired.") go away before the picture
+  subjectsSeen = { inUse: await page.locator('[data-subject-retired="no"]').count(), retired: await page.locator('[data-subject-retired="yes"]').count(), uses: await setupUses() };
+};
+const setupSubjectsDone = async (page) => {
+  try {
+    const english = page.locator(`[data-subject="${SET_ENGLISH}"]`);
+    await english.locator('[data-subject-confirm-yes]').click();
+    await page.locator(`[data-subject="${SET_ENGLISH}"][data-subject-retired="yes"]`).waitFor({ timeout: 20000 });
+    const retired = (await db.pg.query(`select retired_at is not null as retired from subjects where subject_id = $1`, [SET_ENGLISH])).rows[0].retired;
+    const usesWhileRetired = await setupUses();
+    const checklistWhileRetired = (await setupExpected()).done.subjects;
+    await english.locator('[data-subject-restore]').click();
+    await page.locator(`[data-subject="${SET_ENGLISH}"][data-subject-retired="no"]`).waitFor({ timeout: 20000 });
+    const back = (await db.pg.query(`select retired_at is null as in_use from subjects where subject_id = $1`, [SET_ENGLISH])).rows[0].in_use;
+    const audit = await setupAudit(subjectsFrom, 'setup.subject%');
+    const r = { retired, back, untouched: sameJson(usesWhileRetired, subjectsSeen.uses) && sameJson(await setupUses(), subjectsSeen.uses), actions: audit.actions, wordy: audit.wordy };
+    const want = { retired: true, back: true, untouched: true, actions: 'setup.subject_added,setup.subject_renamed,setup.subject_retired,setup.subject_retired,setup.subject_restored', wordy: 0 };
+    if (!sameJson(r, want) || subjectsSeen.inUse < 2 || subjectsSeen.retired !== 1) throw new Error(`the subjects in the database: ${JSON.stringify({ r, seen: subjectsSeen, checklistWhileRetired })}`);
+  } finally {
+    await db.pg.query(`update subjects set retired_at = null where subject_id = $1`, [SET_ENGLISH]);
+    if (subjectsMade) await db.pg.query(`delete from subjects where subject_id = $1`, [subjectsMade]);
+  }
+};
 // Who teaches what (C231), on Staff: a proposal from Tara waits (Mathematics in 6-A); the principal gives Tanvi English
 // in 6-A with the form. The check reads the database: the assignment written in the principal's name, the proposal
 // still waiting, the audit rows with ids only. Then a teacher's own page: Tara proposes English in 6-A, which waits for
@@ -6195,6 +6380,12 @@ const SCREENS = [
   ['principal', 'app-timetable-generator-publish', '/app/timetable/generator', ttgPublish, ttgPublishDone],
   // p7-10f end
   // p7-10g begin
+  ['principal', 'app-setup', '/app/setup', setupPage, setupPageDone],
+  ['principal', 'app-setup-hindi', '/app/setup', speak('हिन्दी'), backToEnglish],
+  ['principal', 'app-setup-sessions', '/app/setup/sessions', setupSessionsScreen, setupSessionsDone],
+  ['principal', 'app-setup-subjects', '/app/setup/subjects', setupSubjectsScreen, setupSubjectsDone],
+  ['principal', 'app-my-day-setup', '/app/my-day', setupMyDay, setupMyDayDone],
+  ['founder', 'control-school-setup', `/control/schools/${SCHOOL}`, setupInControl, setupInControlDone],
   ['principal', 'app-staff-teacher-subjects', '/app/staff', staffSubjects, staffSubjectsDone],
   ['teacher', 'app-account-my-subjects', '/app/account', mySubjects, mySubjectsDone],
   ['principal', 'app-timetable-workload', '/app/timetable', workloadOffice, workloadOfficeDone],

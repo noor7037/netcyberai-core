@@ -119,6 +119,9 @@ export const TOURS = {
   'timetable-generator': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // p7-10f end
   // p7-10g begin
+  setup: { steps: [{ slot: 'body' }, { slot: 'body' }] },
+  'setup-sessions': { steps: [{ slot: 'body' }, { slot: 'body' }] },
+  'setup-subjects': { steps: [{ slot: 'body' }, { slot: 'body' }] },
   // p7-10g end
   // c224 begin
   // c224 end

@@ -28,7 +28,6 @@ const ALLOWED: Record<string, Record<string, string>> = {
     'opaque:entry': 'writeAttendanceAudit passes its entry on to writeAuditLog when no words were given; that entry is checked at each call of writeAttendanceAudit, which is in WRITERS (review of C224)',
   },
   'src/app/api/app/classes/route.ts': { 'opaque:row': 'a class as made: its id, name (5-A), grade, section, session and class teacher’s id' },
-  'src/app/api/app/subjects/route.ts': { 'opaque:row': 'a subject as made: its id and name (Mathematics)' },
   'src/app/api/app/settings/holidays/route.ts': { 'key:name': 'a holiday’s name (Diwali), from the school’s calendar' },
   'src/app/api/control/schools/route.ts': { 'opaque:row': 'a school as Control makes it: its id, name, board, type, jurisdiction, stage and flags' },
   'src/app/api/control/schools/[schoolId]/features/route.ts': { 'opaque:beforeFeatures': 'the school’s feature flags: codes', 'opaque:rows[0].enabled_features': 'the school’s feature flags: codes' },

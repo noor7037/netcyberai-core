@@ -706,3 +706,34 @@ alter table timetable_proposals enable row level security;
 create policy timetable_proposals_tenant_isolation on timetable_proposals using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
 create policy timetable_proposals_office on timetable_proposals as restrictive for all using (current_setting('app.current_role', true) in ('principal', 'school_admin', 'academic_coordinator'));
 grant select on timetable_proposals to app_user;
+-- The setup checklist (C244), as My Day counts the steps a school has done (src/lib/setup/checklist.ts): a subject in use
+-- (retired_at, migration c244_setup_complete), the school's logo (c235b_school_branding), its academic sessions
+-- (20260924183326) and its fee structures (the fee engine), the last two readable as in the real schema (a fee structure
+-- by the roles that keep fees).
+alter table subjects add column retired_at timestamptz;
+alter table schools add column logo_path text;
+create table academic_sessions (
+  session_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  label text not null,
+  start_date date not null,
+  end_date date not null,
+  is_current boolean not null default false,
+  check (end_date > start_date)
+);
+alter table academic_sessions enable row level security;
+alter table academic_sessions force row level security;
+create policy academic_sessions_tenant_isolation on academic_sessions using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+grant select on academic_sessions to app_user;
+create table fee_structures (
+  structure_id uuid primary key default gen_random_uuid(),
+  school_id uuid not null references schools(school_id),
+  class_id uuid,
+  academic_year text not null,
+  effective_from date not null
+);
+alter table fee_structures enable row level security;
+alter table fee_structures force row level security;
+create policy fee_structures_tenant_isolation on fee_structures using (school_id = (current_setting('app.current_tenant_id', true))::uuid);
+create policy fee_structures_finance_read on fee_structures as restrictive for select using (current_setting('app.current_role', true) = any (array['accountant', 'school_admin', 'principal', 'super_admin']));
+grant select on fee_structures to app_user;
