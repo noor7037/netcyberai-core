@@ -6,6 +6,7 @@ import { Select } from '@/components/ui/Select';
 import { Modal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
 import { useOffline } from '@/components/app-shell/OfflineContext';
@@ -313,8 +314,10 @@ export function AttendanceView({ canManage, initialClassId, office = false, show
     <section lang={lang} className="flex flex-col gap-4">
       {office && requests.length > 0 && (
         <div data-correction-requests className="flex flex-col gap-3 rounded-md border border-tangerine/40 bg-tangerine/10 p-3 text-sm text-slate">
-          <p className="font-semibold">{tCount('att.requests.title', requests.length)}</p>
-          <p>{t('att.requests.how')}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <p className="font-semibold">{tCount('att.requests.title', requests.length)}</p>
+            <InfoTip>{t('att.requests.how')}</InfoTip>
+          </div>
           {requests.map((r) => (
             <div key={r.request_id} data-request className="flex flex-col gap-2 rounded-md bg-white p-3">
               <p className="font-semibold">{t('att.requests.line', { class: r.class_name, date: r.for_date, name: r.requested_by_name, students: r.students })}</p>
@@ -351,7 +354,7 @@ export function AttendanceView({ canManage, initialClassId, office = false, show
       <div className="flex flex-wrap items-end gap-3">
         <div className="w-full max-w-xs">
         <Select id="attendance-class" label={t('att.class')} value={classId} onChange={(e) => setClassId(e.target.value)}>
-          <option value="">{t('att.class.choose')}</option>
+          <option value="">—</option>
           {classes.map((c) => (
             <option key={c.class_id} value={c.class_id}>
               {c.name}
@@ -360,17 +363,23 @@ export function AttendanceView({ canManage, initialClassId, office = false, show
         </Select>
         </div>
         {office && (
-          <label className="flex flex-col gap-1 text-sm font-semibold text-slate">
-            {t('att.past.day')}
-            <input type="date" data-attendance-day value={day} max={indiaDate()} onChange={(e) => setDay(e.target.value === indiaDate() ? '' : e.target.value)} className="min-h-[48px] rounded-md border border-slate/20 bg-white px-3 text-sm font-normal text-slate" />
-          </label>
+          <div className="w-full max-w-[12rem]">
+            <Input id="attendance-day" type="date" label={t('att.past.day')} data-attendance-day value={day} max={indiaDate()} onChange={(e) => setDay(e.target.value === indiaDate() ? '' : e.target.value)} />
+          </div>
         )}
       </div>
 
       {!loading && classId && past && (
         <div data-past-day className="flex flex-col gap-2 rounded-md border border-slate/20 bg-white p-3 text-sm text-slate">
           <p className="font-semibold">{past.allowed ? t('att.past.title', { date: rosterDate }) : t('att.past.closed', { date: rosterDate, days: past.windowDays })}</p>
-          {past.allowed && <Input id="past-reason" label={t('att.past.reason')} helperText={t('att.past.reason.help')} value={reason} onChange={(e) => setReason(e.target.value)} />}
+          {past.allowed && (
+            <div className="flex flex-wrap items-center gap-x-1">
+              <div className="min-w-0 flex-1 basis-48">
+                <Input id="past-reason" label={t('att.past.reason')} value={reason} onChange={(e) => setReason(e.target.value)} />
+              </div>
+              <InfoTip>{t('att.past.reason.help')}</InfoTip>
+            </div>
+          )}
         </div>
       )}
 
@@ -456,8 +465,8 @@ export function AttendanceView({ canManage, initialClassId, office = false, show
               return (
                 <li key={row.student_id} data-student-row className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-slate/10 p-3 text-sm">
                   <div className="min-w-0">
-                    <p className="font-semibold text-slate">{row.name}</p>
-                    <p className="text-xs text-slate/70">{[row.roll_no ? `${t('att.roll')} ${row.roll_no}` : '', row.admission_no].filter(Boolean).join(' · ')}</p>
+                    <p className="font-semibold text-slate">{row.roll_no ? `${row.roll_no}. ${row.name}` : row.name}</p>
+                    {row.admission_no && <p className="text-xs text-slate/70">{row.admission_no}</p>}
                     {row.consent_pending && (
                       <Badge variant="warning" data-consent-pending>
                         {t('att.consentPending')}

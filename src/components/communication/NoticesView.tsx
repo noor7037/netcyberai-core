@@ -2,9 +2,12 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
+import { Textarea } from '@/components/ui/Textarea';
 import type { MessageKey } from '@/lib/i18n';
 
 // Notices to parents (docs/25 slice 7i, C191). Staff write one for a class (the office, for every class too); it
@@ -66,29 +69,26 @@ export function NoticesView({ shownAbove = false }: { shownAbove?: boolean }) {
 
   return (
     <section lang={lang} data-notices className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-4">
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-base font-bold text-slate">{t('ntc.title')}</h2>
-        <p className="text-sm text-slate/70">{t(data.mayDecide ? 'ntc.how.principal' : 'ntc.how')}</p>
+        <InfoTip>{t(data.mayDecide ? 'ntc.how.principal' : 'ntc.how')}</InfoTip>
       </div>
       {data.classes.length === 0 && !data.mayWriteToAll ? (
         <p data-notices-no-class className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('ntc.noClass')}</p>
       ) : (
         <div className="flex flex-col gap-2">
-          <label htmlFor="notice-class" className="text-sm font-semibold text-slate">{t('ntc.for')}</label>
-          <select id="notice-class" className="min-h-[44px] rounded-md border border-slate/20 bg-white px-3 text-sm text-slate sm:max-w-xs" value={target} onChange={(e) => setClassId(e.target.value)}>
-            {data.mayWriteToAll && <option value="all">{t('ntc.allClasses')}</option>}
-            {data.classes.map((c) => (
-              <option key={c.class_id} value={c.class_id}>{c.name}</option>
-            ))}
-          </select>
-          <label htmlFor="notice-body" className="text-sm font-semibold text-slate">{t('ntc.words')}</label>
-          <textarea id="notice-body" rows={3} maxLength={MAX} className="rounded-md border border-slate/20 px-3 py-2 text-sm text-slate" value={body} onChange={(e) => setBody(e.target.value)} />
-          <div className="flex flex-wrap items-center gap-3">
-            <button type="button" data-notice-write disabled={busy || !body.trim() || !target} className={PRIMARY} onClick={() => void send('/api/app/communication/notices', { classId: target === 'all' ? null : target, body }, () => t('ntc.written'))}>
-              {t('ntc.write')}
-            </button>
-            <span className="text-xs text-slate/70">{t('ntc.left', { count: MAX - body.length })}</span>
+          <div className="sm:max-w-xs">
+            <Select id="notice-class" label={t('ntc.for')} value={target} onChange={(e) => setClassId(e.target.value)}>
+              {data.mayWriteToAll && <option value="all">{t('ntc.allClasses')}</option>}
+              {data.classes.map((c) => (
+                <option key={c.class_id} value={c.class_id}>{c.name}</option>
+              ))}
+            </Select>
           </div>
+          <Textarea id="notice-body" label={t('ntc.words')} rows={3} maxLength={MAX} helperText={t('ntc.left', { count: MAX - body.length })} value={body} onChange={(e) => setBody(e.target.value)} />
+          <button type="button" data-notice-write disabled={busy || !body.trim() || !target} className={`${PRIMARY} self-start`} onClick={() => void send('/api/app/communication/notices', { classId: target === 'all' ? null : target, body }, () => t('ntc.written'))}>
+            {t('ntc.write')}
+          </button>
         </div>
       )}
       {note && <p role="status" data-notices-note className={`rounded-md px-3 py-2 text-sm font-semibold ${note.ok ? 'bg-off-white text-slate' : 'border border-red-800/30 text-red-800'}`}>{note.text}</p>}

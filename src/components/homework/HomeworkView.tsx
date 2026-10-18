@@ -5,9 +5,11 @@ import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
 import { useOffline } from '@/components/app-shell/OfflineContext';
 import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
 import { Select } from '@/components/ui/Select';
+import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/Toast';
 import { HOMEWORK_CHECK, HOMEWORK_KEY, homeworkRosterKey, type HomeworkCheck } from '@/lib/offline/homework-sender';
 import type { Operation } from '@/lib/offline/outbox';
@@ -226,7 +228,7 @@ export function HomeworkView({ shownAbove = false }: { shownAbove?: boolean }) {
           <div className="flex flex-col gap-3 pt-2">
             <div className="grid gap-3 sm:grid-cols-2">
               <Select id="hw-subject" label={t('hw.subject')} value={form.subjectId} onChange={(e) => setForm({ ...form, subjectId: e.target.value })}>
-                <option value="">{t('hw.subject.choose')}</option>
+                <option value="">—</option>
                 {data.subjects.map((s) => (
                   <option key={s.subject_id} value={s.subject_id}>
                     {s.name}
@@ -236,18 +238,12 @@ export function HomeworkView({ shownAbove = false }: { shownAbove?: boolean }) {
               <Input id="hw-due" type="date" label={t('hw.due')} min={data.today} value={form.dueDate} onChange={(e) => setForm({ ...form, dueDate: e.target.value })} />
             </div>
             <Input id="hw-title" label={t('hw.what')} maxLength={120} value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
-            <label htmlFor="hw-details" className="text-sm font-medium text-slate">
-              {t('hw.details')}
-            </label>
-            <textarea id="hw-details" rows={3} maxLength={2000} value={form.details} onChange={(e) => setForm({ ...form, details: e.target.value })} className="rounded-md border border-slate/20 p-2 text-sm text-slate" />
+            <Textarea id="hw-details" label={t('hw.details')} rows={3} maxLength={2000} value={form.details} onChange={(e) => setForm({ ...form, details: e.target.value })} />
             <fieldset className="flex flex-col gap-2">
               <legend className="text-sm font-medium text-slate">{t('hw.sections')}</legend>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-x-4">
                 {data.classes.map((c) => (
-                  <label key={c.class_id} className={`${TAP} flex cursor-pointer items-center gap-2 ${form.classIds.includes(c.class_id) ? 'border-sapphire bg-sapphire/10 text-sapphire' : 'border-slate/20 text-slate'}`}>
-                    <input type="checkbox" className="h-5 w-5" checked={form.classIds.includes(c.class_id)} onChange={() => toggleClass(c.class_id)} />
-                    {c.name}
-                  </label>
+                  <Checkbox key={c.class_id} id={`hw-class-${c.class_id}`} label={c.name} checked={form.classIds.includes(c.class_id)} onChange={() => toggleClass(c.class_id)} />
                 ))}
               </div>
             </fieldset>
@@ -341,18 +337,12 @@ export function HomeworkView({ shownAbove = false }: { shownAbove?: boolean }) {
             }}
           >
             <Input id="hw-edit-title" label={t('hw.what')} maxLength={120} required value={editing.title} onChange={(e) => setEditing({ ...editing, title: e.target.value })} />
-            <label htmlFor="hw-edit-details" className="text-sm font-medium text-slate">
-              {t('hw.details')}
-            </label>
-            <textarea id="hw-edit-details" rows={3} maxLength={2000} value={editing.details} onChange={(e) => setEditing({ ...editing, details: e.target.value })} className="rounded-md border border-slate/20 p-2 text-sm text-slate" />
+            <Textarea id="hw-edit-details" label={t('hw.details')} rows={3} maxLength={2000} value={editing.details} onChange={(e) => setEditing({ ...editing, details: e.target.value })} />
             <Input id="hw-edit-due" type="date" label={t('hw.due')} min={data.today} required value={editing.dueDate} onChange={(e) => setEditing({ ...editing, dueDate: e.target.value })} />
             <fieldset data-apply-to className="flex flex-col gap-2">
               <legend className="text-sm font-medium text-slate">{t('hw.edit.which')}</legend>
               {[{ target_id: editing.a.target_id, class_name: editing.a.class_name }, ...editing.a.siblings].map((s) => (
-                <label key={s.target_id} className="flex min-h-[48px] cursor-pointer items-center gap-2 text-sm text-slate">
-                  <input type="checkbox" className="h-5 w-5" checked={editing.applyTo.includes(s.target_id)} onChange={() => setEditing({ ...editing, applyTo: editing.applyTo.includes(s.target_id) ? editing.applyTo.filter((x) => x !== s.target_id) : [...editing.applyTo, s.target_id] })} />
-                  {s.class_name}
-                </label>
+                <Checkbox key={s.target_id} id={`hw-apply-${s.target_id}`} label={s.class_name} checked={editing.applyTo.includes(s.target_id)} onChange={() => setEditing({ ...editing, applyTo: editing.applyTo.includes(s.target_id) ? editing.applyTo.filter((x) => x !== s.target_id) : [...editing.applyTo, s.target_id] })} />
               ))}
               <p className="text-sm text-slate/70">{t('hw.edit.note')}</p>
             </fieldset>

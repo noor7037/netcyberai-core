@@ -1407,12 +1407,13 @@ describe('on the real schema', () => {
       // The reason beside a name is that period's own facts.
       expect(html).toContain('Free this period · Teaches Maths · 1 period that day · 2 covers that week');
       expect(html).toContain('Free this period · No period that day · No cover that week');
-      expect(html).toContain('In place of Asha, who is on leave');
+      expect(html).toContain('In place of Asha (on leave)');
       expect(html).toContain('On leave: Asha, Gita');
       expect(html).toContain('Nothing is assigned until you press “Assign”');
       expect(html).not.toMatch(/undefined|NaN|\{\w+\}|px\./);
       // Every button is a full-height tap target.
-      for (const button of html.match(/<button[^>]*>/g) ?? []) expect(button).toContain('min-h-[44px]');
+      // (The ⓘ of the explanations is h-11 w-11: 44 px as well.)
+      for (const button of html.match(/<button[^>]*>/g) ?? []) expect(button).toMatch(/min-h-\[44px\]|\bh-11 w-11\b/);
       // Hindi: the same screen, in Hindi.
       const hindi = draw('hi', data);
       expect(hindi).toMatch(/[ऀ-ॿ]/);
@@ -1455,7 +1456,7 @@ describe('on the real schema', () => {
       const cover = (on_date: string, period: number) => ({ substitution_id: `${on_date}-${period}`, on_date, period, class_id: C5A, class_name: '5-A', subject_name: 'Maths' });
       const draw = (lang: 'en' | 'hi', mine: ReturnType<typeof cover>[], released: ReturnType<typeof cover>[] = []) => renderToStaticMarkup(h(LangProvider, { lang, children: h(ProxyMine, { data: { ...base, mine, released } }) }));
       const none = draw('en', []);
-      expect(none).toContain('You have no cover today. Your own periods are on “Timetable”.');
+      expect(none).toContain('No cover today.');
       expect(none).toContain('Nothing for tomorrow yet');
       expect(none).not.toContain('The days after');
       // Covers released because the leave behind them was cancelled (C210): listed under their own heading, each
@@ -1466,7 +1467,7 @@ describe('on the real schema', () => {
       expect(released).toContain('Covers released');
       expect(released).toContain('Period 3 · 5-A · Maths: released');
       expect(released).toContain('The teacher you were to cover is back');
-      expect(released).not.toMatch(/Asha|sick|casual|<button|\{\w+\}|px\./);
+      expect(released).not.toMatch(/Asha|sick|casual|<button(?![^>]*data-info-tip)|\{\w+\}|px\./);
       expect(draw('hi', [], [cover(D, 3)])).toContain('हटाई गई');
       const some = draw('en', [cover(D, 2), cover(addDays(D, 1), 1), cover(addDays(D, 3), 4)]);
       expect(some.match(/data-proxy-mine="/g)).toHaveLength(3);
@@ -1478,7 +1479,7 @@ describe('on the real schema', () => {
       expect(readFileSync(path.join(__dirname, '../../src/components/timetable/TimetableView.tsx'), 'utf8')).not.toMatch(/absent_name|absent_user_id/);
       expect(some).toContain('The days after');
       expect(some).toContain('stay with the class’s own teacher and the office');
-      expect(some).not.toMatch(/<button|undefined|\{\w+\}|px\./);
+      expect(some).not.toMatch(/<button(?![^>]*data-info-tip)|undefined|\{\w+\}|px\./);
       expect(draw('hi', [cover(D, 2)])).toMatch(/[ऀ-ॿ]/);
     });
   });

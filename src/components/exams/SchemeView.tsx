@@ -2,12 +2,16 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
+import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import { bandProblems, gapsAsInPreset, grade, passed } from '@/lib/exams/grading';
 import { emptyScheme, LAYOUT_PARTS, schemeFromPreset, validateScheme, type BoardPreset, type GradingScheme } from '@/lib/exams/scheme';
 import type { SchemeScreen } from '@/lib/exams/schemes';
 import type { MessageKey } from '@/lib/i18n';
-import { AddButton, BandsEditor, ComponentsEditor, Field, FIELD, PRIMARY, SECTION, TAP } from './SchemeParts';
+import { AddButton, BandsEditor, ComponentsEditor, PRIMARY, SECTION, TAP } from './SchemeParts';
 import { formToScheme, schemeToForm, type SchemeForm } from './scheme-form';
 
 // The school's grading scheme (docs/27 row 9a, C213). The board first; then the scheme in force, where it came from
@@ -127,11 +131,15 @@ export function SchemeView() {
       )}
 
       <section data-scheme-board className={SECTION}>
-        <h2 className="text-base font-bold">{t('gs.board.title')}</h2>
-        <p className="text-slate/70">{t('gs.board.how')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-base font-bold">{t('gs.board.title')}</h2>
+          <InfoTip>
+            <p>{t('gs.board.how')}</p>
+            <p data-scheme-board-control className="mt-2">{t('gs.board.readOnly')}</p>
+          </InfoTip>
+        </div>
         <p data-scheme-board-name className="font-semibold">{data.board.name ?? t('gs.board.unset')}</p>
         {data.board.setAt && <p className="text-slate/70">{data.board.setBy ? t('gs.board.setBy', { name: data.board.setBy, date: when(data.board.setAt) }) : t('gs.board.setOn', { date: when(data.board.setAt) })}</p>}
-        <p data-scheme-board-control className="text-slate/70">{t('gs.board.readOnly')}</p>
       </section>
 
       {!data.current && !draft && (
@@ -189,7 +197,7 @@ export function SchemeView() {
 
       {shown && <TryIt scheme={shown} num={num} />}
 
-      {data.versions.length > 0 && (
+      {data.versions.length > 1 && (
         <section data-scheme-versions className={SECTION}>
           <h2 className="text-base font-bold">{t('gs.versions.title')}</h2>
           <ul className="flex flex-col gap-1">
@@ -211,7 +219,6 @@ function Source({ preset, day }: { preset: Preset | null; day: (ymd: string) => 
   if (!preset) return <p data-scheme-source="school" className="text-slate/70">{t('gs.source.empty')}</p>;
   return (
     <div data-scheme-source={preset.presetId} className="flex flex-col gap-2 rounded-md bg-off-white p-3">
-      <p className="font-semibold">{t('gs.source.title')}</p>
       <p>{t('gs.source.from', { board: preset.boardName ?? preset.boardId, level: preset.level, title: preset.sourceTitle, date: day(preset.sourceReadOn) })}</p>
       <a href={preset.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center self-start font-semibold text-sapphire underline">
         {t('gs.source.open')}
@@ -341,14 +348,14 @@ function Editor({ form, onChange, preset, num }: { form: SchemeForm; onChange: (
         <h3 className="font-bold">{t('gs.bands.title')}</h3>
         <p className="text-slate/70">{t('gs.bands.how')}</p>
         <BandsEditor idPrefix="scheme" bands={form.bands} onChange={(bands) => put({ bands })} />
-        <div className="max-w-md">
-          <Field id="scheme-rounding" label={t('gs.rounding.label')}>
-            <select id="scheme-rounding" className={FIELD} value={form.decimals} onChange={(e) => put({ decimals: e.target.value === '1' ? 1 : 0 })}>
+        <div className="flex max-w-md flex-wrap items-center gap-x-1">
+          <div className="min-w-0 flex-1 basis-60">
+            <Select id="scheme-rounding" label={t('gs.rounding.label')} value={form.decimals} onChange={(e) => put({ decimals: e.target.value === '1' ? 1 : 0 })}>
               <option value={0}>{t('gs.rounding.0')}</option>
               <option value={1}>{t('gs.rounding.1')}</option>
-            </select>
-          </Field>
-          <p className="mt-1 text-slate/70">{t('gs.rounding.how')}</p>
+            </Select>
+          </div>
+          <InfoTip>{t('gs.rounding.how')}</InfoTip>
         </div>
         <Checks scheme={formToScheme(form)} preset={preset} num={num} />
       </div>
@@ -356,27 +363,26 @@ function Editor({ form, onChange, preset, num }: { form: SchemeForm; onChange: (
       <div className={sub}>
         <h3 className="font-bold">{t('gs.pass.title')}</h3>
         <div className="max-w-md">
-          <Field id="scheme-pass" label={t('gs.pass.label')}>
-            <input id="scheme-pass" inputMode="decimal" className={FIELD} value={form.passMark} onChange={(e) => put({ passMark: e.target.value })} />
-          </Field>
+          <Input id="scheme-pass" inputMode="decimal" label={t('gs.pass.label')} helperText={t('gs.pass.how')} value={form.passMark} onChange={(e) => put({ passMark: e.target.value })} />
         </div>
-        <p className="text-slate/70">{t('gs.pass.how')}</p>
       </div>
 
       <div className={sub}>
-        <h3 className="font-bold">{t('gs.comp.title')}</h3>
-        <p className="text-slate/70">{t('gs.comp.how')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h3 className="font-bold">{t('gs.comp.title')}</h3>
+          <InfoTip>{t('gs.comp.how')}</InfoTip>
+        </div>
         <ComponentsEditor idPrefix="scheme" components={form.components} onChange={(components) => put({ components })} />
       </div>
 
       <div className={sub}>
-        <h3 className="font-bold">{t('gs.terms.title')}</h3>
-        <p className="text-slate/70">{t('gs.terms.how')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h3 className="font-bold">{t('gs.terms.title')}</h3>
+          <InfoTip>{t('gs.terms.how')}</InfoTip>
+        </div>
         {form.terms.map((name, i) => (
-          <div key={i} className="grid grid-cols-1 items-end gap-2 sm:grid-cols-[minmax(0,24rem)_auto] sm:justify-start">
-            <Field id={`scheme-term-${i}`} label={t('gs.terms.name', { n: i + 1 })}>
-              <input id={`scheme-term-${i}`} maxLength={60} className={FIELD} value={name} onChange={(e) => put({ terms: set(form.terms, i, e.target.value) })} />
-            </Field>
+          <div key={i} className="grid grid-cols-1 items-start gap-2 sm:grid-cols-[minmax(0,24rem)_auto] sm:justify-start">
+            <Input id={`scheme-term-${i}`} label={t('gs.terms.name', { n: i + 1 })} maxLength={60} value={name} onChange={(e) => put({ terms: set(form.terms, i, e.target.value) })} />
             <button type="button" className={TAP} onClick={() => put({ terms: without(form.terms, i) })}>
               {t('gs.terms.remove', { n: i + 1 })}
             </button>
@@ -388,24 +394,21 @@ function Editor({ form, onChange, preset, num }: { form: SchemeForm; onChange: (
       <fieldset className={sub}>
         <legend className="font-bold">{t('gs.layout.title')}</legend>
         <p className="text-slate/70">{t('gs.layout.how')}</p>
-        <div className="grid gap-1 sm:grid-cols-2">
+        <div className="grid gap-x-4 sm:grid-cols-2">
           {LAYOUT_PARTS.map((k) => (
-            <label key={k} className="flex min-h-[44px] items-center gap-2">
-              <input type="checkbox" data-layout={k} className="h-5 w-5" checked={form.layout[k]} onChange={(e) => put({ layout: { ...form.layout, [k]: e.target.checked } })} />
-              {t(`gs.layout.${k}` as MessageKey)}
-            </label>
+            <Checkbox key={k} id={`scheme-layout-${k}`} data-layout={k} label={t(`gs.layout.${k}` as MessageKey)} checked={form.layout[k]} onChange={(e) => put({ layout: { ...form.layout, [k]: e.target.checked } })} />
           ))}
         </div>
       </fieldset>
 
       <div className={sub}>
-        <h3 className="font-bold">{t('gs.co.title')}</h3>
-        <p className="text-slate/70">{t('gs.co.how')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h3 className="font-bold">{t('gs.co.title')}</h3>
+          <InfoTip>{t('gs.co.how')}</InfoTip>
+        </div>
         {form.areas.map((a, i) => (
-          <div key={i} className="grid grid-cols-1 items-end gap-2 sm:grid-cols-[minmax(0,24rem)_auto] sm:justify-start">
-            <Field id={`scheme-area-${i}`} label={t('gs.co.area', { n: i + 1 })}>
-              <input id={`scheme-area-${i}`} maxLength={60} className={FIELD} value={a} onChange={(e) => put({ areas: set(form.areas, i, e.target.value) })} />
-            </Field>
+          <div key={i} className="grid grid-cols-1 items-start gap-2 sm:grid-cols-[minmax(0,24rem)_auto] sm:justify-start">
+            <Input id={`scheme-area-${i}`} label={t('gs.co.area', { n: i + 1 })} maxLength={60} value={a} onChange={(e) => put({ areas: set(form.areas, i, e.target.value) })} />
             <button type="button" className={TAP} onClick={() => put({ areas: without(form.areas, i) })}>
               {t('gs.co.removeArea', { n: i + 1 })}
             </button>
@@ -413,17 +416,10 @@ function Editor({ form, onChange, preset, num }: { form: SchemeForm; onChange: (
         ))}
         <AddButton label={t('gs.co.addArea')} onClick={() => put({ areas: [...form.areas, ''] })} />
         {form.coGrades.map((g, i) => (
-          <div key={i} className="grid grid-cols-2 items-end gap-2 sm:grid-cols-[minmax(0,7rem)_minmax(0,1fr)_auto_auto]">
-            <Field id={`scheme-co-${i}-grade`} label={t('gs.co.grade')}>
-              <input id={`scheme-co-${i}-grade`} maxLength={20} className={FIELD} value={g.grade} onChange={(e) => put({ coGrades: set(form.coGrades, i, { ...g, grade: e.target.value }) })} />
-            </Field>
-            <Field id={`scheme-co-${i}-meaning`} label={t('gs.co.meaning')}>
-              <input id={`scheme-co-${i}-meaning`} maxLength={120} className={FIELD} value={g.meaning} onChange={(e) => put({ coGrades: set(form.coGrades, i, { ...g, meaning: e.target.value }) })} />
-            </Field>
-            <label className="flex min-h-[44px] items-center gap-2">
-              <input type="checkbox" className="h-5 w-5" checked={g.pass} onChange={(e) => put({ coGrades: set(form.coGrades, i, { ...g, pass: e.target.checked }) })} />
-              {t('gs.co.pass')}
-            </label>
+          <div key={i} className="grid grid-cols-2 items-start gap-2 sm:grid-cols-[minmax(0,7rem)_minmax(0,1fr)_auto_auto]">
+            <Input id={`scheme-co-${i}-grade`} label={t('gs.co.grade')} maxLength={20} value={g.grade} onChange={(e) => put({ coGrades: set(form.coGrades, i, { ...g, grade: e.target.value }) })} />
+            <Input id={`scheme-co-${i}-meaning`} label={t('gs.co.meaning')} maxLength={120} value={g.meaning} onChange={(e) => put({ coGrades: set(form.coGrades, i, { ...g, meaning: e.target.value }) })} />
+            <Checkbox id={`scheme-co-${i}-pass`} label={t('gs.co.pass')} checked={g.pass} onChange={(e) => put({ coGrades: set(form.coGrades, i, { ...g, pass: e.target.checked }) })} />
             <button type="button" className={TAP} onClick={() => put({ coGrades: without(form.coGrades, i) })}>
               {t('gs.co.removeGrade', { n: i + 1 })}
             </button>
@@ -457,12 +453,12 @@ function TryIt({ scheme, num }: { scheme: GradingScheme; num: (n: number) => str
   }
   return (
     <section data-scheme-try className={SECTION}>
-      <h2 className="text-base font-bold">{t('gs.try.title')}</h2>
-      <p className="text-slate/70">{t('gs.try.how')}</p>
+      <div className="flex flex-wrap items-center gap-x-1">
+        <h2 className="text-base font-bold">{t('gs.try.title')}</h2>
+        <InfoTip>{t('gs.try.how')}</InfoTip>
+      </div>
       <div className="max-w-xs">
-        <Field id="scheme-try" label={t('gs.try.label')}>
-          <input id="scheme-try" inputMode="decimal" className={FIELD} value={typed} onChange={(e) => setTyped(e.target.value)} />
-        </Field>
+        <Input id="scheme-try" inputMode="decimal" label={t('gs.try.label')} value={typed} onChange={(e) => setTyped(e.target.value)} />
       </div>
       {typed.trim() !== '' && !okValue && <p>{t('gs.try.bad')}</p>}
       {lines.map((l, i) => (

@@ -4,7 +4,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
 import { useOffline } from '@/components/app-shell/OfflineContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
+import { Input } from '@/components/ui/Input';
+import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/Toast';
 import type { MessageKey } from '@/lib/i18n';
 import type { Operation } from '@/lib/offline/outbox';
@@ -228,8 +231,10 @@ export function SyllabusView({ isTeacher }: { isTeacher: boolean }) {
 
       {!isTeacher && week.scheduled > 0 && (
         <div data-tap-coverage className="rounded-md border border-slate/10 bg-white p-3 text-sm text-slate">
-          <p className="font-semibold">{t('taught.week', { marked: week.marked, scheduled: week.scheduled })}</p>
-          <p className="text-slate/70">{t('taught.week.how')}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <p className="font-semibold">{t('taught.week', { marked: week.marked, scheduled: week.scheduled })}</p>
+            <InfoTip>{t('taught.week.how')}</InfoTip>
+          </div>
         </div>
       )}
 
@@ -274,27 +279,8 @@ export function SyllabusView({ isTeacher }: { isTeacher: boolean }) {
                 </div>
               )}
 
-              <label htmlFor={`topic-${k}`} className="text-sm font-medium text-slate">
-                {t('taught.topic')}
-              </label>
-              <input
-                id={`topic-${k}`}
-                maxLength={200}
-                value={topics[k] ?? ''}
-                onChange={(e) => setTopics((old) => ({ ...old, [k]: e.target.value }))}
-                placeholder={t('taught.topic.example')}
-                className="min-h-[48px] rounded-md border border-slate/20 bg-white px-3 text-base text-slate placeholder:text-slate/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire"
-              />
-              <label htmlFor={`note-${k}`} className="text-sm font-medium text-slate">
-                {t('taught.note')}
-              </label>
-              <input
-                id={`note-${k}`}
-                maxLength={500}
-                value={notes[k] ?? ''}
-                onChange={(e) => setNotes((old) => ({ ...old, [k]: e.target.value }))}
-                className="min-h-[48px] rounded-md border border-slate/20 bg-white px-3 text-base text-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire"
-              />
+              <Input id={`topic-${k}`} label={t('taught.topic')} maxLength={200} value={topics[k] ?? ''} onChange={(e) => setTopics((old) => ({ ...old, [k]: e.target.value }))} placeholder={t('taught.topic.example')} />
+              <Input id={`note-${k}`} label={t('taught.note')} maxLength={500} value={notes[k] ?? ''} onChange={(e) => setNotes((old) => ({ ...old, [k]: e.target.value }))} />
               <div role="group" aria-label={`${p.class_name} ${p.subject_name}`} className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {STATUSES.map((s) => (
                   <button key={s.value} type="button" disabled={busy === k} aria-pressed={entry?.status === s.value} onClick={() => void save(p, s.value)} className={`${TAP} disabled:opacity-50 ${entry?.status === s.value ? 'border-sapphire bg-sapphire text-white' : 'border-slate/20 bg-white text-slate hover:border-sapphire'}`}>
@@ -332,10 +318,7 @@ export function SyllabusView({ isTeacher }: { isTeacher: boolean }) {
                       </li>
                     ))}
                   </ol>
-                  <label htmlFor={`lines-${k}`} className="text-sm font-medium text-slate">
-                    {t('taught.map.add')}
-                  </label>
-                  <textarea id={`lines-${k}`} rows={4} value={newLines[k] ?? ''} onChange={(e) => setNewLines((n) => ({ ...n, [k]: e.target.value }))} placeholder={t('taught.map.example')} className="rounded-md border border-slate/20 p-2 text-sm text-slate placeholder:text-slate/70" />
+                  <Textarea id={`lines-${k}`} label={t('taught.map.add')} rows={4} value={newLines[k] ?? ''} onChange={(e) => setNewLines((n) => ({ ...n, [k]: e.target.value }))} placeholder={t('taught.map.example')} />
                   <button type="button" disabled={busy === k || !(newLines[k] ?? '').trim()} onClick={() => void addTopics(p)} className={`${TAP} self-start border-sapphire text-sapphire disabled:opacity-60`}>
                     {t('taught.map.addGo')}
                   </button>

@@ -2,8 +2,10 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import { explainError } from '@/lib/errors/catalogue';
 import type { MessageKey } from '@/lib/i18n';
 
@@ -116,13 +118,16 @@ export function ParentsView() {
               <p data-guardian-language={g.message_language}>{t(g.message_language === 'hi' ? 'par.lang.goesHi' : 'par.lang.goesEn')}</p>
               {open.mayEdit && (
                 <>
-                  <label htmlFor="guardian-language" className="font-semibold">{t('par.lang.choose')}</label>
-                  <select id="guardian-language" disabled={busy} className="min-h-[44px] rounded-md border border-slate/20 bg-white px-3 sm:max-w-xs" value={g.preferred_language ?? ''} onChange={(e) => void change(`/api/app/guardians/${g.parent_id}`, 'PATCH', { preferred_language: e.target.value }, 'par.lang.saved')}>
-                    <option value="">{t('par.lang.school')}</option>
-                    <option value="en">English</option>
-                    <option value="hi">हिन्दी</option>
-                  </select>
-                  <p className="text-xs text-slate/70">{t('par.lang.hindiHeld')}</p>
+                  <div className="flex flex-wrap items-center gap-x-1">
+                    <div className="w-full sm:max-w-xs">
+                      <Select id="guardian-language" label={t('par.lang.choose')} disabled={busy} value={g.preferred_language ?? ''} onChange={(e) => void change(`/api/app/guardians/${g.parent_id}`, 'PATCH', { preferred_language: e.target.value }, 'par.lang.saved')}>
+                        <option value="">{t('par.lang.school')}</option>
+                        <option value="en">English</option>
+                        <option value="hi">हिन्दी</option>
+                      </Select>
+                    </div>
+                    <InfoTip>{t('par.lang.hindiHeld')}</InfoTip>
+                  </div>
                 </>
               )}
             </div>

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
@@ -105,8 +106,6 @@ export function NeedsHelpView() {
 
   return (
     <section lang={lang} className="flex flex-col gap-5">
-      <p className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('help2.whenParents')}</p>
-
       {state === 'loading' && (
         <p role="status" className="text-sm text-slate/70">
           {t('help2.loading')}
@@ -116,7 +115,10 @@ export function NeedsHelpView() {
 
       {state === 'ready' && (
         <>
-          <h2 className="text-base font-bold text-slate">{tCount('help2.open', open.length)}</h2>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <h2 className="text-base font-bold text-slate">{tCount('help2.open', open.length)}</h2>
+            <InfoTip>{t('help2.whenParents')}</InfoTip>
+          </div>
           {open.length === 0 && <TeachEmpty id="needs-help" />}
           <ul className="flex flex-col gap-3">
             {open.map((f) => (
@@ -129,9 +131,10 @@ export function NeedsHelpView() {
                   <span className="font-semibold">{kindWord(f.kind)}</span>
                   {f.reason ? `: ${f.reason}` : ''}
                 </p>
-                <p className="rounded-md bg-off-white p-3">
-                  <span className="font-semibold">{t('help2.suggested')}</span> {t(`help2.suggest.${f.kind}` as MessageKey)}
-                </p>
+                <div className="flex flex-wrap items-center gap-x-1 rounded-md bg-off-white px-3 py-1">
+                  <span className="font-semibold">{t('help2.suggested')}</span>
+                  <InfoTip label={t('help2.suggested')}>{t(`help2.suggest.${f.kind}` as MessageKey)}</InfoTip>
+                </div>
                 <Input id={`outcome-${f.followup_id}`} label={t('help2.outcome')} value={outcomes[f.followup_id] ?? ''} onChange={(e) => setOutcomes((o) => ({ ...o, [f.followup_id]: e.target.value }))} />
                 <div className="flex flex-wrap gap-2">
                   <button type="button" className="min-h-[48px] rounded-md bg-sapphire px-4 text-sm font-semibold text-white" onClick={() => void decide(f, 'done')}>
@@ -149,7 +152,7 @@ export function NeedsHelpView() {
             <h2 className="text-base font-bold text-slate">{t('help2.add.title')}</h2>
             <div className="grid gap-3 sm:grid-cols-2">
               <Select id="followup-class" label={t('help2.add.class')} value={classId} onChange={(e) => setClassId(e.target.value)}>
-                <option value="">{t('help2.add.class.choose')}</option>
+                <option value="">—</option>
                 {classes.map((c) => (
                   <option key={c.class_id} value={c.class_id}>
                     {c.name}
@@ -157,7 +160,7 @@ export function NeedsHelpView() {
                 ))}
               </Select>
               <Select id="followup-student" label={t('help2.add.student')} value={studentId} onChange={(e) => setStudentId(e.target.value)} disabled={!classId}>
-                <option value="">{t('help2.add.student.choose')}</option>
+                <option value="">—</option>
                 {students.map((s) => (
                   <option key={s.student_id} value={s.student_id}>
                     {s.name}

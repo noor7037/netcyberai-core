@@ -2,8 +2,9 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import type { ClassResult } from '@/lib/exams/results';
-import { gradeWords, markWords, percentWords } from './exam-format';
+import { gradeWords, markWords, percentWords as percentOf } from './exam-format';
 import { SECTION, TAP } from './SchemeParts';
 
 // The class result of an exam (docs/27 row 9b, C214): each child of the class in roll order, with their marks in
@@ -28,18 +29,21 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
 
   if (failed) return <p role="alert" className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('ex.result.failed')}</p>;
   if (!data) return null;
+  const percentWords: typeof percentOf = (tt, lg, s) => (s.rounded === null ? '—' : percentOf(tt, lg, s));
   const who = (c: ClassResult['children'][number]) => (c.rollNo ? t('ex.entry.child', { roll: c.rollNo, name: c.name }) : c.name);
 
   return (
     <div lang={lang} data-class-result-view className="flex flex-col gap-4 text-sm text-slate">
       <section className={SECTION}>
         <h2 className="text-base font-bold">{data.exam.name} · {data.className}</h2>
-        {data.publication && data.scheme ? (
-          <p data-result-published={data.publication.version}>{t('rc.result.published', { version: data.publication.version, scheme: data.scheme.version })}</p>
-        ) : (
-          <p data-result-scheme>{data.scheme ? t('ex.result.scheme', { version: data.scheme.version }) : t('ex.result.noScheme')}</p>
-        )}
-        <p className="text-slate/70">{t('ex.result.order')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          {data.publication && data.scheme ? (
+            <p data-result-published={data.publication.version}>{t('rc.result.published', { version: data.publication.version, scheme: data.scheme.version })}</p>
+          ) : (
+            <p data-result-scheme>{data.scheme ? t('ex.result.scheme', { version: data.scheme.version }) : t('ex.result.noScheme')}</p>
+          )}
+          <InfoTip>{t('ex.result.order')}</InfoTip>
+        </div>
         {data.notShown > 0 && <p className="rounded-md bg-off-white px-3 py-2">{t('ex.entry.notShown', { n: data.notShown })}</p>}
         <div className="flex flex-wrap gap-2">
           {data.scheme === null && <a href="/app/exams/scheme" className={TAP}>{t('ex.make.openScheme')}</a>}

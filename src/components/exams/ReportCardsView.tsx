@@ -2,7 +2,10 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
+import { Select } from '@/components/ui/Select';
+import { Textarea } from '@/components/ui/Textarea';
 import type { ReportCardsScreen } from '@/lib/exams/publish';
 import type { ReportCardSet } from '@/lib/exams/report-card';
 import { reportCardBlocks, type CardBlock } from '@/lib/exams/report-card-text';
@@ -10,7 +13,7 @@ import type { MessageKey } from '@/lib/i18n';
 import { downloadBlob, safeFilename } from '@/lib/pdf/browser';
 import { momentWords } from './exam-format';
 import { reportCardsPdf } from './report-card-pdf';
-import { FIELD, PRIMARY, SECTION, TAP } from './SchemeParts';
+import { PRIMARY, SECTION, TAP } from './SchemeParts';
 
 // Publish and report cards (docs/27 row 9c, C215). The office (the principal, the school admin, the academic
 // coordinator) publishes a class's result once every paper is entered: its marks, papers and remarks are then
@@ -124,8 +127,13 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
         </div>
         {pub && <p>{pub.publishedBy ? t('rc.publishedBy', { name: pub.publishedBy, when: momentWords(pub.publishedAt, lang), scheme: pub.schemeVersion }) : t('rc.publishedNoName', { when: momentWords(pub.publishedAt, lang), scheme: pub.schemeVersion })}</p>}
         {reopened && <p data-rc-reopened>{t('rc.reopenedBy', { version: reopened.version, name: reopened.reopenedBy ?? '', when: momentWords(reopened.reopenedAt as string, lang), reason: reopened.reason ?? '' })}</p>}
-        {data.recognitionOn && <p className="text-slate/70">{t('rc.recognition.on')}</p>}
-        <p className="text-slate/70">{t('rc.noRank')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <span className="text-slate/70">{t('rc.noRank.short')}</span>
+          <InfoTip>
+            {data.recognitionOn && <p className="mb-2">{t('rc.recognition.on')}</p>}
+            <p>{t('rc.noRank')}</p>
+          </InfoTip>
+        </div>
         <div className="flex flex-wrap gap-2">
           <a href={`/app/exams/${examId}/classes/${classId}`} className={TAP}>{t('ex.exam.resultOf', { className: data.className })}</a>
           <a href="/app/exams" className={TAP}>{t('ex.allExams')}</a>
@@ -146,7 +154,7 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
 
       {!pub && (
         <section data-rc-publish className={SECTION}>
-          <h2 className="text-base font-bold">{t('rc.publish.title')}</h2>
+          <h2 className="sr-only">{t('rc.publish.title')}</h2>
           {data.scheme ? <p>{t('rc.publish.how', { className: data.className, version: data.scheme.version })}</p> : <p>{t('rc.publish.noScheme')}</p>}
           {data.papers.some((p) => !p.entered) && <p className="rounded-md bg-off-white px-3 py-2">{t('rc.publish.waiting')}</p>}
           {data.mayPublish ? (
@@ -161,13 +169,11 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
 
       {data.mayReopen && (
         <section data-rc-reopen className={SECTION}>
-          <h2 className="text-base font-bold">{t('rc.reopen.title')}</h2>
-          <p>{t('rc.reopen.how')}</p>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="rc-reason" className="text-xs font-semibold">{t('rc.reopen.reason')}</label>
-            <textarea id="rc-reason" className={`${FIELD} py-2`} rows={2} maxLength={500} value={reason} onChange={(e) => setReason(e.target.value)} />
-            <p className="text-xs text-slate/70">{t('rc.reopen.reasonHow')}</p>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <h2 className="text-base font-bold">{t('rc.reopen.title')}</h2>
+            <InfoTip>{t('rc.reopen.how')}</InfoTip>
           </div>
+          <Textarea id="rc-reason" label={t('rc.reopen.reason')} rows={2} maxLength={500} helperText={t('rc.reopen.reasonHow')} value={reason} onChange={(e) => setReason(e.target.value)} />
           <button
             type="button"
             data-rc-reopen-button
@@ -181,16 +187,18 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
       )}
 
       <section data-rc-children className={SECTION}>
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('rc.children.title')}</h2>
-          <p className="text-slate/70">{pub ? (data.mayDownload ? t('rc.download.how') : t('rc.download.who')) : t('rc.download.notYet')}</p>
-          {data.mayWriteRemarks && <p className="text-slate/70">{t('rc.remarks.how')}</p>}
-          {!data.mayWriteRemarks && !pub && (data.classTeacher ? <p className="text-slate/70">{t('rc.remarks.byTeacher', { name: data.classTeacher })}</p> : <p className="text-slate/70">{t('rc.remarks.noTeacher')}</p>)}
-          {areas.length > 0 && (
-            <p data-rc-co-how className="text-slate/70">
-              {t('rc.co.title')}: {data.mayWriteCoScholastic ? t('rc.co.how') : t('rc.co.who')}
-            </p>
-          )}
+          <InfoTip>
+            <p>{pub ? (data.mayDownload ? t('rc.download.how') : t('rc.download.who')) : t('rc.download.notYet')}</p>
+            {data.mayWriteRemarks && <p className="mt-2">{t('rc.remarks.how')}</p>}
+            {!data.mayWriteRemarks && !pub && (data.classTeacher ? <p className="mt-2">{t('rc.remarks.byTeacher', { name: data.classTeacher })}</p> : <p className="mt-2">{t('rc.remarks.noTeacher')}</p>)}
+            {areas.length > 0 && (
+              <p data-rc-co-how className="mt-2">
+                {t('rc.co.title')}: {data.mayWriteCoScholastic ? t('rc.co.how') : t('rc.co.who')}
+              </p>
+            )}
+          </InfoTip>
         </div>
         {pub && data.mayDownload && (
           <button type="button" data-rc-download-all className={`${PRIMARY} self-start`} disabled={busy} onClick={() => void download(null)}>
@@ -209,40 +217,37 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
                     <button type="button" data-rc-show className={TAP} aria-expanded={shown?.studentId === c.studentId} onClick={() => void show(c.studentId)}>
                       {shown?.studentId === c.studentId ? t('rc.download.hide') : t('rc.download.show')}
                     </button>
-                    <button type="button" data-rc-download className={TAP} disabled={busy} onClick={() => void download(c.studentId)}>
-                      {t('rc.download.one')}
+                    <button type="button" data-rc-download aria-label={`${t('rc.download.one')}: ${c.name}`} className={TAP} disabled={busy} onClick={() => void download(c.studentId)}>
+                      {t('rc.download.pdf')}
                     </button>
                   </div>
                 )}
               </div>
               {data.mayWriteRemarks ? (
-                <div className="flex flex-col gap-1">
-                  <label htmlFor={`rc-remark-${c.studentId}`} className="text-xs font-semibold">{t('rc.remarks.label', { name: c.name })}</label>
-                  <textarea id={`rc-remark-${c.studentId}`} data-rc-remark className={`${FIELD} py-2`} rows={2} maxLength={500} value={remarks[c.studentId] ?? ''} onChange={(e) => setRemarks({ ...remarks, [c.studentId]: e.target.value })} />
+                <div role="group" aria-label={c.name}>
+                  <Textarea id={`rc-remark-${c.studentId}`} data-rc-remark label={t('rc.remarks.label', { name: c.name })} rows={2} maxLength={500} value={remarks[c.studentId] ?? ''} onChange={(e) => setRemarks({ ...remarks, [c.studentId]: e.target.value })} />
                 </div>
               ) : (
                 c.remark && <p className="text-slate/70">{c.remark}</p>
               )}
               {areas.length > 0 && data.mayWriteCoScholastic && (
-                <div data-rc-co-child className="grid gap-2 sm:grid-cols-2">
+                <div data-rc-co-child role="group" aria-label={c.name} className="grid gap-2 sm:grid-cols-2">
                   {areas.map((a) => (
-                    <div key={a} className="flex min-w-0 flex-col gap-1">
-                      <label htmlFor={`rc-co-${c.studentId}-${areas.indexOf(a)}`} className="text-xs font-semibold">{t('rc.co.label', { area: a, name: c.name })}</label>
-                      <select
-                        id={`rc-co-${c.studentId}-${areas.indexOf(a)}`}
-                        data-rc-co={a}
-                        className={FIELD}
-                        value={co[coKey(c.studentId, a)] ?? ''}
-                        onChange={(e) => setCo({ ...co, [coKey(c.studentId, a)]: e.target.value })}
-                      >
-                        <option value="">{t('rc.co.none')}</option>
-                        {data.coScholastic!.grades.map((g) => (
-                          <option key={g.grade} value={g.grade}>
-                            {gradeWords(g.grade)}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                    <Select
+                      key={a}
+                      id={`rc-co-${c.studentId}-${areas.indexOf(a)}`}
+                      data-rc-co={a}
+                      label={t('rc.co.label', { area: a, name: c.name })}
+                      value={co[coKey(c.studentId, a)] ?? ''}
+                      onChange={(e) => setCo({ ...co, [coKey(c.studentId, a)]: e.target.value })}
+                    >
+                      <option value="">{t('rc.co.none')}</option>
+                      {data.coScholastic!.grades.map((g) => (
+                        <option key={g.grade} value={g.grade}>
+                          {gradeWords(g.grade)}
+                        </option>
+                      ))}
+                    </Select>
                   ))}
                 </div>
               )}

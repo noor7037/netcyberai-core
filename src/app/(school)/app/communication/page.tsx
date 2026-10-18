@@ -28,7 +28,7 @@ export default async function CommunicationPage({ searchParams = {} }: { searchP
   const noticesShown = searchParams.show === NOTICES_SHOW;
   const messages = <MessagesView mayRead={session?.role === 'principal' || session?.role === 'school_admin'} initialState={state} range={range} />;
   return (
-    <ModulePage moduleId="communication" help="message-states" tour="communication" title={t(lang, 'msg.page.title')} purpose={t(lang, 'msg.page.purpose')}>
+    <ModulePage moduleId="communication" help="message-states" tour="communication" title={t(lang, 'msg.page.title')} purpose={t(lang, 'msg.page.purpose')} about={t(lang, 'msg.page.about')}>
       <div className="flex flex-col gap-6">
         {noticesShown && <NoticesShown />}
         {opened && messages}
@@ -36,7 +36,6 @@ export default async function CommunicationPage({ searchParams = {} }: { searchP
         {(session?.role === 'principal' || session?.role === 'school_admin' || session?.role === 'teacher') && <ThreadsView />}
         {(session?.role === 'principal' || session?.role === 'school_admin') && <BudgetView />}
         {!opened && messages}
-        <p className="text-sm text-slate/70">{t(lang, 'msg.page.notYet')}</p>
       </div>
     </ModulePage>
   );

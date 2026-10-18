@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
 import { Select } from '@/components/ui/Select';
+import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/Toast';
 import type { MessageKey } from '@/lib/i18n';
 
@@ -129,7 +130,7 @@ export function CopilotView() {
               ))}
             </Select>
             <Select id="cp-pair" label={t('cp.class')} value={pair} onChange={(e) => (setPair(e.target.value), setUnitId(''), setText(null))}>
-              <option value="">{t('cp.class.choose')}</option>
+              <option value="">—</option>
               {pairs.map((p) => (
                 <option key={`${p.class_id}:${p.subject_id}`} value={`${p.class_id}:${p.subject_id}`}>
                   {`${p.class_name} · ${p.subject_name}`}
@@ -137,7 +138,7 @@ export function CopilotView() {
               ))}
             </Select>
             <Select id="cp-topic" label={t('cp.topic')} value={unitId} onChange={(e) => (setUnitId(e.target.value), setText(null))} disabled={!pair}>
-              <option value="">{t('cp.topic.choose')}</option>
+              <option value="">—</option>
               {topics.map((u) => (
                 <option key={u.unit_id} value={u.unit_id}>
                   {u.chapter === u.topic ? u.topic : `${u.chapter}: ${u.topic}`}
@@ -151,10 +152,7 @@ export function CopilotView() {
 
           {text !== null && (
             <div data-copilot-draft className="flex flex-col gap-2 border-t border-slate/10 pt-3">
-              <label htmlFor="cp-text" className="text-sm font-semibold text-slate">
-                {t('cp.check')}
-              </label>
-              <textarea id="cp-text" rows={10} maxLength={8000} value={text} onChange={(e) => setText(e.target.value)} className="rounded-md border border-slate/20 p-2 text-base text-slate" />
+              <Textarea id="cp-text" label={t('cp.check')} rows={10} maxLength={8000} value={text} onChange={(e) => setText(e.target.value)} />
               <div className="flex flex-wrap gap-2">
                 <button type="button" data-approve disabled={busy || !text.trim()} onClick={() => void approve()} className={PRIMARY}>
                   {t(kind === 'pulse_message' ? 'cp.pulse.use' : 'cp.approve')}

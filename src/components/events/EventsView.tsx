@@ -2,8 +2,10 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
 
@@ -65,9 +67,9 @@ export function EventsView({ shownAbove = false }: { shownAbove?: boolean }) {
 
       {data.mayManage && (
         <section data-event-new className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
-          <div>
+          <div className="flex flex-wrap items-center gap-x-1">
             <h2 className="text-base font-bold">{t('evt.new.title')}</h2>
-            <p className="text-slate/70">{t('evt.new.how')}</p>
+            <InfoTip>{t('evt.new.how')}</InfoTip>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <div className="lg:col-span-2"><Input id="event-title" label={t('evt.new.name')} maxLength={120} value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} /></div>
@@ -77,16 +79,10 @@ export function EventsView({ shownAbove = false }: { shownAbove?: boolean }) {
           <Input id="event-details" label={t('evt.new.details')} maxLength={300} value={form.details} onChange={(e) => setForm({ ...form, details: e.target.value })} />
           <fieldset className="flex flex-col gap-2">
             <legend className="font-semibold">{t('evt.new.who')}</legend>
-            <div className="flex flex-wrap gap-2">
-              <label className={`flex min-h-[44px] items-center gap-2 rounded-md border px-3 ${form.all ? 'border-midnight' : 'border-slate/20'}`}>
-                <input type="checkbox" data-event-all className="h-5 w-5" checked={form.all} onChange={(e) => setForm({ ...form, all: e.target.checked, classIds: e.target.checked ? [] : form.classIds })} />
-                <span>{t('evt.allClasses')}</span>
-              </label>
+            <div className="flex flex-wrap gap-x-4">
+              <Checkbox id="event-all" data-event-all label={t('evt.allClasses')} checked={form.all} onChange={(e) => setForm({ ...form, all: e.target.checked, classIds: e.target.checked ? [] : form.classIds })} />
               {!form.all && data.classes.map((c) => (
-                <label key={c.class_id} className={`flex min-h-[44px] items-center gap-2 rounded-md border px-3 ${form.classIds.includes(c.class_id) ? 'border-midnight' : 'border-slate/20'}`}>
-                  <input type="checkbox" data-event-class className="h-5 w-5" checked={form.classIds.includes(c.class_id)} onChange={(e) => setForm({ ...form, classIds: e.target.checked ? [...form.classIds, c.class_id] : form.classIds.filter((x) => x !== c.class_id) })} />
-                  <span>{c.name}</span>
-                </label>
+                <Checkbox key={c.class_id} id={`event-class-${c.class_id}`} data-event-class label={c.name} checked={form.classIds.includes(c.class_id)} onChange={(e) => setForm({ ...form, classIds: e.target.checked ? [...form.classIds, c.class_id] : form.classIds.filter((x) => x !== c.class_id) })} />
               ))}
             </div>
           </fieldset>
@@ -111,7 +107,6 @@ export function EventsView({ shownAbove = false }: { shownAbove?: boolean }) {
                 </div>
                 <p>{e.details}</p>
                 {e.status !== 'draft' && <p data-event-counts className="font-semibold">{t('evt.counts', { invited: e.invited, yes: e.yes, no: e.no })}</p>}
-                {e.status === 'draft' && <p className="text-slate/70">{t('evt.draftWhy')}</p>}
                 {data.mayManage && e.status !== 'cancelled' && (
                   <div className="flex flex-wrap gap-2">
                     {e.status === 'draft' && (

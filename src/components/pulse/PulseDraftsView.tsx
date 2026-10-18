@@ -5,6 +5,7 @@ import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
 import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
+import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/Toast';
 import type { MessageKey } from '@/lib/i18n';
 
@@ -126,15 +127,15 @@ export function PulseDraftsView({ shownAbove = false }: { shownAbove?: boolean }
                   </button>
                 ))}
               </div>
-              <textarea
-                aria-label={t(`pc.lang.${l}` as MessageKey)}
+              <Textarea
+                id={`pulse-words-${d.pulse_id}`}
+                label={t(`pc.lang.${l}` as MessageKey)}
                 lang={l === 'en' ? 'en' : 'hi'}
                 rows={4}
                 maxLength={1000}
                 readOnly={locked}
                 value={words[k] ?? bodyOf(d, l)}
                 onChange={(e) => setWords((w) => ({ ...w, [k]: e.target.value }))}
-                className="rounded-md border border-slate/20 p-2 text-base text-slate"
               />
               {!locked && (
                 <div className="flex flex-wrap gap-2">

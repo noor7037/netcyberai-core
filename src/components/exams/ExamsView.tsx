@@ -2,11 +2,14 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { Badge } from '@/components/ui/Badge';
+import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import type { ExamsScreen, ExamSummary, PaperSummary } from '@/lib/exams/exams';
 import type { MessageKey } from '@/lib/i18n';
-import { Field, FIELD, PRIMARY, SECTION, TAP } from './SchemeParts';
+import { PRIMARY, SECTION, TAP } from './SchemeParts';
 import { dayWords } from './exam-format';
 
 // Exams (docs/27 row 9b, C214). The papers that wait for this person's marks come first. The principal, the school
@@ -98,9 +101,9 @@ export function ExamsView() {
       )}
 
       <section data-exams-to-enter className={SECTION}>
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('ex.toEnter.title')}</h2>
-          <p className="text-slate/70">{t('ex.toEnter.how')}</p>
+          <InfoTip>{t('ex.toEnter.how')}</InfoTip>
         </div>
         {data.toEnter.length ? (
           <ul className="flex flex-col gap-2">
@@ -124,21 +127,23 @@ export function ExamsView() {
       </section>
 
       {data.sessions.length > 1 && (
-        <div className="flex max-w-xs flex-col gap-1">
-          <label htmlFor="exams-session" className="text-xs font-semibold">{t('ex.session')}</label>
-          <select id="exams-session" className={FIELD} value={data.session ?? 'none'} onChange={(e) => setSession(e.target.value)}>
+        <div className="max-w-xs">
+          <Select id="exams-session" label={t('ex.session')} value={data.session ?? 'none'} onChange={(e) => setSession(e.target.value)}>
             {data.sessions.map((s) => (
               <option key={s.sessionId} value={s.sessionId}>{s.label}</option>
             ))}
-          </select>
+          </Select>
         </div>
       )}
 
       {data.mayRun && (
         <section data-exam-make className={SECTION}>
-          <div>
+          <div className="flex flex-wrap items-center gap-x-1">
             <h2 className="text-base font-bold">{t('ex.make.title')}</h2>
-            <p className="text-slate/70">{t('ex.make.how')}</p>
+            <InfoTip>
+              <p>{t('ex.make.how')}</p>
+              {sessionLabel && <p className="mt-2">{t('ex.make.inSession', { session: sessionLabel })}</p>}
+            </InfoTip>
           </div>
           {!data.scheme && (
             <div data-exam-no-scheme className="flex flex-col items-start gap-2 rounded-md bg-off-white px-3 py-2">
@@ -147,20 +152,18 @@ export function ExamsView() {
             </div>
           )}
           <div className="grid gap-3 sm:grid-cols-2">
-            <Field id="exam-name" label={t('ex.make.name')}>
-              <input id="exam-name" className={FIELD} maxLength={120} value={name} onChange={(e) => setName(e.target.value)} />
-            </Field>
-            <Field id="exam-term" label={t('ex.make.term')}>
-              <select id="exam-term" className={FIELD} value={term} onChange={(e) => setTerm(e.target.value)}>
-                <option value="">{t('ex.make.noTerm')}</option>
-                {(data.scheme?.terms ?? []).map((x) => (
-                  <option key={x} value={x}>{x}</option>
-                ))}
-              </select>
-            </Field>
+            <Input id="exam-name" label={t('ex.make.name')} maxLength={120} value={name} onChange={(e) => setName(e.target.value)} />
+            <Select id="exam-term" label={t('ex.make.term')} value={term} onChange={(e) => setTerm(e.target.value)}>
+              <option value="">{t('ex.make.noTerm')}</option>
+              {(data.scheme?.terms ?? []).map((x) => (
+                <option key={x} value={x}>{x}</option>
+              ))}
+            </Select>
           </div>
-          {sessionLabel && <p className="text-slate/70">{t('ex.make.inSession', { session: sessionLabel })}</p>}
-          <h3 className="font-bold">{t('ex.make.papers')}</h3>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <h3 className="font-bold">{t('ex.make.papers')}</h3>
+            <InfoTip>{t('ex.make.maxHow')}</InfoTip>
+          </div>
           {papers.map((p, i) => (
             <PaperRow key={i} index={i} idPrefix="exam-paper" paper={p} parts={parts} data={data} onChange={(v) => setPapers(papers.map((x, j) => (j === i ? v : x)))} onRemove={papers.length > 1 ? () => setPapers(papers.filter((_, j) => j !== i)) : undefined} />
           ))}
@@ -232,7 +235,10 @@ function ExamCard({
     <article data-exam={exam.examId} className={SECTION}>
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0">
-          <h3 className="text-base font-bold">{exam.name}</h3>
+          <div className="flex flex-wrap items-center gap-x-1">
+            <h3 className="text-base font-bold">{exam.name}</h3>
+            <InfoTip>{t('ex.exam.noRank')}</InfoTip>
+          </div>
           <p className="text-slate/70">
             {exam.term ? t('ex.exam.term', { term: exam.term }) : t('ex.exam.noTerm')}
             {exam.madeBy ? ` · ${t('ex.exam.madeBy', { name: exam.madeBy })}` : ''}
@@ -279,7 +285,6 @@ function ExamCard({
           )}
         </div>
       )}
-      <p className="text-xs text-slate/70" lang={lang}>{t('ex.exam.noRank')}</p>
     </article>
   );
 }
@@ -319,34 +324,25 @@ function PaperRow({ index, idPrefix, paper, parts, data, onChange, onRemove }: {
     <fieldset data-paper-row={index} className="flex flex-col gap-3 rounded-md border border-slate/10 p-3">
       <legend className="px-1 font-semibold">{t('ex.make.paperN', { n: index + 1 })}</legend>
       <div className="grid gap-3 sm:grid-cols-3">
-        <Field id={id('class')} label={t('ex.make.class')}>
-          <select id={id('class')} className={FIELD} value={paper.classId} onChange={(e) => onChange({ ...paper, classId: e.target.value })}>
-            <option value="">{t('ex.make.choose')}</option>
-            {data.classes.map((c) => (
-              <option key={c.classId} value={c.classId}>{c.name}</option>
-            ))}
-          </select>
-        </Field>
-        <Field id={id('subject')} label={t('ex.make.subject')}>
-          <select id={id('subject')} className={FIELD} value={paper.subjectId} onChange={(e) => onChange({ ...paper, subjectId: e.target.value })}>
-            <option value="">{t('ex.make.choose')}</option>
-            {data.subjects.map((s) => (
-              <option key={s.subjectId} value={s.subjectId}>{s.name}</option>
-            ))}
-          </select>
-        </Field>
-        <Field id={id('date')} label={t('ex.make.date')}>
-          <input id={id('date')} type="date" className={FIELD} value={paper.date} onChange={(e) => onChange({ ...paper, date: e.target.value })} />
-        </Field>
+        <Select id={id('class')} label={t('ex.make.class')} value={paper.classId} onChange={(e) => onChange({ ...paper, classId: e.target.value })}>
+          <option value="">—</option>
+          {data.classes.map((c) => (
+            <option key={c.classId} value={c.classId}>{c.name}</option>
+          ))}
+        </Select>
+        <Select id={id('subject')} label={t('ex.make.subject')} value={paper.subjectId} onChange={(e) => onChange({ ...paper, subjectId: e.target.value })}>
+          <option value="">—</option>
+          {data.subjects.map((s) => (
+            <option key={s.subjectId} value={s.subjectId}>{s.name}</option>
+          ))}
+        </Select>
+        <Input id={id('date')} type="date" label={t('ex.make.date')} value={paper.date} onChange={(e) => onChange({ ...paper, date: e.target.value })} />
       </div>
       <div className="grid gap-3 sm:grid-cols-3">
         {parts.map((part) => (
-          <Field key={part.key} id={id(`max-${part.key}`)} label={t('ex.make.max', { part: part.name })}>
-            <input id={id(`max-${part.key}`)} inputMode="decimal" className={FIELD} value={paper.maxima[part.key] ?? ''} onChange={(e) => onChange({ ...paper, maxima: { ...paper.maxima, [part.key]: e.target.value } })} />
-          </Field>
+          <Input key={part.key} id={id(`max-${part.key}`)} inputMode="decimal" label={t('ex.make.max', { part: part.name })} value={paper.maxima[part.key] ?? ''} onChange={(e) => onChange({ ...paper, maxima: { ...paper.maxima, [part.key]: e.target.value } })} />
         ))}
       </div>
-      <p className="text-xs text-slate/70">{t('ex.make.maxHow')}</p>
       {onRemove && (
         <button type="button" className={`${TAP} self-start`} onClick={onRemove}>{t('ex.make.removePaper')}</button>
       )}

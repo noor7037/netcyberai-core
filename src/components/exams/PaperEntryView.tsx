@@ -2,12 +2,15 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
+import { Checkbox } from '@/components/ui/Checkbox';
+import { Input } from '@/components/ui/Input';
 import type { EntryChild, PaperEntry } from '@/lib/exams/marks';
 import { scoreOk, type MarkKind } from '@/lib/exams/papers';
 import type { MessageKey } from '@/lib/i18n';
 import { dayWords, markWords, momentWords, numberWords } from './exam-format';
-import { Field, FIELD, PRIMARY, SECTION, TAP } from './SchemeParts';
+import { PRIMARY, SECTION, TAP } from './SchemeParts';
 
 // Entering one paper's marks (docs/27 row 9b, C214), made for a phone: the class's roll in roll order, and for each
 // child each part of the paper with its maximum: a mark, or "Absent", or "Exempt". Absent and exempt are not marks
@@ -20,8 +23,6 @@ type Cell = { kind: MarkKind | 'none'; text: string };
 type Draft = Record<string, Cell>; // `${studentId}|${component}`
 const key = (studentId: string, component: string) => `${studentId}|${component}`;
 const parse = (text: string): number => Number(text.trim().replace(',', '.'));
-// A mark's box: narrow, so the box and its two buttons sit on one line on a phone.
-const MARK_FIELD = 'min-h-[44px] w-20 flex-none rounded-md border border-slate/20 bg-white px-3 text-sm text-slate disabled:bg-off-white';
 
 function draftOf(children: readonly EntryChild[], components: readonly { key: string }[]): Draft {
   const d: Draft = {};
@@ -108,16 +109,18 @@ export function PaperEntryView({ paperId }: { paperId: string }) {
   const { paper, exam } = data;
   const complete = paper.roll > 0 && paper.entered >= paper.roll;
   const set = (studentId: string, component: string, cell: Cell) => setDraft({ ...draft, [key(studentId, component)]: cell });
-  const saveBar = data.mayEnter && (
-    <div className="flex flex-wrap items-center gap-3">
-      <button type="button" data-marks-save className={PRIMARY} disabled={busy || changes.wrong > 0 || changes.out.length === 0} onClick={() => void save()}>
-        {t('ex.entry.save')}
-      </button>
-      <span data-marks-pending className="text-slate/70">
-        {changes.wrong > 0 ? t('ex.entry.wrong', { n: changes.wrong }) : changes.out.length ? t('ex.entry.pending', { n: changes.out.length }) : t('ex.entry.nothing')}
-      </span>
-    </div>
-  );
+  const saveBar = (withTip: boolean) =>
+    data.mayEnter && (
+      <div className="flex flex-wrap items-center gap-x-3">
+        <button type="button" data-marks-save className={PRIMARY} disabled={busy || changes.wrong > 0 || changes.out.length === 0} onClick={() => void save()}>
+          {t('ex.entry.save')}
+        </button>
+        <span data-marks-pending className="text-slate/70">
+          {changes.wrong > 0 ? t('ex.entry.wrong', { n: changes.wrong }) : changes.out.length ? t('ex.entry.pending', { n: changes.out.length }) : ''}
+        </span>
+        {withTip && <InfoTip>{t('ex.entry.rules')}</InfoTip>}
+      </div>
+    );
 
   return (
     <div lang={lang} data-paper-entry={paperId} className="flex flex-col gap-4 text-sm text-slate">
@@ -156,17 +159,14 @@ export function PaperEntryView({ paperId }: { paperId: string }) {
       {data.mayChange && (
         <details data-paper-details className={SECTION}>
           <summary className="min-h-[44px] cursor-pointer py-2 font-bold">{t('ex.entry.detailsTitle')}</summary>
-          <Field id="paper-date" label={t('ex.make.date')}>
-            <input id="paper-date" type="date" className={`${FIELD} max-w-xs`} value={details.date} onChange={(e) => setDetails({ ...details, date: e.target.value })} />
-          </Field>
+          <div className="mt-3 max-w-xs">
+            <Input id="paper-date" type="date" label={t('ex.make.date')} value={details.date} onChange={(e) => setDetails({ ...details, date: e.target.value })} />
+          </div>
           <fieldset className="flex flex-col gap-1">
             <legend className="text-xs font-semibold">{t('ex.entry.chaptersPick')}</legend>
             {data.map.length ? (
               data.map.map((u) => (
-                <label key={u.unitId} className="flex min-h-[44px] items-center gap-3">
-                  <input type="checkbox" className="h-5 w-5" checked={details.unitIds.includes(u.unitId)} onChange={(e) => setDetails({ ...details, unitIds: e.target.checked ? [...details.unitIds, u.unitId] : details.unitIds.filter((x) => x !== u.unitId) })} />
-                  <span>{u.chapter}: {u.topic}</span>
-                </label>
+                <Checkbox key={u.unitId} id={`paper-unit-${u.unitId}`} label={`${u.chapter}: ${u.topic}`} checked={details.unitIds.includes(u.unitId)} onChange={(e) => setDetails({ ...details, unitIds: e.target.checked ? [...details.unitIds, u.unitId] : details.unitIds.filter((x) => x !== u.unitId) })} />
               ))
             ) : (
               <p className="text-slate/70">{t('ex.entry.noMap')}</p>
@@ -178,7 +178,7 @@ export function PaperEntryView({ paperId }: { paperId: string }) {
         </details>
       )}
 
-      {saveBar}
+      {saveBar(true)}
       {!data.children.length && <p className="rounded-md bg-off-white px-3 py-2">{t('ex.entry.noChildren')}</p>}
       <ol className="flex flex-col gap-3" data-entry-children>
         {data.children.map((child) => (
@@ -192,17 +192,19 @@ export function PaperEntryView({ paperId }: { paperId: string }) {
                 if (!data.mayEnter) return <p key={c.key}>{markWords(t, lang, c, child.marks[c.key])}</p>;
                 return (
                   <div key={c.key} data-mark-cell={c.key} className="flex flex-col gap-1">
-                    <label htmlFor={id} className="text-xs font-semibold">{t('ex.entry.partLabel', { part: c.name, max: numberWords(c.max, lang) })}</label>
                     <div className="flex flex-wrap items-center gap-2">
-                      <input
-                        id={id}
-                        inputMode="decimal"
-                        aria-invalid={wrong}
-                        className={MARK_FIELD}
-                        value={cell.kind === 'score' ? cell.text : ''}
-                        disabled={cell.kind === 'absent' || cell.kind === 'exempt'}
-                        onChange={(e) => set(child.studentId, c.key, { kind: 'score', text: e.target.value })}
-                      />
+                      <div className="w-32 flex-none">
+                        <Input
+                          id={id}
+                          label={t('ex.entry.partLabel', { part: c.name, max: numberWords(c.max, lang) })}
+                          inputMode="decimal"
+                          aria-invalid={wrong}
+                          floating={false}
+                          value={cell.kind === 'score' ? cell.text : ''}
+                          disabled={cell.kind === 'absent' || cell.kind === 'exempt'}
+                          onChange={(e) => set(child.studentId, c.key, { kind: 'score', text: e.target.value })}
+                        />
+                      </div>
                       {(['absent', 'exempt'] as const).map((k) => (
                         <button
                           key={k}
@@ -224,8 +226,7 @@ export function PaperEntryView({ paperId }: { paperId: string }) {
           </li>
         ))}
       </ol>
-      {data.children.length > 3 && saveBar}
-      <p className="text-xs text-slate/70">{t('ex.entry.rules')}</p>
+      {data.children.length > 3 && saveBar(false)}
     </div>
   );
 }

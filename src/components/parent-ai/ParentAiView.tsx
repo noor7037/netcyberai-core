@@ -2,9 +2,12 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
+import { Textarea } from '@/components/ui/Textarea';
 import type { MessageKey } from '@/lib/i18n';
 
 // Parent AI v1 (docs/25 slice 7n, C196): "What can I do at home?". Choose a guardian and their child; a draft is put
@@ -85,9 +88,9 @@ export function ParentAiView({ shownAbove = false }: { shownAbove?: boolean }) {
       {note && <p role="status" data-parent-ai-note className={`rounded-md px-3 py-2 font-semibold ${note.ok ? 'bg-off-white text-slate' : 'border border-red-800/30 text-red-800'}`}>{note.text}</p>}
 
       <section data-parent-ai-new className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
-        <div>
+        <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold">{t('pai.new.title')}</h2>
-          <p className="text-slate/70">{t('pai.new.how')}</p>
+          <InfoTip>{t('pai.new.how')}</InfoTip>
         </div>
         {!who ? (
           <>
@@ -112,14 +115,11 @@ export function ParentAiView({ shownAbove = false }: { shownAbove?: boolean }) {
               <p className="rounded-md bg-off-white px-3 py-2">{t('pai.new.noChild')}</p>
             ) : (
               <div className="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-end">
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="parent-ai-child" className="font-semibold">{t('pai.new.child')}</label>
-                  <select id="parent-ai-child" className="min-h-[44px] rounded-md border border-slate/20 bg-white px-3" value={child} onChange={(e) => setStudentId(e.target.value)}>
-                    {who.children.map((c) => (
-                      <option key={c.student_id} value={c.student_id}>{c.name}{c.class_name ? ` (${c.class_name})` : ''}</option>
-                    ))}
-                  </select>
-                </div>
+                <Select id="parent-ai-child" label={t('pai.new.child')} value={child} onChange={(e) => setStudentId(e.target.value)}>
+                  {who.children.map((c) => (
+                    <option key={c.student_id} value={c.student_id}>{c.name}{c.class_name ? ` (${c.class_name})` : ''}</option>
+                  ))}
+                </Select>
                 <button type="button" data-parent-ai-draft disabled={busy || !child} className={PRIMARY} onClick={() => void send('/api/app/parent-ai', { studentId: child, parentId: who.parent_id }, () => t('pai.drafted'))}>
                   {t('pai.new.draft')}
                 </button>
@@ -145,10 +145,7 @@ export function ParentAiView({ shownAbove = false }: { shownAbove?: boolean }) {
                     <span className="text-slate/70">{t(a.ai_assisted ? 'pai.madeWithAi' : 'pai.madeByRules')}</span>
                   </div>
                   {a.status === 'draft' ? (
-                    <>
-                      <label htmlFor={`answer-${a.answer_id}`} className="font-semibold">{t('pai.words')}</label>
-                      <textarea id={`answer-${a.answer_id}`} rows={4} maxLength={MAX} className="rounded-md border border-slate/20 px-3 py-2" value={text} onChange={(e) => setWords({ ...words, [a.answer_id]: e.target.value })} />
-                    </>
+                    <Textarea id={`answer-${a.answer_id}`} label={t('pai.words')} rows={4} maxLength={MAX} value={text} onChange={(e) => setWords({ ...words, [a.answer_id]: e.target.value })} />
                   ) : (
                     <p className="whitespace-pre-wrap break-words">{a.body}</p>
                   )}

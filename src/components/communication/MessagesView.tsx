@@ -1,7 +1,8 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import type { MessageKey } from '@/lib/i18n';
 
@@ -51,7 +52,10 @@ export function MessagesView({ mayRead, initialState, range, initial }: { mayRea
   if (!mayRead) return <p data-messages-office-only className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('msg.officeOnly')}</p>;
   if (failed) return <p role="alert" className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('msg.failed')}</p>;
   if (!data) return null;
-  const when = new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' });
+  // The messages are grouped under their day (C239): the day once, then each row's time, "2:52pm".
+  const dayOf = new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short' });
+  const timeOf = new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: '2-digit' });
+  const shortTime = (d: Date) => timeOf.format(d).replace(/\s+(?=[ap]m\b)/i, '');
   const total = STATES.reduce((n, s) => n + (data.counts[s] ?? 0), 0);
   // How many the chosen button counts, and whether the rows under it stop short of that.
   const inState = data.inState ?? (state ? (data.counts[state] ?? 0) : total);
@@ -61,17 +65,18 @@ export function MessagesView({ mayRead, initialState, range, initial }: { mayRea
 
   return (
     <section lang={lang} data-messages data-messages-range={from && to ? `${from}/${to}` : 'last'} className="flex flex-col gap-4 rounded-lg border border-slate/10 bg-white p-4">
-      <div>
+      <div className="flex flex-wrap items-center gap-x-1">
         <h2 className="text-base font-bold text-slate">{t('msg.title')}</h2>
+        <InfoTip>{from && to ? t('msg.range.how') : t('msg.how', { days: data.days })}</InfoTip>
         {from && to ? (
           <>
-            <p className="text-sm text-slate/70">{t('msg.range', { from: day.format(new Date(`${from}T00:00:00Z`)), to: day.format(new Date(`${to}T00:00:00Z`)) })}</p>
+            <p className="basis-full text-sm text-slate/70">{t('msg.range', { from: day.format(new Date(`${from}T00:00:00Z`)), to: day.format(new Date(`${to}T00:00:00Z`)) })}</p>
             <a href="/app/communication" data-messages-clear className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
               {t('msg.range.clear')}
             </a>
           </>
         ) : (
-          <p className="text-sm text-slate/70">{t('msg.how', { days: data.days })}</p>
+          <p className="basis-full text-sm text-slate/70">{t('msg.days', { days: data.days })}</p>
         )}
       </div>
       {usesStandIn && <p data-messages-standin className="rounded-md border border-tangerine/40 bg-off-white px-3 py-2 text-sm font-semibold text-slate">{t('msg.standIn')}</p>}
@@ -94,25 +99,32 @@ export function MessagesView({ mayRead, initialState, range, initial }: { mayRea
         <p data-messages-empty className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t(total === 0 ? 'msg.none' : 'msg.noneInState')}</p>
       ) : (
         <ul className="flex flex-col gap-2">
-          {data.messages.map((m) => {
+          {data.messages.map((m, i) => {
             const s = stateOf(m.status);
             const at = s === 'read' ? m.read_at : s === 'delivered' ? m.delivered_at : s === 'failed' ? m.failed_at : null;
+            const stamp = new Date(at ?? m.created_at);
+            const prev = i > 0 ? data.messages[i - 1] : null;
+            const prevState = prev ? stateOf(prev.status) : null;
+            const prevStamp = prev ? new Date((prevState === 'read' ? prev.read_at : prevState === 'delivered' ? prev.delivered_at : prevState === 'failed' ? prev.failed_at : null) ?? prev.created_at) : null;
+            const newDay = !prevStamp || dayOf.format(prevStamp) !== dayOf.format(stamp);
             return (
-              <li key={m.log_id} data-message={s} className="flex flex-col gap-1 rounded-md border border-slate/10 p-3 text-sm text-slate">
+              <Fragment key={m.log_id}>
+              {newDay && <li data-message-day className="pt-2 text-sm font-bold text-slate">{dayOf.format(stamp)}</li>}
+              <li data-message={s} className="flex flex-col gap-1 rounded-md border border-slate/10 p-3 text-sm text-slate">
                 <div className="flex flex-wrap items-center gap-2">
                   <Badge variant={VARIANT[s]}>{t(`msg.state.${s}` as MessageKey)}</Badge>
                   <span className="font-bold">{m.template_name && TEMPLATES.includes(m.template_name) ? t(`msg.template.${m.template_name}` as MessageKey) : (m.template_name ?? '')}</span>
-                  <span className="text-slate/70">{when.format(new Date(m.created_at))}</span>
+                  <span className="text-slate/70">{shortTime(stamp)}</span>
                 </div>
                 <p>
                   {m.child ? t('msg.about', { child: m.child }) : ''} {m.guardian ? t('msg.to', { guardian: m.guardian, last4: m.phone_last4 ?? '' }) : m.phone_last4 ? t('msg.toNumber', { last4: m.phone_last4 }) : ''}
                 </p>
                 {s === 'uncertain' && <p className="font-semibold">{t('msg.uncertainWhy')}</p>}
                 {s === 'queued' && <p className="text-slate/70">{t('msg.queuedWhy')}</p>}
-                {at && <p className="text-slate/70">{t(`msg.at.${s}` as MessageKey, { when: when.format(new Date(at)) })}</p>}
                 {s === 'held' && <p className="font-semibold">{HELD_REASONS.includes(m.status) ? t(`msg.held.${m.status}` as MessageKey) : (m.reason ?? '')}</p>}
                 {s === 'failed' && <p className="font-semibold text-red-800">{t('msg.failedWhy')}</p>}
               </li>
+              </Fragment>
             );
           })}
         </ul>

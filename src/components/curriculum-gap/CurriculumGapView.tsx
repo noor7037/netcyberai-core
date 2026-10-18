@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useT } from '@/components/app-shell/LangContext';
+import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
+import { Select } from '@/components/ui/Select';
 import type { GapScreen } from '@/lib/curriculum-gap/curriculum-gap';
 import { GAP_STATES, type GapState, type UnitGap } from '@/lib/curriculum-gap/rules';
 import type { MessageKey } from '@/lib/i18n';
@@ -17,7 +19,6 @@ import type { MessageKey } from '@/lib/i18n';
 
 const BOX = 'flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4';
 const SOFT = 'rounded-md bg-off-white px-3 py-2';
-const FIELD = 'min-h-[44px] w-full rounded-md border border-slate/20 bg-white px-3 text-sm text-slate';
 const LINK = 'inline-flex min-h-[44px] items-center justify-center rounded-md bg-sapphire px-4 text-sm font-semibold text-white';
 const WHY = 'inline-flex min-h-[44px] cursor-pointer items-center font-semibold text-sapphire underline';
 
@@ -72,33 +73,28 @@ export function CurriculumGapView() {
     <div lang={lang} data-curriculum-gap className="flex flex-col gap-4 text-sm text-slate">
       <section className={BOX} data-gap-pick>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="flex flex-col gap-1">
-            <label htmlFor="gap-class" className="font-semibold">{t('cg.class')}</label>
-            <select id="gap-class" className={FIELD} value={data.classId ?? ''} disabled={busy || data.classes.length === 0} onChange={(e) => void load(e.target.value, data.subjectId, data.sessionId)}>
-              {data.classes.map((c) => (
-                <option key={c.classId} value={c.classId}>{c.name}</option>
-              ))}
-            </select>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="gap-subject" className="font-semibold">{t('cg.subject')}</label>
-            <select id="gap-subject" className={FIELD} value={data.subjectId ?? ''} disabled={busy || data.subjects.length === 0} onChange={(e) => void load(data.classId, e.target.value, data.sessionId)}>
-              {data.subjects.map((s) => (
-                <option key={s.subjectId} value={s.subjectId}>{s.mapped ? s.name : t('cg.subjectNoMap', { subject: s.name })}</option>
-              ))}
-            </select>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="gap-session" className="font-semibold">{t('cg.session')}</label>
-            <select id="gap-session" data-gap-session className={FIELD} value={data.sessionId ?? ''} disabled={busy || data.sessions.length === 0} onChange={(e) => void load(data.classId, data.subjectId, e.target.value)}>
-              {data.sessions.map((s) => (
-                <option key={s.sessionId} value={s.sessionId}>{s.current ? t('cg.sessionCurrent', { label: s.label }) : s.label}</option>
-              ))}
-            </select>
-          </div>
+          <Select id="gap-class" label={t('cg.class')} value={data.classId ?? ''} disabled={busy || data.classes.length === 0} onChange={(e) => void load(e.target.value, data.subjectId, data.sessionId)}>
+            {data.classes.map((c) => (
+              <option key={c.classId} value={c.classId}>{c.name}</option>
+            ))}
+          </Select>
+          <Select id="gap-subject" label={t('cg.subject')} value={data.subjectId ?? ''} disabled={busy || data.subjects.length === 0} onChange={(e) => void load(data.classId, e.target.value, data.sessionId)}>
+            {data.subjects.map((s) => (
+              <option key={s.subjectId} value={s.subjectId}>{s.mapped ? s.name : t('cg.subjectNoMap', { subject: s.name })}</option>
+            ))}
+          </Select>
+          <Select id="gap-session" data-gap-session label={t('cg.session')} value={data.sessionId ?? ''} disabled={busy || data.sessions.length === 0} onChange={(e) => void load(data.classId, data.subjectId, e.target.value)}>
+            {data.sessions.map((s) => (
+              <option key={s.sessionId} value={s.sessionId}>{s.current ? t('cg.sessionCurrent', { label: s.label }) : s.label}</option>
+            ))}
+          </Select>
         </div>
-        {session && <p data-gap-session-days className="text-slate/70">{t('cg.sessionDays', { label: session.label, from: day(session.startDate), to: day(session.endDate) })}</p>}
-        <p className="text-slate/70">{t(data.wholeSchool ? 'cg.whoOffice' : 'cg.whoTeacher')}</p>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <InfoTip label={t('cg.pick.more')}>
+            {session && <p data-gap-session-days>{t('cg.sessionDays', { label: session.label, from: day(session.startDate), to: day(session.endDate) })}</p>}
+            <p className={session ? 'mt-2' : ''}>{t(data.wholeSchool ? 'cg.whoOffice' : 'cg.whoTeacher')}</p>
+          </InfoTip>
+        </div>
         {failed && <p role="alert" className={SOFT}>{t('cg.failed')}</p>}
       </section>
 
@@ -152,8 +148,10 @@ export function CurriculumGapView() {
           </section>
 
           <section className={BOX}>
-            <h2 className="text-base font-bold">{t('cg.units.title')}</h2>
-            <p className="text-slate/70">{t('cg.units.order')}</p>
+            <div className="flex flex-wrap items-center gap-x-1">
+              <h2 className="text-base font-bold">{t('cg.units.title')}</h2>
+              <InfoTip>{t('cg.units.order')}</InfoTip>
+            </div>
             <ol className="flex flex-col gap-3" data-gap-units>
               {data.gap.units.map((u) => (
                 <li key={u.unitId} data-gap-unit={u.unitId} data-gap-state={u.state} className="flex flex-col gap-1 rounded-md border border-slate/10 p-3">
