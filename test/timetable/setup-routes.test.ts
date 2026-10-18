@@ -3,8 +3,9 @@ import { NextRequest } from 'next/server';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 
-// The routes of docs/28 slice 10g (C231), as each person's own session: who teaches what (the office writes it; a
-// teacher reads their own and proposes for themselves; nobody decides their own proposal), the timetable's
+// The routes of docs/28 slice 10g (C231), as each person's own session: who teaches what (the office writes it, and
+// the academic coordinator since C243; a teacher reads their own and proposes for themselves; nobody decides their own
+// proposal), the timetable's
 // "not_assigned" answer, and the periods a week per teacher (the office, every teacher; a teacher, their own line;
 // nobody else). Every name is made up.
 
@@ -89,9 +90,9 @@ describe('who teaches what, by role', () => {
     expect(readModuleFor(AS)).toBe('any-module');
   });
 
-  it('POST and DELETE: the principal and the school admin only; refused bodies; a teacher, the coordinator and the accountant refused', async () => {
+  it('POST and DELETE: the principal, the school admin and the coordinator (C243) only; refused bodies; a teacher and the accountant refused', async () => {
     const a = { teacherUserId: TEACHER, classId: C5A, subjectId: MATHS };
-    for (const w of [teacher, coord, accountant]) {
+    for (const w of [teacher, accountant]) {
       expect((await call(w, assignmentsPost, AS, 'POST', a)).status, w.role).toBe(403);
       expect((await call(w, assignmentsDelete, AS, 'DELETE', a)).status, w.role).toBe(403);
     }
@@ -102,9 +103,14 @@ describe('who teaches what, by role', () => {
     expect(await call(admin, assignmentsPost, AS, 'POST', { ...a, classId: C5B })).toMatchObject({ status: 201 });
     expect((await call(admin, assignmentsDelete, AS, 'DELETE', { ...a, classId: C5B })).status).toBe(200);
     expect((await call(admin, assignmentsDelete, AS, 'DELETE', { ...a, classId: C5B })).status).toBe(404);
+    // The academic coordinator (C230-C): adds and takes away; a teacher's first subject (their teachers row) is the
+    // principal's or the school admin's, and the answer says so.
+    expect(await call(coord, assignmentsPost, AS, 'POST', { ...a, teacherUserId: TEACHER_2 })).toMatchObject({ status: 409, body: { code: 'needs_office' } });
+    expect(await call(coord, assignmentsPost, AS, 'POST', { ...a, classId: C5B })).toMatchObject({ status: 201, body: { created: true } });
+    expect((await call(coord, assignmentsDelete, AS, 'DELETE', { ...a, classId: C5B })).status).toBe(200);
   });
 
-  it('a teacher proposes for themselves; only the office decides; nobody decides their own', async () => {
+  it('a teacher proposes for themselves; only the office and the coordinator decide; nobody decides their own', async () => {
     for (const w of [principal, admin, coord, accountant]) expect((await call(w, requestsPost, REQ, 'POST', { classId: C5B, subjectId: ENGLISH })).status, w.role).toBe(403);
     expect((await call(teacher, requestsPost, REQ, 'POST', { classId: 'x', subjectId: ENGLISH })).status).toBe(400);
     const made = await call(teacher, requestsPost, REQ, 'POST', { classId: C5B, subjectId: ENGLISH });
@@ -112,17 +118,17 @@ describe('who teaches what, by role', () => {
     expect(await call(teacher, requestsPost, REQ, 'POST', { classId: C5B, subjectId: ENGLISH })).toMatchObject({ status: 409, body: { code: 'already_requested' } });
     expect(await call(teacher, requestsPost, REQ, 'POST', { classId: C5A, subjectId: MATHS })).toMatchObject({ status: 409, body: { code: 'already_assigned' } });
     const requestId = made.body.requestId as string;
-    for (const w of [teacher, teacher2, coord, accountant]) expect((await call(w, requestsPut, REQ, 'PUT', { requestId, decision: 'confirm' })).status, w.role).toBe(403);
+    for (const w of [teacher, teacher2, accountant]) expect((await call(w, requestsPut, REQ, 'PUT', { requestId, decision: 'confirm' })).status, w.role).toBe(403);
     for (const bad of [{ requestId }, { requestId, decision: 'yes' }, { requestId: 'x', decision: 'confirm' }]) expect((await call(admin, requestsPut, REQ, 'PUT', bad)).status, JSON.stringify(bad)).toBe(400);
     expect((await call(admin, requestsPut, REQ, 'PUT', { requestId: u(99), decision: 'confirm' })).status).toBe(404);
-    expect(await call(admin, requestsPut, REQ, 'PUT', { requestId, decision: 'confirm' })).toMatchObject({ status: 200, body: { ok: true, state: 'confirmed' } });
+    expect(await call(coord, requestsPut, REQ, 'PUT', { requestId, decision: 'confirm' })).toMatchObject({ status: 200, body: { ok: true, state: 'confirmed' } });
     expect((await call(principal, requestsPut, REQ, 'PUT', { requestId, decision: 'decline' })).status).toBe(404);
   });
 
   it('GET: the office reads every teacher’s, the proposals waiting and the choices; a teacher their own; others refused', async () => {
     const another = await call(teacher2, requestsPost, REQ, 'POST', { classId: C5A, subjectId: ENGLISH });
     expect(another.status).toBe(201);
-    for (const w of [principal, admin]) {
+    for (const w of [principal, admin, coord]) {
       const r = await call(w, assignmentsGet, AS);
       expect(r.status, w.role).toBe(200);
       expect(r.body).toMatchObject({ mayAssign: true, assignments: [{ teacherUserId: TEACHER, classId: C5A, subjectId: MATHS }, { teacherUserId: TEACHER, classId: C5B, subjectId: ENGLISH }] });
@@ -134,7 +140,7 @@ describe('who teaches what, by role', () => {
     expect(mine.body).toMatchObject({ mayAssign: false, assignments: [], requests: [{ teacherUserId: TEACHER_2, classId: C5A, subjectId: ENGLISH, state: 'pending' }] });
     expect(mine.body.teachers).toBeUndefined();
     expect(((await call(teacher, assignmentsGet, AS)).body.requests as { state: string }[]).map((x) => x.state)).toEqual(['confirmed']);
-    for (const w of [coord, accountant]) expect((await call(w, assignmentsGet, AS)).status, w.role).toBe(403);
+    expect((await call(accountant, assignmentsGet, AS)).status).toBe(403);
   });
 });
 

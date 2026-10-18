@@ -89,7 +89,9 @@ beforeAll(async () => {
 afterAll(async () => db?.stop());
 
 describe('C1: who teaches what, written by the office only', () => {
-  it('a teacher, the coordinator and the accountant cannot write teachers or teacher_subjects; the office can, and a teachers row only for a teacher, once', async () => {
+  // C243 (C230-C): the academic coordinator writes teacher_subjects too (test/timetable/assigned-teacher-db.test.ts), not
+  // teachers.
+  it('a teacher, the coordinator and the accountant cannot write teachers; a teacher and the accountant cannot write teacher_subjects; the office can, and a teachers row only for a teacher, once', async () => {
     await clearAll();
     for (const who of [t1, coord, accountant])
       await expect(as(who, (c) => c.query(`insert into teachers (school_id, user_id, name) values ($1, $2, 'Tara Teacher')`, [A, T1]))).rejects.toThrow(/row-level security/);
@@ -100,14 +102,15 @@ describe('C1: who teaches what, written by the office only', () => {
     // One per user.
     await expect(as(admin, (c) => c.query(`insert into teachers (school_id, user_id, name) values ($1, $2, 'Tara Teacher')`, [A, T1]))).rejects.toThrow(/teachers_one_per_user/);
     const tid = (await teacherIdOf(T1))!;
-    for (const who of [t1, coord, accountant])
+    for (const who of [t1, accountant])
       await expect(as(who, (c) => c.query(`insert into teacher_subjects (school_id, teacher_id, subject_id, class_id) values ($1, $2, $3, $4)`, [A, tid, MATHS, C5A]))).rejects.toThrow(/row-level security/);
     await as(admin, (c) => c.query(`insert into teacher_subjects (school_id, teacher_id, subject_id, class_id) values ($1, $2, $3, $4)`, [A, tid, MATHS, C5A]));
     // A teacher can neither take it away nor change it, nor change their teachers row: nothing happens.
     expect(await rows(t1, `delete from teacher_subjects returning 1`)).toEqual([]);
     expect(await rows(t1, `update teacher_subjects set class_id = $1 returning 1`, [C5B])).toEqual([]);
     expect(await rows(t1, `update teachers set name = 'Someone else' returning 1`)).toEqual([]);
-    expect(await rows(coord, `delete from teacher_subjects returning 1`)).toEqual([]);
+    expect(await rows(accountant, `delete from teacher_subjects returning 1`)).toEqual([]);
+    expect(await rows(coord, `update teachers set name = 'Someone else' returning 1`)).toEqual([]);
     expect(await assigned()).toEqual([{ teacherUserId: T1, classId: C5A, subjectId: MATHS }]);
     // Everyone of the school still reads them: the teacher_scope_* policies need to.
     expect(await rows(t2, `select 1 from teacher_subjects`)).toHaveLength(1);
@@ -148,14 +151,14 @@ describe('C1: who teaches what, written by the office only', () => {
     await expect(as(t1, (c) => c.query(`insert into teacher_subject_requests (school_id, teacher_user_id, class_id, subject_id) values ($1, $2, $3, $4)`, [A, T2, C5B, MATHS]))).rejects.toThrow(/row-level security/);
     await expect(as(principal, (c) => c.query(`insert into teacher_subject_requests (school_id, teacher_user_id, class_id, subject_id) values ($1, $2, $3, $4)`, [A, T2, C5B, MATHS]))).rejects.toThrow(/row-level security/);
     // Read by the office and by the teacher who asked; nobody else.
-    for (const [who, n] of [[t1, 1], [t2, 0], [coord, 0], [accountant, 0], [principal, 1], [admin, 1]] as const) expect(await rows(who, `select 1 from teacher_subject_requests`), who.role + who.user).toHaveLength(n);
+    for (const [who, n] of [[t1, 1], [t2, 0], [coord, 1], [accountant, 0], [principal, 1], [admin, 1]] as const) expect(await rows(who, `select 1 from teacher_subject_requests`), who.role + who.user).toHaveLength(n);
     expect(await as(admin, (c) => requestsWaiting(c, A))).toBe(1);
     const [waiting] = await as(admin, (c) => waitingRequests(c, A));
     expect(waiting).toMatchObject({ teacherUserId: T1, classId: C5A, subjectId: MATHS, state: 'pending', decidedAt: null });
     // The teacher who asked cannot confirm it: not by the database, not by the app's own path.
     expect(await rows(t1, `update teacher_subject_requests set state = 'confirmed', decided_by = $1 returning 1`, [T1])).toEqual([]);
     expect(await as(t1, (c) => decideRequest(c, actor(t1), waiting.requestId, 'confirm'))).toEqual({ ok: false, reason: 'not_found' });
-    expect(await rows(coord, `update teacher_subject_requests set state = 'declined', decided_by = $1 returning 1`, [COORD])).toEqual([]);
+    expect(await rows(accountant, `update teacher_subject_requests set state = 'declined', decided_by = $1 returning 1`, [ACCOUNTANT])).toEqual([]);
     // Confirmed only with the assignment written: the database checks it.
     await expect(as(principal, (c) => c.query(`update teacher_subject_requests set state = 'confirmed', decided_by = $1`, [PRINCIPAL]))).rejects.toThrow(/is in teacher_subjects/);
     expect(await assigned()).toEqual([]);
@@ -187,7 +190,8 @@ describe('C1: who teaches what, written by the office only', () => {
     const proposed = `select actor_user_id from audit_log where event_action = 'teacher_subject.requested'`;
     expect(new Set((await rows(principal, proposed)).map((r) => (r as { actor_user_id: string }).actor_user_id))).toEqual(new Set([T1, T2]));
     expect(new Set((await rows(t1, proposed)).map((r) => (r as { actor_user_id: string }).actor_user_id))).toEqual(new Set([T1]));
-    expect(await rows(coord, proposed)).toEqual([]);
+    expect(new Set((await rows(coord, proposed)).map((r) => (r as { actor_user_id: string }).actor_user_id))).toEqual(new Set([T1, T2]));
+    expect(await rows(accountant, proposed)).toEqual([]);
     expect(await rows({ role: 'teacher', user: T3 }, `select 1 from audit_log where event_action like 'teacher_subject.request%'`)).toEqual([]);
     expect(await rows(t2, `select 1 from audit_log where event_action like 'teacher_subject.request%' and actor_user_id <> $1`, [T2])).toEqual([]);
   });

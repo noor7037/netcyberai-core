@@ -8,7 +8,7 @@ import { schoolCalendar } from '@/lib/payments/upi';
 import { activeAssignments, assignedTeachers } from '@/lib/academics/teacher-subjects';
 import { diffWeeks, generateTimetable, MAX_WEEK_PERIODS, swapInWeek, weekProblems, type Change, type Unavailable, type Unplaced, type WeekProblem } from './generator';
 import { assignedMap, MAX_PERIODS, notAssigned, notAssignedIn, type Slot } from './plan';
-import { ENTRY_SELECT, periodsPerDay, planLockKey, type Entry } from './timetable';
+import { ENTRY_SELECT, isNotAssignedRefusal, periodsPerDay, planLockKey, type Entry } from './timetable';
 import { classOrderSql } from '@/lib/classes/class-order';
 
 // The timetable generator in the database (docs/28 slice 10f, C229). Every function runs in the caller's own tenant
@@ -451,9 +451,12 @@ export async function publishDraft(db: Sql, actor: Actor, proposalId: string, op
     await db.query('rollback to savepoint timetable_publish');
     // The database's own guards: a period filled at the same moment (a unique constraint), or the classes no longer
     // holding exactly the proposal when it is marked published (the publish trigger). Either way the timetable
-    // changed under it.
+    // changed under it. And who teaches what (C243): Setup gave a class's subject to other teachers after the check
+    // above, so the database refused a period (the trigger timetable_entries_assigned_teacher): the same answer as
+    // the check gives.
     const e = err as { code?: string; message?: string };
     if (e.code === '23505' || (e.code === '23514' && /exactly what its classes hold/.test(e.message ?? ''))) return { ok: false, reason: 'timetable_changed' };
+    if (isNotAssignedRefusal(err)) return { ok: false, reason: 'not_assigned' };
     throw err;
   }
 }

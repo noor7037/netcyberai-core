@@ -5,10 +5,11 @@ import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route
 
 // A teacher's proposal of a subject they teach in a class (docs/28 slice 10g, C231). Nothing is assigned until the
 // office confirms it; only a confirmed proposal is written to teacher_subjects. Row level security says the same: a
-// teacher makes a proposal only for themselves, and only the principal or the school admin decides one, never the
-// teacher who made it. (The proposals are read with the assignments: GET /api/app/subjects/assignments.)
+// teacher makes a proposal only for themselves, and only the principal, the school admin or the academic coordinator
+// (ASSIGNERS, C230-C) decides one, never the teacher who made it. (The proposals are read with the assignments:
+// GET /api/app/subjects/assignments.)
 //   POST  { classId, subjectId }                         a teacher proposes, for themselves
-//   PUT   { requestId, decision: 'confirm' | 'decline' } the office decides, once
+//   PUT   { requestId, decision: 'confirm' | 'decline' } those three decide, once
 
 export async function POST(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
@@ -30,6 +31,7 @@ export async function PUT(req: NextRequest) {
     const done = await decideRequest(db, { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, body!.requestId as string, body!.decision);
     if (done.ok) return NextResponse.json(done);
     if (done.reason === 'not_found') return ruleError(404, 'not_found');
+    if (done.reason === 'needs_office') return jsonError(409, 'the principal or the school admin gives a teacher their first subject', { code: done.reason });
     return jsonError(409, 'this teacher is no longer an active teacher of the school: decline the proposal', { code: done.reason });
   });
 }

@@ -4675,10 +4675,15 @@ const clearTtgPlans = () =>
     set session_replication_role = origin;`);
 const clearTtg = async () => {
   await clearTtgPlans();
-  // The timetable as it was before the screen.
+  // The timetable as it was before the screen (the seed's period made before C243's rule included, so put back as such).
   if (ttgTimetable) {
-    await db.pg.query(`delete from timetable_entries where school_id = $1`, [SCHOOL]);
-    for (const e of ttgTimetable) await db.pg.query(`insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) values ($1, $2, $3, $4, $5, $6)`, [SCHOOL, e.classId, e.weekday, e.period, e.subjectId, e.teacherUserId]);
+    await db.pg.query(`set session_replication_role = replica`);
+    try {
+      await db.pg.query(`delete from timetable_entries where school_id = $1`, [SCHOOL]);
+      for (const e of ttgTimetable) await db.pg.query(`insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) values ($1, $2, $3, $4, $5, $6)`, [SCHOOL, e.classId, e.weekday, e.period, e.subjectId, e.teacherUserId]);
+    } finally {
+      await db.pg.query(`set session_replication_role = origin`);
+    }
   }
   ttgTimetable = null;
 };

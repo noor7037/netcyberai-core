@@ -4,13 +4,14 @@ import { assign, ASSIGNERS, assignmentChoices, listAssignments, myRequests, unas
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 
 // Who teaches which subject to which class (teacher_subjects), kept by the office on the Staff screen (docs/28 slice
-// 10g, C231). This table is what the teacher_scope_* RLS policies read, so it decides what each teacher can mark: an
-// office-only write (the principal and the school admin; row level security says the same), audited both ways with
-// ids only. src/lib/academics/teacher-subjects.ts does the work.
-//   GET     the office: every teacher's subjects and classes, the proposals waiting, and what to choose from;
+// 10g, C231). This table is what the teacher_scope_* RLS policies read, so it decides what each teacher can mark:
+// written by the principal, the school admin and the academic coordinator only (ASSIGNERS, C230-C; row level security
+// says the same), audited both ways with ids only. src/lib/academics/teacher-subjects.ts does the work.
+//   GET     those three: every teacher's subjects and classes, the proposals waiting, and what to choose from;
 //           a teacher: their own subjects and classes, their own proposals, and the classes and subjects
-//   POST    { teacherUserId, subjectId, classId }  give a teacher a subject in a class (the office)
-//   DELETE  { teacherUserId, subjectId, classId }  take it away (the office)
+//   POST    { teacherUserId, subjectId, classId }  give a teacher a subject in a class (409 'needs_office': the
+//           coordinator giving a teacher their first subject, which the principal or the school admin does)
+//   DELETE  { teacherUserId, subjectId, classId }  take it away
 
 function parseAssignment(body: Record<string, unknown> | null): Assignment | null {
   if (!isUuid(body?.teacherUserId) || !isUuid(body?.subjectId) || !isUuid(body?.classId)) return null;
@@ -42,6 +43,7 @@ export async function POST(req: NextRequest) {
     const a = parseAssignment(await readJson(req));
     if (!a) return ruleError(400, 'not_sent_properly');
     const done = await assign(db, { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, a);
+    if (!done.ok && done.reason === 'needs_office') return jsonError(409, 'the principal or the school admin gives a teacher their first subject', { code: done.reason });
     if (!done.ok) return jsonError(400, 'that teacher, class or subject is not one of this school’s', { code: done.reason });
     return NextResponse.json({ assignment: a, created: done.created }, { status: done.created ? 201 : 200 });
   });
