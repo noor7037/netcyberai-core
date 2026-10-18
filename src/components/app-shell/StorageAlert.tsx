@@ -5,7 +5,7 @@ import type { StorageHealth } from '@/lib/observability/storage-health';
 // The red line at the top of every page while file storage does not work (C236): in Control for the founder, and in
 // the school app for the principal and the school admin only. It names the setting and what is wrong with it, never
 // its value. Uploads and login invites fail until it is fixed, so it is not dismissable. Not counted as the screen's
-// own words (scripts/harness/visible-words.mjs skips [data-shell-alert]): it is the shell's, the same on every page.
+// own words (the word count skips [data-shell-alert]): it is the shell's, the same on every page.
 
 // Who in a school sees it: the office that would try an upload or an invite and needs to know why it fails.
 export const showsStorageAlert = (role: string) => role === 'principal' || role === 'school_admin';
