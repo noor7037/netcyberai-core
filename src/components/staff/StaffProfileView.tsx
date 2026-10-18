@@ -119,7 +119,7 @@ export function StaffProfileView({ profile, tab, office, schoolName }: { profile
   );
   const kpis = (
     <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-      {teacher && profile.periodsAWeek !== null && <KpiTile tone="royal" icon="timetable" tile={{ kind: 'kpi', id: 'periods', label: t('sprof.kpi.periods'), value: profile.periodsAWeek, unit: 'count', drillHref: tabHref('teaching') }} />}
+      {profile.periodsAWeek !== null && <KpiTile tone="royal" icon="timetable" tile={{ kind: 'kpi', id: 'periods', label: t('sprof.kpi.periods'), value: profile.periodsAWeek, unit: 'count', drillHref: tabHref('teaching') }} />}
       <KpiTile tone="turquoise" icon="attendance" tile={{ kind: 'kpi', id: 'leave-taken', label: t('sprof.kpi.leaveTaken'), value: profile.leave.daysTaken, unit: 'count', drillHref: tabHref('attendance') }} />
       <KpiTile tone="tangerine" icon="bell" tile={{ kind: 'kpi', id: 'leave-waiting', label: t('sprof.kpi.waiting'), value: profile.leave.waiting, unit: 'count', drillHref: tabHref('attendance') }} />
       <KpiTile tone="sapphire" icon="certificate" tile={{ kind: 'kpi', id: 'documents', label: t('sprof.kpi.documents'), value: profile.documents, unit: 'count', drillHref: tabHref('documents') }} />
@@ -186,7 +186,7 @@ export function StaffProfileView({ profile, tab, office, schoolName }: { profile
     ),
     teaching: (
       <dl data-staff-teaching className="flex flex-col">
-        {teacher && facts.periods}
+        {(teacher || profile.periodsAWeek !== null) && facts.periods}
         {facts.classTeacher}
         {facts.teaches}
       </dl>
