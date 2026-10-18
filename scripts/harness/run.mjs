@@ -39,6 +39,10 @@ const ONLY = arg('--only');
 const KEEP = arg('--keep') ? path.resolve(arg('--keep')) : null;
 const KEEP_SCREENS = (arg('--screens') ?? '').split(',').filter(Boolean);
 const KEEP_LIMIT_BYTES = 1.5 * 1024 * 1024;
+// Screens whose set-up ends on another page by design (C242): the receipt screen opens the receipt it just made, at
+// its own address. The landing is checked against this instead of the route.
+const EXPECTED_LANDING = { 'app-fees-receipt': /^\/app\/fees\/receipts\/[0-9a-f-]{36}$/ };
+const landedWhereExpected = (name, route, landedOn) => (EXPECTED_LANDING[name] ? EXPECTED_LANDING[name].test(landedOn) : landedOn === route.split('?')[0]);
 if (KEEP && !KEEP_SCREENS.length) {
   console.error('harness: --keep needs --screens name1,name2 (only the screens the PR changes).');
   process.exit(2);
@@ -799,7 +803,14 @@ const parentReplies = async (page) => {
   await clearReplies();
   pilotBefore = (await db.pg.query(`select is_pilot, pilot_allow_outbound from schools where school_id = $1`, [SCHOOL])).rows[0];
   await db.pg.query(`update schools set pilot_allow_outbound = true where school_id = $1`, [SCHOOL]);
-  const guardians = (await db.pg.query(`select p.phone, count(*) over (partition by regexp_replace(p.phone, '[^0-9]', '', 'g')) as shared from parents p where p.school_id = $1 order by p.created_at, p.parent_id`, [SCHOOL])).rows;
+  // A guardian with their own number, and preferably one the school has not messaged yet in this run: the thread shows
+  // everything sent to the number, so an earlier screen's reminder would sit in it as another outgoing message (C242).
+  const guardians = (await db.pg.query(
+    `select p.phone, count(*) over (partition by regexp_replace(p.phone, '[^0-9]', '', 'g')) as shared,
+            (select count(*) from communication_log l where l.school_id = p.school_id and right(regexp_replace(l.to_phone, '[^0-9]', '', 'g'), 10) = right(regexp_replace(p.phone, '[^0-9]', '', 'g'), 10)) as messaged
+       from parents p where p.school_id = $1 order by messaged, p.created_at, p.parent_id`,
+    [SCHOOL]
+  )).rows;
   const digits = (guardians.find((g) => Number(g.shared) === 1 && /^[6-9][0-9]{9}$/.test(g.phone.replace(/[^0-9]/g, '').slice(-10))) ?? {}).phone?.replace(/[^0-9]/g, '').slice(-10);
   if (!digits) throw new Error('the fixture school has no guardian with a usable number');
   const from = `+91${digits}`;
@@ -811,10 +822,14 @@ const parentReplies = async (page) => {
   await page.reload({ waitUntil: 'networkidle' });
   await page.locator('[data-thread]').first().click();
   await page.locator('[data-thread-open]').waitFor({ timeout: 20000 });
+  // Messages already in the thread (anything sent to this number earlier in the run), then the reply adds one more.
+  const outBefore = await page.locator('[data-thread-message="out"]').count();
   await page.locator('#thread-reply').fill('Yes, the school is open on Saturday until 12:30.');
   await page.locator('[data-thread-send]').click();
-  await page.waitForFunction(() => document.querySelectorAll('[data-thread-message="out"]').length === 1, null, { timeout: 20000 });
-  const threadShows = await page.locator('[data-thread-message]').evaluateAll((els) => els.map((e) => e.getAttribute('data-thread-message')).join());
+  await page.waitForFunction((n) => document.querySelectorAll('[data-thread-message="out"]').length === n + 1, outBefore, { timeout: 20000 });
+  // The thread ends with the parent's message and the reply, and holds the parent's one message only.
+  const shown = await page.locator('[data-thread-message]').evaluateAll((els) => els.map((e) => e.getAttribute('data-thread-message')));
+  const threadShows = shown.filter((d) => d === 'in').length === 1 && shown.slice(-2).join() === 'in,out' ? 'in,out' : shown.join();
   const stop = await post('STOP');
   await page.reload({ waitUntil: 'networkidle' });
   await page.locator('[data-thread]').first().click();
@@ -3173,7 +3188,13 @@ const examsFixture = async () => {
   };
   const parts = JSON.stringify([{ key: 'written', name: 'Written', max: 40, share: 80 }, { key: 'oral', name: 'Oral', max: 10, share: 20 }]);
   await db.pg.query(`insert into grading_schemes (school_id, version, scheme, made_by) values ($1, 1, $2::jsonb, $3)`, [SCHOOL, JSON.stringify(scheme), PEOPLE.principal.sub]);
-  await db.pg.query(`insert into exams (exam_id, school_id, name, term, created_by) values ($1, $2, 'Unit test 1 (harness)', 'Term 1', $3)`, [X_EXAM, SCHOOL, PEOPLE.principal.sub]);
+  // In the school's current session when it has one (earlier set-ups leave a 'Harness session' current), since the exams
+  // list shows the current session's exams by default (C242): with no session it stays as the exams with none.
+  await db.pg.query(
+    `insert into exams (exam_id, school_id, name, term, created_by, session_id)
+     values ($1, $2, 'Unit test 1 (harness)', 'Term 1', $3, (select session_id from academic_sessions where school_id = $2 and is_current))`,
+    [X_EXAM, SCHOOL, PEOPLE.principal.sub]
+  );
   await db.pg.query(
     `insert into exam_papers (paper_id, school_id, exam_id, class_id, subject_id, paper_date, components, created_by) values
        ($1, $3, $4, $5, '00000000-0000-4000-8000-0000000d0001', $6::date, $7::jsonb, $8), ($2, $3, $4, $5, '00000000-0000-4000-8000-0000000d0002', $6::date, $7::jsonb, $8)`,
@@ -3415,7 +3436,7 @@ const rcPublishDone = async () => {
   const { rows } = await db.pg.query(
     `select x.version, x.scheme_version, x.published_by, x.reopened_by, x.reopen_reason, x.reopened_at is not null as reopened,
             (select count(*)::int from audit_log a where a.school_id = x.school_id and a.event_action = 'exam.published' and a.actor_user_id = x.published_by) as published_audits,
-            (select count(*)::int from audit_log a where a.school_id = x.school_id and a.event_action = 'exam.reopened' and a.actor_user_id = x.reopened_by and a.after_state ->> 'reason' = x.reopen_reason) as reopened_audits
+            (select count(*)::int from audit_log a where a.school_id = x.school_id and a.event_action = 'exam.reopened' and a.actor_user_id = x.reopened_by and a.target_id = x.publication_id::text and a.after_state ->> 'reasoned' = 'true') as reopened_audits
        from exam_publications x where x.school_id = $1 and x.exam_id = $2 and x.class_id = $3`,
     [SCHOOL, X_EXAM, X_5A]
   );
@@ -6436,7 +6457,7 @@ try {
         const logFrom = appLog.length;
         const response = await page.goto(base + route, { waitUntil: 'networkidle', timeout: 90000 }).catch((e) => ({ status: () => 0, error: e.message }));
         await page.waitForTimeout(600);
-        const prepared = prepare ? await prepare(page).then(() => null, (e) => e.message.split('\n')[0].slice(0, 160)) : null;
+        const prepared = prepare ? await prepare(page).then(() => null, (e) => e.message.split('\n')[0].slice(0, 600)) : null;
         if (prepared) errors.push(`could not prepare the screen: ${prepared}`);
         // A part still loading is photographed (and its words counted) once it has loaded, five seconds at most (C235-C).
         await page.waitForFunction(() => !/Loading…/.test(document.querySelector('main')?.innerText ?? ''), null, { timeout: 5000 }).catch(() => undefined);
@@ -6462,7 +6483,7 @@ try {
         writeFileSync(path.join(OUT, `${name}-${width}.words.txt`), words.join(' '));
         // Put things back (the language), and say so if that failed: the
         // screens after this one would otherwise be photographed wrongly.
-        const undone = after ? await after(page).then(() => null, (e) => e.message.split('\n')[0].slice(0, 160)) : null;
+        const undone = after ? await after(page).then(() => null, (e) => e.message.split('\n')[0].slice(0, 600)) : null;
         if (undone) errors.push(`could not put the screen back: ${undone}`);
         // A server error: keep what the app printed, so the report says why.
         const failedOnServer = response.status() >= 500 || errors.some((e) => / answered 5\d\d$/.test(e));
@@ -6483,7 +6504,7 @@ try {
         const serverSaid = row.serverSaid;
         report.push(row);
         if (serverSaid.length) console.log('   server: ' + serverSaid.join(' | '));
-        console.log(`${width} ${name}: ${row.status} h1=${JSON.stringify(row.h1)} modulePage=${row.modulePage} hscroll=${row.horizontalScroll} small=${row.smallTargets.length} errors=${row.pageErrors.length}${row.landedOn !== route.split('?')[0] ? ` LANDED ON ${row.landedOn}` : ''}${row.firstTry ? ' (after a retry)' : ''}`);
+        console.log(`${width} ${name}: ${row.status} h1=${JSON.stringify(row.h1)} modulePage=${row.modulePage} hscroll=${row.horizontalScroll} small=${row.smallTargets.length} errors=${row.pageErrors.length}${landedWhereExpected(name, route, row.landedOn) ? '' : ` LANDED ON ${row.landedOn}`}${row.firstTry ? ' (after a retry)' : ''}`);
       }
       await context.close();
     }
@@ -6491,7 +6512,7 @@ try {
   await browser.close();
   writeFileSync(path.join(OUT, 'app.log'), appLog);
   writeFileSync(path.join(OUT, 'report.json'), JSON.stringify({ migrationsApplied: db.applied.length, migrationsSkipped: db.skipped, searchP95Ms, screens: report }, null, 2));
-  const bad = report.filter((r) => r.status !== 200 || r.landedOn !== r.route.split('?')[0] || r.horizontalScroll || r.smallTargets.length || r.pageErrors.length);
+  const bad = report.filter((r) => r.status !== 200 || !landedWhereExpected(r.name, r.route, r.landedOn) || r.horizontalScroll || r.smallTargets.length || r.pageErrors.length);
   console.log(`harness: ${report.length} pictures in ${OUT}; ${bad.length} need a look.`);
   let overSize = false;
   if (KEEP && KEEP_SCREENS.length) {
