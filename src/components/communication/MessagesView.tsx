@@ -103,18 +103,20 @@ export function MessagesView({ mayRead, initialState, range, initial }: { mayRea
             const s = stateOf(m.status);
             const at = s === 'read' ? m.read_at : s === 'delivered' ? m.delivered_at : s === 'failed' ? m.failed_at : null;
             const stamp = new Date(at ?? m.created_at);
+            // The list is newest written first, so its day headings are the days messages were written; a row shows
+            // the time of its latest state, with that day too when it is not the heading's.
+            const written = dayOf.format(new Date(m.created_at));
             const prev = i > 0 ? data.messages[i - 1] : null;
-            const prevState = prev ? stateOf(prev.status) : null;
-            const prevStamp = prev ? new Date((prevState === 'read' ? prev.read_at : prevState === 'delivered' ? prev.delivered_at : prevState === 'failed' ? prev.failed_at : null) ?? prev.created_at) : null;
-            const newDay = !prevStamp || dayOf.format(prevStamp) !== dayOf.format(stamp);
+            const newDay = !prev || dayOf.format(new Date(prev.created_at)) !== written;
+            const stampDay = dayOf.format(stamp);
             return (
               <Fragment key={m.log_id}>
-              {newDay && <li data-message-day className="pt-2 text-sm font-bold text-slate">{dayOf.format(stamp)}</li>}
+              {newDay && <li data-message-day className="pt-2 text-sm font-bold text-slate">{written}</li>}
               <li data-message={s} className="flex flex-col gap-1 rounded-md border border-slate/10 p-3 text-sm text-slate">
                 <div className="flex flex-wrap items-center gap-2">
                   <Badge variant={VARIANT[s]}>{t(`msg.state.${s}` as MessageKey)}</Badge>
                   <span className="font-bold">{m.template_name && TEMPLATES.includes(m.template_name) ? t(`msg.template.${m.template_name}` as MessageKey) : (m.template_name ?? '')}</span>
-                  <span className="text-slate/70">{shortTime(stamp)}</span>
+                  <span className="text-slate/70">{stampDay === written ? shortTime(stamp) : `${stampDay}, ${shortTime(stamp)}`}</span>
                 </div>
                 <p>
                   {m.child ? t('msg.about', { child: m.child }) : ''} {m.guardian ? t('msg.to', { guardian: m.guardian, last4: m.phone_last4 ?? '' }) : m.phone_last4 ? t('msg.toNumber', { last4: m.phone_last4 }) : ''}
