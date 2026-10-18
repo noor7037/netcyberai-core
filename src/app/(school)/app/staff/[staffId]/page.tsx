@@ -6,10 +6,11 @@ import { canAccessApp } from '@/lib/auth/guards';
 import { getServerSession } from '@/lib/auth/server-session';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { loadStaffProfile, mayOpenStaffProfile } from '@/lib/staff/profile';
+import { STAFF_PROFILE_TABS, type StaffProfileTab } from '@/lib/staff/profile-rules';
 
-// A member of staff's profile (C235-D): Overview and Documents. The staff list's own rule (the principal and the
-// school admin), and a member of staff their own profile; anyone else gets what the staff list gives them.
-// ?tab=documents opens the Documents tab (the header's Documents button).
+// A member of staff's profile (C235-D, C238): nine tabs. The staff list's own rule (the principal and the school
+// admin), and a member of staff their own profile; anyone else gets what the staff list gives them.
+// ?tab=<id> opens that tab (the header's Documents and Biodata buttons, a tile's drill-down).
 export default async function StaffProfilePage({ params, searchParams = {} }: { params: { staffId: string }; searchParams?: { tab?: string } }) {
   const session = await getServerSession();
   if (!session || !canAccessApp(session)) notFound();
@@ -17,8 +18,13 @@ export default async function StaffProfilePage({ params, searchParams = {} }: { 
     return <ModuleComingPage moduleId="staff" />;
   }
   if (!isUuid(params.staffId)) notFound();
-  const profile = await withTenantContext(session, (db) => loadStaffProfile(db, session.schoolId, params.staffId));
-  if (!profile) notFound();
+  const found = await withTenantContext(session, async (db) => {
+    const profile = await loadStaffProfile(db, session.schoolId, params.staffId);
+    const school = (await db.query(`select name from schools where school_id = $1`, [session.schoolId])).rows[0]?.name as string | undefined;
+    return profile ? { profile, school: school ?? '' } : null;
+  });
+  if (!found) notFound();
   const office = session.role === 'principal' || session.role === 'school_admin';
-  return <StaffProfileView profile={profile} tab={searchParams.tab === 'documents' ? 'documents' : 'overview'} office={office} />;
+  const tab = (STAFF_PROFILE_TABS as readonly string[]).includes(searchParams.tab ?? '') ? (searchParams.tab as StaffProfileTab) : 'overview';
+  return <StaffProfileView profile={found.profile} tab={tab} office={office} schoolName={found.school} />;
 }

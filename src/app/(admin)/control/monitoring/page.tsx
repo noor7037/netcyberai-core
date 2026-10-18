@@ -3,6 +3,7 @@ import { MonitoringView } from '@/components/control/MonitoringView';
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
 import { invitationsWaiting, loadMonitoring } from '@/lib/control/monitoring';
+import { storageHealth } from '@/lib/observability/storage-health';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 import { applicationCounts } from '@/lib/onboarding/applications';
@@ -19,8 +20,10 @@ export default async function MonitoringPage() {
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
   // The layout has already refused anyone but the founder; this runs as nca_super, in one transaction.
+  // File storage's answer first (C236): a slow store must not hold the transaction open.
+  const storage = session ? await storageHealth() : 'ok';
   const read = session
-    ? await withTenantContext(session, async (db) => ({ data: await loadMonitoring(db), invitations: await invitationsWaiting(db), applications: await applicationCounts(db) }))
+    ? await withTenantContext(session, async (db) => ({ data: await loadMonitoring(db, storage), invitations: await invitationsWaiting(db), applications: await applicationCounts(db) }))
     : null;
   return (
     <ModulePage title={t(lang, 'monitoring.title')} purpose={t(lang, 'monitoring.purpose')} about={t(lang, 'monitoring.about')} icon="pulse" tone="emerald" eyebrow={t(lang, 'group.control')} headerLang={lang}>

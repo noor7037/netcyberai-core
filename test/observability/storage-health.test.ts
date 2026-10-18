@@ -157,6 +157,9 @@ describe('asked once in 5 minutes', () => {
     now += 1;
     expect(await storageHealth(probe)).toBe('refused');
     expect(stub.listed).toBe(2);
+    // Another probe is never given this one's kept answer: it asks for itself.
+    const other = { keyShape: () => 'missing' as const, list: probeFileStorage, now: () => now };
+    expect(await storageHealth(other)).toBe('missing');
   });
 });
 

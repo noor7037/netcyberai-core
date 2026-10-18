@@ -437,6 +437,10 @@ ALLOWED_PERMISSIVE = (
         ("record_documents", "record_documents_tenant_isolation"),
         ("record_document_versions", "record_document_versions_tenant_isolation"),
         # c235d end
+        # c238 begin
+        # C238: a member of staff's profile. Tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("staff_profiles", "staff_profiles_tenant_isolation"),
+        # c238 end
     }
 )
 
@@ -854,6 +858,15 @@ REQUIRED_RESTRICTIVE = {
     ("record_document_versions", "record_document_versions_no_parent"),
     ("audit_log", "audit_record_document_rows_office_or_actor"),
     # c235d end
+    # c238 begin
+    # C238: a staff profile is read by the office and by the person themself; added and changed by the office in its
+    # own name; nothing for a parent; its audit rows by the office or the person who acted.
+    ("staff_profiles", "staff_profiles_readers"),
+    ("staff_profiles", "staff_profiles_added_by_office"),
+    ("staff_profiles", "staff_profiles_changed_by_office"),
+    ("staff_profiles", "staff_profiles_no_parent"),
+    ("audit_log", "audit_staff_profile_rows_office_or_actor"),
+    # c238 end
 }
 
 CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)
