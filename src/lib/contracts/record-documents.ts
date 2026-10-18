@@ -35,6 +35,9 @@ export const isRecordFileType = (v: unknown): v is RecordFileType => v === 'appl
 // The multipart POST stays for files of up to RECORD_MULTIPART_MAX_BYTES.
 export const RECORD_MULTIPART_MAX_BYTES = 4 * 1024 * 1024;
 export const RECORD_UPLOAD_TICKET_SECONDS = 600;
+// A pending file that arrived this long ago belongs to a ticket that has stopped working: it arrived after its ticket
+// was given, and the ticket works for ten minutes. The ask and the hourly sweep (C237) remove such files.
+export const PENDING_DEAD_SECONDS = RECORD_UPLOAD_TICKET_SECONDS + 5 * 60;
 // `documentId` set: a new version of that paper (kind and title are not read); unset: a new paper.
 export type RecordUploadAsk = { kind?: RecordDocumentKind; title?: string; documentId?: string; fileName: string; sizeBytes: number; mimeType: RecordFileType };
 export type RecordUploadTicket = { pendingId: string; uploadUrl: string; contentType: RecordFileType; maxBytes: number; expiresAt: string };
