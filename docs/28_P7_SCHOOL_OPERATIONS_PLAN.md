@@ -1,8 +1,7 @@
 # 28 — P7 plan: school operations
 
-**Status:** built in part (section 11). 10a to 10f are merged (C221 to C229, with
-the wave 1 close-out C224 to C226); the wave 2 close-out (C232) and 10g (C231)
-are in review. The plan itself was C220.
+**Status:** built in part (section 11). 10a to 10g are merged (C221 to C231, with
+the close-outs C224 to C226 and C232, merged in C230-C). The plan itself was C220.
 **Scope:** roadmap `16` §4 phase P7, together with the founder's
 differentiators (C198-B):
 - Setup (complete);
@@ -286,7 +285,7 @@ These rows are not reached by a data request's erasure. Whether to scrub
 them, and how without breaking the audit hash chain, waits for the lawyer
 (P8), together with the retention periods.
 
-## 11. What is built (2026-10-15)
+## 11. What is built (2026-10-18)
 
 | Slice | Decision Log | State |
 |---|---|---|
@@ -294,12 +293,13 @@ them, and how without breaking the audit hash chain, waits for the lawyer
 | 10b. Student data check | C222; close-out C224, C225 | Merged |
 | 10c. RTE claim desk | C223; close-out C225 | Merged |
 | Plan placement and the free first month | C226 | Merged |
-| 10d. Compliance desk | C227; close-out C232 part B | 10d merged; the close-out in review |
-| 10e. Documents and certificates | C228; close-out C232 part A | 10e merged; the close-out in review |
+| 10d. Compliance desk | C227; close-out C232 part B | Merged (close-out #169) |
+| 10e. Documents and certificates | C228; close-out C232 part A | Merged (close-out #168) |
 | 10f. Timetable generator | C229 | Merged |
-| 10g. Who teaches what | C231 | In review |
+| 10g. Who teaches what | C231 | Merged (#170) |
 | Payroll, Career Graph, Digital Twin, Automation OS | C230 (`29`) | Blocked: waiting for the founder |
 
 Still to build in P7: the office screens for academic sessions and subjects,
-and the onboarding checklist (the rest of the first 10g row); APAAR capture
-(`17` row 22). The Family App (P7b) is planned in `31`.
+and the onboarding checklist (the rest of the first 10g row), with the academic
+coordinator also assigning teachers and the database enforcing the
+assigned-teacher rule (both answered in C230-C); APAAR capture (`17` row 22). The Family App (P7b) is planned in `31`.

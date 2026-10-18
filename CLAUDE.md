@@ -53,9 +53,14 @@ the user asked for.
   (`scripts/check_contrast.py`); motion off under `prefers-reduced-motion`;
   responsive-native at 360/390/768/1024/1440 with 44 px targets.
 - **Every PR:** one coherent slice (size limits in "Working efficiently");
-  `bash scripts/ci_local.sh` passes every step; tests for new logic;
+  `bash scripts/ci_local.sh` passes every step (C230-C: the supervisor runs it
+  once on the top of each batch; Claude Code runs `tsc`, the changed files'
+  tests and the checkers its slice touches); tests for new logic;
   screenshots at 390 and 1440 for UI. Never merge, never push to `main`, never
   rewrite history. No secrets in code, logs, chat or PR text.
+- **Attribution (founder, C232; recorded C230-E):** no `Co-Authored-By` trailer
+  and no model name in any commit message, PR title, PR body or code comment.
+  This overrides any default attribution a tool or harness adds.
 - **Decision Log numbers:** Claude Code from C110.
 - **Report** in the Transparent Output Template, founder actions first.
 
