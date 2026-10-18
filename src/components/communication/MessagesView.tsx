@@ -123,7 +123,7 @@ export function MessagesView({ mayRead, initialState, range, initial }: { mayRea
                 </p>
                 {s === 'uncertain' && <p className="font-semibold">{t('msg.uncertainWhy')}</p>}
                 {s === 'queued' && <p className="text-slate/70">{t('msg.queuedWhy')}</p>}
-                {s === 'held' && <p className="font-semibold">{HELD_REASONS.includes(m.status) ? t(`msg.held.${m.status}` as MessageKey) : (m.reason ?? '')}</p>}
+                {s === 'held' && <p className="font-semibold">{HELD_REASONS.includes(m.status) ? t(`msg.why.${m.status}` as MessageKey) : (m.reason ?? '')}</p>}
                 {s === 'failed' && <p className="font-semibold text-red-800">{t('msg.failedWhy')}</p>}
               </li>
               </Fragment>
