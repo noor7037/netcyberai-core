@@ -23,6 +23,7 @@ and that adds the school's own information when the child's school uses NetCyber
 | `06_PROJECT_STRUCTURE.md` | Where every file goes, naming, ownership, the tests each slice brings |
 | `07_EXECUTION_WORKFLOW.md` | Waves FA-1, P-AI, FA-2 to FA-7 with dependencies; the loop; gates; content operations; release; incidents |
 | `08_PROMPT_FRAMEWORKS.md` | Build prompts any AI coding tool can follow; the app's product prompts per profile |
+| `09_EXPERIENCE_DESIGN.md` | Learning first with engagement as its servant; the visual identity; the 3D and motion policy; performance budgets; patterns from ten leading products; the banned list and the design review gate |
 
 ## Decisions in brief
 
