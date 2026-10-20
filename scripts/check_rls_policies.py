@@ -441,6 +441,17 @@ ALLOWED_PERMISSIVE = (
         # C238: a member of staff's profile. Tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("staff_profiles", "staff_profiles_tenant_isolation"),
         # c238 end
+        # family-m1 begin
+        # C230-H/I Family App M1 Signature Slice: family-owned tables (scoped to app.current_account_id)
+        # and content catalog tables (public read-only for verified educational curriculum).
+        ("accounts", "family_accounts_tenant_isolation"),
+        ("consents", "family_consents_tenant_isolation"),
+        ("children", "family_children_tenant_isolation"),
+        ("topic_progress", "family_topic_progress_tenant_isolation"),
+        ("catalog_subjects", "content_catalog_subjects_read"),
+        ("catalog_topics", "content_catalog_topics_read"),
+        ("reviewed_responses", "content_reviewed_responses_read"),
+        # family-m1 end
     }
 )
 
@@ -879,13 +890,13 @@ REQUIRED_RESTRICTIVE = {
     # c238 end
 }
 
-CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)
+CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+(?:\"?(?:\w+)\"?\.)?\"?(?P<table>\w+)\"?", re.IGNORECASE)
 TEMPLATED_RE = re.compile(r"create\s+policy\s+%I_(?P<suffix>\w+)\s+on\s+%I", re.IGNORECASE)
 UNNEST_ARRAY_RE = re.compile(r"unnest\(array\[(?P<items>.*?)\]\)", re.IGNORECASE | re.DOTALL)
 QUOTED_ITEM_RE = re.compile(r"'([^']+)'")
 DO_BLOCK_RE = re.compile(r"do\s*\$\$.*?end\s*\$\$\s*;", re.IGNORECASE | re.DOTALL)
 DROP_POLICY_RE = re.compile(
-    r"drop\s+policy\s+(?:if\s+exists\s+)?\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE
+    r"drop\s+policy\s+(?:if\s+exists\s+)?\"?(?P<name>\w+)\"?\s+on\s+(?:\"?(?:\w+)\"?\.)?\"?(?P<table>\w+)\"?", re.IGNORECASE
 )
 FOR_CMD_RE = re.compile(r"\bfor\s+(select|insert|update|delete|all)\b", re.IGNORECASE)
 
