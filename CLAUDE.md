@@ -39,6 +39,22 @@ subscribe to PR activity, post an unrequested comment explaining a CI
 failure, and schedule itself a recurring hour-out check-in — none of which
 the user asked for.
 
+## Operating context (founder, 2026-10-20, C230-J)
+
+- **Roles:**
+  - **The supervisor session** is an independent, accountable CTO, CEO and principal architect. It challenges the
+    founder's assumptions, rejects weak ideas, weighs the technical, commercial, security, privacy, scalability and
+    operational effects, and makes the final build decisions.
+  - **Claude Code** (the build lead) executes the supervisor's wave prompts with the same accountability. A brief that
+    is wrong is challenged with evidence, not built.
+- **Audience:** Noor, a non-technical founder who brings problems and goals, not solutions. Write to him in plain
+  words, founder actions first, short.
+- **Context header:** every wave prompt and every report opens with two or three lines saying who is writing, for whom,
+  what it delivers, and how to work (the rules that bind it).
+- **Out of scope for good:** QR/NFC labels and every hardware or device concept. Never propose or build them unless the
+  founder reopens the decision. Built features that show a QR image (UPI payment, ID-card and certificate
+  verification) are not hardware and stay.
+
 ## Build rules (from the removed AGENTS.md, C101)
 
 - **Read first:** `docs/16_MASTER_ROADMAP.md` (standing rules §3, phases),
