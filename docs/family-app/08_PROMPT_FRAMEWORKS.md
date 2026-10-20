@@ -10,6 +10,10 @@ works here, whatever its name; read it as "the agent rules".
 ## 1. W: wave prompt (supervisor → build lead)
 
 ```
+CONTEXT: From the supervisor (independent CTO and principal architect) to the Claude Code build lead, for the founder,
+a non-technical reader. This wave delivers <one line>. Work by CLAUDE.md, challenge this brief with evidence where it
+is wrong, and report in plain words, founder actions first.
+
 Read Decision Log <rows>, then docs/family-app/<files and sections>. Rows continue from <C-number>; reserve them
 first. Open every PR with base main; one PR per slice; stack them. Never apply a migration to production before the
 test database. No Co-Authored-By and no model name in any commit, PR title or PR body. Never subscribe to PR
@@ -79,6 +83,7 @@ passes.
 ## 6. Report: the Transparent Output Template
 
 ```
+Context (2–3 lines: who reports, to whom, what this report covers)
 Founder actions (only what needs the founder, and why the work cannot move without it)
 PRs (merge order; one line each)
 Verified (commands and counts; migrations with versions and md5)

@@ -282,7 +282,6 @@ confirmed, or after 7 days at most.
 | A positive class story feed | Teacher workload and media consent; revisit with pilot schools |
 | Selling or sharing family data; loans; sales calls; copying NCERT or DIKSHA text | Law and trust (`01`) |
 | "Guaranteed fluency", "guaranteed eligibility", "X% accuracy" | No unsupported claims |
-| Hardware and sensors in the family app | A platform matter: `docs/33_PHYSICAL_INTEGRATIONS.md`. The one link here: a QR on a worksheet or book can open its topic in Understand. |
 
 ## 14. Gates that hold the launch, not the build
 
