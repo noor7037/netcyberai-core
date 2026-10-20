@@ -39,8 +39,10 @@ SLICE <id>, <one line>. Read: docs/family-app/<sections>; CLAUDE.md; <one or two
 You may change only: <exact paths>. Do not touch: <shared files>; ask the lead.
 Build: <behaviour, as numbered acceptance lines>.
 Data: <tables and policies, or "none: ask the lead for any">.
-Must hold: family data only under family.* and content.*; school data only through SchoolLink; no Aadhaar, phone or
-photo of a child; no foreign key into public.*; every string in fam.* keys, English and Hindi; v5 components only.
+Must hold: family data only under family.* and content.*; school data only through SchoolLink; AI and video only through
+the AI platform's adapters and profiles; model output is data rendered by our components, never code; no Aadhaar,
+phone or photo of a child; no foreign key into public.*; every string in fam.* keys, English and Hindi; v5 components
+only.
 Tests first: <allow tests>, <deny tests: another account, a staff session, an unlinked child, another school>.
 Done when: tsc clean, your tests pass, check_family_boundary.py passes, pictures at 360/390/1440 attached.
 Report: files changed, tests run with counts, anything you could not do and why.
@@ -84,47 +86,106 @@ Open decisions (each with the default taken until answered)
 Gaps (what is not done or not proven, plainly)
 ```
 
-## 7. Product prompts (sent by the app through AIProvider)
+## 7. Product prompts (sent by the app through the AI platform)
 
-Every product prompt carries board, class, subject, chapter, topic and language, and **never** a child's name,
-school, contact or any free text that was not cleaned by the pre-processor (`03` §6). The output format is fixed so
-that any provider's answer renders the same way.
+**Revised 2026-10-20 (C230-I)** for the Concept Resolver and the new experiences.
 
-**topic_explainer**
-```
-You explain one topic to a Class <class> student of the <board> board, in <language>, for a family that may not
-speak English at home. Topic: <subject> / <chapter> / <topic>.
-Write, in this order and nothing else:
-1. One-sentence idea, in plain words.
-2. An everyday Indian example.
-3. Steps or parts, 3 to 6 short lines.
-4. Key English terms with their <language> words, as "term — word".
-5. One check question with its answer on the next line, labelled "Answer:".
-Rules: stay inside this topic and this class level; no claims beyond the standard textbook; no copying of any
-textbook text; if the topic is unclear, return only "UNCLEAR: <what is unclear>".
-```
+**Rules for every product prompt:**
+- Each runs under a profile (`03` §7). Its request carries board, class, subject, topic and language, and never a
+  child's name, school, contact, or any text the pre-processor has not cleaned.
+- Outputs are **JSON against a schema in the repository**; free text outside the schema is discarded.
+- Prompt text lives in `src/lib/ai/prompts/<profile>/<version>.md`. Changing it is a PR with before-and-after samples;
+  Control only chooses the active version and its rollout.
 
-**question_bank**
+**family.resolve.plan**
 ```
-Write <n> practice questions for Class <class>, <board>, <subject> / <chapter> / <topic>, in <language>.
-Mix: <n1> recall, <n2> understanding, <n3> application. For each: the question, 4 options for multiple choice or the
-expected short answer, the correct answer, and a one-line reason. Output as JSON matching this schema: <schema>.
-No question may need a diagram unless you describe it in words. No trick questions.
+A Class <class> student (<board>, explanations in <language>) asks about: "<cleaned input>".
+Matched syllabus topic: <subject> / <chapter> / <topic> (confidence <c>). Known misconceptions on it: <ids or none>.
+Choose the blocks that best teach this, from: explanation, worked_example, diagram, graph, construction, timeline,
+map, simulation, video, check, practice, english_moment, sources. Always include explanation, check and practice.
+Return JSON {"topic_confirmed": bool, "question_type": "...", "blocks": [{"type": "...", "purpose": "..."}]}.
+If the input is not about school study, return {"refuse": "not_school_study"}. If the topic is unclear, return
+{"clarify": "<one short question>"}.
 ```
 
-**doubt_hint**
+**family.resolve.generate** (one call per block; this is the explanation block; the others follow the same frame with
+their own schema)
 ```
-A Class <class> student (<board>, <language>) is stuck on: "<cleaned doubt text>". Topic, if known: <topic>.
-Reply with one hint and the first step only, in <language>, in at most 4 short lines, ending with a question that
-asks the student to try. Never give the final answer in this reply. If the doubt is not about school study, reply:
-"I can help with school subjects. Ask me about a topic you are studying."
-```
-
-**weekly_summary** (written from counts, not by the model; the model only phrases it)
-```
-Write three short lines for a parent, in <language>, from these facts only: practised <topics>, most mistakes in
-<topic>, next planned <topic>. No praise words, no comparison with other children, no advice beyond the next topic.
+Write the "<type>" block for Class <class>, <board>, <subject> / <chapter> / <topic>, in <language>.
+Purpose: <purpose from the plan>. Follow this JSON schema exactly: <schema>.
+Explanation rules: start with the idea in one plain sentence; then an everyday Indian example or analogy; then
+3 to 6 steps; put each key English term beside its <language> word as "term — word"; stay at this class level;
+claim nothing beyond the standard curriculum; copy no textbook text; give no URLs (sources come from the allowlist).
 ```
 
-Every product prompt's version is stored with what it produced, so a reviewer can see which version wrote a library
-item. Changing a prompt is a PR with before-and-after samples in its description.
+**family.resolve.verify**
+```
+Independently solve each question below (Class <class>, <subject> / <topic>) and return JSON
+[{"id": "...", "your_answer": "...", "agrees_with_key": bool, "problem": "<if any>"}]. Do not look for agreement:
+solve first, then compare with the given key. Questions: <questions with keys>.
+```
+Numeric steps are additionally recomputed by the math library; any disagreement drops the block.
+
+**family.check_and_practice** (the misconception loop)
+```
+Write <n> questions for Class <class>, <board>, <subject> / <chapter> / <topic>, in <language>: <n1> recall,
+<n2> understanding, <n3> application. For multiple choice, each wrong option must reflect one named misconception
+from this list: <misconception ids and descriptions>; tag it. For each question: the correct answer, a one-line
+reason, and for each wrong option a two-line explanation of that exact misunderstanding. JSON per <schema>.
+```
+
+**family.syllabus_extract**
+```
+These are photos of a syllabus or contents page. Extract the structure only: units, chapters, topics, in order,
+exactly as printed. Return JSON {"board_guess": "...", "class_guess": "...", "subject_guess": "...",
+"items": [{"level": "unit|chapter|topic", "title": "...", "page": n|null, "confidence": 0-1}]}.
+Do not guess unreadable text: give it confidence below 0.5 and your best reading in "title". Never include body
+text from the book.
+```
+
+**family.video_rank**
+```
+Topic: Class <class>, <board>, <subject> / <chapter> / <topic>, language <language>. Rank these candidate videos for
+a student of this class, using only the data given (title, description, chapter timestamps, duration, channel,
+language, captions present, made for kids). Prefer: on-topic, at this level, 3–15 minutes or a chapter that starts
+the topic, the student's language, a clear teaching channel. Return JSON [{"video_id": "...", "score": 0-1,
+"start_seconds": n|null, "reason": "..."}]; exclude any that seem off-topic, sensational or advertising.
+```
+
+**family.opportunity_extract**
+```
+From this official notice text (source: <url>), fill the opportunity schema <schema>: type, issuer, eligibility
+rules, dates, fees, documents, steps, official and application links. For every field, quote the exact sentence it
+came from in "evidence". If a field is not stated, set it to null: never infer a requirement, a date or a fee.
+```
+
+**family.career_explain**
+```
+Explain these pathways to a <class/qualification> student in <stream> with interests <interests>, in <language>.
+Use ONLY the nodes and edges given (each has a source): <subgraph>. For each route: the steps in order with
+eligibility and exams, typical duration, one practical next action this year, and an honest line on uncertainty. Do
+not add any step, exam, salary or guarantee that is not in the data.
+```
+
+**english.moment**
+```
+For a Class <class> student learning <topic> (<subject>), support language <language>: write 3 to 5 short lines:
+one or two key English words with meanings in <language>, one model sentence using them, one sentence pattern to
+reuse, and one "say it" prompt. Simple English. JSON per <schema>.
+```
+
+**english.feedback**
+```
+Assess this answer to the task "<task>" for a learner at <CEFR level>, using the rubric <rubric> (each criterion
+0–4). Return JSON {"scores": {...}, "corrections": [{"original": "...", "better": "...", "why": "<support language>"}],
+"one_thing_to_practise": "..."}. Be specific and kind; no score without a reason.
+```
+
+**weekly_summary** (written from counts; the model only phrases it)
+```
+Write three short lines for a parent, in <language>, from these facts only: topics checked <list>, most mistakes in
+<topic>, next planned <topic>, English days completed <n>. No praise words, no comparison with other children, no
+advice beyond the next step.
+```
+
+Each product prompt's version is stored with what it produced, so a reviewer can see which version wrote a response.

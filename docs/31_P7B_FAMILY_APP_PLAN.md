@@ -1,6 +1,6 @@
 # 31 — P7b plan: the Family App
 
-**Status:** superseded in part by `docs/family-app/` (C230-H, 2026-10-18): the family app is now one app with a standalone study core and the school's modules for linked children; family accounts and School Link replace the WhatsApp-code sign-in of §2.1 as the first step. §3's rules and §4's slices 11b–11g stand, as the school modules (waves FA-2 and FA-5).
+**Status:** superseded in part by `docs/family-app/` (C230-H, 2026-10-18; revised by C230-I, 2026-10-20): the family app is now one app with a standalone study core and the school's modules for linked children; family accounts and School Link replace the WhatsApp-code sign-in of §2.1 as the first step. §3's rules and §4's slices 11b–11g stand, as the school modules (waves FA-2 and FA-5).
 **Built so far (C230-D, at the founder's request):** a parent's login made by the founder in Control (username
 and password, not the WhatsApp code of §2.1), the parent rules in the database for every table, and a read-only
 home with each child's attendance and dues. Everything else below is still a plan.

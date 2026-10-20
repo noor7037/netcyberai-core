@@ -1,143 +1,266 @@
 # 03 — Architecture
 
+**Revised 2026-10-20 (C230-I):**
+- the Concept Resolver pipeline (§6);
+- the shared AI platform and its Control section (§7);
+- the video finder (§8);
+- syllabus ingestion (§9);
+- opportunities and careers data (§10);
+- entitlement classes in the registry (§2).
+
 ## 1. Shape
 
-The family app is a **bounded module inside netcyberai-core**. It shares the deployment, the database, the design
-system, the AI interface and the jobs runner, and it keeps its own code area, its own database schemas, its own
-session type and its own Control section. Every boundary below exists so it can move to its own deployment and
-database later without a rewrite (`04`).
+The family app is a **bounded module inside netcyberai-core**.
+- **It shares:** the deployment, the database, the design system, the jobs runner and the **AI platform** (§7), which
+  also serves the Teacher Copilot and Parent AI.
+- **It keeps its own:** code area, database schemas, session type and Control section.
+
+Every boundary below exists so the app can move to its own deployment and database later without a rewrite (`04`).
 
 ```
-             ┌──────────────── netcyberai-core (one Next.js app) ─────────────────┐
-  family ──▶ │ /family (pages)  /api/family/** ──▶ src/lib/family/**              │
-  parent     │                                      │            │                │
-             │                                      ▼            ▼                │
-             │                        School Link contract   AIProvider          │
-             │                        (in-process today)     (no child data)     │
-             │                                      │                             │
-  staff  ──▶ │ /app  /control  /api/app/**          ▼                             │
-             │                        parent RLS on school tables (public.*)      │
-             └─────────────────────────────────────────────────────────────────────┘
-   Postgres:  public.*  (school system)   family.*  (family-owned)   content.*  (catalog, no personal data)
+            ┌──────────────────── netcyberai-core (one Next.js app) ─────────────────────┐
+ family ──▶ │ /family  /api/family/** ──▶ src/lib/family/** ──▶ SchoolLink ──▶ parent RLS │
+            │                                   │                       (public.*)     │
+            │                                   ▼                                       │
+            │                        AI platform (src/lib/ai/**) ◀── Copilot, Parent AI │
+            │                        profiles · adapters · budgets · audit              │
+ staff  ──▶ │ /app  /control  ── Control → Family, Control → AI                          │
+            └────────────────────────────────────────────────────────────────────────────┘
+  Postgres: public.* (school)   family.* (family-owned)   content.* (catalog, reviewed items, opportunities, careers)
+  Storage:  private bucket; family/<account>/… with short retention for raw uploads
 ```
 
 ## 2. Module registry
 
-`src/lib/family/modules.ts` declares every family module (the S- and C-rows of `02`):
+`src/lib/family/modules.ts` declares every family module (the rows of `02`). For each:
 
-- `id`, `mode` (`standalone` | `connected` | `both`), `plan` (`free` | `plus`; every C-module is `free`), `flag` (a
-  Control switch), `screens`, `apis`, `dataSources`.
-- The family home, the menu and the APIs read the registry: a module whose flag is off, whose plan the family lacks, or
-  whose mode does not match this child is neither shown nor served.
-- A test fails if any `connected` module is given a paid plan (`05` rule 1).
+- `id`, `mode` (`standalone` | `connected` | `both`), `flag` (a Control switch), `screens`, `apis`,
+  `dataSources`;
+- `entitlement`, one of:
+  - `school_info`: always free to a linked family (C1, C3–C10);
+  - `learning`: per child per subject; free for one subject, Plus or school-sponsored for the rest (the resolver,
+    practice, mastery, Tonight's practice, revision, past papers);
+  - `public`: free (opportunities, career exploration, the weekly summary, English moments, the vault);
+  - `plus`: Plus only (the 90-day English programme, custom syllabus set-up beyond the free subject, saved career
+    plans, vault export).
+
+The home, the menu and every API read the registry. A test fails if a `school_info` module is given any paid
+entitlement (`05` rule 1).
 
 ## 3. Identity
 
 | Decision | Reason |
 |---|---|
 | A **family account** is global (`family.accounts`), not a row of a school's `users`. | A standalone family belongs to no school. |
-| Its session is a **separate claims type** (`role: 'family'`, `sub` = account id, no school) with its **own cookie** and its own guard. | A family session can never reach `/app`, `/control` or a staff API, and a staff session never reaches `/api/family/**` (docs/31 §3 rule 2). A route check script holds this. |
-| **Sign-in:** email with a one-time code now (Resend is live); WhatsApp code to the account's number once WhatsApp is live (P4); Google sign-in later if the founder adds it. Passwords optional. | Works today without waiting on Meta or DLT SMS. |
-| C230-D's founder-made parent logins become family accounts linked to their guardian record by a one-time migration. | One identity model. |
-| Deleting the account erases `family.*` rows for it and ends every school link (DPDP right to erasure). | |
+| Its session is a **separate claims type** (`role: 'family'`, the account id, no school) with its **own cookie** and guard. | A family session can never reach `/app`, `/control` or a staff API, and the reverse (docs/31 §3 rule 2). A route check holds it. |
+| **Sign-in:** a one-time email code now (Resend is live); a WhatsApp code once WhatsApp is live (P4); passwords optional. | Works today. |
+| C230-D's founder-made parent logins become family accounts linked to their guardian. | One identity model. |
+| Deleting the account erases its `family.*` rows and storage objects and ends every school link. | DPDP right to erasure. |
 
 ## 4. School Link
 
 The only path from a family account to school data.
 
-1. **Issue.** In the school app (Students → a guardian), the office makes a **connect code** for that guardian:
-   8 characters, single use, valid 7 days, stored as a hash, audited. The school can print it, hand it over, or later
-   send it by WhatsApp through the send-gate.
-2. **Redeem.** In the family app, the parent enters the code. The server checks it, then records
-   `family.school_links (account_id, school_id, parent_id, method, linked_at)` and one `family.child_links` row per
-   child the guardian is mapped to in `parent_student_map`, matched to an existing child profile or creating one.
-3. **Read.** To read school data, the server opens the existing tenant context **as that guardian** (tenant = school,
-   role = parent, user = parent_id), so the parent RLS already on every school table applies (C230-D: every school table
-   refuses a parent session unless a parent rule allows it, and a test fails if a new table is left open). The family code calls `SchoolLink` (`src/lib/contracts/school-link.ts`): `today(childLink)`,
-   `fees(link)`, `calendar(childLink, month)`, and so on. It never runs SQL on `public.*` itself.
-4. **Unlink.** By the family or the school. The link row ends, the guardian's family-app access ends in the same
-   request, and nothing school-owned is kept in `family.*`. Documents the family chose to save to its vault before
-   unlinking stay: they are the family's copy.
-5. **Later (P4 live):** a WhatsApp code to the guardian's number on the school record as a second way to link. Same
-   neutral answer for "not on record", "no consent" or "merged" (docs/31 §3 rule 4).
+1. **Issue:** the school office makes a single-use, hashed, 7-day connect code for a guardian (Students → guardian).
+   Audited.
+2. **Redeem:** the parent enters it. The server records `family.school_links` and one `family.child_links` row per
+   mapped child.
+3. **Read:** the server opens the existing tenant context **as that guardian** (role parent), so the parent RLS on
+   every school table applies. Family code calls `SchoolLink` (`src/lib/contracts/school-link.ts`) and never runs
+   SQL on `public.*` itself.
+   - Methods include `today`, `fees`, `calendar`, `reports`, `notices`, `pulse`, `pulseReply`, `homework`,
+     `material`, and `syllabus` (the school's `syllabus_units` for the child's class and subjects, read-only).
+4. **Unlink:** by either side. Access ends in the same request. Nothing school-owned stays in `family.*` except
+   documents the family saved to its vault (its copy) and the child's own progress records, which point to school
+   topic ids and become inert.
+5. **Later:** a WhatsApp code to the guardian's number on record, with the same neutral answers.
 
-Consent stays the school's: a connected child's school data shows only when the school's consent for that child is on
-its ledger (the family home's rule today).
+The school's consent ledger still decides what a linked child's school data shows.
 
 ## 5. Data
 
 | Schema | Holds | Rules |
 |---|---|---|
-| `family` | accounts, children, consents, school links, child links, plans and practice history, doubts saved by the family, vault items, notification preferences, subscriptions | Forced RLS: every row carries `account_id`; restrictive policy `account_id = app.current_account_id`. **No foreign key into `public.*`**: school, guardian and student ids are plain uuids checked at link time, so the schema can move to another database. |
-| `content` | board/class/subject/chapter/topic catalog, explainers, question banks, paper patterns, scholarships and exams, each with `status` (`draft`, `reviewed`, `published`, `retired`), reviewer, reviewed day and source URL | No personal data. Readable by family sessions only when `published`; written only by Control roles. |
-| `public` | the school system, unchanged | Read by the family app only through School Link. |
+| `family` | accounts, consents, children, school and child links, entitlements, private syllabi (with versions), topic progress, check and practice answers, misconceptions met, saved responses, vault items, readiness checklists, saved career plans, English programme progress and assessments, reminders, notification preferences, AI usage, subscriptions | Forced RLS keyed to `app.current_account_id`. **No foreign key into `public.*`**: school, guardian, student and topic ids are plain uuids checked at link time. |
+| `content` | the board catalog (board, class, subject, year, version → units → chapters → topics), reviewed resolver responses, misconception tags, video picks per topic, opportunities and their sources, the career pathway graph, English programme items and assessments, product prompt versions in use | No personal data. Published rows readable by family sessions; written only by Control roles and the jobs that create drafts. |
+| `public` | the school system, unchanged | Read through School Link only. |
 
-Data minimisation:
-- A standalone child is a first name, class, board, medium and state, plus category and income band only if the
-  parent asks for scholarship matching, with that purpose recorded.
-- No Aadhaar, phone or photo of a child, ever. The 12-digit rule (`public.no_aadhaar_number`) applies to every typed
-  field.
+**Storage:**
+- the private bucket under `family/<account_id>/inputs/` (photos sent to the resolver: deleted after 24 hours unless
+  the family saves the response);
+- `…/syllabus-uploads/` (deleted when the syllabus is confirmed, at most 7 days);
+- `…/vault/` (kept until the family deletes).
 
-## 6. AI
+Raw uploads never go into the database and never by WhatsApp.
 
-- **One door:** the existing `AIProvider` interface (C154) gains family kinds: `topic_explainer`, `question_bank`,
-  `doubt_hint`, `weekly_summary`.
-- **Library generation** (explainers, question banks) carries only board, class, subject, chapter, topic and
-  language. Drafts land in Control's review queue; nothing reaches a family before a reviewer publishes it. One
-  reviewed item serves every family: cost is per topic, not per child.
-- **Doubts** carry the child's text, so a pre-processor removes names, phone numbers, emails, 12-digit numbers and
-  addresses before the provider call. A CI test proves it, as the Copilot test does.
-  - The reply is hint-first and marked as AI.
-  - The doubt is kept only if the family saves it.
-  - Usage is metered per account (`family.ai_usage`, counts and tokens only), with daily caps by plan and a monthly
-    platform cap set in Control.
-- **Stand-in provider** until the founder chooses a real one (gate L3): the whole flow is built and tested without a
-  key.
+**Minimisation:**
+- A child is a first name, class, board, medium and state.
+- Category, income band and gender are asked only for opportunity matching, with that purpose recorded.
+- No Aadhaar, phone or photo of a child, ever; the 12-digit rule applies to every typed field and to text read from
+  images.
 
-## 7. Consent (DPDP)
+## 6. The Concept Resolver pipeline
 
-- Before any child profile exists, the account holder confirms being the child's parent or lawful guardian and
-  consents, per purpose: `study_core`, `scholarship_matching`, `ai_doubt_help`, `school_link`.
-- The consent method is the one the lawyer approves under Rule 10 (gate L1). The ledger is `family.consents` (purpose,
-  version, granted, withdrawn, method).
-- Withdrawing a purpose stops it at once; withdrawing `study_core` offers account deletion.
-- No analytics or third-party trackers on any family screen. Product metrics are server-side counts by module and day,
-  with no person in them.
+```
+input (topic | search | question | photo)
+  → 1 ingest      text normalised; photo → private storage → vision read (OCR fallback) → PII and Aadhaar screen
+  → 2 context     match to a syllabus topic (school / catalog / private); class, board, language, past mistakes
+  → 3 cache       reviewed response for this topic, class, board, language and schema version? serve it
+  → 4 plan        choose blocks for this subject and question type (schema-constrained)
+  → 5 generate    fill each block as JSON against its schema
+  → 6 verify      schema check; numeric steps recomputed (math library); answer keys re-solved independently,
+                  mismatches dropped; links only from allowlisted domains; reading level for the class
+  → 7 render      our components only: markdown subset, KaTeX, Mermaid (strict mode), a function plotter,
+                  geometry (a constrained construction vocabulary), timelines, outline maps, vetted simulation embeds
+  → 8 learn       checks and practice update topic progress and misconceptions; revisits scheduled
+```
 
-## 8. Control: the one place the family app is run
+- **Blocks are data, never code.** Each block type has a JSON schema and one component. Unknown types and unsafe
+  fields are dropped. A test feeds script into every field.
+- **Interactive components** are ours or from libraries whose licences allow commercial use (for example MIT-licensed
+  plotting and geometry libraries).
+  - Third-party simulations are embedded only from an allowlist with attribution, after their licence for our use is
+    confirmed (gate L7).
+  - GeoGebra and Desmos need commercial licences, so they are not used without one.
+- **Images:** photos are read by the vision model through the AI platform; the existing OCR (English only) is the
+  fallback. A photo with an Aadhaar number or card is refused (the existing upload rule). Faces are not stored or
+  analysed.
+- **Copyright:**
+  - A photographed page is processed for the child's own question and deleted.
+  - The cache stores our response keyed by topic, never the page.
+  - Catalog content is titles and structure only.
+- **Cost:**
+  - Reviewed responses are served from the cache.
+  - Generation is metered per account, with daily limits by entitlement.
+  - Photos count more than text.
+- **Promotion:** usage and reports rank unreviewed responses in Control's queue; a reviewer edits and approves; the
+  approved version is cached and marked.
 
-A new Control section, `/control/family`, for the founder and NetCyberAI staff roles:
+## 7. The AI platform (shared, owned by the platform lead)
 
-| Screen | What it shows or does |
+One router for every AI feature in NetCyberAI. It is the "AI router" the automation plan names, not a second one. The
+Teacher Copilot and Parent AI move onto it.
+
+| Part | What it is |
 |---|---|
-| Overview | Accounts, children, weekly active accounts, links per school: **counts only**, never a child |
-| Modules and plans | The registry's flags per module and plan, with a reason on each change (audited) |
-| AI | Spend by kind and day, caps per plan, the platform monthly cap, the provider in use |
-| Content review | Explainers, question banks and paper patterns: draft → reviewed → published, with source and reviewer |
-| Opportunities review | Scholarship and exam candidates from the weekly job, approved or rejected with the official link |
-| Reported mistakes | Families' "Report a mistake" items, linked to the content row |
-| School links | Codes issued and redeemed per school, failures by reason (counts) |
-| Subscriptions | Plans, renewals and failures (Phase 6) |
+| **Adapters, by capability** | `text`, `vision`, `speech_to_text`, `text_to_speech`, `realtime_voice`, `embeddings`; and non-AI content adapters such as `video_search`. One interface per capability; a vendor is an adapter, never a call inside a feature. |
+| **Profiles, by feature** | For example `copilot.lesson_plan`, `parent_ai.home_help`, `family.resolve.plan`, `family.resolve.generate`, `family.resolve.verify`, `family.syllabus_extract`, `family.video_rank`, `family.career_explain`, `family.opportunity_extract`, `english.feedback`, `english.partner`. Each pins the provider and model with a fallback chain, the prompt version, token limits, the pre-processor policy, whether children's data may pass, and whether zero data retention is required. |
+| **Credentials** | Entered in Control, sealed with a server key (the pattern used for WhatsApp and payment credentials), write-only, never sent to a browser. Realtime voice uses short-lived server-issued tokens. |
+| **Budgets and quotas** | A platform monthly cap, per-school monthly limits (today's `monthly_tokens` plan limits), per-account daily limits by entitlement; at a limit, a clear message, never a silent failure. |
+| **Health and fallbacks** | Latency and error rates per provider and profile; automatic fallback down the chain; a kill switch per profile. |
+| **Rollout** | A percentage per profile version, by account bucket, audited, with a reason. |
+| **Prompts** | Prompt text lives in the repository (a PR with before-and-after samples, `08` §7). Control chooses the active version and its rollout, and never edits prompt text live. |
+| **Audit and usage** | `ai_usage` extended with the profile, provider and model; counts and tokens only, never prompt or answer text. |
+| **Minors** | A profile that may carry a child's words is refused at start-up unless its provider is marked as permitted for minors (with zero retention where the provider requires it). |
 
-Support needs no access to child data: a family's ticket carries what the family chooses to attach.
+## 8. The video finder
 
-## 9. App shell
+1. **Per topic and language, not per query.**
+   - Search official and reviewer-approved channels first (by channel id), then the wider catalogue.
+   - Fetch details for the candidates in one batch (duration, embeddable, made for kids, captions present, language).
+   - Parse chapter timestamps from the description.
+   - Rank with the `family.video_rank` profile on metadata only.
+2. **Store** the top few in `content.video_picks` with the provider's data refreshed or dropped within its storage
+   rules. Reviewers can pin, reject or add picks.
+3. **Serve:** the resolver maps a query to its topic and shows that topic's pick, starting at the matching chapter when
+   one exists.
+4. **Quota:** about 100 searches a day by default. Warm the catalog gradually by topic, reuse results, and apply for a
+   quota extension (a compliance review) before scale.
+5. **Player:** the privacy-enhanced embed, related videos limited to the same channel, no autoplay, tap to load, and
+   the note that YouTube may show ads and suggestions (`02` §5).
 
-- PWA under `/family` with its own manifest and service worker (scope `/family`). It keeps static files and the last
-  pages loaded, never anything under `/api`, and sign-out clears what it kept (docs/31 §3 rule 7).
-- Design: the v5 system (C235-C) with a family register: warmer, more visual, larger type for younger classes. Same
-  tokens; AA contrast; reduced motion honoured.
-- Languages: English and Hindi at launch, through the message files (`fam.` keys).
+## 9. Syllabus ingestion
 
-## 10. Boundaries enforced by CI (`scripts/check_family_boundary.py`)
+- **Catalog:** a reviewer imports a board's official curriculum document into `content` (units, chapters, topics),
+  versioned by year.
+- **Family upload:**
+  1. Up to 5 images or a 10-page PDF of the contents or syllabus pages, into storage.
+  2. `family.syllabus_extract` returns units, chapters and topics with a confidence per line.
+  3. If 90% or more of the chapter titles match a catalog syllabus, the child is linked to the catalog version and no
+     private copy is kept.
+  4. Otherwise a draft private syllabus: low-confidence lines are shown as questions, never guessed. The parent edits
+     and confirms, and each confirmation is a new version.
+  5. The upload is deleted after confirmation, or after 7 days at most.
+  6. The same structure confirmed by several families becomes a candidate for the catalog, after review.
+- **School syllabus:** read through School Link. A school-side import from index pages is an ERP Setup slice that
+  reuses this extraction.
 
-- Code in `src/lib/family/**`, `src/app/(family)/**`, `src/app/api/family/**` and `src/components/family/**` may
-  import only:
+## 10. Opportunities and careers data
+
+- **Opportunities:** `content.opportunity_sources` and `content.opportunities`.
+  - **Sources:** official URL, kind, cadence, last fetched, last changed.
+  - **Opportunities:**
+    - type and issuer;
+    - eligibility rules (class, age, state, category, income, marks, gender, stream) plus the conditions in the
+      notice's words;
+    - dates, fees, canonical document types and steps;
+    - official notification and application links;
+    - status (candidate, verified, published, closed, archived), verified by and on, and a change hash.
+  - **The flow:**
+    - a weekly job fetches each source and detects changes;
+    - `family.opportunity_extract` drafts fields, each citing its source text;
+    - a person verifies and publishes in Control;
+    - a nightly job closes and archives;
+    - an item past its check interval is hidden.
+  - **Not covered:** myScheme has no public API we found; scheme pages are linked to, never scraped.
+- **Careers:** `content.career_nodes` (stage, qualification, exam, course, occupation by NCO-2015 code, skill) and
+  `content.career_edges` (prerequisites, restrictions, typical duration, source URL, checked on, reviewer).
+  - O*NET's skill taxonomy may be adapted under its CC BY 4.0 licence with attribution.
+  - Labour data (PLFS, NCS) is stored as dated figures with their source.
+  - `family.career_explain` may only describe routes the graph contains.
+
+## 11. Consent (DPDP)
+
+- **Purposes,** each granted by the parent before use:
+  - `study_core`;
+  - `school_link`;
+  - `opportunity_matching` (category, income band, gender);
+  - `photo_input`;
+  - `english_programme`;
+  - `voice_practice` (when piloted).
+- The method is the one the lawyer approves under Rule 10 (gate L1). The ledger is `family.consents`.
+- Withdrawing a purpose stops it at once.
+- **No trackers:** no analytics or third-party trackers on family screens. Product metrics are server-side counts by
+  module and day.
+
+## 12. Control
+
+**Control → Family:**
+- an overview (counts only);
+- modules and entitlements (flags with reasons);
+- content review (resolver responses, misconception tags, catalog imports, video picks);
+- opportunities review and source health;
+- career pathways review;
+- reported mistakes;
+- school links (counts);
+- subscriptions.
+
+**Control → AI** (platform-wide):
+- providers and sealed credentials;
+- profiles with routing and fallbacks;
+- prompt versions and rollout;
+- budgets and quotas;
+- health;
+- usage by profile, school and day;
+- kill switches.
+
+Both sections are audited, and neither shows a child's data.
+
+## 13. App shell
+
+- A PWA under `/family`, with its own manifest and a service worker that never stores `/api`; sign-out clears it.
+- A **data-saver mode:** text first, images on tap, video only on tap, offline download of today's practice set.
+- The v5 design system with a family register; English and Hindi through `fam.` message keys.
+
+## 14. Boundaries enforced by CI (`scripts/check_family_boundary.py`)
+
+- Family code imports only:
   - its own area;
   - `src/lib/contracts/**`, `src/components/ui/**` and `src/components/app-ui/**`;
-  - `src/lib/i18n/**`, `src/lib/design-tokens.ts`;
-  - `src/lib/ai/provider.ts`, `src/lib/storage/file-storage.ts`;
-  - the family database helper.
-- School code may not import family code.
-- Family SQL touches only `family.*` and `content.*`; school data is read through `SchoolLink` only.
-- Every `family.*` and `content.*` table has RLS enabled and forced (the existing RLS check extended to both schemas).
+  - `src/lib/i18n/**` and the design tokens;
+  - the AI platform's public interface;
+  - the storage interface and the family database helper.
+- School code never imports family code.
+- Family SQL touches only `family.*` and `content.*`; school data comes only through `SchoolLink`.
+- No feature calls a vendor SDK directly: AI and video calls go through the AI platform's adapters.
+- Every `family.*` and `content.*` table has RLS enabled and forced.
