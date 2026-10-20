@@ -1,48 +1,75 @@
-# Family App programme (P7b, redefined by C230-H)
+# Family App programme (P7b, redefined by C230-H, revised by C230-I)
 
-**Status:** plan, decided by the supervisor on 2026-10-18 from the founder's brief and five planning notes, checked
-against the code. Nothing here is built yet beyond C230-D's first parent home. Build starts with wave FA-1 (`07`).
+**Status:** plan. Nothing here is built yet beyond C230-D's first parent home. Build starts with wave FA-1 (`07`).
+- **C230-H** (2026-10-18) set the shape.
+- **C230-I** (2026-10-20) revised it after the founder's review:
+  - the learning loop is dynamic, not a library;
+  - English, careers and opportunities are full experiences;
+  - one free subject per child;
+  - a shared AI platform managed in Control;
+  - a re-sequenced wave plan.
 
-**One sentence:** one parent-and-student app that helps any child understand school and prepare for exams in the
-family's language, and that adds the school's own modules when the child's school uses NetCyberAI.
+**One sentence:** one parent-and-student app that helps any child understand school, practise until they have truly
+understood, prepare for exams, improve their English and see where their subjects can lead, in the family's language,
+and that adds the school's own information when the child's school uses NetCyberAI.
 
 | File | What it settles |
 |---|---|
-| `01_RESEARCH.md` | The evidence on parents' and students' problems in India, with sources, and what to avoid |
-| `02_PRODUCT.md` | Mission, users, the two modes, every feature, what is not built, launch gates, definition of done |
-| `03_ARCHITECTURE.md` | The module registry, family accounts, School Link, the `family` and `content` schemas, AI, consent, Control, boundaries |
-| `04_HOSTING_AND_SCALING.md` | Same deployment and database now (functions in Mumbai), and when and how to split later |
-| `05_MONETIZATION.md` | What the app may earn without conflicting with the school business, and what is rejected |
+| `01_RESEARCH.md` | Evidence on families' problems in India; video, voice, licence, career and provider facts; competitors; differentiators assessed |
+| `02_PRODUCT.md` | Mission, users, the two modes, the learning loop, video, English, careers, opportunities, school information, syllabus, what is not built, gates, done, silent failures |
+| `03_ARCHITECTURE.md` | Registry and entitlements, identity, School Link, data and storage, the Concept Resolver pipeline, the AI platform, the video finder, ingestion, opportunities and careers data, consent, Control, boundaries |
+| `04_HOSTING_AND_SCALING.md` | Same deployment and database now (functions in Mumbai), upload retention, video quota, voice; when and how to split later |
+| `05_MONETIZATION.md` | Rules, free and Plus, models assessed, price hypothesis, unit economics including voice |
 | `06_PROJECT_STRUCTURE.md` | Where every file goes, naming, ownership, the tests each slice brings |
-| `07_EXECUTION_WORKFLOW.md` | Waves FA-1 to FA-6, the loop per wave, gates, content operations, release, incidents |
-| `08_PROMPT_FRAMEWORKS.md` | Build prompts any AI coding tool can follow, and the app's own product prompts |
+| `07_EXECUTION_WORKFLOW.md` | Waves FA-1, P-AI, FA-2 to FA-7 with dependencies; the loop; gates; content operations; release; incidents |
+| `08_PROMPT_FRAMEWORKS.md` | Build prompts any AI coding tool can follow; the app's product prompts per profile |
 
-## Decisions in brief (C230-H)
+Physical devices and sensors are assessed separately, as a platform matter: `docs/33_PHYSICAL_INTEGRATIONS.md`.
 
-1. **One app, two modes:** a standalone study core for every family; school modules only for children linked to a
-   NetCyberAI school.
-2. **Family accounts are global**, separate from school users, with their own session and cookie.
-3. **School Link** by a single-use code the school office issues (WhatsApp code later); school data is read as the
-   guardian through the existing parent rules; unlinking ends access at once.
-4. **Two new schemas**, `family` (family-owned, keyed to the account) and `content` (catalog and reviewed library, no
-   personal data), with no foreign key into the school schema.
-5. **Reviewed library first, AI on top:** explainers and question banks are reviewed before any family sees them;
-   doubt help is hint-first, marked as AI, cleaned of personal details, metered and capped.
-6. **Control runs it all:** flags, AI spend, review queues, counts; no browsing of children's data.
-7. **Hosting:** the same Vercel project (functions moved to Mumbai, #193) and the same Supabase project now; built so
-   the app and then its data can move out without a rewrite.
-8. **Money:** families never pay for their own school's data; Family Plus and school-sponsored Plus only after the
-   pilot shows retention; no ads, data sales, loans or sales calls.
-9. **Supersedes** docs/31's sign-in by WhatsApp code as the first step, and C230-D's founder-made logins, which become
-   family accounts. docs/31's slices 11b–11g stay as the school modules.
+## Decisions in brief
+
+1. **One app, two modes** (kept): any family gets the learning loop, English, careers and opportunities; linked
+   children also get their school's information.
+2. **Family accounts are global**, with their own session and cookie (kept).
+3. **School Link** by a single-use school-issued code; school data read as the guardian through the existing parent
+   rules; unlinking ends access at once (kept).
+4. **`family` and `content` schemas**, no foreign key into the school schema (kept). Raw uploads live in storage with
+   short retention, never in the database.
+5. **Learning is dynamic (C230-I):**
+   - the Concept Resolver ("Understand") assembles a response from typed blocks (explanation, worked example,
+     diagram, graph, timeline, map, vetted simulation, video, checks, practice, English moment, sources);
+   - the model fills data, our components draw it;
+   - numbers are recomputed and links come from an allowlist;
+   - frequent topics are reviewed and cached.
+6. **Mastery, not completion:** checks and practice drive a misconception-to-mastery loop; a topic is mastered after
+   correct answers on two days a week apart.
+7. **Video** is found per topic from provider metadata and shown inside the response, with an honest note that the
+   provider may show ads and suggestions; the response never depends on it.
+8. **English:** a free 3–5-line English moment in responses, and a paid 90-day programme with assessed progress. **No
+   fluency guarantee**: measured gains on days 0, 45 and 90 instead. The voice practice partner is a costed pilot
+   after launch.
+9. **Careers and opportunities** run on vetted data with sources and dates: pathways cannot invent a step,
+   opportunities say "likely eligible" with conditions, and stale items are hidden.
+10. **Money:** school information is always free; the learning loop is free for one subject per child; Plus (or a
+    school's sponsorship) adds every subject, custom syllabi, the English programme and higher limits.
+11. **One AI platform for all of NetCyberAI**, built before the learning loop (P-AI):
+    - adapters per capability and profiles per feature;
+    - credentials sealed and managed in Control, with routing, fallbacks, prompt versions, budgets and health;
+    - a minors check;
+    - Copilot and Parent AI move onto it.
+12. **Supersedes:** docs/31's WhatsApp-code first step; C230-D's founder-made logins become family accounts; the
+    library-first study core of C230-H.
 
 ## What needs the founder
 
 | # | Input | Blocks |
 |---|---|---|
-| 1 | Lawyer: privacy notice, consent words, the parental-consent method; whether adaptive practice is "behavioural monitoring" for a non-school company (`02` §7 L1–L2) | Public launch of the standalone mode |
-| 2 | An AI provider, key and monthly cap (C235) | Real explainers and doubts (the stand-in runs until then) |
-| 3 | Reviewers for the first library (teachers he trusts) | FA-3's content going live |
-| 4 | The product's name, and whether it stays under netcyberai.com | Stage 2 domain (`04`) |
-| 5 | The live server key (roadmap action 8) | Uploads and logins on the live site |
-| 6 | Later: a payment gateway for subscriptions; a Google Play account if the store listing is chosen | FA-6 |
+| 1 | Lawyer: privacy notice, consent method (Rule 10), transient processing of textbook photos, disclaimers on careers and opportunities, and whether the mastery loop is "behavioural monitoring" (`02` §14, L1–L2) | Public launch |
+| 2 | An AI provider whose current terms allow use by children, with zero retention where required; its key; monthly caps (L3). C235's recommendation must be re-checked against this. | Real responses beyond the stand-in |
+| 3 | Reviewers: subjects (promoted responses), opportunities, careers, English (L4) | Content going live; coverage grows only as fast as reviewers can keep it true |
+| 4 | The practice partner's default daily limit, and whether it sits in Plus or is an add-on, once its cost is measured (`05` §5) | The voice pilot |
+| 5 | Licences: PhET for commercial use; GeoGebra or Desmos only if wanted and licensed (L7) | Simulation blocks |
+| 6 | The product's name; the pilot state for opportunities; whether recruitment notices are in scope | Naming, opportunities scope |
+| 7 | Whether pilot schools want exam transparency (scanned scripts and re-evaluation requests) | That after-launch wave |
+| 8 | The live server key (roadmap action 8) | Uploads and logins on the live site |
+| 9 | Later: a payment gateway; a Google Play account if the store listing is chosen | FA-6, FA-7 |
