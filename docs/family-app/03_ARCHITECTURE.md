@@ -44,6 +44,10 @@ Every boundary below exists so the app can move to its own deployment and databa
   - `plus`: Plus only (the 90-day English programme, custom syllabus set-up beyond the free subject, saved career
     plans, vault export).
 
+**Grants (C230-L):** a child's access to a `learning` or `plus` module comes from one of: the free subject, Family
+Plus, a school's sponsorship, or a time-boxed pack (an exam runway, a Board 30-day plan for one subject) with its end
+date. Limits such as free photo questions a day are data set in Control (`10` §1), never constants in code.
+
 The home, the menu and every API read the registry. A test fails if a `school_info` module is given any paid
 entitlement (`05` rule 1).
 
@@ -171,8 +175,10 @@ Teacher Copilot and Parent AI move onto it.
 
 ## 9. Syllabus ingestion
 
-- **Catalog:** a reviewer imports a board's official curriculum document into `content` (units, chapters, topics),
-  versioned by year.
+- **Catalog:** the central library in Control → Content (`10` §4): an editor imports a board's official curriculum
+  document into `content` (units, chapters, topics), a second person approves, and it is published as a version per
+  academic year. Schools adopt it, linked families read it through their school, standalone families read it
+  directly: one source for all three.
 - **Family upload:**
   1. Up to 5 images or a 10-page PDF of the contents or syllabus pages, into storage.
   2. `family.syllabus_extract` returns units, chapters and topics with a confidence per line.
@@ -234,6 +240,10 @@ Teacher Copilot and Parent AI move onto it.
 - reported mistakes;
 - school links (counts);
 - subscriptions.
+
+**Control → Apps, Integrations and Content** (platform-wide, C230-L): versions, flags with audiences, kill switches,
+banners, health and usage for the Teacher app, school web and Family app; sealed credentials for every outside
+service; the central content library with review and publish. Detail in `10`.
 
 **Control → AI** (platform-wide):
 - providers and sealed credentials;

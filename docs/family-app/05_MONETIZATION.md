@@ -31,6 +31,16 @@
 | Career exploration | Saved career plans with milestone reminders |
 | The weekly summary; the Learning Vault | Vault export; later the admission dossier PDF |
 | — | Later: the English practice partner, if its cost allows (§5), or as a separate add-on |
+| 3 photo questions a day (the homework helper's hint ladder) | A higher fair-use cap for photo questions |
+| The vault up to a storage limit (starting at 50 MB) | More vault storage; the admission dossier |
+
+**Limits are data (C230-L):** the free subject count, photo questions a day and vault storage are settings in Control
+(`10` §1), so a pilot can change them without code.
+
+**Packs (C230-L):** for families who will not subscribe, one-time season packs (an exam runway mock series; a Board
+30-day plan per subject) and one-time items (the admission dossier, the in-depth career roadmap). They are grants with
+an end date (`03` §2), never a second subscription. Which ones are sold, and at what price, is decided from pilot
+evidence with Plus (§4).
 
 **The free subject:**
 - The parent picks it per child and may change it once per school term.
@@ -60,6 +70,8 @@
   schools.
 - **Decided only after** 30-day retention of free families and the pilot questions (`01` §4). No price appears in the
   product before then.
+- **The founder's test bands (2026-10-20):** ₹49–₹499 points for packs and add-ons, and ₹299 a month for Plus in the
+  mockups. They are bands to test at pilot schools, not prices.
 
 ## 5. Unit economics
 
