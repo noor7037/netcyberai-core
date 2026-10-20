@@ -120,6 +120,7 @@ numbers: supervisor C100–C109, Claude Code from C110.
 
 ## 6. Change log
 
+- **2026-10-20** — C230-K: the family app's experience and design standard (`docs/family-app/09`); the weekend prototype is audited read-only (wave PA) and its useful parts ported into netcyberai-core, with no separate app.
 - **2026-10-20** — C230-J: QR/NFC labels and every hardware or device concept removed from NetCyberAI's scope for good (founder); `33` deleted. The operating context for every session written into `CLAUDE.md`.
 - **2026-10-20** — C230-I: the Family App plan revised: a dynamic learning loop (the Concept Resolver with typed blocks, checks and mastery), video inside the response, English moments and a 90-day programme with measured outcomes, a vetted career explorer, opportunities with a readiness tracker, one free subject per child, and a shared AI platform managed in Control (wave P-AI). Waves are now FA-1, P-AI, FA-2 to FA-7.
 - **2026-10-18** — C230-H: the Family App redefined as one app with a standalone study core and school modules for linked children (`docs/family-app/`, waves FA-1 to FA-6); functions moved to Mumbai beside the database (#193).
