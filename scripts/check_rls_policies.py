@@ -1000,6 +1000,11 @@ def parse_migrations(migrations_dir: Path) -> dict:
     return policies
 
 
+# Control's own tables and the content library (C247): written only by Control through the platform role (nca_super,
+# BYPASSRLS), never by app_user, so a missing permissive policy cannot turn one of their writes into a silent no-op.
+# Families' only writes there (AI-made responses, AI counts) are an insert policy and a definer function.
+PLATFORM_WRITTEN_SCHEMAS = ("control.", "content.")
+
 UPDATE_TABLE_RE = re.compile(r"\bupdate\s+(?:(?P<schema>\w+)\.)?\"?(?P<table>\w+)\"?\s+(?:as\s+\w+\s+|\w+\s+)?set\b", re.IGNORECASE)
 DELETE_TABLE_RE = re.compile(r"\bdelete\s+from\s+(?:(?P<schema>\w+)\.)?\"?(?P<table>\w+)\"?", re.IGNORECASE)
 UPSERT_TABLE_RE = re.compile(
@@ -1024,7 +1029,7 @@ def find_app_mutations(src_dir: Path) -> set[tuple[str, str]]:
                 mutations.add((qualified(m), "DELETE"))
             for m in UPSERT_TABLE_RE.finditer(literal):
                 mutations.add((qualified(m), "UPDATE"))
-    return {(t, c) for t, c in mutations if t not in TABLES_WITHOUT_RLS}
+    return {(t, c) for t, c in mutations if t not in TABLES_WITHOUT_RLS and not t.startswith(PLATFORM_WRITTEN_SCHEMAS)}
 
 
 DANGEROUS_WRITE_CMDS = {"INSERT", "UPDATE", "DELETE"}
