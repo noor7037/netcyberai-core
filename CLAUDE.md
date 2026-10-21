@@ -53,7 +53,8 @@ the user asked for.
   what it delivers, and how to work (the rules that bind it).
 - **Out of scope for good:** QR/NFC labels and every hardware or device concept. Never propose or build them unless the
   founder reopens the decision. Built features that show a QR image (UPI payment, ID-card and certificate
-  verification) are not hardware and stay.
+  verification) are not hardware and stay. **One exception, reopened by the founder (C230-M):** the learn-to-unlock
+  app-lock companion for Android, built only after its gates in `docs/34_ECOSYSTEM_AND_SYNC.md` §9.
 
 ## Build rules (from the removed AGENTS.md, C101)
 
