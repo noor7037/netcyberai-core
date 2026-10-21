@@ -403,6 +403,293 @@ text for the formatively assessed topics, not curriculum lines.
 Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
 pages `class11-physics.md` to `class12-mathematics.md`.
 
+## ncert-2026-27-classes-1-5.csv
+
+Classes 1 to 5, every subject the app teaches in these classes (`stageSubjects` in `src/lib/family/subjects.ts`):
+`mathematics`, `english`, `hindi`, and `evs` for Classes 3–5. The lines are the contents of NCERT's current textbooks,
+which CBSE schools teach from in these classes, so the board is `CBSE`. Academic year `2026-27`, every line
+`in_review`, every line read on **2026-10-22** (`checked_on`). Same columns as the file above. 692 lines: 51 units,
+243 chapters, 398 topics; 216 lines have a Hindi title.
+
+**Which books are current.** NCERT's textbook page https://ncert.nic.in/textbook.php lists, in its class, subject and
+book menus, exactly one book per class and subject below (and its other-language editions). The earlier books
+(Math-Magic, Marigold, Raindrops, Rimjhim, Looking Around/Aas-Paas) appear only in parts of that page's code that are
+switched off (commented out), not in its menus. The opening pages of each book below print "Reprint 2026-27", except
+the two Hindi editions of Class 5 (गणित मेला, हमारा अद्भुत संसार), whose imprint pages are dated January 2026. First
+editions, from each book's imprint page: Classes 1–2 May–June 2023, Class 3 April–June 2024, Class 4 March 2025,
+Class 5 June–July 2025.
+
+**EVS.** NCERT's subject for Classes 3–5 is "The World Around Us" (the name in its subject menu); its book is *Our
+Wondrous World*. It is filed under the app's subject id `evs`.
+
+**Sources.** Each book has an opening-pages PDF, `https://ncert.nic.in/textbook/pdf/<code>ps.pdf`, which holds the
+contents, and one PDF per chapter, `<code>01.pdf`, `<code>02.pdf` and so on, in the book's order. Units and chapters cite
+the contents page of the opening-pages PDF; topics cite the chapter's own PDF. Page numbers are the PDF's own (its first
+page is 1), not the numbers printed on the pages.
+
+### Class 1
+
+| Subject | Book (NCERT code) | Contents PDF | Units | Chapters | Topics | Pages used | `title_hi` |
+|---|---|---|---|---|---|---|---|
+| mathematics | *Joyful Mathematics* (0124) | https://ncert.nic.in/textbook/pdf/aejm1ps.pdf | 0 | 13 | 0 | 13 | 13 of 13, from the Hindi edition *आनंदमय गणित*, https://ncert.nic.in/textbook/pdf/ahjm1ps.pdf page 13 |
+| english | *Mridang* (0123) | https://ncert.nic.in/textbook/pdf/aemr1ps.pdf | 4 | 9 | 0 | 13–14 | none |
+| hindi | *सारंगी* (0122) | https://ncert.nic.in/textbook/pdf/ahsr1ps.pdf | 5 | 19 | 0 | 19–21 | 24 of 24, the printed title |
+
+### Class 2
+
+| Subject | Book (NCERT code) | Contents PDF | Units | Chapters | Topics | Pages used | `title_hi` |
+|---|---|---|---|---|---|---|---|
+| mathematics | *Joyful Mathematics* (0224) | https://ncert.nic.in/textbook/pdf/bejm1ps.pdf | 0 | 11 | 0 | 13 | 11 of 11, from *आनंदमय गणित*, https://ncert.nic.in/textbook/pdf/bhjm1ps.pdf page 13 |
+| english | *Mridang* (0223) | https://ncert.nic.in/textbook/pdf/bemr1ps.pdf | 5 | 13 | 0 | 13–14 | none |
+| hindi | *सारंगी* (0222) | https://ncert.nic.in/textbook/pdf/bhsr1ps.pdf | 5 | 26 | 0 | 17–19 | 31 of 31, the printed title |
+
+### Class 3
+
+| Subject | Book (NCERT code) | Contents PDF | Units | Chapters | Topics | Pages used | `title_hi` |
+|---|---|---|---|---|---|---|---|
+| mathematics | *Maths Mela* (0333) | https://ncert.nic.in/textbook/pdf/cemm1ps.pdf | 0 | 14 | 48 | 15; topics from `cemm101`–`cemm114.pdf` | 14 of 62 (chapters), from *गणित मेला*, https://ncert.nic.in/textbook/pdf/chmm1ps.pdf page 15 |
+| evs | *Our Wondrous World* (0335) | https://ncert.nic.in/textbook/pdf/ceev1ps.pdf | 4 | 12 | 58 | 15; topics from `ceev101`–`ceev112.pdf` | 16 of 74 (units, chapters), from *हमारा अद्भुत संसार*, https://ncert.nic.in/textbook/pdf/chev1ps.pdf page 15 |
+| english | *Santoor* (0332) | https://ncert.nic.in/textbook/pdf/cesa1ps.pdf | 4 | 12 | 0 | 15 | none |
+| hindi | *वीणा* (0331) | https://ncert.nic.in/textbook/pdf/chve1ps.pdf | 5 | 18 | 0 | 15–17 | 23 of 23, the printed title |
+
+### Class 4
+
+| Subject | Book (NCERT code) | Contents PDF | Units | Chapters | Topics | Pages used | `title_hi` |
+|---|---|---|---|---|---|---|---|
+| mathematics | *Maths Mela* (0433) | https://ncert.nic.in/textbook/pdf/demm1ps.pdf | 0 | 14 | 79 | 15; topics from `demm101`–`demm114.pdf` | 14 of 93 (chapters), from *गणित मेला*, https://ncert.nic.in/textbook/pdf/dhmm1ps.pdf page 15 |
+| evs | *Our Wondrous World* (0435) | https://ncert.nic.in/textbook/pdf/deev1ps.pdf | 5 | 10 | 54 | 15; topics from `deev101`–`deev110.pdf` | 15 of 69 (units, chapters), from *हमारा अद्भुत संसार*, https://ncert.nic.in/textbook/pdf/dhev1ps.pdf page 15 |
+| english | *Santoor* (0432) | https://ncert.nic.in/textbook/pdf/desa1ps.pdf | 4 | 12 | 0 | 15 | none |
+| hindi | *वीणा* (0431) | https://ncert.nic.in/textbook/pdf/dhve1ps.pdf | 0 | 13 | 0 | 17–19 | 13 of 13, the printed title |
+
+### Class 5
+
+| Subject | Book (NCERT code) | Contents PDF | Units | Chapters | Topics | Pages used | `title_hi` |
+|---|---|---|---|---|---|---|---|
+| mathematics | *Maths Mela* (0533) | https://ncert.nic.in/textbook/pdf/eemm1ps.pdf | 0 | 15 | 92 | 15; topics from `eemm101`–`eemm115.pdf` | 15 of 107 (chapters), from *गणित मेला*, https://ncert.nic.in/textbook/pdf/ehmm1ps.pdf page 15 |
+| evs | *Our Wondrous World* (0535) | https://ncert.nic.in/textbook/pdf/eeev1ps.pdf | 5 | 10 | 67 | 15; topics from `eeev101`–`eeev110.pdf` | 15 of 82 (units, chapters), from *हमारा अद्भुत संसार*, https://ncert.nic.in/textbook/pdf/ehev1ps.pdf page 15 |
+| english | *Santoor* (0532) | https://ncert.nic.in/textbook/pdf/eesa1ps.pdf | 5 | 10 | 0 | 15 | none |
+| hindi | *वीणा* (0531) | https://ncert.nic.in/textbook/pdf/ehve1ps.pdf | 0 | 12 | 0 | 17–19 | 12 of 12, the printed title |
+
+### How the lines were taken
+
+- **Units** only where the book groups its lessons under unit headings in the contents (*Mridang*, *सारंगी*,
+  *Santoor*, *Our Wondrous World*, Class 3 *वीणा*). *Joyful Mathematics*, *Maths Mela* and the Class 4–5 *वीणा*
+  have none. The unit line is the unit's name without its "Unit 1:", "1.", "इकाई 1:" or "इकाई एक –".
+- **Chapters** are the lessons the book numbers, in the contents' order, named as the contents prints them, without
+  "Chapter 1:" or the lesson number. A subtitle printed in brackets with the name is kept (*Joyful Mathematics*:
+  "Finding the Furry Cat! (Pre-number Concepts)"; in Class 2 the bracket is printed on the line below and is joined).
+  Line breaks are joined ("Chanda Mama Counts the Stars", "जन्मदिवस पर पेड़ लगाओ").
+- **Not taken as chapters** (each proof page lists them, with their page): pieces the contents prints without a
+  lesson number. In *सारंगी* and Class 3 *वीणा* they are marked * and the contents says "तारांकित पाठ केवल पढ़ने के
+  लिए हैं" (starred lessons are for reading only); in Class 4–5 *वीणा* they are printed without a number among the
+  numbered lessons (NCERT's chapter PDFs follow the numbered lessons and include these pieces); *Santoor*'s "Picture
+  Reading" and "Self Assessment" pages; "Puzzles" (*Joyful Mathematics*) and "Learning Material Sheets" (*Maths Mela*)
+  after the last chapter. Foreword and About the Book are not lessons. *Mridang* numbers none of its lessons in the
+  contents, so every lesson it lists is a chapter, "Picture Reading" in Class 2 included (it is that unit's Chapter 2).
+- **Keys** follow the file above: `cbse.c3.evs.u1` (unit), `cbse.c3.evs.u1.ch01` (chapter), `cbse.c3.evs.u1.ch01.t01`
+  (topic); a book without units has `cbse.c4.hindi.ch01`. A chapter's number in its key is the number the book prints
+  for it, so the keys match the book: *Our Wondrous World* and *सारंगी* number across units (`cbse.c3.evs.u2.ch04`),
+  *Mridang* numbers within each unit on the lesson's first page (`cbse.c1.english.u2.ch01`). Topic numbers count in
+  printed order. `position` counts from 1 under each parent, in printed order.
+- **Topics** only where a chapter prints titled section headings: *Maths Mela* and *Our Wondrous World*, Classes 3–5.
+  A topic is a heading set in the book's own section-heading style that starts a section, in printed order (top to
+  bottom, page by page), with its PDF page. Each heading was found by its type style in the PDF and then checked by eye
+  on the page. Not topics: the activity labels each book repeats in every chapter ("Let us Do", "Let Us Solve", "Try
+  This", "Project Work", "Let us reflect" and the like), activity titles set in plain bold type, words inside a picture
+  or table, text of the PDF that a picture covers, and the cut-out sheets at the end of a chapter's PDF. Each proof page
+  says what its book's heading style is and what was left out. *Joyful Mathematics* prints no section headings, only
+  activity labels with a picture of a child ("Think and Do", "Count and Match", "Project Work") and story titles, so
+  its chapters have no topics; nor do the language books, whose lessons are a story, poem or picture page with
+  activities under repeated labels. Class 3 *Maths Mela* chapters 1, 2, 4 and 12 print no heading, so they have no
+  topics.
+- **Wording** as printed on the page: capitals as on the page (the text layer of Class 3 *Our Wondrous World* sometimes
+  differs, for example "ways to Manage waste" for the printed "Ways to Manage Waste"); curly apostrophes, dashes and
+  ellipses as printed ("We the Travellers—I", "Water— A Precious Gift", "Finding Directions …"); slips kept
+  ("Elephants,Tigers, and Leopards", the Class 4 *Maths Mela* contents; "Boxy Buldings"). Changed: a space printed
+  before "?" is dropped ("What is it made of?"), "½" in a heading is written "1/2", and the list number of "1. Bird
+  Diary" is dropped. "Different Units but Same Measure" is printed twice in Class 5 *Maths Mela* chapter 8 and is
+  listed twice.
+- **Devanagari** was typed from the printed page and stored in Unicode NFC. It was not copied from the PDFs' text
+  layer, which garbles NCERT's Hindi (old font encodings in some headings, vowel signs out of order).
+
+### Hindi titles
+
+- **Hindi books** (*सारंगी*, *वीणा*) print their titles in Devanagari. `title_en` and `title_hi` both hold the printed
+  title; nothing was translated or transliterated. The app shows the same title in either language.
+- **Mathematics and EVS:** `title_hi` of units and chapters is the title printed in NCERT's Hindi edition of the same
+  book (*आनंदमय गणित*, *गणित मेला*, *हमारा अद्भुत संसार*; contents PDFs in the tables above). Each Hindi edition was
+  compared with the English one: the same number of units and chapters, in the same order, starting on the same
+  pages. The Hindi titles are the Hindi edition's own, not translations of the English ones (for example Class 3 EVS
+  "Living in Harmony" is "निर्भरता एक-दूसरे पर").
+- **Topics** have no `title_hi`: their headings were not matched against the Hindi editions' chapters.
+- **English books** have no `title_hi`: NCERT's textbook page lists no Hindi edition of *Mridang* or *Santoor*.
+
+### Gaps (not filled; never guessed)
+
+| What | Why |
+|---|---|
+| `title_hi` of the 398 topics | Matching each heading with the Hindi edition's chapter PDFs was not done. The app shows the English heading. |
+| Topics of *Joyful Mathematics* and of the English and Hindi books | Their chapters print no section headings (see above). |
+| Pieces not taken as chapters | Listed above and on each proof page with their pages. If the founder wants the starred and unnumbered reading pieces as chapters, they can be added in a new version. |
+| Arts, Physical Education and Well-being, Urdu (on NCERT's menu for these classes) | Not subjects of the app for Classes 1–5. |
+
+### How the supervisor checks a line
+
+1. Open the line's `source_url` at `source_page` (or follow the line's link on its proof page in
+   [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md)).
+2. Units and chapters: find `title_en` on the contents page, in the same order. For a mathematics or EVS line with a
+   `title_hi`, open the Hindi edition's contents page (same page number) and find `title_hi` there.
+3. Topics: the heading is printed on that page of the chapter's PDF.
+4. A mechanical check used while drafting: every English word of three or more letters in each `title_en` appears in
+   the text of its cited page (`pdftotext -raw`); all 692 lines pass. Devanagari titles were checked by eye, because
+   the PDFs' text layer garbles them.
+
+## cbse-2026-27-classes-11-12-commerce-humanities-languages.csv
+
+CBSE, academic year 2026-27, Classes XI and XII: the app's other subjects for these classes, Accountancy, Business
+Studies, Economics, History, Geography, Political Science, English and Hindi (subject ids `accountancy`,
+`business_studies`, `economics`, `history`, `geography`, `political_science`, `english`, `hindi`). Same columns and rules
+as the files above. Every line is `in_review`; every line was read on **2026-10-22**. 703 lines (41 units, 187 chapters,
+475 topics). Load it the same way:
+
+```
+node scripts/content/catalog-sql.mjs data/catalog/cbse-2026-27-classes-11-12-commerce-humanities-languages.csv --ref "<the PR that committed it>" > load.sql
+```
+
+Each subject has one document for both classes, linked from https://cbseacademic.nic.in/curriculum_2027.html under
+"Secondary Curriculum: Part - 2 (XI-XII)": the six main subjects under "Academic Electives - (Group-A)", English Core and
+Hindi Core under "Languages - (Group-L)" (the page has no separate languages part for Classes XI–XII). Pages are the
+PDF's page numbers (page 1 is the first page of the file); a line printed across a page break names both pages (`11-12`).
+
+| Class | Subject | Document (link name on the curriculum page) | Units | Chapters | Topics | Pages used |
+|---|---|---|---|---|---|---|
+| XI | accountancy | "Accountancy", code 055: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Accountancy_SecP2_2026-27.pdf | 2 | 3 | 0 | 2 (course structure) |
+| XII | accountancy | same document | 3 | 5 | 0 | 9 (course structure) |
+| XI | business_studies | "Business Studies", code 054: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/BusinessStudies_SecP2_2026-27.pdf | 2 | 10 | 44 | 2 (course structure), 2–7 (the "Content" column) |
+| XII | business_studies | same document | 2 | 12 | 51 | 9 (course structure), 9–15 (the "Content" column) |
+| XI | economics | "Economics", code 030: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Economics_SecP2_2026-27.pdf | 2 | 7 | 0 | 2 (course structure) |
+| XII | economics | same document | 2 | 8 | 0 | 6 (course structure) |
+| XI | history | "History", code 027: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/History_SecP2_2026-27.pdf | 5 | 12 | 3 | 3 (course structure), 4 (Theme 1's items) |
+| XII | history | same document | 3 | 12 | 0 | 9–10 (course structure) |
+| XI | geography | "Geography", code 029: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Geography_SecP2_2026-27.pdf | 3 | 27 | 75 | 3–4 (course structure), 5–8 (course content), 10 (note of formatively assessed topics) |
+| XII | geography | same document | 3 | 24 | 132 | 11–12 (course structure), 12–16 (course content), 18–19 (note of formatively assessed topics) |
+| XI | political_science | "Political Science", code 028: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/PoliticalScience_SecP2_2026-27.pdf | 2 | 18 | 89 | 3 (course structure), 4–9 (course content) |
+| XII | political_science | same document | 2 | 15 | 79 | 10 (course structure), 11–15 (course content) |
+| XI | english | "English Core", code 301: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/English_core_SecP2_2026-27.pdf | 2 | 15 | 0 | 8 ("Prescribed Books") |
+| XII | english | same document | 2 | 19 | 2 | 12 ("Prescribed Books") |
+| XI | hindi | "Hindi Core", हिंदी (आधार), code 302: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Hindi_Core_SecP2_2026-27.pdf | 3 | 0 | 0 | 9 (निर्धारित पाठ्यपुस्तकें) |
+| XII | hindi | same document | 3 | 0 | 0 | 11 (निर्धारित पुस्तकें) |
+
+### How the lines were taken from the documents
+
+- **The same rules as the files above:** units and chapters as the course structure prints them, topics only where the
+  document lists them under a chapter, wording as printed (line breaks joined, repeated spaces made one, capitals,
+  punctuation and slips kept), numbers and labels ("Unit 1:", "Chapter 2", "a)", "Part A") left out, learning outcomes
+  never taken. Where a heading in the text words a unit or chapter differently from the course structure table, the
+  table wins (each case is on the subject's proof page).
+- **Units and chapters.** Every one of these course structures groups its units or chapters into larger parts, so the
+  part is the CSV unit and the course structure's own units, chapters or themes are the CSV chapters: Accountancy,
+  Business Studies and Economics: "Part A", "Part B" (for Economics the two NCERT books); Political Science: "PART A",
+  "PART B" (capitals kept, "INDIAN CONSTITUTION AT WORK"); Geography: the books the course structure names
+  ("Book- Fundamentals of Physical Geography" …), whose own "Unit-I", "Unit-II" groupings are not kept (the CSV has three
+  levels and the book is the unit, as for Class X Social Science); History XI: the "Section Title" column ("Reading of
+  World History", "EARLY SOCIETIES" …); History XII: the three parts of "Themes in Indian History"; English and Hindi: the
+  prescribed books. Part C (project or practical work) and map work are not taken.
+- **Topics.** Accountancy and Economics print each unit's content as running text (Accountancy also as notes and as
+  bullets that are paragraphs, several longer than the 300-character limit for a title), so they have no topics, the
+  same rule as Classes XI–XII Physics. Business Studies: each box of the "Content" column is one topic, its lines
+  joined. Geography: the bullets under each chapter of the course content. Political Science: the items printed at the
+  first level under each chapter ("a)", "b)" …, and two first-level items without a letter). History XI: Theme 1's three
+  lettered items (page 4); the other themes, and all of Class XII, list learning outcomes only. English XII: the two
+  parts of "Memories of Childhood". **A list printed under a topic is not taken** (the CSV has no fourth level):
+  Political Science's bullets under its lettered items, and in Geography XII the items under "Types of agriculture:"
+  (2), "Commercial Agriculture" (8) and "Case Studies –" (2); the topic is the item's own text, worded as printed. Labels
+  that only introduce a list ("Topics to be focused:", "Concept and types:") are not topics.
+- **History XII chapters** join each theme's two printed lines, title and subtitle, with a space ("Bricks, Beads and
+  Bones The Harappa Civilisation"). Slips kept as the table prints them: "Kingship, Caste and class" (the course content
+  says "KINSHIP"), "The Harappa Civilisation", "BCE600", "(c.600 BCE 600 CE)" (no dash is printed).
+- **Business Studies** boxes that hold more than one item are one topic each (to confirm whether to split them): Class XI
+  "Global Enterprises – Feature Joint venture Public private partnership – concept", the two banking boxes of Unit 4,
+  "Internal trade - meaning and types services rendered by a wholesaler and a retailer"; Class XII "Dimensions of Business
+  Environment … Demonetization - concept and features", "Structure of organisation … Formal and informal organization -
+  concept", "The Consumer Protection Act, 2019: Meaning of consumer …" (its printed source link, "Source:
+  http://egazette.nic.in/…", is left out).
+- **Political Science** first-level items are kept in printed order even where the letters are out of order or
+  repeated (Class XII International Organizations e, f, h, i, j, g; Environment and Natural Resources … d, f, g, e; The
+  Crisis of Democratic Order a, c, c, d, d). Two first-level items carry no letter and are topics: "Implementation of
+  73rdand 74th Amendments" (a bullet) and "Contents of amendments made so far" (printed as "9."). In Class XII "Russia",
+  "Balkan States" and "Central Asian States" are printed at the first level (with bullets), so they are topics. "elect
+  ions" (Class XII, page 13) is printed with a space inside the word and is written "elections", as split words were
+  joined for Class IX Social Science. Slips kept: "73rd and 74thamendments", "Fourth General Election1967",
+  "Non-tradition notions of Security.", "Lok Sabha Elections (2004- 2019)".
+- **Geography.** Notes printed with a chapter ("(To be tested through internal assessments in the form of project and
+  presentation)") are left out of its name; those chapters print no bullets and have no topics. Page 11 prints
+  "Book-India People and Economy" above the first Class XII table; it heads the second table and is used there. The
+  course structure's spellings are kept ("Fundamental of Human Geography", "Landform and their Evolution").
+- **Hindi Core** prints in Devanagari; each title is in both `title_en` and `title_hi` exactly as printed, never
+  translated, typed from the page rendered as a picture and checked against the PDF's text for the punctuation
+  ("आरोह, भाग-1" with a hyphen, "वितान भाग–1" with a dash; Class XII "‘अभिव्यक्ति और माध्यम’" in quotation marks).
+- **Keys and positions** count from 1 under the parent, in printed order. English XII: Flamingo prints "Prose" (1–8)
+  then "Poetry"; the poems follow as positions 9–13, as for Class X First Flight.
+
+### Choices to confirm (the supervisor)
+
+- **Formatively assessed lines (19).** Geography prints, after the course content, topics "included in the syllabus
+  but … assessed only formatively". As for Classes XI–XII Science they are included, after the course-structure
+  chapters of the book they are listed under, the name being the text before the first dash: Class XI "Minerals and
+  Rocks" (page 10); Class XII "Population Composition" and "Human Settlements" with their six items each (page 18),
+  "Migration" with its three items (page 19). To keep the course structure only, delete `cbse.c11.geography.u1.ch15`,
+  `cbse.c12.geography.u1.ch09` and `.ch10` with their topics, and `cbse.c12.geography.u2.ch10` with its topics.
+- **Accountancy XII "Or".** The table prints Part B twice, joined by "Or": Financial Statement Analysis or Computerized
+  Accounting. Both are in; the option is the third unit (`cbse.c12.accountancy.u3`, `.u3.ch01`).
+- **History XI introduction and timelines.** "Introduction of World History" and the four "Introduction Timeline …"
+  rows have no theme number and no marks, but the table prints them as rows of the "Theme Title" column (the course
+  content gives the timelines learning outcomes). They are chapters (`cbse.c11.history.u1.ch01`, and `.ch01` of `u2` to
+  `u5`; the unit `u1`, "Reading of World History", holds only the introduction).
+- **Geography practical books.** "Geography Practical Part I" (XI) and "Geography Practical II" (XII) are books with
+  chapters and marks in the course structure, so they are units (`cbse.c11.geography.u3`, `cbse.c12.geography.u3`), unlike
+  the experiment lists of the science practicals, which were not taken.
+- **Hindi Core has units only.** The document names the three prescribed books and lists only the lessons removed from
+  them (pages 9 and 11), not the lessons studied, so the books are the units and there are no chapters. The Class X
+  Hindi file does not list its books as units; delete the six `hindi` lines to match it.
+- **English Core and Hindi Core** are the `english` and `hindi` syllabi: they are the core courses. English Elective
+  (`English_elective_SecP2_2026-27.pdf`) and Hindi Elective (`Hindi_Elective_SecP2_2026-27.pdf`) are separate courses
+  and are not in this file.
+
+### Not in this file (never guessed)
+
+| What | Where we looked | What was found |
+|---|---|---|
+| **Hindi Core lessons** | `Hindi_Core_SecP2_2026-27.pdf`, all 11 pages | Pages 9 and 11 name the books (आरोह, वितान, अभिव्यक्ति और माध्यम) and the lessons removed; no list of the lessons studied. Not filled from the NCERT books. |
+| **Accountancy and Economics topics** | the two documents | Content printed as running text (see "Topics"). The Accountancy sub-headings ("Introduction to Accounting", "Theory Base of Accounting" …) are not present in every unit (Class XII Unit 1 starts with bullets) and are not taken. |
+| **Political Science Annexure** ("Additional Reference Material", pages 21–34) | `PoliticalScience_SecP2_2026-27.pdf` | "for classroom transaction and will not be assessed in the Board examination": reading text under "Sub-Topic" headings, not syllabus lines. |
+| **Lists under a topic** | Political Science, Geography XII | Not taken: the CSV has three levels (see "Topics"). |
+| **Project work, practical files, map work, question paper designs, listening and speaking, reading passages, writing tasks** | all eight documents | Assessment and exam formats, not chapters or topics. |
+| **Grammar** | English Core page 6, Hindi Core pages 8–11 | English XI prints only question types ("Questions on Gap filling (Tenses, Clauses)", "Questions on re-ordering/transformation of sentences"); English XII and Hindi Core have no grammar section. Not taken, as for Classes IX–X. |
+
+### Hindi titles of the other documents
+
+`title_hi` is empty on every line that is not Hindi. Checked on 2026-10-22: the curriculum page (also with
+`?lang=hindi`, the same page) links no Hindi version of Accountancy, Business Studies, Economics or English Core. It has
+links to "Geography (Hindi)", "History (Hindi)" and "Political Science (Hindi)" (`GeographyHi_SecP2_2026-27.pdf`,
+`HistoryHindi_SecP2_2026-27.pdf`, `PoliticalScienceHi_SecP2_2026-27.pdf`), but they are commented out in the page and
+the files return HTTP 404. The same file names with a Hindi ending (`Hi`, `Hindi`, `_hi`, `_Hi`, `_Hindi`) for all six
+subjects return HTTP 404 too. Nothing was translated.
+
+### How the supervisor checks a line
+
+As for the files above: open the line's `source_url` at `source_page`, find the title, then check its parent and its
+position. **Mechanical check:** for 693 of the 697 English-language lines the whole title (spaces removed, dashes and
+quotation marks made plain) is found in the text of its cited page (`pdftotext -layout` and `-raw`). The other four were
+compared by eye: three titles printed across a page break (the page number at the foot interrupts them) and the Consumer
+Protection Act box (its source link is left out); every word of three or more letters of all 697 titles is on the cited
+pages, except "elections" (printed "elect ions", see above). The six Hindi lines were compared with the page by eye. The
+importer's checker (`readCatalogCsv`, run with the date 2026-10-22) finds no problem; `test/content/catalog-csv.test.ts`
+checks the counts above, the eight source documents and the Hindi-title rule.
+
+Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
+pages `class11-accountancy.md` to `class12-hindi.md`.
+
 ## ncert-2026-27-classes-6-8-social-science-languages.csv
 
 Classes VI, VII and VIII, Social Science, English and Hindi (subject ids `social_science`, `english`, `hindi`, as in
