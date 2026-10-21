@@ -131,6 +131,40 @@ describe('the branded bar and the menu (C235-B)', () => {
     expect((html.match(/aria-expanded="false"/g) ?? []).length).toBeGreaterThanOrEqual(6);
   });
 
+  it('the menu button is the first thing in the bar, on the left, at every width (F1-2)', () => {
+    const html = shell('principal');
+    const button = /<button[^>]*data-shell-menu-button[^>]*>/.exec(html)?.[0] ?? '';
+    expect(button).toContain('aria-expanded="false"'); // a phone's page: the drawer is closed
+    expect(button).toContain('aria-label="Open menu"');
+    expect(button).toMatch(/aria-controls="[^"]+"/);
+    expect(button).toContain('h-11 w-11'); // 44 px
+    const at = (s: string) => html.indexOf(s);
+    expect(at('data-shell-menu-button')).toBeGreaterThan(at('data-shell-brand'));
+    expect(at('data-shell-menu-button')).toBeLessThan(at('data-school-logo'));
+    expect(at('data-shell-menu-button')).toBeLessThan(at('data-shell-school'));
+    // One button, not one per width.
+    expect((html.match(/data-shell-menu-button/g) ?? []).length).toBe(1);
+  });
+
+  it('the page starts with the sidebar shown and no drawer open', () => {
+    const html = shell('principal');
+    expect(html).toMatch(/<aside[^>]*data-shell-sidebar="shown"[^>]*md:flex/);
+    expect(html).toMatch(/<aside[^>]*id="[^"]+"/);
+    expect(html).toMatch(/<main[^>]*md:pl-64/);
+    expect(html).not.toContain('data-shell-drawer');
+    expect(html).not.toContain('data-shell-scrim');
+  });
+
+  it('the menu button says its words in Hindi too', () => {
+    expect(shell('principal', { lang: 'hi' })).toMatch(/<button[^>]*data-shell-menu-button[^>]*aria-label="मेनू खोलें"/);
+  });
+
+  it('the teacher’s Scan action stays on the right of the phone bar, after the school’s name', () => {
+    const html = shell('teacher', { action: h('button', null, 'Scan') });
+    expect(html.indexOf('data-shell-school')).toBeLessThan(html.indexOf('>Scan<'));
+    expect(html).toContain('aria-label="Quick menu"');
+  });
+
   it('the teacher keeps the phone bottom bar and has no Settings or Dashboard in the menu', () => {
     const html = shell('teacher');
     expect(html).toContain('aria-label="Quick menu"');

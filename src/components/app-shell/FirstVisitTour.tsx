@@ -41,7 +41,7 @@ export function FirstVisitTour({ id }: { id: TourId }) {
       const el = e.target as HTMLElement | null;
       const inTour = !!el?.closest?.('[data-tour]');
       // Escape belongs first to whatever else is open or being typed in.
-      const busy = !!document.querySelector('dialog[open], [aria-modal="true"], [role="menu"], [role="listbox"]') || (!!el && ['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName));
+      const busy = !!document.querySelector('dialog[open], [aria-modal="true"], [data-shell-drawer], [role="menu"], [role="listbox"]') || (!!el && ['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName));
       if (inTour || !busy) markSeen(id);
     };
     document.addEventListener('keydown', onKey);
