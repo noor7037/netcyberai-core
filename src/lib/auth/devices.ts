@@ -63,11 +63,12 @@ export async function trustDevice(userId: string, proof: DeviceProof, userAgent:
 }
 
 // What this browser proved for this person, or null when it is not (or no longer) trusted.
-export async function deviceProof(token: string | undefined, userId: string): Promise<DeviceProof | null> {
+// `live`: the person's row when the caller already has it.
+export async function deviceProof(token: string | undefined, userId: string, live?: { token_version: number }): Promise<DeviceProof | null> {
   if (!token) return null;
   const device = await verifyDeviceToken(token);
   if (!device || device.userId !== userId) return null;
-  const live = await fetchLiveUser(userId);
+  live ??= await fetchLiveUser(userId);
   if (Number(live.token_version) !== device.tokenVersion) return null;
   return withBackendConnection(async (client) => {
     const { rows } = await client.query(

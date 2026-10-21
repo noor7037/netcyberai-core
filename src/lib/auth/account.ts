@@ -235,8 +235,9 @@ export async function loginWithEmailCode(email: string, code: string, deviceToke
   const client = newAuthClient();
   const { data, error } = await client.auth.verifyOtp({ email, token: code, type: 'email' });
   if (error || !data.session || !data.user) throw new AuthError('code_invalid', error?.message ?? 'code rejected');
-  // A browser trusted after the authenticator is not asked for it again (F1-1).
-  const trusted = (await deviceProof(deviceToken, data.user.id)) === 'authenticator';
+  // A browser trusted after the authenticator is not asked for it again (F1-1), while the account still has one.
+  const { data: aal } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
+  const trusted = aal?.nextLevel === 'aal2' && (await deviceProof(deviceToken, data.user.id)) === 'authenticator';
   return { ...(await signInFromClient(client, data.user.id, data.session, false, trusted)), viaTrustedDevice: trusted };
 }
 
@@ -264,9 +265,10 @@ export async function passwordLogin(identifier: string, password: string, device
   // nextLevel aal2 = the account has a confirmed authenticator. If Supabase
   // cannot say, the email step runs (the stricter path).
   const { data: aal } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
-  const role = (await fetchLiveUser(data.user.id)).role;
+  const live = await fetchLiveUser(data.user.id);
+  const role = live.role;
   const hasVerifiedAuthenticator = aal?.nextLevel === 'aal2';
-  const proof = await deviceProof(deviceToken, data.user.id);
+  const proof = await deviceProof(deviceToken, data.user.id, live);
   const next = stepAfterPassword({
     role,
     hasVerifiedAuthenticator,
