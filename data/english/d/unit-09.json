@@ -1,0 +1,1245 @@
+{
+  "track": "d",
+  "unit": 9,
+  "key": "d.u09",
+  "title": {
+    "en": "Review and check",
+    "hi": "दोहराव और जाँच"
+  },
+  "pic": "🏆",
+  "can_do": {
+    "en": "I can speak about my past, present and future.",
+    "hi": "मैं अपने बीते कल, आज और आने वाले कल के बारे में बोल सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u09.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for giving a talk",
+        "hi": "भाषण देने के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "This unit looks back at units 1 to 8. First, some words that help you speak to a group.",
+            "hi": "यह इकाई 1 से 8 तक दोहराती है। पहले, समूह के सामने बोलने के कुछ शब्द।"
+          },
+          "pic": "🎤"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u09.l1.audience",
+              "en": "audience",
+              "hi": "श्रोता, दर्शक",
+              "pic": "👪",
+              "example": {
+                "en": "Look at the audience when you speak.",
+                "hi": "बोलते समय श्रोताओं की ओर देखो।"
+              }
+            },
+            {
+              "key": "d.u09.l1.pause",
+              "en": "pause",
+              "hi": "रुकना, ठहराव",
+              "pic": "⏸️",
+              "example": {
+                "en": "Pause for a second after each main point.",
+                "hi": "हर मुख्य बात के बाद एक पल रुको।"
+              }
+            },
+            {
+              "key": "d.u09.l1.example",
+              "en": "example",
+              "hi": "उदाहरण",
+              "pic": "👉",
+              "example": {
+                "en": "Give an example from your own life.",
+                "hi": "अपनी ज़िंदगी से एक उदाहरण दो।"
+              }
+            },
+            {
+              "key": "d.u09.l1.progress",
+              "en": "progress",
+              "hi": "प्रगति",
+              "pic": "⬆️",
+              "example": {
+                "en": "I have made good progress in English this term.",
+                "hi": "इस सत्र में मैंने अंग्रेज़ी में अच्छी प्रगति की है।"
+              }
+            },
+            {
+              "key": "d.u09.l1.summary",
+              "en": "summary",
+              "hi": "सारांश",
+              "pic": "📝",
+              "example": {
+                "en": "End your talk with a short summary.",
+                "hi": "अपना भाषण छोटे सारांश से ख़त्म करो।"
+              }
+            },
+            {
+              "key": "d.u09.l1.memorable",
+              "en": "memorable",
+              "hi": "यादगार",
+              "pic": "🌟",
+              "example": {
+                "en": "The science fair was a memorable day.",
+                "hi": "विज्ञान मेला एक यादगार दिन था।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u09.l1.m-pause",
+              "left": {
+                "text": "pause"
+              },
+              "right": {
+                "pic": "⏸️"
+              }
+            },
+            {
+              "key": "d.u09.l1.m-audience",
+              "left": {
+                "text": "audience"
+              },
+              "right": {
+                "pic": "👪"
+              }
+            },
+            {
+              "key": "d.u09.l1.m-summary",
+              "left": {
+                "text": "summary"
+              },
+              "right": {
+                "pic": "📝"
+              }
+            },
+            {
+              "key": "d.u09.l1.m-progress",
+              "left": {
+                "text": "progress"
+              },
+              "right": {
+                "pic": "⬆️"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u09.l1.p-memorable",
+              "prompt": {
+                "en": "Which word means यादगार?"
+              },
+              "options": [
+                {
+                  "text": "memorable"
+                },
+                {
+                  "text": "pause"
+                },
+                {
+                  "text": "example"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u09.l1.p-example",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "Let me give you an example from my village."
+              },
+              "options": [
+                {
+                  "text": "summary"
+                },
+                {
+                  "text": "example"
+                },
+                {
+                  "text": "audience"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u09.l1.s-audience",
+              "model": "Look at the audience when you speak."
+            },
+            {
+              "key": "d.u09.l1.s-example",
+              "model": "Let me give you an example from my own life."
+            },
+            {
+              "key": "d.u09.l1.s-summary",
+              "model": "To sum up, it was a memorable year."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u09.l1.c-progress",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means प्रगति?"
+          },
+          "options": [
+            {
+              "text": "progress"
+            },
+            {
+              "text": "audience"
+            },
+            {
+              "text": "pause"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u09.l1.c-pause",
+          "type": "choose",
+          "prompt": {
+            "en": "Speak slowly and ___ between your points."
+          },
+          "options": [
+            {
+              "text": "audience"
+            },
+            {
+              "text": "example"
+            },
+            {
+              "text": "pause"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u09.l1.c-summary",
+          "type": "choose",
+          "prompt": {
+            "en": "At the end of a talk, give a short ___."
+          },
+          "options": [
+            {
+              "text": "audience"
+            },
+            {
+              "text": "summary"
+            },
+            {
+              "text": "delay"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u09.l1.c-old",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word from unit 1 means आत्मविश्वासी?"
+          },
+          "options": [
+            {
+              "text": "confident"
+            },
+            {
+              "text": "nervous"
+            },
+            {
+              "text": "polite"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Tell your family one memorable day from this year.",
+        "hi": "परिवार को इस साल का एक यादगार दिन बताओ।"
+      }
+    },
+    {
+      "key": "d.u09.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "All the tenses together",
+        "hi": "सभी काल एक साथ"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "One life, many times",
+            "hi": "एक जीवन, कई समय"
+          },
+          "visual": "timeline",
+          "examples": [
+            {
+              "en": "Last year, I was nervous about speaking English.",
+              "hi": "पिछले साल मैं अंग्रेज़ी बोलने से घबराती थी।",
+              "time": "past"
+            },
+            {
+              "en": "I was practising every day when I won the speech prize.",
+              "hi": "मैं रोज़ अभ्यास कर रही थी, तभी भाषण का इनाम जीता।",
+              "time": "past"
+            },
+            {
+              "en": "I have learned many new words since then.",
+              "hi": "तब से मैंने बहुत नए शब्द सीखे हैं।",
+              "time": "now"
+            },
+            {
+              "en": "These days, I am reading English stories.",
+              "hi": "आजकल मैं अंग्रेज़ी कहानियाँ पढ़ रही हूँ।",
+              "time": "now"
+            },
+            {
+              "en": "Next month, I am going to give a talk at the club.",
+              "hi": "अगले महीने मैं क्लब में भाषण देने वाली हूँ।",
+              "time": "future"
+            },
+            {
+              "en": "If I keep practising, I will speak even better.",
+              "hi": "अभ्यास करती रही तो और अच्छा बोलूँगी।",
+              "time": "future"
+            }
+          ],
+          "note": {
+            "en": "Before you speak, ask: is it a habit, now, an experience, a finished past, or the future?",
+            "hi": "बोलने से पहले सोचो: आदत, अभी, अनुभव, बीता समय, या भविष्य?"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u09.l2.b-perf",
+              "tiles": [
+                "the sea.",
+                "never",
+                "have",
+                "seen",
+                "I"
+              ],
+              "answer": "I have never seen the sea."
+            },
+            {
+              "key": "d.u09.l2.b-pass",
+              "tiles": [
+                "is",
+                "in",
+                "October.",
+                "The rice",
+                "harvested"
+              ],
+              "answer": "The rice is harvested in October."
+            },
+            {
+              "key": "d.u09.l2.b-ind",
+              "tiles": [
+                "tell me",
+                "Could you",
+                "is?",
+                "where",
+                "the library"
+              ],
+              "answer": "Could you tell me where the library is?"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u09.l2.p-cont",
+              "prompt": {
+                "en": "Look! The children ___ in the rain."
+              },
+              "options": [
+                {
+                  "text": "are dancing"
+                },
+                {
+                  "text": "danced"
+                },
+                {
+                  "text": "dance"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u09.l2.p-should",
+              "prompt": {
+                "en": "You look tired. You ___ rest."
+              },
+              "options": [
+                {
+                  "text": "are"
+                },
+                {
+                  "text": "should"
+                },
+                {
+                  "text": "will to"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u09.l2.s-mix1",
+              "model": "I have visited the city twice, and next year I am going to visit Delhi.",
+              "cue": {
+                "en": "Tell one experience and one plan.",
+                "hi": "एक अनुभव और एक योजना बताओ।"
+              }
+            },
+            {
+              "key": "d.u09.l2.s-mix2",
+              "model": "I was cycling home when it started to rain.",
+              "cue": {
+                "en": "Tell a short incident with \"when\".",
+                "hi": "\"when\" से एक छोटी घटना बताओ।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u09.l2.c-b1",
+          "type": "build",
+          "hi": "जब हम चल रहे थे, हमने एक लोमड़ी देखी।",
+          "tiles": [
+            "saw a fox.",
+            "While",
+            "we",
+            "we were",
+            "walking,"
+          ],
+          "answer": "While we were walking, we saw a fox."
+        },
+        {
+          "key": "d.u09.l2.c-b2",
+          "type": "build",
+          "hi": "अगर बारिश हुई, तो मैच रद्द होगा।",
+          "tiles": [
+            "will be",
+            "cancelled.",
+            "it rains,",
+            "the match",
+            "If"
+          ],
+          "answer": "If it rains, the match will be cancelled."
+        },
+        {
+          "key": "d.u09.l2.c-yet",
+          "type": "choose",
+          "prompt": {
+            "en": "Have you finished your project ___?"
+          },
+          "options": [
+            {
+              "text": "since"
+            },
+            {
+              "text": "yet"
+            },
+            {
+              "text": "already"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u09.l2.c-going",
+          "type": "choose",
+          "prompt": {
+            "en": "I have bought the tickets. We ___ visit the zoo on Sunday."
+          },
+          "options": [
+            {
+              "text": "are going to"
+            },
+            {
+              "text": "will be"
+            },
+            {
+              "text": "went"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u09.l2.c-made",
+          "type": "choose",
+          "prompt": {
+            "en": "Paper ___ from wood."
+          },
+          "options": [
+            {
+              "text": "is make"
+            },
+            {
+              "text": "makes"
+            },
+            {
+              "text": "is made"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u09.l2.c-ind",
+          "type": "choose",
+          "prompt": {
+            "en": "Do you know when ___?"
+          },
+          "options": [
+            {
+              "text": "the shop closes"
+            },
+            {
+              "text": "closes the shop"
+            },
+            {
+              "text": "does the shop close"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Tell someone one thing you did, one thing you are doing, and one thing you will do.",
+        "hi": "किसी को एक बीता काम, एक अभी का काम और एक आगे का काम बताओ।"
+      }
+    },
+    {
+      "key": "d.u09.l3",
+      "kind": "listen",
+      "title": {
+        "en": "Meera's talk: My village",
+        "hi": "मीरा का भाषण: मेरा गाँव"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Listen to Meera's two-minute talk. She uses every pattern from units 1 to 8.",
+            "hi": "मीरा का दो मिनट का भाषण सुनो। इसमें इकाई 1 से 8 के सभी पैटर्न हैं।"
+          },
+          "pic": "🎤"
+        },
+        {
+          "type": "story",
+          "title": {
+            "en": "My village",
+            "hi": "मेरा गाँव"
+          },
+          "scene": {
+            "place": "village",
+            "pics": [
+              {
+                "pic": "🏘️",
+                "x": 20,
+                "y": 20,
+                "size": 2
+              },
+              {
+                "pic": "🌾",
+                "x": 45,
+                "y": 45,
+                "size": 1.6
+              },
+              {
+                "pic": "🏫",
+                "x": 70,
+                "y": 20,
+                "size": 1.8
+              },
+              {
+                "pic": "👧",
+                "x": 85,
+                "y": 45,
+                "size": 1.4
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Good morning, everyone. Today I am going to talk about my village, Rampur."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "About two thousand people live here, and most families farm rice and sugarcane."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "In winter, jaggery is made in almost every house."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I have lived here all my life, and I have seen many changes."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Five years ago, we were walking three kilometres to get clean water."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Now there is a tap in every street."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Last year, we started a rainwater project at school."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "If more families join, we will save water for the dry months."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I think every student should help with one small project."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "To sum up, my village is changing, and we can all help. Thank you."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u09.l3.p-farm",
+              "prompt": {
+                "en": "What do most families farm?"
+              },
+              "options": [
+                {
+                  "text": "tea and coffee"
+                },
+                {
+                  "text": "rice and sugarcane"
+                },
+                {
+                  "text": "cotton and wheat"
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u09.l3.p-water",
+              "prompt": {
+                "en": "What did people do five years ago?"
+              },
+              "options": [
+                {
+                  "text": "walked far for clean water"
+                },
+                {
+                  "text": "used rainwater tanks"
+                },
+                {
+                  "text": "bought water"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u09.l3.s-going",
+              "model": "Today I am going to talk about my village."
+            },
+            {
+              "key": "d.u09.l3.s-sum",
+              "model": "To sum up, my village is changing, and we can all help."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u09.l3.c-jaggery",
+          "type": "choose",
+          "prompt": {
+            "en": "When is jaggery made?"
+          },
+          "options": [
+            {
+              "text": "in summer"
+            },
+            {
+              "text": "in the monsoon"
+            },
+            {
+              "text": "in winter"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u09.l3.c-now",
+          "type": "choose",
+          "prompt": {
+            "en": "What is there now in every street?"
+          },
+          "options": [
+            {
+              "text": "a school"
+            },
+            {
+              "text": "a tap"
+            },
+            {
+              "text": "a shop"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u09.l3.c-project",
+          "type": "choose",
+          "prompt": {
+            "en": "What did the school start last year?"
+          },
+          "options": [
+            {
+              "text": "a library"
+            },
+            {
+              "text": "a rainwater project"
+            },
+            {
+              "text": "a football team"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u09.l3.c-advice",
+          "type": "choose",
+          "prompt": {
+            "en": "What does Meera think every student should do?"
+          },
+          "options": [
+            {
+              "text": "study all night"
+            },
+            {
+              "text": "help with one small project"
+            },
+            {
+              "text": "leave the village"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Tell your family three facts about your village in English.",
+        "hi": "परिवार को अंग्रेज़ी में अपने गाँव के तीन तथ्य बताओ।"
+      }
+    },
+    {
+      "key": "d.u09.l4",
+      "kind": "speak",
+      "title": {
+        "en": "A two-minute talk",
+        "hi": "दो मिनट का भाषण"
+      },
+      "minutes": 10,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Plan five short parts. Speak slowly, pause between parts, and look up from your notes.",
+            "hi": "पाँच छोटे हिस्से सोचो। धीरे बोलो, हिस्सों के बीच रुको, और नोट्स से नज़र उठाओ।"
+          },
+          "pic": "⏳"
+        },
+        {
+          "type": "talk",
+          "topic": {
+            "en": "About me: past, present and future",
+            "hi": "मेरे बारे में: बीता कल, आज और कल"
+          },
+          "outline": [
+            {
+              "en": "Introduce yourself: name, class, one interest.",
+              "hi": "परिचय: नाम, कक्षा, एक रुचि।"
+            },
+            {
+              "en": "One experience you have had.",
+              "hi": "तुम्हारा एक अनुभव।"
+            },
+            {
+              "en": "A short incident: what was happening, what happened.",
+              "hi": "एक छोटी घटना: क्या हो रहा था, क्या हुआ।"
+            },
+            {
+              "en": "A plan for the coming months.",
+              "hi": "आने वाले महीनों की एक योजना।"
+            },
+            {
+              "en": "One piece of advice for your friends, and thank you.",
+              "hi": "दोस्तों के लिए एक सलाह, और धन्यवाद।"
+            }
+          ],
+          "seconds": 120,
+          "model": [
+            "Good morning. My name is Arjun, and I study in Class 10.",
+            "I am interested in cricket and computers.",
+            "I have played for the school team, and I have visited the district stadium twice.",
+            "Last month, I was batting in a match when the rain suddenly started.",
+            "Next year, I am going to join a computer course in town.",
+            "If I work hard, I will get a good job one day.",
+            "My advice is simple: you should practise a little every day. Thank you."
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u09.l4.s-close",
+              "model": "To sum up, I have learned a lot this year, and I am ready for more.",
+              "cue": {
+                "en": "Close your talk with a summary.",
+                "hi": "सारांश के साथ भाषण ख़त्म करो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u09.l4.c-start",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is a good way to start a talk?"
+          },
+          "options": [
+            {
+              "text": "Good morning. My name is Ravi."
+            },
+            {
+              "text": "That's all."
+            },
+            {
+              "text": "So, yeah."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u09.l4.c-end",
+          "type": "choose",
+          "prompt": {
+            "en": "Which line closes a talk well?"
+          },
+          "options": [
+            {
+              "text": "Suddenly, …"
+            },
+            {
+              "text": "To sum up, …, thank you."
+            },
+            {
+              "text": "Could you tell me …?"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u09.l4.c-pause",
+          "type": "choose",
+          "prompt": {
+            "en": "What should you do between parts of a talk?"
+          },
+          "options": [
+            {
+              "text": "pause for a moment"
+            },
+            {
+              "text": "look at the floor"
+            },
+            {
+              "text": "speak faster"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Give your two-minute talk to your family tonight.",
+        "hi": "आज रात परिवार को अपना दो मिनट का भाषण सुनाओ।"
+      }
+    },
+    {
+      "key": "d.u09.l5",
+      "kind": "review",
+      "title": {
+        "en": "Units 1–8 review",
+        "hi": "इकाई 1–8 दोहराओ"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u09.l5.m-arrange",
+              "left": {
+                "text": "arrange"
+              },
+              "right": {
+                "text": "इंतज़ाम करना"
+              }
+            },
+            {
+              "key": "d.u09.l5.m-incident",
+              "left": {
+                "text": "incident"
+              },
+              "right": {
+                "text": "घटना"
+              }
+            },
+            {
+              "key": "d.u09.l5.m-advice",
+              "left": {
+                "text": "advice"
+              },
+              "right": {
+                "text": "सलाह"
+              }
+            },
+            {
+              "key": "d.u09.l5.m-process",
+              "left": {
+                "text": "process"
+              },
+              "right": {
+                "text": "प्रक्रिया"
+              }
+            },
+            {
+              "key": "d.u09.l5.m-prevent",
+              "left": {
+                "text": "prevent"
+              },
+              "right": {
+                "text": "रोकना"
+              }
+            },
+            {
+              "key": "d.u09.l5.m-departure",
+              "left": {
+                "text": "departure"
+              },
+              "right": {
+                "text": "रवानगी"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u09.l5.b-now",
+              "tiles": [
+                "the quiz",
+                "for",
+                "Salma",
+                "is preparing",
+                "this week."
+              ],
+              "answer": "Salma is preparing for the quiz this week."
+            },
+            {
+              "key": "d.u09.l5.b-should",
+              "tiles": [
+                "revise",
+                "evening.",
+                "ought to",
+                "every",
+                "You"
+              ],
+              "answer": "You ought to revise every evening."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u09.l5.p-exp",
+              "prompt": {
+                "en": "___ you ever been to a wedding in another state?"
+              },
+              "options": [
+                {
+                  "text": "Did"
+                },
+                {
+                  "text": "Have"
+                },
+                {
+                  "text": "Are"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u09.l5.s-intro",
+              "model": "Good evening. I am Salma. I have lived in Rampur all my life.",
+              "cue": {
+                "en": "Introduce yourself and add one experience.",
+                "hi": "परिचय दो और एक अनुभव जोड़ो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u09.l5.c-u1",
+          "type": "choose",
+          "prompt": {
+            "en": "My mother ___ in the school kitchen."
+          },
+          "options": [
+            {
+              "text": "working"
+            },
+            {
+              "text": "works"
+            },
+            {
+              "text": "is work"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u09.l5.c-u2",
+          "type": "choose",
+          "prompt": {
+            "en": "I have ___ visited the fort."
+          },
+          "options": [
+            {
+              "text": "yet"
+            },
+            {
+              "text": "already"
+            },
+            {
+              "text": "ago"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u09.l5.c-u3",
+          "type": "choose",
+          "prompt": {
+            "en": "We were sleeping when the phone ___."
+          },
+          "options": [
+            {
+              "text": "rang"
+            },
+            {
+              "text": "rings"
+            },
+            {
+              "text": "was ringing"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u09.l5.c-u4",
+          "type": "choose",
+          "prompt": {
+            "en": "Look at those clouds! It ___ rain."
+          },
+          "options": [
+            {
+              "text": "rains"
+            },
+            {
+              "text": "will be"
+            },
+            {
+              "text": "is going to"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u09.l5.c-u5",
+          "type": "choose",
+          "prompt": {
+            "en": "You ___ wear a helmet on a bike."
+          },
+          "options": [
+            {
+              "text": "ought"
+            },
+            {
+              "text": "should to"
+            },
+            {
+              "text": "should"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u09.l5.c-u6",
+          "type": "choose",
+          "prompt": {
+            "en": "Sugar ___ from sugarcane."
+          },
+          "options": [
+            {
+              "text": "is make"
+            },
+            {
+              "text": "is made"
+            },
+            {
+              "text": "made"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u09.l5.c-u7",
+          "type": "choose",
+          "prompt": {
+            "en": "If you heat ice, it ___."
+          },
+          "options": [
+            {
+              "text": "melts"
+            },
+            {
+              "text": "will melted"
+            },
+            {
+              "text": "melting"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u09.l5.c-u8",
+          "type": "choose",
+          "prompt": {
+            "en": "Could you tell me where ___?"
+          },
+          "options": [
+            {
+              "text": "platform is the"
+            },
+            {
+              "text": "is the platform"
+            },
+            {
+              "text": "the platform is"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u09.l5.c-b1",
+          "type": "build",
+          "hi": "अगर मेरी बस छूट गई, तो मैं पैदल जाऊँगा।",
+          "tiles": [
+            "I will",
+            "miss",
+            "I",
+            "walk.",
+            "If",
+            "the bus,"
+          ],
+          "answer": "If I miss the bus, I will walk."
+        },
+        {
+          "key": "d.u09.l5.c-b2",
+          "type": "build",
+          "hi": "मैंने कभी हवाई जहाज़ से सफ़र नहीं किया।",
+          "tiles": [
+            "I",
+            "never",
+            "travelled",
+            "by plane.",
+            "have"
+          ],
+          "answer": "I have never travelled by plane."
+        }
+      ],
+      "home": {
+        "en": "Choose your favourite unit so far and tell your family why.",
+        "hi": "अब तक की अपनी पसंदीदा इकाई चुनो और परिवार को कारण बताओ।"
+      }
+    }
+  ]
+}

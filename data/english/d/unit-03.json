@@ -1,0 +1,1184 @@
+{
+  "track": "d",
+  "unit": 3,
+  "key": "d.u03",
+  "title": {
+    "en": "Telling what happened",
+    "hi": "क्या हुआ, बताओ"
+  },
+  "pic": "📖",
+  "can_do": {
+    "en": "I can narrate a past event.",
+    "hi": "मैं बीती घटना सुना सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u03.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for telling a story",
+        "hi": "घटना बताने के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "These words help you tell what happened, step by step.",
+            "hi": "इन शब्दों से तुम बता सकोगे कि क्या हुआ, क़दम-दर-क़दम।"
+          },
+          "pic": "📖"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u03.l1.incident",
+              "en": "incident",
+              "hi": "घटना",
+              "pic": "❗",
+              "example": {
+                "en": "An incident happened on the way to school.",
+                "hi": "स्कूल के रास्ते में एक घटना हुई।"
+              }
+            },
+            {
+              "key": "d.u03.l1.suddenly",
+              "en": "suddenly",
+              "hi": "अचानक",
+              "pic": "⚡",
+              "example": {
+                "en": "Suddenly, the lights went out.",
+                "hi": "अचानक बत्ती चली गई।"
+              }
+            },
+            {
+              "key": "d.u03.l1.notice",
+              "en": "notice",
+              "hi": "ध्यान देना, देखना",
+              "pic": "👀",
+              "example": {
+                "en": "I noticed smoke behind the shop.",
+                "hi": "मैंने दुकान के पीछे धुआँ देखा।"
+              }
+            },
+            {
+              "key": "d.u03.l1.rescue",
+              "en": "rescue",
+              "hi": "बचाना",
+              "pic": "🚒",
+              "example": {
+                "en": "The villagers rescued the calf from the pond.",
+                "hi": "गाँववालों ने बछड़े को तालाब से बचाया।"
+              }
+            },
+            {
+              "key": "d.u03.l1.injured",
+              "en": "injured",
+              "hi": "घायल",
+              "pic": "🩹",
+              "example": {
+                "en": "Luckily, nobody was injured.",
+                "hi": "ख़ुशक़िस्मती से कोई घायल नहीं हुआ।"
+              }
+            },
+            {
+              "key": "d.u03.l1.crowd",
+              "en": "crowd",
+              "hi": "भीड़",
+              "pic": "👪",
+              "example": {
+                "en": "A crowd gathered near the bridge.",
+                "hi": "पुल के पास भीड़ जमा हो गई।"
+              }
+            },
+            {
+              "key": "d.u03.l1.luckily",
+              "en": "luckily",
+              "hi": "ख़ुशक़िस्मती से",
+              "pic": "🍀",
+              "example": {
+                "en": "Luckily, the doctor was at the health centre.",
+                "hi": "ख़ुशक़िस्मती से डॉक्टर स्वास्थ्य केंद्र पर थीं।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u03.l1.m-rescue",
+              "left": {
+                "text": "rescue"
+              },
+              "right": {
+                "pic": "🚒"
+              }
+            },
+            {
+              "key": "d.u03.l1.m-injured",
+              "left": {
+                "text": "injured"
+              },
+              "right": {
+                "pic": "🩹"
+              }
+            },
+            {
+              "key": "d.u03.l1.m-notice",
+              "left": {
+                "text": "notice"
+              },
+              "right": {
+                "pic": "👀"
+              }
+            },
+            {
+              "key": "d.u03.l1.m-luckily",
+              "left": {
+                "text": "luckily"
+              },
+              "right": {
+                "pic": "🍀"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u03.l1.p-suddenly",
+              "prompt": {
+                "en": "Which word means अचानक?"
+              },
+              "options": [
+                {
+                  "text": "luckily"
+                },
+                {
+                  "text": "crowd"
+                },
+                {
+                  "text": "suddenly"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u03.l1.p-crowd",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "A big crowd was waiting outside the school gate."
+              },
+              "options": [
+                {
+                  "text": "incident"
+                },
+                {
+                  "text": "crowd"
+                },
+                {
+                  "text": "rescue"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u03.l1.s-suddenly",
+              "model": "Suddenly, the lights went out."
+            },
+            {
+              "key": "d.u03.l1.s-luckily",
+              "model": "Luckily, nobody was injured."
+            },
+            {
+              "key": "d.u03.l1.s-noticed",
+              "model": "I noticed smoke behind the shop."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u03.l1.c-incident",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means घटना?"
+          },
+          "options": [
+            {
+              "text": "crowd"
+            },
+            {
+              "text": "notice"
+            },
+            {
+              "text": "incident"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u03.l1.c-rescue",
+          "type": "choose",
+          "prompt": {
+            "en": "The fire team came to ___ the family."
+          },
+          "options": [
+            {
+              "text": "notice"
+            },
+            {
+              "text": "rescue"
+            },
+            {
+              "text": "injured"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u03.l1.c-injured",
+          "type": "choose",
+          "prompt": {
+            "en": "He fell off his bicycle, but he was not badly ___."
+          },
+          "options": [
+            {
+              "text": "crowd"
+            },
+            {
+              "text": "injured"
+            },
+            {
+              "text": "luckily"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u03.l1.c-crowd",
+          "type": "choose",
+          "prompt": {
+            "en": "A ___ of people waited for the bus."
+          },
+          "options": [
+            {
+              "text": "crowd"
+            },
+            {
+              "text": "rescue"
+            },
+            {
+              "text": "suddenly"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Use \"suddenly\" in a sentence about your day.",
+        "hi": "अपने दिन के बारे में \"suddenly\" वाला एक वाक्य बोलो।"
+      }
+    },
+    {
+      "key": "d.u03.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "Was doing, then did",
+        "hi": "कर रहा था, तभी हुआ"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "Past continuous and past simple",
+            "hi": "Past continuous और past simple"
+          },
+          "visual": "timeline",
+          "examples": [
+            {
+              "en": "I was walking to school at eight o'clock.",
+              "hi": "आठ बजे मैं स्कूल जा रही थी। (लंबा काम)",
+              "time": "past"
+            },
+            {
+              "en": "I was walking to school when it started to rain.",
+              "hi": "मैं स्कूल जा रही थी, तभी बारिश शुरू हुई।",
+              "time": "past"
+            },
+            {
+              "en": "While Papa was cooking, the phone rang.",
+              "hi": "जब पापा खाना बना रहे थे, फ़ोन बजा।",
+              "time": "past"
+            },
+            {
+              "en": "We were playing cricket when the ball broke a window.",
+              "hi": "हम क्रिकेट खेल रहे थे, तभी गेंद से खिड़की टूट गई।",
+              "time": "past"
+            },
+            {
+              "en": "Now we are laughing about it.",
+              "hi": "अब हम उस पर हँसते हैं।",
+              "time": "now"
+            }
+          ],
+          "note": {
+            "en": "The longer action: was or were + -ing. The short action that breaks in: past simple. Join them with when or while.",
+            "hi": "लंबा काम: was/were + -ing। बीच में आया छोटा काम: past simple। when या while से जोड़ो।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u03.l2.b-when",
+              "tiles": [
+                "I was",
+                "went out.",
+                "when",
+                "the lights",
+                "reading"
+              ],
+              "answer": "I was reading when the lights went out."
+            },
+            {
+              "key": "d.u03.l2.b-while",
+              "tiles": [
+                "Dadi",
+                "While",
+                "told a story.",
+                "were eating,",
+                "we"
+              ],
+              "answer": "While we were eating, Dadi told a story."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u03.l2.p-were",
+              "prompt": {
+                "en": "The children ___ playing when the bell rang."
+              },
+              "options": [
+                {
+                  "text": "are"
+                },
+                {
+                  "text": "were"
+                },
+                {
+                  "text": "was"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Children is plural, so were.",
+                "hi": "Children बहुवचन है, इसलिए were।"
+              }
+            },
+            {
+              "key": "d.u03.l2.p-saw",
+              "prompt": {
+                "en": "While I was cycling, I ___ a snake on the road."
+              },
+              "options": [
+                {
+                  "text": "was seeing"
+                },
+                {
+                  "text": "see"
+                },
+                {
+                  "text": "saw"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "Seeing the snake was short and sudden: past simple.",
+                "hi": "साँप देखना छोटा, अचानक काम था: past simple।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u03.l2.s-yest",
+              "model": "At seven o'clock yesterday, I was having dinner with my family.",
+              "cue": {
+                "en": "What were you doing at seven o'clock yesterday?",
+                "hi": "कल सात बजे तुम क्या कर रहे थे?"
+              }
+            },
+            {
+              "key": "d.u03.l2.s-when",
+              "model": "I was studying when my friend called me.",
+              "cue": {
+                "en": "Finish the idea: I was studying when …",
+                "hi": "वाक्य पूरा करो: I was studying when …"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u03.l2.c-b1",
+          "type": "build",
+          "hi": "मीरा बकरियों को चारा दे रही थी, तभी बारिश शुरू हुई।",
+          "tiles": [
+            "when",
+            "Meera",
+            "to rain.",
+            "the goats",
+            "feeding",
+            "was",
+            "it started"
+          ],
+          "answer": "Meera was feeding the goats when it started to rain."
+        },
+        {
+          "key": "d.u03.l2.c-b2",
+          "type": "build",
+          "hi": "जब अर्जुन सो रहा था, बिल्ली उसकी रोटी खा गई।",
+          "tiles": [
+            "was sleeping,",
+            "ate his roti.",
+            "the cat",
+            "While",
+            "Arjun"
+          ],
+          "answer": "While Arjun was sleeping, the cat ate his roti."
+        },
+        {
+          "key": "d.u03.l2.c-was",
+          "type": "choose",
+          "prompt": {
+            "en": "I ___ watching TV when you called."
+          },
+          "options": [
+            {
+              "text": "were"
+            },
+            {
+              "text": "was"
+            },
+            {
+              "text": "am"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u03.l2.c-fell",
+          "type": "choose",
+          "prompt": {
+            "en": "Ravi was running when he ___."
+          },
+          "options": [
+            {
+              "text": "falls"
+            },
+            {
+              "text": "fell"
+            },
+            {
+              "text": "was falling"
+            }
+          ],
+          "answer": 1,
+          "why": {
+            "en": "The fall was short and broke into the running: past simple.",
+            "hi": "गिरना छोटा काम था जो दौड़ते हुए हुआ: past simple।"
+          }
+        },
+        {
+          "key": "d.u03.l2.c-while",
+          "type": "choose",
+          "prompt": {
+            "en": "___ I was walking home, I met my teacher."
+          },
+          "options": [
+            {
+              "text": "While"
+            },
+            {
+              "text": "Ever"
+            },
+            {
+              "text": "Yet"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Tell someone: Yesterday at six, I was …",
+        "hi": "किसी को बताओ: Yesterday at six, I was …"
+      }
+    },
+    {
+      "key": "d.u03.l3",
+      "kind": "listen",
+      "title": {
+        "en": "Rescue at the pond",
+        "hi": "तालाब पर बचाव"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "This is a news story from the school wall paper. Listen for what was happening and what happened.",
+            "hi": "यह स्कूल की दीवार पत्रिका की ख़बर है। सुनो क्या हो रहा था और क्या हुआ।"
+          },
+          "pic": "📝"
+        },
+        {
+          "type": "story",
+          "title": {
+            "en": "Students save a calf",
+            "hi": "छात्रों ने बछड़े को बचाया"
+          },
+          "scene": {
+            "place": "village",
+            "pics": [
+              {
+                "pic": "🌊",
+                "x": 30,
+                "y": 45,
+                "size": 2
+              },
+              {
+                "pic": "🐄",
+                "x": 30,
+                "y": 38,
+                "size": 1.2
+              },
+              {
+                "pic": "👧",
+                "x": 55,
+                "y": 42,
+                "size": 1.3
+              },
+              {
+                "pic": "👦",
+                "x": 68,
+                "y": 42,
+                "size": 1.3
+              },
+              {
+                "pic": "🌳",
+                "x": 85,
+                "y": 20,
+                "size": 2
+              }
+            ]
+          },
+          "lines": [
+            {
+              "en": "Last Tuesday, an incident happened at the village pond."
+            },
+            {
+              "en": "Meera and Arjun were walking home from school at about four o'clock."
+            },
+            {
+              "en": "Some women were washing clothes, and children were playing nearby."
+            },
+            {
+              "en": "Suddenly, Meera noticed a small calf in the deep water."
+            },
+            {
+              "en": "It was crying and trying to climb out."
+            },
+            {
+              "en": "Arjun ran to the farm and brought a long rope."
+            },
+            {
+              "en": "While a crowd was watching, three farmers pulled the calf out."
+            },
+            {
+              "en": "Luckily, the calf was not injured."
+            },
+            {
+              "en": "Its owner, Ravi's uncle, thanked everyone for the quick rescue."
+            },
+            {
+              "en": "The teacher praised Meera and Arjun at the next assembly."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u03.l3.p-when",
+              "prompt": {
+                "en": "When did the incident happen?"
+              },
+              "options": [
+                {
+                  "text": "this morning"
+                },
+                {
+                  "text": "last Sunday"
+                },
+                {
+                  "text": "last Tuesday"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u03.l3.p-notice",
+              "prompt": {
+                "en": "Who noticed the calf first?"
+              },
+              "options": [
+                {
+                  "text": "Meera"
+                },
+                {
+                  "text": "Ravi's uncle"
+                },
+                {
+                  "text": "Arjun"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u03.l3.s-walking",
+              "model": "Meera and Arjun were walking home from school."
+            },
+            {
+              "key": "d.u03.l3.s-suddenly",
+              "model": "Suddenly, Meera noticed a small calf in the deep water."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u03.l3.c-rope",
+          "type": "choose",
+          "prompt": {
+            "en": "What did Arjun bring?"
+          },
+          "options": [
+            {
+              "text": "a ladder"
+            },
+            {
+              "text": "a bucket"
+            },
+            {
+              "text": "a long rope"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u03.l3.c-women",
+          "type": "choose",
+          "prompt": {
+            "en": "What were some women doing at the pond?"
+          },
+          "options": [
+            {
+              "text": "catching fish"
+            },
+            {
+              "text": "swimming"
+            },
+            {
+              "text": "washing clothes"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u03.l3.c-pulled",
+          "type": "choose",
+          "prompt": {
+            "en": "Who pulled the calf out?"
+          },
+          "options": [
+            {
+              "text": "the teacher"
+            },
+            {
+              "text": "Meera alone"
+            },
+            {
+              "text": "three farmers"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u03.l3.c-calf",
+          "type": "choose",
+          "prompt": {
+            "en": "How was the calf after the rescue?"
+          },
+          "options": [
+            {
+              "text": "badly injured"
+            },
+            {
+              "text": "very angry"
+            },
+            {
+              "text": "not injured"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Tell your family a short story that starts with \"Last week …\".",
+        "hi": "परिवार को \"Last week …\" से शुरू होने वाली छोटी कहानी सुनाओ।"
+      }
+    },
+    {
+      "key": "d.u03.l4",
+      "kind": "speak",
+      "title": {
+        "en": "Narrate an incident",
+        "hi": "घटना सुनाओ"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "A good story has: when and where, what was happening, what happened suddenly, and how it ended.",
+            "hi": "अच्छी कहानी में: कब और कहाँ, क्या हो रहा था, अचानक क्या हुआ, और अंत कैसे हुआ।"
+          },
+          "pic": "📖"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "road",
+            "pics": [
+              {
+                "pic": "🛣️",
+                "x": 50,
+                "y": 50,
+                "size": 2.5
+              },
+              {
+                "pic": "🚲",
+                "x": 30,
+                "y": 40,
+                "size": 1.4
+              },
+              {
+                "pic": "👦",
+                "x": 30,
+                "y": 32,
+                "size": 1.2
+              },
+              {
+                "pic": "🐐",
+                "x": 50,
+                "y": 42,
+                "size": 1.2
+              },
+              {
+                "pic": "🌧️",
+                "x": 70,
+                "y": 10,
+                "size": 1.6
+              },
+              {
+                "pic": "🏪",
+                "x": 85,
+                "y": 30,
+                "size": 1.8
+              }
+            ]
+          },
+          "questions": [
+            {
+              "key": "d.u03.l4.pq-weather",
+              "en": "What was the weather like?",
+              "model": "It was raining heavily that morning."
+            },
+            {
+              "key": "d.u03.l4.pq-doing",
+              "en": "What was the boy doing?",
+              "model": "The boy was cycling to the shop."
+            },
+            {
+              "key": "d.u03.l4.pq-sudden",
+              "en": "What happened suddenly?",
+              "model": "Suddenly, a goat ran across the road, and he braked hard."
+            },
+            {
+              "key": "d.u03.l4.pq-end",
+              "en": "How did it end?",
+              "model": "Luckily, he did not fall, and the goat was safe."
+            }
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "d.u03.l4.br-rain",
+              "hi": "जब मैं घर लौट रहा था, बारिश शुरू हो गई।",
+              "tiles": [
+                "coming home,",
+                "it started",
+                "When",
+                "to rain.",
+                "I was"
+              ],
+              "answer": "When I was coming home, it started to rain."
+            },
+            {
+              "key": "d.u03.l4.br-nobody",
+              "hi": "ख़ुशक़िस्मती से कोई घायल नहीं हुआ।",
+              "tiles": [
+                "nobody",
+                "was",
+                "injured.",
+                "Luckily,"
+              ],
+              "answer": "Luckily, nobody was injured."
+            },
+            {
+              "key": "d.u03.l4.br-saw",
+              "hi": "मैंने सड़क पर एक साँप देखा।",
+              "tiles": [
+                "saw",
+                "on the road.",
+                "I",
+                "a snake"
+              ],
+              "answer": "I saw a snake on the road."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "describe",
+          "prompts": [
+            {
+              "key": "d.u03.l4.s-story",
+              "model": "Last month, I was walking to the market when a strong wind blew my umbrella away.",
+              "hi": "अपनी एक छोटी घटना सुनाओ।",
+              "cue": {
+                "en": "Tell a short incident from your life.",
+                "hi": "अपनी ज़िंदगी की कोई छोटी घटना सुनाओ।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u03.l4.c-order",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is the best way to start a story?"
+          },
+          "options": [
+            {
+              "text": "The end."
+            },
+            {
+              "text": "Last Friday, at the bus stop, …"
+            },
+            {
+              "text": "Suddenly, …"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u03.l4.c-end",
+          "type": "choose",
+          "prompt": {
+            "en": "Which line ends a story well?"
+          },
+          "options": [
+            {
+              "text": "I was walking."
+            },
+            {
+              "text": "Suddenly, a dog barked."
+            },
+            {
+              "text": "In the end, everyone was safe."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u03.l4.c-b1",
+          "type": "build",
+          "hi": "मैं बस का इंतज़ार कर रहा था, तभी मैंने एक दुर्घटना देखी।",
+          "tiles": [
+            "waiting",
+            "when",
+            "I saw",
+            "for the bus",
+            "an accident.",
+            "I was"
+          ],
+          "answer": "I was waiting for the bus when I saw an accident."
+        }
+      ],
+      "home": {
+        "en": "Tell someone at home what happened on your way home today.",
+        "hi": "घर में बताओ आज घर आते समय रास्ते में क्या हुआ।"
+      }
+    },
+    {
+      "key": "d.u03.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 3 review",
+        "hi": "इकाई 3 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u03.l5.m-incident",
+              "left": {
+                "text": "incident"
+              },
+              "right": {
+                "text": "घटना"
+              }
+            },
+            {
+              "key": "d.u03.l5.m-suddenly",
+              "left": {
+                "text": "suddenly"
+              },
+              "right": {
+                "text": "अचानक"
+              }
+            },
+            {
+              "key": "d.u03.l5.m-crowd",
+              "left": {
+                "text": "crowd"
+              },
+              "right": {
+                "text": "भीड़"
+              }
+            },
+            {
+              "key": "d.u03.l5.m-rescue",
+              "left": {
+                "text": "rescue"
+              },
+              "right": {
+                "text": "बचाना"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u03.l5.b-while",
+              "tiles": [
+                "While",
+                "the milk",
+                "cooking,",
+                "boiled over.",
+                "she was"
+              ],
+              "answer": "While she was cooking, the milk boiled over."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u03.l5.p-were",
+              "prompt": {
+                "en": "What ___ you doing when the storm started?"
+              },
+              "options": [
+                {
+                  "text": "were"
+                },
+                {
+                  "text": "did"
+                },
+                {
+                  "text": "was"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u03.l5.s-yest",
+              "model": "I was helping my mother when the guests arrived.",
+              "cue": {
+                "en": "What were you doing when the guests arrived?",
+                "hi": "मेहमान आए तब तुम क्या कर रहे थे?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u03.l5.c-luckily",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means ख़ुशक़िस्मती से?"
+          },
+          "options": [
+            {
+              "text": "suddenly"
+            },
+            {
+              "text": "luckily"
+            },
+            {
+              "text": "currently"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u03.l5.c-past",
+          "type": "choose",
+          "prompt": {
+            "en": "They ___ football when it began to rain."
+          },
+          "options": [
+            {
+              "text": "were playing"
+            },
+            {
+              "text": "played"
+            },
+            {
+              "text": "are playing"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "The game was the longer action: were + -ing.",
+            "hi": "खेल लंबा काम था: were + -ing।"
+          }
+        },
+        {
+          "key": "d.u03.l5.c-broke",
+          "type": "choose",
+          "prompt": {
+            "en": "I was cutting vegetables when I ___ my finger."
+          },
+          "options": [
+            {
+              "text": "was cutting"
+            },
+            {
+              "text": "cut"
+            },
+            {
+              "text": "cuts"
+            }
+          ],
+          "answer": 1,
+          "why": {
+            "en": "Cutting the finger was short and sudden: past simple.",
+            "hi": "उँगली कटना छोटा, अचानक काम था: past simple।"
+          }
+        },
+        {
+          "key": "d.u03.l5.c-b1",
+          "type": "build",
+          "hi": "अचानक बस सड़क के बीच में रुक गई।",
+          "tiles": [
+            "Suddenly,",
+            "of the road.",
+            "the bus",
+            "in the middle",
+            "stopped"
+          ],
+          "answer": "Suddenly, the bus stopped in the middle of the road."
+        },
+        {
+          "key": "d.u03.l5.c-noticed",
+          "type": "choose",
+          "prompt": {
+            "en": "I ___ that the gate was open."
+          },
+          "options": [
+            {
+              "text": "rescued"
+            },
+            {
+              "text": "injured"
+            },
+            {
+              "text": "noticed"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u03.l5.c-b2",
+          "type": "build",
+          "hi": "हम सो रहे थे, तभी तूफ़ान शुरू हुआ।",
+          "tiles": [
+            "began.",
+            "sleeping",
+            "when",
+            "We were",
+            "the storm"
+          ],
+          "answer": "We were sleeping when the storm began."
+        }
+      ],
+      "home": {
+        "en": "Ask a grandparent: What were you doing when you were fourteen?",
+        "hi": "दादा-दादी से पूछो: What were you doing when you were fourteen?"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1266 @@
+{
+  "track": "d",
+  "unit": 11,
+  "key": "d.u11",
+  "title": {
+    "en": "Agree and disagree",
+    "hi": "सहमति और असहमति"
+  },
+  "pic": "👫",
+  "can_do": {
+    "en": "I can agree and disagree politely.",
+    "hi": "मैं विनम्रता से सहमत और असहमत हो सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u11.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for discussion",
+        "hi": "चर्चा के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "In a good discussion, people share opinions and give reasons, even when they disagree.",
+            "hi": "अच्छी चर्चा में लोग राय और कारण देते हैं, असहमत होने पर भी।"
+          },
+          "pic": "👫"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u11.l1.opinion",
+              "en": "opinion",
+              "hi": "राय",
+              "pic": "🤔",
+              "example": {
+                "en": "In my opinion, the library should open on Sundays.",
+                "hi": "मेरी राय में, पुस्तकालय रविवार को खुलना चाहिए।"
+              }
+            },
+            {
+              "key": "d.u11.l1.agree",
+              "en": "agree",
+              "hi": "सहमत होना",
+              "pic": "👍",
+              "example": {
+                "en": "I agree with you about the timetable.",
+                "hi": "मैं समय-सारणी पर तुमसे सहमत हूँ।"
+              }
+            },
+            {
+              "key": "d.u11.l1.disagree",
+              "en": "disagree",
+              "hi": "असहमत होना",
+              "pic": "👎",
+              "example": {
+                "en": "I'm afraid I disagree with that idea.",
+                "hi": "माफ़ कीजिए, मैं उस विचार से असहमत हूँ।"
+              }
+            },
+            {
+              "key": "d.u11.l1.reason",
+              "en": "reason",
+              "hi": "कारण, वजह",
+              "pic": "❓",
+              "example": {
+                "en": "Can you give me one reason?",
+                "hi": "क्या तुम मुझे एक कारण बता सकते हो?"
+              }
+            },
+            {
+              "key": "d.u11.l1.discuss",
+              "en": "discuss",
+              "hi": "चर्चा करना",
+              "pic": "👫",
+              "example": {
+                "en": "Let us discuss the problem calmly.",
+                "hi": "चलो इस समस्या पर शांति से चर्चा करें।"
+              }
+            },
+            {
+              "key": "d.u11.l1.however",
+              "en": "however",
+              "hi": "फिर भी, लेकिन",
+              "pic": "↩️",
+              "example": {
+                "en": "Phones are useful. However, they can distract us.",
+                "hi": "फ़ोन उपयोगी हैं। फिर भी वे ध्यान भटका सकते हैं।"
+              }
+            },
+            {
+              "key": "d.u11.l1.benefit",
+              "en": "benefit",
+              "hi": "फ़ायदा",
+              "pic": "✅",
+              "example": {
+                "en": "One benefit of cycling is good health.",
+                "hi": "साइकिल चलाने का एक फ़ायदा अच्छी सेहत है।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u11.l1.m-agree",
+              "left": {
+                "text": "agree"
+              },
+              "right": {
+                "pic": "👍"
+              }
+            },
+            {
+              "key": "d.u11.l1.m-disagree",
+              "left": {
+                "text": "disagree"
+              },
+              "right": {
+                "pic": "👎"
+              }
+            },
+            {
+              "key": "d.u11.l1.m-opinion",
+              "left": {
+                "text": "opinion"
+              },
+              "right": {
+                "pic": "🤔"
+              }
+            },
+            {
+              "key": "d.u11.l1.m-benefit",
+              "left": {
+                "text": "benefit"
+              },
+              "right": {
+                "pic": "✅"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u11.l1.p-reason",
+              "prompt": {
+                "en": "Which word means कारण?"
+              },
+              "options": [
+                {
+                  "text": "reason"
+                },
+                {
+                  "text": "opinion"
+                },
+                {
+                  "text": "benefit"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u11.l1.p-however",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "The plan is good. However, it costs too much."
+              },
+              "options": [
+                {
+                  "text": "reason"
+                },
+                {
+                  "text": "however"
+                },
+                {
+                  "text": "because"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u11.l1.s-opinion",
+              "model": "In my opinion, the library should open on Sundays."
+            },
+            {
+              "key": "d.u11.l1.s-disagree",
+              "model": "I'm afraid I disagree with that idea."
+            },
+            {
+              "key": "d.u11.l1.s-reason",
+              "model": "Can you give me one reason?"
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u11.l1.c-discuss",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means चर्चा करना?"
+          },
+          "options": [
+            {
+              "text": "benefit"
+            },
+            {
+              "text": "disagree"
+            },
+            {
+              "text": "discuss"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u11.l1.c-benefit",
+          "type": "choose",
+          "prompt": {
+            "en": "One ___ of reading is a bigger vocabulary."
+          },
+          "options": [
+            {
+              "text": "reason"
+            },
+            {
+              "text": "benefit"
+            },
+            {
+              "text": "opinion"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u11.l1.c-however",
+          "type": "choose",
+          "prompt": {
+            "en": "The bus is cheap. ___, it is very slow."
+          },
+          "options": [
+            {
+              "text": "However"
+            },
+            {
+              "text": "Because"
+            },
+            {
+              "text": "So"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "However shows a contrast with the sentence before.",
+            "hi": "However पिछले वाक्य से उलटी बात दिखाता है।"
+          }
+        },
+        {
+          "key": "d.u11.l1.c-agree",
+          "type": "choose",
+          "prompt": {
+            "en": "I think so too. I ___ with you."
+          },
+          "options": [
+            {
+              "text": "discuss"
+            },
+            {
+              "text": "disagree"
+            },
+            {
+              "text": "agree"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Ask someone at home their opinion on one small topic.",
+        "hi": "घर में किसी से एक छोटे विषय पर उनकी राय पूछो।"
+      }
+    },
+    {
+      "key": "d.u11.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "Linking ideas, disagreeing politely",
+        "hi": "विचार जोड़ना, विनम्र असहमति"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "Because, so, although, however",
+            "hi": "जोड़ने वाले शब्द: because, so, although, however"
+          },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "I agree because reading helps us think.",
+              "hi": "मैं सहमत हूँ क्योंकि पढ़ना सोचने में मदद करता है।",
+              "parts": [
+                {
+                  "text": "I agree",
+                  "role": "who"
+                },
+                {
+                  "text": "because",
+                  "role": "other"
+                },
+                {
+                  "text": "reading helps us think.",
+                  "role": "what"
+                }
+              ]
+            },
+            {
+              "en": "It was raining, so we stayed indoors.",
+              "hi": "बारिश हो रही थी, इसलिए हम अंदर रहे।",
+              "parts": [
+                {
+                  "text": "It was raining,",
+                  "role": "when"
+                },
+                {
+                  "text": "so",
+                  "role": "other"
+                },
+                {
+                  "text": "we stayed indoors.",
+                  "role": "what"
+                }
+              ]
+            },
+            {
+              "en": "Although phones are useful, they waste time.",
+              "hi": "हालाँकि फ़ोन उपयोगी हैं, वे समय बर्बाद करते हैं।",
+              "parts": [
+                {
+                  "text": "Although",
+                  "role": "other"
+                },
+                {
+                  "text": "phones are useful,",
+                  "role": "who"
+                },
+                {
+                  "text": "they waste time.",
+                  "role": "what"
+                }
+              ]
+            },
+            {
+              "en": "I see your point. However, I think differently.",
+              "hi": "मैं तुम्हारी बात समझता हूँ। फिर भी, मेरी सोच अलग है।",
+              "parts": [
+                {
+                  "text": "I see your point.",
+                  "role": "what"
+                },
+                {
+                  "text": "However,",
+                  "role": "other"
+                },
+                {
+                  "text": "I think differently.",
+                  "role": "who"
+                }
+              ]
+            },
+            {
+              "en": "I'm not sure about that, because it is expensive.",
+              "hi": "मुझे उस पर यक़ीन नहीं, क्योंकि यह महँगा है।",
+              "parts": [
+                {
+                  "text": "I'm not sure",
+                  "role": "not"
+                },
+                {
+                  "text": "about that,",
+                  "role": "what"
+                },
+                {
+                  "text": "because",
+                  "role": "other"
+                },
+                {
+                  "text": "it is expensive.",
+                  "role": "what"
+                }
+              ]
+            }
+          ],
+          "note": {
+            "en": "Disagree softly: \"I see your point, but …\", \"I'm not sure about that.\" Always give a reason.",
+            "hi": "नरमी से असहमति: \"I see your point, but …\", \"I'm not sure about that.\" हमेशा कारण दो।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u11.l2.b-because",
+              "tiles": [
+                "it saves",
+                "with you",
+                "I agree",
+                "because",
+                "time."
+              ],
+              "answer": "I agree with you because it saves time."
+            },
+            {
+              "key": "d.u11.l2.b-although",
+              "tiles": [
+                "we finished",
+                "late,",
+                "the work.",
+                "it was",
+                "Although"
+              ],
+              "answer": "Although it was late, we finished the work."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u11.l2.p-so",
+              "prompt": {
+                "en": "I was tired, ___ I went to bed early."
+              },
+              "options": [
+                {
+                  "text": "because"
+                },
+                {
+                  "text": "so"
+                },
+                {
+                  "text": "although"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "So shows the result.",
+                "hi": "So नतीजा बताता है।"
+              }
+            },
+            {
+              "key": "d.u11.l2.p-polite",
+              "prompt": {
+                "en": "Which is a polite way to disagree?"
+              },
+              "options": [
+                {
+                  "text": "You are wrong."
+                },
+                {
+                  "text": "That's stupid."
+                },
+                {
+                  "text": "I see your point, but I think differently."
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u11.l2.s-agree",
+              "model": "I agree because sport keeps us healthy.",
+              "cue": {
+                "en": "Do you agree that sport is important? Give a reason.",
+                "hi": "क्या तुम मानते हो कि खेल ज़रूरी है? कारण दो।"
+              }
+            },
+            {
+              "key": "d.u11.l2.s-dis",
+              "model": "I see your point, but I think homework helps us practise.",
+              "cue": {
+                "en": "Your friend says, \"Homework is useless.\" Disagree politely.",
+                "hi": "दोस्त कहता है, \"होमवर्क बेकार है।\" विनम्रता से असहमत हो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u11.l2.c-b1",
+          "type": "build",
+          "hi": "मुझे उस पर यक़ीन नहीं क्योंकि यह महँगा है।",
+          "tiles": [
+            "because",
+            "it is",
+            "expensive.",
+            "about that",
+            "I'm not",
+            "sure"
+          ],
+          "answer": "I'm not sure about that because it is expensive."
+        },
+        {
+          "key": "d.u11.l2.c-b2",
+          "type": "build",
+          "hi": "बहुत गर्मी थी, इसलिए हम अंदर बैठे।",
+          "tiles": [
+            "sat inside.",
+            "so",
+            "It was",
+            "we",
+            "very hot,"
+          ],
+          "answer": "It was very hot, so we sat inside."
+        },
+        {
+          "key": "d.u11.l2.c-although",
+          "type": "choose",
+          "prompt": {
+            "en": "___ he was ill, he came to school."
+          },
+          "options": [
+            {
+              "text": "So"
+            },
+            {
+              "text": "Because"
+            },
+            {
+              "text": "Although"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u11.l2.c-because",
+          "type": "choose",
+          "prompt": {
+            "en": "We planted trees ___ we wanted cleaner air."
+          },
+          "options": [
+            {
+              "text": "however"
+            },
+            {
+              "text": "so"
+            },
+            {
+              "text": "because"
+            }
+          ],
+          "answer": 2,
+          "why": {
+            "en": "Because gives the reason.",
+            "hi": "Because कारण बताता है।"
+          }
+        },
+        {
+          "key": "d.u11.l2.c-soft",
+          "type": "choose",
+          "prompt": {
+            "en": "Which sentence disagrees politely?"
+          },
+          "options": [
+            {
+              "text": "No way!"
+            },
+            {
+              "text": "I'm afraid I don't agree."
+            },
+            {
+              "text": "You know nothing."
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Give your family one opinion with \"because\".",
+        "hi": "परिवार को \"because\" के साथ अपनी एक राय बताओ।"
+      }
+    },
+    {
+      "key": "d.u11.l3",
+      "kind": "listen",
+      "title": {
+        "en": "Should students have phones at school?",
+        "hi": "क्या स्कूल में फ़ोन होने चाहिए?"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "A class discussion",
+            "hi": "कक्षा में चर्चा"
+          },
+          "scene": {
+            "place": "school",
+            "pics": [
+              {
+                "pic": "own:chalkboard",
+                "x": 50,
+                "y": 10,
+                "size": 2
+              },
+              {
+                "pic": "👧",
+                "x": 20,
+                "y": 42,
+                "size": 1.3
+              },
+              {
+                "pic": "🧑",
+                "x": 40,
+                "y": 42,
+                "size": 1.3
+              },
+              {
+                "pic": "🧕",
+                "x": 60,
+                "y": 42,
+                "size": 1.3
+              },
+              {
+                "pic": "👦",
+                "x": 80,
+                "y": 42,
+                "size": 1.3
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Mr Thomas",
+              "pic": "👨‍🏫",
+              "en": "Today's question: should students bring phones to school? Who wants to start?"
+            },
+            {
+              "speaker": "Ravi",
+              "pic": "🧑",
+              "en": "In my opinion, yes. Phones help us look up words and facts."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "I see your point, Ravi. However, many students will play games in class."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "I agree with Salma. Phones can also cause fights and bullying."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I'm not sure about that. Some students live far away, so parents want to call them."
+            },
+            {
+              "speaker": "Ravi",
+              "pic": "🧑",
+              "en": "That's a good reason. Maybe phones can stay in the office during class."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "Although that is a good idea, who will look after them?"
+            },
+            {
+              "speaker": "Mr Thomas",
+              "pic": "👨‍🏫",
+              "en": "Good discussion. You disagreed politely and gave reasons."
+            },
+            {
+              "speaker": "Mr Thomas",
+              "pic": "👨‍🏫",
+              "en": "Let's vote on the idea of keeping phones in the office."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u11.l3.p-ravi",
+              "prompt": {
+                "en": "Why does Ravi want phones at school?"
+              },
+              "options": [
+                {
+                  "text": "to play games"
+                },
+                {
+                  "text": "to look up words and facts"
+                },
+                {
+                  "text": "to call friends"
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u11.l3.p-salma",
+              "prompt": {
+                "en": "What is Salma worried about?"
+              },
+              "options": [
+                {
+                  "text": "bad internet"
+                },
+                {
+                  "text": "phones being expensive"
+                },
+                {
+                  "text": "students playing games in class"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u11.l3.s-see",
+              "model": "I see your point. However, many students will play games in class."
+            },
+            {
+              "key": "d.u11.l3.s-sure",
+              "model": "I'm not sure about that."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u11.l3.c-arjun",
+          "type": "choose",
+          "prompt": {
+            "en": "Who agrees with Salma?"
+          },
+          "options": [
+            {
+              "text": "Meera"
+            },
+            {
+              "text": "Ravi"
+            },
+            {
+              "text": "Arjun"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u11.l3.c-meera",
+          "type": "choose",
+          "prompt": {
+            "en": "What reason does Meera give?"
+          },
+          "options": [
+            {
+              "text": "Phones are cheap."
+            },
+            {
+              "text": "Games are fun."
+            },
+            {
+              "text": "Parents want to call students who live far away."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u11.l3.c-idea",
+          "type": "choose",
+          "prompt": {
+            "en": "What new idea does Ravi suggest?"
+          },
+          "options": [
+            {
+              "text": "No phones at all."
+            },
+            {
+              "text": "Phones stay in the office during class."
+            },
+            {
+              "text": "Phones only for teachers."
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u11.l3.c-praise",
+          "type": "choose",
+          "prompt": {
+            "en": "What does Mr Thomas praise?"
+          },
+          "options": [
+            {
+              "text": "They disagreed politely and gave reasons."
+            },
+            {
+              "text": "They were very quiet."
+            },
+            {
+              "text": "They all agreed."
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Discuss at home: Should children help with cooking? Give reasons.",
+        "hi": "घर पर चर्चा करो: क्या बच्चों को खाना बनाने में मदद करनी चाहिए? कारण दो।"
+      }
+    },
+    {
+      "key": "d.u11.l4",
+      "kind": "speak",
+      "title": {
+        "en": "Group discussion",
+        "hi": "समूह चर्चा"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": {
+            "en": "Should our village have a weekly market day for students?",
+            "hi": "क्या छात्रों के लिए साप्ताहिक बाज़ार दिवस हो?"
+          },
+          "scene": {
+            "place": "village",
+            "pics": [
+              {
+                "pic": "own:haat",
+                "x": 80,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "🧕",
+                "x": 25,
+                "y": 42,
+                "size": 1.4
+              },
+              {
+                "pic": "🧑",
+                "x": 50,
+                "y": 42,
+                "size": 1.4
+              },
+              {
+                "pic": "🧒",
+                "x": 75,
+                "y": 42,
+                "size": 1.4
+              }
+            ]
+          },
+          "roles": [
+            {
+              "name": "Salma",
+              "pic": "🧕"
+            },
+            {
+              "name": "Ravi",
+              "pic": "🧑"
+            },
+            {
+              "name": "You",
+              "pic": "🧒"
+            }
+          ],
+          "learner": 2,
+          "turns": [
+            {
+              "role": 0,
+              "en": "I think students should sell their crafts at the haat once a week."
+            },
+            {
+              "role": 1,
+              "en": "I disagree. It will take time away from studies."
+            },
+            {
+              "role": 2,
+              "en": "I see your point, Ravi. However, students can learn about money and business."
+            },
+            {
+              "role": 1,
+              "en": "That's true, but who will look after the stalls?"
+            },
+            {
+              "role": 2,
+              "en": "Although it is hard, we can take turns, so nobody misses many classes."
+            },
+            {
+              "role": 0,
+              "en": "Great idea. What do you think we should sell?"
+            },
+            {
+              "role": 2,
+              "en": "In my opinion, we should sell paintings and baskets because people like them."
+            },
+            {
+              "role": 1,
+              "en": "OK, I agree, if it is only on Sundays."
+            }
+          ],
+          "partner": {
+            "goal": "Lead a friendly three-person discussion. One partner agrees, one disagrees. Ask the learner for an opinion and reasons; praise polite disagreement.",
+            "must_use": [
+              "I think",
+              "I see your point",
+              "however",
+              "because",
+              "although",
+              "I agree"
+            ]
+          }
+        },
+        {
+          "type": "talk",
+          "topic": {
+            "en": "Give your opinion",
+            "hi": "अपनी राय दो"
+          },
+          "outline": [
+            {
+              "en": "Say the question and your opinion.",
+              "hi": "सवाल और अपनी राय बताओ।"
+            },
+            {
+              "en": "Give two reasons with because.",
+              "hi": "Because से दो कारण दो।"
+            },
+            {
+              "en": "Mention the other side with however or although.",
+              "hi": "However या although से दूसरा पक्ष बताओ।"
+            },
+            {
+              "en": "End with your opinion again.",
+              "hi": "अंत में फिर से अपनी राय दो।"
+            }
+          ],
+          "seconds": 60,
+          "model": [
+            "Should every school have a garden? In my opinion, yes.",
+            "First, students learn about plants because they grow them.",
+            "Second, the vegetables can be used in the midday meal.",
+            "However, a garden needs water and time.",
+            "Although it is hard work, the benefits are bigger, so every school should have one."
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u11.l4.s-op",
+              "model": "In my opinion, girls and boys should play the same sports, because everyone needs exercise.",
+              "cue": {
+                "en": "Give your opinion: Should girls and boys play the same sports?",
+                "hi": "राय दो: क्या लड़कियाँ और लड़के एक जैसे खेल खेलें?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u11.l4.c-turn",
+          "type": "choose",
+          "prompt": {
+            "en": "Someone speaks for a long time. How do you join politely?"
+          },
+          "options": [
+            {
+              "text": "Can I add something?"
+            },
+            {
+              "text": "Be quiet."
+            },
+            {
+              "text": "Stop talking!"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u11.l4.c-reason",
+          "type": "choose",
+          "prompt": {
+            "en": "Which answer gives an opinion and a reason?"
+          },
+          "options": [
+            {
+              "text": "Yes."
+            },
+            {
+              "text": "Maybe."
+            },
+            {
+              "text": "I think so because it is cheap."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u11.l4.c-b1",
+          "type": "build",
+          "hi": "मैं तुम्हारी बात समझता हूँ, पर मेरी सोच अलग है।",
+          "tiles": [
+            "I see",
+            "I think",
+            "but",
+            "your point,",
+            "differently."
+          ],
+          "answer": "I see your point, but I think differently."
+        }
+      ],
+      "home": {
+        "en": "Ask your family a question and let everyone give an opinion.",
+        "hi": "परिवार से एक सवाल पूछो और सबको राय देने दो।"
+      }
+    },
+    {
+      "key": "d.u11.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 11 review",
+        "hi": "इकाई 11 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u11.l5.m-opinion",
+              "left": {
+                "text": "opinion"
+              },
+              "right": {
+                "text": "राय"
+              }
+            },
+            {
+              "key": "d.u11.l5.m-reason",
+              "left": {
+                "text": "reason"
+              },
+              "right": {
+                "text": "कारण"
+              }
+            },
+            {
+              "key": "d.u11.l5.m-benefit",
+              "left": {
+                "text": "benefit"
+              },
+              "right": {
+                "text": "फ़ायदा"
+              }
+            },
+            {
+              "key": "d.u11.l5.m-discuss",
+              "left": {
+                "text": "discuss"
+              },
+              "right": {
+                "text": "चर्चा करना"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u11.l5.b-however",
+              "tiles": [
+                "fast.",
+                "However,",
+                "Bikes are",
+                "they",
+                "are",
+                "expensive."
+              ],
+              "answer": "Bikes are fast. However, they are expensive."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u11.l5.p-so",
+              "prompt": {
+                "en": "The shop was closed, ___ we went home."
+              },
+              "options": [
+                {
+                  "text": "so"
+                },
+                {
+                  "text": "because"
+                },
+                {
+                  "text": "although"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u11.l5.s-op",
+              "model": "I agree that we should save water because the wells are drying up.",
+              "cue": {
+                "en": "Do you agree that we should save water? Why?",
+                "hi": "क्या तुम मानते हो कि पानी बचाना चाहिए? क्यों?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u11.l5.c-agree",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means सहमत होना?"
+          },
+          "options": [
+            {
+              "text": "agree"
+            },
+            {
+              "text": "answer"
+            },
+            {
+              "text": "argue"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u11.l5.c-although",
+          "type": "choose",
+          "prompt": {
+            "en": "___ the test was hard, I passed."
+          },
+          "options": [
+            {
+              "text": "Although"
+            },
+            {
+              "text": "Because"
+            },
+            {
+              "text": "So"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u11.l5.c-because",
+          "type": "choose",
+          "prompt": {
+            "en": "I like the club ___ I learn new things there."
+          },
+          "options": [
+            {
+              "text": "however"
+            },
+            {
+              "text": "because"
+            },
+            {
+              "text": "so"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u11.l5.c-b1",
+          "type": "build",
+          "hi": "मेरी राय में हमें और पेड़ चाहिए।",
+          "tiles": [
+            "more trees.",
+            "In",
+            "my opinion,",
+            "we",
+            "need"
+          ],
+          "answer": "In my opinion, we need more trees."
+        },
+        {
+          "key": "d.u11.l5.c-polite",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is the most polite?"
+          },
+          "options": [
+            {
+              "text": "No!"
+            },
+            {
+              "text": "You're wrong."
+            },
+            {
+              "text": "I'm afraid I disagree."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u11.l5.c-b2",
+          "type": "build",
+          "hi": "मुझे उस विचार पर यक़ीन नहीं है।",
+          "tiles": [
+            "idea.",
+            "sure",
+            "about",
+            "that",
+            "I'm not"
+          ],
+          "answer": "I'm not sure about that idea."
+        }
+      ],
+      "home": {
+        "en": "Agree with someone at home today and give a reason.",
+        "hi": "आज घर में किसी से सहमत हो और कारण बताओ।"
+      }
+    }
+  ]
+}

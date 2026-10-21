@@ -1,0 +1,1292 @@
+{
+  "track": "d",
+  "unit": 1,
+  "key": "d.u01",
+  "title": {
+    "en": "First impressions",
+    "hi": "पहली छाप"
+  },
+  "pic": "🙋",
+  "can_do": {
+    "en": "I can introduce myself formally.",
+    "hi": "मैं औपचारिक रूप से अपना परिचय दे सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u01.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for meeting people",
+        "hi": "लोगों से मिलने के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "A good first meeting needs only a few clear sentences. Today you learn the words for them.",
+            "hi": "पहली मुलाक़ात के लिए कुछ साफ़ वाक्य काफ़ी हैं। आज उनके शब्द सीखो।"
+          },
+          "pic": "🙋"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u01.l1.introduce",
+              "en": "introduce",
+              "hi": "परिचय देना / कराना",
+              "pic": "🙋",
+              "example": {
+                "en": "Let me introduce myself. I am Meera.",
+                "hi": "मैं अपना परिचय देती हूँ। मैं मीरा हूँ।"
+              }
+            },
+            {
+              "key": "d.u01.l1.confident",
+              "en": "confident",
+              "hi": "आत्मविश्वासी",
+              "pic": "💪",
+              "example": {
+                "en": "Stand straight and look confident.",
+                "hi": "सीधे खड़े रहो और आत्मविश्वासी दिखो।"
+              }
+            },
+            {
+              "key": "d.u01.l1.polite",
+              "en": "polite",
+              "hi": "विनम्र",
+              "pic": "🙏",
+              "example": {
+                "en": "Arjun is always polite to visitors.",
+                "hi": "अर्जुन मेहमानों से हमेशा विनम्र रहता है।"
+              }
+            },
+            {
+              "key": "d.u01.l1.interest",
+              "en": "interest",
+              "hi": "रुचि",
+              "pic": "❤️",
+              "example": {
+                "en": "My main interest is science.",
+                "hi": "मेरी मुख्य रुचि विज्ञान है।"
+              }
+            },
+            {
+              "key": "d.u01.l1.currently",
+              "en": "currently",
+              "hi": "इस समय, फ़िलहाल",
+              "pic": "⏳",
+              "example": {
+                "en": "I am currently studying in Class 9.",
+                "hi": "मैं फ़िलहाल कक्षा 9 में पढ़ रही हूँ।"
+              }
+            },
+            {
+              "key": "d.u01.l1.community",
+              "en": "community",
+              "hi": "समुदाय",
+              "pic": "🏘️",
+              "example": {
+                "en": "Our youth club helps the community.",
+                "hi": "हमारा युवा क्लब समुदाय की मदद करता है।"
+              }
+            },
+            {
+              "key": "d.u01.l1.impression",
+              "en": "impression",
+              "hi": "छाप, प्रभाव",
+              "pic": "🌟",
+              "example": {
+                "en": "A smile makes a good first impression.",
+                "hi": "मुस्कान से अच्छी पहली छाप पड़ती है।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u01.l1.m-polite",
+              "left": {
+                "text": "polite"
+              },
+              "right": {
+                "pic": "🙏"
+              }
+            },
+            {
+              "key": "d.u01.l1.m-confident",
+              "left": {
+                "text": "confident"
+              },
+              "right": {
+                "pic": "💪"
+              }
+            },
+            {
+              "key": "d.u01.l1.m-community",
+              "left": {
+                "text": "community"
+              },
+              "right": {
+                "pic": "🏘️"
+              }
+            },
+            {
+              "key": "d.u01.l1.m-currently",
+              "left": {
+                "text": "currently"
+              },
+              "right": {
+                "pic": "⏳"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u01.l1.p-interest",
+              "prompt": {
+                "en": "Which word means रुचि?"
+              },
+              "options": [
+                {
+                  "text": "interest"
+                },
+                {
+                  "text": "impression"
+                },
+                {
+                  "text": "community"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u01.l1.p-introduce",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "Let me introduce my friend Salma."
+              },
+              "options": [
+                {
+                  "text": "polite"
+                },
+                {
+                  "text": "introduce"
+                },
+                {
+                  "text": "impression"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u01.l1.s-intro",
+              "model": "Let me introduce myself. My name is Meera."
+            },
+            {
+              "key": "d.u01.l1.s-current",
+              "model": "I am currently studying in Class 9."
+            },
+            {
+              "key": "d.u01.l1.s-interest",
+              "model": "My main interest is science."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u01.l1.c-confident",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means आत्मविश्वासी?"
+          },
+          "options": [
+            {
+              "text": "polite"
+            },
+            {
+              "text": "confident"
+            },
+            {
+              "text": "currently"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u01.l1.c-community",
+          "type": "choose",
+          "prompt": {
+            "en": "All the people of our village are one ___."
+          },
+          "options": [
+            {
+              "text": "impression"
+            },
+            {
+              "text": "interest"
+            },
+            {
+              "text": "community"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u01.l1.c-impression",
+          "type": "choose",
+          "prompt": {
+            "en": "A smile makes a good first ___."
+          },
+          "options": [
+            {
+              "text": "impression"
+            },
+            {
+              "text": "interest"
+            },
+            {
+              "text": "community"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u01.l1.c-currently",
+          "type": "choose",
+          "prompt": {
+            "en": "I am ___ preparing for my exams."
+          },
+          "options": [
+            {
+              "text": "polite"
+            },
+            {
+              "text": "currently"
+            },
+            {
+              "text": "confident"
+            }
+          ],
+          "answer": 1,
+          "why": {
+            "en": "Currently means now, at this time.",
+            "hi": "Currently का मतलब है अभी, इस समय।"
+          }
+        }
+      ],
+      "home": {
+        "en": "At dinner, tell your family one interest of yours in English.",
+        "hi": "रात के खाने पर अंग्रेज़ी में अपनी एक रुचि बताओ।"
+      }
+    },
+    {
+      "key": "d.u01.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "Always true, or happening now?",
+        "hi": "हमेशा सच, या अभी हो रहा?"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "Present simple and present continuous",
+            "hi": "Present simple और present continuous"
+          },
+          "visual": "compare",
+          "examples": [
+            {
+              "en": "I live in Rampur village.",
+              "hi": "मैं रामपुर गाँव में रहती हूँ। (हमेशा)",
+              "parts": [
+                {
+                  "text": "I",
+                  "role": "who"
+                },
+                {
+                  "text": "live",
+                  "role": "do"
+                },
+                {
+                  "text": "in Rampur village.",
+                  "role": "where"
+                }
+              ]
+            },
+            {
+              "en": "I am staying with my aunt this week.",
+              "hi": "इस हफ़्ते मैं मौसी के यहाँ रुकी हूँ। (अभी, कुछ समय के लिए)",
+              "parts": [
+                {
+                  "text": "I",
+                  "role": "who"
+                },
+                {
+                  "text": "am staying",
+                  "role": "do"
+                },
+                {
+                  "text": "with my aunt this week.",
+                  "role": "when"
+                }
+              ]
+            },
+            {
+              "en": "Arjun plays cricket every evening.",
+              "hi": "अर्जुन हर शाम क्रिकेट खेलता है।",
+              "parts": [
+                {
+                  "text": "Arjun",
+                  "role": "who"
+                },
+                {
+                  "text": "plays",
+                  "role": "do"
+                },
+                {
+                  "text": "cricket every evening.",
+                  "role": "when"
+                }
+              ]
+            },
+            {
+              "en": "Arjun is helping Papa in the field now.",
+              "hi": "अर्जुन अभी खेत में पापा की मदद कर रहा है।",
+              "parts": [
+                {
+                  "text": "Arjun",
+                  "role": "who"
+                },
+                {
+                  "text": "is helping",
+                  "role": "do"
+                },
+                {
+                  "text": "Papa in the field now.",
+                  "role": "when"
+                }
+              ]
+            }
+          ],
+          "note": {
+            "en": "Habits and facts: present simple. Things happening now or for a short time: am, is or are + -ing.",
+            "hi": "आदतें और सच्चाई: present simple। अभी या थोड़े समय के लिए: am/is/are + -ing।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u01.l2.b-live",
+              "tiles": [
+                "I",
+                "live",
+                "in Rampur.",
+                "with my",
+                "family"
+              ],
+              "answer": "I live with my family in Rampur."
+            },
+            {
+              "key": "d.u01.l2.b-learn",
+              "tiles": [
+                "English",
+                "this year.",
+                "am learning",
+                "I",
+                "to speak"
+              ],
+              "answer": "I am learning to speak English this year."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u01.l2.p-every",
+              "prompt": {
+                "en": "Salma ___ to school by bus every day."
+              },
+              "options": [
+                {
+                  "text": "go"
+                },
+                {
+                  "text": "is going"
+                },
+                {
+                  "text": "goes"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "Every day is a habit, so we use the present simple.",
+                "hi": "Every day आदत है, इसलिए present simple।"
+              }
+            },
+            {
+              "key": "d.u01.l2.p-now",
+              "prompt": {
+                "en": "Look! Ravi ___ the football team now."
+              },
+              "options": [
+                {
+                  "text": "join"
+                },
+                {
+                  "text": "is joining"
+                },
+                {
+                  "text": "joins"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Look! and now show it is happening at this moment.",
+                "hi": "Look! और now बताते हैं कि यह अभी हो रहा है।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u01.l2.s-live",
+              "model": "I live in a village near the town.",
+              "cue": {
+                "en": "Where do you live?",
+                "hi": "तुम कहाँ रहते हो?"
+              }
+            },
+            {
+              "key": "d.u01.l2.s-now",
+              "model": "I am currently studying in Class 9.",
+              "cue": {
+                "en": "What are you doing these days?",
+                "hi": "आजकल क्या कर रहे हो?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u01.l2.c-b1",
+          "type": "build",
+          "hi": "वह इस महीने एक क्विज़ की तैयारी कर रही है।",
+          "tiles": [
+            "this month.",
+            "She",
+            "is preparing",
+            "for a quiz"
+          ],
+          "answer": "She is preparing for a quiz this month."
+        },
+        {
+          "key": "d.u01.l2.c-b2",
+          "type": "build",
+          "hi": "मेरे पिता हमारे खेत पर काम करते हैं।",
+          "tiles": [
+            "on our farm.",
+            "My father",
+            "works"
+          ],
+          "answer": "My father works on our farm."
+        },
+        {
+          "key": "d.u01.l2.c-usually",
+          "type": "choose",
+          "prompt": {
+            "en": "We usually ___ dinner at eight."
+          },
+          "options": [
+            {
+              "text": "are eating"
+            },
+            {
+              "text": "eat"
+            },
+            {
+              "text": "eats"
+            }
+          ],
+          "answer": 1,
+          "why": {
+            "en": "Usually shows a habit: present simple.",
+            "hi": "Usually आदत दिखाता है: present simple।"
+          }
+        },
+        {
+          "key": "d.u01.l2.c-moment",
+          "type": "choose",
+          "prompt": {
+            "en": "Please wait. Dadi ___ on the phone at the moment."
+          },
+          "options": [
+            {
+              "text": "is talking"
+            },
+            {
+              "text": "talk"
+            },
+            {
+              "text": "talks"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "At the moment means now: am, is or are + -ing.",
+            "hi": "At the moment यानी अभी: am/is/are + -ing।"
+          }
+        },
+        {
+          "key": "d.u01.l2.c-know",
+          "type": "choose",
+          "prompt": {
+            "en": "I ___ the answer."
+          },
+          "options": [
+            {
+              "text": "am knowing"
+            },
+            {
+              "text": "knows"
+            },
+            {
+              "text": "know"
+            }
+          ],
+          "answer": 2,
+          "why": {
+            "en": "Know, like and want are not used with -ing here.",
+            "hi": "Know, like, want के साथ आम तौर पर -ing नहीं लगता।"
+          }
+        }
+      ],
+      "home": {
+        "en": "Say one habit and one thing you are doing this week.",
+        "hi": "एक आदत और इस हफ़्ते का एक काम अंग्रेज़ी में बोलो।"
+      }
+    },
+    {
+      "key": "d.u01.l3",
+      "kind": "listen",
+      "title": {
+        "en": "The first club meeting",
+        "hi": "क्लब की पहली बैठक"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Listen to how each person gives a name, a fact and an interest.",
+            "hi": "सुनो, हर व्यक्ति नाम, एक बात और एक रुचि कैसे बताता है।"
+          },
+          "pic": "👂"
+        },
+        {
+          "type": "story",
+          "title": {
+            "en": "New members at the youth club",
+            "hi": "युवा क्लब में नए सदस्य"
+          },
+          "scene": {
+            "place": "village",
+            "pics": [
+              {
+                "pic": "🏘️",
+                "x": 80,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "👩‍🏫",
+                "x": 20,
+                "y": 40,
+                "size": 1.6
+              },
+              {
+                "pic": "👧",
+                "x": 45,
+                "y": 42,
+                "size": 1.4
+              },
+              {
+                "pic": "🧑",
+                "x": 62,
+                "y": 42,
+                "size": 1.4
+              },
+              {
+                "pic": "🧕",
+                "x": 78,
+                "y": 42,
+                "size": 1.4
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Kavita",
+              "pic": "👩‍🏫",
+              "en": "Good evening, everyone. I am Kavita, and I run this youth club."
+            },
+            {
+              "speaker": "Kavita",
+              "pic": "👩‍🏫",
+              "en": "Today we have three new members. Please introduce yourselves."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Good evening. My name is Meera, and I am fourteen."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I study in Class 9 at the village school."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I am currently learning to code on the school computer."
+            },
+            {
+              "speaker": "Ravi",
+              "pic": "🧑",
+              "en": "Hello, everyone. I am Ravi. I help my parents on our farm."
+            },
+            {
+              "speaker": "Ravi",
+              "pic": "🧑",
+              "en": "I am interested in football, and I am looking for a team."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "Good evening. I am Salma. I love painting and reading stories."
+            },
+            {
+              "speaker": "Kavita",
+              "pic": "👩‍🏫",
+              "en": "Thank you. You all made a confident first impression."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u01.l3.p-code",
+              "prompt": {
+                "en": "What is Meera learning these days?"
+              },
+              "options": [
+                {
+                  "text": "painting"
+                },
+                {
+                  "text": "football"
+                },
+                {
+                  "text": "to code"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u01.l3.p-ravi",
+              "prompt": {
+                "en": "What is Ravi looking for?"
+              },
+              "options": [
+                {
+                  "text": "a new school"
+                },
+                {
+                  "text": "a computer"
+                },
+                {
+                  "text": "a football team"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u01.l3.s-good",
+              "model": "Good evening. My name is Meera, and I am fourteen."
+            },
+            {
+              "key": "d.u01.l3.s-interest",
+              "model": "I am interested in football, and I am looking for a team."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u01.l3.c-who",
+          "type": "choose",
+          "prompt": {
+            "en": "Who runs the youth club?"
+          },
+          "options": [
+            {
+              "text": "Salma"
+            },
+            {
+              "text": "Kavita"
+            },
+            {
+              "text": "Meera"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u01.l3.c-salma",
+          "type": "choose",
+          "prompt": {
+            "en": "What does Salma love?"
+          },
+          "options": [
+            {
+              "text": "painting and reading"
+            },
+            {
+              "text": "football and cricket"
+            },
+            {
+              "text": "coding and maths"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u01.l3.c-ravi",
+          "type": "choose",
+          "prompt": {
+            "en": "Where does Ravi help his parents?"
+          },
+          "options": [
+            {
+              "text": "at the station"
+            },
+            {
+              "text": "in a shop"
+            },
+            {
+              "text": "on their farm"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u01.l3.c-tense",
+          "type": "choose",
+          "prompt": {
+            "en": "Ravi says: \"I am looking for a team.\" Is this a habit or something for now?"
+          },
+          "options": [
+            {
+              "text": "a habit"
+            },
+            {
+              "text": "something for now"
+            },
+            {
+              "text": "something in the past"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Ask a family member: What are you interested in?",
+        "hi": "घर में किसी से पूछो: What are you interested in?"
+      }
+    },
+    {
+      "key": "d.u01.l4",
+      "kind": "speak",
+      "title": {
+        "en": "Introduce yourself formally",
+        "hi": "औपचारिक परिचय दो"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "A formal introduction has four parts: greeting, name, what you do now, and one interest.",
+            "hi": "औपचारिक परिचय के चार हिस्से: अभिवादन, नाम, अभी क्या करते हो, और एक रुचि।"
+          },
+          "pic": "🙋"
+        },
+        {
+          "type": "roleplay",
+          "title": {
+            "en": "Meeting the club leader",
+            "hi": "क्लब की लीडर से मुलाक़ात"
+          },
+          "scene": {
+            "place": "village",
+            "pics": [
+              {
+                "pic": "🏘️",
+                "x": 80,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "👩‍🏫",
+                "x": 30,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "🧒",
+                "x": 60,
+                "y": 42,
+                "size": 1.6
+              }
+            ]
+          },
+          "roles": [
+            {
+              "name": "Kavita",
+              "pic": "👩‍🏫"
+            },
+            {
+              "name": "You",
+              "pic": "🧒"
+            }
+          ],
+          "learner": 1,
+          "turns": [
+            {
+              "role": 0,
+              "en": "Good morning. Welcome to the youth club. May I know your name?"
+            },
+            {
+              "role": 1,
+              "en": "Good morning, madam. My name is Meera. I am pleased to meet you."
+            },
+            {
+              "role": 0,
+              "en": "Nice to meet you too, Meera. What do you do?"
+            },
+            {
+              "role": 1,
+              "en": "I study in Class 9. I am currently preparing for the science fair."
+            },
+            {
+              "role": 0,
+              "en": "Wonderful. Why do you want to join the club?"
+            },
+            {
+              "role": 1,
+              "en": "I am interested in helping the community, and I want to make new friends."
+            },
+            {
+              "role": 0,
+              "en": "You will fit in well here. See you on Sunday."
+            },
+            {
+              "role": 1,
+              "en": "Thank you, madam. See you on Sunday."
+            }
+          ],
+          "partner": {
+            "goal": "Act as a friendly youth club leader. Ask the learner their name, their studies and why they want to join. Praise clear answers.",
+            "must_use": [
+              "pleased to meet you",
+              "I study",
+              "currently",
+              "interested in"
+            ]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "d.u01.l4.br-pleased",
+              "hi": "आपसे मिलकर ख़ुशी हुई।",
+              "tiles": [
+                "to meet",
+                "I am",
+                "you.",
+                "pleased"
+              ],
+              "answer": "I am pleased to meet you."
+            },
+            {
+              "key": "d.u01.l4.br-study",
+              "hi": "मैं कक्षा 10 में पढ़ता हूँ।",
+              "tiles": [
+                "Class 10.",
+                "I",
+                "in",
+                "study"
+              ],
+              "answer": "I study in Class 10."
+            },
+            {
+              "key": "d.u01.l4.br-want",
+              "hi": "मैं नए दोस्त बनाना चाहती हूँ।",
+              "tiles": [
+                "to make",
+                "friends.",
+                "I want",
+                "new"
+              ],
+              "answer": "I want to make new friends."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u01.l4.s-me",
+              "model": "Good morning. My name is Arjun. I study in Class 10, and I love cricket.",
+              "hi": "अपना पूरा परिचय दो।",
+              "cue": {
+                "en": "Introduce yourself in three sentences.",
+                "hi": "तीन वाक्यों में अपना परिचय दो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u01.l4.c-greet",
+          "type": "choose",
+          "prompt": {
+            "en": "You meet the school principal at 10 a.m. What do you say first?"
+          },
+          "options": [
+            {
+              "text": "Good night, sir."
+            },
+            {
+              "text": "Good morning, sir."
+            },
+            {
+              "text": "Hey, what's up?"
+            }
+          ],
+          "answer": 1,
+          "why": {
+            "en": "Good morning is polite and right for the time.",
+            "hi": "सुबह के समय Good morning विनम्र और सही है।"
+          }
+        },
+        {
+          "key": "d.u01.l4.c-reply",
+          "type": "choose",
+          "prompt": {
+            "en": "\"Nice to meet you.\" What is a good reply?"
+          },
+          "options": [
+            {
+              "text": "Yes, I am."
+            },
+            {
+              "text": "I meet."
+            },
+            {
+              "text": "Nice to meet you too."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u01.l4.c-b1",
+          "type": "build",
+          "hi": "मुझे समुदाय की मदद करने में रुचि है।",
+          "tiles": [
+            "I am",
+            "helping",
+            "the community.",
+            "interested in"
+          ],
+          "answer": "I am interested in helping the community."
+        },
+        {
+          "key": "d.u01.l4.c-order",
+          "type": "choose",
+          "prompt": {
+            "en": "Which order sounds best in a formal introduction?"
+          },
+          "options": [
+            {
+              "text": "name, interest, greeting"
+            },
+            {
+              "text": "greeting, name, what you do, interest"
+            },
+            {
+              "text": "interest, name, greeting"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Introduce yourself to a family member as if you are at an interview.",
+        "hi": "घर में किसी को ऐसे परिचय दो जैसे इंटरव्यू में हो।"
+      }
+    },
+    {
+      "key": "d.u01.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 1 review",
+        "hi": "इकाई 1 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u01.l5.m-introduce",
+              "left": {
+                "text": "introduce"
+              },
+              "right": {
+                "text": "परिचय देना"
+              }
+            },
+            {
+              "key": "d.u01.l5.m-impression",
+              "left": {
+                "text": "impression"
+              },
+              "right": {
+                "text": "छाप"
+              }
+            },
+            {
+              "key": "d.u01.l5.m-interest",
+              "left": {
+                "text": "interest"
+              },
+              "right": {
+                "text": "रुचि"
+              }
+            },
+            {
+              "key": "d.u01.l5.m-polite",
+              "left": {
+                "text": "polite"
+              },
+              "right": {
+                "text": "विनम्र"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u01.l5.b-cur",
+              "tiles": [
+                "learning",
+                "currently",
+                "I am",
+                "to code."
+              ],
+              "answer": "I am currently learning to code."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u01.l5.p-tense",
+              "prompt": {
+                "en": "Every Sunday, Meera ___ Dadi with the cooking."
+              },
+              "options": [
+                {
+                  "text": "help"
+                },
+                {
+                  "text": "helps"
+                },
+                {
+                  "text": "is helping"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Every Sunday is a habit: present simple, with -s for she.",
+                "hi": "Every Sunday आदत है: present simple, she के साथ -s।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u01.l5.s-full",
+              "model": "Good evening. I am Salma. I study in Class 9, and I love painting.",
+              "cue": {
+                "en": "Introduce yourself to a new group.",
+                "hi": "नए समूह से अपना परिचय दो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u01.l5.c-confident",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means आत्मविश्वासी?"
+          },
+          "options": [
+            {
+              "text": "currently"
+            },
+            {
+              "text": "confident"
+            },
+            {
+              "text": "community"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u01.l5.c-tense1",
+          "type": "choose",
+          "prompt": {
+            "en": "Right now, my brother ___ his homework."
+          },
+          "options": [
+            {
+              "text": "is doing"
+            },
+            {
+              "text": "does"
+            },
+            {
+              "text": "do"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "Right now: am, is or are + -ing.",
+            "hi": "Right now: am/is/are + -ing।"
+          }
+        },
+        {
+          "key": "d.u01.l5.c-tense2",
+          "type": "choose",
+          "prompt": {
+            "en": "The sun ___ in the east."
+          },
+          "options": [
+            {
+              "text": "rises"
+            },
+            {
+              "text": "is rising"
+            },
+            {
+              "text": "rise"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "A fact that is always true: present simple.",
+            "hi": "हमेशा सच बात: present simple।"
+          }
+        },
+        {
+          "key": "d.u01.l5.c-b1",
+          "type": "build",
+          "hi": "मैं अपने दोस्त रवि का परिचय कराता हूँ।",
+          "tiles": [
+            "my friend",
+            "introduce",
+            "Let me",
+            "Ravi."
+          ],
+          "answer": "Let me introduce my friend Ravi."
+        },
+        {
+          "key": "d.u01.l5.c-polite",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is the most polite?"
+          },
+          "options": [
+            {
+              "text": "Tell me your name."
+            },
+            {
+              "text": "Name?"
+            },
+            {
+              "text": "May I know your name, please?"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u01.l5.c-b2",
+          "type": "build",
+          "hi": "वह इस हफ़्ते हमारे साथ रुकी है।",
+          "tiles": [
+            "is staying",
+            "She",
+            "with us",
+            "this week."
+          ],
+          "answer": "She is staying with us this week."
+        }
+      ],
+      "home": {
+        "en": "Say to someone at home: Let me introduce myself.",
+        "hi": "घर में किसी से कहो: Let me introduce myself."
+      }
+    }
+  ]
+}

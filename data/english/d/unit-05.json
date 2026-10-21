@@ -1,0 +1,1207 @@
+{
+  "track": "d",
+  "unit": 5,
+  "key": "d.u05",
+  "title": {
+    "en": "Advice",
+    "hi": "सलाह"
+  },
+  "pic": "💡",
+  "can_do": {
+    "en": "I can give and ask for advice.",
+    "hi": "मैं सलाह दे और माँग सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u05.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for advice",
+        "hi": "सलाह के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Good friends listen first, then give advice. These words help you do both.",
+            "hi": "अच्छे दोस्त पहले सुनते हैं, फिर सलाह देते हैं। ये शब्द दोनों में मदद करेंगे।"
+          },
+          "pic": "🤗"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u05.l1.advice",
+              "en": "advice",
+              "hi": "सलाह",
+              "pic": "💡",
+              "example": {
+                "en": "Dadi always gives me good advice.",
+                "hi": "दादी हमेशा मुझे अच्छी सलाह देती हैं।"
+              }
+            },
+            {
+              "key": "d.u05.l1.suggest",
+              "en": "suggest",
+              "hi": "सुझाव देना",
+              "pic": "👉",
+              "example": {
+                "en": "I suggest a short walk after dinner.",
+                "hi": "मेरा सुझाव है कि खाने के बाद थोड़ा टहलो।"
+              }
+            },
+            {
+              "key": "d.u05.l1.recommend",
+              "en": "recommend",
+              "hi": "सिफ़ारिश करना",
+              "pic": "👍",
+              "example": {
+                "en": "The teacher recommends this book for Class 9.",
+                "hi": "टीचर कक्षा 9 के लिए यह किताब सुझाती हैं।"
+              }
+            },
+            {
+              "key": "d.u05.l1.stress",
+              "en": "stress",
+              "hi": "तनाव",
+              "pic": "😨",
+              "example": {
+                "en": "Exams can cause a lot of stress.",
+                "hi": "परीक्षा से बहुत तनाव हो सकता है।"
+              }
+            },
+            {
+              "key": "d.u05.l1.habit",
+              "en": "habit",
+              "hi": "आदत",
+              "pic": "🔁",
+              "example": {
+                "en": "Reading every night is a good habit.",
+                "hi": "हर रात पढ़ना अच्छी आदत है।"
+              }
+            },
+            {
+              "key": "d.u05.l1.improve",
+              "en": "improve",
+              "hi": "सुधारना, बेहतर करना",
+              "pic": "⬆️",
+              "example": {
+                "en": "Practice will improve your English.",
+                "hi": "अभ्यास से तुम्हारी अंग्रेज़ी बेहतर होगी।"
+              }
+            },
+            {
+              "key": "d.u05.l1.revise",
+              "en": "revise",
+              "hi": "दोहराना (पढ़ाई)",
+              "pic": "📚",
+              "example": {
+                "en": "I revise my notes every Sunday.",
+                "hi": "मैं हर रविवार अपने नोट्स दोहराती हूँ।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u05.l1.m-advice",
+              "left": {
+                "text": "advice"
+              },
+              "right": {
+                "pic": "💡"
+              }
+            },
+            {
+              "key": "d.u05.l1.m-habit",
+              "left": {
+                "text": "habit"
+              },
+              "right": {
+                "pic": "🔁"
+              }
+            },
+            {
+              "key": "d.u05.l1.m-revise",
+              "left": {
+                "text": "revise"
+              },
+              "right": {
+                "pic": "📚"
+              }
+            },
+            {
+              "key": "d.u05.l1.m-recommend",
+              "left": {
+                "text": "recommend"
+              },
+              "right": {
+                "pic": "👍"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u05.l1.p-stress",
+              "prompt": {
+                "en": "Which word means तनाव?"
+              },
+              "options": [
+                {
+                  "text": "advice"
+                },
+                {
+                  "text": "stress"
+                },
+                {
+                  "text": "habit"
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u05.l1.p-improve",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "Ten minutes of reading a day will improve your writing."
+              },
+              "options": [
+                {
+                  "text": "revise"
+                },
+                {
+                  "text": "improve"
+                },
+                {
+                  "text": "suggest"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u05.l1.s-advice",
+              "model": "Can I ask you for some advice?"
+            },
+            {
+              "key": "d.u05.l1.s-suggest",
+              "model": "I suggest a short walk after dinner."
+            },
+            {
+              "key": "d.u05.l1.s-habit",
+              "model": "Reading every night is a good habit."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u05.l1.c-suggest",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means सुझाव देना?"
+          },
+          "options": [
+            {
+              "text": "suggest"
+            },
+            {
+              "text": "stress"
+            },
+            {
+              "text": "improve"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u05.l1.c-revise",
+          "type": "choose",
+          "prompt": {
+            "en": "Before a test, you should ___ your notes."
+          },
+          "options": [
+            {
+              "text": "revise"
+            },
+            {
+              "text": "recommend"
+            },
+            {
+              "text": "stress"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u05.l1.c-advice",
+          "type": "choose",
+          "prompt": {
+            "en": "Can you give me some ___ about my project?"
+          },
+          "options": [
+            {
+              "text": "improve"
+            },
+            {
+              "text": "habit"
+            },
+            {
+              "text": "advice"
+            }
+          ],
+          "answer": 2,
+          "why": {
+            "en": "Advice has no -s and no \"an\": some advice, a piece of advice.",
+            "hi": "Advice के साथ -s या an नहीं लगता: some advice।"
+          }
+        },
+        {
+          "key": "d.u05.l1.c-improve",
+          "type": "choose",
+          "prompt": {
+            "en": "If you practise, your handwriting will ___."
+          },
+          "options": [
+            {
+              "text": "revise"
+            },
+            {
+              "text": "improve"
+            },
+            {
+              "text": "suggest"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Ask a grown-up: What is the best advice you ever got?",
+        "hi": "किसी बड़े से पूछो: What is the best advice you ever got?"
+      }
+    },
+    {
+      "key": "d.u05.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "Should, ought to, had better",
+        "hi": "सलाह के तीन रूप"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "Three ways to give advice",
+            "hi": "सलाह देने के तीन तरीक़े"
+          },
+          "visual": "cards",
+          "examples": [
+            {
+              "en": "You should drink more water in the heat.",
+              "hi": "गर्मी में तुम्हें ज़्यादा पानी पीना चाहिए।"
+            },
+            {
+              "en": "You shouldn't study all night before an exam.",
+              "hi": "परीक्षा से पहले पूरी रात नहीं पढ़ना चाहिए।"
+            },
+            {
+              "en": "We ought to respect our elders.",
+              "hi": "हमें बड़ों का आदर करना चाहिए। (कर्तव्य जैसी सलाह)"
+            },
+            {
+              "en": "You had better take an umbrella, or you will get wet.",
+              "hi": "छाता ले लो, वरना भीग जाओगे। (चेतावनी)"
+            },
+            {
+              "en": "Should I tell the teacher?",
+              "hi": "क्या मुझे टीचर को बताना चाहिए?"
+            }
+          ],
+          "note": {
+            "en": "After should, ought to and had better, use the base verb: should go, not should goes. Had better is a strong warning.",
+            "hi": "Should, ought to, had better के बाद क्रिया का मूल रूप: should go। Had better एक मज़बूत चेतावनी है।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u05.l2.b-should",
+              "tiles": [
+                "sleep",
+                "before",
+                "ten o'clock.",
+                "You",
+                "should"
+              ],
+              "answer": "You should sleep before ten o'clock."
+            },
+            {
+              "key": "d.u05.l2.b-better",
+              "tiles": [
+                "or you will",
+                "You had",
+                "miss the bus.",
+                "leave now,",
+                "better"
+              ],
+              "answer": "You had better leave now, or you will miss the bus."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u05.l2.p-base",
+              "prompt": {
+                "en": "You should ___ your teacher for help."
+              },
+              "options": [
+                {
+                  "text": "asks"
+                },
+                {
+                  "text": "asking"
+                },
+                {
+                  "text": "ask"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "After should, use the base verb.",
+                "hi": "Should के बाद मूल क्रिया।"
+              }
+            },
+            {
+              "key": "d.u05.l2.p-ought",
+              "prompt": {
+                "en": "We ought ___ save water."
+              },
+              "options": [
+                {
+                  "text": "of"
+                },
+                {
+                  "text": "to"
+                },
+                {
+                  "text": "for"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Ought always takes to: ought to.",
+                "hi": "Ought के साथ हमेशा to आता है।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u05.l2.s-tired",
+              "model": "You should sleep early and drink some water.",
+              "cue": {
+                "en": "Your friend says, \"I am always tired.\" Give advice.",
+                "hi": "दोस्त कहता है, \"मैं हमेशा थका रहता हूँ।\" सलाह दो।"
+              }
+            },
+            {
+              "key": "d.u05.l2.s-late",
+              "model": "You had better hurry, or you will be late.",
+              "cue": {
+                "en": "Your brother is still eating, and the bus is coming. Warn him.",
+                "hi": "भाई अभी खा रहा है और बस आ रही है। उसे चेतावनी दो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u05.l2.c-b1",
+          "type": "build",
+          "hi": "तुम्हें बिस्तर पर फ़ोन नहीं चलाना चाहिए।",
+          "tiles": [
+            "use your phone",
+            "shouldn't",
+            "in bed.",
+            "You"
+          ],
+          "answer": "You shouldn't use your phone in bed."
+        },
+        {
+          "key": "d.u05.l2.c-b2",
+          "type": "build",
+          "hi": "हमें अपने पड़ोसियों की मदद करनी चाहिए।",
+          "tiles": [
+            "our neighbours.",
+            "ought to",
+            "We",
+            "help"
+          ],
+          "answer": "We ought to help our neighbours."
+        },
+        {
+          "key": "d.u05.l2.c-better",
+          "type": "choose",
+          "prompt": {
+            "en": "It's very hot. You ___ wear a cap."
+          },
+          "options": [
+            {
+              "text": "better had"
+            },
+            {
+              "text": "had better to"
+            },
+            {
+              "text": "had better"
+            }
+          ],
+          "answer": 2,
+          "why": {
+            "en": "Had better + base verb, with no to.",
+            "hi": "Had better + मूल क्रिया, बिना to।"
+          }
+        },
+        {
+          "key": "d.u05.l2.c-ask",
+          "type": "choose",
+          "prompt": {
+            "en": "I have a headache. What ___ I do?"
+          },
+          "options": [
+            {
+              "text": "ought"
+            },
+            {
+              "text": "should"
+            },
+            {
+              "text": "better"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u05.l2.c-not",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is good advice for an exam?"
+          },
+          "options": [
+            {
+              "text": "You should to revise."
+            },
+            {
+              "text": "You should revise a little every day."
+            },
+            {
+              "text": "You shoulds revise."
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Give someone at home one piece of advice with \"should\".",
+        "hi": "घर में किसी को \"should\" से एक सलाह दो।"
+      }
+    },
+    {
+      "key": "d.u05.l3",
+      "kind": "listen",
+      "title": {
+        "en": "Salma feels stressed",
+        "hi": "सलमा तनाव में है"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "Talking to Dadi",
+            "hi": "दादी से बात"
+          },
+          "scene": {
+            "place": "home",
+            "pics": [
+              {
+                "pic": "🏠",
+                "x": 85,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "👵",
+                "x": 30,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "🧕",
+                "x": 55,
+                "y": 42,
+                "size": 1.5
+              },
+              {
+                "pic": "📚",
+                "x": 70,
+                "y": 50,
+                "size": 1
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "Dadi, can I ask you for some advice?"
+            },
+            {
+              "speaker": "Dadi",
+              "pic": "👵",
+              "en": "Of course, beta. What is the matter?"
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "My board exams are in three months, and I feel so much stress."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "I study late at night, but I forget everything the next day."
+            },
+            {
+              "speaker": "Dadi",
+              "pic": "👵",
+              "en": "You shouldn't study so late. Your brain needs sleep to remember."
+            },
+            {
+              "speaker": "Dadi",
+              "pic": "👵",
+              "en": "You ought to make a timetable and revise a little every day."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "Should I stop going to the art club?"
+            },
+            {
+              "speaker": "Dadi",
+              "pic": "👵",
+              "en": "No. Painting helps you relax. One hour a week is a healthy habit."
+            },
+            {
+              "speaker": "Dadi",
+              "pic": "👵",
+              "en": "And you had better put your phone away while you study."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "Thank you, Dadi. I will try your advice from today."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u05.l3.p-when",
+              "prompt": {
+                "en": "When are Salma's exams?"
+              },
+              "options": [
+                {
+                  "text": "in three weeks"
+                },
+                {
+                  "text": "in three months"
+                },
+                {
+                  "text": "tomorrow"
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u05.l3.p-problem",
+              "prompt": {
+                "en": "What is Salma's problem?"
+              },
+              "options": [
+                {
+                  "text": "She has no books."
+                },
+                {
+                  "text": "She forgets what she studies."
+                },
+                {
+                  "text": "She is ill."
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u05.l3.s-ask",
+              "model": "Dadi, can I ask you for some advice?"
+            },
+            {
+              "key": "d.u05.l3.s-ought",
+              "model": "You ought to make a timetable and revise a little every day."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u05.l3.c-sleep",
+          "type": "choose",
+          "prompt": {
+            "en": "Why does Dadi say Salma should not study late?"
+          },
+          "options": [
+            {
+              "text": "The brain needs sleep to remember."
+            },
+            {
+              "text": "The books are old."
+            },
+            {
+              "text": "The light is bad."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u05.l3.c-art",
+          "type": "choose",
+          "prompt": {
+            "en": "What does Dadi say about the art club?"
+          },
+          "options": [
+            {
+              "text": "Stop going."
+            },
+            {
+              "text": "Go every day."
+            },
+            {
+              "text": "Keep going; it helps her relax."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u05.l3.c-phone",
+          "type": "choose",
+          "prompt": {
+            "en": "What had Salma better do while studying?"
+          },
+          "options": [
+            {
+              "text": "listen to music"
+            },
+            {
+              "text": "put her phone away"
+            },
+            {
+              "text": "watch TV"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u05.l3.c-feel",
+          "type": "choose",
+          "prompt": {
+            "en": "How does Salma feel at the end?"
+          },
+          "options": [
+            {
+              "text": "angry"
+            },
+            {
+              "text": "sleepy"
+            },
+            {
+              "text": "thankful"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Share one of Dadi's tips with someone at home.",
+        "hi": "दादी की एक सलाह घर में किसी को बताओ।"
+      }
+    },
+    {
+      "key": "d.u05.l4",
+      "kind": "speak",
+      "title": {
+        "en": "Give advice to a friend",
+        "hi": "दोस्त को सलाह दो"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "First show you understand: \"I see\" or \"That sounds hard\". Then give one or two clear pieces of advice.",
+            "hi": "पहले समझ दिखाओ: \"I see\" या \"That sounds hard\"। फिर एक-दो साफ़ सलाह दो।"
+          },
+          "pic": "🤗"
+        },
+        {
+          "type": "roleplay",
+          "title": {
+            "en": "Ravi asks for advice",
+            "hi": "रवि सलाह माँगता है"
+          },
+          "scene": {
+            "place": "village",
+            "pics": [
+              {
+                "pic": "🌳",
+                "x": 85,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "🧑",
+                "x": 30,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "🧒",
+                "x": 60,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "📱",
+                "x": 38,
+                "y": 50,
+                "size": 0.8
+              }
+            ]
+          },
+          "roles": [
+            {
+              "name": "Ravi",
+              "pic": "🧑"
+            },
+            {
+              "name": "You",
+              "pic": "🧒"
+            }
+          ],
+          "learner": 1,
+          "turns": [
+            {
+              "role": 0,
+              "en": "I play games on my phone for three hours every night. Now my marks are falling."
+            },
+            {
+              "role": 1,
+              "en": "That sounds hard. I think you should set a time limit for games."
+            },
+            {
+              "role": 0,
+              "en": "But I get bored in the evening. What should I do?"
+            },
+            {
+              "role": 1,
+              "en": "You could join the football team at the youth club."
+            },
+            {
+              "role": 0,
+              "en": "Good idea. Should I tell my parents about my marks?"
+            },
+            {
+              "role": 1,
+              "en": "Yes, you ought to tell them. They can help you."
+            },
+            {
+              "role": 0,
+              "en": "You're right. Thanks for the advice."
+            },
+            {
+              "role": 1,
+              "en": "You're welcome. You had better start today!"
+            }
+          ],
+          "partner": {
+            "goal": "Act as a friend who plays phone games too much. Ask the learner for advice twice. Accept good, kind advice and thank them.",
+            "must_use": [
+              "should",
+              "ought to",
+              "had better",
+              "I think",
+              "advice"
+            ]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "d.u05.l4.br-should",
+              "hi": "तुम्हें रोज़ थोड़ा-थोड़ा पढ़ना चाहिए।",
+              "tiles": [
+                "should",
+                "a little",
+                "You",
+                "study",
+                "every day."
+              ],
+              "answer": "You should study a little every day."
+            },
+            {
+              "key": "d.u05.l4.br-better",
+              "hi": "जल्दी करो, वरना बस छूट जाएगी।",
+              "tiles": [
+                "hurry,",
+                "You had better",
+                "miss",
+                "or you will",
+                "the bus."
+              ],
+              "answer": "You had better hurry, or you will miss the bus."
+            },
+            {
+              "key": "d.u05.l4.br-ask",
+              "hi": "क्या मैं आपसे एक सलाह ले सकता हूँ?",
+              "tiles": [
+                "Can I",
+                "some advice?",
+                "for",
+                "ask you"
+              ],
+              "answer": "Can I ask you for some advice?"
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u05.l4.s-advice",
+              "model": "I see. You should talk to the teacher, and you ought to practise every day.",
+              "cue": {
+                "en": "A friend is nervous about speaking in English. Give advice.",
+                "hi": "दोस्त अंग्रेज़ी बोलने से घबराता है। सलाह दो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u05.l4.c-kind",
+          "type": "choose",
+          "prompt": {
+            "en": "Which reply is kind and helpful?"
+          },
+          "options": [
+            {
+              "text": "I see. Maybe you should talk to your teacher."
+            },
+            {
+              "text": "That's your problem."
+            },
+            {
+              "text": "Stop it."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u05.l4.c-could",
+          "type": "choose",
+          "prompt": {
+            "en": "Which sentence is a soft suggestion?"
+          },
+          "options": [
+            {
+              "text": "You must join a club now!"
+            },
+            {
+              "text": "You could join a club."
+            },
+            {
+              "text": "Join a club!"
+            }
+          ],
+          "answer": 1,
+          "why": {
+            "en": "Could gives a gentle idea, not an order.",
+            "hi": "Could नरम सुझाव देता है, हुक्म नहीं।"
+          }
+        },
+        {
+          "key": "d.u05.l4.c-b1",
+          "type": "build",
+          "hi": "मुझे लगता है तुम्हें समय सीमा तय करनी चाहिए।",
+          "tiles": [
+            "a time limit.",
+            "you should",
+            "I think",
+            "set"
+          ],
+          "answer": "I think you should set a time limit."
+        }
+      ],
+      "home": {
+        "en": "Ask your family for advice about one small problem, in English.",
+        "hi": "किसी छोटी परेशानी पर परिवार से अंग्रेज़ी में सलाह माँगो।"
+      }
+    },
+    {
+      "key": "d.u05.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 5 review",
+        "hi": "इकाई 5 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u05.l5.m-stress",
+              "left": {
+                "text": "stress"
+              },
+              "right": {
+                "text": "तनाव"
+              }
+            },
+            {
+              "key": "d.u05.l5.m-suggest",
+              "left": {
+                "text": "suggest"
+              },
+              "right": {
+                "text": "सुझाव देना"
+              }
+            },
+            {
+              "key": "d.u05.l5.m-improve",
+              "left": {
+                "text": "improve"
+              },
+              "right": {
+                "text": "सुधारना"
+              }
+            },
+            {
+              "key": "d.u05.l5.m-habit",
+              "left": {
+                "text": "habit"
+              },
+              "right": {
+                "text": "आदत"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u05.l5.b-ought",
+              "tiles": [
+                "drink",
+                "You",
+                "more",
+                "ought to",
+                "water."
+              ],
+              "answer": "You ought to drink more water."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u05.l5.p-better",
+              "prompt": {
+                "en": "The road is wet. You ___ ride slowly."
+              },
+              "options": [
+                {
+                  "text": "had better"
+                },
+                {
+                  "text": "should to"
+                },
+                {
+                  "text": "ought"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u05.l5.s-advice",
+              "model": "You should revise every day and sleep well before the exam.",
+              "cue": {
+                "en": "Give advice to a student before exams.",
+                "hi": "परीक्षा से पहले किसी छात्र को सलाह दो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u05.l5.c-recommend",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means सिफ़ारिश करना?"
+          },
+          "options": [
+            {
+              "text": "stress"
+            },
+            {
+              "text": "recommend"
+            },
+            {
+              "text": "revise"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u05.l5.c-shouldnt",
+          "type": "choose",
+          "prompt": {
+            "en": "You ___ eat too many sweets."
+          },
+          "options": [
+            {
+              "text": "had"
+            },
+            {
+              "text": "ought"
+            },
+            {
+              "text": "shouldn't"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u05.l5.c-base",
+          "type": "choose",
+          "prompt": {
+            "en": "She should ___ more vegetables."
+          },
+          "options": [
+            {
+              "text": "eat"
+            },
+            {
+              "text": "eating"
+            },
+            {
+              "text": "eats"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "After should, the verb has no -s.",
+            "hi": "Should के बाद क्रिया में -s नहीं लगता।"
+          }
+        },
+        {
+          "key": "d.u05.l5.c-b1",
+          "type": "build",
+          "hi": "अब मुझे क्या करना चाहिए?",
+          "tiles": [
+            "should",
+            "now?",
+            "do",
+            "I",
+            "What"
+          ],
+          "answer": "What should I do now?"
+        },
+        {
+          "key": "d.u05.l5.c-revise",
+          "type": "choose",
+          "prompt": {
+            "en": "I ___ my notes before every test."
+          },
+          "options": [
+            {
+              "text": "stress"
+            },
+            {
+              "text": "revise"
+            },
+            {
+              "text": "advice"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u05.l5.c-b2",
+          "type": "build",
+          "hi": "तुम हेलमेट पहन लो।",
+          "tiles": [
+            "wear",
+            "You",
+            "a helmet.",
+            "had better"
+          ],
+          "answer": "You had better wear a helmet."
+        }
+      ],
+      "home": {
+        "en": "Tell your family one healthy habit they should try this week.",
+        "hi": "परिवार को इस हफ़्ते आज़माने के लिए एक अच्छी आदत बताओ।"
+      }
+    }
+  ]
+}

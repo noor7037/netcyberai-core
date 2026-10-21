@@ -1,0 +1,1319 @@
+{
+  "track": "d",
+  "unit": 18,
+  "key": "d.u18",
+  "title": {
+    "en": "My future",
+    "hi": "मेरा भविष्य"
+  },
+  "pic": "🎓",
+  "can_do": {
+    "en": "I can speak confidently for two minutes.",
+    "hi": "मैं आत्मविश्वास से दो मिनट बोल सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u18.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for the future",
+        "hi": "भविष्य के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "This last unit looks back at units 10 to 17 and forward to your future.",
+            "hi": "यह आख़िरी इकाई 10 से 17 तक दोहराती है और तुम्हारे भविष्य की ओर देखती है।"
+          },
+          "pic": "🎓"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u18.l1.goal",
+              "en": "goal",
+              "hi": "लक्ष्य",
+              "pic": "🎯",
+              "example": {
+                "en": "My goal is to finish Class 12 with good marks.",
+                "hi": "मेरा लक्ष्य अच्छे अंकों से कक्षा 12 पास करना है।"
+              }
+            },
+            {
+              "key": "d.u18.l1.career",
+              "en": "career",
+              "hi": "करियर, पेशा",
+              "pic": "👩‍⚕️",
+              "example": {
+                "en": "Salma wants a career in nursing.",
+                "hi": "सलमा नर्सिंग में करियर चाहती है।"
+              }
+            },
+            {
+              "key": "d.u18.l1.opportunity",
+              "en": "opportunity",
+              "hi": "अवसर, मौक़ा",
+              "pic": "🚪",
+              "example": {
+                "en": "The youth club gives us many opportunities.",
+                "hi": "युवा क्लब हमें कई मौक़े देता है।"
+              }
+            },
+            {
+              "key": "d.u18.l1.determined",
+              "en": "determined",
+              "hi": "दृढ़ निश्चयी",
+              "pic": "💪",
+              "example": {
+                "en": "Ravi is determined to become an engineer.",
+                "hi": "रवि इंजीनियर बनने के लिए दृढ़ है।"
+              }
+            },
+            {
+              "key": "d.u18.l1.training",
+              "en": "training",
+              "hi": "प्रशिक्षण",
+              "pic": "👨‍🏫",
+              "example": {
+                "en": "You need two years of training to become a teacher.",
+                "hi": "टीचर बनने के लिए दो साल का प्रशिक्षण चाहिए।"
+              }
+            },
+            {
+              "key": "d.u18.l1.ambition",
+              "en": "ambition",
+              "hi": "महत्वाकांक्षा, बड़ा सपना",
+              "pic": "🌟",
+              "example": {
+                "en": "Her ambition is to open a clinic in the village.",
+                "hi": "उसका सपना गाँव में क्लिनिक खोलना है।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u18.l1.m-goal",
+              "left": {
+                "text": "goal"
+              },
+              "right": {
+                "pic": "🎯"
+              }
+            },
+            {
+              "key": "d.u18.l1.m-opportunity",
+              "left": {
+                "text": "opportunity"
+              },
+              "right": {
+                "pic": "🚪"
+              }
+            },
+            {
+              "key": "d.u18.l1.m-determined",
+              "left": {
+                "text": "determined"
+              },
+              "right": {
+                "pic": "💪"
+              }
+            },
+            {
+              "key": "d.u18.l1.m-ambition",
+              "left": {
+                "text": "ambition"
+              },
+              "right": {
+                "pic": "🌟"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u18.l1.p-career",
+              "prompt": {
+                "en": "Which word means करियर, पेशा?"
+              },
+              "options": [
+                {
+                  "text": "career"
+                },
+                {
+                  "text": "training"
+                },
+                {
+                  "text": "goal"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u18.l1.p-training",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "The nursing course gives you training in a real hospital."
+              },
+              "options": [
+                {
+                  "text": "teamwork"
+                },
+                {
+                  "text": "topic"
+                },
+                {
+                  "text": "training"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u18.l1.s-goal",
+              "model": "My goal is to finish Class 12 with good marks."
+            },
+            {
+              "key": "d.u18.l1.s-det",
+              "model": "I am determined to reach my goal."
+            },
+            {
+              "key": "d.u18.l1.s-opp",
+              "model": "I will use every opportunity to learn."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u18.l1.c-goal",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means लक्ष्य?"
+          },
+          "options": [
+            {
+              "text": "ambition"
+            },
+            {
+              "text": "goal"
+            },
+            {
+              "text": "career"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u18.l1.c-opp",
+          "type": "choose",
+          "prompt": {
+            "en": "A free computer course is a great ___."
+          },
+          "options": [
+            {
+              "text": "opportunity"
+            },
+            {
+              "text": "symptom"
+            },
+            {
+              "text": "training"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u18.l1.c-det",
+          "type": "choose",
+          "prompt": {
+            "en": "She practises every day. She is ___ to win."
+          },
+          "options": [
+            {
+              "text": "fake"
+            },
+            {
+              "text": "determined"
+            },
+            {
+              "text": "nervous"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u18.l1.c-old",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word from unit 13 means कौशल?"
+          },
+          "options": [
+            {
+              "text": "skill"
+            },
+            {
+              "text": "position"
+            },
+            {
+              "text": "strength"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Tell your family one goal you have for next year.",
+        "hi": "परिवार को अगले साल का अपना एक लक्ष्य बताओ।"
+      }
+    },
+    {
+      "key": "d.u18.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "Units 10–17: patterns together",
+        "hi": "इकाई 10–17: सभी पैटर्न एक साथ"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "Eight patterns, one future",
+            "hi": "आठ पैटर्न, एक भविष्य"
+          },
+          "visual": "cards",
+          "examples": [
+            {
+              "en": "My teacher said that I was ready for the big exam.",
+              "hi": "इकाई 10: reported speech"
+            },
+            {
+              "en": "Although it is difficult, I want to study science, because I love it.",
+              "hi": "इकाई 11: although, because"
+            },
+            {
+              "en": "I have wanted to be a nurse since I was ten.",
+              "hi": "इकाई 12: since"
+            },
+            {
+              "en": "I am good at listening, and I would like to help people.",
+              "hi": "इकाई 13: good at, would like to"
+            },
+            {
+              "en": "First, I will finish school. Finally, I will train as a nurse.",
+              "hi": "इकाई 14: first, finally"
+            },
+            {
+              "en": "If I were a nurse, I would work in my village.",
+              "hi": "इकाई 15: if I were"
+            },
+            {
+              "en": "Dear Madam, I am writing to request information about the course.",
+              "hi": "इकाई 16: formal message"
+            },
+            {
+              "en": "Nurses must keep patients' details private.",
+              "hi": "इकाई 17: must"
+            }
+          ],
+          "note": {
+            "en": "You now have eight tools. A strong speaker picks the right one for each idea.",
+            "hi": "अब तुम्हारे पास आठ औज़ार हैं। अच्छा वक्ता हर बात के लिए सही औज़ार चुनता है।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u18.l2.b-since",
+              "tiles": [
+                "Class 5.",
+                "to be",
+                "a teacher",
+                "I have",
+                "wanted",
+                "since"
+              ],
+              "answer": "I have wanted to be a teacher since Class 5."
+            },
+            {
+              "key": "d.u18.l2.b-would",
+              "tiles": [
+                "build bridges.",
+                "I were",
+                "If",
+                "an engineer,",
+                "I would"
+              ],
+              "answer": "If I were an engineer, I would build bridges."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u18.l2.p-said",
+              "prompt": {
+                "en": "\"I am proud of you.\" → Papa said that he ___ proud of me."
+              },
+              "options": [
+                {
+                  "text": "is"
+                },
+                {
+                  "text": "were"
+                },
+                {
+                  "text": "was"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u18.l2.p-good",
+              "prompt": {
+                "en": "I am good at ___ things."
+              },
+              "options": [
+                {
+                  "text": "fix"
+                },
+                {
+                  "text": "to fix"
+                },
+                {
+                  "text": "fixing"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u18.l2.s-want",
+              "model": "I would like to become a teacher, because I love explaining things.",
+              "cue": {
+                "en": "What would you like to become, and why?",
+                "hi": "तुम क्या बनना चाहोगे, और क्यों?"
+              }
+            },
+            {
+              "key": "d.u18.l2.s-since",
+              "model": "I have wanted to be a scientist since I saw the science fair.",
+              "cue": {
+                "en": "How long have you had this dream?",
+                "hi": "यह सपना कब से है?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u18.l2.c-b1",
+          "type": "build",
+          "hi": "उसने कहा कि वह मुझे फ़ोन करेगी।",
+          "tiles": [
+            "she",
+            "that",
+            "She",
+            "said",
+            "call me.",
+            "would"
+          ],
+          "answer": "She said that she would call me."
+        },
+        {
+          "key": "d.u18.l2.c-b2",
+          "type": "build",
+          "hi": "मैं यहाँ दस साल से रह रहा हूँ।",
+          "tiles": [
+            "lived",
+            "I",
+            "have",
+            "for",
+            "here",
+            "ten years."
+          ],
+          "answer": "I have lived here for ten years."
+        },
+        {
+          "key": "d.u18.l2.c-mustnt",
+          "type": "choose",
+          "prompt": {
+            "en": "You ___ share your exam roll number online."
+          },
+          "options": [
+            {
+              "text": "mustn't"
+            },
+            {
+              "text": "don't have to"
+            },
+            {
+              "text": "would"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u18.l2.c-although",
+          "type": "choose",
+          "prompt": {
+            "en": "___ I was nervous, I spoke well."
+          },
+          "options": [
+            {
+              "text": "So"
+            },
+            {
+              "text": "Although"
+            },
+            {
+              "text": "Because"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u18.l2.c-formal",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is right in a formal message?"
+          },
+          "options": [
+            {
+              "text": "Gimme the form."
+            },
+            {
+              "text": "Could you please send the form?"
+            },
+            {
+              "text": "Send form now."
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u18.l2.c-were",
+          "type": "choose",
+          "prompt": {
+            "en": "If I ___ the principal, I would open a library."
+          },
+          "options": [
+            {
+              "text": "were"
+            },
+            {
+              "text": "am"
+            },
+            {
+              "text": "will be"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Tell your family your dream job using \"I would like to …\".",
+        "hi": "\"I would like to …\" से परिवार को अपना सपनों का काम बताओ।"
+      }
+    },
+    {
+      "key": "d.u18.l3",
+      "kind": "listen",
+      "title": {
+        "en": "Arjun's course interview",
+        "hi": "अर्जुन का कोर्स इंटरव्यू"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "At the polytechnic",
+            "hi": "पॉलिटेक्निक में"
+          },
+          "scene": {
+            "place": "school",
+            "pics": [
+              {
+                "pic": "🏫",
+                "x": 80,
+                "y": 12,
+                "size": 2
+              },
+              {
+                "pic": "👩‍🏫",
+                "x": 25,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "👦",
+                "x": 60,
+                "y": 42,
+                "size": 1.5
+              },
+              {
+                "pic": "🧰",
+                "x": 75,
+                "y": 50,
+                "size": 1
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Interviewer",
+              "pic": "👩‍🏫",
+              "en": "Good morning, Arjun. Why would you like to join the electrical course?"
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Good morning, madam. I have been interested in machines since I was small."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "I fixed our water pump last summer, and my father said that I had a good hand."
+            },
+            {
+              "speaker": "Interviewer",
+              "pic": "👩‍🏫",
+              "en": "What are you good at?"
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "I am good at solving problems, and I am determined to finish what I start."
+            },
+            {
+              "speaker": "Interviewer",
+              "pic": "👩‍🏫",
+              "en": "Some people say girls and boys should study different subjects. What do you think?"
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "I see their point. However, I disagree, because skills don't depend on being a boy or a girl."
+            },
+            {
+              "speaker": "Interviewer",
+              "pic": "👩‍🏫",
+              "en": "If you got this seat, what would you do after the course?"
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "I would work in town first. Finally, I would like to open a repair shop in our village."
+            },
+            {
+              "speaker": "Interviewer",
+              "pic": "👩‍🏫",
+              "en": "Thank you, Arjun. We will inform you by letter next week."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u18.l3.p-since",
+              "prompt": {
+                "en": "Since when has Arjun been interested in machines?"
+              },
+              "options": [
+                {
+                  "text": "since he was small"
+                },
+                {
+                  "text": "since Class 10"
+                },
+                {
+                  "text": "since last week"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u18.l3.p-pump",
+              "prompt": {
+                "en": "What did Arjun fix last summer?"
+              },
+              "options": [
+                {
+                  "text": "the water pump"
+                },
+                {
+                  "text": "a bicycle"
+                },
+                {
+                  "text": "a phone"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u18.l3.s-since",
+              "model": "I have been interested in machines since I was small."
+            },
+            {
+              "key": "d.u18.l3.s-would",
+              "model": "I would like to open a repair shop in our village."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u18.l3.c-papa",
+          "type": "choose",
+          "prompt": {
+            "en": "What did Arjun's father say?"
+          },
+          "options": [
+            {
+              "text": "that he had a good hand"
+            },
+            {
+              "text": "that he should stop"
+            },
+            {
+              "text": "that he was lazy"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u18.l3.c-disagree",
+          "type": "choose",
+          "prompt": {
+            "en": "How does Arjun disagree?"
+          },
+          "options": [
+            {
+              "text": "he doesn't answer"
+            },
+            {
+              "text": "angrily"
+            },
+            {
+              "text": "politely, with a reason"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u18.l3.c-plan",
+          "type": "choose",
+          "prompt": {
+            "en": "What would Arjun do first after the course?"
+          },
+          "options": [
+            {
+              "text": "work in town"
+            },
+            {
+              "text": "open a shop at once"
+            },
+            {
+              "text": "go abroad"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u18.l3.c-inform",
+          "type": "choose",
+          "prompt": {
+            "en": "How will the college inform him?"
+          },
+          "options": [
+            {
+              "text": "by letter next week"
+            },
+            {
+              "text": "never"
+            },
+            {
+              "text": "by phone today"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Ask someone at home what they wanted to be at your age.",
+        "hi": "घर में किसी से पूछो कि तुम्हारी उम्र में वे क्या बनना चाहते थे।"
+      }
+    },
+    {
+      "key": "d.u18.l4",
+      "kind": "speak",
+      "title": {
+        "en": "Final interview and talk",
+        "hi": "अंतिम इंटरव्यू और भाषण"
+      },
+      "minutes": 10,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": {
+            "en": "The final interview",
+            "hi": "अंतिम इंटरव्यू"
+          },
+          "scene": {
+            "place": "school",
+            "pics": [
+              {
+                "pic": "🏫",
+                "x": 80,
+                "y": 12,
+                "size": 2
+              },
+              {
+                "pic": "👨‍🏫",
+                "x": 30,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "🧒",
+                "x": 60,
+                "y": 42,
+                "size": 1.6
+              }
+            ]
+          },
+          "roles": [
+            {
+              "name": "Interviewer",
+              "pic": "👨‍🏫"
+            },
+            {
+              "name": "You",
+              "pic": "🧒"
+            }
+          ],
+          "learner": 1,
+          "turns": [
+            {
+              "role": 0,
+              "en": "Please introduce yourself."
+            },
+            {
+              "role": 1,
+              "en": "Good morning, sir. I am Meera. I am fourteen, and I study in Class 9."
+            },
+            {
+              "role": 0,
+              "en": "What are your strengths?"
+            },
+            {
+              "role": 1,
+              "en": "I am good at science, and I am reliable. I have managed the class library for two years."
+            },
+            {
+              "role": 0,
+              "en": "What is your goal?"
+            },
+            {
+              "role": 1,
+              "en": "I would like to become a doctor, because our village needs one."
+            },
+            {
+              "role": 0,
+              "en": "If you could change one thing in your village, what would it be?"
+            },
+            {
+              "role": 1,
+              "en": "If I could, I would build a bigger health centre."
+            },
+            {
+              "role": 0,
+              "en": "Thank you. Do you have any questions?"
+            },
+            {
+              "role": 1,
+              "en": "Yes. Could you tell me when the results will be announced?"
+            }
+          ],
+          "partner": {
+            "goal": "Act as a friendly interviewer for a scholarship. Ask about the learner, strengths, goals and one imagined change. Invite one question. Encourage full answers with examples.",
+            "must_use": [
+              "I am good at",
+              "I would like to",
+              "because",
+              "If I could",
+              "Could you tell me",
+              "since"
+            ]
+          }
+        },
+        {
+          "type": "talk",
+          "topic": {
+            "en": "My future",
+            "hi": "मेरा भविष्य"
+          },
+          "outline": [
+            {
+              "en": "Opening: who you are and your topic.",
+              "hi": "शुरुआत: तुम कौन हो और विषय।"
+            },
+            {
+              "en": "Your goal, and how long you have had it.",
+              "hi": "तुम्हारा लक्ष्य, और कब से है।"
+            },
+            {
+              "en": "Your strengths and what you are good at.",
+              "hi": "तुम्हारी ख़ूबियाँ।"
+            },
+            {
+              "en": "Your plan: first, then, finally.",
+              "hi": "तुम्हारी योजना: first, then, finally।"
+            },
+            {
+              "en": "Closing: what you would do for your village, and thank you.",
+              "hi": "समापन: गाँव के लिए क्या करोगे, और धन्यवाद।"
+            }
+          ],
+          "seconds": 120,
+          "model": [
+            "Good morning. My name is Salma, and today I am going to talk about my future.",
+            "My goal is to become a nurse. I have wanted this since my grandmother was ill.",
+            "I am good at listening, and I am calm in difficult situations.",
+            "First, I will finish Class 12 with science.",
+            "Then I am going to apply for nursing training in the district.",
+            "Finally, I would like to work at our village health centre.",
+            "If I became a nurse, families would not have to travel far for help.",
+            "To sum up, I am determined to reach my goal. Thank you for listening."
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u18.l4.s-close",
+              "model": "To sum up, I am determined, I am ready to work hard, and I believe in my future.",
+              "cue": {
+                "en": "Close your talk with confidence.",
+                "hi": "आत्मविश्वास से भाषण ख़त्म करो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u18.l4.c-intro",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is the best first answer in an interview?"
+          },
+          "options": [
+            {
+              "text": "Good morning. I am Ravi, and I study in Class 10."
+            },
+            {
+              "text": "Why?"
+            },
+            {
+              "text": "Hi."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u18.l4.c-example",
+          "type": "choose",
+          "prompt": {
+            "en": "Which answer about a strength is best?"
+          },
+          "options": [
+            {
+              "text": "I don't know."
+            },
+            {
+              "text": "I am the best."
+            },
+            {
+              "text": "I am reliable. For example, I have never missed a club meeting."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u18.l4.c-close",
+          "type": "choose",
+          "prompt": {
+            "en": "Which sentence closes a talk?"
+          },
+          "options": [
+            {
+              "text": "Suddenly, it rained."
+            },
+            {
+              "text": "To sum up, I am ready. Thank you for listening."
+            },
+            {
+              "text": "First, let me start."
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Give your two-minute talk \"My future\" to your family.",
+        "hi": "परिवार को अपना दो मिनट का भाषण \"My future\" सुनाओ।"
+      }
+    },
+    {
+      "key": "d.u18.l5",
+      "kind": "review",
+      "title": {
+        "en": "Units 10–17 review",
+        "hi": "इकाई 10–17 दोहराओ"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u18.l5.m-announce",
+              "left": {
+                "text": "announce"
+              },
+              "right": {
+                "text": "घोषणा करना"
+              }
+            },
+            {
+              "key": "d.u18.l5.m-opinion",
+              "left": {
+                "text": "opinion"
+              },
+              "right": {
+                "text": "राय"
+              }
+            },
+            {
+              "key": "d.u18.l5.m-symptom",
+              "left": {
+                "text": "symptom"
+              },
+              "right": {
+                "text": "लक्षण"
+              }
+            },
+            {
+              "key": "d.u18.l5.m-skill",
+              "left": {
+                "text": "skill"
+              },
+              "right": {
+                "text": "कौशल"
+              }
+            },
+            {
+              "key": "d.u18.l5.m-evidence",
+              "left": {
+                "text": "evidence"
+              },
+              "right": {
+                "text": "प्रमाण"
+              }
+            },
+            {
+              "key": "d.u18.l5.m-privacy",
+              "left": {
+                "text": "privacy"
+              },
+              "right": {
+                "text": "निजता"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u18.l5.b-said",
+              "tiles": [
+                "was",
+                "said",
+                "Kavita",
+                "open.",
+                "the club",
+                "that"
+              ],
+              "answer": "Kavita said that the club was open."
+            },
+            {
+              "key": "d.u18.l5.b-must",
+              "tiles": [
+                "your",
+                "password.",
+                "mustn't",
+                "share",
+                "You"
+              ],
+              "answer": "You mustn't share your password."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u18.l5.p-for",
+              "prompt": {
+                "en": "I have known Salma ___ six years."
+              },
+              "options": [
+                {
+                  "text": "for"
+                },
+                {
+                  "text": "since"
+                },
+                {
+                  "text": "ago"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u18.l5.s-all",
+              "model": "I have learned a lot in ninety days, and I would like to keep practising.",
+              "cue": {
+                "en": "Say what you have learned, and one wish.",
+                "hi": "बताओ तुमने क्या सीखा, और एक इच्छा।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u18.l5.c-u10",
+          "type": "choose",
+          "prompt": {
+            "en": "\"I can help.\" → Ravi said that he ___ help."
+          },
+          "options": [
+            {
+              "text": "will"
+            },
+            {
+              "text": "could"
+            },
+            {
+              "text": "can"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u18.l5.c-u11",
+          "type": "choose",
+          "prompt": {
+            "en": "I stayed home ___ I was ill."
+          },
+          "options": [
+            {
+              "text": "because"
+            },
+            {
+              "text": "although"
+            },
+            {
+              "text": "however"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u18.l5.c-u12",
+          "type": "choose",
+          "prompt": {
+            "en": "She has had a cough ___ Monday."
+          },
+          "options": [
+            {
+              "text": "for"
+            },
+            {
+              "text": "ago"
+            },
+            {
+              "text": "since"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u18.l5.c-u13",
+          "type": "choose",
+          "prompt": {
+            "en": "I would like ___ the team."
+          },
+          "options": [
+            {
+              "text": "to join"
+            },
+            {
+              "text": "joining"
+            },
+            {
+              "text": "join"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u18.l5.c-u14",
+          "type": "choose",
+          "prompt": {
+            "en": "Which signpost introduces the last point?"
+          },
+          "options": [
+            {
+              "text": "First,"
+            },
+            {
+              "text": "Finally,"
+            },
+            {
+              "text": "Good morning."
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u18.l5.c-u15",
+          "type": "choose",
+          "prompt": {
+            "en": "If I ___ a bird, I would fly over the fields."
+          },
+          "options": [
+            {
+              "text": "will be"
+            },
+            {
+              "text": "were"
+            },
+            {
+              "text": "am"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u18.l5.c-u16",
+          "type": "choose",
+          "prompt": {
+            "en": "Which ending is formal?"
+          },
+          "options": [
+            {
+              "text": "See ya!"
+            },
+            {
+              "text": "Kind regards,"
+            },
+            {
+              "text": "Love,"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u18.l5.c-u17",
+          "type": "choose",
+          "prompt": {
+            "en": "It is a holiday. We ___ go to school."
+          },
+          "options": [
+            {
+              "text": "mustn't"
+            },
+            {
+              "text": "don't have to"
+            },
+            {
+              "text": "must"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u18.l5.c-b1",
+          "type": "build",
+          "hi": "मैं तुम्हारी जगह होता तो कोर्स के लिए आवेदन करता।",
+          "tiles": [
+            "apply",
+            "for the course.",
+            "I would",
+            "were you,",
+            "If I"
+          ],
+          "answer": "If I were you, I would apply for the course."
+        },
+        {
+          "key": "d.u18.l5.c-b2",
+          "type": "build",
+          "hi": "मैं कोर्स की जानकारी का अनुरोध करने के लिए लिख रही हूँ।",
+          "tiles": [
+            "about",
+            "to request",
+            "information",
+            "I am",
+            "writing",
+            "the course."
+          ],
+          "answer": "I am writing to request information about the course."
+        }
+      ],
+      "home": {
+        "en": "Thank someone who helped you learn English, in English.",
+        "hi": "जिसने अंग्रेज़ी सीखने में मदद की, उसे अंग्रेज़ी में धन्यवाद दो।"
+      }
+    }
+  ]
+}

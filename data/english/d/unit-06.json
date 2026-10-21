@@ -1,0 +1,1219 @@
+{
+  "track": "d",
+  "unit": 6,
+  "key": "d.u06",
+  "title": {
+    "en": "How things are made",
+    "hi": "चीज़ें कैसे बनती हैं"
+  },
+  "pic": "🌾",
+  "can_do": {
+    "en": "I can describe a process.",
+    "hi": "मैं किसी प्रक्रिया का वर्णन कर सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u06.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for a process",
+        "hi": "प्रक्रिया के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "A process is a set of steps in order. These words describe work on the farm and in the kitchen.",
+            "hi": "प्रक्रिया क्रम से चलने वाले क़दम हैं। ये शब्द खेत और रसोई के काम बताते हैं।"
+          },
+          "pic": "🌾"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u06.l1.process",
+              "en": "process",
+              "hi": "प्रक्रिया",
+              "pic": "🔁",
+              "example": {
+                "en": "Making jaggery is a long process.",
+                "hi": "गुड़ बनाना एक लंबी प्रक्रिया है।"
+              }
+            },
+            {
+              "key": "d.u06.l1.harvest",
+              "en": "harvest",
+              "hi": "फ़सल काटना",
+              "pic": "🌾",
+              "example": {
+                "en": "Wheat is harvested in April.",
+                "hi": "गेहूँ अप्रैल में काटा जाता है।"
+              }
+            },
+            {
+              "key": "d.u06.l1.crush",
+              "en": "crush",
+              "hi": "कुचलना, पेरना",
+              "pic": "🔨",
+              "example": {
+                "en": "The sugarcane is crushed to get the juice.",
+                "hi": "रस निकालने के लिए गन्ना पेरा जाता है।"
+              }
+            },
+            {
+              "key": "d.u06.l1.boil",
+              "en": "boil",
+              "hi": "उबालना",
+              "pic": "🔥",
+              "example": {
+                "en": "The juice is boiled in a big pan.",
+                "hi": "रस को बड़ी कड़ाही में उबाला जाता है।"
+              }
+            },
+            {
+              "key": "d.u06.l1.produce",
+              "en": "produce",
+              "hi": "पैदा करना, बनाना",
+              "pic": "🏭",
+              "example": {
+                "en": "Our district produces a lot of rice.",
+                "hi": "हमारा ज़िला बहुत चावल पैदा करता है।"
+              }
+            },
+            {
+              "key": "d.u06.l1.store",
+              "en": "store",
+              "hi": "रखना, जमा करना",
+              "pic": "📦",
+              "example": {
+                "en": "The grain is stored in dry sacks.",
+                "hi": "अनाज सूखी बोरियों में रखा जाता है।"
+              }
+            },
+            {
+              "key": "d.u06.l1.seed",
+              "en": "seed",
+              "hi": "बीज",
+              "pic": "🌱",
+              "example": {
+                "en": "The seeds are sown before the rain.",
+                "hi": "बारिश से पहले बीज बोए जाते हैं।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u06.l1.m-seed",
+              "left": {
+                "text": "seed"
+              },
+              "right": {
+                "pic": "🌱"
+              }
+            },
+            {
+              "key": "d.u06.l1.m-boil",
+              "left": {
+                "text": "boil"
+              },
+              "right": {
+                "pic": "🔥"
+              }
+            },
+            {
+              "key": "d.u06.l1.m-harvest",
+              "left": {
+                "text": "harvest"
+              },
+              "right": {
+                "pic": "🌾"
+              }
+            },
+            {
+              "key": "d.u06.l1.m-store",
+              "left": {
+                "text": "store"
+              },
+              "right": {
+                "pic": "📦"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u06.l1.p-crush",
+              "prompt": {
+                "en": "Which word means कुचलना or पेरना?"
+              },
+              "options": [
+                {
+                  "text": "crush"
+                },
+                {
+                  "text": "seed"
+                },
+                {
+                  "text": "store"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u06.l1.p-process",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "Paper making is an interesting process."
+              },
+              "options": [
+                {
+                  "text": "process"
+                },
+                {
+                  "text": "produce"
+                },
+                {
+                  "text": "harvest"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u06.l1.s-process",
+              "model": "Making jaggery is a long process."
+            },
+            {
+              "key": "d.u06.l1.s-crush",
+              "model": "The sugarcane is crushed to get the juice."
+            },
+            {
+              "key": "d.u06.l1.s-store",
+              "model": "The grain is stored in dry sacks."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u06.l1.c-produce",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means पैदा करना?"
+          },
+          "options": [
+            {
+              "text": "produce"
+            },
+            {
+              "text": "boil"
+            },
+            {
+              "text": "crush"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u06.l1.c-harvest",
+          "type": "choose",
+          "prompt": {
+            "en": "Farmers ___ the rice when it turns golden."
+          },
+          "options": [
+            {
+              "text": "harvest"
+            },
+            {
+              "text": "seed"
+            },
+            {
+              "text": "store"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u06.l1.c-boil",
+          "type": "choose",
+          "prompt": {
+            "en": "We ___ milk before we drink it."
+          },
+          "options": [
+            {
+              "text": "boil"
+            },
+            {
+              "text": "crush"
+            },
+            {
+              "text": "harvest"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u06.l1.c-seed",
+          "type": "choose",
+          "prompt": {
+            "en": "A plant grows from a ___."
+          },
+          "options": [
+            {
+              "text": "store"
+            },
+            {
+              "text": "seed"
+            },
+            {
+              "text": "process"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Ask at home: How is our rice or wheat stored?",
+        "hi": "घर में पूछो: How is our rice or wheat stored?"
+      }
+    },
+    {
+      "key": "d.u06.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "It is made, it is grown",
+        "hi": "बनाया जाता है, उगाया जाता है"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "The passive: is or are + third form",
+            "hi": "Passive: is/are + तीसरी फ़ॉर्म"
+          },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "Rice is grown in wet fields.",
+              "hi": "धान गीले खेतों में उगाया जाता है।",
+              "parts": [
+                {
+                  "text": "Rice",
+                  "role": "who"
+                },
+                {
+                  "text": "is grown",
+                  "role": "do"
+                },
+                {
+                  "text": "in wet fields.",
+                  "role": "where"
+                }
+              ]
+            },
+            {
+              "en": "The mangoes are picked in June.",
+              "hi": "आम जून में तोड़े जाते हैं।",
+              "parts": [
+                {
+                  "text": "The mangoes",
+                  "role": "who"
+                },
+                {
+                  "text": "are picked",
+                  "role": "do"
+                },
+                {
+                  "text": "in June.",
+                  "role": "when"
+                }
+              ]
+            },
+            {
+              "en": "The juice is boiled for three hours.",
+              "hi": "रस तीन घंटे उबाला जाता है।",
+              "parts": [
+                {
+                  "text": "The juice",
+                  "role": "who"
+                },
+                {
+                  "text": "is boiled",
+                  "role": "do"
+                },
+                {
+                  "text": "for three hours.",
+                  "role": "when"
+                }
+              ]
+            },
+            {
+              "en": "Tea is not grown in our village.",
+              "hi": "हमारे गाँव में चाय नहीं उगाई जाती।",
+              "parts": [
+                {
+                  "text": "Tea",
+                  "role": "who"
+                },
+                {
+                  "text": "is not grown",
+                  "role": "not"
+                },
+                {
+                  "text": "in our village.",
+                  "role": "where"
+                }
+              ]
+            },
+            {
+              "en": "Where is cotton grown?",
+              "hi": "कपास कहाँ उगाई जाती है?",
+              "parts": [
+                {
+                  "text": "Where",
+                  "role": "ask"
+                },
+                {
+                  "text": "is",
+                  "role": "do"
+                },
+                {
+                  "text": "cotton",
+                  "role": "who"
+                },
+                {
+                  "text": "grown?",
+                  "role": "do"
+                }
+              ]
+            }
+          ],
+          "note": {
+            "en": "Use the passive when the action matters more than the person who does it. Add \"by\" only if the doer is important.",
+            "hi": "जब काम ज़्यादा ज़रूरी हो, करने वाला नहीं, तब passive। करने वाला ज़रूरी हो तो \"by\" लगाओ।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u06.l2.b-grown",
+              "tiles": [
+                "the winter.",
+                "is grown",
+                "Wheat",
+                "in"
+              ],
+              "answer": "Wheat is grown in the winter."
+            },
+            {
+              "key": "d.u06.l2.b-sold",
+              "tiles": [
+                "are sold",
+                "weekly haat.",
+                "The vegetables",
+                "at the"
+              ],
+              "answer": "The vegetables are sold at the weekly haat."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u06.l2.p-are",
+              "prompt": {
+                "en": "The cows ___ milked at five every morning."
+              },
+              "options": [
+                {
+                  "text": "are"
+                },
+                {
+                  "text": "is"
+                },
+                {
+                  "text": "am"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Cows is plural, so are.",
+                "hi": "Cows बहुवचन है, इसलिए are।"
+              }
+            },
+            {
+              "key": "d.u06.l2.p-made",
+              "prompt": {
+                "en": "Jaggery is ___ from sugarcane."
+              },
+              "options": [
+                {
+                  "text": "make"
+                },
+                {
+                  "text": "made"
+                },
+                {
+                  "text": "making"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Is + third form: made.",
+                "hi": "Is + तीसरी फ़ॉर्म: made।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u06.l2.s-grown",
+              "model": "Rice and wheat are grown in our village.",
+              "cue": {
+                "en": "What crops are grown in your area?",
+                "hi": "तुम्हारे इलाक़े में कौन-सी फ़सलें उगाई जाती हैं?"
+              }
+            },
+            {
+              "key": "d.u06.l2.s-made",
+              "model": "Rotis are made from wheat flour.",
+              "cue": {
+                "en": "What are rotis made from?",
+                "hi": "रोटियाँ किससे बनती हैं?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u06.l2.c-b1",
+          "type": "build",
+          "hi": "बीज जून में बोए जाते हैं।",
+          "tiles": [
+            "June.",
+            "in",
+            "are sown",
+            "The seeds"
+          ],
+          "answer": "The seeds are sown in June."
+        },
+        {
+          "key": "d.u06.l2.c-b2",
+          "type": "build",
+          "hi": "हर घर से दूध इकट्ठा किया जाता है।",
+          "tiles": [
+            "from",
+            "every house.",
+            "Milk",
+            "is collected"
+          ],
+          "answer": "Milk is collected from every house."
+        },
+        {
+          "key": "d.u06.l2.c-is",
+          "type": "choose",
+          "prompt": {
+            "en": "English ___ spoken in many countries."
+          },
+          "options": [
+            {
+              "text": "are"
+            },
+            {
+              "text": "be"
+            },
+            {
+              "text": "is"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u06.l2.c-third",
+          "type": "choose",
+          "prompt": {
+            "en": "The letters are ___ by the postman."
+          },
+          "options": [
+            {
+              "text": "deliver"
+            },
+            {
+              "text": "delivered"
+            },
+            {
+              "text": "delivering"
+            }
+          ],
+          "answer": 1,
+          "why": {
+            "en": "Are + third form: delivered.",
+            "hi": "Are + तीसरी फ़ॉर्म: delivered।"
+          }
+        },
+        {
+          "key": "d.u06.l2.c-active",
+          "type": "choose",
+          "prompt": {
+            "en": "Which sentence is in the passive?"
+          },
+          "options": [
+            {
+              "text": "Farmers grow rice."
+            },
+            {
+              "text": "Farmers are growing rice."
+            },
+            {
+              "text": "Rice is grown by farmers."
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Name two things made in your village using \"is made\" or \"are made\".",
+        "hi": "\"is made\" या \"are made\" से अपने गाँव में बनने वाली दो चीज़ें बताओ।"
+      }
+    },
+    {
+      "key": "d.u06.l3",
+      "kind": "listen",
+      "title": {
+        "en": "How jaggery is made",
+        "hi": "गुड़ कैसे बनता है"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Papa explains his work at the district science fair. Listen for the order of the steps: first, then, next, finally.",
+            "hi": "ज़िला विज्ञान मेले में पापा अपना काम समझाते हैं। क़दमों का क्रम सुनो: first, then, next, finally।"
+          },
+          "pic": "🔢"
+        },
+        {
+          "type": "story",
+          "title": {
+            "en": "A talk at the science fair",
+            "hi": "विज्ञान मेले में एक भाषण"
+          },
+          "scene": {
+            "place": "field",
+            "pics": [
+              {
+                "pic": "🌾",
+                "x": 15,
+                "y": 20,
+                "size": 2
+              },
+              {
+                "pic": "👨‍🌾",
+                "x": 40,
+                "y": 40,
+                "size": 1.6
+              },
+              {
+                "pic": "🔥",
+                "x": 60,
+                "y": 45,
+                "size": 1.3
+              },
+              {
+                "pic": "🍯",
+                "x": 78,
+                "y": 45,
+                "size": 1.2
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Papa",
+              "pic": "👨‍🌾",
+              "en": "Good afternoon. Today I will explain how jaggery is made on our farm."
+            },
+            {
+              "speaker": "Papa",
+              "pic": "👨‍🌾",
+              "en": "First, the sugarcane is harvested in winter, when it is sweet."
+            },
+            {
+              "speaker": "Papa",
+              "pic": "👨‍🌾",
+              "en": "Then the canes are cleaned and crushed in a machine."
+            },
+            {
+              "speaker": "Papa",
+              "pic": "👨‍🌾",
+              "en": "The juice is collected in big containers."
+            },
+            {
+              "speaker": "Papa",
+              "pic": "👨‍🌾",
+              "en": "Next, the juice is boiled in a wide iron pan for about three hours."
+            },
+            {
+              "speaker": "Papa",
+              "pic": "👨‍🌾",
+              "en": "The dirt on top is removed with a big spoon."
+            },
+            {
+              "speaker": "Papa",
+              "pic": "👨‍🌾",
+              "en": "When the juice becomes thick and golden, it is poured into moulds."
+            },
+            {
+              "speaker": "Papa",
+              "pic": "👨‍🌾",
+              "en": "Finally, the jaggery is cooled, packed and sold at the market."
+            },
+            {
+              "speaker": "Papa",
+              "pic": "👨‍🌾",
+              "en": "Nothing is wasted. The dry canes are used as fuel for the fire."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u06.l3.p-when",
+              "prompt": {
+                "en": "When is the sugarcane harvested?"
+              },
+              "options": [
+                {
+                  "text": "in summer"
+                },
+                {
+                  "text": "in winter"
+                },
+                {
+                  "text": "in the monsoon"
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u06.l3.p-boiled",
+              "prompt": {
+                "en": "How long is the juice boiled?"
+              },
+              "options": [
+                {
+                  "text": "ten minutes"
+                },
+                {
+                  "text": "two days"
+                },
+                {
+                  "text": "about three hours"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u06.l3.s-first",
+              "model": "First, the sugarcane is harvested in winter."
+            },
+            {
+              "key": "d.u06.l3.s-finally",
+              "model": "Finally, the jaggery is cooled, packed and sold at the market."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u06.l3.c-crushed",
+          "type": "choose",
+          "prompt": {
+            "en": "What happens after the canes are cleaned?"
+          },
+          "options": [
+            {
+              "text": "They are crushed."
+            },
+            {
+              "text": "They are boiled."
+            },
+            {
+              "text": "They are sold."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u06.l3.c-dirt",
+          "type": "choose",
+          "prompt": {
+            "en": "How is the dirt removed?"
+          },
+          "options": [
+            {
+              "text": "with a big spoon"
+            },
+            {
+              "text": "with a cloth"
+            },
+            {
+              "text": "with water"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u06.l3.c-moulds",
+          "type": "choose",
+          "prompt": {
+            "en": "When is the juice poured into moulds?"
+          },
+          "options": [
+            {
+              "text": "when it is cold"
+            },
+            {
+              "text": "when it is thick and golden"
+            },
+            {
+              "text": "before it is boiled"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u06.l3.c-waste",
+          "type": "choose",
+          "prompt": {
+            "en": "What are the dry canes used for?"
+          },
+          "options": [
+            {
+              "text": "fuel for the fire"
+            },
+            {
+              "text": "making paper"
+            },
+            {
+              "text": "animal food"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Explain one recipe at home in steps: first, then, finally.",
+        "hi": "घर पर कोई रेसिपी क़दमों में समझाओ: first, then, finally।"
+      }
+    },
+    {
+      "key": "d.u06.l4",
+      "kind": "speak",
+      "title": {
+        "en": "Explain a process",
+        "hi": "प्रक्रिया समझाओ"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "talk",
+          "topic": {
+            "en": "From a seed to a crop",
+            "hi": "बीज से फ़सल तक"
+          },
+          "outline": [
+            {
+              "en": "Say what you will explain.",
+              "hi": "बताओ क्या समझाओगे।"
+            },
+            {
+              "en": "Give the steps in order: first, then, next.",
+              "hi": "क़दम क्रम से बताओ: first, then, next।"
+            },
+            {
+              "en": "Use the passive: is sown, is watered, is harvested.",
+              "hi": "Passive लगाओ: is sown, is watered, is harvested।"
+            },
+            {
+              "en": "End with what happens to the crop.",
+              "hi": "अंत में बताओ फ़सल का क्या होता है।"
+            }
+          ],
+          "seconds": 60,
+          "model": [
+            "Today I will explain how rice is grown in my village.",
+            "First, the field is ploughed and filled with water.",
+            "Then the young plants are planted by hand in neat rows.",
+            "Next, the field is kept wet, and the weeds are removed.",
+            "After about four months, the rice is harvested and dried in the sun.",
+            "Finally, it is stored in sacks or sold at the market."
+          ]
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "field",
+            "pics": [
+              {
+                "pic": "🌱",
+                "x": 15,
+                "y": 45,
+                "size": 1.3
+              },
+              {
+                "pic": "💧",
+                "x": 35,
+                "y": 30,
+                "size": 1.2
+              },
+              {
+                "pic": "🌾",
+                "x": 55,
+                "y": 40,
+                "size": 1.6
+              },
+              {
+                "pic": "🚜",
+                "x": 75,
+                "y": 45,
+                "size": 1.6
+              },
+              {
+                "pic": "📦",
+                "x": 90,
+                "y": 50,
+                "size": 1
+              }
+            ]
+          },
+          "questions": [
+            {
+              "key": "d.u06.l4.pq-first",
+              "en": "What is done first?",
+              "model": "First, the seeds are sown in the field."
+            },
+            {
+              "key": "d.u06.l4.pq-water",
+              "en": "What is done next?",
+              "model": "Then the plants are watered regularly."
+            },
+            {
+              "key": "d.u06.l4.pq-last",
+              "en": "What happens at the end?",
+              "model": "Finally, the crop is harvested and stored."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "describe",
+          "prompts": [
+            {
+              "key": "d.u06.l4.s-tea",
+              "model": "First, the water is boiled. Then tea leaves, milk and sugar are added.",
+              "hi": "चाय कैसे बनती है, passive में बताओ।",
+              "cue": {
+                "en": "Explain how tea is made.",
+                "hi": "बताओ चाय कैसे बनाई जाती है।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u06.l4.c-order",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word comes last in a process?"
+          },
+          "options": [
+            {
+              "text": "Next"
+            },
+            {
+              "text": "First"
+            },
+            {
+              "text": "Finally"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u06.l4.c-pass",
+          "type": "choose",
+          "prompt": {
+            "en": "Which sentence describes a step in a process?"
+          },
+          "options": [
+            {
+              "text": "The seeds are sown in June."
+            },
+            {
+              "text": "Seeds is small."
+            },
+            {
+              "text": "I like seeds."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u06.l4.c-b1",
+          "type": "build",
+          "hi": "फिर पौधों को रोज़ पानी दिया जाता है।",
+          "tiles": [
+            "every day.",
+            "the plants",
+            "Then",
+            "are watered"
+          ],
+          "answer": "Then the plants are watered every day."
+        }
+      ],
+      "home": {
+        "en": "Explain at home how one thing on your farm or in your kitchen is made.",
+        "hi": "घर पर समझाओ कि खेत या रसोई की कोई चीज़ कैसे बनती है।"
+      }
+    },
+    {
+      "key": "d.u06.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 6 review",
+        "hi": "इकाई 6 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u06.l5.m-process",
+              "left": {
+                "text": "process"
+              },
+              "right": {
+                "text": "प्रक्रिया"
+              }
+            },
+            {
+              "key": "d.u06.l5.m-crush",
+              "left": {
+                "text": "crush"
+              },
+              "right": {
+                "text": "पेरना"
+              }
+            },
+            {
+              "key": "d.u06.l5.m-produce",
+              "left": {
+                "text": "produce"
+              },
+              "right": {
+                "text": "पैदा करना"
+              }
+            },
+            {
+              "key": "d.u06.l5.m-store",
+              "left": {
+                "text": "store"
+              },
+              "right": {
+                "text": "जमा करना"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u06.l5.b-used",
+              "tiles": [
+                "are used",
+                "as",
+                "fuel.",
+                "The dry canes"
+              ],
+              "answer": "The dry canes are used as fuel."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u06.l5.p-sold",
+              "prompt": {
+                "en": "The jaggery ___ at the market."
+              },
+              "options": [
+                {
+                  "text": "is sell"
+                },
+                {
+                  "text": "sold is"
+                },
+                {
+                  "text": "is sold"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "describe",
+          "prompts": [
+            {
+              "key": "d.u06.l5.s-steps",
+              "model": "First, the mangoes are picked. Then they are washed and packed in boxes.",
+              "cue": {
+                "en": "Explain how mangoes reach the market.",
+                "hi": "बताओ आम बाज़ार तक कैसे पहुँचते हैं।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u06.l5.c-harvest",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means फ़सल काटना?"
+          },
+          "options": [
+            {
+              "text": "harvest"
+            },
+            {
+              "text": "store"
+            },
+            {
+              "text": "boil"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u06.l5.c-are",
+          "type": "choose",
+          "prompt": {
+            "en": "Eggs ___ collected every morning."
+          },
+          "options": [
+            {
+              "text": "is"
+            },
+            {
+              "text": "was"
+            },
+            {
+              "text": "are"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u06.l5.c-made",
+          "type": "choose",
+          "prompt": {
+            "en": "This basket is ___ by my grandmother."
+          },
+          "options": [
+            {
+              "text": "makes"
+            },
+            {
+              "text": "made"
+            },
+            {
+              "text": "make"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u06.l5.c-b1",
+          "type": "build",
+          "hi": "कपास काली मिट्टी में उगाई जाती है।",
+          "tiles": [
+            "black soil.",
+            "in",
+            "is grown",
+            "Cotton"
+          ],
+          "answer": "Cotton is grown in black soil."
+        },
+        {
+          "key": "d.u06.l5.c-first",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word starts a process?"
+          },
+          "options": [
+            {
+              "text": "Luckily"
+            },
+            {
+              "text": "First"
+            },
+            {
+              "text": "Finally"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u06.l5.c-b2",
+          "type": "build",
+          "hi": "अनाज सूखी बोरियों में रखा जाता है।",
+          "tiles": [
+            "is stored",
+            "The grain",
+            "dry sacks.",
+            "in"
+          ],
+          "answer": "The grain is stored in dry sacks."
+        }
+      ],
+      "home": {
+        "en": "Tell your family how one festival sweet is made.",
+        "hi": "परिवार को बताओ त्योहार की कोई मिठाई कैसे बनती है।"
+      }
+    }
+  ]
+}
