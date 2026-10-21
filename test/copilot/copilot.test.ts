@@ -114,7 +114,7 @@ describe('a draft', () => {
   });
 
   it('is metered per school with who, what kind, how many tokens and when; never the prompt or the draft', async () => {
-    const cols = (await db.pg.query(`select column_name from information_schema.columns where table_name = 'ai_usage' order by ordinal_position`)).rows.map((r: { column_name: string }) => r.column_name);
+    const cols = (await db.pg.query(`select column_name from information_schema.columns where table_schema = 'public' and table_name = 'ai_usage' order by ordinal_position`)).rows.map((r: { column_name: string }) => r.column_name);
     expect(cols).toEqual(['usage_id', 'school_id', 'user_id', 'kind', 'tokens_in', 'tokens_out', 'created_at']);
     const rows = (await db.pg.query(`select user_id, kind, tokens_in > 0 as counted_in, tokens_out > 0 as counted_out from ai_usage order by created_at`)).rows;
     expect(rows).toEqual([{ user_id: T1, kind: 'lesson_plan', counted_in: true, counted_out: true }, { user_id: T2, kind: 'worksheet', counted_in: true, counted_out: true }]);
