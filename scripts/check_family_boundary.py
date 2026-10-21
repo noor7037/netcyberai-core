@@ -49,11 +49,11 @@ FAMILY_MAY_IMPORT = (
 FAMILY_DOORS = {
     "@/lib/auth/db": {"src/lib/family/db.ts"},
     "@/lib/auth/jwt": {"src/lib/family/session.ts"},
-    "@/lib/auth/env": {"src/lib/family/session.ts", "src/lib/family/sign-in.ts"},
+    "@/lib/auth/env": {"src/lib/family/secret.ts"},
     "@/lib/email/sender": {"src/lib/family/sign-in.ts"},
 }
 # Packages and the framework, allowed everywhere.
-EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|node:)")
+EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")
 
 # Outside the family area, these files may import exactly these family modules.
 OUTSIDE_MAY_IMPORT_FAMILY = {
@@ -84,7 +84,7 @@ TEMPLATE_RE = re.compile(r"`([^`]*)`", re.DOTALL)
 SQL_HINT = re.compile(r"\b(select|insert|update|delete)\b", re.IGNORECASE)
 TABLE_REF = re.compile(r"\b(?:from|join|into|update)\s+(?P<name>[a-z_][a-z0-9_]*(?:\.[a-z_][a-z0-9_]*)?)\s*(?P<call>\()?", re.IGNORECASE)
 FAMILY_TABLE_REF = re.compile(r"\b(?:from|join|into|update)\s+family\.(?P<table>[a-z_][a-z0-9_]*)\s*(?P<call>\()?", re.IGNORECASE)
-SQL_WORDS = {"select", "lateral", "unnest", "jsonb_array_elements", "jsonb_to_recordset", "generate_series", "jsonb_each", "jsonb_object_keys"}
+SQL_WORDS = {"select", "set", "lateral", "unnest", "jsonb_array_elements", "jsonb_to_recordset", "generate_series", "jsonb_each", "jsonb_object_keys"}
 
 CREATE_TABLE = re.compile(r"create\s+table\s+(?:if\s+not\s+exists\s+)?(?P<schema>family|content|control)\.(?P<table>\w+)\s*\(", re.IGNORECASE)
 RLS_SWITCH = re.compile(r"alter\s+table\s+(?P<schema>family|content|control)\.(?P<table>\w+)\s+(?P<kind>enable|force)\s+row\s+level\s+security", re.IGNORECASE)
