@@ -256,7 +256,7 @@ export function Header() {
   // Found by Playwright verification in an earlier prompt: the marketing
   // chrome doesn't belong above the internal /control and /app shells
   // (nor the development-only shell preview, C121), nor above the parent's /family app (C230-D).
-  if (pathname.startsWith('/control') || pathname.startsWith('/app') || pathname === '/family' || pathname.startsWith('/family/') || pathname.startsWith('/design-system/shell')) {
+  if (pathname.startsWith('/control') || pathname.startsWith('/app') || pathname === '/family' || pathname.startsWith('/family/') || pathname === '/parent' || pathname.startsWith('/parent/') || pathname.startsWith('/design-system/shell')) {
     return null;
   }
 

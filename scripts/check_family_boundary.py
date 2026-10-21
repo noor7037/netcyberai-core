@@ -43,17 +43,18 @@ FAMILY_MAY_IMPORT = (
     "@/lib/design-tokens",
     "@/lib/time/",
     "@/lib/ai/platform",  # the AI platform's public interface (03 §7)
+    "@/lib/ai/prompts/",  # prompt text lives in the repository (08 §7)
     "@/lib/storage/file-storage",  # the storage interface
 )
 # Platform services, each allowed to exactly one family file (the door it goes through).
 FAMILY_DOORS = {
     "@/lib/auth/db": {"src/lib/family/db.ts"},
     "@/lib/auth/jwt": {"src/lib/family/session.ts"},
-    "@/lib/auth/env": {"src/lib/family/session.ts", "src/lib/family/sign-in.ts"},
+    "@/lib/auth/env": {"src/lib/family/secret.ts"},
     "@/lib/email/sender": {"src/lib/family/sign-in.ts"},
 }
 # Packages and the framework, allowed everywhere.
-EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|node:)")
+EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")
 
 # Outside the family area, these files may import exactly these family modules.
 OUTSIDE_MAY_IMPORT_FAMILY = {
@@ -64,16 +65,12 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
 # module allowed to set the family role and account, check_choke_point.py).
 OUTSIDE_MAY_NAME_FAMILY_TABLE = {
     "src/lib/auth/db.ts": {"accounts"},
+    # The AI platform's daily cap counts a family's requests in that family's own transaction (C249).
+    "src/lib/ai/daily-cap.ts": {"ai_daily"},
 }
 
-# C230-D's school parent home predates the family area's rules; it reads school data in the parent's own school
-# session and moves out of the family area in M1-2. Nothing else may be added here.
-LEGACY = {
-    "src/lib/family/home.ts",
-    "src/app/(family)/family/page.tsx",
-    "src/app/(family)/family/layout.tsx",
-    "src/components/family/FamilySignOut.tsx",
-}
+# C230-D's school parent home moved out of the family area to /parent (M1-2, C248): nothing is exempt any more.
+LEGACY: set[str] = set()
 
 VENDOR_IMPORT = re.compile(r"""from\s+['"](@anthropic-ai/|openai|@google/generative-ai|@google/genai|@google-cloud/|googleapis|groq-sdk|@mistralai/)""")
 VENDOR_HOST = re.compile(r"(api\.anthropic\.com|api\.openai\.com|generativelanguage\.googleapis\.com|aiplatform\.googleapis\.com|youtube\.googleapis\.com|www\.googleapis\.com/youtube)")
@@ -84,7 +81,7 @@ TEMPLATE_RE = re.compile(r"`([^`]*)`", re.DOTALL)
 SQL_HINT = re.compile(r"\b(select|insert|update|delete)\b", re.IGNORECASE)
 TABLE_REF = re.compile(r"\b(?:from|join|into|update)\s+(?P<name>[a-z_][a-z0-9_]*(?:\.[a-z_][a-z0-9_]*)?)\s*(?P<call>\()?", re.IGNORECASE)
 FAMILY_TABLE_REF = re.compile(r"\b(?:from|join|into|update)\s+family\.(?P<table>[a-z_][a-z0-9_]*)\s*(?P<call>\()?", re.IGNORECASE)
-SQL_WORDS = {"select", "lateral", "unnest", "jsonb_array_elements", "jsonb_to_recordset", "generate_series", "jsonb_each", "jsonb_object_keys"}
+SQL_WORDS = {"select", "set", "lateral", "unnest", "jsonb_array_elements", "jsonb_to_recordset", "generate_series", "jsonb_each", "jsonb_object_keys"}
 
 CREATE_TABLE = re.compile(r"create\s+table\s+(?:if\s+not\s+exists\s+)?(?P<schema>family|content|control)\.(?P<table>\w+)\s*\(", re.IGNORECASE)
 RLS_SWITCH = re.compile(r"alter\s+table\s+(?P<schema>family|content|control)\.(?P<table>\w+)\s+(?P<kind>enable|force)\s+row\s+level\s+security", re.IGNORECASE)

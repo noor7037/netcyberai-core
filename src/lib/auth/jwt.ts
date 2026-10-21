@@ -122,3 +122,34 @@ export async function verifyDeviceToken(token: string): Promise<{ userId: string
     return null;
   }
 }
+
+// ---- The Family app's tokens (M1-2, C248) ------------------------------------------------------------------------
+// Signed with the same key and algorithm as every token above, but never interchangeable with them: each carries its
+// own `typ` and the audience 'nca-family', and is verified against both. A staff access token is refused wherever a
+// family token is expected (no audience, `typ` 'access'), and verifyAccessToken refuses a family token (`typ`).
+//   family         the family's session: the account, its token_version (checked live on every database request)
+//                  and a session id;
+//   family_parent  parent mode after the parent PIN: bound to the same account and session id, short-lived;
+//   family_code    the email-code step: the email the code was sent to, until the code is entered.
+export type FamilyTokenTyp = 'family' | 'family_parent' | 'family_code';
+const FAMILY_AUDIENCE = 'nca-family';
+
+export async function signFamilyToken(typ: FamilyTokenTyp, sub: string, claims: Record<string, string | number>, ttlSeconds: number): Promise<string> {
+  return new SignJWT({ ...claims, typ })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setSubject(sub)
+    .setAudience(FAMILY_AUDIENCE)
+    .setIssuedAt()
+    .setExpirationTime(`${ttlSeconds}s`)
+    .sign(secretKey());
+}
+
+export async function verifyFamilyToken(token: string, typ: FamilyTokenTyp): Promise<{ sub: string; claims: Record<string, unknown> } | null> {
+  try {
+    const { payload } = await jwtVerify(token, secretKey(), { audience: FAMILY_AUDIENCE, algorithms: ['HS256'] });
+    if (payload.typ !== typ || typeof payload.sub !== 'string' || !payload.sub) return null;
+    return { sub: payload.sub, claims: payload as Record<string, unknown> };
+  } catch {
+    return null;
+  }
+}

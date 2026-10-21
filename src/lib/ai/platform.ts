@@ -1,0 +1,182 @@
+import type { Sql } from '@/lib/jobs/types';
+import type { MessageKey } from '@/lib/i18n';
+import { adapterFor, type ChatMessage, type TextAdapter } from './adapters';
+import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
+import { dailyLimit, takeDailyRequest } from './daily-cap';
+import { scrubRequest } from './preprocess';
+
+// The AI platform's public interface (docs/family-app/03 §7, C249). The ONLY AI module family code may import
+// (scripts/check_family_boundary.py). One call, streamText(), runs a feature profile:
+//
+//   1. the profile as Control set it (control.ai_profiles): off, or no provider or model → 'not_switched_on';
+//   2. the minors check: a profile that may carry a child's words runs only when its provider AND every fallback is
+//      cleared for minors in Control AND its adapter is eligible in code → otherwise 'not_cleared_for_minors';
+//   3. a usable provider: an adapter exists, and its key is set and opens with the server's key → else 'not_switched_on';
+//   4. the family's daily cap (Control's setting, read live), counted in the caller's transaction → 'cap_reached';
+//   5. the pre-processor removes every child identifier from the whole request;
+//   6. the chain is tried in order until one answers; a provider that fails before any text is streamed hands over
+//      to the next → 'failed' when none answers;
+//   7. the call is metered with counts and tokens only (control.count_ai_usage). No prompt or answer is stored or logged.
+//
+// `db` is the caller's family_app client, inside withFamilyContext. The answer is data, never code: callers parse it
+// against their schema and drop anything outside it.
+
+export type ProfileId = 'family.resolver';
+export type AiProfile = { id: ProfileId; carriesChildWords: boolean };
+
+// Code-defined: which profiles exist and whether a child's words may pass. Control sets each one's provider, model,
+// prompt version and on switch; never this list.
+export const PROFILES: readonly AiProfile[] = [{ id: 'family.resolver', carriesChildWords: true }];
+
+export type AiContext = {
+  accountId: string;
+  childFirstNames: string[];
+  parentEmail?: string;
+  day: string; // the India date, YYYY-MM-DD
+};
+export type AiRequest = {
+  system: string;
+  messages: ChatMessage[];
+  maxTokens?: number;
+  responseFormat?: 'json';
+};
+export type AiRefusal = 'not_switched_on' | 'cap_reached' | 'not_cleared_for_minors' | 'failed';
+export type AiResult = { ok: true; text: string; tokensIn: number; tokensOut: number; provider: string; model: string } | { ok: false; reason: AiRefusal };
+export type { ChatMessage };
+
+// The family-facing words for each refusal (English and Hindi in the message files).
+export const REFUSAL_MESSAGE: Record<AiRefusal, MessageKey> = {
+  not_switched_on: 'ai.not_switched_on',
+  cap_reached: 'ai.cap_reached',
+  not_cleared_for_minors: 'ai.not_cleared_for_minors',
+  failed: 'ai.failed',
+};
+
+type ProfileRow = { provider_id: string | null; model: string | null; fallback: unknown; prompt_version: string; max_output_tokens: number; enabled: boolean; carries_child_words: boolean };
+type ProviderRow = { provider_id: string; cleared_for_minors: boolean; enabled: boolean };
+type Link = { provider: string; model: string };
+
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const DAY = /^\d{4}-\d{2}-\d{2}$/;
+
+export function profileById(id: string): AiProfile | null {
+  return PROFILES.find((p) => p.id === id) ?? null;
+}
+
+async function profileRow(db: Sql, id: ProfileId): Promise<ProfileRow | null> {
+  const { rows } = await db.query(
+    `select provider_id, model, fallback, prompt_version, max_output_tokens, enabled, carries_child_words from control.ai_profiles where profile_id = $1`,
+    [id]
+  );
+  return (rows[0] as ProfileRow | undefined) ?? null;
+}
+
+// The prompt version Control chose for a profile (the prompt text itself lives in the repository, 08 §7).
+export async function activePromptVersion(db: Sql, profileId: ProfileId): Promise<string | null> {
+  if (!profileById(profileId)) return null;
+  return (await profileRow(db, profileId))?.prompt_version ?? null;
+}
+
+// The provider and model, then each fallback as Control set it: [{ "provider": "...", "model": "..." }].
+export function chainOf(row: Pick<ProfileRow, 'provider_id' | 'model' | 'fallback'>): Link[] | null {
+  if (!row.provider_id || !row.model) return null;
+  const chain: Link[] = [{ provider: row.provider_id, model: row.model }];
+  for (const f of Array.isArray(row.fallback) ? row.fallback : []) {
+    const provider = (f as { provider?: unknown })?.provider;
+    const model = (f as { model?: unknown })?.model;
+    if (typeof provider === 'string' && typeof model === 'string' && provider && model) chain.push({ provider, model });
+  }
+  return chain;
+}
+
+async function count(db: Sql, day: string, profile: string, link: Link, c: { requests?: number; failures?: number; capRefusals?: number; tokensIn?: number; tokensOut?: number }): Promise<void> {
+  await db.query(`select control.count_ai_usage($1::date, $2::text, $3::text, $4::text, $5::int, $6::int, $7::int, $8::bigint, $9::bigint)`, [
+    day,
+    profile,
+    link.provider,
+    link.model,
+    c.requests ?? 0,
+    c.failures ?? 0,
+    c.capRefusals ?? 0,
+    Math.max(0, Math.round(c.tokensIn ?? 0)),
+    Math.max(0, Math.round(c.tokensOut ?? 0)),
+  ]);
+}
+
+type Ready = { link: Link; adapter: TextAdapter; apiKey: string };
+
+// Opens each provider's key inside this call only. A provider without an adapter, a key, or a key that opens is
+// left out of the chain.
+async function usableLinks(db: Sql, chain: Link[], providers: Map<string, ProviderRow>, env: Record<string, string | undefined>): Promise<Ready[]> {
+  const ready: Ready[] = [];
+  const k = aiEncryptionKey(env);
+  for (const link of chain) {
+    const adapter = adapterFor(link.provider, env);
+    const provider = providers.get(link.provider);
+    if (!adapter || !provider?.enabled) continue;
+    if (!adapter.needsKey) {
+      ready.push({ link, adapter, apiKey: '' });
+      continue;
+    }
+    if (!k) continue;
+    const { rows } = await db.query(`select ciphertext, iv, tag, key_version from control.ai_sealed_credential($1)`, [link.provider]);
+    if (!rows[0]) continue;
+    try {
+      ready.push({ link, adapter, apiKey: unsealAiKey(k, link.provider, rows[0] as SealedRow) });
+    } catch {
+      // Sealed with another key version, or the row was changed: this provider cannot be used until its key is set again.
+    }
+  }
+  return ready;
+}
+
+export async function streamText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest, onDelta: (text: string) => void = () => {}): Promise<AiResult> {
+  const env = process.env;
+  const profile = profileById(profileId);
+  if (!profile || !UUID.test(ctx.accountId) || !DAY.test(ctx.day)) return { ok: false, reason: 'failed' };
+
+  // 1. Switched on?
+  const row = await profileRow(db, profile.id);
+  const chain = row ? chainOf(row) : null;
+  if (!row || !row.enabled || !chain) return { ok: false, reason: 'not_switched_on' };
+
+  // 2. The minors check, on the whole chain, before anything else is looked at.
+  const { rows: providerRows } = await db.query(`select provider_id, cleared_for_minors, enabled from control.ai_providers where provider_id = any($1::text[])`, [chain.map((l) => l.provider)]);
+  const providers = new Map((providerRows as ProviderRow[]).map((p) => [p.provider_id, p]));
+  if (profile.carriesChildWords || row.carries_child_words) {
+    const cleared = chain.every((l) => providers.get(l.provider)?.cleared_for_minors === true && adapterFor(l.provider, env)?.minorsEligible === true);
+    if (!cleared) return { ok: false, reason: 'not_cleared_for_minors' };
+  }
+
+  // 3. A provider that can answer.
+  const ready = await usableLinks(db, chain, providers, env);
+  if (ready.length === 0) return { ok: false, reason: 'not_switched_on' };
+
+  // 4. The family's daily cap, counted before the request leaves.
+  const limit = await dailyLimit(db);
+  if (limit === null || !(await takeDailyRequest(db, ctx.accountId, ctx.day, limit))) {
+    await count(db, ctx.day, profile.id, ready[0].link, { capRefusals: 1 });
+    return { ok: false, reason: 'cap_reached' };
+  }
+
+  // 5. Nothing that names a child leaves the server.
+  const clean = scrubRequest(request, { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail });
+  const maxTokens = Math.min(Math.max(1, Math.floor(request.maxTokens ?? row.max_output_tokens)), row.max_output_tokens);
+
+  // 6. Down the chain until one answers.
+  for (const { link, adapter, apiKey } of ready) {
+    let streamed = false;
+    const result = await adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat: request.responseFormat }, (piece) => {
+      streamed = true;
+      onDelta(piece);
+    });
+    if (result.ok) {
+      await count(db, ctx.day, profile.id, link, { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut });
+      return { ok: true, text: result.text, tokensIn: result.tokensIn, tokensOut: result.tokensOut, provider: link.provider, model: link.model };
+    }
+    await count(db, ctx.day, profile.id, link, { requests: 1, failures: 1 });
+    // Text already shown cannot be taken back: a second provider's answer would be stitched onto it.
+    if (streamed) break;
+  }
+  return { ok: false, reason: 'failed' };
+}
