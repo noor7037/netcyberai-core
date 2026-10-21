@@ -136,6 +136,75 @@ describe('the catalog CSV', () => {
     // No Hindi title was printed in a document that was read: none is filled in.
     expect(r.lines.every((l) => l.titleHi === null)).toBe(true);
   });
+
+  it('the committed NCERT file (classes 6 to 8) passes the same check', () => {
+    const text = readFileSync(path.resolve(__dirname, '../../data/catalog/ncert-2026-27-classes-6-8-maths-science.csv'), 'utf8');
+    const r = readCatalogCsv(text, '2026-10-22');
+    expect(r.problems).toEqual([]);
+    const count = (s: { units: unknown[]; chapters: unknown[]; topics: unknown[] }) => [s.units.length, s.chapters.length, s.topics.length];
+    expect(Object.fromEntries(r.syllabi.map((s) => [`${s.board} ${s.classLevel} ${s.subject} ${s.academicYear}`, count(s)]))).toEqual({
+      'CBSE 6 mathematics 2026-27': [0, 10, 65],
+      'CBSE 6 science 2026-27': [0, 12, 53],
+      'CBSE 7 mathematics 2026-27': [2, 15, 65],
+      'CBSE 7 science 2026-27': [0, 12, 50],
+      'CBSE 8 mathematics 2026-27': [2, 14, 59],
+      'CBSE 8 science 2026-27': [0, 13, 62],
+    });
+    // Every line names NCERT's own PDF: the book's contents (units, chapters) or the chapter (topics).
+    expect(r.lines.every((l) => /^https:\/\/ncert\.nic\.in\/textbook\/pdf\/[a-z]{4}[12](ps|\d{2})\.pdf$/.test(l.sourceUrl))).toBe(true);
+    // A book in one volume has no unit line: its chapters hang from the syllabus itself. Ganita Prakash for classes 7
+    // and 8 comes in two parts, which are the units.
+    const chapters = r.lines.filter((l) => l.level === 'chapter');
+    expect(chapters.filter((l) => l.parentKey === null).map((l) => l.key.split('.').slice(0, 3).join('.'))).toEqual(
+      expect.arrayContaining(['cbse.c6.mathematics', 'cbse.c6.science', 'cbse.c7.science', 'cbse.c8.science'])
+    );
+    expect(chapters.filter((l) => l.classLevel !== 6 && l.subject === 'mathematics').every((l) => /\.u[12]$/.test(l.parentKey ?? ''))).toBe(true);
+    // Hindi titles come from NCERT's Hindi editions; every chapter and part has one.
+    expect(r.lines.filter((l) => l.level !== 'topic').every((l) => l.titleHi !== null && /[ऀ-ॿ]/.test(l.titleHi))).toBe(true);
+  });
+
+  it('the committed CBSE file for classes 9 and 10 (Social Science, English, Hindi) passes the same check', () => {
+    const text = readFileSync(path.resolve(__dirname, '../../data/catalog/cbse-2026-27-classes-9-10-languages-social-science.csv'), 'utf8');
+    const r = readCatalogCsv(text, '2026-10-22');
+    expect(r.problems).toEqual([]);
+    const count = (s: { units: unknown[]; chapters: unknown[]; topics: unknown[] }) => [s.units.length, s.chapters.length, s.topics.length];
+    expect(Object.fromEntries(r.syllabi.map((s) => [`${s.board} ${s.classLevel} ${s.subject} ${s.academicYear}`, count(s)]))).toEqual({
+      'CBSE 9 social_science 2026-27': [2, 16, 74],
+      'CBSE 10 social_science 2026-27': [4, 22, 10],
+      'CBSE 9 english 2026-27': [1, 7, 3],
+      'CBSE 10 english 2026-27': [3, 33, 3],
+      'CBSE 9 hindi 2026-27': [1, 4, 3],
+      'CBSE 10 hindi 2026-27': [1, 4, 1],
+    });
+    expect(r.lines.every((l) => l.sourceUrl.startsWith('https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/'))).toBe(true);
+    // CBSE prints the Hindi documents in Devanagari, so their titles are Hindi in both columns; the other documents have
+    // no Hindi version, so nothing is filled in.
+    const hindi = r.lines.filter((l) => l.subject === 'hindi');
+    expect(hindi.every((l) => /[ऀ-ॿ]/.test(l.titleEn) && l.titleHi === l.titleEn)).toBe(true);
+    expect(r.lines.filter((l) => l.subject !== 'hindi').every((l) => l.titleHi === null)).toBe(true);
+  });
+
+  it('the committed CBSE file for classes 11 and 12 (Physics, Chemistry, Biology, Mathematics) passes the same check', () => {
+    const text = readFileSync(path.resolve(__dirname, '../../data/catalog/cbse-2026-27-classes-11-12-science-maths.csv'), 'utf8');
+    const r = readCatalogCsv(text, '2026-10-22');
+    expect(r.problems).toEqual([]);
+    const count = (s: { units: unknown[]; chapters: unknown[]; topics: unknown[] }) => [s.units.length, s.chapters.length, s.topics.length];
+    expect(Object.fromEntries(r.syllabi.map((s) => [`${s.board} ${s.classLevel} ${s.subject} ${s.academicYear}`, count(s)]))).toEqual({
+      'CBSE 11 physics 2026-27': [10, 14, 0],
+      'CBSE 12 physics 2026-27': [9, 14, 0],
+      'CBSE 11 chemistry 2026-27': [11, 0, 0],
+      'CBSE 12 chemistry 2026-27': [14, 0, 0],
+      'CBSE 11 biology 2026-27': [5, 20, 0],
+      'CBSE 12 biology 2026-27': [5, 14, 0],
+      'CBSE 11 mathematics 2026-27': [5, 15, 0],
+      'CBSE 12 mathematics 2026-27': [6, 13, 0],
+    });
+    // One document per subject for both classes, in CBSE's Senior Secondary Curriculum Part 2; no Hindi version exists.
+    expect(new Set(r.lines.map((l) => l.sourceUrl))).toEqual(
+      new Set(['Physics', 'Chemistry', 'Biology', 'Maths'].map((s) => `https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/${s}_SecP2_2026-27.pdf`))
+    );
+    expect(r.lines.every((l) => l.titleHi === null)).toBe(true);
+  });
 });
 
 describe('the diff between two versions, by stable key', () => {
