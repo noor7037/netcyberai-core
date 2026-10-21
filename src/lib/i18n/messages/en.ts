@@ -5972,7 +5972,7 @@ export const en = {
   'control.ai.purpose': 'Which AI service answers each feature, its key, and how much each family may use in a day.',
   'control.ai.about': 'A feature that may carry a child’s words runs only on a service you have cleared for children after reading its terms. Keys are locked on the server: this page never shows one, only its last four characters. Every change is recorded and can be undone in one step.',
   'control.ai.needAal2': 'Sign in again with your authenticator app to see and change the AI settings.',
-  'control.ai.noServerKey': 'The server has no key to lock AI keys with (PAYMENT_CREDENTIALS_KEY), so no AI key can be saved yet.',
+  'control.ai.noServerKey': 'The server has no key to lock AI keys with (AI_CREDENTIALS_KEY), so no AI key can be saved yet.',
   'control.ai.providers.title': 'AI services',
   'control.ai.providers.how': 'Clear a service for children’s words only after reading its current terms, and paste the page you read.',
   'control.ai.provider.noAdapter': 'The app cannot talk to this service yet.',

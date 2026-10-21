@@ -1,17 +1,18 @@
 import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
-import { encryptionKey } from '@/lib/payments/credentials';
+import { keyFromEnv } from '@/lib/payments/credentials';
 
 // AI providers' keys (docs/family-app/10 §3), sealed as the payment keys are (src/lib/payments/credentials.ts):
-// AES-256-GCM in the app, with the server's existing credentials key (PAYMENT_CREDENTIALS_KEY; never created, printed
-// or derived here). The provider id is authenticated with the ciphertext ('ai:<provider>'), so a row copied onto
-// another provider does not open. Opened only inside the server call that uses the key (platform.ts); nothing here
-// returns a key to a screen, a log line or an audit row.
+// AES-256-GCM in the app, with the server's own AI credentials key (AI_CREDENTIALS_KEY and AI_CREDENTIALS_KEY_VERSION,
+// in the payments key's format; never created, printed or derived here). It is not the payments key: one key must not
+// open both payments and AI (F1-0, C256). The provider id is authenticated with the ciphertext ('ai:<provider>'), so a
+// row copied onto another provider does not open. Opened only inside the server call that uses the key (platform.ts);
+// nothing here returns a key to a screen, a log line or an audit row.
 
-export type AiKey = NonNullable<ReturnType<typeof encryptionKey>>;
+export type AiKey = NonNullable<ReturnType<typeof keyFromEnv>>;
 export type SealedRow = { ciphertext: string; iv: string; tag: string; key_version: number };
 
 export function aiEncryptionKey(env: Record<string, string | undefined> = process.env): AiKey | null {
-  return encryptionKey(env);
+  return keyFromEnv(env.AI_CREDENTIALS_KEY, env.AI_CREDENTIALS_KEY_VERSION);
 }
 
 const place = (provider: string) => Buffer.from(`ai:${provider}`);
