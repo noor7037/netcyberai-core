@@ -249,6 +249,7 @@ describe('the parent area', () => {
     await db.pg.query(`insert into family.topic_progress (account_id, child_id, topic_key, subject, answered, correct) values ($1, $2, 'cbse.c7.science.ch01.t01', 'science', 2, 1)`, [account, childId]);
     const seen = (await (await R.answers.GET(req(`/api/family/answers?childId=${childId}`, 'GET', null, jar))).json()).answers;
     expect(seen).toHaveLength(2);
+    expect(seen.map((a: { answeredOn: string }) => a.answeredOn).sort()).toEqual(['2026-10-20', '2026-10-21']);
     const right = seen.find((a: { correct: boolean }) => a.correct);
     expect((await R.answers.DELETE(req('/api/family/answers', 'DELETE', { attemptId: right.attemptId }, jar))).status).toBe(200);
     const progress = (await db.pg.query(`select answered, correct from family.topic_progress where child_id = $1`, [childId])).rows[0];
