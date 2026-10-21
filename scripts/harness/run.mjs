@@ -6485,16 +6485,6 @@ const SCREENS = [
   // usage and the daily limit.
   ['founder', 'control-ai', '/control/ai'],
   // m1-3 end
-  // m1-4 begin
-  // Control → Content (C250): import a catalog file, review by a second person, staff preview, release, diff, rollback.
-  ['founder', 'control-content', '/control/content'],
-  // m1-4 end
-  // m1-7 begin
-  // Control → Apps v1 (C253): versions, flags with audiences, kill switches, banners, preview, recent changes with Undo;
-  // Control → Family: counts only.
-  ['founder', 'control-apps', '/control/apps'],
-  ['founder', 'control-family', '/control/family'],
-  // m1-7 end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed

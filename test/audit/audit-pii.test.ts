@@ -55,9 +55,6 @@ const ALLOWED: Record<string, Record<string, string>> = {
     'key:withNote': 'a boolean (with_note), never the note',
     'value:reversalCode': 'a code from the fixed list typed_wrong, recorded_twice, not_received (isReversalReason checks it before it is written), never typed words',
   },
-  // C249: Control → AI's platform rows (school null): a provider's clearance, a profile or the daily cap, before and after,
-  // so a change can be undone. Ids, model names, flags and a terms page address; never a key, never a child's data.
-  'src/lib/ai/control.ts': { 'opaque:before': 'a provider, profile or cap setting as it was: ids, models, flags, the terms address; never a key', 'opaque:next': 'the same setting after the change' },
 };
 
 type Problem = { file: string; line: number; action: string; problem: string };

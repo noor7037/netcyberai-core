@@ -14,8 +14,7 @@ import { LanguageSwitch } from './LanguageSwitch';
 // parent agreed to, each child's answers (see and delete), the language, signing out, and deleting the account.
 // Every change is the parent's own tap; nothing here uses a browser dialog.
 
-type Child = ChildFormValue & { childId: string; freeSubject: 'mathematics' | 'science' | null };
-export type Calm = { childId: string; answers: number; right: number; topics: number; mastered: number; practisedTitles: string[] };
+type Child = ChildFormValue & { childId: string };
 type Answer = { attemptId: string; subject: string; kind: string; answer: string; correct: boolean; answeredOn: string };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -57,25 +56,6 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
             {w['fam.parent.remove']}
           </button>
         </div>
-      </div>
-      <div className="flex flex-wrap items-center gap-2 text-sm text-slate">
-        <span>{w['fam.parent.freeSubject']}</span>
-        {(['mathematics', 'science'] as const).map((sub) => (
-          <button
-            key={sub}
-            type="button"
-            aria-pressed={child.freeSubject === sub}
-            onClick={async () => {
-              if (child.freeSubject === sub) return;
-              const r = await familyApi(`/api/family/children/${child.childId}/subject`, 'POST', { subject: sub });
-              if (!r.ok) return setError(r.error === 'too_soon' ? w['fam.parent.freeSubjectTooSoon'] : errorWords(w, r.error));
-              router.refresh();
-            }}
-            className={`min-h-[44px] rounded-full px-4 font-bold ${child.freeSubject === sub ? 'bg-royal text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
-          >
-            {w[`fam.subject.${sub}`]}
-          </button>
-        ))}
       </div>
       {mode === 'edit' && (
         <ChildForm
@@ -161,7 +141,7 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
   );
 }
 
-export function ParentArea({ w, lang, children, states, studyCore, calm }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[] }) {
+export function ParentArea({ w, lang, children, states, studyCore }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean }) {
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const [deleteWord, setDeleteWord] = useState('');
@@ -182,29 +162,6 @@ export function ParentArea({ w, lang, children, states, studyCore, calm }: { w: 
           {w['fam.parent.back']}
         </Button>
       </div>
-
-      <Section title={w['fam.calm.title']}>
-        <ul className="flex flex-col gap-2">
-          {children.map((c) => {
-            const card = calm.find((x) => x.childId === c.childId);
-            return (
-              <li key={c.childId} data-calm-card className="flex flex-col gap-1 rounded-2xl bg-off-white p-3 text-sm text-slate">
-                <p className="text-base font-bold text-slate">{c.firstName}</p>
-                {!card || card.answers === 0 ? (
-                  <p>{w['fam.calm.nothingYet']}</p>
-                ) : (
-                  <>
-                    <p>{fill(w['fam.calm.week'], { answers: card.answers, right: card.right, topics: card.topics })}</p>
-                    {card.mastered > 0 && <p>{fill(w['fam.calm.mastered'], { n: card.mastered })}</p>}
-                    {card.practisedTitles.length > 0 && <p className="text-slate/80">{fill(w['fam.calm.recent'], { topics: card.practisedTitles.join(', ') })}</p>}
-                  </>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-        <p className="text-xs text-slate/80">{w['fam.calm.note']}</p>
-      </Section>
 
       <Section title={w['fam.parent.children']}>
         <ul className="flex flex-col gap-2">
