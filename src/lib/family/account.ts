@@ -26,6 +26,14 @@ export async function deleteAccount(db: Db, accountId: string): Promise<boolean>
   return (res.rowCount ?? 0) === 1;
 }
 
+// A date column as YYYY-MM-DD. node-pg reads a date as local midnight, so it is read back in local time, never through
+// UTC (which in India would show the day before).
+function dateOnly(v: unknown): string {
+  if (typeof v === 'string') return v.slice(0, 10);
+  const d = v as Date;
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
 export type Answer = { attemptId: string; childId: string; subject: string; topicKey: string; kind: 'check' | 'practice'; answer: string; correct: boolean; answeredOn: string };
 
 export async function listAnswers(db: Db, accountId: string, childId: string, limit = 200): Promise<Answer[]> {
@@ -42,7 +50,7 @@ export async function listAnswers(db: Db, accountId: string, childId: string, li
     kind: r.kind === 'practice' ? 'practice' : 'check',
     answer: String(r.answer),
     correct: r.correct === true,
-    answeredOn: typeof r.answered_on === 'string' ? r.answered_on.slice(0, 10) : new Date(r.answered_on as Date).toISOString().slice(0, 10),
+    answeredOn: dateOnly(r.answered_on),
   }));
 }
 
