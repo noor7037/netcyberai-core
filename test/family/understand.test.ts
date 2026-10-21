@@ -13,13 +13,23 @@ const ai = vi.hoisted(() => ({ lines: [] as string[], calls: [] as { system: str
 vi.mock('@/lib/ai/platform', async (original) => ({
   ...(await original<typeof import('@/lib/ai/platform')>()),
   activePromptVersion: async () => 'v1',
-  streamText: async (_db: unknown, _ctx: unknown, _p: unknown, req: { system: string; messages: { content: string }[] }, onDelta: (t: string) => void) => {
+  prepareText: async (_db: unknown, _ctx: unknown, _p: unknown, req: { system: string; messages: { content: string }[] }) => {
     ai.calls.push({ system: req.system, user: req.messages[0].content });
     if (ai.refuse) return { ok: false, reason: ai.refuse };
-    for (const l of ai.lines) onDelta(`${l}\n`);
-    return { ok: true, text: ai.lines.join('\n'), tokensIn: 10, tokensOut: 20, provider: 'anthropic', model: 'test-model' };
+    const lines = [...ai.lines];
+    return {
+      ok: true,
+      text: {
+        send: async (onDelta: (t: string) => void) => {
+          for (const l of lines) onDelta(`${l}\n`);
+          return { result: { ok: true, text: lines.join('\n'), tokensIn: 10, tokensOut: 20, provider: 'anthropic', model: 'test-model' }, record: async () => {} };
+        },
+      },
+    };
   },
 }));
+// The line a typed question's answer starts with: the subject the model names (prompt v2, F1-3).
+const named = (subject: string) => JSON.stringify({ type: 'subject', subject });
 
 const item = (id: string, extra: Record<string, unknown> = {}) => ({ id, question: `Question ${id}?`, options: ['10', '12', '14', '16'], answer: 1, hint: 'Think of pairs.', why: 'Because 6 + 6 = 12.', wrong: ['Counted one pair', '', 'Added two', 'Doubled twice'], ...extra });
 const GOOD = [
@@ -159,7 +169,7 @@ describe('Understand, end to end', () => {
   });
 
   it('a typed question and a follow-up are never kept in the library', async () => {
-    ai.lines = GOOD.map((g) => JSON.stringify(g));
+    ai.lines = [named('mathematics'), ...GOOD.map((g) => JSON.stringify(g))];
     await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'Meera asks: why is 6+6 twelve?', subject: 'mathematics' }, jar)));
     await events(await R.understand.POST(post('/api/family/understand', { kind: 'topic', key: TOPIC, followUp: 'simpler' }, jar)));
     expect((await db.pg.query(`select count(*)::int n from content.responses`)).rows[0].n).toBe(1);
@@ -174,7 +184,7 @@ describe('Understand, end to end', () => {
   });
 
   it('checks answers on the server: hint first, then why or the exact misunderstanding; another child’s token is refused', async () => {
-    ai.lines = GOOD.map((g) => JSON.stringify(g));
+    ai.lines = [named('mathematics'), ...GOOD.map((g) => JSON.stringify(g))];
     const ev = await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'What is 6 + 6?', subject: 'mathematics' }, jar)));
     const token = ev.find((e) => e.t === 'block' && e.block.type === 'check').block.items[0].token;
     expect(await (await R.check.POST(post('/api/family/check', { token, hint: true }, jar))).json()).toEqual({ hint: 'Think of pairs.' });
@@ -191,5 +201,90 @@ describe('Understand, end to end', () => {
     await events(await R.understand.POST(post('/api/family/understand', { retry: { token, choice: 3 } }, jar)));
     expect(ai.calls.at(-1)!.system).toContain('Doubled twice');
     expect(ai.calls.at(-1)!.user).toContain('Rational numbers');
+  });
+});
+
+// F1-3: the server decides a typed question's subject. The model names it on its first line (prompt v2); nothing is
+// shown before that line, and only a subject the child may use is answered. The screen's `subject` is never read.
+describe('a typed question’s subject, decided on the server', () => {
+  const answer = (subject: string) => [named(subject), ...GOOD.map((g) => JSON.stringify(g))];
+  const ask = async (text: string, j: Record<string, string>, screenSubject: string) => events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text, subject: screenSubject }, j)));
+  const freeSubject = async (child: string) => (await db.pg.query(`select free_subject from family.children where child_id = $1`, [child])).rows[0].free_subject;
+
+  it('the prompt names the subject first under v2, whatever Control chose; a topic keeps v1, word for word', async () => {
+    const { resolverPrompt } = await import('@/lib/ai/prompts/family.resolver');
+    const v1 = await import('@/lib/ai/prompts/family.resolver/v1');
+    expect(resolverPrompt('v1', true).version).toBe('v2');
+    expect(resolverPrompt('v1', false).version).toBe('v1');
+    expect(resolverPrompt('v9', false).version).toBe('v2');
+    expect(resolverPrompt(null, true).version).toBe('v2');
+    const topic = { board: 'CBSE', classLevel: 9, subject: 'mathematics' as const, openSubjects: ['mathematics' as const], chapter: 'Number System', topic: 'Rational numbers', question: null, language: 'en' as const, style: 'en' as const, followUp: null, misconception: null };
+    expect(resolverPrompt('v2', false).system(topic)).toBe(v1.resolverSystem(topic));
+    expect(resolverPrompt('v2', false).user(topic)).toBe(v1.resolverUser(topic));
+    expect(() => resolverPrompt('v1', false).system({ ...topic, subject: null })).toThrow();
+  });
+
+  it('reads the subject line only when it is one', async () => {
+    const { namedSubject } = await import('@/lib/family/resolver');
+    expect(namedSubject('{"type":"subject","subject":"science"}')).toBe('science');
+    expect(namedSubject(' {"type": "subject", "subject": "history"} ')).toBe('other');
+    expect(namedSubject('{"type":"explanation","subject":"science"}')).toBeNull();
+    expect(namedSubject('{"type":"subject","subject":"science"')).toBeNull();
+    expect(namedSubject('{"type":"subject","subject":7}')).toBeNull();
+  });
+
+  it('answers in the detected subject, not the one the screen sent', async () => {
+    ai.lines = answer('mathematics');
+    const ev = await ask('Why is 6 + 6 twelve?', jar, 'science');
+    expect(ev[0]).toMatchObject({ t: 'meta', subject: 'mathematics', topicKey: null });
+    expect(ev.at(-1)).toEqual({ t: 'done', complete: true });
+    const call = ai.calls.at(-1)!;
+    expect(call.system).toContain('{"type":"subject"');
+    expect(call.system).toContain('may be answered only in: mathematics.');
+    expect(call.user).not.toMatch(/science|mathematics/);
+    // The sealed items are kept against the detected subject.
+    const token = ev.find((e) => e.t === 'block' && e.block.type === 'check').block.items[0].token;
+    const { openItem } = await import('@/lib/family/items');
+    expect(openItem(token, { accountId: ACCOUNT, childId: CHILD })).toMatchObject({ s: 'mathematics', k: 'cbse.c9.mathematics.question' });
+  });
+
+  it('a question in a subject the child may not use is refused plainly, with a link to that subject: no block, no claim', async () => {
+    expect(await freeSubject(CHILD)).toBe('mathematics');
+    ai.lines = answer('science');
+    const ev = await ask('Why does ice float?', jar, 'mathematics');
+    expect(ev).toEqual([
+      { t: 'refused', reason: 'not_open', message: 'This question is about Science. Science opens with Family Plus, which is not ready yet.', goTo: { subject: 'science', label: 'Go to Science' } },
+    ]);
+    expect(await freeSubject(CHILD)).toBe('mathematics');
+  });
+
+  it('another school subject, not school study, or no subject named: said plainly, nothing shown', async () => {
+    const { en } = await import('@/lib/i18n/messages/en');
+    ai.lines = [named('history'), ...GOOD.map((g) => JSON.stringify(g))];
+    expect(await ask('Who built the Red Fort?', jar, 'mathematics')).toEqual([{ t: 'refused', reason: 'other_subject', message: en['fam.understand.otherSubject'] }]);
+    ai.lines = ['{"type":"refuse"}'];
+    expect(await ask('Tell me a joke about cricket', jar, 'mathematics')).toEqual([{ t: 'refused', reason: 'not_school_study', message: en['fam.understand.notStudy'] }]);
+    // Blocks without the subject line first are never shown.
+    ai.lines = GOOD.map((g) => JSON.stringify(g));
+    expect(await ask('What is 6 + 6?', jar, 'mathematics')).toEqual([{ t: 'refused', reason: 'failed', message: en['ai.failed'] }]);
+  });
+
+  it('a child with no free subject claims the subject detected, never the screen’s; a refused question claims nothing (in Hindi)', async () => {
+    const { hi } = await import('@/lib/i18n/messages/hi');
+    await db.pg.query(`update family.children set language = 'hi' where child_id = $1`, [OTHER_CHILD]);
+    expect(await freeSubject(OTHER_CHILD)).toBeNull();
+    ai.lines = [named('other')];
+    expect(await ask('Ramayana kisne likhi?', otherJar, 'mathematics')).toEqual([{ t: 'refused', reason: 'other_subject', message: hi['fam.understand.otherSubject'] }]);
+    expect(ai.calls.at(-1)!.system).toContain('may be answered only in: mathematics or science.');
+    expect(await freeSubject(OTHER_CHILD)).toBeNull();
+    ai.lines = answer('science');
+    const ev = await ask('Barf paani par kyon tairti hai?', otherJar, 'mathematics');
+    expect(ev[0]).toMatchObject({ t: 'meta', subject: 'science' });
+    expect(await freeSubject(OTHER_CHILD)).toBe('science');
+    ai.lines = answer('mathematics');
+    expect(await ask('6 aur 6 kitne hote hain?', otherJar, 'science')).toEqual([
+      { t: 'refused', reason: 'not_open', message: 'यह सवाल गणित का है। गणित Family Plus के साथ खुलेगा, जो अभी तैयार नहीं है।', goTo: { subject: 'mathematics', label: 'गणित पर जाएँ' } },
+    ]);
+    expect(await freeSubject(OTHER_CHILD)).toBe('science');
   });
 });
