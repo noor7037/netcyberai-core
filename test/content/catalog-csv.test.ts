@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { CATALOG_COLUMNS, readCatalogCsv, type CatalogProblem } from '@/lib/content/catalog-csv';
 import { diffSyllabus, type DiffLine } from '@/lib/content/diff';
 import { academicYearOf } from '@/lib/family/catalog';
+import { stageSubjects } from '@/lib/family/subjects';
 
 // M1-4: the catalog CSV reader and checker, the diff by stable key, and the academic year. No database. The lines below
 // are made up for the test (a made-up board "TESTB" and example.org sources), apart from the committed catalog file,
@@ -135,6 +136,24 @@ describe('the catalog CSV', () => {
     expect(r.lines.every((l) => l.sourceUrl.startsWith('https://cbseacademic.nic.in/web_material/CurriculumMain27/'))).toBe(true);
     // No Hindi title was printed in a document that was read: none is filled in.
     expect(r.lines.every((l) => l.titleHi === null)).toBe(true);
+  });
+
+  it('the committed NCERT Classes 1-5 file passes the same check the import runs', () => {
+    const text = readFileSync(path.resolve(__dirname, '../../data/catalog/ncert-2026-27-classes-1-5.csv'), 'utf8');
+    // The day its lines were read: no line may be checked after it.
+    const r = readCatalogCsv(text, '2026-10-22');
+    expect(r.problems).toEqual([]);
+    // Classes 1-2: mathematics, english, hindi; classes 3-5 add evs (the app's subjects, src/lib/family/subjects.ts).
+    const want = [1, 2, 3, 4, 5].flatMap((c) => stageSubjects(c).map((s) => `CBSE ${c} ${s} 2026-27`));
+    expect(r.syllabi.map((s) => `${s.board} ${s.classLevel} ${s.subject} ${s.academicYear}`).sort()).toEqual(want.sort());
+    // Every line names NCERT's own PDF of the book: its contents (units and chapters) or the chapter (topics).
+    expect(r.lines.every((l) => l.sourceUrl.startsWith('https://ncert.nic.in/textbook/pdf/'))).toBe(true);
+    expect(r.lines.filter((l) => l.level === 'topic').every((l) => !l.sourceUrl.endsWith('ps.pdf'))).toBe(true);
+    // A Hindi book's title is its printed Devanagari title, in both columns; topics have none.
+    expect(r.lines.filter((l) => l.subject === 'hindi').every((l) => l.titleHi === l.titleEn)).toBe(true);
+    expect(r.lines.filter((l) => l.level === 'topic').every((l) => l.titleHi === null)).toBe(true);
+    // English books have no Hindi edition: no Hindi title.
+    expect(r.lines.filter((l) => l.subject === 'english').every((l) => l.titleHi === null)).toBe(true);
   });
 });
 
