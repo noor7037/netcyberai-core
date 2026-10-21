@@ -1,7 +1,9 @@
 # Catalog proof sheets
 
-For the founder: check that our syllabus list matches CBSE's own document, then approve it in Control → Content. One
-page per syllabus version in [`data/catalog/cbse-2026-27-maths-science.csv`](../../../data/catalog/cbse-2026-27-maths-science.csv):
+For the founder: check that our syllabus list matches the official source, then approve it in Control → Content.
+Classes IX and X come from CBSE's own documents; classes VI to VIII from NCERT's textbooks (see the next section).
+
+One page per syllabus version in [`data/catalog/cbse-2026-27-maths-science.csv`](../../../data/catalog/cbse-2026-27-maths-science.csv):
 
 | Page | Units | Chapters | Topics | CBSE page in the picture |
 |---|---|---|---|---|
@@ -22,7 +24,38 @@ Good to know before you start:
 - **Two gaps in Class X Science.** Unit III and the first part of Unit IV name no chapter, so they have no chapter
   line. The catalog README explains both under "Gaps".
 
-## Compare (one page at a time)
+## Classes VI, VII and VIII (NCERT's textbooks)
+
+CBSE has published no 2026-27 curriculum document for Mathematics and Science in classes VI to VIII; CBSE schools teach
+them from NCERT's new textbooks (Ganita Prakash and Curiosity). These pages check
+[`data/catalog/ncert-2026-27-classes-6-8-maths-science.csv`](../../../data/catalog/ncert-2026-27-classes-6-8-maths-science.csv)
+against those books, one page per syllabus version:
+
+| Page | Units | Chapters | Topics | NCERT contents page (PDF page) |
+|---|---|---|---|---|
+| [Class VI Mathematics](class6-mathematics.md) | 0 | 10 | 65 | `fegp1ps.pdf` p. 19 |
+| [Class VI Science](class6-science.md) | 0 | 12 | 53 | `fecu1ps.pdf` p. 17 |
+| [Class VII Mathematics](class7-mathematics.md) | 2 (Part – I, Part – II) | 15 | 65 | `gegp1ps.pdf` p. 17, `gegp2ps.pdf` p. 17 |
+| [Class VII Science](class7-science.md) | 0 | 12 | 50 | `gecu1ps.pdf` p. 19 |
+| [Class VIII Mathematics](class8-mathematics.md) | 2 (Part-I, Part-II) | 14 | 59 | `hegp1ps.pdf` p. 15, `hegp2ps.pdf` p. 15 |
+| [Class VIII Science](class8-science.md) | 0 | 13 | 62 | `hecu1ps.pdf` p. 19 |
+
+How these differ from the CBSE pages:
+
+- **No picture.** NCERT prints "© NCERT not to be republished" across every page of its PDFs, and this repository is
+  public, so the pages carry no copy of NCERT's pages. Each page links to the contents page in NCERT's own PDF instead
+  (English and Hindi edition); the link opens it at the right page.
+- **Chapters** are the contents page's chapter names. **Topics** are the numbered section headings inside each chapter
+  ("1.1 …", "1.2 …"), without the number; each topic links to the page of the chapter's PDF where the section starts.
+- **Hindi titles are filled in**, from NCERT's Hindi editions (गणित प्रकाश, जिज्ञासा), which match the English books
+  chapter for chapter and section for section. Next to every line is a "हिं" link to the Hindi page it comes from.
+- **Units** only where the book is printed in two parts (Mathematics, classes VII and VIII). The app lists chapters
+  without a unit the same way (tested).
+
+To compare one of these pages: open the contents page (link at the top), check the chapter names and their order, then
+click the "p." and "हिं p." links next to a few topics in each chapter and find the same heading on that page.
+
+## Compare a CBSE page (one page at a time)
 
 1. Open a page above.
 2. **Units:** the names and the order on the right match the table in the picture.

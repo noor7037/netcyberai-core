@@ -273,3 +273,53 @@ describe('the committed catalog, loaded from the repository', () => {
     expect(await owner(`select title_en from content.units u join content.syllabus_versions v using (version_id) where v.class_level = 6`)).toEqual([{ title_en: `It's "x"); drop table content.units; --` }]);
   });
 });
+
+describe('the committed NCERT catalog (classes 6 to 8), loaded from the repository', () => {
+  const text = readFileSync(path.resolve(__dirname, '../../data/catalog/ncert-2026-27-classes-6-8-maths-science.csv'), 'utf8');
+  const REF = 'netcyberai-core#f1-5';
+  const versionOf = async (cls: number, subject: string) =>
+    ((await owner(`select version_id from content.syllabus_versions where import_ref = $1 and class_level = $2 and subject = $3`, [REF, cls, subject])) as { version_id: string }[])[0].version_id;
+  const release = async (versionId: string) => {
+    expect(await asStaff(FOUNDER, (tx) => approveVersion(tx, { userId: FOUNDER }, versionId))).toMatchObject({ ok: true });
+    expect(await asStaff(FOUNDER, (tx) => releaseVersion(tx, { userId: FOUNDER }, versionId))).toMatchObject({ ok: true });
+  };
+
+  it('loads every syllabus; a family reads chapters with no unit, and a book in two parts, in printed order', async () => {
+    await db.pg.exec(catalogSql(text, REF));
+    const loaded = (await owner(
+      `select class_level, subject, status,
+              (select count(*)::int from content.units u where u.version_id = v.version_id) as units,
+              (select count(*)::int from content.chapters c where c.version_id = v.version_id) as chapters,
+              (select count(*)::int from content.chapters c where c.version_id = v.version_id and c.unit_id is null) as loose,
+              (select count(*)::int from content.topics t where t.version_id = v.version_id) as topics
+         from content.syllabus_versions v where import_ref = $1 order by class_level, subject`,
+      [REF]
+    )) as { class_level: number; subject: string; status: string; units: number; chapters: number; loose: number; topics: number }[];
+    expect(loaded.map((v) => [v.class_level, v.subject, v.status, v.units, v.chapters, v.loose, v.topics])).toEqual([
+      [6, 'mathematics', 'in_review', 0, 10, 10, 65],
+      [6, 'science', 'in_review', 0, 12, 12, 53],
+      [7, 'mathematics', 'in_review', 2, 15, 0, 65],
+      [7, 'science', 'in_review', 0, 12, 12, 50],
+      [8, 'mathematics', 'in_review', 2, 14, 0, 59],
+      [8, 'science', 'in_review', 0, 13, 13, 62],
+    ]);
+
+    // A book in one volume: no unit, the chapters in the order of the contents page, each with its sections.
+    await release(await versionOf(6, 'science'));
+    const s6 = await asFamily((tx) => readFamilyCatalog(tx, { board: 'CBSE', classLevel: 6, subject: 'science', lang: 'en', today: TODAY }));
+    expect(s6!.chapters.map((c) => c.key)).toEqual(Array.from({ length: 12 }, (_, i) => `cbse.c6.science.ch${String(i + 1).padStart(2, '0')}`));
+    expect(s6!.chapters.every((c) => c.unitKey === null && c.unitTitle === null)).toBe(true);
+    expect(s6!.chapters[0].topics).toEqual([]);
+    expect(s6!.chapters[1].title).toBe('Diversity in the Living World');
+    expect(s6!.chapters[1].topics.map((tp) => tp.title)).toEqual(['Diversity in Plants and Animals Around Us', 'How to Group Plants and Animals?', 'Plants and Animals in Different Surroundings']);
+    // In Hindi, the Hindi edition's titles.
+    const s6hi = await asFamily((tx) => readFamilyCatalog(tx, { board: 'CBSE', classLevel: 6, subject: 'science', lang: 'hi', today: TODAY }));
+    expect(s6hi!.chapters[1].title).toBe('सजीव जगत में विविधता');
+
+    // A book in two parts: Part-I's chapters, then Part-II's.
+    await release(await versionOf(8, 'mathematics'));
+    const m8 = await asFamily((tx) => readFamilyCatalog(tx, { board: 'CBSE', classLevel: 8, subject: 'mathematics', lang: 'en', today: TODAY }));
+    expect(m8!.chapters.map((c) => c.unitTitle)).toEqual([...Array(7).fill('Part-I'), ...Array(7).fill('Part-II')]);
+    expect(m8!.chapters.slice(6, 8).map((c) => c.title)).toEqual(['Proportional Reasoning-1', 'Fractions in Disguise']);
+  });
+});
