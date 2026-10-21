@@ -35,12 +35,14 @@ describe('message files', () => {
   });
 
   it('Hindi is written in Hindi: no message is left as its English, apart from product names', () => {
-    const sameOnPurpose = new Set(['shell.brand.control', 'group.control', 'fam.lang.en', 'fam.lang.hi']);
+    // Board names (C263) are written the same in every language.
+    const sameOnPurpose = new Set(['shell.brand.control', 'group.control', 'fam.lang.en', 'fam.lang.hi', 'fam.board.CBSE', 'fam.board.CISCE', 'fam.board.IB']);
     for (const k of Object.keys(hi) as (keyof typeof hi)[]) if (!sameOnPurpose.has(k)) expect(hi[k], k).not.toBe(en[k]);
   });
 
   it('every Hindi message that is not a product name has Devanagari', () => {
-    const sameOnPurpose = new Set(['shell.brand.control', 'group.control', 'fam.lang.en', 'fam.lang.hi']);
+    // Board names (C263) are written the same in every language.
+    const sameOnPurpose = new Set(['shell.brand.control', 'group.control', 'fam.lang.en', 'fam.lang.hi', 'fam.board.CBSE', 'fam.board.CISCE', 'fam.board.IB']);
     for (const k of Object.keys(hi) as (keyof typeof hi)[]) {
       if (!sameOnPurpose.has(k)) expect(/[ऀ-ॿ]/.test(hi[k]), `${k}: ${hi[k]}`).toBe(true);
     }
