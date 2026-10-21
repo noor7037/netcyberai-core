@@ -18,6 +18,13 @@ function getPool(): Pool {
   return pool;
 }
 
+// Ends this process's pool: for a test that serves a throwaway database and stops it afterwards.
+export async function endPool(): Promise<void> {
+  const p = pool;
+  pool = null;
+  await p?.end();
+}
+
 export class SessionRevokedError extends Error {
   constructor(reason: string) {
     super(`session revoked: ${reason}`);

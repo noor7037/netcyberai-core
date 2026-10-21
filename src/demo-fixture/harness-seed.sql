@@ -146,3 +146,19 @@ insert into syllabus_units (school_id, class_id, subject_id, position, chapter, 
 insert into school_module_entitlements (school_id, module_id, enabled, source, limits) values ('a0000000-0000-4000-8000-000000000001', 'teacher-copilot', true, 'founder_override', '{"monthly_tokens": 20000}')
 on conflict (school_id, module_id) do update set enabled = true, limits = excluded.limits;
 
+
+-- The Family app (M1-2, C248): four illustrative families, one at each of the parent's first steps, for the harness's
+-- family pictures. Made-up addresses and first names. The PIN hash is a stand-in string (no PIN opens it): the harness
+-- signs parent mode directly with its own secret.
+insert into family.accounts (account_id, email, ui_language, pin_hash, pin_set_at) values
+  ('f0000000-0000-4000-8000-0000000f0001', 'new.family@example.org', 'en', null, null),
+  ('f0000000-0000-4000-8000-0000000f0002', 'consented.family@example.org', 'en', null, null),
+  ('f0000000-0000-4000-8000-0000000f0003', 'pinned.family@example.org', 'en', 'scrypt$16384$8$1$aGFybmVzcy1zYWx0LTAwMQ==$aGFybmVzcy1zdGFuZC1pbi1oYXNoLTAwMDAwMDAwMDA=', now()),
+  ('f0000000-0000-4000-8000-0000000f0004', 'full.family@example.org', 'en', 'scrypt$16384$8$1$aGFybmVzcy1zYWx0LTAwMg==$aGFybmVzcy1zdGFuZC1pbi1oYXNoLTAwMDAwMDAwMDA=', now());
+insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values
+  ('f0000000-0000-4000-8000-0000000f0002', 'study_core', true, 'parent_tap', 'fam-notice-1'),
+  ('f0000000-0000-4000-8000-0000000f0003', 'study_core', true, 'parent_tap', 'fam-notice-1'),
+  ('f0000000-0000-4000-8000-0000000f0004', 'study_core', true, 'parent_tap', 'fam-notice-1');
+insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code, created_at) values
+  ('f0000000-0000-4000-8000-0000000fc001', 'f0000000-0000-4000-8000-0000000f0004', 'Asha', 7, 'CBSE', 'en', 'hinglish', 'IN-UP', now() - interval '2 minutes'),
+  ('f0000000-0000-4000-8000-0000000fc002', 'f0000000-0000-4000-8000-0000000f0004', 'Kabir', 9, 'CBSE', 'en', 'en', 'IN-DL', now() - interval '1 minute');

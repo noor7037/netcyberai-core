@@ -58,7 +58,7 @@ NON_PAGE_ROUTES = {"/robots.txt", "/sitemap.xml", "/llms.txt", "/icon.svg", "/ma
 # flagged by the sitemap<->build cross-check below as "uncrawlable". Public
 # marketing metadata requirements (meta description, hreflang, breadcrumbs,
 # an answer-block paragraph) don't apply to an auth-gated app shell either.
-INTERNAL_ROUTE_PREFIXES = ("/control", "/app", "/family")
+INTERNAL_ROUTE_PREFIXES = ("/control", "/app", "/family", "/parent")
 INTERNAL_ROUTES = {"/login"}
 
 
