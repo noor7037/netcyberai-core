@@ -5,6 +5,14 @@ import { aiEncryptionKey, sealAiKey, unsealAiKey } from '@/lib/ai/credentials';
 
 // M1-3 (C249): the pre-processor's rules one by one, and the sealing of AI keys. Made-up names and numbers only.
 
+describe('the pre-processor with loose spacing', () => {
+  it('catches phone and Aadhaar numbers typed with doubled spaces, brackets or slashes', async () => {
+    const { scrubText } = await import('@/lib/ai/preprocess');
+    const out = scrubText('call (+91) 98765  43210 or 98765/43210; id 1234  5678  9012', { childFirstNames: [] });
+    expect(out).not.toMatch(/\d{4}/);
+  });
+});
+
 describe('scrubText', () => {
   const ctx = { childFirstNames: ['Asha', 'Ravi', 'आशा'], parentEmail: 'parent.a@example.org' };
 
