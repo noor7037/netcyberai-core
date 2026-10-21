@@ -43,7 +43,6 @@ FAMILY_MAY_IMPORT = (
     "@/lib/design-tokens",
     "@/lib/time/",
     "@/lib/ai/platform",  # the AI platform's public interface (03 §7)
-    "@/lib/ai/prompts/",  # prompt text lives in the repository (08 §7)
     "@/lib/storage/file-storage",  # the storage interface
 )
 # Platform services, each allowed to exactly one family file (the door it goes through).

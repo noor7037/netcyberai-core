@@ -60,8 +60,3 @@ export function firstStepsNext(p: FamilyPage): string | null {
   if (p.children.length === 0) return '/family/welcome/child';
   return null;
 }
-
-// A read for a page, in the account's own transaction (after requireFamilyPage).
-export async function familyPageRead<T>(page: FamilyPage, fn: (db: import('pg').PoolClient) => Promise<T>): Promise<T> {
-  return withFamilyContext({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, fn);
-}
