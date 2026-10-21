@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireStepUp } from '@/lib/auth/step-up';
 import { withPlatformService } from '@/lib/auth/db';
 import { requireAiControl } from '@/lib/ai/control-guard';
 import { loadAiOverview, providerChoices, setCap, setClearance, setCredential, setProfile, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
@@ -35,6 +36,9 @@ export async function POST(req: NextRequest) {
   const by = { userId: guard.claims.sub };
   let result: ChangeResult | null = null;
   if (b?.action === 'credential') {
+    // Saving or replacing a provider's key asks for the authenticator again (F1-1b, C260).
+    const stepUp = await requireStepUp(req, guard.claims);
+    if (stepUp) return stepUp;
     const providerId = str(b.providerId, 40);
     const apiKey = str(b.apiKey, 400);
     if (providerId && apiKey !== null) result = await withPlatformService((db) => setCredential(db, by, providerId, apiKey));

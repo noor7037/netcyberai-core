@@ -1,5 +1,6 @@
 'use client';
 
+import { useStepUp } from '@/components/auth/StepUp';
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { InfoTip } from '@/components/app-ui/InfoTip';
@@ -25,6 +26,7 @@ const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-se
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 
 export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'control'; schoolId?: string }) {
+  const { stepUpFetch } = useStepUp();
   const { t, lang } = useT();
   // What just happened, said in the panel itself: Control's shell has no toasts.
   const [note, setNote] = useState<{ text: string; bad: boolean } | null>(null);
@@ -54,7 +56,7 @@ export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'cont
 
   async function send(method: 'PUT' | 'POST', body: unknown): Promise<{ ok: boolean; code?: string }> {
     setBusy(true);
-    const res = await fetch(api, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => null);
+    const res = await stepUpFetch(api, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => null);
     const answer = (await res?.json().catch(() => null)) ?? {};
     setBusy(false);
     void load();

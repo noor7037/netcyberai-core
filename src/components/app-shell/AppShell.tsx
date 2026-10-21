@@ -19,10 +19,25 @@ import { ToursProvider } from './ToursContext';
 import { LanguageSwitch } from './LanguageSwitch';
 import { OfflineProvider, useOffline } from './OfflineContext';
 import { SchoolLogo } from './SchoolLogo';
+import { readSidebarHidden, writeSidebarHidden } from './sidebar-preference';
 import { SyncLine } from './SyncLine';
 import { activeHref, type ShellGroup, type ShellItem } from './shell-nav';
 
 type Values = Record<string, string>;
+
+// True from the width where the sidebar sits beside the page (Tailwind's `md`, 768 px); false on a phone, and before
+// the browser has said, so the server's page is the phone's.
+function useWideScreen(): boolean {
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    setWide(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setWide(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+  return wide;
+}
 
 // The app shell (17 §2, §4; C121). One branded bar sits at the top of every
 // screen, on wide screens and on phones (C235-B): the school's logo (or its
@@ -30,8 +45,14 @@ type Values = Record<string, string>;
 // screens the bar also holds search, "+ New" and the language switch (C134,
 // C135), and a sidebar below it holds the menu; on phones the bar is compact
 // (logo, the name cut short, the person's name and role on a second line),
-// its menu opens the same menu as a drawer, the tools sit just below it, and
-// the teacher shell keeps its bottom bar of day-to-day modules.
+// the tools sit just below it, and the teacher shell keeps its bottom bar of
+// day-to-day modules.
+// The menu button is the first thing in the bar, on the left, at every width
+// (F1-2). On a phone it opens the menu as a drawer from the left, below the
+// bar; the same button, a tap outside the drawer or Esc closes it, and focus
+// goes back to the button. On a tablet or a computer the same button hides the
+// sidebar completely, so the page has the whole width, and shows it again; the
+// choice is kept on that device (sidebar-preference.ts).
 // The school app's menu reads like a school app's (C235-B): the Home items,
 // then "Frequent work", then "All modules", each module under its group, the
 // page's group open. Control passes one group and no Home or Frequent work.
@@ -242,27 +263,62 @@ export function AppShell({
   const t = (key: MessageKey, params?: Values) => translate(lang, key, params);
   const pathname = usePathname() ?? '';
   const active = activeHref([{ items: [...(home ?? []), ...(frequent ?? [])] }, ...groups], pathname);
+  const wide = useWideScreen();
   const [drawer, setDrawer] = useState(false);
+  const [sidebarHidden, setSidebarHidden] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const drawerId = useId();
+  const sidebarId = useId();
   const who = person ?? { name: '', role: roleLabel };
   // "Asha Verma · Principal", or the role alone.
   const whoLine = who.name ? `${who.name} · ${who.role}` : who.role;
+  // The drawer is a phone's: a screen that grows past the phone's width closes it.
+  const drawerOpen = drawer && !wide;
+  const expanded = wide ? !sidebarHidden : drawerOpen;
+  const menuLabel = t(wide ? (sidebarHidden ? 'shell.menu.show' : 'shell.menu.hide') : drawerOpen ? 'shell.menu.close' : 'shell.menu.open');
 
   useEffect(() => setDrawer(false), [pathname]);
   useEffect(() => {
-    if (!drawer) return;
+    if (wide) setDrawer(false);
+  }, [wide]);
+  // What this device chose last time; until it is read (and when the browser has no store) the sidebar is shown.
+  useEffect(() => setSidebarHidden(readSidebarHidden()), []);
+  const toggleMenu = () => {
+    if (wide) {
+      const hidden = !sidebarHidden;
+      setSidebarHidden(hidden);
+      writeSidebarHidden(hidden);
+    } else {
+      setDrawer((d) => !d);
+    }
+  };
+
+  useEffect(() => {
+    if (!drawerOpen) return;
+    // Esc closes. Tab stays among the button and the drawer's own links, so focus never lands on the page behind it.
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setDrawer(false);
-        toggleRef.current?.focus();
+        return;
       }
+      if (e.key !== 'Tab') return;
+      const stops = [toggleRef.current, ...(panelRef.current?.querySelectorAll<HTMLElement>('a[href],button:not([disabled])') ?? [])].filter((el): el is HTMLElement => el !== null);
+      const at = stops.indexOf(document.activeElement as HTMLElement);
+      const next = e.shiftKey ? (at <= 0 ? stops.length - 1 : at - 1) : at < 0 || at === stops.length - 1 ? 0 : at + 1;
+      e.preventDefault();
+      stops[next]?.focus();
     };
     document.addEventListener('keydown', onKey);
     panelRef.current?.querySelector<HTMLElement>('a[href],button')?.focus();
     return () => document.removeEventListener('keydown', onKey);
-  }, [drawer]);
+  }, [drawerOpen]);
+  // However the drawer closed (the button, a tap outside, Esc, a link), focus goes back to the button.
+  const wasOpen = useRef(false);
+  useEffect(() => {
+    if (wasOpen.current && !drawerOpen) toggleRef.current?.focus();
+    wasOpen.current = drawerOpen;
+  }, [drawerOpen]);
 
   const menu = (onNavigate?: () => void) => <Menu home={home} frequent={frequent} groups={groups} active={active} onNavigate={onNavigate} />;
 
@@ -274,7 +330,21 @@ export function AppShell({
       {/* The branded bar (C235-B). On wide screens: one sticky, translucent bar the width of the page. On phones its
           parts stand on their own: the brand row sticks to the top, the tools below it scroll away. */}
       <header lang={lang} data-shell-header className="contents md:sticky md:top-0 md:z-40 md:flex md:h-16 md:items-center md:border-b md:border-slate/10 md:bg-white/90 md:backdrop-blur print:hidden">
-        <div data-shell-brand className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b border-slate/10 bg-white/90 pl-3 pr-1 backdrop-blur md:static md:z-auto md:h-full md:w-64 md:shrink-0 md:border-b-0 md:border-r md:bg-transparent md:px-4 md:backdrop-blur-none">
+        <div data-shell-brand className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b border-slate/10 bg-white/90 pl-1 pr-2 backdrop-blur md:static md:z-auto md:h-full md:w-64 md:shrink-0 md:border-b-0 md:border-r md:bg-transparent md:pr-3 md:backdrop-blur-none">
+          <button
+            ref={toggleRef}
+            type="button"
+            data-shell-menu-button
+            aria-expanded={expanded}
+            aria-controls={wide ? sidebarId : drawerId}
+            aria-label={menuLabel}
+            onClick={toggleMenu}
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-slate hover:bg-slate/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal"
+          >
+            <span aria-hidden="true" className="text-2xl leading-none">
+              {drawerOpen ? '×' : '☰'}
+            </span>
+          </button>
           <SchoolLogo src={logoSrc} name={brand} size="md" />
           <div className="min-w-0 flex-1">
             <p data-shell-school className="truncate text-sm font-extrabold leading-tight text-slate lg:line-clamp-2 lg:whitespace-normal" title={brand}>
@@ -284,22 +354,11 @@ export function AppShell({
               {whoLine}
             </p>
           </div>
-          <div className="flex shrink-0 items-center gap-1 md:hidden">
-            {action && <span lang="en">{action}</span>}
-            <button
-              ref={toggleRef}
-              type="button"
-              aria-expanded={drawer}
-              aria-controls={drawerId}
-              aria-label={t(drawer ? 'shell.menu.close' : 'shell.menu.open')}
-              onClick={() => setDrawer((d) => !d)}
-              className="flex h-11 w-11 items-center justify-center rounded-md text-slate hover:bg-slate/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal"
-            >
-              <span aria-hidden="true" className="text-2xl leading-none">
-                {drawer ? '×' : '☰'}
-              </span>
-            </button>
-          </div>
+          {action && (
+            <div className="flex shrink-0 items-center md:hidden">
+              <span lang="en">{action}</span>
+            </div>
+          )}
         </div>
         <div data-shell-lang={lang} role="region" aria-label={t('shell.tools')} className="flex flex-wrap items-center gap-2 border-b border-slate/10 bg-white px-4 py-2 md:h-full md:min-w-0 md:flex-1 md:flex-nowrap md:border-b-0 md:bg-transparent md:py-0">
           <GlobalSearch scope={scope} />
@@ -325,7 +384,7 @@ export function AppShell({
         </Link>
       </header>
 
-      <aside lang={lang} className="fixed bottom-0 left-0 top-16 z-30 hidden w-64 flex-col bg-midnight md:flex print:hidden">
+      <aside id={sidebarId} lang={lang} data-shell-sidebar={sidebarHidden ? 'hidden' : 'shown'} className={`fixed bottom-0 left-0 top-16 z-30 hidden w-64 flex-col bg-midnight ${sidebarHidden ? '' : 'md:flex'} print:hidden`}>
         <span aria-hidden="true" className="nca-spectrum-bar block h-1" />
         {action && (
           <div lang="en" className="px-3 pb-2 pt-3">
@@ -338,26 +397,20 @@ export function AppShell({
         <Footer accountHref={accountHref} />
       </aside>
 
-      {drawer && (
-        <div id={drawerId} ref={panelRef} lang={lang} role="dialog" aria-modal="true" aria-label={navLabel} className="fixed inset-0 z-40 flex flex-col bg-midnight md:hidden">
-          <div className="flex items-center gap-2 py-3 pl-4 pr-2">
-            <SchoolLogo src={logoSrc} name={brand} size="md" className="ring-1 ring-white/40" />
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-base font-extrabold text-white">{brand}</p>
-              <p className="truncate text-xs text-white/75">{whoLine}</p>
-            </div>
-            <button type="button" onClick={() => setDrawer(false)} aria-label={t('shell.menu.close')} className="flex h-11 w-11 items-center justify-center rounded-md bg-midnight text-2xl text-white">
-              ×
-            </button>
+      {drawerOpen && (
+        <>
+          {/* A tap anywhere outside the drawer closes it. Both sit below the bar, so the button stays in reach. */}
+          <div aria-hidden="true" data-shell-scrim onClick={() => setDrawer(false)} className="fixed inset-x-0 bottom-0 top-14 z-40 bg-midnight/60" />
+          <div id={drawerId} ref={panelRef} lang={lang} role="dialog" aria-label={navLabel} data-shell-drawer className="fixed bottom-0 left-0 top-14 z-40 flex w-[85vw] max-w-xs animate-drawer-in flex-col bg-midnight motion-reduce:animate-none">
+            <nav aria-label={navLabel} className="flex-1 overflow-y-auto px-2 pb-2 pt-2">
+              {menu(() => setDrawer(false))}
+            </nav>
+            <Footer accountHref={accountHref} />
           </div>
-          <nav aria-label={navLabel} className="flex-1 overflow-y-auto px-2 pb-2">
-            {menu(() => setDrawer(false))}
-          </nav>
-          <Footer accountHref={accountHref} />
-        </div>
+        </>
       )}
 
-      <main className={`md:pl-64 ${bottomItems?.length ? 'pb-20 md:pb-0' : ''}`}>{children}</main>
+      <main className={`${sidebarHidden ? '' : 'md:pl-64'} ${bottomItems?.length ? 'pb-20 md:pb-0' : ''}`}>{children}</main>
 
       {bottomItems && bottomItems.length > 0 && (
         <nav lang={lang} aria-label={t('shell.nav.quick')} className="fixed inset-x-0 bottom-0 z-30 grid border-t border-white/10 bg-midnight md:hidden" style={{ gridTemplateColumns: `repeat(${bottomItems.length + 1}, minmax(0, 1fr))` }}>
@@ -372,7 +425,7 @@ export function AppShell({
               <span className="max-w-full truncate px-1">{i.label}</span>
             </Link>
           ))}
-          <button type="button" onClick={() => setDrawer(true)} aria-expanded={drawer} className="flex min-h-[56px] flex-col items-center justify-center gap-0.5 bg-midnight text-xs font-semibold text-white/75">
+          <button type="button" onClick={() => setDrawer(true)} aria-expanded={drawerOpen} aria-controls={drawerId} className="flex min-h-[56px] flex-col items-center justify-center gap-0.5 bg-midnight text-xs font-semibold text-white/75">
             <span aria-hidden="true" className="text-lg leading-none">
               ☰
             </span>

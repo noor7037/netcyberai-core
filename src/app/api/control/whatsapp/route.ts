@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireStepUp } from '@/lib/auth/step-up';
 import { withPlatformService } from '@/lib/auth/db';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import type { Sql } from '@/lib/jobs/types';
@@ -30,6 +31,9 @@ export async function POST(req: NextRequest) {
   const text = (v: unknown, max: number) => (typeof v === 'string' && v.length <= max ? v.replace(/\s+/g, '') : '');
   const by = { userId: guard.claims.sub };
   if (body?.action === 'save') {
+    // Saving the WhatsApp account's keys asks for the authenticator again (F1-1b, C260).
+    const stepUp = await requireStepUp(req, guard.claims);
+    if (stepUp) return stepUp;
     const result = await platform((db) => saveMetaAccount(db, by, { phoneNumberId: text(body.phoneNumberId, 40), wabaId: text(body.wabaId, 40), accessToken: text(body.accessToken, 700), appSecret: text(body.appSecret, 200), verifyToken: text(body.verifyToken, 200) }));
     return result.ok ? NextResponse.json({ ok: true }, { status: 201 }) : NextResponse.json({ error: 'the account was not saved', code: result.reason }, { status: result.reason === 'no_encryption_key' ? 503 : 400 });
   }

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { completeEmailLink, completeTokenHash, type LinkKind } from '@/lib/auth/account';
 import { AuthError } from '@/lib/auth/errors';
 import { PENDING_COOKIE, EMAIL_STEP_TTL_SECONDS, cookieOptions } from '@/lib/auth/cookies';
-import { authErrorResponse, outcomeResponse } from '@/lib/auth/outcome-response';
+import { authErrorResponse, keepSignedIn, signInResponse } from '@/lib/auth/outcome-response';
 
 // The login page posts the session an emailed link produced (C91). A sign-in
 // link signs in (same authenticator and school steps as always); a
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       res.cookies.set(PENDING_COOKIE, result.pendingToken, cookieOptions(EMAIL_STEP_TTL_SECONDS));
       return res;
     }
-    return outcomeResponse(result.signedIn.outcome);
+    return await signInResponse(result.signedIn.outcome, keepSignedIn(req, body));
   } catch (err) {
     if (err instanceof AuthError) return authErrorResponse(err);
     throw err;

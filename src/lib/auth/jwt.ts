@@ -99,13 +99,12 @@ export async function verifyPendingToken(token: string): Promise<PendingPayload 
   }
 }
 
-// "Remember this device" (C90): proof that this browser already passed the
-// email-code step for this user. Bound to users.token_version, so "sign out
-// on all devices", a password reset and an admin's sign-out-everywhere all
-// make every remembered device ask for the email code again. Never accepted
-// where an access or pending token is expected (`typ` is checked).
-export async function signDeviceToken(userId: string, tokenVersion: number, ttlSeconds: number): Promise<string> {
-  return new SignJWT({ typ: 'device', tv: tokenVersion })
+// "Trust this browser" (C90, F1-1 C257): proof that this browser already passed a sign-in step for this user. It
+// names a trusted_devices row (`did`), which is what makes it count (src/lib/auth/devices.ts), and is bound to
+// users.token_version, so "sign out on all devices", a password reset and an admin's sign-out-everywhere all end it.
+// Never accepted where an access or pending token is expected (`typ` is checked).
+export async function signDeviceToken(userId: string, tokenVersion: number, deviceId: string, ttlSeconds: number): Promise<string> {
+  return new SignJWT({ typ: 'device', tv: tokenVersion, did: deviceId })
     .setProtectedHeader({ alg: 'HS256' })
     .setSubject(userId)
     .setIssuedAt()
@@ -113,10 +112,32 @@ export async function signDeviceToken(userId: string, tokenVersion: number, ttlS
     .sign(secretKey());
 }
 
-export async function verifyDeviceToken(token: string): Promise<{ userId: string; tokenVersion: number } | null> {
+export async function verifyDeviceToken(token: string): Promise<{ userId: string; tokenVersion: number; deviceId: string } | null> {
   try {
     const { payload } = await jwtVerify(token, secretKey());
-    if (payload.typ !== 'device' || typeof payload.sub !== 'string') return null;
+    if (payload.typ !== 'device' || typeof payload.sub !== 'string' || typeof payload.did !== 'string') return null;
+    return { userId: payload.sub, tokenVersion: Number(payload.tv), deviceId: payload.did };
+  } catch {
+    return null;
+  }
+}
+
+// Step-up for sensitive actions (F1-1b, C260): proof that the person passed their password and authenticator (or an
+// emailed code) again in the last 15 minutes. Bound to the person and users.token_version; never accepted where any
+// other token is expected (`typ` is checked). Checked by src/lib/auth/step-up.ts.
+export async function signStepUpToken(userId: string, tokenVersion: number, ttlSeconds: number): Promise<string> {
+  return new SignJWT({ typ: 'step_up', tv: tokenVersion })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setSubject(userId)
+    .setIssuedAt()
+    .setExpirationTime(`${ttlSeconds}s`)
+    .sign(secretKey());
+}
+
+export async function verifyStepUpToken(token: string): Promise<{ userId: string; tokenVersion: number } | null> {
+  try {
+    const { payload } = await jwtVerify(token, secretKey(), { algorithms: ['HS256'] });
+    if (payload.typ !== 'step_up' || typeof payload.sub !== 'string') return null;
     return { userId: payload.sub, tokenVersion: Number(payload.tv) };
   } catch {
     return null;

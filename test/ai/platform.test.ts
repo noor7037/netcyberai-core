@@ -56,8 +56,8 @@ const useProfile = (provider: string | null, model: string | null, fallback: unk
   q(`update control.ai_profiles set provider_id = $1, model = $2, fallback = $3::jsonb, enabled = $4 where profile_id = 'family.resolver'`, [provider, model, JSON.stringify(fallback), enabled]);
 
 beforeAll(async () => {
-  process.env.PAYMENT_CREDENTIALS_KEY = randomBytes(32).toString('base64');
-  process.env.PAYMENT_CREDENTIALS_KEY_VERSION = '1';
+  process.env.AI_CREDENTIALS_KEY = randomBytes(32).toString('base64');
+  process.env.AI_CREDENTIALS_KEY_VERSION = '1';
   db = await startHarnessDb({ port: 0 });
   await q(`insert into family.accounts (account_id, email) values ($1, 'parent.a@example.org'), ($2, 'parent.b@example.org')`, [A, B]);
   await q(
@@ -117,12 +117,12 @@ describe('not switched on', () => {
     await clear('anthropic');
     await useProfile('anthropic', 'test-model-a');
     await sealInto('anthropic', ANTHROPIC_KEY);
-    const saved = process.env.PAYMENT_CREDENTIALS_KEY;
-    delete process.env.PAYMENT_CREDENTIALS_KEY;
+    const saved = process.env.AI_CREDENTIALS_KEY;
+    delete process.env.AI_CREDENTIALS_KEY;
     try {
       expect(await run()).toEqual({ ok: false, reason: 'not_switched_on' });
     } finally {
-      process.env.PAYMENT_CREDENTIALS_KEY = saved;
+      process.env.AI_CREDENTIALS_KEY = saved;
     }
   });
 

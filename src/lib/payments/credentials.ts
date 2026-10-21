@@ -30,9 +30,15 @@ type EncryptionKey = { key: Buffer; version: number };
 
 // The key the server was given, if any. 32 bytes, base64. It is never created or printed by the app.
 export function encryptionKey(env: Record<string, string | undefined> = process.env): EncryptionKey | null {
-  const raw = env.PAYMENT_CREDENTIALS_KEY ?? '';
+  return keyFromEnv(env.PAYMENT_CREDENTIALS_KEY, env.PAYMENT_CREDENTIALS_KEY_VERSION);
+}
+
+// A sealing key in the server's format: 32 bytes as base64, and a whole version from 1 (1 when unset). Shared with the
+// AI providers' key (src/lib/ai/credentials.ts), which is a different variable.
+export function keyFromEnv(rawKey: string | undefined, rawVersion: string | undefined): EncryptionKey | null {
+  const raw = rawKey ?? '';
   const key = /^[A-Za-z0-9+/=_-]{43,44}$/.test(raw) ? Buffer.from(raw, 'base64') : Buffer.alloc(0);
-  const version = Number(env.PAYMENT_CREDENTIALS_KEY_VERSION ?? '1');
+  const version = Number(rawVersion ?? '1');
   return key.length === 32 && Number.isInteger(version) && version >= 1 ? { key, version } : null;
 }
 

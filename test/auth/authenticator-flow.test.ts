@@ -37,12 +37,21 @@ vi.mock('@/lib/auth/db', async (importOriginal) => {
   };
 });
 
-import { completeEmailStep, loginWithEmailCode, passwordLogin, resetPasswordWithCode } from '@/lib/auth/account';
+import { changePassword, completeEmailStep, loginWithEmailCode, passwordLogin, resetPasswordWithCode } from '@/lib/auth/account';
 import { signAccessToken, signDeviceToken, signPendingToken } from '@/lib/auth/jwt';
-import { ACCESS_COOKIE, AUTHENTICATOR_COOKIE, DEVICE_COOKIE, PENDING_COOKIE } from '@/lib/auth/cookies';
+import { trustDevice } from '@/lib/auth/devices';
+import { ACCESS_COOKIE, AUTHENTICATOR_COOKIE, DEVICE_COOKIE, KEEP_COOKIE, PENDING_COOKIE, REFRESH_COOKIE } from '@/lib/auth/cookies';
 import { authenticatorFriendlyName } from '@/lib/auth/authenticator-rules';
 import { POST as loginRoute } from '@/app/api/auth/login/route';
 import { POST as emailStepRoute } from '@/app/api/auth/email-step/route';
+import { POST as codeVerifyRoute } from '@/app/api/auth/code/verify/route';
+import { POST as forgetThisDeviceRoute } from '@/app/api/auth/device/forget/route';
+import { GET as devicesRoute, POST as forgetDeviceRoute } from '@/app/api/auth/devices/route';
+import { POST as logoutAllRoute } from '@/app/api/auth/logout-all/route';
+import { POST as stepUpRoute } from '@/app/api/auth/step-up/route';
+import { POST as impersonateStart } from '@/app/api/control/impersonate/start/route';
+import { STEP_UP_COOKIE, STEP_UP_TTL_SECONDS, requireStepUp } from '@/lib/auth/step-up';
+import { signStepUpToken } from '@/lib/auth/jwt';
 import { POST as mfaVerifyRoute } from '@/app/api/auth/mfa/verify/route';
 import { POST as signInSetupStart } from '@/app/api/auth/mfa/setup/start/route';
 import { POST as signInSetupVerify } from '@/app/api/auth/mfa/setup/verify/route';
@@ -183,13 +192,15 @@ describe('C96: what follows the password', () => {
   const login = (identifier: string, password: string, cookies: Record<string, string> = {}) =>
     loginRoute(post('/api/auth/login', { identifier, password }, cookies));
 
-  it('an authenticator account: password, then its code only; no email is sent, remembered device or not', async () => {
+  it('an authenticator account: password, then its code only; no email is sent, untrusted or trusted only by email', async () => {
     for (const role of ['super_admin', 'principal']) {
       fake.reset();
       const user = fake.addUser({ email: `${role}@test.invalid`, password: PASSWORD, role });
       const factor = fake.addVerifiedFactor(user.id);
-      const device = await signDeviceToken(user.id, user.token_version, 3600);
-      for (const cookies of [{}, { [DEVICE_COOKIE]: device }] as Record<string, string>[]) {
+      const byEmail = (await trustDevice(user.id, 'email', null)).token;
+      // A token with no trusted row behind it (forged with the right key, or from before F1) counts for nothing.
+      const rowless = await signDeviceToken(user.id, user.token_version, '00000000-0000-4000-8000-0000000000d1', 3600);
+      for (const cookies of [{}, { [DEVICE_COOKIE]: byEmail }, { [DEVICE_COOKIE]: rowless }] as Record<string, string>[]) {
         const res = await login(user.email, PASSWORD, cookies);
         expect(await res.json()).toEqual({ status: 'mfa_required' });
         const pending = { [PENDING_COOKIE]: res.cookies.get(PENDING_COOKIE)!.value };
@@ -220,8 +231,8 @@ describe('C96: what follows the password', () => {
   it('a remembered device skips the emailed code for staff, never for a platform admin without an authenticator', async () => {
     const teacher = fake.addUser({ email: 'teacher@test.invalid', password: PASSWORD, role: 'teacher' });
     const admin = fake.addUser({ email: 'admin@test.invalid', password: PASSWORD, role: 'super_admin' });
-    const teacherDevice = { [DEVICE_COOKIE]: await signDeviceToken(teacher.id, teacher.token_version, 3600) };
-    const adminDevice = { [DEVICE_COOKIE]: await signDeviceToken(admin.id, admin.token_version, 3600) };
+    const teacherDevice = { [DEVICE_COOKIE]: (await trustDevice(teacher.id, 'email', null)).token };
+    const adminDevice = { [DEVICE_COOKIE]: (await trustDevice(admin.id, 'email', null)).token };
     expect((await (await login(teacher.email, PASSWORD, teacherDevice)).json()).status).toBe('no_memberships');
     expect(await (await login(admin.email, PASSWORD, adminDevice)).json()).toMatchObject({ status: 'email_step', setupNext: true });
     expect(fake.sentCodes).toEqual([admin.email]);
@@ -353,7 +364,8 @@ describe('(5) founder tools: remove another platform admin’s authenticator, ne
     const other = fake.addUser({ email: 'other@test.invalid', password: PASSWORD, role: 'super_admin' });
     const founderFactor = fake.addVerifiedFactor(founder.id);
     fake.addVerifiedFactor(other.id);
-    const cookies = await accessCookie(founder);
+    // The founder stepped up in the last 15 minutes (F1-1b).
+    const cookies = { ...(await accessCookie(founder)), [STEP_UP_COOKIE]: await signStepUpToken(founder.id, founder.token_version, STEP_UP_TTL_SECONDS) };
     const act = (userId: string) =>
       founderAction(post(`/api/control/users/${userId}/account-action`, { action: 'remove_authenticator' }, cookies), { params: { userId } });
 
@@ -378,5 +390,209 @@ describe('(5) founder tools: remove another platform admin’s authenticator, ne
 
     // Their next sign-in: password, then the emailed code, then set-up.
     await signInToSetupStep(other);
+  });
+});
+
+describe('F1-1: trust this browser for 30 days, and keep me signed in', () => {
+  const UA = 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36';
+  const withUa = (req: NextRequest) => (req.headers.set('user-agent', UA), req);
+  const login = (identifier: string, cookies: Record<string, string> = {}, extra: Record<string, unknown> = {}) =>
+    loginRoute(withUa(post('/api/auth/login', { identifier, password: PASSWORD, ...extra }, cookies)));
+  // Password, then the authenticator with "Trust this browser" ticked: the browser's trust token.
+  async function trustedAdmin() {
+    const user = fake.addUser({ email: `admin-${fake.users.size}@test.invalid`, password: PASSWORD, role: 'super_admin' });
+    const factor = fake.addVerifiedFactor(user.id);
+    const first = await login(user.email);
+    expect(await first.json()).toEqual({ status: 'mfa_required' });
+    const pending = { [PENDING_COOKIE]: first.cookies.get(PENDING_COOKIE)!.value };
+    const done = await mfaVerifyRoute(withUa(post('/api/auth/mfa/verify', { code: fake.codeFor(factor), rememberDevice: true }, pending)));
+    expect((await done.json()).status).toBe('ok');
+    return { user, factor, device: { [DEVICE_COOKIE]: done.cookies.get(DEVICE_COOKIE)!.value } };
+  }
+
+  beforeEach(() => fake.reset());
+
+  it('a browser trusted after the authenticator skips it, and the emailed code, for a platform admin', async () => {
+    const { user, device } = await trustedAdmin();
+    const again = await login(user.email, device);
+    expect(await again.json()).toMatchObject({ status: 'ok', role: 'super_admin' });
+    expect(again.cookies.get(ACCESS_COOKIE)?.value).toBeTruthy();
+    expect(fake.sentCodes).toEqual([]);
+    // The account page lists it by a short name, never the whole user agent.
+    const list = await (await devicesRoute(new NextRequest('http://localhost/api/auth/devices', { headers: { cookie: Object.entries({ ...(await accessCookie(user)), ...device }).map(([k, v]) => `${k}=${v}`).join('; ') } }))).json();
+    expect(list.devices).toEqual([expect.objectContaining({ label: 'Chrome on Android', proof: 'authenticator', thisDevice: true })]);
+  });
+
+  it('without the tick box nothing is trusted; trust is never renewed by a sign-in that only got through on it', async () => {
+    const user = fake.addUser({ email: 'p@test.invalid', password: PASSWORD, role: 'principal' });
+    const factor = fake.addVerifiedFactor(user.id);
+    const first = await login(user.email);
+    const pending = { [PENDING_COOKIE]: first.cookies.get(PENDING_COOKIE)!.value };
+    const done = await mfaVerifyRoute(post('/api/auth/mfa/verify', { code: fake.codeFor(factor) }, pending));
+    expect(done.cookies.get(DEVICE_COOKIE)).toBeUndefined();
+    expect(fake.devices.size).toBe(0);
+    // An emailed sign-in code on a browser trusted after the authenticator: in, and still exactly one row.
+    const { user: admin, device } = await trustedAdmin();
+    await loginWithEmailCodeFlow(admin.email, device);
+    expect([...fake.devices.values()].filter((d) => d.user_id === admin.id)).toHaveLength(1);
+  });
+
+  async function loginWithEmailCodeFlow(email: string, cookies: Record<string, string>) {
+    await fake.client().auth.signInWithOtp({ email });
+    const res = await codeVerifyRoute(post('/api/auth/code/verify', { identifier: email, code: fake.emailedCodes.get(email), rememberDevice: true }, cookies));
+    expect((await res.json()).status).toBe('ok');
+  }
+
+  it('ends after 30 days, on "forget" (here or from the list), on a password reset or sign-out everywhere', async () => {
+    // Expired.
+    let t = await trustedAdmin();
+    for (const d of fake.devices.values()) d.expires_at = new Date(Date.now() - 1000);
+    expect(await (await login(t.user.email, t.device)).json()).toEqual({ status: 'mfa_required' });
+    // Forgotten from this browser.
+    t = await trustedAdmin();
+    await forgetThisDeviceRoute(post('/api/auth/device/forget', {}, t.device));
+    expect(await (await login(t.user.email, t.device)).json()).toEqual({ status: 'mfa_required' });
+    // Forgotten from the account page's list.
+    t = await trustedAdmin();
+    const cookies = { ...(await accessCookie(t.user)) };
+    const [row] = [...fake.devices.values()].filter((d) => d.user_id === t.user.id && !d.revoked_at);
+    expect((await forgetDeviceRoute(post('/api/auth/devices', { deviceId: row.device_id }, cookies))).status).toBe(200);
+    expect(await (await login(t.user.email, t.device)).json()).toEqual({ status: 'mfa_required' });
+    // Signed out everywhere.
+    t = await trustedAdmin();
+    expect((await logoutAllRoute(post('/api/auth/logout-all', {}, await accessCookie(t.user)))).status).toBe(200);
+    expect(await (await login(t.user.email, t.device)).json()).toEqual({ status: 'mfa_required' });
+    // The token version moved (a password reset does this): the token alone no longer counts.
+    t = await trustedAdmin();
+    fake.users.get(t.user.id)!.token_version += 1;
+    expect(await (await login(t.user.email, t.device)).json()).toEqual({ status: 'mfa_required' });
+  });
+
+  it('a password change ends every trusted browser; this session stays', async () => {
+    const t = await trustedAdmin();
+    await changePassword(t.user.id, SESSION_ID, PASSWORD, 'test-only password 2', fake.codeFor(t.factor));
+    expect(fake.sessionsRevoked.at(-1)).toEqual({ userId: t.user.id, keep: SESSION_ID });
+    expect([...fake.devices.values()].every((d) => d.revoked_at)).toBe(true);
+    const res = await loginRoute(post('/api/auth/login', { identifier: t.user.email, password: 'test-only password 2' }, t.device));
+    expect(await res.json()).toEqual({ status: 'mfa_required' });
+  });
+
+  it("another person's browser token, or one row forgotten by someone else, is refused", async () => {
+    const a = await trustedAdmin();
+    const b = await trustedAdmin();
+    expect(await (await login(b.user.email, a.device)).json()).toEqual({ status: 'mfa_required' });
+    const [rowA] = [...fake.devices.values()].filter((d) => d.user_id === a.user.id);
+    expect((await forgetDeviceRoute(post('/api/auth/devices', { deviceId: rowA.device_id }, await accessCookie(b.user)))).status).toBe(404);
+    expect(rowA.revoked_at).toBeNull();
+  });
+
+  it('keep me signed in: on by default; off, the session cookies end with the browser and the server marks the session', async () => {
+    const user = fake.addUser({ email: 'k@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const factor = fake.addVerifiedFactor(user.id);
+    const finish = async (extra: Record<string, unknown>) => {
+      const first = await login(user.email, {}, extra);
+      const keep = first.cookies.get(KEEP_COOKIE)?.value;
+      const cookies: Record<string, string> = { [PENDING_COOKIE]: first.cookies.get(PENDING_COOKIE)!.value, ...(keep ? { [KEEP_COOKIE]: keep } : {}) };
+      return mfaVerifyRoute(post('/api/auth/mfa/verify', { code: fake.codeFor(factor) }, cookies));
+    };
+    const kept = await finish({});
+    expect(kept.cookies.get(REFRESH_COOKIE)?.maxAge).toBe(30 * 24 * 60 * 60);
+    expect(fake.notPersistent).toEqual([]);
+    const notKept = await finish({ keepSignedIn: false });
+    expect(notKept.cookies.get(REFRESH_COOKIE)?.value).toBeTruthy();
+    expect(notKept.cookies.get(REFRESH_COOKIE)?.maxAge).toBeUndefined();
+    expect(notKept.cookies.get(ACCESS_COOKIE)?.maxAge).toBeUndefined();
+    expect(fake.notPersistent).toHaveLength(1);
+  });
+
+  it('no password reaches this app\'s storage: the sign-in leaves none in a cookie, a trusted row or an audit row', async () => {
+    const { user } = await trustedAdmin();
+    const res = await login(user.email);
+    const stored = JSON.stringify([[...fake.devices.values()], fake.auditRows, res.cookies.getAll()]);
+    expect(stored).not.toContain(PASSWORD);
+  });
+});
+
+describe('F1-1b: step-up for sensitive actions', () => {
+  beforeEach(() => fake.reset());
+  const claimsOf = (user: FakeUser, extra: Record<string, unknown> = {}) => ({
+    sub: user.id,
+    role: 'super_admin' as never,
+    schoolId: null,
+    membershipId: null,
+    tokenVersion: user.token_version,
+    aal: 'aal2' as const,
+    sessionId: SESSION_ID,
+    impersonation: null,
+    ...extra,
+  });
+
+  it('the authenticator again: password and code give 15 minutes; a wrong or missing code gives nothing', async () => {
+    const user = fake.addUser({ email: 'su@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const factor = fake.addVerifiedFactor(user.id);
+    const cookies = await accessCookie(user);
+    const noCode = await stepUpRoute(post('/api/auth/step-up', { password: PASSWORD }, cookies));
+    expect((await noCode.json()).error).toBe('mfa_required');
+    const wrongPassword = await stepUpRoute(post('/api/auth/step-up', { password: 'not it at all', code: fake.codeFor(factor) }, cookies));
+    expect(wrongPassword.status).toBe(401);
+    expect(wrongPassword.cookies.get(STEP_UP_COOKIE)).toBeUndefined();
+    const wrongCode = await stepUpRoute(post('/api/auth/step-up', { password: PASSWORD, code: '000000' }, cookies));
+    expect((await wrongCode.json()).error).toBe('mfa_invalid_code');
+    const ok = await stepUpRoute(post('/api/auth/step-up', { password: PASSWORD, code: fake.codeFor(factor) }, cookies));
+    expect(await ok.json()).toEqual({ status: 'ok' });
+    expect(ok.cookies.get(STEP_UP_COOKIE)?.maxAge).toBe(15 * 60);
+    expect(ok.headers.get('cache-control')).toBe('no-store');
+  });
+
+  it('an account without an authenticator: password, then the emailed code', async () => {
+    const user = fake.addUser({ email: 'pr@test.invalid', password: PASSWORD, role: 'principal' });
+    const cookies = await accessCookie(user);
+    const sent = await stepUpRoute(post('/api/auth/step-up', { password: PASSWORD }, cookies));
+    expect(await sent.json()).toEqual({ status: 'email_sent' });
+    expect(fake.sentCodes).toEqual([user.email]);
+    const ok = await stepUpRoute(post('/api/auth/step-up', { password: PASSWORD, code: fake.emailedCodes.get(user.email) }, cookies));
+    expect(await ok.json()).toEqual({ status: 'ok' });
+  });
+
+  it('the proof is the person’s own, ends after 15 minutes or when the token version moves, and never in a support session', async () => {
+    const user = fake.addUser({ email: 'a@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const other = fake.addUser({ email: 'b@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const proof = await signStepUpToken(user.id, user.token_version, STEP_UP_TTL_SECONDS);
+    const ask = (claims: ReturnType<typeof claimsOf>, token?: string) => requireStepUp(post('/x', {}, token ? { [STEP_UP_COOKIE]: token } : {}), claims as never);
+    expect(await ask(claimsOf(user), proof)).toBeNull();
+    const none = await ask(claimsOf(user));
+    expect(none?.status).toBe(403);
+    expect(await none!.json()).toEqual({ error: 'step_up_required', method: 'authenticator' });
+    expect(await (await ask(claimsOf(user, { aal: 'aal1' })))!.json()).toEqual({ error: 'step_up_required', method: 'email' });
+    expect(await ask(claimsOf(other), proof)).not.toBeNull();
+    expect(await ask(claimsOf(user, { tokenVersion: user.token_version + 1 }), proof)).not.toBeNull();
+    expect(await ask(claimsOf(user, { impersonation: { impersonationId: 'i', actorUserId: other.id } }), proof)).not.toBeNull();
+    vi.useFakeTimers();
+    try {
+      vi.setSystemTime(Date.now() + 15 * 60 * 1000 + 5000);
+      expect(await ask(claimsOf(user), proof)).not.toBeNull();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('viewing as a school asks for it before anything else, and goes on once given', async () => {
+    const user = fake.addUser({ email: 'v@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const body = { targetUserId: '00000000-0000-4000-8000-0000000000e1', reason: 'checking the fee screen with the principal' };
+    const refused = await impersonateStart(post('/api/control/impersonate/start', body, await accessCookie(user)));
+    expect(await refused.json()).toEqual({ error: 'step_up_required', method: 'authenticator' });
+    const given = await impersonateStart(post('/api/control/impersonate/start', body, { ...(await accessCookie(user)), [STEP_UP_COOKIE]: await signStepUpToken(user.id, user.token_version, STEP_UP_TTL_SECONDS) }));
+    expect(given.status).not.toBe(403);
+  });
+
+  it('the founder’s actions on another person’s sign-in ask for it; signing them out does not', async () => {
+    const admin = fake.addUser({ email: 'f@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const target = fake.addUser({ email: 't@test.invalid', password: PASSWORD, role: 'teacher' });
+    const act = (action: string, extra: Record<string, string> = {}) =>
+      founderAction(post(`/api/control/users/${target.id}/account-action`, { action }, extra), { params: { userId: target.id } });
+    for (const action of ['signin_link', 'reset_link', 'temp_password', 'remove_authenticator']) {
+      expect((await (await act(action, await accessCookie(admin))).json()).error).toBe('step_up_required');
+    }
+    expect((await (await act('sign_out_all', await accessCookie(admin))).json()).error).not.toBe('step_up_required');
   });
 });

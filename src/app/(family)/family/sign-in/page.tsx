@@ -6,7 +6,7 @@ import { t, type MessageKey } from '@/lib/i18n';
 // Sign in to the Family app by a code sent to the email (M1-2, C248).
 const KEYS: MessageKey[] = [
   'fam.signIn.title', 'fam.signIn.lead', 'fam.signIn.email', 'fam.signIn.send', 'fam.signIn.sending', 'fam.signIn.codeSent', 'fam.signIn.code',
-  'fam.signIn.verify', 'fam.signIn.otherEmail', 'fam.signIn.resend', 'fam.lang.label', 'fam.lang.en', 'fam.lang.hi',
+  'fam.signIn.verify', 'fam.signIn.keep', 'fam.signIn.rememberEmail', 'fam.signIn.otherEmail', 'fam.signIn.resend', 'fam.lang.label', 'fam.lang.en', 'fam.lang.hi',
   'fam.err.email', 'fam.err.rate_limited', 'fam.err.email_unavailable', 'fam.err.wrong', 'fam.err.locked', 'fam.err.expired', 'fam.err.none',
   'fam.err.start_again', 'fam.err.network',
 ];

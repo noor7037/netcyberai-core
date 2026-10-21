@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireStepUp } from '@/lib/auth/step-up';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { saveCredentials, setGatewayAccess } from '@/lib/payments/credentials';
@@ -34,6 +35,9 @@ export async function POST(req: NextRequest, { params }: { params: { schoolId: s
     return result ? NextResponse.json(result) : NextResponse.json({ error: 'no keys are saved for that mode', code: 'no_keys' }, { status: 404 });
   }
   if (body?.action === 'credentials') {
+    // Saving a school's payment keys asks for the authenticator again (F1-1b, C260).
+    const stepUp = await requireStepUp(req, guard.claims);
+    if (stepUp) return stepUp;
     const result = await paymentsPlatform((p) => saveCredentials(p, { schoolId: params.schoolId, userId: guard.claims.sub, from: 'control', reason }, { provider: text(body.provider), mode: text(body.mode), keys: { keyId: text(body.keyId), keySecret: text(body.keySecret), webhookSecret: text(body.webhookSecret) } }));
     if (result.ok) return NextResponse.json({ saved: result.meta }, { status: 201 });
     return NextResponse.json({ error: 'the keys were not saved', code: result.reason }, { status: result.reason === 'no_encryption_key' ? 503 : 400 });

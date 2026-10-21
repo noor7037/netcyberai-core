@@ -1,5 +1,6 @@
 'use client';
 
+import { useStepUp } from '@/components/auth/StepUp';
 import { useEffect, useState } from 'react';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
@@ -33,6 +34,7 @@ const STATUS_VARIANT: Record<string, 'neutral' | 'success' | 'warning' | 'danger
 // for this school keeps using the platform default (the mock
 // provider today) -- nothing here ever blocks sending.
 export function WhatsAppConfigPanel({ canManage }: { canManage: boolean }) {
+  const { stepUpFetch } = useStepUp();
   const [config, setConfig] = useState<Config | null>(null);
   const [loading, setLoading] = useState(true);
   const [formOpen, setFormOpen] = useState(false);
@@ -52,7 +54,7 @@ export function WhatsAppConfigPanel({ canManage }: { canManage: boolean }) {
   }, []);
 
   async function submit(form: FormData) {
-    const res = await fetch('/api/app/whatsapp-config', {
+    const res = await stepUpFetch('/api/app/whatsapp-config', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
