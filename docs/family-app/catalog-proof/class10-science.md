@@ -7,7 +7,7 @@ Compare CBSE's page (left) with our list (right), then approve or reject this ve
 |---|---|
 | **CBSE document** | Science, Class X, 2026-27: linked from https://cbseacademic.nic.in/curriculum_2027.html under "Secondary Curriculum: Part - 1 (Class X)" → "Main Subjects" → "Science" |
 | **Source URL** | https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Science_SecP1_2026-27.pdf |
-| **Page in the picture** | 4, the course structure (the PDF's own page number: its first page is 1) |
+| **Page to compare** | 4, the course structure (the PDF's own page number: its first page is 1) |
 | **Fetched** | 2026-10-21, from the source URL above |
 | **Our list** | Every line of [`data/catalog/cbse-2026-27-maths-science.csv`](../../../data/catalog/cbse-2026-27-maths-science.csv) for this version: 5 units, 12 chapters, 0 topics, in the order printed. Each line links to its page in CBSE's PDF. |
 | **Hindi titles** | 0 of 17 lines. CBSE's 2026-27 curriculum page links no Hindi version of this document (checked 2026-10-21), so the app shows the English titles; nothing was translated (see [the catalog README](../../../data/catalog/README.md)). |
