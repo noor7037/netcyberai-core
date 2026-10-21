@@ -81,7 +81,7 @@ The proof sheets for the founder's approval (CBSE's course structure page beside
 
 | What | What was tried | What was found |
 |---|---|---|
-| **Classes VI, VII and VIII, Mathematics and Science** | https://cbseacademic.nic.in/curriculum_2027.html (the 2026-27 curriculum page), https://cbseacademic.nic.in/ (home page links), https://cbseacademic.nic.in/curriculum_archive.html, and the 2026-27 Secondary introduction https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Curriculum_SecP1_2026-27.pdf; a web search for a CBSE 2026-27 middle-stage curriculum | CBSE publishes curriculum documents for classes IX–XII only. For classes III–VIII the 2026-27 page links only the Computational Thinking and AI framework (`CTAI_Pri_2026-27.pdf`). No CBSE 2026-27 document lists Mathematics or Science chapters for classes VI–VIII, so there are no lines for them. Not filled from NCERT book contents or an earlier year. |
+| **Classes VI, VII and VIII, Mathematics and Science** | https://cbseacademic.nic.in/curriculum_2027.html (the 2026-27 curriculum page), https://cbseacademic.nic.in/ (home page links), https://cbseacademic.nic.in/curriculum_archive.html, and the 2026-27 Secondary introduction https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Curriculum_SecP1_2026-27.pdf; a web search for a CBSE 2026-27 middle-stage curriculum | CBSE publishes curriculum documents for classes IX–XII only. For classes III–VIII the 2026-27 page links only the Computational Thinking and AI framework (`CTAI_Pri_2026-27.pdf`). No CBSE 2026-27 document lists Mathematics or Science chapters for classes VI–VIII, so this file has no lines for them. They are in a separate file taken from NCERT's textbooks, the founder's chosen source: [`ncert-2026-27-classes-6-8-maths-science.csv`](#ncert-2026-27-classes-6-8-maths-sciencecsv) below. |
 | **X Science, Unit III "Natural Phenomena"** (page 5–6) | Read the unit's text | The unit prints five paragraphs (reflection, refraction, lenses, the eye, the prism) with no chapter names. The unit line is in the file; it has no chapter lines. |
 | **X Science, Unit IV "Effects of Current"**, first paragraph and the boxed "Motor, Electromagnetic Induction, Electric Generator" (page 6) | Read the unit's text | No chapter name is printed for these; only "Magnetic effects of current:" is named and is the unit's one chapter line. |
 | **IX Mathematics and Science "at Advanced Level"** (`MathsAd_SecP1_2026-27.pdf`, `ScienceAd_SecP1_2026-27.pdf`) | Seen on the 2026-27 page | Separate optional subjects; not in this file. |
@@ -96,6 +96,112 @@ The proof sheets for the founder's approval (CBSE's course structure page beside
 4. Check the order: `position` counts from 1 under the same parent, in printed order.
 5. A quick mechanical check used while drafting: every word of three or more letters in each `title_en` appears in
    the text of its cited page (extracted with `pdftotext -raw`); all 276 lines pass.
+
+## ncert-2026-27-classes-6-8-maths-science.csv
+
+Classes VI, VII and VIII, Mathematics and Science, academic year 2026-27, board `CBSE`. CBSE has published no 2026-27
+curriculum document for these classes (see "Gaps" above); CBSE schools teach them from NCERT's new textbooks, which
+the founder chose as the source. One line per unit, chapter and topic, worded as the NCERT book prints it. Same columns
+as the CBSE file; every line is `in_review`; `checked_on` is **2026-10-22** (the PDFs were fetched on 2026-10-21, the
+headings read and checked on 2026-10-22).
+
+| Class | Subject | Units | Chapters | Topics | NCERT book (English) | Contents PDF (page) | Chapter PDFs |
+|---|---|---|---|---|---|---|---|
+| VI | mathematics | 0 | 10 | 65 | Ganita Prakash, Grade 6 (https://ncert.nic.in/textbook.php?fegp1=0-10) | https://ncert.nic.in/textbook/pdf/fegp1ps.pdf (19) | `fegp101`–`fegp110.pdf` |
+| VI | science | 0 | 12 | 53 | Curiosity, Grade 6 (https://ncert.nic.in/textbook.php?fecu1=0-12) | https://ncert.nic.in/textbook/pdf/fecu1ps.pdf (17) | `fecu101`–`fecu112.pdf` |
+| VII | mathematics | 2 | 15 | 65 | Ganita Prakash, Grade 7, Part – I (https://ncert.nic.in/textbook.php?gegp1=0-8) and Part – II (https://ncert.nic.in/textbook.php?gegp2=0-7) | https://ncert.nic.in/textbook/pdf/gegp1ps.pdf (17), https://ncert.nic.in/textbook/pdf/gegp2ps.pdf (17) | `gegp101`–`gegp108.pdf`, `gegp201`–`gegp207.pdf` |
+| VII | science | 0 | 12 | 50 | Curiosity, Grade 7 (https://ncert.nic.in/textbook.php?gecu1=0-12) | https://ncert.nic.in/textbook/pdf/gecu1ps.pdf (19) | `gecu101`–`gecu112.pdf` |
+| VIII | mathematics | 2 | 14 | 59 | Ganita Prakash, Grade 8, Part-I (https://ncert.nic.in/textbook.php?hegp1=0-7) and Part-II (https://ncert.nic.in/textbook.php?hegp2=0-7) | https://ncert.nic.in/textbook/pdf/hegp1ps.pdf (15), https://ncert.nic.in/textbook/pdf/hegp2ps.pdf (15) | `hegp101`–`hegp107.pdf`, `hegp201`–`hegp207.pdf` |
+| VIII | science | 0 | 13 | 62 | Curiosity, Grade 8 (https://ncert.nic.in/textbook.php?hecu1=0-13) | https://ncert.nic.in/textbook/pdf/hecu1ps.pdf (19) | `hecu101`–`hecu113.pdf` |
+
+434 lines in all (4 units, 76 chapters, 354 topics). All chapter PDFs are under https://ncert.nic.in/textbook/pdf/.
+The books are the ones NCERT's textbook page (https://ncert.nic.in/textbook.php) lists for these classes and subjects
+on 2026-10-21. Every English book except the two Part II books prints "Reprint 2026-27" on its pages; Ganita Prakash
+Part – II (Grade 7, "First Edition, October 2025") and Part-II (Grade 8, "First Edition, December 2025") print no
+reprint line, and are the Part II books NCERT lists.
+
+### How the lines were taken from the books
+
+- **Units** only where a book is printed in two parts: Ganita Prakash for classes VII and VIII. Each part is a unit,
+  titled as its title page prints it (`Part – I`, `Part – II`; `Part-I`, `Part-II`), and cites that part's prelims PDF,
+  page 1. Each part numbers its chapters from 1, and so do the keys (`cbse.c7.mathematics.u2.ch01` is Part – II,
+  chapter 1). A book in one volume has no unit: its chapters have an empty `parent_key` (`cbse.c6.science.ch01`). The
+  checker, the importer and the family's Study page all accept this (`test/content/catalog-csv.test.ts`,
+  `test/content/library.test.ts`); no code change was needed.
+- **Chapters** are the chapter names on the book's contents page, in order, citing the prelims PDF at the contents
+  page. "Learning Material Sheets" and the front matter (Foreword, About the Book, notes) are not chapters.
+- **Topics** are the numbered section headings inside each chapter ("1.1 What is Mathematics?"), without the number,
+  in printed order, citing the chapter's PDF at the page where the heading is printed. Not taken: sub-sections
+  ("2.2.1 How to group plants?"), "Figure it Out", activities, examples, boxes, end-of-chapter exercises, keywords and
+  summaries, and any heading without a number. Chapters with no numbered section have no topic lines: Curiosity
+  Grade 6, chapters 1 and 9; Curiosity Grade 8, chapter 1.
+- **One number printed twice.** Ganita Prakash Grade 8 Part-I, chapter 2 prints "2.5" before both "Did You Ever
+  Wonder?" (PDF page 15) and "A Pinch of History" (page 24). Both are topics, in printed order (`.t05`, `.t06`).
+- **Wording** is the printed heading's. A heading set on two lines is joined with one space, except where the line
+  ends in the hyphen or dash of a joined name ("Baudhāyana-Pythagoras", "Virahāṅka–Fibonacci"). Ligatures in the PDF's
+  text ("Eﬀ ect") are written as letters ("Effect"). Typographic quotes, dashes and diacritics are kept as printed
+  ("Nature’s", "Right–Triangles", "Virahāṅka"); so is a space before a question mark ("…for Life to Exist ?").
+- **Capitals follow the printed page, not the PDF's text.** For nine headings the PDF's hidden text has other capitals
+  than the page shows (the book's heading style sets them in title case), for example "Natural Resources: renewable
+  and non-renewable" in the text, "Natural Resources: Renewable and Non-renewable" on the page. Each was read from the
+  page: Ganita Prakash Grade 6, 5.3 and 5.6; Curiosity Grade 6, 5.4, 6.3, 8.3, 8.4, 8.7, 11.7 and 11.8.
+- **Pages** are the cited PDF's own page numbers (its first page is 1), not the numbers printed in the book: each
+  chapter has its own PDF, and `source_url#page=source_page` opens it at the right page.
+- **Every heading was looked at.** A picture of every heading (and the line under it) was made from the PDF and
+  compared with its line. As a mechanical check, every word of three or more letters in each `title_en` appears
+  (ignoring capitals) in the text of its cited page: all 434 lines pass.
+
+### Hindi titles (`title_hi`)
+
+Every line has a Hindi title, from NCERT's Hindi editions of the same books; nothing was translated. The Hindi
+editions match the English books chapter for chapter and, within each chapter, section for section with the same
+numbers.
+
+| Class | Subject | Hindi edition (NCERT's own title) | Contents PDF (page) | Chapter PDFs |
+|---|---|---|---|---|
+| VI | mathematics | गणित प्रकाश (https://ncert.nic.in/textbook.php?fhgp1=0-10) | https://ncert.nic.in/textbook/pdf/fhgp1ps.pdf (19) | `fhgp101`–`fhgp110.pdf` |
+| VI | science | जिज्ञासा (https://ncert.nic.in/textbook.php?fhcu1=0-12) | https://ncert.nic.in/textbook/pdf/fhcu1ps.pdf (15) | `fhcu101`–`fhcu112.pdf` |
+| VII | mathematics | गणित प्रकाश, भाग 1 and भाग 2 (https://ncert.nic.in/textbook.php?ghgp1=0-8, https://ncert.nic.in/textbook.php?ghgp2=0-7) | https://ncert.nic.in/textbook/pdf/ghgp1ps.pdf (19), https://ncert.nic.in/textbook/pdf/ghgp2ps.pdf (17) | `ghgp101`–`ghgp108.pdf`, `ghgp201`–`ghgp207.pdf` |
+| VII | science | जिज्ञासा (https://ncert.nic.in/textbook.php?ghcu1=0-12) | https://ncert.nic.in/textbook/pdf/ghcu1ps.pdf (19) | `ghcu101`–`ghcu112.pdf` |
+| VIII | mathematics | गणित प्रकाश, भाग-1 and भाग-II (https://ncert.nic.in/textbook.php?hhgp1=0-7, https://ncert.nic.in/textbook.php?hhgp2=0-7) | https://ncert.nic.in/textbook/pdf/hhgp1ps.pdf (19), https://ncert.nic.in/textbook/pdf/hhgp2ps.pdf (21) | `hhgp101`–`hhgp107.pdf`, `hhgp201`–`hhgp207.pdf` |
+| VIII | science | जिज्ञासा (https://ncert.nic.in/textbook.php?hhcu1=0-13) | https://ncert.nic.in/textbook/pdf/hhcu1ps.pdf (19) | `hhcu101`–`hhcu113.pdf` |
+
+How they were taken:
+
+- The same lines as in English: the part's label from its title page, the chapter names from the contents page, and
+  the numbered section headings from each chapter's PDF. The CSV keeps one source (the English PDF); the proof sheets
+  link every Hindi title to its Hindi page as well.
+- The PDFs' hidden Hindi text is damaged (the class VII and VIII files most): letters repeated ("क्यया" for "क्या"),
+  vowel signs out of place or doubled, stray spaces inside words ("रे खा"), invisible joiners. The text was cleaned
+  the same way everywhere (joiners removed, a two-part vowel sign written as one, a repeated letter or sign removed,
+  the two stray spaces that recur closed: "कै से", "रे खा") and then **compared with a picture of every Hindi heading and contents line**; wherever the two differed, the title
+  was typed from the printed page (all 76 chapter titles, and 24 section headings; the rest matched after cleaning).
+  As a mechanical check, the consonants of each Hindi title appear in the same order in the text of its Hindi page:
+  433 of 434 pass; the one exception, "जीवाश्म ईंधन", is stored in the PDF as "र्इंधन" and printed as "ईंधन".
+- Kept as printed: "आकँड़ों" (Ganita Prakash Grade 6, chapter 4), "(Palendromic Patterns)" and the other English words
+  in brackets, "करते है?" (Curiosity Grade 8, 11.4), and the dashes and spaces around "—" and "–". In "विलेयों,
+  विलायकों और विलयनों का अद्भुत संसार" (Curiosity Grade 8, chapter 9) the halant under द is printed slightly out of
+  place; it is written in its usual place.
+
+### What is not in the file
+
+| What | Why |
+|---|---|
+| Sub-sections ("2.2.1"), activities, "Figure it Out", boxes, exercises | Not numbered section headings; the catalog has three levels (unit, chapter, topic). |
+| Topics for Curiosity Grade 6 chapters 1 and 9, and Grade 8 chapter 1 | These chapters print no numbered section heading. |
+| A picture of each contents page in the proof sheets | NCERT prints "© NCERT not to be republished" across every page, and this repository is public. The proof sheets link to the contents page in NCERT's own PDFs instead. |
+| Any NCERT text beyond titles | Titles only (`src/lib/content/catalog-csv.ts`). |
+
+### How the supervisor checks a line
+
+1. Open the line's `source_url` and go to `source_page` (the PDF's own page; the proof sheets link straight to it).
+2. Units: the part's title page. Chapters: the contents page, in that order. Topics: the numbered heading on that page
+   of the chapter's PDF, with the same words (the number itself is not in the title).
+3. Check the parent (a topic's chapter; a chapter's part, or none) and the order (`position` from 1 under the same
+   parent, in printed order).
+4. Hindi: the proof sheet's "हिं" link opens the same page of the Hindi edition.
+
+The proof sheets are in [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md).
 
 ## cbse-2026-27-classes-9-10-languages-social-science.csv
 
