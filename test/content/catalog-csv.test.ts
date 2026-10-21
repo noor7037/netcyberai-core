@@ -272,6 +272,40 @@ describe('the catalog CSV', () => {
     expect(hindi.every((l) => /[ऀ-ॿ]/.test(l.titleEn) && l.titleHi === l.titleEn)).toBe(true);
     expect(r.lines.filter((l) => l.subject !== 'hindi').every((l) => l.titleHi === null)).toBe(true);
   });
+
+  it('the committed CISCE file for ICSE classes 9 and 10 passes the same check', () => {
+    const text = readFileSync(path.resolve(__dirname, '../../data/catalog/cisce-2026-27-icse-classes-9-10.csv'), 'utf8');
+    const r = readCatalogCsv(text, '2026-10-22');
+    expect(r.problems).toEqual([]);
+    const count = (s: { units: unknown[]; chapters: unknown[]; topics: unknown[] }) => [s.units.length, s.chapters.length, s.topics.length];
+    expect(Object.fromEntries(r.syllabi.map((s) => [`${s.board} ${s.classLevel} ${s.subject} ${s.academicYear}`, count(s)]))).toEqual({
+      'CISCE 9 physics 2026-27': [0, 8, 18],
+      'CISCE 10 physics 2026-27': [0, 6, 21],
+      'CISCE 9 chemistry 2026-27': [0, 8, 24],
+      'CISCE 10 chemistry 2026-27': [0, 9, 37],
+      'CISCE 9 biology 2026-27': [0, 7, 17],
+      'CISCE 10 biology 2026-27': [0, 6, 22],
+      'CISCE 9 mathematics 2026-27': [0, 8, 28],
+      'CISCE 10 mathematics 2026-27': [0, 7, 17],
+      'CISCE 9 history 2026-27': [2, 11, 7],
+      'CISCE 10 history 2026-27': [2, 6, 19],
+      'CISCE 9 geography 2026-27': [1, 7, 17],
+      'CISCE 10 geography 2026-27': [2, 11, 37],
+      'CISCE 9 english 2026-27': [2, 2, 10],
+      'CISCE 10 english 2026-27': [2, 2, 10],
+      'CISCE 9 hindi 2026-27': [2, 4, 13],
+      'CISCE 10 hindi 2026-27': [2, 4, 13],
+    });
+    // Class IX (examination year 2028) from CISCE's "ICSE 2028" documents, Class X (examination year 2027) from its
+    // "ICSE 2027" documents; every line names a PDF on cisce.org.
+    expect(r.lines.every((l) => l.sourceUrl.startsWith('https://cisce.org/wp-content/uploads/'))).toBe(true);
+    expect(new Set(r.lines.filter((l) => l.classLevel === 9).map((l) => l.sourceUrl.split('/uploads/')[1].slice(0, 4)))).toEqual(new Set(['2026']));
+    expect(r.lines.filter((l) => l.classLevel === 10 && l.subject !== 'hindi').every((l) => l.sourceUrl.includes('/uploads/2025/03/'))).toBe(true);
+    // CISCE prints every document in English, the Hindi lessons too (in Roman letters): no Hindi title is filled in, and
+    // nothing was transliterated or translated.
+    expect(r.lines.filter((l) => l.subject === 'hindi').length).toBeGreaterThan(0);
+    expect(r.lines.every((l) => l.titleHi === null && !/[ऀ-ॿ]/.test(l.titleEn))).toBe(true);
+  });
 });
 
 describe('the diff between two versions, by stable key', () => {
