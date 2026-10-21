@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { TRACK_RULES, forChild, lessonForChild, lessonStars, scoreItems, type CheckItem } from '@/lib/family/english/course';
-import { courseLessons, lessonOfItem, lessonStates, mayOpen } from '@/lib/family/english/progress';
+import { addDays, courseLessons, lessonOfItem, lessonStates, mayOpen } from '@/lib/family/english/progress';
 import { englishError, withEnglish, type EnglishCtx } from '@/lib/family/english/request';
 import {
   applyReviews,
@@ -15,8 +15,8 @@ import {
   recordTry,
   reviewItem,
   reviewRows,
-  settingNumber,
 } from '@/lib/family/english/store';
+import { setting } from '@/lib/family/learning';
 import { jsonBody } from '@/lib/family/request';
 
 // One lesson (docs/family-app/12 §4, §7, C274).
@@ -29,7 +29,7 @@ const KEY = /^[a-d]\.u[0-9]{2}\.l[1-5]$/;
 
 async function gate(ctx: EnglishCtx, key: string) {
   const done = await lessonsDone(ctx.db, ctx.child.childId, ctx.track);
-  const perDay = await settingNumber(ctx.db, 'family.english.new_lessons_per_day', 2);
+  const perDay = await setting(ctx.db, 'family.english.new_lessons_per_day', 2);
   const states = lessonStates(ctx.track, doneSet(done), ctx.enrolment.placedUnit, await newLessonsOn(ctx.db, ctx.child.childId, ctx.today), perDay);
   return { done, states, state: states[key] };
 }
@@ -51,7 +51,8 @@ export async function GET(req: NextRequest, { params }: { params: { key: string 
     const lesson = (await lessonBodies(ctx.db, ctx.versionId, [key])).get(key);
     if (!lesson) return englishError('not_found', 404);
     const warmup = await warmupItems(ctx, key);
-    return NextResponse.json({ track: ctx.track, state, lesson: lessonForChild(lesson), warmup: warmup.map(forChild) });
+    // `day` comes back with the answers: a warm-up word's options are fixed by the day it was shown.
+    return NextResponse.json({ track: ctx.track, state, day: ctx.today, lesson: lessonForChild(lesson), warmup: warmup.map(forChild) });
   });
 }
 
@@ -63,11 +64,13 @@ export async function POST(req: NextRequest, { params }: { params: { key: string
   const warmupAnswers = body.warmup && typeof body.warmup === 'object' && !Array.isArray(body.warmup) ? (body.warmup as Record<string, unknown>) : {};
   return withEnglish(req, async (ctx) => {
     if (!key.startsWith(`${ctx.track}.`)) return englishError('not_found', 404);
-    const { state } = await gate(ctx, key);
+    const { done, state } = await gate(ctx, key);
     if (state === 'rest') return englishError('rest', 403);
     if (!mayOpen(state)) return englishError('locked', 403);
     const lesson = (await lessonBodies(ctx.db, ctx.versionId, [key])).get(key);
     if (!lesson) return englishError('not_found', 404);
+    // The day the warm-up was shown: today, or yesterday for a lesson opened before midnight.
+    const shown = body.day === addDays(ctx.today, -1) ? addDays(ctx.today, -1) : ctx.today;
     const reads = TRACK_RULES[ctx.track].reads;
     if (!reads && body.done !== true) return englishError('bad_request', 400);
 
@@ -75,14 +78,15 @@ export async function POST(req: NextRequest, { params }: { params: { key: string
     const scored = scoreItems(lesson.check, answers);
     const score = reads ? scored.score : 100;
     const tr = await recordTry(ctx.db, ctx.accountId, ctx.child.childId, key, score, (tryNo) => lessonStars(ctx.track, score, tryNo), ctx.today);
-    if (tr.newlyDone) await countNewLesson(ctx.db, ctx.accountId, ctx.child.childId, ctx.today);
+    // Only the next lesson in order is new; revising a placed unit's lesson never uses the day's new lessons.
+    if (tr.newlyDone && state === 'open') await countNewLesson(ctx.db, ctx.accountId, ctx.child.childId, ctx.today);
 
     // The warm-up: only items that are the child's own and due today are scored.
     const warmKeys = Object.keys(warmupAnswers).filter((k) => k.startsWith(`${ctx.track}.`)).slice(0, 6);
     const due = await reviewRows(ctx.db, ctx.child.childId, warmKeys);
-    const dueKeys = warmKeys.filter((k) => (due.get(k)?.due_on ?? '9999-12-31') <= ctx.today);
+    const dueKeys = warmKeys.filter((k) => (due.get(k)?.due_on ?? '9999-12-31') <= shown);
     const bodies = await lessonBodies(ctx.db, ctx.versionId, [...new Set(dueKeys.map(lessonOfItem))]);
-    const warmItems = dueKeys.map((k) => (bodies.get(lessonOfItem(k)) ? reviewItem(bodies.get(lessonOfItem(k))!, k, ctx.today) : null)).filter((x): x is CheckItem => x !== null);
+    const warmItems = dueKeys.map((k) => (bodies.get(lessonOfItem(k)) ? reviewItem(bodies.get(lessonOfItem(k))!, k, shown) : null)).filter((x): x is CheckItem => x !== null);
     const warm = scoreItems(warmItems, warmupAnswers);
 
     // Review boxes: every answered item moves; a done lesson's new words enter the boxes.
@@ -93,7 +97,12 @@ export async function POST(req: NextRequest, { params }: { params: { key: string
 
     const order = courseLessons(ctx.track);
     const next = order[order.indexOf(key) + 1] ?? null;
-    const after = next ? (await gate(ctx, next)).state : null;
+    // The next lesson's state from what is already read, with this lesson's result added.
+    const perDay = await setting(ctx.db, 'family.english.new_lessons_per_day', 2);
+    const nowDone = new Set(doneSet(done));
+    if (tr.stars > 0) nowDone.add(key);
+    const newToday = await newLessonsOn(ctx.db, ctx.child.childId, ctx.today);
+    const after = next ? lessonStates(ctx.track, nowDone, ctx.enrolment.placedUnit, newToday, perDay)[next] : null;
     return NextResponse.json({
       score,
       stars: tr.stars,

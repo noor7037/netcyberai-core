@@ -36,6 +36,7 @@ describe('the committed lesson files', () => {
     it(`track ${track}: a finished track has 18 units in order and its assessments, with every key unique`, () => {
       const hasAssessments = existsSync(path.join(DATA, track, 'assessments.json'));
       if (files.length < UNITS_PER_TRACK && !hasAssessments) return; // still being written
+      expect(hasAssessments, `${track}/assessments.json`).toBe(true);
       expect(files).toEqual(Array.from({ length: UNITS_PER_TRACK }, (_, i) => `unit-${String(i + 1).padStart(2, '0')}.json`));
       expect(checkTrack(track, files.map((f) => read(track, f)), read(track, 'assessments.json'))).toEqual([]);
     });

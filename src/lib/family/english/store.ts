@@ -7,12 +7,6 @@ import { lessonOfItem, nextReview, wordReviewItem, type ReviewRow } from './prog
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
 
-export async function settingNumber(db: Db, key: string, fallback: number): Promise<number> {
-  const { rows } = await db.query(`select value from control.settings where key = $1`, [key]);
-  const v = Number(rows[0]?.value);
-  return Number.isFinite(v) && v >= 0 ? v : fallback;
-}
-
 // ---- the course (content) ----
 
 export async function publishedVersion(db: Db, track: Track): Promise<string | null> {
@@ -124,11 +118,13 @@ export async function recordTry(
   starsFor: (tryNo: number) => number,
   today: string
 ): Promise<{ newlyDone: boolean; tryNo: number; stars: number }> {
-  const prev = await db.query(`select tries, done_on::text as done_on from family.english_lessons_done where child_id = $1 and lesson_key = $2`, [childId, key]);
+  // The row is locked for this transaction, so a second submit of the same lesson waits and then sees it done.
+  const prev = await db.query(`select tries, done_on::text as done_on from family.english_lessons_done where child_id = $1 and lesson_key = $2 for update`, [childId, key]);
+  const existed = prev.rows.length > 0;
   const wasDone = Boolean(prev.rows[0]?.done_on);
   const tryNo = Number(prev.rows[0]?.tries ?? 0) + 1;
   const stars = starsFor(tryNo);
-  await db.query(
+  const { rows } = await db.query(
     `insert into family.english_lessons_done (account_id, child_id, lesson_key, tries, best_score, stars, done_on, last_on)
      values ($1, $2, $3, 1, $4::smallint, $5::smallint, case when $5::smallint > 0 then $6::date end, $6::date)
      on conflict (child_id, lesson_key) do update set
@@ -136,10 +132,13 @@ export async function recordTry(
        best_score = greatest(family.english_lessons_done.best_score, excluded.best_score),
        stars = greatest(family.english_lessons_done.stars, excluded.stars),
        done_on = coalesce(family.english_lessons_done.done_on, excluded.done_on),
-       last_on = excluded.last_on`,
+       last_on = excluded.last_on
+     returning (xmax = 0) as inserted`,
     [accountId, childId, key, score, stars, today]
   );
-  return { newlyDone: stars > 0 && !wasDone, tryNo, stars };
+  // A row inserted by a submit running at the same moment (not seen above, not inserted here) was counted by that one.
+  const inserted = rows[0]?.inserted === true;
+  return { newlyDone: stars > 0 && (inserted || (existed && !wasDone)), tryNo, stars };
 }
 
 export async function countNewLesson(db: Db, accountId: string, childId: string, today: string): Promise<void> {

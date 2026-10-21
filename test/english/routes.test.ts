@@ -189,6 +189,8 @@ describe('assessments, settings and the report', () => {
     ).json();
     expect(res).toMatchObject({ total: 100, placedUnit: 7, scores: { listening: 100, words: 100, grammar: 100, reading: 100, speaking: 100 } });
     expect((await db.pg.query(`select placed_unit from family.english_enrolments where child_id = $1`, [CHILD])).rows[0].placed_unit).toBe(7);
+    // The baseline is taken once.
+    expect((await R.assessment.POST(post('/api/family/english/assessments/day0', { answers: {} }), { params: { kind: 'day0' } })).status).toBe(409);
   });
 
   it('the settings and the report need parent mode; the track moves one step, once', async () => {

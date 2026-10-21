@@ -100,6 +100,7 @@ create policy english_assessments_family_only on content.english_assessments as 
   using (exists (select 1 from content.english_versions v where v.version_id = english_assessments.version_id)) with check (false);
 
 grant select on content.english_versions, content.english_units, content.english_lessons, content.english_assessments to family_app;
+-- Control (nca_super bypasses row security; these grants are its only rights here, as for the catalog).
 grant select, insert, update on content.english_versions, content.english_units, content.english_lessons, content.english_assessments to nca_super;
 grant delete on content.english_units, content.english_lessons, content.english_assessments to nca_super;
 

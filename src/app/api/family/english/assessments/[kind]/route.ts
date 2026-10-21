@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { forChild, scoreItems, type AssessmentKind } from '@/lib/family/english/course';
 import { assessmentOpen, assessmentTotal, placedUnitFor, speakingScore, type SkillScores } from '@/lib/family/english/progress';
 import { englishError, withEnglish } from '@/lib/family/english/request';
-import { assessmentBody, doneSet, lessonsDone, updateEnrolment, writeAssessment } from '@/lib/family/english/store';
+import { assessmentBody, assessmentResults, doneSet, lessonsDone, updateEnrolment, writeAssessment } from '@/lib/family/english/store';
 import { jsonBody } from '@/lib/family/request';
 
 // The day-0, day-45 and day-90 checks (docs/family-app/12 §3, §8, C274). GET: the items without answers and the
@@ -37,6 +37,8 @@ export async function POST(req: NextRequest, { params }: { params: { kind: strin
   return withEnglish(req, async ({ db, accountId, child, track, versionId, today }) => {
     const finished = doneSet(await lessonsDone(db, child.childId, track));
     if (!assessmentOpen(track, kind, finished)) return englishError('locked', 403);
+    // Day 0 is the baseline and sets the placement: it is taken once.
+    if (kind === 'day0' && (await assessmentResults(db, child.childId)).some((r) => r.kind === 'day0')) return englishError('already_taken', 409);
     const a = await assessmentBody(db, versionId, kind);
     if (!a) return englishError('not_found', 404);
     const scores: SkillScores = { listening: null, words: null, grammar: null, reading: null, speaking: null };
