@@ -17,7 +17,7 @@ The course structure table names the units. The chapters and their numbered item
 <table>
 <tr><th>CBSE, page 3</th><th>Our list</th></tr>
 <tr>
-<td width="50%" valign="top"><img src="class10-mathematics-p3.png" alt="CBSE Class X Mathematics curriculum 2026-27, page 3: the course structure" width="100%"></td>
+<td width="50%" valign="top"><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1X_2026-27.pdf#page=3">Open CBSE's page 3</a>: the course structure. (CBSE's page is not copied here: the document is CBSE's, so it is opened at its source.)</td>
 <td width="50%" valign="top">
 
 <ol>

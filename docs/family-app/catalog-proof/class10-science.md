@@ -17,7 +17,7 @@ The course structure table names the units. The chapter names are printed in the
 <table>
 <tr><th>CBSE, page 4</th><th>Our list</th></tr>
 <tr>
-<td width="50%" valign="top"><img src="class10-science-p4.png" alt="CBSE Class X Science curriculum 2026-27, page 4: the course structure" width="100%"></td>
+<td width="50%" valign="top"><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Science_SecP1_2026-27.pdf#page=4">Open CBSE's page 4</a>: the course structure. (CBSE's page is not copied here: the document is CBSE's, so it is opened at its source.)</td>
 <td width="50%" valign="top">
 
 <ol>
