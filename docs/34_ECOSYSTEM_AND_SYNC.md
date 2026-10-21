@@ -1,6 +1,6 @@
 # 34 — One ecosystem: how every app connects, syncs and is run
 
-**Status:** plan (C230-M, 2026-10-21). **Asked by the founder:** how Control, the principal and school dashboard, the
+**Status:** plan (C230-M, revised by C230-N, 2026-10-21). **Asked by the founder:** how Control, the principal and school dashboard, the
 Teacher app and the parent and student app connect; what is managed and monitored; how everything stays in sync; and
 how the apps reach phones (Android first).
 
@@ -120,16 +120,17 @@ Credentials for all of these are sealed in Control → Integrations (`family-app
 
 ## 8. Android first, the web always, iOS later
 
-**How the Android app is made:**
-- The Family app is packaged as a Trusted Web Activity: an Android app that opens our web app full screen through
-  Chrome. It is listed on Google Play as its own app.
-- **Why:**
-  - one codebase;
-  - every fix reaches phones without a store release;
-  - Control's switches act at once;
-  - the install stays small for budget phones.
-- **A native shell** (Capacitor) is used only when a feature truly needs native code (for example §9 step 2). The
-  package name and signing key carry over, so the Play listing stays the same.
+**How the Android app is made (revised by C230-N):**
+- The Family app is a **native Android shell (Capacitor)** that shows our live web app, plus native modules where the
+  web cannot reach: the Focus Lock (§9), and later push and camera.
+- It is listed on Google Play as its own app.
+- **Why a native shell, not a Trusted Web Activity:**
+  - the Focus Lock must live in the same app, because most pilot children use a parent's phone;
+  - a Trusted Web Activity runs inside Chrome, and the lock may need to block browsers (YouTube opens in a browser
+    too).
+- **What updates how:**
+  - the screens still load from our deployment, so web fixes and Control switches reach phones at once;
+  - only native code (the lock, push) needs a Play release.
 - **The Teacher app** gets its own listing later, from the same deployment, when a pilot school needs it.
 
 **Before the Play listing:**
@@ -141,49 +142,79 @@ Credentials for all of these are sealed in Control → Integrations (`family-app
 4. The target audience. It includes children, so Google's Families policy applies: content suitable for children,
    and no advertising SDKs (we have none).
 5. Content rating.
-6. Digital Asset Links on our domain.
-7. Play App Signing, with the upload key kept off the repository.
-8. Tests on budget phones.
+6. Play App Signing, with the upload key kept off the repository.
+7. For the Focus Lock (§9): the monitoring declaration (`isMonitoringTool` = `child_monitoring`), and the
+   permission declarations Play asks for.
+8. Tests on budget phones of the brands pilot families use.
 
 **Order on Play:**
 - M1: internal test (the founder's phone).
-- M2–M3: closed test with pilot families, who install from Play by invitation.
+- M2 and M2b: closed test with pilot families, who install from Play by invitation.
 - M7: production listing, after the launch gates.
 
 **iOS:**
 - The web app works in Safari today.
 - An App Store app needs real native value: Apple rejects repackaged websites (guideline 4.2), and the Kids category
-  has its own rules. It is planned after the Android evidence, not assumed to be free.
+  has its own rules.
+- The Focus Lock on iPhone needs Apple's Family Controls entitlement, granted on review.
+- iOS is planned after the Android evidence, not assumed to be free.
 
 **Scale:**
 - 15,000 or more installs fit the current hosting.
 - The cost that grows is AI per family. Daily caps and the shared reviewed cache hold it (`family-app/10` §4.3).
 - Device variety is handled by the performance budgets (`family-app/09` §4) and a budget-phone test set.
 
-## 9. Learn-to-unlock (reopened by the founder, 2026-10-21)
+## 9. Focus Lock: learn to unlock (founder, 2026-10-21, C230-N)
 
-**Decision:** designed now, built in two steps.
+**The founder's facts:** most pilot children use a parent's phone, which stays at home. The lock must work on a
+shared phone and on a child's own phone.
 
-**Step 1 (M2, web):**
-- the child's daily learning goal;
-- a "learning done" signal;
-- an "ask for screen time" hand-off to the phone's own parental controls (Google Family Link: app limits and bonus
-  time);
-- an **unlock-credit contract** in our API, so a native companion can plug in later without redesign.
+**Decision:** built as milestone **M2b**, right after M2. M2 delivers what the lock depends on: the daily study plan
+and completion that our server has verified.
 
-**Step 2 (a native Android companion that locks other apps) waits for four gates:**
-1. A lawyer's opinion. DPDP section 9 bars behavioural monitoring of children, and an app watching which apps a child
-   opens is close to it.
-2. Google Play's approval of the permissions it needs. The Accessibility API policy was tightened from 28 January
-   2026, and parental-control use needs a declaration and review.
-3. Pilot evidence that step 1 is not enough.
-4. Evidence on how many pilot children have **their own phone**.
+### 9.1 The rules (the founder's eight, made exact)
 
-**Why not now:**
-- **Many families share one phone.** Locking apps would lock the parent's own WhatsApp and UPI.
-- **Phone makers' battery savers stop background blockers.** This happens on many budget brands and means a heavy
-  support load.
-- **Family Link already does app limits for free.** Our value is the learning that earns the time, not the lock.
+| # | Rule | How it works |
+|---|---|---|
+| 1 | Only the parent sets the PIN | A 6-digit **parent PIN**, set when the family signs up (M1). It also guards the parent area (settings, consents, children, plan, deleting the account), so on a shared phone the child never reaches parent controls. It is stored only as a salted hash. Only the parent can reset it, with a code sent to the parent's email |
+| 2 | Apps unlock only when today's study is done | The server says "today's plan is complete" only from checked answers (`family-app/02` §4), never from pages opened. Locked apps then open for the rest of that day's lock window, up to a limit the parent may set. Work done offline counts once it syncs |
+| 3, 6 | Blocked with the pending list | Opening a locked app too early shows our screen instead. It lists the chapters, topics and checks still pending, with a button straight to the next one |
+| 4 | Calls always work | The phone dialler, contacts, messages and emergency calls are never locked. Android always allows emergency calls. The parent chooses at set-up whether WhatsApp stays open: on a shared phone it is often the family's main calling line |
+| 5 | Only entertainment is locked, at set times | The parent picks the apps from the phone's own list, starting from suggestions (social media, games, YouTube, video, browsers), and sets the lock times (for example weekdays 4–9 pm). Our own app, and educational apps the parent marks, stay open |
+| 7 | Parent override | The parent PIN opens a parent session. It **re-locks by itself** after a time the parent sets (30 minutes by default) or when the screen turns off, so a phone handed back to the child is locked again |
+| 8 | No bypass or guessing | Escalating wait times after 5 wrong PINs; no hints; the PIN is never shown. During lock times, Settings and the Play Store are locked too, so the lock cannot be switched off or uninstalled without the PIN; uninstalling also needs the PIN. **Tamper alerts:** if a permission is revoked, the app is force-stopped, the phone's clock is changed or it starts in safe mode, the parent is told |
+
+### 9.2 What is feasible, and what is not
+
+| Part | Feasible? | How |
+|---|---|---|
+| Seeing which app is in front, and covering it | Yes | Android's usage-access permission, plus our block screen drawn over the app; both granted by the parent in Settings at set-up, with guided steps |
+| Running all day on budget phones | Yes, with set-up steps | A visible "NetCyberAI Focus is on" notification, as Android and Play require. Per brand, a guided step to allow autostart and switch off battery saving for our app, because several budget brands stop background apps |
+| Rules 1–7 | Yes | As in §9.1 |
+| Rule 8 as "impossible to bypass" | **No** | No ordinary Android app can be made impossible to remove: a determined child can use safe mode or reset the phone. Only a phone set up as a managed device can, and that suits companies, not family phones. **What we promise:** hard to bypass, every bypass detected and reported to the parent, and nothing changeable without the PIN |
+| iPhone | Not now | It needs Apple's Family Controls entitlement (§8) |
+
+### 9.3 Privacy, law and store rules
+
+- **On the phone only:** the list of apps, what is opened and when never leave the phone. Our server only knows what
+  it already knows ("today's plan is done"). This keeps us away from DPDP section 9's bar on tracking and behavioural
+  monitoring of children.
+- **Lawyer:** the lawyer confirms the design before the **public** listing (gate L2). The closed pilot may start
+  before that, with written consent from pilot parents.
+- **Play:**
+  - the monitoring declaration (`isMonitoringTool` = `child_monitoring`);
+  - a clear disclosure before set-up;
+  - the persistent notification;
+  - no hidden icon;
+  - permission declarations as Play requires.
+  No Accessibility API unless usage access proves unreliable; if it is needed, Play's declaration comes first.
+
+### 9.4 Children's sign-in
+
+- **On a shared phone (most pilot families):** the child does not sign in. The parent signs in once. The app opens in
+  child mode, with the child switcher; the parent area needs the parent PIN.
+- **On a child's own phone (M2b):** the parent's app shows a one-time link code. The child's phone enters it and runs
+  in child mode for that one child. Parent settings on that phone still need the PIN.
 
 ## 10. Reviewers (founder, 2026-10-21)
 
@@ -211,7 +242,7 @@ Credentials for all of these are sealed in Control → Integrations (`family-app
    - Control → Apps v1;
    - the shared AI platform.
    The school web and Teacher app need no change for M1.
-3. **Then:** the Android internal test → M2 → M3 (the school connected: the sync matrix of §6 becomes visible in the
+3. **Then:** the Android internal test → M2 → M2b Focus Lock (§9) → M3 (the school connected: the sync matrix of §6 becomes visible in the
    Family app, and push arrives) → M4–M7.
 4. **Planned school-side features** join the school roadmap (`16`) when the founder lists them. Each is checked
    against §5 and §6 so that it reaches linked families with no extra work.

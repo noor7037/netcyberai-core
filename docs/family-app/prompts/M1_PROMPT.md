@@ -1,12 +1,12 @@
 CONTEXT: From the supervisor (independent CTO and principal architect) to the Claude Code build lead, in a fresh window on the founder's Mac, for Noor, a non-technical founder. This builds Family App milestone M1, "the signature slice", which also builds the platform parts every app needs (Control → AI, Control → Content, Control → Apps v1), as a stack of PRs on base main, and stops after M1. Work by CLAUDE.md, challenge this brief with evidence where it is wrong, and report in plain words, founder actions first.
 
 START
-- Work in the netcyberai-core folder. Run `git fetch origin main` and start from the latest main; it includes C230-L and C230-M.
+- Work in the netcyberai-core folder. Run `git fetch origin main` and start from the latest main; it includes C230-L, C230-M and C230-N.
 - You are the only builder. If another window or tool is working in this repository, stop and tell the founder.
 
 READ ONCE
-- CLAUDE.md, and Decision Log C230-H to C230-M.
-- docs/34_ECOSYSTEM_AND_SYNC.md (how every app connects; Android; reviewers).
+- CLAUDE.md, and Decision Log C230-H to C230-N.
+- docs/34_ECOSYSTEM_AND_SYNC.md (how every app connects; the Android shell; the Focus Lock rules that M1's parent PIN starts; reviewers).
 - docs/family-app:
   - 00;
   - 02 §4;
@@ -40,6 +40,7 @@ SCOPE: the M1 row of 07 §1, as a stack. Database and auth PRs stay under about 
      - a signed family session (reuse src/lib/auth/jwt.ts signing) with its own cookie and claims type;
      - a staff session is refused on family APIs, and the reverse (tests).
    - Consent: an explicit study_core consent tap comes before any processing.
+   - The parent PIN (docs/34 §9.1 rule 1): 6 digits, set at sign-up, stored only as a salted hash, with escalating waits after 5 wrong tries and no hints; reset only by a code to the parent's email. It guards the parent area (settings, consents, children, deleting the account). The app opens in child mode, because most pilot children use a parent's phone.
    - Add a child: first name only, class 6–10, CBSE, language (English or Hindi), explanation style (English, Hindi or Hinglish), state (no default).
    - The child switcher. Many families share one phone, so switching child is one tap.
    - Settings and privacy: see and delete answers; delete the account, which erases every family row.
@@ -80,13 +81,13 @@ SCOPE: the M1 row of 07 §1, as a stack. Database and auth PRs stay under about 
    - Hindi complete.
 7. M1-7 Control → Apps v1 and Control → Family counts (agent C, beside M1-5).
    - Versions, flags with audiences, kill switch, banner, audit and rollback (10 §2, §7).
-8. M1-8 Android readiness (lead, last).
-   - Make the Family app ready to package as a Trusted Web Activity (docs/34 §8):
-     - the web manifest (name, start URL /family, scope, colours from design-tokens.ts);
-     - maskable icons;
-     - an offline page;
-     - a /.well-known/assetlinks.json route whose fingerprint comes from an environment variable;
-     - the packaging configuration, with no keys in the repository.
+8. M1-8 Android shell (lead, last).
+   - The Family app as a native Android shell with Capacitor, showing the live web app (docs/34 §8, C230-N; not a Trusted Web Activity):
+     - an `android/` project in the repository: package name, app name, icons, splash, start URL /family;
+     - an offline page when there is no connection;
+     - the web manifest kept for browsers;
+     - signing and keys kept off the repository.
+   - No lock code in M1: the Focus Lock is M2b.
    - Check on a 360 px budget-phone profile.
    - If the founder's Play account exists, build an internal-test package and give him the steps to install it. Otherwise list the account as a founder action.
 
@@ -100,7 +101,7 @@ NEVER (from #198 and the prototype audit)
 - Canned text shown as AI.
 - A child's full name.
 - A default state.
-- Any code that locks or watches other apps (docs/34 §9 gates it).
+- Any code that locks or watches other apps in M1: the Focus Lock is milestone M2b (docs/34 §9).
 - A placeholder git identity.
 - No Co-Authored-By line and no model name anywhere.
 
