@@ -216,7 +216,7 @@ files (§11) hold the full content.
 
 - **The child sees:**
   - the course map, a winding village path with 18 stops, each stop a unit (open, current, done, locked);
-  - stars for lessons done (3 for 100%, 2 for 80% or more, 1 for done with help);
+  - stars for lessons done (3 for every check item right on the first try, 2 for 80% or more, 1 for 80% or more after an earlier try; track A gets 3 when the grown-up says it was done);
   - the words collected (a picture word book);
   - the can-do badges.
   - No ranks, no comparison with anyone (`09` §6).

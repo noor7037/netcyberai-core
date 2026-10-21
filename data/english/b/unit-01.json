@@ -1,0 +1,354 @@
+{
+  "track": "b",
+  "unit": 1,
+  "key": "b.u01",
+  "title": { "en": "All about me", "hi": "मेरे बारे में" },
+  "pic": "🙋",
+  "can_do": { "en": "I can introduce myself.", "hi": "मैं अपना परिचय दे सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u01.l1",
+      "kind": "words",
+      "title": { "en": "Hello words", "hi": "नमस्ते वाले शब्द" },
+      "minutes": 5,
+      "steps": [
+        { "type": "tip", "text": { "en": "Today we learn words to say hello.", "hi": "आज हम नमस्ते कहने वाले शब्द सीखेंगे।" }, "pic": "👋" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u01.l1.hello", "en": "hello", "hi": "नमस्ते", "pic": "👋", "example": { "en": "Hello, Meera!", "hi": "नमस्ते, मीरा!" } },
+            { "key": "b.u01.l1.name", "en": "name", "hi": "नाम", "pic": "🏷️", "example": { "en": "My name is Arjun.", "hi": "मेरा नाम अर्जुन है।" } },
+            { "key": "b.u01.l1.boy", "en": "boy", "hi": "लड़का", "pic": "👦", "example": { "en": "Arjun is a boy.", "hi": "अर्जुन एक लड़का है।" } },
+            { "key": "b.u01.l1.girl", "en": "girl", "hi": "लड़की", "pic": "👧", "example": { "en": "Meera is a girl.", "hi": "मीरा एक लड़की है।" } },
+            { "key": "b.u01.l1.friend", "en": "friend", "hi": "दोस्त", "pic": "👭", "example": { "en": "Salma is my friend.", "hi": "सलमा मेरी दोस्त है।" } },
+            { "key": "b.u01.l1.school", "en": "school", "hi": "स्कूल", "pic": "🏫", "example": { "en": "I go to school.", "hi": "मैं स्कूल जाता/जाती हूँ।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u01.l1.m-boy", "left": { "text": "boy" }, "right": { "pic": "👦" } },
+            { "key": "b.u01.l1.m-girl", "left": { "text": "girl" }, "right": { "pic": "👧" } },
+            { "key": "b.u01.l1.m-school", "left": { "text": "school" }, "right": { "pic": "🏫" } },
+            { "key": "b.u01.l1.m-hello", "left": { "text": "hello" }, "right": { "pic": "👋" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u01.l1.p-girl",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "girl" },
+              "options": [{ "pic": "👦" }, { "pic": "👧" }, { "pic": "🏫" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u01.l1.p-friend",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "friend" },
+              "options": [{ "pic": "👭" }, { "pic": "🏷️" }, { "pic": "👋" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u01.l1.s-hello", "model": "Hello!", "hi": "नमस्ते!", "pic": "👋" },
+            { "key": "b.u01.l1.s-boy", "model": "I am a boy.", "hi": "मैं एक लड़का हूँ।", "pic": "👦" },
+            { "key": "b.u01.l1.s-girl", "model": "I am a girl.", "hi": "मैं एक लड़की हूँ।", "pic": "👧" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u01.l1.c-hello",
+          "type": "choose",
+          "prompt": { "en": "Which word means नमस्ते?", "hi": "कौन-सा शब्द 'नमस्ते' है?", "pic": "👋" },
+          "options": [{ "text": "hello" }, { "text": "name" }, { "text": "school" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u01.l1.c-school",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "school" },
+          "options": [{ "pic": "🏫" }, { "pic": "👧" }, { "pic": "👋" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u01.l1.c-boy",
+          "type": "choose",
+          "prompt": { "en": "Arjun is a ___.", "hi": "अर्जुन एक ___ है।", "pic": "👦" },
+          "options": [{ "text": "girl" }, { "text": "boy" }],
+          "answer": 1,
+          "why": { "en": "Arjun is a boy.", "hi": "अर्जुन एक लड़का है।" }
+        },
+        {
+          "key": "b.u01.l1.c-friend",
+          "type": "choose",
+          "prompt": { "en": "Which word means दोस्त?", "hi": "कौन-सा शब्द 'दोस्त' है?", "pic": "👭" },
+          "options": [{ "text": "name" }, { "text": "friend" }, { "text": "boy" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "At home, say: Hello, Mummy!", "hi": "घर पर कहो: Hello, Mummy!" }
+    },
+    {
+      "key": "b.u01.l2",
+      "kind": "pattern",
+      "title": { "en": "I am …, My name is …", "hi": "मैं … हूँ, मेरा नाम … है" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Tell who you are", "hi": "बताओ तुम कौन हो" },
+          "visual": "builder",
+          "examples": [
+            { "en": "I am Meera.", "hi": "मैं मीरा हूँ।", "pic": "👧", "parts": [{ "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "Meera.", "role": "what" }] },
+            { "en": "My name is Arjun.", "hi": "मेरा नाम अर्जुन है।", "pic": "👦", "parts": [{ "text": "My name", "role": "who" }, { "text": "is", "role": "do" }, { "text": "Arjun.", "role": "what" }] },
+            { "en": "I am seven years old.", "hi": "मैं सात साल का/की हूँ।", "pic": "🎂", "parts": [{ "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "seven years old.", "role": "what" }] }
+          ],
+          "note": { "en": "With I, we say am.", "hi": "I के साथ am आता है।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u01.l2.b-meera", "hi": "मैं मीरा हूँ।", "pic": "👧", "tiles": ["Meera.", "am", "I"], "answer": "I am Meera." },
+            { "key": "b.u01.l2.b-name", "hi": "मेरा नाम अर्जुन है।", "pic": "👦", "tiles": ["is", "Arjun.", "My", "name"], "answer": "My name is Arjun." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u01.l2.p-am",
+              "prompt": { "en": "I ___ Salma.", "hi": "मैं सलमा हूँ।", "pic": "👧" },
+              "options": [{ "text": "am" }, { "text": "is" }],
+              "answer": 0,
+              "why": { "en": "With I, we say am.", "hi": "I के साथ am आता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u01.l2.s-name", "model": "My name is Meera.", "hi": "अपना नाम बोलो।", "cue": { "en": "What is your name?", "hi": "तुम्हारा नाम क्या है?" } },
+            { "key": "b.u01.l2.s-age", "model": "I am seven years old.", "hi": "अपनी उम्र बोलो।", "cue": { "en": "How old are you?", "hi": "तुम कितने साल के हो?" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u01.l2.c-build1", "type": "build", "hi": "मैं अर्जुन हूँ।", "tiles": ["am", "Arjun.", "I"], "answer": "I am Arjun." },
+        { "key": "b.u01.l2.c-build2", "type": "build", "hi": "मेरा नाम सलमा है।", "tiles": ["Salma.", "name", "is", "My"], "answer": "My name is Salma." },
+        {
+          "key": "b.u01.l2.c-am",
+          "type": "choose",
+          "prompt": { "en": "I ___ eight years old.", "hi": "मैं आठ साल का हूँ।" },
+          "options": [{ "text": "is" }, { "text": "am" }, { "text": "are" }],
+          "answer": 1,
+          "why": { "en": "With I, we say am.", "hi": "I के साथ am आता है।" }
+        },
+        {
+          "key": "b.u01.l2.c-is",
+          "type": "choose",
+          "prompt": { "en": "My name ___ Ravi.", "hi": "मेरा नाम रवि है।" },
+          "options": [{ "text": "am" }, { "text": "is" }],
+          "answer": 1,
+          "why": { "en": "My name is …", "hi": "My name के साथ is आता है।" }
+        }
+      ],
+      "home": { "en": "Tell your family: My name is …", "hi": "घरवालों को बताओ: My name is …" }
+    },
+    {
+      "key": "b.u01.l3",
+      "kind": "listen",
+      "title": { "en": "A new friend", "hi": "नई दोस्त" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Meera meets Salma", "hi": "मीरा की मुलाक़ात सलमा से" },
+          "scene": { "place": "school", "pics": [{ "pic": "🏫", "x": 80, "y": 18, "size": 2 }, { "pic": "👧", "x": 30, "y": 42, "size": 1.6 }, { "pic": "🧕", "x": 52, "y": 42, "size": 1.6 }, { "pic": "🎒", "x": 66, "y": 50 }] },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Hello! I am Meera.", "hi": "नमस्ते! मैं मीरा हूँ।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Hello, Meera! My name is Salma.", "hi": "नमस्ते, मीरा! मेरा नाम सलमा है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "How old are you?", "hi": "तुम कितने साल की हो?" },
+            { "speaker": "Salma", "pic": "🧕", "en": "I am seven years old.", "hi": "मैं सात साल की हूँ।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Me too! Be my friend.", "hi": "मैं भी! मेरी दोस्त बनो।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Yes! We are friends.", "hi": "हाँ! हम दोस्त हैं।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u01.l3.p-new",
+              "prompt": { "en": "Who is the new friend?", "hi": "नई दोस्त कौन है?" },
+              "options": [{ "text": "Salma", "pic": "🧕" }, { "text": "Arjun", "pic": "👦" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u01.l3.p-age",
+              "prompt": { "en": "How old is Salma?", "hi": "सलमा कितने साल की है?" },
+              "options": [{ "text": "five", "pic": "5️⃣" }, { "text": "seven", "pic": "7️⃣" }, { "text": "nine", "pic": "9️⃣" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u01.l3.s-hello", "model": "Hello! I am Meera.", "hi": "नमस्ते! मैं मीरा हूँ।", "pic": "👧" },
+            { "key": "b.u01.l3.s-friends", "model": "Yes! We are friends.", "hi": "हाँ! हम दोस्त हैं।", "pic": "👭" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u01.l3.c-where",
+          "type": "choose",
+          "prompt": { "en": "Where are Meera and Salma?", "hi": "मीरा और सलमा कहाँ हैं?" },
+          "options": [{ "text": "at school", "pic": "🏫" }, { "text": "at home", "pic": "🏠" }, { "text": "at the shop", "pic": "🏪" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u01.l3.c-say",
+          "type": "choose",
+          "prompt": { "en": "What does Salma say first?", "hi": "सलमा पहले क्या कहती है?" },
+          "options": [{ "text": "Hello, Meera!" }, { "text": "Good night!" }, { "text": "Thank you!" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u01.l3.c-friends",
+          "type": "choose",
+          "prompt": { "en": "Are they friends now?", "hi": "क्या अब वे दोस्त हैं?" },
+          "options": [{ "text": "Yes" }, { "text": "No" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Ask someone: How old are you?", "hi": "किसी से पूछो: How old are you?" }
+    },
+    {
+      "key": "b.u01.l4",
+      "kind": "speak",
+      "title": { "en": "Meet a new friend", "hi": "नए दोस्त से मिलो" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "At the school gate", "hi": "स्कूल के गेट पर" },
+          "scene": { "place": "school", "pics": [{ "pic": "🏫", "x": 78, "y": 18, "size": 2 }, { "pic": "👦", "x": 30, "y": 42, "size": 1.6 }, { "pic": "🧒", "x": 54, "y": 42, "size": 1.6 }] },
+          "roles": [{ "name": "Arjun", "pic": "👦" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Hello! I am Arjun.", "hi": "नमस्ते! मैं अर्जुन हूँ।" },
+            { "role": 1, "en": "Hello, Arjun! My name is Ravi.", "hi": "नमस्ते, अर्जुन! मेरा नाम रवि है।" },
+            { "role": 0, "en": "How old are you?", "hi": "तुम कितने साल के हो?" },
+            { "role": 1, "en": "I am eight years old.", "hi": "मैं आठ साल का हूँ।" },
+            { "role": 0, "en": "Be my friend!", "hi": "मेरे दोस्त बनो!" },
+            { "role": 1, "en": "Yes! We are friends.", "hi": "हाँ! हम दोस्त हैं।" }
+          ],
+          "partner": { "goal": "Greet the child, ask their name and age, and invite them to be friends.", "must_use": ["hello", "my name is", "I am"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u01.l4.br-name", "hi": "मेरा नाम मीरा है।", "tiles": ["is", "Meera.", "name", "My"], "answer": "My name is Meera." },
+            { "key": "b.u01.l4.br-friend", "hi": "सलमा मेरी दोस्त है।", "tiles": ["my", "Salma", "friend.", "is"], "answer": "Salma is my friend." }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u01.l4.s-intro", "model": "Hello! My name is Ravi.", "hi": "अपना परिचय दो।", "cue": { "en": "Introduce yourself.", "hi": "अपना परिचय दो।" } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u01.l4.c-reply",
+          "type": "choose",
+          "prompt": { "en": "Arjun says: Hello! You say:", "hi": "अर्जुन कहता है: Hello! तुम क्या कहोगे?" },
+          "options": [{ "text": "Hello, Arjun!" }, { "text": "Good night, Arjun!" }],
+          "answer": 0
+        },
+        { "key": "b.u01.l4.c-build", "type": "build", "hi": "मैं आठ साल का हूँ।", "tiles": ["eight", "I", "old.", "am", "years"], "answer": "I am eight years old." },
+        {
+          "key": "b.u01.l4.c-age",
+          "type": "choose",
+          "prompt": { "en": "Which one asks your age?", "hi": "कौन-सा वाक्य उम्र पूछता है?" },
+          "options": [{ "text": "How old are you?" }, { "text": "What is your name?" }, { "text": "Where is the school?" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Introduce yourself to a family member in English.", "hi": "घर में किसी को अंग्रेज़ी में अपना परिचय दो।" }
+    },
+    {
+      "key": "b.u01.l5",
+      "kind": "review",
+      "title": { "en": "Unit 1 review", "hi": "इकाई 1 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u01.l5.m-friend", "left": { "text": "friend" }, "right": { "pic": "👭" } },
+            { "key": "b.u01.l5.m-name", "left": { "text": "name" }, "right": { "pic": "🏷️" } },
+            { "key": "b.u01.l5.m-boy", "left": { "text": "boy" }, "right": { "pic": "👦" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u01.l5.b-salma", "hi": "मेरा नाम सलमा है।", "pic": "🧕", "tiles": ["Salma.", "is", "My", "name"], "answer": "My name is Salma." }]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u01.l5.s-me", "model": "Hello! I am Meera. I am seven years old.", "hi": "नमस्ते कहो, नाम और उम्र बताओ।", "cue": { "en": "Tell us about you.", "hi": "अपने बारे में बताओ।" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u01.l5.c-girl",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "girl" },
+          "options": [{ "pic": "👧" }, { "pic": "👦" }, { "pic": "🏫" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u01.l5.c-name",
+          "type": "choose",
+          "prompt": { "en": "Which word means नाम?", "hi": "कौन-सा शब्द 'नाम' है?" },
+          "options": [{ "text": "friend" }, { "text": "name" }, { "text": "hello" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u01.l5.c-am",
+          "type": "choose",
+          "prompt": { "en": "I ___ Arjun.", "hi": "मैं अर्जुन हूँ।" },
+          "options": [{ "text": "am" }, { "text": "is" }],
+          "answer": 0
+        },
+        { "key": "b.u01.l5.c-build", "type": "build", "hi": "मैं सात साल की हूँ।", "tiles": ["old.", "am", "seven", "I", "years"], "answer": "I am seven years old." },
+        {
+          "key": "b.u01.l5.c-ask",
+          "type": "choose",
+          "prompt": { "en": "Which one asks a name?", "hi": "कौन-सा वाक्य नाम पूछता है?" },
+          "options": [{ "text": "How old are you?" }, { "text": "What is your name?" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u01.l5.c-friends",
+          "type": "choose",
+          "prompt": { "en": "Meera and Salma are ___.", "hi": "मीरा और सलमा ___ हैं।", "pic": "👭" },
+          "options": [{ "text": "friends" }, { "text": "schools" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Say to a friend: Hello! My name is …", "hi": "किसी दोस्त से कहो: Hello! My name is …" }
+    }
+  ]
+}
