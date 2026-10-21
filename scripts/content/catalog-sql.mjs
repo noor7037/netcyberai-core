@@ -1,0 +1,166 @@
+#!/usr/bin/env node
+// Turns a committed catalog CSV (data/catalog/*.csv) into the SQL that loads it into a database as syllabus versions
+// imported from the repository (M1-4, docs/family-app/10 §4.2; docs/34 §10): import_source 'repository', import_ref =
+// the pull request that committed the file, no importing account, status in_review. Any super_admin may then approve
+// it in Control → Content, and release it to everyone as a second step.
+//
+//   node scripts/content/catalog-sql.mjs <file.csv> --ref "<the PR, e.g. noor7037/netcyberai-core#210>" > load.sql
+//
+// The SQL is one transaction. Every value is a quoted literal with its quotes doubled (no value is ever pasted in
+// unquoted). Idempotent: a syllabus that already has a version from the repository with the same import_ref is
+// skipped, so running the file twice loads it once. The file's lines are checked first (columns, keys, parents,
+// https sources, dates); the full check is src/lib/content/catalog-csv.ts, which test/content runs on every committed
+// file.
+
+import { readFileSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
+
+const COLUMNS = ['board', 'class', 'subject', 'academic_year', 'level', 'key', 'parent_key', 'position', 'title_en', 'title_hi', 'source_url', 'source_page', 'checked_on', 'status'];
+const KEY_RE = /^[a-z0-9][a-z0-9._-]{2,119}$/;
+
+// The same RFC 4180 reading as src/lib/import/csv.ts.
+export function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let field = '';
+  let inQuotes = false;
+  const src = text.replace(/^﻿/, '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  for (let i = 0; i < src.length; i++) {
+    const ch = src[i];
+    if (inQuotes) {
+      if (ch === '"') {
+        if (src[i + 1] === '"') {
+          field += '"';
+          i++;
+        } else inQuotes = false;
+      } else field += ch;
+      continue;
+    }
+    if (ch === '"') inQuotes = true;
+    else if (ch === ',') {
+      row.push(field);
+      field = '';
+    } else if (ch === '\n') {
+      row.push(field);
+      rows.push(row);
+      row = [];
+      field = '';
+    } else field += ch;
+  }
+  if (field.length > 0 || row.length > 0) {
+    row.push(field);
+    rows.push(row);
+  }
+  if (inQuotes) throw new Error('a quote mark is opened and never closed');
+  return rows.filter((r) => r.some((c) => c.trim() !== ''));
+}
+
+// A SQL string literal: quotes doubled. NUL and backslash-escapes cannot occur (standard_conforming_strings is on in
+// every supported Postgres; a NUL is refused).
+export function lit(value) {
+  if (value === null || value === undefined) return 'null';
+  const s = String(value);
+  if (s.includes('\u0000')) throw new Error('a value contains a NUL character');
+  return `'${s.replace(/'/g, "''")}'`;
+}
+const int = (v) => {
+  if (!/^[0-9]{1,4}$/.test(v)) throw new Error(`not a whole number: ${v}`);
+  return String(Number(v));
+};
+
+export function readCatalog(text) {
+  const rows = parseCsv(text);
+  const header = (rows[0] ?? []).map((h) => h.trim().toLowerCase());
+  if (header.join(',') !== COLUMNS.join(',')) throw new Error(`the first line must be exactly: ${COLUMNS.join(',')}`);
+  const lines = rows.slice(1).map((cells, i) => {
+    if (cells.length !== COLUMNS.length) throw new Error(`line ${i + 2}: ${cells.length} values, ${COLUMNS.length} expected`);
+    const r = Object.fromEntries(COLUMNS.map((c, j) => [c, cells[j].trim()]));
+    if (!KEY_RE.test(r.key) || (r.parent_key && !KEY_RE.test(r.parent_key))) throw new Error(`line ${i + 2}: a key is not well formed`);
+    if (!['unit', 'chapter', 'topic'].includes(r.level)) throw new Error(`line ${i + 2}: level must be unit, chapter or topic`);
+    if (!/^https:\/\//.test(r.source_url)) throw new Error(`line ${i + 2}: the source must be an https address`);
+    if (!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(r.checked_on)) throw new Error(`line ${i + 2}: checked_on must be a date`);
+    if (r.status !== 'in_review') throw new Error(`line ${i + 2}: status must be in_review`);
+    return r;
+  });
+  const syllabi = new Map();
+  for (const l of lines) {
+    const id = [l.board, l.class, l.subject, l.academic_year].join('|');
+    if (!syllabi.has(id)) syllabi.set(id, { board: l.board, classLevel: int(l.class), subject: l.subject, academicYear: l.academic_year, unit: [], chapter: [], topic: [] });
+    syllabi.get(id)[l.level].push(l);
+  }
+  return [...syllabi.values()];
+}
+
+const values = (lines) =>
+  lines.map((l) => `(${[lit(l.key), lit(l.parent_key || null), int(l.position), lit(l.title_en), lit(l.title_hi || null), lit(l.source_url), lit(l.source_page), `${lit(l.checked_on)}::date`].join(', ')})`).join(',\n    ');
+const X = `x(key, parent_key, position, title_en, title_hi, source_url, source_page, checked_on)`;
+
+export function catalogSql(text, ref) {
+  if (typeof ref !== 'string' || ref.trim().length < 1 || ref.length > 200) throw new Error('--ref must name the pull request (1 to 200 characters)');
+  const out = ['-- Generated by scripts/content/catalog-sql.mjs. One transaction; a syllabus already loaded from this ref is skipped.', 'begin;'];
+  for (const s of readCatalog(text)) {
+    const same = `board_id = ${lit(s.board)} and class_level = ${s.classLevel} and subject = ${lit(s.subject)} and academic_year = ${lit(s.academicYear)}`;
+    const parts = [
+      `with v as (
+  insert into content.syllabus_versions (board_id, class_level, subject, academic_year, version_no, status, import_source, import_ref)
+  select ${lit(s.board)}, ${s.classLevel}, ${lit(s.subject)}, ${lit(s.academicYear)}, coalesce(max(version_no), 0) + 1, 'in_review', 'repository', ${lit(ref)}
+    from content.syllabus_versions where ${same}
+  having not exists (select 1 from content.syllabus_versions where ${same} and import_source = 'repository' and import_ref = ${lit(ref)})
+  returning version_id
+)`,
+    ];
+    if (s.unit.length > 0) {
+      parts.push(`, u as (
+  insert into content.units (version_id, unit_key, position, title_en, title_hi, source_url, source_page, checked_on)
+  select v.version_id, x.key, x.position, x.title_en, x.title_hi, x.source_url, x.source_page, x.checked_on
+    from v cross join (values
+    ${values(s.unit)}
+    ) as ${X}
+  returning unit_id, unit_key
+)`);
+    }
+    if (s.chapter.length > 0) {
+      const join = s.unit.length > 0 ? `left join u on u.unit_key = x.parent_key` : `left join (select null::uuid as unit_id, null::text as unit_key) u on false`;
+      parts.push(`, c as (
+  insert into content.chapters (version_id, unit_id, chapter_key, position, title_en, title_hi, source_url, source_page, checked_on)
+  select v.version_id, u.unit_id, x.key, x.position, x.title_en, x.title_hi, x.source_url, x.source_page, x.checked_on
+    from v cross join (values
+    ${values(s.chapter)}
+    ) as ${X}
+    ${join}
+  returning chapter_id, chapter_key
+)`);
+    }
+    if (s.topic.length > 0 && s.chapter.length > 0) {
+      parts.push(`insert into content.topics (version_id, chapter_id, topic_key, position, title_en, title_hi, source_url, source_page, checked_on)
+select v.version_id, c.chapter_id, x.key, x.position, x.title_en, x.title_hi, x.source_url, x.source_page, x.checked_on
+  from v cross join (values
+    ${values(s.topic)}
+    ) as ${X}
+  join c on c.chapter_key = x.parent_key;`);
+    } else {
+      parts.push(`select count(*) from v;`);
+    }
+    out.push(`-- ${s.board} class ${s.classLevel} ${s.subject} ${s.academicYear}: ${s.unit.length} units, ${s.chapter.length} chapters, ${s.topic.length} topics`);
+    out.push(parts.join('\n'));
+  }
+  out.push('commit;', '');
+  return out.join('\n');
+}
+
+const isMain = !!process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (isMain) {
+  const args = process.argv.slice(2);
+  const file = args.find((a) => !a.startsWith('--') && args[args.indexOf(a) - 1] !== '--ref');
+  const ref = args[args.indexOf('--ref') + 1];
+  if (!file || args.indexOf('--ref') < 0) {
+    process.stderr.write('usage: node scripts/content/catalog-sql.mjs <file.csv> --ref "<pull request>"\n');
+    process.exit(2);
+  }
+  try {
+    process.stdout.write(catalogSql(readFileSync(file, 'utf8'), ref));
+  } catch (err) {
+    process.stderr.write(`catalog-sql: ${err.message}\n`);
+    process.exit(1);
+  }
+}

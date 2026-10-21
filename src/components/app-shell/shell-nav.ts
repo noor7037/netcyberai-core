@@ -75,6 +75,7 @@ const CONTROL_LOOK: Record<string, [IconName, ColorToken]> = {
   '/control/analytics': ['chart', 'grape'],
   '/control/billing-plans': ['fees', 'tangerine'],
   '/control/boards': ['exams', 'royal'],
+  '/control/content': ['academics', 'azure'],
   '/control/compliance': ['shield', 'emerald'],
   '/control/integrations': ['link', 'violet'],
   '/control/support': ['ticket', 'gold'],
