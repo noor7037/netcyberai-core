@@ -139,3 +139,36 @@ Good to know before you start:
   and how to leave them out.
 - **No Hindi titles.** CBSE's 2026-27 curriculum page has no Hindi version of these four documents (checked
   2026-10-22). Nothing was translated.
+
+## Classes VI, VII and VIII: Social Science, English and Hindi (NCERT's textbooks)
+
+As for Mathematics and Science, CBSE has published no 2026-27 curriculum document for these subjects in classes VI to
+VIII; CBSE schools teach them from NCERT's current books: *Exploring Society: India and Beyond* (Social Science),
+*Poorvi* (English) and *Malhar* (Hindi). These pages check
+[`data/catalog/ncert-2026-27-classes-6-8-social-science-languages.csv`](../../../data/catalog/ncert-2026-27-classes-6-8-social-science-languages.csv)
+against those books (read from ncert.nic.in on 2026-10-22), one page per syllabus version:
+
+| Page | Units | Chapters | Topics | NCERT contents page (PDF page) |
+|---|---|---|---|---|
+| [Class VI Social Science](class6-social-science.md) | 0 | 14 | 52 | `fees1ps.pdf` p. 19 |
+| [Class VII Social Science](class7-social-science.md) | 2 (Part 1, Part 2) | 20 | 130 | `gees1ps.pdf` p. 21, `gees2ps.pdf` p. 15 |
+| [Class VIII Social Science](class8-social-science.md) | 2 (Part 1, Part 2) | 15 | 113 | `hees1ps.pdf` p. 21, `hees2ps.pdf` p. 17 |
+| [Class VI English](class6-english.md) | 5 | 16 | 0 | `fepr1ps.pdf` p. 15 |
+| [Class VII English](class7-english.md) | 5 | 15 | 0 | `gepr1ps.pdf` p. 13 |
+| [Class VIII English](class8-english.md) | 5 | 15 | 9 | `hepr1ps.pdf` p. 15 |
+| [Class VI Hindi](class6-hindi.md) | 0 | 13 | 0 | `fhml1ps.pdf` p. 19 |
+| [Class VII Hindi](class7-hindi.md) | 0 | 10 | 0 | `ghml1ps.pdf` p. 17 |
+| [Class VIII Hindi](class8-hindi.md) | 0 | 10 | 0 | `hhml1ps.pdf` p. 17 |
+
+Compare and approve exactly as above. Good to know before you start:
+
+- **No picture.** As for the other NCERT pages, each page links to NCERT's own PDF at the right page instead.
+- **Social Science topics** are each chapter's main section headings (the book does not number them). The two-part books
+  (classes VII and VIII) have their parts as units.
+- **English** keeps Poorvi's five units; topics only where a lesson prints titled sections (two lessons in class VIII).
+  **Hindi** (Malhar) has chapters only: its lessons print no section headings.
+- **Hindi titles.** Social Science: from NCERT's Hindi edition (समाज का अध्ययन : भारत और उसके आगे), with a "हिं" link to the
+  Hindi page; none for class VIII Part 2 (NCERT publishes no Hindi edition of it) and one class VII topic (no Hindi
+  heading there). English: none (no Hindi edition). Malhar: the printed Devanagari title in both columns. Please
+  compare the Hindi titles with the page by eye: the PDFs' hidden Hindi text is often damaged, so every one was typed
+  from the page.
