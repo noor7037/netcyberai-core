@@ -1,0 +1,417 @@
+{
+  "track": "b",
+  "unit": 16,
+  "key": "b.u16",
+  "title": { "en": "Feelings and manners", "hi": "मन की बात और अच्छी आदतें" },
+  "pic": "😊",
+  "can_do": { "en": "I can ask politely.", "hi": "मैं अच्छे से पूछ सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u16.l1",
+      "kind": "words",
+      "title": { "en": "Feeling words", "hi": "मन के शब्द" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "How do you feel today?", "hi": "आज तुम्हें कैसा लग रहा है?" }, "pic": "🤔" },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Show a happy face!", "hi": "ख़ुश चेहरा दिखाओ!", "pic": "😊" },
+            { "en": "Show a sad face.", "hi": "उदास चेहरा दिखाओ।", "pic": "😢" },
+            { "en": "Show a tired face.", "hi": "थका हुआ चेहरा दिखाओ।", "pic": "🥱" }
+          ]
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u16.l1.happy", "en": "happy", "hi": "ख़ुश", "pic": "😊", "example": { "en": "I feel happy today.", "hi": "आज मैं ख़ुश हूँ।" } },
+            { "key": "b.u16.l1.sad", "en": "sad", "hi": "उदास", "pic": "😢", "example": { "en": "Arjun is sad.", "hi": "अर्जुन उदास है।" } },
+            { "key": "b.u16.l1.angry", "en": "angry", "hi": "ग़ुस्सा", "pic": "😠", "example": { "en": "Please don't be angry.", "hi": "प्लीज़ ग़ुस्सा मत करो।" } },
+            { "key": "b.u16.l1.tired", "en": "tired", "hi": "थका हुआ", "pic": "🥱", "example": { "en": "I am tired after play.", "hi": "खेलने के बाद मैं थक जाता/जाती हूँ।" } },
+            { "key": "b.u16.l1.hungry", "en": "hungry", "hi": "भूखा", "pic": "😋", "example": { "en": "I am hungry, Mummy!", "hi": "माँ, मुझे भूख लगी है!" } },
+            { "key": "b.u16.l1.scared", "en": "scared", "hi": "डरा हुआ", "pic": "😨", "example": { "en": "The cat is scared.", "hi": "बिल्ली डरी हुई है।" } },
+            { "key": "b.u16.l1.sorry", "en": "sorry", "hi": "माफ़ करना (सॉरी)", "pic": "🙇", "example": { "en": "Sorry, Dadi.", "hi": "माफ़ करना, दादी।" } },
+            { "key": "b.u16.l1.please", "en": "please", "hi": "कृपया (प्लीज़)", "pic": "🙏", "example": { "en": "Water, please.", "hi": "पानी, प्लीज़।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u16.l1.m-happy", "left": { "text": "happy" }, "right": { "pic": "😊" } },
+            { "key": "b.u16.l1.m-sad", "left": { "text": "sad" }, "right": { "pic": "😢" } },
+            { "key": "b.u16.l1.m-hungry", "left": { "text": "hungry" }, "right": { "pic": "😋" } },
+            { "key": "b.u16.l1.m-scared", "left": { "text": "scared" }, "right": { "pic": "😨" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u16.l1.p-angry",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "angry" },
+              "options": [{ "pic": "😊" }, { "pic": "😠" }, { "pic": "🥱" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u16.l1.p-tired",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "tired" },
+              "options": [{ "pic": "🥱" }, { "pic": "😋" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u16.l1.s-happy", "model": "I feel happy.", "hi": "मैं ख़ुश हूँ।", "pic": "😊" },
+            { "key": "b.u16.l1.s-sorry", "model": "Sorry, Dadi.", "hi": "माफ़ करना, दादी।", "pic": "🙇" },
+            { "key": "b.u16.l1.s-please", "model": "Water, please.", "hi": "पानी, प्लीज़।", "pic": "💧" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u16.l1.c-sad",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "sad" },
+          "options": [{ "pic": "😢" }, { "pic": "😊" }, { "pic": "😠" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u16.l1.c-hungry",
+          "type": "choose",
+          "prompt": { "en": "Which word means भूखा?", "hi": "'भूखा' कौन-सा है?", "pic": "😋" },
+          "options": [{ "text": "tired" }, { "text": "hungry" }, { "text": "happy" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u16.l1.c-scared",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "scared" },
+          "options": [{ "pic": "😋" }, { "pic": "😨" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u16.l1.c-sorry",
+          "type": "choose",
+          "prompt": { "en": "You bump into a friend. You say:", "hi": "ग़लती से दोस्त से टक्कर हो गई। क्या कहोगे?", "pic": "🙇" },
+          "options": [{ "text": "Sorry!" }, { "text": "Please!" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u16.l1.c-tired",
+          "type": "choose",
+          "prompt": { "en": "After a long walk, I feel ___.", "hi": "लंबा चलने के बाद मैं थक जाता/जाती हूँ।", "pic": "🥱" },
+          "options": [{ "text": "tired" }, { "text": "angry" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "At night, tell Mummy how you feel.", "hi": "रात को माँ को बताओ तुम्हें कैसा लग रहा है।" }
+    },
+    {
+      "key": "b.u16.l2",
+      "kind": "pattern",
+      "title": { "en": "I feel … Can I …, please?", "hi": "मुझे … लग रहा है। क्या मैं …?" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Feel and ask", "hi": "बताओ और पूछो" },
+          "visual": "builder",
+          "examples": [
+            { "en": "I feel happy.", "hi": "मैं ख़ुश हूँ।", "pic": "😊", "parts": [{ "text": "I", "role": "who" }, { "text": "feel", "role": "do" }, { "text": "happy.", "role": "what" }] },
+            { "en": "I feel tired.", "hi": "मुझे थकान लग रही है।", "pic": "🥱", "parts": [{ "text": "I", "role": "who" }, { "text": "feel", "role": "do" }, { "text": "tired.", "role": "what" }] },
+            { "en": "Can I go out, please?", "hi": "क्या मैं बाहर जा सकता/सकती हूँ?", "pic": "🚪", "parts": [{ "text": "Can", "role": "ask" }, { "text": "I", "role": "who" }, { "text": "go out,", "role": "do" }, { "text": "please?", "role": "other" }] },
+            { "en": "Can I have water, please?", "hi": "क्या मुझे पानी मिल सकता है?", "pic": "💧", "parts": [{ "text": "Can", "role": "ask" }, { "text": "I", "role": "who" }, { "text": "have", "role": "do" }, { "text": "water,", "role": "what" }, { "text": "please?", "role": "other" }] },
+            { "en": "Yes, you can.", "hi": "हाँ, ज़रूर।", "pic": "👍", "parts": [{ "text": "Yes,", "role": "other" }, { "text": "you", "role": "who" }, { "text": "can.", "role": "do" }] },
+            { "en": "Sorry, Ms Anita.", "hi": "माफ़ कीजिए, मैडम।", "pic": "🙇", "parts": [{ "text": "Sorry,", "role": "other" }, { "text": "Ms Anita.", "role": "who" }] }
+          ],
+          "note": { "en": "Ask nicely: Can I …, please?", "hi": "अच्छे से पूछो: Can I …, please?" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u16.l2.b-feel", "hi": "मुझे भूख लगी है।", "pic": "😋", "tiles": ["hungry.", "I", "feel"], "answer": "I feel hungry." },
+            { "key": "b.u16.l2.b-can", "hi": "क्या मैं बाहर जा सकती हूँ?", "pic": "🚪", "tiles": ["out,", "I", "please?", "Can", "go"], "answer": "Can I go out, please?" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u16.l2.p-can",
+              "prompt": { "en": "___ I have a pencil, please?", "hi": "क्या मुझे पेंसिल मिल सकती है?", "pic": "✏️" },
+              "options": [{ "text": "Can" }, { "text": "Do" }],
+              "answer": 0,
+              "why": { "en": "To ask for something, say Can I …?", "hi": "कुछ माँगने के लिए: Can I …?" }
+            },
+            {
+              "key": "b.u16.l2.p-sorry",
+              "prompt": { "en": "You drop Dadi's cup. You say:", "hi": "दादी का कप गिर गया। क्या कहोगे?", "pic": "☕" },
+              "options": [{ "text": "Sorry, Dadi." }, { "text": "Thank you, Dadi." }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u16.l2.s-feel", "model": "I feel happy today.", "hi": "बताओ कैसा लग रहा है।", "pic": "😊", "cue": { "en": "How do you feel?", "hi": "कैसा लग रहा है?" } },
+            { "key": "b.u16.l2.s-ask", "model": "Can I drink water, please?", "hi": "पानी के लिए पूछो।", "pic": "💧", "cue": { "en": "You want water. Ask Ms Anita.", "hi": "पानी चाहिए। मैडम से पूछो।" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u16.l2.c-build1", "type": "build", "hi": "क्या मैं खेल सकता हूँ, प्लीज़?", "tiles": ["please?", "I", "play,", "Can"], "answer": "Can I play, please?" },
+        { "key": "b.u16.l2.c-build2", "type": "build", "hi": "मैं उदास हूँ।", "tiles": ["sad.", "feel", "I"], "answer": "I feel sad." },
+        {
+          "key": "b.u16.l2.c-please",
+          "type": "choose",
+          "prompt": { "en": "Can I go out, ___?", "hi": "क्या मैं बाहर जा सकता/सकती हूँ, प्लीज़?", "pic": "🚪" },
+          "options": [{ "text": "sorry" }, { "text": "please" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u16.l2.c-yes",
+          "type": "choose",
+          "prompt": { "en": "Can I have water? Yes, you ___.", "hi": "क्या पानी मिलेगा? हाँ, ज़रूर।", "pic": "💧" },
+          "options": [{ "text": "can" }, { "text": "are" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u16.l2.c-feel",
+          "type": "choose",
+          "prompt": { "en": "I ___ tired.", "hi": "मुझे थकान लग रही है।", "pic": "🥱" },
+          "options": [{ "text": "feel" }, { "text": "can" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u16.l2.c-polite",
+          "type": "choose",
+          "prompt": { "en": "Which one is polite?", "hi": "कौन-सा अच्छे से पूछता है?", "pic": "📖" },
+          "options": [{ "text": "Can I have a book, please?" }, { "text": "Give me a book." }],
+          "answer": 0,
+          "why": { "en": "Can I … please? is the kind way to ask.", "hi": "Can I … please? अच्छे से पूछने का तरीका है।" }
+        }
+      ],
+      "home": { "en": "Ask at home: Can I help you, please?", "hi": "घर पर पूछो: Can I help you, please?" }
+    },
+    {
+      "key": "b.u16.l3",
+      "kind": "listen",
+      "title": { "en": "Sorry, Dadi", "hi": "माफ़ करना, दादी" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "The broken cup", "hi": "टूटा कप" },
+          "scene": { "place": "home", "pics": [{ "pic": "🏠", "x": 86, "y": 12, "size": 1.6 }, { "pic": "👵", "x": 24, "y": 40, "size": 1.5 }, { "pic": "👦", "x": 46, "y": 44, "size": 1.4 }, { "pic": "☕", "x": 60, "y": 54, "size": 0.8 }] },
+          "lines": [
+            { "speaker": "Arjun", "pic": "👦", "en": "Oh no! Dadi's cup is broken.", "hi": "अरे नहीं! दादी का कप टूट गया।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "I feel sad. Sorry, Dadi.", "hi": "मुझे बुरा लग रहा है। माफ़ करना, दादी।" },
+            { "speaker": "Dadi", "pic": "👵", "en": "It is OK, Arjun. Are you hurt?", "hi": "कोई बात नहीं, अर्जुन। चोट तो नहीं लगी?" },
+            { "speaker": "Arjun", "pic": "👦", "en": "No, Dadi. I am fine.", "hi": "नहीं, दादी। मैं ठीक हूँ।" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Good. Do not feel sad.", "hi": "अच्छा। उदास मत हो।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Can I help you, please?", "hi": "क्या मैं आपकी मदद करूँ?" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Yes. Bring me a new cup, please.", "hi": "हाँ। मेरे लिए नया कप ले आओ, प्लीज़।" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Thank you, Arjun! You are very kind.", "hi": "धन्यवाद, अर्जुन! तुम बहुत अच्छे हो।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u16.l3.p-feel",
+              "prompt": { "en": "How does Arjun feel?", "hi": "अर्जुन को कैसा लग रहा है?" },
+              "options": [{ "text": "sad", "pic": "😢" }, { "text": "happy", "pic": "😊" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u16.l3.p-say",
+              "prompt": { "en": "What does Arjun say?", "hi": "अर्जुन क्या कहता है?" },
+              "options": [{ "text": "Bye, Dadi." }, { "text": "Sorry, Dadi." }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u16.l3.s-sorry", "model": "Sorry, Dadi. I feel sad.", "hi": "माफ़ करना, दादी। मुझे बुरा लग रहा है।", "pic": "🙇" },
+            { "key": "b.u16.l3.s-help", "model": "Can I help you, please?", "hi": "क्या मैं आपकी मदद करूँ?", "pic": "🙌" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u16.l3.c-cup",
+          "type": "choose",
+          "prompt": { "en": "What is broken?", "hi": "क्या टूटा?" },
+          "options": [{ "text": "a cup", "pic": "☕" }, { "text": "a chair", "pic": "🪑" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u16.l3.c-angry",
+          "type": "choose",
+          "prompt": { "en": "Is Dadi angry?", "hi": "क्या दादी ग़ुस्सा हैं?" },
+          "options": [{ "text": "Yes, she is." }, { "text": "No, she is not." }],
+          "answer": 1
+        },
+        {
+          "key": "b.u16.l3.c-hurt",
+          "type": "choose",
+          "prompt": { "en": "Is Arjun hurt?", "hi": "क्या अर्जुन को चोट लगी?" },
+          "options": [{ "text": "Yes, he is." }, { "text": "No, he is fine." }],
+          "answer": 1
+        },
+        {
+          "key": "b.u16.l3.c-help",
+          "type": "choose",
+          "prompt": { "en": "What does Arjun bring?", "hi": "अर्जुन क्या लाता है?" },
+          "options": [{ "text": "a new cup", "pic": "☕" }, { "text": "a book", "pic": "📖" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Say sorry and thank you at home today.", "hi": "आज घर पर sorry और thank you बोलो।" }
+    },
+    {
+      "key": "b.u16.l4",
+      "kind": "speak",
+      "title": { "en": "Ask for permission", "hi": "इजाज़त माँगो" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "Can I play, please?", "hi": "क्या मैं खेलने जाऊँ?" },
+          "scene": { "place": "home", "pics": [{ "pic": "🏠", "x": 86, "y": 12, "size": 1.6 }, { "pic": "👩", "x": 26, "y": 40, "size": 1.5 }, { "pic": "🧒", "x": 50, "y": 42, "size": 1.5 }, { "pic": "⚽", "x": 66, "y": 52, "size": 0.9 }, { "pic": "🧕", "x": 82, "y": 44, "size": 1.3 }] },
+          "roles": [{ "name": "Mummy", "pic": "👩" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 1, "en": "Mummy, can I play with Salma, please?", "hi": "माँ, क्या मैं सलमा के साथ खेलूँ, प्लीज़?" },
+            { "role": 0, "en": "Yes, you can. Are you hungry?", "hi": "हाँ, खेल सकते हो। भूख लगी है?" },
+            { "role": 1, "en": "No, Mummy. I feel happy!", "hi": "नहीं, माँ। मैं ख़ुश हूँ!" },
+            { "role": 0, "en": "Come home at six o'clock.", "hi": "छह बजे घर आ जाना।" },
+            { "role": 1, "en": "OK, Mummy. Can I take my ball?", "hi": "ठीक है, माँ। क्या मैं अपनी गेंद ले जाऊँ?" },
+            { "role": 0, "en": "Yes, you can. Have fun!", "hi": "हाँ, ले जाओ। मज़े करो!" },
+            { "role": 1, "en": "Thank you, Mummy!", "hi": "धन्यवाद, माँ!" }
+          ],
+          "partner": { "goal": "Play the parent. The child asks permission with Can I …, please?; say yes, add one gentle condition, and praise polite words.", "must_use": ["can I", "please", "thank you"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u16.l4.br-water", "hi": "क्या मैं पानी पी सकता हूँ, प्लीज़?", "tiles": ["water,", "Can", "drink", "please?", "I"], "answer": "Can I drink water, please?" },
+            { "key": "b.u16.l4.br-sorry", "hi": "माफ़ कीजिए, अनीता मैडम।", "tiles": ["Anita.", "Sorry,", "Ms"], "answer": "Sorry, Ms Anita." }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u16.l4.c-ask",
+          "type": "choose",
+          "prompt": { "en": "You want to go out. You say:", "hi": "बाहर जाना है। क्या कहोगे?", "pic": "🚪" },
+          "options": [{ "text": "Can I go out, please?" }, { "text": "I go out." }],
+          "answer": 0
+        },
+        { "key": "b.u16.l4.c-build", "type": "build", "hi": "क्या मैं अपनी गेंद ले जाऊँ?", "tiles": ["take", "ball?", "I", "my", "Can"], "answer": "Can I take my ball?" },
+        {
+          "key": "b.u16.l4.c-reply",
+          "type": "choose",
+          "prompt": { "en": "Mummy says yes. You say:", "hi": "माँ हाँ कहती हैं। क्या कहोगे?", "pic": "👩" },
+          "options": [{ "text": "Thank you, Mummy!" }, { "text": "Sorry, Mummy!" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Ask for one thing today with Can I …, please?", "hi": "आज एक चीज़ Can I …, please? से माँगो।" }
+    },
+    {
+      "key": "b.u16.l5",
+      "kind": "review",
+      "title": { "en": "Unit 16 review", "hi": "इकाई 16 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u16.l5.m-angry", "left": { "text": "angry" }, "right": { "pic": "😠" } },
+            { "key": "b.u16.l5.m-tired", "left": { "text": "tired" }, "right": { "pic": "🥱" } },
+            { "key": "b.u16.l5.m-sorry", "left": { "text": "sorry" }, "right": { "pic": "🙇" } },
+            { "key": "b.u16.l5.m-onion", "left": { "text": "onion" }, "right": { "pic": "🧅" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u16.l5.b-feel", "hi": "मुझे थकान लग रही है।", "pic": "🥱", "tiles": ["tired.", "feel", "I"], "answer": "I feel tired." },
+            { "key": "b.u16.l5.b-draw", "hi": "क्या मैं चित्र बनाऊँ, प्लीज़?", "pic": "🎨", "tiles": ["draw,", "I", "please?", "Can"], "answer": "Can I draw, please?" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u16.l5.p-feel",
+              "prompt": { "en": "Arjun's cup is broken. He feels ___.", "hi": "अर्जुन का कप टूट गया। उसे बुरा लग रहा है।", "pic": "☕" },
+              "options": [{ "text": "happy" }, { "text": "sad" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u16.l5.s-feel", "model": "I feel happy. Can I play, please?", "hi": "भावना बताओ और इजाज़त माँगो।", "cue": { "en": "How do you feel? What do you want?", "hi": "कैसा लग रहा है? क्या चाहिए?" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u16.l5.c-happy",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "happy" },
+          "options": [{ "pic": "😢" }, { "pic": "😊" }, { "pic": "😨" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u16.l5.c-please",
+          "type": "choose",
+          "prompt": { "en": "Which word means कृपया?", "hi": "'कृपया' कौन-सा है?", "pic": "🙏" },
+          "options": [{ "text": "sorry" }, { "text": "please" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u16.l5.c-can",
+          "type": "choose",
+          "prompt": { "en": "___ I sit here, please?", "hi": "क्या मैं यहाँ बैठ सकता/सकती हूँ?", "pic": "🪑" },
+          "options": [{ "text": "Can" }, { "text": "Am" }],
+          "answer": 0
+        },
+        { "key": "b.u16.l5.c-build", "type": "build", "hi": "क्या मैं आपकी मदद करूँ?", "tiles": ["help", "Can", "you?", "I"], "answer": "Can I help you?" },
+        {
+          "key": "b.u16.l5.c-much",
+          "type": "choose",
+          "prompt": { "en": "How ___ is the onion?", "hi": "प्याज़ कितने का है?", "pic": "🧅" },
+          "options": [{ "text": "many" }, { "text": "much" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u16.l5.c-want",
+          "type": "choose",
+          "prompt": { "en": "I ___ rice, please.", "hi": "मुझे चावल चाहिए, प्लीज़।", "pic": "🍚" },
+          "options": [{ "text": "want" }, { "text": "am" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u16.l5.c-raining",
+          "type": "choose",
+          "prompt": { "en": "It is ___ now.", "hi": "अभी बारिश हो रही है।", "pic": "🌧️" },
+          "options": [{ "text": "raining" }, { "text": "sunny" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Use please, sorry and thank you all day.", "hi": "पूरे दिन please, sorry और thank you बोलो।" }
+    }
+  ]
+}

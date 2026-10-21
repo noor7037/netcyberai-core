@@ -14,8 +14,8 @@ import {
   shuffleByKey,
   wordCount,
   type CheckItem,
-} from '@/lib/english/course';
-import { COURSE_EMOJI, isCoursePicture } from '@/lib/english/emoji';
+} from '@/lib/family/english/course';
+import { COURSE_EMOJI, isCoursePicture } from '@/lib/family/english/emoji';
 
 // The English course (docs/family-app/12, C274): the lesson checker, scoring and the committed lesson files.
 
@@ -36,6 +36,7 @@ describe('the committed lesson files', () => {
     it(`track ${track}: a finished track has 18 units in order and its assessments, with every key unique`, () => {
       const hasAssessments = existsSync(path.join(DATA, track, 'assessments.json'));
       if (files.length < UNITS_PER_TRACK && !hasAssessments) return; // still being written
+      expect(hasAssessments, `${track}/assessments.json`).toBe(true);
       expect(files).toEqual(Array.from({ length: UNITS_PER_TRACK }, (_, i) => `unit-${String(i + 1).padStart(2, '0')}.json`));
       expect(checkTrack(track, files.map((f) => read(track, f)), read(track, 'assessments.json'))).toEqual([]);
     });

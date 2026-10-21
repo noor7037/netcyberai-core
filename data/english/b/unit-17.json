@@ -1,0 +1,407 @@
+{
+  "track": "b",
+  "unit": 17,
+  "key": "b.u17",
+  "title": { "en": "Yesterday", "hi": "बीता हुआ कल" },
+  "pic": "🎡",
+  "can_do": { "en": "I can talk about yesterday.", "hi": "मैं बीते कल के बारे में बता सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u17.l1",
+      "kind": "words",
+      "title": { "en": "Time words", "hi": "समय के शब्द" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "Yesterday, today, tomorrow!", "hi": "बीता कल, आज, आने वाला कल!" }, "pic": "📅" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u17.l1.yesterday", "en": "yesterday", "hi": "बीता हुआ कल", "pic": "⬅️", "example": { "en": "Yesterday was Sunday.", "hi": "कल रविवार था।" } },
+            { "key": "b.u17.l1.today", "en": "today", "hi": "आज", "pic": "📅", "example": { "en": "Today is Monday.", "hi": "आज सोमवार है।" } },
+            { "key": "b.u17.l1.tomorrow", "en": "tomorrow", "hi": "आने वाला कल", "pic": "➡️", "example": { "en": "Tomorrow is Tuesday.", "hi": "कल मंगलवार है।" } },
+            { "key": "b.u17.l1.fair", "en": "fair", "hi": "मेला", "pic": "🎡", "example": { "en": "The fair was fun!", "hi": "मेले में मज़ा आया!" } },
+            { "key": "b.u17.l1.festival", "en": "festival", "hi": "त्योहार", "pic": "🪔", "example": { "en": "Diwali is a big festival.", "hi": "दिवाली एक बड़ा त्योहार है।" } },
+            { "key": "b.u17.l1.party", "en": "party", "hi": "दावत (पार्टी)", "pic": "🎉", "example": { "en": "We were at a party.", "hi": "हम एक दावत में थे।" } },
+            { "key": "b.u17.l1.fun", "en": "fun", "hi": "मज़ा", "pic": "🎈", "example": { "en": "The party was fun.", "hi": "दावत में मज़ा आया।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u17.l1.m-yesterday", "left": { "text": "yesterday" }, "right": { "pic": "⬅️" } },
+            { "key": "b.u17.l1.m-tomorrow", "left": { "text": "tomorrow" }, "right": { "pic": "➡️" } },
+            { "key": "b.u17.l1.m-fair", "left": { "text": "fair" }, "right": { "pic": "🎡" } },
+            { "key": "b.u17.l1.m-festival", "left": { "text": "festival" }, "right": { "pic": "🪔" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u17.l1.p-today",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "today" },
+              "options": [{ "pic": "📅" }, { "pic": "⬅️" }, { "pic": "➡️" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u17.l1.p-party",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "party" },
+              "options": [{ "pic": "🎡" }, { "pic": "🎉" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u17.l1.s-yesterday", "model": "Yesterday was Sunday.", "hi": "कल रविवार था।", "pic": "⬅️" },
+            { "key": "b.u17.l1.s-today", "model": "Today is Monday.", "hi": "आज सोमवार है।", "pic": "📅" },
+            { "key": "b.u17.l1.s-fair", "model": "The fair was fun!", "hi": "मेले में मज़ा आया!", "pic": "🎡" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u17.l1.c-tomorrow",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "tomorrow" },
+          "options": [{ "pic": "⬅️" }, { "pic": "📅" }, { "pic": "➡️" }],
+          "answer": 2
+        },
+        {
+          "key": "b.u17.l1.c-fair",
+          "type": "choose",
+          "prompt": { "en": "Which word means मेला?", "hi": "'मेला' कौन-सा है?", "pic": "🎡" },
+          "options": [{ "text": "party" }, { "text": "fair" }, { "text": "festival" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u17.l1.c-yesterday",
+          "type": "choose",
+          "prompt": { "en": "Which word means बीता हुआ कल?", "hi": "'बीता हुआ कल' कौन-सा है?", "pic": "⬅️" },
+          "options": [{ "text": "today" }, { "text": "yesterday" }, { "text": "tomorrow" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u17.l1.c-today",
+          "type": "choose",
+          "prompt": { "en": "Today is Monday. Yesterday was ___.", "hi": "आज सोमवार है। कल रविवार था।", "pic": "📅" },
+          "options": [{ "text": "Sunday" }, { "text": "Tuesday" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u17.l1.c-festival",
+          "type": "choose",
+          "prompt": { "en": "Eid is a ___.", "hi": "ईद एक त्योहार है।", "pic": "🌙" },
+          "options": [{ "text": "festival" }, { "text": "fair" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Say: Today is …, yesterday was …", "hi": "बोलो: Today is …, yesterday was …" }
+    },
+    {
+      "key": "b.u17.l2",
+      "kind": "pattern",
+      "title": { "en": "was and were", "hi": "was और were (था, थे)" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Yesterday, today, tomorrow", "hi": "बीता कल, आज, आने वाला कल" },
+          "visual": "timeline",
+          "examples": [
+            { "en": "Yesterday I was at the fair.", "hi": "कल मैं मेले में था/थी।", "time": "past", "pic": "🎡", "parts": [{ "text": "Yesterday", "role": "when" }, { "text": "I", "role": "who" }, { "text": "was", "role": "do" }, { "text": "at the fair.", "role": "where" }] },
+            { "en": "Yesterday Arjun was tired.", "hi": "कल अर्जुन थका हुआ था।", "time": "past", "pic": "🥱", "parts": [{ "text": "Yesterday", "role": "when" }, { "text": "Arjun", "role": "who" }, { "text": "was", "role": "do" }, { "text": "tired.", "role": "what" }] },
+            { "en": "Yesterday we were very happy.", "hi": "कल हम बहुत ख़ुश थे।", "time": "past", "pic": "😊", "parts": [{ "text": "Yesterday", "role": "when" }, { "text": "we", "role": "who" }, { "text": "were", "role": "do" }, { "text": "very happy.", "role": "what" }] },
+            { "en": "Today I am at school.", "hi": "आज मैं स्कूल में हूँ।", "time": "now", "pic": "🏫", "parts": [{ "text": "Today", "role": "when" }, { "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "at school.", "role": "where" }] },
+            { "en": "Today it is sunny.", "hi": "आज धूप है।", "time": "now", "pic": "☀️", "parts": [{ "text": "Today", "role": "when" }, { "text": "it", "role": "who" }, { "text": "is", "role": "do" }, { "text": "sunny.", "role": "what" }] },
+            { "en": "Tomorrow is Sunday.", "hi": "कल रविवार है।", "time": "future", "pic": "➡️", "parts": [{ "text": "Tomorrow", "role": "when" }, { "text": "is", "role": "do" }, { "text": "Sunday.", "role": "what" }] }
+          ],
+          "note": { "en": "Yesterday: I, he, she was. We, you, they were.", "hi": "बीता कल: I, he, she के साथ was; we, you, they के साथ were।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u17.l2.b-was", "hi": "कल मैं घर पर था।", "pic": "🏠", "tiles": ["home.", "at", "Yesterday", "I", "was"], "answer": "Yesterday I was at home." },
+            { "key": "b.u17.l2.b-were", "hi": "हम मेले में थे।", "pic": "🎡", "tiles": ["the", "fair.", "were", "at", "We"], "answer": "We were at the fair." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u17.l2.p-was",
+              "prompt": { "en": "Yesterday Meera ___ happy.", "hi": "कल मीरा ख़ुश थी।", "pic": "👧" },
+              "options": [{ "text": "was" }, { "text": "were" }],
+              "answer": 0,
+              "why": { "en": "Meera is she, so we say was.", "hi": "मीरा = she, इसलिए was।" }
+            },
+            {
+              "key": "b.u17.l2.p-were",
+              "prompt": { "en": "Yesterday we ___ at school.", "hi": "कल हम स्कूल में थे।", "pic": "🏫" },
+              "options": [{ "text": "was" }, { "text": "were" }],
+              "answer": 1,
+              "why": { "en": "With we, we say were.", "hi": "We के साथ were।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u17.l2.s-yesterday", "model": "Yesterday I was at home.", "hi": "बताओ कल कहाँ थे।", "pic": "⬅️", "cue": { "en": "Where were you yesterday?", "hi": "कल तुम कहाँ थे?" } },
+            { "key": "b.u17.l2.s-feel", "model": "I was happy yesterday.", "hi": "बताओ कल कैसा लगा।", "pic": "😊", "cue": { "en": "How were you yesterday?", "hi": "कल तुम्हें कैसा लगा?" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u17.l2.c-build1", "type": "build", "hi": "कल अर्जुन थका हुआ था।", "tiles": ["tired.", "Arjun", "Yesterday", "was"], "answer": "Yesterday Arjun was tired." },
+        { "key": "b.u17.l2.c-build2", "type": "build", "hi": "वे दुकान पर थे।", "tiles": ["shop.", "at", "were", "the", "They"], "answer": "They were at the shop." },
+        {
+          "key": "b.u17.l2.c-was",
+          "type": "choose",
+          "prompt": { "en": "I ___ at the fair yesterday.", "hi": "कल मैं मेले में था/थी।", "pic": "🎡" },
+          "options": [{ "text": "was" }, { "text": "were" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u17.l2.c-were",
+          "type": "choose",
+          "prompt": { "en": "Meera and Salma ___ at school.", "hi": "मीरा और सलमा स्कूल में थीं।", "pic": "🏫" },
+          "options": [{ "text": "was" }, { "text": "were" }],
+          "answer": 1,
+          "why": { "en": "Two people: were.", "hi": "दो लोग: were।" }
+        },
+        {
+          "key": "b.u17.l2.c-am",
+          "type": "choose",
+          "prompt": { "en": "Today I ___ at home.", "hi": "आज मैं घर पर हूँ।", "pic": "🏠" },
+          "options": [{ "text": "am" }, { "text": "was" }],
+          "answer": 0,
+          "why": { "en": "Today is now: am.", "hi": "आज यानी अभी: am।" }
+        },
+        {
+          "key": "b.u17.l2.c-yes",
+          "type": "choose",
+          "prompt": { "en": "Was it fun? Yes, it ___.", "hi": "क्या मज़ा आया? हाँ।", "pic": "🎈" },
+          "options": [{ "text": "was" }, { "text": "were" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Tell your family: Yesterday I was …", "hi": "परिवार को बताओ: Yesterday I was …" }
+    },
+    {
+      "key": "b.u17.l3",
+      "kind": "listen",
+      "title": { "en": "Eid Mubarak!", "hi": "ईद मुबारक!" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Salma's Eid", "hi": "सलमा की ईद" },
+          "scene": { "place": "school", "pics": [{ "pic": "🌙", "x": 14, "y": 10 }, { "pic": "⭐", "x": 24, "y": 8, "size": 0.7 }, { "pic": "🏫", "x": 86, "y": 14, "size": 1.6 }, { "pic": "👧", "x": 30, "y": 42, "size": 1.4 }, { "pic": "🧕", "x": 52, "y": 42, "size": 1.4 }, { "pic": "🍬", "x": 66, "y": 52, "size": 0.9 }] },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Salma, where were you yesterday?", "hi": "सलमा, कल तुम कहाँ थीं?" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Yesterday was Eid! I was at home.", "hi": "कल ईद थी! मैं घर पर थी।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "My family was there. We were very happy.", "hi": "मेरा पूरा परिवार था। हम बहुत ख़ुश थे।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Was the food good?", "hi": "क्या खाना अच्छा था?" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Yes, it was very good!", "hi": "हाँ, बहुत अच्छा था!" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Here are some sweets for you.", "hi": "ये लो, तुम्हारे लिए मिठाई।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Thank you! Eid Mubarak, Salma!", "hi": "धन्यवाद! ईद मुबारक, सलमा!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u17.l3.p-where",
+              "prompt": { "en": "Where was Salma yesterday?", "hi": "कल सलमा कहाँ थी?" },
+              "options": [{ "text": "at home", "pic": "🏠" }, { "text": "at the shop", "pic": "🏪" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u17.l3.p-fest",
+              "prompt": { "en": "Which festival was it?", "hi": "कौन-सा त्योहार था?" },
+              "options": [{ "text": "Diwali", "pic": "🪔" }, { "text": "Eid", "pic": "🌙" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u17.l3.s-was", "model": "Yesterday was Eid!", "hi": "कल ईद थी!", "pic": "🌙" },
+            { "key": "b.u17.l3.s-were", "model": "We were very happy.", "hi": "हम बहुत ख़ुश थे।", "pic": "😊" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u17.l3.c-happy",
+          "type": "choose",
+          "prompt": { "en": "How was Salma's family?", "hi": "सलमा का परिवार कैसा था?" },
+          "options": [{ "text": "happy", "pic": "😊" }, { "text": "sad", "pic": "😢" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u17.l3.c-food",
+          "type": "choose",
+          "prompt": { "en": "Was the food good?", "hi": "क्या खाना अच्छा था?" },
+          "options": [{ "text": "Yes, it was." }, { "text": "No, it was not." }],
+          "answer": 0
+        },
+        {
+          "key": "b.u17.l3.c-gift",
+          "type": "choose",
+          "prompt": { "en": "What does Salma give Meera?", "hi": "सलमा मीरा को क्या देती है?" },
+          "options": [{ "text": "sweets", "pic": "🍬" }, { "text": "a balloon", "pic": "🎈" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u17.l3.c-say",
+          "type": "choose",
+          "prompt": { "en": "What does Meera say at the end?", "hi": "अंत में मीरा क्या कहती है?" },
+          "options": [{ "text": "Good night!" }, { "text": "Eid Mubarak!" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Tell someone about a festival day.", "hi": "किसी को किसी त्योहार के दिन के बारे में बताओ।" }
+    },
+    {
+      "key": "b.u17.l4",
+      "kind": "speak",
+      "title": { "en": "Yesterday I was …", "hi": "कल मैं … था/थी" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "Where were you yesterday?", "hi": "कल तुम कहाँ थे?" },
+          "scene": { "place": "village", "pics": [{ "pic": "🎡", "x": 82, "y": 20, "size": 1.8 }, { "pic": "🎈", "x": 70, "y": 30 }, { "pic": "👦", "x": 30, "y": 42, "size": 1.4 }, { "pic": "🧒", "x": 54, "y": 42, "size": 1.5 }] },
+          "roles": [{ "name": "Arjun", "pic": "👦" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Where were you yesterday?", "hi": "कल तुम कहाँ थे?" },
+            { "role": 1, "en": "I was at the fair.", "hi": "मैं मेले में था/थी।" },
+            { "role": 0, "en": "Was it fun?", "hi": "क्या मज़ा आया?" },
+            { "role": 1, "en": "Yes! It was a lot of fun.", "hi": "हाँ! बहुत मज़ा आया।" },
+            { "role": 0, "en": "Were your friends there?", "hi": "क्या तुम्हारे दोस्त भी थे?" },
+            { "role": 1, "en": "Yes, they were. We were happy.", "hi": "हाँ, थे। हम ख़ुश थे।" },
+            { "role": 0, "en": "I was at home. I was tired.", "hi": "मैं घर पर था। मैं थका हुआ था।" },
+            { "role": 1, "en": "Come with us next time!", "hi": "अगली बार हमारे साथ चलना!" }
+          ],
+          "partner": { "goal": "Ask about yesterday: where the child was, whether it was fun and who was there; then say where you were.", "must_use": ["was", "were", "yesterday"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u17.l4.br-was", "hi": "कल मैं स्कूल में था।", "tiles": ["school.", "was", "Yesterday", "at", "I"], "answer": "Yesterday I was at school." },
+            { "key": "b.u17.l4.br-fun", "hi": "मेले में मज़ा आया।", "tiles": ["fun.", "was", "fair", "The"], "answer": "The fair was fun." }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u17.l4.c-reply",
+          "type": "choose",
+          "prompt": { "en": "Where were you yesterday? You say:", "hi": "कल कहाँ थे? क्या कहोगे?", "pic": "⬅️" },
+          "options": [{ "text": "I was at the fair." }, { "text": "I am at the fair tomorrow." }],
+          "answer": 0
+        },
+        { "key": "b.u17.l4.c-build", "type": "build", "hi": "हम ख़ुश थे।", "tiles": ["happy.", "were", "We"], "answer": "We were happy." },
+        {
+          "key": "b.u17.l4.c-were",
+          "type": "choose",
+          "prompt": { "en": "Were your friends there? Yes, they ___.", "hi": "क्या दोस्त भी थे? हाँ।", "pic": "👫" },
+          "options": [{ "text": "was" }, { "text": "were" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask Papa: Where were you yesterday?", "hi": "पापा से पूछो: Where were you yesterday?" }
+    },
+    {
+      "key": "b.u17.l5",
+      "kind": "review",
+      "title": { "en": "Unit 17 review", "hi": "इकाई 17 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u17.l5.m-today", "left": { "text": "today" }, "right": { "pic": "📅" } },
+            { "key": "b.u17.l5.m-party", "left": { "text": "party" }, "right": { "pic": "🎉" } },
+            { "key": "b.u17.l5.m-fun", "left": { "text": "fun" }, "right": { "pic": "🎈" } },
+            { "key": "b.u17.l5.m-scared", "left": { "text": "scared" }, "right": { "pic": "😨" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u17.l5.b-yesterday", "hi": "कल रविवार था।", "pic": "⬅️", "tiles": ["Sunday.", "was", "Yesterday"], "answer": "Yesterday was Sunday." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u17.l5.p-was",
+              "prompt": { "en": "Dadi ___ at the haat yesterday.", "hi": "कल दादी हाट में थीं।", "pic": "👵" },
+              "options": [{ "text": "was" }, { "text": "were" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u17.l5.s-yest", "model": "Yesterday I was at home. I was happy.", "hi": "बीते कल के बारे में दो बातें बोलो।", "cue": { "en": "Tell me about yesterday.", "hi": "बीते कल के बारे में बताओ।" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u17.l5.c-fair",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "fair" },
+          "options": [{ "pic": "🎡" }, { "pic": "🎉" }, { "pic": "🪔" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u17.l5.c-tomorrow",
+          "type": "choose",
+          "prompt": { "en": "Which word means आने वाला कल?", "hi": "'आने वाला कल' कौन-सा है?" },
+          "options": [{ "text": "yesterday" }, { "text": "tomorrow" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u17.l5.c-were",
+          "type": "choose",
+          "prompt": { "en": "Arjun and Meera ___ at the fair.", "hi": "अर्जुन और मीरा मेले में थे।", "pic": "🎡" },
+          "options": [{ "text": "was" }, { "text": "were" }],
+          "answer": 1
+        },
+        { "key": "b.u17.l5.c-build", "type": "build", "hi": "कल मैं थका हुआ था।", "tiles": ["tired", "was", "I", "yesterday."], "answer": "I was tired yesterday." },
+        {
+          "key": "b.u17.l5.c-can",
+          "type": "choose",
+          "prompt": { "en": "___ I go out, please?", "hi": "क्या मैं बाहर जाऊँ, प्लीज़?", "pic": "🚪" },
+          "options": [{ "text": "Can" }, { "text": "Was" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u17.l5.c-feel",
+          "type": "choose",
+          "prompt": { "en": "I ___ hungry, Mummy!", "hi": "माँ, मुझे भूख लगी है!", "pic": "😋" },
+          "options": [{ "text": "feel" }, { "text": "want" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u17.l5.c-much",
+          "type": "choose",
+          "prompt": { "en": "How ___ is the kite?", "hi": "पतंग कितने की है?", "pic": "🪁" },
+          "options": [{ "text": "much" }, { "text": "many" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Every night, say one thing about your day: I was …", "hi": "हर रात अपने दिन के बारे में एक बात बोलो: I was …" }
+    }
+  ]
+}

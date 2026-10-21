@@ -1,0 +1,374 @@
+{
+  "track": "a",
+  "unit": 13,
+  "key": "a.u13",
+  "title": { "en": "Clothes", "hi": "कपड़े" },
+  "pic": "👕",
+  "can_do": { "en": "I can name my clothes.", "hi": "मुझे अपने कपड़ों के नाम आते हैं।" },
+  "lessons": [
+    {
+      "key": "a.u13.l1",
+      "kind": "words",
+      "title": { "en": "Clothes words", "hi": "कपड़ों के नाम" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u13.l1.w-milk",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "milk" },
+              "options": [{ "pic": "🥛" }, { "pic": "💧" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u13.l1.w-roti",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "roti" },
+              "options": [{ "pic": "🍚" }, { "pic": "own:roti" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: touch your child's clothes as you say each word.", "hi": "बड़ों के लिए: हर शब्द बोलते समय बच्चे के कपड़े छूकर दिखाएँ।" },
+          "pic": "👕"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u13.l1.shirt", "en": "shirt", "hi": "कमीज़, शर्ट", "pic": "👕", "example": { "en": "A blue shirt.", "hi": "नीली कमीज़।" } },
+            { "key": "a.u13.l1.frock", "en": "frock", "hi": "फ़्रॉक", "pic": "👗", "example": { "en": "A red frock.", "hi": "लाल फ़्रॉक।" } },
+            { "key": "a.u13.l1.shoes", "en": "shoes", "hi": "जूते", "pic": "👟", "example": { "en": "My black shoes.", "hi": "मेरे काले जूते।" } },
+            { "key": "a.u13.l1.cap", "en": "cap", "hi": "टोपी", "pic": "🧢", "example": { "en": "A green cap.", "hi": "हरी टोपी।" } },
+            { "key": "a.u13.l1.sweater", "en": "sweater", "hi": "स्वेटर", "pic": "🧥", "example": { "en": "A warm sweater.", "hi": "गरम स्वेटर।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Put on your cap.", "hi": "अपनी टोपी पहनो।", "pic": "🧢" },
+            { "en": "Take off your shoes.", "hi": "अपने जूते उतारो।", "pic": "👟" },
+            { "en": "Button your sweater.", "hi": "स्वेटर के बटन लगाओ।", "pic": "🧥" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u13.l1.t-cap",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "cap" },
+              "options": [{ "pic": "🧢" }, { "pic": "👟" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u13.l1.t-frock",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "frock" },
+              "options": [{ "pic": "👕" }, { "pic": "👗" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u13.l1.t-shoes",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "shoes" },
+              "options": [{ "pic": "🧥" }, { "pic": "🧢" }, { "pic": "👟" }],
+              "answer": 2
+            },
+            {
+              "key": "a.u13.l1.t-sweater",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "sweater" },
+              "options": [{ "pic": "🧥" }, { "pic": "👗" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u13.l1.s-shirt", "model": "Shirt.", "hi": "कमीज़।", "pic": "👕" },
+            { "key": "a.u13.l1.s-frock", "model": "Frock.", "hi": "फ़्रॉक।", "pic": "👗" },
+            { "key": "a.u13.l1.s-shoes", "model": "Shoes.", "hi": "जूते।", "pic": "👟" },
+            { "key": "a.u13.l1.s-cap", "model": "Cap.", "hi": "टोपी।", "pic": "🧢" },
+            { "key": "a.u13.l1.s-sweater", "model": "Sweater.", "hi": "स्वेटर।", "pic": "🧥" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "While dressing, name each piece in English.", "hi": "कपड़े पहनाते समय हर कपड़े का अंग्रेज़ी नाम बोलें।" }
+    },
+    {
+      "key": "a.u13.l2",
+      "kind": "pattern",
+      "title": { "en": "I am wearing a cap.", "hi": "मैंने टोपी पहनी है।" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "I am wearing …", "hi": "मैंने … पहना है" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "I am wearing a cap.",
+              "hi": "मैंने टोपी पहनी है।",
+              "pic": "🧢",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "am wearing", "role": "do" }, { "text": "a cap.", "role": "what" }]
+            },
+            {
+              "en": "I am wearing a red frock.",
+              "hi": "मैंने लाल फ़्रॉक पहनी है।",
+              "pic": "👗",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "am wearing", "role": "do" }, { "text": "a red frock.", "role": "what" }]
+            },
+            {
+              "en": "I am wearing a blue shirt.",
+              "hi": "मैंने नीली कमीज़ पहनी है।",
+              "pic": "👕",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "am wearing", "role": "do" }, { "text": "a blue shirt.", "role": "what" }]
+            },
+            {
+              "en": "I am wearing shoes.",
+              "hi": "मैंने जूते पहने हैं।",
+              "pic": "👟",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "am wearing", "role": "do" }, { "text": "shoes.", "role": "what" }]
+            }
+          ],
+          "note": { "en": "Look at your clothes and tell.", "hi": "अपने कपड़े देखो और बताओ।" }
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u13.l2.t-cap",
+              "prompt": { "en": "Listen. Tap it.", "hi": "सुनो, फिर सही कपड़ा छुओ।", "say": "I am wearing a cap." },
+              "options": [{ "pic": "👕" }, { "pic": "🧢" }],
+              "answer": 1,
+              "why": { "en": "A cap goes on the head.", "hi": "cap यानी टोपी, जो सिर पर पहनते हैं।" }
+            },
+            {
+              "key": "a.u13.l2.t-sweater",
+              "prompt": { "en": "Listen. Tap it.", "hi": "सुनो, फिर सही कपड़ा छुओ।", "say": "I am wearing a sweater." },
+              "options": [{ "pic": "🧥" }, { "pic": "👗" }, { "pic": "👟" }],
+              "answer": 0,
+              "why": { "en": "A sweater keeps us warm.", "hi": "sweater हमें गरम रखता है।" }
+            },
+            {
+              "key": "a.u13.l2.t-shoes",
+              "prompt": { "en": "Listen. Tap it.", "hi": "सुनो, फिर सही कपड़ा छुओ।", "say": "I am wearing shoes." },
+              "options": [{ "pic": "🧢" }, { "pic": "👕" }, { "pic": "👟" }],
+              "answer": 2,
+              "why": { "en": "Shoes go on the feet.", "hi": "shoes यानी जूते, जो पैरों में पहनते हैं।" }
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Touch your shirt.", "hi": "अपनी कमीज़ छुओ।", "pic": "👕" },
+            { "en": "Point to your shoes.", "hi": "अपने जूतों की ओर इशारा करो।", "pic": "👟" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u13.l2.s-shirt",
+              "model": "I am wearing a shirt.",
+              "hi": "अपने कपड़े देखकर बताओ।",
+              "pic": "👕",
+              "cue": { "en": "What are you wearing?", "hi": "तुमने क्या पहना है?" }
+            },
+            {
+              "key": "a.u13.l2.s-cap",
+              "model": "I am wearing a cap.",
+              "hi": "टोपी पहनकर बताओ।",
+              "pic": "🧢",
+              "cue": { "en": "Put on a cap. Tell me!", "hi": "टोपी पहनो और बताओ!" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Each morning ask: What are you wearing?", "hi": "रोज़ सुबह पूछें: What are you wearing? बच्चा कहे: I am wearing …" }
+    },
+    {
+      "key": "a.u13.l3",
+      "kind": "listen",
+      "title": { "en": "A cold morning", "hi": "ठंडी सुबह" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "A cold morning", "hi": "ठंडी सुबह" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🌫️", "x": 50, "y": 6, "size": 2 },
+              { "pic": "👵", "x": 18, "y": 40, "size": 1.6 },
+              { "pic": "👦", "x": 44, "y": 46, "size": 1.4 },
+              { "pic": "🧥", "x": 44, "y": 28 },
+              { "pic": "👧", "x": 66, "y": 46, "size": 1.4 },
+              { "pic": "🧢", "x": 66, "y": 28 },
+              { "pic": "👟", "x": 88, "y": 54 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Dadi", "pic": "👵", "en": "It is cold! Wear a sweater.", "hi": "ठंड है! स्वेटर पहनो।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "I am wearing my sweater.", "hi": "मैंने अपना स्वेटर पहना है।" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Good! And your cap?", "hi": "शाबाश! और तुम्हारी टोपी?" },
+            { "speaker": "Meera", "pic": "👧", "en": "I am wearing a red cap.", "hi": "मैंने लाल टोपी पहनी है।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Where are my shoes?", "hi": "मेरे जूते कहाँ हैं?" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Here they are, Arjun!", "hi": "ये रहे, अर्जुन!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u13.l3.q-arjun",
+              "prompt": { "en": "What is Arjun wearing?", "hi": "अर्जुन ने क्या पहना है?" },
+              "options": [{ "pic": "🧥" }, { "pic": "👗" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u13.l3.q-cap",
+              "prompt": { "en": "What colour is Meera's cap?", "hi": "मीरा की टोपी किस रंग की है?" },
+              "options": [{ "pic": "🔵" }, { "pic": "🔴" }, { "pic": "🟢" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u13.l3.q-look",
+              "prompt": { "en": "What is Arjun looking for?", "hi": "अर्जुन क्या ढूँढ रहा है?" },
+              "options": [{ "pic": "👟" }, { "pic": "🧢" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u13.l3.s-sweater", "model": "I am wearing my sweater.", "hi": "मैंने अपना स्वेटर पहना है।", "pic": "🧥" },
+            { "key": "a.u13.l3.s-shoes", "model": "Where are my shoes?", "hi": "मेरे जूते कहाँ हैं?", "pic": "👟" }
+          ]
+        },
+        { "type": "action", "prompts": [{ "en": "Shiver. Brr!", "hi": "काँपो। ब्र्र!", "pic": "🥶" }, { "en": "Put on a sweater.", "hi": "स्वेटर पहनो।", "pic": "🧥" }] }
+      ],
+      "check": [],
+      "home": { "en": "On cold days, say together: I am wearing a sweater.", "hi": "ठंड के दिनों में साथ में बोलें: I am wearing a sweater." }
+    },
+    {
+      "key": "a.u13.l4",
+      "kind": "speak",
+      "title": { "en": "Dress-up talk", "hi": "कपड़े पहनने का खेल" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: put on a cap or big shoes, just for fun.", "hi": "बड़ों के लिए: मज़े के लिए आप भी कोई टोपी या बड़े जूते पहन लें।" },
+          "pic": "🧢"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Dress-up", "hi": "कपड़े पहनने का खेल" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🧕", "x": 26, "y": 40, "size": 1.6 },
+              { "pic": "🧒", "x": 66, "y": 42, "size": 1.6 },
+              { "pic": "🧢", "x": 66, "y": 24 },
+              { "pic": "👟", "x": 26, "y": 56 },
+              { "pic": "🧥", "x": 88, "y": 40 }
+            ]
+          },
+          "roles": [{ "name": "Salma", "pic": "🧕" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Let's play dress-up!", "hi": "चलो, कपड़े पहनने का खेल खेलें!" },
+            { "role": 1, "en": "I am wearing a big cap!", "hi": "मैंने बड़ी टोपी पहनी है!" },
+            { "role": 0, "en": "I am wearing Papa's shoes!", "hi": "मैंने पापा के जूते पहने हैं!" },
+            { "role": 1, "en": "I am wearing Dadi's sweater!", "hi": "मैंने दादी का स्वेटर पहना है!" },
+            { "role": 0, "en": "We look so funny!", "hi": "हम कितने मज़ेदार लग रहे हैं!" },
+            { "role": 1, "en": "Yes! Ha ha ha!", "hi": "हाँ! हा हा हा!" }
+          ],
+          "partner": {
+            "goal": "Play dress-up: say what you are wearing and invite the child to say what they are wearing.",
+            "must_use": ["I am wearing", "cap", "shoes", "sweater"]
+          }
+        }
+      ],
+      "check": [],
+      "home": { "en": "Play dress-up with old clothes at home.", "hi": "घर के पुराने कपड़ों से dress-up खेलें और अंग्रेज़ी में बताएँ।" }
+    },
+    {
+      "key": "a.u13.l5",
+      "kind": "review",
+      "title": { "en": "Clothes again", "hi": "फिर से कपड़े" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u13.l5.m-cap", "left": { "text": "cap", "pic": "🧢" }, "right": { "pic": "🧒" } },
+            { "key": "a.u13.l5.m-shoes", "left": { "text": "shoes", "pic": "👟" }, "right": { "pic": "🦶" } },
+            { "key": "a.u13.l5.m-sweater", "left": { "text": "sweater", "pic": "🧥" }, "right": { "pic": "🥶" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u13.l5.t-shirt",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "shirt" },
+              "options": [{ "pic": "👕" }, { "pic": "🧥" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u13.l5.t-frock",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "frock" },
+              "options": [{ "pic": "🧢" }, { "pic": "👗" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u13.l5.w-rice",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "rice" },
+              "options": [{ "pic": "🍚" }, { "pic": "🍲" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u13.l5.w-water",
+              "prompt": { "en": "Remember? Tap it.", "hi": "याद है? सही चित्र छुओ।", "say": "I want water, please." },
+              "options": [{ "pic": "🥛" }, { "pic": "💧" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u13.l5.w-triangle",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "triangle" },
+              "options": [{ "pic": "🔺" }, { "pic": "⭐" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Put on your shoes.", "hi": "अपने जूते पहनो।", "pic": "👟" }, { "en": "Take off your cap.", "hi": "अपनी टोपी उतारो।", "pic": "🧢" }]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u13.l5.s-today",
+              "model": "I am wearing a shirt.",
+              "hi": "अपने आज के कपड़े बताओ।",
+              "pic": "👕",
+              "cue": { "en": "What are you wearing today?", "hi": "आज तुमने क्या पहना है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Let your child choose clothes and name them.", "hi": "बच्चे को अपने कपड़े ख़ुद चुनने दें और उनके नाम बोलने दें।" }
+    }
+  ]
+}

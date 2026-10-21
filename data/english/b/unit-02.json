@@ -1,0 +1,399 @@
+{
+  "track": "b",
+  "unit": 2,
+  "key": "b.u02",
+  "title": { "en": "Family and friends", "hi": "परिवार और दोस्त" },
+  "pic": "👪",
+  "can_do": { "en": "I can talk about my family.", "hi": "मैं अपने परिवार के बारे में बता सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u02.l1",
+      "kind": "words",
+      "title": { "en": "Family words", "hi": "परिवार के शब्द" },
+      "minutes": 5,
+      "steps": [
+        { "type": "tip", "text": { "en": "Today we learn family words.", "hi": "आज हम परिवार के शब्द सीखेंगे।" }, "pic": "👪" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u02.l1.mother", "en": "mother", "hi": "माँ", "pic": "👩", "example": { "en": "This is my mother.", "hi": "ये मेरी माँ हैं।" } },
+            { "key": "b.u02.l1.father", "en": "father", "hi": "पिता (पापा)", "pic": "👨", "example": { "en": "This is my father.", "hi": "ये मेरे पापा हैं।" } },
+            { "key": "b.u02.l1.grandmother", "en": "grandmother", "hi": "दादी, नानी", "pic": "👵", "example": { "en": "I love my grandmother.", "hi": "मैं अपनी दादी से प्यार करता/करती हूँ।" } },
+            { "key": "b.u02.l1.grandfather", "en": "grandfather", "hi": "दादा, नाना", "pic": "👴", "example": { "en": "Hello, grandfather!", "hi": "नमस्ते, दादाजी!" } },
+            { "key": "b.u02.l1.brother", "en": "brother", "hi": "भाई", "pic": "👦", "example": { "en": "Arjun is my brother.", "hi": "अर्जुन मेरा भाई है।" } },
+            { "key": "b.u02.l1.sister", "en": "sister", "hi": "बहन", "pic": "👧", "example": { "en": "Meera is my sister.", "hi": "मीरा मेरी बहन है।" } },
+            { "key": "b.u02.l1.family", "en": "family", "hi": "परिवार", "pic": "👪", "example": { "en": "I love my family.", "hi": "मुझे अपने परिवार से प्यार है।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u02.l1.m-mother", "left": { "text": "mother" }, "right": { "pic": "👩" } },
+            { "key": "b.u02.l1.m-father", "left": { "text": "father" }, "right": { "pic": "👨" } },
+            { "key": "b.u02.l1.m-grandmother", "left": { "text": "grandmother" }, "right": { "pic": "👵" } },
+            { "key": "b.u02.l1.m-family", "left": { "text": "family" }, "right": { "pic": "👪" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u02.l1.p-grandfather",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "grandfather" },
+              "options": [{ "pic": "👴" }, { "pic": "👵" }, { "pic": "👦" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u02.l1.p-sister",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "sister" },
+              "options": [{ "pic": "👦" }, { "pic": "👨" }, { "pic": "👧" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u02.l1.s-mother", "model": "This is my mother.", "hi": "ये मेरी माँ हैं।", "pic": "👩" },
+            { "key": "b.u02.l1.s-father", "model": "This is my father.", "hi": "ये मेरे पापा हैं।", "pic": "👨" },
+            { "key": "b.u02.l1.s-family", "model": "I love my family.", "hi": "मुझे अपने परिवार से प्यार है।", "pic": "👪" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u02.l1.c-brother",
+          "type": "choose",
+          "prompt": { "en": "Which word means भाई?", "hi": "कौन-सा शब्द 'भाई' है?", "pic": "👦" },
+          "options": [{ "text": "brother" }, { "text": "sister" }, { "text": "father" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u02.l1.c-grandmother",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "grandmother" },
+          "options": [{ "pic": "👩" }, { "pic": "👵" }, { "pic": "👧" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u02.l1.c-sister",
+          "type": "choose",
+          "prompt": { "en": "Meera is Arjun's ___.", "hi": "मीरा अर्जुन की ___ है।", "pic": "👧" },
+          "options": [{ "text": "brother" }, { "text": "sister" }],
+          "answer": 1,
+          "why": { "en": "Meera is a girl. She is his sister.", "hi": "मीरा लड़की है। वह अर्जुन की बहन है।" }
+        },
+        {
+          "key": "b.u02.l1.c-family",
+          "type": "choose",
+          "prompt": { "en": "Which word means परिवार?", "hi": "कौन-सा शब्द 'परिवार' है?", "pic": "👪" },
+          "options": [{ "text": "friend" }, { "text": "family" }, { "text": "father" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "At home, say: I love my family!", "hi": "घर पर कहो: I love my family!" }
+    },
+    {
+      "key": "b.u02.l2",
+      "kind": "pattern",
+      "title": { "en": "He is …, She is …, This is my …", "hi": "वह … है, यह मेरा/मेरी … है" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Talk about your family", "hi": "अपने परिवार के बारे में बोलो" },
+          "visual": "builder",
+          "examples": [
+            { "en": "This is my mother.", "hi": "ये मेरी माँ हैं।", "pic": "👩", "parts": [{ "text": "This", "role": "who" }, { "text": "is", "role": "do" }, { "text": "my mother.", "role": "what" }] },
+            { "en": "She is my grandmother.", "hi": "वे मेरी दादी हैं।", "pic": "👵", "parts": [{ "text": "She", "role": "who" }, { "text": "is", "role": "do" }, { "text": "my grandmother.", "role": "what" }] },
+            { "en": "He is my brother.", "hi": "वह मेरा भाई है।", "pic": "👦", "parts": [{ "text": "He", "role": "who" }, { "text": "is", "role": "do" }, { "text": "my brother.", "role": "what" }] },
+            { "en": "She is my friend.", "hi": "वह मेरी दोस्त है।", "pic": "🧕", "parts": [{ "text": "She", "role": "who" }, { "text": "is", "role": "do" }, { "text": "my friend.", "role": "what" }] },
+            { "en": "He is my father.", "hi": "वे मेरे पापा हैं।", "pic": "👨", "parts": [{ "text": "He", "role": "who" }, { "text": "is", "role": "do" }, { "text": "my father.", "role": "what" }] }
+          ],
+          "note": { "en": "He for a boy or a man. She for a girl or a woman.", "hi": "लड़के या आदमी के लिए He, लड़की या औरत के लिए She।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u02.l2.b-mother", "hi": "ये मेरी माँ हैं।", "pic": "👩", "tiles": ["mother.", "This", "my", "is"], "answer": "This is my mother." },
+            { "key": "b.u02.l2.b-he", "hi": "वह मेरा भाई है।", "pic": "👦", "tiles": ["brother.", "is", "He", "my"], "answer": "He is my brother." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u02.l2.p-she",
+              "prompt": { "en": "___ is my sister.", "hi": "वह मेरी बहन है।", "pic": "👧" },
+              "options": [{ "text": "He" }, { "text": "She" }],
+              "answer": 1,
+              "why": { "en": "A sister is a girl, so we say she.", "hi": "बहन लड़की है, इसलिए She।" }
+            },
+            {
+              "key": "b.u02.l2.p-he",
+              "prompt": { "en": "___ is my grandfather.", "hi": "वे मेरे दादा हैं।", "pic": "👴" },
+              "options": [{ "text": "She" }, { "text": "He" }],
+              "answer": 1,
+              "why": { "en": "A grandfather is a man, so we say he.", "hi": "दादा आदमी हैं, इसलिए He।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u02.l2.s-mother", "model": "This is my mother.", "hi": "अपनी माँ के बारे में बोलो।", "pic": "👩", "cue": { "en": "Who is she?", "hi": "वे कौन हैं?" } },
+            { "key": "b.u02.l2.s-brother", "model": "He is my brother.", "hi": "अपने भाई के बारे में बोलो।", "pic": "👦", "cue": { "en": "Who is he?", "hi": "वह कौन है?" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u02.l2.c-build1", "type": "build", "hi": "वे मेरी दादी हैं।", "tiles": ["my", "grandmother.", "She", "is"], "answer": "She is my grandmother." },
+        { "key": "b.u02.l2.c-build2", "type": "build", "hi": "ये मेरे पापा हैं।", "tiles": ["father.", "my", "is", "This"], "answer": "This is my father." },
+        {
+          "key": "b.u02.l2.c-he",
+          "type": "choose",
+          "prompt": { "en": "Arjun is a boy. ___ is six.", "hi": "अर्जुन लड़का है। वह छह साल का है।", "pic": "👦" },
+          "options": [{ "text": "He" }, { "text": "She" }],
+          "answer": 0,
+          "why": { "en": "Arjun is a boy, so we say he.", "hi": "अर्जुन लड़का है, इसलिए He।" }
+        },
+        {
+          "key": "b.u02.l2.c-she",
+          "type": "choose",
+          "prompt": { "en": "Salma is a girl. ___ is my friend.", "hi": "सलमा लड़की है। वह मेरी दोस्त है।", "pic": "🧕" },
+          "options": [{ "text": "He" }, { "text": "She" }, { "text": "I" }],
+          "answer": 1,
+          "why": { "en": "Salma is a girl, so we say she.", "hi": "सलमा लड़की है, इसलिए She।" }
+        },
+        {
+          "key": "b.u02.l2.c-this",
+          "type": "choose",
+          "prompt": { "en": "___ is my family.", "hi": "यह मेरा परिवार है।", "pic": "👪" },
+          "options": [{ "text": "This" }, { "text": "He" }],
+          "answer": 0,
+          "why": { "en": "We say this to show people near us.", "hi": "पास वालों को दिखाने के लिए This।" }
+        }
+      ],
+      "home": { "en": "Point and say: This is my mother.", "hi": "उँगली से दिखाकर कहो: This is my mother." }
+    },
+    {
+      "key": "b.u02.l3",
+      "kind": "listen",
+      "title": { "en": "Meera's family", "hi": "मीरा का परिवार" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Salma meets the family", "hi": "सलमा परिवार से मिलती है" },
+          "scene": { "place": "home", "pics": [{ "pic": "🏠", "x": 84, "y": 16, "size": 2 }, { "pic": "🧕", "x": 18, "y": 44, "size": 1.5 }, { "pic": "👧", "x": 34, "y": 44, "size": 1.5 }, { "pic": "👵", "x": 52, "y": 42, "size": 1.5 }, { "pic": "👦", "x": 68, "y": 46, "size": 1.3 }] },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Come in, Salma. This is my family.", "hi": "आओ सलमा। यह मेरा परिवार है।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Hello! Who is she?", "hi": "नमस्ते! वे कौन हैं?" },
+            { "speaker": "Meera", "pic": "👧", "en": "She is my grandmother. We call her Dadi.", "hi": "वे मेरी दादी हैं। हम उन्हें दादी कहते हैं।" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Hello, Salma! Come and sit.", "hi": "नमस्ते, सलमा! आओ, बैठो।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Thank you, Dadi. And who is he?", "hi": "धन्यवाद, दादी। और वह कौन है?" },
+            { "speaker": "Meera", "pic": "👧", "en": "He is my brother, Arjun. He is six.", "hi": "वह मेरा भाई अर्जुन है। वह छह साल का है।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Hello, Salma! Meera is my sister.", "hi": "नमस्ते, सलमा! मीरा मेरी बहन है।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "I like your family, Meera!", "hi": "मीरा, मुझे तुम्हारा परिवार अच्छा लगा!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u02.l3.p-dadi",
+              "prompt": { "en": "Who is Dadi?", "hi": "दादी कौन हैं?" },
+              "options": [{ "text": "Meera's grandmother", "pic": "👵" }, { "text": "Meera's friend", "pic": "🧕" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u02.l3.p-age",
+              "prompt": { "en": "How old is Arjun?", "hi": "अर्जुन कितने साल का है?" },
+              "options": [{ "text": "eight", "pic": "8️⃣" }, { "text": "six", "pic": "6️⃣" }, { "text": "seven", "pic": "7️⃣" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u02.l3.s-family", "model": "This is my family.", "hi": "यह मेरा परिवार है।", "pic": "👪" },
+            { "key": "b.u02.l3.s-brother", "model": "He is my brother.", "hi": "वह मेरा भाई है।", "pic": "👦" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u02.l3.c-where",
+          "type": "choose",
+          "prompt": { "en": "Where are they?", "hi": "वे कहाँ हैं?" },
+          "options": [{ "text": "at home", "pic": "🏠" }, { "text": "at school", "pic": "🏫" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u02.l3.c-who",
+          "type": "choose",
+          "prompt": { "en": "Who is Arjun?", "hi": "अर्जुन कौन है?" },
+          "options": [{ "text": "Meera's father", "pic": "👨" }, { "text": "Meera's brother", "pic": "👦" }, { "text": "Meera's friend", "pic": "🧕" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u02.l3.c-sister",
+          "type": "choose",
+          "prompt": { "en": "Arjun says: Meera is my ___.", "hi": "अर्जुन कहता है: मीरा मेरी ___ है।" },
+          "options": [{ "text": "mother" }, { "text": "sister" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u02.l3.c-like",
+          "type": "choose",
+          "prompt": { "en": "Does Salma like the family?", "hi": "क्या सलमा को परिवार अच्छा लगा?" },
+          "options": [{ "text": "Yes", "pic": "👍" }, { "text": "No", "pic": "👎" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Ask at home: Who is she? Who is he?", "hi": "घर पर पूछो: Who is she? Who is he?" }
+    },
+    {
+      "key": "b.u02.l4",
+      "kind": "speak",
+      "title": { "en": "Introduce your family", "hi": "अपने परिवार से मिलवाओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "Salma comes to your home", "hi": "सलमा तुम्हारे घर आई है" },
+          "scene": { "place": "home", "pics": [{ "pic": "🏠", "x": 84, "y": 16, "size": 2 }, { "pic": "🧕", "x": 22, "y": 44, "size": 1.5 }, { "pic": "🧒", "x": 42, "y": 44, "size": 1.5 }, { "pic": "👩", "x": 60, "y": 42, "size": 1.5 }, { "pic": "👦", "x": 76, "y": 46, "size": 1.3 }] },
+          "roles": [{ "name": "Salma", "pic": "🧕" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Hello! Who is she?", "hi": "नमस्ते! वे कौन हैं?" },
+            { "role": 1, "en": "She is my mother.", "hi": "वे मेरी माँ हैं।" },
+            { "role": 0, "en": "Hello, Aunty! And who is he?", "hi": "नमस्ते, आंटी! और वह कौन है?" },
+            { "role": 1, "en": "He is my brother.", "hi": "वह मेरा भाई है।" },
+            { "role": 0, "en": "How old is he?", "hi": "वह कितने साल का है?" },
+            { "role": 1, "en": "He is five years old.", "hi": "वह पाँच साल का है।" },
+            { "role": 0, "en": "Your family is nice!", "hi": "तुम्हारा परिवार बहुत अच्छा है!" },
+            { "role": 1, "en": "Thank you, Salma!", "hi": "धन्यवाद, सलमा!" }
+          ],
+          "partner": { "goal": "Visit the child's home, ask who each family member is, and let the child introduce them with this is my, he is and she is.", "must_use": ["this is my", "he is", "she is"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u02.l4.br-sister", "hi": "वह मेरी बहन है।", "tiles": ["sister.", "She", "my", "is"], "answer": "She is my sister." },
+            { "key": "b.u02.l4.br-father", "hi": "ये मेरे पापा हैं।", "tiles": ["is", "father.", "This", "my"], "answer": "This is my father." }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u02.l4.s-intro", "model": "This is my brother. He is six.", "hi": "परिवार के किसी एक को मिलवाओ।", "cue": { "en": "Who is in your family?", "hi": "तुम्हारे परिवार में कौन-कौन है?" } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u02.l4.c-reply",
+          "type": "choose",
+          "prompt": { "en": "Salma asks: Who is she? You say:", "hi": "सलमा पूछती है: Who is she? तुम क्या कहोगे?", "pic": "👩" },
+          "options": [{ "text": "She is my mother." }, { "text": "He is my mother." }],
+          "answer": 0,
+          "why": { "en": "A mother is a woman, so we say she.", "hi": "माँ औरत हैं, इसलिए She।" }
+        },
+        { "key": "b.u02.l4.c-build", "type": "build", "hi": "वह मेरा भाई है।", "tiles": ["is", "my", "He", "brother."], "answer": "He is my brother." },
+        {
+          "key": "b.u02.l4.c-old",
+          "type": "choose",
+          "prompt": { "en": "Which one asks the age?", "hi": "कौन-सा वाक्य उम्र पूछता है?" },
+          "options": [{ "text": "Who is he?" }, { "text": "How old is he?" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Introduce one family member in English.", "hi": "परिवार के किसी एक सदस्य को अंग्रेज़ी में मिलवाओ।" }
+    },
+    {
+      "key": "b.u02.l5",
+      "kind": "review",
+      "title": { "en": "Unit 2 review", "hi": "इकाई 2 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u02.l5.m-grandfather", "left": { "text": "grandfather" }, "right": { "pic": "👴" } },
+            { "key": "b.u02.l5.m-sister", "left": { "text": "sister" }, "right": { "pic": "👧" } },
+            { "key": "b.u02.l5.m-father", "left": { "text": "father" }, "right": { "pic": "👨" } },
+            { "key": "b.u02.l5.m-friend", "left": { "text": "friend" }, "right": { "pic": "👭" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u02.l5.b-friend", "hi": "वह मेरी दोस्त है।", "pic": "🧕", "tiles": ["my", "She", "friend.", "is"], "answer": "She is my friend." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u02.l5.p-name",
+              "prompt": { "en": "My name ___ Meera.", "hi": "मेरा नाम मीरा है।", "pic": "👧" },
+              "options": [{ "text": "am" }, { "text": "is" }],
+              "answer": 1,
+              "why": { "en": "My name is …", "hi": "My name के साथ is आता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u02.l5.s-family", "model": "This is my sister. She is eight.", "hi": "परिवार के किसी के बारे में दो वाक्य बोलो।", "cue": { "en": "Tell us about your family.", "hi": "अपने परिवार के बारे में बताओ।" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u02.l5.c-father",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "father" },
+          "options": [{ "pic": "👴" }, { "pic": "👨" }, { "pic": "👦" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u02.l5.c-grandmother",
+          "type": "choose",
+          "prompt": { "en": "Which word means दादी?", "hi": "कौन-सा शब्द 'दादी' है?" },
+          "options": [{ "text": "grandmother" }, { "text": "grandfather" }, { "text": "mother" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u02.l5.c-she",
+          "type": "choose",
+          "prompt": { "en": "Meera is a girl. ___ is eight.", "hi": "मीरा लड़की है। वह आठ साल की है।" },
+          "options": [{ "text": "He" }, { "text": "She" }],
+          "answer": 1,
+          "why": { "en": "Meera is a girl, so we say she.", "hi": "मीरा लड़की है, इसलिए She।" }
+        },
+        { "key": "b.u02.l5.c-build", "type": "build", "hi": "यह मेरा परिवार है।", "tiles": ["family.", "is", "my", "This"], "answer": "This is my family." },
+        {
+          "key": "b.u02.l5.c-am",
+          "type": "choose",
+          "prompt": { "en": "I ___ seven years old.", "hi": "मैं सात साल का/की हूँ।" },
+          "options": [{ "text": "am" }, { "text": "is" }, { "text": "are" }],
+          "answer": 0,
+          "why": { "en": "With I, we say am.", "hi": "I के साथ am आता है।" }
+        },
+        {
+          "key": "b.u02.l5.c-hello",
+          "type": "choose",
+          "prompt": { "en": "You meet Dadi in the morning. You say:", "hi": "सुबह तुम दादी से मिलते हो। तुम क्या कहोगे?" },
+          "options": [{ "text": "Good night, Dadi!" }, { "text": "Hello, Dadi!" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Show a family photo. Say: This is my …", "hi": "परिवार की फ़ोटो दिखाओ। कहो: This is my …" }
+    }
+  ]
+}

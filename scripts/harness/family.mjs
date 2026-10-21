@@ -3,7 +3,7 @@
 // this, and the cookies are signed with the run's own secret, worthless anywhere else.
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
-import { writeFileSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { SignJWT } from 'jose';
 
@@ -15,6 +15,7 @@ export const FAMILY = {
   consented: 'f0000000-0000-4000-8000-0000000f0002',
   pinned: 'f0000000-0000-4000-8000-0000000f0003',
   full: 'f0000000-0000-4000-8000-0000000f0004',
+  english: 'f0000000-0000-4000-8000-0000000f0005',
 };
 
 // [account (null: no session), picture name, address, { parent: parent mode open }]
@@ -31,6 +32,15 @@ export const FAMILY_SCREENS = [
   ['full', 'family-study', '/family/study', {}],
   ['full', 'family-study-catalog', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
+  // The English course (C274): the course map, and a lesson's first card.
+  ['english', 'family-english', '/family/english', { settle: 'ol[aria-label] li' }],
+  ['english', 'family-english-lesson', '/family/english/lesson/b.u01.l1', { settle: '[role=progressbar]' }],
+  ['english', 'family-english-l1-words', '/family/english/lesson/b.u01.l1?at=1', { settle: '[role=progressbar]' }],
+  ['english', 'family-english-l1-match', '/family/english/lesson/b.u01.l1?at=2', { settle: '[role=progressbar]' }],
+  ['english', 'family-english-l1-check', '/family/english/lesson/b.u01.l1?at=5', { settle: '[role=progressbar]' }],
+  ['english', 'family-english-l2-pattern', '/family/english/lesson/b.u01.l2', { settle: '[role=progressbar]' }],
+  ['english', 'family-english-l3-story', '/family/english/lesson/b.u01.l3', { settle: '[role=progressbar]' }],
+  ['english', 'family-english-l4-roleplay', '/family/english/lesson/b.u01.l4', { settle: '[role=progressbar]' }],
 ];
 
 export const FAMILY_WIDTHS = [360, 390, 1440];
@@ -48,7 +58,27 @@ async function familyCookies(accountId, parent, secret, child) {
   return out;
 }
 
+// The English course's track B lesson files, loaded as a published version (the harness only; C274).
+async function seedEnglish(db) {
+  const dir = path.join(path.dirname(new URL(import.meta.url).pathname), '../../data/english/b');
+  const units = readdirSync(dir).filter((f) => /^unit-\d{2}\.json$/.test(f)).sort().map((f) => JSON.parse(readFileSync(path.join(dir, f), 'utf8')));
+  const v = 'f0000000-0000-4000-8000-00000000e001';
+  await db.pg.query(`insert into content.english_versions (version_id, track, version_no, status, audience, import_source, import_ref, approved_by, approved_at, released_at) values ($1, 'b', 1, 'published', 'everyone', 'repository', 'harness', '00000000-0000-4000-8000-00000000f001', now(), now()) on conflict do nothing`, [v]);
+  for (const u of units) {
+    await db.pg.query(`insert into content.english_units (version_id, unit_key, position, title_en, title_hi, can_do_en, can_do_hi, pic) values ($1, $2, $3, $4, $5, $6, $7, $8) on conflict do nothing`, [v, u.key, u.unit, u.title.en, u.title.hi, u.can_do.en, u.can_do.hi, u.pic]);
+    for (const [i, l] of u.lessons.entries()) {
+      await db.pg.query(`insert into content.english_lessons (version_id, lesson_key, unit_key, position, kind, title_en, title_hi, minutes, body) values ($1, $2, $3, $4, $5, $6, $7, $8, $9) on conflict do nothing`, [v, l.key, u.key, i + 1, l.kind, l.title.en, l.title.hi, l.minutes, JSON.stringify(l)]);
+    }
+  }
+}
+
 export async function runFamilyMatrix({ browser, base, db, secret, out, only }) {
+  await seedEnglish(db);
+  // The English child has done the first three lessons of unit 1, so the map shows progress and lesson 4 is open.
+  await db.pg.query(`insert into family.english_enrolments (account_id, child_id, track, started_on) values ($1, $2, 'b', (now() at time zone 'Asia/Kolkata')::date - 3) on conflict do nothing`, [FAMILY.english, 'f0000000-0000-4000-8000-0000000fc005']);
+  for (const [k, s] of [['b.u01.l1', 3], ['b.u01.l2', 2], ['b.u01.l3', 3]]) {
+    await db.pg.query(`insert into family.english_lessons_done (account_id, child_id, lesson_key, tries, best_score, stars, done_on, last_on) values ($1, $2, $3, 1, 100, $4, (now() at time zone 'Asia/Kolkata')::date - 1, (now() at time zone 'Asia/Kolkata')::date - 1) on conflict do nothing`, [FAMILY.english, 'f0000000-0000-4000-8000-0000000fc005', k, s]);
+  }
   const rows = [];
   const screens = FAMILY_SCREENS.filter(([, name]) => !only.length || only.some((w) => name.includes(w)));
   for (const lang of FAMILY_LANGS) {

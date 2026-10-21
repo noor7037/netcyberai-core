@@ -1,0 +1,377 @@
+{
+  "track": "a",
+  "unit": 10,
+  "key": "a.u10",
+  "title": { "en": "Count to ten", "hi": "दस तक गिनती" },
+  "pic": "🔟",
+  "can_do": { "en": "I can count to ten.", "hi": "मुझे दस तक गिनना आता है।" },
+  "lessons": [
+    {
+      "key": "a.u10.l1",
+      "kind": "words",
+      "title": { "en": "Six to ten", "hi": "छह से दस" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u10.l1.w-three",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "three" },
+              "options": [{ "pic": "3️⃣" }, { "pic": "1️⃣" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u10.l1.w-five",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "five" },
+              "options": [{ "pic": "4️⃣" }, { "pic": "5️⃣" }],
+              "answer": 1
+            }
+          ]
+        },
+        { "type": "tip", "text": { "en": "Grown-up: count on both hands together.", "hi": "बड़ों के लिए: दोनों हाथों की उँगलियों पर साथ में गिनें।" }, "pic": "🙌" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u10.l1.six", "en": "six", "hi": "छह", "pic": "6️⃣", "example": { "en": "Six hens.", "hi": "छह मुर्गियाँ।" } },
+            { "key": "a.u10.l1.seven", "en": "seven", "hi": "सात", "pic": "7️⃣", "example": { "en": "Seven mangoes.", "hi": "सात आम।" } },
+            { "key": "a.u10.l1.eight", "en": "eight", "hi": "आठ", "pic": "8️⃣", "example": { "en": "Eight cows.", "hi": "आठ गायें।" } },
+            { "key": "a.u10.l1.nine", "en": "nine", "hi": "नौ", "pic": "9️⃣", "example": { "en": "Nine bananas.", "hi": "नौ केले।" } },
+            { "key": "a.u10.l1.ten", "en": "ten", "hi": "दस", "pic": "🔟", "example": { "en": "Ten fingers!", "hi": "दस उँगलियाँ!" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Show ten fingers.", "hi": "दसों उँगलियाँ दिखाओ।", "pic": "🙌" },
+            { "en": "Jump six times.", "hi": "छह बार कूदो।", "pic": "🤸" },
+            { "en": "Clap eight times.", "hi": "आठ बार ताली बजाओ।", "pic": "👏" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u10.l1.t-seven",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "seven" },
+              "options": [{ "pic": "7️⃣" }, { "pic": "6️⃣" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u10.l1.t-ten",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "ten" },
+              "options": [{ "pic": "8️⃣" }, { "pic": "🔟" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u10.l1.t-nine",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "nine" },
+              "options": [{ "pic": "6️⃣" }, { "pic": "9️⃣" }, { "pic": "7️⃣" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u10.l1.t-six",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "six" },
+              "options": [{ "pic": "6️⃣" }, { "pic": "8️⃣" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u10.l1.s-678", "model": "Six, seven, eight!", "hi": "छह, सात, आठ!", "pic": "8️⃣" },
+            { "key": "a.u10.l1.s-910", "model": "Nine, ten!", "hi": "नौ, दस!", "pic": "🔟" },
+            { "key": "a.u10.l1.s-all", "model": "Seven, eight, nine, ten!", "hi": "सात, आठ, नौ, दस!", "pic": "🙌" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Count ten steps on the way to the shop.", "hi": "दुकान जाते समय दस कदम साथ में गिनें।" }
+    },
+    {
+      "key": "a.u10.l2",
+      "kind": "pattern",
+      "title": { "en": "I have two hands.", "hi": "मेरे दो हाथ हैं।" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "I have …", "hi": "मेरे पास … हैं" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "I have two hands.",
+              "hi": "मेरे दो हाथ हैं।",
+              "pic": "🙌",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "have", "role": "do" }, { "text": "two hands.", "role": "what" }]
+            },
+            {
+              "en": "I have ten fingers.",
+              "hi": "मेरी दस उँगलियाँ हैं।",
+              "pic": "🖐️",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "have", "role": "do" }, { "text": "ten fingers.", "role": "what" }]
+            },
+            {
+              "en": "I have six mangoes.",
+              "hi": "मेरे पास छह आम हैं।",
+              "pic": "🥭",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "have", "role": "do" }, { "text": "six mangoes.", "role": "what" }]
+            },
+            {
+              "en": "I have eight grapes.",
+              "hi": "मेरे पास आठ अंगूर हैं।",
+              "pic": "🍇",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "have", "role": "do" }, { "text": "eight grapes.", "role": "what" }]
+            }
+          ],
+          "note": { "en": "Count first, then say: I have …", "hi": "पहले गिनो, फिर बोलो: I have …" }
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u10.l2.t-seven",
+              "prompt": { "en": "Listen. How many?", "hi": "सुनो। कितने?", "say": "I have seven mangoes." },
+              "options": [{ "pic": "7️⃣" }, { "pic": "5️⃣" }],
+              "answer": 0,
+              "why": { "en": "Seven: after six.", "hi": "seven यानी सात, छह के बाद।" }
+            },
+            {
+              "key": "a.u10.l2.t-nine",
+              "prompt": { "en": "Listen. How many?", "hi": "सुनो। कितने?", "say": "I have nine grapes." },
+              "options": [{ "pic": "6️⃣" }, { "pic": "9️⃣" }, { "pic": "🔟" }],
+              "answer": 1,
+              "why": { "en": "Nine: just before ten.", "hi": "nine यानी नौ, दस से ठीक पहले।" }
+            },
+            {
+              "key": "a.u10.l2.t-ten",
+              "prompt": { "en": "Listen. How many?", "hi": "सुनो। कितने?", "say": "I have ten fingers." },
+              "options": [{ "pic": "8️⃣" }, { "pic": "🔟" }],
+              "answer": 1,
+              "why": { "en": "Ten fingers on two hands.", "hi": "दोनों हाथों में दस उँगलियाँ।" }
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Hold up ten fingers.", "hi": "दसों उँगलियाँ ऊपर करो।", "pic": "🙌" },
+            { "en": "Touch your two eyes.", "hi": "अपनी दोनों आँखें छुओ।", "pic": "👀" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u10.l2.s-hands",
+              "model": "I have two hands.",
+              "hi": "गिनो और बोलो।",
+              "pic": "🙌",
+              "cue": { "en": "How many hands do you have?", "hi": "तुम्हारे कितने हाथ हैं?" }
+            },
+            {
+              "key": "a.u10.l2.s-fingers",
+              "model": "I have ten fingers.",
+              "hi": "गिनो और बोलो।",
+              "pic": "🖐️",
+              "cue": { "en": "How many fingers?", "hi": "कितनी उँगलियाँ हैं?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Ask: How many fingers? Your child says: I have ten fingers.", "hi": "पूछें: How many fingers? बच्चा कहे: I have ten fingers." }
+    },
+    {
+      "key": "a.u10.l3",
+      "kind": "listen",
+      "title": { "en": "Dadi's hens", "hi": "दादी की मुर्गियाँ" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Dadi's hens", "hi": "दादी की मुर्गियाँ" },
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🐔", "x": 20, "y": 40 },
+              { "pic": "🐔", "x": 32, "y": 48 },
+              { "pic": "🐔", "x": 44, "y": 40 },
+              { "pic": "🐔", "x": 56, "y": 48 },
+              { "pic": "🐔", "x": 68, "y": 40 },
+              { "pic": "🐔", "x": 92, "y": 56, "size": 0.8 },
+              { "pic": "👵", "x": 14, "y": 18, "size": 1.5 },
+              { "pic": "👧", "x": 80, "y": 22, "size": 1.4 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Dadi", "pic": "👵", "en": "Meera, count my hens!", "hi": "मीरा, मेरी मुर्गियाँ गिनो!" },
+            { "speaker": "Meera", "pic": "👧", "en": "One, two, three, four, five!", "hi": "एक, दो, तीन, चार, पाँच!" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Look! One more hen!", "hi": "देखो! एक और मुर्गी!" },
+            { "speaker": "Meera", "pic": "👧", "en": "Six! Dadi has six hens.", "hi": "छह! दादी के पास छह मुर्गियाँ हैं।" },
+            { "speaker": "Hen", "pic": "🐔", "en": "Cluck, cluck!", "hi": "कुट-कुट!" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Thank you, Meera and Arjun!", "hi": "शुक्रिया, मीरा और अर्जुन!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u10.l3.q-many",
+              "prompt": { "en": "How many hens?", "hi": "कितनी मुर्गियाँ हैं?" },
+              "options": [{ "pic": "5️⃣" }, { "pic": "6️⃣" }, { "pic": "🔟" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u10.l3.q-whose",
+              "prompt": { "en": "Whose hens are they?", "hi": "ये मुर्गियाँ किसकी हैं?" },
+              "options": [{ "text": "Dadi", "pic": "👵" }, { "text": "Ravi", "pic": "👳" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u10.l3.q-more",
+              "prompt": { "en": "Who finds one more hen?", "hi": "एक और मुर्गी कौन ढूँढता है?" },
+              "options": [{ "text": "Meera", "pic": "👧" }, { "text": "Arjun", "pic": "👦" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u10.l3.s-six", "model": "Dadi has six hens.", "hi": "दादी के पास छह मुर्गियाँ हैं।", "pic": "🐔" },
+            { "key": "a.u10.l3.s-more", "model": "Look! One more hen!", "hi": "देखो! एक और मुर्गी!", "pic": "🐔" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Flap like a hen.", "hi": "मुर्गी की तरह पंख फड़फड़ाओ।", "pic": "🐔" },
+            { "en": "Count to six. Clap!", "hi": "छह तक गिनो। ताली!", "pic": "👏" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Count birds, cows or trees you see today.", "hi": "आज जो पक्षी, गायें या पेड़ दिखें, उन्हें साथ में गिनें।" }
+    },
+    {
+      "key": "a.u10.l4",
+      "kind": "speak",
+      "title": { "en": "Count the mangoes", "hi": "आम गिनो" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: count slowly and touch each mango on the screen.", "hi": "बड़ों के लिए: धीरे-धीरे गिनें और हर आम पर उँगली रखें।" },
+          "pic": "🥭"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🥭", "x": 10, "y": 24 },
+              { "pic": "🥭", "x": 22, "y": 24 },
+              { "pic": "🥭", "x": 34, "y": 24 },
+              { "pic": "🥭", "x": 46, "y": 24 },
+              { "pic": "🥭", "x": 16, "y": 40 },
+              { "pic": "🥭", "x": 28, "y": 40 },
+              { "pic": "🥭", "x": 40, "y": 40 },
+              { "pic": "👧", "x": 76, "y": 36, "size": 1.8 }
+            ]
+          },
+          "questions": [
+            { "key": "a.u10.l4.q-many", "en": "How many mangoes?", "hi": "कितने आम हैं?", "model": "Seven mangoes!" },
+            { "key": "a.u10.l4.q-who", "en": "Who has the mangoes?", "hi": "आम किसके पास हैं?", "model": "Meera has seven mangoes." },
+            { "key": "a.u10.l4.q-like", "en": "Do you like mangoes?", "hi": "क्या तुम्हें आम पसंद हैं?", "model": "Yes! I like mangoes." }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Count to ten and jump!", "hi": "दस तक गिनो और कूदो!", "pic": "🤸" }, { "en": "Clap ten times.", "hi": "दस बार ताली बजाओ।", "pic": "👏" }]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Count to ten before every meal this week.", "hi": "इस हफ़्ते हर बार खाने से पहले साथ में दस तक गिनें।" }
+    },
+    {
+      "key": "a.u10.l5",
+      "kind": "review",
+      "title": { "en": "Numbers game", "hi": "गिनती का खेल" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u10.l5.m-ten", "left": { "text": "ten", "pic": "🔟" }, "right": { "pic": "🙌" } },
+            { "key": "a.u10.l5.m-five", "left": { "text": "five", "pic": "5️⃣" }, "right": { "pic": "🖐️" } },
+            { "key": "a.u10.l5.m-two", "left": { "text": "two", "pic": "2️⃣" }, "right": { "pic": "👀" } },
+            { "key": "a.u10.l5.m-one", "left": { "text": "one", "pic": "1️⃣" }, "right": { "pic": "👃" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u10.l5.t-eight",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "eight" },
+              "options": [{ "pic": "8️⃣" }, { "pic": "3️⃣" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u10.l5.t-six",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "six" },
+              "options": [{ "pic": "9️⃣" }, { "pic": "6️⃣" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u10.l5.w-plate",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "plate" },
+              "options": [{ "pic": "🍽️" }, { "pic": "☕" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u10.l5.w-meow",
+              "prompt": { "en": "Remember? Who is it?", "hi": "याद है? यह कौन है?", "say": "The cat says meow." },
+              "options": [{ "pic": "🐕" }, { "pic": "🐈" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Count to ten. Clap at ten!", "hi": "दस तक गिनो। दस पर ताली!", "pic": "👏" },
+            { "en": "Show ten fingers.", "hi": "दसों उँगलियाँ दिखाओ।", "pic": "🙌" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u10.l5.s-count",
+              "model": "Six, seven, eight, nine, ten!",
+              "hi": "छह से दस तक गिनो।",
+              "pic": "🔟",
+              "cue": { "en": "Count from six to ten.", "hi": "छह से दस तक गिनो।" }
+            },
+            {
+              "key": "a.u10.l5.s-fingers",
+              "model": "I have ten fingers.",
+              "hi": "गिनो और बोलो।",
+              "pic": "🙌",
+              "cue": { "en": "How many fingers?", "hi": "कितनी उँगलियाँ हैं?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Let your child count your fingers: one to ten.", "hi": "बच्चे को आपकी उँगलियाँ गिनने दें: one to ten!" }
+    }
+  ]
+}

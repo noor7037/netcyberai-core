@@ -1,0 +1,432 @@
+{
+  "track": "b",
+  "unit": 13,
+  "key": "b.u13",
+  "title": { "en": "Right now", "hi": "अभी" },
+  "pic": "💃",
+  "can_do": { "en": "I can say what is happening now.", "hi": "मैं बता सकता/सकती हूँ कि अभी क्या हो रहा है।" },
+  "lessons": [
+    {
+      "key": "b.u13.l1",
+      "kind": "words",
+      "title": { "en": "Action words", "hi": "काम के शब्द" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "Act it out, then say it!", "hi": "करके दिखाओ, फिर बोलो!" }, "pic": "🤸" },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Sing a song!", "hi": "गाना गाओ!", "pic": "🎤" },
+            { "en": "Dance!", "hi": "नाचो!", "pic": "💃" },
+            { "en": "Read a book.", "hi": "किताब पढ़ो।", "pic": "📖" },
+            { "en": "Write your name.", "hi": "अपना नाम लिखो।", "pic": "📝" }
+          ]
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u13.l1.read", "en": "read", "hi": "पढ़ना", "pic": "📖", "example": { "en": "I read a story.", "hi": "मैं कहानी पढ़ता/पढ़ती हूँ।" } },
+            { "key": "b.u13.l1.write", "en": "write", "hi": "लिखना", "pic": "📝", "example": { "en": "I write my name.", "hi": "मैं अपना नाम लिखता/लिखती हूँ।" } },
+            { "key": "b.u13.l1.sing", "en": "sing", "hi": "गाना", "pic": "🎤", "example": { "en": "Salma can sing.", "hi": "सलमा गा सकती है।" } },
+            { "key": "b.u13.l1.dance", "en": "dance", "hi": "नाचना", "pic": "💃", "example": { "en": "We dance at Holi.", "hi": "हम होली पर नाचते हैं।" } },
+            { "key": "b.u13.l1.cook", "en": "cook", "hi": "खाना बनाना", "pic": "🍳", "example": { "en": "Papa can cook.", "hi": "पापा खाना बना सकते हैं।" } },
+            { "key": "b.u13.l1.draw", "en": "draw", "hi": "चित्र बनाना", "pic": "🎨", "example": { "en": "Arjun likes to draw.", "hi": "अर्जुन को चित्र बनाना पसंद है।" } },
+            { "key": "b.u13.l1.sweep", "en": "sweep", "hi": "झाड़ू लगाना", "pic": "🧹", "example": { "en": "We sweep the house.", "hi": "हम घर में झाड़ू लगाते हैं।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u13.l1.m-read", "left": { "text": "read" }, "right": { "pic": "📖" } },
+            { "key": "b.u13.l1.m-sing", "left": { "text": "sing" }, "right": { "pic": "🎤" } },
+            { "key": "b.u13.l1.m-cook", "left": { "text": "cook" }, "right": { "pic": "🍳" } },
+            { "key": "b.u13.l1.m-sweep", "left": { "text": "sweep" }, "right": { "pic": "🧹" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u13.l1.p-dance",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "dance" },
+              "options": [{ "pic": "🎤" }, { "pic": "💃" }, { "pic": "📝" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u13.l1.p-draw",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "draw" },
+              "options": [{ "pic": "🎨" }, { "pic": "🍳" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u13.l1.s-sing", "model": "I can sing.", "hi": "मैं गा सकता/सकती हूँ।", "pic": "🎤" },
+            { "key": "b.u13.l1.s-cook", "model": "Papa can cook.", "hi": "पापा खाना बना सकते हैं।", "pic": "🍳" },
+            { "key": "b.u13.l1.s-dance", "model": "We dance at Holi.", "hi": "हम होली पर नाचते हैं।", "pic": "💃" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u13.l1.c-write",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "write" },
+          "options": [{ "pic": "📖" }, { "pic": "📝" }, { "pic": "🧹" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u13.l1.c-sweep",
+          "type": "choose",
+          "prompt": { "en": "Which word means झाड़ू लगाना?", "hi": "'झाड़ू लगाना' कौन-सा है?", "pic": "🧹" },
+          "options": [{ "text": "cook" }, { "text": "sweep" }, { "text": "sing" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u13.l1.c-read",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "read" },
+          "options": [{ "pic": "📖" }, { "pic": "🎨" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u13.l1.c-cook",
+          "type": "choose",
+          "prompt": { "en": "Which word means खाना बनाना?", "hi": "'खाना बनाना' कौन-सा है?", "pic": "🍳" },
+          "options": [{ "text": "draw" }, { "text": "cook" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u13.l1.c-sing",
+          "type": "choose",
+          "prompt": { "en": "Salma can ___ a song.", "hi": "सलमा गाना गा सकती है।", "pic": "🎤" },
+          "options": [{ "text": "sing" }, { "text": "sweep" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Act a word. Your family guesses!", "hi": "कोई शब्द करके दिखाओ। घरवाले पहचानें!" }
+    },
+    {
+      "key": "b.u13.l2",
+      "kind": "pattern",
+      "title": { "en": "I am playing", "hi": "मैं खेल रहा/रही हूँ" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Now!", "hi": "अभी!" },
+          "visual": "timeline",
+          "examples": [
+            { "en": "I am reading now.", "hi": "मैं अभी पढ़ रहा/रही हूँ।", "time": "now", "pic": "📖", "parts": [{ "text": "I", "role": "who" }, { "text": "am reading", "role": "do" }, { "text": "now.", "role": "when" }] },
+            { "en": "Arjun is drawing now.", "hi": "अर्जुन अभी चित्र बना रहा है।", "time": "now", "pic": "🎨", "parts": [{ "text": "Arjun", "role": "who" }, { "text": "is drawing", "role": "do" }, { "text": "now.", "role": "when" }] },
+            { "en": "Papa is cooking now.", "hi": "पापा अभी खाना बना रहे हैं।", "time": "now", "pic": "🍳", "parts": [{ "text": "Papa", "role": "who" }, { "text": "is cooking", "role": "do" }, { "text": "now.", "role": "when" }] },
+            { "en": "We are singing now.", "hi": "हम अभी गा रहे हैं।", "time": "now", "pic": "🎤", "parts": [{ "text": "We", "role": "who" }, { "text": "are singing", "role": "do" }, { "text": "now.", "role": "when" }] }
+          ],
+          "note": { "en": "am, is, are + -ing: it is happening now.", "hi": "अभी हो रहा है: am / is / are + ing" }
+        },
+        {
+          "type": "pattern",
+          "title": { "en": "Ask about now", "hi": "अभी के बारे में पूछो" },
+          "visual": "question_flip",
+          "examples": [
+            { "en": "You are dancing.", "hi": "तुम नाच रहे हो।", "pic": "💃", "parts": [{ "text": "You", "role": "who" }, { "text": "are", "role": "do" }, { "text": "dancing.", "role": "do" }] },
+            { "en": "Are you dancing?", "hi": "क्या तुम नाच रहे हो?", "pic": "💃", "parts": [{ "text": "Are", "role": "ask" }, { "text": "you", "role": "who" }, { "text": "dancing?", "role": "do" }] },
+            { "en": "Yes, I am.", "hi": "हाँ।", "pic": "👍" },
+            { "en": "What are you doing?", "hi": "तुम क्या कर रहे हो?", "pic": "❓", "parts": [{ "text": "What", "role": "ask" }, { "text": "are", "role": "do" }, { "text": "you", "role": "who" }, { "text": "doing?", "role": "do" }] },
+            { "en": "I am writing.", "hi": "मैं लिख रहा/रही हूँ।", "pic": "📝" }
+          ],
+          "note": { "en": "To ask, put are before you.", "hi": "पूछने के लिए are आगे: Are you …?" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u13.l2.b-am", "hi": "मैं गा रहा हूँ।", "pic": "🎤", "tiles": ["singing.", "I", "am"], "answer": "I am singing." },
+            { "key": "b.u13.l2.b-is", "hi": "दादी खाना बना रही हैं।", "pic": "👵", "tiles": ["cooking.", "Dadi", "is"], "answer": "Dadi is cooking." },
+            { "key": "b.u13.l2.b-q", "hi": "क्या तुम पढ़ रहे हो?", "pic": "📖", "tiles": ["you", "reading?", "Are"], "answer": "Are you reading?" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u13.l2.p-is",
+              "prompt": { "en": "Meera ___ dancing.", "hi": "मीरा नाच रही है।", "pic": "💃" },
+              "options": [{ "text": "am" }, { "text": "is" }, { "text": "are" }],
+              "answer": 1,
+              "why": { "en": "Meera is she, so we say is.", "hi": "मीरा = she, इसलिए is।" }
+            },
+            {
+              "key": "b.u13.l2.p-are",
+              "prompt": { "en": "We ___ playing.", "hi": "हम खेल रहे हैं।", "pic": "⚽" },
+              "options": [{ "text": "is" }, { "text": "are" }],
+              "answer": 1,
+              "why": { "en": "With we, we say are.", "hi": "We के साथ are।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u13.l2.s-what", "model": "I am drawing.", "hi": "बताओ अभी क्या कर रहे हो।", "pic": "🎨", "cue": { "en": "What are you doing?", "hi": "क्या कर रहे हो?" } },
+            { "key": "b.u13.l2.s-q", "model": "Are you singing?", "hi": "सलमा से पूछो।", "pic": "🎤", "cue": { "en": "Ask Salma.", "hi": "पूछो: क्या तुम गा रही हो?" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u13.l2.c-build1", "type": "build", "hi": "पापा झाड़ू लगा रहे हैं।", "tiles": ["sweeping.", "Papa", "is"], "answer": "Papa is sweeping." },
+        { "key": "b.u13.l2.c-build2", "type": "build", "hi": "तुम क्या कर रहे हो?", "tiles": ["you", "are", "doing?", "What"], "answer": "What are you doing?" },
+        {
+          "key": "b.u13.l2.c-am",
+          "type": "choose",
+          "prompt": { "en": "I ___ reading.", "hi": "मैं पढ़ रहा/रही हूँ।", "pic": "📖" },
+          "options": [{ "text": "is" }, { "text": "am" }],
+          "answer": 1,
+          "why": { "en": "With I, we say am.", "hi": "I के साथ am।" }
+        },
+        {
+          "key": "b.u13.l2.c-are",
+          "type": "choose",
+          "prompt": { "en": "___ you dancing?", "hi": "क्या तुम नाच रहे हो?", "pic": "💃" },
+          "options": [{ "text": "Are" }, { "text": "Is" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u13.l2.c-ing",
+          "type": "choose",
+          "prompt": { "en": "Arjun is ___.", "hi": "अर्जुन चित्र बना रहा है।", "pic": "🎨" },
+          "options": [{ "text": "draw" }, { "text": "drawing" }],
+          "answer": 1,
+          "why": { "en": "After is, add -ing: drawing.", "hi": "is के बाद -ing: drawing।" }
+        },
+        {
+          "key": "b.u13.l2.c-yes",
+          "type": "choose",
+          "prompt": { "en": "Are you writing? Yes, I ___.", "hi": "क्या तुम लिख रहे हो? हाँ।", "pic": "📝" },
+          "options": [{ "text": "am" }, { "text": "is" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Ask at home: What are you doing?", "hi": "घर पर पूछो: What are you doing?" }
+    },
+    {
+      "key": "b.u13.l3",
+      "kind": "listen",
+      "title": { "en": "Diwali day", "hi": "दिवाली का दिन" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "What is everyone doing?", "hi": "सब क्या कर रहे हैं?" },
+          "scene": { "place": "festival", "pics": [{ "pic": "✨", "x": 50, "y": 8 }, { "pic": "🏠", "x": 84, "y": 16, "size": 1.6 }, { "pic": "👧", "x": 36, "y": 40, "size": 1.4 }, { "pic": "🧕", "x": 60, "y": 40, "size": 1.4 }, { "pic": "own:rangoli", "x": 48, "y": 54, "size": 1.4 }, { "pic": "🪔", "x": 10, "y": 52 }, { "pic": "🪔", "x": 90, "y": 52 }] },
+          "lines": [
+            { "speaker": "Salma", "pic": "🧕", "en": "Happy Diwali, Meera! What are you doing?", "hi": "दिवाली की शुभकामनाएँ, मीरा! क्या कर रही हो?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Happy Diwali! I am making a rangoli.", "hi": "दिवाली की शुभकामनाएँ! मैं रंगोली बना रही हूँ।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Where is Arjun?", "hi": "अर्जुन कहाँ है?" },
+            { "speaker": "Meera", "pic": "👧", "en": "He is helping Papa with the lamps.", "hi": "वह दीयों में पापा की मदद कर रहा है।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Is Dadi cooking?", "hi": "क्या दादी खाना बना रही हैं?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Yes! She is cooking sweets.", "hi": "हाँ! वे मिठाई बना रही हैं।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Yum! Can I help you?", "hi": "वाह! क्या मैं तुम्हारी मदद करूँ?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Yes! Come and draw with me.", "hi": "हाँ! आओ, मेरे साथ बनाओ।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u13.l3.p-meera",
+              "prompt": { "en": "What is Meera doing?", "hi": "मीरा क्या कर रही है?" },
+              "options": [{ "text": "making a rangoli", "pic": "own:rangoli" }, { "text": "reading a book", "pic": "📖" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u13.l3.p-dadi",
+              "prompt": { "en": "Who is cooking sweets?", "hi": "मिठाई कौन बना रहा है?" },
+              "options": [{ "text": "Papa", "pic": "👨" }, { "text": "Dadi", "pic": "👵" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u13.l3.s-doing", "model": "What are you doing?", "hi": "क्या कर रहे हो?", "pic": "❓" },
+            { "key": "b.u13.l3.s-making", "model": "I am making a rangoli.", "hi": "मैं रंगोली बना रहा/रही हूँ।", "pic": "own:rangoli" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u13.l3.c-fest",
+          "type": "choose",
+          "prompt": { "en": "Which festival is it?", "hi": "कौन-सा त्योहार है?" },
+          "options": [{ "text": "Diwali", "pic": "🪔" }, { "text": "Holi", "pic": "🎨" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u13.l3.c-arjun",
+          "type": "choose",
+          "prompt": { "en": "What is Arjun doing?", "hi": "अर्जुन क्या कर रहा है?" },
+          "options": [{ "text": "sleeping", "pic": "😴" }, { "text": "helping Papa", "pic": "🪔" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u13.l3.c-salma",
+          "type": "choose",
+          "prompt": { "en": "What does Salma want to do?", "hi": "सलमा क्या करना चाहती है?" },
+          "options": [{ "text": "help", "pic": "🙌" }, { "text": "sleep", "pic": "😴" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u13.l3.c-is",
+          "type": "choose",
+          "prompt": { "en": "Dadi ___ cooking sweets.", "hi": "दादी मिठाई बना रही हैं।", "pic": "👵" },
+          "options": [{ "text": "is" }, { "text": "are" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Tell your family what you are doing now.", "hi": "घरवालों को बताओ अभी क्या कर रहे/रही हो।" }
+    },
+    {
+      "key": "b.u13.l4",
+      "kind": "speak",
+      "title": { "en": "What are you doing?", "hi": "तुम क्या कर रहे हो?" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "The guessing game", "hi": "पहचानो खेल" },
+          "scene": { "place": "home", "pics": [{ "pic": "🏠", "x": 84, "y": 14, "size": 1.6 }, { "pic": "👦", "x": 30, "y": 42, "size": 1.5 }, { "pic": "🧒", "x": 56, "y": 42, "size": 1.5 }, { "pic": "💃", "x": 74, "y": 46 }] },
+          "roles": [{ "name": "Arjun", "pic": "👦" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Look at me! What am I doing?", "hi": "मुझे देखो! मैं क्या कर रहा हूँ?" },
+            { "role": 1, "en": "Are you dancing?", "hi": "क्या तुम नाच रहे हो?" },
+            { "role": 0, "en": "No, I am not dancing.", "hi": "नहीं, मैं नाच नहीं रहा।" },
+            { "role": 1, "en": "Are you swimming?", "hi": "क्या तुम तैर रहे हो?" },
+            { "role": 0, "en": "Yes, I am! Now it is your turn.", "hi": "हाँ! अब तुम्हारी बारी।" },
+            { "role": 1, "en": "Guess! What am I doing?", "hi": "पहचानो! मैं क्या कर रहा/रही हूँ?" },
+            { "role": 0, "en": "Are you cooking?", "hi": "क्या तुम खाना बना रहे/रही हो?" },
+            { "role": 1, "en": "Yes, I am cooking!", "hi": "हाँ, मैं खाना बना रहा/रही हूँ!" }
+          ],
+          "partner": { "goal": "Play the guessing game: act out an action and let the child guess with Are you …ing?, then guess the child's action.", "must_use": ["are you", "I am", "what am I doing"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u13.l4.br-now", "hi": "मैं अभी लिख रहा हूँ।", "tiles": ["now.", "writing", "I", "am"], "answer": "I am writing now." },
+            { "key": "b.u13.l4.br-not", "hi": "मैं नाच नहीं रहा हूँ।", "tiles": ["dancing.", "not", "am", "I"], "answer": "I am not dancing." }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u13.l4.c-reply",
+          "type": "choose",
+          "prompt": { "en": "Are you swimming? No, I ___.", "hi": "क्या तुम तैर रहे हो? नहीं।", "pic": "🌊" },
+          "options": [{ "text": "am not" }, { "text": "is not" }],
+          "answer": 0,
+          "why": { "en": "With I, we say am: I am not.", "hi": "I के साथ am: I am not।" }
+        },
+        { "key": "b.u13.l4.c-build", "type": "build", "hi": "क्या तुम खाना बना रहे हो?", "tiles": ["cooking?", "you", "Are"], "answer": "Are you cooking?" },
+        {
+          "key": "b.u13.l4.c-what",
+          "type": "choose",
+          "prompt": { "en": "Which one asks about now?", "hi": "कौन-सा 'अभी' के बारे में पूछता है?" },
+          "options": [{ "text": "What are you doing?" }, { "text": "What do you like?" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Play the guessing game with your family.", "hi": "परिवार के साथ पहचानो खेल खेलो।" }
+    },
+    {
+      "key": "b.u13.l5",
+      "kind": "review",
+      "title": { "en": "Unit 13 review", "hi": "इकाई 13 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u13.l5.m-write", "left": { "text": "write" }, "right": { "pic": "📝" } },
+            { "key": "b.u13.l5.m-dance", "left": { "text": "dance" }, "right": { "pic": "💃" } },
+            { "key": "b.u13.l5.m-draw", "left": { "text": "draw" }, "right": { "pic": "🎨" } },
+            { "key": "b.u13.l5.m-night", "left": { "text": "night" }, "right": { "pic": "🌙" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u13.l5.b-now", "hi": "हम अभी खेल रहे हैं।", "pic": "⚽", "tiles": ["now.", "We", "playing", "are"], "answer": "We are playing now." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u13.l5.p-q",
+              "prompt": { "en": "___ Papa cooking?", "hi": "क्या पापा खाना बना रहे हैं?", "pic": "🍳" },
+              "options": [{ "text": "Is" }, { "text": "Are" }],
+              "answer": 0,
+              "why": { "en": "Papa is he, so we ask Is Papa …?", "hi": "पापा = he, इसलिए Is।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u13.l5.s-now", "model": "I am reading a book now.", "hi": "बताओ अभी क्या कर रहे हो।", "cue": { "en": "What are you doing now?", "hi": "अभी क्या कर रहे हो?" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u13.l5.c-dance",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "dance" },
+          "options": [{ "pic": "💃" }, { "pic": "🧹" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u13.l5.c-cook",
+          "type": "choose",
+          "prompt": { "en": "Which word means खाना बनाना?", "hi": "'खाना बनाना' कौन-सा है?" },
+          "options": [{ "text": "sing" }, { "text": "cook" }, { "text": "read" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u13.l5.c-are",
+          "type": "choose",
+          "prompt": { "en": "Meera and Salma ___ singing.", "hi": "मीरा और सलमा गा रही हैं।", "pic": "🎤" },
+          "options": [{ "text": "is" }, { "text": "are" }],
+          "answer": 1,
+          "why": { "en": "Two people: are.", "hi": "दो लोग: are।" }
+        },
+        { "key": "b.u13.l5.c-build", "type": "build", "hi": "सलमा गाना गा रही है।", "tiles": ["a", "is", "song.", "Salma", "singing"], "answer": "Salma is singing a song." },
+        {
+          "key": "b.u13.l5.c-time",
+          "type": "choose",
+          "prompt": { "en": "What time is it? It is six ___.", "hi": "छह बजे हैं।", "pic": "⏰" },
+          "options": [{ "text": "o'clock" }, { "text": "Monday" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u13.l5.c-on",
+          "type": "choose",
+          "prompt": { "en": "I go to the haat ___ Sunday.", "hi": "मैं रविवार को हाट जाता/जाती हूँ।", "pic": "own:haat" },
+          "options": [{ "text": "at" }, { "text": "on" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u13.l5.c-every",
+          "type": "choose",
+          "prompt": { "en": "I go to school every ___.", "hi": "मैं रोज़ स्कूल जाता/जाती हूँ।", "pic": "🏫" },
+          "options": [{ "text": "day" }, { "text": "now" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "At dinner, say what each person is doing.", "hi": "रात के खाने पर बताओ कौन क्या कर रहा है।" }
+    }
+  ]
+}

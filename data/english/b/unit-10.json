@@ -1,0 +1,402 @@
+{
+  "track": "b",
+  "unit": 10,
+  "key": "b.u10",
+  "title": { "en": "My home", "hi": "मेरा घर" },
+  "pic": "🏠",
+  "can_do": { "en": "I can say where things are.", "hi": "मैं बता सकता/सकती हूँ कि चीज़ें कहाँ हैं।" },
+  "lessons": [
+    {
+      "key": "b.u10.l1",
+      "kind": "words",
+      "title": { "en": "Home words", "hi": "घर के शब्द" },
+      "minutes": 5,
+      "steps": [
+        { "type": "tip", "text": { "en": "Welcome to Meera's home!", "hi": "मीरा के घर में स्वागत है!" }, "pic": "🏡" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u10.l1.house", "en": "house", "hi": "घर", "pic": "🏠", "example": { "en": "This is my house.", "hi": "यह मेरा घर है।" } },
+            { "key": "b.u10.l1.door", "en": "door", "hi": "दरवाज़ा", "pic": "🚪", "example": { "en": "Open the door, please.", "hi": "दरवाज़ा खोलो, प्लीज़।" } },
+            { "key": "b.u10.l1.bed", "en": "bed", "hi": "पलंग (बिस्तर)", "pic": "🛏️", "example": { "en": "The bed is big.", "hi": "पलंग बड़ा है।" } },
+            { "key": "b.u10.l1.chair", "en": "chair", "hi": "कुर्सी", "pic": "🪑", "example": { "en": "Dadi sits on a chair.", "hi": "दादी कुर्सी पर बैठती हैं।" } },
+            { "key": "b.u10.l1.box", "en": "box", "hi": "डिब्बा", "pic": "📦", "example": { "en": "The box is small.", "hi": "डिब्बा छोटा है।" } },
+            { "key": "b.u10.l1.cat", "en": "cat", "hi": "बिल्ली", "pic": "🐈", "example": { "en": "We have a cat.", "hi": "हमारी एक बिल्ली है।" } },
+            { "key": "b.u10.l1.lamp", "en": "lamp", "hi": "दीया", "pic": "🪔", "example": { "en": "Dadi lights a lamp.", "hi": "दादी दीया जलाती हैं।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u10.l1.m-door", "left": { "text": "door" }, "right": { "pic": "🚪" } },
+            { "key": "b.u10.l1.m-bed", "left": { "text": "bed" }, "right": { "pic": "🛏️" } },
+            { "key": "b.u10.l1.m-chair", "left": { "text": "chair" }, "right": { "pic": "🪑" } },
+            { "key": "b.u10.l1.m-cat", "left": { "text": "cat" }, "right": { "pic": "🐈" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u10.l1.p-box",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "box" },
+              "options": [{ "pic": "📦" }, { "pic": "🚪" }, { "pic": "🏠" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u10.l1.p-lamp",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "lamp" },
+              "options": [{ "pic": "🪑" }, { "pic": "🪔" }, { "pic": "🛏️" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u10.l1.s-house", "model": "This is my house.", "hi": "यह मेरा घर है।", "pic": "🏠" },
+            { "key": "b.u10.l1.s-door", "model": "Open the door, please.", "hi": "दरवाज़ा खोलो, प्लीज़।", "pic": "🚪" },
+            { "key": "b.u10.l1.s-cat", "model": "We have a cat.", "hi": "हमारी एक बिल्ली है।", "pic": "🐈" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u10.l1.c-house",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "house" },
+          "options": [{ "pic": "🏫" }, { "pic": "🏠" }, { "pic": "🏪" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u10.l1.c-chair",
+          "type": "choose",
+          "prompt": { "en": "Which word means कुर्सी?", "hi": "कौन-सा शब्द 'कुर्सी' है?", "pic": "🪑" },
+          "options": [{ "text": "bed" }, { "text": "chair" }, { "text": "box" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u10.l1.c-bed",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "bed" },
+          "options": [{ "pic": "🛏️" }, { "pic": "🪑" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u10.l1.c-door",
+          "type": "choose",
+          "prompt": { "en": "Which word means दरवाज़ा?", "hi": "कौन-सा शब्द 'दरवाज़ा' है?", "pic": "🚪" },
+          "options": [{ "text": "house" }, { "text": "door" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Walk around your home. Name five things.", "hi": "घर में घूमो। पाँच चीज़ों के नाम बोलो।" }
+    },
+    {
+      "key": "b.u10.l2",
+      "kind": "pattern",
+      "title": { "en": "in, on, under; there is, there are", "hi": "in (अंदर), on (ऊपर), under (नीचे)" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Where is the cat?", "hi": "बिल्ली कहाँ है?" },
+          "visual": "cards",
+          "examples": [
+            { "en": "The cat is in the box.", "hi": "बिल्ली डिब्बे के अंदर है।", "pic": "📦", "parts": [{ "text": "The cat", "role": "who" }, { "text": "is", "role": "do" }, { "text": "in the box.", "role": "where" }] },
+            { "en": "The cat is on the bed.", "hi": "बिल्ली पलंग के ऊपर है।", "pic": "🛏️", "parts": [{ "text": "The cat", "role": "who" }, { "text": "is", "role": "do" }, { "text": "on the bed.", "role": "where" }] },
+            { "en": "The cat is under the chair.", "hi": "बिल्ली कुर्सी के नीचे है।", "pic": "🪑", "parts": [{ "text": "The cat", "role": "who" }, { "text": "is", "role": "do" }, { "text": "under the chair.", "role": "where" }] }
+          ],
+          "note": { "en": "in, on and under tell us where.", "hi": "in = अंदर, on = ऊपर, under = नीचे।" }
+        },
+        {
+          "type": "pattern",
+          "title": { "en": "There is, there are", "hi": "There is (एक है), there are (कई हैं)" },
+          "visual": "builder",
+          "examples": [
+            { "en": "There is a cat under the bed.", "hi": "पलंग के नीचे एक बिल्ली है।", "pic": "🐈", "parts": [{ "text": "There is", "role": "do" }, { "text": "a cat", "role": "what" }, { "text": "under the bed.", "role": "where" }] },
+            { "en": "There are two books on the chair.", "hi": "कुर्सी पर दो किताबें हैं।", "pic": "📚", "parts": [{ "text": "There are", "role": "do" }, { "text": "two books", "role": "what" }, { "text": "on the chair.", "role": "where" }] },
+            { "en": "There is a lamp on the box.", "hi": "डिब्बे पर एक दीया है।", "pic": "🪔", "parts": [{ "text": "There is", "role": "do" }, { "text": "a lamp", "role": "what" }, { "text": "on the box.", "role": "where" }] },
+            { "en": "There are five eggs in the box.", "hi": "डिब्बे में पाँच अंडे हैं।", "pic": "🥚", "parts": [{ "text": "There are", "role": "do" }, { "text": "five eggs", "role": "what" }, { "text": "in the box.", "role": "where" }] }
+          ],
+          "note": { "en": "One thing: there is. Two or more: there are.", "hi": "एक चीज़: there is. दो या ज़्यादा: there are।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u10.l2.b-under", "hi": "बिल्ली पलंग के नीचे है।", "pic": "🐈", "tiles": ["under", "is", "The", "bed.", "cat", "the"], "answer": "The cat is under the bed." },
+            { "key": "b.u10.l2.b-there", "hi": "डिब्बे में दो किताबें हैं।", "pic": "📦", "tiles": ["in", "are", "There", "books", "box.", "two", "the"], "answer": "There are two books in the box." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u10.l2.p-is",
+              "prompt": { "en": "There ___ a cat on the bed.", "hi": "पलंग पर एक बिल्ली है।", "pic": "🐈" },
+              "options": [{ "text": "is" }, { "text": "are" }],
+              "answer": 0,
+              "why": { "en": "One cat, so we say there is.", "hi": "एक बिल्ली है, इसलिए there is।" }
+            },
+            {
+              "key": "b.u10.l2.p-are",
+              "prompt": { "en": "There ___ three chairs.", "hi": "तीन कुर्सियाँ हैं।", "pic": "🪑" },
+              "options": [{ "text": "is" }, { "text": "are" }],
+              "answer": 1,
+              "why": { "en": "Three chairs, so we say there are.", "hi": "तीन कुर्सियाँ हैं, इसलिए there are।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u10.l2.s-where", "model": "The cat is under the chair.", "hi": "बिल्ली कहाँ है?", "pic": "🐈", "cue": { "en": "Where is the cat?", "hi": "बिल्ली कुर्सी के नीचे है। अंग्रेज़ी में बोलो।" } },
+            { "key": "b.u10.l2.s-there", "model": "There is a lamp on the box.", "hi": "डिब्बे पर क्या है?", "pic": "🪔", "cue": { "en": "What is on the box?", "hi": "डिब्बे पर एक दीया है। अंग्रेज़ी में बोलो।" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u10.l2.c-build1", "type": "build", "hi": "कुर्सी पर एक किताब है।", "tiles": ["a", "the", "There", "chair.", "is", "on", "book"], "answer": "There is a book on the chair." },
+        { "key": "b.u10.l2.c-build2", "type": "build", "hi": "बिल्ली डिब्बे के अंदर है।", "tiles": ["box.", "cat", "in", "The", "is", "the"], "answer": "The cat is in the box." },
+        {
+          "key": "b.u10.l2.c-on",
+          "type": "choose",
+          "prompt": { "en": "The lamp is ___ the box.", "hi": "दीया डिब्बे के ऊपर है।", "pic": "🪔" },
+          "options": [{ "text": "in" }, { "text": "on" }, { "text": "under" }],
+          "answer": 1,
+          "why": { "en": "On top of the box: on.", "hi": "ऊपर के लिए on।" }
+        },
+        {
+          "key": "b.u10.l2.c-under",
+          "type": "choose",
+          "prompt": { "en": "The cat is ___ the bed.", "hi": "बिल्ली पलंग के नीचे है।", "pic": "🐈" },
+          "options": [{ "text": "under" }, { "text": "on" }, { "text": "in" }],
+          "answer": 0,
+          "why": { "en": "Below the bed: under.", "hi": "नीचे के लिए under।" }
+        },
+        {
+          "key": "b.u10.l2.c-are",
+          "type": "choose",
+          "prompt": { "en": "There ___ four eggs.", "hi": "चार अंडे हैं।", "pic": "🥚" },
+          "options": [{ "text": "is" }, { "text": "are" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u10.l2.c-is",
+          "type": "choose",
+          "prompt": { "en": "There ___ a door.", "hi": "एक दरवाज़ा है।", "pic": "🚪" },
+          "options": [{ "text": "are" }, { "text": "is" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Hide a toy. Say where it is: in, on or under.", "hi": "कोई खिलौना छिपाओ। बताओ वह कहाँ है: in, on या under।" }
+    },
+    {
+      "key": "b.u10.l3",
+      "kind": "listen",
+      "title": { "en": "Where is my ball?", "hi": "मेरी गेंद कहाँ है?" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "The lost ball", "hi": "खोई हुई गेंद" },
+          "scene": { "place": "home", "pics": [{ "pic": "👦", "x": 14, "y": 42, "size": 1.4 }, { "pic": "👵", "x": 30, "y": 40, "size": 1.5 }, { "pic": "👧", "x": 46, "y": 42, "size": 1.4 }, { "pic": "🛏️", "x": 66, "y": 42, "size": 1.6 }, { "pic": "📦", "x": 66, "y": 56, "size": 0.9 }, { "pic": "🪑", "x": 88, "y": 46, "size": 1.4 }, { "pic": "⚽", "x": 88, "y": 36, "size": 0.7 }, { "pic": "🐈", "x": 88, "y": 28 }] },
+          "lines": [
+            { "speaker": "Arjun", "pic": "👦", "en": "Dadi, where is my ball?", "hi": "दादी, मेरी गेंद कहाँ है?" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Is it under the bed?", "hi": "क्या वह पलंग के नीचे है?" },
+            { "speaker": "Arjun", "pic": "👦", "en": "No. There is a box under the bed.", "hi": "नहीं। पलंग के नीचे एक डिब्बा है।" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Is it in the box?", "hi": "क्या वह डिब्बे के अंदर है?" },
+            { "speaker": "Arjun", "pic": "👦", "en": "No! There are two books in the box.", "hi": "नहीं! डिब्बे में दो किताबें हैं।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Look! The cat is on the chair.", "hi": "देखो! बिल्ली कुर्सी पर है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "And your ball is under the cat!", "hi": "और तुम्हारी गेंद बिल्ली के नीचे है!" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Silly cat! Thank you, Meera.", "hi": "नटखट बिल्ली! धन्यवाद, मीरा।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u10.l3.p-box",
+              "prompt": { "en": "What is under the bed?", "hi": "पलंग के नीचे क्या है?" },
+              "options": [{ "text": "a box", "pic": "📦" }, { "text": "a cat", "pic": "🐈" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u10.l3.p-cat",
+              "prompt": { "en": "Where is the cat?", "hi": "बिल्ली कहाँ है?" },
+              "options": [{ "text": "in the box", "pic": "📦" }, { "text": "on the chair", "pic": "🪑" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u10.l3.s-there", "model": "There is a box under the bed.", "hi": "पलंग के नीचे एक डिब्बा है।", "pic": "📦" },
+            { "key": "b.u10.l3.s-ball", "model": "The ball is under the cat!", "hi": "गेंद बिल्ली के नीचे है!", "pic": "⚽" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u10.l3.c-lost",
+          "type": "choose",
+          "prompt": { "en": "What is Arjun looking for?", "hi": "अर्जुन क्या ढूँढ रहा है?" },
+          "options": [{ "text": "his ball", "pic": "⚽" }, { "text": "his kite", "pic": "🪁" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u10.l3.c-books",
+          "type": "choose",
+          "prompt": { "en": "What is in the box?", "hi": "डिब्बे में क्या है?" },
+          "options": [{ "text": "two eggs", "pic": "🥚" }, { "text": "two books", "pic": "📚" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u10.l3.c-ball",
+          "type": "choose",
+          "prompt": { "en": "Where is the ball?", "hi": "गेंद कहाँ है?" },
+          "options": [{ "text": "under the cat" }, { "text": "on the bed" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u10.l3.c-who",
+          "type": "choose",
+          "prompt": { "en": "Who finds the ball?", "hi": "गेंद कौन ढूँढती है?" },
+          "options": [{ "text": "Meera", "pic": "👧" }, { "text": "Dadi", "pic": "👵" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Ask at home: Where is my …?", "hi": "घर पर पूछो: Where is my …?" }
+    },
+    {
+      "key": "b.u10.l4",
+      "kind": "speak",
+      "title": { "en": "Where is it?", "hi": "वह कहाँ है?" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "picture",
+          "scene": { "place": "home", "pics": [{ "pic": "🛏️", "x": 22, "y": 38, "size": 2 }, { "pic": "🐈", "x": 22, "y": 56, "size": 0.9 }, { "pic": "🪑", "x": 56, "y": 42, "size": 1.6 }, { "pic": "📚", "x": 56, "y": 28, "size": 0.9 }, { "pic": "📦", "x": 84, "y": 46, "size": 1.4 }, { "pic": "🧸", "x": 84, "y": 44, "size": 0.7 }] },
+          "questions": [
+            { "key": "b.u10.l4.q-cat", "en": "Where is the cat?", "hi": "बिल्ली कहाँ है?", "model": "The cat is under the bed." },
+            { "key": "b.u10.l4.q-books", "en": "What is on the chair?", "hi": "कुर्सी पर क्या है?", "model": "There are books on the chair." },
+            { "key": "b.u10.l4.q-toy", "en": "Where is the toy?", "hi": "खिलौना कहाँ है?", "model": "The toy is in the box." },
+            { "key": "b.u10.l4.q-room", "en": "Tell us about the room.", "hi": "कमरे के बारे में बताओ।", "model": "There is a bed and a chair." }
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u10.l4.br-toy", "hi": "खिलौना डिब्बे के अंदर है।", "tiles": ["box.", "is", "toy", "in", "The", "the"], "answer": "The toy is in the box." },
+            { "key": "b.u10.l4.br-there", "hi": "कुर्सी पर किताबें हैं।", "tiles": ["on", "books", "chair.", "There", "the", "are"], "answer": "There are books on the chair." }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u10.l4.c-where",
+          "type": "choose",
+          "prompt": { "en": "Which one asks where?", "hi": "कौन-सा वाक्य 'कहाँ' पूछता है?" },
+          "options": [{ "text": "Where is the cat?" }, { "text": "How many cats?" }],
+          "answer": 0
+        },
+        { "key": "b.u10.l4.c-build", "type": "build", "hi": "पलंग के नीचे एक बिल्ली है।", "tiles": ["under", "a", "is", "the", "cat", "There", "bed."], "answer": "There is a cat under the bed." },
+        {
+          "key": "b.u10.l4.c-on",
+          "type": "choose",
+          "prompt": { "en": "The books are ___ the chair.", "hi": "किताबें कुर्सी के ऊपर हैं।", "pic": "📚" },
+          "options": [{ "text": "on" }, { "text": "under" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Tell Mummy where your bag is.", "hi": "माँ को बताओ तुम्हारा बस्ता कहाँ है।" }
+    },
+    {
+      "key": "b.u10.l5",
+      "kind": "review",
+      "title": { "en": "Unit 10 review", "hi": "इकाई 10 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u10.l5.m-box", "left": { "text": "box" }, "right": { "pic": "📦" } },
+            { "key": "b.u10.l5.m-lamp", "left": { "text": "lamp" }, "right": { "pic": "🪔" } },
+            { "key": "b.u10.l5.m-house", "left": { "text": "house" }, "right": { "pic": "🏠" } },
+            { "key": "b.u10.l5.m-kite", "left": { "text": "kite" }, "right": { "pic": "🪁" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u10.l5.b-lamp", "hi": "डिब्बे पर एक दीया है।", "pic": "🪔", "tiles": ["the", "lamp", "a", "There", "box.", "on", "is"], "answer": "There is a lamp on the box." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u10.l5.p-under",
+              "prompt": { "en": "The cat is ___ the chair.", "hi": "बिल्ली कुर्सी के नीचे है।", "pic": "🪑" },
+              "options": [{ "text": "in" }, { "text": "under" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u10.l5.s-room", "model": "There is a bed. There are two chairs.", "hi": "अपने कमरे के बारे में बोलो।", "cue": { "en": "What is in your room?", "hi": "तुम्हारे कमरे में क्या है?" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u10.l5.c-cat",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "cat" },
+          "options": [{ "pic": "🐈" }, { "pic": "🐄" }, { "pic": "🐐" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u10.l5.c-door",
+          "type": "choose",
+          "prompt": { "en": "Which word means दरवाज़ा?", "hi": "कौन-सा शब्द 'दरवाज़ा' है?" },
+          "options": [{ "text": "box" }, { "text": "door" }, { "text": "bed" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u10.l5.c-are",
+          "type": "choose",
+          "prompt": { "en": "There ___ five books.", "hi": "पाँच किताबें हैं।", "pic": "📚" },
+          "options": [{ "text": "is" }, { "text": "are" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u10.l5.c-in",
+          "type": "choose",
+          "prompt": { "en": "The ball is ___ the box.", "hi": "गेंद डिब्बे के अंदर है।", "pic": "📦" },
+          "options": [{ "text": "on" }, { "text": "in" }, { "text": "under" }],
+          "answer": 1
+        },
+        { "key": "b.u10.l5.c-build", "type": "build", "hi": "बिल्ली कुर्सी पर है।", "tiles": ["on", "is", "chair.", "The", "cat", "the"], "answer": "The cat is on the chair." },
+        {
+          "key": "b.u10.l5.c-can",
+          "type": "choose",
+          "prompt": { "en": "A cat ___ fly.", "hi": "बिल्ली उड़ नहीं सकती।", "pic": "🐈" },
+          "options": [{ "text": "can" }, { "text": "can't" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u10.l5.c-fav",
+          "type": "choose",
+          "prompt": { "en": "This is my ___ toy.", "hi": "यह मेरा सबसे प्यारा खिलौना है।", "pic": "🧸" },
+          "options": [{ "text": "favourite" }, { "text": "clap" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Play hide and find: in, on, under.", "hi": "छिपाओ-ढूँढो खेलो: in, on, under।" }
+    }
+  ]
+}
