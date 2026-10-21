@@ -30,6 +30,7 @@ import { fileURLToPath } from 'node:url';
 import { SignJWT } from 'jose';
 import { HARNESS_MARKER, startHarnessDb } from './db.mjs';
 import { visibleWords } from './visible-words.mjs';
+import { runFamilyMatrix } from './family.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const arg = (name) => (process.argv.includes(name) ? process.argv[process.argv.indexOf(name) + 1] : undefined);
@@ -38,12 +39,14 @@ const OUT = path.resolve(arg('--out') ?? path.join(ROOT, 'harness-output'));
 const ONLY = arg('--only');
 const KEEP = arg('--keep') ? path.resolve(arg('--keep')) : null;
 const KEEP_SCREENS = (arg('--screens') ?? '').split(',').filter(Boolean);
+// --family: only the Family app's pictures (M1-2, C248), at 360/390/1440 px, English and Hindi, reduced motion on and off.
+const FAMILY_ONLY = process.argv.includes('--family');
 const KEEP_LIMIT_BYTES = 1.5 * 1024 * 1024;
 // Screens whose set-up ends on another page by design (C242): the receipt screen opens the receipt it just made, at
 // its own address. The landing is checked against this instead of the route.
 const EXPECTED_LANDING = { 'app-fees-receipt': /^\/app\/fees\/receipts\/[0-9a-f-]{36}$/ };
 const landedWhereExpected = (name, route, landedOn) => (EXPECTED_LANDING[name] ? EXPECTED_LANDING[name].test(landedOn) : landedOn === route.split('?')[0]);
-if (KEEP && !KEEP_SCREENS.length) {
+if (KEEP && !KEEP_SCREENS.length && !process.argv.includes('--family')) {
   console.error('harness: --keep needs --screens name1,name2 (only the screens the PR changes).');
   process.exit(2);
 }
@@ -770,8 +773,8 @@ const whatsappAccountDone = async () => {
   const want = { noKey: 1, saveDisabled: true, secretsHidden: true, verifyShown: true, madeTokenOk: true, rightFields: 5, get: 404, post: 404 };
   if (JSON.stringify(whatsappSeen) !== JSON.stringify(want) || saved !== 0) throw new Error(`the WhatsApp account screen without a key: ${JSON.stringify(whatsappSeen)}, ${saved} saved`);
 };
-// The family app (C230-D): Rajesh's two children, each with today's mark and what is owed; a parent opening the staff
-// app is sent to the family app, and a staff API refuses a parent's session.
+// The school parent home (C230-D, at /parent since C248): Rajesh's two children, each with today's mark and what is
+// owed; a parent opening the staff app is sent to the parent home, and a staff API refuses a parent's session.
 let familySeen = null;
 const familyHome = async (page) => {
   await page.locator('[data-family-child]').first().waitFor({ timeout: 20000 });
@@ -789,7 +792,7 @@ const familyHome = async (page) => {
   familySeen = { children: [...children].sort().join(','), own: ownChildren.join(','), staffApi, landed };
 };
 const familyHomeDone = async () => {
-  if (!familySeen || familySeen.children !== familySeen.own || familySeen.staffApi !== 401 || familySeen.landed !== '/family') throw new Error(`the family app: ${JSON.stringify(familySeen)}`);
+  if (!familySeen || familySeen.children !== familySeen.own || familySeen.staffApi !== 401 || familySeen.landed !== '/parent') throw new Error(`the parent home: ${JSON.stringify(familySeen)}`);
 };
 // Parents' replies (C187): a guardian of the fixture school writes to the platform number (the stand-in's signed
 // notice at the public webhook). The principal sees the conversation, answers in their own words, and the reply
@@ -6258,7 +6261,7 @@ const SCREENS = [
   ['teacher', 'teacher-taught-one-tap', '/app/syllabus', oneTapTaught, oneTapTaughtDone],
   ['teacher', 'teacher-tickets', '/app/help/ticket'],
   ['founder', 'control-dashboard', '/control'],
-  ['parent', 'family-home', '/family', familyHome, familyHomeDone],
+  ['parent', 'family-home', '/parent', familyHome, familyHomeDone],
   ['founder', 'control-schools', '/control/schools'],
   ['founder', 'control-school', `/control/schools/${SCHOOL}`],
   ['founder', 'control-view-as', `/control/schools/${SCHOOL}`, viewAs, viewAsDone],
@@ -6456,7 +6459,7 @@ const SCREENS = [
   ['principal', 'brand-app-settings', '/app/settings', settingsBranding, settingsBrandingDone],
   ['teacher', 'brand-teacher-settings', '/app/settings', teacherNoBranding, teacherNoBrandingDone],
   ['founder', 'brand-control-school', `/control/schools/${SCHOOL}`, controlBranding, controlBrandingDone],
-  ['parent', 'brand-family', '/family', familyBranded, familyBrandedDone],
+  ['parent', 'brand-family', '/parent', familyBranded, familyBrandedDone],
   // c235-b end
   // c235d begin
   ['principal', 'app-staff-profile', `/app/staff/${PEOPLE.teacher.sub}`],
@@ -6477,6 +6480,11 @@ const SCREENS = [
   ['principal', 'app-staff-profile-edit', `/app/staff/${PEOPLE.teacher.sub}`, c238Edit, c238Done],
   ['teacher', 'teacher-staff-profile-attendance', `/app/staff/${PEOPLE.teacher.sub}?tab=attendance`, c238Tab('attendance'), c238Done],
   // c238 end
+  // m1-3 begin
+  // Control → AI (C249): providers and their clearance for children, the write-only key form, the resolver's profile,
+  // usage and the daily limit.
+  ['founder', 'control-ai', '/control/ai'],
+  // m1-3 end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed
@@ -6617,6 +6625,29 @@ try {
   searchTimes.sort((a, b) => a - b);
   const searchP95Ms = Math.round(searchTimes[Math.ceil(searchTimes.length * 0.95) - 1]);
   console.log(`harness: search over HTTP, ${searchTimes.length} calls: median ${Math.round(searchTimes[searchTimes.length >> 1])} ms, p95 ${searchP95Ms} ms (budget 2000 ms).`);
+
+  if (FAMILY_ONLY) {
+    const { chromium } = await import('playwright');
+    mkdirSync(OUT, { recursive: true });
+    const browser = await chromium.launch();
+    const rows = await runFamilyMatrix({ browser, base, db, secret, out: OUT, only: ONLY ? ONLY.split(',').filter(Boolean) : [] });
+    await browser.close();
+    writeFileSync(path.join(OUT, 'app.log'), appLog);
+    let total = 0;
+    if (KEEP) {
+      mkdirSync(KEEP, { recursive: true });
+      for (const r of rows.filter((x) => x.motion === 'reduce' && x.width !== 360 && KEEP_SCREENS.some((k) => x.name === k))) {
+        const to = path.join(KEEP, r.file.replace('-still', '').replace(/\.png$/, '.webp'));
+        const made = spawnSync('cwebp', ['-quiet', '-q', '50', '-m', '6', path.join(OUT, r.file), '-o', to]);
+        if (made.error || made.status !== 0) throw new Error(`harness: could not write ${to} (cwebp is needed). ${made.error?.message ?? made.stderr}`);
+        total += statSync(to).size;
+      }
+      console.log(`harness: family WebP pictures in ${KEEP}, ${(total / 1024).toFixed(0)} KB in all${total > KEEP_LIMIT_BYTES ? ' -- OVER the 1.5 MB a PR may carry' : ''}.`);
+    }
+    const bad = rows.filter((r) => r.problems.length);
+    console.log(`harness: ${rows.length} family pictures in ${OUT}; ${bad.length} need a look.`);
+    await stop(bad.length || total > KEEP_LIMIT_BYTES ? 1 : 0);
+  }
 
   const { chromium } = await import('playwright');
   mkdirSync(OUT, { recursive: true });
