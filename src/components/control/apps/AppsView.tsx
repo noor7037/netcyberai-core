@@ -115,7 +115,7 @@ function AppSection({ app, data, build, lang, now }: { app: AppId; data: Control
           {!isFamily && (
             <p className={NOTE}>
               {t(lang, 'control.apps.modules.perSchool')}{' '}
-              <Link href="/control/schools" className="font-semibold text-royal underline">
+              <Link href="/control/schools" className="inline-flex min-h-[44px] items-center font-semibold text-royal underline">
                 {t(lang, 'control.apps.modules.link')}
               </Link>
             </p>
