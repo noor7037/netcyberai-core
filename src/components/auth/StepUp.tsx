@@ -31,11 +31,13 @@ const KEYS = [
 ] as const satisfies readonly MessageKey[];
 type Words = Record<(typeof KEYS)[number], string>;
 
-function StepUpDialog({ method, w, onDone }: { method: Method; w: Words; onDone: (ok: boolean) => void }) {
+function StepUpDialog({ method: asked, w, onDone }: { method: Method; w: Words; onDone: (ok: boolean) => void }) {
+  // The server has the last word: an account that has an authenticator is asked for it, whatever the session said.
+  const [method, setMethod] = useState<Method>(asked);
   const [password, setPassword] = useState('');
   const [code, setCode] = useState('');
   const [show, setShow] = useState(false);
-  const [sent, setSent] = useState(method === 'authenticator');
+  const [sent, setSent] = useState(asked === 'authenticator');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
@@ -55,6 +57,11 @@ function StepUpDialog({ method, w, onDone }: { method: Method; w: Words; onDone:
     const data = await res.json().catch(() => ({}));
     if (res.ok && data.status === 'ok') return onDone(true);
     if (res.ok && data.status === 'email_sent') {
+      setSent(true);
+      return;
+    }
+    if (data.error === 'mfa_required') {
+      setMethod('authenticator');
       setSent(true);
       return;
     }
