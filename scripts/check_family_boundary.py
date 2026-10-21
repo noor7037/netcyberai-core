@@ -64,6 +64,8 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
 # module allowed to set the family role and account, check_choke_point.py).
 OUTSIDE_MAY_NAME_FAMILY_TABLE = {
     "src/lib/auth/db.ts": {"accounts"},
+    # The AI platform's daily cap counts a family's requests in that family's own transaction (C249).
+    "src/lib/ai/daily-cap.ts": {"ai_daily"},
 }
 
 # C230-D's school parent home moved out of the family area to /parent (M1-2, C248): nothing is exempt any more.
