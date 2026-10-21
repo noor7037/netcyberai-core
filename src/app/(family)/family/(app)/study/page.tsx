@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation';
 import { StudyQuestion } from '@/components/family/StudyQuestion';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { readFamilyCatalog } from '@/lib/family/catalog';
-import { subjectAccess } from '@/lib/family/modules';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
 import { familyWords } from '@/lib/family/words';
@@ -23,8 +22,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const child = page.child!;
   const lang = page.childLang;
   const subject: Subject = SUBJECTS.includes(searchParams.subject as Subject) ? (searchParams.subject as Subject) : (child.freeSubject ?? 'science');
-  const access = subjectAccess(child, subject);
-  const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board: child.board, classLevel: child.classLevel, subject, lang })) : null;
+  const catalog = await familyPageRead(page, (db) => readFamilyCatalog(db, { board: child.board, classLevel: child.classLevel, subject, lang }));
   const tone = subject === 'mathematics' ? 'mathematics' : 'science';
   const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton'] as MessageKey[]);
   return (
@@ -40,25 +38,11 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
               className={`flex min-h-[44px] items-center justify-center rounded-2xl text-base font-bold ${s === subject ? (s === 'science' ? 'bg-emerald-text text-white' : 'bg-royal text-white') : 'text-slate hover:bg-slate/5'}`}
             >
               {t(lang, `fam.subject.${s}`)}
-              {child.freeSubject && child.freeSubject !== s && <span className="sr-only"> ({t(lang, 'fam.subject.locked')})</span>}
-              {child.freeSubject && child.freeSubject !== s && (
-                <svg aria-hidden="true" viewBox="0 0 24 24" className="ml-2 h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="5" y="11" width="14" height="10" rx="2" />
-                  <path d="M8 11V8a4 4 0 0 1 8 0v3" />
-                </svg>
-              )}
             </Link>
           ))}
         </nav>
-        {!child.freeSubject && <p className="rounded-2xl bg-sunshine/30 px-4 py-3 text-sm text-slate">{t(lang, 'fam.subject.firstIsFree')}</p>}
-        {!access.open ? (
-          <p data-family-locked className="rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
-            {t(lang, 'fam.subject.notOpen')}
-          </p>
-        ) : (
-          <StudyQuestion w={w} subject={subject} tone={tone} />
-        )}
-        {!access.open ? null : catalog ? (
+        <StudyQuestion w={w} subject={subject} tone={tone} />
+        {catalog ? (
           <section aria-labelledby="fam-chapters" className="flex flex-col gap-2">
             <h2 id="fam-chapters" className="px-1 text-lg font-extrabold text-slate">
               {t(lang, 'fam.study.chapters')}

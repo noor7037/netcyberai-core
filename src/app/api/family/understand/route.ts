@@ -5,7 +5,6 @@ import { consentState } from '@/lib/family/consent';
 import { FamilySessionRevokedError, withFamilyContext } from '@/lib/family/db';
 import { familyModuleOn } from '@/lib/family/flags';
 import { openItem } from '@/lib/family/items';
-import { claimSubject } from '@/lib/family/learning';
 import { jsonBody, requireFamily } from '@/lib/family/request';
 import { FOLLOW_UPS, resolve, type FollowUp, type ResolveInput, type ResolverEvent } from '@/lib/family/resolver';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
@@ -47,7 +46,7 @@ export async function POST(req: NextRequest) {
           const words = (key: string) => (isMessageKey(key) ? t(child?.language ?? 'en', key) : key);
           if (!child) return send({ t: 'refused', reason: 'not_found', message: words('fam.understand.noChild') });
           if (!(await consentState(db, session.accountId)).study_core) return send({ t: 'refused', reason: 'not_found', message: words('fam.err.consent_required') });
-          if (!(await familyModuleOn(db, 'understand', session.accountId))) return send({ t: 'refused', reason: 'not_switched_on', message: words('fam.understand.off') });
+          if (!(await familyModuleOn(db, 'understand'))) return send({ t: 'refused', reason: 'not_switched_on', message: words('fam.understand.off') });
           let target = input;
           let misconception: string | null = null;
           if (retry) {
@@ -60,15 +59,7 @@ export async function POST(req: NextRequest) {
           const account = await accountSummary(db, session.accountId);
           await resolve(
             db,
-            {
-              accountId: session.accountId,
-              child,
-              childFirstNames: children.map((c) => c.firstName),
-              parentEmail: account?.email ?? '',
-              day: indiaDate(),
-              refusalWords: words,
-              allowSubject: (subject) => claimSubject(db, session.accountId, child.childId, subject),
-            },
+            { accountId: session.accountId, child, childFirstNames: children.map((c) => c.firstName), parentEmail: account?.email ?? '', day: indiaDate(), refusalWords: words },
             target!,
             followUp,
             send,
