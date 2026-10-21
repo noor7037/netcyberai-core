@@ -16,6 +16,7 @@ export const controlNav: NavItem[] = [
   { label: 'Boards & grading', href: '/control/boards' },
   { label: 'Compliance', href: '/control/compliance' },
   { label: 'Integrations', href: '/control/integrations' },
+  { label: 'AI', href: '/control/ai' },
   { label: 'Support', href: '/control/support' },
   { label: 'Audit Logs', href: '/control/audit-logs' },
   { label: 'System Settings', href: '/control/system-settings' },
