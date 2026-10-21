@@ -107,7 +107,7 @@ export async function updateChild(db: Db, accountId: string, childId: string, c:
             free_subject = case when free_subject = any ($9::text[]) then free_subject end
       where account_id = $1 and child_id = $2
       returning child_id, first_name, class_level, board_id, language, style, state_code, free_subject`,
-    [accountId, childId, c.firstName, c.classLevel, c.language, c.style, c.stateCode, c.board, stageSubjects(c.classLevel)]
+    [accountId, childId, c.firstName, c.classLevel, c.language, c.style, c.stateCode, c.board, stageSubjects(c.classLevel, c.board)]
   );
   return rows[0] ? toChild(rows[0]) : null;
 }
