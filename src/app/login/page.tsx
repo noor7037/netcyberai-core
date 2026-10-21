@@ -180,7 +180,7 @@ export default function LoginPage() {
       const role = data.role as string;
       setStep({ kind: 'done', role, schoolId: (data.schoolId as string | null) ?? null });
       // Each role lands on its own home (C230-D): the founder on Control, a parent on the family app, staff on the school app.
-      window.location.href = role === 'super_admin' ? '/control' : role === 'parent' ? '/family' : '/app';
+      window.location.href = role === 'super_admin' ? '/control' : role === 'parent' ? '/parent' : '/app';
     }
   }
 
@@ -375,7 +375,7 @@ export default function LoginPage() {
       const { ok, data } = await post('/api/auth/select-school', { membershipId });
       if (!ok) return setError(humanError(data.error, 'We could not open that school. Please try again.'));
       setStep({ kind: 'done', role: data.role as string, schoolId: (data.schoolId as string | null) ?? null });
-      window.location.href = data.role === 'parent' ? '/family' : '/app';
+      window.location.href = data.role === 'parent' ? '/parent' : '/app';
     });
 
   // Where the emailed code went: the masked address from the server, or

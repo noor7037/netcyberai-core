@@ -66,14 +66,8 @@ OUTSIDE_MAY_NAME_FAMILY_TABLE = {
     "src/lib/auth/db.ts": {"accounts"},
 }
 
-# C230-D's school parent home predates the family area's rules; it reads school data in the parent's own school
-# session and moves out of the family area in M1-2. Nothing else may be added here.
-LEGACY = {
-    "src/lib/family/home.ts",
-    "src/app/(family)/family/page.tsx",
-    "src/app/(family)/family/layout.tsx",
-    "src/components/family/FamilySignOut.tsx",
-}
+# C230-D's school parent home moved out of the family area to /parent (M1-2, C248): nothing is exempt any more.
+LEGACY: set[str] = set()
 
 VENDOR_IMPORT = re.compile(r"""from\s+['"](@anthropic-ai/|openai|@google/generative-ai|@google/genai|@google-cloud/|googleapis|groq-sdk|@mistralai/)""")
 VENDOR_HOST = re.compile(r"(api\.anthropic\.com|api\.openai\.com|generativelanguage\.googleapis\.com|aiplatform\.googleapis\.com|youtube\.googleapis\.com|www\.googleapis\.com/youtube)")

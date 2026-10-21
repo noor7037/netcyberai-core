@@ -1,8 +1,8 @@
 import { getServerSession } from '@/lib/auth/server-session';
 import { canAccessFamily } from '@/lib/auth/guards';
 import { withTenantContext } from '@/lib/auth/db';
-import { loadFamilyHome, rupeesFromMinor, type DayMark, type FamilyChild } from '@/lib/family/home';
-import { FamilySignOut } from '@/components/family/FamilySignOut';
+import { loadFamilyHome, rupeesFromMinor, type DayMark, type FamilyChild } from '@/lib/parent-home/home';
+import { ParentSignOut } from '@/components/parent-home/ParentSignOut';
 import { SchoolLogo } from '@/components/app-shell/SchoolLogo';
 import { t, tCount, type Lang, type MessageKey } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
@@ -105,7 +105,7 @@ export default async function FamilyHomePage() {
           <h1 className="text-2xl font-extrabold">{t(lang, 'family.hello', { name: home.guardianName.split(' ')[0] || home.guardianName })}</h1>
           <p className="text-sm text-white/80">{tCount(lang, 'family.children', home.children.length)}</p>
         </div>
-        <FamilySignOut label={t(lang, 'family.signOut')} />
+        <ParentSignOut label={t(lang, 'family.signOut')} />
       </header>
       <main className="-mt-3 flex flex-col gap-3 px-4 pb-8">
         {home.awaitingConsent > 0 && (
