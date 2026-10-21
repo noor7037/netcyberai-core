@@ -245,26 +245,38 @@ describe('a typed question’s subject, decided on the server', () => {
   const ask = async (text: string, j: Record<string, string>, screenSubject: string) => events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text, subject: screenSubject }, j)));
   const freeSubject = async (child: string) => (await db.pg.query(`select free_subject from family.children where child_id = $1`, [child])).rows[0].free_subject;
 
-  it('the prompt names the subject first under v2, whatever Control chose; a topic keeps v1, word for word', async () => {
+  it('the prompt names the subject first under the latest version (v3), whatever Control chose; a topic keeps v1, word for word', async () => {
     const { resolverPrompt } = await import('@/lib/ai/prompts/family.resolver');
     const v1 = await import('@/lib/ai/prompts/family.resolver/v1');
-    expect(resolverPrompt('v1', true).version).toBe('v2');
+    expect(resolverPrompt('v1', true).version).toBe('v3');
     expect(resolverPrompt('v1', false).version).toBe('v1');
-    expect(resolverPrompt('v9', false).version).toBe('v2');
-    expect(resolverPrompt(null, true).version).toBe('v2');
-    const topic = { board: 'CBSE', classLevel: 9, subject: 'mathematics' as const, openSubjects: ['mathematics' as const], chapter: 'Number System', topic: 'Rational numbers', question: null, language: 'en' as const, style: 'en' as const, followUp: null, misconception: null };
-    expect(resolverPrompt('v2', false).system(topic)).toBe(v1.resolverSystem(topic));
-    expect(resolverPrompt('v2', false).user(topic)).toBe(v1.resolverUser(topic));
+    expect(resolverPrompt('v2', true).version).toBe('v2');
+    expect(resolverPrompt('v9', false).version).toBe('v3');
+    expect(resolverPrompt(null, true).version).toBe('v3');
+    const topic = { board: 'CBSE', classLevel: 9, subject: 'mathematics', openSubjects: ['mathematics'], classSubjects: ['mathematics', 'science'], chapter: 'Number System', topic: 'Rational numbers', question: null, language: 'en' as const, style: 'en' as const, followUp: null, misconception: null };
+    expect(resolverPrompt('v2', false).system(topic)).toBe(v1.resolverSystem({ ...topic, subject: 'mathematics' }));
+    expect(resolverPrompt('v3', false).user(topic)).toBe(v1.resolverUser({ ...topic, subject: 'mathematics' }));
     expect(() => resolverPrompt('v1', false).system({ ...topic, subject: null })).toThrow();
+    // v3 names the subject from the class's own list (C264).
+    const question = { ...topic, subject: null, topic: null, chapter: null, question: 'Who wrote the Ramayana?', classSubjects: ['mathematics', 'science', 'social_science', 'english', 'hindi'] };
+    expect(resolverPrompt('v3', true).system(question)).toContain('one of mathematics, science, social_science, english, hindi');
   });
 
   it('reads the subject line only when it is one', async () => {
     const { namedSubject } = await import('@/lib/family/resolver');
     expect(namedSubject('{"type":"subject","subject":"science"}')).toBe('science');
-    expect(namedSubject(' {"type": "subject", "subject": "history"} ')).toBe('other');
+    // A subject the app knows is read as itself (whether it is in the child's class is checked later); anything else is "other".
+    expect(namedSubject(' {"type": "subject", "subject": "history"} ')).toBe('history');
+    expect(namedSubject('{"type":"subject","subject":"astrology"}')).toBe('other');
     expect(namedSubject('{"type":"explanation","subject":"science"}')).toBeNull();
     expect(namedSubject('{"type":"subject","subject":"science"')).toBeNull();
     expect(namedSubject('{"type":"subject","subject":7}')).toBeNull();
+  });
+
+  it('a known subject outside the child\u2019s class is "another subject" (C264): Physics for a Class 9 child', async () => {
+    ai.lines = answer('physics');
+    const ev = await ask('What is momentum?', jar, 'mathematics');
+    expect(ev).toEqual([{ t: 'refused', reason: 'other_subject', message: expect.any(String) }]);
   });
 
   it('answers in the detected subject, not the one the screen sent', async () => {
@@ -309,7 +321,8 @@ describe('a typed question’s subject, decided on the server', () => {
     expect(await freeSubject(OTHER_CHILD)).toBeNull();
     ai.lines = [named('other')];
     expect(await ask('Ramayana kisne likhi?', otherJar, 'mathematics')).toEqual([{ t: 'refused', reason: 'other_subject', message: hi['fam.understand.otherSubject'] }]);
-    expect(ai.calls.at(-1)!.system).toContain('may be answered only in: mathematics or science.');
+    // Before a free subject is claimed, every subject of the class is open (C264: Class 9's school subjects).
+    expect(ai.calls.at(-1)!.system).toContain('may be answered only in: mathematics or science or social_science or english or hindi.');
     expect(await freeSubject(OTHER_CHILD)).toBeNull();
     ai.lines = answer('science');
     const ev = await ask('Barf paani par kyon tairti hai?', otherJar, 'mathematics');

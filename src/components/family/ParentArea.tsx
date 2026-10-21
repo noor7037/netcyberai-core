@@ -1,5 +1,6 @@
 'use client';
 
+import type { Subject } from '@/lib/family/subjects';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
@@ -14,7 +15,8 @@ import { LanguageSwitch } from './LanguageSwitch';
 // parent agreed to, each child's answers (see and delete), the language, signing out, and deleting the account.
 // Every change is the parent's own tap; nothing here uses a browser dialog.
 
-type Child = ChildFormValue & { childId: string; classLevel: number; freeSubject: 'mathematics' | 'science' | null };
+// `subjects`: the subjects of the child's class (C264), for choosing the free one.
+type Child = ChildFormValue & { childId: string; classLevel: number; freeSubject: Subject | null; subjects: Subject[] };
 export type Calm = { childId: string; answers: number; right: number; topics: number; mastered: number; practisedTitles: string[] };
 type Answer = { attemptId: string; subject: string; kind: string; answer: string; correct: boolean; answeredOn: string };
 
@@ -60,7 +62,7 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
       </div>
       <div className="flex flex-wrap items-center gap-2 text-sm text-slate">
         <span>{w['fam.parent.freeSubject']}</span>
-        {(['mathematics', 'science'] as const).map((sub) => (
+        {child.subjects.map((sub) => (
           <button
             key={sub}
             type="button"

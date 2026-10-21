@@ -95,9 +95,9 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
               smallTargets: small,
               running: document.getAnimations().filter((a) => a.playState === 'running').length,
               devanagari: /[ऀ-ॿ]/.test(text),
-              // Words left in English on a Hindi screen. Product names, the language names and the seeded children's
+              // Words left in English on a Hindi screen. Product names (NetCyberAI, Family Plus), the language names and the seeded children's
               // first names (data, not words of the app) do not count.
-              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir'].includes(w.toLowerCase())),
+              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir', 'family', 'plus'].includes(w.toLowerCase())),
             };
           });
           await page.addScriptTag({ path: AXE });

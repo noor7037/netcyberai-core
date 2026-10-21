@@ -1,4 +1,5 @@
 import { INDIAN_STATES, isIndianState } from '@/lib/contracts/indian-states';
+import type { Subject } from './subjects';
 
 // A family's children (docs/family-app/03 §5; M1-2, C248). A child is a first name, the class, the board, the app's
 // language (English or Hindi), the explanation style (English, Hindi or Hinglish) and the state, which the parent
@@ -41,7 +42,7 @@ export type FamilyChild = {
   language: ChildLanguage;
   style: ChildStyle;
   stateCode: string;
-  freeSubject: 'mathematics' | 'science' | null;
+  freeSubject: Subject | null;
 };
 export type ChildInput = Omit<FamilyChild, 'childId' | 'freeSubject'>;
 export type ChildProblem = 'first_name' | 'class' | 'board' | 'language' | 'style' | 'state';

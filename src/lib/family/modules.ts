@@ -27,12 +27,13 @@ export function visibleTabs(isOn: (flag: string) => boolean): FamilyTab[] {
   return TABS.filter((tab) => tab === 'home' || tab === 'family' || FAMILY_MODULES.some((m) => m.tab === tab && m.built && isOn(m.flag)));
 }
 
-export const SUBJECTS = ['mathematics', 'science'] as const;
-export type Subject = (typeof SUBJECTS)[number];
+// Every subject the app knows (C264): src/lib/family/subjects.ts. A child studies the subjects of their class.
+export { SUBJECT_IDS as SUBJECTS, type Subject } from './subjects';
+import type { Subject } from './subjects';
 
 // One free subject per child (a Control setting, family.free_subjects_per_child; 1 at launch). The first subject a child
 // opens becomes their free one; the parent may change it once the change window (family.free_subject_change_days) has
-// passed. M1 has no Plus yet, so the other subject says it opens with Family Plus later; no price is shown (05 §4).
+// passed. M1 has no Plus yet, so the other subjects say they open with Family Plus later; no price is shown (05 §4).
 export type SubjectAccess = { subject: Subject; open: boolean; isFree: boolean };
 
 export function subjectAccess(child: { freeSubject: Subject | null }, subject: Subject): SubjectAccess {

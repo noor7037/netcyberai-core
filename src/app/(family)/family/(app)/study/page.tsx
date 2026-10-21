@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { StudyQuestion } from '@/components/family/StudyQuestion';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
-import { readFamilyCatalog } from '@/lib/family/catalog';
+import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText } from '@/lib/family/fill';
 import { subjectAccess } from '@/lib/family/modules';
@@ -14,8 +14,8 @@ import { t, type MessageKey } from '@/lib/i18n';
 // Study (M1-5, C251): the child's subject, its chapters and topics from the catalog released to everyone for the
 // child's class, each opening Understand; and a typed question. Without a catalog for the class (classes 6–8 for
 // 2026-27, C250) only the question is offered. Nursery, LKG and UKG (C263) see a plain note: their module comes later.
-const SUBJECTS = ['mathematics', 'science'] as const;
-type Subject = (typeof SUBJECTS)[number];
+// The subject tabs are the subjects of the child's class (C264): the stage's school subjects and whatever the catalog
+// holds for the class, the free one first once claimed.
 
 export default async function FamilyStudyPage({ searchParams }: { searchParams: { subject?: string } }) {
   const page = await requireFamilyPage();
@@ -24,7 +24,6 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const subject: Subject = SUBJECTS.includes(searchParams.subject as Subject) ? (searchParams.subject as Subject) : (child.freeSubject ?? 'science');
   const kicker = classText((k) => t(lang, k), child.classLevel);
   if (isPrePrimary(child.classLevel)) {
     return (
@@ -38,21 +37,25 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
       </div>
     );
   }
+  const board = syllabusBoardOf(child);
+  const subjects = await familyPageRead(page, (db) => classSubjects(db, { board, classLevel: child.classLevel }));
+  const requested = subjects.find((s) => s === searchParams.subject);
+  const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
   const access = subjectAccess(child, subject);
-  const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, subject, lang })) : null;
-  const tone = subject === 'mathematics' ? 'mathematics' : 'science';
+  const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
+  const tone = subject;
   const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton'] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone={subject === 'science' ? 'emerald' : 'royal'} />
+      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone={subject === 'science' || subject === 'evs' || subject === 'biology' ? 'emerald' : 'royal'} />
       <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
-        <nav aria-label={t(lang, 'fam.study.subjects')} className="grid grid-cols-2 gap-2 rounded-3xl bg-white p-2 shadow-sm ring-1 ring-slate/10">
-          {SUBJECTS.map((s) => (
+        <nav aria-label={t(lang, 'fam.study.subjects')} className="flex flex-wrap gap-2 rounded-3xl bg-white p-2 shadow-sm ring-1 ring-slate/10">
+          {subjects.map((s) => (
             <Link
               key={s}
               href={`/family/study?subject=${s}`}
               aria-current={s === subject ? 'page' : undefined}
-              className={`flex min-h-[44px] items-center justify-center rounded-2xl text-base font-bold ${s === subject ? (s === 'science' ? 'bg-emerald-text text-white' : 'bg-royal text-white') : 'text-slate hover:bg-slate/5'}`}
+              className={`flex min-h-[44px] flex-1 basis-[calc(50%-0.25rem)] items-center justify-center rounded-2xl px-3 text-base font-bold ${s === subject ? (s === 'science' || s === 'evs' || s === 'biology' ? 'bg-emerald-text text-white' : 'bg-royal text-white') : 'text-slate hover:bg-slate/5'}`}
             >
               {t(lang, `fam.subject.${s}`)}
               {child.freeSubject && child.freeSubject !== s && <span className="sr-only"> ({t(lang, 'fam.subject.locked')})</span>}
