@@ -17,9 +17,10 @@ export const NEUTRAL = { name: 'the student', email: 'an email address', idNumbe
 
 const DEVANAGARI_DIGITS = /[०-९]/g;
 const EMAIL = /[\p{L}\p{N}._%+-]+@[\p{L}\p{N}-]+(?:\.[\p{L}\p{N}-]+)+/gu;
-const AADHAAR = /(?<!\d)\d(?:[\s.-]?\d){11}(?!\d)/g;
-// +91 / 0091 / 91 / 0, then ten digits starting 6-9, grouped any way with the spaces, dots and dashes people type.
-const PHONE = /(?<![\d+])(?:(?:\+|00)\s?91[\s.-]?|91[\s.-]?|0)?[6-9](?:[\s.-]?\d){9}(?!\d)/g;
+const AADHAAR = /(?<!\d)\d(?:[\s.()/-]{0,3}\d){11}(?!\d)/g;
+// +91 / 0091 / 91 / 0, then ten digits starting 6-9, grouped any way with the spaces, dots, dashes, slashes and
+// brackets people type (up to three between two digits).
+const PHONE = /(?<![\d+])(?:(?:\+|00)\s*\(?91\)?[\s.()/-]{0,3}|91[\s.()/-]{0,3}|0)?[6-9](?:[\s.()/-]{0,3}\d){9}(?!\d)/g;
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
