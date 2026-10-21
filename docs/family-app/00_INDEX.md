@@ -32,6 +32,7 @@ and that adds the school's own information when the child's school uses NetCyber
 | `11_FEATURE_MAP.md` | Every planned feature (38) with its verdict, what is built, its milestone and its money class |
 | `mockups/` | The founder's four mockup boards: the reference for look and scope, never for facts |
 | `prototype-audit/` | The weekend prototype's audit: a list of failures to prevent, not a source |
+| `prompts/` | The build lead's milestone prompts (`M1_PROMPT.md` first); the platform-wide plan is `docs/34_ECOSYSTEM_AND_SYNC.md` |
 
 ## Decisions in brief
 
@@ -79,10 +80,10 @@ and that adds the school's own information when the child's school uses NetCyber
 |---|---|---|
 | 1 | Lawyer: privacy notice, consent method (Rule 10), transient processing of textbook photos, disclaimers on careers and opportunities, and whether the mastery loop is "behavioural monitoring" (`02` §14, L1–L2) | Public launch |
 | 2 | An AI provider whose current terms allow use by children, with zero retention where required; its key; monthly caps (L3). The supervisor recommends the platform's existing Copilot provider (C230-L); the key is entered in Control → AI once M1 ships it | Real responses; M1's done gate |
-| 3 | Reviewers: subjects (promoted responses), opportunities, careers, English (L4) | Content going live; coverage grows only as fast as reviewers can keep it true |
+| 3 | Reviewers: the founder approves in Control after the supervisor's checks (C230-M, docs/34 §10); pilot-school teachers later | Content going live; coverage grows only as fast as reviews keep it true |
 | 4 | The practice partner's default daily limit, and whether it sits in Plus or is an add-on, once its cost is measured (`05` §5) | The voice pilot |
 | 5 | Licences: PhET for commercial use; GeoGebra or Desmos only if wanted and licensed (L7) | Simulation blocks |
 | 6 | The product's name; the pilot state for opportunities; whether recruitment notices are in scope | Naming, opportunities scope |
 | 7 | Whether pilot schools want exam transparency (scanned scripts and re-evaluation requests) | That after-launch wave |
 | 8 | The live server key (roadmap action 8) | Uploads and logins on the live site |
-| 9 | Later: a payment gateway; a Google Play account if the store listing is chosen | FA-6, FA-7 |
+| 9 | A Google Play developer account, organisation type recommended (needs a D-U-N-S number), for the Android app (docs/34 §8); later, a payment gateway | The Android internal test after M1; M7 |

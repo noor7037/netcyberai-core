@@ -279,7 +279,7 @@ confirmed, or after 7 days at most.
 | AI-generated videos; 3D models as a default | Cost and accuracy; vetted 2D components and simulations do the job |
 | Model-written code or HTML in the app | Security: only our own components render |
 | Focus Hours with parental monitoring | A web app cannot control other apps, and monitoring a child is a DPDP risk. After launch: a child-started study timer that pauses our own notifications, with nothing reported unless the child logs it. |
-| An app that locks or limits other apps on the child's phone (the mockups' "Focus Routine" and learn-to-unlock step 2) | A device-control concept, out of scope by C230-J; also a DPDP behavioural-monitoring and app-store question. The learning-first routine with a hand-off to the phone's own parental tools is built instead (`11` R6) |
+| An app that locks or limits other apps on the child's phone (the mockups' "Focus Routine" and learn-to-unlock step 2), before its gates | Reopened by the founder (C230-M) as a later native Android companion, after a DPDP opinion, Play approval and pilot evidence (docs/34 §9). Until then the learning-first routine with a hand-off to the phone's own parental tools is built (`11` R6) |
 | A positive class story feed | Teacher workload and media consent; revisit with pilot schools |
 | Selling or sharing family data; loans; sales calls; copying NCERT or DIKSHA text | Law and trust (`01`) |
 | "Guaranteed fluency", "guaranteed eligibility", "X% accuracy" | No unsupported claims |
