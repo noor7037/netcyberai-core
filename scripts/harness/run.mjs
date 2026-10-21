@@ -5,6 +5,8 @@
 //   node scripts/harness/run.mjs                 screenshots into ./harness-output
 //   node scripts/harness/run.mjs --serve         leave the app running, print sign-in links
 //   node scripts/harness/run.mjs --out <dir> --only <substring>
+//   node scripts/harness/run.mjs --only <names> --widths 360,390,768,1024,1440
+//       other widths than the default 1440 and 390 (pictures are named <screen>-<width>.png)
 //   node scripts/harness/run.mjs --keep docs/screenshots/<pr-slug> --screens app-hindi,control-hindi
 //       also saves those screens as compressed WebP for the PR (C134: no
 //       full-size PNG in git, only screens the PR changes, 1.5 MB per PR at most)
@@ -37,6 +39,12 @@ const arg = (name) => (process.argv.includes(name) ? process.argv[process.argv.i
 const SERVE = process.argv.includes('--serve');
 const OUT = path.resolve(arg('--out') ?? path.join(ROOT, 'harness-output'));
 const ONLY = arg('--only');
+// The widths to shoot, widest first (the default is the desktop and the phone).
+const WIDTHS = (arg('--widths') ?? '1440,390').split(',').map(Number).filter((w) => Number.isInteger(w) && w >= 320 && w <= 2560);
+if (!WIDTHS.length) {
+  console.error('harness: --widths needs numbers between 320 and 2560, separated by commas.');
+  process.exit(2);
+}
 const KEEP = arg('--keep') ? path.resolve(arg('--keep')) : null;
 const KEEP_SCREENS = (arg('--screens') ?? '').split(',').filter(Boolean);
 // --family: only the Family app's pictures (M1-2, C248), at 360/390/1440 px, English and Hindi, reduced motion on and off.
@@ -6107,6 +6115,140 @@ const brandedMenuDone = async (page) => {
   if (JSON.stringify(got) !== JSON.stringify(want)) throw new Error(`the menu: ${JSON.stringify(menuSeen)}`);
   if (!menuSeen.current.includes('Attendance')) throw new Error(`the page is not marked in the menu: ${menuSeen.current}`);
 };
+// The menu button (F1-2). On a phone: it opens the drawer from the left, below the bar; the button again, a tap outside
+// and Esc each close it and give focus back to the button; Tab stays among the button and the drawer. On a tablet or a
+// computer: it hides the sidebar completely (the page gets the whole width) and shows it again, and the choice is
+// kept on the device. The picture is taken with the drawer open, or the sidebar hidden.
+const menuFail = (what, seen) => {
+  throw new Error(`the menu button: ${what}: ${JSON.stringify(seen)}`);
+};
+const menuState = (page) =>
+  page.evaluate(() => {
+    const b = document.querySelector('[data-shell-menu-button]');
+    const box = (e) => (e ? (({ left, top, width, height }) => ({ left: Math.round(left), top: Math.round(top), width: Math.round(width), height: Math.round(height) }))(e.getBoundingClientRect()) : null);
+    const aside = document.querySelector('aside[data-shell-sidebar]');
+    const drawer = document.querySelector('[data-shell-drawer]');
+    return {
+      label: b?.getAttribute('aria-label'),
+      expanded: b?.getAttribute('aria-expanded'),
+      controls: b?.getAttribute('aria-controls'),
+      button: box(b),
+      logo: box(document.querySelector('[data-shell-brand] [data-school-logo]')),
+      focusOnButton: document.activeElement === b,
+      focusInDrawer: !!drawer && drawer.contains(document.activeElement),
+      drawer: drawer ? box(drawer) : null,
+      sidebar: aside && getComputedStyle(aside).display !== 'none' ? box(aside) : null,
+      sidebarMarked: aside?.getAttribute('data-shell-sidebar'),
+      mainLeft: Math.round(parseFloat(getComputedStyle(document.querySelector('aside[data-shell-sidebar] ~ main')).paddingLeft)),
+      stored: (() => {
+        try {
+          return localStorage.getItem('nca.shell.sidebar');
+        } catch {
+          return 'blocked';
+        }
+      })(),
+      hscroll: document.documentElement.scrollWidth > window.innerWidth,
+    };
+  });
+const menuToggle = async (page) => {
+  const phone = page.viewportSize().width < 768;
+  const button = page.locator('[data-shell-menu-button]');
+  await button.waitFor({ timeout: 15000 });
+  await page.waitForTimeout(400);
+  let st = await menuState(page);
+  if (st.button.left > 12 || st.button.top > 12 || st.button.width < 44 || st.button.height < 44 || st.button.left + st.button.width > st.logo.left) menuFail('not a 44 px button at the left of the bar, before the logo', st);
+  if (phone) {
+    if (st.label !== 'Open menu' || st.expanded !== 'false' || st.drawer) menuFail('on a phone it starts closed', st);
+    const open = async () => {
+      await button.click();
+      await page.locator('[data-shell-drawer]').waitFor({ timeout: 5000 });
+      await page.waitForTimeout(350);
+      return menuState(page);
+    };
+    st = await open();
+    const vw = page.viewportSize().width;
+    if (st.label !== 'Close menu' || st.expanded !== 'true' || !st.drawer || st.drawer.left !== 0 || st.drawer.top !== 56 || st.drawer.width > 320 || st.drawer.width > vw * 0.9 || !st.focusInDrawer) menuFail('the drawer does not open from the left below the bar with focus inside', st);
+    // The button again closes it.
+    await button.click();
+    await page.waitForTimeout(200);
+    st = await menuState(page);
+    if (st.drawer || st.expanded !== 'false' || !st.focusOnButton) menuFail('the button did not close the drawer and keep focus', st);
+    // A tap outside (on the dimmed page) closes it.
+    st = await open();
+    await page.mouse.click(vw - 6, 600);
+    await page.waitForTimeout(200);
+    st = await menuState(page);
+    if (st.drawer || !st.focusOnButton) menuFail('a tap outside did not close the drawer and return focus', st);
+    // Esc closes it.
+    st = await open();
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(200);
+    st = await menuState(page);
+    if (st.drawer || !st.focusOnButton) menuFail('Esc did not close the drawer and return focus', st);
+    // Tab stays among the button and the drawer: from the drawer's last control it goes to the button, and back.
+    st = await open();
+    await page.locator('[data-shell-drawer] button').last().focus();
+    await page.keyboard.press('Tab');
+    st = await menuState(page);
+    if (!st.focusOnButton) menuFail('Tab from the last control of the drawer did not go to the button', st);
+    await page.keyboard.press('Shift+Tab');
+    const back = await page.evaluate(() => {
+      const d = document.querySelector('[data-shell-drawer]');
+      const all = [...d.querySelectorAll('a[href],button:not([disabled])')];
+      return all.at(-1) === document.activeElement;
+    });
+    if (!back) menuFail('Shift+Tab from the button did not go to the last control of the drawer', st);
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(150);
+    await open();
+  } else {
+    if (st.label !== 'Hide menu' || st.expanded !== 'true' || !st.sidebar || st.sidebar.width !== 256 || st.mainLeft !== 256) menuFail('on a wide screen it starts with the sidebar shown', st);
+    await button.click();
+    await page.waitForTimeout(250);
+    st = await menuState(page);
+    if (st.label !== 'Show menu' || st.expanded !== 'false' || st.sidebar || st.mainLeft !== 0 || st.stored !== 'hidden' || st.hscroll) menuFail('the sidebar did not hide completely and keep the choice', st);
+    // The choice is kept on this device: still hidden after a reload.
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.locator('[data-shell-sidebar="hidden"]').waitFor({ state: 'attached', timeout: 10000 });
+    await page.waitForTimeout(300);
+    st = await menuState(page);
+    if (st.label !== 'Show menu' || st.sidebar || st.mainLeft !== 0) menuFail('the choice was not kept after a reload', st);
+    // With the store refusing every call, the shell still renders and the button still works for this visit.
+    await page.evaluate(() => {
+      Storage.prototype.getItem = () => {
+        throw new Error('blocked');
+      };
+      Storage.prototype.setItem = () => {
+        throw new Error('blocked');
+      };
+      Storage.prototype.removeItem = () => {
+        throw new Error('blocked');
+      };
+    });
+    await button.click();
+    await page.waitForTimeout(250);
+    st = await menuState(page);
+    if (st.label !== 'Hide menu' || !st.sidebar || st.mainLeft !== 256) menuFail('with the store refusing, the button did not show the sidebar', st);
+    await button.click();
+    await page.waitForTimeout(250);
+    st = await menuState(page);
+    if (st.label !== 'Show menu' || st.sidebar || st.mainLeft !== 0) menuFail('with the store refusing, the button did not hide the sidebar', st);
+  }
+};
+const menuToggleDone = async (page) => {
+  const phone = page.viewportSize().width < 768;
+  if (phone) {
+    await page.keyboard.press('Escape');
+  } else {
+    // Put it back for the screens after this one: reload (the blocked store goes with the page), then show it again.
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.evaluate(() => localStorage.removeItem('nca.shell.sidebar'));
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForTimeout(300);
+    const st = await menuState(page);
+    if (st.label !== 'Hide menu' || !st.sidebar || st.mainLeft !== 256 || st.stored !== null) menuFail('the sidebar was not shown again', st);
+  }
+};
 // Settings, as the principal: the school's name changed and saved (the bar follows with no reload, one audit row by
 // ids only), and an SVG chosen as the logo: drawn on this device and shown, waiting to be saved.
 const BRAND_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60"><rect width="120" height="60" rx="10" fill="#0F766E"/><circle cx="30" cy="30" r="16" fill="#FFD23F"/><rect x="56" y="20" width="50" height="8" rx="4" fill="#fff"/><rect x="56" y="34" width="36" height="8" rx="4" fill="#fff"/></svg>';
@@ -6456,6 +6598,9 @@ const SCREENS = [
   // c235-b begin
   ['principal', 'brand-app-header', '/app/students', brandedShell, brandedShellDone],
   ['principal', 'brand-app-menu', '/app/attendance', brandedMenu, brandedMenuDone],
+  ['principal', 'shell-menu-toggle', '/app/attendance', menuToggle, menuToggleDone],
+  ['founder', 'shell-menu-toggle-control', '/control', menuToggle, menuToggleDone],
+  ['teacher', 'shell-menu-toggle-teacher', '/app/my-day', menuToggle, menuToggleDone],
   ['principal', 'brand-app-settings', '/app/settings', settingsBranding, settingsBrandingDone],
   ['teacher', 'brand-teacher-settings', '/app/settings', teacherNoBranding, teacherNoBrandingDone],
   ['founder', 'brand-control-school', `/control/schools/${SCHOOL}`, controlBranding, controlBrandingDone],
@@ -6667,13 +6812,13 @@ try {
   // pictures to keep) is enough on its own: then only those screens are opened.
   const wanted = ONLY ? ONLY.split(',').filter(Boolean) : KEEP_SCREENS;
   const screens = SCREENS.filter(([, name]) => !wanted.length || wanted.some((w) => (ONLY ? name.includes(w) : name === w)));
-  for (const width of [1440, 390]) {
+  for (const width of WIDTHS) {
     // Each width starts with people who have chosen no language and seen no tour.
     await db.pg.query(`update users set tours_seen = '{}', ui_language = null`);
     for (const who of Object.keys(PEOPLE)) {
       const mine = screens.filter(([w]) => w === who);
       if (!mine.length) continue;
-      const context = await browser.newContext({ viewport: { width, height: width === 390 ? 844 : 900 }, reducedMotion: 'reduce', deviceScaleFactor: 1 });
+      const context = await browser.newContext({ viewport: { width, height: width < 768 ? 844 : 900 }, reducedMotion: 'reduce', deviceScaleFactor: 1 });
       await context.addCookies([{ name: 'nca_access', value: cookies[who], domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' }, seenAllCookie(who)]);
       const page = await context.newPage();
       const errors = [];
