@@ -78,6 +78,8 @@ const CONTROL_LOOK: Record<string, [IconName, ColorToken]> = {
   '/control/content': ['academics', 'azure'],
   '/control/compliance': ['shield', 'emerald'],
   '/control/integrations': ['link', 'violet'],
+  '/control/apps': ['operations', 'royal'],
+  '/control/family': ['users', 'turquoise'],
   '/control/ai': ['sparkle', 'grape'],
   '/control/support': ['ticket', 'gold'],
   '/control/audit-logs': ['reports', 'amber'],
