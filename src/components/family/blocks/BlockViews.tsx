@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { Diagram, EnglishMoment, Explanation, KeyPoints, Sources, WorkedExample } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
 
@@ -173,7 +173,9 @@ export function DiagramView({ b, tone }: { b: Diagram; tone: string }) {
 
 export function EnglishMomentView({ b, w, tone }: { b: EnglishMoment; w: Words; tone: string }) {
   const [speaking, setSpeaking] = useState(false);
-  const canSpeak = typeof window !== 'undefined' && 'speechSynthesis' in window;
+  // Known only in the browser, after the first paint, so a block drawn with the page matches on both sides.
+  const [canSpeak, setCanSpeak] = useState(false);
+  useEffect(() => setCanSpeak('speechSynthesis' in window), []);
   const say = () => {
     if (!canSpeak) return;
     window.speechSynthesis.cancel();

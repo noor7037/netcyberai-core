@@ -41,9 +41,12 @@ export type ResolverContext = {
   allowSubject?: (subject: 'mathematics' | 'science') => Promise<boolean>;
 };
 
+// Whom the sealed items are for.
+type Seal = Pick<ResolverContext, 'accountId' | 'child'>;
+
 const KEY = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 
-type Line = { subject: 'mathematics' | 'science'; key: string; chapterEn: string; topicEn: string | null; title: string };
+export type Line = { subject: 'mathematics' | 'science'; key: string; chapterEn: string; topicEn: string | null; title: string };
 
 // The syllabus line for a key, from the version released to everyone for this child's board and class.
 export async function syllabusLine(db: Db, child: FamilyChild, input: { kind: 'topic' | 'chapter'; key: string }): Promise<Line | null> {
@@ -74,9 +77,39 @@ export async function syllabusLine(db: Db, child: FamilyChild, input: { kind: 't
   return { subject: r.subject, key: String(r.chapter_key), chapterEn: String(r.title_en), topicEn: null, title: pick(r.title_en, r.title_hi) };
 }
 
-function toPublic(b: Block, ctx: ResolverContext, topicKey: string, subject: string): PublicBlock {
+function toPublic(b: Block, ctx: Seal, topicKey: string, subject: string): PublicBlock {
   if (b.type !== 'check' && b.type !== 'practice') return b;
   return { type: b.type, items: b.items.map((i) => sealItem(i, { accountId: ctx.accountId, childId: ctx.child.childId, topicKey, subject, kind: b.type as 'check' | 'practice' })) };
+}
+
+// A complete response from the shared library for this child's class, language and style, as the events the phone
+// draws (items sealed for this child), or null when there is none.
+async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: string): Promise<ResolverEvent[] | null> {
+  const child = ctx.child;
+  const { rows } = await db.query(
+    `select blocks, status from content.responses
+      where board_id = $1 and class_level = $2 and subject = $3 and topic_key = $4 and language = $5 and style = $6 and prompt_version = $7 and status <> 'withdrawn'
+      limit 1`,
+    [child.board, child.classLevel, line.subject, line.key, child.language, child.style, promptVersion]
+  );
+  const cached = rows[0];
+  if (!cached || !Array.isArray(cached.blocks)) return null;
+  const blocks = completeResponse((cached.blocks as unknown[]).map((b) => parseBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null));
+  if (!blocks) return null;
+  return [
+    { t: 'meta', label: cached.status === 'checked' ? 'checked' : 'ai_made', cached: true, title: line.title, subject: line.subject, topicKey: line.key },
+    ...blocks.map((b): ResolverEvent => ({ t: 'block', block: toPublic(b, ctx, line.key, line.subject) })),
+    { t: 'done', complete: true },
+  ];
+}
+
+// The Understand page draws a library response with the page itself (09 §4: the explanation is the largest paint, and
+// waiting for the phone to ask first cost half a second on a 4G profile). Only when the subject is already the child's
+// free one, so drawing the page never claims a subject; otherwise, or when the library has none, the phone asks.
+export async function libraryResponse(db: Db, ctx: Seal, line: Line): Promise<ResolverEvent[] | null> {
+  if (ctx.child.freeSubject !== line.subject) return null;
+  const promptVersion = (await activePromptVersion(db as never, 'family.resolver')) ?? RESOLVER_PROMPT_VERSION;
+  return libraryEvents(db, ctx, line, promptVersion);
 }
 
 export async function resolve(db: Db, ctx: ResolverContext, input: ResolveInput, followUp: FollowUp | null, emit: (e: ResolverEvent) => void, misconception: string | null = null): Promise<void> {
@@ -101,21 +134,10 @@ export async function resolve(db: Db, ctx: ResolverContext, input: ResolveInput,
 
   // 2. The shared library.
   if (cacheable && line) {
-    const { rows } = await db.query(
-      `select blocks, status from content.responses
-        where board_id = $1 and class_level = $2 and subject = $3 and topic_key = $4 and language = $5 and style = $6 and prompt_version = $7 and status <> 'withdrawn'
-        limit 1`,
-      [child.board, child.classLevel, subject, line.key, child.language, child.style, promptVersion]
-    );
-    const cached = rows[0];
-    if (cached && Array.isArray(cached.blocks)) {
-      const blocks = completeResponse((cached.blocks as unknown[]).map((b) => parseBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null));
-      if (blocks) {
-        emit({ t: 'meta', label: cached.status === 'checked' ? 'checked' : 'ai_made', cached: true, title: line.title, subject, topicKey: line.key });
-        for (const b of blocks) emit({ t: 'block', block: toPublic(b, ctx, line.key, subject) });
-        emit({ t: 'done', complete: true });
-        return;
-      }
+    const cached = await libraryEvents(db, ctx, line, promptVersion);
+    if (cached) {
+      for (const e of cached) emit(e);
+      return;
     }
   }
 
