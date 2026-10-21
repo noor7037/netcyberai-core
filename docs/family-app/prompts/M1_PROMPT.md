@@ -18,6 +18,20 @@ READ ONCE
 - The mockups are in docs/family-app/mockups/, for look and scope only.
 - Do not clone the founder's reference repository. Never open the weekend prototype.
 
+REUSE FIRST (saves time and tokens; build nothing twice)
+netcyberai-core already has these, proven in production. Extend them; do not search the repository for alternatives or rebuild them:
+- Sign-in codes: the staff email-code flow (src/lib/auth/account.ts: Supabase Auth email codes with rate-limit handling, normalizeEmail, normalizeCode). First check whether Supabase Auth's email goes through Resend (custom SMTP). If it does, reuse the flow for families (they need shouldCreateUser true). If it does not, build one hashed code store on src/lib/email/sender.ts (Resend is live). Never both.
+- Sessions and tokens: src/lib/auth/jwt.ts (signAccessToken, signPendingToken, signDeviceToken) and the cookie conventions in src/lib/auth/cookies.ts. The family session is a new claims type and cookie on the same signing.
+- Consent and data rights: src/lib/consent/gate.ts (purposes, ledger, history) and src/lib/consent/dsr.ts (access and delete requests). Follow their shape for family.* consent and account deletion.
+- Audit: src/lib/audit/log.ts, for every Control change.
+- Monitoring: src/lib/control/monitoring.ts and src/lib/observability. Control → Apps health extends them.
+- AI: src/lib/ai/provider.ts (AIProvider, standInProvider, configuredProvider) and the existing ai_usage metering. P-AI grows these; Copilot keeps working.
+- Email: src/lib/email/sender.ts. Jobs: src/lib/jobs (the Postgres queue).
+- UI: src/components/ui (Button, Card, Tabs, SegmentedControl, Modal, Toast, Switch, Input), src/lib/design-tokens.ts, src/lib/i18n. The first parent home is src/lib/family/home.ts with src/components/family.
+- Checks and pictures: scripts/harness and the existing check_*.py scripts.
+- Later milestones, not M1: src/lib/privacy/aadhaar.ts (photo screening) and tesseract.js (the OCR fallback) for M2.
+- No new UI animation library (the weekend prototype used one): CSS transforms only, which keeps the 200 KB budget.
+
 WHY THIS IS A REBUILD
 PR #198 tried M1 and was rejected and closed (C230-L). Its failures are your "never" list below. Do not reuse its branch or any of its code.
 
@@ -107,6 +121,7 @@ NEVER (from #198 and the prototype audit)
 
 MODELS AND AGENTS
 - The strongest model for M1-1, M1-2 and M1-3 (auth, RLS, personal data, credentials).
+- A faster, cheaper model for the UI slices (M1-6, M1-7) and for lookups (the Explore agent with a narrow question). Tight agent briefs: the exact files above, never "explore the repository".
 - At most three agents at once, each in its own worktree with the template S brief (08 §2). Migrations stay serial with the lead.
 - Decision Log rows C247–C255 are reserved for M1.
 
