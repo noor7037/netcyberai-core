@@ -6480,6 +6480,11 @@ const SCREENS = [
   ['principal', 'app-staff-profile-edit', `/app/staff/${PEOPLE.teacher.sub}`, c238Edit, c238Done],
   ['teacher', 'teacher-staff-profile-attendance', `/app/staff/${PEOPLE.teacher.sub}?tab=attendance`, c238Tab('attendance'), c238Done],
   // c238 end
+  // m1-3 begin
+  // Control → AI (C249): providers and their clearance for children, the write-only key form, the resolver's profile,
+  // usage and the daily limit.
+  ['founder', 'control-ai', '/control/ai'],
+  // m1-3 end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed
