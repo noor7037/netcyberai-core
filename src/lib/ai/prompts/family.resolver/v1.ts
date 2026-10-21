@@ -1,5 +1,5 @@
 // Prompt v1 of the family.resolver profile (docs/family-app/08 §7; M1-5, C251). Prompt text lives in the repository and
-// changes only by a PR with before-and-after samples; Control chooses the active version. The request carries board,
+// changes only by a PR with before-and-after examples; Control chooses the active version. The request carries board,
 // class, subject, chapter, topic and language, never a child's name, school or contact (the AI platform's
 // pre-processor removes them from the whole request as well).
 
