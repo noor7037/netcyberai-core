@@ -21,7 +21,7 @@ export const dynamic = 'force-static';
 // (family) is the parent's app (C230-D), signed-in only like the other two.
 // (dev) holds development-only pages such as the /design-system gallery
 // (PR-3a), which answer 404 in production and are never public.
-const INTERNAL_ROOTS = new Set(['(admin)', '(school)', '(family)', '(dev)', 'login']);
+const INTERNAL_ROOTS = new Set(['(admin)', '(school)', '(family)', '(parent)', '(dev)', 'login']);
 
 function staticRoutes(dir: string, route: string): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
