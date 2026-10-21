@@ -43,7 +43,6 @@ FAMILY_MAY_IMPORT = (
     "@/lib/design-tokens",
     "@/lib/time/",
     "@/lib/ai/platform",  # the AI platform's public interface (03 §7)
-    "@/lib/ai/prompts/",  # prompt text lives in the repository (08 §7)
     "@/lib/storage/file-storage",  # the storage interface
 )
 # Platform services, each allowed to exactly one family file (the door it goes through).
@@ -65,8 +64,6 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
 # module allowed to set the family role and account, check_choke_point.py).
 OUTSIDE_MAY_NAME_FAMILY_TABLE = {
     "src/lib/auth/db.ts": {"accounts"},
-    # The AI platform's daily cap counts a family's requests in that family's own transaction (C249).
-    "src/lib/ai/daily-cap.ts": {"ai_daily"},
 }
 
 # C230-D's school parent home moved out of the family area to /parent (M1-2, C248): nothing is exempt any more.
