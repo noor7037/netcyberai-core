@@ -1,0 +1,398 @@
+{
+  "track": "a",
+  "unit": 14,
+  "key": "a.u14",
+  "title": { "en": "Weather", "hi": "मौसम" },
+  "pic": "🌦️",
+  "can_do": { "en": "I can say the weather.", "hi": "मुझे मौसम बताना आता है।" },
+  "lessons": [
+    {
+      "key": "a.u14.l1",
+      "kind": "words",
+      "title": { "en": "Weather words", "hi": "मौसम के शब्द" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u14.l1.w-cap",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "cap" },
+              "options": [{ "pic": "🧢" }, { "pic": "👕" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u14.l1.w-shoes",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "shoes" },
+              "options": [{ "pic": "🧥" }, { "pic": "👟" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: look out of a door or window together.", "hi": "बड़ों के लिए: बच्चे के साथ दरवाज़े या खिड़की से बाहर देखें।" },
+          "pic": "🚪"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u14.l1.sun", "en": "sun", "hi": "सूरज", "pic": "☀️", "example": { "en": "The sun is yellow.", "hi": "सूरज पीला है।" } },
+            { "key": "a.u14.l1.rain", "en": "rain", "hi": "बारिश", "pic": "🌧️", "example": { "en": "Rain, rain! Splash!", "hi": "बारिश, बारिश! छपाक!" } },
+            { "key": "a.u14.l1.cloud", "en": "cloud", "hi": "बादल", "pic": "☁️", "example": { "en": "A big white cloud.", "hi": "एक बड़ा सफ़ेद बादल।" } },
+            { "key": "a.u14.l1.hot", "en": "hot", "hi": "गरम, गर्मी", "pic": "🥵", "example": { "en": "It is hot today.", "hi": "आज गर्मी है।" } },
+            { "key": "a.u14.l1.cold", "en": "cold", "hi": "ठंडा, ठंड", "pic": "🥶", "example": { "en": "It is cold today.", "hi": "आज ठंड है।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Shine like the sun!", "hi": "सूरज की तरह चमको! बाँहें फैलाओ।", "pic": "☀️" },
+            { "en": "Tap like the rain.", "hi": "बारिश की तरह उँगलियों से टप-टप करो।", "pic": "🌧️" },
+            { "en": "Fan yourself. It is hot!", "hi": "पंखा झलो। गर्मी है!", "pic": "🥵" },
+            { "en": "Shiver. It is cold!", "hi": "काँपो। ठंड है!", "pic": "🥶" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u14.l1.t-sun",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "sun" },
+              "options": [{ "pic": "☀️" }, { "pic": "☁️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u14.l1.t-rain",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "rain" },
+              "options": [{ "pic": "☀️" }, { "pic": "🌧️" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u14.l1.t-cold",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "cold" },
+              "options": [{ "pic": "🥵" }, { "pic": "☁️" }, { "pic": "🥶" }],
+              "answer": 2
+            },
+            {
+              "key": "a.u14.l1.t-cloud",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "cloud" },
+              "options": [{ "pic": "☁️" }, { "pic": "🥶" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u14.l1.t-hot",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "hot" },
+              "options": [{ "pic": "🥶" }, { "pic": "🥵" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u14.l1.s-sun", "model": "Sun.", "hi": "सूरज।", "pic": "☀️" },
+            { "key": "a.u14.l1.s-rain", "model": "Rain.", "hi": "बारिश।", "pic": "🌧️" },
+            { "key": "a.u14.l1.s-cloud", "model": "Cloud.", "hi": "बादल।", "pic": "☁️" },
+            { "key": "a.u14.l1.s-hot", "model": "Hot.", "hi": "गरम।", "pic": "🥵" },
+            { "key": "a.u14.l1.s-cold", "model": "Cold.", "hi": "ठंडा।", "pic": "🥶" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Each morning, look outside and say one weather word.", "hi": "रोज़ सुबह बाहर देखकर मौसम का एक शब्द बोलें।" }
+    },
+    {
+      "key": "a.u14.l2",
+      "kind": "pattern",
+      "title": { "en": "It is hot.", "hi": "गर्मी है।" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "It is …", "hi": "मौसम बताओ: It is …" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "It is hot.",
+              "hi": "गर्मी है।",
+              "pic": "🥵",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "hot.", "role": "what" }]
+            },
+            {
+              "en": "It is cold.",
+              "hi": "ठंड है।",
+              "pic": "🥶",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "cold.", "role": "what" }]
+            },
+            {
+              "en": "It is sunny.",
+              "hi": "धूप खिली है।",
+              "pic": "☀️",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "sunny.", "role": "what" }]
+            },
+            {
+              "en": "It is raining.",
+              "hi": "बारिश हो रही है।",
+              "pic": "🌧️",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "raining.", "role": "what" }]
+            },
+            {
+              "en": "It is cloudy.",
+              "hi": "बादल छाए हैं।",
+              "pic": "☁️",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "cloudy.", "role": "what" }]
+            }
+          ],
+          "note": { "en": "Look up at the sky. Then say: It is …", "hi": "आसमान देखो, फिर बोलो: It is …" }
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u14.l2.t-raining",
+              "prompt": { "en": "Listen. Tap the weather.", "hi": "सुनो, फिर सही मौसम छुओ।", "say": "It is raining." },
+              "options": [{ "pic": "☀️" }, { "pic": "🌧️" }],
+              "answer": 1,
+              "why": { "en": "Raining: water falls from clouds.", "hi": "raining यानी बारिश हो रही है।" }
+            },
+            {
+              "key": "a.u14.l2.t-cold",
+              "prompt": { "en": "Listen. Tap the weather.", "hi": "सुनो, फिर सही मौसम छुओ।", "say": "It is cold." },
+              "options": [{ "pic": "🥶" }, { "pic": "🥵" }],
+              "answer": 0,
+              "why": { "en": "Cold: brr, we shiver.", "hi": "cold यानी ठंड, जिसमें हम काँपते हैं।" }
+            },
+            {
+              "key": "a.u14.l2.t-sunny",
+              "prompt": { "en": "Listen. Tap the weather.", "hi": "सुनो, फिर सही मौसम छुओ।", "say": "It is sunny." },
+              "options": [{ "pic": "☁️" }, { "pic": "🌧️" }, { "pic": "☀️" }],
+              "answer": 2,
+              "why": { "en": "Sunny: the sun is out.", "hi": "sunny यानी धूप खिली है।" }
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Open your umbrella!", "hi": "अपना छाता खोलो!", "pic": "☂️" }, { "en": "Jump! Splash, splash!", "hi": "कूदो! छपाक, छपाक!", "pic": "🌧️" }]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u14.l2.s-rain",
+              "model": "It is raining.",
+              "hi": "चित्र देखो और मौसम बताओ।",
+              "pic": "🌧️",
+              "cue": { "en": "How is the weather?", "hi": "मौसम कैसा है?" }
+            },
+            {
+              "key": "a.u14.l2.s-hot",
+              "model": "It is hot.",
+              "hi": "चित्र देखो और मौसम बताओ।",
+              "pic": "🥵",
+              "cue": { "en": "How is the weather?", "hi": "मौसम कैसा है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Ask daily: How is the weather? Answer: It is …", "hi": "रोज़ पूछें: How is the weather? बच्चा कहे: It is hot." }
+    },
+    {
+      "key": "a.u14.l3",
+      "kind": "listen",
+      "title": { "en": "Rain at the haat", "hi": "हाट में बारिश" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Rain at the haat", "hi": "हाट में बारिश" },
+          "scene": {
+            "place": "market",
+            "pics": [
+              { "pic": "own:haat", "x": 50, "y": 16, "size": 2 },
+              { "pic": "☁️", "x": 20, "y": 4, "size": 1.4 },
+              { "pic": "🌧️", "x": 78, "y": 4, "size": 1.4 },
+              { "pic": "👳", "x": 30, "y": 40, "size": 1.5 },
+              { "pic": "👩", "x": 56, "y": 42, "size": 1.5 },
+              { "pic": "👧", "x": 72, "y": 46, "size": 1.3 },
+              { "pic": "🌈", "x": 90, "y": 20 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Mummy, look! A big cloud!", "hi": "मम्मी, देखो! एक बड़ा बादल!" },
+            { "speaker": "Mummy", "pic": "👩", "en": "Oh! It is raining.", "hi": "अरे! बारिश हो रही है।" },
+            { "speaker": "Ravi", "pic": "👳", "en": "Come in! Come in!", "hi": "अंदर आ जाओ! अंदर आ जाओ!" },
+            { "speaker": "Meera", "pic": "👧", "en": "Thank you, Ravi Uncle.", "hi": "शुक्रिया, रवि चाचा।" },
+            { "speaker": "Ravi", "pic": "👳", "en": "Look! Now the sun!", "hi": "देखो! अब धूप निकल आई!" },
+            { "speaker": "Meera", "pic": "👧", "en": "A rainbow!", "hi": "इंद्रधनुष!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u14.l3.q-first",
+              "prompt": { "en": "What does Meera see first?", "hi": "मीरा पहले क्या देखती है?" },
+              "options": [{ "pic": "☁️" }, { "pic": "☀️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u14.l3.q-come",
+              "prompt": { "en": "Who says: Come in?", "hi": "कौन कहता है: अंदर आ जाओ?" },
+              "options": [{ "text": "Ravi", "pic": "👳" }, { "text": "Mummy", "pic": "👩" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u14.l3.q-after",
+              "prompt": { "en": "What comes after the rain?", "hi": "बारिश के बाद क्या दिखता है?" },
+              "options": [{ "pic": "🌧️" }, { "pic": "🌈" }, { "pic": "🥶" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u14.l3.s-raining", "model": "It is raining.", "hi": "बारिश हो रही है।", "pic": "🌧️" },
+            { "key": "a.u14.l3.s-rainbow", "model": "Look! A rainbow!", "hi": "देखो! इंद्रधनुष!", "pic": "🌈" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Hold your umbrella.", "hi": "अपना छाता पकड़ो।", "pic": "☂️" },
+            { "en": "Draw a rainbow in the air.", "hi": "हवा में इंद्रधनुष बनाओ।", "pic": "🌈" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "When it rains, say together: It is raining!", "hi": "बारिश हो तो साथ में बोलें: It is raining!" }
+    },
+    {
+      "key": "a.u14.l4",
+      "kind": "speak",
+      "title": { "en": "Look outside", "hi": "बाहर देखो" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: take your child to the door and look at the sky.", "hi": "बड़ों के लिए: बच्चे को दरवाज़े तक ले जाएँ और साथ में आसमान देखें।" },
+          "pic": "🚪"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "field",
+            "pics": [
+              { "pic": "☀️", "x": 80, "y": 8, "size": 1.6 },
+              { "pic": "☁️", "x": 30, "y": 8, "size": 1.4 },
+              { "pic": "🌳", "x": 18, "y": 36, "size": 2 },
+              { "pic": "🌾", "x": 46, "y": 46, "size": 1.2 },
+              { "pic": "🐄", "x": 66, "y": 44, "size": 1.4 }
+            ]
+          },
+          "questions": [
+            { "key": "a.u14.l4.q-sunny", "en": "Is it sunny?", "hi": "क्या धूप खिली है?", "model": "Yes! It is sunny." },
+            { "key": "a.u14.l4.q-sky", "en": "What is in the sky?", "hi": "आसमान में क्या है?", "model": "The sun and a cloud." },
+            { "key": "a.u14.l4.q-hot", "en": "Is it hot or cold?", "hi": "गर्मी है या ठंड?", "model": "It is hot." }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Go to the door. Look up!", "hi": "दरवाज़े पर जाओ। ऊपर देखो!", "pic": "🚪" },
+            { "en": "Feel the air.", "hi": "हवा को महसूस करो।", "pic": "🌬️" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u14.l4.s-today",
+              "model": "It is sunny.",
+              "hi": "बाहर का मौसम अंग्रेज़ी में बताओ।",
+              "pic": "☀️",
+              "cue": { "en": "Look outside. How is the weather?", "hi": "बाहर देखो। आज मौसम कैसा है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Make it a habit: weather talk every morning.", "hi": "रोज़ सुबह की आदत बनाएँ: मौसम की बात अंग्रेज़ी में।" }
+    },
+    {
+      "key": "a.u14.l5",
+      "kind": "review",
+      "title": { "en": "Weather again", "hi": "फिर से मौसम" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u14.l5.m-rain", "left": { "text": "rain", "pic": "🌧️" }, "right": { "pic": "☂️" } },
+            { "key": "a.u14.l5.m-cold", "left": { "text": "cold", "pic": "🥶" }, "right": { "pic": "🧥" } },
+            { "key": "a.u14.l5.m-sun", "left": { "text": "sun", "pic": "☀️" }, "right": { "pic": "🧢" } },
+            { "key": "a.u14.l5.m-hot", "left": { "text": "hot", "pic": "🥵" }, "right": { "pic": "💧" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u14.l5.t-cloud",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "cloud" },
+              "options": [{ "pic": "☁️" }, { "pic": "🌧️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u14.l5.t-hot",
+              "prompt": { "en": "Listen. Tap the weather.", "hi": "सुनो, फिर सही मौसम छुओ।", "say": "It is hot." },
+              "options": [{ "pic": "🥶" }, { "pic": "🥵" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u14.l5.w-sweater",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "sweater" },
+              "options": [{ "pic": "🧥" }, { "pic": "👕" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u14.l5.w-eight",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "eight" },
+              "options": [{ "pic": "6️⃣" }, { "pic": "8️⃣" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Shiver. Brr, it is cold!", "hi": "काँपो। ब्र्र, ठंड है!", "pic": "🥶" },
+            { "en": "Shine like the sun.", "hi": "सूरज की तरह चमको।", "pic": "☀️" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u14.l5.s-cold",
+              "model": "It is cold.",
+              "hi": "चित्र देखो और मौसम बताओ।",
+              "pic": "🥶",
+              "cue": { "en": "How is the weather?", "hi": "मौसम कैसा है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Draw today's weather together: sun, cloud or rain.", "hi": "आज के मौसम का चित्र साथ में बनाएँ: sun, cloud या rain।" }
+    }
+  ]
+}

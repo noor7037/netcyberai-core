@@ -1,0 +1,380 @@
+{
+  "track": "a",
+  "unit": 15,
+  "key": "a.u15",
+  "title": { "en": "Actions", "hi": "करके दिखाओ" },
+  "pic": "🏃",
+  "can_do": { "en": "I can say what I can do.", "hi": "मुझे बताना आता है कि मुझे क्या-क्या करना आता है।" },
+  "lessons": [
+    {
+      "key": "a.u15.l1",
+      "kind": "words",
+      "title": { "en": "Action words", "hi": "काम वाले शब्द" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u15.l1.w-rain",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "rain" },
+              "options": [{ "pic": "🌧️" }, { "pic": "☀️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u15.l1.w-hot",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "hot" },
+              "options": [{ "pic": "🥶" }, { "pic": "🥵" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: clear a small space so your child can move.", "hi": "बड़ों के लिए: थोड़ी जगह खाली कर दें, ताकि बच्चा खुलकर हिल-डुल सके।" },
+          "pic": "🤸"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u15.l1.run", "en": "run", "hi": "दौड़ना", "pic": "🏃", "example": { "en": "Run, Arjun, run!", "hi": "दौड़ो, अर्जुन, दौड़ो!" } },
+            { "key": "a.u15.l1.jump", "en": "jump", "hi": "कूदना", "pic": "🤸", "example": { "en": "Jump like a frog!", "hi": "मेंढक की तरह कूदो!" } },
+            { "key": "a.u15.l1.sit", "en": "sit", "hi": "बैठना", "pic": "🧘", "example": { "en": "Sit down, please.", "hi": "बैठ जाओ, प्लीज़।" } },
+            { "key": "a.u15.l1.stand", "en": "stand", "hi": "खड़े होना", "pic": "🧍", "example": { "en": "Stand up, please.", "hi": "खड़े हो जाओ, प्लीज़।" } },
+            { "key": "a.u15.l1.eat", "en": "eat", "hi": "खाना", "pic": "😋", "example": { "en": "Eat your roti.", "hi": "अपनी रोटी खाओ।" } },
+            { "key": "a.u15.l1.sleep", "en": "sleep", "hi": "सोना", "pic": "😴", "example": { "en": "Sleep well, Meera.", "hi": "अच्छे से सो जाओ, मीरा।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Run on the spot.", "hi": "एक ही जगह पर दौड़ो।", "pic": "🏃" },
+            { "en": "Jump up high!", "hi": "ऊँचा कूदो!", "pic": "🤸" },
+            { "en": "Sit down.", "hi": "बैठ जाओ।", "pic": "🧘" },
+            { "en": "Stand up.", "hi": "खड़े हो जाओ।", "pic": "🧍" },
+            { "en": "Sleep. Shh!", "hi": "सो जाओ। श्श्श!", "pic": "😴" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u15.l1.t-jump",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "jump" },
+              "options": [{ "pic": "🤸" }, { "pic": "🧘" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u15.l1.t-sleep",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "sleep" },
+              "options": [{ "pic": "😋" }, { "pic": "😴" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u15.l1.t-stand",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "stand" },
+              "options": [{ "pic": "🏃" }, { "pic": "🧘" }, { "pic": "🧍" }],
+              "answer": 2
+            },
+            {
+              "key": "a.u15.l1.t-eat",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "eat" },
+              "options": [{ "pic": "😋" }, { "pic": "🏃" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u15.l1.s-run", "model": "Run.", "hi": "दौड़ो।", "pic": "🏃" },
+            { "key": "a.u15.l1.s-jump", "model": "Jump.", "hi": "कूदो।", "pic": "🤸" },
+            { "key": "a.u15.l1.s-sit", "model": "Sit.", "hi": "बैठो।", "pic": "🧘" },
+            { "key": "a.u15.l1.s-stand", "model": "Stand.", "hi": "खड़े हो।", "pic": "🧍" },
+            { "key": "a.u15.l1.s-eat", "model": "Eat.", "hi": "खाओ।", "pic": "😋" },
+            { "key": "a.u15.l1.s-sleep", "model": "Sleep.", "hi": "सो जाओ।", "pic": "😴" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Play: you say an action, your child does it.", "hi": "खेल: आप बोलें Run! Sit! Jump! और बच्चा करके दिखाए।" }
+    },
+    {
+      "key": "a.u15.l2",
+      "kind": "pattern",
+      "title": { "en": "I can jump!", "hi": "मुझे कूदना आता है!" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "I can …", "hi": "मुझे … आता है" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "I can run.",
+              "hi": "मुझे दौड़ना आता है।",
+              "pic": "🏃",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "can", "role": "do" }, { "text": "run.", "role": "what" }]
+            },
+            {
+              "en": "I can jump high!",
+              "hi": "मुझे ऊँचा कूदना आता है!",
+              "pic": "🤸",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "can", "role": "do" }, { "text": "jump high!", "role": "what" }]
+            },
+            {
+              "en": "I can stand on one foot.",
+              "hi": "मुझे एक पैर पर खड़े होना आता है।",
+              "pic": "🦶",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "can", "role": "do" }, { "text": "stand on one foot.", "role": "what" }]
+            },
+            {
+              "en": "Arjun can sleep anywhere!",
+              "hi": "अर्जुन कहीं भी सो जाता है!",
+              "pic": "😴",
+              "parts": [{ "text": "Arjun", "role": "who" }, { "text": "can", "role": "do" }, { "text": "sleep anywhere!", "role": "what" }]
+            }
+          ],
+          "note": { "en": "Show it first, then say: I can …", "hi": "पहले करके दिखाओ, फिर बोलो: I can …" }
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Stand on one foot.", "hi": "एक पैर पर खड़े हो जाओ।", "pic": "🦶" },
+            { "en": "Run to the door.", "hi": "दरवाज़े तक दौड़ो।", "pic": "🚪" },
+            { "en": "Jump three times.", "hi": "तीन बार कूदो।", "pic": "🤸" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u15.l2.t-sit",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "I can sit." },
+              "options": [{ "pic": "🧘" }, { "pic": "🏃" }],
+              "answer": 0,
+              "why": { "en": "Sit: we sit down.", "hi": "sit यानी बैठना।" }
+            },
+            {
+              "key": "a.u15.l2.t-run",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "I can run." },
+              "options": [{ "pic": "🧍" }, { "pic": "🏃" }],
+              "answer": 1,
+              "why": { "en": "Run: fast, fast!", "hi": "run यानी दौड़ना, तेज़-तेज़!" }
+            },
+            {
+              "key": "a.u15.l2.t-eat",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "I can eat." },
+              "options": [{ "pic": "😴" }, { "pic": "🤸" }, { "pic": "😋" }],
+              "answer": 2,
+              "why": { "en": "Eat: yum!", "hi": "eat यानी खाना। वाह!" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u15.l2.s-jump",
+              "model": "I can jump!",
+              "hi": "कूदकर दिखाओ, फिर बोलो।",
+              "pic": "🤸",
+              "cue": { "en": "Jump! What can you do?", "hi": "कूदो! तुम्हें क्या आता है?" }
+            },
+            {
+              "key": "a.u15.l2.s-run",
+              "model": "I can run!",
+              "hi": "दौड़कर दिखाओ, फिर बोलो।",
+              "pic": "🏃",
+              "cue": { "en": "Run! What can you do?", "hi": "दौड़ो! तुम्हें क्या आता है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Ask: What can you do? Clap for each answer.", "hi": "पूछें: What can you do? हर जवाब पर ताली बजाएँ।" }
+    },
+    {
+      "key": "a.u15.l3",
+      "kind": "listen",
+      "title": { "en": "Run to the tree", "hi": "पेड़ तक दौड़" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Run to the tree", "hi": "पेड़ तक दौड़" },
+          "scene": {
+            "place": "field",
+            "pics": [
+              { "pic": "🌾", "x": 12, "y": 20 },
+              { "pic": "🌳", "x": 50, "y": 16, "size": 2.2 },
+              { "pic": "🌾", "x": 88, "y": 20 },
+              { "pic": "👧", "x": 28, "y": 46, "size": 1.4 },
+              { "pic": "🧕", "x": 48, "y": 48, "size": 1.4 },
+              { "pic": "👦", "x": 66, "y": 50, "size": 1.2 },
+              { "pic": "🐕", "x": 84, "y": 52 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Salma", "pic": "🧕", "en": "Let's run to the tree!", "hi": "चलो, पेड़ तक दौड़ें!" },
+            { "speaker": "Meera", "pic": "👧", "en": "One, two, three, run!", "hi": "एक, दो, तीन, दौड़ो!" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Wait for me! I can run!", "hi": "मेरा इंतज़ार करो! मैं भी दौड़ सकता हूँ!" },
+            { "speaker": "Dog", "pic": "🐕", "en": "Woof! Woof!", "hi": "भौं! भौं!" },
+            { "speaker": "Salma", "pic": "🧕", "en": "The dog can run fast!", "hi": "कुत्ता तेज़ दौड़ सकता है!" },
+            { "speaker": "Meera", "pic": "👧", "en": "Now let's sit and rest.", "hi": "अब चलो, बैठकर आराम करें।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u15.l3.q-where",
+              "prompt": { "en": "Where do they run?", "hi": "वे कहाँ तक दौड़ते हैं?" },
+              "options": [{ "pic": "🏠" }, { "pic": "🌳" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u15.l3.q-fast",
+              "prompt": { "en": "Who can run fast?", "hi": "तेज़ कौन दौड़ सकता है?" },
+              "options": [{ "pic": "🐕" }, { "pic": "🐄" }, { "pic": "🐔" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u15.l3.q-end",
+              "prompt": { "en": "What do they do at the end?", "hi": "आख़िर में वे क्या करते हैं?" },
+              "options": [{ "pic": "🧘" }, { "pic": "🤸" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u15.l3.s-run", "model": "I can run!", "hi": "मुझे दौड़ना आता है!", "pic": "🏃" },
+            { "key": "a.u15.l3.s-tree", "model": "Let's run to the tree!", "hi": "चलो, पेड़ तक दौड़ें!", "pic": "🌳" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Run on the spot.", "hi": "एक ही जगह पर दौड़ो।", "pic": "🏃" }, { "en": "Now sit and rest.", "hi": "अब बैठकर आराम करो।", "pic": "🧘" }]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Play outside: run, jump, then sit and rest.", "hi": "बाहर खेलें: दौड़ें, कूदें, फिर बैठकर आराम करें।" }
+    },
+    {
+      "key": "a.u15.l4",
+      "kind": "speak",
+      "title": { "en": "Action game", "hi": "हिलने-डुलने का खेल" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: you are Papa. Do each action together.", "hi": "बड़ों के लिए: आप पापा बनें और हर काम बच्चे के साथ करें।" },
+          "pic": "👨"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Can you jump?", "hi": "क्या तुम्हें कूदना आता है?" },
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🌳", "x": 14, "y": 18, "size": 2 },
+              { "pic": "👨", "x": 36, "y": 40, "size": 1.7 },
+              { "pic": "🧒", "x": 66, "y": 42, "size": 1.6 },
+              { "pic": "🐈", "x": 88, "y": 52 }
+            ]
+          },
+          "roles": [{ "name": "Papa", "pic": "👨" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Let's play! Can you jump?", "hi": "चलो खेलें! क्या तुम्हें कूदना आता है?" },
+            { "role": 1, "en": "Yes! I can jump!", "hi": "हाँ! मुझे कूदना आता है!" },
+            { "role": 0, "en": "Can you run?", "hi": "क्या तुम्हें दौड़ना आता है?" },
+            { "role": 1, "en": "Yes! I can run fast!", "hi": "हाँ! मुझे तेज़ दौड़ना आता है!" },
+            { "role": 0, "en": "Can you sleep like a cat?", "hi": "क्या तुम बिल्ली की तरह सो सकते हो?" },
+            { "role": 1, "en": "Yes! Shh! I can sleep.", "hi": "हाँ! श्श्श! मुझे सोना आता है।" }
+          ],
+          "partner": {
+            "goal": "Play the action game: ask the child if they can do actions, cheer each answer, and act along.",
+            "must_use": ["can you", "I can", "jump", "run", "sleep"]
+          }
+        }
+      ],
+      "check": [],
+      "home": { "en": "Ask your child to show three things they can do.", "hi": "बच्चे से कहें कि वह तीन काम करके दिखाए और बोले: I can …" }
+    },
+    {
+      "key": "a.u15.l5",
+      "kind": "review",
+      "title": { "en": "Move and say", "hi": "हिलो और बोलो" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Run, run, run!", "hi": "दौड़ो, दौड़ो, दौड़ो!", "pic": "🏃" },
+            { "en": "Stop! Stand still.", "hi": "रुको! सीधे खड़े रहो।", "pic": "🧍" },
+            { "en": "Sit down. Good!", "hi": "बैठ जाओ। शाबाश!", "pic": "🧘" }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u15.l5.m-sleep", "left": { "text": "sleep", "pic": "😴" }, "right": { "pic": "🛏️" } },
+            { "key": "a.u15.l5.m-eat", "left": { "text": "eat", "pic": "😋" }, "right": { "pic": "own:roti" } },
+            { "key": "a.u15.l5.m-sit", "left": { "text": "sit", "pic": "🧘" }, "right": { "pic": "🪑" } },
+            { "key": "a.u15.l5.m-run", "left": { "text": "run", "pic": "🏃" }, "right": { "pic": "👟" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u15.l5.t-run",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "run" },
+              "options": [{ "pic": "🏃" }, { "pic": "😴" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u15.l5.t-sit",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "sit" },
+              "options": [{ "pic": "🤸" }, { "pic": "🧘" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u15.l5.w-cloud",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "cloud" },
+              "options": [{ "pic": "☁️" }, { "pic": "☀️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u15.l5.w-frock",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "frock" },
+              "options": [{ "pic": "👕" }, { "pic": "👗" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u15.l5.s-can",
+              "model": "I can run and jump!",
+              "hi": "बताओ, तुम्हें क्या-क्या आता है।",
+              "pic": "🤸",
+              "cue": { "en": "What can you do?", "hi": "तुम्हें क्या-क्या आता है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Before bed, play the action game once more.", "hi": "सोने से पहले एक बार फिर खेलें: Jump! Sit! Sleep!" }
+    }
+  ]
+}

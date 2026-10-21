@@ -1,0 +1,383 @@
+{
+  "track": "a",
+  "unit": 7,
+  "key": "a.u07",
+  "title": { "en": "Animals", "hi": "जानवर" },
+  "pic": "🐄",
+  "can_do": { "en": "I can name animals.", "hi": "मुझे जानवरों के नाम आते हैं।" },
+  "lessons": [
+    {
+      "key": "a.u07.l1",
+      "kind": "words",
+      "title": { "en": "Animal words", "hi": "जानवरों के नाम" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u07.l1.w-banana",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "banana" },
+              "options": [{ "pic": "🍌" }, { "pic": "🍊" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u07.l1.w-four",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "four" },
+              "options": [{ "pic": "2️⃣" }, { "pic": "4️⃣" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: make the animal sounds. Children love it!", "hi": "बड़ों के लिए: जानवरों की आवाज़ें निकालें। बच्चों को बहुत मज़ा आता है!" },
+          "pic": "🐄"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u07.l1.cow", "en": "cow", "hi": "गाय", "pic": "🐄", "example": { "en": "The cow is white.", "hi": "गाय सफ़ेद है।" } },
+            { "key": "a.u07.l1.goat", "en": "goat", "hi": "बकरी", "pic": "🐐", "example": { "en": "One small goat.", "hi": "एक छोटी बकरी।" } },
+            { "key": "a.u07.l1.dog", "en": "dog", "hi": "कुत्ता", "pic": "🐕", "example": { "en": "The dog is my friend.", "hi": "कुत्ता मेरा दोस्त है।" } },
+            { "key": "a.u07.l1.cat", "en": "cat", "hi": "बिल्ली", "pic": "🐈", "example": { "en": "A black cat.", "hi": "एक काली बिल्ली।" } },
+            { "key": "a.u07.l1.hen", "en": "hen", "hi": "मुर्गी", "pic": "🐔", "example": { "en": "Three hens.", "hi": "तीन मुर्गियाँ।" } },
+            { "key": "a.u07.l1.buffalo", "en": "buffalo", "hi": "भैंस", "pic": "🐃", "example": { "en": "A big buffalo.", "hi": "एक बड़ी भैंस।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Walk like a cow.", "hi": "गाय की तरह धीरे-धीरे चलो।", "pic": "🐄" },
+            { "en": "Jump like a goat.", "hi": "बकरी की तरह उछलो।", "pic": "🐐" },
+            { "en": "Stretch like a cat.", "hi": "बिल्ली की तरह अंगड़ाई लो।", "pic": "🐈" },
+            { "en": "Flap like a hen.", "hi": "मुर्गी की तरह पंख फड़फड़ाओ।", "pic": "🐔" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u07.l1.t-goat",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "goat" },
+              "options": [{ "pic": "🐐" }, { "pic": "🐄" }, { "pic": "🐕" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u07.l1.t-cat",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "cat" },
+              "options": [{ "pic": "🐕" }, { "pic": "🐈" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u07.l1.t-buffalo",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "buffalo" },
+              "options": [{ "pic": "🐔" }, { "pic": "🐐" }, { "pic": "🐃" }],
+              "answer": 2
+            },
+            {
+              "key": "a.u07.l1.t-hen",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "hen" },
+              "options": [{ "pic": "🐔" }, { "pic": "🐈" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u07.l1.s-cow", "model": "Cow.", "hi": "गाय।", "pic": "🐄" },
+            { "key": "a.u07.l1.s-goat", "model": "Goat.", "hi": "बकरी।", "pic": "🐐" },
+            { "key": "a.u07.l1.s-dog", "model": "Dog.", "hi": "कुत्ता।", "pic": "🐕" },
+            { "key": "a.u07.l1.s-cat", "model": "Cat.", "hi": "बिल्ली।", "pic": "🐈" },
+            { "key": "a.u07.l1.s-hen", "model": "Hen.", "hi": "मुर्गी।", "pic": "🐔" },
+            { "key": "a.u07.l1.s-buffalo", "model": "Buffalo.", "hi": "भैंस।", "pic": "🐃" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Name the animals you see on the way.", "hi": "रास्ते में जो जानवर दिखें, उनके अंग्रेज़ी नाम साथ में बोलें।" }
+    },
+    {
+      "key": "a.u07.l2",
+      "kind": "pattern",
+      "title": { "en": "The cow says moo.", "hi": "गाय बोलती है: मूँ।" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "The … says …", "hi": "… बोलता है …" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "The cow says moo.",
+              "hi": "गाय बोलती है: मूँ।",
+              "pic": "🐄",
+              "parts": [{ "text": "The cow", "role": "who" }, { "text": "says", "role": "do" }, { "text": "moo.", "role": "what" }]
+            },
+            {
+              "en": "The dog says woof.",
+              "hi": "कुत्ता बोलता है: भौं।",
+              "pic": "🐕",
+              "parts": [{ "text": "The dog", "role": "who" }, { "text": "says", "role": "do" }, { "text": "woof.", "role": "what" }]
+            },
+            {
+              "en": "The cat says meow.",
+              "hi": "बिल्ली बोलती है: म्याऊँ।",
+              "pic": "🐈",
+              "parts": [{ "text": "The cat", "role": "who" }, { "text": "says", "role": "do" }, { "text": "meow.", "role": "what" }]
+            },
+            {
+              "en": "The goat says maa.",
+              "hi": "बकरी बोलती है: में-में।",
+              "pic": "🐐",
+              "parts": [{ "text": "The goat", "role": "who" }, { "text": "says", "role": "do" }, { "text": "maa.", "role": "what" }]
+            },
+            {
+              "en": "The hen says cluck.",
+              "hi": "मुर्गी बोलती है: कुट-कुट।",
+              "pic": "🐔",
+              "parts": [{ "text": "The hen", "role": "who" }, { "text": "says", "role": "do" }, { "text": "cluck.", "role": "what" }]
+            }
+          ],
+          "note": { "en": "Every animal has its own sound.", "hi": "हर जानवर की अपनी आवाज़ होती है।" }
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u07.l2.t-meow",
+              "prompt": { "en": "Listen. Who says it?", "hi": "सुनो। यह आवाज़ किसकी है?", "say": "Meow!" },
+              "options": [{ "pic": "🐕" }, { "pic": "🐈" }],
+              "answer": 1,
+              "why": { "en": "The cat says meow.", "hi": "म्याऊँ बिल्ली बोलती है।" }
+            },
+            {
+              "key": "a.u07.l2.t-moo",
+              "prompt": { "en": "Listen. Who says it?", "hi": "सुनो। यह आवाज़ किसकी है?", "say": "Moo!" },
+              "options": [{ "pic": "🐄" }, { "pic": "🐔" }, { "pic": "🐐" }],
+              "answer": 0,
+              "why": { "en": "The cow says moo.", "hi": "मूँ गाय बोलती है।" }
+            },
+            {
+              "key": "a.u07.l2.t-woof",
+              "prompt": { "en": "Listen. Who says it?", "hi": "सुनो। यह आवाज़ किसकी है?", "say": "Woof!" },
+              "options": [{ "pic": "🐈" }, { "pic": "🐃" }, { "pic": "🐕" }],
+              "answer": 2,
+              "why": { "en": "The dog says woof.", "hi": "भौं कुत्ता बोलता है।" }
+            },
+            {
+              "key": "a.u07.l2.t-cluck",
+              "prompt": { "en": "Listen. Who says it?", "hi": "सुनो। यह आवाज़ किसकी है?", "say": "Cluck, cluck!" },
+              "options": [{ "pic": "🐔" }, { "pic": "🐄" }],
+              "answer": 0,
+              "why": { "en": "The hen says cluck.", "hi": "कुट-कुट मुर्गी बोलती है।" }
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Bark like a dog.", "hi": "कुत्ते की तरह भौंको।", "pic": "🐕" }, { "en": "Say moo like a cow.", "hi": "गाय की तरह मूँ बोलो।", "pic": "🐄" }]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u07.l2.s-cat",
+              "model": "The cat says meow.",
+              "hi": "बिल्ली की आवाज़ के साथ बोलो।",
+              "pic": "🐈",
+              "cue": { "en": "What does the cat say?", "hi": "बिल्ली क्या बोलती है?" }
+            },
+            {
+              "key": "a.u07.l2.s-cow",
+              "model": "The cow says moo.",
+              "hi": "गाय की आवाज़ के साथ बोलो।",
+              "pic": "🐄",
+              "cue": { "en": "What does the cow say?", "hi": "गाय क्या बोलती है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Ask: What does the dog say? Laugh together!", "hi": "बच्चे से पूछें: What does the dog say? और साथ में हँसें!" }
+    },
+    {
+      "key": "a.u07.l3",
+      "kind": "listen",
+      "title": { "en": "Morning in the yard", "hi": "आँगन में सुबह" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Morning in the yard", "hi": "आँगन में सुबह" },
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🏠", "x": 84, "y": 14, "size": 1.8 },
+              { "pic": "🐄", "x": 20, "y": 40, "size": 1.7 },
+              { "pic": "🐐", "x": 40, "y": 46, "size": 1.2 },
+              { "pic": "🐔", "x": 56, "y": 52 },
+              { "pic": "🐕", "x": 72, "y": 50, "size": 1.2 },
+              { "pic": "👦", "x": 88, "y": 46, "size": 1.3 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Arjun", "pic": "👦", "en": "Hello, cow!", "hi": "नमस्ते, गाय!" },
+            { "speaker": "Cow", "pic": "🐄", "en": "Moo! Moo!", "hi": "मूँ! मूँ!" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Hello, goat!", "hi": "नमस्ते, बकरी!" },
+            { "speaker": "Goat", "pic": "🐐", "en": "Maa! Maa!", "hi": "में! में!" },
+            { "speaker": "Dog", "pic": "🐕", "en": "Woof! Woof!", "hi": "भौं! भौं!" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Hello, dog! My friend!", "hi": "नमस्ते, कुत्ते! मेरे दोस्त!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            { "key": "a.u07.l3.q-moo", "prompt": { "en": "Who says moo?", "hi": "मूँ कौन बोलती है?" }, "options": [{ "pic": "🐐" }, { "pic": "🐄" }], "answer": 1 },
+            {
+              "key": "a.u07.l3.q-friend",
+              "prompt": { "en": "Who is Arjun's friend?", "hi": "अर्जुन का दोस्त कौन है?" },
+              "options": [{ "pic": "🐕" }, { "pic": "🐔" }, { "pic": "🐄" }],
+              "answer": 0
+            },
+            { "key": "a.u07.l3.q-maa", "prompt": { "en": "Who says maa?", "hi": "में-में कौन बोलती है?" }, "options": [{ "pic": "🐈" }, { "pic": "🐐" }], "answer": 1 }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u07.l3.s-cow", "model": "Hello, cow!", "hi": "नमस्ते, गाय!", "pic": "🐄" },
+            { "key": "a.u07.l3.s-goat", "model": "The goat says maa.", "hi": "बकरी बोलती है: में-में।", "pic": "🐐" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Moo like the cow.", "hi": "गाय की तरह मूँ करो।", "pic": "🐄" },
+            { "en": "Wag like the dog.", "hi": "कुत्ते की तरह पूँछ हिलाओ।", "pic": "🐕" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Say hello to an animal nearby, from a safe distance.", "hi": "पास के किसी जानवर को दूर से देखकर साथ में कहें: Hello, cow!" }
+    },
+    {
+      "key": "a.u07.l4",
+      "kind": "speak",
+      "title": { "en": "Animal sounds game", "hi": "जानवरों की आवाज़ का खेल" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: you are Papa. Make big, funny sounds.", "hi": "बड़ों के लिए: आप पापा बनें। ज़ोर से, मज़ेदार आवाज़ें निकालें।" },
+          "pic": "🎶"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Guess the animal", "hi": "जानवर पहचानो" },
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "👨", "x": 26, "y": 40, "size": 1.7 },
+              { "pic": "🧒", "x": 62, "y": 42, "size": 1.6 },
+              { "pic": "🐕", "x": 84, "y": 50 },
+              { "pic": "🐈", "x": 10, "y": 52 }
+            ]
+          },
+          "roles": [{ "name": "Papa", "pic": "👨" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Listen! Woof, woof!", "hi": "सुनो! भौं, भौं!" },
+            { "role": 1, "en": "The dog says woof!", "hi": "कुत्ता बोलता है: भौं!" },
+            { "role": 0, "en": "Listen! Meow!", "hi": "सुनो! म्याऊँ!" },
+            { "role": 1, "en": "The cat says meow!", "hi": "बिल्ली बोलती है: म्याऊँ!" },
+            { "role": 0, "en": "Your turn. Make a sound!", "hi": "अब तुम्हारी बारी। कोई आवाज़ निकालो!" },
+            { "role": 1, "en": "Moo! The cow says moo!", "hi": "मूँ! गाय बोलती है: मूँ!" }
+          ],
+          "partner": {
+            "goal": "Play the sound game: make an animal sound and let the child name the animal, then guess the child's sound.",
+            "must_use": ["the dog says", "the cat says", "moo"]
+          }
+        }
+      ],
+      "check": [],
+      "home": { "en": "Take turns: one makes a sound, one names the animal.", "hi": "बारी-बारी खेलें: एक आवाज़ निकाले, दूसरा जानवर का नाम बताए।" }
+    },
+    {
+      "key": "a.u07.l5",
+      "kind": "review",
+      "title": { "en": "Animal friends", "hi": "जानवर दोस्त" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u07.l5.m-cow", "left": { "text": "cow", "pic": "🐄" }, "right": { "pic": "🌾" } },
+            { "key": "a.u07.l5.m-cat", "left": { "text": "cat", "pic": "🐈" }, "right": { "pic": "🥛" } },
+            { "key": "a.u07.l5.m-hen", "left": { "text": "hen", "pic": "🐔" }, "right": { "pic": "🌽" } },
+            { "key": "a.u07.l5.m-goat", "left": { "text": "goat", "pic": "🐐" }, "right": { "pic": "🍃" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u07.l5.t-buffalo",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "buffalo" },
+              "options": [{ "pic": "🐃" }, { "pic": "🐄" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u07.l5.t-dog",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "dog" },
+              "options": [{ "pic": "🐈" }, { "pic": "🐕" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u07.l5.w-apple",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "apple" },
+              "options": [{ "pic": "🍎" }, { "pic": "🍊" }, { "pic": "🥭" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u07.l5.w-eyes",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "eyes" },
+              "options": [{ "pic": "👄" }, { "pic": "👀" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Walk like a cow.", "hi": "गाय की तरह चलो।", "pic": "🐄" }, { "en": "Hop like a hen.", "hi": "मुर्गी की तरह फुदको।", "pic": "🐔" }]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u07.l5.s-like",
+              "model": "I like dogs.",
+              "hi": "बताओ, तुम्हें कौन-सा जानवर पसंद है।",
+              "pic": "🐕",
+              "cue": { "en": "Which animal do you like?", "hi": "तुम्हें कौन-सा जानवर पसंद है?" }
+            },
+            {
+              "key": "a.u07.l5.s-dog",
+              "model": "The dog says woof.",
+              "hi": "कुत्ते की आवाज़ के साथ बोलो।",
+              "pic": "🐕",
+              "cue": { "en": "What does the dog say?", "hi": "कुत्ता क्या बोलता है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Draw an animal together and name it.", "hi": "साथ में कोई जानवर बनाएँ और उसका अंग्रेज़ी नाम बोलें।" }
+    }
+  ]
+}

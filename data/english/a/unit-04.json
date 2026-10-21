@@ -1,0 +1,400 @@
+{
+  "track": "a",
+  "unit": 4,
+  "key": "a.u04",
+  "title": { "en": "Colours", "hi": "रंग" },
+  "pic": "🎨",
+  "can_do": { "en": "I can say colours.", "hi": "मुझे रंगों के नाम आते हैं।" },
+  "lessons": [
+    {
+      "key": "a.u04.l1",
+      "kind": "words",
+      "title": { "en": "Colour words", "hi": "रंगों के नाम" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u04.l1.w-nose",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "nose" },
+              "options": [{ "pic": "👃" }, { "pic": "🦶" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u04.l1.w-hands",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "hands" },
+              "options": [{ "pic": "👀" }, { "pic": "🙌" }],
+              "answer": 1
+            }
+          ]
+        },
+        { "type": "tip", "text": { "en": "Grown-up: find each colour in your home together.", "hi": "बड़ों के लिए: हर रंग घर में भी ढूँढकर दिखाएँ।" }, "pic": "🎨" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u04.l1.red", "en": "red", "hi": "लाल", "pic": "🔴", "example": { "en": "A red apple.", "hi": "लाल सेब।" } },
+            { "key": "a.u04.l1.blue", "en": "blue", "hi": "नीला", "pic": "🔵", "example": { "en": "The sky is blue.", "hi": "आसमान नीला है।" } },
+            { "key": "a.u04.l1.yellow", "en": "yellow", "hi": "पीला", "pic": "🟡", "example": { "en": "A yellow banana.", "hi": "पीला केला।" } },
+            { "key": "a.u04.l1.green", "en": "green", "hi": "हरा", "pic": "🟢", "example": { "en": "Green leaves.", "hi": "हरी पत्तियाँ।" } },
+            { "key": "a.u04.l1.white", "en": "white", "hi": "सफ़ेद", "pic": "⚪", "example": { "en": "White milk.", "hi": "सफ़ेद दूध।" } },
+            { "key": "a.u04.l1.black", "en": "black", "hi": "काला", "pic": "⚫", "example": { "en": "My hair is black.", "hi": "मेरे बाल काले हैं।" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u04.l1.t-red",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "red" },
+              "options": [{ "pic": "🔴" }, { "pic": "🔵" }, { "pic": "🟡" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u04.l1.t-green",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "green" },
+              "options": [{ "pic": "⚪" }, { "pic": "🟢" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u04.l1.t-black",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "black" },
+              "options": [{ "pic": "🔵" }, { "pic": "🟡" }, { "pic": "⚫" }],
+              "answer": 2
+            },
+            {
+              "key": "a.u04.l1.t-yellow",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "yellow" },
+              "options": [{ "pic": "🟡" }, { "pic": "🟢" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Touch something red.", "hi": "कोई लाल चीज़ छुओ।", "pic": "🔴" },
+            { "en": "Point to something green.", "hi": "किसी हरी चीज़ की ओर इशारा करो।", "pic": "🟢" },
+            { "en": "Find something white.", "hi": "कोई सफ़ेद चीज़ ढूँढो।", "pic": "⚪" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u04.l1.s-red", "model": "Red.", "hi": "लाल।", "pic": "🔴" },
+            { "key": "a.u04.l1.s-blue", "model": "Blue.", "hi": "नीला।", "pic": "🔵" },
+            { "key": "a.u04.l1.s-yellow", "model": "Yellow.", "hi": "पीला।", "pic": "🟡" },
+            { "key": "a.u04.l1.s-green", "model": "Green.", "hi": "हरा।", "pic": "🟢" },
+            { "key": "a.u04.l1.s-white", "model": "White.", "hi": "सफ़ेद।", "pic": "⚪" },
+            { "key": "a.u04.l1.s-black", "model": "Black.", "hi": "काला।", "pic": "⚫" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Point to clothes and toys. Ask: What colour?", "hi": "कपड़ों और खिलौनों की ओर इशारा करके पूछें: What colour?" }
+    },
+    {
+      "key": "a.u04.l2",
+      "kind": "pattern",
+      "title": { "en": "It is red.", "hi": "यह लाल है।" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "It is …", "hi": "यह … है" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "It is red.",
+              "hi": "यह लाल है।",
+              "pic": "🍎",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "red.", "role": "what" }]
+            },
+            {
+              "en": "It is yellow.",
+              "hi": "यह पीला है।",
+              "pic": "🍌",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "yellow.", "role": "what" }]
+            },
+            {
+              "en": "It is green.",
+              "hi": "यह हरा है।",
+              "pic": "🌿",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "green.", "role": "what" }]
+            },
+            {
+              "en": "It is white.",
+              "hi": "यह सफ़ेद है।",
+              "pic": "🥛",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "white.", "role": "what" }]
+            }
+          ],
+          "note": { "en": "Look at the picture. Say: It is …", "hi": "चित्र देखो और बोलो: It is …" }
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u04.l2.q-banana",
+              "prompt": { "en": "What colour is it?", "hi": "यह किस रंग का है?", "pic": "🍌" },
+              "options": [{ "pic": "🔴" }, { "pic": "🟡" }, { "pic": "🔵" }],
+              "answer": 1,
+              "why": { "en": "The banana is yellow.", "hi": "केला पीला है।" }
+            },
+            {
+              "key": "a.u04.l2.q-milk",
+              "prompt": { "en": "What colour is it?", "hi": "यह किस रंग का है?", "pic": "🥛" },
+              "options": [{ "pic": "⚫" }, { "pic": "⚪" }],
+              "answer": 1,
+              "why": { "en": "Milk is white.", "hi": "दूध सफ़ेद होता है।" }
+            },
+            {
+              "key": "a.u04.l2.q-tree",
+              "prompt": { "en": "What colour is it?", "hi": "यह किस रंग का है?", "pic": "🌳" },
+              "options": [{ "pic": "🟢" }, { "pic": "🔴" }],
+              "answer": 0,
+              "why": { "en": "The tree is green.", "hi": "पेड़ हरा है।" }
+            },
+            {
+              "key": "a.u04.l2.q-tomato",
+              "prompt": { "en": "What colour is it?", "hi": "यह किस रंग का है?", "pic": "🍅" },
+              "options": [{ "pic": "🔵" }, { "pic": "🟢" }, { "pic": "🔴" }],
+              "answer": 2,
+              "why": { "en": "The tomato is red.", "hi": "टमाटर लाल है।" }
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Show me something green.", "hi": "मुझे कोई हरी चीज़ दिखाओ।", "pic": "🟢" },
+            { "en": "Point to your black hair.", "hi": "अपने काले बालों की ओर इशारा करो।", "pic": "⚫" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u04.l2.s-apple",
+              "model": "It is red.",
+              "hi": "चित्र देखकर रंग बताओ।",
+              "pic": "🍎",
+              "cue": { "en": "What colour is it?", "hi": "यह किस रंग का है?" }
+            },
+            {
+              "key": "a.u04.l2.s-banana",
+              "model": "It is yellow.",
+              "hi": "चित्र देखकर रंग बताओ।",
+              "pic": "🍌",
+              "cue": { "en": "What colour is it?", "hi": "यह किस रंग का है?" }
+            },
+            {
+              "key": "a.u04.l2.s-tree",
+              "model": "It is green.",
+              "hi": "चित्र देखकर रंग बताओ।",
+              "pic": "🌳",
+              "cue": { "en": "What colour is it?", "hi": "यह किस रंग का है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Point to things at home. Ask: What colour?", "hi": "घर की चीज़ों की ओर इशारा करके पूछें: What colour? बच्चा कहे: It is …" }
+    },
+    {
+      "key": "a.u04.l3",
+      "kind": "listen",
+      "title": { "en": "Kites in the sky", "hi": "आसमान में पतंगें" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Kites in the sky", "hi": "आसमान में पतंगें" },
+          "scene": {
+            "place": "festival",
+            "pics": [
+              { "pic": "🪁", "x": 20, "y": 10, "size": 1.4 },
+              { "pic": "🪁", "x": 50, "y": 6, "size": 1.2 },
+              { "pic": "🪁", "x": 78, "y": 12, "size": 1.3 },
+              { "pic": "👨", "x": 20, "y": 46, "size": 1.5 },
+              { "pic": "👦", "x": 38, "y": 48, "size": 1.3 },
+              { "pic": "👧", "x": 58, "y": 48, "size": 1.4 },
+              { "pic": "🧕", "x": 78, "y": 48, "size": 1.4 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Arjun", "pic": "👦", "en": "Look, Papa! A kite!", "hi": "देखो पापा! पतंग!" },
+            { "speaker": "Papa", "pic": "👨", "en": "It is red.", "hi": "यह लाल है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "My kite is yellow.", "hi": "मेरी पतंग पीली है।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "My kite is green.", "hi": "मेरी पतंग हरी है।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "The sky is blue!", "hi": "आसमान नीला है!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u04.l3.q-meera",
+              "prompt": { "en": "What colour is Meera's kite?", "hi": "मीरा की पतंग किस रंग की है?" },
+              "options": [{ "pic": "🟢" }, { "pic": "🟡" }, { "pic": "🔴" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u04.l3.q-salma",
+              "prompt": { "en": "What colour is Salma's kite?", "hi": "सलमा की पतंग किस रंग की है?" },
+              "options": [{ "pic": "🟢" }, { "pic": "🔵" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u04.l3.q-sky",
+              "prompt": { "en": "What colour is the sky?", "hi": "आसमान किस रंग का है?" },
+              "options": [{ "pic": "⚫" }, { "pic": "🔵" }, { "pic": "⚪" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u04.l3.s-sky", "model": "The sky is blue!", "hi": "आसमान नीला है!", "pic": "🔵" },
+            { "key": "a.u04.l3.s-kite", "model": "My kite is yellow.", "hi": "मेरी पतंग पीली है।", "pic": "🪁" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Fly a kite. Pull, pull!", "hi": "पतंग उड़ाओ। खींचो, खींचो!", "pic": "🪁" },
+            { "en": "Look up at the sky.", "hi": "ऊपर आसमान की ओर देखो।", "pic": "🔵" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Look at the sky together. Say: The sky is blue!", "hi": "साथ में आसमान देखें और बोलें: The sky is blue!" }
+    },
+    {
+      "key": "a.u04.l4",
+      "kind": "speak",
+      "title": { "en": "Find the colour", "hi": "रंग ढूँढो" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: walk around the house and hunt for colours.", "hi": "बड़ों के लिए: बच्चे के साथ घर में घूमें और रंग ढूँढने का खेल खेलें।" },
+          "pic": "🏠"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🍎", "x": 15, "y": 34, "size": 1.5 },
+              { "pic": "🍌", "x": 38, "y": 34, "size": 1.5 },
+              { "pic": "🥛", "x": 62, "y": 34, "size": 1.5 },
+              { "pic": "🌿", "x": 85, "y": 34, "size": 1.5 }
+            ]
+          },
+          "questions": [
+            { "key": "a.u04.l4.q-apple", "en": "What colour is the apple?", "hi": "सेब किस रंग का है?", "model": "It is red." },
+            { "key": "a.u04.l4.q-milk", "en": "What colour is the milk?", "hi": "दूध किस रंग का है?", "model": "It is white." },
+            { "key": "a.u04.l4.q-banana", "en": "What colour is the banana?", "hi": "केला किस रंग का है?", "model": "It is yellow." }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Find something blue at home.", "hi": "घर में कोई नीली चीज़ ढूँढकर लाओ।", "pic": "🔵" },
+            { "en": "Hold it up high!", "hi": "उसे ऊपर उठाकर दिखाओ!", "pic": "🙌" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u04.l4.s-found",
+              "model": "It is blue.",
+              "hi": "जो चीज़ लाए, उसका रंग बताओ।",
+              "pic": "🔵",
+              "cue": { "en": "What colour is it?", "hi": "यह किस रंग की है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Play the colour hunt again tomorrow.", "hi": "कल फिर से रंग ढूँढने का खेल खेलें: Find something red!" }
+    },
+    {
+      "key": "a.u04.l5",
+      "kind": "review",
+      "title": { "en": "Colour fun", "hi": "रंगों का मज़ा" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u04.l5.m-red", "left": { "text": "red", "pic": "🔴" }, "right": { "pic": "🍎" } },
+            { "key": "a.u04.l5.m-yellow", "left": { "text": "yellow", "pic": "🟡" }, "right": { "pic": "🍌" } },
+            { "key": "a.u04.l5.m-green", "left": { "text": "green", "pic": "🟢" }, "right": { "pic": "🍃" } },
+            { "key": "a.u04.l5.m-white", "left": { "text": "white", "pic": "⚪" }, "right": { "pic": "🥛" } },
+            { "key": "a.u04.l5.m-blue", "left": { "text": "blue", "pic": "🔵" }, "right": { "pic": "🌊" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u04.l5.t-blue",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "blue" },
+              "options": [{ "pic": "🔵" }, { "pic": "🔴" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u04.l5.t-white",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "white" },
+              "options": [{ "pic": "🟢" }, { "pic": "⚪" }, { "pic": "⚫" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u04.l5.w-mouth",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "mouth" },
+              "options": [{ "pic": "👀" }, { "pic": "👄" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u04.l5.w-sister",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "sister" },
+              "options": [{ "pic": "👧" }, { "pic": "👨" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Jump if you see red!", "hi": "लाल दिखे तो कूदो!", "pic": "🔴" },
+            { "en": "Clap if you see yellow!", "hi": "पीला दिखे तो ताली बजाओ!", "pic": "🟡" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u04.l5.s-banana",
+              "model": "It is yellow.",
+              "hi": "चित्र देखकर रंग बताओ।",
+              "pic": "🍌",
+              "cue": { "en": "What colour is it?", "hi": "यह किस रंग का है?" }
+            },
+            { "key": "a.u04.l5.s-milk", "model": "It is white.", "hi": "चित्र देखकर रंग बताओ।", "pic": "🥛", "cue": { "en": "And this one?", "hi": "और यह?" } }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "At meals, ask the colour of each food.", "hi": "खाना खाते समय हर चीज़ का रंग पूछें: What colour is the dal?" }
+    }
+  ]
+}
