@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 
 // Sign out of the family app (C230-D): the same sign-out as staff, then the sign-in page.
-export function ParentSignOut({ label }: { label: string }) {
+export function FamilySignOut({ label }: { label: string }) {
   const router = useRouter();
   return (
     <button

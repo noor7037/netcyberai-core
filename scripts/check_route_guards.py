@@ -53,12 +53,8 @@ APP_ROOT = REPO_ROOT / "src" / "app"
 
 CONTROL_GROUP = "(admin)/control"
 APP_GROUP = "(school)/app"
-# The school parent home (C230-D, at /parent since C248): a parent's school session only, guarded by canAccessFamily.
-FAMILY_GROUP = "(parent)/parent"
-# The Family app (M1-2, C248): its own session. Every page lives under (family)/family/(app), whose layout calls
-# requireFamilyPage() (a redirect to sign-in without a session), except the pages that need none.
-FAMILY_APP_GROUP = "(family)/family/(app)"
-FAMILY_APP_OPEN = {"/family/sign-in", "/family/offline"}
+# The family app (C230-D): a parent's session only, guarded by canAccessFamily.
+FAMILY_GROUP = "(family)/family"
 
 GROUP_SEGMENT_RE = re.compile(r"^\([^)]*\)$")
 
@@ -93,18 +89,11 @@ def check_no_leaking_routes(app_root: Path, rel_root: Path) -> list[str]:
                     f"{rel_str}: resolves to {url} but is not under {APP_GROUP}/ -- "
                     "bypasses the membership guard layout entirely"
                 )
-        if url == "/parent" or url.startswith("/parent/"):
+        if url == "/family" or url.startswith("/family/"):
             if not rel_str.startswith(FAMILY_GROUP + "/"):
                 violations.append(
                     f"{rel_str}: resolves to {url} but is not under {FAMILY_GROUP}/ -- "
                     "bypasses the parent guard layout entirely"
-                )
-        if url == "/family" or url.startswith("/family/"):
-            open_page = (url in FAMILY_APP_OPEN and rel_str.startswith("(family)/family/")) or rel_str == "(family)/family/layout.tsx"
-            if not rel_str.startswith(FAMILY_APP_GROUP + "/") and not open_page:
-                violations.append(
-                    f"{rel_str}: resolves to {url} but is not under {FAMILY_APP_GROUP}/ -- "
-                    "bypasses the family session guard layout entirely"
                 )
     return violations
 
@@ -130,7 +119,6 @@ def run(app_root: Path, rel_root: Path | None = None) -> int:
     violations += check_guard_layout_content(app_root, rel_root, CONTROL_GROUP, "canAccessControl")
     violations += check_guard_layout_content(app_root, rel_root, APP_GROUP, "canAccessApp")
     violations += check_guard_layout_content(app_root, rel_root, FAMILY_GROUP, "canAccessFamily")
-    violations += check_guard_layout_content(app_root, rel_root, FAMILY_APP_GROUP, "requireFamilyPage")
 
     if violations:
         print("FAIL: route-guard coverage violated:")
@@ -175,12 +163,6 @@ def self_test() -> int:
             "import { redirect } from 'next/navigation';\n"
             "export default function L({children}) { if (!canAccessFamily(s)) { redirect('/login'); } return children; }\n"
         )
-        (good / FAMILY_APP_GROUP).mkdir(parents=True)
-        (good / FAMILY_APP_GROUP / "layout.tsx").write_text(
-            "export default async function L({children}) { const s = await requireFamilyPage(); if (!s) redirect('/family/sign-in'); return children; }\n"
-        )
-        (good / "(family)" / "family" / "sign-in").mkdir(parents=True)
-        (good / "(family)" / "family" / "sign-in" / "page.tsx").write_text("export default function P() { return null; }\n")
         rc_good = run(good)
         if rc_good != 0:
             print("SELF-TEST FAILED: the known-clean fixture was flagged as a violation")
@@ -208,20 +190,9 @@ def self_test() -> int:
         (bad / "(marketing)" / "control" / "leak" / "page.tsx").write_text(
             "export default function Leak() { return 'leaked'; }\n"
         )
-        (bad / FAMILY_APP_GROUP).mkdir(parents=True)
-        (bad / FAMILY_APP_GROUP / "layout.tsx").write_text(
-            "export default async function L({children}) { const s = await requireFamilyPage(); if (!s) redirect('/family/sign-in'); return children; }\n"
-        )
         rc_bad = run(bad)
         if rc_bad == 0:
             print("SELF-TEST FAILED: a route leaking the /control URL from outside the guard group was NOT caught")
-            return 1
-        # A family page outside the guarded group is caught too.
-        (bad / "(marketing)" / "control" / "leak" / "page.tsx").unlink()
-        (bad / "(family)" / "family" / "progress").mkdir(parents=True)
-        (bad / "(family)" / "family" / "progress" / "page.tsx").write_text("export default function P() { return null; }\n")
-        if run(bad) == 0:
-            print("SELF-TEST FAILED: a family page outside (family)/family/(app) was NOT caught")
             return 1
 
         print("SELF-TEST PASSED: clean fixture passes, the planted route-leak violation is caught")

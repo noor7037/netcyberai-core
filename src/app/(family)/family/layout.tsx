@@ -1,11 +1,16 @@
-// The Family app (/family, M1-2, C248): one parent-and-student app with its own session (src/lib/family/session.ts).
-// This outer layout only sets the page; the session guard is (app)/layout.tsx, and the pages outside it (sign-in,
-// offline) need no session. scripts/check_route_guards.py holds that split.
+import { redirect } from 'next/navigation';
+import { getServerSession } from '@/lib/auth/server-session';
+import { canAccessFamily } from '@/lib/auth/guards';
+
+// The family app (founder, 2026-10-15, C230-D). Every page under this route group renders through this layout, and
+// the guard below runs first: a parent's session with a school, and nothing else. Staff sessions are sent to their
+// own app by the middleware; this guard is the second line, and scripts/check_route_guards.py checks it is here.
 export const dynamic = 'force-dynamic';
 
-// The Family app's own install manifest for browsers (the Android app is the Capacitor shell, M1-8, C254).
-export const metadata = { manifest: '/family.webmanifest' };
-
-export default function FamilyRootLayout({ children }: { children: React.ReactNode }) {
-  return <div className="min-h-screen bg-off-white text-slate">{children}</div>;
+export default async function FamilyLayout({ children }: { children: React.ReactNode }) {
+  const session = await getServerSession();
+  if (!canAccessFamily(session)) {
+    redirect('/login');
+  }
+  return <div className="min-h-screen bg-off-white">{children}</div>;
 }

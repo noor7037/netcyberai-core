@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
-import { loadFamilyHome } from '@/lib/parent-home/home';
+import { loadFamilyHome } from '@/lib/family/home';
 
 // Parent logins (C230-D): a parent's session sees its own children only, writes nothing, and is refused by every
 // other table; staff sessions are untouched. Run as app_user with the settings withTenantContext sets.
