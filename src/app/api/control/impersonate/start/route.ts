@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { requireStepUp } from '@/lib/auth/step-up';
 import { NextRequest, NextResponse } from 'next/server';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { withTenantContext } from '@/lib/auth/db';
@@ -17,6 +18,9 @@ import { ACCESS_COOKIE, IMPERSONATION_RETURN_COOKIE, IMPERSONATION_TTL_SECONDS, 
 export async function POST(req: NextRequest) {
   const guard = await requireSuperAdmin(req);
   if ('error' in guard) return guard.error;
+  // Viewing as a school asks for the authenticator again (F1-1b, C260).
+  const stepUp = await requireStepUp(req, guard.claims);
+  if (stepUp) return stepUp;
 
   const body = await req.json().catch(() => null);
   const targetUserId = typeof body?.targetUserId === 'string' ? body.targetUserId : '';

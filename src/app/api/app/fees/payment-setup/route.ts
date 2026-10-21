@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireStepUp } from '@/lib/auth/step-up';
 import { requireSession } from '@/lib/auth/require-session';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 import { FINANCE } from '@/lib/fees/structures';
@@ -61,6 +62,11 @@ export async function POST(req: NextRequest) {
   });
   const ok = who as { schoolId: string; userId: string } | null;
   if (!ok) return res;
+  // Saving payment keys asks for the sign-in proof again (F1-1b, C260).
+  const session = await requireSession(req);
+  if (!session) return jsonError(401, 'session_expired');
+  const stepUp = await requireStepUp(req, session);
+  if (stepUp) return stepUp;
   const text = (v: unknown) => (typeof v === 'string' && v.length <= 200 ? v.trim() : '');
   const result = await paymentsPlatform((p) => saveCredentials(p, { schoolId: ok.schoolId, userId: ok.userId, from: 'school' }, { provider: text(body?.provider), mode: text(body?.mode), keys: { keyId: text(body?.keyId), keySecret: text(body?.keySecret), webhookSecret: text(body?.webhookSecret) } }));
   if (result.ok) return NextResponse.json({ saved: result.meta }, { status: 201 });

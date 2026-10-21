@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireSession } from '@/lib/auth/require-session';
 import { signOutEverywhere } from '@/lib/auth/account';
 import { ACCESS_COOKIE, REFRESH_COOKIE, DEVICE_COOKIE } from '@/lib/auth/cookies';
+import { STEP_UP_COOKIE } from '@/lib/auth/step-up';
 import { TOURS_COOKIE } from '@/lib/contracts/tours';
 import { LANG_COOKIE } from '@/lib/i18n';
 
@@ -16,6 +17,7 @@ export async function POST(req: NextRequest) {
   res.cookies.delete(ACCESS_COOKIE);
   res.cookies.delete(REFRESH_COOKIE);
   res.cookies.delete(DEVICE_COOKIE);
+  res.cookies.delete(STEP_UP_COOKIE);
   res.cookies.delete(LANG_COOKIE);
   res.cookies.delete(TOURS_COOKIE);
   return res;

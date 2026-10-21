@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireStepUp } from '@/lib/auth/step-up';
 import { requireAppSession, canWriteMasterData } from '@/lib/auth/require-app-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
@@ -49,6 +50,10 @@ export async function POST(req: NextRequest) {
   if (!canWriteMasterData(guard.claims.role)) {
     return ruleError(403, 'not_allowed');
   }
+
+  // Saving the school's WhatsApp keys asks for the sign-in proof again (F1-1b, C260).
+  const stepUp = await requireStepUp(req, guard.claims);
+  if (stepUp) return stepUp;
 
   const body = await req.json().catch(() => null);
   const { wabaId, phoneNumberId, phoneNumberDisplay, accessToken, webhookVerifyToken } = body ?? {};

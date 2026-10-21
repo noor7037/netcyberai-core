@@ -1,5 +1,6 @@
 'use client';
 
+import { useStepUp } from '@/components/auth/StepUp';
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 
@@ -19,6 +20,7 @@ const ERROR_TEXT: Record<string, string> = {
 type Result = { kind: 'link'; link: string; code: string | null } | { kind: 'text'; ok: boolean; text: string };
 
 export function FounderAccountTools({ userId, name, isSelf = false }: { userId: string; name: string; isSelf?: boolean }) {
+  const { stepUpFetch } = useStepUp();
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
@@ -28,7 +30,7 @@ export function FounderAccountTools({ userId, name, isSelf = false }: { userId: 
     setBusy(true);
     setResult(null);
     try {
-      const res = await fetch(`/api/control/users/${userId}/account-action`, {
+      const res = await stepUpFetch(`/api/control/users/${userId}/account-action`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action, ...extra }),

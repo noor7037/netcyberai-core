@@ -1,5 +1,6 @@
 'use client';
 
+import { useStepUp } from '@/components/auth/StepUp';
 import { useCallback, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { InfoTip } from '@/components/app-ui/InfoTip';
@@ -32,6 +33,7 @@ const draftOf = (p: Data['profiles'][number]): Draft => ({
 });
 
 export function AiControls({ initial }: { initial: Data }) {
+  const { stepUpFetch } = useStepUp();
   const { t, lang } = useT();
   const [data, setData] = useState<Data>(initial);
   const [keys, setKeys] = useState<Record<string, string>>({});
@@ -54,7 +56,7 @@ export function AiControls({ initial }: { initial: Data }) {
   const send = async (payload: Record<string, unknown>, done: MessageKey, after?: () => void) => {
     setBusy(true);
     setNote(null);
-    const res = await fetch('/api/control/ai', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => null);
+    const res = await stepUpFetch('/api/control/ai', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => null);
     const got = res ? await res.json().catch(() => null) : null;
     after?.();
     if (!res?.ok) {

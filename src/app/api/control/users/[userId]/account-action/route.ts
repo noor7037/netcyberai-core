@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireStepUp } from '@/lib/auth/step-up';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
@@ -22,6 +23,12 @@ export async function POST(req: NextRequest, { params }: { params: { userId: str
   const body = await req.json().catch(() => null);
   const action = body?.action as Action;
   if (!ACTIONS.includes(action)) return NextResponse.json({ error: 'unknown action' }, { status: 400 });
+  // A sign-in link, a temporary password or removing an authenticator hands over or changes another person's
+  // credentials: the authenticator is asked again (F1-1b, C260). Signing someone out everywhere only protects.
+  if (action !== 'sign_out_all') {
+    const stepUp = await requireStepUp(req, guard.claims);
+    if (stepUp) return stepUp;
+  }
 
   try {
     return await withTenantContext(guard.claims, async (client) => {

@@ -477,3 +477,30 @@ async function finishLinkSession(
   }
   return { status: 'signed_in', signedIn: await signInFromClient(client, userId, session) };
 }
+
+// ---- step-up for sensitive actions (F1-1b, C260) -------------------------------
+
+// Asked again before saving or replacing a credential, viewing as a school or acting on another person's sign-in
+// (src/lib/auth/step-up.ts). The password and the authenticator's code; an account without an authenticator gets an
+// emailed code instead (the first call, with no code, sends it). The identity that proves them must be the signed-in
+// user. Nothing here is stored: the result is a 15-minute token.
+export type StepUpResult = 'ok' | 'email_sent';
+export async function stepUp(userId: string, password: string, code?: string): Promise<StepUpResult> {
+  const email = await accountEmail(userId);
+  if (!email) throw new AuthError('invalid_credentials', 'account has no email');
+  const client = newAuthClient();
+  const { data, error } = await client.auth.signInWithPassword({ email, password });
+  if (error || !data.user || data.user.id !== userId) throw new AuthError('invalid_credentials', error?.message ?? 'password wrong');
+  if (await hasVerifiedTotp(client)) {
+    if (!code) throw new AuthError('mfa_required', 'authenticator code required');
+    await passTotp(client, code);
+    return 'ok';
+  }
+  if (!code) {
+    await sendSignInCode(email);
+    return 'email_sent';
+  }
+  const { data: otp, error: otpError } = await newAuthClient().auth.verifyOtp({ email, token: code, type: 'email' });
+  if (otpError || otp.user?.id !== userId) throw new AuthError('code_invalid', otpError?.message ?? 'code rejected');
+  return 'ok';
+}

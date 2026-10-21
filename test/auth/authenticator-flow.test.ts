@@ -48,6 +48,10 @@ import { POST as codeVerifyRoute } from '@/app/api/auth/code/verify/route';
 import { POST as forgetThisDeviceRoute } from '@/app/api/auth/device/forget/route';
 import { GET as devicesRoute, POST as forgetDeviceRoute } from '@/app/api/auth/devices/route';
 import { POST as logoutAllRoute } from '@/app/api/auth/logout-all/route';
+import { POST as stepUpRoute } from '@/app/api/auth/step-up/route';
+import { POST as impersonateStart } from '@/app/api/control/impersonate/start/route';
+import { STEP_UP_COOKIE, STEP_UP_TTL_SECONDS, requireStepUp } from '@/lib/auth/step-up';
+import { signStepUpToken } from '@/lib/auth/jwt';
 import { POST as mfaVerifyRoute } from '@/app/api/auth/mfa/verify/route';
 import { POST as signInSetupStart } from '@/app/api/auth/mfa/setup/start/route';
 import { POST as signInSetupVerify } from '@/app/api/auth/mfa/setup/verify/route';
@@ -360,7 +364,8 @@ describe('(5) founder tools: remove another platform admin’s authenticator, ne
     const other = fake.addUser({ email: 'other@test.invalid', password: PASSWORD, role: 'super_admin' });
     const founderFactor = fake.addVerifiedFactor(founder.id);
     fake.addVerifiedFactor(other.id);
-    const cookies = await accessCookie(founder);
+    // The founder stepped up in the last 15 minutes (F1-1b).
+    const cookies = { ...(await accessCookie(founder)), [STEP_UP_COOKIE]: await signStepUpToken(founder.id, founder.token_version, STEP_UP_TTL_SECONDS) };
     const act = (userId: string) =>
       founderAction(post(`/api/control/users/${userId}/account-action`, { action: 'remove_authenticator' }, cookies), { params: { userId } });
 
@@ -505,5 +510,89 @@ describe('F1-1: trust this browser for 30 days, and keep me signed in', () => {
     const res = await login(user.email);
     const stored = JSON.stringify([[...fake.devices.values()], fake.auditRows, res.cookies.getAll()]);
     expect(stored).not.toContain(PASSWORD);
+  });
+});
+
+describe('F1-1b: step-up for sensitive actions', () => {
+  beforeEach(() => fake.reset());
+  const claimsOf = (user: FakeUser, extra: Record<string, unknown> = {}) => ({
+    sub: user.id,
+    role: 'super_admin' as never,
+    schoolId: null,
+    membershipId: null,
+    tokenVersion: user.token_version,
+    aal: 'aal2' as const,
+    sessionId: SESSION_ID,
+    impersonation: null,
+    ...extra,
+  });
+
+  it('the authenticator again: password and code give 15 minutes; a wrong or missing code gives nothing', async () => {
+    const user = fake.addUser({ email: 'su@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const factor = fake.addVerifiedFactor(user.id);
+    const cookies = await accessCookie(user);
+    const noCode = await stepUpRoute(post('/api/auth/step-up', { password: PASSWORD }, cookies));
+    expect((await noCode.json()).error).toBe('mfa_required');
+    const wrongPassword = await stepUpRoute(post('/api/auth/step-up', { password: 'not it at all', code: fake.codeFor(factor) }, cookies));
+    expect(wrongPassword.status).toBe(401);
+    expect(wrongPassword.cookies.get(STEP_UP_COOKIE)).toBeUndefined();
+    const wrongCode = await stepUpRoute(post('/api/auth/step-up', { password: PASSWORD, code: '000000' }, cookies));
+    expect((await wrongCode.json()).error).toBe('mfa_invalid_code');
+    const ok = await stepUpRoute(post('/api/auth/step-up', { password: PASSWORD, code: fake.codeFor(factor) }, cookies));
+    expect(await ok.json()).toEqual({ status: 'ok' });
+    expect(ok.cookies.get(STEP_UP_COOKIE)?.maxAge).toBe(15 * 60);
+    expect(ok.headers.get('cache-control')).toBe('no-store');
+  });
+
+  it('an account without an authenticator: password, then the emailed code', async () => {
+    const user = fake.addUser({ email: 'pr@test.invalid', password: PASSWORD, role: 'principal' });
+    const cookies = await accessCookie(user);
+    const sent = await stepUpRoute(post('/api/auth/step-up', { password: PASSWORD }, cookies));
+    expect(await sent.json()).toEqual({ status: 'email_sent' });
+    expect(fake.sentCodes).toEqual([user.email]);
+    const ok = await stepUpRoute(post('/api/auth/step-up', { password: PASSWORD, code: fake.emailedCodes.get(user.email) }, cookies));
+    expect(await ok.json()).toEqual({ status: 'ok' });
+  });
+
+  it('the proof is the person’s own, ends after 15 minutes or when the token version moves, and never in a support session', async () => {
+    const user = fake.addUser({ email: 'a@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const other = fake.addUser({ email: 'b@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const proof = await signStepUpToken(user.id, user.token_version, STEP_UP_TTL_SECONDS);
+    const ask = (claims: ReturnType<typeof claimsOf>, token?: string) => requireStepUp(post('/x', {}, token ? { [STEP_UP_COOKIE]: token } : {}), claims as never);
+    expect(await ask(claimsOf(user), proof)).toBeNull();
+    const none = await ask(claimsOf(user));
+    expect(none?.status).toBe(403);
+    expect(await none!.json()).toEqual({ error: 'step_up_required', method: 'authenticator' });
+    expect(await (await ask(claimsOf(user, { aal: 'aal1' })))!.json()).toEqual({ error: 'step_up_required', method: 'email' });
+    expect(await ask(claimsOf(other), proof)).not.toBeNull();
+    expect(await ask(claimsOf(user, { tokenVersion: user.token_version + 1 }), proof)).not.toBeNull();
+    expect(await ask(claimsOf(user, { impersonation: { impersonationId: 'i', actorUserId: other.id } }), proof)).not.toBeNull();
+    vi.useFakeTimers();
+    try {
+      vi.setSystemTime(Date.now() + 15 * 60 * 1000 + 5000);
+      expect(await ask(claimsOf(user), proof)).not.toBeNull();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('viewing as a school asks for it before anything else, and goes on once given', async () => {
+    const user = fake.addUser({ email: 'v@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const body = { targetUserId: '00000000-0000-4000-8000-0000000000e1', reason: 'checking the fee screen with the principal' };
+    const refused = await impersonateStart(post('/api/control/impersonate/start', body, await accessCookie(user)));
+    expect(await refused.json()).toEqual({ error: 'step_up_required', method: 'authenticator' });
+    const given = await impersonateStart(post('/api/control/impersonate/start', body, { ...(await accessCookie(user)), [STEP_UP_COOKIE]: await signStepUpToken(user.id, user.token_version, STEP_UP_TTL_SECONDS) }));
+    expect(given.status).not.toBe(403);
+  });
+
+  it('the founder’s actions on another person’s sign-in ask for it; signing them out does not', async () => {
+    const admin = fake.addUser({ email: 'f@test.invalid', password: PASSWORD, role: 'super_admin' });
+    const target = fake.addUser({ email: 't@test.invalid', password: PASSWORD, role: 'teacher' });
+    const act = (action: string, extra: Record<string, string> = {}) =>
+      founderAction(post(`/api/control/users/${target.id}/account-action`, { action }, extra), { params: { userId: target.id } });
+    for (const action of ['signin_link', 'reset_link', 'temp_password', 'remove_authenticator']) {
+      expect((await (await act(action, await accessCookie(admin))).json()).error).toBe('step_up_required');
+    }
+    expect((await (await act('sign_out_all', await accessCookie(admin))).json()).error).not.toBe('step_up_required');
   });
 });
