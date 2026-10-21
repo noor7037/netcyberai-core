@@ -3,16 +3,17 @@
 For the founder: check that our syllabus list matches CBSE's own document, then approve it in Control → Content. One
 page per syllabus version in [`data/catalog/cbse-2026-27-maths-science.csv`](../../../data/catalog/cbse-2026-27-maths-science.csv):
 
-| Page | Units | Chapters | Topics | CBSE page in the picture |
+| Page | Units | Chapters | Topics | CBSE page to compare |
 |---|---|---|---|---|
 | [Class IX Mathematics](class9-mathematics.md) | 6 | 15 | 88 | 4 |
 | [Class IX Science](class9-science.md) | 4 | 12 | 78 | 4 |
 | [Class X Mathematics](class10-mathematics.md) | 7 | 15 | 34 | 3 |
 | [Class X Science](class10-science.md) | 5 | 12 | 0 | 4 |
 
-Each page shows, on the left, a picture of the course structure page of CBSE's PDF (fetched from cbseacademic.nic.in on
-2026-10-21; the PDFs themselves are not kept here), and on the right our list: every unit, chapter and topic of that
-version, in order, each with a link that opens CBSE's PDF at the page it comes from.
+Each page gives, on the left, a link that opens CBSE's PDF at its course structure page (read from cbseacademic.nic.in
+on 2026-10-21), and on the right our list: every unit, chapter and topic of that version, in order, each with a link
+that opens CBSE's PDF at the page it comes from. No page of a CBSE or NCERT document is copied into this repository:
+the documents are theirs and the repository is public, so each one is opened at its source.
 
 Good to know before you start:
 
@@ -25,8 +26,8 @@ Good to know before you start:
 ## Compare (one page at a time)
 
 1. Open a page above.
-2. **Units:** the names and the order on the right match the table in the picture.
-3. **Chapters:** Class IX Mathematics names them in the picture. For the other three, click the page link next to a
+2. **Units:** open CBSE's page from the left; the names and the order on the right match its course structure table.
+3. **Chapters:** Class IX Mathematics names them on that same page. For the other three, click the page link next to a
    chapter: CBSE's PDF opens at that page, and the chapter name is printed there.
 4. **Topics:** click the page link next to a few topics in each chapter and find the same words on that page. (Every
    line already passed a word check against its page when the file was made; see the catalog README.)
