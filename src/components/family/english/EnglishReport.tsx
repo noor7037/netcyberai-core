@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { chartSeries, colors } from '@/lib/design-tokens';
 import type { Track } from '@/lib/family/english/course';
 import type { Report } from '@/lib/family/english/report';
@@ -46,14 +46,15 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
   const [track, setTrack] = useState<Track | null>(null);
   const [saved, setSaved] = useState(false);
 
-  const load = () =>
+  const load = useCallback(() => {
     void familyApi<Data>(`/api/family/english/report?childId=${childId}`, 'GET').then((r) => {
       if (!r.ok) return setError(r.error);
       setData(r.data);
       setGoal(r.data.report.thisWeek.goal);
       setTrack(r.data.track);
     });
-  useEffect(load, [childId]);
+  }, [childId]);
+  useEffect(() => load(), [load]);
 
   if (error) return <p className="rounded-3xl bg-white p-5 text-base font-bold text-slate shadow-sm ring-1 ring-slate/10">{error === 'consent_needed' ? w['fam.english.parent.consentFirst'] : w['fam.english.error']}</p>;
   if (!data) return <div aria-busy="true" className="h-64 animate-pulse rounded-3xl bg-slate/10 motion-reduce:animate-none" />;

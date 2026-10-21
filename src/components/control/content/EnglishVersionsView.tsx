@@ -163,13 +163,38 @@ export function EnglishVersionsView({ initial }: { initial: EnglishControlVersio
                             </span>
                             <span>{fill('control.english.check', { n: Array.isArray(l.check) ? l.check.length : 0 })}</span>
                             <ul className="list-disc pl-5">
-                              {lines(l.steps).map((x, k) => (
+                              {lines([l.title, l.steps, l.home]).map((x, k) => (
                                 <li key={k}>
                                   <span lang="en">{x.en}</span>
                                   {x.hi && <span lang="hi"> · {x.hi}</span>}
                                 </li>
                               ))}
                             </ul>
+                            {Array.isArray(l.check) && l.check.length > 0 && (
+                              <ol className="list-decimal pl-5">
+                                {(l.check as { key: string; prompt?: { en: string; hi?: string }; options?: { text?: string; pic?: string }[]; answer: number | string; hi?: string }[]).map((c) => (
+                                  <li key={c.key}>
+                                    <span lang="en">{c.prompt?.en ?? c.hi}</span>
+                                    {c.options ? (
+                                      <span>
+                                        {' — '}
+                                        {c.options.map((o, oi) => (
+                                          <span key={oi} className={oi === c.answer ? 'font-bold underline' : ''}>
+                                            {o.text ?? o.pic}
+                                            {oi < (c.options?.length ?? 0) - 1 ? ' / ' : ''}
+                                          </span>
+                                        ))}
+                                      </span>
+                                    ) : (
+                                      <span lang="en" className="font-bold underline">
+                                        {' — '}
+                                        {String(c.answer)}
+                                      </span>
+                                    )}
+                                  </li>
+                                ))}
+                              </ol>
+                            )}
                           </div>
                         );
                       })}

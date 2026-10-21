@@ -58,9 +58,6 @@ function Stars({ n, total = 3 }: { n: number; total?: number }) {
 // A check item: chosen or built, never marked here.
 export function CheckItemView({ item, value, onChange, w, track, hindi }: { item: ChildCheckItem; value: unknown; onChange: (v: unknown) => void; w: Words; track: Track; hindi: boolean }) {
   const theme = TRACK_THEME[track];
-  useEffect(() => {
-    if (item.type === 'choose' && item.prompt.say) void speak(item.prompt.say, 'en', 0.85);
-  }, [item]);
   if (item.type === 'choose') {
     return (
       <div className="flex flex-col gap-3 rounded-3xl bg-white p-4 text-slate shadow-sm ring-1 ring-slate/10">
@@ -132,6 +129,7 @@ export function LessonPlayer({ lessonKey, w, lang, startAt = 0 }: { lessonKey: s
   const [answers, setAnswers] = useState<Record<string, unknown>>({});
   const [result, setResult] = useState<Result | null>(null);
   const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
   const [hindiOn, setHindiOn] = useState(lang === 'hi');
 
   useEffect(() => {
@@ -181,7 +179,11 @@ export function LessonPlayer({ lessonKey, w, lang, startAt = 0 }: { lessonKey: s
     };
     const r = await familyApi<Result>(`/api/family/english/lessons/${lessonKey}`, 'POST', body);
     setSending(false);
-    if (r.ok) setResult(r.data);
+    // A failed send keeps every answer on the screen: the child sends again.
+    if (r.ok) {
+      setSendError(false);
+      setResult(r.data);
+    } else if (r.status === 0 || r.status >= 500) setSendError(true);
     else setError(r.error);
   };
 
@@ -295,6 +297,11 @@ export function LessonPlayer({ lessonKey, w, lang, startAt = 0 }: { lessonKey: s
           </div>
         )}
       </div>
+      {sendError && (
+        <p role="alert" className="rounded-2xl bg-sunshine/30 p-3 text-base font-bold text-slate">
+          {w['fam.english.error']}
+        </p>
+      )}
       <div className="fixed inset-x-0 bottom-[60px] z-20 flex justify-end bg-gradient-to-t from-off-white px-4 pb-3 pt-6">
         <div className="mx-auto flex w-full max-w-xl justify-end">
         {!onLast ? (

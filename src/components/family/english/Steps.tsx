@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { normaliseSentence, shuffleByKey, type Option, type Step, type Track } from '@/lib/family/english/course';
+import { normaliseSentence, shuffleByKey, tilesFor, type Option, type Step, type Track } from '@/lib/family/english/course';
 import { fill, type Words } from '@/lib/family/fill';
 import { Pic, SceneView, picName } from './Pictures';
 import { speak, stopSpeaking, useRecorder } from './speech';
@@ -135,7 +135,7 @@ export function ActionStep({ step, w, hindi }: Props<'action'>) {
               <Pic pic={p.pic} size={52} />
             </span>
             <span className="text-lg font-extrabold text-slate"><span lang="en">{p.en}</span></span>
-            <Hi text={p.hi} show={hindi || true} />
+            <Hi text={p.hi} show />
           </button>
         </li>
       ))}
@@ -236,9 +236,6 @@ export function ChooseStep({ step, w, hindi, track }: Props<'choose'>) {
 
 function ChooseOne(p: { prompt: Extract<Step, { type: 'choose' }>['items'][number]['prompt']; options: Option[]; answer: number; why?: { en: string; hi?: string }; w: Words; hindi: boolean; track: Track }) {
   const [picked, setPicked] = useState<number | null>(null);
-  useEffect(() => {
-    if (p.prompt.say) void speak(p.prompt.say, 'en', 0.85);
-  }, [p.prompt.say]);
   const right = picked !== null && picked === p.answer;
   return (
     <div className={card}>
@@ -261,8 +258,9 @@ function ChooseOne(p: { prompt: Extract<Step, { type: 'choose' }>['items'][numbe
               disabled={right}
               onClick={() => {
                 setPicked(i);
-                if (o.text) void speak(o.text);
-                if (i !== p.answer && p.options[p.answer]?.text) void speak(p.options[p.answer].text as string);
+                // One line only: the right answer's word, so a miss always ends on what is right.
+                const said = p.options[p.answer]?.text;
+                if (said) void speak(said);
               }}
               className={`flex min-h-[72px] items-center justify-center rounded-2xl p-2 shadow-sm ring-2 ${isRight ? 'bg-leaf/20 text-slate ring-leaf animate-bounce-once motion-reduce:animate-none' : picked === i ? 'bg-sunshine/20 text-slate ring-gold animate-nudge motion-reduce:animate-none' : 'bg-white text-slate ring-slate/10'}`}
             >
@@ -343,10 +341,7 @@ export function MatchStep({ step, w, track }: Props<'match'>) {
 
 // Tiles into a sentence. Used by build practice and the Hindi-to-English bridge.
 export function TileBuilder({ id, tiles, answer, w, track, prompt }: { id: string; tiles: string[]; answer: string; w: Words; track: Track; prompt?: React.ReactNode }) {
-  const order = useMemo(() => {
-    const s = shuffleByKey(tiles, id);
-    return normaliseSentence(s.join(' ')) === normaliseSentence(answer) ? [...s.slice(1), s[0]] : s;
-  }, [tiles, id, answer]);
+  const order = useMemo(() => tilesFor(tiles, id, answer), [tiles, id, answer]);
   const [used, setUsed] = useState<number[]>([]);
   const [result, setResult] = useState<'right' | 'almost' | null>(null);
   const theme = TRACK_THEME[track];
@@ -403,7 +398,7 @@ export function BuildStep({ step, w, hindi, track }: Props<'build'>) {
           prompt={(it.hi || it.pic) && (
             <div className="flex items-center gap-3">
               <Pic pic={it.pic} size={36} />
-              <Hi text={it.hi} show={hindi || true} />
+              <Hi text={it.hi} show={hindi} />
             </div>
           )}
         />
