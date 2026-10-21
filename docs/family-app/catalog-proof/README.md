@@ -46,3 +46,32 @@ The build lead loads the file first. Each version then appears under **Syllabus 
    this note**. The build lead corrects the file and loads a new version, with a new proof page.
 
 If a released version turns out wrong, **Roll back** gives everyone the version before it again (when there is one).
+
+## Classes XI and XII: Physics, Chemistry, Biology, Mathematics
+
+One page per syllabus version in
+[`data/catalog/cbse-2026-27-classes-11-12-science-maths.csv`](../../../data/catalog/cbse-2026-27-classes-11-12-science-maths.csv),
+read from cbseacademic.nic.in on 2026-10-22. Each subject has one CBSE document for both classes; the page to compare is
+that class's course structure. Compare and approve exactly as above.
+
+| Page | Units | Chapters | Topics | CBSE page to compare |
+|---|---|---|---|---|
+| [Class XI Physics](class11-physics.md) | 10 | 14 | 0 | 2 |
+| [Class XII Physics](class12-physics.md) | 9 | 14 | 0 | 12 |
+| [Class XI Chemistry](class11-chemistry.md) | 11 | 0 | 0 | 2 |
+| [Class XII Chemistry](class12-chemistry.md) | 14 | 0 | 0 | 8 |
+| [Class XI Biology](class11-biology.md) | 5 | 20 | 0 | 3 |
+| [Class XII Biology](class12-biology.md) | 5 | 14 | 0 | 9 |
+| [Class XI Mathematics](class11-mathematics.md) | 5 | 15 | 0 | 2 |
+| [Class XII Mathematics](class12-mathematics.md) | 6 | 13 | 0 | 7 |
+
+Good to know before you start:
+
+- **No topics.** All four documents print each chapter's content as running text, not as a list.
+- **Chemistry has units only.** Its document names units, not chapters.
+- **Nine lines are assessed only formatively.** CBSE lists some topics after the units, outside the course structure
+  table (two Chemistry XI units, four Chemistry XII units, the last chapter of Biology XI Unit V and of Biology XII
+  Unit X, and the last chapter of Mathematics XI Unit II). Each is marked on its page. The catalog README lists them
+  and how to leave them out.
+- **No Hindi titles.** CBSE's 2026-27 curriculum page has no Hindi version of these four documents (checked
+  2026-10-22). Nothing was translated.
