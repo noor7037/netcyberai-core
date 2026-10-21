@@ -78,6 +78,7 @@ APPEND_ONLY_TABLES.add("rte_claim_receipts")  # C225: the state's payments on an
 APPEND_ONLY_TABLES.add("admission_events")  # C221: an enquiry's steps; only a definer function deletes them, with the enquiry (C224)
 APPEND_ONLY_TABLES.add("timetable_versions")  # C229: every publish of a timetable, kept
 APPEND_ONLY_TABLES.add("disclosure_entries")  # C227: every version of a disclosure item; a change is a new entry
+APPEND_ONLY_TABLES.add("family.consents")  # C247: a family's consent ledger; a withdrawal is a new row (erased only with the account)
 
 # "Non-privileged, app-facing": any role a real request -- ordinary or
 # this app's own super_admin bypass -- can run as, or any role
@@ -96,14 +97,18 @@ APPEND_ONLY_TABLES.add("disclosure_entries")  # C227: every version of a disclos
 # migration 20260917090000 -- is a different, already-reviewed grant).
 NON_PRIVILEGED_ROLES = {"app_user", "anon", "authenticated", "nca_super"}
 
+# Roles that start with nothing: created by a migration this check can read and never named by a blanket grant, so
+# only an explicit, table-specific GRANT gives them a right. family_app (C247) is the Family app's role.
+ROLES_STARTING_EMPTY = {"family_app"}
+
 WATCHED_PRIVS = {"UPDATE", "DELETE"}
 
 GRANT_RE = re.compile(
-    r"\bgrant\s+(?P<privs>[a-z_,\s()]+?)\s+on\s+(?P<tables>[\w\"',\s]+?)\s+to\s+(?P<roles>[\w\"',\s]+?);",
+    r"\bgrant\s+(?P<privs>[a-z_,\s()]+?)\s+on\s+(?P<tables>[\w\"',.\s]+?)\s+to\s+(?P<roles>[\w\"',\s]+?);",
     re.IGNORECASE,
 )
 REVOKE_RE = re.compile(
-    r"\brevoke\s+(?P<privs>[a-z_,\s]+?)\s+on\s+(?P<tables>[\w\"',\s]+?)\s+from\s+(?P<roles>[\w\"',\s]+?);",
+    r"\brevoke\s+(?P<privs>[a-z_,\s]+?)\s+on\s+(?P<tables>[\w\"',.\s]+?)\s+from\s+(?P<roles>[\w\"',\s]+?);",
     re.IGNORECASE,
 )
 # Matches the blanket forms this project's own migrations use --
@@ -119,8 +124,9 @@ def _split_list(raw: str) -> list[str]:
 
 
 def _privs_of_interest(raw: str) -> set[str]:
-    # First word of each item, so a column grant ("update (body)") counts.
-    return {(p.split() or [""])[0].split("(")[0].upper() for p in raw.split(",")} & WATCHED_PRIVS
+    # First word of each item, so a column grant ("update (body)") counts. "all" ("all privileges") includes both.
+    words = {(p.split() or [""])[0].split("(")[0].upper() for p in raw.split(",")}
+    return set(WATCHED_PRIVS) if "ALL" in words else words & WATCHED_PRIVS
 
 
 def parse_grant_state(migrations_dir: Path) -> dict[tuple[str, str], set[str]]:
@@ -131,6 +137,7 @@ def parse_grant_state(migrations_dir: Path) -> dict[tuple[str, str], set[str]]:
     state: dict[tuple[str, str], set[str]] = {
         (t, r): set(WATCHED_PRIVS) for t in APPEND_ONLY_TABLES for r in NON_PRIVILEGED_ROLES
     }
+    state.update({(t, r): set() for t in APPEND_ONLY_TABLES for r in ROLES_STARTING_EMPTY})
 
     for path in sorted(migrations_dir.glob("*.sql")):
         text = path.read_text()
@@ -150,7 +157,7 @@ def parse_grant_state(migrations_dir: Path) -> dict[tuple[str, str], set[str]]:
             if not privs:
                 continue
             tables = {t.lower() for t in _split_list(tables_raw)} & APPEND_ONLY_TABLES
-            roles = {r.lower() for r in _split_list(m.group("roles"))} & NON_PRIVILEGED_ROLES
+            roles = {r.lower() for r in _split_list(m.group("roles"))} & (NON_PRIVILEGED_ROLES | ROLES_STARTING_EMPTY)
             for t in tables:
                 for r in roles:
                     if kind == "revoke":
@@ -185,7 +192,7 @@ def main() -> int:
         )
         return 1
     print(
-        f"PASS: none of {', '.join(sorted(NON_PRIVILEGED_ROLES))} hold UPDATE/DELETE on any of "
+        f"PASS: none of {', '.join(sorted(NON_PRIVILEGED_ROLES | ROLES_STARTING_EMPTY))} hold UPDATE/DELETE on any of "
         f"{', '.join(sorted(APPEND_ONLY_TABLES))}."
     )
     return 0

@@ -451,3 +451,64 @@ export async function setOwnPhone(userId: string, phone: string | null): Promise
     return true;
   });
 }
+
+// ---- The Family app (M1, C247) ----------------------------------------------------------------------------------
+// A family session is not a staff session: its own claims type and cookie (src/lib/family/session.ts), its own
+// database role (family_app) and its own GUC (app.current_account_id), set here and nowhere else, from an account id
+// that came out of a verified family session. family_app holds no right on any public.* table, and app_user and
+// nca_super hold none on family.*, so a staff request can never read a family row, nor the reverse, even by mistake.
+
+export class FamilySessionRevokedError extends Error {
+  constructor(reason: string) {
+    super(`family session revoked: ${reason}`);
+    this.name = 'FamilySessionRevokedError';
+  }
+}
+
+const ACCOUNT_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+export function familyContextStatements(accountIdOrNull: string | null) {
+  if (accountIdOrNull !== null && !ACCOUNT_ID.test(accountIdOrNull)) throw new Error('familyContextStatements: not an account id');
+  return {
+    setRole: `set local role family_app`,
+    setAccount: `select set_config('app.current_account_id', $1, true)`,
+    setAccountArg: accountIdOrNull ?? '',
+    checkLive: `select token_version from family.accounts where account_id = $1`,
+  };
+}
+
+async function familyTransaction<T>(accountIdOrNull: string | null, tokenVersion: number | null, fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  const stmts = familyContextStatements(accountIdOrNull);
+  const client = await getPool().connect();
+  try {
+    await client.query('begin');
+    await client.query(stmts.setRole); // LOCAL, as in withTenantContext
+    await client.query(stmts.setAccount, [stmts.setAccountArg]);
+    if (accountIdOrNull !== null) {
+      // Live on every request: a deleted account, or "sign out everywhere" (token_version bumped), ends the session now.
+      const { rows } = await client.query(stmts.checkLive, [accountIdOrNull]);
+      if (!rows[0]) throw new FamilySessionRevokedError('account not found');
+      if (Number(rows[0].token_version) !== tokenVersion) throw new FamilySessionRevokedError('token_version mismatch');
+    }
+    const result = await fn(client);
+    await client.query('commit');
+    return result;
+  } catch (err) {
+    await client.query('rollback').catch(() => {});
+    throw err;
+  } finally {
+    await client.query('reset role').catch(() => {});
+    client.release();
+  }
+}
+
+// Every request of a signed-in family: own account only, by the database's own rules.
+export async function withFamilyContext<T>(claims: { accountId: string; tokenVersion: number }, fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  return familyTransaction(claims.accountId, claims.tokenVersion, fn);
+}
+
+// Before any account (sign-in, the code step) and for screens with no session: the same role with no account, so no
+// family row is visible. Only the sign-in functions, the switches Control sets and published content are reachable.
+export async function withFamilyGate<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  return familyTransaction(null, null, fn);
+}
