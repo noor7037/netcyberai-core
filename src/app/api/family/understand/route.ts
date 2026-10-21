@@ -5,7 +5,6 @@ import { consentState } from '@/lib/family/consent';
 import { FamilySessionRevokedError, withFamilyContext } from '@/lib/family/db';
 import { familyModuleOn } from '@/lib/family/flags';
 import { openItem } from '@/lib/family/items';
-import { claimSubject } from '@/lib/family/learning';
 import { jsonBody, requireFamily } from '@/lib/family/request';
 import { FOLLOW_UPS, resolve, type FollowUp, type ResolveInput, type ResolverEvent } from '@/lib/family/resolver';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
@@ -60,15 +59,7 @@ export async function POST(req: NextRequest) {
           const account = await accountSummary(db, session.accountId);
           await resolve(
             db,
-            {
-              accountId: session.accountId,
-              child,
-              childFirstNames: children.map((c) => c.firstName),
-              parentEmail: account?.email ?? '',
-              day: indiaDate(),
-              refusalWords: words,
-              allowSubject: (subject) => claimSubject(db, session.accountId, child.childId, subject),
-            },
+            { accountId: session.accountId, child, childFirstNames: children.map((c) => c.firstName), parentEmail: account?.email ?? '', day: indiaDate(), refusalWords: words },
             target!,
             followUp,
             send,

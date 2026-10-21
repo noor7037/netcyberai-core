@@ -6241,37 +6241,4 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.check.explainAgain': 'इसे दूसरे तरीके से समझाओ',
   'fam.home.study': 'पढ़ाई शुरू करें',
   // m1-5 end
-  // m1-6 begin
-  'fam.tab.nav': 'मुख्य मेनू',
-  'fam.tab.home': 'होम',
-  'fam.tab.study': 'पढ़ाई',
-  'fam.tab.english': 'अंग्रेज़ी',
-  'fam.tab.future': 'भविष्य',
-  'fam.tab.family': 'परिवार',
-  'fam.off.app': 'ऐप थोड़ी देर के लिए बंद है। कृपया बाद में कोशिश करें।',
-  'fam.home.continueTitle': 'आगे बढ़ते रहें',
-  'fam.home.continueLead': 'कोई विषय दोबारा खोलें, या नया आज़माएँ।',
-  'fam.progress.title': 'आपकी प्रगति',
-  'fam.progress.summary': '{topics} विषय जाँचे, {mastered} पक्के',
-  'fam.progress.mastered': 'पक्का',
-  'fam.progress.rightOf': '{all} में से {right} सही',
-  'fam.progress.how': 'कोई विषय तब पक्का माना जाता है जब आप उसे कम से कम एक हफ़्ते के अंतर पर दो दिन सही करें।',
-  'fam.subject.notOpen': 'यह विषय Family Plus के साथ खुलेगा, जो अभी तैयार नहीं है। आपका मुफ़्त विषय खुला है।',
-  'fam.subject.firstIsFree': 'आप जो विषय सबसे पहले पढ़ेंगे, वही आपका मुफ़्त विषय होगा।',
-  'fam.subject.locked': 'Family Plus के साथ खुलेगा',
-  'fam.parent.freeSubject': 'मुफ़्त विषय:',
-  'fam.parent.freeSubjectTooSoon': 'मुफ़्त विषय एक सत्र में एक बार बदला जा सकता है। बाद में कोशिश करें।',
-  'fam.calm.title': 'इस हफ़्ते',
-  'fam.calm.nothingYet': 'इस हफ़्ते अभी कोई जाँचा हुआ जवाब नहीं।',
-  'fam.calm.week': '{topics} विषयों में {answers} जवाब जाँचे गए, {right} सही।',
-  'fam.calm.mastered': 'अब तक पक्के विषय: {n}।',
-  'fam.calm.recent': 'हाल में: {topics}।',
-  'fam.calm.note': 'सिर्फ़ जाँचे गए जवाब गिने जाते हैं। ऐप में बिताया समय दर्ज नहीं होता, और आपके बच्चे की तुलना कभी दूसरों से नहीं होती।',
-  // m1-6 end
-  // m1-8 begin
-  'fam.shell.update': 'ऐप का नया संस्करण चाहिए। कृपया Play Store से NetCyberAI फ़ैमिली अपडेट करें।',
-  'fam.offline.title': 'इंटरनेट नहीं है',
-  'fam.offline.lead': 'NetCyberAI फ़ैमिली खोलने के लिए इंटरनेट चाहिए। कनेक्शन देखकर फिर कोशिश करें।',
-  'fam.offline.retry': 'फिर कोशिश करें',
-  // m1-8 end
 };

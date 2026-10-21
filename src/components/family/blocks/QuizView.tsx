@@ -19,7 +19,7 @@ function Question({ item, w, tone, onRetry, onAnswered }: { item: PublicItem; w:
   };
   const answer = async (choice: number) => {
     setS((x) => ({ ...x, picked: choice, busy: true }));
-    const r = await familyApi<{ correct: boolean; explanation: string }>('/api/family/check', 'POST', { token: item.token, choice, hintUsed: s.hint !== null });
+    const r = await familyApi<{ correct: boolean; explanation: string }>('/api/family/check', 'POST', { token: item.token, choice });
     if (!r.ok) return setS((x) => ({ ...x, busy: false }));
     const tries = s.tries + 1;
     onAnswered?.(r.data.correct);

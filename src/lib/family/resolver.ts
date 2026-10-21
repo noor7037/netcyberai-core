@@ -27,19 +27,10 @@ export type ResolverEvent =
   | { t: 'meta'; label: 'ai_made' | 'checked'; cached: boolean; title: string | null; subject: string; topicKey: string | null }
   | { t: 'block'; block: PublicBlock }
   | { t: 'done'; complete: boolean }
-  | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open'; message: string };
+  | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study'; message: string };
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
-export type ResolverContext = {
-  accountId: string;
-  child: FamilyChild;
-  childFirstNames: string[];
-  parentEmail: string;
-  day: string;
-  refusalWords: (key: string) => string;
-  // The subject's entitlement (M1-6): the child's free subject, claimed on first use. Absent: every subject is open.
-  allowSubject?: (subject: 'mathematics' | 'science') => Promise<boolean>;
-};
+export type ResolverContext = { accountId: string; child: FamilyChild; childFirstNames: string[]; parentEmail: string; day: string; refusalWords: (key: string) => string };
 
 const KEY = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 
@@ -90,10 +81,6 @@ export async function resolve(db: Db, ctx: ResolverContext, input: ResolveInput,
     }
   }
   const subject = line?.subject ?? (input.kind === 'question' ? input.subject : 'science');
-  if (ctx.allowSubject && !(await ctx.allowSubject(subject))) {
-    emit({ t: 'refused', reason: 'not_open', message: ctx.refusalWords('fam.subject.notOpen') });
-    return;
-  }
   // Progress and the sealed items are keyed to the syllabus line; a typed question is kept against its subject.
   const topicKey = line?.key ?? `cbse.c${child.classLevel}.${subject}.question`;
   const promptVersion = (await activePromptVersion(db as never, 'family.resolver')) ?? RESOLVER_PROMPT_VERSION;

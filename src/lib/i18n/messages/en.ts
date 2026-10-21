@@ -6251,39 +6251,4 @@ export const en = {
   'fam.check.explainAgain': 'Explain it another way',
   'fam.home.study': 'Start studying',
   // m1-5 end
-  // m1-6 begin
-  // Learning and home (M1-6, C252).
-  'fam.tab.nav': 'Main menu',
-  'fam.tab.home': 'Home',
-  'fam.tab.study': 'Study',
-  'fam.tab.english': 'English',
-  'fam.tab.future': 'Future',
-  'fam.tab.family': 'Family',
-  'fam.off.app': 'The app is closed for a short while. Please try again later.',
-  'fam.home.continueTitle': 'Keep going',
-  'fam.home.continueLead': 'Pick up a topic, or try a new one.',
-  'fam.progress.title': 'Your progress',
-  'fam.progress.summary': '{topics} topics checked, {mastered} mastered',
-  'fam.progress.mastered': 'Mastered',
-  'fam.progress.rightOf': '{right} of {all} right',
-  'fam.progress.how': 'A topic is mastered when you answer it right on two days at least a week apart.',
-  'fam.subject.notOpen': 'This subject opens with Family Plus, which is not ready yet. Your free subject is open.',
-  'fam.subject.firstIsFree': 'The first subject you study is your free subject.',
-  'fam.subject.locked': 'opens with Family Plus',
-  'fam.parent.freeSubject': 'Free subject:',
-  'fam.parent.freeSubjectTooSoon': 'The free subject can be changed once a term. Try again later.',
-  'fam.calm.title': 'This week',
-  'fam.calm.nothingYet': 'No checked answers yet this week.',
-  'fam.calm.week': '{answers} answers checked, {right} right, in {topics} topics.',
-  'fam.calm.mastered': 'Topics mastered so far: {n}.',
-  'fam.calm.recent': 'Recently: {topics}.',
-  'fam.calm.note': 'Only checked answers count. No time in the app is recorded, and your child is never compared with others.',
-  // m1-6 end
-  // m1-8 begin
-  // The Android shell and the offline page (M1-8, C254).
-  'fam.shell.update': 'A newer version of the app is needed. Please update NetCyberAI Family from the Play Store.',
-  'fam.offline.title': 'No internet',
-  'fam.offline.lead': 'NetCyberAI Family needs a connection. Check it and try again.',
-  'fam.offline.retry': 'Try again',
-  // m1-8 end
 } as const;
