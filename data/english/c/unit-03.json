@@ -1,0 +1,649 @@
+{
+  "track": "c",
+  "unit": 3,
+  "key": "c.u03",
+  "title": { "en": "What's happening?", "hi": "क्या हो रहा है?" },
+  "pic": "👀",
+  "can_do": { "en": "I can describe actions happening now.", "hi": "मैं बता सकता/सकती हूँ कि अभी क्या हो रहा है।" },
+  "lessons": [
+    {
+      "key": "c.u03.l1",
+      "kind": "words",
+      "title": { "en": "Busy village words", "hi": "चहल-पहल वाले गाँव के शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Today we learn words to talk about a busy village.", "hi": "आज हम चहल-पहल वाले गाँव के बारे में बात करने के शब्द सीखेंगे।" },
+          "pic": "🏘️"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u03.l1.busy",
+              "en": "busy",
+              "hi": "व्यस्त, चहल-पहल वाला",
+              "pic": "🏃",
+              "example": { "en": "The village is busy in the morning.", "hi": "सुबह गाँव में चहल-पहल रहती है।" }
+            },
+            {
+              "key": "c.u03.l1.well",
+              "en": "well",
+              "hi": "कुआँ",
+              "pic": "own:well",
+              "example": { "en": "Two women are at the well.", "hi": "दो औरतें कुएँ पर हैं।" }
+            },
+            {
+              "key": "c.u03.l1.ride",
+              "en": "ride",
+              "hi": "सवारी करना, चलाना",
+              "pic": "🚲",
+              "example": { "en": "Mummy rides her bicycle to the market.", "hi": "मम्मी साइकिल चलाकर बाज़ार जाती हैं।" }
+            },
+            {
+              "key": "c.u03.l1.drive",
+              "en": "drive",
+              "hi": "गाड़ी चलाना",
+              "pic": "🚜",
+              "example": { "en": "Papa drives the tractor to the field.", "hi": "पापा ट्रैक्टर चलाकर खेत जाते हैं।" }
+            },
+            {
+              "key": "c.u03.l1.fly",
+              "en": "fly",
+              "hi": "उड़ाना",
+              "pic": "🪁",
+              "example": { "en": "The boys are flying kites.", "hi": "लड़के पतंगें उड़ा रहे हैं।" }
+            },
+            {
+              "key": "c.u03.l1.carry",
+              "en": "carry",
+              "hi": "उठाकर ले जाना",
+              "pic": "🧺",
+              "example": { "en": "Dadi is carrying a basket of vegetables.", "hi": "दादी सब्ज़ियों की टोकरी ले जा रही हैं।" }
+            },
+            {
+              "key": "c.u03.l1.chase",
+              "en": "chase",
+              "hi": "पीछा करना",
+              "pic": "🐕",
+              "example": { "en": "The dog is chasing the hens!", "hi": "कुत्ता मुर्गियों का पीछा कर रहा है!" }
+            },
+            {
+              "key": "c.u03.l1.shade",
+              "en": "shade",
+              "hi": "छाँव",
+              "pic": "🌳",
+              "example": { "en": "The goats are resting in the shade.", "hi": "बकरियाँ छाँव में आराम कर रही हैं।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u03.l1.m-well", "left": { "text": "well" }, "right": { "pic": "own:well" } },
+            { "key": "c.u03.l1.m-drive", "left": { "text": "drive" }, "right": { "pic": "🚜" } },
+            { "key": "c.u03.l1.m-carry", "left": { "text": "carry" }, "right": { "pic": "🧺" } },
+            { "key": "c.u03.l1.m-shade", "left": { "text": "shade" }, "right": { "pic": "🌳" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u03.l1.p-chase",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "chase" },
+              "options": [{ "pic": "🌳" }, { "pic": "🧺" }, { "pic": "🐕" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u03.l1.p-busy",
+              "prompt": { "en": "Which word means व्यस्त?", "hi": "कौन-सा शब्द 'व्यस्त' है?" },
+              "options": [{ "text": "shade" }, { "text": "well" }, { "text": "busy" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u03.l1.s-drive", "model": "Papa drives the tractor.", "hi": "पापा ट्रैक्टर चलाते हैं।", "pic": "🚜" },
+            { "key": "c.u03.l1.s-chase", "model": "The dog is chasing the hens!", "hi": "कुत्ता मुर्गियों का पीछा कर रहा है!", "pic": "🐕" },
+            { "key": "c.u03.l1.s-shade", "model": "The goats are resting in the shade.", "hi": "बकरियाँ छाँव में आराम कर रही हैं।", "pic": "🐐" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u03.l1.c-well",
+          "type": "choose",
+          "prompt": { "en": "Which word means कुआँ?", "hi": "कौन-सा शब्द 'कुआँ' है?" },
+          "options": [{ "text": "shade" }, { "text": "well" }, { "text": "busy" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u03.l1.c-ride",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "ride" },
+          "options": [{ "pic": "🚜" }, { "pic": "🚲" }, { "pic": "🪁" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u03.l1.c-fly",
+          "type": "choose",
+          "prompt": { "en": "The boys are ___ kites.", "hi": "लड़के पतंगें उड़ा रहे हैं।", "pic": "🪁" },
+          "options": [{ "text": "feeding" }, { "text": "flying" }, { "text": "driving" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u03.l1.c-carry",
+          "type": "choose",
+          "prompt": { "en": "Dadi is ___ a basket.", "hi": "दादी टोकरी ले जा रही हैं।", "pic": "🧺" },
+          "options": [{ "text": "chasing" }, { "text": "carrying" }, { "text": "riding" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u03.l1.c-shade",
+          "type": "choose",
+          "prompt": { "en": "It is hot. The goats rest in the ___.", "hi": "गर्मी है। बकरियाँ छाँव में आराम करती हैं।" },
+          "options": [{ "text": "well" }, { "text": "shade" }, { "text": "tractor" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Look out of the window. Say one thing you see in English.", "hi": "खिड़की से बाहर देखो। जो दिखे, उसे अंग्रेज़ी में बोलो।" }
+    },
+    {
+      "key": "c.u03.l2",
+      "kind": "pattern",
+      "title": { "en": "Now or every day?", "hi": "अभी या रोज़?" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Right now and every day", "hi": "अभी और रोज़" },
+          "visual": "timeline",
+          "examples": [
+            { "en": "Look! Arjun is flying a kite now.", "hi": "देखो! अर्जुन अभी पतंग उड़ा रहा है।", "time": "now", "pic": "🪁" },
+            { "en": "Arjun flies a kite every Sunday.", "hi": "अर्जुन हर रविवार पतंग उड़ाता है।", "time": "now", "pic": "📅" },
+            { "en": "Papa is driving the tractor right now.", "hi": "पापा अभी ट्रैक्टर चला रहे हैं।", "time": "now", "pic": "🚜" },
+            { "en": "The women are carrying water from the well.", "hi": "औरतें कुएँ से पानी ले जा रही हैं।", "time": "now", "pic": "own:well" },
+            { "en": "I am not sleeping. I am reading!", "hi": "मैं सो नहीं रहा/रही। मैं पढ़ रहा/रही हूँ!", "time": "now", "pic": "📖" }
+          ],
+          "note": { "en": "Right now: am, is or are + -ing. Every day: the simple form.", "hi": "अभी हो रहा काम: am/is/are + -ing. रोज़ का काम: सादा रूप।" }
+        },
+        {
+          "type": "pattern",
+          "title": { "en": "Build a now sentence", "hi": "अभी वाला वाक्य बनाओ" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "Salma is carrying a basket now.",
+              "hi": "सलमा अभी टोकरी ले जा रही है।",
+              "parts": [
+                { "text": "Salma", "role": "who" },
+                { "text": "is carrying", "role": "do" },
+                { "text": "a basket", "role": "what" },
+                { "text": "now.", "role": "when" }
+              ],
+              "pic": "🧺"
+            },
+            {
+              "en": "The children are playing in the shade.",
+              "hi": "बच्चे छाँव में खेल रहे हैं।",
+              "parts": [{ "text": "The children", "role": "who" }, { "text": "are playing", "role": "do" }, { "text": "in the shade.", "role": "where" }],
+              "pic": "🌳"
+            },
+            {
+              "en": "I am not sleeping.",
+              "hi": "मैं सो नहीं रहा/रही।",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "am not", "role": "not" }, { "text": "sleeping.", "role": "do" }],
+              "pic": "😴"
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u03.l2.b-ride",
+              "hi": "मम्मी अपनी साइकिल चला रही हैं।",
+              "pic": "🚲",
+              "tiles": ["bicycle.", "riding", "is", "her", "Mummy"],
+              "answer": "Mummy is riding her bicycle."
+            },
+            {
+              "key": "c.u03.l2.b-chase",
+              "hi": "कुत्ता मुर्गियों का पीछा कर रहा है।",
+              "pic": "🐕",
+              "tiles": ["chasing", "the", "hens.", "dog", "is", "The"],
+              "answer": "The dog is chasing the hens."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u03.l2.p-now",
+              "prompt": { "en": "Look! Meera ___ cricket now.", "hi": "देखो! मीरा अभी क्रिकेट खेल रही है।" },
+              "options": [{ "text": "plays" }, { "text": "is playing" }, { "text": "play" }],
+              "answer": 1,
+              "why": { "en": "It is happening now, so use is, am or are + -ing.", "hi": "काम अभी हो रहा है, इसलिए is/am/are + -ing." }
+            },
+            {
+              "key": "c.u03.l2.p-every",
+              "prompt": { "en": "Meera ___ cricket every evening.", "hi": "मीरा हर शाम क्रिकेट खेलती है।" },
+              "options": [{ "text": "is playing" }, { "text": "are playing" }, { "text": "plays" }],
+              "answer": 2,
+              "why": { "en": "Every evening is a habit, so we say plays.", "hi": "हर शाम = आदत, इसलिए plays." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u03.l2.s-doing",
+              "model": "I am learning English now.",
+              "hi": "बताओ तुम अभी क्या कर रहे हो।",
+              "cue": { "en": "What are you doing now?", "hi": "तुम अभी क्या कर रहे हो?" }
+            },
+            {
+              "key": "c.u03.l2.s-mother",
+              "model": "My mother is cooking dinner.",
+              "hi": "बताओ तुम्हारी माँ अभी क्या कर रही हैं।",
+              "cue": { "en": "What is your mother doing now?", "hi": "तुम्हारी माँ अभी क्या कर रही हैं?" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u03.l2.c-b1",
+          "type": "build",
+          "hi": "पापा ट्रैक्टर चला रहे हैं।",
+          "pic": "🚜",
+          "tiles": ["tractor.", "driving", "the", "is", "Papa"],
+          "answer": "Papa is driving the tractor."
+        },
+        {
+          "key": "c.u03.l2.c-b2",
+          "type": "build",
+          "hi": "बकरियाँ छाँव में आराम कर रही हैं।",
+          "pic": "🐐",
+          "tiles": ["goats", "are", "shade.", "the", "in", "resting", "The"],
+          "answer": "The goats are resting in the shade."
+        },
+        {
+          "key": "c.u03.l2.c-are",
+          "type": "choose",
+          "prompt": { "en": "The boys ___ flying kites.", "hi": "लड़के पतंगें उड़ा रहे हैं।" },
+          "options": [{ "text": "is" }, { "text": "are" }, { "text": "am" }],
+          "answer": 1,
+          "why": { "en": "With many people, use are.", "hi": "कई लोगों के साथ are आता है।" }
+        },
+        {
+          "key": "c.u03.l2.c-now",
+          "type": "choose",
+          "prompt": { "en": "Shh! The baby ___ now.", "hi": "श्श! बच्चा अभी सो रहा है।" },
+          "options": [{ "text": "sleeps" }, { "text": "sleep" }, { "text": "is sleeping" }],
+          "answer": 2,
+          "why": { "en": "It is happening now, so use is, am or are + -ing.", "hi": "काम अभी हो रहा है, इसलिए is/am/are + -ing." }
+        },
+        {
+          "key": "c.u03.l2.c-every",
+          "type": "choose",
+          "prompt": { "en": "Dadi ___ the plants every morning.", "hi": "दादी हर सुबह पौधों को पानी देती हैं।" },
+          "options": [{ "text": "is watering" }, { "text": "waters" }, { "text": "are watering" }],
+          "answer": 1,
+          "why": { "en": "It is a habit, so use the simple form.", "hi": "यह आदत है, इसलिए सादा रूप।" }
+        },
+        {
+          "key": "c.u03.l2.c-not",
+          "type": "choose",
+          "prompt": { "en": "I ___ sleeping. I am reading.", "hi": "मैं सो नहीं रहा/रही। मैं पढ़ रहा/रही हूँ।" },
+          "options": [{ "text": "is not" }, { "text": "are not" }, { "text": "am not" }],
+          "answer": 2,
+          "why": { "en": "With I, we say am not.", "hi": "I के साथ am not आता है।" }
+        }
+      ],
+      "home": { "en": "Ask at home: What are you doing?", "hi": "घर पर पूछो: What are you doing?" }
+    },
+    {
+      "key": "c.u03.l3",
+      "kind": "listen",
+      "title": { "en": "On the roof", "hi": "छत पर" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "What is happening, Meera?", "hi": "मीरा, क्या हो रहा है?" },
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🏠", "x": 12, "y": 14, "size": 1.6 },
+              { "pic": "🚜", "x": 34, "y": 30, "size": 1.4 },
+              { "pic": "own:well", "x": 56, "y": 22, "size": 1.4 },
+              { "pic": "🪁", "x": 76, "y": 10, "size": 1.2 },
+              { "pic": "🐕", "x": 62, "y": 48, "size": 1.2 },
+              { "pic": "🐔", "x": 74, "y": 50, "size": 1 },
+              { "pic": "🚲", "x": 88, "y": 40, "size": 1.2 },
+              { "pic": "👵", "x": 16, "y": 46, "size": 1.4 },
+              { "pic": "👧", "x": 28, "y": 48, "size": 1.4 }
+            ]
+          },
+          "lines": [
+            { "pic": "🏠", "en": "Meera and Dadi are sitting on the roof.", "hi": "मीरा और दादी छत पर बैठी हैं।" },
+            {
+              "speaker": "Dadi",
+              "pic": "👵",
+              "en": "Meera, my eyes are tired. What is happening outside?",
+              "hi": "मीरा, मेरी आँखें थक गई हैं। बाहर क्या हो रहा है?"
+            },
+            { "speaker": "Meera", "pic": "👧", "en": "Papa is driving the tractor to the field.", "hi": "पापा ट्रैक्टर चलाकर खेत जा रहे हैं।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Two women are carrying water from the well.", "hi": "दो औरतें कुएँ से पानी ले जा रही हैं।" },
+            { "speaker": "Dadi", "pic": "👵", "en": "And where is Arjun?", "hi": "और अर्जुन कहाँ है?" },
+            { "speaker": "Meera", "pic": "👧", "en": "He is flying a kite with his friends.", "hi": "वह अपने दोस्तों के साथ पतंग उड़ा रहा है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Oh no! A dog is chasing the hens!", "hi": "अरे नहीं! एक कुत्ता मुर्गियों का पीछा कर रहा है!" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Ha ha! That dog chases the hens every day.", "hi": "हा हा! वह कुत्ता रोज़ मुर्गियों का पीछा करता है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Look, Mummy is coming home on her bicycle.", "hi": "देखो, मम्मी साइकिल पर घर आ रही हैं।" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Good! Now it is time for lunch.", "hi": "बढ़िया! अब दोपहर के खाने का समय है।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u03.l3.p-papa",
+              "prompt": { "en": "What is Papa doing?", "hi": "पापा क्या कर रहे हैं?" },
+              "options": [{ "text": "He is flying a kite." }, { "text": "He is riding a bicycle." }, { "text": "He is driving the tractor." }],
+              "answer": 2
+            },
+            {
+              "key": "c.u03.l3.p-arjun",
+              "prompt": { "en": "Who is flying a kite?", "hi": "पतंग कौन उड़ा रहा है?" },
+              "options": [{ "text": "Dadi", "pic": "👵" }, { "text": "Arjun", "pic": "👦" }, { "text": "Mummy", "pic": "👩" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u03.l3.p-dog",
+              "prompt": { "en": "What does the dog do every day?", "hi": "कुत्ता रोज़ क्या करता है?" },
+              "options": [{ "text": "It sleeps in the shade." }, { "text": "It eats lunch." }, { "text": "It chases the hens." }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "c.u03.l3.s-well",
+              "model": "Two women are carrying water from the well.",
+              "hi": "दो औरतें कुएँ से पानी ले जा रही हैं।",
+              "pic": "own:well"
+            },
+            { "key": "c.u03.l3.s-mummy", "model": "Look, Mummy is coming home on her bicycle.", "hi": "देखो, मम्मी साइकिल पर घर आ रही हैं।", "pic": "🚲" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u03.l3.c-where",
+          "type": "choose",
+          "prompt": { "en": "Where are Meera and Dadi?", "hi": "मीरा और दादी कहाँ हैं?" },
+          "options": [{ "text": "at school" }, { "text": "on the roof" }, { "text": "at the shop" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u03.l3.c-carry",
+          "type": "choose",
+          "prompt": { "en": "What are the women carrying?", "hi": "औरतें क्या ले जा रही हैं?" },
+          "options": [{ "text": "rice" }, { "text": "water" }, { "text": "kites" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u03.l3.c-mummy",
+          "type": "choose",
+          "prompt": { "en": "How is Mummy coming home?", "hi": "मम्मी घर कैसे आ रही हैं?" },
+          "options": [{ "text": "on the tractor" }, { "text": "on her bicycle" }, { "text": "by bus" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u03.l3.c-time",
+          "type": "choose",
+          "prompt": { "en": "What time is it now?", "hi": "अब किस चीज़ का समय है?" },
+          "options": [{ "text": "time for school" }, { "text": "time for lunch" }, { "text": "time for bed" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Stand at your door and tell your family: Look! … is …ing.", "hi": "दरवाज़े पर खड़े होकर घरवालों को बताओ: Look! … is …ing." }
+    },
+    {
+      "key": "c.u03.l4",
+      "kind": "speak",
+      "title": { "en": "Describe a busy picture", "hi": "चहल-पहल वाली तस्वीर का वर्णन करो" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Look at the village picture. Say what each person is doing now.", "hi": "गाँव की तस्वीर देखो। बताओ हर कोई अभी क्या कर रहा है।" },
+          "pic": "👀"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🌳", "x": 12, "y": 20, "size": 2 },
+              { "pic": "🐐", "x": 14, "y": 46, "size": 1.2 },
+              { "pic": "👨‍🌾", "x": 36, "y": 34, "size": 1.5 },
+              { "pic": "🚜", "x": 48, "y": 36, "size": 1.4 },
+              { "pic": "own:well", "x": 66, "y": 24, "size": 1.4 },
+              { "pic": "👩", "x": 74, "y": 40, "size": 1.4 },
+              { "pic": "🧒", "x": 88, "y": 18, "size": 1.2 },
+              { "pic": "🪁", "x": 94, "y": 6, "size": 1 },
+              { "pic": "🐕", "x": 56, "y": 52, "size": 1.1 },
+              { "pic": "🐔", "x": 66, "y": 54, "size": 1 }
+            ]
+          },
+          "questions": [
+            { "key": "c.u03.l4.q-farmer", "en": "What is the farmer doing?", "hi": "किसान क्या कर रहा है?", "model": "The farmer is driving a tractor." },
+            {
+              "key": "c.u03.l4.q-woman",
+              "en": "What is the woman doing at the well?",
+              "hi": "कुएँ पर औरत क्या कर रही है?",
+              "model": "She is carrying water from the well."
+            },
+            { "key": "c.u03.l4.q-child", "en": "What is the child doing?", "hi": "बच्चा क्या कर रहा है?", "model": "The child is flying a kite." },
+            { "key": "c.u03.l4.q-dog", "en": "What is the dog doing?", "hi": "कुत्ता क्या कर रहा है?", "model": "The dog is chasing a hen." },
+            { "key": "c.u03.l4.q-goat", "en": "Where is the goat?", "hi": "बकरी कहाँ है?", "model": "The goat is resting in the shade." }
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u03.l4.br-field",
+              "hi": "बच्चे खेत में खेल रहे हैं।",
+              "tiles": ["are", "playing", "The", "the", "field.", "in", "children"],
+              "answer": "The children are playing in the field."
+            },
+            {
+              "key": "c.u03.l4.br-dadi",
+              "hi": "दादी अभी दोपहर का खाना बना रही हैं।",
+              "tiles": ["is", "cooking", "lunch", "Dadi", "now."],
+              "answer": "Dadi is cooking lunch now."
+            },
+            { "key": "c.u03.l4.br-tv", "hi": "मैं टीवी नहीं देख रहा हूँ।", "tiles": ["not", "I", "am", "TV.", "watching"], "answer": "I am not watching TV." }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "describe",
+          "prompts": [
+            {
+              "key": "c.u03.l4.s-pic",
+              "model": "The farmer is driving a tractor. The dog is chasing a hen.",
+              "hi": "दो वाक्य बोलो।",
+              "cue": { "en": "Say two things that are happening in the picture.", "hi": "तस्वीर में हो रही दो बातें बताओ।" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u03.l4.c-child",
+          "type": "choose",
+          "prompt": { "en": "Look at the picture. What is the child doing?", "hi": "तस्वीर देखो। बच्चा क्या कर रहा है?" },
+          "options": [{ "text": "flying a kite" }, { "text": "driving a tractor" }, { "text": "sleeping" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u03.l4.c-b",
+          "type": "build",
+          "hi": "औरत पानी ले जा रही है।",
+          "pic": "own:well",
+          "tiles": ["woman", "carrying", "is", "water.", "The"],
+          "answer": "The woman is carrying water."
+        },
+        {
+          "key": "c.u03.l4.c-hens",
+          "type": "choose",
+          "prompt": { "en": "The hens ___ running away.", "hi": "मुर्गियाँ भाग रही हैं।" },
+          "options": [{ "text": "is" }, { "text": "are" }, { "text": "am" }],
+          "answer": 1,
+          "why": { "en": "Hens are many, so we use are.", "hi": "मुर्गियाँ कई हैं, इसलिए are." }
+        },
+        {
+          "key": "c.u03.l4.c-ing",
+          "type": "choose",
+          "prompt": { "en": "The farmer is ___ the tractor.", "hi": "किसान ट्रैक्टर चला रहा है।" },
+          "options": [{ "text": "drive" }, { "text": "driving" }, { "text": "drives" }],
+          "answer": 1,
+          "why": { "en": "After is, use the -ing word: is driving.", "hi": "is के बाद -ing वाला शब्द आता है: is driving." }
+        }
+      ],
+      "home": { "en": "Tell your family what three people are doing right now.", "hi": "घरवालों को बताओ कि अभी तीन लोग क्या कर रहे हैं।" }
+    },
+    {
+      "key": "c.u03.l5",
+      "kind": "review",
+      "title": { "en": "Unit 3 review", "hi": "इकाई 3 की दोहराई" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u03.l5.m-chase", "left": { "text": "chase" }, "right": { "pic": "🐕" } },
+            { "key": "c.u03.l5.m-ride", "left": { "text": "ride" }, "right": { "pic": "🚲" } },
+            { "key": "c.u03.l5.m-early", "left": { "text": "early" }, "right": { "pic": "🐓" } },
+            { "key": "c.u03.l5.m-homework", "left": { "text": "homework" }, "right": { "pic": "📝" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u03.l5.b-salma",
+              "hi": "सलमा अभी एक चिड़िया का चित्र बना रही है।",
+              "pic": "🎨",
+              "tiles": ["drawing", "now.", "Salma", "is", "a", "bird"],
+              "answer": "Salma is drawing a bird now."
+            },
+            {
+              "key": "c.u03.l5.b-hens",
+              "hi": "अर्जुन आमतौर पर मुर्गियों को दाना डालता है।",
+              "pic": "🐔",
+              "tiles": ["the", "feeds", "Arjun", "usually", "hens."],
+              "answer": "Arjun usually feeds the hens."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u03.l5.p-working",
+              "prompt": { "en": "Right now, Papa ___ in the field.", "hi": "अभी पापा खेत में काम कर रहे हैं।" },
+              "options": [{ "text": "is working" }, { "text": "works" }, { "text": "work" }],
+              "answer": 0,
+              "why": { "en": "It is happening now, so use is, am or are + -ing.", "hi": "काम अभी हो रहा है, इसलिए is/am/are + -ing." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u03.l5.s-family",
+              "model": "My father is working, and my sister is reading.",
+              "hi": "बताओ घर में अभी कौन क्या कर रहा है।",
+              "cue": { "en": "What is your family doing now?", "hi": "तुम्हारा परिवार अभी क्या कर रहा है?" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u03.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means छाँव?", "hi": "कौन-सा शब्द 'छाँव' है?" },
+          "options": [{ "text": "shade" }, { "text": "well" }, { "text": "busy" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u03.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "carry" },
+          "options": [{ "pic": "🐕" }, { "pic": "🚜" }, { "pic": "🧺" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u03.l5.c-now",
+          "type": "choose",
+          "prompt": { "en": "Listen! Dadi ___ a song.", "hi": "सुनो! दादी गाना गा रही हैं।" },
+          "options": [{ "text": "sings" }, { "text": "sing" }, { "text": "is singing" }],
+          "answer": 2,
+          "why": { "en": "It is happening now, so use is, am or are + -ing.", "hi": "काम अभी हो रहा है, इसलिए is/am/are + -ing." }
+        },
+        {
+          "key": "c.u03.l5.c-habit",
+          "type": "choose",
+          "prompt": { "en": "Meera ___ to school every day.", "hi": "मीरा रोज़ पैदल स्कूल जाती है।" },
+          "options": [{ "text": "is walking" }, { "text": "walk" }, { "text": "walks" }],
+          "answer": 2,
+          "why": { "en": "It is a habit, so use the simple form.", "hi": "यह आदत है, इसलिए सादा रूप।" }
+        },
+        {
+          "key": "c.u03.l5.c-u2",
+          "type": "choose",
+          "prompt": { "en": "Choose the correct sentence.", "hi": "सही वाक्य चुनो।" },
+          "options": [{ "text": "Arjun always feeds the cow." }, { "text": "Arjun feeds always the cow." }, { "text": "Always Arjun the cow feeds." }],
+          "answer": 0,
+          "why": { "en": "Always comes before the doing word.", "hi": "always काम वाले शब्द से पहले आता है।" }
+        },
+        {
+          "key": "c.u03.l5.c-u1",
+          "type": "choose",
+          "prompt": { "en": "Arjun ___ a red kite.", "hi": "अर्जुन के पास एक लाल पतंग है।" },
+          "options": [{ "text": "has" }, { "text": "have" }, { "text": "is" }],
+          "answer": 0,
+          "why": { "en": "With he, she or a name, we say has.", "hi": "he, she या किसी नाम के साथ has आता है।" }
+        },
+        {
+          "key": "c.u03.l5.c-b",
+          "type": "build",
+          "hi": "लड़के खेत में पतंगें उड़ा रहे हैं।",
+          "pic": "🪁",
+          "tiles": ["flying", "field.", "are", "kites", "in", "the", "boys", "The"],
+          "answer": "The boys are flying kites in the field."
+        }
+      ],
+      "home": { "en": "At dinner, ask: What are you eating?", "hi": "खाने के समय पूछो: What are you eating?" }
+    }
+  ]
+}

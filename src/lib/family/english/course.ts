@@ -477,13 +477,16 @@ export function checkTrack(track: Track, units: unknown[], assessments: unknown)
 export type ChildCheckItem = { key: string; type: 'choose'; prompt: Prompt; options: Option[] } | { key: string; type: 'build'; hi?: string; pic?: Picture; tiles: string[] };
 export function forChild(item: CheckItem): ChildCheckItem {
   if (item.type === 'choose') return { key: item.key, type: 'choose', prompt: item.prompt, options: item.options };
-  let tiles = shuffleByKey(item.tiles, item.key);
-  // Never hand over the tiles already in the answer's order.
-  if (normaliseSentence(tiles.join(' ')) === normaliseSentence(item.answer)) tiles = [...tiles.slice(1), tiles[0]];
-  return { key: item.key, type: 'build', hi: item.hi, pic: item.pic, tiles };
+  return { key: item.key, type: 'build', hi: item.hi, pic: item.pic, tiles: tilesFor(item.tiles, item.key, item.answer) };
 }
 export function lessonForChild(l: Lesson): Omit<Lesson, 'check'> & { check: ChildCheckItem[] } {
   return { ...l, check: l.check.map(forChild) };
+}
+
+// The tiles as the phone shows them: a stable shuffle that never hands over the answer's order.
+export function tilesFor(tiles: readonly string[], key: string, answer: string): string[] {
+  const s = shuffleByKey(tiles, key);
+  return normaliseSentence(s.join(' ')) === normaliseSentence(answer) ? [...s.slice(1), s[0]] : s;
 }
 
 // A stable shuffle: the same item always shows its tiles in the same order, never the answer's order.

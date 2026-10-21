@@ -1,0 +1,622 @@
+{
+  "track": "c",
+  "unit": 17,
+  "key": "c.u17",
+  "title": { "en": "Festivals", "hi": "त्योहार" },
+  "pic": "🪔",
+  "can_do": { "en": "I can describe an event.", "hi": "मैं किसी घटना का वर्णन कर सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u17.l1",
+      "kind": "words",
+      "title": { "en": "Festival words", "hi": "त्योहार के शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "India has festivals all through the year. Learn words to talk about them.",
+            "hi": "भारत में साल भर त्योहार होते हैं। उनके बारे में बात करने के शब्द सीखो।"
+          },
+          "pic": "🎉"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u17.l1.festival",
+              "en": "festival",
+              "hi": "त्योहार",
+              "pic": "🎉",
+              "example": { "en": "Which festival do you like best?", "hi": "तुम्हें कौन-सा त्योहार सबसे अच्छा लगता है?" }
+            },
+            {
+              "key": "c.u17.l1.celebrate",
+              "en": "celebrate",
+              "hi": "मनाना",
+              "pic": "🥳",
+              "example": { "en": "We celebrate Eid with our neighbours.", "hi": "हम अपने पड़ोसियों के साथ ईद मनाते हैं।" }
+            },
+            {
+              "key": "c.u17.l1.decorate",
+              "en": "decorate",
+              "hi": "सजाना",
+              "pic": "🎈",
+              "example": { "en": "We decorate the house with flowers.", "hi": "हम घर को फूलों से सजाते हैं।" }
+            },
+            {
+              "key": "c.u17.l1.lamp",
+              "en": "lamp",
+              "hi": "दीया",
+              "pic": "🪔",
+              "example": { "en": "Dadi lights a lamp every evening.", "hi": "दादी हर शाम दीया जलाती हैं।" }
+            },
+            {
+              "key": "c.u17.l1.rangoli",
+              "en": "rangoli",
+              "hi": "रंगोली",
+              "pic": "own:rangoli",
+              "example": { "en": "Meera draws a rangoli at the door.", "hi": "मीरा दरवाज़े पर रंगोली बनाती है।" }
+            },
+            {
+              "key": "c.u17.l1.sweets",
+              "en": "sweets",
+              "hi": "मिठाई",
+              "pic": "🍬",
+              "example": { "en": "Ravi uncle gave us sweets.", "hi": "रवि अंकल ने हमें मिठाई दी।" }
+            },
+            {
+              "key": "c.u17.l1.gift",
+              "en": "gift",
+              "hi": "उपहार, तोहफ़ा",
+              "pic": "🎁",
+              "example": { "en": "Joseph got a gift at Christmas.", "hi": "जोसेफ़ को क्रिसमस पर एक तोहफ़ा मिला।" }
+            },
+            {
+              "key": "c.u17.l1.guests",
+              "en": "guests",
+              "hi": "मेहमान",
+              "pic": "👪",
+              "example": { "en": "Our guests came for dinner.", "hi": "हमारे मेहमान रात के खाने पर आए।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u17.l1.m-lamp", "left": { "text": "lamp" }, "right": { "pic": "🪔" } },
+            { "key": "c.u17.l1.m-rangoli", "left": { "text": "rangoli" }, "right": { "pic": "own:rangoli" } },
+            { "key": "c.u17.l1.m-gift", "left": { "text": "gift" }, "right": { "pic": "🎁" } },
+            { "key": "c.u17.l1.m-sweets", "left": { "text": "sweets" }, "right": { "pic": "🍬" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u17.l1.p-celebrate",
+              "prompt": { "en": "Which word means मनाना?" },
+              "options": [{ "text": "celebrate" }, { "text": "decorate" }, { "text": "festival" }],
+              "answer": 0
+            },
+            {
+              "key": "c.u17.l1.p-guests",
+              "prompt": { "en": "Listen. Tap the picture.", "say": "guests" },
+              "options": [{ "pic": "🎁" }, { "pic": "👪" }, { "pic": "🪔" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u17.l1.s-eid", "model": "We celebrate Eid with our neighbours.", "pic": "🥳" },
+            { "key": "c.u17.l1.s-decorate", "model": "We decorate the house with flowers.", "pic": "🌼" },
+            { "key": "c.u17.l1.s-lamp", "model": "Dadi lights a lamp every evening.", "pic": "🪔" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u17.l1.c-decorate",
+          "type": "choose",
+          "prompt": { "en": "Which word means सजाना?" },
+          "options": [{ "text": "celebrate" }, { "text": "decorate" }, { "text": "invite" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u17.l1.c-festival",
+          "type": "choose",
+          "prompt": { "en": "Diwali, Eid and Christmas are ___." },
+          "options": [{ "text": "festivals" }, { "text": "guests" }, { "text": "gifts" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u17.l1.c-rangoli",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "rangoli" },
+          "options": [{ "pic": "🍬" }, { "pic": "🎈" }, { "pic": "own:rangoli" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u17.l1.c-gift",
+          "type": "choose",
+          "prompt": { "en": "On your birthday, friends give you a ___." },
+          "options": [{ "text": "lamp" }, { "text": "gift" }, { "text": "guest" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u17.l1.c-guests",
+          "type": "choose",
+          "prompt": { "en": "People who visit your home are ___." },
+          "options": [{ "text": "sweets" }, { "text": "guests" }, { "text": "lamps" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask at home: Which festival do you like best?", "hi": "घर पर पूछो: Which festival do you like best?" }
+    },
+    {
+      "key": "c.u17.l2",
+      "kind": "pattern",
+      "title": { "en": "was …ing when …", "hi": "जब … तब … कर रहे थे" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "What was happening?", "hi": "क्या हो रहा था?" },
+          "visual": "timeline",
+          "examples": [
+            { "en": "We were decorating the house when Nani arrived.", "hi": "हम घर सजा रहे थे, तभी नानी आ गईं।", "time": "past", "pic": "🎈" },
+            {
+              "en": "Meera was drawing a rangoli when it started to rain.",
+              "hi": "मीरा रंगोली बना रही थी, तभी बारिश शुरू हो गई।",
+              "time": "past",
+              "pic": "own:rangoli"
+            },
+            { "en": "What were you doing at eight o'clock?", "hi": "तुम आठ बजे क्या कर रहे थे?", "time": "past", "pic": "⏰" },
+            { "en": "I was lighting lamps with Arjun.", "hi": "मैं अर्जुन के साथ दीये जला रही थी।", "time": "past", "pic": "🪔" },
+            {
+              "en": "The children were flying kites when the music began.",
+              "hi": "बच्चे पतंग उड़ा रहे थे, तभी संगीत शुरू हुआ।",
+              "time": "past",
+              "pic": "own:kite-festival"
+            },
+            { "en": "Now we are eating sweets together.", "hi": "अब हम साथ में मिठाई खा रहे हैं।", "time": "now", "pic": "🍬" }
+          ],
+          "note": {
+            "en": "was or were + -ing: an action that was going on. when + the past: the short action that happened in the middle.",
+            "hi": "was/were + -ing: जो काम चल रहा था। when + बीता समय: जो छोटा काम बीच में हो गया।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u17.l2.b-cooking",
+              "hi": "सलमा खाना बना रही थी, तभी मेहमान आ गए।",
+              "pic": "🍲",
+              "tiles": ["came.", "Salma", "was", "when", "cooking", "guests", "the"],
+              "answer": "Salma was cooking when the guests came."
+            },
+            {
+              "key": "c.u17.l2.b-singing",
+              "hi": "हम रात को गाने गा रहे थे।",
+              "pic": "🎶",
+              "tiles": ["singing", "at", "were", "songs", "night.", "We"],
+              "answer": "We were singing songs at night."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u17.l2.p-was",
+              "prompt": { "en": "Arjun ___ sleeping when the drums started." },
+              "options": [{ "text": "was" }, { "text": "were" }, { "text": "is" }],
+              "answer": 0,
+              "why": { "en": "One person or thing: was + -ing.", "hi": "एक व्यक्ति या चीज़: was + -ing." }
+            },
+            {
+              "key": "c.u17.l2.p-were",
+              "prompt": { "en": "We ___ eating when the lights went out." },
+              "options": [{ "text": "was" }, { "text": "were" }, { "text": "are" }],
+              "answer": 1,
+              "why": { "en": "We, you, they or many: were + -ing.", "hi": "we, you, they या कई: were + -ing." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u17.l2.s-seven",
+              "model": "I was doing my homework at seven o'clock.",
+              "cue": { "en": "What were you doing at seven o'clock yesterday?" }
+            },
+            {
+              "key": "c.u17.l2.s-cousins",
+              "model": "We were eating sweets when my cousins arrived.",
+              "cue": { "en": "Tell us about a surprise during a festival." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u17.l2.c-b1",
+          "type": "build",
+          "hi": "मीरा रंगोली बना रही थी, तभी अर्जुन आया।",
+          "pic": "own:rangoli",
+          "tiles": ["was", "when", "drawing", "a", "came.", "rangoli", "Meera", "Arjun"],
+          "answer": "Meera was drawing a rangoli when Arjun came."
+        },
+        {
+          "key": "c.u17.l2.c-b2",
+          "type": "build",
+          "hi": "तुम कल रात क्या कर रहे थे?",
+          "pic": "🌙",
+          "tiles": ["night?", "last", "What", "were", "doing", "you"],
+          "answer": "What were you doing last night?"
+        },
+        {
+          "key": "c.u17.l2.c-were",
+          "type": "choose",
+          "prompt": { "en": "The children ___ dancing when it started to rain." },
+          "options": [{ "text": "was" }, { "text": "were" }, { "text": "are" }],
+          "answer": 1,
+          "why": { "en": "We, you, they or many: were + -ing.", "hi": "we, you, they या कई: were + -ing." }
+        },
+        {
+          "key": "c.u17.l2.c-ing",
+          "type": "choose",
+          "prompt": { "en": "Papa was ___ lamps on the roof." },
+          "options": [{ "text": "put" }, { "text": "puts" }, { "text": "putting" }],
+          "answer": 2,
+          "why": { "en": "After was, use the -ing word.", "hi": "was के बाद -ing वाला शब्द आता है।" }
+        },
+        {
+          "key": "c.u17.l2.c-when",
+          "type": "choose",
+          "prompt": { "en": "We were eating ___ the guests arrived." },
+          "options": [{ "text": "which" }, { "text": "when" }, { "text": "who" }],
+          "answer": 1,
+          "why": { "en": "when joins the long action and the short one.", "hi": "when लंबे काम और बीच में हुए छोटे काम को जोड़ता है।" }
+        },
+        {
+          "key": "c.u17.l2.c-past",
+          "type": "choose",
+          "prompt": { "en": "Which sentence is about the past?" },
+          "options": [{ "text": "I am singing now." }, { "text": "I was singing at the festival." }, { "text": "I will sing tomorrow." }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask at home: What were you doing at six o'clock?", "hi": "घर पर पूछो: What were you doing at six o'clock?" }
+    },
+    {
+      "key": "c.u17.l3",
+      "kind": "listen",
+      "title": { "en": "Our festivals", "hi": "हमारे त्योहार" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Festival stories in class", "hi": "कक्षा में त्योहारों की कहानियाँ" },
+          "scene": {
+            "place": "school",
+            "pics": [
+              { "pic": "🏫", "x": 84, "y": 14, "size": 1.8 },
+              { "pic": "👩‍🏫", "x": 66, "y": 40, "size": 1.4 },
+              { "pic": "🧕", "x": 18, "y": 44, "size": 1.3 },
+              { "pic": "🧒", "x": 34, "y": 44, "size": 1.3 },
+              { "pic": "👧", "x": 50, "y": 44, "size": 1.3 },
+              { "pic": "🌙", "x": 18, "y": 12, "size": 1 },
+              { "pic": "⭐", "x": 34, "y": 12, "size": 1 },
+              { "pic": "🪔", "x": 50, "y": 14, "size": 1 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Today, let's share stories about our favourite festivals." },
+            { "speaker": "Salma", "pic": "🧕", "en": "On Eid morning, we were wearing new clothes when my cousins arrived." },
+            { "speaker": "Salma", "pic": "🧕", "en": "We shared sweet seviyan with all our neighbours." },
+            { "speaker": "Joseph", "pic": "🧒", "en": "At Christmas, we were singing carols when the lights went out!" },
+            { "speaker": "Joseph", "pic": "🧒", "en": "Everyone laughed, and we sang the rest by candlelight." },
+            { "speaker": "Meera", "pic": "👧", "en": "At Diwali, I was drawing a rangoli when Arjun ran over it!" },
+            { "speaker": "Meera", "pic": "👧", "en": "I was angry, but then we made a new one together." },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "What lovely stories! Festivals bring people together." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u17.l3.p-salma",
+              "prompt": { "en": "What was Salma's family doing when her cousins arrived?" },
+              "options": [{ "text": "wearing new clothes" }, { "text": "eating dinner" }, { "text": "flying kites" }],
+              "answer": 0
+            },
+            {
+              "key": "c.u17.l3.p-joseph",
+              "prompt": { "en": "What happened while Joseph's family was singing?" },
+              "options": [{ "text": "It started to rain." }, { "text": "The guests left." }, { "text": "The lights went out." }],
+              "answer": 2
+            },
+            {
+              "key": "c.u17.l3.p-meera",
+              "prompt": { "en": "Who ran over Meera's rangoli?" },
+              "options": [{ "text": "Joseph" }, { "text": "Salma" }, { "text": "Arjun" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u17.l3.s-carols", "model": "We were singing carols when the lights went out!", "pic": "🕯️" },
+            { "key": "c.u17.l3.s-together", "model": "Festivals bring people together.", "pic": "🎉" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u17.l3.c-share",
+          "type": "choose",
+          "prompt": { "en": "Who did Salma's family share seviyan with?" },
+          "options": [{ "text": "their neighbours" }, { "text": "the teacher" }, { "text": "the bus conductor" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u17.l3.c-candle",
+          "type": "choose",
+          "prompt": { "en": "How did Joseph's family sing after that?" },
+          "options": [{ "text": "by candlelight" }, { "text": "on the radio" }, { "text": "in the rain" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u17.l3.c-feel",
+          "type": "choose",
+          "prompt": { "en": "How did Meera feel at first?" },
+          "options": [{ "text": "sleepy" }, { "text": "angry" }, { "text": "afraid" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u17.l3.c-then",
+          "type": "choose",
+          "prompt": { "en": "What did Meera and Arjun do then?" },
+          "options": [{ "text": "They went to sleep." }, { "text": "They bought sweets." }, { "text": "They made a new rangoli together." }],
+          "answer": 2
+        }
+      ],
+      "home": { "en": "Tell your family about a festival you enjoyed last year.", "hi": "घरवालों को पिछले साल के किसी पसंदीदा त्योहार के बारे में बताओ।" }
+    },
+    {
+      "key": "c.u17.l4",
+      "kind": "speak",
+      "title": { "en": "Tell us about a festival", "hi": "किसी त्योहार के बारे में बताओ" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Choose a festival you love. Tell us about it in 45 seconds.", "hi": "अपना पसंदीदा त्योहार चुनो। 45 सेकंड में उसके बारे में बताओ।" },
+          "pic": "🎉"
+        },
+        {
+          "type": "talk",
+          "topic": { "en": "My favourite festival", "hi": "मेरा पसंदीदा त्योहार" },
+          "outline": [
+            { "en": "Name the festival, and say when it comes." },
+            { "en": "Say how your family gets ready for it." },
+            { "en": "Tell one thing that was happening last year." },
+            { "en": "Say why you love it." }
+          ],
+          "seconds": 45,
+          "model": [
+            "My favourite festival is Diwali. It comes in October or November.",
+            "Before Diwali, we clean and decorate our house.",
+            "We draw a rangoli and light lamps in the evening.",
+            "Last year, we were lighting lamps when Nani arrived.",
+            "Everyone was so happy to see her.",
+            "I love Diwali because the whole family is together."
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u17.l4.br-decorating",
+              "hi": "हम घर सजा रहे थे।",
+              "tiles": ["were", "the", "house.", "We", "decorating"],
+              "answer": "We were decorating the house."
+            },
+            {
+              "key": "c.u17.l4.br-guests",
+              "hi": "जब मेहमान आए, हम खाना खा रहे थे।",
+              "tiles": ["the", "came.", "eating", "guests", "We", "were", "when"],
+              "answer": "We were eating when the guests came."
+            },
+            {
+              "key": "c.u17.l4.br-eid",
+              "hi": "हम पड़ोसियों के साथ ईद मनाते हैं।",
+              "tiles": ["neighbours.", "celebrate", "Eid", "our", "We", "with"],
+              "answer": "We celebrate Eid with our neighbours."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u17.l4.s-eat",
+              "model": "At Lohri, we eat peanuts and jaggery around the fire.",
+              "cue": { "en": "What do you eat at your favourite festival?" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u17.l4.c-b",
+          "type": "build",
+          "hi": "हम दीये जलाते हैं और मिठाई बाँटते हैं।",
+          "pic": "🪔",
+          "tiles": ["sweets.", "light", "and", "We", "share", "lamps"],
+          "answer": "We light lamps and share sweets."
+        },
+        {
+          "key": "c.u17.l4.c-was",
+          "type": "choose",
+          "prompt": { "en": "Last Eid, I ___ helping my mother in the kitchen." },
+          "options": [{ "text": "was" }, { "text": "were" }, { "text": "am" }],
+          "answer": 0,
+          "why": { "en": "One person or thing: was + -ing.", "hi": "एक व्यक्ति या चीज़: was + -ing." }
+        },
+        {
+          "key": "c.u17.l4.c-reason",
+          "type": "choose",
+          "prompt": { "en": "Which line gives a reason?" },
+          "options": [{ "text": "I love it because my family is together." }, { "text": "It comes in winter." }, { "text": "We draw a rangoli." }],
+          "answer": 0,
+          "why": { "en": "because gives a reason.", "hi": "because कारण बताता है।" }
+        },
+        {
+          "key": "c.u17.l4.c-when",
+          "type": "choose",
+          "prompt": { "en": "We were dancing ___ the drums stopped." },
+          "options": [{ "text": "when" }, { "text": "which" }, { "text": "who" }],
+          "answer": 0,
+          "why": { "en": "when joins the two actions.", "hi": "when दोनों कामों को जोड़ता है।" }
+        }
+      ],
+      "home": { "en": "Give your festival talk to your family.", "hi": "अपने त्योहार वाली बात घरवालों को सुनाओ।" }
+    },
+    {
+      "key": "c.u17.l5",
+      "kind": "review",
+      "title": { "en": "Unit 17 review", "hi": "इकाई 17 की दोहराई" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u17.l5.m-celebrate", "left": { "text": "celebrate" }, "right": { "pic": "🥳" } },
+            { "key": "c.u17.l5.m-decorate", "left": { "text": "decorate" }, "right": { "pic": "🎈" } },
+            { "key": "c.u17.l5.m-guests", "left": { "text": "guests" }, "right": { "pic": "👪" } },
+            { "key": "c.u17.l5.m-reason", "left": { "text": "reason" }, "right": { "pic": "💡" } },
+            { "key": "c.u17.l5.m-message", "left": { "text": "message" }, "right": { "pic": "📨" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u17.l5.b-drums",
+              "hi": "हम सो रहे थे, तभी ढोल बजने लगे।",
+              "pic": "🥁",
+              "tiles": ["when", "drums", "the", "began.", "were", "sleeping", "We"],
+              "answer": "We were sleeping when the drums began."
+            },
+            {
+              "key": "c.u17.l5.b-fun",
+              "hi": "मुझे लगता है त्योहार मज़ेदार होते हैं क्योंकि हम दोस्तों से मिलते हैं।",
+              "pic": "🎉",
+              "tiles": ["fun", "are", "I", "festivals", "we", "friends.", "think", "meet", "because"],
+              "answer": "I think festivals are fun because we meet friends."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u17.l5.p-were",
+              "prompt": { "en": "What ___ you doing when Nani came?" },
+              "options": [{ "text": "was" }, { "text": "were" }, { "text": "are" }],
+              "answer": 1,
+              "why": { "en": "We, you, they or many: were + -ing.", "hi": "we, you, they या कई: were + -ing." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u17.l5.s-evening",
+              "model": "Yesterday evening, I was helping Dadi in the kitchen.",
+              "cue": { "en": "Say what you were doing yesterday evening." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u17.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means उपहार?" },
+          "options": [{ "text": "gift" }, { "text": "guest" }, { "text": "lamp" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u17.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "decorate" },
+          "options": [{ "pic": "🎈" }, { "pic": "🎁" }, { "pic": "🍬" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u17.l5.c-was",
+          "type": "choose",
+          "prompt": { "en": "Salma ___ singing when we came in." },
+          "options": [{ "text": "was" }, { "text": "were" }, { "text": "is" }],
+          "answer": 0,
+          "why": { "en": "One person or thing: was + -ing.", "hi": "एक व्यक्ति या चीज़: was + -ing." }
+        },
+        {
+          "key": "c.u17.l5.c-were",
+          "type": "choose",
+          "prompt": { "en": "At five o'clock, my cousins ___ playing in the yard." },
+          "options": [{ "text": "were" }, { "text": "was" }, { "text": "is" }],
+          "answer": 0,
+          "why": { "en": "We, you, they or many: were + -ing.", "hi": "we, you, they या कई: were + -ing." }
+        },
+        {
+          "key": "c.u17.l5.c-u16",
+          "type": "choose",
+          "prompt": { "en": "I like Holi ___ it is colourful." },
+          "options": [{ "text": "because" }, { "text": "but" }, { "text": "so" }],
+          "answer": 0,
+          "why": { "en": "because gives a reason.", "hi": "because कारण बताता है।" }
+        },
+        {
+          "key": "c.u17.l5.c-u15",
+          "type": "choose",
+          "prompt": { "en": "Would you like ___ some sweets?" },
+          "options": [{ "text": "eat" }, { "text": "to eat" }, { "text": "eating" }],
+          "answer": 1,
+          "why": { "en": "After would like, use to + the doing word.", "hi": "would like के बाद to + काम वाला शब्द।" }
+        },
+        {
+          "key": "c.u17.l5.c-u14",
+          "type": "choose",
+          "prompt": { "en": "Joseph is the boy ___ sings carols." },
+          "options": [{ "text": "which" }, { "text": "who" }, { "text": "where" }],
+          "answer": 1,
+          "why": { "en": "For a person, use who.", "hi": "व्यक्ति के लिए who." }
+        },
+        {
+          "key": "c.u17.l5.c-b",
+          "type": "build",
+          "hi": "हम पतंग उड़ा रहे थे, तभी हवा रुक गई।",
+          "pic": "own:kite-festival",
+          "tiles": ["when", "flying", "the", "wind", "kites", "We", "were", "stopped."],
+          "answer": "We were flying kites when the wind stopped."
+        }
+      ],
+      "home": { "en": "Draw a picture of a festival and tell your family about it.", "hi": "किसी त्योहार का चित्र बनाओ और घरवालों को उसके बारे में बताओ।" }
+    }
+  ]
+}

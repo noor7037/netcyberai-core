@@ -1,0 +1,374 @@
+{
+  "track": "a",
+  "unit": 12,
+  "key": "a.u12",
+  "title": { "en": "Food", "hi": "खाना" },
+  "pic": "🍲",
+  "can_do": { "en": "I can ask for food politely.", "hi": "मुझे Please बोलकर प्यार से खाना माँगना आता है।" },
+  "lessons": [
+    {
+      "key": "a.u12.l1",
+      "kind": "words",
+      "title": { "en": "Food words", "hi": "खाने के नाम" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u12.l1.w-circle",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "circle" },
+              "options": [{ "pic": "⭕" }, { "pic": "⭐" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u12.l1.w-square",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "square" },
+              "options": [{ "pic": "🔺" }, { "pic": "🟦" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: name each food in English at the next meal.", "hi": "बड़ों के लिए: अगली बार खाने पर हर चीज़ का अंग्रेज़ी नाम लें।" },
+          "pic": "🍽️"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u12.l1.roti", "en": "roti", "hi": "रोटी", "pic": "own:roti", "example": { "en": "Hot roti!", "hi": "गरम रोटी!" } },
+            { "key": "a.u12.l1.rice", "en": "rice", "hi": "चावल", "pic": "🍚", "example": { "en": "White rice.", "hi": "सफ़ेद चावल।" } },
+            { "key": "a.u12.l1.dal", "en": "dal", "hi": "दाल", "pic": "🍲", "example": { "en": "Yellow dal.", "hi": "पीली दाल।" } },
+            { "key": "a.u12.l1.milk", "en": "milk", "hi": "दूध", "pic": "🥛", "example": { "en": "A cup of milk.", "hi": "एक कप दूध।" } },
+            { "key": "a.u12.l1.water", "en": "water", "hi": "पानी", "pic": "💧", "example": { "en": "Cold water.", "hi": "ठंडा पानी।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Roll a roti.", "hi": "रोटी बेलो।", "pic": "own:roti" },
+            { "en": "Drink some water.", "hi": "पानी पियो।", "pic": "💧" },
+            { "en": "Blow on hot dal.", "hi": "गरम दाल पर फूँक मारो।", "pic": "🍲" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u12.l1.t-rice",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "rice" },
+              "options": [{ "pic": "🍚" }, { "pic": "🥛" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u12.l1.t-water",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "water" },
+              "options": [{ "pic": "🍲" }, { "pic": "💧" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u12.l1.t-roti",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "roti" },
+              "options": [{ "pic": "🍚" }, { "pic": "💧" }, { "pic": "own:roti" }],
+              "answer": 2
+            },
+            {
+              "key": "a.u12.l1.t-milk",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "milk" },
+              "options": [{ "pic": "🥛" }, { "pic": "🍲" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u12.l1.s-roti", "model": "Roti.", "hi": "रोटी।", "pic": "own:roti" },
+            { "key": "a.u12.l1.s-rice", "model": "Rice.", "hi": "चावल।", "pic": "🍚" },
+            { "key": "a.u12.l1.s-dal", "model": "Dal.", "hi": "दाल।", "pic": "🍲" },
+            { "key": "a.u12.l1.s-milk", "model": "Milk.", "hi": "दूध।", "pic": "🥛" },
+            { "key": "a.u12.l1.s-water", "model": "Water.", "hi": "पानी।", "pic": "💧" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "At dinner, name the food: roti, dal, rice.", "hi": "रात के खाने पर नाम लें: roti, dal, rice।" }
+    },
+    {
+      "key": "a.u12.l2",
+      "kind": "pattern",
+      "title": { "en": "I want roti, please.", "hi": "मुझे रोटी चाहिए, प्लीज़।" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "I want …, please.", "hi": "मुझे … चाहिए, प्लीज़।" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "I want roti, please.",
+              "hi": "मुझे रोटी चाहिए, प्लीज़।",
+              "pic": "own:roti",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "want", "role": "do" }, { "text": "roti,", "role": "what" }, { "text": "please.", "role": "other" }]
+            },
+            {
+              "en": "I want water, please.",
+              "hi": "मुझे पानी चाहिए, प्लीज़।",
+              "pic": "💧",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "want", "role": "do" }, { "text": "water,", "role": "what" }, { "text": "please.", "role": "other" }]
+            },
+            {
+              "en": "I want milk, please.",
+              "hi": "मुझे दूध चाहिए, प्लीज़।",
+              "pic": "🥛",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "want", "role": "do" }, { "text": "milk,", "role": "what" }, { "text": "please.", "role": "other" }]
+            },
+            {
+              "en": "I want rice, please.",
+              "hi": "मुझे चावल चाहिए, प्लीज़।",
+              "pic": "🍚",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "want", "role": "do" }, { "text": "rice,", "role": "what" }, { "text": "please.", "role": "other" }]
+            }
+          ],
+          "note": { "en": "Please makes asking kind.", "hi": "Please बोलने से माँगना प्यारा लगता है।" }
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u12.l2.t-milk",
+              "prompt": { "en": "Listen. Tap the food.", "hi": "सुनो, फिर सही खाना छुओ।", "say": "I want milk, please." },
+              "options": [{ "pic": "💧" }, { "pic": "🥛" }],
+              "answer": 1,
+              "why": { "en": "Milk is white.", "hi": "milk यानी दूध, सफ़ेद वाला।" }
+            },
+            {
+              "key": "a.u12.l2.t-dal",
+              "prompt": { "en": "Listen. Tap the food.", "hi": "सुनो, फिर सही खाना छुओ।", "say": "I want dal, please." },
+              "options": [{ "pic": "🍲" }, { "pic": "🍚" }, { "pic": "own:roti" }],
+              "answer": 0,
+              "why": { "en": "Dal is in the pot.", "hi": "dal यानी दाल, पतीले वाली।" }
+            },
+            {
+              "key": "a.u12.l2.t-water",
+              "prompt": { "en": "Listen. Tap the food.", "hi": "सुनो, फिर सही खाना छुओ।", "say": "I want water, please." },
+              "options": [{ "pic": "🥛" }, { "pic": "🍚" }, { "pic": "💧" }],
+              "answer": 2,
+              "why": { "en": "Water: we drink it.", "hi": "water यानी पानी, जो हम पीते हैं।" }
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Hold out your plate.", "hi": "अपनी थाली आगे करो।", "pic": "🍽️" },
+            { "en": "Fold your hands. Please!", "hi": "हाथ जोड़ो। प्लीज़!", "pic": "🙏" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u12.l2.s-water",
+              "model": "I want water, please.",
+              "hi": "अंग्रेज़ी में पानी माँगो।",
+              "pic": "💧",
+              "cue": { "en": "You want water. Ask Mummy.", "hi": "तुम्हें पानी चाहिए। मम्मी से माँगो।" }
+            },
+            {
+              "key": "a.u12.l2.s-roti",
+              "model": "I want roti, please.",
+              "hi": "अंग्रेज़ी में रोटी माँगो।",
+              "pic": "own:roti",
+              "cue": { "en": "You want roti. Ask Papa.", "hi": "तुम्हें रोटी चाहिए। पापा से माँगो।" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "At meals, praise: I want roti, please.", "hi": "खाने पर बच्चा I want roti, please कहे, तो खूब शाबाशी दें।" }
+    },
+    {
+      "key": "a.u12.l3",
+      "kind": "listen",
+      "title": { "en": "Papa makes roti", "hi": "पापा रोटी बनाते हैं" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Papa makes roti", "hi": "पापा रोटी बनाते हैं" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "own:roti", "x": 50, "y": 20, "size": 1.5 },
+              { "pic": "👨‍🍳", "x": 28, "y": 38, "size": 1.7 },
+              { "pic": "🍲", "x": 46, "y": 40 },
+              { "pic": "🍚", "x": 58, "y": 40 },
+              { "pic": "👧", "x": 70, "y": 46, "size": 1.3 },
+              { "pic": "👦", "x": 86, "y": 48, "size": 1.2 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Papa", "pic": "👨‍🍳", "en": "Hot roti, dal and rice!", "hi": "गरम रोटी, दाल और चावल!" },
+            { "speaker": "Meera", "pic": "👧", "en": "I want roti, please.", "hi": "मुझे रोटी चाहिए, प्लीज़।" },
+            { "speaker": "Papa", "pic": "👨‍🍳", "en": "Here you are, Meera.", "hi": "ये लो, मीरा।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "I want rice and dal, please.", "hi": "मुझे चावल और दाल चाहिए, प्लीज़।" },
+            { "speaker": "Papa", "pic": "👨‍🍳", "en": "Here you are, Arjun.", "hi": "ये लो, अर्जुन।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Thank you, Papa! Yum!", "hi": "शुक्रिया, पापा! वाह, मज़ेदार!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u12.l3.q-cook",
+              "prompt": { "en": "Who makes the roti?", "hi": "रोटी कौन बनाता है?" },
+              "options": [{ "text": "Papa", "pic": "👨‍🍳" }, { "text": "Dadi", "pic": "👵" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u12.l3.q-meera",
+              "prompt": { "en": "What does Meera want?", "hi": "मीरा को क्या चाहिए?" },
+              "options": [{ "pic": "🍚" }, { "pic": "own:roti" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u12.l3.q-arjun",
+              "prompt": { "en": "What does Arjun want?", "hi": "अर्जुन को क्या चाहिए?" },
+              "options": [{ "pic": "🥛" }, { "pic": "🍛" }, { "pic": "💧" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u12.l3.s-roti", "model": "I want roti, please.", "hi": "मुझे रोटी चाहिए, प्लीज़।", "pic": "own:roti" },
+            { "key": "a.u12.l3.s-thanks", "model": "Thank you, Papa!", "hi": "शुक्रिया, पापा!", "pic": "👨‍🍳" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Roll a roti like Papa.", "hi": "पापा की तरह रोटी बेलो।", "pic": "own:roti" },
+            { "en": "Rub your tummy. Yum!", "hi": "पेट पर हाथ फेरो। वाह!", "pic": "😋" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Let your child help set plates and name them.", "hi": "रात के खाने पर बच्चे को थालियाँ लगाने दें और नाम बोलें: plate, cup।" }
+    },
+    {
+      "key": "a.u12.l4",
+      "kind": "speak",
+      "title": { "en": "At the table", "hi": "खाने की थाली पर" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: you are Mummy. Serve pretend food with a smile.", "hi": "बड़ों के लिए: आप मम्मी बनें और मुस्कुराकर खेल-खेल में खाना परोसें।" },
+          "pic": "🍽️"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Dinner time", "hi": "खाने का समय" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🍽️", "x": 50, "y": 44 },
+              { "pic": "own:roti", "x": 36, "y": 34, "size": 0.9 },
+              { "pic": "🍲", "x": 64, "y": 34, "size": 0.9 },
+              { "pic": "💧", "x": 78, "y": 34, "size": 0.8 },
+              { "pic": "👩", "x": 16, "y": 40, "size": 1.6 },
+              { "pic": "🧒", "x": 88, "y": 46, "size": 1.4 }
+            ]
+          },
+          "roles": [{ "name": "Mummy", "pic": "👩" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Dinner is ready!", "hi": "खाना तैयार है!" },
+            { "role": 1, "en": "I want roti, please.", "hi": "मुझे रोटी चाहिए, प्लीज़।" },
+            { "role": 0, "en": "Here you are. Dal too?", "hi": "ये लो। दाल भी?" },
+            { "role": 1, "en": "Yes, please! Thank you.", "hi": "हाँ, प्लीज़! शुक्रिया।" },
+            { "role": 0, "en": "Do you want water?", "hi": "पानी चाहिए?" },
+            { "role": 1, "en": "Yes! I want water, please.", "hi": "हाँ! मुझे पानी चाहिए, प्लीज़।" }
+          ],
+          "partner": { "goal": "Serve dinner: offer roti, dal and water, and wait for the child to ask with please.", "must_use": ["I want", "please", "thank you"] }
+        }
+      ],
+      "check": [],
+      "home": { "en": "At every meal this week, ask in English together.", "hi": "इस हफ़्ते हर खाने पर साथ में अंग्रेज़ी में माँगें: Water, please!" }
+    },
+    {
+      "key": "a.u12.l5",
+      "kind": "review",
+      "title": { "en": "Dinner time", "hi": "खाने का समय" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u12.l5.m-milk", "left": { "text": "milk", "pic": "🥛" }, "right": { "pic": "⚪" } },
+            { "key": "a.u12.l5.m-roti", "left": { "text": "roti", "pic": "own:roti" }, "right": { "pic": "⭕" } },
+            { "key": "a.u12.l5.m-dal", "left": { "text": "dal", "pic": "🍲" }, "right": { "pic": "🟡" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u12.l5.t-dal",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "dal" },
+              "options": [{ "pic": "🍲" }, { "pic": "🥛" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u12.l5.t-water",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "water" },
+              "options": [{ "pic": "🍚" }, { "pic": "💧" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u12.l5.w-star",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "star" },
+              "options": [{ "pic": "⭐" }, { "pic": "⭕" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u12.l5.w-hen",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "hen" },
+              "options": [{ "pic": "🐄" }, { "pic": "🐔" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Rub your tummy. Yum!", "hi": "पेट पर हाथ फेरो। वाह!", "pic": "😋" },
+            { "en": "Wash your hands first.", "hi": "पहले हाथ धोओ।", "pic": "🧼" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u12.l5.s-milk",
+              "model": "I want milk, please.",
+              "hi": "अंग्रेज़ी में दूध माँगो।",
+              "pic": "🥛",
+              "cue": { "en": "You want milk. Ask nicely.", "hi": "तुम्हें दूध चाहिए। प्यार से माँगो।" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Say please and thank you at every meal, you too.", "hi": "हर खाने पर please और thank you बोलें, आप भी।" }
+    }
+  ]
+}

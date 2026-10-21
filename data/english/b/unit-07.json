@@ -1,0 +1,412 @@
+{
+  "track": "b",
+  "unit": 7,
+  "key": "b.u07",
+  "title": { "en": "My body, my health", "hi": "मेरा शरीर, मेरी सेहत" },
+  "pic": "💪",
+  "can_do": { "en": "I can use have and has.", "hi": "मैं have और has बोल सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u07.l1",
+      "kind": "words",
+      "title": { "en": "Body words", "hi": "शरीर के शब्द" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "Let us learn body words and move!", "hi": "चलो शरीर के शब्द सीखें और हिलें-डुलें!" }, "pic": "🤸" },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Touch your nose.", "hi": "अपनी नाक छुओ।", "pic": "👃" },
+            { "en": "Close your eyes.", "hi": "अपनी आँखें बंद करो।", "pic": "👀" },
+            { "en": "Clap your hands.", "hi": "ताली बजाओ।", "pic": "👏" },
+            { "en": "Shake your legs.", "hi": "अपने पैर हिलाओ।", "pic": "🦵" }
+          ]
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u07.l1.eye", "en": "eye", "hi": "आँख", "pic": "👁️", "example": { "en": "I have two eyes.", "hi": "मेरी दो आँखें हैं।" } },
+            { "key": "b.u07.l1.ear", "en": "ear", "hi": "कान", "pic": "👂", "example": { "en": "I have two ears.", "hi": "मेरे दो कान हैं।" } },
+            { "key": "b.u07.l1.nose", "en": "nose", "hi": "नाक", "pic": "👃", "example": { "en": "I have one nose.", "hi": "मेरी एक नाक है।" } },
+            { "key": "b.u07.l1.mouth", "en": "mouth", "hi": "मुँह", "pic": "👄", "example": { "en": "Open your mouth.", "hi": "अपना मुँह खोलो।" } },
+            { "key": "b.u07.l1.teeth", "en": "teeth", "hi": "दाँत", "pic": "🦷", "example": { "en": "Brush your teeth.", "hi": "अपने दाँत साफ़ करो।" } },
+            { "key": "b.u07.l1.hand", "en": "hand", "hi": "हाथ", "pic": "✋", "example": { "en": "Wash your hands.", "hi": "अपने हाथ धोओ।" } },
+            { "key": "b.u07.l1.leg", "en": "leg", "hi": "टाँग (पैर)", "pic": "🦵", "example": { "en": "A hen has two legs.", "hi": "मुर्गी की दो टाँगें होती हैं।" } },
+            { "key": "b.u07.l1.soap", "en": "soap", "hi": "साबुन", "pic": "🧼", "example": { "en": "Wash with soap and water.", "hi": "साबुन और पानी से धोओ।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u07.l1.m-eye", "left": { "text": "eye" }, "right": { "pic": "👁️" } },
+            { "key": "b.u07.l1.m-ear", "left": { "text": "ear" }, "right": { "pic": "👂" } },
+            { "key": "b.u07.l1.m-hand", "left": { "text": "hand" }, "right": { "pic": "✋" } },
+            { "key": "b.u07.l1.m-soap", "left": { "text": "soap" }, "right": { "pic": "🧼" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u07.l1.p-nose",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "nose" },
+              "options": [{ "pic": "👄" }, { "pic": "👃" }, { "pic": "👂" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u07.l1.p-teeth",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "teeth" },
+              "options": [{ "pic": "🦷" }, { "pic": "🦵" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u07.l1.s-eyes", "model": "I have two eyes.", "hi": "मेरी दो आँखें हैं।", "pic": "👀" },
+            { "key": "b.u07.l1.s-wash", "model": "Wash your hands.", "hi": "अपने हाथ धोओ।", "pic": "🧼" },
+            { "key": "b.u07.l1.s-brush", "model": "Brush your teeth.", "hi": "अपने दाँत साफ़ करो।", "pic": "🦷" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u07.l1.c-mouth",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "mouth" },
+          "options": [{ "pic": "👄" }, { "pic": "👁️" }, { "pic": "👃" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u07.l1.c-leg",
+          "type": "choose",
+          "prompt": { "en": "Which word means टाँग?", "hi": "कौन-सा शब्द 'टाँग' है?", "pic": "🦵" },
+          "options": [{ "text": "hand" }, { "text": "ear" }, { "text": "leg" }],
+          "answer": 2
+        },
+        {
+          "key": "b.u07.l1.c-ear",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "ear" },
+          "options": [{ "pic": "👃" }, { "pic": "👂" }, { "pic": "🦷" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u07.l1.c-soap",
+          "type": "choose",
+          "prompt": { "en": "We wash our hands with ___.", "hi": "हम हाथ ___ से धोते हैं।", "pic": "✋" },
+          "options": [{ "text": "soap", "pic": "🧼" }, { "text": "milk", "pic": "🥛" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u07.l1.c-teeth",
+          "type": "choose",
+          "prompt": { "en": "Which word means दाँत?", "hi": "कौन-सा शब्द 'दाँत' है?" },
+          "options": [{ "text": "teeth" }, { "text": "eyes" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Play: touch your nose, ears and mouth.", "hi": "खेलो: नाक, कान और मुँह छुओ।" }
+    },
+    {
+      "key": "b.u07.l2",
+      "kind": "pattern",
+      "title": { "en": "have and has", "hi": "have और has" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "I have, she has", "hi": "मेरे पास है: I have, उसके पास है: she has" },
+          "visual": "builder",
+          "examples": [
+            { "en": "I have two hands.", "hi": "मेरे दो हाथ हैं।", "pic": "✋", "parts": [{ "text": "I", "role": "who" }, { "text": "have", "role": "do" }, { "text": "two hands.", "role": "what" }] },
+            { "en": "We have two eyes.", "hi": "हमारी दो आँखें हैं।", "pic": "👀", "parts": [{ "text": "We", "role": "who" }, { "text": "have", "role": "do" }, { "text": "two eyes.", "role": "what" }] },
+            { "en": "You have ten fingers.", "hi": "तुम्हारी दस उँगलियाँ हैं।", "pic": "🙌", "parts": [{ "text": "You", "role": "who" }, { "text": "have", "role": "do" }, { "text": "ten fingers.", "role": "what" }] },
+            { "en": "She has a new book.", "hi": "उसके पास एक नई किताब है।", "pic": "📖", "parts": [{ "text": "She", "role": "who" }, { "text": "has", "role": "do" }, { "text": "a new book.", "role": "what" }] },
+            { "en": "He has a big umbrella.", "hi": "उसके पास एक बड़ा छाता है।", "pic": "🌂", "parts": [{ "text": "He", "role": "who" }, { "text": "has", "role": "do" }, { "text": "a big umbrella.", "role": "what" }] },
+            { "en": "A cow has four legs.", "hi": "गाय की चार टाँगें होती हैं।", "pic": "🐄", "parts": [{ "text": "A cow", "role": "who" }, { "text": "has", "role": "do" }, { "text": "four legs.", "role": "what" }] }
+          ],
+          "note": { "en": "I, you, we: have. He, she, it: has.", "hi": "I, you, we के साथ have; he, she, it के साथ has।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u07.l2.b-have", "hi": "मेरे दो कान हैं।", "pic": "👂", "tiles": ["ears.", "have", "two", "I"], "answer": "I have two ears." },
+            { "key": "b.u07.l2.b-has", "hi": "उसके पास एक नया पेन है।", "pic": "🖊️", "tiles": ["new", "has", "She", "pen.", "a"], "answer": "She has a new pen." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u07.l2.p-has",
+              "prompt": { "en": "Arjun ___ a big bag.", "hi": "अर्जुन के पास एक बड़ा बस्ता है।", "pic": "🎒" },
+              "options": [{ "text": "have" }, { "text": "has" }],
+              "answer": 1,
+              "why": { "en": "Arjun is he, so we say has.", "hi": "अर्जुन = he, इसलिए has।" }
+            },
+            {
+              "key": "b.u07.l2.p-have",
+              "prompt": { "en": "I ___ two hands.", "hi": "मेरे दो हाथ हैं।", "pic": "✋" },
+              "options": [{ "text": "has" }, { "text": "have" }],
+              "answer": 1,
+              "why": { "en": "With I, we say have.", "hi": "I के साथ have।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u07.l2.s-hands", "model": "I have two hands.", "hi": "अपने हाथों के बारे में बोलो।", "pic": "✋", "cue": { "en": "How many hands do you have?", "hi": "तुम्हारे कितने हाथ हैं?" } },
+            { "key": "b.u07.l2.s-cow", "model": "A cow has four legs.", "hi": "गाय के बारे में बोलो।", "pic": "🐄", "cue": { "en": "How many legs does a cow have?", "hi": "गाय की कितनी टाँगें होती हैं?" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u07.l2.c-build1", "type": "build", "hi": "मुर्गी की दो टाँगें होती हैं।", "tiles": ["legs.", "two", "has", "A", "hen"], "answer": "A hen has two legs." },
+        { "key": "b.u07.l2.c-build2", "type": "build", "hi": "हमारी दो आँखें हैं।", "tiles": ["eyes.", "We", "two", "have"], "answer": "We have two eyes." },
+        {
+          "key": "b.u07.l2.c-she",
+          "type": "choose",
+          "prompt": { "en": "Meera ___ a new book.", "hi": "मीरा के पास एक नई किताब है।", "pic": "📖" },
+          "options": [{ "text": "has" }, { "text": "have" }],
+          "answer": 0,
+          "why": { "en": "Meera is she, so we say has.", "hi": "मीरा = she, इसलिए has।" }
+        },
+        {
+          "key": "b.u07.l2.c-we",
+          "type": "choose",
+          "prompt": { "en": "We ___ two ears.", "hi": "हमारे दो कान हैं।", "pic": "👂" },
+          "options": [{ "text": "has" }, { "text": "have" }],
+          "answer": 1,
+          "why": { "en": "With we, we say have.", "hi": "We के साथ have।" }
+        },
+        {
+          "key": "b.u07.l2.c-it",
+          "type": "choose",
+          "prompt": { "en": "A dog ___ four legs.", "hi": "कुत्ते की चार टाँगें होती हैं।", "pic": "🐕" },
+          "options": [{ "text": "have" }, { "text": "has" }],
+          "answer": 1,
+          "why": { "en": "A dog is it, so we say has.", "hi": "कुत्ता = it, इसलिए has।" }
+        }
+      ],
+      "home": { "en": "Say at home: I have … Papa has …", "hi": "घर पर कहो: I have … Papa has …" }
+    },
+    {
+      "key": "b.u07.l3",
+      "kind": "listen",
+      "title": { "en": "Dr Khan comes to school", "hi": "डॉक्टर ख़ान स्कूल आए" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Good habits", "hi": "अच्छी आदतें" },
+          "scene": { "place": "school", "pics": [{ "pic": "🏫", "x": 84, "y": 14, "size": 1.8 }, { "pic": "👨‍⚕️", "x": 24, "y": 40, "size": 1.6 }, { "pic": "🧼", "x": 34, "y": 54, "size": 0.9 }, { "pic": "👧", "x": 46, "y": 44, "size": 1.3 }, { "pic": "👦", "x": 60, "y": 46, "size": 1.3 }, { "pic": "🧕", "x": 74, "y": 44, "size": 1.3 }] },
+          "lines": [
+            { "speaker": "Dr Khan", "pic": "👨‍⚕️", "en": "Hello, children! I am Dr Khan.", "hi": "नमस्ते, बच्चो! मैं डॉक्टर ख़ान हूँ।" },
+            { "speaker": "Dr Khan", "pic": "👨‍⚕️", "en": "We have two hands. Wash them with soap.", "hi": "हमारे दो हाथ हैं। उन्हें साबुन से धोओ।" },
+            { "speaker": "Children", "pic": "🙌", "en": "Yes, Dr Khan!", "hi": "जी, डॉक्टर ख़ान!" },
+            { "speaker": "Dr Khan", "pic": "👨‍⚕️", "en": "We have teeth. Brush them every morning.", "hi": "हमारे दाँत हैं। रोज़ सुबह उन्हें ब्रश करो।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "I have a new toothbrush!", "hi": "मेरे पास नया टूथब्रश है!" },
+            { "speaker": "Dr Khan", "pic": "👨‍⚕️", "en": "Very good, Arjun! And drink clean water.", "hi": "बहुत अच्छे, अर्जुन! और साफ़ पानी पियो।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Thank you, Dr Khan!", "hi": "धन्यवाद, डॉक्टर ख़ान!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u07.l3.p-wash",
+              "prompt": { "en": "What do we wash with soap?", "hi": "हम साबुन से क्या धोते हैं?" },
+              "options": [{ "text": "hands", "pic": "✋" }, { "text": "books", "pic": "📚" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u07.l3.p-new",
+              "prompt": { "en": "What does Arjun have?", "hi": "अर्जुन के पास क्या है?" },
+              "options": [{ "text": "a new bag" }, { "text": "a new toothbrush" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u07.l3.s-wash", "model": "Wash your hands with soap.", "hi": "साबुन से हाथ धोओ।", "pic": "🧼" },
+            { "key": "b.u07.l3.s-water", "model": "Drink clean water.", "hi": "साफ़ पानी पियो।", "pic": "💧" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u07.l3.c-who",
+          "type": "choose",
+          "prompt": { "en": "Who is Dr Khan?", "hi": "डॉक्टर ख़ान कौन हैं?" },
+          "options": [{ "text": "a doctor", "pic": "👨‍⚕️" }, { "text": "a teacher", "pic": "👩‍🏫" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u07.l3.c-brush",
+          "type": "choose",
+          "prompt": { "en": "When do we brush our teeth?", "hi": "हम दाँत कब साफ़ करते हैं?" },
+          "options": [{ "text": "every morning", "pic": "🌞" }, { "text": "at the shop", "pic": "🏪" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u07.l3.c-water",
+          "type": "choose",
+          "prompt": { "en": "Dr Khan says: Drink ___ water.", "hi": "डॉक्टर ख़ान कहते हैं: ___ पानी पियो।", "pic": "💧" },
+          "options": [{ "text": "old" }, { "text": "clean" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u07.l3.c-has",
+          "type": "choose",
+          "prompt": { "en": "Arjun ___ a new toothbrush.", "hi": "अर्जुन के पास नया टूथब्रश है।", "pic": "👦" },
+          "options": [{ "text": "has" }, { "text": "have" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Wash your hands and say: I wash my hands!", "hi": "हाथ धोते हुए कहो: I wash my hands!" }
+    },
+    {
+      "key": "b.u07.l4",
+      "kind": "speak",
+      "title": { "en": "The have and has game", "hi": "have और has का खेल" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "I have two hands!", "hi": "मेरे दो हाथ हैं!" },
+          "scene": { "place": "school", "pics": [{ "pic": "🏫", "x": 84, "y": 14, "size": 1.6 }, { "pic": "🧕", "x": 28, "y": 42, "size": 1.5 }, { "pic": "🧒", "x": 52, "y": 42, "size": 1.5 }, { "pic": "🐄", "x": 74, "y": 50, "size": 1.2 }, { "pic": "🐔", "x": 88, "y": 52 }] },
+          "roles": [{ "name": "Salma", "pic": "🧕" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Let us play! I have two hands.", "hi": "चलो खेलें! मेरे दो हाथ हैं।" },
+            { "role": 1, "en": "I have two hands too!", "hi": "मेरे भी दो हाथ हैं!" },
+            { "role": 0, "en": "A hen has two legs. And a cow?", "hi": "मुर्गी की दो टाँगें होती हैं। और गाय की?" },
+            { "role": 1, "en": "A cow has four legs.", "hi": "गाय की चार टाँगें होती हैं।" },
+            { "role": 0, "en": "Yes! Now you say one.", "hi": "हाँ! अब तुम एक बोलो।" },
+            { "role": 1, "en": "Arjun has a big umbrella.", "hi": "अर्जुन के पास एक बड़ा छाता है।" },
+            { "role": 0, "en": "Good! You get a star!", "hi": "शाबाश! तुम्हें एक तारा मिला!" }
+          ],
+          "partner": { "goal": "Play the have and has game: say one fact with have or has, then ask the child to say one. Gently recast have and has.", "must_use": ["I have", "has"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u07.l4.br-have", "hi": "मेरे दो हाथ हैं।", "tiles": ["hands.", "I", "two", "have"], "answer": "I have two hands." },
+            { "key": "b.u07.l4.br-has", "hi": "अर्जुन के पास एक नया बस्ता है।", "tiles": ["bag.", "has", "a", "Arjun", "new"], "answer": "Arjun has a new bag." }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u07.l4.c-cow",
+          "type": "choose",
+          "prompt": { "en": "A cow ___ four legs.", "hi": "गाय की चार टाँगें होती हैं।", "pic": "🐄" },
+          "options": [{ "text": "have" }, { "text": "has" }],
+          "answer": 1,
+          "why": { "en": "A cow is it, so we say has.", "hi": "गाय = it, इसलिए has।" }
+        },
+        { "key": "b.u07.l4.c-build", "type": "build", "hi": "उसके पास एक केला है।", "tiles": ["banana.", "a", "He", "has"], "answer": "He has a banana." },
+        {
+          "key": "b.u07.l4.c-i",
+          "type": "choose",
+          "prompt": { "en": "I ___ ten fingers.", "hi": "मेरी दस उँगलियाँ हैं।", "pic": "🙌" },
+          "options": [{ "text": "have" }, { "text": "has" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Play the game at home: I have …, Mummy has …", "hi": "घर पर यह खेल खेलो: I have …, Mummy has …" }
+    },
+    {
+      "key": "b.u07.l5",
+      "kind": "review",
+      "title": { "en": "Unit 7 review", "hi": "इकाई 7 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u07.l5.m-nose", "left": { "text": "nose" }, "right": { "pic": "👃" } },
+            { "key": "b.u07.l5.m-teeth", "left": { "text": "teeth" }, "right": { "pic": "🦷" } },
+            { "key": "b.u07.l5.m-leg", "left": { "text": "leg" }, "right": { "pic": "🦵" } },
+            { "key": "b.u07.l5.m-milk", "left": { "text": "milk" }, "right": { "pic": "🥛" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u07.l5.b-has", "hi": "दादी के पास एक पुरानी घड़ी है।", "pic": "🕰️", "tiles": ["old", "has", "Dadi", "clock.", "an"], "answer": "Dadi has an old clock." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u07.l5.p-has",
+              "prompt": { "en": "Meera ___ two ears.", "hi": "मीरा के दो कान हैं।", "pic": "👧" },
+              "options": [{ "text": "has" }, { "text": "have" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u07.l5.s-me", "model": "I have two eyes and two ears.", "hi": "अपने शरीर के बारे में बोलो।", "cue": { "en": "Tell me about your body.", "hi": "अपने शरीर के बारे में बताओ।" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u07.l5.c-eye",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "eye" },
+          "options": [{ "pic": "👂" }, { "pic": "👁️" }, { "pic": "👄" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u07.l5.c-soap",
+          "type": "choose",
+          "prompt": { "en": "Which word means साबुन?", "hi": "कौन-सा शब्द 'साबुन' है?" },
+          "options": [{ "text": "soap" }, { "text": "sweets" }, { "text": "teeth" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u07.l5.c-has",
+          "type": "choose",
+          "prompt": { "en": "Papa ___ a big bag.", "hi": "पापा के पास एक बड़ा बस्ता है।", "pic": "👨" },
+          "options": [{ "text": "have" }, { "text": "has" }],
+          "answer": 1,
+          "why": { "en": "Papa is he, so we say has.", "hi": "पापा = he, इसलिए has।" }
+        },
+        { "key": "b.u07.l5.c-build", "type": "build", "hi": "अपने हाथ धोओ।", "tiles": ["hands.", "your", "Wash"], "answer": "Wash your hands." },
+        {
+          "key": "b.u07.l5.c-like",
+          "type": "choose",
+          "prompt": { "en": "Do you like dal? Yes, I ___.", "hi": "क्या तुम्हें दाल पसंद है? हाँ।", "pic": "🍲" },
+          "options": [{ "text": "do" }, { "text": "am" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u07.l5.c-old",
+          "type": "choose",
+          "prompt": { "en": "My umbrella is not new. It is ___.", "hi": "मेरा छाता नया नहीं है। वह पुराना है।", "pic": "🌂" },
+          "options": [{ "text": "big" }, { "text": "old" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u07.l5.c-count",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the number.", "hi": "सुनो। संख्या पर टैप करो।", "say": "fourteen" },
+          "options": [{ "text": "14" }, { "text": "15" }, { "text": "4" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Tell Papa: I have …, you have …", "hi": "पापा को बताओ: I have …, you have …" }
+    }
+  ]
+}

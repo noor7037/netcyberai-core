@@ -1,0 +1,342 @@
+{
+  "track": "a",
+  "unit": 1,
+  "key": "a.u01",
+  "title": { "en": "Hello!", "hi": "नमस्ते!" },
+  "pic": "👋",
+  "can_do": { "en": "I can say hello and my name.", "hi": "मुझे Hello कहना और अपना नाम बताना आता है।" },
+  "lessons": [
+    {
+      "key": "a.u01.l1",
+      "kind": "words",
+      "title": { "en": "Hello words", "hi": "मिलने-जुलने के शब्द" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: sit close and say each word with your child.", "hi": "बड़ों के लिए: बच्चे के पास बैठें और हर शब्द उसके साथ मिलकर बोलें।" },
+          "pic": "👪"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u01.l1.hello", "en": "hello", "hi": "नमस्ते", "pic": "👋", "example": { "en": "Hello, Meera!", "hi": "नमस्ते, मीरा!" } },
+            { "key": "a.u01.l1.bye", "en": "bye", "hi": "टाटा, फिर मिलेंगे", "pic": "🚶", "example": { "en": "Bye, Arjun!", "hi": "टाटा, अर्जुन!" } },
+            { "key": "a.u01.l1.name", "en": "name", "hi": "नाम", "pic": "🏷️", "example": { "en": "What is your name?", "hi": "तुम्हारा नाम क्या है?" } },
+            { "key": "a.u01.l1.friend", "en": "friend", "hi": "दोस्त", "pic": "👫", "example": { "en": "Salma is my friend.", "hi": "सलमा मेरी दोस्त है।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Wave hello!", "hi": "हाथ हिलाकर Hello कहो!", "pic": "👋" },
+            { "en": "Wave bye-bye!", "hi": "हाथ हिलाकर टाटा करो!", "pic": "👋" },
+            { "en": "Hold hands with your grown-up.", "hi": "साथ बैठे बड़े का हाथ पकड़ो।", "pic": "👫" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u01.l1.t-hello",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "hello" },
+              "options": [{ "pic": "👋" }, { "pic": "🏷️" }, { "pic": "👫" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u01.l1.t-friend",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "friend" },
+              "options": [{ "pic": "🚶" }, { "pic": "👫" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u01.l1.t-bye",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "bye" },
+              "options": [{ "pic": "🏷️" }, { "pic": "👫" }, { "pic": "🚶" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u01.l1.s-hello", "model": "Hello!", "hi": "नमस्ते!", "pic": "👋" },
+            { "key": "a.u01.l1.s-bye", "model": "Bye-bye!", "hi": "टाटा!", "pic": "🚶" },
+            { "key": "a.u01.l1.s-friend", "model": "Hello, friend!", "hi": "नमस्ते, दोस्त!", "pic": "👫" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Say hello and bye to everyone at home today.", "hi": "आज बच्चे के साथ घर के सब लोगों को Hello और Bye कहें।" }
+    },
+    {
+      "key": "a.u01.l2",
+      "kind": "pattern",
+      "title": { "en": "I am …", "hi": "मैं … हूँ" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Hello! I am …", "hi": "नमस्ते! मैं … हूँ" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "Hello! I am Meera.",
+              "hi": "नमस्ते! मैं मीरा हूँ।",
+              "pic": "👧",
+              "parts": [{ "text": "Hello!", "role": "other" }, { "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "Meera.", "role": "what" }]
+            },
+            {
+              "en": "Hello! I am Arjun.",
+              "hi": "नमस्ते! मैं अर्जुन हूँ।",
+              "pic": "👦",
+              "parts": [{ "text": "Hello!", "role": "other" }, { "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "Arjun.", "role": "what" }]
+            },
+            {
+              "en": "Hello! I am Dadi.",
+              "hi": "नमस्ते! मैं दादी हूँ।",
+              "pic": "👵",
+              "parts": [{ "text": "Hello!", "role": "other" }, { "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "Dadi.", "role": "what" }]
+            }
+          ],
+          "note": { "en": "Now say your own name: I am …", "hi": "अब तुम अपना नाम बोलो: I am …" }
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Stand up tall.", "hi": "सीधे खड़े हो जाओ।", "pic": "🧍" },
+            { "en": "Point to yourself.", "hi": "अपनी तरफ़ इशारा करो।", "pic": "🙋" },
+            { "en": "Wave hello!", "hi": "हाथ हिलाकर Hello कहो!", "pic": "👋" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u01.l2.t-arjun",
+              "prompt": { "en": "Listen. Who is it?", "hi": "सुनो। यह कौन है?", "say": "Hello! I am Arjun." },
+              "options": [{ "text": "Meera", "pic": "👧" }, { "text": "Arjun", "pic": "👦" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u01.l2.t-dadi",
+              "prompt": { "en": "Listen. Who is it?", "hi": "सुनो। यह कौन है?", "say": "Hello! I am Dadi." },
+              "options": [{ "text": "Meera", "pic": "👧" }, { "text": "Dadi", "pic": "👵" }, { "text": "Arjun", "pic": "👦" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u01.l2.t-meera",
+              "prompt": { "en": "Listen. Who is it?", "hi": "सुनो। यह कौन है?", "say": "Hello! I am Meera." },
+              "options": [{ "text": "Meera", "pic": "👧" }, { "text": "Dadi", "pic": "👵" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u01.l2.s-me",
+              "model": "Hello! I am Meera.",
+              "hi": "नमस्ते कहो और अपना नाम बोलो।",
+              "pic": "🧒",
+              "cue": { "en": "What is your name?", "hi": "तुम्हारा नाम क्या है?" }
+            },
+            {
+              "key": "a.u01.l2.s-dadi",
+              "model": "Hello, Dadi!",
+              "hi": "दादी को नमस्ते कहो।",
+              "pic": "👵",
+              "cue": { "en": "Say hello to Dadi.", "hi": "दादी को Hello कहो।" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Ask: What is your name? Your child says: I am …", "hi": "बच्चे से पूछें: What is your name? बच्चा कहे: I am …" }
+    },
+    {
+      "key": "a.u01.l3",
+      "kind": "listen",
+      "title": { "en": "Friends at the well", "hi": "कुएँ पर दोस्त" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Friends at the well", "hi": "कुएँ पर दोस्त" },
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "own:well", "x": 78, "y": 22, "size": 1.8 },
+              { "pic": "🌳", "x": 12, "y": 18, "size": 2 },
+              { "pic": "👧", "x": 32, "y": 44, "size": 1.5 },
+              { "pic": "👦", "x": 46, "y": 46, "size": 1.3 },
+              { "pic": "🧕", "x": 62, "y": 44, "size": 1.5 },
+              { "pic": "🐕", "x": 88, "y": 50 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Hello! I am Meera.", "hi": "नमस्ते! मैं मीरा हूँ।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Hello! I am Salma.", "hi": "नमस्ते! मैं सलमा हूँ।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Hello! I am Arjun.", "hi": "नमस्ते! मैं अर्जुन हूँ।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Salma is my friend.", "hi": "सलमा मेरी दोस्त है।" },
+            { "speaker": "Dog", "pic": "🐕", "en": "Woof! Woof!", "hi": "भौं! भौं!" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Hello, dog!", "hi": "नमस्ते, कुत्ते जी!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u01.l3.q-friend",
+              "prompt": { "en": "Who is Meera's friend?", "hi": "मीरा की दोस्त कौन है?" },
+              "options": [{ "text": "Salma", "pic": "🧕" }, { "text": "Arjun", "pic": "👦" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u01.l3.q-woof",
+              "prompt": { "en": "Who says woof, woof?", "hi": "भौं-भौं कौन करता है?" },
+              "options": [{ "pic": "🐄" }, { "pic": "🐕" }, { "pic": "🐈" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u01.l3.s-salma", "model": "Salma is my friend.", "hi": "सलमा मेरी दोस्त है।", "pic": "👫" },
+            { "key": "a.u01.l3.s-dog", "model": "Hello, dog!", "hi": "नमस्ते, कुत्ते जी!", "pic": "🐕" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Wave to the dog.", "hi": "कुत्ते को हाथ हिलाओ।", "pic": "🐕" }, { "en": "Wave bye-bye!", "hi": "हाथ हिलाकर टाटा करो!", "pic": "👋" }]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Ask: Who is your friend? Then say together: My friend!", "hi": "बच्चे से पूछें: तुम्हारा दोस्त कौन है? फिर साथ में कहें: My friend!" }
+    },
+    {
+      "key": "a.u01.l4",
+      "kind": "speak",
+      "title": { "en": "Hello, Salma!", "hi": "नमस्ते, सलमा!" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: you speak for Salma. Wave as you talk.", "hi": "बड़ों के लिए: आप सलमा की तरफ़ से बोलें और बोलते हुए हाथ हिलाएँ।" },
+          "pic": "👋"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Hello, Salma!", "hi": "नमस्ते, सलमा!" },
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🌳", "x": 15, "y": 20, "size": 2 },
+              { "pic": "🧕", "x": 38, "y": 42, "size": 1.6 },
+              { "pic": "🧒", "x": 62, "y": 42, "size": 1.6 },
+              { "pic": "🌼", "x": 85, "y": 52 }
+            ]
+          },
+          "roles": [{ "name": "Salma", "pic": "🧕" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Hello! I am Salma.", "hi": "नमस्ते! मैं सलमा हूँ।" },
+            { "role": 1, "en": "Hello! I am Arjun.", "hi": "नमस्ते! मैं … हूँ। (अपना नाम बोलो)" },
+            { "role": 0, "en": "Let's be friends!", "hi": "चलो, दोस्त बनें!" },
+            { "role": 1, "en": "Yes! We are friends.", "hi": "हाँ! हम दोस्त हैं।" },
+            { "role": 0, "en": "Bye-bye!", "hi": "टाटा!" },
+            { "role": 1, "en": "Bye, Salma!", "hi": "टाटा, सलमा!" }
+          ],
+          "partner": { "goal": "Greet the child warmly, say your name, invite them to be friends, then say bye.", "must_use": ["hello", "I am", "friends", "bye"] }
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u01.l4.s-wave",
+              "model": "Hello! I am Arjun.",
+              "hi": "हाथ हिलाओ और अपना नाम बोलो।",
+              "pic": "👋",
+              "cue": { "en": "Wave and say your name.", "hi": "हाथ हिलाकर अपना परिचय दो।" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "At dinner, take turns: Hello! I am …", "hi": "खाने के समय सब बारी-बारी कहें: Hello! I am …" }
+    },
+    {
+      "key": "a.u01.l5",
+      "kind": "review",
+      "title": { "en": "Hello again!", "hi": "फिर से नमस्ते!" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Wave hello!", "hi": "हाथ हिलाकर Hello कहो!", "pic": "👋" },
+            { "en": "Wave bye-bye!", "hi": "हाथ हिलाकर टाटा करो!", "pic": "👋" },
+            { "en": "Clap your hands!", "hi": "ताली बजाओ!", "pic": "👏" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u01.l5.t-hello",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "hello" },
+              "options": [{ "pic": "🏷️" }, { "pic": "👋" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u01.l5.t-friend",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "friend" },
+              "options": [{ "pic": "👫" }, { "pic": "🚶" }, { "pic": "🏷️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u01.l5.t-bye",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "bye" },
+              "options": [{ "pic": "👫" }, { "pic": "🚶" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u01.l5.t-salma",
+              "prompt": { "en": "Listen. Who is it?", "hi": "सुनो। यह कौन है?", "say": "Hello! I am Salma." },
+              "options": [{ "text": "Meera", "pic": "👧" }, { "text": "Salma", "pic": "🧕" }, { "text": "Dadi", "pic": "👵" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u01.l5.s-me",
+              "model": "Hello! I am Meera.",
+              "hi": "नमस्ते कहो और अपना नाम बताओ।",
+              "pic": "🙋",
+              "cue": { "en": "Who are you?", "hi": "तुम कौन हो?" }
+            },
+            {
+              "key": "a.u01.l5.s-bye",
+              "model": "Bye-bye, friend!",
+              "hi": "दोस्त को टाटा कहो।",
+              "pic": "👫",
+              "cue": { "en": "Your friend is going home.", "hi": "तुम्हारा दोस्त घर जा रहा है।" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Every morning, greet your child: Hello!", "hi": "रोज़ सुबह बच्चे को अंग्रेज़ी में Hello कहें, और जाते समय Bye।" }
+    }
+  ]
+}

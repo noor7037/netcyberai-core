@@ -1,0 +1,653 @@
+{
+  "track": "c",
+  "unit": 9,
+  "key": "c.u09",
+  "title": { "en": "Review and check", "hi": "दोहराई और जाँच" },
+  "pic": "🏆",
+  "can_do": { "en": "I can tell a short picture story.", "hi": "मैं तस्वीरों से छोटी कहानी सुना सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u09.l1",
+      "kind": "words",
+      "title": { "en": "Story order words", "hi": "कहानी के क्रम वाले शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "A good story goes in order. These words help you tell it.",
+            "hi": "अच्छी कहानी एक क्रम में चलती है। ये शब्द उसे सुनाने में मदद करते हैं।"
+          },
+          "pic": "📖"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u09.l1.story",
+              "en": "story",
+              "hi": "कहानी",
+              "pic": "📖",
+              "example": { "en": "Dadi tells us a story every night.", "hi": "दादी हर रात हमें कहानी सुनाती हैं।" }
+            },
+            {
+              "key": "c.u09.l1.picture",
+              "en": "picture",
+              "hi": "तस्वीर, चित्र",
+              "pic": "📷",
+              "example": { "en": "Look at the four pictures.", "hi": "चारों तस्वीरें देखो।" }
+            },
+            {
+              "key": "c.u09.l1.first",
+              "en": "first",
+              "hi": "सबसे पहले",
+              "pic": "1️⃣",
+              "example": { "en": "First, Arjun opened the gate.", "hi": "सबसे पहले अर्जुन ने फाटक खोला।" }
+            },
+            {
+              "key": "c.u09.l1.next",
+              "en": "next",
+              "hi": "इसके बाद",
+              "pic": "2️⃣",
+              "example": { "en": "Next, the goat jumped out.", "hi": "इसके बाद बकरी कूदकर बाहर आ गई।" }
+            },
+            {
+              "key": "c.u09.l1.then",
+              "en": "then",
+              "hi": "फिर",
+              "pic": "3️⃣",
+              "example": { "en": "Then it walked to the field.", "hi": "फिर वह खेत की ओर चली गई।" }
+            },
+            {
+              "key": "c.u09.l1.after-that",
+              "en": "after that",
+              "hi": "उसके बाद",
+              "pic": "4️⃣",
+              "example": { "en": "After that, it rested in the shade.", "hi": "उसके बाद वह छाँव में आराम करने लगी।" }
+            },
+            {
+              "key": "c.u09.l1.finally",
+              "en": "finally",
+              "hi": "आख़िर में",
+              "pic": "5️⃣",
+              "example": { "en": "Finally, the goat walked home.", "hi": "आख़िर में बकरी घर लौट आई।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u09.l1.m-first", "left": { "text": "first" }, "right": { "pic": "1️⃣" } },
+            { "key": "c.u09.l1.m-then", "left": { "text": "then" }, "right": { "pic": "3️⃣" } },
+            { "key": "c.u09.l1.m-finally", "left": { "text": "finally" }, "right": { "pic": "5️⃣" } },
+            { "key": "c.u09.l1.m-story", "left": { "text": "story" }, "right": { "pic": "📖" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u09.l1.p-first",
+              "prompt": { "en": "Which word starts a story?" },
+              "options": [{ "text": "Finally" }, { "text": "Then" }, { "text": "First" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u09.l1.p-last",
+              "prompt": { "en": "Which word ends a story?" },
+              "options": [{ "text": "Next" }, { "text": "Finally" }, { "text": "First" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u09.l1.s-first", "model": "First, Arjun opened the gate.", "pic": "1️⃣" },
+            { "key": "c.u09.l1.s-then", "model": "Then it walked to the field.", "pic": "3️⃣" },
+            { "key": "c.u09.l1.s-finally", "model": "Finally, the goat walked home.", "pic": "5️⃣" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u09.l1.c-finally",
+          "type": "choose",
+          "prompt": { "en": "Which word means आख़िर में?" },
+          "options": [{ "text": "finally" }, { "text": "first" }, { "text": "next" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u09.l1.c-order",
+          "type": "choose",
+          "prompt": { "en": "First, next, then, ___, finally." },
+          "options": [{ "text": "first" }, { "text": "after that" }, { "text": "story" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u09.l1.c-picture",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "picture" },
+          "options": [{ "pic": "📖" }, { "pic": "📷" }, { "pic": "5️⃣" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u09.l1.c-story",
+          "type": "choose",
+          "prompt": { "en": "Dadi tells us a ___ every night." },
+          "options": [{ "text": "story" }, { "text": "picture" }, { "text": "gate" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u09.l1.c-then",
+          "type": "choose",
+          "prompt": { "en": "Which word means फिर?" },
+          "options": [{ "text": "first" }, { "text": "then" }, { "text": "finally" }],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Tell someone what you did this morning: First … Then … Finally …",
+        "hi": "किसी को बताओ कि आज सुबह तुमने क्या किया: First … Then … Finally …"
+      }
+    },
+    {
+      "key": "c.u09.l2",
+      "kind": "pattern",
+      "title": { "en": "Patterns from units 1 to 8", "hi": "इकाई 1 से 8 के पैटर्न" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Eight patterns you know", "hi": "तुम्हारे आठ जाने-पहचाने पैटर्न" },
+          "visual": "cards",
+          "examples": [
+            { "en": "I am Meera, and I like reading.", "hi": "मैं मीरा हूँ, और मुझे पढ़ना पसंद है।", "pic": "🙋" },
+            { "en": "Arjun usually feeds the hens.", "hi": "अर्जुन आमतौर पर मुर्गियों को दाना डालता है।", "pic": "🐔" },
+            { "en": "Look! The dog is chasing the goat.", "hi": "देखो! कुत्ता बकरी का पीछा कर रहा है।", "pic": "🐕" },
+            { "en": "Where does Salma live?", "hi": "सलमा कहाँ रहती है?", "pic": "❓" },
+            { "en": "There is a well behind the temple.", "hi": "मंदिर के पीछे एक कुआँ है।", "pic": "own:well" },
+            { "en": "How much is a kilo of rice?", "hi": "एक किलो चावल कितने का है?", "pic": "🛒" },
+            { "en": "You should drink clean water.", "hi": "तुम्हें साफ़ पानी पीना चाहिए।", "pic": "🩺" },
+            { "en": "We visited Nani last Sunday.", "hi": "हम पिछले रविवार नानी से मिलने गए।", "pic": "📆" }
+          ],
+          "note": {
+            "en": "Each card shows one pattern. Say it aloud, then make one more sentence like it.",
+            "hi": "हर कार्ड एक पैटर्न दिखाता है। उसे बोलो, फिर वैसा ही एक नया वाक्य बनाओ।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u09.l2.b-kites",
+              "hi": "क्या अर्जुन को पतंग उड़ाना पसंद है?",
+              "pic": "🪁",
+              "tiles": ["like", "Arjun", "kites?", "Does", "flying"],
+              "answer": "Does Arjun like flying kites?"
+            },
+            {
+              "key": "c.u09.l2.b-helping",
+              "hi": "मीरा रसोई में दादी की मदद कर रही है।",
+              "pic": "👵",
+              "tiles": ["the", "kitchen.", "Meera", "helping", "is", "Dadi", "in"],
+              "answer": "Meera is helping Dadi in the kitchen."
+            },
+            {
+              "key": "c.u09.l2.b-cleaned",
+              "hi": "हमने शनिवार को घर साफ़ किया।",
+              "pic": "🧹",
+              "tiles": ["house", "on", "cleaned", "We", "the", "Saturday."],
+              "answer": "We cleaned the house on Saturday."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u09.l2.p-likes",
+              "prompt": { "en": "Salma ___ drawing birds." },
+              "options": [{ "text": "likes" }, { "text": "like" }, { "text": "liking" }],
+              "answer": 0,
+              "why": { "en": "With he, she or a name, add -s.", "hi": "he, she या नाम के साथ -s लगता है।" }
+            },
+            {
+              "key": "c.u09.l2.p-visited",
+              "prompt": { "en": "Yesterday, we ___ the temple." },
+              "options": [{ "text": "visit" }, { "text": "visited" }, { "text": "visiting" }],
+              "answer": 1,
+              "why": { "en": "It is in the past, so add -ed.", "hi": "बात बीते समय की है, इसलिए -ed लगाओ।" }
+            },
+            {
+              "key": "c.u09.l2.p-shouldnt",
+              "prompt": { "en": "You ___ eat food with dirty hands." },
+              "options": [{ "text": "should" }, { "text": "shouldn't" }, { "text": "did" }],
+              "answer": 1,
+              "why": { "en": "Dirty hands can make us ill.", "hi": "गंदे हाथों से हम बीमार हो सकते हैं।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u09.l2.s-me", "model": "I am eleven years old. I like playing cricket.", "cue": { "en": "Tell us about you in two sentences." } },
+            { "key": "c.u09.l2.s-village", "model": "There is a temple, and there are three shops.", "cue": { "en": "Tell us about your village." } },
+            { "key": "c.u09.l2.s-yesterday", "model": "Yesterday, I helped my father in the field.", "cue": { "en": "What did you do yesterday?" } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u09.l2.c-b1",
+          "type": "build",
+          "hi": "कृपया बताइए, डाकघर कहाँ है?",
+          "pic": "🏤",
+          "tiles": ["is", "office,", "the", "Where", "post", "please?"],
+          "answer": "Where is the post office, please?"
+        },
+        {
+          "key": "c.u09.l2.c-b2",
+          "type": "build",
+          "hi": "तुम्हें कितने अंडे चाहिए?",
+          "pic": "🥚",
+          "tiles": ["you", "How", "do", "need?", "many", "eggs"],
+          "answer": "How many eggs do you need?"
+        },
+        {
+          "key": "c.u09.l2.c-is",
+          "type": "choose",
+          "prompt": { "en": "Meera ___ eleven years old." },
+          "options": [{ "text": "is" }, { "text": "am" }, { "text": "are" }],
+          "answer": 0,
+          "why": { "en": "With a name, use is.", "hi": "किसी नाम के साथ is आता है।" }
+        },
+        {
+          "key": "c.u09.l2.c-now",
+          "type": "choose",
+          "prompt": { "en": "Right now, Arjun ___ his homework." },
+          "options": [{ "text": "is doing" }, { "text": "does" }, { "text": "did" }],
+          "answer": 0,
+          "why": { "en": "Right now: is + -ing.", "hi": "अभी: is + -ing." }
+        },
+        {
+          "key": "c.u09.l2.c-habit",
+          "type": "choose",
+          "prompt": { "en": "Every morning, Ravi ___ his shop at seven." },
+          "options": [{ "text": "is opening" }, { "text": "opened" }, { "text": "opens" }],
+          "answer": 2,
+          "why": { "en": "Every morning is a habit: opens.", "hi": "हर सुबह = आदत, इसलिए opens." }
+        },
+        {
+          "key": "c.u09.l2.c-any",
+          "type": "choose",
+          "prompt": { "en": "Do you have ___ onions?" },
+          "options": [{ "text": "some" }, { "text": "any" }, { "text": "much" }],
+          "answer": 1,
+          "why": { "en": "In a question, use any.", "hi": "सवाल में any आता है।" }
+        }
+      ],
+      "home": { "en": "Teach a family member one English sentence from this unit.", "hi": "इस इकाई का एक अंग्रेज़ी वाक्य घर के किसी सदस्य को सिखाओ।" }
+    },
+    {
+      "key": "c.u09.l3",
+      "kind": "listen",
+      "title": { "en": "Where is Chhotu?", "hi": "छोटू कहाँ है?" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "The lost goat", "hi": "खोई हुई बकरी" },
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🏠", "x": 12, "y": 16, "size": 1.6 },
+              { "pic": "🐐", "x": 74, "y": 48, "size": 1.3 },
+              { "pic": "👦", "x": 26, "y": 44, "size": 1.4 },
+              { "pic": "👧", "x": 40, "y": 44, "size": 1.4 },
+              { "pic": "🏪", "x": 54, "y": 18, "size": 1.4 },
+              { "pic": "🛕", "x": 84, "y": 18, "size": 1.5 },
+              { "pic": "own:well", "x": 88, "y": 44, "size": 1.2 }
+            ]
+          },
+          "lines": [
+            { "pic": "🚪", "en": "One morning, Arjun opened the gate of the goat shed." },
+            { "pic": "🐐", "en": "Chhotu, the little goat, jumped out and walked away." },
+            { "pic": "1️⃣", "en": "First, Arjun looked behind the house. No goat!" },
+            { "pic": "2️⃣", "en": "Next, Meera asked Ravi uncle at the shop." },
+            { "speaker": "Ravi", "pic": "👨", "en": "Yes, I noticed a little goat. It walked to the temple." },
+            { "pic": "3️⃣", "en": "Then they hurried to the temple and looked everywhere." },
+            { "pic": "4️⃣", "en": "After that, they stopped and listened near the well." },
+            { "pic": "🐐", "en": "Maa! Maa! Chhotu called from behind the well." },
+            { "pic": "5️⃣", "en": "Finally, Arjun picked him up and carried him home." },
+            { "speaker": "Arjun", "pic": "👦", "en": "Next time, I will close the gate!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u09.l3.p-open",
+              "prompt": { "en": "Who opened the gate?" },
+              "options": [{ "text": "Meera" }, { "text": "Arjun" }, { "text": "Dadi" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u09.l3.p-first",
+              "prompt": { "en": "Where did Arjun look first?" },
+              "options": [{ "text": "behind the house" }, { "text": "at the temple" }, { "text": "in the shop" }],
+              "answer": 0
+            },
+            {
+              "key": "c.u09.l3.p-ravi",
+              "prompt": { "en": "Who did Meera ask?" },
+              "options": [{ "text": "Ravi uncle" }, { "text": "Ms Anita" }, { "text": "Dr Khan" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u09.l3.s-first", "model": "First, Arjun looked behind the house.", "pic": "1️⃣" },
+            { "key": "c.u09.l3.s-finally", "model": "Finally, Arjun picked him up and carried him home.", "pic": "5️⃣" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u09.l3.c-who",
+          "type": "choose",
+          "prompt": { "en": "Who is Chhotu?" },
+          "options": [{ "text": "a dog" }, { "text": "a little goat" }, { "text": "a boy" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u09.l3.c-where",
+          "type": "choose",
+          "prompt": { "en": "Where was Chhotu at the end?" },
+          "options": [{ "text": "in the shop" }, { "text": "in the river" }, { "text": "behind the well" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u09.l3.c-order",
+          "type": "choose",
+          "prompt": { "en": "What happened after Meera asked Ravi uncle?" },
+          "options": [{ "text": "Arjun opened the gate." }, { "text": "Chhotu jumped out." }, { "text": "They hurried to the temple." }],
+          "answer": 2
+        },
+        {
+          "key": "c.u09.l3.c-carry",
+          "type": "choose",
+          "prompt": { "en": "How did Chhotu get home?" },
+          "options": [{ "text": "He walked alone." }, { "text": "Ravi uncle drove him." }, { "text": "Arjun carried him." }],
+          "answer": 2
+        },
+        {
+          "key": "c.u09.l3.c-next",
+          "type": "choose",
+          "prompt": { "en": "What will Arjun do next time?" },
+          "options": [{ "text": "open the gate" }, { "text": "close the gate" }, { "text": "sell the goat" }],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Tell the story of Chhotu to your family with First, Next, Then and Finally.",
+        "hi": "छोटू की कहानी घरवालों को First, Next, Then और Finally के साथ सुनाओ।"
+      }
+    },
+    {
+      "key": "c.u09.l4",
+      "kind": "speak",
+      "title": { "en": "A picture story", "hi": "चित्र-कहानी" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Look at the four pictures from left to right. Tell the story with First, Next, Then and Finally.",
+            "hi": "चारों तस्वीरें बाएँ से दाएँ देखो। First, Next, Then और Finally के साथ कहानी सुनाओ।"
+          },
+          "pic": "📷"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "field",
+            "pics": [
+              { "pic": "1️⃣", "x": 8, "y": 6, "size": 0.8 },
+              { "pic": "👧", "x": 12, "y": 34, "size": 1.3 },
+              { "pic": "🧺", "x": 20, "y": 46, "size": 0.9 },
+              { "pic": "2️⃣", "x": 32, "y": 6, "size": 0.8 },
+              { "pic": "🥭", "x": 34, "y": 26, "size": 1.2 },
+              { "pic": "🌳", "x": 42, "y": 40, "size": 1.8 },
+              { "pic": "3️⃣", "x": 56, "y": 6, "size": 0.8 },
+              { "pic": "🐒", "x": 62, "y": 32, "size": 1.3 },
+              { "pic": "🥭", "x": 70, "y": 46, "size": 0.9 },
+              { "pic": "4️⃣", "x": 82, "y": 6, "size": 0.8 },
+              { "pic": "👵", "x": 86, "y": 34, "size": 1.3 },
+              { "pic": "😄", "x": 94, "y": 46, "size": 0.9 }
+            ]
+          },
+          "questions": [
+            { "key": "c.u09.l4.q-1", "en": "Picture 1: Where did Meera walk?", "model": "First, Meera walked to the field with a basket." },
+            { "key": "c.u09.l4.q-2", "en": "Picture 2: What did she pick?", "model": "Next, she picked mangoes from the tree." },
+            { "key": "c.u09.l4.q-3", "en": "Picture 3: What did the monkey do?", "model": "Then a monkey jumped down and grabbed a mango!" },
+            { "key": "c.u09.l4.q-4", "en": "Picture 4: How did the story end?", "model": "Finally, Meera and Dadi laughed and shared the mangoes." }
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u09.l4.br-basket",
+              "hi": "सबसे पहले, मीरा ने टोकरी उठाई।",
+              "tiles": ["up", "Meera", "First,", "basket.", "the", "picked"],
+              "answer": "First, Meera picked up the basket."
+            },
+            {
+              "key": "c.u09.l4.br-monkey",
+              "hi": "फिर एक बंदर पेड़ से कूदा।",
+              "tiles": ["a", "monkey", "from", "tree.", "jumped", "Then", "the"],
+              "answer": "Then a monkey jumped from the tree."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "describe",
+          "prompts": [
+            {
+              "key": "c.u09.l4.s-all",
+              "model": "First, she picked mangoes. Then a monkey grabbed one. Finally, they laughed.",
+              "cue": { "en": "Now tell the whole story in your own words." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u09.l4.c-start",
+          "type": "choose",
+          "prompt": { "en": "Which word starts the story?" },
+          "options": [{ "text": "Finally" }, { "text": "After that" }, { "text": "First" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u09.l4.c-b",
+          "type": "build",
+          "hi": "फिर एक बंदर ने एक आम झपट लिया।",
+          "pic": "🐒",
+          "tiles": ["grabbed", "Then", "mango.", "a", "a", "monkey"],
+          "answer": "Then a monkey grabbed a mango."
+        },
+        {
+          "key": "c.u09.l4.c-ed",
+          "type": "choose",
+          "prompt": { "en": "Meera ___ to the field with a basket." },
+          "options": [{ "text": "walked" }, { "text": "walks" }, { "text": "walking" }],
+          "answer": 0,
+          "why": { "en": "It is in the past, so add -ed.", "hi": "बात बीते समय की है, इसलिए -ed लगाओ।" }
+        },
+        {
+          "key": "c.u09.l4.c-end",
+          "type": "choose",
+          "prompt": { "en": "How does the story end?" },
+          "options": [{ "text": "The monkey cooked dinner." }, { "text": "Meera went to school." }, { "text": "They laughed and shared the mangoes." }],
+          "answer": 2
+        }
+      ],
+      "home": { "en": "Draw four small pictures of your day and tell the story.", "hi": "अपने दिन की चार छोटी तस्वीरें बनाओ और उनकी कहानी सुनाओ।" }
+    },
+    {
+      "key": "c.u09.l5",
+      "kind": "review",
+      "title": { "en": "Big review: units 1 to 8", "hi": "बड़ी दोहराई: इकाई 1 से 8" },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u09.l5.m-hobby", "left": { "text": "hobby" }, "right": { "pic": "🧩" } },
+            { "key": "c.u09.l5.m-early", "left": { "text": "early" }, "right": { "pic": "🐓" } },
+            { "key": "c.u09.l5.m-well", "left": { "text": "well" }, "right": { "pic": "own:well" } },
+            { "key": "c.u09.l5.m-favourite", "left": { "text": "favourite" }, "right": { "pic": "⭐" } },
+            { "key": "c.u09.l5.m-bridge", "left": { "text": "bridge" }, "right": { "pic": "🌉" } },
+            { "key": "c.u09.l5.m-packet", "left": { "text": "packet" }, "right": { "pic": "📦" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u09.l5.b-sing",
+              "hi": "मेरी सबसे अच्छी दोस्त को गाना पसंद है।",
+              "pic": "🎤",
+              "tiles": ["singing.", "friend", "best", "My", "likes"],
+              "answer": "My best friend likes singing."
+            },
+            {
+              "key": "c.u09.l5.b-health",
+              "hi": "स्वास्थ्य केंद्र मंदिर के बगल में है।",
+              "pic": "🏥",
+              "tiles": ["to", "the", "temple.", "next", "is", "health", "centre", "The"],
+              "answer": "The health centre is next to the temple."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u09.l5.p-when",
+              "prompt": { "en": "___ do you go to bed? At nine." },
+              "options": [{ "text": "Where" }, { "text": "Who" }, { "text": "When" }],
+              "answer": 2,
+              "why": { "en": "When asks about time.", "hi": "when समय के बारे में पूछता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u09.l5.s-me",
+              "model": "I am Kiran. I am ten. Yesterday, I played cricket.",
+              "cue": { "en": "Introduce yourself, and say what you did yesterday." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u09.l5.c-u1",
+          "type": "choose",
+          "prompt": { "en": "Meera ___ a little brother." },
+          "options": [{ "text": "has" }, { "text": "have" }, { "text": "is" }],
+          "answer": 0,
+          "why": { "en": "With he, she or a name, use has.", "hi": "he, she या नाम के साथ has." }
+        },
+        {
+          "key": "c.u09.l5.c-u2",
+          "type": "choose",
+          "prompt": { "en": "We ___ go to school late." },
+          "options": [{ "text": "never" }, { "text": "are" }, { "text": "does" }],
+          "answer": 0,
+          "why": { "en": "Never means not at any time.", "hi": "never का मतलब है कभी नहीं।" }
+        },
+        {
+          "key": "c.u09.l5.c-u3",
+          "type": "choose",
+          "prompt": { "en": "Look! The children ___ in the rain." },
+          "options": [{ "text": "dance" }, { "text": "danced" }, { "text": "are dancing" }],
+          "answer": 2,
+          "why": { "en": "It is happening now: are + -ing.", "hi": "अभी हो रहा है: are + -ing." }
+        },
+        {
+          "key": "c.u09.l5.c-u4",
+          "type": "choose",
+          "prompt": { "en": "___ Salma like mangoes?" },
+          "options": [{ "text": "Does" }, { "text": "Do" }, { "text": "Is" }],
+          "answer": 0,
+          "why": { "en": "With a name, use does.", "hi": "किसी नाम के साथ does." }
+        },
+        {
+          "key": "c.u09.l5.c-u5",
+          "type": "choose",
+          "prompt": { "en": "There ___ a bridge over the river." },
+          "options": [{ "text": "are" }, { "text": "am" }, { "text": "is" }],
+          "answer": 2,
+          "why": { "en": "One bridge, so there is.", "hi": "एक पुल, इसलिए there is." }
+        },
+        {
+          "key": "c.u09.l5.c-u6",
+          "type": "choose",
+          "prompt": { "en": "How ___ eggs do you want?" },
+          "options": [{ "text": "much" }, { "text": "many" }, { "text": "any" }],
+          "answer": 1,
+          "why": { "en": "We can count eggs, so how many.", "hi": "अंडे गिन सकते हैं, इसलिए how many." }
+        },
+        {
+          "key": "c.u09.l5.c-u7",
+          "type": "choose",
+          "prompt": { "en": "You have a fever. You ___ rest." },
+          "options": [{ "text": "should" }, { "text": "shouldn't" }, { "text": "did" }],
+          "answer": 0,
+          "why": { "en": "Rest helps when you are ill.", "hi": "बीमारी में आराम मदद करता है।" }
+        },
+        {
+          "key": "c.u09.l5.c-u8",
+          "type": "choose",
+          "prompt": { "en": "Last week, we ___ a tree." },
+          "options": [{ "text": "plant" }, { "text": "planting" }, { "text": "planted" }],
+          "answer": 2,
+          "why": { "en": "It is in the past, so add -ed.", "hi": "बात बीते समय की है, इसलिए -ed लगाओ।" }
+        },
+        {
+          "key": "c.u09.l5.c-b1",
+          "type": "build",
+          "hi": "सबसे पहले अर्जुन ने फाटक खोला।",
+          "pic": "1️⃣",
+          "tiles": ["opened", "Arjun", "First,", "gate.", "the"],
+          "answer": "First, Arjun opened the gate."
+        },
+        {
+          "key": "c.u09.l5.c-b2",
+          "type": "build",
+          "hi": "क्या तुमने अपना गृहकार्य पूरा किया?",
+          "pic": "📝",
+          "tiles": ["homework?", "Did", "you", "your", "finish"],
+          "answer": "Did you finish your homework?"
+        }
+      ],
+      "home": {
+        "en": "You are halfway through the course! Tell your family one thing you can say now.",
+        "hi": "तुमने आधा कोर्स पूरा कर लिया! घरवालों को बताओ कि अब तुम क्या बोल सकते हो।"
+      }
+    }
+  ]
+}

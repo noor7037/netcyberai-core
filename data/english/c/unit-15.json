@@ -1,0 +1,663 @@
+{
+  "track": "c",
+  "unit": 15,
+  "key": "c.u15",
+  "title": { "en": "On the phone", "hi": "फ़ोन पर" },
+  "pic": "📱",
+  "can_do": { "en": "I can make a polite phone call.", "hi": "मैं फ़ोन पर विनम्रता से बात कर सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u15.l1",
+      "kind": "words",
+      "title": { "en": "Phone words", "hi": "फ़ोन के शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Phone calls need clear and polite words. Let's learn them.", "hi": "फ़ोन पर साफ़ और विनम्र शब्द चाहिए। चलो सीखें।" },
+          "pic": "📱"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u15.l1.call",
+              "en": "call",
+              "hi": "फ़ोन करना",
+              "pic": "📱",
+              "example": { "en": "I will call you in the evening.", "hi": "मैं तुम्हें शाम को फ़ोन करूँगा/करूँगी।" }
+            },
+            {
+              "key": "c.u15.l1.speak-to",
+              "en": "speak to",
+              "hi": "से बात करना",
+              "pic": "☎️",
+              "example": { "en": "May I speak to Salma, please?", "hi": "क्या मैं सलमा से बात कर सकती हूँ?" }
+            },
+            {
+              "key": "c.u15.l1.hold-on",
+              "en": "hold on",
+              "hi": "रुकिए, लाइन पर रहिए",
+              "pic": "⏸️",
+              "example": { "en": "Please hold on. I will get her.", "hi": "कृपया रुकिए। मैं उसे बुलाती हूँ।" }
+            },
+            {
+              "key": "c.u15.l1.message",
+              "en": "message",
+              "hi": "संदेश",
+              "pic": "📨",
+              "example": { "en": "Can I leave a message?", "hi": "क्या मैं एक संदेश छोड़ सकता/सकती हूँ?" }
+            },
+            {
+              "key": "c.u15.l1.later",
+              "en": "later",
+              "hi": "बाद में",
+              "pic": "⏳",
+              "example": { "en": "Please call again later.", "hi": "कृपया बाद में फिर फ़ोन करना।" }
+            },
+            {
+              "key": "c.u15.l1.invite",
+              "en": "invite",
+              "hi": "बुलाना, न्योता देना",
+              "pic": "✉️",
+              "example": { "en": "I want to invite you to my house.", "hi": "मैं तुम्हें अपने घर बुलाना चाहती हूँ।" }
+            },
+            {
+              "key": "c.u15.l1.birthday",
+              "en": "birthday",
+              "hi": "जन्मदिन",
+              "pic": "🎂",
+              "example": { "en": "Arjun's birthday is on Sunday.", "hi": "अर्जुन का जन्मदिन रविवार को है।" }
+            },
+            {
+              "key": "c.u15.l1.of-course",
+              "en": "of course",
+              "hi": "ज़रूर",
+              "pic": "👍",
+              "example": { "en": "Of course! I will come.", "hi": "ज़रूर! मैं आऊँगी।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u15.l1.m-call", "left": { "text": "call" }, "right": { "pic": "📱" } },
+            { "key": "c.u15.l1.m-message", "left": { "text": "message" }, "right": { "pic": "📨" } },
+            { "key": "c.u15.l1.m-invite", "left": { "text": "invite" }, "right": { "pic": "✉️" } },
+            { "key": "c.u15.l1.m-birthday", "left": { "text": "birthday" }, "right": { "pic": "🎂" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u15.l1.p-hold",
+              "prompt": { "en": "Which words mean रुकिए, लाइन पर रहिए?" },
+              "options": [{ "text": "later" }, { "text": "hold on" }, { "text": "of course" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u15.l1.p-later",
+              "prompt": { "en": "Listen. Tap the picture.", "say": "later" },
+              "options": [{ "pic": "🎂" }, { "pic": "⏳" }, { "pic": "📨" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u15.l1.s-speak", "model": "May I speak to Salma, please?", "pic": "☎️" },
+            { "key": "c.u15.l1.s-hold", "model": "Please hold on. I will get her.", "pic": "⏸️" },
+            { "key": "c.u15.l1.s-message", "model": "Can I leave a message?", "pic": "📨" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u15.l1.c-message",
+          "type": "choose",
+          "prompt": { "en": "Which word means संदेश?" },
+          "options": [{ "text": "birthday" }, { "text": "message" }, { "text": "call" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u15.l1.c-invite",
+          "type": "choose",
+          "prompt": { "en": "I want to ___ you to my birthday." },
+          "options": [{ "text": "hold" }, { "text": "borrow" }, { "text": "invite" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u15.l1.c-ofc",
+          "type": "choose",
+          "prompt": { "en": "Can you come? ___! I would love to." },
+          "options": [{ "text": "Hold on" }, { "text": "Later" }, { "text": "Of course" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u15.l1.c-call",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "call" },
+          "options": [{ "pic": "📱" }, { "pic": "✉️" }, { "pic": "⏸️" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u15.l1.c-later",
+          "type": "choose",
+          "prompt": { "en": "Salma is not at home. Please call ___." },
+          "options": [{ "text": "birthday" }, { "text": "later" }, { "text": "message" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Practise answering the phone: Hello, this is …", "hi": "फ़ोन उठाने का अभ्यास करो: Hello, this is …" }
+    },
+    {
+      "key": "c.u15.l2",
+      "kind": "pattern",
+      "title": { "en": "would like; polite requests", "hi": "would like: विनम्र अनुरोध" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Polite ways to ask and invite", "hi": "पूछने और बुलाने के विनम्र तरीक़े" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "I would like to speak to Salma, please.",
+              "hi": "मैं सलमा से बात करना चाहूँगी।",
+              "parts": [
+                { "text": "I", "role": "who" },
+                { "text": "would like", "role": "do" },
+                { "text": "to speak to Salma,", "role": "what" },
+                { "text": "please.", "role": "other" }
+              ],
+              "pic": "☎️"
+            },
+            {
+              "en": "Would you like to come to my house?",
+              "hi": "क्या तुम मेरे घर आना चाहोगी?",
+              "parts": [
+                { "text": "Would", "role": "ask" },
+                { "text": "you", "role": "who" },
+                { "text": "like", "role": "do" },
+                { "text": "to come", "role": "what" },
+                { "text": "to my house?", "role": "where" }
+              ],
+              "pic": "🏠"
+            },
+            {
+              "en": "I'd like two kilos of rice, please.",
+              "hi": "मुझे दो किलो चावल चाहिए।",
+              "parts": [
+                { "text": "I'd", "role": "who" },
+                { "text": "like", "role": "do" },
+                { "text": "two kilos of rice,", "role": "what" },
+                { "text": "please.", "role": "other" }
+              ],
+              "pic": "🍚"
+            },
+            {
+              "en": "Would you like some tea? Yes, please.",
+              "hi": "क्या आप चाय लेंगे? हाँ, ज़रूर।",
+              "parts": [
+                { "text": "Would", "role": "ask" },
+                { "text": "you", "role": "who" },
+                { "text": "like", "role": "do" },
+                { "text": "some tea?", "role": "what" },
+                { "text": "Yes, please.", "role": "other" }
+              ],
+              "pic": "🍵"
+            },
+            {
+              "en": "Could you ask her to call me back?",
+              "hi": "क्या आप उससे मुझे वापस फ़ोन करने को कहेंगी?",
+              "parts": [
+                { "text": "Could", "role": "ask" },
+                { "text": "you", "role": "who" },
+                { "text": "ask her", "role": "do" },
+                { "text": "to call me back?", "role": "what" }
+              ],
+              "pic": "📱"
+            }
+          ],
+          "note": {
+            "en": "I would like (I'd like) is a polite I want. Would you like …? is a polite offer or invitation.",
+            "hi": "I would like (I'd like) = विनम्र 'मुझे चाहिए'। Would you like …? = विनम्र पेशकश या न्योता।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u15.l2.b-water",
+              "hi": "क्या तुम थोड़ा पानी लोगे?",
+              "pic": "💧",
+              "tiles": ["water?", "like", "some", "Would", "you"],
+              "answer": "Would you like some water?"
+            },
+            {
+              "key": "c.u15.l2.b-message",
+              "hi": "मैं एक संदेश छोड़ना चाहूँगा/चाहूँगी।",
+              "pic": "📨",
+              "tiles": ["message.", "would", "to", "a", "like", "leave", "I"],
+              "answer": "I would like to leave a message."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u15.l2.p-would",
+              "prompt": { "en": "___ you like to come to the fair?" },
+              "options": [{ "text": "Are" }, { "text": "Is" }, { "text": "Would" }],
+              "answer": 2,
+              "why": { "en": "Would you like is a polite invitation.", "hi": "would you like = विनम्र न्योता।" }
+            },
+            {
+              "key": "c.u15.l2.p-to",
+              "prompt": { "en": "I would like ___ to Ms Anita, please." },
+              "options": [{ "text": "to speak" }, { "text": "speak" }, { "text": "speaking" }],
+              "answer": 0,
+              "why": { "en": "After would like, use to + the doing word.", "hi": "would like के बाद to + काम वाला शब्द आता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u15.l2.s-invite", "model": "Would you like to play cricket with us?", "cue": { "en": "Invite a friend to play cricket." } },
+            { "key": "c.u15.l2.s-shop", "model": "I would like a packet of salt, please.", "cue": { "en": "Ask for something politely at a shop." } },
+            { "key": "c.u15.l2.s-yes", "model": "Yes, please. Thank you very much!", "cue": { "en": "A friend offers you a sweet. Say yes politely." } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u15.l2.c-b1",
+          "type": "build",
+          "hi": "क्या तुम मेरे घर आना चाहोगे?",
+          "pic": "🏠",
+          "tiles": ["house?", "you", "to", "Would", "to", "come", "like", "my"],
+          "answer": "Would you like to come to my house?"
+        },
+        {
+          "key": "c.u15.l2.c-b2",
+          "type": "build",
+          "hi": "मुझे थोड़ी चाय चाहिए।",
+          "pic": "🍵",
+          "tiles": ["like", "some", "tea,", "please.", "I'd"],
+          "answer": "I'd like some tea, please."
+        },
+        {
+          "key": "c.u15.l2.c-offer",
+          "type": "choose",
+          "prompt": { "en": "Which one is an invitation?" },
+          "options": [{ "text": "I would like rice." }, { "text": "Would you like to come?" }, { "text": "Hold on, please." }],
+          "answer": 1
+        },
+        {
+          "key": "c.u15.l2.c-to",
+          "type": "choose",
+          "prompt": { "en": "Salma would like ___ a story." },
+          "options": [{ "text": "to read" }, { "text": "read" }, { "text": "reads" }],
+          "answer": 0,
+          "why": { "en": "After would like, use to + the doing word.", "hi": "would like के बाद to + काम वाला शब्द आता है।" }
+        },
+        {
+          "key": "c.u15.l2.c-polite",
+          "type": "choose",
+          "prompt": { "en": "Which is more polite?" },
+          "options": [{ "text": "I'd like some water, please." }, { "text": "Give me water." }, { "text": "Water!" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u15.l2.c-yes",
+          "type": "choose",
+          "prompt": { "en": "Would you like a mango? A polite yes is:" },
+          "options": [{ "text": "Yes, give." }, { "text": "Yes, please." }, { "text": "Yes, I do like." }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Offer something at home: Would you like some water?", "hi": "घर पर कुछ पेश करो: Would you like some water?" }
+    },
+    {
+      "key": "c.u15.l3",
+      "kind": "listen",
+      "title": { "en": "A call to Salma", "hi": "सलमा को फ़ोन" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "An invitation on the phone", "hi": "फ़ोन पर न्योता" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🏠", "x": 12, "y": 14, "size": 1.6 },
+              { "pic": "📱", "x": 30, "y": 28, "size": 1 },
+              { "pic": "👧", "x": 24, "y": 44, "size": 1.4 },
+              { "pic": "☎️", "x": 70, "y": 28, "size": 1 },
+              { "pic": "👩", "x": 64, "y": 44, "size": 1.4 },
+              { "pic": "🧕", "x": 84, "y": 44, "size": 1.4 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Salma's mother", "pic": "👩", "en": "Hello?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Hello, aunty. This is Meera. May I speak to Salma, please?" },
+            { "speaker": "Salma's mother", "pic": "👩", "en": "Hello, Meera! Please hold on. I'll call her." },
+            { "speaker": "Salma", "pic": "🧕", "en": "Hi, Meera! How are you?" },
+            { "speaker": "Meera", "pic": "👧", "en": "I'm fine, thanks. It's Arjun's birthday on Sunday." },
+            { "speaker": "Meera", "pic": "👧", "en": "Would you like to come to our house at five?" },
+            { "speaker": "Salma", "pic": "🧕", "en": "I would love to come! Can I bring anything?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Just bring your songs. We are going to sing and dance." },
+            { "speaker": "Salma", "pic": "🧕", "en": "Lovely! Thank you for inviting me. See you on Sunday!" },
+            { "speaker": "Meera", "pic": "👧", "en": "Bye, Salma!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u15.l3.p-first",
+              "prompt": { "en": "Who answers the phone first?" },
+              "options": [{ "text": "Salma" }, { "text": "Salma's mother" }, { "text": "Arjun" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u15.l3.p-why",
+              "prompt": { "en": "Why does Meera call?" },
+              "options": [{ "text": "to ask about homework" }, { "text": "to buy rice" }, { "text": "to invite Salma to Arjun's birthday" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u15.l3.p-time",
+              "prompt": { "en": "What time is the party?" },
+              "options": [{ "text": "at five" }, { "text": "at three" }, { "text": "at eight" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u15.l3.s-speak", "model": "This is Meera. May I speak to Salma, please?", "pic": "☎️" },
+            { "key": "c.u15.l3.s-invite", "model": "Would you like to come to our house at five?", "pic": "🎂" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u15.l3.c-day",
+          "type": "choose",
+          "prompt": { "en": "When is Arjun's birthday?" },
+          "options": [{ "text": "on Monday" }, { "text": "today" }, { "text": "on Sunday" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u15.l3.c-bring",
+          "type": "choose",
+          "prompt": { "en": "What should Salma bring?" },
+          "options": [{ "text": "a cake" }, { "text": "a kite" }, { "text": "her songs" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u15.l3.c-hold",
+          "type": "choose",
+          "prompt": { "en": "What does Salma's mother say?" },
+          "options": [{ "text": "Please hold on." }, { "text": "Call later." }, { "text": "Go straight." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u15.l3.c-coming",
+          "type": "choose",
+          "prompt": { "en": "Is Salma going to come?" },
+          "options": [{ "text": "No, she is busy." }, { "text": "Yes, she would love to." }, { "text": "She doesn't know." }],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Invite a family member to something in English: Would you like to …?",
+        "hi": "घर के किसी सदस्य को अंग्रेज़ी में बुलाओ: Would you like to …?"
+      }
+    },
+    {
+      "key": "c.u15.l4",
+      "kind": "speak",
+      "title": { "en": "A phone call", "hi": "एक फ़ोन कॉल" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Call Ravi's shop and order some things. Say who you are, and speak politely.",
+            "hi": "रवि की दुकान पर फ़ोन करके कुछ सामान मँगाओ। बताओ तुम कौन हो, और विनम्रता से बोलो।"
+          },
+          "pic": "📱"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Calling Ravi's shop", "hi": "रवि की दुकान पर फ़ोन" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "📱", "x": 30, "y": 26, "size": 1 },
+              { "pic": "🙋", "x": 24, "y": 44, "size": 1.5 },
+              { "pic": "🏪", "x": 76, "y": 18, "size": 1.8 },
+              { "pic": "👨", "x": 70, "y": 44, "size": 1.4 }
+            ]
+          },
+          "roles": [{ "name": "Ravi", "pic": "👨" }, { "name": "You", "pic": "🙋" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Hello, Ravi's shop. How can I help you?" },
+            { "role": 1, "en": "Hello, Ravi uncle. This is Kiran. I'd like to order some things." },
+            { "role": 0, "en": "Of course. What would you like?" },
+            { "role": 1, "en": "I'd like two kilos of rice and a packet of salt." },
+            { "role": 0, "en": "Okay. Would you like anything else?" },
+            { "role": 1, "en": "Yes, please. Six eggs. Could you keep them ready by five?" },
+            { "role": 0, "en": "Yes, they will be ready. That is one hundred and sixty rupees." },
+            { "role": 1, "en": "Thank you, uncle. My mother will come at five." },
+            { "role": 0, "en": "Okay. Thank you for calling. Bye!" },
+            { "role": 1, "en": "Bye!" }
+          ],
+          "partner": {
+            "goal": "Play Ravi answering his shop phone. Take a small grocery order with would like and could you. Never ask for an address or a phone number.",
+            "must_use": ["This is", "I'd like", "Could you", "Thank you"]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u15.l4.br-speak",
+              "hi": "क्या मैं सलमा से बात कर सकती हूँ?",
+              "tiles": ["to", "I", "Salma?", "May", "speak"],
+              "answer": "May I speak to Salma?"
+            },
+            {
+              "key": "c.u15.l4.br-house",
+              "hi": "क्या तुम मेरे घर आना चाहोगी?",
+              "tiles": ["like", "my", "you", "to", "Would", "come", "to", "house?"],
+              "answer": "Would you like to come to my house?"
+            },
+            { "key": "c.u15.l4.br-later", "hi": "कृपया बाद में फ़ोन करना।", "tiles": ["later.", "call", "Please"], "answer": "Please call later." }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u15.l4.s-message",
+              "model": "Please tell Salma that Meera called. Thank you.",
+              "cue": { "en": "Salma is not at home. Leave a message." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u15.l4.c-start",
+          "type": "choose",
+          "prompt": { "en": "Someone answers your call. What do you say first?" },
+          "options": [{ "text": "Bye!" }, { "text": "Hello, this is Kiran." }, { "text": "Hold on." }],
+          "answer": 1
+        },
+        {
+          "key": "c.u15.l4.c-b",
+          "type": "build",
+          "hi": "क्या आप उससे मुझे वापस फ़ोन करने को कहेंगे?",
+          "pic": "📱",
+          "tiles": ["call", "back?", "to", "Could", "you", "ask", "her", "me"],
+          "answer": "Could you ask her to call me back?"
+        },
+        {
+          "key": "c.u15.l4.c-safe",
+          "type": "choose",
+          "prompt": { "en": "A stranger on the phone asks for your home address. What do you do?" },
+          "options": [{ "text": "Don't tell. Give the phone to a grown-up." }, { "text": "Tell the address." }, { "text": "Shout at them." }],
+          "answer": 0,
+          "why": { "en": "Never share your address with a stranger. Ask a grown-up to help.", "hi": "अजनबी को अपना पता कभी मत बताओ। किसी बड़े को बुलाओ।" }
+        },
+        {
+          "key": "c.u15.l4.c-would",
+          "type": "choose",
+          "prompt": { "en": "Ravi asks: What ___ you like?" },
+          "options": [{ "text": "are" }, { "text": "is" }, { "text": "would" }],
+          "answer": 2,
+          "why": { "en": "What would you like? is a polite question.", "hi": "What would you like? एक विनम्र सवाल है।" }
+        }
+      ],
+      "home": { "en": "With a grown-up, practise a short phone call in English.", "hi": "किसी बड़े के साथ अंग्रेज़ी में छोटी फ़ोन कॉल का अभ्यास करो।" }
+    },
+    {
+      "key": "c.u15.l5",
+      "kind": "review",
+      "title": { "en": "Unit 15 review", "hi": "इकाई 15 की दोहराई" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u15.l5.m-hold-on", "left": { "text": "hold on" }, "right": { "pic": "⏸️" } },
+            { "key": "c.u15.l5.m-of-course", "left": { "text": "of course" }, "right": { "pic": "👍" } },
+            { "key": "c.u15.l5.m-later", "left": { "text": "later" }, "right": { "pic": "⏳" } },
+            { "key": "c.u15.l5.m-glasses", "left": { "text": "glasses" }, "right": { "pic": "👓" } },
+            { "key": "c.u15.l5.m-board", "left": { "text": "board" }, "right": { "pic": "own:chalkboard" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u15.l5.b-play",
+              "hi": "क्या तुम हमारे साथ खेलना चाहोगे?",
+              "pic": "⚽",
+              "tiles": ["play", "Would", "us?", "like", "with", "to", "you"],
+              "answer": "Would you like to play with us?"
+            },
+            {
+              "key": "c.u15.l5.b-glasses",
+              "hi": "वह वही लड़की है जो चश्मा पहनती है।",
+              "pic": "👓",
+              "tiles": ["is", "glasses.", "the", "who", "She", "girl", "wears"],
+              "answer": "She is the girl who wears glasses."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u15.l5.p-would",
+              "prompt": { "en": "I ___ like a cup of tea, please." },
+              "options": [{ "text": "will" }, { "text": "am" }, { "text": "would" }],
+              "answer": 2,
+              "why": { "en": "I would like = a polite I want.", "hi": "I would like = विनम्र 'मुझे चाहिए'।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u15.l5.s-call",
+              "model": "Hello, this is Kiran. Would you like to play cricket?",
+              "cue": { "en": "Call a friend and invite them to play." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u15.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means जन्मदिन?" },
+          "options": [{ "text": "message" }, { "text": "birthday" }, { "text": "invite" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u15.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "message" },
+          "options": [{ "pic": "📨" }, { "pic": "📱" }, { "pic": "👍" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u15.l5.c-would",
+          "type": "choose",
+          "prompt": { "en": "___ you like some sweets?" },
+          "options": [{ "text": "Would" }, { "text": "Are" }, { "text": "Is" }],
+          "answer": 0,
+          "why": { "en": "Would you like is a polite offer.", "hi": "would you like = विनम्र पेशकश।" }
+        },
+        {
+          "key": "c.u15.l5.c-to",
+          "type": "choose",
+          "prompt": { "en": "I would like ___ my aunt." },
+          "options": [{ "text": "to call" }, { "text": "call" }, { "text": "calling" }],
+          "answer": 0,
+          "why": { "en": "After would like, use to + the doing word.", "hi": "would like के बाद to + काम वाला शब्द आता है।" }
+        },
+        {
+          "key": "c.u15.l5.c-u14",
+          "type": "choose",
+          "prompt": { "en": "Joseph is the boy ___ sits next to me." },
+          "options": [{ "text": "which" }, { "text": "who" }, { "text": "where" }],
+          "answer": 1,
+          "why": { "en": "For a person, use who.", "hi": "व्यक्ति के लिए who आता है।" }
+        },
+        {
+          "key": "c.u15.l5.c-u13",
+          "type": "choose",
+          "prompt": { "en": "Could you ___ that again, please?" },
+          "options": [{ "text": "says" }, { "text": "said" }, { "text": "say" }],
+          "answer": 2,
+          "why": { "en": "After can, could or may, use the simple form.", "hi": "can, could या may के बाद सादा रूप आता है।" }
+        },
+        {
+          "key": "c.u15.l5.c-u12",
+          "type": "choose",
+          "prompt": { "en": "We ___ to visit the fair next week." },
+          "options": [{ "text": "went" }, { "text": "will going" }, { "text": "are going" }],
+          "answer": 2,
+          "why": { "en": "A plan: are going to.", "hi": "योजना: are going to." }
+        },
+        {
+          "key": "c.u15.l5.c-b",
+          "type": "build",
+          "hi": "क्या मैं अनीता मैडम से बात कर सकता/सकती हूँ?",
+          "pic": "☎️",
+          "tiles": ["Anita,", "to", "speak", "I", "please?", "May", "Ms"],
+          "answer": "May I speak to Ms Anita, please?"
+        }
+      ],
+      "home": { "en": "When you next answer the phone at home, say: Hello, this is …", "hi": "अगली बार घर पर फ़ोन उठाओ तो कहो: Hello, this is …" }
+    }
+  ]
+}

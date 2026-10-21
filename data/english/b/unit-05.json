@@ -1,0 +1,393 @@
+{
+  "track": "b",
+  "unit": 5,
+  "key": "b.u05",
+  "title": { "en": "Big and small", "hi": "बड़ा और छोटा" },
+  "pic": "🐘",
+  "can_do": { "en": "I can describe things.", "hi": "मैं बता सकता/सकती हूँ कि चीज़ें कैसी हैं।" },
+  "lessons": [
+    {
+      "key": "b.u05.l1",
+      "kind": "words",
+      "title": { "en": "Describing words", "hi": "चीज़ें कैसी हैं" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "Today: words that tell how things look.", "hi": "आज: वे शब्द जो बताते हैं कि चीज़ कैसी है।" }, "pic": "👀" },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Make yourself big!", "hi": "ख़ुद को बड़ा बनाओ!", "pic": "🙌" },
+            { "en": "Make yourself small!", "hi": "ख़ुद को छोटा बनाओ!", "pic": "🧎" },
+            { "en": "Make your arms long!", "hi": "अपनी बाँहें लंबी करो!", "pic": "💪" }
+          ]
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u05.l1.big", "en": "big", "hi": "बड़ा", "pic": "🐘", "example": { "en": "The elephant is big.", "hi": "हाथी बड़ा है।" } },
+            { "key": "b.u05.l1.small", "en": "small", "hi": "छोटा (आकार में)", "pic": "🐜", "example": { "en": "The ant is small.", "hi": "चींटी छोटी है।" } },
+            { "key": "b.u05.l1.long", "en": "long", "hi": "लंबा", "pic": "🐍", "example": { "en": "The snake is long.", "hi": "साँप लंबा है।" } },
+            { "key": "b.u05.l1.short", "en": "short", "hi": "छोटा (लंबाई में)", "pic": "🌱", "example": { "en": "The plant is short.", "hi": "पौधा छोटा है।" } },
+            { "key": "b.u05.l1.new", "en": "new", "hi": "नया", "pic": "🆕", "example": { "en": "My bag is new.", "hi": "मेरा बस्ता नया है।" } },
+            { "key": "b.u05.l1.old", "en": "old", "hi": "पुराना", "pic": "🕰️", "example": { "en": "Dadi's clock is old.", "hi": "दादी की घड़ी पुरानी है।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u05.l1.m-big", "left": { "text": "big" }, "right": { "pic": "🐘" } },
+            { "key": "b.u05.l1.m-small", "left": { "text": "small" }, "right": { "pic": "🐜" } },
+            { "key": "b.u05.l1.m-long", "left": { "text": "long" }, "right": { "pic": "🐍" } },
+            { "key": "b.u05.l1.m-new", "left": { "text": "new" }, "right": { "pic": "🆕" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u05.l1.p-old",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "old" },
+              "options": [{ "pic": "🆕" }, { "pic": "🕰️" }, { "pic": "🐘" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u05.l1.p-short",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "short" },
+              "options": [{ "pic": "🌱" }, { "pic": "🐍" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u05.l1.s-big", "model": "The elephant is big.", "hi": "हाथी बड़ा है।", "pic": "🐘" },
+            { "key": "b.u05.l1.s-small", "model": "The ant is small.", "hi": "चींटी छोटी है।", "pic": "🐜" },
+            { "key": "b.u05.l1.s-new", "model": "My bag is new.", "hi": "मेरा बस्ता नया है।", "pic": "🎒" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u05.l1.c-big",
+          "type": "choose",
+          "prompt": { "en": "Which word means बड़ा?", "hi": "कौन-सा शब्द 'बड़ा' है?" },
+          "options": [{ "text": "small" }, { "text": "big" }, { "text": "old" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u05.l1.c-long",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "long" },
+          "options": [{ "pic": "🐜" }, { "pic": "🐍" }, { "pic": "🌱" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u05.l1.c-new",
+          "type": "choose",
+          "prompt": { "en": "Which word means नया?", "hi": "कौन-सा शब्द 'नया' है?", "pic": "🆕" },
+          "options": [{ "text": "new" }, { "text": "old" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u05.l1.c-small",
+          "type": "choose",
+          "prompt": { "en": "The ant is ___.", "hi": "चींटी ___ है।", "pic": "🐜" },
+          "options": [{ "text": "big" }, { "text": "small" }],
+          "answer": 1,
+          "why": { "en": "An ant is very small.", "hi": "चींटी बहुत छोटी होती है।" }
+        }
+      ],
+      "home": { "en": "Find something big and something small at home.", "hi": "घर में कोई बड़ी और कोई छोटी चीज़ ढूँढो।" }
+    },
+    {
+      "key": "b.u05.l2",
+      "kind": "pattern",
+      "title": { "en": "Big or small?", "hi": "बड़ा या छोटा?" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Two things, two words", "hi": "दो चीज़ें, दो शब्द" },
+          "visual": "compare",
+          "examples": [
+            { "en": "The elephant is big.", "hi": "हाथी बड़ा है।", "pic": "🐘" },
+            { "en": "The mouse is small.", "hi": "चूहा छोटा है।", "pic": "🐭" },
+            { "en": "The snake is long.", "hi": "साँप लंबा है।", "pic": "🐍" },
+            { "en": "The crayon is short.", "hi": "क्रेयॉन छोटा है।", "pic": "🖍️" },
+            { "en": "This bag is new.", "hi": "यह बस्ता नया है।", "pic": "🎒" },
+            { "en": "That clock is old.", "hi": "वह घड़ी पुरानी है।", "pic": "🕰️" }
+          ],
+          "note": { "en": "We can also say: a big elephant, a small mouse.", "hi": "ऐसे भी बोलते हैं: a big elephant — एक बड़ा हाथी।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u05.l2.b-big", "hi": "हाथी बड़ा है।", "pic": "🐘", "tiles": ["is", "big.", "The", "elephant"], "answer": "The elephant is big." },
+            { "key": "b.u05.l2.b-new", "hi": "यह एक नया बस्ता है।", "pic": "🎒", "tiles": ["new", "This", "a", "bag.", "is"], "answer": "This is a new bag." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u05.l2.p-long",
+              "prompt": { "en": "The snake is ___.", "hi": "साँप लंबा है।", "pic": "🐍" },
+              "options": [{ "text": "short" }, { "text": "long" }],
+              "answer": 1,
+              "why": { "en": "A snake is long.", "hi": "साँप लंबा होता है।" }
+            },
+            {
+              "key": "b.u05.l2.p-old",
+              "prompt": { "en": "Dadi's clock is ___.", "hi": "दादी की घड़ी पुरानी है।", "pic": "🕰️" },
+              "options": [{ "text": "old" }, { "text": "new" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "describe",
+          "prompts": [
+            { "key": "b.u05.l2.s-elephant", "model": "The elephant is big.", "hi": "हाथी कैसा है? बोलो।", "pic": "🐘" },
+            { "key": "b.u05.l2.s-mouse", "model": "The mouse is small.", "hi": "चूहा कैसा है? बोलो।", "pic": "🐭" }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u05.l2.c-build1", "type": "build", "hi": "साँप लंबा है।", "tiles": ["long.", "snake", "The", "is"], "answer": "The snake is long." },
+        { "key": "b.u05.l2.c-build2", "type": "build", "hi": "वह एक पुरानी घड़ी है।", "tiles": ["is", "old", "clock.", "That", "an"], "answer": "That is an old clock." },
+        {
+          "key": "b.u05.l2.c-small",
+          "type": "choose",
+          "prompt": { "en": "The mouse is ___.", "hi": "चूहा छोटा है।", "pic": "🐭" },
+          "options": [{ "text": "small" }, { "text": "long" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u05.l2.c-big",
+          "type": "choose",
+          "prompt": { "en": "A ___ elephant.", "hi": "एक बड़ा हाथी।", "pic": "🐘" },
+          "options": [{ "text": "small" }, { "text": "big" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u05.l2.c-an",
+          "type": "choose",
+          "prompt": { "en": "This is ___ old bag.", "hi": "यह एक पुराना बस्ता है।", "pic": "🎒" },
+          "options": [{ "text": "a" }, { "text": "an" }],
+          "answer": 1,
+          "why": { "en": "Old starts with o: an old bag.", "hi": "Old 'o' से शुरू होता है, इसलिए an old bag।" }
+        }
+      ],
+      "home": { "en": "Say at home: My … is big. My … is small.", "hi": "घर पर कहो: My … is big. My … is small." }
+    },
+    {
+      "key": "b.u05.l3",
+      "kind": "listen",
+      "title": { "en": "A new umbrella", "hi": "नया छाता" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "At Ravi's shop", "hi": "रवि की दुकान पर" },
+          "scene": { "place": "market", "pics": [{ "pic": "🏪", "x": 82, "y": 16, "size": 2 }, { "pic": "👩", "x": 22, "y": 42, "size": 1.5 }, { "pic": "👦", "x": 38, "y": 46, "size": 1.3 }, { "pic": "👳", "x": 62, "y": 40, "size": 1.5 }, { "pic": "🌂", "x": 72, "y": 52, "size": 0.8 }, { "pic": "🌂", "x": 86, "y": 50, "size": 1.5 }] },
+          "lines": [
+            { "speaker": "Arjun", "pic": "👦", "en": "Mummy, my umbrella is old.", "hi": "माँ, मेरा छाता पुराना है।" },
+            { "speaker": "Mummy", "pic": "👩", "en": "Come. Let us go to Ravi's shop.", "hi": "चलो। रवि की दुकान चलते हैं।" },
+            { "speaker": "Ravi", "pic": "👳", "en": "Hello! Look, this umbrella is new.", "hi": "नमस्ते! देखो, यह छाता नया है।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "It is very small, Ravi Uncle.", "hi": "यह तो बहुत छोटा है, रवि अंकल।" },
+            { "speaker": "Ravi", "pic": "👳", "en": "Then take this one. It is big.", "hi": "तो यह वाला लो। यह बड़ा है।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Yes! A big, new umbrella!", "hi": "हाँ! बड़ा, नया छाता!" },
+            { "speaker": "Mummy", "pic": "👩", "en": "Thank you, Ravi!", "hi": "धन्यवाद, रवि!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u05.l3.p-old",
+              "prompt": { "en": "Arjun's umbrella is ___.", "hi": "अर्जुन का छाता कैसा है?" },
+              "options": [{ "text": "new", "pic": "🆕" }, { "text": "old", "pic": "🕰️" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u05.l3.p-take",
+              "prompt": { "en": "Which umbrella does Arjun take?", "hi": "अर्जुन कौन-सा छाता लेता है?" },
+              "options": [{ "text": "a small one" }, { "text": "a big one" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u05.l3.s-old", "model": "My umbrella is old.", "hi": "मेरा छाता पुराना है।", "pic": "🌂" },
+            { "key": "b.u05.l3.s-bignew", "model": "A big, new umbrella!", "hi": "बड़ा, नया छाता!", "pic": "🌂" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u05.l3.c-where",
+          "type": "choose",
+          "prompt": { "en": "Where are they?", "hi": "वे कहाँ हैं?" },
+          "options": [{ "text": "at school", "pic": "🏫" }, { "text": "at the shop", "pic": "🏪" }, { "text": "at home", "pic": "🏠" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u05.l3.c-small",
+          "type": "choose",
+          "prompt": { "en": "The first new umbrella is ___.", "hi": "पहला नया छाता कैसा है?" },
+          "options": [{ "text": "small" }, { "text": "big" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u05.l3.c-who",
+          "type": "choose",
+          "prompt": { "en": "Whose shop is it?", "hi": "दुकान किसकी है?" },
+          "options": [{ "text": "Dadi's", "pic": "👵" }, { "text": "Ravi's", "pic": "👳" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u05.l3.c-happy",
+          "type": "choose",
+          "prompt": { "en": "Is Arjun happy at the end?", "hi": "क्या अंत में अर्जुन ख़ुश है?" },
+          "options": [{ "text": "Yes", "pic": "👍" }, { "text": "No", "pic": "👎" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Tell Mummy: My … is old. My … is new.", "hi": "माँ को बताओ: My … is old. My … is new." }
+    },
+    {
+      "key": "b.u05.l4",
+      "kind": "speak",
+      "title": { "en": "Describe a picture", "hi": "चित्र के बारे में बताओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "picture",
+          "scene": { "place": "village", "pics": [{ "pic": "🌳", "x": 14, "y": 16, "size": 2.4 }, { "pic": "🏡", "x": 82, "y": 16, "size": 2.2 }, { "pic": "🌱", "x": 30, "y": 54, "size": 0.8 }, { "pic": "🐄", "x": 50, "y": 44, "size": 1.8 }, { "pic": "🐐", "x": 68, "y": 52 }] },
+          "questions": [
+            { "key": "b.u05.l4.q-tree", "en": "Is the tree big or small?", "hi": "पेड़ बड़ा है या छोटा?", "model": "The tree is big." },
+            { "key": "b.u05.l4.q-goat", "en": "Is the goat big or small?", "hi": "बकरी बड़ी है या छोटी?", "model": "The goat is small." },
+            { "key": "b.u05.l4.q-cow", "en": "Look at the cow. Tell me.", "hi": "गाय को देखो। बताओ।", "model": "The cow is big." },
+            { "key": "b.u05.l4.q-plant", "en": "Is the plant big?", "hi": "क्या पौधा बड़ा है?", "model": "No, the plant is small." }
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u05.l4.br-goat", "hi": "बकरी छोटी है।", "tiles": ["small.", "is", "goat", "The"], "answer": "The goat is small." },
+            { "key": "b.u05.l4.br-bag", "hi": "मेरा बस्ता नया है।", "tiles": ["new.", "bag", "My", "is"], "answer": "My bag is new." }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u05.l4.c-cow",
+          "type": "choose",
+          "prompt": { "en": "A cow is ___.", "hi": "गाय ___ होती है।", "pic": "🐄" },
+          "options": [{ "text": "big" }, { "text": "small" }],
+          "answer": 0
+        },
+        { "key": "b.u05.l4.c-build", "type": "build", "hi": "पेड़ बड़ा है।", "tiles": ["big.", "tree", "is", "The"], "answer": "The tree is big." },
+        {
+          "key": "b.u05.l4.c-opposite",
+          "type": "choose",
+          "prompt": { "en": "Big and ___.", "hi": "बड़ा और छोटा।" },
+          "options": [{ "text": "new" }, { "text": "small" }, { "text": "long" }],
+          "answer": 1,
+          "why": { "en": "Small is the opposite of big.", "hi": "बड़ा का उल्टा छोटा।" }
+        }
+      ],
+      "home": { "en": "Describe one thing at home: It is big. It is old.", "hi": "घर की एक चीज़ के बारे में बोलो: It is big. It is old." }
+    },
+    {
+      "key": "b.u05.l5",
+      "kind": "review",
+      "title": { "en": "Unit 5 review", "hi": "इकाई 5 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u05.l5.m-short", "left": { "text": "short" }, "right": { "pic": "🌱" } },
+            { "key": "b.u05.l5.m-old", "left": { "text": "old" }, "right": { "pic": "🕰️" } },
+            { "key": "b.u05.l5.m-thirteen", "left": { "text": "thirteen" }, "right": { "text": "13" } },
+            { "key": "b.u05.l5.m-sister", "left": { "text": "sister" }, "right": { "pic": "👧" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u05.l5.b-old", "hi": "मेरा छाता पुराना है।", "pic": "🌂", "tiles": ["is", "old.", "My", "umbrella"], "answer": "My umbrella is old." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u05.l5.p-new",
+              "prompt": { "en": "This is a ___ bag.", "hi": "यह एक नया बस्ता है।", "pic": "🆕" },
+              "options": [{ "text": "old" }, { "text": "new" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "describe",
+          "prompts": [{ "key": "b.u05.l5.s-cow", "model": "The cow is big. The goat is small.", "hi": "गाय और बकरी के बारे में बोलो।", "pic": "🐄" }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u05.l5.c-small",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "small" },
+          "options": [{ "pic": "🐘" }, { "pic": "🐜" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u05.l5.c-old",
+          "type": "choose",
+          "prompt": { "en": "Which word means पुराना?", "hi": "कौन-सा शब्द 'पुराना' है?" },
+          "options": [{ "text": "new" }, { "text": "old" }, { "text": "long" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u05.l5.c-short",
+          "type": "choose",
+          "prompt": { "en": "The crayon is ___.", "hi": "क्रेयॉन छोटा है।", "pic": "🖍️" },
+          "options": [{ "text": "long" }, { "text": "short" }],
+          "answer": 1
+        },
+        { "key": "b.u05.l5.c-build", "type": "build", "hi": "यह एक नया पेन है।", "tiles": ["pen.", "a", "is", "new", "This"], "answer": "This is a new pen." },
+        {
+          "key": "b.u05.l5.c-many",
+          "type": "choose",
+          "prompt": { "en": "Twelve ___.", "hi": "बारह मुर्गियाँ।", "pic": "🐔" },
+          "options": [{ "text": "hen" }, { "text": "hens" }],
+          "answer": 1,
+          "why": { "en": "Twelve is more than one, so we say hens.", "hi": "बारह यानी एक से ज़्यादा, इसलिए hens।" }
+        },
+        {
+          "key": "b.u05.l5.c-that",
+          "type": "choose",
+          "prompt": { "en": "The tree is far away. You say:", "hi": "पेड़ दूर है। तुम क्या कहोगे?", "pic": "🌳" },
+          "options": [{ "text": "That is a big tree." }, { "text": "This is a big tree." }],
+          "answer": 0
+        },
+        {
+          "key": "b.u05.l5.c-she",
+          "type": "choose",
+          "prompt": { "en": "___ is my grandmother.", "hi": "वे मेरी दादी हैं।", "pic": "👵" },
+          "options": [{ "text": "She" }, { "text": "He" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Play at home: say big or small for five things.", "hi": "घर पर खेलो: पाँच चीज़ों के लिए big या small बोलो।" }
+    }
+  ]
+}

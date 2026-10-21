@@ -1,0 +1,383 @@
+{
+  "track": "a",
+  "unit": 16,
+  "key": "a.u16",
+  "title": { "en": "Feelings", "hi": "भावनाएँ" },
+  "pic": "😊",
+  "can_do": { "en": "I can say how I feel.", "hi": "मुझे बताना आता है कि मेरा मन कैसा है।" },
+  "lessons": [
+    {
+      "key": "a.u16.l1",
+      "kind": "words",
+      "title": { "en": "Feeling words", "hi": "भावनाओं के शब्द" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u16.l1.w-jump",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "jump" },
+              "options": [{ "pic": "🤸" }, { "pic": "🧍" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u16.l1.w-eat",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "eat" },
+              "options": [{ "pic": "😴" }, { "pic": "😋" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: make each face and let your child copy it.", "hi": "बड़ों के लिए: हर भाव चेहरे से बनाकर दिखाएँ और बच्चे को नकल करने दें।" },
+          "pic": "😊"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u16.l1.happy", "en": "happy", "hi": "खुश", "pic": "😀", "example": { "en": "Meera is happy.", "hi": "मीरा खुश है।" } },
+            { "key": "a.u16.l1.sad", "en": "sad", "hi": "उदास", "pic": "😢", "example": { "en": "Arjun is sad.", "hi": "अर्जुन उदास है।" } },
+            { "key": "a.u16.l1.hungry", "en": "hungry", "hi": "भूख लगी", "pic": "🍽️", "example": { "en": "I am hungry.", "hi": "मुझे भूख लगी है।" } },
+            { "key": "a.u16.l1.sleepy", "en": "sleepy", "hi": "नींद आ रही", "pic": "🥱", "example": { "en": "Dadi is sleepy.", "hi": "दादी को नींद आ रही है।" } },
+            { "key": "a.u16.l1.angry", "en": "angry", "hi": "गुस्सा", "pic": "😠", "example": { "en": "The cat is angry!", "hi": "बिल्ली को गुस्सा आ रहा है!" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Make a happy face.", "hi": "खुश चेहरा बनाओ।", "pic": "😀" },
+            { "en": "Make a sad face.", "hi": "उदास चेहरा बनाओ।", "pic": "😢" },
+            { "en": "Make an angry face.", "hi": "गुस्से वाला चेहरा बनाओ।", "pic": "😠" },
+            { "en": "Yawn! Aaah!", "hi": "जम्हाई लो! आआह!", "pic": "🥱" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u16.l1.t-happy",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "happy" },
+              "options": [{ "pic": "😀" }, { "pic": "😢" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u16.l1.t-angry",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "angry" },
+              "options": [{ "pic": "🥱" }, { "pic": "😠" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u16.l1.t-sleepy",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "sleepy" },
+              "options": [{ "pic": "😀" }, { "pic": "😠" }, { "pic": "🥱" }],
+              "answer": 2
+            },
+            {
+              "key": "a.u16.l1.t-sad",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "sad" },
+              "options": [{ "pic": "😢" }, { "pic": "🍽️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u16.l1.t-hungry",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "hungry" },
+              "options": [{ "pic": "🥱" }, { "pic": "🍽️" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u16.l1.s-happy", "model": "Happy.", "hi": "खुश।", "pic": "😀" },
+            { "key": "a.u16.l1.s-sad", "model": "Sad.", "hi": "उदास।", "pic": "😢" },
+            { "key": "a.u16.l1.s-hungry", "model": "Hungry.", "hi": "भूख लगी।", "pic": "🍽️" },
+            { "key": "a.u16.l1.s-sleepy", "model": "Sleepy.", "hi": "नींद आ रही।", "pic": "🥱" },
+            { "key": "a.u16.l1.s-angry", "model": "Angry.", "hi": "गुस्सा।", "pic": "😠" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Name feelings on faces in stories and at home.", "hi": "कहानियों और घर में चेहरों के भाव पहचानें और नाम लें: happy, sad।" }
+    },
+    {
+      "key": "a.u16.l2",
+      "kind": "pattern",
+      "title": { "en": "I am happy.", "hi": "मैं खुश हूँ।" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "I am …", "hi": "मैं … हूँ" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "I am happy.",
+              "hi": "मैं खुश हूँ।",
+              "pic": "😀",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "happy.", "role": "what" }]
+            },
+            {
+              "en": "I am sad.",
+              "hi": "मैं उदास हूँ।",
+              "pic": "😢",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "sad.", "role": "what" }]
+            },
+            {
+              "en": "I am hungry.",
+              "hi": "मुझे भूख लगी है।",
+              "pic": "🍽️",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "hungry.", "role": "what" }]
+            },
+            {
+              "en": "I am sleepy.",
+              "hi": "मुझे नींद आ रही है।",
+              "pic": "🥱",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "sleepy.", "role": "what" }]
+            },
+            {
+              "en": "I am angry.",
+              "hi": "मुझे गुस्सा आ रहा है।",
+              "pic": "😠",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "angry.", "role": "what" }]
+            }
+          ],
+          "note": { "en": "Every feeling is okay. Say it in words.", "hi": "हर भावना ठीक है। उसे शब्दों में बोलो।" }
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u16.l2.t-sad",
+              "prompt": { "en": "Listen. Tap the face.", "hi": "सुनो, फिर सही चेहरा छुओ।", "say": "I am sad." },
+              "options": [{ "pic": "😀" }, { "pic": "😢" }],
+              "answer": 1,
+              "why": { "en": "Sad: a tear on the face.", "hi": "sad यानी उदास, आँख में आँसू।" }
+            },
+            {
+              "key": "a.u16.l2.t-sleepy",
+              "prompt": { "en": "Listen. Tap the face.", "hi": "सुनो, फिर सही चेहरा छुओ।", "say": "I am sleepy." },
+              "options": [{ "pic": "🥱" }, { "pic": "😠" }],
+              "answer": 0,
+              "why": { "en": "Sleepy: a big yawn.", "hi": "sleepy यानी नींद आ रही, बड़ी जम्हाई।" }
+            },
+            {
+              "key": "a.u16.l2.t-hungry",
+              "prompt": { "en": "Listen. Tap the face.", "hi": "सुनो, फिर सही चेहरा छुओ।", "say": "I am hungry." },
+              "options": [{ "pic": "😢" }, { "pic": "😀" }, { "pic": "🍽️" }],
+              "answer": 2,
+              "why": { "en": "Hungry: we want food.", "hi": "hungry यानी भूख लगी, खाना चाहिए।" }
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Jump if you are happy!", "hi": "खुश हो तो कूदो!", "pic": "🤸" },
+            { "en": "Rub your tummy if hungry.", "hi": "भूख लगी हो तो पेट पर हाथ फेरो।", "pic": "🍽️" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u16.l2.s-happy",
+              "model": "I am happy.",
+              "hi": "अपने मन की बात बोलो।",
+              "pic": "😀",
+              "cue": { "en": "How do you feel?", "hi": "तुम्हारा मन कैसा है?" }
+            },
+            {
+              "key": "a.u16.l2.s-hungry",
+              "model": "I am hungry.",
+              "hi": "पेट की बात अंग्रेज़ी में बोलो।",
+              "pic": "🍽️",
+              "cue": { "en": "Your tummy says grr!", "hi": "पेट में गुड़-गुड़ हो रही है!" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Ask each evening: How do you feel?", "hi": "रोज़ शाम पूछें: How do you feel? बच्चा कहे: I am happy." }
+    },
+    {
+      "key": "a.u16.l3",
+      "kind": "listen",
+      "title": { "en": "A kite in the tree", "hi": "पेड़ में पतंग" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "A kite in the tree", "hi": "पेड़ में पतंग" },
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🌳", "x": 22, "y": 18, "size": 2.4 },
+              { "pic": "🪁", "x": 28, "y": 8 },
+              { "pic": "👦", "x": 50, "y": 46, "size": 1.4 },
+              { "pic": "👵", "x": 68, "y": 42, "size": 1.5 },
+              { "pic": "👧", "x": 86, "y": 46, "size": 1.3 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Arjun", "pic": "👦", "en": "My kite is in the tree!", "hi": "मेरी पतंग पेड़ में फँस गई!" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Arjun, are you sad?", "hi": "अर्जुन, तुम उदास हो?" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Yes. I am sad.", "hi": "हाँ। मैं उदास हूँ।" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Come here. A big hug!", "hi": "इधर आओ। एक बड़ी झप्पी!" },
+            { "speaker": "Meera", "pic": "👧", "en": "Look! Papa has your kite!", "hi": "देखो! पापा तुम्हारी पतंग ले आए!" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Thank you! Now I am happy!", "hi": "शुक्रिया! अब मैं खुश हूँ!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            { "key": "a.u16.l3.q-kite", "prompt": { "en": "Where is the kite?", "hi": "पतंग कहाँ है?" }, "options": [{ "pic": "🌳" }, { "pic": "🏠" }], "answer": 0 },
+            {
+              "key": "a.u16.l3.q-first",
+              "prompt": { "en": "How is Arjun at first?", "hi": "पहले अर्जुन कैसा है?" },
+              "options": [{ "pic": "😀" }, { "pic": "😢" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u16.l3.q-end",
+              "prompt": { "en": "How is Arjun at the end?", "hi": "आख़िर में अर्जुन कैसा है?" },
+              "options": [{ "pic": "😀" }, { "pic": "😠" }, { "pic": "😢" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u16.l3.s-sad", "model": "I am sad.", "hi": "मैं उदास हूँ।", "pic": "😢" },
+            { "key": "a.u16.l3.s-happy", "model": "Now I am happy!", "hi": "अब मैं खुश हूँ!", "pic": "😀" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Give a big hug.", "hi": "एक बड़ी झप्पी दो।", "pic": "🤗" }, { "en": "Make a happy face.", "hi": "खुश चेहरा बनाओ।", "pic": "😀" }]
+        }
+      ],
+      "check": [],
+      "home": { "en": "When your child is upset, help them say: I am sad.", "hi": "बच्चा परेशान हो तो उसे शब्द दें: I am sad. फिर गले लगाएँ।" }
+    },
+    {
+      "key": "a.u16.l4",
+      "kind": "speak",
+      "title": { "en": "Feelings faces", "hi": "भावों वाले चेहरे" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Grown-up: you are Meera. Make a big happy face, then a sad one.",
+            "hi": "बड़ों के लिए: आप मीरा बनें। पहले बड़ा-सा खुश चेहरा, फिर उदास चेहरा बनाएँ।"
+          },
+          "pic": "😀"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Look at my face!", "hi": "मेरा चेहरा देखो!" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "👧", "x": 28, "y": 40, "size": 1.7 },
+              { "pic": "😀", "x": 28, "y": 14 },
+              { "pic": "🧒", "x": 68, "y": 42, "size": 1.6 },
+              { "pic": "😢", "x": 68, "y": 14 }
+            ]
+          },
+          "roles": [{ "name": "Meera", "pic": "👧" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Look at my face!", "hi": "मेरा चेहरा देखो!" },
+            { "role": 1, "en": "You are happy!", "hi": "तुम खुश हो!" },
+            { "role": 0, "en": "Boo hoo! Now look!", "hi": "ऊँ-ऊँ! अब देखो!" },
+            { "role": 1, "en": "You are sad!", "hi": "तुम उदास हो!" },
+            { "role": 0, "en": "And you? How do you feel?", "hi": "और तुम? तुम्हारा मन कैसा है?" },
+            { "role": 1, "en": "I am happy!", "hi": "मैं खुश हूँ!" }
+          ],
+          "partner": {
+            "goal": "Make feeling faces and sounds; let the child name each feeling, then ask how the child feels.",
+            "must_use": ["you are", "happy", "sad", "I am"]
+          }
+        }
+      ],
+      "check": [],
+      "home": { "en": "Play feelings faces at dinner.", "hi": "खाने के समय चेहरे बनाकर भावनाओं का खेल खेलें।" }
+    },
+    {
+      "key": "a.u16.l5",
+      "kind": "review",
+      "title": { "en": "How do you feel?", "hi": "तुम्हारा मन कैसा है?" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u16.l5.m-hungry", "left": { "text": "hungry", "pic": "🍽️" }, "right": { "pic": "own:roti" } },
+            { "key": "a.u16.l5.m-sleepy", "left": { "text": "sleepy", "pic": "🥱" }, "right": { "pic": "🛏️" } },
+            { "key": "a.u16.l5.m-sad", "left": { "text": "sad", "pic": "😢" }, "right": { "pic": "🤗" } },
+            { "key": "a.u16.l5.m-happy", "left": { "text": "happy", "pic": "😀" }, "right": { "pic": "🎈" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u16.l5.t-angry",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "angry" },
+              "options": [{ "pic": "😠" }, { "pic": "😀" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u16.l5.t-sleepy",
+              "prompt": { "en": "Listen. Tap the face.", "hi": "सुनो, फिर सही चेहरा छुओ।", "say": "I am sleepy." },
+              "options": [{ "pic": "😢" }, { "pic": "🥱" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u16.l5.w-stand",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "stand" },
+              "options": [{ "pic": "🧍" }, { "pic": "🏃" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u16.l5.w-sun",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "sun" },
+              "options": [{ "pic": "☁️" }, { "pic": "☀️" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Take a big breath. Calm.", "hi": "गहरी साँस लो। शांत।", "pic": "🧘" },
+            { "en": "Smile! Happy face!", "hi": "मुस्कुराओ! खुश चेहरा!", "pic": "😀" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u16.l5.s-now",
+              "model": "I am happy.",
+              "hi": "अभी के मन की बात बोलो।",
+              "pic": "😊",
+              "cue": { "en": "How do you feel now?", "hi": "अभी तुम्हारा मन कैसा है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Share your own feeling each day: I am happy today.", "hi": "रोज़ अपनी भावना भी बताएँ: I am happy today. बच्चा आपसे सीखेगा।" }
+    }
+  ]
+}

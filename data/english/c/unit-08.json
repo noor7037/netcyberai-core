@@ -1,0 +1,594 @@
+{
+  "track": "c",
+  "unit": 8,
+  "key": "c.u08",
+  "title": { "en": "Last weekend", "hi": "पिछला सप्ताहांत" },
+  "pic": "📆",
+  "can_do": { "en": "I can talk about the past.", "hi": "मैं बीती बातों के बारे में बात कर सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u08.l1",
+      "kind": "words",
+      "title": { "en": "Weekend words", "hi": "छुट्टी के दिनों के शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Today we learn words to talk about last weekend.", "hi": "आज हम पिछले सप्ताहांत के बारे में बात करने के शब्द सीखेंगे।" },
+          "pic": "📆"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u08.l1.weekend",
+              "en": "weekend",
+              "hi": "सप्ताहांत (शनिवार और रविवार)",
+              "pic": "📆",
+              "example": { "en": "What do you do at the weekend?", "hi": "तुम सप्ताहांत पर क्या करते हो?" }
+            },
+            {
+              "key": "c.u08.l1.yesterday",
+              "en": "yesterday",
+              "hi": "बीता हुआ कल",
+              "pic": "📅",
+              "example": { "en": "Yesterday was Sunday.", "hi": "कल रविवार था।" }
+            },
+            {
+              "key": "c.u08.l1.visit",
+              "en": "visit",
+              "hi": "मिलने जाना",
+              "pic": "🏡",
+              "example": { "en": "We visit Nani every holiday.", "hi": "हम हर छुट्टी में नानी से मिलने जाते हैं।" }
+            },
+            {
+              "key": "c.u08.l1.cook",
+              "en": "cook",
+              "hi": "खाना पकाना",
+              "pic": "🍳",
+              "example": { "en": "Papa cooks on Sundays.", "hi": "पापा रविवार को खाना पकाते हैं।" }
+            },
+            {
+              "key": "c.u08.l1.clean",
+              "en": "clean",
+              "hi": "साफ़ करना",
+              "pic": "🧹",
+              "example": { "en": "We clean the house before festivals.", "hi": "हम त्योहारों से पहले घर साफ़ करते हैं।" }
+            },
+            {
+              "key": "c.u08.l1.plant",
+              "en": "plant",
+              "hi": "पौधा लगाना, बोना",
+              "pic": "🌱",
+              "example": { "en": "Let's plant a tree near the school.", "hi": "चलो स्कूल के पास एक पेड़ लगाएँ।" }
+            },
+            {
+              "key": "c.u08.l1.pick",
+              "en": "pick",
+              "hi": "तोड़ना, चुनना",
+              "pic": "🥭",
+              "example": { "en": "We pick mangoes in summer.", "hi": "हम गर्मियों में आम तोड़ते हैं।" }
+            },
+            {
+              "key": "c.u08.l1.watch",
+              "en": "watch",
+              "hi": "देखना",
+              "pic": "📺",
+              "example": { "en": "Arjun watches cartoons on Sunday.", "hi": "अर्जुन रविवार को कार्टून देखता है।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u08.l1.m-visit", "left": { "text": "visit" }, "right": { "pic": "🏡" } },
+            { "key": "c.u08.l1.m-clean", "left": { "text": "clean" }, "right": { "pic": "🧹" } },
+            { "key": "c.u08.l1.m-plant", "left": { "text": "plant" }, "right": { "pic": "🌱" } },
+            { "key": "c.u08.l1.m-pick", "left": { "text": "pick" }, "right": { "pic": "🥭" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u08.l1.p-cook",
+              "prompt": { "en": "Listen. Tap the picture.", "say": "cook" },
+              "options": [{ "pic": "📺" }, { "pic": "🧹" }, { "pic": "🍳" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u08.l1.p-yesterday",
+              "prompt": { "en": "Which word means बीता हुआ कल?" },
+              "options": [{ "text": "weekend" }, { "text": "evening" }, { "text": "yesterday" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u08.l1.s-cook", "model": "Papa cooks on Sundays.", "pic": "🍳" },
+            { "key": "c.u08.l1.s-pick", "model": "We pick mangoes in summer.", "pic": "🥭" },
+            { "key": "c.u08.l1.s-yesterday", "model": "Yesterday was Sunday.", "pic": "📅" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u08.l1.c-weekend",
+          "type": "choose",
+          "prompt": { "en": "Saturday and Sunday are the ___." },
+          "options": [{ "text": "weekend" }, { "text": "evening" }, { "text": "festival" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u08.l1.c-watch",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "watch" },
+          "options": [{ "pic": "🌱" }, { "pic": "🍳" }, { "pic": "📺" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u08.l1.c-plant",
+          "type": "choose",
+          "prompt": { "en": "Which word means पौधा लगाना?" },
+          "options": [{ "text": "pick" }, { "text": "clean" }, { "text": "plant" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u08.l1.c-clean",
+          "type": "choose",
+          "prompt": { "en": "Before Diwali, we ___ the whole house." },
+          "options": [{ "text": "cook" }, { "text": "clean" }, { "text": "watch" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u08.l1.c-visit",
+          "type": "choose",
+          "prompt": { "en": "We ___ Nani in the holidays." },
+          "options": [{ "text": "pick" }, { "text": "plant" }, { "text": "visit" }],
+          "answer": 2
+        }
+      ],
+      "home": { "en": "Ask at home: What do you do at the weekend?", "hi": "घर पर पूछो: What do you do at the weekend?" }
+    },
+    {
+      "key": "c.u08.l2",
+      "kind": "pattern",
+      "title": { "en": "The past: -ed words", "hi": "बीता समय: -ed वाले शब्द" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Yesterday and today", "hi": "बीता कल और आज" },
+          "visual": "timeline",
+          "examples": [
+            { "en": "Every day, I walk to school.", "hi": "मैं रोज़ पैदल स्कूल जाता/जाती हूँ।", "time": "now", "pic": "🚶" },
+            { "en": "Yesterday, I walked to the market.", "hi": "कल मैं पैदल बाज़ार गया/गई।", "time": "past", "pic": "🏪" },
+            { "en": "Last Sunday, we visited Nani.", "hi": "पिछले रविवार हम नानी से मिलने गए।", "time": "past", "pic": "🏡" },
+            { "en": "Papa cooked dinner on Saturday.", "hi": "शनिवार को पापा ने रात का खाना पकाया।", "time": "past", "pic": "🍳" },
+            { "en": "Arjun didn't play cricket. He watched TV.", "hi": "अर्जुन ने क्रिकेट नहीं खेला। उसने टीवी देखा।", "time": "past", "pic": "📺" },
+            { "en": "Did you clean your room? Yes, I did.", "hi": "क्या तुमने अपना कमरा साफ़ किया? हाँ, किया।", "time": "past", "pic": "🧹" }
+          ],
+          "note": {
+            "en": "For the past, add -ed: play → played, cook → cooked. With did and didn't, use the simple form: didn't play.",
+            "hi": "बीते समय के लिए -ed जोड़ो: play → played. did और didn't के साथ सादा रूप: didn't play."
+          }
+        },
+        {
+          "type": "tip",
+          "text": {
+            "en": "Say -ed in three ways: cooked ends like t, played like d, planted like id.",
+            "hi": "-ed तीन तरह से बोला जाता है: cooked (ट), played (ड), planted (इड)।"
+          },
+          "pic": "👂"
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u08.l2.b-tree",
+              "hi": "हमने पिछले रविवार एक पेड़ लगाया।",
+              "pic": "🌱",
+              "tiles": ["planted", "a", "tree", "Sunday.", "We", "last"],
+              "answer": "We planted a tree last Sunday."
+            },
+            {
+              "key": "c.u08.l2.b-tv",
+              "hi": "सलमा ने कल टीवी नहीं देखा।",
+              "pic": "📺",
+              "tiles": ["yesterday.", "watch", "Salma", "didn't", "TV"],
+              "answer": "Salma didn't watch TV yesterday."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u08.l2.p-ed",
+              "prompt": { "en": "Yesterday, Meera ___ mangoes with Dadi." },
+              "options": [{ "text": "picked" }, { "text": "picks" }, { "text": "picking" }],
+              "answer": 0,
+              "why": { "en": "Yesterday is in the past, so picked.", "hi": "yesterday = बीता समय, इसलिए picked." }
+            },
+            {
+              "key": "c.u08.l2.p-did",
+              "prompt": { "en": "Did you ___ the floor?" },
+              "options": [{ "text": "clean" }, { "text": "cleaned" }, { "text": "cleans" }],
+              "answer": 0,
+              "why": { "en": "After did or didn't, use the simple form.", "hi": "did या didn't के बाद सादा रूप आता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u08.l2.s-yesterday", "model": "Yesterday, I helped my mother and played cricket.", "cue": { "en": "What did you do yesterday?" } },
+            { "key": "c.u08.l2.s-tv", "model": "No, I didn't. I visited my aunt.", "cue": { "en": "Did you watch TV last weekend?" } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u08.l2.c-b1",
+          "type": "build",
+          "hi": "रविवार को पापा ने चावल और दाल पकाई।",
+          "pic": "🍳",
+          "tiles": ["cooked", "and", "on", "dal", "rice", "Papa", "Sunday."],
+          "answer": "Papa cooked rice and dal on Sunday."
+        },
+        {
+          "key": "c.u08.l2.c-b2",
+          "type": "build",
+          "hi": "क्या तुम पिछले सप्ताहांत नानी से मिलने गए?",
+          "pic": "🏡",
+          "tiles": ["Nani", "visit", "weekend?", "Did", "last", "you"],
+          "answer": "Did you visit Nani last weekend?"
+        },
+        {
+          "key": "c.u08.l2.c-past",
+          "type": "choose",
+          "prompt": { "en": "Last Saturday, we ___ the house." },
+          "options": [{ "text": "clean" }, { "text": "cleaned" }, { "text": "cleaning" }],
+          "answer": 1,
+          "why": { "en": "It is in the past, so add -ed.", "hi": "बात बीते समय की है, इसलिए -ed लगाओ।" }
+        },
+        {
+          "key": "c.u08.l2.c-didnt",
+          "type": "choose",
+          "prompt": { "en": "Arjun didn't ___ his homework." },
+          "options": [{ "text": "finished" }, { "text": "finishes" }, { "text": "finish" }],
+          "answer": 2,
+          "why": { "en": "After did or didn't, use the simple form.", "hi": "did या didn't के बाद सादा रूप आता है।" }
+        },
+        {
+          "key": "c.u08.l2.c-now",
+          "type": "choose",
+          "prompt": { "en": "Every day, Dadi ___ the plants." },
+          "options": [{ "text": "waters" }, { "text": "watered" }, { "text": "watering" }],
+          "answer": 0,
+          "why": { "en": "Every day is a habit: waters.", "hi": "रोज़ = आदत, इसलिए waters." }
+        },
+        {
+          "key": "c.u08.l2.c-short",
+          "type": "choose",
+          "prompt": { "en": "Did you play cricket? Choose the short answer." },
+          "options": [{ "text": "Yes, I did." }, { "text": "Yes, I played." }, { "text": "Yes, I do." }],
+          "answer": 0,
+          "why": { "en": "Answer a did question with did.", "hi": "did वाले सवाल का जवाब did से।" }
+        }
+      ],
+      "home": { "en": "At dinner, ask: What did you do today?", "hi": "रात के खाने पर पूछो: What did you do today?" }
+    },
+    {
+      "key": "c.u08.l3",
+      "kind": "listen",
+      "title": { "en": "Monday morning", "hi": "सोमवार की सुबह" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "What did you do last weekend?", "hi": "तुमने पिछले सप्ताहांत क्या किया?" },
+          "scene": {
+            "place": "school",
+            "pics": [
+              { "pic": "own:chalkboard", "x": 80, "y": 14, "size": 2 },
+              { "pic": "👩‍🏫", "x": 62, "y": 40, "size": 1.5 },
+              { "pic": "🧕", "x": 30, "y": 44, "size": 1.4 },
+              { "pic": "👧", "x": 44, "y": 44, "size": 1.4 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Good morning, class! What did you do last weekend?" },
+            { "speaker": "Salma", "pic": "🧕", "en": "On Saturday, I visited my aunt in the town." },
+            { "speaker": "Salma", "pic": "🧕", "en": "We walked in the market and watched a puppet show." },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "That sounds lovely! And you, Meera?" },
+            { "speaker": "Meera", "pic": "👧", "en": "I helped Papa and Dadi in the field." },
+            { "speaker": "Meera", "pic": "👧", "en": "We planted tomatoes and picked some beans." },
+            { "speaker": "Meera", "pic": "👧", "en": "In the evening, I played cricket with Arjun." },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Did you finish your homework too?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Yes, ma'am. I finished it on Sunday morning." },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Well done, both of you!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u08.l3.p-aunt",
+              "prompt": { "en": "Who did Salma visit?" },
+              "options": [{ "text": "her teacher" }, { "text": "Dr Khan" }, { "text": "her aunt" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u08.l3.p-show",
+              "prompt": { "en": "What did Salma watch?" },
+              "options": [{ "text": "a puppet show" }, { "text": "a cricket match" }, { "text": "a film" }],
+              "answer": 0
+            },
+            {
+              "key": "c.u08.l3.p-plant",
+              "prompt": { "en": "What did Meera plant?" },
+              "options": [{ "text": "mangoes" }, { "text": "rice" }, { "text": "tomatoes" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u08.l3.s-aunt", "model": "On Saturday, I visited my aunt in the town.", "pic": "🏡" },
+            { "key": "c.u08.l3.s-plant", "model": "We planted tomatoes and picked some beans.", "pic": "🌱" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u08.l3.c-help",
+          "type": "choose",
+          "prompt": { "en": "Who did Meera help?" },
+          "options": [{ "text": "Ravi uncle" }, { "text": "Papa and Dadi" }, { "text": "Ms Anita" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u08.l3.c-play",
+          "type": "choose",
+          "prompt": { "en": "Who did Meera play cricket with?" },
+          "options": [{ "text": "Arjun" }, { "text": "Salma" }, { "text": "Papa" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u08.l3.c-homework",
+          "type": "choose",
+          "prompt": { "en": "When did Meera finish her homework?" },
+          "options": [{ "text": "on Saturday night" }, { "text": "on Sunday morning" }, { "text": "on Monday" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u08.l3.c-where",
+          "type": "choose",
+          "prompt": { "en": "Where did Salma walk?" },
+          "options": [{ "text": "in the field" }, { "text": "by the river" }, { "text": "in the market" }],
+          "answer": 2
+        }
+      ],
+      "home": { "en": "Tell your family one thing you did last weekend.", "hi": "घरवालों को पिछले सप्ताहांत की एक बात बताओ।" }
+    },
+    {
+      "key": "c.u08.l4",
+      "kind": "speak",
+      "title": { "en": "My last weekend", "hi": "मेरा पिछला सप्ताहांत" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Tell us about your last weekend. Use -ed words: played, visited, helped.",
+            "hi": "अपने पिछले सप्ताहांत के बारे में बताओ। -ed वाले शब्द बोलो: played, visited, helped."
+          },
+          "pic": "📆"
+        },
+        {
+          "type": "talk",
+          "topic": { "en": "My last weekend", "hi": "मेरा पिछला सप्ताहांत" },
+          "outline": [{ "en": "Say what you did on Saturday." }, { "en": "Say what you did on Sunday." }, { "en": "Say what you liked best." }],
+          "seconds": 40,
+          "model": [
+            "Last weekend was fun.",
+            "On Saturday, I helped my mother in the kitchen.",
+            "We cooked rice and dal for the family.",
+            "On Sunday, I visited my uncle in the next village.",
+            "We played cricket and picked guavas.",
+            "I liked Sunday best."
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u08.l4.br-room",
+              "hi": "मैंने कल अपना कमरा साफ़ किया।",
+              "tiles": ["my", "room", "I", "yesterday.", "cleaned"],
+              "answer": "I cleaned my room yesterday."
+            },
+            {
+              "key": "c.u08.l4.br-match",
+              "hi": "हमने टीवी पर मैच देखा।",
+              "tiles": ["a", "TV.", "We", "on", "match", "watched"],
+              "answer": "We watched a match on TV."
+            },
+            {
+              "key": "c.u08.l4.br-homework",
+              "hi": "उसने गृहकार्य पूरा नहीं किया।",
+              "tiles": ["finish", "She", "didn't", "homework.", "her"],
+              "answer": "She didn't finish her homework."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "c.u08.l4.s-sunday", "model": "Last Sunday, I visited my grandmother.", "cue": { "en": "What did you do last Sunday?" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u08.l4.c-past",
+          "type": "choose",
+          "prompt": { "en": "Which sentence is about the past?" },
+          "options": [{ "text": "I play cricket every day." }, { "text": "I am playing cricket now." }, { "text": "I played cricket yesterday." }],
+          "answer": 2
+        },
+        {
+          "key": "c.u08.l4.c-b",
+          "type": "build",
+          "hi": "हम घर पर रहे और टीवी देखा।",
+          "pic": "📺",
+          "tiles": ["at", "TV.", "watched", "and", "home", "stayed", "We"],
+          "answer": "We stayed at home and watched TV."
+        },
+        {
+          "key": "c.u08.l4.c-ed",
+          "type": "choose",
+          "prompt": { "en": "Last weekend, Arjun ___ his bicycle." },
+          "options": [{ "text": "cleans" }, { "text": "cleaned" }, { "text": "cleaning" }],
+          "answer": 1,
+          "why": { "en": "It is in the past, so add -ed.", "hi": "बात बीते समय की है, इसलिए -ed लगाओ।" }
+        },
+        {
+          "key": "c.u08.l4.c-q",
+          "type": "choose",
+          "prompt": { "en": "Ms Anita asks about last weekend. She says:" },
+          "options": [{ "text": "What do you do every day?" }, { "text": "What are you doing now?" }, { "text": "What did you do last weekend?" }],
+          "answer": 2
+        }
+      ],
+      "home": { "en": "Tell your family about last weekend in three sentences.", "hi": "घरवालों को तीन वाक्यों में पिछले सप्ताहांत के बारे में बताओ।" }
+    },
+    {
+      "key": "c.u08.l5",
+      "kind": "review",
+      "title": { "en": "Unit 8 review", "hi": "इकाई 8 की दोहराई" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u08.l5.m-watch", "left": { "text": "watch" }, "right": { "pic": "📺" } },
+            { "key": "c.u08.l5.m-pick", "left": { "text": "pick" }, "right": { "pic": "🥭" } },
+            { "key": "c.u08.l5.m-cook", "left": { "text": "cook" }, "right": { "pic": "🍳" } },
+            { "key": "c.u08.l5.m-fever", "left": { "text": "fever" }, "right": { "pic": "🤒" } },
+            { "key": "c.u08.l5.m-price", "left": { "text": "price" }, "right": { "pic": "🏷️" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u08.l5.b-aunt",
+              "hi": "सलमा शनिवार को अपनी मौसी से मिलने गई।",
+              "pic": "🏡",
+              "tiles": ["aunt", "Salma", "her", "on", "Saturday.", "visited"],
+              "answer": "Salma visited her aunt on Saturday."
+            },
+            {
+              "key": "c.u08.l5.b-rest",
+              "hi": "बुख़ार होने पर तुम्हें आराम करना चाहिए।",
+              "pic": "🤒",
+              "tiles": ["rest", "fever.", "should", "when", "have", "you", "You", "a"],
+              "answer": "You should rest when you have a fever."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u08.l5.p-watched",
+              "prompt": { "en": "Last night, we ___ a film." },
+              "options": [{ "text": "watched" }, { "text": "watch" }, { "text": "watching" }],
+              "answer": 0,
+              "why": { "en": "It is in the past, so add -ed.", "hi": "बात बीते समय की है, इसलिए -ed लगाओ।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u08.l5.s-two", "model": "Yesterday, I cleaned my room and helped Dadi.", "cue": { "en": "Say two things you did yesterday." } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u08.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means पकाना?" },
+          "options": [{ "text": "cook" }, { "text": "clean" }, { "text": "pick" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u08.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "weekend" },
+          "options": [{ "pic": "📆" }, { "pic": "🥭" }, { "pic": "🧹" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u08.l5.c-ed",
+          "type": "choose",
+          "prompt": { "en": "Yesterday, Papa ___ in the field all day." },
+          "options": [{ "text": "worked" }, { "text": "works" }, { "text": "working" }],
+          "answer": 0,
+          "why": { "en": "It is in the past, so add -ed.", "hi": "बात बीते समय की है, इसलिए -ed लगाओ।" }
+        },
+        {
+          "key": "c.u08.l5.c-did",
+          "type": "choose",
+          "prompt": { "en": "Did Meera ___ the mangoes?" },
+          "options": [{ "text": "picked" }, { "text": "picks" }, { "text": "pick" }],
+          "answer": 2,
+          "why": { "en": "After did or didn't, use the simple form.", "hi": "did या didn't के बाद सादा रूप आता है।" }
+        },
+        {
+          "key": "c.u08.l5.c-u7",
+          "type": "choose",
+          "prompt": { "en": "You have a cough. You ___ drink cold water." },
+          "options": [{ "text": "should" }, { "text": "are" }, { "text": "shouldn't" }],
+          "answer": 2,
+          "why": { "en": "Cold water is not good for a cough, so shouldn't.", "hi": "खाँसी में ठंडा पानी ठीक नहीं, इसलिए shouldn't." }
+        },
+        {
+          "key": "c.u08.l5.c-u6",
+          "type": "choose",
+          "prompt": { "en": "How ___ rice do you want?" },
+          "options": [{ "text": "many" }, { "text": "any" }, { "text": "much" }],
+          "answer": 2,
+          "why": { "en": "We can't count rice, so how much.", "hi": "चावल गिन नहीं सकते, इसलिए how much." }
+        },
+        {
+          "key": "c.u08.l5.c-u4",
+          "type": "choose",
+          "prompt": { "en": "Where ___ Dr Khan work?" },
+          "options": [{ "text": "does" }, { "text": "do" }, { "text": "is" }],
+          "answer": 0,
+          "why": { "en": "With he, she or a name, use does.", "hi": "he, she या नाम के साथ does." }
+        },
+        {
+          "key": "c.u08.l5.c-b",
+          "type": "build",
+          "hi": "हमने रविवार को क्रिकेट नहीं खेला।",
+          "pic": "🏏",
+          "tiles": ["cricket", "on", "didn't", "Sunday.", "play", "We"],
+          "answer": "We didn't play cricket on Sunday."
+        }
+      ],
+      "home": { "en": "Ask Dadi or Papa: What did you play when you were young?", "hi": "दादी या पापा से पूछो: What did you play when you were young?" }
+    }
+  ]
+}

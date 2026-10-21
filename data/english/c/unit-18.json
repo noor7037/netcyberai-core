@@ -1,0 +1,646 @@
+{
+  "track": "c",
+  "unit": 18,
+  "key": "c.u18",
+  "title": { "en": "Speak up!", "hi": "खुलकर बोलो!" },
+  "pic": "🎤",
+  "can_do": { "en": "I can give a short talk.", "hi": "मैं एक छोटा भाषण दे सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u18.l1",
+      "kind": "words",
+      "title": { "en": "Words for a talk", "hi": "भाषण के शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "You are going to give a one-minute talk! These words will help.", "hi": "तुम एक मिनट का भाषण देने वाले हो! ये शब्द मदद करेंगे।" },
+          "pic": "🎤"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u18.l1.speech",
+              "en": "speech",
+              "hi": "भाषण",
+              "pic": "🎤",
+              "example": { "en": "Meera is giving a speech at the assembly.", "hi": "मीरा प्रार्थना सभा में भाषण दे रही है।" }
+            },
+            {
+              "key": "c.u18.l1.stage",
+              "en": "stage",
+              "hi": "मंच",
+              "pic": "🎪",
+              "example": { "en": "Walk to the stage slowly and smile.", "hi": "धीरे से मंच पर जाओ और मुस्कुराओ।" }
+            },
+            {
+              "key": "c.u18.l1.audience",
+              "en": "audience",
+              "hi": "श्रोता",
+              "pic": "👪",
+              "example": { "en": "The audience is listening carefully.", "hi": "श्रोता ध्यान से सुन रहे हैं।" }
+            },
+            {
+              "key": "c.u18.l1.practise",
+              "en": "practise",
+              "hi": "अभ्यास करना",
+              "pic": "🔁",
+              "example": { "en": "Practise your talk in front of a mirror.", "hi": "आईने के सामने अपने भाषण का अभ्यास करो।" }
+            },
+            {
+              "key": "c.u18.l1.nervous",
+              "en": "nervous",
+              "hi": "घबराया हुआ",
+              "pic": "😨",
+              "example": { "en": "I was nervous before my speech.", "hi": "भाषण से पहले मैं घबराया/घबराई हुई थी।" }
+            },
+            {
+              "key": "c.u18.l1.confident",
+              "en": "confident",
+              "hi": "आत्मविश्वासी",
+              "pic": "😎",
+              "example": { "en": "Stand straight and look confident.", "hi": "सीधे खड़े हो और आत्मविश्वास से भरे दिखो।" }
+            },
+            {
+              "key": "c.u18.l1.proud",
+              "en": "proud",
+              "hi": "गर्व महसूस करना",
+              "pic": "🏆",
+              "example": { "en": "Papa was proud of Meera.", "hi": "पापा को मीरा पर गर्व था।" }
+            },
+            {
+              "key": "c.u18.l1.clap",
+              "en": "clap",
+              "hi": "ताली बजाना",
+              "pic": "👏",
+              "example": { "en": "Everyone clapped at the end.", "hi": "अंत में सबने ताली बजाई।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u18.l1.m-stage", "left": { "text": "stage" }, "right": { "pic": "🎪" } },
+            { "key": "c.u18.l1.m-clap", "left": { "text": "clap" }, "right": { "pic": "👏" } },
+            { "key": "c.u18.l1.m-confident", "left": { "text": "confident" }, "right": { "pic": "😎" } },
+            { "key": "c.u18.l1.m-speech", "left": { "text": "speech" }, "right": { "pic": "🎤" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u18.l1.p-audience",
+              "prompt": { "en": "Which word means श्रोता?" },
+              "options": [{ "text": "stage" }, { "text": "speech" }, { "text": "audience" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u18.l1.p-nervous",
+              "prompt": { "en": "Listen. Tap the picture.", "say": "nervous" },
+              "options": [{ "pic": "😎" }, { "pic": "🏆" }, { "pic": "😨" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u18.l1.s-stage", "model": "Walk to the stage slowly and smile.", "pic": "🎪" },
+            { "key": "c.u18.l1.s-practise", "model": "Practise your talk in front of a mirror.", "pic": "🔁" },
+            { "key": "c.u18.l1.s-clap", "model": "Everyone clapped at the end.", "pic": "👏" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u18.l1.c-practise",
+          "type": "choose",
+          "prompt": { "en": "Which word means अभ्यास करना?" },
+          "options": [{ "text": "practise" }, { "text": "clap" }, { "text": "explain" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u18.l1.c-confident",
+          "type": "choose",
+          "prompt": { "en": "Which word is the opposite of nervous?" },
+          "options": [{ "text": "proud" }, { "text": "slow" }, { "text": "confident" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u18.l1.c-proud",
+          "type": "choose",
+          "prompt": { "en": "Meera won a prize. Her family was ___." },
+          "options": [{ "text": "proud" }, { "text": "nervous" }, { "text": "boring" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u18.l1.c-clap",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "clap" },
+          "options": [{ "pic": "🎤" }, { "pic": "👏" }, { "pic": "🎪" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u18.l1.c-nervous",
+          "type": "choose",
+          "prompt": { "en": "Before the speech, my hands were shaking. I was ___." },
+          "options": [{ "text": "nervous" }, { "text": "confident" }, { "text": "funny" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Practise saying Good morning, everyone! loudly and clearly.", "hi": "Good morning, everyone! ज़ोर से और साफ़-साफ़ बोलने का अभ्यास करो।" }
+    },
+    {
+      "key": "c.u18.l2",
+      "kind": "pattern",
+      "title": { "en": "How to build a talk", "hi": "भाषण कैसे बनाएँ" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Start, middle, end", "hi": "शुरुआत, बीच, अंत" },
+          "visual": "cards",
+          "examples": [
+            { "en": "Good morning, everyone. My name is Meera.", "hi": "सभी को सुप्रभात। मेरा नाम मीरा है।", "pic": "👋" },
+            { "en": "Today, I am going to talk about my village.", "hi": "आज मैं अपने गाँव के बारे में बोलूँगी।", "pic": "🏘️" },
+            { "en": "First, there is a big pond near the temple.", "hi": "पहली बात, मंदिर के पास एक बड़ा तालाब है।", "pic": "1️⃣" },
+            { "en": "Next, the people are kind and helpful.", "hi": "दूसरी बात, लोग दयालु और मददगार हैं।", "pic": "2️⃣" },
+            { "en": "Finally, I love our village because it is green.", "hi": "आख़िर में, मुझे हमारा गाँव पसंद है क्योंकि यह हरा-भरा है।", "pic": "3️⃣" },
+            { "en": "Thank you for listening.", "hi": "सुनने के लिए धन्यवाद।", "pic": "🙏" }
+          ],
+          "note": {
+            "en": "A good talk has a start (hello and the topic), a middle (two or three points) and an end (thank you).",
+            "hi": "अच्छे भाषण में शुरुआत (नमस्ते और विषय), बीच (दो-तीन बातें) और अंत (धन्यवाद) होता है।"
+          }
+        },
+        {
+          "type": "pattern",
+          "title": { "en": "Past, now and future in one talk", "hi": "एक भाषण में बीता, आज और आने वाला समय" },
+          "visual": "timeline",
+          "examples": [
+            { "en": "Last year, I was shy in English class.", "hi": "पिछले साल मैं अंग्रेज़ी की कक्षा में शर्माता/शर्माती था/थी।", "time": "past", "pic": "😳" },
+            { "en": "Now I speak English every day.", "hi": "अब मैं रोज़ अंग्रेज़ी बोलता/बोलती हूँ।", "time": "now", "pic": "🎤" },
+            {
+              "en": "Next year, I am going to join the debate club.",
+              "hi": "अगले साल मैं वाद-विवाद क्लब में शामिल होने वाला/वाली हूँ।",
+              "time": "future",
+              "pic": "🏆"
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u18.l2.b-start",
+              "hi": "आज मैं क्रिकेट के बारे में बोलूँगा/बोलूँगी।",
+              "pic": "🏏",
+              "tiles": ["going", "talk", "to", "I", "cricket.", "Today,", "am", "about"],
+              "answer": "Today, I am going to talk about cricket."
+            },
+            {
+              "key": "c.u18.l2.b-end",
+              "hi": "सुनने के लिए धन्यवाद।",
+              "pic": "🙏",
+              "tiles": ["for", "listening.", "Thank", "you"],
+              "answer": "Thank you for listening."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u18.l2.p-start",
+              "prompt": { "en": "Which is a good way to start a talk?" },
+              "options": [{ "text": "Thank you for listening." }, { "text": "Finally, I love it." }, { "text": "Good morning, everyone." }],
+              "answer": 2
+            },
+            {
+              "key": "c.u18.l2.p-end",
+              "prompt": { "en": "Which is a good way to end a talk?" },
+              "options": [{ "text": "Thank you for listening." }, { "text": "First, there is a pond." }, { "text": "Today, I am going to talk." }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u18.l2.s-start",
+              "model": "Good morning, everyone. Today, I am going to talk about my school.",
+              "cue": { "en": "Start a talk about your school." }
+            },
+            { "key": "c.u18.l2.s-end", "model": "Thank you for listening.", "cue": { "en": "End your talk." } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u18.l2.c-b1",
+          "type": "build",
+          "hi": "पहली बात, मेरे गाँव में एक बड़ा तालाब है।",
+          "pic": "1️⃣",
+          "tiles": ["pond.", "First,", "has", "big", "village", "my", "a"],
+          "answer": "First, my village has a big pond."
+        },
+        {
+          "key": "c.u18.l2.c-b2",
+          "type": "build",
+          "hi": "आख़िर में, मैं अपने परिवार से बहुत प्यार करता/करती हूँ।",
+          "pic": "3️⃣",
+          "tiles": ["my", "I", "much.", "family", "love", "very", "Finally,"],
+          "answer": "Finally, I love my family very much."
+        },
+        {
+          "key": "c.u18.l2.c-middle",
+          "type": "choose",
+          "prompt": { "en": "What comes in the middle of a talk?" },
+          "options": [{ "text": "two or three points" }, { "text": "Thank you for listening." }, { "text": "Good morning, everyone." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u18.l2.c-past",
+          "type": "choose",
+          "prompt": { "en": "Last year, I ___ shy." },
+          "options": [{ "text": "was" }, { "text": "am" }, { "text": "will be" }],
+          "answer": 0,
+          "why": { "en": "Last year is in the past: was.", "hi": "पिछला साल = बीता समय: was." }
+        },
+        {
+          "key": "c.u18.l2.c-now",
+          "type": "choose",
+          "prompt": { "en": "Now I ___ English every day." },
+          "options": [{ "text": "spoke" }, { "text": "speak" }, { "text": "speaking" }],
+          "answer": 1,
+          "why": { "en": "Every day is a habit: the simple form.", "hi": "रोज़ = आदत: सादा रूप।" }
+        },
+        {
+          "key": "c.u18.l2.c-future",
+          "type": "choose",
+          "prompt": { "en": "Next year, I ___ join the debate club." },
+          "options": [{ "text": "was" }, { "text": "am going to" }, { "text": "joined" }],
+          "answer": 1,
+          "why": { "en": "A plan for the future: going to.", "hi": "आगे की योजना: going to." }
+        }
+      ],
+      "home": {
+        "en": "Tell your family the start of a talk: Good morning, everyone. Today, I am going to …",
+        "hi": "घरवालों को भाषण की शुरुआत सुनाओ: Good morning, everyone. Today, I am going to …"
+      }
+    },
+    {
+      "key": "c.u18.l3",
+      "kind": "listen",
+      "title": { "en": "Meera's talk", "hi": "मीरा का भाषण" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "My village: a talk at the assembly", "hi": "मेरा गाँव: प्रार्थना सभा में भाषण" },
+          "scene": {
+            "place": "school",
+            "pics": [
+              { "pic": "🎪", "x": 50, "y": 14, "size": 2 },
+              { "pic": "👧", "x": 50, "y": 38, "size": 1.6 },
+              { "pic": "🎤", "x": 58, "y": 30, "size": 0.9 },
+              { "pic": "👪", "x": 18, "y": 52, "size": 1.3 },
+              { "pic": "👪", "x": 82, "y": 52, "size": 1.3 },
+              { "pic": "👩‍🏫", "x": 88, "y": 30, "size": 1.3 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Good morning, everyone. My name is Meera, and I am in Class 6." },
+            { "speaker": "Meera", "pic": "👧", "en": "Today, I am going to talk about my village." },
+            { "speaker": "Meera", "pic": "👧", "en": "First, my village is small, but it is very beautiful." },
+            { "speaker": "Meera", "pic": "👧", "en": "There is a big pond near the temple, and many trees." },
+            { "speaker": "Meera", "pic": "👧", "en": "Next, the people are kind. They always help each other." },
+            { "speaker": "Meera", "pic": "👧", "en": "Every year, we celebrate Diwali, Eid and Christmas together." },
+            { "speaker": "Meera", "pic": "👧", "en": "Last monsoon, the old bridge broke, and everyone helped to fix it." },
+            { "speaker": "Meera", "pic": "👧", "en": "Finally, I love my village because it feels like one big family." },
+            { "speaker": "Meera", "pic": "👧", "en": "Next year, I am going to plant ten trees near the school." },
+            { "speaker": "Meera", "pic": "👧", "en": "Thank you for listening." },
+            { "pic": "👏", "en": "Everyone clapped, and Meera smiled. She was proud." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u18.l3.p-topic",
+              "prompt": { "en": "What is Meera's talk about?" },
+              "options": [{ "text": "her school" }, { "text": "cricket" }, { "text": "her village" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u18.l3.p-pond",
+              "prompt": { "en": "What is near the temple?" },
+              "options": [{ "text": "a bus stand" }, { "text": "a shop" }, { "text": "a big pond" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u18.l3.p-plan",
+              "prompt": { "en": "What is Meera going to do next year?" },
+              "options": [{ "text": "visit the town" }, { "text": "plant ten trees" }, { "text": "buy a kite" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u18.l3.s-topic", "model": "Today, I am going to talk about my village.", "pic": "🏘️" },
+            { "key": "c.u18.l3.s-love", "model": "Finally, I love my village because it feels like one big family.", "pic": "❤️" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u18.l3.c-people",
+          "type": "choose",
+          "prompt": { "en": "What are the people in the village like?" },
+          "options": [{ "text": "kind and helpful" }, { "text": "shy and quiet" }, { "text": "angry and loud" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u18.l3.c-fest",
+          "type": "choose",
+          "prompt": { "en": "Which festivals do they celebrate together?" },
+          "options": [{ "text": "only Diwali" }, { "text": "Diwali, Eid and Christmas" }, { "text": "no festivals" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u18.l3.c-end",
+          "type": "choose",
+          "prompt": { "en": "How does Meera end her talk?" },
+          "options": [{ "text": "Good morning." }, { "text": "Thank you for listening." }, { "text": "First, my village." }],
+          "answer": 1
+        },
+        {
+          "key": "c.u18.l3.c-feel",
+          "type": "choose",
+          "prompt": { "en": "How did Meera feel at the end?" },
+          "options": [{ "text": "nervous" }, { "text": "proud" }, { "text": "angry" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u18.l3.c-bridge",
+          "type": "choose",
+          "prompt": { "en": "What happened last monsoon?" },
+          "options": [{ "text": "The old bridge broke, and everyone helped." }, { "text": "The temple closed." }, { "text": "The school had a party." }],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Tell your family about Meera's talk. What would you talk about?",
+        "hi": "घरवालों को मीरा के भाषण के बारे में बताओ। तुम किस बारे में बोलोगे?"
+      }
+    },
+    {
+      "key": "c.u18.l4",
+      "kind": "speak",
+      "title": { "en": "My one-minute talk", "hi": "मेरा एक मिनट का भाषण" },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Stand up, take a deep breath and smile. You can do it!", "hi": "खड़े हो जाओ, गहरी साँस लो और मुस्कुराओ। तुम कर सकते हो!" },
+          "pic": "😎"
+        },
+        {
+          "type": "talk",
+          "topic": { "en": "My favourite place", "hi": "मेरी पसंदीदा जगह" },
+          "outline": [
+            { "en": "Start: greet everyone and say your topic." },
+            { "en": "Point 1: say where the place is and what it looks like." },
+            { "en": "Point 2: say what you do there, or what happened there once." },
+            { "en": "Point 3: say why you love it." },
+            { "en": "End: thank the audience." }
+          ],
+          "seconds": 60,
+          "model": [
+            "Good morning, everyone. My name is Kiran.",
+            "Today, I am going to talk about my favourite place.",
+            "It is the big mango tree behind our school.",
+            "It is taller than all the other trees, and its shade is cool.",
+            "Every day, my friends and I eat our lunch under it.",
+            "Last summer, we were reading stories there when a monkey stole a mango!",
+            "I love this place because it is peaceful and full of friends.",
+            "Thank you for listening."
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u18.l4.br-topic",
+              "hi": "आज मैं अपनी पसंदीदा जगह के बारे में बोलूँगी।",
+              "tiles": ["my", "going", "place.", "about", "talk", "I", "Today,", "favourite", "am", "to"],
+              "answer": "Today, I am going to talk about my favourite place."
+            },
+            {
+              "key": "c.u18.l4.br-quiet",
+              "hi": "मुझे यह जगह पसंद है क्योंकि यह शांत है।",
+              "tiles": ["place", "I", "quiet.", "this", "it", "is", "love", "because"],
+              "answer": "I love this place because it is quiet."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u18.l4.s-again",
+              "model": "Good morning, everyone. Today, I am going to talk about my favourite place.",
+              "cue": { "en": "Say your first two sentences again, more confidently." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u18.l4.c-start",
+          "type": "choose",
+          "prompt": { "en": "What should you do first in a talk?" },
+          "options": [{ "text": "Say thank you." }, { "text": "Greet everyone and say your topic." }, { "text": "Sit down." }],
+          "answer": 1
+        },
+        {
+          "key": "c.u18.l4.c-b",
+          "type": "build",
+          "hi": "यह बाक़ी सभी पेड़ों से ऊँचा है।",
+          "pic": "🌳",
+          "tiles": ["than", "It", "other", "the", "taller", "is", "all", "trees."],
+          "answer": "It is taller than all the other trees."
+        },
+        {
+          "key": "c.u18.l4.c-tip",
+          "type": "choose",
+          "prompt": { "en": "You feel nervous before your talk. What can help?" },
+          "options": [{ "text": "Run away." }, { "text": "Take a deep breath and smile." }, { "text": "Speak very fast." }],
+          "answer": 1,
+          "why": { "en": "A deep breath and a smile calm you down.", "hi": "गहरी साँस और मुस्कान से घबराहट कम होती है।" }
+        },
+        {
+          "key": "c.u18.l4.c-because",
+          "type": "choose",
+          "prompt": { "en": "I love this place ___ it is peaceful." },
+          "options": [{ "text": "but" }, { "text": "because" }, { "text": "so" }],
+          "answer": 1,
+          "why": { "en": "because gives a reason.", "hi": "because कारण बताता है।" }
+        }
+      ],
+      "home": { "en": "Give your one-minute talk to your family. Ask them to clap!", "hi": "अपना एक मिनट का भाषण घरवालों को सुनाओ। उनसे ताली बजवाओ!" }
+    },
+    {
+      "key": "c.u18.l5",
+      "kind": "review",
+      "title": { "en": "Big review: units 10 to 17", "hi": "बड़ी दोहराई: इकाई 10 से 17" },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u18.l5.m-brave", "left": { "text": "brave" }, "right": { "pic": "🦁" } },
+            { "key": "c.u18.l5.m-expensive", "left": { "text": "expensive" }, "right": { "pic": "💰" } },
+            { "key": "c.u18.l5.m-journey", "left": { "text": "journey" }, "right": { "pic": "🛣️" } },
+            { "key": "c.u18.l5.m-borrow", "left": { "text": "borrow" }, "right": { "pic": "✏️" } },
+            { "key": "c.u18.l5.m-invite", "left": { "text": "invite" }, "right": { "pic": "✉️" } },
+            { "key": "c.u18.l5.m-lamp", "left": { "text": "lamp" }, "right": { "pic": "🪔" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u18.l5.b-explain",
+              "hi": "क्या आप उसे फिर से समझा सकती हैं?",
+              "pic": "👩‍🏫",
+              "tiles": ["please?", "that", "explain", "again,", "you", "Could"],
+              "answer": "Could you explain that again, please?"
+            },
+            {
+              "key": "c.u18.l5.b-fair",
+              "hi": "मुझे लगता है मेले वाला दिन सबसे अच्छा था।",
+              "pic": "🎡",
+              "tiles": ["day.", "was", "I", "the", "best", "think", "fair", "the"],
+              "answer": "I think the fair was the best day."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u18.l5.p-were",
+              "prompt": { "en": "We ___ eating dinner when the phone rang." },
+              "options": [{ "text": "were" }, { "text": "was" }, { "text": "are" }],
+              "answer": 0,
+              "why": { "en": "We, you, they or many: were + -ing.", "hi": "we, you, they या कई: were + -ing." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u18.l5.s-can", "model": "Now I can give a short talk in English!", "cue": { "en": "Tell us one thing you can do in English now." } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u18.l5.c-u10",
+          "type": "choose",
+          "prompt": { "en": "Last week, Arjun ___ his lost kite." },
+          "options": [{ "text": "found" }, { "text": "finds" }, { "text": "finded" }],
+          "answer": 0,
+          "why": { "en": "find → found in the past.", "hi": "find बीते समय में found बनता है।" }
+        },
+        {
+          "key": "c.u18.l5.c-u11",
+          "type": "choose",
+          "prompt": { "en": "The elephant is the ___ animal in the forest." },
+          "options": [{ "text": "biggest" }, { "text": "bigger" }, { "text": "big" }],
+          "answer": 0,
+          "why": { "en": "The top of many: the + -est.", "hi": "सबमें सबसे: the + -est." }
+        },
+        {
+          "key": "c.u18.l5.c-u12",
+          "type": "choose",
+          "prompt": { "en": "We have tickets. We ___ visit the town tomorrow." },
+          "options": [{ "text": "are going to" }, { "text": "visited" }, { "text": "visit to" }],
+          "answer": 0,
+          "why": { "en": "A plan: going to.", "hi": "योजना: going to." }
+        },
+        {
+          "key": "c.u18.l5.c-u13",
+          "type": "choose",
+          "prompt": { "en": "___ I borrow your notebook, please?" },
+          "options": [{ "text": "Does" }, { "text": "Am" }, { "text": "Can" }],
+          "answer": 2,
+          "why": { "en": "To ask, use can I or may I.", "hi": "पूछने के लिए can I या may I." }
+        },
+        {
+          "key": "c.u18.l5.c-u14",
+          "type": "choose",
+          "prompt": { "en": "Ms Anita is the teacher ___ wears glasses." },
+          "options": [{ "text": "who" }, { "text": "which" }, { "text": "where" }],
+          "answer": 0,
+          "why": { "en": "For a person, use who.", "hi": "व्यक्ति के लिए who." }
+        },
+        {
+          "key": "c.u18.l5.c-u15",
+          "type": "choose",
+          "prompt": { "en": "___ you like to come to the fair?" },
+          "options": [{ "text": "Are" }, { "text": "Is" }, { "text": "Would" }],
+          "answer": 2,
+          "why": { "en": "Would you like is a polite invitation.", "hi": "would you like = विनम्र न्योता।" }
+        },
+        {
+          "key": "c.u18.l5.c-u16",
+          "type": "choose",
+          "prompt": { "en": "I was tired, ___ I went to bed early." },
+          "options": [{ "text": "because" }, { "text": "so" }, { "text": "but" }],
+          "answer": 1,
+          "why": { "en": "so shows the result.", "hi": "so नतीजा बताता है।" }
+        },
+        {
+          "key": "c.u18.l5.c-u17",
+          "type": "choose",
+          "prompt": { "en": "We ___ dancing when the music stopped." },
+          "options": [{ "text": "was" }, { "text": "were" }, { "text": "are" }],
+          "answer": 1,
+          "why": { "en": "We, you, they or many: were + -ing.", "hi": "we, you, they या कई: were + -ing." }
+        },
+        {
+          "key": "c.u18.l5.c-b1",
+          "type": "build",
+          "hi": "मेरा भाषण सुनने के लिए धन्यवाद।",
+          "pic": "🙏",
+          "tiles": ["my", "to", "listening", "Thank", "you", "talk.", "for"],
+          "answer": "Thank you for listening to my talk."
+        },
+        {
+          "key": "c.u18.l5.c-b2",
+          "type": "build",
+          "hi": "अगले साल मैं और ज़्यादा किताबें पढ़ूँगा/पढ़ूँगी।",
+          "pic": "📚",
+          "tiles": ["books.", "am", "more", "read", "going", "to", "I", "year,", "Next"],
+          "answer": "Next year, I am going to read more books."
+        }
+      ],
+      "home": {
+        "en": "You finished all 18 units! Tell your family three things you can say in English now.",
+        "hi": "तुमने सभी 18 इकाइयाँ पूरी कर लीं! घरवालों को बताओ कि अब तुम अंग्रेज़ी में कौन-सी तीन बातें कह सकते हो।"
+      }
+    }
+  ]
+}

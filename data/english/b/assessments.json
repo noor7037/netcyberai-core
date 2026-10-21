@@ -1,0 +1,215 @@
+{
+  "track": "b",
+  "assessments": [
+    {
+      "track": "b",
+      "kind": "day0",
+      "key": "b.day0",
+      "sections": [
+        {
+          "skill": "listening",
+          "items": [
+            { "key": "b.day0.l-girl", "type": "choose", "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "girl" }, "options": [{ "pic": "👦" }, { "pic": "👧" }, { "pic": "🏫" }], "answer": 1 },
+            { "key": "b.day0.l-book", "type": "choose", "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "a book" }, "options": [{ "pic": "📖" }, { "pic": "🎒" }, { "pic": "✏️" }], "answer": 0 },
+            { "key": "b.day0.l-twelve", "type": "choose", "prompt": { "en": "Listen. Tap the number.", "hi": "सुनो। संख्या पर टैप करो।", "say": "twelve" }, "options": [{ "text": "2" }, { "text": "12" }, { "text": "20" }], "answer": 1 },
+            { "key": "b.day0.l-mother", "type": "choose", "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "This is my mother." }, "options": [{ "pic": "👩" }, { "pic": "👴" }, { "pic": "👦" }], "answer": 0 },
+            { "key": "b.day0.l-mango", "type": "choose", "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "I like mangoes." }, "options": [{ "pic": "🍌" }, { "pic": "🥛" }, { "pic": "🥭" }], "answer": 2 }
+          ]
+        },
+        {
+          "skill": "words",
+          "items": [
+            { "key": "b.day0.w-hello", "type": "choose", "prompt": { "en": "Which word means नमस्ते?", "hi": "कौन-सा शब्द 'नमस्ते' है?", "pic": "👋" }, "options": [{ "text": "hello" }, { "text": "friend" }, { "text": "school" }], "answer": 0 },
+            { "key": "b.day0.w-sister", "type": "choose", "prompt": { "en": "Which word means बहन?", "hi": "कौन-सा शब्द 'बहन' है?" }, "options": [{ "text": "brother" }, { "text": "sister" }, { "text": "mother" }], "answer": 1 },
+            { "key": "b.day0.w-pencil", "type": "choose", "prompt": { "en": "What is this?", "hi": "यह क्या है?", "pic": "✏️" }, "options": [{ "text": "pen" }, { "text": "pencil" }, { "text": "bag" }], "answer": 1 },
+            { "key": "b.day0.w-hen", "type": "choose", "prompt": { "en": "What is this?", "hi": "यह क्या है?", "pic": "🐔" }, "options": [{ "text": "egg" }, { "text": "hen" }, { "text": "tree" }], "answer": 1 },
+            { "key": "b.day0.w-big", "type": "choose", "prompt": { "en": "The elephant is ___.", "hi": "हाथी बड़ा है।", "pic": "🐘" }, "options": [{ "text": "small" }, { "text": "big" }], "answer": 1 },
+            { "key": "b.day0.w-milk", "type": "choose", "prompt": { "en": "Which word means दूध?", "hi": "कौन-सा शब्द 'दूध' है?", "pic": "🥛" }, "options": [{ "text": "milk" }, { "text": "rice" }, { "text": "dal" }], "answer": 0 }
+          ]
+        },
+        {
+          "skill": "grammar",
+          "items": [
+            { "key": "b.day0.g-am", "type": "choose", "prompt": { "en": "I ___ seven years old.", "hi": "मैं सात साल का/की हूँ।" }, "options": [{ "text": "am" }, { "text": "is" }, { "text": "are" }], "answer": 0 },
+            { "key": "b.day0.g-she", "type": "choose", "prompt": { "en": "Salma is my friend. ___ is seven.", "hi": "सलमा मेरी दोस्त है। वह सात साल की है।", "pic": "🧕" }, "options": [{ "text": "He" }, { "text": "She" }], "answer": 1 },
+            { "key": "b.day0.g-an", "type": "choose", "prompt": { "en": "This is ___ umbrella.", "hi": "यह एक छाता है।", "pic": "🌂" }, "options": [{ "text": "a" }, { "text": "an" }], "answer": 1 },
+            { "key": "b.day0.g-s", "type": "choose", "prompt": { "en": "Five ___.", "hi": "पाँच तारे।", "pic": "⭐" }, "options": [{ "text": "star" }, { "text": "stars" }], "answer": 1 },
+            { "key": "b.day0.g-b1", "type": "build", "hi": "मेरा नाम मीरा है।", "tiles": ["is", "Meera.", "My", "name"], "answer": "My name is Meera." },
+            { "key": "b.day0.g-b2", "type": "build", "hi": "क्या तुम्हें आम पसंद हैं?", "tiles": ["like", "mangoes?", "Do", "you"], "answer": "Do you like mangoes?" }
+          ]
+        },
+        {
+          "skill": "reading",
+          "items": [
+            { "key": "b.day0.r-arjun", "type": "choose", "prompt": { "en": "Read: Arjun is six. He is Meera's brother. How old is Arjun?", "hi": "पढ़ो और बताओ: अर्जुन कितने साल का है?" }, "options": [{ "text": "six" }, { "text": "eight" }], "answer": 0 },
+            { "key": "b.day0.r-bag", "type": "choose", "prompt": { "en": "Read: This is my bag. It is new. Is the bag old?", "hi": "पढ़ो और बताओ: क्या बस्ता पुराना है?" }, "options": [{ "text": "Yes, it is old." }, { "text": "No, it is new." }], "answer": 1 },
+            { "key": "b.day0.r-salma", "type": "choose", "prompt": { "en": "Read: Salma likes bananas. She doesn't like milk. What does Salma like?", "hi": "पढ़ो और बताओ: सलमा को क्या पसंद है?" }, "options": [{ "text": "bananas", "pic": "🍌" }, { "text": "milk", "pic": "🥛" }], "answer": 0 },
+            { "key": "b.day0.r-hens", "type": "choose", "prompt": { "en": "Read: Dadi has ten hens and two cows. How many hens?", "hi": "पढ़ो और बताओ: दादी के पास कितनी मुर्गियाँ हैं?" }, "options": [{ "text": "two" }, { "text": "ten" }], "answer": 1 }
+          ]
+        }
+      ],
+      "speaking": [
+        {
+          "key": "b.day0.s-intro",
+          "prompt": { "en": "Say hello. Say your name and age.", "hi": "नमस्ते कहो। अपना नाम और उम्र बताओ।" },
+          "model": "Hello! My name is Meera. I am eight.",
+          "criteria": [
+            { "en": "I said hello.", "hi": "मैंने नमस्ते कहा।" },
+            { "en": "I said my name.", "hi": "मैंने अपना नाम बताया।" },
+            { "en": "I said my age.", "hi": "मैंने अपनी उम्र बताई।" }
+          ]
+        },
+        {
+          "key": "b.day0.s-family",
+          "prompt": { "en": "Tell us about one person in your family.", "hi": "अपने परिवार के एक व्यक्ति के बारे में बताओ।" },
+          "model": "This is my brother. He is six.",
+          "criteria": [
+            { "en": "I used This is my …", "hi": "मैंने This is my … बोला।" },
+            { "en": "I used he or she.", "hi": "मैंने he या she बोला।" },
+            { "en": "I spoke loud and clear.", "hi": "मैंने ज़ोर से और साफ़ बोला।" }
+          ]
+        }
+      ]
+    },
+    {
+      "track": "b",
+      "kind": "day45",
+      "key": "b.day45",
+      "sections": [
+        {
+          "skill": "listening",
+          "items": [
+            { "key": "b.day45.l-fly", "type": "choose", "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "A bird can fly." }, "options": [{ "pic": "🐦" }, { "pic": "🐟" }, { "pic": "🐄" }], "answer": 0 },
+            { "key": "b.day45.l-teeth", "type": "choose", "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "Brush your teeth." }, "options": [{ "pic": "✋" }, { "pic": "🦷" }, { "pic": "👂" }], "answer": 1 },
+            { "key": "b.day45.l-eighteen", "type": "choose", "prompt": { "en": "Listen. Tap the number.", "hi": "सुनो। संख्या पर टैप करो।", "say": "eighteen" }, "options": [{ "text": "8" }, { "text": "18" }, { "text": "17" }], "answer": 1 },
+            { "key": "b.day45.l-kite", "type": "choose", "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "This is my favourite kite." }, "options": [{ "pic": "🧸" }, { "pic": "🪁" }, { "pic": "📖" }], "answer": 1 },
+            { "key": "b.day45.l-small", "type": "choose", "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "The ant is small." }, "options": [{ "pic": "🐜" }, { "pic": "🐘" }], "answer": 0 }
+          ]
+        },
+        {
+          "skill": "words",
+          "items": [
+            { "key": "b.day45.w-grandfather", "type": "choose", "prompt": { "en": "Which word means दादा?", "hi": "कौन-सा शब्द 'दादा' है?", "pic": "👴" }, "options": [{ "text": "grandmother" }, { "text": "grandfather" }, { "text": "father" }], "answer": 1 },
+            { "key": "b.day45.w-ruler", "type": "choose", "prompt": { "en": "What is this?", "hi": "यह क्या है?", "pic": "📏" }, "options": [{ "text": "ruler" }, { "text": "crayon" }, { "text": "pen" }], "answer": 0 },
+            { "key": "b.day45.w-flower", "type": "choose", "prompt": { "en": "What is this?", "hi": "यह क्या है?", "pic": "🌸" }, "options": [{ "text": "tree" }, { "text": "star" }, { "text": "flower" }], "answer": 2 },
+            { "key": "b.day45.w-old", "type": "choose", "prompt": { "en": "Which word means पुराना?", "hi": "कौन-सा शब्द 'पुराना' है?" }, "options": [{ "text": "new" }, { "text": "old" }, { "text": "long" }], "answer": 1 },
+            { "key": "b.day45.w-sweets", "type": "choose", "prompt": { "en": "What is this?", "hi": "यह क्या है?", "pic": "🍬" }, "options": [{ "text": "sweets" }, { "text": "rice" }, { "text": "dal" }], "answer": 0 },
+            { "key": "b.day45.w-frog", "type": "choose", "prompt": { "en": "What is this?", "hi": "यह क्या है?", "pic": "🐸" }, "options": [{ "text": "fish" }, { "text": "frog" }, { "text": "goat" }], "answer": 1 }
+          ]
+        },
+        {
+          "skill": "grammar",
+          "items": [
+            { "key": "b.day45.g-has", "type": "choose", "prompt": { "en": "Meera ___ a new pen.", "hi": "मीरा के पास एक नया पेन है।", "pic": "🖊️" }, "options": [{ "text": "have" }, { "text": "has" }], "answer": 1 },
+            { "key": "b.day45.g-cant", "type": "choose", "prompt": { "en": "A cow ___ fly.", "hi": "गाय उड़ नहीं सकती।", "pic": "🐄" }, "options": [{ "text": "can" }, { "text": "can't" }], "answer": 1 },
+            { "key": "b.day45.g-dont", "type": "choose", "prompt": { "en": "I ___ like milk.", "hi": "मुझे दूध पसंद नहीं है।", "pic": "🥛" }, "options": [{ "text": "am" }, { "text": "don't" }], "answer": 1 },
+            { "key": "b.day45.g-that", "type": "choose", "prompt": { "en": "The tree is far away. ___ is a big tree.", "hi": "पेड़ दूर है। वह एक बड़ा पेड़ है।", "pic": "🌳" }, "options": [{ "text": "This" }, { "text": "That" }], "answer": 1 },
+            { "key": "b.day45.g-b1", "type": "build", "hi": "मेरे दो हाथ हैं।", "tiles": ["hands.", "two", "I", "have"], "answer": "I have two hands." },
+            { "key": "b.day45.g-b2", "type": "build", "hi": "कितने पेड़?", "tiles": ["trees?", "many", "How"], "answer": "How many trees?" }
+          ]
+        },
+        {
+          "skill": "reading",
+          "items": [
+            { "key": "b.day45.r-goat", "type": "choose", "prompt": { "en": "Read: Ravi has a goat. The goat is small. It can jump. What can the goat do?", "hi": "पढ़ो और बताओ: बकरी क्या कर सकती है?" }, "options": [{ "text": "jump", "pic": "🤸" }, { "text": "fly", "pic": "🕊️" }], "answer": 0 },
+            { "key": "b.day45.r-cat", "type": "choose", "prompt": { "en": "Read: Salma is my friend. She has a kite. Who has a kite?", "hi": "पढ़ो और बताओ: पतंग किसके पास है?" }, "options": [{ "text": "Arjun", "pic": "👦" }, { "text": "Salma", "pic": "🧕" }], "answer": 1 },
+            { "key": "b.day45.r-tiffin", "type": "choose", "prompt": { "en": "Read: Meera likes roti. She doesn't like bananas. Does Meera like bananas?", "hi": "पढ़ो और बताओ: क्या मीरा को केले पसंद हैं?" }, "options": [{ "text": "Yes, she does." }, { "text": "No, she doesn't." }], "answer": 1 },
+            { "key": "b.day45.r-pens", "type": "choose", "prompt": { "en": "Read: I have twelve books and two pens. How many pens?", "hi": "पढ़ो और बताओ: कितने पेन हैं?" }, "options": [{ "text": "twelve" }, { "text": "two" }], "answer": 1 }
+          ]
+        }
+      ],
+      "speaking": [
+        {
+          "key": "b.day45.s-show",
+          "prompt": { "en": "Show your favourite thing and talk about it.", "hi": "अपनी सबसे प्यारी चीज़ दिखाओ और उसके बारे में बोलो।" },
+          "model": "This is my toy. It is small.",
+          "criteria": [
+            { "en": "I said what it is.", "hi": "मैंने बताया कि वह क्या है।" },
+            { "en": "I said one more thing about it.", "hi": "मैंने उसके बारे में एक और बात बताई।" },
+            { "en": "I spoke without stopping a lot.", "hi": "मैं बहुत रुके बिना बोला/बोली।" }
+          ]
+        },
+        {
+          "key": "b.day45.s-animal",
+          "prompt": { "en": "Say what an animal can do and can't do.", "hi": "बताओ कोई जानवर क्या कर सकता है और क्या नहीं।" },
+          "model": "A fish can swim. It can't run.",
+          "criteria": [
+            { "en": "I used can.", "hi": "मैंने can बोला।" },
+            { "en": "I used can't.", "hi": "मैंने can't बोला।" },
+            { "en": "My words were clear.", "hi": "मेरे शब्द साफ़ थे।" }
+          ]
+        }
+      ]
+    },
+    {
+      "track": "b",
+      "kind": "day90",
+      "key": "b.day90",
+      "sections": [
+        {
+          "skill": "listening",
+          "items": [
+            { "key": "b.day90.l-raining", "type": "choose", "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "It is raining today." }, "options": [{ "pic": "☀️" }, { "pic": "🌧️" }, { "pic": "🧣" }], "answer": 1 },
+            { "key": "b.day90.l-cooking", "type": "choose", "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "Papa is cooking." }, "options": [{ "pic": "🍳" }, { "pic": "🧹" }, { "pic": "🎤" }], "answer": 0 },
+            { "key": "b.day90.l-under", "type": "choose", "prompt": { "en": "Listen. Where is the cat?", "hi": "सुनो। बिल्ली कहाँ है?", "say": "The cat is under the bed." }, "options": [{ "text": "on the bed" }, { "text": "under the bed" }, { "text": "in the box" }], "answer": 1 },
+            { "key": "b.day90.l-sunday", "type": "choose", "prompt": { "en": "Listen. Tap the day.", "hi": "सुनो, दिन चुनो।", "say": "Today is Sunday." }, "options": [{ "text": "Monday" }, { "text": "Sunday" }, { "text": "Saturday" }], "answer": 1 },
+            { "key": "b.day90.l-salt", "type": "choose", "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "I want salt, please." }, "options": [{ "pic": "🧂" }, { "pic": "🍚" }, { "pic": "🥔" }], "answer": 0 }
+          ]
+        },
+        {
+          "skill": "words",
+          "items": [
+            { "key": "b.day90.w-chair", "type": "choose", "prompt": { "en": "What is this?", "hi": "यह क्या है?", "pic": "🪑" }, "options": [{ "text": "bed" }, { "text": "chair" }, { "text": "door" }], "answer": 1 },
+            { "key": "b.day90.w-morning", "type": "choose", "prompt": { "en": "Which word means सुबह?", "hi": "'सुबह' कौन-सा है?", "pic": "🌞" }, "options": [{ "text": "night" }, { "text": "morning" }], "answer": 1 },
+            { "key": "b.day90.w-winter", "type": "choose", "prompt": { "en": "Which word means सर्दी?", "hi": "'सर्दी' कौन-सा है?", "pic": "🧣" }, "options": [{ "text": "summer" }, { "text": "winter" }, { "text": "monsoon" }], "answer": 1 },
+            { "key": "b.day90.w-buy", "type": "choose", "prompt": { "en": "Which word means ख़रीदना?", "hi": "'ख़रीदना' कौन-सा है?", "pic": "🛒" }, "options": [{ "text": "buy" }, { "text": "shop" }, { "text": "money" }], "answer": 0 },
+            { "key": "b.day90.w-scared", "type": "choose", "prompt": { "en": "How does she feel?", "hi": "उसे कैसा लग रहा है?", "pic": "😨" }, "options": [{ "text": "happy" }, { "text": "scared" }, { "text": "tired" }], "answer": 1 },
+            { "key": "b.day90.w-yesterday", "type": "choose", "prompt": { "en": "Which word means बीता हुआ कल?", "hi": "'बीता हुआ कल' कौन-सा है?", "pic": "⬅️" }, "options": [{ "text": "tomorrow" }, { "text": "today" }, { "text": "yesterday" }], "answer": 2 }
+          ]
+        },
+        {
+          "skill": "grammar",
+          "items": [
+            { "key": "b.day90.g-are", "type": "choose", "prompt": { "en": "There ___ two cats.", "hi": "दो बिल्लियाँ हैं।", "pic": "🐈" }, "options": [{ "text": "is" }, { "text": "are" }], "answer": 1 },
+            { "key": "b.day90.g-ing", "type": "choose", "prompt": { "en": "Salma is ___ now.", "hi": "सलमा अभी नाच रही है।", "pic": "💃" }, "options": [{ "text": "dance" }, { "text": "dancing" }], "answer": 1 },
+            { "key": "b.day90.g-was", "type": "choose", "prompt": { "en": "Yesterday I ___ at the fair.", "hi": "कल मैं मेले में था/थी।", "pic": "🎡" }, "options": [{ "text": "was" }, { "text": "were" }], "answer": 0 },
+            { "key": "b.day90.g-on", "type": "choose", "prompt": { "en": "We go to the haat ___ Sunday.", "hi": "हम रविवार को हाट जाते हैं।", "pic": "own:haat" }, "options": [{ "text": "on" }, { "text": "at" }], "answer": 0 },
+            { "key": "b.day90.g-b1", "type": "build", "hi": "क्या मैं बाहर जा सकता हूँ, प्लीज़?", "tiles": ["out,", "please?", "Can", "go", "I"], "answer": "Can I go out, please?" },
+            { "key": "b.day90.g-b2", "type": "build", "hi": "यह कितने का है?", "tiles": ["it?", "How", "is", "much"], "answer": "How much is it?" }
+          ]
+        },
+        {
+          "skill": "reading",
+          "items": [
+            { "key": "b.day90.r-day", "type": "choose", "prompt": { "en": "Read: I wake up at six o'clock. I go to school at nine. When do I wake up?", "hi": "पढ़ो और बताओ: मैं कितने बजे उठता/उठती हूँ?" }, "options": [{ "text": "at six o'clock" }, { "text": "at nine o'clock" }], "answer": 0 },
+            { "key": "b.day90.r-weather", "type": "choose", "prompt": { "en": "Read: It is winter. It is cold today. Arjun is at home. Is it hot?", "hi": "पढ़ो और बताओ: क्या गरमी है?" }, "options": [{ "text": "Yes, it is hot." }, { "text": "No, it is cold." }], "answer": 1 },
+            { "key": "b.day90.r-fair", "type": "choose", "prompt": { "en": "Read: Yesterday Meera and Salma were at the fair. They were happy. Where were they?", "hi": "पढ़ो और बताओ: वे कहाँ थीं?" }, "options": [{ "text": "at school" }, { "text": "at the fair" }], "answer": 1 },
+            { "key": "b.day90.r-shop", "type": "choose", "prompt": { "en": "Read: Ravi has a shop. A tomato is five rupees. How much is a tomato?", "hi": "पढ़ो और बताओ: एक टमाटर कितने का है?" }, "options": [{ "text": "five rupees" }, { "text": "ten rupees" }], "answer": 0 }
+          ]
+        }
+      ],
+      "speaking": [
+        {
+          "key": "b.day90.s-day",
+          "prompt": { "en": "Tell us about your day with first and then.", "hi": "First और then से अपने दिन के बारे में बताओ।" },
+          "model": "First, I wake up. Then I go to school.",
+          "criteria": [
+            { "en": "I used first and then.", "hi": "मैंने first और then बोला।" },
+            { "en": "I said what I do every day.", "hi": "मैंने रोज़ के काम बताए।" },
+            { "en": "I spoke loud and clear.", "hi": "मैंने ज़ोर से और साफ़ बोला।" }
+          ]
+        },
+        {
+          "key": "b.day90.s-picture",
+          "prompt": { "en": "Look at a picture. Talk about it for half a minute.", "hi": "कोई चित्र देखो। उसके बारे में आधा मिनट बोलो।" },
+          "model": "This is my village. It is sunny today.",
+          "criteria": [
+            { "en": "I said what is in the picture.", "hi": "मैंने बताया कि चित्र में क्या है।" },
+            { "en": "I said what people are doing.", "hi": "मैंने बताया कि लोग क्या कर रहे हैं।" },
+            { "en": "I spoke for half a minute.", "hi": "मैं आधा मिनट बोला/बोली।" }
+          ]
+        }
+      ]
+    }
+  ]
+}

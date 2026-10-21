@@ -1,0 +1,394 @@
+{
+  "track": "b",
+  "unit": 6,
+  "key": "b.u06",
+  "title": { "en": "Food I like", "hi": "मुझे पसंद खाना" },
+  "pic": "🍛",
+  "can_do": { "en": "I can say what I like and ask.", "hi": "मैं बता सकता/सकती हूँ कि मुझे क्या पसंद है, और पूछ भी सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u06.l1",
+      "kind": "words",
+      "title": { "en": "Food words", "hi": "खाने के शब्द" },
+      "minutes": 5,
+      "steps": [
+        { "type": "tip", "text": { "en": "Yum! Let us learn food words.", "hi": "वाह! चलो खाने के शब्द सीखें।" }, "pic": "😋" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u06.l1.rice", "en": "rice", "hi": "चावल", "pic": "🍚", "example": { "en": "I like rice.", "hi": "मुझे चावल पसंद है।" } },
+            { "key": "b.u06.l1.roti", "en": "roti", "hi": "रोटी", "pic": "own:roti", "example": { "en": "Mummy makes hot rotis.", "hi": "माँ गरम रोटियाँ बनाती हैं।" } },
+            { "key": "b.u06.l1.dal", "en": "dal", "hi": "दाल", "pic": "🍲", "example": { "en": "Dal and rice, please!", "hi": "दाल-चावल, प्लीज़!" } },
+            { "key": "b.u06.l1.milk", "en": "milk", "hi": "दूध", "pic": "🥛", "example": { "en": "Arjun drinks milk.", "hi": "अर्जुन दूध पीता है।" } },
+            { "key": "b.u06.l1.mango", "en": "mango", "hi": "आम", "pic": "🥭", "example": { "en": "This mango is big!", "hi": "यह आम बड़ा है!" } },
+            { "key": "b.u06.l1.banana", "en": "banana", "hi": "केला", "pic": "🍌", "example": { "en": "A monkey likes bananas.", "hi": "बंदर को केले पसंद हैं।" } },
+            { "key": "b.u06.l1.sweets", "en": "sweets", "hi": "मिठाई", "pic": "🍬", "example": { "en": "Sweets for Diwali!", "hi": "दिवाली की मिठाई!" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u06.l1.m-rice", "left": { "text": "rice" }, "right": { "pic": "🍚" } },
+            { "key": "b.u06.l1.m-milk", "left": { "text": "milk" }, "right": { "pic": "🥛" } },
+            { "key": "b.u06.l1.m-banana", "left": { "text": "banana" }, "right": { "pic": "🍌" } },
+            { "key": "b.u06.l1.m-roti", "left": { "text": "roti" }, "right": { "pic": "own:roti" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u06.l1.p-mango",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "mango" },
+              "options": [{ "pic": "🍌" }, { "pic": "🥭" }, { "pic": "🍎" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u06.l1.p-dal",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "dal" },
+              "options": [{ "pic": "🍲" }, { "pic": "🍚" }, { "pic": "🥛" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u06.l1.s-mangoes", "model": "I like mangoes.", "hi": "मुझे आम पसंद हैं।", "pic": "🥭" },
+            { "key": "b.u06.l1.s-roti", "model": "I like roti and dal.", "hi": "मुझे रोटी और दाल पसंद है।", "pic": "own:roti" },
+            { "key": "b.u06.l1.s-milk", "model": "Milk, please.", "hi": "दूध, प्लीज़।", "pic": "🥛" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u06.l1.c-sweets",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "sweets" },
+          "options": [{ "pic": "🍬" }, { "pic": "🥭" }, { "pic": "🍚" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u06.l1.c-milk",
+          "type": "choose",
+          "prompt": { "en": "Which word means दूध?", "hi": "कौन-सा शब्द 'दूध' है?", "pic": "🥛" },
+          "options": [{ "text": "rice" }, { "text": "milk" }, { "text": "dal" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u06.l1.c-roti",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "roti" },
+          "options": [{ "pic": "🍌" }, { "pic": "own:roti" }, { "pic": "🥛" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u06.l1.c-banana",
+          "type": "choose",
+          "prompt": { "en": "Which word means केला?", "hi": "कौन-सा शब्द 'केला' है?", "pic": "🍌" },
+          "options": [{ "text": "mango" }, { "text": "banana" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "At dinner, name the food in English.", "hi": "रात के खाने पर खाने के नाम अंग्रेज़ी में बोलो।" }
+    },
+    {
+      "key": "b.u06.l2",
+      "kind": "pattern",
+      "title": { "en": "I like … Do you like …?", "hi": "मुझे … पसंद है। क्या तुम्हें … पसंद है?" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Like, don't like, and ask", "hi": "पसंद, नापसंद, और पूछना" },
+          "visual": "question_flip",
+          "examples": [
+            { "en": "I like mangoes.", "hi": "मुझे आम पसंद हैं।", "pic": "🥭", "parts": [{ "text": "I", "role": "who" }, { "text": "like", "role": "do" }, { "text": "mangoes.", "role": "what" }] },
+            { "en": "I don't like milk.", "hi": "मुझे दूध पसंद नहीं है।", "pic": "🥛", "parts": [{ "text": "I", "role": "who" }, { "text": "don't", "role": "not" }, { "text": "like", "role": "do" }, { "text": "milk.", "role": "what" }] },
+            { "en": "You like rice.", "hi": "तुम्हें चावल पसंद है।", "pic": "🍚", "parts": [{ "text": "You", "role": "who" }, { "text": "like", "role": "do" }, { "text": "rice.", "role": "what" }] },
+            { "en": "Do you like rice?", "hi": "क्या तुम्हें चावल पसंद है?", "pic": "🍚", "parts": [{ "text": "Do", "role": "ask" }, { "text": "you", "role": "who" }, { "text": "like", "role": "do" }, { "text": "rice?", "role": "what" }] },
+            { "en": "Yes, I do.", "hi": "हाँ, पसंद है।", "pic": "👍", "parts": [{ "text": "Yes,", "role": "other" }, { "text": "I", "role": "who" }, { "text": "do.", "role": "do" }] },
+            { "en": "No, I don't.", "hi": "नहीं, पसंद नहीं है।", "pic": "👎", "parts": [{ "text": "No,", "role": "other" }, { "text": "I", "role": "who" }, { "text": "don't.", "role": "not" }] }
+          ],
+          "note": { "en": "To ask, put Do at the front.", "hi": "पूछने के लिए आगे Do लगाओ।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u06.l2.b-like", "hi": "मुझे केले पसंद हैं।", "pic": "🍌", "tiles": ["bananas.", "I", "like"], "answer": "I like bananas." },
+            { "key": "b.u06.l2.b-do", "hi": "क्या तुम्हें दाल पसंद है?", "pic": "🍲", "tiles": ["like", "you", "dal?", "Do"], "answer": "Do you like dal?" },
+            { "key": "b.u06.l2.b-dont", "hi": "मुझे दूध पसंद नहीं है।", "pic": "🥛", "tiles": ["like", "milk.", "don't", "I"], "answer": "I don't like milk." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u06.l2.p-ask",
+              "prompt": { "en": "___ you like sweets?", "hi": "क्या तुम्हें मिठाई पसंद है?", "pic": "🍬" },
+              "options": [{ "text": "Do" }, { "text": "Are" }],
+              "answer": 0,
+              "why": { "en": "We ask with Do: Do you like …?", "hi": "पूछने के लिए Do: Do you like …?" }
+            },
+            {
+              "key": "b.u06.l2.p-no",
+              "prompt": { "en": "Do you like milk? No, I ___.", "hi": "क्या तुम्हें दूध पसंद है? नहीं।", "pic": "🥛" },
+              "options": [{ "text": "do" }, { "text": "don't" }],
+              "answer": 1,
+              "why": { "en": "No, I don't. Yes, I do.", "hi": "नहीं के साथ don't, हाँ के साथ do।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u06.l2.s-like", "model": "I like mangoes.", "hi": "बताओ तुम्हें क्या पसंद है।", "pic": "🥭", "cue": { "en": "What do you like?", "hi": "तुम्हें क्या पसंद है?" } },
+            { "key": "b.u06.l2.s-ask", "model": "Do you like rice?", "hi": "पूछो: Do you like rice?", "pic": "🍚", "cue": { "en": "Ask Salma about rice.", "hi": "सलमा से चावल के बारे में पूछो।" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u06.l2.c-build1", "type": "build", "hi": "क्या तुम्हें आम पसंद हैं?", "tiles": ["mangoes?", "Do", "like", "you"], "answer": "Do you like mangoes?" },
+        { "key": "b.u06.l2.c-build2", "type": "build", "hi": "मुझे मिठाई पसंद है।", "tiles": ["sweets.", "like", "I"], "answer": "I like sweets." },
+        {
+          "key": "b.u06.l2.c-yes",
+          "type": "choose",
+          "prompt": { "en": "Do you like roti? Yes, I ___.", "hi": "क्या तुम्हें रोटी पसंद है? हाँ।", "pic": "own:roti" },
+          "options": [{ "text": "do" }, { "text": "don't" }],
+          "answer": 0,
+          "why": { "en": "Yes, I do.", "hi": "हाँ के साथ do।" }
+        },
+        {
+          "key": "b.u06.l2.c-dont",
+          "type": "choose",
+          "prompt": { "en": "I ___ like milk.", "hi": "मुझे दूध पसंद नहीं है।", "pic": "🥛" },
+          "options": [{ "text": "am" }, { "text": "don't" }],
+          "answer": 1,
+          "why": { "en": "Not like: don't like.", "hi": "पसंद नहीं: don't like।" }
+        },
+        {
+          "key": "b.u06.l2.c-ask",
+          "type": "choose",
+          "prompt": { "en": "Which one is a question?", "hi": "कौन-सा वाक्य सवाल है?" },
+          "options": [{ "text": "I like dal." }, { "text": "Do you like dal?" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask at home: Do you like mangoes?", "hi": "घर पर पूछो: Do you like mangoes?" }
+    },
+    {
+      "key": "b.u06.l3",
+      "kind": "listen",
+      "title": { "en": "Tiffin time", "hi": "टिफ़िन का समय" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Sharing lunch", "hi": "मिलकर खाना" },
+          "scene": { "place": "school", "pics": [{ "pic": "🏫", "x": 84, "y": 14, "size": 1.8 }, { "pic": "👧", "x": 26, "y": 42, "size": 1.5 }, { "pic": "🧕", "x": 48, "y": 42, "size": 1.5 }, { "pic": "own:tiffin", "x": 36, "y": 54 }, { "pic": "🥭", "x": 58, "y": 54, "size": 0.9 }, { "pic": "👩‍🏫", "x": 70, "y": 40, "size": 1.4 }] },
+          "lines": [
+            { "speaker": "Salma", "pic": "🧕", "en": "Tiffin time! Meera, do you like roti?", "hi": "टिफ़िन का समय! मीरा, क्या तुम्हें रोटी पसंद है?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Yes, I do. I like roti and dal.", "hi": "हाँ। मुझे रोटी और दाल पसंद है।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Do you like bananas?", "hi": "क्या तुम्हें केले पसंद हैं?" },
+            { "speaker": "Meera", "pic": "👧", "en": "No, I don't. But I like mangoes!", "hi": "नहीं। पर मुझे आम पसंद हैं!" },
+            { "speaker": "Salma", "pic": "🧕", "en": "I have a mango. Let us share!", "hi": "मेरे पास एक आम है। चलो बाँटकर खाएँ!" },
+            { "speaker": "Meera", "pic": "👧", "en": "Thank you, Salma! It is sweet.", "hi": "धन्यवाद, सलमा! यह मीठा है।" },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Well done, girls! Sharing is nice.", "hi": "शाबाश! मिलकर खाना अच्छी बात है।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u06.l3.p-roti",
+              "prompt": { "en": "Does Meera like roti?", "hi": "क्या मीरा को रोटी पसंद है?" },
+              "options": [{ "text": "Yes, she does." }, { "text": "No, she doesn't." }],
+              "answer": 0
+            },
+            {
+              "key": "b.u06.l3.p-bananas",
+              "prompt": { "en": "What does Meera not like?", "hi": "मीरा को क्या पसंद नहीं है?" },
+              "options": [{ "text": "mangoes", "pic": "🥭" }, { "text": "bananas", "pic": "🍌" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u06.l3.s-yes", "model": "Yes, I do. I like roti.", "hi": "हाँ। मुझे रोटी पसंद है।", "pic": "own:roti" },
+            { "key": "b.u06.l3.s-share", "model": "Let us share!", "hi": "चलो बाँटें!", "pic": "🥭" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u06.l3.c-share",
+          "type": "choose",
+          "prompt": { "en": "What do they share?", "hi": "वे क्या बाँटते हैं?" },
+          "options": [{ "text": "sweets", "pic": "🍬" }, { "text": "a mango", "pic": "🥭" }, { "text": "milk", "pic": "🥛" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u06.l3.c-when",
+          "type": "choose",
+          "prompt": { "en": "When is this?", "hi": "यह कब हो रहा है?" },
+          "options": [{ "text": "tiffin time", "pic": "own:tiffin" }, { "text": "night time", "pic": "🌙" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u06.l3.c-like",
+          "type": "choose",
+          "prompt": { "en": "Meera says: I ___ mangoes!", "hi": "मीरा कहती है: मुझे आम पसंद हैं!" },
+          "options": [{ "text": "like" }, { "text": "don't like" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u06.l3.c-ask",
+          "type": "choose",
+          "prompt": { "en": "Salma asks: ___ you like bananas?", "hi": "सलमा पूछती है: क्या तुम्हें केले पसंद हैं?" },
+          "options": [{ "text": "Is" }, { "text": "Do" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Share a fruit at home and say: Let us share!", "hi": "घर पर फल बाँटो और कहो: Let us share!" }
+    },
+    {
+      "key": "b.u06.l4",
+      "kind": "speak",
+      "title": { "en": "Ask a friend", "hi": "दोस्त से पूछो" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "What do you like?", "hi": "तुम्हें क्या पसंद है?" },
+          "scene": { "place": "home", "pics": [{ "pic": "🏠", "x": 84, "y": 14, "size": 1.8 }, { "pic": "🧒", "x": 30, "y": 42, "size": 1.5 }, { "pic": "👦", "x": 54, "y": 44, "size": 1.4 }, { "pic": "🍬", "x": 70, "y": 52 }, { "pic": "🥛", "x": 80, "y": 52 }, { "pic": "🍚", "x": 90, "y": 52 }] },
+          "roles": [{ "name": "Arjun", "pic": "👦" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 1, "en": "Arjun, do you like milk?", "hi": "अर्जुन, क्या तुम्हें दूध पसंद है?" },
+            { "role": 0, "en": "No, I don't. I don't like milk.", "hi": "नहीं। मुझे दूध पसंद नहीं है।" },
+            { "role": 1, "en": "Do you like sweets?", "hi": "क्या तुम्हें मिठाई पसंद है?" },
+            { "role": 0, "en": "Yes, I do! Do you like rice?", "hi": "हाँ! क्या तुम्हें चावल पसंद है?" },
+            { "role": 1, "en": "Yes, I do. I like rice and dal.", "hi": "हाँ। मुझे चावल और दाल पसंद है।" },
+            { "role": 0, "en": "Me too! Let us eat.", "hi": "मुझे भी! चलो खाते हैं।" }
+          ],
+          "partner": { "goal": "Play Arjun. Answer the child's food questions, then ask the child one back. Praise full answers like Yes, I do.", "must_use": ["do you like", "I like", "I don't like"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u06.l4.br-like", "hi": "मुझे आम पसंद हैं।", "tiles": ["mangoes.", "like", "I"], "answer": "I like mangoes." },
+            { "key": "b.u06.l4.br-ask", "hi": "क्या तुम्हें दूध पसंद है?", "tiles": ["milk?", "you", "Do", "like"], "answer": "Do you like milk?" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u06.l4.c-reply",
+          "type": "choose",
+          "prompt": { "en": "Arjun asks: Do you like sweets? You like them. You say:", "hi": "अर्जुन पूछता है: Do you like sweets? तुम्हें पसंद है। तुम क्या कहोगे?", "pic": "🍬" },
+          "options": [{ "text": "Yes, I do." }, { "text": "No, I don't." }],
+          "answer": 0
+        },
+        { "key": "b.u06.l4.c-build", "type": "build", "hi": "मुझे चावल पसंद नहीं है।", "tiles": ["rice.", "don't", "I", "like"], "answer": "I don't like rice." },
+        {
+          "key": "b.u06.l4.c-q",
+          "type": "choose",
+          "prompt": { "en": "Which one asks a friend?", "hi": "कौन-सा वाक्य दोस्त से पूछता है?" },
+          "options": [{ "text": "I like roti." }, { "text": "Do you like roti?" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask two people at home: Do you like …?", "hi": "घर में दो लोगों से पूछो: Do you like …?" }
+    },
+    {
+      "key": "b.u06.l5",
+      "kind": "review",
+      "title": { "en": "Unit 6 review", "hi": "इकाई 6 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u06.l5.m-dal", "left": { "text": "dal" }, "right": { "pic": "🍲" } },
+            { "key": "b.u06.l5.m-sweets", "left": { "text": "sweets" }, "right": { "pic": "🍬" } },
+            { "key": "b.u06.l5.m-mango", "left": { "text": "mango" }, "right": { "pic": "🥭" } },
+            { "key": "b.u06.l5.m-big", "left": { "text": "big" }, "right": { "pic": "🐘" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u06.l5.b-like", "hi": "मुझे बड़े आम पसंद हैं।", "pic": "🥭", "tiles": ["big", "like", "I", "mangoes."], "answer": "I like big mangoes." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u06.l5.p-do",
+              "prompt": { "en": "___ you like dal?", "hi": "क्या तुम्हें दाल पसंद है?", "pic": "🍲" },
+              "options": [{ "text": "Do" }, { "text": "Are" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u06.l5.s-me", "model": "I like rice. I don't like milk.", "hi": "एक पसंद और एक नापसंद बोलो।", "cue": { "en": "What do you like? What don't you like?", "hi": "तुम्हें क्या पसंद है और क्या नहीं?" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u06.l5.c-rice",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "rice" },
+          "options": [{ "pic": "🍚" }, { "pic": "🍲" }, { "pic": "🍌" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u06.l5.c-sweets",
+          "type": "choose",
+          "prompt": { "en": "Which word means मिठाई?", "hi": "कौन-सा शब्द 'मिठाई' है?" },
+          "options": [{ "text": "milk" }, { "text": "sweets" }, { "text": "mango" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u06.l5.c-dont",
+          "type": "choose",
+          "prompt": { "en": "I ___ like bananas.", "hi": "मुझे केले पसंद नहीं हैं।", "pic": "🍌" },
+          "options": [{ "text": "don't" }, { "text": "am" }],
+          "answer": 0
+        },
+        { "key": "b.u06.l5.c-build", "type": "build", "hi": "क्या तुम्हें केले पसंद हैं?", "tiles": ["bananas?", "you", "like", "Do"], "answer": "Do you like bananas?" },
+        {
+          "key": "b.u06.l5.c-big",
+          "type": "choose",
+          "prompt": { "en": "The elephant is ___.", "hi": "हाथी बड़ा है।", "pic": "🐘" },
+          "options": [{ "text": "small" }, { "text": "big" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u06.l5.c-many",
+          "type": "choose",
+          "prompt": { "en": "How many ___?", "hi": "कितने आम?", "pic": "🥭" },
+          "options": [{ "text": "mango" }, { "text": "mangoes" }],
+          "answer": 1,
+          "why": { "en": "More than one mango: mangoes.", "hi": "एक से ज़्यादा आम: mangoes।" }
+        },
+        {
+          "key": "b.u06.l5.c-this",
+          "type": "choose",
+          "prompt": { "en": "The mango is in your hand. You say:", "hi": "आम तुम्हारे हाथ में है। तुम क्या कहोगे?", "pic": "🥭" },
+          "options": [{ "text": "That is a mango." }, { "text": "This is a mango." }],
+          "answer": 1,
+          "why": { "en": "For a thing near you, we say this.", "hi": "पास की चीज़ के लिए This।" }
+        }
+      ],
+      "home": { "en": "At dinner, say one thing you like.", "hi": "रात के खाने पर एक चीज़ बोलो जो तुम्हें पसंद है।" }
+    }
+  ]
+}

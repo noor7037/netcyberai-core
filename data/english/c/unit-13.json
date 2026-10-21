@@ -1,0 +1,671 @@
+{
+  "track": "c",
+  "unit": 13,
+  "key": "c.u13",
+  "title": { "en": "In class", "hi": "कक्षा में" },
+  "pic": "👩‍🏫",
+  "can_do": { "en": "I can ask my teacher politely.", "hi": "मैं अपने अध्यापक से विनम्रता से पूछ सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u13.l1",
+      "kind": "words",
+      "title": { "en": "Classroom words", "hi": "कक्षा के शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Polite words help you in class. Learn these classroom words.", "hi": "विनम्र शब्द कक्षा में काम आते हैं। ये कक्षा के शब्द सीखो।" },
+          "pic": "🏫"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u13.l1.borrow",
+              "en": "borrow",
+              "hi": "उधार लेना, माँगकर लेना",
+              "pic": "✏️",
+              "example": { "en": "Can I borrow your pencil?", "hi": "क्या मैं तुम्हारी पेंसिल ले सकता/सकती हूँ?" }
+            },
+            {
+              "key": "c.u13.l1.explain",
+              "en": "explain",
+              "hi": "समझाना",
+              "pic": "👩‍🏫",
+              "example": { "en": "Ms Anita explains the lesson well.", "hi": "अनीता मैडम पाठ अच्छी तरह समझाती हैं।" }
+            },
+            {
+              "key": "c.u13.l1.repeat",
+              "en": "repeat",
+              "hi": "दोहराना",
+              "pic": "🔁",
+              "example": { "en": "Could you repeat that, please?", "hi": "क्या आप उसे दोहरा सकती हैं?" }
+            },
+            { "key": "c.u13.l1.slowly", "en": "slowly", "hi": "धीरे-धीरे", "pic": "🐌", "example": { "en": "Please speak slowly.", "hi": "कृपया धीरे बोलिए।" } },
+            {
+              "key": "c.u13.l1.notebook",
+              "en": "notebook",
+              "hi": "कॉपी",
+              "pic": "📓",
+              "example": { "en": "Write the answer in your notebook.", "hi": "उत्तर अपनी कॉपी में लिखो।" }
+            },
+            {
+              "key": "c.u13.l1.ruler",
+              "en": "ruler",
+              "hi": "स्केल, पैमाना",
+              "pic": "📏",
+              "example": { "en": "Draw a line with your ruler.", "hi": "अपने स्केल से एक लाइन खींचो।" }
+            },
+            {
+              "key": "c.u13.l1.board",
+              "en": "board",
+              "hi": "बोर्ड",
+              "pic": "own:chalkboard",
+              "example": { "en": "Look at the board, everyone.", "hi": "सब बोर्ड की ओर देखो।" }
+            },
+            {
+              "key": "c.u13.l1.washroom",
+              "en": "washroom",
+              "hi": "शौचालय",
+              "pic": "🚽",
+              "example": { "en": "May I go to the washroom, please?", "hi": "क्या मैं शौचालय जा सकता/सकती हूँ?" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u13.l1.m-notebook", "left": { "text": "notebook" }, "right": { "pic": "📓" } },
+            { "key": "c.u13.l1.m-ruler", "left": { "text": "ruler" }, "right": { "pic": "📏" } },
+            { "key": "c.u13.l1.m-repeat", "left": { "text": "repeat" }, "right": { "pic": "🔁" } },
+            { "key": "c.u13.l1.m-board", "left": { "text": "board" }, "right": { "pic": "own:chalkboard" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u13.l1.p-borrow",
+              "prompt": { "en": "Which word means उधार लेना?" },
+              "options": [{ "text": "repeat" }, { "text": "borrow" }, { "text": "explain" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u13.l1.p-slowly",
+              "prompt": { "en": "Listen. Tap the picture.", "say": "slowly" },
+              "options": [{ "pic": "🔁" }, { "pic": "📏" }, { "pic": "🐌" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u13.l1.s-borrow", "model": "Can I borrow your pencil?", "pic": "✏️" },
+            { "key": "c.u13.l1.s-repeat", "model": "Could you repeat that, please?", "pic": "🔁" },
+            { "key": "c.u13.l1.s-slowly", "model": "Please speak slowly.", "pic": "🐌" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u13.l1.c-explain",
+          "type": "choose",
+          "prompt": { "en": "Ms Anita ___ the lesson well." },
+          "options": [{ "text": "borrows" }, { "text": "explains" }, { "text": "repeats" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u13.l1.c-notebook",
+          "type": "choose",
+          "prompt": { "en": "Write your answer in your ___." },
+          "options": [{ "text": "notebook" }, { "text": "washroom" }, { "text": "ruler" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u13.l1.c-ruler",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "ruler" },
+          "options": [{ "pic": "📓" }, { "pic": "✏️" }, { "pic": "📏" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u13.l1.c-repeat",
+          "type": "choose",
+          "prompt": { "en": "I didn't hear you. Could you ___ that, please?" },
+          "options": [{ "text": "borrow" }, { "text": "repeat" }, { "text": "explain" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u13.l1.c-washroom",
+          "type": "choose",
+          "prompt": { "en": "Which word means शौचालय?" },
+          "options": [{ "text": "washroom" }, { "text": "notebook" }, { "text": "board" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Ask someone at home: Can I borrow your pen, please?", "hi": "घर में किसी से कहो: Can I borrow your pen, please?" }
+    },
+    {
+      "key": "c.u13.l2",
+      "kind": "pattern",
+      "title": { "en": "Can I, could you, may I", "hi": "Can I, could you, may I: विनम्र सवाल" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Ask politely", "hi": "विनम्रता से पूछो" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "Can I borrow your ruler, please?",
+              "hi": "क्या मैं तुम्हारा स्केल ले सकता/सकती हूँ?",
+              "parts": [
+                { "text": "Can", "role": "ask" },
+                { "text": "I", "role": "who" },
+                { "text": "borrow", "role": "do" },
+                { "text": "your ruler,", "role": "what" },
+                { "text": "please?", "role": "other" }
+              ],
+              "pic": "📏"
+            },
+            {
+              "en": "Could you explain it again, please?",
+              "hi": "क्या आप इसे फिर से समझा सकती हैं?",
+              "parts": [
+                { "text": "Could", "role": "ask" },
+                { "text": "you", "role": "who" },
+                { "text": "explain", "role": "do" },
+                { "text": "it", "role": "what" },
+                { "text": "again,", "role": "when" },
+                { "text": "please?", "role": "other" }
+              ],
+              "pic": "👩‍🏫"
+            },
+            {
+              "en": "May I go to the washroom, please?",
+              "hi": "क्या मैं शौचालय जा सकता/सकती हूँ?",
+              "parts": [
+                { "text": "May", "role": "ask" },
+                { "text": "I", "role": "who" },
+                { "text": "go", "role": "do" },
+                { "text": "to the washroom,", "role": "where" },
+                { "text": "please?", "role": "other" }
+              ],
+              "pic": "🚽"
+            },
+            {
+              "en": "Could you speak slowly, please?",
+              "hi": "क्या आप धीरे बोल सकती हैं?",
+              "parts": [
+                { "text": "Could", "role": "ask" },
+                { "text": "you", "role": "who" },
+                { "text": "speak", "role": "do" },
+                { "text": "slowly,", "role": "other" },
+                { "text": "please?", "role": "other" }
+              ],
+              "pic": "🐌"
+            },
+            {
+              "en": "May I come in, ma'am?",
+              "hi": "क्या मैं अंदर आ सकता/सकती हूँ, मैडम?",
+              "parts": [
+                { "text": "May", "role": "ask" },
+                { "text": "I", "role": "who" },
+                { "text": "come", "role": "do" },
+                { "text": "in,", "role": "where" },
+                { "text": "ma'am?", "role": "other" }
+              ],
+              "pic": "🚪"
+            }
+          ],
+          "note": {
+            "en": "Can is friendly. Could and may are more polite. Kind answers: Yes, of course. / Sorry, I'm using it.",
+            "hi": "can दोस्ताना है। could और may ज़्यादा विनम्र हैं। अच्छे जवाब: Yes, of course. / Sorry, I'm using it."
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u13.l2.b-help",
+              "hi": "क्या आप मेरी मदद कर सकते हैं?",
+              "pic": "🙏",
+              "tiles": ["please?", "me,", "Could", "help", "you"],
+              "answer": "Could you help me, please?"
+            },
+            {
+              "key": "c.u13.l2.b-come",
+              "hi": "क्या मैं अंदर आ सकता/सकती हूँ, मैडम?",
+              "pic": "🚪",
+              "tiles": ["ma'am?", "in,", "I", "come", "May"],
+              "answer": "May I come in, ma'am?"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u13.l2.p-late",
+              "prompt": { "en": "You are late for class. You say:" },
+              "options": [{ "text": "I come in." }, { "text": "Open the door!" }, { "text": "May I come in, ma'am?" }],
+              "answer": 2,
+              "why": {
+                "en": "Could and may are polite. Use them with teachers and elders.",
+                "hi": "could और may विनम्र हैं। अध्यापकों और बड़ों के साथ इन्हें बोलो।"
+              }
+            },
+            {
+              "key": "c.u13.l2.p-form",
+              "prompt": { "en": "Could you ___ me the answer?" },
+              "options": [{ "text": "show" }, { "text": "shows" }, { "text": "showing" }],
+              "answer": 0,
+              "why": { "en": "After can, could or may, use the simple form.", "hi": "can, could या may के बाद सादा रूप आता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u13.l2.s-repeat", "model": "Could you repeat that, please?", "cue": { "en": "You did not hear the teacher. Ask politely." } },
+            { "key": "c.u13.l2.s-ruler", "model": "Can I borrow your ruler, please?", "cue": { "en": "You need a ruler. Ask your friend." } },
+            { "key": "c.u13.l2.s-out", "model": "May I go to the washroom, please?", "cue": { "en": "You need to go out. Ask your teacher." } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u13.l2.c-b1",
+          "type": "build",
+          "hi": "क्या आप थोड़ा धीरे बोल सकती हैं?",
+          "pic": "🐌",
+          "tiles": ["please?", "slowly,", "you", "little", "speak", "a", "Could"],
+          "answer": "Could you speak a little slowly, please?"
+        },
+        {
+          "key": "c.u13.l2.c-b2",
+          "type": "build",
+          "hi": "क्या मैं तुम्हारा रबर ले सकता/सकती हूँ?",
+          "pic": "✏️",
+          "tiles": ["your", "eraser?", "Can", "borrow", "I"],
+          "answer": "Can I borrow your eraser?"
+        },
+        {
+          "key": "c.u13.l2.c-polite",
+          "type": "choose",
+          "prompt": { "en": "Which is the most polite?" },
+          "options": [{ "text": "Help me." }, { "text": "Could you help me, please?" }, { "text": "You help me now." }],
+          "answer": 1,
+          "why": {
+            "en": "Could and may are polite. Use them with teachers and elders.",
+            "hi": "could और may विनम्र हैं। अध्यापकों और बड़ों के साथ इन्हें बोलो।"
+          }
+        },
+        {
+          "key": "c.u13.l2.c-may",
+          "type": "choose",
+          "prompt": { "en": "___ I drink some water, ma'am?" },
+          "options": [{ "text": "Am" }, { "text": "Does" }, { "text": "May" }],
+          "answer": 2,
+          "why": { "en": "To ask for permission, use may I.", "hi": "इजाज़त माँगने के लिए may I." }
+        },
+        {
+          "key": "c.u13.l2.c-sorry",
+          "type": "choose",
+          "prompt": { "en": "Your friend asks: Can I borrow your pen? You are using it. You say:" },
+          "options": [{ "text": "Sorry, I'm using it." }, { "text": "No! Go away." }, { "text": "Yes, I borrowed." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u13.l2.c-form",
+          "type": "choose",
+          "prompt": { "en": "Can I ___ your book?" },
+          "options": [{ "text": "borrow" }, { "text": "borrowed" }, { "text": "borrowing" }],
+          "answer": 0,
+          "why": { "en": "After can, could or may, use the simple form.", "hi": "can, could या may के बाद सादा रूप आता है।" }
+        }
+      ],
+      "home": { "en": "Use please and could at home three times today.", "hi": "आज घर पर तीन बार please और could बोलो।" }
+    },
+    {
+      "key": "c.u13.l3",
+      "kind": "listen",
+      "title": { "en": "Maths with Ms Anita", "hi": "अनीता मैडम के साथ गणित" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "A busy maths class", "hi": "गणित की व्यस्त कक्षा" },
+          "scene": {
+            "place": "school",
+            "pics": [
+              { "pic": "own:chalkboard", "x": 76, "y": 14, "size": 2.2 },
+              { "pic": "👩‍🏫", "x": 60, "y": 38, "size": 1.5 },
+              { "pic": "👧", "x": 22, "y": 46, "size": 1.3 },
+              { "pic": "🧕", "x": 36, "y": 46, "size": 1.3 },
+              { "pic": "🧒", "x": 50, "y": 50, "size": 1.3 },
+              { "pic": "📏", "x": 28, "y": 30, "size": 0.9 },
+              { "pic": "📓", "x": 42, "y": 30, "size": 0.9 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Open your notebooks. Today we are going to draw shapes." },
+            { "speaker": "Salma", "pic": "🧕", "en": "Ma'am, I left my notebook at home." },
+            { "speaker": "Salma", "pic": "🧕", "en": "May I use a sheet of paper?" },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Yes, you may. Meera, could you give Salma a page?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Of course. Here you are, Salma." },
+            { "speaker": "Joseph", "pic": "🧒", "en": "Ma'am, could you explain the triangle again, please?" },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Yes, of course. Look at the board, everyone." },
+            { "speaker": "Meera", "pic": "👧", "en": "Joseph, can I borrow your ruler?" },
+            { "speaker": "Joseph", "pic": "🧒", "en": "Sorry, I'm using it. You can have it in five minutes." },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Here, Meera. You can use my ruler." },
+            { "speaker": "Meera", "pic": "👧", "en": "Thank you so much, ma'am!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u13.l3.p-salma",
+              "prompt": { "en": "What did Salma leave at home?" },
+              "options": [{ "text": "her ruler" }, { "text": "her notebook" }, { "text": "her bag" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u13.l3.p-joseph",
+              "prompt": { "en": "What did Joseph ask for?" },
+              "options": [{ "text": "He asked for water." }, { "text": "He asked Ms Anita to explain again." }, { "text": "He asked to go home." }],
+              "answer": 1
+            },
+            {
+              "key": "c.u13.l3.p-ruler",
+              "prompt": { "en": "Whose ruler does Meera use in the end?" },
+              "options": [{ "text": "Joseph's" }, { "text": "Ms Anita's" }, { "text": "Salma's" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u13.l3.s-paper", "model": "May I use a sheet of paper?", "pic": "📓" },
+            { "key": "c.u13.l3.s-explain", "model": "Could you explain the triangle again, please?", "pic": "🔺" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u13.l3.c-shapes",
+          "type": "choose",
+          "prompt": { "en": "What is the class going to draw?" },
+          "options": [{ "text": "animals" }, { "text": "maps" }, { "text": "shapes" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u13.l3.c-page",
+          "type": "choose",
+          "prompt": { "en": "Who gave Salma a page?" },
+          "options": [{ "text": "Joseph" }, { "text": "Ms Anita" }, { "text": "Meera" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u13.l3.c-wait",
+          "type": "choose",
+          "prompt": { "en": "Why can't Joseph give his ruler now?" },
+          "options": [{ "text": "He is using it." }, { "text": "He lost it." }, { "text": "It is at home." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u13.l3.c-most",
+          "type": "choose",
+          "prompt": { "en": "Which question is the most polite?" },
+          "options": [{ "text": "Explain again." }, { "text": "What?" }, { "text": "Could you explain it again, please?" }],
+          "answer": 2,
+          "why": {
+            "en": "Could and may are polite. Use them with teachers and elders.",
+            "hi": "could और may विनम्र हैं। अध्यापकों और बड़ों के साथ इन्हें बोलो।"
+          }
+        }
+      ],
+      "home": { "en": "Tell your family one polite question you asked in class.", "hi": "घरवालों को बताओ कि कक्षा में तुमने कौन-सा विनम्र सवाल पूछा।" }
+    },
+    {
+      "key": "c.u13.l4",
+      "kind": "speak",
+      "title": { "en": "In the classroom", "hi": "कक्षा में बातचीत" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Talk to Ms Anita. Use may I, could you and please.", "hi": "अनीता मैडम से बात करो। may I, could you और please बोलो।" },
+          "pic": "🙋"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Talking to Ms Anita", "hi": "अनीता मैडम से बात" },
+          "scene": {
+            "place": "school",
+            "pics": [
+              { "pic": "own:chalkboard", "x": 76, "y": 14, "size": 2.2 },
+              { "pic": "👩‍🏫", "x": 56, "y": 38, "size": 1.6 },
+              { "pic": "🙋", "x": 30, "y": 44, "size": 1.5 },
+              { "pic": "📓", "x": 42, "y": 28, "size": 0.9 }
+            ]
+          },
+          "roles": [{ "name": "Ms Anita", "pic": "👩‍🏫" }, { "name": "You", "pic": "🙋" }],
+          "learner": 1,
+          "turns": [
+            { "role": 1, "en": "May I come in, ma'am?" },
+            { "role": 0, "en": "Yes, come in. Why are you late?" },
+            { "role": 1, "en": "Sorry, ma'am. The bus was late today." },
+            { "role": 0, "en": "That's all right. Please sit down." },
+            { "role": 1, "en": "Could you explain the homework again, please?" },
+            { "role": 0, "en": "Of course. Read page ten and answer three questions." },
+            { "role": 1, "en": "Could you speak a little slowly, please?" },
+            { "role": 0, "en": "Sure. Read page ten. Then answer three questions." },
+            { "role": 1, "en": "Thank you, ma'am. May I borrow a pencil?" },
+            { "role": 0, "en": "Yes, you may. Here you are." }
+          ],
+          "partner": {
+            "goal": "Play Ms Anita, a kind teacher. The child comes in late and asks polite questions. Answer simply, and praise the child for using may I, could you and please.",
+            "must_use": ["May I", "Could you", "please", "Thank you"]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u13.l4.br-come",
+              "hi": "क्या मैं अंदर आ सकती हूँ, मैडम?",
+              "tiles": ["in,", "I", "ma'am?", "come", "May"],
+              "answer": "May I come in, ma'am?"
+            },
+            {
+              "key": "c.u13.l4.br-explain",
+              "hi": "क्या आप इसे फिर से समझा सकती हैं?",
+              "tiles": ["again?", "explain", "you", "it", "Could"],
+              "answer": "Could you explain it again?"
+            },
+            {
+              "key": "c.u13.l4.br-notebook",
+              "hi": "क्या मैं तुम्हारी कॉपी ले सकता हूँ?",
+              "tiles": ["borrow", "notebook?", "Can", "your", "I"],
+              "answer": "Can I borrow your notebook?"
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u13.l4.s-water", "model": "May I drink some water, please?", "cue": { "en": "You want to drink water in class. Ask your teacher." } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u13.l4.c-late",
+          "type": "choose",
+          "prompt": { "en": "You are late. What do you say at the door?" },
+          "options": [{ "text": "I am here!" }, { "text": "May I come in, ma'am?" }, { "text": "Move!" }],
+          "answer": 1,
+          "why": {
+            "en": "Could and may are polite. Use them with teachers and elders.",
+            "hi": "could और may विनम्र हैं। अध्यापकों और बड़ों के साथ इन्हें बोलो।"
+          }
+        },
+        {
+          "key": "c.u13.l4.c-b",
+          "type": "build",
+          "hi": "क्या आप सवाल दोहरा सकती हैं?",
+          "pic": "🔁",
+          "tiles": ["you", "question,", "Could", "please?", "repeat", "the"],
+          "answer": "Could you repeat the question, please?"
+        },
+        {
+          "key": "c.u13.l4.c-reply",
+          "type": "choose",
+          "prompt": { "en": "The teacher says: Yes, you may. What did you ask?" },
+          "options": [{ "text": "Where is the shop?" }, { "text": "How old are you?" }, { "text": "May I sit here?" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u13.l4.c-thank",
+          "type": "choose",
+          "prompt": { "en": "The teacher gives you a pencil. You say:" },
+          "options": [{ "text": "Sorry, ma'am." }, { "text": "Excuse me, ma'am." }, { "text": "Thank you, ma'am." }],
+          "answer": 2
+        }
+      ],
+      "home": { "en": "Teach a younger child at home to say: May I come in?", "hi": "घर में किसी छोटे बच्चे को सिखाओ: May I come in?" }
+    },
+    {
+      "key": "c.u13.l5",
+      "kind": "review",
+      "title": { "en": "Unit 13 review", "hi": "इकाई 13 की दोहराई" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u13.l5.m-explain", "left": { "text": "explain" }, "right": { "pic": "👩‍🏫" } },
+            { "key": "c.u13.l5.m-borrow", "left": { "text": "borrow" }, "right": { "pic": "✏️" } },
+            { "key": "c.u13.l5.m-washroom", "left": { "text": "washroom" }, "right": { "pic": "🚽" } },
+            { "key": "c.u13.l5.m-ticket", "left": { "text": "ticket" }, "right": { "pic": "🎫" } },
+            { "key": "c.u13.l5.m-heavy", "left": { "text": "heavy" }, "right": { "pic": "🐘" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u13.l5.b-window",
+              "hi": "क्या मैं खिड़की खोल सकता/सकती हूँ?",
+              "pic": "🏠",
+              "tiles": ["please?", "the", "window,", "May", "open", "I"],
+              "answer": "May I open the window, please?"
+            },
+            {
+              "key": "c.u13.l5.b-fair",
+              "hi": "हम मेला देखने जाने वाले हैं।",
+              "pic": "🎡",
+              "tiles": ["visit", "fair.", "We", "are", "to", "going", "the"],
+              "answer": "We are going to visit the fair."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u13.l5.p-close",
+              "prompt": { "en": "Could you ___ the door, please?" },
+              "options": [{ "text": "closes" }, { "text": "close" }, { "text": "closed" }],
+              "answer": 1,
+              "why": { "en": "After can, could or may, use the simple form.", "hi": "can, could या may के बाद सादा रूप आता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u13.l5.s-two", "model": "Could you explain it again? May I borrow a ruler?", "cue": { "en": "Ask your teacher two polite questions." } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u13.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means दोहराना?" },
+          "options": [{ "text": "explain" }, { "text": "repeat" }, { "text": "borrow" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u13.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "notebook" },
+          "options": [{ "pic": "📓" }, { "pic": "📏" }, { "pic": "🚽" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u13.l5.c-may",
+          "type": "choose",
+          "prompt": { "en": "___ I go out to play, ma'am?" },
+          "options": [{ "text": "May" }, { "text": "Does" }, { "text": "Am" }],
+          "answer": 0,
+          "why": { "en": "To ask for permission, use may I.", "hi": "इजाज़त माँगने के लिए may I." }
+        },
+        {
+          "key": "c.u13.l5.c-could",
+          "type": "choose",
+          "prompt": { "en": "___ you help me with this sum?" },
+          "options": [{ "text": "Are" }, { "text": "Is" }, { "text": "Could" }],
+          "answer": 2,
+          "why": {
+            "en": "Could and may are polite. Use them with teachers and elders.",
+            "hi": "could और may विनम्र हैं। अध्यापकों और बड़ों के साथ इन्हें बोलो।"
+          }
+        },
+        {
+          "key": "c.u13.l5.c-u12",
+          "type": "choose",
+          "prompt": { "en": "Tomorrow, we ___ visit Nani." },
+          "options": [{ "text": "are going to" }, { "text": "went to" }, { "text": "visited" }],
+          "answer": 0,
+          "why": { "en": "A plan: going to.", "hi": "योजना: going to." }
+        },
+        {
+          "key": "c.u13.l5.c-u11",
+          "type": "choose",
+          "prompt": { "en": "A bus is ___ than a bicycle." },
+          "options": [{ "text": "bigger" }, { "text": "biggest" }, { "text": "big" }],
+          "answer": 0,
+          "why": { "en": "Two things: -er and than.", "hi": "दो चीज़ें: -er और than." }
+        },
+        {
+          "key": "c.u13.l5.c-u10",
+          "type": "choose",
+          "prompt": { "en": "Yesterday, Salma ___ me a story." },
+          "options": [{ "text": "tells" }, { "text": "told" }, { "text": "telled" }],
+          "answer": 1,
+          "why": { "en": "tell → told in the past.", "hi": "tell बीते समय में told बनता है।" }
+        },
+        {
+          "key": "c.u13.l5.c-b",
+          "type": "build",
+          "hi": "क्या मैं तुम्हारे बगल में बैठ सकता/सकती हूँ?",
+          "pic": "🪑",
+          "tiles": ["to", "Can", "next", "you?", "I", "sit"],
+          "answer": "Can I sit next to you?"
+        }
+      ],
+      "home": { "en": "Say please and thank you in English at every meal today.", "hi": "आज हर खाने पर अंग्रेज़ी में please और thank you बोलो।" }
+    }
+  ]
+}

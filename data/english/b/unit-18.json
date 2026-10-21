@@ -1,0 +1,431 @@
+{
+  "track": "b",
+  "unit": 18,
+  "key": "b.u18",
+  "title": { "en": "My big show", "hi": "मेरा बड़ा शो" },
+  "pic": "🎤",
+  "can_do": { "en": "I can speak for half a minute.", "hi": "मैं आधा मिनट अंग्रेज़ी में बोल सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u18.l1",
+      "kind": "words",
+      "title": { "en": "Show words", "hi": "शो के शब्द" },
+      "minutes": 5,
+      "steps": [
+        { "type": "tip", "text": { "en": "Get ready for your big show!", "hi": "अपने बड़े शो के लिए तैयार हो जाओ!" }, "pic": "🎤" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u18.l1.first", "en": "first", "hi": "पहले", "pic": "1️⃣", "example": { "en": "First, I say hello.", "hi": "पहले मैं नमस्ते कहता/कहती हूँ।" } },
+            { "key": "b.u18.l1.then", "en": "then", "hi": "फिर", "pic": "▶️", "example": { "en": "Then I show my picture.", "hi": "फिर मैं अपना चित्र दिखाता/दिखाती हूँ।" } },
+            { "key": "b.u18.l1.picture", "en": "picture", "hi": "चित्र (फ़ोटो)", "pic": "📷", "example": { "en": "This is my picture.", "hi": "यह मेरा चित्र है।" } },
+            { "key": "b.u18.l1.smile", "en": "smile", "hi": "मुस्कुराना", "pic": "😁", "example": { "en": "Smile and say hello!", "hi": "मुस्कुराओ और नमस्ते कहो!" } },
+            { "key": "b.u18.l1.brave", "en": "brave", "hi": "बहादुर", "pic": "💪", "example": { "en": "Be brave and speak!", "hi": "बहादुर बनो और बोलो!" } },
+            { "key": "b.u18.l1.proud", "en": "proud", "hi": "गर्व", "pic": "🥇", "example": { "en": "Mummy is proud of me.", "hi": "माँ को मुझ पर गर्व है।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u18.l1.m-first", "left": { "text": "first" }, "right": { "pic": "1️⃣" } },
+            { "key": "b.u18.l1.m-smile", "left": { "text": "smile" }, "right": { "pic": "😁" } },
+            { "key": "b.u18.l1.m-brave", "left": { "text": "brave" }, "right": { "pic": "💪" } },
+            { "key": "b.u18.l1.m-picture", "left": { "text": "picture" }, "right": { "pic": "📷" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u18.l1.p-proud",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "proud" },
+              "options": [{ "pic": "🥇" }, { "pic": "😁" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u18.l1.p-then",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "then" },
+              "options": [{ "pic": "1️⃣" }, { "pic": "▶️" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u18.l1.s-first", "model": "First, I say hello.", "hi": "पहले मैं नमस्ते कहता/कहती हूँ।", "pic": "1️⃣" },
+            { "key": "b.u18.l1.s-then", "model": "Then I show my picture.", "hi": "फिर मैं अपना चित्र दिखाता/दिखाती हूँ।", "pic": "📷" },
+            { "key": "b.u18.l1.s-brave", "model": "I am brave!", "hi": "मैं बहादुर हूँ!", "pic": "💪" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u18.l1.c-smile",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "smile" },
+          "options": [{ "pic": "😢" }, { "pic": "😁" }, { "pic": "😠" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u18.l1.c-first",
+          "type": "choose",
+          "prompt": { "en": "Which word means पहले?", "hi": "'पहले' कौन-सा है?", "pic": "1️⃣" },
+          "options": [{ "text": "first" }, { "text": "then" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u18.l1.c-brave",
+          "type": "choose",
+          "prompt": { "en": "Which word means बहादुर?", "hi": "'बहादुर' कौन-सा है?", "pic": "💪" },
+          "options": [{ "text": "proud" }, { "text": "brave" }, { "text": "tired" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u18.l1.c-proud",
+          "type": "choose",
+          "prompt": { "en": "Papa says: I am ___ of you.", "hi": "पापा कहते हैं: मुझे तुम पर गर्व है।", "pic": "🥇" },
+          "options": [{ "text": "proud" }, { "text": "hungry" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Practise your hello with a big smile.", "hi": "बड़ी मुस्कान के साथ नमस्ते कहने का अभ्यास करो।" }
+    },
+    {
+      "key": "b.u18.l2",
+      "kind": "pattern",
+      "title": { "en": "First …, then …", "hi": "पहले …, फिर …" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Tell it in order", "hi": "क्रम से बताओ" },
+          "visual": "builder",
+          "examples": [
+            { "en": "First, I wake up.", "hi": "पहले मैं उठता/उठती हूँ।", "pic": "1️⃣", "parts": [{ "text": "First,", "role": "when" }, { "text": "I", "role": "who" }, { "text": "wake up.", "role": "do" }] },
+            { "en": "Then I brush my teeth.", "hi": "फिर मैं दाँत साफ़ करता/करती हूँ।", "pic": "🦷", "parts": [{ "text": "Then", "role": "when" }, { "text": "I", "role": "who" }, { "text": "brush", "role": "do" }, { "text": "my teeth.", "role": "what" }] },
+            { "en": "First, we go to the haat.", "hi": "पहले हम हाट जाते हैं।", "pic": "own:haat", "parts": [{ "text": "First,", "role": "when" }, { "text": "we", "role": "who" }, { "text": "go", "role": "do" }, { "text": "to the haat.", "role": "where" }] },
+            { "en": "Then we buy mangoes.", "hi": "फिर हम आम ख़रीदते हैं।", "pic": "🥭", "parts": [{ "text": "Then", "role": "when" }, { "text": "we", "role": "who" }, { "text": "buy", "role": "do" }, { "text": "mangoes.", "role": "what" }] }
+          ],
+          "note": { "en": "First and then tell the order.", "hi": "First = पहले, Then = फिर: ये क्रम बताते हैं।" }
+        },
+        {
+          "type": "pattern",
+          "title": { "en": "All I can say", "hi": "जो-जो मैं बोल सकता/सकती हूँ" },
+          "visual": "cards",
+          "examples": [
+            { "en": "There is a big tree in my village.", "hi": "मेरे गाँव में एक बड़ा पेड़ है।", "pic": "🌳" },
+            { "en": "Every day I go to school.", "hi": "मैं रोज़ स्कूल जाता/जाती हूँ।", "pic": "🏫" },
+            { "en": "Right now, I am speaking English!", "hi": "अभी मैं अंग्रेज़ी बोल रहा/रही हूँ!", "pic": "🎤" },
+            { "en": "Yesterday I was at the fair.", "hi": "कल मैं मेले में था/थी।", "pic": "🎡" },
+            { "en": "It is sunny today.", "hi": "आज धूप है।", "pic": "☀️" },
+            { "en": "Can I show my picture, please?", "hi": "क्या मैं अपना चित्र दिखाऊँ, प्लीज़?", "pic": "📷" }
+          ],
+          "note": { "en": "Use them all in your show!", "hi": "अपने शो में इन सबको बोलो!" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u18.l2.b-first", "hi": "पहले मैं नमस्ते कहती हूँ।", "pic": "1️⃣", "tiles": ["hello.", "First,", "say", "I"], "answer": "First, I say hello." },
+            { "key": "b.u18.l2.b-then", "hi": "फिर मैं अपना चित्र दिखाता हूँ।", "pic": "📷", "tiles": ["my", "show", "Then", "picture.", "I"], "answer": "Then I show my picture." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u18.l2.p-first",
+              "prompt": { "en": "___, I wake up. Then I eat.", "hi": "पहले मैं उठता/उठती हूँ। फिर खाता/खाती हूँ।", "pic": "⏰" },
+              "options": [{ "text": "Then" }, { "text": "First" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u18.l2.p-then",
+              "prompt": { "en": "First, I wash. ___ I eat.", "hi": "पहले मैं हाथ धोता/धोती हूँ। फिर खाता/खाती हूँ।", "pic": "🧼" },
+              "options": [{ "text": "Then" }, { "text": "First" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u18.l2.s-order", "model": "First, I wake up. Then I eat.", "hi": "First और Then से बोलो।", "pic": "1️⃣", "cue": { "en": "Tell your morning in order.", "hi": "सुबह के काम क्रम से बताओ।" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u18.l2.c-build1", "type": "build", "hi": "फिर हम आम ख़रीदते हैं।", "tiles": ["mangoes.", "buy", "we", "Then"], "answer": "Then we buy mangoes." },
+        { "key": "b.u18.l2.c-build2", "type": "build", "hi": "पहले हम हाट जाते हैं।", "tiles": ["haat.", "go", "the", "First,", "we", "to"], "answer": "First, we go to the haat." },
+        {
+          "key": "b.u18.l2.c-first",
+          "type": "choose",
+          "prompt": { "en": "___, I brush. Then I go to school.", "hi": "पहले दाँत, फिर स्कूल।", "pic": "🦷" },
+          "options": [{ "text": "First" }, { "text": "Then" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u18.l2.c-now",
+          "type": "choose",
+          "prompt": { "en": "Right now, I ___ speaking English!", "hi": "अभी मैं अंग्रेज़ी बोल रहा/रही हूँ!", "pic": "🎤" },
+          "options": [{ "text": "am" }, { "text": "was" }],
+          "answer": 0,
+          "why": { "en": "Now: am + -ing.", "hi": "अभी: am + ing।" }
+        },
+        {
+          "key": "b.u18.l2.c-past",
+          "type": "choose",
+          "prompt": { "en": "Yesterday it ___ cold.", "hi": "कल ठंड थी।", "pic": "🥶" },
+          "options": [{ "text": "is" }, { "text": "was" }],
+          "answer": 1,
+          "why": { "en": "Yesterday: was.", "hi": "बीता कल: was।" }
+        }
+      ],
+      "home": { "en": "Tell your evening with First … Then …", "hi": "शाम के काम First … Then … से बताओ।" }
+    },
+    {
+      "key": "b.u18.l3",
+      "kind": "listen",
+      "title": { "en": "Meera's big show", "hi": "मीरा का बड़ा शो" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "The haat picture", "hi": "हाट का चित्र" },
+          "scene": { "place": "home", "pics": [{ "pic": "own:haat", "x": 50, "y": 14, "size": 1.6 }, { "pic": "👵", "x": 14, "y": 44, "size": 1.3 }, { "pic": "👩", "x": 28, "y": 44, "size": 1.3 }, { "pic": "👧", "x": 50, "y": 40, "size": 1.5 }, { "pic": "📷", "x": 62, "y": 30 }, { "pic": "👨", "x": 76, "y": 44, "size": 1.3 }, { "pic": "👦", "x": 90, "y": 46, "size": 1.2 }] },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Hello, everyone! This is my picture.", "hi": "सबको नमस्ते! यह मेरा चित्र है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "This is the haat in our village.", "hi": "यह हमारे गाँव का हाट है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "There are many shops and people.", "hi": "वहाँ बहुत सारी दुकानें और लोग हैं।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Ravi Uncle is selling mangoes.", "hi": "रवि अंकल आम बेच रहे हैं।" },
+            { "speaker": "Meera", "pic": "👧", "en": "It is sunny and hot.", "hi": "धूप है और गरमी है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Yesterday I was there with Papa.", "hi": "कल मैं पापा के साथ वहाँ थी।" },
+            { "speaker": "Meera", "pic": "👧", "en": "I like the haat. Thank you!", "hi": "मुझे हाट पसंद है। धन्यवाद!" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Well done, Meera! We are proud of you.", "hi": "शाबाश, मीरा! हमें तुम पर गर्व है।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u18.l3.p-pic",
+              "prompt": { "en": "What is in Meera's picture?", "hi": "मीरा के चित्र में क्या है?" },
+              "options": [{ "text": "the haat", "pic": "own:haat" }, { "text": "the school", "pic": "🏫" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u18.l3.p-ravi",
+              "prompt": { "en": "What is Ravi Uncle doing?", "hi": "रवि अंकल क्या कर रहे हैं?" },
+              "options": [{ "text": "cooking rice", "pic": "🍚" }, { "text": "selling mangoes", "pic": "🥭" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u18.l3.s-hello", "model": "Hello, everyone! This is my picture.", "hi": "सबको नमस्ते! यह मेरा चित्र है।", "pic": "📷" },
+            { "key": "b.u18.l3.s-proud", "model": "We are proud of you!", "hi": "हमें तुम पर गर्व है!", "pic": "🥇" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u18.l3.c-weather",
+          "type": "choose",
+          "prompt": { "en": "What is the weather in the picture?", "hi": "चित्र में मौसम कैसा है?" },
+          "options": [{ "text": "sunny and hot", "pic": "☀️" }, { "text": "cold and rainy", "pic": "🌧️" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u18.l3.c-when",
+          "type": "choose",
+          "prompt": { "en": "When was Meera at the haat?", "hi": "मीरा हाट कब गई थी?" },
+          "options": [{ "text": "yesterday", "pic": "⬅️" }, { "text": "tomorrow", "pic": "➡️" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u18.l3.c-who",
+          "type": "choose",
+          "prompt": { "en": "Who was with Meera at the haat?", "hi": "हाट में मीरा के साथ कौन था?" },
+          "options": [{ "text": "Salma", "pic": "🧕" }, { "text": "Papa", "pic": "👨" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u18.l3.c-like",
+          "type": "choose",
+          "prompt": { "en": "Does Meera like the haat?", "hi": "क्या मीरा को हाट पसंद है?" },
+          "options": [{ "text": "Yes, she does." }, { "text": "No, she doesn't." }],
+          "answer": 0
+        },
+        {
+          "key": "b.u18.l3.c-family",
+          "type": "choose",
+          "prompt": { "en": "How does the family feel?", "hi": "परिवार को कैसा लगता है?" },
+          "options": [{ "text": "proud", "pic": "🥇" }, { "text": "angry", "pic": "😠" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Show your family a picture. Talk about it.", "hi": "परिवार को एक चित्र दिखाओ और उसके बारे में बोलो।" }
+    },
+    {
+      "key": "b.u18.l4",
+      "kind": "speak",
+      "title": { "en": "My big show", "hi": "मेरा बड़ा शो" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "picture",
+          "scene": { "place": "market", "pics": [{ "pic": "☀️", "x": 88, "y": 8, "size": 1.2 }, { "pic": "own:haat", "x": 50, "y": 14, "size": 2 }, { "pic": "🏪", "x": 14, "y": 24, "size": 1.4 }, { "pic": "👳", "x": 30, "y": 40, "size": 1.3 }, { "pic": "🥭", "x": 40, "y": 52, "size": 0.8 }, { "pic": "🍅", "x": 50, "y": 52, "size": 0.8 }, { "pic": "👩", "x": 64, "y": 42, "size": 1.3 }, { "pic": "👧", "x": 76, "y": 44, "size": 1.2 }, { "pic": "🐄", "x": 90, "y": 48, "size": 1.2 }] },
+          "questions": [
+            { "key": "b.u18.l4.q-place", "en": "What is this place?", "hi": "यह कौन-सी जगह है?", "model": "This is the haat in my village." },
+            { "key": "b.u18.l4.q-who", "en": "Who can you see?", "hi": "तुम्हें कौन-कौन दिख रहा है?", "model": "I can see Ravi Uncle and a girl." },
+            { "key": "b.u18.l4.q-doing", "en": "What is Ravi Uncle doing?", "hi": "रवि अंकल क्या कर रहे हैं?", "model": "He is selling mangoes and tomatoes." },
+            { "key": "b.u18.l4.q-weather", "en": "How is the weather?", "hi": "मौसम कैसा है?", "model": "It is sunny and hot." },
+            { "key": "b.u18.l4.q-like", "en": "Do you like the haat?", "hi": "क्या तुम्हें हाट पसंद है?", "model": "Yes! I like the haat very much." }
+          ]
+        },
+        {
+          "type": "talk",
+          "topic": { "en": "My big show: talk for half a minute", "hi": "मेरा बड़ा शो: आधा मिनट बोलो" },
+          "outline": [
+            { "en": "Say hello and your name.", "hi": "नमस्ते कहो और अपना नाम बताओ।" },
+            { "en": "Show a picture. Say what is in it.", "hi": "एक चित्र दिखाओ। उसमें क्या है, बताओ।" },
+            { "en": "Say what people are doing.", "hi": "बताओ लोग क्या कर रहे हैं।" },
+            { "en": "Say what you like. Say thank you.", "hi": "बताओ तुम्हें क्या पसंद है। धन्यवाद कहो।" }
+          ],
+          "seconds": 30,
+          "model": [
+            "Hello! My name is Arjun. I am six.",
+            "This is my picture of the haat.",
+            "There are many shops and a big cow.",
+            "Ravi Uncle is selling mangoes.",
+            "It is sunny today.",
+            "I like the haat. Thank you!"
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u18.l4.c-start",
+          "type": "choose",
+          "prompt": { "en": "How do you start your show?", "hi": "शो कैसे शुरू करोगे?", "pic": "🎤" },
+          "options": [{ "text": "Hello! My name is …" }, { "text": "Good night!" }],
+          "answer": 0
+        },
+        { "key": "b.u18.l4.c-build", "type": "build", "hi": "यह मेरे गाँव का हाट है।", "tiles": ["village.", "the", "This", "haat", "my", "in", "is"], "answer": "This is the haat in my village." },
+        {
+          "key": "b.u18.l4.c-end",
+          "type": "choose",
+          "prompt": { "en": "How do you end your show?", "hi": "शो कैसे ख़त्म करोगे?", "pic": "👏" },
+          "options": [{ "text": "How much?" }, { "text": "Thank you!" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Do your big show for your family tonight!", "hi": "आज रात परिवार के सामने अपना बड़ा शो करो!" }
+    },
+    {
+      "key": "b.u18.l5",
+      "kind": "review",
+      "title": { "en": "Units 10 to 18 review", "hi": "इकाई 10 से 18 दोहराओ" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u18.l5.m-house", "left": { "text": "house" }, "right": { "pic": "🏠" } },
+            { "key": "b.u18.l5.m-morning", "left": { "text": "morning" }, "right": { "pic": "🌞" } },
+            { "key": "b.u18.l5.m-sweep", "left": { "text": "sweep" }, "right": { "pic": "🧹" } },
+            { "key": "b.u18.l5.m-monsoon", "left": { "text": "monsoon" }, "right": { "pic": "⛈️" } },
+            { "key": "b.u18.l5.m-salt", "left": { "text": "salt" }, "right": { "pic": "🧂" } },
+            { "key": "b.u18.l5.m-fair", "left": { "text": "fair" }, "right": { "pic": "🎡" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u18.l5.b-show", "hi": "पहले मैं मुस्कुराता हूँ। फिर बोलता हूँ।", "pic": "😁", "tiles": ["speak.", "I", "First,", "smile.", "Then", "I"], "answer": "First, I smile. Then I speak." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u18.l5.p-are",
+              "prompt": { "en": "There ___ many shops at the haat.", "hi": "हाट में बहुत सारी दुकानें हैं।", "pic": "own:haat" },
+              "options": [{ "text": "is" }, { "text": "are" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u18.l5.s-me", "model": "I am brave. I can speak English!", "hi": "गर्व से बोलो!", "pic": "🥇", "cue": { "en": "Say it proudly!", "hi": "गर्व से बोलो!" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u18.l5.c-u10",
+          "type": "choose",
+          "prompt": { "en": "The cat is ___ the bed.", "hi": "बिल्ली पलंग के नीचे है।", "pic": "🐈" },
+          "options": [{ "text": "on" }, { "text": "under" }, { "text": "in" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u18.l5.c-u11",
+          "type": "choose",
+          "prompt": { "en": "I ___ to school every day.", "hi": "मैं रोज़ स्कूल जाता/जाती हूँ।", "pic": "🏫" },
+          "options": [{ "text": "go" }, { "text": "am" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u18.l5.c-u12",
+          "type": "choose",
+          "prompt": { "en": "What time is it? It is nine ___.", "hi": "नौ बजे हैं।", "pic": "⏰" },
+          "options": [{ "text": "o'clock" }, { "text": "Sunday" }],
+          "answer": 0
+        },
+        { "key": "b.u18.l5.c-u13", "type": "build", "hi": "हम अभी नाच रहे हैं।", "tiles": ["dancing", "We", "now.", "are"], "answer": "We are dancing now." },
+        {
+          "key": "b.u18.l5.c-u14",
+          "type": "choose",
+          "prompt": { "en": "In winter, it is ___.", "hi": "सर्दियों में ठंड होती है।", "pic": "🧣" },
+          "options": [{ "text": "hot" }, { "text": "cold" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u18.l5.c-u15",
+          "type": "choose",
+          "prompt": { "en": "How much is it? It is ten ___.", "hi": "दस रुपये का है।", "pic": "💵" },
+          "options": [{ "text": "rupees" }, { "text": "onions" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u18.l5.c-u16",
+          "type": "choose",
+          "prompt": { "en": "___ I go out, please?", "hi": "क्या मैं बाहर जाऊँ, प्लीज़?", "pic": "🚪" },
+          "options": [{ "text": "Can" }, { "text": "Do" }],
+          "answer": 0
+        },
+        { "key": "b.u18.l5.c-u17", "type": "build", "hi": "कल मैं ख़ुश था।", "tiles": ["happy.", "Yesterday", "was", "I"], "answer": "Yesterday I was happy." },
+        {
+          "key": "b.u18.l5.c-u18",
+          "type": "choose",
+          "prompt": { "en": "___, I say hello. Then I smile.", "hi": "पहले नमस्ते, फिर मुस्कान।", "pic": "1️⃣" },
+          "options": [{ "text": "First" }, { "text": "Then" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u18.l5.c-u7",
+          "type": "choose",
+          "prompt": { "en": "My mother ___ a new bag.", "hi": "मेरी माँ के पास नया बस्ता है।", "pic": "👩" },
+          "options": [{ "text": "have" }, { "text": "has" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "You finished the course! Speak English a little every day.", "hi": "तुमने कोर्स पूरा कर लिया! रोज़ थोड़ी अंग्रेज़ी बोलो।" }
+    }
+  ]
+}

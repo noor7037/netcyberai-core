@@ -1,0 +1,658 @@
+{
+  "track": "c",
+  "unit": 4,
+  "key": "c.u04",
+  "title": { "en": "Asking questions", "hi": "सवाल पूछना" },
+  "pic": "❓",
+  "can_do": { "en": "I can ask and answer questions.", "hi": "मैं सवाल पूछ और उनके जवाब दे सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u04.l1",
+      "kind": "words",
+      "title": { "en": "Question words", "hi": "सवाल वाले शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Good questions help us learn. Today we learn question words.",
+            "hi": "अच्छे सवाल सीखने में मदद करते हैं। आज हम सवाल वाले शब्द सीखेंगे।"
+          },
+          "pic": "❓"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u04.l1.question",
+              "en": "question",
+              "hi": "सवाल, प्रश्न",
+              "pic": "❓",
+              "example": { "en": "Can I ask you a question?", "hi": "क्या मैं आपसे एक सवाल पूछ सकता/सकती हूँ?" }
+            },
+            {
+              "key": "c.u04.l1.answer",
+              "en": "answer",
+              "hi": "जवाब, उत्तर",
+              "pic": "🙋",
+              "example": { "en": "Salma knows the answer.", "hi": "सलमा को जवाब पता है।" }
+            },
+            {
+              "key": "c.u04.l1.interview",
+              "en": "interview",
+              "hi": "इंटरव्यू, साक्षात्कार",
+              "pic": "🎤",
+              "example": { "en": "Arjun is doing an interview with Dadi.", "hi": "अर्जुन दादी का इंटरव्यू ले रहा है।" }
+            },
+            {
+              "key": "c.u04.l1.who",
+              "en": "who",
+              "hi": "कौन",
+              "pic": "🧑",
+              "example": { "en": "Who is your best friend?", "hi": "तुम्हारा सबसे अच्छा दोस्त कौन है?" }
+            },
+            { "key": "c.u04.l1.where", "en": "where", "hi": "कहाँ", "pic": "🗺️", "example": { "en": "Where do you live?", "hi": "तुम कहाँ रहते हो?" } },
+            { "key": "c.u04.l1.when", "en": "when", "hi": "कब", "pic": "📅", "example": { "en": "When do you play cricket?", "hi": "तुम क्रिकेट कब खेलते हो?" } },
+            { "key": "c.u04.l1.why", "en": "why", "hi": "क्यों", "pic": "🤔", "example": { "en": "Why are you laughing?", "hi": "तुम क्यों हँस रहे हो?" } },
+            {
+              "key": "c.u04.l1.favourite",
+              "en": "favourite",
+              "hi": "सबसे पसंदीदा",
+              "pic": "⭐",
+              "example": { "en": "What is your favourite food?", "hi": "तुम्हारा सबसे पसंदीदा खाना क्या है?" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u04.l1.m-question", "left": { "text": "question" }, "right": { "pic": "❓" } },
+            { "key": "c.u04.l1.m-interview", "left": { "text": "interview" }, "right": { "pic": "🎤" } },
+            { "key": "c.u04.l1.m-where", "left": { "text": "where" }, "right": { "pic": "🗺️" } },
+            { "key": "c.u04.l1.m-favourite", "left": { "text": "favourite" }, "right": { "pic": "⭐" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u04.l1.p-when",
+              "prompt": { "en": "Which word asks about time?", "hi": "कौन-सा शब्द समय के बारे में पूछता है?" },
+              "options": [{ "text": "who" }, { "text": "when" }, { "text": "where" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u04.l1.p-who",
+              "prompt": { "en": "Which word asks about a person?", "hi": "कौन-सा शब्द किसी व्यक्ति के बारे में पूछता है?" },
+              "options": [{ "text": "why" }, { "text": "who" }, { "text": "where" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u04.l1.s-ask", "model": "Can I ask you a question?", "hi": "क्या मैं आपसे एक सवाल पूछ सकता/सकती हूँ?", "pic": "❓" },
+            { "key": "c.u04.l1.s-fav", "model": "What is your favourite food?", "hi": "तुम्हारा सबसे पसंदीदा खाना क्या है?", "pic": "⭐" },
+            { "key": "c.u04.l1.s-live", "model": "Where do you live?", "hi": "तुम कहाँ रहते हो?", "pic": "🗺️" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u04.l1.c-why",
+          "type": "choose",
+          "prompt": { "en": "Which word means क्यों?", "hi": "कौन-सा शब्द 'क्यों' है?" },
+          "options": [{ "text": "when" }, { "text": "who" }, { "text": "why" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u04.l1.c-where",
+          "type": "choose",
+          "prompt": { "en": "___ is the well? It is near the temple.", "hi": "कुआँ कहाँ है? वह मंदिर के पास है।" },
+          "options": [{ "text": "Who" }, { "text": "Where" }, { "text": "When" }],
+          "answer": 1,
+          "why": { "en": "Where asks about a place.", "hi": "where जगह के बारे में पूछता है।" }
+        },
+        {
+          "key": "c.u04.l1.c-who",
+          "type": "choose",
+          "prompt": { "en": "___ is your teacher? Ms Anita.", "hi": "तुम्हारी अध्यापिका कौन हैं? अनीता मैडम।" },
+          "options": [{ "text": "When" }, { "text": "Why" }, { "text": "Who" }],
+          "answer": 2,
+          "why": { "en": "Who asks about a person.", "hi": "who किसी व्यक्ति के बारे में पूछता है।" }
+        },
+        {
+          "key": "c.u04.l1.c-when",
+          "type": "choose",
+          "prompt": { "en": "___ do you eat dinner? At eight.", "hi": "तुम रात का खाना कब खाते हो? आठ बजे।" },
+          "options": [{ "text": "Where" }, { "text": "When" }, { "text": "Who" }],
+          "answer": 1,
+          "why": { "en": "When asks about time.", "hi": "when समय के बारे में पूछता है।" }
+        },
+        {
+          "key": "c.u04.l1.c-fav",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "favourite" },
+          "options": [{ "pic": "⭐" }, { "pic": "🎤" }, { "pic": "❓" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Ask someone at home: What is your favourite food?", "hi": "घर में किसी से पूछो: What is your favourite food?" }
+    },
+    {
+      "key": "c.u04.l2",
+      "kind": "pattern",
+      "title": { "en": "Questions with do and does", "hi": "do और does वाले सवाल" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Turn a sentence into a question", "hi": "वाक्य को सवाल में बदलो" },
+          "visual": "question_flip",
+          "examples": [
+            {
+              "en": "You are happy.",
+              "hi": "तुम ख़ुश हो।",
+              "parts": [{ "text": "You", "role": "who" }, { "text": "are", "role": "do" }, { "text": "happy.", "role": "what" }]
+            },
+            {
+              "en": "Are you happy?",
+              "hi": "क्या तुम ख़ुश हो?",
+              "parts": [{ "text": "Are", "role": "ask" }, { "text": "you", "role": "who" }, { "text": "happy?", "role": "what" }]
+            },
+            {
+              "en": "You like mangoes.",
+              "hi": "तुम्हें आम पसंद हैं।",
+              "parts": [{ "text": "You", "role": "who" }, { "text": "like", "role": "do" }, { "text": "mangoes.", "role": "what" }],
+              "pic": "🥭"
+            },
+            {
+              "en": "Do you like mangoes?",
+              "hi": "क्या तुम्हें आम पसंद हैं?",
+              "parts": [
+                { "text": "Do", "role": "ask" },
+                { "text": "you", "role": "who" },
+                { "text": "like", "role": "do" },
+                { "text": "mangoes?", "role": "what" }
+              ],
+              "pic": "🥭"
+            },
+            {
+              "en": "Dadi lives in the village.",
+              "hi": "दादी गाँव में रहती हैं।",
+              "parts": [{ "text": "Dadi", "role": "who" }, { "text": "lives", "role": "do" }, { "text": "in the village.", "role": "where" }],
+              "pic": "👵"
+            },
+            {
+              "en": "Does Dadi live in the village?",
+              "hi": "क्या दादी गाँव में रहती हैं?",
+              "parts": [
+                { "text": "Does", "role": "ask" },
+                { "text": "Dadi", "role": "who" },
+                { "text": "live", "role": "do" },
+                { "text": "in the village?", "role": "where" }
+              ],
+              "pic": "👵"
+            },
+            {
+              "en": "Where does Dadi live?",
+              "hi": "दादी कहाँ रहती हैं?",
+              "parts": [
+                { "text": "Where", "role": "ask" },
+                { "text": "does", "role": "ask" },
+                { "text": "Dadi", "role": "who" },
+                { "text": "live?", "role": "do" }
+              ],
+              "pic": "🏠"
+            }
+          ],
+          "note": {
+            "en": "Use do with I, you, we and they. Use does with he, she or a name. After does, no -s: Does she live?",
+            "hi": "I, you, we, they के साथ do; he, she या नाम के साथ does. does के बाद -s नहीं: Does she live?"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u04.l2.b-cricket",
+              "hi": "क्या तुम्हें क्रिकेट पसंद है?",
+              "pic": "🏏",
+              "tiles": ["you", "Do", "cricket?", "like"],
+              "answer": "Do you like cricket?"
+            },
+            {
+              "key": "c.u04.l2.b-salma",
+              "hi": "सलमा कहाँ रहती है?",
+              "pic": "🧕",
+              "tiles": ["live?", "Salma", "Where", "does"],
+              "answer": "Where does Salma live?"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u04.l2.p-does",
+              "prompt": { "en": "___ Arjun feed the cow?", "hi": "क्या अर्जुन गाय को खिलाता है?" },
+              "options": [{ "text": "Does" }, { "text": "Do" }, { "text": "Is" }],
+              "answer": 0,
+              "why": { "en": "With he, she or a name, use does.", "hi": "he, she या किसी नाम के साथ does आता है।" }
+            },
+            {
+              "key": "c.u04.l2.p-nos",
+              "prompt": { "en": "Does Salma ___ drawing?", "hi": "क्या सलमा को चित्र बनाना पसंद है?" },
+              "options": [{ "text": "like" }, { "text": "likes" }, { "text": "liking" }],
+              "answer": 0,
+              "why": { "en": "After does, the doing word has no -s.", "hi": "does के बाद काम वाले शब्द में -s नहीं लगता।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u04.l2.s-q1",
+              "model": "Do you like mangoes?",
+              "hi": "सवाल पूछो।",
+              "cue": { "en": "Ask your friend about mangoes.", "hi": "अपने दोस्त से आम के बारे में पूछो।" }
+            },
+            {
+              "key": "c.u04.l2.s-q2",
+              "model": "Where do you live?",
+              "hi": "सवाल पूछो।",
+              "cue": { "en": "Ask where your friend lives.", "hi": "पूछो कि तुम्हारा दोस्त कहाँ रहता है।" }
+            },
+            {
+              "key": "c.u04.l2.s-a1",
+              "model": "Yes, I do. I play it every evening.",
+              "hi": "जवाब दो।",
+              "cue": { "en": "Do you like cricket?", "hi": "क्या तुम्हें क्रिकेट पसंद है?" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u04.l2.c-b1",
+          "type": "build",
+          "hi": "पापा खेत में क्या उगाते हैं?",
+          "pic": "🌾",
+          "tiles": ["the", "field?", "grow", "does", "in", "Papa", "What"],
+          "answer": "What does Papa grow in the field?"
+        },
+        {
+          "key": "c.u04.l2.c-b2",
+          "type": "build",
+          "hi": "तुम क्रिकेट कब खेलते हो?",
+          "pic": "🏏",
+          "tiles": ["you", "do", "play", "cricket?", "When"],
+          "answer": "When do you play cricket?"
+        },
+        {
+          "key": "c.u04.l2.c-do",
+          "type": "choose",
+          "prompt": { "en": "___ you walk to school?", "hi": "क्या तुम पैदल स्कूल जाते हो?" },
+          "options": [{ "text": "Does" }, { "text": "Are" }, { "text": "Do" }],
+          "answer": 2,
+          "why": { "en": "With I, you, we and they, use do.", "hi": "I, you, we, they के साथ do आता है।" }
+        },
+        {
+          "key": "c.u04.l2.c-does",
+          "type": "choose",
+          "prompt": { "en": "Where ___ Ravi uncle work?", "hi": "रवि अंकल कहाँ काम करते हैं?" },
+          "options": [{ "text": "do" }, { "text": "does" }, { "text": "is" }],
+          "answer": 1,
+          "why": { "en": "With he, she or a name, use does.", "hi": "he, she या किसी नाम के साथ does आता है।" }
+        },
+        {
+          "key": "c.u04.l2.c-short",
+          "type": "choose",
+          "prompt": { "en": "Do you like rice? Choose a good answer.", "hi": "क्या तुम्हें चावल पसंद हैं? अच्छा जवाब चुनो।" },
+          "options": [{ "text": "Yes, I am." }, { "text": "Yes, I do." }, { "text": "Yes, I does." }],
+          "answer": 1,
+          "why": { "en": "We answer a do question with do: Yes, I do.", "hi": "do वाले सवाल का जवाब do से: Yes, I do." }
+        },
+        {
+          "key": "c.u04.l2.c-nos",
+          "type": "choose",
+          "prompt": { "en": "Does Dadi ___ tea?", "hi": "क्या दादी चाय पीती हैं?" },
+          "options": [{ "text": "drinks" }, { "text": "drink" }, { "text": "drinking" }],
+          "answer": 1,
+          "why": { "en": "After does, the doing word has no -s.", "hi": "does के बाद काम वाले शब्द में -s नहीं लगता।" }
+        }
+      ],
+      "home": { "en": "Ask at home: Do you like …?", "hi": "घर पर पूछो: Do you like …?" }
+    },
+    {
+      "key": "c.u04.l3",
+      "kind": "listen",
+      "title": { "en": "Arjun's interview", "hi": "अर्जुन का इंटरव्यू" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Questions for Dadi", "hi": "दादी से सवाल" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🏠", "x": 82, "y": 16, "size": 2 },
+              { "pic": "👦", "x": 30, "y": 42, "size": 1.5 },
+              { "pic": "👵", "x": 54, "y": 42, "size": 1.6 },
+              { "pic": "🎤", "x": 40, "y": 30, "size": 1 },
+              { "pic": "📝", "x": 22, "y": 52, "size": 1 }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Dadi, can I interview you for my school project?",
+              "hi": "दादी, क्या मैं अपने स्कूल प्रोजेक्ट के लिए आपका इंटरव्यू ले सकता हूँ?"
+            },
+            { "speaker": "Dadi", "pic": "👵", "en": "Of course, Arjun. Ask me your questions.", "hi": "ज़रूर, अर्जुन। अपने सवाल पूछो।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "What do you do every morning?", "hi": "आप हर सुबह क्या करती हैं?" },
+            { "speaker": "Dadi", "pic": "👵", "en": "I water the plants and feed the hens.", "hi": "मैं पौधों को पानी देती हूँ और मुर्गियों को दाना डालती हूँ।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "What is your favourite food?", "hi": "आपका सबसे पसंदीदा खाना क्या है?" },
+            { "speaker": "Dadi", "pic": "👵", "en": "I love hot rotis with dal.", "hi": "मुझे दाल के साथ गरम रोटियाँ बहुत पसंद हैं।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Why do you get up so early?", "hi": "आप इतनी जल्दी क्यों उठती हैं?" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Because the morning is cool and quiet.", "hi": "क्योंकि सुबह ठंडी और शांत होती है।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Do you like stories?", "hi": "क्या आपको कहानियाँ पसंद हैं?" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Yes, I do! I know a hundred stories.", "hi": "हाँ! मुझे सौ कहानियाँ आती हैं।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Thank you, Dadi. That was a great interview!", "hi": "धन्यवाद, दादी। बहुत बढ़िया इंटरव्यू था!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u04.l3.p-morning",
+              "prompt": { "en": "What does Dadi do every morning?", "hi": "दादी हर सुबह क्या करती हैं?" },
+              "options": [{ "text": "She plays cricket." }, { "text": "She waters the plants and feeds the hens." }, { "text": "She drives the tractor." }],
+              "answer": 1
+            },
+            {
+              "key": "c.u04.l3.p-food",
+              "prompt": { "en": "What is Dadi's favourite food?", "hi": "दादी का सबसे पसंदीदा खाना क्या है?" },
+              "options": [{ "text": "rice and eggs" }, { "text": "rotis with dal" }, { "text": "mangoes" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u04.l3.p-why",
+              "prompt": { "en": "Why does Dadi get up early?", "hi": "दादी जल्दी क्यों उठती हैं?" },
+              "options": [{ "text": "The morning is cool and quiet." }, { "text": "She goes to school." }, { "text": "The hens are hungry." }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u04.l3.s-morning", "model": "What do you do every morning?", "hi": "आप हर सुबह क्या करती हैं?", "pic": "🌞" },
+            { "key": "c.u04.l3.s-early", "model": "Why do you get up so early?", "hi": "आप इतनी जल्दी क्यों उठती हैं?", "pic": "🐓" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u04.l3.c-who",
+          "type": "choose",
+          "prompt": { "en": "Who asks the questions?", "hi": "सवाल कौन पूछता है?" },
+          "options": [{ "text": "Dadi", "pic": "👵" }, { "text": "Meera", "pic": "👧" }, { "text": "Arjun", "pic": "👦" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u04.l3.c-stories",
+          "type": "choose",
+          "prompt": { "en": "Does Dadi like stories?", "hi": "क्या दादी को कहानियाँ पसंद हैं?" },
+          "options": [{ "text": "No, she doesn't." }, { "text": "Yes, she is." }, { "text": "Yes, she does." }],
+          "answer": 2
+        },
+        {
+          "key": "c.u04.l3.c-many",
+          "type": "choose",
+          "prompt": { "en": "How many stories does Dadi know?", "hi": "दादी को कितनी कहानियाँ आती हैं?" },
+          "options": [{ "text": "ten" }, { "text": "fifty" }, { "text": "a hundred" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u04.l3.c-reason",
+          "type": "choose",
+          "prompt": { "en": "Which question asks for a reason?", "hi": "कौन-सा सवाल कारण पूछता है?" },
+          "options": [{ "text": "Where do you live?" }, { "text": "Why do you get up early?" }, { "text": "Who is your friend?" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask Dadi, Nana or a neighbour one question in English.", "hi": "दादी, नाना या किसी पड़ोसी से अंग्रेज़ी में एक सवाल पूछो।" }
+    },
+    {
+      "key": "c.u04.l4",
+      "kind": "speak",
+      "title": { "en": "Interview a family member", "hi": "घर के किसी सदस्य का इंटरव्यू लो" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "You are the reporter! Ask Papa about his day.", "hi": "तुम रिपोर्टर हो! पापा से उनके दिन के बारे में पूछो।" },
+          "pic": "🎤"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "My interview with Papa", "hi": "पापा से मेरा इंटरव्यू" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🏠", "x": 82, "y": 16, "size": 2 },
+              { "pic": "👨‍🌾", "x": 34, "y": 42, "size": 1.6 },
+              { "pic": "🙋", "x": 58, "y": 44, "size": 1.6 },
+              { "pic": "🎤", "x": 46, "y": 30, "size": 1 }
+            ]
+          },
+          "roles": [{ "name": "Papa", "pic": "👨‍🌾" }, { "name": "You", "pic": "🙋" }],
+          "learner": 1,
+          "turns": [
+            { "role": 1, "en": "Papa, can I ask you some questions?", "hi": "पापा, क्या मैं आपसे कुछ सवाल पूछ सकता/सकती हूँ?" },
+            { "role": 0, "en": "Yes, of course. Go ahead.", "hi": "हाँ, ज़रूर। पूछो।" },
+            { "role": 1, "en": "What time do you wake up?", "hi": "आप कितने बजे उठते हैं?" },
+            { "role": 0, "en": "I usually wake up at five o'clock.", "hi": "मैं आमतौर पर पाँच बजे उठता हूँ।" },
+            { "role": 1, "en": "Where do you work?", "hi": "आप कहाँ काम करते हैं?" },
+            { "role": 0, "en": "I work in our field near the river.", "hi": "मैं नदी के पास अपने खेत में काम करता हूँ।" },
+            { "role": 1, "en": "What is your favourite food?", "hi": "आपका सबसे पसंदीदा खाना क्या है?" },
+            { "role": 0, "en": "I love Dadi's kheer!", "hi": "मुझे दादी की खीर बहुत पसंद है!" },
+            { "role": 1, "en": "Thank you, Papa. Great answers!", "hi": "धन्यवाद, पापा। बहुत अच्छे जवाब!" }
+          ],
+          "partner": {
+            "goal": "Play Papa, a farmer. The child interviews you. Answer each question in one or two short sentences, then wait for the next question.",
+            "must_use": ["What", "Where", "When", "Do you", "favourite"]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "c.u04.l4.br-live", "hi": "तुम कहाँ रहते हो?", "tiles": ["you", "live?", "Where", "do"], "answer": "Where do you live?" },
+            {
+              "key": "c.u04.l4.br-cricket",
+              "hi": "क्या तुम्हें क्रिकेट पसंद है?",
+              "tiles": ["cricket?", "Do", "like", "you"],
+              "answer": "Do you like cricket?"
+            },
+            {
+              "key": "c.u04.l4.br-school",
+              "hi": "वह स्कूल कब जाती है?",
+              "tiles": ["to", "school?", "go", "does", "When", "she"],
+              "answer": "When does she go to school?"
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u04.l4.s-three",
+              "model": "What is your name? Where do you live? What do you like?",
+              "hi": "तीन सवाल पूछो।",
+              "cue": { "en": "Ask a friend three questions.", "hi": "दोस्त से तीन सवाल पूछो।" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u04.l4.c-time",
+          "type": "choose",
+          "prompt": { "en": "You want to know when Papa wakes up. You ask:", "hi": "तुम जानना चाहते हो पापा कब उठते हैं। तुम पूछोगे:" },
+          "options": [{ "text": "What time do you wake up?" }, { "text": "Where do you wake up?" }, { "text": "Who wakes up?" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u04.l4.c-b",
+          "type": "build",
+          "hi": "तुम्हारी माँ क्या पकाती हैं?",
+          "pic": "🍲",
+          "tiles": ["cook?", "What", "your", "does", "mother"],
+          "answer": "What does your mother cook?"
+        },
+        {
+          "key": "c.u04.l4.c-does",
+          "type": "choose",
+          "prompt": { "en": "___ your brother go to school?", "hi": "क्या तुम्हारा भाई स्कूल जाता है?" },
+          "options": [{ "text": "Does" }, { "text": "Do" }, { "text": "Are" }],
+          "answer": 0,
+          "why": { "en": "With he, she or a name, use does.", "hi": "he, she या किसी नाम के साथ does आता है।" }
+        },
+        {
+          "key": "c.u04.l4.c-match",
+          "type": "choose",
+          "prompt": { "en": "Papa answers: I work in the field. What is the question?", "hi": "पापा का जवाब: I work in the field. सवाल क्या था?" },
+          "options": [{ "text": "When do you sleep?" }, { "text": "Who is your friend?" }, { "text": "Where do you work?" }],
+          "answer": 2
+        }
+      ],
+      "home": { "en": "Interview someone at home with three questions.", "hi": "घर में किसी का तीन सवालों वाला इंटरव्यू लो।" }
+    },
+    {
+      "key": "c.u04.l5",
+      "kind": "review",
+      "title": { "en": "Unit 4 review", "hi": "इकाई 4 की दोहराई" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u04.l5.m-why", "left": { "text": "why" }, "right": { "pic": "🤔" } },
+            { "key": "c.u04.l5.m-when", "left": { "text": "when" }, "right": { "pic": "📅" } },
+            { "key": "c.u04.l5.m-interview", "left": { "text": "interview" }, "right": { "pic": "🎤" } },
+            { "key": "c.u04.l5.m-busy", "left": { "text": "busy" }, "right": { "pic": "🏃" } },
+            { "key": "c.u04.l5.m-well", "left": { "text": "well" }, "right": { "pic": "own:well" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u04.l5.b-laugh",
+              "hi": "तुम क्यों हँस रहे हो?",
+              "pic": "😄",
+              "tiles": ["are", "you", "Why", "laughing?"],
+              "answer": "Why are you laughing?"
+            },
+            {
+              "key": "c.u04.l5.b-tractor",
+              "hi": "पापा अभी ट्रैक्टर चला रहे हैं।",
+              "pic": "🚜",
+              "tiles": ["the", "now.", "tractor", "Papa", "is", "driving"],
+              "answer": "Papa is driving the tractor now."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u04.l5.p-what",
+              "prompt": { "en": "___ is Dadi doing now?", "hi": "दादी अभी क्या कर रही हैं?" },
+              "options": [{ "text": "Who" }, { "text": "Where" }, { "text": "What" }],
+              "answer": 2,
+              "why": { "en": "What asks about a thing or an action.", "hi": "what किसी चीज़ या काम के बारे में पूछता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u04.l5.s-game",
+              "model": "What is your favourite game?",
+              "hi": "सवाल पूछो।",
+              "cue": { "en": "Ask a friend about their favourite game.", "hi": "दोस्त से उसके पसंदीदा खेल के बारे में पूछो।" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u04.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means कहाँ?", "hi": "कौन-सा शब्द 'कहाँ' है?" },
+          "options": [{ "text": "where" }, { "text": "when" }, { "text": "why" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u04.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Which word means सवाल?", "hi": "कौन-सा शब्द 'सवाल' है?" },
+          "options": [{ "text": "answer" }, { "text": "question" }, { "text": "interview" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u04.l5.c-nos",
+          "type": "choose",
+          "prompt": { "en": "Does Meera ___ cricket?", "hi": "क्या मीरा क्रिकेट खेलती है?" },
+          "options": [{ "text": "plays" }, { "text": "play" }, { "text": "playing" }],
+          "answer": 1,
+          "why": { "en": "After does, the doing word has no -s.", "hi": "does के बाद काम वाले शब्द में -s नहीं लगता।" }
+        },
+        {
+          "key": "c.u04.l5.c-do",
+          "type": "choose",
+          "prompt": { "en": "Where ___ you live?", "hi": "तुम कहाँ रहते हो?" },
+          "options": [{ "text": "does" }, { "text": "do" }, { "text": "are" }],
+          "answer": 1,
+          "why": { "en": "With I, you, we and they, use do.", "hi": "I, you, we, they के साथ do आता है।" }
+        },
+        {
+          "key": "c.u04.l5.c-u3",
+          "type": "choose",
+          "prompt": { "en": "Look! The hens ___ away.", "hi": "देखो! मुर्गियाँ भाग रही हैं।" },
+          "options": [{ "text": "run" }, { "text": "are running" }, { "text": "runs" }],
+          "answer": 1,
+          "why": { "en": "It is happening now: are + -ing.", "hi": "अभी हो रहा है: are + -ing." }
+        },
+        {
+          "key": "c.u04.l5.c-u2",
+          "type": "choose",
+          "prompt": { "en": "Salma usually ___ to school with Meera.", "hi": "सलमा आमतौर पर मीरा के साथ स्कूल जाती है।" },
+          "options": [{ "text": "walk" }, { "text": "walks" }, { "text": "walking" }],
+          "answer": 1,
+          "why": { "en": "With he, she or a name, add -s.", "hi": "he, she या नाम के साथ -s लगता है।" }
+        },
+        {
+          "key": "c.u04.l5.c-b",
+          "type": "build",
+          "hi": "अर्जुन मुर्गियों को कब दाना डालता है?",
+          "pic": "🐔",
+          "tiles": ["feed", "the", "hens?", "When", "Arjun", "does"],
+          "answer": "When does Arjun feed the hens?"
+        }
+      ],
+      "home": { "en": "Play a question game at dinner: everyone asks one question.", "hi": "खाने के समय सवालों का खेल खेलो: सब एक-एक सवाल पूछें।" }
+    }
+  ]
+}

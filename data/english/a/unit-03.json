@@ -1,0 +1,349 @@
+{
+  "track": "a",
+  "unit": 3,
+  "key": "a.u03",
+  "title": { "en": "My body", "hi": "मेरा शरीर" },
+  "pic": "🙌",
+  "can_do": { "en": "I can name parts of my body.", "hi": "मुझे अपने शरीर के अंगों के नाम आते हैं।" },
+  "lessons": [
+    {
+      "key": "a.u03.l1",
+      "kind": "words",
+      "title": { "en": "Body words", "hi": "शरीर के शब्द" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u03.l1.w-mother",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "mother" },
+              "options": [{ "pic": "👩" }, { "pic": "👦" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u03.l1.w-brother",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "brother" },
+              "options": [{ "pic": "👵" }, { "pic": "👦" }],
+              "answer": 1
+            }
+          ]
+        },
+        { "type": "tip", "text": { "en": "Grown-up: do every action with your child.", "hi": "बड़ों के लिए: हर काम बच्चे के साथ आप भी करके दिखाएँ।" }, "pic": "👪" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u03.l1.head", "en": "head", "hi": "सिर", "pic": "🧒", "example": { "en": "Nod your head.", "hi": "हाँ में सिर हिलाओ।" } },
+            { "key": "a.u03.l1.eyes", "en": "eyes", "hi": "आँखें", "pic": "👀", "example": { "en": "Open your eyes.", "hi": "आँखें खोलो।" } },
+            { "key": "a.u03.l1.nose", "en": "nose", "hi": "नाक", "pic": "👃", "example": { "en": "This is my nose.", "hi": "यह मेरी नाक है।" } },
+            { "key": "a.u03.l1.mouth", "en": "mouth", "hi": "मुँह", "pic": "👄", "example": { "en": "Open your mouth.", "hi": "मुँह खोलो।" } },
+            { "key": "a.u03.l1.hands", "en": "hands", "hi": "हाथ", "pic": "🙌", "example": { "en": "Clap your hands.", "hi": "ताली बजाओ।" } },
+            { "key": "a.u03.l1.feet", "en": "feet", "hi": "पैर", "pic": "🦶", "example": { "en": "Stamp your feet.", "hi": "धम-धम पैर पटको।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Nod your head.", "hi": "हाँ में सिर हिलाओ।", "pic": "🧒" },
+            { "en": "Blink your eyes.", "hi": "आँखें झपकाओ।", "pic": "👀" },
+            { "en": "Clap your hands.", "hi": "ताली बजाओ।", "pic": "👏" },
+            { "en": "Stamp your feet.", "hi": "धम-धम पैर पटको।", "pic": "🦶" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u03.l1.t-nose",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "nose" },
+              "options": [{ "pic": "👃" }, { "pic": "👄" }, { "pic": "👀" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u03.l1.t-feet",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "feet" },
+              "options": [{ "pic": "🙌" }, { "pic": "🦶" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u03.l1.t-eyes",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "eyes" },
+              "options": [{ "pic": "👄" }, { "pic": "👀" }, { "pic": "👃" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u03.l1.t-mouth",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "mouth" },
+              "options": [{ "pic": "👄" }, { "pic": "🦶" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u03.l1.s-head", "model": "Head.", "hi": "सिर।", "pic": "🧒" },
+            { "key": "a.u03.l1.s-eyes", "model": "Eyes.", "hi": "आँखें।", "pic": "👀" },
+            { "key": "a.u03.l1.s-nose", "model": "Nose.", "hi": "नाक।", "pic": "👃" },
+            { "key": "a.u03.l1.s-mouth", "model": "Mouth.", "hi": "मुँह।", "pic": "👄" },
+            { "key": "a.u03.l1.s-hands", "model": "Hands.", "hi": "हाथ।", "pic": "🙌" },
+            { "key": "a.u03.l1.s-feet", "model": "Feet.", "hi": "पैर।", "pic": "🦶" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "At bath time, name the body parts in English.", "hi": "नहाते समय शरीर के अंगों के नाम अंग्रेज़ी में बोलें: hands, feet।" }
+    },
+    {
+      "key": "a.u03.l2",
+      "kind": "pattern",
+      "title": { "en": "Touch your …", "hi": "अपना … छुओ" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Touch your …", "hi": "अपना … छुओ" },
+          "visual": "builder",
+          "examples": [
+            { "en": "Touch your nose.", "hi": "अपनी नाक छुओ।", "pic": "👃", "parts": [{ "text": "Touch", "role": "do" }, { "text": "your nose.", "role": "what" }] },
+            { "en": "Touch your head.", "hi": "अपना सिर छुओ।", "pic": "🧒", "parts": [{ "text": "Touch", "role": "do" }, { "text": "your head.", "role": "what" }] },
+            { "en": "Touch your eyes.", "hi": "अपनी आँखें छुओ।", "pic": "👀", "parts": [{ "text": "Touch", "role": "do" }, { "text": "your eyes.", "role": "what" }] },
+            { "en": "Touch your feet.", "hi": "अपने पैर छुओ।", "pic": "🦶", "parts": [{ "text": "Touch", "role": "do" }, { "text": "your feet.", "role": "what" }] }
+          ],
+          "note": { "en": "First listen and touch. Then you say it!", "hi": "पहले सुनो और छुओ। फिर तुम बोलो!" }
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Touch your head.", "hi": "अपना सिर छुओ।", "pic": "🧒" },
+            { "en": "Touch your nose.", "hi": "अपनी नाक छुओ।", "pic": "👃" },
+            { "en": "Touch your mouth.", "hi": "अपना मुँह छुओ।", "pic": "👄" },
+            { "en": "Touch your feet.", "hi": "अपने पैर छुओ।", "pic": "🦶" },
+            { "en": "Hands up!", "hi": "हाथ ऊपर!", "pic": "🙌" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u03.l2.t-eyes",
+              "prompt": { "en": "Listen. What do you touch?", "hi": "सुनो। क्या छूना है?", "say": "Touch your eyes." },
+              "options": [{ "pic": "👀" }, { "pic": "🦶" }, { "pic": "👃" }],
+              "answer": 0,
+              "why": { "en": "Eyes: we see with them.", "hi": "eyes यानी आँखें, जिनसे हम देखते हैं।" }
+            },
+            {
+              "key": "a.u03.l2.t-head",
+              "prompt": { "en": "Listen. What do you touch?", "hi": "सुनो। क्या छूना है?", "say": "Touch your head." },
+              "options": [{ "pic": "👄" }, { "pic": "🧒" }],
+              "answer": 1,
+              "why": { "en": "Head: the top of you.", "hi": "head यानी सिर, सबसे ऊपर।" }
+            },
+            {
+              "key": "a.u03.l2.t-feet",
+              "prompt": { "en": "Listen. What do you touch?", "hi": "सुनो। क्या छूना है?", "say": "Touch your feet." },
+              "options": [{ "pic": "🙌" }, { "pic": "👃" }, { "pic": "🦶" }],
+              "answer": 2,
+              "why": { "en": "Feet: we walk on them.", "hi": "feet यानी पैर, जिनसे हम चलते हैं।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u03.l2.s-nose", "model": "Touch your nose.", "hi": "अपनी नाक छुओ।", "pic": "👃" },
+            { "key": "a.u03.l2.s-head", "model": "Touch your head.", "hi": "अपना सिर छुओ।", "pic": "🧒" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u03.l2.s-teacher",
+              "model": "Touch your mouth.",
+              "hi": "अब तुम टीचर हो! बड़ों से कहो कि क्या छुएँ।",
+              "pic": "👄",
+              "cue": { "en": "Now you are the teacher!", "hi": "अब तुम टीचर हो!" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Play: you say Touch your nose. Your child touches.", "hi": "खेल: आप बोलें Touch your nose, बच्चा छुए। फिर बच्चा बोले, आप छुएँ।" }
+    },
+    {
+      "key": "a.u03.l3",
+      "kind": "listen",
+      "title": { "en": "Dadi's game", "hi": "दादी का खेल" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Dadi's game", "hi": "दादी का खेल" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "👵", "x": 22, "y": 40, "size": 1.7 },
+              { "pic": "👦", "x": 48, "y": 46, "size": 1.4 },
+              { "pic": "👧", "x": 68, "y": 44, "size": 1.4 },
+              { "pic": "🐕", "x": 88, "y": 52 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Dadi", "pic": "👵", "en": "Let's play! Touch your nose.", "hi": "चलो खेलें! अपनी नाक छुओ।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Here is my nose!", "hi": "यह रही मेरी नाक!" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Touch your feet.", "hi": "अपने पैर छुओ।" },
+            { "speaker": "Meera", "pic": "👧", "en": "My feet! Ha ha!", "hi": "मेरे पैर! हा हा!" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Clap your hands!", "hi": "ताली बजाओ!" },
+            { "speaker": "Dog", "pic": "🐕", "en": "Woof! Woof!", "hi": "भौं! भौं!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u03.l3.q-arjun",
+              "prompt": { "en": "What does Arjun touch?", "hi": "अर्जुन क्या छूता है?" },
+              "options": [{ "pic": "👃" }, { "pic": "🦶" }, { "pic": "👀" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u03.l3.q-meera",
+              "prompt": { "en": "What does Meera touch?", "hi": "मीरा क्या छूती है?" },
+              "options": [{ "pic": "👄" }, { "pic": "🦶" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u03.l3.q-who",
+              "prompt": { "en": "Who says: Let's play?", "hi": "कौन कहती हैं: चलो खेलें?" },
+              "options": [{ "text": "Meera", "pic": "👧" }, { "text": "Dadi", "pic": "👵" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u03.l3.s-nose", "model": "Here is my nose!", "hi": "यह रही मेरी नाक!", "pic": "👃" },
+            { "key": "a.u03.l3.s-clap", "model": "Clap your hands!", "hi": "ताली बजाओ!", "pic": "👏" }
+          ]
+        },
+        { "type": "action", "prompts": [{ "en": "Touch your nose.", "hi": "अपनी नाक छुओ।", "pic": "👃" }, { "en": "Clap your hands.", "hi": "ताली बजाओ।", "pic": "👏" }] }
+      ],
+      "check": [],
+      "home": { "en": "Play Dadi's game at home: one says, all touch.", "hi": "दादी वाला खेल घर में खेलें: एक बोले, बाकी सब छुएँ।" }
+    },
+    {
+      "key": "a.u03.l4",
+      "kind": "speak",
+      "title": { "en": "The touch game", "hi": "छूने का खेल" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: you are Dadi. Touch each part as you speak.", "hi": "बड़ों के लिए: आप दादी बनें। बोलते हुए वह अंग छूकर दिखाएँ।" },
+          "pic": "👵"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "The touch game", "hi": "छूने का खेल" },
+          "scene": { "place": "home", "pics": [{ "pic": "👵", "x": 30, "y": 40, "size": 1.7 }, { "pic": "🧒", "x": 66, "y": 42, "size": 1.6 }] },
+          "roles": [{ "name": "Dadi", "pic": "👵" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Touch your head.", "hi": "अपना सिर छुओ।" },
+            { "role": 1, "en": "This is my head.", "hi": "यह मेरा सिर है।" },
+            { "role": 0, "en": "Touch your mouth.", "hi": "अपना मुँह छुओ।" },
+            { "role": 1, "en": "This is my mouth.", "hi": "यह मेरा मुँह है।" },
+            { "role": 0, "en": "Now you say it!", "hi": "अब तुम बोलो!" },
+            { "role": 1, "en": "Dadi, touch your nose!", "hi": "दादी, अपनी नाक छुओ!" }
+          ],
+          "partner": { "goal": "Play the touch game: give two touch commands, then let the child give one to you.", "must_use": ["touch your", "head", "mouth", "nose"] }
+        }
+      ],
+      "check": [],
+      "home": { "en": "Let your child tell you what to touch, three times.", "hi": "बच्चे को तीन बार आपसे कहने दें: Touch your nose! और आप छुएँ।" }
+    },
+    {
+      "key": "a.u03.l5",
+      "kind": "review",
+      "title": { "en": "Body game again", "hi": "फिर से शरीर वाला खेल" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Touch your eyes.", "hi": "अपनी आँखें छुओ।", "pic": "👀" },
+            { "en": "Touch your feet.", "hi": "अपने पैर छुओ।", "pic": "🦶" },
+            { "en": "Hands up!", "hi": "हाथ ऊपर!", "pic": "🙌" },
+            { "en": "Wave hello!", "hi": "हाथ हिलाकर Hello कहो!", "pic": "👋" }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u03.l5.m-nose", "left": { "text": "nose", "pic": "👃" }, "right": { "pic": "🌸" } },
+            { "key": "a.u03.l5.m-mouth", "left": { "text": "mouth", "pic": "👄" }, "right": { "pic": "🍌" } },
+            { "key": "a.u03.l5.m-eyes", "left": { "text": "eyes", "pic": "👀" }, "right": { "pic": "🌈" } },
+            { "key": "a.u03.l5.m-feet", "left": { "text": "feet", "pic": "🦶" }, "right": { "pic": "⚽" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u03.l5.t-hands",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "hands" },
+              "options": [{ "pic": "🙌" }, { "pic": "🦶" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u03.l5.t-nose",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "nose" },
+              "options": [{ "pic": "👄" }, { "pic": "👃" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u03.l5.w-grandmother",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "grandmother" },
+              "options": [{ "pic": "👵" }, { "pic": "👦" }, { "pic": "👨" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u03.l5.w-friend",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "friend" },
+              "options": [{ "pic": "👩" }, { "pic": "👫" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u03.l5.s-nose",
+              "model": "This is my nose.",
+              "hi": "अपनी नाक पर उँगली रखकर बोलो।",
+              "pic": "👃",
+              "cue": { "en": "Point and tell me.", "hi": "इशारा करके बताओ।" }
+            },
+            {
+              "key": "a.u03.l5.s-teacher",
+              "model": "Touch your feet.",
+              "hi": "अब तुम बड़ों से कहो कि क्या छुएँ।",
+              "pic": "🦶",
+              "cue": { "en": "You are the teacher.", "hi": "अब तुम टीचर हो।" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Make up your own touch song: head, nose, feet!", "hi": "अपनी धुन में गाएँ: head, nose, feet! और साथ में छुएँ।" }
+    }
+  ]
+}
