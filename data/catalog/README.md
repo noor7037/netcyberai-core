@@ -207,7 +207,9 @@ The proof sheets are in [`docs/family-app/catalog-proof/`](../../docs/family-app
 
 CBSE, academic year 2026-27, Classes IX and X: Social Science (`social_science`), English (`english`) and Hindi
 (`hindi`), the app's other subjects for these classes. Same columns and the same rules as
-`cbse-2026-27-maths-science.csv` above. Every line is `in_review`; every line was read on **2026-10-22**. 192 lines.
+`cbse-2026-27-maths-science.csv` above. Every line is `in_review`; every line was read on **2026-10-22**. 247 lines:
+192 from CBSE's documents and 55 lesson lines from NCERT's books, for the lessons CBSE does not list (Class IX English
+and Hindi, Class X Hindi; see "Lessons from NCERT's books" below, C273).
 
 All six documents are linked from https://cbseacademic.nic.in/curriculum_2027.html ("Curriculum for the Academic Year
 2026-27", Secondary Curriculum Part 1, Class IX and Class X; the link names are given below). Pages are the PDF's page
@@ -217,10 +219,10 @@ numbers (page 1 is the first page of the file); a line printed across a page bre
 |---|---|---|---|---|---|---|
 | IX | social_science | "Social Science" (Main Subjects), code 087: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/SocialScience_SecP1IX_2026-27.pdf | 2 | 16 | 74 | 8–14 ("Course Outline", Part 1 and Part 2: the "Theme" column gives the chapters, the "Outline/Concepts" bullets the topics) |
 | X | social_science | "Social Science" (Main Subjects - Group-A1), code 087: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/SocialScience_SecP1X_2026-27.pdf | 4 | 22 | 10 | 1–2 (course structure: books, chapters, and the subtopics of Economics chapter 4), 3 (History chapter III subtopics) |
-| IX | english | "English" (Languages): https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf | 1 | 7 | 3 | 13 (Section B, "II. Grammar"; the R2 list on page 15 is the same) |
+| IX | english | "English" (Languages): https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf, and NCERT's Kaveri: https://ncert.nic.in/textbook/pdf/iebe1ps.pdf | 2 | 23 | 3 | 13 (Section B, "II. Grammar"; the R2 list on page 15 is the same), 12 (the prescribed textbook, Kaveri); Kaveri's contents, page 17 |
 | X | english | "English - Language and Literature" (Languages - Group-L), code 184: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1_2026-27.pdf | 3 | 33 | 3 | 2 (Section B, "II Grammar"), 4 ("Prescribed Books": FIRST FLIGHT and FOOTPRINTS WITHOUT FEET) |
-| IX | hindi | "Hindi" (Languages), its आर-1 (R1) scheme: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Hindi_SecP1IX_2026-27.pdf | 1 | 4 | 3 | 3 (section table), 4–5 (खंड-ख, व्यावहारिक व्याकरण) |
-| X | hindi | "Hindi Course-A" (Languages - Group-L), code 002: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Hindi_A_SecP1_2026-27.pdf | 1 | 4 | 1 | 9–10 (section table and खंड-ख, व्यावहारिक व्याकरण) |
+| IX | hindi | "Hindi" (Languages), its आर-1 (R1) scheme: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Hindi_SecP1IX_2026-27.pdf, and NCERT's गंगा: https://ncert.nic.in/textbook/pdf/ihga1ps.pdf | 2 | 16 | 3 | 3 (section table), 4–5 (खंड-ख, व्यावहारिक व्याकरण); गंगा's cover, page 1, and contents, page 17 |
+| X | hindi | "Hindi Course-A" (Languages - Group-L), code 002: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Hindi_A_SecP1_2026-27.pdf, and NCERT's क्षितिज भाग 2 and कृतिका भाग 2: https://ncert.nic.in/textbook/pdf/jhks1ps.pdf, https://ncert.nic.in/textbook/pdf/jhkr1ps.pdf | 3 | 19 | 9 | 9–10 (section table and खंड-ख, व्यावहारिक व्याकरण), 11 (the prescribed books and the lessons not examined); क्षितिज's contents, pages 13–14, कृतिका's, page 13 |
 
 ### How the lines were taken from the documents
 
@@ -287,13 +289,44 @@ numbers (page 1 is the first page of the file); a line printed across a page bre
 - **Headings left from last year.** English X page 2 and Social Science X page 7 print "(2025-26)" in a heading; both
   are pages of the 2026-27 documents (their first pages say 2026-27, and the 2026-27 curriculum page links them).
 
+### Lessons from NCERT's books (added 2026-10-22, C273)
+
+CBSE names the textbook but not its lessons for Class IX English, Class IX Hindi and Class X Hindi Course A, so those
+lessons come from the contents page of NCERT's book (listed on https://ncert.nic.in/textbook.php, read on 2026-10-22).
+Each book is a unit after the grammar unit, as Class X English's books are; its lessons are the chapters, in printed
+order, numbered from 1.
+
+| Class | Book (NCERT code) | Unit's source | Chapters | Topics | Contents page |
+|---|---|---|---|---|---|
+| IX english | Kaveri, Textbook of English for Grade 9 (`iebe1`) | CBSE page 12, "Prescribed Textbook- Kaveri: Textbook of English for Grade 9" (the words before the colon) | 16 | 0 | `iebe1ps.pdf` p. 17 |
+| IX hindi | गंगा, कक्षा 9 के लिए हिंदी की पाठ्यपुस्तक (`ihga1`, first edition March 2026) | the book's cover, `ihga1ps.pdf` page 1 (CBSE's page 5 names no book) | 12 | 0 | `ihga1ps.pdf` p. 17 |
+| X hindi | क्षितिज भाग 2 (`jhks1`, reprint 2026-27) | CBSE page 11, "क्षितिज, भाग–2" | 12 | 8 | `jhks1ps.pdf` pp. 13–14 |
+| X hindi | कृतिका भाग 2 (`jhkr1`, reprint 2026-27) | CBSE page 11, "कृतिका, भाग–2" | 3 | 0 | `jhkr1ps.pdf` p. 13 |
+
+- **Kaveri** prints eight numbered units, each a prose piece and a poem (its "About the Book", page 5), with no unit
+  names on the contents page; the sixteen pieces are the chapters, in printed order (prose, then its poem).
+- **Chapters are the lessons' titles.** Where the contents page prints the title and the author in separate columns
+  (गंगा, कृतिका), the title is the chapter and the author is not taken, as for Malhar (C269). क्षितिज numbers each
+  author in bold with the works under them: an entry with one work is that work's title ("आत्मकथ्य", "नेताजी का
+  चश्मा"); an entry with several works is the author's name as printed ("सूरदास", "सूर्यकांत त्रिपाठी ‘निराला’",
+  "नागार्जुन"), and each work under it is a topic (सूरदास's four पद by their first lines). **To confirm.**
+- **Left out:** गंगा's two unnumbered "साथ-साथ पढ़ें" (read along) pieces and "भाषा संगम", कृतिका's "लेखक-परिचय", and
+  each book's आमुख, "यह पुस्तक" and "पाठ्यपुस्तकों में पाठ्य सामग्री का पुनर्संयोजन" pages.
+- **Lessons CBSE does not examine.** CBSE page 11 lists seven Class X lessons from which no question is asked (देव,
+  गिरिजाकुमार माथुर, ऋतुराज, महावीरप्रसाद द्विवेदी, सर्वेश्वर दयाल सक्सेना; कृतिका's "एही ठैयाँ झुलनी हेरानी हो रामा!" and
+  "जार्ज पंचम की नाक"). None of them is in the 2026-27 reprints, so every lesson on the contents pages is kept.
+- **Class IX Hindi** is one book for R1 and R2 (CBSE pages 1 and 5: NCERT's textbook under the 2023 framework); NCERT's
+  textbook page lists गंगा as the only Class 9 Hindi book.
+- **Typed from the page.** The Hindi books' hidden text is damaged (गंगा's doubles some conjuncts; क्षितिज and कृतिका
+  use an old font that stores other letters), so each title was typed from the contents page rendered as a picture,
+  transcribed a second time by a separate reader and compared, and its punctuation checked against the PDF's own text
+  (the old font stores a hyphen for "राम-लक्ष्मण-परशुराम" and "साना-साना", and three full stops for "जोड़ि...").
+  गंगा's "भारति, जय, विजयकरे!" is printed with no space before the "!" (the hidden text has one).
+
 ### Gaps in this file (not filled; never guessed)
 
 | What | Where we looked | What was found |
 |---|---|---|
-| **Class IX English textbook chapters** | `English_LL_SecP1IX_2026-27.pdf`, all 16 pages | Page 12 names the book only ("Prescribed Textbook- Kaveri: Textbook of English for Grade 9"); no chapter list. Not filled from the NCERT book. |
-| **Class IX Hindi textbook chapters** | `Hindi_SecP1IX_2026-27.pdf`, all 10 pages | Pages 5 and 10 say literature is studied from the NCERT textbook issued under the 2023 curriculum framework, and name neither the book nor its chapters. |
-| **Class X Hindi Course A textbook chapters** (क्षितिज भाग 2, कृतिका भाग 2) | `Hindi_A_SecP1_2026-27.pdf`, pages 9–11 | Page 11 names the two books and only the lessons from which no questions will be asked; there is no list of the lessons that are studied. Not filled from the NCERT books. |
 | **Class X English workbook** (WORDS AND EXPRESSIONS – II, "Units 1 to 4 and Units 7 to 11") | `English_LL_SecP1_2026-27.pdf`, page 4 | The unit names are not printed. |
 | **Class X Social Science, Disaster Management** ("Together, towards a safer India- Part III", CBSE) | `SocialScience_SecP1X_2026-27.pdf`, page 11 | Listed among the prescribed textbooks, with no chapters and no place in the course structure. |
 | **Class X Social Science map work** | `SocialScience_SecP1X_2026-27.pdf`, pages 7–8 | A list of places to locate on maps, not chapters or topics. |
@@ -304,10 +337,11 @@ numbers (page 1 is the first page of the file); a line printed across a page bre
 
 As for the Mathematics and Science file: open the line's `source_url` at `source_page`, find the title, then check
 its parent and its position. The quick mechanical check (every word of three or more letters in `title_en` is on its
-cited page, text extracted with `pdftotext`) passes for all 178 English and Social Science lines. The 14 Hindi lines
-cannot be checked this way (see "Hindi lines"); compare them with the page by eye. The file passes the importer's
-checker (`readCatalogCsv` in `src/lib/content/catalog-csv.ts`, run with the date 2026-10-22): 192 lines, no problems.
-`test/content/catalog-csv.test.ts` reads only `cbse-2026-27-maths-science.csv`, so this file is not yet in that test.
+cited page, text extracted with `pdftotext`) passes for all 195 English and Social Science lines (Kaveri's 17
+included). The 52 Hindi lines cannot be checked this way (see "Hindi lines" and "Typed from the page"); compare them
+with the page by eye. The file passes the importer's checker (`readCatalogCsv` in `src/lib/content/catalog-csv.ts`,
+run with the date 2026-10-22): 247 lines, no problems. `test/content/catalog-csv.test.ts` checks each version's
+counts, which lines come from NCERT's books, and the Hindi-title rule.
 The proof sheets for the founder's approval are in
 [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md).
 
@@ -549,8 +583,9 @@ page is 1), not the numbers printed on the pages.
 CBSE, academic year 2026-27, Classes XI and XII: the app's other subjects for these classes, Accountancy, Business
 Studies, Economics, History, Geography, Political Science, English and Hindi (subject ids `accountancy`,
 `business_studies`, `economics`, `history`, `geography`, `political_science`, `english`, `hindi`). Same columns and rules
-as the files above. Every line is `in_review`; every line was read on **2026-10-22**. 703 lines (41 units, 187 chapters,
-475 topics). Load it the same way:
+as the files above. Every line is `in_review`; every line was read on **2026-10-22**. 766 lines (41 units, 238 chapters,
+487 topics): 703 from CBSE's documents and 63 Hindi Core lesson lines from NCERT's books (see "Hindi Core's lessons from
+NCERT's books" below, C273). Load it the same way:
 
 ```
 node scripts/content/catalog-sql.mjs data/catalog/cbse-2026-27-classes-11-12-commerce-humanities-languages.csv --ref "<the PR that committed it>" > load.sql
@@ -577,8 +612,8 @@ PDF's page numbers (page 1 is the first page of the file); a line printed across
 | XII | political_science | same document | 2 | 15 | 79 | 10 (course structure), 11–15 (course content) |
 | XI | english | "English Core", code 301: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/English_core_SecP2_2026-27.pdf | 2 | 15 | 0 | 8 ("Prescribed Books") |
 | XII | english | same document | 2 | 19 | 2 | 12 ("Prescribed Books") |
-| XI | hindi | "Hindi Core", हिंदी (आधार), code 302: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Hindi_Core_SecP2_2026-27.pdf | 3 | 0 | 0 | 9 (निर्धारित पाठ्यपुस्तकें) |
-| XII | hindi | same document | 3 | 0 | 0 | 11 (निर्धारित पुस्तकें) |
+| XI | hindi | "Hindi Core", हिंदी (आधार), code 302: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Hindi_Core_SecP2_2026-27.pdf | 3 | 27 | 2 | 9 (निर्धारित पाठ्यपुस्तकें); the lessons from NCERT's books (below) |
+| XII | hindi | same document | 3 | 24 | 10 | 11 (निर्धारित पुस्तकें); the lessons from NCERT's books (below) |
 
 ### How the lines were taken from the documents
 
@@ -632,6 +667,44 @@ PDF's page numbers (page 1 is the first page of the file); a line printed across
 - **Keys and positions** count from 1 under the parent, in printed order. English XII: Flamingo prints "Prose" (1–8)
   then "Poetry"; the poems follow as positions 9–13, as for Class X First Flight.
 
+### Hindi Core's lessons from NCERT's books (added 2026-10-22, C273)
+
+CBSE names Hindi Core's three books (the units) and lists the lessons it removes (pages 9 and 11), not those studied,
+so the lessons come from the contents page of each NCERT book (listed on https://ncert.nic.in/textbook.php, read on
+2026-10-22). The same rules as the Class IX–X Hindi lessons (see that file's "Lessons from NCERT's books"): the
+lesson's title is the chapter, the author is not taken; where one numbered entry holds several works, the chapter is the
+author's name as printed and each work is a topic (**to confirm**); positions count from 1 in printed order.
+
+| Class | Unit (book) | NCERT PDF | Chapters | Topics | Contents page |
+|---|---|---|---|---|---|
+| XI | आरोह, भाग-1 | `khar1ps.pdf` (reprint 2026-27) | 16 | 2 | pp. 13–14 |
+| XI | वितान भाग–1 | `khvt1ps.pdf` (reprint 2026-27) | 4 | 0 | p. 11 |
+| XI | अभिव्यक्ति और माध्यम | `kham1ps.pdf` (reprint 2025-26, one book for both classes) | 7 | 0 | pp. 11–12 |
+| XII | आरोह, भाग–2 | `lhar1ps.pdf` (reprint 2026-27) | 15 | 10 | pp. 11–12 |
+| XII | वितान, भाग–2 | `lhvt1ps.pdf` (reprint 2026-27) | 3 | 0 | p. 13 |
+| XII | ‘अभिव्यक्ति और माध्यम’ | `kham1ps.pdf` | 6 | 0 | pp. 11–12 |
+
+- **आरोह भाग 1** prints "गद्य खंड" (1–8) then "काव्य खंड" (1–8); the CSV has no level between a book and its lessons, so
+  the poems follow as positions 9–16, as for Class X First Flight. अक्कमहादेवी's two numbered poems are the topics of
+  the chapter "अक्कमहादेवी". **आरोह भाग 2** numbers its entries 1–15 straight through; five of them hold two works each
+  (हरिवंश राय बच्चन, कुँवर नारायण, तुलसीदास, उमाशंकर जोशी, बाबा साहेब भीमराव आंबेडकर).
+- **The lessons CBSE removes are not in the 2026-27 reprints**, so every lesson on the contents pages is kept: Class XI
+  कबीर's second पद, मीरा's second पद, "पथिक", "वे आँखें", "स्पीति में बारिश", "आत्मा का ताप" (page 9); Class XII "सहर्ष
+  स्वीकारा है", फ़िराक गोरखपुरी's गज़ल, "चार्ली चैप्लिन यानी हम सब", "नमक" and वितान's "डायरी के पन्ने" (page 11).
+- **अभिव्यक्ति और माध्यम** is one book with sixteen numbered chapters for both classes and both courses. CBSE names the
+  ones Hindi Core uses in each class's section खंड-ख: Class XI "पाठ संख्या 1, 2, 9, 10, 14, 15 तथा 16" (page 8),
+  Class XII "पाठ संख्या 3, 4, 5, 11, 12 तथा 13" (page 10). They are the chapters, renumbered 1–7 and 1–6. The book
+  marks the same chapters "कक्षा 11 के आधार …" and "कक्षा 12 के आधार …". **To confirm:** Class XII question 4 (page
+  10) lists 3, 4, 5, 11 and 13 without 12; the section heading's list (with 12) is used.
+- **Left out:** वितान भाग 1's "लेखकों के बारे में" (about the authors) and the asterisk after "आलो-आँधारि" (a footnote,
+  "अँधेरे का उजाला"), the books' आमुख, "यह पुस्तक" and "पाठ्यपुस्तकों में पाठ्य सामग्री का पुनर्संयोजन" pages, and अभिव्यक्ति
+  और माध्यम's परिशिष्ट.
+- **Typed from the page.** These books use an old font whose hidden text stores other letters, so each title was typed
+  from the contents page rendered as a picture, transcribed a second time by a separate reader and compared, and its
+  punctuation checked against the stored characters: a hyphen in "विदाई-संभाषण", "आलो-आँधारि", "लक्ष्मण-मूर्च्छा",
+  "जाति-प्रथा", "कथा-पटकथा" and "कोश-एक परिचय"; a dash in "विशेष लेखन–स्वरूप और प्रकार"; a space before the colon in
+  "बेजोड़ : लता मंगेशकर".
+
 ### Choices to confirm (the supervisor)
 
 - **Formatively assessed lines (19).** Geography prints, after the course content, topics "included in the syllabus
@@ -649,9 +722,8 @@ PDF's page numbers (page 1 is the first page of the file); a line printed across
 - **Geography practical books.** "Geography Practical Part I" (XI) and "Geography Practical II" (XII) are books with
   chapters and marks in the course structure, so they are units (`cbse.c11.geography.u3`, `cbse.c12.geography.u3`), unlike
   the experiment lists of the science practicals, which were not taken.
-- **Hindi Core has units only.** The document names the three prescribed books and lists only the lessons removed from
-  them (pages 9 and 11), not the lessons studied, so the books are the units and there are no chapters. The Class X
-  Hindi file does not list its books as units; delete the six `hindi` lines to match it.
+- **Hindi Core's books are its units** and their lessons, from NCERT's books, its chapters (C273, above); the Class X
+  Hindi Course A lines now follow the same shape (grammar, then one unit per book).
 - **English Core and Hindi Core** are the `english` and `hindi` syllabi: they are the core courses. English Elective
   (`English_elective_SecP2_2026-27.pdf`) and Hindi Elective (`Hindi_Elective_SecP2_2026-27.pdf`) are separate courses
   and are not in this file.
@@ -660,7 +732,6 @@ PDF's page numbers (page 1 is the first page of the file); a line printed across
 
 | What | Where we looked | What was found |
 |---|---|---|
-| **Hindi Core lessons** | `Hindi_Core_SecP2_2026-27.pdf`, all 11 pages | Pages 9 and 11 name the books (आरोह, वितान, अभिव्यक्ति और माध्यम) and the lessons removed; no list of the lessons studied. Not filled from the NCERT books. |
 | **Accountancy and Economics topics** | the two documents | Content printed as running text (see "Topics"). The Accountancy sub-headings ("Introduction to Accounting", "Theory Base of Accounting" …) are not present in every unit (Class XII Unit 1 starts with bullets) and are not taken. |
 | **Political Science Annexure** ("Additional Reference Material", pages 21–34) | `PoliticalScience_SecP2_2026-27.pdf` | "for classroom transaction and will not be assessed in the Board examination": reading text under "Sub-Topic" headings, not syllabus lines. |
 | **Lists under a topic** | Political Science, Geography XII | Not taken: the CSV has three levels (see "Topics"). |
@@ -683,9 +754,10 @@ position. **Mechanical check:** for 693 of the 697 English-language lines the wh
 quotation marks made plain) is found in the text of its cited page (`pdftotext -layout` and `-raw`). The other four were
 compared by eye: three titles printed across a page break (the page number at the foot interrupts them) and the Consumer
 Protection Act box (its source link is left out); every word of three or more letters of all 697 titles is on the cited
-pages, except "elections" (printed "elect ions", see above). The six Hindi lines were compared with the page by eye. The
-importer's checker (`readCatalogCsv`, run with the date 2026-10-22) finds no problem; `test/content/catalog-csv.test.ts`
-checks the counts above, the eight source documents and the Hindi-title rule.
+pages, except "elections" (printed "elect ions", see above). The 69 Hindi lines (6 from CBSE, 63 from NCERT's books)
+were compared with the page by eye. The importer's checker (`readCatalogCsv`, run with the date 2026-10-22) finds no
+problem; `test/content/catalog-csv.test.ts` checks the counts above, the eight source documents and five NCERT contents
+PDFs, that NCERT gives only Hindi Core's lessons, and the Hindi-title rule.
 
 Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
 pages `class11-accountancy.md` to `class12-hindi.md`.

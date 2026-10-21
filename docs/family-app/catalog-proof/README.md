@@ -84,16 +84,16 @@ If a released version turns out wrong, **Roll back** gives everyone the version 
 
 One page per syllabus version in
 [`data/catalog/cbse-2026-27-classes-9-10-languages-social-science.csv`](../../../data/catalog/cbse-2026-27-classes-9-10-languages-social-science.csv)
-(read from CBSE's documents on 2026-10-22):
+(read from CBSE's documents on 2026-10-22, and from NCERT's books for the lessons CBSE does not list):
 
-| Page | Units | Chapters | Topics | CBSE pages to open |
+| Page | Units | Chapters | Topics | Pages to open (CBSE's document; NCERT's book) |
 |---|---|---|---|---|
 | [Class IX Social Science](class9-social-science.md) | 2 | 16 | 74 | 8–14 |
 | [Class X Social Science](class10-social-science.md) | 4 | 22 | 10 | 1–3 |
-| [Class IX English](class9-english.md) | 1 | 7 | 3 | 13 |
+| [Class IX English](class9-english.md) | 2 | 23 | 3 | 12–13; Kaveri p. 17 |
 | [Class X English (Language and Literature)](class10-english.md) | 3 | 33 | 3 | 2, 4 |
-| [Class IX Hindi](class9-hindi.md) | 1 | 4 | 3 | 3–5 |
-| [Class X Hindi (Course A)](class10-hindi.md) | 1 | 4 | 1 | 9–10 |
+| [Class IX Hindi](class9-hindi.md) | 2 | 16 | 3 | 3–5; गंगा pp. 1, 17 |
+| [Class X Hindi (Course A)](class10-hindi.md) | 3 | 19 | 9 | 9–11; क्षितिज pp. 13–14, कृतिका p. 13 |
 
 These pages have **no picture** of CBSE's page: the documents are CBSE's copyright, so no copy of them is kept in the
 repository. Open CBSE's page from the links at the top of each proof page and keep it beside our list; every line of
@@ -101,9 +101,11 @@ our list also links to its own page. Compare and approve exactly as above.
 
 Good to know before you start:
 
-- **Grammar only for Class IX English, Class IX Hindi and Class X Hindi.** CBSE's documents for these name the
-  textbook (or not even that) but do not list its chapters, so there are no lesson lines; they were not taken from the
-  books themselves. Class X English lists its NCERT lessons and poems, and they are in.
+- **Lessons from NCERT's books for Class IX English, Class IX Hindi and Class X Hindi.** CBSE's documents for these
+  name the textbook (or not even that) but do not list its lessons, so the lessons come from the contents page of
+  NCERT's book (Kaveri, गंगा, क्षितिज भाग 2, कृतिका भाग 2), each line linked to that page. Class X English lists its NCERT
+  lessons and poems itself. Where one numbered entry of a Hindi book holds several poems, the chapter is the poet's
+  name and the poems are its topics: please check that choice.
 - **Hindi titles are in Hindi.** CBSE prints the Hindi documents in Devanagari; each title is copied as printed into
   both the English and the Hindi column. Please compare these with the page by eye: they could not be checked
   automatically. English and Social Science have no Hindi titles (no Hindi version of those documents exists).
@@ -212,8 +214,8 @@ exactly as above; each page lists the CBSE pages to open, and every line links t
 | [Class XII Political Science](class12-political-science.md) | 2 | 15 | 79 | 10–15 |
 | [Class XI English (Core)](class11-english.md) | 2 | 15 | 0 | 8 |
 | [Class XII English (Core)](class12-english.md) | 2 | 19 | 2 | 12 |
-| [Class XI Hindi (Core)](class11-hindi.md) | 3 | 0 | 0 | 9 |
-| [Class XII Hindi (Core)](class12-hindi.md) | 3 | 0 | 0 | 11 |
+| [Class XI Hindi (Core)](class11-hindi.md) | 3 | 27 | 2 | 8–9; NCERT's books (on the page) |
+| [Class XII Hindi (Core)](class12-hindi.md) | 3 | 24 | 10 | 10–11; NCERT's books (on the page) |
 
 These pages have **no picture** of CBSE's pages: the documents are CBSE's copyright, so no copy of them is kept in the
 repository.
@@ -225,13 +227,15 @@ Good to know before you start:
   structure lists under them.
 - **No topics for Accountancy and Economics.** Their documents describe each chapter in paragraphs, not as a list.
   Business Studies, Geography and Political Science list topics; History XI lists three, under its first theme.
-- **Hindi has the three books only.** CBSE's Hindi Core document names the books but lists only the lessons that are
-  removed, not the ones that are studied. The titles are in Hindi, as printed; please compare them with the page by eye.
+- **Hindi's lessons come from NCERT's books.** CBSE's Hindi Core document names the three books (the units) but lists
+  only the lessons it removes, so the lessons are taken from each book's contents page (none of the removed lessons is
+  in the 2026-27 books); for अभिव्यक्ति और माध्यम, CBSE names the chapters each class uses. The titles are in Hindi,
+  as printed; please compare them with the page by eye.
 - **No Hindi titles for the other subjects.** CBSE publishes no Hindi version of these documents for 2026-27 (checked
   2026-10-22). Nothing was translated.
 - **Choices to confirm**, marked "Please check" on the pages and explained in the catalog README: the Accountancy XII
   option ("Or"), the History XI timelines, the Geography practical books and formatively assessed chapters, how
-  Business Studies boxes and Political Science sub-points are counted, and Hindi with books only. English Core and Hindi
+  Business Studies boxes and Political Science sub-points are counted, and the Hindi entries with several works (the poet is the chapter). English Core and Hindi
   Core are the courses used; English Elective and Hindi Elective are not in the catalog.
 
 ## Classes VI, VII and VIII: Social Science, English and Hindi (NCERT's textbooks)
