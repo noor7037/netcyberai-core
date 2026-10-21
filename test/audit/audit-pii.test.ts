@@ -55,6 +55,30 @@ const ALLOWED: Record<string, Record<string, string>> = {
     'key:withNote': 'a boolean (with_note), never the note',
     'value:reversalCode': 'a code from the fixed list typed_wrong, recorded_twice, not_received (isReversalReason checks it before it is written), never typed words',
   },
+  // C249: Control → AI's platform rows (school null): a provider's clearance, a profile or the daily cap, before and after,
+  // so a change can be undone. Ids, model names, flags and a terms page address; never a key, never a child's data.
+  'src/lib/ai/control.ts': { 'opaque:before': 'a provider, profile or cap setting as it was: ids, models, flags, the terms address; never a key', 'opaque:next': 'the same setting after the change' },
+  // C250: Control → Content's platform rows: a syllabus version's id with counts or its new audience; a rejection says only
+  // that a note exists, never the note.
+  'src/lib/content/library.ts': {
+    "opaque:AUDIT(actor, 'content.syllabus.imported', v.versionId, { versionNo: v.versionNo, units: v.units, chapters: v.chapters, topics: v.topics })": 'a version id with its number and line counts',
+    "opaque:AUDIT(actor, 'content.syllabus.approved', versionId, { audience: 'staff_preview' })": 'a version id and its audience code',
+    "opaque:AUDIT(actor, 'content.syllabus.rejected', versionId, { note: true })": 'a version id and true: a note exists, never its words',
+    "opaque:AUDIT(actor, 'content.syllabus.released', versionId, { audience: 'everyone', supersededVersionId: before?.version_id ?? null })": 'version ids and an audience code',
+    "opaque:AUDIT(actor, 'content.syllabus.rolled_back', versionId, { restoredVersionId: previous.version_id })": 'version ids',
+  },
+  // C253: Control → Apps' platform rows: an app flag, version setting, banner or preview account before and after, so a
+  // change can be undone in one step. The founder's reason for the change and a banner's public notice text are kept with
+  // it; nothing about a family, a child or a school's people.
+  'src/lib/control/apps.ts': {
+    'opaque:before': 'a flag, version, banner or preview row as it was: codes, numbers, dates, ids',
+    'opaque:after': 'the same row after the change',
+    'opaque:current': 'the row as it stands when a change is undone',
+    'opaque:restored': 'the row an undo put back',
+    'key:change_reason': 'the founder’s own reason for a Control change, written in Control (required by 10 §7)',
+    'key:text_en': 'a banner’s public notice text, shown to every user of the app',
+    'key:text_hi': 'the same notice in Hindi',
+  },
 };
 
 type Problem = { file: string; line: number; action: string; problem: string };
