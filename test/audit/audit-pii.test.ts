@@ -55,6 +55,18 @@ const ALLOWED: Record<string, Record<string, string>> = {
     'key:withNote': 'a boolean (with_note), never the note',
     'value:reversalCode': 'a code from the fixed list typed_wrong, recorded_twice, not_received (isReversalReason checks it before it is written), never typed words',
   },
+  // C249: Control → AI's platform rows (school null): a provider's clearance, a profile or the daily cap, before and after,
+  // so a change can be undone. Ids, model names, flags and a terms page address; never a key, never a child's data.
+  'src/lib/ai/control.ts': { 'opaque:before': 'a provider, profile or cap setting as it was: ids, models, flags, the terms address; never a key', 'opaque:next': 'the same setting after the change' },
+  // C250: Control → Content's platform rows: a syllabus version's id with counts or its new audience; a rejection says only
+  // that a note exists, never the note.
+  'src/lib/content/library.ts': {
+    "opaque:AUDIT(actor, 'content.syllabus.imported', v.versionId, { versionNo: v.versionNo, units: v.units, chapters: v.chapters, topics: v.topics })": 'a version id with its number and line counts',
+    "opaque:AUDIT(actor, 'content.syllabus.approved', versionId, { audience: 'staff_preview' })": 'a version id and its audience code',
+    "opaque:AUDIT(actor, 'content.syllabus.rejected', versionId, { note: true })": 'a version id and true: a note exists, never its words',
+    "opaque:AUDIT(actor, 'content.syllabus.released', versionId, { audience: 'everyone', supersededVersionId: before?.version_id ?? null })": 'version ids and an audience code',
+    "opaque:AUDIT(actor, 'content.syllabus.rolled_back', versionId, { restoredVersionId: previous.version_id })": 'version ids',
+  },
 };
 
 type Problem = { file: string; line: number; action: string; problem: string };
