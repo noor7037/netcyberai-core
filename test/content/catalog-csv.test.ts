@@ -273,6 +273,81 @@ describe('the catalog CSV', () => {
     expect(r.lines.filter((l) => l.subject !== 'hindi').every((l) => l.titleHi === null)).toBe(true);
   });
 
+  it('the committed NCERT file for classes 6 to 8 (Social Science, English, Hindi) passes the same check', () => {
+    const text = readFileSync(path.resolve(__dirname, '../../data/catalog/ncert-2026-27-classes-6-8-social-science-languages.csv'), 'utf8');
+    const r = readCatalogCsv(text, '2026-10-22');
+    expect(r.problems).toEqual([]);
+    const count = (s: { units: unknown[]; chapters: unknown[]; topics: unknown[] }) => [s.units.length, s.chapters.length, s.topics.length];
+    expect(Object.fromEntries(r.syllabi.map((s) => [`${s.board} ${s.classLevel} ${s.subject} ${s.academicYear}`, count(s)]))).toEqual({
+      'CBSE 6 social_science 2026-27': [0, 14, 52],
+      'CBSE 7 social_science 2026-27': [2, 20, 130],
+      'CBSE 8 social_science 2026-27': [2, 15, 113],
+      'CBSE 6 english 2026-27': [5, 16, 0],
+      'CBSE 7 english 2026-27': [5, 15, 0],
+      'CBSE 8 english 2026-27': [5, 15, 9],
+      'CBSE 6 hindi 2026-27': [0, 13, 0],
+      'CBSE 7 hindi 2026-27': [0, 10, 0],
+      'CBSE 8 hindi 2026-27': [0, 10, 0],
+    });
+    // Every line names NCERT's own PDF: the book's prelims (parts, units, chapters) or the chapter (topics).
+    expect(r.lines.every((l) => /^https:\/\/ncert\.nic\.in\/textbook\/pdf\/[a-z]{4}[12](ps|\d{2})\.pdf$/.test(l.sourceUrl))).toBe(true);
+    // Social Science for classes 7 and 8 comes in two parts, which are the units; class 6 is one volume, so its
+    // chapters hang from the syllabus itself. Poorvi (English) prints its lessons in five units; Malhar (Hindi) has none.
+    const chapters = r.lines.filter((l) => l.level === 'chapter');
+    expect(chapters.filter((l) => l.subject === 'social_science' && l.classLevel !== 6).every((l) => /\.u[12]$/.test(l.parentKey ?? ''))).toBe(true);
+    expect(chapters.filter((l) => (l.subject === 'social_science' && l.classLevel === 6) || l.subject === 'hindi').every((l) => l.parentKey === null)).toBe(true);
+    expect(chapters.filter((l) => l.subject === 'english').every((l) => /\.u[1-5]$/.test(l.parentKey ?? ''))).toBe(true);
+    // Hindi titles: Malhar prints in Devanagari, so its titles are Hindi in both columns. Social Science takes them from
+    // NCERT's Hindi edition (no Hindi edition of class 8 Part 2 is published, so that part has none; one class 7 topic
+    // has no matching heading in the Hindi edition). Poorvi has no Hindi edition: nothing is filled in.
+    const hindi = r.lines.filter((l) => l.subject === 'hindi');
+    expect(hindi.every((l) => /[ऀ-ॿ]/.test(l.titleEn) && l.titleHi === l.titleEn)).toBe(true);
+    expect(r.lines.filter((l) => l.subject === 'english').every((l) => l.titleHi === null)).toBe(true);
+    const ss = r.lines.filter((l) => l.subject === 'social_science');
+    const part2Of8 = (l: { key: string }) => l.key.startsWith('cbse.c8.social_science.u2');
+    expect(ss.filter(part2Of8).every((l) => l.titleHi === null)).toBe(true);
+    expect(ss.filter((l) => !part2Of8(l) && l.titleHi === null).map((l) => l.key)).toEqual(['cbse.c7.social_science.u2.ch07.t01']);
+    expect(ss.filter((l) => l.titleHi !== null).every((l) => /[ऀ-ॿ]/.test(l.titleHi ?? '') && !/[ऀ-ॿ]/.test(l.titleEn))).toBe(true);
+  });
+
+  it('the committed CISCE file for ICSE classes 9 and 10 passes the same check', () => {
+    const text = readFileSync(path.resolve(__dirname, '../../data/catalog/cisce-2026-27-icse-classes-9-10.csv'), 'utf8');
+    const r = readCatalogCsv(text, '2026-10-22');
+    expect(r.problems).toEqual([]);
+    const count = (s: { units: unknown[]; chapters: unknown[]; topics: unknown[] }) => [s.units.length, s.chapters.length, s.topics.length];
+    expect(Object.fromEntries(r.syllabi.map((s) => [`${s.board} ${s.classLevel} ${s.subject} ${s.academicYear}`, count(s)]))).toEqual({
+      'CISCE 9 physics 2026-27': [0, 8, 18],
+      'CISCE 10 physics 2026-27': [0, 6, 21],
+      'CISCE 9 chemistry 2026-27': [0, 8, 24],
+      'CISCE 10 chemistry 2026-27': [0, 9, 37],
+      'CISCE 9 biology 2026-27': [0, 7, 17],
+      'CISCE 10 biology 2026-27': [0, 6, 22],
+      'CISCE 9 mathematics 2026-27': [0, 8, 28],
+      'CISCE 10 mathematics 2026-27': [0, 7, 17],
+      'CISCE 9 history 2026-27': [2, 11, 7],
+      'CISCE 10 history 2026-27': [2, 6, 19],
+      'CISCE 9 geography 2026-27': [1, 7, 17],
+      'CISCE 10 geography 2026-27': [2, 11, 37],
+      'CISCE 9 english 2026-27': [2, 2, 10],
+      'CISCE 10 english 2026-27': [2, 2, 10],
+      'CISCE 9 hindi 2026-27': [2, 4, 13],
+      'CISCE 10 hindi 2026-27': [2, 4, 13],
+    });
+    // Class IX (examination year 2028) from CISCE's "ICSE 2028" documents, Class X (examination year 2027) from its
+    // "ICSE 2027" documents; every line names a PDF on cisce.org.
+    expect(r.lines.every((l) => l.sourceUrl.startsWith('https://cisce.org/wp-content/uploads/'))).toBe(true);
+    expect(new Set(r.lines.filter((l) => l.classLevel === 9).map((l) => l.sourceUrl.split('/uploads/')[1].slice(0, 4)))).toEqual(new Set(['2026']));
+    expect(r.lines.filter((l) => l.classLevel === 10 && l.subject !== 'hindi').every((l) => l.sourceUrl.includes('/uploads/2025/03/'))).toBe(true);
+    // CISCE prints every document in English, the Hindi lessons too (in Roman letters): no Hindi title is filled in, and
+    // nothing was transliterated or translated.
+    expect(r.lines.filter((l) => l.subject === 'hindi').length).toBeGreaterThan(0);
+    expect(r.lines.every((l) => l.titleHi === null && !/[ऀ-ॿ]/.test(l.titleEn))).toBe(true);
+    // The app's ICSE subjects for these classes (C272) are exactly the subjects this file holds.
+    for (const c of [9, 10]) {
+      expect(r.syllabi.filter((s) => s.classLevel === c).map((s) => s.subject).sort()).toEqual([...stageSubjects(c, 'CISCE')].sort());
+    }
+  });
+
   it('the committed CISCE ISC file for classes 11 and 12 passes the same check', () => {
     const text = readFileSync(path.resolve(__dirname, '../../data/catalog/cisce-2026-27-isc-classes-11-12.csv'), 'utf8');
     const r = readCatalogCsv(text, '2026-10-22');
@@ -346,6 +421,10 @@ describe('the catalog CSV', () => {
     // Hindi title, and nothing is translated or transliterated.
     expect(r.lines.some((l) => l.subject === 'hindi')).toBe(true);
     expect(r.lines.every((l) => l.titleHi === null && !/[ऀ-ॿ]/.test(l.titleEn))).toBe(true);
+    // The app's ISC subjects for these classes (C264, C272) are exactly the subjects this file holds.
+    for (const c of [11, 12]) {
+      expect(r.syllabi.filter((s) => s.classLevel === c).map((s) => s.subject).sort()).toEqual([...stageSubjects(c, 'CISCE')].sort());
+    }
   });
 });
 

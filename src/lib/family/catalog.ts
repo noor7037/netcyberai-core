@@ -74,5 +74,5 @@ export async function classSubjects(db: FamilyDb, q: { board: string; classLevel
       where board_id = $1 and class_level = $2 and academic_year = $3 and status = 'published' and audience = 'everyone'`,
     [q.board, q.classLevel, academicYearOf(q.today ?? indiaDate())]
   );
-  return subjectsOfClass(q.classLevel, (rows as { subject: string }[]).map((r) => r.subject));
+  return subjectsOfClass(q.classLevel, (rows as { subject: string }[]).map((r) => r.subject), q.board);
 }

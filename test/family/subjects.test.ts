@@ -14,6 +14,18 @@ describe('the subjects of a class', () => {
     expect(stageSubjects(12)).toContain('physics');
   });
 
+  it('ICSE (CISCE) Classes 9 and 10 study the separate sciences and History and Civics with Geography (C272)', () => {
+    const icse = ['mathematics', 'physics', 'chemistry', 'biology', 'history', 'geography', 'english', 'hindi'];
+    expect(stageSubjects(9, 'CISCE')).toEqual(icse);
+    expect(stageSubjects(10, 'CISCE')).toEqual(icse);
+    // Every other board, and CISCE's other classes, keep the stage's subjects.
+    expect(stageSubjects(9, 'CBSE')).toEqual(stageSubjects(9));
+    expect(stageSubjects(9, 'ST-UP')).toEqual(stageSubjects(9));
+    expect(stageSubjects(8, 'CISCE')).toEqual(stageSubjects(8));
+    expect(stageSubjects(11, 'CISCE')).toEqual(stageSubjects(11));
+    expect(subjectsOfClass(10, ['physics', 'sanskrit'], 'CISCE')).toEqual([...icse, 'sanskrit']);
+  });
+
   it('adds the catalog’s other known subjects after the stage’s, and ignores anything unknown', () => {
     expect(subjectsOfClass(9, ['science', 'sanskrit', 'astrology'])).toEqual(['mathematics', 'science', 'social_science', 'english', 'hindi', 'sanskrit']);
     expect(subjectsOfClass(0, ['mathematics'])).toEqual([]);

@@ -690,6 +690,303 @@ checks the counts above, the eight source documents and the Hindi-title rule.
 Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
 pages `class11-accountancy.md` to `class12-hindi.md`.
 
+## ncert-2026-27-classes-6-8-social-science-languages.csv
+
+Classes VI, VII and VIII, Social Science, English and Hindi (subject ids `social_science`, `english`, `hindi`, as in
+`src/lib/family/subjects.ts`), academic year 2026-27, board `CBSE`. As for Mathematics and Science (the NCERT section
+above), CBSE publishes no 2026-27 curriculum document for these classes and its schools teach from NCERT's current
+textbooks, so the lines come from those books. One line per unit, chapter and topic, worded as the book prints it. Same
+columns; every line is `in_review`; `checked_on` is **2026-10-22** (the PDFs were fetched, the headings read and
+checked on that day). Load it the same way:
+
+```
+node scripts/content/catalog-sql.mjs data/catalog/ncert-2026-27-classes-6-8-social-science-languages.csv --ref "<the PR that committed it>" > load.sql
+```
+
+**Which books.** NCERT's textbook page (https://ncert.nic.in/textbook.php) lists one book per class for each subject on
+2026-10-22: *Exploring Society: India and Beyond* (Social Science; classes VII and VIII in two parts), *Poorvi*
+(English) and *Malhar* (Hindi). The earlier books (Honeydew, It So Happened, Vasant, Our Pasts–III and the others)
+appear on that page only inside a commented-out part of its script, so they are not offered. Every book prints
+"Reprint 2026-27" on its pages except three, which are the current printings NCERT lists: Social Science Grade 6
+("First Edition, June 2024", reprinted February 2025 and February 2026), Grade 8 Part 2 and the Hindi edition of
+Grade 7 Part 2 (both "First Edition, June 2026").
+
+| Class | Subject | Book (NCERT page) | Contents PDF (page) | Units | Chapters | Topics | Other pages used |
+|---|---|---|---|---|---|---|---|
+| VI | social_science | Exploring Society: India and Beyond, Grade 6 (https://ncert.nic.in/textbook.php?fees1=0-14) | https://ncert.nic.in/textbook/pdf/fees1ps.pdf (19) | 0 | 14 | 52 | chapter PDFs `fees101`–`fees114.pdf` |
+| VII | social_science | Exploring Society: India and Beyond, Grade 7, Part 1 (https://ncert.nic.in/textbook.php?gees1=0-12) and Part 2 (https://ncert.nic.in/textbook.php?gees2=0-8) | https://ncert.nic.in/textbook/pdf/gees1ps.pdf (21), https://ncert.nic.in/textbook/pdf/gees2ps.pdf (15) | 2 | 20 | 130 | title pages `gees1ps.pdf`, `gees2ps.pdf` (1); `gees101`–`gees112.pdf`, `gees201`–`gees208.pdf` |
+| VIII | social_science | Exploring Society: India and Beyond, Grade 8, Part 1 (https://ncert.nic.in/textbook.php?hees1=0-7) and Part 2 (https://ncert.nic.in/textbook.php?hees2=0-8) | https://ncert.nic.in/textbook/pdf/hees1ps.pdf (21), https://ncert.nic.in/textbook/pdf/hees2ps.pdf (17) | 2 | 15 | 113 | title pages `hees1ps.pdf`, `hees2ps.pdf` (1); `hees101`–`hees107.pdf`, `hees201`–`hees208.pdf` |
+| VI | english | Poorvi, Grade 6 (https://ncert.nic.in/textbook.php?fepr1=0-5) | https://ncert.nic.in/textbook/pdf/fepr1ps.pdf (15) | 5 | 16 | 0 | none |
+| VII | english | Poorvi, Grade 7 (https://ncert.nic.in/textbook.php?gepr1=0-5) | https://ncert.nic.in/textbook/pdf/gepr1ps.pdf (13) | 5 | 15 | 0 | none |
+| VIII | english | Poorvi, Grade 8 (https://ncert.nic.in/textbook.php?hepr1=0-5) | https://ncert.nic.in/textbook/pdf/hepr1ps.pdf (15) | 5 | 15 | 9 | unit PDFs `hepr101.pdf` (28, 33), `hepr103.pdf` (38–41) |
+| VI | hindi | मल्हार, कक्षा 6 (https://ncert.nic.in/textbook.php?fhml1=0-13) | https://ncert.nic.in/textbook/pdf/fhml1ps.pdf (19) | 0 | 13 | 0 | none |
+| VII | hindi | मल्हार, कक्षा 7 (https://ncert.nic.in/textbook.php?ghml1=0-10) | https://ncert.nic.in/textbook/pdf/ghml1ps.pdf (17) | 0 | 10 | 0 | none |
+| VIII | hindi | मल्हार, कक्षा 8 (https://ncert.nic.in/textbook.php?hhml1=0-10) | https://ncert.nic.in/textbook/pdf/hhml1ps.pdf (17) | 0 | 10 | 0 | none |
+
+451 lines in all (19 units, 128 chapters, 304 topics). All PDFs are under https://ncert.nic.in/textbook/pdf/.
+
+### How the lines were taken from the books
+
+- **Units.** Social Science for classes VII and VIII is printed in two parts; each part is a unit, titled as its title
+  page prints it ("Grade 7 | Part 1" gives `Part 1`), citing that part's prelims PDF, page 1; each part numbers its
+  chapters from 1, and so do the keys (`cbse.c7.social_science.u2.ch01` is Part 2, chapter 1). Class VI is one volume:
+  its chapters have an empty `parent_key` (`cbse.c6.social_science.ch01`), as in the Mathematics and Science file.
+  Poorvi prints its lessons in five units on the contents page ("Unit 1: Fables and Folk Tales"): each is a unit,
+  titled without "Unit 1:" (the position carries the number), citing the contents page; NCERT's PDFs are one per unit.
+  Malhar has no units.
+- **Chapters** are the numbered chapters on each contents page, in order, citing the prelims PDF at the contents page:
+  Social Science "Chapter 1"…; Poorvi the lessons and poems under each unit (not numbered; numbered from 1 in each
+  unit); Malhar the numbered lessons with the kind of text in brackets as the contents page prints it in the title
+  column ("मातृभूमि (कविता)"; "बिरजू महाराज से साक्षात्कार" and "कबीर के दोहे" have none). Malhar's author column is not
+  part of the title.
+- **Topics, Social Science.** The book does not number its sections, so topics are each chapter's main section
+  headings: the largest heading style inside the chapter (the same font, size and colour throughout a book; Grade 8 in
+  small capitals), in printed order, citing the chapter's PDF at the page where the heading is printed. The style was
+  found from the PDFs' fonts and every heading was looked at on the page. Not taken: sub-headings (a smaller style,
+  for example "b) Indian railway network" or "The Sarasvatī River"), boxes ("Don't miss out", "Let's explore", "Think
+  about it"), tables, picture essays ("The Lives of the Ancients", set in a banner), "The Big Questions", and the end
+  of each chapter ("Before we move on", "Questions, activities and projects"). Headings set in the main style are
+  topics even where the name is general or the section is short: "Introduction" (eight chapters), "Taking Stock"
+  (Grade 7 Part 2, chapters 3 and 4), "Dr. A.P.J. Abdul Kalam" and "Exemplary Sarpanchs" (Grade 6, chapters 10 and 11),
+  "Function" (Grade 8 Part 1, chapter 6).
+- **Topics, English.** Only where a lesson prints titled sections: Poorvi Grade 8 "Wisdom Paves the Way" ("Scene I: The
+  Road to Ujjain", "Scene II: The King’s Court") and "Spectacular Wonders" (seven numbered places, "1. The Valley of
+  Flowers, Uttarakhand" to "7. The Invisible Chandipur Beach, Odisha"). As with numbered sections, the label ("Scene I",
+  "1.") is not in the title; the proof sheet shows it. Every other lesson prints no titled section: some have
+  unnumbered parts "I" and "II", and "Say the Right Thing" (Grade 7) has "Scene I" and "Scene II" without titles. The
+  "Let us read / discuss / write …" headings are exercises, not topics.
+- **Topics, Hindi: none.** Malhar's lessons print no section heading inside the text; the headings after each lesson
+  ("कवि से परिचय", "मेरी समझ से", …) are exercises.
+- **Wording** is the printed heading's. A heading or title set on two lines is joined with one space. Quotes, dashes
+  and diacritics are kept as printed: "Unity in Diversity, or 'Many in the One'" and "India's Cultural Roots" have
+  straight quotes on the Grade 6 contents page; elsewhere "India’s", "The ‘Great King of Kings’", "“The Whole World is
+  Family”", "Varṇa–Jāti", "Śhungas", "Kuṣhāṇas", "Yoga—A Way of Life" (no spaces round the dash, as on Poorvi's contents
+  page), "Meanwhile in the South and Northeast ..." (three full stops) and "The Beginnings …" (an ellipsis). Small
+  superscripts are written plain: "Empires and Kingdoms: 6th to 10th Centuries", "Cultural Currents: 13th to 17th
+  Centuries". Capitals follow the page: Grade 8 Social Science and the "Spectacular Wonders" places are set in small
+  capitals, and a large capital is written as a capital, a small one as a small letter ("When does Nature become a
+  Resource?", "Magnetic Hills in Leh district, Ladakh"); "The cold desert of India" is printed so.
+- **Pages** are the cited PDF's own page numbers (its first page is 1), not the numbers printed in the book.
+- **Every heading was looked at.** A picture of every topic heading and of every contents page was made from the PDF and
+  compared with its line. As a mechanical check, every word of three or more letters in each `title_en` of Social
+  Science and English (418 lines) appears (ignoring capitals) in the text of its cited page: all pass. The seven
+  "Spectacular Wonders" headings carry only their large capitals in the PDF's text, so for them the check found the
+  words in the text below; they were read from the page.
+
+### Hindi titles (`title_hi`)
+
+Nothing was translated. 300 of 451 lines have a Hindi title.
+
+| Class | Subject | Hindi source (NCERT's own title) | Contents PDF (page) | Hindi titles |
+|---|---|---|---|---|
+| VI | social_science | समाज का अध्ययन : भारत और उसके आगे, कक्षा 6 (https://ncert.nic.in/textbook.php?fhes1=0-14) | https://ncert.nic.in/textbook/pdf/fhes1ps.pdf (19) | 66 of 66 |
+| VII | social_science | समाज का अध्ययन : भारत और उसके आगे, भाग 1 and भाग 2 (https://ncert.nic.in/textbook.php?ghes1=0-12, https://ncert.nic.in/textbook.php?ghes2=0-8) | https://ncert.nic.in/textbook/pdf/ghes1ps.pdf (19), https://ncert.nic.in/textbook/pdf/ghes2ps.pdf (15) | 151 of 152 |
+| VIII | social_science | समाज का अध्ययन : भारत और उसके आगे, भाग 1 (https://ncert.nic.in/textbook.php?hhes1=0-7); no Hindi edition of Part 2 | https://ncert.nic.in/textbook/pdf/hhes1ps.pdf (19) | 50 of 130 (Part 1 only) |
+| VI–VIII | english | none: NCERT publishes Poorvi in English only | | 0 of 70 |
+| VI–VIII | hindi | Malhar itself: the printed title, in both `title_en` and `title_hi` | as above | 33 of 33 |
+
+- **Social Science** takes them from NCERT's Hindi edition of the same book, which matches the English book chapter for
+  chapter and part for part (`भाग 1`, `भाग 2` from its title pages). Its chapter names are its own wording, not a
+  translation of the English ones ("The Story of Indian Farming", "भारत में कृषि की यात्रा"). Each topic has the Hindi
+  heading of the same section, found at the same place in the Hindi chapter PDF; the Hindi edition sets some of these
+  in a smaller style (for example "कश्मीर", Grade 7 Part 2 chapter 3) and prints a few extra headings where the English
+  book has a sub-heading or a box (for example "सरस्वती नदी", "अधिकारों की रक्षा क्यों आवश्यक है?"); those extra
+  headings are not lines. The CSV keeps one source (the English PDF); the proof sheets link every Hindi title to its
+  Hindi page as well.
+- **Missing, and why.** Grade 8 Part 2 (80 lines): NCERT's textbook page lists no Hindi edition (Part 1 only:
+  `hhes1`), and the matching file names (`hhes2ps.pdf`, `hhes201.pdf`…) do not exist (HTTP 404) on 2026-10-22. Grade 7
+  Part 2, chapter 7, "Introduction" (1 line): the Hindi edition prints no heading there; its text begins without one.
+  English (70 lines): Poorvi has no Hindi edition.
+- **Typed from the page.** The Hindi PDFs' hidden text is damaged (most in the class VII and VIII books and Malhar
+  Grade 7's contents page): letters repeated ("बााजाार"), vowel signs before their letter, letters missing. Every Hindi
+  title was typed from a picture of the printed heading or contents line and compared with it by eye. As mechanical
+  checks: 148 of the 300 Hindi titles appear letter for letter in the text of their Hindi page (all of class VI), 263
+  once a letter printed twice in the text is counted once, and 291 pass the consonants-in-order check of the file
+  above; the 9 that do not are Malhar Grade 7's chapters 1–4 and 6–9 (their contents page's text is the most damaged;
+  the titles agree with each lesson's first page) and "हिमालय पर्वत शृंखला", stored as "…ंृख…".
+- Kept as printed: "‘एक में अनेक’" with typographic quotes (the English contents page has straight ones), the spaces
+  before a colon ("साम्राज्य और राज्य : छठी से 10वीं शताब्दी") and round or after a dash ("नवारंभ— नगर एवं राज्य",
+  "संसदीय प्रणाली—विधायिका और कार्यपालिका", "भारत में चुनाव प्रक्रिया को समझना — एक संक्षिप्त अवलोकन"), "वृतांत" and "गज़नवी".
+
+### What is not in the file
+
+| What | Why |
+|---|---|
+| "Introduction: Why Social Science?" (Grade 6), "A Note on History’s Darker Periods" (Grade 8 Part 1), "Looking back and forward …" (Grade 8 Part 2) | Printed on the contents pages without a chapter number, between chapters; they are not chapters. |
+| The Themes A–E that group the Social Science chapters | The catalog has three levels; in the two-part books the parts are the units, and the themes repeat in both parts. For one shape across the three classes, class VI's themes are not units either. |
+| Malhar's "पढ़ने के लिए" (for reading) pieces, भाषा संगम, शब्दकोश, Braille page, puzzle answers; Poorvi's listening transcripts | Not numbered lessons on the contents pages. |
+| Sub-headings, boxes, exercises and activities | Not main section headings; the catalog has three levels. |
+| Glossaries, maps, foreword and other front matter | Not chapters. |
+| Pictures of NCERT pages | NCERT prints "© NCERT not to be republished" across every page, and this repository is public. The proof sheets link to the pages in NCERT's own PDFs instead. |
+
+### How the supervisor checks a line
+
+1. Open the line's `source_url` at `source_page` (the proof sheets link straight to it).
+2. Units: the part's title page (Social Science) or the contents page (Poorvi). Chapters: the contents page, in that
+   order. Topics: the heading on that page of the chapter's (or Poorvi unit's) PDF, with the same words.
+3. Check the parent and the order (`position` from 1 under the same parent, in printed order).
+4. Hindi: the proof sheet's "हिं" link opens the same section in the Hindi edition (Social Science); Malhar's titles
+   are on its contents page.
+
+Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
+pages `class6-social-science.md` to `class8-hindi.md`.
+
+## cisce-2026-27-icse-classes-9-10.csv
+
+CISCE (board id `CISCE`), ICSE, academic year 2026-27, Classes IX and X, in the core subjects: Physics, Chemistry,
+Biology, Mathematics, History and Civics, Geography, English and Hindi (subject ids `physics`, `chemistry`, `biology`,
+`mathematics`, `history`, `geography`, `english`, `hindi`). Same columns and rules as the files above. Every line is
+`in_review`; every line was read on **2026-10-22**. 431 lines (15 units, 106 chapters, 310 topics). Load it the same way:
+
+```
+node scripts/content/catalog-sql.mjs data/catalog/cisce-2026-27-icse-classes-9-10.csv --ref "<the PR that committed it>" > load.sql
+```
+
+### Which document for which class
+
+CISCE publishes its "Regulations and Syllabuses" by **examination year**, linked from
+https://cisce.org/regulations-and-syllabuses-icse-2/ (cisce.org → Examination → ICSE → Regulations & Syllabuses). ICSE
+is a two-year course (Classes IX and X) that ends in the ICSE examination in Class X, and the Regulations require every
+candidate to use "the Regulations and Syllabuses for the year of the Examination in which they are appearing"
+(Chapter I, G). For 2026-27:
+
+- **Class X** sits the ICSE examination in February–March 2027 (CISCE's Examination page: "ICSE 2027", February 2027 to
+  March 2027). Its lines come from **"Regulations and Syllabuses - ICSE 2027"**:
+  https://cisce.org/regulations-and-syllabus-icse-2027/.
+- **Class IX** is registered in Class IX for the 2028 examination (Regulations 2028: "Candidates must be registered
+  online in Class IX"; the Examination page: "Candidate Registration Year’2028 … August – September 2026"). Its lines
+  come from **"Regulations and Syllabuses - ICSE 2028"**: https://cisce.org/regulations-and-syllabuses-icse-2028/.
+
+Every subject document covers both classes and divides them itself: the science, mathematics and humanities documents
+print a "CLASS IX" and a "CLASS X" part; English and Appendix I print "Syllabus to be covered in Class IX" and "… in
+Class X" ("The Class IX Examination is to be conducted on the portion of the syllabus that is prescribed for Class IX").
+From each document only its class's part is taken: Class IX from the 2028 part "CLASS IX", Class X from the 2027 part
+"CLASS X". The two years' Class X parts differ (for example Physics 2027 has "Uniform circular motion", 2028 does not),
+so the 2028 Class X part is not used. Hindi's prescribed texts are divided by class for 2027 and 2028 by CISCE's circular
+of 20 April 2026, "Bifurcation of the Prescribed Texts for Selected Indian Languages …"
+(https://cisce.org/wp-content/uploads/2026/08/Circular-for-Bifurcation-of-Indian-Languages.pdf); its Hindi lists name
+the same lessons as the two appendices. Pages are the PDF's page numbers (page 1 is the first page of the file).
+
+| Class | Subject | Document (examination year) | Units | Chapters | Topics | Pages used |
+|---|---|---|---|---|---|---|
+| IX | physics | Physics, Science Paper 1 (2028): https://cisce.org/wp-content/uploads/2026/01/10.-Physics.pdf | 0 | 8 | 18 | 4–7 |
+| X | physics | Physics, Science Paper 1 (2027): https://cisce.org/wp-content/uploads/2025/03/10.-Physics.pdf | 0 | 6 | 21 | 9–12 |
+| IX | chemistry | Chemistry, Science Paper 2 (2028): https://cisce.org/wp-content/uploads/2026/01/11.-Chemistry.pdf | 0 | 8 | 24 | 4–8 |
+| X | chemistry | Chemistry, Science Paper 2 (2027): https://cisce.org/wp-content/uploads/2025/03/11.-Chemistry.pdf | 0 | 9 | 37 | 8–13 |
+| IX | biology | Biology, Science Paper 3 (2028): https://cisce.org/wp-content/uploads/2026/01/12.-Biology.pdf | 0 | 7 | 17 | 4–7 |
+| X | biology | Biology, Science Paper 3 (2027): https://cisce.org/wp-content/uploads/2025/03/12.-Biology.pdf | 0 | 6 | 22 | 8–11 |
+| IX | mathematics | Mathematics (2028): https://cisce.org/wp-content/uploads/2026/01/9.-Mathematics.pdf | 0 | 8 | 28 | 4–7 |
+| X | mathematics | Mathematics (2027): https://cisce.org/wp-content/uploads/2025/03/9.-Mathematics.pdf | 0 | 7 | 17 | 8–10 |
+| IX | history | History and Civics, H.C.G. Paper 1 (2028): https://cisce.org/wp-content/uploads/2026/01/5.-History-Civics.pdf | 2 | 11 | 7 | 4–6 |
+| X | history | History and Civics, H.C.G. Paper 1 (2027): https://cisce.org/wp-content/uploads/2025/03/ICSE-History-Civics.pdf | 2 | 6 | 19 | 6–7 |
+| IX | geography | Geography, H.C.G. Paper 2 (2028): https://cisce.org/wp-content/uploads/2026/01/6.-Geography.pdf | 1 | 7 | 17 | 4–6 |
+| X | geography | Geography, H.C.G. Paper 2 (2027): https://cisce.org/wp-content/uploads/2025/03/ICSE-Geography.pdf | 2 | 11 | 37 | 8–10 |
+| IX | english | English (2028): https://cisce.org/wp-content/uploads/2026/01/2.-English.pdf | 2 | 2 | 10 | 4–6 |
+| X | english | English (2027): https://cisce.org/wp-content/uploads/2025/03/2.-English.pdf | 2 | 2 | 10 | 4–5 |
+| IX | hindi | Second Language, Indian Languages (2028): https://cisce.org/wp-content/uploads/2026/04/3.-Second-Languages-1.pdf (units); Appendix I, List of Prescribed Textbooks (2028): https://cisce.org/wp-content/uploads/2026/04/ICSE-2028-Appendix-I-List-of-Prescribed-Textbooks.pdf (chapters, topics) | 2 | 4 | 13 | 4–5; 10–11 |
+| X | hindi | Second Language, Indian Languages (2027): https://cisce.org/wp-content/uploads/2026/04/3.-Second-Languages.pdf (units); Appendix I, List of Prescribed Books (2027): https://cisce.org/wp-content/uploads/2026/04/ICSE-2027-Appendix-I-List-of-Prescribed-Books.pdf (chapters, topics) | 2 | 4 | 13 | 4; 5 |
+
+### How the lines were taken from the documents
+
+- **ICSE prints no course structure table.** Each class part numbers its topics (1, 2, 3 … in a shaded bar); under each,
+  CISCE prints the syllabus lines in upright type, often numbered (i), (ii) … or lettered (a), (b) …, and explains them
+  in italics, often as bullets.
+- **Units** only where the document groups the numbered topics: History and Civics ("SECTION A: CIVICS", "SECTION B:
+  HISTORY"), Geography IX ("PRINCIPLES OF GEOGRAPHY"), Geography X ("PART – I MAP WORK", "PART - II GEOGRAPHY OF
+  INDIA"), English (the two papers) and Hindi (the two sections of the paper). The label ("SECTION A:", "PART – I",
+  "PAPER 1 -") and the marks are left out. Physics, Chemistry, Biology and Mathematics print no grouping, so their
+  chapters have no unit, as for the NCERT chapters without a unit (keys `cisce.c9.physics.ch01`).
+- **Chapters** are the numbered topics, number left out (History: the numbered topics of each section; Geography X:
+  CISCE numbers them 1 to 11 across its two parts, positions start again in each unit).
+- **Topics** are the first list level under a chapter: the items numbered (i) … or lettered (a) … (A–D in Chemistry X
+  "Study of Compounds"), or the bullets where a chapter numbers nothing. The topic is the item's words in upright type,
+  up to where CISCE's italic explanation starts; an item printed entirely in italics is taken up to its first full
+  stop. **A line without a number, letter or bullet is not a topic** (CISCE prints a chapter's content as one statement
+  in many chapters), and **a list printed under a topic is not taken** (the CSV has three levels). Lines without
+  topics are listed under "Choices to confirm".
+- **Wording** as printed: line breaks joined (a hyphen at a line end joined without a space: "(1915-1947)"), repeated
+  spaces made one, capitals and slips kept ("7.Metallurgy" is "Metallurgy"; "fertilisation functions of placenta in
+  the growth of the embryo Menstrual cycle"), a trailing `;` or `:` dropped. Symbols are written in plain characters:
+  "A = P(1 + r/100)ⁿ" (Mathematics IX), "H₂SO₄" (Chemistry IX), "°C" for the raised 0 of Physics IX.
+- **English** is one subject in two papers; the papers are the units: "ENGLISH LANGUAGE" (no chapters: Paper 1
+  describes its five questions, an exam format) and "LITERATURE IN ENGLISH". Its chapters are the two prescribed texts as
+  the class list prints them ("DRAMA: Julius Caesar - William Shakespeare (Acts I & II)", "TREASURE CHEST: …"), and the
+  topics are the stories and then the poems of Treasure Chest (positions 1–5 and 6–10; "PROSE (Short Stories):" and
+  "POETRY:" are not lines). The syllabus document is used, not Appendix I, which prints one title differently ("The
+  Home-coming" for "Home-coming").
+- **Hindi** is one paper in two sections; the units are "LANGUAGE" and "PRESCRIBED TEXTS" (Second Language document;
+  the Language section names no topics). For the texts the document refers to Appendix I, whose Hindi class list gives
+  the chapters ("Short Stories", "Poems", "Novel: Naya Raasta - Sushma Agarwal Sarg 1 to Sarg 13", "Ekanki Sanchay: …")
+  and the lessons under them as topics; the instruction "(The following short stories are to be studied)" is left out.
+- **Over the 300-character limit.** Two upright items are longer than a title may be, so the topic is their first part:
+  Physics IX "Free electrons, Simple electric circuit … (including its relationship to charge)" (up to the first
+  semicolon) and Chemistry X "Action of Ammonium Hydroxide and Sodium Hydroxide on solution of salts" (up to the colon).
+- **Keys and positions** count from 1 under the parent, in printed order.
+
+### Choices to confirm (the supervisor)
+
+- **No units in the sciences and Mathematics.** The brief's example keys have a unit (`cisce.c9.physics.u1.ch01`), but
+  these four documents print no grouping above their numbered topics; the numbered topics are the chapters, with no
+  parent (`cisce.c9.physics.ch01`). Making each numbered topic a unit instead would turn the (i), (ii) statements into
+  chapters.
+- **Chapters without topics (17).** They print their content without a number, letter or bullet: Physics IX "Motion in
+  One Dimension"; Biology IX "Diversity in Animal Kingdom"; Mathematics IX "Pure Arithmetic" ("Rational and Irrational
+  Numbers", "Proofs of irrationality of √2, √3, √5"); Mathematics X "Mensuration", "Probability"; History IX, all three
+  Civics chapters and History chapters 1–6; Geography IX "Hydrosphere" (three lines), "Natural Regions of the World";
+  Geography X "Climate". (Six more chapters have no topics by nature: the two map-work chapters below, the two Julius
+  Caesar chapters and the two Naya Raasta chapters, which are single texts.) Also not taken: the statement printed before the numbered items (for example Chemistry X
+  "Chemical Bonding", Mathematics IX "Statistics"), the unnumbered headings "Compound Interest" (Mathematics IX, its (a)
+  and (b) are the topics) and "Water Pollution." (Chemistry IX, page 8, a bold sub-heading after "Atmospheric
+  Pollution." whose (a)–(c) are the topics), and "Foundation of the Indian National Congress" and "Second Phase of the
+  Indian National Movement (1905-1916)" (History X, printed inside items (b) and (c)). Any of them can be added as a
+  topic.
+- **Map work.** "Map Work" (Geography IX) and "Map of India" (Geography X) are chapters, as printed, without topics:
+  their content is lists of places to locate on an outline map, not taken, as for CBSE. "Interpretation of Topographical
+  Maps" (Geography X) lists skills, and its (a)–(h) are topics. To leave map work out, delete
+  `cisce.c9.geography.u1.ch07` and `cisce.c10.geography.u1` with its chapters and topics.
+- **Language units without chapters.** English "ENGLISH LANGUAGE" and Hindi "LANGUAGE" have no chapters (exam formats
+  only); delete `cisce.c9.english.u1`, `cisce.c10.english.u1`, `cisce.c9.hindi.u1` and `cisce.c10.hindi.u1` to keep the
+  literature only.
+- **Joined or kept whole.** Mathematics X Statistics (a) joins "Computation of:" with the first sentence of its one
+  bullet; History X "Forward Bloc (objectives) and INA (name of the founder objectives and contribution of Subhas
+  Chandra Bose)." and Chemistry IX Water (iii) "Drying Agents- … Dehydrating Agents- …" are kept whole although part of
+  each line is in italics.
+- **Hindi books.** Appendix I says "Only two of the following books are to be offered": a student studies two of
+  Sahitya Sagar (the short stories and poems), Naya Raasta and Ekanki Sanchay. All three are in the list.
+
+### Not in this file (never guessed)
+
+| What | Where we looked | What was found |
+|---|---|---|
+| **The other ICSE subjects** | the 2027 and 2028 Regulations and Syllabuses pages | Not yet in: second languages other than Hindi, Modern Foreign Languages, Classical Languages, Economics, Commercial Studies, Computer Applications, Environmental Science, Economic Applications, Commercial Applications, Art, Performing Arts, Home Science, Cookery, Fashion Designing, Physical Education, Yoga, Technical Drawing Applications, Environmental Applications, Mass Media & Communication, Hospitality Management, SUPW and Community Service, Health and Physical Education (2028), the vocational subjects, and History Civics and Geography for Thailand. |
+| **Practical work, internal assessment, suggested assignments, notes on SI units, symbols and question formats** | all the documents | Assessment and exam formats, not chapters or topics. |
+| **Lessons from the books themselves** | — | Only what CISCE's documents print; nothing was taken from Treasure Chest, Sahitya Sagar or other textbooks. |
+
+### Hindi titles
+
+`title_hi` is empty on every line. CISCE prints all its syllabus documents in English, the Hindi lessons too, in Roman
+letters ("Baat Athanni Ki - Sudarshan"). Checked on 2026-10-22: the 2027 and 2028 Regulations and Syllabuses pages link
+no Hindi version of any document, and the text of none of the downloaded PDFs (the subject documents, the two Appendix I
+lists, the Regulations and the bifurcation circular) contains Devanagari. The Hindi lessons are copied in Roman letters as printed; nothing
+was transliterated or translated.
+
+### How the supervisor checks a line
+
+As for the files above: open the line's `source_url` at `source_page`, find the title, then check its parent and its
+position. **Mechanical check:** for 430 of the 431 lines the whole title (spaces removed, dashes and quotation marks
+made plain, sub- and superscripts read as digits) is found in the text of its cited page (`pdftotext -layout` and
+`-raw`); the other one is the formula "Use of formula A = P(1 + r/100)ⁿ." (Mathematics IX, page 4), compared by eye. The
+Hindi lists were compared by eye with the rendered pages. The importer's checker (`readCatalogCsv`, run with the date
+2026-10-22) finds no problem; `test/content/catalog-csv.test.ts` checks the counts above, that every source is a PDF on
+cisce.org of the right examination year, and the Hindi-title rule.
+
+The app's subject list for classes 9–10 (`stageSubjects` in `src/lib/family/subjects.ts`) is CBSE's (`science`,
+`social_science`); these CISCE lines use the separate subject ids named in the brief. Whether the app shows them for a
+CISCE child is outside this file.
+
+Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
+pages `cisce-class9-physics.md` to `cisce-class10-hindi.md`.
+
 ## cisce-2026-27-isc-classes-11-12.csv
 
 CISCE, ISC (Indian School Certificate), academic year 2026-27, Classes XI and XII: Physics, Chemistry, Biology,

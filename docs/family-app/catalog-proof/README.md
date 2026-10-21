@@ -234,6 +234,86 @@ Good to know before you start:
   Business Studies boxes and Political Science sub-points are counted, and Hindi with books only. English Core and Hindi
   Core are the courses used; English Elective and Hindi Elective are not in the catalog.
 
+## Classes VI, VII and VIII: Social Science, English and Hindi (NCERT's textbooks)
+
+As for Mathematics and Science, CBSE has published no 2026-27 curriculum document for these subjects in classes VI to
+VIII; CBSE schools teach them from NCERT's current books: *Exploring Society: India and Beyond* (Social Science),
+*Poorvi* (English) and *Malhar* (Hindi). These pages check
+[`data/catalog/ncert-2026-27-classes-6-8-social-science-languages.csv`](../../../data/catalog/ncert-2026-27-classes-6-8-social-science-languages.csv)
+against those books (read from ncert.nic.in on 2026-10-22), one page per syllabus version:
+
+| Page | Units | Chapters | Topics | NCERT contents page (PDF page) |
+|---|---|---|---|---|
+| [Class VI Social Science](class6-social-science.md) | 0 | 14 | 52 | `fees1ps.pdf` p. 19 |
+| [Class VII Social Science](class7-social-science.md) | 2 (Part 1, Part 2) | 20 | 130 | `gees1ps.pdf` p. 21, `gees2ps.pdf` p. 15 |
+| [Class VIII Social Science](class8-social-science.md) | 2 (Part 1, Part 2) | 15 | 113 | `hees1ps.pdf` p. 21, `hees2ps.pdf` p. 17 |
+| [Class VI English](class6-english.md) | 5 | 16 | 0 | `fepr1ps.pdf` p. 15 |
+| [Class VII English](class7-english.md) | 5 | 15 | 0 | `gepr1ps.pdf` p. 13 |
+| [Class VIII English](class8-english.md) | 5 | 15 | 9 | `hepr1ps.pdf` p. 15 |
+| [Class VI Hindi](class6-hindi.md) | 0 | 13 | 0 | `fhml1ps.pdf` p. 19 |
+| [Class VII Hindi](class7-hindi.md) | 0 | 10 | 0 | `ghml1ps.pdf` p. 17 |
+| [Class VIII Hindi](class8-hindi.md) | 0 | 10 | 0 | `hhml1ps.pdf` p. 17 |
+
+Compare and approve exactly as above. Good to know before you start:
+
+- **No picture.** As for the other NCERT pages, each page links to NCERT's own PDF at the right page instead.
+- **Social Science topics** are each chapter's main section headings (the book does not number them). The two-part books
+  (classes VII and VIII) have their parts as units.
+- **English** keeps Poorvi's five units; topics only where a lesson prints titled sections (two lessons in class VIII).
+  **Hindi** (Malhar) has chapters only: its lessons print no section headings.
+- **Hindi titles.** Social Science: from NCERT's Hindi edition (समाज का अध्ययन : भारत और उसके आगे), with a "हिं" link to the
+  Hindi page; none for class VIII Part 2 (NCERT publishes no Hindi edition of it) and one class VII topic (no Hindi
+  heading there). English: none (no Hindi edition). Malhar: the printed Devanagari title in both columns. Please
+  compare the Hindi titles with the page by eye: the PDFs' hidden Hindi text is often damaged, so every one was typed
+  from the page.
+
+## CISCE ICSE, Classes IX and X
+
+One page per syllabus version in
+[`data/catalog/cisce-2026-27-icse-classes-9-10.csv`](../../../data/catalog/cisce-2026-27-icse-classes-9-10.csv),
+read from cisce.org on 2026-10-22. CISCE publishes its syllabuses by examination year: Class IX (examination in 2028)
+comes from the "ICSE 2028" documents, Class X (examination in 2027) from the "ICSE 2027" documents. Each subject
+document covers both classes; only its class's part is used. Compare and approve exactly as above; each page lists the
+CISCE pages to open, and every line links to its own page.
+
+| Page | Units | Chapters | Topics | CISCE pages to compare |
+|---|---|---|---|---|
+| [Class IX Physics](cisce-class9-physics.md) | 0 | 8 | 18 | 4–7 |
+| [Class X Physics](cisce-class10-physics.md) | 0 | 6 | 21 | 9–12 |
+| [Class IX Chemistry](cisce-class9-chemistry.md) | 0 | 8 | 24 | 4–8 |
+| [Class X Chemistry](cisce-class10-chemistry.md) | 0 | 9 | 37 | 8–13 |
+| [Class IX Biology](cisce-class9-biology.md) | 0 | 7 | 17 | 4–7 |
+| [Class X Biology](cisce-class10-biology.md) | 0 | 6 | 22 | 8–11 |
+| [Class IX Mathematics](cisce-class9-mathematics.md) | 0 | 8 | 28 | 4–7 |
+| [Class X Mathematics](cisce-class10-mathematics.md) | 0 | 7 | 17 | 8–10 |
+| [Class IX History and Civics](cisce-class9-history.md) | 2 | 11 | 7 | 4–6 |
+| [Class X History and Civics](cisce-class10-history.md) | 2 | 6 | 19 | 6–7 |
+| [Class IX Geography](cisce-class9-geography.md) | 1 | 7 | 17 | 4–6 |
+| [Class X Geography](cisce-class10-geography.md) | 2 | 11 | 37 | 8–10 |
+| [Class IX English](cisce-class9-english.md) | 2 | 2 | 10 | 4–6 |
+| [Class X English](cisce-class10-english.md) | 2 | 2 | 10 | 4–5 |
+| [Class IX Hindi](cisce-class9-hindi.md) | 2 | 4 | 13 | 4–5, and Appendix I 10–11 |
+| [Class X Hindi](cisce-class10-hindi.md) | 2 | 4 | 13 | 4, and Appendix I 5 |
+
+These pages have **no picture** of CISCE's pages: the documents are CISCE's copyright, so no copy of them is kept in the
+repository.
+
+Good to know before you start:
+
+- **Chapters are CISCE's numbered topics.** Physics, Chemistry, Biology and Mathematics have no units (CISCE groups
+  their topics no further). History and Civics, Geography, English and Hindi have units: the sections, parts or papers
+  CISCE prints.
+- **Topics are the numbered, lettered or bulleted lines** under a chapter, in the words CISCE prints upright; its
+  explanation in italics is not in the list. Some chapters print their content as a statement without a number, so they
+  have no topics; each page says which.
+- **English and Hindi:** the language paper (or section) has no chapters, because CISCE describes only its exam
+  questions. The literature lists the prescribed texts and their stories and poems.
+- **Hindi titles are in Roman letters**, as CISCE prints them ("Baat Athanni Ki - Sudarshan"). No document has a Hindi
+  version, so no line has a Hindi title. Nothing was translated.
+- **Choices to confirm**, marked "Please check" on the pages and explained in the catalog README: no units in the
+  sciences and Mathematics, the chapters without topics, map work, the language units without chapters, and how a few
+  mixed lines are taken.
+
 ## CISCE ISC, Classes XI and XII
 
 One page per syllabus version in
