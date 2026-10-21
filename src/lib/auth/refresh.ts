@@ -3,7 +3,11 @@ import { signAccessToken } from './jwt';
 import { newRefreshToken, hashToken } from './hash';
 import type { SessionClaims, SessionRole } from './types';
 
+// "Keep me signed in" (F1-1, C257): every refresh starts the clock again, so a session in use renews itself and ends
+// only after this long without use. Kept on: 30 days. Switched off: 12 hours (its cookies already end when the browser
+// closes; this ends it on the server too, for a browser that keeps running).
 const REFRESH_TOKEN_TTL_MS = 30 * 24 * 60 * 60 * 1000;
+const SESSION_ONLY_TTL_MS = 12 * 60 * 60 * 1000;
 
 interface SessionRow {
   session_id: string;
@@ -11,10 +15,11 @@ interface SessionRow {
   selected_school_id: string | null;
   token_version_snapshot: number;
   aal: 'aal1' | 'aal2';
+  persistent: boolean;
 }
 
 export type RefreshResult =
-  | { ok: true; accessToken: string; refreshToken: string; claims: SessionClaims }
+  | { ok: true; accessToken: string; refreshToken: string; claims: SessionClaims; persistent: boolean }
   | { ok: false; reason: 'not_found' | 'expired' | 'token_version_changed' | 'account_disabled' | 'membership_revoked' };
 
 // This is the ONE place is_active-on-membership revocation gets checked
@@ -29,7 +34,7 @@ export async function refreshSession(refreshTokenPlaintext: string): Promise<Ref
 
   const row = await withBackendConnection(async (client) => {
     const { rows } = await client.query(
-      `select session_id, user_id, selected_school_id, token_version_snapshot, aal
+      `select session_id, user_id, selected_school_id, token_version_snapshot, aal, persistent
        from sessions
        where refresh_token_hash = $1 and revoked_at is null and expires_at > now()`,
       [hash]
@@ -93,15 +98,16 @@ export async function refreshSession(refreshTokenPlaintext: string): Promise<Ref
 
   const newRefresh = newRefreshToken();
   const newHash = hashToken(newRefresh);
-  const expiresAt = new Date(Date.now() + REFRESH_TOKEN_TTL_MS);
+  const persistent = row.persistent !== false;
+  const expiresAt = new Date(Date.now() + (persistent ? REFRESH_TOKEN_TTL_MS : SESSION_ONLY_TTL_MS));
 
   const newSessionId = await withBackendConnection(async (client) => {
     await client.query(`update sessions set revoked_at = now() where session_id = $1`, [row.session_id]);
     const { rows } = await client.query(
-      `insert into sessions (user_id, refresh_token_hash, selected_school_id, token_version_snapshot, aal, expires_at)
-       values ($1, $2, $3, $4, $5, $6)
+      `insert into sessions (user_id, refresh_token_hash, selected_school_id, token_version_snapshot, aal, expires_at, persistent)
+       values ($1, $2, $3, $4, $5, $6, $7)
        returning session_id`,
-      [row.user_id, newHash, schoolId, live.token_version, row.aal, expiresAt]
+      [row.user_id, newHash, schoolId, live.token_version, row.aal, expiresAt, persistent]
     );
     return rows[0].session_id as string;
   });
@@ -116,5 +122,13 @@ export async function refreshSession(refreshTokenPlaintext: string): Promise<Ref
     sessionId: newSessionId,
   };
   const accessToken = await signAccessToken(claims);
-  return { ok: true, accessToken, refreshToken: newRefresh, claims };
+  return { ok: true, accessToken, refreshToken: newRefresh, claims, persistent };
+}
+
+// A session issued without "Keep me signed in" (F1-1): it ends after 12 hours without use, never later than it would
+// have.
+export async function markSessionNotPersistent(sessionId: string): Promise<void> {
+  await withBackendConnection((client) =>
+    client.query(`update sessions set persistent = false, expires_at = least(expires_at, now() + interval '12 hours') where session_id = $1`, [sessionId])
+  );
 }

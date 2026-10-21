@@ -2,7 +2,8 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { newAuthClient } from './supabase';
 import { bumpTokenVersion, emailForPhone, withBackendConnection, withSelfContext } from './db';
 import { fetchLiveUser, resolveAfterCredentials, type AuthenticatorContext } from './resolve';
-import { signPendingToken, verifyDeviceToken, verifyPendingToken } from './jwt';
+import { signPendingToken, verifyPendingToken } from './jwt';
+import { deviceProof, forgetAllDevices } from './devices';
 import { EMAIL_STEP_TTL_SECONDS } from './cookies';
 import { AuthError } from './errors';
 import { emailForUsername, isUsernameEmail, normalizeUsername } from './usernames';
@@ -183,7 +184,9 @@ export async function requestEmailCode(email: string, purpose: CodePurpose, redi
   // reported: the answer must not reveal whether an email is registered.
 }
 
-export type SignedIn = { outcome: LoginOutcome; userId: string };
+// `viaTrustedDevice`: the sign-in skipped a step only because this browser was trusted (F1-1); it is not trusted again
+// from such a sign-in.
+export type SignedIn = { outcome: LoginOutcome; userId: string; viaTrustedDevice?: boolean };
 
 // C95: whether the account has a confirmed authenticator, and whether this
 // session came from an emailed code or link. nextLevel (from the session
@@ -207,14 +210,17 @@ async function authenticatorContext(
 // `passwordProven`: the account's password was checked earlier in this same
 // sign-in (passwordLogin, then completeEmailStep). A platform admin may enrol
 // an authenticator only when that and the email are both proven (C95).
+// `trustedAfterAuthenticator`: this browser was trusted after passing the authenticator (F1-1, C257), so the session
+// counts as one that passed it, as it did then.
 async function signInFromClient(
   client: SupabaseClient,
   userId: string,
   session: { access_token: string; refresh_token: string },
-  passwordProven = false
+  passwordProven = false,
+  trustedAfterAuthenticator = false
 ): Promise<SignedIn> {
   const { data: aalData } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
-  const aal = (aalData?.currentLevel ?? 'aal1') as 'aal1' | 'aal2';
+  const aal = (trustedAfterAuthenticator ? 'aal2' : (aalData?.currentLevel ?? 'aal1')) as 'aal1' | 'aal2';
   const authenticator = aal === 'aal2' ? undefined : await authenticatorContext(client, aalData, passwordProven);
   const outcome = await resolveAfterCredentials(
     userId,
@@ -225,11 +231,13 @@ async function signInFromClient(
   return { outcome, userId };
 }
 
-export async function loginWithEmailCode(email: string, code: string): Promise<SignedIn> {
+export async function loginWithEmailCode(email: string, code: string, deviceToken?: string): Promise<SignedIn> {
   const client = newAuthClient();
   const { data, error } = await client.auth.verifyOtp({ email, token: code, type: 'email' });
   if (error || !data.session || !data.user) throw new AuthError('code_invalid', error?.message ?? 'code rejected');
-  return signInFromClient(client, data.user.id, data.session);
+  // A browser trusted after the authenticator is not asked for it again (F1-1).
+  const trusted = (await deviceProof(deviceToken, data.user.id)) === 'authenticator';
+  return { ...(await signInFromClient(client, data.user.id, data.session, false, trusted)), viaTrustedDevice: trusted };
 }
 
 // ---- password sign-in with the email-code step (C90) -------------------------
@@ -242,17 +250,10 @@ async function sendSignInCode(email: string, redirectTo?: string): Promise<void>
   throw new AuthError('email_send_failed', error.message ?? 'email not sent');
 }
 
-async function deviceTrusted(deviceToken: string | undefined, userId: string): Promise<boolean> {
-  if (!deviceToken) return false;
-  const device = await verifyDeviceToken(deviceToken);
-  if (!device || device.userId !== userId) return false;
-  const live = await fetchLiveUser(userId);
-  return Number(live.token_version) === device.tokenVersion;
-}
-
-// After the password (C96): an authenticator account goes straight to its
-// code; otherwise the emailed code, unless this is a remembered device of an
-// account that is not a platform admin. See stepAfterPassword.
+// After the password (C96, F1-1): an authenticator account goes straight to
+// its code, unless this browser was trusted after passing it; otherwise the
+// emailed code, unless this is a trusted browser of an account that is not a
+// platform admin. See stepAfterPassword.
 export async function passwordLogin(identifier: string, password: string, deviceToken?: string, redirectTo?: string): Promise<LoginOutcome> {
   const email = await resolveIdentifier(identifier);
   if (!email) throw new AuthError('invalid_credentials', 'no account for that email or mobile number');
@@ -264,10 +265,12 @@ export async function passwordLogin(identifier: string, password: string, device
   // cannot say, the email step runs (the stricter path).
   const { data: aal } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
   const role = (await fetchLiveUser(data.user.id)).role;
+  const hasVerifiedAuthenticator = aal?.nextLevel === 'aal2';
+  const proof = await deviceProof(deviceToken, data.user.id);
   const next = stepAfterPassword({
     role,
-    hasVerifiedAuthenticator: aal?.nextLevel === 'aal2',
-    deviceTrusted: await deviceTrusted(deviceToken, data.user.id),
+    hasVerifiedAuthenticator,
+    deviceProof: proof,
     emailStepEnabled: emailStepEnabled(),
     emailReachable: !isUsernameEmail(email),
   });
@@ -277,7 +280,7 @@ export async function passwordLogin(identifier: string, password: string, device
     // A platform admin with no authenticator sets one up after this code.
     return { status: 'email_step', pendingToken, maskedEmail: maskEmail(email), setupNext: authenticatorRequired(role) };
   }
-  return (await signInFromClient(client, data.user.id, data.session, true)).outcome;
+  return (await signInFromClient(client, data.user.id, data.session, true, hasVerifiedAuthenticator && proof === 'authenticator')).outcome;
 }
 
 async function pendingEmailStep(pendingToken: string | undefined): Promise<{ userId: string; email: string }> {
@@ -308,6 +311,7 @@ export async function completeEmailStep(pendingToken: string | undefined, code: 
 // next request, every remembered device.
 export async function signOutEverywhere(userId: string): Promise<number> {
   await bumpTokenVersion(userId);
+  await forgetAllDevices(userId);
   return revokeAllSessions(userId);
 }
 
@@ -402,8 +406,9 @@ export async function changePassword(
     await passTotp(client, mfaCode);
   }
   await setPassword(client, newPassword);
-  // Other devices are signed out; this one stays signed in.
+  // Other devices are signed out; this one stays signed in. No browser stays trusted: each asks again (F1-1).
   await revokeAllSessions(userId, sessionId);
+  await forgetAllDevices(userId);
 }
 
 // ---- sign-in and reset links from the email (C91) -----------------------------

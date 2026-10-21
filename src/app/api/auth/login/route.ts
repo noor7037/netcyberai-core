@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { passwordLogin } from '@/lib/auth/account';
 import { AuthError } from '@/lib/auth/errors';
 import { DEVICE_COOKIE } from '@/lib/auth/cookies';
-import { outcomeResponse, authErrorResponse } from '@/lib/auth/outcome-response';
+import { authErrorResponse, keepSignedIn, signInResponse } from '@/lib/auth/outcome-response';
 
 // Password sign-in with an email or mobile number (C96). An account with an
 // authenticator answers `mfa_required` (its code, at /api/auth/mfa/verify)
@@ -17,8 +17,9 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    return outcomeResponse(
-      await passwordLogin(identifier, body.password, req.cookies.get(DEVICE_COOKIE)?.value, `${req.nextUrl.origin}/login`)
+    return await signInResponse(
+      await passwordLogin(identifier, body.password, req.cookies.get(DEVICE_COOKIE)?.value, `${req.nextUrl.origin}/login`),
+      keepSignedIn(req, body)
     );
   } catch (err) {
     if (err instanceof AuthError) return authErrorResponse(err);

@@ -80,6 +80,11 @@ export default function LoginPage() {
   const [notice, setNotice] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [remember, setRemember] = useState(false);
+  // F1-1 (C257): "Keep me signed in" (on unless switched off), "Remember my email or mobile number on this device"
+  // (only the identifier, in this browser's storage), and "Show password".
+  const [keep, setKeep] = useState(true);
+  const [rememberId, setRememberId] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   // When the newest emailed code was sent (C96): shown in the guide.
   const [codeSentAt, setCodeSentAt] = useState<Date | null>(null);
   // Resend is paused while the email service would refuse it anyway (C91),
@@ -98,6 +103,16 @@ export default function LoginPage() {
     setNow(Date.now());
     setCooldownUntil(Date.now() + seconds * 1000);
   }
+
+  // A remembered email or mobile number fills itself in (never a password: the browser's own password manager keeps
+  // that, offered through the autocomplete attributes below).
+  useEffect(() => {
+    const saved = readRememberedIdentifier();
+    if (saved) {
+      setEmail((e) => e || saved);
+      setRememberId(true);
+    }
+  }, []);
 
   // Links such as /login?mode=reset (sent to first-time staff) open the
   // right step directly. Links from emails land here too (C91): Supabase's
@@ -186,8 +201,9 @@ export default function LoginPage() {
 
   const submitCredentials = (e: React.FormEvent) => {
     e.preventDefault();
+    saveRememberedIdentifier(rememberId ? email : null);
     return run(async () => {
-      const { ok, data } = await post('/api/auth/login', { identifier: email, password });
+      const { ok, data } = await post('/api/auth/login', { identifier: email, password, keepSignedIn: keep });
       if (!ok) return setError(humanError(data.error, 'Sign-in failed. Please try again.'));
       signedIn(data);
     });
@@ -285,7 +301,8 @@ export default function LoginPage() {
   const submitEmailCode = (e: React.FormEvent) => {
     e.preventDefault();
     return run(async () => {
-      const { ok, data } = await post('/api/auth/code/verify', { identifier: email, code: emailCode, rememberDevice: remember });
+      saveRememberedIdentifier(rememberId ? email : null);
+      const { ok, data } = await post('/api/auth/code/verify', { identifier: email, code: emailCode, rememberDevice: remember, keepSignedIn: keep });
       if (!ok) return setError(humanError(data.error, 'That code did not work. Please try again.'));
       signedIn(data);
     });
@@ -331,7 +348,7 @@ export default function LoginPage() {
   const submitMfa = (e: React.FormEvent) => {
     e.preventDefault();
     return run(async () => {
-      const { ok, data } = await post('/api/auth/mfa/verify', { code });
+      const { ok, data } = await post('/api/auth/mfa/verify', { code, rememberDevice: remember });
       if (!ok) return setError(humanError(data.error, 'That code did not work. Check your authenticator app and try again.'));
       signedIn(data);
     });
@@ -424,12 +441,26 @@ export default function LoginPage() {
       required
     />
   );
-  const rememberBox = (
-    <label className="flex min-h-[44px] items-center gap-3 text-sm text-slate">
-      <input type="checkbox" className="h-5 w-5" checked={remember} onChange={(e) => setRemember(e.target.checked)} />
-      Remember this device for 30 days (skip the email code here)
+  const tick = (id: string, checked: boolean, onChange: (v: boolean) => void, text: string) => (
+    <label htmlFor={id} className="flex min-h-[44px] items-center gap-3 text-sm text-slate">
+      <input id={id} type="checkbox" className="h-5 w-5 shrink-0" checked={checked} onChange={(e) => onChange(e.target.checked)} />
+      {text}
     </label>
   );
+  // F1-1: on the emailed-code step and the authenticator step. Trusted after the authenticator, this browser skips the
+  // authenticator and the emailed code for 30 days; after an emailed code, the emailed code only.
+  const rememberBox = tick('trust-browser', remember, setRemember, 'Trust this browser for 30 days (no code asked here)');
+  const keepBox = tick('keep-signed-in', keep, setKeep, 'Keep me signed in');
+  const rememberIdBox = (
+    <div className="flex flex-col gap-1">
+      {tick('remember-identifier', rememberId, (v) => {
+        setRememberId(v);
+        if (!v) saveRememberedIdentifier(null);
+      }, 'Remember my email or mobile number on this device')}
+    </div>
+  );
+  const showPasswordBox = tick('show-password', showPassword, setShowPassword, 'Show password');
+  const passwordType = showPassword ? 'text' : 'password';
   const linkButton =
     'font-semibold text-royal underline disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire';
   const resendLine = (onClick: () => void) => (
@@ -487,12 +518,15 @@ export default function LoginPage() {
               <Input
                 id="password"
                 label="Password"
-                type="password"
+                type={passwordType}
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+              {showPasswordBox}
+              {keepBox}
+              {rememberIdBox}
               <button type="button" className={`-mt-2 min-h-[44px] self-start text-base ${linkButton}`} onClick={() => go({ kind: 'reset_request' })}>
                 Forgot password?
               </button>
@@ -508,6 +542,8 @@ export default function LoginPage() {
           {(step.kind === 'code_request' || step.kind === 'reset_request') && (
             <form onSubmit={sendCode(step.kind === 'code_request' ? 'login' : 'reset')} className="mt-5 flex flex-col gap-4">
               {emailInput}
+              {step.kind === 'code_request' && keepBox}
+              {step.kind === 'code_request' && rememberIdBox}
               <Button type="submit" disabled={submitting || cooldown > 0} className="w-full">
                 {submitting ? 'Sending…' : cooldown > 0 ? `Send code (wait ${cooldown}s)` : 'Send code'}
               </Button>
@@ -531,7 +567,7 @@ export default function LoginPage() {
               <Input
                 id="new-password"
                 label="New password"
-                type="password"
+                type={passwordType}
                 autoComplete="new-password"
                 helperText="8 to 72 characters. A short sentence is easy to remember and hard to guess."
                 value={password}
@@ -541,12 +577,13 @@ export default function LoginPage() {
               <Input
                 id="confirm-password"
                 label="Type the new password again"
-                type="password"
+                type={passwordType}
                 autoComplete="new-password"
                 value={confirm}
                 onChange={(e) => setConfirm(e.target.value)}
                 required
               />
+              {showPasswordBox}
               {rememberBox}
               <Button type="submit" disabled={submitting} className="w-full">
                 {submitting ? 'Saving…' : 'Save password and sign in'}
@@ -571,7 +608,7 @@ export default function LoginPage() {
               <Input
                 id="new-password"
                 label="New password"
-                type="password"
+                type={passwordType}
                 autoComplete="new-password"
                 helperText="8 to 72 characters. A short sentence is easy to remember and hard to guess."
                 value={password}
@@ -581,12 +618,13 @@ export default function LoginPage() {
               <Input
                 id="confirm-password"
                 label="Type the new password again"
-                type="password"
+                type={passwordType}
                 autoComplete="new-password"
                 value={confirm}
                 onChange={(e) => setConfirm(e.target.value)}
                 required
               />
+              {showPasswordBox}
               {rememberBox}
               <Button type="submit" disabled={submitting} className="w-full">
                 {submitting ? 'Saving…' : 'Save password and sign in'}
@@ -640,6 +678,7 @@ export default function LoginPage() {
           {step.kind === 'mfa' && (
             <form onSubmit={submitMfa} className="mt-5 flex flex-col gap-4">
               {authenticatorInput}
+              {rememberBox}
               <Button type="submit" disabled={submitting} className="w-full">
                 {submitting ? 'Verifying…' : 'Verify and sign in'}
               </Button>
@@ -725,4 +764,23 @@ function GuideBody({ guide }: { guide: Guidance }) {
       )}
     </>
   );
+}
+
+// "Remember my email or mobile number on this device" (F1-1, C257): only the identifier, in this browser's storage,
+// never a password. Storage can be missing or blocked (a private window); then nothing is remembered.
+const IDENTIFIER_KEY = 'nca.signin.identifier';
+function readRememberedIdentifier(): string | null {
+  try {
+    return window.localStorage.getItem(IDENTIFIER_KEY);
+  } catch {
+    return null;
+  }
+}
+function saveRememberedIdentifier(identifier: string | null) {
+  try {
+    if (identifier && identifier.trim()) window.localStorage.setItem(IDENTIFIER_KEY, identifier.trim());
+    else window.localStorage.removeItem(IDENTIFIER_KEY);
+  } catch {
+    // Storage unavailable: nothing to remember or clear.
+  }
 }

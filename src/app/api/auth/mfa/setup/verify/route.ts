@@ -5,7 +5,7 @@ import { AuthError } from '@/lib/auth/errors';
 import { PENDING_COOKIE } from '@/lib/auth/cookies';
 import { withTenantContext } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
-import { authErrorResponse, noStore, outcomeResponse } from '@/lib/auth/outcome-response';
+import { authErrorResponse, keepSignedIn, noStore, signInResponse } from '@/lib/auth/outcome-response';
 
 // Confirms the authenticator started by /api/auth/mfa/setup/start with its
 // first code, then finishes sign-in at aal2 (C95). Audited: the event only,
@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
         })
       );
     }
-    return noStore(outcomeResponse(outcome));
+    return noStore(await signInResponse(outcome, keepSignedIn(req, body)));
   } catch (err) {
     if (err instanceof AuthError) return noStore(authErrorResponse(err));
     throw err;
