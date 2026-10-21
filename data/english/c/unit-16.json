@@ -1,0 +1,662 @@
+{
+  "track": "c",
+  "unit": 16,
+  "key": "c.u16",
+  "title": { "en": "My opinion", "hi": "मेरी राय" },
+  "pic": "🤔",
+  "can_do": { "en": "I can give my opinion with a reason.", "hi": "मैं कारण के साथ अपनी राय दे सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u16.l1",
+      "kind": "words",
+      "title": { "en": "Opinion words", "hi": "राय वाले शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Your ideas matter! Learn words to say what you think.", "hi": "तुम्हारे विचार मायने रखते हैं! अपनी बात कहने के शब्द सीखो।" },
+          "pic": "🤔"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "c.u16.l1.opinion", "en": "opinion", "hi": "राय", "pic": "🤔", "example": { "en": "What is your opinion?", "hi": "तुम्हारी क्या राय है?" } },
+            {
+              "key": "c.u16.l1.reason",
+              "en": "reason",
+              "hi": "कारण",
+              "pic": "💡",
+              "example": { "en": "Give a reason for your answer.", "hi": "अपने उत्तर का कारण बताओ।" }
+            },
+            { "key": "c.u16.l1.agree", "en": "agree", "hi": "सहमत होना", "pic": "👍", "example": { "en": "I agree with Salma.", "hi": "मैं सलमा से सहमत हूँ।" } },
+            {
+              "key": "c.u16.l1.disagree",
+              "en": "disagree",
+              "hi": "असहमत होना",
+              "pic": "👎",
+              "example": { "en": "I disagree, and here is my reason.", "hi": "मैं असहमत हूँ, और यह रहा मेरा कारण।" }
+            },
+            {
+              "key": "c.u16.l1.important",
+              "en": "important",
+              "hi": "ज़रूरी, महत्वपूर्ण",
+              "pic": "❗",
+              "example": { "en": "Clean water is very important.", "hi": "साफ़ पानी बहुत ज़रूरी है।" }
+            },
+            {
+              "key": "c.u16.l1.useful",
+              "en": "useful",
+              "hi": "उपयोगी, काम का",
+              "pic": "🧰",
+              "example": { "en": "A bicycle is very useful in the village.", "hi": "गाँव में साइकिल बहुत काम की है।" }
+            },
+            {
+              "key": "c.u16.l1.boring",
+              "en": "boring",
+              "hi": "उबाऊ",
+              "pic": "🥱",
+              "example": { "en": "Waiting for the bus is boring.", "hi": "बस का इंतज़ार करना उबाऊ है।" }
+            },
+            {
+              "key": "c.u16.l1.exciting",
+              "en": "exciting",
+              "hi": "रोमांचक",
+              "pic": "🤩",
+              "example": { "en": "The cricket match was exciting!", "hi": "क्रिकेट मैच रोमांचक था!" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u16.l1.m-agree", "left": { "text": "agree" }, "right": { "pic": "👍" } },
+            { "key": "c.u16.l1.m-disagree", "left": { "text": "disagree" }, "right": { "pic": "👎" } },
+            { "key": "c.u16.l1.m-boring", "left": { "text": "boring" }, "right": { "pic": "🥱" } },
+            { "key": "c.u16.l1.m-exciting", "left": { "text": "exciting" }, "right": { "pic": "🤩" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u16.l1.p-opinion",
+              "prompt": { "en": "Which word means राय?" },
+              "options": [{ "text": "reason" }, { "text": "opinion" }, { "text": "useful" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u16.l1.p-important",
+              "prompt": { "en": "Listen. Tap the picture.", "say": "important" },
+              "options": [{ "pic": "🧰" }, { "pic": "❗" }, { "pic": "🥱" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u16.l1.s-opinion", "model": "What is your opinion?", "pic": "🤔" },
+            { "key": "c.u16.l1.s-agree", "model": "I agree with Salma.", "pic": "👍" },
+            { "key": "c.u16.l1.s-exciting", "model": "The cricket match was exciting!", "pic": "🤩" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u16.l1.c-reason",
+          "type": "choose",
+          "prompt": { "en": "Which word means कारण?" },
+          "options": [{ "text": "opinion" }, { "text": "reason" }, { "text": "agree" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u16.l1.c-useful",
+          "type": "choose",
+          "prompt": { "en": "A torch is ___ at night." },
+          "options": [{ "text": "boring" }, { "text": "useful" }, { "text": "shy" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u16.l1.c-dis",
+          "type": "choose",
+          "prompt": { "en": "I don't agree. I ___." },
+          "options": [{ "text": "disagree" }, { "text": "agree" }, { "text": "explain" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u16.l1.c-exciting",
+          "type": "choose",
+          "prompt": { "en": "The last over of the match was very ___!" },
+          "options": [{ "text": "boring" }, { "text": "slow" }, { "text": "exciting" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u16.l1.c-important",
+          "type": "choose",
+          "prompt": { "en": "Sleep is ___ for good health." },
+          "options": [{ "text": "boring" }, { "text": "important" }, { "text": "expensive" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask at home: What is your favourite season, and why?", "hi": "घर पर पूछो: What is your favourite season, and why?" }
+    },
+    {
+      "key": "c.u16.l2",
+      "kind": "pattern",
+      "title": { "en": "I think …, because, but, so", "hi": "मुझे लगता है …, क्योंकि, पर, इसलिए" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Give your opinion and a reason", "hi": "अपनी राय और कारण दो" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "I think cricket is exciting because it is fast.",
+              "hi": "मुझे लगता है क्रिकेट रोमांचक है क्योंकि यह तेज़ खेल है।",
+              "parts": [
+                { "text": "I", "role": "who" },
+                { "text": "think", "role": "do" },
+                { "text": "cricket is exciting", "role": "what" },
+                { "text": "because it is fast.", "role": "other" }
+              ],
+              "pic": "🏏"
+            },
+            {
+              "en": "I like the monsoon, but the roads get muddy.",
+              "hi": "मुझे मानसून पसंद है, पर सड़कें कीचड़ वाली हो जाती हैं।",
+              "parts": [
+                { "text": "I", "role": "who" },
+                { "text": "like", "role": "do" },
+                { "text": "the monsoon,", "role": "what" },
+                { "text": "but the roads get muddy.", "role": "other" }
+              ],
+              "pic": "🌧️"
+            },
+            {
+              "en": "It rained all day, so we played indoors.",
+              "hi": "पूरे दिन बारिश हुई, इसलिए हम घर के अंदर खेले।",
+              "parts": [
+                { "text": "It rained all day,", "role": "other" },
+                { "text": "so", "role": "other" },
+                { "text": "we", "role": "who" },
+                { "text": "played", "role": "do" },
+                { "text": "indoors.", "role": "where" }
+              ],
+              "pic": "🏠"
+            },
+            {
+              "en": "I agree with you because reading is useful.",
+              "hi": "मैं तुमसे सहमत हूँ क्योंकि पढ़ना उपयोगी है।",
+              "parts": [
+                { "text": "I", "role": "who" },
+                { "text": "agree", "role": "do" },
+                { "text": "with you", "role": "what" },
+                { "text": "because reading is useful.", "role": "other" }
+              ],
+              "pic": "👍"
+            },
+            {
+              "en": "I don't think so. Walking is better for us.",
+              "hi": "मुझे ऐसा नहीं लगता। पैदल चलना हमारे लिए बेहतर है।",
+              "parts": [
+                { "text": "I", "role": "who" },
+                { "text": "don't think", "role": "not" },
+                { "text": "so.", "role": "other" },
+                { "text": "Walking is better for us.", "role": "other" }
+              ],
+              "pic": "🚶"
+            }
+          ],
+          "note": {
+            "en": "because gives a reason. but shows a difference. so shows a result.",
+            "hi": "because कारण बताता है। but फ़र्क़ दिखाता है। so नतीजा बताता है।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u16.l2.b-reading",
+              "hi": "मुझे लगता है पढ़ना उपयोगी है।",
+              "pic": "📖",
+              "tiles": ["is", "useful.", "think", "I", "reading"],
+              "answer": "I think reading is useful."
+            },
+            {
+              "key": "c.u16.l2.b-tired",
+              "hi": "हम थक गए थे, इसलिए घर चले गए।",
+              "pic": "🏠",
+              "tiles": ["went", "tired,", "so", "we", "were", "home.", "We"],
+              "answer": "We were tired, so we went home."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u16.l2.p-because",
+              "prompt": { "en": "I like winter ___ it is cool." },
+              "options": [{ "text": "but" }, { "text": "so" }, { "text": "because" }],
+              "answer": 2,
+              "why": { "en": "because gives a reason.", "hi": "because कारण बताता है।" }
+            },
+            {
+              "key": "c.u16.l2.p-but",
+              "prompt": { "en": "Mangoes are sweet, ___ they are expensive now." },
+              "options": [{ "text": "but" }, { "text": "so" }, { "text": "because" }],
+              "answer": 0,
+              "why": { "en": "but shows a difference.", "hi": "but फ़र्क़ दिखाता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u16.l2.s-homework", "model": "I think homework is useful because we practise.", "cue": { "en": "What do you think of homework?" } },
+            {
+              "key": "c.u16.l2.s-monsoon",
+              "model": "I like the monsoon, but I don't like the mud.",
+              "cue": { "en": "Do you like the monsoon? Answer with but." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u16.l2.c-b1",
+          "type": "build",
+          "hi": "मुझे लगता है हमारा गाँव सुंदर है।",
+          "pic": "🏘️",
+          "tiles": ["beautiful.", "think", "village", "is", "I", "our"],
+          "answer": "I think our village is beautiful."
+        },
+        {
+          "key": "c.u16.l2.c-b2",
+          "type": "build",
+          "hi": "गर्मी थी, इसलिए हमने पानी पिया।",
+          "pic": "💧",
+          "tiles": ["hot,", "was", "we", "water.", "It", "so", "drank"],
+          "answer": "It was hot, so we drank water."
+        },
+        {
+          "key": "c.u16.l2.c-so",
+          "type": "choose",
+          "prompt": { "en": "It was very hot, ___ we sat in the shade." },
+          "options": [{ "text": "because" }, { "text": "but" }, { "text": "so" }],
+          "answer": 2,
+          "why": { "en": "so shows the result.", "hi": "so नतीजा बताता है।" }
+        },
+        {
+          "key": "c.u16.l2.c-because",
+          "type": "choose",
+          "prompt": { "en": "I am happy ___ it is my birthday." },
+          "options": [{ "text": "so" }, { "text": "but" }, { "text": "because" }],
+          "answer": 2,
+          "why": { "en": "because gives a reason.", "hi": "because कारण बताता है।" }
+        },
+        {
+          "key": "c.u16.l2.c-but",
+          "type": "choose",
+          "prompt": { "en": "Arjun is small, ___ he is very strong." },
+          "options": [{ "text": "so" }, { "text": "because" }, { "text": "but" }],
+          "answer": 2,
+          "why": { "en": "but shows a difference.", "hi": "but फ़र्क़ दिखाता है।" }
+        },
+        {
+          "key": "c.u16.l2.c-think",
+          "type": "choose",
+          "prompt": { "en": "Which sentence gives an opinion?" },
+          "options": [{ "text": "English has 26 letters." }, { "text": "Class starts at nine." }, { "text": "I think English is fun." }],
+          "answer": 2,
+          "why": { "en": "I think tells what you feel or believe.", "hi": "I think से तुम अपनी राय बताते हो।" }
+        }
+      ],
+      "home": { "en": "At dinner, say one opinion with because.", "hi": "रात के खाने पर because के साथ अपनी एक राय कहो।" }
+    },
+    {
+      "key": "c.u16.l3",
+      "kind": "listen",
+      "title": { "en": "A school garden?", "hi": "स्कूल में बगीचा?" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "What do you think, class?", "hi": "बच्चो, तुम्हारी क्या राय है?" },
+          "scene": {
+            "place": "school",
+            "pics": [
+              { "pic": "🏫", "x": 80, "y": 14, "size": 2 },
+              { "pic": "👩‍🏫", "x": 62, "y": 40, "size": 1.5 },
+              { "pic": "👧", "x": 18, "y": 46, "size": 1.3 },
+              { "pic": "🧒", "x": 32, "y": 46, "size": 1.3 },
+              { "pic": "🧕", "x": 46, "y": 46, "size": 1.3 },
+              { "pic": "🌱", "x": 72, "y": 52, "size": 1 },
+              { "pic": "🥕", "x": 84, "y": 52, "size": 1 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Should our school have a vegetable garden? What do you think?" },
+            { "speaker": "Meera", "pic": "👧", "en": "I think it is a great idea because we can grow food." },
+            { "speaker": "Joseph", "pic": "🧒", "en": "I agree, but who will water the plants in the holidays?" },
+            { "speaker": "Salma", "pic": "🧕", "en": "We can take turns, so the plants will be fine." },
+            { "speaker": "Joseph", "pic": "🧒", "en": "That's a good point. But it is hard work." },
+            { "speaker": "Meera", "pic": "👧", "en": "Yes, but hard work is good for us!" },
+            { "speaker": "Salma", "pic": "🧕", "en": "And we can cook the vegetables for the midday meal." },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Good reasons, everyone. Let's vote." },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Most of you agree. We will start the garden next week!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u16.l3.p-meera",
+              "prompt": { "en": "What does Meera think?" },
+              "options": [{ "text": "It is a great idea." }, { "text": "It is boring." }, { "text": "It is too expensive." }],
+              "answer": 0
+            },
+            {
+              "key": "c.u16.l3.p-joseph",
+              "prompt": { "en": "What is Joseph worried about?" },
+              "options": [{ "text": "Who will water the plants in the holidays?" }, { "text": "He doesn't like vegetables." }, { "text": "He has no time." }],
+              "answer": 0
+            },
+            {
+              "key": "c.u16.l3.p-salma",
+              "prompt": { "en": "What is Salma's answer?" },
+              "options": [{ "text": "They can buy vegetables." }, { "text": "They can take turns." }, { "text": "They can stop the garden." }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u16.l3.s-idea", "model": "I think it is a great idea because we can grow food.", "pic": "🌱" },
+            { "key": "c.u16.l3.s-agree", "model": "I agree, but who will water the plants?", "pic": "💧" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u16.l3.c-end",
+          "type": "choose",
+          "prompt": { "en": "What happens at the end?" },
+          "options": [{ "text": "They stop the garden." }, { "text": "They go home." }, { "text": "They will start the garden." }],
+          "answer": 2
+        },
+        {
+          "key": "c.u16.l3.c-meal",
+          "type": "choose",
+          "prompt": { "en": "What can they cook the vegetables for?" },
+          "options": [{ "text": "a birthday" }, { "text": "the haat" }, { "text": "the midday meal" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u16.l3.c-polite",
+          "type": "choose",
+          "prompt": { "en": "How does Joseph disagree?" },
+          "options": [{ "text": "Politely, with a reason." }, { "text": "He shouts." }, { "text": "He says nothing." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u16.l3.c-so",
+          "type": "choose",
+          "prompt": { "en": "Salma says: We can take turns, ___ the plants will be fine." },
+          "options": [{ "text": "but" }, { "text": "because" }, { "text": "so" }],
+          "answer": 2,
+          "why": { "en": "so shows the result.", "hi": "so नतीजा बताता है।" }
+        }
+      ],
+      "home": { "en": "Ask your family: Should we grow vegetables at home? Why?", "hi": "घरवालों से पूछो: Should we grow vegetables at home? Why?" }
+    },
+    {
+      "key": "c.u16.l4",
+      "kind": "speak",
+      "title": { "en": "A small group discussion", "hi": "छोटी समूह चर्चा" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Talk with Salma and Joseph. Give your opinion and a reason, and listen kindly.",
+            "hi": "सलमा और जोसेफ़ से बात करो। अपनी राय और कारण दो, और ध्यान से सुनो।"
+          },
+          "pic": "🤔"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Playing outside or watching TV?", "hi": "बाहर खेलना या टीवी देखना?" },
+          "scene": {
+            "place": "school",
+            "pics": [
+              { "pic": "🌳", "x": 86, "y": 16, "size": 2 },
+              { "pic": "🧕", "x": 24, "y": 42, "size": 1.4 },
+              { "pic": "🧒", "x": 46, "y": 42, "size": 1.4 },
+              { "pic": "🙋", "x": 68, "y": 44, "size": 1.4 },
+              { "pic": "📺", "x": 30, "y": 18, "size": 1 },
+              { "pic": "⚽", "x": 60, "y": 20, "size": 1 }
+            ]
+          },
+          "roles": [{ "name": "Salma", "pic": "🧕" }, { "name": "Joseph", "pic": "🧒" }, { "name": "You", "pic": "🙋" }],
+          "learner": 2,
+          "turns": [
+            { "role": 0, "en": "What is better after school: playing outside or watching TV?" },
+            { "role": 1, "en": "I think watching TV is better because it is relaxing." },
+            { "role": 2, "en": "I don't agree. I think playing outside is better." },
+            { "role": 0, "en": "Why do you think so?" },
+            { "role": 2, "en": "Because we get fresh air, and it keeps us healthy." },
+            { "role": 1, "en": "That's true, but sometimes it is too hot outside." },
+            { "role": 2, "en": "Yes, so we can play in the evening when it is cooler." },
+            { "role": 0, "en": "I agree with you. Let's play cricket this evening!" }
+          ],
+          "partner": {
+            "goal": "Play Salma and Joseph in a friendly discussion. Give opinions with because, but and so. Ask the child what they think and why, and disagree politely.",
+            "must_use": ["I think", "because", "but", "so", "I agree"]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u16.l4.br-cricket",
+              "hi": "मुझे लगता है क्रिकेट रोमांचक है।",
+              "tiles": ["cricket", "exciting.", "I", "is", "think"],
+              "answer": "I think cricket is exciting."
+            },
+            {
+              "key": "c.u16.l4.br-agree",
+              "hi": "मैं सहमत हूँ, पर यह महँगा है।",
+              "tiles": ["but", "I", "expensive.", "it", "is", "agree,"],
+              "answer": "I agree, but it is expensive."
+            },
+            {
+              "key": "c.u16.l4.br-inside",
+              "hi": "बारिश हुई, इसलिए हम अंदर रहे।",
+              "tiles": ["inside.", "It", "so", "stayed", "rained,", "we"],
+              "answer": "It rained, so we stayed inside."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u16.l4.s-bicycle",
+              "model": "Yes, I think a bicycle is useful because the school is far.",
+              "cue": { "en": "Is a bicycle useful in your village? Give a reason." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u16.l4.c-polite",
+          "type": "choose",
+          "prompt": { "en": "Which is a polite way to disagree?" },
+          "options": [{ "text": "I see your point, but I think differently." }, { "text": "Stop talking!" }, { "text": "Your idea is silly." }],
+          "answer": 0,
+          "why": { "en": "Listen first, then give your own reason kindly.", "hi": "पहले सुनो, फिर अपना कारण विनम्रता से बताओ।" }
+        },
+        {
+          "key": "c.u16.l4.c-b",
+          "type": "build",
+          "hi": "मुझे लगता है बाहर खेलना हमें स्वस्थ रखता है।",
+          "pic": "⚽",
+          "tiles": ["healthy.", "I", "us", "playing", "think", "keeps", "outside"],
+          "answer": "I think playing outside keeps us healthy."
+        },
+        {
+          "key": "c.u16.l4.c-why",
+          "type": "choose",
+          "prompt": { "en": "Salma asks: Why do you think so? Your answer starts with:" },
+          "options": [{ "text": "But …" }, { "text": "So …" }, { "text": "Because …" }],
+          "answer": 2,
+          "why": { "en": "because gives a reason.", "hi": "because कारण बताता है।" }
+        },
+        {
+          "key": "c.u16.l4.c-agree",
+          "type": "choose",
+          "prompt": { "en": "Which sentence shows you agree?" },
+          "options": [{ "text": "I don't think so." }, { "text": "I disagree." }, { "text": "I agree with you." }],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Ask a grown-up their opinion about something, and say if you agree.",
+        "hi": "किसी बड़े से किसी बात पर उनकी राय पूछो और बताओ कि तुम सहमत हो या नहीं।"
+      }
+    },
+    {
+      "key": "c.u16.l5",
+      "kind": "review",
+      "title": { "en": "Unit 16 review", "hi": "इकाई 16 की दोहराई" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u16.l5.m-opinion", "left": { "text": "opinion" }, "right": { "pic": "🤔" } },
+            { "key": "c.u16.l5.m-useful", "left": { "text": "useful" }, "right": { "pic": "🧰" } },
+            { "key": "c.u16.l5.m-important", "left": { "text": "important" }, "right": { "pic": "❗" } },
+            { "key": "c.u16.l5.m-invite", "left": { "text": "invite" }, "right": { "pic": "✉️" } },
+            { "key": "c.u16.l5.m-scarf", "left": { "text": "scarf" }, "right": { "pic": "🧣" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u16.l5.b-river",
+              "hi": "मैं असहमत हूँ क्योंकि नदी गहरी है।",
+              "pic": "🌊",
+              "tiles": ["because", "disagree", "is", "deep.", "the", "river", "I"],
+              "answer": "I disagree because the river is deep."
+            },
+            {
+              "key": "c.u16.l5.b-come",
+              "hi": "क्या तुम हमारे साथ चलना चाहोगे?",
+              "pic": "🚶",
+              "tiles": ["come", "Would", "to", "like", "with", "us?", "you"],
+              "answer": "Would you like to come with us?"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u16.l5.p-so",
+              "prompt": { "en": "I was hungry, ___ I ate a banana." },
+              "options": [{ "text": "because" }, { "text": "so" }, { "text": "but" }],
+              "answer": 1,
+              "why": { "en": "so shows the result.", "hi": "so नतीजा बताता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u16.l5.s-season",
+              "model": "I think winter is better because it is cool.",
+              "cue": { "en": "Which is better, summer or winter? Give a reason." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u16.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means सहमत होना?" },
+          "options": [{ "text": "agree" }, { "text": "disagree" }, { "text": "opinion" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u16.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "exciting" },
+          "options": [{ "pic": "🥱" }, { "pic": "❗" }, { "pic": "🤩" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u16.l5.c-because",
+          "type": "choose",
+          "prompt": { "en": "We stayed at home ___ it was raining." },
+          "options": [{ "text": "so" }, { "text": "but" }, { "text": "because" }],
+          "answer": 2,
+          "why": { "en": "because gives a reason.", "hi": "because कारण बताता है।" }
+        },
+        {
+          "key": "c.u16.l5.c-but",
+          "type": "choose",
+          "prompt": { "en": "This kite is cheap, ___ it flies very high." },
+          "options": [{ "text": "so" }, { "text": "but" }, { "text": "because" }],
+          "answer": 1,
+          "why": { "en": "but shows a difference.", "hi": "but फ़र्क़ दिखाता है।" }
+        },
+        {
+          "key": "c.u16.l5.c-u15",
+          "type": "choose",
+          "prompt": { "en": "I'd like ___ to the fair." },
+          "options": [{ "text": "go" }, { "text": "going" }, { "text": "to go" }],
+          "answer": 2,
+          "why": { "en": "After would like, use to + the doing word.", "hi": "would like के बाद to + काम वाला शब्द।" }
+        },
+        {
+          "key": "c.u16.l5.c-u14",
+          "type": "choose",
+          "prompt": { "en": "This is the cat ___ sleeps on our roof." },
+          "options": [{ "text": "who" }, { "text": "where" }, { "text": "which" }],
+          "answer": 2,
+          "why": { "en": "For an animal, use which.", "hi": "जानवर के लिए which." }
+        },
+        {
+          "key": "c.u16.l5.c-u13",
+          "type": "choose",
+          "prompt": { "en": "May I ___ the window, ma'am?" },
+          "options": [{ "text": "opens" }, { "text": "open" }, { "text": "opened" }],
+          "answer": 1,
+          "why": { "en": "After may, use the simple form.", "hi": "may के बाद सादा रूप।" }
+        },
+        {
+          "key": "c.u16.l5.c-b",
+          "type": "build",
+          "hi": "मुझे लगता है स्कूल मज़ेदार है क्योंकि मैं सीखता/सीखती हूँ।",
+          "pic": "🏫",
+          "tiles": ["because", "I", "is", "fun", "think", "I", "school", "learn."],
+          "answer": "I think school is fun because I learn."
+        }
+      ],
+      "home": { "en": "Share one opinion and one reason with your family today.", "hi": "आज घरवालों को अपनी एक राय और उसका कारण बताओ।" }
+    }
+  ]
+}

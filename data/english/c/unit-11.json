@@ -1,0 +1,599 @@
+{
+  "track": "c",
+  "unit": 11,
+  "key": "c.u11",
+  "title": { "en": "Compare", "hi": "तुलना करो" },
+  "pic": "⚖️",
+  "can_do": { "en": "I can compare things.", "hi": "मैं चीज़ों की तुलना कर सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u11.l1",
+      "kind": "words",
+      "title": { "en": "Describing words", "hi": "वर्णन करने वाले शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "To compare, we need describing words. Learn them in pairs.", "hi": "तुलना के लिए वर्णन वाले शब्द चाहिए। इन्हें जोड़ों में सीखो।" },
+          "pic": "⚖️"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u11.l1.tall",
+              "en": "tall",
+              "hi": "लंबा, ऊँचा",
+              "pic": "🦒",
+              "example": { "en": "The coconut tree is very tall.", "hi": "नारियल का पेड़ बहुत ऊँचा है।" }
+            },
+            {
+              "key": "c.u11.l1.heavy",
+              "en": "heavy",
+              "hi": "भारी",
+              "pic": "🐘",
+              "example": { "en": "This bag of rice is heavy.", "hi": "चावल का यह थैला भारी है।" }
+            },
+            {
+              "key": "c.u11.l1.light",
+              "en": "light",
+              "hi": "हल्का",
+              "pic": "🎈",
+              "example": { "en": "A balloon is very light.", "hi": "गुब्बारा बहुत हल्का होता है।" }
+            },
+            { "key": "c.u11.l1.fast", "en": "fast", "hi": "तेज़", "pic": "🐎", "example": { "en": "Salma is a fast runner.", "hi": "सलमा तेज़ दौड़ती है।" } },
+            {
+              "key": "c.u11.l1.slow",
+              "en": "slow",
+              "hi": "धीमा",
+              "pic": "🐢",
+              "example": { "en": "The old bus is very slow.", "hi": "पुरानी बस बहुत धीमी है।" }
+            },
+            {
+              "key": "c.u11.l1.strong",
+              "en": "strong",
+              "hi": "ताक़तवर, मज़बूत",
+              "pic": "🐂",
+              "example": { "en": "The ox is strong. It pulls the cart.", "hi": "बैल ताक़तवर है। वह गाड़ी खींचता है।" }
+            },
+            {
+              "key": "c.u11.l1.cheap",
+              "en": "cheap",
+              "hi": "सस्ता",
+              "pic": "🏷️",
+              "example": { "en": "Bananas are cheap in this season.", "hi": "इस मौसम में केले सस्ते हैं।" }
+            },
+            {
+              "key": "c.u11.l1.expensive",
+              "en": "expensive",
+              "hi": "महँगा",
+              "pic": "💰",
+              "example": { "en": "This new bicycle is expensive.", "hi": "यह नई साइकिल महँगी है।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u11.l1.m-tall", "left": { "text": "tall" }, "right": { "pic": "🦒" } },
+            { "key": "c.u11.l1.m-heavy", "left": { "text": "heavy" }, "right": { "pic": "🐘" } },
+            { "key": "c.u11.l1.m-slow", "left": { "text": "slow" }, "right": { "pic": "🐢" } },
+            { "key": "c.u11.l1.m-strong", "left": { "text": "strong" }, "right": { "pic": "🐂" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u11.l1.p-light",
+              "prompt": { "en": "Which word is the opposite of heavy?" },
+              "options": [{ "text": "light" }, { "text": "tall" }, { "text": "cheap" }],
+              "answer": 0
+            },
+            {
+              "key": "c.u11.l1.p-fast",
+              "prompt": { "en": "Listen. Tap the picture.", "say": "fast" },
+              "options": [{ "pic": "🐎" }, { "pic": "🐢" }, { "pic": "🐘" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u11.l1.s-ox", "model": "The ox is strong. It pulls the cart.", "pic": "🐂" },
+            { "key": "c.u11.l1.s-bicycle", "model": "This new bicycle is expensive.", "pic": "🚲" },
+            { "key": "c.u11.l1.s-balloon", "model": "A balloon is very light.", "pic": "🎈" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u11.l1.c-cheap",
+          "type": "choose",
+          "prompt": { "en": "Which word means सस्ता?" },
+          "options": [{ "text": "cheap" }, { "text": "expensive" }, { "text": "strong" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u11.l1.c-exp",
+          "type": "choose",
+          "prompt": { "en": "Which word is the opposite of cheap?" },
+          "options": [{ "text": "expensive" }, { "text": "light" }, { "text": "slow" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u11.l1.c-slow",
+          "type": "choose",
+          "prompt": { "en": "Which word is the opposite of fast?" },
+          "options": [{ "text": "tall" }, { "text": "slow" }, { "text": "heavy" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u11.l1.c-tall",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "tall" },
+          "options": [{ "pic": "🐢" }, { "pic": "🎈" }, { "pic": "🦒" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u11.l1.c-heavy",
+          "type": "choose",
+          "prompt": { "en": "An elephant is very ___." },
+          "options": [{ "text": "light" }, { "text": "heavy" }, { "text": "cheap" }],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Find something heavy and something light at home. Say: This is heavy.",
+        "hi": "घर में कोई भारी और कोई हल्की चीज़ ढूँढो। कहो: This is heavy."
+      }
+    },
+    {
+      "key": "c.u11.l2",
+      "kind": "pattern",
+      "title": { "en": "taller, the tallest", "hi": "ज़्यादा लंबा, सबसे लंबा" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Compare two or more things", "hi": "दो या ज़्यादा चीज़ों की तुलना करो" },
+          "visual": "compare",
+          "examples": [
+            { "en": "The buffalo is heavier than the goat.", "hi": "भैंस बकरी से भारी है।", "pic": "🐃" },
+            { "en": "A bus is faster than a bicycle.", "hi": "बस साइकिल से तेज़ चलती है।", "pic": "🚌" },
+            { "en": "The giraffe is the tallest animal of all.", "hi": "जिराफ़ सबसे लंबा जानवर है।", "pic": "🦒" },
+            { "en": "Today, mangoes are more expensive than bananas.", "hi": "आज आम केलों से महँगे हैं।", "pic": "🥭" },
+            { "en": "This is the most beautiful kite at the haat.", "hi": "यह हाट की सबसे सुंदर पतंग है।", "pic": "🪁" },
+            { "en": "Meera is good at drawing, but Salma is better.", "hi": "मीरा चित्र बनाने में अच्छी है, पर सलमा उससे बेहतर है।", "pic": "🎨" },
+            { "en": "Today is the best day of my life!", "hi": "आज मेरी ज़िंदगी का सबसे अच्छा दिन है!", "pic": "🥳" }
+          ],
+          "note": {
+            "en": "Short words: add -er and -est (tall, taller, the tallest). Long words: more and the most. good → better → the best.",
+            "hi": "छोटे शब्द: -er और -est जोड़ो। लंबे शब्द: more और the most. good → better → the best."
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u11.l2.b-ox",
+              "hi": "बैल बकरी से ज़्यादा ताक़तवर है।",
+              "pic": "🐂",
+              "tiles": ["stronger", "is", "goat.", "than", "The", "ox", "the"],
+              "answer": "The ox is stronger than the goat."
+            },
+            {
+              "key": "c.u11.l2.b-kite",
+              "hi": "यह सबसे सस्ती पतंग है।",
+              "pic": "🪁",
+              "tiles": ["cheapest", "kite.", "the", "is", "This"],
+              "answer": "This is the cheapest kite."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u11.l2.p-er",
+              "prompt": { "en": "A tractor is ___ than a bicycle." },
+              "options": [{ "text": "heavier" }, { "text": "heavy" }, { "text": "heaviest" }],
+              "answer": 0,
+              "why": { "en": "Two things: -er and than. heavy → heavier.", "hi": "दो चीज़ें: -er और than. heavy → heavier." }
+            },
+            {
+              "key": "c.u11.l2.p-most",
+              "prompt": { "en": "This is the ___ shop in the town." },
+              "options": [{ "text": "most expensive" }, { "text": "expensivest" }, { "text": "more expensive" }],
+              "answer": 0,
+              "why": { "en": "A long word, and the top of many: the most expensive.", "hi": "लंबा शब्द और सबमें सबसे: the most expensive." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u11.l2.s-cow", "model": "A cow is bigger and heavier than a goat.", "cue": { "en": "Compare a cow and a goat." } },
+            { "key": "c.u11.l2.s-tallest", "model": "My father is the tallest in my family.", "cue": { "en": "Who is the tallest in your family?" } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u11.l2.c-b1",
+          "type": "build",
+          "hi": "मीरा अर्जुन से लंबी है।",
+          "pic": "👧",
+          "tiles": ["taller", "Meera", "than", "is", "Arjun."],
+          "answer": "Meera is taller than Arjun."
+        },
+        {
+          "key": "c.u11.l2.c-b2",
+          "type": "build",
+          "hi": "यह टोकरी का सबसे बड़ा आम है।",
+          "pic": "🥭",
+          "tiles": ["basket.", "mango", "the", "This", "in", "is", "the", "biggest"],
+          "answer": "This is the biggest mango in the basket."
+        },
+        {
+          "key": "c.u11.l2.c-than",
+          "type": "choose",
+          "prompt": { "en": "The bus is faster ___ the bicycle." },
+          "options": [{ "text": "then" }, { "text": "that" }, { "text": "than" }],
+          "answer": 2,
+          "why": { "en": "We compare with than.", "hi": "तुलना में than आता है।" }
+        },
+        {
+          "key": "c.u11.l2.c-best",
+          "type": "choose",
+          "prompt": { "en": "Dadi makes the ___ kheer in the village!" },
+          "options": [{ "text": "best" }, { "text": "good" }, { "text": "better" }],
+          "answer": 0,
+          "why": { "en": "good → better → the best.", "hi": "good (अच्छा) → better (बेहतर) → the best (सबसे अच्छा)." }
+        },
+        {
+          "key": "c.u11.l2.c-est",
+          "type": "choose",
+          "prompt": { "en": "Who is the ___ runner in your class?" },
+          "options": [{ "text": "fast" }, { "text": "fastest" }, { "text": "faster" }],
+          "answer": 1,
+          "why": { "en": "More than two things: the + -est.", "hi": "दो से ज़्यादा में सबसे: the + -est." }
+        },
+        {
+          "key": "c.u11.l2.c-er",
+          "type": "choose",
+          "prompt": { "en": "A bicycle is ___ than a tractor." },
+          "options": [{ "text": "cheaper" }, { "text": "cheapest" }, { "text": "more cheap" }],
+          "answer": 0,
+          "why": { "en": "Two things: add -er and use than.", "hi": "दो चीज़ों की तुलना: -er और than." }
+        }
+      ],
+      "home": { "en": "Compare two things at home: The … is bigger than the …", "hi": "घर की दो चीज़ों की तुलना करो: The … is bigger than the …" }
+    },
+    {
+      "key": "c.u11.l3",
+      "kind": "listen",
+      "title": { "en": "At the kite stall", "hi": "पतंग की दुकान पर" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Which kite is the best?", "hi": "कौन-सी पतंग सबसे अच्छी है?" },
+          "scene": {
+            "place": "market",
+            "pics": [
+              { "pic": "own:haat", "x": 82, "y": 14, "size": 2 },
+              { "pic": "🪁", "x": 44, "y": 16, "size": 1.2 },
+              { "pic": "🪁", "x": 56, "y": 12, "size": 1.4 },
+              { "pic": "🪁", "x": 68, "y": 18, "size": 1.6 },
+              { "pic": "👧", "x": 20, "y": 44, "size": 1.4 },
+              { "pic": "👦", "x": 34, "y": 46, "size": 1.3 },
+              { "pic": "🧓", "x": 62, "y": 42, "size": 1.4 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Arjun", "pic": "👦", "en": "Look, Meera! These kites are beautiful." },
+            { "speaker": "Meera", "pic": "👧", "en": "The red kite is bigger than the blue one." },
+            { "speaker": "Arjun", "pic": "👦", "en": "But the blue kite is lighter. It will fly higher." },
+            { "speaker": "Seller", "pic": "🧓", "en": "The green kite is the biggest and the best." },
+            { "speaker": "Meera", "pic": "👧", "en": "How much is the green kite?" },
+            { "speaker": "Seller", "pic": "🧓", "en": "It is forty rupees. It is the most expensive." },
+            { "speaker": "Arjun", "pic": "👦", "en": "The blue kite is cheaper. It is only twenty rupees." },
+            { "speaker": "Meera", "pic": "👧", "en": "Let's buy the blue one. It is light and cheap." },
+            { "speaker": "Arjun", "pic": "👦", "en": "Yes! It is the best kite for us." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u11.l3.p-big",
+              "prompt": { "en": "Which kite is the biggest?" },
+              "options": [{ "text": "the green kite" }, { "text": "the red kite" }, { "text": "the blue kite" }],
+              "answer": 0
+            },
+            {
+              "key": "c.u11.l3.p-light",
+              "prompt": { "en": "Why does Arjun like the blue kite?" },
+              "options": [{ "text": "It is the biggest." }, { "text": "It is lighter." }, { "text": "It is the most expensive." }],
+              "answer": 1
+            },
+            {
+              "key": "c.u11.l3.p-price",
+              "prompt": { "en": "How much is the green kite?" },
+              "options": [{ "text": "twenty rupees" }, { "text": "forty rupees" }, { "text": "fifty rupees" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u11.l3.s-red", "model": "The red kite is bigger than the blue one.", "pic": "🪁" },
+            { "key": "c.u11.l3.s-blue", "model": "The blue kite is cheaper. It is only twenty rupees.", "pic": "🏷️" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u11.l3.c-buy",
+          "type": "choose",
+          "prompt": { "en": "Which kite do they buy?" },
+          "options": [{ "text": "the red kite" }, { "text": "the green kite" }, { "text": "the blue kite" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u11.l3.c-cheap",
+          "type": "choose",
+          "prompt": { "en": "How much is the blue kite?" },
+          "options": [{ "text": "forty rupees" }, { "text": "ten rupees" }, { "text": "twenty rupees" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u11.l3.c-exp",
+          "type": "choose",
+          "prompt": { "en": "Which kite is the most expensive?" },
+          "options": [{ "text": "the blue one" }, { "text": "the green one" }, { "text": "the red one" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u11.l3.c-cmp",
+          "type": "choose",
+          "prompt": { "en": "The red kite is ___ than the blue one." },
+          "options": [{ "text": "biggest" }, { "text": "bigger" }, { "text": "big" }],
+          "answer": 1,
+          "why": { "en": "Two things: add -er and use than.", "hi": "दो चीज़ों की तुलना: -er और than." }
+        }
+      ],
+      "home": { "en": "Ask at home: Which is heavier, a mango or a coconut?", "hi": "घर पर पूछो: Which is heavier, a mango or a coconut?" }
+    },
+    {
+      "key": "c.u11.l4",
+      "kind": "speak",
+      "title": { "en": "Compare two pictures", "hi": "दो तस्वीरों की तुलना करो" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Look at both sides of the picture. Compare them with -er, than and the most.",
+            "hi": "तस्वीर के दोनों हिस्से देखो। -er, than और the most से तुलना करो।"
+          },
+          "pic": "⚖️"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🌳", "x": 14, "y": 16, "size": 2.4 },
+              { "pic": "🏠", "x": 34, "y": 34, "size": 1.2 },
+              { "pic": "🐘", "x": 70, "y": 36, "size": 2 },
+              { "pic": "🐐", "x": 88, "y": 46, "size": 1 },
+              { "pic": "🚌", "x": 18, "y": 54, "size": 1.3 },
+              { "pic": "🚲", "x": 40, "y": 54, "size": 1 }
+            ]
+          },
+          "questions": [
+            { "key": "c.u11.l4.q-tree", "en": "Which is taller, the tree or the house?", "model": "The tree is taller than the house." },
+            { "key": "c.u11.l4.q-heavy", "en": "Which is heavier, the elephant or the goat?", "model": "The elephant is much heavier than the goat." },
+            { "key": "c.u11.l4.q-fast", "en": "Which is faster, the bus or the bicycle?", "model": "The bus is faster than the bicycle." },
+            { "key": "c.u11.l4.q-biggest", "en": "Which animal is the biggest?", "model": "The elephant is the biggest animal in the picture." }
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u11.l4.br-goat",
+              "hi": "हाथी बकरी से भारी है।",
+              "tiles": ["elephant", "The", "the", "goat.", "than", "heavier", "is"],
+              "answer": "The elephant is heavier than the goat."
+            },
+            {
+              "key": "c.u11.l4.br-soap",
+              "hi": "यह सबसे सस्ता साबुन है।",
+              "tiles": ["is", "cheapest", "soap.", "This", "the"],
+              "answer": "This is the cheapest soap."
+            },
+            {
+              "key": "c.u11.l4.br-sister",
+              "hi": "मेरी बहन मुझसे लंबी है।",
+              "tiles": ["sister", "is", "me.", "than", "taller", "My"],
+              "answer": "My sister is taller than me."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u11.l4.s-pets", "model": "My dog is faster than my cat, but my cat is quieter.", "cue": { "en": "Compare two animals you know." } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u11.l4.c-slower",
+          "type": "choose",
+          "prompt": { "en": "Which is slower, a tortoise or a horse?" },
+          "options": [{ "text": "The tortoise is slower." }, { "text": "The horse is slower." }, { "text": "They are the same." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u11.l4.c-b",
+          "type": "build",
+          "hi": "बस ऑटो से बड़ी है।",
+          "pic": "🛺",
+          "tiles": ["bigger", "the", "bus", "The", "than", "auto.", "is"],
+          "answer": "The bus is bigger than the auto."
+        },
+        {
+          "key": "c.u11.l4.c-better",
+          "type": "choose",
+          "prompt": { "en": "My English is ___ now than before!" },
+          "options": [{ "text": "best" }, { "text": "better" }, { "text": "gooder" }],
+          "answer": 1,
+          "why": { "en": "good → better → the best.", "hi": "good (अच्छा) → better (बेहतर) → the best (सबसे अच्छा)." }
+        },
+        {
+          "key": "c.u11.l4.c-most",
+          "type": "choose",
+          "prompt": { "en": "This is the ___ book in the library." },
+          "options": [{ "text": "interestingest" }, { "text": "most interesting" }, { "text": "more interesting" }],
+          "answer": 1,
+          "why": { "en": "A long word, and the top of many: the most.", "hi": "लंबा शब्द और सबमें सबसे: the most." }
+        }
+      ],
+      "home": { "en": "Compare two things in your kitchen: The … is heavier than the …", "hi": "रसोई की दो चीज़ों की तुलना करो: The … is heavier than the …" }
+    },
+    {
+      "key": "c.u11.l5",
+      "kind": "review",
+      "title": { "en": "Unit 11 review", "hi": "इकाई 11 की दोहराई" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u11.l5.m-light", "left": { "text": "light" }, "right": { "pic": "🎈" } },
+            { "key": "c.u11.l5.m-cheap", "left": { "text": "cheap" }, "right": { "pic": "🏷️" } },
+            { "key": "c.u11.l5.m-expensive", "left": { "text": "expensive" }, "right": { "pic": "💰" } },
+            { "key": "c.u11.l5.m-river", "left": { "text": "river" }, "right": { "pic": "🌊" } },
+            { "key": "c.u11.l5.m-boat", "left": { "text": "boat" }, "right": { "pic": "🛶" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u11.l5.b-fastest",
+              "hi": "सलमा हमारी कक्षा में सबसे तेज़ दौड़ती है।",
+              "pic": "🏃",
+              "tiles": ["is", "Salma", "class.", "runner", "the", "our", "fastest", "in"],
+              "answer": "Salma is the fastest runner in our class."
+            },
+            {
+              "key": "c.u11.l5.b-forest",
+              "hi": "हम पापा के साथ जंगल गए।",
+              "pic": "🌲",
+              "tiles": ["went", "with", "Papa.", "to", "the", "We", "forest"],
+              "answer": "We went to the forest with Papa."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u11.l5.p-bigger",
+              "prompt": { "en": "A mango is ___ than a grape." },
+              "options": [{ "text": "biggest" }, { "text": "bigger" }, { "text": "big" }],
+              "answer": 1,
+              "why": { "en": "Two things: add -er and use than.", "hi": "दो चीज़ों की तुलना: -er और than." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u11.l5.s-season",
+              "model": "Winter is the best season. It is cooler than summer.",
+              "cue": { "en": "Which season is the best? Compare it with another." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u11.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means भारी?" },
+          "options": [{ "text": "heavy" }, { "text": "light" }, { "text": "strong" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u11.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "strong" },
+          "options": [{ "pic": "🐂" }, { "pic": "🎈" }, { "pic": "🐢" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u11.l5.c-er",
+          "type": "choose",
+          "prompt": { "en": "The ox is ___ than the dog." },
+          "options": [{ "text": "strongest" }, { "text": "strong" }, { "text": "stronger" }],
+          "answer": 2,
+          "why": { "en": "Two things: add -er and use than.", "hi": "दो चीज़ों की तुलना: -er और than." }
+        },
+        {
+          "key": "c.u11.l5.c-est",
+          "type": "choose",
+          "prompt": { "en": "This is the ___ day of the summer." },
+          "options": [{ "text": "hotter" }, { "text": "hottest" }, { "text": "hot" }],
+          "answer": 1,
+          "why": { "en": "More than two things: the + -est.", "hi": "दो से ज़्यादा में सबसे: the + -est." }
+        },
+        {
+          "key": "c.u11.l5.c-better",
+          "type": "choose",
+          "prompt": { "en": "Your drawing is ___ than mine!" },
+          "options": [{ "text": "best" }, { "text": "better" }, { "text": "good" }],
+          "answer": 1,
+          "why": { "en": "good → better → the best.", "hi": "good (अच्छा) → better (बेहतर) → the best (सबसे अच्छा)." }
+        },
+        {
+          "key": "c.u11.l5.c-u10",
+          "type": "choose",
+          "prompt": { "en": "Yesterday, Arjun ___ a snake in the field." },
+          "options": [{ "text": "sees" }, { "text": "seed" }, { "text": "saw" }],
+          "answer": 2,
+          "why": { "en": "This word changes in the past. Learn it as a pair.", "hi": "यह शब्द बीते समय में बदल जाता है। इसे जोड़े में याद करो।" }
+        },
+        {
+          "key": "c.u11.l5.c-u9",
+          "type": "choose",
+          "prompt": { "en": "Which word ends a story?" },
+          "options": [{ "text": "Finally" }, { "text": "First" }, { "text": "Next" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u11.l5.c-b",
+          "type": "build",
+          "hi": "हरी पतंग सबसे महँगी है।",
+          "pic": "🪁",
+          "tiles": ["green", "most", "expensive.", "is", "kite", "the", "The"],
+          "answer": "The green kite is the most expensive."
+        }
+      ],
+      "home": { "en": "Tell your family: The best thing about today was …", "hi": "घरवालों को बताओ: The best thing about today was …" }
+    }
+  ]
+}

@@ -1,0 +1,678 @@
+{
+  "track": "c",
+  "unit": 14,
+  "key": "c.u14",
+  "title": { "en": "People and places", "hi": "लोग और जगहें" },
+  "pic": "👪",
+  "can_do": { "en": "I can describe people.", "hi": "मैं लोगों का वर्णन कर सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u14.l1",
+      "kind": "words",
+      "title": { "en": "Describing people", "hi": "लोगों का वर्णन" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "How do people look? What are they like? Learn words to describe them.",
+            "hi": "लोग कैसे दिखते हैं? उनका स्वभाव कैसा है? उनका वर्णन करने के शब्द सीखो।"
+          },
+          "pic": "👀"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u14.l1.glasses",
+              "en": "glasses",
+              "hi": "चश्मा",
+              "pic": "👓",
+              "example": { "en": "Ms Anita wears glasses.", "hi": "अनीता मैडम चश्मा पहनती हैं।" }
+            },
+            {
+              "key": "c.u14.l1.scarf",
+              "en": "scarf",
+              "hi": "स्कार्फ़, दुपट्टा",
+              "pic": "🧣",
+              "example": { "en": "Salma has a green scarf.", "hi": "सलमा के पास हरा स्कार्फ़ है।" }
+            },
+            {
+              "key": "c.u14.l1.cap",
+              "en": "cap",
+              "hi": "टोपी",
+              "pic": "🧢",
+              "example": { "en": "Arjun wears a blue cap for cricket.", "hi": "अर्जुन क्रिकेट के लिए नीली टोपी पहनता है।" }
+            },
+            {
+              "key": "c.u14.l1.smile",
+              "en": "smile",
+              "hi": "मुस्कान",
+              "pic": "😊",
+              "example": { "en": "Dadi has a lovely smile.", "hi": "दादी की मुस्कान प्यारी है।" }
+            },
+            {
+              "key": "c.u14.l1.kind",
+              "en": "kind",
+              "hi": "दयालु",
+              "pic": "😇",
+              "example": { "en": "Dr Khan is kind to everyone.", "hi": "डॉक्टर ख़ान सबके साथ दयालु हैं।" }
+            },
+            {
+              "key": "c.u14.l1.funny",
+              "en": "funny",
+              "hi": "मज़ेदार",
+              "pic": "😄",
+              "example": { "en": "Papa tells funny stories.", "hi": "पापा मज़ेदार कहानियाँ सुनाते हैं।" }
+            },
+            {
+              "key": "c.u14.l1.shy",
+              "en": "shy",
+              "hi": "शर्मीला",
+              "pic": "😳",
+              "example": { "en": "The new boy is a little shy.", "hi": "नया लड़का थोड़ा शर्मीला है।" }
+            },
+            {
+              "key": "c.u14.l1.neighbour",
+              "en": "neighbour",
+              "hi": "पड़ोसी",
+              "pic": "🏘️",
+              "example": { "en": "Our neighbour has three goats.", "hi": "हमारे पड़ोसी के पास तीन बकरियाँ हैं।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u14.l1.m-glasses", "left": { "text": "glasses" }, "right": { "pic": "👓" } },
+            { "key": "c.u14.l1.m-scarf", "left": { "text": "scarf" }, "right": { "pic": "🧣" } },
+            { "key": "c.u14.l1.m-cap", "left": { "text": "cap" }, "right": { "pic": "🧢" } },
+            { "key": "c.u14.l1.m-shy", "left": { "text": "shy" }, "right": { "pic": "😳" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u14.l1.p-kind",
+              "prompt": { "en": "Which word means दयालु?" },
+              "options": [{ "text": "kind" }, { "text": "shy" }, { "text": "funny" }],
+              "answer": 0
+            },
+            {
+              "key": "c.u14.l1.p-smile",
+              "prompt": { "en": "Listen. Tap the picture.", "say": "smile" },
+              "options": [{ "pic": "😳" }, { "pic": "😊" }, { "pic": "👓" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u14.l1.s-glasses", "model": "Ms Anita wears glasses.", "pic": "👓" },
+            { "key": "c.u14.l1.s-smile", "model": "Dadi has a lovely smile.", "pic": "😊" },
+            { "key": "c.u14.l1.s-shy", "model": "The new boy is a little shy.", "pic": "😳" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u14.l1.c-funny",
+          "type": "choose",
+          "prompt": { "en": "Papa makes everyone laugh. He is ___." },
+          "options": [{ "text": "shy" }, { "text": "slow" }, { "text": "funny" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u14.l1.c-neighbour",
+          "type": "choose",
+          "prompt": { "en": "Which word means पड़ोसी?" },
+          "options": [{ "text": "scarf" }, { "text": "neighbour" }, { "text": "glasses" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u14.l1.c-glasses",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "glasses" },
+          "options": [{ "pic": "🧢" }, { "pic": "🧣" }, { "pic": "👓" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u14.l1.c-shy",
+          "type": "choose",
+          "prompt": { "en": "Gopal speaks very quietly with new people. He is ___." },
+          "options": [{ "text": "funny" }, { "text": "shy" }, { "text": "strong" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u14.l1.c-cap",
+          "type": "choose",
+          "prompt": { "en": "Arjun wears a ___ for cricket." },
+          "options": [{ "text": "scarf" }, { "text": "smile" }, { "text": "cap" }],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Describe a family member in one sentence: My … has a lovely smile.",
+        "hi": "घर के किसी सदस्य का एक वाक्य में वर्णन करो: My … has a lovely smile."
+      }
+    },
+    {
+      "key": "c.u14.l2",
+      "kind": "pattern",
+      "title": { "en": "Describing people: who and which", "hi": "लोगों का वर्णन: who और which" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Say who someone is", "hi": "बताओ कोई कौन है" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "Ms Anita is tall and wears glasses.",
+              "hi": "अनीता मैडम लंबी हैं और चश्मा पहनती हैं।",
+              "parts": [
+                { "text": "Ms Anita", "role": "who" },
+                { "text": "is", "role": "do" },
+                { "text": "tall", "role": "what" },
+                { "text": "and", "role": "other" },
+                { "text": "wears", "role": "do" },
+                { "text": "glasses.", "role": "what" }
+              ],
+              "pic": "👩‍🏫"
+            },
+            {
+              "en": "Dadi has long white hair.",
+              "hi": "दादी के बाल लंबे और सफ़ेद हैं।",
+              "parts": [{ "text": "Dadi", "role": "who" }, { "text": "has", "role": "do" }, { "text": "long white hair.", "role": "what" }],
+              "pic": "👵"
+            },
+            {
+              "en": "Salma is the girl who is wearing a green scarf.",
+              "hi": "सलमा वह लड़की है जो हरा स्कार्फ़ पहने है।",
+              "parts": [
+                { "text": "Salma", "role": "who" },
+                { "text": "is", "role": "do" },
+                { "text": "the girl", "role": "what" },
+                { "text": "who is wearing a green scarf.", "role": "other" }
+              ],
+              "pic": "🧕"
+            },
+            {
+              "en": "Dr Khan is the doctor who helped Arjun.",
+              "hi": "डॉक्टर ख़ान वही डॉक्टर हैं जिन्होंने अर्जुन की मदद की।",
+              "parts": [
+                { "text": "Dr Khan", "role": "who" },
+                { "text": "is", "role": "do" },
+                { "text": "the doctor", "role": "what" },
+                { "text": "who helped Arjun.", "role": "other" }
+              ],
+              "pic": "👩‍⚕️"
+            },
+            {
+              "en": "This is the bus which goes to the town.",
+              "hi": "यह वह बस है जो शहर जाती है।",
+              "parts": [
+                { "text": "This", "role": "who" },
+                { "text": "is", "role": "do" },
+                { "text": "the bus", "role": "what" },
+                { "text": "which goes to the town.", "role": "other" }
+              ],
+              "pic": "🚌"
+            },
+            {
+              "en": "Which boy is your brother? The boy with the kite.",
+              "hi": "कौन-सा लड़का तुम्हारा भाई है? पतंग वाला लड़का।",
+              "parts": [
+                { "text": "Which boy", "role": "ask" },
+                { "text": "is", "role": "do" },
+                { "text": "your brother?", "role": "what" },
+                { "text": "The boy with the kite.", "role": "other" }
+              ],
+              "pic": "🪁"
+            }
+          ],
+          "note": {
+            "en": "Use who for people, and which for things and animals. Which also asks: which one?",
+            "hi": "लोगों के लिए who, चीज़ों और जानवरों के लिए which. which से 'कौन-सा' भी पूछते हैं।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u14.l2.b-ravi",
+              "hi": "रवि वह आदमी हैं जो चावल बेचते हैं।",
+              "pic": "👨",
+              "tiles": ["is", "man", "rice.", "Ravi", "who", "the", "sells"],
+              "answer": "Ravi is the man who sells rice."
+            },
+            {
+              "key": "c.u14.l2.b-cow",
+              "hi": "यह वह गाय है जो दूध देती है।",
+              "pic": "🐄",
+              "tiles": ["milk.", "This", "is", "the", "gives", "which", "cow"],
+              "answer": "This is the cow which gives milk."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u14.l2.p-who",
+              "prompt": { "en": "Ms Anita is the teacher ___ teaches us English." },
+              "options": [{ "text": "who" }, { "text": "which" }, { "text": "where" }],
+              "answer": 0,
+              "why": { "en": "For a person, use who.", "hi": "व्यक्ति के लिए who आता है।" }
+            },
+            {
+              "key": "c.u14.l2.p-which",
+              "prompt": { "en": "This is the kite ___ flew the highest." },
+              "options": [{ "text": "which" }, { "text": "who" }, { "text": "when" }],
+              "answer": 0,
+              "why": { "en": "For a thing or an animal, use which.", "hi": "चीज़ या जानवर के लिए which आता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u14.l2.s-friend", "model": "My best friend is tall and has a big smile.", "cue": { "en": "Describe your best friend." } },
+            { "key": "c.u14.l2.s-kind", "model": "My grandmother is the kindest person I know.", "cue": { "en": "Describe a kind person you know." } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u14.l2.c-b1",
+          "type": "build",
+          "hi": "जोसेफ़ वह लड़का है जो चश्मा पहनता है।",
+          "pic": "👓",
+          "tiles": ["wears", "who", "Joseph", "boy", "is", "glasses.", "the"],
+          "answer": "Joseph is the boy who wears glasses."
+        },
+        {
+          "key": "c.u14.l2.c-b2",
+          "type": "build",
+          "hi": "कौन-सा बैग तुम्हारा है?",
+          "pic": "🎒",
+          "tiles": ["is", "yours?", "Which", "bag"],
+          "answer": "Which bag is yours?"
+        },
+        {
+          "key": "c.u14.l2.c-who",
+          "type": "choose",
+          "prompt": { "en": "Dr Khan is the doctor ___ works at the health centre." },
+          "options": [{ "text": "which" }, { "text": "who" }, { "text": "what" }],
+          "answer": 1,
+          "why": { "en": "For a person, use who.", "hi": "व्यक्ति के लिए who आता है।" }
+        },
+        {
+          "key": "c.u14.l2.c-which",
+          "type": "choose",
+          "prompt": { "en": "This is the road ___ goes to the river." },
+          "options": [{ "text": "which" }, { "text": "who" }, { "text": "why" }],
+          "answer": 0,
+          "why": { "en": "For a thing or an animal, use which.", "hi": "चीज़ या जानवर के लिए which आता है।" }
+        },
+        {
+          "key": "c.u14.l2.c-has",
+          "type": "choose",
+          "prompt": { "en": "Dadi ___ long white hair." },
+          "options": [{ "text": "has" }, { "text": "have" }, { "text": "is" }],
+          "answer": 0,
+          "why": { "en": "With he, she or a name, use has.", "hi": "he, she या नाम के साथ has." }
+        },
+        {
+          "key": "c.u14.l2.c-wears",
+          "type": "choose",
+          "prompt": { "en": "Arjun ___ a cap when he plays." },
+          "options": [{ "text": "wear" }, { "text": "wears" }, { "text": "wearing" }],
+          "answer": 1,
+          "why": { "en": "With he, she or a name, add -s.", "hi": "he, she या नाम के साथ -s लगता है।" }
+        }
+      ],
+      "home": { "en": "Play Guess Who at home: describe someone, and let others guess.", "hi": "घर पर Guess Who खेलो: किसी का वर्णन करो, बाक़ी अंदाज़ा लगाएँ।" }
+    },
+    {
+      "key": "c.u14.l3",
+      "kind": "listen",
+      "title": { "en": "Guess who!", "hi": "बताओ कौन?" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Meera's guessing game", "hi": "मीरा का अंदाज़ा लगाने वाला खेल" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🏠", "x": 82, "y": 14, "size": 1.8 },
+              { "pic": "👧", "x": 30, "y": 42, "size": 1.5 },
+              { "pic": "👦", "x": 52, "y": 44, "size": 1.4 },
+              { "pic": "🤔", "x": 62, "y": 26, "size": 1 },
+              { "pic": "❓", "x": 42, "y": 22, "size": 1 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Let's play Guess Who! I am thinking of a person." },
+            { "speaker": "Arjun", "pic": "👦", "en": "Is it a man or a woman?" },
+            { "speaker": "Meera", "pic": "👧", "en": "A woman. She has short hair, and she wears glasses." },
+            { "speaker": "Arjun", "pic": "👦", "en": "Is she tall?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Yes, she is quite tall. She is kind and funny too." },
+            { "speaker": "Arjun", "pic": "👦", "en": "Does she work at the health centre?" },
+            { "speaker": "Meera", "pic": "👧", "en": "No. She is the person who teaches us English!" },
+            { "speaker": "Arjun", "pic": "👦", "en": "I know! It's Ms Anita!" },
+            { "speaker": "Meera", "pic": "👧", "en": "Yes! Now it's your turn." },
+            { "speaker": "Arjun", "pic": "👦", "en": "Okay. I am thinking of an animal which gives us milk." },
+            { "speaker": "Meera", "pic": "👧", "en": "That's easy! It's our cow, Gauri!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u14.l3.p-man",
+              "prompt": { "en": "Is the person a man or a woman?" },
+              "options": [{ "text": "a man" }, { "text": "a woman" }, { "text": "a child" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u14.l3.p-wear",
+              "prompt": { "en": "What does she wear?" },
+              "options": [{ "text": "a cap" }, { "text": "a red scarf" }, { "text": "glasses" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u14.l3.p-who",
+              "prompt": { "en": "Who is the person?" },
+              "options": [{ "text": "Ms Anita" }, { "text": "Dr Khan" }, { "text": "Dadi" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u14.l3.s-hair", "model": "She has short hair, and she wears glasses.", "pic": "👓" },
+            { "key": "c.u14.l3.s-teaches", "model": "She is the person who teaches us English.", "pic": "👩‍🏫" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u14.l3.c-tall",
+          "type": "choose",
+          "prompt": { "en": "Is Ms Anita tall?" },
+          "options": [{ "text": "No, she is short." }, { "text": "We don't know." }, { "text": "Yes, quite tall." }],
+          "answer": 2
+        },
+        {
+          "key": "c.u14.l3.c-like",
+          "type": "choose",
+          "prompt": { "en": "What is Ms Anita like?" },
+          "options": [{ "text": "kind and funny" }, { "text": "shy and slow" }, { "text": "angry and loud" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u14.l3.c-animal",
+          "type": "choose",
+          "prompt": { "en": "What is Arjun's animal?" },
+          "options": [{ "text": "a goat" }, { "text": "a dog" }, { "text": "a cow" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u14.l3.c-word",
+          "type": "choose",
+          "prompt": { "en": "Arjun says: an animal ___ gives us milk." },
+          "options": [{ "text": "who" }, { "text": "which" }, { "text": "where" }],
+          "answer": 1,
+          "why": { "en": "For a thing or an animal, use which.", "hi": "चीज़ या जानवर के लिए which आता है।" }
+        }
+      ],
+      "home": { "en": "Describe your teacher to your family, but don't say the name.", "hi": "नाम बताए बिना अपने अध्यापक का वर्णन घरवालों से करो।" }
+    },
+    {
+      "key": "c.u14.l4",
+      "kind": "speak",
+      "title": { "en": "Guess who", "hi": "बताओ कौन" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Look at the people in the picture. Describe them so a friend can guess.",
+            "hi": "तस्वीर में लोगों को देखो। उनका ऐसा वर्णन करो कि दोस्त पहचान ले।"
+          },
+          "pic": "👀"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "👴", "x": 12, "y": 36, "size": 1.5 },
+              { "pic": "👓", "x": 12, "y": 20, "size": 0.7 },
+              { "pic": "🧕", "x": 30, "y": 40, "size": 1.4 },
+              { "pic": "🧣", "x": 30, "y": 54, "size": 0.7 },
+              { "pic": "👦", "x": 50, "y": 40, "size": 1.4 },
+              { "pic": "🧢", "x": 50, "y": 24, "size": 0.8 },
+              { "pic": "👩‍🌾", "x": 70, "y": 38, "size": 1.5 },
+              { "pic": "🧺", "x": 76, "y": 52, "size": 0.8 },
+              { "pic": "👧", "x": 88, "y": 42, "size": 1.3 },
+              { "pic": "🪁", "x": 94, "y": 18, "size": 0.9 }
+            ]
+          },
+          "questions": [
+            { "key": "c.u14.l4.q-glasses", "en": "Who is wearing glasses?", "model": "The old man is wearing glasses." },
+            { "key": "c.u14.l4.q-scarf", "en": "Describe the girl with the scarf.", "model": "She is the girl who is wearing a warm scarf." },
+            { "key": "c.u14.l4.q-cap", "en": "Which boy is wearing a cap?", "model": "The boy in the middle is wearing a cap." },
+            { "key": "c.u14.l4.q-basket", "en": "Who is carrying a basket?", "model": "The woman farmer is carrying a basket." },
+            { "key": "c.u14.l4.q-kite", "en": "Which child has a kite?", "model": "The girl on the right has a kite." }
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u14.l4.br-sister",
+              "hi": "जो लड़की चश्मा पहनती है, वह मेरी बहन है।",
+              "tiles": ["who", "sister.", "is", "my", "The", "wears", "glasses", "girl"],
+              "answer": "The girl who wears glasses is my sister."
+            },
+            {
+              "key": "c.u14.l4.br-kind",
+              "hi": "मेरे पड़ोसी बहुत दयालु हैं।",
+              "tiles": ["kind.", "is", "My", "neighbour", "very"],
+              "answer": "My neighbour is very kind."
+            },
+            { "key": "c.u14.l4.br-which", "hi": "कौन-सी टोपी तुम्हारी है?", "tiles": ["is", "cap", "yours?", "Which"], "answer": "Which cap is yours?" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "describe",
+          "prompts": [
+            {
+              "key": "c.u14.l4.s-person",
+              "model": "This person is old, wears glasses and has a kind smile.",
+              "cue": { "en": "Describe one person in the picture. Don't say who!" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u14.l4.c-cap",
+          "type": "choose",
+          "prompt": { "en": "Who is wearing a cap?" },
+          "options": [{ "text": "the boy" }, { "text": "the old man" }, { "text": "the woman farmer" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u14.l4.c-b",
+          "type": "build",
+          "hi": "जो आदमी चश्मा पहनते हैं, वे मेरे दादाजी हैं।",
+          "pic": "👴",
+          "tiles": ["my", "wears", "who", "is", "The", "man", "glasses", "grandfather."],
+          "answer": "The man who wears glasses is my grandfather."
+        },
+        {
+          "key": "c.u14.l4.c-which",
+          "type": "choose",
+          "prompt": { "en": "___ girl has the kite?" },
+          "options": [{ "text": "Which" }, { "text": "Who" }, { "text": "Where" }],
+          "answer": 0,
+          "why": { "en": "Which asks: which one of them?", "hi": "which से पूछते हैं: इनमें से कौन-सा?" }
+        },
+        {
+          "key": "c.u14.l4.c-rel",
+          "type": "choose",
+          "prompt": { "en": "The woman ___ is carrying a basket is a farmer." },
+          "options": [{ "text": "who" }, { "text": "which" }, { "text": "what" }],
+          "answer": 0,
+          "why": { "en": "For a person, use who.", "hi": "व्यक्ति के लिए who आता है।" }
+        }
+      ],
+      "home": {
+        "en": "Describe a neighbour kindly in English: Our neighbour is …",
+        "hi": "अंग्रेज़ी में किसी पड़ोसी का अच्छे शब्दों में वर्णन करो: Our neighbour is …"
+      }
+    },
+    {
+      "key": "c.u14.l5",
+      "kind": "review",
+      "title": { "en": "Unit 14 review", "hi": "इकाई 14 की दोहराई" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u14.l5.m-kind", "left": { "text": "kind" }, "right": { "pic": "😇" } },
+            { "key": "c.u14.l5.m-funny", "left": { "text": "funny" }, "right": { "pic": "😄" } },
+            { "key": "c.u14.l5.m-neighbour", "left": { "text": "neighbour" }, "right": { "pic": "🏘️" } },
+            { "key": "c.u14.l5.m-ruler", "left": { "text": "ruler" }, "right": { "pic": "📏" } },
+            { "key": "c.u14.l5.m-seat", "left": { "text": "seat" }, "right": { "pic": "🪑" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u14.l5.b-sings",
+              "hi": "सलमा वह लड़की है जो सबसे अच्छा गाती है।",
+              "pic": "🎤",
+              "tiles": ["is", "best.", "girl", "the", "sings", "who", "Salma"],
+              "answer": "Salma is the girl who sings best."
+            },
+            {
+              "key": "c.u14.l5.b-window",
+              "hi": "क्या आप खिड़की खोल सकते हैं?",
+              "pic": "🏠",
+              "tiles": ["you", "open", "Could", "window,", "the", "please?"],
+              "answer": "Could you open the window, please?"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u14.l5.p-who",
+              "prompt": { "en": "The man ___ sells kites is very funny." },
+              "options": [{ "text": "which" }, { "text": "where" }, { "text": "who" }],
+              "answer": 2,
+              "why": { "en": "For a person, use who.", "hi": "व्यक्ति के लिए who आता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u14.l5.s-friend",
+              "model": "My best friend is short and funny. She has curly hair.",
+              "cue": { "en": "Describe your best friend in two sentences." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u14.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means चश्मा?" },
+          "options": [{ "text": "glasses" }, { "text": "scarf" }, { "text": "cap" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u14.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "neighbour" },
+          "options": [{ "pic": "😳" }, { "pic": "🧢" }, { "pic": "🏘️" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u14.l5.c-who",
+          "type": "choose",
+          "prompt": { "en": "Ravi uncle is the man ___ runs the grocery shop." },
+          "options": [{ "text": "which" }, { "text": "what" }, { "text": "who" }],
+          "answer": 2,
+          "why": { "en": "For a person, use who.", "hi": "व्यक्ति के लिए who आता है।" }
+        },
+        {
+          "key": "c.u14.l5.c-which",
+          "type": "choose",
+          "prompt": { "en": "This is the hen ___ lays the most eggs." },
+          "options": [{ "text": "who" }, { "text": "which" }, { "text": "when" }],
+          "answer": 1,
+          "why": { "en": "For a thing or an animal, use which.", "hi": "चीज़ या जानवर के लिए which आता है।" }
+        },
+        {
+          "key": "c.u14.l5.c-u13",
+          "type": "choose",
+          "prompt": { "en": "___ I use your pencil, please?" },
+          "options": [{ "text": "May" }, { "text": "Does" }, { "text": "Am" }],
+          "answer": 0,
+          "why": {
+            "en": "Could and may are polite. Use them with teachers and elders.",
+            "hi": "could और may विनम्र हैं। अध्यापकों और बड़ों के साथ इन्हें बोलो।"
+          }
+        },
+        {
+          "key": "c.u14.l5.c-u12",
+          "type": "choose",
+          "prompt": { "en": "Look at the clouds. It ___ rain." },
+          "options": [{ "text": "is going to" }, { "text": "rained" }, { "text": "rains" }],
+          "answer": 0,
+          "why": { "en": "We can see the clouds, so is going to.", "hi": "बादल दिख रहे हैं, इसलिए is going to." }
+        },
+        {
+          "key": "c.u14.l5.c-u11",
+          "type": "choose",
+          "prompt": { "en": "Arjun is ___ than his friend Gopal." },
+          "options": [{ "text": "shortest" }, { "text": "short" }, { "text": "shorter" }],
+          "answer": 2,
+          "why": { "en": "Two people: -er and than.", "hi": "दो लोग: -er और than." }
+        },
+        {
+          "key": "c.u14.l5.c-b",
+          "type": "build",
+          "hi": "हमारे पड़ोसी की मुस्कान बहुत अच्छी है।",
+          "pic": "😊",
+          "tiles": ["has", "neighbour", "Our", "kind", "smile.", "a"],
+          "answer": "Our neighbour has a kind smile."
+        }
+      ],
+      "home": {
+        "en": "Say one kind thing about a family member in English tonight.",
+        "hi": "आज रात परिवार के किसी सदस्य के बारे में अंग्रेज़ी में एक अच्छी बात कहो।"
+      }
+    }
+  ]
+}

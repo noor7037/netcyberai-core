@@ -1,0 +1,614 @@
+{
+  "track": "c",
+  "unit": 12,
+  "key": "c.u12",
+  "title": { "en": "Travel plans", "hi": "यात्रा की योजना" },
+  "pic": "🚌",
+  "can_do": { "en": "I can talk about plans.", "hi": "मैं अपनी योजनाओं के बारे में बात कर सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u12.l1",
+      "kind": "words",
+      "title": { "en": "Travel words", "hi": "यात्रा के शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "We are going on a trip! Learn the words for travel.", "hi": "हम घूमने जा रहे हैं! यात्रा के शब्द सीखो।" },
+          "pic": "🚌"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u12.l1.plan",
+              "en": "plan",
+              "hi": "योजना",
+              "pic": "🗺️",
+              "example": { "en": "What is your plan for Sunday?", "hi": "रविवार के लिए तुम्हारी क्या योजना है?" }
+            },
+            {
+              "key": "c.u12.l1.journey",
+              "en": "journey",
+              "hi": "सफ़र, यात्रा",
+              "pic": "🛣️",
+              "example": { "en": "The journey to the town takes one hour.", "hi": "शहर तक का सफ़र एक घंटे का है।" }
+            },
+            {
+              "key": "c.u12.l1.bus-stand",
+              "en": "bus stand",
+              "hi": "बस अड्डा",
+              "pic": "🚌",
+              "example": { "en": "We will meet at the bus stand.", "hi": "हम बस अड्डे पर मिलेंगे।" }
+            },
+            {
+              "key": "c.u12.l1.ticket",
+              "en": "ticket",
+              "hi": "टिकट",
+              "pic": "🎫",
+              "example": { "en": "Papa buys four tickets.", "hi": "पापा चार टिकट ख़रीदते हैं।" }
+            },
+            {
+              "key": "c.u12.l1.seat",
+              "en": "seat",
+              "hi": "सीट",
+              "pic": "🪑",
+              "example": { "en": "Please keep this seat for Dadi.", "hi": "कृपया यह सीट दादी के लिए रखो।" }
+            },
+            {
+              "key": "c.u12.l1.fair",
+              "en": "fair",
+              "hi": "मेला",
+              "pic": "🎡",
+              "example": { "en": "There is a big fair in the town.", "hi": "शहर में एक बड़ा मेला लगा है।" }
+            },
+            {
+              "key": "c.u12.l1.return",
+              "en": "return",
+              "hi": "लौटना",
+              "pic": "↩️",
+              "example": { "en": "We will return before dark.", "hi": "हम अँधेरा होने से पहले लौट आएँगे।" }
+            },
+            {
+              "key": "c.u12.l1.tomorrow",
+              "en": "tomorrow",
+              "hi": "आने वाला कल",
+              "pic": "▶️",
+              "example": { "en": "Tomorrow is Sunday.", "hi": "कल रविवार है।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u12.l1.m-ticket", "left": { "text": "ticket" }, "right": { "pic": "🎫" } },
+            { "key": "c.u12.l1.m-seat", "left": { "text": "seat" }, "right": { "pic": "🪑" } },
+            { "key": "c.u12.l1.m-fair", "left": { "text": "fair" }, "right": { "pic": "🎡" } },
+            { "key": "c.u12.l1.m-return", "left": { "text": "return" }, "right": { "pic": "↩️" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u12.l1.p-journey",
+              "prompt": { "en": "Which word means सफ़र?" },
+              "options": [{ "text": "journey" }, { "text": "ticket" }, { "text": "return" }],
+              "answer": 0
+            },
+            {
+              "key": "c.u12.l1.p-bus",
+              "prompt": { "en": "Listen. Tap the picture.", "say": "bus stand" },
+              "options": [{ "pic": "🎡" }, { "pic": "🪑" }, { "pic": "🚌" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u12.l1.s-plan", "model": "What is your plan for Sunday?", "pic": "🗺️" },
+            { "key": "c.u12.l1.s-meet", "model": "We will meet at the bus stand.", "pic": "🚌" },
+            { "key": "c.u12.l1.s-return", "model": "We will return before dark.", "pic": "↩️" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u12.l1.c-ticket",
+          "type": "choose",
+          "prompt": { "en": "You need a ___ to travel by bus." },
+          "options": [{ "text": "ticket" }, { "text": "seat" }, { "text": "fair" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u12.l1.c-fair",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "fair" },
+          "options": [{ "pic": "🎫" }, { "pic": "🗺️" }, { "pic": "🎡" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u12.l1.c-tomorrow",
+          "type": "choose",
+          "prompt": { "en": "Today is Saturday. ___ is Sunday." },
+          "options": [{ "text": "Yesterday" }, { "text": "Weekend" }, { "text": "Tomorrow" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u12.l1.c-return",
+          "type": "choose",
+          "prompt": { "en": "Which word means लौटना?" },
+          "options": [{ "text": "journey" }, { "text": "plan" }, { "text": "return" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u12.l1.c-seat",
+          "type": "choose",
+          "prompt": { "en": "Dadi is tired. Give her your ___." },
+          "options": [{ "text": "ticket" }, { "text": "seat" }, { "text": "plan" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask at home: What is our plan for tomorrow?", "hi": "घर पर पूछो: What is our plan for tomorrow?" }
+    },
+    {
+      "key": "c.u12.l2",
+      "kind": "pattern",
+      "title": { "en": "going to and will", "hi": "going to और will" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Yesterday, today and tomorrow", "hi": "बीता कल, आज और आने वाला कल" },
+          "visual": "timeline",
+          "examples": [
+            { "en": "Yesterday, we stayed at home.", "hi": "बीते कल हम घर पर रहे।", "time": "past", "pic": "🏠" },
+            { "en": "Today, we are packing our bags.", "hi": "आज हम अपने बैग तैयार कर रहे हैं।", "time": "now", "pic": "🎒" },
+            { "en": "Tomorrow, we are going to visit the fair.", "hi": "कल हम मेला देखने जाने वाले हैं।", "time": "future", "pic": "🎡" },
+            { "en": "We are going to take the eight o'clock bus.", "hi": "हम आठ बजे वाली बस पकड़ने वाले हैं।", "time": "future", "pic": "🚌" },
+            { "en": "It will be hot, so I will take water.", "hi": "गर्मी होगी, इसलिए मैं पानी ले जाऊँगा/जाऊँगी।", "time": "future", "pic": "💧" },
+            { "en": "I think Arjun will love the giant wheel.", "hi": "मुझे लगता है अर्जुन को बड़ा झूला बहुत पसंद आएगा।", "time": "future", "pic": "🎡" }
+          ],
+          "note": {
+            "en": "going to: a plan you made before. will: a quick decision, or what you think will happen.",
+            "hi": "going to: पहले से बनी योजना। will: अभी लिया फ़ैसला, या जो तुम्हें लगता है कि होगा।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u12.l2.b-nani",
+              "hi": "हम नानी से मिलने जाने वाले हैं।",
+              "pic": "🏡",
+              "tiles": ["to", "visit", "are", "Nani.", "going", "We"],
+              "answer": "We are going to visit Nani."
+            },
+            {
+              "key": "c.u12.l2.b-carry",
+              "hi": "मैं तुम्हारा बैग उठा लूँगा/लूँगी।",
+              "pic": "🎒",
+              "tiles": ["bag.", "will", "your", "I", "carry"],
+              "answer": "I will carry your bag."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u12.l2.p-plan",
+              "prompt": { "en": "Look at our tickets! We ___ visit the fair tomorrow." },
+              "options": [{ "text": "went to" }, { "text": "are going to" }, { "text": "are go to" }],
+              "answer": 1,
+              "why": { "en": "A plan made before: going to.", "hi": "पहले से बनी योजना: going to." }
+            },
+            {
+              "key": "c.u12.l2.p-will",
+              "prompt": { "en": "The bag is heavy. Wait, I ___ help you!" },
+              "options": [{ "text": "am going" }, { "text": "did" }, { "text": "will" }],
+              "answer": 2,
+              "why": { "en": "A quick decision now: will.", "hi": "अभी लिया गया फ़ैसला: will." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u12.l2.s-sunday", "model": "I am going to play cricket with my friends.", "cue": { "en": "What are you going to do this Sunday?" } },
+            { "key": "c.u12.l2.s-weather", "model": "I think it will rain tomorrow.", "cue": { "en": "What will the weather be tomorrow, do you think?" } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u12.l2.c-b1",
+          "type": "build",
+          "hi": "पापा टिकट ख़रीदने वाले हैं।",
+          "pic": "🎫",
+          "tiles": ["is", "going", "the", "tickets.", "to", "Papa", "buy"],
+          "answer": "Papa is going to buy the tickets."
+        },
+        {
+          "key": "c.u12.l2.c-b2",
+          "type": "build",
+          "hi": "मुझे लगता है बस देर से आएगी।",
+          "pic": "🚌",
+          "tiles": ["will", "be", "late.", "think", "the", "bus", "I"],
+          "answer": "I think the bus will be late."
+        },
+        {
+          "key": "c.u12.l2.c-form",
+          "type": "choose",
+          "prompt": { "en": "We are going to ___ the giant wheel." },
+          "options": [{ "text": "rode" }, { "text": "ride" }, { "text": "riding" }],
+          "answer": 1,
+          "why": { "en": "After going to, use the simple form.", "hi": "going to के बाद सादा रूप आता है।" }
+        },
+        {
+          "key": "c.u12.l2.c-be",
+          "type": "choose",
+          "prompt": { "en": "It will ___ hot tomorrow." },
+          "options": [{ "text": "is" }, { "text": "was" }, { "text": "be" }],
+          "answer": 2,
+          "why": { "en": "After will, use the simple form: will be.", "hi": "will के बाद सादा रूप: will be." }
+        },
+        {
+          "key": "c.u12.l2.c-future",
+          "type": "choose",
+          "prompt": { "en": "Which sentence is about the future?" },
+          "options": [{ "text": "We will return at six." }, { "text": "We returned at six." }, { "text": "We return at six every day." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u12.l2.c-wont",
+          "type": "choose",
+          "prompt": { "en": "I ___ forget my ticket. I promise!" },
+          "options": [{ "text": "didn't" }, { "text": "won't" }, { "text": "wasn't" }],
+          "answer": 1,
+          "why": { "en": "won't = will not, for the future.", "hi": "won't = will not, आने वाले समय के लिए।" }
+        }
+      ],
+      "home": { "en": "Tell your family your plan for tomorrow: Tomorrow, I am going to …", "hi": "घरवालों को कल की योजना बताओ: Tomorrow, I am going to …" }
+    },
+    {
+      "key": "c.u12.l3",
+      "kind": "listen",
+      "title": { "en": "At the bus stand", "hi": "बस अड्डे पर" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Off to the fair!", "hi": "चलो मेले!" },
+          "scene": {
+            "place": "station",
+            "pics": [
+              { "pic": "🚌", "x": 74, "y": 30, "size": 2.4 },
+              { "pic": "🧑", "x": 52, "y": 40, "size": 1.4 },
+              { "pic": "👨‍🌾", "x": 30, "y": 40, "size": 1.5 },
+              { "pic": "👩", "x": 40, "y": 42, "size": 1.4 },
+              { "pic": "👧", "x": 18, "y": 48, "size": 1.3 },
+              { "pic": "👦", "x": 28, "y": 52, "size": 1.2 },
+              { "pic": "🎫", "x": 60, "y": 20, "size": 1 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Papa", "pic": "👨‍🌾", "en": "Excuse me. Does this bus go to the town?" },
+            { "speaker": "Conductor", "pic": "🧑", "en": "Yes, it does. It will leave in ten minutes." },
+            { "speaker": "Papa", "pic": "👨‍🌾", "en": "Four tickets, please. Two adults and two children." },
+            { "speaker": "Conductor", "pic": "🧑", "en": "That will be one hundred and twenty rupees." },
+            { "speaker": "Meera", "pic": "👧", "en": "What time will we reach the town?" },
+            { "speaker": "Conductor", "pic": "🧑", "en": "We will reach at about ten o'clock." },
+            { "speaker": "Arjun", "pic": "👦", "en": "Papa, what are we going to do first?" },
+            { "speaker": "Papa", "pic": "👨‍🌾", "en": "First, we are going to ride the giant wheel." },
+            { "speaker": "Meera", "pic": "👧", "en": "And then I am going to buy a storybook!" },
+            { "speaker": "Conductor", "pic": "🧑", "en": "Please sit down, everyone. The bus is going to start." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u12.l3.p-go",
+              "prompt": { "en": "Where is the bus going?" },
+              "options": [{ "text": "to the river" }, { "text": "to the forest" }, { "text": "to the town" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u12.l3.p-tickets",
+              "prompt": { "en": "How many tickets does Papa buy?" },
+              "options": [{ "text": "two" }, { "text": "three" }, { "text": "four" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u12.l3.p-first",
+              "prompt": { "en": "What are they going to do first?" },
+              "options": [{ "text": "ride the giant wheel" }, { "text": "buy a storybook" }, { "text": "eat lunch" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u12.l3.s-town", "model": "Does this bus go to the town?", "pic": "🚌" },
+            { "key": "c.u12.l3.s-reach", "model": "What time will we reach the town?", "pic": "⏰" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u12.l3.c-leave",
+          "type": "choose",
+          "prompt": { "en": "When will the bus leave?" },
+          "options": [{ "text": "in one hour" }, { "text": "tomorrow" }, { "text": "in ten minutes" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u12.l3.c-reach",
+          "type": "choose",
+          "prompt": { "en": "What time will they reach the town?" },
+          "options": [{ "text": "at eight o'clock" }, { "text": "at about ten o'clock" }, { "text": "at six o'clock" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u12.l3.c-meera",
+          "type": "choose",
+          "prompt": { "en": "What is Meera going to buy?" },
+          "options": [{ "text": "a storybook" }, { "text": "a kite" }, { "text": "a ticket" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u12.l3.c-cost",
+          "type": "choose",
+          "prompt": { "en": "How much are the tickets?" },
+          "options": [{ "text": "forty rupees" }, { "text": "one hundred and twenty rupees" }, { "text": "two hundred rupees" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask a grown-up: When are we going to visit the town next?", "hi": "किसी बड़े से पूछो: When are we going to visit the town next?" }
+    },
+    {
+      "key": "c.u12.l4",
+      "kind": "speak",
+      "title": { "en": "At the bus stand", "hi": "बस अड्डे पर" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "You are at the bus stand with Dadi. Buy the tickets and ask about the times.",
+            "hi": "तुम दादी के साथ बस अड्डे पर हो। टिकट ख़रीदो और बस का समय पूछो।"
+          },
+          "pic": "🎫"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Two tickets to the town", "hi": "शहर के दो टिकट" },
+          "scene": {
+            "place": "station",
+            "pics": [
+              { "pic": "🚌", "x": 76, "y": 30, "size": 2.4 },
+              { "pic": "🧑", "x": 52, "y": 40, "size": 1.4 },
+              { "pic": "🙋", "x": 28, "y": 44, "size": 1.4 },
+              { "pic": "👵", "x": 16, "y": 46, "size": 1.3 },
+              { "pic": "🎫", "x": 40, "y": 22, "size": 1 }
+            ]
+          },
+          "roles": [{ "name": "Conductor", "pic": "🧑" }, { "name": "You", "pic": "🙋" }],
+          "learner": 1,
+          "turns": [
+            { "role": 1, "en": "Excuse me. Does this bus go to the town?" },
+            { "role": 0, "en": "Yes, it does. How many tickets?" },
+            { "role": 1, "en": "Two tickets, please. One for me and one for Dadi." },
+            { "role": 0, "en": "That will be sixty rupees." },
+            { "role": 1, "en": "Here you are. When will the bus leave?" },
+            { "role": 0, "en": "It will leave at nine o'clock." },
+            { "role": 1, "en": "When is the last bus back to the village?" },
+            { "role": 0, "en": "The last bus is at six in the evening." },
+            { "role": 1, "en": "Thank you. We are going to take that bus." }
+          ],
+          "partner": {
+            "goal": "Play the bus conductor at a village bus stand. Sell tickets to the town, say the price in rupees and answer questions about times with will.",
+            "must_use": ["Does this bus", "ticket", "will", "going to"]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u12.l4.br-fair",
+              "hi": "हम कल मेला देखने जाने वाले हैं।",
+              "tiles": ["visit", "We", "the", "going", "tomorrow.", "fair", "to", "are"],
+              "answer": "We are going to visit the fair tomorrow."
+            },
+            {
+              "key": "c.u12.l4.br-leave",
+              "hi": "बस दस बजे चलेगी।",
+              "tiles": ["bus", "leave", "ten.", "will", "at", "The"],
+              "answer": "The bus will leave at ten."
+            },
+            { "key": "c.u12.l4.br-rain", "hi": "मुझे लगता है बारिश होगी।", "tiles": ["will", "rain.", "think", "I", "it"], "answer": "I think it will rain." }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u12.l4.s-trip",
+              "model": "Next month, we are going to visit my uncle in the town.",
+              "cue": { "en": "Tell us about a trip you are going to take." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u12.l4.c-ask",
+          "type": "choose",
+          "prompt": { "en": "You want to know if the bus goes to the town. You ask:" },
+          "options": [{ "text": "Does this bus go to the town?" }, { "text": "Is this bus went to town?" }, { "text": "Bus town go?" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u12.l4.c-b",
+          "type": "build",
+          "hi": "अगली बस कब चलेगी?",
+          "pic": "🚌",
+          "tiles": ["the", "When", "will", "bus", "leave?", "next"],
+          "answer": "When will the next bus leave?"
+        },
+        {
+          "key": "c.u12.l4.c-will",
+          "type": "choose",
+          "prompt": { "en": "The conductor says: The bus ___ leave at nine." },
+          "options": [{ "text": "did" }, { "text": "is" }, { "text": "will" }],
+          "answer": 2,
+          "why": { "en": "For the future, use will + the simple form.", "hi": "आने वाले समय के लिए will + सादा रूप।" }
+        },
+        {
+          "key": "c.u12.l4.c-going",
+          "type": "choose",
+          "prompt": { "en": "We have tickets. We ___ to take the six o'clock bus." },
+          "options": [{ "text": "will going" }, { "text": "goes" }, { "text": "are going" }],
+          "answer": 2,
+          "why": { "en": "A plan made before: going to.", "hi": "पहले से बनी योजना: going to." }
+        }
+      ],
+      "home": {
+        "en": "Plan a pretend trip with your family, and say it in English.",
+        "hi": "परिवार के साथ एक काल्पनिक यात्रा की योजना बनाओ और अंग्रेज़ी में बताओ।"
+      }
+    },
+    {
+      "key": "c.u12.l5",
+      "kind": "review",
+      "title": { "en": "Unit 12 review", "hi": "इकाई 12 की दोहराई" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u12.l5.m-journey", "left": { "text": "journey" }, "right": { "pic": "🛣️" } },
+            { "key": "c.u12.l5.m-plan", "left": { "text": "plan" }, "right": { "pic": "🗺️" } },
+            { "key": "c.u12.l5.m-bus-stand", "left": { "text": "bus stand" }, "right": { "pic": "🚌" } },
+            { "key": "c.u12.l5.m-tall", "left": { "text": "tall" }, "right": { "pic": "🦒" } },
+            { "key": "c.u12.l5.m-forest", "left": { "text": "forest" }, "right": { "pic": "🌲" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u12.l5.b-return",
+              "hi": "हम रविवार को लौटने वाले हैं।",
+              "pic": "↩️",
+              "tiles": ["are", "to", "return", "on", "We", "Sunday.", "going"],
+              "answer": "We are going to return on Sunday."
+            },
+            {
+              "key": "c.u12.l5.b-train",
+              "hi": "ट्रेन बस से तेज़ चलती है।",
+              "pic": "🚆",
+              "tiles": ["is", "the", "bus.", "train", "The", "faster", "than"],
+              "answer": "The train is faster than the bus."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u12.l5.p-clouds",
+              "prompt": { "en": "Look at the dark clouds! It ___ rain soon." },
+              "options": [{ "text": "went to" }, { "text": "is going to" }, { "text": "goes" }],
+              "answer": 1,
+              "why": { "en": "We can see the clouds, so it is going to rain.", "hi": "बादल दिख रहे हैं, इसलिए is going to." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u12.l5.s-two",
+              "model": "I am going to study. I think it will be sunny.",
+              "cue": { "en": "Say one plan and one guess about tomorrow." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u12.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means मेला?" },
+          "options": [{ "text": "seat" }, { "text": "fair" }, { "text": "ticket" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u12.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "journey" },
+          "options": [{ "pic": "🎫" }, { "pic": "🪑" }, { "pic": "🛣️" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u12.l5.c-going",
+          "type": "choose",
+          "prompt": { "en": "Salma is going ___ her aunt next week." },
+          "options": [{ "text": "to visit" }, { "text": "visit" }, { "text": "visited" }],
+          "answer": 0,
+          "why": { "en": "going to + the simple form.", "hi": "going to + सादा रूप।" }
+        },
+        {
+          "key": "c.u12.l5.c-will",
+          "type": "choose",
+          "prompt": { "en": "I am thirsty. I ___ get some water." },
+          "options": [{ "text": "did" }, { "text": "will" }, { "text": "was" }],
+          "answer": 1,
+          "why": { "en": "A quick decision now: will.", "hi": "अभी लिया गया फ़ैसला: will." }
+        },
+        {
+          "key": "c.u12.l5.c-u11",
+          "type": "choose",
+          "prompt": { "en": "This is the ___ day of the year!" },
+          "options": [{ "text": "hotter" }, { "text": "hot" }, { "text": "hottest" }],
+          "answer": 2,
+          "why": { "en": "More than two things: the + -est.", "hi": "दो से ज़्यादा में सबसे: the + -est." }
+        },
+        {
+          "key": "c.u12.l5.c-u10",
+          "type": "choose",
+          "prompt": { "en": "We ___ a tiger at the zoo last year." },
+          "options": [{ "text": "see" }, { "text": "saw" }, { "text": "seed" }],
+          "answer": 1,
+          "why": { "en": "This word changes in the past. Learn it as a pair.", "hi": "यह शब्द बीते समय में बदल जाता है। इसे जोड़े में याद करो।" }
+        },
+        {
+          "key": "c.u12.l5.c-u8",
+          "type": "choose",
+          "prompt": { "en": "Last Sunday, Papa ___ dinner for us." },
+          "options": [{ "text": "cooks" }, { "text": "cooked" }, { "text": "cooking" }],
+          "answer": 1,
+          "why": { "en": "Last Sunday is in the past: -ed.", "hi": "पिछला रविवार = बीता समय: -ed." }
+        },
+        {
+          "key": "c.u12.l5.c-b",
+          "type": "build",
+          "hi": "कल हम पेड़ लगाने वाले हैं।",
+          "pic": "🌱",
+          "tiles": ["plant", "we", "going", "Tomorrow,", "to", "trees.", "are"],
+          "answer": "Tomorrow, we are going to plant trees."
+        }
+      ],
+      "home": { "en": "Before bed, say one plan for tomorrow in English.", "hi": "सोने से पहले कल की एक योजना अंग्रेज़ी में बोलो।" }
+    }
+  ]
+}

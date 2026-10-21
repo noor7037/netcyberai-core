@@ -1,0 +1,631 @@
+{
+  "track": "c",
+  "unit": 1,
+  "key": "c.u01",
+  "title": { "en": "Meet me", "hi": "मुझसे मिलो" },
+  "pic": "🙋",
+  "can_do": { "en": "I can introduce myself and others.", "hi": "मैं अपना और दूसरों का परिचय दे सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u01.l1",
+      "kind": "words",
+      "title": { "en": "Words about me", "hi": "मेरे बारे में शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Today we learn words to talk about you and your friends.", "hi": "आज हम अपने और अपने दोस्तों के बारे में बात करने के शब्द सीखेंगे।" },
+          "pic": "🙋"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "c.u01.l1.class", "en": "class", "hi": "कक्षा", "pic": "🏫", "example": { "en": "I am in Class 6.", "hi": "मैं कक्षा 6 में हूँ।" } },
+            {
+              "key": "c.u01.l1.brother",
+              "en": "brother",
+              "hi": "भाई",
+              "pic": "👦",
+              "example": { "en": "Arjun is my little brother.", "hi": "अर्जुन मेरा छोटा भाई है।" }
+            },
+            {
+              "key": "c.u01.l1.best-friend",
+              "en": "best friend",
+              "hi": "सबसे अच्छा दोस्त",
+              "pic": "👭",
+              "example": { "en": "Salma is my best friend.", "hi": "सलमा मेरी सबसे अच्छी दोस्त है।" }
+            },
+            { "key": "c.u01.l1.hobby", "en": "hobby", "hi": "शौक़", "pic": "🧩", "example": { "en": "My hobby is drawing.", "hi": "मेरा शौक़ चित्र बनाना है।" } },
+            {
+              "key": "c.u01.l1.drawing",
+              "en": "drawing",
+              "hi": "चित्र बनाना",
+              "pic": "🎨",
+              "example": { "en": "Salma likes drawing birds.", "hi": "सलमा को पक्षियों के चित्र बनाना पसंद है।" }
+            },
+            {
+              "key": "c.u01.l1.singing",
+              "en": "singing",
+              "hi": "गाना गाना",
+              "pic": "🎤",
+              "example": { "en": "Dadi likes singing old songs.", "hi": "दादी को पुराने गाने गाना पसंद है।" }
+            },
+            {
+              "key": "c.u01.l1.reading",
+              "en": "reading",
+              "hi": "पढ़ना",
+              "pic": "📖",
+              "example": { "en": "I like reading stories.", "hi": "मुझे कहानियाँ पढ़ना पसंद है।" }
+            },
+            {
+              "key": "c.u01.l1.cricket",
+              "en": "cricket",
+              "hi": "क्रिकेट",
+              "pic": "🏏",
+              "example": { "en": "Meera plays cricket every evening.", "hi": "मीरा हर शाम क्रिकेट खेलती है।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u01.l1.m-hobby", "left": { "text": "hobby" }, "right": { "pic": "🧩" } },
+            { "key": "c.u01.l1.m-drawing", "left": { "text": "drawing" }, "right": { "pic": "🎨" } },
+            { "key": "c.u01.l1.m-singing", "left": { "text": "singing" }, "right": { "pic": "🎤" } },
+            { "key": "c.u01.l1.m-cricket", "left": { "text": "cricket" }, "right": { "pic": "🏏" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u01.l1.p-reading",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "reading" },
+              "options": [{ "pic": "🎤" }, { "pic": "📖" }, { "pic": "🏏" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u01.l1.p-brother",
+              "prompt": { "en": "Which word means भाई?", "hi": "कौन-सा शब्द 'भाई' है?" },
+              "options": [{ "text": "friend" }, { "text": "brother" }, { "text": "class" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u01.l1.s-hobby", "model": "My hobby is reading.", "hi": "मेरा शौक़ पढ़ना है।", "pic": "📖" },
+            { "key": "c.u01.l1.s-class", "model": "I am in Class 6.", "hi": "मैं कक्षा 6 में हूँ।", "pic": "🏫" },
+            { "key": "c.u01.l1.s-friend", "model": "Salma is my best friend.", "hi": "सलमा मेरी सबसे अच्छी दोस्त है।", "pic": "👭" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u01.l1.c-hobby",
+          "type": "choose",
+          "prompt": { "en": "Which word means शौक़?", "hi": "कौन-सा शब्द 'शौक़' है?" },
+          "options": [{ "text": "hobby" }, { "text": "class" }, { "text": "brother" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u01.l1.c-singing",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "singing" },
+          "options": [{ "pic": "🎤" }, { "pic": "🎨" }, { "pic": "📖" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u01.l1.c-brother",
+          "type": "choose",
+          "prompt": { "en": "Arjun is Meera's little ___.", "hi": "अर्जुन मीरा का छोटा ___ है।", "pic": "👦" },
+          "options": [{ "text": "brother" }, { "text": "sister" }, { "text": "friend" }],
+          "answer": 0,
+          "why": { "en": "Arjun is a boy, so he is her brother.", "hi": "अर्जुन लड़का है, इसलिए वह मीरा का भाई है।" }
+        },
+        {
+          "key": "c.u01.l1.c-drawing",
+          "type": "choose",
+          "prompt": { "en": "Salma likes ___ birds.", "hi": "सलमा को पक्षियों के चित्र बनाना पसंद है।", "pic": "🎨" },
+          "options": [{ "text": "cricket" }, { "text": "drawing" }, { "text": "class" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u01.l1.c-class",
+          "type": "choose",
+          "prompt": { "en": "I am in Class 6. What does class mean?", "hi": "Class का मतलब क्या है?" },
+          "options": [{ "text": "किताब" }, { "text": "कक्षा" }, { "text": "खेल" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Tell someone at home: My hobby is …", "hi": "घर पर किसी को बताओ: My hobby is …" }
+    },
+    {
+      "key": "c.u01.l2",
+      "kind": "pattern",
+      "title": { "en": "I am, I have, I like …ing", "hi": "मैं हूँ, मेरे पास है, मुझे पसंद है" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Say who you are and what you like", "hi": "बताओ तुम कौन हो और तुम्हें क्या पसंद है" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "I am Meera.",
+              "hi": "मैं मीरा हूँ।",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "Meera.", "role": "what" }],
+              "pic": "👧"
+            },
+            {
+              "en": "I am eleven years old.",
+              "hi": "मैं ग्यारह साल की हूँ।",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "am", "role": "do" }, { "text": "eleven years old.", "role": "what" }],
+              "pic": "🎂"
+            },
+            {
+              "en": "I have a little brother.",
+              "hi": "मेरा एक छोटा भाई है।",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "have", "role": "do" }, { "text": "a little brother.", "role": "what" }],
+              "pic": "👦"
+            },
+            {
+              "en": "I like playing cricket.",
+              "hi": "मुझे क्रिकेट खेलना पसंद है।",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "like playing", "role": "do" }, { "text": "cricket.", "role": "what" }],
+              "pic": "🏏"
+            },
+            {
+              "en": "Salma likes drawing birds.",
+              "hi": "सलमा को पक्षियों के चित्र बनाना पसंद है।",
+              "parts": [{ "text": "Salma", "role": "who" }, { "text": "likes drawing", "role": "do" }, { "text": "birds.", "role": "what" }],
+              "pic": "🧕"
+            },
+            {
+              "en": "He has a red kite.",
+              "hi": "उसके पास एक लाल पतंग है।",
+              "parts": [{ "text": "He", "role": "who" }, { "text": "has", "role": "do" }, { "text": "a red kite.", "role": "what" }],
+              "pic": "🪁"
+            }
+          ],
+          "note": {
+            "en": "I am, I have, I like. With he or she: is, has, likes. After like, add -ing: like reading.",
+            "hi": "I के साथ am, have, like. he या she के साथ is, has, likes. like के बाद -ing: like reading."
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u01.l2.b-like",
+              "hi": "मुझे कहानियाँ पढ़ना पसंद है।",
+              "pic": "📖",
+              "tiles": ["like", "stories.", "reading", "I"],
+              "answer": "I like reading stories."
+            },
+            {
+              "key": "c.u01.l2.b-has",
+              "hi": "अर्जुन के पास एक लाल पतंग है।",
+              "pic": "🪁",
+              "tiles": ["kite.", "Arjun", "has", "red", "a"],
+              "answer": "Arjun has a red kite."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u01.l2.p-likes",
+              "prompt": { "en": "Salma ___ singing.", "hi": "सलमा को गाना पसंद है।" },
+              "options": [{ "text": "like" }, { "text": "likes" }, { "text": "liking" }],
+              "answer": 1,
+              "why": { "en": "With he, she or a name, add -s: she likes.", "hi": "he, she या किसी नाम के साथ -s लगाओ: she likes." }
+            },
+            {
+              "key": "c.u01.l2.p-ing",
+              "prompt": { "en": "I like ___ cricket.", "hi": "मुझे क्रिकेट खेलना पसंद है।" },
+              "options": [{ "text": "playing" }, { "text": "play" }, { "text": "plays" }],
+              "answer": 0,
+              "why": { "en": "After like or likes, use the -ing word: like reading.", "hi": "like या likes के बाद -ing वाला शब्द आता है: like reading." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u01.l2.s-age",
+              "model": "I am eleven years old.",
+              "hi": "अपनी उम्र बताओ।",
+              "cue": { "en": "How old are you?", "hi": "तुम कितने साल के हो?" }
+            },
+            {
+              "key": "c.u01.l2.s-like",
+              "model": "I like playing cricket.",
+              "hi": "बताओ तुम्हें क्या करना पसंद है।",
+              "cue": { "en": "What do you like doing?", "hi": "तुम्हें क्या करना पसंद है?" }
+            },
+            {
+              "key": "c.u01.l2.s-have",
+              "model": "Yes, I have a little brother.",
+              "hi": "अपने भाई या बहन के बारे में बताओ।",
+              "cue": { "en": "Do you have a brother or a sister?", "hi": "क्या तुम्हारा कोई भाई या बहन है?" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u01.l2.c-b1",
+          "type": "build",
+          "hi": "मेरी एक छोटी बहन है।",
+          "pic": "👧",
+          "tiles": ["sister.", "a", "I", "have", "little"],
+          "answer": "I have a little sister."
+        },
+        {
+          "key": "c.u01.l2.c-b2",
+          "type": "build",
+          "hi": "मीरा को क्रिकेट खेलना पसंद है।",
+          "pic": "🏏",
+          "tiles": ["likes", "playing", "cricket.", "Meera"],
+          "answer": "Meera likes playing cricket."
+        },
+        {
+          "key": "c.u01.l2.c-has",
+          "type": "choose",
+          "prompt": { "en": "Dadi ___ a big garden.", "hi": "दादी का एक बड़ा बगीचा है।" },
+          "options": [{ "text": "has" }, { "text": "have" }, { "text": "is" }],
+          "answer": 0,
+          "why": { "en": "With he, she or a name, we say has.", "hi": "he, she या किसी नाम के साथ has आता है।" }
+        },
+        {
+          "key": "c.u01.l2.c-am",
+          "type": "choose",
+          "prompt": { "en": "I ___ in Class 6.", "hi": "मैं कक्षा 6 में हूँ।" },
+          "options": [{ "text": "am" }, { "text": "is" }, { "text": "are" }],
+          "answer": 0,
+          "why": { "en": "With I, we say am.", "hi": "I के साथ am आता है।" }
+        },
+        {
+          "key": "c.u01.l2.c-ing",
+          "type": "choose",
+          "prompt": { "en": "Arjun likes ___ kites.", "hi": "अर्जुन को पतंग उड़ाना पसंद है।" },
+          "options": [{ "text": "fly" }, { "text": "flying" }, { "text": "flies" }],
+          "answer": 1,
+          "why": { "en": "After like or likes, use the -ing word: like reading.", "hi": "like या likes के बाद -ing वाला शब्द आता है: like reading." }
+        }
+      ],
+      "home": { "en": "Ask at home: What do you like doing?", "hi": "घर पर पूछो: What do you like doing?" }
+    },
+    {
+      "key": "c.u01.l3",
+      "kind": "listen",
+      "title": { "en": "A new teacher", "hi": "नई अध्यापिका" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Hello, Ms Anita!", "hi": "नमस्ते, अनीता मैडम!" },
+          "scene": {
+            "place": "school",
+            "pics": [
+              { "pic": "own:chalkboard", "x": 78, "y": 16, "size": 2 },
+              { "pic": "👩‍🏫", "x": 60, "y": 40, "size": 1.6 },
+              { "pic": "👧", "x": 28, "y": 44, "size": 1.5 },
+              { "pic": "🧕", "x": 42, "y": 44, "size": 1.5 }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Ms Anita",
+              "pic": "👩‍🏫",
+              "en": "Good morning, class! I am Ms Anita, your English teacher.",
+              "hi": "सुप्रभात, बच्चो! मैं अनीता मैडम हूँ, तुम्हारी अंग्रेज़ी की अध्यापिका।"
+            },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Please tell me about yourselves.", "hi": "कृपया मुझे अपने बारे में बताओ।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Good morning, ma'am. My name is Meera.", "hi": "सुप्रभात, मैडम। मेरा नाम मीरा है।" },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I am eleven years old, and I have a little brother.",
+              "hi": "मैं ग्यारह साल की हूँ, और मेरा एक छोटा भाई है।"
+            },
+            { "speaker": "Meera", "pic": "👧", "en": "I like playing cricket and reading stories.", "hi": "मुझे क्रिकेट खेलना और कहानियाँ पढ़ना पसंद है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "This is my best friend, Salma.", "hi": "यह मेरी सबसे अच्छी दोस्त सलमा है।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "Hello, ma'am. I am eleven too.", "hi": "नमस्ते, मैडम। मैं भी ग्यारह साल की हूँ।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "My hobbies are drawing and singing.", "hi": "मेरे शौक़ चित्र बनाना और गाना हैं।" },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Lovely! Welcome to Class 6, girls.", "hi": "बहुत बढ़िया! कक्षा 6 में तुम्हारा स्वागत है।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u01.l3.p-who",
+              "prompt": { "en": "Who is the new teacher?", "hi": "नई अध्यापिका कौन हैं?" },
+              "options": [{ "text": "Ms Anita", "pic": "👩‍🏫" }, { "text": "Salma", "pic": "🧕" }, { "text": "Dadi", "pic": "👵" }],
+              "answer": 0
+            },
+            {
+              "key": "c.u01.l3.p-meera",
+              "prompt": { "en": "What does Meera like?", "hi": "मीरा को क्या पसंद है?" },
+              "options": [{ "text": "drawing and singing" }, { "text": "cooking and dancing" }, { "text": "cricket and stories" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u01.l3.p-salma",
+              "prompt": { "en": "What are Salma's hobbies?", "hi": "सलमा के शौक़ क्या हैं?" },
+              "options": [{ "text": "reading and cricket" }, { "text": "flying kites" }, { "text": "drawing and singing" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u01.l3.s-name", "model": "My name is Meera.", "hi": "मेरा नाम मीरा है।", "pic": "👧" },
+            {
+              "key": "c.u01.l3.s-like",
+              "model": "I like playing cricket and reading stories.",
+              "hi": "मुझे क्रिकेट खेलना और कहानियाँ पढ़ना पसंद है।",
+              "pic": "🏏"
+            },
+            { "key": "c.u01.l3.s-friend", "model": "This is my best friend, Salma.", "hi": "यह मेरी सबसे अच्छी दोस्त सलमा है।", "pic": "👭" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u01.l3.c-class",
+          "type": "choose",
+          "prompt": { "en": "Which class are Meera and Salma in?", "hi": "मीरा और सलमा किस कक्षा में हैं?" },
+          "options": [{ "text": "Class 5" }, { "text": "Class 6" }, { "text": "Class 7" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u01.l3.c-age",
+          "type": "choose",
+          "prompt": { "en": "How old is Salma?", "hi": "सलमा कितने साल की है?" },
+          "options": [{ "text": "nine" }, { "text": "ten" }, { "text": "eleven" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u01.l3.c-brother",
+          "type": "choose",
+          "prompt": { "en": "Who has a little brother?", "hi": "किसका छोटा भाई है?" },
+          "options": [{ "text": "Salma" }, { "text": "Meera" }, { "text": "Ms Anita" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u01.l3.c-intro",
+          "type": "choose",
+          "prompt": { "en": "Meera says: This is my best friend, Salma. What does Meera do?", "hi": "मीरा यहाँ क्या कर रही है?" },
+          "options": [{ "text": "She says goodbye." }, { "text": "She asks a question." }, { "text": "She introduces her friend." }],
+          "answer": 2
+        }
+      ],
+      "home": { "en": "Introduce a family member: This is my …", "hi": "घर के किसी सदस्य का परिचय दो: This is my …" }
+    },
+    {
+      "key": "c.u01.l4",
+      "kind": "speak",
+      "title": { "en": "Introduce yourself and a friend", "hi": "अपना और दोस्त का परिचय दो" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Ms Anita asks about you. Answer in full sentences.", "hi": "अनीता मैडम तुम्हारे बारे में पूछती हैं। पूरे वाक्यों में जवाब दो।" },
+          "pic": "👩‍🏫"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Meet Ms Anita", "hi": "अनीता मैडम से मिलो" },
+          "scene": {
+            "place": "school",
+            "pics": [
+              { "pic": "own:chalkboard", "x": 78, "y": 16, "size": 2 },
+              { "pic": "👩‍🏫", "x": 34, "y": 42, "size": 1.6 },
+              { "pic": "🙋", "x": 58, "y": 44, "size": 1.6 }
+            ]
+          },
+          "roles": [{ "name": "Ms Anita", "pic": "👩‍🏫" }, { "name": "You", "pic": "🙋" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Hello! What is your name?", "hi": "नमस्ते! तुम्हारा नाम क्या है?" },
+            { "role": 1, "en": "Hello, ma'am. My name is Kiran.", "hi": "नमस्ते, मैडम। मेरा नाम किरण है।" },
+            { "role": 0, "en": "How old are you, Kiran?", "hi": "किरण, तुम कितने साल के हो?" },
+            { "role": 1, "en": "I am ten years old. I am in Class 5.", "hi": "मैं दस साल का/की हूँ। मैं कक्षा 5 में हूँ।" },
+            { "role": 0, "en": "What do you like doing?", "hi": "तुम्हें क्या करना पसंद है?" },
+            { "role": 1, "en": "I like drawing and playing cricket.", "hi": "मुझे चित्र बनाना और क्रिकेट खेलना पसंद है।" },
+            { "role": 0, "en": "Who is this with you?", "hi": "तुम्हारे साथ यह कौन है?" },
+            { "role": 1, "en": "This is my friend Tara. She likes singing.", "hi": "यह मेरी दोस्त तारा है। उसे गाना पसंद है।" },
+            { "role": 0, "en": "Nice to meet you both!", "hi": "तुम दोनों से मिलकर अच्छा लगा!" }
+          ],
+          "partner": {
+            "goal": "Play Ms Anita, a friendly teacher on the first day. Ask the child's name, age, class and hobbies, then ask them to introduce a friend.",
+            "must_use": ["My name is", "I am", "I like", "This is my"]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "c.u01.l4.br-sing", "hi": "मुझे गाना पसंद है।", "tiles": ["singing.", "I", "like"], "answer": "I like singing." },
+            {
+              "key": "c.u01.l4.br-brother",
+              "hi": "यह मेरा छोटा भाई है।",
+              "tiles": ["is", "This", "little", "my", "brother."],
+              "answer": "This is my little brother."
+            },
+            { "key": "c.u01.l4.br-kite", "hi": "उसे पतंग उड़ाना पसंद है।", "tiles": ["likes", "He", "kites.", "flying"], "answer": "He likes flying kites." }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u01.l4.s-me",
+              "model": "My name is Kiran. I am ten. I like drawing.",
+              "hi": "अपना नाम, उम्र और शौक़ बताओ।",
+              "cue": { "en": "Tell me about you.", "hi": "अपने बारे में बताओ।" }
+            },
+            {
+              "key": "c.u01.l4.s-friend",
+              "model": "This is my friend Tara. She likes singing.",
+              "hi": "अपने दोस्त का परिचय दो।",
+              "cue": { "en": "Tell me about your friend.", "hi": "अपने दोस्त के बारे में बताओ।" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u01.l4.c-reply",
+          "type": "choose",
+          "prompt": { "en": "Ms Anita asks: What is your name? You say:", "hi": "अनीता मैडम पूछती हैं: What is your name? तुम कहोगे:" },
+          "options": [{ "text": "I am fine." }, { "text": "My name is Kiran." }, { "text": "I like Kiran." }],
+          "answer": 1
+        },
+        {
+          "key": "c.u01.l4.c-friend",
+          "type": "build",
+          "hi": "यह मेरी दोस्त तारा है।",
+          "pic": "👭",
+          "tiles": ["Tara.", "friend", "is", "This", "my"],
+          "answer": "This is my friend Tara."
+        },
+        {
+          "key": "c.u01.l4.c-she",
+          "type": "choose",
+          "prompt": { "en": "Tara is my friend. ___ likes singing.", "hi": "तारा मेरी दोस्त है। उसे गाना पसंद है।" },
+          "options": [{ "text": "He" }, { "text": "It" }, { "text": "She" }],
+          "answer": 2,
+          "why": { "en": "Tara is a girl, so we say she.", "hi": "तारा लड़की है, इसलिए she कहते हैं।" }
+        },
+        {
+          "key": "c.u01.l4.c-hobby",
+          "type": "choose",
+          "prompt": { "en": "Which sentence tells a hobby?", "hi": "कौन-सा वाक्य शौक़ बताता है?" },
+          "options": [{ "text": "I like drawing." }, { "text": "I am ten." }, { "text": "I am in Class 5." }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Introduce your best friend to your family in English.", "hi": "अपने सबसे अच्छे दोस्त का परिचय घरवालों को अंग्रेज़ी में दो।" }
+    },
+    {
+      "key": "c.u01.l5",
+      "kind": "review",
+      "title": { "en": "Unit 1 review", "hi": "इकाई 1 की दोहराई" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u01.l5.m-brother", "left": { "text": "brother" }, "right": { "pic": "👦" } },
+            { "key": "c.u01.l5.m-best-friend", "left": { "text": "best friend" }, "right": { "pic": "👭" } },
+            { "key": "c.u01.l5.m-reading", "left": { "text": "reading" }, "right": { "pic": "📖" } },
+            { "key": "c.u01.l5.m-singing", "left": { "text": "singing" }, "right": { "pic": "🎤" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u01.l5.b-hobby",
+              "hi": "मेरा शौक़ चित्र बनाना है।",
+              "pic": "🎨",
+              "tiles": ["hobby", "My", "drawing.", "is"],
+              "answer": "My hobby is drawing."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u01.l5.p-is",
+              "prompt": { "en": "Meera ___ eleven years old.", "hi": "मीरा ग्यारह साल की है।" },
+              "options": [{ "text": "is" }, { "text": "am" }, { "text": "are" }],
+              "answer": 0,
+              "why": { "en": "With a name, we say is: Meera is eleven.", "hi": "किसी नाम के साथ is आता है: Meera is eleven." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u01.l5.s-all",
+              "model": "I am Kiran. I am ten years old. I like reading.",
+              "hi": "नाम, उम्र और पसंद बताओ।",
+              "cue": { "en": "Introduce yourself in three sentences.", "hi": "तीन वाक्यों में अपना परिचय दो।" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u01.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means पढ़ना?", "hi": "कौन-सा शब्द 'पढ़ना' है?" },
+          "options": [{ "text": "singing" }, { "text": "reading" }, { "text": "drawing" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u01.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "cricket" },
+          "options": [{ "pic": "🎨" }, { "pic": "🎤" }, { "pic": "🏏" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u01.l5.c-has",
+          "type": "choose",
+          "prompt": { "en": "Salma ___ a green bag.", "hi": "सलमा के पास एक हरा बैग है।" },
+          "options": [{ "text": "have" }, { "text": "am" }, { "text": "has" }],
+          "answer": 2,
+          "why": { "en": "With he, she or a name, we say has.", "hi": "he, she या किसी नाम के साथ has आता है।" }
+        },
+        {
+          "key": "c.u01.l5.c-ing",
+          "type": "choose",
+          "prompt": { "en": "Dadi likes ___ old songs.", "hi": "दादी को पुराने गाने गाना पसंद है।" },
+          "options": [{ "text": "sing" }, { "text": "sings" }, { "text": "singing" }],
+          "answer": 2,
+          "why": { "en": "After like or likes, use the -ing word: like reading.", "hi": "like या likes के बाद -ing वाला शब्द आता है: like reading." }
+        },
+        {
+          "key": "c.u01.l5.c-b1",
+          "type": "build",
+          "hi": "मेरा एक छोटा भाई है।",
+          "pic": "👦",
+          "tiles": ["have", "brother.", "little", "I", "a"],
+          "answer": "I have a little brother."
+        },
+        {
+          "key": "c.u01.l5.c-b2",
+          "type": "build",
+          "hi": "उसे कहानियाँ पढ़ना पसंद है।",
+          "pic": "📖",
+          "tiles": ["reading", "stories.", "likes", "She"],
+          "answer": "She likes reading stories."
+        },
+        {
+          "key": "c.u01.l5.c-intro",
+          "type": "choose",
+          "prompt": { "en": "Which sentence introduces a friend?", "hi": "कौन-सा वाक्य दोस्त का परिचय देता है?" },
+          "options": [{ "text": "This is my friend Salma." }, { "text": "Where is Salma?" }, { "text": "Salma, sit down." }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Tell your family three things about you in English.", "hi": "घरवालों को अंग्रेज़ी में अपने बारे में तीन बातें बताओ।" }
+    }
+  ]
+}
