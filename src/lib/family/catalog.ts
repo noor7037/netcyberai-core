@@ -1,4 +1,5 @@
 import { indiaDate } from '@/lib/time/india';
+import { subjectsOfClass, type Subject } from './subjects';
 
 // The family's read of NetCyberAI's syllabus catalog (M1-4, docs/family-app/10 §4.3): for a standalone family, the
 // version of a board, class and subject that is released to everyone for the current academic year, as plain data.
@@ -62,4 +63,16 @@ export async function readFamilyCatalog(
       topics: topics.filter((t) => t.chapter_id === c.chapter_id).map((t) => ({ key: t.topic_key, title: pick(q.lang, t.title_en, t.title_hi) })),
     })),
   };
+}
+
+// The subjects a child of this board and class studies (C264): the stage's school subjects, then any other subject the
+// catalog released to everyone holds for this class this year.
+export async function classSubjects(db: FamilyDb, q: { board: string; classLevel: number; today?: string }): Promise<Subject[]> {
+  if (q.classLevel <= 0) return [];
+  const { rows } = await db.query(
+    `select distinct subject from content.syllabus_versions
+      where board_id = $1 and class_level = $2 and academic_year = $3 and status = 'published' and audience = 'everyone'`,
+    [q.board, q.classLevel, academicYearOf(q.today ?? indiaDate())]
+  );
+  return subjectsOfClass(q.classLevel, (rows as { subject: string }[]).map((r) => r.subject));
 }

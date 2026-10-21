@@ -1,9 +1,11 @@
 import { REFUSAL_MESSAGE, activePromptVersion, prepareText, type AiRefusal, type PreparedText, type SentText } from '@/lib/ai/platform';
 import { resolverPrompt, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
 import { BLOCK_SCHEMA_VERSION, completeResponse, parseBlockLine, type Block, type BlockType } from './blocks';
-import type { FamilyChild } from './children';
+import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
-import { SUBJECTS, subjectAccess, type Subject } from './modules';
+import { classSubjects } from './catalog';
+import { subjectAccess } from './modules';
+import { isSubject, type Subject } from './subjects';
 
 // The Concept Resolver, "Understand" (docs/family-app/02 §4, 03 §6; M1-5, C251): a chapter, a topic or a typed
 // question in, typed blocks out, streamed one by one as each passes its checks.
@@ -58,7 +60,7 @@ type Seal = Pick<ResolverContext, 'accountId' | 'child'>;
 
 const KEY = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 
-export type Line = { subject: 'mathematics' | 'science'; key: string; chapterEn: string; topicEn: string | null; title: string };
+export type Line = { subject: Subject; key: string; chapterEn: string; topicEn: string | null; title: string };
 
 // The syllabus line for a key, from the version released to everyone for this child's board and class.
 export async function syllabusLine(db: Db, child: FamilyChild, input: { kind: 'topic' | 'chapter'; key: string }): Promise<Line | null> {
@@ -71,10 +73,10 @@ export async function syllabusLine(db: Db, child: FamilyChild, input: { kind: 't
          join content.syllabus_versions v on v.version_id = t.version_id
         where t.topic_key = $1 and v.board_id = $2 and v.class_level = $3 and v.status = 'published' and v.audience = 'everyone'
         order by v.academic_year desc limit 1`,
-      [input.key, child.board, child.classLevel]
+      [input.key, syllabusBoardOf(child), child.classLevel]
     );
     const r = rows[0];
-    if (!r || (r.subject !== 'mathematics' && r.subject !== 'science')) return null;
+    if (!r || !isSubject(r.subject)) return null;
     return { subject: r.subject, key: String(r.topic_key), chapterEn: String(r.chapter_en), topicEn: String(r.title_en), title: pick(r.title_en, r.title_hi) };
   }
   const { rows } = await db.query(
@@ -82,10 +84,10 @@ export async function syllabusLine(db: Db, child: FamilyChild, input: { kind: 't
        from content.chapters c join content.syllabus_versions v on v.version_id = c.version_id
       where c.chapter_key = $1 and v.board_id = $2 and v.class_level = $3 and v.status = 'published' and v.audience = 'everyone'
       order by v.academic_year desc limit 1`,
-    [input.key, child.board, child.classLevel]
+    [input.key, syllabusBoardOf(child), child.classLevel]
   );
   const r = rows[0];
-  if (!r || (r.subject !== 'mathematics' && r.subject !== 'science')) return null;
+  if (!r || !isSubject(r.subject)) return null;
   return { subject: r.subject, key: String(r.chapter_key), chapterEn: String(r.title_en), topicEn: null, title: pick(r.title_en, r.title_hi) };
 }
 
@@ -102,7 +104,7 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
     `select blocks, status from content.responses
       where board_id = $1 and class_level = $2 and subject = $3 and topic_key = $4 and language = $5 and style = $6 and prompt_version = $7 and status <> 'withdrawn'
       limit 1`,
-    [child.board, child.classLevel, line.subject, line.key, child.language, child.style, promptVersion]
+    [syllabusBoardOf(child), child.classLevel, line.subject, line.key, child.language, child.style, promptVersion]
   );
   const cached = rows[0];
   if (!cached || !Array.isArray(cached.blocks)) return null;
@@ -131,6 +133,8 @@ export type Pending = {
   // The subject when the server knows it (a syllabus line, a retry's sealed item); null when the model names it.
   known: Subject | null;
   open: Subject[];
+  // The subjects of the child's class (C264): a named subject outside them is "another subject".
+  classSubjects: Subject[];
   cacheable: boolean;
   promptVersion: string;
   text: PreparedText;
@@ -160,18 +164,24 @@ export function namedSubject(text: string): Subject | 'other' | null {
   try {
     const v = JSON.parse(text.slice(start, end + 1)) as { type?: unknown; subject?: unknown };
     if (v.type !== 'subject' || typeof v.subject !== 'string') return null;
-    return (SUBJECTS as readonly string[]).includes(v.subject) ? (v.subject as Subject) : 'other';
+    return isSubject(v.subject) ? v.subject : 'other';
   } catch {
     return null;
   }
 }
 
-const questionKey = (child: FamilyChild, subject: Subject) => `cbse.c${child.classLevel}.${subject}.question`;
+// A typed question's progress key: the syllabus board (lower case), the class and the subject.
+const questionKey = (child: FamilyChild, subject: Subject) => `${syllabusBoardOf(child).toLowerCase()}.c${child.classLevel}.${subject}.question`;
 
 // 1–2 and the AI platform's checks, in the caller's first transaction. null: answered already (a refusal, or the
 // library's response); otherwise the call to make, which needs no database connection.
 export async function prepareResolve(db: Db, ctx: ResolverContext, input: ResolveInput, followUp: FollowUp | null, emit: (e: ResolverEvent) => void, misconception: string | null = null): Promise<Pending | null> {
   const child = ctx.child;
+  // Nursery, LKG and UKG learn through play and activities, not chapters (Wave B): nothing is explained to them here.
+  if (isPrePrimary(child.classLevel)) {
+    emit({ t: 'refused', reason: 'not_found', message: ctx.refusalWords('fam.study.prePrimary') });
+    return null;
+  }
   let line: Line | null = null;
   if (input.kind !== 'question') {
     line = await syllabusLine(db, child, input);
@@ -186,7 +196,8 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     return null;
   }
   // A typed question is answered only in a subject this child may use: the free one, or either before one is claimed.
-  const open: Subject[] = known ? [known] : SUBJECTS.filter((s) => !ctx.claimSubject || subjectAccess(child, s).open);
+  const ofClass = await classSubjects(db as never, { board: syllabusBoardOf(child), classLevel: child.classLevel });
+  const open: Subject[] = known ? [known] : ofClass.filter((s) => !ctx.claimSubject || subjectAccess(child, s).open);
   const prompt = resolverPrompt(await activePromptVersion(db as never, 'family.resolver'), known === null);
   const cacheable = input.kind !== 'question' && followUp === null && misconception === null;
 
@@ -201,10 +212,11 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
 
   // 3. The AI platform's checks (profile, minors, key, daily cap) and the cleaned request, still in this transaction.
   const ask: ResolverAsk = {
-    board: child.board,
+    board: boardNameOf(child),
     classLevel: child.classLevel,
     subject: known,
     openSubjects: open,
+    classSubjects: ofClass,
     chapter: line?.chapterEn ?? null,
     topic: line?.topicEn ?? null,
     question: input.kind === 'question' ? input.text : null,
@@ -223,7 +235,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     emit({ t: 'refused', reason: prepared.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[prepared.reason]) });
     return null;
   }
-  return { ctx, line, known, open, cacheable, promptVersion: prompt.version, text: prepared.text };
+  return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text };
 }
 
 // 3–4. The model's answer, checked line by line as it arrives. No database connection is held while the model answers.
@@ -252,7 +264,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
       // Nothing is shown until the subject is named, and only a subject this child may use is answered.
       const named = namedSubject(text);
       if (named === null) return;
-      if (named === 'other') {
+      if (named === 'other' || !p.classSubjects.includes(named)) {
         stopped = true;
         emit({ t: 'refused', reason: 'other_subject', message: words('fam.understand.otherSubject') });
         return;
@@ -320,7 +332,7 @@ export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEv
       `insert into content.responses (board_id, class_level, subject, topic_key, language, style, prompt_version, schema_version, blocks, status, provider, model)
        values ($1, $2, $3, $4, $5, $6, $7, $8, $9::jsonb, 'ai_made', $10, $11)
        on conflict do nothing`,
-      [ctx.child.board, ctx.child.classLevel, line.subject, line.key, ctx.child.language, ctx.child.style, p.promptVersion, BLOCK_SCHEMA_VERSION, JSON.stringify(complete), result.provider, result.model]
+      [syllabusBoardOf(ctx.child), ctx.child.classLevel, line.subject, line.key, ctx.child.language, ctx.child.style, p.promptVersion, BLOCK_SCHEMA_VERSION, JSON.stringify(complete), result.provider, result.model]
     );
   }
   return { t: 'done', complete: complete !== null };

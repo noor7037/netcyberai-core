@@ -143,6 +143,8 @@ describe('learning, end to end', () => {
 
   it('the parent changes the free subject only after the change window', async () => {
     expect((await R.subject.POST(post(`/api/family/children/${CHILD}/subject`, { subject: 'mathematics' }), { params: { childId: CHILD } })).status).toBe(409);
+    // Only a subject of the child's class (C264): Physics is not a Class 9 subject; an unknown id is refused too.
+    for (const subject of ['physics', 'astrology']) expect((await R.subject.POST(post(`/api/family/children/${CHILD}/subject`, { subject }), { params: { childId: CHILD } })).status, subject).toBe(400);
     await db.pg.query(`update family.children set free_subject_set_at = now() - interval '91 days' where child_id = $1`, [CHILD]);
     expect((await R.subject.POST(post(`/api/family/children/${CHILD}/subject`, { subject: 'mathematics' }), { params: { childId: CHILD } })).status).toBe(200);
   });

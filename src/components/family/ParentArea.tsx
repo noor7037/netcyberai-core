@@ -1,11 +1,12 @@
 'use client';
 
+import type { Subject } from '@/lib/family/subjects';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import type { Lang } from '@/lib/i18n';
-import { fill, type Words } from '@/lib/family/fill';
+import { classText, fill, type Words } from '@/lib/family/fill';
 import { ChildForm, type ChildFormValue } from './ChildForm';
 import { errorWords, familyApi } from './client';
 import { LanguageSwitch } from './LanguageSwitch';
@@ -14,7 +15,8 @@ import { LanguageSwitch } from './LanguageSwitch';
 // parent agreed to, each child's answers (see and delete), the language, signing out, and deleting the account.
 // Every change is the parent's own tap; nothing here uses a browser dialog.
 
-type Child = ChildFormValue & { childId: string; freeSubject: 'mathematics' | 'science' | null };
+// `subjects`: the subjects of the child's class (C264), for choosing the free one.
+type Child = ChildFormValue & { childId: string; classLevel: number; freeSubject: Subject | null; subjects: Subject[] };
 export type Calm = { childId: string; answers: number; right: number; topics: number; mastered: number; practisedTitles: string[] };
 type Answer = { attemptId: string; subject: string; kind: string; answer: string; correct: boolean; answeredOn: string };
 
@@ -44,7 +46,7 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
     <li className="flex flex-col gap-3 rounded-2xl bg-off-white p-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-base font-bold text-slate">
-          {child.firstName} <span className="font-normal text-slate/70">· {fill(w['fam.class.label'], { n: child.classLevel })}</span>
+          {child.firstName} <span className="font-normal text-slate/70">· {classText((k) => w[k], child.classLevel)}</span>
         </p>
         <div className="flex flex-wrap gap-1">
           <button type="button" className={linkButton} onClick={() => setMode(mode === 'edit' ? 'view' : 'edit')}>
@@ -60,7 +62,7 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
       </div>
       <div className="flex flex-wrap items-center gap-2 text-sm text-slate">
         <span>{w['fam.parent.freeSubject']}</span>
-        {(['mathematics', 'science'] as const).map((sub) => (
+        {child.subjects.map((sub) => (
           <button
             key={sub}
             type="button"
@@ -82,7 +84,7 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
           w={w}
           states={states}
           childId={child.childId}
-          initial={{ firstName: child.firstName, classLevel: child.classLevel, language: child.language, style: child.style, stateCode: child.stateCode }}
+          initial={{ firstName: child.firstName, classLevel: child.classLevel, board: child.board, language: child.language, style: child.style, stateCode: child.stateCode }}
           submitLabel={w['fam.child.save']}
           onDone={() => {
             setMode('view');
@@ -216,7 +218,7 @@ export function ParentArea({ w, lang, children, states, studyCore, calm }: { w: 
           <ChildForm
             w={w}
             states={states}
-            initial={{ firstName: '', classLevel: 0, language: lang, style: lang === 'hi' ? 'hinglish' : 'en', stateCode: '' }}
+            initial={{ firstName: '', classLevel: null, board: '', language: lang, style: lang === 'hi' ? 'hinglish' : 'en', stateCode: '' }}
             submitLabel={w['fam.child.add']}
             onDone={() => {
               setAdding(false);

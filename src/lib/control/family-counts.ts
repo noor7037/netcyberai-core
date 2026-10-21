@@ -33,7 +33,7 @@ export function readFamilyCounts(raw: unknown): FamilyCounts {
     children: num(r.children),
     childrenByClass: Object.entries(byClass)
       .map(([k, v]) => ({ classLevel: Number(k), count: num(v) }))
-      .filter((c) => Number.isInteger(c.classLevel) && c.classLevel >= 0 && c.classLevel <= 14)
+      .filter((c) => Number.isInteger(c.classLevel) && c.classLevel >= -2 && c.classLevel <= 14)
       .sort((a, b) => a.classLevel - b.classLevel),
     studyCoreGranted: num(r.study_core_granted),
     answers7d: num(r.answers_7d),

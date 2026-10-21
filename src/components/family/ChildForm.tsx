@@ -5,12 +5,14 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { SegmentedControl } from '@/components/ui/SegmentedControl';
 import { Select } from '@/components/ui/Select';
-import type { Words } from '@/lib/family/fill';
+import { CHILD_BOARDS, CHILD_CLASSES } from '@/lib/family/children';
+import { classText, type Words } from '@/lib/family/fill';
 import { errorWords, familyApi } from './client';
 
-// Add or change a child (M1-2, C248): first name only, class 6–10, CBSE, the app's language, the explanation style and
-// the state. The state starts empty: the parent chooses it (there is no default).
-export type ChildFormValue = { firstName: string; classLevel: number; language: 'en' | 'hi'; style: 'en' | 'hi' | 'hinglish'; stateCode: string };
+// Add or change a child (M1-2, C248; C263): first name only, the class (Nursery to Class 12), the board, the app's
+// language, the explanation style and the state. Class, board and state start empty: the parent chooses them (there
+// is no default).
+export type ChildFormValue = { firstName: string; classLevel: number | null; board: string; language: 'en' | 'hi'; style: 'en' | 'hi' | 'hinglish'; stateCode: string };
 
 export function ChildForm({
   w,
@@ -27,7 +29,7 @@ export function ChildForm({
   submitLabel: string;
   onDone: () => void;
 }) {
-  const [v, setV] = useState<ChildFormValue>(initial ?? { firstName: '', classLevel: 0, language: 'hi', style: 'hinglish', stateCode: '' });
+  const [v, setV] = useState<ChildFormValue>(initial ?? { firstName: '', classLevel: null, board: '', language: 'hi', style: 'hinglish', stateCode: '' });
   const [problems, setProblems] = useState<string[]>([]);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
@@ -55,19 +57,40 @@ export function ChildForm({
         autoComplete="off"
         maxLength={30}
         required
+        requiredText={w['fam.child.required']}
         value={v.firstName}
         onChange={(e) => setV({ ...v, firstName: e.target.value })}
         error={has('first_name') ? w['fam.err.first_name'] : undefined}
       />
-      <SegmentedControl
+      <Select
         id={`${prefix}-class`}
         label={w['fam.child.class']}
-        value={String(v.classLevel)}
-        options={[6, 7, 8, 9, 10].map((n) => ({ value: String(n), label: String(n) }))}
-        onChange={(c) => setV({ ...v, classLevel: Number(c) })}
-      />
-      {has('class') && <p className="-mt-3 text-sm font-semibold text-red-800">{w['fam.err.class']}</p>}
-      <p className="-mt-2 rounded-xl bg-slate/5 px-3 py-2 text-sm text-slate">{w['fam.child.board']}</p>
+        required
+        requiredText={w['fam.child.required']}
+        value={v.classLevel === null ? '' : String(v.classLevel)}
+        onChange={(e) => setV({ ...v, classLevel: e.target.value === '' ? null : Number(e.target.value) })}
+        error={has('class') ? w['fam.err.class'] : undefined}
+      >
+        <option value="" disabled>
+          {w['fam.err.class']}
+        </option>
+        {CHILD_CLASSES.map((n) => (
+          <option key={n} value={String(n)}>
+            {classText((k) => w[k], n)}
+          </option>
+        ))}
+      </Select>
+      <Select id={`${prefix}-board`} label={w['fam.child.board']} required requiredText={w['fam.child.required']} value={v.board} onChange={(e) => setV({ ...v, board: e.target.value })} error={has('board') ? w['fam.err.board'] : undefined}>
+        <option value="" disabled>
+          {w['fam.child.boardPick']}
+        </option>
+        {CHILD_BOARDS.map((b) => (
+          // Board abbreviations are names, the same in every language.
+          <option key={b} value={b} lang={b === 'STATE' || b === 'CAIE' ? undefined : 'en'}>
+            {w[`fam.board.${b}`]}
+          </option>
+        ))}
+      </Select>
       <SegmentedControl
         id={`${prefix}-language`}
         label={w['fam.child.language']}
@@ -89,7 +112,7 @@ export function ChildForm({
         ]}
         onChange={(style) => setV({ ...v, style })}
       />
-      <Select id={`${prefix}-state`} label={w['fam.child.state']} required value={v.stateCode} onChange={(e) => setV({ ...v, stateCode: e.target.value })} error={has('state') ? w['fam.err.state'] : undefined}>
+      <Select id={`${prefix}-state`} label={w['fam.child.state']} required requiredText={w['fam.child.required']} value={v.stateCode} onChange={(e) => setV({ ...v, stateCode: e.target.value })} error={has('state') ? w['fam.err.state'] : undefined}>
         <option value="" disabled>
           {w['fam.child.statePick']}
         </option>

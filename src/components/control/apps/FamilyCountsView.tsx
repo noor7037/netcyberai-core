@@ -8,6 +8,9 @@ import { t, type Lang } from '@/lib/i18n';
 
 const count = (n: number) => n.toLocaleString('en-IN');
 
+
+// Nursery, LKG and UKG are classes -2, -1 and 0 (C263).
+const PRE_PRIMARY: Record<number, 'fam.class.nursery' | 'fam.class.lkg' | 'fam.class.ukg'> = { [-2]: 'fam.class.nursery', [-1]: 'fam.class.lkg', 0: 'fam.class.ukg' };
 export function FamilyCountsView({ counts, lang }: { counts: FamilyCounts; lang: Lang }) {
   return (
     <div className="flex min-w-0 flex-col gap-4" data-family-counts>
@@ -27,7 +30,7 @@ export function FamilyCountsView({ counts, lang }: { counts: FamilyCounts; lang:
         ) : (
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4 xl:grid-cols-6">
             {counts.childrenByClass.map((c) => (
-              <StatTile key={c.classLevel} icon="student" tone="royal" label={t(lang, 'control.family.class', { n: c.classLevel })} value={count(c.count)} attrs={{ 'data-class': c.classLevel }} />
+              <StatTile key={c.classLevel} icon="student" tone="royal" label={c.classLevel <= 0 ? t(lang, PRE_PRIMARY[c.classLevel] ?? 'fam.class.ukg') : t(lang, 'control.family.class', { n: c.classLevel })} value={count(c.count)} attrs={{ 'data-class': c.classLevel }} />
             ))}
           </div>
         )}

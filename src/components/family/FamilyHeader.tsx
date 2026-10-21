@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { FamilyChild } from '@/lib/family/children';
-import { fill, type Words } from '@/lib/family/fill';
+import { classText, fill, type Words } from '@/lib/family/fill';
 import { ChildSwitcher } from './ChildSwitcher';
 
 // The top of child mode (M1-2, C248): who is learning, one tap to switch child, and the way to the parent area (which
@@ -13,7 +13,7 @@ export function FamilyHeader({ w, child, children }: { w: Words; child: FamilyCh
           <div className="min-w-0">
             <p className="text-sm font-bold uppercase tracking-wide text-white/90">{w['fam.app.name']}</p>
             {child && <h1 className="mt-1 truncate text-3xl font-extrabold">{fill(w['fam.home.hello'], { name: child.firstName })}</h1>}
-            {child && <p className="text-base text-white/90">{fill(w['fam.class.label'], { n: child.classLevel })}</p>}
+            {child && <p className="text-base text-white/90">{classText((k) => w[k], child.classLevel)}</p>}
           </div>
           <Link
             href="/family/parent"

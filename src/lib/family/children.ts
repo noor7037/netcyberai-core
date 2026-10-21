@@ -1,15 +1,36 @@
-import { isIndianState } from '@/lib/contracts/indian-states';
+import { INDIAN_STATES, isIndianState } from '@/lib/contracts/indian-states';
+import { stageSubjects, type Subject } from './subjects';
 
-// A family's children (docs/family-app/03 §5; M1-2, C248). A child is a first name, class 6–10, the board (CBSE),
-// the app's language (English or Hindi), the explanation style (English, Hindi or Hinglish) and the state, which the
-// parent chooses: there is no default. Never a surname, a photo, a phone number or an Aadhaar number. The database
-// holds the same rules (C247); these give the parent a plain answer first.
+// A family's children (docs/family-app/03 §5; M1-2, C248). A child is a first name, the class, the board, the app's
+// language (English or Hindi), the explanation style (English, Hindi or Hinglish) and the state, which the parent
+// chooses: there is no default. Never a surname, a photo, a phone number or an Aadhaar number. The database holds the
+// same rules (C247, C263); these give the parent a plain answer first.
+//
+// Wave A (C263): every class from Nursery to Class 12, and every board. Nursery, LKG and UKG are -2, -1 and 0.
+// "Our state's board" (STATE) is read with the child's state: its syllabus is the state board's own (ST-<state>),
+// loaded from that board's official documents; until it is, the child sees that the chapters are not in the app yet.
 
-export const CHILD_CLASSES = [6, 7, 8, 9, 10] as const;
+export const CHILD_CLASSES = [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
+export const PRE_PRIMARY_UPTO = 0;
+export const CHILD_BOARDS = ['CBSE', 'CISCE', 'STATE', 'NIOS', 'IB', 'CAIE'] as const;
 export const CHILD_LANGUAGES = ['en', 'hi'] as const;
 export const CHILD_STYLES = ['en', 'hi', 'hinglish'] as const;
-export const CHILD_BOARD = 'CBSE';
 export const MAX_CHILDREN = 8;
+
+export type ChildBoard = (typeof CHILD_BOARDS)[number];
+export const isPrePrimary = (classLevel: number) => classLevel <= PRE_PRIMARY_UPTO;
+
+// The board whose syllabus the child follows: the board itself, or for "our state's board" that state's own board.
+export function syllabusBoardOf(child: { board: string; stateCode: string }): string {
+  return child.board === 'STATE' ? `ST-${child.stateCode.slice(3)}` : child.board;
+}
+
+// The board as the AI request names it (English, never the child's details).
+const BOARD_NAMES: Record<string, string> = { CBSE: 'CBSE', CISCE: 'CISCE (ICSE/ISC)', NIOS: 'NIOS', IB: 'IB', CAIE: 'Cambridge International' };
+export function boardNameOf(child: { board: string; stateCode: string }): string {
+  if (child.board === 'STATE') return `${INDIAN_STATES.find((s) => s.code === child.stateCode)?.name ?? 'the state'} state board`;
+  return BOARD_NAMES[child.board] ?? child.board;
+}
 
 export type ChildLanguage = (typeof CHILD_LANGUAGES)[number];
 export type ChildStyle = (typeof CHILD_STYLES)[number];
@@ -21,10 +42,10 @@ export type FamilyChild = {
   language: ChildLanguage;
   style: ChildStyle;
   stateCode: string;
-  freeSubject: 'mathematics' | 'science' | null;
+  freeSubject: Subject | null;
 };
-export type ChildInput = Omit<FamilyChild, 'childId' | 'board' | 'freeSubject'>;
-export type ChildProblem = 'first_name' | 'class' | 'language' | 'style' | 'state';
+export type ChildInput = Omit<FamilyChild, 'childId' | 'freeSubject'>;
+export type ChildProblem = 'first_name' | 'class' | 'board' | 'language' | 'style' | 'state';
 
 // One word of letters (any script, with its marks): no spaces, digits or symbols, so a surname, a phone number or an
 // email cannot be typed into it.
@@ -35,13 +56,15 @@ export function checkChild(raw: unknown): { ok: true; child: ChildInput } | { ok
   const problems: ChildProblem[] = [];
   const firstName = typeof b.firstName === 'string' ? b.firstName.trim().normalize('NFC') : '';
   if (!FIRST_NAME.test(firstName)) problems.push('first_name');
-  const classLevel = Number(b.classLevel);
+  // A class must be sent: an empty or missing value is not UKG (Number(null) and Number('') are both 0).
+  const classLevel = typeof b.classLevel === 'number' || (typeof b.classLevel === 'string' && b.classLevel.trim() !== '') ? Number(b.classLevel) : NaN;
   if (!(CHILD_CLASSES as readonly number[]).includes(classLevel)) problems.push('class');
+  if (!(CHILD_BOARDS as readonly unknown[]).includes(b.board)) problems.push('board');
   if (!(CHILD_LANGUAGES as readonly unknown[]).includes(b.language)) problems.push('language');
   if (!(CHILD_STYLES as readonly unknown[]).includes(b.style)) problems.push('style');
   if (!isIndianState(b.stateCode)) problems.push('state');
   if (problems.length) return { ok: false, problems };
-  return { ok: true, child: { firstName, classLevel, language: b.language as ChildLanguage, style: b.style as ChildStyle, stateCode: String(b.stateCode) } };
+  return { ok: true, child: { firstName, classLevel, board: String(b.board), language: b.language as ChildLanguage, style: b.style as ChildStyle, stateCode: String(b.stateCode) } };
 }
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[]; rowCount?: number | null }> };
@@ -72,17 +95,19 @@ export async function addChild(db: Db, accountId: string, c: ChildInput): Promis
     `insert into family.children (account_id, first_name, class_level, board_id, language, style, state_code)
      values ($1, $2, $3, $4, $5, $6, $7)
      returning child_id, first_name, class_level, board_id, language, style, state_code, free_subject`,
-    [accountId, c.firstName, c.classLevel, CHILD_BOARD, c.language, c.style, c.stateCode]
+    [accountId, c.firstName, c.classLevel, c.board, c.language, c.style, c.stateCode]
   );
   return toChild(rows[0]);
 }
 
 export async function updateChild(db: Db, accountId: string, childId: string, c: ChildInput): Promise<FamilyChild | null> {
   const { rows } = await db.query(
-    `update family.children set first_name = $3, class_level = $4, language = $5, style = $6, state_code = $7
+    // A free subject the new class does not teach is let go (C264), so the child can claim one of their new subjects.
+    `update family.children set first_name = $3, class_level = $4, language = $5, style = $6, state_code = $7, board_id = $8,
+            free_subject = case when free_subject = any ($9::text[]) then free_subject end
       where account_id = $1 and child_id = $2
       returning child_id, first_name, class_level, board_id, language, style, state_code, free_subject`,
-    [accountId, childId, c.firstName, c.classLevel, c.language, c.style, c.stateCode]
+    [accountId, childId, c.firstName, c.classLevel, c.language, c.style, c.stateCode, c.board, stageSubjects(c.classLevel)]
   );
   return rows[0] ? toChild(rows[0]) : null;
 }

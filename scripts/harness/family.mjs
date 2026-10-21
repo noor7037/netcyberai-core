@@ -95,9 +95,9 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
               smallTargets: small,
               running: document.getAnimations().filter((a) => a.playState === 'running').length,
               devanagari: /[ऀ-ॿ]/.test(text),
-              // Words left in English on a Hindi screen. Product names, the language names and the seeded children's
+              // Words left in English on a Hindi screen. Product names (NetCyberAI, Family Plus), the language names and the seeded children's
               // first names (data, not words of the app) do not count.
-              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir'].includes(w.toLowerCase())).length,
+              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir', 'family', 'plus'].includes(w.toLowerCase())),
             };
           });
           await page.addScriptTag({ path: AXE });
@@ -114,7 +114,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
           if (seen.smallTargets.length) problems.push(`targets under 44 px: ${seen.smallTargets.join(', ')}`);
           if (motion === 'reduce' && seen.running) problems.push(`${seen.running} animations run under reduced motion`);
           if (axe.length) problems.push(`axe: ${axe.join(', ')}`);
-          if (lang === 'hi' && (!seen.devanagari || seen.latinWords > 3)) problems.push(`Hindi incomplete (${seen.latinWords} English words)`);
+          if (lang === 'hi' && (!seen.devanagari || seen.latinWords.length > 3)) problems.push(`Hindi incomplete (${seen.latinWords.length} English words: ${seen.latinWords.slice(0, 8).join(' ')})`);
           problems.push(...errors);
           rows.push({ name, lang, motion, width, route, file, h1: seen.h1, axe, problems });
           console.log(`${width} ${lang} ${motion} ${name}: ${problems.length ? problems.join('; ') : 'ok'}`);

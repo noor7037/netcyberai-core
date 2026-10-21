@@ -21,16 +21,18 @@ type Props = SelectHTMLAttributes<HTMLSelectElement> & {
   error?: string;
   helperText?: ReactNode;
   floating?: boolean;
+  // The screen reader's word for a required field, in the page's language (default English: FIELD_WORDS).
+  requiredText?: string;
 };
 
-export function Select({ label, id, error, helperText, required, floating, className = '', children, ...props }: Props) {
+export function Select({ label, id, error, helperText, required, floating, requiredText, className = '', children, ...props }: Props) {
   const messageId = `${id}-message`;
   const hasMessage = Boolean(error || helperText);
   const float = floating ?? label.length <= FLOAT_MAX;
   const text = (
     <>
       {label}
-      <RequiredMark required={required} words={FIELD_WORDS.required} />
+      <RequiredMark required={required} words={requiredText ?? FIELD_WORDS.required} />
     </>
   );
   return (
