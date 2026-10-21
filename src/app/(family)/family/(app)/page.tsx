@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { FamilyHeader } from '@/components/family/FamilyHeader';
 import { firstStepsNext, requireFamilyPage } from '@/lib/family/server';
@@ -21,6 +22,9 @@ export default async function FamilyHomePage() {
         <section data-family-start className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate/10">
           <h2 className="text-xl font-extrabold text-slate">{t(lang, 'fam.home.startTitle')}</h2>
           <p className="mt-1 text-base text-slate/80">{t(lang, 'fam.home.startLead')}</p>
+          <Link href="/family/study" className="mt-4 flex min-h-[44px] items-center justify-center rounded-2xl bg-royal px-4 text-base font-bold text-white hover:bg-royal-deep">
+            {t(lang, 'fam.home.study')}
+          </Link>
         </section>
       </main>
     </div>
