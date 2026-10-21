@@ -6,6 +6,7 @@ import { CHILD_FORM_KEYS } from '@/lib/family/child-words';
 import { syllabusBoardOf } from '@/lib/family/children';
 import { SUBJECT_IDS } from '@/lib/family/subjects';
 import { calmCard } from '@/lib/family/learning';
+import { readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { familyPageRead, requireFamilyPage } from '@/lib/family/server';
 import { indiaDate } from '@/lib/time/india';
 import { familyStates } from '@/lib/family/states';
@@ -27,6 +28,7 @@ const AREA_KEYS: MessageKey[] = [
   'fam.parent.deleteAccountWord', 'fam.parent.deleteAccountYes', 'fam.consent.purpose.study_core', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.common.cancel', 'fam.lang.label',
   ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.err.confirm', 'fam.err.bad_request', 'fam.parent.freeSubject', 'fam.parent.freeSubjectTooSoon',
   'fam.calm.title', 'fam.calm.nothingYet', 'fam.calm.week', 'fam.calm.mastered', 'fam.calm.recent', 'fam.calm.note',
+  'fam.consent.purpose.english_programme', 'fam.english.parent.section', 'fam.english.parent.open',
 ];
 
 export default async function FamilyParentPage() {
@@ -43,9 +45,13 @@ export default async function FamilyParentPage() {
   const calm = await familyPageRead(page, async (db) => Promise.all(page.children.map((c) => calmCard(db, page.session.accountId, c.childId, indiaDate(), lang))));
   // Each child's class subjects (C264), for the free-subject choice.
   const subjects = await familyPageRead(page, async (db) => Promise.all(page.children.map((c) => classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel }))));
+  // The English course (C274): its consent and reports show when Control has the course switched on.
+  const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
+  const english = switches && switchOn(switches, 'english_programme') ? { granted: page.consents.english_programme } : null;
   return (
     <main lang={lang} className="mx-auto w-full max-w-xl px-4 py-6">
       <ParentArea
+        english={english}
         calm={calm}
         w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])}
         lang={lang}

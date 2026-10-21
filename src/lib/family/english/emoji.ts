@@ -18,7 +18,7 @@ const GROUPS: Record<string, string> = {
   symbols: '✅ ❓ ❗ ➕ ➖ ✖️ ➗ 🔢 🔤 🆗 🆕 💯 🔴 🟠 🟡 🟢 🔵 🟣 ⚫ ⚪ 🟤 🔺 🔻 🔷 🔶 ⬛ ⬜ 🟥 🟧 🟨 🟩 🟦 🟪 🟫 ⭕ 🔲 ⏳ ⌛ ▶️ ⏸️ 🔁 ➡️ ⬅️ ⬆️ ⬇️ ↩️ 0️⃣ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟',
 };
 
-// Drawings of our own (src/components/english/OwnPicture.tsx), named in a lesson as "own:<name>".
+// Drawings of our own (src/components/family/english/OwnPicture.tsx), named in a lesson as "own:<name>".
 export const OWN_PICTURES = ['roti', 'chalkboard', 'well', 'tiffin', 'school-bus', 'haat', 'kite-festival', 'rangoli'] as const;
 export type OwnPicture = (typeof OWN_PICTURES)[number];
 

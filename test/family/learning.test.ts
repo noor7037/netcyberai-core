@@ -39,8 +39,8 @@ describe('the registry', () => {
     expect(FAMILY_MODULES.filter((m) => m.tab === 'home' && m.entitlement === 'school_info').every((m) => m.entitlement !== 'plus' && m.entitlement !== 'learning')).toBe(true);
   });
   it('shows a tab only when a built module of it is switched on', () => {
-    expect(visibleTabs(() => true)).toEqual(['home', 'study', 'family']);
-    expect(visibleTabs((f) => f !== 'understand' && f !== 'practice')).toEqual(['home', 'family']);
+    expect(visibleTabs(() => true)).toEqual(['home', 'study', 'english', 'family']);
+    expect(visibleTabs((f) => f !== 'understand' && f !== 'practice')).toEqual(['home', 'english', 'family']);
   });
   it('opens every subject until the first is claimed, then only that one', () => {
     expect(subjectAccess({ freeSubject: null }, 'science').open).toBe(true);
