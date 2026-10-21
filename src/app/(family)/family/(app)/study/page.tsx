@@ -14,6 +14,10 @@ import { t, type MessageKey } from '@/lib/i18n';
 // Study (M1-5, C251): the child's subject, its chapters and topics from the catalog released to everyone for the
 // child's class, each opening Understand; and a typed question. Without a catalog for the class (classes 6–8 for
 // 2026-27, C250) only the question is offered. Nursery, LKG and UKG (C263) see a plain note: their module comes later.
+// A title is marked with the language it is written in (a Hindi title from NCERT's Hindi edition, or a Hindi
+// textbook's own Devanagari title, is Hindi; an English-only title stays English on a Hindi page), for screen readers.
+const titleLang = (title: string) => (/[\u0900-\u097F]/.test(title) ? 'hi' : 'en');
+
 // The subject tabs are the subjects of the child's class (C264): the stage's school subjects and whatever the catalog
 // holds for the class, the free one first once claimed.
 
@@ -85,7 +89,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
               {catalog.chapters.map((c) => (
                 <li key={c.key} className="rounded-3xl bg-white p-3 shadow-sm ring-1 ring-slate/10">
                   <Link href={`/family/understand?kind=chapter&key=${encodeURIComponent(c.key)}`} className="flex min-h-[44px] items-center justify-between gap-2 px-1 text-base font-bold text-slate">
-                    <span lang={lang === 'hi' ? 'en' : undefined}>{c.title}</span>
+                    <span lang={titleLang(c.title)}>{c.title}</span>
                     <span aria-hidden="true" className="text-royal">→</span>
                   </Link>
                   {c.topics.length > 0 && (
@@ -93,7 +97,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                       {c.topics.map((tp) => (
                         <li key={tp.key}>
                           <Link href={`/family/understand?kind=topic&key=${encodeURIComponent(tp.key)}`} className="flex min-h-[44px] items-center rounded-xl px-2 text-sm text-slate hover:bg-slate/5">
-                            <span lang={lang === 'hi' ? 'en' : undefined}>{tp.title}</span>
+                            <span lang={titleLang(tp.title)}>{tp.title}</span>
                           </Link>
                         </li>
                       ))}
