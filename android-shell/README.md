@@ -27,6 +27,33 @@ a merge reaches phones at once; only native code (the Focus Lock in M2b, push la
 4. `cd android && ./gradlew bundleRelease` → `android/app/build/outputs/bundle/release/app-release.aab`.
 5. A test build for one phone, without Play: `./gradlew assembleDebug` → `app-debug.apk`.
 
+## Putting the test build on your own Android phone (F1-4, C261)
+
+The debug build (`android/app/build/outputs/apk/debug/app-debug.apk`) is signed with a debug key made on the Mac that
+built it. It is for your own phone only, never for Play. It opens the live Family app, so it shows whatever is
+deployed.
+
+**Way 1: a USB cable.**
+1. On the phone: Settings → About phone → tap "Build number" seven times (developer options), then Settings → System
+   → Developer options → turn on "USB debugging".
+2. Connect the phone to the Mac and tap "Allow" on the phone's "Allow USB debugging?" question.
+3. On the Mac: `/opt/homebrew/share/android-commandlinetools/platform-tools/adb install -r android/app/build/outputs/apk/debug/app-debug.apk`
+   (it answers "Success"). "NetCyberAI Family" is now on the phone.
+
+**Way 2: send the file to the phone.**
+1. Send `app-debug.apk` to yourself (Google Drive, email or WhatsApp to yourself).
+2. On the phone, open it from Files or the message, and allow "Install unknown apps" for that app when Android asks.
+3. Tap Install. Android may warn that the app is from an unknown developer: that is this debug key; tap "Install
+   anyway".
+
+To replace it later, build again and repeat either way: the new one installs over the old one (same debug key on the
+same Mac).
+
+**This Mac's set-up** (2026-10-21): JDK 21 (`/opt/homebrew/opt/openjdk@21`), the Android command-line tools from
+Homebrew (`ANDROID_HOME=/opt/homebrew/share/android-commandlinetools`, the founder accepted Google's SDK licences), and
+platform 35, build-tools 35.0.0 and platform-tools. The Gradle wrapper fetches the `-bin` distribution (the build tools
+without their sources and docs, 90 MB less on a slow connection).
+
 ## Play internal test (once the Play developer account exists)
 
 1. Play Console → Create app: "NetCyberAI Family", app, free; accept the declarations.
