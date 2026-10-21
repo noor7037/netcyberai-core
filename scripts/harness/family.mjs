@@ -102,7 +102,6 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
           });
           await page.addScriptTag({ path: AXE });
           const axe = await page.evaluate(async () => {
-            // eslint-disable-next-line no-undef
             const r = await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] } });
             return r.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical').map((v) => `${v.id} (${v.nodes.length}) at ${v.nodes[0].target.join(' ')}: ${(v.nodes[0].any[0]?.message ?? '').slice(0, 140)}`);
           });
