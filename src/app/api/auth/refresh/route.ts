@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { refreshSession } from '@/lib/auth/refresh';
-import { ACCESS_COOKIE, REFRESH_COOKIE, ACCESS_TTL_SECONDS, REFRESH_TTL_SECONDS, cookieOptions } from '@/lib/auth/cookies';
+import { ACCESS_COOKIE, REFRESH_COOKIE, ACCESS_TTL_SECONDS, REFRESH_TTL_SECONDS, sessionCookieOptions } from '@/lib/auth/cookies';
 
 export async function POST(req: NextRequest) {
   const refreshToken = req.cookies.get(REFRESH_COOKIE)?.value;
@@ -17,7 +17,8 @@ export async function POST(req: NextRequest) {
   }
 
   const res = NextResponse.json({ status: 'ok', role: result.claims.role, schoolId: result.claims.schoolId });
-  res.cookies.set(ACCESS_COOKIE, result.accessToken, cookieOptions(ACCESS_TTL_SECONDS));
-  res.cookies.set(REFRESH_COOKIE, result.refreshToken, cookieOptions(REFRESH_TTL_SECONDS));
+  // "Keep me signed in" (F1-1): a session kept stays in cookies that outlive the browser; one not kept stays session-only.
+  res.cookies.set(ACCESS_COOKIE, result.accessToken, sessionCookieOptions(ACCESS_TTL_SECONDS, result.persistent));
+  res.cookies.set(REFRESH_COOKIE, result.refreshToken, sessionCookieOptions(REFRESH_TTL_SECONDS, result.persistent));
   return res;
 }

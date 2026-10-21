@@ -42,6 +42,7 @@ beforeAll(async () => {
     switcher: await import('@/app/api/family/child/route'),
     answers: await import('@/app/api/family/answers/route'),
     account: await import('@/app/api/family/account/route'),
+    renew: await import('@/app/api/family/auth/renew/route'),
     staffStudents: await import('@/app/api/app/students/route'),
   };
 }, 90_000);
@@ -219,9 +220,14 @@ describe('the parent area', () => {
     expect(sent.status).toBe(200);
     expect(mail.sent[mail.sent.length - 1].to).toEqual(['reset@example.org']);
     const code = lastCode();
+    const otherPhone = await signIn('reset@example.org');
     const res = await R.reset.POST(req('/api/family/pin/reset', 'POST', { code, pin: '602913' }, jar));
     expect(res.status).toBe(200);
-    expect((await R.unlock.POST(req('/api/family/pin/unlock', 'POST', { pin: '602913' }, jar))).status).toBe(200);
+    // F1-1: a PIN change signs every other phone out; this one gets a new session token and stays.
+    const after = keep(jar, res);
+    expect((await R.unlock.POST(req('/api/family/pin/unlock', 'POST', { pin: '602913' }, after))).status).toBe(200);
+    expect((await R.children.GET(req('/api/family/children', 'GET', null, otherPhone))).status).toBe(401);
+    expect((await R.children.GET(req('/api/family/children', 'GET', null, jar))).status).toBe(401);
   });
 
   it('the switcher and the parent’s changes reach only this account’s children', async () => {
@@ -277,5 +283,62 @@ describe('the parent area', () => {
       expect((await db.pg.query(`select count(*)::int n from family.${t} where account_id = $1`, [account])).rows[0].n, t).toBe(0);
     }
     expect((await R.children.GET(req('/api/family/children', 'GET', null, jar))).status).toBe(401);
+  });
+});
+
+describe('F1-1: keep me signed in', () => {
+  const DAY = 24 * 60 * 60;
+  const sessionCookie = (res: Response) => (res as unknown as { cookies: { get(n: string): { value: string; maxAge?: number } | undefined } }).cookies.get('ncf_session');
+  async function verifyWith(email: string, body: Record<string, unknown>, headers: Record<string, string> = {}) {
+    let jar: Jar = {};
+    jar = keep(jar, await R.code.POST(req('/api/family/auth/code', 'POST', { email }, jar, { 'x-forwarded-for': '10.0.9.9' })));
+    return R.verify.POST(req('/api/family/auth/verify', 'POST', { code: lastCode(), ...body }, jar, headers));
+  }
+  // A session token signed a while ago, as the browser would still hold it.
+  async function agedToken(accountId: string, tv: number, keepSignedIn: boolean, ageSeconds: number) {
+    const { SignJWT } = await import('jose');
+    const iat = Math.floor(Date.now() / 1000) - ageSeconds;
+    return new SignJWT({ typ: 'family', tv, sid: '00000000-0000-4000-8000-00000000f101', kp: keepSignedIn ? 1 : 0 })
+      .setProtectedHeader({ alg: 'HS256' })
+      .setSubject(accountId)
+      .setAudience('nca-family')
+      .setIssuedAt(iat)
+      .setExpirationTime(iat + (keepSignedIn ? 180 : 0.5) * DAY)
+      .sign(new TextEncoder().encode(process.env.APP_SESSION_SECRET!));
+  }
+
+  it('on by default: 180 days; off: the cookie ends with the browser; the Android app always keeps', async () => {
+    expect(sessionCookie(await verifyWith('keep1@example.org', {}))?.maxAge).toBe(180 * DAY);
+    const off = sessionCookie(await verifyWith('keep2@example.org', { keepSignedIn: false }));
+    expect(off?.value).toBeTruthy();
+    expect(off?.maxAge).toBeUndefined();
+    const app = sessionCookie(await verifyWith('keep3@example.org', { keepSignedIn: false }, { 'user-agent': 'Mozilla/5.0 (Linux; Android 14; wv) NetCyberAIFamily/1' }));
+    expect(app?.maxAge).toBe(180 * DAY);
+  });
+
+  it('renews a session in use once a day, kept or not; never a signed-out one', async () => {
+    const jar = await onboard('renew@example.org');
+    const account = (await db.pg.query(`select account_id, token_version from family.accounts where email = 'renew@example.org'`)).rows[0];
+    // Fresh: nothing to do.
+    expect(await (await R.renew.POST(req('/api/family/auth/renew', 'POST', {}, jar))).json()).toEqual({ status: 'fresh' });
+    // Two days old, kept: a new 180-day token for the same session.
+    const old = await agedToken(account.account_id, account.token_version, true, 2 * DAY);
+    const renewed = await R.renew.POST(req('/api/family/auth/renew', 'POST', {}, { ncf_session: old }));
+    expect(await renewed.json()).toEqual({ status: 'renewed' });
+    const fresh = sessionCookie(renewed)!;
+    expect(fresh.maxAge).toBe(180 * DAY);
+    const { verifyFamilySession } = await import('@/lib/family/session');
+    expect(await verifyFamilySession(fresh.value)).toMatchObject({ accountId: account.account_id, sessionId: '00000000-0000-4000-8000-00000000f101', keep: true });
+    // Not kept: renewed for 12 hours, still session-only.
+    const short = await agedToken(account.account_id, account.token_version, false, 2 * 60 * 60);
+    const shortRes = await R.renew.POST(req('/api/family/auth/renew', 'POST', {}, { ncf_session: short }));
+    expect(await shortRes.json()).toEqual({ status: 'renewed' });
+    expect(sessionCookie(shortRes)?.maxAge).toBeUndefined();
+    expect(await verifyFamilySession(sessionCookie(shortRes)!.value)).toMatchObject({ keep: false });
+    // Signed out everywhere: refused, cookies cleared, nothing renewed.
+    await R.signOut.POST(req('/api/family/auth/sign-out', 'POST', { everywhere: true }, jar));
+    const revoked = await R.renew.POST(req('/api/family/auth/renew', 'POST', {}, { ncf_session: old }));
+    expect(revoked.status).toBe(401);
+    expect(sessionCookie(revoked)?.value ?? '').toBe('');
   });
 });

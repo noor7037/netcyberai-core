@@ -1,5 +1,6 @@
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { FamilySessionKeeper } from '@/components/family/FamilySessionKeeper';
 import { FamilyTabs } from '@/components/family/FamilyTabs';
 import { familyBanner, offMessage, readFamilySwitches, shellTooOld, switchOn } from '@/lib/family/flags';
 import { visibleTabs } from '@/lib/family/modules';
@@ -45,6 +46,7 @@ export default async function FamilyAppLayout({ children }: { children: React.Re
           {lang === 'hi' ? banner.textHi : banner.textEn}
         </div>
       )}
+      <FamilySessionKeeper />
       <div className="pb-20">{children}</div>
       <FamilyTabs tabs={tabs} navLabel={t(lang, 'fam.tab.nav')} labels={{ home: t(lang, 'fam.tab.home'), study: t(lang, 'fam.tab.study'), english: t(lang, 'fam.tab.english'), future: t(lang, 'fam.tab.future'), family: t(lang, 'fam.tab.family') }} />
     </>

@@ -6,8 +6,26 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 
-// Account security (C90): the mobile number used to sign in, forgetting
-// this device, and signing out on every device.
+// Account security (C90): the mobile number used to sign in, the browsers
+// trusted to skip the sign-in codes (F1-1, C257: each with "Forget"), and
+// signing out on every device.
+type Device = { deviceId: string; label: string; proof: 'authenticator' | 'email'; lastUsedAt: string; expiresAt: string; thisDevice: boolean };
+// The device list's words, from the message files (the page picks the language): see DEVICE_WORD_KEYS.
+export const DEVICE_WORD_KEYS = [
+  'account.devices.heading',
+  'account.devices.tip',
+  'account.devices.loading',
+  'account.devices.none',
+  'account.devices.this',
+  'account.devices.skipsBoth',
+  'account.devices.skipsEmail',
+  'account.devices.dates',
+  'account.devices.forget',
+  'account.devices.forgotten',
+  'account.devices.thisForgotten',
+  'account.devices.forgetFailed',
+] as const;
+export type DeviceWords = Record<(typeof DEVICE_WORD_KEYS)[number], string> & { lang: 'en' | 'hi' };
 const PHONE_ERROR: Record<string, string> = {
   phone_invalid: 'Enter a 10-digit Indian mobile number, for example 98765 43210.',
   phone_taken: 'Another account already uses this number.',
@@ -24,11 +42,23 @@ async function post(url: string, body?: unknown) {
   return { ok: res.ok, data: await res.json().catch(() => ({})) };
 }
 
-export function SecurityPanel() {
+export function SecurityPanel({ w }: { w: DeviceWords }) {
+  const day = (iso: string) => new Date(iso).toLocaleDateString(w.lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
   const [phone, setPhone] = useState('');
   const [phoneMsg, setPhoneMsg] = useState<{ ok: boolean; text: string } | null>(null);
   const [deviceMsg, setDeviceMsg] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [devices, setDevices] = useState<Device[] | null>(null);
+
+  const loadDevices = () =>
+    fetch('/api/auth/devices')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setDevices(Array.isArray(d?.devices) ? d.devices : []))
+      .catch(() => setDevices([]));
+
+  useEffect(() => {
+    void loadDevices();
+  }, []);
 
   useEffect(() => {
     fetch('/api/auth/phone')
@@ -56,7 +86,16 @@ export function SecurityPanel() {
   async function forgetDevice() {
     setBusy(true);
     await post('/api/auth/device/forget').catch(() => null);
-    setDeviceMsg('This device is forgotten. The next sign-in here will ask for the email code.');
+    setDeviceMsg(w['account.devices.thisForgotten']);
+    await loadDevices();
+    setBusy(false);
+  }
+
+  async function forgetOne(d: Device) {
+    setBusy(true);
+    const r = await post('/api/auth/devices', { deviceId: d.deviceId }).catch(() => null);
+    setDeviceMsg(r?.ok ? w['account.devices.forgotten'].replace('{label}', d.label) : w['account.devices.forgetFailed']);
+    await loadDevices();
     setBusy(false);
   }
 
@@ -102,11 +141,32 @@ export function SecurityPanel() {
       <Card className="flex flex-col gap-3">
         <div className="flex flex-wrap items-center gap-x-1">
           <h2 className="text-base font-bold text-slate">Devices and sessions</h2>
-          <InfoTip>You stay signed in on each device until you log out. A remembered device skips the email code for 30 days.</InfoTip>
+          <InfoTip>{w['account.devices.tip']}</InfoTip>
         </div>
-        <Button type="button" variant="outline" disabled={busy} onClick={forgetDevice}>
-          Forget this device
-        </Button>
+        <h3 className="text-sm font-bold text-slate">{w['account.devices.heading']}</h3>
+        {devices === null ? (
+          <p className="text-sm text-slate/80">{w['account.devices.loading']}</p>
+        ) : devices.length === 0 ? (
+          <p className="text-sm text-slate/80">{w['account.devices.none']}</p>
+        ) : (
+          <ul className="flex flex-col gap-2">
+            {devices.map((d) => (
+              <li key={d.deviceId} className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-slate/15 p-3">
+                <span className="text-sm text-slate">
+                  <span className="font-semibold">{d.label}</span>
+                  {d.thisDevice && <span className="ml-2 rounded bg-sapphire/10 px-2 py-0.5 text-xs font-semibold text-royal">{w['account.devices.this']}</span>}
+                  <span className="block text-slate/80">
+                    {d.proof === 'authenticator' ? w['account.devices.skipsBoth'] : w['account.devices.skipsEmail']} ·{' '}
+                    {w['account.devices.dates'].replace('{used}', day(d.lastUsedAt)).replace('{until}', day(d.expiresAt))}
+                  </span>
+                </span>
+                <Button type="button" variant="outline" disabled={busy} onClick={() => (d.thisDevice ? forgetDevice() : forgetOne(d))}>
+                  {w['account.devices.forget']}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        )}
         <Button type="button" disabled={busy} onClick={signOutEverywhere}>
           Sign out on all devices
         </Button>

@@ -11,6 +11,9 @@ export const IMPERSONATION_RETURN_COOKIE = 'nca_impersonation_return';
 // on this browser. Not cleared by a normal log out (that is the point);
 // cleared by "Forget this device", invalidated by "Sign out on all devices".
 export const DEVICE_COOKIE = 'nca_device';
+// "Keep me signed in" switched off on the first sign-in screen (F1-1, C257): carried through the later steps
+// (emailed code, authenticator, choosing a school) until the session is issued. Holds '0' only; no secret.
+export const KEEP_COOKIE = 'nca_keep';
 // Setting up or replacing an authenticator on the account page (C95): the
 // Supabase session that started the enrolment, parked until the first code
 // confirms it. Separate from the sign-in pending cookie so a half-finished
@@ -28,6 +31,16 @@ export const DEVICE_TTL_SECONDS = 30 * 24 * 60 * 60;
 // 2-minute sign-in hop (C95).
 export const AUTHENTICATOR_SETUP_TTL_SECONDS = 10 * 60;
 export const IMPERSONATION_TTL_SECONDS = 15 * 60; // PRD §2.3 "time-boxed" -- matches ACCESS_TTL_SECONDS, no PRD-specified number
+
+// A session's cookies (F1-1): with "Keep me signed in" they last their full time; without it they have no max-age, so
+// the browser drops them when it closes.
+export function sessionCookieOptions(maxAgeSeconds: number, persistent: boolean) {
+  const options = cookieOptions(maxAgeSeconds);
+  if (persistent) return options;
+  const { maxAge: _dropped, ...sessionOnly } = options;
+  void _dropped;
+  return sessionOnly;
+}
 
 export function cookieOptions(maxAgeSeconds: number) {
   return {

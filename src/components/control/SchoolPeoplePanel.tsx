@@ -1,5 +1,6 @@
 'use client';
 
+import { useStepUp } from '@/components/auth/StepUp';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
@@ -33,6 +34,7 @@ const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-se
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 
 export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
+  const { stepUpFetch } = useStepUp();
   const { t } = useT();
   const [people, setPeople] = useState<Person[] | null>(null);
   const [failed, setFailed] = useState(false);
@@ -79,7 +81,7 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
     e.preventDefault();
     if (!target || !reason.trim()) return;
     setBusy(true);
-    const res = await fetch('/api/control/impersonate/start', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ targetUserId: target.userId, membershipId: target.membershipId, reason: reason.trim() }) }).catch(() => null);
+    const res = await stepUpFetch('/api/control/impersonate/start', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ targetUserId: target.userId, membershipId: target.membershipId, reason: reason.trim() }) }).catch(() => null);
     if (res?.ok) {
       // A full load: the session cookie is now the person's, and the app shell must be built for them.
       window.location.assign('/app/my-day');
@@ -112,7 +114,7 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
 
   async function resetPassword(p: Person) {
     const password = newPassword();
-    const res = await fetch(`/api/control/users/${p.userId}/account-action`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'temp_password', password }) }).catch(() => null);
+    const res = await stepUpFetch(`/api/control/users/${p.userId}/account-action`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'temp_password', password }) }).catch(() => null);
     if (res?.ok) {
       setShared({ name: p.name, role: p.role, signIn: p.signIn, password });
       setCopied(false);

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { continueResetWithMfa, normalizeCode, passwordProblem, resetPasswordWithCode, resolveIdentifier } from '@/lib/auth/account';
 import { AuthError } from '@/lib/auth/errors';
 import { PENDING_COOKIE, PENDING_TTL_SECONDS, cookieOptions } from '@/lib/auth/cookies';
-import { authErrorResponse, outcomeResponse, rememberDevice } from '@/lib/auth/outcome-response';
+import { authErrorResponse, keepSignedIn, proofOf, rememberDevice, signInResponse } from '@/lib/auth/outcome-response';
 
 // Sets a new password with an emailed recovery code: forgotten passwords,
 // and first-time staff who never set one (C89). Accounts with an
@@ -25,8 +25,8 @@ export async function POST(req: NextRequest) {
     if (body?.continue === true) {
       if (!pending) return NextResponse.json({ error: 'pending_token_invalid' }, { status: 400 });
       const { outcome, userId } = await continueResetWithMfa(pending, newPassword, mfaCode);
-      const res = outcomeResponse(outcome);
-      return remember && res.ok ? rememberDevice(res, userId) : res;
+      const res = await signInResponse(outcome, keepSignedIn(req, body));
+      return remember ? rememberDevice(res, req, userId, await proofOf(outcome)) : res;
     }
 
     const email = await resolveIdentifier(body?.identifier ?? body?.email, { forEmail: true });
@@ -38,8 +38,8 @@ export async function POST(req: NextRequest) {
       res.cookies.set(PENDING_COOKIE, result.pendingToken, cookieOptions(PENDING_TTL_SECONDS));
       return res;
     }
-    const res = outcomeResponse(result.signedIn.outcome);
-    return remember && res.ok ? rememberDevice(res, result.signedIn.userId) : res;
+    const res = await signInResponse(result.signedIn.outcome, keepSignedIn(req, body));
+    return remember ? rememberDevice(res, req, result.signedIn.userId, await proofOf(result.signedIn.outcome)) : res;
   } catch (err) {
     if (err instanceof AuthError) return authErrorResponse(err);
     throw err;
