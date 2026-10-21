@@ -20,7 +20,7 @@ import { isMessageKey, t } from '@/lib/i18n';
 // question's subject is decided on the server (resolver.ts): a `subject` the screen sends is not read.
 //
 // No database connection is held while the AI answers (F1-3): the checks and reads in one short transaction, the call
-// with no connection, then the writes (metering, a typed question's subject, the library line) in a second one.
+// with no connection, then the writes (metering, the library line) in a second one.
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
@@ -90,18 +90,21 @@ export async function POST(req: NextRequest) {
           );
         });
         if (!pending) return;
-        // 2. The AI answers, block by block, with no database connection held.
-        const generated = await generate(pending, send);
+        // 2. The AI answers, block by block, with no database connection held. A child with no free subject claims a
+        // typed question's subject just before its first block is shown, in a short transaction of its own.
+        const childId = pending.ctx.child.childId;
+        const generated = await generate(pending, send, (subject) => withFamilyContext(claims, (db) => claimSubject(db, session.accountId, childId, subject)));
         // 3. The writes, in a second short transaction; the last event only once they are kept.
         let last: ResolverEvent | null;
         try {
           last = await withFamilyContext(claims, (db) => keep(db, pending, generated));
         } catch (err) {
-          // Nothing was written (the family signed out everywhere during the call, or a database error), but the call
-          // happened: it is still counted.
-          await withFamilyGate((db) => generated.sent.record(db as never)).catch(() => {});
+          // Signed out everywhere during the call: the check failed before anything was written, but the call
+          // happened, so it is still counted (once: nothing of the refused transaction ran).
+          if (err instanceof FamilySessionRevokedError) await withFamilyGate((db) => generated.sent.record(db as never)).catch(() => {});
           throw err;
         }
+        if (generated.error !== null) throw generated.error;
         if (last) send(last);
       } catch (err) {
         send({ t: 'refused', reason: err instanceof FamilySessionRevokedError ? 'not_found' : 'failed', message: t('en', 'fam.err.network') });

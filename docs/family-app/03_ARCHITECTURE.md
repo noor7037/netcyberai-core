@@ -125,7 +125,8 @@ input (topic | search | question | photo)
   its first line (prompt v2), and nothing is shown until the server has checked it against the subjects the child may
   use. A question in a subject the child may not use is refused plainly with a link to that subject; one outside
   Mathematics and Science, or not about school study, is refused plainly. A child with no free subject yet claims the
-  subject detected, once an answer is shown.
+  subject detected just before the first block is shown; if the other subject was claimed meanwhile, the answer is
+  refused instead.
 - **Interactive components** are ours or from libraries whose licences allow commercial use (for example MIT-licensed
   plotting and geometry libraries).
   - Third-party simulations are embedded only from an allowlist with attribution, after their licence for our use is
@@ -161,7 +162,7 @@ Teacher Copilot and Parent AI move onto it.
 | **Prompts** | Prompt text lives in the repository (a PR with before-and-after samples, `08` §7). Control chooses the active version and its rollout, and never edits prompt text live. |
 | **Audit and usage** | `ai_usage` extended with the profile, provider and model; counts and tokens only, never prompt or answer text. |
 | **Minors** | A profile that may carry a child's words is refused at start-up unless its provider is marked as permitted for minors (with zero retention where the provider requires it). |
-| **No connection held during a call** (F1-3) | A call runs in three steps: the checks (profile, minors, key, daily cap taken) in the caller's first short transaction; the vendor call with no database connection held; the metering in a second short transaction (if that one rolls back, the call is still counted). A library hit needs only the first. |
+| **No connection held during a call** (F1-3) | A call runs in three steps: the checks (profile, minors, key, daily cap taken) in the caller's first short transaction; the vendor call with no database connection held; the metering in a second short transaction (a family signed out everywhere during the call is still counted, once). A library hit needs only the first. |
 
 ## 8. The video finder
 

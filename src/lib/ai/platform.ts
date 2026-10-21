@@ -139,8 +139,8 @@ type Counts = { requests?: number; failures?: number; capRefusals?: number; toke
 
 // A call that passed every check, ready to go to the vendor. send() needs no database.
 export type PreparedText = { send: (onDelta?: (text: string) => void) => Promise<SentText> };
-// A call that went out: its result, and the metering to write in the caller's next transaction. record() writes it
-// once per call; a caller whose transaction rolled back records again in another one.
+// A call that went out: its result, and the metering to write in the caller's next transaction. Each record() adds
+// the counts again, so a caller records once, or again only when its transaction was refused before anything ran.
 export type SentText = { result: AiResult; record: (db: Sql) => Promise<void> };
 export type Prepared = { ok: true; text: PreparedText } | { ok: false; reason: AiRefusal };
 

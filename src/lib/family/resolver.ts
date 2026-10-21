@@ -22,9 +22,10 @@ import { SUBJECTS, subjectAccess, type Subject } from './modules';
 // Check and practice items reach the phone without their answers: each carries a sealed token (items.ts).
 //
 // No database connection is held while the model answers (F1-3): prepareResolve() does 1–2 and the AI platform's
-// checks in the caller's first short transaction; generate() streams 3–4 with no database; keep() writes the metering,
-// a typed question's subject claim and the library line in the caller's second short transaction. A library hit is
-// served in the first transaction alone.
+// checks in the caller's first short transaction; generate() streams 3–4 with no connection held (a child with no free
+// subject claims a typed question's subject in a short transaction of its own, just before the first block is shown);
+// keep() writes the metering and the library line in the caller's second short transaction. A library hit is served
+// in the first transaction alone.
 
 export type FollowUp = NonNullable<ResolverAsk['followUp']>;
 export const FOLLOW_UPS: readonly FollowUp[] = ['simpler', 'another_example', 'differently', 'practise_more'];
@@ -138,11 +139,14 @@ export type Pending = {
 export type Generated = {
   sent: SentText;
   subject: Subject | null;
+  // The blocks shown, in the order they passed.
   kept: Block[];
-  shown: boolean;
   refusedByModel: boolean;
   // A refusal already sent while streaming (a typed question in another subject): nothing more is said.
   stopped: boolean;
+  // Drawing the answer failed (the phone went away, or a fault): the call is still metered by keep(), then this is
+  // raised.
+  error: unknown;
 };
 
 const SUBJECT_NAMED = /"type"\s*:\s*"subject"/;
@@ -222,18 +226,26 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   return { ctx, line, known, open, cacheable, promptVersion: prompt.version, text: prepared.text };
 }
 
-// 3–4. The model's answer, checked line by line as it arrives. No database: the caller holds no connection here.
-export async function generate(p: Pending, emit: (e: ResolverEvent) => void): Promise<Generated> {
+// 3–4. The model's answer, checked line by line as it arrives. No database connection is held while the model answers.
+// `claim` makes a child with no free subject yet claim the subject of a typed question just before its first block is
+// shown, in its own short transaction (milliseconds, never while waiting for the model); if another request claimed
+// the other subject meanwhile, the answer is refused instead of shown.
+export async function generate(p: Pending, emit: (e: ResolverEvent) => void, claim?: (subject: Subject) => Promise<boolean>): Promise<Generated> {
   const { ctx, line } = p;
   const words = ctx.refusalWords;
   let subject: Subject | null = p.known;
   let stopped = false;
   let refusedByModel = false;
-  let shown = false;
+  let mustClaim = p.known === null && !ctx.child.freeSubject && claim !== undefined;
+  let error: unknown = null;
   const seen = new Set<BlockType>();
   const kept: Block[] = [];
-  let pending = '';
-  const take = (text: string) => {
+  const refuseSubject = (named: Subject) => {
+    stopped = true;
+    const name = words(`fam.subject.${named}`);
+    emit({ t: 'refused', reason: 'not_open', message: words('fam.understand.askInSubject', { subject: name }), goTo: { subject: named, label: words('fam.understand.goToSubject', { subject: name }) } });
+  };
+  const take = async (text: string) => {
     if (stopped) return;
     if (/"type"\s*:\s*"refuse"/.test(text)) refusedByModel = true;
     if (!subject) {
@@ -245,54 +257,58 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void): Pr
         emit({ t: 'refused', reason: 'other_subject', message: words('fam.understand.otherSubject') });
         return;
       }
-      if (!p.open.includes(named)) {
-        stopped = true;
-        const name = words(`fam.subject.${named}`);
-        emit({ t: 'refused', reason: 'not_open', message: words('fam.understand.askInSubject', { subject: name }), goTo: { subject: named, label: words('fam.understand.goToSubject', { subject: name }) } });
-        return;
-      }
+      if (!p.open.includes(named)) return refuseSubject(named);
       subject = named;
       return;
     }
+    const s: Subject = subject;
     const b = parseBlockLine(text);
     if (!b || seen.has(b.type)) return;
+    if (mustClaim && claim) {
+      mustClaim = false;
+      if (!(await claim(s))) return refuseSubject(s);
+    }
     seen.add(b.type);
     kept.push(b);
-    if (!shown) {
-      emit({ t: 'meta', label: 'ai_made', cached: false, title: line?.title ?? null, subject, topicKey: line?.key ?? null });
-      shown = true;
-    }
+    if (kept.length === 1) emit({ t: 'meta', label: 'ai_made', cached: false, title: line?.title ?? null, subject: s, topicKey: line?.key ?? null });
     // Progress and the sealed items are keyed to the syllabus line; a typed question is kept against its subject.
-    emit({ t: 'block', block: toPublic(b, ctx, line?.key ?? questionKey(ctx.child, subject), subject) });
+    emit({ t: 'block', block: toPublic(b, ctx, line?.key ?? questionKey(ctx.child, s), s) });
   };
+  // Lines are checked one after another, in order; the model's stream never waits for them.
+  let queue = Promise.resolve();
+  const enqueue = (text: string) => {
+    queue = queue.then(async () => {
+      if (error !== null) return;
+      try {
+        await take(text);
+      } catch (err) {
+        error = err;
+      }
+    });
+  };
+  let pending = '';
   const sent = await p.text.send((delta) => {
     pending += delta;
     let nl = pending.indexOf('\n');
     while (nl >= 0) {
-      take(pending.slice(0, nl));
+      enqueue(pending.slice(0, nl));
       pending = pending.slice(nl + 1);
       nl = pending.indexOf('\n');
     }
   });
-  try {
-    if (pending.trim()) take(pending);
-  } catch {
-    // The phone went away before the last line: the call still reaches keep(), so it is metered.
-  }
-  return { sent, subject, kept, shown, refusedByModel, stopped };
+  if (pending.trim()) enqueue(pending);
+  await queue;
+  return { sent, subject, kept, refusedByModel, stopped, error };
 }
 
-// 5. The writes after the call, in the caller's second transaction: the metering first, then a typed question's subject
-// claim and the library line. Returns the last event to send once the transaction has committed (null: already said).
+// 5. The writes after the call, in the caller's second transaction: the metering first, then the library line. Returns
+// the last event to send once the transaction has committed (null: already said).
 export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEvent | null> {
   const { ctx, line } = p;
   await g.sent.record(db as never);
-  if (g.stopped) return null;
-  // A typed question answered in a subject the child had not claimed: the answer shown makes it their free subject. (Two
-  // first questions at the same moment in different subjects: the first claim stands, as claimSubject keeps it.)
-  if (p.known === null && g.subject && g.shown && ctx.claimSubject && !ctx.child.freeSubject) await ctx.claimSubject(db, g.subject);
+  if (g.stopped || g.error !== null) return null;
   const result = g.sent.result;
-  if (!result.ok) return g.shown ? { t: 'done', complete: false } : { t: 'refused', reason: result.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[result.reason]) };
+  if (!result.ok) return g.kept.length > 0 ? { t: 'done', complete: false } : { t: 'refused', reason: result.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[result.reason]) };
   if (g.refusedByModel && g.kept.length === 0) return { t: 'refused', reason: 'not_school_study', message: ctx.refusalWords('fam.understand.notStudy') };
   // The model never named the subject: nothing was shown, and no subject is guessed.
   if (!g.subject) return { t: 'refused', reason: 'failed', message: ctx.refusalWords(REFUSAL_MESSAGE.failed) };

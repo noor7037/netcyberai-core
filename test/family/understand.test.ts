@@ -9,7 +9,7 @@ import { calc, checkBlock, completeResponse, parseBlockLine, plain, allowedSourc
 // is kept in the shared library and served from it next time; a typed question is never kept; the request carries no
 // child's name. The model is replaced by a scripted stream: the AI platform itself is tested in test/ai.
 
-const ai = vi.hoisted(() => ({ lines: [] as string[], calls: [] as { system: string; user: string }[], refuse: null as null | string }));
+const ai = vi.hoisted(() => ({ lines: [] as string[], calls: [] as { system: string; user: string }[], refuse: null as null | string, duringCall: null as null | (() => Promise<void>) }));
 vi.mock('@/lib/ai/platform', async (original) => ({
   ...(await original<typeof import('@/lib/ai/platform')>()),
   activePromptVersion: async () => 'v1',
@@ -21,6 +21,8 @@ vi.mock('@/lib/ai/platform', async (original) => ({
       ok: true,
       text: {
         send: async (onDelta: (t: string) => void) => {
+          // Something another request does while this call is out (no connection is held now).
+          if (ai.duringCall) await ai.duringCall();
           for (const l of lines) onDelta(`${l}\n`);
           return { result: { ok: true, text: lines.join('\n'), tokensIn: 10, tokensOut: 20, provider: 'anthropic', model: 'test-model' }, record: async () => {} };
         },
@@ -285,6 +287,23 @@ describe('a typed question’s subject, decided on the server', () => {
     expect(await ask('6 aur 6 kitne hote hain?', otherJar, 'science')).toEqual([
       { t: 'refused', reason: 'not_open', message: 'यह सवाल गणित का है। गणित Family Plus के साथ खुलेगा, जो अभी तैयार नहीं है।', goTo: { subject: 'mathematics', label: 'गणित पर जाएँ' } },
     ]);
+    expect(await freeSubject(OTHER_CHILD)).toBe('science');
+  });
+
+  it('two first questions at once: the subject claimed first stands, and the other answer is refused, not shown', async () => {
+    await db.pg.query(`update family.children set free_subject = null, free_subject_set_at = null, language = 'en' where child_id = $1`, [OTHER_CHILD]);
+    ai.lines = answer('mathematics');
+    // While this mathematics question is with the model, another request claims science for the same child.
+    ai.duringCall = async () => {
+      await db.pg.query(`update family.children set free_subject = 'science', free_subject_set_at = now() where child_id = $1`, [OTHER_CHILD]);
+    };
+    try {
+      expect(await ask('What is 6 + 6?', otherJar, 'mathematics')).toEqual([
+        { t: 'refused', reason: 'not_open', message: 'This question is about Mathematics. Mathematics opens with Family Plus, which is not ready yet.', goTo: { subject: 'mathematics', label: 'Go to Mathematics' } },
+      ]);
+    } finally {
+      ai.duringCall = null;
+    }
     expect(await freeSubject(OTHER_CHILD)).toBe('science');
   });
 });

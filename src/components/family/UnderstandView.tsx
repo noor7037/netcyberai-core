@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { PublicBlock, ResolverEvent } from '@/lib/family/resolver';
 import type { Words } from '@/lib/family/fill';
+import { SUBJECTS } from '@/lib/family/modules';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from './blocks/BlockViews';
 import { QuizView } from './blocks/QuizView';
 
@@ -71,7 +72,7 @@ export function UnderstandView({ w, input, tone, initial = null }: { w: Words; i
           else if (e.t === 'done') setState(e.complete ? 'done' : 'incomplete');
           else if (e.t === 'refused') {
             setRefusal(e.message);
-            setGoTo(e.goTo && (e.goTo.subject === 'mathematics' || e.goTo.subject === 'science') ? e.goTo : null);
+            setGoTo(e.goTo && (SUBJECTS as readonly string[]).includes(e.goTo.subject) ? e.goTo : null);
             setState('refused');
           }
         }
