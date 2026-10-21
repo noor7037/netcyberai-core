@@ -109,7 +109,7 @@ export function FirstChildStep({ w, states, lang }: { w: Words; states: { code: 
       <ChildForm
         w={w}
         states={states}
-        initial={{ firstName: '', classLevel: 0, language: lang, style: lang === 'hi' ? 'hinglish' : 'en', stateCode: '' }}
+        initial={{ firstName: '', classLevel: null, board: '', language: lang, style: lang === 'hi' ? 'hinglish' : 'en', stateCode: '' }}
         submitLabel={w['fam.child.add']}
         onDone={() => {
           router.replace('/family');

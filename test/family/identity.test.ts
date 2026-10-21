@@ -86,7 +86,7 @@ async function onboard(email: string): Promise<Jar> {
   return keep(jar, pin);
 }
 const addChild = (jar: Jar, body: Record<string, unknown>) => R.children.POST(req('/api/family/children', 'POST', body, jar));
-const CHILD = { firstName: 'Asha', classLevel: 7, language: 'hi', style: 'hinglish', stateCode: 'IN-UP' };
+const CHILD = { firstName: 'Asha', classLevel: 7, board: 'CBSE', language: 'hi', style: 'hinglish', stateCode: 'IN-UP' };
 
 describe('sign-in by email code', () => {
   it('sends a random six-digit code, keeps only its keyed hash, and signs in once', async () => {
@@ -188,10 +188,22 @@ describe('the parent area', () => {
     const bad = await addChild(jar, { ...CHILD, firstName: 'Asha Verma', stateCode: '' });
     expect(bad.status).toBe(400);
     expect((await bad.json()).problems).toEqual(['first_name', 'state']);
-    expect((await addChild(jar, { ...CHILD, classLevel: 11 })).status).toBe(400);
+    expect((await (await addChild(jar, { ...CHILD, classLevel: 13 })).json()).problems).toEqual(['class']);
+    expect((await (await addChild(jar, { ...CHILD, board: 'ICSE' })).json()).problems).toEqual(['board']);
     const ok = await addChild(jar, CHILD);
     expect(ok.status).toBe(201);
     expect((await ok.json()).child.firstName).toBe('Asha');
+  });
+
+  it('every class from Nursery to 12 and every board (C263); the board can be changed', async () => {
+    const jar = await onboard('allclasses@example.org');
+    const nursery = await (await addChild(jar, { ...CHILD, firstName: 'Tiya', classLevel: -2, board: 'STATE', stateCode: 'IN-MH' })).json();
+    expect(nursery.child).toMatchObject({ classLevel: -2, board: 'STATE', stateCode: 'IN-MH' });
+    const senior = await (await addChild(jar, { ...CHILD, firstName: 'Kabir', classLevel: 12, board: 'CISCE' })).json();
+    expect(senior.child).toMatchObject({ classLevel: 12, board: 'CISCE' });
+    const id = senior.child.childId;
+    const changed = await R.child.PATCH(req(`/api/family/children/${id}`, 'PATCH', { ...CHILD, firstName: 'Kabir', classLevel: 11, board: 'NIOS' }, jar), { params: { childId: id } });
+    expect((await changed.json()).child).toMatchObject({ classLevel: 11, board: 'NIOS' });
   });
 
   it('wrong PINs bring growing waits, with no hint; the right PIN after the wait opens parent mode', async () => {

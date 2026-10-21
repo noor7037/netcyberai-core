@@ -26,9 +26,11 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   pending?: boolean;
   helperText?: ReactNode;
   floating?: boolean;
+  // The screen reader's word for a required field, in the page's language (default English: FIELD_WORDS).
+  requiredText?: string;
 };
 
-export function Input({ label, id, error, success, pending, helperText, required, floating, placeholder, className = '', ...props }: Props) {
+export function Input({ label, id, error, success, pending, helperText, required, floating, placeholder, requiredText, className = '', ...props }: Props) {
   const messageId = `${id}-message`;
   const hasMessage = Boolean(error || success || pending || helperText);
   const float = floating ?? label.length <= FLOAT_MAX;
@@ -47,7 +49,7 @@ export function Input({ label, id, error, success, pending, helperText, required
   const text = (
     <>
       {label}
-      <RequiredMark required={required} words={FIELD_WORDS.required} />
+      <RequiredMark required={required} words={requiredText ?? FIELD_WORDS.required} />
     </>
   );
   return (

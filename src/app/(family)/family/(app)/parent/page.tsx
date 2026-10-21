@@ -21,7 +21,7 @@ const AREA_KEYS: MessageKey[] = [
   'fam.parent.answersShow', 'fam.parent.answersNone', 'fam.parent.answerRight', 'fam.parent.answerWrong', 'fam.parent.delete', 'fam.parent.deleteAll',
   'fam.parent.privacy', 'fam.parent.granted', 'fam.parent.notGranted', 'fam.parent.withdraw', 'fam.parent.grant', 'fam.parent.withdrawNote',
   'fam.parent.language', 'fam.parent.signOutTitle', 'fam.parent.signOut', 'fam.parent.signOutAll', 'fam.parent.deleteAccount', 'fam.parent.deleteAccountLead',
-  'fam.parent.deleteAccountWord', 'fam.parent.deleteAccountYes', 'fam.consent.purpose.study_core', 'fam.class.label', 'fam.common.cancel', 'fam.lang.label',
+  'fam.parent.deleteAccountWord', 'fam.parent.deleteAccountYes', 'fam.consent.purpose.study_core', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.common.cancel', 'fam.lang.label',
   'fam.subject.mathematics', 'fam.subject.science', 'fam.err.confirm', 'fam.err.bad_request', 'fam.parent.freeSubject', 'fam.parent.freeSubjectTooSoon',
   'fam.calm.title', 'fam.calm.nothingYet', 'fam.calm.week', 'fam.calm.mastered', 'fam.calm.recent', 'fam.calm.note',
 ];
@@ -44,7 +44,7 @@ export default async function FamilyParentPage() {
         calm={calm}
         w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])}
         lang={lang}
-        children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName, classLevel: c.classLevel, language: c.language, style: c.style, stateCode: c.stateCode, freeSubject: c.freeSubject }))}
+        children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName, classLevel: c.classLevel, board: c.board, language: c.language, style: c.style, stateCode: c.stateCode, freeSubject: c.freeSubject }))}
         states={familyStates(lang)}
         studyCore={page.consents.study_core}
       />

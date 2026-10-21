@@ -115,14 +115,16 @@ describe('family rows: own account only', () => {
     expect(await refused(() => asFamily(A, (tx) => tx.query(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values ($1, 'study_core', true, 'server', 'v1')`, [A])))).toMatch(/check constraint/);
   });
 
-  it('a child is a first name only, class 6 to 10, and a state chosen by the parent', async () => {
-    const add = (name: string, cls: number, state: string | null) =>
-      asFamily(A, (tx) => tx.query(`insert into family.children (account_id, first_name, class_level, board_id, language, style, state_code) values ($1, $2, $3, 'CBSE', 'en', 'en', $4)`, [A, name, cls, state]));
+  it('a child is a first name only, a class from Nursery to 12, a known board, and a state chosen by the parent (C263)', async () => {
+    const add = (name: string, cls: number, state: string | null, board = 'CBSE') =>
+      asFamily(A, (tx) => tx.query(`insert into family.children (account_id, first_name, class_level, board_id, language, style, state_code) values ($1, $2, $3, $4, 'en', 'en', $5)`, [A, name, cls, board, state]));
     expect(await refused(() => add('Asha Verma', 7, 'IN-UP'))).toMatch(/check constraint/);
-    expect(await refused(() => add('Asha', 11, 'IN-UP'))).toMatch(/check constraint/);
+    for (const cls of [-3, 13]) expect(await refused(() => add('Asha', cls, 'IN-UP')), String(cls)).toMatch(/check constraint/);
     expect(await refused(() => add('Asha', 7, null))).toMatch(/null value/);
+    expect(await refused(() => add('Asha', 7, 'IN-UP', 'NOPE'))).toMatch(/foreign key/);
     for (const bad of ['A1', '<b>', 'a@b', 'राम१']) expect(await refused(() => add(bad, 7, 'IN-UP')), bad).toMatch(/check constraint/);
     await add('राधा', 7, 'IN-UP');
+    for (const [cls, board] of [[-2, 'CBSE'], [0, 'STATE'], [1, 'CISCE'], [12, 'NIOS'], [5, 'IB'], [11, 'CAIE']] as const) await add('Meera', cls, 'IN-MH', board);
   });
 
   it('the PIN columns are writable, the email and id are not', async () => {
