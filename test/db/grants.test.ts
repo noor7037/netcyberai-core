@@ -129,6 +129,7 @@ const APP_USER: Record<string, string> = {
   teachers: 'DELETE,INSERT,SELECT,UPDATE',
   teaching_notes: 'INSERT,SELECT',
   timetable_entries: 'DELETE,INSERT,SELECT,UPDATE',
+  trusted_devices: '', // F1-1 (C257): like sessions, reached only through app_backend's own grant
   usage_events: 'INSERT,SELECT',
   users: 'DELETE,INSERT,SELECT,UPDATE',
   webhook_events: 'INSERT,SELECT',
@@ -406,7 +407,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
 };
 // Every other role that holds anything on a table.
 const OTHER_ROLES: Record<string, Record<string, string>> = {
-  app_backend: { leads: 'INSERT,SELECT', sessions: 'INSERT,SELECT,UPDATE' },
+  app_backend: { leads: 'INSERT,SELECT', sessions: 'INSERT,SELECT,UPDATE', trusted_devices: 'INSERT,SELECT,UPDATE' },
   audit_writer: { audit_log: 'INSERT,SELECT' },
 };
 // Supabase's service_role (the server's secret key) holds nothing here (C167): the app uses that key for
