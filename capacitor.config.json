@@ -1,0 +1,18 @@
+{
+  "appId": "com.netcyberai.family",
+  "appName": "NetCyberAI Family",
+  "webDir": "android-shell/www",
+  "server": {
+    "url": "https://www.netcyberai.com/family",
+    "cleartext": false,
+    "androidScheme": "https",
+    "allowNavigation": ["www.netcyberai.com", "netcyberai.com"],
+    "errorPath": "offline.html"
+  },
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false,
+    "appendUserAgent": "NetCyberAIFamily/1"
+  }
+}
