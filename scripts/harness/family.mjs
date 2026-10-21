@@ -22,6 +22,7 @@ export const FAMILY_SCREENS = [
   ['full', 'family-home', '/family', {}],
   ['full', 'family-parent-gate', '/family/parent', {}],
   ['full', 'family-parent-area', '/family/parent', { parent: true }],
+  ['full', 'family-home-progress', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   ['full', 'family-study', '/family/study', {}],
   ['full', 'family-study-catalog', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
