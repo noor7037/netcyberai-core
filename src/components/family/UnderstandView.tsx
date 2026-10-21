@@ -8,7 +8,8 @@ import { QuizView } from './blocks/QuizView';
 
 // Understand (M1-5, C251): asks the server, and draws each checked block as it arrives. Follow-ups stay on the topic
 // ("simpler", "another example", "explain differently", "practise more"); this is not an open chat. Every response
-// says what it is: "AI-made" until the founder approves it, then "Checked by NetCyberAI".
+// says what it is: "AI-made" until the founder approves it, then "Checked by NetCyberAI". A response from the shared
+// library may come with the page (`initial`, C255); then nothing is asked until a follow-up.
 
 export type UnderstandInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; subject: 'mathematics' | 'science' };
 type Meta = Extract<ResolverEvent, { t: 'meta' }>;
@@ -16,10 +17,10 @@ type Ask = { input: UnderstandInput; followUp?: string; retry?: { token: string;
 
 const FOLLOW_UPS = ['simpler', 'another_example', 'differently', 'practise_more'] as const;
 
-export function UnderstandView({ w, input, tone }: { w: Words; input: UnderstandInput; tone: string }) {
-  const [meta, setMeta] = useState<Meta | null>(null);
-  const [blocks, setBlocks] = useState<PublicBlock[]>([]);
-  const [state, setState] = useState<'loading' | 'streaming' | 'done' | 'incomplete' | 'refused'>('loading');
+export function UnderstandView({ w, input, tone, initial = null }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null }) {
+  const [meta, setMeta] = useState<Meta | null>(() => initial?.find((e): e is Meta => e.t === 'meta') ?? null);
+  const [blocks, setBlocks] = useState<PublicBlock[]>(() => (initial ?? []).flatMap((e) => (e.t === 'block' ? [e.block] : [])));
+  const [state, setState] = useState<'loading' | 'streaming' | 'done' | 'incomplete' | 'refused'>(initial ? 'done' : 'loading');
   const [refusal, setRefusal] = useState('');
   const top = useRef<HTMLDivElement>(null);
   // Only the latest request may draw: an earlier one (a follow-up tapped twice, React's double run in development) is
@@ -77,9 +78,9 @@ export function UnderstandView({ w, input, tone }: { w: Words; input: Understand
   }, [w]);
 
   useEffect(() => {
-    void run({ input });
+    if (!initial) void run({ input });
     return () => current.current?.abort();
-  }, [input, run]);
+  }, [input, run, initial]);
 
   const again = (ask: Ask) => {
     top.current?.scrollIntoView({ block: 'start' });

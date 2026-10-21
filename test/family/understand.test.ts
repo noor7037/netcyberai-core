@@ -138,6 +138,26 @@ describe('Understand, end to end', () => {
     expect(checked[0]).toMatchObject({ t: 'meta', label: 'checked' });
   });
 
+  it('the page draws a library response only for the child’s free subject, sealed, without asking the AI (C255)', async () => {
+    const { libraryResponse, syllabusLine } = await import('@/lib/family/resolver');
+    const { withFamilyContext } = await import('@/lib/family/db');
+    const { listChildren } = await import('@/lib/family/children');
+    const before = ai.calls.length;
+    await withFamilyContext({ accountId: ACCOUNT, tokenVersion: 0 }, async (c) => {
+      const child = (await listChildren(c, ACCOUNT)).find((x) => x.childId === CHILD)!;
+      const line = (await syllabusLine(c, child, { kind: 'topic', key: TOPIC }))!;
+      const ev = (await libraryResponse(c, { accountId: ACCOUNT, child }, line))!;
+      expect(ev[0]).toMatchObject({ t: 'meta', cached: true });
+      expect(ev.at(-1)).toEqual({ t: 'done', complete: true });
+      expect(JSON.stringify(ev)).not.toContain('Think of pairs');
+      // A subject not yet claimed (drawing a page never claims one), another subject, or another style: the phone asks.
+      expect(await libraryResponse(c, { accountId: ACCOUNT, child: { ...child, freeSubject: null } }, line)).toBeNull();
+      expect(await libraryResponse(c, { accountId: ACCOUNT, child: { ...child, freeSubject: 'science' } }, line)).toBeNull();
+      expect(await libraryResponse(c, { accountId: ACCOUNT, child: { ...child, style: 'en' } }, line)).toBeNull();
+    });
+    expect(ai.calls.length).toBe(before);
+  });
+
   it('a typed question and a follow-up are never kept in the library', async () => {
     ai.lines = GOOD.map((g) => JSON.stringify(g));
     await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'Meera asks: why is 6+6 twelve?', subject: 'mathematics' }, jar)));

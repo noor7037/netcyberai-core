@@ -4,7 +4,11 @@
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
 import { writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { SignJWT } from 'jose';
+
+// axe-core checks every picture against WCAG 2.1 A and AA; a serious or critical finding fails the run (07 §3).
+const AXE = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
 
 export const FAMILY = {
   fresh: 'f0000000-0000-4000-8000-0000000f0001',
@@ -96,6 +100,12 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
               latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir'].includes(w.toLowerCase())).length,
             };
           });
+          await page.addScriptTag({ path: AXE });
+          const axe = await page.evaluate(async () => {
+            // eslint-disable-next-line no-undef
+            const r = await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] } });
+            return r.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical').map((v) => `${v.id} (${v.nodes.length}) at ${v.nodes[0].target.join(' ')}: ${(v.nodes[0].any[0]?.message ?? '').slice(0, 140)}`);
+          });
           const file = `${name}-${lang}-${motion === 'reduce' ? 'still' : 'motion'}-${width}.png`;
           await page.screenshot({ path: path.join(out, file), fullPage: true });
           const problems = [];
@@ -104,9 +114,10 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
           if (seen.horizontalScroll) problems.push('sideways scroll');
           if (seen.smallTargets.length) problems.push(`targets under 44 px: ${seen.smallTargets.join(', ')}`);
           if (motion === 'reduce' && seen.running) problems.push(`${seen.running} animations run under reduced motion`);
+          if (axe.length) problems.push(`axe: ${axe.join(', ')}`);
           if (lang === 'hi' && (!seen.devanagari || seen.latinWords > 3)) problems.push(`Hindi incomplete (${seen.latinWords} English words)`);
           problems.push(...errors);
-          rows.push({ name, lang, motion, width, route, file, h1: seen.h1, problems });
+          rows.push({ name, lang, motion, width, route, file, h1: seen.h1, axe, problems });
           console.log(`${width} ${lang} ${motion} ${name}: ${problems.length ? problems.join('; ') : 'ok'}`);
           await context.close();
         }
