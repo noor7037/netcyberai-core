@@ -5,18 +5,20 @@ import { activeBanner, moduleOn, type AppBanner, type AppFlag } from '@/lib/cont
 // staff preview, a share of families, listed schools), and the banner. Read live on every request; a missing row is off.
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
 
-export type FamilySwitches = { flags: AppFlag[]; banners: AppBanner[]; isPreview: boolean; accountId: string | null };
+export type FamilySwitches = { flags: AppFlag[]; banners: AppBanner[]; isPreview: boolean; accountId: string | null; minShell: number };
 
 export async function readFamilySwitches(db: Db, accountId: string | null): Promise<FamilySwitches> {
   const { rows: f } = await db.query(
     `select app, module, enabled, audience, audience_percent, audience_schools, reason, ends_at, off_message_en, off_message_hi from control.app_flags where app = 'family'`
   );
   const { rows: b } = await db.query(`select banner_id, app, tone, text_en, text_hi, starts_at, ends_at, ended_at from control.app_banners where app = 'family' and ended_at is null and ends_at > now()`);
+  const { rows: v } = await db.query(`select min_shell_version from control.app_versions where app = 'family'`);
   const preview = accountId ? (await db.query(`select 1 from control.preview_accounts where account_id = $1`, [accountId])).rows.length > 0 : false;
   const date = (v: unknown) => (v ? new Date(String(v)) : null);
   return {
     accountId,
     isPreview: preview,
+    minShell: Number(v[0]?.min_shell_version ?? 0),
     flags: f.map((r) => ({
       app: 'family',
       module: String(r.module),
@@ -59,4 +61,15 @@ export function familyBanner(s: FamilySwitches, now = new Date()): AppBanner | n
 
 export async function familyModuleOn(db: Db, module: string, accountId: string | null): Promise<boolean> {
   return switchOn(await readFamilySwitches(db, accountId), module);
+}
+
+// The Android shell's version from its user agent; a browser has none and is never asked to update.
+export function shellVersion(userAgent: string | null): number | null {
+  const m = /NetCyberAIFamily\/(\d{1,6})/.exec(userAgent ?? '');
+  return m ? Number(m[1]) : null;
+}
+
+export function shellTooOld(s: FamilySwitches, userAgent: string | null): boolean {
+  const v = shellVersion(userAgent);
+  return v !== null && v < s.minShell;
 }
