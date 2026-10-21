@@ -41,9 +41,9 @@ School (school information, always free to linked families). Every price is a te
 | # | Feature | Verdict | What we build | Milestone | Money |
 |---|---|---|---|---|---|
 | E1 | English moment, 3–5 lines | Adopt | Key words with their Hindi meaning, a model sentence, a pattern, and "read aloud" (device speech, labelled) | M1 | Free |
-| E2 | 90-day English programme | Adopt | Foundation, Confidence, Expand, and Mastery/Workplace for older learners; a daily 15-minute lesson; assessments on days 0, 45 and 90; **no fluency promise**, measured progress only | M6 | Plus |
-| E3 | Parent + child English duet (founder #7) | Adapt | 5 minutes a day, 3 everyday sentences together, sound-level feedback; "try again", never "wrong"; **no percentage score** until accuracy on Indian accents is measured; consent purpose `voice_practice`; a speech provider cleared for minors | M6 | Plus |
-| E4 | AI conversation partner, 15 minutes a day | Later (costed pilot) | Topic role-plays by voice or text, a daily limit set in Control; an illustrated character, never a photo-real person | Pilot after launch | Plus or add-on, on measured cost (`05` §5) |
+| E2 | 90-day English speaking and confidence course **(C274)** | Adopt | `12`: four age tracks (3–5 with a grown-up, 6–8, 9–12, 13–15); 18 units of five lessons, 5–10 minutes a day; lessons open in order; spaced review; assessments on days 0, 45 and 90; a parent progress report; **no fluency promise**, measured progress only | Built before M2 (C274) | Plus; pilot audiences until Plus |
+| E3 | Parent + child English duet (founder #7) **(C274: the course's duet mode)** | Adapt | 5 minutes a day, 3 everyday sentences together, sound-level feedback; "try again", never "wrong"; **no percentage score** until accuracy on Indian accents is measured; consent purpose `voice_practice`; a speech provider cleared for minors | M6 | Plus |
+| E4 | AI conversation partner **(C274)** | Adopt as practice | Inside the course's Speak lessons: role-plays bound to the lesson, in turns, replies checked before they are spoken; a daily cap (5 minutes default, 10 at most); `voice_practice` consent; under-13 only after zero data retention (`12` §9) | E-9 | Plus, on measured cost (`05` §5) |
 | E5 | Domain English packs | Later | Interviews, office, IT, finance | After launch | Plus |
 
 ## Future

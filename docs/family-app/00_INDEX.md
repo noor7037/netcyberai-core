@@ -30,6 +30,7 @@ and that adds the school's own information when the child's school uses NetCyber
 | `09_EXPERIENCE_DESIGN.md` | Learning first with engagement as its servant; the visual identity; the 3D and motion policy; performance budgets; patterns from ten leading products; the banned list and the design review gate |
 | `10_CONTROL_AND_CONTENT.md` | What Control may change (never code); Control → Apps for the Teacher app, school web and Family app; credentials; the central content library that schools, linked and standalone families share |
 | `11_FEATURE_MAP.md` | Every planned feature (38) with its verdict, what is built, its milestone and its money class |
+| `12_ENGLISH_COURSE.md` | The 90-day English speaking and confidence course (C274): four age tracks from 3 to 15, the lesson rhythm, the syllabus, locks and review, the progress report, voice for practice only, design and build slices |
 | `mockups/` | The founder's four mockup boards: the reference for look and scope, never for facts |
 | `prototype-audit/` | The weekend prototype's audit: a list of failures to prevent, not a source |
 | `prompts/` | The build lead's milestone prompts (`M1_PROMPT.md` first); the platform-wide plan is `docs/34_ECOSYSTEM_AND_SYNC.md` |
