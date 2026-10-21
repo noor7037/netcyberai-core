@@ -6279,11 +6279,4 @@ export const en = {
   'fam.calm.recent': 'Recently: {topics}.',
   'fam.calm.note': 'Only checked answers count. No time in the app is recorded, and your child is never compared with others.',
   // m1-6 end
-  // m1-8 begin
-  // The Android shell and the offline page (M1-8, C254).
-  'fam.shell.update': 'A newer version of the app is needed. Please update NetCyberAI Family from the Play Store.',
-  'fam.offline.title': 'No internet',
-  'fam.offline.lead': 'NetCyberAI Family needs a connection. Check it and try again.',
-  'fam.offline.retry': 'Try again',
-  // m1-8 end
 } as const;

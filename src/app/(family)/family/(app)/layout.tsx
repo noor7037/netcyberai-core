@@ -1,7 +1,6 @@
-import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { FamilyTabs } from '@/components/family/FamilyTabs';
-import { familyBanner, offMessage, readFamilySwitches, shellTooOld, switchOn } from '@/lib/family/flags';
+import { familyBanner, offMessage, readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { visibleTabs } from '@/lib/family/modules';
 import { familyPageRead, requireFamilyPage } from '@/lib/family/server';
 import { t } from '@/lib/i18n';
@@ -23,16 +22,6 @@ export default async function FamilyAppLayout({ children }: { children: React.Re
       <main lang={lang} data-family-off className="mx-auto flex min-h-screen w-full max-w-md flex-col justify-center gap-3 px-4">
         <h1 className="text-2xl font-extrabold text-slate">{t(lang, 'fam.app.name')}</h1>
         <p className="text-base text-slate">{offMessage(switches, '*', lang) ?? t(lang, 'fam.off.app')}</p>
-      </main>
-    );
-  }
-  // The Android shell reports its version in the user agent ("NetCyberAIFamily/<n>", M1-8). One older than Control's
-  // oldest accepted version is asked to update before anything else.
-  if (shellTooOld(switches, headers().get('user-agent'))) {
-    return (
-      <main lang={lang} data-family-update className="mx-auto flex min-h-screen w-full max-w-md flex-col justify-center gap-3 px-4">
-        <h1 className="text-2xl font-extrabold text-slate">{t(lang, 'fam.app.name')}</h1>
-        <p className="text-base text-slate">{t(lang, 'fam.shell.update')}</p>
       </main>
     );
   }

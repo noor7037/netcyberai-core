@@ -6268,10 +6268,4 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.calm.recent': 'हाल में: {topics}।',
   'fam.calm.note': 'सिर्फ़ जाँचे गए जवाब गिने जाते हैं। ऐप में बिताया समय दर्ज नहीं होता, और आपके बच्चे की तुलना कभी दूसरों से नहीं होती।',
   // m1-6 end
-  // m1-8 begin
-  'fam.shell.update': 'ऐप का नया संस्करण चाहिए। कृपया Play Store से NetCyberAI फ़ैमिली अपडेट करें।',
-  'fam.offline.title': 'इंटरनेट नहीं है',
-  'fam.offline.lead': 'NetCyberAI फ़ैमिली खोलने के लिए इंटरनेट चाहिए। कनेक्शन देखकर फिर कोशिश करें।',
-  'fam.offline.retry': 'फिर कोशिश करें',
-  // m1-8 end
 };

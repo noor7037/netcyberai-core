@@ -16,7 +16,6 @@ export const FAMILY = {
 // [account (null: no session), picture name, address, { parent: parent mode open }]
 export const FAMILY_SCREENS = [
   [null, 'family-sign-in', '/family/sign-in', {}],
-  [null, 'family-offline', '/family/offline', {}],
   ['fresh', 'family-welcome', '/family/welcome', {}],
   ['consented', 'family-pin-setup', '/family/welcome/pin', {}],
   ['pinned', 'family-first-child', '/family/welcome/child', { parent: true }],
