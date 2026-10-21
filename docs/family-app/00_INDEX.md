@@ -32,7 +32,7 @@ and that adds the school's own information when the child's school uses NetCyber
 | `11_FEATURE_MAP.md` | Every planned feature (38) with its verdict, what is built, its milestone and its money class |
 | `mockups/` | The founder's four mockup boards: the reference for look and scope, never for facts |
 | `prototype-audit/` | The weekend prototype's audit: a list of failures to prevent, not a source |
-| `prompts/` | The build lead's milestone prompts (`M1_PROMPT.md` first); the platform-wide plan is `docs/34_ECOSYSTEM_AND_SYNC.md` |
+| `prompts/` | The build lead's prompts: `M1_PROMPT.md` (done, merged), `F1_PROMPT.md` (next); the platform-wide plan is `docs/34_ECOSYSTEM_AND_SYNC.md` |
 
 ## Decisions in brief
 
