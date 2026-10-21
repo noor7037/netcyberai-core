@@ -139,3 +139,48 @@ Good to know before you start:
   and how to leave them out.
 - **No Hindi titles.** CBSE's 2026-27 curriculum page has no Hindi version of these four documents (checked
   2026-10-22). Nothing was translated.
+
+## Classes XI and XII: Accountancy, Business Studies, Economics, History, Geography, Political Science, English, Hindi
+
+One page per syllabus version in
+[`data/catalog/cbse-2026-27-classes-11-12-commerce-humanities-languages.csv`](../../../data/catalog/cbse-2026-27-classes-11-12-commerce-humanities-languages.csv),
+read from cbseacademic.nic.in on 2026-10-22. Each subject has one CBSE document for both classes. Compare and approve
+exactly as above; each page lists the CBSE pages to open, and every line links to its own page.
+
+| Page | Units | Chapters | Topics | CBSE pages to compare |
+|---|---|---|---|---|
+| [Class XI Accountancy](class11-accountancy.md) | 2 | 3 | 0 | 2 |
+| [Class XII Accountancy](class12-accountancy.md) | 3 | 5 | 0 | 9 |
+| [Class XI Business Studies](class11-business-studies.md) | 2 | 10 | 44 | 2–7 |
+| [Class XII Business Studies](class12-business-studies.md) | 2 | 12 | 51 | 9–15 |
+| [Class XI Economics](class11-economics.md) | 2 | 7 | 0 | 2 |
+| [Class XII Economics](class12-economics.md) | 2 | 8 | 0 | 6 |
+| [Class XI History](class11-history.md) | 5 | 12 | 3 | 3–4 |
+| [Class XII History](class12-history.md) | 3 | 12 | 0 | 9–10 |
+| [Class XI Geography](class11-geography.md) | 3 | 27 | 75 | 3–8, 10 |
+| [Class XII Geography](class12-geography.md) | 3 | 24 | 132 | 11–16, 18–19 |
+| [Class XI Political Science](class11-political-science.md) | 2 | 18 | 89 | 3–9 |
+| [Class XII Political Science](class12-political-science.md) | 2 | 15 | 79 | 10–15 |
+| [Class XI English (Core)](class11-english.md) | 2 | 15 | 0 | 8 |
+| [Class XII English (Core)](class12-english.md) | 2 | 19 | 2 | 12 |
+| [Class XI Hindi (Core)](class11-hindi.md) | 3 | 0 | 0 | 9 |
+| [Class XII Hindi (Core)](class12-hindi.md) | 3 | 0 | 0 | 11 |
+
+These pages have **no picture** of CBSE's pages: the documents are CBSE's copyright, so no copy of them is kept in the
+repository.
+
+Good to know before you start:
+
+- **Units are the big parts of each course.** Part A and Part B (Accountancy, Business Studies, Economics, Political
+  Science), the books (Geography, English, Hindi) or the sections and parts (History). The chapters are what the course
+  structure lists under them.
+- **No topics for Accountancy and Economics.** Their documents describe each chapter in paragraphs, not as a list.
+  Business Studies, Geography and Political Science list topics; History XI lists three, under its first theme.
+- **Hindi has the three books only.** CBSE's Hindi Core document names the books but lists only the lessons that are
+  removed, not the ones that are studied. The titles are in Hindi, as printed; please compare them with the page by eye.
+- **No Hindi titles for the other subjects.** CBSE publishes no Hindi version of these documents for 2026-27 (checked
+  2026-10-22). Nothing was translated.
+- **Choices to confirm**, marked "Please check" on the pages and explained in the catalog README: the Accountancy XII
+  option ("Or"), the History XI timelines, the Geography practical books and formatively assessed chapters, how
+  Business Studies boxes and Political Science sub-points are counted, and Hindi with books only. English Core and Hindi
+  Core are the courses used; English Elective and Hindi Elective are not in the catalog.
