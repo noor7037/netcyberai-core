@@ -441,6 +441,33 @@ ALLOWED_PERMISSIVE = (
         # C238: a member of staff's profile. Tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("staff_profiles", "staff_profiles_tenant_isolation"),
         # c238 end
+        # m1 begin
+        # M1-1 (C247): the Family app's role (family_app) on its own schemas. Family tables: own account only, granted by
+        # a permissive policy and held by a restrictive one of the same condition (REQUIRED_RESTRICTIVE below). Content:
+        # families read boards and what is published to everyone, and add AI-made responses only. Control: families read
+        # the family switches and limits (never a credential), and add AI counts (no personal data).
+        ("family.accounts", "accounts_own"),
+        ("family.consents", "consents_own"),
+        ("family.children", "children_own"),
+        ("family.attempts", "attempts_own"),
+        ("family.topic_progress", "topic_progress_own"),
+        ("family.ai_daily", "ai_daily_own"),
+        ("content.boards", "boards_family_read"),
+        ("content.syllabus_versions", "versions_family_read"),
+        ("content.units", "units_family_read"),
+        ("content.chapters", "chapters_family_read"),
+        ("content.topics", "topics_family_read"),
+        ("content.responses", "responses_family_read"),
+        ("content.responses", "responses_family_add"),
+        ("control.settings", "settings_family_read"),
+        ("control.app_flags", "app_flags_family_read"),
+        ("control.app_banners", "app_banners_family_read"),
+        ("control.app_versions", "app_versions_family_read"),
+        ("control.preview_accounts", "preview_family_read"),
+        ("control.ai_providers", "ai_providers_family_read"),
+        ("control.ai_profiles", "ai_profiles_family_read"),
+        ("control.ai_usage", "ai_usage_family_count"),
+        # m1 end
     }
 )
 
@@ -877,15 +904,38 @@ REQUIRED_RESTRICTIVE = {
     ("staff_profiles", "staff_profiles_no_parent"),
     ("audit_log", "audit_staff_profile_rows_office_or_actor"),
     # c238 end
+    # m1 begin
+    # M1-1 (C247): own account only on every family table, and families never write the catalog.
+    ("family.accounts", "accounts_own_only"),
+    ("family.consents", "consents_own_only"),
+    ("family.children", "children_own_only"),
+    ("family.attempts", "attempts_own_only"),
+    ("family.topic_progress", "topic_progress_own_only"),
+    ("family.ai_daily", "ai_daily_own_only"),
+    ("content.syllabus_versions", "versions_family_only"),
+    ("content.units", "units_family_only"),
+    ("content.chapters", "chapters_family_only"),
+    ("content.topics", "topics_family_only"),
+    ("content.responses", "responses_family_only"),
+    ("control.preview_accounts", "preview_family_only"),
+    # m1 end
 }
 
-CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)
+# A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by
+# its bare name, as before.
+CREATE_POLICY_RE = re.compile(r"create\s+policy\s+\"?(?P<name>\w+)\"?\s+on\s+(?:(?P<schema>\w+)\.)?\"?(?P<table>\w+)\"?", re.IGNORECASE)
+
+
+def qualified(m: re.Match) -> str:
+    schema = (m.groupdict().get("schema") or "").lower()
+    table = m.group("table")
+    return f"{schema}.{table.lower()}" if schema and schema != "public" else table
 TEMPLATED_RE = re.compile(r"create\s+policy\s+%I_(?P<suffix>\w+)\s+on\s+%I", re.IGNORECASE)
 UNNEST_ARRAY_RE = re.compile(r"unnest\(array\[(?P<items>.*?)\]\)", re.IGNORECASE | re.DOTALL)
 QUOTED_ITEM_RE = re.compile(r"'([^']+)'")
 DO_BLOCK_RE = re.compile(r"do\s*\$\$.*?end\s*\$\$\s*;", re.IGNORECASE | re.DOTALL)
 DROP_POLICY_RE = re.compile(
-    r"drop\s+policy\s+(?:if\s+exists\s+)?\"?(?P<name>\w+)\"?\s+on\s+\"?(?P<table>\w+)\"?", re.IGNORECASE
+    r"drop\s+policy\s+(?:if\s+exists\s+)?\"?(?P<name>\w+)\"?\s+on\s+(?:(?P<schema>\w+)\.)?\"?(?P<table>\w+)\"?", re.IGNORECASE
 )
 FOR_CMD_RE = re.compile(r"\bfor\s+(select|insert|update|delete|all)\b", re.IGNORECASE)
 
@@ -928,7 +978,7 @@ def parse_migrations(migrations_dir: Path) -> dict:
 
         # Static (non-templated) create policy statements.
         for m in CREATE_POLICY_RE.finditer(text):
-            name, table = m.group("name"), m.group("table")
+            name, table = m.group("name"), qualified(m)
             if "%" in name:
                 continue  # templated form (%I_...), already handled above
             # Only this statement: a short policy must not be read with the next statement's FOR clause (C171).
@@ -940,7 +990,7 @@ def parse_migrations(migrations_dir: Path) -> dict:
 
         # Dropped policies stop existing, whichever form created them.
         for m in DROP_POLICY_RE.finditer(text):
-            events.append((m.start(), "drop", (m.group("table"), m.group("name")), None))
+            events.append((m.start(), "drop", (qualified(m), m.group("name")), None))
 
         for _pos, kind, key, value in sorted(events, key=lambda e: e[0]):
             if kind == "create":
@@ -951,10 +1001,10 @@ def parse_migrations(migrations_dir: Path) -> dict:
     return policies
 
 
-UPDATE_TABLE_RE = re.compile(r"\bupdate\s+\"?(?P<table>\w+)\"?\s+set\b", re.IGNORECASE)
-DELETE_TABLE_RE = re.compile(r"\bdelete\s+from\s+\"?(?P<table>\w+)\"?", re.IGNORECASE)
+UPDATE_TABLE_RE = re.compile(r"\bupdate\s+(?:(?P<schema>\w+)\.)?\"?(?P<table>\w+)\"?\s+(?:as\s+\w+\s+|\w+\s+)?set\b", re.IGNORECASE)
+DELETE_TABLE_RE = re.compile(r"\bdelete\s+from\s+(?:(?P<schema>\w+)\.)?\"?(?P<table>\w+)\"?", re.IGNORECASE)
 UPSERT_TABLE_RE = re.compile(
-    r"\binsert\s+into\s+\"?(?P<table>\w+)\"?.*?\bon\s+conflict\b.*?\bdo\s+update\b", re.IGNORECASE | re.DOTALL
+    r"\binsert\s+into\s+(?:(?P<schema>\w+)\.)?\"?(?P<table>\w+)\"?.*?\bon\s+conflict\b.*?\bdo\s+update\b", re.IGNORECASE | re.DOTALL
 )
 TEMPLATE_LITERAL_RE = re.compile(r"`([^`]*)`", re.DOTALL)
 
@@ -970,11 +1020,11 @@ def find_app_mutations(src_dir: Path) -> set[tuple[str, str]]:
         text = path.read_text()
         for literal in TEMPLATE_LITERAL_RE.findall(text):
             for m in UPDATE_TABLE_RE.finditer(literal):
-                mutations.add((m.group("table"), "UPDATE"))
+                mutations.add((qualified(m), "UPDATE"))
             for m in DELETE_TABLE_RE.finditer(literal):
-                mutations.add((m.group("table"), "DELETE"))
+                mutations.add((qualified(m), "DELETE"))
             for m in UPSERT_TABLE_RE.finditer(literal):
-                mutations.add((m.group("table"), "UPDATE"))
+                mutations.add((qualified(m), "UPDATE"))
     return {(t, c) for t, c in mutations if t not in TABLES_WITHOUT_RLS}
 
 
@@ -1005,10 +1055,10 @@ def find_double_permissive_writes(policies: dict) -> list[tuple[str, str, str]]:
 
 
 SQL_COMMENT_RE = re.compile(r"--[^\n]*")
-CREATE_TABLE_RE = re.compile(r"create\s+table\s+(?:if\s+not\s+exists\s+)?(?:public\.)?\"?(?P<table>\w+)\"?\s*\(", re.IGNORECASE)
-DROP_TABLE_RE = re.compile(r"drop\s+table\s+(?:if\s+exists\s+)?(?:public\.)?\"?(?P<table>\w+)\"?", re.IGNORECASE)
+CREATE_TABLE_RE = re.compile(r"create\s+table\s+(?:if\s+not\s+exists\s+)?(?:(?P<schema>\w+)\.)?\"?(?P<table>\w+)\"?\s*\(", re.IGNORECASE)
+DROP_TABLE_RE = re.compile(r"drop\s+table\s+(?:if\s+exists\s+)?(?:(?P<schema>\w+)\.)?\"?(?P<table>\w+)\"?", re.IGNORECASE)
 RLS_SWITCH_RE = re.compile(
-    r"alter\s+table\s+(?:only\s+)?(?:public\.)?\"?(?P<table>\w+)\"?\s+(?P<kind>enable|force|disable|no\s+force)\s+row\s+level\s+security",
+    r"alter\s+table\s+(?:only\s+)?(?:(?P<schema>\w+)\.)?\"?(?P<table>\w+)\"?\s+(?P<kind>enable|force|disable|no\s+force)\s+row\s+level\s+security",
     re.IGNORECASE,
 )
 TEMPLATED_RLS_RE = re.compile(r"alter\s+table\s+%I\s+(?P<kind>enable|force)\s+row\s+level\s+security", re.IGNORECASE)
@@ -1032,11 +1082,11 @@ def find_tables_without_rls(migrations_dir: Path) -> list[tuple[str, str]]:
         text = SQL_COMMENT_RE.sub("", path.read_text())
         events: list[tuple[int, str, str]] = []
         for m in CREATE_TABLE_RE.finditer(text):
-            events.append((m.start(), "create", m.group("table").lower()))
+            events.append((m.start(), "create", qualified(m).lower()))
         for m in DROP_TABLE_RE.finditer(text):
-            events.append((m.start(), "drop", m.group("table").lower()))
+            events.append((m.start(), "drop", qualified(m).lower()))
         for m in RLS_SWITCH_RE.finditer(text):
-            events.append((m.start(), re.sub(r"\s+", " ", m.group("kind").lower()), m.group("table").lower()))
+            events.append((m.start(), re.sub(r"\s+", " ", m.group("kind").lower()), qualified(m).lower()))
         for block in DO_BLOCK_RE.finditer(text):
             kinds = {m.group("kind").lower() for m in TEMPLATED_RLS_RE.finditer(block.group(0))}
             tables = [t.lower() for arr in UNNEST_ARRAY_RE.finditer(block.group(0)) for t in QUOTED_ITEM_RE.findall(arr.group("items"))]

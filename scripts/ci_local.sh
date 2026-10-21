@@ -160,6 +160,11 @@ python3 scripts/check_ui_strings.py --self-test
 python3 scripts/check_ui_strings.py
 STEP
 
+run_step "The Family app stays inside its boundary" <<'STEP'
+python3 scripts/check_family_boundary.py --self-test
+python3 scripts/check_family_boundary.py
+STEP
+
 run_step "No secrets committed" <<'STEP'
 # required('SOME_ENV_VAR_NAME') (src/lib/auth/env.ts) looks up an
 # env var by NAME via process.env[name] -- it's a reference to a
