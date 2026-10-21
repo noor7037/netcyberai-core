@@ -7,7 +7,7 @@ Compare CBSE's page (left) with our list (right), then approve or reject this ve
 |---|---|
 | **CBSE document** | Mathematics, Class X, 2026-27: linked from https://cbseacademic.nic.in/curriculum_2027.html under "Secondary Curriculum: Part - 1 (Class X)" → "Main Subjects" → "Mathematics" |
 | **Source URL** | https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1X_2026-27.pdf |
-| **Page in the picture** | 3, the course structure (the PDF's own page number: its first page is 1) |
+| **Page to compare** | 3, the course structure (the PDF's own page number: its first page is 1) |
 | **Fetched** | 2026-10-21, from the source URL above |
 | **Our list** | Every line of [`data/catalog/cbse-2026-27-maths-science.csv`](../../../data/catalog/cbse-2026-27-maths-science.csv) for this version: 7 units, 15 chapters, 34 topics, in the order printed. Each line links to its page in CBSE's PDF. |
 | **Hindi titles** | 0 of 56 lines. CBSE's 2026-27 curriculum page links no Hindi version of this document (checked 2026-10-21), so the app shows the English titles; nothing was translated (see [the catalog README](../../../data/catalog/README.md)). |
@@ -17,7 +17,7 @@ The course structure table names the units. The chapters and their numbered item
 <table>
 <tr><th>CBSE, page 3</th><th>Our list</th></tr>
 <tr>
-<td width="50%" valign="top"><img src="class10-mathematics-p3.png" alt="CBSE Class X Mathematics curriculum 2026-27, page 3: the course structure" width="100%"></td>
+<td width="50%" valign="top"><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1X_2026-27.pdf#page=3">Open CBSE's page 3</a>: the course structure. (CBSE's page is not copied here: the document is CBSE's, so it is opened at its source.)</td>
 <td width="50%" valign="top">
 
 <ol>
