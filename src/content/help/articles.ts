@@ -60,7 +60,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'Open the sign-in page. Enter your email or mobile number and your password, then press “Sign in”.', hi: 'साइन-इन पेज खोलें। अपना ईमेल या मोबाइल नंबर और पासवर्ड लिखें, फिर “Sign in” दबाएँ।' },
       { en: 'If your account has an authenticator app: open it on your phone and type the 6-digit code shown for NetCyberAI. It changes every 30 seconds.', hi: 'अगर आपके खाते में authenticator ऐप जुड़ा है: फ़ोन पर ऐप खोलें और NetCyberAI के लिए दिख रहा 6 अंकों का कोड लिखें। यह हर 30 सेकंड में बदलता है।' },
       { en: 'If it has none: open the email we just sent you and type its 6-digit code. Only the newest email’s code works.', hi: 'अगर ऐप नहीं जुड़ा है: हमारा अभी भेजा गया ईमेल खोलें और उसका 6 अंकों का कोड लिखें। केवल सबसे नए ईमेल का कोड चलता है।' },
-      { en: 'On your own device, tick “Remember this device for 30 days” to skip the email code here next time.', hi: 'अपने निजी डिवाइस पर “Remember this device for 30 days” पर टिक करें, ताकि अगली बार यहाँ ईमेल कोड न माँगा जाए।' },
+      { en: 'On your own device, tick “Trust this browser for 30 days (no code asked here)” to skip the codes here next time.', hi: 'अपने निजी डिवाइस पर “Trust this browser for 30 days (no code asked here)” पर टिक करें, ताकि अगली बार यहाँ कोड न माँगा जाए।' },
       { en: 'If you work in more than one school, choose the school to open. You can switch later without signing out.', hi: 'अगर आप एक से ज़्यादा स्कूलों में काम करते हैं, तो जो स्कूल खोलना है उसे चुनें। बाद में साइन आउट किए बिना बदल सकते हैं।' },
     ],
     tips: [
