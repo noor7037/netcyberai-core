@@ -189,6 +189,7 @@ describe('the parent area', () => {
     expect(bad.status).toBe(400);
     expect((await bad.json()).problems).toEqual(['first_name', 'state']);
     expect((await (await addChild(jar, { ...CHILD, classLevel: 13 })).json()).problems).toEqual(['class']);
+    for (const missing of [null, '', undefined]) expect((await (await addChild(jar, { ...CHILD, classLevel: missing as never })).json()).problems, String(missing)).toEqual(['class']);
     expect((await (await addChild(jar, { ...CHILD, board: 'ICSE' })).json()).problems).toEqual(['board']);
     const ok = await addChild(jar, CHILD);
     expect(ok.status).toBe(201);

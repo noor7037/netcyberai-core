@@ -55,7 +55,8 @@ export function checkChild(raw: unknown): { ok: true; child: ChildInput } | { ok
   const problems: ChildProblem[] = [];
   const firstName = typeof b.firstName === 'string' ? b.firstName.trim().normalize('NFC') : '';
   if (!FIRST_NAME.test(firstName)) problems.push('first_name');
-  const classLevel = Number(b.classLevel);
+  // A class must be sent: an empty or missing value is not UKG (Number(null) and Number('') are both 0).
+  const classLevel = typeof b.classLevel === 'number' || (typeof b.classLevel === 'string' && b.classLevel.trim() !== '') ? Number(b.classLevel) : NaN;
   if (!(CHILD_CLASSES as readonly number[]).includes(classLevel)) problems.push('class');
   if (!(CHILD_BOARDS as readonly unknown[]).includes(b.board)) problems.push('board');
   if (!(CHILD_LANGUAGES as readonly unknown[]).includes(b.language)) problems.push('language');
