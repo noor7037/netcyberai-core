@@ -519,8 +519,8 @@ export function scoreItems(items: CheckItem[], answers: Record<string, unknown>)
   return { results, score };
 }
 
-// Stars for a lesson (12 §8): 3 for every item right on the first try, 2 for 80% or more, 1 for 80% or more after
-// earlier tries; track A, which has no scored check, gets 3 when the grown-up says it was done. 0 means not done yet.
+// Stars for a lesson (12 §8): 3 for every item right on the first try, 2 for a score of PASS_SCORE or more, 1 for
+// that after earlier tries; track A, which has no scored check, gets 3 when the grown-up says it was done. 0 means not done yet.
 export const PASS_SCORE = 80;
 export function lessonStars(track: Track, score: number, attempt: number): 0 | 1 | 2 | 3 {
   if (!TRACK_RULES[track].reads) return 3;

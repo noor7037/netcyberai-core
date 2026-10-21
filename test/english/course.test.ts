@@ -14,8 +14,8 @@ import {
   shuffleByKey,
   wordCount,
   type CheckItem,
-} from '@/lib/english/course';
-import { COURSE_EMOJI, isCoursePicture } from '@/lib/english/emoji';
+} from '@/lib/family/english/course';
+import { COURSE_EMOJI, isCoursePicture } from '@/lib/family/english/emoji';
 
 // The English course (docs/family-app/12, C274): the lesson checker, scoring and the committed lesson files.
 
