@@ -121,7 +121,8 @@ describe('family rows: own account only', () => {
     expect(await refused(() => add('Asha Verma', 7, 'IN-UP'))).toMatch(/check constraint/);
     expect(await refused(() => add('Asha', 11, 'IN-UP'))).toMatch(/check constraint/);
     expect(await refused(() => add('Asha', 7, null))).toMatch(/null value/);
-    expect(await refused(() => add('A1', 7, 'IN-UP'))).toMatch(/check constraint/);
+    for (const bad of ['A1', '<b>', 'a@b', 'राम१']) expect(await refused(() => add(bad, 7, 'IN-UP')), bad).toMatch(/check constraint/);
+    await add('राधा', 7, 'IN-UP');
   });
 
   it('the PIN columns are writable, the email and id are not', async () => {
@@ -278,6 +279,17 @@ describe('control', () => {
       tx.query(`update control.ai_providers set cleared_for_minors = true, cleared_terms_url = 'https://example.org/terms', cleared_at = now(), cleared_by = $1 where provider_id = 'openai'`, [FOUNDER])
     );
     await asRole('nca_super', (tx) => tx.query(`update control.ai_profiles set provider_id = 'openai' where profile_id = 'family.resolver'`));
+    expect(await refused(() => asRole('nca_super', (tx) => tx.query(`insert into control.ai_profiles (profile_id, provider_id, carries_child_words) values ('family.other', 'anthropic', true)`)))).toMatch(/not cleared for minors/);
+    // The clearance cannot be withdrawn while that profile uses the provider.
+    expect(await refused(() => asRole('nca_super', (tx) => tx.query(`update control.ai_providers set cleared_for_minors = false where provider_id = 'openai'`)))).toMatch(/carries a child/);
+  });
+
+  it('a family only adds to the AI counts, through the function', async () => {
+    expect(await refused(() => asFamily(A, (tx) => tx.query(`select * from control.ai_usage`)))).toMatch(/permission denied/);
+    expect(await refused(() => asFamily(A, (tx) => tx.query(`update control.ai_usage set requests = 0`)))).toMatch(/permission denied/);
+    for (let i = 0; i < 2; i++) await asFamily(A, (tx) => tx.query(`select control.count_ai_usage('2026-10-21', 'family.resolver', 'openai', 'm', 1, 0, 0, 10, 20)`));
+    const { rows } = await db.pg.query(`select requests, tokens_out from control.ai_usage where day = '2026-10-21'`);
+    expect(rows.map((r: { requests: number; tokens_out: unknown }) => [r.requests, Number(r.tokens_out)])).toEqual([[2, 40]]);
   });
 });
 

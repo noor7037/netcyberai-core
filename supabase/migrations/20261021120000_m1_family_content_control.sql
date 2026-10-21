@@ -96,7 +96,7 @@ create index idx_family_consents_account on family.consents (account_id, purpose
 create table family.children (
   child_id uuid primary key default gen_random_uuid(),
   account_id uuid not null references family.accounts (account_id) on delete cascade,
-  first_name text not null check (first_name ~ '^[^[:space:][:digit:]]{1,30}$'),
+  first_name text not null check (first_name ~ '^[^[:space:][:digit:][:punct:][:cntrl:]०-९<>@]{1,30}$'),
   class_level smallint not null check (class_level between 6 and 10),
   board_id text not null check (board_id = 'CBSE'),
   language text not null check (language in ('en', 'hi')),
@@ -429,7 +429,8 @@ create policy topics_family_read on content.topics as permissive for select to f
   using (exists (select 1 from content.syllabus_versions v where v.version_id = topics.version_id and v.status = 'published' and v.audience = 'everyone'));
 create policy topics_family_only on content.topics as restrictive for all to family_app
   using (exists (select 1 from content.syllabus_versions v where v.version_id = topics.version_id and v.status = 'published' and v.audience = 'everyone')) with check (false);
--- Responses: families read any not withdrawn, and add new AI-made ones (the resolver's cache); they never approve.
+-- Responses: families read any not withdrawn, and add new AI-made ones (the resolver's cache, written only by the
+-- server after the response passed its schema and checks); they never approve. A reviewer withdraws a bad one.
 create policy responses_family_read on content.responses as permissive for select to family_app using (status <> 'withdrawn');
 create policy responses_family_add on content.responses as permissive for insert to family_app
   with check (status = 'ai_made' and checked_by is null and checked_at is null and withdrawn_at is null);
@@ -559,7 +560,7 @@ create table control.ai_profiles (
   updated_by uuid
 );
 insert into control.ai_profiles (profile_id, provider_id, model, carries_child_words)
-values ('family.resolver', 'anthropic', null, true);
+values ('family.resolver', null, null, true);
 
 create function control.ai_profile_minors_check() returns trigger
 language plpgsql set search_path = '' as $$
@@ -567,7 +568,7 @@ declare
   p text;
 begin
   if not new.carries_child_words then return new; end if;
-  if tg_op = 'UPDATE' and new.provider_id is not distinct from old.provider_id and new.fallback = old.fallback then
+  if tg_op = 'UPDATE' and new.provider_id is not distinct from old.provider_id and new.fallback = old.fallback and old.carries_child_words then
     return new;
   end if;
   for p in select new.provider_id union select f ->> 'provider' from jsonb_array_elements(new.fallback) f loop
@@ -577,8 +578,25 @@ begin
   end loop;
   return new;
 end $$;
-create trigger ai_profiles_minors_check before update on control.ai_profiles
+create trigger ai_profiles_minors_check before insert or update on control.ai_profiles
   for each row execute function control.ai_profile_minors_check();
+
+-- A provider's clearance cannot be withdrawn while a profile that carries a child's words still uses it: move the
+-- profile first.
+create function control.ai_provider_clearance_check() returns trigger
+language plpgsql set search_path = '' as $$
+begin
+  if old.cleared_for_minors and not new.cleared_for_minors and exists (
+    select 1 from control.ai_profiles p
+     where p.carries_child_words
+       and (p.provider_id = new.provider_id or exists (select 1 from jsonb_array_elements(p.fallback) f where f ->> 'provider' = new.provider_id))
+  ) then
+    raise exception 'provider % is used by a profile that carries a child''s words', new.provider_id using errcode = 'check_violation';
+  end if;
+  return new;
+end $$;
+create trigger ai_providers_clearance_check before update on control.ai_providers
+  for each row execute function control.ai_provider_clearance_check();
 
 -- AI counts per day, profile, provider and model (03 §7 "Audit and usage"): counts and tokens, never text.
 create table control.ai_usage (
@@ -623,10 +641,8 @@ create policy preview_family_read on control.preview_accounts as permissive for 
 create policy preview_family_only on control.preview_accounts as restrictive for all to family_app using (account_id = family.current_account()) with check (false);
 create policy ai_providers_family_read on control.ai_providers as permissive for select to family_app using (true);
 create policy ai_profiles_family_read on control.ai_profiles as permissive for select to family_app using (true);
-create policy ai_usage_family_count on control.ai_usage as permissive for all to family_app using (true) with check (true);
 
 grant select on control.settings, control.app_flags, control.app_banners, control.app_versions, control.preview_accounts, control.ai_providers, control.ai_profiles to family_app;
-grant select, insert, update on control.ai_usage to family_app;
 grant select, insert, update on control.settings, control.app_flags, control.app_banners, control.app_versions, control.ai_providers, control.ai_profiles, control.ai_usage to nca_super;
 grant select, insert, update, delete on control.ai_credentials to nca_super;
 grant select, insert, delete on control.preview_accounts to nca_super;
@@ -641,8 +657,21 @@ language sql stable security definer set search_path = '' as $$
    where c.provider_id = p_provider and p.enabled
 $$;
 revoke all on function control.ai_sealed_credential(text) from public;
+
+-- Add to today's AI counts. The only way a family request touches them: it can add, never rewrite or read.
+create function control.count_ai_usage(p_day date, p_profile text, p_provider text, p_model text, p_requests integer, p_failures integer, p_cap_refusals integer, p_tokens_in bigint, p_tokens_out bigint)
+returns void
+language sql security definer set search_path = '' as $$
+  insert into control.ai_usage as u (day, profile_id, provider_id, model, requests, failures, cap_refusals, tokens_in, tokens_out)
+  values (p_day, p_profile, p_provider, p_model, greatest(p_requests, 0), greatest(p_failures, 0), greatest(p_cap_refusals, 0), greatest(p_tokens_in, 0), greatest(p_tokens_out, 0))
+  on conflict (day, profile_id, provider_id, model) do update
+    set requests = u.requests + excluded.requests, failures = u.failures + excluded.failures, cap_refusals = u.cap_refusals + excluded.cap_refusals,
+        tokens_in = u.tokens_in + excluded.tokens_in, tokens_out = u.tokens_out + excluded.tokens_out
+$$;
+revoke all on function control.count_ai_usage(date, text, text, text, integer, integer, integer, bigint, bigint) from public;
+grant execute on function control.count_ai_usage(date, text, text, text, integer, integer, integer, bigint, bigint) to family_app, nca_super;
 grant execute on function control.ai_sealed_credential(text) to family_app, nca_super;
-revoke all on function control.ai_profile_minors_check() from public;
+revoke all on function control.ai_profile_minors_check(), control.ai_provider_clearance_check() from public;
 
 -- Control → Family (10 §9): counts only, never a name, a child or an answer.
 create function family.control_counts()

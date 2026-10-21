@@ -91,6 +91,14 @@ RLS_SWITCH = re.compile(r"alter\s+table\s+(?P<schema>family|content|control)\.(?
 SQL_COMMENT = re.compile(r"--[^\n]*")
 
 
+# `from` inside extract(... from x), substring(x from 2), trim(both ' ' from x) and the like names no table.
+FUNCTION_FROM = re.compile(r"\b(extract|substring|trim|overlay|position)\s*\([^()]*$", re.IGNORECASE)
+
+
+def inside_function_from(literal: str, at: int) -> bool:
+    return bool(FUNCTION_FROM.search(literal[:at]))
+
+
 def in_family_area(rel: str) -> bool:
     return rel.startswith(FAMILY_AREA)
 
@@ -141,7 +149,7 @@ def check_sources(root: Path) -> list[str]:
                     continue
                 for m in TABLE_REF.finditer(literal):
                     name = m.group("name").lower()
-                    if m.group("call") or name in SQL_WORDS:
+                    if m.group("call") or name in SQL_WORDS or inside_function_from(literal, m.start()):
                         continue
                     schema = name.split(".")[0] if "." in name else None
                     if schema not in ("family", "content", "control"):
@@ -220,7 +228,7 @@ def self_test() -> int:
     ]
     clean = [
         ("src/lib/family/db.ts", "import { withFamilyContext } from '@/lib/auth/db';\n"),
-        ("src/lib/family/y.ts", "import { t } from '@/lib/i18n';\nimport { Card } from '@/components/ui/Card';\nconst q = `select c.first_name from family.children c join content.topics t on true`;\nconst r = `select * from family.sign_in($1, $2, $3)`;\n"),
+        ("src/lib/family/y.ts", "import { t } from '@/lib/i18n';\nimport { Card } from '@/components/ui/Card';\nconst q = `select c.first_name, extract(epoch from c.created_at) from family.children c join content.topics t on true`;\nconst r = `select * from family.sign_in($1, $2, $3)`;\n"),
         ("src/lib/control/family-counts.ts", "const q = `select family.control_counts() as c`;\n"),
         ("src/lib/ai/adapters/anthropic.ts", "fetch('https://api.anthropic.com/v1/messages');\n"),
         ("src/middleware.ts", "import { verifyFamilySession } from '@/lib/family/session';\n"),

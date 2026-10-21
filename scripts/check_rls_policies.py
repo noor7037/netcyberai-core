@@ -445,7 +445,7 @@ ALLOWED_PERMISSIVE = (
         # M1-1 (C247): the Family app's role (family_app) on its own schemas. Family tables: own account only, granted by
         # a permissive policy and held by a restrictive one of the same condition (REQUIRED_RESTRICTIVE below). Content:
         # families read boards and what is published to everyone, and add AI-made responses only. Control: families read
-        # the family switches and limits (never a credential), and add AI counts (no personal data).
+        # the family switches and limits (never a credential), and add to AI counts only through control.count_ai_usage().
         ("family.accounts", "accounts_own"),
         ("family.consents", "consents_own"),
         ("family.children", "children_own"),
@@ -466,7 +466,6 @@ ALLOWED_PERMISSIVE = (
         ("control.preview_accounts", "preview_family_read"),
         ("control.ai_providers", "ai_providers_family_read"),
         ("control.ai_profiles", "ai_profiles_family_read"),
-        ("control.ai_usage", "ai_usage_family_count"),
         # m1 end
     }
 )
