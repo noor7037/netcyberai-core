@@ -1,0 +1,407 @@
+{
+  "track": "b",
+  "unit": 15,
+  "key": "b.u15",
+  "title": { "en": "At the shop", "hi": "दुकान पर" },
+  "pic": "🏪",
+  "can_do": { "en": "I can buy something politely.", "hi": "मैं अच्छे से कुछ ख़रीद सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u15.l1",
+      "kind": "words",
+      "title": { "en": "Shop words", "hi": "दुकान के शब्द" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "Let us go to Ravi's shop!", "hi": "चलो रवि की दुकान चलें!" }, "pic": "🏪" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u15.l1.shop", "en": "shop", "hi": "दुकान", "pic": "🏪", "example": { "en": "Ravi has a shop.", "hi": "रवि की एक दुकान है।" } },
+            { "key": "b.u15.l1.buy", "en": "buy", "hi": "ख़रीदना", "pic": "🛒", "example": { "en": "I want to buy salt.", "hi": "मुझे नमक ख़रीदना है।" } },
+            { "key": "b.u15.l1.money", "en": "money", "hi": "पैसे", "pic": "💰", "example": { "en": "Mummy gives me money.", "hi": "माँ मुझे पैसे देती हैं।" } },
+            { "key": "b.u15.l1.rupees", "en": "rupees", "hi": "रुपये", "pic": "💵", "example": { "en": "It is ten rupees.", "hi": "यह दस रुपये का है।" } },
+            { "key": "b.u15.l1.potato", "en": "potato", "hi": "आलू", "pic": "🥔", "example": { "en": "Two potatoes, please.", "hi": "दो आलू, प्लीज़।" } },
+            { "key": "b.u15.l1.onion", "en": "onion", "hi": "प्याज़", "pic": "🧅", "example": { "en": "Dadi wants an onion.", "hi": "दादी को एक प्याज़ चाहिए।" } },
+            { "key": "b.u15.l1.tomato", "en": "tomato", "hi": "टमाटर", "pic": "🍅", "example": { "en": "I want three tomatoes.", "hi": "मुझे तीन टमाटर चाहिए।" } },
+            { "key": "b.u15.l1.salt", "en": "salt", "hi": "नमक", "pic": "🧂", "example": { "en": "Salt, please.", "hi": "नमक दीजिए, प्लीज़।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u15.l1.m-shop", "left": { "text": "shop" }, "right": { "pic": "🏪" } },
+            { "key": "b.u15.l1.m-money", "left": { "text": "money" }, "right": { "pic": "💰" } },
+            { "key": "b.u15.l1.m-onion", "left": { "text": "onion" }, "right": { "pic": "🧅" } },
+            { "key": "b.u15.l1.m-salt", "left": { "text": "salt" }, "right": { "pic": "🧂" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u15.l1.p-potato",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "potato" },
+              "options": [{ "pic": "🍅" }, { "pic": "🥔" }, { "pic": "🧅" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u15.l1.p-rupees",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "rupees" },
+              "options": [{ "pic": "💵" }, { "pic": "🛒" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u15.l1.s-salt", "model": "I want salt, please.", "hi": "मुझे नमक चाहिए, प्लीज़।", "pic": "🧂" },
+            { "key": "b.u15.l1.s-much", "model": "How much is it?", "hi": "यह कितने का है?", "pic": "💵" },
+            { "key": "b.u15.l1.s-thanks", "model": "Thank you!", "hi": "धन्यवाद!", "pic": "🙏" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u15.l1.c-tomato",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "tomato" },
+          "options": [{ "pic": "🍅" }, { "pic": "🥭" }, { "pic": "🧂" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u15.l1.c-buy",
+          "type": "choose",
+          "prompt": { "en": "Which word means ख़रीदना?", "hi": "'ख़रीदना' कौन-सा है?", "pic": "🛒" },
+          "options": [{ "text": "shop" }, { "text": "buy" }, { "text": "money" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u15.l1.c-shop",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "shop" },
+          "options": [{ "pic": "🏫" }, { "pic": "🏪" }, { "pic": "🏠" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u15.l1.c-onion",
+          "type": "choose",
+          "prompt": { "en": "Which word means प्याज़?", "hi": "'प्याज़' कौन-सा है?", "pic": "🧅" },
+          "options": [{ "text": "potato" }, { "text": "onion" }, { "text": "tomato" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u15.l1.c-rupees",
+          "type": "choose",
+          "prompt": { "en": "It is ten ___.", "hi": "यह दस रुपये का है।", "pic": "💵" },
+          "options": [{ "text": "rupees" }, { "text": "onions" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "At a shop, name three things in English.", "hi": "दुकान पर तीन चीज़ों के नाम अंग्रेज़ी में बोलो।" }
+    },
+    {
+      "key": "b.u15.l2",
+      "kind": "pattern",
+      "title": { "en": "I want …, please. How much is it?", "hi": "मुझे … चाहिए। यह कितने का है?" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Ask and pay", "hi": "माँगो और पैसे दो" },
+          "visual": "builder",
+          "examples": [
+            { "en": "I want salt, please.", "hi": "मुझे नमक चाहिए, प्लीज़।", "pic": "🧂", "parts": [{ "text": "I", "role": "who" }, { "text": "want", "role": "do" }, { "text": "salt,", "role": "what" }, { "text": "please.", "role": "other" }] },
+            { "en": "I want two tomatoes, please.", "hi": "मुझे दो टमाटर चाहिए, प्लीज़।", "pic": "🍅", "parts": [{ "text": "I", "role": "who" }, { "text": "want", "role": "do" }, { "text": "two tomatoes,", "role": "what" }, { "text": "please.", "role": "other" }] },
+            { "en": "How much is this?", "hi": "यह कितने का है?", "pic": "💵", "parts": [{ "text": "How much", "role": "ask" }, { "text": "is", "role": "do" }, { "text": "this?", "role": "what" }] },
+            { "en": "It is ten rupees.", "hi": "यह दस रुपये का है।", "pic": "💵", "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "ten rupees.", "role": "what" }] },
+            { "en": "Here you are.", "hi": "यह लीजिए।", "pic": "🤚", "parts": [{ "text": "Here", "role": "other" }, { "text": "you", "role": "who" }, { "text": "are.", "role": "do" }] },
+            { "en": "Thank you!", "hi": "धन्यवाद!", "pic": "🙏", "parts": [{ "text": "Thank", "role": "do" }, { "text": "you!", "role": "who" }] }
+          ],
+          "note": { "en": "Always say please when you ask.", "hi": "माँगते समय please ज़रूर बोलो।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u15.l2.b-want", "hi": "मुझे एक प्याज़ चाहिए, प्लीज़।", "pic": "🧅", "tiles": ["onion,", "please.", "want", "I", "an"], "answer": "I want an onion, please." },
+            { "key": "b.u15.l2.b-much", "hi": "यह कितने का है?", "pic": "💵", "tiles": ["is", "much", "this?", "How"], "answer": "How much is this?" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u15.l2.p-please",
+              "prompt": { "en": "I want rice, ___.", "hi": "मुझे चावल चाहिए, प्लीज़।", "pic": "🍚" },
+              "options": [{ "text": "please" }, { "text": "sorry" }],
+              "answer": 0,
+              "why": { "en": "When we ask for something, we say please.", "hi": "कुछ माँगते समय please।" }
+            },
+            {
+              "key": "b.u15.l2.p-much",
+              "prompt": { "en": "How ___ is it?", "hi": "यह कितने का है?", "pic": "💵" },
+              "options": [{ "text": "many" }, { "text": "much" }],
+              "answer": 1,
+              "why": { "en": "For a price, we say how much.", "hi": "दाम पूछने के लिए how much।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u15.l2.s-want", "model": "I want salt, please.", "hi": "नमक माँगो।", "pic": "🧂", "cue": { "en": "What do you want?", "hi": "तुम्हें क्या चाहिए?" } },
+            { "key": "b.u15.l2.s-much", "model": "How much is it?", "hi": "दाम पूछो।", "pic": "💵", "cue": { "en": "Ask the price.", "hi": "पूछो कितने का है।" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u15.l2.c-build1", "type": "build", "hi": "मुझे तीन आलू चाहिए, प्लीज़।", "tiles": ["three", "please.", "I", "potatoes,", "want"], "answer": "I want three potatoes, please." },
+        { "key": "b.u15.l2.c-build2", "type": "build", "hi": "यह बीस रुपये का है।", "tiles": ["rupees.", "is", "twenty", "It"], "answer": "It is twenty rupees." },
+        {
+          "key": "b.u15.l2.c-much",
+          "type": "choose",
+          "prompt": { "en": "___ much is this?", "hi": "यह कितने का है?", "pic": "💵" },
+          "options": [{ "text": "How" }, { "text": "What" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u15.l2.c-polite",
+          "type": "choose",
+          "prompt": { "en": "Which one is polite?", "hi": "कौन-सा वाक्य अच्छे से माँगता है?", "pic": "🧂" },
+          "options": [{ "text": "Give salt." }, { "text": "I want salt, please." }],
+          "answer": 1,
+          "why": { "en": "Please makes it polite.", "hi": "please से बात अच्छी लगती है।" }
+        },
+        {
+          "key": "b.u15.l2.c-here",
+          "type": "choose",
+          "prompt": { "en": "Ravi gives you the salt. He says:", "hi": "रवि नमक देते हुए कहता है:", "pic": "👳" },
+          "options": [{ "text": "Here you are." }, { "text": "Good night." }],
+          "answer": 0
+        },
+        {
+          "key": "b.u15.l2.c-thank",
+          "type": "choose",
+          "prompt": { "en": "You get the salt. You say:", "hi": "नमक मिलने पर तुम क्या कहोगे?", "pic": "🧂" },
+          "options": [{ "text": "Sorry!" }, { "text": "Thank you!" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask at home: I want water, please.", "hi": "घर पर माँगो: I want water, please." }
+    },
+    {
+      "key": "b.u15.l3",
+      "kind": "listen",
+      "title": { "en": "Meera at the shop", "hi": "दुकान पर मीरा" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Salt and tomatoes", "hi": "नमक और टमाटर" },
+          "scene": { "place": "market", "pics": [{ "pic": "🏪", "x": 82, "y": 16, "size": 2 }, { "pic": "👧", "x": 36, "y": 42, "size": 1.4 }, { "pic": "💵", "x": 46, "y": 54, "size": 0.8 }, { "pic": "👳", "x": 64, "y": 40, "size": 1.5 }, { "pic": "🧂", "x": 72, "y": 54, "size": 0.8 }, { "pic": "🍅", "x": 82, "y": 54, "size": 0.8 }, { "pic": "🥔", "x": 92, "y": 54, "size": 0.8 }] },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Hello, Ravi Uncle!", "hi": "नमस्ते, रवि अंकल!" },
+            { "speaker": "Ravi", "pic": "👳", "en": "Hello, Meera! What do you want?", "hi": "नमस्ते, मीरा! तुम्हें क्या चाहिए?" },
+            { "speaker": "Meera", "pic": "👧", "en": "I want salt, please. How much is it?", "hi": "मुझे नमक चाहिए, प्लीज़। कितने का है?" },
+            { "speaker": "Ravi", "pic": "👳", "en": "It is ten rupees.", "hi": "दस रुपये का।" },
+            { "speaker": "Meera", "pic": "👧", "en": "And two tomatoes, please.", "hi": "और दो टमाटर, प्लीज़।" },
+            { "speaker": "Ravi", "pic": "👳", "en": "Here you are. Twenty rupees, please.", "hi": "यह लो। बीस रुपये, प्लीज़।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Here is the money. Thank you!", "hi": "ये रहे पैसे। धन्यवाद!" },
+            { "speaker": "Ravi", "pic": "👳", "en": "Thank you, Meera. Bye!", "hi": "धन्यवाद, मीरा। बाय!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u15.l3.p-salt",
+              "prompt": { "en": "What does Meera want first?", "hi": "मीरा पहले क्या माँगती है?" },
+              "options": [{ "text": "salt", "pic": "🧂" }, { "text": "potatoes", "pic": "🥔" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u15.l3.p-price",
+              "prompt": { "en": "How much is the salt?", "hi": "नमक कितने का है?" },
+              "options": [{ "text": "twenty rupees" }, { "text": "ten rupees" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u15.l3.s-want", "model": "I want salt, please.", "hi": "मुझे नमक चाहिए, प्लीज़।", "pic": "🧂" },
+            { "key": "b.u15.l3.s-here", "model": "Here is the money.", "hi": "ये रहे पैसे।", "pic": "💵" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u15.l3.c-tomatoes",
+          "type": "choose",
+          "prompt": { "en": "How many tomatoes does Meera want?", "hi": "मीरा को कितने टमाटर चाहिए?", "pic": "🍅" },
+          "options": [{ "text": "two" }, { "text": "ten" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u15.l3.c-total",
+          "type": "choose",
+          "prompt": { "en": "How much does Meera pay?", "hi": "मीरा कितने पैसे देती है?", "pic": "💵" },
+          "options": [{ "text": "twenty rupees" }, { "text": "two rupees" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u15.l3.c-who",
+          "type": "choose",
+          "prompt": { "en": "Whose shop is it?", "hi": "दुकान किसकी है?" },
+          "options": [{ "text": "Meera's", "pic": "👧" }, { "text": "Ravi's", "pic": "👳" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u15.l3.c-polite",
+          "type": "choose",
+          "prompt": { "en": "What does Meera say after she pays?", "hi": "पैसे देकर मीरा क्या कहती है?" },
+          "options": [{ "text": "Thank you!" }, { "text": "Sorry!" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Play shop at home with a family member.", "hi": "घर में किसी के साथ दुकान-दुकान खेलो।" }
+    },
+    {
+      "key": "b.u15.l4",
+      "kind": "speak",
+      "title": { "en": "Buy at the shop", "hi": "दुकान पर ख़रीदो" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "At Ravi's shop", "hi": "रवि की दुकान पर" },
+          "scene": { "place": "market", "pics": [{ "pic": "🏪", "x": 84, "y": 14, "size": 2 }, { "pic": "🧒", "x": 30, "y": 42, "size": 1.5 }, { "pic": "💵", "x": 40, "y": 54, "size": 0.8 }, { "pic": "👳", "x": 60, "y": 40, "size": 1.5 }, { "pic": "✏️", "x": 70, "y": 54, "size": 0.8 }, { "pic": "📓", "x": 80, "y": 54, "size": 0.8 }] },
+          "roles": [{ "name": "Ravi", "pic": "👳" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Hello! What do you want?", "hi": "नमस्ते! क्या चाहिए?" },
+            { "role": 1, "en": "Hello! I want a pencil, please.", "hi": "नमस्ते! मुझे एक पेंसिल चाहिए, प्लीज़।" },
+            { "role": 0, "en": "Here you are.", "hi": "यह लो।" },
+            { "role": 1, "en": "How much is it?", "hi": "कितने की है?" },
+            { "role": 0, "en": "It is five rupees.", "hi": "पाँच रुपये की।" },
+            { "role": 1, "en": "Here is five rupees. Thank you!", "hi": "ये रहे पाँच रुपये। धन्यवाद!" },
+            { "role": 0, "en": "Thank you! Bye-bye!", "hi": "धन्यवाद! बाय-बाय!" }
+          ],
+          "partner": { "goal": "Be Ravi the shopkeeper. Let the child ask for one thing with I want …, please, ask the price, pay and say thank you. Keep prices under twenty rupees.", "must_use": ["I want", "please", "how much", "thank you"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u15.l4.br-book", "hi": "मुझे एक किताब चाहिए, प्लीज़।", "tiles": ["a", "please.", "book,", "want", "I"], "answer": "I want a book, please." },
+            { "key": "b.u15.l4.br-much", "hi": "पेन कितने का है?", "tiles": ["pen?", "much", "the", "is", "How"], "answer": "How much is the pen?" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u15.l4.c-start",
+          "type": "choose",
+          "prompt": { "en": "Ravi asks: What do you want? You say:", "hi": "रवि पूछता है: क्या चाहिए? तुम क्या कहोगे?", "pic": "👳" },
+          "options": [{ "text": "I want a pencil, please." }, { "text": "I am a pencil." }],
+          "answer": 0
+        },
+        { "key": "b.u15.l4.c-build", "type": "build", "hi": "यह पाँच रुपये का है।", "tiles": ["five", "It", "rupees.", "is"], "answer": "It is five rupees." },
+        {
+          "key": "b.u15.l4.c-end",
+          "type": "choose",
+          "prompt": { "en": "You pay. Then you say:", "hi": "पैसे देकर तुम क्या कहोगे?", "pic": "💵" },
+          "options": [{ "text": "Thank you!" }, { "text": "How many?" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "At a shop, say please and thank you.", "hi": "दुकान पर please और thank you बोलना।" }
+    },
+    {
+      "key": "b.u15.l5",
+      "kind": "review",
+      "title": { "en": "Unit 15 review", "hi": "इकाई 15 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u15.l5.m-potato", "left": { "text": "potato" }, "right": { "pic": "🥔" } },
+            { "key": "b.u15.l5.m-money", "left": { "text": "money" }, "right": { "pic": "💰" } },
+            { "key": "b.u15.l5.m-rupees", "left": { "text": "rupees" }, "right": { "pic": "💵" } },
+            { "key": "b.u15.l5.m-cloudy", "left": { "text": "cloudy" }, "right": { "pic": "☁️" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u15.l5.b-want", "hi": "मुझे दो आम चाहिए, प्लीज़।", "pic": "🥭", "tiles": ["mangoes,", "two", "I", "please.", "want"], "answer": "I want two mangoes, please." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u15.l5.p-much",
+              "prompt": { "en": "How ___ is the salt?", "hi": "नमक कितने का है?", "pic": "🧂" },
+              "options": [{ "text": "much" }, { "text": "many" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u15.l5.s-shop", "model": "I want two onions, please. How much?", "hi": "कुछ माँगो और दाम पूछो।", "cue": { "en": "You are at the shop.", "hi": "तुम दुकान पर हो।" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u15.l5.c-salt",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "salt" },
+          "options": [{ "pic": "🧂" }, { "pic": "🍚" }, { "pic": "🥛" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u15.l5.c-shop",
+          "type": "choose",
+          "prompt": { "en": "Which word means दुकान?", "hi": "'दुकान' कौन-सा है?" },
+          "options": [{ "text": "school" }, { "text": "shop" }, { "text": "house" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u15.l5.c-please",
+          "type": "choose",
+          "prompt": { "en": "I want an onion, ___.", "hi": "मुझे एक प्याज़ चाहिए, प्लीज़।", "pic": "🧅" },
+          "options": [{ "text": "sorry" }, { "text": "please" }],
+          "answer": 1
+        },
+        { "key": "b.u15.l5.c-build", "type": "build", "hi": "नमक कितने का है?", "tiles": ["salt?", "is", "How", "the", "much"], "answer": "How much is the salt?" },
+        {
+          "key": "b.u15.l5.c-sunny",
+          "type": "choose",
+          "prompt": { "en": "It is ___ today.", "hi": "आज धूप है।", "pic": "☀️" },
+          "options": [{ "text": "sunny" }, { "text": "raining" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u15.l5.c-ing",
+          "type": "choose",
+          "prompt": { "en": "Mummy is ___.", "hi": "माँ खाना बना रही हैं।", "pic": "🍳" },
+          "options": [{ "text": "cooking" }, { "text": "cook" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u15.l5.c-there",
+          "type": "choose",
+          "prompt": { "en": "There ___ two shops in my village.", "hi": "मेरे गाँव में दो दुकानें हैं।", "pic": "🏪" },
+          "options": [{ "text": "is" }, { "text": "are" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Go shopping with a grown-up. Say one sentence in English.", "hi": "किसी बड़े के साथ ख़रीदारी करो। एक वाक्य अंग्रेज़ी में बोलो।" }
+    }
+  ]
+}

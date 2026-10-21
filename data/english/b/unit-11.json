@@ -1,0 +1,405 @@
+{
+  "track": "b",
+  "unit": 11,
+  "key": "b.u11",
+  "title": { "en": "My day", "hi": "मेरा दिन" },
+  "pic": "⏰",
+  "can_do": { "en": "I can talk about my day.", "hi": "मैं अपने दिन के बारे में बता सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u11.l1",
+      "kind": "words",
+      "title": { "en": "Day words", "hi": "दिन भर के काम" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "What do you do every day?", "hi": "तुम रोज़ क्या करते/करती हो?" }, "pic": "⏰" },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Wake up and stretch!", "hi": "उठो और अंगड़ाई लो!", "pic": "🙌" },
+            { "en": "Brush your teeth.", "hi": "दाँत साफ़ करो।", "pic": "🦷" },
+            { "en": "Eat your roti.", "hi": "अपनी रोटी खाओ।", "pic": "own:roti" },
+            { "en": "Go to sleep. Shh!", "hi": "सो जाओ। श्श्श!", "pic": "😴" }
+          ]
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u11.l1.wake-up", "en": "wake up", "hi": "जागना (उठना)", "pic": "⏰", "example": { "en": "I wake up early.", "hi": "मैं जल्दी उठता/उठती हूँ।" } },
+            { "key": "b.u11.l1.bath", "en": "bath", "hi": "नहाना (स्नान)", "pic": "🛁", "example": { "en": "I take a bath.", "hi": "मैं नहाता/नहाती हूँ।" } },
+            { "key": "b.u11.l1.eat", "en": "eat", "hi": "खाना", "pic": "🍽️", "example": { "en": "We eat roti and dal.", "hi": "हम रोटी और दाल खाते हैं।" } },
+            { "key": "b.u11.l1.go", "en": "go", "hi": "जाना", "pic": "🚶", "example": { "en": "I go to school.", "hi": "मैं स्कूल जाता/जाती हूँ।" } },
+            { "key": "b.u11.l1.play", "en": "play", "hi": "खेलना", "pic": "⚽", "example": { "en": "I play with my friends.", "hi": "मैं अपने दोस्तों के साथ खेलता/खेलती हूँ।" } },
+            { "key": "b.u11.l1.sleep", "en": "sleep", "hi": "सोना", "pic": "😴", "example": { "en": "I sleep at night.", "hi": "मैं रात को सोता/सोती हूँ।" } },
+            { "key": "b.u11.l1.morning", "en": "morning", "hi": "सुबह", "pic": "🌞", "example": { "en": "Good morning, Dadi!", "hi": "सुप्रभात, दादी!" } },
+            { "key": "b.u11.l1.night", "en": "night", "hi": "रात", "pic": "🌙", "example": { "en": "Good night, Arjun!", "hi": "शुभ रात्रि, अर्जुन!" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u11.l1.m-bath", "left": { "text": "bath" }, "right": { "pic": "🛁" } },
+            { "key": "b.u11.l1.m-eat", "left": { "text": "eat" }, "right": { "pic": "🍽️" } },
+            { "key": "b.u11.l1.m-sleep", "left": { "text": "sleep" }, "right": { "pic": "😴" } },
+            { "key": "b.u11.l1.m-night", "left": { "text": "night" }, "right": { "pic": "🌙" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u11.l1.p-wake",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "wake up" },
+              "options": [{ "pic": "😴" }, { "pic": "⏰" }, { "pic": "🌙" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u11.l1.p-play",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "play" },
+              "options": [{ "pic": "⚽" }, { "pic": "🛁" }, { "pic": "🍽️" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u11.l1.s-wake", "model": "I wake up in the morning.", "hi": "मैं सुबह उठता/उठती हूँ।", "pic": "🌞" },
+            { "key": "b.u11.l1.s-go", "model": "I go to school.", "hi": "मैं स्कूल जाता/जाती हूँ।", "pic": "🏫" },
+            { "key": "b.u11.l1.s-sleep", "model": "I sleep at night.", "hi": "मैं रात को सोता/सोती हूँ।", "pic": "🌙" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u11.l1.c-morning",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "morning" },
+          "options": [{ "pic": "🌙" }, { "pic": "🌞" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u11.l1.c-go",
+          "type": "choose",
+          "prompt": { "en": "Which word means जाना?", "hi": "कौन-सा शब्द 'जाना' है?", "pic": "🚶" },
+          "options": [{ "text": "go" }, { "text": "eat" }, { "text": "play" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u11.l1.c-bath",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "bath" },
+          "options": [{ "pic": "🛁" }, { "pic": "😴" }, { "pic": "⚽" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u11.l1.c-sleep",
+          "type": "choose",
+          "prompt": { "en": "Which word means सोना?", "hi": "कौन-सा शब्द 'सोना' है?", "pic": "😴" },
+          "options": [{ "text": "play" }, { "text": "sleep" }, { "text": "wake up" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u11.l1.c-night",
+          "type": "choose",
+          "prompt": { "en": "We sleep at ___.", "hi": "हम रात को सोते हैं।", "pic": "🌙" },
+          "options": [{ "text": "morning" }, { "text": "night" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "At night, say: Good night!", "hi": "रात को कहो: Good night!" }
+    },
+    {
+      "key": "b.u11.l2",
+      "kind": "pattern",
+      "title": { "en": "I wake up, I go to school", "hi": "मैं उठता/उठती हूँ, मैं स्कूल जाता/जाती हूँ" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Things I do every day", "hi": "जो काम मैं रोज़ करता/करती हूँ" },
+          "visual": "builder",
+          "examples": [
+            { "en": "I wake up in the morning.", "hi": "मैं सुबह उठता/उठती हूँ।", "pic": "🌞", "parts": [{ "text": "I", "role": "who" }, { "text": "wake up", "role": "do" }, { "text": "in the morning.", "role": "when" }] },
+            { "en": "I take a bath.", "hi": "मैं नहाता/नहाती हूँ।", "pic": "🛁", "parts": [{ "text": "I", "role": "who" }, { "text": "take", "role": "do" }, { "text": "a bath.", "role": "what" }] },
+            { "en": "I go to school every day.", "hi": "मैं रोज़ स्कूल जाता/जाती हूँ।", "pic": "🏫", "parts": [{ "text": "I", "role": "who" }, { "text": "go", "role": "do" }, { "text": "to school", "role": "where" }, { "text": "every day.", "role": "when" }] },
+            { "en": "I play after school.", "hi": "मैं स्कूल के बाद खेलता/खेलती हूँ।", "pic": "⚽", "parts": [{ "text": "I", "role": "who" }, { "text": "play", "role": "do" }, { "text": "after school.", "role": "when" }] },
+            { "en": "We eat roti at night.", "hi": "हम रात को रोटी खाते हैं।", "pic": "🍽️", "parts": [{ "text": "We", "role": "who" }, { "text": "eat", "role": "do" }, { "text": "roti", "role": "what" }, { "text": "at night.", "role": "when" }] },
+            { "en": "I sleep at night.", "hi": "मैं रात को सोता/सोती हूँ।", "pic": "😴", "parts": [{ "text": "I", "role": "who" }, { "text": "sleep", "role": "do" }, { "text": "at night.", "role": "when" }] }
+          ],
+          "note": { "en": "Things we do every day: I wake up, I go, I eat.", "hi": "रोज़ के काम ऐसे बोलते हैं: I wake up, I go, I eat।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u11.l2.b-wake", "hi": "मैं सुबह उठता हूँ।", "pic": "⏰", "tiles": ["morning.", "wake", "the", "I", "in", "up"], "answer": "I wake up in the morning." },
+            { "key": "b.u11.l2.b-go", "hi": "मैं रोज़ स्कूल जाती हूँ।", "pic": "🏫", "tiles": ["school", "day.", "go", "every", "I", "to"], "answer": "I go to school every day." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u11.l2.p-night",
+              "prompt": { "en": "I sleep at ___.", "hi": "मैं रात को सोता/सोती हूँ।", "pic": "🌙" },
+              "options": [{ "text": "morning" }, { "text": "night" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u11.l2.p-go",
+              "prompt": { "en": "I ___ to school.", "hi": "मैं स्कूल जाता/जाती हूँ।", "pic": "🏫" },
+              "options": [{ "text": "go" }, { "text": "sleep" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u11.l2.s-morning", "model": "I wake up in the morning.", "hi": "बताओ तुम कब उठते/उठती हो।", "pic": "🌞", "cue": { "en": "When do you wake up?", "hi": "तुम कब उठते हो?" } },
+            { "key": "b.u11.l2.s-after", "model": "I play after school.", "hi": "बताओ स्कूल के बाद क्या करते/करती हो।", "pic": "⚽", "cue": { "en": "What do you do after school?", "hi": "स्कूल के बाद तुम क्या करते हो?" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u11.l2.c-build1", "type": "build", "hi": "मैं रात को सोती हूँ।", "tiles": ["night.", "sleep", "I", "at"], "answer": "I sleep at night." },
+        { "key": "b.u11.l2.c-build2", "type": "build", "hi": "हम रोटी और दाल खाते हैं।", "tiles": ["and", "We", "dal.", "eat", "roti"], "answer": "We eat roti and dal." },
+        {
+          "key": "b.u11.l2.c-bath",
+          "type": "choose",
+          "prompt": { "en": "I take a ___.", "hi": "मैं नहाता/नहाती हूँ।", "pic": "🛁" },
+          "options": [{ "text": "bath" }, { "text": "school" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u11.l2.c-after",
+          "type": "choose",
+          "prompt": { "en": "I play ___ school.", "hi": "मैं स्कूल के बाद खेलता/खेलती हूँ।", "pic": "⚽" },
+          "options": [{ "text": "in" }, { "text": "after" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u11.l2.c-wake",
+          "type": "choose",
+          "prompt": { "en": "I ___ up in the morning.", "hi": "मैं सुबह उठता/उठती हूँ।", "pic": "⏰" },
+          "options": [{ "text": "wake" }, { "text": "sleep" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Tell Mummy three things you do every day.", "hi": "माँ को रोज़ के तीन काम बताओ।" }
+    },
+    {
+      "key": "b.u11.l3",
+      "kind": "listen",
+      "title": { "en": "Meera's day", "hi": "मीरा का दिन" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "A day with Meera", "hi": "मीरा के साथ एक दिन" },
+          "scene": { "place": "village", "pics": [{ "pic": "🌞", "x": 10, "y": 10, "size": 1.4 }, { "pic": "🏡", "x": 24, "y": 30, "size": 1.6 }, { "pic": "👧", "x": 46, "y": 42, "size": 1.5 }, { "pic": "🧕", "x": 60, "y": 42, "size": 1.4 }, { "pic": "🏫", "x": 84, "y": 24, "size": 1.8 }, { "pic": "🌙", "x": 92, "y": 8 }] },
+          "lines": [
+            { "speaker": "Meera", "pic": "🌞", "en": "I wake up in the morning.", "hi": "मैं सुबह उठती हूँ।" },
+            { "speaker": "Meera", "pic": "🛁", "en": "I brush my teeth and take a bath.", "hi": "मैं दाँत साफ़ करती हूँ और नहाती हूँ।" },
+            { "speaker": "Meera", "pic": "own:roti", "en": "I eat roti with Dadi.", "hi": "मैं दादी के साथ रोटी खाती हूँ।" },
+            { "speaker": "Meera", "pic": "🏫", "en": "I go to school with Salma.", "hi": "मैं सलमा के साथ स्कूल जाती हूँ।" },
+            { "speaker": "Meera", "pic": "⚽", "en": "After school, I play with Arjun.", "hi": "स्कूल के बाद मैं अर्जुन के साथ खेलती हूँ।" },
+            { "speaker": "Meera", "pic": "📖", "en": "At night, I read a book.", "hi": "रात को मैं किताब पढ़ती हूँ।" },
+            { "speaker": "Meera", "pic": "😴", "en": "Then I sleep. Good night!", "hi": "फिर मैं सो जाती हूँ। शुभ रात्रि!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u11.l3.p-school",
+              "prompt": { "en": "Who does Meera go to school with?", "hi": "मीरा किसके साथ स्कूल जाती है?" },
+              "options": [{ "text": "Salma", "pic": "🧕" }, { "text": "Papa", "pic": "👨" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u11.l3.p-night",
+              "prompt": { "en": "What does Meera do at night?", "hi": "मीरा रात को क्या करती है?" },
+              "options": [{ "text": "She goes to school.", "pic": "🏫" }, { "text": "She reads a book.", "pic": "📖" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u11.l3.s-eat", "model": "I eat roti with Dadi.", "hi": "मैं दादी के साथ रोटी खाता/खाती हूँ।", "pic": "own:roti" },
+            { "key": "b.u11.l3.s-after", "model": "After school, I play.", "hi": "स्कूल के बाद मैं खेलता/खेलती हूँ।", "pic": "⚽" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u11.l3.c-first",
+          "type": "choose",
+          "prompt": { "en": "What does Meera do first?", "hi": "मीरा सबसे पहले क्या करती है?" },
+          "options": [{ "text": "She wakes up.", "pic": "⏰" }, { "text": "She plays.", "pic": "⚽" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u11.l3.c-roti",
+          "type": "choose",
+          "prompt": { "en": "Who does Meera eat with?", "hi": "मीरा किसके साथ खाना खाती है?" },
+          "options": [{ "text": "Salma", "pic": "🧕" }, { "text": "Dadi", "pic": "👵" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u11.l3.c-play",
+          "type": "choose",
+          "prompt": { "en": "Who does Meera play with?", "hi": "मीरा किसके साथ खेलती है?" },
+          "options": [{ "text": "Arjun", "pic": "👦" }, { "text": "Ravi", "pic": "👳" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u11.l3.c-last",
+          "type": "choose",
+          "prompt": { "en": "What does Meera say at the end?", "hi": "अंत में मीरा क्या कहती है?" },
+          "options": [{ "text": "Good morning!" }, { "text": "Good night!" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Tell your family about your day.", "hi": "परिवार को अपने दिन के बारे में बताओ।" }
+    },
+    {
+      "key": "b.u11.l4",
+      "kind": "speak",
+      "title": { "en": "Tell your day", "hi": "अपना दिन बताओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "Salma's day and your day", "hi": "सलमा का दिन, तुम्हारा दिन" },
+          "scene": { "place": "village", "pics": [{ "pic": "🌞", "x": 50, "y": 8, "size": 1.2 }, { "pic": "🏡", "x": 14, "y": 24, "size": 1.6 }, { "pic": "🧕", "x": 40, "y": 42, "size": 1.5 }, { "pic": "🧒", "x": 60, "y": 42, "size": 1.5 }, { "pic": "🏫", "x": 86, "y": 24, "size": 1.6 }] },
+          "roles": [{ "name": "Salma", "pic": "🧕" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "I wake up in the morning. And you?", "hi": "मैं सुबह उठती हूँ। और तुम?" },
+            { "role": 1, "en": "I wake up in the morning too.", "hi": "मैं भी सुबह उठता/उठती हूँ।" },
+            { "role": 0, "en": "Then I take a bath. And you?", "hi": "फिर मैं नहाती हूँ। और तुम?" },
+            { "role": 1, "en": "I take a bath and eat roti.", "hi": "मैं नहाता/नहाती हूँ और रोटी खाता/खाती हूँ।" },
+            { "role": 0, "en": "What do you do after school?", "hi": "स्कूल के बाद तुम क्या करते/करती हो?" },
+            { "role": 1, "en": "I play with my friends.", "hi": "मैं अपने दोस्तों के साथ खेलता/खेलती हूँ।" },
+            { "role": 0, "en": "Me too! Let us play today.", "hi": "मैं भी! चलो आज साथ खेलें।" }
+          ],
+          "partner": { "goal": "Compare daily routines with the child: say one thing you do, then ask what the child does, from morning to night.", "must_use": ["I wake up", "I go", "I play", "I sleep"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u11.l4.br-bath", "hi": "मैं सुबह नहाता हूँ।", "tiles": ["a", "the", "I", "morning.", "bath", "take", "in"], "answer": "I take a bath in the morning." },
+            { "key": "b.u11.l4.br-after", "hi": "स्कूल के बाद मैं खेलती हूँ।", "tiles": ["play.", "school,", "I", "After"], "answer": "After school, I play." }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u11.l4.c-reply",
+          "type": "choose",
+          "prompt": { "en": "Salma asks: What do you do after school? You say:", "hi": "सलमा पूछती है: स्कूल के बाद क्या करते हो? तुम क्या कहोगे?" },
+          "options": [{ "text": "I play with my friends." }, { "text": "I am eight." }],
+          "answer": 0
+        },
+        { "key": "b.u11.l4.c-build", "type": "build", "hi": "मैं सुबह उठती हूँ।", "tiles": ["up", "morning.", "I", "the", "in", "wake"], "answer": "I wake up in the morning." },
+        {
+          "key": "b.u11.l4.c-order",
+          "type": "choose",
+          "prompt": { "en": "Which comes first in the day?", "hi": "दिन में पहले क्या आता है?" },
+          "options": [{ "text": "I wake up." }, { "text": "I sleep." }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Draw your day in three pictures. Say each one.", "hi": "अपने दिन के तीन चित्र बनाओ। हर एक के बारे में बोलो।" }
+    },
+    {
+      "key": "b.u11.l5",
+      "kind": "review",
+      "title": { "en": "Unit 11 review", "hi": "इकाई 11 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u11.l5.m-wake", "left": { "text": "wake up" }, "right": { "pic": "⏰" } },
+            { "key": "b.u11.l5.m-play", "left": { "text": "play" }, "right": { "pic": "⚽" } },
+            { "key": "b.u11.l5.m-morning", "left": { "text": "morning" }, "right": { "pic": "🌞" } },
+            { "key": "b.u11.l5.m-chair", "left": { "text": "chair" }, "right": { "pic": "🪑" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u11.l5.b-day", "hi": "मैं सलमा के साथ स्कूल जाती हूँ।", "pic": "🧕", "tiles": ["Salma.", "school", "go", "with", "to", "I"], "answer": "I go to school with Salma." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u11.l5.p-eat",
+              "prompt": { "en": "We ___ roti and dal.", "hi": "हम रोटी और दाल खाते हैं।", "pic": "🍽️" },
+              "options": [{ "text": "eat" }, { "text": "sleep" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u11.l5.s-day", "model": "I wake up, go to school and play.", "hi": "अपने दिन के बारे में बोलो।", "cue": { "en": "Tell me about your day.", "hi": "अपने दिन के बारे में बताओ।" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u11.l5.c-sleep",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "sleep" },
+          "options": [{ "pic": "😴" }, { "pic": "🍽️" }, { "pic": "⏰" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u11.l5.c-eat",
+          "type": "choose",
+          "prompt": { "en": "Which word means खाना खाना?", "hi": "कौन-सा शब्द 'खाना खाना' है?", "pic": "🍽️" },
+          "options": [{ "text": "go" }, { "text": "eat" }, { "text": "bath" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u11.l5.c-night",
+          "type": "choose",
+          "prompt": { "en": "Meera reads a book at ___.", "hi": "मीरा रात को किताब पढ़ती है।", "pic": "📖" },
+          "options": [{ "text": "night" }, { "text": "school" }],
+          "answer": 0
+        },
+        { "key": "b.u11.l5.c-build", "type": "build", "hi": "मैं स्कूल के बाद खेलता हूँ।", "tiles": ["after", "play", "school.", "I"], "answer": "I play after school." },
+        {
+          "key": "b.u11.l5.c-there",
+          "type": "choose",
+          "prompt": { "en": "There ___ a cat on the bed.", "hi": "पलंग पर एक बिल्ली है।", "pic": "🐈" },
+          "options": [{ "text": "are" }, { "text": "is" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u11.l5.c-under",
+          "type": "choose",
+          "prompt": { "en": "The box is ___ the bed.", "hi": "डिब्बा पलंग के नीचे है।", "pic": "📦" },
+          "options": [{ "text": "under" }, { "text": "on" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u11.l5.c-can",
+          "type": "choose",
+          "prompt": { "en": "Can you run? Yes, I ___.", "hi": "क्या तुम दौड़ सकते हो? हाँ।", "pic": "🏃" },
+          "options": [{ "text": "can" }, { "text": "am" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Tomorrow morning, say: I wake up!", "hi": "कल सुबह कहो: I wake up!" }
+    }
+  ]
+}

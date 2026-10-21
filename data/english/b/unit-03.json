@@ -1,0 +1,408 @@
+{
+  "track": "b",
+  "unit": 3,
+  "key": "b.u03",
+  "title": { "en": "My school bag", "hi": "मेरा स्कूल बस्ता" },
+  "pic": "🎒",
+  "can_do": { "en": "I can name school things.", "hi": "मैं स्कूल की चीज़ों के नाम बता सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u03.l1",
+      "kind": "words",
+      "title": { "en": "School things", "hi": "स्कूल की चीज़ें" },
+      "minutes": 5,
+      "steps": [
+        { "type": "tip", "text": { "en": "Open your bag. Let us see!", "hi": "अपना बस्ता खोलो। चलो देखें!" }, "pic": "🎒" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u03.l1.bag", "en": "bag", "hi": "बस्ता", "pic": "🎒", "example": { "en": "This is my school bag.", "hi": "यह मेरा स्कूल बस्ता है।" } },
+            { "key": "b.u03.l1.book", "en": "book", "hi": "किताब", "pic": "📖", "example": { "en": "Open your book.", "hi": "अपनी किताब खोलो।" } },
+            { "key": "b.u03.l1.pencil", "en": "pencil", "hi": "पेंसिल", "pic": "✏️", "example": { "en": "I write with a pencil.", "hi": "मैं पेंसिल से लिखता/लिखती हूँ।" } },
+            { "key": "b.u03.l1.pen", "en": "pen", "hi": "पेन", "pic": "🖊️", "example": { "en": "This is Papa's pen.", "hi": "यह पापा का पेन है।" } },
+            { "key": "b.u03.l1.ruler", "en": "ruler", "hi": "रूलर (स्केल)", "pic": "📏", "example": { "en": "This is a ruler.", "hi": "यह एक रूलर है।" } },
+            { "key": "b.u03.l1.crayon", "en": "crayon", "hi": "क्रेयॉन (रंग)", "pic": "🖍️", "example": { "en": "I draw with a crayon.", "hi": "मैं क्रेयॉन से चित्र बनाता/बनाती हूँ।" } },
+            { "key": "b.u03.l1.umbrella", "en": "umbrella", "hi": "छाता", "pic": "🌂", "example": { "en": "This is an umbrella.", "hi": "यह एक छाता है।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u03.l1.m-book", "left": { "text": "book" }, "right": { "pic": "📖" } },
+            { "key": "b.u03.l1.m-pencil", "left": { "text": "pencil" }, "right": { "pic": "✏️" } },
+            { "key": "b.u03.l1.m-ruler", "left": { "text": "ruler" }, "right": { "pic": "📏" } },
+            { "key": "b.u03.l1.m-umbrella", "left": { "text": "umbrella" }, "right": { "pic": "🌂" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u03.l1.p-bag",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "bag" },
+              "options": [{ "pic": "🎒" }, { "pic": "📖" }, { "pic": "🌂" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u03.l1.p-crayon",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "crayon" },
+              "options": [{ "pic": "🖊️" }, { "pic": "🖍️" }, { "pic": "📏" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u03.l1.s-bag", "model": "This is my bag.", "hi": "यह मेरा बस्ता है।", "pic": "🎒" },
+            { "key": "b.u03.l1.s-pencil", "model": "This is a pencil.", "hi": "यह एक पेंसिल है।", "pic": "✏️" },
+            { "key": "b.u03.l1.s-umbrella", "model": "This is an umbrella.", "hi": "यह एक छाता है।", "pic": "🌂" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u03.l1.c-pen",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "pen" },
+          "options": [{ "pic": "✏️" }, { "pic": "🖊️" }, { "pic": "🎒" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u03.l1.c-book",
+          "type": "choose",
+          "prompt": { "en": "Which word means किताब?", "hi": "कौन-सा शब्द 'किताब' है?", "pic": "📖" },
+          "options": [{ "text": "bag" }, { "text": "book" }, { "text": "pen" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u03.l1.c-umbrella",
+          "type": "choose",
+          "prompt": { "en": "Which word means छाता?", "hi": "कौन-सा शब्द 'छाता' है?", "pic": "🌂" },
+          "options": [{ "text": "umbrella" }, { "text": "ruler" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u03.l1.c-ruler",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "ruler" },
+          "options": [{ "pic": "🖍️" }, { "pic": "🌂" }, { "pic": "📏" }],
+          "answer": 2
+        }
+      ],
+      "home": { "en": "Show your bag and say: This is my bag.", "hi": "अपना बस्ता दिखाकर कहो: This is my bag." }
+    },
+    {
+      "key": "b.u03.l2",
+      "kind": "pattern",
+      "title": { "en": "a, an, this, that", "hi": "a, an, this (यह), that (वह)" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "This is near you. That is far away.", "hi": "This = यह (पास की चीज़)। That = वह (दूर की चीज़)।" }, "pic": "👉" },
+        {
+          "type": "pattern",
+          "title": { "en": "a or an? this or that?", "hi": "a या an? this या that?" },
+          "visual": "builder",
+          "examples": [
+            { "en": "This is a book.", "hi": "यह एक किताब है।", "pic": "📖", "parts": [{ "text": "This", "role": "who" }, { "text": "is", "role": "do" }, { "text": "a book.", "role": "what" }] },
+            { "en": "That is a bag.", "hi": "वह एक बस्ता है।", "pic": "🎒", "parts": [{ "text": "That", "role": "who" }, { "text": "is", "role": "do" }, { "text": "a bag.", "role": "what" }] },
+            { "en": "This is an umbrella.", "hi": "यह एक छाता है।", "pic": "🌂", "parts": [{ "text": "This", "role": "who" }, { "text": "is", "role": "do" }, { "text": "an umbrella.", "role": "what" }] },
+            { "en": "That is an apple.", "hi": "वह एक सेब है।", "pic": "🍎", "parts": [{ "text": "That", "role": "who" }, { "text": "is", "role": "do" }, { "text": "an apple.", "role": "what" }] }
+          ],
+          "note": { "en": "Before a, e, i, o, u sounds, say an: an apple.", "hi": "a, e, i, o, u की आवाज़ से पहले an बोलो: an apple।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u03.l2.b-pencil", "hi": "यह एक पेंसिल है।", "pic": "✏️", "tiles": ["pencil.", "a", "This", "is"], "answer": "This is a pencil." },
+            { "key": "b.u03.l2.b-umbrella", "hi": "वह एक छाता है।", "pic": "🌂", "tiles": ["an", "is", "umbrella.", "That"], "answer": "That is an umbrella." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u03.l2.p-an",
+              "prompt": { "en": "This is ___ apple.", "hi": "यह एक सेब है।", "pic": "🍎" },
+              "options": [{ "text": "a" }, { "text": "an" }],
+              "answer": 1,
+              "why": { "en": "Apple starts with a, so we say an.", "hi": "Apple 'a' की आवाज़ से शुरू होता है, इसलिए an।" }
+            },
+            {
+              "key": "b.u03.l2.p-a",
+              "prompt": { "en": "That is ___ ruler.", "hi": "वह एक रूलर है।", "pic": "📏" },
+              "options": [{ "text": "an" }, { "text": "a" }],
+              "answer": 1,
+              "why": { "en": "Ruler starts with r, so we say a.", "hi": "Ruler 'r' से शुरू होता है, इसलिए a।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u03.l2.s-this", "model": "This is a book.", "hi": "पास की चीज़ का नाम बोलो।", "pic": "📖", "cue": { "en": "What is this?", "hi": "यह क्या है?" } },
+            { "key": "b.u03.l2.s-that", "model": "That is an umbrella.", "hi": "दूर की चीज़ का नाम बोलो।", "pic": "🌂", "cue": { "en": "What is that?", "hi": "वह क्या है?" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u03.l2.c-build1", "type": "build", "hi": "यह एक किताब है।", "tiles": ["book.", "is", "a", "This"], "answer": "This is a book." },
+        { "key": "b.u03.l2.c-build2", "type": "build", "hi": "वह एक सेब है।", "tiles": ["apple.", "That", "an", "is"], "answer": "That is an apple." },
+        {
+          "key": "b.u03.l2.c-an",
+          "type": "choose",
+          "prompt": { "en": "That is ___ umbrella.", "hi": "वह एक छाता है।", "pic": "🌂" },
+          "options": [{ "text": "a" }, { "text": "an" }],
+          "answer": 1,
+          "why": { "en": "Umbrella starts with u, so we say an.", "hi": "Umbrella 'u' से शुरू होता है, इसलिए an।" }
+        },
+        {
+          "key": "b.u03.l2.c-a",
+          "type": "choose",
+          "prompt": { "en": "This is ___ crayon.", "hi": "यह एक क्रेयॉन है।", "pic": "🖍️" },
+          "options": [{ "text": "a" }, { "text": "an" }],
+          "answer": 0,
+          "why": { "en": "Crayon starts with c, so we say a.", "hi": "Crayon 'c' से शुरू होता है, इसलिए a।" }
+        },
+        {
+          "key": "b.u03.l2.c-far",
+          "type": "choose",
+          "prompt": { "en": "The bag is far away. You say:", "hi": "बस्ता दूर है। तुम क्या कहोगे?", "pic": "🎒" },
+          "options": [{ "text": "This is a bag." }, { "text": "That is a bag." }],
+          "answer": 1,
+          "why": { "en": "For a thing far away, we say that.", "hi": "दूर की चीज़ के लिए That।" }
+        }
+      ],
+      "home": { "en": "Point near and far: This is …, That is …", "hi": "पास और दूर की चीज़ दिखाओ: This is …, That is …" }
+    },
+    {
+      "key": "b.u03.l3",
+      "kind": "listen",
+      "title": { "en": "Ready for school", "hi": "स्कूल के लिए तैयार" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Where is my pencil?", "hi": "मेरी पेंसिल कहाँ है?" },
+          "scene": { "place": "home", "pics": [{ "pic": "🏠", "x": 86, "y": 14, "size": 1.8 }, { "pic": "👩", "x": 20, "y": 42, "size": 1.5 }, { "pic": "👦", "x": 40, "y": 44, "size": 1.4 }, { "pic": "👧", "x": 60, "y": 42, "size": 1.5 }, { "pic": "🎒", "x": 74, "y": 52 }, { "pic": "✏️", "x": 88, "y": 54, "size": 0.8 }] },
+          "lines": [
+            { "speaker": "Mummy", "pic": "👩", "en": "Arjun, is your bag ready?", "hi": "अर्जुन, तुम्हारा बस्ता तैयार है?" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Yes, Mummy. This is my book.", "hi": "हाँ, माँ। यह मेरी किताब है।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "This is my crayon. Oh! Where is my pencil?", "hi": "यह मेरा क्रेयॉन है। अरे! मेरी पेंसिल कहाँ है?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Look, Arjun! That is your pencil.", "hi": "देखो अर्जुन! वह रही तुम्हारी पेंसिल।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Yes! Thank you, Meera.", "hi": "हाँ! धन्यवाद, मीरा।" },
+            { "speaker": "Mummy", "pic": "👩", "en": "Take an umbrella too. It is raining.", "hi": "छाता भी ले लो। बारिश हो रही है।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "OK, Mummy. Bye-bye!", "hi": "ठीक है, माँ। बाय-बाय!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u03.l3.p-lost",
+              "prompt": { "en": "What is Arjun looking for?", "hi": "अर्जुन क्या ढूँढ रहा है?" },
+              "options": [{ "text": "his pencil", "pic": "✏️" }, { "text": "his book", "pic": "📖" }, { "text": "his bag", "pic": "🎒" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u03.l3.p-who",
+              "prompt": { "en": "Who finds the pencil?", "hi": "पेंसिल कौन ढूँढती है?" },
+              "options": [{ "text": "Mummy", "pic": "👩" }, { "text": "Meera", "pic": "👧" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u03.l3.s-that", "model": "That is your pencil.", "hi": "वह रही तुम्हारी पेंसिल।", "pic": "✏️" },
+            { "key": "b.u03.l3.s-umbrella", "model": "Take an umbrella.", "hi": "छाता ले लो।", "pic": "🌂" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u03.l3.c-book",
+          "type": "choose",
+          "prompt": { "en": "What does Arjun show first?", "hi": "अर्जुन सबसे पहले क्या दिखाता है?" },
+          "options": [{ "text": "his crayon", "pic": "🖍️" }, { "text": "his book", "pic": "📖" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u03.l3.c-umbrella",
+          "type": "choose",
+          "prompt": { "en": "Mummy says: Take an ___.", "hi": "माँ कहती हैं: Take an ___." },
+          "options": [{ "text": "umbrella", "pic": "🌂" }, { "text": "pencil", "pic": "✏️" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u03.l3.c-weather",
+          "type": "choose",
+          "prompt": { "en": "Why does Arjun need an umbrella?", "hi": "अर्जुन को छाता क्यों चाहिए?" },
+          "options": [{ "text": "It is raining.", "pic": "🌧️" }, { "text": "It is night.", "pic": "🌙" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u03.l3.c-thanks",
+          "type": "choose",
+          "prompt": { "en": "What does Arjun say to Meera?", "hi": "अर्जुन मीरा से क्या कहता है?" },
+          "options": [{ "text": "Bye, Meera." }, { "text": "Thank you, Meera." }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Pack your bag and name each thing.", "hi": "अपना बस्ता लगाओ और हर चीज़ का नाम बोलो।" }
+    },
+    {
+      "key": "b.u03.l4",
+      "kind": "speak",
+      "title": { "en": "Show your school things", "hi": "अपनी स्कूल की चीज़ें दिखाओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "Show and name", "hi": "दिखाओ और नाम बताओ" },
+          "scene": { "place": "school", "pics": [{ "pic": "🏫", "x": 84, "y": 14, "size": 1.8 }, { "pic": "👩‍🏫", "x": 24, "y": 40, "size": 1.6 }, { "pic": "🧒", "x": 50, "y": 44, "size": 1.5 }, { "pic": "🎒", "x": 64, "y": 52 }, { "pic": "📖", "x": 76, "y": 54, "size": 0.9 }, { "pic": "🌂", "x": 90, "y": 48, "size": 1.2 }] },
+          "roles": [{ "name": "Ms Anita", "pic": "👩‍🏫" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Good morning! Show me your bag.", "hi": "सुप्रभात! अपना बस्ता दिखाओ।" },
+            { "role": 1, "en": "Good morning, Ms Anita. This is my bag.", "hi": "सुप्रभात, अनीता मैडम। यह मेरा बस्ता है।" },
+            { "role": 0, "en": "What is this?", "hi": "यह क्या है?" },
+            { "role": 1, "en": "This is a book.", "hi": "यह एक किताब है।" },
+            { "role": 0, "en": "And what is that?", "hi": "और वह क्या है?" },
+            { "role": 1, "en": "That is an umbrella.", "hi": "वह एक छाता है।" },
+            { "role": 0, "en": "Very good! Is this a pen?", "hi": "बहुत अच्छे! क्या यह पेन है?" },
+            { "role": 1, "en": "No. It is a pencil.", "hi": "नहीं। यह पेंसिल है।" }
+          ],
+          "partner": { "goal": "Act as the teacher. Point at school things near and far and let the child name them with this, that, a and an.", "must_use": ["this is", "that is", "a", "an"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u03.l4.br-book", "hi": "यह मेरी किताब है।", "tiles": ["book.", "my", "This", "is"], "answer": "This is my book." },
+            { "key": "b.u03.l4.br-crayon", "hi": "यह एक क्रेयॉन है।", "tiles": ["a", "crayon.", "is", "This"], "answer": "This is a crayon." }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u03.l4.s-show", "model": "This is my bag. That is my book.", "hi": "पास और दूर की एक-एक चीज़ दिखाकर बोलो।", "cue": { "en": "Show two school things.", "hi": "स्कूल की दो चीज़ें दिखाओ।" } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u03.l4.c-what",
+          "type": "choose",
+          "prompt": { "en": "Ms Anita asks: What is this? You say:", "hi": "मैडम पूछती हैं: What is this? तुम क्या कहोगे?", "pic": "📏" },
+          "options": [{ "text": "This is a ruler." }, { "text": "This is a bag." }],
+          "answer": 0
+        },
+        { "key": "b.u03.l4.c-build", "type": "build", "hi": "वह एक छाता है।", "tiles": ["umbrella.", "is", "That", "an"], "answer": "That is an umbrella." },
+        {
+          "key": "b.u03.l4.c-an",
+          "type": "choose",
+          "prompt": { "en": "Which one is right?", "hi": "कौन-सा सही है?", "pic": "🍎" },
+          "options": [{ "text": "a apple" }, { "text": "an apple" }],
+          "answer": 1,
+          "why": { "en": "Apple starts with a, so we say an apple.", "hi": "Apple 'a' से शुरू होता है, इसलिए an apple।" }
+        }
+      ],
+      "home": { "en": "Ask at home: What is this? What is that?", "hi": "घर पर पूछो: What is this? What is that?" }
+    },
+    {
+      "key": "b.u03.l5",
+      "kind": "review",
+      "title": { "en": "Unit 3 review", "hi": "इकाई 3 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u03.l5.m-bag", "left": { "text": "bag" }, "right": { "pic": "🎒" } },
+            { "key": "b.u03.l5.m-crayon", "left": { "text": "crayon" }, "right": { "pic": "🖍️" } },
+            { "key": "b.u03.l5.m-pen", "left": { "text": "pen" }, "right": { "pic": "🖊️" } },
+            { "key": "b.u03.l5.m-mother", "left": { "text": "mother" }, "right": { "pic": "👩" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u03.l5.b-ruler", "hi": "यह एक रूलर है।", "pic": "📏", "tiles": ["ruler.", "This", "a", "is"], "answer": "This is a ruler." },
+            { "key": "b.u03.l5.b-brother", "hi": "वह मेरा भाई है।", "pic": "👦", "tiles": ["brother.", "is", "my", "He"], "answer": "He is my brother." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u03.l5.p-an",
+              "prompt": { "en": "That is ___ apple.", "hi": "वह एक सेब है।", "pic": "🍎" },
+              "options": [{ "text": "a" }, { "text": "an" }],
+              "answer": 1,
+              "why": { "en": "Apple starts with a, so we say an.", "hi": "Apple 'a' से शुरू होता है, इसलिए an।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u03.l5.s-things", "model": "This is my bag. That is my book.", "hi": "पास और दूर की चीज़ दिखाकर बोलो।", "cue": { "en": "Show two school things.", "hi": "स्कूल की दो चीज़ें दिखाओ।" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u03.l5.c-pencil",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "pencil" },
+          "options": [{ "pic": "🖊️" }, { "pic": "✏️" }, { "pic": "📏" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u03.l5.c-umbrella",
+          "type": "choose",
+          "prompt": { "en": "Which word means छाता?", "hi": "कौन-सा शब्द 'छाता' है?" },
+          "options": [{ "text": "umbrella" }, { "text": "book" }, { "text": "bag" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u03.l5.c-a",
+          "type": "choose",
+          "prompt": { "en": "This is ___ pen.", "hi": "यह एक पेन है।", "pic": "🖊️" },
+          "options": [{ "text": "a" }, { "text": "an" }],
+          "answer": 0,
+          "why": { "en": "Pen starts with p, so we say a.", "hi": "Pen 'p' से शुरू होता है, इसलिए a।" }
+        },
+        {
+          "key": "b.u03.l5.c-that",
+          "type": "choose",
+          "prompt": { "en": "The book is far away. You say:", "hi": "किताब दूर है। तुम क्या कहोगे?", "pic": "📖" },
+          "options": [{ "text": "That is a book." }, { "text": "This is a book." }],
+          "answer": 0,
+          "why": { "en": "For a thing far away, we say that.", "hi": "दूर की चीज़ के लिए That।" }
+        },
+        { "key": "b.u03.l5.c-build", "type": "build", "hi": "वह एक किताब है।", "tiles": ["book.", "a", "That", "is"], "answer": "That is a book." },
+        {
+          "key": "b.u03.l5.c-she",
+          "type": "choose",
+          "prompt": { "en": "___ is my mother.", "hi": "वे मेरी माँ हैं।", "pic": "👩" },
+          "options": [{ "text": "He" }, { "text": "She" }],
+          "answer": 1,
+          "why": { "en": "A mother is a woman, so we say she.", "hi": "माँ औरत हैं, इसलिए She।" }
+        },
+        {
+          "key": "b.u03.l5.c-name",
+          "type": "choose",
+          "prompt": { "en": "My name ___ Arjun.", "hi": "मेरा नाम अर्जुन है।" },
+          "options": [{ "text": "am" }, { "text": "is" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Name five things in your bag.", "hi": "अपने बस्ते की पाँच चीज़ों के नाम बोलो।" }
+    }
+  ]
+}
