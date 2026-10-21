@@ -1,0 +1,359 @@
+{
+  "track": "a",
+  "assessments": [
+    {
+      "track": "a",
+      "kind": "day0",
+      "key": "a.day0",
+      "sections": [
+        {
+          "skill": "listening",
+          "items": [
+            {
+              "key": "a.day0.l-clap",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "Clap your hands." },
+              "options": [{ "pic": "👏" }, { "pic": "🦶" }, { "pic": "👀" }],
+              "answer": 0
+            },
+            {
+              "key": "a.day0.l-sit",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "Sit down." },
+              "options": [{ "pic": "🏃" }, { "pic": "🧘" }],
+              "answer": 1
+            },
+            {
+              "key": "a.day0.l-dog",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "The dog says woof." },
+              "options": [{ "pic": "🐈" }, { "pic": "🐄" }, { "pic": "🐕" }],
+              "answer": 2
+            },
+            {
+              "key": "a.day0.l-bananas",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "I like bananas." },
+              "options": [{ "pic": "🍌" }, { "pic": "🍎" }],
+              "answer": 0
+            },
+            {
+              "key": "a.day0.l-wave",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "Wave bye-bye." },
+              "options": [{ "pic": "😴" }, { "pic": "👋" }, { "pic": "🍽️" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "skill": "words",
+          "items": [
+            {
+              "key": "a.day0.w-mango",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "mango" },
+              "options": [{ "pic": "🍌" }, { "pic": "🥭" }, { "pic": "🍎" }],
+              "answer": 1
+            },
+            {
+              "key": "a.day0.w-cow",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "cow" },
+              "options": [{ "pic": "🐄" }, { "pic": "🐕" }],
+              "answer": 0
+            },
+            {
+              "key": "a.day0.w-red",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "red" },
+              "options": [{ "pic": "🔵" }, { "pic": "🟡" }, { "pic": "🔴" }],
+              "answer": 2
+            },
+            {
+              "key": "a.day0.w-mother",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "mother" },
+              "options": [{ "pic": "👨" }, { "pic": "👩" }],
+              "answer": 1
+            },
+            {
+              "key": "a.day0.w-water",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "water" },
+              "options": [{ "pic": "💧" }, { "pic": "🥛" }],
+              "answer": 0
+            },
+            {
+              "key": "a.day0.w-two",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "two" },
+              "options": [{ "pic": "5️⃣" }, { "pic": "2️⃣" }, { "pic": "1️⃣" }],
+              "answer": 1
+            }
+          ]
+        }
+      ],
+      "speaking": [
+        {
+          "key": "a.day0.s-hello",
+          "prompt": { "en": "Wave, say hello and say your name.", "hi": "हाथ हिलाओ, Hello कहो और अपना नाम बताओ।" },
+          "model": "Hello! I am Meera.",
+          "criteria": [
+            { "en": "Said hello", "hi": "Hello कहा" },
+            { "en": "Said their own name", "hi": "अपना नाम बताया" },
+            { "en": "Spoke clearly, without help", "hi": "बिना मदद के, साफ़ आवाज़ में कहा" }
+          ]
+        },
+        {
+          "key": "a.day0.s-mango",
+          "prompt": { "en": "Grown-up: show a mango or its picture. Ask: What is it?", "hi": "बड़ों के लिए: आम या उसका चित्र दिखाएँ और पूछें: What is it?" },
+          "model": "It is a mango.",
+          "criteria": [
+            { "en": "Said mango", "hi": "mango कहा" },
+            { "en": "Used a short sentence: It is …", "hi": "छोटा वाक्य बोला: It is …" },
+            { "en": "Spoke clearly, without help", "hi": "बिना मदद के, साफ़ आवाज़ में कहा" }
+          ]
+        }
+      ]
+    },
+    {
+      "track": "a",
+      "kind": "day45",
+      "key": "a.day45",
+      "sections": [
+        {
+          "skill": "listening",
+          "items": [
+            {
+              "key": "a.day45.l-brother",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "This is my brother." },
+              "options": [{ "pic": "👧" }, { "pic": "👦" }, { "pic": "👨" }],
+              "answer": 1
+            },
+            {
+              "key": "a.day45.l-mouth",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "Touch your mouth." },
+              "options": [{ "pic": "👄" }, { "pic": "👀" }, { "pic": "🦶" }],
+              "answer": 0
+            },
+            {
+              "key": "a.day45.l-green",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "It is green." },
+              "options": [{ "pic": "🔴" }, { "pic": "🟢" }],
+              "answer": 1
+            },
+            {
+              "key": "a.day45.l-grapes",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "I like grapes." },
+              "options": [{ "pic": "🍌" }, { "pic": "🍊" }, { "pic": "🍇" }],
+              "answer": 2
+            },
+            {
+              "key": "a.day45.l-bed",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "Where is the bed?" },
+              "options": [{ "pic": "🛏️" }, { "pic": "🚪" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "skill": "words",
+          "items": [
+            {
+              "key": "a.day45.w-friend",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "friend" },
+              "options": [{ "pic": "👫" }, { "pic": "🏷️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.day45.w-grandmother",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "grandmother" },
+              "options": [{ "pic": "👩" }, { "pic": "👵" }, { "pic": "👧" }],
+              "answer": 1
+            },
+            {
+              "key": "a.day45.w-feet",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "feet" },
+              "options": [{ "pic": "🙌" }, { "pic": "👃" }, { "pic": "🦶" }],
+              "answer": 2
+            },
+            {
+              "key": "a.day45.w-yellow",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "yellow" },
+              "options": [{ "pic": "🟡" }, { "pic": "⚪" }],
+              "answer": 0
+            },
+            {
+              "key": "a.day45.w-four",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "four" },
+              "options": [{ "pic": "2️⃣" }, { "pic": "4️⃣" }, { "pic": "5️⃣" }],
+              "answer": 1
+            },
+            {
+              "key": "a.day45.w-goat",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "goat" },
+              "options": [{ "pic": "🐃" }, { "pic": "🐐" }],
+              "answer": 1
+            }
+          ]
+        }
+      ],
+      "speaking": [
+        {
+          "key": "a.day45.s-family",
+          "prompt": {
+            "en": "Grown-up: show a family photo or the family picture. Ask: Who is this?",
+            "hi": "बड़ों के लिए: परिवार की फ़ोटो या चित्र दिखाएँ और पूछें: Who is this?"
+          },
+          "model": "This is my mother.",
+          "criteria": [
+            { "en": "Named a family member in English", "hi": "परिवार के किसी सदस्य का अंग्रेज़ी शब्द कहा" },
+            { "en": "Used: This is my …", "hi": "This is my … का इस्तेमाल किया" },
+            { "en": "Spoke clearly, without help", "hi": "बिना मदद के, साफ़ आवाज़ में कहा" }
+          ]
+        },
+        {
+          "key": "a.day45.s-show",
+          "prompt": { "en": "Show one thing. Say what it is and its colour.", "hi": "कोई एक चीज़ दिखाओ। बताओ वह क्या है और किस रंग की है।" },
+          "model": "Look! This is my cup.",
+          "criteria": [
+            { "en": "Named the thing in English", "hi": "चीज़ का अंग्रेज़ी नाम कहा" },
+            { "en": "Said its colour: It is …", "hi": "उसका रंग बताया: It is …" },
+            { "en": "Spoke clearly, without help", "hi": "बिना मदद के, साफ़ आवाज़ में कहा" }
+          ]
+        }
+      ]
+    },
+    {
+      "track": "a",
+      "kind": "day90",
+      "key": "a.day90",
+      "sections": [
+        {
+          "skill": "listening",
+          "items": [
+            {
+              "key": "a.day90.l-cap",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "I am wearing a cap." },
+              "options": [{ "pic": "👕" }, { "pic": "🧢" }, { "pic": "👗" }],
+              "answer": 1
+            },
+            {
+              "key": "a.day90.l-raining",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "It is raining." },
+              "options": [{ "pic": "🌧️" }, { "pic": "☀️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.day90.l-jump",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "I can jump." },
+              "options": [{ "pic": "😴" }, { "pic": "🧘" }, { "pic": "🤸" }],
+              "answer": 2
+            },
+            {
+              "key": "a.day90.l-water",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "I want water, please." },
+              "options": [{ "pic": "🥛" }, { "pic": "💧" }],
+              "answer": 1
+            },
+            {
+              "key": "a.day90.l-night",
+              "type": "choose",
+              "prompt": { "en": "Listen to the sentence. Tap the picture.", "hi": "वाक्य सुनो, फिर सही चित्र छुओ।", "say": "Good night, Papa!" },
+              "options": [{ "pic": "🌙" }, { "pic": "🌞" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "skill": "words",
+          "items": [
+            {
+              "key": "a.day90.w-triangle",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "triangle" },
+              "options": [{ "pic": "⭕" }, { "pic": "🔺" }, { "pic": "⭐" }],
+              "answer": 1
+            },
+            {
+              "key": "a.day90.w-rice",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "rice" },
+              "options": [{ "pic": "🍚" }, { "pic": "🍲" }],
+              "answer": 0
+            },
+            {
+              "key": "a.day90.w-cloud",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "cloud" },
+              "options": [{ "pic": "☀️" }, { "pic": "🌧️" }, { "pic": "☁️" }],
+              "answer": 2
+            },
+            {
+              "key": "a.day90.w-sleepy",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "sleepy" },
+              "options": [{ "pic": "😠" }, { "pic": "🥱" }],
+              "answer": 1
+            },
+            {
+              "key": "a.day90.w-nine",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "nine" },
+              "options": [{ "pic": "9️⃣" }, { "pic": "6️⃣" }, { "pic": "🔟" }],
+              "answer": 0
+            },
+            {
+              "key": "a.day90.w-sorry",
+              "type": "choose",
+              "prompt": { "en": "Listen to the word. Tap the picture.", "hi": "शब्द सुनो, फिर सही चित्र छुओ।", "say": "sorry" },
+              "options": [{ "pic": "🤗" }, { "pic": "🙇" }],
+              "answer": 1
+            }
+          ]
+        }
+      ],
+      "speaking": [
+        {
+          "key": "a.day90.s-ask",
+          "prompt": {
+            "en": "Grown-up: offer water or roti. Wait for your child to ask.",
+            "hi": "बड़ों के लिए: पानी या रोटी की ओर इशारा करें और बच्चे के माँगने का इंतज़ार करें।"
+          },
+          "model": "I want water, please.",
+          "criteria": [
+            { "en": "Named the food or drink", "hi": "खाने या पीने की चीज़ का नाम कहा" },
+            { "en": "Said please or thank you", "hi": "please या thank you कहा" },
+            { "en": "Spoke clearly, without help", "hi": "बिना मदद के, साफ़ आवाज़ में कहा" }
+          ]
+        },
+        {
+          "key": "a.day90.s-day",
+          "prompt": { "en": "Tell your day: morning, day and night.", "hi": "अपना दिन बताओ: सुबह, दिन और रात।" },
+          "model": "I brush. I play. I sleep.",
+          "criteria": [
+            { "en": "Said good morning or good night", "hi": "good morning या good night कहा" },
+            { "en": "Said two or more things they do", "hi": "अपने दो या ज़्यादा काम बताए" },
+            { "en": "Spoke clearly, without help", "hi": "बिना मदद के, साफ़ आवाज़ में कहा" }
+          ]
+        }
+      ]
+    }
+  ]
+}

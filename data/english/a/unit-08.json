@@ -1,0 +1,349 @@
+{
+  "track": "a",
+  "unit": 8,
+  "key": "a.u08",
+  "title": { "en": "My home", "hi": "मेरा घर" },
+  "pic": "🏠",
+  "can_do": { "en": "I can name things at home.", "hi": "मुझे घर की चीज़ों के नाम आते हैं।" },
+  "lessons": [
+    {
+      "key": "a.u08.l1",
+      "kind": "words",
+      "title": { "en": "Home words", "hi": "घर के शब्द" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u08.l1.w-cat",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "cat" },
+              "options": [{ "pic": "🐈" }, { "pic": "🐐" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u08.l1.w-hen",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "hen" },
+              "options": [{ "pic": "🐃" }, { "pic": "🐔" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: walk around the house and touch each thing.", "hi": "बड़ों के लिए: घर में घूमकर हर चीज़ को छूकर उसका नाम बोलें।" },
+          "pic": "🏠"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u08.l1.house", "en": "house", "hi": "घर", "pic": "🏠", "example": { "en": "This is my house.", "hi": "यह मेरा घर है।" } },
+            { "key": "a.u08.l1.door", "en": "door", "hi": "दरवाज़ा", "pic": "🚪", "example": { "en": "Open the door.", "hi": "दरवाज़ा खोलो।" } },
+            { "key": "a.u08.l1.bed", "en": "bed", "hi": "बिस्तर, पलंग", "pic": "🛏️", "example": { "en": "A big bed.", "hi": "बड़ा पलंग।" } },
+            { "key": "a.u08.l1.chair", "en": "chair", "hi": "कुर्सी", "pic": "🪑", "example": { "en": "Sit on the chair.", "hi": "कुर्सी पर बैठो।" } },
+            { "key": "a.u08.l1.cup", "en": "cup", "hi": "कप", "pic": "☕", "example": { "en": "Dadi's tea cup.", "hi": "दादी का चाय वाला कप।" } },
+            { "key": "a.u08.l1.plate", "en": "plate", "hi": "थाली, प्लेट", "pic": "🍽️", "example": { "en": "Roti on my plate.", "hi": "मेरी थाली में रोटी।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Knock on the door.", "hi": "दरवाज़ा खटखटाओ। ठक-ठक!", "pic": "🚪" },
+            { "en": "Sit on a chair.", "hi": "कुर्सी पर बैठो।", "pic": "🪑" },
+            { "en": "Lie down on the bed.", "hi": "बिस्तर पर लेट जाओ।", "pic": "🛏️" },
+            { "en": "Hold a cup.", "hi": "कप पकड़ो।", "pic": "☕" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u08.l1.t-door",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "door" },
+              "options": [{ "pic": "🚪" }, { "pic": "🛏️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u08.l1.t-cup",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "cup" },
+              "options": [{ "pic": "🍽️" }, { "pic": "☕" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u08.l1.t-chair",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "chair" },
+              "options": [{ "pic": "🏠" }, { "pic": "🪑" }, { "pic": "🚪" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u08.l1.t-plate",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "plate" },
+              "options": [{ "pic": "🍽️" }, { "pic": "🪑" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u08.l1.s-house", "model": "House.", "hi": "घर।", "pic": "🏠" },
+            { "key": "a.u08.l1.s-door", "model": "Door.", "hi": "दरवाज़ा।", "pic": "🚪" },
+            { "key": "a.u08.l1.s-bed", "model": "Bed.", "hi": "पलंग।", "pic": "🛏️" },
+            { "key": "a.u08.l1.s-chair", "model": "Chair.", "hi": "कुर्सी।", "pic": "🪑" },
+            { "key": "a.u08.l1.s-cup", "model": "Cup.", "hi": "कप।", "pic": "☕" },
+            { "key": "a.u08.l1.s-plate", "model": "Plate.", "hi": "थाली।", "pic": "🍽️" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Say the English name when you use a cup or plate.", "hi": "कप या थाली उठाते समय उसका अंग्रेज़ी नाम बोलें।" }
+    },
+    {
+      "key": "a.u08.l2",
+      "kind": "pattern",
+      "title": { "en": "Where is the cup?", "hi": "कप कहाँ है?" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Where is the …?", "hi": "… कहाँ है?" },
+          "visual": "cards",
+          "examples": [
+            { "en": "Where is the cup?", "hi": "कप कहाँ है?", "pic": "☕" },
+            { "en": "Here it is!", "hi": "यह रहा!", "pic": "☕" },
+            { "en": "Where is Arjun?", "hi": "अर्जुन कहाँ है?", "pic": "👦" },
+            { "en": "Here I am!", "hi": "मैं यहाँ हूँ!", "pic": "🙋" }
+          ],
+          "note": { "en": "Ask, then look and point.", "hi": "पूछो, फिर ढूँढो और इशारा करो।" }
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Point to the door.", "hi": "दरवाज़े की ओर इशारा करो।", "pic": "🚪" },
+            { "en": "Find a cup.", "hi": "कोई कप ढूँढो।", "pic": "☕" },
+            { "en": "Hide your hands!", "hi": "अपने हाथ छिपाओ!", "pic": "🙌" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u08.l2.t-bed",
+              "prompt": { "en": "Listen. Tap the thing.", "hi": "सुनो, फिर वह चीज़ छुओ।", "say": "Where is the bed?" },
+              "options": [{ "pic": "🛏️" }, { "pic": "🚪" }],
+              "answer": 0,
+              "why": { "en": "The bed: we sleep on it.", "hi": "bed यानी पलंग, जिस पर सोते हैं।" }
+            },
+            {
+              "key": "a.u08.l2.t-chair",
+              "prompt": { "en": "Listen. Tap the thing.", "hi": "सुनो, फिर वह चीज़ छुओ।", "say": "Where is the chair?" },
+              "options": [{ "pic": "☕" }, { "pic": "🪑" }, { "pic": "🏠" }],
+              "answer": 1,
+              "why": { "en": "The chair: we sit on it.", "hi": "chair यानी कुर्सी, जिस पर बैठते हैं।" }
+            },
+            {
+              "key": "a.u08.l2.t-plate",
+              "prompt": { "en": "Listen. Tap the thing.", "hi": "सुनो, फिर वह चीज़ छुओ।", "say": "Where is the plate?" },
+              "options": [{ "pic": "🚪" }, { "pic": "🛏️" }, { "pic": "🍽️" }],
+              "answer": 2,
+              "why": { "en": "The plate: we eat from it.", "hi": "plate यानी थाली, जिसमें खाते हैं।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "a.u08.l2.s-here", "model": "Here it is!", "hi": "कप पर उँगली रखो और बोलो।", "pic": "☕", "cue": { "en": "Where is the cup?", "hi": "कप कहाँ है?" } },
+            {
+              "key": "a.u08.l2.s-where",
+              "model": "Where is the door?",
+              "hi": "अब तुम दरवाज़े के बारे में पूछो।",
+              "pic": "🚪",
+              "cue": { "en": "Ask about the door.", "hi": "दरवाज़ा कहाँ है, पूछो।" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Hide a cup. Ask: Where is the cup?", "hi": "एक कप छिपाएँ और पूछें: Where is the cup? बच्चा ढूँढकर कहे: Here it is!" }
+    },
+    {
+      "key": "a.u08.l3",
+      "kind": "listen",
+      "title": { "en": "Where is Dadi's cup?", "hi": "दादी का कप कहाँ है?" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Where is Dadi's cup?", "hi": "दादी का कप कहाँ है?" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🛏️", "x": 18, "y": 34, "size": 1.8 },
+              { "pic": "🪑", "x": 46, "y": 42, "size": 1.4 },
+              { "pic": "☕", "x": 46, "y": 30, "size": 0.8 },
+              { "pic": "🚪", "x": 86, "y": 24, "size": 1.8 },
+              { "pic": "👵", "x": 66, "y": 42, "size": 1.5 },
+              { "pic": "👦", "x": 30, "y": 50, "size": 1.2 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Dadi", "pic": "👵", "en": "Where is my cup?", "hi": "मेरा कप कहाँ है?" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Is it on the bed?", "hi": "क्या पलंग पर है?" },
+            { "speaker": "Dadi", "pic": "👵", "en": "No. Not on the bed.", "hi": "नहीं। पलंग पर नहीं है।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Look! On the chair!", "hi": "देखो! कुर्सी पर!" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Here it is! Thank you, Arjun.", "hi": "यह रहा! शुक्रिया, अर्जुन।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u08.l3.q-what",
+              "prompt": { "en": "What is Dadi looking for?", "hi": "दादी क्या ढूँढ रही हैं?" },
+              "options": [{ "pic": "🍽️" }, { "pic": "☕" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u08.l3.q-where",
+              "prompt": { "en": "Where is the cup?", "hi": "कप कहाँ है?" },
+              "options": [{ "pic": "🛏️" }, { "pic": "🪑" }, { "pic": "🚪" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u08.l3.q-who",
+              "prompt": { "en": "Who finds the cup?", "hi": "कप कौन ढूँढता है?" },
+              "options": [{ "text": "Arjun", "pic": "👦" }, { "text": "Dadi", "pic": "👵" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u08.l3.s-where", "model": "Where is my cup?", "hi": "मेरा कप कहाँ है?", "pic": "☕" },
+            { "key": "a.u08.l3.s-here", "model": "Here it is!", "hi": "यह रहा!", "pic": "👉" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Play hide and find with a cup or a toy.", "hi": "कप या खिलौना छिपाकर ढूँढने का खेल खेलें: Where is the cup?" }
+    },
+    {
+      "key": "a.u08.l4",
+      "kind": "speak",
+      "title": { "en": "Find it at home", "hi": "घर में ढूँढो" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: use real things at home if you can.", "hi": "बड़ों के लिए: हो सके तो घर की असली चीज़ें इस्तेमाल करें।" },
+          "pic": "🏠"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Find it!", "hi": "ढूँढो!" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🍽️", "x": 40, "y": 40 },
+              { "pic": "☕", "x": 56, "y": 40 },
+              { "pic": "🚪", "x": 86, "y": 24, "size": 1.8 },
+              { "pic": "👩", "x": 18, "y": 40, "size": 1.6 },
+              { "pic": "🧒", "x": 66, "y": 44, "size": 1.4 }
+            ]
+          },
+          "roles": [{ "name": "Mummy", "pic": "👩" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Where is the plate?", "hi": "थाली कहाँ है?" },
+            { "role": 1, "en": "Here it is, Mummy!", "hi": "यह रही, मम्मी!" },
+            { "role": 0, "en": "Thank you! Now you ask.", "hi": "शुक्रिया! अब तुम पूछो।" },
+            { "role": 1, "en": "Where is the door?", "hi": "दरवाज़ा कहाँ है?" },
+            { "role": 0, "en": "Here it is!", "hi": "यह रहा!" },
+            { "role": 1, "en": "Yes! Thank you, Mummy.", "hi": "हाँ! शुक्रिया, मम्मी।" }
+          ],
+          "partner": {
+            "goal": "Play find-it at home: ask where a thing is, praise the child, then let the child ask you.",
+            "must_use": ["where is", "here it is", "plate", "door"]
+          }
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Run to the door.", "hi": "दरवाज़े तक जाओ।", "pic": "🚪" }, { "en": "Touch a chair.", "hi": "कोई कुर्सी छुओ।", "pic": "🪑" }]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Let your child ask you: Where is the …?", "hi": "बच्चे को आपसे पूछने दें: Where is the cup? और आप ढूँढें।" }
+    },
+    {
+      "key": "a.u08.l5",
+      "kind": "review",
+      "title": { "en": "Home again", "hi": "फिर से घर" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u08.l5.m-bed", "left": { "text": "bed", "pic": "🛏️" }, "right": { "pic": "😴" } },
+            { "key": "a.u08.l5.m-plate", "left": { "text": "plate", "pic": "🍽️" }, "right": { "pic": "own:roti" } },
+            { "key": "a.u08.l5.m-door", "left": { "text": "door", "pic": "🚪" }, "right": { "pic": "🔑" } },
+            { "key": "a.u08.l5.m-cup", "left": { "text": "cup", "pic": "☕" }, "right": { "pic": "🥛" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u08.l5.t-house",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "house" },
+              "options": [{ "pic": "🏠" }, { "pic": "🛏️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u08.l5.t-bed",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "bed" },
+              "options": [{ "pic": "🪑" }, { "pic": "🛏️" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u08.l5.w-goat",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "goat" },
+              "options": [{ "pic": "🐐" }, { "pic": "🐕" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u08.l5.w-moo",
+              "prompt": { "en": "Remember? Who is it?", "hi": "याद है? यह कौन है?", "say": "The cow says moo." },
+              "options": [{ "pic": "🐈" }, { "pic": "🐄" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u08.l5.w-banana",
+              "prompt": { "en": "What colour is it?", "hi": "याद है? यह किस रंग का है?", "pic": "🍌" },
+              "options": [{ "pic": "🟡" }, { "pic": "🔴" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Open the door.", "hi": "दरवाज़ा खोलो।", "pic": "🚪" }, { "en": "Close the door.", "hi": "दरवाज़ा बंद करो।", "pic": "🚪" }]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "a.u08.l5.s-chair", "model": "It is a chair.", "hi": "चित्र देखो और नाम बताओ।", "pic": "🪑", "cue": { "en": "What is this?", "hi": "यह क्या है?" } },
+            { "key": "a.u08.l5.s-here", "model": "Here it is!", "hi": "कप पर उँगली रखकर बोलो।", "pic": "☕", "cue": { "en": "Where is the cup?", "hi": "कप कहाँ है?" } }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Name five things in your home together.", "hi": "घर की पाँच चीज़ों के नाम साथ में अंग्रेज़ी में बोलें।" }
+    }
+  ]
+}

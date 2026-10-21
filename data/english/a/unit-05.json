@@ -1,0 +1,358 @@
+{
+  "track": "a",
+  "unit": 5,
+  "key": "a.u05",
+  "title": { "en": "Count to five", "hi": "पाँच तक गिनती" },
+  "pic": "🖐️",
+  "can_do": { "en": "I can count to five.", "hi": "मुझे पाँच तक गिनना आता है।" },
+  "lessons": [
+    {
+      "key": "a.u05.l1",
+      "kind": "words",
+      "title": { "en": "One to five", "hi": "एक से पाँच" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u05.l1.w-red",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "red" },
+              "options": [{ "pic": "🔴" }, { "pic": "🟢" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u05.l1.w-yellow",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "yellow" },
+              "options": [{ "pic": "⚪" }, { "pic": "🟡" }],
+              "answer": 1
+            }
+          ]
+        },
+        { "type": "tip", "text": { "en": "Grown-up: count on your fingers with your child.", "hi": "बड़ों के लिए: बच्चे के साथ उँगलियों पर गिनें।" }, "pic": "🖐️" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u05.l1.one", "en": "one", "hi": "एक", "pic": "1️⃣", "example": { "en": "One nose.", "hi": "एक नाक।" } },
+            { "key": "a.u05.l1.two", "en": "two", "hi": "दो", "pic": "2️⃣", "example": { "en": "Two eyes.", "hi": "दो आँखें।" } },
+            { "key": "a.u05.l1.three", "en": "three", "hi": "तीन", "pic": "3️⃣", "example": { "en": "Three mangoes.", "hi": "तीन आम।" } },
+            { "key": "a.u05.l1.four", "en": "four", "hi": "चार", "pic": "4️⃣", "example": { "en": "Four bananas.", "hi": "चार केले।" } },
+            { "key": "a.u05.l1.five", "en": "five", "hi": "पाँच", "pic": "5️⃣", "example": { "en": "Five fingers.", "hi": "पाँच उँगलियाँ।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Show one finger.", "hi": "एक उँगली दिखाओ।", "pic": "👆" },
+            { "en": "Show two fingers.", "hi": "दो उँगलियाँ दिखाओ।", "pic": "✌️" },
+            { "en": "Show five fingers.", "hi": "पाँचों उँगलियाँ दिखाओ।", "pic": "🖐️" },
+            { "en": "Clap three times.", "hi": "तीन बार ताली बजाओ।", "pic": "👏" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u05.l1.t-two",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "two" },
+              "options": [{ "pic": "✌️" }, { "pic": "🖐️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u05.l1.t-five",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "five" },
+              "options": [{ "pic": "👆" }, { "pic": "🖐️" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u05.l1.t-three",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "three" },
+              "options": [{ "pic": "2️⃣" }, { "pic": "3️⃣" }, { "pic": "5️⃣" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u05.l1.t-four",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "four" },
+              "options": [{ "pic": "4️⃣" }, { "pic": "1️⃣" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u05.l1.s-123", "model": "One, two, three!", "hi": "एक, दो, तीन!", "pic": "3️⃣" },
+            { "key": "a.u05.l1.s-45", "model": "Four, five!", "hi": "चार, पाँच!", "pic": "5️⃣" },
+            { "key": "a.u05.l1.s-all", "model": "One, two, three, four, five!", "hi": "एक, दो, तीन, चार, पाँच!", "pic": "🖐️" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Count steps together: one, two, three!", "hi": "चलते हुए या सीढ़ियाँ चढ़ते हुए साथ में गिनें: one, two, three!" }
+    },
+    {
+      "key": "a.u05.l2",
+      "kind": "pattern",
+      "title": { "en": "How many?", "hi": "कितने?" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "How many? Three!", "hi": "कितने? तीन!" },
+          "visual": "plural",
+          "examples": [
+            { "en": "One mango.", "hi": "एक आम।", "pic": "🥭" },
+            { "en": "Two mangoes.", "hi": "दो आम।", "pic": "🥭" },
+            { "en": "How many? Three!", "hi": "कितने? तीन!", "pic": "3️⃣" },
+            { "en": "How many? Five!", "hi": "कितने? पाँच!", "pic": "🖐️" }
+          ],
+          "note": { "en": "Count with your fingers.", "hi": "उँगलियों पर गिनो।" }
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u05.l2.q-hands",
+              "prompt": { "en": "How many hands?", "hi": "कितने हाथ हैं? गिनती छुओ।", "pic": "🙌" },
+              "options": [{ "pic": "2️⃣" }, { "pic": "4️⃣" }],
+              "answer": 0,
+              "why": { "en": "Two hands: one, two.", "hi": "दो हाथ: एक, दो।" }
+            },
+            {
+              "key": "a.u05.l2.q-nose",
+              "prompt": { "en": "How many noses?", "hi": "कितनी नाक हैं?", "pic": "👃" },
+              "options": [{ "pic": "3️⃣" }, { "pic": "1️⃣" }],
+              "answer": 1,
+              "why": { "en": "One nose.", "hi": "नाक एक ही है।" }
+            },
+            {
+              "key": "a.u05.l2.q-eyes",
+              "prompt": { "en": "How many eyes?", "hi": "कितनी आँखें हैं?", "pic": "👀" },
+              "options": [{ "pic": "5️⃣" }, { "pic": "2️⃣" }],
+              "answer": 1,
+              "why": { "en": "Two eyes: one, two.", "hi": "दो आँखें: एक, दो।" }
+            },
+            {
+              "key": "a.u05.l2.q-fingers",
+              "prompt": { "en": "How many fingers?", "hi": "कितनी उँगलियाँ हैं?", "pic": "🖐️" },
+              "options": [{ "pic": "3️⃣" }, { "pic": "5️⃣" }, { "pic": "4️⃣" }],
+              "answer": 1,
+              "why": { "en": "Count them: five fingers.", "hi": "गिनकर देखो: पाँच उँगलियाँ।" }
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Jump two times.", "hi": "दो बार कूदो।", "pic": "🤸" },
+            { "en": "Clap four times.", "hi": "चार बार ताली बजाओ।", "pic": "👏" },
+            { "en": "Stamp five times.", "hi": "पाँच बार पैर पटको।", "pic": "🦶" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "a.u05.l2.s-eyes", "model": "Two eyes!", "hi": "गिनो और बोलो।", "pic": "👀", "cue": { "en": "How many eyes?", "hi": "कितनी आँखें?" } },
+            { "key": "a.u05.l2.s-nose", "model": "One nose!", "hi": "गिनो और बोलो।", "pic": "👃", "cue": { "en": "How many noses?", "hi": "कितनी नाक?" } },
+            { "key": "a.u05.l2.s-fingers", "model": "Five fingers!", "hi": "गिनो और बोलो।", "pic": "🖐️", "cue": { "en": "How many fingers?", "hi": "कितनी उँगलियाँ?" } }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Ask: How many? Count spoons, shoes or cups.", "hi": "घर में चम्मच, चप्पल या कप गिनें और पूछें: How many?" }
+    },
+    {
+      "key": "a.u05.l3",
+      "kind": "listen",
+      "title": { "en": "Five mangoes", "hi": "पाँच आम" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Five mangoes", "hi": "पाँच आम" },
+          "scene": {
+            "place": "field",
+            "pics": [
+              { "pic": "🌳", "x": 50, "y": 20, "size": 3 },
+              { "pic": "🥭", "x": 38, "y": 14, "size": 0.8 },
+              { "pic": "🥭", "x": 46, "y": 8, "size": 0.8 },
+              { "pic": "🥭", "x": 54, "y": 14, "size": 0.8 },
+              { "pic": "🥭", "x": 62, "y": 8, "size": 0.8 },
+              { "pic": "🥭", "x": 50, "y": 26, "size": 0.8 },
+              { "pic": "👦", "x": 22, "y": 50, "size": 1.3 },
+              { "pic": "👨", "x": 80, "y": 46, "size": 1.6 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Look! Mangoes on the tree!", "hi": "देखो! पेड़ पर आम!" },
+            { "speaker": "Papa", "pic": "👨", "en": "How many mangoes?", "hi": "कितने आम हैं?" },
+            { "speaker": "Arjun", "pic": "👦", "en": "One, two, three, four, five!", "hi": "एक, दो, तीन, चार, पाँच!" },
+            { "speaker": "Papa", "pic": "👨", "en": "Yes! Five mangoes.", "hi": "हाँ! पाँच आम।" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Five of us, five mangoes!", "hi": "हम पाँच लोग, आम भी पाँच!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u05.l3.q-many",
+              "prompt": { "en": "How many mangoes?", "hi": "कितने आम थे?" },
+              "options": [{ "pic": "3️⃣" }, { "pic": "5️⃣" }, { "pic": "4️⃣" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u05.l3.q-count",
+              "prompt": { "en": "Who counts the mangoes?", "hi": "आम कौन गिनता है?" },
+              "options": [{ "text": "Arjun", "pic": "👦" }, { "text": "Papa", "pic": "👨" }],
+              "answer": 0
+            },
+            { "key": "a.u05.l3.q-where", "prompt": { "en": "Where are the mangoes?", "hi": "आम कहाँ हैं?" }, "options": [{ "pic": "🌳" }, { "pic": "🏠" }], "answer": 0 }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u05.l3.s-count", "model": "One, two, three, four, five!", "hi": "एक, दो, तीन, चार, पाँच!", "pic": "🖐️" },
+            { "key": "a.u05.l3.s-five", "model": "Five mangoes!", "hi": "पाँच आम!", "pic": "🥭" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Pick a mango. Up high!", "hi": "ऊपर से आम तोड़ो!", "pic": "🥭" },
+            { "en": "Count your fingers.", "hi": "अपनी उँगलियाँ गिनो।", "pic": "🖐️" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Count fruits or rotis at mealtime.", "hi": "खाने के समय रोटियाँ या फल साथ में गिनें।" }
+    },
+    {
+      "key": "a.u05.l4",
+      "kind": "speak",
+      "title": { "en": "Count with me", "hi": "मेरे साथ गिनो" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: let your child touch each thing while counting.", "hi": "बड़ों के लिए: गिनते समय बच्चे को हर चीज़ पर उँगली रखने दें।" },
+          "pic": "👆"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🥭", "x": 10, "y": 30 },
+              { "pic": "🥭", "x": 20, "y": 30 },
+              { "pic": "🥭", "x": 30, "y": 30 },
+              { "pic": "🥭", "x": 40, "y": 30 },
+              { "pic": "👧", "x": 60, "y": 42, "size": 1.4 },
+              { "pic": "👦", "x": 74, "y": 44, "size": 1.3 },
+              { "pic": "🧕", "x": 88, "y": 42, "size": 1.4 }
+            ]
+          },
+          "questions": [
+            { "key": "a.u05.l4.q-mangoes", "en": "How many mangoes?", "hi": "कितने आम हैं?", "model": "Four mangoes!" },
+            { "key": "a.u05.l4.q-friends", "en": "How many friends?", "hi": "कितने दोस्त हैं?", "model": "Three friends!" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Show me five fingers.", "hi": "पाँच उँगलियाँ दिखाओ।", "pic": "🖐️" },
+            { "en": "Touch each finger. Count!", "hi": "हर उँगली छूकर गिनो!", "pic": "👆" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u05.l4.s-fingers",
+              "model": "Five fingers!",
+              "hi": "उँगलियाँ गिनो और बोलो।",
+              "pic": "🖐️",
+              "cue": { "en": "How many fingers?", "hi": "कितनी उँगलियाँ हैं?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Count the fingers on one hand together, up to five.", "hi": "एक हाथ की उँगलियाँ साथ में गिनें: one to five।" }
+    },
+    {
+      "key": "a.u05.l5",
+      "kind": "review",
+      "title": { "en": "Counting fun", "hi": "गिनती का मज़ा" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u05.l5.m-one", "left": { "text": "one", "pic": "1️⃣" }, "right": { "pic": "👆" } },
+            { "key": "a.u05.l5.m-two", "left": { "text": "two", "pic": "2️⃣" }, "right": { "pic": "✌️" } },
+            { "key": "a.u05.l5.m-five", "left": { "text": "five", "pic": "5️⃣" }, "right": { "pic": "🖐️" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u05.l5.t-four",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "four" },
+              "options": [{ "pic": "4️⃣" }, { "pic": "2️⃣" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u05.l5.t-three",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "three" },
+              "options": [{ "pic": "1️⃣" }, { "pic": "3️⃣" }, { "pic": "5️⃣" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u05.l5.q-eyes",
+              "prompt": { "en": "How many eyes?", "hi": "कितनी आँखें हैं?", "pic": "👀" },
+              "options": [{ "pic": "2️⃣" }, { "pic": "1️⃣" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u05.l5.w-green",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "green" },
+              "options": [{ "pic": "🔵" }, { "pic": "🟢" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u05.l5.w-father",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "father" },
+              "options": [{ "pic": "👨" }, { "pic": "👦" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Jump three times.", "hi": "तीन बार कूदो।", "pic": "🤸" }, { "en": "Clap two times.", "hi": "दो बार ताली बजाओ।", "pic": "👏" }]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u05.l5.s-count",
+              "model": "One, two, three, four, five!",
+              "hi": "पाँच तक गिनो।",
+              "pic": "🖐️",
+              "cue": { "en": "Count to five.", "hi": "पाँच तक गिनो।" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Count five things before bed.", "hi": "सोने से पहले कोई पाँच चीज़ें साथ में गिनें।" }
+    }
+  ]
+}

@@ -292,7 +292,7 @@ budget holds (≤ 200 KB of JavaScript on first load, no animation library: CSS 
 
 - **Lesson files** live in `data/english/<track>/` (one JSON file per unit with its five lessons) and
   `data/english/<track>/assessments.json`. They are our own writing: no textbook, song or picture is copied.
-- **The lesson checker** (`src/lib/english/course.ts`) refuses a file whose lesson misses a step, whose check has
+- **The lesson checker** (`src/lib/family/english/course.ts`) refuses a file whose lesson misses a step, whose check has
   fewer than 3 items (B–D), whose words lack a Hindi meaning, whose keys clash, whose emoji is not on the list, or
   whose text is above the track's sentence length.
 - **Review and publishing:** the files load into the content library as one course version per track, in review

@@ -1,0 +1,376 @@
+{
+  "track": "a",
+  "unit": 6,
+  "key": "a.u06",
+  "title": { "en": "Fruits", "hi": "फल" },
+  "pic": "🥭",
+  "can_do": { "en": "I can say what I like.", "hi": "मुझे बताना आता है कि मुझे क्या पसंद है।" },
+  "lessons": [
+    {
+      "key": "a.u06.l1",
+      "kind": "words",
+      "title": { "en": "Fruit words", "hi": "फलों के नाम" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u06.l1.w-three",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "three" },
+              "options": [{ "pic": "3️⃣" }, { "pic": "5️⃣" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u06.l1.w-apple-red",
+              "prompt": { "en": "What colour is it?", "hi": "याद है? यह किस रंग का है?", "pic": "🍎" },
+              "options": [{ "pic": "🟢" }, { "pic": "🔴" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: if you have a real fruit, hold it up.", "hi": "बड़ों के लिए: घर में कोई फल हो तो उसे हाथ में लेकर दिखाएँ।" },
+          "pic": "🧺"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u06.l1.mango", "en": "mango", "hi": "आम", "pic": "🥭", "example": { "en": "A yellow mango.", "hi": "पीला आम।" } },
+            { "key": "a.u06.l1.banana", "en": "banana", "hi": "केला", "pic": "🍌", "example": { "en": "Two bananas.", "hi": "दो केले।" } },
+            { "key": "a.u06.l1.apple", "en": "apple", "hi": "सेब", "pic": "🍎", "example": { "en": "A red apple.", "hi": "लाल सेब।" } },
+            { "key": "a.u06.l1.orange", "en": "orange", "hi": "संतरा", "pic": "🍊", "example": { "en": "One orange.", "hi": "एक संतरा।" } },
+            { "key": "a.u06.l1.grapes", "en": "grapes", "hi": "अंगूर", "pic": "🍇", "example": { "en": "Five grapes.", "hi": "पाँच अंगूर।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Peel a banana.", "hi": "केला छीलो।", "pic": "🍌" },
+            { "en": "Bite an apple. Crunch!", "hi": "सेब खाओ। कुरकुर!", "pic": "🍎" },
+            { "en": "Pick a mango up high.", "hi": "ऊपर से आम तोड़ो।", "pic": "🥭" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u06.l1.t-mango",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "mango" },
+              "options": [{ "pic": "🍌" }, { "pic": "🥭" }, { "pic": "🍊" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u06.l1.t-apple",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "apple" },
+              "options": [{ "pic": "🍎" }, { "pic": "🍇" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u06.l1.t-orange",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "orange" },
+              "options": [{ "pic": "🍇" }, { "pic": "🍌" }, { "pic": "🍊" }],
+              "answer": 2
+            },
+            {
+              "key": "a.u06.l1.t-grapes",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "grapes" },
+              "options": [{ "pic": "🍇" }, { "pic": "🍎" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u06.l1.s-mango", "model": "Mango.", "hi": "आम।", "pic": "🥭" },
+            { "key": "a.u06.l1.s-banana", "model": "Banana.", "hi": "केला।", "pic": "🍌" },
+            { "key": "a.u06.l1.s-apple", "model": "Apple.", "hi": "सेब।", "pic": "🍎" },
+            { "key": "a.u06.l1.s-orange", "model": "Orange.", "hi": "संतरा।", "pic": "🍊" },
+            { "key": "a.u06.l1.s-grapes", "model": "Grapes.", "hi": "अंगूर।", "pic": "🍇" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "At the market, name fruits in English.", "hi": "हाट या दुकान पर फलों के नाम अंग्रेज़ी में बोलें।" }
+    },
+    {
+      "key": "a.u06.l2",
+      "kind": "pattern",
+      "title": { "en": "I like mangoes.", "hi": "मुझे आम पसंद हैं।" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "I like …", "hi": "मुझे … पसंद है" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "I like mangoes.",
+              "hi": "मुझे आम पसंद हैं।",
+              "pic": "🥭",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "like", "role": "do" }, { "text": "mangoes.", "role": "what" }]
+            },
+            {
+              "en": "I like bananas.",
+              "hi": "मुझे केले पसंद हैं।",
+              "pic": "🍌",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "like", "role": "do" }, { "text": "bananas.", "role": "what" }]
+            },
+            {
+              "en": "I like apples.",
+              "hi": "मुझे सेब पसंद हैं।",
+              "pic": "🍎",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "like", "role": "do" }, { "text": "apples.", "role": "what" }]
+            },
+            {
+              "en": "I like grapes.",
+              "hi": "मुझे अंगूर पसंद हैं।",
+              "pic": "🍇",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "like", "role": "do" }, { "text": "grapes.", "role": "what" }]
+            }
+          ],
+          "note": { "en": "Say what you like!", "hi": "बताओ, तुम्हें क्या पसंद है!" }
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u06.l2.t-bananas",
+              "prompt": { "en": "Listen. Tap the fruit.", "hi": "सुनो, फिर सही फल छुओ।", "say": "I like bananas." },
+              "options": [{ "pic": "🍌" }, { "pic": "🍎" }],
+              "answer": 0,
+              "why": { "en": "Bananas are yellow.", "hi": "bananas यानी केले, पीले वाले।" }
+            },
+            {
+              "key": "a.u06.l2.t-oranges",
+              "prompt": { "en": "Listen. Tap the fruit.", "hi": "सुनो, फिर सही फल छुओ।", "say": "I like oranges." },
+              "options": [{ "pic": "🥭" }, { "pic": "🍊" }, { "pic": "🍇" }],
+              "answer": 1,
+              "why": { "en": "Oranges are round.", "hi": "oranges यानी संतरे, गोल वाले।" }
+            },
+            {
+              "key": "a.u06.l2.t-apples",
+              "prompt": { "en": "Listen. Tap the fruit.", "hi": "सुनो, फिर सही फल छुओ।", "say": "I like apples." },
+              "options": [{ "pic": "🍇" }, { "pic": "🍎" }],
+              "answer": 1,
+              "why": { "en": "Apples are red.", "hi": "apples यानी सेब, लाल वाले।" }
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Rub your tummy. Yum!", "hi": "पेट पर हाथ फेरो। वाह!", "pic": "😋" },
+            { "en": "Thumbs up for mangoes!", "hi": "आम के लिए अंगूठा ऊपर!", "pic": "👍" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u06.l2.s-mangoes",
+              "model": "I like mangoes.",
+              "hi": "बोलो, तुम्हें क्या पसंद है।",
+              "pic": "🥭",
+              "cue": { "en": "Do you like mangoes?", "hi": "क्या तुम्हें आम पसंद हैं?" }
+            },
+            {
+              "key": "a.u06.l2.s-fav",
+              "model": "I like bananas.",
+              "hi": "अपना पसंदीदा फल बताओ।",
+              "pic": "🍌",
+              "cue": { "en": "Which fruit do you like?", "hi": "तुम्हें कौन-सा फल पसंद है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Ask: What do you like? Your child says: I like …", "hi": "बच्चे से पूछें: What do you like? बच्चा कहे: I like …" }
+    },
+    {
+      "key": "a.u06.l3",
+      "kind": "listen",
+      "title": { "en": "At Ravi's shop", "hi": "रवि चाचा की दुकान पर" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "At Ravi's shop", "hi": "रवि चाचा की दुकान पर" },
+          "scene": {
+            "place": "market",
+            "pics": [
+              { "pic": "own:haat", "x": 50, "y": 12, "size": 2 },
+              { "pic": "🥭", "x": 20, "y": 34 },
+              { "pic": "🍌", "x": 34, "y": 34 },
+              { "pic": "🍎", "x": 48, "y": 34 },
+              { "pic": "🍊", "x": 62, "y": 34 },
+              { "pic": "👳", "x": 84, "y": 40, "size": 1.6 },
+              { "pic": "👩", "x": 28, "y": 52, "size": 1.4 },
+              { "pic": "👧", "x": 44, "y": 54, "size": 1.2 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Ravi", "pic": "👳", "en": "Hello! Mangoes and bananas!", "hi": "नमस्ते! आम और केले!" },
+            { "speaker": "Meera", "pic": "👧", "en": "I like mangoes.", "hi": "मुझे आम पसंद हैं।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "I like bananas!", "hi": "मुझे केले पसंद हैं!" },
+            { "speaker": "Mummy", "pic": "👩", "en": "And I like oranges.", "hi": "और मुझे संतरे पसंद हैं।" },
+            { "speaker": "Ravi", "pic": "👳", "en": "Two mangoes, two bananas, one orange?", "hi": "दो आम, दो केले, एक संतरा?" },
+            { "speaker": "Mummy", "pic": "👩", "en": "Yes, please! Thank you.", "hi": "हाँ, दे दीजिए! शुक्रिया।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u06.l3.q-meera",
+              "prompt": { "en": "What does Meera like?", "hi": "मीरा को क्या पसंद है?" },
+              "options": [{ "pic": "🍌" }, { "pic": "🥭" }, { "pic": "🍊" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u06.l3.q-arjun",
+              "prompt": { "en": "What does Arjun like?", "hi": "अर्जुन को क्या पसंद है?" },
+              "options": [{ "pic": "🍇" }, { "pic": "🍌" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u06.l3.q-ravi",
+              "prompt": { "en": "Who sells the fruit?", "hi": "फल कौन बेचता है?" },
+              "options": [{ "text": "Ravi", "pic": "👳" }, { "text": "Mummy", "pic": "👩" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u06.l3.s-mangoes", "model": "I like mangoes.", "hi": "मुझे आम पसंद हैं।", "pic": "🥭" },
+            { "key": "a.u06.l3.s-oranges", "model": "And I like oranges.", "hi": "और मुझे संतरे पसंद हैं।", "pic": "🍊" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "At the shop, let your child say: I like …", "hi": "दुकान पर बच्चे को कहने दें: I like bananas!" }
+    },
+    {
+      "key": "a.u06.l4",
+      "kind": "speak",
+      "title": { "en": "My favourite fruit", "hi": "मेरा पसंदीदा फल" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: you are Ravi. Your child can pick any fruit.", "hi": "बड़ों के लिए: आप रवि चाचा बनें। बच्चा कोई भी फल चुन सकता है।" },
+          "pic": "👳"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Buying fruit", "hi": "फल ख़रीदना" },
+          "scene": {
+            "place": "market",
+            "pics": [
+              { "pic": "own:haat", "x": 50, "y": 12, "size": 2 },
+              { "pic": "🥭", "x": 30, "y": 34 },
+              { "pic": "🍌", "x": 45, "y": 34 },
+              { "pic": "🍇", "x": 60, "y": 34 },
+              { "pic": "👳", "x": 82, "y": 42, "size": 1.6 },
+              { "pic": "🧒", "x": 14, "y": 46, "size": 1.5 }
+            ]
+          },
+          "roles": [{ "name": "Ravi", "pic": "👳" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Hello! Which fruit do you like?", "hi": "नमस्ते! तुम्हें कौन-सा फल पसंद है?" },
+            { "role": 1, "en": "I like mangoes.", "hi": "मुझे आम पसंद हैं।" },
+            { "role": 0, "en": "How many mangoes?", "hi": "कितने आम चाहिए?" },
+            { "role": 1, "en": "Two mangoes, please.", "hi": "दो आम दे दीजिए।" },
+            { "role": 0, "en": "Here you are!", "hi": "ये लो!" },
+            { "role": 1, "en": "Thank you!", "hi": "शुक्रिया!" }
+          ],
+          "partner": {
+            "goal": "Sell fruit kindly: ask which fruit the child likes and how many, then hand it over.",
+            "must_use": ["I like", "mangoes", "two", "thank you"]
+          }
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Hold out your hands.", "hi": "दोनों हाथ आगे करो।", "pic": "🙌" }, { "en": "Smell the mango. Mmm!", "hi": "आम सूँघो। वाह!", "pic": "🥭" }]
+        }
+      ],
+      "check": [],
+      "home": { "en": "At dinner, ask everyone: Which fruit do you like?", "hi": "खाने पर सबसे पूछें: Which fruit do you like?" }
+    },
+    {
+      "key": "a.u06.l5",
+      "kind": "review",
+      "title": { "en": "Fruit basket", "hi": "फलों की टोकरी" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u06.l5.m-banana", "left": { "text": "banana", "pic": "🍌" }, "right": { "pic": "🟡" } },
+            { "key": "a.u06.l5.m-apple", "left": { "text": "apple", "pic": "🍎" }, "right": { "pic": "🔴" } },
+            { "key": "a.u06.l5.m-orange", "left": { "text": "orange", "pic": "🍊" }, "right": { "pic": "🟠" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u06.l5.t-mango",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "mango" },
+              "options": [{ "pic": "🥭" }, { "pic": "🍎" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u06.l5.t-grapes",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "grapes" },
+              "options": [{ "pic": "🍊" }, { "pic": "🍇" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u06.l5.t-apples",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "I like apples." },
+              "options": [{ "pic": "🍌" }, { "pic": "🍎" }, { "pic": "🍇" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u06.l5.w-fingers",
+              "prompt": { "en": "How many fingers?", "hi": "याद है? कितनी उँगलियाँ हैं?", "pic": "🖐️" },
+              "options": [{ "pic": "5️⃣" }, { "pic": "2️⃣" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Pick a fruit from the tree.", "hi": "पेड़ से फल तोड़ो।", "pic": "🌳" },
+            { "en": "Put it in the basket.", "hi": "उसे टोकरी में रखो।", "pic": "🧺" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u06.l5.s-like",
+              "model": "I like grapes.",
+              "hi": "अपना पसंदीदा फल बताओ।",
+              "pic": "🍇",
+              "cue": { "en": "What do you like?", "hi": "तुम्हें क्या पसंद है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Name the fruits you see this week.", "hi": "इस हफ़्ते जो भी फल दिखे, उसका अंग्रेज़ी नाम बोलें।" }
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { M1_PURPOSES, consentState, isFamilyPurpose, recordParentTap } from '@/lib/family/consent';
+import { ASKED_PURPOSES, consentState, isFamilyPurpose, recordParentTap } from '@/lib/family/consent';
 import { accountSummary } from '@/lib/family/account';
 import { familyRun, jsonBody, requireFamily, requireParent } from '@/lib/family/request';
 
@@ -8,7 +8,7 @@ import { familyRun, jsonBody, requireFamily, requireParent } from '@/lib/family/
 // comes before the PIN exists (sign-up); every later change, and every withdrawal, needs parent mode.
 export async function POST(req: NextRequest) {
   const body = await jsonBody(req);
-  if (body.tap !== true || !isFamilyPurpose(body.purpose) || !M1_PURPOSES.includes(body.purpose) || typeof body.granted !== 'boolean') {
+  if (body.tap !== true || !isFamilyPurpose(body.purpose) || !ASKED_PURPOSES.includes(body.purpose) || typeof body.granted !== 'boolean') {
     return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   }
   const purpose = body.purpose;

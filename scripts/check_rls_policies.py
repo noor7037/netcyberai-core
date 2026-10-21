@@ -469,6 +469,19 @@ ALLOWED_PERMISSIVE = (
         ("control.ai_providers", "ai_providers_family_read"),
         ("control.ai_profiles", "ai_profiles_family_read"),
         # m1 end
+        # wb1 begin
+        # C274: the English course. Family tables own account only (with the restrictive twins below); families read
+        # only course versions published to everyone, and their units, lessons and assessments.
+        ("family.english_enrolments", "english_enrolments_own"),
+        ("family.english_lessons_done", "english_lessons_done_own"),
+        ("family.english_reviews", "english_reviews_own"),
+        ("family.english_assessment_results", "english_results_own"),
+        ("family.english_days", "english_days_own"),
+        ("content.english_versions", "english_versions_family_read"),
+        ("content.english_units", "english_units_family_read"),
+        ("content.english_lessons", "english_lessons_family_read"),
+        ("content.english_assessments", "english_assessments_family_read"),
+        # wb1 end
     }
 )
 
@@ -920,6 +933,18 @@ REQUIRED_RESTRICTIVE = {
     ("content.responses", "responses_family_only"),
     ("control.preview_accounts", "preview_family_only"),
     # m1 end
+    # wb1 begin
+    # C274: own account only on every English course table, and families never write the course.
+    ("family.english_enrolments", "english_enrolments_own_only"),
+    ("family.english_lessons_done", "english_lessons_done_own_only"),
+    ("family.english_reviews", "english_reviews_own_only"),
+    ("family.english_assessment_results", "english_results_own_only"),
+    ("family.english_days", "english_days_own_only"),
+    ("content.english_versions", "english_versions_family_only"),
+    ("content.english_units", "english_units_family_only"),
+    ("content.english_lessons", "english_lessons_family_only"),
+    ("content.english_assessments", "english_assessments_family_only"),
+    # wb1 end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

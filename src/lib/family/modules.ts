@@ -14,7 +14,7 @@ export const FAMILY_MODULES: readonly FamilyModule[] = [
   { id: 'practice', tab: 'study', flag: 'practice', entitlement: 'learning', built: true, milestone: 'M1' },
   { id: 'progress', tab: 'home', flag: 'progress', entitlement: 'public', built: true, milestone: 'M1' },
   { id: 'parent_card', tab: 'family', flag: 'parent_card', entitlement: 'public', built: true, milestone: 'M1' },
-  { id: 'english_programme', tab: 'english', flag: 'english_programme', entitlement: 'plus', built: false, milestone: 'M6' },
+  { id: 'english_programme', tab: 'english', flag: 'english_programme', entitlement: 'plus', built: true, milestone: 'C274' },
   { id: 'careers', tab: 'future', flag: 'careers', entitlement: 'public', built: false, milestone: 'M4' },
   { id: 'opportunities', tab: 'future', flag: 'opportunities', entitlement: 'public', built: false, milestone: 'M4' },
   { id: 'school_today', tab: 'home', flag: 'school_today', entitlement: 'school_info', built: false, milestone: 'M3' },

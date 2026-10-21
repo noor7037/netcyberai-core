@@ -1,0 +1,382 @@
+{
+  "track": "a",
+  "unit": 9,
+  "key": "a.u09",
+  "title": { "en": "Show and tell", "hi": "दिखाओ और बताओ" },
+  "pic": "🎒",
+  "can_do": { "en": "I can show and name things.", "hi": "मुझे चीज़ें दिखाकर उनका नाम बताना आता है।" },
+  "lessons": [
+    {
+      "key": "a.u09.l1",
+      "kind": "words",
+      "title": { "en": "Words we know", "hi": "हमारे जाने-पहचाने शब्द" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: these are old words. Let your child lead.", "hi": "बड़ों के लिए: ये पुराने शब्द हैं। इस बार बच्चे को आगे रहने दें।" },
+          "pic": "⭐"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u09.l1.friend", "en": "friend", "hi": "दोस्त", "pic": "👫", "example": { "en": "This is my friend.", "hi": "यह मेरी दोस्त है।" } },
+            {
+              "key": "a.u09.l1.grandmother",
+              "en": "grandmother",
+              "hi": "दादी, नानी",
+              "pic": "👵",
+              "example": { "en": "This is my grandmother.", "hi": "ये मेरी दादी हैं।" }
+            },
+            { "key": "a.u09.l1.hands", "en": "hands", "hi": "हाथ", "pic": "🙌", "example": { "en": "Two hands. Clap, clap!", "hi": "दो हाथ। ताली, ताली!" } },
+            { "key": "a.u09.l1.banana", "en": "banana", "hi": "केला", "pic": "🍌", "example": { "en": "A yellow banana.", "hi": "पीला केला।" } },
+            { "key": "a.u09.l1.dog", "en": "dog", "hi": "कुत्ता", "pic": "🐕", "example": { "en": "The dog says woof.", "hi": "कुत्ता बोलता है: भौं।" } },
+            { "key": "a.u09.l1.cup", "en": "cup", "hi": "कप", "pic": "☕", "example": { "en": "Here is my cup.", "hi": "यह रहा मेरा कप।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Show me your hands.", "hi": "अपने हाथ दिखाओ।", "pic": "🙌" },
+            { "en": "Show me something yellow.", "hi": "कोई पीली चीज़ दिखाओ।", "pic": "🟡" },
+            { "en": "Show me five fingers.", "hi": "पाँच उँगलियाँ दिखाओ।", "pic": "🖐️" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u09.l1.t-cup",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "cup" },
+              "options": [{ "pic": "☕" }, { "pic": "🍽️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u09.l1.t-grandmother",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "grandmother" },
+              "options": [{ "pic": "👩" }, { "pic": "👵" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u09.l1.t-dog",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "dog" },
+              "options": [{ "pic": "🐈" }, { "pic": "🐄" }, { "pic": "🐕" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u09.l1.s-friend", "model": "My friend!", "hi": "मेरा दोस्त!", "pic": "👫" },
+            { "key": "a.u09.l1.s-grandmother", "model": "Grandmother.", "hi": "दादी।", "pic": "👵" },
+            { "key": "a.u09.l1.s-hands", "model": "Hands.", "hi": "हाथ।", "pic": "🙌" },
+            { "key": "a.u09.l1.s-banana", "model": "Banana.", "hi": "केला।", "pic": "🍌" },
+            { "key": "a.u09.l1.s-dog", "model": "Dog.", "hi": "कुत्ता।", "pic": "🐕" },
+            { "key": "a.u09.l1.s-cup", "model": "Cup.", "hi": "कप।", "pic": "☕" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Ask your child to show you one toy and name its colour.", "hi": "बच्चे से कहें कि अपना कोई एक खिलौना दिखाए और उसका रंग बताए।" }
+    },
+    {
+      "key": "a.u09.l2",
+      "kind": "pattern",
+      "title": { "en": "Look! This is my …", "hi": "देखो! यह मेरा …" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Look! This is my …", "hi": "देखो! यह मेरा …" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "Look! This is my cup.",
+              "hi": "देखो! यह मेरा कप है।",
+              "pic": "☕",
+              "parts": [{ "text": "Look!", "role": "other" }, { "text": "This", "role": "who" }, { "text": "is", "role": "do" }, { "text": "my cup.", "role": "what" }]
+            },
+            {
+              "en": "It is blue.",
+              "hi": "यह नीला है।",
+              "pic": "🔵",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "blue.", "role": "what" }]
+            },
+            {
+              "en": "Look! This is my dog.",
+              "hi": "देखो! यह मेरा कुत्ता है।",
+              "pic": "🐕",
+              "parts": [{ "text": "Look!", "role": "other" }, { "text": "This", "role": "who" }, { "text": "is", "role": "do" }, { "text": "my dog.", "role": "what" }]
+            },
+            {
+              "en": "I like my dog.",
+              "hi": "मुझे अपना कुत्ता पसंद है।",
+              "pic": "🐕",
+              "parts": [{ "text": "I", "role": "who" }, { "text": "like", "role": "do" }, { "text": "my dog.", "role": "what" }]
+            }
+          ],
+          "note": { "en": "Show it, name it, then say one more thing.", "hi": "चीज़ दिखाओ, नाम बताओ, फिर उसके बारे में एक बात और बोलो।" }
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Hold up your toy.", "hi": "अपना खिलौना ऊपर उठाओ।", "pic": "🧸" }, { "en": "Point to it.", "hi": "उसकी ओर इशारा करो।", "pic": "👉" }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u09.l2.t-cup",
+              "prompt": { "en": "Listen. What is it?", "hi": "सुनो। यह क्या है?", "say": "Look! This is my cup." },
+              "options": [{ "pic": "☕" }, { "pic": "🛏️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u09.l2.t-red",
+              "prompt": { "en": "Listen. Tap the colour.", "hi": "सुनो, फिर सही रंग छुओ।", "say": "It is red." },
+              "options": [{ "pic": "🟢" }, { "pic": "🔴" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u09.l2.t-friend",
+              "prompt": { "en": "Listen. Who is it?", "hi": "सुनो। यह कौन है?", "say": "This is my friend." },
+              "options": [{ "pic": "👫" }, { "pic": "🐕" }, { "pic": "👵" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u09.l2.s-cup", "model": "Look! This is my cup.", "hi": "देखो! यह मेरा कप है।", "pic": "☕" },
+            { "key": "a.u09.l2.s-blue", "model": "It is blue.", "hi": "यह नीला है।", "pic": "🔵" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Let your child show a thing and say: Look! This is my …", "hi": "बच्चे को कोई चीज़ दिखाकर कहने दें: Look! This is my …" }
+    },
+    {
+      "key": "a.u09.l3",
+      "kind": "listen",
+      "title": { "en": "Show and tell at school", "hi": "स्कूल में दिखाओ और बताओ" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Show and tell at school", "hi": "स्कूल में दिखाओ और बताओ" },
+          "scene": {
+            "place": "school",
+            "pics": [
+              { "pic": "own:chalkboard", "x": 50, "y": 10, "size": 2 },
+              { "pic": "👩‍🏫", "x": 18, "y": 38, "size": 1.6 },
+              { "pic": "👧", "x": 42, "y": 46, "size": 1.4 },
+              { "pic": "🪁", "x": 42, "y": 28 },
+              { "pic": "🧕", "x": 68, "y": 46, "size": 1.4 },
+              { "pic": "🧸", "x": 68, "y": 28 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Teacher", "pic": "👩‍🏫", "en": "Show and tell time!", "hi": "दिखाओ और बताओ का समय!" },
+            { "speaker": "Meera", "pic": "👧", "en": "Look! This is my kite.", "hi": "देखो! यह मेरी पतंग है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "It is red and yellow.", "hi": "यह लाल और पीली है।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "This is my teddy.", "hi": "यह मेरा टेडी है।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "It is white. I like it!", "hi": "यह सफ़ेद है। मुझे यह पसंद है!" },
+            { "speaker": "Teacher", "pic": "👩‍🏫", "en": "Very good, Meera and Salma!", "hi": "बहुत बढ़िया, मीरा और सलमा!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u09.l3.q-meera",
+              "prompt": { "en": "What does Meera show?", "hi": "मीरा क्या दिखाती है?" },
+              "options": [{ "pic": "🧸" }, { "pic": "🪁" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u09.l3.q-teddy",
+              "prompt": { "en": "What colour is Salma's teddy?", "hi": "सलमा का टेडी किस रंग का है?" },
+              "options": [{ "pic": "⚪" }, { "pic": "⚫" }, { "pic": "🟢" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u09.l3.q-who",
+              "prompt": { "en": "Who says: Show and tell time?", "hi": "कौन कहती हैं: दिखाओ और बताओ का समय?" },
+              "options": [{ "text": "Teacher", "pic": "👩‍🏫" }, { "text": "Salma", "pic": "🧕" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u09.l3.s-kite", "model": "Look! This is my kite.", "hi": "देखो! यह मेरी पतंग है।", "pic": "🪁" },
+            { "key": "a.u09.l3.s-like", "model": "I like it!", "hi": "मुझे यह पसंद है!", "pic": "👍" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Ask: What will you show tomorrow? Practise the words.", "hi": "बच्चे से पूछें: कल तुम क्या दिखाओगे? फिर उसके अंग्रेज़ी शब्द साथ में बोलें।" }
+    },
+    {
+      "key": "a.u09.l4",
+      "kind": "speak",
+      "title": { "en": "My show and tell", "hi": "मेरा दिखाओ और बताओ" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Grown-up: give your child one real thing to hold and show.",
+            "hi": "बड़ों के लिए: बच्चे के हाथ में घर की कोई असली चीज़ दें, जिसे वह दिखा सके।"
+          },
+          "pic": "🧸"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Your turn!", "hi": "तुम्हारी बारी!" },
+          "scene": {
+            "place": "school",
+            "pics": [
+              { "pic": "own:chalkboard", "x": 50, "y": 10, "size": 2 },
+              { "pic": "👩‍🏫", "x": 24, "y": 40, "size": 1.6 },
+              { "pic": "🧒", "x": 64, "y": 44, "size": 1.5 },
+              { "pic": "☕", "x": 64, "y": 28 }
+            ]
+          },
+          "roles": [{ "name": "Teacher", "pic": "👩‍🏫" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Your turn! What is it?", "hi": "तुम्हारी बारी! यह क्या है?" },
+            { "role": 1, "en": "Look! This is my cup.", "hi": "देखो! यह मेरा कप है। (अपनी चीज़ का नाम लो)" },
+            { "role": 0, "en": "What colour is it?", "hi": "यह किस रंग का है?" },
+            { "role": 1, "en": "It is blue.", "hi": "यह नीला है।" },
+            { "role": 0, "en": "Do you like it?", "hi": "क्या तुम्हें यह पसंद है?" },
+            { "role": 1, "en": "Yes! I like it.", "hi": "हाँ! मुझे यह पसंद है।" }
+          ],
+          "partner": {
+            "goal": "Let the child show one thing: ask what it is, its colour and if they like it; praise every answer.",
+            "must_use": ["this is my", "it is", "I like"]
+          }
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u09.l4.s-show",
+              "model": "Look! This is my cup.",
+              "hi": "कोई एक चीज़ दिखाओ और उसका नाम बोलो।",
+              "pic": "🎒",
+              "cue": { "en": "Show one thing. Tell us!", "hi": "कोई एक चीज़ दिखाओ और बताओ!" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Do show and tell at home with a new thing each day.", "hi": "रोज़ एक नई चीज़ लेकर घर पर Show and tell खेलें।" }
+    },
+    {
+      "key": "a.u09.l5",
+      "kind": "review",
+      "title": { "en": "Fun with old words", "hi": "पुराने शब्दों का मज़ा" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u09.l5.t-hello",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "hello" },
+              "options": [{ "pic": "👋" }, { "pic": "🛏️" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u09.l5.t-brother",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "brother" },
+              "options": [{ "pic": "👧" }, { "pic": "👦" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u09.l5.t-eyes",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "eyes" },
+              "options": [{ "pic": "👀" }, { "pic": "👄" }, { "pic": "🦶" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u09.l5.t-green",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "green" },
+              "options": [{ "pic": "🔴" }, { "pic": "🟢" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Touch your nose.", "hi": "अपनी नाक छुओ।", "pic": "👃" },
+            { "en": "Jump like a goat.", "hi": "बकरी की तरह उछलो।", "pic": "🐐" },
+            { "en": "Wave bye-bye!", "hi": "हाथ हिलाकर टाटा करो!", "pic": "👋" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u09.l5.t-four",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "four" },
+              "options": [{ "pic": "4️⃣" }, { "pic": "5️⃣" }, { "pic": "2️⃣" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u09.l5.t-orange",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "orange" },
+              "options": [{ "pic": "🍎" }, { "pic": "🍊" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u09.l5.t-buffalo",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "buffalo" },
+              "options": [{ "pic": "🐃" }, { "pic": "🐐" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u09.l5.t-chair",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "chair" },
+              "options": [{ "pic": "🚪" }, { "pic": "🪑" }, { "pic": "🛏️" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u09.l5.m-cow", "left": { "text": "cow", "pic": "🐄" }, "right": { "pic": "🌾" } },
+            { "key": "a.u09.l5.m-five", "left": { "text": "five", "pic": "5️⃣" }, "right": { "pic": "🖐️" } },
+            { "key": "a.u09.l5.m-yellow", "left": { "text": "yellow", "pic": "🟡" }, "right": { "pic": "🍌" } },
+            { "key": "a.u09.l5.m-door", "left": { "text": "door", "pic": "🚪" }, "right": { "pic": "🔑" } }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u09.l5.s-show",
+              "model": "Look! This is my cup.",
+              "hi": "कोई चीज़ दिखाओ और बताओ।",
+              "pic": "🎒",
+              "cue": { "en": "Show and tell!", "hi": "दिखाओ और बताओ!" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Well done! Keep playing with these words at home.", "hi": "शाबाश! इन शब्दों से घर पर खेलते रहें।" }
+    }
+  ]
+}
