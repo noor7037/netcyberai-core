@@ -45,6 +45,7 @@ SECRET_READERS = {
     "src/lib/auth/env.ts",  # reads it from the environment
     "src/lib/onboarding/intake.ts",  # keys the application-form digest; mints nothing
     "src/lib/documents/upload-ticket.ts",  # seals a pending record-document upload (C235-D2); mints nothing
+    "src/lib/family/secret.ts",  # derives the Family app's hash keys: codes, the PIN's pepper, sealed items (C248); mints nothing
 }
 SIGNER_USERS = {
     "src/lib/auth/jwt.ts",  # defines the three signers
@@ -54,10 +55,18 @@ SIGNER_USERS = {
     "src/lib/auth/authenticator.ts",  # the second step of sign-in
     "src/lib/auth/outcome-response.ts",  # turns a finished sign-in into cookies
     "src/app/api/control/impersonate/start/route.ts",  # time-boxed, audited impersonation
+    # The Family app's own tokens (C248): defined in session.ts, issued only after a right email code (verify), and
+    # parent mode only after the PIN (pin, unlock) or a PIN reset by the account's own email code.
+    "src/lib/family/session.ts",
+    "src/app/api/family/auth/code/route.ts",
+    "src/app/api/family/auth/verify/route.ts",
+    "src/app/api/family/pin/route.ts",
+    "src/app/api/family/pin/unlock/route.ts",
+    "src/app/api/family/pin/reset/route.ts",
 }
 JOSE_RE = re.compile(r"""(?:from|require\(|import\()\s*['"]jose(?:/[^'"]*)?['"]""")
 SECRET_RE = re.compile(r"\bappSessionSecret\b|\bAPP_SESSION_SECRET\b")
-SIGNER_RE = re.compile(r"\b(?:signAccessToken|signPendingToken|signDeviceToken)\b|\bSignJWT\b")
+SIGNER_RE = re.compile(r"\b(?:signAccessToken|signPendingToken|signDeviceToken|signFamilyToken|signFamilySession|signParentMode|signCodeStep)\b|\bSignJWT\b")
 # The harness by name anywhere in a file; PGlite only as an import (comments
 # in src/ may say that tests run on it).
 HARNESS_REF_RE = re.compile(
