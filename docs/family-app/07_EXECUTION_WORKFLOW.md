@@ -1,26 +1,27 @@
 # 07 — Execution workflow
 
-## 1. Waves
+## 1. Milestones
 
-**Revised 2026-10-20 (C230-I).** The learning loop is dynamic, and it depends on the shared AI platform, so a platform
-wave (P-AI) now precedes it. English, careers and opportunities are full experiences, sequenced by their
-dependencies.
+**Revised 2026-10-20 (C230-L).** The waves of C230-I are regrouped into seven milestones, M1–M7. The learning loop
+now comes before school information: it is the founder's core intent and works for every family, while school
+information needs pilot schools on real data. School Link stays early (M3) because schools are the free distribution
+channel. Each feature's verdict and milestone is in `11`; Control and the content library are in `10`.
 
-Each wave is one stacked set of PRs, built by a lead with up to three agents (CLAUDE.md "Parallel agents"), gated and
-merged by the supervisor. Decision Log rows are reserved per wave.
+Each milestone is one stacked set of PRs, built by the lead with up to three agents (CLAUDE.md "Parallel agents"),
+gated and merged by the supervisor. Decision Log rows are reserved per milestone. The lead stops after each
+milestone's stack and reports before the next starts.
 
-| Wave | Delivers | Depends on | Done when |
-|---|---|---|---|
-| **PA Prototype audit** (read-only, before FA-3) | The weekend prototype on the founder's Mac is audited and catalogued (component inventory with port, rebuild or discard verdicts mapped to these waves); measured performance, licences, secrets, accessibility, truth checks | — | `docs/family-app/prototype-audit/AUDIT.md` merged; FA-3 to FA-6 prompts name the components they port |
-| **FA-1 Foundation** | Family accounts, consent ledger, email-code sign-in, the family session and guard; the registry with entitlement classes (`03` §2); School Link (issue, redeem, read, unlink) with C230-D's logins migrated; the PWA shell and home; Control → Family overview and flags. Also C242's leftovers. | — | A parent signs up, consents and adds two children with no school; a school's code links one child; unlinking removes school data in the same request; Control shows counts and flags. |
-| **P-AI AI platform** (platform lead; can run beside FA-2) | Capability adapters and feature profiles (`03` §7); sealed credentials; routing with fallbacks; prompt versions with rollout; budgets and quotas; health; the minors and zero-retention check; Control → AI; Copilot and Parent AI moved onto it; `ai_usage` extended | FA-1 not required | A profile's provider can be switched in Control without code; a profile carrying children's words refuses a provider not marked for minors; over a cap, a clear message; Copilot works as before. |
-| **FA-2 School information** | C1 Today, C3 fees and receipts (11b), C4 calendar (11c), C5 reports, notices and events (11d), C9 home help, C10 Daily Pulse with in-app replies into the existing follow-up queue | FA-1 | docs/31's acceptance for 11b–11d for linked children only; a Pulse reply lands in the teacher's queue exactly as a WhatsApp reply does. |
-| **FA-3 Learning loop I** | Syllabus model: the catalog (CBSE 6–10), the school's syllabus through School Link, family upload of index pages with extraction and confirmation (`03` §9); entitlements (one free subject); the Concept Resolver for topic, search and text inputs with blocks: explanation, worked example, math, diagram, graph, timeline, check, practice, English moment, sources; the verification layer; the cache and promotion to reviewed; topic progress; Tonight's practice; Control's review queue | FA-1, P-AI | A child picks or uploads a syllabus and asks about a topic in their free subject; every block renders from data; numeric steps are recomputed; progress moves only on checked answers; another subject asks for Plus. |
-| **FA-4 Learning loop II** | Photo and screenshot input (vision, OCR fallback, PII and Aadhaar screen, 24-hour storage); geometry, number line, fraction model and outline-map blocks; vetted simulation embeds once licensed (L7); the misconception-to-mastery loop; the revision plan; the video finder (`03` §8); the weekly summary; data-saver mode and offline practice | FA-3 | A photo of a question returns a response or a clear refusal; a wrong answer brings a targeted explanation and a revisit; a video shows only when suitable, with the honest note; the data-saver mode loads text only. |
-| **FA-5 Pathways and the rest of school** | Opportunities and the readiness tracker (sources, weekly fetch, extraction, verification, reminders, archiving); the career pathway explorer v1 (vetted graph, core occupations); the Learning Vault with verification links; the exam-day kit and past-paper practice; PTM booking (11e), homework hand-in (11f), study material (11g) | FA-1, P-AI (FA-3 for past papers) | Only verified opportunities show, "likely eligible" with conditions, and stale ones are hidden; every career step shown has a source; docs/31's acceptance for 11e–11g. |
-| **FA-6 English and Plus** | The 90-day English programme v1 (core track, CEFR-aligned items, day 0/45/90 assessments, weekly checkpoints, mastery rule); Family Plus and subscriptions after the price and gateway decisions; school-sponsored Plus | FA-3, P-AI | Progress shows assessed results, not completed lessons; a subscription unlocks every subject; a sponsoring school's families get Plus without paying. |
-| **FA-7 Launch** | Launch audit (accessibility, performance, security, DPDP checklist); YouTube API compliance (L6); Google Play listing if decided | All above | `02` §15 met and gates L1–L7 closed. |
-| After launch, by evidence | English practice partner pilot (voice, `02` §6.3); domain English packs; board answer-writing feedback; exam transparency (answer-sheet rubrics and re-evaluation requests, an ERP P6 extension first; see below); admission dossier export; child-started study timer; the parent's voice question in Hindi ("what did my child learn this week?"); more boards, states and languages; recruitment notices; student device pairing | — | One wave at a time, each with its own gates. |
+| Milestone | Delivers (feature ids from `11`) | Was | Depends on | Done when |
+|---|---|---|---|---|
+| **PA Prototype audit** | Done: `prototype-audit/AUDIT.md` (#197). Its §2–§4 failures become checks in the milestone gates; no prototype code or data is used (`11`) | PA | — | Merged |
+| **M1 The signature slice** | Family accounts with email-code sign-in, the family session and guard, the consent ledger (`study_core`); add a child in under 60 seconds (first name, class 6–10, CBSE, language, explanation style, state); child switcher (R10); settings and privacy (P2); the shell with the five tabs, each shown only when its first module is live; the registry with entitlement classes and one free subject per child. The AI platform, thin: the text adapter, sealed credentials, the `family.resolver` profile, the minors check, the pre-processor, caps and Control → AI. The content library, thin: the catalog schema, CSV import, two-person review and publish, staff preview, with CBSE 2026-27 Maths and Science for classes 6–10 drafted from the official curriculum and approved by a reviewer. Understand for chapter, topic and typed questions (L1 text, L2 diagram, E1), checks with a hint first and practice (L4 core), progress only on checked answers, and the parent's calm card. Control → Apps v1 and Control → Family counts (`10` §9) | FA-1 thin, P-AI thin, FA-3 thin | — | The founder, on his own phone, in Hindi: signs up, adds a child, picks a Science topic, gets a streamed response, answers a check wrongly, gets a different explanation, and sees the progress the next day; Control switches the module off and on, and switches the AI provider, without code; every §3 gate passes, and the quality evaluation (§3) records its pass rate in English, Hindi and Hinglish |
+| **M2 The daily habit** | Photo and screenshot input and the homework helper (L1 photo, L3); interactive diagrams and simulations (L2); the full mastery loop (L4); the adaptive plan (L5); worksheets (L7); the video finder (L8); offline and data-saver packs (L9); voice input with `voice_practice` consent; the learning-first routine (R6 step 1); the family reward jar (R7); the weekly summary and talk question (R9). Platform: catalog import from PDF, topic-pack review queues, Control → Apps health, usage and alerts; Copilot and Parent AI moved onto the AI platform | FA-4, rest of P-AI | M1 | A photo of a question returns hints or a clear refusal; a wrong answer brings a targeted explanation and a revisit; a video shows only when suitable, with the honest note; the data-saver loads text only; Copilot works as before |
+| **M3 The school connected** | School Link (S1) with C230-D's logins migrated; school information (S2); Tonight's practice (L10); PTM → 14-day plan with teacher follow-up (R5); the Daily Pulse in the app (R9). Schools adopt catalog versions in Setup, and the Teacher app's syllabus map points at catalog topics (`10` §4.3) | FA-1 (Link), FA-2, part of FA-5 | M1 | A school's code links one child; unlinking removes school data in the same request; docs/31's acceptance for 11b–11g for linked children only; a Pulse reply lands in the teacher's queue exactly as a WhatsApp reply does; a school's adopted map and a standalone family reach the same topic pack |
+| **M4 The future** | Exam runway (F1), scholarships and readiness (F2), career compass (F3), pathways (F4), Board 30-day plan (L6), exam-day kit and past papers (L11) | FA-5 | M1, M2 (the plan engine) | Only verified items show, "likely eligible" with conditions, and stale ones hide; every career step has a source; every mock item is reviewed and answer-checked; the counsellor's pilot review is recorded |
+| **M5 The lifetime record** | Vault (R1), health record (R2), admission dossier (R3) | Vault from FA-5 | M1 | "Verified by school" only with a `/verify` link; health data never reaches AI or a school; a dossier link expires and can be revoked |
+| **M6 English** | The 90-day programme (E2); the duet (E3) after its accuracy gate | FA-6 (English) | M1, M2 (voice) | Progress shows assessed results, not completed lessons; no speech score is shown before the Indian-accent measurement |
+| **M7 Plus and launch** | Family Plus and packs (P1) after the price and gateway decisions; school-sponsored Plus; Control → Integrations for every service; the launch audit (accessibility, performance, security, DPDP); video API compliance; the store listing if decided | FA-6 (Plus), FA-7 | All above | `02` §15 met and gates L1–L7 closed |
+| After launch, by evidence | E4 practice partner pilot, E5, L12, S3, R4, the R7 sponsor pool, R8 exchange pilot, the child-started study timer, the parent's voice question in Hindi, more boards, states and languages, recruitment notices | — | — | One at a time, each with its own gates |
 
 **Exam transparency:**
 - It needs the school side first: optional scanned scripts per exam, rubric display, and a re-evaluation request flow
@@ -29,9 +30,9 @@ merged by the supervisor. Decision Log rows are reserved per wave.
 - It covers school-internal exams only; board re-evaluation is the board's own process, which we link to.
 - It starts only when a pilot school wants it.
 
-## 2. The loop for every wave
+## 2. The loop for every milestone
 
-1. **Supervisor** writes the wave prompt from `08` (template W): scope, files, acceptance, models, gates. The
+1. **Supervisor** writes the milestone prompt from `08` (template W): scope, files, acceptance, models, gates. The
    founder pastes it into the build session.
 2. **Lead** reserves Decision Log rows, writes the shared parts first (migrations, registry, contracts), then briefs
    agents with template S, at most three at a time, never two on the same table, route or shared component.
@@ -48,7 +49,7 @@ merged by the supervisor. Decision Log rows are reserved per wave.
    - checks production health and runtime errors.
 6. **Founder** tests what the report asks him to, and closes the gates only he can.
 
-## 3. Gates inside a wave
+## 3. Gates inside a milestone
 
 | Gate | Pass condition |
 |---|---|
@@ -57,8 +58,9 @@ merged by the supervisor. Decision Log rows are reserved per wave.
 | Before a PR | `tsc`, the slice's tests, the checkers it touches (including `check_family_boundary.py`), pictures at 360/390/1440; for AI paths, the pre-processor, block-safety and minors tests |
 | Before merge | The full gate on the top, both databases equal, GitHub `verify` green, no model name or co-author line anywhere |
 | After merge | `/api/health` ok, no new runtime errors, the founder's test list in the report |
+| Before a milestone is done | Harness pictures of every family screen at 360, 390 and 1440 px, in English and Hindi, reduced motion on and off, compared with the mockups' intent; scripts that fail the run: axe (no serious or critical issue), no sideways scroll, Hindi completeness, nothing moves under reduced motion, Lighthouse mobile budgets (`09` §4); quality evaluations with recorded pass rates: AI responses on 40 topics per language on the reviewer rubric (correct, class level, hint first, apt example, natural Hindi, numbers check), every mock item reviewed and answer-checked, speech feedback measured on Indian-accented samples before any score shows, the career compass reviewed by a counsellor. Nothing is claimed beyond the measured rate |
 
-## 4. Content operations (from FA-3)
+## 4. Content operations (from M1; the library is in `10` §4)
 
 | Stream | Cadence | Work | Who |
 |---|---|---|---|
@@ -75,7 +77,7 @@ Coverage grows only as fast as reviewers can keep it true: a source or a pathway
 ## 5. Release and rollback
 
 - Every merge to `main` deploys; Vercel can roll back to the previous production deployment in one step.
-- Migrations only add; a destructive change ships in two steps (stop using, then drop in a later wave).
+- Migrations only add; a destructive change ships in two steps (stop using, then drop in a later milestone).
 - Each family module has its flag in Control: a module misbehaving in production is switched off there first, then
   fixed.
 

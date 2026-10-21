@@ -247,7 +247,7 @@ by WhatsApp.
 |---|---|
 | All school information (§9) for linked children | All subjects in the learning loop |
 | The learning loop for **one subject per child** | Custom syllabus set-up from uploaded index pages for more subjects |
-| English moments; opportunities and readiness; career exploration; the weekly summary; the Learning Vault | The 90-day English programme; higher doubt and photo limits; saved career plans with reminders; vault export |
+| English moments; opportunities and readiness; career exploration; the weekly summary; the Learning Vault | The 90-day English programme; higher doubt and photo limits (free: 3 photo questions a day, a Control setting); saved career plans with reminders; vault export |
 
 ## 11. Learning Vault
 
@@ -262,8 +262,8 @@ by WhatsApp.
 
 | Source | How it arrives | Who sees it |
 |---|---|---|
-| The school's syllabus (connected) | Kept by the school in its syllabus map (P2); a school-side import from index pages, once per class, subject and year, is an ERP Setup slice, not a family-app one | The school's linked children, read through School Link |
-| The catalog (any family) | Chapters and topics from the boards' official curriculum documents, starting with CBSE classes 6–10 | Every family |
+| The school's syllabus (connected) | Kept by the school in its syllabus map (P2), **adopted from the central library** in Setup (C230-L, `10` §4.3), with the school's own order and extra topics; a school-side import from index pages remains for books the library lacks | The school's teachers in the Teacher app, and its linked children through School Link |
+| The catalog (any family) | The central library, uploaded and reviewed in Control → Content (`10` §4): chapters and topics from the boards' official curriculum documents, starting with CBSE classes 6–10 | Every family, and every school that adopts it |
 | A family's own (standalone) | The parent photographs the contents or syllabus pages (up to 5 images or a 10-page PDF; not the whole book); extraction proposes units, chapters and topics; unclear lines are asked, never guessed; the parent confirms | That family only; matched to the catalog when it is the same book |
 
 Only structure is kept (titles of units, chapters and topics). Uploaded pages are deleted once the syllabus is
@@ -279,6 +279,7 @@ confirmed, or after 7 days at most.
 | AI-generated videos; 3D models as a default | Cost and accuracy; vetted 2D components and simulations do the job |
 | Model-written code or HTML in the app | Security: only our own components render |
 | Focus Hours with parental monitoring | A web app cannot control other apps, and monitoring a child is a DPDP risk. After launch: a child-started study timer that pauses our own notifications, with nothing reported unless the child logs it. |
+| An app that locks or limits other apps on the child's phone (the mockups' "Focus Routine" and learn-to-unlock step 2) | A device-control concept, out of scope by C230-J; also a DPDP behavioural-monitoring and app-store question. The learning-first routine with a hand-off to the phone's own parental tools is built instead (`11` R6) |
 | A positive class story feed | Teacher workload and media consent; revisit with pilot schools |
 | Selling or sharing family data; loans; sales calls; copying NCERT or DIKSHA text | Law and trust (`01`) |
 | "Guaranteed fluency", "guaranteed eligibility", "X% accuracy" | No unsupported claims |

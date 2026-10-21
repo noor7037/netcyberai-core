@@ -1,6 +1,6 @@
-# Family App programme (P7b, redefined by C230-H, revised by C230-I)
+# Family App programme (P7b, redefined by C230-H, revised by C230-I and C230-L)
 
-**Status:** plan. Nothing here is built yet beyond C230-D's first parent home. Build starts with wave FA-1 (`07`).
+**Status:** plan. Nothing here is built yet beyond C230-D's first parent home. Build starts with milestone M1 (`07`).
 - **C230-H** (2026-10-18) set the shape.
 - **C230-I** (2026-10-20) revised it after the founder's review:
   - the learning loop is dynamic, not a library;
@@ -8,6 +8,10 @@
   - one free subject per child;
   - a shared AI platform managed in Control;
   - a re-sequenced wave plan.
+- **C230-L** (2026-10-20) reconciled the master prompt v2, the founder's mockups and his 10 features:
+  - milestones M1–M7, learning loop first;
+  - a binding feature map (`11`);
+  - Control for every app and one content library (`10`).
 
 **One sentence:** one parent-and-student app that helps any child understand school, practise until they have truly
 understood, prepare for exams, improve their English and see where their subjects can lead, in the family's language,
@@ -24,6 +28,10 @@ and that adds the school's own information when the child's school uses NetCyber
 | `07_EXECUTION_WORKFLOW.md` | Waves FA-1, P-AI, FA-2 to FA-7 with dependencies; the loop; gates; content operations; release; incidents |
 | `08_PROMPT_FRAMEWORKS.md` | Build prompts any AI coding tool can follow; the app's product prompts per profile |
 | `09_EXPERIENCE_DESIGN.md` | Learning first with engagement as its servant; the visual identity; the 3D and motion policy; performance budgets; patterns from ten leading products; the banned list and the design review gate |
+| `10_CONTROL_AND_CONTENT.md` | What Control may change (never code); Control → Apps for the Teacher app, school web and Family app; credentials; the central content library that schools, linked and standalone families share |
+| `11_FEATURE_MAP.md` | Every planned feature (38) with its verdict, what is built, its milestone and its money class |
+| `mockups/` | The founder's four mockup boards: the reference for look and scope, never for facts |
+| `prototype-audit/` | The weekend prototype's audit: a list of failures to prevent, not a source |
 
 ## Decisions in brief
 
@@ -58,13 +66,19 @@ and that adds the school's own information when the child's school uses NetCyber
     - Copilot and Parent AI move onto it.
 12. **Supersedes:** docs/31's WhatsApp-code first step; C230-D's founder-made logins become family accounts; the
     library-first study core of C230-H.
+13. **Milestones M1–M7 (C230-L):** the learning loop first (M1, M2), then the school connected (M3), the future (M4),
+    the lifetime record (M5), English (M6), Plus and launch (M7).
+14. **Control runs every app (C230-L):** versions, flags with audiences, kill switches, banners, health and usage for
+    the Teacher app, school web and Family app; sealed credentials; never code, never a child's data.
+15. **One content library (C230-L):** syllabus and topic packs uploaded and reviewed once in Control; schools adopt
+    it, linked families read it through their school, standalone families read it directly.
 
 ## What needs the founder
 
 | # | Input | Blocks |
 |---|---|---|
 | 1 | Lawyer: privacy notice, consent method (Rule 10), transient processing of textbook photos, disclaimers on careers and opportunities, and whether the mastery loop is "behavioural monitoring" (`02` §14, L1–L2) | Public launch |
-| 2 | An AI provider whose current terms allow use by children, with zero retention where required; its key; monthly caps (L3). C235's recommendation must be re-checked against this. | Real responses beyond the stand-in |
+| 2 | An AI provider whose current terms allow use by children, with zero retention where required; its key; monthly caps (L3). The supervisor recommends the platform's existing Copilot provider (C230-L); the key is entered in Control → AI once M1 ships it | Real responses; M1's done gate |
 | 3 | Reviewers: subjects (promoted responses), opportunities, careers, English (L4) | Content going live; coverage grows only as fast as reviewers can keep it true |
 | 4 | The practice partner's default daily limit, and whether it sits in Plus or is an add-on, once its cost is measured (`05` §5) | The voice pilot |
 | 5 | Licences: PhET for commercial use; GeoGebra or Desmos only if wanted and licensed (L7) | Simulation blocks |

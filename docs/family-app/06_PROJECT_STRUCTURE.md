@@ -21,6 +21,8 @@ src/
     api/family/**                    new: one route per action; every route checks the family session
     (admin)/control/family/**        new: Control → Family (03 §12)
     (admin)/control/ai/**            new: Control → AI, platform-wide (03 §7)
+    (admin)/control/apps/**          new: Control → Apps, every app's versions, flags, banner, health (10 §2)
+    (admin)/control/content/**       new: Control → Content, the central library (10 §4)
     (school)/app/students/…          exists; gains "Family app code" on a guardian (School Link issue)
   lib/
     family/                          family business code (exists: home.ts)
