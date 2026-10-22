@@ -209,3 +209,19 @@ insert into family.revisits (account_id, child_id, topic_key, subject, step, set
   ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'cbse.c9.mathematics.u1.ch01.t01', 'mathematics', 1, (now() at time zone 'Asia/Kolkata')::date - 3, (now() at time zone 'Asia/Kolkata')::date),
   ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'cbse.c9.mathematics.u1.ch01.t01', 'mathematics', 2, (now() at time zone 'Asia/Kolkata')::date - 3, (now() at time zone 'Asia/Kolkata')::date + 7);
 -- m2-2 end
+
+-- m2-3 begin
+-- The habit pieces (M2-3, C277): the habit module on; Kabir finished his plan on four of the last seven days, mastered one
+-- topic, and has a reward jar two days short of full. Illustrative only.
+insert into control.app_flags (app, module, enabled, reason) values ('family', 'habit', true, 'harness')
+  on conflict (app, module) do update set enabled = true;
+insert into family.plan_days (account_id, child_id, day, items, minutes, completed_at)
+select 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', (now() at time zone 'Asia/Kolkata')::date - n,
+       '[{"kind":"next","topicKey":"cbse.c9.mathematics.u1.ch01.t02","subject":"mathematics"}]'::jsonb, 10, now()
+  from unnest(array[1, 2, 4, 5]) as n;
+insert into family.topic_progress (account_id, child_id, topic_key, subject, answered, correct, first_correct_on, last_correct_on, mastered_on)
+values ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'cbse.c9.mathematics.u1.ch01.t02', 'mathematics', 4, 4,
+        (now() at time zone 'Asia/Kolkata')::date - 9, (now() at time zone 'Asia/Kolkata')::date - 2, (now() at time zone 'Asia/Kolkata')::date - 2);
+insert into family.reward_jars (account_id, child_id, reward, target_days, started_on)
+values ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'A trip to the park', 6, (now() at time zone 'Asia/Kolkata')::date - 6);
+-- m2-3 end

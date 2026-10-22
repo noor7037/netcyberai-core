@@ -34,6 +34,9 @@ export const FAMILY_SCREENS = [
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
   // m2-2: today's plan first on the home (C276).
   ['full', 'family-home-plan', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-plan]' }],
+  // m2-3: the week, the badges and the reward jar on the home; the parent's habit section (C277).
+  ['full', 'family-home-habit', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-jar]' }],
+  ['full', 'family-parent-habit', '/family/parent', { parent: true, settle: '[data-habit-child]' }],
   // The English course (C274): the course map, and a lesson's first card.
   ['english', 'family-english', '/family/english', { settle: 'ol[aria-label] li' }],
   ['english', 'family-english-lesson', '/family/english/lesson/b.u01.l1', { settle: '[role=progressbar]' }],
