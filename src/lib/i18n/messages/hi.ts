@@ -6482,8 +6482,8 @@ export const hi: Record<keyof typeof en, string> = {
   // m2-5 begin
   // The video finder and the honest player (M2-5, C279).
   'fam.video.title': 'इस विषय पर एक वीडियो',
-  'fam.video.note': 'यह वीडियो YouTube से है। YouTube इसमें विज्ञापन दिखा सकता है और दूसरे वीडियो सुझा सकता है। वीडियो खोलने के लिए तस्वीर पर टैप करें।',
-  'fam.video.play': 'वीडियो खोलें: {title}',
+  'fam.video.note': 'यह वीडियो YouTube से है। इसमें विज्ञापन और दूसरे वीडियो के सुझाव दिख सकते हैं। जब तक आप चलाएँ पर टैप नहीं करते, इसका कुछ भी लोड नहीं होता।',
+  'fam.video.play': 'वीडियो चलाएँ:',
   'fam.video.length': 'लंबाई {length}',
   'fam.video.by': 'चैनल:',
   'fam.video.frame': 'YouTube वीडियो: {title}',
@@ -6520,6 +6520,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.video.remove': 'हटाएँ',
   'control.video.err.not_found': 'यह अब वहाँ नहीं है। सूची फिर से पढ़ ली गई है।',
   'control.video.err.bad_request': 'चैनल ID, नाम और सूची जाँचें, फिर दोबारा कोशिश करें।',
+  'control.video.err.blocked_channel': 'यह चैनल रोका गया है। इसका वीडियो पिन करने से पहले इसे रोकी गई सूची से हटाएँ।',
   'control.video.err.other': 'यह नहीं हो पाया। दोबारा कोशिश करें।',
   'control.video.ai.provider': 'वीडियो खोजक YouTube में खोजने के लिए इसका इस्तेमाल करता है। यह टेक्स्ट मॉडल नहीं है और इसे कभी किसी बच्चे के शब्द नहीं मिलते, इसलिए इसे बच्चों के लिए मंज़ूरी की ज़रूरत नहीं है और यह किसी प्रोफ़ाइल का विकल्प नहीं है।',
   'control.video.ai.test': 'कुंजी जाँचें',

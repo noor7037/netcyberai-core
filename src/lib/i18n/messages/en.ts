@@ -6494,8 +6494,8 @@ export const en = {
   // m2-5 begin
   // The video finder and the honest player (M2-5, C279).
   'fam.video.title': 'A video on this topic',
-  'fam.video.note': 'This video comes from YouTube. YouTube may show ads and suggest other videos. Tap the picture to load it.',
-  'fam.video.play': 'Load the video: {title}',
+  'fam.video.note': 'This video comes from YouTube. YouTube may show ads and suggest other videos. Nothing from YouTube loads until you tap play.',
+  'fam.video.play': 'Play the video:',
   'fam.video.length': '{length} long',
   'fam.video.by': 'Channel:',
   'fam.video.frame': 'YouTube video: {title}',
@@ -6532,6 +6532,7 @@ export const en = {
   'control.video.remove': 'Remove',
   'control.video.err.not_found': 'That is no longer there. The list has been read again.',
   'control.video.err.bad_request': 'Check the channel ID, the name and the list, then try again.',
+  'control.video.err.blocked_channel': 'That channel is blocked. Remove it from the blocked list before pinning its video.',
   'control.video.err.other': 'That did not work. Try again.',
   'control.video.ai.provider': 'Used by the video finder to search YouTube. It is not a text model and never receives a child’s words, so it needs no clearance for children and is not a choice for a profile.',
   'control.video.ai.test': 'Test the key',

@@ -243,8 +243,8 @@ export type FoundVideos = { ok: true; candidates: VideoCandidate[] } | { ok: fal
 export type PreparedVideos = { ok: true; searches: number; find: () => Promise<FoundVideos> } | { ok: false; reason: 'no_key' | 'quota' };
 
 const VIDEO_PROVIDER = 'youtube';
-// At most this many channel searches (official, then approved) before the wider catalogue, each one a search from the
-// day's quota (family.video_searches_per_day).
+// At most this many channel searches (official, then approved; the caller turns the lists by topic) beside the wider
+// catalogue, each one a search from the day's quota (family.video_searches_per_day): a refresh takes 1 to 3.
 const CHANNEL_SEARCHES = 2;
 
 // The channels Control listed (official, approved, blocked). Control's own table: families have no read of it, so it is
@@ -287,21 +287,13 @@ export async function prepareVideoSearch(db: Sql, a: { day: string; perDay: numb
     find: async (): Promise<FoundVideos> => {
       if (used) return { ok: false };
       used = true;
-      let ids: string[] = [];
-      let answered = false;
-      for (const channelId of channelIds) {
-        const r = await searchVideoIds(apiKey, { query, language, channelId, maxResults: 5 });
-        if (r.ok) {
-          answered = true;
-          ids = ids.concat(r.value);
-        }
-      }
-      const wide = await searchVideoIds(apiKey, { query, language, maxResults: 10 });
-      if (wide.ok) {
-        answered = true;
-        ids = ids.concat(wide.value);
-      }
-      if (!answered) return { ok: false };
+      // The channel searches and the wider one at once (one round trip); the channels' results come first.
+      const results = await Promise.all([
+        ...channelIds.map((channelId) => searchVideoIds(apiKey, { query, language, channelId, maxResults: 5 })),
+        searchVideoIds(apiKey, { query, language, maxResults: 10 }),
+      ]);
+      if (!results.some((r) => r.ok)) return { ok: false };
+      const ids = results.flatMap((r) => (r.ok ? r.value : []));
       const details = await videoDetails(apiKey, Array.from(new Set(ids)));
       return details.ok ? { ok: true, candidates: details.value } : { ok: false };
     },

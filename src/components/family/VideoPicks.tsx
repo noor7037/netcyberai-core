@@ -5,7 +5,8 @@ import { fill, type Words } from '@/lib/family/fill';
 import type { VideoPick } from '@/lib/family/videos';
 
 // The honest player (docs/family-app/02 §5; M2-5, C279), under a topic's response when the video finder has picks.
-// A card first (thumbnail, title, channel, length); nothing from the video is loaded until the child taps; then
+// A card first (title, channel, length); nothing from YouTube is loaded until the child taps — not even its thumbnail
+// picture, which would tell Google the child's address before any tap (so the card is drawn here, C279); then
 // YouTube's privacy-enhanced embed, no autoplay, starting at the chapter that matches the topic. The note says plainly
 // that the video comes from YouTube, which may show ads and suggestions: we do not hide them (the provider's terms).
 // No picks, an error, or videos switched off: nothing is drawn, and the response stands on its own.
@@ -71,11 +72,11 @@ export function VideoPicks({ w, topicKey }: { w: Words; topicKey: string }) {
                 type="button"
                 data-video-play
                 onClick={() => setPlaying(v.videoId)}
-                aria-label={fill(w['fam.video.play'], { title: v.title })}
                 className="group relative block aspect-video w-full overflow-hidden rounded-2xl bg-slate focus:outline-none focus-visible:ring-4 focus-visible:ring-royal-deep/60"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element -- the provider's own thumbnail, at its fixed address */}
-                <img src={`https://i.ytimg.com/vi/${v.videoId}/hqdefault.jpg`} alt="" loading="lazy" className="h-full w-full object-cover" />
+                <span className="sr-only">
+                  {w['fam.video.play']} <span lang={script(v.title)}>{v.title}</span>
+                </span>
                 <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
                   <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl text-royal-deep shadow-md">▶</span>
                 </span>

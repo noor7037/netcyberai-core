@@ -39,5 +39,5 @@ export async function POST(req: NextRequest) {
   if ('refused' in run) return run.refused;
   const r = run.value;
   if (r.ok) return NextResponse.json(r, { headers: NO_STORE });
-  return NextResponse.json({ error: 'not done', code: r.reason }, { status: r.reason === 'not_found' ? 404 : 400, headers: NO_STORE });
+  return NextResponse.json({ error: 'not done', code: r.reason }, { status: r.reason === 'not_found' ? 404 : r.reason === 'blocked_channel' ? 409 : 400, headers: NO_STORE });
 }

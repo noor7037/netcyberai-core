@@ -16,7 +16,13 @@ import type { MessageKey } from '@/lib/i18n';
 
 const SECTION = 'flex flex-col gap-3 rounded-md border border-slate/10 bg-white p-4';
 const KINDS: VideoChannelKind[] = ['official', 'approved', 'blocked'];
-const length = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+const length = (s: number) => {
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = String(s % 60).padStart(2, '0');
+  return h ? `${h}:${String(m).padStart(2, '0')}:${sec}` : `${m}:${sec}`;
+};
+const ERRORS = ['not_found', 'bad_request', 'blocked_channel'];
 const statusVariant = (s: ControlVideoPick['status']) => (s === 'pinned' ? 'success' : s === 'rejected' ? 'danger' : 'neutral');
 
 export function VideoPicksView({ initial }: { initial: VideoReview }) {
@@ -38,10 +44,10 @@ export function VideoPicksView({ initial }: { initial: VideoReview }) {
     setNote(null);
     const res = await fetch('/api/control/content/videos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => null);
     const got = res ? await res.json().catch(() => null) : null;
-    if (res?.ok) {
-      setNote({ ok: true, text: t(done) });
-      await load(topic);
-    } else setNote({ ok: false, text: t(got?.code === 'not_found' ? 'control.video.err.not_found' : got?.code === 'bad_request' ? 'control.video.err.bad_request' : 'control.video.err.other') });
+    // The list is read again either way, so what is shown is what the database holds.
+    await load(topic);
+    if (res?.ok) setNote({ ok: true, text: t(done) });
+    else setNote({ ok: false, text: t(ERRORS.includes(got?.code) ? (`control.video.err.${got.code}` as MessageKey) : 'control.video.err.other') });
     setBusy(false);
   }
 

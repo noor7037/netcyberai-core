@@ -26,7 +26,7 @@ export type ControlVideoPick = {
 };
 export type ControlVideoChannel = { channelId: string; title: string; kind: VideoChannelKind; addedAt: string };
 export type VideoReview = { picks: ControlVideoPick[]; channels: ControlVideoChannel[]; searchesToday: number };
-export type VideoChange = { ok: true } | { ok: false; reason: 'not_found' | 'bad_request' };
+export type VideoChange = { ok: true } | { ok: false; reason: 'not_found' | 'bad_request' | 'blocked_channel' };
 
 export const TOPIC_KEY = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 export const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/;
@@ -34,14 +34,14 @@ export const CHANNEL_ID = /^[A-Za-z0-9_-]{2,40}$/;
 export const KINDS: readonly VideoChannelKind[] = ['official', 'approved', 'blocked'];
 const iso = (v: unknown) => (v instanceof Date ? v.toISOString() : String(v));
 
-// The picks (filtered by a topic key or the start of one), newest topics first, and the channel lists.
+// The picks (filtered by a topic key or the start of one), the topics fetched most recently first, and the channel lists.
 export async function listVideoReview(db: Sql, a: { topic?: string; today: string }): Promise<VideoReview> {
   const filter = a.topic && /^[a-z0-9._-]{1,120}$/.test(a.topic) ? a.topic : null;
   const picks = await db.query(
     `select topic_key, language, video_id, channel_id, channel_title, title, duration_s, start_s, captions, score, status, fetched_at
        from content.video_picks
       where ($1::text is null or topic_key like replace(replace($1, '_', '\\_'), '%', '\\%') || '%')
-      order by topic_key, language, (status = 'pinned') desc, (status = 'rejected'), score desc, video_id
+      order by max(fetched_at) over (partition by topic_key, language) desc, topic_key, language, (status = 'pinned') desc, (status = 'rejected'), score desc, video_id
       limit 300`,
     [filter]
   );
@@ -71,9 +71,13 @@ export async function listVideoReview(db: Sql, a: { topic?: string; today: strin
 export async function reviewVideoPick(db: Sql, actor: ContentActor, p: { topicKey: string; language: string; videoId: string; status: 'pinned' | 'rejected' }): Promise<VideoChange> {
   if (!TOPIC_KEY.test(p.topicKey) || (p.language !== 'en' && p.language !== 'hi') || !VIDEO_ID.test(p.videoId)) return { ok: false, reason: 'bad_request' };
   const before = (
-    await db.query(`select status from content.video_picks where topic_key = $1 and language = $2 and video_id = $3 for update`, [p.topicKey, p.language, p.videoId])
-  ).rows[0] as { status: string } | undefined;
+    await db.query(`select status, channel_id from content.video_picks where topic_key = $1 and language = $2 and video_id = $3 for update`, [p.topicKey, p.language, p.videoId])
+  ).rows[0] as { status: string; channel_id: string } | undefined;
   if (!before) return { ok: false, reason: 'not_found' };
+  // A blocked channel is never shown: unblock it first.
+  if (p.status === 'pinned' && (await db.query(`select 1 from content.video_channels where channel_id = $1 and kind = 'blocked'`, [before.channel_id])).rows.length) {
+    return { ok: false, reason: 'blocked_channel' };
+  }
   await db.query(`update content.video_picks set status = $4, reviewed_by = $5, reviewed_at = now() where topic_key = $1 and language = $2 and video_id = $3`, [
     p.topicKey,
     p.language,

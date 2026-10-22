@@ -199,7 +199,9 @@ export async function setCredential(db: Sql, by: By, providerId: string, apiKey:
 // "Test key" for a content provider (M2-5): the key is opened in the first transaction, the provider is asked with no
 // database connection held, and the outcome (true or false and a code, never the key) is written in a second one.
 // Text providers are tested by running their profile; only the video finder's provider has a test call here.
-export type KeyTest = { ok: true; run: () => Promise<{ ok: boolean; code: string }> } | { ok: false; code: ChangeError };
+// `of` names the sealed row that was tested, so a key saved again during the call does not take this key's outcome.
+export type KeyTestOutcome = { ok: boolean; code: string; of: string };
+export type KeyTest = { ok: true; run: () => Promise<KeyTestOutcome> } | { ok: false; code: ChangeError };
 
 export async function prepareKeyTest(db: Sql, providerId: string): Promise<KeyTest> {
   if (keyedProviderFor(providerId)?.capability !== 'video') return { ok: false, code: 'not_testable' };
@@ -217,13 +219,18 @@ export async function prepareKeyTest(db: Sql, providerId: string): Promise<KeyTe
     ok: true,
     run: async () => {
       const r = await testYoutubeKey(apiKey);
-      return r.ok ? { ok: true, code: 'ok' } : { ok: false, code: r.status ? `${r.failure}_${r.status}` : r.failure };
+      return r.ok ? { ok: true, code: 'ok', of: row.ciphertext } : { ok: false, code: r.status ? `${r.failure}_${r.status}` : r.failure, of: row.ciphertext };
     },
   };
 }
 
-export async function recordKeyTest(db: Sql, providerId: string, outcome: { ok: boolean; code: string }): Promise<void> {
-  await db.query(`update control.ai_credentials set tested_at = now(), test_ok = $2, test_message = $3 where provider_id = $1`, [providerId, outcome.ok, outcome.code.slice(0, 40)]);
+export async function recordKeyTest(db: Sql, providerId: string, outcome: KeyTestOutcome): Promise<void> {
+  await db.query(`update control.ai_credentials set tested_at = now(), test_ok = $2, test_message = $3 where provider_id = $1 and ciphertext = $4`, [
+    providerId,
+    outcome.ok,
+    outcome.code.slice(0, 40),
+    outcome.of,
+  ]);
 }
 
 type Clearance = { providerId: string; cleared: boolean; termsUrl: string | null; clearedAt: string | null; clearedBy: string | null };

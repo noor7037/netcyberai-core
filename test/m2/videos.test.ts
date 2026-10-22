@@ -29,7 +29,7 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { signAccessToken } from '@/lib/auth/jwt';
 import { ACCESS_COOKIE } from '@/lib/auth/cookies';
 import { parseChapters, parseDuration, type VideoCandidate } from '@/lib/ai/adapters/youtube';
-import { rankVideos, videoQuery } from '@/lib/family/videos';
+import { forgetSearches, rankVideos, videoQuery } from '@/lib/family/videos';
 import { indiaDate } from '@/lib/time/india';
 
 const ACCOUNT = 'f7000000-0000-4000-8000-0000000000a1';
@@ -135,6 +135,7 @@ afterAll(async () => {
 beforeEach(() => {
   yt.seen = [];
   yt.fail = false;
+  forgetSearches();
 });
 
 const get = (topic: string, cookie = jar) => new NextRequest(`http://localhost/api/family/videos?topic=${topic}`, { headers: { cookie } });
@@ -258,28 +259,43 @@ describe('the family route', () => {
     expect(yt.seen).toHaveLength(0);
   });
 
-  it('refreshes stale picks and keeps a pinned one', async () => {
+  it('refreshes stale picks, keeping a pinned one first', async () => {
     expect((await R.control.POST(control({ action: 'pin', topicKey: TOPIC, language: 'en', videoId: 'nnnnnnnnnnn' }))).status).toBe(200);
     await q(`update content.video_picks set fetched_at = now() - interval '40 days' where topic_key = $1`, [TOPIC]);
-    // The pinned one is fresh for good: it is served alone and nothing is searched.
-    expect((await videos()).map((v) => v.videoId)).toEqual(['nnnnnnnnnnn']);
-    expect(yt.seen).toHaveLength(0);
-    // Without a pin, stale picks are searched again.
-    await q(`update content.video_picks set status = 'auto', reviewed_by = null, reviewed_at = null where topic_key = $1`, [TOPIC]);
     yt.wide = ['ooooooooooo', 'qqqqqqqqqqq'];
     yt.videos.push(item('qqqqqqqqqqq', OTHER, 'Rational numbers for class 9'));
+    // One pinned is fewer than three: the automatic ones are searched again, and the pinned one is still first.
     const got = await videos();
     expect(yt.seen.filter((s) => s.url.pathname.endsWith('/search'))).toHaveLength(2);
-    expect(got.map((v) => v.videoId)).toContain('qqqqqqqqqqq');
-    expect((await q(`select count(*)::int as n from content.video_picks where topic_key = $1 and fetched_at < now() - interval '1 day'`, [TOPIC]))[0].n).toBe(0);
+    expect(got.map((v) => v.videoId)).toEqual(['nnnnnnnnnnn', 'fffffffffff', 'ooooooooooo']);
+    expect((await q(`select count(*)::int as n from content.video_picks where topic_key = $1 and status = 'auto' and fetched_at < now() - interval '1 day'`, [TOPIC]))[0].n).toBe(0);
   });
 
-  it('a pinned pick stays through a refresh', async () => {
-    await q(`update content.video_picks set status = 'pinned', reviewed_by = $2, reviewed_at = now() where topic_key = $1 and video_id = 'ooooooooooo'`, [TOPIC, FOUNDER]);
-    await q(`update content.video_picks set fetched_at = now() - interval '40 days' where topic_key = $1 and status = 'auto'`, [TOPIC]);
+  it('with three pinned, nothing is searched, however old they are', async () => {
+    await q(`update content.video_picks set status = 'pinned', reviewed_by = $2, reviewed_at = now() where topic_key = $1 and video_id in ('fffffffffff', 'ooooooooooo')`, [TOPIC, FOUNDER]);
+    await q(`update content.video_picks set fetched_at = now() - interval '40 days' where topic_key = $1`, [TOPIC]);
+    expect((await videos()).map((v) => v.videoId).sort()).toEqual(['fffffffffff', 'nnnnnnnnnnn', 'ooooooooooo']);
+    expect(yt.seen).toHaveLength(0);
+    await q(`update content.video_picks set status = 'auto', reviewed_by = null, reviewed_at = null where topic_key = $1 and video_id <> 'ooooooooooo'`, [TOPIC]);
+  });
+
+  it('a pinned pick stays when the automatic ones are replaced or dropped', async () => {
     const { readPicks, savePicks } = await import('@/lib/family/videos');
-    await savePicks({ query: (s: string, p?: unknown[]) => h.db.pg.query(s, p) }, TOPIC, 'en', []);
-    expect((await readPicks({ query: (s: string, p?: unknown[]) => h.db.pg.query(s, p) }, TOPIC, 'en', 30)).map((v) => v.videoId)).toEqual(['ooooooooooo']);
+    const asIs = { query: (s: string, p?: unknown[]) => h.db.pg.query(s, p) };
+    await savePicks(asIs, TOPIC, 'en', []);
+    const read = await readPicks(asIs, TOPIC, 'en', 30);
+    expect(read.picks.map((v) => v.videoId)).toEqual(['ooooooooooo']);
+    expect(read.refreshDue).toBe(true);
+  });
+
+  it('without a key, stale automatic picks are dropped and the pinned still shown', async () => {
+    await q(`select content.save_video_picks($1, 'en', $2::jsonb)`, [TOPIC, JSON.stringify([{ video_id: 'sssssssssss', channel_id: OTHER, channel_title: 'Other Maths', title: 'Rational numbers old', duration_s: 300, start_s: 0, captions: true, score: 50 }])]);
+    await q(`update content.video_picks set fetched_at = now() - interval '40 days' where topic_key = $1 and status = 'auto'`, [TOPIC]);
+    const sealed = await q(`delete from control.ai_credentials where provider_id = 'youtube' returning *`);
+    expect((await videos()).map((v) => v.videoId)).toEqual(['ooooooooooo']);
+    expect(yt.seen).toHaveLength(0);
+    expect(await q(`select 1 from content.video_picks where topic_key = $1 and video_id = 'sssssssssss'`, [TOPIC])).toHaveLength(0);
+    await q(`insert into control.ai_credentials select * from jsonb_populate_record(null::control.ai_credentials, $1::jsonb)`, [JSON.stringify(sealed[0])]);
   });
 
   it('when the day’s searches are spent: no search, no video', async () => {
@@ -335,6 +351,8 @@ describe('Control → Content → Videos', () => {
     const channel = String((await q(`select channel_id from content.video_picks where topic_key = $1 and video_id = $2`, [TOPIC, shown[0]]))[0].channel_id);
     expect((await R.control.POST(control({ action: 'channel', channelId: channel, title: 'Made-up channel', kind: 'blocked' }))).status).toBe(200);
     expect((await videos()).map((v) => v.videoId)).not.toContain(shown[0]);
+    // A blocked channel's pick cannot be pinned back.
+    expect((await R.control.POST(control({ action: 'pin', topicKey: TOPIC, language: 'en', videoId: shown[0] }))).status).toBe(409);
     expect((await R.control.POST(control({ action: 'channel', channelId: 'not a channel!', title: 'x', kind: 'official' }))).status).toBe(400);
     expect((await R.control.POST(control({ action: 'remove_channel', channelId: channel }))).status).toBe(200);
     expect((await R.control.POST(control({ action: 'remove_channel', channelId: channel }))).status).toBe(404);
@@ -362,7 +380,10 @@ describe('Control → AI keeps the YouTube key', () => {
     const prepared = await R.ai.prepareKeyTest(h.db.pg as never, 'youtube');
     expect(prepared.ok).toBe(true);
     const outcome = await prepared.run();
-    expect(outcome).toEqual({ ok: true, code: 'ok' });
+    expect(outcome).toMatchObject({ ok: true, code: 'ok' });
+    // A key saved again during the call does not take this key's outcome.
+    await R.ai.recordKeyTest(h.db.pg as never, 'youtube', { ...outcome, ok: false, of: 'another sealed row' });
+    expect((await q(`select tested_at from control.ai_credentials where provider_id = 'youtube'`))[0].tested_at).toBeNull();
     expect(yt.seen.at(-1)?.url.searchParams.get('chart')).toBe('mostPopular');
     await R.ai.recordKeyTest(h.db.pg as never, 'youtube', outcome);
     expect((await q(`select test_ok, test_message from control.ai_credentials where provider_id = 'youtube'`))[0]).toEqual({ test_ok: true, test_message: 'ok' });

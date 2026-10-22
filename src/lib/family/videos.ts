@@ -60,8 +60,13 @@ export function videoQuery(line: Pick<Line, 'subject' | 'topicEn' | 'title'>, ch
   return [title, subject, cls, hi ? 'Hindi' : ''].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim().slice(0, 200);
 }
 
+// Official channels first, then approved; each list turned by the topic, so with more listed channels than a refresh
+// searches (CHANNEL_SEARCHES in the AI platform), different topics search different ones.
 export function videoPlan(line: Line, child: FamilyChild, channels: VideoChannel[]): VideoPlan {
-  const preferred = [...channels.filter((c) => c.kind === 'official'), ...channels.filter((c) => c.kind === 'approved')];
+  let h = 0;
+  for (const ch of line.key) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  const turn = <T,>(list: T[]) => (list.length ? [...list.slice(h % list.length), ...list.slice(0, h % list.length)] : list);
+  const preferred = [...turn(channels.filter((c) => c.kind === 'official')), ...turn(channels.filter((c) => c.kind === 'approved'))];
   return { query: videoQuery(line, child), language: child.language === 'hi' ? 'hi' : 'en', channelIds: preferred.map((c) => c.channelId) };
 }
 
@@ -102,37 +107,59 @@ export function rankVideos(candidates: VideoCandidate[], a: { topicTitles: strin
 }
 
 // The topic's picks a family may see (a rejected one is hidden by the table's own rule): pinned first, then by score.
-// `fresh` holds the pinned and those fetched within `days`; an older automatic pick waits for a refresh, unseen.
-export async function readPicks(db: Db, topicKey: string, language: VideoLanguage, days: number): Promise<VideoPick[]> {
+// Shown: the pinned and the automatic ones fetched within `days`. An older automatic pick is never shown; it is replaced
+// at the next refresh, or dropped when none can run. A refresh is due when no automatic pick is fresh and fewer than
+// three are pinned.
+export type CachedPicks = { picks: VideoPick[]; refreshDue: boolean; staleAuto: number };
+export async function readPicks(db: Db, topicKey: string, language: VideoLanguage, days: number): Promise<CachedPicks> {
   const { rows } = await db.query(
-    `select video_id, title, channel_title, duration_s, start_s
+    `select video_id, title, channel_title, duration_s, start_s, status, (fetched_at >= now() - make_interval(days => $3::int)) as fresh
        from content.video_picks
       where topic_key = $1 and language = $2 and status <> 'rejected'
-        and (status = 'pinned' or fetched_at >= now() - make_interval(days => $3::int))
-      order by (status = 'pinned') desc, score desc, video_id
-      limit ${KEEP}`,
+      order by (status = 'pinned') desc, score desc, video_id`,
     [topicKey, language, Math.max(0, Math.floor(days))]
   );
-  return rows.map((r) => ({ videoId: String(r.video_id), title: String(r.title), channelTitle: String(r.channel_title), durationS: Number(r.duration_s), startS: Number(r.start_s) }));
+  const shown = rows.filter((r) => r.status === 'pinned' || r.fresh === true);
+  const pinned = rows.filter((r) => r.status === 'pinned').length;
+  const freshAuto = rows.filter((r) => r.status === 'auto' && r.fresh === true).length;
+  return {
+    picks: shown.slice(0, KEEP).map((r) => ({ videoId: String(r.video_id), title: String(r.title), channelTitle: String(r.channel_title), durationS: Number(r.duration_s), startS: Number(r.start_s) })),
+    refreshDue: freshAuto === 0 && pinned < KEEP,
+    staleAuto: rows.filter((r) => r.status === 'auto' && r.fresh !== true).length,
+  };
 }
 
 export async function savePicks(db: Db, topicKey: string, language: VideoLanguage, picks: RankedPick[]): Promise<void> {
   await db.query(`select content.save_video_picks($1, $2, $3::jsonb)`, [topicKey, language, JSON.stringify(picks.slice(0, KEEP))]);
 }
 
-// A topic whose search found nothing suitable is not searched again for a while by this server process, so one empty
-// topic cannot spend the day's quota on every visit (best effort: the daily quota is the hard limit).
+// A topic whose search found nothing suitable is not searched again for a while by this server process, and after the
+// provider fails (a revoked key, its own quota spent) no topic is searched for a while, so neither can spend the day's
+// searches on every visit (best effort per process: the daily quota is the hard limit).
 const EMPTY_FOR_MS = 6 * 60 * 60 * 1000;
+const FAILED_FOR_MS = 30 * 60 * 1000;
 const recentlyEmpty = new Map<string, number>();
+let failedAt: number | null = null;
 export function searchedEmptyLately(topicKey: string, language: VideoLanguage, now = Date.now()): boolean {
+  if (failedAt !== null && now - failedAt < FAILED_FOR_MS) return true;
   const at = recentlyEmpty.get(`${topicKey}:${language}`);
   return at !== undefined && now - at < EMPTY_FOR_MS;
 }
-export function noteSearch(topicKey: string, language: VideoLanguage, found: number, now = Date.now()): void {
+export function noteSearch(topicKey: string, language: VideoLanguage, outcome: { failed: true } | { found: number }, now = Date.now()): void {
+  if ('failed' in outcome) {
+    failedAt = now;
+    return;
+  }
+  failedAt = null;
   const key = `${topicKey}:${language}`;
-  if (found > 0) recentlyEmpty.delete(key);
+  if (outcome.found > 0) recentlyEmpty.delete(key);
   else {
     if (recentlyEmpty.size > 5000) recentlyEmpty.clear();
     recentlyEmpty.set(key, now);
   }
+}
+// For tests: forget what this process noted.
+export function forgetSearches(): void {
+  recentlyEmpty.clear();
+  failedAt = null;
 }
