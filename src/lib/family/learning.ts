@@ -1,4 +1,5 @@
 import { recomputeTopic } from './account';
+import { noteRevisits } from './plan';
 import type { ItemSecret } from './items';
 import { SUBJECTS, canChangeFreeSubject, type Subject } from './modules';
 
@@ -40,19 +41,25 @@ export async function changeFreeSubject(db: Db, accountId: string, childId: stri
   return 'changed';
 }
 
-// A checked answer: kept as the child saw it (question and chosen option), then the topic's progress is recomputed.
-// A typed question's items count as answers but move no syllabus topic.
-export async function recordAnswer(db: Db, a: { accountId: string; childId: string; item: ItemSecret; choice: number; hintUsed: boolean; day: string }): Promise<boolean> {
+// A checked answer: kept as the child saw it (question and chosen option), then the topic's returns are noted (M2-2: a
+// wrong answer brings it back after 3 and 10 days) and its progress is recomputed. A typed question's items count as
+// answers but move no syllabus topic. `revisitOn` is the day a wrong answer's topic comes back.
+export async function recordAnswer(
+  db: Db,
+  a: { accountId: string; childId: string; item: ItemSecret; choice: number; hintUsed: boolean; day: string; itemKey?: string }
+): Promise<{ correct: boolean; revisitOn: string | null }> {
   const correct = a.choice === a.item.a;
-  if (!(SUBJECTS as readonly string[]).includes(a.item.s)) return correct;
+  if (!(SUBJECTS as readonly string[]).includes(a.item.s)) return { correct, revisitOn: null };
   const shown = `${a.item.q} → ${a.item.o[a.choice] ?? ''}`.slice(0, 500);
   await db.query(
     `insert into family.attempts (account_id, child_id, subject, topic_key, item_key, kind, answer, correct, hint_used, answered_on)
      values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
-    [a.accountId, a.childId, a.item.s, a.item.k, `${a.item.k}#${a.item.i}`.slice(0, 120), a.item.kind, shown, correct, a.hintUsed, a.day]
+    [a.accountId, a.childId, a.item.s, a.item.k, (a.itemKey ?? `${a.item.k}#${a.item.i}`).slice(0, 120), a.item.kind, shown, correct, a.hintUsed, a.day]
   );
-  if (!a.item.k.endsWith('.question')) await recomputeTopic(db, a.accountId, a.childId, a.item.k);
-  return correct;
+  if (a.item.k.endsWith('.question')) return { correct, revisitOn: null };
+  const revisitOn = await noteRevisits(db, { accountId: a.accountId, childId: a.childId, topicKey: a.item.k, subject: a.item.s, day: a.day, correct });
+  await recomputeTopic(db, a.accountId, a.childId, a.item.k);
+  return { correct, revisitOn };
 }
 
 export type TopicProgress = { topicKey: string; subject: Subject; title: string; answered: number; correct: number; mastered: boolean; lastCorrectOn: string | null };

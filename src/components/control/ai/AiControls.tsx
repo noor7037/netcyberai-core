@@ -18,6 +18,8 @@ type Data = AiOverview & { providerChoices: string[] };
 type Draft = { providerId: string; model: string; promptVersion: string; enabled: boolean; fallbackProvider: string; fallbackModel: string };
 
 const ERRORS = ['no_encryption_key', 'provider', 'key_format', 'terms_url', 'in_use', 'profile', 'model', 'prompt_version', 'incomplete', 'not_cleared_for_minors', 'cap', 'not_found', 'cannot_restore_key', 'request', 'aal2'];
+// M2-5: a content provider's key test (their words are under control.video.ai.err.*).
+const TEST_ERRORS = ['no_key', 'not_testable'];
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 const CARD = 'flex flex-col gap-3 rounded-xl border border-slate/10 bg-white p-4';
@@ -68,6 +70,21 @@ export function AiControls({ initial }: { initial: Data }) {
     setNote({ ok: true, text: t(done) });
   };
 
+  // A content provider's key test (M2-5): the answer says whether the provider took the key, never the key.
+  const test = async (providerId: string) => {
+    setBusy(true);
+    setNote(null);
+    const res = await stepUpFetch('/api/control/ai', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'test', providerId }) }).catch(() => null);
+    const got = res ? await res.json().catch(() => null) : null;
+    await read();
+    setBusy(false);
+    if (!res?.ok) {
+      const code = got?.code;
+      return setNote({ ok: false, text: TEST_ERRORS.includes(code) ? t(`control.video.ai.err.${code}` as MessageKey) : ERRORS.includes(code) ? t(`control.ai.err.${code}` as MessageKey) : t('control.ai.err.other') });
+    }
+    setNote(got?.works ? { ok: true, text: t('control.video.ai.works') } : { ok: false, text: t('control.video.ai.fails', { code: String(got?.code ?? '') }) });
+  };
+
   const name = (n: string | null) => n ?? t('control.ai.someone');
   const usageLine = (c: Counts) => t('control.ai.usage.line', { requests: c.requests, failures: c.failures, capRefusals: c.capRefusals, tokensIn: c.tokensIn, tokensOut: c.tokensOut });
 
@@ -89,8 +106,9 @@ export function AiControls({ initial }: { initial: Data }) {
             <li key={p.providerId} data-ai-provider={p.providerId} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
               <p className="font-bold">{p.providerId}</p>
               {!p.hasAdapter && <p>{t('control.ai.provider.noAdapter')}</p>}
-              {p.hasAdapter && !p.minorsEligible && <p>{t('control.ai.provider.notEligible')}</p>}
-              {p.clearedForMinors ? (
+              {p.capability === 'video' && <p data-ai-video-provider>{t('control.video.ai.provider')}</p>}
+              {p.capability !== 'video' && p.hasAdapter && !p.minorsEligible && <p>{t('control.ai.provider.notEligible')}</p>}
+              {p.capability === 'video' ? null : p.clearedForMinors ? (
                 <>
                   <p>{t('control.ai.provider.cleared', { date: day(p.clearedAt), name: name(p.clearedByName) })}</p>
                   {p.termsUrl && <p className="break-all text-slate/70">{t('control.ai.provider.terms', { url: p.termsUrl })}</p>}
@@ -135,6 +153,16 @@ export function AiControls({ initial }: { initial: Data }) {
                       {t('control.ai.key.save')}
                     </button>
                   </div>
+                  {p.capability === 'video' && p.credential && (
+                    <div className="flex flex-wrap items-center gap-2">
+                      <button type="button" data-ai-key-test disabled={busy} className={TAP} onClick={() => void test(p.providerId)}>
+                        {t('control.video.ai.test')}
+                      </button>
+                      {p.credential.testedAt && (
+                        <span data-ai-key-tested>{t(p.credential.testOk ? 'control.video.ai.testedOk' : 'control.video.ai.testedFailed', { date: day(p.credential.testedAt) })}</span>
+                      )}
+                    </div>
+                  )}
                 </>
               )}
             </li>

@@ -9,11 +9,17 @@ import type { Lang } from '@/lib/i18n';
 import { classText, fill, type Words } from '@/lib/family/fill';
 import { ChildForm, type ChildFormValue } from './ChildForm';
 import { errorWords, familyApi } from './client';
+import { HabitParent } from './HabitParent';
 import { LanguageSwitch } from './LanguageSwitch';
+import { clearOffline } from './offline/store';
+import { FamIcon } from './FamIcon';
+import type { ParentHabit } from '@/lib/family/habit';
 
 // The parent area (feature P2; docs/34 §9.1 rule 1; M1-2, C248), open only in parent mode: the children, what the
 // parent agreed to, each child's answers (see and delete), the language, signing out, and deleting the account.
 // Every change is the parent's own tap; nothing here uses a browser dialog.
+// F2 on D1 (C230-Q): every section is a D1 card; each consent says its state as a word in a badge (with a drawn tick
+// when given), and every tappable thing presses (fam-press).
 
 // `subjects`: the subjects of the child's class (C264), for choosing the free one.
 type Child = ChildFormValue & { childId: string; classLevel: number; freeSubject: Subject | null; subjects: Subject[] };
@@ -22,14 +28,36 @@ type Answer = { attemptId: string; subject: string; kind: string; answer: string
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="flex flex-col gap-3 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate/10 sm:p-5">
+    <section className="fam-card fam-rise flex flex-col gap-3 bg-white p-4 sm:p-5">
       <h2 className="text-lg font-extrabold text-slate">{title}</h2>
       {children}
     </section>
   );
 }
 
-const linkButton = 'min-h-[44px] px-2 text-sm font-semibold text-royal underline-offset-4 hover:underline';
+const linkButton = 'fam-press min-h-[44px] rounded-xl px-2 text-sm font-semibold text-royal underline-offset-4 hover:underline';
+
+// One purpose the parent agreed to (or not): its name, its state in words, and the tap that changes it.
+function ConsentRow({ w, consent, granted, onToggle, data }: { w: Words; consent: string; granted: boolean; onToggle: () => void; data?: Record<string, string | boolean> }) {
+  return (
+    <div {...data} className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-off-white p-3">
+      <div className="flex min-w-0 flex-col items-start gap-1">
+        <p className="text-base font-semibold text-slate">{w[`fam.consent.purpose.${consent}`]}</p>
+        {granted ? (
+          <span className="flex items-center gap-1 rounded-full bg-emerald-text px-2.5 py-0.5 text-xs font-bold text-white">
+            <FamIcon name="check" className="h-3.5 w-3.5" />
+            {w['fam.parent.granted']}
+          </span>
+        ) : (
+          <span className="rounded-full bg-white px-2.5 py-0.5 text-xs font-bold text-slate ring-1 ring-slate/20">{w['fam.parent.notGranted']}</span>
+        )}
+      </div>
+      <button type="button" className={linkButton} onClick={onToggle}>
+        {granted ? w['fam.parent.withdraw'] : w['fam.parent.grant']}
+      </button>
+    </div>
+  );
+}
 
 function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code: string; name: string }[] }) {
   const router = useRouter();
@@ -73,7 +101,7 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
               if (!r.ok) return setError(r.error === 'too_soon' ? w['fam.parent.freeSubjectTooSoon'] : errorWords(w, r.error));
               router.refresh();
             }}
-            className={`min-h-[44px] rounded-full px-4 font-bold ${child.freeSubject === sub ? 'bg-royal text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
+            className={`fam-press min-h-[44px] rounded-full px-4 font-bold ${child.freeSubject === sub ? 'bg-royal text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
           >
             {w[`fam.subject.${sub}`]}
           </button>
@@ -164,7 +192,9 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
 }
 
 // `english`: the English course (C274) when Control has it switched on: whether the parent has given its consent.
-export function ParentArea({ w, lang, children, states, studyCore, calm, english = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null }) {
+// `photo`: the same for photo questions (M2-6, C280), when Control has the homework helper switched on.
+// `voice`: the same for voice (M2-7, C281), when Control has voice input switched on.
+export function ParentArea({ w, lang, children, states, studyCore, calm, english = null, photo = null, voice = null, habit = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean } | null; voice?: { granted: boolean } | null; habit?: ParentHabit[] | null }) {
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const [deleteWord, setDeleteWord] = useState('');
@@ -209,6 +239,12 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
         <p className="text-xs text-slate/80">{w['fam.calm.note']}</p>
       </Section>
 
+      {habit && habit.length > 0 && (
+        <Section title={w['fam.habit.parent.title']}>
+          <HabitParent w={w} habit={habit} names={Object.fromEntries(children.map((c) => [c.childId, c.firstName]))} />
+        </Section>
+      )}
+
       <Section title={w['fam.parent.children']}>
         <ul className="flex flex-col gap-2">
           {children.map((c) => (
@@ -234,25 +270,13 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
       </Section>
 
       <Section title={w['fam.parent.privacy']}>
-        <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-off-white p-3">
-          <div className="min-w-0">
-            <p className="text-base font-semibold text-slate">{w['fam.consent.purpose.study_core']}</p>
-            <p className="text-sm text-slate/70">{studyCore ? w['fam.parent.granted'] : w['fam.parent.notGranted']}</p>
-          </div>
-          <button type="button" className={linkButton} onClick={() => void post('/api/family/consent', { purpose: 'study_core', granted: !studyCore, tap: true }, null)}>
-            {studyCore ? w['fam.parent.withdraw'] : w['fam.parent.grant']}
-          </button>
-        </div>
-        {english && (
-          <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-off-white p-3">
-            <div className="min-w-0">
-              <p className="text-base font-semibold text-slate">{w['fam.consent.purpose.english_programme']}</p>
-              <p className="text-sm text-slate/70">{english.granted ? w['fam.parent.granted'] : w['fam.parent.notGranted']}</p>
-            </div>
-            <button type="button" className={linkButton} onClick={() => void post('/api/family/consent', { purpose: 'english_programme', granted: !english.granted, tap: true }, null)}>
-              {english.granted ? w['fam.parent.withdraw'] : w['fam.parent.grant']}
-            </button>
-          </div>
+        <ConsentRow w={w} consent="study_core" granted={studyCore} onToggle={() => void post('/api/family/consent', { purpose: 'study_core', granted: !studyCore, tap: true }, null)} />
+        {english && <ConsentRow w={w} consent="english_programme" granted={english.granted} onToggle={() => void post('/api/family/consent', { purpose: 'english_programme', granted: !english.granted, tap: true }, null)} />}
+        {photo && (
+          <ConsentRow w={w} consent="photo_input" granted={photo.granted} data={{ 'data-consent': 'photo_input' }} onToggle={() => void post('/api/family/consent', { purpose: 'photo_input', granted: !photo.granted, tap: true }, null)} />
+        )}
+        {voice && (
+          <ConsentRow w={w} consent="voice_practice" granted={voice.granted} data={{ 'data-consent-voice': true }} onToggle={() => void post('/api/family/consent', { purpose: 'voice_practice', granted: !voice.granted, tap: true }, null)} />
         )}
         <p className="text-sm text-slate/70">{w['fam.parent.withdrawNote']}</p>
       </Section>
@@ -262,11 +286,11 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
           <ul className="flex flex-col gap-2">
             {children.map((c) => (
               <li key={c.childId}>
-                <a href={`/family/parent/english/${c.childId}`} className="flex min-h-[44px] items-center justify-between rounded-2xl bg-off-white p-3 text-base font-semibold text-slate">
+                <a href={`/family/parent/english/${c.childId}`} className="fam-press flex min-h-[44px] items-center justify-between rounded-2xl bg-off-white p-3 text-base font-semibold text-slate">
                   <span>
                     {c.firstName} · {w['fam.english.parent.open']}
                   </span>
-                  <span aria-hidden="true">→</span>
+                  <FamIcon name="next" className="h-5 w-5 shrink-0" />
                 </a>
               </li>
             ))}
@@ -280,10 +304,11 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
 
       <Section title={w['fam.parent.signOutTitle']}>
         <div className="flex flex-col gap-2 sm:flex-row">
-          <Button variant="outline" onClick={() => void post('/api/family/auth/sign-out', {}, '/family/sign-in')}>
+          {/* M2-9: signing out also clears the chapters and answers kept on this phone. */}
+          <Button variant="outline" onClick={() => void clearOffline().then(() => post('/api/family/auth/sign-out', {}, '/family/sign-in'))}>
             {w['fam.parent.signOut']}
           </Button>
-          <Button variant="outline" onClick={() => void post('/api/family/auth/sign-out', { everywhere: true }, '/family/sign-in')}>
+          <Button variant="outline" onClick={() => void clearOffline().then(() => post('/api/family/auth/sign-out', { everywhere: true }, '/family/sign-in'))}>
             {w['fam.parent.signOutAll']}
           </Button>
         </div>

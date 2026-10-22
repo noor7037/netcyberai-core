@@ -46,5 +46,10 @@ export function scrubText(text: string, ctx: ScrubContext): string {
 }
 
 export function scrubRequest<T extends { system: string; messages: readonly ChatMessage[] }>(request: T, ctx: ScrubContext): { system: string; messages: ChatMessage[] } {
-  return { system: scrubText(request.system, ctx), messages: request.messages.map((m) => ({ role: m.role, content: scrubText(m.content, ctx) })) };
+  // A photo cannot be cleaned like text: the homework helper screens it before (src/lib/family/homework.ts) and the
+  // provider must be cleared for minors. It passes through unchanged.
+  return {
+    system: scrubText(request.system, ctx),
+    messages: request.messages.map((m) => (m.images?.length ? { role: m.role, content: scrubText(m.content, ctx), images: m.images } : { role: m.role, content: scrubText(m.content, ctx) })),
+  };
 }

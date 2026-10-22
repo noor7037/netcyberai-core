@@ -72,3 +72,34 @@ describe('what the service worker keeps', () => {
     expect(offline).toMatch(/NODE_ENV === 'production'[\s\S]{0,120}register\('\/sw\.js', \{ scope: '\/app' \}\)/);
   });
 });
+
+// The Family app (M2-9, C283): the same worker, registered with scope /family. Its pages are never kept; with no
+// network any of them is answered with the app's shell (/family/offline), which opens the chapters saved on the phone.
+describe('the Family app offline', () => {
+  const fam = sw as unknown as typeof sw & { staticFiles: (html: string) => string[]; FAMILY_OFFLINE_PAGE: string; FAMILY_SHELL: string };
+  it('a family page is fetched from the network; with none, the shell answers. Its data never passes through', () => {
+    for (const p of ['/family', '/family/study', '/family/understand?kind=topic&key=a.b.t01', '/family/offline']) expect(route(p), p).toBe('family-page');
+    for (const p of ['/api/family/pack?chapter=x', '/api/family/check']) {
+      expect(route(p, 'cors'), p).toBe('network');
+      expect(route(p, 'navigate'), p).toBe('network');
+    }
+    expect(route('/family/study', 'cors')).toBe('network');
+    expect(route('/familyx')).toBe('network');
+    expect(fam.FAMILY_SHELL).toBe('/family/offline');
+  });
+
+  it('the shell keeps the static files its page loads, and nothing else', () => {
+    const html = `<script src="/_next/static/chunks/a.js"></script><link href="/_next/static/css/b.css"> self.__next_f.push([1,"0:[\\"/_next/static/chunks/c.js\\"]"]) url(/_next/static/media/f.woff2) <a href="/family/study">`;
+    expect(fam.staticFiles(html).sort()).toEqual(['/_next/static/chunks/a.js', '/_next/static/chunks/c.js', '/_next/static/css/b.css', '/_next/static/media/f.woff2']);
+  });
+
+  it('the last-resort page says so in English and Hindi, and holds no script', () => {
+    expect(fam.FAMILY_OFFLINE_PAGE).toContain('No internet');
+    expect(fam.FAMILY_OFFLINE_PAGE).toContain('इंटरनेट नहीं है');
+    expect(fam.FAMILY_OFFLINE_PAGE).not.toMatch(/<script/i);
+    const src = readFileSync(path.join(__dirname, '../../public/sw.js'), 'utf8');
+    expect(src).toMatch(/type === 'family-clear'\) event\.waitUntil\(caches\.delete\(FAMILY_CACHE\)\)/);
+    // Only the shell is ever put in the family cache.
+    expect(src.match(/caches\.open\(FAMILY_CACHE\)\)\.put\(([^,]+),/)?.[1]).toBe('FAMILY_SHELL');
+  });
+});

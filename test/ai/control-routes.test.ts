@@ -88,8 +88,15 @@ describe('who is let in', () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.keyReady).toBe(true);
-    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'openai']);
-    expect(body.profiles).toEqual([expect.objectContaining({ profileId: 'family.resolver', carriesChildWords: true, providerId: null, enabled: true })]);
+    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'openai', 'youtube']);
+    expect(body.profiles).toEqual([
+      expect.objectContaining({ profileId: 'content.syllabus_extract', carriesChildWords: false, providerId: null, enabled: true }),
+      expect.objectContaining({ profileId: 'copilot.draft', carriesChildWords: false, providerId: null, enabled: true }),
+      expect.objectContaining({ profileId: 'family.homework', carriesChildWords: true, providerId: null, enabled: true }),
+      expect.objectContaining({ profileId: 'family.resolver', carriesChildWords: true, providerId: null, enabled: true }),
+      expect.objectContaining({ profileId: 'family.voice_input', carriesChildWords: true, providerId: null, enabled: true }),
+      expect.objectContaining({ profileId: 'parent_ai.home_help', carriesChildWords: false, providerId: null, enabled: true }),
+    ]);
     expect(body.cap).toBe(20);
   });
 });
@@ -111,7 +118,7 @@ describe('a key: write-only', () => {
     const text = await res.text();
     expect(text).not.toContain(KEY);
     expect(text).not.toContain(String(stored[0].ciphertext));
-    expect(JSON.parse(text).providers[0].credential).toEqual({ keyLast4: 'LAST', setAt: expect.any(String), setByName: 'Farid Founder' });
+    expect(JSON.parse(text).providers[0].credential).toEqual({ keyLast4: 'LAST', setAt: expect.any(String), setByName: 'Farid Founder', testedAt: null, testOk: null });
     const audit = await q(`select school_id, actor_role, before_state, after_state from audit_log where event_action = 'ai.credential_set'`);
     expect(audit).toEqual([{ school_id: null, actor_role: 'super_admin', before_state: { providerId: 'anthropic', had: false }, after_state: { providerId: 'anthropic', had: true, keyLast4: 'LAST' } }]);
     expect(JSON.stringify(audit)).not.toContain(KEY);
@@ -148,7 +155,7 @@ describe('the minors check when choosing a provider', () => {
   it('a child-words profile cannot be moved to a provider not cleared for minors', async () => {
     const res = await post({ action: 'profile', profileId: 'family.resolver', providerId: 'openai', model: 'test-model-b', promptVersion: 'v1', enabled: true });
     expect(res).toEqual({ status: 400, body: expect.objectContaining({ code: 'not_cleared_for_minors' }) });
-    expect(await q(`select provider_id from control.ai_profiles`)).toEqual([{ provider_id: null }]);
+    expect(await q(`select provider_id from control.ai_profiles where profile_id = 'family.resolver'`)).toEqual([{ provider_id: null }]);
   });
 
   it('clearing needs the terms page; then the profile can use it; withdrawing is refused while it is used', async () => {
@@ -168,7 +175,7 @@ describe('every change is audited and undone in one step', () => {
     expect(row.before_state).toEqual({ providerId: 'anthropic', model: 'test-model-a', promptVersion: 'v1', enabled: true, fallback: [] });
     expect(row.after_state).toEqual({ providerId: 'anthropic', model: 'test-model-c', promptVersion: 'v2', enabled: false, fallback: [] });
     expect(await post({ action: 'undo', auditId: String(row.audit_id) })).toEqual({ status: 200, body: { ok: true } });
-    expect(await q(`select provider_id, model, prompt_version, enabled from control.ai_profiles`)).toEqual([{ provider_id: 'anthropic', model: 'test-model-a', prompt_version: 'v1', enabled: true }]);
+    expect(await q(`select provider_id, model, prompt_version, enabled from control.ai_profiles where profile_id = 'family.resolver'`)).toEqual([{ provider_id: 'anthropic', model: 'test-model-a', prompt_version: 'v1', enabled: true }]);
   });
 
   it('the daily cap, and its undo', async () => {

@@ -1,16 +1,22 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { FamilyHeader } from '@/components/family/FamilyHeader';
+import { HabitCard } from '@/components/family/HabitCard';
+import { PlanCard } from '@/components/family/PlanCard';
 import { HomeAsk } from '@/components/family/ui/HomeAsk';
 import { ProgressRing } from '@/components/family/ui/ProgressRing';
 import { SubjectGrid } from '@/components/family/ui/SubjectGrid';
 import { classSubjects } from '@/lib/family/catalog';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
+import { familyModuleOn } from '@/lib/family/flags';
+import { childHabit } from '@/lib/family/habit';
 import { childProgress } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
+import { dayPlan } from '@/lib/family/plan';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
+import { indiaDate } from '@/lib/time/india';
 
 // The Family app's home, in child mode (M1-2, C248; M1-6, C252): the app opens here, because most pilot children use a
 // parent's phone. It shows where the child is: the topics they have checked, which are mastered (right on two days a
@@ -18,6 +24,8 @@ import { t, type MessageKey } from '@/lib/i18n';
 // parent's first steps is taken to the next one.
 // D1 (C230-Q), the overview board's home: the ask card first, the child's subjects as tiles in their own colours
 // (checked and mastered per subject, "free", a lock), and progress as a ring. Learning first: no streaks, no ranks.
+// M2-2 (C276): with the plan module on, today's plan follows the ask card (the learning-first routine).
+// M2-3 (C277): with the habit module on, the week, the badges and the jar follow the plan.
 const KEYS: MessageKey[] = ['fam.app.name', 'fam.home.hello', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.home.parent', 'fam.home.whoIsLearning'];
 
 export default async function FamilyHomePage() {
@@ -27,9 +35,11 @@ export default async function FamilyHomePage() {
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const { progress, subjects } = await familyPageRead(page, async (db) => ({
+  const { progress, subjects, plan, habit } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
     subjects: isPrePrimary(child.classLevel) ? [] : await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel }),
+    plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
+    habit: (await familyModuleOn(db, 'habit', page.session.accountId)) ? await childHabit(db, page.session.accountId, child, indiaDate(), lang) : null,
   }));
   const mastered = progress.filter((p) => p.mastered).length;
   const tiles = subjects.map((s) => {
@@ -41,6 +51,8 @@ export default async function FamilyHomePage() {
       <FamilyHeader w={familyWords(lang, KEYS)} child={child} children={page.children} />
       <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-5 px-4 pb-10">
         <HomeAsk title={t(lang, 'fam.home.askTitle')} lead={progress.length ? t(lang, 'fam.home.continueLead') : t(lang, 'fam.home.askLead')} cta={t(lang, 'fam.home.study')} />
+        {plan && <PlanCard plan={plan} lang={lang} />}
+        {habit && <HabitCard habit={habit} lang={lang} />}
         <SubjectGrid
           title={t(lang, 'fam.home.subjectsTitle')}
           tiles={tiles}

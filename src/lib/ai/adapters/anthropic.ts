@@ -13,6 +13,7 @@ export const anthropicAdapter: TextAdapter = {
   // pre-processor, caps, checked output). Control's clearance by the founder, with the terms page read, is still needed.
   minorsEligible: true,
   needsKey: true,
+  vision: true,
   keyLooksRight: (key) => /^sk-ant-[\x21-\x7e]{20,300}$/.test(key),
   async streamText(request, onDelta): Promise<AdapterResult> {
     const body = {
@@ -20,7 +21,11 @@ export const anthropicAdapter: TextAdapter = {
       max_tokens: request.maxTokens,
       stream: true,
       system: request.responseFormat === 'json' ? `${request.system}\n\n${JSON_ONLY}` : request.system,
-      messages: request.messages.map((m) => ({ role: m.role, content: m.content })),
+      messages: request.messages.map((m) =>
+        m.images?.length
+          ? { role: m.role, content: [...m.images.map((i) => ({ type: 'image', source: { type: 'base64', media_type: i.mediaType, data: i.base64 } })), { type: 'text', text: m.content }] }
+          : { role: m.role, content: m.content }
+      ),
     };
     let res: Response;
     try {

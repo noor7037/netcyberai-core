@@ -1,6 +1,6 @@
 import { REFUSAL_MESSAGE, activePromptVersion, prepareText, type AiRefusal, type PreparedText, type SentText } from '@/lib/ai/platform';
 import { resolverPrompt, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
-import { BLOCK_SCHEMA_VERSION, completeResponse, parseBlockLine, type Block, type BlockType } from './blocks';
+import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, parseBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
 import { classSubjects } from './catalog';
@@ -101,7 +101,7 @@ function toPublic(b: Block, ctx: Seal, topicKey: string, subject: string): Publi
 async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: string): Promise<ResolverEvent[] | null> {
   const child = ctx.child;
   const { rows } = await db.query(
-    `select blocks, status from content.responses
+    `select response_id, blocks, status from content.responses
       where board_id = $1 and class_level = $2 and subject = $3 and topic_key = $4 and language = $5 and style = $6 and prompt_version = $7 and status <> 'withdrawn'
       limit 1`,
     [syllabusBoardOf(child), child.classLevel, line.subject, line.key, child.language, child.style, promptVersion]
@@ -110,6 +110,9 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
   if (!cached || !Array.isArray(cached.blocks)) return null;
   const blocks = completeResponse((cached.blocks as unknown[]).map((b) => parseBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null));
   if (!blocks) return null;
+  // One serving, counted for Control's review queue, most asked first (M2-12, C286), in this same transaction. Only the
+  // count changes; a fresh AI answer is never counted here.
+  await db.query(`select content.count_response_ask($1)`, [cached.response_id]);
   return [
     { t: 'meta', label: cached.status === 'checked' ? 'checked' : 'ai_made', cached: true, title: line.title, subject: line.subject, topicKey: line.key },
     ...blocks.map((b): ResolverEvent => ({ t: 'block', block: toPublic(b, ctx, line.key, line.subject) })),
@@ -275,7 +278,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     }
     const s: Subject = subject;
     const b = parseBlockLine(text);
-    if (!b || seen.has(b.type)) return;
+    // One block of each type, and at most one interactive block (M2-8): the first that passed.
+    if (!b || seen.has(b.type) || (isInteractive(b.type) && kept.some((k) => isInteractive(k.type)))) return;
     if (mustClaim && claim) {
       mustClaim = false;
       if (!(await claim(s))) return refuseSubject(s);

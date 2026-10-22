@@ -7,6 +7,7 @@ import { syllabusBoardOf } from '@/lib/family/children';
 import { SUBJECT_IDS } from '@/lib/family/subjects';
 import { calmCard } from '@/lib/family/learning';
 import { readFamilySwitches, switchOn } from '@/lib/family/flags';
+import { parentHabit } from '@/lib/family/habit';
 import { familyPageRead, requireFamilyPage } from '@/lib/family/server';
 import { indiaDate } from '@/lib/time/india';
 import { familyStates } from '@/lib/family/states';
@@ -28,7 +29,14 @@ const AREA_KEYS: MessageKey[] = [
   'fam.parent.deleteAccountWord', 'fam.parent.deleteAccountYes', 'fam.consent.purpose.study_core', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.common.cancel', 'fam.lang.label',
   ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.err.confirm', 'fam.err.bad_request', 'fam.parent.freeSubject', 'fam.parent.freeSubjectTooSoon',
   'fam.calm.title', 'fam.calm.nothingYet', 'fam.calm.week', 'fam.calm.mastered', 'fam.calm.recent', 'fam.calm.note',
-  'fam.consent.purpose.english_programme', 'fam.english.parent.section', 'fam.english.parent.open',
+  'fam.consent.purpose.english_programme', 'fam.english.parent.section', 'fam.english.parent.open', 'fam.consent.purpose.photo_input', 'fam.consent.purpose.voice_practice',
+  // m2-3: the habit section.
+  'fam.habit.parent.title', 'fam.habit.parent.goal', 'fam.habit.parent.goalHelp', 'fam.habit.parent.goalOption', 'fam.habit.parent.jarTitle', 'fam.habit.parent.jarNone',
+  'fam.habit.parent.reward', 'fam.habit.parent.target', 'fam.habit.parent.jarSet', 'fam.habit.parent.jarProgress', 'fam.habit.parent.jarFullNote', 'fam.habit.parent.given',
+  'fam.habit.parent.jarRemove', 'fam.habit.parent.noMoney', 'fam.habit.parent.summaryTitle', 'fam.habit.parent.sumDays', 'fam.habit.parent.sumMastered',
+  'fam.habit.parent.sumMasteredNone', 'fam.habit.parent.sumSupport', 'fam.habit.parent.sumSupportNone', 'fam.habit.parent.talkTitle', 'fam.habit.parent.talk.0',
+  'fam.habit.parent.talk.1', 'fam.habit.parent.talk.2', 'fam.habit.parent.talk.3', 'fam.habit.parent.talkNone', 'fam.err.goal_bad', 'fam.err.reward_bad',
+  'fam.err.target_bad', 'fam.err.jar_exists', 'fam.err.jar_not_full', 'fam.err.jar_full', 'fam.err.not_found', 'fam.err.consent_required',
 ];
 
 export default async function FamilyParentPage() {
@@ -48,10 +56,20 @@ export default async function FamilyParentPage() {
   // The English course (C274): its consent and reports show when Control has the course switched on.
   const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
   const english = switches && switchOn(switches, 'english_programme') ? { granted: page.consents.english_programme } : null;
+  // Photo questions (M2-6, C280): asked when the homework helper is on; a yes already given stays withdrawable.
+  const photo = switches && (switchOn(switches, 'homework') || page.consents.photo_input) ? { granted: page.consents.photo_input } : null;
+  // Voice input (M2-7, C281): its consent shows when Control has voice input switched on; a yes already given stays
+  // withdrawable even when the module is off.
+  const voice = switches && (switchOn(switches, 'voice_input') || page.consents.voice_practice) ? { granted: page.consents.voice_practice } : null;
+  // The habit section (M2-3, C277) when Control has the habit module switched on.
+  const habit = switches && switchOn(switches, 'habit') ? await familyPageRead(page, (db) => Promise.all(page.children.map((c) => parentHabit(db, page.session.accountId, c.childId, indiaDate(), lang)))) : null;
   return (
     <main lang={lang} className="mx-auto w-full max-w-xl px-4 py-6">
       <ParentArea
         english={english}
+        photo={photo}
+        voice={voice}
+        habit={habit}
         calm={calm}
         w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])}
         lang={lang}

@@ -1,4 +1,5 @@
 'use client';
+import { Picture } from '../Picture';
 
 import { useEffect, useMemo, useState } from 'react';
 import { normaliseSentence, shuffleByKey, tilesFor, type Option, type Step, type Track } from '@/lib/family/english/course';
@@ -25,7 +26,7 @@ function Listen({ text, w, lang = 'en', className = '' }: { text: string; w: Wor
       aria-label={fill(w['fam.english.listenTo'], { text })}
       className={`inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full bg-white text-xl text-slate shadow-sm ring-1 ring-slate/10 ${className}`}
     >
-      <span aria-hidden="true">🔊</span>
+      <span aria-hidden="true"><Picture e="🔊" /></span>
     </button>
   );
 }
@@ -49,7 +50,7 @@ export function Feedback({ kind, w, answer }: { kind: 'right' | 'almost' | null;
   if (!kind) return <p aria-live="polite" className="sr-only" />;
   return (
     <p aria-live="polite" className={`flex flex-wrap items-center gap-2 rounded-2xl p-3 text-base font-bold animate-pop-in motion-reduce:animate-none ${kind === 'right' ? 'bg-leaf/20 text-slate' : 'bg-sunshine/30 text-slate'}`}>
-      <span aria-hidden="true">{kind === 'right' ? '🌟' : '💡'}</span>
+      <Picture e={kind === 'right' ? '🌟' : '💡'} />
       {kind === 'right' ? w['fam.english.great'] : w['fam.english.almost']}
       {kind === 'almost' && answer}
     </p>
@@ -105,13 +106,13 @@ export function WordsStep({ step, w, track }: Props<'words'>) {
               </button>
               {word.example && flipped[word.key] && <p className="text-base text-slate"><span lang="en">{word.example.en}</span></p>}
               <button type="button" onClick={() => void play(word.key, word.example && flipped[word.key] ? word.example.en : word.en)} className={`${big} ${theme.button}`}>
-                <span aria-hidden="true">🔊</span> {w['fam.english.listen']}
+                <span aria-hidden="true"><Picture e="🔊" /></span> {w['fam.english.listen']}
               </button>
             </div>
           </li>
         ))}
       </ul>
-      <p className="text-xs text-slate/70">🔊 {w['fam.english.phoneVoice']}</p>
+      <p className="text-xs text-slate/70"><Picture e="🔊" /> {w['fam.english.phoneVoice']}</p>
     </div>
   );
 }
@@ -139,7 +140,7 @@ export function ActionStep({ step, w, hindi }: Props<'action'>) {
           </button>
         </li>
       ))}
-      <li className="col-span-2 text-xs text-slate/70">🔊 {w['fam.english.phoneVoice']}</li>
+      <li className="col-span-2 text-xs text-slate/70"><Picture e="🔊" /> {w['fam.english.phoneVoice']}</li>
     </ul>
   );
 }
@@ -154,7 +155,7 @@ export function PatternStep({ step, w, hindi }: Props<'pattern'>) {
       <PatternVisual step={step} w={w} hindi={hindi} />
       {step.note && (
         <div className="rounded-2xl bg-sunshine/20 p-3 text-slate">
-          <p className="font-bold text-slate">💡 <span lang="en">{step.note.en}</span></p>
+          <p className="font-bold text-slate"><Picture e="💡" /> <span lang="en">{step.note.en}</span></p>
           <Hi text={step.note.hi} show={hindi || !!step.note.hi} />
         </div>
       )}
@@ -410,7 +411,7 @@ export function BuildStep({ step, w, hindi, track }: Props<'build'>) {
 export function BridgeStep({ step, w, track }: Props<'bridge'>) {
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-lg font-bold text-slate">🌉 {w['fam.english.bridge']}</p>
+      <p className="text-lg font-bold text-slate"><Picture e="🌉" /> {w['fam.english.bridge']}</p>
       {step.items.map((it) => (
         <TileBuilder
           key={it.key}
@@ -463,16 +464,16 @@ export function SayLine({ model, hi, cue, pic, w, hindi, track }: { model: strin
             className={`${big} relative ${rec.state === 'recording' ? 'bg-coral text-slate' : 'bg-white text-slate ring-1 ring-slate/20'}`}
           >
             {rec.state === 'recording' && <span aria-hidden="true" className="absolute inset-0 rounded-full bg-coral animate-glow motion-reduce:animate-none" />}
-            <span className="relative">🎙️ {rec.state === 'recording' ? w['fam.english.stop'] : w['fam.english.record']}</span>
+            <span className="relative"><Picture e="🎙️" /> {rec.state === 'recording' ? w['fam.english.stop'] : w['fam.english.record']}</span>
           </button>
         )}
         {rec.hasClip && (
           <button type="button" onClick={rec.play} className={`${big} bg-white text-slate ring-1 ring-slate/20`}>
-            🎧 {w['fam.english.hearYourself']}
+            <Picture e="🎧" /> {w['fam.english.hearYourself']}
           </button>
         )}
         <button type="button" onClick={() => setSaid(true)} className={`${big} ${theme.button}`}>
-          ✅ {w['fam.english.iSaidIt']}
+          <Picture e="✅" /> {w['fam.english.iSaidIt']}
         </button>
       </div>
       {rec.state === 'denied' && <p className="text-sm text-slate/80">{w['fam.english.micOff']}</p>}
@@ -485,7 +486,7 @@ export function SayLine({ model, hi, cue, pic, w, hindi, track }: { model: strin
 export function SayStep({ step, w, hindi, track }: Props<'say'>) {
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-lg font-bold text-slate">🗣️ {w['fam.english.sayIt']}</p>
+      <p className="text-lg font-bold text-slate"><Picture e="🗣️" /> {w['fam.english.sayIt']}</p>
       {step.prompts.map((p) => (
         <SayLine key={p.key} model={p.model} hi={p.hi} cue={p.cue} pic={p.pic} w={w} hindi={hindi} track={track} />
       ))}
@@ -509,7 +510,7 @@ export function RoleplayStep({ step, w, hindi, track }: Props<'roleplay'>) {
       <h3 className="text-xl font-extrabold text-slate"><span lang="en">{step.title.en}</span></h3>
       <Hi text={step.title.hi} show={hindi} />
       <SceneView scene={step.scene} label={step.title.en} />
-      {partner && <p className="rounded-2xl bg-grape/10 p-3 text-sm font-semibold text-slate">👥 {w['fam.english.roleplay.duet'].replace('{role}', partner.name)}</p>}
+      {partner && <p className="rounded-2xl bg-grape/10 p-3 text-sm font-semibold text-slate"><Picture e="👥" /> {w['fam.english.roleplay.duet'].replace('{role}', partner.name)}</p>}
       <ol className="flex flex-col gap-2">
         {step.turns.slice(0, at + 1).map((t, i) => {
           const mine = t.role === step.learner;
@@ -529,7 +530,15 @@ export function RoleplayStep({ step, w, hindi, track }: Props<'roleplay'>) {
       </ol>
       {at < step.turns.length - 1 && (
         <button type="button" onClick={() => setAt(at + 1)} className={`${big} self-center bg-white text-slate shadow-sm ring-2 ${theme.ring}`}>
-          {step.turns[at].role === step.learner ? `✅ ${w['fam.english.iSaidIt']}` : `💬 ${w['fam.english.roleplay.nextLine']}`}
+          {step.turns[at].role === step.learner ? (
+                <>
+                  <Picture e="✅" /> {w['fam.english.iSaidIt']}
+                </>
+              ) : (
+                <>
+                  <Picture e="💬" /> {w['fam.english.roleplay.nextLine']}
+                </>
+              )}
         </button>
       )}
     </div>
@@ -542,7 +551,7 @@ export function PictureStep({ step, w, hindi, track }: Props<'picture'>) {
   const theme = TRACK_THEME[track];
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-lg font-bold text-slate">👀 {w['fam.english.picture']}</p>
+      <p className="text-lg font-bold text-slate"><Picture e="👀" /> {w['fam.english.picture']}</p>
       <SceneView scene={step.scene} label={w['fam.english.picture']} />
       {step.questions.map((q) => (
         <div key={q.key} className={card}>
@@ -561,7 +570,7 @@ export function PictureStep({ step, w, hindi, track }: Props<'picture'>) {
             </div>
           ) : (
             <button type="button" onClick={() => setOpen({ ...open, [q.key]: true })} className={`${big} self-start ${theme.button}`}>
-              ✅ {w['fam.english.iSaidIt']}
+              <Picture e="✅" /> {w['fam.english.iSaidIt']}
             </button>
           )}
         </div>
@@ -583,7 +592,7 @@ export function TalkStep({ step, w, hindi, track }: Props<'talk'>) {
   const share = left === null ? 1 : left / step.seconds;
   return (
     <div className="flex flex-col gap-3">
-      <h3 className="text-xl font-extrabold text-slate">🎤 <span lang="en">{step.topic.en}</span></h3>
+      <h3 className="text-xl font-extrabold text-slate"><Picture e="🎤" /> <span lang="en">{step.topic.en}</span></h3>
       <Hi text={step.topic.hi} show={hindi} />
       <ol className="flex flex-col gap-2">
         {step.outline.map((o, i) => (
@@ -603,7 +612,7 @@ export function TalkStep({ step, w, hindi, track }: Props<'talk'>) {
         </svg>
         {left === null || left === 0 ? (
           <button type="button" onClick={() => setLeft(step.seconds)} className={`${big} ${theme.button}`}>
-            ⏱️ {w['fam.english.talk.start']}
+            <Picture e="⏱️" /> {w['fam.english.talk.start']}
           </button>
         ) : (
           <p aria-live="polite" className="text-lg font-bold text-slate">
