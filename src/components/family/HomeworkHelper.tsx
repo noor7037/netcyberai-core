@@ -4,11 +4,18 @@ import { useRef, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import type { LadderView } from '@/lib/family/homework';
 import { familyApi } from './client';
+import { FamIcon, rise } from './FamIcon';
 
 // The homework helper on the phone (M2-6, C280). A photo of one question (the camera or a screenshot) is made smaller
 // here, sent once, and not kept on the phone either. Then the ladder: a hint, the child's own answer, the next hint,
 // "I'm stuck" for the steps; the child writes the final answer. The server holds the answer; the phone only hears
 // whether the child's answer matches.
+// F2 on D1 (C230-Q): D1 cards (the question, each hint with its bulb, the steps), the main button in D1's call-to-action
+// style, drawn icons instead of device emoji, and buttons that look disabled while they cannot be pressed.
+
+// The main button (D1's call to action): white on a solid royal-deep under the gradient, so the contrast check reads it.
+const CTA = 'fam-cta fam-press flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-royal-deep bg-gradient-to-r from-royal to-violet px-4 text-base font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-60';
+const QUIET = 'fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-off-white px-4 text-base font-bold text-slate ring-1 ring-slate/15 hover:bg-slate/5 disabled:cursor-not-allowed disabled:opacity-60';
 
 type Ladder = { token: string; view: LadderView };
 type Result = { correct: boolean; feedback: string | null } | null;
@@ -91,21 +98,31 @@ export function HomeworkHelper({ w }: { w: Words }) {
 
   if (!ladder) {
     return (
-      <section data-homework-start className="flex flex-col gap-3 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate/10">
-        <p className="text-base text-slate">{w['fam.homework.lead']}</p>
+      <section data-homework-start className="fam-card fam-rise flex flex-col gap-4 bg-white p-5">
+        <div className="flex items-start gap-4">
+          <span aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-royal-deep bg-gradient-to-br from-royal to-violet text-white shadow-lg">
+            <FamIcon name="camera" className="h-6 w-6" />
+          </span>
+          <p className="min-w-0 text-base text-slate">{w['fam.homework.lead']}</p>
+        </div>
         <div className="grid gap-2 sm:grid-cols-2">
-          <button type="button" disabled={busy} onClick={() => camera.current?.click()} className="flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-royal px-4 text-base font-bold text-white hover:bg-royal-deep disabled:opacity-60">
-            <span aria-hidden>📷</span>
+          <button type="button" disabled={busy} onClick={() => camera.current?.click()} className={CTA}>
+            <FamIcon name="camera" className="h-5 w-5" />
             {w['fam.homework.takePhoto']}
           </button>
-          <button type="button" disabled={busy} onClick={() => gallery.current?.click()} className="flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-off-white px-4 text-base font-bold text-slate ring-1 ring-slate/15 hover:bg-slate/5 disabled:opacity-60">
-            <span aria-hidden>🖼️</span>
+          <button type="button" disabled={busy} onClick={() => gallery.current?.click()} className={QUIET}>
+            <FamIcon name="image" className="h-5 w-5" />
             {w['fam.homework.choosePhoto']}
           </button>
         </div>
         <input ref={camera} type="file" accept="image/*" capture="environment" className="sr-only" tabIndex={-1} aria-hidden onChange={(e) => send(e.target.files?.[0])} />
         <input ref={gallery} type="file" accept="image/*" className="sr-only" tabIndex={-1} aria-hidden onChange={(e) => send(e.target.files?.[0])} />
-        <p className="text-sm text-slate/80">{w['fam.homework.privacy']}</p>
+        <p className="flex items-start gap-2 text-sm text-slate/80">
+          <span className="mt-0.5 shrink-0 bg-white text-emerald-text">
+            <FamIcon name="shield" className="h-4 w-4" />
+          </span>
+          {w['fam.homework.privacy']}
+        </p>
         {busy && (
           <p role="status" className="animate-pulse text-base font-semibold text-royal motion-reduce:animate-none">
             {w['fam.homework.reading']}
@@ -123,47 +140,69 @@ export function HomeworkHelper({ w }: { w: Words }) {
   const v = ladder.view;
   return (
     <section data-homework-ladder className="flex flex-col gap-3">
-      <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate/10">
-        <h2 className="text-sm font-bold uppercase tracking-wide text-slate/80">{w['fam.homework.question']}</h2>
-        <p lang={titleLang(v.question)} className="mt-1 text-lg font-semibold text-slate">
-          {v.question}
-        </p>
+      <div className="fam-card fam-rise flex items-start gap-4 bg-white p-5">
+        <span aria-hidden="true" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-royal-deep bg-gradient-to-br from-royal to-violet text-white shadow-md">
+          <FamIcon name="question" className="h-6 w-6" />
+        </span>
+        <div className="min-w-0">
+          <h2 className="text-sm font-bold uppercase tracking-wide text-slate/80">{w['fam.homework.question']}</h2>
+          <p lang={titleLang(v.question)} className="mt-1 break-words text-lg font-semibold text-slate">
+            {v.question}
+          </p>
+        </div>
       </div>
 
       {v.hints.length > 0 && (
         <ol className="flex flex-col gap-2">
           {v.hints.map((h, i) => (
-            <li key={i} className="animate-rise-in rounded-2xl bg-sunshine/20 p-4 motion-reduce:animate-none">
-              <p className="text-xs font-bold uppercase tracking-wide text-slate/80">{fill(w['fam.homework.hint'], { n: i + 1, total: v.hintsTotal })}</p>
-              <p lang={titleLang(h)} className="mt-1 text-base text-slate">
-                {h}
-              </p>
+            <li key={i} className="fam-card fam-rise flex items-start gap-3 bg-white p-4" style={rise(60)}>
+              <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sunshine text-slate">
+                <FamIcon name="bulb" className="h-5 w-5" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-xs font-bold uppercase tracking-wide text-slate/80">{fill(w['fam.homework.hint'], { n: i + 1, total: v.hintsTotal })}</p>
+                <p lang={titleLang(h)} className="mt-1 break-words text-base text-slate">
+                  {h}
+                </p>
+              </div>
             </li>
           ))}
         </ol>
       )}
 
       {v.steps && (
-        <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate/10">
-          <h2 className="text-base font-extrabold text-slate">{w['fam.homework.steps']}</h2>
-          <ol className="mt-2 flex list-decimal flex-col gap-1 pl-5 text-base text-slate">
+        <div className="fam-card fam-rise bg-white p-5" style={rise(60)}>
+          <h2 className="flex items-center gap-2 text-base font-extrabold text-slate">
+            <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-royal/10 text-royal-deep">
+              <FamIcon name="steps" className="h-5 w-5" />
+            </span>
+            {w['fam.homework.steps']}
+          </h2>
+          <ol className="mt-3 flex flex-col gap-2">
             {v.steps.map((s, i) => (
-              <li key={i} lang={titleLang(s)}>
-                {s}
+              <li key={i} className="flex gap-3 text-base text-slate">
+                <span aria-hidden="true" className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-royal-deep bg-gradient-to-br from-royal to-violet text-sm font-bold text-white">
+                  {i + 1}
+                </span>
+                <span lang={titleLang(s)} className="min-w-0 break-words pt-0.5">
+                  {s}
+                </span>
               </li>
             ))}
           </ol>
-          {!v.solved && <p className="mt-2 text-sm text-slate/80">{w['fam.homework.stepsNote']}</p>}
+          {!v.solved && <p className="mt-3 text-sm text-slate/80">{w['fam.homework.stepsNote']}</p>}
         </div>
       )}
 
       {v.solved ? (
-        <p role="status" data-homework-solved className="animate-pop-in rounded-2xl bg-emerald/10 px-4 py-3 text-base font-bold text-emerald-text motion-reduce:animate-none">
+        <p role="status" data-homework-solved className="fam-pop flex items-center gap-2 rounded-2xl bg-emerald/10 px-4 py-3 text-base font-bold text-emerald-text">
+          <FamIcon name="sparkle" className="h-5 w-5 shrink-0" />
           {w['fam.homework.right']}
         </p>
       ) : (
         <form
-          className="flex flex-col gap-2 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate/10"
+          className="fam-card fam-rise flex flex-col gap-3 bg-white p-5"
+          style={rise(90)}
           onSubmit={(e) => {
             e.preventDefault();
             void act('attempt');
@@ -178,9 +217,9 @@ export function HomeworkHelper({ w }: { w: Words }) {
             onChange={(e) => setAnswer(e.target.value)}
             maxLength={200}
             autoComplete="off"
-            className="min-h-[48px] rounded-2xl px-3 text-base text-slate ring-1 ring-slate/20 focus:outline-none focus:ring-2 focus:ring-royal"
+            className="min-h-[48px] rounded-2xl bg-white px-3 text-base text-slate ring-1 ring-slate/20 focus:outline-none focus:ring-2 focus:ring-royal"
           />
-          <button type="submit" disabled={busy || !answer.trim()} className="min-h-[48px] rounded-2xl bg-royal px-4 text-base font-bold text-white hover:bg-royal-deep disabled:opacity-60">
+          <button type="submit" disabled={busy || !answer.trim()} className={CTA}>
             {w['fam.homework.check']}
           </button>
           {result && !result.correct && (
@@ -190,12 +229,14 @@ export function HomeworkHelper({ w }: { w: Words }) {
           )}
           <div className="flex flex-wrap gap-2 pt-1">
             {v.canHint && (
-              <button type="button" disabled={busy} onClick={() => act('hint')} className="min-h-[44px] rounded-2xl bg-sunshine px-4 text-sm font-bold text-slate hover:bg-gold disabled:opacity-60">
+              <button type="button" disabled={busy} onClick={() => act('hint')} className="fam-press flex min-h-[44px] items-center gap-2 rounded-2xl bg-sunshine px-4 text-sm font-bold text-slate hover:bg-gold disabled:cursor-not-allowed disabled:opacity-60">
+                <FamIcon name="bulb" className="h-4 w-4" />
                 {fill(w['fam.homework.showHint'], { n: v.hints.length + 1 })}
               </button>
             )}
             {v.canStuck && (
-              <button type="button" disabled={busy} onClick={() => act('stuck')} className="min-h-[44px] rounded-2xl bg-off-white px-4 text-sm font-bold text-slate ring-1 ring-slate/15 hover:bg-slate/5 disabled:opacity-60">
+              <button type="button" disabled={busy} onClick={() => act('stuck')} className="fam-press flex min-h-[44px] items-center gap-2 rounded-2xl bg-off-white px-4 text-sm font-bold text-slate ring-1 ring-slate/15 hover:bg-slate/5 disabled:cursor-not-allowed disabled:opacity-60">
+                <FamIcon name="steps" className="h-4 w-4" />
                 {w['fam.homework.stuck']}
               </button>
             )}
@@ -209,7 +250,8 @@ export function HomeworkHelper({ w }: { w: Words }) {
           {error}
         </p>
       )}
-      <button type="button" onClick={reset} className="min-h-[44px] self-start rounded-2xl px-2 text-sm font-bold text-royal underline-offset-2 hover:underline">
+      <button type="button" onClick={reset} className="fam-press flex min-h-[44px] items-center gap-2 self-start rounded-2xl px-2 text-sm font-bold text-royal underline-offset-2 hover:underline">
+        <FamIcon name="again" className="h-4 w-4" />
         {w['fam.homework.another']}
       </button>
     </section>

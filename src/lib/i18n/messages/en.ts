@@ -6499,6 +6499,7 @@ export const en = {
   'fam.plan.kind.next': 'Next in your syllabus',
   'fam.plan.done': 'Done',
   'fam.plan.todo': 'To do',
+  'fam.plan.progress': '{done} of {total} done',
   'fam.plan.complete': "Today's plan is done. Well done!",
   'fam.plan.empty': 'Nothing is planned for today yet. Pick a topic in Study.',
   'fam.plan.how': 'Your plan comes from your answers: topics to come back to, topics to practise, then what comes next.',

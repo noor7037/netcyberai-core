@@ -6487,6 +6487,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.plan.kind.next': 'सिलेबस में आगे',
   'fam.plan.done': 'हो गया',
   'fam.plan.todo': 'करना है',
+  'fam.plan.progress': '{total} में से {done} हो गए',
   'fam.plan.complete': 'आज की योजना पूरी हो गई। शाबाश!',
   'fam.plan.empty': 'आज के लिए अभी कुछ तय नहीं है। पढ़ाई में कोई विषय चुनें।',
   'fam.plan.how': 'आपकी योजना आपके जवाबों से बनती है: जिन विषयों पर लौटना है, जिनका अभ्यास करना है, फिर आगे क्या है।',

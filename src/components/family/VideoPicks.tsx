@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import type { VideoPick } from '@/lib/family/videos';
+import { FamIcon } from './FamIcon';
 
 // The honest player (docs/family-app/02 §5; M2-5, C279), under a topic's response when the video finder has picks.
 // A card first (title, channel, length); nothing from YouTube is loaded until the child taps — not even its thumbnail
@@ -10,6 +11,8 @@ import type { VideoPick } from '@/lib/family/videos';
 // YouTube's privacy-enhanced embed, no autoplay, starting at the chapter that matches the topic. The note says plainly
 // that the video comes from YouTube, which may show ads and suggestions: we do not hide them (the provider's terms).
 // No picks, an error, or videos switched off: nothing is drawn, and the response stands on its own.
+// F2 on D1 (C230-Q): a D1 card; the drawn card before the tap is a dark gradient with a drawn play mark (never a
+// device emoji), and it presses like every D1 tile.
 
 // Its words come with Understand's (src/lib/family/understand-words.ts): fam.video.*.
 const ID = /^[A-Za-z0-9_-]{11}$/;
@@ -21,7 +24,7 @@ const length = (s: number) => {
 };
 
 // The provider's words (a title, a channel's name) are marked with their own script's language.
-const script = (text: string) => (/[\u0900-\u097F]/.test(text) ? 'hi' : 'en');
+const script = (text: string) => (/[ऀ-ॿ]/.test(text) ? 'hi' : 'en');
 
 export function embedUrl(p: Pick<VideoPick, 'videoId' | 'startS'>): string {
   const q = new URLSearchParams({ rel: '0', modestbranding: '1' });
@@ -44,8 +47,11 @@ export function VideoPicks({ w, topicKey }: { w: Words; topicKey: string }) {
 
   if (!videos.length) return null;
   return (
-    <section data-videos className="flex flex-col gap-3 rounded-3xl bg-white p-5 text-slate shadow-sm ring-1 ring-slate/10" aria-labelledby="videos-title">
-      <h2 id="videos-title" className="text-lg font-bold">
+    <section data-videos className="fam-card fam-rise flex flex-col gap-3 bg-white p-5 text-slate" aria-labelledby="videos-title">
+      <h2 id="videos-title" className="flex items-center gap-3 text-lg font-extrabold">
+        <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-coral-deep bg-gradient-to-br from-coral-deep to-grape-deep text-white shadow-md">
+          <FamIcon name="video" className="h-5 w-5" />
+        </span>
         {w['fam.video.title']}
       </h2>
       <p data-video-note className="text-sm">
@@ -72,13 +78,16 @@ export function VideoPicks({ w, topicKey }: { w: Words; topicKey: string }) {
                 type="button"
                 data-video-play
                 onClick={() => setPlaying(v.videoId)}
-                className="group relative block aspect-video w-full overflow-hidden rounded-2xl bg-slate focus:outline-none focus-visible:ring-4 focus-visible:ring-royal-deep/60"
+                className="fam-press group relative isolate block aspect-video w-full overflow-hidden rounded-2xl bg-midnight bg-gradient-to-br from-midnight via-royal-deep to-violet focus:outline-none focus-visible:ring-4 focus-visible:ring-royal-deep/60"
               >
                 <span className="sr-only">
                   {w['fam.video.play']} <span lang={script(v.title)}>{v.title}</span>
                 </span>
+                <span aria-hidden="true" className="fam-band-dots" />
                 <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl text-royal-deep shadow-md">▶</span>
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-royal-deep shadow-lg">
+                    <FamIcon name="play" className="ml-1 h-7 w-7" />
+                  </span>
                 </span>
                 <span aria-hidden="true" className="absolute bottom-2 right-2 rounded-md bg-slate px-2 py-0.5 text-xs font-bold text-white">{length(v.durationS)}</span>
               </button>

@@ -8,6 +8,7 @@ import { familyApi } from './client';
 // recording goes once to /api/family/voice and is dropped there; only the words come back, into the question box, for
 // the child to check and edit before asking. Shown only when the parent said yes to voice and the module is on (the
 // server page decides). Nothing here keeps the recording after it is sent.
+// F2 on D1 (C230-Q): the buttons press like every D1 button, and look disabled while they cannot be pressed.
 
 const MAX_SECONDS = 30;
 const TYPES = ['audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus', 'audio/mp4'];
@@ -142,7 +143,7 @@ export function VoiceInput({ w, onText, secondsLeft = MAX_SECONDS }: { w: Words;
             type="button"
             onClick={stop}
             aria-label={w['fam.voice.stop']}
-            className="flex min-h-[44px] items-center gap-2 rounded-full bg-coral-deep px-5 text-base font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral-deep"
+            className="fam-press flex min-h-[44px] items-center gap-2 rounded-full bg-coral-deep px-5 text-base font-bold text-white shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral-deep"
           >
             <span aria-hidden="true" className="h-3 w-3 rounded-sm bg-white" />
             {w['fam.voice.stop']}
@@ -159,12 +160,14 @@ export function VoiceInput({ w, onText, secondsLeft = MAX_SECONDS }: { w: Words;
             onClick={() => void start()}
             disabled={state === 'sending' || limit < 1}
             aria-label={w['fam.voice.speak']}
-            className="flex min-h-[44px] items-center gap-2 rounded-full bg-white px-4 text-base font-bold text-royal ring-1 ring-royal/40 hover:bg-royal/5 disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal"
+            className="fam-press flex min-h-[44px] items-center gap-2 rounded-full bg-white py-1 pl-1 pr-4 text-base font-bold text-royal ring-1 ring-royal/40 hover:bg-royal/5 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal"
           >
-            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="9" y="3" width="6" height="11" rx="3" />
-              <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
-            </svg>
+            <span aria-hidden="true" className="flex h-9 w-9 items-center justify-center rounded-full bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="9" y="3" width="6" height="11" rx="3" />
+                <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
+              </svg>
+            </span>
             {w['fam.voice.speak']}
           </button>
           {state === 'sending' && (

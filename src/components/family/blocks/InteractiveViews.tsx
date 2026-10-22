@@ -24,6 +24,7 @@ import {
   triangleAngles,
   type Fraction,
 } from '@/lib/family/interactive';
+import { subjectTheme } from '@/lib/family/subject-theme';
 import { Card } from './BlockViews';
 
 // The interactive blocks (M2-8, C282): SVG drawn by React from the checked fields, every value computed by our code
@@ -32,8 +33,26 @@ import { Card } from './BlockViews';
 // under prefers-reduced-motion (a still picture with the same computed values).
 
 const ink = colors.slate;
-const accent = deepColors.tangerineDeep;
-const toneColor = (tone: string) => (tone === 'science' ? colors.emerald : colors.royal);
+// F2 on D1 (C230-Q): a drawing takes its subject's solid colour (`chip` in src/lib/family/subject-theme.ts, a logo token
+// that holds AA with white, so a line or a filled part stands out on the white card). The second colour is tangerine,
+// or royal blue when the subject is warm itself, so the two never look alike.
+const CHIP_HEX: Record<string, string> = {
+  'bg-royal': colors.royal,
+  'bg-royal-deep': deepColors.royalDeep,
+  'bg-emerald': colors.emerald,
+  'bg-grape': colors.grape,
+  'bg-grape-deep': deepColors.grapeDeep,
+  'bg-violet': colors.violet,
+  'bg-azure': colors.azure,
+  'bg-sapphire': colors.sapphire,
+  'bg-midnight': colors.midnight,
+  'bg-tangerine-deep': deepColors.tangerineDeep,
+  'bg-coral-deep': deepColors.coralDeep,
+  'bg-gold-deep': deepColors.goldDeep,
+};
+const WARM = new Set<string>([deepColors.tangerineDeep, deepColors.coralDeep, deepColors.goldDeep]);
+export const toneColor = (tone: string): string => CHIP_HEX[subjectTheme(tone).chip] ?? colors.royal;
+export const secondColor = (tone: string): string => (WARM.has(toneColor(tone)) ? colors.royal : deepColors.tangerineDeep);
 // SVG path data from its commands and numbers.
 const svgPath = (...parts: (string | number)[]) => parts.join(' ');
 
@@ -104,9 +123,10 @@ function Values({ lines }: { lines: string[] }) {
   );
 }
 
-function PlayButton({ playing, onToggle, w }: { playing: boolean; onToggle: () => void; w: Words }) {
+// White on a solid royal-deep under the subject's gradient (D1), so the contrast holds whatever the subject.
+function PlayButton({ playing, onToggle, w, tone }: { playing: boolean; onToggle: () => void; w: Words; tone: string }) {
   return (
-    <button type="button" onClick={onToggle} aria-pressed={playing} className="flex min-h-[44px] items-center gap-2 self-start rounded-full bg-royal px-5 text-sm font-bold text-white">
+    <button type="button" onClick={onToggle} aria-pressed={playing} className={`fam-press flex min-h-[44px] items-center gap-2 self-start rounded-full bg-royal-deep px-5 text-sm font-bold text-white shadow-md ${subjectTheme(tone).tile}`}>
       <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
         {playing ? <path d="M6 5h4v14H6zM14 5h4v14h-4z" /> : <path d="M7 4l13 8-13 8z" />}
       </svg>
@@ -206,6 +226,7 @@ export function NumberLineView({ b, w, tone }: { b: NumberLine; w: Words; tone: 
   const count = Math.round((b.to - b.from) / b.step);
   const every = Math.ceil(count / 10);
   const color = toneColor(tone);
+  const accent = secondColor(tone);
   const iv = b.interval;
   const lines = b.marks.map((m) => fill(w['fam.block.numberLine.mark'], { label: m.label ?? num(m.value), value: num(m.value) }));
   if (iv)
@@ -298,6 +319,7 @@ function FractionPicture({ f, shape, color, label }: { f: Fraction; shape: 'bar'
 export function FractionModelView({ b, w, tone }: { b: FractionModel; w: Words; tone: string }) {
   const [fs, setFs] = useState(b.fractions);
   const color = toneColor(tone);
+  const accent = secondColor(tone);
   const txt = (f: Fraction) => `${f.n}/${f.d}`;
   const lines = fs.map((f) => `${txt(f)}: ${fill(w['fam.block.fraction.picture'], { n: f.n, d: f.d })}`);
   if (fs.length === 2) {
@@ -330,6 +352,7 @@ export function FractionModelView({ b, w, tone }: { b: FractionModel; w: Words; 
 
 export function GeometryView({ b, w, tone }: { b: Geometry; w: Words; tone: string }) {
   const color = toneColor(tone);
+  const accent = secondColor(tone);
   const [deg, setDeg] = useState(b.shape.kind === 'angle' ? b.shape.degrees : 60);
   const s = b.shape;
   if (s.kind === 'angle') {
@@ -433,6 +456,7 @@ export function SimulationView({ b, w, tone }: { b: Simulation; w: Words; tone: 
   const moves = b.sim === 'pendulum' || b.sim === 'projectile';
   const t = useClock(playing && !reduced);
   const color = toneColor(tone);
+  const accent = secondColor(tone);
   // A change of value starts the picture again from rest.
   const set = (name: string) => (x: number) => {
     setPlaying(false);
@@ -546,7 +570,7 @@ export function SimulationView({ b, w, tone }: { b: Simulation; w: Words; tone: 
   return (
     <Card title={b.title} tone={tone} tag="simulation">
       {picture}
-      {moves && !reduced && <PlayButton playing={playing} onToggle={() => setPlaying((p) => !p)} w={w} />}
+      {moves && !reduced && <PlayButton playing={playing} onToggle={() => setPlaying((p) => !p)} w={w} tone={tone} />}
       {moves && reduced && <p className="text-sm text-slate/80">{w['fam.block.sim.still']}</p>}
       {Object.entries(inputs).map(([name, r]) => (
         <Slider key={name} label={label(name)} value={v[name]} min={r.min} max={r.max} step={r.step} onChange={set(name)} />

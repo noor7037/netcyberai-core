@@ -37,7 +37,8 @@ export default async function FamilyParentWorksheetPage({ params }: { params: { 
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back={`/family/study/worksheet/${encodeURIComponent(w.line.key)}`} backLabel={t(lang, 'fam.worksheet.title')} kicker={t(lang, 'fam.worksheet.keyTitle')} title={w.line.title} tone="royal" />
-      <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-24">
+      {/* F2 on D1 (C230-Q): pulled up under the band, and `relative` so the band never paints over it. */}
+      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-24">
         <ParentWorksheet w={familyWords(lang, WORKSHEET_KEYS)} sheetW={familyWords(page.childLang, WORKSHEET_KEYS)} name={child.firstName} title={w.line.title} items={printItems(w)} keyRows={answerKey(w)} />
       </main>
     </div>

@@ -25,19 +25,24 @@ export default async function FamilyWorksheetPage({ params }: { params: { topic:
   const line = w.line!;
   const words = familyWords(lang, [...UNDERSTAND_KEYS, ...WORKSHEET_KEYS]);
   const empty = (text: string, understand: boolean) => (
-    <p data-worksheet-empty={w.state} className="flex flex-col gap-3 rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
+    <p data-worksheet-empty={w.state} className="fam-card fam-rise flex flex-col gap-3 bg-white p-5 text-base text-slate">
       <span>{text}</span>
       {understand && (
-        <Link href={`/family/understand?kind=${line.topicEn ? 'topic' : 'chapter'}&key=${encodeURIComponent(line.key)}`} className="inline-flex min-h-[44px] items-center self-start rounded-2xl bg-royal px-5 py-2 font-bold text-white">
+        <Link
+          href={`/family/understand?kind=${line.topicEn ? 'topic' : 'chapter'}&key=${encodeURIComponent(line.key)}`}
+          className="fam-cta fam-press inline-flex min-h-[48px] items-center self-start rounded-2xl bg-royal-deep bg-gradient-to-r from-royal to-violet px-5 py-2 font-extrabold text-white"
+        >
           {t(lang, 'fam.worksheet.openUnderstand')}
         </Link>
       )}
     </p>
   );
+  // F2 on D1 (C230-Q): the band in the subject's own colour, and the page pulled up under it (`relative`, so the band
+  // never paints over it).
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back={`/family/study?subject=${line.subject}`} backLabel={t(lang, `fam.subject.${line.subject}`)} kicker={`${t(lang, 'fam.worksheet.title')} · ${classText((k) => t(lang, k), child.classLevel)}`} title={line.title} tone={line.subject === 'science' ? 'emerald' : 'royal'} />
-      <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-24">
+      <SubPageHeader back={`/family/study?subject=${line.subject}`} backLabel={t(lang, `fam.subject.${line.subject}`)} kicker={`${t(lang, 'fam.worksheet.title')} · ${classText((k) => t(lang, k), child.classLevel)}`} title={line.title} subject={line.subject} />
+      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-24">
         {w.state === 'ok' ? (
           <WorksheetScreen w={words} ws={screenItems(w, { accountId: page.session.accountId, childId: child.childId })} name={child.firstName} tone={line.subject} />
         ) : w.state === 'off' ? (
