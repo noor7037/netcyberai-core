@@ -3,7 +3,7 @@ import { FamilyCountsView } from '@/components/control/apps/FamilyCountsView';
 import { OpenSubjectsForm } from '@/components/control/apps/OpenSubjectsForm';
 import { readOpenSubjects } from '@/lib/control/family-settings';
 import { SUBJECT_IDS } from '@/lib/contracts/subjects';
-import { withPlatformService, withTenantContext } from '@/lib/auth/db';
+import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
 import { loadFamilyCounts } from '@/lib/control/family-counts';
 import { t } from '@/lib/i18n';
@@ -18,8 +18,10 @@ export const dynamic = 'force-dynamic';
 export default async function ControlFamilyPage() {
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
-  const counts = session ? await withTenantContext(session, (db) => loadFamilyCounts(db)) : null;
-  const open = session ? await withPlatformService((db) => readOpenSubjects(db)) : null;
+  // One transaction as the signed-in founder (the layout has already refused anyone else).
+  const data = session ? await withTenantContext(session, async (db) => ({ counts: await loadFamilyCounts(db), open: await readOpenSubjects(db) })) : null;
+  const counts = data?.counts ?? null;
+  const open = data?.open ?? null;
   return (
     <ModulePage title={t(lang, 'control.family.title')} purpose={t(lang, 'control.family.purpose')} about={t(lang, 'control.family.about')} icon="users" tone="turquoise" eyebrow={t(lang, 'group.control')} headerLang={lang}>
       {counts && <FamilyCountsView counts={counts} lang={lang} />}
