@@ -1,0 +1,1104 @@
+{
+  "track": "d",
+  "unit": 14,
+  "key": "d.u14",
+  "title": {
+    "en": "Public speaking",
+    "hi": "सबके सामने बोलना"
+  },
+  "pic": "🎤",
+  "can_do": {
+    "en": "I can give a structured short talk.",
+    "hi": "मैं ढाँचे वाला छोटा भाषण दे सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u14.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for public speaking",
+        "hi": "सबके सामने बोलने के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Every good speaker was once nervous. Structure and practice make the difference.",
+            "hi": "हर अच्छा वक्ता कभी घबराता था। ढाँचा और अभ्यास फ़र्क़ लाते हैं।"
+          },
+          "pic": "🎤"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u14.l1.topic",
+              "en": "topic",
+              "hi": "विषय",
+              "pic": "📖",
+              "example": {
+                "en": "The topic of my talk is festivals.",
+                "hi": "मेरे भाषण का विषय त्योहार है।"
+              }
+            },
+            {
+              "key": "d.u14.l1.point",
+              "en": "point",
+              "hi": "बात, बिंदु",
+              "pic": "👆",
+              "example": {
+                "en": "My first point is about unity.",
+                "hi": "मेरी पहली बात एकता के बारे में है।"
+              }
+            },
+            {
+              "key": "d.u14.l1.structure",
+              "en": "structure",
+              "hi": "ढाँचा",
+              "pic": "🧩",
+              "example": {
+                "en": "A clear structure helps the audience follow you.",
+                "hi": "साफ़ ढाँचा श्रोताओं को समझने में मदद करता है।"
+              }
+            },
+            {
+              "key": "d.u14.l1.gesture",
+              "en": "gesture",
+              "hi": "हाव-भाव, इशारा",
+              "pic": "🖐️",
+              "example": {
+                "en": "Use simple gestures with your hands.",
+                "hi": "हाथों से सरल इशारे करो।"
+              }
+            },
+            {
+              "key": "d.u14.l1.conclude",
+              "en": "conclude",
+              "hi": "समाप्त करना",
+              "pic": "✅",
+              "example": {
+                "en": "I would like to conclude with a short story.",
+                "hi": "मैं एक छोटी कहानी से समाप्त करना चाहूँगा।"
+              }
+            },
+            {
+              "key": "d.u14.l1.attention",
+              "en": "attention",
+              "hi": "ध्यान",
+              "pic": "👀",
+              "example": {
+                "en": "Start with a question to get attention.",
+                "hi": "ध्यान खींचने के लिए एक सवाल से शुरू करो।"
+              }
+            },
+            {
+              "key": "d.u14.l1.practise",
+              "en": "practise",
+              "hi": "अभ्यास करना",
+              "pic": "🔁",
+              "example": {
+                "en": "Practise your talk in front of a mirror.",
+                "hi": "आईने के सामने अपने भाषण का अभ्यास करो।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u14.l1.m-topic",
+              "left": {
+                "text": "topic"
+              },
+              "right": {
+                "pic": "📖"
+              }
+            },
+            {
+              "key": "d.u14.l1.m-gesture",
+              "left": {
+                "text": "gesture"
+              },
+              "right": {
+                "pic": "🖐️"
+              }
+            },
+            {
+              "key": "d.u14.l1.m-attention",
+              "left": {
+                "text": "attention"
+              },
+              "right": {
+                "pic": "👀"
+              }
+            },
+            {
+              "key": "d.u14.l1.m-structure",
+              "left": {
+                "text": "structure"
+              },
+              "right": {
+                "pic": "🧩"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u14.l1.p-conclude",
+              "prompt": {
+                "en": "Which word means समाप्त करना?"
+              },
+              "options": [
+                {
+                  "text": "point"
+                },
+                {
+                  "text": "conclude"
+                },
+                {
+                  "text": "practise"
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u14.l1.p-point",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "My second point is about saving money."
+              },
+              "options": [
+                {
+                  "text": "point"
+                },
+                {
+                  "text": "gesture"
+                },
+                {
+                  "text": "topic"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u14.l1.s-topic",
+              "model": "The topic of my talk is festivals."
+            },
+            {
+              "key": "d.u14.l1.s-first",
+              "model": "My first point is about unity."
+            },
+            {
+              "key": "d.u14.l1.s-conclude",
+              "model": "I would like to conclude with a short story."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u14.l1.c-topic",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means विषय?"
+          },
+          "options": [
+            {
+              "text": "point"
+            },
+            {
+              "text": "gesture"
+            },
+            {
+              "text": "topic"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u14.l1.c-practise",
+          "type": "choose",
+          "prompt": {
+            "en": "If you ___ every day, you will feel confident."
+          },
+          "options": [
+            {
+              "text": "practise"
+            },
+            {
+              "text": "attention"
+            },
+            {
+              "text": "conclude"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u14.l1.c-attention",
+          "type": "choose",
+          "prompt": {
+            "en": "A surprising question gets the audience's ___."
+          },
+          "options": [
+            {
+              "text": "topic"
+            },
+            {
+              "text": "attention"
+            },
+            {
+              "text": "structure"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u14.l1.c-structure",
+          "type": "choose",
+          "prompt": {
+            "en": "Opening, three points and closing: this is the ___ of a talk."
+          },
+          "options": [
+            {
+              "text": "gesture"
+            },
+            {
+              "text": "point"
+            },
+            {
+              "text": "structure"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Choose a topic for a one-minute talk and tell your family.",
+        "hi": "एक मिनट के भाषण का विषय चुनो और परिवार को बताओ।"
+      }
+    },
+    {
+      "key": "d.u14.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "Signposts in a talk",
+        "hi": "भाषण के संकेत-शब्द"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "Opening, three points, closing",
+            "hi": "शुरुआत, तीन बातें, समापन"
+          },
+          "visual": "cards",
+          "examples": [
+            {
+              "en": "Good morning. Today I am going to talk about water.",
+              "hi": "शुरुआत: नमस्कार। आज मैं पानी के बारे में बोलूँगा।"
+            },
+            {
+              "en": "Have you ever thought about where our water comes from?",
+              "hi": "ध्यान खींचो: एक सवाल।"
+            },
+            {
+              "en": "First, let me tell you why water is precious.",
+              "hi": "पहली बात: first"
+            },
+            {
+              "en": "Second, I will explain how our village wastes water.",
+              "hi": "दूसरी बात: second"
+            },
+            {
+              "en": "Finally, I will suggest three simple solutions.",
+              "hi": "तीसरी बात: finally"
+            },
+            {
+              "en": "To sum up, every drop counts. Thank you for listening.",
+              "hi": "समापन: to sum up, thank you"
+            }
+          ],
+          "note": {
+            "en": "Signposts tell the audience where you are in your talk, so they never get lost.",
+            "hi": "संकेत-शब्द श्रोताओं को बताते हैं कि तुम भाषण में कहाँ हो, ताकि वे भटकें नहीं।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u14.l2.b-today",
+              "tiles": [
+                "Today",
+                "I am going",
+                "my school.",
+                "about",
+                "to talk"
+              ],
+              "answer": "Today I am going to talk about my school."
+            },
+            {
+              "key": "d.u14.l2.b-sum",
+              "tiles": [
+                "makes",
+                "To sum up,",
+                "wiser.",
+                "us",
+                "reading"
+              ],
+              "answer": "To sum up, reading makes us wiser."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u14.l2.p-first",
+              "prompt": {
+                "en": "Which signpost starts your first point?"
+              },
+              "options": [
+                {
+                  "text": "First,"
+                },
+                {
+                  "text": "Thank you."
+                },
+                {
+                  "text": "To sum up,"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u14.l2.p-close",
+              "prompt": {
+                "en": "Which signpost tells the audience you are ending?"
+              },
+              "options": [
+                {
+                  "text": "To sum up,"
+                },
+                {
+                  "text": "Have you ever"
+                },
+                {
+                  "text": "Second,"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u14.l2.s-open",
+              "model": "Good morning. Today I am going to talk about my favourite festival.",
+              "cue": {
+                "en": "Open a talk about your favourite festival.",
+                "hi": "अपने पसंदीदा त्योहार पर भाषण शुरू करो।"
+              }
+            },
+            {
+              "key": "d.u14.l2.s-close",
+              "model": "To sum up, festivals bring us together. Thank you for listening.",
+              "cue": {
+                "en": "Close the same talk.",
+                "hi": "उसी भाषण को समाप्त करो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u14.l2.c-b1",
+          "type": "build",
+          "hi": "पहले, मैं बताता हूँ कि पेड़ क्यों ज़रूरी हैं।",
+          "tiles": [
+            "tell you",
+            "First,",
+            "why",
+            "let me",
+            "trees matter."
+          ],
+          "answer": "First, let me tell you why trees matter."
+        },
+        {
+          "key": "d.u14.l2.c-b2",
+          "type": "build",
+          "hi": "मेरा भाषण सुनने के लिए धन्यवाद।",
+          "tiles": [
+            "to",
+            "for",
+            "Thank you",
+            "listening",
+            "my talk."
+          ],
+          "answer": "Thank you for listening to my talk."
+        },
+        {
+          "key": "d.u14.l2.c-second",
+          "type": "choose",
+          "prompt": {
+            "en": "After \"First, …\" comes:"
+          },
+          "options": [
+            {
+              "text": "To sum up, …"
+            },
+            {
+              "text": "Good morning."
+            },
+            {
+              "text": "Second, …"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u14.l2.c-hook",
+          "type": "choose",
+          "prompt": {
+            "en": "Which opening gets attention best?"
+          },
+          "options": [
+            {
+              "text": "I don't know."
+            },
+            {
+              "text": "Um, so, water."
+            },
+            {
+              "text": "Have you ever been really thirsty?"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u14.l2.c-finally",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word introduces the last point?"
+          },
+          "options": [
+            {
+              "text": "Today,"
+            },
+            {
+              "text": "First,"
+            },
+            {
+              "text": "Finally,"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Say the opening of a talk to your family.",
+        "hi": "परिवार को किसी भाषण की शुरुआत सुनाओ।"
+      }
+    },
+    {
+      "key": "d.u14.l3",
+      "kind": "listen",
+      "title": {
+        "en": "Salma's talk: Festivals bring us together",
+        "hi": "सलमा का भाषण: त्योहार हमें जोड़ते हैं"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "Festivals bring us together",
+            "hi": "त्योहार हमें जोड़ते हैं"
+          },
+          "scene": {
+            "place": "festival",
+            "pics": [
+              {
+                "pic": "🪔",
+                "x": 15,
+                "y": 20,
+                "size": 1.4
+              },
+              {
+                "pic": "🌙",
+                "x": 35,
+                "y": 12,
+                "size": 1.4
+              },
+              {
+                "pic": "⭐",
+                "x": 55,
+                "y": 12,
+                "size": 1.2
+              },
+              {
+                "pic": "🎉",
+                "x": 75,
+                "y": 20,
+                "size": 1.4
+              },
+              {
+                "pic": "🧕",
+                "x": 50,
+                "y": 45,
+                "size": 1.6
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "Good morning, everyone. Have you ever counted the festivals our village celebrates?"
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "Today I am going to talk about how festivals bring us together."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "First, festivals bring families home. Cousins come from the city, and houses fill with laughter."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "Second, we share. On Eid, we send sweets to our neighbours, and on Diwali, they send sweets to us."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "At Christmas, our friends from the church invite everyone for cake."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "At Gurpurab, the whole village eats together at the langar."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "Finally, festivals teach us respect for every faith."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "To sum up, festivals are not only about lights and food. They are about people."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "Thank you for listening."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u14.l3.p-open",
+              "prompt": {
+                "en": "How does Salma open her talk?"
+              },
+              "options": [
+                {
+                  "text": "with a joke"
+                },
+                {
+                  "text": "with a question"
+                },
+                {
+                  "text": "with a song"
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u14.l3.p-first",
+              "prompt": {
+                "en": "What is her first point?"
+              },
+              "options": [
+                {
+                  "text": "Festivals are expensive."
+                },
+                {
+                  "text": "Festivals bring families home."
+                },
+                {
+                  "text": "Festivals are noisy."
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u14.l3.s-open",
+              "model": "Today I am going to talk about how festivals bring us together."
+            },
+            {
+              "key": "d.u14.l3.s-sum",
+              "model": "To sum up, festivals are not only about lights and food. They are about people."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u14.l3.c-second",
+          "type": "choose",
+          "prompt": {
+            "en": "What is Salma's second point?"
+          },
+          "options": [
+            {
+              "text": "We sleep."
+            },
+            {
+              "text": "We travel."
+            },
+            {
+              "text": "We share."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u14.l3.c-langar",
+          "type": "choose",
+          "prompt": {
+            "en": "At Gurpurab, what does the village do?"
+          },
+          "options": [
+            {
+              "text": "eats together at the langar"
+            },
+            {
+              "text": "plays cricket"
+            },
+            {
+              "text": "flies kites"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u14.l3.c-final",
+          "type": "choose",
+          "prompt": {
+            "en": "What does Salma say festivals teach us?"
+          },
+          "options": [
+            {
+              "text": "how to cook"
+            },
+            {
+              "text": "how to spend money"
+            },
+            {
+              "text": "respect for every faith"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u14.l3.c-signs",
+          "type": "choose",
+          "prompt": {
+            "en": "Which signposts does Salma use?"
+          },
+          "options": [
+            {
+              "text": "Suddenly, luckily"
+            },
+            {
+              "text": "If, then"
+            },
+            {
+              "text": "First, second, finally, to sum up"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Tell your family about one festival of another faith that you enjoy.",
+        "hi": "परिवार को किसी दूसरे धर्म के एक त्योहार के बारे में बताओ जो तुम्हें पसंद है।"
+      }
+    },
+    {
+      "key": "d.u14.l4",
+      "kind": "speak",
+      "title": {
+        "en": "A one-minute talk",
+        "hi": "एक मिनट का भाषण"
+      },
+      "minutes": 10,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Stand straight, breathe slowly, and look at three different people in the audience.",
+            "hi": "सीधे खड़े रहो, धीरे साँस लो, और श्रोताओं में तीन अलग लोगों को देखो।"
+          },
+          "pic": "🧍"
+        },
+        {
+          "type": "talk",
+          "topic": {
+            "en": "Why every child should learn to swim",
+            "hi": "हर बच्चे को तैरना क्यों सीखना चाहिए"
+          },
+          "outline": [
+            {
+              "en": "Opening: a question and your topic.",
+              "hi": "शुरुआत: एक सवाल और विषय।"
+            },
+            {
+              "en": "First point: safety near ponds and rivers.",
+              "hi": "पहली बात: तालाबों और नदियों के पास सुरक्षा।"
+            },
+            {
+              "en": "Second point: health and fitness.",
+              "hi": "दूसरी बात: सेहत और फ़िटनेस।"
+            },
+            {
+              "en": "Third point: confidence.",
+              "hi": "तीसरी बात: आत्मविश्वास।"
+            },
+            {
+              "en": "Closing: to sum up, and thank you.",
+              "hi": "समापन: to sum up, और धन्यवाद।"
+            }
+          ],
+          "seconds": 60,
+          "model": [
+            "Good morning. Can everyone here swim? Today I am going to talk about why every child should learn.",
+            "First, swimming keeps us safe, because our village has ponds and a river.",
+            "Second, swimming is great exercise for the whole body.",
+            "Finally, learning a difficult skill gives us confidence.",
+            "To sum up, swimming is safety, health and confidence. Thank you for listening."
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u14.l4.s-own",
+              "model": "Good morning. Today I am going to talk about why reading matters.",
+              "cue": {
+                "en": "Open your own one-minute talk on any topic.",
+                "hi": "किसी भी विषय पर अपने एक मिनट के भाषण की शुरुआत करो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u14.l4.c-time",
+          "type": "choose",
+          "prompt": {
+            "en": "A one-minute talk usually has:"
+          },
+          "options": [
+            {
+              "text": "twenty points"
+            },
+            {
+              "text": "only a closing"
+            },
+            {
+              "text": "one opening, three short points, one closing"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u14.l4.c-eyes",
+          "type": "choose",
+          "prompt": {
+            "en": "Where should you look while you speak?"
+          },
+          "options": [
+            {
+              "text": "at people in the audience"
+            },
+            {
+              "text": "at the ceiling"
+            },
+            {
+              "text": "at the floor"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u14.l4.c-nervous",
+          "type": "choose",
+          "prompt": {
+            "en": "You feel nervous before speaking. What helps?"
+          },
+          "options": [
+            {
+              "text": "Breathe slowly and practise first."
+            },
+            {
+              "text": "Speak very fast."
+            },
+            {
+              "text": "Skip the talk."
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Give your one-minute talk to your family tonight.",
+        "hi": "आज रात परिवार को अपना एक मिनट का भाषण सुनाओ।"
+      }
+    },
+    {
+      "key": "d.u14.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 14 review",
+        "hi": "इकाई 14 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u14.l5.m-point",
+              "left": {
+                "text": "point"
+              },
+              "right": {
+                "text": "बात, बिंदु"
+              }
+            },
+            {
+              "key": "d.u14.l5.m-conclude",
+              "left": {
+                "text": "conclude"
+              },
+              "right": {
+                "text": "समाप्त करना"
+              }
+            },
+            {
+              "key": "d.u14.l5.m-practise",
+              "left": {
+                "text": "practise"
+              },
+              "right": {
+                "text": "अभ्यास करना"
+              }
+            },
+            {
+              "key": "d.u14.l5.m-gesture",
+              "left": {
+                "text": "gesture"
+              },
+              "right": {
+                "text": "इशारा"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u14.l5.b-second",
+              "tiles": [
+                "I will",
+                "how",
+                "Second,",
+                "it works.",
+                "explain"
+              ],
+              "answer": "Second, I will explain how it works."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u14.l5.p-end",
+              "prompt": {
+                "en": "Which line ends a talk?"
+              },
+              "options": [
+                {
+                  "text": "Good morning."
+                },
+                {
+                  "text": "Thank you for listening."
+                },
+                {
+                  "text": "First, let me begin."
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u14.l5.s-three",
+              "model": "First, it is fun. Second, it is healthy. Finally, it makes friends.",
+              "cue": {
+                "en": "Give three short points about playing sport.",
+                "hi": "खेल पर तीन छोटी बातें बताओ।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u14.l5.c-structure",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means ढाँचा?"
+          },
+          "options": [
+            {
+              "text": "structure"
+            },
+            {
+              "text": "topic"
+            },
+            {
+              "text": "attention"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u14.l5.c-sum",
+          "type": "choose",
+          "prompt": {
+            "en": "\"To sum up\" means:"
+          },
+          "options": [
+            {
+              "text": "at the start"
+            },
+            {
+              "text": "in short, at the end"
+            },
+            {
+              "text": "suddenly"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u14.l5.c-today",
+          "type": "choose",
+          "prompt": {
+            "en": "Which sentence opens a talk?"
+          },
+          "options": [
+            {
+              "text": "To sum up, music."
+            },
+            {
+              "text": "Today I am going to talk about music."
+            },
+            {
+              "text": "Finally, music."
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u14.l5.c-b1",
+          "type": "build",
+          "hi": "मेरी पहली बात हमारी सेहत के बारे में है।",
+          "tiles": [
+            "health.",
+            "is about",
+            "our",
+            "My",
+            "first point"
+          ],
+          "answer": "My first point is about our health."
+        },
+        {
+          "key": "d.u14.l5.c-attention",
+          "type": "choose",
+          "prompt": {
+            "en": "How can you get the audience's attention?"
+          },
+          "options": [
+            {
+              "text": "Start with a question."
+            },
+            {
+              "text": "Whisper."
+            },
+            {
+              "text": "Turn your back."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u14.l5.c-b2",
+          "type": "build",
+          "hi": "आख़िर में, मैं एक हल सुझाऊँगा।",
+          "tiles": [
+            "will",
+            "Finally,",
+            "a solution.",
+            "I",
+            "suggest"
+          ],
+          "answer": "Finally, I will suggest a solution."
+        }
+      ],
+      "home": {
+        "en": "Practise your talk once more in front of a mirror.",
+        "hi": "आईने के सामने अपने भाषण का एक बार और अभ्यास करो।"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1175 @@
+{
+  "track": "d",
+  "unit": 7,
+  "key": "d.u07",
+  "title": {
+    "en": "If … then",
+    "hi": "अगर … तो"
+  },
+  "pic": "🔬",
+  "can_do": {
+    "en": "I can talk about causes and results.",
+    "hi": "मैं कारण और नतीजों के बारे में बात कर सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u07.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for causes and results",
+        "hi": "कारण और नतीजे के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Science is about causes and results. These words help you explain them.",
+            "hi": "विज्ञान कारण और नतीजे की बात करता है। ये शब्द उन्हें समझाने में मदद करेंगे।"
+          },
+          "pic": "🔬"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u07.l1.cause",
+              "en": "cause",
+              "hi": "कारण; कारण बनना",
+              "pic": "❓",
+              "example": {
+                "en": "Dirty water can cause illness.",
+                "hi": "गंदा पानी बीमारी का कारण बन सकता है।"
+              }
+            },
+            {
+              "key": "d.u07.l1.result",
+              "en": "result",
+              "hi": "नतीजा, परिणाम",
+              "pic": "✅",
+              "example": {
+                "en": "The result of our test surprised the teacher.",
+                "hi": "हमारे प्रयोग के नतीजे ने टीचर को हैरान किया।"
+              }
+            },
+            {
+              "key": "d.u07.l1.prevent",
+              "en": "prevent",
+              "hi": "रोकना, बचाव करना",
+              "pic": "🛑",
+              "example": {
+                "en": "Trees prevent the soil from washing away.",
+                "hi": "पेड़ मिट्टी को बहने से रोकते हैं।"
+              }
+            },
+            {
+              "key": "d.u07.l1.flood",
+              "en": "flood",
+              "hi": "बाढ़",
+              "pic": "🌊",
+              "example": {
+                "en": "Heavy rain caused a flood near the river.",
+                "hi": "भारी बारिश से नदी के पास बाढ़ आ गई।"
+              }
+            },
+            {
+              "key": "d.u07.l1.waste",
+              "en": "waste",
+              "hi": "बर्बाद करना; कचरा",
+              "pic": "💧",
+              "example": {
+                "en": "Please don't waste water.",
+                "hi": "कृपया पानी बर्बाद मत करो।"
+              }
+            },
+            {
+              "key": "d.u07.l1.temperature",
+              "en": "temperature",
+              "hi": "तापमान",
+              "pic": "🌡️",
+              "example": {
+                "en": "Water boils at a temperature of 100 degrees.",
+                "hi": "पानी 100 डिग्री तापमान पर उबलता है।"
+              }
+            },
+            {
+              "key": "d.u07.l1.experiment",
+              "en": "experiment",
+              "hi": "प्रयोग",
+              "pic": "🧪",
+              "example": {
+                "en": "We did an experiment with seeds and light.",
+                "hi": "हमने बीज और रोशनी से एक प्रयोग किया।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u07.l1.m-flood",
+              "left": {
+                "text": "flood"
+              },
+              "right": {
+                "pic": "🌊"
+              }
+            },
+            {
+              "key": "d.u07.l1.m-temperature",
+              "left": {
+                "text": "temperature"
+              },
+              "right": {
+                "pic": "🌡️"
+              }
+            },
+            {
+              "key": "d.u07.l1.m-experiment",
+              "left": {
+                "text": "experiment"
+              },
+              "right": {
+                "pic": "🧪"
+              }
+            },
+            {
+              "key": "d.u07.l1.m-prevent",
+              "left": {
+                "text": "prevent"
+              },
+              "right": {
+                "pic": "🛑"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u07.l1.p-result",
+              "prompt": {
+                "en": "Which word means नतीजा?"
+              },
+              "options": [
+                {
+                  "text": "waste"
+                },
+                {
+                  "text": "result"
+                },
+                {
+                  "text": "cause"
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u07.l1.p-waste",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "If the tap is left open, we waste a lot of water."
+              },
+              "options": [
+                {
+                  "text": "waste"
+                },
+                {
+                  "text": "flood"
+                },
+                {
+                  "text": "cause"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u07.l1.s-cause",
+              "model": "Dirty water can cause illness."
+            },
+            {
+              "key": "d.u07.l1.s-prevent",
+              "model": "Trees prevent the soil from washing away."
+            },
+            {
+              "key": "d.u07.l1.s-exp",
+              "model": "We did an experiment with seeds and light."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u07.l1.c-prevent",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means रोकना?"
+          },
+          "options": [
+            {
+              "text": "prevent"
+            },
+            {
+              "text": "result"
+            },
+            {
+              "text": "produce"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u07.l1.c-flood",
+          "type": "choose",
+          "prompt": {
+            "en": "After a week of heavy rain, there was a ___ in the low fields."
+          },
+          "options": [
+            {
+              "text": "flood"
+            },
+            {
+              "text": "result"
+            },
+            {
+              "text": "temperature"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u07.l1.c-cause",
+          "type": "choose",
+          "prompt": {
+            "en": "Smoke from burning plastic can ___ breathing problems."
+          },
+          "options": [
+            {
+              "text": "cause"
+            },
+            {
+              "text": "waste"
+            },
+            {
+              "text": "prevent"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u07.l1.c-temp",
+          "type": "choose",
+          "prompt": {
+            "en": "In May, the ___ goes above 40 degrees."
+          },
+          "options": [
+            {
+              "text": "experiment"
+            },
+            {
+              "text": "temperature"
+            },
+            {
+              "text": "flood"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Ask at home: What causes floods near our village?",
+        "hi": "घर में पूछो: What causes floods near our village?"
+      }
+    },
+    {
+      "key": "d.u07.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "If this happens, then …",
+        "hi": "अगर ऐसा हो, तो …"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "Zero and first conditionals",
+            "hi": "Zero और first conditional"
+          },
+          "visual": "cards",
+          "examples": [
+            {
+              "en": "If you heat ice, it melts.",
+              "hi": "बर्फ़ गरम करो तो वह पिघलती है। (हमेशा सच)"
+            },
+            {
+              "en": "If plants don't get light, they turn yellow.",
+              "hi": "पौधों को रोशनी न मिले तो वे पीले पड़ जाते हैं।"
+            },
+            {
+              "en": "If it rains tomorrow, we will play indoors.",
+              "hi": "अगर कल बारिश हुई, तो हम अंदर खेलेंगे। (एक संभावना)"
+            },
+            {
+              "en": "If you study regularly, you will do well.",
+              "hi": "नियम से पढ़ोगे तो अच्छा करोगे।"
+            },
+            {
+              "en": "We will miss the train if we don't leave now.",
+              "hi": "अभी नहीं निकले तो ट्रेन छूट जाएगी।"
+            }
+          ],
+          "note": {
+            "en": "Zero: if + present, present, for facts. First: if + present, will + verb, for a real future chance. Never use will after if.",
+            "hi": "Zero: if + present, present (सच्चाई)। First: if + present, will + क्रिया (भविष्य की संभावना)। If के बाद will नहीं।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u07.l2.b-zero",
+              "tiles": [
+                "you get green.",
+                "mix",
+                "If",
+                "blue and yellow,",
+                "you"
+              ],
+              "answer": "If you mix blue and yellow, you get green."
+            },
+            {
+              "key": "d.u07.l2.b-first",
+              "tiles": [
+                "it rains,",
+                "If",
+                "at home.",
+                "we will",
+                "stay"
+              ],
+              "answer": "If it rains, we will stay at home."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u07.l2.p-if",
+              "prompt": {
+                "en": "If it ___ tomorrow, the match will stop."
+              },
+              "options": [
+                {
+                  "text": "will rain"
+                },
+                {
+                  "text": "rains"
+                },
+                {
+                  "text": "rained"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "After if, use the present, not will.",
+                "hi": "If के बाद present, will नहीं।"
+              }
+            },
+            {
+              "key": "d.u07.l2.p-will",
+              "prompt": {
+                "en": "If you water the plant, it ___ grow."
+              },
+              "options": [
+                {
+                  "text": "does"
+                },
+                {
+                  "text": "is"
+                },
+                {
+                  "text": "will"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u07.l2.s-rain",
+              "model": "If it rains tomorrow, I will read a book at home.",
+              "cue": {
+                "en": "What will you do if it rains tomorrow?",
+                "hi": "कल बारिश हुई तो क्या करोगे?"
+              }
+            },
+            {
+              "key": "d.u07.l2.s-fact",
+              "model": "If you heat water, it boils.",
+              "cue": {
+                "en": "What happens if you heat water?",
+                "hi": "पानी गरम करें तो क्या होता है?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u07.l2.c-b1",
+          "type": "build",
+          "hi": "पौधों को पानी न दो तो वे मर जाते हैं।",
+          "tiles": [
+            "they die.",
+            "you",
+            "If",
+            "don't water",
+            "plants,"
+          ],
+          "answer": "If you don't water plants, they die."
+        },
+        {
+          "key": "d.u07.l2.c-b2",
+          "type": "build",
+          "hi": "अगर हम पेड़ लगाएँगे, तो हवा साफ़ होगी।",
+          "tiles": [
+            "will be cleaner.",
+            "plant trees,",
+            "If",
+            "the air",
+            "we"
+          ],
+          "answer": "If we plant trees, the air will be cleaner."
+        },
+        {
+          "key": "d.u07.l2.c-melt",
+          "type": "choose",
+          "prompt": {
+            "en": "If you leave butter in the sun, it ___."
+          },
+          "options": [
+            {
+              "text": "melting"
+            },
+            {
+              "text": "melts"
+            },
+            {
+              "text": "will melted"
+            }
+          ],
+          "answer": 1,
+          "why": {
+            "en": "A fact that is always true: zero conditional, present + present.",
+            "hi": "हमेशा सच: zero conditional, दोनों में present।"
+          }
+        },
+        {
+          "key": "d.u07.l2.c-miss",
+          "type": "choose",
+          "prompt": {
+            "en": "If you ___ hurry, you will miss the bus."
+          },
+          "options": [
+            {
+              "text": "didn't"
+            },
+            {
+              "text": "won't"
+            },
+            {
+              "text": "don't"
+            }
+          ],
+          "answer": 2,
+          "why": {
+            "en": "After if, use the present: don't hurry.",
+            "hi": "If के बाद present: don't hurry।"
+          }
+        },
+        {
+          "key": "d.u07.l2.c-call",
+          "type": "choose",
+          "prompt": {
+            "en": "I ___ you if I need help."
+          },
+          "options": [
+            {
+              "text": "called"
+            },
+            {
+              "text": "call"
+            },
+            {
+              "text": "will call"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Finish this at home: If I finish my work early, I will …",
+        "hi": "घर पर पूरा करो: If I finish my work early, I will …"
+      }
+    },
+    {
+      "key": "d.u07.l3",
+      "kind": "listen",
+      "title": {
+        "en": "Meera's project at the science fair",
+        "hi": "विज्ञान मेले में मीरा का प्रोजेक्ट"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "Saving rainwater",
+            "hi": "बारिश का पानी बचाना"
+          },
+          "scene": {
+            "place": "school",
+            "pics": [
+              {
+                "pic": "🏆",
+                "x": 85,
+                "y": 12,
+                "size": 1.4
+              },
+              {
+                "pic": "👩‍🏫",
+                "x": 25,
+                "y": 42,
+                "size": 1.5
+              },
+              {
+                "pic": "👧",
+                "x": 50,
+                "y": 42,
+                "size": 1.4
+              },
+              {
+                "pic": "🌧️",
+                "x": 70,
+                "y": 15,
+                "size": 1.5
+              },
+              {
+                "pic": "💧",
+                "x": 70,
+                "y": 40,
+                "size": 1.2
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Judge",
+              "pic": "👩‍🏫",
+              "en": "Good morning. Please tell me about your project."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Good morning, madam. My project is about saving rainwater in our village."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "In the monsoon, rainwater runs into the drains and is wasted."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "If we collect it from roofs, we can use it in the dry months."
+            },
+            {
+              "speaker": "Judge",
+              "pic": "👩‍🏫",
+              "en": "What happens if the water stays in the tank for a long time?"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "If the tank is covered and cleaned, the water stays safe for washing and farming."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "It also prevents mosquitoes from breeding."
+            },
+            {
+              "speaker": "Judge",
+              "pic": "👩‍🏫",
+              "en": "And what was the result of your experiment?"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "One roof gave us two thousand litres in one week of rain."
+            },
+            {
+              "speaker": "Judge",
+              "pic": "👩‍🏫",
+              "en": "Impressive. If more families do this, the village will save a lot of water."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u07.l3.p-topic",
+              "prompt": {
+                "en": "What is Meera's project about?"
+              },
+              "options": [
+                {
+                  "text": "growing rice"
+                },
+                {
+                  "text": "making jaggery"
+                },
+                {
+                  "text": "saving rainwater"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u07.l3.p-cover",
+              "prompt": {
+                "en": "What keeps the tank water safe?"
+              },
+              "options": [
+                {
+                  "text": "covering and cleaning the tank"
+                },
+                {
+                  "text": "adding sugar"
+                },
+                {
+                  "text": "leaving it open"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u07.l3.s-collect",
+              "model": "If we collect it from roofs, we can use it in the dry months."
+            },
+            {
+              "key": "d.u07.l3.s-more",
+              "model": "If more families do this, the village will save a lot of water."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u07.l3.c-wasted",
+          "type": "choose",
+          "prompt": {
+            "en": "What happens to rainwater now?"
+          },
+          "options": [
+            {
+              "text": "It runs into drains and is wasted."
+            },
+            {
+              "text": "It is sold."
+            },
+            {
+              "text": "It is boiled."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u07.l3.c-mosq",
+          "type": "choose",
+          "prompt": {
+            "en": "What does a covered tank also prevent?"
+          },
+          "options": [
+            {
+              "text": "mosquitoes breeding"
+            },
+            {
+              "text": "fires"
+            },
+            {
+              "text": "floods"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u07.l3.c-result",
+          "type": "choose",
+          "prompt": {
+            "en": "How much water did one roof give in one week?"
+          },
+          "options": [
+            {
+              "text": "two hundred litres"
+            },
+            {
+              "text": "twenty litres"
+            },
+            {
+              "text": "two thousand litres"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u07.l3.c-judge",
+          "type": "choose",
+          "prompt": {
+            "en": "How does the judge feel about the project?"
+          },
+          "options": [
+            {
+              "text": "bored"
+            },
+            {
+              "text": "angry"
+            },
+            {
+              "text": "impressed"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Tell your family one way to save water, with \"If we …\".",
+        "hi": "परिवार को \"If we …\" से पानी बचाने का एक तरीक़ा बताओ।"
+      }
+    },
+    {
+      "key": "d.u07.l4",
+      "kind": "speak",
+      "title": {
+        "en": "Cause and effect",
+        "hi": "कारण और प्रभाव"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Explain a cause and its effect in one sentence: \"If …, …\". Then add a reason with \"because\".",
+            "hi": "एक वाक्य में कारण और असर बताओ: \"If …, …\"। फिर \"because\" से वजह जोड़ो।"
+          },
+          "pic": "🔬"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "village",
+            "pics": [
+              {
+                "pic": "🌧️",
+                "x": 20,
+                "y": 10,
+                "size": 1.6
+              },
+              {
+                "pic": "🌊",
+                "x": 25,
+                "y": 45,
+                "size": 2
+              },
+              {
+                "pic": "🌳",
+                "x": 60,
+                "y": 30,
+                "size": 1.8
+              },
+              {
+                "pic": "🏠",
+                "x": 85,
+                "y": 40,
+                "size": 1.6
+              },
+              {
+                "pic": "🥤",
+                "x": 45,
+                "y": 50,
+                "size": 1
+              }
+            ]
+          },
+          "questions": [
+            {
+              "key": "d.u07.l4.pq-trees",
+              "en": "What happens if we cut down all the trees?",
+              "model": "If we cut down the trees, the soil will wash away in the rain."
+            },
+            {
+              "key": "d.u07.l4.pq-drain",
+              "en": "What happens if plastic blocks the drains?",
+              "model": "If plastic blocks the drains, the water floods the streets."
+            },
+            {
+              "key": "d.u07.l4.pq-do",
+              "en": "What should the village do?",
+              "model": "If we plant trees and keep drains clean, we can prevent floods."
+            }
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "d.u07.l4.br-heat",
+              "hi": "अगर बर्फ़ को गरम करो तो वह पिघल जाती है।",
+              "tiles": [
+                "ice,",
+                "you heat",
+                "it",
+                "If",
+                "melts."
+              ],
+              "answer": "If you heat ice, it melts."
+            },
+            {
+              "key": "d.u07.l4.br-rain",
+              "hi": "अगर कल बारिश हुई तो मैच नहीं होगा।",
+              "tiles": [
+                "there will be",
+                "it rains",
+                "tomorrow,",
+                "no match.",
+                "If"
+              ],
+              "answer": "If it rains tomorrow, there will be no match."
+            },
+            {
+              "key": "d.u07.l4.br-waste",
+              "hi": "अगर हम पानी बर्बाद करेंगे तो कुएँ सूख जाएँगे।",
+              "tiles": [
+                "If we",
+                "will",
+                "dry up.",
+                "the wells",
+                "waste water,"
+              ],
+              "answer": "If we waste water, the wells will dry up."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u07.l4.s-effect",
+              "model": "If we use less plastic, our fields and rivers will stay clean.",
+              "cue": {
+                "en": "What will happen if we use less plastic?",
+                "hi": "हम कम प्लास्टिक इस्तेमाल करें तो क्या होगा?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u07.l4.c-zero",
+          "type": "choose",
+          "prompt": {
+            "en": "Which sentence is always true?"
+          },
+          "options": [
+            {
+              "text": "If I win, I will be happy."
+            },
+            {
+              "text": "If it rains, we will stay home."
+            },
+            {
+              "text": "If you drop a stone, it falls."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u07.l4.c-wrong",
+          "type": "choose",
+          "prompt": {
+            "en": "Which sentence is correct?"
+          },
+          "options": [
+            {
+              "text": "If it rains, we will stay home."
+            },
+            {
+              "text": "If it will rain, we stay home."
+            },
+            {
+              "text": "If it rain, we staying home."
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "If + present, will + verb.",
+            "hi": "If + present, will + क्रिया।"
+          }
+        },
+        {
+          "key": "d.u07.l4.c-b1",
+          "type": "build",
+          "hi": "अगर हम पेड़ लगाएँ, तो बाढ़ रोक सकते हैं।",
+          "tiles": [
+            "trees,",
+            "If",
+            "prevent floods.",
+            "we plant",
+            "we can"
+          ],
+          "answer": "If we plant trees, we can prevent floods."
+        }
+      ],
+      "home": {
+        "en": "Talk at home about one cause and effect you see in the village.",
+        "hi": "घर पर गाँव में दिखने वाले किसी कारण और असर पर बात करो।"
+      }
+    },
+    {
+      "key": "d.u07.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 7 review",
+        "hi": "इकाई 7 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u07.l5.m-cause",
+              "left": {
+                "text": "cause"
+              },
+              "right": {
+                "text": "कारण"
+              }
+            },
+            {
+              "key": "d.u07.l5.m-result",
+              "left": {
+                "text": "result"
+              },
+              "right": {
+                "text": "नतीजा"
+              }
+            },
+            {
+              "key": "d.u07.l5.m-flood",
+              "left": {
+                "text": "flood"
+              },
+              "right": {
+                "text": "बाढ़"
+              }
+            },
+            {
+              "key": "d.u07.l5.m-waste",
+              "left": {
+                "text": "waste"
+              },
+              "right": {
+                "text": "बर्बाद करना"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u07.l5.b-if",
+              "tiles": [
+                "press",
+                "you",
+                "If",
+                "comes on.",
+                "the light",
+                "this button,"
+              ],
+              "answer": "If you press this button, the light comes on."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u07.l5.p-if",
+              "prompt": {
+                "en": "If Salma ___ the bus, she will be late."
+              },
+              "options": [
+                {
+                  "text": "misses"
+                },
+                {
+                  "text": "will miss"
+                },
+                {
+                  "text": "missed"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u07.l5.s-if",
+              "model": "If I get good marks, I will join the science club.",
+              "cue": {
+                "en": "What will you do if you get good marks?",
+                "hi": "अच्छे नंबर आए तो क्या करोगे?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u07.l5.c-experiment",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means प्रयोग?"
+          },
+          "options": [
+            {
+              "text": "prevent"
+            },
+            {
+              "text": "temperature"
+            },
+            {
+              "text": "experiment"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u07.l5.c-freeze",
+          "type": "choose",
+          "prompt": {
+            "en": "If water gets very cold, it ___."
+          },
+          "options": [
+            {
+              "text": "froze"
+            },
+            {
+              "text": "freezes"
+            },
+            {
+              "text": "will freezing"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u07.l5.c-tell",
+          "type": "choose",
+          "prompt": {
+            "en": "If I see Ravi, I ___ him the news."
+          },
+          "options": [
+            {
+              "text": "tell"
+            },
+            {
+              "text": "will tell"
+            },
+            {
+              "text": "told"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u07.l5.c-b1",
+          "type": "build",
+          "hi": "अगर बारिश नहीं हुई, तो फ़सलें ख़राब होंगी।",
+          "tiles": [
+            "will suffer.",
+            "it",
+            "If",
+            "doesn't rain,",
+            "the crops"
+          ],
+          "answer": "If it doesn't rain, the crops will suffer."
+        },
+        {
+          "key": "d.u07.l5.c-prevent",
+          "type": "choose",
+          "prompt": {
+            "en": "Washing hands helps to ___ illness."
+          },
+          "options": [
+            {
+              "text": "prevent"
+            },
+            {
+              "text": "waste"
+            },
+            {
+              "text": "cause"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u07.l5.c-b2",
+          "type": "build",
+          "hi": "बारिश रुकी तो हम बाहर जाएँगे।",
+          "tiles": [
+            "will",
+            "We",
+            "go out",
+            "the rain stops.",
+            "if"
+          ],
+          "answer": "We will go out if the rain stops."
+        }
+      ],
+      "home": {
+        "en": "Make one \"If …, I will …\" promise to your family.",
+        "hi": "परिवार से \"If …, I will …\" वाला एक वादा करो।"
+      }
+    }
+  ]
+}

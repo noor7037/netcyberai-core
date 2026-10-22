@@ -1,0 +1,1252 @@
+{
+  "track": "d",
+  "unit": 2,
+  "key": "d.u02",
+  "title": {
+    "en": "Experiences",
+    "hi": "अनुभव"
+  },
+  "pic": "✨",
+  "can_do": {
+    "en": "I can talk about my experiences.",
+    "hi": "मैं अपने अनुभवों के बारे में बता सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u02.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for experiences",
+        "hi": "अनुभवों के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "These words help you talk about things you have done in your life.",
+            "hi": "इन शब्दों से तुम ज़िंदगी में किए कामों के बारे में बता सकोगे।"
+          },
+          "pic": "✨"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u02.l1.experience",
+              "en": "experience",
+              "hi": "अनुभव",
+              "pic": "✨",
+              "example": {
+                "en": "Speaking on stage was a new experience for me.",
+                "hi": "मंच पर बोलना मेरे लिए नया अनुभव था।"
+              }
+            },
+            {
+              "key": "d.u02.l1.journey",
+              "en": "journey",
+              "hi": "यात्रा, सफ़र",
+              "pic": "🚆",
+              "example": {
+                "en": "The train journey to the city took five hours.",
+                "hi": "शहर तक ट्रेन का सफ़र पाँच घंटे का था।"
+              }
+            },
+            {
+              "key": "d.u02.l1.visit",
+              "en": "visit",
+              "hi": "घूमने जाना, मिलने जाना",
+              "pic": "🏛️",
+              "example": {
+                "en": "We visited the old fort last winter.",
+                "hi": "हम पिछली सर्दियों में पुराना क़िला देखने गए।"
+              }
+            },
+            {
+              "key": "d.u02.l1.achieve",
+              "en": "achieve",
+              "hi": "हासिल करना",
+              "pic": "🏆",
+              "example": {
+                "en": "Salma has achieved first place in drawing.",
+                "hi": "सलमा ने ड्रॉइंग में पहला स्थान हासिल किया है।"
+              }
+            },
+            {
+              "key": "d.u02.l1.attempt",
+              "en": "attempt",
+              "hi": "कोशिश",
+              "pic": "🎯",
+              "example": {
+                "en": "He passed the swimming test on his second attempt.",
+                "hi": "उसने दूसरी कोशिश में तैराकी परीक्षा पास की।"
+              }
+            },
+            {
+              "key": "d.u02.l1.festival",
+              "en": "festival",
+              "hi": "त्योहार, उत्सव",
+              "pic": "🎉",
+              "example": {
+                "en": "Have you ever seen the kite festival?",
+                "hi": "क्या तुमने कभी पतंग उत्सव देखा है?"
+              }
+            },
+            {
+              "key": "d.u02.l1.nervous",
+              "en": "nervous",
+              "hi": "घबराया हुआ",
+              "pic": "😨",
+              "example": {
+                "en": "I was nervous before my first speech.",
+                "hi": "पहले भाषण से पहले मैं घबराई हुई थी।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u02.l1.m-journey",
+              "left": {
+                "text": "journey"
+              },
+              "right": {
+                "pic": "🚆"
+              }
+            },
+            {
+              "key": "d.u02.l1.m-achieve",
+              "left": {
+                "text": "achieve"
+              },
+              "right": {
+                "pic": "🏆"
+              }
+            },
+            {
+              "key": "d.u02.l1.m-nervous",
+              "left": {
+                "text": "nervous"
+              },
+              "right": {
+                "pic": "😨"
+              }
+            },
+            {
+              "key": "d.u02.l1.m-festival",
+              "left": {
+                "text": "festival"
+              },
+              "right": {
+                "pic": "🎉"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u02.l1.p-attempt",
+              "prompt": {
+                "en": "Which word means कोशिश?"
+              },
+              "options": [
+                {
+                  "text": "visit"
+                },
+                {
+                  "text": "achieve"
+                },
+                {
+                  "text": "attempt"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u02.l1.p-exp",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "Cooking for twenty guests was a great experience."
+              },
+              "options": [
+                {
+                  "text": "journey"
+                },
+                {
+                  "text": "experience"
+                },
+                {
+                  "text": "festival"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u02.l1.s-exp",
+              "model": "Speaking on stage was a new experience for me."
+            },
+            {
+              "key": "d.u02.l1.s-nervous",
+              "model": "I was nervous before my first speech."
+            },
+            {
+              "key": "d.u02.l1.s-achieve",
+              "model": "Salma has achieved first place in drawing."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u02.l1.c-journey",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means यात्रा?"
+          },
+          "options": [
+            {
+              "text": "visit"
+            },
+            {
+              "text": "journey"
+            },
+            {
+              "text": "attempt"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u02.l1.c-achieve",
+          "type": "choose",
+          "prompt": {
+            "en": "Ravi worked hard and ___ his goal."
+          },
+          "options": [
+            {
+              "text": "achieved"
+            },
+            {
+              "text": "attempted"
+            },
+            {
+              "text": "visited"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u02.l1.c-nervous",
+          "type": "choose",
+          "prompt": {
+            "en": "Before the exam, Arjun felt ___."
+          },
+          "options": [
+            {
+              "text": "journey"
+            },
+            {
+              "text": "festival"
+            },
+            {
+              "text": "nervous"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u02.l1.c-visit",
+          "type": "choose",
+          "prompt": {
+            "en": "Next week we will ___ our grandparents in town."
+          },
+          "options": [
+            {
+              "text": "attempt"
+            },
+            {
+              "text": "visit"
+            },
+            {
+              "text": "achieve"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Ask someone at home: What was your best experience?",
+        "hi": "घर में पूछो: What was your best experience?"
+      }
+    },
+    {
+      "key": "d.u02.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "Have you ever …?",
+        "hi": "क्या तुमने कभी …?"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "The present perfect: have or has + done",
+            "hi": "Present perfect: have/has + तीसरी फ़ॉर्म"
+          },
+          "visual": "timeline",
+          "examples": [
+            {
+              "en": "I have visited the city twice.",
+              "hi": "मैं दो बार शहर जा चुकी हूँ। (कब, यह ज़रूरी नहीं)",
+              "time": "past"
+            },
+            {
+              "en": "Have you ever seen the sea?",
+              "hi": "क्या तुमने कभी समुद्र देखा है?",
+              "time": "past"
+            },
+            {
+              "en": "Arjun has never flown in a plane.",
+              "hi": "अर्जुन कभी हवाई जहाज़ में नहीं बैठा।",
+              "time": "past"
+            },
+            {
+              "en": "I have already finished my homework.",
+              "hi": "मैं अपना होमवर्क पहले ही ख़त्म कर चुकी हूँ।",
+              "time": "now"
+            },
+            {
+              "en": "Salma has not packed her bag yet.",
+              "hi": "सलमा ने अभी तक बैग नहीं बाँधा है।",
+              "time": "now"
+            }
+          ],
+          "note": {
+            "en": "Use it for life experiences when the time is not said. Ever and yet go in questions; never means not at any time.",
+            "hi": "जीवन के अनुभव, जब समय न बताया जाए। ever और yet सवालों में; never यानी कभी नहीं।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u02.l2.b-ever",
+              "tiles": [
+                "you",
+                "seen",
+                "ever",
+                "the sea?",
+                "Have"
+              ],
+              "answer": "Have you ever seen the sea?"
+            },
+            {
+              "key": "d.u02.l2.b-already",
+              "tiles": [
+                "has",
+                "eaten",
+                "She",
+                "already",
+                "lunch."
+              ],
+              "answer": "She has already eaten lunch."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u02.l2.p-has",
+              "prompt": {
+                "en": "Ravi ___ never been to Delhi."
+              },
+              "options": [
+                {
+                  "text": "has"
+                },
+                {
+                  "text": "is"
+                },
+                {
+                  "text": "have"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "He, she and a single name take has.",
+                "hi": "He, she या एक नाम के साथ has।"
+              }
+            },
+            {
+              "key": "d.u02.l2.p-yet",
+              "prompt": {
+                "en": "Have you finished the book ___?"
+              },
+              "options": [
+                {
+                  "text": "already"
+                },
+                {
+                  "text": "never"
+                },
+                {
+                  "text": "yet"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "Yet comes at the end of questions and negatives.",
+                "hi": "Yet सवाल और ना वाले वाक्य के अंत में आता है।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u02.l2.s-ever",
+              "model": "Yes, I have. I have seen the kite festival twice.",
+              "cue": {
+                "en": "Have you ever seen a festival in another village?",
+                "hi": "क्या तुमने कभी दूसरे गाँव का त्योहार देखा है?"
+              }
+            },
+            {
+              "key": "d.u02.l2.s-never",
+              "model": "No, I have never travelled by plane.",
+              "cue": {
+                "en": "Have you ever travelled by plane?",
+                "hi": "क्या तुमने कभी हवाई जहाज़ से सफ़र किया है?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u02.l2.c-b1",
+          "type": "build",
+          "hi": "मैंने कभी घोड़े की सवारी नहीं की।",
+          "tiles": [
+            "ridden",
+            "have",
+            "never",
+            "I",
+            "a horse."
+          ],
+          "answer": "I have never ridden a horse."
+        },
+        {
+          "key": "d.u02.l2.c-b2",
+          "type": "build",
+          "hi": "क्या मीरा ने अपना प्रोजेक्ट पूरा कर लिया?",
+          "tiles": [
+            "yet?",
+            "finished",
+            "her project",
+            "Meera",
+            "Has"
+          ],
+          "answer": "Has Meera finished her project yet?"
+        },
+        {
+          "key": "d.u02.l2.c-been",
+          "type": "choose",
+          "prompt": {
+            "en": "We have ___ to the science museum."
+          },
+          "options": [
+            {
+              "text": "been"
+            },
+            {
+              "text": "be"
+            },
+            {
+              "text": "was"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "After have or has, use the third form: been, seen, done.",
+            "hi": "Have/has के बाद तीसरी फ़ॉर्म: been, seen, done।"
+          }
+        },
+        {
+          "key": "d.u02.l2.c-already",
+          "type": "choose",
+          "prompt": {
+            "en": "Don't worry. I have ___ called the doctor."
+          },
+          "options": [
+            {
+              "text": "already"
+            },
+            {
+              "text": "ever"
+            },
+            {
+              "text": "yet"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "Already means sooner than expected; it goes before the verb.",
+            "hi": "Already यानी पहले ही; यह क्रिया से पहले आता है।"
+          }
+        },
+        {
+          "key": "d.u02.l2.c-past",
+          "type": "choose",
+          "prompt": {
+            "en": "Which sentence needs the past simple, not the present perfect?"
+          },
+          "options": [
+            {
+              "text": "I saw a tiger last year."
+            },
+            {
+              "text": "I have seen a tiger."
+            },
+            {
+              "text": "I have never seen a tiger."
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "Last year is a finished time, so we use the past simple: saw.",
+            "hi": "Last year बीता समय है, इसलिए past simple: saw।"
+          }
+        }
+      ],
+      "home": {
+        "en": "Ask someone: Have you ever been to a big city?",
+        "hi": "किसी से पूछो: Have you ever been to a big city?"
+      }
+    },
+    {
+      "key": "d.u02.l3",
+      "kind": "listen",
+      "title": {
+        "en": "Arjun's first train journey",
+        "hi": "अर्जुन का पहला ट्रेन सफ़र"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "Talking about experiences",
+            "hi": "अनुभवों की बातें"
+          },
+          "scene": {
+            "place": "station",
+            "pics": [
+              {
+                "pic": "🚉",
+                "x": 80,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "🚆",
+                "x": 25,
+                "y": 20,
+                "size": 1.8
+              },
+              {
+                "pic": "👦",
+                "x": 45,
+                "y": 45,
+                "size": 1.4
+              },
+              {
+                "pic": "👧",
+                "x": 62,
+                "y": 45,
+                "size": 1.4
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Arjun, have you packed your bag for the trip yet?"
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Yes, I have already packed it. I am a bit nervous, though."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Why? Have you never travelled by train?"
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "No, I have never been on a long train journey."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "I have only taken the bus to town."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I went to Lucknow by train last year with Mummy."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "It was a great experience. I saw fields, rivers and big stations."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Have you ever slept on a train?"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Yes, once. The upper berth is the most comfortable."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Then I will ask for the upper berth!"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u02.l3.p-packed",
+              "prompt": {
+                "en": "Has Arjun packed his bag?"
+              },
+              "options": [
+                {
+                  "text": "No, not yet."
+                },
+                {
+                  "text": "He has no bag."
+                },
+                {
+                  "text": "Yes, already."
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u02.l3.p-meera",
+              "prompt": {
+                "en": "When did Meera go to Lucknow?"
+              },
+              "options": [
+                {
+                  "text": "last year"
+                },
+                {
+                  "text": "last week"
+                },
+                {
+                  "text": "never"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u02.l3.s-never",
+              "model": "No, I have never been on a long train journey."
+            },
+            {
+              "key": "d.u02.l3.s-great",
+              "model": "It was a great experience."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u02.l3.c-nervous",
+          "type": "choose",
+          "prompt": {
+            "en": "How does Arjun feel?"
+          },
+          "options": [
+            {
+              "text": "sleepy"
+            },
+            {
+              "text": "very angry"
+            },
+            {
+              "text": "a bit nervous"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u02.l3.c-bus",
+          "type": "choose",
+          "prompt": {
+            "en": "How has Arjun travelled to town before?"
+          },
+          "options": [
+            {
+              "text": "by bus"
+            },
+            {
+              "text": "by plane"
+            },
+            {
+              "text": "by train"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u02.l3.c-saw",
+          "type": "choose",
+          "prompt": {
+            "en": "What did Meera see from the train?"
+          },
+          "options": [
+            {
+              "text": "fields, rivers and stations"
+            },
+            {
+              "text": "the sea and ships"
+            },
+            {
+              "text": "mountains and snow"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u02.l3.c-berth",
+          "type": "choose",
+          "prompt": {
+            "en": "Which berth does Meera like best?"
+          },
+          "options": [
+            {
+              "text": "the upper berth"
+            },
+            {
+              "text": "the lower berth"
+            },
+            {
+              "text": "the middle berth"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Tell someone at home about one journey you remember.",
+        "hi": "घर में किसी को अपनी कोई यादगार यात्रा के बारे में बताओ।"
+      }
+    },
+    {
+      "key": "d.u02.l4",
+      "kind": "speak",
+      "title": {
+        "en": "Have you ever …?",
+        "hi": "क्या तुमने कभी …?"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "A good answer has two parts: yes or no, and one more detail.",
+            "hi": "अच्छे जवाब के दो हिस्से: हाँ या ना, और एक बात और।"
+          },
+          "pic": "🎤"
+        },
+        {
+          "type": "roleplay",
+          "title": {
+            "en": "An experience interview",
+            "hi": "अनुभवों पर बातचीत"
+          },
+          "scene": {
+            "place": "school",
+            "pics": [
+              {
+                "pic": "🏫",
+                "x": 80,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "🧕",
+                "x": 30,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "🧒",
+                "x": 60,
+                "y": 42,
+                "size": 1.6
+              }
+            ]
+          },
+          "roles": [
+            {
+              "name": "Salma",
+              "pic": "🧕"
+            },
+            {
+              "name": "You",
+              "pic": "🧒"
+            }
+          ],
+          "learner": 1,
+          "turns": [
+            {
+              "role": 0,
+              "en": "Have you ever won a prize?"
+            },
+            {
+              "role": 1,
+              "en": "Yes, I have. I won a prize for running in Class 7."
+            },
+            {
+              "role": 0,
+              "en": "Great! Have you ever spoken on the stage?"
+            },
+            {
+              "role": 1,
+              "en": "No, I haven't, but I would like to try this year."
+            },
+            {
+              "role": 0,
+              "en": "Have you ever cooked a full meal?"
+            },
+            {
+              "role": 1,
+              "en": "Yes, I have cooked dal and rice for my family twice."
+            },
+            {
+              "role": 0,
+              "en": "What is the most exciting thing you have done?"
+            },
+            {
+              "role": 1,
+              "en": "I have helped at the village health camp. It was a great experience."
+            }
+          ],
+          "partner": {
+            "goal": "Ask the learner four \"Have you ever\" questions about prizes, travel, cooking and helping others. Ask for one detail after each answer.",
+            "must_use": [
+              "have you ever",
+              "I have",
+              "I haven't",
+              "never",
+              "experience"
+            ]
+          }
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "festival",
+            "pics": [
+              {
+                "pic": "🎉",
+                "x": 15,
+                "y": 15,
+                "size": 1.6
+              },
+              {
+                "pic": "🪁",
+                "x": 45,
+                "y": 12,
+                "size": 1.6
+              },
+              {
+                "pic": "🎡",
+                "x": 78,
+                "y": 20,
+                "size": 2
+              },
+              {
+                "pic": "👧",
+                "x": 35,
+                "y": 45,
+                "size": 1.3
+              },
+              {
+                "pic": "👦",
+                "x": 55,
+                "y": 45,
+                "size": 1.3
+              },
+              {
+                "pic": "🍦",
+                "x": 70,
+                "y": 48,
+                "size": 1
+              }
+            ]
+          },
+          "questions": [
+            {
+              "key": "d.u02.l4.pq-seen",
+              "en": "Have you ever been to a fair like this?",
+              "model": "Yes, I have been to the fair in town twice."
+            },
+            {
+              "key": "d.u02.l4.pq-ride",
+              "en": "Have you ever ridden a big wheel?",
+              "model": "No, I have never ridden one, but I want to."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u02.l4.s-best",
+              "model": "The most exciting thing I have done is speak at the school assembly.",
+              "cue": {
+                "en": "What is the most exciting thing you have done?",
+                "hi": "तुमने अब तक सबसे रोमांचक काम क्या किया है?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u02.l4.c-reply",
+          "type": "choose",
+          "prompt": {
+            "en": "\"Have you ever seen a peacock?\" Which answer is correct?"
+          },
+          "options": [
+            {
+              "text": "Yes, I am."
+            },
+            {
+              "text": "Yes, I have."
+            },
+            {
+              "text": "Yes, I did seen."
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u02.l4.c-short",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is the short form of have not?"
+          },
+          "options": [
+            {
+              "text": "hasn't"
+            },
+            {
+              "text": "haven't"
+            },
+            {
+              "text": "didn't"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u02.l4.c-b1",
+          "type": "build",
+          "hi": "मैं कभी मंच पर नहीं बोला।",
+          "tiles": [
+            "never",
+            "on the stage.",
+            "spoken",
+            "I have"
+          ],
+          "answer": "I have never spoken on the stage."
+        },
+        {
+          "key": "d.u02.l4.c-detail",
+          "type": "choose",
+          "prompt": {
+            "en": "Which answer gives a useful detail?"
+          },
+          "options": [
+            {
+              "text": "Yes, I have. I saw it at the zoo in Patna."
+            },
+            {
+              "text": "Yes."
+            },
+            {
+              "text": "Yes, yes, yes."
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Ask a grown-up two \"Have you ever\" questions tonight.",
+        "hi": "आज रात किसी बड़े से दो \"Have you ever\" सवाल पूछो।"
+      }
+    },
+    {
+      "key": "d.u02.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 2 review",
+        "hi": "इकाई 2 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u02.l5.m-experience",
+              "left": {
+                "text": "experience"
+              },
+              "right": {
+                "text": "अनुभव"
+              }
+            },
+            {
+              "key": "d.u02.l5.m-attempt",
+              "left": {
+                "text": "attempt"
+              },
+              "right": {
+                "text": "कोशिश"
+              }
+            },
+            {
+              "key": "d.u02.l5.m-visit",
+              "left": {
+                "text": "visit"
+              },
+              "right": {
+                "text": "घूमने जाना"
+              }
+            },
+            {
+              "key": "d.u02.l5.m-achieve",
+              "left": {
+                "text": "achieve"
+              },
+              "right": {
+                "text": "हासिल करना"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u02.l5.b-yet",
+              "tiles": [
+                "Have",
+                "done",
+                "your homework",
+                "yet?",
+                "you"
+              ],
+              "answer": "Have you done your homework yet?"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u02.l5.p-ever",
+              "prompt": {
+                "en": "___ you ever tasted sugarcane juice?"
+              },
+              "options": [
+                {
+                  "text": "Has"
+                },
+                {
+                  "text": "Did"
+                },
+                {
+                  "text": "Have"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u02.l5.s-ever",
+              "model": "Yes, I have. I have tasted it at the village fair.",
+              "cue": {
+                "en": "Have you ever tasted sugarcane juice?",
+                "hi": "क्या तुमने कभी गन्ने का रस पिया है?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u02.l5.c-festival",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means त्योहार?"
+          },
+          "options": [
+            {
+              "text": "journey"
+            },
+            {
+              "text": "nervous"
+            },
+            {
+              "text": "festival"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u02.l5.c-has",
+          "type": "choose",
+          "prompt": {
+            "en": "My sister ___ already left for school."
+          },
+          "options": [
+            {
+              "text": "is"
+            },
+            {
+              "text": "have"
+            },
+            {
+              "text": "has"
+            }
+          ],
+          "answer": 2,
+          "why": {
+            "en": "My sister is she, so we use has.",
+            "hi": "My sister = she, इसलिए has।"
+          }
+        },
+        {
+          "key": "d.u02.l5.c-seen",
+          "type": "choose",
+          "prompt": {
+            "en": "I have never ___ snow."
+          },
+          "options": [
+            {
+              "text": "see"
+            },
+            {
+              "text": "saw"
+            },
+            {
+              "text": "seen"
+            }
+          ],
+          "answer": 2,
+          "why": {
+            "en": "Have + the third form: seen.",
+            "hi": "Have + तीसरी फ़ॉर्म: seen।"
+          }
+        },
+        {
+          "key": "d.u02.l5.c-b1",
+          "type": "build",
+          "hi": "हम दो बार क़िला देख चुके हैं।",
+          "tiles": [
+            "the fort",
+            "twice.",
+            "We",
+            "have",
+            "visited"
+          ],
+          "answer": "We have visited the fort twice."
+        },
+        {
+          "key": "d.u02.l5.c-yesterday",
+          "type": "choose",
+          "prompt": {
+            "en": "I ___ my uncle yesterday."
+          },
+          "options": [
+            {
+              "text": "have met"
+            },
+            {
+              "text": "meet"
+            },
+            {
+              "text": "met"
+            }
+          ],
+          "answer": 2,
+          "why": {
+            "en": "Yesterday is a finished time: past simple.",
+            "hi": "Yesterday बीता समय है: past simple।"
+          }
+        },
+        {
+          "key": "d.u02.l5.c-b2",
+          "type": "build",
+          "hi": "अर्जुन ने अभी तक अपना काम पूरा नहीं किया।",
+          "tiles": [
+            "finished",
+            "yet.",
+            "Arjun",
+            "his work",
+            "has not"
+          ],
+          "answer": "Arjun has not finished his work yet."
+        }
+      ],
+      "home": {
+        "en": "Tell your family one thing you have never done but want to do.",
+        "hi": "परिवार को बताओ, कौन-सा काम तुमने कभी नहीं किया पर करना चाहते हो।"
+      }
+    }
+  ]
+}

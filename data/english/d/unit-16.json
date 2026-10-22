@@ -1,0 +1,1132 @@
+{
+  "track": "d",
+  "unit": 16,
+  "key": "d.u16",
+  "title": {
+    "en": "Messages and email",
+    "hi": "संदेश और ईमेल"
+  },
+  "pic": "✉️",
+  "can_do": {
+    "en": "I can write a short polite message.",
+    "hi": "मैं छोटा विनम्र संदेश लिख सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u16.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for messages",
+        "hi": "संदेश के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "We write differently to a friend and to a principal. These words help with polite messages.",
+            "hi": "दोस्त और प्रधानाचार्य को हम अलग तरह लिखते हैं। ये शब्द विनम्र संदेश में मदद करते हैं।"
+          },
+          "pic": "✉️"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u16.l1.request",
+              "en": "request",
+              "hi": "अनुरोध करना",
+              "pic": "🙏",
+              "example": {
+                "en": "I request leave for two days.",
+                "hi": "मैं दो दिन की छुट्टी का अनुरोध करता हूँ।"
+              }
+            },
+            {
+              "key": "d.u16.l1.inform",
+              "en": "inform",
+              "hi": "सूचित करना",
+              "pic": "🔔",
+              "example": {
+                "en": "I am writing to inform you about the meeting.",
+                "hi": "मैं आपको बैठक के बारे में सूचित करने के लिए लिख रही हूँ।"
+              }
+            },
+            {
+              "key": "d.u16.l1.apologise",
+              "en": "apologise",
+              "hi": "माफ़ी माँगना",
+              "pic": "🙇",
+              "example": {
+                "en": "I apologise for the late reply.",
+                "hi": "देर से जवाब के लिए माफ़ी चाहता हूँ।"
+              }
+            },
+            {
+              "key": "d.u16.l1.grateful",
+              "en": "grateful",
+              "hi": "आभारी",
+              "pic": "😊",
+              "example": {
+                "en": "I am grateful for your help.",
+                "hi": "मैं आपकी मदद के लिए आभारी हूँ।"
+              }
+            },
+            {
+              "key": "d.u16.l1.attach",
+              "en": "attach",
+              "hi": "साथ में जोड़ना",
+              "pic": "📎",
+              "example": {
+                "en": "I have attached my project report.",
+                "hi": "मैंने अपनी प्रोजेक्ट रिपोर्ट साथ में जोड़ी है।"
+              }
+            },
+            {
+              "key": "d.u16.l1.formal",
+              "en": "formal",
+              "hi": "औपचारिक",
+              "pic": "🏛️",
+              "example": {
+                "en": "Use formal words when you write to the principal.",
+                "hi": "प्रधानाचार्य को लिखते समय औपचारिक शब्द इस्तेमाल करो।"
+              }
+            },
+            {
+              "key": "d.u16.l1.regards",
+              "en": "regards",
+              "hi": "शुभकामनाएँ (पत्र के अंत में)",
+              "pic": "✉️",
+              "example": {
+                "en": "End a formal message with \"Kind regards\".",
+                "hi": "औपचारिक संदेश \"Kind regards\" से ख़त्म करो।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u16.l1.m-attach",
+              "left": {
+                "text": "attach"
+              },
+              "right": {
+                "pic": "📎"
+              }
+            },
+            {
+              "key": "d.u16.l1.m-apologise",
+              "left": {
+                "text": "apologise"
+              },
+              "right": {
+                "pic": "🙇"
+              }
+            },
+            {
+              "key": "d.u16.l1.m-request",
+              "left": {
+                "text": "request"
+              },
+              "right": {
+                "pic": "🙏"
+              }
+            },
+            {
+              "key": "d.u16.l1.m-grateful",
+              "left": {
+                "text": "grateful"
+              },
+              "right": {
+                "pic": "😊"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u16.l1.p-inform",
+              "prompt": {
+                "en": "Which word means सूचित करना?"
+              },
+              "options": [
+                {
+                  "text": "inform"
+                },
+                {
+                  "text": "attach"
+                },
+                {
+                  "text": "request"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u16.l1.p-regards",
+              "prompt": {
+                "en": "Listen. How does the message end?",
+                "say": "Thank you for your time. Kind regards, Meera."
+              },
+              "options": [
+                {
+                  "text": "Bye bye"
+                },
+                {
+                  "text": "Kind regards, Meera"
+                },
+                {
+                  "text": "See ya!"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u16.l1.s-request",
+              "model": "I request leave for two days."
+            },
+            {
+              "key": "d.u16.l1.s-grateful",
+              "model": "I am grateful for your help."
+            },
+            {
+              "key": "d.u16.l1.s-apologise",
+              "model": "I apologise for the late reply."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u16.l1.c-attach",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means साथ में जोड़ना?"
+          },
+          "options": [
+            {
+              "text": "apologise"
+            },
+            {
+              "text": "inform"
+            },
+            {
+              "text": "attach"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u16.l1.c-apol",
+          "type": "choose",
+          "prompt": {
+            "en": "I am sorry. I ___ for missing the meeting."
+          },
+          "options": [
+            {
+              "text": "request"
+            },
+            {
+              "text": "apologise"
+            },
+            {
+              "text": "attach"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u16.l1.c-grateful",
+          "type": "choose",
+          "prompt": {
+            "en": "Thank you so much. I am very ___."
+          },
+          "options": [
+            {
+              "text": "formal"
+            },
+            {
+              "text": "grateful"
+            },
+            {
+              "text": "regards"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u16.l1.c-formal",
+          "type": "choose",
+          "prompt": {
+            "en": "A message to the principal should be ___."
+          },
+          "options": [
+            {
+              "text": "grateful"
+            },
+            {
+              "text": "formal"
+            },
+            {
+              "text": "hungry"
+            }
+          ],
+          "answer": 1,
+          "why": {
+            "en": "We write formally to people in charge.",
+            "hi": "ज़िम्मेदार पद वालों को औपचारिक रूप से लिखते हैं।"
+          }
+        }
+      ],
+      "home": {
+        "en": "Say one \"thank you\" sentence with \"grateful\" to someone at home.",
+        "hi": "घर में किसी से \"grateful\" वाला धन्यवाद का एक वाक्य कहो।"
+      }
+    },
+    {
+      "key": "d.u16.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "Formal or informal?",
+        "hi": "औपचारिक या अनौपचारिक?"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "The same message, two styles",
+            "hi": "एक संदेश, दो अंदाज़"
+          },
+          "visual": "compare",
+          "examples": [
+            {
+              "en": "Hi Salma! Can't come today. Sorry!",
+              "hi": "दोस्त को: अनौपचारिक"
+            },
+            {
+              "en": "Dear Madam, I am unable to attend school today. I apologise.",
+              "hi": "प्रधानाचार्या को: औपचारिक"
+            },
+            {
+              "en": "Thanks a lot for the notes!",
+              "hi": "अनौपचारिक धन्यवाद"
+            },
+            {
+              "en": "I am very grateful for your help.",
+              "hi": "औपचारिक धन्यवाद"
+            },
+            {
+              "en": "Can you send me the photos?",
+              "hi": "अनौपचारिक अनुरोध"
+            },
+            {
+              "en": "Could you please send me the certificate?",
+              "hi": "औपचारिक अनुरोध"
+            }
+          ],
+          "note": {
+            "en": "Formal: Dear Sir or Madam, full words, could you please, Kind regards. Informal: Hi, short forms, thanks, see you.",
+            "hi": "औपचारिक: Dear Sir/Madam, पूरे शब्द, could you please, Kind regards। अनौपचारिक: Hi, छोटे रूप, thanks, see you।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u16.l2.b-could",
+              "tiles": [
+                "me",
+                "send",
+                "Could you",
+                "the form?",
+                "please"
+              ],
+              "answer": "Could you please send me the form?"
+            },
+            {
+              "key": "d.u16.l2.b-unable",
+              "tiles": [
+                "I am",
+                "the meeting",
+                "unable",
+                "today.",
+                "to attend"
+              ],
+              "answer": "I am unable to attend the meeting today."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u16.l2.p-formal",
+              "prompt": {
+                "en": "Which opening is right for a message to the principal?"
+              },
+              "options": [
+                {
+                  "text": "Hi buddy,"
+                },
+                {
+                  "text": "Hey!"
+                },
+                {
+                  "text": "Dear Sir,"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u16.l2.p-informal",
+              "prompt": {
+                "en": "Which ending is right for a message to a close friend?"
+              },
+              "options": [
+                {
+                  "text": "See you soon!"
+                },
+                {
+                  "text": "Yours faithfully,"
+                },
+                {
+                  "text": "Kind regards,"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u16.l2.s-formal",
+              "model": "Could you please tell me the date of the exam?",
+              "cue": {
+                "en": "Ask your teacher for the exam date, formally.",
+                "hi": "टीचर से औपचारिक रूप से परीक्षा की तारीख़ पूछो।"
+              }
+            },
+            {
+              "key": "d.u16.l2.s-informal",
+              "model": "Hi Ravi, can you lend me your maths notes?",
+              "cue": {
+                "en": "Ask your friend for notes, informally.",
+                "hi": "दोस्त से अनौपचारिक रूप से नोट्स माँगो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u16.l2.c-b1",
+          "type": "build",
+          "hi": "मैं दो दिन की छुट्टी का अनुरोध करने के लिए लिख रहा हूँ।",
+          "tiles": [
+            "of leave.",
+            "I",
+            "am writing",
+            "to request",
+            "two days"
+          ],
+          "answer": "I am writing to request two days of leave."
+        },
+        {
+          "key": "d.u16.l2.c-b2",
+          "type": "build",
+          "hi": "आपकी कृपापूर्ण मदद के लिए धन्यवाद।",
+          "tiles": [
+            "kind help.",
+            "your",
+            "Thank you",
+            "for"
+          ],
+          "answer": "Thank you for your kind help."
+        },
+        {
+          "key": "d.u16.l2.c-which",
+          "type": "choose",
+          "prompt": {
+            "en": "Which sentence is formal?"
+          },
+          "options": [
+            {
+              "text": "I am writing to inform you about the event."
+            },
+            {
+              "text": "Guess what!"
+            },
+            {
+              "text": "Gonna be late."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u16.l2.c-short",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is informal?"
+          },
+          "options": [
+            {
+              "text": "Thanks a lot!"
+            },
+            {
+              "text": "I am very grateful."
+            },
+            {
+              "text": "Kind regards,"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u16.l2.c-please",
+          "type": "choose",
+          "prompt": {
+            "en": "The most polite request is:"
+          },
+          "options": [
+            {
+              "text": "You help."
+            },
+            {
+              "text": "Help me."
+            },
+            {
+              "text": "Could you please help me?"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Say one sentence in both styles to your family: formal and informal.",
+        "hi": "परिवार को एक वाक्य दोनों अंदाज़ में कहो: औपचारिक और अनौपचारिक।"
+      }
+    },
+    {
+      "key": "d.u16.l3",
+      "kind": "listen",
+      "title": {
+        "en": "Two messages",
+        "hi": "दो संदेश"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Meera reads aloud two messages: one to her principal and one to Salma. Listen for the differences.",
+            "hi": "मीरा दो संदेश पढ़ती है: एक प्रधानाचार्या को, एक सलमा को। फ़र्क़ सुनो।"
+          },
+          "pic": "✉️"
+        },
+        {
+          "type": "story",
+          "title": {
+            "en": "Meera's messages",
+            "hi": "मीरा के संदेश"
+          },
+          "scene": {
+            "place": "home",
+            "pics": [
+              {
+                "pic": "🏠",
+                "x": 85,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "👧",
+                "x": 35,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "📱",
+                "x": 55,
+                "y": 45,
+                "size": 1
+              },
+              {
+                "pic": "✉️",
+                "x": 70,
+                "y": 40,
+                "size": 1.2
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Dear Madam,"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I am writing to request permission to leave school early on Friday."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I have been selected for the district science fair, which starts at two o'clock."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I have attached the letter from the organisers."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I will complete any missed work by Monday. I am grateful for your support."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Kind regards, Meera, Class 9."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Hi Salma! Guess what? I'm going to the science fair on Friday!"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Can you save me a seat at the club on Saturday? I'll tell you everything."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Thanks a lot. See you soon!"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u16.l3.p-why",
+              "prompt": {
+                "en": "Why is Meera writing to the principal?"
+              },
+              "options": [
+                {
+                  "text": "to invite her to dinner"
+                },
+                {
+                  "text": "to complain about homework"
+                },
+                {
+                  "text": "to ask to leave early on Friday"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u16.l3.p-attach",
+              "prompt": {
+                "en": "What has Meera attached?"
+              },
+              "options": [
+                {
+                  "text": "the letter from the organisers"
+                },
+                {
+                  "text": "a photo"
+                },
+                {
+                  "text": "her report card"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u16.l3.s-request",
+              "model": "I am writing to request permission to leave school early on Friday."
+            },
+            {
+              "key": "d.u16.l3.s-grateful",
+              "model": "I am grateful for your support."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u16.l3.c-time",
+          "type": "choose",
+          "prompt": {
+            "en": "What time does the science fair start?"
+          },
+          "options": [
+            {
+              "text": "at ten o'clock"
+            },
+            {
+              "text": "at two o'clock"
+            },
+            {
+              "text": "at six o'clock"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u16.l3.c-work",
+          "type": "choose",
+          "prompt": {
+            "en": "When will Meera complete the missed work?"
+          },
+          "options": [
+            {
+              "text": "by Monday"
+            },
+            {
+              "text": "never"
+            },
+            {
+              "text": "by Friday"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u16.l3.c-salma",
+          "type": "choose",
+          "prompt": {
+            "en": "What does Meera ask Salma to do?"
+          },
+          "options": [
+            {
+              "text": "write her report"
+            },
+            {
+              "text": "bring her lunch"
+            },
+            {
+              "text": "save her a seat at the club"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u16.l3.c-style",
+          "type": "choose",
+          "prompt": {
+            "en": "Which words show the second message is informal?"
+          },
+          "options": [
+            {
+              "text": "I am writing to request"
+            },
+            {
+              "text": "Dear Madam, kind regards"
+            },
+            {
+              "text": "Hi, guess what, see you soon"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Read a message you received today aloud and say if it is formal or informal.",
+        "hi": "आज मिला कोई संदेश ज़ोर से पढ़ो और बताओ वह औपचारिक है या अनौपचारिक।"
+      }
+    },
+    {
+      "key": "d.u16.l4",
+      "kind": "speak",
+      "title": {
+        "en": "Write and read aloud a message",
+        "hi": "संदेश लिखो और पढ़ो"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "talk",
+          "topic": {
+            "en": "A polite message to your teacher",
+            "hi": "टीचर को विनम्र संदेश"
+          },
+          "outline": [
+            {
+              "en": "Greeting: Dear Sir or Dear Madam.",
+              "hi": "संबोधन: Dear Sir या Dear Madam।"
+            },
+            {
+              "en": "Why you are writing: I am writing to …",
+              "hi": "क्यों लिख रहे हो: I am writing to …"
+            },
+            {
+              "en": "The details: when, what, why.",
+              "hi": "ब्योरा: कब, क्या, क्यों।"
+            },
+            {
+              "en": "A polite request or thanks, then Kind regards and your name.",
+              "hi": "विनम्र अनुरोध या धन्यवाद, फिर Kind regards और नाम।"
+            }
+          ],
+          "seconds": 45,
+          "model": [
+            "Dear Sir,",
+            "I am writing to inform you that I was ill yesterday and could not attend school.",
+            "I had a fever, and the doctor asked me to rest.",
+            "Could you please tell me the homework I missed?",
+            "I apologise for my absence. Kind regards, Arjun, Class 10."
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "d.u16.l4.br-request",
+              "hi": "मैं एक दिन की छुट्टी का अनुरोध करती हूँ।",
+              "tiles": [
+                "request",
+                "I",
+                "leave",
+                "for",
+                "one day."
+              ],
+              "answer": "I request leave for one day."
+            },
+            {
+              "key": "d.u16.l4.br-could",
+              "hi": "क्या आप कृपया मुझे फ़ॉर्म भेज सकते हैं?",
+              "tiles": [
+                "the form?",
+                "send me",
+                "please",
+                "Could you"
+              ],
+              "answer": "Could you please send me the form?"
+            },
+            {
+              "key": "d.u16.l4.br-sorry",
+              "hi": "देर से जवाब देने के लिए माफ़ी चाहता हूँ।",
+              "tiles": [
+                "the late",
+                "apologise",
+                "I",
+                "reply.",
+                "for"
+              ],
+              "answer": "I apologise for the late reply."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u16.l4.s-friend",
+              "model": "Hi Salma! Thanks a lot for the notes. See you at school tomorrow!",
+              "cue": {
+                "en": "Now say a short informal thank-you message to a friend.",
+                "hi": "अब दोस्त को धन्यवाद का छोटा अनौपचारिक संदेश बोलो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u16.l4.c-start",
+          "type": "choose",
+          "prompt": {
+            "en": "Which line starts a formal message well?"
+          },
+          "options": [
+            {
+              "text": "I am writing to request a certificate."
+            },
+            {
+              "text": "Hey, what's up?"
+            },
+            {
+              "text": "Bye!"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u16.l4.c-end",
+          "type": "choose",
+          "prompt": {
+            "en": "Which line ends a formal message?"
+          },
+          "options": [
+            {
+              "text": "Cya!"
+            },
+            {
+              "text": "Love you lots"
+            },
+            {
+              "text": "Kind regards, Salma"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u16.l4.c-b1",
+          "type": "build",
+          "hi": "मैं आपको कार्यक्रम के बारे में सूचित करने के लिए लिख रहा हूँ।",
+          "tiles": [
+            "to inform",
+            "I am",
+            "writing",
+            "you",
+            "about",
+            "the event."
+          ],
+          "answer": "I am writing to inform you about the event."
+        }
+      ],
+      "home": {
+        "en": "Write a short thank-you message to someone who helped you, and read it aloud.",
+        "hi": "जिसने तुम्हारी मदद की, उसे धन्यवाद का छोटा संदेश लिखो और ज़ोर से पढ़ो।"
+      }
+    },
+    {
+      "key": "d.u16.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 16 review",
+        "hi": "इकाई 16 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u16.l5.m-inform",
+              "left": {
+                "text": "inform"
+              },
+              "right": {
+                "text": "सूचित करना"
+              }
+            },
+            {
+              "key": "d.u16.l5.m-attach",
+              "left": {
+                "text": "attach"
+              },
+              "right": {
+                "text": "साथ में जोड़ना"
+              }
+            },
+            {
+              "key": "d.u16.l5.m-regards",
+              "left": {
+                "text": "regards"
+              },
+              "right": {
+                "text": "शुभकामनाएँ"
+              }
+            },
+            {
+              "key": "d.u16.l5.m-request",
+              "left": {
+                "text": "request"
+              },
+              "right": {
+                "text": "अनुरोध करना"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u16.l5.b-grateful",
+              "tiles": [
+                "grateful",
+                "very",
+                "your support.",
+                "for",
+                "I am"
+              ],
+              "answer": "I am very grateful for your support."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u16.l5.p-formal",
+              "prompt": {
+                "en": "Which is the formal way to say \"Can't come\"?"
+              },
+              "options": [
+                {
+                  "text": "I am unable to come."
+                },
+                {
+                  "text": "Not coming lol."
+                },
+                {
+                  "text": "No can do."
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u16.l5.s-formal",
+              "model": "Dear Madam, I am writing to request a copy of my certificate.",
+              "cue": {
+                "en": "Start a formal message asking for a certificate.",
+                "hi": "प्रमाणपत्र माँगने वाला औपचारिक संदेश शुरू करो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u16.l5.c-apol",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means माफ़ी माँगना?"
+          },
+          "options": [
+            {
+              "text": "apologise"
+            },
+            {
+              "text": "inform"
+            },
+            {
+              "text": "attach"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u16.l5.c-dear",
+          "type": "choose",
+          "prompt": {
+            "en": "A formal message to someone whose name you don't know begins:"
+          },
+          "options": [
+            {
+              "text": "Hi there!"
+            },
+            {
+              "text": "Dear Sir or Madam,"
+            },
+            {
+              "text": "Yo!"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u16.l5.c-could",
+          "type": "choose",
+          "prompt": {
+            "en": "Which request is polite and formal?"
+          },
+          "options": [
+            {
+              "text": "Check my form."
+            },
+            {
+              "text": "Could you please check my form?"
+            },
+            {
+              "text": "Form check now."
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u16.l5.c-b1",
+          "type": "build",
+          "hi": "मैंने अपनी प्रोजेक्ट रिपोर्ट साथ में जोड़ी है।",
+          "tiles": [
+            "my",
+            "project",
+            "report.",
+            "attached",
+            "I have"
+          ],
+          "answer": "I have attached my project report."
+        },
+        {
+          "key": "d.u16.l5.c-informal",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is right for a friend?"
+          },
+          "options": [
+            {
+              "text": "See you tomorrow!"
+            },
+            {
+              "text": "I am writing to inform you."
+            },
+            {
+              "text": "Yours faithfully,"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u16.l5.c-b2",
+          "type": "build",
+          "hi": "कृपया शुक्रवार तक इस संदेश का जवाब दें।",
+          "tiles": [
+            "reply",
+            "by Friday.",
+            "to",
+            "this message",
+            "Please"
+          ],
+          "answer": "Please reply to this message by Friday."
+        }
+      ],
+      "home": {
+        "en": "Help a family member write one polite message in English.",
+        "hi": "परिवार के किसी सदस्य को अंग्रेज़ी में एक विनम्र संदेश लिखने में मदद करो।"
+      }
+    }
+  ]
+}

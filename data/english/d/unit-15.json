@@ -1,0 +1,1189 @@
+{
+  "track": "d",
+  "unit": 15,
+  "key": "d.u15",
+  "title": {
+    "en": "Persuade",
+    "hi": "मनाओ"
+  },
+  "pic": "🏆",
+  "can_do": {
+    "en": "I can persuade with reasons.",
+    "hi": "मैं कारणों के साथ किसी को मना सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u15.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for persuading",
+        "hi": "मनाने के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "To persuade means to change someone's mind with good reasons, not with shouting.",
+            "hi": "मनाना यानी अच्छे कारणों से किसी की राय बदलना, चिल्लाकर नहीं।"
+          },
+          "pic": "🏆"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u15.l1.persuade",
+              "en": "persuade",
+              "hi": "मनाना, राज़ी करना",
+              "pic": "🙌",
+              "example": {
+                "en": "Salma persuaded her father to buy a bicycle.",
+                "hi": "सलमा ने पिता को साइकिल ख़रीदने के लिए मनाया।"
+              }
+            },
+            {
+              "key": "d.u15.l1.argument",
+              "en": "argument",
+              "hi": "तर्क",
+              "pic": "💡",
+              "example": {
+                "en": "Your argument is strong because it has facts.",
+                "hi": "तुम्हारा तर्क मज़बूत है क्योंकि इसमें तथ्य हैं।"
+              }
+            },
+            {
+              "key": "d.u15.l1.convince",
+              "en": "convince",
+              "hi": "यक़ीन दिलाना",
+              "pic": "👍",
+              "example": {
+                "en": "He convinced the judges with clear examples.",
+                "hi": "उसने साफ़ उदाहरणों से जजों को यक़ीन दिलाया।"
+              }
+            },
+            {
+              "key": "d.u15.l1.support",
+              "en": "support",
+              "hi": "समर्थन करना",
+              "pic": "🙋",
+              "example": {
+                "en": "I support the idea of a village library.",
+                "hi": "मैं गाँव में पुस्तकालय के विचार का समर्थन करता हूँ।"
+              }
+            },
+            {
+              "key": "d.u15.l1.oppose",
+              "en": "oppose",
+              "hi": "विरोध करना",
+              "pic": "✋",
+              "example": {
+                "en": "Ravi opposes the plan to cut the old tree.",
+                "hi": "रवि पुराने पेड़ को काटने की योजना का विरोध करता है।"
+              }
+            },
+            {
+              "key": "d.u15.l1.evidence",
+              "en": "evidence",
+              "hi": "सबूत, प्रमाण",
+              "pic": "🔬",
+              "example": {
+                "en": "Give evidence for what you say.",
+                "hi": "जो कहते हो, उसका प्रमाण दो।"
+              }
+            },
+            {
+              "key": "d.u15.l1.solution",
+              "en": "solution",
+              "hi": "हल, समाधान",
+              "pic": "🔑",
+              "example": {
+                "en": "Solar lights are a good solution.",
+                "hi": "सोलर लाइटें एक अच्छा हल हैं।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u15.l1.m-oppose",
+              "left": {
+                "text": "oppose"
+              },
+              "right": {
+                "pic": "✋"
+              }
+            },
+            {
+              "key": "d.u15.l1.m-solution",
+              "left": {
+                "text": "solution"
+              },
+              "right": {
+                "pic": "🔑"
+              }
+            },
+            {
+              "key": "d.u15.l1.m-evidence",
+              "left": {
+                "text": "evidence"
+              },
+              "right": {
+                "pic": "🔬"
+              }
+            },
+            {
+              "key": "d.u15.l1.m-support",
+              "left": {
+                "text": "support"
+              },
+              "right": {
+                "pic": "🙋"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u15.l1.p-argument",
+              "prompt": {
+                "en": "Which word means तर्क?"
+              },
+              "options": [
+                {
+                  "text": "support"
+                },
+                {
+                  "text": "solution"
+                },
+                {
+                  "text": "argument"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u15.l1.p-persuade",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "I will try to persuade you with three facts."
+              },
+              "options": [
+                {
+                  "text": "persuade"
+                },
+                {
+                  "text": "evidence"
+                },
+                {
+                  "text": "oppose"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u15.l1.s-support",
+              "model": "I support the idea of a village library."
+            },
+            {
+              "key": "d.u15.l1.s-evidence",
+              "model": "Give evidence for what you say."
+            },
+            {
+              "key": "d.u15.l1.s-solution",
+              "model": "Solar lights are a good solution."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u15.l1.c-oppose",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means विरोध करना?"
+          },
+          "options": [
+            {
+              "text": "support"
+            },
+            {
+              "text": "convince"
+            },
+            {
+              "text": "oppose"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u15.l1.c-convince",
+          "type": "choose",
+          "prompt": {
+            "en": "Facts and examples help you ___ people."
+          },
+          "options": [
+            {
+              "text": "convince"
+            },
+            {
+              "text": "evidence"
+            },
+            {
+              "text": "oppose"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u15.l1.c-evidence",
+          "type": "choose",
+          "prompt": {
+            "en": "The photos were ___ that the road was broken."
+          },
+          "options": [
+            {
+              "text": "solution"
+            },
+            {
+              "text": "evidence"
+            },
+            {
+              "text": "argument"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u15.l1.c-solution",
+          "type": "choose",
+          "prompt": {
+            "en": "We need a ___ to the water problem."
+          },
+          "options": [
+            {
+              "text": "persuade"
+            },
+            {
+              "text": "solution"
+            },
+            {
+              "text": "support"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Try to persuade someone at home with one good reason.",
+        "hi": "घर में किसी को एक अच्छे कारण से मनाने की कोशिश करो।"
+      }
+    },
+    {
+      "key": "d.u15.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "If I were …, I would …",
+        "hi": "अगर मैं … होता, तो …"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "The second conditional: imagined situations",
+            "hi": "Second conditional: कल्पना वाली बातें"
+          },
+          "visual": "cards",
+          "examples": [
+            {
+              "en": "If I were the principal, I would start a reading hour.",
+              "hi": "अगर मैं प्रधानाचार्य होती, तो पढ़ने का एक घंटा शुरू करती।"
+            },
+            {
+              "en": "If we had solar lights, the streets would be safer at night.",
+              "hi": "अगर हमारे पास सोलर लाइटें होतीं, तो रात में गलियाँ ज़्यादा सुरक्षित होतीं।"
+            },
+            {
+              "en": "If I had more time, I would learn the guitar.",
+              "hi": "अगर मेरे पास ज़्यादा समय होता, तो मैं गिटार सीखता।"
+            },
+            {
+              "en": "What would you do if you won a prize of ten thousand rupees?",
+              "hi": "अगर तुम दस हज़ार रुपये का इनाम जीतते, तो क्या करते?"
+            },
+            {
+              "en": "If I were you, I would talk to the teacher.",
+              "hi": "अगर मैं तुम्हारी जगह होता, तो टीचर से बात करता। (सलाह)"
+            }
+          ],
+          "note": {
+            "en": "If + past (were for everyone), would + verb. It is for things that are not true now or are not likely.",
+            "hi": "If + past (सबके साथ were), would + क्रिया। जो अभी सच नहीं या जिसकी संभावना कम हो।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u15.l2.b-were",
+              "tiles": [
+                "I would",
+                "If",
+                "the sarpanch,",
+                "build a library.",
+                "I were"
+              ],
+              "answer": "If I were the sarpanch, I would build a library."
+            },
+            {
+              "key": "d.u15.l2.b-had",
+              "tiles": [
+                "If",
+                "a bus,",
+                "reach on time.",
+                "we had",
+                "we would"
+              ],
+              "answer": "If we had a bus, we would reach on time."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u15.l2.p-were",
+              "prompt": {
+                "en": "If I ___ rich, I would help my village."
+              },
+              "options": [
+                {
+                  "text": "were"
+                },
+                {
+                  "text": "will be"
+                },
+                {
+                  "text": "am"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "In the second conditional, use were.",
+                "hi": "Second conditional में were।"
+              }
+            },
+            {
+              "key": "d.u15.l2.p-would",
+              "prompt": {
+                "en": "If she had a phone, she ___ call her aunt."
+              },
+              "options": [
+                {
+                  "text": "is"
+                },
+                {
+                  "text": "would"
+                },
+                {
+                  "text": "will"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u15.l2.s-pm",
+              "model": "If I were the sarpanch, I would build a library and fix the roads.",
+              "cue": {
+                "en": "What would you do if you were the sarpanch?",
+                "hi": "अगर तुम सरपंच होते तो क्या करते?"
+              }
+            },
+            {
+              "key": "d.u15.l2.s-you",
+              "model": "If I were you, I would practise every evening.",
+              "cue": {
+                "en": "Your friend is nervous about the debate. Give advice with \"If I were you\".",
+                "hi": "दोस्त डिबेट से घबरा रहा है। \"If I were you\" से सलाह दो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u15.l2.c-b1",
+          "type": "build",
+          "hi": "अगर मेरे पंख होते, तो मैं उड़कर घर जाता।",
+          "tiles": [
+            "fly home.",
+            "If",
+            "I would",
+            "I",
+            "wings,",
+            "had"
+          ],
+          "answer": "If I had wings, I would fly home."
+        },
+        {
+          "key": "d.u15.l2.c-b2",
+          "type": "build",
+          "hi": "मैं तुम्हारी जगह होता तो मदद माँगता।",
+          "tiles": [
+            "ask",
+            "I would",
+            "were you,",
+            "for help.",
+            "If I"
+          ],
+          "answer": "If I were you, I would ask for help."
+        },
+        {
+          "key": "d.u15.l2.c-had",
+          "type": "choose",
+          "prompt": {
+            "en": "If we ___ a playground, we would play every day."
+          },
+          "options": [
+            {
+              "text": "will have"
+            },
+            {
+              "text": "have"
+            },
+            {
+              "text": "had"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u15.l2.c-what",
+          "type": "choose",
+          "prompt": {
+            "en": "What ___ you do if you saw a fire?"
+          },
+          "options": [
+            {
+              "text": "will"
+            },
+            {
+              "text": "are"
+            },
+            {
+              "text": "would"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u15.l2.c-real",
+          "type": "choose",
+          "prompt": {
+            "en": "Which sentence is about an imagined situation?"
+          },
+          "options": [
+            {
+              "text": "If you heat ice, it melts."
+            },
+            {
+              "text": "If it rains, we will stay in."
+            },
+            {
+              "text": "If I were a bird, I would fly."
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Ask your family: What would you do if you won a big prize?",
+        "hi": "परिवार से पूछो: What would you do if you won a big prize?"
+      }
+    },
+    {
+      "key": "d.u15.l3",
+      "kind": "listen",
+      "title": {
+        "en": "The debate competition",
+        "hi": "डिबेट प्रतियोगिता"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "Should every village have solar street lights?",
+            "hi": "क्या हर गाँव में सोलर स्ट्रीट लाइटें हों?"
+          },
+          "scene": {
+            "place": "school",
+            "pics": [
+              {
+                "pic": "🏆",
+                "x": 50,
+                "y": 10,
+                "size": 1.4
+              },
+              {
+                "pic": "👦",
+                "x": 25,
+                "y": 42,
+                "size": 1.5
+              },
+              {
+                "pic": "👧",
+                "x": 75,
+                "y": 42,
+                "size": 1.5
+              },
+              {
+                "pic": "☀️",
+                "x": 85,
+                "y": 10,
+                "size": 1.2
+              },
+              {
+                "pic": "💡",
+                "x": 15,
+                "y": 15,
+                "size": 1.2
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Host",
+              "pic": "🎤",
+              "en": "Welcome to the district debate. Arjun speaks for the motion, and Meera speaks against."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Thank you. If every village had solar lights, the roads would be safer at night."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Girls and boys could study in the evening, and shops could stay open longer."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "The evidence is clear: villages with lights have fewer accidents."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I respect my friend's argument. However, I oppose the motion, for one reason: cost."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "If the panchayat spent all its money on lights, it would have nothing for clean water."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I believe water and health come first."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "But if we shared the cost with the district, we could have both."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "That would be a good solution, if the district agreed."
+            },
+            {
+              "speaker": "Host",
+              "pic": "🎤",
+              "en": "Thank you both. You argued with facts and respect."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u15.l3.p-arjun",
+              "prompt": {
+                "en": "Does Arjun support or oppose the motion?"
+              },
+              "options": [
+                {
+                  "text": "support"
+                },
+                {
+                  "text": "oppose"
+                },
+                {
+                  "text": "neither"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u15.l3.p-meera",
+              "prompt": {
+                "en": "What is Meera's main reason?"
+              },
+              "options": [
+                {
+                  "text": "cost"
+                },
+                {
+                  "text": "noise"
+                },
+                {
+                  "text": "the weather"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u15.l3.s-if",
+              "model": "If every village had solar lights, the roads would be safer at night."
+            },
+            {
+              "key": "d.u15.l3.s-respect",
+              "model": "I respect my friend's argument. However, I oppose the motion."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u15.l3.c-evidence",
+          "type": "choose",
+          "prompt": {
+            "en": "What evidence does Arjun give?"
+          },
+          "options": [
+            {
+              "text": "Villages with lights have fewer accidents."
+            },
+            {
+              "text": "Lights are pretty."
+            },
+            {
+              "text": "Everyone likes lights."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u15.l3.c-first",
+          "type": "choose",
+          "prompt": {
+            "en": "What does Meera think comes first?"
+          },
+          "options": [
+            {
+              "text": "lights and shops"
+            },
+            {
+              "text": "water and health"
+            },
+            {
+              "text": "games"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u15.l3.c-solution",
+          "type": "choose",
+          "prompt": {
+            "en": "What solution does Arjun suggest?"
+          },
+          "options": [
+            {
+              "text": "stop the lights"
+            },
+            {
+              "text": "share the cost with the district"
+            },
+            {
+              "text": "use candles"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u15.l3.c-host",
+          "type": "choose",
+          "prompt": {
+            "en": "What does the host praise?"
+          },
+          "options": [
+            {
+              "text": "facts and respect"
+            },
+            {
+              "text": "loud voices"
+            },
+            {
+              "text": "long speeches"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Tell your family which side you would choose in this debate, and why.",
+        "hi": "परिवार को बताओ इस डिबेट में तुम किस पक्ष में होते, और क्यों।"
+      }
+    },
+    {
+      "key": "d.u15.l4",
+      "kind": "speak",
+      "title": {
+        "en": "Debate",
+        "hi": "डिबेट"
+      },
+      "minutes": 10,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "In a debate: state your side, give two reasons with evidence, answer the other side politely, and close strongly.",
+            "hi": "डिबेट में: अपना पक्ष बताओ, प्रमाण के साथ दो कारण दो, दूसरे पक्ष को विनम्रता से जवाब दो, और मज़बूती से ख़त्म करो।"
+          },
+          "pic": "🏆"
+        },
+        {
+          "type": "roleplay",
+          "title": {
+            "en": "Motion: School should start one hour later",
+            "hi": "प्रस्ताव: स्कूल एक घंटा देर से शुरू हो"
+          },
+          "scene": {
+            "place": "school",
+            "pics": [
+              {
+                "pic": "🏆",
+                "x": 50,
+                "y": 10,
+                "size": 1.4
+              },
+              {
+                "pic": "🧕",
+                "x": 25,
+                "y": 42,
+                "size": 1.5
+              },
+              {
+                "pic": "🧒",
+                "x": 75,
+                "y": 42,
+                "size": 1.5
+              }
+            ]
+          },
+          "roles": [
+            {
+              "name": "Salma",
+              "pic": "🧕"
+            },
+            {
+              "name": "You",
+              "pic": "🧒"
+            }
+          ],
+          "learner": 1,
+          "turns": [
+            {
+              "role": 0,
+              "en": "I support the motion. If school started later, students would sleep more and learn better."
+            },
+            {
+              "role": 1,
+              "en": "I see your point. However, I oppose the motion."
+            },
+            {
+              "role": 0,
+              "en": "Why? What is your argument?"
+            },
+            {
+              "role": 1,
+              "en": "If school started later, it would finish later, and many of us help on the farm in the evening."
+            },
+            {
+              "role": 0,
+              "en": "But tired students cannot concentrate."
+            },
+            {
+              "role": 1,
+              "en": "That is true. A better solution would be to sleep earlier and use phones less at night."
+            },
+            {
+              "role": 0,
+              "en": "Would you agree to a short trial for one month?"
+            },
+            {
+              "role": 1,
+              "en": "If the parents agreed, I would support a trial. Thank you."
+            }
+          ],
+          "partner": {
+            "goal": "Debate the motion against the learner. Give one reason with evidence, ask for their argument, and challenge it politely. Praise the use of \"If … would\".",
+            "must_use": [
+              "I support",
+              "I oppose",
+              "However",
+              "If",
+              "would",
+              "solution",
+              "evidence"
+            ]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "d.u15.l4.br-were",
+              "hi": "अगर मैं प्रधानाचार्य होता, तो खेल का समय बढ़ाता।",
+              "tiles": [
+                "I would",
+                "If I",
+                "increase sports time.",
+                "the principal,",
+                "were"
+              ],
+              "answer": "If I were the principal, I would increase sports time."
+            },
+            {
+              "key": "d.u15.l4.br-support",
+              "hi": "मैं इस प्रस्ताव का समर्थन करती हूँ।",
+              "tiles": [
+                "this",
+                "motion.",
+                "I",
+                "support"
+              ],
+              "answer": "I support this motion."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u15.l4.s-side",
+              "model": "I support the motion because a library would help every student in our village.",
+              "cue": {
+                "en": "Motion: Every village needs a library. Give your side and one reason.",
+                "hi": "प्रस्ताव: हर गाँव को पुस्तकालय चाहिए। अपना पक्ष और एक कारण दो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u15.l4.c-respect",
+          "type": "choose",
+          "prompt": {
+            "en": "Which reply to the other side is respectful?"
+          },
+          "options": [
+            {
+              "text": "You are talking nonsense."
+            },
+            {
+              "text": "I respect your view, but the facts show something else."
+            },
+            {
+              "text": "Sit down."
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u15.l4.c-strong",
+          "type": "choose",
+          "prompt": {
+            "en": "Which argument is strongest?"
+          },
+          "options": [
+            {
+              "text": "Libraries are nice."
+            },
+            {
+              "text": "I just think so."
+            },
+            {
+              "text": "Last year, 30 students used the town library every week."
+            }
+          ],
+          "answer": 2,
+          "why": {
+            "en": "A fact or example makes an argument stronger.",
+            "hi": "तथ्य या उदाहरण तर्क को मज़बूत बनाते हैं।"
+          }
+        },
+        {
+          "key": "d.u15.l4.c-b1",
+          "type": "build",
+          "hi": "अगर हमारे पास पुस्तकालय होता, तो छात्र ज़्यादा पढ़ते।",
+          "tiles": [
+            "If",
+            "we",
+            "had",
+            "would read more.",
+            "a library,",
+            "students"
+          ],
+          "answer": "If we had a library, students would read more."
+        }
+      ],
+      "home": {
+        "en": "Hold a friendly two-minute debate at home on any topic.",
+        "hi": "घर पर किसी भी विषय पर दो मिनट की दोस्ताना डिबेट करो।"
+      }
+    },
+    {
+      "key": "d.u15.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 15 review",
+        "hi": "इकाई 15 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u15.l5.m-persuade",
+              "left": {
+                "text": "persuade"
+              },
+              "right": {
+                "text": "मनाना"
+              }
+            },
+            {
+              "key": "d.u15.l5.m-argument",
+              "left": {
+                "text": "argument"
+              },
+              "right": {
+                "text": "तर्क"
+              }
+            },
+            {
+              "key": "d.u15.l5.m-evidence",
+              "left": {
+                "text": "evidence"
+              },
+              "right": {
+                "text": "प्रमाण"
+              }
+            },
+            {
+              "key": "d.u15.l5.m-convince",
+              "left": {
+                "text": "convince"
+              },
+              "right": {
+                "text": "यक़ीन दिलाना"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u15.l5.b-would",
+              "tiles": [
+                "I would",
+                "a garden,",
+                "I",
+                "If",
+                "grow flowers.",
+                "had"
+              ],
+              "answer": "If I had a garden, I would grow flowers."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u15.l5.p-were",
+              "prompt": {
+                "en": "If he ___ taller, he would play basketball."
+              },
+              "options": [
+                {
+                  "text": "is"
+                },
+                {
+                  "text": "were"
+                },
+                {
+                  "text": "will be"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u15.l5.s-win",
+              "model": "If I won the prize, I would buy books for the club library.",
+              "cue": {
+                "en": "What would you do if you won a prize?",
+                "hi": "अगर तुम इनाम जीतते तो क्या करते?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u15.l5.c-support",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means समर्थन करना?"
+          },
+          "options": [
+            {
+              "text": "support"
+            },
+            {
+              "text": "oppose"
+            },
+            {
+              "text": "solution"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u15.l5.c-would",
+          "type": "choose",
+          "prompt": {
+            "en": "If we lived in the city, we ___ go to the museum."
+          },
+          "options": [
+            {
+              "text": "are"
+            },
+            {
+              "text": "would"
+            },
+            {
+              "text": "will"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u15.l5.c-had",
+          "type": "choose",
+          "prompt": {
+            "en": "If I ___ a bicycle, I would ride to school."
+          },
+          "options": [
+            {
+              "text": "have"
+            },
+            {
+              "text": "had"
+            },
+            {
+              "text": "has"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u15.l5.c-b1",
+          "type": "build",
+          "hi": "मैं पुराने पेड़ को काटने की योजना का विरोध करता हूँ।",
+          "tiles": [
+            "the plan",
+            "oppose",
+            "I",
+            "the old tree.",
+            "to cut"
+          ],
+          "answer": "I oppose the plan to cut the old tree."
+        },
+        {
+          "key": "d.u15.l5.c-you",
+          "type": "choose",
+          "prompt": {
+            "en": "If I ___ you, I would apologise."
+          },
+          "options": [
+            {
+              "text": "were"
+            },
+            {
+              "text": "am"
+            },
+            {
+              "text": "was being"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u15.l5.c-b2",
+          "type": "build",
+          "hi": "अगर तुम टीचर होते तो क्या करते?",
+          "tiles": [
+            "What",
+            "would",
+            "you were",
+            "the teacher?",
+            "you do",
+            "if"
+          ],
+          "answer": "What would you do if you were the teacher?"
+        }
+      ],
+      "home": {
+        "en": "Finish this at home: If I were the prime minister for one day, I would …",
+        "hi": "घर पर पूरा करो: If I were the prime minister for one day, I would …"
+      }
+    }
+  ]
+}

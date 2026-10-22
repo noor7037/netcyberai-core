@@ -1,0 +1,1147 @@
+{
+  "track": "d",
+  "unit": 17,
+  "key": "d.u17",
+  "title": {
+    "en": "Rules and safety",
+    "hi": "नियम और सुरक्षा"
+  },
+  "pic": "📱",
+  "can_do": {
+    "en": "I can talk about rules.",
+    "hi": "मैं नियमों के बारे में बात कर सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u17.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for staying safe online",
+        "hi": "ऑनलाइन सुरक्षित रहने के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "The phone opens a big world. These words help you stay safe in it.",
+            "hi": "फ़ोन एक बड़ी दुनिया खोलता है। ये शब्द उसमें सुरक्षित रहने में मदद करते हैं।"
+          },
+          "pic": "📱"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u17.l1.password",
+              "en": "password",
+              "hi": "पासवर्ड, गुप्त शब्द",
+              "pic": "🔑",
+              "example": {
+                "en": "Never tell anyone your password.",
+                "hi": "अपना पासवर्ड कभी किसी को मत बताओ।"
+              }
+            },
+            {
+              "key": "d.u17.l1.privacy",
+              "en": "privacy",
+              "hi": "निजता",
+              "pic": "🔲",
+              "example": {
+                "en": "Protect your privacy online.",
+                "hi": "ऑनलाइन अपनी निजता की रक्षा करो।"
+              }
+            },
+            {
+              "key": "d.u17.l1.stranger",
+              "en": "stranger",
+              "hi": "अजनबी",
+              "pic": "❓",
+              "example": {
+                "en": "Don't accept friend requests from strangers.",
+                "hi": "अजनबियों की फ़्रेंड रिक्वेस्ट मत स्वीकारो।"
+              }
+            },
+            {
+              "key": "d.u17.l1.personal",
+              "en": "personal",
+              "hi": "निजी",
+              "pic": "🏠",
+              "example": {
+                "en": "Keep your personal details, like your address, private.",
+                "hi": "अपनी निजी जानकारी, जैसे पता, गुप्त रखो।"
+              }
+            },
+            {
+              "key": "d.u17.l1.report",
+              "en": "report",
+              "hi": "शिकायत करना, रिपोर्ट करना",
+              "pic": "🚩",
+              "example": {
+                "en": "Report rude messages to a trusted adult.",
+                "hi": "बुरे संदेशों की शिकायत किसी भरोसेमंद बड़े से करो।"
+              }
+            },
+            {
+              "key": "d.u17.l1.fake",
+              "en": "fake",
+              "hi": "नक़ली, झूठा",
+              "pic": "❗",
+              "example": {
+                "en": "Check the news before you share it. It may be fake.",
+                "hi": "ख़बर शेयर करने से पहले जाँचो। वह झूठी हो सकती है।"
+              }
+            },
+            {
+              "key": "d.u17.l1.permission",
+              "en": "permission",
+              "hi": "अनुमति",
+              "pic": "✅",
+              "example": {
+                "en": "Ask for permission before you post a photo of a friend.",
+                "hi": "दोस्त की फ़ोटो डालने से पहले अनुमति लो।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u17.l1.m-password",
+              "left": {
+                "text": "password"
+              },
+              "right": {
+                "pic": "🔑"
+              }
+            },
+            {
+              "key": "d.u17.l1.m-report",
+              "left": {
+                "text": "report"
+              },
+              "right": {
+                "pic": "🚩"
+              }
+            },
+            {
+              "key": "d.u17.l1.m-permission",
+              "left": {
+                "text": "permission"
+              },
+              "right": {
+                "pic": "✅"
+              }
+            },
+            {
+              "key": "d.u17.l1.m-stranger",
+              "left": {
+                "text": "stranger"
+              },
+              "right": {
+                "pic": "❓"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u17.l1.p-privacy",
+              "prompt": {
+                "en": "Which word means निजता?"
+              },
+              "options": [
+                {
+                  "text": "password"
+                },
+                {
+                  "text": "permission"
+                },
+                {
+                  "text": "privacy"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u17.l1.p-fake",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "That message about free phones is fake. Do not click on it."
+              },
+              "options": [
+                {
+                  "text": "fake"
+                },
+                {
+                  "text": "safe"
+                },
+                {
+                  "text": "stranger"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u17.l1.s-password",
+              "model": "Never tell anyone your password."
+            },
+            {
+              "key": "d.u17.l1.s-report",
+              "model": "Report rude messages to a trusted adult."
+            },
+            {
+              "key": "d.u17.l1.s-permission",
+              "model": "Ask for permission before you post a photo of a friend."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u17.l1.c-personal",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means निजी?"
+          },
+          "options": [
+            {
+              "text": "personal"
+            },
+            {
+              "text": "report"
+            },
+            {
+              "text": "permission"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u17.l1.c-stranger",
+          "type": "choose",
+          "prompt": {
+            "en": "Someone you don't know is a ___."
+          },
+          "options": [
+            {
+              "text": "privacy"
+            },
+            {
+              "text": "stranger"
+            },
+            {
+              "text": "password"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u17.l1.c-fake",
+          "type": "choose",
+          "prompt": {
+            "en": "A message says you won a free phone. It is probably ___."
+          },
+          "options": [
+            {
+              "text": "personal"
+            },
+            {
+              "text": "fake"
+            },
+            {
+              "text": "permission"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u17.l1.c-password",
+          "type": "choose",
+          "prompt": {
+            "en": "A strong ___ is long and hard to guess."
+          },
+          "options": [
+            {
+              "text": "password"
+            },
+            {
+              "text": "stranger"
+            },
+            {
+              "text": "report"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Teach someone at home one online safety rule.",
+        "hi": "घर में किसी को ऑनलाइन सुरक्षा का एक नियम सिखाओ।"
+      }
+    },
+    {
+      "key": "d.u17.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "Must, have to, mustn't, don't have to",
+        "hi": "नियम: must, have to, mustn't, don't have to"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "Rules, needs and choices",
+            "hi": "नियम, ज़रूरतें और विकल्प"
+          },
+          "visual": "cards",
+          "examples": [
+            {
+              "en": "You must keep your password secret.",
+              "hi": "तुम्हें अपना पासवर्ड गुप्त रखना ही है। (ज़रूरी नियम)"
+            },
+            {
+              "en": "We have to wear a uniform at school.",
+              "hi": "हमें स्कूल में यूनिफ़ॉर्म पहननी पड़ती है। (बाहर का नियम)"
+            },
+            {
+              "en": "You mustn't share your OTP with anyone.",
+              "hi": "अपना OTP किसी को भी नहीं बताना है। (मना है)"
+            },
+            {
+              "en": "You don't have to reply to every message.",
+              "hi": "हर संदेश का जवाब देना ज़रूरी नहीं। (तुम्हारी मर्ज़ी)"
+            },
+            {
+              "en": "Does Ravi have to work on Sundays?",
+              "hi": "क्या रवि को रविवार को काम करना पड़ता है?"
+            }
+          ],
+          "note": {
+            "en": "Mustn't means it is not allowed. Don't have to means it is not necessary; you can choose.",
+            "hi": "Mustn't = मना है। Don't have to = ज़रूरी नहीं, तुम चुन सकते हो।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u17.l2.b-must",
+              "tiles": [
+                "must",
+                "a trusted adult.",
+                "You",
+                "tell"
+              ],
+              "answer": "You must tell a trusted adult."
+            },
+            {
+              "key": "d.u17.l2.b-mustnt",
+              "tiles": [
+                "alone.",
+                "mustn't",
+                "online strangers",
+                "meet",
+                "You"
+              ],
+              "answer": "You mustn't meet online strangers alone."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u17.l2.p-mustnt",
+              "prompt": {
+                "en": "You ___ cross the railway tracks. It is dangerous."
+              },
+              "options": [
+                {
+                  "text": "must"
+                },
+                {
+                  "text": "don't have to"
+                },
+                {
+                  "text": "mustn't"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "It is not allowed, so mustn't.",
+                "hi": "यह मना है, इसलिए mustn't।"
+              }
+            },
+            {
+              "key": "d.u17.l2.p-donthave",
+              "prompt": {
+                "en": "Tomorrow is a holiday. We ___ get up early."
+              },
+              "options": [
+                {
+                  "text": "must"
+                },
+                {
+                  "text": "don't have to"
+                },
+                {
+                  "text": "mustn't"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "It is not necessary, so don't have to.",
+                "hi": "ज़रूरी नहीं, इसलिए don't have to।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u17.l2.s-rule",
+              "model": "At my school, we have to wear a uniform, and we mustn't use phones in class.",
+              "cue": {
+                "en": "Tell two rules at your school.",
+                "hi": "अपने स्कूल के दो नियम बताओ।"
+              }
+            },
+            {
+              "key": "d.u17.l2.s-safe",
+              "model": "You must never share your password or OTP.",
+              "cue": {
+                "en": "Tell a younger child one important online rule.",
+                "hi": "किसी छोटे बच्चे को एक ज़रूरी ऑनलाइन नियम बताओ।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u17.l2.c-b1",
+          "type": "build",
+          "hi": "हर फ़्रेंड रिक्वेस्ट स्वीकारना ज़रूरी नहीं।",
+          "tiles": [
+            "don't have to",
+            "friend request.",
+            "You",
+            "every",
+            "accept"
+          ],
+          "answer": "You don't have to accept every friend request."
+        },
+        {
+          "key": "d.u17.l2.c-b2",
+          "type": "build",
+          "hi": "हमें शुक्रवार तक प्रोजेक्ट पूरा करना है।",
+          "tiles": [
+            "finish",
+            "We",
+            "the project",
+            "have to",
+            "by Friday."
+          ],
+          "answer": "We have to finish the project by Friday."
+        },
+        {
+          "key": "d.u17.l2.c-has",
+          "type": "choose",
+          "prompt": {
+            "en": "Salma ___ to take the bus at seven."
+          },
+          "options": [
+            {
+              "text": "has"
+            },
+            {
+              "text": "must"
+            },
+            {
+              "text": "have"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "She takes has to.",
+            "hi": "She के साथ has to।"
+          }
+        },
+        {
+          "key": "d.u17.l2.c-must",
+          "type": "choose",
+          "prompt": {
+            "en": "Passengers ___ show their tickets."
+          },
+          "options": [
+            {
+              "text": "must"
+            },
+            {
+              "text": "mustn't"
+            },
+            {
+              "text": "don't have to"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u17.l2.c-choose",
+          "type": "choose",
+          "prompt": {
+            "en": "The club is free. You ___ pay anything."
+          },
+          "options": [
+            {
+              "text": "mustn't"
+            },
+            {
+              "text": "don't have to"
+            },
+            {
+              "text": "have to"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Make a list of three family rules with \"have to\" and \"mustn't\".",
+        "hi": "\"have to\" और \"mustn't\" से घर के तीन नियम बनाओ।"
+      }
+    },
+    {
+      "key": "d.u17.l3",
+      "kind": "listen",
+      "title": {
+        "en": "Kavita's online safety session",
+        "hi": "कविता का ऑनलाइन सुरक्षा सत्र"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "Five rules for a safe phone",
+            "hi": "सुरक्षित फ़ोन के पाँच नियम"
+          },
+          "scene": {
+            "place": "village",
+            "pics": [
+              {
+                "pic": "🏘️",
+                "x": 85,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "👩‍🏫",
+                "x": 25,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "📱",
+                "x": 45,
+                "y": 40,
+                "size": 1.1
+              },
+              {
+                "pic": "👧",
+                "x": 65,
+                "y": 45,
+                "size": 1.3
+              },
+              {
+                "pic": "🧑",
+                "x": 80,
+                "y": 45,
+                "size": 1.3
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Kavita",
+              "pic": "👩‍🏫",
+              "en": "Today we will talk about five rules for staying safe online."
+            },
+            {
+              "speaker": "Kavita",
+              "pic": "👩‍🏫",
+              "en": "First, you must keep your password and OTP secret, even from friends."
+            },
+            {
+              "speaker": "Kavita",
+              "pic": "👩‍🏫",
+              "en": "Second, you mustn't share personal details, like your address or school, with strangers."
+            },
+            {
+              "speaker": "Kavita",
+              "pic": "👩‍🏫",
+              "en": "Third, if a message makes you uncomfortable, block it and tell a trusted adult."
+            },
+            {
+              "speaker": "Kavita",
+              "pic": "👩‍🏫",
+              "en": "Fourth, check news before you forward it. Fake news can hurt people."
+            },
+            {
+              "speaker": "Kavita",
+              "pic": "👩‍🏫",
+              "en": "Finally, you don't have to accept every friend request. It is your choice."
+            },
+            {
+              "speaker": "Ravi",
+              "pic": "🧑",
+              "en": "What should we do if someone asks to meet us?"
+            },
+            {
+              "speaker": "Kavita",
+              "pic": "👩‍🏫",
+              "en": "Never meet an online stranger. Tell your parents at once."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "And if we make a mistake, we should tell someone quickly, not hide it."
+            },
+            {
+              "speaker": "Kavita",
+              "pic": "👩‍🏫",
+              "en": "Exactly. Asking for help is always the right step."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u17.l3.p-first",
+              "prompt": {
+                "en": "What is the first rule?"
+              },
+              "options": [
+                {
+                  "text": "Share your address."
+                },
+                {
+                  "text": "Keep your password and OTP secret."
+                },
+                {
+                  "text": "Reply to every message."
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u17.l3.p-message",
+              "prompt": {
+                "en": "What should you do if a message makes you uncomfortable?"
+              },
+              "options": [
+                {
+                  "text": "Forward it to friends."
+                },
+                {
+                  "text": "Reply angrily."
+                },
+                {
+                  "text": "Block it and tell a trusted adult."
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u17.l3.s-must",
+              "model": "You must keep your password and OTP secret, even from friends."
+            },
+            {
+              "key": "d.u17.l3.s-help",
+              "model": "Asking for help is always the right step."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u17.l3.c-news",
+          "type": "choose",
+          "prompt": {
+            "en": "What should you do before forwarding news?"
+          },
+          "options": [
+            {
+              "text": "send it fast"
+            },
+            {
+              "text": "check it"
+            },
+            {
+              "text": "add emojis"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u17.l3.c-request",
+          "type": "choose",
+          "prompt": {
+            "en": "Do you have to accept every friend request?"
+          },
+          "options": [
+            {
+              "text": "Yes, always."
+            },
+            {
+              "text": "Only at night."
+            },
+            {
+              "text": "No, it is your choice."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u17.l3.c-meet",
+          "type": "choose",
+          "prompt": {
+            "en": "What does Kavita say about meeting online strangers?"
+          },
+          "options": [
+            {
+              "text": "Never meet them; tell your parents."
+            },
+            {
+              "text": "Meet them in town."
+            },
+            {
+              "text": "Meet them with a friend."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u17.l3.c-mistake",
+          "type": "choose",
+          "prompt": {
+            "en": "What does Meera say about mistakes?"
+          },
+          "options": [
+            {
+              "text": "Keep it secret."
+            },
+            {
+              "text": "Tell someone quickly; don't hide it."
+            },
+            {
+              "text": "Delete the phone."
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Share Kavita's five rules with your family.",
+        "hi": "कविता के पाँच नियम परिवार को बताओ।"
+      }
+    },
+    {
+      "key": "d.u17.l4",
+      "kind": "speak",
+      "title": {
+        "en": "An online safety talk",
+        "hi": "ऑनलाइन सुरक्षा पर भाषण"
+      },
+      "minutes": 10,
+      "steps": [
+        {
+          "type": "talk",
+          "topic": {
+            "en": "Stay safe online",
+            "hi": "ऑनलाइन सुरक्षित रहो"
+          },
+          "outline": [
+            {
+              "en": "Opening: why online safety matters.",
+              "hi": "शुरुआत: ऑनलाइन सुरक्षा क्यों ज़रूरी है।"
+            },
+            {
+              "en": "Two rules with must and mustn't.",
+              "hi": "must और mustn't से दो नियम।"
+            },
+            {
+              "en": "One thing you don't have to do.",
+              "hi": "एक काम जो ज़रूरी नहीं।"
+            },
+            {
+              "en": "What to do if something goes wrong.",
+              "hi": "कुछ ग़लत हो जाए तो क्या करें।"
+            },
+            {
+              "en": "Closing: to sum up, thank you.",
+              "hi": "समापन: to sum up, धन्यवाद।"
+            }
+          ],
+          "seconds": 90,
+          "model": [
+            "Good morning. Most of us use a phone every day, so online safety matters to everyone.",
+            "First, you must keep your password and OTP secret.",
+            "Second, you mustn't share your address or photos with strangers.",
+            "Also, you don't have to reply to messages that make you uncomfortable.",
+            "If something goes wrong, block the person and tell a trusted adult at once.",
+            "To sum up, think before you click. Thank you for listening."
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "d.u17.l4.br-otp",
+              "hi": "अपना OTP किसी को मत बताओ।",
+              "tiles": [
+                "your OTP",
+                "You",
+                "mustn't",
+                "with anyone.",
+                "share"
+              ],
+              "answer": "You mustn't share your OTP with anyone."
+            },
+            {
+              "key": "d.u17.l4.br-tell",
+              "hi": "किसी भरोसेमंद बड़े को बताओ।",
+              "tiles": [
+                "Tell",
+                "trusted",
+                "a",
+                "adult."
+              ],
+              "answer": "Tell a trusted adult."
+            },
+            {
+              "key": "d.u17.l4.br-check",
+              "hi": "ख़बर आगे भेजने से पहले जाँच लो।",
+              "tiles": [
+                "Check",
+                "you",
+                "the news",
+                "before",
+                "forward it."
+              ],
+              "answer": "Check the news before you forward it."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u17.l4.s-advise",
+              "model": "You mustn't click on that link. It looks fake, so let us show it to your father.",
+              "cue": {
+                "en": "Your cousin got a message about a free prize. Advise him.",
+                "hi": "चचेरे भाई को मुफ़्त इनाम का संदेश आया है। उसे सलाह दो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u17.l4.c-safe",
+          "type": "choose",
+          "prompt": {
+            "en": "A stranger online asks for your school's name. What do you do?"
+          },
+          "options": [
+            {
+              "text": "Send a photo too."
+            },
+            {
+              "text": "Don't share it, and tell a trusted adult."
+            },
+            {
+              "text": "Tell them."
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u17.l4.c-otp",
+          "type": "choose",
+          "prompt": {
+            "en": "Someone on the phone says, \"Tell me your OTP.\" You:"
+          },
+          "options": [
+            {
+              "text": "ask them to wait"
+            },
+            {
+              "text": "tell them"
+            },
+            {
+              "text": "refuse and hang up"
+            }
+          ],
+          "answer": 2,
+          "why": {
+            "en": "Banks and offices never ask for your OTP.",
+            "hi": "बैंक या दफ़्तर कभी OTP नहीं माँगते।"
+          }
+        },
+        {
+          "key": "d.u17.l4.c-b1",
+          "type": "build",
+          "hi": "तुम्हें अपना पासवर्ड गुप्त रखना चाहिए।",
+          "tiles": [
+            "your password",
+            "secret.",
+            "must",
+            "keep",
+            "You"
+          ],
+          "answer": "You must keep your password secret."
+        }
+      ],
+      "home": {
+        "en": "Give your online safety talk to your family.",
+        "hi": "परिवार को अपना ऑनलाइन सुरक्षा भाषण सुनाओ।"
+      }
+    },
+    {
+      "key": "d.u17.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 17 review",
+        "hi": "इकाई 17 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u17.l5.m-privacy",
+              "left": {
+                "text": "privacy"
+              },
+              "right": {
+                "text": "निजता"
+              }
+            },
+            {
+              "key": "d.u17.l5.m-fake",
+              "left": {
+                "text": "fake"
+              },
+              "right": {
+                "text": "नक़ली"
+              }
+            },
+            {
+              "key": "d.u17.l5.m-personal",
+              "left": {
+                "text": "personal"
+              },
+              "right": {
+                "text": "निजी"
+              }
+            },
+            {
+              "key": "d.u17.l5.m-permission",
+              "left": {
+                "text": "permission"
+              },
+              "right": {
+                "text": "अनुमति"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u17.l5.b-have",
+              "tiles": [
+                "Arjun",
+                "the cows",
+                "feed",
+                "every morning.",
+                "has to"
+              ],
+              "answer": "Arjun has to feed the cows every morning."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u17.l5.p-mustnt",
+              "prompt": {
+                "en": "You ___ swim in the river alone."
+              },
+              "options": [
+                {
+                  "text": "have to"
+                },
+                {
+                  "text": "don't have to"
+                },
+                {
+                  "text": "mustn't"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u17.l5.s-rules",
+              "model": "At home, I have to help with dinner, but I don't have to cook every day.",
+              "cue": {
+                "en": "Tell one thing you have to do and one you don't have to do at home.",
+                "hi": "घर पर एक ज़रूरी काम और एक ग़ैर-ज़रूरी काम बताओ।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u17.l5.c-report",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means शिकायत करना?"
+          },
+          "options": [
+            {
+              "text": "stranger"
+            },
+            {
+              "text": "report"
+            },
+            {
+              "text": "privacy"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u17.l5.c-must",
+          "type": "choose",
+          "prompt": {
+            "en": "Drivers ___ stop at a red light."
+          },
+          "options": [
+            {
+              "text": "mustn't"
+            },
+            {
+              "text": "must"
+            },
+            {
+              "text": "don't have to"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u17.l5.c-dont",
+          "type": "choose",
+          "prompt": {
+            "en": "It is optional. You ___ come."
+          },
+          "options": [
+            {
+              "text": "don't have to"
+            },
+            {
+              "text": "must"
+            },
+            {
+              "text": "mustn't"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u17.l5.c-b1",
+          "type": "build",
+          "hi": "हमें झूठी ख़बर आगे नहीं भेजनी चाहिए।",
+          "tiles": [
+            "fake",
+            "We",
+            "forward",
+            "mustn't",
+            "news."
+          ],
+          "answer": "We mustn't forward fake news."
+        },
+        {
+          "key": "d.u17.l5.c-have",
+          "type": "choose",
+          "prompt": {
+            "en": "Do you ___ to wear a uniform?"
+          },
+          "options": [
+            {
+              "text": "has"
+            },
+            {
+              "text": "have"
+            },
+            {
+              "text": "must"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u17.l5.c-b2",
+          "type": "build",
+          "hi": "फ़ोटो डालने से पहले अनुमति लो।",
+          "tiles": [
+            "post a photo.",
+            "you",
+            "for permission",
+            "Ask",
+            "before"
+          ],
+          "answer": "Ask for permission before you post a photo."
+        }
+      ],
+      "home": {
+        "en": "Check one family phone together: is the password strong?",
+        "hi": "परिवार के साथ एक फ़ोन जाँचो: क्या पासवर्ड मज़बूत है?"
+      }
+    }
+  ]
+}

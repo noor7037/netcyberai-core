@@ -1,0 +1,1196 @@
+{
+  "track": "d",
+  "unit": 4,
+  "key": "d.u04",
+  "title": {
+    "en": "Plans and arrangements",
+    "hi": "योजनाएँ और इंतज़ाम"
+  },
+  "pic": "📅",
+  "can_do": {
+    "en": "I can make and discuss plans.",
+    "hi": "मैं योजना बना सकता/सकती हूँ और उस पर बात कर सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u04.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for planning",
+        "hi": "योजना बनाने के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "A school event needs good planning. These words will help you plan together.",
+            "hi": "स्कूल के आयोजन के लिए अच्छी योजना चाहिए। ये शब्द साथ मिलकर योजना बनाने में मदद करेंगे।"
+          },
+          "pic": "📅"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u04.l1.arrange",
+              "en": "arrange",
+              "hi": "इंतज़ाम करना",
+              "pic": "🗂️",
+              "example": {
+                "en": "Ravi will arrange the chairs for the guests.",
+                "hi": "रवि मेहमानों के लिए कुर्सियों का इंतज़ाम करेगा।"
+              }
+            },
+            {
+              "key": "d.u04.l1.event",
+              "en": "event",
+              "hi": "कार्यक्रम, आयोजन",
+              "pic": "🎪",
+              "example": {
+                "en": "The sports event is on Saturday.",
+                "hi": "खेल कार्यक्रम शनिवार को है।"
+              }
+            },
+            {
+              "key": "d.u04.l1.schedule",
+              "en": "schedule",
+              "hi": "समय-सारणी",
+              "pic": "📅",
+              "example": {
+                "en": "Please check the schedule for the science fair.",
+                "hi": "विज्ञान मेले की समय-सारणी देख लो।"
+              }
+            },
+            {
+              "key": "d.u04.l1.volunteer",
+              "en": "volunteer",
+              "hi": "स्वयंसेवक",
+              "pic": "🙋‍♀️",
+              "example": {
+                "en": "We need ten volunteers for the cleaning drive.",
+                "hi": "सफ़ाई अभियान के लिए हमें दस स्वयंसेवक चाहिए।"
+              }
+            },
+            {
+              "key": "d.u04.l1.decide",
+              "en": "decide",
+              "hi": "तय करना",
+              "pic": "🤔",
+              "example": {
+                "en": "We decided to hold the meeting on Friday.",
+                "hi": "हमने शुक्रवार को बैठक रखने का तय किया।"
+              }
+            },
+            {
+              "key": "d.u04.l1.invite",
+              "en": "invite",
+              "hi": "न्योता देना",
+              "pic": "✉️",
+              "example": {
+                "en": "Let us invite the parents to the event.",
+                "hi": "चलो माता-पिता को कार्यक्रम में बुलाएँ।"
+              }
+            },
+            {
+              "key": "d.u04.l1.budget",
+              "en": "budget",
+              "hi": "बजट, ख़र्च की योजना",
+              "pic": "💰",
+              "example": {
+                "en": "Our budget for the decorations is small.",
+                "hi": "सजावट के लिए हमारा बजट कम है।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u04.l1.m-schedule",
+              "left": {
+                "text": "schedule"
+              },
+              "right": {
+                "pic": "📅"
+              }
+            },
+            {
+              "key": "d.u04.l1.m-invite",
+              "left": {
+                "text": "invite"
+              },
+              "right": {
+                "pic": "✉️"
+              }
+            },
+            {
+              "key": "d.u04.l1.m-budget",
+              "left": {
+                "text": "budget"
+              },
+              "right": {
+                "pic": "💰"
+              }
+            },
+            {
+              "key": "d.u04.l1.m-volunteer",
+              "left": {
+                "text": "volunteer"
+              },
+              "right": {
+                "pic": "🙋‍♀️"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u04.l1.p-arrange",
+              "prompt": {
+                "en": "Which word means इंतज़ाम करना?"
+              },
+              "options": [
+                {
+                  "text": "decide"
+                },
+                {
+                  "text": "invite"
+                },
+                {
+                  "text": "arrange"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u04.l1.p-event",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "The prize event will start at ten in the morning."
+              },
+              "options": [
+                {
+                  "text": "decide"
+                },
+                {
+                  "text": "budget"
+                },
+                {
+                  "text": "event"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u04.l1.s-arrange",
+              "model": "Ravi will arrange the chairs for the guests."
+            },
+            {
+              "key": "d.u04.l1.s-volunteer",
+              "model": "We need ten volunteers for the cleaning drive."
+            },
+            {
+              "key": "d.u04.l1.s-invite",
+              "model": "Let us invite the parents to the event."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u04.l1.c-decide",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means तय करना?"
+          },
+          "options": [
+            {
+              "text": "budget"
+            },
+            {
+              "text": "schedule"
+            },
+            {
+              "text": "decide"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u04.l1.c-volunteer",
+          "type": "choose",
+          "prompt": {
+            "en": "A person who helps without pay is a ___."
+          },
+          "options": [
+            {
+              "text": "budget"
+            },
+            {
+              "text": "schedule"
+            },
+            {
+              "text": "volunteer"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u04.l1.c-budget",
+          "type": "choose",
+          "prompt": {
+            "en": "We have only five hundred rupees. That is our ___."
+          },
+          "options": [
+            {
+              "text": "event"
+            },
+            {
+              "text": "invite"
+            },
+            {
+              "text": "budget"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u04.l1.c-schedule",
+          "type": "choose",
+          "prompt": {
+            "en": "The ___ says lunch is at one o'clock."
+          },
+          "options": [
+            {
+              "text": "crowd"
+            },
+            {
+              "text": "schedule"
+            },
+            {
+              "text": "volunteer"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Ask someone at home: What is on your schedule tomorrow?",
+        "hi": "घर में पूछो: What is on your schedule tomorrow?"
+      }
+    },
+    {
+      "key": "d.u04.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "Talking about the future",
+        "hi": "भविष्य की बात"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "Will, going to, and the present continuous for plans",
+            "hi": "Will, going to, और योजना के लिए present continuous"
+          },
+          "visual": "timeline",
+          "examples": [
+            {
+              "en": "I think it will rain tomorrow.",
+              "hi": "मुझे लगता है कल बारिश होगी। (अंदाज़ा)",
+              "time": "future"
+            },
+            {
+              "en": "Wait, I will help you with that box.",
+              "hi": "रुको, मैं वह डिब्बा उठाने में मदद करती हूँ। (अभी का फ़ैसला)",
+              "time": "now"
+            },
+            {
+              "en": "We are going to paint the classroom walls.",
+              "hi": "हम कक्षा की दीवारें रंगने वाले हैं। (पहले से तय इरादा)",
+              "time": "future"
+            },
+            {
+              "en": "Look at those clouds. It is going to rain.",
+              "hi": "वो बादल देखो। बारिश होने वाली है। (सबूत देखकर)",
+              "time": "future"
+            },
+            {
+              "en": "I am meeting the principal at ten tomorrow.",
+              "hi": "कल दस बजे मेरी प्रधानाचार्य से मुलाक़ात है। (तय समय)",
+              "time": "future"
+            }
+          ],
+          "note": {
+            "en": "Will: a guess or a quick decision. Going to: a plan you already have. Present continuous: a fixed time and place.",
+            "hi": "Will: अंदाज़ा या तुरंत फ़ैसला। Going to: पहले से इरादा। Present continuous: समय और जगह तय।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u04.l2.b-going",
+              "tiles": [
+                "We are",
+                "plant",
+                "on Sunday.",
+                "going to",
+                "trees"
+              ],
+              "answer": "We are going to plant trees on Sunday."
+            },
+            {
+              "key": "d.u04.l2.b-meeting",
+              "tiles": [
+                "tomorrow.",
+                "I am",
+                "meeting",
+                "Salma",
+                "at the library"
+              ],
+              "answer": "I am meeting Salma at the library tomorrow."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u04.l2.p-will",
+              "prompt": {
+                "en": "The phone is ringing. I ___ answer it."
+              },
+              "options": [
+                {
+                  "text": "am going to"
+                },
+                {
+                  "text": "was"
+                },
+                {
+                  "text": "will"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "A decision made right now: will.",
+                "hi": "अभी लिया गया फ़ैसला: will।"
+              }
+            },
+            {
+              "key": "d.u04.l2.p-going",
+              "prompt": {
+                "en": "Arjun has bought paint. He ___ paint the door."
+              },
+              "options": [
+                {
+                  "text": "will"
+                },
+                {
+                  "text": "is going to"
+                },
+                {
+                  "text": "paints"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "He planned it before and bought paint: going to.",
+                "hi": "पहले से योजना थी, पेंट भी ख़रीदा: going to।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u04.l2.s-weekend",
+              "model": "I am going to visit my aunt this weekend.",
+              "cue": {
+                "en": "What are you going to do this weekend?",
+                "hi": "इस वीकेंड तुम क्या करने वाले हो?"
+              }
+            },
+            {
+              "key": "d.u04.l2.s-tomorrow",
+              "model": "I am playing in a cricket match tomorrow afternoon.",
+              "cue": {
+                "en": "What are you doing tomorrow afternoon?",
+                "hi": "कल दोपहर क्या कर रहे हो?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u04.l2.c-b1",
+          "type": "build",
+          "hi": "मुझे लगता है हमारी टीम मैच जीतेगी।",
+          "tiles": [
+            "I think",
+            "the match.",
+            "our team",
+            "will win"
+          ],
+          "answer": "I think our team will win the match."
+        },
+        {
+          "key": "d.u04.l2.c-b2",
+          "type": "build",
+          "hi": "सलमा आर्ट क्लब में शामिल होने वाली है।",
+          "tiles": [
+            "join",
+            "Salma is",
+            "going to",
+            "the art club."
+          ],
+          "answer": "Salma is going to join the art club."
+        },
+        {
+          "key": "d.u04.l2.c-clouds",
+          "type": "choose",
+          "prompt": {
+            "en": "The sky is very dark. It ___ rain."
+          },
+          "options": [
+            {
+              "text": "was"
+            },
+            {
+              "text": "is"
+            },
+            {
+              "text": "is going to"
+            }
+          ],
+          "answer": 2,
+          "why": {
+            "en": "We can see the dark sky, so we use going to.",
+            "hi": "काले बादल दिख रहे हैं, इसलिए going to।"
+          }
+        },
+        {
+          "key": "d.u04.l2.c-fixed",
+          "type": "choose",
+          "prompt": {
+            "en": "Papa ___ the bank manager at 11 on Monday."
+          },
+          "options": [
+            {
+              "text": "meets"
+            },
+            {
+              "text": "is meeting"
+            },
+            {
+              "text": "met"
+            }
+          ],
+          "answer": 1,
+          "why": {
+            "en": "A fixed time with another person: present continuous.",
+            "hi": "किसी के साथ तय समय: present continuous।"
+          }
+        },
+        {
+          "key": "d.u04.l2.c-offer",
+          "type": "choose",
+          "prompt": {
+            "en": "You look tired. I ___ carry your bag."
+          },
+          "options": [
+            {
+              "text": "am carrying"
+            },
+            {
+              "text": "carry"
+            },
+            {
+              "text": "will"
+            }
+          ],
+          "answer": 2,
+          "why": {
+            "en": "An offer made now: will.",
+            "hi": "अभी दी गई मदद की पेशकश: will।"
+          }
+        }
+      ],
+      "home": {
+        "en": "Tell your family one plan for next week with \"going to\".",
+        "hi": "परिवार को \"going to\" से अगले हफ़्ते की एक योजना बताओ।"
+      }
+    },
+    {
+      "key": "d.u04.l3",
+      "kind": "listen",
+      "title": {
+        "en": "Planning the cleanliness drive",
+        "hi": "सफ़ाई अभियान की योजना"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "The class meeting",
+            "hi": "कक्षा की बैठक"
+          },
+          "scene": {
+            "place": "school",
+            "pics": [
+              {
+                "pic": "own:chalkboard",
+                "x": 50,
+                "y": 10,
+                "size": 2
+              },
+              {
+                "pic": "👨‍🏫",
+                "x": 20,
+                "y": 40,
+                "size": 1.5
+              },
+              {
+                "pic": "👧",
+                "x": 40,
+                "y": 45,
+                "size": 1.3
+              },
+              {
+                "pic": "🧑",
+                "x": 58,
+                "y": 45,
+                "size": 1.3
+              },
+              {
+                "pic": "🧕",
+                "x": 76,
+                "y": 45,
+                "size": 1.3
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Mr Thomas",
+              "pic": "👨‍🏫",
+              "en": "Class, we are going to hold a cleanliness drive next Saturday."
+            },
+            {
+              "speaker": "Mr Thomas",
+              "pic": "👨‍🏫",
+              "en": "We need a plan, a schedule and volunteers."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Sir, I will make the schedule. We can start at eight."
+            },
+            {
+              "speaker": "Ravi",
+              "pic": "🧑",
+              "en": "I am going to ask the panchayat for brooms and bags."
+            },
+            {
+              "speaker": "Salma",
+              "pic": "🧕",
+              "en": "I will design posters to invite the parents."
+            },
+            {
+              "speaker": "Mr Thomas",
+              "pic": "👨‍🏫",
+              "en": "Good. What about the budget for water and snacks?"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "My father is meeting the shopkeeper tomorrow. He will ask for a discount."
+            },
+            {
+              "speaker": "Ravi",
+              "pic": "🧑",
+              "en": "I think the whole village will come if we use loudspeakers."
+            },
+            {
+              "speaker": "Mr Thomas",
+              "pic": "👨‍🏫",
+              "en": "Excellent. Let us decide the teams on Monday."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u04.l3.p-when",
+              "prompt": {
+                "en": "When is the cleanliness drive?"
+              },
+              "options": [
+                {
+                  "text": "next Saturday"
+                },
+                {
+                  "text": "tomorrow"
+                },
+                {
+                  "text": "next Monday"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u04.l3.p-salma",
+              "prompt": {
+                "en": "What will Salma do?"
+              },
+              "options": [
+                {
+                  "text": "design posters"
+                },
+                {
+                  "text": "buy snacks"
+                },
+                {
+                  "text": "make the schedule"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u04.l3.s-make",
+              "model": "Sir, I will make the schedule."
+            },
+            {
+              "key": "d.u04.l3.s-ask",
+              "model": "I am going to ask the panchayat for brooms and bags."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u04.l3.c-start",
+          "type": "choose",
+          "prompt": {
+            "en": "What time will the drive start?"
+          },
+          "options": [
+            {
+              "text": "at eight"
+            },
+            {
+              "text": "at nine"
+            },
+            {
+              "text": "at seven"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u04.l3.c-ravi",
+          "type": "choose",
+          "prompt": {
+            "en": "Who is going to ask for brooms and bags?"
+          },
+          "options": [
+            {
+              "text": "Ravi"
+            },
+            {
+              "text": "Mr Thomas"
+            },
+            {
+              "text": "Meera"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u04.l3.c-father",
+          "type": "choose",
+          "prompt": {
+            "en": "Who is meeting the shopkeeper tomorrow?"
+          },
+          "options": [
+            {
+              "text": "Meera's father"
+            },
+            {
+              "text": "Salma's mother"
+            },
+            {
+              "text": "the teacher"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u04.l3.c-teams",
+          "type": "choose",
+          "prompt": {
+            "en": "When will they decide the teams?"
+          },
+          "options": [
+            {
+              "text": "today"
+            },
+            {
+              "text": "on Monday"
+            },
+            {
+              "text": "on Saturday"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Plan one small job at home with your family in English.",
+        "hi": "परिवार के साथ घर का एक छोटा काम अंग्रेज़ी में तय करो।"
+      }
+    },
+    {
+      "key": "d.u04.l4",
+      "kind": "speak",
+      "title": {
+        "en": "Plan a school event",
+        "hi": "स्कूल का कार्यक्रम तय करो"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": {
+            "en": "Planning the Annual Day",
+            "hi": "वार्षिक उत्सव की योजना"
+          },
+          "scene": {
+            "place": "school",
+            "pics": [
+              {
+                "pic": "🏫",
+                "x": 80,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "🧑",
+                "x": 30,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "🧒",
+                "x": 60,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "📅",
+                "x": 45,
+                "y": 15,
+                "size": 1.2
+              }
+            ]
+          },
+          "roles": [
+            {
+              "name": "Ravi",
+              "pic": "🧑"
+            },
+            {
+              "name": "You",
+              "pic": "🧒"
+            }
+          ],
+          "learner": 1,
+          "turns": [
+            {
+              "role": 0,
+              "en": "The Annual Day is in two weeks. What are we going to do first?"
+            },
+            {
+              "role": 1,
+              "en": "First, we are going to make a list of all the jobs."
+            },
+            {
+              "role": 0,
+              "en": "Good idea. Who will arrange the stage?"
+            },
+            {
+              "role": 1,
+              "en": "I will ask the Class 10 students. They have done it before."
+            },
+            {
+              "role": 0,
+              "en": "And what about the guests?"
+            },
+            {
+              "role": 1,
+              "en": "I am meeting the principal tomorrow. I will ask her to invite them."
+            },
+            {
+              "role": 0,
+              "en": "Do you think it will rain that day?"
+            },
+            {
+              "role": 1,
+              "en": "I don't think so, but we will keep a tent ready."
+            }
+          ],
+          "partner": {
+            "goal": "Plan a school Annual Day with the learner. Ask about the first step, the stage, the guests and the weather. Suggest one idea yourself.",
+            "must_use": [
+              "going to",
+              "will",
+              "arrange",
+              "invite",
+              "I am meeting"
+            ]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "d.u04.l4.br-plan",
+              "hi": "हम कल बैठक करने वाले हैं।",
+              "tiles": [
+                "tomorrow.",
+                "going to",
+                "We are",
+                "have a meeting"
+              ],
+              "answer": "We are going to have a meeting tomorrow."
+            },
+            {
+              "key": "d.u04.l4.br-help",
+              "hi": "मैं कुर्सियाँ लगाने में मदद करूँगा।",
+              "tiles": [
+                "I will",
+                "the chairs.",
+                "help",
+                "arrange"
+              ],
+              "answer": "I will help arrange the chairs."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u04.l4.s-plan",
+              "model": "We are going to clean the school garden on Saturday, and I will bring the tools.",
+              "cue": {
+                "en": "Describe a plan for a class event.",
+                "hi": "कक्षा के किसी कार्यक्रम की योजना बताओ।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u04.l4.c-offer",
+          "type": "choose",
+          "prompt": {
+            "en": "Your friend says, \"I can't carry all these books.\" You say:"
+          },
+          "options": [
+            {
+              "text": "I am going to help you yesterday."
+            },
+            {
+              "text": "I helped you tomorrow."
+            },
+            {
+              "text": "I will help you."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u04.l4.c-plan",
+          "type": "choose",
+          "prompt": {
+            "en": "Which sentence shows a fixed arrangement?"
+          },
+          "options": [
+            {
+              "text": "I am meeting the doctor at five today."
+            },
+            {
+              "text": "Maybe it will rain."
+            },
+            {
+              "text": "I think I will go."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u04.l4.c-b1",
+          "type": "build",
+          "hi": "पहले हम एक सूची बनाने वाले हैं।",
+          "tiles": [
+            "going to",
+            "we are",
+            "a list.",
+            "First,",
+            "make"
+          ],
+          "answer": "First, we are going to make a list."
+        }
+      ],
+      "home": {
+        "en": "Plan a family outing together and say the plan in English.",
+        "hi": "परिवार के साथ घूमने की योजना बनाओ और उसे अंग्रेज़ी में बोलो।"
+      }
+    },
+    {
+      "key": "d.u04.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 4 review",
+        "hi": "इकाई 4 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u04.l5.m-arrange",
+              "left": {
+                "text": "arrange"
+              },
+              "right": {
+                "text": "इंतज़ाम करना"
+              }
+            },
+            {
+              "key": "d.u04.l5.m-decide",
+              "left": {
+                "text": "decide"
+              },
+              "right": {
+                "text": "तय करना"
+              }
+            },
+            {
+              "key": "d.u04.l5.m-event",
+              "left": {
+                "text": "event"
+              },
+              "right": {
+                "text": "कार्यक्रम"
+              }
+            },
+            {
+              "key": "d.u04.l5.m-invite",
+              "left": {
+                "text": "invite"
+              },
+              "right": {
+                "text": "न्योता देना"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u04.l5.b-going",
+              "tiles": [
+                "build",
+                "They are",
+                "library.",
+                "a new",
+                "going to"
+              ],
+              "answer": "They are going to build a new library."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u04.l5.p-guess",
+              "prompt": {
+                "en": "I am sure you ___ pass the exam."
+              },
+              "options": [
+                {
+                  "text": "are going"
+                },
+                {
+                  "text": "will"
+                },
+                {
+                  "text": "are passing"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "A guess about the future: will.",
+                "hi": "भविष्य का अंदाज़ा: will।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u04.l5.s-next",
+              "model": "Next Sunday, I am going to help my father in the field.",
+              "cue": {
+                "en": "What are you going to do next Sunday?",
+                "hi": "अगले रविवार क्या करने वाले हो?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u04.l5.c-volunteer",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means स्वयंसेवक?"
+          },
+          "options": [
+            {
+              "text": "schedule"
+            },
+            {
+              "text": "volunteer"
+            },
+            {
+              "text": "budget"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u04.l5.c-will",
+          "type": "choose",
+          "prompt": {
+            "en": "It's cold. I ___ close the window."
+          },
+          "options": [
+            {
+              "text": "will"
+            },
+            {
+              "text": "closed"
+            },
+            {
+              "text": "am going to"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "A quick decision now: will.",
+            "hi": "तुरंत फ़ैसला: will।"
+          }
+        },
+        {
+          "key": "d.u04.l5.c-arr",
+          "type": "choose",
+          "prompt": {
+            "en": "We ___ our cousins at the station at six this evening."
+          },
+          "options": [
+            {
+              "text": "are meeting"
+            },
+            {
+              "text": "met"
+            },
+            {
+              "text": "meet"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u04.l5.c-b1",
+          "type": "build",
+          "hi": "मुझे लगता है कल धूप होगी।",
+          "tiles": [
+            "it will",
+            "tomorrow.",
+            "be sunny",
+            "I think"
+          ],
+          "answer": "I think it will be sunny tomorrow."
+        },
+        {
+          "key": "d.u04.l5.c-going",
+          "type": "choose",
+          "prompt": {
+            "en": "Salma has bought seeds. She ___ plant tomatoes."
+          },
+          "options": [
+            {
+              "text": "is going to"
+            },
+            {
+              "text": "plants"
+            },
+            {
+              "text": "will"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u04.l5.c-b2",
+          "type": "build",
+          "hi": "हमें कार्यक्रम के लिए दस स्वयंसेवक चाहिए।",
+          "tiles": [
+            "the event.",
+            "ten volunteers",
+            "for",
+            "We need"
+          ],
+          "answer": "We need ten volunteers for the event."
+        }
+      ],
+      "home": {
+        "en": "Say your plan for tomorrow to someone at home.",
+        "hi": "घर में किसी को कल की अपनी योजना बताओ।"
+      }
+    }
+  ]
+}

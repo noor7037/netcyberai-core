@@ -1,0 +1,1189 @@
+{
+  "track": "d",
+  "unit": 12,
+  "key": "d.u12",
+  "title": {
+    "en": "At the doctor",
+    "hi": "डॉक्टर के पास"
+  },
+  "pic": "🩺",
+  "can_do": {
+    "en": "I can explain a health problem.",
+    "hi": "मैं सेहत की समस्या समझा सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u12.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for health",
+        "hi": "सेहत के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "When you are unwell, clear words help the doctor help you.",
+            "hi": "बीमार होने पर साफ़ शब्द डॉक्टर को तुम्हारी मदद करने देते हैं।"
+          },
+          "pic": "🩺"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u12.l1.symptom",
+              "en": "symptom",
+              "hi": "लक्षण",
+              "pic": "🩺",
+              "example": {
+                "en": "A cough is a symptom of a cold.",
+                "hi": "खाँसी ज़ुकाम का एक लक्षण है।"
+              }
+            },
+            {
+              "key": "d.u12.l1.fever",
+              "en": "fever",
+              "hi": "बुख़ार",
+              "pic": "🤒",
+              "example": {
+                "en": "I have had a fever since Monday.",
+                "hi": "मुझे सोमवार से बुख़ार है।"
+              }
+            },
+            {
+              "key": "d.u12.l1.cough",
+              "en": "cough",
+              "hi": "खाँसी",
+              "pic": "😷",
+              "example": {
+                "en": "Cover your mouth when you cough.",
+                "hi": "खाँसते समय मुँह ढको।"
+              }
+            },
+            {
+              "key": "d.u12.l1.sore-throat",
+              "en": "sore throat",
+              "hi": "गले में ख़राश",
+              "pic": "🧣",
+              "example": {
+                "en": "Warm water helps a sore throat.",
+                "hi": "गले की ख़राश में गुनगुना पानी मदद करता है।"
+              }
+            },
+            {
+              "key": "d.u12.l1.dizzy",
+              "en": "dizzy",
+              "hi": "चक्कर आना",
+              "pic": "😲",
+              "example": {
+                "en": "I felt dizzy after standing in the sun.",
+                "hi": "धूप में खड़े रहने के बाद मुझे चक्कर आया।"
+              }
+            },
+            {
+              "key": "d.u12.l1.prescription",
+              "en": "prescription",
+              "hi": "डॉक्टर की पर्ची",
+              "pic": "📝",
+              "example": {
+                "en": "Show the prescription at the medicine counter.",
+                "hi": "दवा काउंटर पर डॉक्टर की पर्ची दिखाओ।"
+              }
+            },
+            {
+              "key": "d.u12.l1.appointment",
+              "en": "appointment",
+              "hi": "मिलने का तय समय",
+              "pic": "📅",
+              "example": {
+                "en": "I have an appointment with the doctor at ten.",
+                "hi": "दस बजे डॉक्टर से मेरा मिलने का समय है।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u12.l1.m-fever",
+              "left": {
+                "text": "fever"
+              },
+              "right": {
+                "pic": "🤒"
+              }
+            },
+            {
+              "key": "d.u12.l1.m-cough",
+              "left": {
+                "text": "cough"
+              },
+              "right": {
+                "pic": "😷"
+              }
+            },
+            {
+              "key": "d.u12.l1.m-prescription",
+              "left": {
+                "text": "prescription"
+              },
+              "right": {
+                "pic": "📝"
+              }
+            },
+            {
+              "key": "d.u12.l1.m-appointment",
+              "left": {
+                "text": "appointment"
+              },
+              "right": {
+                "pic": "📅"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u12.l1.p-symptom",
+              "prompt": {
+                "en": "Which word means लक्षण?"
+              },
+              "options": [
+                {
+                  "text": "appointment"
+                },
+                {
+                  "text": "symptom"
+                },
+                {
+                  "text": "prescription"
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u12.l1.p-dizzy",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "Drink water if you feel dizzy in the heat."
+              },
+              "options": [
+                {
+                  "text": "cough"
+                },
+                {
+                  "text": "dizzy"
+                },
+                {
+                  "text": "fever"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u12.l1.s-fever",
+              "model": "I have had a fever since Monday."
+            },
+            {
+              "key": "d.u12.l1.s-throat",
+              "model": "I have a sore throat and a cough."
+            },
+            {
+              "key": "d.u12.l1.s-appt",
+              "model": "I have an appointment with the doctor at ten."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u12.l1.c-fever",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means बुख़ार?"
+          },
+          "options": [
+            {
+              "text": "dizzy"
+            },
+            {
+              "text": "fever"
+            },
+            {
+              "text": "cough"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u12.l1.c-presc",
+          "type": "choose",
+          "prompt": {
+            "en": "The doctor writes medicines on a ___."
+          },
+          "options": [
+            {
+              "text": "symptom"
+            },
+            {
+              "text": "prescription"
+            },
+            {
+              "text": "fever"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u12.l1.c-dizzy",
+          "type": "choose",
+          "prompt": {
+            "en": "When the room seems to spin, you feel ___."
+          },
+          "options": [
+            {
+              "text": "dizzy"
+            },
+            {
+              "text": "sore"
+            },
+            {
+              "text": "polite"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u12.l1.c-cough",
+          "type": "choose",
+          "prompt": {
+            "en": "Cover your mouth when you ___."
+          },
+          "options": [
+            {
+              "text": "symptom"
+            },
+            {
+              "text": "cough"
+            },
+            {
+              "text": "fever"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Teach your family the word \"symptom\" with an example.",
+        "hi": "परिवार को उदाहरण के साथ \"symptom\" शब्द सिखाओ।"
+      }
+    },
+    {
+      "key": "d.u12.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "For and since",
+        "hi": "For और since"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "How long? Have had, have been + for or since",
+            "hi": "कितने समय से? for या since"
+          },
+          "visual": "timeline",
+          "examples": [
+            {
+              "en": "I have had a headache since this morning.",
+              "hi": "मुझे आज सुबह से सिरदर्द है। (since + शुरुआत का समय)",
+              "time": "past"
+            },
+            {
+              "en": "Dadi has had a cough for three days.",
+              "hi": "दादी को तीन दिन से खाँसी है। (for + कितना समय)",
+              "time": "past"
+            },
+            {
+              "en": "I have been ill since Monday.",
+              "hi": "मैं सोमवार से बीमार हूँ।",
+              "time": "past"
+            },
+            {
+              "en": "Arjun has known Dr Fatima for ten years.",
+              "hi": "अर्जुन डॉ. फ़ातिमा को दस साल से जानता है।",
+              "time": "past"
+            },
+            {
+              "en": "Now I feel much better.",
+              "hi": "अब मैं काफ़ी बेहतर महसूस कर रहा हूँ।",
+              "time": "now"
+            }
+          ],
+          "note": {
+            "en": "Since + a starting point: since Monday, since 2020, since morning. For + a length of time: for two days, for a week.",
+            "hi": "Since + शुरुआत: since Monday। For + अवधि: for two days। दोनों के साथ have/has + तीसरी फ़ॉर्म।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u12.l2.b-since",
+              "tiles": [
+                "since",
+                "I",
+                "a fever",
+                "have had",
+                "yesterday."
+              ],
+              "answer": "I have had a fever since yesterday."
+            },
+            {
+              "key": "d.u12.l2.b-for",
+              "tiles": [
+                "for",
+                "four days.",
+                "a cough",
+                "She",
+                "has had"
+              ],
+              "answer": "She has had a cough for four days."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u12.l2.p-since",
+              "prompt": {
+                "en": "I have lived here ___ 2015."
+              },
+              "options": [
+                {
+                  "text": "for"
+                },
+                {
+                  "text": "from"
+                },
+                {
+                  "text": "since"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "2015 is a starting point: since.",
+                "hi": "2015 शुरुआत का समय है: since।"
+              }
+            },
+            {
+              "key": "d.u12.l2.p-for",
+              "prompt": {
+                "en": "He has been in hospital ___ two weeks."
+              },
+              "options": [
+                {
+                  "text": "since"
+                },
+                {
+                  "text": "for"
+                },
+                {
+                  "text": "ago"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Two weeks is a length of time: for.",
+                "hi": "Two weeks अवधि है: for।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u12.l2.s-long",
+              "model": "I have had this cough for three days.",
+              "cue": {
+                "en": "The doctor asks, \"How long have you had this cough?\"",
+                "hi": "डॉक्टर पूछती हैं, \"यह खाँसी कब से है?\""
+              }
+            },
+            {
+              "key": "d.u12.l2.s-known",
+              "model": "I have known my best friend since Class 1.",
+              "cue": {
+                "en": "How long have you known your best friend?",
+                "hi": "तुम अपने सबसे अच्छे दोस्त को कब से जानते हो?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u12.l2.c-b1",
+          "type": "build",
+          "hi": "मुझे आज सुबह से चक्कर आ रहे हैं।",
+          "tiles": [
+            "dizzy",
+            "I",
+            "since",
+            "this morning.",
+            "have been"
+          ],
+          "answer": "I have been dizzy since this morning."
+        },
+        {
+          "key": "d.u12.l2.c-b2",
+          "type": "build",
+          "hi": "रवि के गले में दो दिन से ख़राश है।",
+          "tiles": [
+            "has had",
+            "a sore throat",
+            "two days.",
+            "Ravi",
+            "for"
+          ],
+          "answer": "Ravi has had a sore throat for two days."
+        },
+        {
+          "key": "d.u12.l2.c-sinceq",
+          "type": "choose",
+          "prompt": {
+            "en": "We have studied English ___ Class 3."
+          },
+          "options": [
+            {
+              "text": "during"
+            },
+            {
+              "text": "since"
+            },
+            {
+              "text": "for"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u12.l2.c-forq",
+          "type": "choose",
+          "prompt": {
+            "en": "The shop has been closed ___ a week."
+          },
+          "options": [
+            {
+              "text": "at"
+            },
+            {
+              "text": "since"
+            },
+            {
+              "text": "for"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u12.l2.c-has",
+          "type": "choose",
+          "prompt": {
+            "en": "My brother ___ had a fever since Sunday."
+          },
+          "options": [
+            {
+              "text": "has"
+            },
+            {
+              "text": "is"
+            },
+            {
+              "text": "have"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Ask someone at home: How long have you lived in this village?",
+        "hi": "घर में पूछो: How long have you lived in this village?"
+      }
+    },
+    {
+      "key": "d.u12.l3",
+      "kind": "listen",
+      "title": {
+        "en": "At the health centre",
+        "hi": "स्वास्थ्य केंद्र पर"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "Arjun sees the doctor",
+            "hi": "अर्जुन डॉक्टर से मिलता है"
+          },
+          "scene": {
+            "place": "clinic",
+            "pics": [
+              {
+                "pic": "🏥",
+                "x": 80,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "👩‍⚕️",
+                "x": 30,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "👦",
+                "x": 58,
+                "y": 42,
+                "size": 1.5
+              },
+              {
+                "pic": "🌡️",
+                "x": 45,
+                "y": 30,
+                "size": 1
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Doctor",
+              "pic": "👩‍⚕️",
+              "en": "Good morning, Arjun. Please sit down. What seems to be the problem?"
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Good morning, doctor. I have had a fever and a sore throat since Tuesday."
+            },
+            {
+              "speaker": "Doctor",
+              "pic": "👩‍⚕️",
+              "en": "I see. Do you have any other symptoms?"
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "I have had a cough for two days, and I feel tired."
+            },
+            {
+              "speaker": "Doctor",
+              "pic": "👩‍⚕️",
+              "en": "Let me check your temperature. Hmm, it is a little high."
+            },
+            {
+              "speaker": "Doctor",
+              "pic": "👩‍⚕️",
+              "en": "It looks like a viral infection. You need rest and plenty of water."
+            },
+            {
+              "speaker": "Doctor",
+              "pic": "👩‍⚕️",
+              "en": "Here is a prescription. Take the medicine exactly as written."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Should I go to school tomorrow?"
+            },
+            {
+              "speaker": "Doctor",
+              "pic": "👩‍⚕️",
+              "en": "No, stay at home for two days. If the fever doesn't go down, come back."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Thank you, doctor. I will follow your advice."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u12.l3.p-since",
+              "prompt": {
+                "en": "Since when has Arjun had a fever?"
+              },
+              "options": [
+                {
+                  "text": "since this morning"
+                },
+                {
+                  "text": "since last week"
+                },
+                {
+                  "text": "since Tuesday"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u12.l3.p-cough",
+              "prompt": {
+                "en": "How long has he had a cough?"
+              },
+              "options": [
+                {
+                  "text": "for a month"
+                },
+                {
+                  "text": "for a week"
+                },
+                {
+                  "text": "for two days"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u12.l3.s-problem",
+              "model": "I have had a fever and a sore throat since Tuesday."
+            },
+            {
+              "key": "d.u12.l3.s-should",
+              "model": "Should I go to school tomorrow?"
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u12.l3.c-need",
+          "type": "choose",
+          "prompt": {
+            "en": "What does Arjun need?"
+          },
+          "options": [
+            {
+              "text": "cold drinks"
+            },
+            {
+              "text": "sport and sweets"
+            },
+            {
+              "text": "rest and plenty of water"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u12.l3.c-presc",
+          "type": "choose",
+          "prompt": {
+            "en": "What does the doctor give him?"
+          },
+          "options": [
+            {
+              "text": "a prescription"
+            },
+            {
+              "text": "a book"
+            },
+            {
+              "text": "a ticket"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u12.l3.c-school",
+          "type": "choose",
+          "prompt": {
+            "en": "How long should Arjun stay at home?"
+          },
+          "options": [
+            {
+              "text": "one week"
+            },
+            {
+              "text": "two days"
+            },
+            {
+              "text": "one hour"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u12.l3.c-back",
+          "type": "choose",
+          "prompt": {
+            "en": "When should he go back to the doctor?"
+          },
+          "options": [
+            {
+              "text": "never"
+            },
+            {
+              "text": "tomorrow morning"
+            },
+            {
+              "text": "if the fever doesn't go down"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Tell your family one good health habit you learned today.",
+        "hi": "परिवार को आज सीखी सेहत की एक अच्छी आदत बताओ।"
+      }
+    },
+    {
+      "key": "d.u12.l4",
+      "kind": "speak",
+      "title": {
+        "en": "At the doctor",
+        "hi": "डॉक्टर के पास"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Tell the doctor three things: what the problem is, how long you have had it, and any other symptoms. Always follow a doctor's advice.",
+            "hi": "डॉक्टर को तीन बातें बताओ: समस्या क्या है, कब से है, और कोई और लक्षण। डॉक्टर की सलाह हमेशा मानो।"
+          },
+          "pic": "🩺"
+        },
+        {
+          "type": "roleplay",
+          "title": {
+            "en": "Explain a health problem",
+            "hi": "सेहत की समस्या बताओ"
+          },
+          "scene": {
+            "place": "clinic",
+            "pics": [
+              {
+                "pic": "🏥",
+                "x": 80,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "👨‍⚕️",
+                "x": 30,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "🧒",
+                "x": 60,
+                "y": 42,
+                "size": 1.6
+              }
+            ]
+          },
+          "roles": [
+            {
+              "name": "Doctor",
+              "pic": "👨‍⚕️"
+            },
+            {
+              "name": "You",
+              "pic": "🧒"
+            }
+          ],
+          "learner": 1,
+          "turns": [
+            {
+              "role": 0,
+              "en": "Hello. What brings you here today?"
+            },
+            {
+              "role": 1,
+              "en": "Hello, doctor. I have had a bad headache since yesterday."
+            },
+            {
+              "role": 0,
+              "en": "I see. Have you had a fever?"
+            },
+            {
+              "role": 1,
+              "en": "No, but I felt dizzy after I played in the sun for two hours."
+            },
+            {
+              "role": 0,
+              "en": "Have you drunk enough water today?"
+            },
+            {
+              "role": 1,
+              "en": "Not really. I have only had two glasses since morning."
+            },
+            {
+              "role": 0,
+              "en": "You need to drink more water and rest in the shade. Come back if it gets worse."
+            },
+            {
+              "role": 1,
+              "en": "Thank you, doctor. I will drink more water and rest."
+            }
+          ],
+          "partner": {
+            "goal": "Act as a calm doctor at a village health centre. Ask about the problem, how long, and other symptoms. Give simple everyday advice and say to come back if it gets worse. Never name medicines or doses.",
+            "must_use": [
+              "I have had",
+              "since",
+              "for",
+              "symptom",
+              "dizzy",
+              "Thank you"
+            ]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "d.u12.l4.br-fever",
+              "hi": "मुझे कल से बुख़ार है।",
+              "tiles": [
+                "a fever",
+                "I",
+                "yesterday.",
+                "have had",
+                "since"
+              ],
+              "answer": "I have had a fever since yesterday."
+            },
+            {
+              "key": "d.u12.l4.br-cough",
+              "hi": "दादी को एक हफ़्ते से खाँसी है।",
+              "tiles": [
+                "has had",
+                "a cough",
+                "Dadi",
+                "for",
+                "a week."
+              ],
+              "answer": "Dadi has had a cough for a week."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u12.l4.s-tell",
+              "model": "I have had a sore throat for three days, and I have a mild fever.",
+              "cue": {
+                "en": "Tell the doctor about a sore throat and a fever.",
+                "hi": "डॉक्टर को गले की ख़राश और बुख़ार के बारे में बताओ।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u12.l4.c-first",
+          "type": "choose",
+          "prompt": {
+            "en": "The doctor asks, \"What is the problem?\" Which answer is clear?"
+          },
+          "options": [
+            {
+              "text": "I have had a stomach ache since last night."
+            },
+            {
+              "text": "I am fine, thanks."
+            },
+            {
+              "text": "Problem."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u12.l4.c-safe",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is the safest advice for a high fever?"
+          },
+          "options": [
+            {
+              "text": "Ignore it."
+            },
+            {
+              "text": "See a doctor."
+            },
+            {
+              "text": "Take a friend's medicine."
+            }
+          ],
+          "answer": 1,
+          "why": {
+            "en": "Only a doctor should decide the medicine.",
+            "hi": "दवा सिर्फ़ डॉक्टर तय करें।"
+          }
+        },
+        {
+          "key": "d.u12.l4.c-b1",
+          "type": "build",
+          "hi": "मुझे दो दिन से सिरदर्द है।",
+          "tiles": [
+            "a headache",
+            "for",
+            "two days.",
+            "I",
+            "have had"
+          ],
+          "answer": "I have had a headache for two days."
+        }
+      ],
+      "home": {
+        "en": "Practise with a family member: one is the doctor, one is the patient.",
+        "hi": "घर में किसी के साथ अभ्यास करो: एक डॉक्टर, एक मरीज़।"
+      }
+    },
+    {
+      "key": "d.u12.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 12 review",
+        "hi": "इकाई 12 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u12.l5.m-symptom",
+              "left": {
+                "text": "symptom"
+              },
+              "right": {
+                "text": "लक्षण"
+              }
+            },
+            {
+              "key": "d.u12.l5.m-dizzy",
+              "left": {
+                "text": "dizzy"
+              },
+              "right": {
+                "text": "चक्कर आना"
+              }
+            },
+            {
+              "key": "d.u12.l5.m-sore",
+              "left": {
+                "text": "sore throat"
+              },
+              "right": {
+                "text": "गले में ख़राश"
+              }
+            },
+            {
+              "key": "d.u12.l5.m-appointment",
+              "left": {
+                "text": "appointment"
+              },
+              "right": {
+                "text": "मिलने का समय"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u12.l5.b-since",
+              "tiles": [
+                "We",
+                "since",
+                "have lived",
+                "here",
+                "2010."
+              ],
+              "answer": "We have lived here since 2010."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u12.l5.p-for",
+              "prompt": {
+                "en": "I have waited ___ an hour."
+              },
+              "options": [
+                {
+                  "text": "since"
+                },
+                {
+                  "text": "for"
+                },
+                {
+                  "text": "ago"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u12.l5.s-tell",
+              "model": "I have had a cough since Sunday, and I feel tired.",
+              "cue": {
+                "en": "Tell the doctor about a cough that started on Sunday.",
+                "hi": "डॉक्टर को रविवार से शुरू हुई खाँसी के बारे में बताओ।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u12.l5.c-presc",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means डॉक्टर की पर्ची?"
+          },
+          "options": [
+            {
+              "text": "symptom"
+            },
+            {
+              "text": "prescription"
+            },
+            {
+              "text": "appointment"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u12.l5.c-since",
+          "type": "choose",
+          "prompt": {
+            "en": "Salma has played the harmonium ___ she was eight."
+          },
+          "options": [
+            {
+              "text": "since"
+            },
+            {
+              "text": "during"
+            },
+            {
+              "text": "for"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u12.l5.c-for",
+          "type": "choose",
+          "prompt": {
+            "en": "They have been friends ___ many years."
+          },
+          "options": [
+            {
+              "text": "ago"
+            },
+            {
+              "text": "since"
+            },
+            {
+              "text": "for"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u12.l5.c-b1",
+          "type": "build",
+          "hi": "उसे शुक्रवार से बुख़ार है।",
+          "tiles": [
+            "since",
+            "Friday.",
+            "a fever",
+            "has had",
+            "He"
+          ],
+          "answer": "He has had a fever since Friday."
+        },
+        {
+          "key": "d.u12.l5.c-have",
+          "type": "choose",
+          "prompt": {
+            "en": "How long ___ you had this pain?"
+          },
+          "options": [
+            {
+              "text": "are"
+            },
+            {
+              "text": "have"
+            },
+            {
+              "text": "has"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u12.l5.c-b2",
+          "type": "build",
+          "hi": "तुम्हें आराम और ख़ूब पानी चाहिए।",
+          "tiles": [
+            "rest",
+            "plenty of",
+            "and",
+            "You",
+            "need",
+            "water."
+          ],
+          "answer": "You need rest and plenty of water."
+        }
+      ],
+      "home": {
+        "en": "Ask a grandparent: How long have you known our neighbours?",
+        "hi": "दादा-दादी से पूछो: How long have you known our neighbours?"
+      }
+    }
+  ]
+}

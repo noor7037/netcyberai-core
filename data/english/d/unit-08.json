@@ -1,0 +1,1191 @@
+{
+  "track": "d",
+  "unit": 8,
+  "key": "d.u08",
+  "title": {
+    "en": "Getting around",
+    "hi": "आना-जाना"
+  },
+  "pic": "🚉",
+  "can_do": {
+    "en": "I can ask for information politely.",
+    "hi": "मैं विनम्रता से जानकारी माँग सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u08.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for the railway station",
+        "hi": "रेलवे स्टेशन के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "At a station, a few clear words help you travel safely and on time.",
+            "hi": "स्टेशन पर कुछ साफ़ शब्द सुरक्षित और समय पर सफ़र करने में मदद करते हैं।"
+          },
+          "pic": "🚉"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u08.l1.platform",
+              "en": "platform",
+              "hi": "प्लेटफ़ॉर्म",
+              "pic": "🚉",
+              "example": {
+                "en": "The train to Patna leaves from platform 3.",
+                "hi": "पटना की ट्रेन प्लेटफ़ॉर्म 3 से जाती है।"
+              }
+            },
+            {
+              "key": "d.u08.l1.departure",
+              "en": "departure",
+              "hi": "रवानगी, छूटने का समय",
+              "pic": "🚆",
+              "example": {
+                "en": "The departure time is 6:45 in the evening.",
+                "hi": "छूटने का समय शाम 6:45 है।"
+              }
+            },
+            {
+              "key": "d.u08.l1.arrival",
+              "en": "arrival",
+              "hi": "पहुँचना, आगमन",
+              "pic": "🚉",
+              "example": {
+                "en": "Check the arrival time on the board.",
+                "hi": "बोर्ड पर पहुँचने का समय देखो।"
+              }
+            },
+            {
+              "key": "d.u08.l1.delay",
+              "en": "delay",
+              "hi": "देरी",
+              "pic": "⏳",
+              "example": {
+                "en": "There is a delay of forty minutes.",
+                "hi": "चालीस मिनट की देरी है।"
+              }
+            },
+            {
+              "key": "d.u08.l1.passenger",
+              "en": "passenger",
+              "hi": "यात्री",
+              "pic": "🎫",
+              "example": {
+                "en": "Passengers must keep their tickets with them.",
+                "hi": "यात्रियों को अपना टिकट साथ रखना चाहिए।"
+              }
+            },
+            {
+              "key": "d.u08.l1.enquiry",
+              "en": "enquiry",
+              "hi": "पूछताछ",
+              "pic": "❓",
+              "example": {
+                "en": "Ask at the enquiry counter.",
+                "hi": "पूछताछ काउंटर पर पूछो।"
+              }
+            },
+            {
+              "key": "d.u08.l1.opposite",
+              "en": "opposite",
+              "hi": "सामने, उल्टी तरफ़",
+              "pic": "↩️",
+              "example": {
+                "en": "The ticket office is opposite the main gate.",
+                "hi": "टिकट घर मुख्य गेट के सामने है।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u08.l1.m-delay",
+              "left": {
+                "text": "delay"
+              },
+              "right": {
+                "pic": "⏳"
+              }
+            },
+            {
+              "key": "d.u08.l1.m-enquiry",
+              "left": {
+                "text": "enquiry"
+              },
+              "right": {
+                "pic": "❓"
+              }
+            },
+            {
+              "key": "d.u08.l1.m-departure",
+              "left": {
+                "text": "departure"
+              },
+              "right": {
+                "pic": "🚆"
+              }
+            },
+            {
+              "key": "d.u08.l1.m-passenger",
+              "left": {
+                "text": "passenger"
+              },
+              "right": {
+                "pic": "🎫"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u08.l1.p-arrival",
+              "prompt": {
+                "en": "Which word means पहुँचना or आगमन?"
+              },
+              "options": [
+                {
+                  "text": "delay"
+                },
+                {
+                  "text": "departure"
+                },
+                {
+                  "text": "arrival"
+                }
+              ],
+              "answer": 2
+            },
+            {
+              "key": "d.u08.l1.p-platform",
+              "prompt": {
+                "en": "Listen. Which number do you hear?",
+                "say": "The Ganga Express will arrive on platform 4."
+              },
+              "options": [
+                {
+                  "text": "platform 2"
+                },
+                {
+                  "text": "platform 7"
+                },
+                {
+                  "text": "platform 4"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u08.l1.s-platform",
+              "model": "Which platform does the train leave from?"
+            },
+            {
+              "key": "d.u08.l1.s-delay",
+              "model": "There is a delay of forty minutes."
+            },
+            {
+              "key": "d.u08.l1.s-opposite",
+              "model": "The ticket office is opposite the main gate."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u08.l1.c-departure",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means रवानगी?"
+          },
+          "options": [
+            {
+              "text": "arrival"
+            },
+            {
+              "text": "enquiry"
+            },
+            {
+              "text": "departure"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u08.l1.c-delay",
+          "type": "choose",
+          "prompt": {
+            "en": "The train is late. There is a ___."
+          },
+          "options": [
+            {
+              "text": "platform"
+            },
+            {
+              "text": "delay"
+            },
+            {
+              "text": "passenger"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u08.l1.c-passenger",
+          "type": "choose",
+          "prompt": {
+            "en": "A person who travels by train is a ___."
+          },
+          "options": [
+            {
+              "text": "passenger"
+            },
+            {
+              "text": "departure"
+            },
+            {
+              "text": "platform"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u08.l1.c-enquiry",
+          "type": "choose",
+          "prompt": {
+            "en": "If you have a question, go to the ___ counter."
+          },
+          "options": [
+            {
+              "text": "arrival"
+            },
+            {
+              "text": "enquiry"
+            },
+            {
+              "text": "opposite"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Tell your family the name of your nearest railway station in English.",
+        "hi": "परिवार को अंग्रेज़ी में अपने सबसे पास के स्टेशन का नाम बताओ।"
+      }
+    },
+    {
+      "key": "d.u08.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "Asking politely: Could you tell me …?",
+        "hi": "विनम्रता से पूछो: Could you tell me …?"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "Indirect questions",
+            "hi": "Indirect सवाल"
+          },
+          "visual": "question_flip",
+          "examples": [
+            {
+              "en": "Where is platform 3?",
+              "hi": "प्लेटफ़ॉर्म 3 कहाँ है?"
+            },
+            {
+              "en": "Could you tell me where platform 3 is?",
+              "hi": "क्या आप बता सकते हैं कि प्लेटफ़ॉर्म 3 कहाँ है?"
+            },
+            {
+              "en": "When does the train leave?",
+              "hi": "ट्रेन कब छूटती है?"
+            },
+            {
+              "en": "Do you know when the train leaves?",
+              "hi": "क्या आपको पता है ट्रेन कब छूटती है?"
+            },
+            {
+              "en": "Is the train on time?",
+              "hi": "क्या ट्रेन समय पर है?"
+            },
+            {
+              "en": "Could you tell me if the train is on time?",
+              "hi": "क्या आप बता सकते हैं कि ट्रेन समय पर है या नहीं?"
+            }
+          ],
+          "note": {
+            "en": "After \"Could you tell me\" or \"Do you know\", the order is normal: where the platform is, not where is the platform. For yes or no questions, use if.",
+            "hi": "Could you tell me / Do you know के बाद सामान्य क्रम: where the platform is। हाँ-ना सवाल में if लगाओ।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u08.l2.b-where",
+              "tiles": [
+                "the ticket office",
+                "where",
+                "tell me",
+                "is?",
+                "Could you"
+              ],
+              "answer": "Could you tell me where the ticket office is?"
+            },
+            {
+              "key": "d.u08.l2.b-when",
+              "tiles": [
+                "leaves?",
+                "the bus",
+                "when",
+                "Do you",
+                "know"
+              ],
+              "answer": "Do you know when the bus leaves?"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u08.l2.p-order",
+              "prompt": {
+                "en": "Could you tell me where ___?"
+              },
+              "options": [
+                {
+                  "text": "the toilet is"
+                },
+                {
+                  "text": "is the toilet"
+                },
+                {
+                  "text": "the toilet are"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "In an indirect question, the subject comes before the verb.",
+                "hi": "Indirect सवाल में पहले कर्ता, फिर क्रिया।"
+              }
+            },
+            {
+              "key": "d.u08.l2.p-if",
+              "prompt": {
+                "en": "Do you know ___ this train stops at Gaya?"
+              },
+              "options": [
+                {
+                  "text": "what"
+                },
+                {
+                  "text": "if"
+                },
+                {
+                  "text": "where"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "For a yes or no question, use if.",
+                "hi": "हाँ-ना वाले सवाल के लिए if।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u08.l2.s-ask1",
+              "model": "Excuse me, could you tell me where the enquiry counter is?",
+              "cue": {
+                "en": "Ask politely where the enquiry counter is.",
+                "hi": "विनम्रता से पूछो कि पूछताछ काउंटर कहाँ है।"
+              }
+            },
+            {
+              "key": "d.u08.l2.s-ask2",
+              "model": "Do you know when the next train to Patna leaves?",
+              "cue": {
+                "en": "Ask politely when the next train to Patna leaves.",
+                "hi": "विनम्रता से पूछो कि पटना की अगली ट्रेन कब है।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u08.l2.c-b1",
+          "type": "build",
+          "hi": "क्या आप बता सकते हैं टिकट कितने का है?",
+          "tiles": [
+            "costs?",
+            "the ticket",
+            "how much",
+            "Could you",
+            "tell me"
+          ],
+          "answer": "Could you tell me how much the ticket costs?"
+        },
+        {
+          "key": "d.u08.l2.c-b2",
+          "type": "build",
+          "hi": "क्या आपको पता है ट्रेन लेट है?",
+          "tiles": [
+            "the train",
+            "know",
+            "Do you",
+            "is late?",
+            "if"
+          ],
+          "answer": "Do you know if the train is late?"
+        },
+        {
+          "key": "d.u08.l2.c-flip",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is the polite, correct question?"
+          },
+          "options": [
+            {
+              "text": "Could you tell me what time it is?"
+            },
+            {
+              "text": "Could you tell me what time is it?"
+            },
+            {
+              "text": "Tell me time."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u08.l2.c-does",
+          "type": "choose",
+          "prompt": {
+            "en": "Do you know where Ravi ___?"
+          },
+          "options": [
+            {
+              "text": "lives"
+            },
+            {
+              "text": "do live"
+            },
+            {
+              "text": "does live"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "No do or does inside the second part: where Ravi lives.",
+            "hi": "दूसरे हिस्से में do/does नहीं: where Ravi lives।"
+          }
+        },
+        {
+          "key": "d.u08.l2.c-excuse",
+          "type": "choose",
+          "prompt": {
+            "en": "Which words start a polite question to a stranger?"
+          },
+          "options": [
+            {
+              "text": "Excuse me,"
+            },
+            {
+              "text": "Listen,"
+            },
+            {
+              "text": "Hey you,"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Ask someone at home one question that starts with \"Do you know …\".",
+        "hi": "घर में \"Do you know …\" से शुरू होने वाला एक सवाल पूछो।"
+      }
+    },
+    {
+      "key": "d.u08.l3",
+      "kind": "listen",
+      "title": {
+        "en": "At the enquiry counter",
+        "hi": "पूछताछ काउंटर पर"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "Arjun goes to the city",
+            "hi": "अर्जुन शहर जाता है"
+          },
+          "scene": {
+            "place": "station",
+            "pics": [
+              {
+                "pic": "🚉",
+                "x": 80,
+                "y": 12,
+                "size": 2
+              },
+              {
+                "pic": "🚆",
+                "x": 20,
+                "y": 18,
+                "size": 1.8
+              },
+              {
+                "pic": "👮",
+                "x": 35,
+                "y": 42,
+                "size": 1.5
+              },
+              {
+                "pic": "👦",
+                "x": 60,
+                "y": 42,
+                "size": 1.4
+              },
+              {
+                "pic": "🎫",
+                "x": 70,
+                "y": 50,
+                "size": 0.9
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Announcer",
+              "pic": "🔔",
+              "en": "Attention, please. Train number 3021 to Patna is running forty minutes late."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Excuse me, sir. Could you tell me which platform the Patna train leaves from?"
+            },
+            {
+              "speaker": "Clerk",
+              "pic": "👮",
+              "en": "It leaves from platform 4. Do you have a ticket?"
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Yes, I have a reserved ticket. Do you know when it will arrive here?"
+            },
+            {
+              "speaker": "Clerk",
+              "pic": "👮",
+              "en": "There is a delay. It will arrive at about seven fifteen."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Could you tell me where I can wait?"
+            },
+            {
+              "speaker": "Clerk",
+              "pic": "👮",
+              "en": "The waiting room is opposite the ticket office, next to the bookstall."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Thank you. Is there a footbridge to platform 4?"
+            },
+            {
+              "speaker": "Clerk",
+              "pic": "👮",
+              "en": "Yes. Please use the footbridge. Never cross the tracks."
+            },
+            {
+              "speaker": "Arjun",
+              "pic": "👦",
+              "en": "Of course. Thank you for your help, sir."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u08.l3.p-late",
+              "prompt": {
+                "en": "How late is the train?"
+              },
+              "options": [
+                {
+                  "text": "forty minutes"
+                },
+                {
+                  "text": "two hours"
+                },
+                {
+                  "text": "ten minutes"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u08.l3.p-platform",
+              "prompt": {
+                "en": "Which platform does it leave from?"
+              },
+              "options": [
+                {
+                  "text": "platform 1"
+                },
+                {
+                  "text": "platform 3"
+                },
+                {
+                  "text": "platform 4"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u08.l3.s-which",
+              "model": "Could you tell me which platform the Patna train leaves from?"
+            },
+            {
+              "key": "d.u08.l3.s-where",
+              "model": "Could you tell me where I can wait?"
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u08.l3.c-arrive",
+          "type": "choose",
+          "prompt": {
+            "en": "When will the train arrive?"
+          },
+          "options": [
+            {
+              "text": "about seven fifteen"
+            },
+            {
+              "text": "about six"
+            },
+            {
+              "text": "at midnight"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u08.l3.c-room",
+          "type": "choose",
+          "prompt": {
+            "en": "Where is the waiting room?"
+          },
+          "options": [
+            {
+              "text": "on platform 4"
+            },
+            {
+              "text": "opposite the ticket office"
+            },
+            {
+              "text": "outside the station"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u08.l3.c-cross",
+          "type": "choose",
+          "prompt": {
+            "en": "How should Arjun get to platform 4?"
+          },
+          "options": [
+            {
+              "text": "use the footbridge"
+            },
+            {
+              "text": "cross the tracks"
+            },
+            {
+              "text": "jump down"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u08.l3.c-ticket",
+          "type": "choose",
+          "prompt": {
+            "en": "What kind of ticket does Arjun have?"
+          },
+          "options": [
+            {
+              "text": "no ticket"
+            },
+            {
+              "text": "a reserved ticket"
+            },
+            {
+              "text": "a bus ticket"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "At home, say: Could you tell me where my phone charger is?",
+        "hi": "घर में कहो: Could you tell me where my phone charger is?"
+      }
+    },
+    {
+      "key": "d.u08.l4",
+      "kind": "speak",
+      "title": {
+        "en": "At the railway station",
+        "hi": "रेलवे स्टेशन पर"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": {
+            "en": "Asking for information",
+            "hi": "जानकारी माँगना"
+          },
+          "scene": {
+            "place": "station",
+            "pics": [
+              {
+                "pic": "🚉",
+                "x": 80,
+                "y": 12,
+                "size": 2
+              },
+              {
+                "pic": "🚆",
+                "x": 20,
+                "y": 18,
+                "size": 1.8
+              },
+              {
+                "pic": "👩",
+                "x": 40,
+                "y": 42,
+                "size": 1.5
+              },
+              {
+                "pic": "🧒",
+                "x": 65,
+                "y": 42,
+                "size": 1.5
+              }
+            ]
+          },
+          "roles": [
+            {
+              "name": "Clerk",
+              "pic": "👩"
+            },
+            {
+              "name": "You",
+              "pic": "🧒"
+            }
+          ],
+          "learner": 1,
+          "turns": [
+            {
+              "role": 0,
+              "en": "Good afternoon. How can I help you?"
+            },
+            {
+              "role": 1,
+              "en": "Good afternoon, madam. Could you tell me when the next train to Varanasi leaves?"
+            },
+            {
+              "role": 0,
+              "en": "The next train leaves at four thirty from platform 2."
+            },
+            {
+              "role": 1,
+              "en": "Do you know if it is on time today?"
+            },
+            {
+              "role": 0,
+              "en": "It is running ten minutes late."
+            },
+            {
+              "role": 1,
+              "en": "Could you tell me how much a general ticket costs?"
+            },
+            {
+              "role": 0,
+              "en": "It is ninety rupees. You can buy it at counter 1, opposite the gate."
+            },
+            {
+              "role": 1,
+              "en": "Thank you very much for your help."
+            }
+          ],
+          "partner": {
+            "goal": "Act as a polite station enquiry clerk. Answer questions about time, platform, delay and ticket price. Gently model indirect questions if the learner uses direct ones.",
+            "must_use": [
+              "Could you tell me",
+              "Do you know",
+              "platform",
+              "delay",
+              "ticket",
+              "Thank you"
+            ]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "d.u08.l4.br-where",
+              "hi": "क्या आप बता सकते हैं कि टिकट घर कहाँ है?",
+              "tiles": [
+                "Could you",
+                "the ticket office",
+                "is?",
+                "where",
+                "tell me"
+              ],
+              "answer": "Could you tell me where the ticket office is?"
+            },
+            {
+              "key": "d.u08.l4.br-late",
+              "hi": "क्या आपको पता है कि ट्रेन लेट है?",
+              "tiles": [
+                "know",
+                "is late?",
+                "the train",
+                "Do you",
+                "if"
+              ],
+              "answer": "Do you know if the train is late?"
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u08.l4.s-ask",
+              "model": "Excuse me, could you tell me which platform the Delhi train leaves from?",
+              "cue": {
+                "en": "You need the Delhi train. Ask a railway worker politely.",
+                "hi": "तुम्हें दिल्ली की ट्रेन चाहिए। रेल कर्मचारी से विनम्रता से पूछो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u08.l4.c-polite",
+          "type": "choose",
+          "prompt": {
+            "en": "Which question is the most polite?"
+          },
+          "options": [
+            {
+              "text": "Toilet where?"
+            },
+            {
+              "text": "Where is the toilet?"
+            },
+            {
+              "text": "Could you tell me where the toilet is, please?"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u08.l4.c-thanks",
+          "type": "choose",
+          "prompt": {
+            "en": "How do you end the talk?"
+          },
+          "options": [
+            {
+              "text": "OK, done."
+            },
+            {
+              "text": "Thank you very much for your help."
+            },
+            {
+              "text": "Bye, go now."
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u08.l4.c-b1",
+          "type": "build",
+          "hi": "क्या आप बता सकते हैं ट्रेन कब पहुँचती है?",
+          "tiles": [
+            "tell me",
+            "the train",
+            "when",
+            "Could you",
+            "arrives?"
+          ],
+          "answer": "Could you tell me when the train arrives?"
+        }
+      ],
+      "home": {
+        "en": "Practise asking a family member one polite travel question.",
+        "hi": "परिवार के किसी सदस्य से सफ़र का एक विनम्र सवाल पूछने का अभ्यास करो।"
+      }
+    },
+    {
+      "key": "d.u08.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 8 review",
+        "hi": "इकाई 8 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u08.l5.m-platform",
+              "left": {
+                "text": "platform"
+              },
+              "right": {
+                "text": "प्लेटफ़ॉर्म"
+              }
+            },
+            {
+              "key": "d.u08.l5.m-delay",
+              "left": {
+                "text": "delay"
+              },
+              "right": {
+                "text": "देरी"
+              }
+            },
+            {
+              "key": "d.u08.l5.m-passenger",
+              "left": {
+                "text": "passenger"
+              },
+              "right": {
+                "text": "यात्री"
+              }
+            },
+            {
+              "key": "d.u08.l5.m-opposite",
+              "left": {
+                "text": "opposite"
+              },
+              "right": {
+                "text": "सामने"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u08.l5.b-know",
+              "tiles": [
+                "is?",
+                "know",
+                "where",
+                "Do you",
+                "the bus stand"
+              ],
+              "answer": "Do you know where the bus stand is?"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u08.l5.p-flip",
+              "prompt": {
+                "en": "Could you tell me what time ___?"
+              },
+              "options": [
+                {
+                  "text": "does the shop open"
+                },
+                {
+                  "text": "the shop opens"
+                },
+                {
+                  "text": "opens the shop"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u08.l5.s-ask",
+              "model": "Excuse me, do you know if this bus goes to the hospital?",
+              "cue": {
+                "en": "Ask if this bus goes to the hospital.",
+                "hi": "पूछो कि क्या यह बस अस्पताल जाती है।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u08.l5.c-arrival",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means आगमन?"
+          },
+          "options": [
+            {
+              "text": "departure"
+            },
+            {
+              "text": "arrival"
+            },
+            {
+              "text": "enquiry"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u08.l5.c-if",
+          "type": "choose",
+          "prompt": {
+            "en": "Could you tell me ___ the bank is open today?"
+          },
+          "options": [
+            {
+              "text": "if"
+            },
+            {
+              "text": "what"
+            },
+            {
+              "text": "where"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u08.l5.c-order",
+          "type": "choose",
+          "prompt": {
+            "en": "Do you know where ___?"
+          },
+          "options": [
+            {
+              "text": "station is the"
+            },
+            {
+              "text": "the station is"
+            },
+            {
+              "text": "is the station"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u08.l5.c-b1",
+          "type": "build",
+          "hi": "क्या आप बता सकते हैं बाज़ार कितनी दूर है?",
+          "tiles": [
+            "is?",
+            "Could you",
+            "tell me",
+            "the market",
+            "how far"
+          ],
+          "answer": "Could you tell me how far the market is?"
+        },
+        {
+          "key": "d.u08.l5.c-tracks",
+          "type": "choose",
+          "prompt": {
+            "en": "What is the safe way to change platforms?"
+          },
+          "options": [
+            {
+              "text": "use the footbridge"
+            },
+            {
+              "text": "jump from the platform"
+            },
+            {
+              "text": "walk on the tracks"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u08.l5.c-b2",
+          "type": "build",
+          "hi": "बीस मिनट की देरी है।",
+          "tiles": [
+            "of",
+            "There is",
+            "twenty",
+            "a delay",
+            "minutes."
+          ],
+          "answer": "There is a delay of twenty minutes."
+        }
+      ],
+      "home": {
+        "en": "Use \"Could you tell me …\" with someone at home today.",
+        "hi": "आज घर में \"Could you tell me …\" इस्तेमाल करो।"
+      }
+    }
+  ]
+}

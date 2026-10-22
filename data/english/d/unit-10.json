@@ -1,0 +1,1190 @@
+{
+  "track": "d",
+  "unit": 10,
+  "key": "d.u10",
+  "title": {
+    "en": "What they said",
+    "hi": "उन्होंने क्या कहा"
+  },
+  "pic": "🎤",
+  "can_do": {
+    "en": "I can report what someone said.",
+    "hi": "मैं बता सकता/सकती हूँ कि किसी ने क्या कहा।"
+  },
+  "lessons": [
+    {
+      "key": "d.u10.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for reporting",
+        "hi": "बात बताने के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "When you tell someone what another person said, these verbs make your English clear and lively.",
+            "hi": "किसी की कही बात आगे बताते समय ये क्रियाएँ अंग्रेज़ी को साफ़ और जीवंत बनाती हैं।"
+          },
+          "pic": "🎤"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u10.l1.announce",
+              "en": "announce",
+              "hi": "घोषणा करना",
+              "pic": "🔔",
+              "example": {
+                "en": "The principal announced a holiday for Friday.",
+                "hi": "प्रधानाचार्य ने शुक्रवार की छुट्टी की घोषणा की।"
+              }
+            },
+            {
+              "key": "d.u10.l1.explain",
+              "en": "explain",
+              "hi": "समझाना",
+              "pic": "👩‍🏫",
+              "example": {
+                "en": "Kavita explained the rules of the game.",
+                "hi": "कविता ने खेल के नियम समझाए।"
+              }
+            },
+            {
+              "key": "d.u10.l1.mention",
+              "en": "mention",
+              "hi": "ज़िक्र करना",
+              "pic": "👆",
+              "example": {
+                "en": "Ravi mentioned that he had a new bicycle.",
+                "hi": "रवि ने ज़िक्र किया कि उसके पास नई साइकिल है।"
+              }
+            },
+            {
+              "key": "d.u10.l1.reply",
+              "en": "reply",
+              "hi": "जवाब देना",
+              "pic": "↩️",
+              "example": {
+                "en": "Salma replied that she was busy.",
+                "hi": "सलमा ने जवाब दिया कि वह व्यस्त थी।"
+              }
+            },
+            {
+              "key": "d.u10.l1.promise",
+              "en": "promise",
+              "hi": "वादा करना",
+              "pic": "🤞",
+              "example": {
+                "en": "Arjun promised that he would help me.",
+                "hi": "अर्जुन ने वादा किया कि वह मेरी मदद करेगा।"
+              }
+            },
+            {
+              "key": "d.u10.l1.complain",
+              "en": "complain",
+              "hi": "शिकायत करना",
+              "pic": "😠",
+              "example": {
+                "en": "The passengers complained about the delay.",
+                "hi": "यात्रियों ने देरी की शिकायत की।"
+              }
+            },
+            {
+              "key": "d.u10.l1.warn",
+              "en": "warn",
+              "hi": "चेतावनी देना",
+              "pic": "❗",
+              "example": {
+                "en": "The farmer warned us that the bull was angry.",
+                "hi": "किसान ने हमें चेताया कि साँड गुस्से में था।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u10.l1.m-promise",
+              "left": {
+                "text": "promise"
+              },
+              "right": {
+                "pic": "🤞"
+              }
+            },
+            {
+              "key": "d.u10.l1.m-complain",
+              "left": {
+                "text": "complain"
+              },
+              "right": {
+                "pic": "😠"
+              }
+            },
+            {
+              "key": "d.u10.l1.m-reply",
+              "left": {
+                "text": "reply"
+              },
+              "right": {
+                "pic": "↩️"
+              }
+            },
+            {
+              "key": "d.u10.l1.m-warn",
+              "left": {
+                "text": "warn"
+              },
+              "right": {
+                "pic": "❗"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u10.l1.p-explain",
+              "prompt": {
+                "en": "Which word means समझाना?"
+              },
+              "options": [
+                {
+                  "text": "mention"
+                },
+                {
+                  "text": "explain"
+                },
+                {
+                  "text": "announce"
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u10.l1.p-announce",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "The coach announced the names of the new team."
+              },
+              "options": [
+                {
+                  "text": "promised"
+                },
+                {
+                  "text": "complained"
+                },
+                {
+                  "text": "announced"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u10.l1.s-announce",
+              "model": "The principal announced a holiday for Friday."
+            },
+            {
+              "key": "d.u10.l1.s-promise",
+              "model": "Arjun promised that he would help me."
+            },
+            {
+              "key": "d.u10.l1.s-reply",
+              "model": "Salma replied that she was busy."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u10.l1.c-mention",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means ज़िक्र करना?"
+          },
+          "options": [
+            {
+              "text": "reply"
+            },
+            {
+              "text": "mention"
+            },
+            {
+              "text": "warn"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u10.l1.c-warn",
+          "type": "choose",
+          "prompt": {
+            "en": "The teacher ___ us that the floor was wet."
+          },
+          "options": [
+            {
+              "text": "replied"
+            },
+            {
+              "text": "promised"
+            },
+            {
+              "text": "warned"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u10.l1.c-complain",
+          "type": "choose",
+          "prompt": {
+            "en": "The customers ___ that the rice was too salty."
+          },
+          "options": [
+            {
+              "text": "complained"
+            },
+            {
+              "text": "promised"
+            },
+            {
+              "text": "announced"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u10.l1.c-promise",
+          "type": "choose",
+          "prompt": {
+            "en": "I ___ to call you after the exam."
+          },
+          "options": [
+            {
+              "text": "warn"
+            },
+            {
+              "text": "complain"
+            },
+            {
+              "text": "promise"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Report one thing a family member said today: \"Mummy said that …\".",
+        "hi": "आज घर में किसी की कही एक बात बताओ: \"Mummy said that …\"।"
+      }
+    },
+    {
+      "key": "d.u10.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "She said that …",
+        "hi": "उसने कहा कि …"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "Reported speech: the tense steps back",
+            "hi": "Reported speech: काल एक क़दम पीछे"
+          },
+          "visual": "cards",
+          "examples": [
+            {
+              "en": "\"I am tired.\" → Ravi said that he was tired.",
+              "hi": "\"मैं थका हूँ।\" → रवि ने कहा कि वह थका था।"
+            },
+            {
+              "en": "\"I live in Rampur.\" → Meera said that she lived in Rampur.",
+              "hi": "\"मैं रामपुर में रहती हूँ।\" → मीरा ने कहा कि वह रामपुर में रहती थी।"
+            },
+            {
+              "en": "\"I will help you.\" → Arjun said that he would help me.",
+              "hi": "\"मैं तुम्हारी मदद करूँगा।\" → अर्जुन ने कहा कि वह मेरी मदद करेगा।"
+            },
+            {
+              "en": "\"I can swim.\" → Salma said that she could swim.",
+              "hi": "\"मैं तैर सकती हूँ।\" → सलमा ने कहा कि वह तैर सकती थी।"
+            },
+            {
+              "en": "\"We are planting trees.\" → They said that they were planting trees.",
+              "hi": "\"हम पेड़ लगा रहे हैं।\" → उन्होंने कहा कि वे पेड़ लगा रहे थे।"
+            }
+          ],
+          "note": {
+            "en": "After said, step back: am or is to was, are to were, will to would, can to could. Change I and my to he, she, his or her.",
+            "hi": "Said के बाद एक क़दम पीछे: am/is → was, are → were, will → would, can → could। I/my को he/she/his/her करो।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u10.l2.b-was",
+              "tiles": [
+                "that",
+                "She",
+                "was hungry.",
+                "she",
+                "said"
+              ],
+              "answer": "She said that she was hungry."
+            },
+            {
+              "key": "d.u10.l2.b-would",
+              "tiles": [
+                "that",
+                "later.",
+                "said",
+                "he would",
+                "He",
+                "come"
+              ],
+              "answer": "He said that he would come later."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u10.l2.p-were",
+              "prompt": {
+                "en": "\"We are ready.\" → They said that they ___ ready."
+              },
+              "options": [
+                {
+                  "text": "will"
+                },
+                {
+                  "text": "are"
+                },
+                {
+                  "text": "were"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "Are steps back to were.",
+                "hi": "Are पीछे जाकर were बनता है।"
+              }
+            },
+            {
+              "key": "d.u10.l2.p-could",
+              "prompt": {
+                "en": "\"I can fix it.\" → Papa said that he ___ fix it."
+              },
+              "options": [
+                {
+                  "text": "can"
+                },
+                {
+                  "text": "will"
+                },
+                {
+                  "text": "could"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "Can steps back to could.",
+                "hi": "Can पीछे जाकर could बनता है।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u10.l2.s-ravi",
+              "model": "Ravi said that he was busy.",
+              "cue": {
+                "en": "Ravi said, \"I am busy.\" Report it.",
+                "hi": "रवि ने कहा, \"I am busy.\" इसे reported speech में बोलो।"
+              }
+            },
+            {
+              "key": "d.u10.l2.s-salma",
+              "model": "Salma said that she would bring the posters.",
+              "cue": {
+                "en": "Salma said, \"I will bring the posters.\" Report it.",
+                "hi": "सलमा ने कहा, \"I will bring the posters.\" इसे बताओ।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u10.l2.c-b1",
+          "type": "build",
+          "hi": "दादी ने कहा कि वह बेहतर महसूस कर रही थीं।",
+          "tiles": [
+            "Dadi",
+            "better.",
+            "felt",
+            "she",
+            "said",
+            "that"
+          ],
+          "answer": "Dadi said that she felt better."
+        },
+        {
+          "key": "d.u10.l2.c-b2",
+          "type": "build",
+          "hi": "टीचर ने कहा कि टेस्ट आसान था।",
+          "tiles": [
+            "the test",
+            "The teacher",
+            "that",
+            "said",
+            "was easy."
+          ],
+          "answer": "The teacher said that the test was easy."
+        },
+        {
+          "key": "d.u10.l2.c-would",
+          "type": "choose",
+          "prompt": {
+            "en": "\"I will call you.\" → She said that she ___ call me."
+          },
+          "options": [
+            {
+              "text": "would"
+            },
+            {
+              "text": "can"
+            },
+            {
+              "text": "will"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u10.l2.c-pron",
+          "type": "choose",
+          "prompt": {
+            "en": "\"My bag is heavy.\" → Arjun said that ___ bag was heavy."
+          },
+          "options": [
+            {
+              "text": "his"
+            },
+            {
+              "text": "my"
+            },
+            {
+              "text": "your"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "Arjun is talking about his own bag, so my becomes his.",
+            "hi": "अर्जुन अपने बैग की बात कर रहा है, इसलिए my → his।"
+          }
+        },
+        {
+          "key": "d.u10.l2.c-lived",
+          "type": "choose",
+          "prompt": {
+            "en": "\"I live near the river.\" → Ravi said that he ___ near the river."
+          },
+          "options": [
+            {
+              "text": "lived"
+            },
+            {
+              "text": "living"
+            },
+            {
+              "text": "lives"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Tell someone what your teacher said today, starting \"Our teacher said that …\".",
+        "hi": "किसी को बताओ टीचर ने आज क्या कहा: \"Our teacher said that …\"।"
+      }
+    },
+    {
+      "key": "d.u10.l3",
+      "kind": "listen",
+      "title": {
+        "en": "What did Kavita say?",
+        "hi": "कविता ने क्या कहा?"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "Ravi missed the meeting",
+            "hi": "रवि बैठक में नहीं आया"
+          },
+          "scene": {
+            "place": "village",
+            "pics": [
+              {
+                "pic": "🏘️",
+                "x": 80,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "🧑",
+                "x": 30,
+                "y": 42,
+                "size": 1.5
+              },
+              {
+                "pic": "👧",
+                "x": 55,
+                "y": 42,
+                "size": 1.5
+              },
+              {
+                "pic": "📱",
+                "x": 40,
+                "y": 52,
+                "size": 0.8
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Ravi",
+              "pic": "🧑",
+              "en": "Meera, I missed the youth club meeting yesterday. What did Kavita say?"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "She announced that the club was going to start a library."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "She said that each member could bring two old books."
+            },
+            {
+              "speaker": "Ravi",
+              "pic": "🧑",
+              "en": "That's great. Did she mention the football match?"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Yes. She said that the match was on Sunday at four."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "She warned us that the ground was still muddy after the rain."
+            },
+            {
+              "speaker": "Ravi",
+              "pic": "🧑",
+              "en": "Did anyone complain?"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Salma complained that the meeting was too long!"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "But Kavita promised that the next one would be shorter."
+            },
+            {
+              "speaker": "Ravi",
+              "pic": "🧑",
+              "en": "Thanks for telling me. I will bring two books on Sunday."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u10.l3.p-library",
+              "prompt": {
+                "en": "What is the club going to start?"
+              },
+              "options": [
+                {
+                  "text": "a shop"
+                },
+                {
+                  "text": "a library"
+                },
+                {
+                  "text": "a farm"
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u10.l3.p-books",
+              "prompt": {
+                "en": "How many books can each member bring?"
+              },
+              "options": [
+                {
+                  "text": "five"
+                },
+                {
+                  "text": "two"
+                },
+                {
+                  "text": "one"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u10.l3.s-announced",
+              "model": "She announced that the club was going to start a library."
+            },
+            {
+              "key": "d.u10.l3.s-warned",
+              "model": "She warned us that the ground was still muddy."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u10.l3.c-match",
+          "type": "choose",
+          "prompt": {
+            "en": "When is the football match?"
+          },
+          "options": [
+            {
+              "text": "Saturday at four"
+            },
+            {
+              "text": "Sunday at four"
+            },
+            {
+              "text": "Sunday at ten"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u10.l3.c-complain",
+          "type": "choose",
+          "prompt": {
+            "en": "Who complained, and why?"
+          },
+          "options": [
+            {
+              "text": "Meera: it was muddy"
+            },
+            {
+              "text": "Ravi: the books were old"
+            },
+            {
+              "text": "Salma: the meeting was too long"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u10.l3.c-promise",
+          "type": "choose",
+          "prompt": {
+            "en": "What did Kavita promise?"
+          },
+          "options": [
+            {
+              "text": "The next meeting would be shorter."
+            },
+            {
+              "text": "There would be sweets."
+            },
+            {
+              "text": "The match was cancelled."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u10.l3.c-ground",
+          "type": "choose",
+          "prompt": {
+            "en": "Why did Kavita warn them?"
+          },
+          "options": [
+            {
+              "text": "The ground was muddy."
+            },
+            {
+              "text": "It was too hot."
+            },
+            {
+              "text": "The ball was lost."
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Report one thing a friend told you today.",
+        "hi": "आज किसी दोस्त की कही एक बात बताओ।"
+      }
+    },
+    {
+      "key": "d.u10.l4",
+      "kind": "speak",
+      "title": {
+        "en": "Report a conversation",
+        "hi": "बातचीत आगे बताओ"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Use different verbs, not only said: explained, replied, promised, warned.",
+            "hi": "सिर्फ़ said नहीं, अलग क्रियाएँ लगाओ: explained, replied, promised, warned।"
+          },
+          "pic": "🎤"
+        },
+        {
+          "type": "roleplay",
+          "title": {
+            "en": "Tell Mummy what the doctor said",
+            "hi": "मम्मी को बताओ डॉक्टर ने क्या कहा"
+          },
+          "scene": {
+            "place": "home",
+            "pics": [
+              {
+                "pic": "🏠",
+                "x": 85,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "👩",
+                "x": 30,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "🧒",
+                "x": 60,
+                "y": 42,
+                "size": 1.6
+              }
+            ]
+          },
+          "roles": [
+            {
+              "name": "Mummy",
+              "pic": "👩"
+            },
+            {
+              "name": "You",
+              "pic": "🧒"
+            }
+          ],
+          "learner": 1,
+          "turns": [
+            {
+              "role": 0,
+              "en": "You went to the health centre with Dadi. What did the doctor say?"
+            },
+            {
+              "role": 1,
+              "en": "She said that Dadi had a mild fever."
+            },
+            {
+              "role": 0,
+              "en": "Did she give any medicine?"
+            },
+            {
+              "role": 1,
+              "en": "Yes. She explained that Dadi should take the tablets after meals."
+            },
+            {
+              "role": 0,
+              "en": "Anything else?"
+            },
+            {
+              "role": 1,
+              "en": "She warned us that Dadi needed rest and lots of water."
+            },
+            {
+              "role": 0,
+              "en": "When should we go back?"
+            },
+            {
+              "role": 1,
+              "en": "She said that we should come back if the fever didn't go down in two days."
+            }
+          ],
+          "partner": {
+            "goal": "Act as a parent asking what the doctor said. Ask about the problem, the medicine, the advice and the next visit. Gently recast direct speech into reported speech.",
+            "must_use": [
+              "said that",
+              "explained",
+              "warned",
+              "should"
+            ]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "d.u10.l4.br-said",
+              "hi": "रवि ने कहा कि वह थका हुआ था।",
+              "tiles": [
+                "Ravi",
+                "he was",
+                "tired.",
+                "that",
+                "said"
+              ],
+              "answer": "Ravi said that he was tired."
+            },
+            {
+              "key": "d.u10.l4.br-promise",
+              "hi": "उसने वादा किया कि वह जल्दी आएगी।",
+              "tiles": [
+                "she would",
+                "She",
+                "come early.",
+                "that",
+                "promised"
+              ],
+              "answer": "She promised that she would come early."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u10.l4.s-report",
+              "model": "My friend said that she was going to the fair, and she promised to bring sweets.",
+              "cue": {
+                "en": "Report what a friend told you yesterday.",
+                "hi": "कल दोस्त ने जो कहा, वह बताओ।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u10.l4.c-verb",
+          "type": "choose",
+          "prompt": {
+            "en": "The doctor said, \"Drink lots of water.\" Which is best?"
+          },
+          "options": [
+            {
+              "text": "The doctor said drink water me."
+            },
+            {
+              "text": "The doctor explained that I should drink lots of water."
+            },
+            {
+              "text": "The doctor says I drink."
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u10.l4.c-would",
+          "type": "choose",
+          "prompt": {
+            "en": "\"I will be late.\" → He said that he ___ be late."
+          },
+          "options": [
+            {
+              "text": "can"
+            },
+            {
+              "text": "would"
+            },
+            {
+              "text": "will"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u10.l4.c-b1",
+          "type": "build",
+          "hi": "उसने हमें चेताया कि सड़क फिसलन भरी थी।",
+          "tiles": [
+            "the road",
+            "that",
+            "warned",
+            "was",
+            "She",
+            "us",
+            "slippery."
+          ],
+          "answer": "She warned us that the road was slippery."
+        }
+      ],
+      "home": {
+        "en": "Tell your family about one conversation from school today.",
+        "hi": "परिवार को आज स्कूल की एक बातचीत के बारे में बताओ।"
+      }
+    },
+    {
+      "key": "d.u10.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 10 review",
+        "hi": "इकाई 10 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u10.l5.m-announce",
+              "left": {
+                "text": "announce"
+              },
+              "right": {
+                "text": "घोषणा करना"
+              }
+            },
+            {
+              "key": "d.u10.l5.m-explain",
+              "left": {
+                "text": "explain"
+              },
+              "right": {
+                "text": "समझाना"
+              }
+            },
+            {
+              "key": "d.u10.l5.m-mention",
+              "left": {
+                "text": "mention"
+              },
+              "right": {
+                "text": "ज़िक्र करना"
+              }
+            },
+            {
+              "key": "d.u10.l5.m-warn",
+              "left": {
+                "text": "warn"
+              },
+              "right": {
+                "text": "चेतावनी देना"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u10.l5.b-could",
+              "tiles": [
+                "said",
+                "she could",
+                "draw well.",
+                "Salma",
+                "that"
+              ],
+              "answer": "Salma said that she could draw well."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u10.l5.p-was",
+              "prompt": {
+                "en": "\"The bus is late.\" → Arjun said that the bus ___ late."
+              },
+              "options": [
+                {
+                  "text": "is"
+                },
+                {
+                  "text": "were"
+                },
+                {
+                  "text": "was"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u10.l5.s-rep",
+              "model": "The teacher said that the test was on Monday.",
+              "cue": {
+                "en": "The teacher said, \"The test is on Monday.\" Report it.",
+                "hi": "टीचर ने कहा, \"The test is on Monday.\" इसे बताओ।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u10.l5.c-reply",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means जवाब देना?"
+          },
+          "options": [
+            {
+              "text": "reply"
+            },
+            {
+              "text": "complain"
+            },
+            {
+              "text": "promise"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u10.l5.c-were",
+          "type": "choose",
+          "prompt": {
+            "en": "\"We are hungry.\" → The boys said that they ___ hungry."
+          },
+          "options": [
+            {
+              "text": "are"
+            },
+            {
+              "text": "was"
+            },
+            {
+              "text": "were"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u10.l5.c-would",
+          "type": "choose",
+          "prompt": {
+            "en": "\"I will win.\" → Ravi said that he ___ win."
+          },
+          "options": [
+            {
+              "text": "would"
+            },
+            {
+              "text": "won"
+            },
+            {
+              "text": "will"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u10.l5.c-b1",
+          "type": "build",
+          "hi": "पापा ने कहा कि फ़सलें अच्छी दिख रही थीं।",
+          "tiles": [
+            "that",
+            "said",
+            "the crops",
+            "Papa",
+            "looked healthy."
+          ],
+          "answer": "Papa said that the crops looked healthy."
+        },
+        {
+          "key": "d.u10.l5.c-her",
+          "type": "choose",
+          "prompt": {
+            "en": "\"My pen is new.\" → Meera said that ___ pen was new."
+          },
+          "options": [
+            {
+              "text": "his"
+            },
+            {
+              "text": "her"
+            },
+            {
+              "text": "my"
+            }
+          ],
+          "answer": 1,
+          "why": {
+            "en": "Meera is talking about her own pen, so my becomes her.",
+            "hi": "मीरा अपने पेन की बात कर रही है, इसलिए my → her।"
+          }
+        },
+        {
+          "key": "d.u10.l5.c-b2",
+          "type": "build",
+          "hi": "उसने वादा किया कि वह किताब लौटा देगा।",
+          "tiles": [
+            "the book.",
+            "that",
+            "he would",
+            "return",
+            "He",
+            "promised"
+          ],
+          "answer": "He promised that he would return the book."
+        }
+      ],
+      "home": {
+        "en": "At dinner, report one piece of news you heard today.",
+        "hi": "रात के खाने पर आज सुनी कोई ख़बर बताओ।"
+      }
+    }
+  ]
+}

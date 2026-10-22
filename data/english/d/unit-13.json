@@ -1,0 +1,1263 @@
+{
+  "track": "d",
+  "unit": 13,
+  "key": "d.u13",
+  "title": {
+    "en": "Interview",
+    "hi": "इंटरव्यू"
+  },
+  "pic": "💻",
+  "can_do": {
+    "en": "I can answer common interview questions.",
+    "hi": "मैं इंटरव्यू के आम सवालों के जवाब दे सकता/सकती हूँ।"
+  },
+  "lessons": [
+    {
+      "key": "d.u13.l1",
+      "kind": "words",
+      "title": {
+        "en": "Words for an interview",
+        "hi": "इंटरव्यू के शब्द"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "An interview is a conversation about you. These words help you talk about your strengths honestly.",
+            "hi": "इंटरव्यू तुम्हारे बारे में बातचीत है। ये शब्द अपनी ख़ूबियाँ ईमानदारी से बताने में मदद करेंगे।"
+          },
+          "pic": "💻"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "d.u13.l1.strength",
+              "en": "strength",
+              "hi": "ख़ूबी, ताक़त",
+              "pic": "💪",
+              "example": {
+                "en": "My greatest strength is patience.",
+                "hi": "धैर्य मेरी सबसे बड़ी ख़ूबी है।"
+              }
+            },
+            {
+              "key": "d.u13.l1.skill",
+              "en": "skill",
+              "hi": "कौशल, हुनर",
+              "pic": "🧰",
+              "example": {
+                "en": "Typing is a useful skill.",
+                "hi": "टाइपिंग एक उपयोगी कौशल है।"
+              }
+            },
+            {
+              "key": "d.u13.l1.responsible",
+              "en": "responsible",
+              "hi": "ज़िम्मेदार",
+              "pic": "🔑",
+              "example": {
+                "en": "I am responsible for the class library.",
+                "hi": "कक्षा पुस्तकालय की ज़िम्मेदारी मेरी है।"
+              }
+            },
+            {
+              "key": "d.u13.l1.apply",
+              "en": "apply",
+              "hi": "आवेदन करना",
+              "pic": "✉️",
+              "example": {
+                "en": "Meera applied for a weekend job.",
+                "hi": "मीरा ने सप्ताहांत की नौकरी के लिए आवेदन किया।"
+              }
+            },
+            {
+              "key": "d.u13.l1.position",
+              "en": "position",
+              "hi": "पद, जगह",
+              "pic": "🪑",
+              "example": {
+                "en": "The position is for Saturdays and Sundays.",
+                "hi": "यह पद शनिवार और रविवार के लिए है।"
+              }
+            },
+            {
+              "key": "d.u13.l1.reliable",
+              "en": "reliable",
+              "hi": "भरोसेमंद",
+              "pic": "✅",
+              "example": {
+                "en": "A reliable person always arrives on time.",
+                "hi": "भरोसेमंद व्यक्ति हमेशा समय पर आता है।"
+              }
+            },
+            {
+              "key": "d.u13.l1.teamwork",
+              "en": "teamwork",
+              "hi": "मिलकर काम करना",
+              "pic": "👬",
+              "example": {
+                "en": "The science fair taught me teamwork.",
+                "hi": "विज्ञान मेले ने मुझे मिलकर काम करना सिखाया।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u13.l1.m-strength",
+              "left": {
+                "text": "strength"
+              },
+              "right": {
+                "pic": "💪"
+              }
+            },
+            {
+              "key": "d.u13.l1.m-skill",
+              "left": {
+                "text": "skill"
+              },
+              "right": {
+                "pic": "🧰"
+              }
+            },
+            {
+              "key": "d.u13.l1.m-apply",
+              "left": {
+                "text": "apply"
+              },
+              "right": {
+                "pic": "✉️"
+              }
+            },
+            {
+              "key": "d.u13.l1.m-teamwork",
+              "left": {
+                "text": "teamwork"
+              },
+              "right": {
+                "pic": "👬"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u13.l1.p-reliable",
+              "prompt": {
+                "en": "Which word means भरोसेमंद?"
+              },
+              "options": [
+                {
+                  "text": "reliable"
+                },
+                {
+                  "text": "position"
+                },
+                {
+                  "text": "responsible"
+                }
+              ],
+              "answer": 0
+            },
+            {
+              "key": "d.u13.l1.p-position",
+              "prompt": {
+                "en": "Listen. Which word do you hear?",
+                "say": "We have one position for a computer assistant."
+              },
+              "options": [
+                {
+                  "text": "skill"
+                },
+                {
+                  "text": "strength"
+                },
+                {
+                  "text": "position"
+                }
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u13.l1.s-strength",
+              "model": "My greatest strength is patience."
+            },
+            {
+              "key": "d.u13.l1.s-resp",
+              "model": "I am responsible for the class library."
+            },
+            {
+              "key": "d.u13.l1.s-team",
+              "model": "The science fair taught me teamwork."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u13.l1.c-apply",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means आवेदन करना?"
+          },
+          "options": [
+            {
+              "text": "reliable"
+            },
+            {
+              "text": "apply"
+            },
+            {
+              "text": "skill"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u13.l1.c-skill",
+          "type": "choose",
+          "prompt": {
+            "en": "Cooking, typing and drawing are all ___."
+          },
+          "options": [
+            {
+              "text": "strengths"
+            },
+            {
+              "text": "positions"
+            },
+            {
+              "text": "skills"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u13.l1.c-resp",
+          "type": "choose",
+          "prompt": {
+            "en": "Ravi takes care of the club money. He is ___ for it."
+          },
+          "options": [
+            {
+              "text": "nervous"
+            },
+            {
+              "text": "responsible"
+            },
+            {
+              "text": "reliable"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u13.l1.c-team",
+          "type": "choose",
+          "prompt": {
+            "en": "We finished the project because of good ___."
+          },
+          "options": [
+            {
+              "text": "position"
+            },
+            {
+              "text": "teamwork"
+            },
+            {
+              "text": "apply"
+            }
+          ],
+          "answer": 1
+        }
+      ],
+      "home": {
+        "en": "Ask a grown-up: What is your greatest strength?",
+        "hi": "किसी बड़े से पूछो: What is your greatest strength?"
+      }
+    },
+    {
+      "key": "d.u13.l2",
+      "kind": "pattern",
+      "title": {
+        "en": "I am good at …, I would like to …",
+        "hi": "मुझे … आता है, मैं … करना चाहूँगा"
+      },
+      "minutes": 9,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": {
+            "en": "Talking about skills and wishes",
+            "hi": "कौशल और इच्छाएँ बताना"
+          },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "I am good at maths and typing.",
+              "hi": "मैं गणित और टाइपिंग में अच्छी हूँ।",
+              "parts": [
+                {
+                  "text": "I am good at",
+                  "role": "who"
+                },
+                {
+                  "text": "maths and typing.",
+                  "role": "what"
+                }
+              ]
+            },
+            {
+              "en": "I am interested in working with computers.",
+              "hi": "मुझे कंप्यूटर के साथ काम करने में रुचि है।",
+              "parts": [
+                {
+                  "text": "I am interested in",
+                  "role": "who"
+                },
+                {
+                  "text": "working with computers.",
+                  "role": "what"
+                }
+              ]
+            },
+            {
+              "en": "I would like to learn new skills.",
+              "hi": "मैं नए कौशल सीखना चाहूँगी।",
+              "parts": [
+                {
+                  "text": "I would like to",
+                  "role": "who"
+                },
+                {
+                  "text": "learn",
+                  "role": "do"
+                },
+                {
+                  "text": "new skills.",
+                  "role": "what"
+                }
+              ]
+            },
+            {
+              "en": "My greatest strength is that I am reliable.",
+              "hi": "मेरी सबसे बड़ी ख़ूबी यह है कि मैं भरोसेमंद हूँ।",
+              "parts": [
+                {
+                  "text": "My greatest strength",
+                  "role": "who"
+                },
+                {
+                  "text": "is",
+                  "role": "do"
+                },
+                {
+                  "text": "that I am reliable.",
+                  "role": "what"
+                }
+              ]
+            },
+            {
+              "en": "I am not very good at drawing yet, but I am improving.",
+              "hi": "मैं अभी ड्रॉइंग में बहुत अच्छी नहीं, पर सुधार रही हूँ।",
+              "parts": [
+                {
+                  "text": "I am not very good at",
+                  "role": "not"
+                },
+                {
+                  "text": "drawing yet,",
+                  "role": "what"
+                },
+                {
+                  "text": "but I am improving.",
+                  "role": "other"
+                }
+              ]
+            }
+          ],
+          "note": {
+            "en": "After good at and interested in, use a noun or -ing. After would like to, use the base verb. \"I would like\" is more polite than \"I want\".",
+            "hi": "Good at / interested in के बाद noun या -ing। Would like to के बाद मूल क्रिया। \"I would like\" \"I want\" से ज़्यादा विनम्र है।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u13.l2.b-good",
+              "tiles": [
+                "problems.",
+                "good at",
+                "solving",
+                "I am"
+              ],
+              "answer": "I am good at solving problems."
+            },
+            {
+              "key": "d.u13.l2.b-would",
+              "tiles": [
+                "work",
+                "I would",
+                "a team.",
+                "like to",
+                "in"
+              ],
+              "answer": "I would like to work in a team."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u13.l2.p-ing",
+              "prompt": {
+                "en": "I am good at ___ to people."
+              },
+              "options": [
+                {
+                  "text": "to talk"
+                },
+                {
+                  "text": "talking"
+                },
+                {
+                  "text": "talk"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "After good at, use -ing.",
+                "hi": "Good at के बाद -ing।"
+              }
+            },
+            {
+              "key": "d.u13.l2.p-base",
+              "prompt": {
+                "en": "I would like to ___ here."
+              },
+              "options": [
+                {
+                  "text": "working"
+                },
+                {
+                  "text": "work"
+                },
+                {
+                  "text": "works"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "After would like to, use the base verb.",
+                "hi": "Would like to के बाद मूल क्रिया।"
+              }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u13.l2.s-good",
+              "model": "I am good at mathematics and helping others.",
+              "cue": {
+                "en": "What are you good at?",
+                "hi": "तुम किसमें अच्छे हो?"
+              }
+            },
+            {
+              "key": "d.u13.l2.s-like",
+              "model": "I would like to become a nurse and work in my village.",
+              "cue": {
+                "en": "What would you like to do in the future?",
+                "hi": "भविष्य में तुम क्या करना चाहोगे?"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u13.l2.c-b1",
+          "type": "build",
+          "hi": "मुझे कंप्यूटर कौशल सीखने में रुचि है।",
+          "tiles": [
+            "interested in",
+            "learning",
+            "computer skills.",
+            "I am"
+          ],
+          "answer": "I am interested in learning computer skills."
+        },
+        {
+          "key": "d.u13.l2.c-b2",
+          "type": "build",
+          "hi": "मेरी सबसे बड़ी ख़ूबी मिलकर काम करना है।",
+          "tiles": [
+            "teamwork.",
+            "is",
+            "My greatest",
+            "strength"
+          ],
+          "answer": "My greatest strength is teamwork."
+        },
+        {
+          "key": "d.u13.l2.c-polite",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is the most polite in an interview?"
+          },
+          "options": [
+            {
+              "text": "Give me the job."
+            },
+            {
+              "text": "I want this job now."
+            },
+            {
+              "text": "I would like to join your team."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u13.l2.c-in",
+          "type": "choose",
+          "prompt": {
+            "en": "She is interested ___ science."
+          },
+          "options": [
+            {
+              "text": "in"
+            },
+            {
+              "text": "on"
+            },
+            {
+              "text": "at"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u13.l2.c-at",
+          "type": "choose",
+          "prompt": {
+            "en": "Arjun is good ___ cricket."
+          },
+          "options": [
+            {
+              "text": "at"
+            },
+            {
+              "text": "for"
+            },
+            {
+              "text": "in"
+            }
+          ],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Tell your family two things you are good at.",
+        "hi": "परिवार को दो चीज़ें बताओ जिनमें तुम अच्छे हो।"
+      }
+    },
+    {
+      "key": "d.u13.l3",
+      "kind": "listen",
+      "title": {
+        "en": "Meera's first interview",
+        "hi": "मीरा का पहला इंटरव्यू"
+      },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": {
+            "en": "At the computer centre",
+            "hi": "कंप्यूटर सेंटर में"
+          },
+          "scene": {
+            "place": "market",
+            "pics": [
+              {
+                "pic": "🏬",
+                "x": 80,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "💻",
+                "x": 45,
+                "y": 40,
+                "size": 1.2
+              },
+              {
+                "pic": "👨",
+                "x": 25,
+                "y": 42,
+                "size": 1.5
+              },
+              {
+                "pic": "👧",
+                "x": 65,
+                "y": 42,
+                "size": 1.5
+              }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Mr Joseph",
+              "pic": "👨",
+              "en": "Good morning, Meera. Thank you for applying. Please tell me about yourself."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Good morning, sir. I am fourteen, and I study in Class 9."
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I am interested in computers, and I have learned typing at school."
+            },
+            {
+              "speaker": "Mr Joseph",
+              "pic": "👨",
+              "en": "Why would you like this position?"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I would like to improve my skills and help people with forms and printing."
+            },
+            {
+              "speaker": "Mr Joseph",
+              "pic": "👨",
+              "en": "What is your greatest strength?"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I am reliable. I have managed the class library for two years."
+            },
+            {
+              "speaker": "Mr Joseph",
+              "pic": "👨",
+              "en": "And a weakness?"
+            },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "I am not very fast at typing yet, but I practise every day."
+            },
+            {
+              "speaker": "Mr Joseph",
+              "pic": "👨",
+              "en": "Good answer. The job is only on Sunday mornings, so it won't affect your studies."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u13.l3.p-typing",
+              "prompt": {
+                "en": "Where did Meera learn typing?"
+              },
+              "options": [
+                {
+                  "text": "at the club"
+                },
+                {
+                  "text": "at school"
+                },
+                {
+                  "text": "at home"
+                }
+              ],
+              "answer": 1
+            },
+            {
+              "key": "d.u13.l3.p-why",
+              "prompt": {
+                "en": "Why would Meera like the position?"
+              },
+              "options": [
+                {
+                  "text": "to improve her skills and help people"
+                },
+                {
+                  "text": "to stop studying"
+                },
+                {
+                  "text": "to play games"
+                }
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "d.u13.l3.s-would",
+              "model": "I would like to improve my skills and help people."
+            },
+            {
+              "key": "d.u13.l3.s-weak",
+              "model": "I am not very fast at typing yet, but I practise every day."
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u13.l3.c-strength",
+          "type": "choose",
+          "prompt": {
+            "en": "What is Meera's greatest strength?"
+          },
+          "options": [
+            {
+              "text": "She is reliable."
+            },
+            {
+              "text": "She is tall."
+            },
+            {
+              "text": "She is very fast."
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u13.l3.c-library",
+          "type": "choose",
+          "prompt": {
+            "en": "How long has she managed the class library?"
+          },
+          "options": [
+            {
+              "text": "for two weeks"
+            },
+            {
+              "text": "since yesterday"
+            },
+            {
+              "text": "for two years"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u13.l3.c-weak",
+          "type": "choose",
+          "prompt": {
+            "en": "How does Meera talk about her weakness?"
+          },
+          "options": [
+            {
+              "text": "She says she has none."
+            },
+            {
+              "text": "She gets angry."
+            },
+            {
+              "text": "She says how she is improving."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u13.l3.c-when",
+          "type": "choose",
+          "prompt": {
+            "en": "When is the job?"
+          },
+          "options": [
+            {
+              "text": "school days"
+            },
+            {
+              "text": "every evening"
+            },
+            {
+              "text": "Sunday mornings"
+            }
+          ],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Ask someone at home: What would you like to learn this year?",
+        "hi": "घर में पूछो: What would you like to learn this year?"
+      }
+    },
+    {
+      "key": "d.u13.l4",
+      "kind": "speak",
+      "title": {
+        "en": "The interview",
+        "hi": "इंटरव्यू"
+      },
+      "minutes": 10,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Sit straight, smile, and answer in two or three sentences. Give an example for every strength.",
+            "hi": "सीधे बैठो, मुस्कुराओ, और दो-तीन वाक्यों में जवाब दो। हर ख़ूबी के साथ एक उदाहरण दो।"
+          },
+          "pic": "🙂"
+        },
+        {
+          "type": "roleplay",
+          "title": {
+            "en": "A youth club volunteer interview",
+            "hi": "युवा क्लब स्वयंसेवक इंटरव्यू"
+          },
+          "scene": {
+            "place": "village",
+            "pics": [
+              {
+                "pic": "🏘️",
+                "x": 80,
+                "y": 15,
+                "size": 2
+              },
+              {
+                "pic": "👩‍🏫",
+                "x": 30,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "🧒",
+                "x": 60,
+                "y": 42,
+                "size": 1.6
+              },
+              {
+                "pic": "🪑",
+                "x": 45,
+                "y": 52,
+                "size": 1
+              }
+            ]
+          },
+          "roles": [
+            {
+              "name": "Interviewer",
+              "pic": "👩‍🏫"
+            },
+            {
+              "name": "You",
+              "pic": "🧒"
+            }
+          ],
+          "learner": 1,
+          "turns": [
+            {
+              "role": 0,
+              "en": "Thank you for coming. Could you tell me a little about yourself?"
+            },
+            {
+              "role": 1,
+              "en": "Of course. I am Ravi. I study in Class 10, and I help on my family farm."
+            },
+            {
+              "role": 0,
+              "en": "Why would you like to volunteer with the youth club?"
+            },
+            {
+              "role": 1,
+              "en": "I would like to help younger children with reading, and I enjoy teamwork."
+            },
+            {
+              "role": 0,
+              "en": "What are you good at?"
+            },
+            {
+              "role": 1,
+              "en": "I am good at explaining things. I often help my classmates with maths."
+            },
+            {
+              "role": 0,
+              "en": "Can you tell me about a weakness?"
+            },
+            {
+              "role": 1,
+              "en": "I sometimes speak too fast, but I am learning to pause."
+            },
+            {
+              "role": 0,
+              "en": "Do you have any questions for us?"
+            },
+            {
+              "role": 1,
+              "en": "Yes. Could you tell me how many hours a week I would work?"
+            }
+          ],
+          "partner": {
+            "goal": "Act as a kind interviewer for a youth club volunteer role. Ask about the learner, their reasons, strengths, a weakness, and invite one question. Encourage examples.",
+            "must_use": [
+              "I would like to",
+              "I am good at",
+              "strength",
+              "teamwork",
+              "reliable",
+              "Could you tell me"
+            ]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "d.u13.l4.br-good",
+              "hi": "मैं लोगों की मदद करने में अच्छा हूँ।",
+              "tiles": [
+                "good at",
+                "I am",
+                "people.",
+                "helping"
+              ],
+              "answer": "I am good at helping people."
+            },
+            {
+              "key": "d.u13.l4.br-like",
+              "hi": "मैं आपकी टीम में शामिल होना चाहूँगी।",
+              "tiles": [
+                "join",
+                "I would",
+                "your team.",
+                "like to"
+              ],
+              "answer": "I would like to join your team."
+            },
+            {
+              "key": "d.u13.l4.br-weak",
+              "hi": "मैं अभी तेज़ नहीं हूँ, पर रोज़ अभ्यास करता हूँ।",
+              "tiles": [
+                "but I",
+                "I am not",
+                "practise",
+                "every day.",
+                "fast yet,"
+              ],
+              "answer": "I am not fast yet, but I practise every day."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u13.l4.s-strength",
+              "model": "My greatest strength is that I am reliable. For example, I am never late for school.",
+              "cue": {
+                "en": "What is your greatest strength? Give an example.",
+                "hi": "तुम्हारी सबसे बड़ी ख़ूबी क्या है? उदाहरण दो।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u13.l4.c-weak",
+          "type": "choose",
+          "prompt": {
+            "en": "Which is the best answer about a weakness?"
+          },
+          "options": [
+            {
+              "text": "I have no weaknesses."
+            },
+            {
+              "text": "I am lazy."
+            },
+            {
+              "text": "I sometimes forget things, so I keep a notebook."
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u13.l4.c-question",
+          "type": "choose",
+          "prompt": {
+            "en": "The interviewer asks, \"Any questions?\" A good reply:"
+          },
+          "options": [
+            {
+              "text": "No. Bye."
+            },
+            {
+              "text": "Yes. What would my main tasks be?"
+            },
+            {
+              "text": "Can I go now?"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u13.l4.c-b1",
+          "type": "build",
+          "hi": "मैं छोटे बच्चों की मदद करना चाहूँगा।",
+          "tiles": [
+            "children.",
+            "help",
+            "I would",
+            "younger",
+            "like to"
+          ],
+          "answer": "I would like to help younger children."
+        }
+      ],
+      "home": {
+        "en": "Ask a family member to interview you with three questions.",
+        "hi": "परिवार के किसी सदस्य से तीन सवालों वाला इंटरव्यू लेने को कहो।"
+      }
+    },
+    {
+      "key": "d.u13.l5",
+      "kind": "review",
+      "title": {
+        "en": "Unit 13 review",
+        "hi": "इकाई 13 दोहराओ"
+      },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            {
+              "key": "d.u13.l5.m-reliable",
+              "left": {
+                "text": "reliable"
+              },
+              "right": {
+                "text": "भरोसेमंद"
+              }
+            },
+            {
+              "key": "d.u13.l5.m-position",
+              "left": {
+                "text": "position"
+              },
+              "right": {
+                "text": "पद"
+              }
+            },
+            {
+              "key": "d.u13.l5.m-responsible",
+              "left": {
+                "text": "responsible"
+              },
+              "right": {
+                "text": "ज़िम्मेदार"
+              }
+            },
+            {
+              "key": "d.u13.l5.m-skill",
+              "left": {
+                "text": "skill"
+              },
+              "right": {
+                "text": "कौशल"
+              }
+            }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "d.u13.l5.b-good",
+              "tiles": [
+                "and",
+                "Salma is",
+                "good at",
+                "drawing.",
+                "painting"
+              ],
+              "answer": "Salma is good at painting and drawing."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "d.u13.l5.p-like",
+              "prompt": {
+                "en": "I would like ___ the art club."
+              },
+              "options": [
+                {
+                  "text": "joining"
+                },
+                {
+                  "text": "to join"
+                },
+                {
+                  "text": "join"
+                }
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "d.u13.l5.s-me",
+              "model": "I am good at listening, and I would like to learn computer skills.",
+              "cue": {
+                "en": "Tell an interviewer one skill and one wish.",
+                "hi": "इंटरव्यू में एक कौशल और एक इच्छा बताओ।"
+              }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "d.u13.l5.c-strength",
+          "type": "choose",
+          "prompt": {
+            "en": "Which word means ख़ूबी?"
+          },
+          "options": [
+            {
+              "text": "delay"
+            },
+            {
+              "text": "symptom"
+            },
+            {
+              "text": "strength"
+            }
+          ],
+          "answer": 2
+        },
+        {
+          "key": "d.u13.l5.c-at",
+          "type": "choose",
+          "prompt": {
+            "en": "I am good ___ maths."
+          },
+          "options": [
+            {
+              "text": "at"
+            },
+            {
+              "text": "on"
+            },
+            {
+              "text": "in"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u13.l5.c-in",
+          "type": "choose",
+          "prompt": {
+            "en": "He is interested ___ farming."
+          },
+          "options": [
+            {
+              "text": "in"
+            },
+            {
+              "text": "at"
+            },
+            {
+              "text": "to"
+            }
+          ],
+          "answer": 0
+        },
+        {
+          "key": "d.u13.l5.c-b1",
+          "type": "build",
+          "hi": "मैंने सप्ताहांत की नौकरी के लिए आवेदन किया।",
+          "tiles": [
+            "I",
+            "applied",
+            "the",
+            "weekend job.",
+            "for"
+          ],
+          "answer": "I applied for the weekend job."
+        },
+        {
+          "key": "d.u13.l5.c-base",
+          "type": "choose",
+          "prompt": {
+            "en": "I would like to ___ more about the job."
+          },
+          "options": [
+            {
+              "text": "knows"
+            },
+            {
+              "text": "know"
+            },
+            {
+              "text": "knowing"
+            }
+          ],
+          "answer": 1
+        },
+        {
+          "key": "d.u13.l5.c-b2",
+          "type": "build",
+          "hi": "मेरी सबसे बड़ी ख़ूबी है कि मैं भरोसेमंद हूँ।",
+          "tiles": [
+            "is",
+            "that",
+            "reliable.",
+            "strength",
+            "I am",
+            "My greatest"
+          ],
+          "answer": "My greatest strength is that I am reliable."
+        }
+      ],
+      "home": {
+        "en": "Tell your family the job you would like to do one day, and why.",
+        "hi": "परिवार को बताओ एक दिन तुम कौन-सा काम करना चाहोगे, और क्यों।"
+      }
+    }
+  ]
+}
