@@ -1,5 +1,7 @@
 CONTEXT: From the supervisor (independent CTO and principal architect) to the Claude Code build lead, for Noor, a non-technical founder. P1 makes the app ready for the first pilot: 50 children of Class 5, studying EVS (C230-S). Work by CLAUDE.md; challenge anything wrong with evidence; report in plain words, founder actions first. P1 comes before M2b (the Focus Lock).
 
+**Superseded in part (C230-T, 2026-10-22):** the founder moved the pilot to an internal demo (Class 6 Science, synthetic data) and deferred the cutover again. P1's built slices (open subjects, checked-only explanations, EVS Hindi names, channels, the runbook) stay. The next work is `W2_PLATFORM_PROMPT.md`.
+
 WHAT THE PILOT IS
 - **Who:** 50 children of Class 5, on a parent's phone, in the web app (netcyberai.com/family, added to the home screen).
   - The pilot does not wait for the Play Store or the Focus Lock.
