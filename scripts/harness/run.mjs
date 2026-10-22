@@ -32,7 +32,7 @@ import { fileURLToPath } from 'node:url';
 import { SignJWT } from 'jose';
 import { HARNESS_MARKER, startHarnessDb } from './db.mjs';
 import { visibleWords } from './visible-words.mjs';
-import { runFamilyMatrix } from './family.mjs';
+import { runFamilyMatrix, seedVideos } from './family.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const arg = (name) => (process.argv.includes(name) ? process.argv[process.argv.indexOf(name) + 1] : undefined);
@@ -6693,6 +6693,8 @@ if (await portInUse(APP_PORT)) {
   process.exit(2);
 }
 const db = await startHarnessDb({ port: DB_PORT, seedSql: readFileSync(path.join(ROOT, 'src/demo-fixture/harness-seed.sql'), 'utf8') });
+// M2-5: the video finder's picks, for the family player and Control → Content → Videos.
+await seedVideos(db);
 const secret = randomBytes(32).toString('hex');
 const base = `http://127.0.0.1:${APP_PORT}`;
 // The app gets a clean environment: nothing from this shell (a real email key,
@@ -6800,7 +6802,8 @@ try {
   if (FAMILY_ONLY) {
     const { chromium } = await import('playwright');
     mkdirSync(OUT, { recursive: true });
-    const browser = await chromium.launch();
+    // A fake microphone (M2-7): voice input's recording state is pictured without a real one.
+    const browser = await chromium.launch({ args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'] });
     const rows = await runFamilyMatrix({ browser, base, db, secret, out: OUT, only: ONLY ? ONLY.split(',').filter(Boolean) : [] });
     await browser.close();
     writeFileSync(path.join(OUT, 'app.log'), appLog);

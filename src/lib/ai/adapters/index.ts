@@ -1,8 +1,9 @@
 import { anthropicAdapter } from './anthropic';
-import { openaiAdapter } from './openai';
-import type { AdapterResult, TextAdapter } from './types';
+import { openaiAdapter, openaiSpeechAdapter } from './openai';
+import { youtubeAdapter } from './youtube';
+import type { AdapterResult, SpeechAdapter, SpeechResult, TextAdapter } from './types';
 
-export type { AdapterRequest, AdapterResult, ChatMessage, TextAdapter } from './types';
+export type { AdapterRequest, AdapterResult, ChatImage, ChatMessage, SpeechAdapter, SpeechMediaType, SpeechResult, TextAdapter } from './types';
 
 // The stand-in: answers from the request alone and sends nothing anywhere, so the whole flow (profile, minors check,
 // cap, metering) can be built and tested before any key exists. Like configuredProvider's stand-in in ../provider.ts
@@ -13,6 +14,7 @@ export const standInAdapter: TextAdapter = {
   capability: 'text',
   minorsEligible: true,
   needsKey: false,
+  vision: true,
   keyLooksRight: () => false,
   async streamText(request, onDelta): Promise<AdapterResult> {
     const asked = request.messages.filter((m) => m.role === 'user').length;
@@ -39,4 +41,34 @@ export function adapterFor(providerId: string, env: Record<string, string | unde
 
 export function textAdapters(): readonly TextAdapter[] {
   return REAL;
+}
+
+// ---- speech to text (M2-7, C281) -----------------------------------------------------------------------------------
+
+// The stand-in's ear: hears nothing and says a fixed sentence, so voice input can be built and shown without a key.
+export const standInSpeechAdapter: SpeechAdapter = {
+  providerId: STAND_IN_PROVIDER,
+  capability: 'speech_to_text',
+  minorsEligible: true,
+  needsKey: false,
+  async transcribe(request): Promise<SpeechResult> {
+    return { ok: true, text: request.language === 'hi' ? 'प्रकाश संश्लेषण क्या है?' : 'What is photosynthesis?', tokensIn: 0, tokensOut: 0 };
+  },
+};
+
+const REAL_SPEECH: readonly SpeechAdapter[] = [openaiSpeechAdapter];
+
+// The speech adapter for a provider id, or null when the code has none (Anthropic has no speech to text).
+export function speechAdapterFor(providerId: string, env: Record<string, string | undefined> = process.env): SpeechAdapter | null {
+  if (providerId === STAND_IN_PROVIDER) return standInAllowed(env) ? standInSpeechAdapter : null;
+  return REAL_SPEECH.find((a) => a.providerId === providerId) ?? null;
+}
+
+// Providers whose key Control → AI keeps: every text adapter, and the content adapters that are not text models (the
+// video finder's YouTube, M2-5). A content adapter is never returned by adapterFor(), so no AI profile can choose it.
+export type KeyedProvider = { providerId: string; capability: 'text' | 'video'; needsKey: boolean; keyLooksRight: (key: string) => boolean };
+const CONTENT: readonly KeyedProvider[] = [youtubeAdapter];
+
+export function keyedProviderFor(providerId: string, env: Record<string, string | undefined> = process.env): KeyedProvider | null {
+  return adapterFor(providerId, env) ?? CONTENT.find((a) => a.providerId === providerId) ?? null;
 }

@@ -1,10 +1,11 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
 import { indiaDate } from '@/lib/time/india';
-import { adapterFor, standInAllowed, textAdapters, STAND_IN_PROVIDER } from './adapters';
-import { aiEncryptionKey, sealAiKey } from './credentials';
+import { adapterFor, keyedProviderFor, standInAllowed, textAdapters, STAND_IN_PROVIDER } from './adapters';
+import { testYoutubeKey } from './adapters/youtube';
+import { aiEncryptionKey, sealAiKey, unsealAiKey, type SealedRow } from './credentials';
 import { DAILY_REQUESTS_SETTING } from './daily-cap';
-import { chainOf, PROFILES, profileById } from './platform';
+import { capableAdapter, chainOf, PROFILES, profileById } from './platform';
 
 // Control → AI (docs/family-app/10 §3, §7; C249). NetCyberAI's founder only (super_admin with the authenticator,
 // checked by the route). Every statement runs as the platform role (nca_super), from a fixed, parameterised list.
@@ -31,7 +32,9 @@ export type ChangeError =
   | 'not_cleared_for_minors'
   | 'cap'
   | 'not_found'
-  | 'cannot_restore_key';
+  | 'cannot_restore_key'
+  | 'no_key'
+  | 'not_testable';
 
 export type AiOverview = {
   keyReady: boolean;
@@ -40,12 +43,14 @@ export type AiOverview = {
   providers: {
     providerId: string;
     hasAdapter: boolean;
+    // 'video': a content provider (the video finder's YouTube, M2-5): a key and a test, never a profile's choice.
+    capability: 'text' | 'video' | null;
     minorsEligible: boolean;
     clearedForMinors: boolean;
     termsUrl: string | null;
     clearedAt: string | null;
     clearedByName: string | null;
-    credential: { keyLast4: string; setAt: string; setByName: string | null } | null;
+    credential: { keyLast4: string; setAt: string; setByName: string | null; testedAt: string | null; testOk: boolean | null } | null;
   }[];
   profiles: { profileId: string; carriesChildWords: boolean; providerId: string | null; model: string | null; fallback: Link[]; promptVersion: string; enabled: boolean }[];
   usage: { profileId: string; today: Counts; month: Counts }[];
@@ -78,7 +83,7 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
   const month = today.slice(0, 7);
   const providers = await db.query(
     `select p.provider_id, p.cleared_for_minors, p.cleared_terms_url, p.cleared_at, cu.display_name as cleared_by_name,
-            c.key_last4, c.set_at, su.display_name as set_by_name
+            c.key_last4, c.set_at, su.display_name as set_by_name, c.tested_at, c.test_ok
        from control.ai_providers p
        left join control.ai_credentials c on c.provider_id = p.provider_id
        left join users cu on cu.user_id = p.cleared_by
@@ -124,15 +129,19 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
     month,
     providers: providers.rows.map((r) => {
       const adapter = adapterFor(r.provider_id);
+      const keyed = keyedProviderFor(r.provider_id);
       return {
         providerId: r.provider_id,
-        hasAdapter: adapter !== null,
+        hasAdapter: keyed !== null,
+        capability: keyed?.capability ?? null,
         minorsEligible: adapter?.minorsEligible === true,
         clearedForMinors: r.cleared_for_minors === true,
         termsUrl: r.cleared_terms_url ?? null,
         clearedAt: iso(r.cleared_at),
         clearedByName: r.cleared_by_name ?? null,
-        credential: r.key_last4 ? { keyLast4: r.key_last4, setAt: iso(r.set_at) as string, setByName: r.set_by_name ?? null } : null,
+        credential: r.key_last4
+          ? { keyLast4: r.key_last4, setAt: iso(r.set_at) as string, setByName: r.set_by_name ?? null, testedAt: iso(r.tested_at), testOk: typeof r.test_ok === 'boolean' ? r.test_ok : null }
+          : null,
       };
     }),
     profiles: profiles.rows.map((r) => ({
@@ -166,7 +175,7 @@ export function providerChoices(): string[] {
 
 // Set or replace a provider's key. Sealed here; the screen afterwards sees only its last four characters.
 export async function setCredential(db: Sql, by: By, providerId: string, apiKey: string): Promise<ChangeResult> {
-  const adapter = adapterFor(providerId);
+  const adapter = keyedProviderFor(providerId);
   if (!adapter || !adapter.needsKey) return { ok: false, code: 'provider' };
   const key = apiKey.trim();
   if (!adapter.keyLooksRight(key)) return { ok: false, code: 'key_format' };
@@ -185,6 +194,43 @@ export async function setCredential(db: Sql, by: By, providerId: string, apiKey:
   );
   await audit(db, by, 'ai.credential_set', providerId, { providerId, had: !!prior, ...(prior ? { keyLast4: prior.key_last4 } : {}) }, { providerId, had: true, keyLast4: last4 });
   return { ok: true };
+}
+
+// "Test key" for a content provider (M2-5): the key is opened in the first transaction, the provider is asked with no
+// database connection held, and the outcome (true or false and a code, never the key) is written in a second one.
+// Text providers are tested by running their profile; only the video finder's provider has a test call here.
+// `of` names the sealed row that was tested, so a key saved again during the call does not take this key's outcome.
+export type KeyTestOutcome = { ok: boolean; code: string; of: string };
+export type KeyTest = { ok: true; run: () => Promise<KeyTestOutcome> } | { ok: false; code: ChangeError };
+
+export async function prepareKeyTest(db: Sql, providerId: string): Promise<KeyTest> {
+  if (keyedProviderFor(providerId)?.capability !== 'video') return { ok: false, code: 'not_testable' };
+  const k = aiEncryptionKey();
+  if (!k) return { ok: false, code: 'no_encryption_key' };
+  const row = (await db.query(`select ciphertext, iv, tag, key_version from control.ai_sealed_credential($1)`, [providerId])).rows[0] as SealedRow | undefined;
+  if (!row) return { ok: false, code: 'no_key' };
+  let apiKey: string;
+  try {
+    apiKey = unsealAiKey(k, providerId, row);
+  } catch {
+    return { ok: false, code: 'no_key' };
+  }
+  return {
+    ok: true,
+    run: async () => {
+      const r = await testYoutubeKey(apiKey);
+      return r.ok ? { ok: true, code: 'ok', of: row.ciphertext } : { ok: false, code: r.status ? `${r.failure}_${r.status}` : r.failure, of: row.ciphertext };
+    },
+  };
+}
+
+export async function recordKeyTest(db: Sql, providerId: string, outcome: KeyTestOutcome): Promise<void> {
+  await db.query(`update control.ai_credentials set tested_at = now(), test_ok = $2, test_message = $3 where provider_id = $1 and ciphertext = $4`, [
+    providerId,
+    outcome.ok,
+    outcome.code.slice(0, 40),
+    outcome.of,
+  ]);
 }
 
 type Clearance = { providerId: string; cleared: boolean; termsUrl: string | null; clearedAt: string | null; clearedBy: string | null };
@@ -234,12 +280,14 @@ async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSet
   const profile = profileById(profileId);
   if (!profile) return { ok: false, code: 'profile' };
   const providers = [next.providerId, ...next.fallback.map((f) => f.provider)].filter((p): p is string => p !== null);
-  if (next.fallback.length > 3 || providers.some((p) => !knownProvider(p))) return { ok: false, code: 'provider' };
+  // A provider must have an adapter of the profile's capability: voice input (speech_to_text, C281) takes only a provider
+  // that can hear, so Anthropic cannot be chosen for it.
+  if (next.fallback.length > 3 || providers.some((p) => !knownProvider(p) || capableAdapter(profile.id, p) === null)) return { ok: false, code: 'provider' };
   if ((next.model !== null && !MODEL.test(next.model)) || next.fallback.some((f) => !MODEL.test(f.model))) return { ok: false, code: 'model' };
   if (!PROMPT_VERSION.test(next.promptVersion)) return { ok: false, code: 'prompt_version' };
   if ((next.providerId === null) !== (next.model === null) || (next.enabled && next.providerId === null)) return { ok: false, code: 'incomplete' };
   // The code's half of the minors check; the database adds Control's clearance (its trigger) below.
-  if (profile.carriesChildWords && providers.some((p) => adapterFor(p)?.minorsEligible !== true)) return { ok: false, code: 'not_cleared_for_minors' };
+  if (profile.carriesChildWords && providers.some((p) => capableAdapter(profile.id, p)?.minorsEligible !== true)) return { ok: false, code: 'not_cleared_for_minors' };
   const before = await profileSettings(db, profileId);
   if (!before) return { ok: false, code: 'profile' };
   try {

@@ -9,8 +9,10 @@ import type { Lang } from '@/lib/i18n';
 import { classText, fill, type Words } from '@/lib/family/fill';
 import { ChildForm, type ChildFormValue } from './ChildForm';
 import { errorWords, familyApi } from './client';
+import { HabitParent } from './HabitParent';
 import { LanguageSwitch } from './LanguageSwitch';
 import { clearOffline } from './offline/store';
+import type { ParentHabit } from '@/lib/family/habit';
 
 // The parent area (feature P2; docs/34 §9.1 rule 1; M1-2, C248), open only in parent mode: the children, what the
 // parent agreed to, each child's answers (see and delete), the language, signing out, and deleting the account.
@@ -165,7 +167,8 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
 }
 
 // `english`: the English course (C274) when Control has it switched on: whether the parent has given its consent.
-export function ParentArea({ w, lang, children, states, studyCore, calm, english = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null }) {
+// `voice`: the same for voice (M2-7, C281), when Control has voice input switched on.
+export function ParentArea({ w, lang, children, states, studyCore, calm, english = null, voice = null, habit = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; voice?: { granted: boolean } | null; habit?: ParentHabit[] | null }) {
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const [deleteWord, setDeleteWord] = useState('');
@@ -210,6 +213,12 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
         <p className="text-xs text-slate/80">{w['fam.calm.note']}</p>
       </Section>
 
+      {habit && habit.length > 0 && (
+        <Section title={w['fam.habit.parent.title']}>
+          <HabitParent w={w} habit={habit} names={Object.fromEntries(children.map((c) => [c.childId, c.firstName]))} />
+        </Section>
+      )}
+
       <Section title={w['fam.parent.children']}>
         <ul className="flex flex-col gap-2">
           {children.map((c) => (
@@ -252,6 +261,17 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
             </div>
             <button type="button" className={linkButton} onClick={() => void post('/api/family/consent', { purpose: 'english_programme', granted: !english.granted, tap: true }, null)}>
               {english.granted ? w['fam.parent.withdraw'] : w['fam.parent.grant']}
+            </button>
+          </div>
+        )}
+        {voice && (
+          <div data-consent-voice className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-off-white p-3">
+            <div className="min-w-0">
+              <p className="text-base font-semibold text-slate">{w['fam.consent.purpose.voice_practice']}</p>
+              <p className="text-sm text-slate/70">{voice.granted ? w['fam.parent.granted'] : w['fam.parent.notGranted']}</p>
+            </div>
+            <button type="button" className={linkButton} onClick={() => void post('/api/family/consent', { purpose: 'voice_practice', granted: !voice.granted, tap: true }, null)}>
+              {voice.granted ? w['fam.parent.withdraw'] : w['fam.parent.grant']}
             </button>
           </div>
         )}

@@ -490,6 +490,9 @@ ALLOWED_PERMISSIVE = (
         ("family.reward_jars", "reward_jars_own"),
         ("family.day_counts", "day_counts_own"),
         ("content.video_picks", "video_picks_family_read"),
+        # m2-10: school staff read the two school AI profiles and the provider list (C284).
+        ("control.ai_profiles", "ai_profiles_staff_read"),
+        ("control.ai_providers", "ai_providers_staff_read"),
         # m2 end
     }
 )
@@ -961,6 +964,9 @@ REQUIRED_RESTRICTIVE = {
     ("family.reward_jars", "reward_jars_own_only"),
     ("family.day_counts", "day_counts_own_only"),
     ("content.video_picks", "video_picks_family_only"),
+    # m2-10: staff never write the AI settings.
+    ("control.ai_profiles", "ai_profiles_staff_only"),
+    ("control.ai_providers", "ai_providers_staff_only"),
     # m2 end
 }
 

@@ -5,7 +5,12 @@
 // - a worked example's arithmetic is recomputed here (calc), and one wrong step drops the whole example;
 // - a check or practice item whose question carries arithmetic must have its keyed option equal to the computed answer;
 // - links come only from official hosts (SOURCE_HOSTS), https only.
+// - an interactive block (graph, number line, fraction model, geometry, simulation; M2-8, C282) carries only a choice
+//   from a fixed set and bounded numbers; a value out of its range drops the block, and every number shown is computed
+//   by our code (./interactive.ts). At most one interactive block is kept per response.
 // Pure: no database, no network. Safe for the phone (no message file imported).
+
+import { FRACTION_MAX_DENOMINATOR, GRAPH_FNS, GRAPH_PARAMS, PARAM_LIMIT, SIM_INPUTS, SIM_KINDS, X_LIMIT, isTriangle, type Fraction, type GraphFn, type SimKind } from './interactive';
 
 export const BLOCK_SCHEMA_VERSION = 1;
 
@@ -19,9 +24,22 @@ export type Check = { type: 'check'; items: QuizItem[] };
 export type Practice = { type: 'practice'; items: QuizItem[] };
 export type EnglishMoment = { type: 'english_moment'; words: { en: string; meaning: string }[]; sentence: string; pattern: string; sayIt: string };
 export type Sources = { type: 'sources'; links: { label: string; url: string }[] };
-export type Block = Explanation | WorkedExample | KeyPoints | Diagram | Check | Practice | EnglishMoment | Sources;
+// The interactive blocks (M2-8): the model fills these numbers; our code draws them and computes every value shown.
+export type GraphSlider = { param: string; min: number; max: number; step: number };
+export type Graph = { type: 'graph'; title: string; fn: GraphFn; params: Record<string, number>; sliders: GraphSlider[]; xFrom: number; xTo: number };
+export type NumberLineInterval = { from: number; to: number; closedFrom: boolean; closedTo: boolean };
+export type NumberLine = { type: 'number_line'; title: string; from: number; to: number; step: number; marks: { value: number; label?: string }[]; interval?: NumberLineInterval };
+export type FractionModel = { type: 'fraction_model'; title: string; shape: 'bar' | 'circle'; fractions: Fraction[] };
+export type GeometryShape = { kind: 'angle'; degrees: number } | { kind: 'triangle'; sides: [number, number, number] } | { kind: 'circle'; radius: number; chord?: number };
+export type Geometry = { type: 'geometry'; title: string; shape: GeometryShape; labels: string[] };
+export type Simulation = { type: 'simulation'; title: string; sim: SimKind; values: Record<string, number> };
+export type Interactive = Graph | NumberLine | FractionModel | Geometry | Simulation;
+
+export type Block = Explanation | WorkedExample | KeyPoints | Diagram | Check | Practice | EnglishMoment | Sources | Interactive;
 export type BlockType = Block['type'];
-export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'check', 'practice', 'english_moment', 'sources'];
+export const INTERACTIVE_TYPES: readonly BlockType[] = ['graph', 'number_line', 'fraction_model', 'geometry', 'simulation'];
+export const isInteractive = (t: BlockType) => INTERACTIVE_TYPES.includes(t);
+export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'check', 'practice', 'english_moment', 'sources', ...INTERACTIVE_TYPES];
 
 // Every response must teach, check and give practice (08 §7); the others come when they fit.
 export const REQUIRED_BLOCKS: readonly BlockType[] = ['explanation', 'check', 'practice'];
@@ -244,6 +262,139 @@ export function checkBlock(raw: unknown): Block | null {
       });
       return links ? { type: 'sources', links } : null;
     }
+    case 'graph':
+    case 'number_line':
+    case 'fraction_model':
+    case 'geometry':
+    case 'simulation':
+      return interactiveBlock(o);
+    default:
+      return null;
+  }
+}
+
+// ---- the interactive blocks (M2-8) ----
+
+// A finite number within [lo, hi], or null (a string, NaN or Infinity is the wrong kind).
+const within = (v: unknown, lo: number, hi: number): number | null => (typeof v === 'number' && Number.isFinite(v) && v >= lo && v <= hi ? v : null);
+const wholeWithin = (v: unknown, lo: number, hi: number): number | null => {
+  const n = within(v, lo, hi);
+  return n !== null && Number.isInteger(n) ? n : null;
+};
+const record = (v: unknown): Record<string, unknown> => (v && typeof v === 'object' && !Array.isArray(v) ? (v as Record<string, unknown>) : {});
+
+function interactiveBlock(o: Record<string, unknown>): Interactive | null {
+  const title = plain(o.title, 120);
+  if (!title) return null;
+  switch (o.type) {
+    case 'graph': {
+      const fn = GRAPH_FNS.find((f) => f === o.fn);
+      if (!fn) return null;
+      const given = record(o.params);
+      const params: Record<string, number> = {};
+      for (const name of GRAPH_PARAMS[fn]) {
+        const v = within(given[name], -PARAM_LIMIT, PARAM_LIMIT);
+        if (v === null) return null;
+        params[name] = v;
+      }
+      // y = 0·x² + … is not a quadratic, and y = 0/x is not an inverse.
+      if ((fn === 'quadratic' && params.a === 0) || (fn === 'inverse' && params.k === 0)) return null;
+      const rawSliders = o.sliders === undefined ? [] : o.sliders;
+      if (!Array.isArray(rawSliders) || rawSliders.length > 2) return null;
+      const sliders: GraphSlider[] = [];
+      for (const raw of rawSliders) {
+        const sl = record(raw);
+        const param = GRAPH_PARAMS[fn].find((n) => n === sl.param);
+        const min = within(sl.min, -PARAM_LIMIT, PARAM_LIMIT);
+        const max = within(sl.max, -PARAM_LIMIT, PARAM_LIMIT);
+        const step = within(sl.step, 0.01, PARAM_LIMIT * 2);
+        if (!param || min === null || max === null || step === null || min >= max || (max - min) / step > 400) return null;
+        if (sliders.some((x) => x.param === param) || params[param] < min || params[param] > max) return null;
+        sliders.push({ param, min, max, step });
+      }
+      const xFrom = o.xFrom === undefined ? -10 : within(o.xFrom, -X_LIMIT, X_LIMIT);
+      const xTo = o.xTo === undefined ? 10 : within(o.xTo, -X_LIMIT, X_LIMIT);
+      if (xFrom === null || xTo === null || xTo - xFrom < 2) return null;
+      return { type: 'graph', title, fn, params, sliders, xFrom, xTo };
+    }
+    case 'number_line': {
+      const from = within(o.from, -1000, 1000);
+      const to = within(o.to, -1000, 1000);
+      const step = within(o.step, 0.001, 2000);
+      if (from === null || to === null || step === null || from >= to) return null;
+      const ticks = (to - from) / step;
+      if (ticks < 1 || ticks > 40 || Math.abs(ticks - Math.round(ticks)) > 1e-6) return null;
+      const rawMarks = o.marks === undefined ? [] : o.marks;
+      if (!Array.isArray(rawMarks) || rawMarks.length > 6) return null;
+      const marks: { value: number; label?: string }[] = [];
+      for (const raw of rawMarks) {
+        const m = record(raw);
+        const value = within(m.value, from, to);
+        if (value === null) return null;
+        const label = m.label === undefined ? null : plain(m.label, 12);
+        marks.push(label ? { value, label } : { value });
+      }
+      const block: NumberLine = { type: 'number_line', title, from, to, step, marks };
+      if (o.interval !== undefined) {
+        const iv = record(o.interval);
+        const a = within(iv.from, from, to);
+        const b = within(iv.to, from, to);
+        if (a === null || b === null || a >= b || typeof iv.closedFrom !== 'boolean' || typeof iv.closedTo !== 'boolean') return null;
+        block.interval = { from: a, to: b, closedFrom: iv.closedFrom, closedTo: iv.closedTo };
+      }
+      if (marks.length === 0 && !block.interval) return null;
+      return block;
+    }
+    case 'fraction_model': {
+      const shape = o.shape === 'bar' || o.shape === 'circle' ? o.shape : null;
+      if (!shape || !Array.isArray(o.fractions) || o.fractions.length < 1 || o.fractions.length > 2) return null;
+      const fractions: Fraction[] = [];
+      for (const raw of o.fractions) {
+        const f = record(raw);
+        const d = wholeWithin(f.d, 1, FRACTION_MAX_DENOMINATOR);
+        const n = d === null ? null : wholeWithin(f.n, 0, d);
+        if (d === null || n === null) return null;
+        fractions.push({ n, d });
+      }
+      return { type: 'fraction_model', title, shape, fractions };
+    }
+    case 'geometry': {
+      const sh = record(o.shape);
+      let shape: GeometryShape | null = null;
+      if (sh.kind === 'angle') {
+        const degrees = within(sh.degrees, 0, 360);
+        shape = degrees !== null && degrees > 0 && degrees < 360 ? { kind: 'angle', degrees } : null;
+      } else if (sh.kind === 'triangle') {
+        const sides = Array.isArray(sh.sides) && sh.sides.length === 3 ? sh.sides.map((x) => within(x, 0, 1000)) : null;
+        // The triangle inequality, checked here: three lengths that cannot close are not drawn.
+        const [a, b, c] = sides ?? [];
+        shape = typeof a === 'number' && typeof b === 'number' && typeof c === 'number' && isTriangle(a, b, c) ? { kind: 'triangle', sides: [a, b, c] } : null;
+      } else if (sh.kind === 'circle') {
+        const radius = within(sh.radius, 0, 1000);
+        if (radius !== null && radius > 0) {
+          if (sh.chord === undefined) shape = { kind: 'circle', radius };
+          else {
+            const c = within(sh.chord, 0, 2 * radius);
+            shape = c !== null && c > 0 ? { kind: 'circle', radius, chord: c } : null;
+          }
+        }
+      }
+      if (!shape) return null;
+      const labels = o.labels === undefined ? [] : list(o.labels, 0, 3, (x) => plain(x, 12));
+      return labels ? { type: 'geometry', title, shape, labels } : null;
+    }
+    case 'simulation': {
+      const sim = SIM_KINDS.find((k) => k === o.sim);
+      if (!sim) return null;
+      const given = record(o.values);
+      const values: Record<string, number> = {};
+      for (const [name, r] of Object.entries(SIM_INPUTS[sim])) {
+        const v = within(given[name], r.min, r.max);
+        if (v === null) return null;
+        values[name] = v;
+      }
+      return { type: 'simulation', title, sim, values };
+    }
     default:
       return null;
   }
@@ -272,10 +423,16 @@ export function parseBlockLine(line: string): Block | null {
 
 // A whole response's blocks: the first of each type that passed, in a fixed teaching order. null when a required
 // block is missing (the response is then not shown as complete and never cached).
-const ORDER: BlockType[] = ['explanation', 'worked_example', 'diagram', 'key_points', 'check', 'practice', 'english_moment', 'sources'];
+// At most one interactive block: the first that passed.
+const ORDER: BlockType[] = ['explanation', 'worked_example', 'diagram', ...INTERACTIVE_TYPES, 'key_points', 'check', 'practice', 'english_moment', 'sources'];
 export function completeResponse(blocks: Block[]): Block[] | null {
   const first = new Map<BlockType, Block>();
-  for (const b of blocks) if (!first.has(b.type)) first.set(b.type, b);
+  let interactive = false;
+  for (const b of blocks) {
+    if (first.has(b.type) || (isInteractive(b.type) && interactive)) continue;
+    if (isInteractive(b.type)) interactive = true;
+    first.set(b.type, b);
+  }
   if (!REQUIRED_BLOCKS.every((t) => first.has(t))) return null;
   return ORDER.filter((t) => first.has(t)).map((t) => first.get(t)!);
 }

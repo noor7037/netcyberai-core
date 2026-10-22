@@ -32,11 +32,27 @@ export const FAMILY_SCREENS = [
   ['full', 'family-study', '/family/study', {}],
   ['full', 'family-study-catalog', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
+  // M2-5 (C279): the honest player under the response, before and after the tap that loads the embed.
+  ['full', 'family-video', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]' }],
+  ['full', 'family-video-playing', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]', tap: '[data-video-play]' }],
+  // m2-6: the homework helper's start screen, and its link in Study (C280).
+  ['full', 'family-homework', '/family/study/homework', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-homework-start]' }],
+  ['full', 'family-study-homework-link', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-homework-link]' }],
+  // m2-7: the microphone beside the typed question, and the recording state (C281; a fake microphone, see `mic`).
+  ['full', 'family-study-voice', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]' }],
+  ['full', 'family-study-voice-recording', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]', mic: true }],
+  ['full', 'family-parent-area-voice', '/family/parent', { parent: true, settle: '[data-consent-voice]' }],
+  // Worksheets (M2-4, C278): the worksheet on screen, and the parent's print with the answer key.
+  ['full', 'family-worksheet', '/family/study/worksheet/cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
+  ['full', 'family-worksheet-parent', '/family/parent/worksheet/cbse.c9.mathematics.u1.ch01.t01', { parent: true, child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-worksheet-key], #ws-key' }],
   // m2-2: today's plan first on the home (C276).
   ['full', 'family-home-plan', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-plan]' }],
   // m2-9: "Save for offline" with the pack's size, and Understand with the data-saver on (C283).
   ['full', 'family-study-offline', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-pack-size]' }],
   ['full', 'family-understand-saver', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-saver-note]', storage: { 'ncf.dataSaver': '1' } }],
+  // m2-3: the week, the badges and the reward jar on the home; the parent's habit section (C277).
+  ['full', 'family-home-habit', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-jar]' }],
+  ['full', 'family-parent-habit', '/family/parent', { parent: true, settle: '[data-habit-child]' }],
   // The English course (C274): the course map, and a lesson's first card.
   ['english', 'family-english', '/family/english', { settle: 'ol[aria-label] li' }],
   ['english', 'family-english-lesson', '/family/english/lesson/b.u01.l1', { settle: '[role=progressbar]' }],
@@ -46,6 +62,11 @@ export const FAMILY_SCREENS = [
   ['english', 'family-english-l2-pattern', '/family/english/lesson/b.u01.l2', { settle: '[role=progressbar]' }],
   ['english', 'family-english-l3-story', '/family/english/lesson/b.u01.l3', { settle: '[role=progressbar]' }],
   ['english', 'family-english-l4-roleplay', '/family/english/lesson/b.u01.l4', { settle: '[role=progressbar]' }],
+  // m2-8 begin: the interactive blocks (C282), each from an illustrative cached response in harness-seed.sql.
+  ...[['graph', 't01', 'graph'], ['number-line', 't02', 'number_line'], ['fraction', 't03', 'fraction_model'], ['geometry', 't04', 'geometry'], ['pendulum', 't05', 'simulation'], ['refraction', 't06', 'simulation']].map(
+    ([name, t, block]) => ['full', `family-interactive-${name}`, `/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.${t}`, { child: 'f0000000-0000-4000-8000-0000000fc002', settle: `[data-block="${block}"]` }]
+  ),
+  // m2-8 end
 ];
 
 export const FAMILY_WIDTHS = [360, 390, 1440];
@@ -61,6 +82,24 @@ async function familyCookies(accountId, parent, secret, child) {
   if (parent) out.push({ name: 'ncf_parent', value: await sign('family_parent', accountId, { sid }, secret) });
   if (child) out.push({ name: 'ncf_child', value: child });
   return out;
+}
+
+// The video finder's picks for the understand screen's topic, in English and Hindi, with videos switched on (M2-5, C279).
+// Made-up video and channel ids: the cards show without any search; the embed loads only after the tap.
+export async function seedVideos(db) {
+  await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'videos', true, 'harness') on conflict (app, module) do update set enabled = true`);
+  const topic = 'cbse.c9.mathematics.u1.ch01.t01';
+  for (const lang of ['en', 'hi']) {
+    await db.pg.query(
+      `insert into content.video_picks (topic_key, language, video_id, channel_id, channel_title, title, duration_s, start_s, captions, score, status, reviewed_by, reviewed_at) values
+         ($1, $2, 'hrnsVideo01', 'UCharnessChannel0001', 'Made-up Maths Channel', 'Rational numbers on the number line', 545, 95, true, 71, 'pinned', '00000000-0000-4000-8000-00000000f001', now()),
+         ($1, $2, 'hrnsVideo02', 'UCharnessChannel0002', 'Made-up Learning', 'Rational numbers: worked examples', 812, 0, true, 63, 'auto', null, null),
+         ($1, $2, 'hrnsVideo03', 'UCharnessChannel0002', 'Made-up Learning', 'Is it rational? Practice questions', 1260, 0, false, 40, 'rejected', '00000000-0000-4000-8000-00000000f001', now())
+       on conflict do nothing`,
+      [topic, lang]
+    );
+  }
+  await db.pg.query(`insert into content.video_channels (channel_id, title, kind, added_by) values ('UCharnessChannel0001', 'Made-up Maths Channel', 'official', '00000000-0000-4000-8000-00000000f001') on conflict do nothing`);
 }
 
 // The English course's track B lesson files, loaded as a published version (the harness only; C274).
@@ -92,7 +131,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
     for (const motion of FAMILY_MOTIONS) {
       for (const width of FAMILY_WIDTHS) {
         for (const [who, name, route, opts] of screens) {
-          const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1 });
+          const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.mic ? { permissions: ['microphone'] } : {}) });
           const cookies = who ? await familyCookies(FAMILY[who], opts.parent, secret, opts.child) : [];
           cookies.push({ name: 'ncf_lang', value: lang });
           await context.addCookies(cookies.map((c) => ({ ...c, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' })));
@@ -106,6 +145,14 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
           });
           const response = await page.goto(base + route, { waitUntil: 'networkidle', timeout: 90000 }).catch((e) => ({ status: () => 0, error: e.message }));
           if (opts.settle) await page.locator(opts.settle).first().waitFor({ timeout: 20000 }).catch(() => errors.push(`${opts.settle} never appeared`));
+          // `mic`: start a recording on Chromium's fake microphone (the browser is launched with it), so the recording
+          // state can be pictured. Nothing is sent: the context closes while it records.
+          if (opts.mic) {
+            await page.locator('[data-voice-input] button').first().click();
+            await page.locator('[data-voice-state="recording"]').waitFor({ timeout: 10000 }).catch(() => errors.push('the recording never started'));
+            await page.waitForTimeout(1600);
+          }
+          if (opts.tap) await page.locator(opts.tap).first().click().catch(() => errors.push(`${opts.tap} could not be tapped`));
           await page.waitForTimeout(400);
           const seen = await page.evaluate(() => {
             const main = document.querySelector('main') ?? document.body;

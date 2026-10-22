@@ -23,15 +23,15 @@ export const FAMILY_MODULES: readonly FamilyModule[] = [
   // M2 (C275): each slice sets its module's `built` when it ships.
   { id: 'plan', tab: 'home', flag: 'plan', entitlement: 'learning', built: true, milestone: 'M2' },
   // m2-3
-  { id: 'habit', tab: 'family', flag: 'habit', entitlement: 'public', built: false, milestone: 'M2' },
+  { id: 'habit', tab: 'family', flag: 'habit', entitlement: 'public', built: true, milestone: 'M2' },
   // m2-4
-  { id: 'worksheets', tab: 'study', flag: 'worksheets', entitlement: 'learning', built: false, milestone: 'M2' },
+  { id: 'worksheets', tab: 'study', flag: 'worksheets', entitlement: 'learning', built: true, milestone: 'M2' },
   // m2-5
-  { id: 'videos', tab: 'study', flag: 'videos', entitlement: 'learning', built: false, milestone: 'M2' },
+  { id: 'videos', tab: 'study', flag: 'videos', entitlement: 'learning', built: true, milestone: 'M2' },
   // m2-6
-  { id: 'homework', tab: 'study', flag: 'homework', entitlement: 'learning', built: false, milestone: 'M2' },
+  { id: 'homework', tab: 'study', flag: 'homework', entitlement: 'learning', built: true, milestone: 'M2' },
   // m2-7
-  { id: 'voice_input', tab: 'study', flag: 'voice_input', entitlement: 'learning', built: false, milestone: 'M2' },
+  { id: 'voice_input', tab: 'study', flag: 'voice_input', entitlement: 'learning', built: true, milestone: 'M2' },
   // m2-9
   { id: 'offline', tab: 'study', flag: 'offline', entitlement: 'learning', built: true, milestone: 'M2', addOn: true },
 ];
