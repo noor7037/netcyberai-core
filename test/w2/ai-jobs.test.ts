@@ -21,7 +21,8 @@ vi.mock('@/lib/ai/platform', async (original) => {
         { type: 'check', items: [item('c1'), item('c2')] },
         { type: 'practice', items: [item('p1')] },
       ];
-      const lines = ai.incompleteFor && req.messages[0].content.includes(ai.incompleteFor) ? [full[0]] : full;
+      // The line under test comes back with its check's answer as a letter, which our checks refuse.
+      const lines = ai.incompleteFor && req.messages[0].content.includes(ai.incompleteFor) ? [full[0], { ...full[1], items: [{ ...item('c1'), answer: 'B' }] }] : full;
       // Spread over lines and fenced, as an open model may write it (C316).
       const text = `\`\`\`json\n${lines.map((l) => JSON.stringify(l, null, 2)).join('\n')}\n\`\`\``;
       return { ok: true, text: { send: async (onDelta: (t: string) => void) => (onDelta(text), { result: { ok: true, text, tokensIn: 1, tokensOut: 1, provider: 'workers-ai', model: 'm' }, record: async () => {} }) } };
@@ -81,6 +82,9 @@ describe('the preparing job (C316)', () => {
     expect(queued.map((x) => x.idempotencyKey)).toEqual(['content.prepare:demo:1', 'content.prepare:demo:2', 'content.prepare:demo:3', 'content.prepare:demo:4']);
     const [run] = await q(`select after_state from audit_log where event_action = 'content.prepare_run'`);
     expect(run.after_state).toMatchObject({ chapterKeys: ['jt.c6.science.ch04'], tried: 4, kept: 2 });
+    // Each line says what came back, as types and counts (C318).
+    expect(run.after_state.outcomes[0].detail).toEqual({ finish: null, objects: 3, kept: ['explanation', 'check', 'practice'], rejected: [] });
+    expect(run.after_state.outcomes[2].detail).toEqual({ finish: null, objects: 2, kept: ['explanation'], rejected: ['check'] });
     expect(run.after_state.outcomes.map((o: { key: string; outcome: string }) => `${o.key}:${o.outcome}`)).toEqual([
       'jt.c6.science.ch04:kept',
       'jt.c6.science.ch04:kept',

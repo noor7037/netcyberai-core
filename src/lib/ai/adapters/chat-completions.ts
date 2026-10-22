@@ -53,6 +53,7 @@ export async function streamChatCompletions(url: string, token: string, request:
   let tokensOut = 0;
   let finished = false;
   let refused = false;
+  let finish: string | undefined;
   try {
     for await (const data of sseData(res.body)) {
       if (data.trim() === '[DONE]') {
@@ -73,6 +74,7 @@ export async function streamChatCompletions(url: string, token: string, request:
         text += piece;
         onDelta(piece);
       }
+      if (choice?.finish_reason) finish = choice.finish_reason;
       if (choice?.finish_reason === 'content_filter') refused = true;
       if (chunk.usage) {
         tokensIn = chunk.usage.prompt_tokens ?? tokensIn;
@@ -93,7 +95,7 @@ export async function streamChatCompletions(url: string, token: string, request:
   if (!finished) return { ok: false, failure: 'cut_short' };
   if (!tokensIn && !tokensOut) {
     const sent = request.system.length + request.messages.reduce((n, m) => n + m.content.length, 0);
-    return { ok: true, text, tokensIn: Math.ceil(sent / 4), tokensOut: Math.ceil(text.length / 4) };
+    return { ok: true, text, tokensIn: Math.ceil(sent / 4), tokensOut: Math.ceil(text.length / 4), ...(finish ? { finish } : {}) };
   }
-  return { ok: true, text, tokensIn, tokensOut };
+  return { ok: true, text, tokensIn, tokensOut, ...(finish ? { finish } : {}) };
 }

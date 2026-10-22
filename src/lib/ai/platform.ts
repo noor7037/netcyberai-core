@@ -77,7 +77,7 @@ export type AiRequest = {
   responseFormat?: 'json';
 };
 export type AiRefusal = 'not_switched_on' | 'cap_reached' | 'not_cleared_for_minors' | 'failed';
-export type AiResult = { ok: true; text: string; tokensIn: number; tokensOut: number; provider: string; model: string } | { ok: false; reason: AiRefusal };
+export type AiResult = { ok: true; text: string; tokensIn: number; tokensOut: number; provider: string; model: string; finish?: string } | { ok: false; reason: AiRefusal };
 export type { ChatMessage, ChatImage };
 
 // The family-facing words for each refusal (English and Hindi in the message files).
@@ -259,7 +259,7 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
       }
       if (result.ok) {
         usage.push({ link, counts: { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut } });
-        return { result: { ok: true, text: result.text, tokensIn: result.tokensIn, tokensOut: result.tokensOut, provider: link.provider, model: link.model }, record };
+        return { result: { ok: true, text: result.text, tokensIn: result.tokensIn, tokensOut: result.tokensOut, provider: link.provider, model: link.model, ...(result.finish ? { finish: result.finish } : {}) }, record };
       }
       usage.push({ link, counts: { requests: 1, failures: 1 } });
       // Text already shown cannot be taken back: a second provider's answer would be stitched onto it.
