@@ -69,7 +69,8 @@ create table family.reward_jars (
 create unique index uq_family_reward_jar_open on family.reward_jars (child_id) where given_on is null;
 create index idx_family_reward_jars_account on family.reward_jars (account_id);
 
--- Per child per India day: photo questions asked (the homework helper's cap, 11 L3) and seconds of voice input.
+-- Per child per India day: photo questions asked (the homework helper's cap, 11 L3) and seconds of voice input (a
+-- question spoken instead of typed; the English course's voice practice keeps its own cap in family.english_days).
 create table family.day_counts (
   account_id uuid not null,
   child_id uuid not null,
@@ -174,11 +175,11 @@ create function content.take_video_search(p_day date, p_limit integer)
 returns boolean
 language sql security definer set search_path = '' as $$
   with taken as (
-    insert into content.video_searches as s (day, searches) values (p_day, 1)
+    insert into content.video_searches as s (day, searches) select p_day, 1 where p_limit > 0
     on conflict (day) do update set searches = s.searches + 1 where s.searches < p_limit
     returning searches
   )
-  select exists (select 1 from taken where searches <= p_limit)
+  select exists (select 1 from taken)
 $$;
 revoke all on function content.take_video_search(date, integer) from public;
 grant execute on function content.take_video_search(date, integer) to family_app, nca_super;
@@ -199,7 +200,9 @@ begin
   select p_topic, p_language, x.video_id, x.channel_id, x.channel_title, x.title, x.duration_s, coalesce(x.start_s, 0), x.captions, x.score
     from jsonb_to_recordset(p_picks) as x(video_id text, channel_id text, channel_title text, title text, duration_s integer, start_s integer, captions boolean, score real)
    where not exists (select 1 from content.video_picks p where p.topic_key = p_topic and p.language = p_language and p.video_id = x.video_id)
-     and not exists (select 1 from content.video_channels c where c.channel_id = x.channel_id and c.kind = 'blocked');
+     and not exists (select 1 from content.video_channels c where c.channel_id = x.channel_id and c.kind = 'blocked')
+  -- Two requests saving the same topic at once: the second keeps what the first wrote.
+  on conflict (topic_key, language, video_id) do nothing;
   get diagnostics n = row_count;
   return n;
 end

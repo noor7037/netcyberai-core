@@ -143,6 +143,9 @@ describe('the video picks', () => {
   it("takes a search from the day's quota until it is spent", async () => {
     const take = () => asFamily(A, async (tx) => (await tx.query(`select content.take_video_search('2026-10-22', 2) as ok`)).rows[0].ok);
     expect([await take(), await take(), await take()]).toEqual([true, true, false]);
+    // A limit of 0 pauses searching and counts nothing.
+    expect(await asFamily(A, async (tx) => (await tx.query(`select content.take_video_search('2026-10-23', 0) as ok`)).rows[0].ok)).toBe(false);
+    expect((await db.pg.query(`select count(*)::int as n from content.video_searches where day = '2026-10-23'`)).rows[0].n).toBe(0);
     expect(await refused(() => asFamily(A, (tx) => tx.query(`select * from content.video_searches`)))).toMatch(/permission denied/);
   });
 });
