@@ -2,10 +2,12 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { StudyQuestion } from '@/components/family/StudyQuestion';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
+import { SubjectGlyph } from '@/components/family/ui/SubjectGlyph';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText } from '@/lib/family/fill';
 import { subjectAccess } from '@/lib/family/modules';
+import { subjectTheme } from '@/lib/family/subject-theme';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
 import { familyWords } from '@/lib/family/words';
@@ -33,8 +35,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
     return (
       <div lang={lang} className="flex min-h-screen flex-col">
         <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone="royal" />
-        <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
-          <p data-pre-primary className="rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
+        <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
+          <p data-pre-primary className="fam-card bg-white p-5 text-base text-slate">
             {t(lang, 'fam.study.prePrimary')}
           </p>
         </main>
@@ -51,30 +53,37 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton'] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone={subject === 'science' || subject === 'evs' || subject === 'biology' ? 'emerald' : 'royal'} />
-      <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
-        <nav aria-label={t(lang, 'fam.study.subjects')} className="flex flex-wrap gap-2 rounded-3xl bg-white p-2 shadow-sm ring-1 ring-slate/10">
-          {subjects.map((s) => (
-            <Link
-              key={s}
-              href={`/family/study?subject=${s}`}
-              aria-current={s === subject ? 'page' : undefined}
-              className={`flex min-h-[44px] flex-1 basis-[calc(50%-0.25rem)] items-center justify-center rounded-2xl px-3 text-base font-bold ${s === subject ? (s === 'science' || s === 'evs' || s === 'biology' ? 'bg-emerald-text text-white' : 'bg-royal text-white') : 'text-slate hover:bg-slate/5'}`}
-            >
-              {t(lang, `fam.subject.${s}`)}
-              {child.freeSubject && child.freeSubject !== s && <span className="sr-only"> ({t(lang, 'fam.subject.locked')})</span>}
-              {child.freeSubject && child.freeSubject !== s && (
-                <svg aria-hidden="true" viewBox="0 0 24 24" className="ml-2 h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="5" y="11" width="14" height="10" rx="2" />
-                  <path d="M8 11V8a4 4 0 0 1 8 0v3" />
-                </svg>
-              )}
-            </Link>
-          ))}
+      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} subject={subject} />
+      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
+        <nav aria-label={t(lang, 'fam.study.subjects')} className="fam-card relative -mx-1 flex gap-2 overflow-x-auto bg-white p-2">
+          {subjects.map((s) => {
+            const on = s === subject;
+            const locked = !!child.freeSubject && child.freeSubject !== s;
+            return (
+              <Link
+                key={s}
+                href={`/family/study?subject=${s}`}
+                aria-current={on ? 'page' : undefined}
+                className={`fam-press flex min-h-[48px] shrink-0 items-center gap-2 rounded-2xl px-3 text-base font-bold ${on ? `bg-royal-deep text-white shadow-md ${subjectTheme(s).tile}` : 'bg-white text-slate hover:bg-off-white'}`}
+              >
+                <span aria-hidden="true" className={`flex h-8 w-8 items-center justify-center rounded-xl ${on ? 'fam-icon-glass' : subjectTheme(s).soft + ' ' + subjectTheme(s).ink}`}>
+                  <SubjectGlyph subject={s} className="h-5 w-5" />
+                </span>
+                {t(lang, `fam.subject.${s}`)}
+                {locked && <span className="sr-only"> ({t(lang, 'fam.subject.locked')})</span>}
+                {locked && (
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="5" y="11" width="14" height="10" rx="2" />
+                    <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+                  </svg>
+                )}
+              </Link>
+            );
+          })}
         </nav>
-        {!child.freeSubject && <p className="rounded-2xl bg-sunshine/30 px-4 py-3 text-sm text-slate">{t(lang, 'fam.subject.firstIsFree')}</p>}
+        {!child.freeSubject && <p className="fam-rise flex items-center gap-2 rounded-2xl bg-sunshine/30 px-4 py-3 text-sm font-semibold text-slate"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 text-gold-deep" fill="currentColor"><path d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" /></svg>{t(lang, 'fam.subject.firstIsFree')}</p>}
         {!access.open ? (
-          <p data-family-locked className="rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
+          <p data-family-locked className="fam-card bg-white p-5 text-base text-slate">
             {t(lang, 'fam.subject.notOpen')}
           </p>
         ) : (
@@ -86,17 +95,25 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
               {t(lang, 'fam.study.chapters')}
             </h2>
             <ol className="flex flex-col gap-2">
-              {catalog.chapters.map((c) => (
-                <li key={c.key} className="rounded-3xl bg-white p-3 shadow-sm ring-1 ring-slate/10">
-                  <Link href={`/family/understand?kind=chapter&key=${encodeURIComponent(c.key)}`} className="flex min-h-[44px] items-center justify-between gap-2 px-1 text-base font-bold text-slate">
-                    <span lang={titleLang(c.title)}>{c.title}</span>
-                    <span aria-hidden="true" className="text-royal">→</span>
+              {catalog.chapters.map((c, i) => (
+                <li key={c.key} className="fam-card fam-rise bg-white p-3" style={{ ['--d' as string]: `${Math.min(i, 8) * 50}ms` } as React.CSSProperties}>
+                  <Link href={`/family/understand?kind=chapter&key=${encodeURIComponent(c.key)}`} className="fam-press flex min-h-[52px] items-center gap-3 rounded-2xl px-1 text-base font-bold text-slate">
+                    <span aria-hidden="true" className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-royal-deep text-base font-black text-white shadow-md ${subjectTheme(subject).tile}`}>
+                      {i + 1}
+                    </span>
+                    <span className="min-w-0 flex-1" lang={titleLang(c.title)}>
+                      {c.title}
+                    </span>
+                    <svg aria-hidden="true" viewBox="0 0 24 24" className={`h-5 w-5 shrink-0 ${subjectTheme(subject).ink}`} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                      <path d="M9 6l6 6-6 6" />
+                    </svg>
                   </Link>
                   {c.topics.length > 0 && (
                     <ul className="mt-1 flex flex-col">
                       {c.topics.map((tp) => (
                         <li key={tp.key}>
-                          <Link href={`/family/understand?kind=topic&key=${encodeURIComponent(tp.key)}`} className="flex min-h-[44px] items-center rounded-xl px-2 text-sm text-slate hover:bg-slate/5">
+                          <Link href={`/family/understand?kind=topic&key=${encodeURIComponent(tp.key)}`} className="flex min-h-[44px] items-center gap-3 rounded-xl px-2 text-sm text-slate hover:bg-off-white">
+                            <span aria-hidden="true" className={`ml-4 h-2 w-2 shrink-0 rounded-full ${subjectTheme(subject).chip}`} />
                             <span lang={titleLang(tp.title)}>{tp.title}</span>
                           </Link>
                         </li>
@@ -108,7 +125,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
             </ol>
           </section>
         ) : (
-          <p data-family-no-catalog className="rounded-3xl bg-white p-4 text-base text-slate shadow-sm ring-1 ring-slate/10">
+          <p data-family-no-catalog className="fam-card bg-white p-5 text-base text-slate">
             {t(lang, 'fam.study.noCatalog')}
           </p>
         )}

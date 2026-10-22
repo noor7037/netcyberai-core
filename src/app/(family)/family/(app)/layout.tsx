@@ -47,7 +47,7 @@ export default async function FamilyAppLayout({ children }: { children: React.Re
         </div>
       )}
       <FamilySessionKeeper />
-      <div className="pb-20">{children}</div>
+      <div className="pb-28">{children}</div>
       <FamilyTabs tabs={tabs} navLabel={t(lang, 'fam.tab.nav')} labels={{ home: t(lang, 'fam.tab.home'), study: t(lang, 'fam.tab.study'), english: t(lang, 'fam.tab.english'), future: t(lang, 'fam.tab.future'), family: t(lang, 'fam.tab.family') }} />
     </>
   );
