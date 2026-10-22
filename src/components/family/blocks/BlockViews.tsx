@@ -3,21 +3,27 @@
 import { useEffect, useState } from 'react';
 import type { Diagram, EnglishMoment, Explanation, KeyPoints, Sources, WorkedExample } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
+import { SUBJECT_THEME } from '@/lib/family/subject-theme';
 
 // One component per block type (M1-5, C251): the model's output is data, and only these draw it, as plain text. No
 // block is ever rendered as markup. Each card carries its subject's colour (docs/family-app/09 §2).
 
-export const SUBJECT_TONE: Record<string, { bar: string; chip: string; soft: string }> = {
-  mathematics: { bar: 'bg-royal', chip: 'bg-royal text-white', soft: 'bg-royal/10' },
-  science: { bar: 'bg-emerald-text', chip: 'bg-emerald-text text-white', soft: 'bg-emerald/10' },
-};
+// D1 (C230-Q): every subject's colour comes from src/lib/family/subject-theme.ts, so a card in English, Hindi or Social
+// Science wears its own colour, not Mathematics' blue. `bar` keeps a solid royal-deep under the gradient for the
+// contrast check; `chip` is solid and carries white text at AA.
+export const SUBJECT_TONE: Record<string, { bar: string; chip: string; soft: string }> = Object.fromEntries(
+  Object.entries(SUBJECT_THEME).map(([k, v]) => [k, { bar: `bg-royal-deep ${v.tile}`, chip: `${v.chip} text-white`, soft: v.soft }])
+);
 
 export function Card({ title, tone, children, tag }: { title: string; tone: string; children: React.ReactNode; tag?: string }) {
   return (
-    <section data-block={tag} className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate/10">
-      <div className={`h-1.5 ${SUBJECT_TONE[tone]?.bar ?? 'bg-royal'}`} aria-hidden="true" />
+    <section data-block={tag} className="fam-card fam-rise overflow-hidden bg-white">
+      <div className={`h-2 ${SUBJECT_TONE[tone]?.bar ?? 'bg-royal'}`} aria-hidden="true" />
       <div className="flex flex-col gap-3 p-4 sm:p-5">
-        <h2 className="text-lg font-extrabold text-slate">{title}</h2>
+        <h2 className="flex items-center gap-2 text-lg font-extrabold text-slate">
+          <span aria-hidden="true" className={`h-2.5 w-2.5 shrink-0 rounded-full ${SUBJECT_TONE[tone]?.chip ?? 'bg-royal'}`} />
+          {title}
+        </h2>
         {children}
       </div>
     </section>
