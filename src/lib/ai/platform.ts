@@ -25,10 +25,10 @@ import { scrubRequest } from './preprocess';
 // against their schema and drop anything outside it. The key opened in 3 lives only inside the prepared call (a closure,
 // never a field), and a prepared call sends once: one daily-cap place, one vendor request.
 
-export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input' | 'copilot.draft' | 'parent_ai.home_help';
+export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input' | 'copilot.draft' | 'parent_ai.home_help' | 'content.syllabus_extract';
 // `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
-// monthly one, which its caller checks (src/lib/copilot/copilot.ts).
-export type AiProfile = { id: ProfileId; carriesChildWords: boolean; audience: 'family' | 'school' };
+// monthly one, which its caller checks (src/lib/copilot/copilot.ts); a control profile runs only for Control's staff.
+export type AiProfile = { id: ProfileId; carriesChildWords: boolean; audience: 'family' | 'school' | 'control' };
 
 // Code-defined: which profiles exist and whether a child's words may pass. Control sets each one's provider, model,
 // prompt version and on switch; never this list. M2 (C275): the homework helper reads a photo, voice input hears a child.
@@ -39,6 +39,8 @@ export const PROFILES: readonly AiProfile[] = [
   // M2-10 (C284): Copilot and Parent AI. Their requests name a class level, subject and topic, never a person.
   { id: 'copilot.draft', carriesChildWords: false, audience: 'school' },
   { id: 'parent_ai.home_help', carriesChildWords: false, audience: 'school' },
+  // M2-12 (C286): reads a board's public syllabus PDF for Control's catalog import; a reviewer approves every line.
+  { id: 'content.syllabus_extract', carriesChildWords: false, audience: 'control' },
 ];
 
 export type AiContext = {
