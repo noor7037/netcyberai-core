@@ -15,7 +15,8 @@ import { homeworkPrompt } from '@/lib/ai/prompts/family.homework';
 import { sniffImageType } from '@/lib/storage/file-storage';
 import { indiaDate } from '@/lib/time/india';
 
-// The homework helper reads a photo (M2-6, C280): POST { photo: <base64 of a JPEG, PNG or WebP> }. The photo is
+// The homework helper reads a photo (M2-6, C280): POST { photo: <base64 of a JPEG, PNG or WebP> }. It needs the parent's
+// study_core and photo_input consents. The photo is
 // screened here (a real photo, at most 3 MB, no Aadhaar number or card in its words), counted against the child's photo
 // questions for the day (Control: family.photo_questions_per_day), read once by the family.homework profile (a
 // provider cleared for minors), and dropped: it is never stored or logged. The answer is a sealed ladder token and
@@ -46,7 +47,10 @@ export async function POST(req: NextRequest) {
       const child = activeChild(await listChildren(db, session.accountId), chosen);
       if (!child) return NextResponse.json({ error: 'not_found' }, { status: 404 });
       if (isPrePrimary(child.classLevel)) return NextResponse.json({ error: 'not_for_class' }, { status: 403 });
-      if (!(await consentState(db, session.accountId)).study_core) return NextResponse.json({ error: 'consent_required' }, { status: 403 });
+      const consents = await consentState(db, session.accountId);
+      if (!consents.study_core) return NextResponse.json({ error: 'consent_required' }, { status: 403 });
+      // A photo goes to a provider only with the parent's photo_input consent (03 §11).
+      if (!consents.photo_input) return NextResponse.json({ error: 'photo_consent' }, { status: 403 });
       if (!(await familyModuleOn(db, 'homework', session.accountId))) return NextResponse.json({ error: 'off' }, { status: 403 });
       const limit = Math.max(0, Math.round(await setting(db, 'family.photo_questions_per_day', 3)));
       const used = await db.query(`select photo_questions from family.day_counts where account_id = $1 and child_id = $2 and day = $3`, [session.accountId, child.childId, indiaDate()]);
@@ -63,7 +67,10 @@ export async function POST(req: NextRequest) {
       const children = await listChildren(db, session.accountId);
       const child = activeChild(children, chosen);
       if (!child) return NextResponse.json({ error: 'not_found' }, { status: 404 });
-      if (!(await consentState(db, session.accountId)).study_core) return NextResponse.json({ error: 'consent_required' }, { status: 403 });
+      const consents = await consentState(db, session.accountId);
+      if (!consents.study_core) return NextResponse.json({ error: 'consent_required' }, { status: 403 });
+      // A photo goes to a provider only with the parent's photo_input consent (03 §11).
+      if (!consents.photo_input) return NextResponse.json({ error: 'photo_consent' }, { status: 403 });
       if (!(await familyModuleOn(db, 'homework', session.accountId))) return NextResponse.json({ error: 'off' }, { status: 403 });
       const day = indiaDate();
       const limit = Math.max(0, Math.round(await setting(db, 'family.photo_questions_per_day', 3)));
