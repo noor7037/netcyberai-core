@@ -1,7 +1,7 @@
 import type { Sql } from '@/lib/jobs/types';
-import { draftSystem, draftUser } from './prompts/copilot.draft';
+import { draftPrompt } from './prompts/copilot.draft';
 import { HOME_HELP, type AIProvider, type DraftKind } from './provider';
-import { streamText, type AiRefusal, type ProfileId } from './platform';
+import { activePromptVersion, streamText, type AiRefusal, type ProfileId } from './platform';
 
 // Copilot and Parent AI on the AI platform (M2-10, C284): an AIProvider whose drafts go through the platform's
 // copilot.draft and parent_ai.home_help profiles, so the key the founder enters in Control → AI, its fallbacks, kill
@@ -18,11 +18,12 @@ export class AiUnavailableError extends Error {
 const SCHOOL_PROFILES: readonly ProfileId[] = ['copilot.draft', 'parent_ai.home_help'];
 export const profileForKind = (kind: DraftKind | typeof HOME_HELP): ProfileId => (kind === HOME_HELP ? 'parent_ai.home_help' : 'copilot.draft');
 
-// null when neither profile has a provider and model chosen and switched on: the school apps then say no provider.
-export async function schoolProvider(db: Sql, schoolId: string, day: string): Promise<AIProvider | null> {
+// null when the asked profile (or, without one, either) has no provider and model chosen and switched on: the school
+// apps then say no provider. Copilot asks for copilot.draft, Parent AI for parent_ai.home_help.
+export async function schoolProvider(db: Sql, schoolId: string, day: string, only?: ProfileId): Promise<AIProvider | null> {
   const { rows } = await db.query(
     `select profile_id from control.ai_profiles where profile_id = any($1::text[]) and enabled and provider_id is not null and model is not null`,
-    [SCHOOL_PROFILES]
+    [only ? [only] : SCHOOL_PROFILES]
   );
   const on = new Set(rows.map((r: Record<string, unknown>) => String(r.profile_id)));
   if (on.size === 0) return null;
@@ -31,9 +32,10 @@ export async function schoolProvider(db: Sql, schoolId: string, day: string): Pr
     async draft(request) {
       const profile = profileForKind(request.kind);
       if (!on.has(profile)) throw new AiUnavailableError('not_switched_on');
+      const prompt = draftPrompt(await activePromptVersion(db, profile));
       const result = await streamText(db, { accountId: schoolId, childFirstNames: [], day }, profile, {
-        system: draftSystem(request),
-        messages: [{ role: 'user', content: draftUser(request) }],
+        system: prompt.system(request),
+        messages: [{ role: 'user', content: prompt.user(request) }],
         maxTokens: 1200,
       });
       if (!result.ok) throw new AiUnavailableError(result.reason);

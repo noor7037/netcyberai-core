@@ -83,7 +83,7 @@ export async function draft(db: PoolClient, provider: AIProvider | null, actor: 
     answer = await provider!.draft(request);
   } catch (err) {
     // The AI platform could not make it (switched off, no key, a provider down): Copilot says so; nothing is counted.
-    if (err instanceof AiUnavailableError) return { ok: false, reason: 'off', why: 'no_provider' };
+    if (err instanceof AiUnavailableError) return { ok: false, reason: 'off', why: err.reason === 'failed' ? 'failed' : 'no_provider' };
     throw err;
   }
   await db.query(`insert into ai_usage (school_id, user_id, kind, tokens_in, tokens_out) values ($1, $2, $3, $4, $5)`, [actor.schoolId, actor.userId, input.kind, Math.max(0, Math.round(answer.tokensIn)), Math.max(0, Math.round(answer.tokensOut))]);

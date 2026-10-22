@@ -103,6 +103,10 @@ describe('Copilot through the platform', () => {
     expect(result).toEqual({ ok: false, reason: 'off', why: 'no_provider' });
   });
 
+  it("Copilot is not shown as ready when only Parent AI's profile is on", async () => {
+    expect(await asTeacher((c) => schoolProvider(c, A, DAY, 'parent_ai.home_help'))).toBeNull();
+  });
+
   it('Parent AI asks its own profile, and is refused while that one is off', async () => {
     await db.pg.query(`update control.ai_profiles set enabled = true where profile_id = 'copilot.draft'`);
     await expect(

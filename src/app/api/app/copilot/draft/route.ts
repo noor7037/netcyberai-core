@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
     const access = await checkModuleAccess(db, claims, 'teacher-copilot');
     if (!access.ok) return access.error === 'module_not_enabled' ? NextResponse.json({ on: false, why: 'module_off' }) : accessDenied(access);
-    return NextResponse.json(await copilotState(db, claims.schoolId, configuredProvider() ?? (await schoolProvider(db, claims.schoolId, indiaDate()))));
+    return NextResponse.json(await copilotState(db, claims.schoolId, configuredProvider() ?? (await schoolProvider(db, claims.schoolId, indiaDate(), 'copilot.draft'))));
   });
 }
 
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     const body = await readJson(req);
     const kind = DRAFT_KINDS.find((k) => k === body?.kind);
     if (!kind || !isUuid(body?.classId) || !isUuid(body?.subjectId) || !isUuid(body?.unitId)) return ruleError(400, 'not_sent_properly');
-    const result = await draft(db, configuredProvider() ?? (await schoolProvider(db, claims.schoolId, indiaDate())), { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, { kind, classId: body.classId as string, subjectId: body.subjectId as string, unitId: body.unitId as string, minutes: typeof body.minutes === 'number' ? body.minutes : undefined, questions: typeof body.questions === 'number' ? body.questions : undefined });
+    const result = await draft(db, configuredProvider() ?? (await schoolProvider(db, claims.schoolId, indiaDate(), 'copilot.draft')), { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, { kind, classId: body.classId as string, subjectId: body.subjectId as string, unitId: body.unitId as string, minutes: typeof body.minutes === 'number' ? body.minutes : undefined, questions: typeof body.questions === 'number' ? body.questions : undefined });
     if (result.ok) return NextResponse.json({ text: result.text, used: result.used, limit: result.limit });
     if (result.reason === 'not_allowed') return ruleError(403, 'not_allowed');
     if (result.reason === 'off') return jsonError(409, 'Copilot is not switched on for this school', { code: 'off', why: result.why });
