@@ -7005,5 +7005,6 @@ export const en = {
   'control.ai.key.tokenHelp': 'The token made with only the Workers AI permission. It is locked as soon as it is saved and never shown again.',
   'control.ai.err.account_id_format': 'This is not an Account ID: it is 32 letters and digits (a–f, 0–9). Copy it again from Cloudflare → Workers AI.',
   'control.ai.err.token_format': 'This is not an API token: it is one word of 30 to 80 letters, digits, - or _. Copy it again from Cloudflare.',
+  'control.ai.note.close': 'Close',
   // w2 end
 } as const;
