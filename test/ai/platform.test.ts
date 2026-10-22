@@ -3,7 +3,6 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } 
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { REFUSAL_MESSAGE, prepareText, streamText, type AiContext, type AiRequest } from '@/lib/ai/platform';
-import { openaiAdapter } from '@/lib/ai/adapters/openai';
 import { adapterFor, standInAllowed } from '@/lib/ai/adapters';
 import { sealAiKey, aiEncryptionKey } from '@/lib/ai/credentials';
 import { en } from '@/lib/i18n/messages/en';
@@ -18,6 +17,8 @@ const B = 'f2000000-0000-4000-8000-0000000000b1';
 const FOUNDER = 'f2000000-0000-4000-8000-0000000000f1';
 const ANTHROPIC_KEY = `sk-ant-${'a'.repeat(30)}WXYZ`;
 const OPENAI_KEY = `sk-${'b'.repeat(30)}QRST`;
+// Cloudflare Workers AI (C230-U): "<account id>:<API token>"; the open-weight provider for the children's paths.
+const WORKERS_KEY = `${'c'.repeat(32)}:cfat_${'W'.repeat(36)}`;
 const DAY = '2026-10-21';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -202,14 +203,14 @@ describe('the pre-processor, on the real request body', () => {
   });
 
   it('the same on the other adapter', async () => {
-    await clear('openai');
-    await useProfile('openai', 'test-model-b');
-    await sealInto('openai', OPENAI_KEY);
+    await clear('workers-ai');
+    await useProfile('workers-ai', 'test-model-b');
+    await sealInto('workers-ai', WORKERS_KEY);
     replies.push(() => openaiOk(['ok']));
     await run(ctxA, ask('Asha (parent.a@example.org, +919876543210) asks about आशा’s homework'));
-    expect(calls[0].url).toMatch(/openai/);
+    expect(calls[0].url).toMatch(/^https:\/\/api\.cloudflare\.com\/client\/v4\/accounts\/c{32}\/ai\/v1\/chat\/completions$/);
     expect(calls[0].body).not.toMatch(/Asha|आशा|parent\.a|9876543210/);
-    expect(calls[0].headers.authorization).toBe(`Bearer ${OPENAI_KEY}`);
+    expect(calls[0].headers.authorization).toBe(`Bearer cfat_${'W'.repeat(36)}`);
   });
 });
 
@@ -232,16 +233,12 @@ describe('deny: the minors check', () => {
     expect(await q(`select * from family.ai_daily`)).toHaveLength(0);
   });
 
-  it('a provider cleared in Control whose adapter is not eligible in code is refused', async () => {
-    await clear('openai');
-    await useProfile('openai', 'test-model-b');
-    await sealInto('openai', OPENAI_KEY);
-    const adapter = openaiAdapter as { minorsEligible: boolean };
-    adapter.minorsEligible = false;
-    try {
-      expect(await run()).toEqual({ ok: false, reason: 'not_cleared_for_minors' });
-    } finally {
-      adapter.minorsEligible = true;
+  it('a provider cleared in Control whose adapter is not eligible in code is refused (OpenAI, Gemini: C230-U)', async () => {
+    for (const [provider, key] of [['openai', OPENAI_KEY], ['gemini', `AIza${'G'.repeat(35)}`]] as const) {
+      await clear(provider);
+      await useProfile(provider, 'test-model-b');
+      await sealInto(provider, key);
+      expect(await run(), provider).toEqual({ ok: false, reason: 'not_cleared_for_minors' });
     }
     expect(calls).toHaveLength(0);
   });
@@ -250,21 +247,23 @@ describe('deny: the minors check', () => {
 describe('fallback', () => {
   beforeEach(async () => {
     await clear('anthropic');
-    await clear('openai');
+    await clear('workers-ai');
     await sealInto('anthropic', ANTHROPIC_KEY);
-    await sealInto('openai', OPENAI_KEY);
-    await useProfile('anthropic', 'test-model-a', [{ provider: 'openai', model: 'test-model-b' }]);
+    await sealInto('workers-ai', WORKERS_KEY);
+    await useProfile('anthropic', 'test-model-a', [{ provider: 'workers-ai', model: 'test-model-b' }]);
   });
 
   it('the first provider fails: the next cleared one answers, and both are counted', async () => {
     replies.push(() => httpError(529), () => openaiOk(['From ', 'the backup.'], 13, 4));
     const got = await run();
-    expect(got).toEqual({ ok: true, text: 'From the backup.', tokensIn: 13, tokensOut: 4, provider: 'openai', model: 'test-model-b' });
-    expect(calls.map((c) => new URL(c.url).hostname)).toEqual(['api.anthropic.com', 'api.openai.com']);
+    // Workers AI's answer ends at its stop, so its counts are estimated from the text (16 characters back: 4).
+    expect(got).toMatchObject({ ok: true, text: 'From the backup.', tokensOut: 4, provider: 'workers-ai', model: 'test-model-b' });
+    expect((got as { tokensIn: number }).tokensIn).toBeGreaterThan(0);
+    expect(calls.map((c) => new URL(c.url).hostname)).toEqual(['api.anthropic.com', 'api.cloudflare.com']);
     const usage = await q(`select provider_id, requests, failures from control.ai_usage order by provider_id`);
     expect(usage).toEqual([
       { provider_id: 'anthropic', requests: 1, failures: 1 },
-      { provider_id: 'openai', requests: 1, failures: 0 },
+      { provider_id: 'workers-ai', requests: 1, failures: 0 },
     ]);
     expect(await q(`select requests from family.ai_daily`)).toEqual([{ requests: 1 }]);
   });

@@ -120,6 +120,8 @@ describe('plans are rows, not code', () => {
     expect(on).toEqual([...workingModules()].sort());
   });
 
+  // It builds a whole database from the migrations inside the test, which takes seconds and grows with every
+  // migration: under the full suite's load the 5-second default is not enough, so it has its own limit.
   it('a school that was already on a plan when the migration ran gets a subscription row for it, with paid-until empty', async () => {
     const [onPlan, noPlan] = [s(71), s(72)];
     const small = await createTestDb({
@@ -131,7 +133,7 @@ describe('plans are rows, not code', () => {
     });
     expect((await small.query(`select school_id, plan_id, paid_until from school_subscriptions`)).rows).toEqual([{ school_id: onPlan, plan_id: SEEDED, paid_until: null }]);
     await small.pg.close();
-  });
+  }, 60_000);
 
   it('no plan name, plan id or price is written anywhere in src: every plan in the table is searched for, in every file', async () => {
     // Another plan, with a name and a price, so the search has more than the seeds to look for.

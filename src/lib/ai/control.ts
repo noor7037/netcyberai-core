@@ -2,6 +2,7 @@ import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
 import { indiaDate } from '@/lib/time/india';
 import { adapterFor, keyedProviderFor, standInAllowed, textAdapters, STAND_IN_PROVIDER } from './adapters';
+import { workersModelLooksRight } from './adapters/workers-ai';
 import { testYoutubeKey } from './adapters/youtube';
 import { aiEncryptionKey, sealAiKey, unsealAiKey, type SealedRow } from './credentials';
 import { DAILY_REQUESTS_SETTING } from './daily-cap';
@@ -61,7 +62,8 @@ export type Counts = { requests: number; failures: number; capRefusals: number; 
 
 const ACTIONS = ['ai.credential_set', 'ai.provider_clearance', 'ai.profile_changed', 'ai.cap_changed'] as const;
 type Action = (typeof ACTIONS)[number];
-const MODEL = /^[A-Za-z0-9._:/-]{1,80}$/;
+// A model id as the vendor names it; Workers AI ids start with "@" (C230-U). The database holds the same rule.
+const MODEL = /^@?[A-Za-z0-9._:/-]{1,80}$/;
 const PROMPT_VERSION = /^[a-z0-9.-]{1,32}$/;
 const iso = (v: unknown) => (v ? new Date(v as string).toISOString() : null);
 const num = (v: unknown) => Number(v ?? 0);
@@ -284,6 +286,10 @@ async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSet
   // that can hear, so Anthropic cannot be chosen for it.
   if (next.fallback.length > 3 || providers.some((p) => !knownProvider(p) || capableAdapter(profile.id, p) === null)) return { ok: false, code: 'provider' };
   if ((next.model !== null && !MODEL.test(next.model)) || next.fallback.some((f) => !MODEL.test(f.model))) return { ok: false, code: 'model' };
+  // Workers AI names its models "@cf/<vendor>/<model>" (C230-U); any other id for it would fail every call, so it is
+  // refused here, where the founder sees it.
+  const links = [{ provider: next.providerId, model: next.model }, ...next.fallback];
+  if (links.some((l) => l.provider === 'workers-ai' && (l.model === null || !workersModelLooksRight(l.model)))) return { ok: false, code: 'model' };
   if (!PROMPT_VERSION.test(next.promptVersion)) return { ok: false, code: 'prompt_version' };
   if ((next.providerId === null) !== (next.model === null) || (next.enabled && next.providerId === null)) return { ok: false, code: 'incomplete' };
   // The code's half of the minors check; the database adds Control's clearance (its trigger) below.

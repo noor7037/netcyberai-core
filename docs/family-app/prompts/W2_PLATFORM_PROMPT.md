@@ -10,34 +10,34 @@ THE FOUNDER'S DECISIONS (binding)
 - **Scope:** the whole agreed product (the Family app, the Teacher App and Control), extensible, with real workflows. Never a Class 6-only build and never a facade.
 - **Honesty:** every screen and report says what works, what is blocked, and why. Nothing is called production-ready until verified.
 
-AI PROVIDERS (verified by the supervisor, 2026-10-22; C230-T)
-- **Gemini API:**
-  - Its terms require users to be 18 or older, and forbid use in any app or service directed to, or likely to be used by, people under 18.
-  - Its free tier may use what is sent.
-  - So it is **never** used in the Family app or any child path (resolver, homework, voice, follow-ups, parent area).
-  - It **may** be used only in adult-only tools that send no personal data:
-    - a new profile `content.prepare`, for Control's library preparation (C300's prepare path; today that path uses `family.resolver`);
-    - `copilot.draft`;
-    - `content.syllabus_extract`.
-  - Each profile carries no child's words. The minors gate stays as it is: Gemini is never cleared for minors.
-  - What `content.prepare` makes reaches a child only after a person checks it (`family.reviewed_only_subjects`).
-- **Live AI for children** (typed questions, follow-ups, homework photo, voice) stays off until Noor approves a provider whose terms allow minors.
-  - None is free: Anthropic is paid, and OpenAI requires age 13 or older.
-  - The child sees an honest "not available yet" state, never a fake answer.
+AI PROVIDERS (C230-U replaces C230-T's AI rules; evidence and sources in `docs/family-app/AI_PROVIDERS.md`)
+- **Real AI for children now, free: Cloudflare Workers AI**, with open-weight models (Llama, Gemma, Whisper). The supervisor built its adapters (`src/lib/ai/adapters/workers-ai.ts`: text, photos, speech).
+  - No clause in Cloudflare's terms or the models' licences bars a product for children.
+  - Cloudflare does not train on what is sent.
+  - The free plan stops with an error at 10,000 neurons a day; it never bills.
+  - It serves every profile now, adults' tools included. The founder enters `<account id>:<token>` and clears it for minors in Control → AI.
+- **OpenAI** is no longer eligible for children's profiles in code: its terms forbid users under 13.
+- **Gemini** has an adapter but stays unconfigured. Its terms are 18+ only, and whether an adult tool on a site children use is "likely to be accessed" by under-18s is unanswered by Google.
+- **Anthropic** (allows minors with safeguards; paid) becomes the children's primary when Noor approves the spend, with Workers AI as its fallback.
 - **YouTube Data API:** allowed for a child-directed app with obligations.
   - Notify Google that the API client is child-directed (the Developer Policies' child-directed section).
   - Tracking off, the privacy-enhanced embed, and tap to load.
   - The free quota is 10,000 units a day, and a search costs 100 units, so keep `family.video_searches_per_day` (90) under it.
-  - Check the current text of the policies and record what you did.
-- **Google Custom Search JSON API:** closed to new customers; it ends on 2027-01-01. Not used. Nothing needs web search now.
-- **Keys:** keys live only in Control → AI, sealed (10 §3). A spent quota is shown plainly and retried the next day, never as an error page.
+- **Google Custom Search JSON API:** closed to new customers; it ends on 2027-01-01. Not used.
+- **Keys** live only in Control → AI, sealed (10 §3). A spent quota hands the call to the next provider, then shows the plain "try again later" message.
+- **Yours on the AI path** (W2 item 1, before the demo):
+  - add `content.prepare` (no child's words) and move the prepare path onto it;
+  - a moderation pass with Llama Guard on Workers AI, on a child's typed words and on answers;
+  - the "made by AI" notice, with "Built with Llama" on the AI page (the Llama licence);
+  - tune the resolver prompt until Llama returns our JSON blocks reliably, measured on the 2 demo chapters;
+  - after the founder's key, a live smoke test of text, a photo and a recording, closing the three "not verified yet" points in AI_PROVIDERS.md.
 
 YOURS, IN THIS ORDER (one coherent slice each; CLAUDE.md sizes and reviews; auth slices get /code-review medium plus /security-review)
 1. **The demo pilot.**
    - Settings: `family.open_subjects` and `family.reviewed_only_subjects` become `["science"]`, by migration, test database first.
    - Synthetic accounts: a parent and a Class 6 child under the demo school, and a teacher. They live only in `src/demo-fixture/**` and the harness seed, or as clearly synthetic rows on the test database. Never in product UI code.
    - Add the `content.prepare` profile and move the prepare path onto it.
-   - When Noor has entered a Gemini key, prepare the 2 chapters + 12 topics × English and Hindi (28) for review.
+   - When Noor has entered the Workers AI key, prepare the 2 chapters + 12 topics × English and Hindi (28) for review.
 2. **Sign-in: one identity system (Supabase Auth).** Inspect `src/lib/auth/**` and the Family session (`src/lib/family/session.ts`) first.
    - **Google first.** "Continue with Google" is the primary option for families, teachers and staff. It takes the verified email and the name and photo Google gives.
    - **Email second.** "Continue with email": email and password, with email confirmation and password reset.

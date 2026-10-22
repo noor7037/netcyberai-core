@@ -11,6 +11,10 @@ export default defineConfig({
     // test/: flow tests that swap Supabase Auth and Postgres for in-memory
     // stand-ins (C95); kept outside src/ so nothing there ships or reads as data.
     include: ['src/**/*.test.ts', 'test/**/*.test.ts'],
+    // Many tests build a whole database from the migrations (PGlite) inside one test, which takes seconds and grows with
+    // every migration; under the full suite's parallel load the 5-second default failed them at random (C230-U). A hung
+    // test still fails, at 30 seconds.
+    testTimeout: 30_000,
   },
   // Components (.tsx) use the automatic JSX runtime, as Next.js does, so
   // render tests can load them without importing React.

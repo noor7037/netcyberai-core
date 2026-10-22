@@ -1,5 +1,6 @@
 import { anthropicAdapter } from './anthropic';
 import { openaiAdapter, openaiSpeechAdapter } from './openai';
+import { workersAiAdapter, workersAiSpeechAdapter } from './workers-ai';
 import { youtubeAdapter } from './youtube';
 import type { AdapterResult, SpeechAdapter, SpeechResult, TextAdapter } from './types';
 
@@ -25,7 +26,9 @@ export const standInAdapter: TextAdapter = {
   },
 };
 
-const REAL: readonly TextAdapter[] = [anthropicAdapter, openaiAdapter];
+// Cloudflare Workers AI joined in C230-U and serves every profile for now. Gemini's adapter (./gemini.ts) is written but
+// not registered until Google answers whether an adult tool on a site children use is allowed under its terms.
+const REAL: readonly TextAdapter[] = [anthropicAdapter, openaiAdapter, workersAiAdapter];
 
 // The build's own NODE_ENV is checked as well as the one passed, so no caller can switch the stand-in on in production.
 export function standInAllowed(env: Record<string, string | undefined> = process.env): boolean {
@@ -56,9 +59,10 @@ export const standInSpeechAdapter: SpeechAdapter = {
   },
 };
 
-const REAL_SPEECH: readonly SpeechAdapter[] = [openaiSpeechAdapter];
+const REAL_SPEECH: readonly SpeechAdapter[] = [openaiSpeechAdapter, workersAiSpeechAdapter];
 
-// The speech adapter for a provider id, or null when the code has none (Anthropic has no speech to text).
+// The speech adapter for a provider id, or null when the code has none (Anthropic and Gemini have no speech to text
+// here).
 export function speechAdapterFor(providerId: string, env: Record<string, string | undefined> = process.env): SpeechAdapter | null {
   if (providerId === STAND_IN_PROVIDER) return standInAllowed(env) ? standInSpeechAdapter : null;
   return REAL_SPEECH.find((a) => a.providerId === providerId) ?? null;
