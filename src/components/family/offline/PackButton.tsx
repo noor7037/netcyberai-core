@@ -81,7 +81,7 @@ export function PackButton({ w, lang, childId, chapterKey, chapterTitle, bytes, 
           {fill(w['fam.offline.pack.size'], { n: size.n, unit: size.unit })}
         </span>
       </button>
-      {missing > 0 && <p className="px-1 text-xs text-slate">{fill(w['fam.offline.pack.partial'], { n: missing })}</p>}
+      {missing > 0 && <p className="px-1 text-xs text-slate">{missing === 1 ? w['fam.offline.pack.partialOne'] : fill(w['fam.offline.pack.partial'], { n: missing })}</p>}
       {state === 'failed' && (
         <p role="status" className="px-1 text-sm text-coral-deep">
           {w['fam.offline.pack.failed']}

@@ -100,7 +100,11 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           ))}
         </nav>
         {!child.freeSubject && <p className="rounded-2xl bg-sunshine/30 px-4 py-3 text-sm text-slate">{t(lang, 'fam.subject.firstIsFree')}</p>}
-        {offline && <DataSaverSwitch w={ow} />}
+        {offline && (
+          <div className="flex justify-end">
+            <DataSaverSwitch w={ow} compact />
+          </div>
+        )}
         {!access.open ? (
           <div data-family-locked>
             <EmptyState

@@ -7,7 +7,7 @@ export const UNDERSTAND_KEYS: MessageKey[] = [
   'fam.block.english', 'fam.block.pattern', 'fam.block.sayIt', 'fam.block.readAloud', 'fam.block.deviceVoice', 'fam.block.sources', 'fam.block.check',
   'fam.block.practice', 'fam.check.hint', 'fam.check.hintLabel', 'fam.check.right', 'fam.check.notYet', 'fam.check.explainAgain',
   'fam.understand.loading', 'fam.understand.incomplete', 'fam.understand.followUps', 'fam.followUp.simpler', 'fam.followUp.another_example',
-  'fam.followUp.differently', 'fam.followUp.practise_more', 'fam.err.network', 'fam.plan.comesBack', 'fam.check.mastered', 'fam.check.masteredBody',
+  'fam.followUp.differently', 'fam.followUp.practise_more', 'fam.err.network', 'fam.plan.comesBack', 'fam.check.mastered', 'fam.check.masteredBody', 'fam.d1.jump.label', 'fam.d1.jump.explanation', 'fam.d1.jump.picture',
   ...INTERACTIVE_KEYS,
   // D1-3: Understand's designed empty and loading states.
   'fam.d13.understand.refusedTitle', 'fam.d13.understand.backToStudy', 'fam.d13.loading.understand',

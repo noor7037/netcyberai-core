@@ -6870,6 +6870,10 @@ export const hi: Record<keyof typeof en, string> = {
   // d1 begin
   'fam.check.mastered': 'विषय पक्का हो गया!',
   'fam.check.masteredBody': 'आपने इसे एक हफ़्ते के अंतर पर दो दिन सही किया। यही बताता है कि आपने इसे सीख लिया है।',
+  'fam.d1.jump.label': 'इस उत्तर के हिस्से',
+  'fam.d1.jump.explanation': 'समझाना',
+  'fam.d1.jump.picture': 'चित्र',
+  'fam.offline.pack.partialOne': 'एक टॉपिक अभी इस पैक में नहीं है। उसके लिए इंटरनेट चाहिए।',
   // d1 end
   // d1-2 begin
   // d1-2 end

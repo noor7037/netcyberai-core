@@ -36,7 +36,11 @@ export default async function FamilyUnderstandPage({ searchParams }: { searchPar
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back={`/family/study?subject=${line.subject}`} backLabel={t(lang, `fam.subject.${line.subject}`)} kicker={t(lang, 'fam.understand.title')} title={line.title} subject={line.subject} />
       <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-24">
-        {offline && <DataSaverSwitch w={w} />}
+        {offline && (
+          <div className="flex justify-end">
+            <DataSaverSwitch w={w} compact />
+          </div>
+        )}
         <UnderstandView key={`${kind}:${line.key}`} w={w} input={{ kind, key: line.key }} tone={line.subject} initial={initial} offline={offline} />
       </main>
     </div>

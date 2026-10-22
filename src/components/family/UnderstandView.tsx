@@ -6,6 +6,7 @@ import type { PublicBlock, ResolverEvent } from '@/lib/family/resolver';
 import { fill, type Words } from '@/lib/family/fill';
 import { SUBJECTS } from '@/lib/family/modules';
 import { dataSaverBlocks, droppedCount } from '@/lib/family/data-saver';
+import { subjectColour } from '@/lib/family/subject-colours';
 import { queueAnswer } from './offline/store';
 import { useDataSaver } from './useDataSaver';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from './blocks/BlockViews';
@@ -116,6 +117,56 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
     void run(ask);
   };
 
+  // One part of the answer, keyed by its place in the response, so turning the data-saver on or off keeps its state.
+  const blockView = (b: (typeof blocks)[number]) => {
+    const i = blocks.indexOf(b);
+    switch (b.type) {
+      case 'explanation':
+        return <ExplanationView key={i} b={b} w={w} tone={tone} />;
+      case 'worked_example':
+        return <WorkedExampleView key={i} b={b} w={w} tone={tone} />;
+      case 'key_points':
+        return <KeyPointsView key={i} b={b} w={w} tone={tone} />;
+      case 'diagram':
+        return <DiagramView key={i} b={b} tone={tone} />;
+      case 'graph':
+      case 'number_line':
+      case 'fraction_model':
+      case 'geometry':
+      case 'simulation':
+        return <InteractiveView key={i} b={b} w={w} tone={tone} />;
+      case 'check':
+      case 'practice':
+        return <QuizView key={i} kind={b.type} items={b.items} w={w} tone={tone} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} />;
+      case 'english_moment':
+        return <EnglishMomentView key={i} b={b} w={w} tone={tone} />;
+      case 'sources':
+        return <SourcesView key={i} b={b} w={w} tone={tone} />;
+      default:
+        return null;
+    }
+  };
+  // The jump chips: the first part of each kind that is shown, named as its heading names it.
+  const JUMP_KEY: Partial<Record<string, string>> = {
+    explanation: 'fam.d1.jump.explanation',
+    worked_example: 'fam.block.worked',
+    key_points: 'fam.block.keyPoints',
+    diagram: 'fam.d1.jump.picture',
+    graph: 'fam.d1.jump.picture',
+    number_line: 'fam.d1.jump.picture',
+    fraction_model: 'fam.d1.jump.picture',
+    geometry: 'fam.d1.jump.picture',
+    simulation: 'fam.d1.jump.picture',
+    check: 'fam.block.check',
+    practice: 'fam.block.practice',
+    english_moment: 'fam.block.english',
+  };
+  const jumps: { i: number; label: string }[] = [];
+  for (const b of dataSaverBlocks(blocks, saving)) {
+    const key = JUMP_KEY[b.type];
+    if (key && w[key] && !jumps.some((j) => j.label === w[key])) jumps.push({ i: blocks.indexOf(b), label: w[key] });
+  }
+
   return (
     <div ref={top} className="flex flex-col gap-3" aria-busy={state === 'loading' || state === 'streaming'}>
       {meta && (
@@ -154,35 +205,27 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
           {fill(w['fam.dataSaver.skipped'], { n: droppedCount(blocks, true) })}
         </p>
       )}
-      {dataSaverBlocks(blocks, saving).map((b) => {
-        // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
-        const i = blocks.indexOf(b);
-        switch (b.type) {
-          case 'explanation':
-            return <ExplanationView key={i} b={b} w={w} tone={tone} />;
-          case 'worked_example':
-            return <WorkedExampleView key={i} b={b} w={w} tone={tone} />;
-          case 'key_points':
-            return <KeyPointsView key={i} b={b} w={w} tone={tone} />;
-          case 'diagram':
-            return <DiagramView key={i} b={b} tone={tone} />;
-          case 'graph':
-          case 'number_line':
-          case 'fraction_model':
-          case 'geometry':
-          case 'simulation':
-            return <InteractiveView key={i} b={b} w={w} tone={tone} />;
-          case 'check':
-          case 'practice':
-            return <QuizView key={i} kind={b.type} items={b.items} w={w} tone={tone} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} />;
-          case 'english_moment':
-            return <EnglishMomentView key={i} b={b} w={w} tone={tone} />;
-          case 'sources':
-            return <SourcesView key={i} b={b} w={w} tone={tone} />;
-          default:
-            return null;
-        }
-      })}
+      {(state === 'done' || state === 'incomplete') && jumps.length >= 3 && (
+        // D1: the parts of the answer as chips, like the mockup's tabs, but nothing is hidden: a chip only scrolls to its
+        // part, so the whole answer still works offline and in print.
+        <nav aria-label={w['fam.d1.jump.label']} data-understand-jumps className="sticky top-0 z-10 -mx-4 bg-off-white/95 px-4 py-2 backdrop-blur">
+          <ul className="flex gap-2 overflow-x-auto pb-1">
+            {jumps.map((j) => (
+              <li key={j.i} className="shrink-0">
+                <a href={`#blk-${j.i}`} className={`flex min-h-[44px] items-center rounded-full bg-white px-4 text-sm font-bold ring-1 ring-slate/15 hover:bg-slate/5 ${subjectColour(tone).text} ${PRESS}`}>
+                  {j.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+      {dataSaverBlocks(blocks, saving).map((b) => (
+        // Each part has an anchor for the jump chips; the header stays clear of it when jumped to.
+        <div key={blocks.indexOf(b)} id={`blk-${blocks.indexOf(b)}`} className="scroll-mt-20">
+          {blockView(b)}
+        </div>
+      ))}
       {(state === 'loading' || state === 'streaming') && (
         <div data-understand-skeleton className="flex flex-col gap-3">
           <Skeleton label={w['fam.d13.loading.understand']} lines={blocks.length ? 2 : 4} />

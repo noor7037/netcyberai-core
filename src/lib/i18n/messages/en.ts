@@ -6882,6 +6882,10 @@ export const en = {
   // d1 begin
   'fam.check.mastered': 'Topic mastered!',
   'fam.check.masteredBody': 'You got it right on two days a week apart. That is how you know you have learned it.',
+  'fam.d1.jump.label': 'Parts of this answer',
+  'fam.d1.jump.explanation': 'Explanation',
+  'fam.d1.jump.picture': 'Picture',
+  'fam.offline.pack.partialOne': 'One topic is not in this pack yet. It needs the internet.',
   // d1 end
   // d1-2 begin
   // d1-2 end
