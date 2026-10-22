@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation';
 import { StudyQuestion } from '@/components/family/StudyQuestion';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
-import { familyModuleOn } from '@/lib/family/flags';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText, fill } from '@/lib/family/fill';
 import { familyModuleOn } from '@/lib/family/flags';
