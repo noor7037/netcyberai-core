@@ -1,6 +1,6 @@
 import { REFUSAL_MESSAGE, activePromptVersion, prepareText, type AiRefusal, type PreparedText, type SentText } from '@/lib/ai/platform';
 import { resolverPrompt, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
-import { BLOCK_SCHEMA_VERSION, completeResponse, parseBlockLine, type Block, type BlockType } from './blocks';
+import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, parseBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
 import { classSubjects } from './catalog';
@@ -275,7 +275,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     }
     const s: Subject = subject;
     const b = parseBlockLine(text);
-    if (!b || seen.has(b.type)) return;
+    // One block of each type, and at most one interactive block (M2-8): the first that passed.
+    if (!b || seen.has(b.type) || (isInteractive(b.type) && kept.some((k) => isInteractive(k.type)))) return;
     if (mustClaim && claim) {
       mustClaim = false;
       if (!(await claim(s))) return refuseSubject(s);

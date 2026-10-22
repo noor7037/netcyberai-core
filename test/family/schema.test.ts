@@ -272,7 +272,10 @@ describe('control', () => {
     expect(await refused(() => asFamily(A, (tx) => tx.query(`select * from control.ai_credentials`)))).toMatch(/permission denied/);
     const sealed = await asFamily(A, async (tx) => (await tx.query(`select * from control.ai_sealed_credential('anthropic')`)).rows);
     expect(sealed).toEqual([{ ciphertext: 'c', iv: 'i', tag: 't', key_version: 1 }]);
-    expect(await refused(() => asRole('app_user', (tx) => tx.query(`select * from control.ai_sealed_credential('anthropic')`)))).toMatch(/permission denied/);
+    // School staff get the same sealed form since M2-10 (C284: Copilot and Parent AI on the platform), never the table;
+    // the key that opens it is only in the server's environment.
+    expect(await asRole('app_user', async (tx) => (await tx.query(`select * from control.ai_sealed_credential('anthropic')`)).rows)).toEqual(sealed);
+    expect(await refused(() => asRole('app_user', (tx) => tx.query(`select * from control.ai_credentials`)))).toMatch(/permission denied/);
   });
 
   it('a profile that carries a child’s words cannot be moved to a provider not cleared for minors', async () => {

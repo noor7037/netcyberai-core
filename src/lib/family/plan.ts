@@ -133,7 +133,7 @@ async function candidates(db: Db, accountId: string, child: FamilyChild, day: st
 }
 
 // Titles from the catalog released to everyone, in the asked language (English where no Hindi title was printed).
-async function titles(db: Db, keys: string[], lang: CatalogLang): Promise<Map<string, string>> {
+export async function titles(db: Db, keys: string[], lang: CatalogLang): Promise<Map<string, string>> {
   if (!keys.length) return new Map();
   const { rows } = await db.query(
     `select k.key,
