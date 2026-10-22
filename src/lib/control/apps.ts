@@ -25,7 +25,7 @@ const REASON_MAX = 300;
 const TEXT_MAX = 300;
 
 // The audit actions this screen writes: the only ones the Undo list reads.
-export const APP_AUDIT_ACTIONS = ['app_flag.set', 'app_version.set', 'app_banner.create', 'app_banner.end', 'preview_account.remove'] as const;
+export const APP_AUDIT_ACTIONS = ['app_flag.set', 'app_version.set', 'app_banner.create', 'app_banner.end', 'preview_account.add', 'preview_account.remove'] as const;
 export type AppAuditAction = (typeof APP_AUDIT_ACTIONS)[number];
 export const UNDO_ACTION = 'app_change.undo';
 
@@ -320,6 +320,15 @@ export async function endBanner(db: Sql, actor: Actor, input: { id: string; reas
   return { ok: true };
 }
 
+// Put a family account on the staff-preview list (C230-V), from Control → Family → People: it then sees modules set to
+// staff preview, so the founder sees a module the moment it ships while real families do not. Audited; Undo takes it off.
+export async function addPreview(db: Sql, actor: Actor, input: { id: string; reason: string }): Promise<Done> {
+  const added = (await db.query(`insert into control.preview_accounts (account_id, added_by) values ($1, $2) on conflict (account_id) do nothing returning added_at`, [input.id, actor.userId])).rows[0];
+  if (!added) return { ok: false, code: 'already_listed' };
+  await audit(db, actor, 'preview_account.add', 'control.preview_accounts', input.id, null, { account_id: input.id, added_by: actor.userId, added_at: iso(added.added_at), change_reason: input.reason });
+  return { ok: true };
+}
+
 export async function removePreview(db: Sql, actor: Actor, input: { id: string; reason: string }): Promise<Done> {
   const before = (await db.query(`select account_id, added_by, added_at from control.preview_accounts where account_id = $1`, [input.id])).rows[0];
   if (!before) return { ok: false, code: 'not_found' };
@@ -374,6 +383,13 @@ export async function undoChange(db: Sql, actor: Actor, auditId: string, reason:
     current = cur ? { banner_id: target, ended_at: iso(cur.ended_at) } : null;
     await db.query(`update control.app_banners set ended_at = null where banner_id = $1`, [target]);
     restored = { banner_id: target, ended_at: null };
+  } else if (action === 'preview_account.add') {
+    // Only the listing this change made: if the account was taken off and added again since, the newer listing stays.
+    const after = row.after_state as Record<string, unknown> | null;
+    const gone = (await db.query(`delete from control.preview_accounts where account_id = $1 and abs(extract(epoch from added_at - $2::timestamptz)) < 0.001 returning account_id`, [target, after?.added_at ?? null])).rows[0];
+    if (!gone) return { ok: false, code: 'not_found' };
+    current = { account_id: target };
+    restored = { account_id: target, removed: true };
   } else if (action === 'preview_account.remove') {
     const b = before as Record<string, unknown>;
     current = null;

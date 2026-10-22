@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { FamilyCountsView } from '@/components/control/apps/FamilyCountsView';
 import { SubjectListForm } from '@/components/control/apps/SubjectListForm';
@@ -11,7 +12,8 @@ import { getLang } from '@/lib/i18n/server';
 
 // Control → Family (docs/family-app/10 §9, M1-7): counts of the Family app, read only. They come from
 // family.control_counts(), the only door Control has to family data; no name, child, answer or email is read. Below
-// them, the two lists of subjects Control holds: open to every child (C298), and checked explanations only (C300).
+// them, the two lists of subjects Control holds: open to every child (C298), and checked explanations only (C300). A
+// link leads to the people who use the app (C230-V, /control/family/people).
 
 export const dynamic = 'force-dynamic';
 
@@ -26,6 +28,11 @@ export default async function ControlFamilyPage() {
   const lists = data?.lists ?? null;
   return (
     <ModulePage title={t(lang, 'control.family.title')} purpose={t(lang, 'control.family.purpose')} about={t(lang, 'control.family.about')} icon="users" tone="turquoise" eyebrow={t(lang, 'group.control')} headerLang={lang}>
+      <p className="mb-4">
+        <Link href="/control/family/people" data-people-link className="inline-flex min-h-[44px] items-center font-semibold text-royal underline">
+          {t(lang, 'control.family.peopleLink')}
+        </Link>
+      </p>
       {counts && <FamilyCountsView counts={counts} lang={lang} />}
       {lists && (
         <div className="mt-6 flex flex-col gap-6">

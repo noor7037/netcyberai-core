@@ -9,7 +9,7 @@ import type { Actor, Done } from '@/lib/control/apps';
 // authenticator proven in this session (aal2: a founder who is only at aal1 changes nothing here, as for every other
 // sensitive Control change). The body is parsed by the caller's own parser; the change runs in one transaction as the
 // platform role and is audited by the function that makes it.
-const STATUS: Record<string, number> = { not_found: 404, already_undone: 409, already_ended: 409 };
+const STATUS: Record<string, number> = { not_found: 404, already_undone: 409, already_ended: 409, already_listed: 409 };
 
 export async function runChange(req: NextRequest, run: (db: PoolClient, actor: Actor, body: unknown) => Promise<Done<object>>): Promise<NextResponse> {
   const guard = await requireSuperAdmin(req);

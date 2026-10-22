@@ -77,6 +77,9 @@ OUTSIDE_MAY_NAME_FAMILY_TABLE = {
     "src/lib/auth/db.ts": {"accounts"},
     # The AI platform's daily cap counts a family's requests in that family's own transaction (C249).
     "src/lib/ai/daily-cap.ts": {"ai_daily"},
+    # Control's door to the people (C230-V) returns parents' emails and children's names: only its one reader, which
+    # audits every read, may call it.
+    "src/lib/control/family-people.ts": {"control_accounts"},
 }
 
 # C230-D's school parent home moved out of the family area to /parent (M1-2, C248): nothing is exempt any more.
@@ -90,6 +93,10 @@ IMPORT_RE = re.compile(r"""(?:import|export)\s[^'"]*?from\s+['"](?P<mod>[^'"]+)[
 TEMPLATE_RE = re.compile(r"`([^`]*)`", re.DOTALL)
 SQL_HINT = re.compile(r"\b(select|insert|update|delete)\b", re.IGNORECASE)
 TABLE_REF = re.compile(r"\b(?:from|join|into|update)\s+(?P<name>[a-z_][a-z0-9_]*(?:\.[a-z_][a-z0-9_]*)?)\s*(?P<call>\()?", re.IGNORECASE)
+# Any call of a family function, in any position (select family.f(...), from family.f(...)).
+FAMILY_CALL = re.compile(r"\bfamily\.(?P<fn>[a-z_][a-z0-9_]*)\s*\(", re.IGNORECASE)
+# Control's doors to the numbers (definer functions that return counts only, M1-7 and M2-11): any file may call them.
+NUMBER_DOORS = {"control_counts", "m2_counts"}
 FAMILY_TABLE_REF = re.compile(r"\b(?:from|join|into|update)\s+family\.(?P<table>[a-z_][a-z0-9_]*)\s*(?P<call>\()?", re.IGNORECASE)
 SQL_WORDS = {"select", "set", "lateral", "unnest", "jsonb_array_elements", "jsonb_to_recordset", "generate_series", "jsonb_each", "jsonb_object_keys"}
 
@@ -168,14 +175,19 @@ def check_sources(root: Path) -> list[str]:
                 if mod.startswith(("@/lib/family/", "@/components/family/")) or mod in ("@/lib/family", "@/components/family"):
                     if mod not in allowed:
                         problems.append(f"{rel}: imports family code ({mod}); the family app is a bounded module (03 §14)")
-            # 3. Family tables only through family.control_counts().
+            # 3. Family tables and functions only through the number doors, or a door listed for that one file above (the
+            #    people door has exactly one reader, which audits every read).
+            listed = OUTSIDE_MAY_NAME_FAMILY_TABLE.get(rel, set())
             for literal in TEMPLATE_RE.findall(code):
                 for m in FAMILY_TABLE_REF.finditer(literal):
-                    if m.group("call") and m.group("table") == "control_counts":
+                    if m.group("call") or m.group("table") in listed:
                         continue
-                    if m.group("table") in OUTSIDE_MAY_NAME_FAMILY_TABLE.get(rel, set()):
+                    problems.append(f"{rel}: names family.{m.group('table')}; outside the family app only family.control_counts() and family.m2_counts() may be used")
+                for m in FAMILY_CALL.finditer(literal):
+                    fn = m.group("fn").lower()
+                    if fn in NUMBER_DOORS or fn in listed:
                         continue
-                    problems.append(f"{rel}: names family.{m.group('table')}; outside the family app only family.control_counts() may be used")
+                    problems.append(f"{rel}: names family.{fn}(); outside the family app only family.control_counts() and family.m2_counts() may be called")
     return problems
 
 
@@ -229,6 +241,7 @@ def self_test() -> int:
         ("family SQL on public.*", "src/app/api/family/x/route.ts", "const q = `select 1 from public.users`;\n", "family SQL names public.users"),
         ("school code imports family code", "src/lib/fees/x.ts", "import { y } from '@/lib/family/session';\n", "imports family code"),
         ("school code reads a family table", "src/lib/control/x.ts", "const q = `select count(*) from family.children`;\n", "names family.children"),
+        ("the people door outside its audited reader", "src/app/api/control/x/route.ts", "const q = `select family.control_accounts($1, $2, $3, $4)`;\n", "names family.control_accounts"),
         ("a vendor SDK outside the adapters", "src/lib/family/x.ts", "import Anthropic from '@anthropic-ai/sdk';\n", "vendor AI or video SDK"),
         ("a vendor host outside the adapters", "src/lib/copilot/x.ts", "fetch('https://api.openai.com/v1/x');\n", "vendor AI or video host"),
         ("a family table without forced RLS", "supabase/migrations/1_x.sql", "create table family.t (id int);\nalter table family.t enable row level security;\n", "not forced"),
@@ -237,6 +250,7 @@ def self_test() -> int:
         ("src/lib/family/db.ts", "import { withFamilyContext } from '@/lib/auth/db';\n"),
         ("src/lib/family/y.ts", "import { t } from '@/lib/i18n';\nimport { Card } from '@/components/ui/Card';\nconst q = `select c.first_name, extract(epoch from c.created_at) from family.children c join content.topics t on true`;\nconst r = `select * from family.sign_in($1, $2, $3)`;\n"),
         ("src/lib/control/family-counts.ts", "const q = `select family.control_counts() as c`;\n"),
+        ("src/lib/control/family-people.ts", "const q = `select family.control_accounts($1, $2, $3, $4) as people`;\n"),
         ("src/lib/ai/adapters/anthropic.ts", "fetch('https://api.anthropic.com/v1/messages');\n"),
         ("src/middleware.ts", "import { verifyFamilySession } from '@/lib/family/session';\n"),
         ("supabase/migrations/1_ok.sql", "create table content.t (id int);\nalter table content.t enable row level security;\nalter table content.t force row level security;\n"),
