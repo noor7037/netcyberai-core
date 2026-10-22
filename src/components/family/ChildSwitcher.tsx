@@ -27,11 +27,11 @@ export function ChildSwitcher({ w, children, activeId }: { w: Words; children: {
               setBusy(null);
               router.refresh();
             }}
-            className={`flex min-h-[44px] shrink-0 items-center gap-2 rounded-full px-4 text-base font-bold transition-colors motion-reduce:transition-none ${
-              active ? 'bg-white text-royal-deep shadow-md' : 'bg-royal-deep text-white ring-1 ring-white/50 hover:bg-midnight'
+            className={`fam-press flex min-h-[44px] shrink-0 items-center gap-2 rounded-full py-1 pl-1 pr-4 text-base font-bold ${
+              active ? 'bg-white text-royal-deep shadow-lg' : 'bg-royal-deep text-white ring-1 ring-white/40 hover:bg-midnight'
             }`}
           >
-            <span aria-hidden="true" className={`flex h-7 w-7 items-center justify-center rounded-full text-sm ${active ? 'bg-royal text-white' : 'bg-royal-deep text-white'}`}>
+            <span aria-hidden="true" className={`flex h-9 w-9 items-center justify-center rounded-full text-sm ${active ? 'bg-gradient-to-br from-royal to-violet text-white' : 'bg-midnight text-white'}`}>
               {c.firstName.slice(0, 1).toUpperCase()}
             </span>
             {c.firstName}

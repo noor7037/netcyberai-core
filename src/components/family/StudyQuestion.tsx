@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Textarea } from '@/components/ui/Textarea';
 import type { Words } from '@/lib/family/fill';
+import { subjectTheme } from '@/lib/family/subject-theme';
 import type { Subject } from '@/lib/family/subjects';
 import { UnderstandView, type UnderstandInput } from './UnderstandView';
 import { VoiceInput } from './VoiceInput';
@@ -19,7 +20,7 @@ export function StudyQuestion({ w, subject, tone, voice = null }: { w: Words; su
   return (
     <div className="flex flex-col gap-3">
       <form
-        className="flex flex-col gap-3 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate/10"
+        className="fam-card flex flex-col gap-3 bg-white p-4 sm:p-5"
         onSubmit={(e) => {
           e.preventDefault();
           if (text.trim().length >= 3) setAsked({ kind: 'question', text: text.trim() });
@@ -27,7 +28,7 @@ export function StudyQuestion({ w, subject, tone, voice = null }: { w: Words; su
       >
         <Textarea id={`fam-question-${subject}`} label={w['fam.study.ask']} helperText={w['fam.study.askHelp']} maxLength={500} rows={3} value={text} onChange={(e) => setText(e.target.value)} />
         {voice && <VoiceInput w={w} secondsLeft={voice.secondsLeft} onText={(heard) => setText((t) => (t.trim() ? `${t.trim()} ${heard}` : heard).slice(0, 500))} />}
-        <Button type="submit" disabled={text.trim().length < 3} className="w-full sm:w-auto sm:self-start">
+        <Button type="submit" disabled={text.trim().length < 3} className={`fam-cta fam-press w-full rounded-2xl bg-royal-deep font-extrabold text-white sm:w-auto sm:self-start ${subjectTheme(subject).tile}`}>
           {w['fam.study.askButton']}
         </Button>
       </form>

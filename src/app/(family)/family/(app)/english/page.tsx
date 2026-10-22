@@ -19,8 +19,8 @@ export default async function FamilyEnglishPage() {
   if (!switches || !switchOn(switches, 'english_programme')) redirect('/family');
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={t(lang, 'fam.english.course')} title={t(lang, 'fam.english.title')} />
-      <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
+      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={t(lang, 'fam.english.course')} title={t(lang, 'fam.english.title')} subject="english" />
+      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
         <EnglishCourse w={familyWords(lang, ENGLISH_KEYS)} lang={lang} />
       </main>
     </div>
