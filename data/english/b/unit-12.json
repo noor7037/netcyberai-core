@@ -1,0 +1,400 @@
+{
+  "track": "b",
+  "unit": 12,
+  "key": "b.u12",
+  "title": { "en": "Days and time", "hi": "दिन और समय" },
+  "pic": "📅",
+  "can_do": { "en": "I can say days and time.", "hi": "मैं दिनों के नाम और समय बता सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u12.l1",
+      "kind": "words",
+      "title": { "en": "Days of the week", "hi": "हफ़्ते के दिन" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "A week has seven days.", "hi": "एक हफ़्ते में सात दिन होते हैं।" }, "pic": "📅" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u12.l1.monday", "en": "Monday", "hi": "सोमवार", "pic": "🏫", "example": { "en": "On Monday, I go to school.", "hi": "सोमवार को मैं स्कूल जाता/जाती हूँ।" } },
+            { "key": "b.u12.l1.tuesday", "en": "Tuesday", "hi": "मंगलवार", "pic": "📚", "example": { "en": "On Tuesday, I read books.", "hi": "मंगलवार को मैं किताबें पढ़ता/पढ़ती हूँ।" } },
+            { "key": "b.u12.l1.wednesday", "en": "Wednesday", "hi": "बुधवार", "pic": "🎨", "example": { "en": "On Wednesday, we draw.", "hi": "बुधवार को हम चित्र बनाते हैं।" } },
+            { "key": "b.u12.l1.thursday", "en": "Thursday", "hi": "गुरुवार", "pic": "⚽", "example": { "en": "On Thursday, we play games.", "hi": "गुरुवार को हम खेल खेलते हैं।" } },
+            { "key": "b.u12.l1.friday", "en": "Friday", "hi": "शुक्रवार", "pic": "🎵", "example": { "en": "On Friday, we sing.", "hi": "शुक्रवार को हम गाना गाते हैं।" } },
+            { "key": "b.u12.l1.saturday", "en": "Saturday", "hi": "शनिवार", "pic": "🌾", "example": { "en": "On Saturday, I help in the field.", "hi": "शनिवार को मैं खेत में मदद करता/करती हूँ।" } },
+            { "key": "b.u12.l1.sunday", "en": "Sunday", "hi": "रविवार", "pic": "own:haat", "example": { "en": "On Sunday, we go to the haat.", "hi": "रविवार को हम हाट जाते हैं।" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u12.l1.p-after",
+              "prompt": { "en": "Which day comes after Monday?", "hi": "सोमवार के बाद कौन-सा दिन आता है?" },
+              "options": [{ "text": "Sunday" }, { "text": "Tuesday" }, { "text": "Friday" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u12.l1.p-sunday",
+              "prompt": { "en": "Listen. Tap the word.", "hi": "सुनो। शब्द पर टैप करो।", "say": "Sunday" },
+              "options": [{ "text": "Monday" }, { "text": "Sunday" }, { "text": "Saturday" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u12.l1.s-days1", "model": "Monday, Tuesday, Wednesday.", "hi": "सोमवार, मंगलवार, बुधवार।", "pic": "📅" },
+            { "key": "b.u12.l1.s-days2", "model": "Thursday, Friday, Saturday, Sunday!", "hi": "गुरुवार, शुक्रवार, शनिवार, रविवार!", "pic": "📅" },
+            { "key": "b.u12.l1.s-haat", "model": "On Sunday, we go to the haat.", "hi": "रविवार को हम हाट जाते हैं।", "pic": "own:haat" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u12.l1.c-friday",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the word.", "hi": "सुनो। शब्द पर टैप करो।", "say": "Friday" },
+          "options": [{ "text": "Friday" }, { "text": "Monday" }, { "text": "Thursday" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u12.l1.c-first",
+          "type": "choose",
+          "prompt": { "en": "Which day comes after Sunday?", "hi": "रविवार के बाद कौन-सा दिन आता है?" },
+          "options": [{ "text": "Saturday" }, { "text": "Monday" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u12.l1.c-seven",
+          "type": "choose",
+          "prompt": { "en": "How many days are in a week?", "hi": "एक हफ़्ते में कितने दिन होते हैं?", "pic": "📅" },
+          "options": [{ "text": "five" }, { "text": "seven" }, { "text": "ten" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u12.l1.c-wed",
+          "type": "choose",
+          "prompt": { "en": "Which word means बुधवार?", "hi": "कौन-सा शब्द 'बुधवार' है?" },
+          "options": [{ "text": "Wednesday" }, { "text": "Tuesday" }, { "text": "Thursday" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u12.l1.c-haat",
+          "type": "choose",
+          "prompt": { "en": "When does Meera's family go to the haat?", "hi": "मीरा का परिवार हाट कब जाता है?", "pic": "own:haat" },
+          "options": [{ "text": "on Monday" }, { "text": "on Sunday" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Say the seven days with your family.", "hi": "परिवार के साथ सातों दिनों के नाम बोलो।" }
+    },
+    {
+      "key": "b.u12.l2",
+      "kind": "pattern",
+      "title": { "en": "What time is it?", "hi": "कितने बजे हैं?" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Days and time", "hi": "दिन और समय" },
+          "visual": "builder",
+          "examples": [
+            { "en": "What day is it today?", "hi": "आज कौन-सा दिन है?", "pic": "📅", "parts": [{ "text": "What day", "role": "ask" }, { "text": "is", "role": "do" }, { "text": "it", "role": "who" }, { "text": "today?", "role": "when" }] },
+            { "en": "It is Monday.", "hi": "आज सोमवार है।", "pic": "🏫", "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "Monday.", "role": "when" }] },
+            { "en": "What time is it?", "hi": "कितने बजे हैं?", "pic": "⏰", "parts": [{ "text": "What time", "role": "ask" }, { "text": "is", "role": "do" }, { "text": "it?", "role": "who" }] },
+            { "en": "It is seven o'clock.", "hi": "सात बजे हैं।", "pic": "7️⃣", "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "seven o'clock.", "role": "when" }] },
+            { "en": "I go to school at nine o'clock.", "hi": "मैं नौ बजे स्कूल जाता/जाती हूँ।", "pic": "9️⃣", "parts": [{ "text": "I", "role": "who" }, { "text": "go", "role": "do" }, { "text": "to school", "role": "where" }, { "text": "at nine o'clock.", "role": "when" }] },
+            { "en": "On Sunday, I play with Arjun.", "hi": "रविवार को मैं अर्जुन के साथ खेलता/खेलती हूँ।", "pic": "⚽", "parts": [{ "text": "On Sunday,", "role": "when" }, { "text": "I", "role": "who" }, { "text": "play", "role": "do" }, { "text": "with Arjun.", "role": "other" }] }
+          ],
+          "note": { "en": "Say at with time and on with days.", "hi": "समय के साथ at, दिन के साथ on: at six o'clock, on Monday।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u12.l2.b-time", "hi": "कितने बजे हैं?", "pic": "⏰", "tiles": ["is", "time", "it?", "What"], "answer": "What time is it?" },
+            { "key": "b.u12.l2.b-eight", "hi": "आठ बजे हैं।", "pic": "8️⃣", "tiles": ["eight", "It", "o'clock.", "is"], "answer": "It is eight o'clock." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u12.l2.p-on",
+              "prompt": { "en": "I play ___ Sunday.", "hi": "मैं रविवार को खेलता/खेलती हूँ।", "pic": "⚽" },
+              "options": [{ "text": "on" }, { "text": "at" }],
+              "answer": 0,
+              "why": { "en": "Days take on: on Sunday.", "hi": "दिन के साथ on: on Sunday।" }
+            },
+            {
+              "key": "b.u12.l2.p-at",
+              "prompt": { "en": "I wake up ___ six o'clock.", "hi": "मैं छह बजे उठता/उठती हूँ।", "pic": "⏰" },
+              "options": [{ "text": "on" }, { "text": "at" }],
+              "answer": 1,
+              "why": { "en": "Time takes at: at six o'clock.", "hi": "समय के साथ at: at six o'clock।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u12.l2.s-time", "model": "It is ten o'clock.", "hi": "समय बताओ।", "pic": "🔟", "cue": { "en": "What time is it?", "hi": "कितने बजे हैं? (दस बजे)" } },
+            { "key": "b.u12.l2.s-day", "model": "It is Sunday.", "hi": "दिन बताओ।", "pic": "📅", "cue": { "en": "What day is it today?", "hi": "आज कौन-सा दिन है? (रविवार)" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u12.l2.c-build1", "type": "build", "hi": "आज कौन-सा दिन है?", "tiles": ["day", "today?", "What", "it", "is"], "answer": "What day is it today?" },
+        { "key": "b.u12.l2.c-build2", "type": "build", "hi": "मैं छह बजे उठता हूँ।", "tiles": ["wake", "six", "at", "I", "o'clock.", "up"], "answer": "I wake up at six o'clock." },
+        {
+          "key": "b.u12.l2.c-at",
+          "type": "choose",
+          "prompt": { "en": "School is ___ nine o'clock.", "hi": "स्कूल नौ बजे है।", "pic": "🏫" },
+          "options": [{ "text": "at" }, { "text": "on" }],
+          "answer": 0,
+          "why": { "en": "Time takes at.", "hi": "समय के साथ at।" }
+        },
+        {
+          "key": "b.u12.l2.c-on",
+          "type": "choose",
+          "prompt": { "en": "We go to the haat ___ Sunday.", "hi": "हम रविवार को हाट जाते हैं।", "pic": "own:haat" },
+          "options": [{ "text": "at" }, { "text": "on" }],
+          "answer": 1,
+          "why": { "en": "Days take on.", "hi": "दिन के साथ on।" }
+        },
+        {
+          "key": "b.u12.l2.c-ask",
+          "type": "choose",
+          "prompt": { "en": "Which one asks the time?", "hi": "कौन-सा वाक्य समय पूछता है?" },
+          "options": [{ "text": "What time is it?" }, { "text": "What day is it?" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u12.l2.c-seven",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the time.", "hi": "सुनो। सही समय पर टैप करो।", "say": "It is seven o'clock." },
+          "options": [{ "pic": "2️⃣" }, { "pic": "7️⃣" }, { "pic": "6️⃣" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask Papa: What time is it?", "hi": "पापा से पूछो: What time is it?" }
+    },
+    {
+      "key": "b.u12.l3",
+      "kind": "listen",
+      "title": { "en": "Haat day", "hi": "हाट का दिन" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "At the bus stand", "hi": "बस अड्डे पर" },
+          "scene": { "place": "station", "pics": [{ "pic": "🌳", "x": 10, "y": 20, "size": 1.6 }, { "pic": "⏰", "x": 60, "y": 16 }, { "pic": "👨", "x": 24, "y": 40, "size": 1.5 }, { "pic": "👧", "x": 42, "y": 44, "size": 1.4 }, { "pic": "🚌", "x": 80, "y": 40, "size": 1.8 }] },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Papa, what day is it today?", "hi": "पापा, आज कौन-सा दिन है?" },
+            { "speaker": "Papa", "pic": "👨", "en": "It is Sunday. Haat day!", "hi": "आज रविवार है। हाट का दिन!" },
+            { "speaker": "Meera", "pic": "👧", "en": "What time is it now?", "hi": "अभी कितने बजे हैं?" },
+            { "speaker": "Papa", "pic": "👨", "en": "It is nine o'clock.", "hi": "नौ बजे हैं।" },
+            { "speaker": "Papa", "pic": "👨", "en": "The bus comes at ten o'clock.", "hi": "बस दस बजे आती है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Then let us play a game, Papa!", "hi": "तो चलो एक खेल खेलें, पापा!" },
+            { "speaker": "Papa", "pic": "👨", "en": "Look, Meera! The bus is here.", "hi": "देखो, मीरा! बस आ गई।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Yay! Let us go to the haat!", "hi": "वाह! चलो हाट चलें!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u12.l3.p-day",
+              "prompt": { "en": "What day is it?", "hi": "आज कौन-सा दिन है?" },
+              "options": [{ "text": "Monday" }, { "text": "Sunday" }, { "text": "Friday" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u12.l3.p-bus",
+              "prompt": { "en": "When does the bus come?", "hi": "बस कब आती है?" },
+              "options": [{ "text": "at nine o'clock" }, { "text": "at ten o'clock" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u12.l3.s-day", "model": "It is Sunday. Haat day!", "hi": "आज रविवार है। हाट का दिन!", "pic": "own:haat" },
+            { "key": "b.u12.l3.s-time", "model": "What time is it now?", "hi": "अभी कितने बजे हैं?", "pic": "⏰" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u12.l3.c-where",
+          "type": "choose",
+          "prompt": { "en": "Where are Meera and Papa?", "hi": "मीरा और पापा कहाँ हैं?" },
+          "options": [{ "text": "at the bus stand", "pic": "🚌" }, { "text": "at school", "pic": "🏫" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u12.l3.c-nine",
+          "type": "choose",
+          "prompt": { "en": "What time is it first?", "hi": "पहले कितने बजे हैं?" },
+          "options": [{ "pic": "9️⃣" }, { "pic": "🔟" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u12.l3.c-go",
+          "type": "choose",
+          "prompt": { "en": "Where do they go?", "hi": "वे कहाँ जाते हैं?" },
+          "options": [{ "text": "to the pond", "pic": "🌊" }, { "text": "to the haat", "pic": "own:haat" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u12.l3.c-ask",
+          "type": "choose",
+          "prompt": { "en": "Meera asks: What ___ is it today?", "hi": "मीरा पूछती है: आज कौन-सा दिन है?" },
+          "options": [{ "text": "day" }, { "text": "time" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Tell your family: Today is …", "hi": "परिवार को बताओ: Today is …" }
+    },
+    {
+      "key": "b.u12.l4",
+      "kind": "speak",
+      "title": { "en": "My week", "hi": "मेरा हफ़्ता" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "Ms Anita asks about your week", "hi": "अनीता मैडम तुम्हारे हफ़्ते के बारे में पूछती हैं" },
+          "scene": { "place": "school", "pics": [{ "pic": "🏫", "x": 84, "y": 14, "size": 1.6 }, { "pic": "📅", "x": 66, "y": 20 }, { "pic": "👩‍🏫", "x": 26, "y": 40, "size": 1.6 }, { "pic": "🧒", "x": 52, "y": 42, "size": 1.5 }] },
+          "roles": [{ "name": "Ms Anita", "pic": "👩‍🏫" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "What do you do on Monday?", "hi": "सोमवार को तुम क्या करते/करती हो?" },
+            { "role": 1, "en": "On Monday, I go to school.", "hi": "सोमवार को मैं स्कूल जाता/जाती हूँ।" },
+            { "role": 0, "en": "What time do you wake up?", "hi": "तुम कितने बजे उठते/उठती हो?" },
+            { "role": 1, "en": "I wake up at six o'clock.", "hi": "मैं छह बजे उठता/उठती हूँ।" },
+            { "role": 0, "en": "And on Sunday?", "hi": "और रविवार को?" },
+            { "role": 1, "en": "On Sunday, I play with my friends.", "hi": "रविवार को मैं दोस्तों के साथ खेलता/खेलती हूँ।" },
+            { "role": 0, "en": "That sounds fun!", "hi": "यह तो मज़ेदार है!" }
+          ],
+          "partner": { "goal": "Ask about the child's week: one weekday, a wake-up time and Sunday. Model on with days and at with times.", "must_use": ["on Monday", "on Sunday", "at", "o'clock"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u12.l4.br-sunday", "hi": "रविवार को हम हाट जाते हैं।", "tiles": ["go", "to", "Sunday,", "the", "we", "On", "haat."], "answer": "On Sunday, we go to the haat." },
+            { "key": "b.u12.l4.br-nine", "hi": "नौ बजे हैं।", "tiles": ["nine", "is", "o'clock.", "It"], "answer": "It is nine o'clock." }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u12.l4.c-reply",
+          "type": "choose",
+          "prompt": { "en": "What time do you wake up? You say:", "hi": "तुम कितने बजे उठते हो? तुम क्या कहोगे?", "pic": "⏰" },
+          "options": [{ "text": "I wake up at six o'clock." }, { "text": "I wake up on six o'clock." }],
+          "answer": 0,
+          "why": { "en": "Time takes at: at six o'clock.", "hi": "समय के साथ at: at six o'clock।" }
+        },
+        { "key": "b.u12.l4.c-build", "type": "build", "hi": "शुक्रवार को हम गाते हैं।", "tiles": ["sing.", "Friday,", "On", "we"], "answer": "On Friday, we sing." },
+        {
+          "key": "b.u12.l4.c-days",
+          "type": "choose",
+          "prompt": { "en": "Which one is a day?", "hi": "इनमें से दिन कौन-सा है?", "pic": "📅" },
+          "options": [{ "text": "Thursday" }, { "text": "morning" }, { "text": "night" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Say what you do on Sunday.", "hi": "बताओ तुम रविवार को क्या करते/करती हो।" }
+    },
+    {
+      "key": "b.u12.l5",
+      "kind": "review",
+      "title": { "en": "Unit 12 review", "hi": "इकाई 12 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u12.l5.m-bath", "left": { "text": "bath" }, "right": { "pic": "🛁" } },
+            { "key": "b.u12.l5.m-door", "left": { "text": "door" }, "right": { "pic": "🚪" } },
+            { "key": "b.u12.l5.m-clap", "left": { "text": "clap" }, "right": { "pic": "👏" } },
+            { "key": "b.u12.l5.m-lamp", "left": { "text": "lamp" }, "right": { "pic": "🪔" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u12.l5.b-school", "hi": "स्कूल नौ बजे है।", "pic": "🏫", "tiles": ["at", "nine", "School", "o'clock.", "is"], "answer": "School is at nine o'clock." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u12.l5.p-after",
+              "prompt": { "en": "Which day comes after Friday?", "hi": "शुक्रवार के बाद कौन-सा दिन आता है?" },
+              "options": [{ "text": "Saturday" }, { "text": "Thursday" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u12.l5.s-week", "model": "On Monday, I go to school at nine.", "hi": "सोमवार के बारे में बोलो।", "cue": { "en": "Tell me about Monday.", "hi": "सोमवार के बारे में बताओ।" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u12.l5.c-tue",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the word.", "hi": "सुनो। शब्द पर टैप करो।", "say": "Tuesday" },
+          "options": [{ "text": "Thursday" }, { "text": "Tuesday" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u12.l5.c-sat",
+          "type": "choose",
+          "prompt": { "en": "Which day comes before Sunday?", "hi": "रविवार से पहले कौन-सा दिन आता है?" },
+          "options": [{ "text": "Saturday" }, { "text": "Monday" }, { "text": "Friday" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u12.l5.c-at",
+          "type": "choose",
+          "prompt": { "en": "I sleep ___ nine o'clock.", "hi": "मैं नौ बजे सोता/सोती हूँ।", "pic": "😴" },
+          "options": [{ "text": "on" }, { "text": "at" }],
+          "answer": 1
+        },
+        { "key": "b.u12.l5.c-build", "type": "build", "hi": "कितने बजे हैं?", "tiles": ["time", "What", "it?", "is"], "answer": "What time is it?" },
+        {
+          "key": "b.u12.l5.c-wake",
+          "type": "choose",
+          "prompt": { "en": "I ___ up in the morning.", "hi": "मैं सुबह उठता/उठती हूँ।", "pic": "🌞" },
+          "options": [{ "text": "wake" }, { "text": "go" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u12.l5.c-there",
+          "type": "choose",
+          "prompt": { "en": "There ___ seven days in a week.", "hi": "एक हफ़्ते में सात दिन होते हैं।", "pic": "📅" },
+          "options": [{ "text": "is" }, { "text": "are" }],
+          "answer": 1,
+          "why": { "en": "Seven days, so we say there are.", "hi": "सात दिन हैं, इसलिए there are।" }
+        },
+        {
+          "key": "b.u12.l5.c-has",
+          "type": "choose",
+          "prompt": { "en": "A week ___ seven days.", "hi": "एक हफ़्ते में सात दिन होते हैं।", "pic": "📅" },
+          "options": [{ "text": "have" }, { "text": "has" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Make a week chart with your family.", "hi": "परिवार के साथ हफ़्ते का चार्ट बनाओ।" }
+    }
+  ]
+}

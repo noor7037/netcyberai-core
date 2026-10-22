@@ -1,0 +1,413 @@
+{
+  "track": "b",
+  "unit": 4,
+  "key": "b.u04",
+  "title": { "en": "Numbers to 20", "hi": "बीस तक गिनती" },
+  "pic": "🔢",
+  "can_do": { "en": "I can count and ask how many.", "hi": "मैं गिन सकता/सकती हूँ और 'कितने' पूछ सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u04.l1",
+      "kind": "words",
+      "title": { "en": "Count with me", "hi": "मेरे साथ गिनो" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "Let us count from ten to twenty!", "hi": "चलो दस से बीस तक गिनें!" }, "pic": "🔟" },
+        {
+          "type": "pattern",
+          "title": { "en": "Numbers 10 to 20", "hi": "10 से 20 तक गिनती" },
+          "visual": "cards",
+          "examples": [
+            { "en": "Ten, eleven, twelve.", "hi": "दस, ग्यारह, बारह।", "pic": "🔟" },
+            { "en": "Thirteen, fourteen, fifteen.", "hi": "तेरह, चौदह, पंद्रह।", "pic": "🔢" },
+            { "en": "Sixteen, seventeen, eighteen.", "hi": "सोलह, सत्रह, अठारह।", "pic": "🔢" },
+            { "en": "Nineteen, twenty!", "hi": "उन्नीस, बीस!", "pic": "🙌" }
+          ],
+          "note": { "en": "Thirteen to nineteen end in -teen.", "hi": "13 से 19 तक के नाम -teen पर ख़त्म होते हैं।" }
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Clap ten times!", "hi": "दस बार ताली बजाओ!", "pic": "👏" },
+            { "en": "Jump five times!", "hi": "पाँच बार कूदो!", "pic": "🤸" },
+            { "en": "Show me ten fingers!", "hi": "दस उँगलियाँ दिखाओ!", "pic": "🙌" }
+          ]
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u04.l1.count", "en": "count", "hi": "गिनना", "pic": "🧮", "example": { "en": "Count with me: one, two, three.", "hi": "मेरे साथ गिनो: एक, दो, तीन।" } },
+            { "key": "b.u04.l1.egg", "en": "egg", "hi": "अंडा", "pic": "🥚", "example": { "en": "I see twelve eggs.", "hi": "मुझे बारह अंडे दिख रहे हैं।" } },
+            { "key": "b.u04.l1.hen", "en": "hen", "hi": "मुर्गी", "pic": "🐔", "example": { "en": "Look at the hen!", "hi": "मुर्गी को देखो!" } },
+            { "key": "b.u04.l1.tree", "en": "tree", "hi": "पेड़", "pic": "🌳", "example": { "en": "I count eleven trees.", "hi": "मैं ग्यारह पेड़ गिनता/गिनती हूँ।" } },
+            { "key": "b.u04.l1.flower", "en": "flower", "hi": "फूल", "pic": "🌸", "example": { "en": "This flower is for Dadi.", "hi": "यह फूल दादी के लिए है।" } },
+            { "key": "b.u04.l1.star", "en": "star", "hi": "तारा", "pic": "⭐", "example": { "en": "I see twenty stars!", "hi": "मुझे बीस तारे दिख रहे हैं!" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u04.l1.m-twelve", "left": { "text": "twelve" }, "right": { "text": "12" } },
+            { "key": "b.u04.l1.m-fifteen", "left": { "text": "fifteen" }, "right": { "text": "15" } },
+            { "key": "b.u04.l1.m-twenty", "left": { "text": "twenty" }, "right": { "text": "20" } },
+            { "key": "b.u04.l1.m-eleven", "left": { "text": "eleven" }, "right": { "text": "11" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u04.l1.p-flower",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "flower" },
+              "options": [{ "pic": "🌳" }, { "pic": "🌸" }, { "pic": "⭐" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u04.l1.p-sixteen",
+              "prompt": { "en": "Listen. Tap the number.", "hi": "सुनो। संख्या पर टैप करो।", "say": "sixteen" },
+              "options": [{ "text": "6" }, { "text": "16" }, { "text": "19" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u04.l1.s-count", "model": "Ten, eleven, twelve.", "hi": "दस, ग्यारह, बारह।", "pic": "🔟" },
+            { "key": "b.u04.l1.s-stars", "model": "I see twenty stars!", "hi": "मुझे बीस तारे दिख रहे हैं!", "pic": "⭐" },
+            { "key": "b.u04.l1.s-with", "model": "Count with me!", "hi": "मेरे साथ गिनो!", "pic": "🧮" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u04.l1.c-hen",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "hen" },
+          "options": [{ "pic": "🐔" }, { "pic": "🥚" }, { "pic": "🌸" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u04.l1.c-twelve",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the number.", "hi": "सुनो। संख्या पर टैप करो।", "say": "twelve" },
+          "options": [{ "text": "20" }, { "text": "12" }, { "text": "2" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u04.l1.c-twenty",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the number.", "hi": "सुनो। संख्या पर टैप करो।", "say": "twenty" },
+          "options": [{ "text": "12" }, { "text": "10" }, { "text": "20" }],
+          "answer": 2
+        },
+        {
+          "key": "b.u04.l1.c-tree",
+          "type": "choose",
+          "prompt": { "en": "Which word means पेड़?", "hi": "कौन-सा शब्द 'पेड़' है?", "pic": "🌳" },
+          "options": [{ "text": "flower" }, { "text": "tree" }, { "text": "star" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u04.l1.c-fifteen",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the number.", "hi": "सुनो। संख्या पर टैप करो।", "say": "fifteen" },
+          "options": [{ "text": "15" }, { "text": "13" }, { "text": "5" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Count from 10 to 20 with your family.", "hi": "घरवालों के साथ 10 से 20 तक गिनो।" }
+    },
+    {
+      "key": "b.u04.l2",
+      "kind": "pattern",
+      "title": { "en": "How many? One egg, two eggs", "hi": "कितने? एक अंडा, दो अंडे" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "One and many", "hi": "एक और कई" },
+          "visual": "plural",
+          "examples": [
+            { "en": "One egg, three eggs.", "hi": "एक अंडा, तीन अंडे।", "pic": "🥚" },
+            { "en": "One hen, five hens.", "hi": "एक मुर्गी, पाँच मुर्गियाँ।", "pic": "🐔" },
+            { "en": "One star, twenty stars.", "hi": "एक तारा, बीस तारे।", "pic": "⭐" },
+            { "en": "How many books? Twelve books.", "hi": "कितनी किताबें? बारह किताबें।", "pic": "📚" },
+            { "en": "How many trees? Eleven trees.", "hi": "कितने पेड़? ग्यारह पेड़।", "pic": "🌳" }
+          ],
+          "note": { "en": "More than one? Add -s: one book, two books.", "hi": "एक से ज़्यादा? -s लगाओ: one book, two books।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u04.l2.b-how", "hi": "कितनी मुर्गियाँ?", "pic": "🐔", "tiles": ["hens?", "How", "many"], "answer": "How many hens?" },
+            { "key": "b.u04.l2.b-pencils", "hi": "मुझे दस पेंसिलें दिख रही हैं।", "pic": "✏️", "tiles": ["pencils.", "see", "I", "ten"], "answer": "I see ten pencils." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u04.l2.p-s",
+              "prompt": { "en": "Three ___.", "hi": "तीन अंडे।", "pic": "🥚" },
+              "options": [{ "text": "egg" }, { "text": "eggs" }],
+              "answer": 1,
+              "why": { "en": "Three is more than one, so we say eggs.", "hi": "तीन यानी एक से ज़्यादा, इसलिए eggs।" }
+            },
+            {
+              "key": "b.u04.l2.p-one",
+              "prompt": { "en": "One ___.", "hi": "एक तारा।", "pic": "⭐" },
+              "options": [{ "text": "star" }, { "text": "stars" }],
+              "answer": 0,
+              "why": { "en": "Just one star: no -s.", "hi": "एक ही हो तो -s नहीं।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u04.l2.s-fingers", "model": "Ten fingers!", "hi": "अपनी उँगलियाँ गिनकर बोलो।", "pic": "🙌", "cue": { "en": "Count your fingers. How many?", "hi": "अपनी उँगलियाँ गिनो। कितनी हैं?" } },
+            { "key": "b.u04.l2.s-ask", "model": "How many stars?", "hi": "पूछो: कितने तारे?", "pic": "⭐", "cue": { "en": "Ask Meera about the stars.", "hi": "मीरा से तारों के बारे में पूछो।" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u04.l2.c-build1", "type": "build", "hi": "कितने अंडे?", "tiles": ["many", "eggs?", "How"], "answer": "How many eggs?" },
+        { "key": "b.u04.l2.c-build2", "type": "build", "hi": "मुझे बीस तारे दिख रहे हैं।", "tiles": ["twenty", "I", "stars.", "see"], "answer": "I see twenty stars." },
+        {
+          "key": "b.u04.l2.c-books",
+          "type": "choose",
+          "prompt": { "en": "Two ___.", "hi": "दो किताबें।", "pic": "📚" },
+          "options": [{ "text": "book" }, { "text": "books" }],
+          "answer": 1,
+          "why": { "en": "Two is more than one, so we add -s.", "hi": "दो यानी एक से ज़्यादा, इसलिए -s लगता है।" }
+        },
+        {
+          "key": "b.u04.l2.c-one",
+          "type": "choose",
+          "prompt": { "en": "One ___.", "hi": "एक पेड़।", "pic": "🌳" },
+          "options": [{ "text": "trees" }, { "text": "tree" }],
+          "answer": 1,
+          "why": { "en": "Just one tree: no -s.", "hi": "एक ही पेड़ हो तो -s नहीं।" }
+        },
+        {
+          "key": "b.u04.l2.c-ask",
+          "type": "choose",
+          "prompt": { "en": "Which one asks for a number?", "hi": "कौन-सा वाक्य गिनती पूछता है?" },
+          "options": [{ "text": "How many hens?" }, { "text": "What is your name?" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Count things at home. Ask: How many …?", "hi": "घर की चीज़ें गिनो। पूछो: How many …?" }
+    },
+    {
+      "key": "b.u04.l3",
+      "kind": "listen",
+      "title": { "en": "Dadi's hens", "hi": "दादी की मुर्गियाँ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Count the eggs", "hi": "अंडे गिनो" },
+          "scene": { "place": "village", "pics": [{ "pic": "🏡", "x": 84, "y": 14, "size": 1.8 }, { "pic": "🌳", "x": 8, "y": 20, "size": 1.8 }, { "pic": "👵", "x": 22, "y": 40, "size": 1.5 }, { "pic": "👦", "x": 40, "y": 44, "size": 1.4 }, { "pic": "🥚", "x": 50, "y": 56, "size": 0.7 }, { "pic": "🐔", "x": 60, "y": 50 }, { "pic": "🐔", "x": 70, "y": 52 }, { "pic": "🐔", "x": 80, "y": 50 }] },
+          "lines": [
+            { "speaker": "Dadi", "pic": "👵", "en": "Arjun, come! Count the eggs.", "hi": "अर्जुन, आओ! अंडे गिनो।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "One, two, three … twelve! Twelve eggs!", "hi": "एक, दो, तीन … बारह! बारह अंडे!" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Very good! How many hens?", "hi": "बहुत अच्छे! कितनी मुर्गियाँ हैं?" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Fifteen hens? No, sixteen hens!", "hi": "पंद्रह मुर्गियाँ? नहीं, सोलह मुर्गियाँ!" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Yes, sixteen. And look, one more hen!", "hi": "हाँ, सोलह। और देखो, एक और मुर्गी!" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Seventeen hens! I can count, Dadi!", "hi": "सत्रह मुर्गियाँ! मुझे गिनना आता है, दादी!" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Clever boy! Now count to twenty.", "hi": "शाबाश! अब बीस तक गिनो।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u04.l3.p-eggs",
+              "prompt": { "en": "How many eggs?", "hi": "कितने अंडे हैं?" },
+              "options": [{ "text": "10" }, { "text": "12" }, { "text": "20" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u04.l3.p-hens",
+              "prompt": { "en": "How many hens at the end?", "hi": "आख़िर में कितनी मुर्गियाँ हैं?" },
+              "options": [{ "text": "16" }, { "text": "17" }, { "text": "7" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u04.l3.s-twelve", "model": "Twelve eggs!", "hi": "बारह अंडे!", "pic": "🥚" },
+            { "key": "b.u04.l3.s-count", "model": "Now count to twenty.", "hi": "अब बीस तक गिनो।", "pic": "🔢" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u04.l3.c-who",
+          "type": "choose",
+          "prompt": { "en": "Who counts the eggs?", "hi": "अंडे कौन गिनता है?" },
+          "options": [{ "text": "Arjun", "pic": "👦" }, { "text": "Dadi", "pic": "👵" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u04.l3.c-what",
+          "type": "choose",
+          "prompt": { "en": "What does Dadi ask?", "hi": "दादी क्या पूछती हैं?" },
+          "options": [{ "text": "How old are you?" }, { "text": "How many hens?" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u04.l3.c-sixteen",
+          "type": "choose",
+          "prompt": { "en": "Arjun says: No, ___ hens!", "hi": "अर्जुन कहता है: नहीं, ___ मुर्गियाँ!" },
+          "options": [{ "text": "sixteen" }, { "text": "six" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Count to twenty with Dadi or Mummy.", "hi": "दादी या माँ के साथ बीस तक गिनो।" }
+    },
+    {
+      "key": "b.u04.l4",
+      "kind": "speak",
+      "title": { "en": "Count and tell", "hi": "गिनो और बताओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "picture",
+          "scene": { "place": "field", "pics": [{ "pic": "☀️", "x": 88, "y": 8, "size": 1.4 }, { "pic": "🌳", "x": 10, "y": 18, "size": 1.6 }, { "pic": "🌳", "x": 26, "y": 16, "size": 1.6 }, { "pic": "🌳", "x": 42, "y": 18, "size": 1.6 }, { "pic": "🐔", "x": 20, "y": 50 }, { "pic": "🐔", "x": 34, "y": 52 }, { "pic": "🐔", "x": 48, "y": 50 }, { "pic": "🐔", "x": 62, "y": 52 }, { "pic": "🌸", "x": 76, "y": 48 }, { "pic": "🌸", "x": 86, "y": 50 }] },
+          "questions": [
+            { "key": "b.u04.l4.q-trees", "en": "How many trees?", "hi": "कितने पेड़ हैं?", "model": "Three trees." },
+            { "key": "b.u04.l4.q-hens", "en": "How many hens?", "hi": "कितनी मुर्गियाँ हैं?", "model": "Four hens." },
+            { "key": "b.u04.l4.q-flowers", "en": "How many flowers?", "hi": "कितने फूल हैं?", "model": "Two flowers." },
+            { "key": "b.u04.l4.q-all", "en": "Tell us about the picture.", "hi": "चित्र के बारे में बताओ।", "model": "I see three trees and four hens." }
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u04.l4.br-hens", "hi": "मुझे चार मुर्गियाँ दिख रही हैं।", "tiles": ["hens.", "four", "see", "I"], "answer": "I see four hens." },
+            { "key": "b.u04.l4.br-how", "hi": "कितने फूल?", "tiles": ["flowers?", "many", "How"], "answer": "How many flowers?" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u04.l4.s-ask", "model": "How many trees? Three trees!", "hi": "पूछो और ख़ुद जवाब दो।", "cue": { "en": "Ask and answer about the trees.", "hi": "पेड़ों के बारे में पूछो और बताओ।" } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u04.l4.c-after",
+          "type": "choose",
+          "prompt": { "en": "Which number comes after nineteen?", "hi": "उन्नीस के बाद कौन-सी संख्या आती है?" },
+          "options": [{ "text": "twenty" }, { "text": "eighteen" }, { "text": "ten" }],
+          "answer": 0
+        },
+        { "key": "b.u04.l4.c-build", "type": "build", "hi": "मुझे तीन पेड़ दिख रहे हैं।", "tiles": ["trees.", "I", "three", "see"], "answer": "I see three trees." },
+        {
+          "key": "b.u04.l4.c-many",
+          "type": "choose",
+          "prompt": { "en": "How many ___?", "hi": "कितने फूल?", "pic": "🌸" },
+          "options": [{ "text": "flower" }, { "text": "flowers" }],
+          "answer": 1,
+          "why": { "en": "After how many, we add -s.", "hi": "How many के बाद -s लगता है।" }
+        }
+      ],
+      "home": { "en": "Count trees or hens near your home.", "hi": "घर के पास के पेड़ या मुर्गियाँ गिनो।" }
+    },
+    {
+      "key": "b.u04.l5",
+      "kind": "review",
+      "title": { "en": "Unit 4 review", "hi": "इकाई 4 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u04.l5.m-fourteen", "left": { "text": "fourteen" }, "right": { "text": "14" } },
+            { "key": "b.u04.l5.m-eighteen", "left": { "text": "eighteen" }, "right": { "text": "18" } },
+            { "key": "b.u04.l5.m-flower", "left": { "text": "flower" }, "right": { "pic": "🌸" } },
+            { "key": "b.u04.l5.m-crayon", "left": { "text": "crayon" }, "right": { "pic": "🖍️" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u04.l5.b-how", "hi": "कितने तारे?", "pic": "⭐", "tiles": ["many", "stars?", "How"], "answer": "How many stars?" }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u04.l5.p-seventeen",
+              "prompt": { "en": "Listen. Tap the number.", "hi": "सुनो। संख्या पर टैप करो।", "say": "seventeen" },
+              "options": [{ "text": "17" }, { "text": "16" }, { "text": "7" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u04.l5.s-count", "model": "Eleven, twelve, thirteen, fourteen, fifteen!", "hi": "11 से 15 तक गिनो।", "cue": { "en": "Count from eleven to fifteen.", "hi": "ग्यारह से पंद्रह तक गिनो।" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u04.l5.c-egg",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "egg" },
+          "options": [{ "pic": "🥚" }, { "pic": "🐔" }, { "pic": "⭐" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u04.l5.c-nineteen",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the number.", "hi": "सुनो। संख्या पर टैप करो।", "say": "nineteen" },
+          "options": [{ "text": "9" }, { "text": "19" }, { "text": "18" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u04.l5.c-hens",
+          "type": "choose",
+          "prompt": { "en": "Seven ___.", "hi": "सात मुर्गियाँ।", "pic": "🐔" },
+          "options": [{ "text": "hen" }, { "text": "hens" }],
+          "answer": 1,
+          "why": { "en": "Seven is more than one, so we say hens.", "hi": "सात यानी एक से ज़्यादा, इसलिए hens।" }
+        },
+        { "key": "b.u04.l5.c-build", "type": "build", "hi": "कितने पेड़?", "tiles": ["trees?", "How", "many"], "answer": "How many trees?" },
+        {
+          "key": "b.u04.l5.c-an",
+          "type": "choose",
+          "prompt": { "en": "This is ___ egg.", "hi": "यह एक अंडा है।", "pic": "🥚" },
+          "options": [{ "text": "a" }, { "text": "an" }],
+          "answer": 1,
+          "why": { "en": "Egg starts with e, so we say an egg.", "hi": "Egg 'e' से शुरू होता है, इसलिए an egg।" }
+        },
+        {
+          "key": "b.u04.l5.c-he",
+          "type": "choose",
+          "prompt": { "en": "Arjun is my brother. ___ is six.", "hi": "अर्जुन मेरा भाई है। वह छह साल का है।", "pic": "👦" },
+          "options": [{ "text": "She" }, { "text": "He" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u04.l5.c-star",
+          "type": "choose",
+          "prompt": { "en": "Which word means तारा?", "hi": "कौन-सा शब्द 'तारा' है?" },
+          "options": [{ "text": "tree" }, { "text": "star" }, { "text": "flower" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask a family member: How many …?", "hi": "घर में किसी से पूछो: How many …?" }
+    }
+  ]
+}

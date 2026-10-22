@@ -1,0 +1,433 @@
+{
+  "track": "b",
+  "unit": 9,
+  "key": "b.u09",
+  "title": { "en": "Review: show and tell", "hi": "दोहराओ: दिखाओ और बताओ" },
+  "pic": "🧸",
+  "can_do": { "en": "I can show a thing and talk about it.", "hi": "मैं कोई चीज़ दिखाकर उसके बारे में बोल सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u09.l1",
+      "kind": "words",
+      "title": { "en": "Show and tell words", "hi": "दिखाओ और बताओ के शब्द" },
+      "minutes": 5,
+      "steps": [
+        { "type": "tip", "text": { "en": "Choose one thing to show your class!", "hi": "कक्षा को दिखाने के लिए एक चीज़ चुनो!" }, "pic": "🎁" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u09.l1.show", "en": "show", "hi": "दिखाना", "pic": "👉", "example": { "en": "Show me your toy.", "hi": "मुझे अपना खिलौना दिखाओ।" } },
+            { "key": "b.u09.l1.look", "en": "look", "hi": "देखना", "pic": "👀", "example": { "en": "Look at my kite!", "hi": "मेरी पतंग देखो!" } },
+            { "key": "b.u09.l1.toy", "en": "toy", "hi": "खिलौना", "pic": "🧸", "example": { "en": "This is my toy.", "hi": "यह मेरा खिलौना है।" } },
+            { "key": "b.u09.l1.kite", "en": "kite", "hi": "पतंग", "pic": "🪁", "example": { "en": "My kite can fly high.", "hi": "मेरी पतंग ऊँची उड़ सकती है।" } },
+            { "key": "b.u09.l1.favourite", "en": "favourite", "hi": "सबसे प्यारा (पसंदीदा)", "pic": "❤️", "example": { "en": "This is my favourite book.", "hi": "यह मेरी सबसे प्यारी किताब है।" } },
+            { "key": "b.u09.l1.clap", "en": "clap", "hi": "ताली बजाना", "pic": "👏", "example": { "en": "Let us clap for Meera!", "hi": "चलो मीरा के लिए ताली बजाएँ!" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u09.l1.m-toy", "left": { "text": "toy" }, "right": { "pic": "🧸" } },
+            { "key": "b.u09.l1.m-kite", "left": { "text": "kite" }, "right": { "pic": "🪁" } },
+            { "key": "b.u09.l1.m-clap", "left": { "text": "clap" }, "right": { "pic": "👏" } },
+            { "key": "b.u09.l1.m-look", "left": { "text": "look" }, "right": { "pic": "👀" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u09.l1.p-show",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "show" },
+              "options": [{ "pic": "👉" }, { "pic": "👏" }, { "pic": "🪁" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u09.l1.p-favourite",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "favourite" },
+              "options": [{ "pic": "🧸" }, { "pic": "❤️" }, { "pic": "👀" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u09.l1.s-look", "model": "Look at my kite!", "hi": "मेरी पतंग देखो!", "pic": "🪁" },
+            { "key": "b.u09.l1.s-fav", "model": "This is my favourite toy.", "hi": "यह मेरा सबसे प्यारा खिलौना है।", "pic": "🧸" },
+            { "key": "b.u09.l1.s-clap", "model": "Let us clap!", "hi": "चलो ताली बजाएँ!", "pic": "👏" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u09.l1.c-kite",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "kite" },
+          "options": [{ "pic": "🧸" }, { "pic": "🪁" }, { "pic": "👀" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u09.l1.c-toy",
+          "type": "choose",
+          "prompt": { "en": "Which word means खिलौना?", "hi": "कौन-सा शब्द 'खिलौना' है?", "pic": "🧸" },
+          "options": [{ "text": "toy" }, { "text": "kite" }, { "text": "look" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u09.l1.c-look",
+          "type": "choose",
+          "prompt": { "en": "Which word means देखना?", "hi": "कौन-सा शब्द 'देखना' है?", "pic": "👀" },
+          "options": [{ "text": "clap" }, { "text": "look" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u09.l1.c-fav",
+          "type": "choose",
+          "prompt": { "en": "This is my ___ book.", "hi": "यह मेरी सबसे प्यारी किताब है।", "pic": "📖" },
+          "options": [{ "text": "favourite" }, { "text": "clap" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Choose one thing to show tomorrow.", "hi": "कल दिखाने के लिए एक चीज़ चुनो।" }
+    },
+    {
+      "key": "b.u09.l2",
+      "kind": "pattern",
+      "title": { "en": "All my sentences", "hi": "मेरे सारे वाक्य" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Sentences I know", "hi": "वाक्य जो मुझे आते हैं" },
+          "visual": "cards",
+          "examples": [
+            { "en": "I am Meera. I am eight.", "hi": "मैं मीरा हूँ। मैं आठ साल की हूँ।", "pic": "👧" },
+            { "en": "She is my friend Salma.", "hi": "वह मेरी दोस्त सलमा है।", "pic": "🧕" },
+            { "en": "This is a kite. That is a toy.", "hi": "यह पतंग है। वह खिलौना है।", "pic": "🪁" },
+            { "en": "How many stars? Ten stars.", "hi": "कितने तारे? दस तारे।", "pic": "⭐" },
+            { "en": "My kite is big and new.", "hi": "मेरी पतंग बड़ी और नई है।", "pic": "🪁" },
+            { "en": "I like mangoes. Do you like mangoes?", "hi": "मुझे आम पसंद हैं। क्या तुम्हें आम पसंद हैं?", "pic": "🥭" },
+            { "en": "I have a toy. Arjun has a kite.", "hi": "मेरे पास खिलौना है। अर्जुन के पास पतंग है।", "pic": "🧸" },
+            { "en": "A bird can fly. I can't fly.", "hi": "चिड़िया उड़ सकती है। मैं उड़ नहीं सकता/सकती।", "pic": "🐦" }
+          ],
+          "note": { "en": "You know so many sentences!", "hi": "तुम्हें कितने सारे वाक्य आते हैं!" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u09.l2.b-fav", "hi": "यह मेरा सबसे प्यारा खिलौना है।", "pic": "🧸", "tiles": ["toy.", "my", "This", "favourite", "is"], "answer": "This is my favourite toy." },
+            { "key": "b.u09.l2.b-kite", "hi": "मेरी पतंग ऊँची उड़ सकती है।", "pic": "🪁", "tiles": ["fly", "kite", "high.", "My", "can"], "answer": "My kite can fly high." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u09.l2.p-has",
+              "prompt": { "en": "Salma ___ a toy.", "hi": "सलमा के पास एक खिलौना है।", "pic": "🧕" },
+              "options": [{ "text": "have" }, { "text": "has" }],
+              "answer": 1,
+              "why": { "en": "Salma is she, so we say has.", "hi": "सलमा = she, इसलिए has।" }
+            },
+            {
+              "key": "b.u09.l2.p-an",
+              "prompt": { "en": "That is ___ old kite.", "hi": "वह एक पुरानी पतंग है।", "pic": "🪁" },
+              "options": [{ "text": "a" }, { "text": "an" }],
+              "answer": 1,
+              "why": { "en": "Old starts with o, so we say an.", "hi": "Old 'o' से शुरू होता है, इसलिए an।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u09.l2.s-show", "model": "Look! This is my favourite toy.", "hi": "अपनी चीज़ दिखाकर बोलो।", "pic": "🧸", "cue": { "en": "Show us your thing.", "hi": "अपनी चीज़ दिखाओ।" } },
+            { "key": "b.u09.l2.s-about", "model": "It is small. I like it.", "hi": "उसके बारे में दो बातें बोलो।", "cue": { "en": "Tell us about it.", "hi": "उसके बारे में बताओ।" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u09.l2.c-build1", "type": "build", "hi": "मुझे अपनी पतंग पसंद है।", "tiles": ["kite.", "like", "my", "I"], "answer": "I like my kite." },
+        { "key": "b.u09.l2.c-build2", "type": "build", "hi": "मीरा के पास एक खिलौना है।", "tiles": ["toy.", "has", "Meera", "a"], "answer": "Meera has a toy." },
+        {
+          "key": "b.u09.l2.c-am",
+          "type": "choose",
+          "prompt": { "en": "I ___ eight years old.", "hi": "मैं आठ साल का/की हूँ।" },
+          "options": [{ "text": "is" }, { "text": "am" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u09.l2.c-he",
+          "type": "choose",
+          "prompt": { "en": "Arjun is my brother. ___ is six.", "hi": "अर्जुन मेरा भाई है। वह छह साल का है।", "pic": "👦" },
+          "options": [{ "text": "He" }, { "text": "She" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u09.l2.c-many",
+          "type": "choose",
+          "prompt": { "en": "How many ___?", "hi": "कितनी पतंगें?", "pic": "🪁" },
+          "options": [{ "text": "kite" }, { "text": "kites" }],
+          "answer": 1,
+          "why": { "en": "After how many, we add -s.", "hi": "How many के बाद -s लगता है।" }
+        },
+        {
+          "key": "b.u09.l2.c-can",
+          "type": "choose",
+          "prompt": { "en": "A kite ___ fly.", "hi": "पतंग उड़ सकती है।", "pic": "🪁" },
+          "options": [{ "text": "can" }, { "text": "can't" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Say three sentences about your favourite thing.", "hi": "अपनी सबसे प्यारी चीज़ के बारे में तीन वाक्य बोलो।" }
+    },
+    {
+      "key": "b.u09.l3",
+      "kind": "listen",
+      "title": { "en": "Show and tell day", "hi": "दिखाओ और बताओ का दिन" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Meera's kite", "hi": "मीरा की पतंग" },
+          "scene": { "place": "school", "pics": [{ "pic": "🏫", "x": 84, "y": 14, "size": 1.8 }, { "pic": "👩‍🏫", "x": 20, "y": 40, "size": 1.6 }, { "pic": "👧", "x": 42, "y": 42, "size": 1.5 }, { "pic": "🪁", "x": 56, "y": 20, "size": 1.4 }, { "pic": "🧕", "x": 70, "y": 44, "size": 1.4 }, { "pic": "🧸", "x": 82, "y": 52 }] },
+          "lines": [
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Today is show and tell day!", "hi": "आज 'दिखाओ और बताओ' का दिन है!" },
+            { "speaker": "Meera", "pic": "👧", "en": "Look! This is my kite.", "hi": "देखो! यह मेरी पतंग है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "It is big and new.", "hi": "यह बड़ी और नई है।" },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Can it fly?", "hi": "क्या यह उड़ सकती है?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Yes! It can fly very high.", "hi": "हाँ! यह बहुत ऊँची उड़ सकती है।" },
+            { "speaker": "Salma", "pic": "🧕", "en": "This is my favourite toy. It is old.", "hi": "यह मेरा सबसे प्यारा खिलौना है। यह पुराना है।" },
+            { "speaker": "Ms Anita", "pic": "👩‍🏫", "en": "Lovely! Let us clap for Meera and Salma.", "hi": "बहुत सुंदर! चलो मीरा और सलमा के लिए ताली बजाएँ।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u09.l3.p-kite",
+              "prompt": { "en": "What does Meera show?", "hi": "मीरा क्या दिखाती है?" },
+              "options": [{ "text": "a toy", "pic": "🧸" }, { "text": "a kite", "pic": "🪁" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u09.l3.p-fly",
+              "prompt": { "en": "Can Meera's kite fly?", "hi": "क्या मीरा की पतंग उड़ सकती है?" },
+              "options": [{ "text": "Yes, it can." }, { "text": "No, it can't." }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u09.l3.s-look", "model": "Look! This is my kite.", "hi": "देखो! यह मेरी पतंग है।", "pic": "🪁" },
+            { "key": "b.u09.l3.s-clap", "model": "Let us clap!", "hi": "चलो ताली बजाएँ!", "pic": "👏" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u09.l3.c-kite",
+          "type": "choose",
+          "prompt": { "en": "Meera's kite is ___.", "hi": "मीरा की पतंग कैसी है?" },
+          "options": [{ "text": "big and new" }, { "text": "small and old" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u09.l3.c-salma",
+          "type": "choose",
+          "prompt": { "en": "What does Salma show?", "hi": "सलमा क्या दिखाती है?" },
+          "options": [{ "text": "a book", "pic": "📖" }, { "text": "a toy", "pic": "🧸" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u09.l3.c-old",
+          "type": "choose",
+          "prompt": { "en": "Salma's toy is ___.", "hi": "सलमा का खिलौना कैसा है?" },
+          "options": [{ "text": "new" }, { "text": "old" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u09.l3.c-end",
+          "type": "choose",
+          "prompt": { "en": "What do they do at the end?", "hi": "अंत में सब क्या करते हैं?" },
+          "options": [{ "text": "clap", "pic": "👏" }, { "text": "sleep", "pic": "😴" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Do show and tell at home with your family.", "hi": "घर पर परिवार के साथ 'दिखाओ और बताओ' करो।" }
+    },
+    {
+      "key": "b.u09.l4",
+      "kind": "speak",
+      "title": { "en": "My show and tell", "hi": "मेरा 'दिखाओ और बताओ'" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "Your turn to show", "hi": "दिखाने की तुम्हारी बारी" },
+          "scene": { "place": "school", "pics": [{ "pic": "🏫", "x": 84, "y": 14, "size": 1.6 }, { "pic": "👩‍🏫", "x": 24, "y": 40, "size": 1.6 }, { "pic": "🧒", "x": 50, "y": 42, "size": 1.5 }, { "pic": "🧸", "x": 64, "y": 52 }] },
+          "roles": [{ "name": "Ms Anita", "pic": "👩‍🏫" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Now it is your turn. What is this?", "hi": "अब तुम्हारी बारी है। यह क्या है?" },
+            { "role": 1, "en": "This is my favourite toy.", "hi": "यह मेरा सबसे प्यारा खिलौना है।" },
+            { "role": 0, "en": "Is it big or small?", "hi": "यह बड़ा है या छोटा?" },
+            { "role": 1, "en": "It is small and old.", "hi": "यह छोटा और पुराना है।" },
+            { "role": 0, "en": "Do you like it?", "hi": "क्या तुम्हें यह पसंद है?" },
+            { "role": 1, "en": "Yes, I do. I like it a lot.", "hi": "हाँ। मुझे यह बहुत पसंद है।" },
+            { "role": 0, "en": "Thank you! Let us clap!", "hi": "धन्यवाद! चलो ताली बजाएँ!" }
+          ],
+          "partner": { "goal": "Act as the teacher at show and tell. Ask what the thing is, what it is like and whether the child likes it; then praise.", "must_use": ["this is", "it is", "I like"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u09.l4.br-fav", "hi": "यह मेरी सबसे प्यारी पतंग है।", "tiles": ["kite.", "is", "favourite", "This", "my"], "answer": "This is my favourite kite." },
+            { "key": "b.u09.l4.br-look", "hi": "देखो! यह छोटा है।", "tiles": ["small.", "Look!", "is", "It"], "answer": "Look! It is small." }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u09.l4.s-show", "model": "This is my toy. It is small.", "hi": "अपनी चीज़ के बारे में दो वाक्य बोलो।", "cue": { "en": "Show and tell!", "hi": "दिखाओ और बताओ!" } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u09.l4.c-what",
+          "type": "choose",
+          "prompt": { "en": "Ms Anita asks: Is it big or small? You say:", "hi": "मैडम पूछती हैं: Is it big or small? तुम क्या कहोगे?", "pic": "🧸" },
+          "options": [{ "text": "It is small." }, { "text": "I am small." }],
+          "answer": 0,
+          "why": { "en": "We talk about the toy, so we say it.", "hi": "बात खिलौने की है, इसलिए It।" }
+        },
+        { "key": "b.u09.l4.c-build", "type": "build", "hi": "मुझे यह बहुत पसंद है।", "tiles": ["a", "like", "lot.", "I", "it"], "answer": "I like it a lot." },
+        {
+          "key": "b.u09.l4.c-fav",
+          "type": "choose",
+          "prompt": { "en": "Which word means सबसे प्यारा?", "hi": "कौन-सा शब्द 'सबसे प्यारा' है?", "pic": "❤️" },
+          "options": [{ "text": "favourite" }, { "text": "old" }, { "text": "clap" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Show one thing to your family. Tell two things about it.", "hi": "परिवार को एक चीज़ दिखाओ। उसके बारे में दो बातें बताओ।" }
+    },
+    {
+      "key": "b.u09.l5",
+      "kind": "review",
+      "title": { "en": "Units 1 to 9 review", "hi": "इकाई 1 से 9 दोहराओ" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u09.l5.m-friend", "left": { "text": "friend" }, "right": { "pic": "👭" } },
+            { "key": "b.u09.l5.m-grandmother", "left": { "text": "grandmother" }, "right": { "pic": "👵" } },
+            { "key": "b.u09.l5.m-ruler", "left": { "text": "ruler" }, "right": { "pic": "📏" } },
+            { "key": "b.u09.l5.m-hen", "left": { "text": "hen" }, "right": { "pic": "🐔" } },
+            { "key": "b.u09.l5.m-long", "left": { "text": "long" }, "right": { "pic": "🐍" } },
+            { "key": "b.u09.l5.m-banana", "left": { "text": "banana" }, "right": { "pic": "🍌" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u09.l5.m-mouth", "left": { "text": "mouth" }, "right": { "pic": "👄" } },
+            { "key": "b.u09.l5.m-bird", "left": { "text": "bird" }, "right": { "pic": "🐦" } },
+            { "key": "b.u09.l5.m-kite", "left": { "text": "kite" }, "right": { "pic": "🪁" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u09.l5.b-me", "hi": "मेरा नाम मीरा है और मैं आठ साल की हूँ।", "pic": "👧", "tiles": ["eight.", "name", "and", "is", "I", "My", "am", "Meera"], "answer": "My name is Meera and I am eight." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u09.l5.p-cant",
+              "prompt": { "en": "A fish ___ fly.", "hi": "मछली उड़ नहीं सकती।", "pic": "🐟" },
+              "options": [{ "text": "can" }, { "text": "can't" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u09.l5.s-me", "model": "I am Arjun. I like mangoes. I can run.", "hi": "अपने बारे में तीन बातें बोलो।", "cue": { "en": "Tell us three things about you.", "hi": "अपने बारे में तीन बातें बताओ।" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u09.l5.c-name",
+          "type": "choose",
+          "prompt": { "en": "Which one asks your name?", "hi": "कौन-सा वाक्य नाम पूछता है?" },
+          "options": [{ "text": "What is your name?" }, { "text": "How many hens?" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u09.l5.c-he",
+          "type": "choose",
+          "prompt": { "en": "Papa is a man. ___ is my father.", "hi": "पापा आदमी हैं। वे मेरे पिता हैं।", "pic": "👨" },
+          "options": [{ "text": "She" }, { "text": "He" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u09.l5.c-an",
+          "type": "choose",
+          "prompt": { "en": "That is ___ umbrella.", "hi": "वह एक छाता है।", "pic": "🌂" },
+          "options": [{ "text": "a" }, { "text": "an" }],
+          "answer": 1,
+          "why": { "en": "Umbrella starts with u, so we say an.", "hi": "Umbrella 'u' से शुरू होता है, इसलिए an।" }
+        },
+        {
+          "key": "b.u09.l5.c-eighteen",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the number.", "hi": "सुनो। संख्या पर टैप करो।", "say": "eighteen" },
+          "options": [{ "text": "8" }, { "text": "18" }, { "text": "16" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u09.l5.c-long",
+          "type": "choose",
+          "prompt": { "en": "Which word means लंबा?", "hi": "कौन-सा शब्द 'लंबा' है?" },
+          "options": [{ "text": "short" }, { "text": "long" }, { "text": "new" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u09.l5.c-dont",
+          "type": "choose",
+          "prompt": { "en": "Do you like rice? No, I ___.", "hi": "क्या तुम्हें चावल पसंद है? नहीं।", "pic": "🍚" },
+          "options": [{ "text": "do" }, { "text": "don't" }],
+          "answer": 1
+        },
+        { "key": "b.u09.l5.c-have", "type": "build", "hi": "मेरे दो कान हैं।", "tiles": ["two", "ears.", "I", "have"], "answer": "I have two ears." },
+        {
+          "key": "b.u09.l5.c-has",
+          "type": "choose",
+          "prompt": { "en": "Salma ___ a new bag.", "hi": "सलमा के पास एक नया बस्ता है।", "pic": "🎒" },
+          "options": [{ "text": "have" }, { "text": "has" }],
+          "answer": 1
+        },
+        { "key": "b.u09.l5.c-frog", "type": "build", "hi": "मेंढक कूद सकता है।", "tiles": ["jump.", "frog", "A", "can"], "answer": "A frog can jump." },
+        {
+          "key": "b.u09.l5.c-clap",
+          "type": "choose",
+          "prompt": { "en": "Ms Anita says: Let us ___!", "hi": "मैडम कहती हैं: चलो ताली बजाएँ!", "pic": "👏" },
+          "options": [{ "text": "clap" }, { "text": "look" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "You did units 1 to 9! Show your family what you can say.", "hi": "तुमने इकाई 1 से 9 पूरी कर लीं! घरवालों को दिखाओ कि तुम क्या-क्या बोल सकते/सकती हो।" }
+    }
+  ]
+}

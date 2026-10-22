@@ -1,0 +1,398 @@
+{
+  "track": "b",
+  "unit": 14,
+  "key": "b.u14",
+  "title": { "en": "Weather and seasons", "hi": "मौसम और ऋतुएँ" },
+  "pic": "🌦️",
+  "can_do": { "en": "I can talk about the weather.", "hi": "मैं मौसम के बारे में बात कर सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "b.u14.l1",
+      "kind": "words",
+      "title": { "en": "Weather words", "hi": "मौसम के शब्द" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "Look outside. What is the weather?", "hi": "बाहर देखो। मौसम कैसा है?" }, "pic": "⛅" },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u14.l1.sunny", "en": "sunny", "hi": "धूप वाला", "pic": "☀️", "example": { "en": "It is sunny today.", "hi": "आज धूप है।" } },
+            { "key": "b.u14.l1.cloudy", "en": "cloudy", "hi": "बादल वाला", "pic": "☁️", "example": { "en": "It is cloudy.", "hi": "बादल छाए हैं।" } },
+            { "key": "b.u14.l1.rain", "en": "rain", "hi": "बारिश", "pic": "🌧️", "example": { "en": "I like the rain.", "hi": "मुझे बारिश पसंद है।" } },
+            { "key": "b.u14.l1.hot", "en": "hot", "hi": "गरम", "pic": "🥵", "example": { "en": "It is hot in summer.", "hi": "गर्मियों में गरमी होती है।" } },
+            { "key": "b.u14.l1.cold", "en": "cold", "hi": "ठंडा", "pic": "🥶", "example": { "en": "It is cold in winter.", "hi": "सर्दियों में ठंड होती है।" } },
+            { "key": "b.u14.l1.summer", "en": "summer", "hi": "गर्मी (गर्मियाँ)", "pic": "🌞", "example": { "en": "Mangoes come in summer.", "hi": "आम गर्मियों में आते हैं।" } },
+            { "key": "b.u14.l1.winter", "en": "winter", "hi": "सर्दी (सर्दियाँ)", "pic": "🧣", "example": { "en": "Winter is cold.", "hi": "सर्दी ठंडी होती है।" } },
+            { "key": "b.u14.l1.monsoon", "en": "monsoon", "hi": "बरसात (मानसून)", "pic": "⛈️", "example": { "en": "It rains in the monsoon.", "hi": "बरसात में बारिश होती है।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u14.l1.m-sunny", "left": { "text": "sunny" }, "right": { "pic": "☀️" } },
+            { "key": "b.u14.l1.m-cloudy", "left": { "text": "cloudy" }, "right": { "pic": "☁️" } },
+            { "key": "b.u14.l1.m-cold", "left": { "text": "cold" }, "right": { "pic": "🥶" } },
+            { "key": "b.u14.l1.m-winter", "left": { "text": "winter" }, "right": { "pic": "🧣" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u14.l1.p-rain",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "rain" },
+              "options": [{ "pic": "☀️" }, { "pic": "🌧️" }, { "pic": "🥵" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u14.l1.p-summer",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "summer" },
+              "options": [{ "pic": "🌞" }, { "pic": "🧣" }, { "pic": "⛈️" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u14.l1.s-sunny", "model": "It is sunny today.", "hi": "आज धूप है।", "pic": "☀️" },
+            { "key": "b.u14.l1.s-cold", "model": "It is cold in winter.", "hi": "सर्दियों में ठंड होती है।", "pic": "🧣" },
+            { "key": "b.u14.l1.s-rain", "model": "I like the rain.", "hi": "मुझे बारिश पसंद है।", "pic": "🌧️" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u14.l1.c-hot",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "hot" },
+          "options": [{ "pic": "🥶" }, { "pic": "🥵" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u14.l1.c-monsoon",
+          "type": "choose",
+          "prompt": { "en": "Which word means बरसात?", "hi": "'बरसात' कौन-सा है?", "pic": "⛈️" },
+          "options": [{ "text": "summer" }, { "text": "monsoon" }, { "text": "winter" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u14.l1.c-cloudy",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "cloudy" },
+          "options": [{ "pic": "☁️" }, { "pic": "☀️" }, { "pic": "🌧️" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u14.l1.c-cold",
+          "type": "choose",
+          "prompt": { "en": "Which word means ठंडा?", "hi": "'ठंडा' कौन-सा है?", "pic": "🥶" },
+          "options": [{ "text": "hot" }, { "text": "cold" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u14.l1.c-summer",
+          "type": "choose",
+          "prompt": { "en": "Mangoes come in ___.", "hi": "आम गर्मियों में आते हैं।", "pic": "🥭" },
+          "options": [{ "text": "summer" }, { "text": "winter" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Each morning, say the weather in English.", "hi": "हर सुबह मौसम अंग्रेज़ी में बोलो।" }
+    },
+    {
+      "key": "b.u14.l2",
+      "kind": "pattern",
+      "title": { "en": "It is sunny. It is raining.", "hi": "धूप है। बारिश हो रही है।" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Talk about the weather", "hi": "मौसम की बात" },
+          "visual": "builder",
+          "examples": [
+            { "en": "It is sunny today.", "hi": "आज धूप है।", "pic": "☀️", "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "sunny", "role": "what" }, { "text": "today.", "role": "when" }] },
+            { "en": "It is raining now.", "hi": "अभी बारिश हो रही है।", "pic": "🌧️", "parts": [{ "text": "It", "role": "who" }, { "text": "is raining", "role": "do" }, { "text": "now.", "role": "when" }] },
+            { "en": "It is not cold today.", "hi": "आज ठंड नहीं है।", "pic": "🌤️", "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "not", "role": "not" }, { "text": "cold", "role": "what" }, { "text": "today.", "role": "when" }] },
+            { "en": "In winter, it is cold.", "hi": "सर्दियों में ठंड होती है।", "pic": "🧣", "parts": [{ "text": "In winter,", "role": "when" }, { "text": "it", "role": "who" }, { "text": "is", "role": "do" }, { "text": "cold.", "role": "what" }] },
+            { "en": "In summer, it is hot.", "hi": "गर्मियों में गरमी होती है।", "pic": "🌞", "parts": [{ "text": "In summer,", "role": "when" }, { "text": "it", "role": "who" }, { "text": "is", "role": "do" }, { "text": "hot.", "role": "what" }] },
+            { "en": "In the monsoon, it rains a lot.", "hi": "बरसात में बहुत बारिश होती है।", "pic": "⛈️", "parts": [{ "text": "In the monsoon,", "role": "when" }, { "text": "it", "role": "who" }, { "text": "rains", "role": "do" }, { "text": "a lot.", "role": "other" }] }
+          ],
+          "note": { "en": "For weather, start with It is.", "hi": "मौसम के लिए: It is …" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u14.l2.b-sunny", "hi": "आज धूप है।", "pic": "☀️", "tiles": ["today.", "sunny", "It", "is"], "answer": "It is sunny today." },
+            { "key": "b.u14.l2.b-winter", "hi": "सर्दियों में ठंड होती है।", "pic": "🧣", "tiles": ["it", "cold.", "winter,", "is", "In"], "answer": "In winter, it is cold." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u14.l2.p-raining",
+              "prompt": { "en": "It is ___ now.", "hi": "अभी बारिश हो रही है।", "pic": "🌧️" },
+              "options": [{ "text": "sunny" }, { "text": "raining" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u14.l2.p-hot",
+              "prompt": { "en": "In summer, it is ___.", "hi": "गर्मियों में गरमी होती है।", "pic": "🌞" },
+              "options": [{ "text": "cold" }, { "text": "hot" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "describe",
+          "prompts": [
+            { "key": "b.u14.l2.s-today", "model": "It is sunny today.", "hi": "आज का मौसम बोलो।", "pic": "☀️" },
+            { "key": "b.u14.l2.s-rain", "model": "It is raining now.", "hi": "बारिश के बारे में बोलो।", "pic": "🌧️" }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u14.l2.c-build1", "type": "build", "hi": "अभी बारिश हो रही है।", "tiles": ["now.", "raining", "is", "It"], "answer": "It is raining now." },
+        { "key": "b.u14.l2.c-build2", "type": "build", "hi": "गर्मियों में गरमी होती है।", "tiles": ["hot.", "summer,", "is", "In", "it"], "answer": "In summer, it is hot." },
+        {
+          "key": "b.u14.l2.c-cloudy",
+          "type": "choose",
+          "prompt": { "en": "It is ___.", "hi": "बादल छाए हैं।", "pic": "☁️" },
+          "options": [{ "text": "cloudy" }, { "text": "sunny" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u14.l2.c-cold",
+          "type": "choose",
+          "prompt": { "en": "In winter, it is ___.", "hi": "सर्दियों में ठंड होती है।", "pic": "🧣" },
+          "options": [{ "text": "hot" }, { "text": "cold" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u14.l2.c-it",
+          "type": "choose",
+          "prompt": { "en": "___ is raining.", "hi": "बारिश हो रही है।", "pic": "🌧️" },
+          "options": [{ "text": "It" }, { "text": "He" }],
+          "answer": 0,
+          "why": { "en": "For weather, we say it.", "hi": "मौसम के लिए it।" }
+        }
+      ],
+      "home": { "en": "Look outside and say: It is …", "hi": "बाहर देखकर कहो: It is …" }
+    },
+    {
+      "key": "b.u14.l3",
+      "kind": "listen",
+      "title": { "en": "The monsoon is here", "hi": "बरसात आ गई" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Rain, rain!", "hi": "बारिश, बारिश!" },
+          "scene": { "place": "village", "pics": [{ "pic": "⛈️", "x": 30, "y": 8, "size": 1.4 }, { "pic": "🌈", "x": 60, "y": 14, "size": 1.2 }, { "pic": "🏡", "x": 84, "y": 30, "size": 1.6 }, { "pic": "👵", "x": 22, "y": 42, "size": 1.5 }, { "pic": "🌂", "x": 40, "y": 32 }, { "pic": "👦", "x": 40, "y": 46, "size": 1.4 }, { "pic": "👧", "x": 56, "y": 44, "size": 1.4 }] },
+          "lines": [
+            { "speaker": "Arjun", "pic": "👦", "en": "Dadi, look! It is raining!", "hi": "दादी, देखो! बारिश हो रही है!" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Yes. The monsoon is here.", "hi": "हाँ। बरसात आ गई।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "I like the rain! The fields are green.", "hi": "मुझे बारिश पसंद है! खेत हरे हो गए।" },
+            { "speaker": "Dadi", "pic": "👵", "en": "Take your umbrella to school.", "hi": "स्कूल छाता लेकर जाना।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Is it cold, Dadi?", "hi": "दादी, क्या ठंड है?" },
+            { "speaker": "Dadi", "pic": "👵", "en": "No, it is not cold.", "hi": "नहीं, ठंड नहीं है।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Look! The sun is out. A rainbow!", "hi": "देखो! धूप निकल आई। इंद्रधनुष!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u14.l3.p-weather",
+              "prompt": { "en": "What is the weather?", "hi": "मौसम कैसा है?" },
+              "options": [{ "text": "It is raining.", "pic": "🌧️" }, { "text": "It is cold.", "pic": "🥶" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u14.l3.p-take",
+              "prompt": { "en": "What does Arjun take to school?", "hi": "अर्जुन स्कूल क्या ले जाता है?" },
+              "options": [{ "text": "a kite", "pic": "🪁" }, { "text": "an umbrella", "pic": "🌂" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u14.l3.s-rain", "model": "It is raining!", "hi": "बारिश हो रही है!", "pic": "🌧️" },
+            { "key": "b.u14.l3.s-monsoon", "model": "The monsoon is here.", "hi": "बरसात आ गई।", "pic": "⛈️" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u14.l3.c-season",
+          "type": "choose",
+          "prompt": { "en": "Which season is it?", "hi": "कौन-सी ऋतु है?" },
+          "options": [{ "text": "winter", "pic": "🧣" }, { "text": "monsoon", "pic": "⛈️" }, { "text": "summer", "pic": "🌞" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u14.l3.c-like",
+          "type": "choose",
+          "prompt": { "en": "Does Arjun like the rain?", "hi": "क्या अर्जुन को बारिश पसंद है?" },
+          "options": [{ "text": "Yes, he does." }, { "text": "No, he doesn't." }],
+          "answer": 0
+        },
+        {
+          "key": "b.u14.l3.c-cold",
+          "type": "choose",
+          "prompt": { "en": "Is it cold?", "hi": "क्या ठंड है?" },
+          "options": [{ "text": "Yes, it is." }, { "text": "No, it is not." }],
+          "answer": 1
+        },
+        {
+          "key": "b.u14.l3.c-end",
+          "type": "choose",
+          "prompt": { "en": "What does Meera see?", "hi": "मीरा क्या देखती है?" },
+          "options": [{ "text": "a rainbow", "pic": "🌈" }, { "text": "an elephant", "pic": "🐘" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Tell Dadi the weather today.", "hi": "दादी को आज का मौसम बताओ।" }
+    },
+    {
+      "key": "b.u14.l4",
+      "kind": "speak",
+      "title": { "en": "The weather report", "hi": "मौसम समाचार" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "You are the weather reporter", "hi": "तुम मौसम बताने वाले हो" },
+          "scene": { "place": "village", "pics": [{ "pic": "☀️", "x": 14, "y": 10, "size": 1.4 }, { "pic": "☁️", "x": 40, "y": 10, "size": 1.2 }, { "pic": "🌧️", "x": 66, "y": 10, "size": 1.2 }, { "pic": "👩‍🏫", "x": 26, "y": 44, "size": 1.5 }, { "pic": "🧒", "x": 56, "y": 42, "size": 1.5 }, { "pic": "🎤", "x": 70, "y": 44, "size": 0.9 }] },
+          "roles": [{ "name": "Ms Anita", "pic": "👩‍🏫" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Hello, reporter! How is the weather today?", "hi": "नमस्ते, रिपोर्टर! आज मौसम कैसा है?" },
+            { "role": 1, "en": "Good morning! It is sunny today.", "hi": "सुप्रभात! आज धूप है।" },
+            { "role": 0, "en": "Is it hot?", "hi": "क्या गरमी है?" },
+            { "role": 1, "en": "Yes, it is very hot.", "hi": "हाँ, बहुत गरमी है।" },
+            { "role": 0, "en": "Is it raining?", "hi": "क्या बारिश हो रही है?" },
+            { "role": 1, "en": "No, it is not raining.", "hi": "नहीं, बारिश नहीं हो रही।" },
+            { "role": 0, "en": "Thank you, reporter!", "hi": "धन्यवाद, रिपोर्टर!" }
+          ],
+          "partner": { "goal": "Interview the child as a weather reporter: ask how the weather is and whether it is hot, cold or raining.", "must_use": ["it is", "sunny", "raining", "not"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u14.l4.br-cloudy", "hi": "आज बादल छाए हैं।", "tiles": ["is", "today.", "cloudy", "It"], "answer": "It is cloudy today." },
+            { "key": "b.u14.l4.br-monsoon", "hi": "बरसात में बहुत बारिश होती है।", "tiles": ["lot.", "it", "the", "In", "a", "rains", "monsoon,"], "answer": "In the monsoon, it rains a lot." }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u14.l4.c-reply",
+          "type": "choose",
+          "prompt": { "en": "How is the weather?", "hi": "मौसम कैसा है?", "pic": "☀️" },
+          "options": [{ "text": "It is sunny." }, { "text": "It is raining." }],
+          "answer": 0
+        },
+        { "key": "b.u14.l4.c-build", "type": "build", "hi": "आज गरमी है।", "tiles": ["hot", "It", "today.", "is"], "answer": "It is hot today." },
+        {
+          "key": "b.u14.l4.c-not",
+          "type": "choose",
+          "prompt": { "en": "Is it raining? No, it is ___ raining.", "hi": "क्या बारिश हो रही है? नहीं।", "pic": "☀️" },
+          "options": [{ "text": "not" }, { "text": "no" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Be the weather reporter at home tonight.", "hi": "आज रात घर पर मौसम रिपोर्टर बनो।" }
+    },
+    {
+      "key": "b.u14.l5",
+      "kind": "review",
+      "title": { "en": "Unit 14 review", "hi": "इकाई 14 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u14.l5.m-hot", "left": { "text": "hot" }, "right": { "pic": "🥵" } },
+            { "key": "b.u14.l5.m-rain", "left": { "text": "rain" }, "right": { "pic": "🌧️" } },
+            { "key": "b.u14.l5.m-summer", "left": { "text": "summer" }, "right": { "pic": "🌞" } },
+            { "key": "b.u14.l5.m-sing", "left": { "text": "sing" }, "right": { "pic": "🎤" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u14.l5.b-rain", "hi": "बारिश हो रही है और ठंड है।", "pic": "🌧️", "tiles": ["raining", "It", "cold.", "and", "is", "it", "is"], "answer": "It is raining and it is cold." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u14.l5.p-season",
+              "prompt": { "en": "In ___, it is cold.", "hi": "सर्दियों में ठंड होती है।", "pic": "🧣" },
+              "options": [{ "text": "summer" }, { "text": "winter" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u14.l5.s-season", "model": "My favourite season is the monsoon.", "hi": "अपनी सबसे प्यारी ऋतु बताओ।", "cue": { "en": "What is your favourite season?", "hi": "तुम्हारी सबसे प्यारी ऋतु?" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u14.l5.c-sunny",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, चित्र चुनो।", "say": "sunny" },
+          "options": [{ "pic": "☁️" }, { "pic": "☀️" }, { "pic": "🌧️" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u14.l5.c-winter",
+          "type": "choose",
+          "prompt": { "en": "Which word means सर्दी?", "hi": "'सर्दी' कौन-सा है?" },
+          "options": [{ "text": "winter" }, { "text": "summer" }, { "text": "monsoon" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u14.l5.c-it",
+          "type": "choose",
+          "prompt": { "en": "___ is cloudy today.", "hi": "आज बादल छाए हैं।", "pic": "☁️" },
+          "options": [{ "text": "He" }, { "text": "It" }],
+          "answer": 1,
+          "why": { "en": "For weather, we say it.", "hi": "मौसम के लिए it।" }
+        },
+        { "key": "b.u14.l5.c-build", "type": "build", "hi": "आज बादल नहीं हैं।", "tiles": ["not", "cloudy", "It", "today.", "is"], "answer": "It is not cloudy today." },
+        {
+          "key": "b.u14.l5.c-ing",
+          "type": "choose",
+          "prompt": { "en": "Look! Salma is ___.", "hi": "देखो! सलमा नाच रही है।", "pic": "💃" },
+          "options": [{ "text": "dance" }, { "text": "dancing" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u14.l5.c-day",
+          "type": "choose",
+          "prompt": { "en": "Which day comes after Wednesday?", "hi": "बुधवार के बाद कौन-सा दिन?" },
+          "options": [{ "text": "Thursday" }, { "text": "Tuesday" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u14.l5.c-has",
+          "type": "choose",
+          "prompt": { "en": "Meera ___ an umbrella.", "hi": "मीरा के पास छाता है।", "pic": "🌂" },
+          "options": [{ "text": "have" }, { "text": "has" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Draw the weather and say it in English.", "hi": "मौसम का चित्र बनाओ और अंग्रेज़ी में बोलो।" }
+    }
+  ]
+}

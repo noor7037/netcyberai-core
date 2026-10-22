@@ -1,0 +1,402 @@
+{
+  "track": "b",
+  "unit": 8,
+  "key": "b.u08",
+  "title": { "en": "Animals", "hi": "जानवर" },
+  "pic": "🐄",
+  "can_do": { "en": "I can say what animals can do.", "hi": "मैं बता सकता/सकती हूँ कि जानवर क्या कर सकते हैं।" },
+  "lessons": [
+    {
+      "key": "b.u08.l1",
+      "kind": "words",
+      "title": { "en": "Animals and actions", "hi": "जानवर और उनके काम" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "Animals can do many things!", "hi": "जानवर बहुत कुछ कर सकते हैं!" }, "pic": "🐒" },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Jump like a frog!", "hi": "मेंढक की तरह कूदो!", "pic": "🐸" },
+            { "en": "Fly like a bird!", "hi": "चिड़िया की तरह उड़ो!", "pic": "🐦" },
+            { "en": "Swim like a fish!", "hi": "मछली की तरह तैरो!", "pic": "🐟" },
+            { "en": "Run like a dog!", "hi": "कुत्ते की तरह दौड़ो!", "pic": "🐕" }
+          ]
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "b.u08.l1.cow", "en": "cow", "hi": "गाय", "pic": "🐄", "example": { "en": "A cow gives milk.", "hi": "गाय दूध देती है।" } },
+            { "key": "b.u08.l1.goat", "en": "goat", "hi": "बकरी", "pic": "🐐", "example": { "en": "The goat is small.", "hi": "बकरी छोटी है।" } },
+            { "key": "b.u08.l1.bird", "en": "bird", "hi": "चिड़िया", "pic": "🐦", "example": { "en": "A bird can fly.", "hi": "चिड़िया उड़ सकती है।" } },
+            { "key": "b.u08.l1.fish", "en": "fish", "hi": "मछली", "pic": "🐟", "example": { "en": "A fish can swim.", "hi": "मछली तैर सकती है।" } },
+            { "key": "b.u08.l1.frog", "en": "frog", "hi": "मेंढक", "pic": "🐸", "example": { "en": "A frog can jump.", "hi": "मेंढक कूद सकता है।" } },
+            { "key": "b.u08.l1.fly", "en": "fly", "hi": "उड़ना", "pic": "🕊️", "example": { "en": "Birds fly in the sky.", "hi": "चिड़ियाँ आसमान में उड़ती हैं।" } },
+            { "key": "b.u08.l1.swim", "en": "swim", "hi": "तैरना", "pic": "🌊", "example": { "en": "Fish swim in the river.", "hi": "मछलियाँ नदी में तैरती हैं।" } },
+            { "key": "b.u08.l1.jump", "en": "jump", "hi": "कूदना", "pic": "🤸", "example": { "en": "I can jump high!", "hi": "मैं ऊँचा कूद सकता/सकती हूँ!" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u08.l1.m-cow", "left": { "text": "cow" }, "right": { "pic": "🐄" } },
+            { "key": "b.u08.l1.m-bird", "left": { "text": "bird" }, "right": { "pic": "🐦" } },
+            { "key": "b.u08.l1.m-frog", "left": { "text": "frog" }, "right": { "pic": "🐸" } },
+            { "key": "b.u08.l1.m-fish", "left": { "text": "fish" }, "right": { "pic": "🐟" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u08.l1.p-goat",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "goat" },
+              "options": [{ "pic": "🐄" }, { "pic": "🐐" }, { "pic": "🐕" }],
+              "answer": 1
+            },
+            {
+              "key": "b.u08.l1.p-fly",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "fly" },
+              "options": [{ "pic": "🕊️" }, { "pic": "🌊" }, { "pic": "🤸" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u08.l1.s-bird", "model": "A bird can fly.", "hi": "चिड़िया उड़ सकती है।", "pic": "🐦" },
+            { "key": "b.u08.l1.s-fish", "model": "A fish can swim.", "hi": "मछली तैर सकती है।", "pic": "🐟" },
+            { "key": "b.u08.l1.s-frog", "model": "A frog can jump.", "hi": "मेंढक कूद सकता है।", "pic": "🐸" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u08.l1.c-cow",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "cow" },
+          "options": [{ "pic": "🐐" }, { "pic": "🐄" }, { "pic": "🐦" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u08.l1.c-swim",
+          "type": "choose",
+          "prompt": { "en": "Which word means तैरना?", "hi": "कौन-सा शब्द 'तैरना' है?", "pic": "🌊" },
+          "options": [{ "text": "fly" }, { "text": "swim" }, { "text": "jump" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u08.l1.c-frog",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "frog" },
+          "options": [{ "pic": "🐟" }, { "pic": "🐸" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u08.l1.c-jump",
+          "type": "choose",
+          "prompt": { "en": "Which word means कूदना?", "hi": "कौन-सा शब्द 'कूदना' है?", "pic": "🤸" },
+          "options": [{ "text": "jump" }, { "text": "fly" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u08.l1.c-bird",
+          "type": "choose",
+          "prompt": { "en": "Which word means चिड़िया?", "hi": "कौन-सा शब्द 'चिड़िया' है?" },
+          "options": [{ "text": "fish" }, { "text": "goat" }, { "text": "bird" }],
+          "answer": 2
+        }
+      ],
+      "home": { "en": "Act like an animal. Your family guesses!", "hi": "किसी जानवर की नक़ल करो। घरवाले पहचानें!" }
+    },
+    {
+      "key": "b.u08.l2",
+      "kind": "pattern",
+      "title": { "en": "can and can't", "hi": "can (सकता है) और can't (नहीं सकता)" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "What can it do?", "hi": "यह क्या कर सकता है?" },
+          "visual": "builder",
+          "examples": [
+            { "en": "A bird can fly.", "hi": "चिड़िया उड़ सकती है।", "pic": "🐦", "parts": [{ "text": "A bird", "role": "who" }, { "text": "can fly.", "role": "do" }] },
+            { "en": "A fish can swim.", "hi": "मछली तैर सकती है।", "pic": "🐟", "parts": [{ "text": "A fish", "role": "who" }, { "text": "can swim.", "role": "do" }] },
+            { "en": "A cow can't fly.", "hi": "गाय उड़ नहीं सकती।", "pic": "🐄", "parts": [{ "text": "A cow", "role": "who" }, { "text": "can't", "role": "not" }, { "text": "fly.", "role": "do" }] },
+            { "en": "A fish can't run.", "hi": "मछली दौड़ नहीं सकती।", "pic": "🐠", "parts": [{ "text": "A fish", "role": "who" }, { "text": "can't", "role": "not" }, { "text": "run.", "role": "do" }] },
+            { "en": "I can jump.", "hi": "मैं कूद सकता/सकती हूँ।", "pic": "🤸", "parts": [{ "text": "I", "role": "who" }, { "text": "can jump.", "role": "do" }] },
+            { "en": "I can't fly.", "hi": "मैं उड़ नहीं सकता/सकती।", "pic": "🙋", "parts": [{ "text": "I", "role": "who" }, { "text": "can't", "role": "not" }, { "text": "fly.", "role": "do" }] }
+          ],
+          "note": { "en": "can't means can not.", "hi": "can = सकता है, can't = नहीं सकता।" }
+        },
+        {
+          "type": "build",
+          "items": [
+            { "key": "b.u08.l2.b-can", "hi": "मेंढक कूद सकता है।", "pic": "🐸", "tiles": ["can", "jump.", "frog", "A"], "answer": "A frog can jump." },
+            { "key": "b.u08.l2.b-cant", "hi": "बकरी उड़ नहीं सकती।", "pic": "🐐", "tiles": ["fly.", "goat", "can't", "A"], "answer": "A goat can't fly." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u08.l2.p-fish",
+              "prompt": { "en": "A fish ___ swim.", "hi": "मछली तैर सकती है।", "pic": "🐟" },
+              "options": [{ "text": "can" }, { "text": "can't" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u08.l2.p-cow",
+              "prompt": { "en": "A cow ___ fly.", "hi": "गाय उड़ नहीं सकती।", "pic": "🐄" },
+              "options": [{ "text": "can" }, { "text": "can't" }],
+              "answer": 1,
+              "why": { "en": "Cows do not fly, so we say can't.", "hi": "गाय उड़ती नहीं, इसलिए can't।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "b.u08.l2.s-can", "model": "I can run and jump.", "hi": "बताओ तुम क्या कर सकते/सकती हो।", "pic": "🏃", "cue": { "en": "What can you do?", "hi": "तुम क्या कर सकते हो?" } },
+            { "key": "b.u08.l2.s-cant", "model": "No, I can't fly.", "hi": "बताओ: उड़ नहीं सकते।", "pic": "🕊️", "cue": { "en": "Can you fly?", "hi": "क्या तुम उड़ सकते हो?" } }
+          ]
+        }
+      ],
+      "check": [
+        { "key": "b.u08.l2.c-build1", "type": "build", "hi": "चिड़िया उड़ सकती है।", "tiles": ["fly.", "A", "can", "bird"], "answer": "A bird can fly." },
+        { "key": "b.u08.l2.c-build2", "type": "build", "hi": "मैं उड़ नहीं सकता।", "tiles": ["fly.", "can't", "I"], "answer": "I can't fly." },
+        {
+          "key": "b.u08.l2.c-frog",
+          "type": "choose",
+          "prompt": { "en": "A frog ___ jump.", "hi": "मेंढक कूद सकता है।", "pic": "🐸" },
+          "options": [{ "text": "can't" }, { "text": "can" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u08.l2.c-fish",
+          "type": "choose",
+          "prompt": { "en": "A fish ___ run.", "hi": "मछली दौड़ नहीं सकती।", "pic": "🐟" },
+          "options": [{ "text": "can" }, { "text": "can't" }],
+          "answer": 1,
+          "why": { "en": "A fish has no legs, so it can't run.", "hi": "मछली के पैर नहीं होते, इसलिए can't।" }
+        },
+        {
+          "key": "b.u08.l2.c-me",
+          "type": "choose",
+          "prompt": { "en": "Can you jump? Yes, I ___.", "hi": "क्या तुम कूद सकते हो? हाँ।", "pic": "🤸" },
+          "options": [{ "text": "can" }, { "text": "can't" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Tell your family: I can …, I can't …", "hi": "घरवालों को बताओ: I can …, I can't …" }
+    },
+    {
+      "key": "b.u08.l3",
+      "kind": "listen",
+      "title": { "en": "At the pond", "hi": "तालाब पर" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "What can it do?", "hi": "यह क्या कर सकता है?" },
+          "scene": { "place": "field", "pics": [{ "pic": "🌳", "x": 10, "y": 16, "size": 2 }, { "pic": "🐦", "x": 80, "y": 12 }, { "pic": "👨", "x": 24, "y": 42, "size": 1.5 }, { "pic": "👦", "x": 40, "y": 46, "size": 1.3 }, { "pic": "🌊", "x": 66, "y": 54, "size": 1.8 }, { "pic": "🐸", "x": 56, "y": 48 }, { "pic": "🐟", "x": 74, "y": 56, "size": 0.9 }] },
+          "lines": [
+            { "speaker": "Papa", "pic": "👨", "en": "Look, Arjun! A frog in the pond.", "hi": "देखो, अर्जुन! तालाब में मेंढक।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Can a frog swim, Papa?", "hi": "पापा, क्या मेंढक तैर सकता है?" },
+            { "speaker": "Papa", "pic": "👨", "en": "Yes! It can swim and jump.", "hi": "हाँ! वह तैर भी सकता है और कूद भी।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Look, a fish! Can a fish run?", "hi": "देखो, मछली! क्या मछली दौड़ सकती है?" },
+            { "speaker": "Papa", "pic": "👨", "en": "No! A fish can't run. It can swim.", "hi": "नहीं! मछली दौड़ नहीं सकती। वह तैर सकती है।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "A bird! Papa, I can't fly.", "hi": "चिड़िया! पापा, मैं उड़ नहीं सकता।" },
+            { "speaker": "Papa", "pic": "👨", "en": "No, but you can run. Come on!", "hi": "नहीं, पर तुम दौड़ सकते हो। चलो!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u08.l3.p-frog",
+              "prompt": { "en": "What can a frog do?", "hi": "मेंढक क्या कर सकता है?" },
+              "options": [{ "text": "swim and jump", "pic": "🐸" }, { "text": "fly", "pic": "🕊️" }],
+              "answer": 0
+            },
+            {
+              "key": "b.u08.l3.p-fish",
+              "prompt": { "en": "Can a fish run?", "hi": "क्या मछली दौड़ सकती है?" },
+              "options": [{ "text": "Yes, it can." }, { "text": "No, it can't." }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "b.u08.l3.s-cant", "model": "A fish can't run.", "hi": "मछली दौड़ नहीं सकती।", "pic": "🐟" },
+            { "key": "b.u08.l3.s-run", "model": "I can run!", "hi": "मैं दौड़ सकता/सकती हूँ!", "pic": "🏃" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u08.l3.c-where",
+          "type": "choose",
+          "prompt": { "en": "Where are Papa and Arjun?", "hi": "पापा और अर्जुन कहाँ हैं?" },
+          "options": [{ "text": "at the pond", "pic": "🌊" }, { "text": "at school", "pic": "🏫" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u08.l3.c-arjun",
+          "type": "choose",
+          "prompt": { "en": "What can't Arjun do?", "hi": "अर्जुन क्या नहीं कर सकता?" },
+          "options": [{ "text": "run", "pic": "🏃" }, { "text": "fly", "pic": "🕊️" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u08.l3.c-fish",
+          "type": "choose",
+          "prompt": { "en": "A fish can ___.", "hi": "मछली ___ सकती है।", "pic": "🐟" },
+          "options": [{ "text": "run" }, { "text": "swim" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask at home: Can a cow fly?", "hi": "घर पर पूछो: Can a cow fly?" }
+    },
+    {
+      "key": "b.u08.l4",
+      "kind": "speak",
+      "title": { "en": "Can a cow fly?", "hi": "क्या गाय उड़ सकती है?" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "roleplay",
+          "title": { "en": "The silly question game", "hi": "मज़ेदार सवालों का खेल" },
+          "scene": { "place": "field", "pics": [{ "pic": "🌾", "x": 12, "y": 48 }, { "pic": "🐄", "x": 28, "y": 46, "size": 1.4 }, { "pic": "🐦", "x": 70, "y": 12 }, { "pic": "👧", "x": 52, "y": 42, "size": 1.5 }, { "pic": "🧒", "x": 72, "y": 44, "size": 1.5 }] },
+          "roles": [{ "name": "Meera", "pic": "👧" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Let us play! Can a cow fly?", "hi": "चलो खेलें! क्या गाय उड़ सकती है?" },
+            { "role": 1, "en": "No, it can't!", "hi": "नहीं, नहीं उड़ सकती!" },
+            { "role": 0, "en": "Can a bird fly?", "hi": "क्या चिड़िया उड़ सकती है?" },
+            { "role": 1, "en": "Yes, it can.", "hi": "हाँ, उड़ सकती है।" },
+            { "role": 0, "en": "Your turn. Ask me a question!", "hi": "तुम्हारी बारी। मुझसे एक सवाल पूछो!" },
+            { "role": 1, "en": "Can a fish run?", "hi": "क्या मछली दौड़ सकती है?" },
+            { "role": 0, "en": "No, it can't! It can swim.", "hi": "नहीं! वह तैर सकती है।" },
+            { "role": 1, "en": "Can you jump, Meera?", "hi": "मीरा, क्या तुम कूद सकती हो?" },
+            { "role": 0, "en": "Yes, I can! Look!", "hi": "हाँ! देखो!" }
+          ],
+          "partner": { "goal": "Play the silly question game: ask Can a …? questions about animals, and answer the child's questions with Yes, it can or No, it can't.", "must_use": ["can", "can't", "yes, it can", "no, it can't"] }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "b.u08.l4.br-can", "hi": "मछली तैर सकती है।", "tiles": ["swim.", "fish", "can", "A"], "answer": "A fish can swim." },
+            { "key": "b.u08.l4.br-q", "hi": "क्या गाय उड़ सकती है?", "tiles": ["cow", "fly?", "Can", "a"], "answer": "Can a cow fly?" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u08.l4.c-bird",
+          "type": "choose",
+          "prompt": { "en": "Can a bird fly?", "hi": "क्या चिड़िया उड़ सकती है?", "pic": "🐦" },
+          "options": [{ "text": "Yes, it can." }, { "text": "No, it can't." }],
+          "answer": 0
+        },
+        { "key": "b.u08.l4.c-build", "type": "build", "hi": "क्या मछली दौड़ सकती है?", "tiles": ["fish", "run?", "a", "Can"], "answer": "Can a fish run?" },
+        {
+          "key": "b.u08.l4.c-cow",
+          "type": "choose",
+          "prompt": { "en": "Can a cow fly?", "hi": "क्या गाय उड़ सकती है?", "pic": "🐄" },
+          "options": [{ "text": "Yes, it can." }, { "text": "No, it can't." }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask Dadi three silly questions: Can a … fly?", "hi": "दादी से तीन मज़ेदार सवाल पूछो: Can a … fly?" }
+    },
+    {
+      "key": "b.u08.l5",
+      "kind": "review",
+      "title": { "en": "Unit 8 review", "hi": "इकाई 8 दोहराओ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "b.u08.l5.m-goat", "left": { "text": "goat" }, "right": { "pic": "🐐" } },
+            { "key": "b.u08.l5.m-swim", "left": { "text": "swim" }, "right": { "pic": "🌊" } },
+            { "key": "b.u08.l5.m-jump", "left": { "text": "jump" }, "right": { "pic": "🤸" } },
+            { "key": "b.u08.l5.m-ear", "left": { "text": "ear" }, "right": { "pic": "👂" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [{ "key": "b.u08.l5.b-can", "hi": "मैं दौड़ और कूद सकता हूँ।", "pic": "🏃", "tiles": ["and", "can", "jump.", "I", "run"], "answer": "I can run and jump." }]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "b.u08.l5.p-cant",
+              "prompt": { "en": "A goat ___ fly.", "hi": "बकरी उड़ नहीं सकती।", "pic": "🐐" },
+              "options": [{ "text": "can" }, { "text": "can't" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "b.u08.l5.s-animal", "model": "A frog can jump. It can't fly.", "hi": "मेंढक के बारे में दो बातें बोलो।", "pic": "🐸", "cue": { "en": "Tell me about a frog.", "hi": "मेंढक के बारे में बताओ।" } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "b.u08.l5.c-fish",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "fish" },
+          "options": [{ "pic": "🐸" }, { "pic": "🐟" }, { "pic": "🐦" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u08.l5.c-fly",
+          "type": "choose",
+          "prompt": { "en": "Which word means उड़ना?", "hi": "कौन-सा शब्द 'उड़ना' है?" },
+          "options": [{ "text": "swim" }, { "text": "fly" }, { "text": "jump" }],
+          "answer": 1
+        },
+        {
+          "key": "b.u08.l5.c-bird",
+          "type": "choose",
+          "prompt": { "en": "A bird ___ fly.", "hi": "चिड़िया उड़ सकती है।", "pic": "🐦" },
+          "options": [{ "text": "can" }, { "text": "can't" }],
+          "answer": 0
+        },
+        { "key": "b.u08.l5.c-build", "type": "build", "hi": "गाय उड़ नहीं सकती।", "tiles": ["fly.", "cow", "A", "can't"], "answer": "A cow can't fly." },
+        {
+          "key": "b.u08.l5.c-has",
+          "type": "choose",
+          "prompt": { "en": "A cow ___ four legs.", "hi": "गाय की चार टाँगें होती हैं।", "pic": "🐄" },
+          "options": [{ "text": "has" }, { "text": "have" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u08.l5.c-like",
+          "type": "choose",
+          "prompt": { "en": "___ you like milk?", "hi": "क्या तुम्हें दूध पसंद है?", "pic": "🥛" },
+          "options": [{ "text": "Do" }, { "text": "Are" }],
+          "answer": 0
+        },
+        {
+          "key": "b.u08.l5.c-big",
+          "type": "choose",
+          "prompt": { "en": "The goat is small. The cow is ___.", "hi": "बकरी छोटी है। गाय बड़ी है।", "pic": "🐄" },
+          "options": [{ "text": "big" }, { "text": "new" }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Draw an animal. Say what it can do.", "hi": "एक जानवर बनाओ। बताओ वह क्या कर सकता है।" }
+    }
+  ]
+}
