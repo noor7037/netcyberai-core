@@ -5,7 +5,7 @@ import { readFamilyCatalog, type CatalogLang } from './catalog';
 import { syllabusBoardOf, type FamilyChild } from './children';
 import { indiaDate } from '@/lib/time/india';
 import { DAY_MS, issuedAt, sealItem, type ItemSecret, type PublicItem } from './items';
-import { setting } from './learning';
+import { reviewedOnlySubjects, setting } from './learning';
 import type { PublicBlock } from './resolver';
 
 // An offline chapter pack (docs/family-app/11 L9; M2-9, C283): for each line of a chapter (the chapter itself, then its
@@ -70,10 +70,12 @@ export async function chapterPacks(
   const promptVersion = resolverPrompt(await activePromptVersion(db as never, 'family.resolver'), false).version;
   const { rows } = await db.query(
     `select topic_key, blocks, status from content.responses
-      where board_id = $1 and class_level = $2 and subject = $3 and language = $4 and style = $5 and prompt_version = $6 and status <> 'withdrawn'
-        and topic_key = any($7::text[])
-      order by (status = 'checked') desc, created_at desc`,
-    [board, child.classLevel, subject, child.language, child.style, promptVersion, lines.map((l) => l.key)]
+      where board_id = $1 and class_level = $2 and subject = $3 and language = $4 and status <> 'withdrawn' and topic_key = any($7::text[])
+        and case when $8::boolean then status = 'checked' else style = $5 and prompt_version = $6 end
+      order by (status = 'checked') desc, (style = $5) desc, (prompt_version = $6) desc, created_at desc`,
+    // In a "checked explanations only" subject (C300) a pack carries checked responses only, of any style or prompt
+    // version (the child's own first), as Understand serves them.
+    [board, child.classLevel, subject, child.language, child.style, promptVersion, lines.map((l) => l.key), (await reviewedOnlySubjects(db)).some((s) => s === subject)]
   );
   const library = new Map<string, { blocks: Block[]; label: 'checked' | 'ai_made' }>();
   for (const r of rows) {

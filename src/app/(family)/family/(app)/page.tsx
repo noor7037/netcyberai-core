@@ -10,7 +10,7 @@ import { classSubjects } from '@/lib/family/catalog';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { familyModuleOn } from '@/lib/family/flags';
 import { childHabit } from '@/lib/family/habit';
-import { childProgress } from '@/lib/family/learning';
+import { childProgress, openSubjects } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
 import { dayPlan } from '@/lib/family/plan';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
@@ -35,16 +35,17 @@ export default async function FamilyHomePage() {
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const { progress, subjects, plan, habit } = await familyPageRead(page, async (db) => ({
+  const { progress, subjects, plan, habit, openToAll } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
     subjects: isPrePrimary(child.classLevel) ? [] : await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel }),
     plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
     habit: (await familyModuleOn(db, 'habit', page.session.accountId)) ? await childHabit(db, page.session.accountId, child, indiaDate(), lang) : null,
+    openToAll: await openSubjects(db),
   }));
   const mastered = progress.filter((p) => p.mastered).length;
   const tiles = subjects.map((s) => {
     const mine = progress.filter((p) => p.subject === s);
-    return { subject: s, name: t(lang, `fam.subject.${s}` as MessageKey), open: subjectAccess(child, s).open, free: child.freeSubject === s, checked: mine.length, mastered: mine.filter((p) => p.mastered).length };
+    return { subject: s, name: t(lang, `fam.subject.${s}` as MessageKey), open: subjectAccess(child, s, openToAll).open, free: child.freeSubject === s, checked: mine.length, mastered: mine.filter((p) => p.mastered).length };
   });
   return (
     <div lang={lang} className="flex min-h-screen flex-col">

@@ -3,7 +3,7 @@ import { prepareVideoSearch, videoChannels, type PreparedVideos } from '@/lib/ai
 import { activeChild, listChildren, type FamilyChild } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
 import { familyModuleOn } from '@/lib/family/flags';
-import { setting } from '@/lib/family/learning';
+import { setting, openSubjects } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
 import { familyRead, requireFamily } from '@/lib/family/request';
 import { syllabusLine, type Line } from '@/lib/family/resolver';
@@ -44,7 +44,7 @@ export async function GET(req: NextRequest) {
     if (!(await consentState(db, session.accountId)).study_core) return null;
     if (!(await familyModuleOn(db, 'videos', session.accountId))) return null;
     const line = await syllabusLine(db, child, { kind: 'topic', key: topic });
-    if (!line || !subjectAccess(child, line.subject).open) return null;
+    if (!line || !subjectAccess(child, line.subject, await openSubjects(db)).open) return null;
     const language: VideoLanguage = child.language === 'hi' ? 'hi' : 'en';
     const days = await setting(db, 'family.video_pick_days', 30);
     const cached = await readPicks(db, line.key, language, days);

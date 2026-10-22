@@ -47,12 +47,14 @@ export function visibleTabs(isOn: (flag: string) => boolean): FamilyTab[] {
 export { SUBJECT_IDS as SUBJECTS, type Subject } from './subjects';
 import type { Subject } from './subjects';
 
-// One free subject per child (a Control setting, family.free_subjects_per_child; 1 at launch). The first subject a child
-// opens becomes their free one; the parent may change it once the change window (family.free_subject_change_days) has
-// passed. M1 has no Plus yet, so the other subjects say they open with Family Plus later; no price is shown (05 §4).
+// One free subject per child (C252). The first subject a child opens becomes their free one; the parent may change it
+// once the change window (family.free_subject_change_days) has passed. M1 has no Plus yet, so the other subjects say
+// they open with Family Plus later; no price is shown (05 §4). Subjects Control opens to every child
+// (`family.open_subjects`, C298: the pilot's EVS) are open whatever the free subject is, and never become it.
 export type SubjectAccess = { subject: Subject; open: boolean; isFree: boolean };
 
-export function subjectAccess(child: { freeSubject: Subject | null }, subject: Subject): SubjectAccess {
+export function subjectAccess(child: { freeSubject: Subject | null }, subject: Subject, openToAll: readonly string[] = []): SubjectAccess {
+  if (openToAll.includes(subject)) return { subject, open: true, isFree: false };
   if (!child.freeSubject) return { subject, open: true, isFree: false };
   return { subject, open: child.freeSubject === subject, isFree: child.freeSubject === subject };
 }

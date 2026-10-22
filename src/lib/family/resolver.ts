@@ -4,6 +4,7 @@ import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, parseBlockLine, 
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
 import { classSubjects } from './catalog';
+import { openSubjects, reviewedOnlySubjects } from './learning';
 import { subjectAccess } from './modules';
 import { isSubject, type Subject } from './subjects';
 
@@ -12,7 +13,9 @@ import { isSubject, type Subject } from './subjects';
 //   1. context   the syllabus line from the catalog released to everyone, for the child's class (never a draft)
 //   2. cache     a topic or chapter response already made for this class, language, style and prompt version is
 //                served from the shared library (content.responses): "checked by NetCyberAI" once the founder approved
-//                it, "AI-made" until then. A typed question is never cached: it is the child's own words.
+//                it, "AI-made" until then. A typed question is never cached: it is the child's own words. In a subject
+//                Control marks "checked explanations only" (C300: the pilot's EVS) a chapter or topic is served only a
+//                checked response, and is never made live; until one is checked the child is told it is being checked
 //   3. generate  through the AI platform (profile family.resolver): the minors check, the pre-processor that removes
 //                every child identifier, the daily cap and the metering all happen there
 //   4. verify    each line is checked against its block's shape; arithmetic is recomputed; links come from the
@@ -40,7 +43,7 @@ export type ResolverEvent =
   | { t: 'meta'; label: 'ai_made' | 'checked'; cached: boolean; title: string | null; subject: string; topicKey: string | null }
   | { t: 'block'; block: PublicBlock }
   | { t: 'done'; complete: boolean }
-  | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open' | 'other_subject'; message: string; goTo?: { subject: Subject; label: string } };
+  | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open' | 'other_subject' | 'not_ready'; message: string; goTo?: { subject: Subject; label: string } };
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
 export type ResolverContext = {
@@ -53,6 +56,10 @@ export type ResolverContext = {
   // The subject's entitlement (M1-6): the child's free subject, claimed on first use, on the transaction it is given.
   // Returns whether the subject is open. Absent: every subject is open and nothing is claimed.
   claimSubject?: (db: Db, subject: Subject) => Promise<boolean>;
+  // NetCyberAI staff preparing the shared library before children ask (C300, prepare.ts): the line comes from this
+  // syllabus version, in review or released, and the "checked explanations only" rule does not apply (what is made
+  // goes to Control's review queue as AI-made).
+  preparing?: { versionId: string };
 };
 
 // Whom the sealed items are for.
@@ -97,14 +104,18 @@ function toPublic(b: Block, ctx: Seal, topicKey: string, subject: string): Publi
 }
 
 // A complete response from the shared library for this child's class, language and style, as the events the phone
-// draws (items sealed for this child), or null when there is none.
-async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: string): Promise<ResolverEvent[] | null> {
+// draws (items sealed for this child), or null when there is none. Checked only (C300): any checked response in the
+// child's language, their own style and the current prompt version first, so a new prompt version or another style
+// never hides what a reviewer has checked.
+async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: string, checkedOnly: boolean): Promise<ResolverEvent[] | null> {
   const child = ctx.child;
   const { rows } = await db.query(
     `select response_id, blocks, status from content.responses
-      where board_id = $1 and class_level = $2 and subject = $3 and topic_key = $4 and language = $5 and style = $6 and prompt_version = $7 and status <> 'withdrawn'
+      where board_id = $1 and class_level = $2 and subject = $3 and topic_key = $4 and language = $5 and status <> 'withdrawn'
+        and case when $8::boolean then status = 'checked' else style = $6 and prompt_version = $7 end
+      order by (style = $6) desc, (prompt_version = $7) desc, checked_at desc nulls last
       limit 1`,
-    [syllabusBoardOf(child), child.classLevel, line.subject, line.key, child.language, child.style, promptVersion]
+    [syllabusBoardOf(child), child.classLevel, line.subject, line.key, child.language, child.style, promptVersion, checkedOnly]
   );
   const cached = rows[0];
   if (!cached || !Array.isArray(cached.blocks)) return null;
@@ -122,11 +133,35 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
 
 // The Understand page draws a library response with the page itself (09 §4: the explanation is the largest paint, and
 // waiting for the phone to ask first cost half a second on a 4G profile). Only when the subject is already the child's
-// free one, so drawing the page never claims a subject; otherwise, or when the library has none, the phone asks.
+// free one, or one open to every child (C298), so drawing the page never claims a subject; otherwise, or when the
+// library has none, the phone asks. In a "checked explanations only" subject (C300) only a checked one is drawn.
 export async function libraryResponse(db: Db, ctx: Seal, line: Line): Promise<ResolverEvent[] | null> {
-  if (ctx.child.freeSubject !== line.subject) return null;
+  if (ctx.child.freeSubject !== line.subject && !(await openSubjects(db as never)).includes(line.subject)) return null;
   const promptVersion = resolverPrompt(await activePromptVersion(db as never, 'family.resolver'), false).version;
-  return libraryEvents(db, ctx, line, promptVersion);
+  return libraryEvents(db, ctx, line, promptVersion, (await reviewedOnlySubjects(db)).includes(line.subject));
+}
+
+// A chapter or topic from one syllabus version, whatever its status: only for staff preparing the library (C300).
+async function versionLine(db: Db, versionId: string, child: FamilyChild, input: { kind: 'topic' | 'chapter'; key: string }): Promise<Line | null> {
+  if (!KEY.test(input.key)) return null;
+  const pick = (en: unknown, hi: unknown) => String(child.language === 'hi' && hi ? hi : en);
+  const { rows } =
+    input.kind === 'topic'
+      ? await db.query(
+          `select v.subject, t.topic_key as key, t.title_en, t.title_hi, c.title_en as chapter_en
+             from content.topics t join content.chapters c on c.chapter_id = t.chapter_id join content.syllabus_versions v on v.version_id = t.version_id
+            where v.version_id = $1 and t.topic_key = $2`,
+          [versionId, input.key]
+        )
+      : await db.query(
+          `select v.subject, c.chapter_key as key, c.title_en, c.title_hi, c.title_en as chapter_en
+             from content.chapters c join content.syllabus_versions v on v.version_id = c.version_id
+            where v.version_id = $1 and c.chapter_key = $2`,
+          [versionId, input.key]
+        );
+  const r = rows[0];
+  if (!r || !isSubject(r.subject)) return null;
+  return { subject: r.subject, key: String(r.key), chapterEn: String(r.chapter_en), topicEn: input.kind === 'topic' ? String(r.title_en) : null, title: pick(r.title_en, r.title_hi) };
 }
 
 // What prepareResolve() hands on: everything generate() and keep() need, and no database client.
@@ -187,7 +222,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   }
   let line: Line | null = null;
   if (input.kind !== 'question') {
-    line = await syllabusLine(db, child, input);
+    line = ctx.preparing ? await versionLine(db, ctx.preparing.versionId, child, input) : await syllabusLine(db, child, input);
     if (!line) {
       emit({ t: 'refused', reason: 'not_found', message: ctx.refusalWords('fam.understand.notFound') });
       return null;
@@ -200,15 +235,22 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   }
   // A typed question is answered only in a subject this child may use: the free one, or either before one is claimed.
   const ofClass = await classSubjects(db as never, { board: syllabusBoardOf(child), classLevel: child.classLevel });
-  const open: Subject[] = known ? [known] : ofClass.filter((s) => !ctx.claimSubject || subjectAccess(child, s).open);
+  const openToAll = await openSubjects(db as never);
+  const open: Subject[] = known ? [known] : ofClass.filter((s) => !ctx.claimSubject || subjectAccess(child, s, openToAll).open);
   const prompt = resolverPrompt(await activePromptVersion(db as never, 'family.resolver'), known === null);
   const cacheable = input.kind !== 'question' && followUp === null && misconception === null;
 
-  // 2. The shared library.
+  // 2. The shared library. In a "checked explanations only" subject (C300) a chapter or topic is served a checked
+  // response or nothing: no AI-made one, and none made live.
   if (cacheable && line) {
-    const cached = await libraryEvents(db, ctx, line, prompt.version);
+    const checkedOnly = !ctx.preparing && (await reviewedOnlySubjects(db)).includes(line.subject);
+    const cached = await libraryEvents(db, ctx, line, prompt.version, checkedOnly);
     if (cached) {
       for (const e of cached) emit(e);
+      return null;
+    }
+    if (checkedOnly) {
+      emit({ t: 'refused', reason: 'not_ready', message: ctx.refusalWords('fam.understand.notReady') });
       return null;
     }
   }

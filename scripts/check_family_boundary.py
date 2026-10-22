@@ -56,6 +56,10 @@ FAMILY_DOORS = {
     "@/lib/privacy/upload-check": {"src/lib/family/homework.ts"},
     # Voice input applies the 12-digit rule to the words it hears before they are shown (M2-7, C281).
     "@/lib/privacy/aadhaar": {"src/lib/family/voice.ts"},
+    # Staff prepare the explanations of a syllabus version before children ask (C300): the content staff guard (the
+    # authenticator) and the platform role's transaction, for this one route only.
+    "@/lib/content/route": {"src/app/api/family/prepare/route.ts"},
+    "@/lib/control/billing-route": {"src/app/api/family/prepare/route.ts"},
 }
 # Packages and the framework, allowed everywhere.
 EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")
