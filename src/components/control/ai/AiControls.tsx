@@ -95,9 +95,18 @@ export function AiControls({ initial }: { initial: Data }) {
 
   return (
     <div lang={lang} className="flex flex-col gap-5 text-sm text-slate">
+      {/* The outcome of a save sits at the bottom of the window, wherever the page is scrolled (C319): at the top it was
+          out of sight while the founder worked on a service lower down, so a refusal went unseen. */}
       {note && (
-        <p role="status" data-ai-note className={`rounded-md px-3 py-2 font-semibold ${note.ok ? 'bg-off-white text-slate' : 'border border-red-800/30 text-red-800'}`}>
-          {note.text}
+        <p
+          role="status"
+          data-ai-note
+          className={`fixed inset-x-4 bottom-4 z-50 mx-auto flex max-w-xl items-center gap-3 rounded-md py-1 pl-4 pr-1 font-semibold shadow-lg ${note.ok ? 'border border-slate/20 bg-white text-slate' : 'border border-red-800/30 bg-white text-red-800'}`}
+        >
+          <span className="flex-1 py-2">{note.text}</span>
+          <button type="button" data-ai-note-close className={TAP} onClick={() => setNote(null)}>
+            {t('control.ai.note.close')}
+          </button>
         </p>
       )}
 
