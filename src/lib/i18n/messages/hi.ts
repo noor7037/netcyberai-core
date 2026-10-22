@@ -6876,6 +6876,28 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.offline.pack.partialOne': 'एक टॉपिक अभी इस पैक में नहीं है। उसके लिए इंटरनेट चाहिए।',
   // d1 end
   // d1-2 begin
+  'fam.home.brandLine': 'थोड़ा सीखो, गहराई से समझो',
+  'fam.home.greet.morning': 'सुप्रभात, {name}!',
+  'fam.home.greet.afternoon': 'नमस्ते, {name}!',
+  'fam.home.greet.evening': 'शुभ संध्या, {name}!',
+  'fam.home.askLabel': 'सवाल पूछो',
+  'fam.home.askPlaceholder': 'कुछ भी पूछो या खोजो…',
+  'fam.home.askPlaceholderType': 'कुछ भी पूछो या खोजो…',
+  'fam.home.subjectsTitle': 'तुम्हारे विषय',
+  'fam.home.tileProgress': '{checked} जाँचे, {mastered} में महारत',
+  'fam.home.tileStart': 'अभी शुरू नहीं किया',
+  'fam.home.tileFree': 'मुफ़्त',
+  'fam.home.tileClosed': 'बाद में Family Plus के साथ खुलेगा',
+  'fam.home.tileBar': '{subject}: {checked} में से {mastered} टॉपिक में महारत',
+  'fam.home.talkTitle': 'खाने की मेज़ का सवाल',
+  'fam.home.talkLead': 'आज रात घर पर पूछो और साथ में बात करो।',
+  'fam.home.talk.0': 'क्या तुम घर पर किसी को अपने शब्दों में {topic} समझा सकते हो?',
+  'fam.home.talk.1': 'तुम्हें {topic} घर पर या बाहर कहाँ दिखता है?',
+  'fam.home.talk.2': '{topic} में सबसे आसान हिस्सा क्या था, और सबसे मुश्किल क्या?',
+  'fam.home.talk.3': 'घर पर किसी को {topic} के बारे में एक बात सिखाओ, जैसे तुम टीचर हो।',
+  'fam.home.welcomeTitle': 'स्वागत है, {name}!',
+  'fam.home.welcomeBody': 'एक विषय चुनो और अपना पहला टॉपिक आज़माओ। तुम्हारा प्लान और प्रगति तुम्हारे पहले जाँचे गए जवाब से शुरू होंगे।',
+  'fam.home.welcomeAction': 'अपना पहला टॉपिक शुरू करो',
   // d1-2 end
   // d1-3 begin
   'fam.d13.study.noCatalogTitle': 'अध्याय जल्द आ रहे हैं',

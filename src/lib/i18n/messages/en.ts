@@ -6888,6 +6888,28 @@ export const en = {
   'fam.offline.pack.partialOne': 'One topic is not in this pack yet. It needs the internet.',
   // d1 end
   // d1-2 begin
+  'fam.home.brandLine': 'Learn a little, understand a lot',
+  'fam.home.greet.morning': 'Good morning, {name}!',
+  'fam.home.greet.afternoon': 'Good afternoon, {name}!',
+  'fam.home.greet.evening': 'Good evening, {name}!',
+  'fam.home.askLabel': 'Ask a question',
+  'fam.home.askPlaceholder': 'Ask or search any topic…',
+  'fam.home.askPlaceholderType': 'Ask or search any topic…',
+  'fam.home.subjectsTitle': 'Your subjects',
+  'fam.home.tileProgress': '{checked} checked, {mastered} mastered',
+  'fam.home.tileStart': 'Not started yet',
+  'fam.home.tileFree': 'Free',
+  'fam.home.tileClosed': 'Opens with Family Plus later',
+  'fam.home.tileBar': '{subject}: {mastered} of {checked} topics mastered',
+  'fam.home.talkTitle': 'Dinner-table question',
+  'fam.home.talkLead': 'Ask it at home tonight and talk it over together.',
+  'fam.home.talk.0': 'Can you explain {topic} to someone at home in your own words?',
+  'fam.home.talk.1': 'Where do you see {topic} at home or outside?',
+  'fam.home.talk.2': 'What was the easiest part of {topic}, and what was the trickiest?',
+  'fam.home.talk.3': 'Teach one thing about {topic} to someone at home, as if you were the teacher.',
+  'fam.home.welcomeTitle': 'Welcome, {name}!',
+  'fam.home.welcomeBody': 'Pick a subject and try your first topic. Your plan and progress start from your first checked answer.',
+  'fam.home.welcomeAction': 'Start your first topic',
   // d1-2 end
   // d1-3 begin
   'fam.d13.study.noCatalogTitle': 'Chapters are on their way',
