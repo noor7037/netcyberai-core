@@ -85,11 +85,19 @@ function Person({ lang, p }: { lang: Lang; p: FamilyPerson }) {
         })}
       </ul>
 
-      {p.preview ? (
-        <ReasonButton url="/api/control/apps/preview/remove" field="accountId" id={p.accountId} label={t(lang, 'control.people.previewRemove')} />
-      ) : (
-        <ReasonButton url="/api/control/apps/preview/add" field="accountId" id={p.accountId} label={t(lang, 'control.people.previewAdd')} />
-      )}
+      {/* Folded, so a page of 50 families reads as contacts first; the reason box opens with the switch. */}
+      <details data-preview-switch>
+        <summary className="inline-flex min-h-[44px] cursor-pointer items-center text-sm font-semibold text-royal underline">
+          {t(lang, p.preview ? 'control.people.previewRemove' : 'control.people.previewAdd')}
+        </summary>
+        <div className="pt-2">
+          {p.preview ? (
+            <ReasonButton url="/api/control/apps/preview/remove" field="accountId" id={p.accountId} label={t(lang, 'control.people.previewRemove')} />
+          ) : (
+            <ReasonButton url="/api/control/apps/preview/add" field="accountId" id={p.accountId} label={t(lang, 'control.people.previewAdd')} />
+          )}
+        </div>
+      </details>
     </li>
   );
 }

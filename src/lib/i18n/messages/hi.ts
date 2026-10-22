@@ -6226,7 +6226,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.parent.granted': 'आपने सहमति दी है',
   'fam.parent.notGranted': 'आपने सहमति नहीं दी है',
   'fam.parent.withdraw': 'सहमति वापस लें',
-  'fam.parent.grant': 'फिर से सहमति दें',
+  'fam.parent.grant': 'सहमति दें',
   'fam.parent.withdrawNote': 'सहमति वापस लेने पर हर बच्चे की पढ़ाई तब तक रुक जाएगी जब तक आप फिर से सहमति न दें।',
   'fam.parent.language': 'भाषा',
   'fam.parent.signOutTitle': 'साइन आउट',

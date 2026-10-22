@@ -6680,6 +6680,8 @@ const SCREENS = [
   // Control → Family: counts only.
   ['founder', 'control-apps', '/control/apps'],
   ['founder', 'control-family', '/control/family'],
+  // Control → Family → People (C230-V): the families, for the founder with the authenticator.
+  ['founder', 'control-family-people', '/control/family/people'],
   // m1-7 end
   // m2-12 begin
   // Control → Content (C286): the catalog import from a board's PDF (the form, filled; the reading itself needs a

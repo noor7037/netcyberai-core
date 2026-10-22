@@ -6235,7 +6235,7 @@ export const en = {
   'fam.parent.granted': 'You agreed',
   'fam.parent.notGranted': 'You have not agreed',
   'fam.parent.withdraw': 'Withdraw',
-  'fam.parent.grant': 'Agree again',
+  'fam.parent.grant': 'Agree',
   'fam.parent.withdrawNote': 'Withdrawing stops learning for every child until you agree again.',
   'fam.parent.language': 'Language',
   'fam.parent.signOutTitle': 'Sign out',
