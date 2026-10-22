@@ -6586,6 +6586,8 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.homework.studyLink': 'प्रश्न की फ़ोटो',
   'fam.homework.studyLead': 'होमवर्क में अटके हैं? फ़ोटो से संकेत पाएँ।',
   'fam.homework.err.not_for_class': 'होमवर्क सहायक कक्षा 1 से शुरू होता है।',
+  'fam.consent.purpose.photo_input': 'फ़ोटो प्रश्न: होमवर्क सहायक एक प्रश्न की फ़ोटो पढ़ता है और उसे रखता नहीं',
+  'fam.homework.err.photo_consent': 'फ़ोटो प्रश्नों की अनुमति अभी नहीं है। माता-पिता से पैरेंट एरिया में अनुमति देने को कहें।',
   // m2-6 end
   // m2-7 begin
   // m2-7 end
