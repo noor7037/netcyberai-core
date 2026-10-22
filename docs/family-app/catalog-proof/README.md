@@ -266,3 +266,50 @@ Compare and approve exactly as above. Good to know before you start:
   heading there). English: none (no Hindi edition). Malhar: the printed Devanagari title in both columns. Please
   compare the Hindi titles with the page by eye: the PDFs' hidden Hindi text is often damaged, so every one was typed
   from the page.
+
+## CISCE ICSE, Classes IX and X
+
+One page per syllabus version in
+[`data/catalog/cisce-2026-27-icse-classes-9-10.csv`](../../../data/catalog/cisce-2026-27-icse-classes-9-10.csv),
+read from cisce.org on 2026-10-22. CISCE publishes its syllabuses by examination year: Class IX (examination in 2028)
+comes from the "ICSE 2028" documents, Class X (examination in 2027) from the "ICSE 2027" documents. Each subject
+document covers both classes; only its class's part is used. Compare and approve exactly as above; each page lists the
+CISCE pages to open, and every line links to its own page.
+
+| Page | Units | Chapters | Topics | CISCE pages to compare |
+|---|---|---|---|---|
+| [Class IX Physics](cisce-class9-physics.md) | 0 | 8 | 18 | 4–7 |
+| [Class X Physics](cisce-class10-physics.md) | 0 | 6 | 21 | 9–12 |
+| [Class IX Chemistry](cisce-class9-chemistry.md) | 0 | 8 | 24 | 4–8 |
+| [Class X Chemistry](cisce-class10-chemistry.md) | 0 | 9 | 37 | 8–13 |
+| [Class IX Biology](cisce-class9-biology.md) | 0 | 7 | 17 | 4–7 |
+| [Class X Biology](cisce-class10-biology.md) | 0 | 6 | 22 | 8–11 |
+| [Class IX Mathematics](cisce-class9-mathematics.md) | 0 | 8 | 28 | 4–7 |
+| [Class X Mathematics](cisce-class10-mathematics.md) | 0 | 7 | 17 | 8–10 |
+| [Class IX History and Civics](cisce-class9-history.md) | 2 | 11 | 7 | 4–6 |
+| [Class X History and Civics](cisce-class10-history.md) | 2 | 6 | 19 | 6–7 |
+| [Class IX Geography](cisce-class9-geography.md) | 1 | 7 | 17 | 4–6 |
+| [Class X Geography](cisce-class10-geography.md) | 2 | 11 | 37 | 8–10 |
+| [Class IX English](cisce-class9-english.md) | 2 | 2 | 10 | 4–6 |
+| [Class X English](cisce-class10-english.md) | 2 | 2 | 10 | 4–5 |
+| [Class IX Hindi](cisce-class9-hindi.md) | 2 | 4 | 13 | 4–5, and Appendix I 10–11 |
+| [Class X Hindi](cisce-class10-hindi.md) | 2 | 4 | 13 | 4, and Appendix I 5 |
+
+These pages have **no picture** of CISCE's pages: the documents are CISCE's copyright, so no copy of them is kept in the
+repository.
+
+Good to know before you start:
+
+- **Chapters are CISCE's numbered topics.** Physics, Chemistry, Biology and Mathematics have no units (CISCE groups
+  their topics no further). History and Civics, Geography, English and Hindi have units: the sections, parts or papers
+  CISCE prints.
+- **Topics are the numbered, lettered or bulleted lines** under a chapter, in the words CISCE prints upright; its
+  explanation in italics is not in the list. Some chapters print their content as a statement without a number, so they
+  have no topics; each page says which.
+- **English and Hindi:** the language paper (or section) has no chapters, because CISCE describes only its exam
+  questions. The literature lists the prescribed texts and their stories and poems.
+- **Hindi titles are in Roman letters**, as CISCE prints them ("Baat Athanni Ki - Sudarshan"). No document has a Hindi
+  version, so no line has a Hindi title. Nothing was translated.
+- **Choices to confirm**, marked "Please check" on the pages and explained in the catalog README: no units in the
+  sciences and Mathematics, the chapters without topics, map work, the language units without chapters, and how a few
+  mixed lines are taken.

@@ -830,3 +830,159 @@ Nothing was translated. 300 of 451 lines have a Hindi title.
 
 Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
 pages `class6-social-science.md` to `class8-hindi.md`.
+
+## cisce-2026-27-icse-classes-9-10.csv
+
+CISCE (board id `CISCE`), ICSE, academic year 2026-27, Classes IX and X, in the core subjects: Physics, Chemistry,
+Biology, Mathematics, History and Civics, Geography, English and Hindi (subject ids `physics`, `chemistry`, `biology`,
+`mathematics`, `history`, `geography`, `english`, `hindi`). Same columns and rules as the files above. Every line is
+`in_review`; every line was read on **2026-10-22**. 431 lines (15 units, 106 chapters, 310 topics). Load it the same way:
+
+```
+node scripts/content/catalog-sql.mjs data/catalog/cisce-2026-27-icse-classes-9-10.csv --ref "<the PR that committed it>" > load.sql
+```
+
+### Which document for which class
+
+CISCE publishes its "Regulations and Syllabuses" by **examination year**, linked from
+https://cisce.org/regulations-and-syllabuses-icse-2/ (cisce.org → Examination → ICSE → Regulations & Syllabuses). ICSE
+is a two-year course (Classes IX and X) that ends in the ICSE examination in Class X, and the Regulations require every
+candidate to use "the Regulations and Syllabuses for the year of the Examination in which they are appearing"
+(Chapter I, G). For 2026-27:
+
+- **Class X** sits the ICSE examination in February–March 2027 (CISCE's Examination page: "ICSE 2027", February 2027 to
+  March 2027). Its lines come from **"Regulations and Syllabuses - ICSE 2027"**:
+  https://cisce.org/regulations-and-syllabus-icse-2027/.
+- **Class IX** is registered in Class IX for the 2028 examination (Regulations 2028: "Candidates must be registered
+  online in Class IX"; the Examination page: "Candidate Registration Year’2028 … August – September 2026"). Its lines
+  come from **"Regulations and Syllabuses - ICSE 2028"**: https://cisce.org/regulations-and-syllabuses-icse-2028/.
+
+Every subject document covers both classes and divides them itself: the science, mathematics and humanities documents
+print a "CLASS IX" and a "CLASS X" part; English and Appendix I print "Syllabus to be covered in Class IX" and "… in
+Class X" ("The Class IX Examination is to be conducted on the portion of the syllabus that is prescribed for Class IX").
+From each document only its class's part is taken: Class IX from the 2028 part "CLASS IX", Class X from the 2027 part
+"CLASS X". The two years' Class X parts differ (for example Physics 2027 has "Uniform circular motion", 2028 does not),
+so the 2028 Class X part is not used. Hindi's prescribed texts are divided by class for 2027 and 2028 by CISCE's circular
+of 20 April 2026, "Bifurcation of the Prescribed Texts for Selected Indian Languages …"
+(https://cisce.org/wp-content/uploads/2026/08/Circular-for-Bifurcation-of-Indian-Languages.pdf); its Hindi lists name
+the same lessons as the two appendices. Pages are the PDF's page numbers (page 1 is the first page of the file).
+
+| Class | Subject | Document (examination year) | Units | Chapters | Topics | Pages used |
+|---|---|---|---|---|---|---|
+| IX | physics | Physics, Science Paper 1 (2028): https://cisce.org/wp-content/uploads/2026/01/10.-Physics.pdf | 0 | 8 | 18 | 4–7 |
+| X | physics | Physics, Science Paper 1 (2027): https://cisce.org/wp-content/uploads/2025/03/10.-Physics.pdf | 0 | 6 | 21 | 9–12 |
+| IX | chemistry | Chemistry, Science Paper 2 (2028): https://cisce.org/wp-content/uploads/2026/01/11.-Chemistry.pdf | 0 | 8 | 24 | 4–8 |
+| X | chemistry | Chemistry, Science Paper 2 (2027): https://cisce.org/wp-content/uploads/2025/03/11.-Chemistry.pdf | 0 | 9 | 37 | 8–13 |
+| IX | biology | Biology, Science Paper 3 (2028): https://cisce.org/wp-content/uploads/2026/01/12.-Biology.pdf | 0 | 7 | 17 | 4–7 |
+| X | biology | Biology, Science Paper 3 (2027): https://cisce.org/wp-content/uploads/2025/03/12.-Biology.pdf | 0 | 6 | 22 | 8–11 |
+| IX | mathematics | Mathematics (2028): https://cisce.org/wp-content/uploads/2026/01/9.-Mathematics.pdf | 0 | 8 | 28 | 4–7 |
+| X | mathematics | Mathematics (2027): https://cisce.org/wp-content/uploads/2025/03/9.-Mathematics.pdf | 0 | 7 | 17 | 8–10 |
+| IX | history | History and Civics, H.C.G. Paper 1 (2028): https://cisce.org/wp-content/uploads/2026/01/5.-History-Civics.pdf | 2 | 11 | 7 | 4–6 |
+| X | history | History and Civics, H.C.G. Paper 1 (2027): https://cisce.org/wp-content/uploads/2025/03/ICSE-History-Civics.pdf | 2 | 6 | 19 | 6–7 |
+| IX | geography | Geography, H.C.G. Paper 2 (2028): https://cisce.org/wp-content/uploads/2026/01/6.-Geography.pdf | 1 | 7 | 17 | 4–6 |
+| X | geography | Geography, H.C.G. Paper 2 (2027): https://cisce.org/wp-content/uploads/2025/03/ICSE-Geography.pdf | 2 | 11 | 37 | 8–10 |
+| IX | english | English (2028): https://cisce.org/wp-content/uploads/2026/01/2.-English.pdf | 2 | 2 | 10 | 4–6 |
+| X | english | English (2027): https://cisce.org/wp-content/uploads/2025/03/2.-English.pdf | 2 | 2 | 10 | 4–5 |
+| IX | hindi | Second Language, Indian Languages (2028): https://cisce.org/wp-content/uploads/2026/04/3.-Second-Languages-1.pdf (units); Appendix I, List of Prescribed Textbooks (2028): https://cisce.org/wp-content/uploads/2026/04/ICSE-2028-Appendix-I-List-of-Prescribed-Textbooks.pdf (chapters, topics) | 2 | 4 | 13 | 4–5; 10–11 |
+| X | hindi | Second Language, Indian Languages (2027): https://cisce.org/wp-content/uploads/2026/04/3.-Second-Languages.pdf (units); Appendix I, List of Prescribed Books (2027): https://cisce.org/wp-content/uploads/2026/04/ICSE-2027-Appendix-I-List-of-Prescribed-Books.pdf (chapters, topics) | 2 | 4 | 13 | 4; 5 |
+
+### How the lines were taken from the documents
+
+- **ICSE prints no course structure table.** Each class part numbers its topics (1, 2, 3 … in a shaded bar); under each,
+  CISCE prints the syllabus lines in upright type, often numbered (i), (ii) … or lettered (a), (b) …, and explains them
+  in italics, often as bullets.
+- **Units** only where the document groups the numbered topics: History and Civics ("SECTION A: CIVICS", "SECTION B:
+  HISTORY"), Geography IX ("PRINCIPLES OF GEOGRAPHY"), Geography X ("PART – I MAP WORK", "PART - II GEOGRAPHY OF
+  INDIA"), English (the two papers) and Hindi (the two sections of the paper). The label ("SECTION A:", "PART – I",
+  "PAPER 1 -") and the marks are left out. Physics, Chemistry, Biology and Mathematics print no grouping, so their
+  chapters have no unit, as for the NCERT chapters without a unit (keys `cisce.c9.physics.ch01`).
+- **Chapters** are the numbered topics, number left out (History: the numbered topics of each section; Geography X:
+  CISCE numbers them 1 to 11 across its two parts, positions start again in each unit).
+- **Topics** are the first list level under a chapter: the items numbered (i) … or lettered (a) … (A–D in Chemistry X
+  "Study of Compounds"), or the bullets where a chapter numbers nothing. The topic is the item's words in upright type,
+  up to where CISCE's italic explanation starts; an item printed entirely in italics is taken up to its first full
+  stop. **A line without a number, letter or bullet is not a topic** (CISCE prints a chapter's content as one statement
+  in many chapters), and **a list printed under a topic is not taken** (the CSV has three levels). Lines without
+  topics are listed under "Choices to confirm".
+- **Wording** as printed: line breaks joined (a hyphen at a line end joined without a space: "(1915-1947)"), repeated
+  spaces made one, capitals and slips kept ("7.Metallurgy" is "Metallurgy"; "fertilisation functions of placenta in
+  the growth of the embryo Menstrual cycle"), a trailing `;` or `:` dropped. Symbols are written in plain characters:
+  "A = P(1 + r/100)ⁿ" (Mathematics IX), "H₂SO₄" (Chemistry IX), "°C" for the raised 0 of Physics IX.
+- **English** is one subject in two papers; the papers are the units: "ENGLISH LANGUAGE" (no chapters: Paper 1
+  describes its five questions, an exam format) and "LITERATURE IN ENGLISH". Its chapters are the two prescribed texts as
+  the class list prints them ("DRAMA: Julius Caesar - William Shakespeare (Acts I & II)", "TREASURE CHEST: …"), and the
+  topics are the stories and then the poems of Treasure Chest (positions 1–5 and 6–10; "PROSE (Short Stories):" and
+  "POETRY:" are not lines). The syllabus document is used, not Appendix I, which prints one title differently ("The
+  Home-coming" for "Home-coming").
+- **Hindi** is one paper in two sections; the units are "LANGUAGE" and "PRESCRIBED TEXTS" (Second Language document;
+  the Language section names no topics). For the texts the document refers to Appendix I, whose Hindi class list gives
+  the chapters ("Short Stories", "Poems", "Novel: Naya Raasta - Sushma Agarwal Sarg 1 to Sarg 13", "Ekanki Sanchay: …")
+  and the lessons under them as topics; the instruction "(The following short stories are to be studied)" is left out.
+- **Over the 300-character limit.** Two upright items are longer than a title may be, so the topic is their first part:
+  Physics IX "Free electrons, Simple electric circuit … (including its relationship to charge)" (up to the first
+  semicolon) and Chemistry X "Action of Ammonium Hydroxide and Sodium Hydroxide on solution of salts" (up to the colon).
+- **Keys and positions** count from 1 under the parent, in printed order.
+
+### Choices to confirm (the supervisor)
+
+- **No units in the sciences and Mathematics.** The brief's example keys have a unit (`cisce.c9.physics.u1.ch01`), but
+  these four documents print no grouping above their numbered topics; the numbered topics are the chapters, with no
+  parent (`cisce.c9.physics.ch01`). Making each numbered topic a unit instead would turn the (i), (ii) statements into
+  chapters.
+- **Chapters without topics (17).** They print their content without a number, letter or bullet: Physics IX "Motion in
+  One Dimension"; Biology IX "Diversity in Animal Kingdom"; Mathematics IX "Pure Arithmetic" ("Rational and Irrational
+  Numbers", "Proofs of irrationality of √2, √3, √5"); Mathematics X "Mensuration", "Probability"; History IX, all three
+  Civics chapters and History chapters 1–6; Geography IX "Hydrosphere" (three lines), "Natural Regions of the World";
+  Geography X "Climate". (Six more chapters have no topics by nature: the two map-work chapters below, the two Julius
+  Caesar chapters and the two Naya Raasta chapters, which are single texts.) Also not taken: the statement printed before the numbered items (for example Chemistry X
+  "Chemical Bonding", Mathematics IX "Statistics"), the unnumbered headings "Compound Interest" (Mathematics IX, its (a)
+  and (b) are the topics) and "Water Pollution." (Chemistry IX, page 8, a bold sub-heading after "Atmospheric
+  Pollution." whose (a)–(c) are the topics), and "Foundation of the Indian National Congress" and "Second Phase of the
+  Indian National Movement (1905-1916)" (History X, printed inside items (b) and (c)). Any of them can be added as a
+  topic.
+- **Map work.** "Map Work" (Geography IX) and "Map of India" (Geography X) are chapters, as printed, without topics:
+  their content is lists of places to locate on an outline map, not taken, as for CBSE. "Interpretation of Topographical
+  Maps" (Geography X) lists skills, and its (a)–(h) are topics. To leave map work out, delete
+  `cisce.c9.geography.u1.ch07` and `cisce.c10.geography.u1` with its chapters and topics.
+- **Language units without chapters.** English "ENGLISH LANGUAGE" and Hindi "LANGUAGE" have no chapters (exam formats
+  only); delete `cisce.c9.english.u1`, `cisce.c10.english.u1`, `cisce.c9.hindi.u1` and `cisce.c10.hindi.u1` to keep the
+  literature only.
+- **Joined or kept whole.** Mathematics X Statistics (a) joins "Computation of:" with the first sentence of its one
+  bullet; History X "Forward Bloc (objectives) and INA (name of the founder objectives and contribution of Subhas
+  Chandra Bose)." and Chemistry IX Water (iii) "Drying Agents- … Dehydrating Agents- …" are kept whole although part of
+  each line is in italics.
+- **Hindi books.** Appendix I says "Only two of the following books are to be offered": a student studies two of
+  Sahitya Sagar (the short stories and poems), Naya Raasta and Ekanki Sanchay. All three are in the list.
+
+### Not in this file (never guessed)
+
+| What | Where we looked | What was found |
+|---|---|---|
+| **The other ICSE subjects** | the 2027 and 2028 Regulations and Syllabuses pages | Not yet in: second languages other than Hindi, Modern Foreign Languages, Classical Languages, Economics, Commercial Studies, Computer Applications, Environmental Science, Economic Applications, Commercial Applications, Art, Performing Arts, Home Science, Cookery, Fashion Designing, Physical Education, Yoga, Technical Drawing Applications, Environmental Applications, Mass Media & Communication, Hospitality Management, SUPW and Community Service, Health and Physical Education (2028), the vocational subjects, and History Civics and Geography for Thailand. |
+| **Practical work, internal assessment, suggested assignments, notes on SI units, symbols and question formats** | all the documents | Assessment and exam formats, not chapters or topics. |
+| **Lessons from the books themselves** | — | Only what CISCE's documents print; nothing was taken from Treasure Chest, Sahitya Sagar or other textbooks. |
+
+### Hindi titles
+
+`title_hi` is empty on every line. CISCE prints all its syllabus documents in English, the Hindi lessons too, in Roman
+letters ("Baat Athanni Ki - Sudarshan"). Checked on 2026-10-22: the 2027 and 2028 Regulations and Syllabuses pages link
+no Hindi version of any document, and the text of none of the downloaded PDFs (the subject documents, the two Appendix I
+lists, the Regulations and the bifurcation circular) contains Devanagari. The Hindi lessons are copied in Roman letters as printed; nothing
+was transliterated or translated.
+
+### How the supervisor checks a line
+
+As for the files above: open the line's `source_url` at `source_page`, find the title, then check its parent and its
+position. **Mechanical check:** for 430 of the 431 lines the whole title (spaces removed, dashes and quotation marks
+made plain, sub- and superscripts read as digits) is found in the text of its cited page (`pdftotext -layout` and
+`-raw`); the other one is the formula "Use of formula A = P(1 + r/100)ⁿ." (Mathematics IX, page 4), compared by eye. The
+Hindi lists were compared by eye with the rendered pages. The importer's checker (`readCatalogCsv`, run with the date
+2026-10-22) finds no problem; `test/content/catalog-csv.test.ts` checks the counts above, that every source is a PDF on
+cisce.org of the right examination year, and the Hindi-title rule.
+
+The app's subject list for classes 9–10 (`stageSubjects` in `src/lib/family/subjects.ts`) is CBSE's (`science`,
+`social_science`); these CISCE lines use the separate subject ids named in the brief. Whether the app shows them for a
+CISCE child is outside this file.
+
+Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
+pages `cisce-class9-physics.md` to `cisce-class10-hindi.md`.
