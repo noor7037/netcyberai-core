@@ -25,12 +25,16 @@ import { scrubRequest } from './preprocess';
 // against their schema and drop anything outside it. The key opened in 3 lives only inside the prepared call (a closure,
 // never a field), and a prepared call sends once: one daily-cap place, one vendor request.
 
-export type ProfileId = 'family.resolver';
+export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input';
 export type AiProfile = { id: ProfileId; carriesChildWords: boolean };
 
 // Code-defined: which profiles exist and whether a child's words may pass. Control sets each one's provider, model,
-// prompt version and on switch; never this list.
-export const PROFILES: readonly AiProfile[] = [{ id: 'family.resolver', carriesChildWords: true }];
+// prompt version and on switch; never this list. M2 (C275): the homework helper reads a photo, voice input hears a child.
+export const PROFILES: readonly AiProfile[] = [
+  { id: 'family.resolver', carriesChildWords: true },
+  { id: 'family.homework', carriesChildWords: true },
+  { id: 'family.voice_input', carriesChildWords: true },
+];
 
 export type AiContext = {
   accountId: string;

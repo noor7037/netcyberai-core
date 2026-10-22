@@ -482,6 +482,15 @@ ALLOWED_PERMISSIVE = (
         ("content.english_lessons", "english_lessons_family_read"),
         ("content.english_assessments", "english_assessments_family_read"),
         # wb1 end
+        # m2 begin
+        # C275: M2's family tables own account only (with the restrictive twins below); families read the video picks a
+        # reviewer has not rejected, and write them only through content.save_video_picks.
+        ("family.revisits", "revisits_own"),
+        ("family.plan_days", "plan_days_own"),
+        ("family.reward_jars", "reward_jars_own"),
+        ("family.day_counts", "day_counts_own"),
+        ("content.video_picks", "video_picks_family_read"),
+        # m2 end
     }
 )
 
@@ -945,6 +954,14 @@ REQUIRED_RESTRICTIVE = {
     ("content.english_lessons", "english_lessons_family_only"),
     ("content.english_assessments", "english_assessments_family_only"),
     # wb1 end
+    # m2 begin
+    # C275: own account only on every M2 family table, and families never write the video picks directly.
+    ("family.revisits", "revisits_own_only"),
+    ("family.plan_days", "plan_days_own_only"),
+    ("family.reward_jars", "reward_jars_own_only"),
+    ("family.day_counts", "day_counts_own_only"),
+    ("content.video_picks", "video_picks_family_only"),
+    # m2 end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by
