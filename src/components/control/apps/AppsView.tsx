@@ -23,13 +23,13 @@ function audienceWords(lang: Lang, f: FlagRow): string {
   return t(lang, `control.apps.audience.${f.audience}` as MessageKey);
 }
 
-function Summary({ lang, flag, live, everSet = true }: { lang: Lang; flag: FlagRow; live: boolean; everSet?: boolean }): ReactNode {
+function Summary({ lang, flag, live, now, everSet = true }: { lang: Lang; flag: FlagRow; live: boolean; now: Date; everSet?: boolean }): ReactNode {
   // A module never switched on has no row yet (C230-V): it is off for everyone until it is saved here.
   if (!everSet) return <><Badge variant="warning">{t(lang, 'control.apps.module.off')}</Badge> {t(lang, 'control.apps.module.neverSet')}</>;
   return (
     <>
       <Badge variant={live ? 'success' : 'warning'}>{live ? t(lang, 'control.apps.module.on') : t(lang, 'control.apps.module.off')}</Badge> {audienceWords(lang, flag)}
-      {flag.ends_at && <> · {t(lang, 'control.apps.endsAt.summary', { when: when(lang, flag.ends_at) })}</>}
+      {flag.ends_at && <> · {t(lang, new Date(flag.ends_at).getTime() <= now.getTime() ? 'control.apps.endsAt.ended' : 'control.apps.endsAt.summary', { when: when(lang, flag.ends_at) })}</>}
       {flag.reason && <> · {t(lang, 'control.apps.lastReason', { reason: flag.reason })}</>}
     </>
   );
@@ -131,7 +131,7 @@ function AppSection({ app, data, build, lang, now }: { app: AppId; data: Control
                 const live = everSet && flagOn(toAppFlag(f), EVERYONE, now);
                 const key = `control.apps.module.label.${f.module}`;
                 const label = isMessageKey(key) ? t(lang, key) : undefined;
-                return <FlagEditor key={f.module} flag={f} label={label} live={live} schools={data.schools} summary={<Summary lang={lang} flag={f} live={live} everSet={everSet} />} />;
+                return <FlagEditor key={f.module} flag={f} label={label} live={live} schools={data.schools} summary={<Summary lang={lang} flag={f} live={live} now={now} everSet={everSet} />} />;
               })}
             </ul>
           )}
