@@ -1,0 +1,272 @@
+/* The Family app's visual layer (D1, C230-Q; docs/family-app/09 §2–§4).
+   Colours are the logo tokens of src/lib/design-tokens.ts written as rgb() channels, so a blob or a shadow can carry
+   its own alpha. Text is never placed on these layers alone: every text element keeps a solid Tailwind background
+   class (what scripts/check_contrast.py reads), and the blobs stay at low alpha.
+   Motion uses transform and opacity only, and every animation and transition here stops under
+   prefers-reduced-motion (the harness checks that nothing moves). */
+
+/* ---- the page ---------------------------------------------------------------------------------------------------- */
+
+.fam-canvas {
+  background-color: #f9fafb; /* off-white */
+  background-image:
+    radial-gradient(36rem 22rem at 110% -6%, rgb(139 61 255 / 0.08), transparent 70%),
+    radial-gradient(30rem 20rem at -12% 18%, rgb(2 207 249 / 0.08), transparent 70%),
+    radial-gradient(34rem 26rem at 50% 120%, rgb(29 78 216 / 0.07), transparent 70%);
+  background-attachment: fixed;
+}
+
+/* ---- the greeting band ----------------------------------------------------------------------------------------- */
+
+.fam-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.fam-band::before,
+.fam-band::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border-radius: 9999px;
+  filter: blur(36px);
+  pointer-events: none;
+}
+.fam-band::before {
+  width: 20rem;
+  height: 20rem;
+  right: -6rem;
+  top: -8rem;
+  background: rgb(139 61 255 / 0.55); /* grape */
+  animation: fam-aurora 16s ease-in-out infinite alternate;
+}
+.fam-band::after {
+  width: 16rem;
+  height: 16rem;
+  left: -5rem;
+  bottom: -9rem;
+  background: rgb(2 207 249 / 0.35); /* cyan */
+  animation: fam-aurora 20s ease-in-out infinite alternate-reverse;
+}
+.fam-band-dots {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(rgb(255 255 255 / 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+  pointer-events: none;
+}
+.fam-glass {
+  background-color: rgb(255 255 255 / 0.14);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.fam-avatar-ring {
+  background: conic-gradient(from 210deg, #ffd23f, #ff7a1a, #8b3dff, #02cff9, #ffd23f);
+}
+
+/* ---- cards ------------------------------------------------------------------------------------------------------- */
+
+.fam-card {
+  border-radius: 1.75rem;
+  background-color: #ffffff;
+  box-shadow:
+    0 1px 2px rgb(30 41 59 / 0.06),
+    0 10px 30px -12px rgb(29 78 216 / 0.22),
+    inset 0 0 0 1px rgb(30 41 59 / 0.06);
+}
+.fam-press {
+  transition:
+    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.fam-press:active {
+  transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+  .fam-press:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 2px 4px rgb(30 41 59 / 0.08),
+      0 18px 40px -14px rgb(29 78 216 / 0.35),
+      inset 0 0 0 1px rgb(30 41 59 / 0.06);
+  }
+}
+
+/* A subject tile: its gradient comes from the Tailwind classes of src/lib/family/subject-theme.ts; this adds the
+   light from above, two soft shapes and the sheen. */
+.fam-tile {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  box-shadow:
+    0 12px 28px -14px rgb(6 18 51 / 0.55),
+    inset 0 1px 0 rgb(255 255 255 / 0.25);
+}
+.fam-tile::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 9rem;
+  height: 9rem;
+  right: -3rem;
+  bottom: -4rem;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.14);
+}
+.fam-tile::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 4.5rem;
+  height: 4.5rem;
+  right: 1.5rem;
+  top: -1.75rem;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.1);
+  animation: fam-float 7s ease-in-out infinite;
+}
+.fam-icon-glass {
+  background-color: rgb(255 255 255 / 0.2);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.35);
+}
+
+/* The main button: depth, a press, and a sheen that passes now and then. */
+.fam-cta {
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 10px 24px -10px rgb(29 78 216 / 0.7),
+    inset 0 1px 0 rgb(255 255 255 / 0.25);
+}
+.fam-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 0.28) 50%, transparent 65%);
+  transform: translateX(-120%);
+  animation: fam-sheen 5.5s ease-in-out 1.2s infinite;
+  pointer-events: none;
+}
+.fam-cta:disabled::after {
+  display: none; /* a button that cannot be pressed yet does not shine */
+}
+
+/* ---- entrance ---------------------------------------------------------------------------------------------------- */
+
+.fam-rise {
+  animation: fam-rise 560ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+.fam-pop {
+  animation: fam-pop 420ms cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+}
+
+/* The progress ring's arc draws itself to its value (--to, a stroke-dashoffset). */
+.fam-ring-arc {
+  animation: fam-ring 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) 200ms both;
+}
+
+/* ---- the tab dock ------------------------------------------------------------------------------------------------ */
+
+.fam-dock {
+  background-color: rgb(255 255 255 / 0.92);
+  box-shadow:
+    0 -1px 0 rgb(30 41 59 / 0.05),
+    0 16px 40px -12px rgb(6 18 51 / 0.35),
+    inset 0 0 0 1px rgb(30 41 59 / 0.06);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+}
+.fam-tab-on {
+  animation: fam-pop 380ms cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+}
+
+/* ---- keyframes --------------------------------------------------------------------------------------------------- */
+
+@keyframes fam-aurora {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(-2.5rem, 1.5rem) scale(1.15);
+  }
+}
+@keyframes fam-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+@keyframes fam-sheen {
+  0% {
+    transform: translateX(-120%);
+  }
+  22%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+@keyframes fam-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fam-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes fam-ring {
+  from {
+    stroke-dashoffset: var(--from, 100);
+  }
+  to {
+    stroke-dashoffset: var(--to, 100);
+  }
+}
+
+/* ---- reduced motion: nothing moves ------------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .fam-band::before,
+  .fam-band::after,
+  .fam-tile::after,
+  .fam-cta::after,
+  .fam-rise,
+  .fam-pop,
+  .fam-tab-on,
+  .fam-ring-arc {
+    animation: none !important;
+  }
+  .fam-cta::after {
+    display: none;
+  }
+  .fam-press,
+  .fam-press:hover,
+  .fam-press:active {
+    transition: none !important;
+    transform: none !important;
+  }
+}
