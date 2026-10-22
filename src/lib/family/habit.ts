@@ -111,7 +111,7 @@ export async function setGoal(db: Db, accountId: string, childId: string, goal: 
 
 // A 12-digit number, in any script, with spaces, dots or dashes between its digits (family code may not import the
 // website's rule, docs/family-app/03 §14; this one is stricter on purpose: it refuses any 12 digits in a row).
-const hasTwelveDigits = (s: string) => /\p{Nd}{12}/u.test(s.replace(/(\p{Nd})[\s.\-\u2010-\u2015\u2212]+(?=\p{Nd})/gu, '$1'));
+const hasTwelveDigits = (s: string) => /\p{Nd}{12}/u.test(s.replace(/(\p{Nd})[\s.\-\u2010-\u2015\u2212]+(?=\p{Nd})/gu, (_, digit: string) => digit));
 
 // A reward is plain text the parent writes: 1 to 80 characters, no markup or control characters, no 12-digit number.
 export function checkReward(raw: unknown): string | null {
