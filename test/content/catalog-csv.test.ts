@@ -172,12 +172,16 @@ describe('the catalog CSV', () => {
     expect(Object.fromEntries(r.syllabi.map((s) => [`${s.board} ${s.classLevel} ${s.subject} ${s.academicYear}`, count(s)]))).toEqual({
       'CBSE 9 social_science 2026-27': [2, 16, 74],
       'CBSE 10 social_science 2026-27': [4, 22, 10],
-      'CBSE 9 english 2026-27': [1, 7, 3],
+      'CBSE 9 english 2026-27': [2, 23, 3],
       'CBSE 10 english 2026-27': [3, 33, 3],
-      'CBSE 9 hindi 2026-27': [1, 4, 3],
-      'CBSE 10 hindi 2026-27': [1, 4, 1],
+      'CBSE 9 hindi 2026-27': [2, 16, 3],
+      'CBSE 10 hindi 2026-27': [3, 19, 9],
     });
-    expect(r.lines.every((l) => l.sourceUrl.startsWith('https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/'))).toBe(true);
+    // Lines come from CBSE's documents, except the lessons CBSE does not list (Class IX English and Hindi, Class X
+    // Hindi): those come from the contents page of NCERT's book (C273).
+    const ncert = r.lines.filter((l) => !l.sourceUrl.startsWith('https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/'));
+    expect(new Set(ncert.map((l) => l.sourceUrl))).toEqual(new Set(['iebe1', 'ihga1', 'jhks1', 'jhkr1'].map((b) => `https://ncert.nic.in/textbook/pdf/${b}ps.pdf`)));
+    expect(new Set(ncert.map((l) => `${l.classLevel} ${l.subject}`))).toEqual(new Set(['9 english', '9 hindi', '10 hindi']));
     // CBSE prints the Hindi documents in Devanagari, so their titles are Hindi in both columns; the other documents have
     // no Hindi version, so nothing is filled in.
     const hindi = r.lines.filter((l) => l.subject === 'hindi');
@@ -253,18 +257,21 @@ describe('the catalog CSV', () => {
       'CBSE 12 political_science 2026-27': [2, 15, 79],
       'CBSE 11 english 2026-27': [2, 15, 0],
       'CBSE 12 english 2026-27': [2, 19, 2],
-      'CBSE 11 hindi 2026-27': [3, 0, 0],
-      'CBSE 12 hindi 2026-27': [3, 0, 0],
+      'CBSE 11 hindi 2026-27': [3, 27, 2],
+      'CBSE 12 hindi 2026-27': [3, 24, 10],
     });
-    // One document per subject for both classes, in CBSE's Senior Secondary Curriculum Part 2 (English Core, Hindi Core).
+    // One document per subject for both classes, in CBSE's Senior Secondary Curriculum Part 2 (English Core, Hindi Core),
+    // and the contents pages of NCERT's Hindi Core books for their lessons (C273).
     expect(new Set(r.lines.map((l) => l.sourceUrl))).toEqual(
-      new Set(
-        ['Accountancy', 'BusinessStudies', 'Economics', 'History', 'Geography', 'PoliticalScience', 'English_core', 'Hindi_Core'].map(
+      new Set([
+        ...['Accountancy', 'BusinessStudies', 'Economics', 'History', 'Geography', 'PoliticalScience', 'English_core', 'Hindi_Core'].map(
           (s) => `https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/${s}_SecP2_2026-27.pdf`
-        )
-      )
+        ),
+        ...['khar1', 'khvt1', 'kham1', 'lhar1', 'lhvt1'].map((b) => `https://ncert.nic.in/textbook/pdf/${b}ps.pdf`),
+      ])
     );
-    expect(r.lines.every((l) => l.sourceUrl.startsWith('https://cbseacademic.nic.in/web_material/CurriculumMain27/'))).toBe(true);
+    // CBSE names the books (the units) and lists only the lessons it removes, so only Hindi Core's lessons come from NCERT.
+    expect(r.lines.filter((l) => l.sourceUrl.startsWith('https://ncert.nic.in/')).every((l) => l.subject === 'hindi' && l.level !== 'unit')).toBe(true);
     // CBSE prints Hindi Core in Devanagari, so its titles are Hindi in both columns; the other documents have no Hindi
     // version, so nothing is filled in.
     const hindi = r.lines.filter((l) => l.subject === 'hindi');

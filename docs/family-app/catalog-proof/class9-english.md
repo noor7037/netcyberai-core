@@ -8,17 +8,18 @@ Open CBSE's page beside our list, compare them, then approve or reject this vers
 | **CBSE document** | English, Class IX, 2026-27: linked from https://cbseacademic.nic.in/curriculum_2027.html under "Secondary Curriculum: Part - 1 (Class IX)" → "Languages" → "English" |
 | **Source URL** | https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf |
 | **Pages to open** | [page 13](https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13) (Section B, "II. Grammar" (R1)); [page 15](https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=15) (the same grammar list for R2); [page 12](https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=12) (the prescribed textbook). The page numbers are the PDF's own (its first page is 1). |
-| **Fetched** | 2026-10-22, from the source URL above |
-| **Our list** | Every line of [`data/catalog/cbse-2026-27-classes-9-10-languages-social-science.csv`](../../../data/catalog/cbse-2026-27-classes-9-10-languages-social-science.csv) for this version: 1 unit, 7 chapters, 3 topics, in the order printed. Each line links to its page in CBSE's PDF. |
-| **Hindi titles** | 0 of 11 lines. CBSE's 2026-27 curriculum page links no Hindi version of this document (checked 2026-10-22), so the app shows the English titles; nothing was translated (see [the catalog README](../../../data/catalog/README.md)). |
+| **NCERT's book** | [Kaveri](https://ncert.nic.in/textbook.php?iebe1=0-8), Textbook of English for Grade 9: contents on [iebe1ps.pdf, page 17](https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17) |
+| **Fetched** | 2026-10-22, from the source URL above and NCERT's PDFs |
+| **Our list** | Every line of [`data/catalog/cbse-2026-27-classes-9-10-languages-social-science.csv`](../../../data/catalog/cbse-2026-27-classes-9-10-languages-social-science.csv) for this version: 2 units, 23 chapters, 3 topics, in the order printed. Each line links to its page in CBSE's PDF or in NCERT's book ("NCERT p."). |
+| **Hindi titles** | 0 of 28 lines. CBSE's 2026-27 curriculum page links no Hindi version of this document (checked 2026-10-22), and Kaveri has no Hindi edition, so the app shows the English titles; nothing was translated (see [the catalog README](../../../data/catalog/README.md)). |
 
-No picture of CBSE's page is kept in the repository (the document is CBSE's copyright): open each page from its link.
+No picture of CBSE's or NCERT's pages is kept in the repository (the documents are theirs, and NCERT prints "© NCERT not to be republished" on every page): open each page from its link.
 
-The unit is the "II. Grammar" heading; its bullets are the chapters, and the three sub-bullets under reported speech are topics.
+The first unit is the "II. Grammar" heading; its bullets are the chapters, and the three sub-bullets under reported speech are topics. The second unit is the book CBSE prescribes, Kaveri (page 12); its sixteen pieces, from NCERT's contents page, are the chapters.
 
 Good to know:
 
-- <b>Only grammar.</b> CBSE names the textbook ("Kaveri: Textbook of English for Grade 9", page 12) but not its chapters, so there are no lesson lines. They were not taken from the book itself.
+- <b>Lessons from NCERT's book.</b> CBSE names the textbook ("Kaveri: Textbook of English for Grade 9", page 12) but not its lessons, so they come from the book's contents page. Kaveri has eight units, each a prose piece and a poem, with no unit names on the contents page: the sixteen pieces follow in printed order (prose, then its poem).
 - The grammar list is the same for R1 (page 13) and R2 (page 15).
 - Reading passages, writing tasks and question formats are not in the list: they are exam formats, not chapters.
 
@@ -27,8 +28,10 @@ Good to know:
 <ol>
 <li><b>Unit: Grammar <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub></b>
 <ol>
-<li>Sequence of Tenses in different contexts of communication <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub></li>
-<li>Modal Auxiliaries and their functions in expressing ability, obligation, permission, possibility and advice <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub></li>
+<li>Sequence of Tenses in different contexts of communication <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub>
+</li>
+<li>Modal Auxiliaries and their functions in expressing ability, obligation, permission, possibility and advice <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub>
+</li>
 <li>Reported Speech in extended texts including <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub>
 <ol>
 <li>statements <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub></li>
@@ -36,10 +39,50 @@ Good to know:
 <li>commands and requests <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub></li>
 </ol>
 </li>
-<li>Conditional Clause – Type 1 <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub></li>
-<li>Subject–Verb Concord <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub></li>
-<li>Determiners <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub></li>
-<li>Clauses – Noun Clause, Relative Clause <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub></li>
+<li>Conditional Clause – Type 1 <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub>
+</li>
+<li>Subject–Verb Concord <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub>
+</li>
+<li>Determiners <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub>
+</li>
+<li>Clauses – Noun Clause, Relative Clause <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=13">p.&nbsp;13</a></sub>
+</li>
+</ol>
+</li>
+<li><b>Unit: Kaveri <sub><a href="https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/English_LL_SecP1IX_2026-27.pdf#page=12">p.&nbsp;12</a></sub></b>
+<ol>
+<li>How I Taught My Grandmother to Read <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>Bharat Our Land <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>The Pot Maker <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>Gifts of Grace: Honouring Our Vocations <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>Winds of Change <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>Canvas of Soil <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>Vitamin-M <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>I Cannot Remember My Mother <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>The World of Limitless Possibilities <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>Nine Gold Medals <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>Twin Melodies <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>A Friend Found in Music <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>Carrier of Words <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>Words <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>Follow That Dream <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
+<li>Believe in Yourself <sub><a href="https://ncert.nic.in/textbook/pdf/iebe1ps.pdf#page=17">NCERT&nbsp;p.&nbsp;17</a></sub>
+</li>
 </ol>
 </li>
 </ol>
