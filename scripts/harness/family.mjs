@@ -16,6 +16,9 @@ export const FAMILY = {
   pinned: 'f0000000-0000-4000-8000-0000000f0003',
   full: 'f0000000-0000-4000-8000-0000000f0004',
   english: 'f0000000-0000-4000-8000-0000000f0005',
+  // d1-3: the empty states' families.
+  empty: 'f0000000-0000-4000-8000-0000000f0031',
+  nochild: 'f0000000-0000-4000-8000-0000000f0032',
 };
 
 // [account (null: no session), picture name, address, { parent: parent mode open }]
@@ -67,6 +70,14 @@ export const FAMILY_SCREENS = [
     ([name, t, block]) => ['full', `family-interactive-${name}`, `/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.${t}`, { child: 'f0000000-0000-4000-8000-0000000fc002', settle: `[data-block="${block}"]` }]
   ),
   // m2-8 end
+  // d1-3 begin: the designed empty states and the subject colours (C295).
+  ['empty', 'family-d13-study-no-catalog', '/family/study', { child: 'f0000000-0000-4000-8000-0000000fc031', settle: '[data-family-no-catalog]' }],
+  ['empty', 'family-d13-study-pre-primary', '/family/study', { child: 'f0000000-0000-4000-8000-0000000fc032', settle: '[data-pre-primary]' }],
+  ['full', 'family-d13-study-locked', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-locked]' }],
+  ['full', 'family-d13-worksheet-none', '/family/study/worksheet/cbse.c9.mathematics.u1.ch01.t02', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-worksheet-empty]' }],
+  ['nochild', 'family-d13-parent-no-children', '/family/parent', { parent: true, settle: '[data-parent-no-children]' }],
+  [null, 'family-d13-offline-empty', '/family/offline', { settle: '[data-offline-empty]' }],
+  // d1-3 end
 ];
 
 export const FAMILY_WIDTHS = [360, 390, 1440];

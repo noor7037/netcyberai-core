@@ -274,3 +274,17 @@ values ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000
 insert into family.reward_jars (account_id, child_id, reward, target_days, started_on)
 values ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'A trip to the park', 6, (now() at time zone 'Asia/Kolkata')::date - 6);
 -- m2-3 end
+-- d1-3 begin
+-- The designed empty states (D1-3, C295): a sixth illustrative family whose children have nothing to study yet (a Class 7
+-- child, whose class has no catalog, and a UKG child), and a seventh with a PIN and no child yet. Made-up addresses and
+-- first names; the PIN hashes are stand-in strings (no PIN opens them).
+insert into family.accounts (account_id, email, ui_language, pin_hash, pin_set_at) values
+  ('f0000000-0000-4000-8000-0000000f0031', 'empty.family@example.org', 'en', 'scrypt$16384$8$1$aGFybmVzcy1zYWx0LTAzMQ==$aGFybmVzcy1zdGFuZC1pbi1oYXNoLTAwMDAwMDAwMDA=', now()),
+  ('f0000000-0000-4000-8000-0000000f0032', 'nochild.family@example.org', 'en', 'scrypt$16384$8$1$aGFybmVzcy1zYWx0LTAzMg==$aGFybmVzcy1zdGFuZC1pbi1oYXNoLTAwMDAwMDAwMDA=', now());
+insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values
+  ('f0000000-0000-4000-8000-0000000f0031', 'study_core', true, 'parent_tap', 'fam-notice-1'),
+  ('f0000000-0000-4000-8000-0000000f0032', 'study_core', true, 'parent_tap', 'fam-notice-1');
+insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code, created_at) values
+  ('f0000000-0000-4000-8000-0000000fc031', 'f0000000-0000-4000-8000-0000000f0031', 'Meera', 7, 'CBSE', 'en', 'en', 'IN-RJ', now() - interval '2 minutes'),
+  ('f0000000-0000-4000-8000-0000000fc032', 'f0000000-0000-4000-8000-0000000f0031', 'Ishaan', 0, 'CBSE', 'en', 'en', 'IN-RJ', now() - interval '1 minute');
+-- d1-3 end
