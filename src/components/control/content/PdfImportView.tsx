@@ -13,7 +13,7 @@ import type { MessageKey } from '@/lib/i18n';
 // left out are listed with why. Another person approves the draft in the list below. The PDF is not kept.
 
 const SECTION = 'flex flex-col gap-3 rounded-md border border-slate/10 bg-white p-4';
-const MAX_BYTES = 10 * 1024 * 1024;
+const MAX_BYTES = 3 * 1024 * 1024;
 
 type Done = { version: ImportedVersion; dropped: DroppedLine[]; pages: number };
 
@@ -46,17 +46,24 @@ export function PdfImportView({ onImported }: { onImported: () => Promise<void> 
     if (!file) return setError(t('control.import.chooseFirst'));
     if (file.size > MAX_BYTES) return setError(t('control.import.err.too_big'));
     setBusy(true);
-    const body = { pdf: await toBase64(file), sourceUrl: sourceUrl.trim(), board: board.trim(), classLevel: Number(classLevel), subject: subject.trim(), academicYear: year.trim() };
-    const res = await fetch('/api/control/content/pdf-import', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => null);
-    const got = res ? await res.json().catch(() => null) : null;
-    setBusy(false);
+    let res: Response | null = null;
+    let got: Record<string, unknown> | null = null;
+    try {
+      const body = { pdf: await toBase64(file), sourceUrl: sourceUrl.trim(), board: board.trim(), classLevel: Number(classLevel), subject: subject.trim(), academicYear: year.trim() };
+      res = await fetch('/api/control/content/pdf-import', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => null);
+      got = res ? await res.json().catch(() => null) : null;
+    } catch {
+      res = null;
+    } finally {
+      setBusy(false);
+    }
     if (!res?.ok || !got?.version) {
       setError(errorText(got?.code));
-      if (Array.isArray(got?.dropped)) setDropped(got.dropped);
+      if (Array.isArray(got?.dropped)) setDropped(got.dropped as DroppedLine[]);
       return;
     }
-    setDone(got as Done);
-    setDropped((got as Done).dropped);
+    setDone(got as unknown as Done);
+    setDropped((got as unknown as Done).dropped);
     setFile(null);
     await onImported();
   }

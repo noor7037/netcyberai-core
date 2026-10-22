@@ -103,7 +103,7 @@ afterAll(async () => {
 
 const request = (path: string, body: unknown, cookie: string) =>
   new NextRequest(`http://localhost${path}`, { method: body === undefined ? 'GET' : 'POST', headers: { 'content-type': 'application/json', cookie }, body: body === undefined ? undefined : JSON.stringify(body) });
-const understand = async () => (await (await R.understand.POST(request('/api/family/understand', { kind: 'topic', key: TOPIC }, familyCookie))).text()).trim().split('\n').map((l) => JSON.parse(l));
+const understand = async () => (await (await R.understand.POST(request('/api/family/understand', { kind: 'topic', key: TOPIC }, familyCookie))).text()).trim().split('\n').map((l: string) => JSON.parse(l));
 const asksOf = async (topic = TOPIC) => (await h.db.pg.query(`select asks, status from content.responses where topic_key = $1 and status <> 'withdrawn'`, [topic])).rows[0];
 const at = (responseId: string) => ({ params: { responseId } });
 

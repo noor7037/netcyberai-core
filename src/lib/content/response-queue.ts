@@ -17,7 +17,7 @@ export type QueueResponse = {
   classLevel: number;
   subject: string;
   topicKey: string;
-  // The topic's (or chapter's) title in the newest catalog version that has the key; null when none has it.
+  // The topic's (or chapter's) title in the newest published catalog version that has the key (else the newest); null when none has it.
   topicTitle: string | null;
   language: 'en' | 'hi';
   style: 'en' | 'hi' | 'hinglish';
@@ -44,10 +44,10 @@ const SELECT = `
          coalesce(
            (select t.title_en from content.topics t join content.syllabus_versions v on v.version_id = t.version_id
              where t.topic_key = r.topic_key and v.board_id = r.board_id and v.class_level = r.class_level and v.subject = r.subject
-             order by v.academic_year desc, v.version_no desc limit 1),
+             order by (v.status = 'published') desc, v.academic_year desc, v.version_no desc limit 1),
            (select c.title_en from content.chapters c join content.syllabus_versions v on v.version_id = c.version_id
              where c.chapter_key = r.topic_key and v.board_id = r.board_id and v.class_level = r.class_level and v.subject = r.subject
-             order by v.academic_year desc, v.version_no desc limit 1)) as topic_title
+             order by (v.status = 'published') desc, v.academic_year desc, v.version_no desc limit 1)) as topic_title
     from content.responses r`;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

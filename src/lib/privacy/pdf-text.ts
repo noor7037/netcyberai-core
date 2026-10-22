@@ -25,7 +25,7 @@ const TEXT_MAX = 200_000;
 const JPEGS_MAX = 3;
 const PAGES_MAX = 2_000;
 
-// `pages`: the text of each page in the order the page tree gives (page 1 first), for a reader that must say which page
+// `pages` (only when asked for, readPdf(bytes, { pages: true })): the text of each page in the order the page tree gives (page 1 first), for a reader that must say which page
 // a line was read on (Control's catalog import, M2-12). Empty when the file has no page tree that can be followed.
 export type PdfRead = { encrypted: boolean; text: string; jpegs: Uint8Array[]; pages: string[] };
 type CMap = { bytes: number; map: Map<number, string> };
@@ -332,7 +332,7 @@ function contentsOf(page: string, objects: Map<number, string>): number[] {
   return body.startsWith('[') ? refsIn(body) : [target];
 }
 
-export function readPdf(bytes: Uint8Array): PdfRead {
+export function readPdf(bytes: Uint8Array, opts: { pages?: boolean } = {}): PdfRead {
   const none: PdfRead = { encrypted: false, text: '', jpegs: [], pages: [] };
   try {
     const src = latin1(bytes);
@@ -370,7 +370,7 @@ export function readPdf(bytes: Uint8Array): PdfRead {
     // Each page's own text, read from its content streams in order.
     const pages: string[] = [];
     const pageRoom = { left: TEXT_MAX };
-    for (const num of pageOrder(objects)) {
+    for (const num of opts.pages ? pageOrder(objects) : []) {
       const words: string[] = [];
       for (const ref of contentsOf(objects.get(num) ?? '', objects)) {
         const data = byNum.get(ref)?.data;

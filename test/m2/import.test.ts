@@ -150,7 +150,7 @@ beforeEach(() => {
 
 describe('reading the PDF and the model', () => {
   it('reads each page’s text in the page tree’s order', () => {
-    const read = readPdf(twoPages());
+    const read = readPdf(twoPages(), { pages: true });
     expect(read.pages).toHaveLength(2);
     expect(read.pages[0]).toContain('Unit I: NUMBER SYSTEMS');
     expect(read.pages[1]).toContain("Euclid's division lemma");
@@ -158,7 +158,7 @@ describe('reading the PDF and the model', () => {
   });
 
   it('keeps a line only when its title is printed on its page; the lines under a dropped one go with it', () => {
-    const pages = readPdf(twoPages()).pages;
+    const pages = readPdf(twoPages(), { pages: true }).pages;
     const x = extractedCatalog(`Here it is:\n${JSON.stringify(REPLY)}`, pages, { board: 'CBSE', classLevel: 10, subject: 'mathematics' })!;
     expect(x.lines.map((l) => [l.level, l.key, l.parentKey, l.position, l.title, l.page])).toEqual([
       ['unit', 'cbse.c10.mathematics.u1', null, 1, 'NUMBER SYSTEMS', 1],
@@ -176,6 +176,9 @@ describe('reading the PDF and the model', () => {
     // Too long, no page, a page the file does not have, not JSON.
     const odd = extractedCatalog(JSON.stringify({ chapters: [{ title: 'x'.repeat(121), page: 1 }, { title: 'REAL NUMBERS' }, { title: 'REAL NUMBERS', page: 9 }] }), pages, { board: 'CBSE', classLevel: 10, subject: 'mathematics' })!;
     expect(odd.dropped.map((d) => d.reason)).toEqual(['title_bad', 'page_bad', 'page_bad']);
+    // A line left out leaves its number unused: the next chapter keeps the key it has when nothing is dropped.
+    const gap = extractedCatalog(JSON.stringify({ chapters: [{ title: 'Made up', page: 1 }, { title: 'REAL NUMBERS', page: 2 }] }), pages, { board: 'CBSE', classLevel: 10, subject: 'mathematics' })!;
+    expect(gap.lines.map((l) => [l.key, l.position])).toEqual([['cbse.c10.mathematics.ch02', 2]]);
     expect(extractedCatalog('no json here', pages, { board: 'CBSE', classLevel: 10, subject: 'mathematics' })).toBeNull();
     expect(squash('Fundamental  Theorem\nof – Arithmetic')).toBe(squash('fundamental theorem of - arithmetic'));
   });
@@ -205,7 +208,7 @@ describe('the import route', () => {
 
     const v = (await h.db.pg.query(`select status, import_source, imported_by from content.syllabus_versions where version_id = $1`, [versionId])).rows[0];
     expect(v).toEqual({ status: 'in_review', import_source: 'control', imported_by: FOUNDER });
-    const pageText = readPdf(twoPages()).pages;
+    const pageText = readPdf(twoPages(), { pages: true }).pages;
     const lines = (
       await h.db.pg.query(
         `select title_en, source_url, source_page, checked_on::text as checked_on from content.units where version_id = $1

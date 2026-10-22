@@ -6536,7 +6536,7 @@ export const hi: Record<keyof typeof en, string> = {
   // m2-11 end
   // m2-12 begin
   'control.import.title': 'बोर्ड की PDF से जोड़ें',
-  'control.import.how': 'बोर्ड की आधिकारिक पाठ्यक्रम PDF (अधिकतम 10 MB) अपलोड करें और वह पता दें जहाँ बोर्ड उसे प्रकाशित करता है। उसका पाठ पेज-दर-पेज पढ़ा जाता है, और केवल वही इकाइयाँ, अध्याय और विषय रखे जाते हैं जिनके शीर्षक बताए गए पेज पर छपे हैं। नतीजा समीक्षा में एक मसौदा है: कोई दूसरा व्यक्ति उसे स्वीकृत करता है। PDF स्वयं नहीं रखी जाती।',
+  'control.import.how': 'बोर्ड की आधिकारिक पाठ्यक्रम PDF (अधिकतम 3 MB) अपलोड करें और वह पता दें जहाँ बोर्ड उसे प्रकाशित करता है। उसका पाठ पेज-दर-पेज पढ़ा जाता है, और केवल वही इकाइयाँ, अध्याय और विषय रखे जाते हैं जिनके शीर्षक बताए गए पेज पर छपे हैं। नतीजा समीक्षा में एक मसौदा है: कोई दूसरा व्यक्ति उसे स्वीकृत करता है। PDF स्वयं नहीं रखी जाती।',
   'control.import.file': 'पाठ्यक्रम PDF',
   'control.import.sourceUrl': 'PDF का आधिकारिक पता',
   'control.import.sourceUrlHint': 'https, बोर्ड की अपनी साइट पर: cbseacademic.nic.in, ncert.nic.in, cisce.org, या किसी राज्य बोर्ड की .gov.in या .nic.in साइट।',
@@ -6567,7 +6567,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.import.err.year_bad': 'शैक्षणिक वर्ष ऐसे लिखें: 2026-27।',
   'control.import.err.board_unknown': 'यह बोर्ड अभी लाइब्रेरी में नहीं है।',
   'control.import.err.not_a_pdf': 'यह फ़ाइल PDF नहीं है।',
-  'control.import.err.too_big': 'यह PDF 10 MB से बड़ी है।',
+  'control.import.err.too_big': 'यह PDF 3 MB से बड़ी है। केवल इस कक्षा और विषय के पेज अपलोड करें।',
   'control.import.err.encrypted': 'यह PDF पासवर्ड से बंद है। ऐसी PDF अपलोड करें जो बिना पासवर्ड खुले।',
   'control.import.err.no_text': 'इस PDF में पढ़ने लायक पाठ नहीं है: शायद यह स्कैन है। स्कैन किए गए दस्तावेज़ अभी नहीं पढ़े जाते; इसके बजाय CSV से जोड़ें।',
   'control.import.err.too_long': 'यह PDF एक बार में पढ़ने के लिए बहुत लंबी है (अधिकतम 80 पेज)। केवल इस कक्षा और विषय के पेज अपलोड करें।',
@@ -6575,7 +6575,8 @@ export const hi: Record<keyof typeof en, string> = {
   'control.import.err.ai_cap_reached': 'पढ़ने की सीमा पूरी हो गई है। बाद में फिर कोशिश करें।',
   'control.import.err.ai_not_cleared_for_minors': 'चुना गया प्रदाता इस प्रोफ़ाइल के लिए इस्तेमाल नहीं हो सकता।',
   'control.import.err.ai_failed': 'अभी PDF पढ़ी नहीं जा सकी। फिर कोशिश करें।',
-  'control.import.err.ai_unreadable': 'पढ़ाई ऐसे रूप में लौटी जो इस्तेमाल नहीं हो सकता। फिर कोशिश करें।',
+  'control.import.err.ai_unreadable': 'पढ़ाई अधूरी या ऐसे रूप में लौटी जो इस्तेमाल नहीं हो सकता। लंबे दस्तावेज़ के लिए Control → AI में content.syllabus_extract का अधिकतम आउटपुट बढ़ाएँ, या कम पेज अपलोड करें।',
+  'control.import.err.authenticator_needed': 'जोड़ने के लिए अपने ऑथेंटिकेटर से फिर से साइन इन करें।',
   'control.import.err.nothing_found': 'कोई अध्याय अपने पेज पर छपा नहीं मिला। कुछ सहेजा नहीं गया।',
   'control.import.err.not_imported': 'मसौदा कैटलॉग की जाँच में पास नहीं हुआ। कुछ सहेजा नहीं गया।',
   'control.import.err.not_sent': 'अपलोड ठीक से नहीं भेजा गया। फिर कोशिश करें।',
@@ -6632,5 +6633,6 @@ export const hi: Record<keyof typeof en, string> = {
   'control.queue.err.not_ai_made': 'यह जवाब पहले से जाँचा हुआ है।',
   'control.queue.err.withdrawn': 'यह जवाब पहले ही वापस लिया जा चुका है।',
   'control.queue.err.failed': 'यह नहीं हो सका। फिर कोशिश करें।',
+  'control.queue.err.authenticator_needed': 'जवाबों की समीक्षा के लिए अपने ऑथेंटिकेटर से फिर से साइन इन करें।',
   // m2-12 end
 };

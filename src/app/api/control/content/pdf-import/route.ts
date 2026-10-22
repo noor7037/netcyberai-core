@@ -9,7 +9,7 @@ import { NO_STORE, requireContentStaff } from '@/lib/content/route';
 import { indiaDate } from '@/lib/time/india';
 
 // Control → Content → import a catalog from a board's PDF (M2-12, C286; docs/family-app/10 §4.2, 03 §9).
-//   POST { pdf: <base64, at most 10 MB>, sourceUrl, board, classLevel, subject, academicYear }
+//   POST { pdf: <base64, at most 3 MB (the hosting refuses a body over 4.5 MB)>, sourceUrl, board, classLevel, subject, academicYear }
 // NetCyberAI staff with their authenticator, as for the CSV import. The PDF's text layer is read here (no OCR), sent page
 // by page to the content.syllabus_extract profile, and only lines whose title is on their page are kept
 // (src/lib/content/pdf-import.ts). They become one draft version through the CSV import's own path: in review, imported

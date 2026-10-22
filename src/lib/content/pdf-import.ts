@@ -10,12 +10,15 @@ import { readPdf } from '@/lib/privacy/pdf-text';
 //     every line under it with it. Nothing is guessed, corrected or translated.
 //   - titles are 1–120 characters, one line;
 //   - keys and positions are built by the repository's catalog rule (data/catalog/README.md): unit u1, chapter ch01
-//     inside its unit, topic t01 inside its chapter, numbered over the lines kept;
+//     inside its unit, topic t01 inside its chapter, numbered in the order the document prints them; a line left out
+//     leaves its number unused, so the lines after it keep the keys they have in a version where it was kept;
 //   - each line carries the source URL, its page and "checked on" today.
 // The result is a catalog CSV, so the draft goes through the CSV import's own checks and path (library.ts
 // importCatalog): one version, in review, imported by the uploader, who can never approve it. The PDF is not kept.
 
-export const PDF_MAX_BYTES = 10 * 1024 * 1024;
+// 3 MB: the upload travels as base64 inside the request, and the hosting refuses a request body over 4.5 MB (as
+// src/lib/contracts/record-documents.ts notes). A syllabus PDF of one class and subject is far smaller.
+export const PDF_MAX_BYTES = 3 * 1024 * 1024;
 // What one call sends: a syllabus is a few dozen pages. A longer file is refused rather than cut.
 export const PDF_MAX_PAGES = 80;
 export const PDF_MAX_CHARS = 150_000;
@@ -59,7 +62,7 @@ export function checkMeta(b: { board?: unknown; classLevel?: unknown; subject?: 
 export function pdfPages(bytes: Uint8Array): { ok: true; pages: string[] } | { ok: false; reason: PdfImportRefusal } {
   if (bytes.length > PDF_MAX_BYTES) return { ok: false, reason: 'too_big' };
   if (bytes.length < 5 || Buffer.from(bytes.subarray(0, 5)).toString('latin1') !== '%PDF-') return { ok: false, reason: 'not_a_pdf' };
-  const read = readPdf(bytes);
+  const read = readPdf(bytes, { pages: true });
   if (read.encrypted) return { ok: false, reason: 'encrypted' };
   const pages = read.pages.map((p) => p.replace(/\s+\n/g, '\n').trim());
   if (!pages.some((p) => /[\p{L}\p{N}]{2}/u.test(p))) return { ok: false, reason: 'no_text' };
@@ -80,6 +83,8 @@ export const squash = (s: string) =>
   s
     .normalize('NFKC')
     .toLowerCase()
+    // The AI platform's pre-processor gives the model Devanagari digits as ASCII ones.
+    .replace(/[\u0966-\u096f]/g, (d) => String(d.charCodeAt(0) - 0x0966))
     .replace(/[‐-―−]/g, '-')
     .replace(/[‘’ʼ]/g, "'")
     .replace(/[“”]/g, '"')
@@ -141,20 +146,20 @@ export function extractedCatalog(modelText: string, pages: string[], meta: Pick<
   const chapters = (list: unknown[], parentKey: string | null, keyBase: string) => {
     let c = 0;
     for (const raw of list) {
+      c += 1;
       const topics = listOf((raw as { topics?: unknown } | null)?.topics);
       const kept = take('chapter', raw);
       if (!kept) {
         for (const t of topics) under('topic', t);
         continue;
       }
-      c += 1;
       const key = `${keyBase}.ch${pad(c)}`;
       lines.push({ level: 'chapter', key, parentKey, position: c, title: kept.title, page: kept.page });
       let n = 0;
       for (const t of topics) {
+        n += 1;
         const kt = take('topic', t);
         if (!kt) continue;
-        n += 1;
         lines.push({ level: 'topic', key: `${key}.t${pad(n)}`, parentKey: key, position: n, title: kt.title, page: kt.page });
       }
     }
@@ -162,6 +167,7 @@ export function extractedCatalog(modelText: string, pages: string[], meta: Pick<
 
   let u = 0;
   for (const raw of listOf(root.units)) {
+    u += 1;
     const inner = listOf((raw as { chapters?: unknown } | null)?.chapters);
     const kept = take('unit', raw);
     if (!kept) {
@@ -171,7 +177,6 @@ export function extractedCatalog(modelText: string, pages: string[], meta: Pick<
       }
       continue;
     }
-    u += 1;
     const key = `${base}.u${u}`;
     lines.push({ level: 'unit', key, parentKey: null, position: u, title: kept.title, page: kept.page });
     chapters(inner, key, key);

@@ -6548,7 +6548,7 @@ export const en = {
   // m2-11 end
   // m2-12 begin
   'control.import.title': "Import from a board's PDF",
-  'control.import.how': "Upload the board's official syllabus PDF (10 MB at most) and give the address the board publishes it at. Its text is read page by page, and only the units, chapters and topics whose titles are printed on the page named are kept. The result is a draft in review: another person approves it. The PDF itself is not kept.",
+  'control.import.how': "Upload the board's official syllabus PDF (3 MB at most) and give the address the board publishes it at. Its text is read page by page, and only the units, chapters and topics whose titles are printed on the page named are kept. The result is a draft in review: another person approves it. The PDF itself is not kept.",
   'control.import.file': 'Syllabus PDF',
   'control.import.sourceUrl': 'Official address of the PDF',
   'control.import.sourceUrlHint': "https, on the board's own site: cbseacademic.nic.in, ncert.nic.in, cisce.org, or a state board's .gov.in or .nic.in site.",
@@ -6579,7 +6579,7 @@ export const en = {
   'control.import.err.year_bad': 'Write the academic year as 2026-27.',
   'control.import.err.board_unknown': 'This board is not in the library yet.',
   'control.import.err.not_a_pdf': 'This file is not a PDF.',
-  'control.import.err.too_big': 'This PDF is larger than 10 MB.',
+  'control.import.err.too_big': 'This PDF is larger than 3 MB. Upload the pages of this class and subject only.',
   'control.import.err.encrypted': 'This PDF is locked with a password. Upload one that opens without a password.',
   'control.import.err.no_text': 'This PDF has no text to read: it is probably a scan. Scanned documents are not read yet; use the CSV import instead.',
   'control.import.err.too_long': 'This PDF is too long to read at once (80 pages at most). Upload the pages of this class and subject only.',
@@ -6587,7 +6587,8 @@ export const en = {
   'control.import.err.ai_cap_reached': 'The reading limit is reached. Try again later.',
   'control.import.err.ai_not_cleared_for_minors': 'The provider chosen cannot be used for this profile.',
   'control.import.err.ai_failed': 'The PDF could not be read just now. Try again.',
-  'control.import.err.ai_unreadable': 'The reading came back in a form that could not be used. Try again.',
+  'control.import.err.ai_unreadable': 'The reading came back incomplete or in a form that could not be used. For a long document, raise the most output allowed for content.syllabus_extract in Control → AI, or upload fewer pages.',
+  'control.import.err.authenticator_needed': 'Sign in again with your authenticator to import.',
   'control.import.err.nothing_found': 'No chapter was found printed on its page. Nothing was saved.',
   'control.import.err.not_imported': 'The draft did not pass the catalog checks. Nothing was saved.',
   'control.import.err.not_sent': 'The upload was not sent properly. Try again.',
@@ -6644,5 +6645,6 @@ export const en = {
   'control.queue.err.not_ai_made': 'This response is already checked.',
   'control.queue.err.withdrawn': 'This response was already withdrawn.',
   'control.queue.err.failed': 'That did not work. Try again.',
+  'control.queue.err.authenticator_needed': 'Sign in again with your authenticator to review responses.',
   // m2-12 end
 } as const;
