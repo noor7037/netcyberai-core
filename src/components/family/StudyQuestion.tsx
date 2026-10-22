@@ -24,7 +24,7 @@ export function StudyQuestion({ w, subject, tone }: { w: Words; subject: Subject
         }}
       >
         <Textarea id={`fam-question-${subject}`} label={w['fam.study.ask']} helperText={w['fam.study.askHelp']} maxLength={500} rows={3} value={text} onChange={(e) => setText(e.target.value)} />
-        <Button type="submit" disabled={text.trim().length < 3} className={`fam-cta fam-press w-full rounded-2xl bg-royal-deep font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:self-start ${subjectTheme(subject).tile}`}>
+        <Button type="submit" disabled={text.trim().length < 3} className={`fam-cta fam-press w-full rounded-2xl bg-royal-deep font-extrabold text-white sm:w-auto sm:self-start ${subjectTheme(subject).tile}`}>
           {w['fam.study.askButton']}
         </Button>
       </form>
