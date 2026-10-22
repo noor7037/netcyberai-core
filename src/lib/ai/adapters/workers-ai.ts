@@ -1,6 +1,6 @@
 import { streamChatCompletions } from './chat-completions';
 import { workersAccountLooksRight, workersTokenLooksRight } from './workers-key';
-import { MODERATION_TIMEOUT_MS, SPEECH_TIMEOUT_MS, type AdapterResult, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
+import { CALL_TIMEOUT_MS, MODERATION_TIMEOUT_MS, SPEECH_TIMEOUT_MS, type AdapterResult, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
 
 // Cloudflare Workers AI (C230-U): open-weight models (Llama, Gemma, Mistral, Whisper) run by Cloudflare, chosen for the
 // children's paths because nothing in Cloudflare's terms or the models' licences bars a product used by children,
@@ -133,3 +133,89 @@ export const workersAiModerationAdapter: ModerationAdapter = {
     return { ok: true, ...verdict, tokensIn: body.result?.usage?.prompt_tokens ?? Math.ceil(sent / 4), tokensOut: body.result?.usage?.completion_tokens ?? 2, form };
   },
 };
+
+// ---- the transport probe (C321), for the smoke test only ---------------------------------------------------------------
+
+// The live smoke test found Llama 4 Scout's JSON arriving without its inner quotation marks on the streamed
+// OpenAI-compatible route ({"type:answer,word:metal"} for {"type":"answer","word":"metal"}), whichever way the
+// instructions were placed. The probe asks the same made-up question four ways and returns the start of each answer,
+// with the first raw bytes of the streamed one, so the transport the quotes survive on can be chosen on evidence.
+export type WorkersTransport = 'compat_stream' | 'compat_once' | 'native_once' | 'native_stream';
+export type WorkersProbe = { transport: WorkersTransport; ok: boolean; status?: number; start?: string; raw?: string };
+
+const PROBE_CHARS = 200;
+const squash = (s: string) => s.replace(/\s+/g, ' ').trim().slice(0, PROBE_CHARS);
+
+export async function probeWorkersTransports(apiKey: string, model: string, instructions: string, question: string): Promise<WorkersProbe[]> {
+  const k = splitWorkersKey(apiKey);
+  if (!k || !workersModelLooksRight(model)) return [];
+  const messages = [{ role: 'user', content: `${instructions}\n\n${question}` }];
+  const headers = { 'content-type': 'application/json', authorization: `Bearer ${k.token}` };
+  const call = async (url: string, body: Record<string, unknown>) => {
+    try {
+      return await fetch(url, { method: 'POST', headers, body: JSON.stringify(body), signal: AbortSignal.timeout(CALL_TIMEOUT_MS) });
+    } catch {
+      return null;
+    }
+  };
+  const compat = `${base(k.account)}/v1/chat/completions`;
+  const native = `${base(k.account)}/run/${model}`;
+  const common = { max_tokens: 120, temperature: 0.3 };
+  const out: WorkersProbe[] = [];
+
+  // 1. Streamed, OpenAI-compatible (today's route): the content pieces joined, and the raw stream's first bytes.
+  {
+    const res = await call(compat, { model, stream: true, messages, ...common });
+    if (!res?.ok || !res.body) out.push({ transport: 'compat_stream', ok: false, status: res?.status });
+    else {
+      const raw = await res.text();
+      let text = '';
+      for (const block of raw.split(/\r?\n\r?\n/)) {
+        const data = block.split(/\r?\n/).filter((l) => l.startsWith('data:')).map((l) => l.slice(5).trim()).join('');
+        if (!data || data === '[DONE]') continue;
+        try {
+          text += (JSON.parse(data) as { choices?: { delta?: { content?: string } }[] }).choices?.[0]?.delta?.content ?? '';
+        } catch {
+          // a line that is not JSON: left out of the text, kept in the raw bytes
+        }
+      }
+      out.push({ transport: 'compat_stream', ok: true, start: squash(text), raw: raw.slice(0, 400) });
+    }
+  }
+  // 2. In one piece, OpenAI-compatible.
+  {
+    const res = await call(compat, { model, stream: false, messages, ...common });
+    const body = res?.ok ? ((await res.json().catch(() => null)) as { choices?: { message?: { content?: unknown } }[] } | null) : null;
+    const text = body?.choices?.[0]?.message?.content;
+    out.push(typeof text === 'string' ? { transport: 'compat_once', ok: true, start: squash(text) } : { transport: 'compat_once', ok: false, status: res?.status });
+  }
+  // 3. In one piece, Workers AI's own route.
+  {
+    const res = await call(native, { messages, ...common });
+    const body = res?.ok ? ((await res.json().catch(() => null)) as { result?: { response?: unknown } } | null) : null;
+    const r = body?.result?.response;
+    const text = typeof r === 'string' ? r : r && typeof r === 'object' ? JSON.stringify(r) : null;
+    out.push(text !== null ? { transport: 'native_once', ok: true, start: squash(text) } : { transport: 'native_once', ok: false, status: res?.status });
+  }
+  // 4. Streamed, Workers AI's own route: events carry { response: "<piece>" }.
+  {
+    const res = await call(native, { messages, stream: true, ...common });
+    if (!res?.ok || !res.body) out.push({ transport: 'native_stream', ok: false, status: res?.status });
+    else {
+      const raw = await res.text();
+      let text = '';
+      for (const block of raw.split(/\r?\n\r?\n/)) {
+        const data = block.split(/\r?\n/).filter((l) => l.startsWith('data:')).map((l) => l.slice(5).trim()).join('');
+        if (!data || data === '[DONE]') continue;
+        try {
+          const piece = (JSON.parse(data) as { response?: unknown }).response;
+          if (typeof piece === 'string') text += piece;
+        } catch {
+          // as above
+        }
+      }
+      out.push({ transport: 'native_stream', ok: true, start: squash(text), raw: raw.slice(0, 400) });
+    }
+  }
+  return out;
+}

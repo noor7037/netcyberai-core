@@ -2,6 +2,7 @@ import { withPlatformService } from '@/lib/auth/db';
 import type { Sql } from '@/lib/jobs/types';
 import type { MessageKey } from '@/lib/i18n';
 import { adapterFor, moderationAdapterFor, speechAdapterFor, type AdapterResult, type ChatImage, type ChatMessage, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter } from './adapters';
+import { probeWorkersTransports } from './adapters/workers-ai';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { dailyLimit, takeDailyRequest } from './daily-cap';
@@ -385,7 +386,7 @@ export async function prepareModeration(db: Sql, ctx: AiContext): Promise<Modera
 // formats, the safety check's answer form). The minors check applies as for a child's call; no family's daily cap is
 // taken. Prepared in the caller's transaction, sent with no database, recorded (counts only) in the next one.
 // `start`: the first words of a made-up answer (C320), kept so a format problem can be seen; the inputs name no one.
-export type SmokeCheck = { check: string; profile: ProfileId; ok: boolean; provider?: string; model?: string; failure?: string; status?: number; ms?: number; note?: string; start?: string };
+export type SmokeCheck = { check: string; profile: ProfileId; ok: boolean; provider?: string; model?: string; failure?: string; status?: number; ms?: number; note?: string; start?: string; raw?: string };
 export type SmokeInputs = { photoJpegBase64: string; speech: readonly { mediaType: SpeechMediaType; base64: string }[] };
 export type PreparedSmoke = { send: () => Promise<SmokeCheck[]>; record: (db: Sql) => Promise<void> };
 
@@ -430,6 +431,19 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
   // The instructions where the adapter puts them, then in a system message, to compare the two (C320).
   await textChain('family.resolver', 'text', jsonAsk, jsonNote);
   await textChain('family.resolver', 'text:system', { ...jsonAsk, instructionsAs: 'system' }, jsonNote);
+  // Workers AI: the same question over each of its four transports, to see which keeps the JSON whole (C321).
+  {
+    const c = await checkProfile(db, ctx, 'family.resolver', 'text', env);
+    const ready = c.ok ? (await usableLinks(db, c.chain, c.providers, env, (p) => adapterFor(p, env))).filter((r) => r.link.provider === 'workers-ai') : [];
+    if (ready[0]) {
+      const { link, apiKey } = ready[0];
+      steps.push(async () => {
+        const probes = await probeWorkersTransports(apiKey, link.model, jsonAsk.system, jsonAsk.user);
+        for (const p of probes) usage.push({ profile: 'family.resolver', link, counts: p.ok ? { requests: 1 } : { requests: 1, failures: 1 } });
+        return probes.map((p) => ({ check: `transport:${p.transport}`, profile: 'family.resolver' as ProfileId, ok: p.ok, provider: link.provider, model: link.model, ...(p.ok ? { note: jsonNote(p.start ?? ''), start: p.start, ...(p.raw ? { raw: p.raw } : {}) } : { status: p.status }) }));
+      });
+    }
+  }
   await textChain(
     'family.homework',
     'photo',
