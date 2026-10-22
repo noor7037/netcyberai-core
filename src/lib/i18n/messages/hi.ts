@@ -6499,6 +6499,28 @@ export const hi: Record<keyof typeof en, string> = {
   // m2-8 begin
   // m2-8 end
   // m2-9 begin
+  'fam.offline.pack.save': 'ऑफ़लाइन के लिए सेव करें',
+  'fam.offline.pack.size': 'लगभग {n} {unit}',
+  'fam.offline.pack.saving': 'सेव हो रहा है…',
+  'fam.offline.pack.saved': 'इस फ़ोन पर सेव है',
+  'fam.offline.pack.remove': 'हटाएँ',
+  'fam.offline.pack.removeLabel': '{chapter} को इस फ़ोन से हटाएँ',
+  'fam.offline.pack.failed': 'सेव नहीं हो सका। इंटरनेट चलने पर फिर कोशिश करें।',
+  'fam.offline.pack.partial': '{n} टॉपिक अभी इस पैक में नहीं हैं। उनके लिए इंटरनेट चाहिए।',
+  'fam.offline.pack.until': '{day} तक रखा रहेगा',
+  'fam.offline.pack.shelf': 'ऑफ़लाइन के लिए सेव किए गए',
+  'fam.offline.pack.none': 'इस फ़ोन पर अभी कुछ सेव नहीं है। इंटरनेट चलते समय पढ़ाई खोलें और किसी अध्याय पर "ऑफ़लाइन के लिए सेव करें" दबाएँ।',
+  'fam.offline.pack.needsInternet': 'इंटरनेट चाहिए',
+  'fam.offline.pack.needsInternetLead': 'इसके लिए कनेक्शन चाहिए। इस फ़ोन पर सेव किए अध्याय फिर भी खुलते हैं।',
+  'fam.offline.pack.answerSaved': 'जवाब रख लिया। इंटरनेट आने पर इसकी जाँच होगी।',
+  'fam.offline.pack.waiting': '{n} जवाब भेजे जाने का इंतज़ार कर रहे हैं।',
+  'fam.offline.pack.allChapters': 'सेव किए सभी अध्याय',
+  'fam.offline.pack.notInPack': 'यह टॉपिक इस फ़ोन पर सेव नहीं है।',
+  'fam.dataSaver.title': 'डेटा बचत',
+  'fam.dataSaver.on': 'चालू: पहले लिखा हुआ। तस्वीरें, चित्र और वीडियो लोड नहीं होते।',
+  'fam.dataSaver.off': 'बंद: सब कुछ लोड होता है।',
+  'fam.dataSaver.phone': 'चालू है, क्योंकि इस फ़ोन ने डेटा बचाने को कहा है।',
+  'fam.dataSaver.skipped': 'डेटा बचत: {n} तस्वीरें या चित्र लोड नहीं हुए।',
   // m2-9 end
   // m2-10 begin
   // m2-10 end

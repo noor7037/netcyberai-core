@@ -1,10 +1,16 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { StudyQuestion } from '@/components/family/StudyQuestion';
+import { DataSaverSwitch } from '@/components/family/offline/DataSaverSwitch';
+import { PackButton } from '@/components/family/offline/PackButton';
+import { SaverLink } from '@/components/family/offline/SaverLink';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText } from '@/lib/family/fill';
+import { familyModuleOn } from '@/lib/family/flags';
+import { OFFLINE_KEYS } from '@/lib/family/offline-words';
+import { chapterPacks } from '@/lib/family/pack';
 import { subjectAccess } from '@/lib/family/modules';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
@@ -20,6 +26,8 @@ const titleLang = (title: string) => (/[\u0900-\u097F]/.test(title) ? 'hi' : 'en
 
 // The subject tabs are the subjects of the child's class (C264): the stage's school subjects and whatever the catalog
 // holds for the class, the free one first once claimed.
+// With Control's offline module on (M2-9, C283): the data-saver switch, and on each chapter whose responses are in the
+// shared library, "Save for offline" with the pack's size, measured here before anything is fetched by the phone.
 
 export default async function FamilyStudyPage({ searchParams }: { searchParams: { subject?: string } }) {
   const page = await requireFamilyPage();
@@ -47,6 +55,9 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
   const access = subjectAccess(child, subject);
   const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
+  const offline = await familyPageRead(page, async (db) => (await familyModuleOn(db, 'offline', page.session.accountId)) && (await familyModuleOn(db, 'understand', page.session.accountId)));
+  const packs = offline && catalog ? new Map((await familyPageRead(page, (db) => chapterPacks(db, { accountId: page.session.accountId, child }, subject))).map((p) => [p.chapter.key, p])) : null;
+  const ow = offline ? familyWords(lang, OFFLINE_KEYS) : {};
   const tone = subject;
   const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton'] as MessageKey[]);
   return (
@@ -73,6 +84,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           ))}
         </nav>
         {!child.freeSubject && <p className="rounded-2xl bg-sunshine/30 px-4 py-3 text-sm text-slate">{t(lang, 'fam.subject.firstIsFree')}</p>}
+        {offline && <DataSaverSwitch w={ow} />}
         {!access.open ? (
           <p data-family-locked className="rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
             {t(lang, 'fam.subject.notOpen')}
@@ -88,17 +100,20 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
             <ol className="flex flex-col gap-2">
               {catalog.chapters.map((c) => (
                 <li key={c.key} className="rounded-3xl bg-white p-3 shadow-sm ring-1 ring-slate/10">
-                  <Link href={`/family/understand?kind=chapter&key=${encodeURIComponent(c.key)}`} className="flex min-h-[44px] items-center justify-between gap-2 px-1 text-base font-bold text-slate">
+                  <SaverLink href={`/family/understand?kind=chapter&key=${encodeURIComponent(c.key)}`} className="flex min-h-[44px] items-center justify-between gap-2 px-1 text-base font-bold text-slate">
                     <span lang={titleLang(c.title)}>{c.title}</span>
                     <span aria-hidden="true" className="text-royal">→</span>
-                  </Link>
+                  </SaverLink>
+                  {packs && (packs.get(c.key)?.topics.length ?? 0) > 0 && (
+                    <PackButton w={ow} lang={lang} childId={child.childId} chapterKey={c.key} chapterTitle={c.title} bytes={packs.get(c.key)!.bytes} missing={packs.get(c.key)!.missing.length} />
+                  )}
                   {c.topics.length > 0 && (
                     <ul className="mt-1 flex flex-col">
                       {c.topics.map((tp) => (
                         <li key={tp.key}>
-                          <Link href={`/family/understand?kind=topic&key=${encodeURIComponent(tp.key)}`} className="flex min-h-[44px] items-center rounded-xl px-2 text-sm text-slate hover:bg-slate/5">
+                          <SaverLink href={`/family/understand?kind=topic&key=${encodeURIComponent(tp.key)}`} className="flex min-h-[44px] items-center rounded-xl px-2 text-sm text-slate hover:bg-slate/5">
                             <span lang={titleLang(tp.title)}>{tp.title}</span>
-                          </Link>
+                          </SaverLink>
                         </li>
                       ))}
                     </ul>

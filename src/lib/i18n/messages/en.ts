@@ -6511,6 +6511,28 @@ export const en = {
   // m2-8 begin
   // m2-8 end
   // m2-9 begin
+  'fam.offline.pack.save': 'Save for offline',
+  'fam.offline.pack.size': 'About {n} {unit}',
+  'fam.offline.pack.saving': 'Saving…',
+  'fam.offline.pack.saved': 'Saved on this phone',
+  'fam.offline.pack.remove': 'Remove',
+  'fam.offline.pack.removeLabel': 'Remove {chapter} from this phone',
+  'fam.offline.pack.failed': 'Could not save. Try again when the internet works.',
+  'fam.offline.pack.partial': '{n} topics are not in this pack yet. They need the internet.',
+  'fam.offline.pack.until': 'Kept until {day}',
+  'fam.offline.pack.shelf': 'Saved for offline',
+  'fam.offline.pack.none': 'Nothing is saved on this phone yet. While the internet works, open Study and tap "Save for offline" on a chapter.',
+  'fam.offline.pack.needsInternet': 'Needs internet',
+  'fam.offline.pack.needsInternetLead': 'This needs a connection. The chapters saved on this phone still open.',
+  'fam.offline.pack.answerSaved': 'Answer kept. It is checked when the internet is back.',
+  'fam.offline.pack.waiting': '{n} answers are waiting to be sent.',
+  'fam.offline.pack.allChapters': 'All saved chapters',
+  'fam.offline.pack.notInPack': 'This topic is not saved on this phone.',
+  'fam.dataSaver.title': 'Data-saver',
+  'fam.dataSaver.on': 'On: text first. Pictures, diagrams and videos are not loaded.',
+  'fam.dataSaver.off': 'Off: everything loads.',
+  'fam.dataSaver.phone': 'Turned on because this phone asked to save data.',
+  'fam.dataSaver.skipped': 'Data-saver: {n} pictures or diagrams not loaded.',
   // m2-9 end
   // m2-10 begin
   // m2-10 end

@@ -34,6 +34,9 @@ export const FAMILY_SCREENS = [
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
   // m2-2: today's plan first on the home (C276).
   ['full', 'family-home-plan', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-plan]' }],
+  // m2-9: "Save for offline" with the pack's size, and Understand with the data-saver on (C283).
+  ['full', 'family-study-offline', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-pack-size]' }],
+  ['full', 'family-understand-saver', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-saver-note]', storage: { 'ncf.dataSaver': '1' } }],
   // The English course (C274): the course map, and a lesson's first card.
   ['english', 'family-english', '/family/english', { settle: 'ol[aria-label] li' }],
   ['english', 'family-english-lesson', '/family/english/lesson/b.u01.l1', { settle: '[role=progressbar]' }],
@@ -93,6 +96,8 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
           const cookies = who ? await familyCookies(FAMILY[who], opts.parent, secret, opts.child) : [];
           cookies.push({ name: 'ncf_lang', value: lang });
           await context.addCookies(cookies.map((c) => ({ ...c, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' })));
+          // A device setting the screen reads from the phone's storage (the data-saver, M2-9).
+          if (opts.storage) await context.addInitScript((s) => Object.entries(s).forEach(([k, v]) => window.localStorage.setItem(k, v)), opts.storage);
           const page = await context.newPage();
           const errors = [];
           page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));

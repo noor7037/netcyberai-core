@@ -209,3 +209,10 @@ insert into family.revisits (account_id, child_id, topic_key, subject, step, set
   ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'cbse.c9.mathematics.u1.ch01.t01', 'mathematics', 1, (now() at time zone 'Asia/Kolkata')::date - 3, (now() at time zone 'Asia/Kolkata')::date),
   ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'cbse.c9.mathematics.u1.ch01.t01', 'mathematics', 2, (now() at time zone 'Asia/Kolkata')::date - 3, (now() at time zone 'Asia/Kolkata')::date + 7);
 -- m2-2 end
+
+-- m2-9 begin
+-- Offline chapter packs and the data-saver (M2-9, C283): the offline module on, so Study offers "Save for offline" with
+-- the pack's size on the illustrative chapter. Illustrative only.
+insert into control.app_flags (app, module, enabled, reason) values ('family', 'offline', true, 'harness')
+  on conflict (app, module) do update set enabled = true;
+-- m2-9 end
