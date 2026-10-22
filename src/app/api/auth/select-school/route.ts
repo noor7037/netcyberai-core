@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { verifyPendingToken } from '@/lib/auth/jwt';
 import { selectSchool } from '@/lib/auth/resolve';
 import { AuthError } from '@/lib/auth/errors';
-import { ACCESS_COOKIE, REFRESH_COOKIE, PENDING_COOKIE, ACCESS_TTL_SECONDS, REFRESH_TTL_SECONDS, cookieOptions } from '@/lib/auth/cookies';
+import { PENDING_COOKIE } from '@/lib/auth/cookies';
+import { keepSignedIn, signInResponse } from '@/lib/auth/outcome-response';
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
@@ -24,11 +25,7 @@ export async function POST(req: NextRequest) {
     if (outcome.status !== 'ok') {
       return NextResponse.json({ error: 'unexpected outcome after selection' }, { status: 500 });
     }
-    const res = NextResponse.json({ status: 'ok', role: outcome.claims.role, schoolId: outcome.claims.schoolId });
-    res.cookies.set(ACCESS_COOKIE, outcome.accessToken, cookieOptions(ACCESS_TTL_SECONDS));
-    res.cookies.set(REFRESH_COOKIE, outcome.refreshToken, cookieOptions(REFRESH_TTL_SECONDS));
-    res.cookies.delete(PENDING_COOKIE);
-    return res;
+    return await signInResponse(outcome, keepSignedIn(req, body));
   } catch (err) {
     if (err instanceof AuthError) {
       return NextResponse.json({ error: err.code }, { status: 403 });

@@ -84,27 +84,31 @@ export function emailAloneMaySetPassword(role: string, hasVerifiedAuthenticator:
   return hasVerifiedAuthenticator || !authenticatorRequired(role);
 }
 
-// What follows a correct password (C96, reversing C90/C95 where they
-// conflict). An account with a confirmed authenticator goes straight to its
-// code, never to an emailed code: two different 6-digit codes one screen
-// apart got typed into the wrong box in production. Without an
-// authenticator the emailed code is the second step; a remembered device
-// skips it for 30 days, except for a platform admin, who needs that email
-// proof to enrol an authenticator (C95).
+// What follows a correct password (C96, F1-1 C257). An account with a
+// confirmed authenticator goes straight to its code, never to an emailed
+// code: two different 6-digit codes one screen apart got typed into the wrong
+// box in production. Without an authenticator the emailed code is the second
+// step. A trusted browser ("Trust this browser for 30 days") skips what it
+// proved: one trusted after the authenticator skips the authenticator (and so
+// the whole second step), for every role including a platform admin; one
+// trusted after an emailed code skips the emailed code only, and never for a
+// platform admin, who needs that email proof to enrol an authenticator (C95).
 export type AfterPassword = 'authenticator' | 'email_code' | 'none';
+export type DeviceProofKind = 'authenticator' | 'email' | null;
 export function stepAfterPassword(input: {
   role: string;
   hasVerifiedAuthenticator: boolean;
-  deviceTrusted: boolean;
+  // What this browser proved when it was trusted; null when it is not trusted (src/lib/auth/devices.ts).
+  deviceProof: DeviceProofKind;
   emailStepEnabled: boolean;
   // False for a username account (C230-D): its hidden address receives no mail, so it has no emailed step.
   emailReachable?: boolean;
 }): AfterPassword {
-  if (input.hasVerifiedAuthenticator) return 'authenticator';
+  if (input.hasVerifiedAuthenticator) return input.deviceProof === 'authenticator' ? 'none' : 'authenticator';
   if (!input.emailStepEnabled) return 'none';
   if (input.emailReachable === false && !authenticatorRequired(input.role)) return 'none';
   if (authenticatorRequired(input.role)) return 'email_code';
-  return input.deviceTrusted ? 'none' : 'email_code';
+  return input.deviceProof ? 'none' : 'email_code';
 }
 
 export type FactorSummary = { id: string; factor_type: string; status: string; created_at?: string };

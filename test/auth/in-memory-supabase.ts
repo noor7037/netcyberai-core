@@ -54,6 +54,10 @@ export class FakeSupabase {
   sentCodes: string[] = [];
   auditRows: Record<string, unknown>[] = [];
   sessionsRevoked: { userId: string; keep: string | null }[] = [];
+  // "Trust this browser" rows (F1-1), as trusted_devices holds them.
+  devices = new Map<string, { device_id: string; user_id: string; proof: string; label: string; expires_at: Date; revoked_at: Date | null; last_used_at: Date }>();
+  // Sessions marked "not kept signed in" (F1-1).
+  notPersistent: string[] = [];
   private clock = Date.parse('2026-09-30T10:00:00Z');
 
   reset() {
@@ -64,6 +68,8 @@ export class FakeSupabase {
     this.sentCodes = [];
     this.auditRows = [];
     this.sessionsRevoked = [];
+    this.devices.clear();
+    this.notPersistent = [];
   }
 
   addUser(u: Partial<FakeUser> & { email: string; password: string; role: string }): FakeUser {
@@ -295,6 +301,38 @@ export class FakeSupabase {
         }
         if (/^update sessions set revoked_at/.test(text)) {
           fake.sessionsRevoked.push({ userId: String(params[0]), keep: (params[1] as string | null) ?? null });
+          return { rows: [], rowCount: 1 };
+        }
+        if (/^insert into trusted_devices/.test(text)) {
+          const [user_id, proof, label, expires_at] = params as [string, string, string, Date];
+          const device_id = randomUUID();
+          fake.devices.set(device_id, { device_id, user_id, proof, label, expires_at, revoked_at: null, last_used_at: new Date() });
+          return { rows: [{ device_id }], rowCount: 1 };
+        }
+        const live = (d: { revoked_at: Date | null; expires_at: Date }) => !d.revoked_at && d.expires_at.getTime() > Date.now();
+        if (/^update trusted_devices set last_used_at = now\(\) where device_id = \$1 and user_id = \$2/.test(text)) {
+          const d = fake.devices.get(String(params[0]));
+          if (!d || d.user_id !== params[1] || !live(d)) return { rows: [], rowCount: 0 };
+          d.last_used_at = new Date();
+          return { rows: [{ proof: d.proof }], rowCount: 1 };
+        }
+        if (/^update trusted_devices set revoked_at = now\(\) where device_id = \$1 and user_id = \$2/.test(text)) {
+          const d = fake.devices.get(String(params[0]));
+          if (!d || d.user_id !== params[1] || d.revoked_at) return { rows: [], rowCount: 0 };
+          d.revoked_at = new Date();
+          return { rows: [], rowCount: 1 };
+        }
+        if (/^update trusted_devices set revoked_at = now\(\) where user_id = \$1/.test(text)) {
+          let n = 0;
+          for (const d of fake.devices.values()) if (d.user_id === params[0] && !d.revoked_at) (d.revoked_at = new Date()), n++;
+          return { rows: [], rowCount: n };
+        }
+        if (/^select device_id, label, proof, created_at, last_used_at, expires_at from trusted_devices/.test(text)) {
+          const rows = [...fake.devices.values()].filter((d) => d.user_id === params[0] && live(d)).map((d) => ({ ...d, created_at: d.last_used_at }));
+          return { rows, rowCount: rows.length };
+        }
+        if (/^update sessions set persistent = false/.test(text)) {
+          fake.notPersistent.push(String(params[0]));
           return { rows: [], rowCount: 1 };
         }
         // No school memberships: a sign-in that gets this far ends in no_memberships.

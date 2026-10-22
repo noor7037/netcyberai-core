@@ -57,21 +57,28 @@ describe('authenticatorStepAtSignIn', () => {
   });
 
   it('after the password: authenticator accounts go straight to its code, never an emailed code (C96)', () => {
-    const base = { deviceTrusted: false, emailStepEnabled: true };
+    const base = { deviceProof: null, emailStepEnabled: true };
     for (const role of ['super_admin', 'principal', 'school_admin']) {
-      for (const deviceTrusted of [false, true]) {
-        expect(stepAfterPassword({ ...base, role, deviceTrusted, hasVerifiedAuthenticator: true })).toBe('authenticator');
+      // An untrusted browser, or one trusted only after an emailed code, is asked for the authenticator.
+      for (const deviceProof of [null, 'email'] as const) {
+        expect(stepAfterPassword({ ...base, role, deviceProof, hasVerifiedAuthenticator: true })).toBe('authenticator');
       }
     }
-    // Without one: the emailed code; a remembered device skips it, except for a platform admin.
+    // Without one: the emailed code; a trusted browser skips it, except for a platform admin.
     expect(stepAfterPassword({ ...base, role: 'teacher', hasVerifiedAuthenticator: false })).toBe('email_code');
-    expect(stepAfterPassword({ ...base, role: 'teacher', hasVerifiedAuthenticator: false, deviceTrusted: true })).toBe('none');
-    expect(stepAfterPassword({ ...base, role: 'super_admin', hasVerifiedAuthenticator: false, deviceTrusted: true })).toBe('email_code');
+    expect(stepAfterPassword({ ...base, role: 'teacher', hasVerifiedAuthenticator: false, deviceProof: 'email' })).toBe('none');
+    expect(stepAfterPassword({ ...base, role: 'super_admin', hasVerifiedAuthenticator: false, deviceProof: 'email' })).toBe('email_code');
     expect(stepAfterPassword({ ...base, role: 'teacher', hasVerifiedAuthenticator: false, emailStepEnabled: false })).toBe('none');
     // A username account has no mailbox, so no emailed step (C230-D); a platform admin is never one.
     expect(stepAfterPassword({ ...base, role: 'teacher', hasVerifiedAuthenticator: false, emailReachable: false })).toBe('none');
     expect(stepAfterPassword({ ...base, role: 'principal', hasVerifiedAuthenticator: false, emailReachable: false })).toBe('none');
     expect(stepAfterPassword({ ...base, role: 'super_admin', hasVerifiedAuthenticator: false, emailReachable: false })).toBe('email_code');
+  });
+
+  it('a browser trusted after the authenticator skips it for 30 days, for every role including a platform admin (F1-1)', () => {
+    for (const role of ['super_admin', 'principal', 'school_admin']) {
+      expect(stepAfterPassword({ role, hasVerifiedAuthenticator: true, deviceProof: 'authenticator', emailStepEnabled: true })).toBe('none');
+    }
   });
 
   it('does not require one of anyone else', () => {

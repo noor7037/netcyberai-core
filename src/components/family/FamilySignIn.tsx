@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -10,7 +10,24 @@ import { errorWords, familyApi } from './client';
 import { LanguageSwitch } from './LanguageSwitch';
 
 // Sign in by a code sent to the email (M1-2, C248): two steps on one screen, no password. The email travels to step 2
-// in a signed cookie, so it is never in the address.
+// in a signed cookie, so it is never in the address. F1-1 (C257): "Keep me signed in" (on by default; the Android app
+// always keeps) and "Remember my email on this phone" (only the email, in this phone's storage; unticking clears it).
+const EMAIL_KEY = 'ncf.signin.email';
+function readEmail(): string {
+  try {
+    return window.localStorage.getItem(EMAIL_KEY) ?? '';
+  } catch {
+    return '';
+  }
+}
+function saveEmail(email: string | null) {
+  try {
+    if (email && email.trim()) window.localStorage.setItem(EMAIL_KEY, email.trim());
+    else window.localStorage.removeItem(EMAIL_KEY);
+  } catch {
+    // Storage unavailable: nothing to remember or clear.
+  }
+}
 export function FamilySignIn({ w, lang }: { w: Words; lang: Lang }) {
   const router = useRouter();
   const [step, setStep] = useState<'email' | 'code'>('email');
@@ -18,10 +35,21 @@ export function FamilySignIn({ w, lang }: { w: Words; lang: Lang }) {
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [keep, setKeep] = useState(true);
+  const [rememberEmail, setRememberEmail] = useState(false);
+
+  useEffect(() => {
+    const saved = readEmail();
+    if (saved) {
+      setEmail((e) => e || saved);
+      setRememberEmail(true);
+    }
+  }, []);
 
   const send = async () => {
     setBusy(true);
     setError('');
+    saveEmail(rememberEmail ? email : null);
     const r = await familyApi('/api/family/auth/code', 'POST', { email, lang });
     setBusy(false);
     if (!r.ok) return setError(errorWords(w, r.error));
@@ -31,7 +59,7 @@ export function FamilySignIn({ w, lang }: { w: Words; lang: Lang }) {
   const verify = async () => {
     setBusy(true);
     setError('');
-    const r = await familyApi('/api/family/auth/verify', 'POST', { code });
+    const r = await familyApi('/api/family/auth/verify', 'POST', { code, keepSignedIn: keep });
     if (!r.ok) {
       setBusy(false);
       if (r.error === 'start_again') setStep('email');
@@ -59,6 +87,19 @@ export function FamilySignIn({ w, lang }: { w: Words; lang: Lang }) {
           }}
         >
           <Input id="fam-email" label={w['fam.signIn.email']} type="email" inputMode="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} error={error || undefined} />
+          <label htmlFor="fam-remember-email" className="flex min-h-[44px] items-center gap-3 text-base text-slate">
+            <input
+              id="fam-remember-email"
+              type="checkbox"
+              className="h-5 w-5 shrink-0"
+              checked={rememberEmail}
+              onChange={(e) => {
+                setRememberEmail(e.target.checked);
+                if (!e.target.checked) saveEmail(null);
+              }}
+            />
+            {w['fam.signIn.rememberEmail']}
+          </label>
           <Button type="submit" disabled={busy || !email.trim()} className="w-full">
             {busy ? w['fam.signIn.sending'] : w['fam.signIn.send']}
           </Button>
@@ -83,6 +124,10 @@ export function FamilySignIn({ w, lang }: { w: Words; lang: Lang }) {
             onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
             error={error || undefined}
           />
+          <label htmlFor="fam-keep" className="flex min-h-[44px] items-center gap-3 text-base text-slate">
+            <input id="fam-keep" type="checkbox" className="h-5 w-5 shrink-0" checked={keep} onChange={(e) => setKeep(e.target.checked)} />
+            {w['fam.signIn.keep']}
+          </label>
           <Button type="submit" disabled={busy || code.length !== 6} className="w-full">
             {w['fam.signIn.verify']}
           </Button>

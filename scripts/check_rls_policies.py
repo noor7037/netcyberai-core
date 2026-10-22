@@ -80,7 +80,9 @@ SRC_DIR = REPO_ROOT / "src"
 # comment on withBackendConnection: reachable only via app_backend's
 # direct grants, never SET ROLE'd into app_user/nca_super). Its
 # UPDATEs are correctly outside this check's concern.
-TABLES_WITHOUT_RLS = {"sessions"}
+# trusted_devices (F1-1, C257) is kept exactly like sessions: "Trust this
+# browser" rows, reachable only through app_backend's own grant.
+TABLES_WITHOUT_RLS = {"sessions", "trusted_devices"}
 
 # Every (table, policy_name) pair this repo's migrations are currently
 # expected to create as PERMISSIVE. Anything PERMISSIVE found that is

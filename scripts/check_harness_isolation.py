@@ -55,6 +55,7 @@ SIGNER_USERS = {
     "src/lib/auth/authenticator.ts",  # the second step of sign-in
     "src/lib/auth/outcome-response.ts",  # turns a finished sign-in into cookies
     "src/app/api/control/impersonate/start/route.ts",  # time-boxed, audited impersonation
+    "src/lib/auth/devices.ts",  # "Trust this browser" (F1-1, C257): only after a sign-in step was passed
     # The Family app's own tokens (C248): defined in session.ts, issued only after a right email code (verify), and
     # parent mode only after the PIN (pin, unlock) or a PIN reset by the account's own email code.
     "src/lib/family/session.ts",
