@@ -79,6 +79,8 @@ export async function recomputeTopic(db: Db, accountId: string, childId: string,
 export async function deleteAnswer(db: Db, accountId: string, attemptId: string): Promise<boolean> {
   const { rows } = await db.query(`delete from family.attempts where account_id = $1 and attempt_id = $2 returning child_id, topic_key`, [accountId, attemptId]);
   if (!rows[0]) return false;
+  // The topic's pending returns may have come from this answer (M2-2): they go with it.
+  await db.query(`delete from family.revisits where account_id = $1 and child_id = $2 and topic_key = $3 and done_on is null`, [accountId, rows[0].child_id, rows[0].topic_key]);
   await recomputeTopic(db, accountId, String(rows[0].child_id), String(rows[0].topic_key));
   return true;
 }
@@ -86,5 +88,8 @@ export async function deleteAnswer(db: Db, accountId: string, attemptId: string)
 export async function deleteAllAnswers(db: Db, accountId: string, childId: string): Promise<number> {
   const res = await db.query(`delete from family.attempts where account_id = $1 and child_id = $2`, [accountId, childId]);
   await db.query(`delete from family.topic_progress where account_id = $1 and child_id = $2`, [accountId, childId]);
+  // Everything built from the answers goes with them (M2-2): the returns, and the plans whose completion they made.
+  await db.query(`delete from family.revisits where account_id = $1 and child_id = $2`, [accountId, childId]);
+  await db.query(`delete from family.plan_days where account_id = $1 and child_id = $2`, [accountId, childId]);
   return res.rowCount ?? 0;
 }

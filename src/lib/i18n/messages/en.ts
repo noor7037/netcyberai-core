@@ -6486,6 +6486,17 @@ export const en = {
   'fam.offline.retry': 'Try again',
   // m1-8 end
   // m2-2 begin
+  'fam.plan.title': "Today's plan",
+  'fam.plan.minutes': 'About {minutes} minutes',
+  'fam.plan.kind.revisit': 'Come back to',
+  'fam.plan.kind.weak': 'Practise again',
+  'fam.plan.kind.next': 'Next in your syllabus',
+  'fam.plan.done': 'Done',
+  'fam.plan.todo': 'To do',
+  'fam.plan.complete': "Today's plan is done. Well done!",
+  'fam.plan.empty': 'Nothing is planned for today yet. Pick a topic in Study.',
+  'fam.plan.how': 'Your plan comes from your answers: topics to come back to, topics to practise, then what comes next.',
+  'fam.plan.comesBack': 'This topic comes back on {day}, so that it sticks.',
   // m2-2 end
   // m2-3 begin
   // m2-3 end

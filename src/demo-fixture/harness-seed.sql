@@ -199,3 +199,13 @@ insert into family.attempts (account_id, child_id, subject, topic_key, item_key,
   ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'mathematics', 'cbse.c9.mathematics.u1.ch01.t01', 'cbse.c9.mathematics.u1.ch01.t01#c1', 'check', 'Which of these is a rational number? → 2/3', true, (now() at time zone 'Asia/Kolkata')::date);
 insert into family.topic_progress (account_id, child_id, topic_key, subject, answered, correct, first_correct_on, last_correct_on)
 values ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'cbse.c9.mathematics.u1.ch01.t01', 'mathematics', 2, 1, (now() at time zone 'Asia/Kolkata')::date, (now() at time zone 'Asia/Kolkata')::date);
+
+-- m2-2 begin
+-- Today's plan (M2-2, C276): the plan module on; Kabir's wrong answer three days ago brings Rational numbers back today
+-- (answered today, so it is ticked), then the next topic of his syllabus. Illustrative only.
+insert into control.app_flags (app, module, enabled, reason) values ('family', 'plan', true, 'harness')
+  on conflict (app, module) do update set enabled = true;
+insert into family.revisits (account_id, child_id, topic_key, subject, step, set_on, due_on) values
+  ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'cbse.c9.mathematics.u1.ch01.t01', 'mathematics', 1, (now() at time zone 'Asia/Kolkata')::date - 3, (now() at time zone 'Asia/Kolkata')::date),
+  ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'cbse.c9.mathematics.u1.ch01.t01', 'mathematics', 2, (now() at time zone 'Asia/Kolkata')::date - 3, (now() at time zone 'Asia/Kolkata')::date + 7);
+-- m2-2 end
