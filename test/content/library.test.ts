@@ -259,7 +259,9 @@ describe('the committed catalog, loaded from the repository', () => {
     expect(await asStaff(FOUNDER, (tx) => releaseVersion(tx, { userId: FOUNDER }, versions[0].version_id))).toMatchObject({ ok: true });
     const m9 = await asFamily((tx) => readFamilyCatalog(tx, { board: 'CBSE', classLevel: 9, subject: 'mathematics', lang: 'hi', today: TODAY }));
     expect(m9!.chapters).toHaveLength(versions[0].chapters);
-    expect(m9!.chapters[0]).toMatchObject({ title: 'Number System', unitTitle: 'Number System' });
+    // In Hindi: the chapter has the Hindi name from NCERT's Hindi edition (F2); the unit and the first topic have none, so
+    // they show the English title.
+    expect(m9!.chapters[0]).toMatchObject({ title: 'संख्याओं का संसार', unitTitle: 'Number System' });
     expect(m9!.chapters[0].topics[0].title).toBe('Introduction to rational numbers');
   });
 

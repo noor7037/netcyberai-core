@@ -19,8 +19,12 @@ the documents are theirs and the repository is public, so each one is opened at 
 
 Good to know before you start:
 
-- **No Hindi titles.** CBSE's 2026-27 curriculum page has no Hindi version of these four documents (checked
-  2026-10-21). The app shows the English titles; nothing was translated.
+- **Hindi titles from NCERT's Hindi books.** CBSE has no Hindi version of these four documents (checked 2026-10-21), so
+  since 2026-10-22 a line has the Hindi name of the same chapter or section as NCERT's Hindi edition prints it (130 of
+  276 lines; nothing was translated). Next to each one: the NCERT chapter or section number (with NCERT's English name
+  in quotes where CBSE words it differently) and a "हिं" link to the Hindi page. **Please check** the Class IX chapters:
+  CBSE names them in its own words, so each was matched to NCERT's chapter by number (Science) or content
+  (Mathematics). Lines without a Hindi title show the English one; the catalog README lists why.
 - **Class X Science has no topics.** That document prints each chapter as one paragraph, not as a list.
 - **Two gaps in Class X Science.** Unit III and the first part of Unit IV name no chapter, so they have no chapter
   line. The catalog README explains both under "Gaps".
@@ -139,8 +143,11 @@ Good to know before you start:
   table (two Chemistry XI units, four Chemistry XII units, the last chapter of Biology XI Unit V and of Biology XII
   Unit X, and the last chapter of Mathematics XI Unit II). Each is marked on its page. The catalog README lists them
   and how to leave them out.
-- **No Hindi titles.** CBSE's 2026-27 curriculum page has no Hindi version of these four documents (checked
-  2026-10-22). Nothing was translated.
+- **Hindi titles from NCERT's Hindi books.** CBSE has no Hindi version of these four documents (checked 2026-10-22),
+  so since 2026-10-22 each chapter (and each Chemistry and Biology unit, which NCERT prints as units too) has its name
+  from NCERT's Hindi edition, as printed (116 of 155 lines; nothing was translated), with a "हिं" link to the Hindi
+  contents page. Physics and Mathematics units, and the nine formatively assessed lines, have none (NCERT prints no such
+  unit or chapter).
 
 ## NCERT books, Classes 1–5 (2026-27)
 

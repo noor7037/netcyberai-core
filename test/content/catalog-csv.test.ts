@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { CATALOG_COLUMNS, readCatalogCsv, type CatalogProblem } from '@/lib/content/catalog-csv';
+import { parseCsvChecked } from '@/lib/import/csv';
 import { diffSyllabus, type DiffLine } from '@/lib/content/diff';
 import { academicYearOf } from '@/lib/family/catalog';
 import { stageSubjects } from '@/lib/family/subjects';
@@ -134,8 +135,13 @@ describe('the catalog CSV', () => {
     ]);
     // Every line names the board's own document, on cbseacademic.nic.in.
     expect(r.lines.every((l) => l.sourceUrl.startsWith('https://cbseacademic.nic.in/web_material/CurriculumMain27/'))).toBe(true);
-    // No Hindi title was printed in a document that was read: none is filled in.
-    expect(r.lines.every((l) => l.titleHi === null)).toBe(true);
+    // CBSE prints no Hindi version; Hindi titles come from NCERT's Hindi editions (F2), for chapters and topics only:
+    // NCERT's Classes 9-10 books print no units.
+    const hindi = r.lines.filter((l) => l.titleHi !== null);
+    expect(hindi).toHaveLength(130);
+    expect(r.lines.filter((l) => l.level === 'unit').every((l) => l.titleHi === null)).toBe(true);
+    const count = (cls: number, subject: string) => hindi.filter((l) => l.classLevel === cls && l.subject === subject).length;
+    expect([count(9, 'mathematics'), count(9, 'science'), count(10, 'mathematics'), count(10, 'science')]).toEqual([41, 54, 25, 10]);
   });
 
   it('the committed NCERT file (classes 6 to 8) passes the same check', () => {
@@ -208,7 +214,40 @@ describe('the catalog CSV', () => {
     expect(new Set(r.lines.map((l) => l.sourceUrl))).toEqual(
       new Set(['Physics', 'Chemistry', 'Biology', 'Maths'].map((s) => `https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/${s}_SecP2_2026-27.pdf`))
     );
-    expect(r.lines.every((l) => l.titleHi === null)).toBe(true);
+    // CBSE prints no Hindi version; Hindi titles come from NCERT's Hindi editions (F2). Units have one only where NCERT
+    // prints the same unit (Chemistry, Biology); the nine formatively assessed lines have no NCERT chapter, so none.
+    expect(r.lines.filter((l) => l.titleHi !== null)).toHaveLength(116);
+    expect(r.lines.filter((l) => l.level === 'unit' && l.titleHi !== null).every((l) => l.subject === 'chemistry' || l.subject === 'biology')).toBe(true);
+    const formative = ['cbse.c11.chemistry.u10', 'cbse.c11.chemistry.u11', 'cbse.c12.chemistry.u11', 'cbse.c12.chemistry.u12', 'cbse.c12.chemistry.u13', 'cbse.c12.chemistry.u14', 'cbse.c11.biology.u5.ch07', 'cbse.c12.biology.u5.ch04', 'cbse.c11.mathematics.u2.ch06'];
+    expect(r.lines.filter((l) => l.level === 'chapter' && l.titleHi === null).map((l) => l.key).sort()).toEqual(formative.filter((k) => /\.ch\d{2}$/.test(k)).sort());
+    expect(r.lines.filter((l) => formative.includes(l.key)).every((l) => l.titleHi === null)).toBe(true);
+  });
+
+  it('every Hindi title in the Classes 9-12 CBSE Mathematics and Science files is Devanagari and has its NCERT source recorded', () => {
+    const files = ['cbse-2026-27-maths-science.csv', 'cbse-2026-27-classes-11-12-science-maths.csv'];
+    const lines = files.flatMap((f) => readCatalogCsv(readFileSync(path.resolve(__dirname, '../../data/catalog', f), 'utf8'), '2026-10-22').lines);
+    // The record of where each Hindi title is printed: one line per key, NCERT's Hindi PDF and page.
+    const sources = parseCsvChecked(readFileSync(path.resolve(__dirname, '../../data/catalog/hindi-sources/cbse-2026-27-classes-9-12.csv'), 'utf8')).rows.filter((row) => row.some((c) => c !== ''));
+    expect(sources[0]).toEqual(['key', 'title_hi', 'source_url', 'source_page', 'ncert_ref', 'ncert_title_en', 'checked_on']);
+    const byKey = new Map(sources.slice(1).map(([key, titleHi, sourceUrl, sourcePage, ncertRef, ncertTitleEn, checkedOn]) => [key, { titleHi, sourceUrl, sourcePage, ncertRef, ncertTitleEn, checkedOn }]));
+    expect(byKey.size).toBe(sources.length - 1);
+    const withHindi = lines.filter((l) => l.titleHi !== null);
+    expect(withHindi).toHaveLength(246);
+    for (const l of withHindi) {
+      expect(l.titleHi, l.key).toMatch(/[ऀ-ॿ]/);
+      // Typed from the page: no damaged-text joiners, no doubled spaces, no ends with a space.
+      expect(l.titleHi, l.key).not.toMatch(/[‌‍]| {2}|^ | $/);
+      const src = byKey.get(l.key);
+      expect(src, l.key).toBeDefined();
+      expect(src!.titleHi, l.key).toBe(l.titleHi);
+      expect(src!.sourceUrl, l.key).toMatch(/^https:\/\/ncert\.nic\.in\/textbook\/pdf\/[a-z]h[a-z]{2}[12](ps|\d{2})\.pdf$/);
+      expect(src!.sourcePage, l.key).toMatch(/^[0-9]{1,3}$/);
+      expect(src!.ncertRef, l.key).toMatch(/^(ch\. \d{1,2}|Unit (\d{1,2}|[IVX]+)|§\d{1,2}\.\d{1,2}(\.\d{1,2})?)$/);
+      expect(src!.ncertTitleEn, l.key).not.toBe('');
+      expect(src!.checkedOn, l.key).toBe('2026-10-22');
+    }
+    // No source line without its Hindi title in a file.
+    expect([...byKey.keys()].sort()).toEqual(withHindi.map((l) => l.key).sort());
   });
 
   it('the committed NCERT Classes 1-5 file passes the same check the import runs', () => {
