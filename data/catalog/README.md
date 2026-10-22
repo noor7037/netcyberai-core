@@ -310,3 +310,95 @@ checker (`readCatalogCsv` in `src/lib/content/catalog-csv.ts`, run with the date
 `test/content/catalog-csv.test.ts` reads only `cbse-2026-27-maths-science.csv`, so this file is not yet in that test.
 The proof sheets for the founder's approval are in
 [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md).
+
+## cbse-2026-27-classes-11-12-science-maths.csv
+
+CBSE, academic year 2026-27, Classes XI and XII: Physics, Chemistry, Biology and Mathematics (subject ids `physics`,
+`chemistry`, `biology`, `mathematics`). Same columns and rules as the file above. One line per unit and chapter, worded
+as the CBSE curriculum document prints it; there are no topic lines (see "Topics"). Every line is `in_review`; every
+line was read on **2026-10-22**. Load it the same way:
+
+```
+node scripts/content/catalog-sql.mjs data/catalog/cbse-2026-27-classes-11-12-science-maths.csv --ref "<the PR that committed it>" > load.sql
+```
+
+Each subject has one document for both classes, linked from https://cbseacademic.nic.in/curriculum_2027.html under
+"Secondary Curriculum: Part - 2 (XI-XII)" → "Academic Electives - (Group-A)".
+
+| Class | Subject | Document (CBSE, 2026-27) | Units | Chapters | Topics | Pages used |
+|---|---|---|---|---|---|---|
+| XI | physics | Physics (Code 042), Classes XI–XII: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Physics_SecP2_2026-27.pdf | 10 | 14 | 0 | 2 (course structure: units and chapters) |
+| XII | physics | same document | 9 | 14 | 0 | 12 (course structure: units and chapters) |
+| XI | chemistry | Chemistry (Code 043), Classes XI–XII: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Chemistry_SecP2_2026-27.pdf | 11 | 0 | 0 | 2 (course structure: units 1–9), 3 (note of formatively assessed topics: units 10–11) |
+| XII | chemistry | same document | 14 | 0 | 0 | 8 (course structure: units 1–10), 9 (note of formatively assessed topics: units 11–14) |
+| XI | biology | Biology (Code 044), Classes XI–XII: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Biology_SecP2_2026-27.pdf | 5 | 20 | 0 | 3 (course structure: units), 3–5 (chapter headings), 6 (note: last chapter of Unit V) |
+| XII | biology | same document | 5 | 14 | 0 | 9 (course structure: units), 9–11 (chapter headings; note: last chapter of Unit X) |
+| XI | mathematics | Mathematics (Code 041), Classes XI–XII: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Maths_SecP2_2026-27.pdf | 5 | 15 | 0 | 2 (course structure: units), 2–4 (numbered chapter headings), 6 (formatively assessed table: last chapter of Unit II) |
+| XII | mathematics | same document | 6 | 13 | 0 | 7 (course structure: units), 7–9 (numbered chapter headings) |
+
+155 lines in all (65 units, 90 chapters). Not used: Applied Mathematics (`Applied_Mathematics_SecP2_2026-27.pdf`) and
+Biotechnology (`BioTechnology_SecP2_2026-27.pdf`), separate subjects; the "Reading Material" PDFs linked beside
+Chemistry and Biology (`Chemistry_SecP2_2026-27_RM.pdf`, `Biology_SrSecXI_2026-27_RM.pdf`), which hold the textbook
+text for the formatively assessed topics, not curriculum lines.
+
+### How the lines were taken from the documents
+
+- **Units** are the names in each class's course structure table. Where the unit heading in the text below the table
+  words it differently, the table wins: Physics XI "Physical World and Measurement" (text: "…Measurements") and
+  "Behaviour of Perfect Gases…" (text: "Behavior…"); Physics XII "Electromagnetic Waves" (text: "…waves");
+  Chemistry XI "Chemical Thermodynamics" (text: "Thermodynamics") and "Organic Chemistry: Some basic Principles and
+  Techniques" (text: "Organic Chemistry – Some Basic…"); Chemistry XII "d -and f -Block Elements", kept with its stray
+  spaces (text: "d and f Block Elements"); Mathematics XII "Vectors and Three - Dimensional Geometry" (text: "Vectors
+  and Three-dimensional Geometry") and "Linear Programming" (text: "Linear Programming Problem").
+- **Chapters.** Physics: the course structure table names them ("Chapter–1: Units and Measurements" gives "Units and
+  Measurements"); Physics XII chapter 14 is printed over two table lines and joined. Biology: the "Chapter-N:" headings
+  in the unit text. Mathematics: the numbered headings under each unit ("1. Sets"). **Chemistry names no chapters**:
+  each unit is followed by its content as running text, so Chemistry has unit lines only. No chapter line was made up
+  from a unit name.
+- **Keys and positions** count from 1 under the parent, in printed order, as in the file above. CBSE numbers Class XII
+  Biology's units VI–X and numbers chapters straight through a class (Biology XI chapters 1–19, Physics XI 1–14);
+  here they are `u1`–`u5` and `ch01` onwards inside each unit. The printed names are unchanged.
+- **Wording** is the document's: line breaks joined, repeated spaces made one, capitals as printed ("Chemistry in
+  Everyday life"), "&" kept ("Relations & Functions", "s & p Block Elements"), hyphens as printed ("Cell-The Unit of
+  Life", "Plant - Growth and Development", "Biotechnology - Principles and Processes").
+- **Formatively assessed lines (9; the supervisor should confirm).** Each document prints, after the units, a note of
+  topics that are "included in the syllabus but will be assessed only formatively". The Class X Science lines include
+  such chapters as printed, so these are included too, after the course-structure lines, at the level of the headings
+  they follow, each citing the page of the note:
+  - Chemistry XI, units 10–11: "s & p Block Elements", "The Gaseous State" (page 3).
+  - Chemistry XII, units 11–14: "Surface Chemistry", "General Principles and Processes of Isolation of Elements",
+    "Polymers", "Chemistry in Everyday life" (page 9). Each item is printed as a name, a dash, then its content; the
+    name is the text before the first dash.
+  - Biology XI, Unit V chapter 7: "Digestion and Absorption" (page 6); its "(Please Refer to CBSE Reading Material)"
+    is left out.
+  - Biology XII, Unit X chapter 4: "Environmental Issues" (page 11); its "(available as a part of CBSE Reading
+    Material):" is left out.
+  - Mathematics XI, Unit II chapter 6: "Principle of Mathematical Induction" (page 6), printed under "Unit-II: Algebra"
+    in the formatively assessed table. The rest of that table adds content to chapters already listed (for example
+    "Sets: Practical problems on Union and Intersection of two sets"), so it adds no line.
+
+  The CSV has no column for "assessed only formatively". To keep the course structure only, delete these 9 lines (keys
+  `cbse.c11.chemistry.u10`, `.u11`; `cbse.c12.chemistry.u11`–`.u14`; `cbse.c11.biology.u5.ch07`;
+  `cbse.c12.biology.u5.ch04`; `cbse.c11.mathematics.u2.ch06`).
+- **Topics: none.** All four documents print the content of each chapter (Chemistry: of each unit) as running text
+  separated by commas, semicolons and full stops ("Biodiversity; Need for classification; three domains of life; …"),
+  not as bullets or numbered items. Splitting it into topics would be our wording, not CBSE's: the same rule as Class X
+  Science. If the supervisor decides that splitting at the printed separators is acceptable, topics can be added in a
+  new version.
+- **Not taken:** practicals, activities, projects, the question paper design, and Biology XI chapter 9's note of topics
+  excluded (an exclusion, not content).
+- **Pages** are the PDF's page numbers (page 1 is the first page of the file). Chemistry and Biology print the same
+  numbers at the foot of each page; Physics and Mathematics print none.
+- **Hindi titles (`title_hi`) are empty on every line.** Checked on 2026-10-22: the 2026-27 page (also with
+  `?lang=hindi`) links no Hindi version of these four documents. Its live Hindi links for Classes XI–XII are the Hindi
+  language syllabi (`Hindi_Core_SecP2_`, `Hindi_Elective_SecP2_2026-27.pdf`); the Hindi versions of Geography, History,
+  Knowledge Tradition, Physical Education and Political Science are commented out in the page. The same file names
+  with a Hindi ending, tried on the same folder (`web_material/CurriculumMain27/SecPart2/`: `PhysicsHi_`,
+  `PhysicsHindi_`, `Physics_hi_`, the same three for Chemistry, Biology and Maths, and `MathematicsHi_`,
+  `_SecP2_2026-27.pdf`), do not exist (HTTP 404). Nothing was translated.
+- **Mechanical check:** every word of three or more letters in each `title_en`, and the whole title once spaces and
+  dashes are made plain, appears in the text of its cited page (`pdftotext -raw` and `-layout`); all 155 lines pass.
+  The importer's checker (`readCatalogCsv`) finds no problem with the file.
+
+Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
+pages `class11-physics.md` to `class12-mathematics.md`.

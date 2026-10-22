@@ -183,6 +183,28 @@ describe('the catalog CSV', () => {
     expect(hindi.every((l) => /[ऀ-ॿ]/.test(l.titleEn) && l.titleHi === l.titleEn)).toBe(true);
     expect(r.lines.filter((l) => l.subject !== 'hindi').every((l) => l.titleHi === null)).toBe(true);
   });
+
+  it('the committed CBSE file for classes 11 and 12 (Physics, Chemistry, Biology, Mathematics) passes the same check', () => {
+    const text = readFileSync(path.resolve(__dirname, '../../data/catalog/cbse-2026-27-classes-11-12-science-maths.csv'), 'utf8');
+    const r = readCatalogCsv(text, '2026-10-22');
+    expect(r.problems).toEqual([]);
+    const count = (s: { units: unknown[]; chapters: unknown[]; topics: unknown[] }) => [s.units.length, s.chapters.length, s.topics.length];
+    expect(Object.fromEntries(r.syllabi.map((s) => [`${s.board} ${s.classLevel} ${s.subject} ${s.academicYear}`, count(s)]))).toEqual({
+      'CBSE 11 physics 2026-27': [10, 14, 0],
+      'CBSE 12 physics 2026-27': [9, 14, 0],
+      'CBSE 11 chemistry 2026-27': [11, 0, 0],
+      'CBSE 12 chemistry 2026-27': [14, 0, 0],
+      'CBSE 11 biology 2026-27': [5, 20, 0],
+      'CBSE 12 biology 2026-27': [5, 14, 0],
+      'CBSE 11 mathematics 2026-27': [5, 15, 0],
+      'CBSE 12 mathematics 2026-27': [6, 13, 0],
+    });
+    // One document per subject for both classes, in CBSE's Senior Secondary Curriculum Part 2; no Hindi version exists.
+    expect(new Set(r.lines.map((l) => l.sourceUrl))).toEqual(
+      new Set(['Physics', 'Chemistry', 'Biology', 'Maths'].map((s) => `https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/${s}_SecP2_2026-27.pdf`))
+    );
+    expect(r.lines.every((l) => l.titleHi === null)).toBe(true);
+  });
 });
 
 describe('the diff between two versions, by stable key', () => {
