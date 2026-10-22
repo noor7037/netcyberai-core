@@ -6474,6 +6474,17 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.offline.retry': 'फिर कोशिश करें',
   // m1-8 end
   // m2-2 begin
+  'fam.plan.title': 'आज की योजना',
+  'fam.plan.minutes': 'लगभग {minutes} मिनट',
+  'fam.plan.kind.revisit': 'फिर से देखें',
+  'fam.plan.kind.weak': 'फिर से अभ्यास करें',
+  'fam.plan.kind.next': 'सिलेबस में आगे',
+  'fam.plan.done': 'हो गया',
+  'fam.plan.todo': 'करना है',
+  'fam.plan.complete': 'आज की योजना पूरी हो गई। शाबाश!',
+  'fam.plan.empty': 'आज के लिए अभी कुछ तय नहीं है। पढ़ाई में कोई विषय चुनें।',
+  'fam.plan.how': 'आपकी योजना आपके जवाबों से बनती है: जिन विषयों पर लौटना है, जिनका अभ्यास करना है, फिर आगे क्या है।',
+  'fam.plan.comesBack': 'यह विषय {day} को फिर आएगा, ताकि अच्छी तरह याद रहे।',
   // m2-2 end
   // m2-3 begin
   // m2-3 end

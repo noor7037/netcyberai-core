@@ -190,8 +190,8 @@ describe('Understand, end to end', () => {
     const ev = await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'What is 6 + 6?', subject: 'mathematics' }, jar)));
     const token = ev.find((e) => e.t === 'block' && e.block.type === 'check').block.items[0].token;
     expect(await (await R.check.POST(post('/api/family/check', { token, hint: true }, jar))).json()).toEqual({ hint: 'Think of pairs.' });
-    expect(await (await R.check.POST(post('/api/family/check', { token, choice: 0 }, jar))).json()).toEqual({ correct: false, explanation: 'Counted one pair', answer: null });
-    expect(await (await R.check.POST(post('/api/family/check', { token, choice: 1 }, jar))).json()).toEqual({ correct: true, explanation: 'Because 6 + 6 = 12.', answer: 1 });
+    expect(await (await R.check.POST(post('/api/family/check', { token, choice: 0 }, jar))).json()).toMatchObject({ correct: false, explanation: 'Counted one pair', answer: null });
+    expect(await (await R.check.POST(post('/api/family/check', { token, choice: 1 }, jar))).json()).toEqual({ correct: true, explanation: 'Because 6 + 6 = 12.', answer: 1, revisitOn: null, revisitDay: null });
     expect((await R.check.POST(post('/api/family/check', { token, choice: 1 }, otherJar))).status).toBe(404);
     expect((await R.check.POST(post('/api/family/check', { token: token.slice(0, -2) + 'AA', choice: 1 }, jar))).status).toBe(404);
   });
