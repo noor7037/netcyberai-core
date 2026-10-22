@@ -163,6 +163,18 @@ insert into family.children (child_id, account_id, first_name, class_level, boar
   ('f0000000-0000-4000-8000-0000000fc001', 'f0000000-0000-4000-8000-0000000f0004', 'Asha', 7, 'CBSE', 'en', 'hinglish', 'IN-UP', now() - interval '2 minutes'),
   ('f0000000-0000-4000-8000-0000000fc002', 'f0000000-0000-4000-8000-0000000f0004', 'Kabir', 9, 'CBSE', 'en', 'en', 'IN-DL', now() - interval '1 minute');
 
+-- The English course (C274): a fifth illustrative family whose child (Class 2) takes track B, with the course consent
+-- and the course switched on. The course itself is loaded by scripts/harness/family.mjs from data/english/.
+insert into family.accounts (account_id, email, ui_language, pin_hash, pin_set_at) values
+  ('f0000000-0000-4000-8000-0000000f0005', 'english.family@example.org', 'en', 'scrypt$16384$8$1$aGFybmVzcy1zYWx0LTAwMw==$aGFybmVzcy1zdGFuZC1pbi1oYXNoLTAwMDAwMDAwMDA=', now());
+insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values
+  ('f0000000-0000-4000-8000-0000000f0005', 'study_core', true, 'parent_tap', 'fam-notice-1'),
+  ('f0000000-0000-4000-8000-0000000f0005', 'english_programme', true, 'parent_tap', 'fam-notice-1');
+insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code) values
+  ('f0000000-0000-4000-8000-0000000fc005', 'f0000000-0000-4000-8000-0000000f0005', 'Meena', 2, 'CBSE', 'en', 'hi', 'IN-UP');
+insert into control.app_flags (app, module, enabled, reason) values ('family', 'english_programme', true, 'harness')
+  on conflict (app, module) do update set enabled = true;
+
 -- Understand (M1-5, C251): one illustrative catalog line (class 9 Mathematics) and an illustrative cached response in
 -- English and Hindi, so the harness can photograph Study and Understand without an AI key. Not the real catalog
 -- (data/catalog/ is loaded separately); not shown anywhere but the harness's throwaway database.

@@ -67,6 +67,14 @@ const ALLOWED: Record<string, Record<string, string>> = {
     "opaque:AUDIT(actor, 'content.syllabus.released', versionId, { audience: 'everyone', supersededVersionId: before?.version_id ?? null })": 'version ids and an audience code',
     "opaque:AUDIT(actor, 'content.syllabus.rolled_back', versionId, { restoredVersionId: previous.version_id })": 'version ids',
   },
+  // C274: the same review for the English course's versions: a version id with its new audience; a rejection says only
+  // that a note exists, never the note. Course content only; no child.
+  'src/lib/content/english-library.ts': {
+    "opaque:AUDIT(actor, 'content.english.approved', versionId, { audience: 'staff_preview' })": 'a version id and its audience code',
+    "opaque:AUDIT(actor, 'content.english.rejected', versionId, { note: true })": 'a version id and true: a note exists, never its words',
+    "opaque:AUDIT(actor, 'content.english.released', versionId, { audience: 'everyone', supersededVersionId: before?.version_id ?? null })": 'version ids and an audience code',
+    "opaque:AUDIT(actor, 'content.english.rolled_back', versionId, { restoredVersionId: previous.version_id })": 'version ids',
+  },
   // C253: Control → Apps' platform rows: an app flag, version setting, banner or preview account before and after, so a
   // change can be undone in one step. The founder's reason for the change and a banner's public notice text are kept with
   // it; nothing about a family, a child or a school's people.
