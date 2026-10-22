@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
-import { claimSubject, openSubjects } from '@/lib/family/learning';
+import { changeFreeSubject, claimSubject, openSubjects } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
 import { readOpenSubjects, setOpenSubjects } from '@/lib/control/family-settings';
 
@@ -75,5 +75,10 @@ describe('subjects open to every child', () => {
     expect(await asFamily((tx) => claimSubject(tx, A, CHILD, 'hindi'))).toBe(false);
     const open = await asFamily((tx) => openSubjects(tx));
     expect(subjectAccess({ freeSubject: 'mathematics' }, 'evs', open).open).toBe(true);
+  });
+
+  it('the parent cannot make an open subject the free one', async () => {
+    expect(await asFamily((tx) => changeFreeSubject(tx, A, CHILD, 'evs'))).toBe('open_to_all');
+    expect(await free()).toBe('mathematics');
   });
 });

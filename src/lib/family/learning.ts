@@ -1,6 +1,7 @@
 import { recomputeTopic } from './account';
 import { noteRevisits } from './plan';
 import type { ItemSecret } from './items';
+import { OPEN_SUBJECTS_KEY, openSubjectsOf } from '@/lib/contracts/subjects';
 import { SUBJECTS, canChangeFreeSubject, type Subject } from './modules';
 
 // Learning records (docs/family-app/02 §4.1–4.2; M1-6, C252). Progress moves only on checked answers: an answer is
@@ -17,11 +18,8 @@ export async function setting(db: Db, key: string, fallback: number): Promise<nu
 }
 
 // Subjects open to every child (C298), as Control set them: only known subject ids are kept.
-export const OPEN_SUBJECTS_SETTING = 'family.open_subjects';
 export async function openSubjects(db: Db): Promise<Subject[]> {
-  const { rows } = await db.query(`select value from control.settings where key = $1`, [OPEN_SUBJECTS_SETTING]);
-  const v = rows[0]?.value;
-  return Array.isArray(v) ? v.filter((s): s is Subject => typeof s === 'string' && (SUBJECTS as readonly string[]).includes(s)) : [];
+  return openSubjectsOf((await db.query(`select value from control.settings where key = $1`, [OPEN_SUBJECTS_KEY])).rows[0]?.value);
 }
 
 // The child's free subject: the first subject they study becomes it. Returns whether this subject is open. A subject
@@ -39,8 +37,10 @@ export async function claimSubject(db: Db, accountId: string, childId: string, s
   return now[0]?.free_subject === subject;
 }
 
-// The parent changes a child's free subject, once the change window has passed since it was last set.
-export async function changeFreeSubject(db: Db, accountId: string, childId: string, subject: Subject): Promise<'changed' | 'too_soon' | 'not_found'> {
+// The parent changes a child's free subject, once the change window has passed since it was last set. A subject open to
+// every child (C298) is open already, so it is never made the free one.
+export async function changeFreeSubject(db: Db, accountId: string, childId: string, subject: Subject): Promise<'changed' | 'too_soon' | 'not_found' | 'open_to_all'> {
+  if ((await openSubjects(db)).includes(subject)) return 'open_to_all';
   const { rows } = await db.query(`select free_subject, free_subject_set_at from family.children where account_id = $1 and child_id = $2 for update`, [accountId, childId]);
   if (!rows[0]) return 'not_found';
   if (rows[0].free_subject === subject) return 'changed';

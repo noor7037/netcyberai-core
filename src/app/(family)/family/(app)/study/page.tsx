@@ -54,11 +54,10 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
     );
   }
   const board = syllabusBoardOf(child);
-  const subjects = await familyPageRead(page, (db) => classSubjects(db, { board, classLevel: child.classLevel }));
+  // C298: subjects Control opens to every child (the pilot's EVS) stay open whatever the free subject is.
+  const [subjects, openToAll] = await familyPageRead(page, (db) => Promise.all([classSubjects(db, { board, classLevel: child.classLevel }), openSubjects(db)]));
   const requested = subjects.find((s) => s === searchParams.subject);
   const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
-  // C298: subjects Control opens to every child (the pilot's EVS) stay open whatever the free subject is.
-  const openToAll = await familyPageRead(page, (db) => openSubjects(db));
   const access = subjectAccess(child, subject, openToAll);
   const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
   const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));

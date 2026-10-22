@@ -1,16 +1,13 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
-import { SUBJECT_IDS, type Subject } from '@/lib/contracts/subjects';
+import { OPEN_SUBJECTS_KEY, SUBJECT_IDS, openSubjectsOf, type Subject } from '@/lib/contracts/subjects';
 
 // Control → Family's one setting (C298): subjects open to every child, whatever their free subject is (the first
 // pilot opens EVS to its 50 Class 5 children, C230-S). The founder with the authenticator sets it; every change writes
 // an audit row with the list before and after. Only known subject ids are kept.
 
-export const OPEN_SUBJECTS_KEY = 'family.open_subjects';
-
 export async function readOpenSubjects(db: Sql): Promise<Subject[]> {
-  const v = (await db.query(`select value from control.settings where key = $1`, [OPEN_SUBJECTS_KEY])).rows[0]?.value;
-  return Array.isArray(v) ? v.filter((s): s is Subject => (SUBJECT_IDS as readonly unknown[]).includes(s)) : [];
+  return openSubjectsOf((await db.query(`select value from control.settings where key = $1`, [OPEN_SUBJECTS_KEY])).rows[0]?.value);
 }
 
 export type OpenSubjectsResult = { ok: true; subjects: Subject[] } | { ok: false; code: 'bad_subjects' };

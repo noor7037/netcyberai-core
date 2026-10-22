@@ -5,7 +5,7 @@ import { classSubjects } from '@/lib/family/catalog';
 import { CHILD_FORM_KEYS } from '@/lib/family/child-words';
 import { syllabusBoardOf } from '@/lib/family/children';
 import { SUBJECT_IDS } from '@/lib/family/subjects';
-import { calmCard } from '@/lib/family/learning';
+import { calmCard, openSubjects } from '@/lib/family/learning';
 import { readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { parentHabit } from '@/lib/family/habit';
 import { familyPageRead, requireFamilyPage } from '@/lib/family/server';
@@ -51,8 +51,12 @@ export default async function FamilyParentPage() {
     );
   }
   const calm = await familyPageRead(page, async (db) => Promise.all(page.children.map((c) => calmCard(db, page.session.accountId, c.childId, indiaDate(), lang))));
-  // Each child's class subjects (C264), for the free-subject choice.
-  const subjects = await familyPageRead(page, async (db) => Promise.all(page.children.map((c) => classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel }))));
+  // Each child's class subjects (C264), for the free-subject choice; a subject open to every child (C298) is open
+  // already, so it is not offered.
+  const subjects = await familyPageRead(page, async (db) => {
+    const openToAll = await openSubjects(db);
+    return (await Promise.all(page.children.map((c) => classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel })))).map((list) => list.filter((s) => !openToAll.includes(s)));
+  });
   // The English course (C274): its consent and reports show when Control has the course switched on.
   const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
   const english = switches && switchOn(switches, 'english_programme') ? { granted: page.consents.english_programme } : null;

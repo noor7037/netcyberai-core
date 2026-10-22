@@ -123,9 +123,10 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
 
 // The Understand page draws a library response with the page itself (09 §4: the explanation is the largest paint, and
 // waiting for the phone to ask first cost half a second on a 4G profile). Only when the subject is already the child's
-// free one, so drawing the page never claims a subject; otherwise, or when the library has none, the phone asks.
+// free one, or one open to every child (C298), so drawing the page never claims a subject; otherwise, or when the
+// library has none, the phone asks.
 export async function libraryResponse(db: Db, ctx: Seal, line: Line): Promise<ResolverEvent[] | null> {
-  if (ctx.child.freeSubject !== line.subject) return null;
+  if (ctx.child.freeSubject !== line.subject && !(await openSubjects(db as never)).includes(line.subject)) return null;
   const promptVersion = resolverPrompt(await activePromptVersion(db as never, 'family.resolver'), false).version;
   return libraryEvents(db, ctx, line, promptVersion);
 }
