@@ -12,6 +12,8 @@ import { familyHashKey } from './secret';
 // with a key for this purpose only, bound to the account and child, for a day. Nothing the child types is kept.
 
 export const HINTS = 3;
+// Attempts per question: enough to learn, too few to guess a number by trying them all.
+export const MAX_TRIES = 10;
 const MAX_STEPS = 8;
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -64,15 +66,19 @@ export function sameAnswer(given: string, answer: string, kind: HomeworkRead['ki
 }
 
 // Whether a line gives the answer away: it contains the answer as written (when the answer is more than a character)
-// or, for a number, the same value as a whole number in the text.
+// or, for a number, states the value as a result ("= 3", "is 3", "answer 3", or the line ending on it). A number that
+// merely appears ("the 3 sides") is kept, so small answers do not wipe out ordinary hints.
 export function givesAway(line: string, answer: string, kind: HomeworkRead['kind']): boolean {
   const a = normaliseAnswer(answer);
   if (a.length > 1 && normaliseAnswer(line).includes(a)) return true;
   if (kind === 'number') {
     const v = firstNumber(answer);
     if (v === null) return false;
-    for (const m of line.matchAll(/-?\d+(?:\.\d+)?(?:\s*\/\s*\d+(?:\.\d+)?)?/g)) {
-      const n = firstNumber(m[0]);
+    const NUM = '(-?\\d+(?:\\.\\d+)?(?:\\s*\\/\\s*\\d+(?:\\.\\d+)?)?)';
+    const stated = new RegExp(`(?:=|\\bis\\b|\\bare\\b|\\bequals?\\b|\\banswer\\b|\\bहै\\b|उत्तर)\\s*:?\\s*${NUM}|${NUM}\\s*[a-zA-Z\\u0900-\\u097F%°]*\\s*[.!।]?\\s*$`, 'giu');
+    const plain = line.normalize('NFKC').replace(/[\u0966-\u096F]/g, (d) => String(d.charCodeAt(0) - 0x0966)).replace(/[−–—]/g, '-');
+    for (const m of plain.matchAll(stated)) {
+      const n = firstNumber(m[1] ?? m[2] ?? '');
       if (n !== null && Math.abs(n - v) <= Math.max(1e-9, Math.abs(v) * 1e-6)) return true;
     }
   }
@@ -181,7 +187,7 @@ export function step(l: Ladder, action: unknown, given?: unknown): StepResult {
   if (action === 'attempt') {
     const g = typeof given === 'string' ? given.trim().slice(0, 200) : '';
     if (!g) return { ok: false, reason: 'bad_request' };
-    if (l.solved) return { ok: false, reason: 'not_yet' };
+    if (l.solved || l.tries >= MAX_TRIES) return { ok: false, reason: 'not_yet' };
     const correct = sameAnswer(g, l.answer, l.kind);
     const mistake = correct ? null : l.mistakes.find((m) => sameAnswer(g, m.answer, l.kind));
     return { ok: true, ladder: { ...l, tries: l.tries + 1, solved: correct }, result: { correct, feedback: mistake?.feedback ?? null } };

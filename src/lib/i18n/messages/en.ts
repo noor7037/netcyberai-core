@@ -6534,6 +6534,7 @@ export const en = {
   'fam.homework.err.off': 'The homework helper is not switched on yet.',
   'fam.homework.studyLink': 'Photo of a question',
   'fam.homework.studyLead': 'Stuck on homework? Get hints from a photo.',
+  'fam.homework.err.not_for_class': 'The homework helper starts from Class 1.',
   // m2-6 end
   // m2-7 begin
   // m2-7 end

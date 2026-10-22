@@ -6522,6 +6522,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.homework.err.off': 'होमवर्क सहायक अभी चालू नहीं है।',
   'fam.homework.studyLink': 'प्रश्न की फ़ोटो',
   'fam.homework.studyLead': 'होमवर्क में अटके हैं? फ़ोटो से संकेत पाएँ।',
+  'fam.homework.err.not_for_class': 'होमवर्क सहायक कक्षा 1 से शुरू होता है।',
   // m2-6 end
   // m2-7 begin
   // m2-7 end

@@ -74,6 +74,9 @@ describe('reading the model', () => {
     expect(sameAnswer('Photosynthesis.', 'photosynthesis', 'word')).toBe(true);
     expect(sameAnswer('4', '3 m', 'number')).toBe(false);
     expect(givesAway('so it is 3.0 metres', '3 m', 'number')).toBe(true);
+    expect(givesAway('12 ÷ 4 = 3', '3 m', 'number')).toBe(true);
+    // A number that only appears is kept: small answers must not wipe out ordinary hints.
+    expect(givesAway('Look at the 3 sides of the triangle first.', '3', 'number')).toBe(false);
   });
 });
 
@@ -96,6 +99,11 @@ describe('the ladder', () => {
     expect(JSON.stringify(viewOf(l))).not.toContain('3 m');
     l = (step(l, 'attempt', '3') as { ladder: typeof l }).ladder;
     expect(viewOf(l).solved).toBe(true);
+  });
+  it('stops taking attempts after ten, so the answer cannot be found by trying them all', () => {
+    let l = newLadder(read, CTX);
+    for (let i = 0; i < 10; i++) l = (step(l, 'attempt', String(100 + i)) as { ladder: typeof l }).ladder;
+    expect(step(l, 'attempt', '3')).toEqual({ ok: false, reason: 'not_yet' });
   });
   it("is sealed to one account's child and a day", () => {
     const token = sealLadder(newLadder(read, CTX));
@@ -217,6 +225,21 @@ describe('the photo route', () => {
     ai.prepare = 'not_cleared_for_minors';
     expect((await post('/api/family/homework', { photo: JPEG })).body.error).toBe('ai_not_cleared_for_minors');
     expect(await count()).toBe(0);
+  });
+
+  it("a question the model cannot place is answered only before a free subject is claimed", async () => {
+    await db.pg.query(`delete from family.day_counts where child_id = $1`, [CHILD]);
+    ai.prepare = 'ok';
+    ai.reply = JSON.stringify({ ...READ, subject: 'astrology' });
+    expect((await post('/api/family/homework', { photo: JPEG })).body.error).toBe('not_open');
+    expect(await count()).toBe(0);
+  });
+
+  it('a refused request never runs the OCR', async () => {
+    await db.pg.query(`update control.app_flags set enabled = false where app = 'family' and module = 'homework'`);
+    expect((await post('/api/family/homework', { photo: JPEG })).body.error).toBe('off');
+    expect(screen.calls).toBe(0);
+    await db.pg.query(`update control.app_flags set enabled = true where app = 'family' and module = 'homework'`);
   });
 
   it("another child's token is refused", async () => {

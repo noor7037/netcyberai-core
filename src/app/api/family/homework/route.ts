@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { accountSummary } from '@/lib/family/account';
 import { classSubjects } from '@/lib/family/catalog';
-import { activeChild, listChildren, syllabusBoardOf } from '@/lib/family/children';
+import { activeChild, isPrePrimary, listChildren, syllabusBoardOf } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
 import { FamilySessionRevokedError, withFamilyContext } from '@/lib/family/db';
 import { familyModuleOn } from '@/lib/family/flags';
@@ -41,7 +41,20 @@ export async function POST(req: NextRequest) {
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
 
   try {
-    // 0. The screen, before any database work or vendor call.
+    // 0. The cheap refusals first, in a short read, so a refused request never pays for the OCR.
+    const early = await withFamilyContext(claims, async (db): Promise<NextResponse | null> => {
+      const child = activeChild(await listChildren(db, session.accountId), chosen);
+      if (!child) return NextResponse.json({ error: 'not_found' }, { status: 404 });
+      if (isPrePrimary(child.classLevel)) return NextResponse.json({ error: 'not_for_class' }, { status: 403 });
+      if (!(await consentState(db, session.accountId)).study_core) return NextResponse.json({ error: 'consent_required' }, { status: 403 });
+      if (!(await familyModuleOn(db, 'homework', session.accountId))) return NextResponse.json({ error: 'off' }, { status: 403 });
+      const limit = Math.max(0, Math.round(await setting(db, 'family.photo_questions_per_day', 3)));
+      const used = await db.query(`select photo_questions from family.day_counts where account_id = $1 and child_id = $2 and day = $3`, [session.accountId, child.childId, indiaDate()]);
+      if (Number(used.rows[0]?.photo_questions ?? 0) >= limit) return NextResponse.json({ error: 'photo_cap', limit }, { status: 429 });
+      return null;
+    });
+    if (early) return early;
+    // The screen, before the counting transaction and any vendor call.
     const screen = await screenPhoto(bytes, sniffImageType);
     if (!screen.ok) return NextResponse.json({ error: screen.reason }, { status: 422 });
 
@@ -100,8 +113,10 @@ export async function POST(req: NextRequest) {
         if (parsed.reason === 'failed') await refund(db, session.accountId, first.childId, first.day);
         return NextResponse.json({ error: parsed.reason === 'failed' ? 'ai_failed' : parsed.reason }, { status: 422 });
       }
-      // The child's free subject applies as in Understand: a question of a closed subject is not answered.
-      if (parsed.read.subject !== 'other' && !(await claimSubject(db, session.accountId, first.childId, parsed.read.subject as Subject))) {
+      // The child's free subject applies as in Understand: a question of a closed subject is not answered, and one the
+      // model could not place in the class's subjects is answered only before a free subject is claimed.
+      const closed = parsed.read.subject === 'other' ? first.freeSubject !== null : !(await claimSubject(db, session.accountId, first.childId, parsed.read.subject as Subject));
+      if (closed) {
         await refund(db, session.accountId, first.childId, first.day);
         return NextResponse.json({ error: 'not_open', subject: parsed.read.subject, freeSubject: first.freeSubject }, { status: 403 });
       }
