@@ -172,7 +172,7 @@ insert into family.consents (account_id, purpose, granted, verification_method, 
   ('f0000000-0000-4000-8000-0000000f0005', 'english_programme', true, 'parent_tap', 'fam-notice-1');
 insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code) values
   ('f0000000-0000-4000-8000-0000000fc005', 'f0000000-0000-4000-8000-0000000f0005', 'Meena', 2, 'CBSE', 'en', 'hi', 'IN-UP');
-insert into control.app_flags (app, module, enabled, reason) values ('family', 'english_programme', true, 'harness')
+insert into control.app_flags (app, module, enabled, reason) values ('family', 'english_programme', true, 'harness'), ('family', 'worksheets', true, 'harness')
   on conflict (app, module) do update set enabled = true;
 
 -- Understand (M1-5, C251): one illustrative catalog line (class 9 Mathematics) and an illustrative cached response in

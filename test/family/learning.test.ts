@@ -40,7 +40,7 @@ describe('the registry', () => {
   });
   it('shows a tab only when a built module of it is switched on', () => {
     expect(visibleTabs(() => true)).toEqual(['home', 'study', 'english', 'family']);
-    expect(visibleTabs((f) => f !== 'understand' && f !== 'practice')).toEqual(['home', 'english', 'family']);
+    expect(visibleTabs((f) => f !== 'understand' && f !== 'practice' && f !== 'worksheets')).toEqual(['home', 'english', 'family']);
   });
   it('opens every subject until the first is claimed, then only that one', () => {
     expect(subjectAccess({ freeSubject: null }, 'science').open).toBe(true);
