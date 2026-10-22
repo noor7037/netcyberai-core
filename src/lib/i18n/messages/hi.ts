@@ -6493,6 +6493,35 @@ export const hi: Record<keyof typeof en, string> = {
   // m2-5 begin
   // m2-5 end
   // m2-6 begin
+  'fam.homework.title': 'होमवर्क सहायक',
+  'fam.homework.lead': 'एक प्रश्न की फ़ोटो लें। आपको उत्तर नहीं, संकेत मिलेंगे, ताकि आप उसे ख़ुद हल करना सीखें।',
+  'fam.homework.takePhoto': 'फ़ोटो लें',
+  'fam.homework.choosePhoto': 'फ़ोटो या स्क्रीनशॉट चुनें',
+  'fam.homework.privacy': 'सिर्फ़ प्रश्न की फ़ोटो लें: कोई चेहरा नहीं, कोई पहचान पत्र नहीं। फ़ोटो एक बार पढ़ी जाती है और रखी नहीं जाती।',
+  'fam.homework.reading': 'आपका प्रश्न पढ़ा जा रहा है…',
+  'fam.homework.question': 'आपका प्रश्न',
+  'fam.homework.hint': 'संकेत {n} / {total}',
+  'fam.homework.showHint': 'संकेत {n} देखें',
+  'fam.homework.hintAfterTry': 'पहले एक उत्तर आज़माएँ। फिर अगला संकेत खुलेगा।',
+  'fam.homework.yourAnswer': 'आपका उत्तर',
+  'fam.homework.check': 'मेरा उत्तर जाँचें',
+  'fam.homework.right': 'सही! अब इसे अपनी कॉपी में लिखें।',
+  'fam.homework.notYet': 'अभी नहीं।',
+  'fam.homework.stuck': 'मैं अटक गया हूँ',
+  'fam.homework.steps': 'एक-एक क़दम',
+  'fam.homework.stepsNote': 'क़दमों को देखें, फिर आख़िरी क़दम ख़ुद हल करके अपना उत्तर लिखें।',
+  'fam.homework.another': 'दूसरा प्रश्न पूछें',
+  'fam.homework.err.not_a_photo': 'यह फ़ाइल फ़ोटो नहीं है। JPEG या PNG फ़ोटो आज़माएँ।',
+  'fam.homework.err.too_big': 'यह फ़ोटो बहुत बड़ी है। प्रश्न के पास से फिर कोशिश करें।',
+  'fam.homework.err.personal_info': 'इस फ़ोटो में निजी जानकारी दिखती है, जैसे पहचान पत्र या फ़ोन नंबर। सिर्फ़ प्रश्न की फ़ोटो लें।',
+  'fam.homework.err.unreadable': 'यह फ़ोटो पढ़ी नहीं जा सकी। अच्छी रोशनी में साफ़ फ़ोटो लें।',
+  'fam.homework.err.person': 'इस फ़ोटो में कोई व्यक्ति दिखता है। सिर्फ़ प्रश्न की फ़ोटो लें।',
+  'fam.homework.err.no_question': 'इस फ़ोटो में पढ़ाई का कोई प्रश्न नहीं मिला। फ़ोटो में एक प्रश्न रखकर फिर कोशिश करें।',
+  'fam.homework.err.photo_cap': 'आज के फ़ोटो प्रश्न पूरे हो गए ({limit})। पढ़ाई में अपना प्रश्न लिखें, या कल फिर कोशिश करें।',
+  'fam.homework.err.not_open': 'यह प्रश्न दूसरे विषय का है। अभी आपका मुफ़्त विषय खुला है; बाक़ी विषय बाद में Family Plus के साथ खुलेंगे।',
+  'fam.homework.err.off': 'होमवर्क सहायक अभी चालू नहीं है।',
+  'fam.homework.studyLink': 'प्रश्न की फ़ोटो',
+  'fam.homework.studyLead': 'होमवर्क में अटके हैं? फ़ोटो से संकेत पाएँ।',
   // m2-6 end
   // m2-7 begin
   // m2-7 end

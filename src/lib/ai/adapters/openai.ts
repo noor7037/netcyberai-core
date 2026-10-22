@@ -11,6 +11,7 @@ export const openaiAdapter: TextAdapter = {
   // As for the other adapter: the code's side of the minors check. Control's clearance is needed as well.
   minorsEligible: true,
   needsKey: true,
+  vision: true,
   keyLooksRight: (key) => /^sk-[\x21-\x7e]{20,300}$/.test(key),
   async streamText(request, onDelta): Promise<AdapterResult> {
     const json = request.responseFormat === 'json';
@@ -19,7 +20,12 @@ export const openaiAdapter: TextAdapter = {
       stream: true,
       stream_options: { include_usage: true },
       max_completion_tokens: request.maxTokens,
-      messages: [{ role: 'system', content: json ? `${request.system}\n\n${JSON_ONLY}` : request.system }, ...request.messages.map((m) => ({ role: m.role, content: m.content }))],
+      messages: [{ role: 'system', content: json ? `${request.system}\n\n${JSON_ONLY}` : request.system }, ...request.messages.map((m) =>
+          m.images?.length
+            ? { role: m.role, content: [{ type: 'text', text: m.content }, ...m.images.map((i) => ({ type: 'image_url', image_url: { url: `data:${i.mediaType};base64,${i.base64}` } }))] }
+            : { role: m.role, content: m.content }
+        ),
+      ],
       ...(json ? { response_format: { type: 'json_object' } } : {}),
     };
     let res: Response;

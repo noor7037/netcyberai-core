@@ -1,6 +1,6 @@
 import type { Sql } from '@/lib/jobs/types';
 import type { MessageKey } from '@/lib/i18n';
-import { adapterFor, type AdapterResult, type ChatMessage, type TextAdapter } from './adapters';
+import { adapterFor, type AdapterResult, type ChatImage, type ChatMessage, type TextAdapter } from './adapters';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { dailyLimit, takeDailyRequest } from './daily-cap';
 import { scrubRequest } from './preprocess';
@@ -50,7 +50,7 @@ export type AiRequest = {
 };
 export type AiRefusal = 'not_switched_on' | 'cap_reached' | 'not_cleared_for_minors' | 'failed';
 export type AiResult = { ok: true; text: string; tokensIn: number; tokensOut: number; provider: string; model: string } | { ok: false; reason: AiRefusal };
-export type { ChatMessage };
+export type { ChatMessage, ChatImage };
 
 // The family-facing words for each refusal (English and Hindi in the message files).
 export const REFUSAL_MESSAGE: Record<AiRefusal, MessageKey> = {
@@ -167,8 +167,9 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
     if (!cleared) return { ok: false, reason: 'not_cleared_for_minors' };
   }
 
-  // 3. A provider that can answer.
-  const ready = await usableLinks(db, chain, providers, env);
+  // 3. A provider that can answer (and, for a request with photos, that can see them).
+  const withPhotos = request.messages.some((m) => (m.images?.length ?? 0) > 0);
+  const ready = (await usableLinks(db, chain, providers, env)).filter((r) => !withPhotos || r.adapter.vision);
   if (ready.length === 0) return { ok: false, reason: 'not_switched_on' };
 
   // 4. The family's daily cap, counted before the request leaves.

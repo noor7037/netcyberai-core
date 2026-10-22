@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { StudyQuestion } from '@/components/family/StudyQuestion';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
+import { familyModuleOn } from '@/lib/family/flags';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText } from '@/lib/family/fill';
 import { subjectAccess } from '@/lib/family/modules';
@@ -47,6 +48,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
   const access = subjectAccess(child, subject);
   const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
+  const homeworkOn = await familyPageRead(page, (db) => familyModuleOn(db, 'homework', page.session.accountId));
   const tone = subject;
   const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton'] as MessageKey[]);
   return (
@@ -78,7 +80,20 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
             {t(lang, 'fam.subject.notOpen')}
           </p>
         ) : (
-          <StudyQuestion w={w} subject={subject} tone={tone} />
+          <>
+            <StudyQuestion w={w} subject={subject} tone={tone} />
+            {homeworkOn && (
+              <Link href="/family/study/homework" data-homework-link className="flex min-h-[56px] items-center gap-3 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate/10 hover:bg-slate/5">
+                <span aria-hidden className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sunshine/30 text-xl">
+                  📷
+                </span>
+                <span className="flex flex-col">
+                  <span className="text-base font-bold text-slate">{t(lang, 'fam.homework.studyLink')}</span>
+                  <span className="text-sm text-slate/80">{t(lang, 'fam.homework.studyLead')}</span>
+                </span>
+              </Link>
+            )}
+          </>
         )}
         {!access.open ? null : catalog ? (
           <section aria-labelledby="fam-chapters" className="flex flex-col gap-2">

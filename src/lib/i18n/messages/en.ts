@@ -6505,6 +6505,35 @@ export const en = {
   // m2-5 begin
   // m2-5 end
   // m2-6 begin
+  'fam.homework.title': 'Homework helper',
+  'fam.homework.lead': 'Take a photo of one question. You get hints, not the answer, so you learn to solve it yourself.',
+  'fam.homework.takePhoto': 'Take a photo',
+  'fam.homework.choosePhoto': 'Choose a photo or screenshot',
+  'fam.homework.privacy': 'Only the question, please: no faces and no ID cards. The photo is read once and not kept.',
+  'fam.homework.reading': 'Reading your question…',
+  'fam.homework.question': 'Your question',
+  'fam.homework.hint': 'Hint {n} of {total}',
+  'fam.homework.showHint': 'Show hint {n}',
+  'fam.homework.hintAfterTry': 'Try an answer first. Then the next hint opens.',
+  'fam.homework.yourAnswer': 'Your answer',
+  'fam.homework.check': 'Check my answer',
+  'fam.homework.right': 'Right! Now write it in your notebook.',
+  'fam.homework.notYet': 'Not yet.',
+  'fam.homework.stuck': "I'm stuck",
+  'fam.homework.steps': 'Step by step',
+  'fam.homework.stepsNote': 'Follow the steps, then work out the last one and write your answer.',
+  'fam.homework.another': 'Ask another question',
+  'fam.homework.err.not_a_photo': 'That file is not a photo. Try a JPEG or PNG photo.',
+  'fam.homework.err.too_big': 'That photo is too big. Try again, closer to the question.',
+  'fam.homework.err.personal_info': 'This photo seems to show personal details, like an ID card or a phone number. Take a photo of the question only.',
+  'fam.homework.err.unreadable': 'This photo could not be read. Try a clearer one, in good light.',
+  'fam.homework.err.person': 'This photo shows a person. Take a photo of the question only.',
+  'fam.homework.err.no_question': 'No study question was found in this photo. Try again with one question in the picture.',
+  'fam.homework.err.photo_cap': "That's all the photo questions for today ({limit}). Type your question in Study, or try again tomorrow.",
+  'fam.homework.err.not_open': 'This question is from another subject. Your free subject is open now; the others open with Family Plus later.',
+  'fam.homework.err.off': 'The homework helper is not switched on yet.',
+  'fam.homework.studyLink': 'Photo of a question',
+  'fam.homework.studyLead': 'Stuck on homework? Get hints from a photo.',
   // m2-6 end
   // m2-7 begin
   // m2-7 end

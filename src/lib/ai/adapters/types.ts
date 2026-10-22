@@ -4,7 +4,9 @@
 // An adapter is handed the key already opened by the platform, inside the server call, and keeps nothing: no key, no
 // prompt and no answer is stored, logged or thrown. A failure says only what kind of failure it was.
 
-export type ChatMessage = { role: 'user' | 'assistant'; content: string };
+// A photo sent with a message (M2-6, C280: the homework helper): read inside the call, never stored or logged.
+export type ChatImage = { mediaType: 'image/jpeg' | 'image/png' | 'image/webp'; base64: string };
+export type ChatMessage = { role: 'user' | 'assistant'; content: string; images?: ChatImage[] };
 
 export type AdapterRequest = {
   apiKey: string;
@@ -25,6 +27,8 @@ export interface TextAdapter {
   // (control.ai_providers.cleared_for_minors) is needed as well: both, or a child's words never go to this vendor.
   readonly minorsEligible: boolean;
   readonly needsKey: boolean;
+  // Whether a message may carry photos (ChatMessage.images). A call with photos skips a provider that cannot.
+  readonly vision: boolean;
   keyLooksRight(key: string): boolean;
   streamText(request: AdapterRequest, onDelta: (text: string) => void): Promise<AdapterResult>;
 }

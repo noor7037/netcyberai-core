@@ -209,3 +209,9 @@ insert into family.revisits (account_id, child_id, topic_key, subject, step, set
   ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'cbse.c9.mathematics.u1.ch01.t01', 'mathematics', 1, (now() at time zone 'Asia/Kolkata')::date - 3, (now() at time zone 'Asia/Kolkata')::date),
   ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'cbse.c9.mathematics.u1.ch01.t01', 'mathematics', 2, (now() at time zone 'Asia/Kolkata')::date - 3, (now() at time zone 'Asia/Kolkata')::date + 7);
 -- m2-2 end
+
+-- m2-6 begin
+-- The homework helper (M2-6, C280): its module on, so the harness can show the start screen and the Study link.
+insert into control.app_flags (app, module, enabled, reason) values ('family', 'homework', true, 'harness')
+  on conflict (app, module) do update set enabled = true;
+-- m2-6 end
