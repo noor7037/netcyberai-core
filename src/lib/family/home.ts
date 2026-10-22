@@ -50,7 +50,7 @@ export type HomeStage = 'young' | 'middle' | 'senior';
 export const stageOf = (classLevel: number): HomeStage => (classLevel <= 5 ? 'young' : classLevel >= 9 ? 'senior' : 'middle');
 
 export type HomeInput = {
-  modules: { plan: boolean; habit: boolean; homework: boolean; voiceInput: boolean; progress?: boolean };
+  modules: { plan: boolean; habit: boolean; homework: boolean; voiceInput: boolean };
   consents: { voicePractice: boolean };
   hasPlan: boolean;
   hasHabit: boolean;
