@@ -1,10 +1,13 @@
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { ContentView } from '@/components/control/content/ContentView';
 import { EnglishVersionsView } from '@/components/control/content/EnglishVersionsView';
+import { VideoPicksView } from '@/components/control/content/VideoPicksView';
 import { listEnglishVersions } from '@/lib/content/english-library';
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
 import { listVersions } from '@/lib/content/library';
+import { listVideoReview } from '@/lib/content/video-picks';
+import { indiaDate } from '@/lib/time/india';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 
@@ -20,10 +23,13 @@ export default async function ContentPage() {
   const versions = session ? await withTenantContext(session, (db) => listVersions(db, { userId: session.sub })) : null;
   // The English course's versions (C274).
   const english = session ? await withTenantContext(session, (db) => listEnglishVersions(db)) : null;
+  // The video finder's picks and channels (M2-5, C279).
+  const videos = session ? await withTenantContext(session, (db) => listVideoReview(db, { today: indiaDate() })) : null;
   return (
     <ModulePage title={t(lang, 'control.content.title')} purpose={t(lang, 'control.content.purpose')} about={t(lang, 'control.content.about')} icon="academics" tone="royal" eyebrow={t(lang, 'group.control')} headerLang={lang}>
       {versions && <ContentView initial={versions} />}
       {english && <EnglishVersionsView initial={english} />}
+      {videos && <VideoPicksView initial={videos} />}
     </ModulePage>
   );
 }

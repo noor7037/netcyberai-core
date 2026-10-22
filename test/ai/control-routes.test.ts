@@ -115,7 +115,7 @@ describe('a key: write-only', () => {
     const text = await res.text();
     expect(text).not.toContain(KEY);
     expect(text).not.toContain(String(stored[0].ciphertext));
-    expect(JSON.parse(text).providers[0].credential).toEqual({ keyLast4: 'LAST', setAt: expect.any(String), setByName: 'Farid Founder' });
+    expect(JSON.parse(text).providers[0].credential).toEqual({ keyLast4: 'LAST', setAt: expect.any(String), setByName: 'Farid Founder', testedAt: null, testOk: null });
     const audit = await q(`select school_id, actor_role, before_state, after_state from audit_log where event_action = 'ai.credential_set'`);
     expect(audit).toEqual([{ school_id: null, actor_role: 'super_admin', before_state: { providerId: 'anthropic', had: false }, after_state: { providerId: 'anthropic', had: true, keyLast4: 'LAST' } }]);
     expect(JSON.stringify(audit)).not.toContain(KEY);

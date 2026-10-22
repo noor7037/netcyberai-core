@@ -32,6 +32,9 @@ export const FAMILY_SCREENS = [
   ['full', 'family-study', '/family/study', {}],
   ['full', 'family-study-catalog', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
+  // M2-5 (C279): the honest player under the response, before and after the tap that loads the embed.
+  ['full', 'family-video', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]' }],
+  ['full', 'family-video-playing', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]', tap: '[data-video-play]' }],
   // The English course (C274): the course map, and a lesson's first card.
   ['english', 'family-english', '/family/english', { settle: 'ol[aria-label] li' }],
   ['english', 'family-english-lesson', '/family/english/lesson/b.u01.l1', { settle: '[role=progressbar]' }],
@@ -56,6 +59,24 @@ async function familyCookies(accountId, parent, secret, child) {
   if (parent) out.push({ name: 'ncf_parent', value: await sign('family_parent', accountId, { sid }, secret) });
   if (child) out.push({ name: 'ncf_child', value: child });
   return out;
+}
+
+// The video finder's picks for the understand screen's topic, in English and Hindi, with videos switched on (M2-5, C279).
+// Made-up video and channel ids: the cards show without any search; the embed loads only after the tap.
+export async function seedVideos(db) {
+  await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'videos', true, 'harness') on conflict (app, module) do update set enabled = true`);
+  const topic = 'cbse.c9.mathematics.u1.ch01.t01';
+  for (const lang of ['en', 'hi']) {
+    await db.pg.query(
+      `insert into content.video_picks (topic_key, language, video_id, channel_id, channel_title, title, duration_s, start_s, captions, score, status, reviewed_by, reviewed_at) values
+         ($1, $2, 'hrnsVideo01', 'UCharnessChannel0001', 'Made-up Maths Channel', 'Rational numbers on the number line', 545, 95, true, 71, 'pinned', '00000000-0000-4000-8000-00000000f001', now()),
+         ($1, $2, 'hrnsVideo02', 'UCharnessChannel0002', 'Made-up Learning', 'Rational numbers: worked examples', 812, 0, true, 63, 'auto', null, null),
+         ($1, $2, 'hrnsVideo03', 'UCharnessChannel0002', 'Made-up Learning', 'Is it rational? Practice questions', 1260, 0, false, 40, 'rejected', '00000000-0000-4000-8000-00000000f001', now())
+       on conflict do nothing`,
+      [topic, lang]
+    );
+  }
+  await db.pg.query(`insert into content.video_channels (channel_id, title, kind, added_by) values ('UCharnessChannel0001', 'Made-up Maths Channel', 'official', '00000000-0000-4000-8000-00000000f001') on conflict do nothing`);
 }
 
 // The English course's track B lesson files, loaded as a published version (the harness only; C274).
@@ -99,6 +120,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
           });
           const response = await page.goto(base + route, { waitUntil: 'networkidle', timeout: 90000 }).catch((e) => ({ status: () => 0, error: e.message }));
           if (opts.settle) await page.locator(opts.settle).first().waitFor({ timeout: 20000 }).catch(() => errors.push(`${opts.settle} never appeared`));
+          if (opts.tap) await page.locator(opts.tap).first().click().catch(() => errors.push(`${opts.tap} could not be tapped`));
           await page.waitForTimeout(400);
           const seen = await page.evaluate(() => {
             const main = document.querySelector('main') ?? document.body;

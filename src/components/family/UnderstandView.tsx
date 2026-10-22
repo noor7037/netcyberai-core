@@ -7,6 +7,7 @@ import type { Words } from '@/lib/family/fill';
 import { SUBJECTS } from '@/lib/family/modules';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from './blocks/BlockViews';
 import { QuizView } from './blocks/QuizView';
+import { VideoPicks } from './VideoPicks';
 
 // Understand (M1-5, C251): asks the server, and draws each checked block as it arrives. Follow-ups stay on the topic
 // ("simpler", "another example", "explain differently", "practise more"); this is not an open chat. Every response
@@ -142,6 +143,8 @@ export function UnderstandView({ w, input, tone, initial = null }: { w: Words; i
       )}
       {(state === 'loading' || state === 'streaming') && <p className="sr-only">{w['fam.understand.loading']}</p>}
       {state === 'incomplete' && <p className="rounded-2xl bg-white p-4 text-sm text-slate ring-1 ring-slate/10">{w['fam.understand.incomplete']}</p>}
+      {/* M2-5: a topic's video, when the finder has one; the response never depends on it. */}
+      {input.kind === 'topic' && (state === 'done' || state === 'incomplete') && <VideoPicks w={w} topicKey={input.key} />}
       {(state === 'done' || state === 'incomplete') && (
         <nav aria-label={w['fam.understand.followUps']} className="grid grid-cols-2 gap-2">
           {FOLLOW_UPS.map((f) => (

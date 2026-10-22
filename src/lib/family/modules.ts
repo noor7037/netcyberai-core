@@ -25,7 +25,7 @@ export const FAMILY_MODULES: readonly FamilyModule[] = [
   // m2-4
   { id: 'worksheets', tab: 'study', flag: 'worksheets', entitlement: 'learning', built: false, milestone: 'M2' },
   // m2-5
-  { id: 'videos', tab: 'study', flag: 'videos', entitlement: 'learning', built: false, milestone: 'M2' },
+  { id: 'videos', tab: 'study', flag: 'videos', entitlement: 'learning', built: true, milestone: 'M2' },
   // m2-6
   { id: 'homework', tab: 'study', flag: 'homework', entitlement: 'learning', built: false, milestone: 'M2' },
   // m2-7
