@@ -79,7 +79,7 @@ export function equationText(fn: GraphFn, p: Record<string, number>): string {
 }
 
 // A few whole-number x values in the window and their y, for the words beside the picture.
-export function samplePoints(fn: GraphFn, p: Record<string, number>, from: number, to: number): { x: number; y: number | null }[] {
+export function plotPoints(fn: GraphFn, p: Record<string, number>, from: number, to: number): { x: number; y: number | null }[] {
   const lo = Math.ceil(from);
   const hi = Math.floor(to);
   const step = Math.max(1, Math.ceil((hi - lo) / 4));
