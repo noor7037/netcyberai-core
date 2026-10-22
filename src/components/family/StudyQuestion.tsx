@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Textarea } from '@/components/ui/Textarea';
 import type { Words } from '@/lib/family/fill';
+import type { Subject } from '@/lib/family/subjects';
 import { UnderstandView, type UnderstandInput } from './UnderstandView';
 
 // A typed question, asked from the chosen subject's page (M1-5, C251). It stays on this page (never in the address bar)
 // and is never kept in the shared library: it is the child's own words. The server decides its subject (F1-3): a
 // question about another subject is answered with a pointer to that subject, not here.
-export function StudyQuestion({ w, subject, tone }: { w: Words; subject: 'mathematics' | 'science'; tone: string }) {
+export function StudyQuestion({ w, subject, tone }: { w: Words; subject: Subject; tone: string }) {
   const [text, setText] = useState('');
   const [asked, setAsked] = useState<UnderstandInput | null>(null);
   return (

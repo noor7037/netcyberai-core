@@ -1,4 +1,5 @@
 import { INDIAN_STATES, isIndianState } from '@/lib/contracts/indian-states';
+import { stageSubjects, type Subject } from './subjects';
 
 // A family's children (docs/family-app/03 §5; M1-2, C248). A child is a first name, the class, the board, the app's
 // language (English or Hindi), the explanation style (English, Hindi or Hinglish) and the state, which the parent
@@ -41,7 +42,7 @@ export type FamilyChild = {
   language: ChildLanguage;
   style: ChildStyle;
   stateCode: string;
-  freeSubject: 'mathematics' | 'science' | null;
+  freeSubject: Subject | null;
 };
 export type ChildInput = Omit<FamilyChild, 'childId' | 'freeSubject'>;
 export type ChildProblem = 'first_name' | 'class' | 'board' | 'language' | 'style' | 'state';
@@ -101,10 +102,12 @@ export async function addChild(db: Db, accountId: string, c: ChildInput): Promis
 
 export async function updateChild(db: Db, accountId: string, childId: string, c: ChildInput): Promise<FamilyChild | null> {
   const { rows } = await db.query(
-    `update family.children set first_name = $3, class_level = $4, language = $5, style = $6, state_code = $7, board_id = $8
+    // A free subject the new class does not teach is let go (C264), so the child can claim one of their new subjects.
+    `update family.children set first_name = $3, class_level = $4, language = $5, style = $6, state_code = $7, board_id = $8,
+            free_subject = case when free_subject = any ($9::text[]) then free_subject end
       where account_id = $1 and child_id = $2
       returning child_id, first_name, class_level, board_id, language, style, state_code, free_subject`,
-    [accountId, childId, c.firstName, c.classLevel, c.language, c.style, c.stateCode, c.board]
+    [accountId, childId, c.firstName, c.classLevel, c.language, c.style, c.stateCode, c.board, stageSubjects(c.classLevel)]
   );
   return rows[0] ? toChild(rows[0]) : null;
 }

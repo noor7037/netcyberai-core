@@ -205,6 +205,13 @@ describe('the parent area', () => {
     const id = senior.child.childId;
     const changed = await R.child.PATCH(req(`/api/family/children/${id}`, 'PATCH', { ...CHILD, firstName: 'Kabir', classLevel: 11, board: 'NIOS' }, jar), { params: { childId: id } });
     expect((await changed.json()).child).toMatchObject({ classLevel: 11, board: 'NIOS' });
+    // A free subject the new class does not teach is let go (C264); one it does teach stays.
+    await db.pg.query(`update family.children set free_subject = 'science' where child_id = $1`, [id]);
+    const toThree = await R.child.PATCH(req(`/api/family/children/${id}`, 'PATCH', { ...CHILD, firstName: 'Kabir', classLevel: 3, board: 'NIOS' }, jar), { params: { childId: id } });
+    expect((await toThree.json()).child.freeSubject).toBeNull();
+    await db.pg.query(`update family.children set free_subject = 'mathematics' where child_id = $1`, [id]);
+    const toFour = await R.child.PATCH(req(`/api/family/children/${id}`, 'PATCH', { ...CHILD, firstName: 'Kabir', classLevel: 4, board: 'NIOS' }, jar), { params: { childId: id } });
+    expect((await toFour.json()).child.freeSubject).toBe('mathematics');
   });
 
   it('wrong PINs bring growing waits, with no hint; the right PIN after the wait opens parent mode', async () => {
