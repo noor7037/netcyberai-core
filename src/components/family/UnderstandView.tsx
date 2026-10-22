@@ -206,7 +206,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
         </p>
       )}
       {(state === 'done' || state === 'incomplete') && jumps.length >= 3 && (
-        // D1: the parts of the answer as chips, like the mockup's tabs, but nothing is hidden: a chip only scrolls to its
+        // D1: the parts of the answer as chips, like the design boards' tabs, but nothing is hidden: a chip only scrolls to its
         // part, so the whole answer still works offline and in print.
         <nav aria-label={w['fam.d1.jump.label']} data-understand-jumps className="sticky top-0 z-10 -mx-4 bg-off-white/95 px-4 py-2 backdrop-blur">
           <ul className="flex gap-2 overflow-x-auto pb-1">
