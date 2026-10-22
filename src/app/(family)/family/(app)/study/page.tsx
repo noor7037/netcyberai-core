@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation';
 import { StudyQuestion } from '@/components/family/StudyQuestion';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { readFamilyCatalog } from '@/lib/family/catalog';
+import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
+import { classText } from '@/lib/family/fill';
 import { subjectAccess } from '@/lib/family/modules';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
@@ -11,7 +13,7 @@ import { t, type MessageKey } from '@/lib/i18n';
 
 // Study (M1-5, C251): the child's subject, its chapters and topics from the catalog released to everyone for the
 // child's class, each opening Understand; and a typed question. Without a catalog for the class (classes 6–8 for
-// 2026-27, C250) only the question is offered.
+// 2026-27, C250) only the question is offered. Nursery, LKG and UKG (C263) see a plain note: their module comes later.
 const SUBJECTS = ['mathematics', 'science'] as const;
 type Subject = (typeof SUBJECTS)[number];
 
@@ -23,13 +25,26 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const child = page.child!;
   const lang = page.childLang;
   const subject: Subject = SUBJECTS.includes(searchParams.subject as Subject) ? (searchParams.subject as Subject) : (child.freeSubject ?? 'science');
+  const kicker = classText((k) => t(lang, k), child.classLevel);
+  if (isPrePrimary(child.classLevel)) {
+    return (
+      <div lang={lang} className="flex min-h-screen flex-col">
+        <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone="royal" />
+        <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
+          <p data-pre-primary className="rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
+            {t(lang, 'fam.study.prePrimary')}
+          </p>
+        </main>
+      </div>
+    );
+  }
   const access = subjectAccess(child, subject);
-  const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board: child.board, classLevel: child.classLevel, subject, lang })) : null;
+  const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, subject, lang })) : null;
   const tone = subject === 'mathematics' ? 'mathematics' : 'science';
   const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton'] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={t(lang, 'fam.class.label', { n: child.classLevel })} title={t(lang, 'fam.study.title')} tone={subject === 'science' ? 'emerald' : 'royal'} />
+      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone={subject === 'science' ? 'emerald' : 'royal'} />
       <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
         <nav aria-label={t(lang, 'fam.study.subjects')} className="grid grid-cols-2 gap-2 rounded-3xl bg-white p-2 shadow-sm ring-1 ring-slate/10">
           {SUBJECTS.map((s) => (

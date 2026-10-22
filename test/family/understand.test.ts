@@ -204,6 +204,38 @@ describe('Understand, end to end', () => {
     expect(ai.calls.at(-1)!.system).toContain('Doubled twice');
     expect(ai.calls.at(-1)!.user).toContain('Rational numbers');
   });
+
+  it('Nursery to UKG: nothing is explained, the plain note is shown, the AI is not asked (C263)', async () => {
+    const tiny = 'f5000000-0000-4000-8000-0000000000a3';
+    await db.pg.query(`insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code) values ($1, $2, 'Tiya', -1, 'CBSE', 'en', 'en', 'IN-UP')`, [tiny, ACCOUNT]);
+    const before = ai.calls.length;
+    const ev = await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'What is a circle?' }, { ...jar, ncf_child: tiny })));
+    expect(ev).toEqual([{ t: 'refused', reason: 'not_found', message: expect.stringMatching(/Nursery, LKG and UKG/) }]);
+    expect(ai.calls.length).toBe(before);
+    await db.pg.query(`delete from family.children where child_id = $1`, [tiny]);
+  });
+
+  it('"our state\u2019s board" reads that state\u2019s own syllabus (ST-<state>), and names the state board to the AI (C263)', async () => {
+    const kid = 'f5000000-0000-4000-8000-0000000000a4';
+    const v = 'f5000000-0000-4000-8000-0000000000c9';
+    await db.pg.exec(`
+      insert into content.boards (board_id, name_en) values ('ST-MH', 'Maharashtra board (test)');
+      insert into content.syllabus_versions (version_id, board_id, class_level, subject, academic_year, version_no, status, audience, import_source, import_ref, approved_by, approved_at)
+        values ('${v}', 'ST-MH', 9, 'mathematics', '2026-27', 1, 'published', 'everyone', 'repository', 'test', 'f5000000-0000-4000-8000-0000000000f1', now());
+      insert into content.chapters (chapter_id, version_id, chapter_key, position, title_en, source_url, source_page, checked_on)
+        values ('f5000000-0000-4000-8000-0000000000d9', '${v}', 'st-mh.c9.mathematics.ch01', 1, 'Sets', 'https://example.org/', '1', '2026-10-22');
+      insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code, free_subject)
+        values ('${kid}', '${ACCOUNT}', 'Sai', 9, 'STATE', 'en', 'en', 'IN-MH', 'mathematics');
+    `);
+    ai.lines = GOOD.map((g) => JSON.stringify(g));
+    const ev = await events(await R.understand.POST(post('/api/family/understand', { kind: 'chapter', key: 'st-mh.c9.mathematics.ch01' }, { ...jar, ncf_child: kid })));
+    expect(ev[0]).toMatchObject({ t: 'meta', title: 'Sets' });
+    expect(ai.calls.at(-1)!.system).toContain('Maharashtra state board');
+    // The same chapter is not found for a CBSE child.
+    const cbse = await events(await R.understand.POST(post('/api/family/understand', { kind: 'chapter', key: 'st-mh.c9.mathematics.ch01' }, jar)));
+    expect(cbse[0]).toMatchObject({ t: 'refused', reason: 'not_found' });
+    await db.pg.query(`delete from family.children where child_id = $1`, [kid]);
+  });
 });
 
 // F1-3: the server decides a typed question's subject. The model names it on its first line (prompt v2); nothing is

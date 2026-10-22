@@ -10,7 +10,7 @@ import { t, type MessageKey } from '@/lib/i18n';
 // parent's phone. It shows where the child is: the topics they have checked, which are mastered (right on two days a
 // week apart), and the way to study. Progress is made only of checked answers. A family that has not finished the
 // parent's first steps is taken to the next one.
-const KEYS: MessageKey[] = ['fam.app.name', 'fam.home.hello', 'fam.class.label', 'fam.home.parent', 'fam.home.whoIsLearning'];
+const KEYS: MessageKey[] = ['fam.app.name', 'fam.home.hello', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.home.parent', 'fam.home.whoIsLearning'];
 
 export default async function FamilyHomePage() {
   const page = await requireFamilyPage();
