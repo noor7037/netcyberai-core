@@ -6485,4 +6485,26 @@ export const en = {
   'fam.offline.lead': 'NetCyberAI Family needs a connection. Check it and try again.',
   'fam.offline.retry': 'Try again',
   // m1-8 end
+  // m2-2 begin
+  // m2-2 end
+  // m2-3 begin
+  // m2-3 end
+  // m2-4 begin
+  // m2-4 end
+  // m2-5 begin
+  // m2-5 end
+  // m2-6 begin
+  // m2-6 end
+  // m2-7 begin
+  // m2-7 end
+  // m2-8 begin
+  // m2-8 end
+  // m2-9 begin
+  // m2-9 end
+  // m2-10 begin
+  // m2-10 end
+  // m2-11 begin
+  // m2-11 end
+  // m2-12 begin
+  // m2-12 end
 } as const;
