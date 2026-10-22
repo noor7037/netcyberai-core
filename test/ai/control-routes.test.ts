@@ -138,7 +138,7 @@ describe('a key: write-only', () => {
     // What copying brings along is cleaned: capitals in the id, quotes, and the "Bearer " of Cloudflare's test command.
     expect(await save(` ${ACCOUNT.toUpperCase()} `, `"Bearer ${TOKEN}"`)).toEqual({ status: 200, body: { ok: true } });
     const [row] = await q(`select ciphertext, iv, tag, key_version, key_last4 from control.ai_credentials where provider_id = 'workers-ai'`);
-    expect(unsealAiKey(aiEncryptionKey()!, 'workers-ai', row)).toBe(`${ACCOUNT}:${TOKEN}`);
+    expect(unsealAiKey(aiEncryptionKey()!, 'workers-ai', row as never)).toBe(`${ACCOUNT}:${TOKEN}`);
     expect(row.key_last4).toBe('TTTT');
     // Leave the later tests the state they expect.
     await q(`delete from control.ai_credentials where provider_id = 'workers-ai'`);
