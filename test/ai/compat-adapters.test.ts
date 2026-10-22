@@ -95,24 +95,31 @@ describe('Workers AI text, through Cloudflare’s OpenAI-compatible route', () =
       max_tokens: 900,
       // A steadier structured answer from open models (C316).
       temperature: 0.3,
-      messages: [
-        { role: 'system', content: 'Explain for a Class 6 student.' },
-        { role: 'user', content: 'Why do magnets attract iron?' },
-      ],
+      // The instructions open the first user message: the live test found Llama on this route answering in plain words
+      // when they came as a system message (C320).
+      messages: [{ role: 'user', content: 'Explain for a Class 6 student.\n\nWhy do magnets attract iron?' }],
     });
     expect(calls[0].body).not.toContain(TOKEN);
   });
 
-  it('asks for JSON in the system prompt, not with response_format', async () => {
+  it('a request may still ask for a system message (the smoke test compares the two)', async () => {
+    await workersAiAdapter.streamText(request({ instructionsAs: 'system' }), () => undefined);
+    expect(JSON.parse(calls[0].body).messages).toEqual([
+      { role: 'system', content: 'Explain for a Class 6 student.' },
+      { role: 'user', content: 'Why do magnets attract iron?' },
+    ]);
+  });
+
+  it('asks for JSON in the instructions, not with response_format', async () => {
     await workersAiAdapter.streamText(request({ responseFormat: 'json' }), () => undefined);
     const body = JSON.parse(calls[0].body);
-    expect(body.messages[0].content).toBe(`Explain for a Class 6 student.\n\n${JSON_ONLY}`);
+    expect(body.messages[0].content).toBe(`Explain for a Class 6 student.\n\n${JSON_ONLY}\n\nWhy do magnets attract iron?`);
     expect(body.response_format).toBeUndefined();
   });
 
-  it('sends a photo as an image_url data URL, read inside the call', async () => {
+  it('sends a photo as an image_url data URL, read inside the call, after the instructions', async () => {
     await workersAiAdapter.streamText(request({ messages: [{ role: 'user', content: 'Explain this page.', images: [{ mediaType: 'image/jpeg', base64: 'QUJD' }] }] }), () => undefined);
-    expect(JSON.parse(calls[0].body).messages[1]).toEqual({ role: 'user', content: [{ type: 'text', text: 'Explain this page.' }, { type: 'image_url', image_url: { url: 'data:image/jpeg;base64,QUJD' } }] });
+    expect(JSON.parse(calls[0].body).messages[0]).toEqual({ role: 'user', content: [{ type: 'text', text: 'Explain for a Class 6 student.\n\nExplain this page.' }, { type: 'image_url', image_url: { url: 'data:image/jpeg;base64,QUJD' } }] });
   });
 
   it('a stream that ends with a stop but no [DONE] is complete; one that just stops is cut short', async () => {

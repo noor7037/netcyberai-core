@@ -15,6 +15,8 @@ export type AdapterRequest = {
   messages: ChatMessage[];
   maxTokens: number;
   responseFormat?: 'json';
+  // Where the instructions go, when the caller must choose (only the smoke test does, C320); otherwise the adapter's own.
+  instructionsAs?: 'system' | 'user';
 };
 
 export type AdapterFailure = 'http' | 'refused' | 'network' | 'bad_stream' | 'cut_short';

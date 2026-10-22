@@ -16,24 +16,30 @@ export type ChatCompletionsOptions = {
   includeUsage: boolean;
   // The sampling temperature, only where the vendor's own default suits our structured answers badly (C316).
   temperature?: number;
+  // Where our instructions go (C320): a system message, or the start of the first user message for a vendor whose
+  // route did not follow a system message (Workers AI's live test: asked in the system message for JSON, Llama answered
+  // in plain words). A request may ask for one placement itself (the smoke test compares the two).
+  instructions?: 'system' | 'first_user';
 };
 
 export async function streamChatCompletions(url: string, token: string, request: AdapterRequest, onDelta: (text: string) => void, opts: ChatCompletionsOptions): Promise<AdapterResult> {
   const json = request.responseFormat === 'json';
+  const system = json ? `${request.system}\n\n${JSON_ONLY}` : request.system;
+  const inUser = (request.instructionsAs ?? (opts.instructions === 'first_user' ? 'user' : 'system')) === 'user';
+  const firstUser = request.messages.findIndex((m) => m.role === 'user');
+  const messages = request.messages.map((m, i) => {
+    const content = inUser && i === firstUser ? `${system}\n\n${m.content}` : m.content;
+    return m.images?.length
+      ? { role: m.role, content: [{ type: 'text', text: content }, ...m.images.map((img) => ({ type: 'image_url', image_url: { url: `data:${img.mediaType};base64,${img.base64}` } }))] }
+      : { role: m.role, content };
+  });
   const body = {
     model: request.model,
     stream: true,
     ...(opts.includeUsage ? { stream_options: { include_usage: true } } : {}),
     [opts.maxTokensField]: request.maxTokens,
     ...(opts.temperature === undefined ? {} : { temperature: opts.temperature }),
-    messages: [
-      { role: 'system', content: json ? `${request.system}\n\n${JSON_ONLY}` : request.system },
-      ...request.messages.map((m) =>
-        m.images?.length
-          ? { role: m.role, content: [{ type: 'text', text: m.content }, ...m.images.map((i) => ({ type: 'image_url', image_url: { url: `data:${i.mediaType};base64,${i.base64}` } }))] }
-          : { role: m.role, content: m.content }
-      ),
-    ],
+    messages: inUser && firstUser >= 0 ? messages : [{ role: 'system', content: system }, ...messages],
     ...(json && opts.jsonMode ? { response_format: { type: 'json_object' } } : {}),
   };
   let res: Response;

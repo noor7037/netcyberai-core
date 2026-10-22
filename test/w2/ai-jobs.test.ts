@@ -84,7 +84,10 @@ describe('the preparing job (C316)', () => {
     expect(run.after_state).toMatchObject({ chapterKeys: ['jt.c6.science.ch04'], tried: 4, kept: 2 });
     // Each line says what came back, as types and counts (C318).
     expect(run.after_state.outcomes[0].detail).toEqual({ finish: null, objects: 3, kept: ['explanation', 'check', 'practice'], rejected: [] });
-    expect(run.after_state.outcomes[2].detail).toEqual({ finish: null, objects: 2, kept: ['explanation'], rejected: ['check'] });
+    expect(run.after_state.outcomes[2].detail).toMatchObject({ finish: null, objects: 2, kept: ['explanation'], rejected: ['check'] });
+    // A line not kept also keeps the first words the model wrote (C320); a kept one does not.
+    expect(run.after_state.outcomes[2].detail.start).toMatch(/^```json \{ "type": "explanation"/);
+    expect(run.after_state.outcomes[0].detail.start).toBeUndefined();
     expect(run.after_state.outcomes.map((o: { key: string; outcome: string }) => `${o.key}:${o.outcome}`)).toEqual([
       'jt.c6.science.ch04:kept',
       'jt.c6.science.ch04:kept',
@@ -112,6 +115,7 @@ describe('the AI smoke test (C316)', () => {
     const [row] = await q(`select after_state from audit_log where event_action = 'ai.smoke_test' order by created_at desc limit 1`);
     expect(row.after_state.checks.map((c: { check: string; ok: boolean; failure: string }) => [c.check, c.ok, c.failure])).toEqual([
       ['text', false, 'not_switched_on'],
+      ['text:system', false, 'not_switched_on'],
       ['photo', false, 'not_switched_on'],
       ['voice', false, 'not_switched_on'],
       ['safety', false, 'not_switched_on'],
@@ -158,6 +162,7 @@ describe('the AI smoke test (C316)', () => {
     const summary = row.after_state.checks.map((c: { check: string; ok: boolean; note?: string; status?: number }) => [c.check, c.ok, c.note ?? c.status]);
     expect(summary).toEqual([
       ['text', true, 'json: one object, nothing around it'],
+      ['text:system', true, 'json: one object, nothing around it'],
       ['photo', true, 'read the printed question'],
       ['voice:webm', true, 'heard the question'],
       ['voice:ogg', false, 400],
@@ -165,12 +170,14 @@ describe('the AI smoke test (C316)', () => {
       ['voice:wav', true, 'heard the question'],
       ['safety', true, 'safe; answered as text'],
     ]);
-    // Seven calls, metered under each profile; nothing taken from a family's day.
-    expect(sent).toHaveLength(7);
+    // The first words of a made-up answer are kept, to see a format problem (C320).
+    expect(row.after_state.checks[0].start).toBe('{"type":"answer","word":"iron"}');
+    // Eight calls, metered under each profile; nothing taken from a family's day.
+    expect(sent).toHaveLength(8);
     expect(await q(`select profile_id, sum(requests)::int as requests from control.ai_usage group by 1 order by 1`)).toEqual([
       { profile_id: 'family.homework', requests: 1 },
       { profile_id: 'family.moderation', requests: 1 },
-      { profile_id: 'family.resolver', requests: 1 },
+      { profile_id: 'family.resolver', requests: 2 },
       { profile_id: 'family.voice_input', requests: 4 },
     ]);
     expect(await q(`select * from family.ai_daily`)).toEqual([]);
