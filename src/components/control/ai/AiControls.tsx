@@ -197,7 +197,9 @@ export function AiControls({ initial }: { initial: Data }) {
                   {options}
                 </Select>
                 <Input id={`model-${p.profileId}`} maxLength={80} spellCheck={false} label={t('control.ai.profile.model')} value={d.model} onChange={(e) => set({ model: e.target.value })} />
-                <Input id={`prompt-${p.profileId}`} maxLength={32} spellCheck={false} label={t('control.ai.profile.promptVersion')} value={d.promptVersion} onChange={(e) => set({ promptVersion: e.target.value })} />
+                {p.usesPrompt && (
+                  <Input id={`prompt-${p.profileId}`} maxLength={32} spellCheck={false} label={t('control.ai.profile.promptVersion')} value={d.promptVersion} onChange={(e) => set({ promptVersion: e.target.value })} />
+                )}
                 <Select id={`fallback-${p.profileId}`} label={t('control.ai.profile.fallbackProvider')} value={d.fallbackProvider} onChange={(e) => set({ fallbackProvider: e.target.value })}>
                   {options}
                 </Select>

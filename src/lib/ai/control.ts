@@ -53,7 +53,8 @@ export type AiOverview = {
     clearedByName: string | null;
     credential: { keyLast4: string; setAt: string; setByName: string | null; testedAt: string | null; testOk: boolean | null } | null;
   }[];
-  profiles: { profileId: string; carriesChildWords: boolean; providerId: string | null; model: string | null; fallback: Link[]; promptVersion: string; enabled: boolean }[];
+  // usesPrompt: only a text profile reads a prompt version; speech and the safety check have none to choose (C314).
+  profiles: { profileId: string; carriesChildWords: boolean; providerId: string | null; model: string | null; fallback: Link[]; promptVersion: string; usesPrompt: boolean; enabled: boolean }[];
   usage: { profileId: string; today: Counts; month: Counts }[];
   cap: number | null;
   changes: { auditId: string; action: string; at: string; byName: string | null; target: string | null; canUndo: boolean }[];
@@ -153,6 +154,7 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
       model: r.model ?? null,
       fallback: (chainOf({ provider_id: 'x', model: 'x', fallback: r.fallback }) ?? []).slice(1),
       promptVersion: r.prompt_version,
+      usesPrompt: profileById(r.profile_id)?.capability === 'text',
       enabled: r.enabled === true,
     })),
     usage: Array.from(byProfile, ([profileId, c]) => ({ profileId, ...c })),

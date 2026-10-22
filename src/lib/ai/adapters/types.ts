@@ -62,9 +62,9 @@ export interface SpeechAdapter {
 
 // ---- moderation (W2, C314: Llama Guard on a child's words and on answers) -------------------------------------------
 
-// A check of one short exchange takes well under a second; one that takes longer is given up, so a child's answer is
-// never held long by its safety check.
-export const MODERATION_TIMEOUT_MS = 15_000;
+// A check of one short exchange takes well under a second; one that takes longer is given up (the block is then not
+// shown), so the four or so checks of one answer stay well inside the route's time.
+export const MODERATION_TIMEOUT_MS = 8_000;
 
 // The words to check: a child's question alone (`user`), or an answer (`assistant`) to what was asked (`user`). Read
 // inside the call and dropped, never stored or logged.
