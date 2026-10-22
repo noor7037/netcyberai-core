@@ -29,8 +29,16 @@ describe('reading JSON blocks however the model lays them out', () => {
     expect(JSON.parse(out[0]).idea).toBe(tricky.idea);
   });
 
-  it('an object that never closes is dropped, and so is one past the size limit', () => {
+  it('an object that never closes is dropped, and so is one past the size limit, whatever it holds', () => {
     expect(scanAll(['{"type":"explanation","title":"cut'])).toEqual([]);
     expect(scanAll([`{"type":"x","v":"${'a'.repeat(20_100)}"}`, '{"type":"refuse"}'])).toEqual(['{"type":"refuse"}']);
+    // A block hidden inside an oversized one never comes out as a block of its own.
+    const inner = JSON.stringify({ type: 'key_points', points: ['x'] });
+    expect(scanAll([`{"type":"x","v":"${'a'.repeat(20_100)}","inner":${inner}}`, '\n{"type":"refuse"}'])).toEqual(['{"type":"refuse"}']);
+  });
+
+  it('a brace in a sentence is not an object: the blocks after it are still read', () => {
+    expect(scanAll([`Use { and } with care.\n${JSON.stringify(explanation)}`])).toEqual([JSON.stringify(explanation)]);
+    expect(scanAll(['A lone { here.\n', JSON.stringify(explanation)])).toEqual([JSON.stringify(explanation)]);
   });
 });

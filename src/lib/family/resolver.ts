@@ -218,6 +218,14 @@ export function namedSubject(text: string): Subject | 'other' | null {
   }
 }
 
+const isRefusal = (text: string) => {
+  try {
+    return (JSON.parse(text) as { type?: unknown })?.type === 'refuse';
+  } catch {
+    return false;
+  }
+};
+
 // The words of a block, for the safety check: every text it holds, in order, one per line (C314).
 export function blockText(b: Block): string {
   const out: string[] = [];
@@ -349,7 +357,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   };
   const take = async (text: string) => {
     if (stopped) return;
-    if (/"type"\s*:\s*"refuse"/.test(text)) refusedByModel = true;
+    // The model's own refusal is a whole block of type "refuse" (a nested field of that name is not).
+    if (/"type"\s*:\s*"refuse"/.test(text) && isRefusal(text)) refusedByModel = true;
     if (!subject) {
       // Nothing is shown until the subject is named, and only a subject this child may use is answered.
       const named = namedSubject(text);

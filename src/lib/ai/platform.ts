@@ -399,8 +399,9 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
   const textChain = async (profile: ProfileId, check: string, request: AdapterRequestPart, judge: (text: string) => string | undefined) => {
     const c = await checkProfile(db, ctx, profile, 'text', env);
     if (!c.ok) return steps.push(refused(check, profile, c.reason));
-    const ready = (await usableLinks(db, c.chain, c.providers, env, (p) => adapterFor(p, env))).filter((r) => !request.images || r.adapter.vision);
-    if (!ready.length) return steps.push(refused(check, profile, 'not_switched_on'));
+    const usable = await usableLinks(db, c.chain, c.providers, env, (p) => adapterFor(p, env));
+    const ready = usable.filter((r) => !request.images || r.adapter.vision);
+    if (!ready.length) return steps.push(refused(check, profile, usable.length ? 'no_provider_reads_photos' : 'not_switched_on'));
     const { link, adapter, apiKey } = ready[0];
     steps.push(async () => {
       const began = Date.now();

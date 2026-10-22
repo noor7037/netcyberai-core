@@ -421,23 +421,38 @@ export function jsonObjectScanner(): (text: string) => string[] {
   let depth = 0;
   let inString = false;
   let escaped = false;
+  // A "{" in a sentence is not an object: one starts only where a key ("…") or "}" follows it.
+  let opening = false;
+  // An object past the limit is passed over to its own closing brace, its strings and nesting still followed, so
+  // nothing inside it is mistaken for a block of its own.
+  let discarding = false;
   return (text) => {
     const out: string[] = [];
     for (const ch of text) {
+      if (opening) {
+        if (/\s/.test(ch)) {
+          buf += ch;
+          continue;
+        }
+        opening = false;
+        if (ch === '"' || ch === '}') {
+          depth = 1;
+        } else {
+          buf = '';
+          if (ch !== '{') continue;
+        }
+      }
       if (depth === 0) {
         if (ch === '{') {
-          depth = 1;
+          opening = true;
           buf = '{';
         }
         continue;
       }
-      buf += ch;
-      if (buf.length > OBJECT_MAX_CHARS) {
-        depth = 0;
-        inString = false;
-        escaped = false;
+      if (!discarding) buf += ch;
+      if (!discarding && buf.length > OBJECT_MAX_CHARS) {
+        discarding = true;
         buf = '';
-        continue;
       }
       if (inString) {
         if (escaped) escaped = false;
@@ -450,7 +465,8 @@ export function jsonObjectScanner(): (text: string) => string[] {
       else if (ch === '}') {
         depth -= 1;
         if (depth === 0) {
-          out.push(buf);
+          if (!discarding) out.push(buf);
+          discarding = false;
           buf = '';
         }
       }

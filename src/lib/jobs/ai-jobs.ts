@@ -40,10 +40,11 @@ export function contentPrepareHandler({ platform, queue }: { platform: Platform;
     const payload = preparePayload(job.payload);
     if (!payload) throw new PermanentJobError('bad content.prepare payload');
     await staff(platform, payload.by);
+    const runId = payload.runId ?? job.idempotencyKey;
     const step = await prepareJobStep(platform as never, payload);
     if (step.next) {
-      const next: PrepareJobPayload = step.next;
-      await platform((db) => queue.enqueue(db, { type: CONTENT_PREPARE_JOB, payload: next, idempotencyKey: `${job.idempotencyKey.replace(/:\d+$/, '')}:${next.outcomes.length}`, maxAttempts: 2 }));
+      const next: PrepareJobPayload = { ...step.next, runId };
+      await platform((db) => queue.enqueue(db, { type: CONTENT_PREPARE_JOB, payload: next, idempotencyKey: `${runId}:${next.outcomes.length}`, maxAttempts: 2 }));
       return;
     }
     const kept = step.outcomes.filter((o) => o.outcome === 'kept').length;
@@ -55,7 +56,7 @@ export function contentPrepareHandler({ platform, queue }: { platform: Platform;
         eventAction: 'content.prepare_run',
         targetType: 'syllabus_version',
         targetId: payload.versionId,
-        afterState: { chapterKeys: payload.chapterKeys, tried: step.outcomes.length, kept, outcomes: step.outcomes, state: step.state },
+        afterState: { runId, chapterKeys: payload.chapterKeys, tried: step.outcomes.length, kept, outcomes: step.outcomes, state: step.state },
       })
     );
   };

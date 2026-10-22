@@ -137,8 +137,8 @@ export async function prepareNext(run: Run, by: { userId: string }, versionId: s
   const pending = first.pending;
   const generated = await generate(pending, () => {});
   const last = await run((db) => keep(db, pending, generated));
-  if (generated.error !== null) throw generated.error;
-  const outcome: PrepareOutcome = !last ? 'failed' : last.t === 'refused' ? last.reason : last.t === 'done' && last.complete ? 'kept' : 'incomplete';
+  // A fault while the answer was read is this line's failure, so a run goes on to the next line (C316).
+  const outcome: PrepareOutcome = generated.error !== null || !last ? 'failed' : last.t === 'refused' ? last.reason : last.t === 'done' && last.complete ? 'kept' : 'incomplete';
   const state = (await run((db) => prepareState(db, versionId, scope)))!;
   return { state, made: { ...first.want, outcome } };
 }
@@ -149,7 +149,8 @@ export async function prepareNext(run: Run, by: { userId: string }, versionId: s
 // then the next run is queued with what happened so far. A line that fails is passed over, so the run also measures
 // how reliably the model returns our blocks (kept, incomplete, refused), line by line. It stops when nothing is left,
 // when the AI is not switched on, or after 400 lines.
-export type PrepareJobPayload = { versionId: string; chapterKeys: string[]; by: string; outcomes: { key: string; language: string; outcome: PrepareOutcome }[] };
+// `runId` names one run, so the jobs of two runs never share a key; it is the first job's own key when not given.
+export type PrepareJobPayload = { versionId: string; chapterKeys: string[]; by: string; runId?: string; outcomes: { key: string; language: string; outcome: PrepareOutcome }[] };
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const LINE_KEY = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 const STOP: readonly PrepareOutcome[] = ['not_switched_on', 'not_cleared_for_minors'];
@@ -158,8 +159,11 @@ export function preparePayload(raw: unknown): PrepareJobPayload | null {
   const p = raw as Partial<PrepareJobPayload> | null;
   if (!p || typeof p.versionId !== 'string' || !UUID_RE.test(p.versionId) || typeof p.by !== 'string' || !UUID_RE.test(p.by)) return null;
   if (!Array.isArray(p.chapterKeys) || p.chapterKeys.length > 40 || !p.chapterKeys.every((k) => typeof k === 'string' && LINE_KEY.test(k))) return null;
-  const outcomes = Array.isArray(p.outcomes) ? p.outcomes.filter((o) => o && typeof o.key === 'string' && typeof o.language === 'string' && typeof o.outcome === 'string') : [];
-  return { versionId: p.versionId, chapterKeys: p.chapterKeys, by: p.by, outcomes: outcomes.slice(0, 400) };
+  const outcomes = Array.isArray(p.outcomes)
+    ? p.outcomes.filter((o) => o && typeof o.key === 'string' && LINE_KEY.test(o.key) && (o.language === 'en' || o.language === 'hi') && typeof o.outcome === 'string' && /^[a-z_]{1,40}$/.test(o.outcome))
+    : [];
+  const runId = typeof p.runId === 'string' && /^[A-Za-z0-9._:-]{1,120}$/.test(p.runId) ? p.runId : undefined;
+  return { versionId: p.versionId, chapterKeys: p.chapterKeys, by: p.by, runId, outcomes: outcomes.slice(0, 400) };
 }
 
 // One run: the next line, then either the payload for the next run or the finished summary.

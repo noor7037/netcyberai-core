@@ -69,14 +69,16 @@ describe('the preparing job (C316)', () => {
     const handler = contentPrepareHandler({ platform: withPlatformService as never, queue });
     ai.incompleteFor = 'Magnetic materials';
     let payload: Record<string, unknown> = { versionId: VERSION, chapterKeys: ['jt.c6.science.ch04'], by: STAFF, outcomes: [] };
+    let key = 'content.prepare:demo';
     for (let i = 0; i < 10; i++) {
       const before = queued.length;
-      await handler(job('content.prepare', payload, `content.prepare:t:${i}`));
+      await handler(job('content.prepare', payload, key));
       if (queued.length === before) break;
-      payload = queued.at(-1)!.payload;
+      ({ payload, idempotencyKey: key } = queued.at(-1)!);
     }
-    // Two lines (the chapter and its topic) × English and Hindi; the topic came back incomplete both times.
-    expect(queued.map((x) => x.idempotencyKey)).toEqual(['content.prepare:t:1', 'content.prepare:t:2', 'content.prepare:t:3', 'content.prepare:t:4']);
+    // Two lines (the chapter and its topic) × English and Hindi; the topic came back incomplete both times. Each run's
+    // jobs carry the first job's key, so two runs never share one.
+    expect(queued.map((x) => x.idempotencyKey)).toEqual(['content.prepare:demo:1', 'content.prepare:demo:2', 'content.prepare:demo:3', 'content.prepare:demo:4']);
     const [run] = await q(`select after_state from audit_log where event_action = 'content.prepare_run'`);
     expect(run.after_state).toMatchObject({ chapterKeys: ['jt.c6.science.ch04'], tried: 4, kept: 2 });
     expect(run.after_state.outcomes.map((o: { key: string; outcome: string }) => `${o.key}:${o.outcome}`)).toEqual([
