@@ -29,8 +29,8 @@ export default async function FamilyUnderstandPage({ searchParams }: { searchPar
   const lang = page.childLang;
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back={`/family/study?subject=${line.subject}`} backLabel={t(lang, `fam.subject.${line.subject}`)} kicker={t(lang, 'fam.understand.title')} title={line.title} tone={line.subject === 'science' ? 'emerald' : 'royal'} />
-      <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-24">
+      <SubPageHeader back={`/family/study?subject=${line.subject}`} backLabel={t(lang, `fam.subject.${line.subject}`)} kicker={t(lang, 'fam.understand.title')} title={line.title} subject={line.subject} />
+      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-24">
         <UnderstandView key={`${kind}:${line.key}`} w={familyWords(lang, UNDERSTAND_KEYS)} input={{ kind, key: line.key }} tone={line.subject} initial={initial} />
       </main>
     </div>
