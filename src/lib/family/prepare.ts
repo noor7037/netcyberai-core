@@ -29,6 +29,11 @@ export type PrepareChapter = { key: string; title: string };
 
 export type PrepareState = { total: number; checked: number; aiMade: number; missing: number; withdrawn: number; next: Wanted | null };
 export type PrepareOutcome = 'kept' | 'incomplete' | 'already' | Extract<ResolverEvent, { t: 'refused' }>['reason'];
+// What the model sent back for one line, for staff measuring it (C318): why its stream ended, how many JSON objects
+// came, the block types that passed and those our checks refused. For a line that was not kept, also the first 160
+// characters the model wrote (C320): a staff-prepared syllabus line holds no child's words, and the start shows a
+// format problem (prose instead of JSON) at a glance.
+export type PrepareDetail = { finish: string | null; objects: number; kept: string[]; rejected: string[]; start?: string };
 
 async function versionOf(db: Db, versionId: string): Promise<Version | null> {
   const { rows } = await db.query(`select version_id, board_id, class_level, subject from content.syllabus_versions where version_id = $1`, [versionId]);
@@ -112,7 +117,7 @@ export async function prepareState(db: Db, versionId: string, scope: PrepareScop
 
 // Makes the next missing explanation of the version. `run` opens one short transaction as the platform role; none is
 // held while the model answers (as the Understand route, F1-3).
-export async function prepareNext(run: Run, by: { userId: string }, versionId: string, scope: PrepareScope = {}): Promise<{ state: PrepareState; made: (Wanted & { outcome: PrepareOutcome }) | null } | null> {
+export async function prepareNext(run: Run, by: { userId: string }, versionId: string, scope: PrepareScope = {}): Promise<{ state: PrepareState; made: (Wanted & { outcome: PrepareOutcome; detail?: PrepareDetail }) | null } | null> {
   const first = await run(async (db) => {
     const state = await prepareState(db, versionId, scope);
     const v = await versionOf(db, versionId);
@@ -140,7 +145,15 @@ export async function prepareNext(run: Run, by: { userId: string }, versionId: s
   // A fault while the answer was read is this line's failure, so a run goes on to the next line (C316).
   const outcome: PrepareOutcome = generated.error !== null || !last ? 'failed' : last.t === 'refused' ? last.reason : last.t === 'done' && last.complete ? 'kept' : 'incomplete';
   const state = (await run((db) => prepareState(db, versionId, scope)))!;
-  return { state, made: { ...first.want, outcome } };
+  const result = generated.sent.result;
+  const detail: PrepareDetail = {
+    finish: result.ok ? (result.finish ?? null) : null,
+    objects: generated.objects,
+    kept: generated.kept.map((b) => b.type),
+    rejected: generated.rejected.slice(0, 20),
+    ...(outcome !== 'kept' && result.ok ? { start: result.text.replace(/\s+/g, ' ').trim().slice(0, 160) } : {}),
+  };
+  return { state, made: { ...first.want, outcome, detail } };
 }
 
 // ---- the preparing job (W2, C316) -----------------------------------------------------------------------------------
@@ -150,7 +163,7 @@ export async function prepareNext(run: Run, by: { userId: string }, versionId: s
 // how reliably the model returns our blocks (kept, incomplete, refused), line by line. It stops when nothing is left,
 // when the AI is not switched on, or after 400 lines.
 // `runId` names one run, so the jobs of two runs never share a key; it is the first job's own key when not given.
-export type PrepareJobPayload = { versionId: string; chapterKeys: string[]; by: string; runId?: string; outcomes: { key: string; language: string; outcome: PrepareOutcome }[] };
+export type PrepareJobPayload = { versionId: string; chapterKeys: string[]; by: string; runId?: string; outcomes: { key: string; language: string; outcome: PrepareOutcome; detail?: PrepareDetail }[] };
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const LINE_KEY = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 const STOP: readonly PrepareOutcome[] = ['not_switched_on', 'not_cleared_for_minors'];
@@ -163,7 +176,15 @@ export function preparePayload(raw: unknown): PrepareJobPayload | null {
     ? p.outcomes.filter((o) => o && typeof o.key === 'string' && LINE_KEY.test(o.key) && (o.language === 'en' || o.language === 'hi') && typeof o.outcome === 'string' && /^[a-z_]{1,40}$/.test(o.outcome))
     : [];
   const runId = typeof p.runId === 'string' && /^[A-Za-z0-9._:-]{1,120}$/.test(p.runId) ? p.runId : undefined;
-  return { versionId: p.versionId, chapterKeys: p.chapterKeys, by: p.by, runId, outcomes: outcomes.slice(0, 400) };
+  const types = (v: unknown) => (Array.isArray(v) ? v.filter((t): t is string => typeof t === 'string' && /^[a-z_]{1,30}$/.test(t)).slice(0, 20) : []);
+  const detailOf = (d: unknown): PrepareDetail | undefined => {
+    const x = d as Partial<PrepareDetail> | null;
+    if (!x || typeof x !== 'object') return undefined;
+    const start = typeof x.start === 'string' ? x.start.replace(/[\u0000-\u001f]/g, ' ').slice(0, 160) : undefined;
+    return { finish: typeof x.finish === 'string' && /^[a-z_]{1,30}$/.test(x.finish) ? x.finish : null, objects: Number.isInteger(x.objects) ? Math.max(0, Math.min(Number(x.objects), 999)) : 0, kept: types(x.kept), rejected: types(x.rejected), ...(start ? { start } : {}) };
+  };
+  const clean = outcomes.slice(0, 400).map((o) => ({ key: o.key, language: o.language, outcome: o.outcome, ...(detailOf(o.detail) ? { detail: detailOf(o.detail) } : {}) }));
+  return { versionId: p.versionId, chapterKeys: p.chapterKeys, by: p.by, runId, outcomes: clean };
 }
 
 // One run: the next line, then either the payload for the next run or the finished summary.
@@ -171,7 +192,7 @@ export async function prepareJobStep(run: Run, payload: PrepareJobPayload): Prom
   const skip = payload.outcomes.filter((o) => o.outcome !== 'kept');
   const result = await prepareNext(run, { userId: payload.by }, payload.versionId, { chapterKeys: payload.chapterKeys, skip });
   if (!result || !result.made) return { next: null, state: result?.state ?? null, outcomes: payload.outcomes };
-  const outcomes = [...payload.outcomes, { key: result.made.key, language: result.made.language, outcome: result.made.outcome }];
+  const outcomes = [...payload.outcomes, { key: result.made.key, language: result.made.language, outcome: result.made.outcome, ...(result.made.detail ? { detail: result.made.detail } : {}) }];
   const done = STOP.includes(result.made.outcome) || outcomes.length >= 400;
   return { next: done ? null : { ...payload, outcomes }, state: result.state, outcomes };
 }

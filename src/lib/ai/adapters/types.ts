@@ -15,10 +15,13 @@ export type AdapterRequest = {
   messages: ChatMessage[];
   maxTokens: number;
   responseFormat?: 'json';
+  // Where the instructions go, when the caller must choose (only the smoke test does, C320); otherwise the adapter's own.
+  instructionsAs?: 'system' | 'user';
 };
 
 export type AdapterFailure = 'http' | 'refused' | 'network' | 'bad_stream' | 'cut_short';
-export type AdapterResult = { ok: true; text: string; tokensIn: number; tokensOut: number } | { ok: false; failure: AdapterFailure; status?: number };
+// `finish`: why the vendor stopped ("stop", or "length" when its token limit cut the answer), when it says (C318).
+export type AdapterResult = { ok: true; text: string; tokensIn: number; tokensOut: number; finish?: string } | { ok: false; failure: AdapterFailure; status?: number };
 
 export interface TextAdapter {
   readonly providerId: string;

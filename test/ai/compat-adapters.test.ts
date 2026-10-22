@@ -80,8 +80,12 @@ describe('Workers AI text, through Cloudflare’s OpenAI-compatible route', () =
     reply = () => openaiOk(['Magnets ', 'pull iron.'], 21, 5);
     const pieces: string[] = [];
     // The answer ends at the stop (no usage chunk is asked for), so the counts are estimated: 58 characters sent, 18 back.
-    expect(await workersAiAdapter.streamText(request(), (p) => pieces.push(p))).toEqual({ ok: true, text: 'Magnets pull iron.', tokensIn: 15, tokensOut: 5 });
+    expect(await workersAiAdapter.streamText(request(), (p) => pieces.push(p))).toEqual({ ok: true, text: 'Magnets pull iron.', tokensIn: 15, tokensOut: 5, finish: 'stop' });
     expect(pieces).toEqual(['Magnets ', 'pull iron.']);
+    // Why the stream ended is passed on, so a cut answer can be told from a finished one (C318).
+    reply = () => sse([{ choices: [{ delta: { content: 'Half' } }] }, { choices: [{ delta: {}, finish_reason: 'length' }] }, '[DONE]']);
+    expect(await workersAiAdapter.streamText(request(), () => undefined)).toMatchObject({ ok: true, text: 'Half', finish: 'length' });
+    reply = () => openaiOk(['Magnets ', 'pull iron.'], 21, 5);
     expect(calls[0].url).toBe(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/v1/chat/completions`);
     expect(calls[0].headers.authorization).toBe(`Bearer ${TOKEN}`);
     const body = JSON.parse(calls[0].body);
@@ -91,29 +95,36 @@ describe('Workers AI text, through Cloudflare’s OpenAI-compatible route', () =
       max_tokens: 900,
       // A steadier structured answer from open models (C316).
       temperature: 0.3,
-      messages: [
-        { role: 'system', content: 'Explain for a Class 6 student.' },
-        { role: 'user', content: 'Why do magnets attract iron?' },
-      ],
+      // The instructions open the first user message: the live test found Llama on this route answering in plain words
+      // when they came as a system message (C320).
+      messages: [{ role: 'user', content: 'Explain for a Class 6 student.\n\nWhy do magnets attract iron?' }],
     });
     expect(calls[0].body).not.toContain(TOKEN);
   });
 
-  it('asks for JSON in the system prompt, not with response_format', async () => {
+  it('a request may still ask for a system message (the smoke test compares the two)', async () => {
+    await workersAiAdapter.streamText(request({ instructionsAs: 'system' }), () => undefined);
+    expect(JSON.parse(calls[0].body).messages).toEqual([
+      { role: 'system', content: 'Explain for a Class 6 student.' },
+      { role: 'user', content: 'Why do magnets attract iron?' },
+    ]);
+  });
+
+  it('asks for JSON in the instructions, not with response_format', async () => {
     await workersAiAdapter.streamText(request({ responseFormat: 'json' }), () => undefined);
     const body = JSON.parse(calls[0].body);
-    expect(body.messages[0].content).toBe(`Explain for a Class 6 student.\n\n${JSON_ONLY}`);
+    expect(body.messages[0].content).toBe(`Explain for a Class 6 student.\n\n${JSON_ONLY}\n\nWhy do magnets attract iron?`);
     expect(body.response_format).toBeUndefined();
   });
 
-  it('sends a photo as an image_url data URL, read inside the call', async () => {
+  it('sends a photo as an image_url data URL, read inside the call, after the instructions', async () => {
     await workersAiAdapter.streamText(request({ messages: [{ role: 'user', content: 'Explain this page.', images: [{ mediaType: 'image/jpeg', base64: 'QUJD' }] }] }), () => undefined);
-    expect(JSON.parse(calls[0].body).messages[1]).toEqual({ role: 'user', content: [{ type: 'text', text: 'Explain this page.' }, { type: 'image_url', image_url: { url: 'data:image/jpeg;base64,QUJD' } }] });
+    expect(JSON.parse(calls[0].body).messages[0]).toEqual({ role: 'user', content: [{ type: 'text', text: 'Explain for a Class 6 student.\n\nExplain this page.' }, { type: 'image_url', image_url: { url: 'data:image/jpeg;base64,QUJD' } }] });
   });
 
   it('a stream that ends with a stop but no [DONE] is complete; one that just stops is cut short', async () => {
     reply = () => sse([{ choices: [{ delta: { content: 'Iron.' }, finish_reason: null }] }, { choices: [{ delta: {}, finish_reason: 'stop' }] }]);
-    expect(await workersAiAdapter.streamText(request(), () => undefined)).toEqual({ ok: true, text: 'Iron.', tokensIn: 15, tokensOut: 2 });
+    expect(await workersAiAdapter.streamText(request(), () => undefined)).toEqual({ ok: true, text: 'Iron.', tokensIn: 15, tokensOut: 2, finish: 'stop' });
     reply = () => sse([{ choices: [{ delta: { content: 'Iro' }, finish_reason: null }] }]);
     expect(await workersAiAdapter.streamText(request(), () => undefined)).toEqual({ ok: false, failure: 'cut_short' });
   });
@@ -179,7 +190,7 @@ describe('Workers AI speech to text (Whisper)', () => {
 describe('Gemini (adult tools only, parked)', () => {
   it('posts to Google’s OpenAI-compatible route with the API key, JSON mode and usage', async () => {
     reply = () => openaiOk(['A lesson plan.'], 30, 4);
-    expect(await geminiAdapter.streamText(request({ apiKey: GEMINI_KEY, model: 'gemini-flash-latest', responseFormat: 'json' }), () => undefined)).toEqual({ ok: true, text: 'A lesson plan.', tokensIn: 30, tokensOut: 4 });
+    expect(await geminiAdapter.streamText(request({ apiKey: GEMINI_KEY, model: 'gemini-flash-latest', responseFormat: 'json' }), () => undefined)).toEqual({ ok: true, text: 'A lesson plan.', tokensIn: 30, tokensOut: 4, finish: 'stop' });
     expect(calls[0].url).toBe('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions');
     expect(calls[0].headers.authorization).toBe(`Bearer ${GEMINI_KEY}`);
     const body = JSON.parse(calls[0].body);

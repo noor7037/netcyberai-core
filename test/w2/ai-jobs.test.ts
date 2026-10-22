@@ -21,7 +21,8 @@ vi.mock('@/lib/ai/platform', async (original) => {
         { type: 'check', items: [item('c1'), item('c2')] },
         { type: 'practice', items: [item('p1')] },
       ];
-      const lines = ai.incompleteFor && req.messages[0].content.includes(ai.incompleteFor) ? [full[0]] : full;
+      // The line under test comes back with its check's answer as a letter, which our checks refuse.
+      const lines = ai.incompleteFor && req.messages[0].content.includes(ai.incompleteFor) ? [full[0], { ...full[1], items: [{ ...item('c1'), answer: 'B' }] }] : full;
       // Spread over lines and fenced, as an open model may write it (C316).
       const text = `\`\`\`json\n${lines.map((l) => JSON.stringify(l, null, 2)).join('\n')}\n\`\`\``;
       return { ok: true, text: { send: async (onDelta: (t: string) => void) => (onDelta(text), { result: { ok: true, text, tokensIn: 1, tokensOut: 1, provider: 'workers-ai', model: 'm' }, record: async () => {} }) } };
@@ -81,6 +82,12 @@ describe('the preparing job (C316)', () => {
     expect(queued.map((x) => x.idempotencyKey)).toEqual(['content.prepare:demo:1', 'content.prepare:demo:2', 'content.prepare:demo:3', 'content.prepare:demo:4']);
     const [run] = await q(`select after_state from audit_log where event_action = 'content.prepare_run'`);
     expect(run.after_state).toMatchObject({ chapterKeys: ['jt.c6.science.ch04'], tried: 4, kept: 2 });
+    // Each line says what came back, as types and counts (C318).
+    expect(run.after_state.outcomes[0].detail).toEqual({ finish: null, objects: 3, kept: ['explanation', 'check', 'practice'], rejected: [] });
+    expect(run.after_state.outcomes[2].detail).toMatchObject({ finish: null, objects: 2, kept: ['explanation'], rejected: ['check'] });
+    // A line not kept also keeps the first words the model wrote (C320); a kept one does not.
+    expect(run.after_state.outcomes[2].detail.start).toMatch(/^```json \{ "type": "explanation"/);
+    expect(run.after_state.outcomes[0].detail.start).toBeUndefined();
     expect(run.after_state.outcomes.map((o: { key: string; outcome: string }) => `${o.key}:${o.outcome}`)).toEqual([
       'jt.c6.science.ch04:kept',
       'jt.c6.science.ch04:kept',
@@ -108,6 +115,7 @@ describe('the AI smoke test (C316)', () => {
     const [row] = await q(`select after_state from audit_log where event_action = 'ai.smoke_test' order by created_at desc limit 1`);
     expect(row.after_state.checks.map((c: { check: string; ok: boolean; failure: string }) => [c.check, c.ok, c.failure])).toEqual([
       ['text', false, 'not_switched_on'],
+      ['text:system', false, 'not_switched_on'],
       ['photo', false, 'not_switched_on'],
       ['voice', false, 'not_switched_on'],
       ['safety', false, 'not_switched_on'],
@@ -154,6 +162,7 @@ describe('the AI smoke test (C316)', () => {
     const summary = row.after_state.checks.map((c: { check: string; ok: boolean; note?: string; status?: number }) => [c.check, c.ok, c.note ?? c.status]);
     expect(summary).toEqual([
       ['text', true, 'json: one object, nothing around it'],
+      ['text:system', true, 'json: one object, nothing around it'],
       ['photo', true, 'read the printed question'],
       ['voice:webm', true, 'heard the question'],
       ['voice:ogg', false, 400],
@@ -161,12 +170,14 @@ describe('the AI smoke test (C316)', () => {
       ['voice:wav', true, 'heard the question'],
       ['safety', true, 'safe; answered as text'],
     ]);
-    // Seven calls, metered under each profile; nothing taken from a family's day.
-    expect(sent).toHaveLength(7);
+    // The first words of a made-up answer are kept, to see a format problem (C320).
+    expect(row.after_state.checks[0].start).toBe('{"type":"answer","word":"iron"}');
+    // Eight calls, metered under each profile; nothing taken from a family's day.
+    expect(sent).toHaveLength(8);
     expect(await q(`select profile_id, sum(requests)::int as requests from control.ai_usage group by 1 order by 1`)).toEqual([
       { profile_id: 'family.homework', requests: 1 },
       { profile_id: 'family.moderation', requests: 1 },
-      { profile_id: 'family.resolver', requests: 1 },
+      { profile_id: 'family.resolver', requests: 2 },
       { profile_id: 'family.voice_input', requests: 4 },
     ]);
     expect(await q(`select * from family.ai_daily`)).toEqual([]);

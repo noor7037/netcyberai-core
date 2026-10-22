@@ -77,7 +77,7 @@ export type AiRequest = {
   responseFormat?: 'json';
 };
 export type AiRefusal = 'not_switched_on' | 'cap_reached' | 'not_cleared_for_minors' | 'failed';
-export type AiResult = { ok: true; text: string; tokensIn: number; tokensOut: number; provider: string; model: string } | { ok: false; reason: AiRefusal };
+export type AiResult = { ok: true; text: string; tokensIn: number; tokensOut: number; provider: string; model: string; finish?: string } | { ok: false; reason: AiRefusal };
 export type { ChatMessage, ChatImage };
 
 // The family-facing words for each refusal (English and Hindi in the message files).
@@ -259,7 +259,7 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
       }
       if (result.ok) {
         usage.push({ link, counts: { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut } });
-        return { result: { ok: true, text: result.text, tokensIn: result.tokensIn, tokensOut: result.tokensOut, provider: link.provider, model: link.model }, record };
+        return { result: { ok: true, text: result.text, tokensIn: result.tokensIn, tokensOut: result.tokensOut, provider: link.provider, model: link.model, ...(result.finish ? { finish: result.finish } : {}) }, record };
       }
       usage.push({ link, counts: { requests: 1, failures: 1 } });
       // Text already shown cannot be taken back: a second provider's answer would be stitched onto it.
@@ -384,7 +384,8 @@ export async function prepareModeration(db: Sql, ctx: AiContext): Promise<Modera
 // safety check. It answers what AI_PROVIDERS.md lists as "not verified yet" (photos on the chosen route, the audio
 // formats, the safety check's answer form). The minors check applies as for a child's call; no family's daily cap is
 // taken. Prepared in the caller's transaction, sent with no database, recorded (counts only) in the next one.
-export type SmokeCheck = { check: string; profile: ProfileId; ok: boolean; provider?: string; model?: string; failure?: string; status?: number; ms?: number; note?: string };
+// `start`: the first words of a made-up answer (C320), kept so a format problem can be seen; the inputs name no one.
+export type SmokeCheck = { check: string; profile: ProfileId; ok: boolean; provider?: string; model?: string; failure?: string; status?: number; ms?: number; note?: string; start?: string };
 export type SmokeInputs = { photoJpegBase64: string; speech: readonly { mediaType: SpeechMediaType; base64: string }[] };
 export type PreparedSmoke = { send: () => Promise<SmokeCheck[]>; record: (db: Sql) => Promise<void> };
 
@@ -407,12 +408,12 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
       const began = Date.now();
       let r: AdapterResult;
       try {
-        r = await adapter.streamText({ apiKey, model: link.model, system: request.system, messages: [{ role: 'user', content: request.user, images: request.images }], maxTokens: 300 }, () => {});
+        r = await adapter.streamText({ apiKey, model: link.model, system: request.system, messages: [{ role: 'user', content: request.user, images: request.images }], maxTokens: 300, ...(request.instructionsAs ? { instructionsAs: request.instructionsAs } : {}) }, () => {});
       } catch {
         r = { ok: false, failure: 'network' };
       }
       usage.push({ profile, link, counts: r.ok ? { requests: 1, tokensIn: r.tokensIn, tokensOut: r.tokensOut } : { requests: 1, failures: 1 } });
-      return [{ check, profile, ok: r.ok, provider: link.provider, model: link.model, ms: Date.now() - began, ...(r.ok ? { note: judge(r.text) } : { failure: r.failure, status: r.status }) }];
+      return [{ check, profile, ok: r.ok, provider: link.provider, model: link.model, ms: Date.now() - began, ...(r.ok ? { note: judge(r.text), start: r.text.replace(/\s+/g, ' ').trim().slice(0, 160) } : { failure: r.failure, status: r.status }) }];
     });
   };
   const jsonNote = (text: string) => {
@@ -425,7 +426,10 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
       return 'json: none readable';
     }
   };
-  await textChain('family.resolver', 'text', { system: 'Answer with one JSON object only, on one line: {"type":"answer","word":"<one word>"}.', user: `${SMOKE_QUESTION} One word.` }, jsonNote);
+  const jsonAsk = { system: 'Answer with one JSON object only, on one line: {"type":"answer","word":"<one word>"}.', user: `${SMOKE_QUESTION} One word.` };
+  // The instructions where the adapter puts them, then in a system message, to compare the two (C320).
+  await textChain('family.resolver', 'text', jsonAsk, jsonNote);
+  await textChain('family.resolver', 'text:system', { ...jsonAsk, instructionsAs: 'system' }, jsonNote);
   await textChain(
     'family.homework',
     'photo',
@@ -485,7 +489,7 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
     },
   };
 }
-type AdapterRequestPart = { system: string; user: string; images?: ChatImage[] };
+type AdapterRequestPart = { system: string; user: string; images?: ChatImage[]; instructionsAs?: 'system' | 'user' };
 
 // The three steps on one client: for a caller with nothing to do between them.
 export async function streamText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest, onDelta: (text: string) => void = () => {}): Promise<AiResult> {

@@ -2,6 +2,7 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import { APP_IDS, FLAG_AUDIENCES, WHOLE_APP, type AppFlag, type AppId, type BannerTone, type FlagAudience } from '@/lib/contracts/app-flags';
 import type { SessionRole } from '@/lib/auth/types';
+import { FAMILY_MODULES } from '@/lib/contracts/family-modules';
 
 // Control → Apps v1 (docs/family-app/10 §2, M1-7): the version setting, the module flags with their audience, the
 // kill switches, the banner and the preview accounts of the three apps, as the platform role (the founder's session).
@@ -119,6 +120,23 @@ const flagFromRow = (r: Record<string, unknown>): FlagRow => ({
   off_message_hi: (r.off_message_hi as string | null) ?? null,
   updated_at: iso(r.updated_at) as string,
 });
+
+// The Family app's modules as Control → Apps lists them (C230-V): every built module of the registry, in its order, with
+// its row when one was ever saved and an "off, never set" row when not, so a module shipped after the first rows were
+// written can still be switched on (saving inserts its row). A saved row for a module the registry does not list
+// (one retired, for example) is kept at the end, so it can still be switched off.
+export function familyModuleRows(flags: readonly FlagRow[]): { flag: FlagRow; everSet: boolean }[] {
+  const saved = new Map(flags.filter((f) => f.app === 'family' && f.module !== WHOLE_APP).map((f) => [f.module, f]));
+  const built = Array.from(new Set(FAMILY_MODULES.filter((m) => m.built).map((m) => m.flag)));
+  const listed = built.map((module) => {
+    const row = saved.get(module);
+    return row
+      ? { flag: row, everSet: true }
+      : { flag: { app: 'family' as const, module, enabled: false, audience: 'everyone' as const, audience_percent: null, audience_schools: null, reason: null, ends_at: null, off_message_en: null, off_message_hi: null, updated_at: '' }, everSet: false };
+  });
+  const extra = Array.from(saved.values()).filter((f) => !built.includes(f.module)).map((flag) => ({ flag, everSet: true }));
+  return [...listed, ...extra];
+}
 
 // The row as the one function every app uses reads it (flagOn): the page shows "on now" by that same function.
 export const toAppFlag = (f: FlagRow): AppFlag => ({

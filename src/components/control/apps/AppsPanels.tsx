@@ -158,7 +158,8 @@ export function KillSwitch({ app, flag, live }: { app: AppId; flag: FlagRow | nu
 
 // --- One module's flag -----------------------------------------------------------------------------------------
 
-export function FlagEditor({ flag, live, schools, summary }: { flag: FlagRow; live: boolean; schools: { id: string; name: string }[]; summary: ReactNode }) {
+// `label`: the module's name in words (C230-V), when Control has one; otherwise its id is shown.
+export function FlagEditor({ flag, label, live, schools, summary }: { flag: FlagRow; label?: string; live: boolean; schools: { id: string; name: string }[]; summary: ReactNode }) {
   const { t } = useT();
   const [open, setOpen] = useState(false);
   const [enabled, setEnabled] = useState(flag.enabled ? 'on' : 'off');
@@ -193,11 +194,11 @@ export function FlagEditor({ flag, live, schools, summary }: { flag: FlagRow; li
     <li data-flag={`${flag.app}:${flag.module}`} data-flag-live={live ? 'on' : 'off'} className="flex flex-col gap-3 rounded-xl border border-slate/10 bg-white p-4">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0">
-          <h4 className="break-words text-base font-bold text-slate">{t('control.apps.module.name', { name: flag.module })}</h4>
+          <h4 className="break-words text-base font-bold text-slate">{label ?? t('control.apps.module.name', { name: flag.module })}</h4>
           <p className="text-sm text-slate/70">{summary}</p>
         </div>
         {!open && (
-          <Button type="button" variant="outline" onClick={() => setOpen(true)} aria-label={t('control.apps.edit.for', { name: flag.module })}>
+          <Button type="button" variant="outline" onClick={() => setOpen(true)} aria-label={t('control.apps.edit.for', { name: label ?? flag.module })}>
             {t('control.apps.edit')}
           </Button>
         )}
