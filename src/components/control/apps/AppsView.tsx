@@ -4,7 +4,7 @@ import { AppCard } from '@/components/app-ui/Card';
 import { BannerForm, FlagEditor, KillSwitch, ReasonButton, UndoButton, VersionForm } from '@/components/control/apps/AppsPanels';
 import { Badge } from '@/components/ui/Badge';
 import { APP_IDS, WHOLE_APP, flagOn, type AppId } from '@/lib/contracts/app-flags';
-import { toAppFlag, type ControlApps, type FlagRow, type LiveBuild } from '@/lib/control/apps';
+import { familyModuleRows, toAppFlag, type ControlApps, type FlagRow, type LiveBuild } from '@/lib/control/apps';
 import { isMessageKey, t, type Lang, type MessageKey } from '@/lib/i18n';
 
 // Control → Apps (docs/family-app/10 §2, M1-7). Drawn on the server from loadControlApps: for each app its version,
@@ -23,7 +23,9 @@ function audienceWords(lang: Lang, f: FlagRow): string {
   return t(lang, `control.apps.audience.${f.audience}` as MessageKey);
 }
 
-function Summary({ lang, flag, live }: { lang: Lang; flag: FlagRow; live: boolean }): ReactNode {
+function Summary({ lang, flag, live, everSet = true }: { lang: Lang; flag: FlagRow; live: boolean; everSet?: boolean }): ReactNode {
+  // A module never switched on has no row yet (C230-V): it is off for everyone until it is saved here.
+  if (!everSet) return <><Badge variant="warning">{t(lang, 'control.apps.module.off')}</Badge> {t(lang, 'control.apps.module.neverSet')}</>;
   return (
     <>
       <Badge variant={live ? 'success' : 'warning'}>{live ? t(lang, 'control.apps.module.on') : t(lang, 'control.apps.module.off')}</Badge> {audienceWords(lang, flag)}
@@ -84,7 +86,8 @@ export function AppsView({ data, build, lang, now }: { data: ControlApps; build:
 function AppSection({ app, data, build, lang, now }: { app: AppId; data: ControlApps; build: LiveBuild; lang: Lang; now: Date }) {
   const flags = data.flags.filter((f) => f.app === app);
   const whole = flags.find((f) => f.module === WHOLE_APP) ?? null;
-  const modules = flags.filter((f) => f.module !== WHOLE_APP);
+  // The Family app lists every built module of its registry, set or not (C230-V); the other apps list their saved rows.
+  const modules = app === 'family' ? familyModuleRows(flags) : flags.filter((f) => f.module !== WHOLE_APP).map((flag) => ({ flag, everSet: true }));
   const wholeLive = flagOn(whole ? toAppFlag(whole) : undefined, EVERYONE, now);
   const banners = data.banners.filter((b) => b.app === app);
   const isFamily = app === 'family';
@@ -124,9 +127,11 @@ function AppSection({ app, data, build, lang, now }: { app: AppId; data: Control
             <p className={NOTE}>{t(lang, 'control.apps.modules.none')}</p>
           ) : (
             <ul className="flex flex-col gap-3">
-              {modules.map((f) => {
-                const live = flagOn(toAppFlag(f), EVERYONE, now);
-                return <FlagEditor key={f.module} flag={f} live={live} schools={data.schools} summary={<Summary lang={lang} flag={f} live={live} />} />;
+              {modules.map(({ flag: f, everSet }) => {
+                const live = everSet && flagOn(toAppFlag(f), EVERYONE, now);
+                const key = `control.apps.module.label.${f.module}`;
+                const label = isMessageKey(key) ? t(lang, key) : undefined;
+                return <FlagEditor key={f.module} flag={f} label={label} live={live} schools={data.schools} summary={<Summary lang={lang} flag={f} live={live} everSet={everSet} />} />;
               })}
             </ul>
           )}

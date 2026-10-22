@@ -1,40 +1,7 @@
-// The Family app's module registry (docs/family-app/03 §2; M1-6, C252). Every family module is declared here once: its
-// tab, the Control flag that switches it, and its entitlement class. The home, the tabs and the APIs read this list;
-// nothing hard-codes a module elsewhere. A tab shows only when its first module is live (built and switched on).
-//
-// Entitlement classes (03 §2): `school_info` always free to a linked family; `learning` per child per subject (free for
-// one subject per child; Family Plus or a school's sponsorship later for the rest); `public` free; `plus` Plus only.
-
-export type FamilyTab = 'home' | 'study' | 'english' | 'future' | 'family';
-export type Entitlement = 'school_info' | 'learning' | 'public' | 'plus';
-// `addOn`: the module only extends others on its tab (M2-9's offline packs extend Understand), so it never shows a tab
-// by itself.
-export type FamilyModule = { id: string; tab: FamilyTab; flag: string; entitlement: Entitlement; built: boolean; milestone: string; addOn?: true };
-
-export const FAMILY_MODULES: readonly FamilyModule[] = [
-  { id: 'understand', tab: 'study', flag: 'understand', entitlement: 'learning', built: true, milestone: 'M1' },
-  { id: 'practice', tab: 'study', flag: 'practice', entitlement: 'learning', built: true, milestone: 'M1' },
-  { id: 'progress', tab: 'home', flag: 'progress', entitlement: 'public', built: true, milestone: 'M1' },
-  { id: 'parent_card', tab: 'family', flag: 'parent_card', entitlement: 'public', built: true, milestone: 'M1' },
-  { id: 'english_programme', tab: 'english', flag: 'english_programme', entitlement: 'plus', built: true, milestone: 'C274' },
-  { id: 'careers', tab: 'future', flag: 'careers', entitlement: 'public', built: false, milestone: 'M4' },
-  { id: 'opportunities', tab: 'future', flag: 'opportunities', entitlement: 'public', built: false, milestone: 'M4' },
-  { id: 'school_today', tab: 'home', flag: 'school_today', entitlement: 'school_info', built: false, milestone: 'M3' },
-  // M2 (C275): each slice sets its module's `built` when it ships.
-  { id: 'plan', tab: 'home', flag: 'plan', entitlement: 'learning', built: true, milestone: 'M2' },
-  // m2-3
-  { id: 'habit', tab: 'family', flag: 'habit', entitlement: 'public', built: true, milestone: 'M2' },
-  // m2-4
-  { id: 'worksheets', tab: 'study', flag: 'worksheets', entitlement: 'learning', built: true, milestone: 'M2' },
-  // m2-5
-  { id: 'videos', tab: 'study', flag: 'videos', entitlement: 'learning', built: true, milestone: 'M2' },
-  // m2-6
-  { id: 'homework', tab: 'study', flag: 'homework', entitlement: 'learning', built: true, milestone: 'M2' },
-  // m2-7
-  { id: 'voice_input', tab: 'study', flag: 'voice_input', entitlement: 'learning', built: true, milestone: 'M2' },
-  // m2-9
-  { id: 'offline', tab: 'study', flag: 'offline', entitlement: 'learning', built: true, milestone: 'M2', addOn: true },
-];
+// The Family app's module registry lives in the contracts (src/lib/contracts/family-modules.ts, C230-V), so Control →
+// Apps lists the same modules; the family code reads it from here as before.
+import { FAMILY_MODULES, type FamilyTab } from '@/lib/contracts/family-modules';
+export { FAMILY_MODULES, type Entitlement, type FamilyModule, type FamilyTab } from '@/lib/contracts/family-modules';
 
 export const TABS: readonly FamilyTab[] = ['home', 'study', 'english', 'future', 'family'];
 
