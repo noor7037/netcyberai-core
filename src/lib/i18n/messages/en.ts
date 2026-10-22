@@ -7,6 +7,8 @@ export const en = {
   'shell.nav.quick': 'Quick menu',
   'shell.menu.open': 'Open menu',
   'shell.menu.close': 'Close menu',
+  'shell.menu.hide': 'Hide menu',
+  'shell.menu.show': 'Show menu',
   'shell.menu.more': 'More',
   'shell.menu.incomplete': 'The menu could not load fully. Refresh the page to try again.',
   // File storage that does not work (C236): the red line in Control and, for the principal and school admin, in the app.

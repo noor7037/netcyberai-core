@@ -26,6 +26,13 @@ const config: Config = {
         slate: colors.slate,
         'off-white': colors.offWhite,
       },
+      // The phone menu slides in from the left (F1-2); `motion-reduce:animate-none` takes the slide away.
+      keyframes: {
+        'drawer-in': { from: { transform: 'translateX(-100%)' }, to: { transform: 'none' } },
+      },
+      animation: {
+        'drawer-in': 'drawer-in 180ms ease-out',
+      },
       fontFamily: {
         sans: [
           '-apple-system',

@@ -10,6 +10,8 @@ export const hi: Record<keyof typeof en, string> = {
   'shell.nav.quick': 'झटपट मेनू',
   'shell.menu.open': 'मेनू खोलें',
   'shell.menu.close': 'मेनू बंद करें',
+  'shell.menu.hide': 'मेनू छिपाएँ',
+  'shell.menu.show': 'मेनू दिखाएँ',
   'shell.menu.more': 'और',
   'shell.menu.incomplete': 'मेनू पूरा नहीं खुल पाया। पेज को दोबारा खोलकर देखें।',
   'shell.storage.control': 'फ़ाइल स्टोरेज काम नहीं कर रहा: {setting} {reason}। जब तक इसे Vercel में ठीक करके साइट दोबारा डिप्लॉय नहीं की जाती, अपलोड और लॉगिन आमंत्रण नहीं चलेंगे।',
