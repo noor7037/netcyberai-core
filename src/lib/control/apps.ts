@@ -203,7 +203,7 @@ export interface FlagInput {
   offMessageHi: string | null;
 }
 
-export function parseFlagInput(body: unknown): Done<{ value: FlagInput }> {
+export function parseFlagInput(body: unknown, now: Date = new Date()): Done<{ value: FlagInput }> {
   const b = (body ?? {}) as Record<string, unknown>;
   if (!isApp(b.app)) return { ok: false, code: 'app' };
   const module = text(b.module);
@@ -230,6 +230,9 @@ export function parseFlagInput(body: unknown): Done<{ value: FlagInput }> {
   if (b.endsAt !== null && b.endsAt !== undefined && b.endsAt !== '') {
     const d = new Date(String(b.endsAt));
     if (Number.isNaN(d.getTime())) return { ok: false, code: 'ends_at' };
+    // An end already past would save the switch "on" while it is off for everyone (C230-W: a phone's date picker fills
+    // in the current minute). To switch something off, untick it.
+    if (d.getTime() <= now.getTime()) return { ok: false, code: 'ends_past' };
     endsAt = d.toISOString();
   }
   const message = (v: unknown): string | null | undefined => {

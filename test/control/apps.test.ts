@@ -15,7 +15,7 @@ import { POST as bannersEndPost } from '@/app/api/control/apps/banners/end/route
 import { POST as previewRemovePost } from '@/app/api/control/apps/preview/remove/route';
 import { POST as undoPost } from '@/app/api/control/apps/undo/route';
 import { GET as familyGet } from '@/app/api/control/family/route';
-import { liveBuild, loadControlApps } from '@/lib/control/apps';
+import { liveBuild, loadControlApps, parseFlagInput } from '@/lib/control/apps';
 import { AppsView } from '@/components/control/apps/AppsView';
 import { activeBanner, flagOn, moduleOn, rolloutBucket, type AppBanner, type AppFlag } from '@/lib/contracts/app-flags';
 
@@ -252,11 +252,19 @@ describe('a change is audited with its before and after, and can be undone', () 
   });
   it('a change without a reason, with a bad audience, share or school list, or a reason over 300 characters is refused and writes nothing', async () => {
     const before = (await auditRows('app_flag.set')).length;
-    for (const bad of [{ reason: '' }, { reason: '  ' }, { reason: 'x'.repeat(301) }, { audience: 'nobody' }, { audience: 'percent', audiencePercent: 101 }, { audience: 'percent' }, { audience: 'schools', audienceSchools: [] }, { audience: 'schools', audienceSchools: ['not-an-id'] }, { module: 'Bad Module' }, { app: 'control' }, { endsAt: 'tomorrow-ish' }, { offMessageEn: 'x'.repeat(301) }]) {
+    for (const bad of [{ reason: '' }, { reason: '  ' }, { reason: 'x'.repeat(301) }, { audience: 'nobody' }, { audience: 'percent', audiencePercent: 101 }, { audience: 'percent' }, { audience: 'schools', audienceSchools: [] }, { audience: 'schools', audienceSchools: ['not-an-id'] }, { module: 'Bad Module' }, { app: 'control' }, { endsAt: 'tomorrow-ish' }, { endsAt: '2020-01-01T00:00:00Z' }, { offMessageEn: 'x'.repeat(301) }]) {
       const res = await flagsPost(req('/api/control/apps/flags', flagBody(bad), founder));
       expect(res.status, JSON.stringify(bad)).toBe(400);
     }
     expect(await auditRows('app_flag.set')).toHaveLength(before);
+  });
+  it('an end time already past is refused with its own words, since it would save a switch "on" that is off (C230-W)', async () => {
+    const res = await flagsPost(req('/api/control/apps/flags', flagBody({ enabled: true, endsAt: new Date(Date.now() - 60_000).toISOString() }), founder));
+    expect(res.status).toBe(400);
+    expect((await res.json()).code).toBe('ends_past');
+    const at = new Date('2026-10-22T16:01:59Z');
+    expect(parseFlagInput({ ...flagBody({ endsAt: '2026-10-22T16:01:00Z' }) }, at)).toEqual({ ok: false, code: 'ends_past' });
+    expect(parseFlagInput({ ...flagBody({ endsAt: '2026-10-22T18:00:00Z' }) }, at)).toMatchObject({ ok: true, value: { endsAt: '2026-10-22T18:00:00.000Z' } });
   });
   it('Undo restores the before state in one step, is itself audited, and works once', async () => {
     const [change] = await auditRows('app_flag.set');
