@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { openSubjects } from '@/lib/family/learning';
 import { activeChild, listChildren } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
 import { familyModuleOn } from '@/lib/family/flags';
@@ -29,7 +30,8 @@ export async function GET(req: NextRequest) {
     if (!(await familyModuleOn(db, 'offline', g.session.accountId)) || !(await familyModuleOn(db, 'understand', g.session.accountId))) return NextResponse.json({ error: 'not_switched_on' }, { status: 403, headers: NO_STORE });
     const line = await syllabusLine(db, child, { kind: 'chapter', key });
     if (!line || !isSubject(line.subject)) return NextResponse.json({ error: 'not_found' }, { status: 404, headers: NO_STORE });
-    if (child.freeSubject !== line.subject) return NextResponse.json({ error: 'not_open' }, { status: 403, headers: NO_STORE });
+    // The child's free subject, or one Control opens to every child (C298); a pack never claims a subject.
+    if (child.freeSubject !== line.subject && !(await openSubjects(db)).includes(line.subject)) return NextResponse.json({ error: 'not_open' }, { status: 403, headers: NO_STORE });
     const [pack] = await chapterPacks(db, { accountId: g.session.accountId, child }, line.subject, { chapterKeys: [line.key] });
     if (!pack) return NextResponse.json({ error: 'not_found' }, { status: 404, headers: NO_STORE });
     return NextResponse.json(pack, { headers: NO_STORE });

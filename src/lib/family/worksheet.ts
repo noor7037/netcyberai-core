@@ -2,7 +2,7 @@ import { parseBlockLine, type Block, type QuizItem } from './blocks';
 import { syllabusBoardOf, type FamilyChild } from './children';
 import { familyModuleOn } from './flags';
 import { sealItem, type PublicItem } from './items';
-import { claimSubject } from './learning';
+import { claimSubject, reviewedOnlySubjects } from './learning';
 import { syllabusLine, type Line } from './resolver';
 import type { Subject } from './subjects';
 
@@ -51,11 +51,13 @@ export async function loadWorksheet(db: Db, ctx: { accountId: string; child: Fam
   if (!(await claimSubject(db, ctx.accountId, child.childId, line.subject))) return { state: 'not_open', line };
   const { rows } = await db.query(
     `select blocks, status from content.responses
-      where board_id = $1 and class_level = $2 and subject = $3 and topic_key = $4 and language = $5 and style = $6 and status <> 'withdrawn'
-      order by (status = 'checked') desc, prompt_version desc`,
-    [syllabusBoardOf(child), child.classLevel, line.subject, line.key, child.language, child.style]
+      where board_id = $1 and class_level = $2 and subject = $3 and topic_key = $4 and language = $5 and status <> 'withdrawn'
+        and case when $7::boolean then status = 'checked' else style = $6 end
+      order by (status = 'checked') desc, (style = $6) desc, prompt_version desc`,
+    [syllabusBoardOf(child), child.classLevel, line.subject, line.key, child.language, child.style, (await reviewedOnlySubjects(db)).includes(line.subject)]
   );
-  // Checked responses first, then AI-made ones; the sheet is "checked" only when every response it draws on is.
+  // Checked responses first, then AI-made ones (checked only, in a "checked explanations only" subject, C300); the sheet
+  // is "checked" only when every response it draws on is.
   const items: QuizItem[] = [];
   let allChecked = true;
   for (const r of rows) {

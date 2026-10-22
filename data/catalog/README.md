@@ -538,7 +538,8 @@ Classes 1 to 5, every subject the app teaches in these classes (`stageSubjects` 
 `mathematics`, `english`, `hindi`, and `evs` for Classes 3–5. The lines are the contents of NCERT's current textbooks,
 which CBSE schools teach from in these classes, so the board is `CBSE`. Academic year `2026-27`, every line
 `in_review`, every line read on **2026-10-22** (`checked_on`). Same columns as the file above. 692 lines: 51 units,
-243 chapters, 398 topics; 216 lines have a Hindi title.
+243 chapters, 398 topics; 283 lines have a Hindi title (216 until the 67 Class 5 EVS topics were added on 2026-10-22,
+see "Class 5 EVS topics from the Hindi edition" below).
 
 **Which books are current.** NCERT's textbook page https://ncert.nic.in/textbook.php lists, in its class, subject and
 book menus, exactly one book per class and subject below (and its other-language editions). The earlier books
@@ -595,7 +596,7 @@ page is 1), not the numbers printed on the pages.
 | Subject | Book (NCERT code) | Contents PDF | Units | Chapters | Topics | Pages used | `title_hi` |
 |---|---|---|---|---|---|---|---|
 | mathematics | *Maths Mela* (0533) | https://ncert.nic.in/textbook/pdf/eemm1ps.pdf | 0 | 15 | 92 | 15; topics from `eemm101`–`eemm115.pdf` | 15 of 107 (chapters), from *गणित मेला*, https://ncert.nic.in/textbook/pdf/ehmm1ps.pdf page 15 |
-| evs | *Our Wondrous World* (0535) | https://ncert.nic.in/textbook/pdf/eeev1ps.pdf | 5 | 10 | 67 | 15; topics from `eeev101`–`eeev110.pdf` | 15 of 82 (units, chapters), from *हमारा अद्भुत संसार*, https://ncert.nic.in/textbook/pdf/ehev1ps.pdf page 15 |
+| evs | *Our Wondrous World* (0535) | https://ncert.nic.in/textbook/pdf/eeev1ps.pdf | 5 | 10 | 67 | 15; topics from `eeev101`–`eeev110.pdf` | 82 of 82, from *हमारा अद्भुत संसार*: units and chapters from https://ncert.nic.in/textbook/pdf/ehev1ps.pdf page 15, topics from its chapter PDFs `ehev101`–`ehev110.pdf` (see "Class 5 EVS topics from the Hindi edition") |
 | english | *Santoor* (0532) | https://ncert.nic.in/textbook/pdf/eesa1ps.pdf | 5 | 10 | 0 | 15 | none |
 | hindi | *वीणा* (0531) | https://ncert.nic.in/textbook/pdf/ehve1ps.pdf | 0 | 12 | 0 | 17–19 | 12 of 12, the printed title |
 
@@ -650,14 +651,75 @@ page is 1), not the numbers printed on the pages.
   compared with the English one: the same number of units and chapters, in the same order, starting on the same
   pages. The Hindi titles are the Hindi edition's own, not translations of the English ones (for example Class 3 EVS
   "Living in Harmony" is "निर्भरता एक-दूसरे पर").
-- **Topics** have no `title_hi`: their headings were not matched against the Hindi editions' chapters.
+- **Topics** have no `title_hi`, except Class 5 EVS (next section): the other books' headings were not matched against
+  the Hindi editions' chapters.
 - **English books** have no `title_hi`: NCERT's textbook page lists no Hindi edition of *Mridang* or *Santoor*.
+
+### Class 5 EVS topics from the Hindi edition (added 2026-10-22, P1-1)
+
+For the Class 5 pilot (C230-S), each of the 67 Class 5 EVS topics has as `title_hi` the heading NCERT's Hindi edition,
+*हमारा अद्भुत संसार*, prints in the same place: https://ncert.nic.in/textbook/pdf/ehev101.pdf to `ehev110.pdf`, the
+Hindi PDFs of the chapters whose English PDFs (`eeev101`–`eeev110.pdf`) the topics cite. Nothing was translated or
+transliterated. Only these 67 `title_hi` cells changed; every other column, and every other line of the file, is as
+before (the 15 units and chapters already had the Hindi contents page's titles). Every Class 5 EVS line now has a
+Hindi title.
+
+**Where each Hindi title's source is recorded.** As for Classes IX–XII,
+[`hindi-sources/ncert-2026-27-classes-1-5.csv`](hindi-sources/ncert-2026-27-classes-1-5.csv) has one line for each of
+the 82 Class 5 EVS lines (the units and chapters too): the key, the Hindi title, the Hindi PDF and the page it is
+printed on, NCERT's reference (`Unit 1`, `ch. 1`, or `ch. 1, heading 2` for the second topic heading of chapter 1),
+NCERT's English name for it, the day it was read and, in an eighth column `matched_by`, how the line was matched.
+`test/content/catalog-csv.test.ts` checks that every Class 5 EVS `title_hi` is Devanagari and is that file's title for
+its key, from the Hindi PDF of the same chapter. The proof sheet shows each Hindi title under the English one, with a
+link to its Hindi page.
+
+How a topic was matched (one to one, by order, page and content):
+
+- **The book numbers no headings.** Each Hindi chapter PDF has as many pages as the English one, laid out the same,
+  and prints its section headings in the same dark red style. The n-th topic of a chapter took the chapter's n-th
+  Hindi topic heading; each pair was then checked to be on the same page and to say the same thing. All 67 pair up,
+  and every chapter has as many Hindi topic headings as English ones.
+- **NCERT's own Hindi wording**, not a translation of the English: "Food in Our Body" is "हमारे शरीर में भोजन की
+  यात्रा", "Our Lifeline—Rivers in India" is "भारत की नदियाँ — हमारी जीवनरेखा", "Where I Begin, Where I Flow" is
+  "कहाँ से मेरा उद्गम है, कहाँ मैं बहती हूँ?". Taken as printed, so some English headings ending in "!" have none in
+  Hindi.
+- **Fire Safety (chapter 4, page 14): for the supervisor to confirm.** The English prints it as a dark red heading
+  above a box; the Hindi prints "अग्नि सुरक्षा" as the title of that box (white on green, beside a "सुरक्षा सर्वोपरि"
+  sign), not as a heading. It is the same section on the same page, so it was taken.
+- **One Earth, One Family! (chapter 10)** is on page 13 in English and page 14 in Hindi (the Hindi text runs longer);
+  the Hindi line cites page 14.
+- **Not counted:** two dark red Hindi headings that the English edition prints as smaller headings, which are not
+  topics: "परिवर्तनों का अवलोकन" (chapter 1, page 6; English "Observing Changes") and "खाद्य संरक्षण" (chapter 3, page 6;
+  English "Food Preservation"). Nor are the exercise labels "आइए विचार करें" and "आइए अभ्यास करें" ("Let us reflect",
+  "Let us practice").
+
+How the titles were read:
+
+- **From the printed page.** Each heading was read from a picture of the page and typed, in Unicode NFC, with no
+  joiners; no picture is kept (C262). A heading printed on two lines is joined with a space.
+- **Kept as printed:** each dash and the spaces around it ("सुंदरवन— मैंग्रोव का घर", "कहानी 1— प्रवासी पक्षी", "कहानी 2
+  — योग — विश्व को भारत का उपहार!"), the hyphens ("जल-चक्र", "अपशिष्ट-प्रबंधन") and "?" or "!" where the Hindi prints
+  them. "उद्गम" is printed with the halant of द showing; it is stored as the plain letters, as everywhere else.
+- **Mechanical check.** The text layer of these PDFs is damaged by an old font mapping (chapter 1 stores ल as ि,
+  chapter 9 stores the printed ऋ as ॠ, and so on), so it cannot be copied, and the letter check of Classes IX–XII does
+  not work as is. Instead each typed title was lined up with the text layer of the heading in the same place: 5 of 67
+  are identical, 16 of 67 contain every letter of the typed title, and each difference in the rest was looked at
+  against the picture of the page.
+
+**Loading it.** The loader makes a new version of every syllabus in the file it is given, so loading this whole file
+with a new `--ref` also makes an unchanged new version of the other 17 syllabi (610 lines). To load only Class 5 EVS
+as its new version, give the loader the header and the 82 Class 5 EVS lines:
+
+```
+{ head -1 data/catalog/ncert-2026-27-classes-1-5.csv; grep '^CBSE,5,evs,' data/catalog/ncert-2026-27-classes-1-5.csv; } > c5-evs.csv
+node scripts/content/catalog-sql.mjs c5-evs.csv --ref "<the PR that committed it>" > load.sql
+```
 
 ### Gaps (not filled; never guessed)
 
 | What | Why |
 |---|---|
-| `title_hi` of the 398 topics | Matching each heading with the Hindi edition's chapter PDFs was not done. The app shows the English heading. |
+| `title_hi` of the other 331 topics (all but Class 5 EVS) | Matching each heading with the Hindi edition's chapter PDFs was not done. The app shows the English heading. |
 | Topics of *Joyful Mathematics* and of the English and Hindi books | Their chapters print no section headings (see above). |
 | Pieces not taken as chapters | Listed above and on each proof page with their pages. If the founder wants the starred and unnumbered reading pieces as chapters, they can be added in a new version. |
 | Arts, Physical Education and Well-being, Urdu (on NCERT's menu for these classes) | Not subjects of the app for Classes 1–5. |
@@ -668,7 +730,9 @@ page is 1), not the numbers printed on the pages.
    [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md)).
 2. Units and chapters: find `title_en` on the contents page, in the same order. For a mathematics or EVS line with a
    `title_hi`, open the Hindi edition's contents page (same page number) and find `title_hi` there.
-3. Topics: the heading is printed on that page of the chapter's PDF.
+3. Topics: the heading is printed on that page of the chapter's PDF. For a Class 5 EVS topic, its line in
+   [`hindi-sources/ncert-2026-27-classes-1-5.csv`](hindi-sources/ncert-2026-27-classes-1-5.csv) gives the Hindi
+   chapter's PDF and page: `title_hi` is the heading printed there, in the same place as the English one.
 4. A mechanical check used while drafting: every English word of three or more letters in each `title_en` appears in
    the text of its cited page (`pdftotext -raw`); all 692 lines pass. Devanagari titles were checked by eye, because
    the PDFs' text layer garbles them.

@@ -180,8 +180,10 @@ Good to know before you start:
 
 - **EVS** is NCERT's "The World Around Us" (book: *Our Wondrous World*), filed under the app's subject EVS.
 - **Hindi titles.** Hindi books show their printed Devanagari title in both languages. Mathematics and EVS units and
-  chapters have the title printed in NCERT's Hindi edition of the same book; their topics, and the English books, have
-  none. Nothing was translated.
+  chapters have the title printed in NCERT's Hindi edition of the same book. Topics have none, except **Class 5 EVS**
+  (since 2026-10-22, for the Class 5 pilot): each of its 67 topics has the same heading as NCERT's Hindi edition
+  prints it, with a link to that page. **Please check** its "Fire Safety" line, which the Hindi edition prints as a box
+  title (its proof page says more). The English books have none. Nothing was translated.
 - **Topics** only for Maths Mela and Our Wondrous World (Classes 3–5): the section headings printed inside each
   chapter. The other books print none.
 - **Not in our list:** pieces the contents prints without a lesson number (the starred, reading-only pieces of सारंगी
@@ -194,7 +196,8 @@ Good to know before you start:
 2. **Units and chapters:** the names and the order on our list match the contents page. For a Hindi line under a
    mathematics or EVS chapter, its link opens the Hindi edition's contents page.
 3. **Topics:** click the page link next to a few topics in each chapter: the chapter's PDF opens at that page, and
-   the heading is printed there.
+   the heading is printed there. For Class 5 EVS, the link under the English one opens the Hindi chapter's PDF at the
+   page where the Hindi heading is printed.
 4. Check the row **Printed but not in our list**: everything else on the contents page is on our list.
 5. Note anything that does not match, then approve or reject the version as described above.
 

@@ -61,6 +61,9 @@ export type AiContext = {
   childFirstNames: string[];
   parentEmail?: string;
   day: string; // the India date, YYYY-MM-DD
+  // NetCyberAI staff preparing the shared library before children ask (C300): `accountId` is the staff member's user
+  // id, and no family's daily cap is taken. Set only by server code behind the content staff guard, never from a request.
+  staffPreparing?: true;
 };
 export type AiRequest = {
   system: string;
@@ -199,7 +202,7 @@ async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capab
 
 // 4. The family's daily cap, counted before the request leaves.
 async function takeCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link): Promise<boolean> {
-  if (profile.audience !== 'family') return true;
+  if (profile.audience !== 'family' || ctx.staffPreparing) return true;
   const limit = await dailyLimit(db);
   if (limit === null || !(await takeDailyRequest(db, ctx.accountId, ctx.day, limit))) {
     await count(db, ctx.day, profile.id, first, { capRefusals: 1 });
