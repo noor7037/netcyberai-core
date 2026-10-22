@@ -62,7 +62,20 @@ the Academic Year 2026-27", Secondary Curriculum Part 1, Class IX and Class X �
 - **Hindi titles (`title_hi`) are empty on every line.** CBSE's 2026-27 curriculum page links no Hindi version of
   these four documents (its Hindi PDFs are the Hindi language syllabi), and no NCERT Hindi document was read for this
   file. Titles were not translated: the app shows the English title until a Hindi title from an official document is
-  added in a new version.
+  added in a new version. Checked again on 2026-10-21; see "Hindi titles and Class X Science topics: checked again".
+
+### Hindi titles and Class X Science topics: checked again (2026-10-21)
+
+Both were looked for again before the founder's approval; neither exists in an official 2026-27 document, so the file
+is unchanged.
+
+| What | Where we looked (all on 2026-10-21) | What was found |
+|---|---|---|
+| **A Hindi version of the four documents** (for `title_hi`) | https://cbseacademic.nic.in/curriculum_2027.html, also with the site's Hindi switch (`?lang=hindi`: the same document links); https://cbseacademic.nic.in/index.html (its "Curriculum" menu); https://cbseacademic.nic.in/curriculum_2026.html (2025-26, for the pattern only) | The 2026-27 page's Hindi documents are the Hindi language syllabi (`Hindi_SecP1IX_`, `Hindi_A_SecP1_`, `Hindi_B_SecP1_`, `Hindi_Core_SecP2_`, `Hindi_Elective_SecP2_2026-27.pdf`) and five Class XI–XII subjects (`GeographyHi_`, `HistoryHindi_`, `KTPI_hi_`, `PhysicalEducationHi_`, `PoliticalScienceHi_SecP2_2026-27.pdf`). None is Mathematics or Science for Classes IX–X. The same file names with a Hindi ending, tried on the same folder (`web_material/CurriculumMain27/SecPart1/`: `MathsHi_SecP1IX_`, `MathsHi_SecP1X_`, `ScienceHi_SecP1_`, `ScienceStHi_SecP1_` and similar, `_2026-27.pdf`), do not exist (HTTP 404). |
+| **Class X Science topics** | `Science_SecP1_2026-27.pdf`, pages 4–6, read again | Each chapter is printed as one paragraph after its name ("Chemical Reactions and Equations: Chemical reactions, Chemical equation, …"), not as bullets or numbered items. Splitting a paragraph into topics would be our wording, not CBSE's, so the chapters keep no topic lines. |
+
+The proof sheets for the founder's approval (CBSE's course structure page beside each version's lines) are in
+[`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md).
 
 ### Gaps (not filled; never guessed)
 

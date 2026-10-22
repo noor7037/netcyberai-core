@@ -1,8 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { PublicBlock, ResolverEvent } from '@/lib/family/resolver';
 import type { Words } from '@/lib/family/fill';
+import { SUBJECTS } from '@/lib/family/modules';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from './blocks/BlockViews';
 import { QuizView } from './blocks/QuizView';
 
@@ -11,8 +13,10 @@ import { QuizView } from './blocks/QuizView';
 // says what it is: "AI-made" until the founder approves it, then "Checked by NetCyberAI". A response from the shared
 // library may come with the page (`initial`, C255); then nothing is asked until a follow-up.
 
-export type UnderstandInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; subject: 'mathematics' | 'science' };
+// A typed question carries no subject: the server decides it (F1-3).
+export type UnderstandInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string };
 type Meta = Extract<ResolverEvent, { t: 'meta' }>;
+type GoTo = NonNullable<Extract<ResolverEvent, { t: 'refused' }>['goTo']>;
 type Ask = { input: UnderstandInput; followUp?: string; retry?: { token: string; choice: number } };
 
 const FOLLOW_UPS = ['simpler', 'another_example', 'differently', 'practise_more'] as const;
@@ -22,6 +26,7 @@ export function UnderstandView({ w, input, tone, initial = null }: { w: Words; i
   const [blocks, setBlocks] = useState<PublicBlock[]>(() => (initial ?? []).flatMap((e) => (e.t === 'block' ? [e.block] : [])));
   const [state, setState] = useState<'loading' | 'streaming' | 'done' | 'incomplete' | 'refused'>(initial ? 'done' : 'loading');
   const [refusal, setRefusal] = useState('');
+  const [goTo, setGoTo] = useState<GoTo | null>(null);
   const top = useRef<HTMLDivElement>(null);
   // Only the latest request may draw: an earlier one (a follow-up tapped twice, React's double run in development) is
   // aborted and anything it still sends is ignored.
@@ -34,6 +39,7 @@ export function UnderstandView({ w, input, tone, initial = null }: { w: Words; i
     setState('loading');
     setBlocks([]);
     setRefusal('');
+    setGoTo(null);
     try {
       const res = await fetch('/api/family/understand', {
         method: 'POST',
@@ -66,6 +72,7 @@ export function UnderstandView({ w, input, tone, initial = null }: { w: Words; i
           else if (e.t === 'done') setState(e.complete ? 'done' : 'incomplete');
           else if (e.t === 'refused') {
             setRefusal(e.message);
+            setGoTo(e.goTo && (SUBJECTS as readonly string[]).includes(e.goTo.subject) ? e.goTo : null);
             setState('refused');
           }
         }
@@ -97,8 +104,13 @@ export function UnderstandView({ w, input, tone, initial = null }: { w: Words; i
         </div>
       )}
       {state === 'refused' && (
-        <section role="status" className="rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
-          {refusal}
+        <section role="status" className="flex flex-col gap-3 rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
+          <p>{refusal}</p>
+          {goTo && (
+            <Link href={`/family/study?subject=${goTo.subject}`} className="inline-flex min-h-[44px] items-center self-start rounded-2xl px-1 font-bold text-royal-deep underline-offset-4 hover:underline">
+              {goTo.label} <span aria-hidden="true">→</span>
+            </Link>
+          )}
         </section>
       )}
       {blocks.map((b, i) => {

@@ -2,7 +2,7 @@ import { randomBytes } from 'crypto';
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
-import { REFUSAL_MESSAGE, streamText, type AiContext, type AiRequest } from '@/lib/ai/platform';
+import { REFUSAL_MESSAGE, prepareText, streamText, type AiContext, type AiRequest } from '@/lib/ai/platform';
 import { openaiAdapter } from '@/lib/ai/adapters/openai';
 import { adapterFor, standInAllowed } from '@/lib/ai/adapters';
 import { sealAiKey, aiEncryptionKey } from '@/lib/ai/credentials';
@@ -323,6 +323,38 @@ describe('the daily cap', () => {
   it('the cap message, in English and Hindi', () => {
     expect(en[REFUSAL_MESSAGE.cap_reached]).toBe("You have used today's explanations. More tomorrow.");
     expect(hi[REFUSAL_MESSAGE.cap_reached]).toMatch(/कल/);
+  });
+});
+
+describe('three steps, so no connection is held during the call (F1-3)', () => {
+  it('prepare takes the cap place; send needs no database and goes out once; record writes the metering', async () => {
+    await clear('anthropic');
+    await useProfile('anthropic', 'test-model-a');
+    await sealInto('anthropic', ANTHROPIC_KEY);
+    replies.push(() => anthropicOk(['Plants ', 'make food.'], 5, 3));
+    const prepared = await asFamily(A, (tx) => prepareText(tx as never, ctxA, 'family.resolver', ask('Asha asks: what is photosynthesis?')));
+    if (!prepared.ok) throw new Error('not prepared');
+    expect(await q(`select requests from family.ai_daily`)).toEqual([{ requests: 1 }]);
+    expect(calls).toHaveLength(0);
+    // The prepared call keeps the opened key out of reach: nothing a log could print.
+    expect(JSON.stringify(prepared)).not.toContain(ANTHROPIC_KEY);
+    const pieces: string[] = [];
+    const sent = await prepared.text.send((p) => pieces.push(p));
+    expect(sent.result).toMatchObject({ ok: true, text: 'Plants make food.', provider: 'anthropic' });
+    expect(pieces).toEqual(['Plants ', 'make food.']);
+    expect(calls[0].body).not.toContain('Asha');
+    expect(await q(`select * from control.ai_usage`)).toHaveLength(0);
+    // One cap place, one request: a second send goes nowhere.
+    expect((await prepared.text.send()).result).toEqual({ ok: false, reason: 'failed' });
+    expect(calls).toHaveLength(1);
+    await asFamily(A, (tx) => sent.record(tx as never));
+    expect(await q(`select requests, failures, tokens_in::int, tokens_out::int from control.ai_usage`)).toEqual([{ requests: 1, failures: 0, tokens_in: 5, tokens_out: 3 }]);
+  });
+
+  it('a refusal at prepare sends nothing and takes no cap place', async () => {
+    expect(await asFamily(A, (tx) => prepareText(tx as never, ctxA, 'family.resolver', ask()))).toEqual({ ok: false, reason: 'not_switched_on' });
+    expect(await q(`select * from family.ai_daily`)).toHaveLength(0);
+    expect(calls).toHaveLength(0);
   });
 });
 

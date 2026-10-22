@@ -13,11 +13,18 @@ const ai = vi.hoisted(() => ({ lines: [] as string[] }));
 vi.mock('@/lib/ai/platform', async (original) => ({
   ...(await original<typeof import('@/lib/ai/platform')>()),
   activePromptVersion: async () => 'v1',
-  streamText: async (_db: unknown, _ctx: unknown, _p: unknown, _req: unknown, onDelta: (t: string) => void) => {
-    for (const l of ai.lines) onDelta(`${l}\n`);
-    return { ok: true, text: '', tokensIn: 1, tokensOut: 1, provider: 'anthropic', model: 'm' };
-  },
+  prepareText: async () => ({
+    ok: true,
+    text: {
+      send: async (onDelta: (t: string) => void) => {
+        for (const l of ai.lines) onDelta(`${l}\n`);
+        return { result: { ok: true, text: '', tokensIn: 1, tokensOut: 1, provider: 'anthropic', model: 'm' }, record: async () => {} };
+      },
+    },
+  }),
 }));
+// A typed question's answer starts with the subject the model names (F1-3); a topic's has no such line.
+const about = (subject: string) => [JSON.stringify({ type: 'subject', subject }), ...BLOCKS];
 
 const item = (id: string) => ({ id, question: `Q ${id}?`, options: ['a', 'b', 'c', 'd'], answer: 2, hint: 'h', why: 'y', wrong: ['w0', 'w1', '', 'w3'] });
 const BLOCKS = [
@@ -92,8 +99,10 @@ describe('learning, end to end', () => {
     const ev = await events(await R.understand.POST(post('/api/family/understand', { kind: 'topic', key: TOPIC })));
     expect(ev[0].t).toBe('meta');
     expect((await db.pg.query(`select free_subject from family.children where child_id = $1`, [CHILD])).rows[0].free_subject).toBe('science');
+    ai.lines = about('mathematics');
     const other = await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'What is a prime number?', subject: 'mathematics' })));
     expect(other[0]).toMatchObject({ t: 'refused', reason: 'not_open' });
+    expect(other.some((e: { t: string }) => e.t === 'block')).toBe(false);
   });
 
   it('only checked answers move progress; a topic right on two days a week apart is mastered', async () => {
@@ -117,6 +126,7 @@ describe('learning, end to end', () => {
   });
 
   it('a typed question’s answers are kept but move no syllabus topic', async () => {
+    ai.lines = about('science');
     const ev = await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'Why does ice float?', subject: 'science' })));
     await R.check.POST(post('/api/family/check', { token: firstToken(ev), choice: 2 }));
     expect((await db.pg.query(`select count(*)::int n from family.topic_progress where topic_key like '%.question'`)).rows[0].n).toBe(0);
@@ -139,6 +149,7 @@ describe('learning, end to end', () => {
 
   it('Control’s switches reach the family: a module for staff preview only, and the kill switch', async () => {
     await db.pg.query(`update control.app_flags set audience = 'staff_preview' where app = 'family' and module = 'understand'`);
+    ai.lines = about('mathematics');
     const off = await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'What is a ratio?', subject: 'mathematics' })));
     expect(off[0]).toMatchObject({ t: 'refused', reason: 'not_switched_on' });
     await db.pg.query(`insert into control.preview_accounts (account_id, added_by) values ($1, $2)`, [ACCOUNT, 'f6000000-0000-4000-8000-0000000000f1']);

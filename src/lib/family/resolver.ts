@@ -1,8 +1,9 @@
-import { REFUSAL_MESSAGE, activePromptVersion, streamText, type AiRefusal } from '@/lib/ai/platform';
-import { RESOLVER_PROMPT_VERSION, resolverSystem, resolverUser, type ResolverAsk } from '@/lib/ai/prompts/family.resolver/v1';
+import { REFUSAL_MESSAGE, activePromptVersion, prepareText, type AiRefusal, type PreparedText, type SentText } from '@/lib/ai/platform';
+import { resolverPrompt, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
 import { BLOCK_SCHEMA_VERSION, completeResponse, parseBlockLine, type Block, type BlockType } from './blocks';
 import type { FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
+import { SUBJECTS, subjectAccess, type Subject } from './modules';
 
 // The Concept Resolver, "Understand" (docs/family-app/02 §4, 03 §6; M1-5, C251): a chapter, a topic or a typed
 // question in, typed blocks out, streamed one by one as each passes its checks.
@@ -13,21 +14,31 @@ import { sealItem, type PublicItem } from './items';
 //   3. generate  through the AI platform (profile family.resolver): the minors check, the pre-processor that removes
 //                every child identifier, the daily cap and the metering all happen there
 //   4. verify    each line is checked against its block's shape; arithmetic is recomputed; links come from the
-//                allowlist; only the first block of each type is kept
+//                allowlist; only the first block of each type is kept. A typed question's subject is named by the model
+//                on its first line and checked here before any block is shown (the screen's subject is never used):
+//                another subject, or one the child may not use, is refused with a pointer to it
 //   5. keep      a complete topic or chapter response (explanation, check and practice all passed) goes into the
 //                library as AI-made for the next child; a follow-up or a typed question does not
 // Check and practice items reach the phone without their answers: each carries a sealed token (items.ts).
+//
+// No database connection is held while the model answers (F1-3): prepareResolve() does 1–2 and the AI platform's
+// checks in the caller's first short transaction; generate() streams 3–4 with no connection held (a child with no free
+// subject claims a typed question's subject in a short transaction of its own, just before the first block is shown);
+// keep() writes the metering and the library line in the caller's second short transaction. A library hit is served
+// in the first transaction alone.
 
 export type FollowUp = NonNullable<ResolverAsk['followUp']>;
 export const FOLLOW_UPS: readonly FollowUp[] = ['simpler', 'another_example', 'differently', 'practise_more'];
-export type ResolveInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; subject: 'mathematics' | 'science' };
+// A typed question's subject is null: the model names it and the server checks it. A retry of a typed question carries
+// the subject sealed in its item by this server.
+export type ResolveInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; subject: Subject | null };
 
 export type PublicBlock = Exclude<Block, { type: 'check' } | { type: 'practice' }> | { type: 'check' | 'practice'; items: PublicItem[] };
 export type ResolverEvent =
   | { t: 'meta'; label: 'ai_made' | 'checked'; cached: boolean; title: string | null; subject: string; topicKey: string | null }
   | { t: 'block'; block: PublicBlock }
   | { t: 'done'; complete: boolean }
-  | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open'; message: string };
+  | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open' | 'other_subject'; message: string; goTo?: { subject: Subject; label: string } };
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
 export type ResolverContext = {
@@ -36,9 +47,10 @@ export type ResolverContext = {
   childFirstNames: string[];
   parentEmail: string;
   day: string;
-  refusalWords: (key: string) => string;
-  // The subject's entitlement (M1-6): the child's free subject, claimed on first use. Absent: every subject is open.
-  allowSubject?: (subject: 'mathematics' | 'science') => Promise<boolean>;
+  refusalWords: (key: string, params?: Record<string, string>) => string;
+  // The subject's entitlement (M1-6): the child's free subject, claimed on first use, on the transaction it is given.
+  // Returns whether the subject is open. Absent: every subject is open and nothing is claimed.
+  claimSubject?: (db: Db, subject: Subject) => Promise<boolean>;
 };
 
 // Whom the sealed items are for.
@@ -108,44 +120,91 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
 // free one, so drawing the page never claims a subject; otherwise, or when the library has none, the phone asks.
 export async function libraryResponse(db: Db, ctx: Seal, line: Line): Promise<ResolverEvent[] | null> {
   if (ctx.child.freeSubject !== line.subject) return null;
-  const promptVersion = (await activePromptVersion(db as never, 'family.resolver')) ?? RESOLVER_PROMPT_VERSION;
+  const promptVersion = resolverPrompt(await activePromptVersion(db as never, 'family.resolver'), false).version;
   return libraryEvents(db, ctx, line, promptVersion);
 }
 
-export async function resolve(db: Db, ctx: ResolverContext, input: ResolveInput, followUp: FollowUp | null, emit: (e: ResolverEvent) => void, misconception: string | null = null): Promise<void> {
+// What prepareResolve() hands on: everything generate() and keep() need, and no database client.
+export type Pending = {
+  ctx: ResolverContext;
+  line: Line | null;
+  // The subject when the server knows it (a syllabus line, a retry's sealed item); null when the model names it.
+  known: Subject | null;
+  open: Subject[];
+  cacheable: boolean;
+  promptVersion: string;
+  text: PreparedText;
+};
+
+export type Generated = {
+  sent: SentText;
+  subject: Subject | null;
+  // The blocks shown, in the order they passed.
+  kept: Block[];
+  refusedByModel: boolean;
+  // A refusal already sent while streaming (a typed question in another subject): nothing more is said.
+  stopped: boolean;
+  // Drawing the answer failed (the phone went away, or a fault): the call is still metered by keep(), then this is
+  // raised.
+  error: unknown;
+};
+
+const SUBJECT_NAMED = /"type"\s*:\s*"subject"/;
+
+// The subject the model named, when the line is the subject line: 'other' for any subject outside the app's two.
+export function namedSubject(text: string): Subject | 'other' | null {
+  if (!SUBJECT_NAMED.test(text)) return null;
+  const start = text.indexOf('{');
+  const end = text.lastIndexOf('}');
+  if (start < 0 || end <= start) return null;
+  try {
+    const v = JSON.parse(text.slice(start, end + 1)) as { type?: unknown; subject?: unknown };
+    if (v.type !== 'subject' || typeof v.subject !== 'string') return null;
+    return (SUBJECTS as readonly string[]).includes(v.subject) ? (v.subject as Subject) : 'other';
+  } catch {
+    return null;
+  }
+}
+
+const questionKey = (child: FamilyChild, subject: Subject) => `cbse.c${child.classLevel}.${subject}.question`;
+
+// 1–2 and the AI platform's checks, in the caller's first transaction. null: answered already (a refusal, or the
+// library's response); otherwise the call to make, which needs no database connection.
+export async function prepareResolve(db: Db, ctx: ResolverContext, input: ResolveInput, followUp: FollowUp | null, emit: (e: ResolverEvent) => void, misconception: string | null = null): Promise<Pending | null> {
   const child = ctx.child;
   let line: Line | null = null;
   if (input.kind !== 'question') {
     line = await syllabusLine(db, child, input);
     if (!line) {
       emit({ t: 'refused', reason: 'not_found', message: ctx.refusalWords('fam.understand.notFound') });
-      return;
+      return null;
     }
   }
-  const subject = line?.subject ?? (input.kind === 'question' ? input.subject : 'science');
-  if (ctx.allowSubject && !(await ctx.allowSubject(subject))) {
+  const known: Subject | null = line?.subject ?? (input.kind === 'question' ? input.subject : null);
+  if (known && ctx.claimSubject && !(await ctx.claimSubject(db, known))) {
     emit({ t: 'refused', reason: 'not_open', message: ctx.refusalWords('fam.subject.notOpen') });
-    return;
+    return null;
   }
-  // Progress and the sealed items are keyed to the syllabus line; a typed question is kept against its subject.
-  const topicKey = line?.key ?? `cbse.c${child.classLevel}.${subject}.question`;
-  const promptVersion = (await activePromptVersion(db as never, 'family.resolver')) ?? RESOLVER_PROMPT_VERSION;
+  // A typed question is answered only in a subject this child may use: the free one, or either before one is claimed.
+  const open: Subject[] = known ? [known] : SUBJECTS.filter((s) => !ctx.claimSubject || subjectAccess(child, s).open);
+  const prompt = resolverPrompt(await activePromptVersion(db as never, 'family.resolver'), known === null);
   const cacheable = input.kind !== 'question' && followUp === null && misconception === null;
 
   // 2. The shared library.
   if (cacheable && line) {
-    const cached = await libraryEvents(db, ctx, line, promptVersion);
+    const cached = await libraryEvents(db, ctx, line, prompt.version);
     if (cached) {
       for (const e of cached) emit(e);
-      return;
+      return null;
     }
   }
 
-  // 3–4. Generate, checking each line as it arrives.
+  // 3. The AI platform's checks (profile, minors, key, daily cap) and the cleaned request, still in this transaction.
   const ask: ResolverAsk = {
     board: child.board,
     classLevel: child.classLevel,
-    subject,
+    subject: known,
+    openSubjects: open,
     chapter: line?.chapterEn ?? null,
     topic: line?.topicEn ?? null,
     question: input.kind === 'question' ? input.text : null,
@@ -154,61 +213,115 @@ export async function resolve(db: Db, ctx: ResolverContext, input: ResolveInput,
     followUp,
     misconception,
   };
-  const seen = new Set<BlockType>();
-  const kept: Block[] = [];
-  let pending = '';
-  let refusedByModel = false;
-  let metaSent = false;
-  const take = (text: string) => {
-    if (/"type"\s*:\s*"refuse"/.test(text)) refusedByModel = true;
-    const b = parseBlockLine(text);
-    if (!b || seen.has(b.type)) return;
-    seen.add(b.type);
-    kept.push(b);
-    if (!metaSent) {
-      emit({ t: 'meta', label: 'ai_made', cached: false, title: line?.title ?? null, subject, topicKey: line?.key ?? null });
-      metaSent = true;
-    }
-    emit({ t: 'block', block: toPublic(b, ctx, topicKey, subject) });
-  };
-  const result = await streamText(
+  const prepared = await prepareText(
     db as never,
     { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day },
     'family.resolver',
-    { system: resolverSystem(ask), messages: [{ role: 'user', content: resolverUser(ask) }], responseFormat: undefined },
-    (delta) => {
-      pending += delta;
-      let nl = pending.indexOf('\n');
-      while (nl >= 0) {
-        take(pending.slice(0, nl));
-        pending = pending.slice(nl + 1);
-        nl = pending.indexOf('\n');
-      }
-    }
+    { system: prompt.system(ask), messages: [{ role: 'user', content: prompt.user(ask) }], responseFormat: undefined }
   );
-  if (pending.trim()) take(pending);
-  if (!result.ok) {
-    if (!metaSent) {
-      emit({ t: 'refused', reason: result.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[result.reason]) });
+  if (!prepared.ok) {
+    emit({ t: 'refused', reason: prepared.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[prepared.reason]) });
+    return null;
+  }
+  return { ctx, line, known, open, cacheable, promptVersion: prompt.version, text: prepared.text };
+}
+
+// 3–4. The model's answer, checked line by line as it arrives. No database connection is held while the model answers.
+// `claim` makes a child with no free subject yet claim the subject of a typed question just before its first block is
+// shown, in its own short transaction (milliseconds, never while waiting for the model); if another request claimed
+// the other subject meanwhile, the answer is refused instead of shown.
+export async function generate(p: Pending, emit: (e: ResolverEvent) => void, claim?: (subject: Subject) => Promise<boolean>): Promise<Generated> {
+  const { ctx, line } = p;
+  const words = ctx.refusalWords;
+  let subject: Subject | null = p.known;
+  let stopped = false;
+  let refusedByModel = false;
+  let mustClaim = p.known === null && !ctx.child.freeSubject && claim !== undefined;
+  let error: unknown = null;
+  const seen = new Set<BlockType>();
+  const kept: Block[] = [];
+  const refuseSubject = (named: Subject) => {
+    stopped = true;
+    const name = words(`fam.subject.${named}`);
+    emit({ t: 'refused', reason: 'not_open', message: words('fam.understand.askInSubject', { subject: name }), goTo: { subject: named, label: words('fam.understand.goToSubject', { subject: name }) } });
+  };
+  const take = async (text: string) => {
+    if (stopped) return;
+    if (/"type"\s*:\s*"refuse"/.test(text)) refusedByModel = true;
+    if (!subject) {
+      // Nothing is shown until the subject is named, and only a subject this child may use is answered.
+      const named = namedSubject(text);
+      if (named === null) return;
+      if (named === 'other') {
+        stopped = true;
+        emit({ t: 'refused', reason: 'other_subject', message: words('fam.understand.otherSubject') });
+        return;
+      }
+      if (!p.open.includes(named)) return refuseSubject(named);
+      subject = named;
       return;
     }
-    emit({ t: 'done', complete: false });
-    return;
-  }
-  if (refusedByModel && kept.length === 0) {
-    emit({ t: 'refused', reason: 'not_school_study', message: ctx.refusalWords('fam.understand.notStudy') });
-    return;
-  }
-  const complete = completeResponse(kept);
+    const s: Subject = subject;
+    const b = parseBlockLine(text);
+    if (!b || seen.has(b.type)) return;
+    if (mustClaim && claim) {
+      mustClaim = false;
+      if (!(await claim(s))) return refuseSubject(s);
+    }
+    seen.add(b.type);
+    kept.push(b);
+    if (kept.length === 1) emit({ t: 'meta', label: 'ai_made', cached: false, title: line?.title ?? null, subject: s, topicKey: line?.key ?? null });
+    // Progress and the sealed items are keyed to the syllabus line; a typed question is kept against its subject.
+    emit({ t: 'block', block: toPublic(b, ctx, line?.key ?? questionKey(ctx.child, s), s) });
+  };
+  // Lines are checked one after another, in order; the model's stream never waits for them.
+  let queue = Promise.resolve();
+  const enqueue = (text: string) => {
+    queue = queue.then(async () => {
+      if (error !== null) return;
+      try {
+        await take(text);
+      } catch (err) {
+        error = err;
+      }
+    });
+  };
+  let pending = '';
+  const sent = await p.text.send((delta) => {
+    pending += delta;
+    let nl = pending.indexOf('\n');
+    while (nl >= 0) {
+      enqueue(pending.slice(0, nl));
+      pending = pending.slice(nl + 1);
+      nl = pending.indexOf('\n');
+    }
+  });
+  if (pending.trim()) enqueue(pending);
+  await queue;
+  return { sent, subject, kept, refusedByModel, stopped, error };
+}
 
-  // 5. A complete topic or chapter response is kept for the next child, as AI-made, until the founder approves it.
-  if (complete && cacheable && line) {
+// 5. The writes after the call, in the caller's second transaction: the metering first, then the library line. Returns
+// the last event to send once the transaction has committed (null: already said).
+export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEvent | null> {
+  const { ctx, line } = p;
+  await g.sent.record(db as never);
+  if (g.stopped || g.error !== null) return null;
+  const result = g.sent.result;
+  if (!result.ok) return g.kept.length > 0 ? { t: 'done', complete: false } : { t: 'refused', reason: result.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[result.reason]) };
+  if (g.refusedByModel && g.kept.length === 0) return { t: 'refused', reason: 'not_school_study', message: ctx.refusalWords('fam.understand.notStudy') };
+  // The model never named the subject: nothing was shown, and no subject is guessed.
+  if (!g.subject) return { t: 'refused', reason: 'failed', message: ctx.refusalWords(REFUSAL_MESSAGE.failed) };
+  const complete = completeResponse(g.kept);
+
+  // A complete topic or chapter response is kept for the next child, as AI-made, until the founder approves it.
+  if (complete && p.cacheable && line) {
     await db.query(
       `insert into content.responses (board_id, class_level, subject, topic_key, language, style, prompt_version, schema_version, blocks, status, provider, model)
        values ($1, $2, $3, $4, $5, $6, $7, $8, $9::jsonb, 'ai_made', $10, $11)
        on conflict do nothing`,
-      [child.board, child.classLevel, subject, line.key, child.language, child.style, promptVersion, BLOCK_SCHEMA_VERSION, JSON.stringify(complete), result.provider, result.model]
+      [ctx.child.board, ctx.child.classLevel, line.subject, line.key, ctx.child.language, ctx.child.style, p.promptVersion, BLOCK_SCHEMA_VERSION, JSON.stringify(complete), result.provider, result.model]
     );
   }
-  emit({ t: 'done', complete: complete !== null });
+  return { t: 'done', complete: complete !== null };
 }

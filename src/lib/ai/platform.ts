@@ -1,12 +1,15 @@
 import type { Sql } from '@/lib/jobs/types';
 import type { MessageKey } from '@/lib/i18n';
-import { adapterFor, type ChatMessage, type TextAdapter } from './adapters';
+import { adapterFor, type AdapterResult, type ChatMessage, type TextAdapter } from './adapters';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { dailyLimit, takeDailyRequest } from './daily-cap';
 import { scrubRequest } from './preprocess';
 
 // The AI platform's public interface (docs/family-app/03 §7, C249). The ONLY AI module family code may import
-// (scripts/check_family_boundary.py). One call, streamText(), runs a feature profile:
+// (scripts/check_family_boundary.py). A feature profile runs in three steps, so no database connection is held while a
+// vendor answers (F1-3): prepareText() does 1–5 in the caller's first short transaction; its send() does 6 with no
+// database at all; the sent call's record() does 7 in the caller's second short transaction. streamText() runs the three
+// on one client, for a caller that has nothing to hold the connection for.
 //
 //   1. the profile as Control set it (control.ai_profiles): off, or no provider or model → 'not_switched_on';
 //   2. the minors check: a profile that may carry a child's words runs only when its provider AND every fallback is
@@ -19,7 +22,8 @@ import { scrubRequest } from './preprocess';
 //   7. the call is metered with counts and tokens only (control.count_ai_usage). No prompt or answer is stored or logged.
 //
 // `db` is the caller's family_app client, inside withFamilyContext. The answer is data, never code: callers parse it
-// against their schema and drop anything outside it.
+// against their schema and drop anything outside it. The key opened in 3 lives only inside the prepared call (a closure,
+// never a field), and a prepared call sends once: one daily-cap place, one vendor request.
 
 export type ProfileId = 'family.resolver';
 export type AiProfile = { id: ProfileId; carriesChildWords: boolean };
@@ -130,7 +134,18 @@ async function usableLinks(db: Sql, chain: Link[], providers: Map<string, Provid
   return ready;
 }
 
-export async function streamText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest, onDelta: (text: string) => void = () => {}): Promise<AiResult> {
+// Usage to add to Control's counts once the call is over (counts and tokens only).
+type Counts = { requests?: number; failures?: number; capRefusals?: number; tokensIn?: number; tokensOut?: number };
+
+// A call that passed every check, ready to go to the vendor. send() needs no database.
+export type PreparedText = { send: (onDelta?: (text: string) => void) => Promise<SentText> };
+// A call that went out: its result, and the metering to write in the caller's next transaction. Each record() adds
+// the counts again, so a caller records once, or again only when its transaction was refused before anything ran.
+export type SentText = { result: AiResult; record: (db: Sql) => Promise<void> };
+export type Prepared = { ok: true; text: PreparedText } | { ok: false; reason: AiRefusal };
+
+// 1–5: every check, the daily cap taken, the key opened and the request cleaned, in the caller's transaction.
+export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest): Promise<Prepared> {
   const env = process.env;
   const profile = profileById(profileId);
   if (!profile || !UUID.test(ctx.accountId) || !DAY.test(ctx.day)) return { ok: false, reason: 'failed' };
@@ -163,20 +178,46 @@ export async function streamText(db: Sql, ctx: AiContext, profileId: ProfileId, 
   const clean = scrubRequest(request, { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail });
   const maxTokens = Math.min(Math.max(1, Math.floor(request.maxTokens ?? row.max_output_tokens)), row.max_output_tokens);
 
-  // 6. Down the chain until one answers.
-  for (const { link, adapter, apiKey } of ready) {
-    let streamed = false;
-    const result = await adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat: request.responseFormat }, (piece) => {
-      streamed = true;
-      onDelta(piece);
-    });
-    if (result.ok) {
-      await count(db, ctx.day, profile.id, link, { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut });
-      return { ok: true, text: result.text, tokensIn: result.tokensIn, tokensOut: result.tokensOut, provider: link.provider, model: link.model };
+  let sent = false;
+  const send = async (onDelta: (text: string) => void = () => {}): Promise<SentText> => {
+    const usage: { link: Link; counts: Counts }[] = [];
+    const record = async (tx: Sql) => {
+      for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
+    };
+    // One cap place, one request: a prepared call never goes out twice.
+    if (sent) return { result: { ok: false, reason: 'failed' }, record };
+    sent = true;
+    // 6. Down the chain until one answers.
+    for (const { link, adapter, apiKey } of ready) {
+      let streamed = false;
+      let result: AdapterResult;
+      try {
+        result = await adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat: request.responseFormat }, (piece) => {
+          streamed = true;
+          onDelta(piece);
+        });
+      } catch {
+        // An adapter never throws by design; if one did (or the caller's onDelta did), the call is still counted.
+        result = { ok: false, failure: 'network' };
+      }
+      if (result.ok) {
+        usage.push({ link, counts: { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut } });
+        return { result: { ok: true, text: result.text, tokensIn: result.tokensIn, tokensOut: result.tokensOut, provider: link.provider, model: link.model }, record };
+      }
+      usage.push({ link, counts: { requests: 1, failures: 1 } });
+      // Text already shown cannot be taken back: a second provider's answer would be stitched onto it.
+      if (streamed) break;
     }
-    await count(db, ctx.day, profile.id, link, { requests: 1, failures: 1 });
-    // Text already shown cannot be taken back: a second provider's answer would be stitched onto it.
-    if (streamed) break;
-  }
-  return { ok: false, reason: 'failed' };
+    return { result: { ok: false, reason: 'failed' }, record };
+  };
+  return { ok: true, text: { send } };
+}
+
+// The three steps on one client: for a caller with nothing to do between them.
+export async function streamText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest, onDelta: (text: string) => void = () => {}): Promise<AiResult> {
+  const prepared = await prepareText(db, ctx, profileId, request);
+  if (!prepared.ok) return prepared;
+  const sent = await prepared.text.send(onDelta);
+  await sent.record(db);
+  return sent.result;
 }
