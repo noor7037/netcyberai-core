@@ -21,8 +21,11 @@ export function splitWorkersKey(key: string): { account: string; token: string }
 
 const base = (account: string) => `https://api.cloudflare.com/client/v4/accounts/${account}/ai`;
 
-// Text and photos through Cloudflare's OpenAI-compatible route (/ai/v1/chat/completions), streamed. It takes max_tokens;
-// JSON is asked for in the system prompt (JSON_ONLY) rather than with response_format, and usage is read when sent.
+// Text and photos through Cloudflare's OpenAI-compatible route (/ai/v1/chat/completions), each answer in one piece, not
+// streamed: the live probe (C321, C322) found Llama 4 Scout's streamed JSON losing its inner quotation marks on both
+// streamed routes, and the same answer whole when sent in one piece. A child therefore sees an explanation all at once,
+// a few seconds after asking, instead of word by word. It takes max_tokens; JSON is asked for in the instructions
+// (JSON_ONLY) rather than with response_format, and usage is read when sent.
 // Photos go as image_url data URLs to a model Control chose for vision (for example Llama 4 Scout); a model that cannot
 // take them answers with an error, and the platform hands the call to the next provider in the chain.
 // Open models keep to a structured answer better when they choose their words less freely; 0.3 still lets an
@@ -38,7 +41,7 @@ export const workersAiAdapter: TextAdapter = {
   async streamText(request, onDelta): Promise<AdapterResult> {
     const k = splitWorkersKey(request.apiKey);
     if (!k) return { ok: false, failure: 'http', status: 401 };
-    return streamChatCompletions(`${base(k.account)}/v1/chat/completions`, k.token, request, onDelta, { maxTokensField: 'max_tokens', jsonMode: false, includeUsage: false, temperature: WORKERS_TEMPERATURE, instructions: 'first_user' });
+    return streamChatCompletions(`${base(k.account)}/v1/chat/completions`, k.token, request, onDelta, { maxTokensField: 'max_tokens', jsonMode: false, includeUsage: false, temperature: WORKERS_TEMPERATURE, instructions: 'first_user', stream: false });
   },
 };
 

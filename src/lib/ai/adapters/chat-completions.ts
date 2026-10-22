@@ -16,10 +16,13 @@ export type ChatCompletionsOptions = {
   includeUsage: boolean;
   // The sampling temperature, only where the vendor's own default suits our structured answers badly (C316).
   temperature?: number;
-  // Where our instructions go (C320): a system message, or the start of the first user message for a vendor whose
-  // route did not follow a system message (Workers AI's live test: asked in the system message for JSON, Llama answered
-  // in plain words). A request may ask for one placement itself (the smoke test compares the two).
+  // Where our instructions go (C320): a system message, or the start of the first user message. A request may ask for
+  // one placement itself (the smoke test compares the two).
   instructions?: 'system' | 'first_user';
+  // false: ask for the whole answer in one piece and hand it on at once (C322). Workers AI's live probe found Llama 4
+  // Scout's streamed answer losing the quotation marks at each '":"' and '","' join, on both of its streamed routes,
+  // while the same answer in one piece came whole. Streamed by default.
+  stream?: boolean;
 };
 
 export async function streamChatCompletions(url: string, token: string, request: AdapterRequest, onDelta: (text: string) => void, opts: ChatCompletionsOptions): Promise<AdapterResult> {
@@ -33,10 +36,11 @@ export async function streamChatCompletions(url: string, token: string, request:
       ? { role: m.role, content: [{ type: 'text', text: content }, ...m.images.map((img) => ({ type: 'image_url', image_url: { url: `data:${img.mediaType};base64,${img.base64}` } }))] }
       : { role: m.role, content };
   });
+  const stream = opts.stream !== false;
   const body = {
     model: request.model,
-    stream: true,
-    ...(opts.includeUsage ? { stream_options: { include_usage: true } } : {}),
+    stream,
+    ...(stream && opts.includeUsage ? { stream_options: { include_usage: true } } : {}),
     [opts.maxTokensField]: request.maxTokens,
     ...(opts.temperature === undefined ? {} : { temperature: opts.temperature }),
     messages: inUser && firstUser >= 0 ? messages : [{ role: 'system', content: system }, ...messages],
@@ -54,6 +58,7 @@ export async function streamChatCompletions(url: string, token: string, request:
     return { ok: false, failure: 'network' };
   }
   if (!res.ok || !res.body) return { ok: false, failure: 'http', status: res.status };
+  if (!stream) return wholeAnswer(res, request, onDelta);
   let text = '';
   let tokensIn = 0;
   let tokensOut = 0;
@@ -103,5 +108,27 @@ export async function streamChatCompletions(url: string, token: string, request:
     const sent = request.system.length + request.messages.reduce((n, m) => n + m.content.length, 0);
     return { ok: true, text, tokensIn: Math.ceil(sent / 4), tokensOut: Math.ceil(text.length / 4), ...(finish ? { finish } : {}) };
   }
+  return { ok: true, text, tokensIn, tokensOut, ...(finish ? { finish } : {}) };
+}
+
+// The answer in one piece (C322): { choices: [{ message: { content, refusal }, finish_reason }], usage }. Handed on to
+// the caller in one delta, so a caller written for a stream reads it the same way.
+async function wholeAnswer(res: Response, request: AdapterRequest, onDelta: (text: string) => void): Promise<AdapterResult> {
+  let body: { choices?: { message?: { content?: unknown; refusal?: unknown }; finish_reason?: string | null }[]; usage?: { prompt_tokens?: number; completion_tokens?: number } | null; error?: unknown };
+  try {
+    body = await res.json();
+  } catch {
+    return { ok: false, failure: 'bad_stream' };
+  }
+  if (body?.error) return { ok: false, failure: 'http', status: 500 };
+  const choice = body?.choices?.[0];
+  if (choice?.message?.refusal || choice?.finish_reason === 'content_filter') return { ok: false, failure: 'refused' };
+  const text = choice?.message?.content;
+  if (typeof text !== 'string') return { ok: false, failure: 'bad_stream' };
+  if (text) onDelta(text);
+  const finish = choice?.finish_reason ?? undefined;
+  const sent = request.system.length + request.messages.reduce((n, m) => n + m.content.length, 0);
+  const tokensIn = body.usage?.prompt_tokens ?? Math.ceil(sent / 4);
+  const tokensOut = body.usage?.completion_tokens ?? Math.ceil(text.length / 4);
   return { ok: true, text, tokensIn, tokensOut, ...(finish ? { finish } : {}) };
 }
