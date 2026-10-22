@@ -1,14 +1,22 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { StudyQuestion } from '@/components/family/StudyQuestion';
+import { DataSaverSwitch } from '@/components/family/offline/DataSaverSwitch';
+import { PackButton } from '@/components/family/offline/PackButton';
+import { SaverLink } from '@/components/family/offline/SaverLink';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
-import { familyModuleOn } from '@/lib/family/flags';
+import { readFamilySwitches, switchOn } from '@/lib/family/flags';
+import { voiceDay } from '@/lib/family/voice';
+import { indiaDate } from '@/lib/time/india';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
-import { classText } from '@/lib/family/fill';
+import { classText, fill } from '@/lib/family/fill';
+import { OFFLINE_KEYS } from '@/lib/family/offline-words';
+import { chapterPacks } from '@/lib/family/pack';
 import { subjectAccess } from '@/lib/family/modules';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
+import { VOICE_KEYS } from '@/lib/family/voice-words';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
 
@@ -21,6 +29,8 @@ const titleLang = (title: string) => (/[\u0900-\u097F]/.test(title) ? 'hi' : 'en
 
 // The subject tabs are the subjects of the child's class (C264): the stage's school subjects and whatever the catalog
 // holds for the class, the free one first once claimed.
+// With Control's offline module on (M2-9, C283): the data-saver switch, and on each chapter whose responses are in the
+// shared library, "Save for offline" with the pack's size, measured here before anything is fetched by the phone.
 
 export default async function FamilyStudyPage({ searchParams }: { searchParams: { subject?: string } }) {
   const page = await requireFamilyPage();
@@ -48,9 +58,20 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
   const access = subjectAccess(child, subject);
   const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
-  const homeworkOn = await familyPageRead(page, (db) => familyModuleOn(db, 'homework', page.session.accountId));
+  const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
+  const homeworkOn = switchOn(switches, 'homework');
+  // Voice input (M2-7, C281): the microphone shows only with the parent's voice consent and the module on, with the
+  // seconds left of the child's day.
+  const voice =
+    page.consents.voice_practice && switchOn(switches, 'voice_input') ? { secondsLeft: (await familyPageRead(page, (db) => voiceDay(db, page.session.accountId, child.childId, indiaDate()))).left } : null;
+  const offline = switchOn(switches, 'offline') && switchOn(switches, 'understand');
+  // A pack downloads only for the child's free subject, with the parent's consent (the pack route checks both too).
+  const packs = offline && catalog && page.consents.study_core && child.freeSubject === subject ? new Map((await familyPageRead(page, (db) => chapterPacks(db, { accountId: page.session.accountId, child }, subject))).map((p) => [p.chapter.key, p])) : null;
+  const ow = offline ? familyWords(lang, OFFLINE_KEYS) : {};
   const tone = subject;
-  const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton'] as MessageKey[]);
+  // M2-4 (C278): a Worksheet action per topic while the module is switched on.
+  const worksheets = access.open && switchOn(switches, 'worksheets');
+  const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone={subject === 'science' || subject === 'evs' || subject === 'biology' ? 'emerald' : 'royal'} />
@@ -75,13 +96,14 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           ))}
         </nav>
         {!child.freeSubject && <p className="rounded-2xl bg-sunshine/30 px-4 py-3 text-sm text-slate">{t(lang, 'fam.subject.firstIsFree')}</p>}
+        {offline && <DataSaverSwitch w={ow} />}
         {!access.open ? (
           <p data-family-locked className="rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
             {t(lang, 'fam.subject.notOpen')}
           </p>
         ) : (
           <>
-            <StudyQuestion w={w} subject={subject} tone={tone} />
+            <StudyQuestion w={w} subject={subject} tone={tone} voice={voice} />
             {homeworkOn && (
               <Link href="/family/study/homework" data-homework-link className="flex min-h-[56px] items-center gap-3 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate/10 hover:bg-slate/5">
                 <span aria-hidden className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sunshine/30 text-xl">
@@ -103,17 +125,29 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
             <ol className="flex flex-col gap-2">
               {catalog.chapters.map((c) => (
                 <li key={c.key} className="rounded-3xl bg-white p-3 shadow-sm ring-1 ring-slate/10">
-                  <Link href={`/family/understand?kind=chapter&key=${encodeURIComponent(c.key)}`} className="flex min-h-[44px] items-center justify-between gap-2 px-1 text-base font-bold text-slate">
+                  <SaverLink href={`/family/understand?kind=chapter&key=${encodeURIComponent(c.key)}`} className="flex min-h-[44px] items-center justify-between gap-2 px-1 text-base font-bold text-slate">
                     <span lang={titleLang(c.title)}>{c.title}</span>
                     <span aria-hidden="true" className="text-royal">→</span>
-                  </Link>
+                  </SaverLink>
+                  {packs && (packs.get(c.key)?.topics.length ?? 0) > 0 && (
+                    <PackButton w={ow} lang={lang} childId={child.childId} chapterKey={c.key} chapterTitle={c.title} bytes={packs.get(c.key)!.bytes} missing={packs.get(c.key)!.missing.length} />
+                  )}
                   {c.topics.length > 0 && (
                     <ul className="mt-1 flex flex-col">
                       {c.topics.map((tp) => (
-                        <li key={tp.key}>
-                          <Link href={`/family/understand?kind=topic&key=${encodeURIComponent(tp.key)}`} className="flex min-h-[44px] items-center rounded-xl px-2 text-sm text-slate hover:bg-slate/5">
+                        <li key={tp.key} className="flex items-center gap-1">
+                          <SaverLink href={`/family/understand?kind=topic&key=${encodeURIComponent(tp.key)}`} className="flex min-h-[44px] flex-1 items-center rounded-xl px-2 text-sm text-slate hover:bg-slate/5">
                             <span lang={titleLang(tp.title)}>{tp.title}</span>
-                          </Link>
+                          </SaverLink>
+                          {worksheets && (
+                            <Link
+                              href={`/family/study/worksheet/${encodeURIComponent(tp.key)}`}
+                              aria-label={fill(t(lang, 'fam.worksheet.openFor'), { topic: tp.title })}
+                              className="flex min-h-[44px] shrink-0 items-center rounded-xl px-3 text-sm font-bold text-royal-deep hover:bg-slate/5"
+                            >
+                              {t(lang, 'fam.worksheet.action')}
+                            </Link>
+                          )}
                         </li>
                       ))}
                     </ul>
