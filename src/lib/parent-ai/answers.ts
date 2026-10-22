@@ -1,4 +1,5 @@
 import type { PoolClient } from 'pg';
+import { AiUnavailableError } from '@/lib/ai/school-provider';
 import { HOME_HELP, type AIProvider, type DraftRequest } from '@/lib/ai/provider';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
@@ -97,9 +98,15 @@ export async function draftAnswer(db: PoolClient, provider: AIProvider | null, a
   const request = tipRequest(facts);
   const state = request ? await copilotState(db, actor.schoolId, provider) : null;
   if (request && provider && state?.on && state.used < state.limit) {
-    const answer = await provider.draft(request);
-    await db.query(`insert into ai_usage (school_id, user_id, kind, tokens_in, tokens_out) values ($1, $2, $3, $4, $5)`, [actor.schoolId, actor.userId, HOME_HELP, Math.max(0, Math.round(answer.tokensIn)), Math.max(0, Math.round(answer.tokensOut))]);
-    tip = oneLine(answer.text).slice(0, 300) || null;
+    // The AI platform may refuse (switched off, no key, a provider down): the fixed sentence is used, and nothing counted.
+    const answer = await provider.draft(request).catch((err) => {
+      if (err instanceof AiUnavailableError) return null;
+      throw err;
+    });
+    if (answer) {
+      await db.query(`insert into ai_usage (school_id, user_id, kind, tokens_in, tokens_out) values ($1, $2, $3, $4, $5)`, [actor.schoolId, actor.userId, HOME_HELP, Math.max(0, Math.round(answer.tokensIn)), Math.max(0, Math.round(answer.tokensOut))]);
+      tip = oneLine(answer.text).slice(0, 300) || null;
+    }
   }
   const body = composeAnswer(facts, tip);
   const answerId = (await db.query(`insert into parent_ai_answers (school_id, student_id, parent_id, body, sources, ai_assisted, drafted_by) values ($1, $2, $3, $4, $5::jsonb, $6, $7) returning answer_id`, [actor.schoolId, input.studentId, input.parentId, body, JSON.stringify(facts.sources), tip !== null, actor.userId])).rows[0].answer_id as string;

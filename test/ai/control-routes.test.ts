@@ -90,9 +90,11 @@ describe('who is let in', () => {
     expect(body.keyReady).toBe(true);
     expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'openai', 'youtube']);
     expect(body.profiles).toEqual([
+      expect.objectContaining({ profileId: 'copilot.draft', carriesChildWords: false, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'family.homework', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'family.resolver', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'family.voice_input', carriesChildWords: true, providerId: null, enabled: true }),
+      expect.objectContaining({ profileId: 'parent_ai.home_help', carriesChildWords: false, providerId: null, enabled: true }),
     ]);
     expect(body.cap).toBe(20);
   });
