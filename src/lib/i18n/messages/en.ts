@@ -6886,4 +6886,11 @@ export const en = {
   'control.queue.err.failed': 'That did not work. Try again.',
   'control.queue.err.authenticator_needed': 'Sign in again with your authenticator to review responses.',
   // m2-12 end
+  // p1 begin
+  'control.family.open.title': 'Subjects open to every child',
+  'control.family.open.lead': 'A subject ticked here is open to every child, whatever subject they opened first, and never uses up their free subject. The pilot opens EVS, set from the start.',
+  'control.family.open.save': 'Save the open subjects',
+  'control.family.open.saved': 'Saved. Every child can open these subjects now.',
+  'control.family.open.failed': 'Not saved. Sign in with your authenticator and try again.',
+  // p1 end
 } as const;

@@ -4,6 +4,7 @@ import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, parseBlockLine, 
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
 import { classSubjects } from './catalog';
+import { openSubjects } from './learning';
 import { subjectAccess } from './modules';
 import { isSubject, type Subject } from './subjects';
 
@@ -122,9 +123,10 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
 
 // The Understand page draws a library response with the page itself (09 §4: the explanation is the largest paint, and
 // waiting for the phone to ask first cost half a second on a 4G profile). Only when the subject is already the child's
-// free one, so drawing the page never claims a subject; otherwise, or when the library has none, the phone asks.
+// free one, or one open to every child (C298), so drawing the page never claims a subject; otherwise, or when the
+// library has none, the phone asks.
 export async function libraryResponse(db: Db, ctx: Seal, line: Line): Promise<ResolverEvent[] | null> {
-  if (ctx.child.freeSubject !== line.subject) return null;
+  if (ctx.child.freeSubject !== line.subject && !(await openSubjects(db as never)).includes(line.subject)) return null;
   const promptVersion = resolverPrompt(await activePromptVersion(db as never, 'family.resolver'), false).version;
   return libraryEvents(db, ctx, line, promptVersion);
 }
@@ -200,7 +202,8 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   }
   // A typed question is answered only in a subject this child may use: the free one, or either before one is claimed.
   const ofClass = await classSubjects(db as never, { board: syllabusBoardOf(child), classLevel: child.classLevel });
-  const open: Subject[] = known ? [known] : ofClass.filter((s) => !ctx.claimSubject || subjectAccess(child, s).open);
+  const openToAll = await openSubjects(db as never);
+  const open: Subject[] = known ? [known] : ofClass.filter((s) => !ctx.claimSubject || subjectAccess(child, s, openToAll).open);
   const prompt = resolverPrompt(await activePromptVersion(db as never, 'family.resolver'), known === null);
   const cacheable = input.kind !== 'question' && followUp === null && misconception === null;
 
