@@ -17,7 +17,7 @@ export function AskBox({ w, camera, voice, tone }: { w: Words; camera: boolean; 
   const [asked, setAsked] = useState<UnderstandInput | null>(null);
   const [speaking, setSpeaking] = useState(false);
   const ready = text.trim().length >= 3;
-  const icon = `flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-royal/10 hover:bg-royal/20 ${PRESS}`;
+  const icon = `flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sunshine/40 ring-1 ring-gold/50 hover:bg-sunshine/60 ${PRESS}`;
   return (
     <div data-family-ask className="flex flex-col gap-3">
       <form
