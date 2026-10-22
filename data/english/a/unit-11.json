@@ -1,0 +1,380 @@
+{
+  "track": "a",
+  "unit": 11,
+  "key": "a.u11",
+  "title": { "en": "Shapes", "hi": "आकार" },
+  "pic": "⭐",
+  "can_do": { "en": "I can name shapes.", "hi": "मुझे आकारों के नाम आते हैं।" },
+  "lessons": [
+    {
+      "key": "a.u11.l1",
+      "kind": "words",
+      "title": { "en": "Shape words", "hi": "आकारों के नाम" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u11.l1.w-nine",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "nine" },
+              "options": [{ "pic": "9️⃣" }, { "pic": "6️⃣" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u11.l1.w-ten",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "ten" },
+              "options": [{ "pic": "8️⃣" }, { "pic": "🔟" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: draw each shape in the air with your finger.", "hi": "बड़ों के लिए: उँगली से हवा में हर आकार बनाकर दिखाएँ।" },
+          "pic": "👆"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u11.l1.circle", "en": "circle", "hi": "गोला", "pic": "⭕", "example": { "en": "A roti is a circle.", "hi": "रोटी गोल होती है।" } },
+            { "key": "a.u11.l1.square", "en": "square", "hi": "चौकोर", "pic": "🟦", "example": { "en": "The box is a square.", "hi": "डिब्बा चौकोर है।" } },
+            {
+              "key": "a.u11.l1.triangle",
+              "en": "triangle",
+              "hi": "तिकोना",
+              "pic": "🔺",
+              "example": { "en": "One, two, three: a triangle!", "hi": "एक, दो, तीन: तिकोना!" }
+            },
+            { "key": "a.u11.l1.star", "en": "star", "hi": "तारा", "pic": "⭐", "example": { "en": "A star in the sky.", "hi": "आसमान में तारा।" } },
+            { "key": "a.u11.l1.heart", "en": "heart", "hi": "दिल", "pic": "❤️", "example": { "en": "A red heart.", "hi": "लाल दिल।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Draw a circle in the air.", "hi": "हवा में उँगली से गोला बनाओ।", "pic": "⭕" },
+            { "en": "Make a triangle with your hands.", "hi": "हाथों से तिकोना बनाओ।", "pic": "🔺" },
+            { "en": "Twinkle like a star!", "hi": "तारे की तरह टिमटिमाओ!", "pic": "⭐" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u11.l1.t-circle",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "circle" },
+              "options": [{ "pic": "⭕" }, { "pic": "🔺" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u11.l1.t-star",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "star" },
+              "options": [{ "pic": "🟦" }, { "pic": "⭐" }, { "pic": "❤️" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u11.l1.t-square",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "square" },
+              "options": [{ "pic": "🔺" }, { "pic": "⭐" }, { "pic": "🟦" }],
+              "answer": 2
+            },
+            {
+              "key": "a.u11.l1.t-heart",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "heart" },
+              "options": [{ "pic": "❤️" }, { "pic": "⭕" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u11.l1.s-circle", "model": "Circle.", "hi": "गोला।", "pic": "⭕" },
+            { "key": "a.u11.l1.s-square", "model": "Square.", "hi": "चौकोर।", "pic": "🟦" },
+            { "key": "a.u11.l1.s-triangle", "model": "Triangle.", "hi": "तिकोना।", "pic": "🔺" },
+            { "key": "a.u11.l1.s-star", "model": "Star.", "hi": "तारा।", "pic": "⭐" },
+            { "key": "a.u11.l1.s-heart", "model": "Heart.", "hi": "दिल।", "pic": "❤️" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Find a circle and a square at home.", "hi": "घर में कोई गोल और कोई चौकोर चीज़ ढूँढें।" }
+    },
+    {
+      "key": "a.u11.l2",
+      "kind": "pattern",
+      "title": { "en": "It is a circle.", "hi": "यह गोला है।" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "It is a …", "hi": "यह … है" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "It is a circle.",
+              "hi": "यह गोला है।",
+              "pic": "own:roti",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "a circle.", "role": "what" }]
+            },
+            {
+              "en": "It is a star.",
+              "hi": "यह तारा है।",
+              "pic": "⭐",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "a star.", "role": "what" }]
+            },
+            {
+              "en": "It is a square.",
+              "hi": "यह चौकोर है।",
+              "pic": "🎁",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "a square.", "role": "what" }]
+            },
+            {
+              "en": "It is a triangle.",
+              "hi": "यह तिकोना है।",
+              "pic": "⛰️",
+              "parts": [{ "text": "It", "role": "who" }, { "text": "is", "role": "do" }, { "text": "a triangle.", "role": "what" }]
+            }
+          ],
+          "note": { "en": "Colour: It is red. Shape: It is a circle.", "hi": "रंग के लिए: It is red. आकार के लिए: It is a circle." }
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u11.l2.q-roti",
+              "prompt": { "en": "What shape is the roti?", "hi": "रोटी किस आकार की है?", "pic": "own:roti" },
+              "options": [{ "pic": "🟦" }, { "pic": "⭕" }],
+              "answer": 1,
+              "why": { "en": "A roti is round: a circle.", "hi": "रोटी गोल होती है: circle।" }
+            },
+            {
+              "key": "a.u11.l2.q-box",
+              "prompt": { "en": "What shape is the box?", "hi": "डिब्बा किस आकार का है?", "pic": "🎁" },
+              "options": [{ "pic": "🟦" }, { "pic": "🔺" }, { "pic": "⭐" }],
+              "answer": 0,
+              "why": { "en": "The box is a square.", "hi": "डिब्बा चौकोर है: square।" }
+            },
+            {
+              "key": "a.u11.l2.q-hill",
+              "prompt": { "en": "What shape is the hill?", "hi": "पहाड़ किस आकार का है?", "pic": "⛰️" },
+              "options": [{ "pic": "⭕" }, { "pic": "🔺" }],
+              "answer": 1,
+              "why": { "en": "The hill is a triangle.", "hi": "पहाड़ तिकोना है: triangle।" }
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Sit in a circle.", "hi": "सब मिलकर गोल घेरे में बैठो।", "pic": "⭕" },
+            { "en": "Point to a square thing.", "hi": "किसी चौकोर चीज़ की ओर इशारा करो।", "pic": "🟦" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u11.l2.s-roti",
+              "model": "It is a circle.",
+              "hi": "चित्र देखकर आकार बताओ।",
+              "pic": "own:roti",
+              "cue": { "en": "What shape is it?", "hi": "यह किस आकार का है?" }
+            },
+            {
+              "key": "a.u11.l2.s-star",
+              "model": "It is a star.",
+              "hi": "चित्र देखकर आकार बताओ।",
+              "pic": "⭐",
+              "cue": { "en": "What shape is it?", "hi": "यह किस आकार का है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "At meals, ask: What shape is the roti?", "hi": "खाने के समय पूछें: What shape is the roti? बच्चा कहे: It is a circle!" }
+    },
+    {
+      "key": "a.u11.l3",
+      "kind": "listen",
+      "title": { "en": "Our rangoli", "hi": "हमारी रंगोली" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Our rangoli", "hi": "हमारी रंगोली" },
+          "scene": {
+            "place": "festival",
+            "pics": [
+              { "pic": "own:rangoli", "x": 50, "y": 30, "size": 2.5 },
+              { "pic": "🪔", "x": 20, "y": 44 },
+              { "pic": "🪔", "x": 80, "y": 44 },
+              { "pic": "⭐", "x": 50, "y": 6 },
+              { "pic": "👩", "x": 12, "y": 22, "size": 1.4 },
+              { "pic": "👧", "x": 32, "y": 54, "size": 1.2 },
+              { "pic": "👦", "x": 68, "y": 54, "size": 1.2 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Mummy", "pic": "👩", "en": "Let's make a rangoli!", "hi": "चलो, रंगोली बनाएँ!" },
+            { "speaker": "Meera", "pic": "👧", "en": "I make a big circle.", "hi": "मैं एक बड़ा गोला बनाती हूँ।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "I make a triangle!", "hi": "मैं तिकोना बनाता हूँ!" },
+            { "speaker": "Mummy", "pic": "👩", "en": "And a star on top!", "hi": "और ऊपर एक तारा!" },
+            { "speaker": "Meera", "pic": "👧", "en": "It is red and yellow.", "hi": "यह लाल और पीली है।" },
+            { "speaker": "Arjun", "pic": "👦", "en": "I like it!", "hi": "मुझे बहुत पसंद है!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u11.l3.q-meera",
+              "prompt": { "en": "What does Meera make?", "hi": "मीरा क्या बनाती है?" },
+              "options": [{ "pic": "🔺" }, { "pic": "⭕" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u11.l3.q-arjun",
+              "prompt": { "en": "What does Arjun make?", "hi": "अर्जुन क्या बनाता है?" },
+              "options": [{ "pic": "🔺" }, { "pic": "⭐" }, { "pic": "🟦" }],
+              "answer": 0
+            },
+            { "key": "a.u11.l3.q-top", "prompt": { "en": "What is on top?", "hi": "सबसे ऊपर क्या है?" }, "options": [{ "pic": "❤️" }, { "pic": "⭐" }], "answer": 1 }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u11.l3.s-star", "model": "A star on top!", "hi": "ऊपर एक तारा!", "pic": "⭐" },
+            { "key": "a.u11.l3.s-like", "model": "I like it!", "hi": "मुझे यह पसंद है!", "pic": "👍" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Draw a circle on the floor.", "hi": "उँगली से ज़मीन पर गोला बनाओ।", "pic": "⭕" },
+            { "en": "Draw a star on top.", "hi": "उसके ऊपर एक तारा बनाओ।", "pic": "⭐" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Draw shapes with chalk, or with a stick in the mud.", "hi": "चॉक से या मिट्टी में लकड़ी से साथ में आकार बनाएँ।" }
+    },
+    {
+      "key": "a.u11.l4",
+      "kind": "speak",
+      "title": { "en": "Shape hunt", "hi": "आकार ढूँढो" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: after the screen, hunt for real shapes in the house.", "hi": "बड़ों के लिए: इसके बाद घर में सच में आकार ढूँढने चलें।" },
+          "pic": "🏠"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "own:roti", "x": 14, "y": 34, "size": 1.4 },
+              { "pic": "🎁", "x": 38, "y": 34, "size": 1.4 },
+              { "pic": "⭐", "x": 62, "y": 12, "size": 1.2 },
+              { "pic": "⏰", "x": 84, "y": 34, "size": 1.3 }
+            ]
+          },
+          "questions": [
+            { "key": "a.u11.l4.q-roti", "en": "What shape is the roti?", "hi": "रोटी किस आकार की है?", "model": "It is a circle." },
+            { "key": "a.u11.l4.q-box", "en": "What shape is the box?", "hi": "डिब्बा किस आकार का है?", "model": "It is a square." },
+            { "key": "a.u11.l4.q-star", "en": "Where is the star?", "hi": "तारा कहाँ है?", "model": "Here it is!" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Find a circle at home.", "hi": "घर में कोई गोल चीज़ ढूँढो।", "pic": "⭕" },
+            { "en": "Find a square at home.", "hi": "घर में कोई चौकोर चीज़ ढूँढो।", "pic": "🟦" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Shape hunt: find three circles at home.", "hi": "आकार ढूँढो खेल: घर में तीन गोल चीज़ें ढूँढें।" }
+    },
+    {
+      "key": "a.u11.l5",
+      "kind": "review",
+      "title": { "en": "Shapes again", "hi": "फिर से आकार" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u11.l5.m-circle", "left": { "text": "circle", "pic": "⭕" }, "right": { "pic": "own:roti" } },
+            { "key": "a.u11.l5.m-square", "left": { "text": "square", "pic": "🟦" }, "right": { "pic": "🎁" } },
+            { "key": "a.u11.l5.m-triangle", "left": { "text": "triangle", "pic": "🔺" }, "right": { "pic": "⛰️" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u11.l5.t-triangle",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "triangle" },
+              "options": [{ "pic": "🔺" }, { "pic": "⭕" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u11.l5.t-heart",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "heart" },
+              "options": [{ "pic": "⭐" }, { "pic": "❤️" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u11.l5.w-seven",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "seven" },
+              "options": [{ "pic": "7️⃣" }, { "pic": "🔟" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u11.l5.w-door",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "door" },
+              "options": [{ "pic": "🛏️" }, { "pic": "🚪" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u11.l5.w-blue",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "blue" },
+              "options": [{ "pic": "🔵" }, { "pic": "🟡" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Draw a star in the air.", "hi": "हवा में तारा बनाओ।", "pic": "⭐" },
+            { "en": "Draw a heart in the air.", "hi": "हवा में दिल बनाओ।", "pic": "❤️" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u11.l5.s-box",
+              "model": "It is a square.",
+              "hi": "चित्र देखकर आकार बताओ।",
+              "pic": "🎁",
+              "cue": { "en": "What shape is it?", "hi": "यह किस आकार का है?" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "On walks, ask: What shape is it?", "hi": "घूमते समय चीज़ों का आकार पूछें: What shape is it?" }
+    }
+  ]
+}

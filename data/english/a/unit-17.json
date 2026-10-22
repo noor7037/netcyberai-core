@@ -1,0 +1,344 @@
+{
+  "track": "a",
+  "unit": 17,
+  "key": "a.u17",
+  "title": { "en": "Magic words", "hi": "जादुई शब्द" },
+  "pic": "✨",
+  "can_do": { "en": "I can use polite words.", "hi": "मुझे please, thank you और sorry बोलना आता है।" },
+  "lessons": [
+    {
+      "key": "a.u17.l1",
+      "kind": "words",
+      "title": { "en": "Magic words", "hi": "जादुई शब्द" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u17.l1.w-happy",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "happy" },
+              "options": [{ "pic": "😀" }, { "pic": "😢" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u17.l1.w-hungry",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "hungry" },
+              "options": [{ "pic": "🥱" }, { "pic": "🍽️" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: use these words with your child all day.", "hi": "बड़ों के लिए: दिन भर बच्चे से आप ख़ुद भी ये शब्द बोलें।" },
+          "pic": "✨"
+        },
+        {
+          "type": "words",
+          "words": [
+            { "key": "a.u17.l1.please", "en": "please", "hi": "प्लीज़, कृपया", "pic": "🙏", "example": { "en": "Water, please.", "hi": "पानी दीजिए, प्लीज़।" } },
+            { "key": "a.u17.l1.thank-you", "en": "thank you", "hi": "धन्यवाद, शुक्रिया", "pic": "🤗", "example": { "en": "Thank you, Dadi!", "hi": "शुक्रिया, दादी!" } },
+            { "key": "a.u17.l1.sorry", "en": "sorry", "hi": "माफ़ करना, सॉरी", "pic": "🙇", "example": { "en": "Sorry, Arjun.", "hi": "सॉरी, अर्जुन।" } },
+            { "key": "a.u17.l1.excuse-me", "en": "excuse me", "hi": "सुनिए, ज़रा", "pic": "🙋", "example": { "en": "Excuse me, teacher.", "hi": "सुनिए, टीचर जी।" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Fold your hands. Please!", "hi": "हाथ जोड़ो। प्लीज़!", "pic": "🙏" },
+            { "en": "Give a hug. Thank you!", "hi": "गले लगाओ। शुक्रिया!", "pic": "🤗" },
+            { "en": "Bow your head. Sorry!", "hi": "सिर झुकाओ। सॉरी!", "pic": "🙇" },
+            { "en": "Raise your hand. Excuse me!", "hi": "हाथ उठाओ। सुनिए!", "pic": "🙋" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u17.l1.t-please",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "please" },
+              "options": [{ "pic": "🙏" }, { "pic": "🙋" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u17.l1.t-sorry",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "sorry" },
+              "options": [{ "pic": "🤗" }, { "pic": "🙇" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u17.l1.t-excuse",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "excuse me" },
+              "options": [{ "pic": "🙇" }, { "pic": "🙏" }, { "pic": "🙋" }],
+              "answer": 2
+            },
+            {
+              "key": "a.u17.l1.t-thanks",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "thank you" },
+              "options": [{ "pic": "🤗" }, { "pic": "🙇" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u17.l1.s-please", "model": "Please.", "hi": "प्लीज़।", "pic": "🙏" },
+            { "key": "a.u17.l1.s-thanks", "model": "Thank you.", "hi": "शुक्रिया।", "pic": "🤗" },
+            { "key": "a.u17.l1.s-sorry", "model": "Sorry.", "hi": "सॉरी।", "pic": "🙇" },
+            { "key": "a.u17.l1.s-excuse", "model": "Excuse me.", "hi": "सुनिए।", "pic": "🙋" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Say thank you to your child often today.", "hi": "आज बच्चे को बार-बार thank you बोलें, वह भी सीखेगा।" }
+    },
+    {
+      "key": "a.u17.l2",
+      "kind": "pattern",
+      "title": { "en": "Thank you, Dadi!", "hi": "शुक्रिया, दादी!" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Magic words", "hi": "जादुई शब्द" },
+          "visual": "cards",
+          "examples": [
+            { "en": "Water, please.", "hi": "पानी दीजिए, प्लीज़।", "pic": "💧" },
+            { "en": "Thank you, Dadi!", "hi": "शुक्रिया, दादी!", "pic": "👵" },
+            { "en": "Sorry, Arjun.", "hi": "सॉरी, अर्जुन।", "pic": "👦" },
+            { "en": "Excuse me, teacher.", "hi": "सुनिए, टीचर जी।", "pic": "👩‍🏫" },
+            { "en": "You are welcome!", "hi": "कोई बात नहीं!", "pic": "😊" }
+          ],
+          "note": { "en": "Magic words make everyone smile.", "hi": "जादुई शब्दों से सब मुस्कुराते हैं।" }
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u17.l2.q-gift",
+              "prompt": { "en": "Dadi gives you a mango. You say:", "hi": "दादी तुम्हें आम देती हैं। तुम्हें क्या कहना चाहिए?", "pic": "🥭" },
+              "options": [{ "text": "Sorry!", "pic": "🙇" }, { "text": "Thank you!", "pic": "🤗" }],
+              "answer": 1,
+              "why": { "en": "When we get something, we say thank you.", "hi": "कुछ मिले तो thank you कहते हैं।" }
+            },
+            {
+              "key": "a.u17.l2.q-bump",
+              "prompt": { "en": "You bump into Salma. You say:", "hi": "सलमा से ग़लती से टक्कर हो गई। तुम्हें क्या कहना चाहिए?", "pic": "🧕" },
+              "options": [{ "text": "Sorry!", "pic": "🙇" }, { "text": "Please!", "pic": "🙏" }],
+              "answer": 0,
+              "why": { "en": "When we bump someone, we say sorry.", "hi": "किसी से टक्कर हो जाए तो sorry कहते हैं।" }
+            },
+            {
+              "key": "a.u17.l2.q-water",
+              "prompt": { "en": "You want water. You say:", "hi": "तुम्हें पानी चाहिए। क्या कहना है?", "pic": "💧" },
+              "options": [{ "text": "Sorry!", "pic": "🙇" }, { "text": "Water, please.", "pic": "🙏" }],
+              "answer": 1,
+              "why": { "en": "When we ask, we say please.", "hi": "कुछ माँगें तो please कहते हैं।" }
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Fold your hands and smile.", "hi": "हाथ जोड़ो और मुस्कुराओ।", "pic": "🙏" },
+            { "en": "Raise your hand to ask.", "hi": "कुछ पूछना हो तो हाथ उठाओ।", "pic": "🙋" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u17.l2.s-thanks", "model": "Thank you, Dadi!", "hi": "शुक्रिया, दादी!", "pic": "👵" },
+            { "key": "a.u17.l2.s-sorry", "model": "Sorry, Arjun.", "hi": "सॉरी, अर्जुन।", "pic": "👦" },
+            { "key": "a.u17.l2.s-please", "model": "Water, please.", "hi": "पानी दीजिए, प्लीज़।", "pic": "💧" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Praise every magic word you hear today.", "hi": "आज बच्चा जब भी जादुई शब्द बोले, शाबाशी दें।" }
+    },
+    {
+      "key": "a.u17.l3",
+      "kind": "listen",
+      "title": { "en": "At Ravi's shop", "hi": "रवि चाचा की दुकान पर" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Excuse me, Ravi Uncle", "hi": "सुनिए, रवि चाचा" },
+          "scene": {
+            "place": "market",
+            "pics": [
+              { "pic": "🏪", "x": 50, "y": 12, "size": 2 },
+              { "pic": "👳", "x": 30, "y": 40, "size": 1.6 },
+              { "pic": "🍌", "x": 50, "y": 36 },
+              { "pic": "👧", "x": 72, "y": 46, "size": 1.4 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Excuse me, Ravi Uncle.", "hi": "सुनिए, रवि चाचा।" },
+            { "speaker": "Ravi", "pic": "👳", "en": "Yes, Meera?", "hi": "हाँ, मीरा?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Two bananas, please.", "hi": "दो केले दीजिए, प्लीज़।" },
+            { "speaker": "Ravi", "pic": "👳", "en": "Here you are!", "hi": "ये लो!" },
+            { "speaker": "Meera", "pic": "👧", "en": "Thank you!", "hi": "शुक्रिया!" },
+            { "speaker": "Ravi", "pic": "👳", "en": "You are welcome!", "hi": "कोई बात नहीं!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u17.l3.q-want",
+              "prompt": { "en": "What does Meera want?", "hi": "मीरा को क्या चाहिए?" },
+              "options": [{ "pic": "🍌" }, { "pic": "🍎" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u17.l3.q-first",
+              "prompt": { "en": "What does Meera say first?", "hi": "मीरा पहले क्या कहती है?" },
+              "options": [{ "text": "Sorry!", "pic": "🙇" }, { "text": "Excuse me!", "pic": "🙋" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u17.l3.q-end",
+              "prompt": { "en": "What does Meera say at the end?", "hi": "आख़िर में मीरा क्या कहती है?" },
+              "options": [{ "text": "Thank you!", "pic": "🤗" }, { "text": "Please!", "pic": "🙏" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u17.l3.s-excuse", "model": "Excuse me, Ravi Uncle.", "hi": "सुनिए, रवि चाचा।", "pic": "🙋" },
+            { "key": "a.u17.l3.s-thanks", "model": "Thank you!", "hi": "शुक्रिया!", "pic": "🤗" },
+            { "key": "a.u17.l3.s-welcome", "model": "You are welcome!", "hi": "कोई बात नहीं!", "pic": "😊" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "At a shop, let your child say please and thank you.", "hi": "दुकान पर बच्चे को please और thank you बोलने दें।" }
+    },
+    {
+      "key": "a.u17.l4",
+      "kind": "speak",
+      "title": { "en": "Polite play", "hi": "प्यार से खेलें" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: you are Salma. Use a real or pretend ball.", "hi": "बड़ों के लिए: आप सलमा बनें। असली या खेल-खेल वाली गेंद लें।" },
+          "pic": "⚽"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Playing ball", "hi": "गेंद का खेल" },
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🌳", "x": 12, "y": 18, "size": 2 },
+              { "pic": "🧕", "x": 34, "y": 40, "size": 1.6 },
+              { "pic": "⚽", "x": 50, "y": 52 },
+              { "pic": "🧒", "x": 68, "y": 42, "size": 1.6 }
+            ]
+          },
+          "roles": [{ "name": "Salma", "pic": "🧕" }, { "name": "You", "pic": "🧒" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "I have a ball. Let's play!", "hi": "मेरे पास गेंद है। चलो खेलें!" },
+            { "role": 1, "en": "Yes, please! Thank you, Salma!", "hi": "हाँ, प्लीज़! शुक्रिया, सलमा!" },
+            { "role": 0, "en": "Oh! The ball hit my foot.", "hi": "अरे! गेंद मेरे पैर पर लगी।" },
+            { "role": 1, "en": "Sorry, Salma!", "hi": "सॉरी, सलमा!" },
+            { "role": 0, "en": "It is okay. Thank you!", "hi": "ठीक है। शुक्रिया!" },
+            { "role": 1, "en": "You are welcome!", "hi": "कोई बात नहीं!" }
+          ],
+          "partner": {
+            "goal": "Play with a ball: let the child accept nicely, have a small bump so the child can say sorry, and answer warmly.",
+            "must_use": ["please", "thank you", "sorry", "you are welcome"]
+          }
+        }
+      ],
+      "check": [],
+      "home": { "en": "Play shop at home, with please and thank you.", "hi": "घर पर दुकान-दुकान खेलें, please और thank you के साथ।" }
+    },
+    {
+      "key": "a.u17.l5",
+      "kind": "review",
+      "title": { "en": "Magic words game", "hi": "जादुई शब्दों का खेल" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u17.l5.m-gift", "left": { "pic": "🎁" }, "right": { "text": "Thank you", "pic": "🤗" } },
+            { "key": "a.u17.l5.m-water", "left": { "pic": "💧" }, "right": { "text": "Please", "pic": "🙏" } },
+            { "key": "a.u17.l5.m-bump", "left": { "pic": "😢" }, "right": { "text": "Sorry", "pic": "🙇" } },
+            { "key": "a.u17.l5.m-teacher", "left": { "pic": "👩‍🏫" }, "right": { "text": "Excuse me", "pic": "🙋" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u17.l5.t-sorry",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "sorry" },
+              "options": [{ "pic": "🙇" }, { "pic": "🙏" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u17.l5.t-excuse",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "excuse me" },
+              "options": [{ "pic": "🤗" }, { "pic": "🙋" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u17.l5.w-sad",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "sad" },
+              "options": [{ "pic": "😢" }, { "pic": "😀" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u17.l5.w-sit",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "sit" },
+              "options": [{ "pic": "🏃" }, { "pic": "🧘" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Fold your hands. Please!", "hi": "हाथ जोड़ो। प्लीज़!", "pic": "🙏" },
+            { "en": "Hug someone. Thank you!", "hi": "किसी को गले लगाओ। शुक्रिया!", "pic": "🤗" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u17.l5.s-milk",
+              "model": "Thank you, Dadi!",
+              "hi": "दादी को धन्यवाद कहो।",
+              "pic": "🥛",
+              "cue": { "en": "Dadi gives you milk. What do you say?", "hi": "दादी तुम्हें दूध देती हैं। तुम्हें क्या कहना चाहिए?" }
+            },
+            {
+              "key": "a.u17.l5.s-roti",
+              "model": "Roti, please!",
+              "hi": "प्यार से रोटी माँगो।",
+              "pic": "own:roti",
+              "cue": { "en": "You want a roti. Ask nicely.", "hi": "तुम्हें रोटी चाहिए। प्यार से माँगो।" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Make a family rule: magic words every day, for everyone.", "hi": "घर का नियम बनाएँ: रोज़ जादुई शब्द, सबके लिए।" }
+    }
+  ]
+}

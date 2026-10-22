@@ -1,0 +1,418 @@
+{
+  "track": "a",
+  "unit": 18,
+  "key": "a.u18",
+  "title": { "en": "My day", "hi": "मेरा दिन" },
+  "pic": "🌞",
+  "can_do": { "en": "I can talk about my day.", "hi": "मुझे अपने दिन के बारे में बताना आता है।" },
+  "lessons": [
+    {
+      "key": "a.u18.l1",
+      "kind": "words",
+      "title": { "en": "My day words", "hi": "मेरे दिन के शब्द" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u18.l1.w-please",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "please" },
+              "options": [{ "pic": "🙏" }, { "pic": "🙇" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u18.l1.w-thanks",
+              "prompt": { "en": "Remember? Listen and tap.", "hi": "याद है? सुनो और सही चित्र छुओ।", "say": "thank you" },
+              "options": [{ "pic": "🙋" }, { "pic": "🤗" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "text": {
+            "en": "Grown-up: say each word at the right time of day.",
+            "hi": "बड़ों के लिए: ये शब्द दिन में सही समय पर बोलें: सुबह good morning, रात को good night।"
+          },
+          "pic": "⏰"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "a.u18.l1.good-morning",
+              "en": "good morning",
+              "hi": "सुबह की नमस्ते, सुप्रभात",
+              "pic": "🌞",
+              "example": { "en": "Good morning, Mummy!", "hi": "सुप्रभात, मम्मी!" }
+            },
+            {
+              "key": "a.u18.l1.good-night",
+              "en": "good night",
+              "hi": "रात की नमस्ते, शुभ रात्रि",
+              "pic": "🌙",
+              "example": { "en": "Good night, Papa!", "hi": "शुभ रात्रि, पापा!" }
+            },
+            { "key": "a.u18.l1.brush", "en": "brush", "hi": "ब्रश करना", "pic": "🦷", "example": { "en": "Brush your teeth.", "hi": "अपने दाँत ब्रश करो।" } },
+            { "key": "a.u18.l1.bath", "en": "bath", "hi": "नहाना", "pic": "🛁", "example": { "en": "Bath time! Splash!", "hi": "नहाने का समय! छपाक!" } },
+            { "key": "a.u18.l1.school", "en": "school", "hi": "स्कूल", "pic": "🏫", "example": { "en": "Meera goes to school.", "hi": "मीरा स्कूल जाती है।" } },
+            { "key": "a.u18.l1.play", "en": "play", "hi": "खेलना", "pic": "⚽", "example": { "en": "Let's play!", "hi": "चलो खेलें!" } }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Stretch. Wake up!", "hi": "अंगड़ाई लो। जाग जाओ!", "pic": "🌞" },
+            { "en": "Brush, brush, brush!", "hi": "ब्रश करो, ब्रश, ब्रश!", "pic": "🦷" },
+            { "en": "Wash your hands.", "hi": "हाथ धोओ।", "pic": "🧼" },
+            { "en": "Sleep. Good night!", "hi": "सो जाओ। शुभ रात्रि!", "pic": "😴" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u18.l1.t-morning",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "good morning" },
+              "options": [{ "pic": "🌞" }, { "pic": "🌙" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u18.l1.t-bath",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "bath" },
+              "options": [{ "pic": "🦷" }, { "pic": "🛁" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u18.l1.t-school",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "school" },
+              "options": [{ "pic": "🏠" }, { "pic": "⚽" }, { "pic": "🏫" }],
+              "answer": 2
+            },
+            {
+              "key": "a.u18.l1.t-brush",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "brush" },
+              "options": [{ "pic": "🦷" }, { "pic": "🛁" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u18.l1.t-night",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "good night" },
+              "options": [{ "pic": "🌞" }, { "pic": "🌙" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u18.l1.s-morning", "model": "Good morning!", "hi": "सुप्रभात!", "pic": "🌞" },
+            { "key": "a.u18.l1.s-night", "model": "Good night!", "hi": "शुभ रात्रि!", "pic": "🌙" },
+            { "key": "a.u18.l1.s-brush", "model": "Brush.", "hi": "ब्रश करो।", "pic": "🦷" },
+            { "key": "a.u18.l1.s-bath", "model": "Bath.", "hi": "नहाना।", "pic": "🛁" },
+            { "key": "a.u18.l1.s-school", "model": "School.", "hi": "स्कूल।", "pic": "🏫" },
+            { "key": "a.u18.l1.s-play", "model": "Play.", "hi": "खेलो।", "pic": "⚽" }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Start tomorrow with Good morning, and end it with Good night.", "hi": "कल सुबह की शुरुआत Good morning से करें, और रात को Good night कहें।" }
+    },
+    {
+      "key": "a.u18.l2",
+      "kind": "pattern",
+      "title": { "en": "Good morning!", "hi": "सुप्रभात!" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Good morning! Good night!", "hi": "सुबह good morning, रात को good night" },
+          "visual": "cards",
+          "examples": [
+            { "en": "Good morning, Dadi!", "hi": "सुप्रभात, दादी!", "pic": "🌞" },
+            { "en": "Good morning, teacher!", "hi": "सुप्रभात, टीचर जी!", "pic": "🏫" },
+            { "en": "Good night, Papa!", "hi": "शुभ रात्रि, पापा!", "pic": "🌙" },
+            { "en": "Good night, Arjun!", "hi": "शुभ रात्रि, अर्जुन!", "pic": "😴" }
+          ],
+          "note": { "en": "Morning: good morning. Night: good night.", "hi": "सुबह: good morning। रात: good night।" }
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u18.l2.q-wake",
+              "prompt": { "en": "Time to wake up! You say:", "hi": "उठने का समय! क्या कहना है?", "pic": "⏰" },
+              "options": [{ "text": "Good night!", "pic": "🌙" }, { "text": "Good morning!", "pic": "🌞" }],
+              "answer": 1,
+              "why": { "en": "In the morning, we say good morning.", "hi": "सुबह good morning कहते हैं।" }
+            },
+            {
+              "key": "a.u18.l2.q-bed",
+              "prompt": { "en": "Time for bed. You say:", "hi": "सोने का समय। क्या कहना है?", "pic": "🛏️" },
+              "options": [{ "text": "Good night!", "pic": "🌙" }, { "text": "Good morning!", "pic": "🌞" }],
+              "answer": 0,
+              "why": { "en": "At night, we say good night.", "hi": "रात को good night कहते हैं।" }
+            },
+            {
+              "key": "a.u18.l2.t-teacher",
+              "prompt": { "en": "Listen. Where are you?", "hi": "सुनो। तुम कहाँ हो?", "say": "Good morning, teacher!" },
+              "options": [{ "pic": "🏫" }, { "pic": "🛏️" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Wave. Good morning!", "hi": "हाथ हिलाओ। गुड मॉर्निंग!", "pic": "👋" },
+            { "en": "Yawn. Good night!", "hi": "जम्हाई लो। गुड नाइट!", "pic": "🥱" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u18.l2.s-dadi",
+              "model": "Good morning, Dadi!",
+              "hi": "दादी को सुबह की नमस्ते करो।",
+              "pic": "🌞",
+              "cue": { "en": "It is morning. Greet Dadi.", "hi": "सुबह हो गई। दादी को नमस्ते करो।" }
+            },
+            {
+              "key": "a.u18.l2.s-papa",
+              "model": "Good night, Papa!",
+              "hi": "पापा को रात की नमस्ते करो।",
+              "pic": "🌙",
+              "cue": { "en": "It is night. Say it to Papa.", "hi": "रात हो गई। पापा से कहो।" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Greet each other every morning and night in English.", "hi": "रोज़ सुबह और रात एक-दूसरे को अंग्रेज़ी में नमस्ते करें।" }
+    },
+    {
+      "key": "a.u18.l3",
+      "kind": "listen",
+      "title": { "en": "Meera's day", "hi": "मीरा का दिन" },
+      "minutes": 4,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Meera's day", "hi": "मीरा का दिन" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🌞", "x": 86, "y": 8, "size": 1.4 },
+              { "pic": "🏠", "x": 18, "y": 20, "size": 1.8 },
+              { "pic": "👧", "x": 40, "y": 46, "size": 1.4 },
+              { "pic": "👩", "x": 58, "y": 44, "size": 1.5 },
+              { "pic": "🎒", "x": 72, "y": 52 },
+              { "pic": "🏫", "x": 88, "y": 32, "size": 1.6 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Meera", "pic": "👧", "en": "Good morning, Mummy!", "hi": "सुप्रभात, मम्मी!" },
+            { "speaker": "Mummy", "pic": "👩", "en": "Good morning, Meera! Brush, please.", "hi": "सुप्रभात, मीरा! ब्रश कर लो।" },
+            { "speaker": "Meera", "pic": "👧", "en": "I brush. I take a bath.", "hi": "मैं ब्रश करती हूँ। फिर नहाती हूँ।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Bye, Dadi! School time!", "hi": "टाटा, दादी! स्कूल का समय!" },
+            { "speaker": "Meera", "pic": "👧", "en": "After school, I play.", "hi": "स्कूल के बाद मैं खेलती हूँ।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Good night, Papa!", "hi": "शुभ रात्रि, पापा!" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u18.l3.q-first",
+              "prompt": { "en": "What does Meera say first?", "hi": "मीरा सबसे पहले क्या कहती है?" },
+              "options": [{ "text": "Good night!", "pic": "🌙" }, { "text": "Good morning!", "pic": "🌞" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u18.l3.q-where",
+              "prompt": { "en": "Where does Meera go?", "hi": "मीरा कहाँ जाती है?" },
+              "options": [{ "pic": "🏫" }, { "pic": "🏪" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u18.l3.q-after",
+              "prompt": { "en": "What does Meera do after school?", "hi": "स्कूल के बाद मीरा क्या करती है?" },
+              "options": [{ "pic": "😴" }, { "pic": "⚽" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "a.u18.l3.s-morning", "model": "Good morning, Mummy!", "hi": "सुप्रभात, मम्मी!", "pic": "🌞" },
+            { "key": "a.u18.l3.s-play", "model": "After school, I play.", "hi": "स्कूल के बाद मैं खेलती हूँ।", "pic": "⚽" }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [{ "en": "Brush your teeth.", "hi": "दाँत ब्रश करो।", "pic": "🦷" }, { "en": "Put on your school bag.", "hi": "अपना बस्ता पहनो।", "pic": "🎒" }]
+        }
+      ],
+      "check": [],
+      "home": { "en": "At bedtime, talk about the day: I brush, I play, I sleep.", "hi": "सोते समय दिन की बातें करें: I brush, I play, I sleep।" }
+    },
+    {
+      "key": "a.u18.l4",
+      "kind": "speak",
+      "title": { "en": "My day in three pictures", "hi": "तीन चित्रों में मेरा दिन" },
+      "minutes": 5,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Grown-up: point to each picture in order: morning, day, night.", "hi": "बड़ों के लिए: चित्रों पर क्रम से उँगली रखें: सुबह, दिन, रात।" },
+          "pic": "👉"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🌞", "x": 15, "y": 10, "size": 1.4 },
+              { "pic": "🦷", "x": 15, "y": 36, "size": 1.4 },
+              { "pic": "🏫", "x": 50, "y": 14, "size": 1.6 },
+              { "pic": "⚽", "x": 50, "y": 40 },
+              { "pic": "🌙", "x": 85, "y": 10, "size": 1.4 },
+              { "pic": "😴", "x": 85, "y": 36, "size": 1.4 }
+            ]
+          },
+          "questions": [
+            { "key": "a.u18.l4.q-morning", "en": "Morning! What do you do?", "hi": "सुबह! तुम क्या करते हो?", "model": "I brush my teeth." },
+            { "key": "a.u18.l4.q-day", "en": "Then where do you go?", "hi": "फिर तुम कहाँ जाते हो?", "model": "I go to school." },
+            { "key": "a.u18.l4.q-night", "en": "Night time! What do you say?", "hi": "रात हो गई! क्या कहना है?", "model": "Good night, Mummy!" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u18.l4.s-day",
+              "model": "I brush. I play. I sleep.",
+              "hi": "तीन चित्रों से अपना दिन बताओ।",
+              "pic": "🌞",
+              "cue": { "en": "Tell your day in three steps.", "hi": "अपना दिन तीन बातों में बताओ।" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Each night, ask: What did you do today?", "hi": "रोज़ रात पूछें: What did you do today? बच्चा तीन बातें बताए।" }
+    },
+    {
+      "key": "a.u18.l5",
+      "kind": "review",
+      "title": { "en": "My English party!", "hi": "मेरी अंग्रेज़ी पार्टी!" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u18.l5.t-ten",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "ten" },
+              "options": [{ "pic": "🔟" }, { "pic": "6️⃣" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u18.l5.t-star",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "star" },
+              "options": [{ "pic": "⭕" }, { "pic": "⭐" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u18.l5.t-milk",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "milk" },
+              "options": [{ "pic": "🥛" }, { "pic": "💧" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u18.l5.t-cap",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "cap" },
+              "options": [{ "pic": "👟" }, { "pic": "🧢" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "prompts": [
+            { "en": "Jump like a frog!", "hi": "मेंढक की तरह कूदो!", "pic": "🐸" },
+            { "en": "Make a happy face!", "hi": "खुश चेहरा बनाओ!", "pic": "😀" },
+            { "en": "Fold your hands. Thank you!", "hi": "हाथ जोड़ो। शुक्रिया!", "pic": "🙏" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "a.u18.l5.t-rain",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "rain" },
+              "options": [{ "pic": "☀️" }, { "pic": "🌧️" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u18.l5.t-run",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "run" },
+              "options": [{ "pic": "🏃" }, { "pic": "🧘" }],
+              "answer": 0
+            },
+            {
+              "key": "a.u18.l5.t-sleepy",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "sleepy" },
+              "options": [{ "pic": "😠" }, { "pic": "🥱" }],
+              "answer": 1
+            },
+            {
+              "key": "a.u18.l5.t-sorry",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो, फिर सही चित्र छुओ।", "say": "sorry" },
+              "options": [{ "pic": "🙇" }, { "pic": "🤗" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "a.u18.l5.m-morning", "left": { "text": "good morning", "pic": "🌞" }, "right": { "pic": "🦷" } },
+            { "key": "a.u18.l5.m-night", "left": { "text": "good night", "pic": "🌙" }, "right": { "pic": "😴" } },
+            { "key": "a.u18.l5.m-school", "left": { "text": "school", "pic": "🏫" }, "right": { "pic": "🎒" } },
+            { "key": "a.u18.l5.m-bath", "left": { "text": "bath", "pic": "🛁" }, "right": { "pic": "🧼" } }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "a.u18.l5.s-day",
+              "model": "Good morning! I go to school.",
+              "hi": "अपने दिन के बारे में बताओ।",
+              "pic": "🌞",
+              "cue": { "en": "Tell me about your day.", "hi": "अपने दिन के बारे में बताओ।" }
+            },
+            {
+              "key": "a.u18.l5.s-night",
+              "model": "Good night! I am sleepy.",
+              "hi": "रात की बात बताओ।",
+              "pic": "🌙",
+              "cue": { "en": "It is night now.", "hi": "अब रात हो गई।" }
+            }
+          ]
+        }
+      ],
+      "check": [],
+      "home": { "en": "Well done! Keep talking in English at home every day.", "hi": "बहुत बढ़िया! घर में रोज़ थोड़ी-थोड़ी अंग्रेज़ी बोलते रहें।" }
+    }
+  ]
+}
