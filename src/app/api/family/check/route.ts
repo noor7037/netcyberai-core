@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { activeChild, listChildren } from '@/lib/family/children';
 import { openItem } from '@/lib/family/items';
 import { recordAnswer } from '@/lib/family/learning';
+import { dayLabel } from '@/lib/family/plan';
 import { indiaDate } from '@/lib/time/india';
 import { familyRun, jsonBody, requireFamily } from '@/lib/family/request';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
@@ -22,7 +23,9 @@ export async function POST(req: NextRequest) {
     const choice = Number(body.choice);
     if (!Number.isInteger(choice) || choice < 0 || choice >= item.w.length) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
     // Recorded as checked: the only way progress moves (M1-6).
-    const correct = await recordAnswer(db, { accountId: g.session.accountId, childId: child!.childId, item, choice, hintUsed: body.hintUsed === true, day: indiaDate() });
-    return NextResponse.json({ correct, explanation: correct ? item.y : item.w[choice] || item.y, answer: correct ? choice : null });
+    const { correct, revisitOn } = await recordAnswer(db, { accountId: g.session.accountId, childId: child!.childId, item, choice, hintUsed: body.hintUsed === true, day: indiaDate() });
+    // A wrong answer also says when the topic comes back (M2-2), so the child knows it is not the end of it.
+    const revisitDay = revisitOn ? dayLabel(revisitOn, child!.language) : null;
+    return NextResponse.json({ correct, explanation: correct ? item.y : item.w[choice] || item.y, answer: correct ? choice : null, revisitOn, revisitDay });
   });
 }

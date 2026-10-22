@@ -6486,10 +6486,41 @@ export const en = {
   'fam.offline.retry': 'Try again',
   // m1-8 end
   // m2-2 begin
+  'fam.plan.title': "Today's plan",
+  'fam.plan.minutes': 'About {minutes} minutes',
+  'fam.plan.kind.revisit': 'Come back to',
+  'fam.plan.kind.weak': 'Practise again',
+  'fam.plan.kind.next': 'Next in your syllabus',
+  'fam.plan.done': 'Done',
+  'fam.plan.todo': 'To do',
+  'fam.plan.complete': "Today's plan is done. Well done!",
+  'fam.plan.empty': 'Nothing is planned for today yet. Pick a topic in Study.',
+  'fam.plan.how': 'Your plan comes from your answers: topics to come back to, topics to practise, then what comes next.',
+  'fam.plan.comesBack': 'This topic comes back on {day}, so that it sticks.',
   // m2-2 end
   // m2-3 begin
   // m2-3 end
   // m2-4 begin
+  'fam.worksheet.title': 'Worksheet',
+  'fam.worksheet.action': 'Worksheet',
+  'fam.worksheet.openFor': 'Worksheet for {topic}',
+  'fam.worksheet.lead': '{n} questions on this topic. Answer them here, or print them to write on paper.',
+  'fam.worksheet.print': 'Print',
+  'fam.worksheet.printParent': 'Print with answer key (parent PIN)',
+  'fam.worksheet.printHelp': 'In the Print window, choose Save as PDF to keep it as a PDF.',
+  'fam.worksheet.sheetFor': 'Worksheet for {name}',
+  'fam.worksheet.topic': 'Topic: {topic}',
+  'fam.worksheet.nameLine': 'Name:',
+  'fam.worksheet.dateLine': 'Date:',
+  'fam.worksheet.answerLine': 'Answer:',
+  'fam.worksheet.keyTitle': 'Answer key',
+  'fam.worksheet.keyFor': 'For the parent. This is the answer key for {name}.',
+  'fam.worksheet.keyNote': 'For the parent only. Keep it away from the child until the worksheet is done.',
+  'fam.worksheet.parentLead': 'Print the worksheet for {name}: {n} questions. The last page is the answer key.',
+  'fam.worksheet.printWithKey': 'Print with answer key',
+  'fam.worksheet.none': 'There is no practice for this topic yet. Open Understand for it first, and the questions will be ready here.',
+  'fam.worksheet.openUnderstand': 'Open Understand for this topic',
+  'fam.worksheet.off': 'Worksheets are switched off for now. Try again later.',
   // m2-4 end
   // m2-5 begin
   // m2-5 end

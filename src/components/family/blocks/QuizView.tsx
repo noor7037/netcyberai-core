@@ -2,14 +2,14 @@
 
 import { useState } from 'react';
 import type { PublicItem } from '@/lib/family/items';
-import type { Words } from '@/lib/family/fill';
+import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from '../client';
 import { Card, SUBJECT_TONE } from './BlockViews';
 
 // A check or practice (M1-5, C251): the hint comes first, on asking or after a first wrong answer; the server checks
 // every answer (the phone never holds the key). A second wrong answer shows the exact misunderstanding that option
 // reveals, and offers a different explanation with new targeted questions (onRetry).
-type State = { picked: number | null; tries: number; hint: string | null; result: { correct: boolean; explanation: string } | null; busy: boolean };
+type State = { picked: number | null; tries: number; hint: string | null; result: { correct: boolean; explanation: string; revisitDay?: string | null } | null; busy: boolean };
 
 function Question({ item, w, tone, onRetry, onAnswered }: { item: PublicItem; w: Words; tone: string; onRetry: (token: string, choice: number) => void; onAnswered?: (correct: boolean) => void }) {
   const [s, setS] = useState<State>({ picked: null, tries: 0, hint: null, result: null, busy: false });
@@ -19,7 +19,7 @@ function Question({ item, w, tone, onRetry, onAnswered }: { item: PublicItem; w:
   };
   const answer = async (choice: number) => {
     setS((x) => ({ ...x, picked: choice, busy: true }));
-    const r = await familyApi<{ correct: boolean; explanation: string }>('/api/family/check', 'POST', { token: item.token, choice, hintUsed: s.hint !== null });
+    const r = await familyApi<{ correct: boolean; explanation: string; revisitDay?: string | null }>('/api/family/check', 'POST', { token: item.token, choice, hintUsed: s.hint !== null });
     if (!r.ok) return setS((x) => ({ ...x, busy: false }));
     const tries = s.tries + 1;
     onAnswered?.(r.data.correct);
@@ -60,6 +60,7 @@ function Question({ item, w, tone, onRetry, onAnswered }: { item: PublicItem; w:
         <div role="status" className={`flex flex-col gap-2 rounded-xl px-3 py-2 text-sm text-slate ${s.result!.correct ? 'bg-emerald/10' : 'bg-coral/10'}`}>
           <p className="font-bold">{s.result!.correct ? w['fam.check.right'] : w['fam.check.notYet']}</p>
           <p>{s.result!.explanation}</p>
+          {!s.result!.correct && s.result!.revisitDay && <p data-revisit>{fill(w['fam.plan.comesBack'], { day: s.result!.revisitDay })}</p>}
           {!s.result!.correct && (
             <button type="button" onClick={() => onRetry(item.token, s.picked!)} className={`min-h-[44px] self-start rounded-full px-4 text-sm font-bold ${SUBJECT_TONE[tone]?.chip ?? 'bg-royal text-white'}`}>
               {w['fam.check.explainAgain']}

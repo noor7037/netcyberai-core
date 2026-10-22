@@ -6474,10 +6474,41 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.offline.retry': 'फिर कोशिश करें',
   // m1-8 end
   // m2-2 begin
+  'fam.plan.title': 'आज की योजना',
+  'fam.plan.minutes': 'लगभग {minutes} मिनट',
+  'fam.plan.kind.revisit': 'फिर से देखें',
+  'fam.plan.kind.weak': 'फिर से अभ्यास करें',
+  'fam.plan.kind.next': 'सिलेबस में आगे',
+  'fam.plan.done': 'हो गया',
+  'fam.plan.todo': 'करना है',
+  'fam.plan.complete': 'आज की योजना पूरी हो गई। शाबाश!',
+  'fam.plan.empty': 'आज के लिए अभी कुछ तय नहीं है। पढ़ाई में कोई विषय चुनें।',
+  'fam.plan.how': 'आपकी योजना आपके जवाबों से बनती है: जिन विषयों पर लौटना है, जिनका अभ्यास करना है, फिर आगे क्या है।',
+  'fam.plan.comesBack': 'यह विषय {day} को फिर आएगा, ताकि अच्छी तरह याद रहे।',
   // m2-2 end
   // m2-3 begin
   // m2-3 end
   // m2-4 begin
+  'fam.worksheet.title': 'अभ्यास-पत्र',
+  'fam.worksheet.action': 'अभ्यास-पत्र',
+  'fam.worksheet.openFor': '{topic} का अभ्यास-पत्र',
+  'fam.worksheet.lead': 'इस विषय के {n} प्रश्न। यहीं हल करें, या प्रिंट करके कागज़ पर लिखें।',
+  'fam.worksheet.print': 'प्रिंट करें',
+  'fam.worksheet.printParent': 'उत्तर-कुंजी के साथ प्रिंट करें (अभिभावक पिन)',
+  'fam.worksheet.printHelp': 'प्रिंट विंडो में "PDF के रूप में सहेजें" चुनने से यह PDF बन जाता है।',
+  'fam.worksheet.sheetFor': '{name} का अभ्यास-पत्र',
+  'fam.worksheet.topic': 'विषय: {topic}',
+  'fam.worksheet.nameLine': 'नाम:',
+  'fam.worksheet.dateLine': 'तारीख़:',
+  'fam.worksheet.answerLine': 'उत्तर:',
+  'fam.worksheet.keyTitle': 'उत्तर-कुंजी',
+  'fam.worksheet.keyFor': 'अभिभावक के लिए। यह {name} के अभ्यास-पत्र की उत्तर-कुंजी है।',
+  'fam.worksheet.keyNote': 'केवल अभिभावक के लिए। अभ्यास-पत्र पूरा होने तक इसे बच्चे से दूर रखें।',
+  'fam.worksheet.parentLead': '{name} के लिए अभ्यास-पत्र प्रिंट करें: {n} प्रश्न। आख़िरी पन्ने पर उत्तर-कुंजी है।',
+  'fam.worksheet.printWithKey': 'उत्तर-कुंजी के साथ प्रिंट करें',
+  'fam.worksheet.none': 'इस विषय का अभ्यास अभी तैयार नहीं है। पहले इसके लिए "समझें" खोलें, फिर प्रश्न यहाँ तैयार मिलेंगे।',
+  'fam.worksheet.openUnderstand': 'इस विषय के लिए "समझें" खोलें',
+  'fam.worksheet.off': 'अभ्यास-पत्र अभी बंद हैं। थोड़ी देर बाद फिर कोशिश करें।',
   // m2-4 end
   // m2-5 begin
   // m2-5 end

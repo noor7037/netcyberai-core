@@ -172,7 +172,7 @@ insert into family.consents (account_id, purpose, granted, verification_method, 
   ('f0000000-0000-4000-8000-0000000f0005', 'english_programme', true, 'parent_tap', 'fam-notice-1');
 insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code) values
   ('f0000000-0000-4000-8000-0000000fc005', 'f0000000-0000-4000-8000-0000000f0005', 'Meena', 2, 'CBSE', 'en', 'hi', 'IN-UP');
-insert into control.app_flags (app, module, enabled, reason) values ('family', 'english_programme', true, 'harness')
+insert into control.app_flags (app, module, enabled, reason) values ('family', 'english_programme', true, 'harness'), ('family', 'worksheets', true, 'harness')
   on conflict (app, module) do update set enabled = true;
 
 -- Understand (M1-5, C251): one illustrative catalog line (class 9 Mathematics) and an illustrative cached response in
@@ -227,3 +227,12 @@ insert into content.responses (board_id, class_level, subject, topic_key, langua
   ('CBSE', 9, 'mathematics', 'cbse.c9.mathematics.u1.ch90.t06', 'en', 'en', 'v1', 1, '[{"type":"explanation","title":"Refraction of light","idea":"Light bends when it passes from one medium into another.","example":"Change a value in the picture and see what changes.","steps":["Look at the picture.","Change one value.","Read the values written below it."],"terms":[]},{"type":"simulation","title":"Light from glass into air","sim":"refraction","values":{"n1":1.5,"n2":1,"incidence":45}},{"type":"check","items":[{"id":"c1","question":"What changed in the picture?","options":["The picture and the values","Nothing"],"answer":0,"hint":"Try changing one value.","why":"Every value is worked out again.","wrong":["","When a value changes, the picture changes too."]}]},{"type":"practice","items":[{"id":"p1","question":"Change the other value. What happened?","options":["The picture changed","Nothing"],"answer":0,"hint":"Move the slider.","why":"The picture is drawn from the values.","wrong":["","The picture is drawn from the values."]}]}]'::jsonb, 'ai_made', 'harness', 'harness'),
   ('CBSE', 9, 'mathematics', 'cbse.c9.mathematics.u1.ch90.t06', 'hi', 'en', 'v1', 1, '[{"type":"explanation","title":"प्रकाश का अपवर्तन","idea":"एक माध्यम से दूसरे में जाते समय प्रकाश मुड़ जाता है।","example":"चित्र में मान बदलकर देखें कि क्या बदलता है।","steps":["चित्र देखें।","एक मान बदलें।","नीचे लिखे मान पढ़ें।"],"terms":[]},{"type":"simulation","title":"काँच से हवा में प्रकाश","sim":"refraction","values":{"n1":1.5,"n2":1,"incidence":45}},{"type":"check","items":[{"id":"c1","question":"चित्र में क्या बदला?","options":["चित्र और मान दोनों","कुछ नहीं"],"answer":0,"hint":"एक मान बदलकर देखें।","why":"हर मान हमारा कोड फिर से निकालता है।","wrong":["","मान बदलने पर चित्र भी बदलता है।"]}]},{"type":"practice","items":[{"id":"p1","question":"दूसरा मान बदलें। क्या हुआ?","options":["चित्र बदला","कुछ नहीं"],"answer":0,"hint":"स्लाइडर खिसकाएँ।","why":"चित्र मानों से बनता है।","wrong":["","चित्र मानों से बनता है।"]}]}]'::jsonb, 'ai_made', 'harness', 'harness');
 -- m2-8 end
+-- m2-2 begin
+-- Today's plan (M2-2, C276): the plan module on; Kabir's wrong answer three days ago brings Rational numbers back today
+-- (answered today, so it is ticked), then the next topic of his syllabus. Illustrative only.
+insert into control.app_flags (app, module, enabled, reason) values ('family', 'plan', true, 'harness')
+  on conflict (app, module) do update set enabled = true;
+insert into family.revisits (account_id, child_id, topic_key, subject, step, set_on, due_on) values
+  ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'cbse.c9.mathematics.u1.ch01.t01', 'mathematics', 1, (now() at time zone 'Asia/Kolkata')::date - 3, (now() at time zone 'Asia/Kolkata')::date),
+  ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'cbse.c9.mathematics.u1.ch01.t01', 'mathematics', 2, (now() at time zone 'Asia/Kolkata')::date - 3, (now() at time zone 'Asia/Kolkata')::date + 7);
+-- m2-2 end
