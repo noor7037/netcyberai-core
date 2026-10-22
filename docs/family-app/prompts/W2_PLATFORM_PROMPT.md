@@ -54,6 +54,9 @@ YOURS, IN THIS ORDER (one coherent slice each; CLAUDE.md sizes and reviews; auth
      - Teacher, school admin and staff roles come only from an invitation or from Control.
      - Super admin is never self-chosen.
    - **Returning users** land where their role belongs. Sessions survive app restarts (C257).
+   - **Google sign-in in the Android app.** Google refuses OAuth inside an embedded WebView (`disallowed_useragent`), and the Capacitor shell is one.
+     - In the app, run the Google step in the system browser (Custom Tabs) and return by a verified App Link, or use Android's Credential Manager.
+     - Test it in the APK, not only in a browser.
    - **Founder input:** a Google OAuth client. Write Noor the exact clicks: Google Cloud → OAuth client → paste into Supabase → Auth → Google. That step is his, because it is his Google account.
 3. **Founder control.**
    - Noor's existing account is the designated super admin. Find it from the database, never from code text.
