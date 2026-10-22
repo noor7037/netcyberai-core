@@ -167,5 +167,10 @@ describe('checked explanations only (C300)', () => {
         [TOPIC, STAFF]
       )
     ).rejects.toThrow();
+    // Once a reviewer checks it, every child is served it, in this subject too.
+    await db.pg.query(`update content.responses set status = 'checked', checked_by = $1, checked_at = now() where topic_key = $2 and language = 'hi'`, [STAFF, CHAPTER]);
+    const calls = ai.calls.length;
+    expect((await ask({ kind: 'chapter', key: CHAPTER }))[0]).toMatchObject({ t: 'meta', label: 'checked', cached: true });
+    expect(ai.calls.length).toBe(calls);
   });
 });
