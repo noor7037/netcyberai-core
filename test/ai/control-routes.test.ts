@@ -90,7 +90,9 @@ describe('who is let in', () => {
     expect(body.keyReady).toBe(true);
     expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'gemini', 'openai', 'workers-ai', 'youtube']);
     expect(body.profiles).toEqual([
-      expect.objectContaining({ profileId: 'content.syllabus_extract', carriesChildWords: false, providerId: null, enabled: true }),
+      // Control's two staff tools start on Workers AI (C313); nothing runs until its key is entered.
+      expect.objectContaining({ profileId: 'content.prepare', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true }),
+      expect.objectContaining({ profileId: 'content.syllabus_extract', carriesChildWords: false, providerId: 'workers-ai', enabled: true }),
       expect.objectContaining({ profileId: 'copilot.draft', carriesChildWords: false, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'family.homework', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'family.resolver', carriesChildWords: true, providerId: null, enabled: true }),

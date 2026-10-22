@@ -27,7 +27,7 @@ import { scrubRequest } from './preprocess';
 // against their schema and drop anything outside it. The key opened in 3 lives only inside the prepared call (a closure,
 // never a field), and a prepared call sends once: one daily-cap place, one vendor request.
 
-export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input' | 'copilot.draft' | 'parent_ai.home_help' | 'content.syllabus_extract';
+export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input' | 'copilot.draft' | 'parent_ai.home_help' | 'content.syllabus_extract' | 'content.prepare';
 export type Capability = 'text' | 'speech_to_text';
 // `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
 // monthly one, which its caller checks (src/lib/copilot/copilot.ts); a control profile runs only for Control's staff.
@@ -45,6 +45,10 @@ export const PROFILES: readonly AiProfile[] = [
   { id: 'parent_ai.home_help', carriesChildWords: false, capability: 'text', audience: 'school' },
   // M2-12 (C286): reads a board's public syllabus PDF for Control's catalog import; a reviewer approves every line.
   { id: 'content.syllabus_extract', carriesChildWords: false, capability: 'text', audience: 'control' },
+  // W2 (C313; C230-T): NetCyberAI staff prepare the library's explanations before children ask (Control → Content →
+  // Responses). No child's words; what it makes reaches a child only once a person has checked it (C300, the
+  // responses' read policy).
+  { id: 'content.prepare', carriesChildWords: false, capability: 'text', audience: 'control' },
 ];
 
 // The adapter a profile would use for a provider: the one of the profile's capability, or null when the code has none
@@ -61,9 +65,6 @@ export type AiContext = {
   childFirstNames: string[];
   parentEmail?: string;
   day: string; // the India date, YYYY-MM-DD
-  // NetCyberAI staff preparing the shared library before children ask (C300): `accountId` is the staff member's user
-  // id, and no family's daily cap is taken. Set only by server code behind the content staff guard, never from a request.
-  staffPreparing?: true;
 };
 export type AiRequest = {
   system: string;
@@ -202,7 +203,7 @@ async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capab
 
 // 4. The family's daily cap, counted before the request leaves.
 async function takeCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link): Promise<boolean> {
-  if (profile.audience !== 'family' || ctx.staffPreparing) return true;
+  if (profile.audience !== 'family') return true;
   const limit = await dailyLimit(db);
   if (limit === null || !(await takeDailyRequest(db, ctx.accountId, ctx.day, limit))) {
     await count(db, ctx.day, profile.id, first, { capRefusals: 1 });

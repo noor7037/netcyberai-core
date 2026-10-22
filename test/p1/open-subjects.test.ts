@@ -49,8 +49,8 @@ describe('subjects open to every child', () => {
     expect(subjectAccess({ freeSubject: 'mathematics' }, 'hindi', ['evs'])).toMatchObject({ open: false });
   });
 
-  it("starts with the pilot's EVS, and the setting no code read is gone", async () => {
-    expect(await asFamily((tx) => openSubjects(tx))).toEqual(['evs']);
+  it("starts with the demo pilot's Science (C313, replacing the first pilot's EVS), and the setting no code read is gone", async () => {
+    expect(await asFamily((tx) => openSubjects(tx))).toEqual(['science']);
     expect((await db.pg.query(`select 1 from control.settings where key = 'family.free_subjects_per_child'`)).rows).toHaveLength(0);
   });
 
@@ -61,7 +61,7 @@ describe('subjects open to every child', () => {
     expect(await asPlatform((tx) => readSubjectList(tx, 'open'))).toEqual(['evs']);
     const audit = (await db.pg.query(`select before_state, after_state from audit_log where event_action = 'family.open_subjects_set' order by created_at`)).rows;
     expect(audit).toEqual([
-      { before_state: { subjects: ['evs'] }, after_state: { subjects: [] } },
+      { before_state: { subjects: ['science'] }, after_state: { subjects: [] } },
       { before_state: { subjects: [] }, after_state: { subjects: ['evs'] } },
     ]);
   });

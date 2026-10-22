@@ -58,7 +58,9 @@ export type ResolverContext = {
   claimSubject?: (db: Db, subject: Subject) => Promise<boolean>;
   // NetCyberAI staff preparing the shared library before children ask (C300, prepare.ts): the line comes from this
   // syllabus version, in review or released, and the "checked explanations only" rule does not apply (what is made
-  // goes to Control's review queue as AI-made).
+  // goes to Control's review queue as AI-made). The call runs on the staff profile content.prepare (C313), with its
+  // provider and prompt version, and no family's daily cap; the response is marked prepared, so no child sees it
+  // before a person has checked it.
   preparing?: { versionId: string };
 };
 
@@ -237,7 +239,8 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   const ofClass = await classSubjects(db as never, { board: syllabusBoardOf(child), classLevel: child.classLevel });
   const openToAll = await openSubjects(db as never);
   const open: Subject[] = known ? [known] : ofClass.filter((s) => !ctx.claimSubject || subjectAccess(child, s, openToAll).open);
-  const prompt = resolverPrompt(await activePromptVersion(db as never, 'family.resolver'), known === null);
+  const profileId = ctx.preparing ? 'content.prepare' : 'family.resolver';
+  const prompt = resolverPrompt(await activePromptVersion(db as never, profileId), known === null);
   const cacheable = input.kind !== 'question' && followUp === null && misconception === null;
 
   // 2. The shared library. In a "checked explanations only" subject (C300) a chapter or topic is served a checked
@@ -273,7 +276,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   const prepared = await prepareText(
     db as never,
     { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day },
-    'family.resolver',
+    profileId,
     { system: prompt.system(ask), messages: [{ role: 'user', content: prompt.user(ask) }], responseFormat: undefined }
   );
   if (!prepared.ok) {
@@ -372,13 +375,14 @@ export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEv
   if (!g.subject) return { t: 'refused', reason: 'failed', message: ctx.refusalWords(REFUSAL_MESSAGE.failed) };
   const complete = completeResponse(g.kept);
 
-  // A complete topic or chapter response is kept for the next child, as AI-made, until the founder approves it.
+  // A complete topic or chapter response is kept for the next child, as AI-made, until the founder approves it. One
+  // staff prepared (C313) names who prepared it, and no child is served it before it is checked.
   if (complete && p.cacheable && line) {
     await db.query(
-      `insert into content.responses (board_id, class_level, subject, topic_key, language, style, prompt_version, schema_version, blocks, status, provider, model)
-       values ($1, $2, $3, $4, $5, $6, $7, $8, $9::jsonb, 'ai_made', $10, $11)
+      `insert into content.responses (board_id, class_level, subject, topic_key, language, style, prompt_version, schema_version, blocks, status, provider, model, prepared_by)
+       values ($1, $2, $3, $4, $5, $6, $7, $8, $9::jsonb, 'ai_made', $10, $11, $12)
        on conflict do nothing`,
-      [syllabusBoardOf(ctx.child), ctx.child.classLevel, line.subject, line.key, ctx.child.language, ctx.child.style, p.promptVersion, BLOCK_SCHEMA_VERSION, JSON.stringify(complete), result.provider, result.model]
+      [syllabusBoardOf(ctx.child), ctx.child.classLevel, line.subject, line.key, ctx.child.language, ctx.child.style, p.promptVersion, BLOCK_SCHEMA_VERSION, JSON.stringify(complete), result.provider, result.model, ctx.preparing ? ctx.accountId : null]
     );
   }
   return { t: 'done', complete: complete !== null };

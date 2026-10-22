@@ -10,8 +10,10 @@ import { isSubject } from './subjects';
 // Each goes to Control → Content → Responses as AI-made, for a reviewer to check or withdraw; in a "checked explanations
 // only" subject a child sees it only once it is checked. One line per call, so a call never outlasts the server's time
 // limit; the Control page calls again until nothing is missing or a line fails. A withdrawn response counts as missing,
-// so the next call makes a fresh one. The request goes through the AI platform as any child's would (profile
-// family.resolver: the minors check and the metering), with no child in it and no family's daily cap taken.
+// so the next call makes a fresh one. The request goes through the AI platform on the staff profile content.prepare
+// (C313: its own provider, model and prompt version, metered, no family's daily cap), with the resolver's prompts and
+// block checks and no child in it. Each response is marked prepared, and the responses' read policy keeps it from every
+// child until a person has checked it, whichever subject it is in.
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
 export type Run = <T>(fn: (db: Db) => Promise<T>) => Promise<T>;
@@ -71,7 +73,7 @@ export async function prepareState(db: Db, versionId: string): Promise<PrepareSt
   const v = await versionOf(db, versionId);
   if (!v) return null;
   const lines = await linesOf(db, versionId);
-  const promptVersion = resolverPrompt(await activePromptVersion(db as never, 'family.resolver'), false).version;
+  const promptVersion = resolverPrompt(await activePromptVersion(db as never, 'content.prepare'), false).version;
   const { rows } = await db.query(
     `select topic_key, language, status from content.responses
       where board_id = $1 and class_level = $2 and subject = $3 and style = language and prompt_version = $4 and topic_key = any($5::text[])`,

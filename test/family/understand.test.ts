@@ -97,6 +97,8 @@ beforeAll(async () => {
   process.env.DB_POOL_MAX = '1';
   process.env.APP_SESSION_SECRET = 'test-only-secret-for-family-understand-tests-0123456789';
   await db.pg.exec(`
+    -- These tests are about the free-subject rule and live answers, not a pilot's lists (C298, C300, C313).
+    update control.settings set value = '[]'::jsonb where key in ('family.open_subjects', 'family.reviewed_only_subjects');
     insert into family.accounts (account_id, email) values ('${ACCOUNT}', 'understand@example.org'), ('${OTHER}', 'other@example.org');
     insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values ('${ACCOUNT}', 'study_core', true, 'parent_tap', 'v1'), ('${OTHER}', 'study_core', true, 'parent_tap', 'v1');
     insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code) values

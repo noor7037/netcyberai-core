@@ -319,12 +319,15 @@ describe('the daily cap', () => {
     expect((await run({ ...ctxA, day: '2026-10-22' })).ok).toBe(true);
   });
 
-  it('staff preparing the shared library take no family cap place (C300)', async () => {
+  it('staff preparing the library on content.prepare take no family cap place (C313)', async () => {
     await q(`update control.settings set value = '0'::jsonb where key = 'family.ai.daily_requests'`);
     expect(await run()).toEqual({ ok: false, reason: 'cap_reached' });
+    await q(`update control.ai_profiles set provider_id = 'anthropic', model = 'test-model-a', enabled = true where profile_id = 'content.prepare'`);
     replies.push(() => anthropicOk(['prepared']));
-    expect((await run({ accountId: A, childFirstNames: [], day: DAY, staffPreparing: true })).ok).toBe(true);
-    expect(await q(`select requests from family.ai_daily where account_id = $1`, [A])).toEqual([]);
+    const staff = { accountId: 'f6000000-0000-4000-8000-0000000000f1', childFirstNames: [], day: DAY };
+    expect((await asFamily(staff.accountId, (tx) => streamText(tx as never, staff, 'content.prepare', ask()))).ok).toBe(true);
+    expect(await q(`select requests from family.ai_daily`)).toEqual([]);
+    await q(`update control.ai_profiles set provider_id = null, model = null where profile_id = 'content.prepare'`);
   });
 
   it('the cap message, in English and Hindi', () => {
