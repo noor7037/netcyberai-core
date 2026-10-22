@@ -95,6 +95,8 @@ describe('who is let in', () => {
       expect.objectContaining({ profileId: 'content.syllabus_extract', carriesChildWords: false, providerId: 'workers-ai', enabled: true }),
       expect.objectContaining({ profileId: 'copilot.draft', carriesChildWords: false, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'family.homework', carriesChildWords: true, providerId: null, enabled: true }),
+      // The safety check (C314): chosen by the founder after clearing Workers AI.
+      expect.objectContaining({ profileId: 'family.moderation', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'family.resolver', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'family.voice_input', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'parent_ai.home_help', carriesChildWords: false, providerId: null, enabled: true }),

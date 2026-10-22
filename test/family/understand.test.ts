@@ -13,6 +13,8 @@ const ai = vi.hoisted(() => ({ lines: [] as string[], calls: [] as { system: str
 vi.mock('@/lib/ai/platform', async (original) => ({
   ...(await original<typeof import('@/lib/ai/platform')>()),
   activePromptVersion: async () => 'v1',
+  // The safety check (C314) passes everything here; test/w2/moderation.test.ts covers it.
+  prepareModeration: async () => ({ ok: true, moderation: { check: async () => ({ safe: true, categories: [] }), record: async () => {} } }),
   prepareText: async (_db: unknown, _ctx: unknown, _p: unknown, req: { system: string; messages: { content: string }[] }) => {
     ai.calls.push({ system: req.system, user: req.messages[0].content });
     if (ai.refuse) return { ok: false, reason: ai.refuse };

@@ -59,3 +59,27 @@ export interface SpeechAdapter {
   readonly needsKey: boolean;
   transcribe(request: SpeechRequest): Promise<SpeechResult>;
 }
+
+// ---- moderation (W2, C314: Llama Guard on a child's words and on answers) -------------------------------------------
+
+// A check of one short exchange takes well under a second; one that takes longer is given up, so a child's answer is
+// never held long by its safety check.
+export const MODERATION_TIMEOUT_MS = 15_000;
+
+// The words to check: a child's question alone (`user`), or an answer (`assistant`) to what was asked (`user`). Read
+// inside the call and dropped, never stored or logged.
+export type ModerationRequest = { apiKey: string; model: string; user: string; assistant?: string };
+// `categories` are the classifier's own codes (Llama Guard's S1–S14), kept only in memory to choose what the child is
+// told; never stored with the words.
+export type ModerationResult = { ok: true; safe: boolean; categories: string[]; tokensIn: number; tokensOut: number } | { ok: false; failure: AdapterFailure; status?: number };
+
+// The moderation capability, beside text and speech, under the same rules: the key is opened by the platform and
+// handed in; nothing is kept, logged or thrown; a failure says only its kind.
+export interface ModerationAdapter {
+  readonly providerId: string;
+  readonly capability: 'moderation';
+  // The code's half of the minors check, as for the others; Control's clearance is needed as well.
+  readonly minorsEligible: boolean;
+  readonly needsKey: boolean;
+  moderate(request: ModerationRequest): Promise<ModerationResult>;
+}

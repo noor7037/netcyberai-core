@@ -1,7 +1,7 @@
 import { withPlatformService } from '@/lib/auth/db';
 import type { Sql } from '@/lib/jobs/types';
 import type { MessageKey } from '@/lib/i18n';
-import { adapterFor, speechAdapterFor, type AdapterResult, type ChatImage, type ChatMessage, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter } from './adapters';
+import { adapterFor, moderationAdapterFor, speechAdapterFor, type AdapterResult, type ChatImage, type ChatMessage, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter } from './adapters';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { dailyLimit, takeDailyRequest } from './daily-cap';
@@ -27,8 +27,8 @@ import { scrubRequest } from './preprocess';
 // against their schema and drop anything outside it. The key opened in 3 lives only inside the prepared call (a closure,
 // never a field), and a prepared call sends once: one daily-cap place, one vendor request.
 
-export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input' | 'copilot.draft' | 'parent_ai.home_help' | 'content.syllabus_extract' | 'content.prepare';
-export type Capability = 'text' | 'speech_to_text';
+export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input' | 'family.moderation' | 'copilot.draft' | 'parent_ai.home_help' | 'content.syllabus_extract' | 'content.prepare';
+export type Capability = 'text' | 'speech_to_text' | 'moderation';
 // `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
 // monthly one, which its caller checks (src/lib/copilot/copilot.ts); a control profile runs only for Control's staff.
 export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability; audience: 'family' | 'school' | 'control' };
@@ -40,6 +40,9 @@ export const PROFILES: readonly AiProfile[] = [
   { id: 'family.resolver', carriesChildWords: true, capability: 'text', audience: 'family' },
   { id: 'family.homework', carriesChildWords: true, capability: 'text', audience: 'family' },
   { id: 'family.voice_input', carriesChildWords: true, capability: 'speech_to_text', audience: 'family' },
+  // W2 (C314): the safety check (Llama Guard) on a child's typed words and on every live answer before it is shown.
+  // It takes no daily-cap place of its own: it runs only beside a call that already took one.
+  { id: 'family.moderation', carriesChildWords: true, capability: 'moderation', audience: 'family' },
   // M2-10 (C284): Copilot and Parent AI. Their requests name a class level, subject and topic, never a person.
   { id: 'copilot.draft', carriesChildWords: false, capability: 'text', audience: 'school' },
   { id: 'parent_ai.home_help', carriesChildWords: false, capability: 'text', audience: 'school' },
@@ -54,9 +57,10 @@ export const PROFILES: readonly AiProfile[] = [
 // The adapter a profile would use for a provider: the one of the profile's capability, or null when the code has none
 // (a provider without a speech adapter cannot serve voice input). Control checks a choice against it; the platform
 // skips a provider without one.
-export function capableAdapter(profileId: string, providerId: string, env: Record<string, string | undefined> = process.env): TextAdapter | SpeechAdapter | null {
+export function capableAdapter(profileId: string, providerId: string, env: Record<string, string | undefined> = process.env): TextAdapter | SpeechAdapter | ModerationAdapter | null {
   const profile = profileById(profileId);
   if (!profile) return null;
+  if (profile.capability === 'moderation') return moderationAdapterFor(providerId, env);
   return profile.capability === 'speech_to_text' ? speechAdapterFor(providerId, env) : adapterFor(providerId, env);
 }
 
@@ -321,6 +325,56 @@ export async function prepareTranscription(db: Sql, ctx: AiContext, profileId: P
     return { result: { ok: false, reason: 'failed' }, record };
   };
   return { ok: true, speech: { send } };
+}
+
+// ---- moderation (W2, C314) -------------------------------------------------------------------------------------------
+
+export type ModerationVerdict = { safe: boolean; categories: string[] };
+// A prepared safety check: check() may run several times in one request (the question, then each block of the answer)
+// with no database; null means the check could not be made, and the caller then shows nothing. record() writes the
+// counts of every check made, in the caller's next transaction.
+export type PreparedModeration = { check: (turns: { user: string; assistant?: string }) => Promise<ModerationVerdict | null>; record: (db: Sql) => Promise<void> };
+export type ModerationReady = { ok: true; moderation: PreparedModeration } | { ok: false; reason: AiRefusal };
+
+// Steps 1–3 and 5 of the seven, in the caller's transaction (the profile, the minors check on the whole chain, a
+// provider with a moderation adapter and a key; no daily-cap place: it runs beside a call that took one). Step 5 runs
+// on every check: the child's names and the parent's email are removed from the words before they leave. 6 (check, no
+// database) tries the chain in order; 7 (record) counts requests, failures and tokens only. The words are never stored.
+export async function prepareModeration(db: Sql, ctx: AiContext): Promise<ModerationReady> {
+  const env = process.env;
+  const checked = await checkProfile(db, ctx, 'family.moderation', 'moderation', env);
+  if (!checked.ok) return checked;
+  const { profile, chain, providers } = checked;
+  const ready = await usableLinks(db, chain, providers, env, (p) => moderationAdapterFor(p, env));
+  if (ready.length === 0) return { ok: false, reason: 'not_switched_on' };
+
+  const usage: { link: Link; counts: Counts }[] = [];
+  const check = async (turns: { user: string; assistant?: string }): Promise<ModerationVerdict | null> => {
+    const clean = scrubRequest(
+      { system: '', messages: [{ role: 'user', content: turns.user }, ...(turns.assistant === undefined ? [] : [{ role: 'assistant' as const, content: turns.assistant }])] },
+      { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail }
+    );
+    const user = clean.messages[0].content;
+    const assistant = turns.assistant === undefined ? undefined : clean.messages[1].content;
+    for (const { link, adapter, apiKey } of ready) {
+      let result: ModerationResult;
+      try {
+        result = await adapter.moderate({ apiKey, model: link.model, user, assistant });
+      } catch {
+        result = { ok: false, failure: 'network' };
+      }
+      if (result.ok) {
+        usage.push({ link, counts: { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut } });
+        return { safe: result.safe, categories: result.categories };
+      }
+      usage.push({ link, counts: { requests: 1, failures: 1 } });
+    }
+    return null;
+  };
+  const record = async (tx: Sql) => {
+    for (const u of usage.splice(0)) await count(tx, ctx.day, profile.id, u.link, u.counts);
+  };
+  return { ok: true, moderation: { check, record } };
 }
 
 // The three steps on one client: for a caller with nothing to do between them.

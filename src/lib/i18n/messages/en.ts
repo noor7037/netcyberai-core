@@ -6911,4 +6911,12 @@ export const en = {
   'control.prepare.failed': 'That did not work. Sign in with your authenticator and try again.',
   'fam.understand.notReady': 'This explanation is still being checked. Meanwhile, ask your own question about it.',
   // p1 end
+  // w2 begin
+  'fam.understand.safetyOff': 'Answers made by AI are paused until our safety check is switched on. Try again later.',
+  'fam.understand.safetyFailed': 'We could not check this answer for safety just now, so it is not shown. Try again in a moment.',
+  'fam.understand.unsafe': 'This cannot be answered here. If something is worrying you, talk to a parent or a teacher.',
+  'fam.homework.err.safety_off': 'Reading photos is paused until our safety check is switched on. Try again later.',
+  'fam.homework.err.safety_failed': 'We could not check this photo for safety just now. Try again in a moment.',
+  'fam.homework.err.unsafe': 'This photo cannot be answered here. If something is worrying you, talk to a parent or a teacher.',
+  // w2 end
 } as const;

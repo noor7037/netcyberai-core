@@ -1,10 +1,10 @@
 import { anthropicAdapter } from './anthropic';
 import { openaiAdapter, openaiSpeechAdapter } from './openai';
-import { workersAiAdapter, workersAiSpeechAdapter } from './workers-ai';
+import { workersAiAdapter, workersAiModerationAdapter, workersAiSpeechAdapter } from './workers-ai';
 import { youtubeAdapter } from './youtube';
-import type { AdapterResult, SpeechAdapter, SpeechResult, TextAdapter } from './types';
+import type { AdapterResult, ModerationAdapter, ModerationResult, SpeechAdapter, SpeechResult, TextAdapter } from './types';
 
-export type { AdapterRequest, AdapterResult, ChatImage, ChatMessage, SpeechAdapter, SpeechMediaType, SpeechResult, TextAdapter } from './types';
+export type { AdapterRequest, AdapterResult, ChatImage, ChatMessage, ModerationAdapter, ModerationResult, SpeechAdapter, SpeechMediaType, SpeechResult, TextAdapter } from './types';
 
 // The stand-in: answers from the request alone and sends nothing anywhere, so the whole flow (profile, minors check,
 // cap, metering) can be built and tested before any key exists. Like configuredProvider's stand-in in ../provider.ts
@@ -66,6 +66,28 @@ const REAL_SPEECH: readonly SpeechAdapter[] = [openaiSpeechAdapter, workersAiSpe
 export function speechAdapterFor(providerId: string, env: Record<string, string | undefined> = process.env): SpeechAdapter | null {
   if (providerId === STAND_IN_PROVIDER) return standInAllowed(env) ? standInSpeechAdapter : null;
   return REAL_SPEECH.find((a) => a.providerId === providerId) ?? null;
+}
+
+// ---- moderation (W2, C314) -------------------------------------------------------------------------------------------
+
+// The stand-in's safety check: finds everything safe, so the flow can be built and shown without a key. Like the
+// others it does not exist in a production build.
+export const standInModerationAdapter: ModerationAdapter = {
+  providerId: STAND_IN_PROVIDER,
+  capability: 'moderation',
+  minorsEligible: true,
+  needsKey: false,
+  async moderate(): Promise<ModerationResult> {
+    return { ok: true, safe: true, categories: [], tokensIn: 0, tokensOut: 0 };
+  },
+};
+
+const REAL_MODERATION: readonly ModerationAdapter[] = [workersAiModerationAdapter];
+
+// The moderation adapter for a provider id, or null when the code has none (only Workers AI's Llama Guard for now).
+export function moderationAdapterFor(providerId: string, env: Record<string, string | undefined> = process.env): ModerationAdapter | null {
+  if (providerId === STAND_IN_PROVIDER) return standInAllowed(env) ? standInModerationAdapter : null;
+  return REAL_MODERATION.find((a) => a.providerId === providerId) ?? null;
 }
 
 // Providers whose key Control → AI keeps: every text adapter, and the content adapters that are not text models (the

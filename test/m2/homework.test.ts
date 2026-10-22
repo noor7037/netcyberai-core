@@ -12,11 +12,25 @@ import { firstNumber, givesAway, newLadder, openLadder, parseRead, sameAnswer, s
 // read is given back), and goes only with the photo to the profile; no child's name is in the request. Photos reach the
 // vendors in their own wire format. The model is scripted; the OCR screen is mocked. Made-up names only.
 
-const ai = vi.hoisted(() => ({ reply: '', requests: [] as unknown[], prepare: 'ok' as string, sendOk: true }));
+const ai = vi.hoisted(() => ({ reply: '', requests: [] as unknown[], prepare: 'ok' as string, sendOk: true, moderation: 'safe' as 'safe' | 'unsafe' | 'failed' | 'off', checked: [] as unknown[] }));
 const screen = vi.hoisted(() => ({ result: { ok: true } as { ok: boolean; reason?: string }, calls: 0 }));
 vi.mock('@/lib/ai/platform', async (original) => ({
   ...(await original<typeof import('@/lib/ai/platform')>()),
   activePromptVersion: async () => 'v1',
+  // The safety check (C314), steered by ai.moderation.
+  prepareModeration: async () =>
+    ai.moderation === 'off'
+      ? { ok: false, reason: 'not_switched_on' }
+      : {
+          ok: true,
+          moderation: {
+            check: async (turns: unknown) => {
+              ai.checked.push(turns);
+              return ai.moderation === 'failed' ? null : { safe: ai.moderation === 'safe', categories: ai.moderation === 'safe' ? [] : ['S1'] };
+            },
+            record: async () => {},
+          },
+        },
   prepareText: async (_db: unknown, _ctx: unknown, _profile: unknown, request: unknown) => {
     ai.requests.push(request);
     if (ai.prepare !== 'ok') return { ok: false, reason: ai.prepare };
@@ -162,6 +176,8 @@ beforeEach(() => {
   ai.requests = [];
   ai.prepare = 'ok';
   ai.sendOk = true;
+  ai.moderation = 'safe';
+  ai.checked = [];
   screen.result = { ok: true };
   screen.calls = 0;
 });
@@ -233,6 +249,21 @@ describe('the photo route', () => {
     ai.prepare = 'not_cleared_for_minors';
     expect((await post('/api/family/homework', { photo: JPEG })).body.error).toBe('ai_not_cleared_for_minors');
     expect(await count()).toBe(0);
+  });
+
+  it('the safety check (C314): off, nothing is read or counted; unsafe, nothing is shown and it counts; unable to check, it is given back', async () => {
+    await db.pg.query(`delete from family.day_counts where child_id = $1`, [CHILD]);
+    ai.moderation = 'off';
+    expect(await post('/api/family/homework', { photo: JPEG })).toEqual({ status: 503, body: { error: 'safety_off' } });
+    expect(ai.requests).toHaveLength(0);
+    expect(await count()).toBe(0);
+    ai.moderation = 'unsafe';
+    expect(await post('/api/family/homework', { photo: JPEG })).toEqual({ status: 422, body: { error: 'unsafe' } });
+    expect(ai.checked.at(-1)).toMatchObject({ user: READ.question });
+    expect(await count()).toBe(1);
+    ai.moderation = 'failed';
+    expect(await post('/api/family/homework', { photo: JPEG })).toEqual({ status: 503, body: { error: 'safety_failed' } });
+    expect(await count()).toBe(1);
   });
 
   it("a question the model cannot place is answered only before a free subject is claimed", async () => {
