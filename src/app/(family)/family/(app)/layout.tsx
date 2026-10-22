@@ -51,7 +51,7 @@ export default async function FamilyAppLayout({ children }: { children: React.Re
       <FamilySessionKeeper />
       {/* M2-9 (C283): offline packs. The phone store's owner is a one-way tag of the account, never its id. */}
       <OfflineSync owner={createHash('sha256').update(`ncf-offline:${page.session.accountId}`).digest('hex').slice(0, 24)} childId={page.child?.childId ?? null} on={switchOn(switches, 'offline')} />
-      <div className="pb-20">{children}</div>
+      <div className="pb-28">{children}</div>
       <FamilyTabs tabs={tabs} navLabel={t(lang, 'fam.tab.nav')} labels={{ home: t(lang, 'fam.tab.home'), study: t(lang, 'fam.tab.study'), english: t(lang, 'fam.tab.english'), future: t(lang, 'fam.tab.future'), family: t(lang, 'fam.tab.family') }} />
     </>
   );

@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 
+// A disabled button is faded and shows a not-allowed cursor, so it never looks pressable (C230-Q audit).
 const baseClasses =
-  'inline-flex min-h-[44px] items-center justify-center rounded-md px-6 py-3 text-base font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2';
+  'inline-flex min-h-[44px] items-center justify-center rounded-md px-6 py-3 text-base font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-60';
 
 const variantClasses = {
   primary: 'bg-sapphire text-off-white hover:bg-sapphire/90',
