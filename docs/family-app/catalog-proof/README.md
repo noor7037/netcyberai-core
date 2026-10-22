@@ -79,3 +79,34 @@ The build lead loads the file first. Each version then appears under **Syllabus 
    this note**. The build lead corrects the file and loads a new version, with a new proof page.
 
 If a released version turns out wrong, **Roll back** gives everyone the version before it again (when there is one).
+
+## Classes IX and X: Social Science, English and Hindi
+
+One page per syllabus version in
+[`data/catalog/cbse-2026-27-classes-9-10-languages-social-science.csv`](../../../data/catalog/cbse-2026-27-classes-9-10-languages-social-science.csv)
+(read from CBSE's documents on 2026-10-22):
+
+| Page | Units | Chapters | Topics | CBSE pages to open |
+|---|---|---|---|---|
+| [Class IX Social Science](class9-social-science.md) | 2 | 16 | 74 | 8–14 |
+| [Class X Social Science](class10-social-science.md) | 4 | 22 | 10 | 1–3 |
+| [Class IX English](class9-english.md) | 1 | 7 | 3 | 13 |
+| [Class X English (Language and Literature)](class10-english.md) | 3 | 33 | 3 | 2, 4 |
+| [Class IX Hindi](class9-hindi.md) | 1 | 4 | 3 | 3–5 |
+| [Class X Hindi (Course A)](class10-hindi.md) | 1 | 4 | 1 | 9–10 |
+
+These pages have **no picture** of CBSE's page: the documents are CBSE's copyright, so no copy of them is kept in the
+repository. Open CBSE's page from the links at the top of each proof page and keep it beside our list; every line of
+our list also links to its own page. Compare and approve exactly as above.
+
+Good to know before you start:
+
+- **Grammar only for Class IX English, Class IX Hindi and Class X Hindi.** CBSE's documents for these name the
+  textbook (or not even that) but do not list its chapters, so there are no lesson lines; they were not taken from the
+  books themselves. Class X English lists its NCERT lessons and poems, and they are in.
+- **Hindi titles are in Hindi.** CBSE prints the Hindi documents in Devanagari; each title is copied as printed into
+  both the English and the Hindi column. Please compare these with the page by eye: they could not be checked
+  automatically. English and Social Science have no Hindi titles (no Hindi version of those documents exists).
+- **Three choices to confirm**, explained on each page and in the catalog README: Class X English is the "Language and
+  Literature" course, not "English Communicative"; Class X Hindi is Course A, not Course B; Class IX Hindi is the R1
+  (first language) scheme, not R2.

@@ -162,6 +162,27 @@ describe('the catalog CSV', () => {
     // Hindi titles come from NCERT's Hindi editions; every chapter and part has one.
     expect(r.lines.filter((l) => l.level !== 'topic').every((l) => l.titleHi !== null && /[ऀ-ॿ]/.test(l.titleHi))).toBe(true);
   });
+
+  it('the committed CBSE file for classes 9 and 10 (Social Science, English, Hindi) passes the same check', () => {
+    const text = readFileSync(path.resolve(__dirname, '../../data/catalog/cbse-2026-27-classes-9-10-languages-social-science.csv'), 'utf8');
+    const r = readCatalogCsv(text, '2026-10-22');
+    expect(r.problems).toEqual([]);
+    const count = (s: { units: unknown[]; chapters: unknown[]; topics: unknown[] }) => [s.units.length, s.chapters.length, s.topics.length];
+    expect(Object.fromEntries(r.syllabi.map((s) => [`${s.board} ${s.classLevel} ${s.subject} ${s.academicYear}`, count(s)]))).toEqual({
+      'CBSE 9 social_science 2026-27': [2, 16, 74],
+      'CBSE 10 social_science 2026-27': [4, 22, 10],
+      'CBSE 9 english 2026-27': [1, 7, 3],
+      'CBSE 10 english 2026-27': [3, 33, 3],
+      'CBSE 9 hindi 2026-27': [1, 4, 3],
+      'CBSE 10 hindi 2026-27': [1, 4, 1],
+    });
+    expect(r.lines.every((l) => l.sourceUrl.startsWith('https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/'))).toBe(true);
+    // CBSE prints the Hindi documents in Devanagari, so their titles are Hindi in both columns; the other documents have
+    // no Hindi version, so nothing is filled in.
+    const hindi = r.lines.filter((l) => l.subject === 'hindi');
+    expect(hindi.every((l) => /[ऀ-ॿ]/.test(l.titleEn) && l.titleHi === l.titleEn)).toBe(true);
+    expect(r.lines.filter((l) => l.subject !== 'hindi').every((l) => l.titleHi === null)).toBe(true);
+  });
 });
 
 describe('the diff between two versions, by stable key', () => {
