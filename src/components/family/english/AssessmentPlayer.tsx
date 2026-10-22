@@ -1,4 +1,5 @@
 'use client';
+import { Skeleton } from '../ui/Skeleton';
 import { Picture } from '../Picture';
 
 import Link from 'next/link';
@@ -31,7 +32,7 @@ export function AssessmentPlayer({ kind, w, lang }: { kind: AssessmentKind; w: W
   }, [kind]);
 
   if (error) return <p className="rounded-3xl bg-white p-5 text-lg font-bold text-slate shadow-sm ring-1 ring-slate/10">{error === 'locked' || error === 'already_taken' ? w['fam.english.locked'] : w['fam.english.error']}</p>;
-  if (!data) return <div aria-busy="true" className="h-40 animate-pulse rounded-3xl bg-slate/10 motion-reduce:animate-none" />;
+  if (!data) return <Skeleton label={w['fam.d13.loading.lesson']} lines={3} />;
 
   const theme = TRACK_THEME[data.track];
   const hindi = lang === 'hi' || data.track === 'a' || data.track === 'b';

@@ -6874,5 +6874,26 @@ export const hi: Record<keyof typeof en, string> = {
   // d1-2 begin
   // d1-2 end
   // d1-3 begin
+  'fam.d13.study.noCatalogTitle': 'अध्याय जल्द आ रहे हैं',
+  'fam.d13.study.prePrimaryTitle': 'खेल और गतिविधियाँ आ रही हैं',
+  'fam.d13.study.lockedTitle': 'यह विषय अभी बंद है',
+  'fam.d13.study.openFree': 'अपने मुफ़्त विषय पर जाएँ',
+  'fam.d13.understand.refusedTitle': 'यहाँ अभी दिखाने को कुछ नहीं है',
+  'fam.d13.understand.backToStudy': 'पढ़ाई पर वापस जाएँ',
+  'fam.d13.loading.understand': 'आपकी समझ खुल रही है',
+  'fam.d13.loading.worksheet': 'आपकी वर्कशीट खुल रही है',
+  'fam.d13.loading.photo': 'आपकी फ़ोटो पढ़ी जा रही है',
+  'fam.d13.loading.lesson': 'आपका पाठ खुल रहा है',
+  'fam.d13.loading.report': 'अंग्रेज़ी की रिपोर्ट खुल रही है',
+  'fam.d13.loading.page': 'यह पेज खुल रहा है',
+  'fam.d13.worksheet.noneTitle': 'इस विषय की वर्कशीट अभी नहीं है',
+  'fam.d13.worksheet.offTitle': 'वर्कशीट अभी बंद हैं',
+  'fam.d13.offline.noneTitle': 'अभी कुछ सेव नहीं है',
+  'fam.d13.parent.noChildrenTitle': 'अपना पहला बच्चा जोड़ें',
+  'fam.d13.parent.noChildren': 'नीचे एक बच्चा जोड़ें, फिर हर हफ़्ते उसकी पढ़ाई के बारे में एक छोटी, शांत बात यहाँ दिखेगी।',
+  'fam.d13.parent.noAnswersTitle': 'अभी कोई जवाब नहीं',
+  'fam.d13.homework.refusedTitle': 'चलो, फिर से कोशिश करें',
+  'fam.d13.english.offTitle': 'अंग्रेज़ी जल्द खुलेगी',
+  'fam.d13.english.consentTitle': 'पहले किसी बड़े से पूछें',
   // d1-3 end
 };

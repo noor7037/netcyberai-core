@@ -1,4 +1,6 @@
 'use client';
+import { EmptyState } from '../ui/EmptyState';
+import { Skeleton } from '../ui/Skeleton';
 import { Picture } from '../Picture';
 
 import { useCallback, useEffect, useState } from 'react';
@@ -57,8 +59,8 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
   }, [childId]);
   useEffect(() => load(), [load]);
 
-  if (error) return <p className="rounded-3xl bg-white p-5 text-base font-bold text-slate shadow-sm ring-1 ring-slate/10">{error === 'consent_needed' ? w['fam.english.parent.consentFirst'] : w['fam.english.error']}</p>;
-  if (!data) return <div aria-busy="true" className="h-64 animate-pulse rounded-3xl bg-slate/10 motion-reduce:animate-none" />;
+  if (error) return <EmptyState e={error === 'consent_needed' ? '🙋' : '🌱'} title={error === 'consent_needed' ? w['fam.english.parent.consentFirst'] : w['fam.english.error']} />;
+  if (!data) return <Skeleton label={w['fam.d13.loading.report']} lines={6} />;
 
   const name = data.child.firstName;
   const r = data.report;

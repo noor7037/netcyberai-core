@@ -7,4 +7,6 @@ export const OFFLINE_KEYS: MessageKey[] = [
   'fam.offline.pack.shelf', 'fam.offline.pack.none', 'fam.offline.pack.needsInternet', 'fam.offline.pack.needsInternetLead',
   'fam.offline.pack.answerSaved', 'fam.offline.pack.waiting', 'fam.offline.pack.allChapters', 'fam.offline.pack.notInPack',
   'fam.dataSaver.title', 'fam.dataSaver.on', 'fam.dataSaver.off', 'fam.dataSaver.phone', 'fam.dataSaver.skipped',
+  // D1-3: the shelf's designed empty state.
+  'fam.d13.offline.noneTitle', 'fam.tab.study',
 ];

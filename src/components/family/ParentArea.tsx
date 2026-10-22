@@ -13,6 +13,9 @@ import { HabitParent } from './HabitParent';
 import { LanguageSwitch } from './LanguageSwitch';
 import { clearOffline } from './offline/store';
 import type { ParentHabit } from '@/lib/family/habit';
+import { subjectColour } from '@/lib/family/subject-colours';
+import { EmptyState } from './ui/EmptyState';
+import { Picture } from './Picture';
 
 // The parent area (feature P2; docs/34 §9.1 rule 1; M1-2, C248), open only in parent mode: the children, what the
 // parent agreed to, each child's answers (see and delete), the language, signing out, and deleting the account.
@@ -118,7 +121,13 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
       {mode === 'answers' && answers && (
         <div className="flex flex-col gap-2">
           {answers.length === 0 ? (
-            <p className="text-sm text-slate/70">{w['fam.parent.answersNone']}</p>
+            <p data-answers-empty className="flex items-center gap-3 rounded-2xl bg-off-white p-3 text-sm text-slate">
+              <Picture e="📝" size={36} />
+              <span className="flex flex-col">
+                <span className="text-base font-bold">{w['fam.d13.parent.noAnswersTitle']}</span>
+                <span>{w['fam.parent.answersNone']}</span>
+              </span>
+            </p>
           ) : (
             <>
               <ul className="flex flex-col gap-2">
@@ -192,11 +201,17 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
       </div>
 
       <Section title={w['fam.calm.title']}>
+        {children.length === 0 && (
+          <div data-parent-no-children>
+            <EmptyState e="👪" title={w['fam.d13.parent.noChildrenTitle']} body={w['fam.d13.parent.noChildren']} tone="bg-off-white" />
+          </div>
+        )}
         <ul className="flex flex-col gap-2">
           {children.map((c) => {
             const card = calm.find((x) => x.childId === c.childId);
             return (
-              <li key={c.childId} data-calm-card className="flex flex-col gap-1 rounded-2xl bg-off-white p-3 text-sm text-slate">
+              <li key={c.childId} data-calm-card className="relative flex flex-col gap-1 overflow-hidden rounded-2xl bg-off-white p-3 pl-5 text-sm text-slate">
+                {c.freeSubject && <span aria-hidden="true" data-calm-edge={c.freeSubject} className={`absolute inset-y-0 left-0 w-1.5 ${subjectColour(c.freeSubject).bar}`} />}
                 <p className="text-base font-bold text-slate">{c.firstName}</p>
                 {!card || card.answers === 0 ? (
                   <p>{w['fam.calm.nothingYet']}</p>

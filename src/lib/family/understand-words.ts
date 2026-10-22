@@ -9,6 +9,8 @@ export const UNDERSTAND_KEYS: MessageKey[] = [
   'fam.understand.loading', 'fam.understand.incomplete', 'fam.understand.followUps', 'fam.followUp.simpler', 'fam.followUp.another_example',
   'fam.followUp.differently', 'fam.followUp.practise_more', 'fam.err.network', 'fam.plan.comesBack', 'fam.check.mastered', 'fam.check.masteredBody',
   ...INTERACTIVE_KEYS,
+  // D1-3: Understand's designed empty and loading states.
+  'fam.d13.understand.refusedTitle', 'fam.d13.understand.backToStudy', 'fam.d13.loading.understand',
   // M2-5: the honest player under a topic's response.
   'fam.video.title', 'fam.video.note', 'fam.video.play', 'fam.video.length', 'fam.video.by', 'fam.video.frame',
 ];

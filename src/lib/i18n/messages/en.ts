@@ -6886,5 +6886,26 @@ export const en = {
   // d1-2 begin
   // d1-2 end
   // d1-3 begin
+  'fam.d13.study.noCatalogTitle': 'Chapters are on their way',
+  'fam.d13.study.prePrimaryTitle': 'Play and activities are coming',
+  'fam.d13.study.lockedTitle': 'This subject is closed for now',
+  'fam.d13.study.openFree': 'Go to your free subject',
+  'fam.d13.understand.refusedTitle': 'Nothing to show here yet',
+  'fam.d13.understand.backToStudy': 'Back to Study',
+  'fam.d13.loading.understand': 'Your explanation is loading',
+  'fam.d13.loading.worksheet': 'Your worksheet is loading',
+  'fam.d13.loading.photo': 'Reading your photo',
+  'fam.d13.loading.lesson': 'Your lesson is loading',
+  'fam.d13.loading.report': 'The English report is loading',
+  'fam.d13.loading.page': 'This page is loading',
+  'fam.d13.worksheet.noneTitle': 'No worksheet for this topic yet',
+  'fam.d13.worksheet.offTitle': 'Worksheets are resting',
+  'fam.d13.offline.noneTitle': 'Nothing saved yet',
+  'fam.d13.parent.noChildrenTitle': 'Add your first child',
+  'fam.d13.parent.noChildren': 'Add a child below, and each week a short, calm note about their learning will show here.',
+  'fam.d13.parent.noAnswersTitle': 'No answers yet',
+  'fam.d13.homework.refusedTitle': 'Let us try that again',
+  'fam.d13.english.offTitle': 'English opens soon',
+  'fam.d13.english.consentTitle': 'Ask a grown-up first',
   // d1-3 end
 } as const;

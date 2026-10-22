@@ -19,7 +19,10 @@ import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
 import { VOICE_KEYS } from '@/lib/family/voice-words';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
-import { Picture } from '../../../../../components/family/Picture';
+import { Picture } from '@/components/family/Picture';
+import { EmptyState } from '@/components/family/ui/EmptyState';
+import { LIFT, PRESS } from '@/components/family/ui/motion';
+import { subjectColour } from '@/lib/family/subject-colours';
 
 // Study (M1-5, C251): the child's subject, its chapters and topics from the catalog released to everyone for the
 // child's class, each opening Understand; and a typed question. Without a catalog for the class (classes 6–8 for
@@ -46,9 +49,9 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
       <div lang={lang} className="flex min-h-screen flex-col">
         <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone="royal" />
         <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
-          <p data-pre-primary className="rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
-            {t(lang, 'fam.study.prePrimary')}
-          </p>
+          <div data-pre-primary>
+            <EmptyState e="🧸" title={t(lang, 'fam.d13.study.prePrimaryTitle')} body={t(lang, 'fam.study.prePrimary')} action={{ href: '/family', label: t(lang, 'fam.nav.home') }} />
+          </div>
         </main>
       </div>
     );
@@ -75,7 +78,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone={subject === 'science' || subject === 'evs' || subject === 'biology' ? 'emerald' : 'royal'} />
+      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} subject={subject} />
       <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
         <nav aria-label={t(lang, 'fam.study.subjects')} className="flex flex-wrap gap-2 rounded-3xl bg-white p-2 shadow-sm ring-1 ring-slate/10">
           {subjects.map((s) => (
@@ -83,7 +86,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
               key={s}
               href={`/family/study?subject=${s}`}
               aria-current={s === subject ? 'page' : undefined}
-              className={`flex min-h-[44px] flex-1 basis-[calc(50%-0.25rem)] items-center justify-center rounded-2xl px-3 text-base font-bold ${s === subject ? (s === 'science' || s === 'evs' || s === 'biology' ? 'bg-emerald-text text-white' : 'bg-royal text-white') : 'text-slate hover:bg-slate/5'}`}
+              className={`flex min-h-[44px] flex-1 basis-[calc(50%-0.25rem)] items-center justify-center rounded-2xl px-3 text-base font-bold focus-visible:outline-none focus-visible:ring-4 ${subjectColour(s).ring} ${PRESS} ${s === subject ? subjectColour(s).chip : 'text-slate hover:bg-slate/5'}`}
             >
               {t(lang, `fam.subject.${s}`)}
               {child.freeSubject && child.freeSubject !== s && <span className="sr-only"> ({t(lang, 'fam.subject.locked')})</span>}
@@ -99,14 +102,19 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
         {!child.freeSubject && <p className="rounded-2xl bg-sunshine/30 px-4 py-3 text-sm text-slate">{t(lang, 'fam.subject.firstIsFree')}</p>}
         {offline && <DataSaverSwitch w={ow} />}
         {!access.open ? (
-          <p data-family-locked className="rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
-            {t(lang, 'fam.subject.notOpen')}
-          </p>
+          <div data-family-locked>
+            <EmptyState
+              e="🔒"
+              title={t(lang, 'fam.d13.study.lockedTitle')}
+              body={t(lang, 'fam.subject.notOpen')}
+              action={child.freeSubject ? { href: `/family/study?subject=${child.freeSubject}`, label: t(lang, 'fam.d13.study.openFree') } : undefined}
+            />
+          </div>
         ) : (
           <>
             <StudyQuestion w={w} subject={subject} tone={tone} voice={voice} />
             {homeworkOn && (
-              <Link href="/family/study/homework" data-homework-link className="flex min-h-[56px] items-center gap-3 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate/10 hover:bg-slate/5">
+              <Link href="/family/study/homework" data-homework-link className={`flex min-h-[56px] items-center gap-3 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate/10 hover:bg-slate/5 ${LIFT}`}>
                 <span aria-hidden className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sunshine/30 text-xl">
                   <Picture e="📷" />
                 </span>
@@ -125,10 +133,11 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
             </h2>
             <ol className="flex flex-col gap-2">
               {catalog.chapters.map((c) => (
-                <li key={c.key} className="rounded-3xl bg-white p-3 shadow-sm ring-1 ring-slate/10">
+                <li key={c.key} data-chapter-edge={subject} className="relative overflow-hidden rounded-3xl bg-white p-3 pl-5 shadow-sm ring-1 ring-slate/10">
+                  <span aria-hidden="true" className={`absolute inset-y-0 left-0 w-1.5 ${subjectColour(subject).bar}`} />
                   <SaverLink href={`/family/understand?kind=chapter&key=${encodeURIComponent(c.key)}`} className="flex min-h-[44px] items-center justify-between gap-2 px-1 text-base font-bold text-slate">
                     <span lang={titleLang(c.title)}>{c.title}</span>
-                    <span aria-hidden="true" className="text-royal">→</span>
+                    <span aria-hidden="true" className={subjectColour(subject).text}>→</span>
                   </SaverLink>
                   {packs && (packs.get(c.key)?.topics.length ?? 0) > 0 && (
                     <PackButton w={ow} lang={lang} childId={child.childId} chapterKey={c.key} chapterTitle={c.title} bytes={packs.get(c.key)!.bytes} missing={packs.get(c.key)!.missing.length} />
@@ -158,9 +167,9 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
             </ol>
           </section>
         ) : (
-          <p data-family-no-catalog className="rounded-3xl bg-white p-4 text-base text-slate shadow-sm ring-1 ring-slate/10">
-            {t(lang, 'fam.study.noCatalog')}
-          </p>
+          <div data-family-no-catalog>
+            <EmptyState e="📚" title={t(lang, 'fam.d13.study.noCatalogTitle')} body={t(lang, 'fam.study.noCatalog')} />
+          </div>
         )}
       </main>
     </div>

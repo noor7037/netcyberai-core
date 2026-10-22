@@ -1,4 +1,5 @@
 'use client';
+import { Skeleton } from '../ui/Skeleton';
 import { Picture } from '../Picture';
 
 import Link from 'next/link';
@@ -152,9 +153,7 @@ export function LessonPlayer({ lessonKey, w, lang, startAt = 0 }: { lessonKey: s
     return (
       <div aria-busy="true" className="flex flex-col gap-3">
         <p className="text-base text-slate">{w['fam.english.loading']}</p>
-        {[0, 1, 2].map((i) => (
-          <div key={i} className="h-24 animate-pulse rounded-3xl bg-slate/10 motion-reduce:animate-none" />
-        ))}
+        <Skeleton label={w['fam.d13.loading.lesson']} lines={4} />
       </div>
     );
   }

@@ -5,6 +5,9 @@ import { fill, type Words } from '@/lib/family/fill';
 import type { PackTopic } from '@/lib/family/pack';
 import { EnglishMomentView, ExplanationView, KeyPointsView, WorkedExampleView } from '../blocks/BlockViews';
 import { QuizView } from '../blocks/QuizView';
+import { subjectColour } from '@/lib/family/subject-colours';
+import { EmptyState } from '../ui/EmptyState';
+import { Skeleton } from '../ui/Skeleton';
 import { flushAnswers, listPacks, queueAnswer, queuedAnswers, rememberedChild, type SavedPack } from './store';
 
 // The chapters saved on this phone (M2-9, C283), on the Family app's offline shell. With no network the service worker
@@ -52,7 +55,7 @@ export function OfflineShelf({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
     return ok;
   };
 
-  if (packs === null) return null;
+  if (packs === null) return <Skeleton label={w['fam.offline.pack.shelf']} lines={2} className="w-full" />;
   const tone = open?.pack.pack.subject ?? 'mathematics';
 
   if (open) {
@@ -93,10 +96,15 @@ export function OfflineShelf({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
         <h2 id="fam-offline-shelf" className="px-1 text-lg font-extrabold text-slate">
           {w['fam.offline.pack.shelf']}
         </h2>
-        {packs.length === 0 && <p className="rounded-3xl bg-white p-4 text-base text-slate shadow-sm ring-1 ring-slate/10">{w['fam.offline.pack.none']}</p>}
+        {packs.length === 0 && (
+          <div data-offline-empty>
+            <EmptyState e="📦" title={w['fam.d13.offline.noneTitle']} body={w['fam.offline.pack.none']} action={{ href: '/family/study', label: w['fam.tab.study'] }} />
+          </div>
+        )}
         <ol className="flex flex-col gap-2">
           {packs.map((p) => (
-            <li key={p.id} className="rounded-3xl bg-white p-3 shadow-sm ring-1 ring-slate/10">
+            <li key={p.id} data-chapter-edge={p.pack.subject} className="relative overflow-hidden rounded-3xl bg-white p-3 pl-5 shadow-sm ring-1 ring-slate/10">
+              <span aria-hidden="true" className={`absolute inset-y-0 left-0 w-1.5 ${subjectColour(p.pack.subject).bar}`} />
               <p className="px-1 text-base font-bold text-slate">{p.pack.chapter.title}</p>
               <p className="px-1 text-xs text-slate">{fill(w['fam.offline.pack.until'], { day: day(p.pack.expiresAt) })}</p>
               <ul className="mt-1 flex flex-col">

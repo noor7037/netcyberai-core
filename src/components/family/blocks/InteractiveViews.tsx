@@ -1,5 +1,6 @@
 'use client';
 
+import { subjectColour } from '@/lib/family/subject-colours';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { colors, deepColors } from '@/lib/design-tokens';
 import type { FractionModel, Geometry, Graph, Interactive, NumberLine, Simulation } from '@/lib/family/blocks';
@@ -33,7 +34,7 @@ import { Card } from './BlockViews';
 
 const ink = colors.slate;
 const accent = deepColors.tangerineDeep;
-const toneColor = (tone: string) => (tone === 'science' ? colors.emerald : colors.royal);
+const toneColor = (tone: string) => subjectColour(tone).hex;
 // SVG path data from its commands and numbers.
 const svgPath = (...parts: (string | number)[]) => parts.join(' ');
 

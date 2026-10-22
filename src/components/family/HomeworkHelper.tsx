@@ -5,6 +5,9 @@ import { useRef, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import type { LadderView } from '@/lib/family/homework';
 import { familyApi } from './client';
+import { subjectColour } from '@/lib/family/subject-colours';
+import { Skeleton } from './ui/Skeleton';
+import { ENTER, PRESS } from './ui/motion';
 
 // The homework helper on the phone (M2-6, C280). A photo of one question (the camera or a screenshot) is made smaller
 // here, sent once, and not kept on the phone either. Then the ladder: a hint, the child's own answer, the next hint,
@@ -95,7 +98,7 @@ export function HomeworkHelper({ w }: { w: Words }) {
       <section data-homework-start className="flex flex-col gap-3 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate/10">
         <p className="text-base text-slate">{w['fam.homework.lead']}</p>
         <div className="grid gap-2 sm:grid-cols-2">
-          <button type="button" disabled={busy} onClick={() => camera.current?.click()} className="flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-royal px-4 text-base font-bold text-white hover:bg-royal-deep disabled:opacity-60">
+          <button type="button" disabled={busy} onClick={() => camera.current?.click()} className={`flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-royal px-4 text-base font-bold text-white hover:bg-royal-deep disabled:opacity-60 ${PRESS}`}>
             <span aria-hidden><Picture e="📷" /></span>
             {w['fam.homework.takePhoto']}
           </button>
@@ -108,14 +111,19 @@ export function HomeworkHelper({ w }: { w: Words }) {
         <input ref={gallery} type="file" accept="image/*" className="sr-only" tabIndex={-1} aria-hidden onChange={(e) => send(e.target.files?.[0])} />
         <p className="text-sm text-slate/80">{w['fam.homework.privacy']}</p>
         {busy && (
-          <p role="status" className="animate-pulse text-base font-semibold text-royal motion-reduce:animate-none">
-            {w['fam.homework.reading']}
-          </p>
+          <div data-homework-reading className="flex flex-col gap-2">
+            <p className="text-base font-semibold text-royal-deep">{w['fam.homework.reading']}</p>
+            <Skeleton label={w['fam.d13.loading.photo']} lines={3} className="bg-off-white shadow-none ring-0" />
+          </div>
         )}
         {error && (
-          <p role="alert" className="rounded-2xl bg-coral/10 px-3 py-2 text-sm font-semibold text-slate">
-            {error}
-          </p>
+          <div role="alert" data-homework-refused className={`flex items-center gap-3 rounded-2xl bg-coral/10 px-3 py-3 text-slate ${ENTER}`}>
+            <Picture e="🤔" size={40} />
+            <div className="flex flex-col">
+              <p className="text-base font-bold">{w['fam.d13.homework.refusedTitle']}</p>
+              <p className="text-sm">{error}</p>
+            </div>
+          </div>
         )}
       </section>
     );
@@ -124,7 +132,8 @@ export function HomeworkHelper({ w }: { w: Words }) {
   const v = ladder.view;
   return (
     <section data-homework-ladder className="flex flex-col gap-3">
-      <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate/10">
+      <div data-homework-question={v.subject} className={`relative overflow-hidden rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate/10 ${ENTER}`}>
+        {v.subject !== 'other' && <span aria-hidden="true" className={`absolute inset-x-0 top-0 h-1.5 ${subjectColour(v.subject).bar}`} />}
         <h2 className="text-sm font-bold uppercase tracking-wide text-slate/80">{w['fam.homework.question']}</h2>
         <p lang={titleLang(v.question)} className="mt-1 text-lg font-semibold text-slate">
           {v.question}
@@ -181,7 +190,7 @@ export function HomeworkHelper({ w }: { w: Words }) {
             autoComplete="off"
             className="min-h-[48px] rounded-2xl px-3 text-base text-slate ring-1 ring-slate/20 focus:outline-none focus:ring-2 focus:ring-royal"
           />
-          <button type="submit" disabled={busy || !answer.trim()} className="min-h-[48px] rounded-2xl bg-royal px-4 text-base font-bold text-white hover:bg-royal-deep disabled:opacity-60">
+          <button type="submit" disabled={busy || !answer.trim()} className={`min-h-[48px] rounded-2xl bg-royal px-4 text-base font-bold text-white hover:bg-royal-deep disabled:opacity-60 ${PRESS}`}>
             {w['fam.homework.check']}
           </button>
           {result && !result.correct && (

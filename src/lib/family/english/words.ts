@@ -105,6 +105,10 @@ export const ENGLISH_KEYS = [
   'fam.english.rate.grownup',
   'fam.english.showHindi',
   'fam.english.question',
+  // D1-3: the course's designed off, consent and loading states.
+  'fam.d13.english.offTitle',
+  'fam.d13.english.consentTitle',
+  'fam.d13.loading.lesson',
 ] as const satisfies readonly MessageKey[];
 
 // The parent's report and settings (12 §8).
@@ -146,4 +150,6 @@ export const ENGLISH_PARENT_KEYS = [
   'fam.english.skill.grammar',
   'fam.english.skill.reading',
   'fam.english.skill.speaking',
+  // D1-3: the report's loading skeleton.
+  'fam.d13.loading.report',
 ] as const satisfies readonly MessageKey[];

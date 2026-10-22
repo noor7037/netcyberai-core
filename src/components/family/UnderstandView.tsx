@@ -12,6 +12,9 @@ import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, Sources
 import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
 import { VideoPicks } from './VideoPicks';
+import { Picture } from './Picture';
+import { Skeleton } from './ui/Skeleton';
+import { ENTER, PRESS } from './ui/motion';
 
 // The interactive blocks (M2-8) come as their own chunk, only when a response carries one (09 §4: first-load budget).
 const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((m) => m.InteractiveView));
@@ -123,22 +126,27 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
         </div>
       )}
       {state === 'refused' && noInternet && (
-        <section role="status" data-needs-internet className="flex flex-col gap-2 rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
+        <section role="status" data-needs-internet className={`flex flex-col items-center gap-2 rounded-3xl bg-white p-5 text-center text-base text-slate shadow-sm ring-1 ring-slate/10 ${ENTER}`}>
+          <Picture e="📱" size={56} />
           <p className="font-bold">{w['fam.offline.pack.needsInternet']}</p>
           <p>{w['fam.offline.pack.needsInternetLead']}</p>
-          <a href="/family/offline" className="inline-flex min-h-[44px] items-center self-start rounded-2xl px-1 font-bold text-royal-deep underline-offset-4 hover:underline">
+          <a href="/family/offline" className={`inline-flex min-h-[44px] items-center rounded-2xl px-1 font-bold text-royal-deep underline-offset-4 hover:underline ${PRESS}`}>
             {w['fam.offline.pack.allChapters']} <span aria-hidden="true">→</span>
           </a>
         </section>
       )}
       {state === 'refused' && !noInternet && (
-        <section role="status" className="flex flex-col gap-3 rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
+        <section role="status" data-understand-refused className={`flex flex-col items-center gap-3 rounded-3xl bg-white p-5 text-center text-base text-slate shadow-sm ring-1 ring-slate/10 ${ENTER}`}>
+          <Picture e="🤔" size={64} />
+          <h2 className="text-lg font-extrabold">{w['fam.d13.understand.refusedTitle']}</h2>
           <p>{refusal}</p>
-          {goTo && (
-            <Link href={`/family/study?subject=${goTo.subject}`} prefetch={saving ? false : undefined} className="inline-flex min-h-[44px] items-center self-start rounded-2xl px-1 font-bold text-royal-deep underline-offset-4 hover:underline">
-              {goTo.label} <span aria-hidden="true">→</span>
-            </Link>
-          )}
+          <Link
+            href={goTo ? `/family/study?subject=${goTo.subject}` : '/family/study'}
+            prefetch={saving ? false : undefined}
+            className={`flex min-h-[44px] items-center justify-center rounded-2xl bg-royal px-5 font-bold text-white hover:bg-royal-deep ${PRESS}`}
+          >
+            {goTo ? goTo.label : w['fam.d13.understand.backToStudy']}
+          </Link>
         </section>
       )}
       {saving && droppedCount(blocks, true) > 0 && (
@@ -176,19 +184,18 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
         }
       })}
       {(state === 'loading' || state === 'streaming') && (
-        <div className="flex flex-col gap-3" aria-hidden="true">
-          <div className="h-32 animate-pulse rounded-3xl bg-white motion-reduce:animate-none" />
-          <div className="h-20 animate-pulse rounded-3xl bg-white motion-reduce:animate-none" />
+        <div data-understand-skeleton className="flex flex-col gap-3">
+          <Skeleton label={w['fam.d13.loading.understand']} lines={blocks.length ? 2 : 4} />
+          {!blocks.length && <Skeleton label={w['fam.understand.loading']} lines={2} />}
         </div>
       )}
-      {(state === 'loading' || state === 'streaming') && <p className="sr-only">{w['fam.understand.loading']}</p>}
       {state === 'incomplete' && <p className="rounded-2xl bg-white p-4 text-sm text-slate ring-1 ring-slate/10">{w['fam.understand.incomplete']}</p>}
       {/* M2-5: a topic's video, when the finder has one; the response never depends on it. */}
-      {input.kind === 'topic' && (state === 'done' || state === 'incomplete') && <VideoPicks w={w} topicKey={input.key} />}
+      {input.kind === 'topic' && (state === 'done' || state === 'incomplete') && <VideoPicks w={w} topicKey={input.key} tone={tone} />}
       {(state === 'done' || state === 'incomplete') && (
         <nav aria-label={w['fam.understand.followUps']} className="grid grid-cols-2 gap-2">
           {FOLLOW_UPS.map((f) => (
-            <button key={f} type="button" onClick={() => again({ input, followUp: f })} className="min-h-[44px] rounded-2xl bg-white px-3 py-2 text-sm font-bold text-royal-deep shadow-sm ring-1 ring-slate/10 hover:bg-slate/5">
+            <button key={f} type="button" onClick={() => again({ input, followUp: f })} className={`min-h-[44px] rounded-2xl bg-white px-3 py-2 text-sm font-bold text-royal-deep shadow-sm ring-1 ring-slate/10 hover:bg-slate/5 ${PRESS}`}>
               {w[`fam.followUp.${f}`]}
             </button>
           ))}

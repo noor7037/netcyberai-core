@@ -1,4 +1,6 @@
 'use client';
+import { EmptyState } from '../ui/EmptyState';
+import { Skeleton } from '../ui/Skeleton';
 import { Picture } from '../Picture';
 
 import Link from 'next/link';
@@ -47,25 +49,32 @@ export function EnglishCourse({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
   }, []);
 
   if (error) {
-    const text = error === 'consent_needed' ? w['fam.english.consent'] : error === 'off' ? w['fam.english.off'] : error === 'no_course' ? w['fam.english.noCourse'] : w['fam.english.error'];
+    // D1-3: the off and consent-needed states as designed empty states (a picture, the words, the one next step).
+    if (error === 'consent_needed') {
+      return (
+        <div data-english-empty="consent_needed">
+          <EmptyState e="🙋" title={w['fam.d13.english.consentTitle']} body={w['fam.english.consent']} action={{ href: '/family/parent', label: w['fam.english.consentButton'] }} />
+        </div>
+      );
+    }
+    if (error === 'off') {
+      return (
+        <div data-english-empty="off">
+          <EmptyState e="🌱" title={w['fam.d13.english.offTitle']} body={w['fam.english.off']} />
+        </div>
+      );
+    }
     return (
-      <div className="flex flex-col items-start gap-3 rounded-3xl bg-white p-5 text-slate shadow-sm ring-1 ring-slate/10">
-        <Pic pic={error === 'consent_needed' ? '🙋' : '🌱'} size={48} />
-        <p className="text-lg font-bold text-slate">{text}</p>
-        {error === 'consent_needed' && (
-          <Link href="/family/parent" className="flex min-h-[44px] items-center rounded-full bg-royal px-5 font-bold text-white">
-            {w['fam.english.consentButton']}
-          </Link>
-        )}
+      <div data-english-empty={error}>
+        <EmptyState e="🌱" title={error === 'no_course' ? w['fam.english.noCourse'] : w['fam.english.error']} />
       </div>
     );
   }
   if (!data) {
     return (
       <div aria-busy="true" className="flex flex-col gap-3">
-        {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="h-20 animate-pulse rounded-3xl bg-slate/10 motion-reduce:animate-none" />
-        ))}
+        <Skeleton label={w['fam.d13.loading.lesson']} lines={2} />
+        <Skeleton label={w['fam.d13.loading.lesson']} lines={3} />
       </div>
     );
   }

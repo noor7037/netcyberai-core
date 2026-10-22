@@ -3,19 +3,17 @@
 import { useEffect, useState } from 'react';
 import type { Diagram, EnglishMoment, Explanation, KeyPoints, Sources, WorkedExample } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
+import { subjectColour } from '@/lib/family/subject-colours';
+import { colors } from '@/lib/design-tokens';
+import { ENTER } from '../ui/motion';
 
 // One component per block type (M1-5, C251): the model's output is data, and only these draw it, as plain text. No
 // block is ever rendered as markup. Each card carries its subject's colour (docs/family-app/09 §2).
 
-export const SUBJECT_TONE: Record<string, { bar: string; chip: string; soft: string }> = {
-  mathematics: { bar: 'bg-royal', chip: 'bg-royal text-white', soft: 'bg-royal/10' },
-  science: { bar: 'bg-emerald-text', chip: 'bg-emerald-text text-white', soft: 'bg-emerald/10' },
-};
-
 export function Card({ title, tone, children, tag }: { title: string; tone: string; children: React.ReactNode; tag?: string }) {
   return (
-    <section data-block={tag} className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate/10">
-      <div className={`h-1.5 ${SUBJECT_TONE[tone]?.bar ?? 'bg-royal'}`} aria-hidden="true" />
+    <section data-block={tag} className={`overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate/10 ${ENTER}`}>
+      <div className={`h-1.5 ${subjectColour(tone).bar}`} aria-hidden="true" />
       <div className="flex flex-col gap-3 p-4 sm:p-5">
         <h2 className="text-lg font-extrabold text-slate">{title}</h2>
         {children}
@@ -28,14 +26,14 @@ export function ExplanationView({ b, w, tone }: { b: Explanation; w: Words; tone
   return (
     <Card title={b.title} tone={tone} tag="explanation">
       <p className="text-lg font-semibold leading-relaxed text-slate">{b.idea}</p>
-      <div className={`rounded-2xl p-3 ${SUBJECT_TONE[tone]?.soft ?? 'bg-royal/10'}`}>
+      <div className={`rounded-2xl p-3 ${subjectColour(tone).soft}`}>
         <p className="text-sm font-bold text-slate">{w['fam.block.example']}</p>
         <p className="text-base leading-relaxed text-slate">{b.example}</p>
       </div>
       <ol className="flex flex-col gap-2">
         {b.steps.map((s, i) => (
           <li key={i} className="flex gap-3 text-base leading-relaxed text-slate">
-            <span aria-hidden="true" className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold ${SUBJECT_TONE[tone]?.chip ?? 'bg-royal text-white'}`}>
+            <span aria-hidden="true" className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold ${subjectColour(tone).chip}`}>
               {i + 1}
             </span>
             <span>{s}</span>
@@ -85,7 +83,7 @@ export function KeyPointsView({ b, w, tone }: { b: KeyPoints; w: Words; tone: st
       <ul className="flex flex-col gap-2">
         {b.points.map((p, i) => (
           <li key={i} className="flex gap-2 text-base text-slate">
-            <span aria-hidden="true" className={`mt-2 h-2 w-2 shrink-0 rounded-full ${SUBJECT_TONE[tone]?.bar ?? 'bg-royal'}`} />
+            <span aria-hidden="true" className={`mt-2 h-2 w-2 shrink-0 rounded-full ${subjectColour(tone).bar}`} />
             <span>{p}</span>
           </li>
         ))}
@@ -96,7 +94,7 @@ export function KeyPointsView({ b, w, tone }: { b: KeyPoints; w: Words; tone: st
 
 // A flow (steps in order, by the edges) or a cycle (nodes round a circle), drawn from the structured description.
 export function DiagramView({ b, tone }: { b: Diagram; tone: string }) {
-  const color = tone === 'science' ? '#0f766e' : '#1d4ed8';
+  const color = subjectColour(tone).hex;
   if (b.kind === 'cycle') {
     const n = b.nodes.length;
     const r = 110;
@@ -120,7 +118,7 @@ export function DiagramView({ b, tone }: { b: Diagram; tone: string }) {
           {b.nodes.map((node, i) => (
             <g key={node.id}>
               <rect x={pos[i].x - 58} y={pos[i].y - 18} width="116" height="36" rx="12" fill="white" stroke={color} strokeWidth="2" />
-              <text x={pos[i].x} y={pos[i].y + 5} textAnchor="middle" fontSize="12" fontWeight="700" fill="#1e293b">
+              <text x={pos[i].x} y={pos[i].y + 5} textAnchor="middle" fontSize="12" fontWeight="700" fill={colors.slate}>
                 {node.label.length > 18 ? `${node.label.slice(0, 17)}…` : node.label}
               </text>
             </g>

@@ -5,7 +5,8 @@ import { Celebrate } from '../ui/Celebrate';
 import type { PublicItem } from '@/lib/family/items';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from '../client';
-import { Card, SUBJECT_TONE } from './BlockViews';
+import { Card } from './BlockViews';
+import { subjectColour } from '@/lib/family/subject-colours';
 
 // A check or practice (M1-5, C251): the hint comes first, on asking or after a first wrong answer; the server checks
 // every answer (the phone never holds the key). A second wrong answer shows the exact misunderstanding that option
@@ -73,7 +74,7 @@ function Question({ item, w, tone, onRetry, onAnswered, onOffline }: { item: Pub
           <p>{s.result!.explanation}</p>
           {!s.result!.correct && s.result!.revisitDay && <p data-revisit>{fill(w['fam.plan.comesBack'], { day: s.result!.revisitDay })}</p>}
           {!s.result!.correct && (
-            <button type="button" onClick={() => onRetry(item.token, s.picked!)} className={`min-h-[44px] self-start rounded-full px-4 text-sm font-bold ${SUBJECT_TONE[tone]?.chip ?? 'bg-royal text-white'}`}>
+            <button type="button" onClick={() => onRetry(item.token, s.picked!)} className={`min-h-[44px] self-start rounded-full px-4 text-sm font-bold ${subjectColour(tone).chip}`}>
               {w['fam.check.explainAgain']}
             </button>
           )}

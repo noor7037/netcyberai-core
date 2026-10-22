@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { EmptyState } from '@/components/family/ui/EmptyState';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { WorksheetScreen } from '@/components/family/WorksheetScreen';
 import { classText } from '@/lib/family/fill';
@@ -24,28 +24,29 @@ export default async function FamilyWorksheetPage({ params }: { params: { topic:
   if (w.state === 'not_found') redirect('/family/study');
   const line = w.line!;
   const words = familyWords(lang, [...UNDERSTAND_KEYS, ...WORKSHEET_KEYS]);
-  const empty = (text: string, understand: boolean) => (
-    <p data-worksheet-empty={w.state} className="flex flex-col gap-3 rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
-      <span>{text}</span>
-      {understand && (
-        <Link href={`/family/understand?kind=${line.topicEn ? 'topic' : 'chapter'}&key=${encodeURIComponent(line.key)}`} className="inline-flex min-h-[44px] items-center self-start rounded-2xl bg-royal px-5 py-2 font-bold text-white">
-          {t(lang, 'fam.worksheet.openUnderstand')}
-        </Link>
-      )}
-    </p>
+  // D1-3: each state a designed empty state, with its one next step.
+  const empty = (e: string, title: string, text: string, understand: boolean) => (
+    <div data-worksheet-empty={w.state}>
+      <EmptyState
+        e={e}
+        title={title}
+        body={text}
+        action={understand ? { href: `/family/understand?kind=${line.topicEn ? 'topic' : 'chapter'}&key=${encodeURIComponent(line.key)}`, label: t(lang, 'fam.worksheet.openUnderstand') } : { href: `/family/study?subject=${line.subject}`, label: t(lang, 'fam.d13.understand.backToStudy') }}
+      />
+    </div>
   );
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back={`/family/study?subject=${line.subject}`} backLabel={t(lang, `fam.subject.${line.subject}`)} kicker={`${t(lang, 'fam.worksheet.title')} · ${classText((k) => t(lang, k), child.classLevel)}`} title={line.title} tone={line.subject === 'science' ? 'emerald' : 'royal'} />
+      <SubPageHeader back={`/family/study?subject=${line.subject}`} backLabel={t(lang, `fam.subject.${line.subject}`)} kicker={`${t(lang, 'fam.worksheet.title')} · ${classText((k) => t(lang, k), child.classLevel)}`} title={line.title} subject={line.subject} />
       <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-24">
         {w.state === 'ok' ? (
           <WorksheetScreen w={words} ws={screenItems(w, { accountId: page.session.accountId, childId: child.childId })} name={child.firstName} tone={line.subject} />
         ) : w.state === 'off' ? (
-          empty(t(lang, 'fam.worksheet.off'), false)
+          empty('🌙', t(lang, 'fam.d13.worksheet.offTitle'), t(lang, 'fam.worksheet.off'), false)
         ) : w.state === 'not_open' ? (
-          empty(t(lang, 'fam.subject.notOpen'), false)
+          empty('🔒', t(lang, 'fam.d13.study.lockedTitle'), t(lang, 'fam.subject.notOpen'), false)
         ) : (
-          empty(t(lang, 'fam.worksheet.none'), true)
+          empty('📝', t(lang, 'fam.d13.worksheet.noneTitle'), t(lang, 'fam.worksheet.none'), true)
         )}
       </main>
     </div>

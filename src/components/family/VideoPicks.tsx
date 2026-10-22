@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import type { VideoPick } from '@/lib/family/videos';
+import { subjectColour } from '@/lib/family/subject-colours';
+import { ENTER, PRESS } from './ui/motion';
 
 // The honest player (docs/family-app/02 §5; M2-5, C279), under a topic's response when the video finder has picks.
 // A card first (title, channel, length); nothing from YouTube is loaded until the child taps — not even its thumbnail
@@ -29,7 +31,7 @@ export function embedUrl(p: Pick<VideoPick, 'videoId' | 'startS'>): string {
   return `https://www.youtube-nocookie.com/embed/${p.videoId}?${q.toString()}`;
 }
 
-export function VideoPicks({ w, topicKey }: { w: Words; topicKey: string }) {
+export function VideoPicks({ w, topicKey, tone }: { w: Words; topicKey: string; tone?: string }) {
   const [videos, setVideos] = useState<VideoPick[]>([]);
   const [playing, setPlaying] = useState<string | null>(null);
 
@@ -44,7 +46,8 @@ export function VideoPicks({ w, topicKey }: { w: Words; topicKey: string }) {
 
   if (!videos.length) return null;
   return (
-    <section data-videos className="flex flex-col gap-3 rounded-3xl bg-white p-5 text-slate shadow-sm ring-1 ring-slate/10" aria-labelledby="videos-title">
+    <section data-videos className={`relative flex flex-col gap-3 overflow-hidden rounded-3xl bg-white p-5 text-slate shadow-sm ring-1 ring-slate/10 ${ENTER}`} aria-labelledby="videos-title">
+      <span aria-hidden="true" className={`absolute inset-x-0 top-0 h-1.5 ${subjectColour(tone).bar}`} />
       <h2 id="videos-title" className="text-lg font-bold">
         {w['fam.video.title']}
       </h2>
@@ -72,7 +75,7 @@ export function VideoPicks({ w, topicKey }: { w: Words; topicKey: string }) {
                 type="button"
                 data-video-play
                 onClick={() => setPlaying(v.videoId)}
-                className="group relative block aspect-video w-full overflow-hidden rounded-2xl bg-slate focus:outline-none focus-visible:ring-4 focus-visible:ring-royal-deep/60"
+                className={`group relative block aspect-video w-full overflow-hidden rounded-2xl bg-slate focus:outline-none focus-visible:ring-4 focus-visible:ring-royal-deep/60 ${PRESS}`}
               >
                 <span className="sr-only">
                   {w['fam.video.play']} <span lang={script(v.title)}>{v.title}</span>
