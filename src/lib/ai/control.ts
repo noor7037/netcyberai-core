@@ -2,7 +2,7 @@ import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
 import { indiaDate } from '@/lib/time/india';
 import { adapterFor, keyedProviderFor, standInAllowed, textAdapters, STAND_IN_PROVIDER } from './adapters';
-import { workersModelLooksRight } from './adapters/workers-ai';
+import { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, workersModelLooksRight, workersTokenLooksRight } from './adapters/workers-ai';
 import { testYoutubeKey } from './adapters/youtube';
 import { aiEncryptionKey, sealAiKey, unsealAiKey, type SealedRow } from './credentials';
 import { DAILY_REQUESTS_SETTING } from './daily-cap';
@@ -21,6 +21,8 @@ export type By = { userId: string };
 export type Link = { provider: string; model: string };
 export type ChangeResult = { ok: true } | { ok: false; code: ChangeError };
 export type ChangeError =
+  | 'account_id_format'
+  | 'token_format'
   | 'no_encryption_key'
   | 'provider'
   | 'key_format'
@@ -198,6 +200,16 @@ export async function setCredential(db: Sql, by: By, providerId: string, apiKey:
   );
   await audit(db, by, 'ai.credential_set', providerId, { providerId, had: !!prior, ...(prior ? { keyLast4: prior.key_last4 } : {}) }, { providerId, had: true, keyLast4: last4 });
   return { ok: true };
+}
+
+// Cloudflare Workers AI's key in its two parts (C317): the Account ID and the API token, each checked with its own
+// plain message, then kept as one key, "<account id>:<token>", exactly as an entry in one box would be.
+export async function setWorkersCredential(db: Sql, by: By, accountRaw: string, tokenRaw: string): Promise<ChangeResult> {
+  const account = cleanWorkersAccount(accountRaw);
+  if (!workersAccountLooksRight(account)) return { ok: false, code: 'account_id_format' };
+  const token = cleanWorkersToken(tokenRaw);
+  if (!workersTokenLooksRight(token)) return { ok: false, code: 'token_format' };
+  return setCredential(db, by, 'workers-ai', `${account}:${token}`);
 }
 
 // "Test key" for a content provider (M2-5): the key is opened in the first transaction, the provider is asked with no

@@ -6941,5 +6941,11 @@ export const en = {
   'fam.ai.notice.checked': 'Made by AI, then checked by NetCyberAI.',
   'fam.ai.notice.link': 'How the AI works',
   'control.prepare.chapters': 'Only these chapters (none ticked: the whole version)',
+  'control.ai.key.account': 'Cloudflare Account ID',
+  'control.ai.key.accountHelp': 'In Cloudflare, open Workers AI: the Account ID is on the right. It is 32 letters and digits (a–f, 0–9).',
+  'control.ai.key.token': 'Cloudflare API token',
+  'control.ai.key.tokenHelp': 'The token made with only the Workers AI permission. It is locked as soon as it is saved and never shown again.',
+  'control.ai.err.account_id_format': 'This is not an Account ID: it is 32 letters and digits (a–f, 0–9). Copy it again from Cloudflare → Workers AI.',
+  'control.ai.err.token_format': 'This is not an API token: it is one word of 30 to 80 letters, digits, - or _. Copy it again from Cloudflare.',
   // w2 end
 } as const;

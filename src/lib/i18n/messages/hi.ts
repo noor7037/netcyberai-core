@@ -6929,5 +6929,11 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.ai.notice.checked': 'यह AI ने बनाया है, फिर NetCyberAI ने जाँचा है।',
   'fam.ai.notice.link': 'AI कैसे काम करता है',
   'control.prepare.chapters': 'केवल ये अध्याय (कोई नहीं चुना: पूरा संस्करण)',
+  'control.ai.key.account': 'Cloudflare खाता ID (Account ID)',
+  'control.ai.key.accountHelp': 'Cloudflare में Workers AI खोलें: खाता ID दाईं ओर है। इसमें 32 अक्षर और अंक होते हैं (a–f, 0–9)।',
+  'control.ai.key.token': 'Cloudflare API टोकन',
+  'control.ai.key.tokenHelp': 'केवल Workers AI अनुमति वाला टोकन। सहेजते ही यह बंद कर दिया जाता है और फिर कभी नहीं दिखाया जाता।',
+  'control.ai.err.account_id_format': 'यह खाता ID नहीं है: इसमें 32 अक्षर और अंक होते हैं (a–f, 0–9)। Cloudflare → Workers AI से फिर कॉपी करें।',
+  'control.ai.err.token_format': 'यह API टोकन नहीं है: यह 30 से 80 अक्षरों, अंकों, - या _ का एक शब्द होता है। Cloudflare से फिर कॉपी करें।',
   // w2 end
 };

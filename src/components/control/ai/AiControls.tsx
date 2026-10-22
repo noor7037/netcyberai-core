@@ -9,6 +9,7 @@ import { Select } from '@/components/ui/Select';
 import { Switch } from '@/components/ui/Switch';
 import type { AiOverview, Counts } from '@/lib/ai/control';
 import type { MessageKey } from '@/lib/i18n';
+import { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, workersTokenLooksRight } from '@/lib/ai/adapters/workers-key';
 
 // Control → AI (C249), the forms. Every save goes to /api/control/ai and the page's data is read again from there,
 // so what is shown is always what the database holds. A key is typed into a password field, sent once and cleared:
@@ -17,7 +18,7 @@ import type { MessageKey } from '@/lib/i18n';
 type Data = AiOverview & { providerChoices: string[] };
 type Draft = { providerId: string; model: string; promptVersion: string; enabled: boolean; fallbackProvider: string; fallbackModel: string };
 
-const ERRORS = ['no_encryption_key', 'provider', 'key_format', 'terms_url', 'in_use', 'profile', 'model', 'prompt_version', 'incomplete', 'not_cleared_for_minors', 'cap', 'not_found', 'cannot_restore_key', 'request', 'aal2'];
+const ERRORS = ['account_id_format', 'token_format', 'no_encryption_key', 'provider', 'key_format', 'terms_url', 'in_use', 'profile', 'model', 'prompt_version', 'incomplete', 'not_cleared_for_minors', 'cap', 'not_found', 'cannot_restore_key', 'request', 'aal2'];
 // M2-5: a content provider's key test (their words are under control.video.ai.err.*).
 const TEST_ERRORS = ['no_key', 'not_testable'];
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
@@ -39,6 +40,8 @@ export function AiControls({ initial }: { initial: Data }) {
   const { t, lang } = useT();
   const [data, setData] = useState<Data>(initial);
   const [keys, setKeys] = useState<Record<string, string>>({});
+  // Cloudflare's key in two boxes (C317): the Account ID and the API token.
+  const [cf, setCf] = useState({ account: '', token: '' });
   const [terms, setTerms] = useState<Record<string, string>>({});
   const [drafts, setDrafts] = useState<Record<string, Draft>>(() => Object.fromEntries(initial.profiles.map((p) => [p.profileId, draftOf(p)])));
   const [cap, setCap] = useState(initial.cap === null ? '' : String(initial.cap));
@@ -130,29 +133,68 @@ export function AiControls({ initial }: { initial: Data }) {
               {p.hasAdapter && (
                 <>
                   <p data-ai-key-meta>{p.credential ? t('control.ai.key.set', { date: day(p.credential.setAt), name: name(p.credential.setByName), last4: p.credential.keyLast4 }) : t('control.ai.key.none')}</p>
-                  <div className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
-                    <Input
-                      id={`key-${p.providerId}`}
-                      type="password"
-                      autoComplete="off"
-                      spellCheck={false}
-                      maxLength={400}
-                      label={t('control.ai.key.new')}
-                      helperText={t('control.ai.key.help')}
-                      disabled={!data.keyReady}
-                      value={keys[p.providerId] ?? ''}
-                      onChange={(e) => setKeys({ ...keys, [p.providerId]: e.target.value })}
-                    />
-                    <button
-                      type="button"
-                      data-ai-key-save
-                      disabled={busy || !data.keyReady || !(keys[p.providerId] ?? '').trim()}
-                      className={TAP}
-                      onClick={() => void send({ action: 'credential', providerId: p.providerId, apiKey: keys[p.providerId] }, 'control.ai.saved', () => setKeys((k) => ({ ...k, [p.providerId]: '' })))}
-                    >
-                      {t('control.ai.key.save')}
-                    </button>
-                  </div>
+                  {p.providerId === 'workers-ai' ? (
+                    <div data-ai-key-cloudflare className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] sm:items-start">
+                      <Input
+                        id="key-workers-ai-account"
+                        autoComplete="off"
+                        spellCheck={false}
+                        maxLength={200}
+                        label={t('control.ai.key.account')}
+                        helperText={t('control.ai.key.accountHelp')}
+                        error={cf.account.trim() && !workersAccountLooksRight(cleanWorkersAccount(cf.account)) ? t('control.ai.err.account_id_format') : undefined}
+                        disabled={!data.keyReady}
+                        value={cf.account}
+                        onChange={(e) => setCf({ ...cf, account: e.target.value })}
+                      />
+                      <Input
+                        id="key-workers-ai-token"
+                        type="password"
+                        autoComplete="off"
+                        spellCheck={false}
+                        maxLength={400}
+                        label={t('control.ai.key.token')}
+                        helperText={t('control.ai.key.tokenHelp')}
+                        error={cf.token.trim() && !workersTokenLooksRight(cleanWorkersToken(cf.token)) ? t('control.ai.err.token_format') : undefined}
+                        disabled={!data.keyReady}
+                        value={cf.token}
+                        onChange={(e) => setCf({ ...cf, token: e.target.value })}
+                      />
+                      <button
+                        type="button"
+                        data-ai-key-save
+                        disabled={busy || !data.keyReady || !workersAccountLooksRight(cleanWorkersAccount(cf.account)) || !workersTokenLooksRight(cleanWorkersToken(cf.token))}
+                        className={`${TAP} sm:mt-7`}
+                        onClick={() => void send({ action: 'credential', providerId: 'workers-ai', accountId: cf.account, token: cf.token }, 'control.ai.saved', () => setCf({ account: '', token: '' }))}
+                      >
+                        {t('control.ai.key.save')}
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
+                      <Input
+                        id={`key-${p.providerId}`}
+                        type="password"
+                        autoComplete="off"
+                        spellCheck={false}
+                        maxLength={400}
+                        label={t('control.ai.key.new')}
+                        helperText={t('control.ai.key.help')}
+                        disabled={!data.keyReady}
+                        value={keys[p.providerId] ?? ''}
+                        onChange={(e) => setKeys({ ...keys, [p.providerId]: e.target.value })}
+                      />
+                      <button
+                        type="button"
+                        data-ai-key-save
+                        disabled={busy || !data.keyReady || !(keys[p.providerId] ?? '').trim()}
+                        className={TAP}
+                        onClick={() => void send({ action: 'credential', providerId: p.providerId, apiKey: keys[p.providerId] }, 'control.ai.saved', () => setKeys((k) => ({ ...k, [p.providerId]: '' })))}
+                      >
+                        {t('control.ai.key.save')}
+                      </button>
+                    </div>
+                  )}
                   {p.capability === 'video' && p.credential && (
                     <div className="flex flex-wrap items-center gap-2">
                       <button type="button" data-ai-key-test disabled={busy} className={TAP} onClick={() => void test(p.providerId)}>

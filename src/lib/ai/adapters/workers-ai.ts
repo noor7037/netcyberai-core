@@ -1,4 +1,5 @@
 import { streamChatCompletions } from './chat-completions';
+import { workersAccountLooksRight, workersTokenLooksRight } from './workers-key';
 import { MODERATION_TIMEOUT_MS, SPEECH_TIMEOUT_MS, type AdapterResult, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
 
 // Cloudflare Workers AI (C230-U): open-weight models (Llama, Gemma, Mistral, Whisper) run by Cloudflare, chosen for the
@@ -8,15 +9,14 @@ import { MODERATION_TIMEOUT_MS, SPEECH_TIMEOUT_MS, type AdapterResult, type Mode
 //
 // The key Control keeps is "<account id>:<API token>": the 32-hex account id names the account in the URL, and the
 // token (Workers AI permission only) is the secret. Both are opened by the platform inside the call and kept nowhere.
-const ACCOUNT = /^[0-9a-f]{32}$/;
-const TOKEN = /^[A-Za-z0-9_-]{30,80}$/;
+export { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, workersTokenLooksRight } from './workers-key';
 
 export function splitWorkersKey(key: string): { account: string; token: string } | null {
   const i = key.indexOf(':');
   if (i < 0) return null;
   const account = key.slice(0, i);
   const token = key.slice(i + 1);
-  return ACCOUNT.test(account) && TOKEN.test(token) ? { account, token } : null;
+  return workersAccountLooksRight(account) && workersTokenLooksRight(token) ? { account, token } : null;
 }
 
 const base = (account: string) => `https://api.cloudflare.com/client/v4/accounts/${account}/ai`;

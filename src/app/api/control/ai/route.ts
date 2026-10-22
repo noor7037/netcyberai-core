@@ -2,12 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireStepUp } from '@/lib/auth/step-up';
 import { withPlatformService } from '@/lib/auth/db';
 import { requireAiControl } from '@/lib/ai/control-guard';
-import { loadAiOverview, prepareKeyTest, providerChoices, recordKeyTest, setCap, setClearance, setCredential, setProfile, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
+import { loadAiOverview, prepareKeyTest, providerChoices, recordKeyTest, setCap, setClearance, setCredential, setProfile, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
 
 // Control → AI (docs/family-app/10 §3, C249). The founder only, with the authenticator (aal2).
 //   GET   providers and their clearance for minors, each key's last four characters (never a key), the profiles, usage
 //         counts for today and this month, the daily cap and the recent changes
 //   POST  { action: 'credential', providerId, apiKey }                         set or replace a provider's key (write-only)
+//         { action: 'credential', providerId: 'workers-ai', accountId, token }  Cloudflare's key in its two parts (C317)
 //         { action: 'clearance', providerId, cleared, termsUrl }               clear a provider for children's words, or withdraw it
 //         { action: 'profile', profileId, providerId, model, promptVersion, enabled, fallback }
 //         { action: 'cap', value }                                            requests per family per day
@@ -42,7 +43,10 @@ export async function POST(req: NextRequest) {
     if (stepUp) return stepUp;
     const providerId = str(b.providerId, 40);
     const apiKey = str(b.apiKey, 400);
-    if (providerId && apiKey !== null) result = await withPlatformService((db) => setCredential(db, by, providerId, apiKey));
+    const accountId = str(b.accountId, 200);
+    const token = str(b.token, 400);
+    if (providerId === 'workers-ai' && accountId !== null && token !== null) result = await withPlatformService((db) => setWorkersCredential(db, by, accountId, token));
+    else if (providerId && apiKey !== null) result = await withPlatformService((db) => setCredential(db, by, providerId, apiKey));
   } else if (b?.action === 'clearance') {
     const providerId = str(b.providerId, 40);
     if (providerId && typeof b.cleared === 'boolean') result = await withPlatformService((db) => setClearance(db, by, providerId, b.cleared, str(b.termsUrl, 500) ?? ''));
