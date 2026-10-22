@@ -1,0 +1,641 @@
+{
+  "track": "c",
+  "unit": 2,
+  "key": "c.u02",
+  "title": { "en": "My daily life", "hi": "मेरी दिनचर्या" },
+  "pic": "⏰",
+  "can_do": { "en": "I can describe my daily routine.", "hi": "मैं अपनी दिनचर्या बता सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u02.l1",
+      "kind": "words",
+      "title": { "en": "Words for my day", "hi": "मेरे दिन के शब्द" },
+      "minutes": 6,
+      "steps": [
+        { "type": "tip", "text": { "en": "Today we learn words for the things we do every day.", "hi": "आज हम रोज़ के कामों के शब्द सीखेंगे।" }, "pic": "⏰" },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u02.l1.wake-up",
+              "en": "wake up",
+              "hi": "जागना, उठना",
+              "pic": "⏰",
+              "example": { "en": "I wake up at six o'clock.", "hi": "मैं छह बजे उठता/उठती हूँ।" }
+            },
+            {
+              "key": "c.u02.l1.early",
+              "en": "early",
+              "hi": "जल्दी",
+              "pic": "🐓",
+              "example": { "en": "Dadi gets up very early.", "hi": "दादी बहुत जल्दी उठती हैं।" }
+            },
+            {
+              "key": "c.u02.l1.breakfast",
+              "en": "breakfast",
+              "hi": "नाश्ता",
+              "pic": "🥣",
+              "example": { "en": "We eat breakfast at seven.", "hi": "हम सात बजे नाश्ता करते हैं।" }
+            },
+            {
+              "key": "c.u02.l1.feed",
+              "en": "feed",
+              "hi": "खाना खिलाना",
+              "pic": "🐄",
+              "example": { "en": "Arjun feeds the cow every morning.", "hi": "अर्जुन हर सुबह गाय को चारा खिलाता है।" }
+            },
+            {
+              "key": "c.u02.l1.homework",
+              "en": "homework",
+              "hi": "गृहकार्य",
+              "pic": "📝",
+              "example": { "en": "Meera does her homework after school.", "hi": "मीरा स्कूल के बाद अपना गृहकार्य करती है।" }
+            },
+            {
+              "key": "c.u02.l1.evening",
+              "en": "evening",
+              "hi": "शाम",
+              "pic": "🌆",
+              "example": { "en": "We play cricket in the evening.", "hi": "हम शाम को क्रिकेट खेलते हैं।" }
+            },
+            {
+              "key": "c.u02.l1.dinner",
+              "en": "dinner",
+              "hi": "रात का खाना",
+              "pic": "🍛",
+              "example": { "en": "The family eats dinner together.", "hi": "पूरा परिवार साथ बैठकर रात का खाना खाता है।" }
+            },
+            {
+              "key": "c.u02.l1.late",
+              "en": "late",
+              "hi": "देर से",
+              "pic": "⏳",
+              "example": { "en": "Papa never comes home late.", "hi": "पापा कभी देर से घर नहीं आते।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u02.l1.m-wake-up", "left": { "text": "wake up" }, "right": { "pic": "⏰" } },
+            { "key": "c.u02.l1.m-breakfast", "left": { "text": "breakfast" }, "right": { "pic": "🥣" } },
+            { "key": "c.u02.l1.m-homework", "left": { "text": "homework" }, "right": { "pic": "📝" } },
+            { "key": "c.u02.l1.m-dinner", "left": { "text": "dinner" }, "right": { "pic": "🍛" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u02.l1.p-early",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "early" },
+              "options": [{ "pic": "🍛" }, { "pic": "🐓" }, { "pic": "📝" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u02.l1.p-feed",
+              "prompt": { "en": "Which word means खिलाना?", "hi": "कौन-सा शब्द 'खिलाना' है?" },
+              "options": [{ "text": "wake up" }, { "text": "feed" }, { "text": "late" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u02.l1.s-wake", "model": "I wake up early.", "hi": "मैं जल्दी उठता/उठती हूँ।", "pic": "⏰" },
+            { "key": "c.u02.l1.s-homework", "model": "I do my homework in the evening.", "hi": "मैं शाम को अपना गृहकार्य करता/करती हूँ।", "pic": "📝" },
+            { "key": "c.u02.l1.s-dinner", "model": "We eat dinner together.", "hi": "हम साथ में रात का खाना खाते हैं।", "pic": "🍛" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u02.l1.c-breakfast",
+          "type": "choose",
+          "prompt": { "en": "Which word means नाश्ता?", "hi": "कौन-सा शब्द 'नाश्ता' है?" },
+          "options": [{ "text": "dinner" }, { "text": "homework" }, { "text": "breakfast" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u02.l1.c-late",
+          "type": "choose",
+          "prompt": { "en": "Which word is the opposite of early?", "hi": "early का उल्टा कौन-सा शब्द है?" },
+          "options": [{ "text": "late" }, { "text": "evening" }, { "text": "dinner" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u02.l1.c-evening",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "evening" },
+          "options": [{ "pic": "🥣" }, { "pic": "🐄" }, { "pic": "🌆" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u02.l1.c-feed",
+          "type": "choose",
+          "prompt": { "en": "Arjun ___ the cow every morning.", "hi": "अर्जुन हर सुबह गाय को चारा खिलाता है।", "pic": "🐄" },
+          "options": [{ "text": "wakes" }, { "text": "feeds" }, { "text": "eats" }],
+          "answer": 1,
+          "why": { "en": "Feed means give food to an animal or a person.", "hi": "feed का मतलब है किसी को खाना खिलाना।" }
+        },
+        {
+          "key": "c.u02.l1.c-homework",
+          "type": "choose",
+          "prompt": { "en": "Meera does her ___ after school.", "hi": "मीरा स्कूल के बाद अपना गृहकार्य करती है।", "pic": "📝" },
+          "options": [{ "text": "breakfast" }, { "text": "homework" }, { "text": "cow" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Tell someone at home: I wake up at … o'clock.", "hi": "घर पर किसी को बताओ: I wake up at … o'clock." }
+    },
+    {
+      "key": "c.u02.l2",
+      "kind": "pattern",
+      "title": { "en": "Every day: always, usually, never", "hi": "रोज़: हमेशा, आमतौर पर, कभी नहीं" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Things we do every day", "hi": "जो काम हम रोज़ करते हैं" },
+          "visual": "timeline",
+          "examples": [
+            { "en": "I wake up at six every day.", "hi": "मैं रोज़ छह बजे उठता/उठती हूँ।", "time": "now", "pic": "⏰" },
+            { "en": "Meera always helps Dadi in the morning.", "hi": "मीरा हमेशा सुबह दादी की मदद करती है।", "time": "now", "pic": "👵" },
+            { "en": "Arjun usually feeds the hens.", "hi": "अर्जुन आमतौर पर मुर्गियों को दाना डालता है।", "time": "now", "pic": "🐔" },
+            { "en": "We sometimes eat dinner on the roof.", "hi": "हम कभी-कभी छत पर रात का खाना खाते हैं।", "time": "now", "pic": "🌙" },
+            { "en": "Papa never comes home late.", "hi": "पापा कभी देर से घर नहीं आते।", "time": "now", "pic": "👨‍🌾" }
+          ],
+          "note": {
+            "en": "For every day, use the simple form. With he, she or a name, add -s: she helps.",
+            "hi": "रोज़ की बातों के लिए सादा रूप। he, she या नाम के साथ -s लगाओ: she helps."
+          }
+        },
+        {
+          "type": "pattern",
+          "title": { "en": "Where do always and never go?", "hi": "always और never कहाँ आते हैं?" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "Meera always walks to school.",
+              "hi": "मीरा हमेशा पैदल स्कूल जाती है।",
+              "parts": [
+                { "text": "Meera", "role": "who" },
+                { "text": "always", "role": "when" },
+                { "text": "walks", "role": "do" },
+                { "text": "to school.", "role": "where" }
+              ],
+              "pic": "🚶"
+            },
+            {
+              "en": "Arjun never forgets his tiffin.",
+              "hi": "अर्जुन अपना टिफ़िन कभी नहीं भूलता।",
+              "parts": [
+                { "text": "Arjun", "role": "who" },
+                { "text": "never", "role": "when" },
+                { "text": "forgets", "role": "do" },
+                { "text": "his tiffin.", "role": "what" }
+              ],
+              "pic": "own:tiffin"
+            }
+          ],
+          "note": {
+            "en": "Always, usually, sometimes and never come before the doing word.",
+            "hi": "always, usually, sometimes और never काम वाले शब्द से पहले आते हैं।"
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u02.l2.b-always",
+              "hi": "सलमा हमेशा अपनी माँ की मदद करती है।",
+              "pic": "🧕",
+              "tiles": ["mother.", "Salma", "her", "always", "helps"],
+              "answer": "Salma always helps her mother."
+            },
+            {
+              "key": "c.u02.l2.b-never",
+              "hi": "मैं कभी देर से नहीं सोता/सोती।",
+              "pic": "🛏️",
+              "tiles": ["go", "to", "late.", "never", "bed", "I"],
+              "answer": "I never go to bed late."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u02.l2.p-s",
+              "prompt": { "en": "Arjun ___ the cow every day.", "hi": "अर्जुन रोज़ गाय को चारा खिलाता है।" },
+              "options": [{ "text": "feed" }, { "text": "feeds" }, { "text": "feeding" }],
+              "answer": 1,
+              "why": { "en": "With he, she or a name, add -s: Arjun feeds.", "hi": "he, she या किसी नाम के साथ -s लगता है: Arjun feeds." }
+            },
+            {
+              "key": "c.u02.l2.p-place",
+              "prompt": { "en": "Choose the correct sentence.", "hi": "सही वाक्य चुनो।" },
+              "options": [
+                { "text": "We eat usually dinner at eight." },
+                { "text": "Usually we eat at dinner eight." },
+                { "text": "We usually eat dinner at eight." }
+              ],
+              "answer": 2,
+              "why": { "en": "Usually comes before the doing word: usually eat.", "hi": "usually काम वाले शब्द से पहले आता है: usually eat." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u02.l2.s-wake",
+              "model": "I usually wake up at six o'clock.",
+              "hi": "बताओ तुम कब उठते हो।",
+              "cue": { "en": "What time do you wake up?", "hi": "तुम कितने बजे उठते हो?" }
+            },
+            {
+              "key": "c.u02.l2.s-help",
+              "model": "My mother always helps me.",
+              "hi": "बताओ कौन तुम्हारी मदद करता है।",
+              "cue": { "en": "Who helps you in the morning?", "hi": "सुबह तुम्हारी मदद कौन करता है?" }
+            },
+            {
+              "key": "c.u02.l2.s-never",
+              "model": "I never go to school late.",
+              "hi": "एक बात बताओ जो तुम कभी नहीं करते।",
+              "cue": { "en": "What do you never do?", "hi": "तुम क्या कभी नहीं करते?" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u02.l2.c-b1",
+          "type": "build",
+          "hi": "पापा हमेशा सुबह चाय पीते हैं।",
+          "pic": "🍵",
+          "tiles": ["tea", "morning.", "the", "Papa", "always", "drinks", "in"],
+          "answer": "Papa always drinks tea in the morning."
+        },
+        {
+          "key": "c.u02.l2.c-b2",
+          "type": "build",
+          "hi": "हम कभी देर से रात का खाना नहीं खाते।",
+          "pic": "🍛",
+          "tiles": ["never", "dinner", "late.", "We", "eat"],
+          "answer": "We never eat dinner late."
+        },
+        {
+          "key": "c.u02.l2.c-gets",
+          "type": "choose",
+          "prompt": { "en": "Dadi ___ up very early.", "hi": "दादी बहुत जल्दी उठती हैं।" },
+          "options": [{ "text": "gets" }, { "text": "get" }, { "text": "getting" }],
+          "answer": 0,
+          "why": { "en": "With he, she or a name, add -s: Arjun feeds.", "hi": "he, she या किसी नाम के साथ -s लगता है: Arjun feeds." }
+        },
+        {
+          "key": "c.u02.l2.c-do",
+          "type": "choose",
+          "prompt": { "en": "I ___ my homework in the evening.", "hi": "मैं शाम को अपना गृहकार्य करता/करती हूँ।" },
+          "options": [{ "text": "does" }, { "text": "doing" }, { "text": "do" }],
+          "answer": 2,
+          "why": { "en": "With I, you, we and they, there is no -s: I do.", "hi": "I, you, we, they के साथ -s नहीं लगता: I do." }
+        },
+        {
+          "key": "c.u02.l2.c-never",
+          "type": "choose",
+          "prompt": { "en": "Which word means कभी नहीं?", "hi": "कौन-सा शब्द 'कभी नहीं' है?" },
+          "options": [{ "text": "never" }, { "text": "always" }, { "text": "usually" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u02.l2.c-place",
+          "type": "choose",
+          "prompt": { "en": "Choose the correct sentence.", "hi": "सही वाक्य चुनो।" },
+          "options": [{ "text": "Salma helps always her mother." }, { "text": "Salma always helps her mother." }, { "text": "Always Salma her mother helps." }],
+          "answer": 1,
+          "why": { "en": "Always comes before the doing word.", "hi": "always काम वाले शब्द से पहले आता है।" }
+        }
+      ],
+      "home": { "en": "Ask at home: What time do you wake up?", "hi": "घर पर पूछो: What time do you wake up?" }
+    },
+    {
+      "key": "c.u02.l3",
+      "kind": "listen",
+      "title": { "en": "Meera's day", "hi": "मीरा का दिन" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "A day in Meera's life", "hi": "मीरा के दिन की कहानी" },
+          "scene": {
+            "place": "home",
+            "pics": [
+              { "pic": "🏠", "x": 80, "y": 16, "size": 2 },
+              { "pic": "👧", "x": 30, "y": 42, "size": 1.6 },
+              { "pic": "🐄", "x": 58, "y": 46, "size": 1.4 },
+              { "pic": "⏰", "x": 14, "y": 14, "size": 1.2 }
+            ]
+          },
+          "lines": [
+            { "pic": "⏰", "en": "Meera wakes up early, at six o'clock.", "hi": "मीरा जल्दी, छह बजे उठती है।" },
+            { "pic": "👵", "en": "She always helps Dadi in the kitchen.", "hi": "वह हमेशा रसोई में दादी की मदद करती है।" },
+            { "pic": "🐔", "en": "Arjun usually feeds the cow and the hens.", "hi": "अर्जुन आमतौर पर गाय और मुर्गियों को खिलाता है।" },
+            { "pic": "🚶", "en": "They eat breakfast and walk to school at eight.", "hi": "वे नाश्ता करते हैं और आठ बजे पैदल स्कूल जाते हैं।" },
+            { "pic": "📝", "en": "After school, Meera does her homework.", "hi": "स्कूल के बाद मीरा अपना गृहकार्य करती है।" },
+            { "pic": "🏏", "en": "In the evening, she plays cricket with Salma.", "hi": "शाम को वह सलमा के साथ क्रिकेट खेलती है।" },
+            { "pic": "🍛", "en": "The family eats dinner together at eight.", "hi": "पूरा परिवार आठ बजे साथ में रात का खाना खाता है।" },
+            { "pic": "😴", "en": "Meera never goes to bed late. She sleeps at nine.", "hi": "मीरा कभी देर से नहीं सोती। वह नौ बजे सो जाती है।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u02.l3.p-wake",
+              "prompt": { "en": "What time does Meera wake up?", "hi": "मीरा कितने बजे उठती है?" },
+              "options": [{ "text": "at five" }, { "text": "at six" }, { "text": "at eight" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u02.l3.p-feed",
+              "prompt": { "en": "Who feeds the cow?", "hi": "गाय को कौन खिलाता है?" },
+              "options": [{ "text": "Meera", "pic": "👧" }, { "text": "Arjun", "pic": "👦" }, { "text": "Dadi", "pic": "👵" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u02.l3.p-evening",
+              "prompt": { "en": "What does Meera do in the evening?", "hi": "मीरा शाम को क्या करती है?" },
+              "options": [{ "text": "She feeds the hens." }, { "text": "She plays cricket." }, { "text": "She goes to bed." }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u02.l3.s-wake", "model": "Meera wakes up early, at six o'clock.", "hi": "मीरा जल्दी, छह बजे उठती है।", "pic": "⏰" },
+            {
+              "key": "c.u02.l3.s-evening",
+              "model": "In the evening, she plays cricket with Salma.",
+              "hi": "शाम को वह सलमा के साथ क्रिकेट खेलती है।",
+              "pic": "🏏"
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u02.l3.c-help",
+          "type": "choose",
+          "prompt": { "en": "Who does Meera help in the kitchen?", "hi": "मीरा रसोई में किसकी मदद करती है?" },
+          "options": [{ "text": "Salma" }, { "text": "Ms Anita" }, { "text": "Dadi" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u02.l3.c-school",
+          "type": "choose",
+          "prompt": { "en": "How do they go to school?", "hi": "वे स्कूल कैसे जाते हैं?" },
+          "options": [{ "text": "They walk." }, { "text": "By bus." }, { "text": "By bicycle." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u02.l3.c-dinner",
+          "type": "choose",
+          "prompt": { "en": "When does the family eat dinner?", "hi": "परिवार कब रात का खाना खाता है?" },
+          "options": [{ "text": "at six" }, { "text": "at eight" }, { "text": "at nine" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u02.l3.c-never",
+          "type": "choose",
+          "prompt": { "en": "Meera never ___.", "hi": "मीरा कभी क्या नहीं करती?" },
+          "options": [{ "text": "does her homework" }, { "text": "helps Dadi" }, { "text": "goes to bed late" }],
+          "answer": 2
+        }
+      ],
+      "home": { "en": "Tell your family about your evening: In the evening, I …", "hi": "घरवालों को अपनी शाम के बारे में बताओ: In the evening, I …" }
+    },
+    {
+      "key": "c.u02.l4",
+      "kind": "speak",
+      "title": { "en": "My routine", "hi": "मेरी दिनचर्या" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Tell us about your day. Use always, usually or never.", "hi": "अपने दिन के बारे में बताओ। always, usually या never का प्रयोग करो।" },
+          "pic": "⏰"
+        },
+        {
+          "type": "talk",
+          "topic": { "en": "My day", "hi": "मेरा दिन" },
+          "outline": [
+            { "en": "When do you wake up?", "hi": "तुम कब उठते हो?" },
+            { "en": "What do you do in the morning?", "hi": "सुबह तुम क्या करते हो?" },
+            { "en": "What do you do after school?", "hi": "स्कूल के बाद तुम क्या करते हो?" },
+            { "en": "When do you go to bed?", "hi": "तुम कब सोते हो?" }
+          ],
+          "seconds": 30,
+          "model": [
+            "I usually wake up at six o'clock.",
+            "I always help my mother in the morning.",
+            "After school, I do my homework.",
+            "In the evening, I play with my friends.",
+            "I never go to bed late."
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u02.l4.br-wake",
+              "hi": "मैं रोज़ जल्दी उठती हूँ।",
+              "tiles": ["early", "every", "I", "day.", "up", "wake"],
+              "answer": "I wake up early every day."
+            },
+            {
+              "key": "c.u02.l4.br-feed",
+              "hi": "मेरा भाई मुर्गियों को दाना खिलाता है।",
+              "tiles": ["the", "hens.", "brother", "feeds", "My"],
+              "answer": "My brother feeds the hens."
+            },
+            {
+              "key": "c.u02.l4.br-never",
+              "hi": "हम कभी देर से नहीं सोते।",
+              "tiles": ["to", "bed", "never", "We", "go", "late."],
+              "answer": "We never go to bed late."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u02.l4.s-evening",
+              "model": "I usually play cricket in the evening.",
+              "hi": "बताओ तुम शाम को क्या करते हो।",
+              "cue": { "en": "What do you usually do in the evening?", "hi": "तुम आमतौर पर शाम को क्या करते हो?" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u02.l4.c-first",
+          "type": "choose",
+          "prompt": { "en": "Which comes first in the day?", "hi": "दिन में सबसे पहले क्या आता है?" },
+          "options": [{ "text": "dinner" }, { "text": "evening" }, { "text": "breakfast" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u02.l4.c-b",
+          "type": "build",
+          "hi": "मैं हमेशा स्कूल के बाद अपना गृहकार्य करता/करती हूँ।",
+          "pic": "📝",
+          "tiles": ["school.", "always", "I", "homework", "after", "my", "do"],
+          "answer": "I always do my homework after school."
+        },
+        {
+          "key": "c.u02.l4.c-bed",
+          "type": "choose",
+          "prompt": { "en": "Salma asks: When do you go to bed? You say:", "hi": "सलमा पूछती है: When do you go to bed? तुम कहोगे:" },
+          "options": [{ "text": "I go to school." }, { "text": "I go to bed at nine." }, { "text": "I am nine." }],
+          "answer": 1
+        },
+        {
+          "key": "c.u02.l4.c-makes",
+          "type": "choose",
+          "prompt": { "en": "My mother ___ tea for Dadi.", "hi": "मेरी माँ दादी के लिए चाय बनाती हैं।" },
+          "options": [{ "text": "makes" }, { "text": "make" }, { "text": "making" }],
+          "answer": 0,
+          "why": { "en": "With he, she or a name, add -s: Arjun feeds.", "hi": "he, she या किसी नाम के साथ -s लगता है: Arjun feeds." }
+        }
+      ],
+      "home": { "en": "Tell your family about your day in four sentences.", "hi": "घरवालों को चार वाक्यों में अपना दिन बताओ।" }
+    },
+    {
+      "key": "c.u02.l5",
+      "kind": "review",
+      "title": { "en": "Unit 2 review", "hi": "इकाई 2 की दोहराई" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u02.l5.m-early", "left": { "text": "early" }, "right": { "pic": "🐓" } },
+            { "key": "c.u02.l5.m-feed", "left": { "text": "feed" }, "right": { "pic": "🐄" } },
+            { "key": "c.u02.l5.m-evening", "left": { "text": "evening" }, "right": { "pic": "🌆" } },
+            { "key": "c.u02.l5.m-hobby", "left": { "text": "hobby" }, "right": { "pic": "🧩" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u02.l5.b-kites",
+              "hi": "अर्जुन को पतंग उड़ाना पसंद है।",
+              "pic": "🪁",
+              "tiles": ["kites.", "Arjun", "flying", "likes"],
+              "answer": "Arjun likes flying kites."
+            },
+            {
+              "key": "c.u02.l5.b-early",
+              "hi": "दादी हमेशा जल्दी उठती हैं।",
+              "pic": "👵",
+              "tiles": ["up", "gets", "early.", "Dadi", "always"],
+              "answer": "Dadi always gets up early."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u02.l5.p-am",
+              "prompt": { "en": "I ___ eleven years old.", "hi": "मैं ग्यारह साल का/की हूँ।" },
+              "options": [{ "text": "is" }, { "text": "are" }, { "text": "am" }],
+              "answer": 2,
+              "why": { "en": "With I, we say am.", "hi": "I के साथ am आता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u02.l5.s-always",
+              "model": "I always help Dadi in the morning.",
+              "hi": "एक काम बताओ जो तुम हमेशा करते हो।",
+              "cue": { "en": "Tell us one thing you always do.", "hi": "एक काम बताओ जो तुम हमेशा करते हो।" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u02.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means रात का खाना?", "hi": "कौन-सा शब्द 'रात का खाना' है?" },
+          "options": [{ "text": "breakfast" }, { "text": "evening" }, { "text": "dinner" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u02.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "homework" },
+          "options": [{ "pic": "📝" }, { "pic": "🐄" }, { "pic": "🌆" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u02.l5.c-walks",
+          "type": "choose",
+          "prompt": { "en": "Salma ___ to school every day.", "hi": "सलमा रोज़ पैदल स्कूल जाती है।" },
+          "options": [{ "text": "walk" }, { "text": "walks" }, { "text": "walking" }],
+          "answer": 1,
+          "why": { "en": "With he, she or a name, add -s: Arjun feeds.", "hi": "he, she या किसी नाम के साथ -s लगता है: Arjun feeds." }
+        },
+        {
+          "key": "c.u02.l5.c-never",
+          "type": "choose",
+          "prompt": { "en": "Papa ___ comes home late. He is always on time.", "hi": "पापा कभी देर से घर नहीं आते।" },
+          "options": [{ "text": "always" }, { "text": "never" }, { "text": "usually" }],
+          "answer": 1,
+          "why": { "en": "Never means not at any time.", "hi": "never का मतलब है कभी नहीं।" }
+        },
+        {
+          "key": "c.u02.l5.c-u1",
+          "type": "choose",
+          "prompt": { "en": "Salma likes ___.", "hi": "सलमा को चित्र बनाना पसंद है।" },
+          "options": [{ "text": "draw" }, { "text": "drawing" }, { "text": "draws" }],
+          "answer": 1,
+          "why": { "en": "After like or likes, use the -ing word: like reading.", "hi": "like या likes के बाद -ing वाला शब्द आता है: like reading." }
+        },
+        {
+          "key": "c.u02.l5.c-b1",
+          "type": "build",
+          "hi": "हम आमतौर पर सात बजे नाश्ता करते हैं।",
+          "pic": "🥣",
+          "tiles": ["seven.", "We", "at", "usually", "breakfast", "eat"],
+          "answer": "We usually eat breakfast at seven."
+        },
+        {
+          "key": "c.u02.l5.c-b2",
+          "type": "build",
+          "hi": "मीरा की एक सबसे अच्छी दोस्त है।",
+          "pic": "👭",
+          "tiles": ["friend.", "Meera", "best", "a", "has"],
+          "answer": "Meera has a best friend."
+        }
+      ],
+      "home": { "en": "Say at dinner tonight: I always … / I never …", "hi": "आज रात खाने पर कहो: I always … / I never …" }
+    }
+  ]
+}

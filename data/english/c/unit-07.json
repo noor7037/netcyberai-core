@@ -1,0 +1,656 @@
+{
+  "track": "c",
+  "unit": 7,
+  "key": "c.u07",
+  "title": { "en": "Food and health", "hi": "खाना और सेहत" },
+  "pic": "🩺",
+  "can_do": { "en": "I can say what the matter is and get advice.", "hi": "मैं अपनी तकलीफ़ बता सकता/सकती हूँ और सलाह ले सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u07.l1",
+      "kind": "words",
+      "title": { "en": "Health words", "hi": "सेहत के शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "From today, the instructions are in English. Word meanings stay in Hindi. You can do it!",
+            "hi": "आज से निर्देश अंग्रेज़ी में हैं। तुम कर सकते हो! शब्दों के अर्थ हिंदी में मिलते रहेंगे।"
+          },
+          "pic": "👍"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u07.l1.healthy",
+              "en": "healthy",
+              "hi": "स्वस्थ",
+              "pic": "💪",
+              "example": { "en": "Fruit and vegetables keep us healthy.", "hi": "फल और सब्ज़ियाँ हमें स्वस्थ रखते हैं।" }
+            },
+            {
+              "key": "c.u07.l1.vegetables",
+              "en": "vegetables",
+              "hi": "सब्ज़ियाँ",
+              "pic": "🥦",
+              "example": { "en": "Dadi grows vegetables behind the house.", "hi": "दादी घर के पीछे सब्ज़ियाँ उगाती हैं।" }
+            },
+            {
+              "key": "c.u07.l1.clean-water",
+              "en": "clean water",
+              "hi": "साफ़ पानी",
+              "pic": "💧",
+              "example": { "en": "Always drink clean water.", "hi": "हमेशा साफ़ पानी पियो।" }
+            },
+            {
+              "key": "c.u07.l1.fever",
+              "en": "fever",
+              "hi": "बुख़ार",
+              "pic": "🤒",
+              "example": { "en": "Arjun has a fever today.", "hi": "आज अर्जुन को बुख़ार है।" }
+            },
+            {
+              "key": "c.u07.l1.cough",
+              "en": "cough",
+              "hi": "खाँसी",
+              "pic": "😷",
+              "example": { "en": "Cover your mouth when you cough.", "hi": "खाँसते समय मुँह ढको।" }
+            },
+            {
+              "key": "c.u07.l1.cold",
+              "en": "cold",
+              "hi": "ज़ुकाम, सर्दी",
+              "pic": "🤧",
+              "example": { "en": "I have a cold and a runny nose.", "hi": "मुझे ज़ुकाम है और नाक बह रही है।" }
+            },
+            {
+              "key": "c.u07.l1.toothache",
+              "en": "toothache",
+              "hi": "दाँत का दर्द",
+              "pic": "🦷",
+              "example": { "en": "Too many sweets can give you a toothache.", "hi": "ज़्यादा मिठाई से दाँत में दर्द हो सकता है।" }
+            },
+            {
+              "key": "c.u07.l1.rest",
+              "en": "rest",
+              "hi": "आराम",
+              "pic": "🛏️",
+              "example": { "en": "When you are ill, you need rest.", "hi": "बीमार होने पर आराम की ज़रूरत होती है।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u07.l1.m-fever", "left": { "text": "fever" }, "right": { "pic": "🤒" } },
+            { "key": "c.u07.l1.m-cough", "left": { "text": "cough" }, "right": { "pic": "😷" } },
+            { "key": "c.u07.l1.m-toothache", "left": { "text": "toothache" }, "right": { "pic": "🦷" } },
+            { "key": "c.u07.l1.m-vegetables", "left": { "text": "vegetables" }, "right": { "pic": "🥦" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u07.l1.p-cold",
+              "prompt": { "en": "Listen. Tap the picture.", "say": "cold" },
+              "options": [{ "pic": "🤧" }, { "pic": "🦷" }, { "pic": "💪" }],
+              "answer": 0
+            },
+            {
+              "key": "c.u07.l1.p-healthy",
+              "prompt": { "en": "Which word means स्वस्थ?" },
+              "options": [{ "text": "rest" }, { "text": "fever" }, { "text": "healthy" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u07.l1.s-water", "model": "Always drink clean water.", "pic": "💧" },
+            { "key": "c.u07.l1.s-fever", "model": "Arjun has a fever today.", "pic": "🤒" },
+            { "key": "c.u07.l1.s-rest", "model": "When you are ill, you need rest.", "pic": "🛏️" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u07.l1.c-fever",
+          "type": "choose",
+          "prompt": { "en": "Which word means बुख़ार?" },
+          "options": [{ "text": "cough" }, { "text": "cold" }, { "text": "fever" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u07.l1.c-tooth",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "toothache" },
+          "options": [{ "pic": "🤒" }, { "pic": "🥦" }, { "pic": "🦷" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u07.l1.c-water",
+          "type": "choose",
+          "prompt": { "en": "Drink ___ water to stay healthy." },
+          "options": [{ "text": "muddy" }, { "text": "clean" }, { "text": "salty" }],
+          "answer": 1,
+          "why": { "en": "Clean water keeps you healthy.", "hi": "साफ़ पानी तुम्हें स्वस्थ रखता है।" }
+        },
+        {
+          "key": "c.u07.l1.c-rest",
+          "type": "choose",
+          "prompt": { "en": "Arjun is ill. He needs ___." },
+          "options": [{ "text": "cricket" }, { "text": "rest" }, { "text": "homework" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u07.l1.c-veg",
+          "type": "choose",
+          "prompt": { "en": "Potatoes and carrots are ___." },
+          "options": [{ "text": "fevers" }, { "text": "vegetables" }, { "text": "rupees" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Name three healthy foods in your kitchen in English.", "hi": "अपनी रसोई की तीन सेहतमंद चीज़ें अंग्रेज़ी में बताओ।" }
+    },
+    {
+      "key": "c.u07.l2",
+      "kind": "pattern",
+      "title": { "en": "should, shouldn't", "hi": "should और shouldn't" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Give good advice", "hi": "अच्छी सलाह दो" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "You should drink clean water.",
+              "hi": "तुम्हें साफ़ पानी पीना चाहिए।",
+              "parts": [{ "text": "You", "role": "who" }, { "text": "should drink", "role": "do" }, { "text": "clean water.", "role": "what" }],
+              "pic": "💧"
+            },
+            {
+              "en": "You should wash your hands before you eat.",
+              "hi": "खाने से पहले तुम्हें हाथ धोने चाहिए।",
+              "parts": [
+                { "text": "You", "role": "who" },
+                { "text": "should wash", "role": "do" },
+                { "text": "your hands", "role": "what" },
+                { "text": "before you eat.", "role": "when" }
+              ],
+              "pic": "🧼"
+            },
+            {
+              "en": "Arjun should rest at home today.",
+              "hi": "अर्जुन को आज घर पर आराम करना चाहिए।",
+              "parts": [
+                { "text": "Arjun", "role": "who" },
+                { "text": "should rest", "role": "do" },
+                { "text": "at home", "role": "where" },
+                { "text": "today.", "role": "when" }
+              ],
+              "pic": "🛏️"
+            },
+            {
+              "en": "You shouldn't eat too many sweets.",
+              "hi": "तुम्हें बहुत ज़्यादा मिठाई नहीं खानी चाहिए।",
+              "parts": [{ "text": "You", "role": "who" }, { "text": "shouldn't eat", "role": "not" }, { "text": "too many sweets.", "role": "what" }],
+              "pic": "🍬"
+            },
+            {
+              "en": "We shouldn't drink water from the pond.",
+              "hi": "हमें तालाब का पानी नहीं पीना चाहिए।",
+              "parts": [
+                { "text": "We", "role": "who" },
+                { "text": "shouldn't drink", "role": "not" },
+                { "text": "water", "role": "what" },
+                { "text": "from the pond.", "role": "where" }
+              ],
+              "pic": "🦆"
+            },
+            {
+              "en": "Should I see a doctor?",
+              "hi": "क्या मुझे डॉक्टर को दिखाना चाहिए?",
+              "parts": [
+                { "text": "Should", "role": "ask" },
+                { "text": "I", "role": "who" },
+                { "text": "see", "role": "do" },
+                { "text": "a doctor?", "role": "what" }
+              ],
+              "pic": "👩‍⚕️"
+            }
+          ],
+          "note": {
+            "en": "should + the simple doing word: she should rest (no -s, no to). shouldn't = should not.",
+            "hi": "should के बाद सादा रूप: she should rest (-s या to नहीं)। shouldn't = should not."
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u07.l2.b-veg",
+              "hi": "तुम्हें ज़्यादा सब्ज़ियाँ खानी चाहिए।",
+              "pic": "🥦",
+              "tiles": ["vegetables.", "more", "should", "eat", "You"],
+              "answer": "You should eat more vegetables."
+            },
+            {
+              "key": "c.u07.l2.b-sun",
+              "hi": "तुम्हें तेज़ धूप में नहीं खेलना चाहिए।",
+              "pic": "☀️",
+              "tiles": ["shouldn't", "in", "hot", "the", "play", "sun.", "You"],
+              "answer": "You shouldn't play in the hot sun."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u07.l2.p-rest",
+              "prompt": { "en": "Salma has a cold. She should ___." },
+              "options": [{ "text": "rests" }, { "text": "to rest" }, { "text": "rest" }],
+              "answer": 2,
+              "why": { "en": "After should, use the simple form: should rest.", "hi": "should के बाद सादा रूप आता है: should rest." }
+            },
+            {
+              "key": "c.u07.l2.p-sweets",
+              "prompt": { "en": "You have a toothache. You ___ eat sweets." },
+              "options": [{ "text": "shouldn't" }, { "text": "should" }, { "text": "are" }],
+              "answer": 0,
+              "why": { "en": "Sweets are bad for a toothache, so shouldn't.", "hi": "दाँत दर्द में मिठाई ठीक नहीं, इसलिए shouldn't." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u07.l2.s-cough", "model": "You should drink warm water and rest.", "cue": { "en": "Your friend has a cough. Give advice." } },
+            { "key": "c.u07.l2.s-dinner", "model": "We shouldn't eat too many sweets before dinner.", "cue": { "en": "What shouldn't we do before dinner?" } },
+            { "key": "c.u07.l2.s-fever", "model": "You should rest and see a doctor.", "cue": { "en": "Your friend has a fever. What should they do?" } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u07.l2.c-b1",
+          "type": "build",
+          "hi": "तुम्हें साबुन से हाथ धोने चाहिए।",
+          "pic": "🧼",
+          "tiles": ["soap.", "should", "your", "wash", "You", "with", "hands"],
+          "answer": "You should wash your hands with soap."
+        },
+        {
+          "key": "c.u07.l2.c-b2",
+          "type": "build",
+          "hi": "अर्जुन को बारिश में बाहर नहीं जाना चाहिए।",
+          "pic": "🌧️",
+          "tiles": ["rain.", "the", "Arjun", "in", "shouldn't", "go", "out"],
+          "answer": "Arjun shouldn't go out in the rain."
+        },
+        {
+          "key": "c.u07.l2.c-form",
+          "type": "choose",
+          "prompt": { "en": "Meera should ___ to bed early." },
+          "options": [{ "text": "go" }, { "text": "goes" }, { "text": "going" }],
+          "answer": 0,
+          "why": { "en": "After should, use the simple form: should rest.", "hi": "should के बाद सादा रूप आता है: should rest." }
+        },
+        {
+          "key": "c.u07.l2.c-neg",
+          "type": "choose",
+          "prompt": { "en": "You ___ drink dirty water." },
+          "options": [{ "text": "should" }, { "text": "shouldn't" }, { "text": "does" }],
+          "answer": 1,
+          "why": { "en": "Dirty water makes us ill, so shouldn't.", "hi": "गंदा पानी बीमार करता है, इसलिए shouldn't." }
+        },
+        {
+          "key": "c.u07.l2.c-q",
+          "type": "choose",
+          "prompt": { "en": "___ I see a doctor?" },
+          "options": [{ "text": "Should" }, { "text": "Does" }, { "text": "Am" }],
+          "answer": 0,
+          "why": { "en": "To ask for advice, start with should.", "hi": "सलाह माँगने के लिए should से शुरू करो।" }
+        },
+        {
+          "key": "c.u07.l2.c-advice",
+          "type": "choose",
+          "prompt": { "en": "Which is good advice for a cold?" },
+          "options": [{ "text": "You should rest and keep warm." }, { "text": "You should play in the rain." }, { "text": "You shouldn't sleep." }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Give one piece of health advice at home: You should …", "hi": "घर पर सेहत की एक सलाह दो: You should …" }
+    },
+    {
+      "key": "c.u07.l3",
+      "kind": "listen",
+      "title": { "en": "At the health centre", "hi": "स्वास्थ्य केंद्र पर" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Arjun sees Dr Khan", "hi": "अर्जुन डॉक्टर ख़ान के पास" },
+          "scene": {
+            "place": "clinic",
+            "pics": [
+              { "pic": "🏥", "x": 80, "y": 16, "size": 2 },
+              { "pic": "👩‍⚕️", "x": 60, "y": 40, "size": 1.6 },
+              { "pic": "👦", "x": 36, "y": 42, "size": 1.4 },
+              { "pic": "👩", "x": 20, "y": 40, "size": 1.5 },
+              { "pic": "🩺", "x": 70, "y": 28, "size": 1 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Dr Khan", "pic": "👩‍⚕️", "en": "Hello, Arjun. What's the matter?" },
+            { "speaker": "Arjun", "pic": "👦", "en": "I have a cough and a fever." },
+            { "speaker": "Dr Khan", "pic": "👩‍⚕️", "en": "Does your throat hurt?" },
+            { "speaker": "Arjun", "pic": "👦", "en": "Yes, a little. And I feel tired." },
+            { "speaker": "Dr Khan", "pic": "👩‍⚕️", "en": "Let me check. Open your mouth and say aah." },
+            { "speaker": "Dr Khan", "pic": "👩‍⚕️", "en": "It is a bad cold. You should rest at home." },
+            { "speaker": "Dr Khan", "pic": "👩‍⚕️", "en": "You should drink lots of warm water." },
+            { "speaker": "Dr Khan", "pic": "👩‍⚕️", "en": "And you shouldn't play in the rain this week." },
+            { "speaker": "Mummy", "pic": "👩", "en": "Should he go to school tomorrow?" },
+            { "speaker": "Dr Khan", "pic": "👩‍⚕️", "en": "No. He should stay at home for two days." },
+            { "speaker": "Dr Khan", "pic": "👩‍⚕️", "en": "Come back if the fever does not go away." },
+            { "speaker": "Arjun", "pic": "👦", "en": "Thank you, doctor." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u07.l3.p-matter",
+              "prompt": { "en": "What is the matter with Arjun?" },
+              "options": [{ "text": "a toothache" }, { "text": "a broken leg" }, { "text": "a cough and a fever" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u07.l3.p-water",
+              "prompt": { "en": "What should Arjun drink?" },
+              "options": [{ "text": "cold milk" }, { "text": "warm water" }, { "text": "pond water" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u07.l3.p-rain",
+              "prompt": { "en": "What shouldn't Arjun do this week?" },
+              "options": [{ "text": "rest at home" }, { "text": "drink water" }, { "text": "play in the rain" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u07.l3.s-cough", "model": "I have a cough and a fever.", "pic": "🤒" },
+            { "key": "c.u07.l3.s-rest", "model": "You should rest at home.", "pic": "🛏️" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u07.l3.c-who",
+          "type": "choose",
+          "prompt": { "en": "Who is Dr Khan?" },
+          "options": [{ "text": "the teacher" }, { "text": "the doctor" }, { "text": "the shopkeeper" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u07.l3.c-school",
+          "type": "choose",
+          "prompt": { "en": "Should Arjun go to school tomorrow?" },
+          "options": [{ "text": "No, he should stay at home." }, { "text": "Yes, he should." }, { "text": "He should go to the shop." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u07.l3.c-back",
+          "type": "choose",
+          "prompt": { "en": "When should Arjun come back?" },
+          "options": [{ "text": "tomorrow morning" }, { "text": "if the fever does not go away" }, { "text": "next year" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u07.l3.c-throat",
+          "type": "choose",
+          "prompt": { "en": "Does Arjun's throat hurt?" },
+          "options": [{ "text": "Yes, a little." }, { "text": "No, not at all." }, { "text": "We don't know." }],
+          "answer": 0
+        }
+      ],
+      "home": {
+        "en": "Tell your family Dr Khan's advice: You should rest and drink water.",
+        "hi": "घरवालों को डॉक्टर ख़ान की सलाह बताओ: You should rest and drink water."
+      }
+    },
+    {
+      "key": "c.u07.l4",
+      "kind": "speak",
+      "title": { "en": "At the health centre", "hi": "स्वास्थ्य केंद्र पर" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "You don't feel well. Tell Dr Khan what the matter is, and listen to the advice.",
+            "hi": "तुम्हारी तबीयत ठीक नहीं है। डॉक्टर ख़ान को अपनी तकलीफ़ बताओ और सलाह सुनो।"
+          },
+          "pic": "🩺"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "I have a toothache", "hi": "मेरे दाँत में दर्द है" },
+          "scene": {
+            "place": "clinic",
+            "pics": [
+              { "pic": "🏥", "x": 80, "y": 16, "size": 2 },
+              { "pic": "👩‍⚕️", "x": 36, "y": 40, "size": 1.6 },
+              { "pic": "🙋", "x": 60, "y": 44, "size": 1.5 },
+              { "pic": "🦷", "x": 50, "y": 24, "size": 1 }
+            ]
+          },
+          "roles": [{ "name": "Dr Khan", "pic": "👩‍⚕️" }, { "name": "You", "pic": "🙋" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Good morning. Please sit down. What's the matter?" },
+            { "role": 1, "en": "Good morning, doctor. I have a toothache." },
+            { "role": 0, "en": "Oh dear. Do you eat a lot of sweets?" },
+            { "role": 1, "en": "Yes, I eat sweets every day." },
+            { "role": 0, "en": "You shouldn't eat so many sweets." },
+            { "role": 1, "en": "What else should I do?" },
+            { "role": 0, "en": "You should brush your teeth twice a day." },
+            { "role": 1, "en": "Should I see a dentist?" },
+            { "role": 0, "en": "Yes. Please see the dentist in town this week." },
+            { "role": 1, "en": "Thank you, doctor. I will." }
+          ],
+          "partner": {
+            "goal": "Play Dr Khan, a kind village doctor. Ask what the matter is; give everyday advice with should and shouldn't. Never name a medicine; say to see a doctor if it gets worse.",
+            "must_use": ["What's the matter", "I have", "should", "shouldn't"]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "c.u07.l4.br-fever", "hi": "मुझे बुख़ार है।", "tiles": ["a", "fever.", "have", "I"], "answer": "I have a fever." },
+            { "key": "c.u07.l4.br-rest", "hi": "तुम्हें आराम करना चाहिए।", "tiles": ["rest.", "You", "should"], "answer": "You should rest." },
+            {
+              "key": "c.u07.l4.br-dirty",
+              "hi": "हमें गंदा पानी नहीं पीना चाहिए।",
+              "tiles": ["water.", "dirty", "We", "drink", "shouldn't"],
+              "answer": "We shouldn't drink dirty water."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [{ "key": "c.u07.l4.s-cold", "model": "Doctor, I have a cold and a cough.", "cue": { "en": "You have a cold. Tell the doctor." } }]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u07.l4.c-start",
+          "type": "choose",
+          "prompt": { "en": "The doctor asks: What's the matter? You say:" },
+          "options": [{ "text": "I have a toothache." }, { "text": "I am in Class 6." }, { "text": "Go straight." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u07.l4.c-b",
+          "type": "build",
+          "hi": "तुम्हें दिन में दो बार दाँत साफ़ करने चाहिए।",
+          "pic": "🦷",
+          "tiles": ["your", "You", "a", "brush", "teeth", "twice", "day.", "should"],
+          "answer": "You should brush your teeth twice a day."
+        },
+        {
+          "key": "c.u07.l4.c-adv",
+          "type": "choose",
+          "prompt": { "en": "Your friend has a fever. Which is good advice?" },
+          "options": [{ "text": "You should run in the sun." }, { "text": "You should rest and see a doctor." }, { "text": "You shouldn't drink water." }],
+          "answer": 1
+        },
+        {
+          "key": "c.u07.l4.c-form",
+          "type": "choose",
+          "prompt": { "en": "You shouldn't ___ so many sweets." },
+          "options": [{ "text": "eat" }, { "text": "eats" }, { "text": "eating" }],
+          "answer": 0,
+          "why": { "en": "After should, use the simple form: should rest.", "hi": "should के बाद सादा रूप आता है: should rest." }
+        }
+      ],
+      "home": { "en": "Tell a family member one healthy habit: We should …", "hi": "घर के किसी सदस्य को एक अच्छी आदत बताओ: We should …" }
+    },
+    {
+      "key": "c.u07.l5",
+      "kind": "review",
+      "title": { "en": "Unit 7 review", "hi": "इकाई 7 की दोहराई" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u07.l5.m-rest", "left": { "text": "rest" }, "right": { "pic": "🛏️" } },
+            { "key": "c.u07.l5.m-cough", "left": { "text": "cough" }, "right": { "pic": "😷" } },
+            { "key": "c.u07.l5.m-healthy", "left": { "text": "healthy" }, "right": { "pic": "💪" } },
+            { "key": "c.u07.l5.m-kilo", "left": { "text": "kilo" }, "right": { "pic": "⚖️" } },
+            { "key": "c.u07.l5.m-go-straight", "left": { "text": "go straight" }, "right": { "pic": "⬆️" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u07.l5.b-fruit",
+              "hi": "तुम्हें रोज़ फल खाने चाहिए।",
+              "pic": "🍎",
+              "tiles": ["day.", "should", "fruit", "You", "eat", "every"],
+              "answer": "You should eat fruit every day."
+            },
+            {
+              "key": "c.u07.l5.b-onions",
+              "hi": "एक किलो प्याज़ कितने का है?",
+              "pic": "🧅",
+              "tiles": ["much", "of", "a", "is", "kilo", "How", "onions?"],
+              "answer": "How much is a kilo of onions?"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u07.l5.p-healthy",
+              "prompt": { "en": "Which is healthy?" },
+              "options": [{ "text": "clean water and vegetables" }, { "text": "too many sweets" }, { "text": "dirty water" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u07.l5.s-two",
+              "model": "You should drink clean water. You shouldn't eat too many sweets.",
+              "cue": { "en": "Give two pieces of health advice." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u07.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means खाँसी?" },
+          "options": [{ "text": "cold" }, { "text": "fever" }, { "text": "cough" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u07.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "vegetables" },
+          "options": [{ "pic": "🍬" }, { "pic": "🥦" }, { "pic": "🦷" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u07.l5.c-should",
+          "type": "choose",
+          "prompt": { "en": "You have a cold. You ___ keep warm." },
+          "options": [{ "text": "shouldn't" }, { "text": "does" }, { "text": "should" }],
+          "answer": 2,
+          "why": { "en": "Keeping warm helps a cold, so should.", "hi": "गरम रहना ज़ुकाम में अच्छा है, इसलिए should." }
+        },
+        {
+          "key": "c.u07.l5.c-form",
+          "type": "choose",
+          "prompt": { "en": "She should ___ more water." },
+          "options": [{ "text": "drinks" }, { "text": "drinking" }, { "text": "drink" }],
+          "answer": 2,
+          "why": { "en": "After should, use the simple form: should rest.", "hi": "should के बाद सादा रूप आता है: should rest." }
+        },
+        {
+          "key": "c.u07.l5.c-u6",
+          "type": "choose",
+          "prompt": { "en": "Do you have ___ eggs?" },
+          "options": [{ "text": "some" }, { "text": "any" }, { "text": "much" }],
+          "answer": 1,
+          "why": { "en": "In a question, use any.", "hi": "सवाल में any आता है।" }
+        },
+        {
+          "key": "c.u07.l5.c-u5",
+          "type": "choose",
+          "prompt": { "en": "The temple is ___ the school. It faces the school." },
+          "options": [{ "text": "opposite" }, { "text": "behind" }, { "text": "between" }],
+          "answer": 0,
+          "why": { "en": "Opposite means facing.", "hi": "opposite का मतलब है सामने।" }
+        },
+        {
+          "key": "c.u07.l5.c-u3",
+          "type": "choose",
+          "prompt": { "en": "Look! Arjun ___ a kite." },
+          "options": [{ "text": "flies" }, { "text": "fly" }, { "text": "is flying" }],
+          "answer": 2,
+          "why": { "en": "It is happening now: is + -ing.", "hi": "अभी हो रहा है: is + -ing." }
+        },
+        {
+          "key": "c.u07.l5.c-b",
+          "type": "build",
+          "hi": "हमें गंदे हाथों से खाना नहीं खाना चाहिए।",
+          "pic": "🧼",
+          "tiles": ["food", "eat", "We", "shouldn't", "with", "hands.", "dirty"],
+          "answer": "We shouldn't eat food with dirty hands."
+        }
+      ],
+      "home": { "en": "Wash your hands before dinner and say: We should wash our hands.", "hi": "खाने से पहले हाथ धोते हुए कहो: We should wash our hands." }
+    }
+  ]
+}

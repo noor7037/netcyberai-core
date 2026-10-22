@@ -1,0 +1,617 @@
+{
+  "track": "c",
+  "unit": 10,
+  "key": "c.u10",
+  "title": { "en": "Stories", "hi": "कहानियाँ" },
+  "pic": "📖",
+  "can_do": { "en": "I can tell a short story.", "hi": "मैं छोटी कहानी सुना सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u10.l1",
+      "kind": "words",
+      "title": { "en": "Story words", "hi": "कहानी के शब्द" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Stories need places, people and surprises. Here are some story words.",
+            "hi": "कहानियों में जगहें, लोग और अचानक होने वाली बातें होती हैं। ये रहे कुछ कहानी के शब्द।"
+          },
+          "pic": "📖"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u10.l1.forest",
+              "en": "forest",
+              "hi": "जंगल",
+              "pic": "🌲",
+              "example": { "en": "A tiger lives deep in the forest.", "hi": "जंगल के अंदर एक बाघ रहता है।" }
+            },
+            {
+              "key": "c.u10.l1.river",
+              "en": "river",
+              "hi": "नदी",
+              "pic": "🌊",
+              "example": { "en": "The river is full in the monsoon.", "hi": "मानसून में नदी भर जाती है।" }
+            },
+            {
+              "key": "c.u10.l1.boat",
+              "en": "boat",
+              "hi": "नाव",
+              "pic": "🛶",
+              "example": { "en": "The boatman takes people across the river.", "hi": "नाविक लोगों को नदी के पार ले जाता है।" }
+            },
+            {
+              "key": "c.u10.l1.storm",
+              "en": "storm",
+              "hi": "तूफ़ान",
+              "pic": "⛈️",
+              "example": { "en": "There was a big storm last night.", "hi": "कल रात बड़ा तूफ़ान आया था।" }
+            },
+            {
+              "key": "c.u10.l1.monkey",
+              "en": "monkey",
+              "hi": "बंदर",
+              "pic": "🐒",
+              "example": { "en": "A monkey took my banana!", "hi": "एक बंदर मेरा केला ले गया!" }
+            },
+            {
+              "key": "c.u10.l1.brave",
+              "en": "brave",
+              "hi": "बहादुर",
+              "pic": "🦁",
+              "example": { "en": "The brave girl helped the old man.", "hi": "बहादुर लड़की ने बूढ़े आदमी की मदद की।" }
+            },
+            {
+              "key": "c.u10.l1.afraid",
+              "en": "afraid",
+              "hi": "डरा हुआ",
+              "pic": "😨",
+              "example": { "en": "Arjun was afraid of the dark.", "hi": "अर्जुन अँधेरे से डरता था।" }
+            },
+            {
+              "key": "c.u10.l1.suddenly",
+              "en": "suddenly",
+              "hi": "अचानक",
+              "pic": "⚡",
+              "example": { "en": "Suddenly, the lights went out.", "hi": "अचानक बत्ती चली गई।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u10.l1.m-forest", "left": { "text": "forest" }, "right": { "pic": "🌲" } },
+            { "key": "c.u10.l1.m-boat", "left": { "text": "boat" }, "right": { "pic": "🛶" } },
+            { "key": "c.u10.l1.m-storm", "left": { "text": "storm" }, "right": { "pic": "⛈️" } },
+            { "key": "c.u10.l1.m-afraid", "left": { "text": "afraid" }, "right": { "pic": "😨" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u10.l1.p-brave",
+              "prompt": { "en": "Which word means बहादुर?" },
+              "options": [{ "text": "afraid" }, { "text": "brave" }, { "text": "suddenly" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u10.l1.p-river",
+              "prompt": { "en": "Listen. Tap the picture.", "say": "river" },
+              "options": [{ "pic": "🌲" }, { "pic": "🐒" }, { "pic": "🌊" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u10.l1.s-lights", "model": "Suddenly, the lights went out.", "pic": "⚡" },
+            { "key": "c.u10.l1.s-brave", "model": "The brave girl helped the old man.", "pic": "🦁" },
+            { "key": "c.u10.l1.s-storm", "model": "There was a big storm last night.", "pic": "⛈️" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u10.l1.c-sudden",
+          "type": "choose",
+          "prompt": { "en": "Which word means अचानक?" },
+          "options": [{ "text": "finally" }, { "text": "usually" }, { "text": "suddenly" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u10.l1.c-monkey",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "monkey" },
+          "options": [{ "pic": "🐒" }, { "pic": "🦁" }, { "pic": "🛶" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u10.l1.c-afraid",
+          "type": "choose",
+          "prompt": { "en": "Arjun heard a strange sound in the dark. He was ___." },
+          "options": [{ "text": "brave" }, { "text": "afraid" }, { "text": "healthy" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u10.l1.c-boat",
+          "type": "choose",
+          "prompt": { "en": "We crossed the river in a ___." },
+          "options": [{ "text": "forest" }, { "text": "boat" }, { "text": "storm" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u10.l1.c-forest",
+          "type": "choose",
+          "prompt": { "en": "Many trees together make a ___." },
+          "options": [{ "text": "river" }, { "text": "forest" }, { "text": "boat" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask Dadi or Nani for a short story tonight.", "hi": "आज रात दादी या नानी से एक छोटी कहानी सुनाने को कहो।" }
+    },
+    {
+      "key": "c.u10.l2",
+      "kind": "pattern",
+      "title": { "en": "The past: words that change", "hi": "बीता समय: बदलने वाले शब्द" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "go → went, see → saw", "hi": "जाना → went, देखना → saw" },
+          "visual": "timeline",
+          "examples": [
+            { "en": "Every day, Meera goes to the river.", "hi": "मीरा रोज़ नदी पर जाती है।", "time": "now", "pic": "🌊" },
+            { "en": "Yesterday, Meera went to the forest.", "hi": "कल मीरा जंगल गई।", "time": "past", "pic": "🌲" },
+            { "en": "She saw a monkey in a tall tree.", "hi": "उसने एक ऊँचे पेड़ पर बंदर देखा।", "time": "past", "pic": "🐒" },
+            { "en": "The monkey took her tiffin box!", "hi": "बंदर उसका टिफ़िन ले गया!", "time": "past", "pic": "own:tiffin" },
+            { "en": "Arjun ran after the monkey.", "hi": "अर्जुन बंदर के पीछे भागा।", "time": "past", "pic": "🏃" },
+            { "en": "They didn't get the tiffin back.", "hi": "उन्हें टिफ़िन वापस नहीं मिला।", "time": "past", "pic": "😢" }
+          ],
+          "note": {
+            "en": "Some doing words change in the past: go → went, see → saw, take → took, run → ran. With didn't, use the simple form: didn't go.",
+            "hi": "कुछ शब्द बीते समय में बदल जाते हैं: go → went, see → saw, take → took, run → ran. didn't के साथ सादा रूप: didn't go."
+          }
+        },
+        {
+          "type": "pattern",
+          "title": { "en": "Learn them in pairs", "hi": "जोड़ों में याद करो" },
+          "visual": "cards",
+          "examples": [
+            { "en": "go → went: We went to the haat.", "hi": "हम हाट गए।", "pic": "own:haat" },
+            { "en": "eat → ate: I ate a mango.", "hi": "मैंने एक आम खाया।", "pic": "🥭" },
+            { "en": "come → came: Nani came for Diwali.", "hi": "नानी दिवाली पर आईं।", "pic": "🪔" },
+            { "en": "find → found: Arjun found his kite.", "hi": "अर्जुन को अपनी पतंग मिल गई।", "pic": "🪁" },
+            { "en": "give → gave: Dadi gave me a book.", "hi": "दादी ने मुझे एक किताब दी।", "pic": "📚" },
+            { "en": "tell → told: Papa told us a story.", "hi": "पापा ने हमें एक कहानी सुनाई।", "pic": "📖" }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u10.l2.b-river",
+              "hi": "हम रविवार को नदी पर गए।",
+              "pic": "🌊",
+              "tiles": ["to", "on", "We", "river", "Sunday.", "the", "went"],
+              "answer": "We went to the river on Sunday."
+            },
+            {
+              "key": "c.u10.l2.b-monkey",
+              "hi": "अर्जुन ने एक बड़ा बंदर देखा।",
+              "pic": "🐒",
+              "tiles": ["a", "Arjun", "saw", "monkey.", "big"],
+              "answer": "Arjun saw a big monkey."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u10.l2.p-went",
+              "prompt": { "en": "Last week, Salma ___ to the town." },
+              "options": [{ "text": "went" }, { "text": "goes" }, { "text": "goed" }],
+              "answer": 0,
+              "why": { "en": "go changes to went in the past.", "hi": "go बीते समय में went बन जाता है।" }
+            },
+            {
+              "key": "c.u10.l2.p-didnt",
+              "prompt": { "en": "We didn't ___ the tiger." },
+              "options": [{ "text": "saw" }, { "text": "see" }, { "text": "seen" }],
+              "answer": 1,
+              "why": { "en": "After didn't, use the simple form.", "hi": "didn't के बाद सादा रूप आता है।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u10.l2.s-sunday", "model": "Last Sunday, I went to the haat with Papa.", "cue": { "en": "Where did you go last Sunday?" } },
+            { "key": "c.u10.l2.s-breakfast", "model": "I ate two rotis for breakfast.", "cue": { "en": "What did you eat for breakfast?" } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u10.l2.c-b1",
+          "type": "build",
+          "hi": "पापा ने हमें एक मज़ेदार कहानी सुनाई।",
+          "pic": "📖",
+          "tiles": ["a", "story.", "Papa", "funny", "told", "us"],
+          "answer": "Papa told us a funny story."
+        },
+        {
+          "key": "c.u10.l2.c-b2",
+          "type": "build",
+          "hi": "नानी कल हमारे घर आईं।",
+          "pic": "🏠",
+          "tiles": ["came", "yesterday.", "our", "house", "to", "Nani"],
+          "answer": "Nani came to our house yesterday."
+        },
+        {
+          "key": "c.u10.l2.c-ate",
+          "type": "choose",
+          "prompt": { "en": "I ___ a big mango yesterday." },
+          "options": [{ "text": "ate" }, { "text": "eat" }, { "text": "eated" }],
+          "answer": 0,
+          "why": { "en": "This word changes in the past. Learn it as a pair.", "hi": "यह शब्द बीते समय में बदल जाता है। इसे जोड़े में याद करो।" }
+        },
+        {
+          "key": "c.u10.l2.c-took",
+          "type": "choose",
+          "prompt": { "en": "The monkey ___ my banana!" },
+          "options": [{ "text": "took" }, { "text": "take" }, { "text": "taked" }],
+          "answer": 0,
+          "why": { "en": "This word changes in the past. Learn it as a pair.", "hi": "यह शब्द बीते समय में बदल जाता है। इसे जोड़े में याद करो।" }
+        },
+        {
+          "key": "c.u10.l2.c-ran",
+          "type": "choose",
+          "prompt": { "en": "The dog ___ after the cat." },
+          "options": [{ "text": "ran" }, { "text": "run" }, { "text": "runned" }],
+          "answer": 0,
+          "why": { "en": "This word changes in the past. Learn it as a pair.", "hi": "यह शब्द बीते समय में बदल जाता है। इसे जोड़े में याद करो।" }
+        },
+        {
+          "key": "c.u10.l2.c-didnt",
+          "type": "choose",
+          "prompt": { "en": "Arjun didn't ___ his kite." },
+          "options": [{ "text": "found" }, { "text": "find" }, { "text": "finds" }],
+          "answer": 1,
+          "why": { "en": "After didn't, use the simple form.", "hi": "didn't के बाद सादा रूप आता है।" }
+        }
+      ],
+      "home": { "en": "Tell your family one place you went this week: I went to …", "hi": "घरवालों को बताओ इस हफ़्ते तुम कहाँ गए: I went to …" }
+    },
+    {
+      "key": "c.u10.l3",
+      "kind": "listen",
+      "title": { "en": "Dadi's river story", "hi": "दादी की नदी वाली कहानी" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "The brave boatman", "hi": "बहादुर नाविक" },
+          "scene": {
+            "place": "plain",
+            "pics": [
+              { "pic": "🌊", "x": 50, "y": 46, "size": 3 },
+              { "pic": "🛶", "x": 46, "y": 34, "size": 1.4 },
+              { "pic": "⛈️", "x": 20, "y": 8, "size": 1.6 },
+              { "pic": "🌲", "x": 86, "y": 18, "size": 1.6 },
+              { "pic": "👵", "x": 8, "y": 50, "size": 1.2 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Dadi", "pic": "👵", "en": "When I was a girl, I went to the river with my brother." },
+            { "speaker": "Dadi", "pic": "👵", "en": "Suddenly, the sky became dark, and a storm came." },
+            { "speaker": "Dadi", "pic": "👵", "en": "We were afraid. We could not see the path." },
+            { "speaker": "Dadi", "pic": "👵", "en": "Then we saw a small boat near the bank." },
+            { "speaker": "Dadi", "pic": "👵", "en": "An old boatman called out, \"Come in, children!\"" },
+            { "speaker": "Dadi", "pic": "👵", "en": "He took us across the river in the rain." },
+            { "speaker": "Dadi", "pic": "👵", "en": "He was very brave and calm." },
+            { "speaker": "Dadi", "pic": "👵", "en": "He sang a song, and we forgot our fear." },
+            { "speaker": "Dadi", "pic": "👵", "en": "We got home safe, and my mother gave him hot tea." },
+            { "speaker": "Arjun", "pic": "👦", "en": "What a brave boatman! I love this story, Dadi." }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u10.l3.p-who",
+              "prompt": { "en": "Who went to the river with Dadi?" },
+              "options": [{ "text": "her mother" }, { "text": "her teacher" }, { "text": "her brother" }],
+              "answer": 2
+            },
+            {
+              "key": "c.u10.l3.p-what",
+              "prompt": { "en": "What came suddenly?" },
+              "options": [{ "text": "a tiger" }, { "text": "a storm" }, { "text": "a bus" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u10.l3.p-how",
+              "prompt": { "en": "How did they cross the river?" },
+              "options": [{ "text": "on a bridge" }, { "text": "on a bicycle" }, { "text": "in a boat" }],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u10.l3.s-storm", "model": "Suddenly, the sky became dark, and a storm came.", "pic": "⛈️" },
+            { "key": "c.u10.l3.s-song", "model": "He sang a song, and we forgot our fear.", "pic": "🎵" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u10.l3.c-feel",
+          "type": "choose",
+          "prompt": { "en": "How did the children feel in the storm?" },
+          "options": [{ "text": "happy" }, { "text": "sleepy" }, { "text": "afraid" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u10.l3.c-boatman",
+          "type": "choose",
+          "prompt": { "en": "What was the boatman like?" },
+          "options": [{ "text": "angry and loud" }, { "text": "brave and calm" }, { "text": "young and afraid" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u10.l3.c-tea",
+          "type": "choose",
+          "prompt": { "en": "What did Dadi's mother give the boatman?" },
+          "options": [{ "text": "a boat" }, { "text": "hot tea" }, { "text": "some sweets" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u10.l3.c-saw",
+          "type": "choose",
+          "prompt": { "en": "In the story, what is the past of see?" },
+          "options": [{ "text": "seed" }, { "text": "sees" }, { "text": "saw" }],
+          "answer": 2,
+          "why": { "en": "This word changes in the past. Learn it as a pair.", "hi": "यह शब्द बीते समय में बदल जाता है। इसे जोड़े में याद करो।" }
+        }
+      ],
+      "home": { "en": "Tell the boatman story to someone at home in your own words.", "hi": "नाविक वाली कहानी अपने शब्दों में घर में किसी को सुनाओ।" }
+    },
+    {
+      "key": "c.u10.l4",
+      "kind": "speak",
+      "title": { "en": "Tell a story from four pictures", "hi": "चार तस्वीरों से कहानी सुनाओ" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "Look at the four pictures. Use went, saw, took, ran and found.",
+            "hi": "चारों तस्वीरें देखो। went, saw, took, ran और found का प्रयोग करो।"
+          },
+          "pic": "📖"
+        },
+        {
+          "type": "picture",
+          "scene": {
+            "place": "field",
+            "pics": [
+              { "pic": "1️⃣", "x": 6, "y": 6, "size": 0.8 },
+              { "pic": "👧", "x": 12, "y": 36, "size": 1.3 },
+              { "pic": "own:tiffin", "x": 20, "y": 48, "size": 0.9 },
+              { "pic": "2️⃣", "x": 30, "y": 6, "size": 0.8 },
+              { "pic": "🐒", "x": 36, "y": 30, "size": 1.4 },
+              { "pic": "own:tiffin", "x": 44, "y": 44, "size": 0.9 },
+              { "pic": "3️⃣", "x": 56, "y": 6, "size": 0.8 },
+              { "pic": "👦", "x": 60, "y": 36, "size": 1.3 },
+              { "pic": "🏃", "x": 68, "y": 42, "size": 1 },
+              { "pic": "4️⃣", "x": 80, "y": 6, "size": 0.8 },
+              { "pic": "🐒", "x": 84, "y": 22, "size": 1 },
+              { "pic": "own:tiffin", "x": 90, "y": 48, "size": 1 }
+            ]
+          },
+          "questions": [
+            { "key": "c.u10.l4.q-1", "en": "Picture 1: Where did Meera go?", "model": "Meera went to the field with her tiffin box." },
+            { "key": "c.u10.l4.q-2", "en": "Picture 2: What did the monkey do?", "model": "Suddenly, a monkey took her tiffin box." },
+            { "key": "c.u10.l4.q-3", "en": "Picture 3: What did Arjun do?", "model": "Arjun ran after the monkey." },
+            { "key": "c.u10.l4.q-4", "en": "Picture 4: How did it end?", "model": "Finally, the monkey dropped the box, and Arjun found it." }
+          ]
+        },
+        {
+          "type": "bridge",
+          "items": [
+            { "key": "c.u10.l4.br-field", "hi": "मीरा खेत गई।", "tiles": ["went", "to", "field.", "Meera", "the"], "answer": "Meera went to the field." },
+            {
+              "key": "c.u10.l4.br-took",
+              "hi": "बंदर ने उसका टिफ़िन ले लिया।",
+              "tiles": ["tiffin.", "her", "took", "monkey", "The"],
+              "answer": "The monkey took her tiffin."
+            },
+            {
+              "key": "c.u10.l4.br-ran",
+              "hi": "अर्जुन बंदर के पीछे भागा।",
+              "tiles": ["the", "after", "ran", "Arjun", "monkey."],
+              "answer": "Arjun ran after the monkey."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "describe",
+          "prompts": [
+            {
+              "key": "c.u10.l4.s-all",
+              "model": "Meera went to the field. A monkey took her tiffin. Arjun found it.",
+              "cue": { "en": "Tell the whole story in your own words." }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u10.l4.c-pic2",
+          "type": "choose",
+          "prompt": { "en": "Which sentence fits picture 2?" },
+          "options": [{ "text": "A monkey took the tiffin box." }, { "text": "Meera went to school." }, { "text": "Arjun ate a mango." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u10.l4.c-b",
+          "type": "build",
+          "hi": "अचानक एक बंदर उसका टिफ़िन ले गया।",
+          "pic": "🐒",
+          "tiles": ["monkey", "took", "her", "Suddenly,", "tiffin.", "a"],
+          "answer": "Suddenly, a monkey took her tiffin."
+        },
+        {
+          "key": "c.u10.l4.c-found",
+          "type": "choose",
+          "prompt": { "en": "Finally, Arjun ___ the box under a tree." },
+          "options": [{ "text": "find" }, { "text": "found" }, { "text": "finded" }],
+          "answer": 1,
+          "why": { "en": "This word changes in the past. Learn it as a pair.", "hi": "यह शब्द बीते समय में बदल जाता है। इसे जोड़े में याद करो।" }
+        },
+        {
+          "key": "c.u10.l4.c-start",
+          "type": "choose",
+          "prompt": { "en": "Which is a good start for a story?" },
+          "options": [{ "text": "Meera goes field." }, { "text": "One day, Meera went to the field." }, { "text": "Finally, the end." }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Tell a funny thing that happened to you. Use went and saw.", "hi": "अपने साथ हुई कोई मज़ेदार बात went और saw के साथ सुनाओ।" }
+    },
+    {
+      "key": "c.u10.l5",
+      "kind": "review",
+      "title": { "en": "Unit 10 review", "hi": "इकाई 10 की दोहराई" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u10.l5.m-storm", "left": { "text": "storm" }, "right": { "pic": "⛈️" } },
+            { "key": "c.u10.l5.m-brave", "left": { "text": "brave" }, "right": { "pic": "🦁" } },
+            { "key": "c.u10.l5.m-monkey", "left": { "text": "monkey" }, "right": { "pic": "🐒" } },
+            { "key": "c.u10.l5.m-first", "left": { "text": "first" }, "right": { "pic": "1️⃣" } },
+            { "key": "c.u10.l5.m-weekend", "left": { "text": "weekend" }, "right": { "pic": "📆" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u10.l5.b-rain",
+              "hi": "अचानक बारिश शुरू हो गई।",
+              "pic": "🌧️",
+              "tiles": ["it", "to", "started", "rain.", "Suddenly,"],
+              "answer": "Suddenly, it started to rain."
+            },
+            {
+              "key": "c.u10.l5.b-swim",
+              "hi": "तुम्हें नदी में अकेले नहीं तैरना चाहिए।",
+              "pic": "🌊",
+              "tiles": ["in", "shouldn't", "swim", "the", "You", "alone.", "river"],
+              "answer": "You shouldn't swim in the river alone."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u10.l5.p-saw",
+              "prompt": { "en": "Yesterday, I ___ a film with my family." },
+              "options": [{ "text": "see" }, { "text": "saw" }, { "text": "seed" }],
+              "answer": 1,
+              "why": { "en": "This word changes in the past. Learn it as a pair.", "hi": "यह शब्द बीते समय में बदल जाता है। इसे जोड़े में याद करो।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            { "key": "c.u10.l5.s-afraid", "model": "One night, I saw a big snake, and I ran home.", "cue": { "en": "Tell us about a time you were afraid." } }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u10.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means नाव?" },
+          "options": [{ "text": "boat" }, { "text": "river" }, { "text": "forest" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u10.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "say": "suddenly" },
+          "options": [{ "pic": "🦁" }, { "pic": "⚡" }, { "pic": "🌲" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u10.l5.c-went",
+          "type": "choose",
+          "prompt": { "en": "Meera ___ to the haat last Friday." },
+          "options": [{ "text": "went" }, { "text": "go" }, { "text": "goes" }],
+          "answer": 0,
+          "why": { "en": "This word changes in the past. Learn it as a pair.", "hi": "यह शब्द बीते समय में बदल जाता है। इसे जोड़े में याद करो।" }
+        },
+        {
+          "key": "c.u10.l5.c-gave",
+          "type": "choose",
+          "prompt": { "en": "Dadi ___ me a red pencil." },
+          "options": [{ "text": "give" }, { "text": "gave" }, { "text": "gived" }],
+          "answer": 1,
+          "why": { "en": "This word changes in the past. Learn it as a pair.", "hi": "यह शब्द बीते समय में बदल जाता है। इसे जोड़े में याद करो।" }
+        },
+        {
+          "key": "c.u10.l5.c-came",
+          "type": "choose",
+          "prompt": { "en": "My uncle ___ home late last night." },
+          "options": [{ "text": "comes" }, { "text": "come" }, { "text": "came" }],
+          "answer": 2,
+          "why": { "en": "This word changes in the past. Learn it as a pair.", "hi": "यह शब्द बीते समय में बदल जाता है। इसे जोड़े में याद करो।" }
+        },
+        {
+          "key": "c.u10.l5.c-u8",
+          "type": "choose",
+          "prompt": { "en": "Last week, we ___ the house before the festival." },
+          "options": [{ "text": "clean" }, { "text": "cleaned" }, { "text": "cleaning" }],
+          "answer": 1,
+          "why": { "en": "Last week is in the past: add -ed.", "hi": "last week = बीता समय: -ed लगाओ।" }
+        },
+        {
+          "key": "c.u10.l5.c-u7",
+          "type": "choose",
+          "prompt": { "en": "You ___ eat too many sweets." },
+          "options": [{ "text": "shouldn't" }, { "text": "should" }, { "text": "did" }],
+          "answer": 0,
+          "why": { "en": "Too many sweets are bad for your teeth.", "hi": "ज़्यादा मिठाई दाँतों के लिए ठीक नहीं।" }
+        },
+        {
+          "key": "c.u10.l5.c-b",
+          "type": "build",
+          "hi": "नाविक हमें नदी के पार ले गया।",
+          "pic": "🛶",
+          "tiles": ["boatman", "The", "across", "took", "us", "river.", "the"],
+          "answer": "The boatman took us across the river."
+        }
+      ],
+      "home": { "en": "Read or tell a story at home tonight.", "hi": "आज रात घर पर कोई कहानी पढ़ो या सुनाओ।" }
+    }
+  ]
+}

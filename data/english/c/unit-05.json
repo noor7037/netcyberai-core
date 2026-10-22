@@ -1,0 +1,686 @@
+{
+  "track": "c",
+  "unit": 5,
+  "key": "c.u05",
+  "title": { "en": "My village, my town", "hi": "मेरा गाँव, मेरा शहर" },
+  "pic": "🏘️",
+  "can_do": { "en": "I can ask for and give directions.", "hi": "मैं रास्ता पूछ और बता सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u05.l1",
+      "kind": "words",
+      "title": { "en": "Places and directions", "hi": "जगहें और दिशाएँ" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Today we learn the names of places, and how to show the way.", "hi": "आज हम जगहों के नाम और रास्ता बताना सीखेंगे।" },
+          "pic": "🗺️"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u05.l1.post-office",
+              "en": "post office",
+              "hi": "डाकघर",
+              "pic": "🏤",
+              "example": { "en": "The post office opens at ten.", "hi": "डाकघर दस बजे खुलता है।" }
+            },
+            {
+              "key": "c.u05.l1.health-centre",
+              "en": "health centre",
+              "hi": "स्वास्थ्य केंद्र",
+              "pic": "🏥",
+              "example": { "en": "Dr Khan works at the health centre.", "hi": "डॉक्टर ख़ान स्वास्थ्य केंद्र में काम करती हैं।" }
+            },
+            {
+              "key": "c.u05.l1.bridge",
+              "en": "bridge",
+              "hi": "पुल",
+              "pic": "🌉",
+              "example": { "en": "There is a small bridge over the river.", "hi": "नदी पर एक छोटा पुल है।" }
+            },
+            {
+              "key": "c.u05.l1.temple",
+              "en": "temple",
+              "hi": "मंदिर",
+              "pic": "🛕",
+              "example": { "en": "The temple is near the pond.", "hi": "मंदिर तालाब के पास है।" }
+            },
+            {
+              "key": "c.u05.l1.mosque",
+              "en": "mosque",
+              "hi": "मस्जिद",
+              "pic": "🕌",
+              "example": { "en": "Salma's house is near the mosque.", "hi": "सलमा का घर मस्जिद के पास है।" }
+            },
+            {
+              "key": "c.u05.l1.turn-left",
+              "en": "turn left",
+              "hi": "बाएँ मुड़ो",
+              "pic": "⬅️",
+              "example": { "en": "Turn left at the bridge.", "hi": "पुल पर बाएँ मुड़ो।" }
+            },
+            {
+              "key": "c.u05.l1.turn-right",
+              "en": "turn right",
+              "hi": "दाएँ मुड़ो",
+              "pic": "➡️",
+              "example": { "en": "Turn right at the temple.", "hi": "मंदिर पर दाएँ मुड़ो।" }
+            },
+            {
+              "key": "c.u05.l1.go-straight",
+              "en": "go straight",
+              "hi": "सीधे जाओ",
+              "pic": "⬆️",
+              "example": { "en": "Go straight on this road.", "hi": "इसी सड़क पर सीधे जाओ।" }
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u05.l1.m-post-office", "left": { "text": "post office" }, "right": { "pic": "🏤" } },
+            { "key": "c.u05.l1.m-health-centre", "left": { "text": "health centre" }, "right": { "pic": "🏥" } },
+            { "key": "c.u05.l1.m-bridge", "left": { "text": "bridge" }, "right": { "pic": "🌉" } },
+            { "key": "c.u05.l1.m-turn-left", "left": { "text": "turn left" }, "right": { "pic": "⬅️" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u05.l1.p-right",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "turn right" },
+              "options": [{ "pic": "⬅️" }, { "pic": "➡️" }, { "pic": "⬆️" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u05.l1.p-mosque",
+              "prompt": { "en": "Which word means मस्जिद?", "hi": "कौन-सा शब्द 'मस्जिद' है?" },
+              "options": [{ "text": "mosque" }, { "text": "temple" }, { "text": "bridge" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u05.l1.s-straight", "model": "Go straight on this road.", "hi": "इसी सड़क पर सीधे जाओ।", "pic": "⬆️" },
+            { "key": "c.u05.l1.s-left", "model": "Turn left at the bridge.", "hi": "पुल पर बाएँ मुड़ो।", "pic": "⬅️" },
+            { "key": "c.u05.l1.s-temple", "model": "The temple is near the pond.", "hi": "मंदिर तालाब के पास है।", "pic": "🛕" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u05.l1.c-post",
+          "type": "choose",
+          "prompt": { "en": "Which word means डाकघर?", "hi": "कौन-सा शब्द 'डाकघर' है?" },
+          "options": [{ "text": "post office" }, { "text": "health centre" }, { "text": "temple" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u05.l1.c-straight",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "go straight" },
+          "options": [{ "pic": "⬅️" }, { "pic": "➡️" }, { "pic": "⬆️" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u05.l1.c-health",
+          "type": "choose",
+          "prompt": { "en": "Arjun has a fever. Mummy takes him to the ___.", "hi": "अर्जुन को बुख़ार है। मम्मी उसे स्वास्थ्य केंद्र ले जाती हैं।" },
+          "options": [{ "text": "post office" }, { "text": "health centre" }, { "text": "bridge" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u05.l1.c-bridge",
+          "type": "choose",
+          "prompt": { "en": "We cross the river on the ___.", "hi": "हम पुल से नदी पार करते हैं।" },
+          "options": [{ "text": "temple" }, { "text": "bridge" }, { "text": "well" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u05.l1.c-left",
+          "type": "choose",
+          "prompt": { "en": "Which sign means turn left?", "hi": "कौन-सा निशान बाएँ मुड़ने का है?" },
+          "options": [{ "pic": "➡️" }, { "pic": "⬆️" }, { "pic": "⬅️" }],
+          "answer": 2
+        }
+      ],
+      "home": {
+        "en": "Tell your family one place near your home: The … is near my house.",
+        "hi": "घरवालों को अपने घर के पास की एक जगह बताओ: The … is near my house."
+      }
+    },
+    {
+      "key": "c.u05.l2",
+      "kind": "pattern",
+      "title": { "en": "There is, there are; near, next to", "hi": "There is, there are; पास, बगल में" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Say what is in your village and where", "hi": "बताओ गाँव में क्या है और कहाँ है" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "There is a post office in our village.",
+              "hi": "हमारे गाँव में एक डाकघर है।",
+              "parts": [{ "text": "There is", "role": "do" }, { "text": "a post office", "role": "what" }, { "text": "in our village.", "role": "where" }],
+              "pic": "🏤"
+            },
+            {
+              "en": "There are two shops near the bus stand.",
+              "hi": "बस अड्डे के पास दो दुकानें हैं।",
+              "parts": [{ "text": "There are", "role": "do" }, { "text": "two shops", "role": "what" }, { "text": "near the bus stand.", "role": "where" }],
+              "pic": "🏪"
+            },
+            {
+              "en": "The temple is next to the pond.",
+              "hi": "मंदिर तालाब के बगल में है।",
+              "parts": [{ "text": "The temple", "role": "who" }, { "text": "is", "role": "do" }, { "text": "next to the pond.", "role": "where" }],
+              "pic": "🛕"
+            },
+            {
+              "en": "The health centre is opposite the school.",
+              "hi": "स्वास्थ्य केंद्र स्कूल के सामने है।",
+              "parts": [{ "text": "The health centre", "role": "who" }, { "text": "is", "role": "do" }, { "text": "opposite the school.", "role": "where" }],
+              "pic": "🏥"
+            },
+            {
+              "en": "The well is behind the mosque.",
+              "hi": "कुआँ मस्जिद के पीछे है।",
+              "parts": [{ "text": "The well", "role": "who" }, { "text": "is", "role": "do" }, { "text": "behind the mosque.", "role": "where" }],
+              "pic": "own:well"
+            },
+            {
+              "en": "The shop is between the temple and the well.",
+              "hi": "दुकान मंदिर और कुएँ के बीच में है।",
+              "parts": [{ "text": "The shop", "role": "who" }, { "text": "is", "role": "do" }, { "text": "between the temple and the well.", "role": "where" }],
+              "pic": "🏪"
+            }
+          ],
+          "note": {
+            "en": "There is for one thing, there are for many. near, next to, opposite, behind and between tell where.",
+            "hi": "एक चीज़ के लिए there is, कई के लिए there are. near (पास), next to (बगल में), opposite (सामने), behind (पीछे), between (बीच में) जगह बताते हैं।"
+          }
+        },
+        {
+          "type": "pattern",
+          "title": { "en": "Show the way", "hi": "रास्ता बताओ" },
+          "visual": "cards",
+          "examples": [
+            { "en": "Go straight on this road.", "hi": "इसी सड़क पर सीधे जाओ।", "pic": "⬆️" },
+            { "en": "Turn left at the bridge.", "hi": "पुल पर बाएँ मुड़ो।", "pic": "⬅️" },
+            { "en": "Turn right at the temple.", "hi": "मंदिर पर दाएँ मुड़ो।", "pic": "➡️" },
+            { "en": "It is on your left, next to the well.", "hi": "वह तुम्हारे बाईं ओर, कुएँ के बगल में है।", "pic": "own:well" }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u05.l2.b-well",
+              "hi": "मंदिर के पीछे एक कुआँ है।",
+              "pic": "own:well",
+              "tiles": ["well", "temple.", "is", "a", "behind", "There", "the"],
+              "answer": "There is a well behind the temple."
+            },
+            {
+              "key": "c.u05.l2.b-shops",
+              "hi": "पुल के पास तीन दुकानें हैं।",
+              "pic": "🏪",
+              "tiles": ["shops", "the", "are", "There", "three", "near", "bridge."],
+              "answer": "There are three shops near the bridge."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u05.l2.p-are",
+              "prompt": { "en": "There ___ two temples in the town.", "hi": "शहर में दो मंदिर हैं।" },
+              "options": [{ "text": "are" }, { "text": "is" }, { "text": "am" }],
+              "answer": 0,
+              "why": { "en": "Two temples are many, so there are.", "hi": "दो मंदिर = कई, इसलिए there are." }
+            },
+            {
+              "key": "c.u05.l2.p-opp",
+              "prompt": { "en": "The school is ___ the health centre. They face each other.", "hi": "स्कूल स्वास्थ्य केंद्र के सामने है।" },
+              "options": [{ "text": "behind" }, { "text": "between" }, { "text": "opposite" }],
+              "answer": 2,
+              "why": { "en": "Opposite means facing.", "hi": "opposite का मतलब है सामने।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u05.l2.s-post",
+              "model": "Yes, there is. It is near the bus stand.",
+              "hi": "जवाब दो।",
+              "cue": { "en": "Is there a post office in your village?", "hi": "क्या तुम्हारे गाँव में डाकघर है?" }
+            },
+            {
+              "key": "c.u05.l2.s-way",
+              "model": "Go straight and turn left at the bridge.",
+              "hi": "रास्ता बताओ।",
+              "cue": { "en": "How do I get to the temple?", "hi": "मंदिर कैसे जाऊँ?" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u05.l2.c-b1",
+          "type": "build",
+          "hi": "डाकघर बैंक के बगल में है।",
+          "pic": "🏦",
+          "tiles": ["is", "office", "to", "next", "bank.", "The", "the", "post"],
+          "answer": "The post office is next to the bank."
+        },
+        {
+          "key": "c.u05.l2.c-b2",
+          "type": "build",
+          "hi": "मस्जिद पर दाएँ मुड़ो।",
+          "pic": "➡️",
+          "tiles": ["right", "the", "mosque.", "Turn", "at"],
+          "answer": "Turn right at the mosque."
+        },
+        {
+          "key": "c.u05.l2.c-is",
+          "type": "choose",
+          "prompt": { "en": "There ___ a big tree near my house.", "hi": "मेरे घर के पास एक बड़ा पेड़ है।" },
+          "options": [{ "text": "is" }, { "text": "are" }, { "text": "be" }],
+          "answer": 0,
+          "why": { "en": "There is for one thing; there are for many.", "hi": "एक चीज़ के लिए there is, कई चीज़ों के लिए there are." }
+        },
+        {
+          "key": "c.u05.l2.c-between",
+          "type": "choose",
+          "prompt": { "en": "The shop is ___ the temple and the well.", "hi": "दुकान मंदिर और कुएँ के बीच में है।" },
+          "options": [{ "text": "between" }, { "text": "under" }, { "text": "on" }],
+          "answer": 0,
+          "why": { "en": "Between means in the middle of two things.", "hi": "between = दो चीज़ों के बीच में।" }
+        },
+        {
+          "key": "c.u05.l2.c-behind",
+          "type": "choose",
+          "prompt": { "en": "Which word means पीछे?", "hi": "कौन-सा शब्द 'पीछे' है?" },
+          "options": [{ "text": "opposite" }, { "text": "next to" }, { "text": "behind" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u05.l2.c-dir",
+          "type": "choose",
+          "prompt": { "en": "Which sentence tells the way?", "hi": "कौन-सा वाक्य रास्ता बताता है?" },
+          "options": [{ "text": "Go straight and turn left." }, { "text": "There are two shops." }, { "text": "I like the temple." }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Tell someone the way from your home to the shop.", "hi": "किसी को अपने घर से दुकान तक का रास्ता बताओ।" }
+    },
+    {
+      "key": "c.u05.l3",
+      "kind": "listen",
+      "title": { "en": "Where is the health centre?", "hi": "स्वास्थ्य केंद्र कहाँ है?" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "A visitor asks the way", "hi": "एक यात्री रास्ता पूछता है" },
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🛣️", "x": 50, "y": 52, "size": 2 },
+              { "pic": "🌉", "x": 28, "y": 30, "size": 1.5 },
+              { "pic": "🛕", "x": 62, "y": 20, "size": 1.5 },
+              { "pic": "🏥", "x": 82, "y": 22, "size": 1.6 },
+              { "pic": "🏤", "x": 82, "y": 44, "size": 1.3 },
+              { "pic": "🧓", "x": 16, "y": 46, "size": 1.4 },
+              { "pic": "👧", "x": 32, "y": 48, "size": 1.4 }
+            ]
+          },
+          "lines": [
+            {
+              "speaker": "Visitor",
+              "pic": "🧓",
+              "en": "Excuse me. Is there a health centre in this village?",
+              "hi": "सुनिए। क्या इस गाँव में कोई स्वास्थ्य केंद्र है?"
+            },
+            { "speaker": "Meera", "pic": "👧", "en": "Yes, there is. It is near the post office.", "hi": "हाँ, है। वह डाकघर के पास है।" },
+            { "speaker": "Visitor", "pic": "🧓", "en": "How do I get there?", "hi": "मैं वहाँ कैसे पहुँचूँ?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Go straight on this road.", "hi": "इसी सड़क पर सीधे जाइए।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Turn left at the bridge.", "hi": "पुल पर बाएँ मुड़िए।" },
+            { "speaker": "Meera", "pic": "👧", "en": "The health centre is next to the temple.", "hi": "स्वास्थ्य केंद्र मंदिर के बगल में है।" },
+            { "speaker": "Visitor", "pic": "🧓", "en": "Is it far from here?", "hi": "क्या वह यहाँ से दूर है?" },
+            { "speaker": "Meera", "pic": "👧", "en": "No, it is very near. Just five minutes on foot.", "hi": "नहीं, बहुत पास है। पैदल बस पाँच मिनट।" },
+            { "speaker": "Visitor", "pic": "🧓", "en": "Thank you so much!", "hi": "बहुत-बहुत धन्यवाद!" },
+            { "speaker": "Meera", "pic": "👧", "en": "You're welcome.", "hi": "कोई बात नहीं।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u05.l3.p-where",
+              "prompt": { "en": "Where is the health centre?", "hi": "स्वास्थ्य केंद्र कहाँ है?" },
+              "options": [{ "text": "behind the school" }, { "text": "next to the temple" }, { "text": "opposite the mosque" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u05.l3.p-turn",
+              "prompt": { "en": "Where does the visitor turn left?", "hi": "यात्री को कहाँ बाएँ मुड़ना है?" },
+              "options": [{ "text": "at the well" }, { "text": "at the bridge" }, { "text": "at the shop" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u05.l3.p-far",
+              "prompt": { "en": "Is the health centre far?", "hi": "क्या स्वास्थ्य केंद्र दूर है?" },
+              "options": [{ "text": "Yes, it is very far." }, { "text": "No, it is very near." }, { "text": "It is in the town." }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            {
+              "key": "c.u05.l3.s-ask",
+              "model": "Excuse me. Is there a health centre in this village?",
+              "hi": "सुनिए। क्या इस गाँव में कोई स्वास्थ्य केंद्र है?",
+              "pic": "🏥"
+            },
+            {
+              "key": "c.u05.l3.s-way",
+              "model": "Go straight on this road. Turn left at the bridge.",
+              "hi": "इसी सड़क पर सीधे जाइए। पुल पर बाएँ मुड़िए।",
+              "pic": "⬅️"
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u05.l3.c-first",
+          "type": "choose",
+          "prompt": { "en": "What does the visitor say first?", "hi": "यात्री सबसे पहले क्या कहता है?" },
+          "options": [{ "text": "Excuse me." }, { "text": "Good night." }, { "text": "Sorry." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u05.l3.c-min",
+          "type": "choose",
+          "prompt": { "en": "How many minutes on foot?", "hi": "पैदल कितने मिनट लगते हैं?" },
+          "options": [{ "text": "two" }, { "text": "five" }, { "text": "ten" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u05.l3.c-near",
+          "type": "choose",
+          "prompt": { "en": "The health centre is near the ___.", "hi": "स्वास्थ्य केंद्र किसके पास है?" },
+          "options": [{ "text": "river" }, { "text": "post office" }, { "text": "school" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u05.l3.c-welcome",
+          "type": "choose",
+          "prompt": { "en": "The visitor says thank you. Meera says:", "hi": "यात्री धन्यवाद कहता है। मीरा क्या कहती है?" },
+          "options": [{ "text": "Go straight." }, { "text": "You're welcome." }, { "text": "Excuse me." }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Ask at home: Is there a post office near our house?", "hi": "घर पर पूछो: Is there a post office near our house?" }
+    },
+    {
+      "key": "c.u05.l4",
+      "kind": "speak",
+      "title": { "en": "Asking the way", "hi": "रास्ता पूछना" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "You are new in the village. Ask the way politely, then say thank you.",
+            "hi": "तुम गाँव में नए हो। विनम्रता से रास्ता पूछो, फिर धन्यवाद कहो।"
+          },
+          "pic": "🗺️"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "The way to the post office", "hi": "डाकघर का रास्ता" },
+          "scene": {
+            "place": "village",
+            "pics": [
+              { "pic": "🛣️", "x": 50, "y": 52, "size": 2 },
+              { "pic": "🏪", "x": 20, "y": 22, "size": 1.6 },
+              { "pic": "🏤", "x": 80, "y": 24, "size": 1.6 },
+              { "pic": "🕌", "x": 56, "y": 18, "size": 1.4 },
+              { "pic": "👨", "x": 30, "y": 42, "size": 1.5 },
+              { "pic": "🙋", "x": 52, "y": 46, "size": 1.5 }
+            ]
+          },
+          "roles": [{ "name": "Ravi", "pic": "👨" }, { "name": "You", "pic": "🙋" }],
+          "learner": 1,
+          "turns": [
+            { "role": 1, "en": "Excuse me, Ravi uncle. Where is the post office?", "hi": "माफ़ कीजिए, रवि अंकल। डाकघर कहाँ है?" },
+            { "role": 0, "en": "It is not far. Go straight on this road.", "hi": "दूर नहीं है। इसी सड़क पर सीधे जाओ।" },
+            { "role": 1, "en": "Go straight. And then?", "hi": "सीधे जाऊँ। फिर?" },
+            { "role": 0, "en": "Turn right at the mosque.", "hi": "मस्जिद पर दाएँ मुड़ो।" },
+            { "role": 1, "en": "Is it near the bus stand?", "hi": "क्या वह बस अड्डे के पास है?" },
+            { "role": 0, "en": "Yes. It is opposite the bus stand.", "hi": "हाँ। वह बस अड्डे के सामने है।" },
+            { "role": 1, "en": "Straight, then right at the mosque. Thank you!", "hi": "सीधे, फिर मस्जिद पर दाएँ। धन्यवाद!" },
+            { "role": 0, "en": "You're welcome. Have a good day!", "hi": "कोई बात नहीं। तुम्हारा दिन अच्छा हो!" }
+          ],
+          "partner": {
+            "goal": "Play Ravi, the village shopkeeper. The child asks the way to the post office. Give two or three short directions, then let the child repeat them.",
+            "must_use": ["Excuse me", "Where is", "turn", "Thank you"]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u05.l4.br-bus",
+              "hi": "माफ़ कीजिए, बस अड्डा कहाँ है?",
+              "tiles": ["where", "stand?", "is", "the", "Excuse", "bus", "me,"],
+              "answer": "Excuse me, where is the bus stand?"
+            },
+            {
+              "key": "c.u05.l4.br-right",
+              "hi": "पुल पर दाएँ मुड़ो।",
+              "tiles": ["right", "bridge.", "at", "Turn", "the"],
+              "answer": "Turn right at the bridge."
+            },
+            {
+              "key": "c.u05.l4.br-opp",
+              "hi": "मंदिर स्कूल के सामने है।",
+              "tiles": ["temple", "school.", "the", "is", "opposite", "The"],
+              "answer": "The temple is opposite the school."
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u05.l4.s-give",
+              "model": "Go straight and turn left. The temple is next to the pond.",
+              "hi": "रास्ता बताओ।",
+              "cue": { "en": "A visitor asks: Where is the temple? Show the way.", "hi": "एक यात्री पूछता है: Where is the temple? रास्ता बताओ।" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u05.l4.c-polite",
+          "type": "choose",
+          "prompt": { "en": "How do you start to ask the way?", "hi": "रास्ता पूछना कैसे शुरू करोगे?" },
+          "options": [{ "text": "Excuse me, where is the bank?" }, { "text": "Bank! Where?" }, { "text": "Give me the bank." }],
+          "answer": 0
+        },
+        {
+          "key": "c.u05.l4.c-b",
+          "type": "build",
+          "hi": "कृपया बताइए, स्वास्थ्य केंद्र कहाँ है?",
+          "pic": "🏥",
+          "tiles": ["please?", "the", "is", "Where", "centre,", "health"],
+          "answer": "Where is the health centre, please?"
+        },
+        {
+          "key": "c.u05.l4.c-opp",
+          "type": "choose",
+          "prompt": { "en": "What does opposite mean?", "hi": "opposite का मतलब क्या है?" },
+          "options": [{ "text": "सामने" }, { "text": "पीछे" }, { "text": "ऊपर" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u05.l4.c-sign",
+          "type": "choose",
+          "prompt": { "en": "Ravi says: Turn right at the mosque. Which sign is it?", "hi": "रवि कहते हैं: Turn right at the mosque. कौन-सा निशान?" },
+          "options": [{ "pic": "⬆️" }, { "pic": "⬅️" }, { "pic": "➡️" }],
+          "answer": 2
+        }
+      ],
+      "home": { "en": "Give a family member directions to a place in your village.", "hi": "घर के किसी सदस्य को गाँव की किसी जगह का रास्ता बताओ।" }
+    },
+    {
+      "key": "c.u05.l5",
+      "kind": "review",
+      "title": { "en": "Unit 5 review", "hi": "इकाई 5 की दोहराई" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u05.l5.m-temple", "left": { "text": "temple" }, "right": { "pic": "🛕" } },
+            { "key": "c.u05.l5.m-mosque", "left": { "text": "mosque" }, "right": { "pic": "🕌" } },
+            { "key": "c.u05.l5.m-go-straight", "left": { "text": "go straight" }, "right": { "pic": "⬆️" } },
+            { "key": "c.u05.l5.m-question", "left": { "text": "question" }, "right": { "pic": "❓" } },
+            { "key": "c.u05.l5.m-chase", "left": { "text": "chase" }, "right": { "pic": "🐕" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u05.l5.b-bridge",
+              "hi": "नदी पर एक पुल है।",
+              "pic": "🌉",
+              "tiles": ["a", "There", "is", "river.", "the", "over", "bridge"],
+              "answer": "There is a bridge over the river."
+            },
+            {
+              "key": "c.u05.l5.b-ravi",
+              "hi": "रवि अंकल कहाँ रहते हैं?",
+              "pic": "👨",
+              "tiles": ["Ravi", "uncle", "live?", "does", "Where"],
+              "answer": "Where does Ravi uncle live?"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u05.l5.p-behind",
+              "prompt": { "en": "The well is ___ the house. You can't see it from the road.", "hi": "कुआँ घर के पीछे है। सड़क से नहीं दिखता।" },
+              "options": [{ "text": "opposite" }, { "text": "on" }, { "text": "behind" }],
+              "answer": 2,
+              "why": { "en": "Behind means at the back.", "hi": "behind का मतलब है पीछे।" }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u05.l5.s-village",
+              "model": "There is a temple, and there are two shops.",
+              "hi": "अपने गाँव की दो चीज़ें बताओ।",
+              "cue": { "en": "Say two things that are in your village.", "hi": "अपने गाँव की दो चीज़ें बताओ।" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u05.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means पुल?", "hi": "कौन-सा शब्द 'पुल' है?" },
+          "options": [{ "text": "road" }, { "text": "well" }, { "text": "bridge" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u05.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "turn left" },
+          "options": [{ "pic": "➡️" }, { "pic": "⬆️" }, { "pic": "⬅️" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u05.l5.c-are",
+          "type": "choose",
+          "prompt": { "en": "There ___ many trees near the pond.", "hi": "तालाब के पास बहुत पेड़ हैं।" },
+          "options": [{ "text": "is" }, { "text": "am" }, { "text": "are" }],
+          "answer": 2,
+          "why": { "en": "There is for one thing; there are for many.", "hi": "एक चीज़ के लिए there is, कई चीज़ों के लिए there are." }
+        },
+        {
+          "key": "c.u05.l5.c-next",
+          "type": "choose",
+          "prompt": { "en": "Which words mean बगल में?", "hi": "कौन-से शब्द 'बगल में' हैं?" },
+          "options": [{ "text": "behind" }, { "text": "next to" }, { "text": "opposite" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u05.l5.c-u4",
+          "type": "choose",
+          "prompt": { "en": "___ does Salma live? Near the mosque.", "hi": "सलमा कहाँ रहती है? मस्जिद के पास।" },
+          "options": [{ "text": "When" }, { "text": "Where" }, { "text": "Who" }],
+          "answer": 1,
+          "why": { "en": "Where asks about a place.", "hi": "where जगह के बारे में पूछता है।" }
+        },
+        {
+          "key": "c.u05.l5.c-u3",
+          "type": "choose",
+          "prompt": { "en": "Shh! Dadi ___ now.", "hi": "श्श! दादी अभी सो रही हैं।" },
+          "options": [{ "text": "sleeps" }, { "text": "sleep" }, { "text": "is sleeping" }],
+          "answer": 2,
+          "why": { "en": "It is happening now: is + -ing.", "hi": "अभी हो रहा है: is + -ing." }
+        },
+        {
+          "key": "c.u05.l5.c-u1",
+          "type": "choose",
+          "prompt": { "en": "I like ___ stories.", "hi": "मुझे कहानियाँ पढ़ना पसंद है।" },
+          "options": [{ "text": "read" }, { "text": "reads" }, { "text": "reading" }],
+          "answer": 2,
+          "why": { "en": "After like, use the -ing word.", "hi": "like के बाद -ing वाला शब्द आता है।" }
+        },
+        {
+          "key": "c.u05.l5.c-b",
+          "type": "build",
+          "hi": "स्वास्थ्य केंद्र मंदिर के सामने है।",
+          "pic": "🏥",
+          "tiles": ["centre", "opposite", "is", "health", "The", "the", "temple."],
+          "answer": "The health centre is opposite the temple."
+        }
+      ],
+      "home": {
+        "en": "Draw a small map of your street and name three places in English.",
+        "hi": "अपनी गली का छोटा-सा नक्शा बनाओ और तीन जगहों के नाम अंग्रेज़ी में लिखो।"
+      }
+    }
+  ]
+}

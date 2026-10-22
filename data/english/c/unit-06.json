@@ -1,0 +1,684 @@
+{
+  "track": "c",
+  "unit": 6,
+  "key": "c.u06",
+  "title": { "en": "Shopping", "hi": "ख़रीदारी" },
+  "pic": "🛒",
+  "can_do": { "en": "I can shop and ask prices.", "hi": "मैं ख़रीदारी कर सकता/सकती हूँ और दाम पूछ सकता/सकती हूँ।" },
+  "lessons": [
+    {
+      "key": "c.u06.l1",
+      "kind": "words",
+      "title": { "en": "At Ravi's shop", "hi": "रवि की दुकान पर" },
+      "minutes": 6,
+      "steps": [
+        {
+          "type": "tip",
+          "text": { "en": "Mummy needs things from Ravi's shop. Learn the words first.", "hi": "मम्मी को रवि की दुकान से सामान चाहिए। पहले शब्द सीखो।" },
+          "pic": "🏪"
+        },
+        {
+          "type": "words",
+          "words": [
+            {
+              "key": "c.u06.l1.shopping-list",
+              "en": "shopping list",
+              "hi": "सामान की सूची",
+              "pic": "📝",
+              "example": { "en": "Mummy gives me a shopping list.", "hi": "मम्मी मुझे सामान की सूची देती हैं।" }
+            },
+            {
+              "key": "c.u06.l1.kilo",
+              "en": "kilo",
+              "hi": "किलो",
+              "pic": "⚖️",
+              "example": { "en": "I need two kilos of rice.", "hi": "मुझे दो किलो चावल चाहिए।" }
+            },
+            {
+              "key": "c.u06.l1.packet",
+              "en": "packet",
+              "hi": "पैकेट",
+              "pic": "📦",
+              "example": { "en": "Can I have a packet of salt?", "hi": "क्या मुझे नमक का एक पैकेट मिलेगा?" }
+            },
+            {
+              "key": "c.u06.l1.price",
+              "en": "price",
+              "hi": "दाम, क़ीमत",
+              "pic": "🏷️",
+              "example": { "en": "What is the price of this soap?", "hi": "इस साबुन का दाम क्या है?" }
+            },
+            {
+              "key": "c.u06.l1.rupees",
+              "en": "rupees",
+              "hi": "रुपये",
+              "pic": "💵",
+              "example": { "en": "The soap is twenty rupees.", "hi": "साबुन बीस रुपये का है।" }
+            },
+            {
+              "key": "c.u06.l1.change",
+              "en": "change",
+              "hi": "बाक़ी पैसे, छुट्टे",
+              "pic": "💰",
+              "example": { "en": "Here is your change.", "hi": "ये रहे आपके बाक़ी पैसे।" }
+            },
+            {
+              "key": "c.u06.l1.onions",
+              "en": "onions",
+              "hi": "प्याज़",
+              "pic": "🧅",
+              "example": { "en": "One kilo of onions, please.", "hi": "एक किलो प्याज़ दीजिए।" }
+            },
+            { "key": "c.u06.l1.soap", "en": "soap", "hi": "साबुन", "pic": "🧼", "example": { "en": "Papa needs a new soap.", "hi": "पापा को नया साबुन चाहिए।" } }
+          ]
+        },
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u06.l1.m-kilo", "left": { "text": "kilo" }, "right": { "pic": "⚖️" } },
+            { "key": "c.u06.l1.m-packet", "left": { "text": "packet" }, "right": { "pic": "📦" } },
+            { "key": "c.u06.l1.m-onions", "left": { "text": "onions" }, "right": { "pic": "🧅" } },
+            { "key": "c.u06.l1.m-soap", "left": { "text": "soap" }, "right": { "pic": "🧼" } }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u06.l1.p-price",
+              "prompt": { "en": "Which word means दाम?", "hi": "कौन-सा शब्द 'दाम' है?" },
+              "options": [{ "text": "change" }, { "text": "price" }, { "text": "packet" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u06.l1.p-change",
+              "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "change" },
+              "options": [{ "pic": "💰" }, { "pic": "🧼" }, { "pic": "🧅" }],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u06.l1.s-kilos", "model": "I need two kilos of rice.", "hi": "मुझे दो किलो चावल चाहिए।", "pic": "⚖️" },
+            { "key": "c.u06.l1.s-price", "model": "What is the price of this soap?", "hi": "इस साबुन का दाम क्या है?", "pic": "🏷️" },
+            { "key": "c.u06.l1.s-change", "model": "Here is your change.", "hi": "ये रहे आपके बाक़ी पैसे।", "pic": "💰" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u06.l1.c-kilo",
+          "type": "choose",
+          "prompt": { "en": "I need two ___ of rice.", "hi": "मुझे दो किलो चावल चाहिए।" },
+          "options": [{ "text": "kilos" }, { "text": "onions" }, { "text": "rupees" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u06.l1.c-onion",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "onions" },
+          "options": [{ "pic": "🧅" }, { "pic": "🥔" }, { "pic": "🧼" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u06.l1.c-rupees",
+          "type": "choose",
+          "prompt": { "en": "The soap is twenty ___.", "hi": "साबुन बीस रुपये का है।" },
+          "options": [{ "text": "kilos" }, { "text": "onions" }, { "text": "rupees" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u06.l1.c-change",
+          "type": "choose",
+          "prompt": { "en": "Ravi gives back ten rupees. This money is your ___.", "hi": "रवि दस रुपये वापस देते हैं। ये तुम्हारे बाक़ी पैसे हैं।" },
+          "options": [{ "text": "price" }, { "text": "change" }, { "text": "list" }],
+          "answer": 1,
+          "why": { "en": "Change is the money you get back.", "hi": "change वे पैसे हैं जो वापस मिलते हैं।" }
+        },
+        {
+          "key": "c.u06.l1.c-list",
+          "type": "choose",
+          "prompt": { "en": "Which words mean सामान की सूची?", "hi": "कौन-से शब्द 'सामान की सूची' हैं?" },
+          "options": [{ "text": "packet" }, { "text": "shopping list" }, { "text": "price" }],
+          "answer": 1
+        }
+      ],
+      "home": { "en": "Make a shopping list in English with three things.", "hi": "अंग्रेज़ी में तीन चीज़ों वाली सामान की सूची बनाओ।" }
+    },
+    {
+      "key": "c.u06.l2",
+      "kind": "pattern",
+      "title": { "en": "some, any; how much, how many", "hi": "some और any; कितना और कितने" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "pattern",
+          "title": { "en": "Ask for things and prices", "hi": "चीज़ें और दाम पूछो" },
+          "visual": "builder",
+          "examples": [
+            {
+              "en": "I want some rice, please.",
+              "hi": "मुझे कुछ चावल चाहिए।",
+              "parts": [
+                { "text": "I", "role": "who" },
+                { "text": "want", "role": "do" },
+                { "text": "some rice,", "role": "what" },
+                { "text": "please.", "role": "other" }
+              ],
+              "pic": "🍚"
+            },
+            {
+              "en": "Do you have any eggs?",
+              "hi": "क्या आपके पास अंडे हैं?",
+              "parts": [
+                { "text": "Do", "role": "ask" },
+                { "text": "you", "role": "who" },
+                { "text": "have", "role": "do" },
+                { "text": "any eggs?", "role": "what" }
+              ],
+              "pic": "🥚"
+            },
+            {
+              "en": "Sorry, we don't have any eggs today.",
+              "hi": "माफ़ कीजिए, आज हमारे पास अंडे नहीं हैं।",
+              "parts": [
+                { "text": "Sorry,", "role": "other" },
+                { "text": "we", "role": "who" },
+                { "text": "don't have", "role": "not" },
+                { "text": "any eggs", "role": "what" },
+                { "text": "today.", "role": "when" }
+              ],
+              "pic": "🥚"
+            },
+            {
+              "en": "How many onions do you want?",
+              "hi": "आपको कितने प्याज़ चाहिए?",
+              "parts": [
+                { "text": "How many", "role": "ask" },
+                { "text": "onions", "role": "what" },
+                { "text": "do", "role": "ask" },
+                { "text": "you", "role": "who" },
+                { "text": "want?", "role": "do" }
+              ],
+              "pic": "🧅"
+            },
+            {
+              "en": "How much salt do you need?",
+              "hi": "आपको कितना नमक चाहिए?",
+              "parts": [
+                { "text": "How much", "role": "ask" },
+                { "text": "salt", "role": "what" },
+                { "text": "do", "role": "ask" },
+                { "text": "you", "role": "who" },
+                { "text": "need?", "role": "do" }
+              ],
+              "pic": "🧂"
+            },
+            {
+              "en": "How much is this soap?",
+              "hi": "यह साबुन कितने का है?",
+              "parts": [{ "text": "How much", "role": "ask" }, { "text": "is", "role": "do" }, { "text": "this soap?", "role": "what" }],
+              "pic": "🧼"
+            }
+          ],
+          "note": {
+            "en": "Use some in yes sentences, any in questions and not sentences. How many for things you count; how much for things you can't count, and for prices.",
+            "hi": "हाँ वाले वाक्यों में some; सवाल और नहीं वाले वाक्यों में any. गिनी जाने वाली चीज़ों के लिए how many; न गिनी जाने वाली चीज़ों और दाम के लिए how much."
+          }
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u06.l2.b-onions",
+              "hi": "क्या आपके पास प्याज़ हैं?",
+              "pic": "🧅",
+              "tiles": ["you", "have", "any", "Do", "onions?"],
+              "answer": "Do you have any onions?"
+            },
+            {
+              "key": "c.u06.l2.b-rice",
+              "hi": "चावल कितने का है?",
+              "pic": "🍚",
+              "tiles": ["rice?", "much", "How", "is", "the"],
+              "answer": "How much is the rice?"
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u06.l2.p-any",
+              "prompt": { "en": "We don't have ___ sugar today.", "hi": "आज हमारे पास चीनी नहीं है।" },
+              "options": [{ "text": "some" }, { "text": "any" }, { "text": "many" }],
+              "answer": 1,
+              "why": { "en": "In a not sentence, use any.", "hi": "नहीं वाले वाक्य में any आता है।" }
+            },
+            {
+              "key": "c.u06.l2.p-many",
+              "prompt": { "en": "How ___ eggs do you want?", "hi": "आपको कितने अंडे चाहिए?" },
+              "options": [{ "text": "much" }, { "text": "any" }, { "text": "many" }],
+              "answer": 2,
+              "why": { "en": "We can count them, so how many.", "hi": "इन्हें गिन सकते हैं, इसलिए how many." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u06.l2.s-rice",
+              "model": "I want some rice, please.",
+              "hi": "रवि से चावल माँगो।",
+              "cue": { "en": "Ask Ravi for rice.", "hi": "रवि से चावल माँगो।" }
+            },
+            {
+              "key": "c.u06.l2.s-soap",
+              "model": "How much is this soap?",
+              "hi": "साबुन का दाम पूछो।",
+              "cue": { "en": "Ask the price of the soap.", "hi": "साबुन का दाम पूछो।" }
+            },
+            {
+              "key": "c.u06.l2.s-eggs",
+              "model": "Do you have any eggs?",
+              "hi": "पूछो क्या उनके पास अंडे हैं।",
+              "cue": { "en": "Ask if he has eggs.", "hi": "पूछो क्या उनके पास अंडे हैं।" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u06.l2.c-b1",
+          "type": "build",
+          "hi": "मुझे थोड़ा नमक चाहिए।",
+          "pic": "🧂",
+          "tiles": ["want", "some", "I", "please.", "salt,"],
+          "answer": "I want some salt, please."
+        },
+        {
+          "key": "c.u06.l2.c-b2",
+          "type": "build",
+          "hi": "आपको कितने अंडे चाहिए?",
+          "pic": "🥚",
+          "tiles": ["many", "you", "do", "eggs", "want?", "How"],
+          "answer": "How many eggs do you want?"
+        },
+        {
+          "key": "c.u06.l2.c-some",
+          "type": "choose",
+          "prompt": { "en": "Please give me ___ onions.", "hi": "कृपया मुझे कुछ प्याज़ दीजिए।" },
+          "options": [{ "text": "any" }, { "text": "much" }, { "text": "some" }],
+          "answer": 2,
+          "why": { "en": "In a yes sentence, use some.", "hi": "हाँ वाले वाक्य में some आता है।" }
+        },
+        {
+          "key": "c.u06.l2.c-much",
+          "type": "choose",
+          "prompt": { "en": "How ___ milk do you need?", "hi": "आपको कितना दूध चाहिए?" },
+          "options": [{ "text": "many" }, { "text": "any" }, { "text": "much" }],
+          "answer": 2,
+          "why": { "en": "We can't count it, so how much.", "hi": "इसे गिन नहीं सकते, इसलिए how much." }
+        },
+        {
+          "key": "c.u06.l2.c-anyq",
+          "type": "choose",
+          "prompt": { "en": "Do you have ___ soap?", "hi": "क्या आपके पास साबुन है?" },
+          "options": [{ "text": "some" }, { "text": "any" }, { "text": "many" }],
+          "answer": 1,
+          "why": { "en": "In a question, use any.", "hi": "सवाल में any आता है।" }
+        },
+        {
+          "key": "c.u06.l2.c-price",
+          "type": "choose",
+          "prompt": { "en": "Which question asks the price?", "hi": "कौन-सा सवाल दाम पूछता है?" },
+          "options": [{ "text": "How many is it?" }, { "text": "Where is it?" }, { "text": "How much is it?" }],
+          "answer": 2,
+          "why": { "en": "For prices, we say how much.", "hi": "दाम के लिए how much." }
+        }
+      ],
+      "home": { "en": "Ask at home: How much rice do we need?", "hi": "घर पर पूछो: How much rice do we need?" }
+    },
+    {
+      "key": "c.u06.l3",
+      "kind": "listen",
+      "title": { "en": "Meera at Ravi's shop", "hi": "रवि की दुकान पर मीरा" },
+      "minutes": 7,
+      "steps": [
+        {
+          "type": "story",
+          "title": { "en": "Mummy's shopping list", "hi": "मम्मी की सामान की सूची" },
+          "scene": {
+            "place": "market",
+            "pics": [
+              { "pic": "🏪", "x": 78, "y": 18, "size": 2 },
+              { "pic": "👨", "x": 60, "y": 40, "size": 1.5 },
+              { "pic": "👧", "x": 34, "y": 42, "size": 1.5 },
+              { "pic": "🍚", "x": 46, "y": 54, "size": 1 },
+              { "pic": "🧅", "x": 56, "y": 54, "size": 1 },
+              { "pic": "🧂", "x": 66, "y": 54, "size": 1 },
+              { "pic": "⚖️", "x": 72, "y": 36, "size": 1 }
+            ]
+          },
+          "lines": [
+            { "speaker": "Ravi", "pic": "👨", "en": "Good morning, Meera! What do you need today?", "hi": "नमस्ते, मीरा! आज तुम्हें क्या चाहिए?" },
+            {
+              "speaker": "Meera",
+              "pic": "👧",
+              "en": "Good morning, Ravi uncle. I need some rice and some salt.",
+              "hi": "नमस्ते, रवि अंकल। मुझे कुछ चावल और थोड़ा नमक चाहिए।"
+            },
+            { "speaker": "Ravi", "pic": "👨", "en": "How much rice do you want?", "hi": "तुम्हें कितना चावल चाहिए?" },
+            { "speaker": "Meera", "pic": "👧", "en": "Two kilos, please. Do you have any onions?", "hi": "दो किलो, कृपया। क्या आपके पास प्याज़ हैं?" },
+            { "speaker": "Ravi", "pic": "👨", "en": "Yes, I have some fresh onions.", "hi": "हाँ, मेरे पास ताज़े प्याज़ हैं।" },
+            { "speaker": "Meera", "pic": "👧", "en": "One kilo of onions, please. How much is it all?", "hi": "एक किलो प्याज़ दीजिए। सब कितने का हुआ?" },
+            { "speaker": "Ravi", "pic": "👨", "en": "That is one hundred and twenty rupees.", "hi": "कुल एक सौ बीस रुपये हुए।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Here is two hundred rupees.", "hi": "ये रहे दो सौ रुपये।" },
+            { "speaker": "Ravi", "pic": "👨", "en": "And here is your change, eighty rupees.", "hi": "और ये रहे तुम्हारे बाक़ी अस्सी रुपये।" },
+            { "speaker": "Meera", "pic": "👧", "en": "Thank you, uncle! Have a nice day.", "hi": "धन्यवाद, अंकल! आपका दिन अच्छा हो।" }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u06.l3.p-rice",
+              "prompt": { "en": "How much rice does Meera want?", "hi": "मीरा को कितना चावल चाहिए?" },
+              "options": [{ "text": "one kilo" }, { "text": "two kilos" }, { "text": "five kilos" }],
+              "answer": 1
+            },
+            {
+              "key": "c.u06.l3.p-onion",
+              "prompt": { "en": "Does Ravi have any onions?", "hi": "क्या रवि के पास प्याज़ हैं?" },
+              "options": [{ "text": "No, he doesn't." }, { "text": "Yes, fresh onions." }, { "text": "Only one onion." }],
+              "answer": 1
+            },
+            {
+              "key": "c.u06.l3.p-total",
+              "prompt": { "en": "How much is it all?", "hi": "सब कितने का हुआ?" },
+              "options": [{ "text": "eighty rupees" }, { "text": "one hundred and twenty rupees" }, { "text": "two hundred rupees" }],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "repeat",
+          "prompts": [
+            { "key": "c.u06.l3.s-need", "model": "I need some rice and some salt.", "hi": "मुझे कुछ चावल और थोड़ा नमक चाहिए।", "pic": "🍚" },
+            { "key": "c.u06.l3.s-all", "model": "How much is it all?", "hi": "सब कितने का हुआ?", "pic": "💵" }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u06.l3.c-give",
+          "type": "choose",
+          "prompt": { "en": "How much money does Meera give?", "hi": "मीरा कितने पैसे देती है?" },
+          "options": [{ "text": "one hundred rupees" }, { "text": "two hundred rupees" }, { "text": "eighty rupees" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u06.l3.c-change",
+          "type": "choose",
+          "prompt": { "en": "How much change does Meera get?", "hi": "मीरा को कितने पैसे वापस मिलते हैं?" },
+          "options": [{ "text": "twenty rupees" }, { "text": "eighty rupees" }, { "text": "one hundred rupees" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u06.l3.c-first",
+          "type": "choose",
+          "prompt": { "en": "What does Meera ask for first?", "hi": "मीरा सबसे पहले क्या माँगती है?" },
+          "options": [{ "text": "rice and salt" }, { "text": "eggs and soap" }, { "text": "onions and milk" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u06.l3.c-end",
+          "type": "choose",
+          "prompt": { "en": "How does Meera end?", "hi": "मीरा बात कैसे ख़त्म करती है?" },
+          "options": [{ "text": "Thank you, uncle!" }, { "text": "Give me rice!" }, { "text": "Go straight." }],
+          "answer": 0
+        }
+      ],
+      "home": { "en": "Go shopping with a grown-up and say one thing in English.", "hi": "किसी बड़े के साथ ख़रीदारी पर जाओ और एक बात अंग्रेज़ी में कहो।" }
+    },
+    {
+      "key": "c.u06.l4",
+      "kind": "speak",
+      "title": { "en": "At the grocery shop", "hi": "किराने की दुकान पर" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "tip",
+          "text": {
+            "en": "You are buying things at Ravi's shop. Ask for them and ask the price.",
+            "hi": "तुम रवि की दुकान पर सामान ख़रीद रहे हो। चीज़ें माँगो और दाम पूछो।"
+          },
+          "pic": "🛒"
+        },
+        {
+          "type": "roleplay",
+          "title": { "en": "Buying at Ravi's shop", "hi": "रवि की दुकान से ख़रीदारी" },
+          "scene": {
+            "place": "market",
+            "pics": [
+              { "pic": "🏪", "x": 78, "y": 18, "size": 2 },
+              { "pic": "👨", "x": 58, "y": 40, "size": 1.5 },
+              { "pic": "🙋", "x": 32, "y": 44, "size": 1.5 },
+              { "pic": "🧼", "x": 46, "y": 54, "size": 1 },
+              { "pic": "🥚", "x": 56, "y": 54, "size": 1 },
+              { "pic": "🍚", "x": 66, "y": 54, "size": 1 }
+            ]
+          },
+          "roles": [{ "name": "Ravi", "pic": "👨" }, { "name": "You", "pic": "🙋" }],
+          "learner": 1,
+          "turns": [
+            { "role": 0, "en": "Hello! What do you need today?", "hi": "नमस्ते! आज तुम्हें क्या चाहिए?" },
+            { "role": 1, "en": "I need some rice and a soap, please.", "hi": "मुझे कुछ चावल और एक साबुन चाहिए।" },
+            { "role": 0, "en": "How much rice do you want?", "hi": "तुम्हें कितना चावल चाहिए?" },
+            { "role": 1, "en": "Three kilos, please. Do you have any eggs?", "hi": "तीन किलो, कृपया। क्या आपके पास अंडे हैं?" },
+            { "role": 0, "en": "Yes, I do. How many eggs do you want?", "hi": "हाँ, हैं। तुम्हें कितने अंडे चाहिए?" },
+            { "role": 1, "en": "Six eggs, please. How much is it all?", "hi": "छह अंडे, कृपया। सब कितने का हुआ?" },
+            { "role": 0, "en": "That is one hundred and fifty rupees.", "hi": "कुल एक सौ पचास रुपये।" },
+            { "role": 1, "en": "Here you are. Thank you!", "hi": "ये लीजिए। धन्यवाद!" },
+            { "role": 0, "en": "Here is your change. Come again!", "hi": "ये रहे बाक़ी पैसे। फिर आना!" }
+          ],
+          "partner": {
+            "goal": "Play Ravi, a friendly shopkeeper. Ask what the child needs and how much or how many. Say a total in rupees and give change.",
+            "must_use": ["some", "any", "How much", "How many", "please"]
+          }
+        },
+        {
+          "type": "bridge",
+          "items": [
+            {
+              "key": "c.u06.l4.br-onions",
+              "hi": "मुझे दो किलो प्याज़ चाहिए।",
+              "tiles": ["of", "onions.", "two", "I", "kilos", "need"],
+              "answer": "I need two kilos of onions."
+            },
+            { "key": "c.u06.l4.br-soap", "hi": "क्या आपके पास साबुन है?", "tiles": ["any", "have", "Do", "you", "soap?"], "answer": "Do you have any soap?" },
+            { "key": "c.u06.l4.br-this", "hi": "यह कितने का है?", "tiles": ["much", "How", "this?", "is"], "answer": "How much is this?" }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u06.l4.s-else",
+              "model": "Okay. Can I have a packet of salt, please?",
+              "hi": "कुछ और माँगो।",
+              "cue": { "en": "Ravi says: We don't have any eggs today. Ask for something else.", "hi": "रवि कहते हैं: आज अंडे नहीं हैं। कुछ और माँगो।" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u06.l4.c-polite",
+          "type": "choose",
+          "prompt": { "en": "Which is the polite way to ask?", "hi": "विनम्र तरीक़ा कौन-सा है?" },
+          "options": [{ "text": "Rice! Now!" }, { "text": "You give rice." }, { "text": "Can I have some rice, please?" }],
+          "answer": 2
+        },
+        {
+          "key": "c.u06.l4.c-b",
+          "type": "build",
+          "hi": "कृपया बताइए, साबुन कितने का है?",
+          "pic": "🧼",
+          "tiles": ["soap,", "please?", "How", "the", "is", "much"],
+          "answer": "How much is the soap, please?"
+        },
+        {
+          "key": "c.u06.l4.c-many",
+          "type": "choose",
+          "prompt": { "en": "How ___ packets of salt do you want?", "hi": "तुम्हें नमक के कितने पैकेट चाहिए?" },
+          "options": [{ "text": "much" }, { "text": "any" }, { "text": "many" }],
+          "answer": 2,
+          "why": { "en": "We can count them, so how many.", "hi": "इन्हें गिन सकते हैं, इसलिए how many." }
+        },
+        {
+          "key": "c.u06.l4.c-any",
+          "type": "choose",
+          "prompt": { "en": "Sorry, I don't have ___ eggs.", "hi": "माफ़ करना, मेरे पास अंडे नहीं हैं।" },
+          "options": [{ "text": "some" }, { "text": "many" }, { "text": "any" }],
+          "answer": 2,
+          "why": { "en": "In a not sentence, use any.", "hi": "नहीं वाले वाक्य में any आता है।" }
+        }
+      ],
+      "home": { "en": "Play shop at home: one person sells, one person buys.", "hi": "घर पर दुकान-दुकान खेलो: एक बेचे, एक ख़रीदे।" }
+    },
+    {
+      "key": "c.u06.l5",
+      "kind": "review",
+      "title": { "en": "Unit 6 review", "hi": "इकाई 6 की दोहराई" },
+      "minutes": 8,
+      "steps": [
+        {
+          "type": "match",
+          "pairs": [
+            { "key": "c.u06.l5.m-price", "left": { "text": "price" }, "right": { "pic": "🏷️" } },
+            { "key": "c.u06.l5.m-change", "left": { "text": "change" }, "right": { "pic": "💰" } },
+            { "key": "c.u06.l5.m-packet", "left": { "text": "packet" }, "right": { "pic": "📦" } },
+            { "key": "c.u06.l5.m-bridge", "left": { "text": "bridge" }, "right": { "pic": "🌉" } },
+            { "key": "c.u06.l5.m-temple", "left": { "text": "temple" }, "right": { "pic": "🛕" } }
+          ]
+        },
+        {
+          "type": "build",
+          "items": [
+            {
+              "key": "c.u06.l5.b-fresh",
+              "hi": "क्या आपके पास ताज़े प्याज़ हैं?",
+              "pic": "🧅",
+              "tiles": ["fresh", "onions?", "any", "you", "Do", "have"],
+              "answer": "Do you have any fresh onions?"
+            },
+            {
+              "key": "c.u06.l5.b-shop",
+              "hi": "डाकघर के बगल में एक दुकान है।",
+              "pic": "🏪",
+              "tiles": ["post", "is", "next", "office.", "shop", "a", "to", "There", "the"],
+              "answer": "There is a shop next to the post office."
+            }
+          ]
+        },
+        {
+          "type": "choose",
+          "items": [
+            {
+              "key": "c.u06.l5.p-much",
+              "prompt": { "en": "How ___ is a kilo of rice?", "hi": "एक किलो चावल कितने का है?" },
+              "options": [{ "text": "much" }, { "text": "many" }, { "text": "any" }],
+              "answer": 0,
+              "why": { "en": "For prices, we say how much.", "hi": "दाम के लिए how much." }
+            }
+          ]
+        },
+        {
+          "type": "say",
+          "mode": "answer",
+          "prompts": [
+            {
+              "key": "c.u06.l5.s-list",
+              "model": "I need some rice, a packet of salt and six eggs.",
+              "hi": "अपनी सूची की तीन चीज़ें बताओ।",
+              "cue": { "en": "Tell us three things on your shopping list.", "hi": "अपनी सूची की तीन चीज़ें बताओ।" }
+            }
+          ]
+        }
+      ],
+      "check": [
+        {
+          "key": "c.u06.l5.c-w1",
+          "type": "choose",
+          "prompt": { "en": "Which word means साबुन?", "hi": "कौन-सा शब्द 'साबुन' है?" },
+          "options": [{ "text": "salt" }, { "text": "soap" }, { "text": "onion" }],
+          "answer": 1
+        },
+        {
+          "key": "c.u06.l5.c-w2",
+          "type": "choose",
+          "prompt": { "en": "Listen. Tap the picture.", "hi": "सुनो। चित्र पर टैप करो।", "say": "price" },
+          "options": [{ "pic": "🏷️" }, { "pic": "💰" }, { "pic": "📦" }],
+          "answer": 0
+        },
+        {
+          "key": "c.u06.l5.c-some",
+          "type": "choose",
+          "prompt": { "en": "I want ___ tea, please.", "hi": "मुझे थोड़ी चाय चाहिए।" },
+          "options": [{ "text": "some" }, { "text": "any" }, { "text": "many" }],
+          "answer": 0,
+          "why": { "en": "In a yes sentence, use some.", "hi": "हाँ वाले वाक्य में some आता है।" }
+        },
+        {
+          "key": "c.u06.l5.c-many",
+          "type": "choose",
+          "prompt": { "en": "How ___ mangoes are in the basket?", "hi": "टोकरी में कितने आम हैं?" },
+          "options": [{ "text": "many" }, { "text": "much" }, { "text": "any" }],
+          "answer": 0,
+          "why": { "en": "We can count them, so how many.", "hi": "इन्हें गिन सकते हैं, इसलिए how many." }
+        },
+        {
+          "key": "c.u06.l5.c-u5",
+          "type": "choose",
+          "prompt": { "en": "There ___ two mosques in the town.", "hi": "शहर में दो मस्जिदें हैं।" },
+          "options": [{ "text": "is" }, { "text": "are" }, { "text": "am" }],
+          "answer": 1,
+          "why": { "en": "There is for one thing; there are for many.", "hi": "एक चीज़ के लिए there is, कई चीज़ों के लिए there are." }
+        },
+        {
+          "key": "c.u06.l5.c-u4",
+          "type": "choose",
+          "prompt": { "en": "___ you like onions?", "hi": "क्या तुम्हें प्याज़ पसंद हैं?" },
+          "options": [{ "text": "Does" }, { "text": "Do" }, { "text": "Are" }],
+          "answer": 1,
+          "why": { "en": "With I, you, we and they, use do.", "hi": "I, you, we, they के साथ do आता है।" }
+        },
+        {
+          "key": "c.u06.l5.c-u2",
+          "type": "choose",
+          "prompt": { "en": "Ravi ___ his shop at seven every morning.", "hi": "रवि हर सुबह सात बजे अपनी दुकान खोलते हैं।" },
+          "options": [{ "text": "opens" }, { "text": "open" }, { "text": "opening" }],
+          "answer": 0,
+          "why": { "en": "With he, she or a name, add -s.", "hi": "he, she या नाम के साथ -s लगता है।" }
+        },
+        {
+          "key": "c.u06.l5.c-b",
+          "type": "build",
+          "hi": "घर पर साबुन नहीं है।",
+          "pic": "🧼",
+          "tiles": ["don't", "any", "home.", "at", "have", "soap", "We"],
+          "answer": "We don't have any soap at home."
+        }
+      ],
+      "home": { "en": "After shopping, count the change with a grown-up.", "hi": "ख़रीदारी के बाद किसी बड़े के साथ बाक़ी पैसे गिनो।" }
+    }
+  ]
+}
