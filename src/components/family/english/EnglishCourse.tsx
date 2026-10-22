@@ -1,4 +1,5 @@
 'use client';
+import { Picture } from '../Picture';
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -87,8 +88,8 @@ export function EnglishCourse({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
         </div>
       </section>
 
-      {restToday && <p className="rounded-3xl bg-leaf/15 p-4 text-base font-bold text-slate">🌙 {w['fam.english.rest']}</p>}
-      {data.reviewDue > 0 && <p className="rounded-3xl bg-cyan/15 p-4 text-base font-semibold text-slate">🔁 {w['fam.english.reviewDue'].replace('{n}', String(data.reviewDue))}</p>}
+      {restToday && <p className="rounded-3xl bg-leaf/15 p-4 text-base font-bold text-slate"><Picture e="🌙" /> {w['fam.english.rest']}</p>}
+      {data.reviewDue > 0 && <p className="rounded-3xl bg-cyan/15 p-4 text-base font-semibold text-slate"><Picture e="🔁" /> {w['fam.english.reviewDue'].replace('{n}', String(data.reviewDue))}</p>}
 
       {checks.map((a) => (
         <div key={a.kind} className="flex items-center gap-3 rounded-3xl bg-white p-4 text-slate shadow-sm ring-1 ring-slate/10">
@@ -130,24 +131,26 @@ export function EnglishCourse({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
                 <span className="flex flex-1 flex-col">
                   <span className="text-xs font-bold uppercase tracking-wide text-slate/70">{w['fam.english.unit'].replace('{n}', String(u.position))}</span>
                   <span className="text-lg font-extrabold leading-tight text-slate">{t(u.titleEn, u.titleHi)}</span>
-                  {stars > 0 && <span className="text-sm text-slate">⭐ {stars}</span>}
+                  {stars > 0 && <span className="text-sm text-slate"><Picture e="⭐" /> {stars}</span>}
                 </span>
               </button>
               {shown === u.key && (
                 <div className="flex w-11/12 flex-col gap-2 rounded-3xl bg-white p-3 text-slate shadow-sm ring-1 ring-slate/10 animate-rise-in motion-reduce:animate-none">
-                  <p className="rounded-2xl bg-sunshine/20 p-2 text-sm font-semibold text-slate">🎯 {t(u.canDoEn, u.canDoHi)}</p>
+                  <p className="rounded-2xl bg-sunshine/20 p-2 text-sm font-semibold text-slate"><Picture e="🎯" /> {t(u.canDoEn, u.canDoHi)}</p>
                   {u.lessons.map((l) => {
                     const can = l.state === 'done' || l.state === 'placed' || l.state === 'open';
                     const body = (
                       <>
-                        <span aria-hidden="true" className="text-2xl">{l.state === 'locked' ? '🔒' : KIND_PIC[l.kind]}</span>
+                        <Pic pic={l.state === 'locked' ? '🔒' : KIND_PIC[l.kind]} size={28} />
                         <span className="flex flex-1 flex-col">
                           <span className="text-xs font-bold uppercase tracking-wide text-slate/70">{w[`fam.english.kind.${l.kind}`]} · {w['fam.english.minutes'].replace('{n}', String(l.minutes))}</span>
                           <span className="text-base font-bold text-slate">{t(l.titleEn, l.titleHi)}</span>
                           {l.state === 'locked' && <span className="text-xs text-slate">{w['fam.english.locked']}</span>}
                           {l.state === 'placed' && <span className="text-xs text-slate/70">{w['fam.english.placed']}</span>}
                         </span>
-                        {l.state === 'done' && <span aria-label={w['fam.english.results.stars'].replace('{n}', String(l.stars))}>{'⭐'.repeat(l.stars)}</span>}
+                        {l.state === 'done' && <span aria-label={w['fam.english.results.stars'].replace('{n}', String(l.stars))}>{Array.from({ length: l.stars }, (_, i) => (
+                        <Picture key={i} e="⭐" />
+                      ))}</span>}
                         {l.state === 'open' && <span className={`rounded-full px-3 py-1 text-sm font-bold ${theme.button}`}>{w['fam.english.start']}</span>}
                       </>
                     );

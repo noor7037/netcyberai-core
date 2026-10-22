@@ -279,9 +279,12 @@ budget holds (≤ 200 KB of JavaScript on first load, no animation library: CSS 
   - **singular to plural:** one mango becomes three as the -s appears.
 - **Listen:** dialogue bubbles appear in turn beside the speakers, the word being spoken lights up (karaoke style), and
   the scene picture sits above.
-- **Pictures:** scenes are built from emoji in an SVG frame (a market, a classroom, a field), so no image needs a
-  licence and every picture weighs almost nothing. Only emoji from Unicode 12 or earlier are used, so they show on
-  older Android phones; the lesson checker refuses others.
+- **Pictures:** scenes are built from pictures in an SVG frame (a market, a classroom, a field). Each picture is named
+  in the lesson files by its emoji, and drawn from a bundled set so every phone shows the same one (C290): Microsoft's
+  Fluent Emoji, flat style, **MIT licence** (the licence and the source are in `public/family/pictures/LICENSE` and
+  `README.md`), with India's flag and four pictures of people together drawn for NetCyberAI in the same style. Only
+  emoji from Unicode 12 or earlier are named, and the lesson checker refuses others; a test fails if a named picture
+  has no file.
 - **Celebration:** a short burst of colour when a unit is done and on the assessments' results; a quiet star fill for
   a lesson (`09` §3).
 - **A guide character (founder decision, `09` §3):** a talking parrot, "Mitthu", who gives instructions in tracks A–C
