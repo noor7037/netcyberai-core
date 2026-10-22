@@ -8,6 +8,7 @@ import { fill } from '@/lib/family/fill';
 import { subjectTheme } from '@/lib/family/subject-theme';
 import type { KeyRow, ScreenWorksheet } from '@/lib/family/worksheet';
 import { QuizView } from './blocks/QuizView';
+import { AiNotice } from './AiNotice';
 import { FamIcon, rise } from './FamIcon';
 import { SubjectGlyph } from './ui/SubjectGlyph';
 import { WorksheetSheet } from './WorksheetSheet';
@@ -33,6 +34,7 @@ export function WorksheetScreen({ w, ws, name, tone }: { w: Words; ws: ScreenWor
             <span data-label={ws.label} className={`rounded-full px-3 py-1 text-xs font-bold ${ws.label === 'checked' ? 'bg-white text-emerald-text ring-1 ring-emerald-text/40' : 'bg-white text-slate ring-1 ring-slate/20'}`}>
               {ws.label === 'checked' ? w['fam.label.checked'] : w['fam.label.aiMade']}
             </span>
+            <AiNotice w={w} made={ws.label} />
             <p className="bg-white text-base text-slate">{fill(w['fam.worksheet.lead'], { n: ws.items.length })}</p>
           </div>
         </div>

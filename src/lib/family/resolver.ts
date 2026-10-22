@@ -1,6 +1,6 @@
-import { REFUSAL_MESSAGE, activePromptVersion, prepareText, type AiRefusal, type PreparedText, type SentText } from '@/lib/ai/platform';
+import { REFUSAL_MESSAGE, activePromptVersion, prepareModeration, prepareText, type AiRefusal, type PreparedModeration, type PreparedText, type SentText } from '@/lib/ai/platform';
 import { resolverPrompt, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
-import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, parseBlockLine, type Block, type BlockType } from './blocks';
+import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, jsonObjectScanner, parseBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
 import { classSubjects } from './catalog';
@@ -24,6 +24,10 @@ import { isSubject, type Subject } from './subjects';
 //                another subject, or one the child may not use, is refused with a pointer to it
 //   5. keep      a complete topic or chapter response (explanation, check and practice all passed) goes into the
 //                library as AI-made for the next child; a follow-up or a typed question does not
+// Safety (W2, C314): every live answer for a child passes the safety check (profile family.moderation, Llama Guard):
+// a typed question before it is sent, and each block before it is shown. If the check is switched off or cannot be
+// made, nothing is answered or shown: the child is told plainly. Library responses were checked when they were made
+// (and in a "checked explanations only" subject by a person); staff preparing the library skip it.
 // Check and practice items reach the phone without their answers: each carries a sealed token (items.ts).
 //
 // No database connection is held while the model answers (F1-3): prepareResolve() does 1–2 and the AI platform's
@@ -43,7 +47,7 @@ export type ResolverEvent =
   | { t: 'meta'; label: 'ai_made' | 'checked'; cached: boolean; title: string | null; subject: string; topicKey: string | null }
   | { t: 'block'; block: PublicBlock }
   | { t: 'done'; complete: boolean }
-  | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open' | 'other_subject' | 'not_ready'; message: string; goTo?: { subject: Subject; label: string } };
+  | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open' | 'other_subject' | 'not_ready' | 'unsafe'; message: string; goTo?: { subject: Subject; label: string } };
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
 export type ResolverContext = {
@@ -58,7 +62,9 @@ export type ResolverContext = {
   claimSubject?: (db: Db, subject: Subject) => Promise<boolean>;
   // NetCyberAI staff preparing the shared library before children ask (C300, prepare.ts): the line comes from this
   // syllabus version, in review or released, and the "checked explanations only" rule does not apply (what is made
-  // goes to Control's review queue as AI-made).
+  // goes to Control's review queue as AI-made). The call runs on the staff profile content.prepare (C313), with its
+  // provider and prompt version, and no family's daily cap; the response is marked prepared, so no child sees it
+  // before a person has checked it.
   preparing?: { versionId: string };
 };
 
@@ -176,6 +182,10 @@ export type Pending = {
   cacheable: boolean;
   promptVersion: string;
   text: PreparedText;
+  // The safety check (C314) and what the child asked, in words it can judge an answer against; null when staff prepare.
+  moderation: PreparedModeration | null;
+  asked: string;
+  question: string | null;
 };
 
 export type Generated = {
@@ -208,6 +218,26 @@ export function namedSubject(text: string): Subject | 'other' | null {
   }
 }
 
+const isRefusal = (text: string) => {
+  try {
+    return (JSON.parse(text) as { type?: unknown })?.type === 'refuse';
+  } catch {
+    return false;
+  }
+};
+
+// The words of a block, for the safety check: every text it holds, in order, one per line (C314).
+export function blockText(b: Block): string {
+  const out: string[] = [];
+  const walk = (v: unknown) => {
+    if (typeof v === 'string') out.push(v);
+    else if (Array.isArray(v)) v.forEach(walk);
+    else if (v && typeof v === 'object') Object.entries(v).forEach(([k, x]) => k !== 'type' && walk(x));
+  };
+  walk(b);
+  return out.join('\n');
+}
+
 // A typed question's progress key: the syllabus board (lower case), the class and the subject.
 const questionKey = (child: FamilyChild, subject: Subject) => `${syllabusBoardOf(child).toLowerCase()}.c${child.classLevel}.${subject}.question`;
 
@@ -237,7 +267,8 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   const ofClass = await classSubjects(db as never, { board: syllabusBoardOf(child), classLevel: child.classLevel });
   const openToAll = await openSubjects(db as never);
   const open: Subject[] = known ? [known] : ofClass.filter((s) => !ctx.claimSubject || subjectAccess(child, s, openToAll).open);
-  const prompt = resolverPrompt(await activePromptVersion(db as never, 'family.resolver'), known === null);
+  const profileId = ctx.preparing ? 'content.prepare' : 'family.resolver';
+  const prompt = resolverPrompt(await activePromptVersion(db as never, profileId), known === null);
   const cacheable = input.kind !== 'question' && followUp === null && misconception === null;
 
   // 2. The shared library. In a "checked explanations only" subject (C300) a chapter or topic is served a checked
@@ -253,6 +284,18 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
       emit({ t: 'refused', reason: 'not_ready', message: ctx.refusalWords('fam.understand.notReady') });
       return null;
     }
+  }
+
+  // The safety check must be ready before anything is asked for a child (C314), so a call it could not check never
+  // takes the family's daily place.
+  let moderation: PreparedModeration | null = null;
+  if (!ctx.preparing) {
+    const ready = await prepareModeration(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day });
+    if (!ready.ok) {
+      emit({ t: 'refused', reason: ready.reason, message: ctx.refusalWords('fam.understand.safetyOff') });
+      return null;
+    }
+    moderation = ready.moderation;
   }
 
   // 3. The AI platform's checks (profile, minors, key, daily cap) and the cleaned request, still in this transaction.
@@ -273,14 +316,16 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   const prepared = await prepareText(
     db as never,
     { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day },
-    'family.resolver',
+    profileId,
     { system: prompt.system(ask), messages: [{ role: 'user', content: prompt.user(ask) }], responseFormat: undefined }
   );
   if (!prepared.ok) {
     emit({ t: 'refused', reason: prepared.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[prepared.reason]) });
     return null;
   }
-  return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text };
+  const question = input.kind === 'question' ? input.text : null;
+  const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
+  return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question };
 }
 
 // 3–4. The model's answer, checked line by line as it arrives. No database connection is held while the model answers.
@@ -297,6 +342,14 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   let error: unknown = null;
   const seen = new Set<BlockType>();
   const kept: Block[] = [];
+  // A safety check that failed, or found the words unsafe, stops the answer here; what was already shown had passed.
+  const safe = async (turns: { user: string; assistant?: string }): Promise<boolean> => {
+    const verdict = await p.moderation!.check(turns);
+    if (verdict?.safe) return true;
+    stopped = true;
+    emit(verdict ? { t: 'refused', reason: 'unsafe', message: words('fam.understand.unsafe') } : { t: 'refused', reason: 'failed', message: words('fam.understand.safetyFailed') });
+    return false;
+  };
   const refuseSubject = (named: Subject) => {
     stopped = true;
     const name = words(`fam.subject.${named}`);
@@ -304,7 +357,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   };
   const take = async (text: string) => {
     if (stopped) return;
-    if (/"type"\s*:\s*"refuse"/.test(text)) refusedByModel = true;
+    // The model's own refusal is a whole block of type "refuse" (a nested field of that name is not).
+    if (/"type"\s*:\s*"refuse"/.test(text) && isRefusal(text)) refusedByModel = true;
     if (!subject) {
       // Nothing is shown until the subject is named, and only a subject this child may use is answered.
       const named = namedSubject(text);
@@ -322,6 +376,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     const b = parseBlockLine(text);
     // One block of each type, and at most one interactive block (M2-8): the first that passed.
     if (!b || seen.has(b.type) || (isInteractive(b.type) && kept.some((k) => isInteractive(k.type)))) return;
+    // The safety check, before the block is shown or a subject is claimed (C314).
+    if (p.moderation && !(await safe({ user: p.asked, assistant: blockText(b) }))) return;
     if (mustClaim && claim) {
       mustClaim = false;
       if (!(await claim(s))) return refuseSubject(s);
@@ -344,17 +400,15 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
       }
     });
   };
-  let pending = '';
+  // A typed question is checked before it is sent: one found unsafe is never sent to the model (C314).
+  if (p.moderation && p.question !== null && !(await safe({ user: p.question }))) {
+    return { sent: { result: { ok: false, reason: 'failed' }, record: async () => {} }, subject, kept, refusedByModel, stopped, error };
+  }
+  // Each JSON object is checked as soon as it closes, however the model laid it out (C316).
+  const objects = jsonObjectScanner();
   const sent = await p.text.send((delta) => {
-    pending += delta;
-    let nl = pending.indexOf('\n');
-    while (nl >= 0) {
-      enqueue(pending.slice(0, nl));
-      pending = pending.slice(nl + 1);
-      nl = pending.indexOf('\n');
-    }
+    for (const o of objects(delta)) enqueue(o);
   });
-  if (pending.trim()) enqueue(pending);
   await queue;
   return { sent, subject, kept, refusedByModel, stopped, error };
 }
@@ -364,6 +418,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
 export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEvent | null> {
   const { ctx, line } = p;
   await g.sent.record(db as never);
+  await p.moderation?.record(db as never);
   if (g.stopped || g.error !== null) return null;
   const result = g.sent.result;
   if (!result.ok) return g.kept.length > 0 ? { t: 'done', complete: false } : { t: 'refused', reason: result.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[result.reason]) };
@@ -372,13 +427,14 @@ export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEv
   if (!g.subject) return { t: 'refused', reason: 'failed', message: ctx.refusalWords(REFUSAL_MESSAGE.failed) };
   const complete = completeResponse(g.kept);
 
-  // A complete topic or chapter response is kept for the next child, as AI-made, until the founder approves it.
+  // A complete topic or chapter response is kept for the next child, as AI-made, until the founder approves it. One
+  // staff prepared (C313) names who prepared it, and no child is served it before it is checked.
   if (complete && p.cacheable && line) {
     await db.query(
-      `insert into content.responses (board_id, class_level, subject, topic_key, language, style, prompt_version, schema_version, blocks, status, provider, model)
-       values ($1, $2, $3, $4, $5, $6, $7, $8, $9::jsonb, 'ai_made', $10, $11)
+      `insert into content.responses (board_id, class_level, subject, topic_key, language, style, prompt_version, schema_version, blocks, status, provider, model, prepared_by)
+       values ($1, $2, $3, $4, $5, $6, $7, $8, $9::jsonb, 'ai_made', $10, $11, $12)
        on conflict do nothing`,
-      [syllabusBoardOf(ctx.child), ctx.child.classLevel, line.subject, line.key, ctx.child.language, ctx.child.style, p.promptVersion, BLOCK_SCHEMA_VERSION, JSON.stringify(complete), result.provider, result.model]
+      [syllabusBoardOf(ctx.child), ctx.child.classLevel, line.subject, line.key, ctx.child.language, ctx.child.style, p.promptVersion, BLOCK_SCHEMA_VERSION, JSON.stringify(complete), result.provider, result.model, ctx.preparing ? ctx.accountId : null]
     );
   }
   return { t: 'done', complete: complete !== null };

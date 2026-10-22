@@ -14,6 +14,8 @@ export type ChatCompletionsOptions = {
   jsonMode: boolean;
   // stream_options.include_usage, only where the vendor accepts it (an unknown option can be refused outright).
   includeUsage: boolean;
+  // The sampling temperature, only where the vendor's own default suits our structured answers badly (C316).
+  temperature?: number;
 };
 
 export async function streamChatCompletions(url: string, token: string, request: AdapterRequest, onDelta: (text: string) => void, opts: ChatCompletionsOptions): Promise<AdapterResult> {
@@ -23,6 +25,7 @@ export async function streamChatCompletions(url: string, token: string, request:
     stream: true,
     ...(opts.includeUsage ? { stream_options: { include_usage: true } } : {}),
     [opts.maxTokensField]: request.maxTokens,
+    ...(opts.temperature === undefined ? {} : { temperature: opts.temperature }),
     messages: [
       { role: 'system', content: json ? `${request.system}\n\n${JSON_ONLY}` : request.system },
       ...request.messages.map((m) =>

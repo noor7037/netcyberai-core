@@ -10,7 +10,7 @@ import { claimSubject, setting } from '@/lib/family/learning';
 import type { Subject } from '@/lib/family/modules';
 import { requireFamily } from '@/lib/family/request';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
-import { activePromptVersion, prepareText, type PreparedText } from '@/lib/ai/platform';
+import { activePromptVersion, prepareModeration, prepareText, type PreparedModeration, type PreparedText } from '@/lib/ai/platform';
 import { homeworkPrompt } from '@/lib/ai/prompts/family.homework';
 import { sniffImageType } from '@/lib/storage/file-storage';
 import { indiaDate } from '@/lib/time/india';
@@ -25,7 +25,7 @@ export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
 // parseRead keeps a subject only when it is one of these (the class's own), else 'other'.
-type Pending = { prepared: PreparedText; childId: string; freeSubject: string | null; subjects: Subject[]; day: string };
+type Pending = { prepared: PreparedText; moderation: PreparedModeration; childId: string; freeSubject: string | null; subjects: Subject[]; day: string };
 const refund = (db: { query: (sql: string, p?: unknown[]) => Promise<unknown> }, accountId: string, childId: string, day: string) =>
   db.query(`update family.day_counts set photo_questions = greatest(photo_questions - 1, 0) where account_id = $1 and child_id = $2 and day = $3`, [accountId, childId, day]);
 
@@ -84,9 +84,17 @@ export async function POST(req: NextRequest) {
       const subjects = await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, today: day });
       const prompt = homeworkPrompt(await activePromptVersion(db, 'family.homework'));
       const account = await accountSummary(db, session.accountId);
+      const aiCtx = { accountId: session.accountId, childFirstNames: children.map((c) => c.firstName), parentEmail: account?.email ?? '', day };
+      // The safety check (C314) must be ready before the photo is read: what the model reads and says is checked
+      // before the child sees it.
+      const moderation = await prepareModeration(db, aiCtx);
+      if (!moderation.ok) {
+        await refund(db, session.accountId, child.childId, day);
+        return NextResponse.json({ error: 'safety_off' }, { status: 503 });
+      }
       const prepared = await prepareText(
         db,
-        { accountId: session.accountId, childFirstNames: children.map((c) => c.firstName), parentEmail: account?.email ?? '', day },
+        aiCtx,
         'family.homework',
         {
           system: prompt.system({ board: syllabusBoardOf(child), classLevel: child.classLevel, classSubjects: subjects, language: child.language, style: child.style }),
@@ -99,21 +107,33 @@ export async function POST(req: NextRequest) {
         await refund(db, session.accountId, child.childId, day);
         return NextResponse.json({ error: `ai_${prepared.reason}` }, { status: 503 });
       }
-      return { prepared: prepared.text, childId: child.childId, freeSubject: child.freeSubject, subjects, day };
+      return { prepared: prepared.text, moderation: moderation.moderation, childId: child.childId, freeSubject: child.freeSubject, subjects, day };
     });
     if (first instanceof NextResponse) return first;
 
-    // 2. The provider reads the photo, with no database connection held.
+    // 2. The provider reads the photo, then the safety check reads what it found and the hints and steps (C314), with
+    //    no database connection held.
     const sent = await first.prepared.send();
+    const read = sent.result.ok ? parseRead(sent.result.text, first.subjects) : null;
+    const verdict = read?.ok
+      ? await first.moderation.check({ user: read.read.question, assistant: [...read.read.hints, ...read.read.steps, read.read.answer, ...read.read.mistakes.flatMap((m) => [m.answer, m.feedback])].join('\n') })
+      : undefined;
 
     // 3. The metering and the answer, in a second short transaction.
     return await withFamilyContext(claims, async (db) => {
       await sent.record(db);
-      if (!sent.result.ok) {
+      await first.moderation.record(db);
+      if (!sent.result.ok || !read) {
         await refund(db, session.accountId, first.childId, first.day);
         return NextResponse.json({ error: 'ai_failed' }, { status: 503 });
       }
-      const parsed = parseRead(sent.result.text, first.subjects);
+      const parsed = read;
+      // A check that could not be made is not counted; one that found the photo or the answer unsafe is.
+      if (verdict === null) {
+        await refund(db, session.accountId, first.childId, first.day);
+        return NextResponse.json({ error: 'safety_failed' }, { status: 503 });
+      }
+      if (verdict && !verdict.safe) return NextResponse.json({ error: 'unsafe' }, { status: 422 });
       if (!parsed.ok) {
         // A photo the model could not turn into a ladder is not counted; a refusal it chose (a face, personal details,
         // no question) is.

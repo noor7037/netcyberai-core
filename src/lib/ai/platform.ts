@@ -1,7 +1,7 @@
 import { withPlatformService } from '@/lib/auth/db';
 import type { Sql } from '@/lib/jobs/types';
 import type { MessageKey } from '@/lib/i18n';
-import { adapterFor, speechAdapterFor, type AdapterResult, type ChatImage, type ChatMessage, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter } from './adapters';
+import { adapterFor, moderationAdapterFor, speechAdapterFor, type AdapterResult, type ChatImage, type ChatMessage, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter } from './adapters';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { dailyLimit, takeDailyRequest } from './daily-cap';
@@ -27,8 +27,8 @@ import { scrubRequest } from './preprocess';
 // against their schema and drop anything outside it. The key opened in 3 lives only inside the prepared call (a closure,
 // never a field), and a prepared call sends once: one daily-cap place, one vendor request.
 
-export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input' | 'copilot.draft' | 'parent_ai.home_help' | 'content.syllabus_extract';
-export type Capability = 'text' | 'speech_to_text';
+export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input' | 'family.moderation' | 'copilot.draft' | 'parent_ai.home_help' | 'content.syllabus_extract' | 'content.prepare';
+export type Capability = 'text' | 'speech_to_text' | 'moderation';
 // `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
 // monthly one, which its caller checks (src/lib/copilot/copilot.ts); a control profile runs only for Control's staff.
 export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability; audience: 'family' | 'school' | 'control' };
@@ -40,19 +40,27 @@ export const PROFILES: readonly AiProfile[] = [
   { id: 'family.resolver', carriesChildWords: true, capability: 'text', audience: 'family' },
   { id: 'family.homework', carriesChildWords: true, capability: 'text', audience: 'family' },
   { id: 'family.voice_input', carriesChildWords: true, capability: 'speech_to_text', audience: 'family' },
+  // W2 (C314): the safety check (Llama Guard) on a child's typed words and on every live answer before it is shown.
+  // It takes no daily-cap place of its own: it runs only beside a call that already took one.
+  { id: 'family.moderation', carriesChildWords: true, capability: 'moderation', audience: 'family' },
   // M2-10 (C284): Copilot and Parent AI. Their requests name a class level, subject and topic, never a person.
   { id: 'copilot.draft', carriesChildWords: false, capability: 'text', audience: 'school' },
   { id: 'parent_ai.home_help', carriesChildWords: false, capability: 'text', audience: 'school' },
   // M2-12 (C286): reads a board's public syllabus PDF for Control's catalog import; a reviewer approves every line.
   { id: 'content.syllabus_extract', carriesChildWords: false, capability: 'text', audience: 'control' },
+  // W2 (C313; C230-T): NetCyberAI staff prepare the library's explanations before children ask (Control → Content →
+  // Responses). No child's words; what it makes reaches a child only once a person has checked it (C300, the
+  // responses' read policy).
+  { id: 'content.prepare', carriesChildWords: false, capability: 'text', audience: 'control' },
 ];
 
 // The adapter a profile would use for a provider: the one of the profile's capability, or null when the code has none
 // (a provider without a speech adapter cannot serve voice input). Control checks a choice against it; the platform
 // skips a provider without one.
-export function capableAdapter(profileId: string, providerId: string, env: Record<string, string | undefined> = process.env): TextAdapter | SpeechAdapter | null {
+export function capableAdapter(profileId: string, providerId: string, env: Record<string, string | undefined> = process.env): TextAdapter | SpeechAdapter | ModerationAdapter | null {
   const profile = profileById(profileId);
   if (!profile) return null;
+  if (profile.capability === 'moderation') return moderationAdapterFor(providerId, env);
   return profile.capability === 'speech_to_text' ? speechAdapterFor(providerId, env) : adapterFor(providerId, env);
 }
 
@@ -61,9 +69,6 @@ export type AiContext = {
   childFirstNames: string[];
   parentEmail?: string;
   day: string; // the India date, YYYY-MM-DD
-  // NetCyberAI staff preparing the shared library before children ask (C300): `accountId` is the staff member's user
-  // id, and no family's daily cap is taken. Set only by server code behind the content staff guard, never from a request.
-  staffPreparing?: true;
 };
 export type AiRequest = {
   system: string;
@@ -202,7 +207,7 @@ async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capab
 
 // 4. The family's daily cap, counted before the request leaves.
 async function takeCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link): Promise<boolean> {
-  if (profile.audience !== 'family' || ctx.staffPreparing) return true;
+  if (profile.audience !== 'family') return true;
   const limit = await dailyLimit(db);
   if (limit === null || !(await takeDailyRequest(db, ctx.accountId, ctx.day, limit))) {
     await count(db, ctx.day, profile.id, first, { capRefusals: 1 });
@@ -321,6 +326,166 @@ export async function prepareTranscription(db: Sql, ctx: AiContext, profileId: P
   };
   return { ok: true, speech: { send } };
 }
+
+// ---- moderation (W2, C314) -------------------------------------------------------------------------------------------
+
+export type ModerationVerdict = { safe: boolean; categories: string[] };
+// A prepared safety check: check() may run several times in one request (the question, then each block of the answer)
+// with no database; null means the check could not be made, and the caller then shows nothing. record() writes the
+// counts of every check made, in the caller's next transaction.
+export type PreparedModeration = { check: (turns: { user: string; assistant?: string }) => Promise<ModerationVerdict | null>; record: (db: Sql) => Promise<void> };
+export type ModerationReady = { ok: true; moderation: PreparedModeration } | { ok: false; reason: AiRefusal };
+
+// Steps 1–3 and 5 of the seven, in the caller's transaction (the profile, the minors check on the whole chain, a
+// provider with a moderation adapter and a key; no daily-cap place: it runs beside a call that took one). Step 5 runs
+// on every check: the child's names and the parent's email are removed from the words before they leave. 6 (check, no
+// database) tries the chain in order; 7 (record) counts requests, failures and tokens only. The words are never stored.
+export async function prepareModeration(db: Sql, ctx: AiContext): Promise<ModerationReady> {
+  const env = process.env;
+  const checked = await checkProfile(db, ctx, 'family.moderation', 'moderation', env);
+  if (!checked.ok) return checked;
+  const { profile, chain, providers } = checked;
+  const ready = await usableLinks(db, chain, providers, env, (p) => moderationAdapterFor(p, env));
+  if (ready.length === 0) return { ok: false, reason: 'not_switched_on' };
+
+  const usage: { link: Link; counts: Counts }[] = [];
+  const check = async (turns: { user: string; assistant?: string }): Promise<ModerationVerdict | null> => {
+    const clean = scrubRequest(
+      { system: '', messages: [{ role: 'user', content: turns.user }, ...(turns.assistant === undefined ? [] : [{ role: 'assistant' as const, content: turns.assistant }])] },
+      { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail }
+    );
+    const user = clean.messages[0].content;
+    const assistant = turns.assistant === undefined ? undefined : clean.messages[1].content;
+    for (const { link, adapter, apiKey } of ready) {
+      let result: ModerationResult;
+      try {
+        result = await adapter.moderate({ apiKey, model: link.model, user, assistant });
+      } catch {
+        result = { ok: false, failure: 'network' };
+      }
+      if (result.ok) {
+        usage.push({ link, counts: { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut } });
+        return { safe: result.safe, categories: result.categories };
+      }
+      usage.push({ link, counts: { requests: 1, failures: 1 } });
+    }
+    return null;
+  };
+  const record = async (tx: Sql) => {
+    for (const u of usage.splice(0)) await count(tx, ctx.day, profile.id, u.link, u.counts);
+  };
+  return { ok: true, moderation: { check, record } };
+}
+
+// ---- the smoke test (W2, C316) ---------------------------------------------------------------------------------------
+
+// One live call to each children's profile as Control has set it, with made-up inputs and no child in them: a short
+// text answer in JSON, a photo of a printed question, the same spoken question in each format a phone records, and the
+// safety check. It answers what AI_PROVIDERS.md lists as "not verified yet" (photos on the chosen route, the audio
+// formats, the safety check's answer form). The minors check applies as for a child's call; no family's daily cap is
+// taken. Prepared in the caller's transaction, sent with no database, recorded (counts only) in the next one.
+export type SmokeCheck = { check: string; profile: ProfileId; ok: boolean; provider?: string; model?: string; failure?: string; status?: number; ms?: number; note?: string };
+export type SmokeInputs = { photoJpegBase64: string; speech: readonly { mediaType: SpeechMediaType; base64: string }[] };
+export type PreparedSmoke = { send: () => Promise<SmokeCheck[]>; record: (db: Sql) => Promise<void> };
+
+const SMOKE_QUESTION = 'What does a magnet attract?';
+export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInputs): Promise<PreparedSmoke> {
+  const env = process.env;
+  const usage: { profile: ProfileId; link: Link; counts: Counts }[] = [];
+  type Step = () => Promise<SmokeCheck[]>;
+  const steps: Step[] = [];
+  const refused = (check: string, profile: ProfileId, reason: string): Step => async () => [{ check, profile, ok: false, failure: reason }];
+
+  const textChain = async (profile: ProfileId, check: string, request: AdapterRequestPart, judge: (text: string) => string | undefined) => {
+    const c = await checkProfile(db, ctx, profile, 'text', env);
+    if (!c.ok) return steps.push(refused(check, profile, c.reason));
+    const usable = await usableLinks(db, c.chain, c.providers, env, (p) => adapterFor(p, env));
+    const ready = usable.filter((r) => !request.images || r.adapter.vision);
+    if (!ready.length) return steps.push(refused(check, profile, usable.length ? 'no_provider_reads_photos' : 'not_switched_on'));
+    const { link, adapter, apiKey } = ready[0];
+    steps.push(async () => {
+      const began = Date.now();
+      let r: AdapterResult;
+      try {
+        r = await adapter.streamText({ apiKey, model: link.model, system: request.system, messages: [{ role: 'user', content: request.user, images: request.images }], maxTokens: 300 }, () => {});
+      } catch {
+        r = { ok: false, failure: 'network' };
+      }
+      usage.push({ profile, link, counts: r.ok ? { requests: 1, tokensIn: r.tokensIn, tokensOut: r.tokensOut } : { requests: 1, failures: 1 } });
+      return [{ check, profile, ok: r.ok, provider: link.provider, model: link.model, ms: Date.now() - began, ...(r.ok ? { note: judge(r.text) } : { failure: r.failure, status: r.status }) }];
+    });
+  };
+  const jsonNote = (text: string) => {
+    const start = text.indexOf('{');
+    const end = text.lastIndexOf('}');
+    try {
+      JSON.parse(text.slice(start, end + 1));
+      return start === 0 && end === text.trim().length - 1 ? 'json: one object, nothing around it' : 'json: an object, with text around it';
+    } catch {
+      return 'json: none readable';
+    }
+  };
+  await textChain('family.resolver', 'text', { system: 'Answer with one JSON object only, on one line: {"type":"answer","word":"<one word>"}.', user: `${SMOKE_QUESTION} One word.` }, jsonNote);
+  await textChain(
+    'family.homework',
+    'photo',
+    { system: 'Read the question in the photo. Answer with one JSON object only: {"question":"<the question as printed>"}.', user: 'The photo.', images: [{ mediaType: 'image/jpeg', base64: inputs.photoJpegBase64 }] },
+    (text) => (/magnet/i.test(text) ? 'read the printed question' : 'answered, but not with the printed question')
+  );
+
+  const voice = await checkProfile(db, ctx, 'family.voice_input', 'speech_to_text', env);
+  if (!voice.ok) steps.push(refused('voice', 'family.voice_input', voice.reason));
+  else {
+    const ready = await usableLinks(db, voice.chain, voice.providers, env, (p) => speechAdapterFor(p, env));
+    if (!ready.length) steps.push(refused('voice', 'family.voice_input', 'not_switched_on'));
+    else {
+      const { link, adapter, apiKey } = ready[0];
+      for (const s of inputs.speech) {
+        steps.push(async () => {
+          const began = Date.now();
+          let r: SpeechResult;
+          try {
+            r = await adapter.transcribe({ apiKey, model: link.model, audio: Buffer.from(s.base64, 'base64'), mediaType: s.mediaType, language: 'en' });
+          } catch {
+            r = { ok: false, failure: 'network' };
+          }
+          usage.push({ profile: 'family.voice_input', link, counts: r.ok ? { requests: 1 } : { requests: 1, failures: 1 } });
+          const check = `voice:${s.mediaType.slice(6)}`;
+          return [{ check, profile: 'family.voice_input', ok: r.ok, provider: link.provider, model: link.model, ms: Date.now() - began, ...(r.ok ? { note: /magnet/i.test(r.text) ? 'heard the question' : 'heard something else' } : { failure: r.failure, status: r.status }) }];
+        });
+      }
+    }
+  }
+
+  const guard = await checkProfile(db, ctx, 'family.moderation', 'moderation', env);
+  if (!guard.ok) steps.push(refused('safety', 'family.moderation', guard.reason));
+  else {
+    const ready = await usableLinks(db, guard.chain, guard.providers, env, (p) => moderationAdapterFor(p, env));
+    if (!ready.length) steps.push(refused('safety', 'family.moderation', 'not_switched_on'));
+    else {
+      const { link, adapter, apiKey } = ready[0];
+      steps.push(async () => {
+        const began = Date.now();
+        let r: ModerationResult;
+        try {
+          r = await adapter.moderate({ apiKey, model: link.model, user: SMOKE_QUESTION, assistant: 'Iron, nickel and cobalt.' });
+        } catch {
+          r = { ok: false, failure: 'network' };
+        }
+        usage.push({ profile: 'family.moderation', link, counts: r.ok ? { requests: 1, tokensIn: r.tokensIn, tokensOut: r.tokensOut } : { requests: 1, failures: 1 } });
+        return [{ check: 'safety', profile: 'family.moderation', ok: r.ok, provider: link.provider, model: link.model, ms: Date.now() - began, ...(r.ok ? { note: `${r.safe ? 'safe' : 'unsafe'}; answered as ${r.form ?? 'unknown'}` } : { failure: r.failure, status: r.status }) }];
+      });
+    }
+  }
+
+  return {
+    send: async () => (await Promise.all(steps.map((s) => s()))).flat(),
+    record: async (tx) => {
+      for (const u of usage.splice(0)) await count(tx, ctx.day, u.profile, u.link, u.counts);
+    },
+  };
+}
+type AdapterRequestPart = { system: string; user: string; images?: ChatImage[] };
 
 // The three steps on one client: for a caller with nothing to do between them.
 export async function streamText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest, onDelta: (text: string) => void = () => {}): Promise<AiResult> {

@@ -49,6 +49,7 @@ beforeAll(async () => {
     insert into control.ai_providers (provider_id, cleared_for_minors, cleared_terms_url, cleared_at, cleared_by) values ('stand-in', true, 'https://example.org/none', now(), '${FOUNDER}') on conflict do nothing;
     update control.ai_providers set cleared_for_minors = true, cleared_terms_url = 'https://example.org/none', cleared_at = now(), cleared_by = '${FOUNDER}', enabled = true where provider_id = 'stand-in';
     update control.ai_profiles set provider_id = 'stand-in', model = 'slow', fallback = '[]', enabled = true where profile_id = 'family.resolver';
+    update control.ai_profiles set provider_id = 'stand-in', model = 'guard', fallback = '[]', enabled = true where profile_id = 'family.moderation';
     update control.settings set value = '20'::jsonb where key = 'family.ai.daily_requests';
   `);
   const { signFamilySession } = await import('@/lib/family/session');
@@ -86,7 +87,9 @@ async function pendingCall(body: unknown) {
 }
 const within = <T>(p: Promise<T>, ms = 3000) => Promise.race([p, new Promise<never>((_, no) => setTimeout(() => no(new Error('the pool connection is still held')), ms))]);
 // The database owner's view, read only while no request holds the one connection.
-const usage = async () => (await db.pg.query(`select coalesce(sum(requests), 0)::int as requests, coalesce(sum(failures), 0)::int as failures, coalesce(sum(tokens_in), 0)::int as tokens_in from control.ai_usage`)).rows[0];
+const usage = async () => (await db.pg.query(`select coalesce(sum(requests), 0)::int as requests, coalesce(sum(failures), 0)::int as failures, coalesce(sum(tokens_in), 0)::int as tokens_in from control.ai_usage where profile_id = 'family.resolver'`)).rows[0];
+// The safety checks (C314) beside it: one per block shown, recorded in the same second transaction.
+const checks = async () => (await db.pg.query(`select coalesce(sum(requests), 0)::int as requests from control.ai_usage where profile_id = 'family.moderation'`)).rows[0].requests;
 
 describe('no database connection is held while the AI answers', () => {
   it('another query through the pool runs during the call; the cap is taken before it, the metering and the library after', async () => {
@@ -103,6 +106,8 @@ describe('no database connection is held while the AI answers', () => {
     expect(ev.filter((e) => e.t === 'block').map((e) => e.block.type)).toEqual(['explanation', 'check', 'practice']);
     expect(ev.at(-1)).toEqual({ t: 'done', complete: true });
     expect(await usage()).toEqual({ requests: 1, failures: 0, tokens_in: 30 });
+    // One safety check per block shown, metered after the call too.
+    expect(await checks()).toBe(3);
     expect((await db.pg.query(`select topic_key, prompt_version from content.responses`)).rows).toEqual([{ topic_key: TOPIC, prompt_version: 'v1' }]);
   });
 

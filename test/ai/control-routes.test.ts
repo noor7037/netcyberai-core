@@ -1,6 +1,7 @@
 import { randomBytes, randomUUID } from 'crypto';
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { NextRequest } from 'next/server';
+import { aiEncryptionKey, unsealAiKey } from '@/lib/ai/credentials';
 
 // M1-3 (C249): Control → AI's route on the real migrations (PGlite). Only the connection is replaced: the route's own
 // platform helper runs on the test database as nca_super, as in production. Who is let in (the founder with the
@@ -90,9 +91,13 @@ describe('who is let in', () => {
     expect(body.keyReady).toBe(true);
     expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'gemini', 'openai', 'workers-ai', 'youtube']);
     expect(body.profiles).toEqual([
-      expect.objectContaining({ profileId: 'content.syllabus_extract', carriesChildWords: false, providerId: null, enabled: true }),
+      // Control's two staff tools start on Workers AI (C313); nothing runs until its key is entered.
+      expect.objectContaining({ profileId: 'content.prepare', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true }),
+      expect.objectContaining({ profileId: 'content.syllabus_extract', carriesChildWords: false, providerId: 'workers-ai', enabled: true }),
       expect.objectContaining({ profileId: 'copilot.draft', carriesChildWords: false, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'family.homework', carriesChildWords: true, providerId: null, enabled: true }),
+      // The safety check (C314): chosen by the founder after clearing Workers AI.
+      expect.objectContaining({ profileId: 'family.moderation', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'family.resolver', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'family.voice_input', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'parent_ai.home_help', carriesChildWords: false, providerId: null, enabled: true }),
@@ -122,6 +127,22 @@ describe('a key: write-only', () => {
     const audit = await q(`select school_id, actor_role, before_state, after_state from audit_log where event_action = 'ai.credential_set'`);
     expect(audit).toEqual([{ school_id: null, actor_role: 'super_admin', before_state: { providerId: 'anthropic', had: false }, after_state: { providerId: 'anthropic', had: true, keyLast4: 'LAST' } }]);
     expect(JSON.stringify(audit)).not.toContain(KEY);
+  });
+
+  it("Cloudflare's key in two boxes (C317): each part checked with its own message, kept as one key", async () => {
+    const ACCOUNT = '0123456789abcdef0123456789abcdef';
+    const TOKEN = `cfut_${'T'.repeat(40)}`;
+    const save = (accountId: string, token: string) => post({ action: 'credential', providerId: 'workers-ai', accountId, token });
+    expect(await save('my-account', TOKEN)).toEqual({ status: 400, body: expect.objectContaining({ code: 'account_id_format' }) });
+    expect(await save(ACCOUNT, 'short')).toEqual({ status: 400, body: expect.objectContaining({ code: 'token_format' }) });
+    // What copying brings along is cleaned: capitals in the id, quotes, and the "Bearer " of Cloudflare's test command.
+    expect(await save(` ${ACCOUNT.toUpperCase()} `, `"Bearer ${TOKEN}"`)).toEqual({ status: 200, body: { ok: true } });
+    const [row] = await q(`select ciphertext, iv, tag, key_version, key_last4 from control.ai_credentials where provider_id = 'workers-ai'`);
+    expect(unsealAiKey(aiEncryptionKey()!, 'workers-ai', row as never)).toBe(`${ACCOUNT}:${TOKEN}`);
+    expect(row.key_last4).toBe('TTTT');
+    // Leave the later tests the state they expect.
+    await q(`delete from control.ai_credentials where provider_id = 'workers-ai'`);
+    await q(`delete from audit_log where event_action = 'ai.credential_set' and target_id = 'workers-ai'`);
   });
 
   it('a key of the wrong shape is refused', async () => {

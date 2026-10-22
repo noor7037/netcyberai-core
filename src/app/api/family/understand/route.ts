@@ -101,7 +101,11 @@ export async function POST(req: NextRequest) {
         } catch (err) {
           // Signed out everywhere during the call: the check failed before anything was written, but the call
           // happened, so it is still counted (once: nothing of the refused transaction ran).
-          if (err instanceof FamilySessionRevokedError) await withFamilyGate((db) => generated.sent.record(db as never)).catch(() => {});
+          if (err instanceof FamilySessionRevokedError)
+            await withFamilyGate(async (db) => {
+              await generated.sent.record(db as never);
+              await pending.moderation?.record(db as never);
+            }).catch(() => {});
           throw err;
         }
         if (generated.error !== null) throw generated.error;

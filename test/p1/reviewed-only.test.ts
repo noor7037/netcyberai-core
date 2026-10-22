@@ -11,6 +11,8 @@ const ai = vi.hoisted(() => ({ lines: [] as string[], calls: [] as { system: str
 vi.mock('@/lib/ai/platform', async (original) => ({
   ...(await original<typeof import('@/lib/ai/platform')>()),
   activePromptVersion: async () => 'v1',
+  // The safety check (C314) passes everything here; test/w2/moderation.test.ts covers it.
+  prepareModeration: async () => ({ ok: true, moderation: { check: async () => ({ safe: true, categories: [] }), record: async () => {} } }),
   prepareText: async (_db: unknown, _ctx: unknown, _p: unknown, req: { system: string; messages: { content: string }[] }) => {
     ai.calls.push({ system: req.system, user: req.messages[0].content });
     const lines = [...ai.lines];
@@ -81,8 +83,9 @@ const run = <T>(fn: (db: any) => Promise<T>): Promise<T> => R.auth.withPlatformS
 const responses = async () => (await db.pg.query(`select topic_key, language, style, status from content.responses order by topic_key, language`)).rows;
 
 describe('checked explanations only (C300)', () => {
-  it('starts with EVS; a topic with no checked explanation is not made live, and the child is told it is being checked', async () => {
-    expect((await db.pg.query(`select value from control.settings where key = 'family.reviewed_only_subjects'`)).rows[0].value).toEqual(['evs']);
+  it('starts with the demo pilot\'s Science; with EVS listed, a topic with no checked explanation is not made live, and the child is told it is being checked', async () => {
+    expect((await db.pg.query(`select value from control.settings where key = 'family.reviewed_only_subjects'`)).rows[0].value).toEqual(['science']);
+    await db.pg.query(`update control.settings set value = '["evs"]'::jsonb where key = 'family.reviewed_only_subjects'`);
     ai.lines = GOOD;
     const ev = await ask({ kind: 'topic', key: TOPIC });
     expect(ev).toEqual([{ t: 'refused', reason: 'not_ready', message: 'यह व्याख्या अभी जाँची जा रही है। तब तक इसके बारे में अपना सवाल पूछें।' }]);
@@ -113,6 +116,8 @@ describe('checked explanations only (C300)', () => {
     ]);
     expect(ai.calls).toHaveLength(4);
     expect(JSON.stringify(ai.calls)).not.toContain('Rani');
+    // Each one names who prepared it (C313).
+    expect((await db.pg.query(`select distinct prepared_by from content.responses`)).rows).toEqual([{ prepared_by: STAFF }]);
   });
 
   it('an AI-made one is still not shown; once checked the child gets it from the library', async () => {
@@ -140,12 +145,34 @@ describe('checked explanations only (C300)', () => {
     expect((await R.prepare.prepareNext(run, { userId: STAFF }, VERSION)).state).toMatchObject({ missing: 0, withdrawn: 1 });
   });
 
-  it('Control sets the list, audited; with EVS off the list, a topic is made live again', async () => {
+  it('with EVS off the list, a prepared AI-made explanation is still never served unchecked (C313): the chapter is made live', async () => {
     const { setSubjectList } = await import('@/lib/control/family-settings');
     expect(await run((tx) => setSubjectList(tx, { userId: STAFF }, 'reviewed_only', []))).toEqual({ ok: true, subjects: [] });
     expect((await db.pg.query(`select after_state from audit_log where event_action = 'family.reviewed_only_set'`)).rows).toEqual([{ after_state: { subjects: [] } }]);
-    await db.pg.query(`delete from content.responses`);
+    // The chapter's Hindi explanation was prepared by staff and is still AI-made.
+    expect((await db.pg.query(`select status, prepared_by from content.responses where topic_key = $1 and language = 'hi'`, [CHAPTER])).rows).toEqual([{ status: 'ai_made', prepared_by: STAFF }]);
     ai.lines = GOOD;
+    const before = ai.calls.length;
     expect((await ask({ kind: 'chapter', key: CHAPTER }))[0]).toMatchObject({ t: 'meta', label: 'ai_made', cached: false });
+    expect(ai.calls.length).toBe(before + 1);
+    // The family role cannot read it at all, nor add a response that claims to be prepared.
+    const asFamily = (sql: string, p: unknown[]) =>
+      db.pg.transaction(async (tx: { query: (s: string, p?: unknown[]) => Promise<{ rows: unknown[] }> }) => {
+        await tx.query('set local role family_app');
+        await tx.query(`select set_config('app.current_account_id', $1, true)`, [ACCOUNT]);
+        return tx.query(sql, p);
+      });
+    expect((await asFamily(`select 1 from content.responses where prepared_by is not null and status = 'ai_made'`, [])).rows).toEqual([]);
+    await expect(
+      asFamily(
+        `insert into content.responses (board_id, class_level, subject, topic_key, language, style, prompt_version, schema_version, blocks, status, provider, model, prepared_by) values ('CBSE', 5, 'evs', $1, 'en', 'hinglish', 'v9', 1, '[]', 'ai_made', 'x', 'y', $2)`,
+        [TOPIC, STAFF]
+      )
+    ).rejects.toThrow();
+    // Once a reviewer checks it, every child is served it, in this subject too.
+    await db.pg.query(`update content.responses set status = 'checked', checked_by = $1, checked_at = now() where topic_key = $2 and language = 'hi'`, [STAFF, CHAPTER]);
+    const calls = ai.calls.length;
+    expect((await ask({ kind: 'chapter', key: CHAPTER }))[0]).toMatchObject({ t: 'meta', label: 'checked', cached: true });
+    expect(ai.calls.length).toBe(calls);
   });
 });
