@@ -6,6 +6,7 @@ import { splitWorkersKey, workersAiAdapter, workersAiSpeechAdapter, workersModel
 import { adapterFor, speechAdapterFor } from '@/lib/ai/adapters';
 import { JSON_ONLY, type AdapterRequest } from '@/lib/ai/adapters/types';
 import { capableAdapter } from '@/lib/ai/platform';
+import { streamChatCompletions } from '@/lib/ai/adapters/chat-completions';
 import { httpError, openaiOk } from './streams';
 
 // C230-U: the providers added after reading each vendor's terms for a product used by children. Workers AI (open-weight
@@ -36,6 +37,9 @@ afterEach(() => {
 });
 
 const request = (over: Partial<AdapterRequest> = {}): AdapterRequest => ({ apiKey: WORKERS_KEY, model: '@cf/meta/llama-4-scout-17b-16e-instruct', system: 'Explain for a Class 6 student.', messages: [{ role: 'user', content: 'Why do magnets attract iron?' }], maxTokens: 900, ...over });
+// A whole answer, as a route that does not stream sends it (C322).
+const whole = (content: string, tokensIn = 13, tokensOut = 9, finish = 'stop') =>
+  new Response(JSON.stringify({ choices: [{ message: { content }, finish_reason: finish }], usage: { prompt_tokens: tokensIn, completion_tokens: tokensOut } }), { status: 200 });
 const sse = (lines: unknown[]) => new Response(lines.map((d) => `data: ${typeof d === 'string' ? d : JSON.stringify(d)}\n\n`).join(''), { status: 200, headers: { 'content-type': 'text/event-stream' } });
 
 describe('who may carry a child’s words (the code’s half of the minors check)', () => {
@@ -76,30 +80,39 @@ describe('Workers AI keys', () => {
 });
 
 describe('Workers AI text, through Cloudflare’s OpenAI-compatible route', () => {
-  it('posts to the account’s chat route with the token alone, max_tokens and no options Cloudflare may refuse', async () => {
-    reply = () => openaiOk(['Magnets ', 'pull iron.'], 21, 5);
+  it('posts to the account’s chat route with the token alone and max_tokens, and asks for the answer in one piece (C322)', async () => {
+    reply = () => whole('Magnets pull iron.', 21, 5);
     const pieces: string[] = [];
-    // The answer ends at the stop (no usage chunk is asked for), so the counts are estimated: 58 characters sent, 18 back.
-    expect(await workersAiAdapter.streamText(request(), (p) => pieces.push(p))).toEqual({ ok: true, text: 'Magnets pull iron.', tokensIn: 15, tokensOut: 5, finish: 'stop' });
-    expect(pieces).toEqual(['Magnets ', 'pull iron.']);
-    // Why the stream ended is passed on, so a cut answer can be told from a finished one (C318).
-    reply = () => sse([{ choices: [{ delta: { content: 'Half' } }] }, { choices: [{ delta: {}, finish_reason: 'length' }] }, '[DONE]']);
-    expect(await workersAiAdapter.streamText(request(), () => undefined)).toMatchObject({ ok: true, text: 'Half', finish: 'length' });
-    reply = () => openaiOk(['Magnets ', 'pull iron.'], 21, 5);
+    expect(await workersAiAdapter.streamText(request(), (p) => pieces.push(p))).toEqual({ ok: true, text: 'Magnets pull iron.', tokensIn: 21, tokensOut: 5, finish: 'stop' });
+    // Handed on in one piece.
+    expect(pieces).toEqual(['Magnets pull iron.']);
     expect(calls[0].url).toBe(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/v1/chat/completions`);
     expect(calls[0].headers.authorization).toBe(`Bearer ${TOKEN}`);
-    const body = JSON.parse(calls[0].body);
-    expect(body).toEqual({
+    expect(JSON.parse(calls[0].body)).toEqual({
       model: '@cf/meta/llama-4-scout-17b-16e-instruct',
-      stream: true,
+      // Streamed, Llama's JSON lost its inner quotation marks; in one piece it comes whole (C322).
+      stream: false,
       max_tokens: 900,
       // A steadier structured answer from open models (C316).
       temperature: 0.3,
-      // The instructions open the first user message: the live test found Llama on this route answering in plain words
-      // when they came as a system message (C320).
+      // The instructions open the first user message (C320).
       messages: [{ role: 'user', content: 'Explain for a Class 6 student.\n\nWhy do magnets attract iron?' }],
     });
     expect(calls[0].body).not.toContain(TOKEN);
+  });
+
+  it('a whole answer keeps its JSON, says why it ended, and is counted when no usage comes', async () => {
+    reply = () => whole('{"type":"answer","word":"metal"}');
+    expect(await workersAiAdapter.streamText(request(), () => undefined)).toMatchObject({ ok: true, text: '{"type":"answer","word":"metal"}' });
+    reply = () => whole('Half', 1, 1, 'length');
+    expect(await workersAiAdapter.streamText(request(), () => undefined)).toMatchObject({ ok: true, text: 'Half', finish: 'length' });
+    reply = () => new Response(JSON.stringify({ choices: [{ message: { content: 'Iron.' }, finish_reason: 'stop' }] }), { status: 200 });
+    // 58 characters sent, 5 back: four characters a token.
+    expect(await workersAiAdapter.streamText(request(), () => undefined)).toEqual({ ok: true, text: 'Iron.', tokensIn: 15, tokensOut: 2, finish: 'stop' });
+    reply = () => new Response(JSON.stringify({ choices: [{ message: { content: '' }, finish_reason: 'content_filter' }] }), { status: 200 });
+    expect(await workersAiAdapter.streamText(request(), () => undefined)).toEqual({ ok: false, failure: 'refused' });
+    reply = () => new Response('not json', { status: 200 });
+    expect(await workersAiAdapter.streamText(request(), () => undefined)).toEqual({ ok: false, failure: 'bad_stream' });
   });
 
   it('a request may still ask for a system message (the smoke test compares the two)', async () => {
@@ -122,14 +135,19 @@ describe('Workers AI text, through Cloudflare’s OpenAI-compatible route', () =
     expect(JSON.parse(calls[0].body).messages[0]).toEqual({ role: 'user', content: [{ type: 'text', text: 'Explain for a Class 6 student.\n\nExplain this page.' }, { type: 'image_url', image_url: { url: 'data:image/jpeg;base64,QUJD' } }] });
   });
 
-  it('a stream that ends with a stop but no [DONE] is complete; one that just stops is cut short', async () => {
+  // The streamed path stays in the shared core for the vendors that stream (OpenAI, Gemini).
+  const streamed = (onDelta: (t: string) => void = () => undefined) => streamChatCompletions('https://example.invalid/v1/chat/completions', 'tok', request(), onDelta, { maxTokensField: 'max_tokens', jsonMode: false, includeUsage: false });
+  it('streamed (the core): a stream that ends with a stop but no [DONE] is complete; one that just stops is cut short', async () => {
     reply = () => sse([{ choices: [{ delta: { content: 'Iron.' }, finish_reason: null }] }, { choices: [{ delta: {}, finish_reason: 'stop' }] }]);
-    expect(await workersAiAdapter.streamText(request(), () => undefined)).toEqual({ ok: true, text: 'Iron.', tokensIn: 15, tokensOut: 2, finish: 'stop' });
+    expect(await streamed()).toEqual({ ok: true, text: 'Iron.', tokensIn: 15, tokensOut: 2, finish: 'stop' });
     reply = () => sse([{ choices: [{ delta: { content: 'Iro' }, finish_reason: null }] }]);
-    expect(await workersAiAdapter.streamText(request(), () => undefined)).toEqual({ ok: false, failure: 'cut_short' });
+    expect(await streamed()).toEqual({ ok: false, failure: 'cut_short' });
+    // Why the stream ended is passed on (C318).
+    reply = () => sse([{ choices: [{ delta: { content: 'Half' } }] }, { choices: [{ delta: {}, finish_reason: 'length' }] }, '[DONE]']);
+    expect(await streamed()).toMatchObject({ ok: true, text: 'Half', finish: 'length' });
   });
 
-  it('after its stop, a connection held open or dropped does not turn the answer into a failure', async () => {
+  it('streamed (the core): after its stop, a connection held open or dropped does not turn the answer into a failure', async () => {
     const enc = new TextEncoder();
     reply = () =>
       new Response(
@@ -141,7 +159,7 @@ describe('Workers AI text, through Cloudflare’s OpenAI-compatible route', () =
         }),
         { status: 200, headers: { 'content-type': 'text/event-stream' } }
       );
-    expect(await workersAiAdapter.streamText(request(), () => undefined)).toMatchObject({ ok: true, text: 'Done.' });
+    expect(await streamed()).toMatchObject({ ok: true, text: 'Done.' });
     reply = () =>
       new Response(
         new ReadableStream({

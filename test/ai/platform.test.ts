@@ -254,9 +254,9 @@ describe('fallback', () => {
   });
 
   it('the first provider fails: the next cleared one answers, and both are counted', async () => {
-    replies.push(() => httpError(529), () => openaiOk(['From ', 'the backup.'], 13, 4));
+    // Workers AI answers in one piece (C322), with its counts.
+    replies.push(() => httpError(529), () => new Response(JSON.stringify({ choices: [{ message: { content: 'From the backup.' }, finish_reason: 'stop' }], usage: { prompt_tokens: 13, completion_tokens: 4 } }), { status: 200 }));
     const got = await run();
-    // Workers AI's answer ends at its stop, so its counts are estimated from the text (16 characters back: 4).
     expect(got).toMatchObject({ ok: true, text: 'From the backup.', tokensOut: 4, provider: 'workers-ai', model: 'test-model-b' });
     expect((got as { tokensIn: number }).tokensIn).toBeGreaterThan(0);
     expect(calls.map((c) => new URL(c.url).hostname)).toEqual(['api.anthropic.com', 'api.cloudflare.com']);
