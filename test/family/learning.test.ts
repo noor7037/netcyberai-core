@@ -40,7 +40,8 @@ describe('the registry', () => {
   });
   it('shows a tab only when a built module of it is switched on', () => {
     expect(visibleTabs(() => true)).toEqual(['home', 'study', 'english', 'family']);
-    expect(visibleTabs((f) => !['understand', 'practice', 'videos'].includes(f))).toEqual(['home', 'english', 'family']);
+    // Every Study module switched off (M2 adds more of them): no Study tab.
+    expect(visibleTabs((f) => !FAMILY_MODULES.some((m) => m.tab === 'study' && m.flag === f))).toEqual(['home', 'english', 'family']);
   });
   it('opens every subject until the first is claimed, then only that one', () => {
     expect(subjectAccess({ freeSubject: null }, 'science').open).toBe(true);

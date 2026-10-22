@@ -52,6 +52,8 @@ FAMILY_DOORS = {
     "@/lib/auth/jwt": {"src/lib/family/session.ts"},
     "@/lib/auth/env": {"src/lib/family/secret.ts"},
     "@/lib/email/sender": {"src/lib/family/sign-in.ts"},
+    # The homework helper screens a photo with the upload screen every stored file uses (M2-6, C280).
+    "@/lib/privacy/upload-check": {"src/lib/family/homework.ts"},
 }
 # Packages and the framework, allowed everywhere.
 EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")

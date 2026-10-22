@@ -3,7 +3,7 @@ import { openaiAdapter } from './openai';
 import { youtubeAdapter } from './youtube';
 import type { AdapterResult, TextAdapter } from './types';
 
-export type { AdapterRequest, AdapterResult, ChatMessage, TextAdapter } from './types';
+export type { AdapterRequest, AdapterResult, ChatImage, ChatMessage, TextAdapter } from './types';
 
 // The stand-in: answers from the request alone and sends nothing anywhere, so the whole flow (profile, minors check,
 // cap, metering) can be built and tested before any key exists. Like configuredProvider's stand-in in ../provider.ts
@@ -14,6 +14,7 @@ export const standInAdapter: TextAdapter = {
   capability: 'text',
   minorsEligible: true,
   needsKey: false,
+  vision: true,
   keyLooksRight: () => false,
   async streamText(request, onDelta): Promise<AdapterResult> {
     const asked = request.messages.filter((m) => m.role === 'user').length;

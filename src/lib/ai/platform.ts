@@ -1,7 +1,7 @@
 import { withPlatformService } from '@/lib/auth/db';
 import type { Sql } from '@/lib/jobs/types';
 import type { MessageKey } from '@/lib/i18n';
-import { adapterFor, type AdapterResult, type ChatMessage, type TextAdapter } from './adapters';
+import { adapterFor, type AdapterResult, type ChatImage, type ChatMessage, type TextAdapter } from './adapters';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { dailyLimit, takeDailyRequest } from './daily-cap';
@@ -27,15 +27,20 @@ import { scrubRequest } from './preprocess';
 // against their schema and drop anything outside it. The key opened in 3 lives only inside the prepared call (a closure,
 // never a field), and a prepared call sends once: one daily-cap place, one vendor request.
 
-export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input';
-export type AiProfile = { id: ProfileId; carriesChildWords: boolean };
+export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input' | 'copilot.draft' | 'parent_ai.home_help';
+// `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
+// monthly one, which its caller checks (src/lib/copilot/copilot.ts).
+export type AiProfile = { id: ProfileId; carriesChildWords: boolean; audience: 'family' | 'school' };
 
 // Code-defined: which profiles exist and whether a child's words may pass. Control sets each one's provider, model,
 // prompt version and on switch; never this list. M2 (C275): the homework helper reads a photo, voice input hears a child.
 export const PROFILES: readonly AiProfile[] = [
-  { id: 'family.resolver', carriesChildWords: true },
-  { id: 'family.homework', carriesChildWords: true },
-  { id: 'family.voice_input', carriesChildWords: true },
+  { id: 'family.resolver', carriesChildWords: true, audience: 'family' },
+  { id: 'family.homework', carriesChildWords: true, audience: 'family' },
+  { id: 'family.voice_input', carriesChildWords: true, audience: 'family' },
+  // M2-10 (C284): Copilot and Parent AI. Their requests name a class level, subject and topic, never a person.
+  { id: 'copilot.draft', carriesChildWords: false, audience: 'school' },
+  { id: 'parent_ai.home_help', carriesChildWords: false, audience: 'school' },
 ];
 
 export type AiContext = {
@@ -52,7 +57,7 @@ export type AiRequest = {
 };
 export type AiRefusal = 'not_switched_on' | 'cap_reached' | 'not_cleared_for_minors' | 'failed';
 export type AiResult = { ok: true; text: string; tokensIn: number; tokensOut: number; provider: string; model: string } | { ok: false; reason: AiRefusal };
-export type { ChatMessage };
+export type { ChatMessage, ChatImage };
 
 // The family-facing words for each refusal (English and Hindi in the message files).
 export const REFUSAL_MESSAGE: Record<AiRefusal, MessageKey> = {
@@ -169,15 +174,18 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
     if (!cleared) return { ok: false, reason: 'not_cleared_for_minors' };
   }
 
-  // 3. A provider that can answer.
-  const ready = await usableLinks(db, chain, providers, env);
+  // 3. A provider that can answer (and, for a request with photos, that can see them).
+  const withPhotos = request.messages.some((m) => (m.images?.length ?? 0) > 0);
+  const ready = (await usableLinks(db, chain, providers, env)).filter((r) => !withPhotos || r.adapter.vision);
   if (ready.length === 0) return { ok: false, reason: 'not_switched_on' };
 
-  // 4. The family's daily cap, counted before the request leaves.
-  const limit = await dailyLimit(db);
-  if (limit === null || !(await takeDailyRequest(db, ctx.accountId, ctx.day, limit))) {
-    await count(db, ctx.day, profile.id, ready[0].link, { capRefusals: 1 });
-    return { ok: false, reason: 'cap_reached' };
+  // 4. The family's daily cap, counted before the request leaves (a school profile's limit is checked by its caller).
+  if (profile.audience === 'family') {
+    const limit = await dailyLimit(db);
+    if (limit === null || !(await takeDailyRequest(db, ctx.accountId, ctx.day, limit))) {
+      await count(db, ctx.day, profile.id, ready[0].link, { capRefusals: 1 });
+      return { ok: false, reason: 'cap_reached' };
+    }
   }
 
   // 5. Nothing that names a child leaves the server.

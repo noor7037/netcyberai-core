@@ -4,7 +4,8 @@ import { StudyQuestion } from '@/components/family/StudyQuestion';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
-import { classText } from '@/lib/family/fill';
+import { classText, fill } from '@/lib/family/fill';
+import { familyModuleOn } from '@/lib/family/flags';
 import { subjectAccess } from '@/lib/family/modules';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
@@ -47,7 +48,10 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
   const access = subjectAccess(child, subject);
   const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
+  const homeworkOn = await familyPageRead(page, (db) => familyModuleOn(db, 'homework', page.session.accountId));
   const tone = subject;
+  // M2-4 (C278): a Worksheet action per topic while the module is switched on.
+  const worksheets = access.open && (await familyPageRead(page, (db) => familyModuleOn(db, 'worksheets', page.session.accountId)));
   const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton'] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
@@ -78,7 +82,20 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
             {t(lang, 'fam.subject.notOpen')}
           </p>
         ) : (
-          <StudyQuestion w={w} subject={subject} tone={tone} />
+          <>
+            <StudyQuestion w={w} subject={subject} tone={tone} />
+            {homeworkOn && (
+              <Link href="/family/study/homework" data-homework-link className="flex min-h-[56px] items-center gap-3 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate/10 hover:bg-slate/5">
+                <span aria-hidden className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sunshine/30 text-xl">
+                  📷
+                </span>
+                <span className="flex flex-col">
+                  <span className="text-base font-bold text-slate">{t(lang, 'fam.homework.studyLink')}</span>
+                  <span className="text-sm text-slate/80">{t(lang, 'fam.homework.studyLead')}</span>
+                </span>
+              </Link>
+            )}
+          </>
         )}
         {!access.open ? null : catalog ? (
           <section aria-labelledby="fam-chapters" className="flex flex-col gap-2">
@@ -95,10 +112,19 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                   {c.topics.length > 0 && (
                     <ul className="mt-1 flex flex-col">
                       {c.topics.map((tp) => (
-                        <li key={tp.key}>
-                          <Link href={`/family/understand?kind=topic&key=${encodeURIComponent(tp.key)}`} className="flex min-h-[44px] items-center rounded-xl px-2 text-sm text-slate hover:bg-slate/5">
+                        <li key={tp.key} className="flex items-center gap-1">
+                          <Link href={`/family/understand?kind=topic&key=${encodeURIComponent(tp.key)}`} className="flex min-h-[44px] flex-1 items-center rounded-xl px-2 text-sm text-slate hover:bg-slate/5">
                             <span lang={titleLang(tp.title)}>{tp.title}</span>
                           </Link>
+                          {worksheets && (
+                            <Link
+                              href={`/family/study/worksheet/${encodeURIComponent(tp.key)}`}
+                              aria-label={fill(t(lang, 'fam.worksheet.openFor'), { topic: tp.title })}
+                              className="flex min-h-[44px] shrink-0 items-center rounded-xl px-3 text-sm font-bold text-royal-deep hover:bg-slate/5"
+                            >
+                              {t(lang, 'fam.worksheet.action')}
+                            </Link>
+                          )}
                         </li>
                       ))}
                     </ul>
