@@ -30,8 +30,10 @@ export type PrepareChapter = { key: string; title: string };
 export type PrepareState = { total: number; checked: number; aiMade: number; missing: number; withdrawn: number; next: Wanted | null };
 export type PrepareOutcome = 'kept' | 'incomplete' | 'already' | Extract<ResolverEvent, { t: 'refused' }>['reason'];
 // What the model sent back for one line, for staff measuring it (C318): why its stream ended, how many JSON objects
-// came, the block types that passed and those our checks refused. Types and counts only, never the words.
-export type PrepareDetail = { finish: string | null; objects: number; kept: string[]; rejected: string[] };
+// came, the block types that passed and those our checks refused. For a line that was not kept, also the first 160
+// characters the model wrote (C320): a staff-prepared syllabus line holds no child's words, and the start shows a
+// format problem (prose instead of JSON) at a glance.
+export type PrepareDetail = { finish: string | null; objects: number; kept: string[]; rejected: string[]; start?: string };
 
 async function versionOf(db: Db, versionId: string): Promise<Version | null> {
   const { rows } = await db.query(`select version_id, board_id, class_level, subject from content.syllabus_versions where version_id = $1`, [versionId]);
@@ -144,7 +146,13 @@ export async function prepareNext(run: Run, by: { userId: string }, versionId: s
   const outcome: PrepareOutcome = generated.error !== null || !last ? 'failed' : last.t === 'refused' ? last.reason : last.t === 'done' && last.complete ? 'kept' : 'incomplete';
   const state = (await run((db) => prepareState(db, versionId, scope)))!;
   const result = generated.sent.result;
-  const detail: PrepareDetail = { finish: result.ok ? (result.finish ?? null) : null, objects: generated.objects, kept: generated.kept.map((b) => b.type), rejected: generated.rejected.slice(0, 20) };
+  const detail: PrepareDetail = {
+    finish: result.ok ? (result.finish ?? null) : null,
+    objects: generated.objects,
+    kept: generated.kept.map((b) => b.type),
+    rejected: generated.rejected.slice(0, 20),
+    ...(outcome !== 'kept' && result.ok ? { start: result.text.replace(/\s+/g, ' ').trim().slice(0, 160) } : {}),
+  };
   return { state, made: { ...first.want, outcome, detail } };
 }
 
@@ -172,7 +180,8 @@ export function preparePayload(raw: unknown): PrepareJobPayload | null {
   const detailOf = (d: unknown): PrepareDetail | undefined => {
     const x = d as Partial<PrepareDetail> | null;
     if (!x || typeof x !== 'object') return undefined;
-    return { finish: typeof x.finish === 'string' && /^[a-z_]{1,30}$/.test(x.finish) ? x.finish : null, objects: Number.isInteger(x.objects) ? Math.max(0, Math.min(Number(x.objects), 999)) : 0, kept: types(x.kept), rejected: types(x.rejected) };
+    const start = typeof x.start === 'string' ? x.start.replace(/[\u0000-\u001f]/g, ' ').slice(0, 160) : undefined;
+    return { finish: typeof x.finish === 'string' && /^[a-z_]{1,30}$/.test(x.finish) ? x.finish : null, objects: Number.isInteger(x.objects) ? Math.max(0, Math.min(Number(x.objects), 999)) : 0, kept: types(x.kept), rejected: types(x.rejected), ...(start ? { start } : {}) };
   };
   const clean = outcomes.slice(0, 400).map((o) => ({ key: o.key, language: o.language, outcome: o.outcome, ...(detailOf(o.detail) ? { detail: detailOf(o.detail) } : {}) }));
   return { versionId: p.versionId, chapterKeys: p.chapterKeys, by: p.by, runId, outcomes: clean };

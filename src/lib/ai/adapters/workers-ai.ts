@@ -38,7 +38,7 @@ export const workersAiAdapter: TextAdapter = {
   async streamText(request, onDelta): Promise<AdapterResult> {
     const k = splitWorkersKey(request.apiKey);
     if (!k) return { ok: false, failure: 'http', status: 401 };
-    return streamChatCompletions(`${base(k.account)}/v1/chat/completions`, k.token, request, onDelta, { maxTokensField: 'max_tokens', jsonMode: false, includeUsage: false, temperature: WORKERS_TEMPERATURE });
+    return streamChatCompletions(`${base(k.account)}/v1/chat/completions`, k.token, request, onDelta, { maxTokensField: 'max_tokens', jsonMode: false, includeUsage: false, temperature: WORKERS_TEMPERATURE, instructions: 'first_user' });
   },
 };
 
