@@ -140,10 +140,17 @@ describe('the AI smoke test (C316)', () => {
       'fetch',
       vi.fn(async (url: string, init: RequestInit) => {
         sent.push({ url: String(url), body: String(init.body) });
+        const answer = '{"type":"answer","word":"iron"}';
         if (String(url).endsWith('/chat/completions')) {
           const photo = String(init.body).includes('image_url');
-          const text = photo ? '{"question":"Which of these is attracted by a magnet?"}' : '{"type":"answer","word":"iron"}';
+          const text = photo ? '{"question":"Which of these is attracted by a magnet?"}' : answer;
+          if (JSON.parse(String(init.body)).stream === false) return new Response(JSON.stringify({ choices: [{ message: { content: text } }] }), { status: 200 });
           return new Response(`data: ${JSON.stringify({ choices: [{ delta: { content: text } }] })}\n\ndata: ${JSON.stringify({ choices: [{ delta: {}, finish_reason: 'stop' }] })}\n\n`, { status: 200 });
+        }
+        if (String(url).includes('/run/@cf/meta/llama-4')) {
+          // Workers AI's own route: in one piece, or streamed as { response } events.
+          if (JSON.parse(String(init.body)).stream) return new Response(`data: ${JSON.stringify({ response: answer })}\n\ndata: [DONE]\n\n`, { status: 200 });
+          return new Response(JSON.stringify({ success: true, result: { response: answer } }), { status: 200 });
         }
         if (String(url).includes('whisper')) {
           const audio = JSON.parse(String(init.body)).audio as string;
@@ -163,6 +170,10 @@ describe('the AI smoke test (C316)', () => {
     expect(summary).toEqual([
       ['text', true, 'json: one object, nothing around it'],
       ['text:system', true, 'json: one object, nothing around it'],
+      ['transport:compat_stream', true, 'json: one object, nothing around it'],
+      ['transport:compat_once', true, 'json: one object, nothing around it'],
+      ['transport:native_once', true, 'json: one object, nothing around it'],
+      ['transport:native_stream', true, 'json: one object, nothing around it'],
       ['photo', true, 'read the printed question'],
       ['voice:webm', true, 'heard the question'],
       ['voice:ogg', false, 400],
@@ -172,12 +183,14 @@ describe('the AI smoke test (C316)', () => {
     ]);
     // The first words of a made-up answer are kept, to see a format problem (C320).
     expect(row.after_state.checks[0].start).toBe('{"type":"answer","word":"iron"}');
-    // Eight calls, metered under each profile; nothing taken from a family's day.
-    expect(sent).toHaveLength(8);
+    // The streamed transports keep the first raw bytes, to see where a character is lost (C321).
+    expect(row.after_state.checks.find((c: { check: string }) => c.check === 'transport:compat_stream').raw).toContain('data: ');
+    // Twelve calls, metered under each profile; nothing taken from a family's day.
+    expect(sent).toHaveLength(12);
     expect(await q(`select profile_id, sum(requests)::int as requests from control.ai_usage group by 1 order by 1`)).toEqual([
       { profile_id: 'family.homework', requests: 1 },
       { profile_id: 'family.moderation', requests: 1 },
-      { profile_id: 'family.resolver', requests: 2 },
+      { profile_id: 'family.resolver', requests: 6 },
       { profile_id: 'family.voice_input', requests: 4 },
     ]);
     expect(await q(`select * from family.ai_daily`)).toEqual([]);
