@@ -56,7 +56,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const access = subjectAccess(child, subject);
   const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
   const offline = await familyPageRead(page, async (db) => (await familyModuleOn(db, 'offline', page.session.accountId)) && (await familyModuleOn(db, 'understand', page.session.accountId)));
-  const packs = offline && catalog ? new Map((await familyPageRead(page, (db) => chapterPacks(db, { accountId: page.session.accountId, child }, subject))).map((p) => [p.chapter.key, p])) : null;
+  // A pack downloads only for the child's free subject, with the parent's consent (the pack route checks both too).
+  const packs = offline && catalog && page.consents.study_core && child.freeSubject === subject ? new Map((await familyPageRead(page, (db) => chapterPacks(db, { accountId: page.session.accountId, child }, subject))).map((p) => [p.chapter.key, p])) : null;
   const ow = offline ? familyWords(lang, OFFLINE_KEYS) : {};
   const tone = subject;
   const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton'] as MessageKey[]);

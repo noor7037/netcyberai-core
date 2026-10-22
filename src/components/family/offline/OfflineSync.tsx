@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { claimStore, flushAnswers, keepShell, listPacks, rememberChild } from './store';
+import { claimStore, clearOffline, flushAnswers, keepShell, listPacks, rememberChild } from './store';
 
 // Offline packs on every signed-in Family page (M2-9, C283). Draws nothing. It registers the service worker for /family
 // (production builds, when Control has the offline module on), hands the phone's store to this account (another
@@ -17,9 +17,18 @@ export function OfflineSync({ owner, childId, on }: { owner: string; childId: st
       await claimStore(owner);
       if (!live) return;
       if (childId) rememberChild(childId);
-      if (on && process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-        await navigator.serviceWorker.register('/sw.js', { scope: '/family' }).catch(() => undefined);
-        if ((await listPacks()).length) keepShell();
+      if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+        if (on) {
+          await navigator.serviceWorker.register('/sw.js', { scope: '/family' }).catch(() => undefined);
+          if ((await listPacks()).length) keepShell();
+        } else {
+          // Control switched offline packs off: the worker for /family goes, and so do the saved packs.
+          const reg = await navigator.serviceWorker.getRegistration('/family/').catch(() => undefined);
+          if (reg && new URL(reg.scope).pathname.startsWith('/family')) {
+            await clearOffline();
+            await reg.unregister();
+          }
+        }
       }
       send();
     })();

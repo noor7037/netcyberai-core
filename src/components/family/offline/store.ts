@@ -91,9 +91,9 @@ export async function queuedAnswers(): Promise<QueuedAnswer[]> {
 
 let flushing: Promise<number> | null = null;
 
-// Send the waiting answers, oldest first. An answer the server took (or can never take: its token ended, it is not this
-// family's, it is malformed) leaves the queue; one that met no connection or a server fault waits for the next try.
-// Returns how many still wait.
+// Send the waiting answers, oldest first. An answer the server took (or can never take: its token ended more than a week
+// before it was sent, it is not this family's, it is malformed) leaves the queue; one that met a server fault waits for
+// the next try and the others still go; no connection or no session stops the round. Returns how many still wait.
 export function flushAnswers(): Promise<number> {
   if (flushing) return flushing;
   flushing = (async () => {
@@ -111,7 +111,7 @@ export function flushAnswers(): Promise<number> {
         break;
       }
       if (status === 200 || status === 400 || status === 404) await run(ANSWERS, 'readwrite', (s) => s.delete(a.key));
-      else break;
+      else if (status === 401 || status === 403) break;
     }
     return (await queuedAnswers()).length;
   })().finally(() => {
@@ -130,8 +130,9 @@ function local(): Storage | null {
   }
 }
 
-// Everything on the phone, and the kept shell, deleted.
+// Everything on the phone, and the kept shell, deleted; the waiting answers are sent first when they can be.
 export async function clearOffline(): Promise<void> {
+  if (typeof navigator !== 'undefined' && navigator.onLine !== false) await flushAnswers().catch(() => 0);
   await run(PACKS, 'readwrite', (s) => s.clear());
   await run(ANSWERS, 'readwrite', (s) => s.clear());
   local()?.removeItem(CHILD_KEY);

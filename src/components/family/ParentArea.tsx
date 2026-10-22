@@ -10,6 +10,7 @@ import { classText, fill, type Words } from '@/lib/family/fill';
 import { ChildForm, type ChildFormValue } from './ChildForm';
 import { errorWords, familyApi } from './client';
 import { LanguageSwitch } from './LanguageSwitch';
+import { clearOffline } from './offline/store';
 
 // The parent area (feature P2; docs/34 §9.1 rule 1; M1-2, C248), open only in parent mode: the children, what the
 // parent agreed to, each child's answers (see and delete), the language, signing out, and deleting the account.
@@ -280,10 +281,11 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
 
       <Section title={w['fam.parent.signOutTitle']}>
         <div className="flex flex-col gap-2 sm:flex-row">
-          <Button variant="outline" onClick={() => void post('/api/family/auth/sign-out', {}, '/family/sign-in')}>
+          {/* M2-9: signing out also clears the chapters and answers kept on this phone. */}
+          <Button variant="outline" onClick={() => void clearOffline().then(() => post('/api/family/auth/sign-out', {}, '/family/sign-in'))}>
             {w['fam.parent.signOut']}
           </Button>
-          <Button variant="outline" onClick={() => void post('/api/family/auth/sign-out', { everywhere: true }, '/family/sign-in')}>
+          <Button variant="outline" onClick={() => void clearOffline().then(() => post('/api/family/auth/sign-out', { everywhere: true }, '/family/sign-in'))}>
             {w['fam.parent.signOutAll']}
           </Button>
         </div>

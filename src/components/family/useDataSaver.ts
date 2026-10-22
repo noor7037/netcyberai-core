@@ -43,19 +43,3 @@ export function useDataSaver(): { state: DataSaverState; ready: boolean; set: (o
   }, []);
   return { state, ready, set };
 }
-
-// Whether the phone is online now, following changes.
-export function useOnline(): boolean {
-  const [online, setOnline] = useState(true);
-  useEffect(() => {
-    const sync = () => setOnline(navigator.onLine !== false);
-    sync();
-    window.addEventListener('online', sync);
-    window.addEventListener('offline', sync);
-    return () => {
-      window.removeEventListener('online', sync);
-      window.removeEventListener('offline', sync);
-    };
-  }, []);
-  return online;
-}

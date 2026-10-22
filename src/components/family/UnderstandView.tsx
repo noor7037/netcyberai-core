@@ -141,7 +141,9 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
           {fill(w['fam.dataSaver.skipped'], { n: droppedCount(blocks, true) })}
         </p>
       )}
-      {dataSaverBlocks(blocks, saving).map((b, i) => {
+      {dataSaverBlocks(blocks, saving).map((b) => {
+        // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
+        const i = blocks.indexOf(b);
         switch (b.type) {
           case 'explanation':
             return <ExplanationView key={i} b={b} w={w} tone={tone} />;

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { activeChild, listChildren } from '@/lib/family/children';
 import { DAY_MS, openItem, type ItemSecret } from '@/lib/family/items';
 import { recordAnswer } from '@/lib/family/learning';
-import { ANSWER_KEY, answerDay, offlineItemKey, packDays } from '@/lib/family/pack';
+import { ANSWER_KEY, PACK_MAX_DAYS, SYNC_GRACE_DAYS, answerDay, offlineItemKey } from '@/lib/family/pack';
 import { dayLabel, dayPlan } from '@/lib/family/plan';
 import { indiaDate } from '@/lib/time/india';
 import { familyRun, jsonBody, requireFamily } from '@/lib/family/request';
@@ -17,7 +17,9 @@ import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
 // day is real, not in the future and within the token's life (else today), so revisits and that day's plan move as on
 // that day; and it is recorded once per key, however often the phone sends it. A queued answer may belong to another
 // child of this account (the phone was switched since): the token says whose it is, and only the account's own children
-// are tried.
+// are tried. Tokens are taken up to the longest pack life Control can set (so lowering the setting does not break packs
+// already saved), and a queued answer may arrive up to SYNC_GRACE_DAYS after its token ended, provided the day it was made
+// lies within the token's life; otherwise it is refused, never moved to today.
 export async function POST(req: NextRequest) {
   const body = await jsonBody(req);
   const g = await requireFamily(req);
@@ -29,12 +31,14 @@ export async function POST(req: NextRequest) {
     const accountId = g.session.accountId;
     const children = await listChildren(db, accountId);
     const active = activeChild(children, chosen);
-    const maxLife = (await packDays(db)) * DAY_MS;
+    const maxLife = PACK_MAX_DAYS * DAY_MS;
+    // A queued answer is opened as if sent a little earlier: a token that ended while the phone was offline still opens.
+    const at = key ? Date.now() - SYNC_GRACE_DAYS * DAY_MS : Date.now();
     let child = active;
-    let item: ItemSecret | null = active ? openItem(body.token, { accountId, childId: active.childId }, Date.now(), maxLife) : null;
+    let item: ItemSecret | null = active ? openItem(body.token, { accountId, childId: active.childId }, at, maxLife) : null;
     if (!item && key) {
       for (const c of children) {
-        item = openItem(body.token, { accountId, childId: c.childId }, Date.now(), maxLife);
+        item = openItem(body.token, { accountId, childId: c.childId }, at, maxLife);
         if (item) {
           child = c;
           break;
@@ -47,6 +51,8 @@ export async function POST(req: NextRequest) {
     if (!Number.isInteger(choice) || choice < 0 || choice >= item.w.length) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
     const today = indiaDate();
     const day = key ? answerDay(body.answeredOn, item, today) : today;
+    // A token that has ended counts only an answer made within its life.
+    if (item.exp <= Date.now() && !(key && day === body.answeredOn)) return NextResponse.json({ error: 'not_found' }, { status: 404 });
     const itemKey = key ? offlineItemKey(item, key) : undefined;
     if (itemKey) {
       // One answer per key: the second send of the same answer waits for the first, then finds it.

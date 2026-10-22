@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { activeChild, listChildren } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
 import { familyModuleOn } from '@/lib/family/flags';
-import { claimSubject } from '@/lib/family/learning';
 import { isSubject } from '@/lib/family/subjects';
 import { chapterPacks } from '@/lib/family/pack';
 import { familyRun, requireFamily } from '@/lib/family/request';
@@ -10,8 +9,8 @@ import { syllabusLine } from '@/lib/family/resolver';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
 
 // An offline chapter pack (M2-9, C283): GET ?chapter=<key> for the active child. Needs the parent's study_core consent,
-// the `offline` module switched on, and the chapter's subject open to the child as Understand opens it (the first
-// subject a child studies becomes the free one). The pack is the library's responses only (no AI call), with its items
+// the `offline` and `understand` modules switched on, and the chapter's subject already the child's free subject (a
+// download never claims one: the first subject a child studies in Understand becomes the free one). The pack is the library's responses only (no AI call), with its items
 // sealed for the pack's life, and says its size in bytes. Never cached on the way: it carries this child's tokens.
 export const dynamic = 'force-dynamic';
 
@@ -30,7 +29,7 @@ export async function GET(req: NextRequest) {
     if (!(await familyModuleOn(db, 'offline', g.session.accountId)) || !(await familyModuleOn(db, 'understand', g.session.accountId))) return NextResponse.json({ error: 'not_switched_on' }, { status: 403, headers: NO_STORE });
     const line = await syllabusLine(db, child, { kind: 'chapter', key });
     if (!line || !isSubject(line.subject)) return NextResponse.json({ error: 'not_found' }, { status: 404, headers: NO_STORE });
-    if (!(await claimSubject(db, g.session.accountId, child.childId, line.subject))) return NextResponse.json({ error: 'not_open' }, { status: 403, headers: NO_STORE });
+    if (child.freeSubject !== line.subject) return NextResponse.json({ error: 'not_open' }, { status: 403, headers: NO_STORE });
     const [pack] = await chapterPacks(db, { accountId: g.session.accountId, child }, line.subject, { chapterKeys: [line.key] });
     if (!pack) return NextResponse.json({ error: 'not_found' }, { status: 404, headers: NO_STORE });
     return NextResponse.json(pack, { headers: NO_STORE });

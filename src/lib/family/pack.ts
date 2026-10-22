@@ -33,10 +33,13 @@ export type ChapterPack = {
 };
 
 export const PACK_DAYS_FALLBACK = 14;
+// The longest life Control may give a pack, and how long after its token ends a queued answer may still arrive.
+export const PACK_MAX_DAYS = 30;
+export const SYNC_GRACE_DAYS = 7;
 
 // The pack's life in days, as Control sets it (1 to 30).
 export async function packDays(db: Db): Promise<number> {
-  return Math.min(30, Math.max(1, Math.round(await setting(db, 'family.offline_pack_days', PACK_DAYS_FALLBACK))));
+  return Math.min(PACK_MAX_DAYS, Math.max(1, Math.round(await setting(db, 'family.offline_pack_days', PACK_DAYS_FALLBACK))));
 }
 
 // The size of the pack as the phone receives it, in bytes (the JSON text, UTF-8), its own `bytes` included.

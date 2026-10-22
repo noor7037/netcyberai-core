@@ -179,6 +179,17 @@ describe('answers made offline', () => {
     }
   });
 
+  it('a token that ended while the phone was offline still sends an answer made in its life; never one moved to today', async () => {
+    const day = daysAgo(10);
+    const ok = await check(jar, { token: packToken({ issuedDaysAgo: 20 }), choice: 1, key: key(), answeredOn: day });
+    expect(ok.status).toBe(200);
+    expect((await ok.json()).day).toBe(day);
+    expect((await check(jar, { token: packToken({ issuedDaysAgo: 20 }), choice: 1, key: key() })).status).toBe(404);
+    expect((await check(jar, { token: packToken({ issuedDaysAgo: 20 }), choice: 1 })).status).toBe(404);
+    // Past the week of grace: refused.
+    expect((await check(jar, { token: packToken({ issuedDaysAgo: 22 }), choice: 1, key: key(), answeredOn: daysAgo(10) })).status).toBe(404);
+  });
+
   it('a day after the token’s life counts today', () => {
     const iat = Date.parse('2026-10-01T06:00:00Z');
     const item = { iat, exp: iat + DAY_MS };
