@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireStepUp } from '@/lib/auth/step-up';
 import { withPlatformService } from '@/lib/auth/db';
 import { requireAiControl } from '@/lib/ai/control-guard';
-import { loadAiOverview, providerChoices, setCap, setClearance, setCredential, setProfile, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
+import { loadAiOverview, prepareKeyTest, providerChoices, recordKeyTest, setCap, setClearance, setCredential, setProfile, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
 
 // Control → AI (docs/family-app/10 §3, C249). The founder only, with the authenticator (aal2).
 //   GET   providers and their clearance for minors, each key's last four characters (never a key), the profiles, usage
@@ -12,6 +12,7 @@ import { loadAiOverview, providerChoices, setCap, setClearance, setCredential, s
 //         { action: 'profile', profileId, providerId, model, promptVersion, enabled, fallback }
 //         { action: 'cap', value }                                            requests per family per day
 //         { action: 'undo', auditId }                                         restore the state before that change
+//         { action: 'test', providerId }                                      test a content provider's key (YouTube, M2-5)
 // No response carries a key, and nothing here logs the request body.
 export const dynamic = 'force-dynamic';
 const NO_STORE = { 'Cache-Control': 'no-store' };
@@ -54,6 +55,18 @@ export async function POST(req: NextRequest) {
     }
   } else if (b?.action === 'cap') {
     if (typeof b.value === 'number') result = await withPlatformService((db) => setCap(db, by, b.value));
+  } else if (b?.action === 'test') {
+    // The key is opened in one short transaction, the provider asked with none held, the outcome kept in a second.
+    const providerId = str(b.providerId, 40);
+    if (providerId) {
+      const prepared = await withPlatformService((db) => prepareKeyTest(db, providerId));
+      if (!prepared.ok) result = prepared;
+      else {
+        const outcome = await prepared.run();
+        await withPlatformService((db) => recordKeyTest(db, providerId, outcome));
+        return NextResponse.json({ ok: true, works: outcome.ok, code: outcome.code }, { headers: NO_STORE });
+      }
+    }
   } else if (b?.action === 'undo') {
     const auditId = str(b.auditId, 20);
     if (auditId) result = await withPlatformService((db) => undoChange(db, by, auditId));

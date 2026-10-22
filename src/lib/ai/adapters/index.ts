@@ -1,5 +1,6 @@
 import { anthropicAdapter } from './anthropic';
 import { openaiAdapter } from './openai';
+import { youtubeAdapter } from './youtube';
 import type { AdapterResult, TextAdapter } from './types';
 
 export type { AdapterRequest, AdapterResult, ChatImage, ChatMessage, TextAdapter } from './types';
@@ -40,4 +41,13 @@ export function adapterFor(providerId: string, env: Record<string, string | unde
 
 export function textAdapters(): readonly TextAdapter[] {
   return REAL;
+}
+
+// Providers whose key Control → AI keeps: every text adapter, and the content adapters that are not text models (the
+// video finder's YouTube, M2-5). A content adapter is never returned by adapterFor(), so no AI profile can choose it.
+export type KeyedProvider = { providerId: string; capability: 'text' | 'video'; needsKey: boolean; keyLooksRight: (key: string) => boolean };
+const CONTENT: readonly KeyedProvider[] = [youtubeAdapter];
+
+export function keyedProviderFor(providerId: string, env: Record<string, string | undefined> = process.env): KeyedProvider | null {
+  return adapterFor(providerId, env) ?? CONTENT.find((a) => a.providerId === providerId) ?? null;
 }

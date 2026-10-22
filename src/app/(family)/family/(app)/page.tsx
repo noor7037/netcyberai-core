@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { FamilyHeader } from '@/components/family/FamilyHeader';
+import { HabitCard } from '@/components/family/HabitCard';
 import { PlanCard } from '@/components/family/PlanCard';
 import { familyModuleOn } from '@/lib/family/flags';
+import { childHabit } from '@/lib/family/habit';
 import { dayPlan } from '@/lib/family/plan';
 import { indiaDate } from '@/lib/time/india';
 import { childProgress } from '@/lib/family/learning';
@@ -13,7 +15,7 @@ import { t, type MessageKey } from '@/lib/i18n';
 // The Family app's home, in child mode (M1-2, C248; M1-6, C252): the app opens here, because most pilot children use a
 // parent's phone. It shows where the child is: the topics they have checked, which are mastered (right on two days a
 // week apart), and the way to study. Progress is made only of checked answers. A family that has not finished the
-// parent's first steps is taken to the next one. With the plan module on, today's plan comes first (M2-2, C276).
+// parent's first steps is taken to the next one. With the plan module on, today's plan comes first (M2-2, C276); the habit module adds the week, the badges and the jar (M2-3, C277).
 const KEYS: MessageKey[] = ['fam.app.name', 'fam.home.hello', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.home.parent', 'fam.home.whoIsLearning'];
 
 export default async function FamilyHomePage() {
@@ -23,9 +25,10 @@ export default async function FamilyHomePage() {
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const { progress, plan } = await familyPageRead(page, async (db) => ({
+  const { progress, plan, habit } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
     plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
+    habit: (await familyModuleOn(db, 'habit', page.session.accountId)) ? await childHabit(db, page.session.accountId, child, indiaDate(), lang) : null,
   }));
   const mastered = progress.filter((p) => p.mastered).length;
   return (
@@ -33,6 +36,7 @@ export default async function FamilyHomePage() {
       <FamilyHeader w={familyWords(lang, KEYS)} child={child} children={page.children} />
       <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-10">
         {plan && <PlanCard plan={plan} lang={lang} />}
+        {habit && <HabitCard habit={habit} lang={lang} />}
         <section data-family-start className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate/10">
           <h2 className="text-xl font-extrabold text-slate">{progress.length ? t(lang, 'fam.home.continueTitle') : t(lang, 'fam.home.startTitle')}</h2>
           <p className="mt-1 text-base text-slate/80">{progress.length ? t(lang, 'fam.home.continueLead') : t(lang, 'fam.home.startLead')}</p>

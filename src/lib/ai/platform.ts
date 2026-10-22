@@ -1,6 +1,8 @@
+import { withPlatformService } from '@/lib/auth/db';
 import type { Sql } from '@/lib/jobs/types';
 import type { MessageKey } from '@/lib/i18n';
 import { adapterFor, type AdapterResult, type ChatImage, type ChatMessage, type TextAdapter } from './adapters';
+import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { dailyLimit, takeDailyRequest } from './daily-cap';
 import { scrubRequest } from './preprocess';
@@ -234,4 +236,76 @@ export async function streamText(db: Sql, ctx: AiContext, profileId: ProfileId, 
   const sent = await prepared.text.send(onDelta);
   await sent.record(db);
   return sent.result;
+}
+
+// ---- the video finder (docs/family-app/03 §8; M2-5, C279) -----------------------------------------------------------
+//
+// Not an AI profile: a content provider whose key Control → AI keeps (provider 'youtube'). The same three steps as a
+// text call, so no database connection is held while YouTube answers: prepareVideoSearch() opens the key and takes the
+// day's searches in the caller's transaction; find() calls the provider with no database at all; the caller saves what
+// it ranked in its next transaction (content.save_video_picks). The search is built by the caller from the catalog —
+// a topic's title with its subject and class words — never from anything a child typed or said.
+
+export type { VideoCandidate, VideoChapter, VideoKind } from './adapters/youtube';
+export type VideoChannel = { channelId: string; kind: VideoKind };
+export type VideoPlan = { query: string; language: 'en' | 'hi'; channelIds: string[] };
+export type FoundVideos = { ok: true; candidates: VideoCandidate[] } | { ok: false };
+export type PreparedVideos = { ok: true; searches: number; find: () => Promise<FoundVideos> } | { ok: false; reason: 'no_key' | 'quota' };
+
+const VIDEO_PROVIDER = 'youtube';
+// At most this many channel searches (official, then approved; the caller turns the lists by topic) beside the wider
+// catalogue, each one a search from the day's quota (family.video_searches_per_day): a refresh takes 1 to 3.
+const CHANNEL_SEARCHES = 2;
+
+// The channels Control listed (official, approved, blocked). Control's own table: families have no read of it, so it is
+// read here with the platform role, in a short transaction of its own (ids and kinds only; no family data is near it).
+export async function videoChannels(): Promise<VideoChannel[]> {
+  const rows = await withPlatformService(async (db) => (await db.query(`select channel_id, kind from content.video_channels order by kind, added_at`)).rows);
+  return rows.map((r) => ({ channelId: String(r.channel_id), kind: r.kind as VideoKind }));
+}
+
+// In the caller's transaction: the provider's key (none, or one that does not open → nothing is searched and no quota
+// is spent), then up to 1 + CHANNEL_SEARCHES searches from today's quota.
+export async function prepareVideoSearch(db: Sql, a: { day: string; perDay: number; plan: VideoPlan }): Promise<PreparedVideos> {
+  if (!DAY.test(a.day)) return { ok: false, reason: 'quota' };
+  const k = aiEncryptionKey();
+  if (!k) return { ok: false, reason: 'no_key' };
+  const { rows } = await db.query(`select ciphertext, iv, tag, key_version from control.ai_sealed_credential($1)`, [VIDEO_PROVIDER]);
+  if (!rows[0]) return { ok: false, reason: 'no_key' };
+  let apiKey: string;
+  try {
+    apiKey = unsealAiKey(k, VIDEO_PROVIDER, rows[0] as SealedRow);
+  } catch {
+    return { ok: false, reason: 'no_key' };
+  }
+  const channels = a.plan.channelIds.slice(0, CHANNEL_SEARCHES);
+  let searches = 0;
+  for (let i = 0; i < 1 + channels.length; i++) {
+    const took = await db.query(`select content.take_video_search($1::date, $2::int) as ok`, [a.day, Math.max(0, Math.floor(a.perDay))]);
+    if (took.rows[0]?.ok !== true) break;
+    searches++;
+  }
+  if (searches === 0) return { ok: false, reason: 'quota' };
+  // Fewer searches left than planned: the wider catalogue keeps its one, the channel searches give way.
+  const channelIds = channels.slice(0, searches - 1);
+  const { query, language } = a.plan;
+  let used = false;
+  return {
+    ok: true,
+    searches,
+    // Each search taken is sent at most once.
+    find: async (): Promise<FoundVideos> => {
+      if (used) return { ok: false };
+      used = true;
+      // The channel searches and the wider one at once (one round trip); the channels' results come first.
+      const results = await Promise.all([
+        ...channelIds.map((channelId) => searchVideoIds(apiKey, { query, language, channelId, maxResults: 5 })),
+        searchVideoIds(apiKey, { query, language, maxResults: 10 }),
+      ]);
+      if (!results.some((r) => r.ok)) return { ok: false };
+      const ids = results.flatMap((r) => (r.ok ? r.value : []));
+      const details = await videoDetails(apiKey, Array.from(new Set(ids)));
+      return details.ok ? { ok: true, candidates: details.value } : { ok: false };
+    },
+  };
 }
