@@ -20,19 +20,25 @@ export function FamilyTabs({ tabs, labels, navLabel }: { tabs: FamilyTab[]; labe
   const path = usePathname() ?? '';
   if (path.startsWith('/family/welcome')) return null;
   const active = (t: FamilyTab) => (t === 'home' ? path === '/family' : t === 'study' ? path.startsWith('/family/study') || path.startsWith('/family/understand') : path.startsWith(HREF[t]));
+  // D1 (C230-Q): a floating dock above the phone's home bar; the open tab sits on a coloured pill that pops in.
   return (
-    <nav aria-label={navLabel} className="fixed inset-x-0 bottom-0 z-30 border-t border-slate/10 bg-white pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_16px_rgba(15,23,42,0.06)]">
-      <ul className="mx-auto flex max-w-xl">
-        {tabs.map((t) => (
-          <li key={t} className="flex-1">
-            <Link href={HREF[t]} aria-current={active(t) ? 'page' : undefined} className={`flex min-h-[56px] flex-col items-center justify-center gap-0.5 text-xs font-bold ${active(t) ? 'text-royal-deep' : 'text-slate/80'}`}>
-              <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round">
-                <path d={ICON[t]} />
-              </svg>
-              {labels[t]}
-            </Link>
-          </li>
-        ))}
+    <nav aria-label={navLabel} className="fixed inset-x-0 bottom-0 z-30 px-3 pb-[calc(env(safe-area-inset-bottom)+0.5rem)]">
+      <ul className="fam-dock mx-auto flex max-w-xl rounded-[1.75rem] bg-white p-1.5">
+        {tabs.map((t) => {
+          const on = active(t);
+          return (
+            <li key={t} className="flex-1">
+              <Link href={HREF[t]} aria-current={on ? 'page' : undefined} className={`fam-press flex min-h-[56px] flex-col items-center justify-center gap-0.5 rounded-[1.25rem] text-xs font-bold ${on ? 'text-royal-deep' : 'text-slate/80'}`}>
+                <span className={`flex h-8 w-12 items-center justify-center rounded-full ${on ? 'fam-tab-on bg-gradient-to-br from-royal to-violet text-white shadow-md' : ''}`}>
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[22px] w-[22px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round">
+                    <path d={ICON[t]} />
+                  </svg>
+                </span>
+                {labels[t]}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
