@@ -6867,4 +6867,8 @@ export const hi: Record<keyof typeof en, string> = {
   'control.queue.err.failed': 'यह नहीं हो सका। फिर कोशिश करें।',
   'control.queue.err.authenticator_needed': 'जवाबों की समीक्षा के लिए अपने ऑथेंटिकेटर से फिर से साइन इन करें।',
   // m2-12 end
+  // d1 begin
+  'fam.check.mastered': 'विषय पक्का हो गया!',
+  'fam.check.masteredBody': 'आपने इसे एक हफ़्ते के अंतर पर दो दिन सही किया। यही बताता है कि आपने इसे सीख लिया है।',
+  // d1 end
 };

@@ -39,6 +39,8 @@ const config: Config = {
         'bounce-once': { '0%, 100%': { transform: 'translateY(0)' }, '40%': { transform: 'translateY(-10px)' }, '70%': { transform: 'translateY(2px)' } },
         burst: { '0%': { transform: 'translate(0, 0) scale(0.6)', opacity: '1' }, '100%': { transform: 'translate(var(--bx), var(--by)) scale(1)', opacity: '0' } },
         nudge: { '0%, 100%': { transform: 'translateX(0)' }, '25%': { transform: 'translateX(-5px)' }, '75%': { transform: 'translateX(5px)' } },
+        // D1 (C292): a progress bar fills from empty to its own scale (a from-only keyframe ends at the element's style).
+        'grow-x': { from: { transform: 'scaleX(0)' } },
       },
       animation: {
         'drawer-in': 'drawer-in 180ms ease-out',
@@ -49,6 +51,7 @@ const config: Config = {
         glow: 'glow 1.8s ease-in-out infinite',
         'bounce-once': 'bounce-once 600ms ease-out',
         burst: 'burst 900ms ease-out forwards',
+        'grow-x': 'grow-x 600ms cubic-bezier(.2,.8,.2,1)',
         nudge: 'nudge 300ms ease-in-out',
       },
       fontFamily: {

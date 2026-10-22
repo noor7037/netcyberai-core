@@ -19,6 +19,7 @@ import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
 import { VOICE_KEYS } from '@/lib/family/voice-words';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
+import { Picture } from '../../../../../components/family/Picture';
 
 // Study (M1-5, C251): the child's subject, its chapters and topics from the catalog released to everyone for the
 // child's class, each opening Understand; and a typed question. Without a catalog for the class (classes 6–8 for
@@ -107,7 +108,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
             {homeworkOn && (
               <Link href="/family/study/homework" data-homework-link className="flex min-h-[56px] items-center gap-3 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate/10 hover:bg-slate/5">
                 <span aria-hidden className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sunshine/30 text-xl">
-                  📷
+                  <Picture e="📷" />
                 </span>
                 <span className="flex flex-col">
                   <span className="text-base font-bold text-slate">{t(lang, 'fam.homework.studyLink')}</span>

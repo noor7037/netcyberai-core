@@ -1,4 +1,5 @@
 'use client';
+import { Picture } from './Picture';
 
 import { useRef, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
@@ -95,11 +96,11 @@ export function HomeworkHelper({ w }: { w: Words }) {
         <p className="text-base text-slate">{w['fam.homework.lead']}</p>
         <div className="grid gap-2 sm:grid-cols-2">
           <button type="button" disabled={busy} onClick={() => camera.current?.click()} className="flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-royal px-4 text-base font-bold text-white hover:bg-royal-deep disabled:opacity-60">
-            <span aria-hidden>📷</span>
+            <span aria-hidden><Picture e="📷" /></span>
             {w['fam.homework.takePhoto']}
           </button>
           <button type="button" disabled={busy} onClick={() => gallery.current?.click()} className="flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-off-white px-4 text-base font-bold text-slate ring-1 ring-slate/15 hover:bg-slate/5 disabled:opacity-60">
-            <span aria-hidden>🖼️</span>
+            <span aria-hidden><Picture e="🖼️" /></span>
             {w['fam.homework.choosePhoto']}
           </button>
         </div>

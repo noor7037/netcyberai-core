@@ -6879,4 +6879,8 @@ export const en = {
   'control.queue.err.failed': 'That did not work. Try again.',
   'control.queue.err.authenticator_needed': 'Sign in again with your authenticator to review responses.',
   // m2-12 end
+  // d1 begin
+  'fam.check.mastered': 'Topic mastered!',
+  'fam.check.masteredBody': 'You got it right on two days a week apart. That is how you know you have learned it.',
+  // d1 end
 } as const;
