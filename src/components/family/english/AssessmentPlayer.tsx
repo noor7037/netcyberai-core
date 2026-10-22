@@ -1,4 +1,5 @@
 'use client';
+import { Picture } from '../Picture';
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -43,7 +44,7 @@ export function AssessmentPlayer({ kind, w, lang }: { kind: AssessmentKind; w: W
     return (
       <section className="relative flex flex-col gap-4 rounded-3xl bg-white p-6 text-slate shadow-md ring-1 ring-slate/10">
         <Burst />
-        <h2 className="text-2xl font-extrabold text-slate">📈 {w[`fam.english.check.${kind}`]}</h2>
+        <h2 className="text-2xl font-extrabold text-slate"><Picture e="📈" /> {w[`fam.english.check.${kind}`]}</h2>
         <p className="text-lg font-bold text-slate">{w['fam.english.check.score'].replace('{n}', String(result.total))}</p>
         <ul className="flex flex-col gap-3">
           {skills.map((s, i) => (
@@ -94,7 +95,7 @@ export function AssessmentPlayer({ kind, w, lang }: { kind: AssessmentKind; w: W
         )}
         {onSpeaking && (
           <>
-            <h2 className="text-xl font-extrabold text-slate">🗣️ {w['fam.english.skill.speaking']}</h2>
+            <h2 className="text-xl font-extrabold text-slate"><Picture e="🗣️" /> {w['fam.english.skill.speaking']}</h2>
             {data.track === 'a' && <p className="text-base text-slate">{w['fam.english.rate.grownup']}</p>}
             {data.speaking.map((sp) => (
               <div key={sp.key} className="flex flex-col gap-3 rounded-3xl bg-white p-4 text-slate shadow-sm ring-1 ring-slate/10">
@@ -108,7 +109,7 @@ export function AssessmentPlayer({ kind, w, lang }: { kind: AssessmentKind; w: W
                   <Pic pic="💬" size={28} />
                   <p className="flex-1 text-base text-slate"><span lang="en">{sp.model}</span></p>
                   <button type="button" onClick={() => void speak(sp.model)} aria-label={fill(w['fam.english.listenTo'], { text: sp.model })} className="min-h-[44px] min-w-[44px] rounded-full bg-white text-xl text-slate ring-1 ring-slate/10">
-                    🔊
+                    <Picture e="🔊" />
                   </button>
                 </div>
                 <p className="text-sm font-bold text-slate">{w['fam.english.rate']}</p>
@@ -131,7 +132,7 @@ export function AssessmentPlayer({ kind, w, lang }: { kind: AssessmentKind; w: W
                           }}
                           className={`min-h-[44px] flex-1 rounded-2xl px-2 text-sm font-bold ${ratings[sp.key]?.[ci] === v ? theme.button : 'bg-off-white text-slate ring-1 ring-slate/20'}`}
                         >
-                          {['🌱', '🌿', '🌳'][v]} {w[`fam.english.rate.${v}`]}
+                          <Picture e={['🌱', '🌿', '🌳'][v]} /> {w[`fam.english.rate.${v}`]}
                         </button>
                       ))}
                     </div>
