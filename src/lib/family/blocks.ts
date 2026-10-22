@@ -410,6 +410,55 @@ export function allowedSource(url: string): boolean {
 }
 
 // One line of model output → a block, or null. Text around the JSON (a stray "```json") is ignored.
+// The model's answer as it streams, cut into its top-level JSON objects (W2, C316). Our prompts ask for one block per
+// line, but open models (Llama on Workers AI) often spread a block over several lines, wrap blocks in a code fence, put
+// them in a list, or add a sentence around them. Braces are counted outside strings, so each complete object is handed
+// on as soon as it closes, whatever the lines; anything outside an object is dropped, and so is an object that never
+// closes or grows past the limit.
+const OBJECT_MAX_CHARS = 20_000;
+export function jsonObjectScanner(): (text: string) => string[] {
+  let buf = '';
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  return (text) => {
+    const out: string[] = [];
+    for (const ch of text) {
+      if (depth === 0) {
+        if (ch === '{') {
+          depth = 1;
+          buf = '{';
+        }
+        continue;
+      }
+      buf += ch;
+      if (buf.length > OBJECT_MAX_CHARS) {
+        depth = 0;
+        inString = false;
+        escaped = false;
+        buf = '';
+        continue;
+      }
+      if (inString) {
+        if (escaped) escaped = false;
+        else if (ch === '\\') escaped = true;
+        else if (ch === '"') inString = false;
+        continue;
+      }
+      if (ch === '"') inString = true;
+      else if (ch === '{') depth += 1;
+      else if (ch === '}') {
+        depth -= 1;
+        if (depth === 0) {
+          out.push(buf);
+          buf = '';
+        }
+      }
+    }
+    return out;
+  };
+}
+
 export function parseBlockLine(line: string): Block | null {
   const start = line.indexOf('{');
   const end = line.lastIndexOf('}');

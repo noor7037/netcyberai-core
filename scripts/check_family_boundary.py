@@ -67,6 +67,8 @@ EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")
 # Outside the family area, these files may import exactly these family modules.
 OUTSIDE_MAY_IMPORT_FAMILY = {
     "src/middleware.ts": {"@/lib/family/session"},
+    # The preparing job (C316) runs the prepare tool's step with no browser open; staff only, see the file.
+    "src/lib/jobs/ai-jobs.ts": {"@/lib/family/prepare"},
 }
 
 # Outside the family area, these files may name these family tables: the choke point's live session check (the one

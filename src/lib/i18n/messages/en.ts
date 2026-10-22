@@ -6940,5 +6940,6 @@ export const en = {
   'fam.ai.notice.aiMade': 'Made by AI, and AI can be wrong. Check with your book or your teacher.',
   'fam.ai.notice.checked': 'Made by AI, then checked by NetCyberAI.',
   'fam.ai.notice.link': 'How the AI works',
+  'control.prepare.chapters': 'Only these chapters (none ticked: the whole version)',
   // w2 end
 } as const;

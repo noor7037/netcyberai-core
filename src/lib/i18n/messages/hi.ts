@@ -6928,5 +6928,6 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.ai.notice.aiMade': 'यह AI ने बनाया है, और AI गलत भी हो सकता है। अपनी किताब या शिक्षक से मिलाएँ।',
   'fam.ai.notice.checked': 'यह AI ने बनाया है, फिर NetCyberAI ने जाँचा है।',
   'fam.ai.notice.link': 'AI कैसे काम करता है',
+  'control.prepare.chapters': 'केवल ये अध्याय (कोई नहीं चुना: पूरा संस्करण)',
   // w2 end
 };

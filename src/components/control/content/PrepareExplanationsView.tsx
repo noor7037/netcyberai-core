@@ -8,7 +8,8 @@ import type { MessageKey } from '@/lib/i18n';
 
 // Control → Content → Responses (P1 slice 3, C300): make the explanation of every chapter and topic of one syllabus
 // version, in English and in Hindi, before children ask. Each goes into the queue below as AI-made, to check or
-// withdraw. The server makes one per call; this keeps calling until nothing is missing, a line fails, or Stop.
+// withdraw. The server makes one per call; this keeps calling until nothing is missing, a line fails, or Stop. Staff may
+// tick chapters to prepare only those (C316), so one day's free AI allowance is spent where it is needed.
 
 export type PreparableVersion = { versionId: string; boardId: string; classLevel: number; subject: string; year: string; versionNo: number; status: string };
 type State = { total: number; checked: number; aiMade: number; missing: number; withdrawn: number };
@@ -18,19 +19,24 @@ export function PrepareExplanationsView({ versions }: { versions: PreparableVers
   const { stepUpFetch } = useStepUp();
   const [versionId, setVersionId] = useState(versions[0]?.versionId ?? '');
   const [state, setState] = useState<State | null>(null);
+  const [chapters, setChapters] = useState<{ key: string; title: string }[]>([]);
+  const [picked, setPicked] = useState<string[]>([]);
   const [running, setRunning] = useState(false);
   const stopAsked = useRef(false);
   const [note, setNote] = useState<string | null>(null);
 
   const call = async (init?: RequestInit) => {
-    const res = await stepUpFetch(init ? '/api/family/prepare' : `/api/family/prepare?version=${versionId}`, init).catch(() => null);
-    return res?.ok ? ((await res.json()) as { state: State; made?: { key: string; language: string; outcome: string } | null }) : null;
+    const res = await stepUpFetch(init ? '/api/family/prepare' : `/api/family/prepare?version=${versionId}&chapters=${picked.join(',')}`, init).catch(() => null);
+    return res?.ok ? ((await res.json()) as { state: State; chapters?: { key: string; title: string }[]; made?: { key: string; language: string; outcome: string } | null }) : null;
   };
 
   const look = async () => {
     setNote(null);
     const r = await call();
-    if (r) setState(r.state);
+    if (r) {
+      setState(r.state);
+      if (r.chapters) setChapters(r.chapters);
+    }
     else setNote(t('control.prepare.failed'));
   };
 
@@ -40,7 +46,7 @@ export function PrepareExplanationsView({ versions }: { versions: PreparableVers
     setNote(null);
     for (;;) {
       if (stopAsked.current) break;
-      const r = await call({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ versionId }) });
+      const r = await call({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ versionId, chapterKeys: picked }) });
       if (!r) {
         setNote(t('control.prepare.failed'));
         break;
@@ -74,6 +80,8 @@ export function PrepareExplanationsView({ versions }: { versions: PreparableVers
           onChange={(e) => {
             setVersionId(e.target.value);
             setState(null);
+            setChapters([]);
+            setPicked([]);
             setNote(null);
           }}
         >
@@ -84,6 +92,26 @@ export function PrepareExplanationsView({ versions }: { versions: PreparableVers
           ))}
         </select>
       </label>
+      {chapters.length > 0 && (
+        <fieldset className="flex flex-col gap-1">
+          <legend className="text-sm font-semibold text-slate">{t('control.prepare.chapters')}</legend>
+          {chapters.map((c) => (
+            <label key={c.key} className="flex min-h-[44px] items-center gap-2 text-sm text-slate">
+              <input
+                type="checkbox"
+                className="h-5 w-5"
+                disabled={running}
+                checked={picked.includes(c.key)}
+                onChange={(e) => {
+                  setPicked((p) => (e.target.checked ? [...p, c.key] : p.filter((k) => k !== c.key)));
+                  setState(null);
+                }}
+              />
+              {c.title}
+            </label>
+          ))}
+        </fieldset>
+      )}
       {state && (
         <p role="status" className="text-sm text-slate">
           {t('control.prepare.counts', { total: String(state.total), checked: String(state.checked), aiMade: String(state.aiMade), missing: String(state.missing), withdrawn: String(state.withdrawn) })}

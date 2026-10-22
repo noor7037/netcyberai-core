@@ -72,7 +72,7 @@ describe("Llama Guard's answer, in either form", () => {
   it('sends the exchange to its own run route, at temperature 0, and nothing else', async () => {
     replies.push(guard('unsafe\nS1'));
     const r = await workersAiModerationAdapter.moderate({ apiKey: WORKERS_KEY, model: GUARD, user: 'What do magnets attract?', assistant: 'Iron and nickel.' });
-    expect(r).toEqual({ ok: true, safe: false, categories: ['S1'], tokensIn: 40, tokensOut: 2 });
+    expect(r).toEqual({ ok: true, safe: false, categories: ['S1'], tokensIn: 40, tokensOut: 2, form: 'text' });
     expect(calls[0].url).toBe(`https://api.cloudflare.com/client/v4/accounts/${'c'.repeat(32)}/ai/run/${GUARD}`);
     expect(JSON.parse(calls[0].body)).toEqual({ messages: [{ role: 'user', content: 'What do magnets attract?' }, { role: 'assistant', content: 'Iron and nickel.' }], max_tokens: 32, temperature: 0 });
   });

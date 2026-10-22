@@ -89,6 +89,8 @@ describe('Workers AI text, through Cloudflare’s OpenAI-compatible route', () =
       model: '@cf/meta/llama-4-scout-17b-16e-instruct',
       stream: true,
       max_tokens: 900,
+      // A steadier structured answer from open models (C316).
+      temperature: 0.3,
       messages: [
         { role: 'system', content: 'Explain for a Class 6 student.' },
         { role: 'user', content: 'Why do magnets attract iron?' },

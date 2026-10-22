@@ -22,6 +22,10 @@ export const PREPARE_LANGUAGES = ['en', 'hi'] as const;
 export type PrepareLanguage = (typeof PREPARE_LANGUAGES)[number];
 type Version = { versionId: string; boardId: string; classLevel: number; subject: string };
 type Wanted = { kind: 'chapter' | 'topic'; key: string; language: PrepareLanguage };
+// Which part of the version (C316): only these chapters (each with its topics), and lines to pass over this run (one
+// that failed, so a run that measures goes on to the next instead of asking for the same line again).
+export type PrepareScope = { chapterKeys?: readonly string[]; skip?: readonly { key: string; language: string }[] };
+export type PrepareChapter = { key: string; title: string };
 
 export type PrepareState = { total: number; checked: number; aiMade: number; missing: number; withdrawn: number; next: Wanted | null };
 export type PrepareOutcome = 'kept' | 'incomplete' | 'already' | Extract<ResolverEvent, { t: 'refused' }>['reason'];
@@ -32,14 +36,20 @@ async function versionOf(db: Db, versionId: string): Promise<Version | null> {
   return r && isSubject(r.subject) ? { versionId: String(r.version_id), boardId: String(r.board_id), classLevel: Number(r.class_level), subject: String(r.subject) } : null;
 }
 
-// The version's chapters, each followed by its topics, in book order.
-async function linesOf(db: Db, versionId: string): Promise<{ kind: 'chapter' | 'topic'; key: string }[]> {
+// The version's chapters, for choosing which to prepare.
+export async function prepareChapters(db: Db, versionId: string): Promise<PrepareChapter[]> {
+  const { rows } = await db.query(`select chapter_key, title_en from content.chapters where version_id = $1 order by position, chapter_key`, [versionId]);
+  return rows.map((r) => ({ key: String(r.chapter_key), title: String(r.title_en) }));
+}
+
+// The version's chapters (all, or the ones asked for), each followed by its topics, in book order.
+async function linesOf(db: Db, versionId: string, chapterKeys?: readonly string[]): Promise<{ kind: 'chapter' | 'topic'; key: string }[]> {
   const { rows } = await db.query(
     `select c.chapter_key, t.topic_key
        from content.chapters c left join content.topics t on t.chapter_id = c.chapter_id
-      where c.version_id = $1
+      where c.version_id = $1 and ($2::text[] is null or c.chapter_key = any($2::text[]))
       order by c.position, c.chapter_key, t.position nulls first, t.topic_key`,
-    [versionId]
+    [versionId, chapterKeys?.length ? chapterKeys : null]
   );
   const out: { kind: 'chapter' | 'topic'; key: string }[] = [];
   const seen = new Set<string>();
@@ -69,10 +79,11 @@ function childFor(v: Version, language: PrepareLanguage): FamilyChild {
   };
 }
 
-export async function prepareState(db: Db, versionId: string): Promise<PrepareState | null> {
+export async function prepareState(db: Db, versionId: string, scope: PrepareScope = {}): Promise<PrepareState | null> {
   const v = await versionOf(db, versionId);
   if (!v) return null;
-  const lines = await linesOf(db, versionId);
+  const lines = await linesOf(db, versionId, scope.chapterKeys);
+  const skipped = (key: string, language: string) => (scope.skip ?? []).some((s) => s.key === key && s.language === language);
   const promptVersion = resolverPrompt(await activePromptVersion(db as never, 'content.prepare'), false).version;
   const { rows } = await db.query(
     `select topic_key, language, status from content.responses
@@ -92,7 +103,7 @@ export async function prepareState(db: Db, versionId: string): Promise<PrepareSt
       else if (s === 'ai_made') state.aiMade += 1;
       else {
         state.missing += 1;
-        state.next ??= { ...line, language };
+        if (!skipped(line.key, language)) state.next ??= { ...line, language };
       }
     }
   }
@@ -101,9 +112,9 @@ export async function prepareState(db: Db, versionId: string): Promise<PrepareSt
 
 // Makes the next missing explanation of the version. `run` opens one short transaction as the platform role; none is
 // held while the model answers (as the Understand route, F1-3).
-export async function prepareNext(run: Run, by: { userId: string }, versionId: string): Promise<{ state: PrepareState; made: (Wanted & { outcome: PrepareOutcome }) | null } | null> {
+export async function prepareNext(run: Run, by: { userId: string }, versionId: string, scope: PrepareScope = {}): Promise<{ state: PrepareState; made: (Wanted & { outcome: PrepareOutcome }) | null } | null> {
   const first = await run(async (db) => {
-    const state = await prepareState(db, versionId);
+    const state = await prepareState(db, versionId, scope);
     const v = await versionOf(db, versionId);
     if (!state || !v || !state.next) return { state, pending: null, want: null, outcome: null };
     const want = state.next;
@@ -128,6 +139,35 @@ export async function prepareNext(run: Run, by: { userId: string }, versionId: s
   const last = await run((db) => keep(db, pending, generated));
   if (generated.error !== null) throw generated.error;
   const outcome: PrepareOutcome = !last ? 'failed' : last.t === 'refused' ? last.reason : last.t === 'done' && last.complete ? 'kept' : 'incomplete';
-  const state = (await run((db) => prepareState(db, versionId)))!;
+  const state = (await run((db) => prepareState(db, versionId, scope)))!;
   return { state, made: { ...first.want, outcome } };
+}
+
+// ---- the preparing job (W2, C316) -----------------------------------------------------------------------------------
+
+// Staff prepare a set of chapters without a browser open: one line per job run (each run fits the server's minute),
+// then the next run is queued with what happened so far. A line that fails is passed over, so the run also measures
+// how reliably the model returns our blocks (kept, incomplete, refused), line by line. It stops when nothing is left,
+// when the AI is not switched on, or after 400 lines.
+export type PrepareJobPayload = { versionId: string; chapterKeys: string[]; by: string; outcomes: { key: string; language: string; outcome: PrepareOutcome }[] };
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const LINE_KEY = /^[a-z0-9][a-z0-9._-]{2,119}$/;
+const STOP: readonly PrepareOutcome[] = ['not_switched_on', 'not_cleared_for_minors'];
+
+export function preparePayload(raw: unknown): PrepareJobPayload | null {
+  const p = raw as Partial<PrepareJobPayload> | null;
+  if (!p || typeof p.versionId !== 'string' || !UUID_RE.test(p.versionId) || typeof p.by !== 'string' || !UUID_RE.test(p.by)) return null;
+  if (!Array.isArray(p.chapterKeys) || p.chapterKeys.length > 40 || !p.chapterKeys.every((k) => typeof k === 'string' && LINE_KEY.test(k))) return null;
+  const outcomes = Array.isArray(p.outcomes) ? p.outcomes.filter((o) => o && typeof o.key === 'string' && typeof o.language === 'string' && typeof o.outcome === 'string') : [];
+  return { versionId: p.versionId, chapterKeys: p.chapterKeys, by: p.by, outcomes: outcomes.slice(0, 400) };
+}
+
+// One run: the next line, then either the payload for the next run or the finished summary.
+export async function prepareJobStep(run: Run, payload: PrepareJobPayload): Promise<{ next: PrepareJobPayload | null; state: PrepareState | null; outcomes: PrepareJobPayload['outcomes'] }> {
+  const skip = payload.outcomes.filter((o) => o.outcome !== 'kept');
+  const result = await prepareNext(run, { userId: payload.by }, payload.versionId, { chapterKeys: payload.chapterKeys, skip });
+  if (!result || !result.made) return { next: null, state: result?.state ?? null, outcomes: payload.outcomes };
+  const outcomes = [...payload.outcomes, { key: result.made.key, language: result.made.language, outcome: result.made.outcome }];
+  const done = STOP.includes(result.made.outcome) || outcomes.length >= 400;
+  return { next: done ? null : { ...payload, outcomes }, state: result.state, outcomes };
 }

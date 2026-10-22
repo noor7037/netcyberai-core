@@ -71,7 +71,8 @@ export const MODERATION_TIMEOUT_MS = 8_000;
 export type ModerationRequest = { apiKey: string; model: string; user: string; assistant?: string };
 // `categories` are the classifier's own codes (Llama Guard's S1–S14), kept only in memory to choose what the child is
 // told; never stored with the words.
-export type ModerationResult = { ok: true; safe: boolean; categories: string[]; tokensIn: number; tokensOut: number } | { ok: false; failure: AdapterFailure; status?: number };
+// `form`: how the classifier answered (its text, or an object), for the smoke test to record (C316).
+export type ModerationResult = { ok: true; safe: boolean; categories: string[]; tokensIn: number; tokensOut: number; form?: 'text' | 'object' } | { ok: false; failure: AdapterFailure; status?: number };
 
 // The moderation capability, beside text and speech, under the same rules: the key is opened by the platform and
 // handed in; nothing is kept, logged or thrown; a failure says only its kind.

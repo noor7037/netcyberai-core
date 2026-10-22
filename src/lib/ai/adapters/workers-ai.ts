@@ -25,6 +25,9 @@ const base = (account: string) => `https://api.cloudflare.com/client/v4/accounts
 // JSON is asked for in the system prompt (JSON_ONLY) rather than with response_format, and usage is read when sent.
 // Photos go as image_url data URLs to a model Control chose for vision (for example Llama 4 Scout); a model that cannot
 // take them answers with an error, and the platform hands the call to the next provider in the chain.
+// Open models keep to a structured answer better when they choose their words less freely; 0.3 still lets an
+// explanation read naturally (C316). Cloudflare's default is higher.
+const WORKERS_TEMPERATURE = 0.3;
 export const workersAiAdapter: TextAdapter = {
   providerId: 'workers-ai',
   capability: 'text',
@@ -35,7 +38,7 @@ export const workersAiAdapter: TextAdapter = {
   async streamText(request, onDelta): Promise<AdapterResult> {
     const k = splitWorkersKey(request.apiKey);
     if (!k) return { ok: false, failure: 'http', status: 401 };
-    return streamChatCompletions(`${base(k.account)}/v1/chat/completions`, k.token, request, onDelta, { maxTokensField: 'max_tokens', jsonMode: false, includeUsage: false });
+    return streamChatCompletions(`${base(k.account)}/v1/chat/completions`, k.token, request, onDelta, { maxTokensField: 'max_tokens', jsonMode: false, includeUsage: false, temperature: WORKERS_TEMPERATURE });
   },
 };
 
@@ -126,6 +129,7 @@ export const workersAiModerationAdapter: ModerationAdapter = {
     const verdict = body?.success === false ? null : guardVerdict(body?.result?.response);
     if (!verdict) return { ok: false, failure: 'bad_stream' };
     const sent = messages.reduce((n, m) => n + m.content.length, 0);
-    return { ok: true, ...verdict, tokensIn: body.result?.usage?.prompt_tokens ?? Math.ceil(sent / 4), tokensOut: body.result?.usage?.completion_tokens ?? 2 };
+    const form = typeof body.result?.response === 'string' ? 'text' : 'object';
+    return { ok: true, ...verdict, tokensIn: body.result?.usage?.prompt_tokens ?? Math.ceil(sent / 4), tokensOut: body.result?.usage?.completion_tokens ?? 2, form };
   },
 };

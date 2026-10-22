@@ -1,6 +1,6 @@
 import { REFUSAL_MESSAGE, activePromptVersion, prepareModeration, prepareText, type AiRefusal, type PreparedModeration, type PreparedText, type SentText } from '@/lib/ai/platform';
 import { resolverPrompt, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
-import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, parseBlockLine, type Block, type BlockType } from './blocks';
+import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, jsonObjectScanner, parseBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
 import { classSubjects } from './catalog';
@@ -395,17 +395,11 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   if (p.moderation && p.question !== null && !(await safe({ user: p.question }))) {
     return { sent: { result: { ok: false, reason: 'failed' }, record: async () => {} }, subject, kept, refusedByModel, stopped, error };
   }
-  let pending = '';
+  // Each JSON object is checked as soon as it closes, however the model laid it out (C316).
+  const objects = jsonObjectScanner();
   const sent = await p.text.send((delta) => {
-    pending += delta;
-    let nl = pending.indexOf('\n');
-    while (nl >= 0) {
-      enqueue(pending.slice(0, nl));
-      pending = pending.slice(nl + 1);
-      nl = pending.indexOf('\n');
-    }
+    for (const o of objects(delta)) enqueue(o);
   });
-  if (pending.trim()) enqueue(pending);
   await queue;
   return { sent, subject, kept, refusedByModel, stopped, error };
 }
