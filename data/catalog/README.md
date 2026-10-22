@@ -986,3 +986,176 @@ CISCE child is outside this file.
 
 Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
 pages `cisce-class9-physics.md` to `cisce-class10-hindi.md`.
+
+## cisce-2026-27-isc-classes-11-12.csv
+
+CISCE, ISC (Indian School Certificate), academic year 2026-27, Classes XI and XII: Physics, Chemistry, Biology,
+Mathematics, Accountancy, Business Studies, Economics, History, Geography, Political Science, English and Hindi (subject
+ids `physics`, `chemistry`, `biology`, `mathematics`, `accountancy`, `business_studies`, `economics`, `history`,
+`geography`, `political_science`, `english`, `hindi`; CISCE's own name for Accountancy is "Accountancy (858)"). Board
+`CISCE`. Same columns and rules as the files above. Every line is `in_review`; every line was read on **2026-10-22**.
+655 lines (117 units, 316 chapters, 222 topics). Load it the same way:
+
+```
+node scripts/content/catalog-sql.mjs data/catalog/cisce-2026-27-isc-classes-11-12.csv --ref "<the PR that committed it>" > load.sql
+```
+
+### Which document applies to which class
+
+ISC is a two-year course: Class XI and Class XII lead to one examination at the end of Class XII. In 2026-27 a Class XI
+student sits the ISC examination in **2028** and a Class XII student in **2027**. CISCE's site says so in three places:
+the ISC Publications page (https://cisce.org/isc-publications/) lists "Regulations and Syllabuses for the ISC Year 2028
+Examinations" and "… 2027 Examinations" as separate sets; CISCE circular CISCE/CIRCULAR/2026-27/33 (20 April 2026,
+https://cisce.org/wp-content/uploads/2026/08/Circular-for-Bifurcation-of-Indian-Languages.pdf) gives the documents "For
+the Examination Year 2027: … (ISC) - Class XII" and "For the Academic Year 2026-27 and Examination Year 2028: … (ISC) -
+Examination Year 2028 (Classes XI & XII)"; and the Regulations speak of "each year of the two-year course". So:
+
+- **Class XI** comes from each subject's document in "Regulations and Syllabuses ISC – 2028"
+  (https://cisce.org/regulations-and-syllabus-isc-2028/, dated January 2026), its Class XI part only.
+- **Class XII** comes from each subject's document in "Regulations and Syllabuses ISC – 2027"
+  (https://cisce.org/regulations-and-syllabus-isc-2027/, dated February 2025), its Class XII part only.
+- Each document prints "CLASS XI" and "CLASS XII" separately; only the class's own part is used. The 2028 documents'
+  Class XII parts (for 2027-28) and the 2027 documents' Class XI parts (for 2025-26) are not used.
+- Not used: "Revised Syllabus – ISC 2026 (in selected subjects)" (https://cisce.org/regulations-and-syllabus-isc-2026-revised/),
+  the Class XII syllabuses revised for the 2026 examination, which is over.
+- English Literature (Class XI) and Hindi come from **Appendix I, the List of Prescribed Textbooks**, of the same sets:
+  the 2028 English syllabus names only the three books for Class XI, and the Indian Languages syllabus (one document
+  for all Indian languages) sends the reader to Appendix I for each language's books. The April 2026 Appendix I files
+  carry CISCE's split of the Hindi texts between Class XI and Class XII (the circular above).
+
+Pages are the PDF's page numbers (page 1 is the first page of the file); a line printed across a page break names both
+pages (`9-10`). The page links in the table open at the class's course structure (or list) page.
+
+| Class | Subject | Document (examination year) | Units | Chapters | Topics | Pages used |
+|---|---|---|---|---|---|---|
+| XI | physics | Physics (861), ISC 2028: https://cisce.org/wp-content/uploads/2026/02/ISC-2028-Physics.pdf | 10 | 10 | 0 | 4 (course structure), 5–6, 9–11 (sub-headings) |
+| XII | physics | Physics (861), ISC 2027: https://cisce.org/wp-content/uploads/2026/02/ISC-2027-Physics.pdf | 9 | 12 | 0 | 15 (course structure), 16–18, 20–24 |
+| XI | chemistry | Chemistry (862), ISC 2028: https://cisce.org/wp-content/uploads/2026/01/19.-Chemistry.pdf | 9 | 4 | 0 | 4 (course structure), 9–12 |
+| XII | chemistry | Chemistry (862), ISC 2027: https://cisce.org/wp-content/uploads/2025/04/19.-ISC-Chemistry-1.pdf | 10 | 0 | 0 | 14 (course structure) |
+| XI | biology | Biology (863), ISC 2028: https://cisce.org/wp-content/uploads/2026/01/20.-Biology.pdf | 5 | 19 | 0 | 4 (course structure), 5–9 |
+| XII | biology | Biology (863), ISC 2027: https://cisce.org/wp-content/uploads/2025/04/20.-ISC-Biology.pdf | 5 | 13 | 0 | 13 (course structure), 14–18 |
+| XI | mathematics | Mathematics (860), ISC 2028: https://cisce.org/wp-content/uploads/2026/01/17.-Mathematics.pdf | 5 | 15 | 0 | 4 (course structure), 5–11 |
+| XII | mathematics | Mathematics (860), ISC 2027: https://cisce.org/wp-content/uploads/2025/04/17.-ISC-Mathematics.pdf | 7 | 9 | 0 | 11 (course structure), 12–15 |
+| XI | accountancy | Accountancy (858), ISC 2028: https://cisce.org/wp-content/uploads/2026/01/15.-Accountancy.pdf | 10 | 37 | 31 | 4 (course structure), 5–8 |
+| XII | accountancy | Accountancy (858), ISC 2027: https://cisce.org/wp-content/uploads/2025/04/15.-ISC-Accountancy.docx.pdf | 7 | 20 | 49 | 9 (course structure), 10, 13–21 |
+| XI | business_studies | Business Studies (857), ISC 2028: https://cisce.org/wp-content/uploads/2026/09/Business-Studies.pdf | 5 | 20 | 14 | 4 (course structure), 5–6 |
+| XII | business_studies | Business Studies (859), ISC 2027: https://cisce.org/wp-content/uploads/2025/04/16.-ISC-Business-Studies-1.pdf | 5 | 25 | 5 | 7–10 (no course structure table) |
+| XI | economics | Economics (856), ISC 2028: https://cisce.org/wp-content/uploads/2026/01/13.-Economics-1.pdf | 3 | 18 | 0 | 4–6 (no course structure table) |
+| XII | economics | Economics (856), ISC 2027: https://cisce.org/wp-content/uploads/2025/04/13.-ISC-Economics-1.pdf | 2 | 12 | 7 | 7 (course structure), 9–10 |
+| XI | history | History (851), ISC 2028: https://cisce.org/wp-content/uploads/2026/01/8.-History.pdf | 2 | 12 | 25 | 4–7 (no course structure table) |
+| XII | history | History (851), ISC 2027: https://cisce.org/wp-content/uploads/2025/04/8.-ISC-History-2.pdf | 2 | 11 | 37 | 8–10 |
+| XI | geography | Geography (853), ISC 2028: https://cisce.org/wp-content/uploads/2026/01/10.-Geography.pdf | 2 | 6 | 26 | 4–7 |
+| XII | geography | Geography (853), ISC 2027: https://cisce.org/wp-content/uploads/2025/04/10.-ISC-Geography-1.pdf | 1 | 6 | 26 | 9–14 |
+| XI | political_science | Political Science (852), ISC 2028: https://cisce.org/wp-content/uploads/2026/01/9.-Political-Science.pdf | 2 | 12 | 0 | 4–5 |
+| XII | political_science | Political Science (852), ISC 2027: https://cisce.org/wp-content/uploads/2025/04/9.-ISC-Political-Science-1.pdf | 2 | 10 | 2 | 7–8 |
+| XI | english | Appendix I, List of Prescribed Textbooks, ISC 2028: https://cisce.org/wp-content/uploads/2026/04/40.-Appendix-I-List-of-Prescribed-Textbooks.pdf | 3 | 10 | 0 | 4 (English, "Syllabus to be covered in Class XI") |
+| XII | english | English (801), ISC 2027: https://cisce.org/wp-content/uploads/2025/04/2.-ISC-English.pdf | 3 | 10 | 0 | 8 ("Syllabus to be covered", Class XII column) |
+| XI | hindi | Appendix I, ISC 2028 (same file as English XI) | 4 | 12 | 0 | 10 (Hindi (805), "Syllabus to be covered in Class XI") |
+| XII | hindi | Appendix I, ISC 2027: https://cisce.org/wp-content/uploads/2026/04/40.-ISC-Appendix-I-List-of-Prescribed-Textbooks.pdf | 4 | 13 | 0 | 5 (Hindi (805), "Syllabus to be covered in Class XII") |
+
+### How the lines were taken from the documents
+
+- **The same rules as the files above:** units, chapters and topics as the course structure prints them; wording as
+  printed (line breaks joined, repeated spaces made one, capitals, punctuation and slips kept, a trailing colon kept as
+  in "Types of agriculture:"); numbers and labels ("1.", "(i)", "(a)", "I.") left out; learning outcomes, exam
+  formats, notes and explanations never taken. Where the text words a unit differently from the course structure
+  table, the table wins (each case is on the subject's proof page).
+- **Every ISC syllabus prints the same layout:** numbered units ("1. Kinematics"), each followed by a short syllabus
+  statement and an explanation in italics; inside a unit, numbered items "(i)", lettered items "(a)" and, in some
+  subjects, bullets.
+- **Units.** The units of the class's course structure table (the "UNIT" column). Where the theory paper groups its
+  numbered units under named parts, the parts are the units and the numbered units are the chapters, the rule of the
+  CBSE commerce and humanities file: History ("INDIAN HISTORY", "WORLD HISTORY"), Political Science XI ("Political
+  Theory", "Contemporary International Relations"), Political Science XII ("Constitution and Government", "Indian
+  Democracy"), Geography XI (two parts) and XII (one part, "INDIA IN THE WORLD’S CONTEXT"), Economics XII (the table's
+  two halves, "MICROECONOMIC THEORY" and "MACROECONOMICS", marks left out). Business Studies XII, Economics XI, History,
+  Geography and Political Science print no course structure table; their units are the numbered headings (or the parts
+  above them) of the theory paper.
+- **Chapters, science and mathematics.** The sub-headings printed under a unit: "(i) Motion in a Straight Line", or the
+  one unnumbered heading "Units and Measurements". Where the content runs on after a heading on the same line, the
+  chapter is the name before the colon ("(i) Thermal Properties of Matter: Heat, …" gives "Thermal Properties of
+  Matter") or before the full stop that starts the content ("Continuity, Differentiability and Differentiation"). A unit
+  with no sub-heading has no chapter line, as for CBSE Chemistry: numbered items that are content ("(i) Introduction,
+  concepts, types of system, …" in Chemical Thermodynamics), numbered paragraphs of explanation in italics (Physics XI
+  Work, Energy and Power; Gravitation), labels inside running text ("Haloalkanes:") and bold headings inside an
+  explanation ("Aryl ethers") are not chapters. An unnumbered line printed above a numbered list of sub-headings is that
+  list's heading, not a chapter ("Classification of Hydrocarbons", "Matrices and Determinants").
+- **Chapters, the other subjects.** For units that are the numbered units: the parts the course structure table lists
+  under a unit (Accountancy XII "A. Fundamentals of Partnership"; Economics XII "(i) Demand"), otherwise the
+  first-level items printed under the unit, in either type: "(i)", "(ii)" … (Accountancy XI, Business Studies,
+  Economics XI, Accountancy XII units 4, 6 and 7), or "A. Liquidity Ratios:" … (Accountancy XII Ratio Analysis). For
+  units that are parts: the numbered units.
+- **Topics.** The first-level list printed under a chapter: lettered items "(a)" … under a numbered item; numbered items
+  "(i)" … under a numbered unit (History, Geography, Economics XII); the table's "I., II., III." under Accountancy XII
+  Reconstitution of Partnership. Each topic is the item's own paragraph: the explanation printed below it (in italics,
+  as a new paragraph) is not taken, and **a list under a topic is not taken** (the CSV has three levels). Also not
+  taken: lists after "NOTE:" or "Amendments:", and bullet lists inside an explanation after a label ("Various theories
+  of the origin of State:", "The following items are to be taken when calculating net cash flows from financing
+  activities:", "The following examples of DBMS in business application:").
+- **Topics, science and mathematics: none.** Physics, Chemistry, Biology and Mathematics print each chapter as running
+  text followed by an explanation in italics, partly as lettered paragraphs (many longer than the 300-character limit for
+  a title). Splitting it would be our wording: the rule of the CBSE science file.
+- **Items longer than a title (7; the supervisor should confirm).** Seven items are printed as one paragraph of more
+  than 300 characters. Each line is the item's name, its words before the first colon or bracket, or the label printed
+  in bold, as the CBSE file named formatively assessed chapters by the text before the first dash: Accountancy XI
+  "Basic Terms" (393 characters), "GAAP" (317), "Sub-division of journal" (454) and, under it, "Cash book" (305);
+  History XII "Second Wave Feminist Movement in USA (early 1960s – early 1980’s)" (407); Geography XI "Structure and
+  composition of the earth’s interior" (352); Geography XII "Climate: India" (637, the bold label).
+- **English.** ISC English has two papers. English Language (composition, directed writing, proposal writing, grammar,
+  comprehension) prints question types, not chapters, and is not taken. Literature in English: the units are the three
+  prescribed books, the chapters the short stories and poems listed for the class; the play is a unit with its acts in
+  its name ("DRAMA: Macbeth - William Shakespeare (Acts I & II)"). The publisher printed in brackets after each book is
+  left out of its name.
+- **Hindi.** CISCE's Indian Languages syllabus is one English document for all Indian languages: a language section
+  (composition, comprehension, grammar; not taken) and prescribed textbooks, listed per language in Appendix I. The units
+  are the four Hindi books; the chapters are the portion of the novel ("Poorvarddh (Adhyaay 1- 10)"), the acts of the
+  play ("Ank 1"), and the stories and poems listed for the class. The publisher ("– Published by: …") is left out of
+  each collection's name. "Any three of the following books are to be offered": all four are in.
+- **Keys and positions** count from 1 under the parent, in printed order (`cisce.c11.physics.u1`,
+  `cisce.c11.physics.u1.ch01`, `….t01`). Where CISCE skips a number (Business Studies XI "(iv)" then "(vi)"), the
+  positions do not.
+
+### Choices to confirm (the supervisor)
+
+- **Parts as units** (History, Political Science, Geography, Economics XII), as in the CBSE file; elsewhere the numbered
+  units are the units. Chemistry's table prints "Physical Chemistry", "Inorganic Chemistry" and "Organic Chemistry" in
+  its weightage column beside groups of units: read as mark groups, not parts, so not a level. Accountancy XII's
+  Sections A, B and C are question-paper sections (a candidate answers B or C; Section A has no name): not a level, and
+  both options (units 3–5 and 6–7) are in. Political Science XII's sub-heading "Organs of the Government" (over
+  chapters 4–6) is not a level.
+- **The seven items named by the words before their colon** (above).
+- **Science and mathematics have no topics**, even where a chapter prints a short lettered list (Biology XI
+  "Morphology of Flowering Plants" (a), (b)).
+- **Chapters cut at a colon or full stop** in science and mathematics: Physics XI "Thermal Properties of Matter",
+  "Kinetic Theory", "Oscillations", "Waves"; Physics XII "Semiconductor Electronics: Materials, Devices and Simple
+  Circuits", "Semiconductor diode"; Mathematics XII "Types of relations", "Continuity, Differentiability and
+  Differentiation", "Application of Integrals (Area under the curve)".
+- **Notes in a heading left out:** Geography XI "(not to be tested)." after "Geography - its interdisciplinary approach
+  and future prospects" (as in the CBSE file). "7. Map Work" (Geography XI and XII) is a map question with its map list
+  and is not taken, as in the CBSE file.
+- **Hindi has four books**, though a candidate offers three; **English XI** comes from Appendix I (page 4) because the
+  2028 English syllabus names only the books.
+
+### Not in this file (never guessed)
+
+| What | Why |
+|---|---|
+| Other ISC subjects: Commerce, Computer Science, Psychology, Sociology, Environmental Science, Home Science, Legal Studies, Fashion Designing, Electricity and Electronics, Engineering Science, Geometrical & Mechanical Drawing, Geometrical & Building Drawing, Art, Music, Physical Education, Biotechnology, Mass Media and Communication, Hospitality Management, Artificial Intelligence, Robotics, Applied Mathematics, Entrepreneurship (new in the 2028 set), Elective English, Modern English, the other Indian languages, modern foreign languages, classical languages, SUPW | Not yet in: outside this slice's subject list. |
+| Practical work, project work, practical files, map work, question-paper patterns, the list of scientists (Biology) | Assessment and exam formats, not chapters or topics. |
+| The English Language paper and the Indian-language section | Question types (composition, comprehension, grammar), not chapters. |
+| Chemistry XII chapters, Chemistry XI chapters outside Equilibrium and Hydrocarbons, and chapters of the science units with no sub-heading | Content printed as running text (see "Chapters, science and mathematics"). |
+| Hindi titles (`title_hi`) | Empty on every line. Every document used is in English, and CISCE's ISC 2027 and 2028 pages link no Hindi version of any of them (checked 2026-10-22). Appendix I prints the Hindi books in Roman letters ("Saara Aakash (Novel): Rajendra Yadav"); no Devanagari title is printed. Nothing was translated or transliterated. |
+
+### How the supervisor checks a line
+
+As for the files above: open the line's `source_url` at `source_page`, find the title, then check its parent and its
+position. The 2027 documents print two columns: read down the left column, then the right. **Mechanical check:** for
+653 of the 655 lines the whole title (spaces removed, dashes and quotation marks made plain) is in the text of its cited
+page (`pdftotext -layout` and `-raw`); the other two are printed across a page break (the page footer interrupts them:
+Business Studies XII "Insurance Regulatory and Development Authority of India (IRDA): …", pages 9–10, and Economics XII
+"Concepts and definition of NY, GNP, …", pages 9–10), and every word of them is on the cited pages. The importer's checker
+(`readCatalogCsv`, run with the date 2026-10-22) finds no problem; `test/content/catalog-csv.test.ts` checks the counts
+above, the source documents (all on cisce.org) and the Hindi-title rule.
+
+Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
+pages `cisce-class11-physics.md` to `cisce-class12-hindi.md`.

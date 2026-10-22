@@ -347,6 +347,85 @@ describe('the catalog CSV', () => {
       expect(r.syllabi.filter((s) => s.classLevel === c).map((s) => s.subject).sort()).toEqual([...stageSubjects(c, 'CISCE')].sort());
     }
   });
+
+  it('the committed CISCE ISC file for classes 11 and 12 passes the same check', () => {
+    const text = readFileSync(path.resolve(__dirname, '../../data/catalog/cisce-2026-27-isc-classes-11-12.csv'), 'utf8');
+    const r = readCatalogCsv(text, '2026-10-22');
+    expect(r.problems).toEqual([]);
+    const count = (s: { units: unknown[]; chapters: unknown[]; topics: unknown[] }) => [s.units.length, s.chapters.length, s.topics.length];
+    expect(Object.fromEntries(r.syllabi.map((s) => [`${s.board} ${s.classLevel} ${s.subject} ${s.academicYear}`, count(s)]))).toEqual({
+      'CISCE 11 physics 2026-27': [10, 10, 0],
+      'CISCE 12 physics 2026-27': [9, 12, 0],
+      'CISCE 11 chemistry 2026-27': [9, 4, 0],
+      'CISCE 12 chemistry 2026-27': [10, 0, 0],
+      'CISCE 11 biology 2026-27': [5, 19, 0],
+      'CISCE 12 biology 2026-27': [5, 13, 0],
+      'CISCE 11 mathematics 2026-27': [5, 15, 0],
+      'CISCE 12 mathematics 2026-27': [7, 9, 0],
+      'CISCE 11 accountancy 2026-27': [10, 37, 31],
+      'CISCE 12 accountancy 2026-27': [7, 20, 49],
+      'CISCE 11 business_studies 2026-27': [5, 20, 14],
+      'CISCE 12 business_studies 2026-27': [5, 25, 5],
+      'CISCE 11 economics 2026-27': [3, 18, 0],
+      'CISCE 12 economics 2026-27': [2, 12, 7],
+      'CISCE 11 history 2026-27': [2, 12, 25],
+      'CISCE 12 history 2026-27': [2, 11, 37],
+      'CISCE 11 geography 2026-27': [2, 6, 26],
+      'CISCE 12 geography 2026-27': [1, 6, 26],
+      'CISCE 11 political_science 2026-27': [2, 12, 0],
+      'CISCE 12 political_science 2026-27': [2, 10, 2],
+      'CISCE 11 english 2026-27': [3, 10, 0],
+      'CISCE 12 english 2026-27': [3, 10, 0],
+      'CISCE 11 hindi 2026-27': [4, 12, 0],
+      'CISCE 12 hindi 2026-27': [4, 13, 0],
+    });
+    // Class XI from the Regulations and Syllabuses for the ISC Year 2028 Examinations, Class XII from those for 2027;
+    // English Literature (Class XI) and Hindi from Appendix I, the list of prescribed textbooks. All on cisce.org.
+    expect(r.lines.every((l) => l.sourceUrl.startsWith('https://cisce.org/wp-content/uploads/'))).toBe(true);
+    expect(new Set(r.lines.filter((l) => l.classLevel === 11).map((l) => l.sourceUrl))).toEqual(
+      new Set(
+        [
+          '2026/02/ISC-2028-Physics',
+          '2026/01/19.-Chemistry',
+          '2026/01/20.-Biology',
+          '2026/01/17.-Mathematics',
+          '2026/01/15.-Accountancy',
+          '2026/09/Business-Studies',
+          '2026/01/13.-Economics-1',
+          '2026/01/8.-History',
+          '2026/01/10.-Geography',
+          '2026/01/9.-Political-Science',
+          '2026/04/40.-Appendix-I-List-of-Prescribed-Textbooks',
+        ].map((f) => `https://cisce.org/wp-content/uploads/${f}.pdf`)
+      )
+    );
+    expect(new Set(r.lines.filter((l) => l.classLevel === 12).map((l) => l.sourceUrl))).toEqual(
+      new Set(
+        [
+          '2026/02/ISC-2027-Physics',
+          '2025/04/19.-ISC-Chemistry-1',
+          '2025/04/20.-ISC-Biology',
+          '2025/04/17.-ISC-Mathematics',
+          '2025/04/15.-ISC-Accountancy.docx',
+          '2025/04/16.-ISC-Business-Studies-1',
+          '2025/04/13.-ISC-Economics-1',
+          '2025/04/8.-ISC-History-2',
+          '2025/04/10.-ISC-Geography-1',
+          '2025/04/9.-ISC-Political-Science-1',
+          '2025/04/2.-ISC-English',
+          '2026/04/40.-ISC-Appendix-I-List-of-Prescribed-Textbooks',
+        ].map((f) => `https://cisce.org/wp-content/uploads/${f}.pdf`)
+      )
+    );
+    // Every CISCE document is in English; CISCE prints the Hindi prescribed books in Roman letters. So no line has a
+    // Hindi title, and nothing is translated or transliterated.
+    expect(r.lines.some((l) => l.subject === 'hindi')).toBe(true);
+    expect(r.lines.every((l) => l.titleHi === null && !/[ऀ-ॿ]/.test(l.titleEn))).toBe(true);
+    // The app's ISC subjects for these classes (C264, C272) are exactly the subjects this file holds.
+    for (const c of [11, 12]) {
+      expect(r.syllabi.filter((s) => s.classLevel === c).map((s) => s.subject).sort()).toEqual([...stageSubjects(c, 'CISCE')].sort());
+    }
+  });
 });
 
 describe('the diff between two versions, by stable key', () => {

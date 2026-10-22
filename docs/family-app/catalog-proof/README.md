@@ -313,3 +313,57 @@ Good to know before you start:
 - **Choices to confirm**, marked "Please check" on the pages and explained in the catalog README: no units in the
   sciences and Mathematics, the chapters without topics, map work, the language units without chapters, and how a few
   mixed lines are taken.
+
+## CISCE ISC, Classes XI and XII
+
+One page per syllabus version in
+[`data/catalog/cisce-2026-27-isc-classes-11-12.csv`](../../../data/catalog/cisce-2026-27-isc-classes-11-12.csv),
+read from cisce.org on 2026-10-22. ISC is a two-year course, so in 2026-27 Class XI follows CISCE's syllabus for the
+**2028** examination and Class XII the one for the **2027** examination; each page says which document it uses and
+takes only that class's part. Compare and approve exactly as above; each page lists the CISCE pages to open, and every
+line links to its own page.
+
+| Page | Units | Chapters | Topics | CISCE pages to compare |
+|---|---|---|---|---|
+| [Class XI Physics](cisce-class11-physics.md) | 10 | 10 | 0 | 4–6, 9–11 |
+| [Class XII Physics](cisce-class12-physics.md) | 9 | 12 | 0 | 15–18, 20–24 |
+| [Class XI Chemistry](cisce-class11-chemistry.md) | 9 | 4 | 0 | 4, 9–12 |
+| [Class XII Chemistry](cisce-class12-chemistry.md) | 10 | 0 | 0 | 14 |
+| [Class XI Biology](cisce-class11-biology.md) | 5 | 19 | 0 | 4–9 |
+| [Class XII Biology](cisce-class12-biology.md) | 5 | 13 | 0 | 13–18 |
+| [Class XI Mathematics](cisce-class11-mathematics.md) | 5 | 15 | 0 | 4–11 |
+| [Class XII Mathematics](cisce-class12-mathematics.md) | 7 | 9 | 0 | 11–15 |
+| [Class XI Accountancy](cisce-class11-accountancy.md) | 10 | 37 | 31 | 4–8 |
+| [Class XII Accountancy](cisce-class12-accountancy.md) | 7 | 20 | 49 | 9–10, 13–21 |
+| [Class XI Business Studies](cisce-class11-business-studies.md) | 5 | 20 | 14 | 4–6 |
+| [Class XII Business Studies](cisce-class12-business-studies.md) | 5 | 25 | 5 | 7–10 |
+| [Class XI Economics](cisce-class11-economics.md) | 3 | 18 | 0 | 4–6 |
+| [Class XII Economics](cisce-class12-economics.md) | 2 | 12 | 7 | 7, 9–10 |
+| [Class XI History](cisce-class11-history.md) | 2 | 12 | 25 | 4–7 |
+| [Class XII History](cisce-class12-history.md) | 2 | 11 | 37 | 8–10 |
+| [Class XI Geography](cisce-class11-geography.md) | 2 | 6 | 26 | 4–7 |
+| [Class XII Geography](cisce-class12-geography.md) | 1 | 6 | 26 | 9–14 |
+| [Class XI Political Science](cisce-class11-political-science.md) | 2 | 12 | 0 | 4–5 |
+| [Class XII Political Science](cisce-class12-political-science.md) | 2 | 10 | 2 | 7–8 |
+| [Class XI English](cisce-class11-english.md) | 3 | 10 | 0 | 4 |
+| [Class XII English](cisce-class12-english.md) | 3 | 10 | 0 | 8 |
+| [Class XI Hindi](cisce-class11-hindi.md) | 4 | 12 | 0 | 10 |
+| [Class XII Hindi](cisce-class12-hindi.md) | 4 | 13 | 0 | 5 |
+
+These pages have **no picture** of CISCE's pages: the documents are CISCE's copyright, so no copy of them is kept in the
+repository.
+
+Good to know before you start:
+
+- **CISCE prints every unit as a short syllabus statement followed by an explanation in italics.** The list takes the
+  headings and the numbered or lettered items; it never takes the explanation, notes, practicals, projects or map work.
+- **No topics for Physics, Chemistry, Biology and Mathematics**, as for CBSE: their content is running text. Some of
+  their units have no chapters either, because CISCE prints no sub-heading under them (all of Chemistry XII).
+- **History, Political Science, Geography and Economics XII** have their parts (for example "INDIAN HISTORY" and "WORLD
+  HISTORY") as units and the numbered headings as chapters, as in the CBSE pages.
+- **English and Hindi** list the prescribed books as units and their stories, poems and portions as chapters. CISCE
+  prints the Hindi titles in Roman letters ("Saara Aakash"), so they are shown that way; nothing was translated.
+- **No Hindi titles.** Every CISCE document used is in English (checked 2026-10-22).
+- **Choices to confirm**, marked "Please check" on the pages and explained in the catalog README: parts as units,
+  seven long items named by their first words, chapters cut where the content starts, both Accountancy XII options (B
+  and C), Hindi with four books though a student offers three, and science without topics.
