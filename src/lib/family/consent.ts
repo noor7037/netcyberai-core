@@ -5,10 +5,11 @@
 
 export const FAMILY_PURPOSES = ['study_core', 'school_link', 'opportunity_matching', 'photo_input', 'english_programme', 'voice_practice'] as const;
 export type FamilyPurpose = (typeof FAMILY_PURPOSES)[number];
-// The purposes the app asks for now: study_core (M1), english_programme (the English course, C274) and voice_practice
-// (a question spoken instead of typed, M2-7, C281; the English course's voice practice will use the same consent). The
-// others arrive with their milestones.
-export const ASKED_PURPOSES: readonly FamilyPurpose[] = ['study_core', 'english_programme', 'voice_practice'];
+// The purposes the app asks for now: study_core (M1), english_programme (the English course, C274), photo_input (the
+// homework helper sends a child's photo to a provider, M2-6, C280; 03 §11) and voice_practice (a question spoken
+// instead of typed, M2-7, C281; the English course's voice practice will use the same consent). The others arrive with
+// their milestones.
+export const ASKED_PURPOSES: readonly FamilyPurpose[] = ['study_core', 'english_programme', 'photo_input', 'voice_practice'];
 // The notice the parent read when tapping (its words are the fam.consent.* messages of this version).
 export const FAMILY_NOTICE_VERSION = 'fam-notice-1';
 
